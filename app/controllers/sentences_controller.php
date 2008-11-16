@@ -62,7 +62,17 @@ class SentencesController extends AppController{
 		if(empty($this->data)){
 			$this->data = $this->Sentence->read();
 		}else{
-			if($this->Sentence->save($this->data)){
+			if($this->Sentence->save($this->data)){				
+				// Logs
+				$this->data['SentenceLogs']['sentence_id'] = $this->Sentence->id;
+				$this->data['SentenceLogs']['sentence_lang'] = $this->data['Sentence']['lang'];
+				$this->data['SentenceLogs']['sentence_text'] = $this->data['Sentence']['text'];
+				$this->data['SentenceLogs']['action'] = 'update';
+				$this->data['SentenceLogs']['user_id'] = $this->Auth->user('id');
+				$this->data['SentenceLogs']['datetime'] = date("Y-m-d H:i:s");
+				$this->Sentence->SentenceLogs->save($this->data);
+				
+				// Confirmation message
 				$this->flash(
 					__('The sentence has been updated',true),
 					'/sentences/edit/'.$id
