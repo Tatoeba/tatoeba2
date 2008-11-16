@@ -41,6 +41,18 @@ class SentencesController extends AppController{
 	}
 	
 	function delete($id){
+		// We log first
+		$this->Sentence->id = $id;
+		$tmp = $this->Sentence->read();
+		$this->data['SentenceLogs']['sentence_id'] = $id;
+		$this->data['SentenceLogs']['sentence_lang'] = $tmp['Sentence']['lang'];
+		$this->data['SentenceLogs']['sentence_text'] = $tmp['Sentence']['text'];
+		$this->data['SentenceLogs']['action'] = 'delete';
+		$this->data['SentenceLogs']['user_id'] = $this->Auth->user('id');
+		$this->data['SentenceLogs']['datetime'] = date("Y-m-d H:i:s");
+		$this->Sentence->SentenceLogs->save($this->data);
+		
+		// Then we delete
 		$this->Sentence->del($id);
 		$this->flash('The sentence #'.$id.' has been deleted.', '/sentences');
 	}
