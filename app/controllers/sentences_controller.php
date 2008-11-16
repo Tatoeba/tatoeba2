@@ -83,8 +83,8 @@ class SentencesController extends AppController{
 	
 	function translate($id){
 		$this->Sentence->id = $id;
-		$this->data['Sentence']['id'] = $id;
 		$this->set('sentence',$this->Sentence->read());
+		$this->data['Sentence']['id'] = $id;
 	}
 	
 	function save_translation(){
@@ -99,6 +99,18 @@ class SentencesController extends AppController{
 			$this->data['Sentence']['id'] = null; // so that it saves a new sentences, otherwise it's like editing
 			
 			if($this->Sentence->save($this->data)){
+				// Logs
+				$this->data['TranslationLogs']['sentence_id'] = $this->data['Translation']['Translation'][0];
+				$this->data['TranslationLogs']['sentence_lang'] = $this->data['Sentence']['sentence_lang'];
+				$this->data['TranslationLogs']['translation_id'] = $this->Sentence->id;
+				$this->data['TranslationLogs']['translation_lang'] = $this->data['Sentence']['lang'];
+				$this->data['TranslationLogs']['translation_text'] = $this->data['Sentence']['text'];
+				$this->data['TranslationLogs']['action'] = 'insert';
+				$this->data['TranslationLogs']['user_id'] = $this->Auth->user('id');
+				$this->data['TranslationLogs']['datetime'] = date("Y-m-d H:i:s");
+				$this->Sentence->TranslationLogs->save($this->data);
+				
+				// Confirmation message
 				$this->flash(
 					__('The translation has been saved',true),
 					'/sentences'
