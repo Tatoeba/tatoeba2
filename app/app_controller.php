@@ -17,7 +17,7 @@ class AppController extends Controller {
 		$this->Auth->authError = __('You need to be logged in.',true);
 		
 		// to remove in production mode
-		//$this->buildAcl();
+		$this->buildAcl();
     }
 
 	function flash($msg,$to){

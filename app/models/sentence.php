@@ -10,6 +10,8 @@ class Sentence extends AppModel{
 		)
 	);
 	
+	var $hasMany = array('SuggestedModification', 'SentenceLogs', 'TranslationLogs');
+	
 	var $hasAndBelongsToMany = array(
 		'Translation' => array(
 			'className' => 'Translation',
