@@ -35,13 +35,13 @@ echo $html->link(
 	));
 echo '</li>';
 
-
+// Latest activities
 echo '<li>';
 echo $html->link(
-	__('Latest activity',true),
+	__('Latest activities',true),
 	array(
-		"controller" => "sentenceLogs",
-		"action" => "view"
+		"controller" => "latestActivities",
+		"action" => "index"
 	));
 echo '</li>';
 
