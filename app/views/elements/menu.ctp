@@ -35,5 +35,15 @@ echo $html->link(
 	));
 echo '</li>';
 
+
+echo '<li>';
+echo $html->link(
+	__('Latest activity',true),
+	array(
+		"controller" => "sentenceLogs",
+		"action" => "view"
+	));
+echo '</li>';
+
 echo '</ul>';
 ?>

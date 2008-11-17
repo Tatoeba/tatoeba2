@@ -17,18 +17,28 @@ class SuggestedModificationsController extends AppController {
 		$this->set('suggestedModification', $this->SuggestedModification->read(null, $id));
 	}
 
-	function add() {
+	function add($sentence_id) {
+		$s = new Sentence();
+		$sentence = $s->findById($sentence_id);
+		$this->data['SuggestedModification']['correction_text'] = $sentence['Sentence']['text'];
+		$this->data['SuggestedModification']['sentence_lang'] = $sentence['Sentence']['lang'];
+		$this->data['SuggestedModification']['sentence_id'] = $sentence['Sentence']['id'];
+	}
+	
+	function save_suggestion(){
 		if (!empty($this->data)) {
 			$this->SuggestedModification->create();
+			
+			$this->data['SuggestedModification']['submit_user_id'] = $this->Auth->user('id');
+			$this->data['SuggestedModification']['submit_datetime'] = date("Y-m-d H:i:s");
+			
 			if ($this->SuggestedModification->save($this->data)) {
-				$this->Session->setFlash(__('The SuggestedModification has been saved', true));
+				$this->Session->setFlash(__('The suggestion has been saved', true));
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The SuggestedModification could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__('The suggestion could not be saved. Please, try again.', true));
 			}
 		}
-		$sentences = $this->SuggestedModification->Sentence->find('list');
-		$this->set(compact('sentences'));
 	}
 
 	function edit($id = null) {
