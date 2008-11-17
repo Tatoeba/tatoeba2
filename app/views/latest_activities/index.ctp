@@ -50,11 +50,6 @@ foreach ($latestActivities as $latestActivity):
 		<td>
 			<?php echo $latestActivity['LatestActivity']['datetime']; ?>
 		</td>
-		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action'=>'view', $latestActivity['LatestActivity']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $latestActivity['LatestActivity']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $latestActivity['LatestActivity']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $latestActivity['LatestActivity']['id'])); ?>
-		</td>
 	</tr>
 <?php endforeach; ?>
 </table>
