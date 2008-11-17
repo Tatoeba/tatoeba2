@@ -3,8 +3,8 @@
 	<fieldset>
  		<legend><?php __('Add SuggestedModification');?></legend>
 	<?php
-		//echo $form->input('sentence_id');
-		//echo $form->input('sentence_lang');
+		echo $form->input('sentence_id', array("type" => "hidden"));
+		echo $form->input('sentence_lang', array("type" => "hidden"));
 		echo $form->input('correction_text');
 		//echo $form->input('submit_user_id');
 		//echo $form->input('submit_datetime');
