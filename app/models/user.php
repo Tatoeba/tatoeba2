@@ -5,9 +5,23 @@ class User extends AppModel {
 	var $actsAs = array('Acl' => array('requester'));
 	
 	var $validate = array(
-		'username' => array('alphanumeric'),
-		'password' => array('alphanumeric'),
-		'email' => array('email'),
+		'username' => array(
+			'alphanumeric' => array(
+				'rule' => 'alphanumeric', 
+				'message' => 'Username must only contain letters and numbers'),
+			'isUnique' => array(
+				'rule' => 'isUnique',
+				'message' => 'Username already taken.')
+			),
+		'password' => array('rule' => 'alphanumeric', 'message' => 'Username must only contain letters and numbers'),
+		'email' => array(
+			'email' => array(
+				'rule' => 'email', 
+				'message' => 'Non valid email'),
+			'isUnique' => array(
+				'rule' => 'isUnique',
+				'message' => 'Email already used.')
+			),
 		'lang' => array('alphanumeric'),
 		'lastlogout' => array('numeric'),
 		'status' => array('numeric'),

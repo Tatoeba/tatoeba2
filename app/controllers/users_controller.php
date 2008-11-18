@@ -9,8 +9,7 @@ class UsersController extends AppController {
 		parent::beforeFilter(); 
 		
 		// setting actions that are available to everyone, even guests
-		$this->Auth->allowedActions = array('logout');
-		//$this->Auth->allowedActions = array('*');
+		$this->Auth->allowedActions = array('logout','register');
 	}
 
 	
@@ -82,6 +81,25 @@ class UsersController extends AppController {
 		$this->redirect($this->Auth->logout());  
 	}
 	
+	function register(){
+		if (!empty($this->data)) {
+			$nonHashedPassword = $this->data['User']['password'];
+			if ($this->data['User']['password'] == $this->Auth->password($this->data['User']['password_confirm'])) {
+				$this->User->create();
+				$this->data['User']['since'] = date("Y-m-d H:i:s");
+				$this->data['User']['group_id'] = 3;
+				if($this->User->save($this->data)){
+					$this->redirect(array('controller' => 'pages', 'action' => 'index'));
+				}else{
+					$this->data['User']['password'] = '';
+				}
+			}else{
+				$this->data['User']['password'] = '';
+				$this->data['User']['password_confirm'] = '';
+				$this->set('error', __('Passwords do not match',true));
+			}
+		}
+	}
 	
 	// temporary function to grant/deny access
 	function initDB() {

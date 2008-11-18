@@ -62,6 +62,13 @@
 						"controller" => "users",
 						"action" => "login"
 					));
+				echo ' ';
+				echo $html->link(
+					__('Register',true),
+					array(
+						"controller" => "users",
+						"action" => "register"
+					));
 			}
 			?>
 		</div>
