@@ -40,7 +40,7 @@ echo '<li>';
 echo $html->link(
 	__('Latest activities',true),
 	array(
-		"controller" => "latestActivities",
+		"controller" => "latest_activities",
 		"action" => "index"
 	));
 echo '</li>';
