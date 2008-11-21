@@ -54,6 +54,30 @@ class User extends AppModel {
 	        return array('Group' => array('id' => $data['User']['group_id']));
 	    }
 	}
+	
+	function generate_password(){
+		$pw = '';
+		$c  = 'bcdfghjklmnprstvwz' . 'BCDFGHJKLMNPRSTVWZ' ; //consonants except hard to speak ones
+		$v  = 'aeiou';              //vowels
+		$a  = $c.$v;                //both 
+		
+		//use two syllables...
+		for($i=0;$i < 2; $i++){
+		$pw .= $c[rand(0, strlen($c)-1)];
+		$pw .= $v[rand(0, strlen($v)-1)];
+		$pw .= $a[rand(0, strlen($a)-1)];
+		}
+		//... and add a nice number
+		$pw .= rand(1,9);
+		
+		$pw = rtrim($pw);
+		
+		if (strlen($pw) == 7) {
+			$pw .= rand(0,9);
+		}
+		
+		return $pw;
+	}
 
 }
 ?>

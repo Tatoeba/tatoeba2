@@ -3,13 +3,13 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
 	var $helpers = array('Html', 'Form');
-	
+	var $components = array ('Mailer');
 
 	function beforeFilter() {
 		parent::beforeFilter(); 
 		
 		// setting actions that are available to everyone, even guests
-		$this->Auth->allowedActions = array('logout','register');
+		$this->Auth->allowedActions = array('logout','register','new_password');
 	}
 
 	
@@ -97,6 +97,40 @@ class UsersController extends AppController {
 				$this->data['User']['password'] = '';
 				$this->data['User']['password_confirm'] = '';
 				$this->set('error', __('Passwords do not match',true));
+			}
+		}
+	}
+	
+	function new_password(){
+		if (!empty($this->data)) {
+			$user = $this->User->findByEmail($this->data['User']['email']);
+			
+			// check if user exists, if so :
+			if($user){
+				$newPassword = $this->User->generate_password();
+				
+				// data to save
+				$this->data['User']['id'] = $user['User']['id'];
+				$this->data['User']['password'] = $this->Auth->password($newPassword);
+				
+				if($this->User->save($this->data)){ // if saved
+					// prepare message
+					$subject = __('Tatoeba, new password',true);
+					$message = __('Your login : ',true)
+						. $user['User']['username']
+						. "\n" 
+						. __('Your new password : ',true)
+						. $newPassword;
+					
+					// send email with new password
+					$this->Mailer->to = $this->data['User']['email'];
+					$this->Mailer->toName = '';
+					$this->Mailer->suject = $subject;
+					$this->Mailer->message = $message;
+					$this->Mailer->send();
+				}
+			}else{
+				$this->set('error', __('There is no registered user with such email.',true));
 			}
 		}
 	}
