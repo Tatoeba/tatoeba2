@@ -1,6 +1,9 @@
 <?php
 class Sentence extends AppModel{
 	var $name = 'Sentence';
+	
+	const MAX_CORRECTNESS = 6;
+	
 	var $validate = array(
 		'lang' => array(
 			'rule' => array('inList', array('en', 'jp', 'fr'))

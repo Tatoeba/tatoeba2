@@ -4,6 +4,8 @@ class User extends AppModel {
 	var $name = 'User';
 	var $actsAs = array('Acl' => array('requester'));
 	
+	const LOWEST_TRUST_GROUP_ID = 4;
+	
 	var $validate = array(
 		'username' => array(
 			'alphanumeric' => array(

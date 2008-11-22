@@ -14,9 +14,7 @@ echo $paginator->counter(array(
 	<th><?php echo $paginator->sort('email');?></th>
 	<th><?php echo $paginator->sort('lang');?></th>
 	<th><?php echo $paginator->sort('since');?></th>
-	<th><?php echo $paginator->sort('lastlogout');?></th>
-	<th><?php echo $paginator->sort('status');?></th>
-	<th><?php echo $paginator->sort('permissions');?></th>
+	<th><?php echo $paginator->sort('last_time_active');?></th>
 	<th><?php echo $paginator->sort('level');?></th>
 	<th><?php echo $paginator->sort('group_id');?></th>
 	<th class="actions"><?php __('Actions');?></th>
@@ -49,13 +47,7 @@ foreach ($users as $user):
 			<?php echo $user['User']['since']; ?>
 		</td>
 		<td>
-			<?php echo $user['User']['lastlogout']; ?>
-		</td>
-		<td>
-			<?php echo $user['User']['status']; ?>
-		</td>
-		<td>
-			<?php echo $user['User']['permissions']; ?>
+			<?php echo $user['User']['last_time_active']; ?>
 		</td>
 		<td>
 			<?php echo $user['User']['level']; ?>

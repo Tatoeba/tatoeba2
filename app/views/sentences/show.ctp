@@ -2,7 +2,13 @@
 $this->pageTitle = __('Translations for : ',true) . $sentence['Sentence']['text'];
 ?>
 
-<h2><?php __('Sentence'); echo ' ' . $sentence['Sentence']['id'] ?></h2>
+<h2>
+<?php 
+__('Sentence'); 
+echo ' ' . $sentence['Sentence']['id'] . ' / correctness ' . $sentence['Sentence']['correctness'];
+?>
+</h2>
+
 <?php echo $sentence['Sentence']['text']; ?>
 
 <?php

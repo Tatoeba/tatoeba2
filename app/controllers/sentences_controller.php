@@ -6,7 +6,7 @@ class SentencesController extends AppController{
 	    parent::beforeFilter(); 
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show');
+	    $this->Auth->allowedActions = array('index','show','add','translate');
 	}
 
 	
@@ -21,6 +21,13 @@ class SentencesController extends AppController{
 	
 	function add(){
 		if(!empty($this->data)){
+			// setting correctness of sentence
+			if($this->Auth->user('group_id')){
+				$this->data['Sentence']['correctness'] = Sentence::MAX_CORRECTNESS - $this->Auth->user('group_id');
+			}else{
+				$this->data['Sentence']['correctness'] = 1;
+			}
+			
 			if($this->Sentence->save($this->data)){
 				// Logs
 				$this->data['SentenceLogs']['sentence_id'] = $this->Sentence->id;
@@ -97,6 +104,13 @@ class SentencesController extends AppController{
 			$this->data['InverseTranslation']['InverseTranslation'][] = $this->data['Sentence']['id'];
 			
 			$this->data['Sentence']['id'] = null; // so that it saves a new sentences, otherwise it's like editing
+			
+			// setting level of correctness
+			if($this->Auth->user('group_id')){
+				$this->data['Sentence']['correctness'] = Sentence::MAX_CORRECTNESS - $this->Auth->user('group_id');
+			}else{
+				$this->data['Sentence']['correctness'] = 1;
+			}
 			
 			if($this->Sentence->save($this->data)){
 				// Logs

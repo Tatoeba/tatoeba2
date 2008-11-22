@@ -8,9 +8,7 @@
 		echo $form->input('password');
 		echo $form->input('email');
 		echo $form->input('lang');
-		echo $form->input('lastlogout');
-		echo $form->input('status');
-		echo $form->input('permissions');
+		echo $form->input('last_time_active');
 		echo $form->input('level');
 		echo $form->input('group_id');
 	?>

@@ -9,7 +9,9 @@ class UsersController extends AppController {
 		parent::beforeFilter(); 
 		
 		// setting actions that are available to everyone, even guests
+		// no need to allow login
 		$this->Auth->allowedActions = array('logout','register','new_password');
+		//$this->Auth->allowedActions = array('*');
 	}
 
 	
@@ -87,7 +89,7 @@ class UsersController extends AppController {
 			if ($this->data['User']['password'] == $this->Auth->password($this->data['User']['password_confirm'])) {
 				$this->User->create();
 				$this->data['User']['since'] = date("Y-m-d H:i:s");
-				$this->data['User']['group_id'] = 3;
+				$this->data['User']['group_id'] = User::LOWEST_TRUST_GROUP_ID;
 				if($this->User->save($this->data)){
 					$this->redirect(array('controller' => 'pages', 'action' => 'index'));
 				}else{
@@ -143,16 +145,20 @@ class UsersController extends AppController {
 	    $group->id = 1;     
 	    $this->Acl->allow($group, 'controllers');
 	 
-	    //Permissions for editors
+	    //Permissions for moderators
 	    $group->id = 2;
 		$this->Acl->deny($group, 'controllers');
 	    $this->Acl->allow($group, 'controllers/Sentences');
-	 
-	    //Permissions for users
-	    $group->id = 3;
+		$this->Acl->allow($group, 'controllers/SuggestedModifications');
+		
+		//Permissions for trusted_users
+		$group->id = 3;
 		$this->Acl->deny($group, 'controllers');
-	    $this->Acl->allow($group, 'controllers/Sentences/show');
-		$this->Acl->allow($group, 'controllers/Sentences/translate');
+		$this->Acl->allow($group, 'controllers/Sentences');
+		
+	    //Permissions for users
+	    $group->id = 4;
+		$this->Acl->deny($group, 'controllers');
 	}
 }
 ?>

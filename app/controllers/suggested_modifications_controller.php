@@ -71,6 +71,12 @@ class SuggestedModificationsController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 	}
+	
+	function validate($id){
+	}
+	
+	function refuse($id){
+	}
 
 }
 ?>
