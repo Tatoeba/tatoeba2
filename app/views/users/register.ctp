@@ -1,6 +1,6 @@
 <h1><?php __('Registration') ?></h1>
 <?php
-if($error){
+if(isset($error)){
 	echo $error;
 }
 echo $form->create('User', array('action' => 'register'));
