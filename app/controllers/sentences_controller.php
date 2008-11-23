@@ -2,6 +2,8 @@
 class SentencesController extends AppController{
 	var $name = 'Sentences';
 	
+	var $components = array ('GoogleLanguageApi');
+	
 	function beforeFilter() {
 	    parent::beforeFilter(); 
 		
@@ -28,21 +30,31 @@ class SentencesController extends AppController{
 				$this->data['Sentence']['correctness'] = 1;
 			}
 			
-			if($this->Sentence->save($this->data)){
-				// Logs
-				$this->data['SentenceLogs']['sentence_id'] = $this->Sentence->id;
-				$this->data['SentenceLogs']['sentence_lang'] = $this->data['Sentence']['lang'];
-				$this->data['SentenceLogs']['sentence_text'] = $this->data['Sentence']['text'];
-				$this->data['SentenceLogs']['action'] = 'insert';
-				$this->data['SentenceLogs']['user_id'] = $this->Auth->user('id');
-				$this->data['SentenceLogs']['datetime'] = date("Y-m-d H:i:s");
-				$this->Sentence->SentenceLogs->save($this->data);
-				
-				// Confirmation message
-				$this->flash(
-					__('Your post has been saved.',true), 
-					'/sentences'
-				);
+			// detecting language
+			$this->GoogleLanguageApi->text = $this->data['Sentence']['text'];
+			$response = $this->GoogleLanguageApi->detectLang();
+			
+			if($response['language']){
+				$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
+				// saving
+				if($this->Sentence->save($this->data)){
+					// Logs
+					$this->data['SentenceLogs']['sentence_id'] = $this->Sentence->id;
+					$this->data['SentenceLogs']['sentence_lang'] = $response['language'];
+					$this->data['SentenceLogs']['sentence_text'] = $this->data['Sentence']['text'];
+					$this->data['SentenceLogs']['action'] = 'insert';
+					$this->data['SentenceLogs']['user_id'] = $this->Auth->user('id');
+					$this->data['SentenceLogs']['datetime'] = date("Y-m-d H:i:s");
+					$this->Sentence->SentenceLogs->save($this->data);
+					
+					// Confirmation message
+					$this->flash(
+						__('Your post has been saved.',true), 
+						'/sentences'
+					);
+				}
+			}else{
+				echo 'Problem with language detection';
 			}
 		}
 	}
@@ -111,6 +123,11 @@ class SentencesController extends AppController{
 			}else{
 				$this->data['Sentence']['correctness'] = 1;
 			}
+			
+			// detecting language
+			$this->GoogleLanguageApi->text = $this->data['Sentence']['text'];
+			$response = $this->GoogleLanguageApi->detectLang();
+			$this->data['Sentence']['lang'] = $response['language'];
 			
 			if($this->Sentence->save($this->data)){
 				// Logs
