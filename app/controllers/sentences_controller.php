@@ -8,7 +8,7 @@ class SentencesController extends AppController{
 	    parent::beforeFilter(); 
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','add','translate');
+	    $this->Auth->allowedActions = array('index','show','add','translate','save_translation');
 	}
 
 	
@@ -17,7 +17,16 @@ class SentencesController extends AppController{
 	}
 	
 	function show($id){
-		$this->Sentence->id = $id;
+		if($id == "random"){
+			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences');
+			$max = $resultMax[0][0]['MAX(id)'];
+			
+			$randId = rand(1, $max);
+			$this->Sentence->id = $randId;
+		}else{
+			$this->Sentence->id = $id;
+		}
+		
 		$this->set('sentence',$this->Sentence->read());
 	}
 	

@@ -35,6 +35,17 @@ echo $html->link(
 	));
 echo '</li>';
 
+// Random sentence
+echo '<li>';
+echo $html->link(
+	__('Random sentence',true),
+	array(
+		"controller" => "sentences",
+		"action" => "show",
+		"random"
+	));
+echo '</li>';
+
 // Latest activities
 echo '<li>';
 echo $html->link(
