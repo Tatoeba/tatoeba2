@@ -2,13 +2,13 @@
 class SentencesController extends AppController{
 	var $name = 'Sentences';
 	
-	var $components = array ('GoogleLanguageApi');
+	var $components = array ('GoogleLanguageApi', 'Lucene');
 	
 	function beforeFilter() {
 	    parent::beforeFilter(); 
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','add','translate','save_translation');
+	    $this->Auth->allowedActions = array('index','show','add','translate','save_translation','search');
 	}
 
 	
@@ -158,6 +158,52 @@ class SentencesController extends AppController{
 			}else{
 				echo 'problem';
 			}
+		}
+	}
+	
+	function search(){
+		if(isset($this->params['url']['query'])){
+			$this->pageTitle = __('Tatoeba search : ',true) . $this->params['url']['query'];
+			$query = $this->params['url']['query'];
+			
+			$lucene_results = $this->Lucene->search($query);
+			$sentences = array();
+			
+			foreach($lucene_results as $result){
+				$sentence = $this->Sentence->findById($result['id']);
+				$sentence['Score'] = $result['score'];
+				$sentences[] = $sentence;
+			}
+			
+			/*
+			print_r($sentences);
+			
+			// would give something like this :
+			Array ( 
+				[0] => Array ( 
+					[Sentence] => Array ( 
+						[id] => 157 
+						[lang] => en 
+						[text] => "I can't think with that noise", she said as she stared at the typewriter. [F] 
+						[correctness] => 
+						[user_id] => 
+						[created] => 
+						[modified] => 
+					) 
+					[SuggestedModification] => Array ( ) 
+					[SentenceLogs] => Array ( ) 
+					[TranslationLogs] => Array ( ) 
+					[Translation] => Array ( ) 
+					[InverseTranslation] => Array ( ) 
+					[Score] => 1 
+				) 
+			)
+			*/
+			
+			$this->set('query', urldecode($query));
+			$this->set('sentences', $sentences);
+		}else{
+			$this->pageTitle = __('Tatoeba search',true);
 		}
 	}
 }

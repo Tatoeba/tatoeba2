@@ -56,5 +56,15 @@ echo $html->link(
 	));
 echo '</li>';
 
+// Latest activities
+echo '<li>';
+echo $html->link(
+	__('Search',true),
+	array(
+		"controller" => "sentences",
+		"action" => "search"
+	));
+echo '</li>';
+
 echo '</ul>';
 ?>
