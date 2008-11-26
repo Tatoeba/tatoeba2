@@ -1,3 +1,4 @@
+<div id="menu">
 <h1>Menu</h1>
 
 <?php 
@@ -56,7 +57,7 @@ echo $html->link(
 	));
 echo '</li>';
 
-// Latest activities
+// Search
 echo '<li>';
 echo $html->link(
 	__('Search',true),
@@ -66,5 +67,16 @@ echo $html->link(
 	));
 echo '</li>';
 
+// Documentation : still needs to be done
+echo '<li>';
+echo 'Documentation';
+echo '</li>';
+
+// Discussions
+echo '<li>';
+echo 'Discussions';
+echo '</li>';
+
 echo '</ul>';
 ?>
+</div>

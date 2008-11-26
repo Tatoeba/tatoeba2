@@ -41,64 +41,30 @@
 </head>
 <body>
 	<div id="container">
-		<!-- ---------------- HEADER ---------------- -->
-		<div id="header">
-			<?php 
-			if($session->read('Auth.User.id')){
-				__('You are logged in as ');
-				echo $session->read('Auth.User.username'); 
-				echo ' (group ' . $session->read('Auth.User.group_id') . ')';
-				echo '<br/>';
-				echo $html->link(
-					__('Log out',true),
-					array(
-						"controller" => "users",
-						"action" => "logout"
-					));
-			}else{
-				echo $html->link(
-					__('Log in',true),
-					array(
-						"controller" => "users",
-						"action" => "login"
-					));
-				echo ' ';
-				echo $html->link(
-					__('Register',true),
-					array(
-						"controller" => "users",
-						"action" => "register"
-					));
-			}
-			?>
-		</div>
+		
+		<!-- ---------------- TOP ---------------- -->
+		<?php echo $this->element('top1'); ?>
+		
+		<?php echo $this->element('top2');	?>
+		
 		
 		<!-- ---------------- MENU ---------------- -->
-		<div id="menu">
-			<?php echo $this->element('menu'); ?>
-		</div>
+		<?php echo $this->element('menu'); ?>
+		
 		
 		<!-- ---------------- CONTENT---------------- -->
 		<div id="content">
 			<?php
-				if ($session->check('Message.flash')):
-						$session->flash();
-				endif;
+			if($session->check('Message.flash')){
+				$session->flash();
+			}
+			
+			echo $content_for_layout; 
 			?>
-
-			<?php echo $content_for_layout; ?>
-
 		</div>
 		
-		<!-- ---------------- FOOTER---------------- -->
-		<div id="footer">
-			<?php echo $html->link(
-							$html->image('cake.power.gif', array('alt'=> __("CakePHP: the rapid development php framework", true), 'border'=>"0")),
-							'http://www.cakephp.org/',
-							array('target'=>'_new'), null, false
-						);
-			?>
-		</div>
+		<!-- ---------------- FOOT---------------- -->
+		<?php echo $this->element('foot'); ?>
 	</div>
 	<?php echo $cakeDebug ?>
 </body>
