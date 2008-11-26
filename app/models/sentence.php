@@ -13,7 +13,7 @@ class Sentence extends AppModel{
 		)
 	);
 	
-	var $hasMany = array('SuggestedModification', 'SentenceLogs', 'TranslationLogs');
+	var $hasMany = array('SuggestedModification', 'SentenceLog', 'TranslationLog','SentenceComment');
 	
 	var $hasAndBelongsToMany = array(
 		'Translation' => array(

@@ -57,6 +57,18 @@ echo $html->link(
 		$sentence['Sentence']['id']
 	));
 echo ']';
+
+// discuss link
+echo '[';
+echo $html->link(
+	__('Add comment',true),
+	array(
+		"controller" => "sentence_comments",
+		"action" => "add",
+		$sentence['Sentence']['id']
+	));
+echo ']';
+
 ?>
 
 <h2><?php __('Translation(s)') ?></h2>
