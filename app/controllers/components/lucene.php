@@ -2,7 +2,7 @@
 class LuceneComponent extends Object{
 	function search($query){
 		$query = urlencode($query);
-		$luceneUrl = "http://localhost:8080/tatoeba/search.jsp?query=";
+		$luceneUrl = "http://tatoeba.fr:28080/tatoeba/search.jsp?query=";
 		$url = $luceneUrl . $query;
 		
 		$ch = curl_init();

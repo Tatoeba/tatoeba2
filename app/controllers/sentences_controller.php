@@ -201,7 +201,9 @@ class SentencesController extends AppController{
 			*/
 			
 			$this->set('query', urldecode($query));
-			$this->set('sentences', $sentences);
+			if($sentences != array()){
+				$this->set('sentences', $sentences);
+			}
 		}else{
 			$this->pageTitle = __('Tatoeba search',true);
 		}
