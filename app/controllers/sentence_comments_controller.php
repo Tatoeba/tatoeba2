@@ -11,6 +11,18 @@ class SentenceCommentsController extends AppController {
 	    $this->Auth->allowedActions = array('*');
 	}
 	
+	function index(){
+		$comments = $this->SentenceComment->find(
+			"all",
+			array( 
+				"conditions" => array("SentenceComment.lang" => "en"),
+				"limit"=> 10,
+				"order" => "SentenceComment.datetime DESC"
+			)
+		);
+		$this->set('comments', $comments);
+	}
+	
 	function add($sentence_id){
 		$this->data['SentenceComment']['sentence_id'] = $sentence_id;
 	}

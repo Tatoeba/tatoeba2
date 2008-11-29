@@ -21,8 +21,7 @@ echo '<li>';
 echo $html->link(
 	__('Show sentences',true),
 	array(
-		"controller" => "sentences",
-		"action" => "index"
+		"controller" => "sentences"
 	));
 echo '</li>';
 
@@ -52,8 +51,7 @@ echo '<li>';
 echo $html->link(
 	__('Latest activities',true),
 	array(
-		"controller" => "latest_activities",
-		"action" => "index"
+		"controller" => "latest_activities"
 	));
 echo '</li>';
 
@@ -74,7 +72,11 @@ echo '</li>';
 
 // Discussions
 echo '<li>';
-echo 'Discussions';
+echo $html->link(
+	__('Comments on sentences',true),
+	array(
+		"controller" => "sentence_comments"
+	));
 echo '</li>';
 
 echo '</ul>';
