@@ -32,7 +32,7 @@ class GoogleLanguageApiComponent extends Object{
 		if ($json['responseStatus'] != 200){
 			return false;
 		}
-		print_r($json['responseData']);
+
 		return $json['responseData'];
 	}
 	

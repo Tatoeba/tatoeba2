@@ -8,7 +8,7 @@ class SentencesController extends AppController{
 	    parent::beforeFilter(); 
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','add','translate','save_translation','search');
+	    $this->Auth->allowedActions = array('index','show','add','translate','save_translation','search', 'add_comment');
 	}
 
 	
@@ -58,7 +58,7 @@ class SentencesController extends AppController{
 					
 					// Confirmation message
 					$this->flash(
-						__('Your post has been saved.',true), 
+						__('Your sentence has been saved.',true), 
 						'/sentences'
 					);
 				}
