@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 26, 2008 at 11:35 PM
+-- Generation Time: Nov 30, 2008 at 08:21 PM
 -- Server version: 5.0.51
 -- PHP Version: 5.2.5
 
@@ -192,7 +192,7 @@ CREATE TABLE IF NOT EXISTS `sentences` (
   `created` datetime default NULL,
   `modified` datetime default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=312 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=313 ;
 
 --
 -- Dumping data for table `sentences`
@@ -225,7 +225,7 @@ INSERT INTO `sentences` (`id`, `lang`, `text`, `correctness`, `user_id`, `create
 (24, 'en', 'The sign ''&'' stands for ''and''.', NULL, NULL, NULL, NULL),
 (25, 'fr', 'Le symbole ''&'' signifie ''et''.', NULL, NULL, NULL, NULL),
 (26, 'jp', '＆という記号は、ａｎｄを指す。', NULL, NULL, NULL, NULL),
-(27, 'pt', 'O sinal ''&'' significa ''e''.\r\n', NULL, NULL, NULL, NULL),
+(27, 'pt', 'O sinal ''&'' significa ''e''. test', NULL, NULL, NULL, '2008-11-30 16:00:21'),
 (28, 'en', 'The mark "&" stands for "and".', NULL, NULL, NULL, NULL),
 (29, 'fr', 'Le signe "&" signifie "et".', NULL, NULL, NULL, NULL),
 (30, 'jp', '＆のマークはａｎｄの文字を表す。', NULL, NULL, NULL, NULL),
@@ -241,7 +241,7 @@ INSERT INTO `sentences` (`id`, `lang`, `text`, `correctness`, `user_id`, `create
 (40, 'fr', 'J''étais tout à fait conscient que ...', NULL, NULL, NULL, NULL),
 (41, 'jp', '～と痛切に感じている。', NULL, NULL, NULL, NULL),
 (42, 'pt', 'Estava bem consciente que ... \r\n', NULL, NULL, NULL, NULL),
-(43, 'en', 'There is a certain amount of truth in ~.', NULL, NULL, NULL, NULL),
+(43, 'en', 'test There is a certain amount of truth in ~.', NULL, NULL, NULL, '2008-11-30 16:08:25'),
 (44, 'fr', 'Il y a une part de vérité dans ~', NULL, NULL, NULL, NULL),
 (45, 'jp', '～にも一面の真理がある。', NULL, NULL, NULL, NULL),
 (46, 'pt', 'Há um pouco de verdade em ...\r\n', NULL, NULL, NULL, NULL),
@@ -390,7 +390,7 @@ INSERT INTO `sentences` (`id`, `lang`, `text`, `correctness`, `user_id`, `create
 (189, 'jp', '「アルコール類はただですか」「ご婦人方に限ります」', NULL, NULL, NULL, NULL),
 (190, 'en', '"Are those your books?" "No, they aren''t."', NULL, NULL, NULL, NULL),
 (191, 'fr', '"Est-ce que ce sont vos livres?" "Non, ce ne sont pas mes livres."', NULL, NULL, NULL, NULL),
-(192, 'jp', '「あれらはあなたの本ですか」「いいえ、違います」', NULL, NULL, NULL, NULL),
+(192, 'jp', 'test 「あれらはあなたの本ですか」「いいえ、違います」', NULL, NULL, NULL, '2008-11-30 16:06:20'),
 (193, 'en', '"Yes, I was," said the student.', NULL, NULL, NULL, NULL),
 (194, 'fr', '"Si, j''y étais", répondit cet étudiant.', NULL, NULL, NULL, NULL),
 (195, 'jp', '「いいえ、いました」とその学生は答えた。', NULL, NULL, NULL, NULL),
@@ -509,7 +509,8 @@ INSERT INTO `sentences` (`id`, `lang`, `text`, `correctness`, `user_id`, `create
 (308, 'jp', '「ゲティスバーグ演説」は簡潔スピーチです。', NULL, NULL, NULL, NULL),
 (309, 'en', '"Is Ken busy?" "Yes, he is."', NULL, NULL, NULL, NULL),
 (310, 'fr', '"Est-ce que Ken est occupé?" "Oui."\n', NULL, NULL, NULL, NULL),
-(311, 'jp', '「ケンは忙しいですか」「はい」', NULL, NULL, NULL, NULL);
+(311, 'jp', '「ケンは忙しいですか」「はい」', NULL, NULL, NULL, NULL),
+(312, 'en', 'I am adding a sentence as a test.', 4, NULL, '2008-11-30 16:10:33', '2008-11-30 16:10:33');
 
 -- --------------------------------------------------------
 
@@ -549,14 +550,21 @@ CREATE TABLE IF NOT EXISTS `sentence_comments` (
   `text` text collate utf8_unicode_ci NOT NULL,
   `user_id` int(11) NOT NULL,
   `datetime` datetime NOT NULL,
-  `last_edit_datetime` datetime NOT NULL,
+  `last_edit_datetime` datetime default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
 
 --
 -- Dumping data for table `sentence_comments`
 --
 
+INSERT INTO `sentence_comments` (`id`, `sentence_id`, `lang`, `text`, `user_id`, `datetime`, `last_edit_datetime`) VALUES
+(1, 189, 'fr', 'J''ai envie de manger une tarte au pomme.', 1, '2008-11-29 16:22:56', NULL),
+(2, 16, 'es', 'No soy occupada pero no quiero hablar por el moment.', 1, '2008-11-29 16:24:01', NULL),
+(3, 308, 'en', 'I like this sentence.', 1, '2008-11-29 16:25:15', NULL),
+(4, 233, 'en', 'And what if I don''t redirect?', 1, '2008-11-29 16:25:49', NULL),
+(5, 146, 'en', 'There is little we can do about it...', 1, '2008-11-29 16:27:04', NULL),
+(6, 146, 'en', 'but what about now?', 1, '2008-11-29 16:27:38', NULL);
 
 -- --------------------------------------------------------
 
@@ -573,7 +581,7 @@ CREATE TABLE IF NOT EXISTS `sentence_logs` (
   `user_id` int(11) default NULL,
   `datetime` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
 
 --
 -- Dumping data for table `sentence_logs`
@@ -601,7 +609,9 @@ INSERT INTO `sentence_logs` (`id`, `sentence_id`, `sentence_lang`, `sentence_tex
 (19, 18, 'fr', 'Je crois que non.', 'insert', NULL, '2008-11-23 17:25:28'),
 (20, 19, 'zh', '免费下载:外汇基础知识精选！入门必备 了解外汇,如何降低风险,判断交易时机 ', 'insert', NULL, '2008-11-23 17:50:14'),
 (21, 20, 'zh', '免费下载:外汇基础知识精选！入门必备 了解外汇,如何降低风险,判断交易时机 ', 'insert', NULL, '2008-11-23 17:52:51'),
-(22, 21, 'en', 'This is nice.', 'insert', NULL, '2008-11-23 17:54:55');
+(22, 21, 'en', 'This is nice.', 'insert', NULL, '2008-11-23 17:54:55'),
+(23, 43, 'en', 'test There is a certain amount of truth in ~.', 'update', 2, '2008-11-30 16:08:25'),
+(24, 312, 'en', 'I am adding a sentence as a test.', 'insert', 2, '2008-11-30 16:10:33');
 
 -- --------------------------------------------------------
 
@@ -687,7 +697,6 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `lang`, `since`, `la
 (4, 'trang3', '14390ccca0d51157846829eb5b9831f9', 'trang@babbel.com', 'fr', '2008-11-22 17:47:50', 0, 1, 4);
 
 
-
 -- --------------------------------------------------------
 
 --
@@ -723,3 +732,17 @@ SELECT `sentence_id`
  , `submit_user_id`
  , `submit_datetime` FROM `suggested_modifications`
 ORDER BY `datetime`;
+
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `users_statistics`
+--
+DROP VIEW IF EXISTS `users_statistics`;
+
+CREATE VIEW `users_statistics` AS
+SELECT user_id, COUNT(*) as quantity, action, translation_id = '' as is_translation
+FROM latest_activities 
+GROUP BY user_id, action, translation_id = ''
+
