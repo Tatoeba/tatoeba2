@@ -54,6 +54,10 @@
 		
 		<!-- ---------------- CONTENT---------------- -->
 		<div id="content">
+			<!-- ---------------- SEARCH BAR---------------- -->
+			<?php echo $this->element('search_bar'); ?>
+			
+			<div class="container1">
 			<?php
 			if($session->check('Message.flash')){
 				$session->flash();
@@ -61,6 +65,7 @@
 			
 			echo $content_for_layout; 
 			?>
+			</div>
 		</div>
 		
 		<!-- ---------------- FOOT---------------- -->

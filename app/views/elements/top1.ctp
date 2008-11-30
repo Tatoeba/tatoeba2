@@ -1,7 +1,22 @@
 <div id="top1">
-	<div>Visitor(s) : xx</div>
+	<div class="logout">
+	<?php
+	// Log out link
+	if($session->read('Auth.User.id')){
+		echo $html->link(
+			__('Log out',true),
+			array(
+				"controller" => "users",
+				"action" => "logout"
+			)
+		);
+	}
+	?>
+	</div>
+
+	<div class="online_visitors">Visitor(s) : xx</div>
 	
-	<div>
+	<div class="language_choice">
 	Language : 
 	<?php
 	$languages = array(
@@ -21,21 +36,6 @@
 		
 		echo $html->link( __($language,true), $path);
 		echo ' | ';
-	}
-	?>
-	</div>
-	
-	<div>
-	<?php
-	// Log out link
-	if($session->read('Auth.User.id')){
-		echo $html->link(
-			__('Log out',true),
-			array(
-				"controller" => "users",
-				"action" => "logout"
-			)
-		);
 	}
 	?>
 	</div>

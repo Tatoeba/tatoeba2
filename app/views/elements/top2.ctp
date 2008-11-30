@@ -1,7 +1,7 @@
 <div id="top2">
-	<div><strong>TATOEBA</strong> Project</div>
+	<div class="tatoeba_title"><strong>TATOEBA</strong> <em>Project</em></div>
 	
-	<div>
+	<div id="user_menu">
 	<?php 
 	if($session->read('Auth.User.id')){
 		// Welcome message

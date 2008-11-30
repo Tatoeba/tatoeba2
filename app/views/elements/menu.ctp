@@ -1,88 +1,48 @@
 <div id="menu">
-<h1>Menu</h1>
+<ul>
+<?php
 
-<?php 
-print_r($session->read('Acl'));
+$lang = (isset($this->params['lang']))? $this->params['lang'].'/' : '';
 
-echo '<ul>';
+// array containing the elements of the menu : $title => $route
+$menuElements = array(
+	__('Home',true) 		=> '/'.$lang,
+	__('Browse',true) 		=> array("controller" => "sentences", "action" => "show", "random"),
+	__('Search',true) 		=> array("controller" => "sentences", "action" => "search"),
+	__('Contribute',true) 	=> array("controller" => "sentences", "action" => "add"),
+	__('Logs',true) 		=> array("controller" => "latest_activities"),
+	__('Comments',true) 	=> array("controller" => "sentence_comments"),
+	__('Statistics',true) 	=> array("controller" => "users_statistics")
+);
 
-// Home
-echo '<li>';
-echo $html->link(__('Home',true), '/');
-echo '</li>';
-
-// Show sentences
-echo '<li>';
-echo $html->link(
-	__('Show sentences',true),
-	array(
-		"controller" => "sentences"
-	));
-echo '</li>';
-
-// Add a sentence
-echo '<li>';
-echo $html->link(
-	__('Add a sentence',true),
-	array(
-		"controller" => "sentences",
-		"action" => "add"
-	));
-echo '</li>';
-
-// Random sentence
-echo '<li>';
-echo $html->link(
-	__('Random sentence',true),
-	array(
-		"controller" => "sentences",
-		"action" => "show",
-		"random"
-	));
-echo '</li>';
-
-// Latest activities
-echo '<li>';
-echo $html->link(
-	__('Latest activities',true),
-	array(
-		"controller" => "latest_activities"
-	));
-echo '</li>';
-
-// Search
-echo '<li>';
-echo $html->link(
-	__('Search',true),
-	array(
-		"controller" => "sentences",
-		"action" => "search"
-	));
-echo '</li>';
-
-// Documentation : still needs to be done
-echo '<li>';
-echo 'Documentation';
-echo '</li>';
-
-// Discussions
-echo '<li>';
-echo $html->link(
-	__('Comments on sentences',true),
-	array(
-		"controller" => "sentence_comments"
-	));
-echo '</li>';
-
-// Statistics
-echo '<li>';
-echo $html->link(
-	__('Users statistics',true),
-	array(
-		"controller" => "users_statistics"
-	));
-echo '</li>';
-
-echo '</ul>';
+// displaying the menu
+foreach($menuElements as $title => $route){
+	$cssClass = '';
+	
+	// Checking if we should apply the "current" CSS class to the <li> element
+	if(is_array($route)){ // categories other than Home
+		if($this->params['controller'] == $route['controller']){
+			if(isset($route['action'])){
+				if($this->params['action'] == $route['action']){
+					$cssClass = 'class="current"';
+				}
+			}else{
+				if($this->params['action'] == 'index'){
+					$cssClass = 'class="current"';
+				}
+			}
+		}
+	}else{ // Home
+		if($this->params['controller'] == 'pages' AND $this->params['action'] == 'display'){
+			$cssClass = 'class="current"';
+		}
+	}
+	
+	// displaying <li> element
+	echo '<li '.$cssClass.'>';
+	echo $html->link($title, $route);
+	echo '</li>';
+}
 ?>
+</ul>
 </div>
