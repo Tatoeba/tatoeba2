@@ -74,6 +74,15 @@ echo $html->link(
 	));
 echo '</li>';
 
+// Statistics
+echo '<li>';
+echo $html->link(
+	__('Users statistics',true),
+	array(
+		"controller" => "users_statistics"
+	));
+echo '</li>';
+
 echo '</ul>';
 ?>
 </div>

@@ -48,13 +48,13 @@ class SentencesController extends AppController{
 				// saving
 				if($this->Sentence->save($this->data)){
 					// Logs
-					$this->data['SentenceLogs']['sentence_id'] = $this->Sentence->id;
-					$this->data['SentenceLogs']['sentence_lang'] = $response['language'];
-					$this->data['SentenceLogs']['sentence_text'] = $this->data['Sentence']['text'];
-					$this->data['SentenceLogs']['action'] = 'insert';
-					$this->data['SentenceLogs']['user_id'] = $this->Auth->user('id');
-					$this->data['SentenceLogs']['datetime'] = date("Y-m-d H:i:s");
-					$this->Sentence->SentenceLogs->save($this->data);
+					$this->data['SentenceLog']['sentence_id'] = $this->Sentence->id;
+					$this->data['SentenceLog']['sentence_lang'] = $response['language'];
+					$this->data['SentenceLog']['sentence_text'] = $this->data['Sentence']['text'];
+					$this->data['SentenceLog']['action'] = 'insert';
+					$this->data['SentenceLog']['user_id'] = $this->Auth->user('id');
+					$this->data['SentenceLog']['datetime'] = date("Y-m-d H:i:s");
+					$this->Sentence->SentenceLog->save($this->data);
 					
 					// Confirmation message
 					$this->flash(
@@ -72,13 +72,13 @@ class SentencesController extends AppController{
 		// We log first
 		$this->Sentence->id = $id;
 		$tmp = $this->Sentence->read();
-		$this->data['SentenceLogs']['sentence_id'] = $id;
-		$this->data['SentenceLogs']['sentence_lang'] = $tmp['Sentence']['lang'];
-		$this->data['SentenceLogs']['sentence_text'] = $tmp['Sentence']['text'];
-		$this->data['SentenceLogs']['action'] = 'delete';
-		$this->data['SentenceLogs']['user_id'] = $this->Auth->user('id');
-		$this->data['SentenceLogs']['datetime'] = date("Y-m-d H:i:s");
-		$this->Sentence->SentenceLogs->save($this->data);
+		$this->data['SentenceLog']['sentence_id'] = $id;
+		$this->data['SentenceLog']['sentence_lang'] = $tmp['Sentence']['lang'];
+		$this->data['SentenceLog']['sentence_text'] = $tmp['Sentence']['text'];
+		$this->data['SentenceLog']['action'] = 'delete';
+		$this->data['SentenceLog']['user_id'] = $this->Auth->user('id');
+		$this->data['SentenceLog']['datetime'] = date("Y-m-d H:i:s");
+		$this->Sentence->SentenceLog->save($this->data);
 		
 		// Then we delete
 		$this->Sentence->del($id);
@@ -92,13 +92,13 @@ class SentencesController extends AppController{
 		}else{
 			if($this->Sentence->save($this->data)){				
 				// Logs
-				$this->data['SentenceLogs']['sentence_id'] = $this->Sentence->id;
-				$this->data['SentenceLogs']['sentence_lang'] = $this->data['Sentence']['lang'];
-				$this->data['SentenceLogs']['sentence_text'] = $this->data['Sentence']['text'];
-				$this->data['SentenceLogs']['action'] = 'update';
-				$this->data['SentenceLogs']['user_id'] = $this->Auth->user('id');
-				$this->data['SentenceLogs']['datetime'] = date("Y-m-d H:i:s");
-				$this->Sentence->SentenceLogs->save($this->data);
+				$this->data['SentenceLog']['sentence_id'] = $this->Sentence->id;
+				$this->data['SentenceLog']['sentence_lang'] = $this->data['Sentence']['lang'];
+				$this->data['SentenceLog']['sentence_text'] = $this->data['Sentence']['text'];
+				$this->data['SentenceLog']['action'] = 'update';
+				$this->data['SentenceLog']['user_id'] = $this->Auth->user('id');
+				$this->data['SentenceLog']['datetime'] = date("Y-m-d H:i:s");
+				$this->Sentence->SentenceLog->save($this->data);
 				
 				// Confirmation message
 				$this->flash(
@@ -191,7 +191,7 @@ class SentencesController extends AppController{
 						[modified] => 
 					) 
 					[SuggestedModification] => Array ( ) 
-					[SentenceLogs] => Array ( ) 
+					[SentenceLog] => Array ( ) 
 					[TranslationLogs] => Array ( ) 
 					[Translation] => Array ( ) 
 					[InverseTranslation] => Array ( ) 
