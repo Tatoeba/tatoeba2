@@ -8,7 +8,7 @@
 		'eng' => 'English', 
 		'fre' => 'Français', 
 		'spa' => 'Español', 
-		'jap' => '日本語',
+		'jpn' => '日本語',
 		'deu' => 'Deutsch',
 		'ita' => 'Italiano'
 	);
@@ -16,7 +16,8 @@
 	foreach($languages as $code => $language){
 		echo $html->link(
 			__($language,true),
-			'/'.$code.'/'.$this->params['controller'].'/'.$this->params['action'] // probably not the best way to do it but never mind
+			'/'.$code.'/'.$this->params['controller'].'/'.$this->params['action']
+			// probably not the best way to do it but never mind
 		);
 		echo ' | ';
 	}

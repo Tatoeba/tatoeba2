@@ -1,0 +1,561 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from file: Revision: 7296 \webroot\test.php
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2008-11-30 00:57+0100\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: \app_controller.php:17
+msgid "You need to be logged in."
+msgstr ""
+
+#: \controllers\groups_controller.php:21
+msgid "Invalid Group."
+msgstr ""
+
+#: \controllers\groups_controller.php:31;46
+msgid "The Group has been saved"
+msgstr ""
+
+#: \controllers\groups_controller.php:34;49
+msgid "The Group could not be saved. Please, try again."
+msgstr ""
+
+#: \controllers\groups_controller.php:41
+msgid "Invalid Group"
+msgstr ""
+
+#: \controllers\groups_controller.php:59
+msgid "Invalid id for Group"
+msgstr ""
+
+#: \controllers\groups_controller.php:63
+msgid "Group deleted"
+msgstr ""
+
+#: \controllers\sentence_comments_controller.php:43
+msgid "Your comment has been saved."
+msgstr ""
+
+#: \controllers\sentences_controller.php:61
+msgid "Your sentence has been saved."
+msgstr ""
+
+#: \controllers\sentences_controller.php:105
+msgid "The sentence has been updated"
+msgstr ""
+
+#: \controllers\sentences_controller.php:155
+msgid "The translation has been saved"
+msgstr ""
+
+#: \controllers\sentences_controller.php:166
+msgid "Tatoeba search : "
+msgstr ""
+
+#: \controllers\sentences_controller.php:208
+msgid "Tatoeba search"
+msgstr ""
+
+#: \controllers\suggested_modifications_controller.php:14
+msgid "Invalid SuggestedModification."
+msgstr ""
+
+#: \controllers\suggested_modifications_controller.php:36
+msgid "The suggestion has been saved"
+msgstr ""
+
+#: \controllers\suggested_modifications_controller.php:39
+msgid "The suggestion could not be saved. Please, try again."
+msgstr ""
+
+#: \controllers\suggested_modifications_controller.php:46
+msgid "Invalid SuggestedModification"
+msgstr ""
+
+#: \controllers\suggested_modifications_controller.php:51
+msgid "The SuggestedModification has been saved"
+msgstr ""
+
+#: \controllers\suggested_modifications_controller.php:54
+msgid "The SuggestedModification could not be saved. Please, try again."
+msgstr ""
+
+#: \controllers\suggested_modifications_controller.php:66
+msgid "Invalid id for SuggestedModification"
+msgstr ""
+
+#: \controllers\suggested_modifications_controller.php:70
+msgid "SuggestedModification deleted"
+msgstr ""
+
+#: \controllers\users_controller.php:27
+msgid "Invalid User."
+msgstr ""
+
+#: \controllers\users_controller.php:37;54
+msgid "The User has been saved"
+msgstr ""
+
+#: \controllers\users_controller.php:40;57
+msgid "The User could not be saved. Please, try again."
+msgstr ""
+
+#: \controllers\users_controller.php:49
+msgid "Invalid User"
+msgstr ""
+
+#: \controllers\users_controller.php:69
+msgid "Invalid id for User"
+msgstr ""
+
+#: \controllers\users_controller.php:73
+msgid "User deleted"
+msgstr ""
+
+#: \controllers\users_controller.php:101
+msgid "Passwords do not match"
+msgstr ""
+
+#: \controllers\users_controller.php:120
+msgid "Tatoeba, new password"
+msgstr ""
+
+#: \controllers\users_controller.php:121
+msgid "Your login : "
+msgstr ""
+
+#: \controllers\users_controller.php:124
+msgid "Your new password : "
+msgstr ""
+
+#: \controllers\users_controller.php:135
+msgid "There is no registered user with such email."
+msgstr ""
+
+#: \views\elements\foot.ctp:4
+msgid "CakePHP: the rapid development php framework"
+msgstr ""
+
+#: \views\elements\menu.ctp:11
+msgid "Home"
+msgstr ""
+
+#: \views\elements\menu.ctp:22
+msgid "Show sentences"
+msgstr ""
+
+#: \views\elements\menu.ctp:31
+#: \views\sentences\add.ctp:5
+msgid "Add a sentence"
+msgstr ""
+
+#: \views\elements\menu.ctp:41
+msgid "Random sentence"
+msgstr ""
+
+#: \views\elements\menu.ctp:52
+msgid "Latest activities"
+msgstr ""
+
+#: \views\elements\menu.ctp:61
+msgid "Search"
+msgstr ""
+
+#: \views\elements\menu.ctp:76
+msgid "Comments on sentences"
+msgstr ""
+
+#: \views\elements\top1.ctp:11
+msgid "Log out"
+msgstr ""
+
+#: \views\elements\top2.ctp:8
+msgid "Welcome"
+msgstr ""
+
+#: \views\elements\top2.ctp:13
+#: \views\pages\access_denied.ctp:4
+msgid "Log in"
+msgstr ""
+
+#: \views\elements\top2.ctp:20
+msgid "Register"
+msgstr ""
+
+#: \views\groups\add.ctp:4
+msgid "Add Group"
+msgstr ""
+
+#: \views\groups\add.ctp:13
+#: \views\groups\edit.ctp:15
+#: \views\groups\view.ctp:30
+#: \views\users\add.ctp:23
+#: \views\users\edit.ctp:22
+#: \views\users\index.ctp:75
+#: \views\users\view.ctp:57
+msgid "List Groups"
+msgstr ""
+
+#: \views\groups\edit.ctp:4
+#: \views\groups\view.ctp:28
+msgid "Edit Group"
+msgstr ""
+
+#: \views\groups\edit.ctp:14
+#: \views\groups\index.ctp:41
+#: \views\sentences\show.ctp:18
+#: \views\suggested_modifications\edit.ctp:21
+#: \views\suggested_modifications\index.ctp:61
+#: \views\users\edit.ctp:20
+#: \views\users\index.ctp:61
+msgid "Delete"
+msgstr ""
+
+#: \views\groups\edit.ctp:14
+#: \views\groups\index.ctp:41
+#: \views\groups\view.ctp:29
+#: \views\suggested_modifications\edit.ctp:21
+#: \views\suggested_modifications\index.ctp:61
+#: \views\suggested_modifications\view.ctp:54
+#: \views\users\edit.ctp:20
+#: \views\users\index.ctp:61
+#: \views\users\view.ctp:54
+msgid "Are you sure you want to delete # %s?"
+msgstr ""
+
+#: \views\groups\index.ctp:2
+msgid "Groups"
+msgstr ""
+
+#: \views\groups\index.ctp:6
+#: \views\latest_activities\index.ctp:6
+#: \views\suggested_modifications\index.ctp:6
+#: \views\users\index.ctp:6
+msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
+msgstr ""
+
+#: \views\groups\index.ctp:15
+#: \views\suggested_modifications\index.ctp:20
+#: \views\users\index.ctp:20
+msgid "Actions"
+msgstr ""
+
+#: \views\groups\index.ctp:39
+#: \views\suggested_modifications\index.ctp:59
+#: \views\users\index.ctp:59
+msgid "View"
+msgstr ""
+
+#: \views\groups\index.ctp:40
+#: \views\sentences\show.ctp:31
+#: \views\suggested_modifications\index.ctp:60
+#: \views\users\index.ctp:60
+msgid "Edit"
+msgstr ""
+
+#: \views\groups\index.ctp:48
+#: \views\latest_activities\index.ctp:58
+#: \views\suggested_modifications\index.ctp:68
+#: \views\users\index.ctp:68
+msgid "previous"
+msgstr ""
+
+#: \views\groups\index.ctp:50
+#: \views\latest_activities\index.ctp:60
+#: \views\suggested_modifications\index.ctp:70
+#: \views\users\index.ctp:70
+msgid "next"
+msgstr ""
+
+#: \views\groups\index.ctp:54
+#: \views\groups\view.ctp:31
+#: \views\users\add.ctp:24
+#: \views\users\edit.ctp:23
+#: \views\users\index.ctp:76
+#: \views\users\view.ctp:58
+msgid "New Group"
+msgstr ""
+
+#: \views\groups\view.ctp:2
+#: \views\users\view.ctp:44
+msgid "Group"
+msgstr ""
+
+#: \views\groups\view.ctp:4
+#: \views\suggested_modifications\view.ctp:4
+#: \views\users\view.ctp:4
+msgid "Id"
+msgstr ""
+
+#: \views\groups\view.ctp:9
+msgid "Name"
+msgstr ""
+
+#: \views\groups\view.ctp:14
+msgid "Created"
+msgstr ""
+
+#: \views\groups\view.ctp:19
+msgid "Modified"
+msgstr ""
+
+#: \views\groups\view.ctp:29
+msgid "Delete Group"
+msgstr ""
+
+#: \views\latest_activities\index.ctp:2
+msgid "LatestActivities"
+msgstr ""
+
+#: \views\latest_activities\index.ctp:64
+msgid "New LatestActivity"
+msgstr ""
+
+#: \views\pages\access_denied.ctp:1
+msgid "You are now allowed to view this page. Please log in first"
+msgstr ""
+
+#: \views\pages\home.ctp:1
+msgid "Tatoeba : Collecting example sentences"
+msgstr ""
+
+#: \views\pages\home.ctp:3
+msgid "Welcome on Tatoeba Project"
+msgstr ""
+
+#: \views\pages\home.ctp:5
+msgid "This project aims to build a multilingual corpus. In other words, to collect sentences translated in several languages."
+msgstr ""
+
+#: \views\sentence_comments\add.ctp:2
+msgid "Add comment for sentence"
+msgstr ""
+
+#: \views\sentence_comments\add.ctp:5
+#: \views\sentences\show.ctp:120
+msgid "Add a comment"
+msgstr ""
+
+#: \views\sentence_comments\index.ctp:13
+msgid "Show"
+msgstr ""
+
+#: \views\sentences\edit.ctp:2
+msgid "Edit this sentence"
+msgstr ""
+
+#: \views\sentences\edit.ctp:8
+msgid "Save sentence"
+msgstr ""
+
+#: \views\sentences\index.ctp:1
+msgid "Sentences in Tatoeba"
+msgstr ""
+
+#: \views\sentences\index.ctp:3
+msgid "Sentences"
+msgstr ""
+
+#: \views\sentences\show.ctp:2
+msgid "Translations for : "
+msgstr ""
+
+#: \views\sentences\show.ctp:7
+#: \views\suggested_modifications\view.ctp:9
+msgid "Sentence"
+msgstr ""
+
+#: \views\sentences\show.ctp:42
+msgid "Translate"
+msgstr ""
+
+#: \views\sentences\show.ctp:53
+msgid "Suggest correction"
+msgstr ""
+
+#: \views\sentences\show.ctp:64
+msgid "Add comment"
+msgstr ""
+
+#: \views\sentences\show.ctp:74
+msgid "Translation(s)"
+msgstr ""
+
+#: \views\sentences\show.ctp:91
+msgid "There are no translations for now."
+msgstr ""
+
+#: \views\sentences\show.ctp:95
+msgid "Add a translation"
+msgstr ""
+
+#: \views\sentences\show.ctp:105
+msgid "Comment(s)"
+msgstr ""
+
+#: \views\sentences\show.ctp:116
+msgid "There are no comments for now."
+msgstr ""
+
+#: \views\sentences\translate.ctp:2
+msgid "Translate this sentence"
+msgstr ""
+
+#: \views\sentences\translate.ctp:9
+msgid "Save translation"
+msgstr ""
+
+#: \views\suggested_modifications\add.ctp:4
+msgid "Add SuggestedModification"
+msgstr ""
+
+#: \views\suggested_modifications\edit.ctp:4
+#: \views\suggested_modifications\view.ctp:53
+msgid "Edit SuggestedModification"
+msgstr ""
+
+#: \views\suggested_modifications\edit.ctp:22
+#: \views\suggested_modifications\view.ctp:55
+msgid "List SuggestedModifications"
+msgstr ""
+
+#: \views\suggested_modifications\edit.ctp:23
+#: \views\suggested_modifications\index.ctp:75
+#: \views\suggested_modifications\view.ctp:57
+msgid "List Sentences"
+msgstr ""
+
+#: \views\suggested_modifications\edit.ctp:24
+#: \views\suggested_modifications\index.ctp:76
+#: \views\suggested_modifications\view.ctp:58
+msgid "New Sentence"
+msgstr ""
+
+#: \views\suggested_modifications\index.ctp:2
+msgid "SuggestedModifications"
+msgstr ""
+
+#: \views\suggested_modifications\index.ctp:74
+#: \views\suggested_modifications\view.ctp:56
+msgid "New SuggestedModification"
+msgstr ""
+
+#: \views\suggested_modifications\view.ctp:2
+msgid "SuggestedModification"
+msgstr ""
+
+#: \views\suggested_modifications\view.ctp:14
+msgid "Sentence Lang"
+msgstr ""
+
+#: \views\suggested_modifications\view.ctp:19
+msgid "Correction Text"
+msgstr ""
+
+#: \views\suggested_modifications\view.ctp:24
+msgid "Submit User Id"
+msgstr ""
+
+#: \views\suggested_modifications\view.ctp:29
+msgid "Submit Datetime"
+msgstr ""
+
+#: \views\suggested_modifications\view.ctp:34
+msgid "Apply User Id"
+msgstr ""
+
+#: \views\suggested_modifications\view.ctp:39
+msgid "Apply Datetime"
+msgstr ""
+
+#: \views\suggested_modifications\view.ctp:44
+msgid "Was Applied"
+msgstr ""
+
+#: \views\suggested_modifications\view.ctp:54
+msgid "Delete SuggestedModification"
+msgstr ""
+
+#: \views\users\add.ctp:4
+msgid "Add User"
+msgstr ""
+
+#: \views\users\add.ctp:22
+#: \views\users\edit.ctp:21
+#: \views\users\view.ctp:55
+msgid "List Users"
+msgstr ""
+
+#: \views\users\edit.ctp:4
+#: \views\users\view.ctp:53
+msgid "Edit User"
+msgstr ""
+
+#: \views\users\index.ctp:2
+msgid "Users"
+msgstr ""
+
+#: \views\users\index.ctp:74
+#: \views\users\view.ctp:56
+msgid "New User"
+msgstr ""
+
+#: \views\users\new_password.ctp:4
+msgid "Send"
+msgstr ""
+
+#: \views\users\register.ctp:1
+msgid "Registration"
+msgstr ""
+
+#: \views\users\view.ctp:2
+msgid "User"
+msgstr ""
+
+#: \views\users\view.ctp:9
+msgid "Username"
+msgstr ""
+
+#: \views\users\view.ctp:14
+msgid "Password"
+msgstr ""
+
+#: \views\users\view.ctp:19
+msgid "Email"
+msgstr ""
+
+#: \views\users\view.ctp:24
+msgid "Lang"
+msgstr ""
+
+#: \views\users\view.ctp:29
+msgid "Since"
+msgstr ""
+
+#: \views\users\view.ctp:34
+msgid "Lastlogout"
+msgstr ""
+
+#: \views\users\view.ctp:39
+msgid "Level"
+msgstr ""
+
+#: \views\users\view.ctp:54
+msgid "Delete User"
+msgstr ""
+
+#: \webroot\test.php:101
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+
