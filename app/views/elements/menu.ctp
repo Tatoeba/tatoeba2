@@ -8,12 +8,7 @@ echo '<ul>';
 
 // Home
 echo '<li>';
-echo $html->link(__('Home',true), 
-	array(
-		"controller" => "pages",
-		"action" => "display",
-		"home"
-		));
+echo $html->link(__('Home',true), '/');
 echo '</li>';
 
 // Show sentences

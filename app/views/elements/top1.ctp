@@ -14,11 +14,12 @@
 	);
 	
 	foreach($languages as $code => $language){
-		echo $html->link(
-			__($language,true),
-			'/'.$code.'/'.$this->params['controller'].'/'.$this->params['action']
-			// probably not the best way to do it but never mind
-		);
+		$path  = '/'.$code.'/';
+		$path .= ($this->params['controller'] == 'pages') ? '' : $this->params['controller'].'/';
+		$path .= ($this->params['action'] == 'display') ? '' : $this->params['action'].'/';
+		// probably not the best way to do it but never mind
+		
+		echo $html->link( __($language,true), $path);
 		echo ' | ';
 	}
 	?>
