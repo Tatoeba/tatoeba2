@@ -1,0 +1,124 @@
+ul{
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
+/* navigation */
+.navigation{
+margin-bottom: 30px;
+margin-top: 10px;
+width: 100%;
+}
+
+.navigation ul{
+text-align: center;
+}
+
+.navigation li{
+display:inline;
+}
+
+.navigation li.option a{
+background: #D3F3B9;
+padding: 3px 8px;
+margin: 5px;
+}
+
+.navigation li.option a:hover{
+background: #75C34B;
+color: #D3F3B9;
+}
+
+/* item menu */
+
+.sentences_set ul.menu{
+vertical-align: text-bottom;
+overflow: hidden;
+width: 100%;
+}
+
+
+.sentences_set .menu li{
+display: inline;
+font-size: 13px;
+}
+
+.sentences_set .menu .id{
+margin: 0px;
+background: #D3F3B9;
+padding: 10px;
+color: black;
+}
+
+.sentences_set .menu .id strong{
+font-size: 150%;
+}
+
+.sentences_set .menu li.option a{
+padding: 4px 10px 3px 10px;
+}
+
+.sentences_set .menu li.option a:hover{
+background: #75C34B;
+color: #D3F3B9;
+}
+
+.sentences_set .menu li.selected a{
+background: #FAEFA8;
+}
+
+
+
+/* sentence */
+.sentences_set .sentence{
+border: 1px solid #D3F3B9;
+}
+
+.sentences_set .sentence em{
+background:#f1f1f1; 
+padding: 0px 5px;
+font-style:normal;
+}
+
+.sentences_set .sentence li{
+padding: 5px;
+}
+
+
+/* types of sentence */
+
+.original{
+font-family: georgia;
+font-size: 150%;
+padding: 10px;
+}
+.original:first-letter{
+font-size: 200%;
+font-weight: bold;
+}
+.original em{
+float:left;
+}
+
+.direct{
+color: #222;
+}
+
+.indirect{
+color: #888;
+}
+
+/* editing sentences */
+
+.sentences_set div.submit{
+display:inline;
+
+}
+.sentences_set div.input{
+display:inline;
+}
+
+.sentences_set div.input input{
+width: 80%;
+}
