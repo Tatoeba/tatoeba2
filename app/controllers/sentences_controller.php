@@ -4,6 +4,8 @@ class SentencesController extends AppController{
 	
 	var $components = array ('GoogleLanguageApi', 'Lucene');
 	
+	var $helpers = array('Sentences');
+	
 	function beforeFilter() {
 	    parent::beforeFilter(); 
 		
@@ -140,20 +142,20 @@ class SentencesController extends AppController{
 			
 			if($this->Sentence->save($this->data)){
 				// Logs
-				$this->data['TranslationLogs']['sentence_id'] = $this->data['Translation']['Translation'][0];
-				$this->data['TranslationLogs']['sentence_lang'] = $this->data['Sentence']['sentence_lang'];
-				$this->data['TranslationLogs']['translation_id'] = $this->Sentence->id;
-				$this->data['TranslationLogs']['translation_lang'] = $this->data['Sentence']['lang'];
-				$this->data['TranslationLogs']['translation_text'] = $this->data['Sentence']['text'];
-				$this->data['TranslationLogs']['action'] = 'insert';
-				$this->data['TranslationLogs']['user_id'] = $this->Auth->user('id');
-				$this->data['TranslationLogs']['datetime'] = date("Y-m-d H:i:s");
-				$this->Sentence->TranslationLogs->save($this->data);
+				$this->data['TranslationLog']['sentence_id'] = $this->data['Translation']['Translation'][0];
+				$this->data['TranslationLog']['sentence_lang'] = $this->data['Sentence']['sentence_lang'];
+				$this->data['TranslationLog']['translation_id'] = $this->Sentence->id;
+				$this->data['TranslationLog']['translation_lang'] = $this->data['Sentence']['lang'];
+				$this->data['TranslationLog']['translation_text'] = $this->data['Sentence']['text'];
+				$this->data['TranslationLog']['action'] = 'insert';
+				$this->data['TranslationLog']['user_id'] = $this->Auth->user('id');
+				$this->data['TranslationLog']['datetime'] = date("Y-m-d H:i:s");
+				$this->Sentence->TranslationLog->save($this->data);
 				
 				// Confirmation message
 				$this->flash(
 					__('The translation has been saved',true),
-					'/sentences'
+					'/'.$this->params['lang'].'/sentences/show/'.$this->data['Translation']['Translation'][0]
 				);
 			}else{
 				echo 'problem';
@@ -192,7 +194,7 @@ class SentencesController extends AppController{
 					) 
 					[SuggestedModification] => Array ( ) 
 					[SentenceLog] => Array ( ) 
-					[TranslationLogs] => Array ( ) 
+					[TranslationLog] => Array ( ) 
 					[Translation] => Array ( ) 
 					[InverseTranslation] => Array ( ) 
 					[Score] => 1 
@@ -202,7 +204,7 @@ class SentencesController extends AppController{
 			
 			$this->set('query', urldecode($query));
 			if($sentences != array()){
-				$this->set('sentences', $sentences);
+				$this->set('results', $sentences);
 			}
 		}else{
 			$this->pageTitle = __('Tatoeba search',true);

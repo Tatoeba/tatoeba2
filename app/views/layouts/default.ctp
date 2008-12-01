@@ -35,6 +35,7 @@
 		echo $html->meta('icon');
 
 		echo $html->css('tatoeba.generic');
+		echo $html->css('tatoeba.sentences');
 
 		echo $scripts_for_layout;
 	?>
