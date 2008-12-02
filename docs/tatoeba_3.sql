@@ -28,14 +28,14 @@ CREATE TABLE IF NOT EXISTS `acos` (
   `lft` int(10) default NULL,
   `rght` int(10) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=37 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
 
 --
 -- Dumping data for table `acos`
 --
 
 INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(1, NULL, NULL, NULL, 'controllers', 1, 72),
+(1, NULL, NULL, NULL, 'controllers', 1, 92),
 (2, 1, NULL, NULL, 'Pages', 2, 5),
 (3, 2, NULL, NULL, 'display', 3, 4),
 (4, 1, NULL, NULL, 'Groups', 6, 17),
@@ -44,7 +44,7 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (7, 4, NULL, NULL, 'add', 11, 12),
 (8, 4, NULL, NULL, 'edit', 13, 14),
 (9, 4, NULL, NULL, 'delete', 15, 16),
-(10, 1, NULL, NULL, 'Sentences', 18, 33),
+(10, 1, NULL, NULL, 'Sentences', 18, 35),
 (11, 10, NULL, NULL, 'index', 19, 20),
 (12, 10, NULL, NULL, 'show', 21, 22),
 (13, 10, NULL, NULL, 'add', 23, 24),
@@ -52,25 +52,35 @@ INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `
 (15, 10, NULL, NULL, 'edit', 27, 28),
 (16, 10, NULL, NULL, 'translate', 29, 30),
 (17, 10, NULL, NULL, 'save_translation', 31, 32),
-(18, 1, NULL, NULL, 'Translations', 34, 35),
-(19, 1, NULL, NULL, 'Users', 36, 53),
-(20, 19, NULL, NULL, 'index', 37, 38),
-(21, 19, NULL, NULL, 'view', 39, 40),
-(22, 19, NULL, NULL, 'add', 41, 42),
-(23, 19, NULL, NULL, 'edit', 43, 44),
-(24, 19, NULL, NULL, 'delete', 45, 46),
-(25, 19, NULL, NULL, 'login', 47, 48),
-(26, 19, NULL, NULL, 'logout', 49, 50),
-(27, 19, NULL, NULL, 'initDB', 51, 52),
-(28, 1, NULL, NULL, 'SuggestedModifications', 54, 67),
-(29, 28, NULL, NULL, 'index', 55, 56),
-(30, 28, NULL, NULL, 'view', 57, 58),
-(31, 28, NULL, NULL, 'add', 59, 60),
-(32, 28, NULL, NULL, 'edit', 61, 62),
-(33, 28, NULL, NULL, 'delete', 63, 64),
-(34, 28, NULL, NULL, 'save_suggestion', 65, 66),
-(35, 1, NULL, NULL, 'LatestActivities', 68, 71),
-(36, 35, NULL, NULL, 'index', 69, 70);
+(18, 1, NULL, NULL, 'Translations', 36, 37),
+(19, 1, NULL, NULL, 'Users', 38, 59),
+(20, 19, NULL, NULL, 'index', 39, 40),
+(21, 19, NULL, NULL, 'view', 41, 42),
+(22, 19, NULL, NULL, 'add', 43, 44),
+(23, 19, NULL, NULL, 'edit', 45, 46),
+(24, 19, NULL, NULL, 'delete', 47, 48),
+(25, 19, NULL, NULL, 'login', 49, 50),
+(26, 19, NULL, NULL, 'logout', 51, 52),
+(27, 19, NULL, NULL, 'initDB', 53, 54),
+(28, 1, NULL, NULL, 'SuggestedModifications', 60, 75),
+(29, 28, NULL, NULL, 'index', 61, 62),
+(30, 28, NULL, NULL, 'view', 63, 64),
+(31, 28, NULL, NULL, 'add', 65, 66),
+(32, 28, NULL, NULL, 'edit', 67, 68),
+(33, 28, NULL, NULL, 'delete', 69, 70),
+(34, 28, NULL, NULL, 'save_suggestion', 71, 72),
+(35, 1, NULL, NULL, 'LatestActivities', 76, 79),
+(36, 35, NULL, NULL, 'index', 77, 78),
+(37, 10, NULL, NULL, 'search', 33, 34),
+(38, 1, NULL, NULL, 'SentenceComments', 80, 87),
+(39, 38, NULL, NULL, 'index', 81, 82),
+(40, 38, NULL, NULL, 'add', 83, 84),
+(41, 38, NULL, NULL, 'save', 85, 86),
+(42, 28, NULL, NULL, 'refuse', 73, 74),
+(43, 19, NULL, NULL, 'register', 55, 56),
+(44, 19, NULL, NULL, 'new_password', 57, 58),
+(45, 1, NULL, NULL, 'UsersStatistics', 88, 91),
+(46, 45, NULL, NULL, 'index', 89, 90);
 
 -- --------------------------------------------------------
 
@@ -87,34 +97,17 @@ CREATE TABLE IF NOT EXISTS `aros` (
   `lft` int(10) default NULL,
   `rght` int(10) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `aros`
 --
 
 INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(1, NULL, 'Group', 1, NULL, 1, 6),
-(2, NULL, 'Group', 2, NULL, 7, 12),
-(3, NULL, 'Group', 3, NULL, 13, 22),
-(4, 1, 'User', 1, NULL, 2, 3),
-(5, 2, 'User', 2, NULL, 8, 9),
-(6, 3, 'User', 3, NULL, 14, 15),
-(7, 1, 'User', 1, NULL, 4, 5),
-(8, 2, 'User', 2, NULL, 10, 11),
-(9, 3, 'User', 3, NULL, 16, 17),
-(10, NULL, 'Group', 4, NULL, 23, 26),
-(11, 10, 'User', 4, NULL, 24, 25),
-(13, 3, 'User', 6, NULL, 18, 19),
-(14, 3, 'User', 7, NULL, 20, 21),
-(15, NULL, 'Group', 1, NULL, 27, 28),
-(16, NULL, 'Group', 2, NULL, 29, 30),
-(17, NULL, 'Group', 3, NULL, 31, 40),
-(18, NULL, 'Group', 4, NULL, 41, 42),
-(19, 17, 'User', 1, NULL, 32, 33),
-(20, 17, 'User', 2, NULL, 34, 35),
-(21, 17, 'User', 3, NULL, 36, 37),
-(22, 17, 'User', 4, NULL, 38, 39);
+(1, NULL, 'Group', 1, NULL, 1, 2),
+(2, NULL, 'Group', 2, NULL, 3, 4),
+(3, NULL, 'Group', 3, NULL, 5, 6),
+(4, NULL, 'Group', 4, NULL, 7, 8);
 
 -- --------------------------------------------------------
 
@@ -132,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
   `_delete` varchar(2) NOT NULL default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `ARO_ACO_KEY` (`aro_id`,`aco_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `aros_acos`
@@ -141,17 +134,15 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
 INSERT INTO `aros_acos` (`id`, `aro_id`, `aco_id`, `_create`, `_read`, `_update`, `_delete`) VALUES
 (1, 1, 1, '1', '1', '1', '1'),
 (2, 2, 1, '-1', '-1', '-1', '-1'),
-(3, 2, 10, '1', '1', '1', '1'),
-(4, 3, 1, '-1', '-1', '-1', '-1'),
-(5, 3, 12, '1', '1', '1', '1'),
-(6, 3, 16, '1', '1', '1', '1'),
-(7, 15, 1, '1', '1', '1', '1'),
-(8, 16, 1, '-1', '-1', '-1', '-1'),
-(9, 16, 10, '1', '1', '1', '1'),
-(10, 16, 28, '1', '1', '1', '1'),
-(11, 17, 1, '-1', '-1', '-1', '-1'),
-(12, 17, 10, '1', '1', '1', '1'),
-(13, 18, 1, '-1', '-1', '-1', '-1');
+(3, 2, 28, '1', '1', '1', '1'),
+(4, 2, 38, '1', '1', '1', '1'),
+(5, 2, 10, '1', '1', '1', '1'),
+(6, 2, 15, '1', '1', '1', '1'),
+(7, 3, 1, '-1', '-1', '-1', '-1'),
+(8, 3, 40, '1', '1', '1', '1'),
+(9, 3, 15, '1', '1', '1', '1'),
+(10, 4, 1, '-1', '-1', '-1', '-1'),
+(11, 4, 40, '1', '1', '1', '1');
 
 -- --------------------------------------------------------
 
