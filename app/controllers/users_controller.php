@@ -148,17 +148,21 @@ class UsersController extends AppController {
 	    //Permissions for moderators
 	    $group->id = 2;
 		$this->Acl->deny($group, 'controllers');
-	    $this->Acl->allow($group, 'controllers/Sentences');
 		$this->Acl->allow($group, 'controllers/SuggestedModifications');
+		$this->Acl->allow($group, 'controllers/SentenceComments');
+		$this->Acl->allow($group, 'controllers/Sentences');
+		$this->Acl->allow($group, 'controllers/Sentences/edit');
 		
 		//Permissions for trusted_users
 		$group->id = 3;
 		$this->Acl->deny($group, 'controllers');
-		$this->Acl->allow($group, 'controllers/Sentences');
+		$this->Acl->allow($group, 'controllers/SentenceComments/add');
+		$this->Acl->allow($group, 'controllers/Sentences/edit');
 		
 	    //Permissions for users
 	    $group->id = 4;
 		$this->Acl->deny($group, 'controllers');
+		$this->Acl->allow($group, 'controllers/SentenceComments/add');
 	}
 }
 ?>
