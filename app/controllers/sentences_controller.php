@@ -29,6 +29,15 @@ class SentencesController extends AppController{
 			$this->Sentence->id = $id;
 		}
 		
+		// checking which options user can access to
+		$specialOptions = array('canComment' => false, 'canEdit' => false, 'canDelete' => false);
+		if($this->Auth->user('id')){
+			$specialOptions['canComment'] = true;
+			$specialOptions['canEdit'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/edit');
+			$specialOptions['canDelete'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/delete');
+		}
+		
+		$this->set('specialOptions',$specialOptions);
 		$this->set('sentence',$this->Sentence->read());
 	}
 	
@@ -115,6 +124,16 @@ class SentencesController extends AppController{
 		$this->Sentence->id = $id;
 		$this->set('sentence',$this->Sentence->read());
 		$this->data['Sentence']['id'] = $id;
+		
+		// checking which options user can access to
+		$specialOptions = array('canComment' => false, 'canEdit' => false, 'canDelete' => false);
+		if($this->Auth->user('id')){
+			$specialOptions['canComment'] = true;
+			$specialOptions['canEdit'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/edit');
+			$specialOptions['canDelete'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/delete');
+		}
+		
+		$this->set('specialOptions',$specialOptions);
 	}
 	
 	function save_translation(){

@@ -1,12 +1,18 @@
 <?php
 $this->pageTitle = __('Please translate : ',true) . $sentence['Sentence']['text'];
-?>
 
-<?php $sentences->displayNavigation($sentence['Sentence']['id']); ?>
+// navigation (previous, random, next)
+$sentences->displayNavigation($sentence['Sentence']['id']);
 
-<?php 
-echo '<h1>' . __('Translate this sentence',true) . '</h1>';
-$sentences->displayForTranslation($sentence['Sentence'], $sentence['Translation']); 
+echo '<h2>' . __('Translate this sentence',true) . '</h2>';
+
+echo '<div class="sentences_set">';
+	// sentence menu (translate, edit, comment, etc)
+	$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $sentence['Sentence']['correctness'], $specialOptions);
+
+	// sentence and translations
+	$sentences->displayForTranslation($sentence['Sentence'], $sentence['Translation']);
+echo '</div>';
 ?>
 
 

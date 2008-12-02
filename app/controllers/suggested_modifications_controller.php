@@ -2,8 +2,15 @@
 class SuggestedModificationsController extends AppController {
 
 	var $name = 'SuggestedModifications';
-	var $helpers = array('Html', 'Form');
+	var $helpers = array('Html', 'Form', 'Sentences');
 
+	function beforeFilter() {
+	    parent::beforeFilter(); 
+		
+		// setting actions that are available to everyone, even guests
+	    $this->Auth->allowedActions = array('index','show','add');
+	}
+	
 	function index() {
 		$this->SuggestedModification->recursive = 0;
 		$this->set('suggestedModifications', $this->paginate());
@@ -20,9 +27,17 @@ class SuggestedModificationsController extends AppController {
 	function add($sentence_id) {
 		$s = new Sentence();
 		$sentence = $s->findById($sentence_id);
-		$this->data['SuggestedModification']['correction_text'] = $sentence['Sentence']['text'];
-		$this->data['SuggestedModification']['sentence_lang'] = $sentence['Sentence']['lang'];
-		$this->data['SuggestedModification']['sentence_id'] = $sentence['Sentence']['id'];
+		
+		// checking which options user can access to
+		$specialOptions = array('canComment' => false, 'canEdit' => false, 'canDelete' => false);
+		if($this->Auth->user('id')){
+			$specialOptions['canComment'] = true;
+			$specialOptions['canEdit'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/edit');
+			$specialOptions['canDelete'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/delete');
+		}
+		
+		$this->set('specialOptions',$specialOptions);
+		$this->set('sentence', $sentence);
 	}
 	
 	function save_suggestion(){

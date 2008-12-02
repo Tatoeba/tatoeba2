@@ -2,9 +2,18 @@
 $this->pageTitle = __('Translations for : ',true) . $sentence['Sentence']['text'];
 ?>
 
-<?php $sentences->displayNavigation($sentence['Sentence']['id']); ?>
+<?php 
+// navigation (previous, random, next)
+$sentences->displayNavigation($sentence['Sentence']['id']);
 
-<?php $sentences->displayGroup($sentence['Sentence'], $sentence['Translation']); ?>
+echo '<div class="sentences_set">';
+	// sentence menu (translate, edit, comment, etc)
+	$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $sentence['Sentence']['correctness'], $specialOptions);
+
+	// sentence and translations
+	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
+echo '</div>';	
+?>
 
 
 <h2><?php __('Comment(s)') ?></h2>
