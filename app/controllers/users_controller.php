@@ -19,7 +19,7 @@ class UsersController extends AppController {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
 		
-		//$this->initDB();
+		$this->initDB();
 	}
 
 	function view($id = null) {

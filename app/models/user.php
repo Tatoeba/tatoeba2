@@ -42,6 +42,8 @@ class User extends AppModel {
 			)
 	);
 	
+	var $hasMany = array('SentenceComments');
+	
 	function parentNode() {
 	    if (!$this->id && empty($this->data)) {
 	        return null;

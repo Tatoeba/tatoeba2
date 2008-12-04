@@ -17,13 +17,10 @@ echo '</div>';
 
 
 <h2><?php __('Comment(s)') ?></h2>
-<ul>
 <?php
 if(count($sentence['SentenceComment']) > 0){
 	foreach($sentence['SentenceComment'] as $comment){
-		echo '<li>';
-		echo $comment['text'];
-		echo '</li>';
+		$comments->displayComment($comment['user_id'], $comment['datetime'], $comment['text']);
 	}
 }else{
 	echo '<i>';
@@ -39,4 +36,3 @@ if(count($sentence['SentenceComment']) > 0){
 		));
 }
 ?>
-</ul>

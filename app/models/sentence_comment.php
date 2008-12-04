@@ -2,6 +2,6 @@
 class SentenceComment extends AppModel{
 	var $name = 'SentenceComment';
 	
-	var $belongsTo = array('Sentence');
+	var $belongsTo = array('Sentence', 'User');
 }
 ?>

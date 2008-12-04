@@ -1,11 +1,20 @@
 <?php
 $this->pageTitle = __('Add comment for sentence',true);
-?>
 
-<h1><?php __('Add a comment'); ?></h1>
-<?php
-echo $form->create('SentenceComment', array("action"=>"save"));
-echo $form->input('sentence_id', array("type"=>"hidden"));
-echo $form->input('text');
-echo $form->end('Submit');
+// navigation (previous, random, next)
+$sentences->displayNavigation($sentence['Sentence']['id']);
+
+echo '<div class="sentences_set">';
+	// sentence menu (translate, edit, comment, etc)
+	$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $sentence['Sentence']['correctness'], $specialOptions);
+
+	// sentence and translations
+	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
+echo '</div>';	
+
+$comments->displayCommentForm($sentence['Sentence']['id']);
+
+foreach($sentence['SentenceComment'] as $comment){
+	$comments->displayComment($comment['User']['username'], $comment['datetime'], $comment['text']);
+}
 ?>

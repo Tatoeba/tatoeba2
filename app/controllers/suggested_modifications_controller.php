@@ -2,7 +2,7 @@
 class SuggestedModificationsController extends AppController {
 
 	var $name = 'SuggestedModifications';
-	var $helpers = array('Html', 'Form', 'Sentences');
+	var $helpers = array('Html', 'Form', 'Comments', 'Sentences');
 
 	function beforeFilter() {
 	    parent::beforeFilter(); 
