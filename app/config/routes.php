@@ -34,7 +34,8 @@
  * to use (in this case, /app/views/pages/home.thtml)...
  */
 	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
-	Router::connect('/:lang', array('lang' => ':lang', 'controller' => 'pages', 'action' => 'display', 'home'));
+	Router::connect('/:lang', array('lang' => ':lang', 'controller' => 'pages', 'action' => 'display', 'home'),
+		array('lang'=>'fre|eng|deu|spa|ita|jpn'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
