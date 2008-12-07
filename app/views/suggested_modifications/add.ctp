@@ -1,10 +1,8 @@
 <?php
-$this->pageTitle = __('Suggestion correction for : ',true) . $sentence['Sentence']['text'];
+$this->pageTitle = __('Is it correct : ',true) . $sentence['Sentence']['text'];
 
 // navigation (previous, random, next)
 $sentences->displayNavigation($sentence['Sentence']['id']);
-
-echo '<h2>' . __('Your correction',true) . '</h2>';
 
 echo '<div class="sentences_set">';
 	// sentence menu (translate, edit, comment, etc)

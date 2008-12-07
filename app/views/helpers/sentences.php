@@ -118,18 +118,33 @@ class SentencesHelper extends AppHelper {
 				));
 			echo '</li>';
 			
+			
 			// discuss link
 			if(isset($specialOptions['canComment']) AND $specialOptions['canComment'] == true){
-				echo '<li class="option">';
-				echo $this->Html->link(
-					__('Comment',true),
-					array(
-						"controller" => "sentence_comments",
-						"action" => "add",
-						$id
-					));
-				echo '</li>';
+				$action = "add";
+			}else{
+				$action = "show";
 			}
+			echo '<li class="option">';
+			echo $this->Html->link(
+				__('Comments',true),
+				array(
+					"controller" => "sentence_comments",
+					"action" => $action,
+					$id
+				));
+			echo '</li>';
+			
+			// logs
+			echo '<li class="option">';
+			echo $this->Html->link(
+				__('Logs',true),
+				array(
+					"controller" => "latest_activities",
+					"action" => "show",
+					$id
+				));
+			echo '</li>';
 			
 			// delete link
 			if(isset($specialOptions['canDelete']) AND $specialOptions['canDelete'] == true){

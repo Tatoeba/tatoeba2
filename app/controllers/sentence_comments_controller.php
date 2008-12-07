@@ -9,7 +9,7 @@ class SentenceCommentsController extends AppController {
 	    parent::beforeFilter(); 
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index', 'save');
+	    $this->Auth->allowedActions = array('index', 'save', 'show');
 	}
 	
 	function index(){
@@ -25,6 +25,23 @@ class SentenceCommentsController extends AppController {
 	}
 	
 	function add($sentence_id){
+		$sentence = new Sentence();
+		$sentence->id = $sentence_id;		
+		$sentence->recursive = 2;
+		$this->set('sentence', $sentence->read());	
+		
+		// checking which options user can access to
+		$specialOptions = array('canComment' => false, 'canEdit' => false, 'canDelete' => false);
+		if($this->Auth->user('id')){
+			$specialOptions['canComment'] = true;
+			$specialOptions['canEdit'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/edit');
+			$specialOptions['canDelete'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/delete');
+		}
+		
+		$this->set('specialOptions',$specialOptions);
+	}
+	
+	function show($sentence_id){
 		$sentence = new Sentence();
 		$sentence->id = $sentence_id;		
 		$sentence->recursive = 2;

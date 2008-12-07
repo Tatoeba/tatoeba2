@@ -4,8 +4,6 @@ $this->pageTitle = __('Please translate : ',true) . $sentence['Sentence']['text'
 // navigation (previous, random, next)
 $sentences->displayNavigation($sentence['Sentence']['id']);
 
-echo '<h2>' . __('Translate this sentence',true) . '</h2>';
-
 echo '<div class="sentences_set">';
 	// sentence menu (translate, edit, comment, etc)
 	$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $sentence['Sentence']['correctness'], $specialOptions);
