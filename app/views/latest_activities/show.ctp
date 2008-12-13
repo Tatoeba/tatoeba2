@@ -13,11 +13,13 @@ echo '<div class="sentences_set">';
 echo '</div>';	
 
 if(count($sentence['LatestActivity']) > 0){
+	
 	foreach($sentence['LatestActivity'] as $logs){
 		if(isset($logs['User']['username'])){
 			echo $logs['User']['username'];
 		}
 		echo $logs['datetime'] . $logs['text'];
+		echo '<br/>';
 	}
 }else{
 	echo 'nothing special';
