@@ -3,7 +3,7 @@ class SentenceCommentsController extends AppController {
 	var $name = 'SentenceComments';
 	
 	var $helpers = array('Comments','Sentences');
-	var $components = array ('GoogleLanguageApi');
+	var $components = array ('GoogleLanguageApi', 'Permissions');
 	
 	function beforeFilter() {
 	    parent::beforeFilter(); 
@@ -26,21 +26,17 @@ class SentenceCommentsController extends AppController {
 	
 	function add($sentence_id){
 		$sentence = new Sentence();
-		$sentence->id = $sentence_id;		
+		$sentence->id = $sentence_id;
 		$sentence->recursive = 2;
 		$this->set('sentence', $sentence->read());	
 		
 		// checking which options user can access to
-		$specialOptions = array('canComment' => false, 'canEdit' => false, 'canDelete' => false);
-		if($this->Auth->user('id')){
-			$specialOptions['canComment'] = true;
-			$specialOptions['canEdit'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/edit');
-			$specialOptions['canDelete'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/delete');
-		}
-		
+		$specialOptions = $this->Permissions->getSentencesOptions();
 		$this->set('specialOptions',$specialOptions);
 	}
 	
+	// I don't like how 'show' is exactly the same as 'add' in the controller...
+	// It's just the view that is different...
 	function show($sentence_id){
 		$sentence = new Sentence();
 		$sentence->id = $sentence_id;		
@@ -48,13 +44,7 @@ class SentenceCommentsController extends AppController {
 		$this->set('sentence', $sentence->read());	
 		
 		// checking which options user can access to
-		$specialOptions = array('canComment' => false, 'canEdit' => false, 'canDelete' => false);
-		if($this->Auth->user('id')){
-			$specialOptions['canComment'] = true;
-			$specialOptions['canEdit'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/edit');
-			$specialOptions['canDelete'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/delete');
-		}
-		
+		$specialOptions = $this->Permissions->getSentencesOptions();
 		$this->set('specialOptions',$specialOptions);
 	}
 	

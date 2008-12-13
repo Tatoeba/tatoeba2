@@ -21,7 +21,8 @@ class SentencesHelper extends AppHelper {
 						echo $translation['text'];
 					echo '</li>';
 				}
-			}else{
+			}
+			/*else{
 				echo '<li>';
 				echo '<em>';
 				__('There are no translations for now.');
@@ -34,7 +35,7 @@ class SentencesHelper extends AppHelper {
 						$sentence['id']
 					));
 				echo '</li>';
-			}
+			}*/
 		echo '</ul>';
     }
 	
@@ -80,7 +81,14 @@ class SentencesHelper extends AppHelper {
 	function displayMenu($id, $lang, $correctness, $specialOptions){
 		echo '<ul class="menu">';
 			echo '<li class="id">';
-				echo '<strong>' . $id . '</strong> <em>' . $lang . ' ('. $correctness .')</em>';
+				$idAndLang = '<strong>' . $id . '</strong> <em>' . $lang . ' ('. $correctness .')</em>';
+				$showUrl = $this->Html->url(
+					array(
+						"controller" => "sentences",
+						"action" => "show",
+						$id
+					));
+				echo '<a href="'.$showUrl.'">'.$idAndLang.'</a>';
 			echo '</li>';
 			
 			// translate link => everyone can see
@@ -110,7 +118,7 @@ class SentencesHelper extends AppHelper {
 			// suggest correction link
 			echo '<li class="option">';
 			echo $this->Html->link(
-				__('Suggest correction',true),
+				__('Correct',true),
 				array(
 					"controller" => "suggested_modifications",
 					"action" => "add",

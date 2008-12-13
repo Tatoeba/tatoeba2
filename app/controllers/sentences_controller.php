@@ -1,9 +1,7 @@
 <?php
 class SentencesController extends AppController{
 	var $name = 'Sentences';
-	
-	var $components = array ('GoogleLanguageApi', 'Lucene');
-	
+	var $components = array ('GoogleLanguageApi', 'Lucene', 'Permissions');
 	var $helpers = array('Sentences');
 	
 	function beforeFilter() {
@@ -30,14 +28,9 @@ class SentencesController extends AppController{
 		}
 		
 		// checking which options user can access to
-		$specialOptions = array('canComment' => false, 'canEdit' => false, 'canDelete' => false);
-		if($this->Auth->user('id')){
-			$specialOptions['canComment'] = true;
-			$specialOptions['canEdit'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/edit');
-			$specialOptions['canDelete'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/delete');
-		}
-		
+		$specialOptions = $this->Permissions->getSentencesOptions();
 		$this->set('specialOptions',$specialOptions);
+		
 		$this->set('sentence',$this->Sentence->read());
 	}
 	
@@ -126,13 +119,7 @@ class SentencesController extends AppController{
 		$this->data['Sentence']['id'] = $id;
 		
 		// checking which options user can access to
-		$specialOptions = array('canComment' => false, 'canEdit' => false, 'canDelete' => false);
-		if($this->Auth->user('id')){
-			$specialOptions['canComment'] = true;
-			$specialOptions['canEdit'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/edit');
-			$specialOptions['canDelete'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/delete');
-		}
-		
+		$specialOptions = $this->Permissions->getSentencesOptions();
 		$this->set('specialOptions',$specialOptions);
 	}
 	
@@ -225,6 +212,10 @@ class SentencesController extends AppController{
 			if($sentences != array()){
 				$this->set('results', $sentences);
 			}
+			
+			// checking which options user can access to
+			$specialOptions = $this->Permissions->getSentencesOptions();
+			$this->set('specialOptions',$specialOptions);
 		}else{
 			$this->pageTitle = __('Tatoeba search',true);
 		}

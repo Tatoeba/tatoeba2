@@ -6,8 +6,13 @@ echo $form->end('search');
 
 if(isset($results)){
 	foreach($results as $sentence){
-		echo 'sentence : ' . $sentence['Sentence']['text'];
-		echo ' / ';
+		echo '<div class="sentences_set">';
+		// sentence menu (translate, edit, comment, etc)
+		$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $sentence['Sentence']['correctness'], $specialOptions);
+
+		// sentence and translations
+		$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
+		echo '</div>';	
 		echo 'score : ' . $sentence['Score'];
 		echo '<br/>';
 	}
