@@ -1,7 +1,7 @@
 <?php
-class LatestActivitiesController extends AppController {
+class ContributionsController extends AppController {
 
-	var $name = 'LatestActivities';
+	var $name = 'Contributions';
 	var $helpers = array('Html', 'Form', 'Sentences');
 	var $components = array('Permissions');
 
@@ -13,7 +13,7 @@ class LatestActivitiesController extends AppController {
 	
 	function index() {
 		$this->LatestActivity->recursive = 0;
-		$this->set('latestActivities', $this->paginate());
+		$this->set('contributions', $this->paginate());
 	}
 	
 	function show($sentence_id){
@@ -25,6 +25,10 @@ class LatestActivitiesController extends AppController {
 		// checking which options user can access to
 		$specialOptions = $this->Permissions->getSentencesOptions();
 		$this->set('specialOptions',$specialOptions);
+	}
+	
+	function latest(){
+		return $this->Contribution->find('all', array('limit' => 10));
 	}
 
 }

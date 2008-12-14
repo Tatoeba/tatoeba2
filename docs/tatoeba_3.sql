@@ -691,11 +691,11 @@ INSERT INTO `users` (`id`, `username`, `password`, `email`, `lang`, `since`, `la
 -- --------------------------------------------------------
 
 --
--- Structure for view `latest_activities`
+-- Structure for view `contributions`
 --
-DROP VIEW IF EXISTS `latest_activities`;
+DROP VIEW IF EXISTS `contributions`;
 
-CREATE VIEW `latest_activities` AS
+CREATE VIEW `contributions` AS
 SELECT `sentence_id`
  , `sentence_lang`
  , `translation_id`
@@ -722,7 +722,7 @@ SELECT `sentence_id`
  , 'suggest'
  , `submit_user_id`
  , `submit_datetime` FROM `suggested_modifications`
-ORDER BY `datetime`;
+ORDER BY `datetime` DESC;
 
 
 -- --------------------------------------------------------
