@@ -9,7 +9,7 @@ class SentenceCommentsController extends AppController {
 	    parent::beforeFilter(); 
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index', 'save', 'show');
+	    $this->Auth->allowedActions = array('index', 'save', 'show','latest');
 	}
 	
 	function index(){
@@ -68,5 +68,11 @@ class SentenceCommentsController extends AppController {
 			}
 		}
 	}
+	
+	
+	function latest() {
+		return $this->SentenceComment->find('all', array('order' => 'SentenceComment.datetime DESC', 'limit' => 10));
+	}
+
 }
 ?>

@@ -2,13 +2,13 @@
 class SentencesController extends AppController{
 	var $name = 'Sentences';
 	var $components = array ('GoogleLanguageApi', 'Lucene', 'Permissions');
-	var $helpers = array('Sentences');
+	var $helpers = array('Sentences', 'Html');
 	
 	function beforeFilter() {
 	    parent::beforeFilter(); 
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','add','translate','save_translation','search', 'add_comment');
+	    $this->Auth->allowedActions = array('index','show','add','translate','save_translation','search', 'add_comment', 'random');
 	}
 
 	
@@ -219,6 +219,18 @@ class SentencesController extends AppController{
 		}else{
 			$this->pageTitle = __('Tatoeba search',true);
 		}
+	}
+	
+	function random(){
+		$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences');
+		$max = $resultMax[0][0]['MAX(id)'];
+		$randId = rand(1, $max);
+		$this->Sentence->id = $randId;
+		
+		$random = $this->Sentence->read();
+		$random['specialOptions'] = $this->Permissions->getSentencesOptions();
+		
+		return $random;
 	}
 }
 ?>
