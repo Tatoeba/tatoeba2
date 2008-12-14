@@ -14,6 +14,10 @@ echo $this->element('random_sentence');
 
 
 <h2><?php __('Latest contributions'); ?></h2>
+<?php
+echo $this->element('latest_contributions', array('cache'=>'+1 hour'));
+?>
+
 <h2><?php __('Latest comments'); ?></h2>
 <?php
 echo $this->element('latest_sentence_comments', array('cache'=>'+1 hour'));

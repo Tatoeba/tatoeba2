@@ -1,5 +1,5 @@
 <div class="latestActivities index">
-<h2><?php __('LatestActivities');?></h2>
+<h2><?php __('Contributions');?></h2>
 <p>
 <?php
 echo $paginator->counter(array(
@@ -19,7 +19,7 @@ echo $paginator->counter(array(
 </tr>
 <?php
 $i = 0;
-foreach ($latestActivities as $latestActivity):
+foreach ($contributions as $contribution):
 	$class = null;
 	if ($i++ % 2 == 0) {
 		$class = ' class="altrow"';
@@ -27,28 +27,28 @@ foreach ($latestActivities as $latestActivity):
 ?>
 	<tr<?php echo $class;?>>
 		<td>
-			<?php echo $latestActivity['LatestActivity']['sentence_id']; ?>
+			<?php echo $contribution['Contribution']['sentence_id']; ?>
 		</td>
 		<td>
-			<?php echo $latestActivity['LatestActivity']['sentence_lang']; ?>
+			<?php echo $contribution['Contribution']['sentence_lang']; ?>
 		</td>
 		<td>
-			<?php echo $latestActivity['LatestActivity']['translation_id']; ?>
+			<?php echo $contribution['Contribution']['translation_id']; ?>
 		</td>
 		<td>
-			<?php echo $latestActivity['LatestActivity']['translation_lang']; ?>
+			<?php echo $contribution['Contribution']['translation_lang']; ?>
 		</td>
 		<td>
-			<?php echo $latestActivity['LatestActivity']['text']; ?>
+			<?php echo $contribution['Contribution']['text']; ?>
 		</td>
 		<td>
-			<?php echo $latestActivity['LatestActivity']['action']; ?>
+			<?php echo $contribution['Contribution']['action']; ?>
 		</td>
 		<td>
-			<?php echo $latestActivity['LatestActivity']['user_id']; ?>
+			<?php echo $contribution['Contribution']['user_id']; ?>
 		</td>
 		<td>
-			<?php echo $latestActivity['LatestActivity']['datetime']; ?>
+			<?php echo $contribution['Contribution']['datetime']; ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

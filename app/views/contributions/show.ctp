@@ -12,9 +12,9 @@ echo '<div class="sentences_set">';
 	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
 echo '</div>';	
 
-if(count($sentence['LatestActivity']) > 0){
+if(count($sentence['Contribution']) > 0){
 	
-	foreach($sentence['LatestActivity'] as $logs){
+	foreach($sentence['Contribution'] as $logs){
 		if(isset($logs['User']['username'])){
 			echo $logs['User']['username'];
 		}

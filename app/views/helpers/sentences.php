@@ -148,7 +148,7 @@ class SentencesHelper extends AppHelper {
 			echo $this->Html->link(
 				__('Logs',true),
 				array(
-					"controller" => "latest_activities",
+					"controller" => "contributions",
 					"action" => "show",
 					$id
 				));
