@@ -2,7 +2,7 @@
 class ContributionsController extends AppController {
 
 	var $name = 'Contributions';
-	var $helpers = array('Html', 'Form', 'Sentences');
+	var $helpers = array('Html', 'Form', 'Sentences', 'Date');
 	var $components = array('Permissions');
 
 	function beforeFilter() {
@@ -12,8 +12,8 @@ class ContributionsController extends AppController {
 	}
 	
 	function index() {
-		$this->LatestActivity->recursive = 0;
-		$this->set('contributions', $this->paginate());
+		$limit = 200;
+		$this->set('contributions', $this->Contribution->find('all', array('limit' => $limit)));
 	}
 	
 	function show($sentence_id){
@@ -28,7 +28,6 @@ class ContributionsController extends AppController {
 	}
 	
 	function latest(){
-		$this->Contribution->recursive = 2;
 		return $this->Contribution->find('all', array('limit' => 10));
 	}
 
