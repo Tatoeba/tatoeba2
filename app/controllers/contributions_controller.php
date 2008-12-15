@@ -28,6 +28,7 @@ class ContributionsController extends AppController {
 	}
 	
 	function latest(){
+		$this->Contribution->recursive = 2;
 		return $this->Contribution->find('all', array('limit' => 10));
 	}
 

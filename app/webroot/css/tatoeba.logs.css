@@ -1,0 +1,31 @@
+/* **************** *\
+ * 		LOGS 		*
+\* **************** */
+
+#logs td{
+padding: 3px;
+}
+
+#logs .sentenceAdded{
+background: #b1f090;
+}
+
+#logs .sentenceModified{
+background: #96e0fc;
+}
+
+#logs .sentenceDeleted{
+background: #f5aa98;
+}
+
+#logs .translationAdded{
+background: #CCFF99;
+}
+
+#logs .translationDeleted{
+background: #ecc7f2;
+}
+
+#logs .correctionSuggested{
+background: #f7e969;
+}
