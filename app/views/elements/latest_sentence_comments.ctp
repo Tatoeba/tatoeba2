@@ -1,10 +1,21 @@
 <?php
 $comments = $this->requestAction('/sentence_comments/latest');
-echo '<ul>';
+
+echo '<table>';
 foreach($comments as $comment) {
-	echo '<li>';
-	echo $comment['SentenceComment']['text'];
-	echo '</li>';
+	echo '<tr>';
+		echo '<td>';
+		echo $comment['User']['username'];
+		echo '</td>';
+		
+		echo '<td>';
+		echo $date->ago($comment['SentenceComment']['datetime']);
+		echo '</td>';
+		
+		echo '<td>';
+		echo $comment['SentenceComment']['text'];
+		echo '</td>';
+	echo '</tr>';
 }
-echo '</ul>';
+echo '</table>';
 ?>

@@ -42,7 +42,7 @@ foreach($contributions as $contribution){
 		echo '</td>';
 		
 		echo '<td>';
-		echo $contribution['Contribution']['datetime'];
+		echo $date->ago($contribution['Contribution']['datetime']);
 		echo '</td>';
 		
 		echo '<td>';

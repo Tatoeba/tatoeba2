@@ -18,7 +18,7 @@ class DateHelper extends AppHelper{
 		$hours = intval(($now-$timestamp) / 3600);
 		$minutes = intval(($now-$timestamp) / 60);
 		if(intval($now-$timestamp) > intval(3600*24*7)){
-			return date("M jS Y", $timestamp).' at '.date("H:i",$timestamp);
+			return date("M jS Y", $timestamp).', '.date("H:i",$timestamp);
 		}elseif($days > 0){
 			return $days.' day(s) ago';
 		}elseif($hours > 0){
