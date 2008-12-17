@@ -12,8 +12,9 @@ echo '<div class="sentences_set">';
 	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
 echo '</div>';	
 
+
+echo '<h2>'. __('Logs', true) .'</h2>';
 if(count($sentence['Contribution']) > 0){
-	
 	foreach($sentence['Contribution'] as $logs){
 		if(isset($logs['User']['username'])){
 			echo $logs['User']['username'];
@@ -22,7 +23,7 @@ if(count($sentence['Contribution']) > 0){
 		echo '<br/>';
 	}
 }else{
-	echo 'nothing special';
+	echo '<em>'. __('There is no log for this sentence', true) .'</em>';
 }
 
 /*

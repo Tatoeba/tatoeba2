@@ -22,20 +22,6 @@ class SentencesHelper extends AppHelper {
 					echo '</li>';
 				}
 			}
-			/*else{
-				echo '<li>';
-				echo '<em>';
-				__('There are no translations for now.');
-				echo '</em> ';
-				echo $this->Html->link(
-					__('Add a translation',true),
-					array(
-						"controller" => "sentences",
-						"action" => "translate",
-						$sentence['id']
-					));
-				echo '</li>';
-			}*/
 		echo '</ul>';
     }
 	
@@ -173,6 +159,10 @@ class SentencesHelper extends AppHelper {
 	
 	function displayNavigation($currentId){
 		echo '<div class="navigation">';
+			$input = $this->params['pass'][0];
+			echo $this->Form->create('Sentence', array("action" => "goTo", "type" => "get"));
+			echo $this->Form->input('sentence_id', array("label" => __('Go to id : ', true), "value" => $input));
+			echo $this->Form->end(__('OK',true));		
 			echo '<ul>';
 			
 			// previous
@@ -212,6 +202,7 @@ class SentencesHelper extends AppHelper {
 			echo '</li>';
 			
 			echo '</ul>';
+			
 		echo '</div>';
 	}
 }

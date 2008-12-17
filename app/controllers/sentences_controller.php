@@ -8,7 +8,7 @@ class SentencesController extends AppController{
 	    parent::beforeFilter(); 
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','add','translate','save_translation','search', 'add_comment', 'random');
+	    $this->Auth->allowedActions = array('index','show','add','translate','save_translation','search', 'add_comment', 'random', 'goTo');
 	}
 
 	
@@ -16,7 +16,7 @@ class SentencesController extends AppController{
 		$this->set('sentences',$this->Sentence->find('all'));
 	}
 	
-	function show($id){
+	function show($id = null){
 		if($id == "random"){
 			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences');
 			$max = $resultMax[0][0]['MAX(id)'];
@@ -32,6 +32,14 @@ class SentencesController extends AppController{
 		$this->set('specialOptions',$specialOptions);
 		
 		$this->set('sentence',$this->Sentence->read());
+	}
+	
+	function goTo(){
+		$id = intval($this->params['url']['sentence_id']);
+		if($id == 0){
+			$id = 'random';
+		}
+		$this->redirect(array("action"=>"show", $id));
 	}
 	
 	function add(){
@@ -120,7 +128,7 @@ class SentencesController extends AppController{
 		
 		// checking which options user can access to
 		$specialOptions = $this->Permissions->getSentencesOptions();
-		$this->set('specialOptions',$specialOptions);
+		$this->set('specialOptions',$specialOptions);	
 	}
 	
 	function save_translation(){

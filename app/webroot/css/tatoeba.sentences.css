@@ -12,7 +12,8 @@ width: 100%;
 }
 
 .navigation ul{
-text-align: center;
+display:inline;
+padding-right: 100px;
 }
 
 .navigation li{
@@ -22,12 +23,21 @@ display:inline;
 .navigation li.option a{
 background: #D3F3B9;
 padding: 3px 8px;
-margin: 5px;
+margin-right: 10px;
 }
 
 .navigation li.option a:hover{
 background: #75C34B;
 color: #D3F3B9;
+}
+
+#SentenceGoToForm{
+float:right;
+padding-left: 100px;
+}
+
+#SentenceGoToForm div.submit, #SentenceGoToForm div.input{
+display: inline;
 }
 
 /* item menu */

@@ -12,11 +12,18 @@ echo '<div class="sentences_set">';
 	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
 echo '</div>';	
 
+
+echo '<h2>'. __('Comments', true) .'</h2>';
 if(count($sentence['SentenceComment']) > 0){
 	foreach($sentence['SentenceComment'] as $comment){
 		$comments->displayComment($comment['User']['username'], $comment['datetime'], $comment['text']);
 	}
 }else{
-	echo '<em>There are no comments for now</em>';
+	echo '<em>' . __('There are no comments for now.', true) .'</em>';
+	
+	if($specialOptions['canComment'] == false){
+		echo '<br/>';
+		echo '<em>'. __('You can add a comment if you are registered and logged in.', true) .'</em>';
+	}
 }
 ?>
