@@ -177,12 +177,15 @@ class SentencesController extends AppController{
 		}
 	}
 	
-	function search(){
-		if(isset($this->params['url']['query'])){
-			$this->pageTitle = __('Tatoeba search : ',true) . $this->params['url']['query'];
-			$query = $this->params['url']['query'];
+	function search($query = null){
+		if($query != null){
+			// because cakePHP escapes the "+" and I don't want that...
+			$unescapedQuery = preg_replace("#[^(.)]*/sentences/search/([.]*)#", "$2", $_SERVER['REQUEST_URI']);
+			$unescapedQuery = urldecode($unescapedQuery);
+			$this->Session->write("unescapedQuery", $unescapedQuery);
 			
-			$lucene_results = $this->Lucene->search($query);
+			$this->pageTitle = __('Tatoeba search : ',true) . $unescapedQuery;
+			$lucene_results = $this->Lucene->search($unescapedQuery);
 			$sentences = array();
 			
 			foreach($lucene_results as $result){
@@ -216,7 +219,8 @@ class SentencesController extends AppController{
 			)
 			*/
 			
-			$this->set('query', urldecode($query));
+			$this->set('query', $unescapedQuery);
+			
 			if($sentences != array()){
 				$this->set('results', $sentences);
 			}
@@ -225,7 +229,11 @@ class SentencesController extends AppController{
 			$specialOptions = $this->Permissions->getSentencesOptions();
 			$this->set('specialOptions',$specialOptions);
 		}else{
-			$this->pageTitle = __('Tatoeba search',true);
+			if(isset($this->data['Sentence']['query'])){
+				$this->redirect(array("action" => "search", $this->data['Sentence']['query']));
+			}else{
+				$this->pageTitle = __('Tatoeba search',true);
+			}
 		}
 	}
 	

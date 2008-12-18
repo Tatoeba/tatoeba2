@@ -1,20 +1,23 @@
-<h1>Search <?php echo (isset($query)) ? ': '.$query : '' ; ?></h1>
 <?php
-echo $form->create(null, array("action" => "search", "type" => "get"));
-echo $form->input('query');
-echo $form->end('search');
+if(isset($query)){
+	echo '<h2>Search : ' . $session->read("unescapedQuery"). '</h2>';
+	
+	if(isset($results)){
+		foreach($results as $sentence){
+			echo '<div class="sentences_set">';
+			// sentence menu (translate, edit, comment, etc)
+			$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $sentence['Sentence']['correctness'], $specialOptions);
 
-if(isset($results)){
-	foreach($results as $sentence){
-		echo '<div class="sentences_set">';
-		// sentence menu (translate, edit, comment, etc)
-		$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $sentence['Sentence']['correctness'], $specialOptions);
-
-		// sentence and translations
-		$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
-		echo '</div>';	
-		echo 'score : ' . $sentence['Score'];
-		echo '<br/>';
+			// sentence and translations
+			$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
+			echo '</div>';	
+			echo 'score : ' . $sentence['Score'];
+			echo '<br/>';
+		}
+	}else{
+		__('No results for this search');
 	}
+}else{
+	echo $this->element('search_explanations');
 }
 ?>

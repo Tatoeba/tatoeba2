@@ -143,15 +143,6 @@ text-decoration:none;
 font-size: 13px;
 }
 
-.search_bar{
-padding: 7px 15px;
-text-align:center;
-}
-
-.search_bar .query{
-width: 50%;
-}
-
 .container1{
 padding:5px 15px 15px 15px;
 }
@@ -222,12 +213,27 @@ background: white;
 border-bottom: 5px solid #93D771;
 }
 
-.search_bar{
-background: #D3F3B9;
-}
 
 /* ---------------------------------------- */
 
 #homepage .element{
 margin-top: 30px;
+}
+
+.search_bar{
+background: #D3F3B9;
+padding: 7px 15px;
+text-align:center;
+}
+
+#SentenceSearchForm div.input{
+display:inline;
+}
+
+#SentenceSearchForm div.input input{
+width: 50%;
+}
+
+#SentenceSearchForm div.submit{
+display:inline;
 }
