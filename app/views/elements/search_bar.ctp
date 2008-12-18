@@ -6,6 +6,8 @@ $query = preg_replace("#[^(.)]*/sentences/search/([.]*)#", "$2", $_SERVER['REQUE
 
 echo $form->create('Sentence', array("action" => "search"));
 echo $form->input('query', array("label" => '', "value" => $session->read("unescapedQuery")));
-echo $form->end(__('search',true));		
+echo $form->end(__('search',true));
+
+echo $html->link(__('show examples',true), array("controller" => "sentences", "action" => "search"	));
 ?>
 </div>
