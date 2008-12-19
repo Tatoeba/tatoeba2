@@ -233,6 +233,7 @@ class SentencesController extends AppController{
 				$this->redirect(array("action" => "search", $this->data['Sentence']['query']));
 			}else{
 				$this->pageTitle = __('Tatoeba search',true);
+				$this->redirect(array("lang" => $this->params['lang'], "controller" => "pages", "action" => "display", "search"));
 			}
 		}
 	}

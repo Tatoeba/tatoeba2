@@ -21,7 +21,9 @@ foreach($menuElements as $title => $route){
 	
 	// Checking if we should apply the "current" CSS class to the <li> element
 	if(is_array($route)){ // categories other than Home
-		if($this->params['controller'] == $route['controller']){
+		if(isset($this->params['pass'][0]) AND isset($route['action']) AND $this->params['pass'][0] == $route['action']){
+			$cssClass = 'class="current"';
+		}elseif($this->params['controller'] == $route['controller']){
 			if(isset($route['action'])){
 				if($this->params['action'] == $route['action']){
 					$cssClass = 'class="current"';
@@ -33,7 +35,7 @@ foreach($menuElements as $title => $route){
 			}
 		}
 	}else{ // Home
-		if($this->params['controller'] == 'pages' AND $this->params['action'] == 'display'){
+		if(isset($this->params['pass'][0]) AND $this->params['pass'][0] == 'home'){
 			$cssClass = 'class="current"';
 		}
 	}

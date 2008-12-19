@@ -40,6 +40,8 @@
  * ...and connect the rest of 'Pages' controller's urls.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+	Router::connect('/:lang/pages/*', array('lang' => ':lang', 'controller' => 'pages', 'action' => 'display'),
+		array('lang'=>'fre|eng|deu|spa|ita|jpn'));
 /**
  * Then we connect url '/test' to our test controller. This is helpful in
  * developement.

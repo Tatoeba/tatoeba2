@@ -73,6 +73,7 @@
 		<!-- ---------------- FOOT---------------- -->
 		<?php echo $this->element('foot'); ?>
 	</div>
+	<?php echo pr($this->params); ?>
 	<?php echo $cakeDebug ?>
 </body>
 </html>
