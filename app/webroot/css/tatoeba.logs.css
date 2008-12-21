@@ -6,26 +6,35 @@
 padding: 3px;
 }
 
-#logs .sentenceAdded{
+#logsLegend{
+margin: 20px 0px;
+text-align: center;
+}
+
+#logsLegend span{
+padding: 2px 5px;
+}
+
+.sentenceAdded{
 background: #b1f090;
 }
 
-#logs .sentenceModified{
+.sentenceModified{
 background: #96e0fc;
 }
 
-#logs .sentenceDeleted{
+.sentenceDeleted{
 background: #f5aa98;
 }
 
-#logs .translationAdded{
+.translationAdded{
 background: #CCFF99;
 }
 
-#logs .translationDeleted{
+.translationDeleted{
 background: #ecc7f2;
 }
 
-#logs .correctionSuggested{
+.correctionSuggested{
 background: #f7e969;
 }
