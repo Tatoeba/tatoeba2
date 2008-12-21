@@ -8,7 +8,8 @@ class SentencesController extends AppController{
 	    parent::beforeFilter(); 
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','add','translate','save_translation','search', 'add_comment', 'random', 'goTo');
+	    $this->Auth->allowedActions = array('index','show','add','translate',
+			'save_translation','search', 'add_comment', 'random', 'goTo', 'contribute');
 	}
 
 	
@@ -71,7 +72,7 @@ class SentencesController extends AppController{
 					// Confirmation message
 					$this->flash(
 						__('Your sentence has been saved.',true), 
-						'/sentences'
+						'/sentences/translate/'.$this->Sentence->id
 					);
 				}
 			}else{
@@ -169,10 +170,10 @@ class SentencesController extends AppController{
 				// Confirmation message
 				$this->flash(
 					__('The translation has been saved',true),
-					'/'.$this->params['lang'].'/sentences/show/'.$this->data['Translation']['Translation'][0]
+					'/sentences/translate/'.$this->data['Translation']['Translation'][0]
 				);
 			}else{
-				echo 'problem';
+				echo 'Problem while trying to save translation.';
 			}
 		}
 	}
@@ -248,6 +249,14 @@ class SentencesController extends AppController{
 		$random['specialOptions'] = $this->Permissions->getSentencesOptions();
 		
 		return $random;
+	}
+	
+	function contribute(){
+		$random = $this->random();
+		
+		$this->set('sentence', $random['Sentence']);
+		$this->set('translations', $random['Translation']);
+		$this->set('specialOptions', $random['specialOptions']);
 	}
 }
 ?>

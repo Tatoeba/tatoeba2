@@ -95,6 +95,25 @@ font-style:normal;
 padding: 5px;
 }
 
+.sentences_set .sentence .new{
+padding: 10px 5px;
+}
+
+
+/* editing sentences */
+
+.sentences_set div.submit{
+display:inline;
+
+}
+.sentences_set div.input{
+display:inline;
+}
+
+.sentences_set div.input input{
+width: 80%;
+}
+
 
 /* types of sentence */
 
@@ -117,18 +136,4 @@ color: #222;
 
 .indirect{
 color: #888;
-}
-
-/* editing sentences */
-
-.sentences_set div.submit{
-display:inline;
-
-}
-.sentences_set div.input{
-display:inline;
-}
-
-.sentences_set div.input input{
-width: 80%;
 }

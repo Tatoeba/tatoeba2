@@ -51,8 +51,8 @@ class GoogleLanguageApiComponent extends Object{
 			case 'vi' : 	return 'vn';
 			case 'zh-CN' : 	return 'zh';
 			case 'zh-TW' : 	return 'zh';
-			return null;
 		}
+		return null;
 	}
 }
 ?>
