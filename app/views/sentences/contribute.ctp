@@ -2,7 +2,17 @@
 $this->pageTitle = 'Contribute in Tatoeba';
 
 echo '<h2>';
-__('Translate a sentence');
+__('Translate the sentence');
+
+echo ' (';
+echo $html->link(
+		__('show another sentence',true),
+		array(
+			"controller" => "sentences", 
+			"action" => "contribute"
+		)
+	);
+echo ')';
 echo '</h2>';
 
 echo '<div class="sentences_set">';
@@ -14,7 +24,7 @@ echo '<br/>';
 echo '<br/>';
 
 echo '<h2>';
-__('Add a sentence');
+__('Add a new sentence');
 echo '</h2>';
 
 echo '<div class="sentences_set">';
@@ -22,7 +32,7 @@ echo '<div class="sentences_set">';
 	echo '<div class="new">';
 	echo $form->create('Sentence');
 	echo $form->input('text', array("label" => __('Sentence : ',true)));
-	echo $form->end('Save');
+	echo $form->end('OK');
 	echo '</div>';
 	echo '</div>';
 echo '</div>';

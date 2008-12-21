@@ -71,8 +71,8 @@ class SentencesController extends AppController{
 					
 					// Confirmation message
 					$this->flash(
-						__('Your sentence has been saved.',true), 
-						'/sentences/translate/'.$this->Sentence->id
+						__('Your sentence has been saved. You can add a translation for it or add another new sentence.',true), 
+						'/sentences/contribute/'.$this->Sentence->id
 					);
 				}
 			}else{
@@ -153,27 +153,38 @@ class SentencesController extends AppController{
 			// detecting language
 			$this->GoogleLanguageApi->text = $this->data['Sentence']['text'];
 			$response = $this->GoogleLanguageApi->detectLang();
-			$this->data['Sentence']['lang'] = $response['language'];
 			
-			if($this->Sentence->save($this->data)){
-				// Logs
-				$this->data['TranslationLog']['sentence_id'] = $this->data['Translation']['Translation'][0];
-				$this->data['TranslationLog']['sentence_lang'] = $this->data['Sentence']['sentence_lang'];
-				$this->data['TranslationLog']['translation_id'] = $this->Sentence->id;
-				$this->data['TranslationLog']['translation_lang'] = $this->data['Sentence']['lang'];
-				$this->data['TranslationLog']['translation_text'] = $this->data['Sentence']['text'];
-				$this->data['TranslationLog']['action'] = 'insert';
-				$this->data['TranslationLog']['user_id'] = $this->Auth->user('id');
-				$this->data['TranslationLog']['datetime'] = date("Y-m-d H:i:s");
-				$this->Sentence->TranslationLog->save($this->data);
-				
-				// Confirmation message
-				$this->flash(
-					__('The translation has been saved',true),
-					'/sentences/translate/'.$this->data['Translation']['Translation'][0]
-				);
+			if($response['isReliable']){
+				$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
+			
+				if($this->Sentence->save($this->data)){
+					// Logs
+					$this->data['TranslationLog']['sentence_id'] = $this->data['Translation']['Translation'][0];
+					$this->data['TranslationLog']['sentence_lang'] = $this->data['Sentence']['sentence_lang'];
+					$this->data['TranslationLog']['translation_id'] = $this->Sentence->id;
+					$this->data['TranslationLog']['translation_lang'] = $this->data['Sentence']['lang'];
+					$this->data['TranslationLog']['translation_text'] = $this->data['Sentence']['text'];
+					$this->data['TranslationLog']['action'] = 'insert';
+					$this->data['TranslationLog']['user_id'] = $this->Auth->user('id');
+					$this->data['TranslationLog']['datetime'] = date("Y-m-d H:i:s");
+					$this->Sentence->TranslationLog->save($this->data);
+					
+					// Confirmation message
+					$this->flash(
+						__('Your translation has been saved.',true),
+						'/sentences/contribute/'.$this->data['Translation']['Translation'][0]
+					);
+				}else{
+					$this->flash(
+						__('A problem occured. Your translation has not been saved.',true),
+						'/sentences/contribute/'.$this->data['Translation']['Translation'][0]
+					);
+				}
 			}else{
-				echo 'Problem while trying to save translation.';
+				$this->flash(
+					__('We are unsure about the language of the sentence you have added.',true),
+					'/sentences/contribute/'.$this->data['Translation']['Translation'][0]
+				);
 			}
 		}
 	}
@@ -251,12 +262,17 @@ class SentencesController extends AppController{
 		return $random;
 	}
 	
-	function contribute(){
-		$random = $this->random();
+	function contribute($id = null){
+		if(isset($id)){
+			$this->Sentence->id = $id;
+			$sentence = $this->Sentence->read();	
+		}else{
+			$sentence = $this->random();	
+		}
 		
-		$this->set('sentence', $random['Sentence']);
-		$this->set('translations', $random['Translation']);
-		$this->set('specialOptions', $random['specialOptions']);
+		$this->set('sentence', $sentence['Sentence']);
+		$this->set('translations', $sentence['Translation']);
+		//$this->set('specialOptions', $sentence['specialOptions']);
 	}
 }
 ?>
