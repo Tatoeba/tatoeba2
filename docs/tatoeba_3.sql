@@ -176,14 +176,14 @@ INSERT INTO `groups` (`id`, `name`, `created`, `modified`) VALUES
 
 CREATE TABLE IF NOT EXISTS `sentences` (
   `id` int(11) NOT NULL auto_increment,
-  `lang` varchar(2) NOT NULL,
+  `lang` varchar(2) default NULL,
   `text` varchar(500) character set utf8 collate utf8_unicode_ci NOT NULL,
   `correctness` smallint(2) default NULL,
   `user_id` int(11) default NULL,
   `created` datetime default NULL,
   `modified` datetime default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=313 ;
+) ;
 
 --
 -- Dumping data for table `sentences`
@@ -566,13 +566,13 @@ INSERT INTO `sentence_comments` (`id`, `sentence_id`, `lang`, `text`, `user_id`,
 CREATE TABLE IF NOT EXISTS `sentence_logs` (
   `id` int(11) NOT NULL auto_increment,
   `sentence_id` int(11) NOT NULL,
-  `sentence_lang` varchar(2) NOT NULL,
+  `sentence_lang` varchar(2) default NULL,
   `sentence_text` varchar(500) character set utf8 collate utf8_unicode_ci NOT NULL,
   `action` enum('insert','update','delete') NOT NULL,
   `user_id` int(11) default NULL,
   `datetime` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+) ;
 
 --
 -- Dumping data for table `sentence_logs`
@@ -613,7 +613,7 @@ INSERT INTO `sentence_logs` (`id`, `sentence_id`, `sentence_lang`, `sentence_tex
 CREATE TABLE IF NOT EXISTS `suggested_modifications` (
   `id` int(11) NOT NULL auto_increment,
   `sentence_id` int(11) NOT NULL,
-  `sentence_lang` varchar(2) NOT NULL,
+  `sentence_lang` varchar(2) default NULL,
   `correction_text` varchar(500) character set utf8 collate utf8_unicode_ci NOT NULL,
   `submit_user_id` int(11) default NULL,
   `submit_datetime` datetime NOT NULL,
@@ -621,7 +621,7 @@ CREATE TABLE IF NOT EXISTS `suggested_modifications` (
   `apply_datetime` datetime NOT NULL,
   `was_applied` tinyint(1) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ;
 
 --
 -- Dumping data for table `suggested_modifications`
@@ -637,15 +637,15 @@ CREATE TABLE IF NOT EXISTS `suggested_modifications` (
 CREATE TABLE IF NOT EXISTS `translation_logs` (
   `id` int(11) NOT NULL auto_increment,
   `sentence_id` int(11) NOT NULL,
-  `sentence_lang` varchar(2) NOT NULL,
+  `sentence_lang` varchar(2) default NULL,
   `translation_id` int(11) NOT NULL,
-  `translation_lang` varchar(2) NOT NULL,
+  `translation_lang` varchar(2) default NULL,
   `translation_text` varchar(500) character set utf8 collate utf8_unicode_ci NOT NULL,
   `action` enum('insert','delete') NOT NULL,
   `user_id` int(11) default NULL,
   `datetime` datetime NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ;
 
 --
 -- Dumping data for table `translation_logs`

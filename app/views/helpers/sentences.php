@@ -17,7 +17,8 @@ class SentencesHelper extends AppHelper {
 				// Translations
 				foreach($translations as $translation){
 					echo '<li class="direct translation">';
-						echo '<em>'.$translation['lang'].'</em>';
+						$lang = ($translation['lang'] != null) ? $translation['lang'] : '?'; 
+						echo '<em>'.$lang.'</em>';
 						echo $translation['text'];
 					echo '</li>';
 				}

@@ -1,6 +1,6 @@
 <?php
 if($sentence != null){
-	$this->pageTitle = __('Translations for : ',true) . $sentence['Sentence']['text'];
+	$this->pageTitle = __('Example sentence : ',true) . $sentence['Sentence']['text'];
 
 	// navigation (previous, random, next)
 	$sentences->displayNavigation($sentence['Sentence']['id']);
