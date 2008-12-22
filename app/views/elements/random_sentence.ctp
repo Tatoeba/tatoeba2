@@ -6,7 +6,7 @@ $translations = $random['Translation'];
 $specialOptions = $random['specialOptions'];
 
 echo '<div class="sentences_set">';
-	$sentences->displayMenu($sentence['id'], $sentence['lang'], $sentence['correctness'], $specialOptions);
+	$sentences->displayMenu($sentence['id'], $sentence['lang'], $specialOptions);
 	$sentences->displayGroup($sentence, $translations);
 echo '</div>';	
 
