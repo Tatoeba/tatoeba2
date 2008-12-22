@@ -733,7 +733,7 @@ ORDER BY `datetime` DESC;
 DROP VIEW IF EXISTS `users_statistics`;
 
 CREATE VIEW `users_statistics` AS
-SELECT user_id, COUNT(*) as quantity, action, translation_id = '' as is_translation
-FROM latest_activities 
+SELECT user_id, COUNT(*) as quantity, action, translation_id != '' as is_translation
+FROM contributions
 GROUP BY user_id, action, translation_id = ''
 
