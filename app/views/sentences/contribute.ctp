@@ -16,7 +16,7 @@ echo ')';
 echo '</h2>';
 
 echo '<div class="sentences_set">';
-	$sentences->displayMenu($sentence['id'], $sentence['lang'], $sentence['correctness'], $specialOptions);
+	$sentences->displayMenu($sentence['id'], $sentence['lang'], $specialOptions);
 	$sentences->displayForTranslation($sentence, $translations);
 echo '</div>';
 

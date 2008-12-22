@@ -1,12 +1,12 @@
 <?php
-$this->pageTitle = __('Is it correct : ',true) . $sentence['Sentence']['text'];
+$this->pageTitle = __('Correction for : ',true) . $sentence['Sentence']['text'];
 
 // navigation (previous, random, next)
 $sentences->displayNavigation($sentence['Sentence']['id']);
 
 echo '<div class="sentences_set">';
 	// sentence menu (translate, edit, comment, etc)
-	$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $sentence['Sentence']['correctness'], $specialOptions);
+	$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
 
 	// sentence and translations
 	$sentences->displayForCorrection($sentence['Sentence'], $sentence['Translation']);

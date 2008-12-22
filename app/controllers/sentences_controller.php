@@ -103,6 +103,9 @@ class SentencesController extends AppController{
 		$this->Sentence->id = $id;
 		if(empty($this->data)){
 			$this->data = $this->Sentence->read();
+			$this->set('sentence', $this->Sentence->read());
+			$specialOptions = $this->Permissions->getSentencesOptions();
+			$this->set('specialOptions',$specialOptions);	
 		}else{
 			if($this->Sentence->save($this->data)){				
 				// Logs
@@ -116,7 +119,7 @@ class SentencesController extends AppController{
 				
 				// Confirmation message
 				$this->flash(
-					__('The sentence has been updated',true),
+					__('The sentence has been updated.',true),
 					'/sentences/edit/'.$id
 				);
 			}

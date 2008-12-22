@@ -1,9 +1,28 @@
 <?php 
-echo '<h1>' . __('Edit this sentence',true) . '</h1>';
+$this->pageTitle = __('Is it correct : ',true) . $sentence['Sentence']['text'];
 
-echo $form->create('Sentence', array("action" => "edit"));
-echo $form->input('text');
-echo $form->input('id', array("type" => "hidden"));
-echo $form->input('lang', array("type" => "hidden"));
-echo $form->end(__('Save sentence',true));
+// navigation (previous, random, next)
+$sentences->displayNavigation($sentence['Sentence']['id']);
+
+echo '<div class="sentences_set">';
+	// sentence menu (translate, edit, comment, etc)
+	$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
+
+	// sentence and translations
+	$sentences->displayForEdit($sentence['Sentence'], $sentence['Translation']);
+echo '</div>';
+
+echo '<h2>'. __('Comments', true) .'</h2>';
+if(count($sentence['SentenceComment']) > 0){
+	foreach($sentence['SentenceComment'] as $comment){
+		$comments->displayComment($comment['User']['username'], $comment['datetime'], $comment['text']);
+	}
+}else{
+	echo '<em>' . __('There are no comments for now.', true) .'</em>';
+	
+	if($specialOptions['canComment'] == false){
+		echo '<br/>';
+		echo '<em>'. __('You can add a comment if you are registered and logged in.', true) .'</em>';
+	}
+}
 ?>

@@ -11,12 +11,12 @@ class SentencesHelper extends AppHelper {
 	function displayGroup($sentence, $translations) {
 		echo '<ul class="sentence translations">';
 			// Sentence
-			echo '<li class="original">'.$sentence['text'].'</li>';
+			echo '<li class="original correctness'.$sentence['correctness'].'">'.$sentence['text'].'</li>';
 			
 			if(count($translations) > 0){
 				// Translations
 				foreach($translations as $translation){
-					echo '<li class="direct translation">';
+					echo '<li class="direct translation correctness'.$translation['correctness'].'">';
 						$lang = ($translation['lang'] != null) ? $translation['lang'] : '?'; 
 						echo '<em>'.$lang.'</em>';
 						echo $translation['text'];
@@ -29,7 +29,7 @@ class SentencesHelper extends AppHelper {
 	function displayForTranslation($sentence, $translations){
 		echo '<ul class="sentence translations">';
 			// Sentence
-			echo '<li class="original">'.$sentence['text'].'</li>';				
+			echo '<li class="original correctness'.$sentence['correctness'].'">'.$sentence['text'].'</li>';				
 			echo '<li>';
 				echo $this->Form->create('Sentence', array("action" => "save_translation"));
 				echo $this->Form->input('text', array("label" => __('Translation : ', true)));
@@ -41,7 +41,7 @@ class SentencesHelper extends AppHelper {
 			if(count($translations) > 0){
 				// Translations
 				foreach($translations as $translation){
-					echo '<li class="direct translation">';
+					echo '<li class="direct translation correctness'.$translation['correctness'].'">';
 						echo '<em>'.$translation['lang'].'</em>';
 						echo $translation['text'];
 					echo '</li>';
@@ -65,10 +65,24 @@ class SentencesHelper extends AppHelper {
 	}
 	
 	
-	function displayMenu($id, $lang, $correctness, $specialOptions){
+	function displayForEdit($sentence){
+		echo '<ul class="sentence translations">';
+			// Sentence
+			echo '<li class="original">'.$sentence['text'].'</li>';				
+			echo '<li>';
+				echo $this->Form->create('Sentence', array("action" => "edit"));
+				echo $this->Form->input('id', array("type" => "hidden", "value" => $sentence['id']));
+				echo $this->Form->input('lang', array("type" => "hidden", "value" => $sentence['lang']));
+				echo $this->Form->input('text', array("label" => __('Modification : ',true), "value" => $sentence['text']));
+				echo $this->Form->end(__('OK',true));
+			echo '<li>';
+		echo '</ul>';
+	}
+	
+	function displayMenu($id, $lang, $specialOptions, $score = null){
 		echo '<ul class="menu">';
 			echo '<li class="id">';
-				$idAndLang = '<strong>' . $id . '</strong> <em>' . $lang . ' ('. $correctness .')</em>';
+				$idAndLang = '<strong>' . $id . '</strong> <em>' . $lang .'</em>';
 				$showUrl = $this->Html->url(
 					array(
 						"controller" => "sentences",
@@ -153,6 +167,13 @@ class SentencesHelper extends AppHelper {
 					), 
 					null, 
 					'Are you sure?');
+				echo '</li>';
+			}
+			
+			if($score != null){
+				echo '<li class="score">';
+				echo intval($score * 100);
+				echo '%';
 				echo '</li>';
 			}
 		echo '</ul>';

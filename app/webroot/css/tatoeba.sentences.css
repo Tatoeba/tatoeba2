@@ -78,6 +78,9 @@ color: #D3F3B9;
 background: #FAEFA8;
 }
 
+.score{
+padding: 4px 10px 3px 30px;
+}
 
 
 /* sentence */
@@ -122,10 +125,7 @@ font-family: georgia;
 font-size: 150%;
 padding: 10px;
 }
-.original:first-letter{
-font-size: 200%;
-font-weight: bold;
-}
+
 .original em{
 float:left;
 }
@@ -136,4 +136,19 @@ color: #222;
 
 .indirect{
 color: #888;
+}
+
+
+
+.correctness1{
+color: #878787;
+}
+
+.correctness2, .correctness3{
+color: #A38341;
+}
+
+
+.correctness4, .correctness5{
+color: #159121;
 }
