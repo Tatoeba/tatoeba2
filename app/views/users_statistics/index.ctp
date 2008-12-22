@@ -68,6 +68,7 @@ foreach($userStatistics as $statistics){
 }
 echo '</table>';
 
+echo '<br/>';
 
 echo '<h2>';
 __('Users Statistics');

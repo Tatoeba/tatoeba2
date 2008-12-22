@@ -30,15 +30,15 @@ class LogsHelper extends AppHelper {
 		}
 		
 		echo '<tr class="'.$type.$status.'">';
-			echo '<td>';
+			echo '<td class="id">';
 			echo $contribution['sentence_id'];
 			echo '</td>';
 			
-			echo '<td>';
+			echo '<td class="lang">';
 			echo $contribution['sentence_lang'];
 			echo '</td>';
 			
-			echo '<td>';
+			echo '<td class="username">';
 			if(isset($user['username'])){
 				echo $user['username'];
 			}else{
@@ -46,11 +46,11 @@ class LogsHelper extends AppHelper {
 			}
 			echo '</td>';
 			
-			echo '<td>';
+			echo '<td class="date">';
 			echo $this->Date->ago($contribution['datetime']);
 			echo '</td>';
 			
-			echo '<td>';
+			echo '<td class="text">';
 			echo $contribution['text'];
 			echo '</td>';
 		echo '</tr>';

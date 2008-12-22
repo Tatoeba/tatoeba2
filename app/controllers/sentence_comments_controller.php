@@ -80,7 +80,7 @@ class SentenceCommentsController extends AppController {
 	
 	
 	function latest() {
-		return $this->SentenceComment->find('all', array('order' => 'SentenceComment.datetime DESC', 'limit' => 10));
+		return $this->SentenceComment->find('all', array('order' => 'SentenceComment.datetime DESC', 'limit' => 5));
 	}
 
 }
