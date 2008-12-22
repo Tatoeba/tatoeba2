@@ -1,52 +1,115 @@
-<div class="usersStatistics index">
-<h2><?php __('UsersStatistics');?></h2>
-<p>
-<?php
-echo $paginator->counter(array(
-'format' => __('Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%', true)
-));
-?></p>
-<table cellpadding="0" cellspacing="0">
-<tr>
-	<th><?php echo $paginator->sort('user_id');?></th>
-	<th><?php echo $paginator->sort('quantity');?></th>
-	<th><?php echo $paginator->sort('action');?></th>
-	<th><?php echo $paginator->sort('is_translation');?></th>
-</tr>
-<?php
-$i = 0;
-foreach ($usersStatistics as $usersStatistic):
-	$class = null;
-	if ($i++ % 2 == 0) {
-		$class = ' class="altrow"';
+<?php 
+echo '<h2>';
+if($session->read('Auth.User.id')){
+	__('Your Statistics');
+}else{
+	__('Statistics for anonym users');
+}
+echo '</h2>';
+	
+echo '<table id="userStatistics">';
+foreach($userStatistics as $statistics){
+	$stats = $statistics['UsersStatistic'];
+
+	$type = '';
+	$status = '';
+	
+	if($stats['is_translation'] == 0){
+		$type = 'sentence';
+	}else{
+		$type = 'translation';
 	}
+	
+	switch($stats['action']){
+		case 'suggest' : 
+			$type = 'correction';
+			$status = 'Suggested'; 
+			break;
+		case 'insert' :
+			$status = 'Added';
+			break;
+		case 'update' :
+			$status = 'Modified';
+			break;
+		case 'delete' :
+			$status = 'Deleted';
+			break;
+	}
+	
+		
+	echo '<tr class="'.$type.$status.'">';
+		echo '<td>';
+		switch($type.$status){
+			case 'sentenceAdded' :
+				__('Number of sentences added');
+				break;
+			case 'sentenceModified';
+				__('Number of sentences modified');
+				break;
+			case 'sentenceDeleted' :
+				__('Number of sentences deleted');
+				break;
+			case 'correctionSuggested';
+				__('Number of corrections suggested');
+				break;
+			case 'translationAdded' :
+				__('Number of translations added');
+				break;
+			case 'translationsDeleted';
+				__('Number of translations deleted');
+				break;
+		}
+		echo '<td>';
+		
+		echo '<td>';
+		echo $stats['quantity'];
+		echo '<td>';
+	echo '</tr>';
+}
+echo '</table>';
+
+
+echo '<h2>';
+__('Users Statistics');
+echo '</h2>';
+
+echo '<table id="usersStatistics">';
+
+echo '<tr>';
+	echo '<th>';
+	__('rank');
+	echo '</th>';
+
+	echo '<th>';
+	__('username');
+	echo '</th>';
+
+	echo '<th>';
+	__('total contributions');
+	echo '</th>';
+echo '</tr>';
+
+$i = 1;
+foreach ($usersStatistics as $usersStatistic){
+	echo '<tr>';
+		echo '<td>';
+		echo $i;
+		echo '</td>';
+		
+		echo '<td>';
+		if(isset($usersStatistic['User']['username'])){
+			echo $usersStatistic['User']['username'];
+		}else{
+			__('unknown');
+		}
+		echo '</td>';
+		
+		echo '<td>';
+		echo $usersStatistic[0]['total'];
+		echo '</td>';
+	echo '</tr>';
+	$i++;
+}
+
+echo '</table>';
 ?>
-	<tr<?php echo $class;?>>
-		<td>
-			<?php echo $html->link($usersStatistic['User']['id'], array('controller'=> 'users', 'action'=>'view', $usersStatistic['User']['id'])); ?>
-		</td>
-		<td>
-			<?php echo $usersStatistic['UsersStatistic']['quantity']; ?>
-		</td>
-		<td>
-			<?php echo $usersStatistic['UsersStatistic']['action']; ?>
-		</td>
-		<td>
-			<?php echo $usersStatistic['UsersStatistic']['is_translation']; ?>
-		</td>
-	</tr>
-<?php endforeach; ?>
-</table>
-</div>
-<div class="paging">
-	<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
- | 	<?php echo $paginator->numbers();?>
-	<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
-</div>
-<div class="actions">
-	<ul>
-		<li><?php echo $html->link(__('New UsersStatistic', true), array('action'=>'add')); ?></li>
-		<li><?php echo $html->link(__('List Users', true), array('controller'=> 'users', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link(__('New User', true), array('controller'=> 'users', 'action'=>'add')); ?> </li>
-	</ul>
-</div>
