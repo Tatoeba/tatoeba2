@@ -2,7 +2,7 @@
 class ContributionsController extends AppController {
 
 	var $name = 'Contributions';
-	var $helpers = array('Html', 'Form', 'Sentences');
+	var $helpers = array('Html', 'Form', 'Sentences', 'Logs');
 	var $components = array('Permissions');
 
 	function beforeFilter() {

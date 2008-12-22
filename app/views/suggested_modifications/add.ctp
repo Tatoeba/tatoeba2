@@ -11,26 +11,18 @@ echo '<div class="sentences_set">';
 	// sentence and translations
 	$sentences->displayForCorrection($sentence['Sentence'], $sentence['Translation']);
 echo '</div>';
-?>
 
-
-<h2><?php __('Comment(s)') ?></h2>
-<?php
+echo '<h2>'. __('Comments', true) .'</h2>';
 if(count($sentence['SentenceComment']) > 0){
 	foreach($sentence['SentenceComment'] as $comment){
-		$comments->displayComment($comment['user_id'], $comment['datetime'], $comment['text']);
+		$comments->displayComment($comment['User']['username'], $comment['datetime'], $comment['text']);
 	}
 }else{
-	echo '<i>';
-	__('There are no comments for now.');
-	echo '</i>';
-	echo '<br/>';
-	echo $html->link(
-		__('Add a comment',true),
-		array(
-			"controller" => "sentence_comments",
-			"action" => "add",
-			$sentence['Sentence']['id']
-		));
+	echo '<em>' . __('There are no comments for now.', true) .'</em>';
+	
+	if($specialOptions['canComment'] == false){
+		echo '<br/>';
+		echo '<em>'. __('You can add a comment if you are registered and logged in.', true) .'</em>';
+	}
 }
 ?>

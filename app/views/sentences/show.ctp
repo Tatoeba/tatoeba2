@@ -13,13 +13,19 @@ if($sentence != null){
 		$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
 	echo '</div>';
 
+	
+	// LOGS
 	echo '<h2>'. __('Latest log',true) .'</h2>';
 	if(count($sentence['Contribution']) > 0){
-		pr($sentence['Contribution'][0]);
+		echo '<table id="logs">';
+		$logs->entry($sentence['Contribution'][0], $sentence['Contribution'][0]['User']);
+		echo '</table>';
 	}else{
 		__('There are no logs for this sentence.');
 	}
 
+	
+	// LATEST COMMENT
 	echo '<h2>'. __('Latest comment',true) .'</h2>';
 	if(count($sentence['SentenceComment']) > 0){
 		pr($sentence['SentenceComment'][0]);

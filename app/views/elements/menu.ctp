@@ -10,8 +10,8 @@ $menuElements = array(
 	__('Browse',true) 		=> array("controller" => "sentences", "action" => "show", "random"),
 	__('Search',true) 		=> array("controller" => "sentences", "action" => "search"),
 	__('Contribute',true) 	=> array("controller" => "sentences", "action" => "contribute"),
-	__('Logs',true) 		=> array("controller" => "contributions"),
-	__('Comments',true) 	=> array("controller" => "sentence_comments"),
+	__('Logs',true) 		=> array("controller" => "contributions", "action" => "index"),
+	__('Comments',true) 	=> array("controller" => "sentence_comments", "action" => "index"),
 	__('Statistics',true) 	=> array("controller" => "users_statistics")
 );
 

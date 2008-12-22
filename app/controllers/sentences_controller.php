@@ -2,7 +2,7 @@
 class SentencesController extends AppController{
 	var $name = 'Sentences';
 	var $components = array ('GoogleLanguageApi', 'Lucene', 'Permissions');
-	var $helpers = array('Sentences', 'Html');
+	var $helpers = array('Sentences', 'Html', 'Logs');
 	
 	function beforeFilter() {
 	    parent::beforeFilter(); 
@@ -18,6 +18,7 @@ class SentencesController extends AppController{
 	}
 	
 	function show($id = null){
+		$this->Sentence->recursive = 2;
 		if($id == "random"){
 			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences');
 			$max = $resultMax[0][0]['MAX(id)'];
@@ -174,7 +175,7 @@ class SentencesController extends AppController{
 				
 				// Confirmation message
 				$this->flash(
-					__('Your translation has been saved.',true),
+					__('Your translation has been saved. You can add another translation or add a new sentence.',true),
 					'/sentences/contribute/'.$this->data['Translation']['Translation'][0]
 				);
 			}else{
@@ -262,7 +263,8 @@ class SentencesController extends AppController{
 	function contribute($id = null){
 		if(isset($id)){
 			$this->Sentence->id = $id;
-			$sentence = $this->Sentence->read();	
+			$sentence = $this->Sentence->read();
+			$sentence['specialOptions'] = $this->Permissions->getSentencesOptions();
 		}else{
 			$sentence = $this->random();	
 		}

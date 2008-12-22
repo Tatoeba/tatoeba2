@@ -10,7 +10,7 @@ echo '<div class="sentences_set">';
 
 	// sentence and translations
 	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
-echo '</div>';	
+echo '</div>';
 
 
 echo '<h2>'. __('Comments', true) .'</h2>';
