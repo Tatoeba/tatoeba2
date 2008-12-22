@@ -71,7 +71,7 @@ echo '</table>';
 echo '<br/>';
 
 echo '<h2>';
-__('Users Statistics');
+__('Statistics of all contributors');
 echo '</h2>';
 
 echo '<table id="usersStatistics">';

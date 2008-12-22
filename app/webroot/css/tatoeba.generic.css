@@ -72,41 +72,85 @@ font-size: 50%;
 font-style:normal;
 }
 
-/* USER MENU */
-
-#user_menu{
-overflow: hidden;
-margin-right: 5px;
-font-size: 12px;
-text-align:right;
+/* LOG IN */
+#Login{
+margin: 30px 20px;
+background: #f1f1f1;
+border: 1px solid #a1a1a1;
+width: 270px;
 }
 
-#user_menu .login_form{
-float:right;
+#UserLoginForm{
+
+padding: 5px 20px;
+margin: 0px 10px;
 }
 
-#user_menu .login_form span, #user_menu .login_the_rest span{
+#UserLoginForm div.input{
+font-size: 16px;
+margin: 10px 0px;
+}
+
+#UserLoginForm div.input input{
 display: block;
+width: 200px;
 }
 
-#user_menu .login_the_rest{
-overflow:hidden;
+#UserLoginForm .submit{
+display: inline;
+margin: 0px;
+margin-left: 5px;
+}
+
+#UserLoginForm div.submit input{
+font-size: 16px;
+}
+
+#PasswordForgotten{
+margin: 15px 30px;
+}
+
+/* REGISTER */
+#ClickHereToRegister{
 float:right;
-margin: 15px 10px;
-text-align: center;
+margin: 60px 120px;
+padding: 10px;
+text-align:center;
+width: 150px;
+font-size: 20px;
+border: 1px solid #75C34B;
+background: #D3F3B9;
 }
 
-#user_menu .login{
-width: 100px;
+#UserRegisterForm{
+background: #f1f1f1;
+border: 1px solid #a1a1a1;
+width: 230px;
+padding: 20px;
+padding-top: 10px;
+margin: 20px;
 }
 
-#user_menu div{
-margin: 3px;
-}
-#user_menu a{
-margin: 5px;
+#UserRegisterForm div.input{
+margin: 10px 0px;
 }
 
+#UserRegisterForm div.input input{
+display: block;
+width: 200px;
+}
+
+
+
+/* USER MENU */
+#UserMenu{
+float:right;
+font-size: 13px;
+}
+
+#UserMenu span{
+padding-left: 20px;
+}
 
 /* MENU */
 

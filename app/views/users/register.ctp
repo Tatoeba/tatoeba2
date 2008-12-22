@@ -1,4 +1,3 @@
-<h1><?php __('Registration') ?></h1>
 <?php
 if(isset($error)){
 	echo $error;
@@ -8,6 +7,5 @@ echo $form->input('username');
 echo $form->input('password');
 echo $form->input('password_confirm', array('type' => 'password'));
 echo $form->input('email');
-echo $form->submit();
-echo $form->end();
+echo $form->end('Register');
 ?>
