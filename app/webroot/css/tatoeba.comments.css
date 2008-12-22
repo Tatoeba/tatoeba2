@@ -1,0 +1,49 @@
+.comments{
+width: 100%;
+}
+
+.comments td{
+padding: 5px 7px;
+}
+
+.comments .title{
+background: #D3F3B9;
+border-top: 1px solid #a1a1a1;
+border-left: 1px solid #D1D1D1;
+padding: 1px 7px;
+}
+
+.comments .dateAndUser{
+border-top: 1px solid #a1a1a1;
+border-bottom: 1px solid #a1a1a1;
+border-right: 1px solid #D1D1D1;
+border-left: 1px dotted #D1D1D1;
+width: 150px;
+}
+
+.comments .commentPreview{
+border-left: 1px solid #D1D1D1;
+border-bottom: 1px solid #a1a1a1;
+}
+
+
+.comments .comment{
+margin: 10px 0px;
+border: 1px solid #D1D1D1;
+}
+
+.comments .header{
+background: #D3F3B9;
+padding: 1px 7px;
+}
+
+.comments .content{
+padding: 5px 7px;
+}
+
+.comments .username{
+padding-right: 20px;
+}
+
+.comments .date{
+}

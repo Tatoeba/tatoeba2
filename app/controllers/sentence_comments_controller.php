@@ -2,8 +2,10 @@
 class SentenceCommentsController extends AppController {
 	var $name = 'SentenceComments';
 	
-	var $helpers = array('Comments','Sentences');
+	var $helpers = array('Comments','Sentences', 'Languages');
 	var $components = array ('GoogleLanguageApi', 'Permissions');
+	
+	var $langs = array('en', 'fr', 'jp', 'es', 'de');
 	
 	function beforeFilter() {
 	    parent::beforeFilter(); 
@@ -13,15 +15,22 @@ class SentenceCommentsController extends AppController {
 	}
 	
 	function index(){
-		$comments = $this->SentenceComment->find(
-			"all",
-			array( 
-				"conditions" => array("SentenceComment.lang" => "en"),
-				"limit"=> 10,
-				"order" => "SentenceComment.datetime DESC"
-			)
-		);
-		$this->set('comments', $comments);
+		$sentenceComments = array();
+		
+		$this->SentenceComment->recursive = 2;
+		
+		foreach($this->langs as $lang){
+			$sentenceComments[$lang] = $this->SentenceComment->find(
+				"all",
+				array( 
+					"conditions" => array("SentenceComment.lang" => $lang),
+					"limit"=> 10,
+					"order" => "SentenceComment.datetime DESC"
+				)
+			);
+		}
+		
+		$this->set('sentenceComments', $sentenceComments);
 	}
 	
 	function add($sentence_id){
