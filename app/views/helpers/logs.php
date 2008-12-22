@@ -1,7 +1,7 @@
 <?php
 class LogsHelper extends AppHelper {
 
-	var $helpers = array('Date');
+	var $helpers = array('Date', 'Html');
 	
 	function entry($contribution, $user){
 		$type = '';
@@ -31,7 +31,14 @@ class LogsHelper extends AppHelper {
 		
 		echo '<tr class="'.$type.$status.'">';
 			echo '<td class="id">';
-			echo $contribution['sentence_id'];
+			echo $this->Html->link(
+				$contribution['sentence_id'],
+				array(
+					"controller" => "sentences",
+					"action" => "show",
+					$contribution['sentence_id']
+				)
+			);
 			echo '</td>';
 			
 			echo '<td class="lang">';
