@@ -6,7 +6,7 @@ if(isset($query)){
 		foreach($results as $sentence){
 			echo '<div class="sentences_set">';
 			// sentence menu (translate, edit, comment, etc)
-			$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions, $sentence['Score']);
+			$sentences->displayMenu($sentence['Sentence']['id'], $specialOptions, $sentence['Score']);
 
 			// sentence and translations
 			$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);

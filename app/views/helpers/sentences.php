@@ -9,80 +9,98 @@ class SentencesHelper extends AppHelper {
 	 * $options = array( can
 	 */
 	function displayGroup($sentence, $translations) {
-		echo '<ul class="sentence translations">';
-			// Sentence
-			echo '<li class="original correctness'.$sentence['correctness'].'">'.$sentence['text'].'</li>';
+		echo '<div class="sentence">';
+		
+		// Sentence
+		echo '<span class="original correctness'.$sentence['correctness'].' '.$sentence['lang'].'">'.$sentence['text'].'</span>';
 			
-			if(count($translations) > 0){
-				// Translations
-				foreach($translations as $translation){
-					echo '<li class="direct translation correctness'.$translation['correctness'].'">';
-						$lang = ($translation['lang'] != null) ? $translation['lang'] : '?'; 
-						echo '<em>'.$lang.'</em>';
-						echo $translation['text'];
-					echo '</li>';
-				}
+		// Translations
+		if(count($translations) > 0){	
+			echo '<ul class="translations">';
+			foreach($translations as $translation){
+				echo '<li class="direct translation correctness'.$translation['correctness'].' '.$translation['lang'].'">';
+					$lang = ($translation['lang'] != null) ? $translation['lang'] : '?'; 
+					//echo '<em>'.$lang.'</em>';
+					echo $translation['text'];
+				echo '</li>';
 			}
-		echo '</ul>';
+			echo '</ul>';
+		}
+		
+		echo '</div>';
     }
 	
 	function displayForTranslation($sentence, $translations){
-		echo '<ul class="sentence translations">';
+		echo '<div class="sentence">';
+		
 			// Sentence
-			echo '<li class="original correctness'.$sentence['correctness'].'">'.$sentence['text'].'</li>';				
-			echo '<li>';
-				echo $this->Form->create('Sentence', array("action" => "save_translation"));
-				echo $this->Form->input('text', array("label" => __('Translation : ', true)));
-				echo $this->Form->input('id', array("type" => "hidden", "value" => $sentence['id']));
-				echo $this->Form->input('sentence_lang', array("type" => "hidden", "value" => $sentence['lang'])); // for logs
-				echo $this->Form->end(__('OK',true));
-			echo '<li>';
+			echo '<span class="original correctness'.$sentence['correctness'].' '.$sentence['lang'].'">'.$sentence['text'].'</span>';
 			
-			if(count($translations) > 0){
-				// Translations
-				foreach($translations as $translation){
-					echo '<li class="direct translation correctness'.$translation['correctness'].'">';
-						echo '<em>'.$translation['lang'].'</em>';
-						echo $translation['text'];
-					echo '</li>';
+			// Translations
+			echo '<ul class="translations">';
+				echo '<li class="form">';
+					echo $this->Form->create('Sentence', array("action" => "save_translation"));
+					echo $this->Form->input('text', array("label" => __('Translation : ', true)));
+					echo $this->Form->input('id', array("type" => "hidden", "value" => $sentence['id']));
+					echo $this->Form->input('sentence_lang', array("type" => "hidden", "value" => $sentence['lang'])); // for logs
+					echo $this->Form->end(__('OK',true));
+				echo '<li>';
+				
+				if(count($translations) > 0){
+					foreach($translations as $translation){
+						echo '<li class="direct translation correctness'.$translation['correctness'].' '.$translation['lang'].'">';
+							echo '<em>'.$translation['lang'].'</em>';
+							echo $translation['text'];
+						echo '</li>';
+					}
 				}
-			}
-		echo '</ul>';
+			echo '</ul>';
+		
+		echo '</div>';
 	}
 	
 	function displayForCorrection($sentence){
-		echo '<ul class="sentence translations">';
+		echo '<div class="sentence">';
+		
 			// Sentence
-			echo '<li class="original correctness'.$sentence['correctness'].'">'.$sentence['text'].'</li>';				
-			echo '<li>';
-				echo $this->Form->create('SuggestedModification', array("action" => "save_suggestion"));
-				echo $this->Form->input('sentence_id', array("type" => "hidden", "value" => $sentence['id']));
-				echo $this->Form->input('sentence_lang', array("type" => "hidden", "value" => $sentence['lang']));
-				echo $this->Form->input('correction_text', array("label" => __('Correction : ',true), "value" => $sentence['text']));
-				echo $this->Form->end(__('OK',true));
-			echo '<li>';
-		echo '</ul>';
+			echo '<span class="original correctness'.$sentence['correctness'].' '.$sentence['lang'].'">'.$sentence['text'].'</span>';
+			
+			echo '<ul>';
+				echo '<li class="form">';
+					echo $this->Form->create('SuggestedModification', array("action" => "save_suggestion"));
+					echo $this->Form->input('sentence_id', array("type" => "hidden", "value" => $sentence['id']));
+					echo $this->Form->input('sentence_lang', array("type" => "hidden", "value" => $sentence['lang']));
+					echo $this->Form->input('correction_text', array("label" => __('Correction : ',true), "value" => $sentence['text']));
+					echo $this->Form->end(__('OK',true));
+				echo '<li>';
+			echo '</ul>';
+			
+		echo '</div>';
 	}
 	
 	
 	function displayForEdit($sentence){
-		echo '<ul class="sentence translations">';
+		echo '<div class="sentence">';
+		
 			// Sentence
-			echo '<li class="original">'.$sentence['text'].'</li>';				
-			echo '<li>';
+			echo '<span class="original correctness'.$sentence['correctness'].' '.$sentence['lang'].'">'.$sentence['text'].'</span>';
+			
+			echo '<ul>';
+				echo '<li class="form">';
 				echo $this->Form->create('Sentence', array("action" => "edit"));
 				echo $this->Form->input('id', array("type" => "hidden", "value" => $sentence['id']));
 				echo $this->Form->input('lang', array("type" => "hidden", "value" => $sentence['lang']));
 				echo $this->Form->input('text', array("label" => __('Modification : ',true), "value" => $sentence['text']));
 				echo $this->Form->end(__('OK',true));
-			echo '<li>';
-		echo '</ul>';
+				echo '<li>';
+			echo '</ul>';
+		echo '</div>';
 	}
 	
-	function displayMenu($id, $lang, $specialOptions, $score = null){
+	function displayMenu($id, $specialOptions, $score = null){
 		echo '<ul class="menu">';
 			echo '<li class="id">';
-				$idAndLang = '<strong>' . $id . '</strong> <em>' . $lang .'</em>';
+				$idAndLang = '<strong>' . $id . '</strong>';
 				$showUrl = $this->Html->url(
 					array(
 						"controller" => "sentences",
