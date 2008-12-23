@@ -53,7 +53,7 @@ class SentencesHelper extends AppHelper {
 	function displayForCorrection($sentence){
 		echo '<ul class="sentence translations">';
 			// Sentence
-			echo '<li class="original">'.$sentence['text'].'</li>';				
+			echo '<li class="original correctness'.$sentence['correctness'].'">'.$sentence['text'].'</li>';				
 			echo '<li>';
 				echo $this->Form->create('SuggestedModification', array("action" => "save_suggestion"));
 				echo $this->Form->input('sentence_id', array("type" => "hidden", "value" => $sentence['id']));
