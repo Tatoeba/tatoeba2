@@ -19,9 +19,14 @@ class SentencesHelper extends AppHelper {
 			echo '<ul class="translations">';
 			foreach($translations as $translation){
 				echo '<li class="direct translation correctness'.$translation['correctness'].' '.$translation['lang'].'">';
-					$lang = ($translation['lang'] != null) ? $translation['lang'] : '?'; 
-					//echo '<em>'.$lang.'</em>';
-					echo $translation['text'];
+				echo $this->Html->link(
+					$translation['text'],
+					array(
+						"controller" => "sentences",
+						"action" => "show",
+						$translation['id']
+					)
+				);
 				echo '</li>';
 			}
 			echo '</ul>';
@@ -49,8 +54,14 @@ class SentencesHelper extends AppHelper {
 				if(count($translations) > 0){
 					foreach($translations as $translation){
 						echo '<li class="direct translation correctness'.$translation['correctness'].' '.$translation['lang'].'">';
-							echo '<em>'.$translation['lang'].'</em>';
-							echo $translation['text'];
+						echo $this->Html->link(
+							$translation['text'],
+							array(
+								"controller" => "sentences",
+								"action" => "show",
+								$translation['id']
+							)
+						);
 						echo '</li>';
 					}
 				}

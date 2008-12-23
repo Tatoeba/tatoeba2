@@ -137,6 +137,7 @@ margin: 0px 5px;
 
 .translations{
 padding-top:5px;
+padding-bottom:5px;
 margin-top:5px;
 border-top: 1px dotted #D3F3B9;
 }
@@ -144,16 +145,19 @@ border-top: 1px dotted #D3F3B9;
 
 /* sentences correctness */
 
-.correctness1{
+.correctness1 a, .correctness1{
 color: #878787;
+font-weight: normal;
 }
 
-.correctness2, .correctness3{
+.correctness2 a, .correctness3 a, .correctness2, .correctness3{
 color: #A38341;
+font-weight: normal;
 }
 
-.correctness4, .correctness5{
+.correctness4 a, .correctness5 a, .correctness4, .correctness5{
 color: #159121;
+font-weight: normal;
 }
 
 
