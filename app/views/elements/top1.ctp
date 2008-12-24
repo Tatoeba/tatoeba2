@@ -1,3 +1,7 @@
+<?php
+$onlineVisitors = $this->requestAction('/visitors/online');
+?>
+
 <div id="top1">
 	<div class="logout">
 	<?php
@@ -14,7 +18,12 @@
 	?>
 	</div>
 
-	<div class="online_visitors">Visitor(s) : xx</div>
+	<div class="online_visitors">
+	<?php
+	__('Visitor(s) : ');
+	echo $onlineVisitors;
+	?>
+	</div>
 	
 	<div class="language_choice">
 	Language : 
