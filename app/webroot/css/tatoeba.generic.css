@@ -306,3 +306,32 @@ background: #989898;
 color: white;
 font-weight: bold;
 }
+
+/* PAGINATION */
+.pagination{
+margin-bottom: 20px;
+text-align:center;
+}
+
+.pagination a{
+padding: 3px 5px;
+margin: 3px;
+background: #D3F3B9;
+border: 1px solid #75C34B;
+}
+
+.pagination strong{
+padding: 3px 5px;
+margin: 3px;
+background: #f1f1f1;
+border: 1px solid #d1d1d1;
+}
+
+.pagination span.selected{
+border: 1px solid #75C34B;
+padding: 3px 5px;
+margin: 3px;
+background: #9FD374;
+color: white;
+font-weight:bold;
+}

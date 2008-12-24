@@ -1,9 +1,20 @@
 <?php
 class LuceneComponent extends Object{
-	function search($query){
+	function search($query, $lang_src = null, $lang_dest = null, $page = null){
 		$query = urlencode($query);
-		$luceneUrl = "http://tatoeba.fr:28080/tatoeba/search.jsp?query=";
+		//$luceneUrl = "http://tatoeba.fr:28080/tatoeba/search.jsp?query=";
+		$luceneUrl = "http://localhost:8080/tatoeba/search.jsp?query=";
 		$url = $luceneUrl . $query;
+		
+		if($lang_src != null){
+			$url .= "&lang_src=" . $lang_src;
+		}
+		if($lang_dest != null){
+			$url .= "&lang_dest=" . $lang_dest;
+		}
+		if($page != null){
+			$url .= "&page=" . ($page-1); // because page 1 is at index 0
+		}
 		
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
@@ -19,7 +30,7 @@ class LuceneComponent extends Object{
 			return false;
 		}
 		
-		$response = $json['responseData']['sentencesIds'];
+		$response = $json['responseData'];
 		
 		return $response;
 	}

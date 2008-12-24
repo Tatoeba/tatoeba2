@@ -6,7 +6,7 @@ echo $html->link(
 	array(
 		"controller" => "sentences",
 		"action" => "search",
-		"example"
+		"?query=example"
 	));
 echo '</h2>';
 __('Nothing much to explain here. This will search for sentences containing the word "example".');
@@ -19,7 +19,7 @@ echo $html->link(
 	array(
 		"controller" => "sentences",
 		"action" => "search",
-		urlencode("\"I would like\"")
+		"?query=".urlencode("\"I would like\"")
 	));
 echo '</h2>';
 __('This will search for sentences containing "I would like". If you remove the quotes, see below.');
@@ -32,7 +32,7 @@ echo $html->link(
 	array(
 		"controller" => "sentences",
 		"action" => "search",
-		"I would like"
+		"?query=I would like"
 	));
 echo '</h2>';
 __('This will search for sentences containing "I" or "would" or "like".');
@@ -45,7 +45,7 @@ echo $html->link(
 	array(
 		"controller" => "sentences",
 		"action" => "search",
-		urlencode("+here +there")
+		"?query=".urlencode("+here +there")
 	));
 echo '</h2>';	
 __('This will search for sentences containing "here" and "there".');
@@ -57,7 +57,7 @@ echo $html->link(
 	array(
 		"controller" => "sentences",
 		"action" => "search",
-		urlencode("here -there")
+		"?query=".urlencode("here -there")
 	));
 echo '</h2>';
 __('This will search for sentences containing "here" but not "there".');
@@ -65,11 +65,11 @@ __('This will search for sentences containing "here" but not "there".');
 echo '<h2>';
 __('Grouping : ');
 echo $html->link(
-	__('+like +(music sleep)',true),
+	__('+like +(television sleep)',true),
 	array(
 		"controller" => "sentences",
 		"action" => "search",
-		"+like (music sleep)"
+		"?query=".urlencode("+like +(television sleep)")
 	));
 echo '</h2>';
 __('This will search for sentences containing "like" and "music", or "like" and "sleep".');

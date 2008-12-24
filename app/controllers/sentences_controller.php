@@ -2,7 +2,7 @@
 class SentencesController extends AppController{
 	var $name = 'Sentences';
 	var $components = array ('GoogleLanguageApi', 'Lucene', 'Permissions');
-	var $helpers = array('Sentences', 'Html', 'Logs');
+	var $helpers = array('Sentences', 'Html', 'Logs', 'Pagination');
 	
 	function beforeFilter() {
 	    parent::beforeFilter(); 
@@ -190,64 +190,39 @@ class SentencesController extends AppController{
 		}
 	}
 	
-	function search($query = null){
-		if($query != null){
-			// because cakePHP escapes the "+" and I don't want that...
-			$unescapedQuery = preg_replace("#[^(.)]*/sentences/search/([.]*)#", "$2", $_SERVER['REQUEST_URI']);
-			$unescapedQuery = urldecode($unescapedQuery);
-			$this->Session->write("unescapedQuery", $unescapedQuery);
+	function search(){
+		if(isset($_GET['query'])){
+			$query = $_GET['query'];
+			$page = isset($_GET['page']) ? $_GET['page'] : null;
 			
-			$this->pageTitle = __('Tatoeba search : ',true) . $unescapedQuery;
-			$lucene_results = $this->Lucene->search($unescapedQuery);
+			$this->pageTitle = __('Tatoeba search : ',true) . $query;
+			$lucene_results = $this->Lucene->search($query, null, null, $page);
 			$sentences = array();
 			
-			foreach($lucene_results as $result){
+			foreach($lucene_results['sentencesIds'] as $result){
 				$sentence = $this->Sentence->findById($result['id']);
-				$sentence['Score'] = $result['score'];
+				$sentence['score'] = $result['score'];
 				$sentences[] = $sentence;
 			}
 			
-			/*
-			print_r($sentences);
-			
-			// would give something like this :
-			Array ( 
-				[0] => Array ( 
-					[Sentence] => Array ( 
-						[id] => 157 
-						[lang] => en 
-						[text] => "I can't think with that noise", she said as she stared at the typewriter. [F] 
-						[correctness] => 
-						[user_id] => 
-						[created] => 
-						[modified] => 
-					) 
-					[SuggestedModification] => Array ( ) 
-					[SentenceLog] => Array ( ) 
-					[TranslationLog] => Array ( ) 
-					[Translation] => Array ( ) 
-					[InverseTranslation] => Array ( ) 
-					[Score] => 1 
-				) 
-			)
-			*/
-			
-			$this->set('query', $unescapedQuery);
+			$this->set('query', $query);
 			
 			if($sentences != array()){
+				$resultsInfo['currentPage'] = $lucene_results['currentPage'];
+				$resultsInfo['pagesCount'] = $lucene_results['pagesCount'];
+				$resultsInfo['sentencesPerPage'] = $lucene_results['sentencesPerPage'];
+				$resultsInfo['sentencesCount'] = $lucene_results['sentencesCount'];
+				
 				$this->set('results', $sentences);
+				$this->set('resultsInfo', $resultsInfo);
 			}
 			
 			// checking which options user can access to
 			$specialOptions = $this->Permissions->getSentencesOptions();
 			$this->set('specialOptions',$specialOptions);
 		}else{
-			if(isset($this->data['Sentence']['query'])){
-				$this->redirect(array("action" => "search", $this->data['Sentence']['query']));
-			}else{
-				$this->pageTitle = __('Tatoeba search',true);
-				$this->redirect(array("lang" => $this->params['lang'], "controller" => "pages", "action" => "display", "search"));
-			}
+			$this->pageTitle = __('Tatoeba search',true);
+			$this->redirect(array("lang" => $this->params['lang'], "controller" => "pages", "action" => "display", "search"));			
 		}
 	}
 	
