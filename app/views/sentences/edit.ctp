@@ -12,7 +12,18 @@ echo '<div class="sentences_set">';
 	$sentences->displayForEdit($sentence['Sentence'], $sentence['Translation']);
 echo '</div>';
 
-echo '<h2>'. __('Comments', true) .'</h2>';
+echo '<div class="addComment">';
+echo $html->link(
+	__('Add a comment',true),
+	array("controller" => "sentence_comments", "action" => "add", $sentence['Sentence']['id'])
+);
+echo '</div>';
+
+echo '<h2>';
+__('Comments');
+echo '</h2>';
+
+
 if(count($sentence['SentenceComment']) > 0){
 	echo '<div class="comments">';
 	foreach($sentence['SentenceComment'] as $comment){

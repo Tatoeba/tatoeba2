@@ -16,6 +16,10 @@ echo $html->link(
 );
 echo '</div>';
 
+echo '<h2>';
+__('Comments');
+echo '</h2>';
+
 echo '<div class="comments">';
 if(count($sentence['SentenceComment']) > 0){
 	foreach($sentence['SentenceComment'] as $comment){

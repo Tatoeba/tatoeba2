@@ -26,7 +26,16 @@ if($sentence != null){
 
 	
 	// LATEST COMMENT
-	echo '<h2>'. __('Latest comment',true) .'</h2>';
+	echo '<div class="addComment">';
+	echo $html->link(
+		__('Add a comment',true),
+		array("controller" => "sentence_comments", "action" => "add", $sentence['Sentence']['id'])
+	);
+	echo '</div>';
+	echo '<h2>';
+	__('Latest comment');
+	echo '</h2>';
+	
 	$n = count($sentence['SentenceComment']);
 	if($n > 0){
 		echo '<div class="comments">';
