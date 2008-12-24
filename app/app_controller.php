@@ -1,6 +1,6 @@
 <?php 
 class AppController extends Controller { 
-    var $components = array('Acl','Auth','Permissions');
+    var $components = array('Acl','Auth','Permissions','Cookie');
 	var $helpers = array('Sentences','Date', 'Html', 'Form', 'Logs');
 	
     function beforeFilter() { 
@@ -16,6 +16,19 @@ class AppController extends Controller {
 		$this->Auth->allow('display');
 		$this->Auth->authorize = 'actions';
 		$this->Auth->authError = __('You need to be logged in.',true);
+		
+		
+		$cookie = $this->Cookie->read('Auth.User');
+		if (!is_null($cookie)) {
+			if ($this->Auth->login($cookie)) {
+				//  Clear auth message, just in case we use it.
+				$this->Session->del('Message.auth');
+				//$this->redirect($this->Auth->redirect());
+			} else { // Delete invalid Cookie
+				$this->Cookie->del('Auth.User');
+			}
+		}
+	
 		
 		// to remove in production mode
 		//$this->buildAcl();

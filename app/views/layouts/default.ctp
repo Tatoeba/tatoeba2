@@ -32,7 +32,7 @@
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
-		echo $html->meta('icon');
+		//echo $html->meta('icon');
 
 		echo $html->css('tatoeba.generic');
 		echo $html->css('tatoeba.sentences');

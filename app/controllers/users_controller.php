@@ -6,7 +6,8 @@ class UsersController extends AppController {
 	var $components = array ('Mailer');
 
 	function beforeFilter() {
-		parent::beforeFilter(); 
+		parent::beforeFilter();
+		$this->Auth->autoRedirect = false;
 		
 		// setting actions that are available to everyone, even guests
 		// no need to allow login
@@ -75,10 +76,24 @@ class UsersController extends AppController {
 		}
 	}
 	
-	function login(){
+	
+	function login() {
+		//-- code inside this function will execute only when autoRedirect was set to false (i.e. in a beforeFilter).
+		if ($this->Auth->user()) {
+			if (!empty($this->data) AND $this->data['User']['rememberMe']) {
+				$cookie = array();
+				$cookie['username'] = $this->data['User']['username'];
+				$cookie['password'] = $this->data['User']['password'];
+				$this->Cookie->write('Auth.User', $cookie, true, '+2 weeks');
+				unset($this->data['User']['rememberMe']);
+			}
+			$this->redirect($this->Auth->redirect());
+		}
 	}
+
 	
 	function logout(){  
+		$this->Cookie->del('Auth.User'); // delete cookie when logout
 		$this->Session->setFlash('Logout');  
 		$this->redirect($this->Auth->logout());  
 	}
@@ -127,9 +142,14 @@ class UsersController extends AppController {
 					// send email with new password
 					$this->Mailer->to = $this->data['User']['email'];
 					$this->Mailer->toName = '';
-					$this->Mailer->suject = $subject;
+					$this->Mailer->subject = $subject;
 					$this->Mailer->message = $message;
 					$this->Mailer->send();
+					
+					$this->flash(
+						__('Your new password has been sent at ',true) . $this->data['User']['email'],
+						'/users/login'
+					);
 				}
 			}else{
 				$this->set('error', __('There is no registered user with such email.',true));

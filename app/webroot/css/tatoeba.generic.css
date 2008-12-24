@@ -140,7 +140,25 @@ display: block;
 width: 200px;
 }
 
+/* RETRIEVE PASSWORD */
 
+#UserNewPasswordForm{
+background: #f1f1f1;
+border: 1px solid #a1a1a1;
+width: 230px;
+padding: 20px;
+padding-top: 10px;
+margin: 20px;
+}
+
+#UserNewPasswordForm div.input{
+margin: 10px 0px;
+}
+
+#UserNewPasswordForm div.input input{
+display: block;
+width: 200px;
+}
 
 /* USER MENU */
 #UserMenu{

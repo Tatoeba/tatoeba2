@@ -1,6 +1,6 @@
 <?php 
 class MailerComponent extends Object{
-	var $from		= 'trang.dictionary.project@gmail.com';
+	var $from		= '';
 	var $fromName	= 'TATOEBA';
 	var $to			= null;
 	var $toName		= null;
@@ -89,9 +89,10 @@ class MailerComponent extends Object{
 		$headers .= "Content-type: text/plain; charset=UTF-8" . $newLine;
 		$headers .= "To: $nameto <$to>" . $newLine;
 		$headers .= "From: $namefrom <$from>" . $newLine;
+		$headers .= "Subject: $subject" . $newLine;
 
 		//observe the . after the newline, it signals the end of message
-		fputs($smtpConnect, "To: $to\r\nFrom: $from\r\nSubject: $subject\r\n$headers\r\n\r\n$message\r\n.\r\n");
+		fputs($smtpConnect, "$headers\r\n\r\n$message\r\n.\r\n");
 		$smtpResponse = fgets($smtpConnect, 4096);
 		$logArray['data2response'] = "$smtpResponse";
 

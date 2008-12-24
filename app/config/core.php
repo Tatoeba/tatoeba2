@@ -150,7 +150,7 @@
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', '');
+	Configure::write('Security.salt', 'ze@9422#5dS?!99xx');
 /**
  * Compress CSS output by removing comments, whitespace, repeating tags, etc.
  * This requires a/var/cache directory to be writable by the web server for caching.
