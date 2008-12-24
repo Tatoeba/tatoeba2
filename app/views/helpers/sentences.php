@@ -175,19 +175,12 @@ class SentencesHelper extends AppHelper {
 			
 			
 			// discuss link
-			if(isset($specialOptions['canComment']) AND $specialOptions['canComment'] == true){
-				$action = "add";
-				$class = $this->optionClass('add_comment');
-			}else{
-				$action = "show";
-				$class = $this->optionClass('show_comments');
-			}
-			echo '<li class="'.$class.'">';
+			echo '<li class="'.$this->optionClass('comments').'">';
 			echo $this->Html->link(
 				__('Comments',true),
 				array(
 					"controller" => "sentence_comments",
-					"action" => $action,
+					"action" => "show",
 					$id
 				));
 			echo '</li>';
@@ -226,8 +219,7 @@ class SentencesHelper extends AppHelper {
 			'translate' => array("controller" => "sentences", "action" => "translate"),
 			'edit' => array("controller" => "sentences", "action" => "edit"),
 			'correct' => array("controller" => "suggested_modifications", "action" => "add"),
-			'show_comments' => array("controller" => "sentence_comments", "action" => "show"),
-			'add_comment' => array("controller" => "sentence_comments", "action" => "add"),
+			'comments' => array("controller" => "sentence_comments", "action" => "show"),
 			'logs' => array("controller" => "contributions", "action" => "show")
 		);
 		

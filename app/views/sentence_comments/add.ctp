@@ -12,6 +12,8 @@ echo '<div class="sentences_set">';
 	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
 echo '</div>';	
 
+$comments->displayCommentForm($sentence['Sentence']['id']);
+
 if(count($sentence['SentenceComment']) > 0){
 	echo '<div class="comments">';
 	foreach($sentence['SentenceComment'] as $comment){
@@ -19,6 +21,4 @@ if(count($sentence['SentenceComment']) > 0){
 	}
 	echo '</div>';
 }
-
-$comments->displayCommentForm($sentence['Sentence']['id']);
 ?>

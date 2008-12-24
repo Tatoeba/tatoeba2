@@ -49,6 +49,25 @@ padding-right: 20px;
 }
 
 
+.addComment{
+margin-top: 20px;
+margin-bottom: 15px;
+text-align:right;
+}
+
+.addComment a{
+padding: 5px;
+background:#377A50;
+color:white;
+border: 1px solid;
+}
+
+.addComment a:hover{
+background:white;
+color:#377A50;
+}
+
+
 
 #SentenceCommentSaveForm{
 border: 1px solid #c1c1c1;
@@ -56,6 +75,7 @@ background: #f1f1f1;
 text-align:center;
 padding: 10px;
 font-size: 16px;
+margin-top:15px;
 }
 
 #SentenceCommentSaveForm textarea{

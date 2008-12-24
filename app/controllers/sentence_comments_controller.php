@@ -71,7 +71,7 @@ class SentenceCommentsController extends AppController {
 				if($this->SentenceComment->save($this->data)){
 					$this->flash(
 							__('Your comment has been saved.',true), 
-							'/sentences/show/'.$this->data['SentenceComment']['sentence_id']
+							'/sentence_comments/show/'.$this->data['SentenceComment']['sentence_id']
 						);
 				}
 			}

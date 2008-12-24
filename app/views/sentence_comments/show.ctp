@@ -9,19 +9,20 @@ echo '<div class="sentences_set">';
 	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
 echo '</div>';
 
+echo '<div class="addComment">';
+echo $html->link(
+	__('Add a comment',true),
+	array("controller" => "sentence_comments", "action" => "add", $sentence['Sentence']['id'])
+);
+echo '</div>';
 
+echo '<div class="comments">';
 if(count($sentence['SentenceComment']) > 0){
-	echo '<div class="comments">';
 	foreach($sentence['SentenceComment'] as $comment){
 		$comments->displayComment($comment['User']['username'], $comment['datetime'], $comment['text']);
 	}
-	echo '</div>';
 }else{
-	echo '<em>' . __('There are no comments for now.', true) .'</em>';
-	
-	if($specialOptions['canComment'] == false){
-		echo '<br/>';
-		echo '<em>'. __('You can add a comment if you are registered and logged in.', true) .'</em>';
-	}
+	echo '<em>' . __('There are no comments for now.', true) .'</em>';	
 }
+echo '</div>';
 ?>

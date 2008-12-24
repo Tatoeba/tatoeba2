@@ -27,9 +27,10 @@ if($sentence != null){
 	
 	// LATEST COMMENT
 	echo '<h2>'. __('Latest comment',true) .'</h2>';
-	if(count($sentence['SentenceComment']) > 0){
+	$n = count($sentence['SentenceComment']);
+	if($n > 0){
 		echo '<div class="comments">';
-		$comment = $sentence['SentenceComment'][0];
+		$comment = $sentence['SentenceComment'][$n-1];
 		$comments->displayComment($comment['User']['username'], $comment['datetime'], $comment['text']);
 		echo '</div>';
 	}else{
