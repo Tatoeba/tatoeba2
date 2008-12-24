@@ -2,7 +2,7 @@
 class SentencesController extends AppController{
 	var $name = 'Sentences';
 	var $components = array ('GoogleLanguageApi', 'Lucene', 'Permissions');
-	var $helpers = array('Sentences', 'Html', 'Logs', 'Pagination');
+	var $helpers = array('Sentences', 'Html', 'Logs', 'Pagination', 'Comments');
 	
 	function beforeFilter() {
 	    parent::beforeFilter(); 
@@ -102,6 +102,7 @@ class SentencesController extends AppController{
 	function edit($id){
 		$this->Sentence->id = $id;
 		if(empty($this->data)){
+			$this->Sentence->recursive = 2;
 			$this->data = $this->Sentence->read();
 			$this->set('sentence', $this->Sentence->read());
 			$specialOptions = $this->Permissions->getSentencesOptions();

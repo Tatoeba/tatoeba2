@@ -10,7 +10,6 @@ echo '<div class="sentences_set">';
 echo '</div>';
 
 
-echo '<h2>'. __('Comments', true) .'</h2>';
 if(count($sentence['SentenceComment']) > 0){
 	echo '<div class="comments">';
 	foreach($sentence['SentenceComment'] as $comment){

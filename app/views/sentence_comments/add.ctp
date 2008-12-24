@@ -12,9 +12,13 @@ echo '<div class="sentences_set">';
 	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
 echo '</div>';	
 
-$comments->displayCommentForm($sentence['Sentence']['id']);
-
-foreach($sentence['SentenceComment'] as $comment){
-	$comments->displayComment($comment['User']['username'], $comment['datetime'], $comment['text']);
+if(count($sentence['SentenceComment']) > 0){
+	echo '<div class="comments">';
+	foreach($sentence['SentenceComment'] as $comment){
+		$comments->displayComment($comment['User']['username'], $comment['datetime'], $comment['text']);
+	}
+	echo '</div>';
 }
+
+$comments->displayCommentForm($sentence['Sentence']['id']);
 ?>

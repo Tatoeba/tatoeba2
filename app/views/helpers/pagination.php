@@ -23,7 +23,7 @@ class PaginationHelper extends AppHelper{
 				echo '<strong><</strong>';
 			}
 			
-			if($totalPages < 21){			
+			if($totalPages < 16){			
 				for($i = 1 ; $i <= $totalPages ; $i++){
 					if($i == $currentPage){
 						echo '<span class="selected">'.$i.'</span>';
@@ -35,7 +35,7 @@ class PaginationHelper extends AppHelper{
 					}
 				}
 			}else{
-				for($i = 1 ; $i <= 20 ; $i++){
+				for($i = 1 ; $i <= 15 ; $i++){
 					if($i == $currentPage){
 						echo '<span class="selected">'.$i.'</span>';
 					}else{

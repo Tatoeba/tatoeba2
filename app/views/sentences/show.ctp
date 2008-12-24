@@ -28,7 +28,10 @@ if($sentence != null){
 	// LATEST COMMENT
 	echo '<h2>'. __('Latest comment',true) .'</h2>';
 	if(count($sentence['SentenceComment']) > 0){
-		pr($sentence['SentenceComment'][0]);
+		echo '<div class="comments">';
+		$comment = $sentence['SentenceComment'][0];
+		$comments->displayComment($comment['User']['username'], $comment['datetime'], $comment['text']);
+		echo '</div>';
 	}else{
 		__('There are no comments for this sentence.');
 	}

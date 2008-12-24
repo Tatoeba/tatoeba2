@@ -19,7 +19,7 @@ class CommentsHelper extends AppHelper {
 	function displayCommentForm($sentence_id){
 		echo $this->Form->create('SentenceComment', array("action"=>"save"));
 		echo $this->Form->input('sentence_id', array("type"=>"hidden", "value"=>$sentence_id));
-		echo $this->Form->input('text', array("label"=>""));
+		echo $this->Form->input('text', array("label"=> __('Enter your comment : ',true)));
 		echo $this->Form->end('Submit');
 	}
 	

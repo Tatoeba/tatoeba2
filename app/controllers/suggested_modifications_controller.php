@@ -26,6 +26,7 @@ class SuggestedModificationsController extends AppController {
 
 	function add($sentence_id) {
 		$s = new Sentence();
+		$s->recursive = 2;
 		$sentence = $s->findById($sentence_id);
 		
 		// checking which options user can access to
