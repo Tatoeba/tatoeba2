@@ -35,6 +35,9 @@ class SentencesHelper extends AppHelper {
 		echo '</div>';
     }
 	
+	/**
+	 * Display group of sentence with a text input to add a translation.
+	 */
 	function displayForTranslation($sentence, $translations){
 		echo '<div class="sentence">';
 		
@@ -70,6 +73,9 @@ class SentencesHelper extends AppHelper {
 		echo '</div>';
 	}
 	
+	/**
+	 * Display group of sentence with a text input to suggest a correction.
+	 */
 	function displayForCorrection($sentence){
 		echo '<div class="sentence">';
 		
@@ -89,7 +95,9 @@ class SentencesHelper extends AppHelper {
 		echo '</div>';
 	}
 	
-	
+	/**
+	 * Display group of sentence with a text input to make a modification.
+	 */
 	function displayForEdit($sentence){
 		echo '<div class="sentence">';
 		
@@ -108,21 +116,30 @@ class SentencesHelper extends AppHelper {
 		echo '</div>';
 	}
 	
-	function displayMenu($id, $specialOptions, $score = null){
+	/**
+	 * Sentence options (translate, edit, correct, comments, logs, edit, ...)
+	 */
+	function displayMenu($id, $specialOptions, $score = null){		
 		echo '<ul class="menu">';
-			echo '<li class="id">';
-				$idAndLang = '<strong>' . $id . '</strong>';
-				$showUrl = $this->Html->url(
-					array(
-						"controller" => "sentences",
-						"action" => "show",
-						$id
-					));
-				echo '<a href="'.$showUrl.'">'.$idAndLang.'</a>';
+			if($score != null){
+				echo '<li class="score">';
+				echo intval($score * 100);
+				echo '%';
+				echo '</li>';
+			}
+			
+			echo '<li class="'.$this->optionClass('show').'">';
+				echo $this->Html->link(
+				$id,
+				array(
+					"controller" => "sentences",
+					"action" => "show",
+					$id
+				));
 			echo '</li>';
 			
 			// translate link => everyone can see
-			echo '<li class="option">';
+			echo '<li class="'.$this->optionClass('translate').'">';
 			echo $this->Html->link(
 				__('Translate',true),
 				array(
@@ -134,7 +151,7 @@ class SentencesHelper extends AppHelper {
 			
 			// edit link => modify or suggest correction
 			if(isset($specialOptions['canEdit']) AND $specialOptions['canEdit'] == true){
-				echo '<li class="option">';
+				echo '<li class="'.$this->optionClass('edit').'">';
 				echo $this->Html->link(
 					__('Edit',true),
 					array(
@@ -146,7 +163,7 @@ class SentencesHelper extends AppHelper {
 			}
 			
 			// suggest correction link
-			echo '<li class="option">';
+			echo '<li class="'.$this->optionClass('correct').'">';
 			echo $this->Html->link(
 				__('Correct',true),
 				array(
@@ -160,10 +177,12 @@ class SentencesHelper extends AppHelper {
 			// discuss link
 			if(isset($specialOptions['canComment']) AND $specialOptions['canComment'] == true){
 				$action = "add";
+				$class = $this->optionClass('add_comment');
 			}else{
 				$action = "show";
+				$class = $this->optionClass('show_comments');
 			}
-			echo '<li class="option">';
+			echo '<li class="'.$class.'">';
 			echo $this->Html->link(
 				__('Comments',true),
 				array(
@@ -174,7 +193,7 @@ class SentencesHelper extends AppHelper {
 			echo '</li>';
 			
 			// logs
-			echo '<li class="option">';
+			echo '<li class="'.$this->optionClass('logs').'">';
 			echo $this->Html->link(
 				__('Logs',true),
 				array(
@@ -186,7 +205,7 @@ class SentencesHelper extends AppHelper {
 			
 			// delete link
 			if(isset($specialOptions['canDelete']) AND $specialOptions['canDelete'] == true){
-				echo '<li class="option">';
+				echo '<li class="option delete">';
 				echo $this->Html->link(
 					__('Delete',true), 
 					array(
@@ -198,14 +217,30 @@ class SentencesHelper extends AppHelper {
 					'Are you sure?');
 				echo '</li>';
 			}
-			
-			if($score != null){
-				echo '<li class="score">';
-				echo intval($score * 100);
-				echo '%';
-				echo '</li>';
-			}
 		echo '</ul>';
+	}
+	
+	function optionClass($optionName){
+		$options = array(
+			'show' => array("controller" => "sentences", "action" => "show"),
+			'translate' => array("controller" => "sentences", "action" => "translate"),
+			'edit' => array("controller" => "sentences", "action" => "edit"),
+			'correct' => array("controller" => "suggested_modifications", "action" => "add"),
+			'show_comments' => array("controller" => "sentence_comments", "action" => "show"),
+			'add_comment' => array("controller" => "sentence_comments", "action" => "add"),
+			'logs' => array("controller" => "contributions", "action" => "show")
+		);
+		
+		foreach($options as $name => $route){
+			if($name == $optionName){
+				$currentRoute = array("controller" => $this->params['controller'], "action" => $this->params['action']);
+				if($route == $currentRoute){
+					return 'selected';
+				}
+			}
+		}
+		
+		return 'option';
 	}
 	
 	function displayNavigation($currentId){

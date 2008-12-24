@@ -40,7 +40,7 @@ padding-left: 100px;
 display: inline;
 }
 
-/* item menu */
+/* sentence menu */
 
 .sentences_set ul.menu{
 vertical-align: text-bottom;
@@ -48,20 +48,15 @@ overflow: hidden;
 width: 100%;
 }
 
-
 .sentences_set .menu li{
 display: inline;
 font-size: 13px;
 }
 
-.sentences_set .menu .id{
+.sentences_set .menu .selected{
 margin: 0px;
 background: #D3F3B9;
 padding: 10px;
-color: black;
-}
-
-.sentences_set .menu .id strong{
 font-size: 150%;
 }
 
@@ -74,16 +69,25 @@ background: #75C34B;
 color: #D3F3B9;
 }
 
-.sentences_set .menu li.selected a{
-background: #FAEFA8;
+.sentences_set .menu li.delete a{
+color: red;
 }
 
 .score{
-padding: 4px 10px 3px 30px;
+display: block;
+margin-right: 10px;
+float: right;
 }
 
+.search .menu{
+background: #D3F3B9;
+}
 
 /* sentence */
+.search{
+margin-bottom: 20px;
+}
+
 .sentences_set .sentence{
 padding-top: 5px;
 border: 1px solid #D3F3B9;

@@ -4,12 +4,13 @@ if(isset($query)){
 	
 	if(isset($results)){
 		foreach($results as $sentence){
-			echo '<div class="sentences_set">';
+			echo '<div class="sentences_set search">';
 			// sentence menu (translate, edit, comment, etc)
 			$sentences->displayMenu($sentence['Sentence']['id'], $specialOptions, $sentence['Score']);
 
 			// sentence and translations
 			$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
+			echo '</div>';
 		}
 	}else{
 		__('No results for this search');

@@ -7,6 +7,7 @@ if($session->read('Auth.User.id')){
 }
 echo '</h2>';
 	
+$total = 0;
 echo '<table id="userStatistics">';
 foreach($userStatistics as $statistics){
 	$stats = $statistics['UsersStatistic'];
@@ -59,16 +60,33 @@ foreach($userStatistics as $statistics){
 				__('Number of translations deleted');
 				break;
 		}
-		echo '<td>';
+		echo '</td>';
 		
 		echo '<td>';
 		echo $stats['quantity'];
-		echo '<td>';
+		echo '</td>';
 	echo '</tr>';
+	
+	$total += $stats['quantity'];
 }
+
+echo '<tr class="total">';
+	echo '<td>';
+	__('Total');
+	echo '</td>';
+	
+	echo '<td>';
+	echo $total;
+	echo '</td>';
+echo '</tr>';
+
 echo '</table>';
 
+
+
 echo '<br/>';
+
+
 
 echo '<h2>';
 __('Statistics of all contributors');
