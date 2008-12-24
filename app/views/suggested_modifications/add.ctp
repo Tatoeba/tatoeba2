@@ -12,14 +12,15 @@ echo '<div class="sentences_set">';
 	$sentences->displayForCorrection($sentence['Sentence'], $sentence['Translation']);
 echo '</div>';
 
-echo '<h2>';
-__('Comments');
-echo ' (';
+echo '<div class="addComment">';
 echo $html->link(
 	__('Add a comment',true),
 	array("controller" => "sentence_comments", "action" => "add", $sentence['Sentence']['id'])
 );
-echo ')';
+echo '</div>';
+
+echo '<h2>';
+__('Comments');
 echo '</h2>';
 
 
