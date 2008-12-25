@@ -180,7 +180,7 @@ class UsersController extends AppController {
 		
 		if($user['User']['email'] != $this->data['User']['email']){
 			$flashMsg .= __('Email saved : ', true);
-			$flashMsg .= $user['User']['email'];
+			$flashMsg .= $this->data['User']['email'];
 			$saveEmail = true;
 		}
 		
