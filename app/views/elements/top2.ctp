@@ -5,9 +5,17 @@
 	<?php 
 	if($session->read('Auth.User.id')){
 		// Welcome message
+		echo '<div>';
 		__('Welcome');
 		echo ' '.$session->read('Auth.User.username'); 
-		echo ' (group ' . $session->read('Auth.User.group_id') . ')';
+		echo '</div>';
+		
+		echo '<div>';
+		echo $html->link(
+			__('Edit my information',true),
+			array("controller" => "users", "action" => "my_profile")
+		);
+		echo '</div>';
 	}else{
 		echo '<span>';
 		echo $html->link(

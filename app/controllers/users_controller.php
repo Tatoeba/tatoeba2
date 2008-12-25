@@ -11,7 +11,7 @@ class UsersController extends AppController {
 		
 		// setting actions that are available to everyone, even guests
 		// no need to allow login
-		$this->Auth->allowedActions = array('logout','register','new_password');
+		$this->Auth->allowedActions = array('logout','register','new_password', 'my_profile', 'save_profile');
 		//$this->Auth->allowedActions = array('*');
 	}
 
@@ -154,6 +154,53 @@ class UsersController extends AppController {
 			}else{
 				$this->set('error', __('There is no registered user with such email.',true));
 			}
+		}
+	}
+	
+	function my_profile(){
+		$id = $this->Auth->user('id');
+		$this->set('user', $this->User->read(null, $id));
+	}
+	
+	function save_profile(){
+		$this->User->id = $this->Auth->user('id');
+		$user = $this->User->read();
+		$hashedPass = $this->Auth->password($this->data['User']['old_password']);
+		
+		$flashMsg = '';
+		$savePass = false;
+		$saveEmail = false;
+		
+		if($user['User']['password'] == $hashedPass){
+			$this->data['User']['password'] = $this->Auth->password($this->data['User']['new_password']);
+			$flashMsg .= __('New password has been saved.',true);
+			$flashMsg .= ' ';
+			$savePass = true;
+		}
+		
+		if($user['User']['email'] != $this->data['User']['email']){
+			$flashMsg .= __('Email saved : ', true);
+			$flashMsg .= $user['User']['email'];
+			$saveEmail = true;
+		}
+		
+		if($savePass OR $saveEmail){
+			if($this->User->save($this->data)){
+				$this->flash(
+					$flashMsg,
+					'/users/my_profile/'
+				);
+			}else{
+				$this->flash(
+					__('No changes have been applied.',true),
+					'/users/my_profile/'
+				);
+			}
+		}else{
+			$this->flash(
+				__('No changes have been applied.',true),
+				'/users/my_profile/'
+			);
 		}
 	}
 	
