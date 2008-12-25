@@ -2,8 +2,4 @@
 echo $form->create('User', array("action" => "new_password"));
 echo $form->input('email');
 echo $form->end(__('Send',true));
-
-if(isset($error)){
-	echo $error;
-}
 ?>

@@ -152,7 +152,10 @@ class UsersController extends AppController {
 					);
 				}
 			}else{
-				$this->set('error', __('There is no registered user with such email.',true));
+				$this->flash(
+					__('There is no registered user with this email : ',true) . $this->data['User']['email'],
+					'/users/new_password'
+				);
 			}
 		}
 	}
