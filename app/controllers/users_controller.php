@@ -126,8 +126,9 @@ class UsersController extends AppController {
 					$this->Mailer->send();
 					
 					$this->flash(
-						__('Thank you for registering. To validate your registration, click on the link in the email that has been sent to you.',true), 
-						array('controller' => 'users', 'action' => 'login')
+						__('Thank you for registering. To validate your registration, 
+						click on the link in the email that has been sent to you.',true), 
+						'/users/login'
 					);
 				}else{
 					$this->data['User']['password'] = '';
@@ -153,10 +154,12 @@ class UsersController extends AppController {
 			$this->data['User']['id'] = $id;
 			$this->data['User']['group_id'] = User::LOWEST_TRUST_GROUP_ID;
 			if($this->User->save($this->data)){
+				// update aro table
 				$aro = new Aro();
 				$data = $aro->findByForeignKey($id);
 				$data['Aro']['parent_id'] = User::LOWEST_TRUST_GROUP_ID;
 				$this->Acl->Aro->save($data);
+				
 				$msg = __('Your registration has been validated.',true);
 			}else{
 				$msg = __('A problem occured. Your registration could not be validated.',true);
