@@ -11,7 +11,7 @@ class UsersController extends AppController {
 		
 		// setting actions that are available to everyone, even guests
 		// no need to allow login
-		$this->Auth->allowedActions = array('logout','register','new_password', 'my_profile', 'save_profile');
+		$this->Auth->allowedActions = array('logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration');
 		//$this->Auth->allowedActions = array('*');
 	}
 
@@ -104,9 +104,31 @@ class UsersController extends AppController {
 			if ($this->data['User']['password'] == $this->Auth->password($this->data['User']['password_confirm'])) {
 				$this->User->create();
 				$this->data['User']['since'] = date("Y-m-d H:i:s");
-				$this->data['User']['group_id'] = User::LOWEST_TRUST_GROUP_ID;
+				$this->data['User']['group_id'] = User::LOWEST_TRUST_GROUP_ID + 1;
 				if($this->User->save($this->data)){
-					$this->redirect(array('controller' => 'pages', 'action' => 'index'));
+					$pass = $this->Auth->password($this->data['User']['password']);
+					$token = $this->Auth->password($pass.$this->data['User']['since'].$this->data['User']['username']);
+					// prepare message
+					$subject = __('Tatoeba registration',true);
+					$message = sprintf(__('Dear %s,',true), $this->data['User']['username'])
+						. "\n\n" 
+						. __('Welcome to Tatoeba and thank you for your interest in this project!',true)
+						. "\n\n"
+						. __('You can validate your registration by clicking on this link :',true)
+						. "\n"
+						. 'http://' . $_SERVER['HTTP_HOST'] . '/users/confirm_registration/' . $this->User->id . '/' . $token;
+					
+					// send email with new password
+					$this->Mailer->to = $this->data['User']['email'];
+					$this->Mailer->toName = '';
+					$this->Mailer->subject = $subject;
+					$this->Mailer->message = $message;
+					$this->Mailer->send();
+					
+					$this->flash(
+						__('Thank you for registering. To validate your registration, click on the link in the email that has been sent to you.',true), 
+						array('controller' => 'users', 'action' => 'login')
+					);
 				}else{
 					$this->data['User']['password'] = '';
 				}
@@ -116,6 +138,30 @@ class UsersController extends AppController {
 				$this->set('error', __('Passwords do not match',true));
 			}
 		}
+	}
+	
+	function confirm_registration($id, $token){
+		$this->User->id = $id;
+		$user = $this->User->read();
+		
+		$toHash = $this->Auth->password($user['User']['password']).$user['User']['since'].$user['User']['username'];
+		$correctToken = $this->Auth->password($toHash);
+		
+		if($user['User']['group_id'] < User::LOWEST_TRUST_GROUP_ID + 1){
+			$msg = __('Your registration is already validated.',true);
+		}else if($token == $correctToken){
+			$this->data['User']['id'] = $id;
+			$this->data['User']['group_id'] = $user['User']['group_id'] - 1;
+			if($this->User->save($this->data)){
+				$msg = __('Your registration has been validated.',true);
+			}else{
+				$msg = __('A problem occured. Your registration could not be validated.',true);
+			}
+		}else{
+			$msg = __('Non valid registration link.',true);
+		}
+		
+		$this->flash($msg,'/users/login');
 	}
 	
 	function new_password(){
