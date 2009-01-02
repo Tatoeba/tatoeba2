@@ -151,8 +151,12 @@ class UsersController extends AppController {
 			$msg = __('Your registration is already validated.',true);
 		}else if($token == $correctToken){
 			$this->data['User']['id'] = $id;
-			$this->data['User']['group_id'] = $user['User']['group_id'] - 1;
+			$this->data['User']['group_id'] = User::LOWEST_TRUST_GROUP_ID;
 			if($this->User->save($this->data)){
+				$aro = new Aro();
+				$data = $aro->findByForeignKey($id);
+				$data['Aro']['parent_id'] = User::LOWEST_TRUST_GROUP_ID;
+				$this->Acl->Aro->save($data);
 				$msg = __('Your registration has been validated.',true);
 			}else{
 				$msg = __('A problem occured. Your registration could not be validated.',true);
