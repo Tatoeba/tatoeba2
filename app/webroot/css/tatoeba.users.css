@@ -1,0 +1,97 @@
+/* LOG IN */
+#Login{
+margin: 30px 20px;
+background: #f1f1f1;
+border: 1px solid #a1a1a1;
+width: 270px;
+}
+
+#UserLoginForm{
+padding: 5px 20px;
+margin: 0px 10px;
+}
+
+#UserLoginForm div.input{
+font-size: 16px;
+margin: 10px 0px;
+}
+
+#UserLoginForm div.input input{
+display: block;
+width: 200px;
+}
+
+#UserLoginForm .submit{
+display: inline;
+margin: 0px;
+margin-left: 5px;
+}
+
+#UserLoginForm div.submit input{
+font-size: 16px;
+}
+
+#PasswordForgotten{
+margin: 15px 30px;
+}
+
+/* REGISTER */
+#ClickHereToRegister{
+float:right;
+margin: 60px 120px;
+padding: 10px;
+text-align:center;
+width: 150px;
+font-size: 20px;
+border: 1px solid #75C34B;
+background: #D3F3B9;
+}
+
+#UserRegisterForm{
+background: #f1f1f1;
+border: 1px solid #a1a1a1;
+width: 230px;
+padding: 20px;
+padding-top: 10px;
+margin: 20px;
+}
+
+#UserRegisterForm div.input{
+font-size: 16px;
+margin: 10px 0px;
+}
+
+#UserRegisterForm div.input input{
+display: block;
+width: 200px;
+}
+
+/* RETRIEVE PASSWORD */
+
+#UserNewPasswordForm{
+background: #f1f1f1;
+border: 1px solid #a1a1a1;
+width: 230px;
+padding: 20px;
+padding-top: 10px;
+margin: 20px;
+}
+
+#UserNewPasswordForm div.input{
+margin: 10px 0px;
+}
+
+#UserNewPasswordForm div.input input{
+display: block;
+width: 200px;
+}
+
+/* USER MENU */
+#UserMenu{
+float:right;
+font-size: 13px;
+}
+
+#UserMenu span{
+padding-left: 20px;
+}

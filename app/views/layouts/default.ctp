@@ -39,6 +39,7 @@
 		echo $html->css('tatoeba.logs');
 		echo $html->css('tatoeba.comments');
 		echo $html->css('tatoeba.statistics');
+		echo $html->css('tatoeba.users');
 
 		echo $scripts_for_layout;
 	?>
