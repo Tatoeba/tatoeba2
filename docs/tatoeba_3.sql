@@ -572,38 +572,19 @@ CREATE TABLE IF NOT EXISTS `sentence_logs` (
   `action` enum('insert','update','delete') NOT NULL,
   `user_id` int(11) default NULL,
   `datetime` datetime NOT NULL,
+  `ip` varchar(15) NOT NULL,
   PRIMARY KEY  (`id`)
-) ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `sentence_logs`
 --
 
-INSERT INTO `sentence_logs` (`id`, `sentence_id`, `sentence_lang`, `sentence_text`, `action`, `user_id`, `datetime`) VALUES
-(1, 1, 'fr', 'Cette phrase a été ajoutée par trang3.', 'insert', 4, '2008-11-22 18:31:30'),
-(2, 3, 'fr', 'J''ai très très très froid.', 'insert', 4, '2008-11-22 18:33:23'),
-(3, 5, 'en', 'Let''s see if the language detection works.', 'insert', NULL, '2008-11-23 16:42:38'),
-(4, 6, 'en', 'Let''s try again.', 'insert', NULL, '2008-11-23 16:44:54'),
-(5, 7, 'en', 'Things never work on the first try.', 'insert', NULL, '2008-11-23 16:45:43'),
-(6, 8, 'en', 'Add a sentence!', 'insert', NULL, '2008-11-23 16:47:04'),
-(7, 9, 'en', 'sigh', 'insert', NULL, '2008-11-23 16:51:18'),
-(8, 10, 'fr', 'Il fait très froid.', 'insert', NULL, '2008-11-23 16:52:39'),
-(9, 11, 'en', 'Erase una vez...', 'insert', NULL, '2008-11-23 16:57:24'),
-(10, 12, 'fr', 'Voici une nouvelle phrase', 'insert', NULL, '2008-11-23 17:02:32'),
-(11, 13, 'en', 'I fear something bad will happen...', 'insert', NULL, '2008-11-23 17:06:28'),
-(12, 14, 'fr', 'C''est probablement pas la meilleure chose à faire.', 'insert', NULL, '2008-11-23 17:07:43'),
-(13, 0, 'es', 'parece que no functiona', 'insert', NULL, '2008-11-23 17:15:13'),
-(14, 0, 'es', 'Y ahora, esta mejor?', 'insert', NULL, '2008-11-23 17:16:38'),
-(15, 0, 'es', 'Y ahora, esta mejor?', 'insert', NULL, '2008-11-23 17:18:53'),
-(16, 15, 'en', 'Ahh, why why why, doesn''t it work.', 'insert', NULL, '2008-11-23 17:23:45'),
-(17, 16, 'en', 'Not it''s not better...', 'insert', NULL, '2008-11-23 17:24:22'),
-(18, 17, 'fr', 'Ça marche pas avec l''espagnol??', 'insert', NULL, '2008-11-23 17:24:39'),
-(19, 18, 'fr', 'Je crois que non.', 'insert', NULL, '2008-11-23 17:25:28'),
-(20, 19, 'zh', '免费下载:外汇基础知识精选！入门必备 了解外汇,如何降低风险,判断交易时机 ', 'insert', NULL, '2008-11-23 17:50:14'),
-(21, 20, 'zh', '免费下载:外汇基础知识精选！入门必备 了解外汇,如何降低风险,判断交易时机 ', 'insert', NULL, '2008-11-23 17:52:51'),
-(22, 21, 'en', 'This is nice.', 'insert', NULL, '2008-11-23 17:54:55'),
-(23, 43, 'en', 'test There is a certain amount of truth in ~.', 'update', 2, '2008-11-30 16:08:25'),
-(24, 312, 'en', 'I am adding a sentence as a test.', 'insert', 2, '2008-11-30 16:10:33');
+INSERT INTO `sentence_logs` (`id`, `sentence_id`, `sentence_lang`, `sentence_text`, `action`, `user_id`, `datetime`, `ip`) VALUES
+(1, 6676, 'fr', 'J''ai bu une tasse de cafe au bistrot.', 'update', 1, '2008-12-23 12:52:09', ''),
+(2, 6676, 'fr', 'J''ai bu une tasse de café au bistrot.', 'update', 1, '2008-12-23 12:52:18', ''),
+(3, 10797, 'fr', 'Ma fille a atteint l''âge de penser au mariage.', 'update', 1, '2008-12-23 12:53:00', ''),
+(4, 329428, 'en', 'I wish it was faster.', 'insert', 11, '2009-01-08 02:51:59', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -621,13 +602,17 @@ CREATE TABLE IF NOT EXISTS `suggested_modifications` (
   `apply_user_id` int(11) NOT NULL,
   `apply_datetime` datetime NOT NULL,
   `was_applied` tinyint(1) NOT NULL,
+  `ip` varchar(15) NOT NULL,
   PRIMARY KEY  (`id`)
-) ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `suggested_modifications`
 --
 
+INSERT INTO `suggested_modifications` (`id`, `sentence_id`, `sentence_lang`, `correction_text`, `submit_user_id`, `submit_datetime`, `apply_user_id`, `apply_datetime`, `was_applied`, `ip`) VALUES
+(1, 329428, 'en', 'I wish it was faster...', 11, '2009-01-08 02:53:40', 0, '0000-00-00 00:00:00', 0, ''),
+(2, 254170, 'en', 'The car overtook me...', NULL, '2009-01-08 02:58:52', 0, '0000-00-00 00:00:00', 0, '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -645,17 +630,18 @@ CREATE TABLE IF NOT EXISTS `translation_logs` (
   `action` enum('insert','delete') NOT NULL,
   `user_id` int(11) default NULL,
   `datetime` datetime NOT NULL,
+  `ip` varchar(15) NOT NULL,
   PRIMARY KEY  (`id`)
-) ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `translation_logs`
 --
 
-INSERT INTO `translation_logs` (`id`, `sentence_id`, `sentence_lang`, `translation_id`, `translation_lang`, `translation_text`, `action`, `user_id`, `datetime`) VALUES
-(1, 1, 'fr', 2, 'en', 'This sentence has been added by trang3.', 'insert', 4, '2008-11-22 18:32:50'),
-(2, 3, 'fr', 4, 'en', 'I am very very very cold.', 'insert', 4, '2008-11-22 18:33:41'),
-(3, 10, 'fr', 22, 'en', 'It is very cold.', 'insert', NULL, '2008-11-23 17:57:55');
+INSERT INTO `translation_logs` (`id`, `sentence_id`, `sentence_lang`, `translation_id`, `translation_lang`, `translation_text`, `action`, `user_id`, `datetime`, `ip`) VALUES
+(1, 275938, 'en', 329426, 'fr', 'Veuillez envoyer quelqu''un à ma chambre.', 'insert', NULL, '2009-01-07 22:48:55', ''),
+(2, 246548, 'en', 329427, 'fr', 'Je le dois à mon oncle d''avoir réussi dans mon entreprise.', 'insert', 11, '2009-01-08 02:17:30', ''),
+(3, 329428, 'en', 329429, 'fr', 'Si seulement c''était plus rapide.', 'insert', 11, '2009-01-08 02:53:11', '127.0.0.1');
 
 -- --------------------------------------------------------
 
