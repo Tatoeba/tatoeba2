@@ -13,7 +13,7 @@ class SentencesHelper extends AppHelper {
 		
 		// Sentence
 		echo '<span class="original correctness'.$sentence['correctness'].' '.$sentence['lang'].'">'.$sentence['text'].'</span>';
-			
+		
 		// Translations
 		if(count($translations) > 0){	
 			echo '<ul class="translations">';
