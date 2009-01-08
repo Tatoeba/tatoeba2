@@ -68,6 +68,7 @@ class SentencesController extends AppController{
 					$this->data['SentenceLog']['action'] = 'insert';
 					$this->data['SentenceLog']['user_id'] = $this->Auth->user('id');
 					$this->data['SentenceLog']['datetime'] = date("Y-m-d H:i:s");
+					$this->data['SentenceLog']['ip'] = $_SERVER['REMOTE_ADDR'];
 					$this->Sentence->SentenceLog->save($this->data);
 					
 					// Confirmation message
@@ -92,6 +93,7 @@ class SentencesController extends AppController{
 		$this->data['SentenceLog']['action'] = 'delete';
 		$this->data['SentenceLog']['user_id'] = $this->Auth->user('id');
 		$this->data['SentenceLog']['datetime'] = date("Y-m-d H:i:s");
+		$this->data['SentenceLog']['ip'] = $_SERVER['REMOTE_ADDR'];
 		$this->Sentence->SentenceLog->save($this->data);
 		
 		// Then we delete
@@ -116,6 +118,7 @@ class SentencesController extends AppController{
 				$this->data['SentenceLog']['action'] = 'update';
 				$this->data['SentenceLog']['user_id'] = $this->Auth->user('id');
 				$this->data['SentenceLog']['datetime'] = date("Y-m-d H:i:s");
+				$this->data['SentenceLog']['ip'] = $_SERVER['REMOTE_ADDR'];
 				$this->Sentence->SentenceLog->save($this->data);
 				
 				// Confirmation message
@@ -175,6 +178,7 @@ class SentencesController extends AppController{
 				$this->data['TranslationLog']['action'] = 'insert';
 				$this->data['TranslationLog']['user_id'] = $this->Auth->user('id');
 				$this->data['TranslationLog']['datetime'] = date("Y-m-d H:i:s");
+				$this->data['TranslationLog']['ip'] = $_SERVER['REMOTE_ADDR'];
 				$this->Sentence->TranslationLog->save($this->data);
 				
 				// Confirmation message

@@ -47,6 +47,7 @@ class SuggestedModificationsController extends AppController {
 			
 			$this->data['SuggestedModification']['submit_user_id'] = $this->Auth->user('id');
 			$this->data['SuggestedModification']['submit_datetime'] = date("Y-m-d H:i:s");
+			$this->data['SuggestedModification']['ip'] = $_SERVER['REMOTE_ADDR'];
 			
 			if ($this->SuggestedModification->save($this->data)) {
 				$this->Session->setFlash(__('The suggestion has been saved', true));
