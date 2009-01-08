@@ -25,7 +25,7 @@ echo '<div class="element">';
 echo '<h2>';
 __('Latest contributions');
 echo '</h2>';
-echo $this->element('latest_contributions', array('cache'=>'+1 hour'));
+echo $this->element('latest_contributions');
 echo '</div>';
 
 
@@ -33,7 +33,7 @@ echo '<div class="element">';
 echo '<h2>';
 __('Latest comments');
 echo '</h2>';
-echo $this->element('latest_sentence_comments', array('cache'=>'+1 hour'));
+echo $this->element('latest_sentence_comments');
 echo '</div>';
 ?>
 </div>
