@@ -7,7 +7,7 @@ class DateHelper extends AppHelper{
 		$year = substr($date, 0, 4);
 		$month = substr($date, 5, 2);
 		$day = substr($date, 8, 2);
-		$hour = substr($date, 12, 2);
+		$hour = substr($date, 11, 2);
 		$min = substr($date, 14, 2);
 		
 		$pureNumberDate = $year.$month.$day.','.$hour.$min;
