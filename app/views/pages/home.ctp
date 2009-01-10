@@ -7,7 +7,7 @@ echo '<h2>';
 __('Welcome on Tatoeba Project');
 echo '</h2>';
 
-echo '<p>';
+echo '<p style="font-size:16px">';
 __('This project aims to build a multilingual corpus. In other words, to collect sentences translated in several languages.');
 echo '</p>';
 echo '</div>';
