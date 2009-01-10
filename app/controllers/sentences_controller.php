@@ -18,22 +18,25 @@ class SentencesController extends AppController{
 	}
 	
 	function show($id = null){
-		$this->Sentence->recursive = 2;
 		if($id == "random"){
-			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences');
+			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences', false); 
+				// I'm actually not sure if the "false" does something here... but oh well.
+				// see : http://micropipes.com/blog/2008/01/07/cakephps-cache-that-wouldnt-quit/
 			$max = $resultMax[0][0]['MAX(id)'];
 			
 			$randId = rand(1, $max);
-			$this->Sentence->id = $randId;
+			$this->redirect(array("action"=>"show", $randId));
+			//$this->Sentence->id = $randId;
 		}else{
 			$this->Sentence->id = $id;
+			
+			// checking which options user can access to
+			$specialOptions = $this->Permissions->getSentencesOptions();
+			$this->set('specialOptions',$specialOptions);
+			
+			$this->Sentence->recursive = 2;
+			$this->set('sentence',$this->Sentence->read());
 		}
-		
-		// checking which options user can access to
-		$specialOptions = $this->Permissions->getSentencesOptions();
-		$this->set('specialOptions',$specialOptions);
-		
-		$this->set('sentence',$this->Sentence->read());
 	}
 	
 	function goTo(){
@@ -111,7 +114,7 @@ class SentencesController extends AppController{
 			$this->set('specialOptions',$specialOptions);	
 		}else{
 			if($this->Sentence->save($this->data)){				
-				// Logs
+				// Sentence logs
 				$this->data['SentenceLog']['sentence_id'] = $this->Sentence->id;
 				$this->data['SentenceLog']['sentence_lang'] = $this->data['Sentence']['lang'];
 				$this->data['SentenceLog']['sentence_text'] = $this->data['Sentence']['text'];
@@ -131,13 +134,25 @@ class SentencesController extends AppController{
 	}
 	
 	function translate($id){
-		$this->Sentence->id = $id;
-		$this->set('sentence',$this->Sentence->read());
-		$this->data['Sentence']['id'] = $id;
-		
-		// checking which options user can access to
-		$specialOptions = $this->Permissions->getSentencesOptions();
-		$this->set('specialOptions',$specialOptions);	
+		if($id == "random"){
+			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences', false); 
+				// I'm actually not sure if the "false" does something here... but oh well.
+				// see : http://micropipes.com/blog/2008/01/07/cakephps-cache-that-wouldnt-quit/
+			$max = $resultMax[0][0]['MAX(id)'];
+			
+			$randId = rand(1, $max);
+			$this->redirect(array("action"=>"translate", $randId));
+			//$this->Sentence->id = $randId;
+		}else{
+			$this->Sentence->id = $id;
+			
+			$this->set('sentence',$this->Sentence->read());
+			$this->data['Sentence']['id'] = $id;
+			
+			// checking which options user can access to
+			$specialOptions = $this->Permissions->getSentencesOptions();
+			$this->set('specialOptions',$specialOptions);
+		}
 	}
 	
 	function save_translation(){
@@ -169,7 +184,7 @@ class SentencesController extends AppController{
 			}
 			
 			if($this->Sentence->save($this->data)){
-				// Logs
+				// Translation logs
 				$this->data['TranslationLog']['sentence_id'] = $this->data['Translation']['Translation'][0];
 				$this->data['TranslationLog']['sentence_lang'] = $this->data['Sentence']['sentence_lang'];
 				$this->data['TranslationLog']['translation_id'] = $this->Sentence->id;
@@ -180,6 +195,16 @@ class SentencesController extends AppController{
 				$this->data['TranslationLog']['datetime'] = date("Y-m-d H:i:s");
 				$this->data['TranslationLog']['ip'] = $_SERVER['REMOTE_ADDR'];
 				$this->Sentence->TranslationLog->save($this->data);
+				
+				// Sentence logs
+				$this->data['SentenceLog']['sentence_id'] = $this->Sentence->id;
+				$this->data['SentenceLog']['sentence_lang'] = $this->data['Sentence']['lang'];
+				$this->data['SentenceLog']['sentence_text'] = $this->data['Sentence']['text'];
+				$this->data['SentenceLog']['action'] = 'insert';
+				$this->data['SentenceLog']['user_id'] = $this->Auth->user('id');
+				$this->data['SentenceLog']['datetime'] = date("Y-m-d H:i:s");
+				$this->data['SentenceLog']['ip'] = $_SERVER['REMOTE_ADDR'];
+				$this->Sentence->SentenceLog->save($this->data);
 				
 				// Confirmation message
 				$this->flash(
@@ -232,7 +257,7 @@ class SentencesController extends AppController{
 	}
 	
 	function random(){
-		$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences');
+		$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences', false);
 		$max = $resultMax[0][0]['MAX(id)'];
 		$randId = rand(1, $max);
 		$this->Sentence->id = $randId;

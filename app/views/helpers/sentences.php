@@ -50,7 +50,7 @@ class SentencesHelper extends AppHelper {
 				echo '<li class="form">';
 					echo $this->Form->create('Sentence', array("action" => "save_translation"));
 					if(count($translations) > 0){
-						$tooltipText  = __('Your translation should be <strong>based on</strong> the sentence at the <strong>top</strong>.',true);
+						$tooltipText  = __('Your translation should be <strong>based on the main sentence</strong> (the one at the <strong>top</strong>).',true);
 						$tooltipText .= '<br/>';
 						$tooltipText .= __('The other sentences <strong>below</strong> are displayed only so you know what <strong>translations</strong> have already been added.',true);
 						$tooltipText .= '<br/>';
@@ -245,11 +245,13 @@ class SentencesHelper extends AppHelper {
 	}
 	
 	function displayNavigation($currentId){
+		$action = ($this->params['action'] == 'translate') ? 'translate' : 'show';
+		
 		echo '<div class="navigation">';
 			$input = $this->params['pass'][0];
 			echo $this->Form->create('Sentence', array("action" => "goTo", "type" => "get"));
 			echo $this->Form->input('sentence_id', array("label" => __('Go to id : ', true), "value" => $input));
-			echo $this->Form->end(__('OK',true));		
+			echo $this->Form->end(__('OK',true));
 			echo '<ul>';
 			
 			// previous
@@ -258,7 +260,7 @@ class SentencesHelper extends AppHelper {
 				__('<< previous',true), 
 				array(
 					"controller" => "sentences",
-					"action" => "show",
+					"action" => $action,
 					$currentId-1
 				)
 			);
@@ -270,7 +272,7 @@ class SentencesHelper extends AppHelper {
 				__('random',true), 
 				array(
 					"controller" => "sentences",
-					"action" => "show",
+					"action" => $action,
 					"random"
 				)
 			);
@@ -282,7 +284,7 @@ class SentencesHelper extends AppHelper {
 				__('next >>',true), 
 				array(
 					"controller" => "sentences",
-					"action" => "show",
+					"action" => $action,
 					$currentId+1
 				)
 			);
