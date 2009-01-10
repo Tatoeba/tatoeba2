@@ -18,7 +18,7 @@ foreach($userStatistics as $statistics){
 	if($stats['is_translation'] == 0){
 		$type = 'sentence';
 	}else{
-		$type = 'translation';
+		$type = 'link';
 	}
 	
 	switch($stats['action']){
@@ -53,11 +53,13 @@ foreach($userStatistics as $statistics){
 			case 'correctionSuggested';
 				__('Number of corrections suggested');
 				break;
-			case 'translationAdded' :
-				__('Number of translations added');
+			case 'linkAdded' :
+				__('Number of links added');
+				echo ' ';
+				$tooltip->display(__('Whenever you translate a sentence, it counts as 1 sentence added and 1 link added.',true));
 				break;
-			case 'translationsDeleted';
-				__('Number of translations deleted');
+			case 'linkDeleted';
+				__('Number of links deleted');
 				break;
 		}
 		echo '</td>';

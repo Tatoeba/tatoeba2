@@ -2,7 +2,7 @@
 class SentenceCommentsController extends AppController {
 	var $name = 'SentenceComments';
 	
-	var $helpers = array('Comments','Sentences', 'Languages');
+	var $helpers = array('Comments','Sentences', 'Languages', 'Tooltip');
 	var $components = array ('GoogleLanguageApi', 'Permissions');
 	
 	var $langs = array('en', 'fr', 'jp', 'es', 'de');

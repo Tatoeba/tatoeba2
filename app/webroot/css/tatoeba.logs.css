@@ -32,6 +32,7 @@ text-align:center;
 
 
 #logsLegend{
+color: black;
 margin-top: 10px;
 margin-bottom: 20px;
 text-align: center;
@@ -53,11 +54,11 @@ background: #96e0fc;
 background: #f5aa98;
 }
 
-.translationAdded{
+.linkAdded{
 background: #CCFF99;
 }
 
-.translationDeleted{
+.linkDeleted{
 background: #ecc7f2;
 }
 

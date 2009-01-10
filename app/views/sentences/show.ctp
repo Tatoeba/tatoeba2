@@ -15,7 +15,11 @@ if($sentence != null){
 
 	
 	// LOGS
-	echo '<h2>'. __('Latest log',true) .'</h2>';
+	echo '<h2>';
+	__('Latest log');
+	echo ' ';
+	$tooltip->displayLogsColors(false);
+	echo '</h2>';
 	if(count($sentence['Contribution']) > 0){
 		echo '<table id="logs">';
 		$logs->entry($sentence['Contribution'][0], $sentence['Contribution'][0]['User']);
@@ -34,6 +38,8 @@ if($sentence != null){
 	echo '</div>';
 	echo '<h2>';
 	__('Latest comment');
+	echo ' ';
+	$tooltip->display(__('If you see any mistake, don\'t hesitate to post a comment about it!',true));
 	echo '</h2>';
 	
 	$n = count($sentence['SentenceComment']);

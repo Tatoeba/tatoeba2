@@ -10,7 +10,7 @@ class LogsHelper extends AppHelper {
 		if($contribution['translation_id'] == ''){
 			$type = 'sentence';
 		}else{
-			$type = 'translation';
+			$type = 'link';
 		}
 		
 		switch($contribution['action']){
@@ -34,7 +34,7 @@ class LogsHelper extends AppHelper {
 			echo $this->Html->link(
 				$contribution['sentence_id'],
 				array(
-					"controller" => "sentences",
+					"controller" => "contributions",
 					"action" => "show",
 					$contribution['sentence_id']
 				)

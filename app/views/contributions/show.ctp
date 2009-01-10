@@ -13,7 +13,11 @@ echo '<div class="sentences_set">';
 echo '</div>';	
 
 
-echo '<h2>'. __('Logs', true) .'</h2>';
+echo '<h2>';
+__('Logs'); 
+echo ' ';
+$tooltip->displayLogsColors();
+echo '</h2>';
 
 if(count($sentence['Contribution']) > 0){
 	echo '<table id="logs">';

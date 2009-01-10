@@ -18,6 +18,8 @@ echo '</div>';
 
 echo '<h2>';
 __('Comments');
+echo ' ';
+$tooltip->display(__('If you see any mistake, don\'t hesitate to post a comment about it!',true));
 echo '</h2>';
 
 echo '<div class="comments">';

@@ -13,6 +13,7 @@ a.info span{
 
 a.info:hover span{ /*the span will display just on :hover state*/
 	font-size: 13px;
+	font-variant: normal;
     display:block;
     position:absolute;
     left:2em; 
@@ -27,7 +28,7 @@ a.info:hover span{ /*the span will display just on :hover state*/
 a.info img{
 border: 0px;
 vertical-align: middle;
-margin-top: -5px;
+margin-top: -4px;
 margin-right: 5px;
 }
 
