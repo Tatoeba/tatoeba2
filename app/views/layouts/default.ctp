@@ -40,6 +40,7 @@
 		echo $html->css('tatoeba.comments');
 		echo $html->css('tatoeba.statistics');
 		echo $html->css('tatoeba.users');
+		echo $html->css('tatoeba.tooltip');
 
 		echo $scripts_for_layout;
 	?>

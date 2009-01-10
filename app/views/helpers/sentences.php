@@ -1,7 +1,7 @@
 <?php
 class SentencesHelper extends AppHelper {
 
-	var $helpers = array('Html', 'Form');
+	var $helpers = array('Html', 'Form', 'Tooltip');
 	
 	/**
 	 * $sentence : array("id" => int, "lang" => string, "text" => string)
@@ -16,13 +16,14 @@ class SentencesHelper extends AppHelper {
 		
 		// Translations
 		if(count($translations) > 0){	
+			$controller = (preg_match("/sentence_comments|contributions/", $this->params['controller'])) ? $this->params['controller'] : "sentences";
 			echo '<ul class="translations">';
 			foreach($translations as $translation){
 				echo '<li class="direct translation correctness'.$translation['correctness'].' '.$translation['lang'].'">';
 				echo $this->Html->link(
 					$translation['text'],
 					array(
-						"controller" => "sentences",
+						"controller" => $controller,
 						"action" => "show",
 						$translation['id']
 					)
@@ -48,6 +49,14 @@ class SentencesHelper extends AppHelper {
 			echo '<ul class="translations">';
 				echo '<li class="form">';
 					echo $this->Form->create('Sentence', array("action" => "save_translation"));
+					if(count($translations) > 0){
+						$tooltipText  = __('Your translation should be <strong>based on</strong> the sentence at the <strong>top</strong>.',true);
+						$tooltipText .= '<br/>';
+						$tooltipText .= __('The other sentences <strong>below</strong> are displayed only so you know what <strong>translations</strong> have already been added.',true);
+						$tooltipText .= '<br/>';
+						$tooltipText .= __('If you understand better one of the translations, you can <strong>click</strong> on it to make it as the <strong>main sentence</strong>, and translate from there.', true);
+						$this->Tooltip->display($tooltipText);
+					}
 					echo $this->Form->input('text', array("label" => __('Translation : ', true)));
 					echo $this->Form->input('id', array("type" => "hidden", "value" => $sentence['id']));
 					echo $this->Form->input('sentence_lang', array("type" => "hidden", "value" => $sentence['lang'])); // for logs
@@ -61,7 +70,7 @@ class SentencesHelper extends AppHelper {
 							$translation['text'],
 							array(
 								"controller" => "sentences",
-								"action" => "show",
+								"action" => "translate",
 								$translation['id']
 							)
 						);
@@ -163,15 +172,15 @@ class SentencesHelper extends AppHelper {
 			}
 			
 			// suggest correction link
-			echo '<li class="'.$this->optionClass('correct').'">';
-			echo $this->Html->link(
-				__('Correct',true),
-				array(
-					"controller" => "suggested_modifications",
-					"action" => "add",
-					$id
-				));
-			echo '</li>';
+			// echo '<li class="'.$this->optionClass('correct').'">';
+			// echo $this->Html->link(
+				// __('Correct',true),
+				// array(
+					// "controller" => "suggested_modifications",
+					// "action" => "add",
+					// $id
+				// ));
+			// echo '</li>';
 			
 			
 			// discuss link

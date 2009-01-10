@@ -8,7 +8,7 @@ class SuggestedModificationsController extends AppController {
 	    parent::beforeFilter(); 
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','add','save_suggestion');
+	    // $this->Auth->allowedActions = array('index','show','add','save_suggestion');
 	}
 	
 	function index() {

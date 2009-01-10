@@ -1,0 +1,35 @@
+a.info{
+    position:relative; /*this is the key*/
+    z-index:24;
+}
+
+a.info:hover{
+	z-index:25;
+}
+
+a.info span{
+	display: none
+}
+
+a.info:hover span{ /*the span will display just on :hover state*/
+    display:block;
+    position:absolute;
+    left:2em; 
+	width:400px;
+    border:1px solid #222;
+    background-color:#444; 
+	color:#ddd;
+	padding: 5px 10px;
+	font-weight: normal;
+}
+	
+a.info img{
+border: 0px;
+vertical-align: middle;
+margin-top: -5px;
+margin-right: 5px;
+}
+
+a.info:hover span strong{
+color: #65FF2D;
+}
