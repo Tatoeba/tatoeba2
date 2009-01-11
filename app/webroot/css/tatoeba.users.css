@@ -89,9 +89,14 @@ width: 200px;
 /* USER MENU */
 #UserMenu{
 float:right;
-font-size: 13px;
+font-size: 15px;
+text-align:right;
 }
 
 #UserMenu span{
 padding-left: 20px;
+}
+
+#UserMenu div{
+margin: 5px;
 }

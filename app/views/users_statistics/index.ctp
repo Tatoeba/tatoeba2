@@ -56,7 +56,7 @@ foreach($userStatistics as $statistics){
 			case 'linkAdded' :
 				__('Number of links added');
 				echo ' ';
-				$tooltip->display(__('Whenever you translate a sentence, it counts as 1 sentence added and 1 link added.',true));
+				$tooltip->display(__('Whenever you translate a sentence, it counts as <strong>1 sentence</strong> added and <strong>2 links added</strong>.',true));
 				break;
 			case 'linkDeleted';
 				__('Number of links deleted');
