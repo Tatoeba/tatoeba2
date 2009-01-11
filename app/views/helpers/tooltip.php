@@ -5,7 +5,7 @@ class TooltipHelper extends AppHelper {
 	function display($text){
 		echo '<a class="info" href="#">';
 		echo $this->Html->image(
-			'help.png', 
+			'attention.png', 
 			array('alt'=> '!')
 		);
 		echo '<span>'.$text.'</span>';
