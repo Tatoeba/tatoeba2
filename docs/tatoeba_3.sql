@@ -168,6 +168,20 @@ CREATE TABLE IF NOT EXISTS `sentence_logs` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `sentences_translations`
+--
+
+CREATE TABLE IF NOT EXISTS `sentences_translations` (
+  `sentence_id` int(11) NOT NULL,
+  `translation_id` int(11) NOT NULL,
+  `distance` smallint(2) NOT NULL default '1',
+  UNIQUE KEY `sentence_id` (`sentence_id`,`translation_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `suggested_modifications`
 --
 
