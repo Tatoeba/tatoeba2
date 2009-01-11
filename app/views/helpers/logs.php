@@ -42,7 +42,27 @@ class LogsHelper extends AppHelper {
 			echo '</td>';
 			
 			echo '<td class="lang">';
-			echo $contribution['sentence_lang'];
+			if($type.$status == 'linkAdded'){
+				echo '>>>';
+				//echo ($contribution['translation_lang'] == '') ? '?' : $contribution['translation_lang'];
+			}else{
+				echo ($contribution['sentence_lang'] == '') ? '?' : $contribution['sentence_lang'];
+			}
+			echo '</td>';
+			
+			echo '<td class="text">';
+			if($type.$status == 'linkAdded'){
+				echo $this->Html->link(
+				$contribution['translation_id'],
+				array(
+					"controller" => "contributions",
+					"action" => "show",
+					$contribution['translation_id']
+				)
+			);
+			}else{
+				echo $contribution['text'];
+			}
 			echo '</td>';
 			
 			echo '<td class="username">';
@@ -55,10 +75,6 @@ class LogsHelper extends AppHelper {
 			
 			echo '<td class="date">';
 			echo $this->Date->ago($contribution['datetime']);
-			echo '</td>';
-			
-			echo '<td class="text">';
-			echo $contribution['text'];
 			echo '</td>';
 		echo '</tr>';
 	}

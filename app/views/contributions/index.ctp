@@ -2,7 +2,7 @@
 <span class="sentenceAdded"><?php __('sentence added') ?></span>
 <span class="linkAdded"><?php __('link added') ?></span>
 <span class="sentenceModified"><?php __('sentence modified') ?></span>
-<span class="correctionSuggested"><?php __('correction suggested') ?></span>
+<?php //<span class="correctionSuggested"> __('correction suggested') </span> ?>
 <span class="sentenceDeleted"><?php __('sentence deleted') ?></span>
 <span class="linkDeleted"><?php __('link deleted') ?></span>
 </div>

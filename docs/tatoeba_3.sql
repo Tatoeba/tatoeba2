@@ -687,7 +687,7 @@ SELECT `sentence_id`
  , `sentence_lang`
  , `translation_id`
  , `translation_lang`
- , `translation_text` as `text`
+ , '' as `text`
  , `action`
  , `user_id`
  , `datetime` FROM `translation_logs` 

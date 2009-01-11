@@ -176,7 +176,6 @@ class SentencesController extends AppController{
 			// detecting language
 			$this->GoogleLanguageApi->text = $this->data['Sentence']['text'];
 			$response = $this->GoogleLanguageApi->detectLang();
-			
 			if($response['isReliable']){
 				$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
 			}else{
@@ -184,18 +183,6 @@ class SentencesController extends AppController{
 			}
 			
 			if($this->Sentence->save($this->data)){
-				// Translation logs
-				$this->data['TranslationLog']['sentence_id'] = $this->data['Translation']['Translation'][0];
-				$this->data['TranslationLog']['sentence_lang'] = $this->data['Sentence']['sentence_lang'];
-				$this->data['TranslationLog']['translation_id'] = $this->Sentence->id;
-				$this->data['TranslationLog']['translation_lang'] = $this->data['Sentence']['lang'];
-				$this->data['TranslationLog']['translation_text'] = $this->data['Sentence']['text'];
-				$this->data['TranslationLog']['action'] = 'insert';
-				$this->data['TranslationLog']['user_id'] = $this->Auth->user('id');
-				$this->data['TranslationLog']['datetime'] = date("Y-m-d H:i:s");
-				$this->data['TranslationLog']['ip'] = $_SERVER['REMOTE_ADDR'];
-				$this->Sentence->TranslationLog->save($this->data);
-				
 				// Sentence logs
 				$this->data['SentenceLog']['sentence_id'] = $this->Sentence->id;
 				$this->data['SentenceLog']['sentence_lang'] = $this->data['Sentence']['lang'];
@@ -205,6 +192,30 @@ class SentencesController extends AppController{
 				$this->data['SentenceLog']['datetime'] = date("Y-m-d H:i:s");
 				$this->data['SentenceLog']['ip'] = $_SERVER['REMOTE_ADDR'];
 				$this->Sentence->SentenceLog->save($this->data);
+				
+				// Translation logs
+				$data['TranslationLog']['sentence_id'] = $this->data['Translation']['Translation'][0];
+				$data['TranslationLog']['sentence_lang'] = $this->data['Sentence']['sentence_lang'];
+				$data['TranslationLog']['translation_id'] = $this->Sentence->id;
+				$data['TranslationLog']['translation_lang'] = $this->data['Sentence']['lang'];
+				$data['TranslationLog']['action'] = 'insert';
+				$data['TranslationLog']['user_id'] = $this->Auth->user('id');
+				$data['TranslationLog']['datetime'] = date("Y-m-d H:i:s");
+				$data['TranslationLog']['ip'] = $_SERVER['REMOTE_ADDR'];
+				$translationLogs[] = $data;
+				
+				// Inverse translation logs
+				$data['TranslationLog']['sentence_id'] = $this->Sentence->id;
+				$data['TranslationLog']['sentence_lang'] = $this->data['Sentence']['lang'];
+				$data['TranslationLog']['translation_id'] = $this->data['Translation']['Translation'][0];
+				$data['TranslationLog']['translation_lang'] = $this->data['Sentence']['sentence_lang'];
+				$data['TranslationLog']['action'] = 'insert';
+				$data['TranslationLog']['user_id'] = $this->Auth->user('id');
+				$data['TranslationLog']['datetime'] = date("Y-m-d H:i:s");
+				$data['TranslationLog']['ip'] = $_SERVER['REMOTE_ADDR'];
+				$translationLogs[] = $data;
+				
+				$this->Sentence->TranslationLog->saveAll($translationLogs);
 				
 				// Confirmation message
 				$this->flash(
