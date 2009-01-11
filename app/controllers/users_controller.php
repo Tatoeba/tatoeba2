@@ -12,7 +12,7 @@ class UsersController extends AppController {
 		// setting actions that are available to everyone, even guests
 		// no need to allow login
 		$this->Auth->allowedActions = array('logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration');
-		//$this->Auth->allowedActions = array('*');
+		$this->Auth->allowedActions = array('*');
 	}
 
 	
@@ -275,17 +275,29 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/SentenceComments');
 		$this->Acl->allow($group, 'controllers/Sentences');
 		$this->Acl->allow($group, 'controllers/Sentences/edit');
+		$this->Acl->allow($group, 'controllers/Sentences/add');
+		$this->Acl->allow($group, 'controllers/Sentences/translate');
+		$this->Acl->allow($group, 'controllers/Sentences/save_translation');
+		$this->Acl->allow($group, 'controllers/Sentences/contribute');
 		
 		//Permissions for trusted_users
 		$group->id = 3;
 		$this->Acl->deny($group, 'controllers');
 		$this->Acl->allow($group, 'controllers/SentenceComments/add');
 		$this->Acl->allow($group, 'controllers/Sentences/edit');
+		$this->Acl->allow($group, 'controllers/Sentences/add');
+		$this->Acl->allow($group, 'controllers/Sentences/translate');
+		$this->Acl->allow($group, 'controllers/Sentences/save_translation');
+		$this->Acl->allow($group, 'controllers/Sentences/contribute');
 		
 	    //Permissions for users
 	    $group->id = 4;
 		$this->Acl->deny($group, 'controllers');
 		$this->Acl->allow($group, 'controllers/SentenceComments/add');
+		$this->Acl->allow($group, 'controllers/Sentences/add');
+		$this->Acl->allow($group, 'controllers/Sentences/translate');
+		$this->Acl->allow($group, 'controllers/Sentences/save_translation');
+		$this->Acl->allow($group, 'controllers/Sentences/contribute');
 	}
 }
 ?>
