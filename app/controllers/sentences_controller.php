@@ -208,8 +208,8 @@ class SentencesController extends AppController{
 				
 				// Confirmation message
 				$this->flash(
-					__('Your translation has been saved. You can add another translation or add a new sentence.',true),
-					'/sentences/contribute/'.$this->data['Translation']['Translation'][0]
+					__('Your translation has been saved.',true),
+					'/sentences/translate/'.$this->data['Translation']['Translation'][0]
 				);
 			}else{
 				$this->flash(

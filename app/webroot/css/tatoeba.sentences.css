@@ -156,6 +156,12 @@ border-top: 1px dotted #D3F3B9;
 
 /* sentences correctness */
 
+ul.translations li a{
+color: #434343;
+font-weight: normal;
+}
+
+/*
 .correctness1 a, .correctness1{
 color: #878787;
 font-weight: normal;
@@ -170,7 +176,7 @@ font-weight: normal;
 color: #159121;
 font-weight: normal;
 }
-
+*/
 
 /* sentences languages */
 .en{
