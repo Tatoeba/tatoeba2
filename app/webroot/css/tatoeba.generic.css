@@ -185,30 +185,6 @@ border-bottom: 5px solid #93D771;
 margin-top: 30px;
 }
 
-.search_bar{
-background: #D3F3B9;
-padding: 7px 15px;
-text-align:center;
-}
-
-#SentenceSearchForm{
-display:inline;
-margin-right: 15px;
-}
-
-#SentenceSearchForm div.input{
-display:inline;
-}
-
-#SentenceSearchForm div.input input{
-width: 50%;
-}
-
-#SentenceSearchForm div.submit{
-display:inline;
-}
-
-
 #flashMessage, #authMessage{
 font-size: 16px;
 border:1px solid #FFA347;
@@ -290,3 +266,36 @@ margin: 10px 0px;
 display: block;
 width: 200px;
 }
+
+
+/* Search bar */
+
+.search_bar{
+background: #D3F3B9;
+padding: 7px 15px;
+text-align:center;
+}
+
+#SentenceSearchForm img{
+vertical-align: middle;
+padding-right: 7px;
+margin-top: -3px;
+}
+
+#SentenceSearchForm{
+display:inline;
+margin-right: 15px;
+}
+
+#SentenceSearchForm div.input{
+display:inline;
+}
+
+#SentenceSearchForm div.input input{
+width: 50%;
+}
+
+#SentenceSearchForm div.submit{
+display:inline;
+}
+
