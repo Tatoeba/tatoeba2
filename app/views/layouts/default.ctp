@@ -75,7 +75,7 @@
 		</div>
 		
 		<!-- ---------------- FOOT---------------- -->
-		<?php echo $this->element('foot'); ?>
+		<?php //echo $this->element('foot'); ?>
 	</div>
 	<?php echo $cakeDebug ?>
 </body>
