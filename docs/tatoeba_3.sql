@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `acos` (
   `lft` int(10) default NULL,
   `rght` int(10) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
 
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS `aros` (
   `lft` int(10) default NULL,
   `rght` int(10) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
 
 
 INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES 
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
   `_delete` varchar(2) NOT NULL default '0',
   PRIMARY KEY  (`id`),
   UNIQUE KEY `ARO_ACO_KEY` (`aro_id`,`aco_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=24 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
 
@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `groups` (
   `created` datetime default NULL,
   `modified` datetime default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
 
 
 INSERT INTO `groups` (`id`, `name`, `created`, `modified`) VALUES 
@@ -128,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `sentences` (
   `modified` datetime default NULL,
   `dico_id` int(11) default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=329502 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
 
@@ -145,7 +145,7 @@ CREATE TABLE IF NOT EXISTS `sentence_comments` (
   `datetime` datetime NOT NULL,
   `last_edit_datetime` datetime default NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=6 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ;
 
 -- --------------------------------------------------------
 
@@ -163,7 +163,7 @@ CREATE TABLE IF NOT EXISTS `sentence_logs` (
   `datetime` datetime NOT NULL,
   `ip` varchar(15) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=74 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
 
@@ -197,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `suggested_modifications` (
   `was_applied` tinyint(1) NOT NULL,
   `ip` varchar(15) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
 
@@ -216,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `translation_logs` (
   `datetime` datetime NOT NULL,
   `ip` varchar(15) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
 
@@ -237,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY  (`id`),
   UNIQUE KEY `login` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=13 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ;
 
 -- --------------------------------------------------------
 
@@ -298,5 +298,4 @@ DROP VIEW IF EXISTS `users_statistics`;
 CREATE VIEW `users_statistics` AS
 SELECT user_id, COUNT(*) as quantity, action, translation_id != '' as is_translation
 FROM contributions
-GROUP BY user_id, action, translation_id = ''
-
+GROUP BY user_id, action, translation_id = '';
