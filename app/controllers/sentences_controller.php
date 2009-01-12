@@ -107,9 +107,9 @@ class SentencesController extends AppController{
 			if($this->Auth->user('group_id') < 3 OR 
 			$this->Auth->user('id') == $sentence['Sentence']['user_id']){
 				$this->Sentence->recursive = 2;
-				$sentence = $this->Sentence->read();
-				$this->set('sentence', $sentence);
-				$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
+				$this->data = $this->Sentence->read();
+				$this->set('sentence', $this->data);
+				$specialOptions = $this->Permissions->getSentencesOptions($this->data['Sentence']['user_id'], $this->Auth->user('id'));
 				$this->set('specialOptions',$specialOptions);
 			}else{
 				$this->flash(
@@ -281,7 +281,7 @@ class SentencesController extends AppController{
 		$this->Sentence->id = $randId;
 		
 		$random = $this->Sentence->read();
-		$random['specialOptions'] = $this->Permissions->getSentencesOptions($random['user_id'], $this->Auth->user('id'));
+		$random['specialOptions'] = $this->Permissions->getSentencesOptions($random['Sentence']['user_id'], $this->Auth->user('id'));
 		
 		return $random;
 	}
