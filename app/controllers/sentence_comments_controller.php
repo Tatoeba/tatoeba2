@@ -47,13 +47,14 @@ class SentenceCommentsController extends AppController {
 	// I don't like how 'show' is exactly the same as 'add' in the controller...
 	// It's just the view that is different...
 	function show($sentence_id){
-		$sentence = new Sentence();
-		$sentence->id = $sentence_id;		
-		$sentence->recursive = 2;
-		$this->set('sentence', $sentence->read());	
+		$s = new Sentence();
+		$s->id = $sentence_id;		
+		$s->recursive = 2;
+		$sentence = $s->read();
+		$this->set('sentence', $sentence);		
 		
 		// checking which options user can access to
-		$specialOptions = $this->Permissions->getSentencesOptions();
+		$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
 		$this->set('specialOptions',$specialOptions);
 	}
 	

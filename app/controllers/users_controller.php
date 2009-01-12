@@ -294,6 +294,7 @@ class UsersController extends AppController {
 	    $group->id = 4;
 		$this->Acl->deny($group, 'controllers');
 		$this->Acl->allow($group, 'controllers/SentenceComments/add');
+		$this->Acl->allow($group, 'controllers/Sentences/edit');
 		$this->Acl->allow($group, 'controllers/Sentences/add');
 		$this->Acl->allow($group, 'controllers/Sentences/translate');
 		$this->Acl->allow($group, 'controllers/Sentences/save_translation');

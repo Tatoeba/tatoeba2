@@ -28,13 +28,13 @@ class SentencesController extends AppController{
 			//$this->Sentence->id = $randId;
 		}else{
 			$this->Sentence->id = $id;
+			$this->Sentence->recursive = 2;
+			$sentence = $this->Sentence->read();
+			$this->set('sentence', $sentence);
 			
 			// checking which options user can access to
-			$specialOptions = $this->Permissions->getSentencesOptions();
+			$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
 			$this->set('specialOptions',$specialOptions);
-			
-			$this->Sentence->recursive = 2;
-			$this->set('sentence',$this->Sentence->read());
 		}
 	}
 	
@@ -59,28 +59,25 @@ class SentencesController extends AppController{
 			$this->GoogleLanguageApi->text = $this->data['Sentence']['text'];
 			$response = $this->GoogleLanguageApi->detectLang();
 			
-			if($response['language']){
-				$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
-				// saving
-				if($this->Sentence->save($this->data)){
-					// Logs
-					$this->data['SentenceLog']['sentence_id'] = $this->Sentence->id;
-					$this->data['SentenceLog']['sentence_lang'] = $response['language'];
-					$this->data['SentenceLog']['sentence_text'] = $this->data['Sentence']['text'];
-					$this->data['SentenceLog']['action'] = 'insert';
-					$this->data['SentenceLog']['user_id'] = $this->Auth->user('id');
-					$this->data['SentenceLog']['datetime'] = date("Y-m-d H:i:s");
-					$this->data['SentenceLog']['ip'] = $_SERVER['REMOTE_ADDR'];
-					$this->Sentence->SentenceLog->save($this->data);
-					
-					// Confirmation message
-					$this->flash(
-						__('Your sentence has been saved. You can add a translation for it or add another new sentence.',true), 
-						'/sentences/contribute/'.$this->Sentence->id
-					);
-				}
-			}else{
-				echo 'Problem with language detection';
+			$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
+			$this->data['Sentence']['user_id'] = $this->Auth->user('id');
+			// saving
+			if($this->Sentence->save($this->data)){
+				// Logs
+				$this->data['SentenceLog']['sentence_id'] = $this->Sentence->id;
+				$this->data['SentenceLog']['sentence_lang'] = $response['language'];
+				$this->data['SentenceLog']['sentence_text'] = $this->data['Sentence']['text'];
+				$this->data['SentenceLog']['action'] = 'insert';
+				$this->data['SentenceLog']['user_id'] = $this->Auth->user('id');
+				$this->data['SentenceLog']['datetime'] = date("Y-m-d H:i:s");
+				$this->data['SentenceLog']['ip'] = $_SERVER['REMOTE_ADDR'];
+				$this->Sentence->SentenceLog->save($this->data);
+				
+				// Confirmation message
+				$this->flash(
+					__('Your sentence has been saved. You can add a translation for it or add another new sentence.',true), 
+					'/sentences/contribute/'.$this->Sentence->id
+				);
 			}
 		}
 	}
@@ -106,11 +103,20 @@ class SentencesController extends AppController{
 	function edit($id){
 		$this->Sentence->id = $id;
 		if(empty($this->data)){
-			$this->Sentence->recursive = 2;
-			$this->data = $this->Sentence->read();
-			$this->set('sentence', $this->Sentence->read());
-			$specialOptions = $this->Permissions->getSentencesOptions();
-			$this->set('specialOptions',$specialOptions);	
+			$sentence = $this->Sentence->read();
+			if($this->Auth->user('group_id') < 3 OR 
+			$this->Auth->user('id') == $sentence['Sentence']['user_id']){
+				$this->Sentence->recursive = 2;
+				$sentence = $this->Sentence->read();
+				$this->set('sentence', $sentence);
+				$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
+				$this->set('specialOptions',$specialOptions);
+			}else{
+				$this->flash(
+					__('This sentence was not added by you. You can only edit sentences you have added.',true),
+					'/sentences/show/'.$id
+				);
+			}
 		}else{
 			if($this->Sentence->save($this->data)){				
 				// Sentence logs
@@ -144,12 +150,12 @@ class SentencesController extends AppController{
 			//$this->Sentence->id = $randId;
 		}else{
 			$this->Sentence->id = $id;
-			
-			$this->set('sentence',$this->Sentence->read());
+			$sentence = $this->Sentence->read();
+			$this->set('sentence',$sentence);
 			$this->data['Sentence']['id'] = $id;
 			
 			// checking which options user can access to
-			$specialOptions = $this->Permissions->getSentencesOptions();
+			$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
 			$this->set('specialOptions',$specialOptions);
 		}
 	}
@@ -180,6 +186,8 @@ class SentencesController extends AppController{
 			}else{
 				$this->data['Sentence']['lang'] = null;
 			}
+			
+			$this->data['Sentence']['user_id'] = $this->Auth->user('id');
 			
 			if($this->Sentence->save($this->data)){
 				// Sentence logs
@@ -258,7 +266,7 @@ class SentencesController extends AppController{
 			}
 			
 			// checking which options user can access to
-			$specialOptions = $this->Permissions->getSentencesOptions();
+			$specialOptions = $this->Permissions->getSentencesOptions(0,1);
 			$this->set('specialOptions',$specialOptions);
 		}else{
 			$this->pageTitle = __('Tatoeba search',true);
@@ -273,7 +281,7 @@ class SentencesController extends AppController{
 		$this->Sentence->id = $randId;
 		
 		$random = $this->Sentence->read();
-		$random['specialOptions'] = $this->Permissions->getSentencesOptions();
+		$random['specialOptions'] = $this->Permissions->getSentencesOptions($random['user_id'], $this->Auth->user('id'));
 		
 		return $random;
 	}
@@ -282,7 +290,7 @@ class SentencesController extends AppController{
 		if(isset($id)){
 			$this->Sentence->id = $id;
 			$sentence = $this->Sentence->read();
-			$sentence['specialOptions'] = $this->Permissions->getSentencesOptions();
+			$sentence['specialOptions'] = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
 		}else{
 			$sentence = $this->random();	
 		}
