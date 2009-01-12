@@ -1,9 +1,10 @@
 <?php
 class LuceneComponent extends Object{
 	function search($query, $lang_src = null, $lang_dest = null, $page = null){
+		$query = $this->processQuery($query); // take out the small words
 		$query = urlencode($query);
-		//$luceneUrl = "http://tatoeba.fr:28080/tatoeba/search.jsp?query=";
-		$luceneUrl = "http://localhost:8080/tatoeba/search.jsp?query=";
+		$luceneUrl = "http://tatoeba.fr:28080/tatoeba/search.jsp?query=";
+		//$luceneUrl = "http://localhost:8080/tatoeba/search.jsp?query=";
 		$url = $luceneUrl . $query;
 		
 		if($lang_src != null){
@@ -33,6 +34,19 @@ class LuceneComponent extends Object{
 		$response = $json['responseData'];
 		
 		return $response;
+	}
+	
+	function processQuery($query){
+		$query = rtrim($query); // deleting unnecessary spaces at the end and beginning
+		$query = preg_replace("!\[!","",$query);
+		$query = preg_replace("!\]!","",$query);
+		if(!preg_match('!^"!', $query) AND !preg_match('!"$!', $query)){
+			$query = preg_replace("!^[a-z]{1,3} !i", " ", $query); // deleting little words at the beginning
+			$query = preg_replace("! [a-z]{1,3}\.?$!i", " ", $query); // deleting little words at the end
+			$query = preg_replace("! [a-z]{1,3} (([a-z]{1,3} )?){1,5}!i", " ", $query); // deleting little words in the middle
+			if(rtrim($query) == ''){ $query = '"'.rtrim($query).'"'; }
+		}
+		return $query;
 	}
 }
 ?>

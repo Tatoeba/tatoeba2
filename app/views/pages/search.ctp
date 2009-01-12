@@ -35,8 +35,8 @@ echo $html->link(
 		"?query=I would like"
 	));
 echo '</h2>';
-__('This will search for sentences containing "I" or "would" or "like".');
-
+__('This will search for sentences containing "would" or "like". ');
+__('Words with <strong>3 characters or less are ignored</strong> if they are not inside of quotes, which is why "I" is not taken into account here.');
 
 echo '<h2>';
 __('Search with AND operator : ');
