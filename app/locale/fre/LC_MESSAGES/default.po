@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-01-13 20:02+0100\n"
-"PO-Revision-Date: 2009-01-13 20:15+0100\n"
+"POT-Creation-Date: 2009-01-14 02:44+0100\n"
+"PO-Revision-Date: 2009-01-14 02:46+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
 
-#: \app_controller.php:18
+#: \app_controller.php:21
 msgid "You need to be logged in."
 msgstr "Vous devez vous connecter."
 
@@ -50,11 +50,11 @@ msgstr "Votre commentaire a été sauvegardé"
 
 #: \controllers\sentences_controller.php:78
 msgid "Your sentence has been saved. You can add a translation for it or add another new sentence."
-msgstr ""
+msgstr "Votre phrase a été sauvegardée. Vous pouvez ajouter une traduction ou ajouter une nouvelle phrase."
 
 #: \controllers\sentences_controller.php:116
 msgid "This sentence was not added by you. You can only edit sentences you have added."
-msgstr ""
+msgstr "Cette phrase n'a pas été ajoutée par vous. Vous pouvez seulement éditer des phrase que vous avez ajouté."
 
 #: \controllers\sentences_controller.php:134
 msgid "The sentence has been updated."
@@ -86,7 +86,7 @@ msgstr "La suggestion a été sauvegardée"
 
 #: \controllers\suggested_modifications_controller.php:56
 msgid "The suggestion could not be saved. Please, try again."
-msgstr ""
+msgstr "La suggestion n'a pas pu être sauvegardée. Veuillez réessayer."
 
 #: \controllers\suggested_modifications_controller.php:63
 msgid "Invalid SuggestedModification"
@@ -234,7 +234,7 @@ msgid "Logs for : "
 msgstr "Historique pour : "
 
 #: \views\contributions\show.ctp:17
-#: \views\elements\menu.ctp:13
+#: \views\elements\menu.ctp:18
 #: \views\helpers\sentences.php:200
 msgid "Logs"
 msgstr "Historique"
@@ -247,23 +247,23 @@ msgstr "Il n'y a pas d'historique pour cette phrase"
 msgid "CakePHP: the rapid development php framework"
 msgstr "CakePHP: le framework pour développement php rapìde"
 
-#: \views\elements\menu.ctp:9
+#: \views\elements\menu.ctp:14
 msgid "Home"
 msgstr "Accueil"
 
-#: \views\elements\menu.ctp:10
+#: \views\elements\menu.ctp:15
 msgid "Browse"
 msgstr "Parcourir"
 
-#: \views\elements\menu.ctp:11
+#: \views\elements\menu.ctp:16
 msgid "Search"
 msgstr "Recherche"
 
-#: \views\elements\menu.ctp:12
+#: \views\elements\menu.ctp:17
 msgid "Contribute"
 msgstr "Contribuer"
 
-#: \views\elements\menu.ctp:14
+#: \views\elements\menu.ctp:19
 #: \views\helpers\sentences.php:189
 #: \views\sentence_comments\show.ctp:20
 #: \views\sentences\edit.ctp:23
@@ -271,40 +271,41 @@ msgstr "Contribuer"
 msgid "Comments"
 msgstr "Commentaires"
 
-#: \views\elements\menu.ctp:15
+#: \views\elements\menu.ctp:20
 msgid "Statistics"
 msgstr "Statistiques"
 
-#: \views\elements\search_bar.ctp:9
+#: \views\elements\search_bar.ctp:15
 msgid "search"
 msgstr "recherche"
 
-#: \views\elements\search_bar.ctp:11
+#: \views\elements\search_bar.ctp:17
 msgid "show examples"
 msgstr "exemples"
 
-#: \views\elements\top1.ctp:11
+#: \views\elements\top1.ctp:14
 msgid "Log out"
 msgstr "Se déconnecter"
 
-#: \views\elements\top1.ctp:23
+#: \views\elements\top1.ctp:26
 msgid "Visitor(s) : "
 msgstr "Visiteur(s) : "
 
-#: \views\elements\top2.ctp:9
+#: \views\elements\top2.ctp:15
 msgid "Welcome"
 msgstr "Bienvenue"
 
-#: \views\elements\top2.ctp:15
+#: \views\elements\top2.ctp:21
 msgid "Edit my information"
 msgstr "Modifier mes informations"
 
-#: \views\elements\top2.ctp:22
+#: \views\elements\top2.ctp:28
 #: \views\pages\access_denied.ctp:4
+#: \views\users\login.ctp:19
 msgid "Log in"
 msgstr "Se connecter"
 
-#: \views\elements\top2.ctp:31
+#: \views\elements\top2.ctp:37
 #: \views\users\register.ctp:10
 msgid "Register"
 msgstr "S'inscrire"
@@ -331,8 +332,6 @@ msgstr ""
 #: \views\groups\edit.ctp:14
 #: \views\groups\index.ctp:41
 #: \views\helpers\sentences.php:212
-#: \views\suggested_modifications\edit.ctp:21
-#: \views\suggested_modifications\index.ctp:61
 #: \views\users\edit.ctp:20
 #: \views\users\index.ctp:61
 msgid "Delete"
@@ -341,9 +340,6 @@ msgstr "Supprimer"
 #: \views\groups\edit.ctp:14
 #: \views\groups\index.ctp:41
 #: \views\groups\view.ctp:29
-#: \views\suggested_modifications\edit.ctp:21
-#: \views\suggested_modifications\index.ctp:61
-#: \views\suggested_modifications\view.ctp:54
 #: \views\users\edit.ctp:20
 #: \views\users\index.ctp:61
 #: \views\users\view.ctp:54
@@ -355,41 +351,37 @@ msgid "Groups"
 msgstr ""
 
 #: \views\groups\index.ctp:6
-#: \views\suggested_modifications\index.ctp:6
 #: \views\users\index.ctp:6
 msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
 msgstr ""
 
 #: \views\groups\index.ctp:15
-#: \views\suggested_modifications\index.ctp:20
 #: \views\users\index.ctp:20
 msgid "Actions"
 msgstr ""
 
 #: \views\groups\index.ctp:39
-#: \views\suggested_modifications\index.ctp:59
 #: \views\users\index.ctp:59
 msgid "View"
 msgstr ""
 
 #: \views\groups\index.ctp:40
 #: \views\helpers\sentences.php:165
-#: \views\suggested_modifications\index.ctp:60
 #: \views\users\index.ctp:60
 msgid "Edit"
-msgstr ""
+msgstr "Éditer"
 
 #: \views\groups\index.ctp:48
-#: \views\suggested_modifications\index.ctp:68
+#: \views\helpers\sentences.php:260
 #: \views\users\index.ctp:68
 msgid "previous"
-msgstr ""
+msgstr "précédent"
 
 #: \views\groups\index.ctp:50
-#: \views\suggested_modifications\index.ctp:70
+#: \views\helpers\sentences.php:284
 #: \views\users\index.ctp:70
 msgid "next"
-msgstr ""
+msgstr "suivant"
 
 #: \views\groups\index.ctp:54
 #: \views\groups\view.ctp:31
@@ -406,7 +398,6 @@ msgid "Group"
 msgstr ""
 
 #: \views\groups\view.ctp:4
-#: \views\suggested_modifications\view.ctp:4
 #: \views\users\view.ctp:4
 msgid "Id"
 msgstr ""
@@ -434,6 +425,18 @@ msgstr "Même si vous pouvez commenter tout un gruope de phrases, gardez en têt
 #: \views\helpers\comments.php:22
 msgid "Add a comment : "
 msgstr "Ajouter un commentaire : "
+
+#: \views\helpers\date.php:23
+msgid "%s day(s) ago"
+msgstr "il y a %s jour(s)"
+
+#: \views\helpers\date.php:25
+msgid "%s hour(s) ago"
+msgstr "il y a %s heure(s)"
+
+#: \views\helpers\date.php:27
+msgid "%s mn(s) ago"
+msgstr "il y a %s mn(s)"
 
 #: \views\helpers\languages.php:6
 msgid "English"
@@ -488,20 +491,12 @@ msgid "Translate"
 msgstr "Traduire"
 
 #: \views\helpers\sentences.php:253
-msgid "Go to id : "
-msgstr ""
-
-#: \views\helpers\sentences.php:260
-msgid "<< previous"
-msgstr "<< précédent"
+msgid "Show sentence nº : "
+msgstr "Montrer phrase nº : "
 
 #: \views\helpers\sentences.php:272
 msgid "random"
 msgstr "au hasard"
-
-#: \views\helpers\sentences.php:284
-msgid "next >>"
-msgstr "suivant >>"
 
 #: \views\helpers\tooltip.php:16
 msgid "Meaning of the colors :"
@@ -535,7 +530,7 @@ msgstr "Phrase aléatoire"
 msgid "Latest contributions"
 msgstr "Dernières contributions"
 
-#: \views\pages\home.ctp:36
+#: \views\pages\home.ctp:35
 msgid "Latest comments"
 msgstr "Derniers commentaires"
 
@@ -655,8 +650,8 @@ msgid "Example sentence : "
 msgstr "Phrase d'exemple : "
 
 #: \views\sentences\show.ctp:19
-msgid "Latest log"
-msgstr ""
+msgid "Latest contribution"
+msgstr "Dernière contribution"
 
 #: \views\sentences\show.ctp:28
 msgid "There are no logs for this sentence."
@@ -685,77 +680,6 @@ msgstr "Traduisez s'il vous plaît : "
 #: \views\suggested_modifications\add.ctp:2
 msgid "Correction for : "
 msgstr "Correction pour : "
-
-#: \views\suggested_modifications\edit.ctp:4
-#: \views\suggested_modifications\view.ctp:53
-msgid "Edit SuggestedModification"
-msgstr ""
-
-#: \views\suggested_modifications\edit.ctp:22
-#: \views\suggested_modifications\view.ctp:55
-msgid "List SuggestedModifications"
-msgstr ""
-
-#: \views\suggested_modifications\edit.ctp:23
-#: \views\suggested_modifications\index.ctp:75
-#: \views\suggested_modifications\view.ctp:57
-msgid "List Sentences"
-msgstr ""
-
-#: \views\suggested_modifications\edit.ctp:24
-#: \views\suggested_modifications\index.ctp:76
-#: \views\suggested_modifications\view.ctp:58
-msgid "New Sentence"
-msgstr ""
-
-#: \views\suggested_modifications\index.ctp:2
-msgid "SuggestedModifications"
-msgstr ""
-
-#: \views\suggested_modifications\index.ctp:74
-#: \views\suggested_modifications\view.ctp:56
-msgid "New SuggestedModification"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:2
-msgid "SuggestedModification"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:9
-msgid "Sentence"
-msgstr "Phrase"
-
-#: \views\suggested_modifications\view.ctp:14
-msgid "Sentence Lang"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:19
-msgid "Correction Text"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:24
-msgid "Submit User Id"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:29
-msgid "Submit Datetime"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:34
-msgid "Apply User Id"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:39
-msgid "Apply Datetime"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:44
-msgid "Was Applied"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:54
-msgid "Delete SuggestedModification"
-msgstr ""
 
 #: \views\users\add.ctp:4
 msgid "Add User"
@@ -816,15 +740,15 @@ msgstr "Nouveau mot de passe"
 #: \views\users\my_profile.ctp:9
 #: \views\users\view.ctp:19
 msgid "Email"
-msgstr ""
+msgstr "Email"
 
 #: \views\users\my_profile.ctp:10
 msgid "Save"
-msgstr ""
+msgstr "Enregistrer"
 
 #: \views\users\new_password.ctp:4
 msgid "Send"
-msgstr ""
+msgstr "Envoyer"
 
 #: \views\users\register.ctp:6
 msgid "Username :"
@@ -840,7 +764,7 @@ msgstr "Confimez le mot de passe : "
 
 #: \views\users\register.ctp:9
 msgid "Email :"
-msgstr ""
+msgstr "Email :"
 
 #: \views\users\view.ctp:2
 msgid "User"
@@ -938,6 +862,12 @@ msgstr "inconnu"
 msgid "Debug setting does not allow access to this url."
 msgstr "Les paramètres de debug ne permettent pas l'accès à cette URL."
 
+#~ msgid "<< previous"
+#~ msgstr "<< précédent"
+#~ msgid "next >>"
+#~ msgstr "suivant >>"
+#~ msgid "Sentence"
+#~ msgstr "Phrase"
 #~ msgid "example"
 #~ msgstr "exemple"
 #~ msgid "Show"

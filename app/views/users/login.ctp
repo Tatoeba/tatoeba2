@@ -14,9 +14,9 @@ echo '<div id="Login">';
 	echo $form->create('User', array('action' => 'login'));
 	echo $form->input('username', array('label' => __('Username : ',true)));
 	echo $form->input('password', array('label' => __('Password : ',true)));
-	__('Remember me');
-	echo $form->checkbox('rememberMe');
-	echo $form->end('log in');
+	echo $form->checkbox('rememberMe'); __('Remember me');
+	echo '<br/>';
+	echo $form->end(__('Log in',true));
 
 	echo '<div id="PasswordForgotten">';
 	echo $html->link(

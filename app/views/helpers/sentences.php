@@ -250,14 +250,14 @@ class SentencesHelper extends AppHelper {
 		echo '<div class="navigation">';
 			$input = $this->params['pass'][0];
 			echo $this->Form->create('Sentence', array("action" => "goTo", "type" => "get"));
-			echo $this->Form->input('sentence_id', array("label" => __('Go to id : ', true), "value" => $input));
+			echo $this->Form->input('sentence_id', array("label" => __('Show sentence nº : ', true), "value" => $input));
 			echo $this->Form->end(__('OK',true));
 			echo '<ul>';
 			
 			// previous
 			echo '<li class="option">';
 			echo $this->Html->link(
-				__('<< previous',true), 
+				'<< '.__('previous',true), 
 				array(
 					"controller" => "sentences",
 					"action" => $action,
@@ -281,7 +281,7 @@ class SentencesHelper extends AppHelper {
 			// next
 			echo '<li class="option">';
 			echo $this->Html->link(
-				__('next >>',true), 
+				__('next',true).' >>', 
 				array(
 					"controller" => "sentences",
 					"action" => $action,

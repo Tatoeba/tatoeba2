@@ -30,7 +30,6 @@ echo '</h2>';
 echo $this->element('latest_contributions');
 echo '</div>';
 
-
 echo '<div class="element">';
 echo '<h2>';
 __('Latest comments');

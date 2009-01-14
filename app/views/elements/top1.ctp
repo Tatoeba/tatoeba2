@@ -44,6 +44,9 @@ if (isset($this->params['lang'])) {
 		$path  = '/'.$code.'/';
 		$path .= ($this->params['controller'] == 'pages') ? '' : $this->params['controller'].'/';
 		$path .= ($this->params['action'] == 'display') ? '' : $this->params['action'].'/';
+		foreach($this->params['pass'] as $extraParam){
+			$path .= $extraParam.'/';
+		}
 		// probably not the best way to do it but never mind
 		
 		echo $html->link( __($language,true), $path);

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-01-13 20:02+0100\n"
+"POT-Creation-Date: 2009-01-14 02:44+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: \app_controller.php:18
+#: \app_controller.php:21
 msgid "You need to be logged in."
 msgstr ""
 
@@ -233,7 +233,7 @@ msgid "Logs for : "
 msgstr ""
 
 #: \views\contributions\show.ctp:17
-#: \views\elements\menu.ctp:13
+#: \views\elements\menu.ctp:18
 #: \views\helpers\sentences.php:200
 msgid "Logs"
 msgstr ""
@@ -246,23 +246,23 @@ msgstr ""
 msgid "CakePHP: the rapid development php framework"
 msgstr ""
 
-#: \views\elements\menu.ctp:9
+#: \views\elements\menu.ctp:14
 msgid "Home"
 msgstr ""
 
-#: \views\elements\menu.ctp:10
+#: \views\elements\menu.ctp:15
 msgid "Browse"
 msgstr ""
 
-#: \views\elements\menu.ctp:11
+#: \views\elements\menu.ctp:16
 msgid "Search"
 msgstr ""
 
-#: \views\elements\menu.ctp:12
+#: \views\elements\menu.ctp:17
 msgid "Contribute"
 msgstr ""
 
-#: \views\elements\menu.ctp:14
+#: \views\elements\menu.ctp:19
 #: \views\helpers\sentences.php:189
 #: \views\sentence_comments\show.ctp:20
 #: \views\sentences\edit.ctp:23
@@ -270,40 +270,41 @@ msgstr ""
 msgid "Comments"
 msgstr ""
 
-#: \views\elements\menu.ctp:15
+#: \views\elements\menu.ctp:20
 msgid "Statistics"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:9
+#: \views\elements\search_bar.ctp:15
 msgid "search"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:11
+#: \views\elements\search_bar.ctp:17
 msgid "show examples"
 msgstr ""
 
-#: \views\elements\top1.ctp:11
+#: \views\elements\top1.ctp:14
 msgid "Log out"
 msgstr ""
 
-#: \views\elements\top1.ctp:23
+#: \views\elements\top1.ctp:26
 msgid "Visitor(s) : "
 msgstr ""
 
-#: \views\elements\top2.ctp:9
+#: \views\elements\top2.ctp:15
 msgid "Welcome"
 msgstr ""
 
-#: \views\elements\top2.ctp:15
+#: \views\elements\top2.ctp:21
 msgid "Edit my information"
 msgstr ""
 
-#: \views\elements\top2.ctp:22
+#: \views\elements\top2.ctp:28
 #: \views\pages\access_denied.ctp:4
+#: \views\users\login.ctp:19
 msgid "Log in"
 msgstr ""
 
-#: \views\elements\top2.ctp:31
+#: \views\elements\top2.ctp:37
 #: \views\users\register.ctp:10
 msgid "Register"
 msgstr ""
@@ -330,8 +331,6 @@ msgstr ""
 #: \views\groups\edit.ctp:14
 #: \views\groups\index.ctp:41
 #: \views\helpers\sentences.php:212
-#: \views\suggested_modifications\edit.ctp:21
-#: \views\suggested_modifications\index.ctp:61
 #: \views\users\edit.ctp:20
 #: \views\users\index.ctp:61
 msgid "Delete"
@@ -340,9 +339,6 @@ msgstr ""
 #: \views\groups\edit.ctp:14
 #: \views\groups\index.ctp:41
 #: \views\groups\view.ctp:29
-#: \views\suggested_modifications\edit.ctp:21
-#: \views\suggested_modifications\index.ctp:61
-#: \views\suggested_modifications\view.ctp:54
 #: \views\users\edit.ctp:20
 #: \views\users\index.ctp:61
 #: \views\users\view.ctp:54
@@ -354,38 +350,34 @@ msgid "Groups"
 msgstr ""
 
 #: \views\groups\index.ctp:6
-#: \views\suggested_modifications\index.ctp:6
 #: \views\users\index.ctp:6
 msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
 msgstr ""
 
 #: \views\groups\index.ctp:15
-#: \views\suggested_modifications\index.ctp:20
 #: \views\users\index.ctp:20
 msgid "Actions"
 msgstr ""
 
 #: \views\groups\index.ctp:39
-#: \views\suggested_modifications\index.ctp:59
 #: \views\users\index.ctp:59
 msgid "View"
 msgstr ""
 
 #: \views\groups\index.ctp:40
 #: \views\helpers\sentences.php:165
-#: \views\suggested_modifications\index.ctp:60
 #: \views\users\index.ctp:60
 msgid "Edit"
 msgstr ""
 
 #: \views\groups\index.ctp:48
-#: \views\suggested_modifications\index.ctp:68
+#: \views\helpers\sentences.php:260
 #: \views\users\index.ctp:68
 msgid "previous"
 msgstr ""
 
 #: \views\groups\index.ctp:50
-#: \views\suggested_modifications\index.ctp:70
+#: \views\helpers\sentences.php:284
 #: \views\users\index.ctp:70
 msgid "next"
 msgstr ""
@@ -405,7 +397,6 @@ msgid "Group"
 msgstr ""
 
 #: \views\groups\view.ctp:4
-#: \views\suggested_modifications\view.ctp:4
 #: \views\users\view.ctp:4
 msgid "Id"
 msgstr ""
@@ -432,6 +423,18 @@ msgstr ""
 
 #: \views\helpers\comments.php:22
 msgid "Add a comment : "
+msgstr ""
+
+#: \views\helpers\date.php:23
+msgid "%s day(s) ago"
+msgstr ""
+
+#: \views\helpers\date.php:25
+msgid "%s hour(s) ago"
+msgstr ""
+
+#: \views\helpers\date.php:27
+msgid "%s mn(s) ago"
 msgstr ""
 
 #: \views\helpers\languages.php:6
@@ -487,19 +490,11 @@ msgid "Translate"
 msgstr ""
 
 #: \views\helpers\sentences.php:253
-msgid "Go to id : "
-msgstr ""
-
-#: \views\helpers\sentences.php:260
-msgid "<< previous"
+msgid "Show sentence nº : "
 msgstr ""
 
 #: \views\helpers\sentences.php:272
 msgid "random"
-msgstr ""
-
-#: \views\helpers\sentences.php:284
-msgid "next >>"
 msgstr ""
 
 #: \views\helpers\tooltip.php:16
@@ -534,7 +529,7 @@ msgstr ""
 msgid "Latest contributions"
 msgstr ""
 
-#: \views\pages\home.ctp:36
+#: \views\pages\home.ctp:35
 msgid "Latest comments"
 msgstr ""
 
@@ -654,7 +649,7 @@ msgid "Example sentence : "
 msgstr ""
 
 #: \views\sentences\show.ctp:19
-msgid "Latest log"
+msgid "Latest contribution"
 msgstr ""
 
 #: \views\sentences\show.ctp:28
@@ -683,77 +678,6 @@ msgstr ""
 
 #: \views\suggested_modifications\add.ctp:2
 msgid "Correction for : "
-msgstr ""
-
-#: \views\suggested_modifications\edit.ctp:4
-#: \views\suggested_modifications\view.ctp:53
-msgid "Edit SuggestedModification"
-msgstr ""
-
-#: \views\suggested_modifications\edit.ctp:22
-#: \views\suggested_modifications\view.ctp:55
-msgid "List SuggestedModifications"
-msgstr ""
-
-#: \views\suggested_modifications\edit.ctp:23
-#: \views\suggested_modifications\index.ctp:75
-#: \views\suggested_modifications\view.ctp:57
-msgid "List Sentences"
-msgstr ""
-
-#: \views\suggested_modifications\edit.ctp:24
-#: \views\suggested_modifications\index.ctp:76
-#: \views\suggested_modifications\view.ctp:58
-msgid "New Sentence"
-msgstr ""
-
-#: \views\suggested_modifications\index.ctp:2
-msgid "SuggestedModifications"
-msgstr ""
-
-#: \views\suggested_modifications\index.ctp:74
-#: \views\suggested_modifications\view.ctp:56
-msgid "New SuggestedModification"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:2
-msgid "SuggestedModification"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:9
-msgid "Sentence"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:14
-msgid "Sentence Lang"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:19
-msgid "Correction Text"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:24
-msgid "Submit User Id"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:29
-msgid "Submit Datetime"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:34
-msgid "Apply User Id"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:39
-msgid "Apply Datetime"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:44
-msgid "Was Applied"
-msgstr ""
-
-#: \views\suggested_modifications\view.ctp:54
-msgid "Delete SuggestedModification"
 msgstr ""
 
 #: \views\users\add.ctp:4

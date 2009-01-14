@@ -16,7 +16,7 @@ if($sentence != null){
 	
 	// LOGS
 	echo '<h2>';
-	__('Latest log');
+	__('Latest contribution');
 	echo ' ';
 	$tooltip->displayLogsColors(false);
 	echo '</h2>';

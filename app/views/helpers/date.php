@@ -20,11 +20,11 @@ class DateHelper extends AppHelper{
 		if(intval($now-$timestamp) > intval(3600*24*7)){
 			return date("M jS Y", $timestamp).', '.date("H:i",$timestamp);
 		}elseif($days > 0){
-			return $days.' day(s) ago';
+			return sprintf(__('%s day(s) ago',true), $days);
 		}elseif($hours > 0){
-			return $hours. ' hour(s) ago';
+			return sprintf(__('%s hour(s) ago',true), $hours);
 		}else{
-			return $minutes.' mn(s) ago';
+			return sprintf(__('%s mn(s) ago',true), $minutes);
 		}
 	}
 }
