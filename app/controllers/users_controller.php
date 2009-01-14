@@ -126,8 +126,7 @@ class UsersController extends AppController {
 					$this->Mailer->send();
 					
 					$this->flash(
-						__('Thank you for registering. To validate your registration, 
-						click on the link in the email that has been sent to you.',true), 
+						__('Thank you for registering. To validate your registration, click on the link in the email that has been sent to you.',true), 
 						'/users/login'
 					);
 				}else{

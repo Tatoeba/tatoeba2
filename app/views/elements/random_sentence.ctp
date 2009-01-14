@@ -1,5 +1,8 @@
 <?php
 $random = $this->requestAction('/sentences/random');
+if (isset($this->params['lang'])) { 
+	Configure::write('Config.language',  $this->params['lang']); 
+}
 
 $sentence = $random['Sentence'];
 $translations = $random['Translation'];

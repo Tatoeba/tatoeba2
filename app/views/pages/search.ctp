@@ -2,7 +2,7 @@
 echo '<h2>';
 __('Search one word : ');
 echo $html->link(
-	__('example',true),
+	'example',
 	array(
 		"controller" => "sentences",
 		"action" => "search",
@@ -15,7 +15,7 @@ __('Nothing much to explain here. This will search for sentences containing the 
 echo '<h2>';
 __('Using quotes : ');
 echo $html->link(
-	__('"I would like"',true),
+	'"I would like"',
 	array(
 		"controller" => "sentences",
 		"action" => "search",
@@ -28,7 +28,7 @@ __('This will search for sentences containing "I would like". If you remove the 
 echo '<h2>';
 __('Search with OR operator : ');	
 echo $html->link(
-	__('I would like',true),
+	'I would like',
 	array(
 		"controller" => "sentences",
 		"action" => "search",
@@ -41,7 +41,7 @@ __('Words with <strong>3 characters or less are ignored</strong> if they are not
 echo '<h2>';
 __('Search with AND operator : ');
 echo $html->link(
-	__('+here +there',true),
+	'+here +there',
 	array(
 		"controller" => "sentences",
 		"action" => "search",
@@ -53,7 +53,7 @@ __('This will search for sentences containing "here" and "there".');
 echo '<h2>';
 __('Search with NOT operator : ');	
 echo $html->link(
-	__('here -there',true),
+	'here -there',
 	array(
 		"controller" => "sentences",
 		"action" => "search",
@@ -65,7 +65,7 @@ __('This will search for sentences containing "here" but not "there".');
 echo '<h2>';
 __('Grouping : ');
 echo $html->link(
-	__('+like +(television sleep)',true),
+	'+like +(television sleep)',
 	array(
 		"controller" => "sentences",
 		"action" => "search",

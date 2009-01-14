@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2008-11-30 00:57+0100\n"
-"PO-Revision-Date: 2008-11-30 01:09+0100\n"
+"POT-Creation-Date: 2009-01-13 20:02+0100\n"
+"PO-Revision-Date: 2009-01-13 20:15+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
 
-#: \app_controller.php:17
+#: \app_controller.php:18
 msgid "You need to be logged in."
 msgstr "Vous devez vous connecter."
 
@@ -44,153 +44,268 @@ msgstr "Id invalide pour Group."
 msgid "Group deleted"
 msgstr "Group supprimé"
 
-#: \controllers\sentence_comments_controller.php:43
+#: \controllers\sentence_comments_controller.php:74
 msgid "Your comment has been saved."
 msgstr "Votre commentaire a été sauvegardé"
 
-#: \controllers\sentences_controller.php:61
-msgid "Your sentence has been saved."
-msgstr "Votre phrase a été sauvegardée."
+#: \controllers\sentences_controller.php:78
+msgid "Your sentence has been saved. You can add a translation for it or add another new sentence."
+msgstr ""
 
-#: \controllers\sentences_controller.php:105
-msgid "The sentence has been updated"
+#: \controllers\sentences_controller.php:116
+msgid "This sentence was not added by you. You can only edit sentences you have added."
+msgstr ""
+
+#: \controllers\sentences_controller.php:134
+msgid "The sentence has been updated."
 msgstr "La phrase a été mise à jour."
 
-#: \controllers\sentences_controller.php:155
-msgid "The translation has been saved"
-msgstr "Votre traduction a été sauvegardée"
+#: \controllers\sentences_controller.php:229
+msgid "Your translation has been saved."
+msgstr "Votre traduction a été sauvegardée."
 
-#: \controllers\sentences_controller.php:166
+#: \controllers\sentences_controller.php:234
+msgid "A problem occured. Your translation has not been saved."
+msgstr "Un problème est survenu. Votre traduction n'a pas été sauvegardée."
+
+#: \controllers\sentences_controller.php:246
 msgid "Tatoeba search : "
 msgstr "Recherche Tatoeba : "
 
-#: \controllers\sentences_controller.php:208
+#: \controllers\sentences_controller.php:272
 msgid "Tatoeba search"
 msgstr "Recherche Tatoeba"
 
-#: \controllers\suggested_modifications_controller.php:14
+#: \controllers\suggested_modifications_controller.php:21
 msgid "Invalid SuggestedModification."
 msgstr ""
 
-#: \controllers\suggested_modifications_controller.php:36
+#: \controllers\suggested_modifications_controller.php:53
 msgid "The suggestion has been saved"
 msgstr "La suggestion a été sauvegardée"
 
-#: \controllers\suggested_modifications_controller.php:39
+#: \controllers\suggested_modifications_controller.php:56
 msgid "The suggestion could not be saved. Please, try again."
 msgstr ""
 
-#: \controllers\suggested_modifications_controller.php:46
+#: \controllers\suggested_modifications_controller.php:63
 msgid "Invalid SuggestedModification"
 msgstr ""
 
-#: \controllers\suggested_modifications_controller.php:51
+#: \controllers\suggested_modifications_controller.php:68
 msgid "The SuggestedModification has been saved"
 msgstr ""
 
-#: \controllers\suggested_modifications_controller.php:54
+#: \controllers\suggested_modifications_controller.php:71
 msgid "The SuggestedModification could not be saved. Please, try again."
 msgstr ""
 
-#: \controllers\suggested_modifications_controller.php:66
+#: \controllers\suggested_modifications_controller.php:83
 msgid "Invalid id for SuggestedModification"
 msgstr ""
 
-#: \controllers\suggested_modifications_controller.php:70
+#: \controllers\suggested_modifications_controller.php:87
 msgid "SuggestedModification deleted"
 msgstr ""
 
-#: \controllers\users_controller.php:27
+#: \controllers\users_controller.php:28
 msgid "Invalid User."
 msgstr ""
 
-#: \controllers\users_controller.php:37;54
+#: \controllers\users_controller.php:38;55
 msgid "The User has been saved"
 msgstr ""
 
-#: \controllers\users_controller.php:40;57
+#: \controllers\users_controller.php:41;58
 msgid "The User could not be saved. Please, try again."
 msgstr ""
 
-#: \controllers\users_controller.php:49
+#: \controllers\users_controller.php:50
 msgid "Invalid User"
 msgstr ""
 
-#: \controllers\users_controller.php:69
+#: \controllers\users_controller.php:70
 msgid "Invalid id for User"
 msgstr ""
 
-#: \controllers\users_controller.php:73
+#: \controllers\users_controller.php:74
 msgid "User deleted"
 msgstr ""
 
-#: \controllers\users_controller.php:101
+#: \controllers\users_controller.php:112
+msgid "Tatoeba registration"
+msgstr "Inscription Tatoeba"
+
+#: \controllers\users_controller.php:113
+msgid "Dear %s,"
+msgstr "Bonjour %s,"
+
+#: \controllers\users_controller.php:115
+msgid "Welcome to Tatoeba and thank you for your interest in this project!"
+msgstr "Bienvenue sur Tatoeba et merci de votre intérêt pour ce projet!"
+
+#: \controllers\users_controller.php:117
+msgid "You can validate your registration by clicking on this link :"
+msgstr "Vous pouvez valider votre inscription en cliquant sur ce lien :"
+
+#: \controllers\users_controller.php:129
+msgid "Thank you for registering. To validate your registration, click on the link in the email that has been sent to you."
+msgstr "Merci de vous être inscrit. Pour valider votre inscription, cliquez sur le lien dans l'email qui vous a été envoyé."
+
+#: \controllers\users_controller.php:138
 msgid "Passwords do not match"
 msgstr "Les mots de passe ne correspondent pas"
 
-#: \controllers\users_controller.php:120
+#: \controllers\users_controller.php:151
+msgid "Your registration is already validated."
+msgstr "Votre inscription est déjà validée."
+
+#: \controllers\users_controller.php:162
+msgid "Your registration has been validated."
+msgstr "Votre inscription a été validée."
+
+#: \controllers\users_controller.php:164
+msgid "A problem occured. Your registration could not be validated."
+msgstr "Un problème est survenu. Votre inscription n'a pas pu être validée."
+
+#: \controllers\users_controller.php:167
+msgid "Non valid registration link."
+msgstr "URL d'inscription non valide."
+
+#: \controllers\users_controller.php:187
 msgid "Tatoeba, new password"
 msgstr "Tatoeba, nouveau mot de passe"
 
-#: \controllers\users_controller.php:121
+#: \controllers\users_controller.php:188
 msgid "Your login : "
 msgstr "Votre login : "
 
-#: \controllers\users_controller.php:124
+#: \controllers\users_controller.php:191
 msgid "Your new password : "
 msgstr "Votre nouveau mot de passe : "
 
-#: \controllers\users_controller.php:135
-msgid "There is no registered user with such email."
-msgstr "Il n'y a pas de membres possédant cet email."
+#: \controllers\users_controller.php:202
+msgid "Your new password has been sent at "
+msgstr "Votre nouveau mot de passe a été envoyé à  "
+
+#: \controllers\users_controller.php:208
+msgid "There is no registered user with this email : "
+msgstr "Il n'y a pas de membre possédant cet email : "
+
+#: \controllers\users_controller.php:231
+msgid "New password has been saved."
+msgstr "Nouveau mot de passe enregistré."
+
+#: \controllers\users_controller.php:237
+msgid "Email saved : "
+msgstr "Email sauvegardé : "
+
+#: \controllers\users_controller.php:250;256
+msgid "No changes have been applied."
+msgstr "Aucun changement n'a été appliqué."
+
+#: \views\contributions\index.ctp:2
+#: \views\helpers\tooltip.php:19
+msgid "sentence added"
+msgstr "phrase ajoutée"
+
+#: \views\contributions\index.ctp:3
+#: \views\helpers\tooltip.php:20
+msgid "link added"
+msgstr "lien ajouté"
+
+#: \views\contributions\index.ctp:4
+#: \views\helpers\tooltip.php:29
+msgid "sentence modified"
+msgstr "phrase modifiée"
+
+#: \views\contributions\index.ctp:6
+#: \views\helpers\tooltip.php:24
+msgid "sentence deleted"
+msgstr "phrase supprimée"
+
+#: \views\contributions\index.ctp:7
+#: \views\helpers\tooltip.php:25
+msgid "link deleted"
+msgstr "lien supprimé"
+
+#: \views\contributions\show.ctp:2
+msgid "Logs for : "
+msgstr "Historique pour : "
+
+#: \views\contributions\show.ctp:17
+#: \views\elements\menu.ctp:13
+#: \views\helpers\sentences.php:200
+msgid "Logs"
+msgstr "Historique"
+
+#: \views\contributions\show.ctp:29
+msgid "There is no log for this sentence"
+msgstr "Il n'y a pas d'historique pour cette phrase"
 
 #: \views\elements\foot.ctp:4
 msgid "CakePHP: the rapid development php framework"
 msgstr "CakePHP: le framework pour développement php rapìde"
 
-#: \views\elements\menu.ctp:11
+#: \views\elements\menu.ctp:9
 msgid "Home"
 msgstr "Accueil"
 
-#: \views\elements\menu.ctp:22
-msgid "Show sentences"
-msgstr "Montrer des phrases"
+#: \views\elements\menu.ctp:10
+msgid "Browse"
+msgstr "Parcourir"
 
-#: \views\elements\menu.ctp:31
-#: \views\sentences\add.ctp:5
-msgid "Add a sentence"
-msgstr "Ajouter une phrase"
-
-#: \views\elements\menu.ctp:41
-msgid "Random sentence"
-msgstr "Phrase aléatoire"
-
-#: \views\elements\menu.ctp:52
-msgid "Latest activities"
-msgstr "Dernières actions"
-
-#: \views\elements\menu.ctp:61
+#: \views\elements\menu.ctp:11
 msgid "Search"
 msgstr "Recherche"
 
-#: \views\elements\menu.ctp:76
-msgid "Comments on sentences"
-msgstr "Commentaires sur les phrases"
+#: \views\elements\menu.ctp:12
+msgid "Contribute"
+msgstr "Contribuer"
+
+#: \views\elements\menu.ctp:14
+#: \views\helpers\sentences.php:189
+#: \views\sentence_comments\show.ctp:20
+#: \views\sentences\edit.ctp:23
+#: \views\suggested_modifications\add.ctp:23
+msgid "Comments"
+msgstr "Commentaires"
+
+#: \views\elements\menu.ctp:15
+msgid "Statistics"
+msgstr "Statistiques"
+
+#: \views\elements\search_bar.ctp:9
+msgid "search"
+msgstr "recherche"
+
+#: \views\elements\search_bar.ctp:11
+msgid "show examples"
+msgstr "exemples"
 
 #: \views\elements\top1.ctp:11
 msgid "Log out"
 msgstr "Se déconnecter"
 
-#: \views\elements\top2.ctp:8
+#: \views\elements\top1.ctp:23
+msgid "Visitor(s) : "
+msgstr "Visiteur(s) : "
+
+#: \views\elements\top2.ctp:9
 msgid "Welcome"
 msgstr "Bienvenue"
 
-#: \views\elements\top2.ctp:13
+#: \views\elements\top2.ctp:15
+msgid "Edit my information"
+msgstr "Modifier mes informations"
+
+#: \views\elements\top2.ctp:22
 #: \views\pages\access_denied.ctp:4
 msgid "Log in"
 msgstr "Se connecter"
 
-#: \views\elements\top2.ctp:20
+#: \views\elements\top2.ctp:31
+#: \views\users\register.ctp:10
 msgid "Register"
 msgstr "S'inscrire"
 
@@ -215,7 +330,7 @@ msgstr ""
 
 #: \views\groups\edit.ctp:14
 #: \views\groups\index.ctp:41
-#: \views\sentences\show.ctp:18
+#: \views\helpers\sentences.php:212
 #: \views\suggested_modifications\edit.ctp:21
 #: \views\suggested_modifications\index.ctp:61
 #: \views\users\edit.ctp:20
@@ -240,7 +355,6 @@ msgid "Groups"
 msgstr ""
 
 #: \views\groups\index.ctp:6
-#: \views\latest_activities\index.ctp:6
 #: \views\suggested_modifications\index.ctp:6
 #: \views\users\index.ctp:6
 msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
@@ -259,21 +373,19 @@ msgid "View"
 msgstr ""
 
 #: \views\groups\index.ctp:40
-#: \views\sentences\show.ctp:31
+#: \views\helpers\sentences.php:165
 #: \views\suggested_modifications\index.ctp:60
 #: \views\users\index.ctp:60
 msgid "Edit"
 msgstr ""
 
 #: \views\groups\index.ctp:48
-#: \views\latest_activities\index.ctp:58
 #: \views\suggested_modifications\index.ctp:68
 #: \views\users\index.ctp:68
 msgid "previous"
 msgstr ""
 
 #: \views\groups\index.ctp:50
-#: \views\latest_activities\index.ctp:60
 #: \views\suggested_modifications\index.ctp:70
 #: \views\users\index.ctp:70
 msgid "next"
@@ -315,111 +427,264 @@ msgstr ""
 msgid "Delete Group"
 msgstr ""
 
-#: \views\latest_activities\index.ctp:2
-msgid "LatestActivities"
-msgstr ""
+#: \views\helpers\comments.php:21
+msgid "Even though you can comment on the whole group of sentences, keep in mind that your comment will be <strong>linked only to the main sentence</strong> (at the top)."
+msgstr "Même si vous pouvez commenter tout un gruope de phrases, gardez en tête que votre commentaire sera <strong>lié seulement à la phrase principale</strong> (celle située tout en haut)."
 
-#: \views\latest_activities\index.ctp:64
-msgid "New LatestActivity"
-msgstr ""
+#: \views\helpers\comments.php:22
+msgid "Add a comment : "
+msgstr "Ajouter un commentaire : "
 
-#: \views\pages\access_denied.ctp:1
-msgid "You are now allowed to view this page. Please log in first"
-msgstr ""
+#: \views\helpers\languages.php:6
+msgid "English"
+msgstr "Anglais"
 
-#: \views\pages\home.ctp:1
-msgid "Tatoeba : Collecting example sentences"
-msgstr ""
+#: \views\helpers\languages.php:7
+msgid "French"
+msgstr "Français"
 
-#: \views\pages\home.ctp:3
-msgid "Welcome on Tatoeba Project"
-msgstr ""
+#: \views\helpers\languages.php:8
+msgid "Japanese"
+msgstr "Japonais"
 
-#: \views\pages\home.ctp:5
-msgid "This project aims to build a multilingual corpus. In other words, to collect sentences translated in several languages."
-msgstr ""
+#: \views\helpers\languages.php:9
+msgid "German"
+msgstr "Allemand"
 
-#: \views\sentence_comments\add.ctp:2
-msgid "Add comment for sentence"
-msgstr ""
+#: \views\helpers\languages.php:10
+msgid "Spanish"
+msgstr "Espagnol"
 
-#: \views\sentence_comments\add.ctp:5
-#: \views\sentences\show.ctp:120
-msgid "Add a comment"
-msgstr "Ajouter un commentaire"
+#: \views\helpers\sentences.php:53
+msgid "Your translation should be <strong>based on the main sentence</strong> (the one at the <strong>top</strong>)."
+msgstr "Votre traduction doit <strong>se baser sur la phrase principale</strong> (celle tout en <strong>haut</strong>)."
 
-#: \views\sentence_comments\index.ctp:13
-msgid "Show"
-msgstr "Montrer"
+#: \views\helpers\sentences.php:55
+msgid "The other sentences <strong>below</strong> are displayed only so you know what <strong>translations</strong> have already been added."
+msgstr "Les autres phrases <strong>en-dessous</strong> sont affichées seulement pour que vous sachiez quelles <strong>traductions</strong> ont déjà été ajoutées."
 
-#: \views\sentences\edit.ctp:2
-msgid "Edit this sentence"
-msgstr "Éditer cette phrase"
+#: \views\helpers\sentences.php:57
+msgid "If you understand better one of the translations, you can <strong>click</strong> on it to make it as the <strong>main sentence</strong>, and translate from there."
+msgstr "Si vous comprenez mieux une des traductions, vous pouvez <strong>cliquer</strong> dessus pour en faire la <strong>phrase principale</strong>, et traduire à partir de là."
 
-#: \views\sentences\edit.ctp:8
-msgid "Save sentence"
-msgstr "Enregistrer phrase"
+#: \views\helpers\sentences.php:60
+msgid "Translation : "
+msgstr "Traduction : "
 
-#: \views\sentences\index.ctp:1
-msgid "Sentences in Tatoeba"
-msgstr "Phrases dans Tatoeba"
+#: \views\helpers\sentences.php:63;100;122;254
+msgid "OK"
+msgstr "OK"
 
-#: \views\sentences\index.ctp:3
-msgid "Sentences"
-msgstr "Phrases"
+#: \views\helpers\sentences.php:99
+msgid "Correction : "
+msgstr "Correction : "
 
-#: \views\sentences\show.ctp:2
-msgid "Translations for : "
-msgstr "Traduction pour : "
+#: \views\helpers\sentences.php:121
+msgid "Modification : "
+msgstr "Modification : "
 
-#: \views\sentences\show.ctp:7
-#: \views\suggested_modifications\view.ctp:9
-msgid "Sentence"
-msgstr "Phrase"
-
-#: \views\sentences\show.ctp:42
+#: \views\helpers\sentences.php:153
 msgid "Translate"
 msgstr "Traduire"
 
-#: \views\sentences\show.ctp:53
-msgid "Suggest correction"
-msgstr "Suggérer une correction"
+#: \views\helpers\sentences.php:253
+msgid "Go to id : "
+msgstr ""
 
-#: \views\sentences\show.ctp:64
-msgid "Add comment"
+#: \views\helpers\sentences.php:260
+msgid "<< previous"
+msgstr "<< précédent"
+
+#: \views\helpers\sentences.php:272
+msgid "random"
+msgstr "au hasard"
+
+#: \views\helpers\sentences.php:284
+msgid "next >>"
+msgstr "suivant >>"
+
+#: \views\helpers\tooltip.php:16
+msgid "Meaning of the colors :"
+msgstr "Signification des couleurs : "
+
+#: \views\helpers\tooltip.php:36
+msgid "The entries are displayed from the most recent to the oldest."
+msgstr "Les entrées sont affichées de la plus récente à la plus ancienne."
+
+#: \views\pages\access_denied.ctp:1
+msgid "You are now allowed to view this page. Please log in first"
+msgstr "Vous n'êtes pas autorisé(e) à visualiser cette page. Veuillez d'abord vous connecter."
+
+#: \views\pages\home.ctp:3
+msgid "Tatoeba : Collecting example sentences"
+msgstr "Tatoeba : Collection de phrases d'exemple"
+
+#: \views\pages\home.ctp:7
+msgid "Welcome on Tatoeba Project"
+msgstr "Bienvenue sur Tatoeba Project"
+
+#: \views\pages\home.ctp:11
+msgid "This project aims to build a multilingual corpus. In other words, to collect sentences translated in several languages."
+msgstr "Ce projet a pour but de construire un corpus multilingue. En d'autres termes, de collecter des phrases traduites dans plusieurs langues."
+
+#: \views\pages\home.ctp:18
+msgid "Random sentence"
+msgstr "Phrase aléatoire"
+
+#: \views\pages\home.ctp:26
+msgid "Latest contributions"
+msgstr "Dernières contributions"
+
+#: \views\pages\home.ctp:36
+msgid "Latest comments"
+msgstr "Derniers commentaires"
+
+#: \views\pages\search.ctp:3
+msgid "Search one word : "
+msgstr "Recherche d'un mot : "
+
+#: \views\pages\search.ctp:12
+msgid "Nothing much to explain here. This will search for sentences containing the word \"example\"."
+msgstr "Pas grand chose à expliquer ici. Ceci recherchera les phrases contenant le mot \"example\"."
+
+#: \views\pages\search.ctp:16
+msgid "Using quotes : "
+msgstr "Utilisation de guillemets : "
+
+#: \views\pages\search.ctp:25
+msgid "This will search for sentences containing \"I would like\". If you remove the quotes, see below."
+msgstr "Ceci cherchera les phrase contenant \"I would like\". Si vous retirez les guillemets, voire ci-dessous."
+
+#: \views\pages\search.ctp:29
+msgid "Search with OR operator : "
+msgstr "Recherche avec l'opérateur OR : "
+
+#: \views\pages\search.ctp:38
+msgid "This will search for sentences containing \"would\" or \"like\". "
+msgstr "Ceci cherchera les phrases contenant \"would\" ou \"like\"."
+
+#: \views\pages\search.ctp:39
+msgid "Words with <strong>3 characters or less are ignored</strong> if they are not inside of quotes, which is why \"I\" is not taken into account here."
+msgstr "Les mots avec <strong>3 lettres ou moins sont ignorés</strong> s'ils ne sont pas à l'intérieur de guillemets, c'est pourquoi \"I\" n'est pas pris en compte ici."
+
+#: \views\pages\search.ctp:42
+msgid "Search with AND operator : "
+msgstr "Recherche avec l'opérateur AND : "
+
+#: \views\pages\search.ctp:51
+msgid "This will search for sentences containing \"here\" and \"there\"."
+msgstr "Ceci chechera les phrases contenant \"here\" et \"there\"."
+
+#: \views\pages\search.ctp:54
+msgid "Search with NOT operator : "
+msgstr "Recherche avec l'opérateur NOT : "
+
+#: \views\pages\search.ctp:63
+msgid "This will search for sentences containing \"here\" but not \"there\"."
+msgstr "Ceci cherchera les phrases contenant \"here\" mais pas \"there\"."
+
+#: \views\pages\search.ctp:66
+msgid "Grouping : "
+msgstr "Regroupement : "
+
+#: \views\pages\search.ctp:75
+msgid "This will search for sentences containing \"like\" and \"music\", or \"like\" and \"sleep\"."
+msgstr "Ceci cherchera les phrases contenant \"like\" et \"music\", ou \"like\" et \"sleep\"."
+
+#: \views\sentence_comments\add.ctp:2
+msgid "Add comment for sentence"
+msgstr "Ajouter commentaire pour phrase "
+
+#: \views\sentence_comments\index.ctp:35
+msgid "There are no comments in this language"
+msgstr "Il n'y a pas de commentaires dans cette langue"
+
+#: \views\sentence_comments\show.ctp:2
+msgid "Comments on the sentence : "
+msgstr "Commentaires sur les phrases : "
+
+#: \views\sentence_comments\show.ctp:14
+#: \views\sentences\edit.ctp:17
+#: \views\sentences\show.ctp:35
+#: \views\suggested_modifications\add.ctp:17
+msgid "Add a comment"
 msgstr "Ajouter un commentaire"
 
-#: \views\sentences\show.ctp:74
-msgid "Translation(s)"
-msgstr "Traduction(s)"
+#: \views\sentence_comments\show.ctp:22
+#: \views\sentences\show.ctp:42
+msgid "If you see any mistake, don't hesitate to post a comment about it!"
+msgstr "Si vous remarquez des fautes, n'hésitez pas à poster un commentaire!"
 
-#: \views\sentences\show.ctp:91
-msgid "There are no translations for now."
-msgstr "Il n'y a pas de traductions pour l'instant."
-
-#: \views\sentences\show.ctp:95
-msgid "Add a translation"
-msgstr "Ajouter une traduction"
-
-#: \views\sentences\show.ctp:105
-msgid "Comment(s)"
-msgstr "Commentaire(s)"
-
-#: \views\sentences\show.ctp:116
+#: \views\sentence_comments\show.ctp:31
+#: \views\sentences\edit.ctp:34
+#: \views\suggested_modifications\add.ctp:34
 msgid "There are no comments for now."
 msgstr "Il n'y a pas de commentaires pour l'instant."
 
-#: \views\sentences\translate.ctp:2
-msgid "Translate this sentence"
-msgstr "Traduire cette phrase"
+#: \views\sentences\contribute.ctp:5
+msgid "Add a new sentence"
+msgstr "Ajouter une nouvelle phrase"
 
-#: \views\sentences\translate.ctp:9
-msgid "Save translation"
-msgstr "Enregistrer traduction"
+#: \views\sentences\contribute.ctp:12
+msgid "Sentence : "
+msgstr "Phrase : "
 
-#: \views\suggested_modifications\add.ctp:4
-msgid "Add SuggestedModification"
+#: \views\sentences\contribute.ctp:23
+msgid "Translate the sentence"
+msgstr "Traduisez cette phrase"
+
+#: \views\sentences\contribute.ctp:27
+msgid "show another sentence"
+msgstr "montrer une autre phrase"
+
+#: \views\sentences\edit.ctp:2
+msgid "Is it correct : "
+msgstr "Est-ce correct : "
+
+#: \views\sentences\edit.ctp:38
+#: \views\suggested_modifications\add.ctp:38
+msgid "You can add a comment if you are registered and logged in."
+msgstr "Vous pouvez ajouter un commentaire si vous êtes inscrit et connecté."
+
+#: \views\sentences\search.ctp:22
+msgid "No results for this search"
+msgstr "Pas de résultat pour cette recherche"
+
+#: \views\sentences\show.ctp:3
+msgid "Example sentence : "
+msgstr "Phrase d'exemple : "
+
+#: \views\sentences\show.ctp:19
+msgid "Latest log"
 msgstr ""
+
+#: \views\sentences\show.ctp:28
+msgid "There are no logs for this sentence."
+msgstr "Il n'y a pas d'historique pour cette phrase."
+
+#: \views\sentences\show.ctp:40
+msgid "Latest comment"
+msgstr "Dernier commentaire"
+
+#: \views\sentences\show.ctp:52
+msgid "There are no comments for this sentence."
+msgstr "Il n'y a pas de commentaires pour cette phrase."
+
+#: \views\sentences\show.ctp:55
+msgid "Sentence does not exist : "
+msgstr "Cette phrase n'existe pas : "
+
+#: \views\sentences\show.ctp:61
+msgid "There is no sentence with id "
+msgstr "Il n'y a pas de phrases ayant pour id : "
+
+#: \views\sentences\translate.ctp:2
+msgid "Please translate : "
+msgstr "Traduisez s'il vous plaît : "
+
+#: \views\suggested_modifications\add.ctp:2
+msgid "Correction for : "
+msgstr "Correction pour : "
 
 #: \views\suggested_modifications\edit.ctp:4
 #: \views\suggested_modifications\view.ctp:53
@@ -455,6 +720,10 @@ msgstr ""
 #: \views\suggested_modifications\view.ctp:2
 msgid "SuggestedModification"
 msgstr ""
+
+#: \views\suggested_modifications\view.ctp:9
+msgid "Sentence"
+msgstr "Phrase"
 
 #: \views\suggested_modifications\view.ctp:14
 msgid "Sentence Lang"
@@ -512,13 +781,66 @@ msgstr ""
 msgid "New User"
 msgstr ""
 
+#: \views\users\login.ctp:6
+msgid "Click here to register"
+msgstr "Cliquez ici pour vous inscrire"
+
+#: \views\users\login.ctp:15
+msgid "Username : "
+msgstr "Nom d'utilisateur : "
+
+#: \views\users\login.ctp:16
+msgid "Password : "
+msgstr "Mot de passe : "
+
+#: \views\users\login.ctp:17
+msgid "Remember me"
+msgstr "Connexion automatique"
+
+#: \views\users\login.ctp:23
+msgid "Password forgotten?"
+msgstr "Mot de passe oublié?"
+
+#: \views\users\my_profile.ctp:3
+msgid "You can change your information here"
+msgstr "Vous pouvez modifier vos informations ici"
+
+#: \views\users\my_profile.ctp:7
+msgid "Old password"
+msgstr "Ancient mot de passe"
+
+#: \views\users\my_profile.ctp:8
+msgid "New password"
+msgstr "Nouveau mot de passe"
+
+#: \views\users\my_profile.ctp:9
+#: \views\users\view.ctp:19
+msgid "Email"
+msgstr ""
+
+#: \views\users\my_profile.ctp:10
+msgid "Save"
+msgstr ""
+
 #: \views\users\new_password.ctp:4
 msgid "Send"
 msgstr ""
 
-#: \views\users\register.ctp:1
-msgid "Registration"
-msgstr "Inscription"
+#: \views\users\register.ctp:6
+msgid "Username :"
+msgstr "Nom d'utilisateur :"
+
+#: \views\users\register.ctp:7
+msgid "Password :"
+msgstr "Mot de passe :"
+
+#: \views\users\register.ctp:8
+msgid "Confirm password :"
+msgstr "Confimez le mot de passe : "
+
+#: \views\users\register.ctp:9
+msgid "Email :"
+msgstr ""
 
 #: \views\users\view.ctp:2
 msgid "User"
@@ -531,10 +853,6 @@ msgstr "Nom d'utilisateur"
 #: \views\users\view.ctp:14
 msgid "Password"
 msgstr "Mot de passe"
-
-#: \views\users\view.ctp:19
-msgid "Email"
-msgstr ""
 
 #: \views\users\view.ctp:24
 msgid "Lang"
@@ -554,12 +872,92 @@ msgstr ""
 
 #: \views\users\view.ctp:54
 msgid "Delete User"
-msgstr ""
+msgstr "Supprimer Utilisateur"
+
+#: \views\users_statistics\index.ctp:4
+msgid "Your Statistics"
+msgstr "Vos statistiques"
+
+#: \views\users_statistics\index.ctp:6
+msgid "Statistics for anonym users"
+msgstr "Statistiques des utlisateurs anonymes"
+
+#: \views\users_statistics\index.ctp:45
+msgid "Number of sentences added"
+msgstr "Nombre de phrases ajoutées"
+
+#: \views\users_statistics\index.ctp:48
+msgid "Number of sentences modified"
+msgstr "Nombre de phrases modifiées"
+
+#: \views\users_statistics\index.ctp:51
+msgid "Number of sentences deleted"
+msgstr "Nombre de phrases supprimées"
+
+#: \views\users_statistics\index.ctp:54
+msgid "Number of corrections suggested"
+msgstr "Nombre de corrections suggérées"
+
+#: \views\users_statistics\index.ctp:57
+msgid "Number of links added"
+msgstr "Nombre de liens ajoutés"
+
+#: \views\users_statistics\index.ctp:59
+msgid "Whenever you translate a sentence, it counts as <strong>1 sentence</strong> added and <strong>2 links added</strong>."
+msgstr "Lorsque vous traduisez une phrase, cela compte comme <strong>1 phrase</strong> ajoutée et <strong>2 liens</strong> ajoutés."
+
+#: \views\users_statistics\index.ctp:62
+msgid "Number of links deleted"
+msgstr "Nombre de phrases supprimées"
+
+#: \views\users_statistics\index.ctp:77
+msgid "Total"
+msgstr "Total"
+
+#: \views\users_statistics\index.ctp:94
+msgid "Statistics of all contributors"
+msgstr "Statistiques de tous les utilisateurs"
+
+#: \views\users_statistics\index.ctp:101
+msgid "rank"
+msgstr "rang"
+
+#: \views\users_statistics\index.ctp:105
+msgid "user"
+msgstr "utlisateur"
+
+#: \views\users_statistics\index.ctp:109
+msgid "total contributions"
+msgstr "contributions totales"
+
+#: \views\users_statistics\index.ctp:124
+msgid "unknown"
+msgstr "inconnu"
 
 #: \webroot\test.php:101
 msgid "Debug setting does not allow access to this url."
 msgstr "Les paramètres de debug ne permettent pas l'accès à cette URL."
 
+#~ msgid "example"
+#~ msgstr "exemple"
+#~ msgid "Show"
+#~ msgstr "Montrer"
+#~ msgid "Edit this sentence"
+#~ msgstr "Éditer cette phrase"
+#~ msgid "Sentences in Tatoeba"
+#~ msgstr "Phrases dans Tatoeba"
+#~ msgid "Sentences"
+#~ msgstr "Phrases"
+#~ msgid "Suggest correction"
+#~ msgstr "Suggérer une correction"
+#~ msgid "Add comment"
+#~ msgstr "Ajouter un commentaire"
+#~ msgid "Translation(s)"
+#~ msgstr "Traduction(s)"
+#~ msgid "There are no translations for now."
+#~ msgstr "Il n'y a pas de traductions pour l'instant."
+#~ msgid "Add a translation"
+#~ msgstr "Ajouter une traduction"
 #~ msgid "CakePHP: the rapid development php framework:"
 #~ msgstr "CakePHP: le framework pour développement php rapìde:"
 #~ msgid "This is just for a test"

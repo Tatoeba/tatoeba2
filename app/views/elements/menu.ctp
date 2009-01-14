@@ -1,7 +1,12 @@
+<?php
+if (isset($this->params['lang'])) { 
+	Configure::write('Config.language',  $this->params['lang']); 
+}
+?>
+
 <div id="menu">
 <ul>
 <?php
-
 $lang = (isset($this->params['lang']))? $this->params['lang'].'/' : '';
 
 // array containing the elements of the menu : $title => $route

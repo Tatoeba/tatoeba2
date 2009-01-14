@@ -33,7 +33,7 @@
 	</title>
 	<?php
 		//echo $html->meta('icon');
-
+		
 		echo $html->css('tatoeba.generic');
 		echo $html->css('tatoeba.sentences');
 		echo $html->css('tatoeba.logs');
@@ -41,7 +41,7 @@
 		echo $html->css('tatoeba.statistics');
 		echo $html->css('tatoeba.users');
 		echo $html->css('tatoeba.tooltip');
-
+		
 		echo $scripts_for_layout;
 	?>
 </head>

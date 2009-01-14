@@ -1,5 +1,8 @@
 <?php
 $onlineVisitors = $this->requestAction('/visitors/online');
+if (isset($this->params['lang'])) { 
+	Configure::write('Config.language',  $this->params['lang']); 
+}
 ?>
 
 <div id="top1">

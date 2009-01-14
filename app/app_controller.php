@@ -11,7 +11,7 @@ class AppController extends Controller {
         } 
 		
 		//Configure AuthComponent
-		$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
+		$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login', 'lang' => $this->params['lang']);
 		$this->Auth->logoutRedirect = array('controller' => 'pages', 'action' => 'display', 'home');
 		$this->Auth->allow('display');
 		$this->Auth->authorize = 'actions';
@@ -39,6 +39,13 @@ class AppController extends Controller {
 		$this->redirect('/'.$this->params['lang'].$to);
 		exit;
 	}
+	
+	function redirect($url = null, $full = false) { 
+        if (isset($this->params['lang']) && is_array($url)) { 
+            $url['lang'] = $this->params['lang']; 
+        } 
+        return parent::redirect($url, $full); 
+    }
 	
 /**
  * Rebuild the Acl based on the current controllers in the application

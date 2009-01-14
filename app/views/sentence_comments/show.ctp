@@ -1,5 +1,5 @@
 <?php
-$this->pageTitle = __('Comments the sentence : ',true) . $sentence['Sentence']['text'];
+$this->pageTitle = __('Comments on the sentence : ',true) . $sentence['Sentence']['text'];
 
 // navigation (previous, random, next)
 $sentences->displayNavigation($sentence['Sentence']['id']);

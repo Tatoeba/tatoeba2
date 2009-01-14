@@ -1,3 +1,9 @@
+<?php
+if (isset($this->params['lang'])) { 
+	Configure::write('Config.language',  $this->params['lang']); 
+}
+?>
+
 <div class="search_bar">
 
 <?php

@@ -102,7 +102,7 @@ echo '<tr>';
 	echo '</th>';
 
 	echo '<th>';
-	__('username');
+	__('user');
 	echo '</th>';
 
 	echo '<th>';

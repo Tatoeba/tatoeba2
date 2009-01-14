@@ -1,3 +1,9 @@
+<?php
+if (isset($this->params['lang'])) { 
+	Configure::write('Config.language',  $this->params['lang']); 
+}
+?>
+
 <div id="top2">
 	<div class="tatoeba_title"><strong>TATOEBA</strong> <em>Project</em></div>
 	

@@ -1,4 +1,10 @@
 <?php
+if (isset($this->params['lang'])) { 
+	Configure::write('Config.language',  $this->params['lang']); 
+}
+?>
+
+<?php
 $comments = $this->requestAction('/sentence_comments/latest');
 
 echo '<table class="comments">';
