@@ -33,23 +33,32 @@ if (isset($this->params['lang'])) {
 	<?php
 	$languages = array(
 		'eng' => 'English', 
-		'fre' => 'Français', 
-		'spa' => 'Español', 
-		'jpn' => '日本語',
-		'deu' => 'Deutsch',
-		'ita' => 'Italiano'
+		'fre' => 'Français'
+		//, 
+		//'spa' => 'Español', 
+		//'jpn' => '日本語',
+		//'deu' => 'Deutsch',
+		//'ita' => 'Italiano'
 	);
 	
 	foreach($languages as $code => $language){
 		$path  = '/'.$code.'/';
-		$path .= ($this->params['controller'] == 'pages') ? '' : $this->params['controller'].'/';
-		$path .= ($this->params['action'] == 'display') ? '' : $this->params['action'].'/';
-		foreach($this->params['pass'] as $extraParam){
-			$path .= $extraParam.'/';
+		if($this->params['controller'] != 'pages'){
+			
+			$path .= $this->params['controller'].'/';
+			
+			if($this->params['action'] == 'display'){
+			
+				$path .= $this->params['action'].'/';
+				
+				foreach($this->params['pass'] as $extraParam){
+					$path .= $extraParam.'/';
+				}
+			}
 		}
 		// probably not the best way to do it but never mind
 		
-		echo $html->link( __($language,true), $path);
+		echo $html->link($language, $path);
 		echo ' | ';
 	}
 	?>
