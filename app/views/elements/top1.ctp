@@ -47,7 +47,7 @@ if (isset($this->params['lang'])) {
 			
 			$path .= $this->params['controller'].'/';
 			
-			if($this->params['action'] == 'display'){
+			if($this->params['action'] != 'display'){
 			
 				$path .= $this->params['action'].'/';
 				

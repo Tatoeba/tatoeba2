@@ -1,4 +1,8 @@
 <?php 
+echo '<h1>';
+__('Examples of search');
+echo '</h1>';
+
 echo '<h2>';
 __('Search one word : ');
 echo $html->link(
@@ -9,7 +13,7 @@ echo $html->link(
 		"?query=example"
 	));
 echo '</h2>';
-__('Nothing much to explain here. This will search for sentences containing the word "example".');
+__('This will search for sentences containing the word "example".');
 
 
 echo '<h2>';

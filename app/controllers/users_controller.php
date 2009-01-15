@@ -155,7 +155,7 @@ class UsersController extends AppController {
 			if($this->User->save($this->data)){
 				// update aro table
 				$aro = new Aro();
-				$data = $aro->findByForeignKey($id);
+				$data = $aro->find("first", array( "conditions" => array("foreign_key" => $id, "model" => "User")));
 				$data['Aro']['parent_id'] = User::LOWEST_TRUST_GROUP_ID;
 				$this->Acl->Aro->save($data);
 				
@@ -257,6 +257,124 @@ class UsersController extends AppController {
 				'/users/my_profile/'
 			);
 		}
+	}
+	
+	function send_newsletter(){
+		$this->User->recursive = -1;
+		$users = $this->User->find('all');
+		
+		// prepare message
+		$subject['en'] = 'Tatoeba - New version';
+		$message['en'] = "Dear %s,\n"
+			."\n"
+			."You are receiving this email because you have, at some point of your life,"
+			." registered in Tatoeba Project (http://tatoeba.fr/). If you're not sure what "
+			."Tatoeba Project is about, it aims to collect many, many, many sentences "
+			."translated in several languages.\n"
+			."\n"
+			."Anyway, I am glad to announce something that may not mean a lot to you, "
+			."but means a lot to me : a new version of Tatoeba is now available!\n"
+			."\n"
+			."For this happy event, your password has been changed and you will have "
+			."to re-confirm your registration by clicking on this link :\n"
+			."http://tatoeba.fr/eng/users/confirm_registration/%s\n"
+			."\n"
+			."Once you have re-confirmed your registration, you can log in with the "
+			."following login and password.\n"
+			."login : %s\n"
+			."password : %s\n"
+			."\n"
+			."And once you have logged in, maybe take a few minutes to add a sentence "
+			."(any sentence that comes through your mind) or to translate sentences : "
+			."http://tatoeba.fr/eng/sentences/contribute\n"
+			."\n"
+			."For people who would like more details about this new version and what's "
+			."going to happen with the data in the old version, you may find your answers "
+			."here : http://blog.tatoeba.org\n"
+			."If not, you can always contact me and ask me questions.\n"
+			."\n"
+			."Thank you.\n"
+			."\n"
+			."Trang";
+			
+		$subject['fr'] = 'Tatoeba - Nouvelle version';
+		$message['fr'] = "Bonjour %s,\n"
+			."\n"
+			."Vous recevez cet email car vous vous êtes, à un certain point "
+			."dans votre vie, inscrit sur Tatoeba Project (http://tatoeba.fr). "
+			."Si vous n'êtes pas sûr de savoir en quoi consite ce projet, son "
+			."but est de collecter beaucoup, beaucoup, beaucoup de phrases "
+			."traduites dans plusieurs langues.\n"
+			."\n"
+			."En tous cas, j'ai le plaisir de vous annoncer quelque chose qui "
+			."vous importe peut-être peu, mais qui m'importe beaucoup : une "
+			."nouvelle version de Tatoeba est maintenant disponible!\n"
+			."\n"
+			."Pour cet heureux évènement, votre mot de passe a été modifié et "
+			."vous allez devoir re-confirmer votre inscription en cliquant sur ce lien :\n"
+			."http://tatoeba.fr/fre/users/confirm_registration/%s/%s\n"
+			."\n"
+			."Une fois votre inscription re-confirmée, vous pourrez vous connectez "
+			."avec l'identifiant et le mot de passe suivant :\n"
+			."nom d'utilisateur : %s\n"
+			."mot de passe : %s\n"
+			."\n"
+			."Et une fois que vous êtes connecté(e), peut-être prendriez-vous "
+			."quelques minutes pour ajouter une phrase (n'importe quelle phrase "
+			."qui vous passe par la tête) ou pour traduire des phrases : "
+			."http://tatoeba.fr/fre/sentences/contribute\n"
+			."\n"
+			."Pour ceux qui voudraient en savoir plus concernant cette nouvelle "
+			."version et ce qu'il va arriver avec les données de l'ancienne version, "
+			."vous pourrez sans doute trouver vos réponses ici : http://blog.tatoeba.org/ "
+			."(mais c'est en anglais, sorry)\n"
+			."Sinon, vous pouvez toujours me contacter et me poser des question.\n"
+			."\n"
+			."Merci.\n"
+			."\n"
+			."Trang";
+		
+		foreach($users as $user){
+			// generating new password
+			$newPassword = $this->User->generate_password();
+			
+			// data to save
+			$this->data['User']['id'] = $user['User']['id'];
+			$this->data['User']['password'] = $this->Auth->password($newPassword);
+			
+			if($this->User->save($this->data)){
+				// update aro table
+				$aro = new Aro();
+				$data['Aro']['model'] = 'User';
+				$data['Aro']['foreign_key'] = $user['User']['id'];
+				$data['Aro']['parent_id'] = 5;
+				$aro->save($data);
+				
+				// token for re-confirmation of registration
+				$toHash = $this->Auth->password($this->data['User']['password']).$user['User']['since'].$user['User']['username'];
+				$correctToken = $this->Auth->password($toHash);
+				
+				// message in the proper language
+				$lang = ($user['User']['lang'] == 'fr') ? 'fr':'en';
+				$msg = sprintf($message[$lang], $user['User']['username'], $user['User']['id'], $correctToken, $user['User']['username'], $newPassword);
+				
+				// send email
+				/*
+				$this->Mailer->to = $user['User']['email'];
+				$this->Mailer->toName = '';
+				$this->Mailer->subject = $subject[$lang];
+				$this->Mailer->message = $message;
+				$this->Mailer->send();
+				*/
+				
+				pr($subject[$lang]);
+				pr($msg);
+				pr('-------------');
+				$logs[] = $user['User']['email'].' - sent';
+			}
+		}
+		
+		$this->set('logs', $logs);
 	}
 	
 	// temporary function to grant/deny access

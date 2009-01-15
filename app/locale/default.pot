@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-01-14 02:44+0100\n"
+"POT-Creation-Date: 2009-01-14 22:44+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -242,8 +242,12 @@ msgstr ""
 msgid "There is no log for this sentence"
 msgstr ""
 
-#: \views\elements\foot.ctp:4
-msgid "CakePHP: the rapid development php framework"
+#: \views\elements\foot.ctp:12
+msgid "Contact me"
+msgstr ""
+
+#: \views\elements\foot.ctp:14
+msgid "Tatoeba Blog"
 msgstr ""
 
 #: \views\elements\menu.ctp:14
@@ -509,6 +513,14 @@ msgstr ""
 msgid "You are now allowed to view this page. Please log in first"
 msgstr ""
 
+#: \views\pages\contact.ctp:3
+msgid "Contact"
+msgstr ""
+
+#: \views\pages\contact.ctp:6
+msgid "If you would like to contact the author of this project (in other words me), feel free to drop an email at : "
+msgstr ""
+
 #: \views\pages\home.ctp:3
 msgid "Tatoeba : Collecting example sentences"
 msgstr ""
@@ -534,54 +546,58 @@ msgid "Latest comments"
 msgstr ""
 
 #: \views\pages\search.ctp:3
+msgid "Examples of search"
+msgstr ""
+
+#: \views\pages\search.ctp:7
 msgid "Search one word : "
 msgstr ""
 
-#: \views\pages\search.ctp:12
-msgid "Nothing much to explain here. This will search for sentences containing the word \"example\"."
+#: \views\pages\search.ctp:16
+msgid "This will search for sentences containing the word \"example\"."
 msgstr ""
 
-#: \views\pages\search.ctp:16
+#: \views\pages\search.ctp:20
 msgid "Using quotes : "
 msgstr ""
 
-#: \views\pages\search.ctp:25
+#: \views\pages\search.ctp:29
 msgid "This will search for sentences containing \"I would like\". If you remove the quotes, see below."
 msgstr ""
 
-#: \views\pages\search.ctp:29
+#: \views\pages\search.ctp:33
 msgid "Search with OR operator : "
 msgstr ""
 
-#: \views\pages\search.ctp:38
+#: \views\pages\search.ctp:42
 msgid "This will search for sentences containing \"would\" or \"like\". "
 msgstr ""
 
-#: \views\pages\search.ctp:39
+#: \views\pages\search.ctp:43
 msgid "Words with <strong>3 characters or less are ignored</strong> if they are not inside of quotes, which is why \"I\" is not taken into account here."
 msgstr ""
 
-#: \views\pages\search.ctp:42
+#: \views\pages\search.ctp:46
 msgid "Search with AND operator : "
 msgstr ""
 
-#: \views\pages\search.ctp:51
+#: \views\pages\search.ctp:55
 msgid "This will search for sentences containing \"here\" and \"there\"."
 msgstr ""
 
-#: \views\pages\search.ctp:54
+#: \views\pages\search.ctp:58
 msgid "Search with NOT operator : "
 msgstr ""
 
-#: \views\pages\search.ctp:63
+#: \views\pages\search.ctp:67
 msgid "This will search for sentences containing \"here\" but not \"there\"."
 msgstr ""
 
-#: \views\pages\search.ctp:66
+#: \views\pages\search.ctp:70
 msgid "Grouping : "
 msgstr ""
 
-#: \views\pages\search.ctp:75
+#: \views\pages\search.ctp:79
 msgid "This will search for sentences containing \"like\" and \"music\", or \"like\" and \"sleep\"."
 msgstr ""
 

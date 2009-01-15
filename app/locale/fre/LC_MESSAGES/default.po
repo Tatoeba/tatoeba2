@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-01-14 02:44+0100\n"
-"PO-Revision-Date: 2009-01-14 02:46+0100\n"
+"POT-Creation-Date: 2009-01-14 22:44+0100\n"
+"PO-Revision-Date: 2009-01-14 22:46+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -243,9 +243,13 @@ msgstr "Historique"
 msgid "There is no log for this sentence"
 msgstr "Il n'y a pas d'historique pour cette phrase"
 
-#: \views\elements\foot.ctp:4
-msgid "CakePHP: the rapid development php framework"
-msgstr "CakePHP: le framework pour développement php rapìde"
+#: \views\elements\foot.ctp:12
+msgid "Contact me"
+msgstr "Me contacter"
+
+#: \views\elements\foot.ctp:14
+msgid "Tatoeba Blog"
+msgstr "Tatoeba Blog"
 
 #: \views\elements\menu.ctp:14
 msgid "Home"
@@ -510,6 +514,14 @@ msgstr "Les entrées sont affichées de la plus récente à la plus ancienne."
 msgid "You are now allowed to view this page. Please log in first"
 msgstr "Vous n'êtes pas autorisé(e) à visualiser cette page. Veuillez d'abord vous connecter."
 
+#: \views\pages\contact.ctp:3
+msgid "Contact"
+msgstr "Contact"
+
+#: \views\pages\contact.ctp:6
+msgid "If you would like to contact the author of this project (in other words me), feel free to drop an email at : "
+msgstr "Si vous voulez contacter l'auteur de ce projet (en d'autres termes moi), vous pouvez m'envoyer un email à :"
+
 #: \views\pages\home.ctp:3
 msgid "Tatoeba : Collecting example sentences"
 msgstr "Tatoeba : Collection de phrases d'exemple"
@@ -535,54 +547,58 @@ msgid "Latest comments"
 msgstr "Derniers commentaires"
 
 #: \views\pages\search.ctp:3
+msgid "Examples of search"
+msgstr "Exemples de recherche"
+
+#: \views\pages\search.ctp:7
 msgid "Search one word : "
 msgstr "Recherche d'un mot : "
 
-#: \views\pages\search.ctp:12
-msgid "Nothing much to explain here. This will search for sentences containing the word \"example\"."
-msgstr "Pas grand chose à expliquer ici. Ceci recherchera les phrases contenant le mot \"example\"."
-
 #: \views\pages\search.ctp:16
+msgid "This will search for sentences containing the word \"example\"."
+msgstr "Ceci chechera les phrases contenant le mot \"example\"."
+
+#: \views\pages\search.ctp:20
 msgid "Using quotes : "
 msgstr "Utilisation de guillemets : "
 
-#: \views\pages\search.ctp:25
+#: \views\pages\search.ctp:29
 msgid "This will search for sentences containing \"I would like\". If you remove the quotes, see below."
 msgstr "Ceci cherchera les phrase contenant \"I would like\". Si vous retirez les guillemets, voire ci-dessous."
 
-#: \views\pages\search.ctp:29
+#: \views\pages\search.ctp:33
 msgid "Search with OR operator : "
 msgstr "Recherche avec l'opérateur OR : "
 
-#: \views\pages\search.ctp:38
+#: \views\pages\search.ctp:42
 msgid "This will search for sentences containing \"would\" or \"like\". "
 msgstr "Ceci cherchera les phrases contenant \"would\" ou \"like\"."
 
-#: \views\pages\search.ctp:39
+#: \views\pages\search.ctp:43
 msgid "Words with <strong>3 characters or less are ignored</strong> if they are not inside of quotes, which is why \"I\" is not taken into account here."
 msgstr "Les mots avec <strong>3 lettres ou moins sont ignorés</strong> s'ils ne sont pas à l'intérieur de guillemets, c'est pourquoi \"I\" n'est pas pris en compte ici."
 
-#: \views\pages\search.ctp:42
+#: \views\pages\search.ctp:46
 msgid "Search with AND operator : "
 msgstr "Recherche avec l'opérateur AND : "
 
-#: \views\pages\search.ctp:51
+#: \views\pages\search.ctp:55
 msgid "This will search for sentences containing \"here\" and \"there\"."
 msgstr "Ceci chechera les phrases contenant \"here\" et \"there\"."
 
-#: \views\pages\search.ctp:54
+#: \views\pages\search.ctp:58
 msgid "Search with NOT operator : "
 msgstr "Recherche avec l'opérateur NOT : "
 
-#: \views\pages\search.ctp:63
+#: \views\pages\search.ctp:67
 msgid "This will search for sentences containing \"here\" but not \"there\"."
 msgstr "Ceci cherchera les phrases contenant \"here\" mais pas \"there\"."
 
-#: \views\pages\search.ctp:66
+#: \views\pages\search.ctp:70
 msgid "Grouping : "
 msgstr "Regroupement : "
 
-#: \views\pages\search.ctp:75
+#: \views\pages\search.ctp:79
 msgid "This will search for sentences containing \"like\" and \"music\", or \"like\" and \"sleep\"."
 msgstr "Ceci cherchera les phrases contenant \"like\" et \"music\", ou \"like\" et \"sleep\"."
 
@@ -862,6 +878,14 @@ msgstr "inconnu"
 msgid "Debug setting does not allow access to this url."
 msgstr "Les paramètres de debug ne permettent pas l'accès à cette URL."
 
+#~ msgid "CakePHP: the rapid development php framework"
+#~ msgstr "CakePHP: le framework pour développement php rapìde"
+#~ msgid ""
+#~ "Nothing much to explain here. This will search for sentences containing "
+#~ "the word \"example\"."
+#~ msgstr ""
+#~ "Pas grand chose à expliquer ici. Ceci recherchera les phrases contenant "
+#~ "le mot \"example\"."
 #~ msgid "<< previous"
 #~ msgstr "<< précédent"
 #~ msgid "next >>"

@@ -12,9 +12,6 @@ class AppController extends Controller {
 		
 		//Configure AuthComponent
 		$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
-		if(isset($this->params['lang'])){
-			$this->Auth->loginAction['lang'] = $this->params['lang'];
-		}
 		$this->Auth->logoutRedirect = array('controller' => 'pages', 'action' => 'display', 'home');
 		$this->Auth->allow('display');
 		$this->Auth->authorize = 'actions';
