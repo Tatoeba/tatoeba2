@@ -64,14 +64,14 @@ class SentencesController extends AppController{
 			// saving
 			if($this->Sentence->save($this->data)){
 				// Logs
-				$this->data['SentenceLog']['sentence_id'] = $this->Sentence->id;
-				$this->data['SentenceLog']['sentence_lang'] = $response['language'];
-				$this->data['SentenceLog']['sentence_text'] = $this->data['Sentence']['text'];
-				$this->data['SentenceLog']['action'] = 'insert';
-				$this->data['SentenceLog']['user_id'] = $this->Auth->user('id');
-				$this->data['SentenceLog']['datetime'] = date("Y-m-d H:i:s");
-				$this->data['SentenceLog']['ip'] = $_SERVER['REMOTE_ADDR'];
-				$this->Sentence->SentenceLog->save($this->data);
+				$this->data['Contribution']['sentence_id'] = $this->Sentence->id;
+				$this->data['Contribution']['sentence_lang'] = $response['language'];
+				$this->data['Contribution']['text'] = $this->data['Sentence']['text'];
+				$this->data['Contribution']['action'] = 'insert';
+				$this->data['Contribution']['user_id'] = $this->Auth->user('id');
+				$this->data['Contribution']['datetime'] = date("Y-m-d H:i:s");
+				$this->data['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
+				$this->Sentence->Contribution->save($this->data);
 				
 				// Confirmation message
 				$this->flash(
@@ -86,14 +86,14 @@ class SentencesController extends AppController{
 		// We log first
 		$this->Sentence->id = $id;
 		$tmp = $this->Sentence->read();
-		$this->data['SentenceLog']['sentence_id'] = $id;
-		$this->data['SentenceLog']['sentence_lang'] = $tmp['Sentence']['lang'];
-		$this->data['SentenceLog']['sentence_text'] = $tmp['Sentence']['text'];
-		$this->data['SentenceLog']['action'] = 'delete';
-		$this->data['SentenceLog']['user_id'] = $this->Auth->user('id');
-		$this->data['SentenceLog']['datetime'] = date("Y-m-d H:i:s");
-		$this->data['SentenceLog']['ip'] = $_SERVER['REMOTE_ADDR'];
-		$this->Sentence->SentenceLog->save($this->data);
+		$this->data['Contribution']['sentence_id'] = $id;
+		$this->data['Contribution']['sentence_lang'] = $tmp['Sentence']['lang'];
+		$this->data['Contribution']['text'] = $tmp['Sentence']['text'];
+		$this->data['Contribution']['action'] = 'delete';
+		$this->data['Contribution']['user_id'] = $this->Auth->user('id');
+		$this->data['Contribution']['datetime'] = date("Y-m-d H:i:s");
+		$this->data['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
+		$this->Sentence->Contribution->save($this->data);
 		
 		// Then we delete
 		$this->Sentence->del($id);
@@ -120,14 +120,14 @@ class SentencesController extends AppController{
 		}else{
 			if($this->Sentence->save($this->data)){				
 				// Sentence logs
-				$this->data['SentenceLog']['sentence_id'] = $this->Sentence->id;
-				$this->data['SentenceLog']['sentence_lang'] = $this->data['Sentence']['lang'];
-				$this->data['SentenceLog']['sentence_text'] = $this->data['Sentence']['text'];
-				$this->data['SentenceLog']['action'] = 'update';
-				$this->data['SentenceLog']['user_id'] = $this->Auth->user('id');
-				$this->data['SentenceLog']['datetime'] = date("Y-m-d H:i:s");
-				$this->data['SentenceLog']['ip'] = $_SERVER['REMOTE_ADDR'];
-				$this->Sentence->SentenceLog->save($this->data);
+				$this->data['Contribution']['sentence_id'] = $this->Sentence->id;
+				$this->data['Contribution']['sentence_lang'] = $this->data['Sentence']['lang'];
+				$this->data['Contribution']['text'] = $this->data['Sentence']['text'];
+				$this->data['Contribution']['action'] = 'update';
+				$this->data['Contribution']['user_id'] = $this->Auth->user('id');
+				$this->data['Contribution']['datetime'] = date("Y-m-d H:i:s");
+				$this->data['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
+				$this->Sentence->Contribution->save($this->data);
 				
 				// Confirmation message
 				$this->flash(
@@ -191,38 +191,38 @@ class SentencesController extends AppController{
 			
 			if($this->Sentence->save($this->data)){
 				// Sentence logs
-				$this->data['SentenceLog']['sentence_id'] = $this->Sentence->id;
-				$this->data['SentenceLog']['sentence_lang'] = $this->data['Sentence']['lang'];
-				$this->data['SentenceLog']['sentence_text'] = $this->data['Sentence']['text'];
-				$this->data['SentenceLog']['action'] = 'insert';
-				$this->data['SentenceLog']['user_id'] = $this->Auth->user('id');
-				$this->data['SentenceLog']['datetime'] = date("Y-m-d H:i:s");
-				$this->data['SentenceLog']['ip'] = $_SERVER['REMOTE_ADDR'];
-				$this->Sentence->SentenceLog->save($this->data);
+				$this->data['Contribution']['sentence_id'] = $this->Sentence->id;
+				$this->data['Contribution']['sentence_lang'] = $this->data['Sentence']['lang'];
+				$this->data['Contribution']['text'] = $this->data['Sentence']['text'];
+				$this->data['Contribution']['action'] = 'insert';
+				$this->data['Contribution']['user_id'] = $this->Auth->user('id');
+				$this->data['Contribution']['datetime'] = date("Y-m-d H:i:s");
+				$this->data['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
+				$this->Sentence->Contribution->save($this->data);
 				
 				// Translation logs
-				$data['TranslationLog']['sentence_id'] = $this->data['Translation']['Translation'][0];
-				$data['TranslationLog']['sentence_lang'] = $this->data['Sentence']['sentence_lang'];
-				$data['TranslationLog']['translation_id'] = $this->Sentence->id;
-				$data['TranslationLog']['translation_lang'] = $this->data['Sentence']['lang'];
-				$data['TranslationLog']['action'] = 'insert';
-				$data['TranslationLog']['user_id'] = $this->Auth->user('id');
-				$data['TranslationLog']['datetime'] = date("Y-m-d H:i:s");
-				$data['TranslationLog']['ip'] = $_SERVER['REMOTE_ADDR'];
-				$translationLogs[] = $data;
+				$data['Contribution']['sentence_id'] = $this->data['Translation']['Translation'][0];
+				$data['Contribution']['sentence_lang'] = $this->data['Sentence']['sentence_lang'];
+				$data['Contribution']['translation_id'] = $this->Sentence->id;
+				$data['Contribution']['translation_lang'] = $this->data['Sentence']['lang'];
+				$data['Contribution']['action'] = 'insert';
+				$data['Contribution']['user_id'] = $this->Auth->user('id');
+				$data['Contribution']['datetime'] = date("Y-m-d H:i:s");
+				$data['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
+				$Contributions[] = $data;
 				
 				// Inverse translation logs
-				$data['TranslationLog']['sentence_id'] = $this->Sentence->id;
-				$data['TranslationLog']['sentence_lang'] = $this->data['Sentence']['lang'];
-				$data['TranslationLog']['translation_id'] = $this->data['Translation']['Translation'][0];
-				$data['TranslationLog']['translation_lang'] = $this->data['Sentence']['sentence_lang'];
-				$data['TranslationLog']['action'] = 'insert';
-				$data['TranslationLog']['user_id'] = $this->Auth->user('id');
-				$data['TranslationLog']['datetime'] = date("Y-m-d H:i:s");
-				$data['TranslationLog']['ip'] = $_SERVER['REMOTE_ADDR'];
-				$translationLogs[] = $data;
+				$data['Contribution']['sentence_id'] = $this->Sentence->id;
+				$data['Contribution']['sentence_lang'] = $this->data['Sentence']['lang'];
+				$data['Contribution']['translation_id'] = $this->data['Translation']['Translation'][0];
+				$data['Contribution']['translation_lang'] = $this->data['Sentence']['sentence_lang'];
+				$data['Contribution']['action'] = 'insert';
+				$data['Contribution']['user_id'] = $this->Auth->user('id');
+				$data['Contribution']['datetime'] = date("Y-m-d H:i:s");
+				$data['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
+				$Contributions[] = $data;
 				
-				$this->Sentence->TranslationLog->saveAll($translationLogs);
+				$this->Sentence->Contribution->saveAll($Contributions);
 				
 				// Confirmation message
 				$this->flash(

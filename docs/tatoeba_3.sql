@@ -76,6 +76,26 @@ CREATE TABLE IF NOT EXISTS `aros_acos` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `contributions`
+--
+
+CREATE TABLE IF NOT EXISTS `contributions` (
+  `id` int(11) NOT NULL,
+  `sentence_id` int(11) NOT NULL,
+  `sentence_lang` varchar(2) default NULL,
+  `translation_id` int(11) default NULL,
+  `translation_lang` varchar(2) default NULL,
+  `text` varchar(500) character set utf8 collate utf8_unicode_ci NOT NULL,
+  `action` enum('insert','update','delete') NOT NULL,
+  `user_id` int(11) default NULL,
+  `datetime` datetime NOT NULL,
+  `ip` varchar(15) default NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `dico`
 --
 
@@ -250,43 +270,6 @@ CREATE TABLE IF NOT EXISTS `visitors` (
   `timestamp` int(11) NOT NULL default '0',
   UNIQUE KEY `ip` (`ip`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- --------------------------------------------------------
-
---
--- Structure for view `contributions`
---
-DROP VIEW IF EXISTS `contributions`;
-
-CREATE VIEW `contributions` AS
-SELECT `sentence_id`
- , `sentence_lang`
- , `translation_id`
- , `translation_lang`
- , '' as `text`
- , `action`
- , `user_id`
- , `datetime` FROM `translation_logs` 
-UNION 
-SELECT `sentence_id`
- , `sentence_lang`
- , ''
- , ''
- , `sentence_text`
- , `action`
- , `user_id`
- , `datetime` FROM `sentence_logs`
-UNION
-SELECT `sentence_id`
- , `sentence_lang`
- , ''
- , ''
- , `correction_text`
- , 'suggest'
- , `submit_user_id`
- , `submit_datetime` FROM `suggested_modifications`
-ORDER BY `datetime` DESC;
-
 
 -- --------------------------------------------------------
 

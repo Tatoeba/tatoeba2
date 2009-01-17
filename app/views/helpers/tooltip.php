@@ -12,7 +12,7 @@ class TooltipHelper extends AppHelper {
 		echo '</a>';
 	}
 	
-	function displayLogsColors($hasSeveralEntries = true){
+	function displayLogsColors(){
 		$tooltipText  = __('Meaning of the colors :',true);
 		$tooltipText .= '<table id="logsLegend">';
 		$tooltipText .= '<tr>';
@@ -32,9 +32,6 @@ class TooltipHelper extends AppHelper {
 		$tooltipText .= '</tr>';
 		
 		$tooltipText .= '</table>';
-		if($hasSeveralEntries){
-			$tooltipText .= __('The entries are displayed from the most recent to the oldest.',true);
-		}
 		$this->display($tooltipText);
 	}
 }
