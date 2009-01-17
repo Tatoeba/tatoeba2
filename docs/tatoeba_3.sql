@@ -92,24 +92,6 @@ CREATE TABLE IF NOT EXISTS `contributions` (
   `ip` varchar(15) default NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `dico`
---
-
-CREATE TABLE IF NOT EXISTS `dico` (
-  `id` int(11) NOT NULL default '0',
-  `lang` varchar(2) collate utf8_unicode_ci NOT NULL default '',
-  `sentence` text collate utf8_unicode_ci NOT NULL,
-  `romanization` text collate utf8_unicode_ci NOT NULL,
-  `status` tinyint(1) NOT NULL default '0',
-  `original` tinyint(1) NOT NULL default '0',
-  `sentence_id` int(11) default NULL,
-  PRIMARY KEY  (`id`,`lang`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
 -- --------------------------------------------------------
 
 --
@@ -167,23 +149,6 @@ CREATE TABLE IF NOT EXISTS `sentence_comments` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `sentence_logs`
---
-
-CREATE TABLE IF NOT EXISTS `sentence_logs` (
-  `id` int(11) NOT NULL auto_increment,
-  `sentence_id` int(11) NOT NULL,
-  `sentence_lang` varchar(2) default NULL,
-  `sentence_text` varchar(500) character set utf8 collate utf8_unicode_ci NOT NULL,
-  `action` enum('insert','update','delete') NOT NULL,
-  `user_id` int(11) default NULL,
-  `datetime` datetime NOT NULL,
-  `ip` varchar(15) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
 
@@ -219,24 +184,6 @@ CREATE TABLE IF NOT EXISTS `suggested_modifications` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `translation_logs`
---
-
-CREATE TABLE IF NOT EXISTS `translation_logs` (
-  `id` int(11) NOT NULL auto_increment,
-  `sentence_id` int(11) NOT NULL,
-  `sentence_lang` varchar(2) default NULL,
-  `translation_id` int(11) NOT NULL,
-  `translation_lang` varchar(2) default NULL,
-  `action` enum('insert','delete') NOT NULL,
-  `user_id` int(11) default NULL,
-  `datetime` datetime NOT NULL,
-  `ip` varchar(15) NOT NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 ;
 
 -- --------------------------------------------------------
 
