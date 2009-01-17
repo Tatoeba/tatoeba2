@@ -87,14 +87,18 @@ class UsersController extends AppController {
 				$this->Cookie->write('Auth.User', $cookie, true, '+2 weeks');
 				unset($this->data['User']['rememberMe']);
 			}
-			$this->redirect($this->Auth->redirect());
+			if($this->Auth->user('group_id') == 5){
+				$this->flash(__('Your account is not validated yet. You will not be able to add sentences, translate or post comments. To validate it, click on the link in the email that has been sent to you during your registration. You can have this email resent to you.', true), '/users/resend_registration_mail/');
+			}else{
+				$this->redirect($this->Auth->redirect());
+			}
 		}
 	}
 
 	
 	function logout(){  
 		$this->Cookie->del('Auth.User'); // delete cookie when logout
-		$this->Session->setFlash('Logout');  
+		$this->Session->setFlash('You are logged out.');  
 		$this->redirect($this->Auth->logout());  
 	}
 	
@@ -136,6 +140,49 @@ class UsersController extends AppController {
 				$this->data['User']['password'] = '';
 				$this->data['User']['password_confirm'] = '';
 				$this->set('error', __('Passwords do not match',true));
+			}
+		}
+	}
+	
+	function resend_registration_mail(){
+		if(!empty($this->data)) {
+			$user = $this->User->findByEmail($this->data['User']['email']);
+			
+			if($user){
+				if($user['User']['group_id'] == 5){
+					$toHash = $this->Auth->password($user['User']['password']).$user['User']['since'].$user['User']['username'];
+					$token = $this->Auth->password($toHash);
+					
+					// prepare message
+					$subject = __('Tatoeba registration',true);
+					$message = sprintf(__('Dear %s,',true), $user['User']['username'])
+						. "\n\n" 
+						. __('Welcome to Tatoeba and thank you for your interest in this project!',true)
+						. "\n\n"
+						. __('You can validate your registration by clicking on this link :',true)
+						. "\n"
+						. 'http://' . $_SERVER['HTTP_HOST'] . '/users/confirm_registration/' . $user['User']['id'] . '/' . $token;
+					
+					// send email with new password
+					$this->Mailer->to = $user['User']['email'];
+					$this->Mailer->toName = '';
+					$this->Mailer->subject = $subject;
+					$this->Mailer->message = $message;
+					$this->Mailer->send();
+					
+					$this->Session->setFlash(__('The registration email has been resent.',true));  
+					$this->redirect($this->Auth->logout());  
+				}else{
+					$this->flash(
+						__('Your registration has already been validated. Try to login again.', true),
+						'/users/resend_registration_mail'
+					);
+				}
+			}else{
+				$this->flash(
+					__('There is no user with this email : ',true) . $user['User']['email'],
+					'/users/resend_registration_mail'
+				);
 			}
 		}
 	}

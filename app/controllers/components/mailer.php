@@ -1,6 +1,6 @@
 <?php 
 class MailerComponent extends Object{
-	var $from		= '';
+	var $from		= 'trang.dictionary.project@gmail.com';
 	var $fromName	= 'TATOEBA';
 	var $to			= null;
 	var $toName		= null;

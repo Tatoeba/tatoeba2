@@ -64,9 +64,9 @@ display: block;
 width: 200px;
 }
 
-/* RETRIEVE PASSWORD */
+/* RETRIEVE PASSWORD and RESEND REGISTRATION MAIL */
 
-#UserNewPasswordForm{
+#UserNewPasswordForm, #UserResendRegistrationMailForm{
 background: #f1f1f1;
 border: 1px solid #a1a1a1;
 width: 230px;
@@ -75,11 +75,11 @@ padding-top: 10px;
 margin: 20px;
 }
 
-#UserNewPasswordForm div.input{
+#UserNewPasswordForm div.input, #UserResendRegistrationMailForm div.input{
 margin: 10px 0px;
 }
 
-#UserNewPasswordForm div.input input{
+#UserNewPasswordForm div.input input, #UserResendRegistrationMailForm div.input input{
 display: block;
 width: 200px;
 }
