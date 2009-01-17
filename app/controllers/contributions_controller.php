@@ -29,7 +29,7 @@ class ContributionsController extends AppController {
 	}
 	
 	function latest(){
-		return $this->Contribution->find('all', array('limit' => 10));
+		return $this->Contribution->find('all', array('limit' => 10, 'order' => 'Contribution.datetime DESC'));
 	}
 
 }
