@@ -244,7 +244,7 @@ class SentencesController extends AppController{
 			$query = $_GET['query'];
 			$page = isset($_GET['page']) ? $_GET['page'] : null;
 			
-			$this->pageTitle = __('Tatoeba search : ',true) . $query;
+			$this->pageTitle = __('Tatoeba search : ',true) . stripslashes($query);
 			$lucene_results = $this->Lucene->search($query, null, null, $page);
 			$sentences = array();
 			

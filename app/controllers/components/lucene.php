@@ -1,10 +1,11 @@
 <?php
 class LuceneComponent extends Object{
 	function search($query, $lang_src = null, $lang_dest = null, $page = null){
+		$query = stripslashes($query);
 		$query = $this->processQuery($query); // take out the small words
 		$query = urlencode($query);
-		//$luceneUrl = "http://tatoeba.fr:28080/tatoeba/search.jsp?query=";
-		$luceneUrl = "http://localhost:8080/tatoeba/search.jsp?query=";
+		$luceneUrl = "http://tatoeba.fr:28080/tatoeba/search.jsp?query=";
+		//$luceneUrl = "http://localhost:28080/tatoeba/search.jsp?query=";
 		$url = $luceneUrl . $query;
 		
 		if($lang_src != null){
