@@ -3,6 +3,13 @@ class SentencesHelper extends AppHelper {
 
 	var $helpers = array('Html', 'Form', 'Tooltip');
 	
+	function displaySentence($sentence) {
+		echo '<div class="sentence">';
+		// Sentence
+		echo '<span class="original correctness'.$sentence['correctness'].' '.$sentence['lang'].'">'.$sentence['text'].'</span>';
+		echo '</div>';
+	}
+	
 	/**
 	 * $sentence : array("id" => int, "lang" => string, "text" => string)
 	 * $translations : array ( $sentence )
@@ -12,21 +19,24 @@ class SentencesHelper extends AppHelper {
 		echo '<div class="sentence">';
 		
 		// Sentence
-		echo '<span class="original correctness'.$sentence['correctness'].' '.$sentence['lang'].'">'.$sentence['text'].'</span>';
+		echo '<div class="original correctness'.$sentence['correctness'].'">';
+		echo '<span class="'.$sentence['lang'].'">'.$sentence['text'].'</span>';
+		echo '</div>';
 		
 		// Translations
 		if(count($translations) > 0){	
 			$controller = (preg_match("/sentence_comments|contributions/", $this->params['controller'])) ? $this->params['controller'] : "sentences";
 			echo '<ul class="translations">';
 			foreach($translations as $translation){
-				echo '<li class="direct translation correctness'.$translation['correctness'].' '.$translation['lang'].'">';
+				echo '<li class="direct translation correctness'.$translation['correctness'].'">';
 				echo $this->Html->link(
 					$translation['text'],
 					array(
 						"controller" => $controller,
 						"action" => "show",
 						$translation['id']
-					)
+					),
+					array("class" => $translation['lang'])
 				);
 				echo '</li>';
 			}
@@ -43,7 +53,7 @@ class SentencesHelper extends AppHelper {
 		echo '<div class="sentence">';
 		
 			// Sentence
-			echo '<span class="original correctness'.$sentence['correctness'].' '.$sentence['lang'].'">'.$sentence['text'].'</span>';
+			echo '<div class="original correctness'.$sentence['correctness'].' '.$sentence['lang'].'">'.$sentence['text'].'</div>';
 			
 			// Translations
 			echo '<ul class="translations">';
@@ -55,9 +65,9 @@ class SentencesHelper extends AppHelper {
 						$tooltipText .= __('The other sentences <strong>below</strong> are displayed only so you know what <strong>translations</strong> have already been added.',true);
 						$tooltipText .= '<br/>';
 						$tooltipText .= __('If you understand better one of the translations, you can <strong>click</strong> on it to make it as the <strong>main sentence</strong>, and translate from there.', true);
-						$this->Tooltip->display($tooltipText);
+						$this->Tooltip->displayWarning($tooltipText);
 					}
-					echo $this->Form->input('text', array("label" => __('Translation : ', true)));
+					echo $this->Form->input('text', array("label" => ''));
 					echo $this->Form->input('id', array("type" => "hidden", "value" => $sentence['id']));
 					echo $this->Form->input('sentence_lang', array("type" => "hidden", "value" => $sentence['lang'])); // for logs
 					echo $this->Form->end(__('OK',true));
@@ -65,20 +75,21 @@ class SentencesHelper extends AppHelper {
 				
 				if(count($translations) > 0){
 					foreach($translations as $translation){
-						echo '<li class="direct translation correctness'.$translation['correctness'].' '.$translation['lang'].'">';
+						echo '<li class="direct translation correctness'.$translation['correctness'].'">';
 						echo $this->Html->link(
 							$translation['text'],
 							array(
 								"controller" => "sentences",
 								"action" => "translate",
 								$translation['id']
-							)
+							),
+							array("class" => $translation['lang'])
 						);
 						echo '</li>';
 					}
 				}
 			echo '</ul>';
-		
+			
 		echo '</div>';
 	}
 	

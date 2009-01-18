@@ -88,8 +88,8 @@ margin-bottom: 20px;
 }
 
 .sentences_set .sentence{
-padding-top: 5px;
-border: 1px solid #D3F3B9;
+border-top: 1px solid #D3F3B9;
+border-bottom: 1px solid #D3F3B9;
 }
 
 .sentences_set .sentence em{
@@ -99,7 +99,8 @@ font-style:normal;
 }
 
 .sentences_set .sentence li.form{
-padding: 10px 7px;
+padding: 10px;
+padding-left: 45px;
 }
 
 .sentences_set .sentence .new{
@@ -121,7 +122,7 @@ display:inline;
 
 .sentences_set div.input input{
 font-size: 16px;
-width: 75%;
+width: 600px;
 }
 
 .sentences_set div.submit input{
@@ -134,30 +135,32 @@ font-size: 16px;
 
 .original{
 font-family: georgia;
-font-size: 150%;
-margin: 5px;
-padding-left: 35px;
+font-size: 200%;
+padding: 5px;
+margin-bottom: 10px;
 }
 
 .direct{
 padding: 5px;
-padding-left: 35px;
-margin: 0px 5px;
+padding-left: 40px;
 }
 
 .translations{
-padding-top:5px;
-padding-bottom:5px;
-margin-top:5px;
-border-top: 1px dotted #D3F3B9;
+margin-top: 10px;
 }
 
 
 /* sentences correctness */
 
+ul.translations li{
+background:transparent url(../img/translate.png) no-repeat scroll 10px;
+}
+
 ul.translations li a{
 color: #434343;
 font-weight: normal;
+padding: 2px;
+padding-right: 40px;
 }
 
 /*
@@ -179,23 +182,33 @@ font-weight: normal;
 
 /* sentences languages */
 .en{
-background:transparent url(../img/en.png) no-repeat scroll left center;
+padding-right: 30px;
+display: block;
+background:transparent url(../img/en.png) no-repeat scroll right;
 }
 
 .jp{
-background:transparent url(../img/jp.png) no-repeat scroll left center;
+display: block;
+padding-right: 30px;
+background:transparent url(../img/jp.png) no-repeat scroll right;
 }
 
 .fr{
-background:transparent url(../img/fr.png) no-repeat scroll left center;
+display: block;
+padding-right: 30px;
+background:transparent url(../img/fr.png) no-repeat scroll right;
 }
 
 .de{
-background:transparent url(../img/de.png) no-repeat scroll left center;
+display: block;
+padding-right: 30px;
+background:transparent url(../img/de.png) no-repeat scroll right;
 }
 
 .es{
-background:transparent url(../img/es.png) no-repeat scroll left center;
+display: block;
+padding-right: 30px;
+background:transparent url(../img/es.png) no-repeat scroll right;
 }
 
 /* Contribute */

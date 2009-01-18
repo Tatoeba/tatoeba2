@@ -3,7 +3,7 @@ class Contribution extends AppModel {
 
 	var $name = 'Contribution';
 	
-	//var $belongsTo = array('Sentence', 'User');
+	var $belongsTo = array('Sentence', 'User');
 
 }
 ?>

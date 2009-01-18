@@ -3,13 +3,36 @@ class TooltipHelper extends AppHelper {
 	var $helpers = array('Html');
 	
 	function display($text){
-		echo '<a class="info" href="#">';
+		echo '<span class="info" href="#">';
 		echo $this->Html->image(
 			'attention_with_cursor.png', 
 			array('alt'=> '!')
 		);
 		echo '<span>'.$text.'</span>';
-		echo '</a>';
+		echo '</span>';
+	}
+	
+	function displayWarningDiv($text){
+		echo '<div class="warning">';
+		echo $this->Html->image(
+			'warning.png', 
+			array('alt'=> '!')
+		);
+		echo '<strong>';
+		__('Warning!');
+		echo '</strong>';
+		echo '<span>'.$text.'</span>';
+		echo '</div>';
+	}
+	
+	function displayWarning($text){
+		echo '<span class="info" href="#">';
+		echo $this->Html->image(
+			'warning_with_cursor.png', 
+			array('alt'=> '!')
+		);
+		echo '<span>'.$text.'</span>';
+		echo '</span>';
 	}
 	
 	function displayLogsColors(){

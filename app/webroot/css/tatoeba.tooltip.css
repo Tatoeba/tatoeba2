@@ -1,37 +1,74 @@
-a.info{
-    position:relative; /*this is the key*/
-    z-index:24;
+span.info{
+position:relative; /*this is the key*/
+z-index:24;
 }
 
-a.info:hover{
-	z-index:25;
+span.info:hover{
+z-index:25;
+cursor: pointer;
 }
 
-a.info span{
-	display: none
+span.info span{
+display: none
 }
 
-a.info:hover span{ /*the span will display just on :hover state*/
-	font-size: 13px;
-	font-variant: normal;
-    display:block;
-    position:absolute;
-    left:2em; 
-	width:400px;
-    border:1px solid #222;
-    background-color:#444; 
-	color:#ddd;
-	padding: 5px 10px;
-	font-weight: normal;
+span.info:hover span{ /*the span will display just on :hover state*/
+font-size: 13px;
+font-variant: normal;
+display:block;
+position:absolute;
+left:2em; 
+width:400px;
+border:1px solid #222;
+background-color:#444; 
+color:#ddd;
+padding: 5px 10px;
+font-weight: normal;
 }
 	
-a.info img{
+span.info img{
 border: 0px;
 vertical-align: middle;
 margin-top: -4px;
 margin-right: 5px;
 }
 
-a.info:hover span strong{
+span.info:hover span strong{
 color: #65FF2D;
+}
+
+
+.warning{
+padding: 10px;
+margin: 10px 0px;
+border:1px solid white;
+}
+
+.warning span{
+display: none
+}
+
+.warning:hover span{
+display: block;
+}
+
+.warning:hover{
+font-size: 13px;
+font-variant: normal;
+border:1px solid #FFA347;
+background-color:#FFE0B5; 
+color:#333;
+font-weight: normal;
+cursor: pointer;
+}
+
+.warning img{
+border: 0px;
+vertical-align: middle;
+margin-top: -4px;
+margin-right: 5px;
+}
+
+.warning strong{
+color: #F0491C;
 }

@@ -229,3 +229,23 @@ CREATE VIEW `users_statistics` AS
 SELECT user_id, COUNT(*) as quantity, action, translation_id != '' as is_translation
 FROM contributions
 GROUP BY user_id, action, translation_id = '';
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `users_statistics`
+--
+
+CREATE TABLE IF NOT EXISTS `latest_contributions` (
+  `id` int(11) NOT NULL,
+  `sentence_id` int(11) NOT NULL,
+  `sentence_lang` varchar(2) DEFAULT NULL,
+  `translation_id` int(11) DEFAULT NULL,
+  `translation_lang` varchar(2) DEFAULT NULL,
+  `text` varchar(500) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `action` enum('insert','update','delete') NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `datetime` datetime NOT NULL,
+  `ip` varchar(15) DEFAULT NULL,
+  KEY `sentence_id` (`sentence_id`)
+)

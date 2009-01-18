@@ -8,7 +8,7 @@ class SentencesController extends AppController{
 	    parent::beforeFilter(); 
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo');
+	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo','translate');
 	}
 
 	
@@ -28,7 +28,8 @@ class SentencesController extends AppController{
 			//$this->Sentence->id = $randId;
 		}else{
 			$this->Sentence->id = $id;
-			$this->Sentence->recursive = 2;
+			
+			//$this->Sentence->recursive = -1;
 			$sentence = $this->Sentence->read();
 			$this->set('sentence', $sentence);
 			
@@ -252,6 +253,7 @@ class SentencesController extends AppController{
 				$scores[] = $result['score'];
 			}
 			
+			$this->Sentence->restrict('Translation');
 			$sentences = $this->Sentence->find(
 				'all', array("conditions" => array("Sentence.id" => $ids))
 			);
@@ -285,6 +287,12 @@ class SentencesController extends AppController{
 		$randId = rand(1, $max);
 		$this->Sentence->id = $randId;
 		
+		$this->Sentence->unbindModel(
+			array(
+				'hasMany' => array('SentenceComment', 'Contribution'),
+				'hasAndBelongsToMany' => array('InverseTranslation')
+			)
+		);
 		$random = $this->Sentence->read();
 		$random['specialOptions'] = $this->Permissions->getSentencesOptions($random['Sentence']['user_id'], $this->Auth->user('id'));
 		
