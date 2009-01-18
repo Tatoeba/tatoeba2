@@ -253,7 +253,12 @@ class SentencesController extends AppController{
 				$scores[] = $result['score'];
 			}
 			
-			$this->Sentence->restrict('Translation');
+			$this->Sentence->unbindModel(
+				array(
+					'hasMany' => array('SentenceComment', 'Contribution'),
+					'hasAndBelongsToMany' => array('InverseTranslation')
+				)
+			);
 			$sentences = $this->Sentence->find(
 				'all', array("conditions" => array("Sentence.id" => $ids))
 			);

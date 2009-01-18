@@ -1,5 +1,7 @@
 <?php
 if(isset($query)){
+	$query = stripslashes($query);
+	
 	echo '<h2>Search : ' . $query . ', <em>' . $resultsInfo['sentencesCount'] . ' results</em></h2>';
 	
 	if(isset($results)){

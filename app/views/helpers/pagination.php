@@ -5,6 +5,8 @@ class PaginationHelper extends AppHelper{
 	
 	function displaySearchPagination($totalPages, $currentPage, $query){
 		if($totalPages > 1){
+			$query = urlencode($query);
+			
 			echo '<div class="pagination">';
 			
 			// Navigation arrows
