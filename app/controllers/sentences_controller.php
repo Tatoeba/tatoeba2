@@ -248,12 +248,13 @@ class SentencesController extends AppController{
 			$sentences = array();
 			
 			foreach($lucene_results['sentencesIds'] as $result){
-				$sentence = $this->Sentence->findById($result['id']);
-				$sentence['score'] = $result['score'];
-				$sentences[] = $sentence;
+				$ids[] = $result['id'];
+				$scores[] = $result['score'];
 			}
 			
-			$this->set('query', $query);
+			$sentences = $this->Sentence->find(
+				'all', array("conditions" => array("Sentence.id" => $ids))
+			);
 			
 			if($sentences != array()){
 				$resultsInfo['currentPage'] = $lucene_results['currentPage'];
@@ -264,6 +265,10 @@ class SentencesController extends AppController{
 				$this->set('results', $sentences);
 				$this->set('resultsInfo', $resultsInfo);
 			}
+			
+			$this->set('sentences', $sentences);
+			$this->set('scores', $scores);
+			$this->set('query', $query);
 			
 			// checking which options user can access to
 			$specialOptions = $this->Permissions->getSentencesOptions(0,1);

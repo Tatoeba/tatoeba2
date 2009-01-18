@@ -10,7 +10,8 @@
 <table id="logs">
 <?php
 foreach ($contributions as $contribution){
-	$logs->entry($contribution['Contribution'], $contribution['User']);
+	// $logs->entry($contribution['Contribution'], $contribution['User']);
+	$logs->entry($contribution['Contribution']);
 }
 ?>
 </table>

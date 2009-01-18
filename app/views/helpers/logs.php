@@ -3,7 +3,8 @@ class LogsHelper extends AppHelper {
 
 	var $helpers = array('Date', 'Html');
 	
-	function entry($contribution, $user){
+	//function entry($contribution, $user){
+	function entry($contribution){
 		$type = '';
 		$status = '';
 		
@@ -65,13 +66,13 @@ class LogsHelper extends AppHelper {
 			}
 			echo '</td>';
 			
-			echo '<td class="username">';
-			if(isset($user['username'])){
-				echo $user['username'];
-			}else{
-				echo '?';
-			}
-			echo '</td>';
+			// echo '<td class="username">';
+			// if(isset($user['username'])){
+				// echo $user['username'];
+			// }else{
+				// echo '?';
+			// }
+			// echo '</td>';
 			
 			echo '<td class="date">';
 			echo $this->Date->ago($contribution['datetime']);
