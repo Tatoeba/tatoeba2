@@ -8,21 +8,23 @@ class PaginationHelper extends AppHelper{
 			echo '<div class="pagination">';
 			
 			// Navigation arrows
-			if($currentPage > 1){
-				echo $this->Html->link(
-					"<<",
-					array("controller" => "sentences", "action" => "search", "?query=".$query."&page=1"),
-					array("class" => "navigation")
-				);
-				
-				echo $this->Html->link(
-					"<",
-					array("controller" => "sentences", "action" => "search", "?query=".$query."&page=".($currentPage-1)),
-					array("class" => "navigation")
-				);
-			}else{
-				echo '<strong><<</strong>';
-				echo '<strong><</strong>';
+			if($totalPages > 10){
+				if($currentPage > 1){
+					echo $this->Html->link(
+						"<<",
+						array("controller" => "sentences", "action" => "search", "?query=".$query."&page=1"),
+						array("class" => "navigation")
+					);
+					
+					echo $this->Html->link(
+						"<",
+						array("controller" => "sentences", "action" => "search", "?query=".$query."&page=".($currentPage-1)),
+						array("class" => "navigation")
+					);
+				}else{
+					echo '<strong><<</strong>';
+					echo '<strong><</strong>';
+				}
 			}
 			
 			// Setting range
@@ -54,21 +56,23 @@ class PaginationHelper extends AppHelper{
 			}
 			
 			// Navigation arrows
-			if($currentPage < $totalPages){
-				echo $this->Html->link(
-					">",
-					array("controller" => "sentences", "action" => "search", "?query=".$query."&page=".($currentPage+1)),
-					array("class" => "navigation")
-				);
-				
-				echo $this->Html->link(
-					">>",
-					array("controller" => "sentences", "action" => "search", "?query=".$query."&page=".$totalPages),
-					array("class" => "navigation")
-				);
-			}else{
-				echo '<strong>></strong>';
-				echo '<strong>>></strong>';
+			if($totalPages > 10){
+				if($currentPage < $totalPages){
+					echo $this->Html->link(
+						">",
+						array("controller" => "sentences", "action" => "search", "?query=".$query."&page=".($currentPage+1)),
+						array("class" => "navigation")
+					);
+					
+					echo $this->Html->link(
+						">>",
+						array("controller" => "sentences", "action" => "search", "?query=".$query."&page=".$totalPages),
+						array("class" => "navigation")
+					);
+				}else{
+					echo '<strong>></strong>';
+					echo '<strong>>></strong>';
+				}
 			}
 			
 			echo '</div>';
