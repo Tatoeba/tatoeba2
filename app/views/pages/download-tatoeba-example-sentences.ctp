@@ -22,7 +22,7 @@
 <tr>
 
 <td>
-<?php echo $html->link(__('sentences_20090118.csv',true),'/files/sentences_20090118.csv'); ?>
+<?php echo $html->link('sentences_20090118.csv','/files/sentences_20090118.csv'); ?>
 </td>
 
 <td>
@@ -41,7 +41,7 @@
 
 <tr>
 <td>
-<?php echo $html->link(__('links_20090118.csv',true),'/files/links_20090118.csv'); ?>
+<?php echo $html->link('links_20090118.csv','/files/links_20090118.csv'); ?>
 </td>
 
 <td>
