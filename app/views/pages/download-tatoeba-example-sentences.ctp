@@ -114,7 +114,7 @@ echo '<table class="download older">';
 	foreach($samples as $fileName => $sample){
 	echo '<tr>';
 		echo '<td>';
-		echo '<a href="downloads/'.$fileName.'.csv">'.$fileName.'.csv</a>';
+		echo '<a href="/files/old/'.$fileName.'.csv">'.$fileName.'.csv</a>';
 		echo '</td>';
 		
 		echo '<td>';
