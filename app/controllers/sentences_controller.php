@@ -8,7 +8,7 @@ class SentencesController extends AppController{
 	    parent::beforeFilter(); 
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo','translate');
+	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo');
 	}
 
 	
