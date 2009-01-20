@@ -18,9 +18,7 @@ class SentencesController extends AppController{
 	
 	function show($id = null){
 		if($id == "random"){
-			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences', false); 
-				// I'm actually not sure if the "false" does something here... but oh well.
-				// see : http://micropipes.com/blog/2008/01/07/cakephps-cache-that-wouldnt-quit/
+			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences');
 			$max = $resultMax[0][0]['MAX(id)'];
 			
 			$randId = rand(1, $max);
