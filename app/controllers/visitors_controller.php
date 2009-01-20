@@ -2,6 +2,15 @@
 class VisitorsController extends AppController {
 
 	var $name = 'Visitors';
+	var $webRobots = array(
+		// google
+		  '66.249.71.85'
+		, '66.249.71.83'
+		, '66.249.71.84'
+		, '66.249.67.2'
+		// yahoo
+		, '72.30.79.84'
+	);
 	
 	function beforeFilter() {
 		parent::beforeFilter(); 
