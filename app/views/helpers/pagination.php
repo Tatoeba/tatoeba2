@@ -3,7 +3,15 @@ class PaginationHelper extends AppHelper{
 	var $helpers = array('Html');
 	const RANGE = 11;
 	
-	function displaySearchPagination($totalPages, $currentPage, $query){
+	function searchUrl($page, $query, $from = null, $to = null){
+		$params  = '?page='.$page;
+		$params .= '&query='.$query;
+		$params .= ($from != null) ? '&from='.$from : '';
+		$params .= ($to != null) ? '&to='.$to : '';
+		return array("controller" => "sentences", "action" => "search", $params);
+	}
+	
+	function displaySearchPagination($totalPages, $currentPage, $query, $from = null){
 		if($totalPages > 1){
 			$query = urlencode($query);
 			
@@ -14,13 +22,13 @@ class PaginationHelper extends AppHelper{
 				if($currentPage > 1){
 					echo $this->Html->link(
 						"<<",
-						array("controller" => "sentences", "action" => "search", "?query=".$query."&page=1"),
+						$this->searchUrl(1, $query, $from),
 						array("class" => "navigation")
 					);
 					
 					echo $this->Html->link(
 						"<",
-						array("controller" => "sentences", "action" => "search", "?query=".$query."&page=".($currentPage-1)),
+						$this->searchUrl($currentPage-1, $query, $from),
 						array("class" => "navigation")
 					);
 				}else{
@@ -52,7 +60,7 @@ class PaginationHelper extends AppHelper{
 				}else{
 					echo $this->Html->link(
 						$i, 
-						array("controller" => "sentences", "action" => "search", "?query=".$query."&page=".$i)
+						$this->searchUrl($i, $query, $from)
 					);
 				}
 			}
@@ -62,13 +70,13 @@ class PaginationHelper extends AppHelper{
 				if($currentPage < $totalPages){
 					echo $this->Html->link(
 						">",
-						array("controller" => "sentences", "action" => "search", "?query=".$query."&page=".($currentPage+1)),
+						$this->searchUrl($currentPage+1, $query, $from),
 						array("class" => "navigation")
 					);
 					
 					echo $this->Html->link(
 						">>",
-						array("controller" => "sentences", "action" => "search", "?query=".$query."&page=".$totalPages),
+						$this->searchUrl($totalPages, $query, $from),
 						array("class" => "navigation")
 					);
 				}else{

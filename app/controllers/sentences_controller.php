@@ -243,9 +243,10 @@ class SentencesController extends AppController{
 		if(isset($_GET['query'])){
 			$query = $_GET['query'];
 			$page = isset($_GET['page']) ? $_GET['page'] : null;
+			$from = isset($_GET['from']) ? $_GET['from'] : null;
 			
 			$this->pageTitle = __('Tatoeba search : ',true) . stripslashes($query);
-			$lucene_results = $this->Lucene->search($query, null, null, $page);
+			$lucene_results = $this->Lucene->search($query, $from, null, $page);
 			$sentences = array();
 			
 			foreach($lucene_results['sentencesIds'] as $result){
@@ -276,6 +277,7 @@ class SentencesController extends AppController{
 			$this->set('sentences', $sentences);
 			$this->set('scores', $scores);
 			$this->set('query', $query);
+			$this->set('from', $from);
 			
 			// checking which options user can access to
 			$specialOptions = $this->Permissions->getSentencesOptions(0,1);

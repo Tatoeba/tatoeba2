@@ -6,7 +6,7 @@ if(isset($query)){
 	
 	if(isset($results)){
 		
-		$pagination->displaySearchPagination($resultsInfo['pagesCount'], $resultsInfo['currentPage'], $query);
+		$pagination->displaySearchPagination($resultsInfo['pagesCount'], $resultsInfo['currentPage'], $query, $from);
 		
 		$i = 0;
 		
@@ -21,7 +21,7 @@ if(isset($query)){
 			echo '</div>';
 		}
 		
-		$pagination->displaySearchPagination($resultsInfo['pagesCount'], $resultsInfo['currentPage'], $query);
+		$pagination->displaySearchPagination($resultsInfo['pagesCount'], $resultsInfo['currentPage'], $query, $from);
 		
 	}else{
 		__('No results for this search');

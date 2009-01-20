@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-01-19 23:45+0100\n"
-"PO-Revision-Date: 2009-01-19 23:46+0100\n"
+"POT-Creation-Date: 2009-01-20 01:26+0100\n"
+"PO-Revision-Date: 2009-01-20 01:30+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -68,11 +68,11 @@ msgstr "Votre traduction a été sauvegardée."
 msgid "A problem occured. Your translation has not been saved."
 msgstr "Un problème est survenu. Votre traduction n'a pas été sauvegardée."
 
-#: \controllers\sentences_controller.php:247
+#: \controllers\sentences_controller.php:248
 msgid "Tatoeba search : "
 msgstr "Recherche Tatoeba : "
 
-#: \controllers\sentences_controller.php:284
+#: \controllers\sentences_controller.php:286
 msgid "Tatoeba search"
 msgstr "Recherche Tatoeba"
 
@@ -134,7 +134,7 @@ msgstr ""
 
 #: \controllers\users_controller.php:91
 msgid "Your account is not validated yet. You will not be able to add sentences, translate or post comments. To validate it, click on the link in the email that has been sent to you during your registration. You can have this email resent to you."
-msgstr ""
+msgstr "Votre compte n'est pas encore validé. Vous ne pourrez pas ajouter des phrases, traduire, ou soumettre des commentaire. Pour le valider, cliquez dans le lien dans l'email qui vous a été envoyé pendant votre inscription. Cet email peut vous être réenvoyé."
 
 #: \controllers\users_controller.php:116;157
 msgid "Tatoeba registration"
@@ -294,11 +294,60 @@ msgstr "Contribuer"
 msgid "Comments"
 msgstr "Commentaires"
 
+#: \views\elements\search_bar.ctp:12
+#: \views\helpers\languages.php:6
+msgid "English"
+msgstr "anglais"
+
 #: \views\elements\search_bar.ctp:13
+#: \views\helpers\languages.php:8
+msgid "Japanese"
+msgstr "japonais"
+
+#: \views\elements\search_bar.ctp:14
+#: \views\helpers\languages.php:7
+msgid "French"
+msgstr "français"
+
+#: \views\elements\search_bar.ctp:15
+#: \views\helpers\languages.php:9
+msgid "German"
+msgstr "allemand"
+
+#: \views\elements\search_bar.ctp:16
+#: \views\helpers\languages.php:10
+msgid "Spanish"
+msgstr "espagnol"
+
+#: \views\elements\search_bar.ctp:17
+msgid "Italian"
+msgstr "italien"
+
+#: \views\elements\search_bar.ctp:18
+msgid "Vietnamese"
+msgstr "vietnamien"
+
+#: \views\elements\search_bar.ctp:19
+msgid "Russian"
+msgstr "russe"
+
+#: \views\elements\search_bar.ctp:20
+msgid "Chinese"
+msgstr "chinois"
+
+#: \views\elements\search_bar.ctp:21
+msgid "Korean"
+msgstr "coréen"
+
+#: \views\elements\search_bar.ctp:22
+msgid "Dutch"
+msgstr "néerlandais"
+
+#: \views\elements\search_bar.ctp:29
 msgid "search"
 msgstr "recherche"
 
-#: \views\elements\search_bar.ctp:15
+#: \views\elements\search_bar.ctp:31
 msgid "show examples"
 msgstr "exemples"
 
@@ -456,26 +505,6 @@ msgstr "il y a %s heure(s)"
 msgid "%s mn(s) ago"
 msgstr "il y a %s mn(s)"
 
-#: \views\helpers\languages.php:6
-msgid "English"
-msgstr "Anglais"
-
-#: \views\helpers\languages.php:7
-msgid "French"
-msgstr "Français"
-
-#: \views\helpers\languages.php:8
-msgid "Japanese"
-msgstr "Japonais"
-
-#: \views\helpers\languages.php:9
-msgid "German"
-msgstr "Allemand"
-
-#: \views\helpers\languages.php:10
-msgid "Spanish"
-msgstr "Espagnol"
-
 #: \views\helpers\sentences.php:63
 msgid "Your translation should be <strong>based on the main sentence</strong> (the one at the <strong>top</strong>)."
 msgstr "Votre traduction doit <strong>se baser sur la phrase principale</strong> (celle tout en <strong>haut</strong>)."
@@ -588,47 +617,51 @@ msgstr "Recherche d'un mot : "
 msgid "This will search for sentences containing the word \"example\"."
 msgstr "Ceci chechera les phrases contenant le mot \"example\"."
 
-#: \views\pages\search.ctp:20
+#: \views\pages\search.ctp:18
+msgid "Note that if you specify the language, the search will not always be an exact search. More concretely, if you are searching \"thinking\", and do NOT specify any language, it will return sentences with EXACTLY the word \"think\". But if you specify that the language is English, it will also return sentences with \"thinks\" and \"thinking\"."
+msgstr ""
+
+#: \views\pages\search.ctp:22
 msgid "Using quotes : "
 msgstr "Utilisation de guillemets : "
 
-#: \views\pages\search.ctp:29
+#: \views\pages\search.ctp:31
 msgid "This will search for sentences containing \"I would like\". If you remove the quotes, see below."
 msgstr "Ceci cherchera les phrase contenant \"I would like\". Si vous retirez les guillemets, voire ci-dessous."
 
-#: \views\pages\search.ctp:33
+#: \views\pages\search.ctp:35
 msgid "Search with OR operator : "
 msgstr "Recherche avec l'opérateur OR : "
 
-#: \views\pages\search.ctp:42
+#: \views\pages\search.ctp:44
 msgid "This will search for sentences containing \"would\" or \"like\". "
 msgstr "Ceci cherchera les phrases contenant \"would\" ou \"like\"."
 
-#: \views\pages\search.ctp:43
+#: \views\pages\search.ctp:45
 msgid "Words with <strong>3 characters or less are ignored</strong> if they are not inside of quotes, which is why \"I\" is not taken into account here."
 msgstr "Les mots avec <strong>3 lettres ou moins sont ignorés</strong> s'ils ne sont pas à l'intérieur de guillemets, c'est pourquoi \"I\" n'est pas pris en compte ici."
 
-#: \views\pages\search.ctp:46
+#: \views\pages\search.ctp:48
 msgid "Search with AND operator : "
 msgstr "Recherche avec l'opérateur AND : "
 
-#: \views\pages\search.ctp:55
+#: \views\pages\search.ctp:57
 msgid "This will search for sentences containing \"here\" and \"there\"."
 msgstr "Ceci chechera les phrases contenant \"here\" et \"there\"."
 
-#: \views\pages\search.ctp:58
+#: \views\pages\search.ctp:60
 msgid "Search with NOT operator : "
 msgstr "Recherche avec l'opérateur NOT : "
 
-#: \views\pages\search.ctp:67
+#: \views\pages\search.ctp:69
 msgid "This will search for sentences containing \"here\" but not \"there\"."
 msgstr "Ceci cherchera les phrases contenant \"here\" mais pas \"there\"."
 
-#: \views\pages\search.ctp:70
+#: \views\pages\search.ctp:72
 msgid "Grouping : "
 msgstr "Regroupement : "
 
-#: \views\pages\search.ctp:79
+#: \views\pages\search.ctp:81
 msgid "This will search for sentences containing \"like\" and \"music\", or \"like\" and \"sleep\"."
 msgstr "Ceci cherchera les phrases contenant \"like\" et \"music\", ou \"like\" et \"sleep\"."
 

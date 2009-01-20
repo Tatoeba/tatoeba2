@@ -8,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-01-19 23:45+0100\n"
+"POT-Creation-Date: 2009-01-20 01:26+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -69,11 +69,11 @@ msgstr ""
 msgid "A problem occured. Your translation has not been saved."
 msgstr ""
 
-#: \controllers\sentences_controller.php:247
+#: \controllers\sentences_controller.php:248
 msgid "Tatoeba search : "
 msgstr ""
 
-#: \controllers\sentences_controller.php:284
+#: \controllers\sentences_controller.php:286
 msgid "Tatoeba search"
 msgstr ""
 
@@ -295,11 +295,60 @@ msgstr ""
 msgid "Comments"
 msgstr ""
 
+#: \views\elements\search_bar.ctp:12
+#: \views\helpers\languages.php:6
+msgid "English"
+msgstr ""
+
 #: \views\elements\search_bar.ctp:13
-msgid "search"
+#: \views\helpers\languages.php:8
+msgid "Japanese"
+msgstr ""
+
+#: \views\elements\search_bar.ctp:14
+#: \views\helpers\languages.php:7
+msgid "French"
 msgstr ""
 
 #: \views\elements\search_bar.ctp:15
+#: \views\helpers\languages.php:9
+msgid "German"
+msgstr ""
+
+#: \views\elements\search_bar.ctp:16
+#: \views\helpers\languages.php:10
+msgid "Spanish"
+msgstr ""
+
+#: \views\elements\search_bar.ctp:17
+msgid "Italian"
+msgstr ""
+
+#: \views\elements\search_bar.ctp:18
+msgid "Vietnamese"
+msgstr ""
+
+#: \views\elements\search_bar.ctp:19
+msgid "Russian"
+msgstr ""
+
+#: \views\elements\search_bar.ctp:20
+msgid "Chinese"
+msgstr ""
+
+#: \views\elements\search_bar.ctp:21
+msgid "Korean"
+msgstr ""
+
+#: \views\elements\search_bar.ctp:22
+msgid "Dutch"
+msgstr ""
+
+#: \views\elements\search_bar.ctp:29
+msgid "search"
+msgstr ""
+
+#: \views\elements\search_bar.ctp:31
 msgid "show examples"
 msgstr ""
 
@@ -457,26 +506,6 @@ msgstr ""
 msgid "%s mn(s) ago"
 msgstr ""
 
-#: \views\helpers\languages.php:6
-msgid "English"
-msgstr ""
-
-#: \views\helpers\languages.php:7
-msgid "French"
-msgstr ""
-
-#: \views\helpers\languages.php:8
-msgid "Japanese"
-msgstr ""
-
-#: \views\helpers\languages.php:9
-msgid "German"
-msgstr ""
-
-#: \views\helpers\languages.php:10
-msgid "Spanish"
-msgstr ""
-
 #: \views\helpers\sentences.php:63
 msgid "Your translation should be <strong>based on the main sentence</strong> (the one at the <strong>top</strong>)."
 msgstr ""
@@ -589,47 +618,51 @@ msgstr ""
 msgid "This will search for sentences containing the word \"example\"."
 msgstr ""
 
-#: \views\pages\search.ctp:20
+#: \views\pages\search.ctp:18
+msgid "Note that if you specify the language, the search will not always be an exact search. More concretely, if you are searching \"thinking\", and do NOT specify any language, it will return sentences with EXACTLY the word \"think\". But if you specify that the language is English, it will also return sentences with \"thinks\" and \"thinking\"."
+msgstr ""
+
+#: \views\pages\search.ctp:22
 msgid "Using quotes : "
 msgstr ""
 
-#: \views\pages\search.ctp:29
+#: \views\pages\search.ctp:31
 msgid "This will search for sentences containing \"I would like\". If you remove the quotes, see below."
 msgstr ""
 
-#: \views\pages\search.ctp:33
+#: \views\pages\search.ctp:35
 msgid "Search with OR operator : "
 msgstr ""
 
-#: \views\pages\search.ctp:42
+#: \views\pages\search.ctp:44
 msgid "This will search for sentences containing \"would\" or \"like\". "
 msgstr ""
 
-#: \views\pages\search.ctp:43
+#: \views\pages\search.ctp:45
 msgid "Words with <strong>3 characters or less are ignored</strong> if they are not inside of quotes, which is why \"I\" is not taken into account here."
 msgstr ""
 
-#: \views\pages\search.ctp:46
+#: \views\pages\search.ctp:48
 msgid "Search with AND operator : "
 msgstr ""
 
-#: \views\pages\search.ctp:55
+#: \views\pages\search.ctp:57
 msgid "This will search for sentences containing \"here\" and \"there\"."
 msgstr ""
 
-#: \views\pages\search.ctp:58
+#: \views\pages\search.ctp:60
 msgid "Search with NOT operator : "
 msgstr ""
 
-#: \views\pages\search.ctp:67
+#: \views\pages\search.ctp:69
 msgid "This will search for sentences containing \"here\" but not \"there\"."
 msgstr ""
 
-#: \views\pages\search.ctp:70
+#: \views\pages\search.ctp:72
 msgid "Grouping : "
 msgstr ""
 
-#: \views\pages\search.ctp:79
+#: \views\pages\search.ctp:81
 msgid "This will search for sentences containing \"like\" and \"music\", or \"like\" and \"sleep\"."
 msgstr ""
 

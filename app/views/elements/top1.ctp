@@ -42,20 +42,17 @@ if (isset($this->params['lang'])) {
 	);
 	
 	foreach($languages as $code => $language){
-		$path  = '/'.$code.'/';
-		if($this->params['controller'] != 'pages'){
-			
-			$path .= $this->params['controller'].'/';
-			
-			if($this->params['action'] != 'display'){
-			
-				$path .= $this->params['action'].'/';
-				
-				foreach($this->params['pass'] as $extraParam){
-					$path .= $extraParam.'/';
-				}
-			}
+		$path  = '/'.$code.'/';	
+		$path .= $this->params['controller'].'/';
+		
+		if($this->params['action'] != 'display'){
+			$path .= $this->params['action'].'/';
 		}
+		
+		foreach($this->params['pass'] as $extraParam){
+			$path .= $extraParam.'/';
+		}
+	
 		// probably not the best way to do it but never mind
 		
 		echo $html->link($language, $path);
