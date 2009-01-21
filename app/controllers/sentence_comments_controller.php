@@ -40,7 +40,7 @@ class SentenceCommentsController extends AppController {
 		$this->set('sentence', $sentence->read());	
 		
 		// checking which options user can access to
-		$specialOptions = $this->Permissions->getSentencesOptions();
+		$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
 		$this->set('specialOptions',$specialOptions);
 	}
 	

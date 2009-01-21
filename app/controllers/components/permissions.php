@@ -12,7 +12,7 @@ class PermissionsComponent extends Object{
 		$specialOptions = array('canComment' => false, 'canEdit' => false, 'canDelete' => false);
 		if($this->Auth->user('id')){
 			$specialOptions['canComment'] = true;
-			$specialOptions['canEdit'] = ($this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/edit') AND $sentence_owner_id == $current_user_id);
+			$specialOptions['canEdit'] = ($this->Auth->user('group_id') < 3 OR ($this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/edit') AND $sentence_owner_id == $current_user_id));
 			$specialOptions['canDelete'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/delete');
 		}
 		return $specialOptions;
