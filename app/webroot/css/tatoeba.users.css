@@ -98,3 +98,82 @@ padding-left: 20px;
 #UserMenu div{
 margin: 5px;
 }
+
+
+/* USERS LIST */
+.users{
+margin-bottom: 20px;
+}
+
+.users th{
+background: #6CBC70;
+border-bottom: #444444 2px solid;
+padding: 10px 3px;
+}
+
+.users td{
+text-align: center;
+padding: 5px;
+}
+
+tr.altrow{
+background: #DEF0C9;
+}
+
+/* EDIT USER */
+#UserEditForm{
+margin: 20px 0px;
+font-size: 18px;
+width: 560px;
+}
+
+#UserEditForm fieldset{
+background: #DEF0C9;
+border: 2px solid;
+color: #444444;
+}
+
+#UserEditForm label{
+width: 180px;
+display: block;
+float: left;
+text-align: right;
+padding: 0px 10px;
+}
+
+#UserEditForm div.input{
+padding: 3px;
+}
+
+#UserEditForm div.input input{
+font-size: 18px;
+width: 300px;
+border: 1px solid #989898;
+}
+
+#UserEditForm div.submit{
+text-align: center;
+margin-top: 10px;
+}
+
+#UserEditForm div.submit input{
+font-size: 18px;
+}
+
+.editUser .actions{
+margin: 10px;
+float:right;
+}
+
+.editUser .actions li{
+font-size: 20px;
+border: 1px solid #555555;
+margin: 10px;
+padding: 5px;
+background: #6CBC70;
+text-align: center;
+}
+
+.editUser .actions a{
+color: white;
+}

@@ -3,15 +3,19 @@ class DateHelper extends AppHelper{
 	/** 
 	 * Format for the date is : '%d/%m/%Y %H:%M:%S'
 	 */
-	function ago($date){
-		$year = substr($date, 0, 4);
-		$month = substr($date, 5, 2);
-		$day = substr($date, 8, 2);
-		$hour = substr($date, 11, 2);
-		$min = substr($date, 14, 2);
-		
-		$pureNumberDate = $year.$month.$day.','.$hour.$min;
-		$timestamp = strtotime($pureNumberDate);
+	function ago($date, $isTimestamp = false){
+		if(!$isTimestamp){
+			$year = substr($date, 0, 4);
+			$month = substr($date, 5, 2);
+			$day = substr($date, 8, 2);
+			$hour = substr($date, 11, 2);
+			$min = substr($date, 14, 2);
+			
+			$pureNumberDate = $year.$month.$day.','.$hour.$min;
+			$timestamp = strtotime($pureNumberDate);
+		}else{
+			$timestamp = $date;
+		}
 		
 		$now = time();	
 		$days = intval(($now-$timestamp)/(3600*24));

@@ -29,6 +29,12 @@ form{
 margin: 0px;
 }
 
+ul{
+list-style: none;
+margin: 0;
+padding: 0;
+}
+
 /* TOP */
 
 #top1, #content, #foot, #top2, #menu{
@@ -205,26 +211,27 @@ font-weight: bold;
 }
 
 /* PAGINATION */
-.pagination{
+.pagination, .paging{
 margin-bottom: 20px;
 text-align:center;
 }
 
-.pagination a{
+.pagination a, .paging a{
 padding: 3px 5px;
 margin: 3px;
 background: #D3F3B9;
 border: 1px solid #75C34B;
 }
 
-.pagination strong{
+.pagination strong, .paging .disabled{
+display: inline;
 padding: 3px 5px;
 margin: 3px;
 background: #f1f1f1;
 border: 1px solid #d1d1d1;
 }
 
-.pagination span.selected{
+.pagination span.selected, .paging .current{
 border: 1px solid #75C34B;
 padding: 3px 5px;
 margin: 3px;

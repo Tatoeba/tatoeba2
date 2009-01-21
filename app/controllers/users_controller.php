@@ -2,8 +2,9 @@
 class UsersController extends AppController {
 
 	var $name = 'Users';
-	var $helpers = array('Html', 'Form');
+	var $helpers = array('Html', 'Form', 'Date');
 	var $components = array ('Mailer');
+	var $paginate = array('limit' => 50); 
 
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -20,7 +21,7 @@ class UsersController extends AppController {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
 		
-		$this->initDB();
+		//$this->initDB();
 	}
 
 	function view($id = null) {
@@ -52,6 +53,12 @@ class UsersController extends AppController {
 		}
 		if (!empty($this->data)) {
 			if ($this->User->save($this->data)) {
+				// update aro table
+				$aro = new Aro();
+				$data = $aro->find("first", array( "conditions" => array("foreign_key" => $this->data['User']['id'], "model" => "User")));
+				$data['Aro']['parent_id'] = $this->data['User']['group_id'];
+				$this->Acl->Aro->save($data);
+				
 				$this->Session->setFlash(__('The User has been saved', true));
 				$this->redirect(array('action'=>'index'));
 			} else {
@@ -90,6 +97,9 @@ class UsersController extends AppController {
 			if($this->Auth->user('group_id') == 5){
 				$this->flash(__('Your account is not validated yet. You will not be able to add sentences, translate or post comments. To validate it, click on the link in the email that has been sent to you during your registration. You can have this email resent to you.', true), '/users/resend_registration_mail/');
 			}else{
+				$data['User']['id'] = $this->Auth->user('id');
+				$data['User']['last_time_active'] = time();
+				$this->User->save($data);
 				$this->redirect($this->Auth->redirect());
 			}
 		}
