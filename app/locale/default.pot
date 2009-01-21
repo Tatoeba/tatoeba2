@@ -1,14 +1,12 @@
 # LANGUAGE translation of CakePHP Application
 # Copyright YEAR NAME <EMAIL@ADDRESS>
-# Generated from files:
-#  Revision: 46 \models\behaviors\bindable.php
-#  Revision: 7296 \webroot\test.php
+# Generated from file: Revision: 7296 \webroot\test.php
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-01-20 01:26+0100\n"
+"POT-Creation-Date: 2009-01-22 00:54+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -21,208 +19,124 @@ msgstr ""
 msgid "You need to be logged in."
 msgstr ""
 
-#: \controllers\groups_controller.php:21
-msgid "Invalid Group."
-msgstr ""
-
-#: \controllers\groups_controller.php:31;46
-msgid "The Group has been saved"
-msgstr ""
-
-#: \controllers\groups_controller.php:34;49
-msgid "The Group could not be saved. Please, try again."
-msgstr ""
-
-#: \controllers\groups_controller.php:41
-msgid "Invalid Group"
-msgstr ""
-
-#: \controllers\groups_controller.php:59
-msgid "Invalid id for Group"
-msgstr ""
-
-#: \controllers\groups_controller.php:63
-msgid "Group deleted"
-msgstr ""
-
 #: \controllers\sentence_comments_controller.php:74
 msgid "Your comment has been saved."
 msgstr ""
 
-#: \controllers\sentences_controller.php:79
+#: \controllers\sentences_controller.php:77
 msgid "Your sentence has been saved. You can add a translation for it or add another new sentence."
 msgstr ""
 
-#: \controllers\sentences_controller.php:117
+#: \controllers\sentences_controller.php:115
 msgid "This sentence was not added by you. You can only edit sentences you have added."
 msgstr ""
 
-#: \controllers\sentences_controller.php:135
+#: \controllers\sentences_controller.php:133
 msgid "The sentence has been updated."
 msgstr ""
 
-#: \controllers\sentences_controller.php:230
+#: \controllers\sentences_controller.php:228
 msgid "Your translation has been saved."
 msgstr ""
 
-#: \controllers\sentences_controller.php:235
+#: \controllers\sentences_controller.php:233
 msgid "A problem occured. Your translation has not been saved."
 msgstr ""
 
-#: \controllers\sentences_controller.php:248
+#: \controllers\sentences_controller.php:246
 msgid "Tatoeba search : "
 msgstr ""
 
-#: \controllers\sentences_controller.php:286
+#: \controllers\sentences_controller.php:284
 msgid "Tatoeba search"
 msgstr ""
 
-#: \controllers\suggested_modifications_controller.php:21
-msgid "Invalid SuggestedModification."
-msgstr ""
-
-#: \controllers\suggested_modifications_controller.php:53
-msgid "The suggestion has been saved"
-msgstr ""
-
-#: \controllers\suggested_modifications_controller.php:56
-msgid "The suggestion could not be saved. Please, try again."
-msgstr ""
-
-#: \controllers\suggested_modifications_controller.php:63
-msgid "Invalid SuggestedModification"
-msgstr ""
-
-#: \controllers\suggested_modifications_controller.php:68
-msgid "The SuggestedModification has been saved"
-msgstr ""
-
-#: \controllers\suggested_modifications_controller.php:71
-msgid "The SuggestedModification could not be saved. Please, try again."
-msgstr ""
-
-#: \controllers\suggested_modifications_controller.php:83
-msgid "Invalid id for SuggestedModification"
-msgstr ""
-
-#: \controllers\suggested_modifications_controller.php:87
-msgid "SuggestedModification deleted"
-msgstr ""
-
-#: \controllers\users_controller.php:28
-msgid "Invalid User."
-msgstr ""
-
-#: \controllers\users_controller.php:38;55
-msgid "The User has been saved"
-msgstr ""
-
-#: \controllers\users_controller.php:41;58
-msgid "The User could not be saved. Please, try again."
-msgstr ""
-
-#: \controllers\users_controller.php:50
-msgid "Invalid User"
-msgstr ""
-
-#: \controllers\users_controller.php:70
-msgid "Invalid id for User"
-msgstr ""
-
-#: \controllers\users_controller.php:74
-msgid "User deleted"
-msgstr ""
-
-#: \controllers\users_controller.php:91
+#: \controllers\users_controller.php:76
 msgid "Your account is not validated yet. You will not be able to add sentences, translate or post comments. To validate it, click on the link in the email that has been sent to you during your registration. You can have this email resent to you."
 msgstr ""
 
-#: \controllers\users_controller.php:116;157
+#: \controllers\users_controller.php:104;145
 msgid "Tatoeba registration"
 msgstr ""
 
-#: \controllers\users_controller.php:117;158
+#: \controllers\users_controller.php:105;146
 msgid "Dear %s,"
 msgstr ""
 
-#: \controllers\users_controller.php:119;160
+#: \controllers\users_controller.php:107;148
 msgid "Welcome to Tatoeba and thank you for your interest in this project!"
 msgstr ""
 
-#: \controllers\users_controller.php:121;162
+#: \controllers\users_controller.php:109;150
 msgid "You can validate your registration by clicking on this link :"
 msgstr ""
 
-#: \controllers\users_controller.php:133
+#: \controllers\users_controller.php:121
 msgid "Thank you for registering. To validate your registration, click on the link in the email that has been sent to you."
 msgstr ""
 
-#: \controllers\users_controller.php:142
+#: \controllers\users_controller.php:130
 msgid "Passwords do not match"
 msgstr ""
 
-#: \controllers\users_controller.php:173
+#: \controllers\users_controller.php:161
 msgid "The registration email has been resent."
 msgstr ""
 
-#: \controllers\users_controller.php:177
+#: \controllers\users_controller.php:165
 msgid "Your registration has already been validated. Try to login again."
 msgstr ""
 
-#: \controllers\users_controller.php:183
+#: \controllers\users_controller.php:171
 msgid "There is no user with this email : "
 msgstr ""
 
-#: \controllers\users_controller.php:198
+#: \controllers\users_controller.php:186
 msgid "Your registration is already validated."
 msgstr ""
 
-#: \controllers\users_controller.php:209
+#: \controllers\users_controller.php:197
 msgid "Your registration has been validated."
 msgstr ""
 
-#: \controllers\users_controller.php:211
+#: \controllers\users_controller.php:199
 msgid "A problem occured. Your registration could not be validated."
 msgstr ""
 
-#: \controllers\users_controller.php:214
+#: \controllers\users_controller.php:202
 msgid "Non valid registration link."
 msgstr ""
 
-#: \controllers\users_controller.php:234
+#: \controllers\users_controller.php:222
 msgid "Tatoeba, new password"
 msgstr ""
 
-#: \controllers\users_controller.php:235
+#: \controllers\users_controller.php:223
 msgid "Your login : "
 msgstr ""
 
-#: \controllers\users_controller.php:238
+#: \controllers\users_controller.php:226
 msgid "Your new password : "
 msgstr ""
 
-#: \controllers\users_controller.php:249
+#: \controllers\users_controller.php:237
 msgid "Your new password has been sent at "
 msgstr ""
 
-#: \controllers\users_controller.php:255
+#: \controllers\users_controller.php:243
 msgid "There is no registered user with this email : "
 msgstr ""
 
-#: \controllers\users_controller.php:278
+#: \controllers\users_controller.php:266
 msgid "New password has been saved."
 msgstr ""
 
-#: \controllers\users_controller.php:284
+#: \controllers\users_controller.php:272
 msgid "Email saved : "
 msgstr ""
 
-#: \controllers\users_controller.php:297;303
+#: \controllers\users_controller.php:285;291
 msgid "No changes have been applied."
-msgstr ""
-
-#: \models\behaviors\bindable.php:403
-msgid "%s.%s is not a valid binding"
 msgstr ""
 
 #: \views\contributions\index.ctp:2
@@ -271,6 +185,11 @@ msgstr ""
 msgid "Tatoeba Blog"
 msgstr ""
 
+#: \views\elements\foot.ctp:16
+#: \views\pages\home.ctp:13
+msgid "Downloads"
+msgstr ""
+
 #: \views\elements\menu.ctp:14
 msgid "Home"
 msgstr ""
@@ -291,7 +210,6 @@ msgstr ""
 #: \views\helpers\sentences.php:200
 #: \views\sentence_comments\show.ctp:20
 #: \views\sentences\edit.ctp:23
-#: \views\suggested_modifications\add.ctp:23
 msgid "Comments"
 msgstr ""
 
@@ -378,112 +296,16 @@ msgstr ""
 msgid "Register"
 msgstr ""
 
-#: \views\groups\add.ctp:4
-msgid "Add Group"
-msgstr ""
-
-#: \views\groups\add.ctp:13
-#: \views\groups\edit.ctp:15
-#: \views\groups\view.ctp:30
-#: \views\users\add.ctp:23
-#: \views\users\edit.ctp:22
-#: \views\users\index.ctp:75
-#: \views\users\view.ctp:57
-msgid "List Groups"
-msgstr ""
-
-#: \views\groups\edit.ctp:4
-#: \views\groups\view.ctp:28
-msgid "Edit Group"
-msgstr ""
-
-#: \views\groups\edit.ctp:14
-#: \views\groups\index.ctp:41
-#: \views\helpers\sentences.php:223
-#: \views\users\edit.ctp:20
-#: \views\users\index.ctp:61
-msgid "Delete"
-msgstr ""
-
-#: \views\groups\edit.ctp:14
-#: \views\groups\index.ctp:41
-#: \views\groups\view.ctp:29
-#: \views\users\edit.ctp:20
-#: \views\users\index.ctp:61
-#: \views\users\view.ctp:54
-msgid "Are you sure you want to delete # %s?"
-msgstr ""
-
-#: \views\groups\index.ctp:2
-msgid "Groups"
-msgstr ""
-
-#: \views\groups\index.ctp:6
-#: \views\users\index.ctp:6
-msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
-msgstr ""
-
-#: \views\groups\index.ctp:15
-#: \views\users\index.ctp:20
-msgid "Actions"
-msgstr ""
-
-#: \views\groups\index.ctp:39
-#: \views\users\index.ctp:59
-msgid "View"
-msgstr ""
-
-#: \views\groups\index.ctp:40
-#: \views\helpers\sentences.php:176
-#: \views\users\index.ctp:60
-msgid "Edit"
-msgstr ""
-
 #: \views\groups\index.ctp:48
 #: \views\helpers\sentences.php:271
-#: \views\users\index.ctp:68
+#: \views\users\index.ctp:8;69
 msgid "previous"
 msgstr ""
 
 #: \views\groups\index.ctp:50
 #: \views\helpers\sentences.php:295
-#: \views\users\index.ctp:70
+#: \views\users\index.ctp:10;71
 msgid "next"
-msgstr ""
-
-#: \views\groups\index.ctp:54
-#: \views\groups\view.ctp:31
-#: \views\users\add.ctp:24
-#: \views\users\edit.ctp:23
-#: \views\users\index.ctp:76
-#: \views\users\view.ctp:58
-msgid "New Group"
-msgstr ""
-
-#: \views\groups\view.ctp:2
-#: \views\users\view.ctp:44
-msgid "Group"
-msgstr ""
-
-#: \views\groups\view.ctp:4
-#: \views\users\view.ctp:4
-msgid "Id"
-msgstr ""
-
-#: \views\groups\view.ctp:9
-msgid "Name"
-msgstr ""
-
-#: \views\groups\view.ctp:14
-msgid "Created"
-msgstr ""
-
-#: \views\groups\view.ctp:19
-msgid "Modified"
-msgstr ""
-
-#: \views\groups\view.ctp:29
-msgid "Delete Group"
 msgstr ""
 
 #: \views\helpers\comments.php:21
@@ -494,15 +316,15 @@ msgstr ""
 msgid "Add a comment : "
 msgstr ""
 
-#: \views\helpers\date.php:23
+#: \views\helpers\date.php:27
 msgid "%s day(s) ago"
 msgstr ""
 
-#: \views\helpers\date.php:25
+#: \views\helpers\date.php:29
 msgid "%s hour(s) ago"
 msgstr ""
 
-#: \views\helpers\date.php:27
+#: \views\helpers\date.php:31
 msgid "%s mn(s) ago"
 msgstr ""
 
@@ -532,6 +354,14 @@ msgstr ""
 
 #: \views\helpers\sentences.php:164
 msgid "Translate"
+msgstr ""
+
+#: \views\helpers\sentences.php:176
+msgid "Edit"
+msgstr ""
+
+#: \views\helpers\sentences.php:223
+msgid "Delete"
 msgstr ""
 
 #: \views\helpers\sentences.php:264
@@ -587,11 +417,7 @@ msgid "Welcome on Tatoeba Project"
 msgstr ""
 
 #: \views\pages\home.ctp:11
-msgid "This project aims to build a multilingual corpus. In other words, to collect sentences translated in several languages. These sentences can be downloaded for free here : "
-msgstr ""
-
-#: \views\pages\home.ctp:13
-msgid "Downloads"
+msgid "This project aims to build a multilingual aligned corpus. In other words, to collect sentences translated in several languages. These sentences can be downloaded for free here : "
 msgstr ""
 
 #: \views\pages\home.ctp:23
@@ -680,7 +506,6 @@ msgstr ""
 
 #: \views\sentence_comments\show.ctp:14
 #: \views\sentences\edit.ctp:17
-#: \views\suggested_modifications\add.ctp:17
 msgid "Add a comment"
 msgstr ""
 
@@ -690,7 +515,6 @@ msgstr ""
 
 #: \views\sentence_comments\show.ctp:31
 #: \views\sentences\edit.ctp:34
-#: \views\suggested_modifications\add.ctp:34
 msgid "There are no comments for now."
 msgstr ""
 
@@ -715,7 +539,6 @@ msgid "Is it correct : "
 msgstr ""
 
 #: \views\sentences\edit.ctp:38
-#: \views\suggested_modifications\add.ctp:38
 msgid "You can add a comment if you are registered and logged in."
 msgstr ""
 
@@ -737,34 +560,6 @@ msgstr ""
 
 #: \views\sentences\translate.ctp:2
 msgid "Please translate : "
-msgstr ""
-
-#: \views\suggested_modifications\add.ctp:2
-msgid "Correction for : "
-msgstr ""
-
-#: \views\users\add.ctp:4
-msgid "Add User"
-msgstr ""
-
-#: \views\users\add.ctp:22
-#: \views\users\edit.ctp:21
-#: \views\users\view.ctp:55
-msgid "List Users"
-msgstr ""
-
-#: \views\users\edit.ctp:4
-#: \views\users\view.ctp:53
-msgid "Edit User"
-msgstr ""
-
-#: \views\users\index.ctp:2
-msgid "Users"
-msgstr ""
-
-#: \views\users\index.ctp:74
-#: \views\users\view.ctp:56
-msgid "New User"
 msgstr ""
 
 #: \views\users\login.ctp:6
@@ -800,7 +595,6 @@ msgid "New password"
 msgstr ""
 
 #: \views\users\my_profile.ctp:9
-#: \views\users\view.ctp:19
 msgid "Email"
 msgstr ""
 
@@ -835,38 +629,6 @@ msgstr ""
 
 #: \views\users\resend_registration_mail.ctp:3
 msgid "Resend registration email"
-msgstr ""
-
-#: \views\users\view.ctp:2
-msgid "User"
-msgstr ""
-
-#: \views\users\view.ctp:9
-msgid "Username"
-msgstr ""
-
-#: \views\users\view.ctp:14
-msgid "Password"
-msgstr ""
-
-#: \views\users\view.ctp:24
-msgid "Lang"
-msgstr ""
-
-#: \views\users\view.ctp:29
-msgid "Since"
-msgstr ""
-
-#: \views\users\view.ctp:34
-msgid "Lastlogout"
-msgstr ""
-
-#: \views\users\view.ctp:39
-msgid "Level"
-msgstr ""
-
-#: \views\users\view.ctp:54
-msgid "Delete User"
 msgstr ""
 
 #: \views\users_statistics\index.ctp:4

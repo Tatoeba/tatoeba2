@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-01-20 01:26+0100\n"
-"PO-Revision-Date: 2009-01-20 01:30+0100\n"
+"POT-Creation-Date: 2009-01-22 00:54+0100\n"
+"PO-Revision-Date: 2009-01-22 00:54+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,209 +20,125 @@ msgstr ""
 msgid "You need to be logged in."
 msgstr "Vous devez vous connecter."
 
-#: \controllers\groups_controller.php:21
-msgid "Invalid Group."
-msgstr "Group invalide."
-
-#: \controllers\groups_controller.php:31;46
-msgid "The Group has been saved"
-msgstr ""
-
-#: \controllers\groups_controller.php:34;49
-msgid "The Group could not be saved. Please, try again."
-msgstr "Ce Group n'a pas pu être sauvegardé. Réessayez."
-
-#: \controllers\groups_controller.php:41
-msgid "Invalid Group"
-msgstr "Groupe invalide."
-
-#: \controllers\groups_controller.php:59
-msgid "Invalid id for Group"
-msgstr "Id invalide pour Group."
-
-#: \controllers\groups_controller.php:63
-msgid "Group deleted"
-msgstr "Group supprimé"
-
 #: \controllers\sentence_comments_controller.php:74
 msgid "Your comment has been saved."
 msgstr "Votre commentaire a été sauvegardé"
 
-#: \controllers\sentences_controller.php:79
+#: \controllers\sentences_controller.php:77
 msgid "Your sentence has been saved. You can add a translation for it or add another new sentence."
 msgstr "Votre phrase a été sauvegardée. Vous pouvez ajouter une traduction ou ajouter une nouvelle phrase."
 
-#: \controllers\sentences_controller.php:117
+#: \controllers\sentences_controller.php:115
 msgid "This sentence was not added by you. You can only edit sentences you have added."
 msgstr "Cette phrase n'a pas été ajoutée par vous. Vous pouvez seulement éditer des phrase que vous avez ajouté."
 
-#: \controllers\sentences_controller.php:135
+#: \controllers\sentences_controller.php:133
 msgid "The sentence has been updated."
 msgstr "La phrase a été mise à jour."
 
-#: \controllers\sentences_controller.php:230
+#: \controllers\sentences_controller.php:228
 msgid "Your translation has been saved."
 msgstr "Votre traduction a été sauvegardée."
 
-#: \controllers\sentences_controller.php:235
+#: \controllers\sentences_controller.php:233
 msgid "A problem occured. Your translation has not been saved."
 msgstr "Un problème est survenu. Votre traduction n'a pas été sauvegardée."
 
-#: \controllers\sentences_controller.php:248
+#: \controllers\sentences_controller.php:246
 msgid "Tatoeba search : "
 msgstr "Recherche Tatoeba : "
 
-#: \controllers\sentences_controller.php:286
+#: \controllers\sentences_controller.php:284
 msgid "Tatoeba search"
 msgstr "Recherche Tatoeba"
 
-#: \controllers\suggested_modifications_controller.php:21
-msgid "Invalid SuggestedModification."
-msgstr ""
-
-#: \controllers\suggested_modifications_controller.php:53
-msgid "The suggestion has been saved"
-msgstr "La suggestion a été sauvegardée"
-
-#: \controllers\suggested_modifications_controller.php:56
-msgid "The suggestion could not be saved. Please, try again."
-msgstr "La suggestion n'a pas pu être sauvegardée. Veuillez réessayer."
-
-#: \controllers\suggested_modifications_controller.php:63
-msgid "Invalid SuggestedModification"
-msgstr ""
-
-#: \controllers\suggested_modifications_controller.php:68
-msgid "The SuggestedModification has been saved"
-msgstr ""
-
-#: \controllers\suggested_modifications_controller.php:71
-msgid "The SuggestedModification could not be saved. Please, try again."
-msgstr ""
-
-#: \controllers\suggested_modifications_controller.php:83
-msgid "Invalid id for SuggestedModification"
-msgstr ""
-
-#: \controllers\suggested_modifications_controller.php:87
-msgid "SuggestedModification deleted"
-msgstr ""
-
-#: \controllers\users_controller.php:28
-msgid "Invalid User."
-msgstr ""
-
-#: \controllers\users_controller.php:38;55
-msgid "The User has been saved"
-msgstr ""
-
-#: \controllers\users_controller.php:41;58
-msgid "The User could not be saved. Please, try again."
-msgstr ""
-
-#: \controllers\users_controller.php:50
-msgid "Invalid User"
-msgstr ""
-
-#: \controllers\users_controller.php:70
-msgid "Invalid id for User"
-msgstr ""
-
-#: \controllers\users_controller.php:74
-msgid "User deleted"
-msgstr ""
-
-#: \controllers\users_controller.php:91
+#: \controllers\users_controller.php:76
 msgid "Your account is not validated yet. You will not be able to add sentences, translate or post comments. To validate it, click on the link in the email that has been sent to you during your registration. You can have this email resent to you."
 msgstr "Votre compte n'est pas encore validé. Vous ne pourrez pas ajouter des phrases, traduire, ou soumettre des commentaire. Pour le valider, cliquez dans le lien dans l'email qui vous a été envoyé pendant votre inscription. Cet email peut vous être réenvoyé."
 
-#: \controllers\users_controller.php:116;157
+#: \controllers\users_controller.php:104;145
 msgid "Tatoeba registration"
 msgstr "Inscription Tatoeba"
 
-#: \controllers\users_controller.php:117;158
+#: \controllers\users_controller.php:105;146
 msgid "Dear %s,"
 msgstr "Bonjour %s,"
 
-#: \controllers\users_controller.php:119;160
+#: \controllers\users_controller.php:107;148
 msgid "Welcome to Tatoeba and thank you for your interest in this project!"
 msgstr "Bienvenue sur Tatoeba et merci de votre intérêt pour ce projet!"
 
-#: \controllers\users_controller.php:121;162
+#: \controllers\users_controller.php:109;150
 msgid "You can validate your registration by clicking on this link :"
 msgstr "Vous pouvez valider votre inscription en cliquant sur ce lien :"
 
-#: \controllers\users_controller.php:133
+#: \controllers\users_controller.php:121
 msgid "Thank you for registering. To validate your registration, click on the link in the email that has been sent to you."
 msgstr "Merci de vous être inscrit. Pour valider votre inscription, cliquez sur le lien dans l'email qui vous a été envoyé."
 
-#: \controllers\users_controller.php:142
+#: \controllers\users_controller.php:130
 msgid "Passwords do not match"
 msgstr "Les mots de passe ne correspondent pas"
 
-#: \controllers\users_controller.php:173
+#: \controllers\users_controller.php:161
 msgid "The registration email has been resent."
 msgstr "L'email d'inscription a été ré-envoyé."
 
-#: \controllers\users_controller.php:177
+#: \controllers\users_controller.php:165
 msgid "Your registration has already been validated. Try to login again."
 msgstr "Votre inscription est déjà validée. Essayez de vous reconnecter."
 
-#: \controllers\users_controller.php:183
+#: \controllers\users_controller.php:171
 msgid "There is no user with this email : "
 msgstr "Il n'y a pas de membre possédant cet email : "
 
-#: \controllers\users_controller.php:198
+#: \controllers\users_controller.php:186
 msgid "Your registration is already validated."
 msgstr "Votre inscription est déjà validée."
 
-#: \controllers\users_controller.php:209
+#: \controllers\users_controller.php:197
 msgid "Your registration has been validated."
 msgstr "Votre inscription a été validée."
 
-#: \controllers\users_controller.php:211
+#: \controllers\users_controller.php:199
 msgid "A problem occured. Your registration could not be validated."
 msgstr "Un problème est survenu. Votre inscription n'a pas pu être validée."
 
-#: \controllers\users_controller.php:214
+#: \controllers\users_controller.php:202
 msgid "Non valid registration link."
 msgstr "URL d'inscription non valide."
 
-#: \controllers\users_controller.php:234
+#: \controllers\users_controller.php:222
 msgid "Tatoeba, new password"
 msgstr "Tatoeba, nouveau mot de passe"
 
-#: \controllers\users_controller.php:235
+#: \controllers\users_controller.php:223
 msgid "Your login : "
 msgstr "Votre login : "
 
-#: \controllers\users_controller.php:238
+#: \controllers\users_controller.php:226
 msgid "Your new password : "
 msgstr "Votre nouveau mot de passe : "
 
-#: \controllers\users_controller.php:249
+#: \controllers\users_controller.php:237
 msgid "Your new password has been sent at "
 msgstr "Votre nouveau mot de passe a été envoyé à  "
 
-#: \controllers\users_controller.php:255
+#: \controllers\users_controller.php:243
 msgid "There is no registered user with this email : "
 msgstr "Il n'y a pas de membre possédant cet email : "
 
-#: \controllers\users_controller.php:278
+#: \controllers\users_controller.php:266
 msgid "New password has been saved."
 msgstr "Nouveau mot de passe enregistré."
 
-#: \controllers\users_controller.php:284
+#: \controllers\users_controller.php:272
 msgid "Email saved : "
 msgstr "Email sauvegardé : "
 
-#: \controllers\users_controller.php:297;303
+#: \controllers\users_controller.php:285;291
 msgid "No changes have been applied."
 msgstr "Aucun changement n'a été appliqué."
-
-#: \models\behaviors\bindable.php:403
-msgid "%s.%s is not a valid binding"
-msgstr ""
 
 #: \views\contributions\index.ctp:2
 #: \views\helpers\tooltip.php:42
@@ -270,6 +186,11 @@ msgstr "Me contacter"
 msgid "Tatoeba Blog"
 msgstr "Tatoeba Blog"
 
+#: \views\elements\foot.ctp:16
+#: \views\pages\home.ctp:13
+msgid "Downloads"
+msgstr "Téléchargements"
+
 #: \views\elements\menu.ctp:14
 msgid "Home"
 msgstr "Accueil"
@@ -290,7 +211,6 @@ msgstr "Contribuer"
 #: \views\helpers\sentences.php:200
 #: \views\sentence_comments\show.ctp:20
 #: \views\sentences\edit.ctp:23
-#: \views\suggested_modifications\add.ctp:23
 msgid "Comments"
 msgstr "Commentaires"
 
@@ -377,113 +297,17 @@ msgstr "Se connecter"
 msgid "Register"
 msgstr "S'inscrire"
 
-#: \views\groups\add.ctp:4
-msgid "Add Group"
-msgstr ""
-
-#: \views\groups\add.ctp:13
-#: \views\groups\edit.ctp:15
-#: \views\groups\view.ctp:30
-#: \views\users\add.ctp:23
-#: \views\users\edit.ctp:22
-#: \views\users\index.ctp:75
-#: \views\users\view.ctp:57
-msgid "List Groups"
-msgstr ""
-
-#: \views\groups\edit.ctp:4
-#: \views\groups\view.ctp:28
-msgid "Edit Group"
-msgstr ""
-
-#: \views\groups\edit.ctp:14
-#: \views\groups\index.ctp:41
-#: \views\helpers\sentences.php:223
-#: \views\users\edit.ctp:20
-#: \views\users\index.ctp:61
-msgid "Delete"
-msgstr "Supprimer"
-
-#: \views\groups\edit.ctp:14
-#: \views\groups\index.ctp:41
-#: \views\groups\view.ctp:29
-#: \views\users\edit.ctp:20
-#: \views\users\index.ctp:61
-#: \views\users\view.ctp:54
-msgid "Are you sure you want to delete # %s?"
-msgstr "Êtes-vous sûr de vouloir supprimer # %s?"
-
-#: \views\groups\index.ctp:2
-msgid "Groups"
-msgstr ""
-
-#: \views\groups\index.ctp:6
-#: \views\users\index.ctp:6
-msgid "Page %page% of %pages%, showing %current% records out of %count% total, starting on record %start%, ending on %end%"
-msgstr ""
-
-#: \views\groups\index.ctp:15
-#: \views\users\index.ctp:20
-msgid "Actions"
-msgstr ""
-
-#: \views\groups\index.ctp:39
-#: \views\users\index.ctp:59
-msgid "View"
-msgstr ""
-
-#: \views\groups\index.ctp:40
-#: \views\helpers\sentences.php:176
-#: \views\users\index.ctp:60
-msgid "Edit"
-msgstr "Éditer"
-
 #: \views\groups\index.ctp:48
 #: \views\helpers\sentences.php:271
-#: \views\users\index.ctp:68
+#: \views\users\index.ctp:8;69
 msgid "previous"
 msgstr "précédent"
 
 #: \views\groups\index.ctp:50
 #: \views\helpers\sentences.php:295
-#: \views\users\index.ctp:70
+#: \views\users\index.ctp:10;71
 msgid "next"
 msgstr "suivant"
-
-#: \views\groups\index.ctp:54
-#: \views\groups\view.ctp:31
-#: \views\users\add.ctp:24
-#: \views\users\edit.ctp:23
-#: \views\users\index.ctp:76
-#: \views\users\view.ctp:58
-msgid "New Group"
-msgstr ""
-
-#: \views\groups\view.ctp:2
-#: \views\users\view.ctp:44
-msgid "Group"
-msgstr ""
-
-#: \views\groups\view.ctp:4
-#: \views\users\view.ctp:4
-msgid "Id"
-msgstr ""
-
-#: \views\groups\view.ctp:9
-msgid "Name"
-msgstr ""
-
-#: \views\groups\view.ctp:14
-msgid "Created"
-msgstr ""
-
-#: \views\groups\view.ctp:19
-msgid "Modified"
-msgstr ""
-
-#: \views\groups\view.ctp:29
-msgid "Delete Group"
-msgstr ""
 
 #: \views\helpers\comments.php:21
 msgid "Even though you can comment on the whole group of sentences, keep in mind that your comment will be <strong>linked only to the main sentence</strong> (at the top)."
@@ -493,15 +317,15 @@ msgstr "Même si vous pouvez commenter tout un gruope de phrases, gardez en têt
 msgid "Add a comment : "
 msgstr "Ajouter un commentaire : "
 
-#: \views\helpers\date.php:23
+#: \views\helpers\date.php:27
 msgid "%s day(s) ago"
 msgstr "il y a %s jour(s)"
 
-#: \views\helpers\date.php:25
+#: \views\helpers\date.php:29
 msgid "%s hour(s) ago"
 msgstr "il y a %s heure(s)"
 
-#: \views\helpers\date.php:27
+#: \views\helpers\date.php:31
 msgid "%s mn(s) ago"
 msgstr "il y a %s mn(s)"
 
@@ -532,6 +356,14 @@ msgstr "Modification : "
 #: \views\helpers\sentences.php:164
 msgid "Translate"
 msgstr "Traduire"
+
+#: \views\helpers\sentences.php:176
+msgid "Edit"
+msgstr "Éditer"
+
+#: \views\helpers\sentences.php:223
+msgid "Delete"
+msgstr "Supprimer"
 
 #: \views\helpers\sentences.php:264
 msgid "Show sentence nº : "
@@ -586,12 +418,8 @@ msgid "Welcome on Tatoeba Project"
 msgstr "Bienvenue sur Tatoeba Project"
 
 #: \views\pages\home.ctp:11
-msgid "This project aims to build a multilingual corpus. In other words, to collect sentences translated in several languages. These sentences can be downloaded for free here : "
-msgstr "Ce projet a pour but de construire un corpus multilingue. En d'autres termes, de collecter des phrases traduites dans plusieurs langues. Ces phrases peuvent être téléchargées gratuitement ici : "
-
-#: \views\pages\home.ctp:13
-msgid "Downloads"
-msgstr "Téléchargements"
+msgid "This project aims to build a multilingual aligned corpus. In other words, to collect sentences translated in several languages. These sentences can be downloaded for free here : "
+msgstr "Ce projet a pour but de construire un corpus aligné multilingue. En d'autres termes, de collecter des phrases traduites dans plusieurs langues. Ces phrases peuvent être téléchargées gratuitement ici : "
 
 #: \views\pages\home.ctp:23
 msgid "Random sentence"
@@ -619,7 +447,7 @@ msgstr "Ceci chechera les phrases contenant le mot \"example\"."
 
 #: \views\pages\search.ctp:18
 msgid "Note that if you specify the language, the search will not always be an exact search. More concretely, if you are searching \"thinking\", and do NOT specify any language, it will return sentences with EXACTLY the word \"think\". But if you specify that the language is English, it will also return sentences with \"thinks\" and \"thinking\"."
-msgstr ""
+msgstr "Notez que si vous spécifiez la langue, la recherche ne sera pas toujours une recherche exacte. Plus concrètement, si vous cherchez \"think\" et ne spécifiez PAS la langue, cela retournera des phrases avec EXACTEMENT le mot \"think\". Mais si vous spécifiez que la langue est l'anglais, cela retournera aussi des phrases avec \"thinks\" et \"thinking\"."
 
 #: \views\pages\search.ctp:22
 msgid "Using quotes : "
@@ -679,7 +507,6 @@ msgstr "Commentaires sur les phrases : "
 
 #: \views\sentence_comments\show.ctp:14
 #: \views\sentences\edit.ctp:17
-#: \views\suggested_modifications\add.ctp:17
 msgid "Add a comment"
 msgstr "Ajouter un commentaire"
 
@@ -689,7 +516,6 @@ msgstr "Si vous remarquez des fautes, n'hésitez pas à poster un commentaire!"
 
 #: \views\sentence_comments\show.ctp:31
 #: \views\sentences\edit.ctp:34
-#: \views\suggested_modifications\add.ctp:34
 msgid "There are no comments for now."
 msgstr "Il n'y a pas de commentaires pour l'instant."
 
@@ -714,7 +540,6 @@ msgid "Is it correct : "
 msgstr "Est-ce correct : "
 
 #: \views\sentences\edit.ctp:38
-#: \views\suggested_modifications\add.ctp:38
 msgid "You can add a comment if you are registered and logged in."
 msgstr "Vous pouvez ajouter un commentaire si vous êtes inscrit et connecté."
 
@@ -737,34 +562,6 @@ msgstr "Il n'y a pas de phrases ayant pour id : "
 #: \views\sentences\translate.ctp:2
 msgid "Please translate : "
 msgstr "Traduisez s'il vous plaît : "
-
-#: \views\suggested_modifications\add.ctp:2
-msgid "Correction for : "
-msgstr "Correction pour : "
-
-#: \views\users\add.ctp:4
-msgid "Add User"
-msgstr ""
-
-#: \views\users\add.ctp:22
-#: \views\users\edit.ctp:21
-#: \views\users\view.ctp:55
-msgid "List Users"
-msgstr ""
-
-#: \views\users\edit.ctp:4
-#: \views\users\view.ctp:53
-msgid "Edit User"
-msgstr ""
-
-#: \views\users\index.ctp:2
-msgid "Users"
-msgstr ""
-
-#: \views\users\index.ctp:74
-#: \views\users\view.ctp:56
-msgid "New User"
-msgstr ""
 
 #: \views\users\login.ctp:6
 msgid "Click here to register"
@@ -799,7 +596,6 @@ msgid "New password"
 msgstr "Nouveau mot de passe"
 
 #: \views\users\my_profile.ctp:9
-#: \views\users\view.ctp:19
 msgid "Email"
 msgstr "Email"
 
@@ -835,38 +631,6 @@ msgstr "Email :"
 #: \views\users\resend_registration_mail.ctp:3
 msgid "Resend registration email"
 msgstr "Réenvoyer email d'inscription"
-
-#: \views\users\view.ctp:2
-msgid "User"
-msgstr ""
-
-#: \views\users\view.ctp:9
-msgid "Username"
-msgstr "Nom d'utilisateur"
-
-#: \views\users\view.ctp:14
-msgid "Password"
-msgstr "Mot de passe"
-
-#: \views\users\view.ctp:24
-msgid "Lang"
-msgstr ""
-
-#: \views\users\view.ctp:29
-msgid "Since"
-msgstr ""
-
-#: \views\users\view.ctp:34
-msgid "Lastlogout"
-msgstr ""
-
-#: \views\users\view.ctp:39
-msgid "Level"
-msgstr ""
-
-#: \views\users\view.ctp:54
-msgid "Delete User"
-msgstr "Supprimer Utilisateur"
 
 #: \views\users_statistics\index.ctp:4
 msgid "Your Statistics"
@@ -932,6 +696,30 @@ msgstr "inconnu"
 msgid "Debug setting does not allow access to this url."
 msgstr "Les paramètres de debug ne permettent pas l'accès à cette URL."
 
+#~ msgid "Username"
+#~ msgstr "Nom d'utilisateur"
+#~ msgid "Password"
+#~ msgstr "Mot de passe"
+#~ msgid "Delete User"
+#~ msgstr "Supprimer Utilisateur"
+#~ msgid "Are you sure you want to delete # %s?"
+#~ msgstr "Êtes-vous sûr de vouloir supprimer # %s?"
+#~ msgid "The suggestion has been saved"
+#~ msgstr "La suggestion a été sauvegardée"
+#~ msgid "The suggestion could not be saved. Please, try again."
+#~ msgstr "La suggestion n'a pas pu être sauvegardée. Veuillez réessayer."
+#~ msgid "Correction for : "
+#~ msgstr "Correction pour : "
+#~ msgid "Invalid Group."
+#~ msgstr "Group invalide."
+#~ msgid "The Group could not be saved. Please, try again."
+#~ msgstr "Ce Group n'a pas pu être sauvegardé. Réessayez."
+#~ msgid "Invalid Group"
+#~ msgstr "Groupe invalide."
+#~ msgid "Invalid id for Group"
+#~ msgstr "Id invalide pour Group."
+#~ msgid "Group deleted"
+#~ msgstr "Group supprimé"
 #~ msgid "Statistics"
 #~ msgstr "Statistiques"
 #~ msgid "Translation : "

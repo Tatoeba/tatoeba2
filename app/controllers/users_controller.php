@@ -24,31 +24,9 @@ class UsersController extends AppController {
 		//$this->initDB();
 	}
 
-	function view($id = null) {
-		if (!$id) {
-			$this->Session->setFlash(__('Invalid User.', true));
-			$this->redirect(array('action'=>'index'));
-		}
-		$this->set('user', $this->User->read(null, $id));
-	}
-
-	function add() {
-		if (!empty($this->data)) {
-			$this->User->create();
-			if ($this->User->save($this->data)) {
-				$this->Session->setFlash(__('The User has been saved', true));
-				$this->redirect(array('action'=>'index'));
-			} else {
-				$this->Session->setFlash(__('The User could not be saved. Please, try again.', true));
-			}
-		}
-		$groups = $this->User->Group->find('list');
-		$this->set(compact('groups'));
-	}
-
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid User', true));
+			$this->Session->setFlash('Invalid User');
 			$this->redirect(array('action'=>'index'));
 		}
 		if (!empty($this->data)) {
@@ -59,10 +37,10 @@ class UsersController extends AppController {
 				$data['Aro']['parent_id'] = $this->data['User']['group_id'];
 				$this->Acl->Aro->save($data);
 				
-				$this->Session->setFlash(__('The User has been saved', true));
+				$this->Session->setFlash('The User has been saved');
 				$this->redirect(array('action'=>'index'));
 			} else {
-				$this->Session->setFlash(__('The User could not be saved. Please, try again.', true));
+				$this->Session->setFlash('The User could not be saved. Please, try again.');
 			}
 		}
 		if (empty($this->data)) {
@@ -74,11 +52,11 @@ class UsersController extends AppController {
 
 	function delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for User', true));
+			$this->Session->setFlash('Invalid id for User');
 			$this->redirect(array('action'=>'index'));
 		}
 		if ($this->User->del($id)) {
-			$this->Session->setFlash(__('User deleted', true));
+			$this->Session->setFlash('User deleted');
 			$this->redirect(array('action'=>'index'));
 		}
 	}

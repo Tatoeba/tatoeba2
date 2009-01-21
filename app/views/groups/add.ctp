@@ -1,7 +1,7 @@
 <div class="groups form">
 <?php echo $form->create('Group');?>
 	<fieldset>
- 		<legend><?php __('Add Group');?></legend>
+ 		<legend><?php echo 'Add Group';?></legend>
 	<?php
 		echo $form->input('name');
 	?>
@@ -10,6 +10,6 @@
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('List Groups', true), array('action'=>'index'));?></li>
+		<li><?php echo $html->link('List Groups', array('action'=>'index'));?></li>
 	</ul>
 </div>

@@ -57,8 +57,8 @@ foreach ($users as $user):
 			<?php echo $html->link($user['Group']['name'], array('controller'=> 'groups', 'action'=>'view', $user['Group']['id'])); ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('Edit', true), array('action'=>'edit', $user['User']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action'=>'delete', $user['User']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $user['User']['id'])); ?>
+			<?php echo $html->link('Edit', array('action'=>'edit', $user['User']['id'])); ?>
+			<?php echo $html->link('Delete', array('action'=>'delete', $user['User']['id']), null, sprintf('Are you sure you want to delete # %s?', $user['User']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
