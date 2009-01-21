@@ -44,7 +44,7 @@ foreach ($users as $user):
 			<?php echo $user['User']['lang']; ?>
 		</td>
 		<td>
-			<?php echo $user['User']['since']; ?>
+			<?php echo $date->ago($user['User']['since']); ?>
 		</td>
 		<td>
 			<?php echo $date->ago($user['User']['last_time_active'],true); ?>
