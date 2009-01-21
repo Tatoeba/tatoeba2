@@ -120,6 +120,18 @@ tr.altrow{
 background: #DEF0C9;
 }
 
+.users th.num, .users th.actions{
+background: white;
+}
+
+.users .num{
+border-right: 1px solid #989898;
+}
+
+.users .actions{
+border-left: 1px solid #989898;
+}
+
 /* EDIT USER */
 #UserEditForm{
 margin: 20px 0px;

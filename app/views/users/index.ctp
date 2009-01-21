@@ -13,6 +13,7 @@ echo $paginator->counter(array('format' => 'Users (total %count%)'));
 
 <table class="users">
 <tr>
+	<th class="num"></th>
 	<th><?php echo $paginator->sort('id');?></th>
 	<th><?php echo $paginator->sort('username');?></th>
 	<th><?php echo $paginator->sort('email');?></th>
@@ -20,7 +21,7 @@ echo $paginator->counter(array('format' => 'Users (total %count%)'));
 	<th><?php echo $paginator->sort('since');?></th>
 	<th><?php echo $paginator->sort('last_time_active');?></th>
 	<th><?php echo $paginator->sort('group_id');?></th>
-	<th class="actions"><?php __('Actions');?></th>
+	<th class="actions"></th>
 </tr>
 <?php
 $i = 0;
@@ -31,6 +32,9 @@ foreach ($users as $user):
 	}
 ?>
 	<tr<?php echo $class;?>>
+		<td class="num">
+			<?php echo $i; ?>
+		</td>
 		<td>
 			<?php echo $user['User']['id']; ?>
 		</td>
