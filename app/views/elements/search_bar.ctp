@@ -7,7 +7,6 @@ if (isset($this->params['lang'])) {
 <div class="search_bar">
 
 <?php
-$query = isset($_GET['query']) ? $_GET['query'] : '';
 $languages = array(
 	  'en' => __('English', true)
 	, 'jp' => __('Japanese', true)
@@ -21,11 +20,11 @@ $languages = array(
 	, 'ko' => __('Korean', true)
 	, 'nl' => __('Dutch', true)
 );
-$selectedLanguage = isset($_GET['from']) ? $_GET['from'] : null;
+$selectedLanguage = $session->read('search_from');
 
 echo $form->create('Sentence', array("action" => "search", "type" => "get"));
 echo $form->select('from', $languages, $selectedLanguage);
-echo $form->input('query', array("label" => '', "value" => stripslashes($query)));
+echo $form->input('query', array("label" => '', "value" => $session->read('search_query')));
 echo $form->end(__('search',true));
 
 echo $html->link(__('show examples',true), array("controller" => "sentences", "action" => "search"	));
