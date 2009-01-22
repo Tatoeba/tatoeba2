@@ -137,6 +137,28 @@ class SentencesController extends AppController{
 		}
 	}
 	
+	function adopt($id){
+		$data['Sentence']['id'] = $id;
+		$data['Sentence']['user_id'] = $this->Auth->user('id');
+		if($this->Sentence->save($data)){
+			$this->flash(
+				__('You are now owner of this sentence. Besides of moderators and administratos, ONLY YOU can modify it. It is your responsibility to make sure that it does not have any mistake and is not linked to wrong translations.',true),
+				'/sentences/edit'.$id
+			);
+		}
+	}
+	
+	function let_go($id){
+		$data['Sentence']['id'] = $id;
+		$data['Sentence']['user_id'] = null;
+		if($this->Sentence->save($data)){
+			$this->flash(
+				__('You have abandonned your ownership for this sentence. Other people can now adopt it. If it was a mistake, you can just re-adopt it.',true),
+				'/sentences/show/'.$id
+			);
+		}
+	}
+	
 	function translate($id){
 		if($id == "random"){
 			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences', false); 

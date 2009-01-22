@@ -313,6 +313,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Sentences/translate');
 		$this->Acl->allow($group, 'controllers/Sentences/save_translation');
 		$this->Acl->allow($group, 'controllers/Sentences/contribute');
+		$this->Acl->allow($group, 'controllers/Sentences/adopt');
+		$this->Acl->allow($group, 'controllers/Sentences/let_go');
 		
 		//Permissions for trusted_users
 		$group->id = 3;
@@ -323,6 +325,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Sentences/translate');
 		$this->Acl->allow($group, 'controllers/Sentences/save_translation');
 		$this->Acl->allow($group, 'controllers/Sentences/contribute');
+		$this->Acl->allow($group, 'controllers/Sentences/adopt');
+		$this->Acl->allow($group, 'controllers/Sentences/let_go');
 		
 	    //Permissions for users
 	    $group->id = 4;
@@ -333,6 +337,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Sentences/translate');
 		$this->Acl->allow($group, 'controllers/Sentences/save_translation');
 		$this->Acl->allow($group, 'controllers/Sentences/contribute');
+		$this->Acl->allow($group, 'controllers/Sentences/adopt');
+		$this->Acl->allow($group, 'controllers/Sentences/let_go');
 	}
 }
 ?>

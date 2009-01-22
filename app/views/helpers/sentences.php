@@ -216,6 +216,32 @@ class SentencesHelper extends AppHelper {
 				));
 			echo '</li>';
 			
+			// adopt
+			if(isset($specialOptions['canAdopt']) AND $specialOptions['canAdopt'] == true){
+				echo '<li class="option">';
+				echo $this->Html->link(
+					__('Adopt',true),
+					array(
+						"controller" => "sentences",
+						"action" => "adopt",
+						$id
+					));
+				echo '</li>';
+			}
+			
+			// let go
+			if(isset($specialOptions['canLetGo']) AND $specialOptions['canLetGo'] == true){
+				echo '<li class="option">';
+				echo $this->Html->link(
+					__('Let go',true),
+					array(
+						"controller" => "sentences",
+						"action" => "let_go",
+						$id
+					));
+				echo '</li>';
+			}
+			
 			// delete link
 			if(isset($specialOptions['canDelete']) AND $specialOptions['canDelete'] == true){
 				echo '<li class="option delete">';
@@ -235,12 +261,12 @@ class SentencesHelper extends AppHelper {
 	
 	function optionClass($optionName){
 		$options = array(
-			'show' => array("controller" => "sentences", "action" => "show"),
-			'translate' => array("controller" => "sentences", "action" => "translate"),
-			'edit' => array("controller" => "sentences", "action" => "edit"),
-			'correct' => array("controller" => "suggested_modifications", "action" => "add"),
-			'comments' => array("controller" => "sentence_comments", "action" => "show"),
-			'logs' => array("controller" => "contributions", "action" => "show")
+			  'show' => array("controller" => "sentences", "action" => "show")
+			, 'translate' => array("controller" => "sentences", "action" => "translate")
+			, 'edit' => array("controller" => "sentences", "action" => "edit")
+			, 'correct' => array("controller" => "suggested_modifications", "action" => "add")
+			, 'comments' => array("controller" => "sentence_comments", "action" => "show")
+			, 'logs' => array("controller" => "contributions", "action" => "show")
 		);
 		
 		foreach($options as $name => $route){
