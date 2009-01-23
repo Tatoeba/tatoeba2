@@ -15,6 +15,7 @@ class VisitorsController extends AppController {
 		// msn-bot
 		, '65.55.210.178'
 		, '65.55.107.221'
+		, '65.55.210.176'
 	);
 	
 	function beforeFilter() {
