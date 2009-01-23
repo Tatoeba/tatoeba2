@@ -44,27 +44,27 @@ class User extends AppModel {
 	);
 	
 	var $hasMany = array(
-		  'SentenceComments'
-		, 'UserStatistics'
+		  'SentenceComments' => array('limit' => 10, 'order' => 'datetime DESC')
+		// , 'UserStatistics'
 		, 'Contributions' => array('limit' => 10, 'order' => 'datetime DESC')
 		, 'Sentences' => array('limit' => 10, 'order' => 'modified DESC')
 	);
 	
-	var $hasAndBelongsToMany = array(
-		'Follower' => array(
-			'className' => 'Follower',
-			'joinTable' => 'followers_users',
-			'foreignKey' => 'follower_id',
-			'associationForeignKey' => 'user_id',
-			'conditions' => '',
-			'order' => '',
-			'limit' => '',
-			'unique' => true,
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		)
-	);
+	// var $hasAndBelongsToMany = array(
+		// 'Follower' => array(
+			// 'className' => 'Follower',
+			// 'joinTable' => 'followers_users',
+			// 'foreignKey' => 'follower_id',
+			// 'associationForeignKey' => 'user_id',
+			// 'conditions' => '',
+			// 'order' => '',
+			// 'limit' => '',
+			// 'unique' => true,
+			// 'finderQuery' => '',
+			// 'deleteQuery' => '',
+			// 'insertQuery' => ''
+		// )
+	// );
 	
 	function parentNode() {
 	    if (!$this->id && empty($this->data)) {

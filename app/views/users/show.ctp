@@ -8,14 +8,14 @@ echo $date->ago($user['User']['since']);
 
 
 
-echo '<h3>';
-__('Statistics');
-echo '</h3>';
+// echo '<h3>';
+// __('Statistics');
+// echo '</h3>';
 
-if(count($user['UserStatistics']) > 0){
-}else{
-__('This doesn\'t have any statistics yet.');
-}
+// if(count($user['UserStatistics']) > 0){
+// }else{
+// __('This doesn\'t have any statistics yet.');
+// }
 
 
 echo '<br/>';

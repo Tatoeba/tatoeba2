@@ -60,18 +60,9 @@ class SentencesController extends AppController{
 			
 			$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
 			$this->data['Sentence']['user_id'] = $this->Auth->user('id');
+			
 			// saving
-			if($this->Sentence->save($this->data)){
-				// Logs
-				$this->data['Contribution']['sentence_id'] = $this->Sentence->id;
-				$this->data['Contribution']['sentence_lang'] = $response['language'];
-				$this->data['Contribution']['text'] = $this->data['Sentence']['text'];
-				$this->data['Contribution']['action'] = 'insert';
-				$this->data['Contribution']['user_id'] = $this->Auth->user('id');
-				$this->data['Contribution']['datetime'] = date("Y-m-d H:i:s");
-				$this->data['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
-				$this->Sentence->Contribution->save($this->data);
-				
+			if($this->Sentence->save($this->data)){			
 				// Confirmation message
 				$this->flash(
 					__('Your sentence has been saved. You can add a translation for it or add another new sentence.',true), 
@@ -84,14 +75,8 @@ class SentencesController extends AppController{
 	function delete($id){
 		// We log first
 		$this->Sentence->id = $id;
-		$tmp = $this->Sentence->read();
-		$this->data['Contribution']['sentence_id'] = $id;
-		$this->data['Contribution']['sentence_lang'] = $tmp['Sentence']['lang'];
-		$this->data['Contribution']['text'] = $tmp['Sentence']['text'];
-		$this->data['Contribution']['action'] = 'delete';
-		$this->data['Contribution']['user_id'] = $this->Auth->user('id');
-		$this->data['Contribution']['datetime'] = date("Y-m-d H:i:s");
-		$this->data['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
+		$this->Sentence->recursive = 0;
+		$this->Sentence->read();
 		$this->Sentence->Contribution->save($this->data);
 		
 		// Then we delete
@@ -117,17 +102,8 @@ class SentencesController extends AppController{
 				);
 			}
 		}else{
-			if($this->Sentence->save($this->data)){				
-				// Sentence logs
-				$this->data['Contribution']['sentence_id'] = $this->Sentence->id;
-				$this->data['Contribution']['sentence_lang'] = $this->data['Sentence']['lang'];
-				$this->data['Contribution']['text'] = $this->data['Sentence']['text'];
-				$this->data['Contribution']['action'] = 'update';
-				$this->data['Contribution']['user_id'] = $this->Auth->user('id');
-				$this->data['Contribution']['datetime'] = date("Y-m-d H:i:s");
-				$this->data['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
-				$this->Sentence->Contribution->save($this->data);
-				
+			$this->data['Sentence']['user_id'] = $this->Auth->user('id'); // for the logs
+			if($this->Sentence->save($this->data)){
 				// Confirmation message
 				$this->flash(
 					__('The sentence has been updated.',true),
@@ -161,9 +137,7 @@ class SentencesController extends AppController{
 	
 	function translate($id){
 		if($id == "random"){
-			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences', false); 
-				// I'm actually not sure if the "false" does something here... but oh well.
-				// see : http://micropipes.com/blog/2008/01/07/cakephps-cache-that-wouldnt-quit/
+			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences');
 			$max = $resultMax[0][0]['MAX(id)'];
 			
 			$randId = rand(1, $max);
@@ -211,40 +185,6 @@ class SentencesController extends AppController{
 			$this->data['Sentence']['user_id'] = $this->Auth->user('id');
 			
 			if($this->Sentence->save($this->data)){
-				// Sentence logs
-				$this->data['Contribution']['sentence_id'] = $this->Sentence->id;
-				$this->data['Contribution']['sentence_lang'] = $this->data['Sentence']['lang'];
-				$this->data['Contribution']['text'] = $this->data['Sentence']['text'];
-				$this->data['Contribution']['action'] = 'insert';
-				$this->data['Contribution']['user_id'] = $this->Auth->user('id');
-				$this->data['Contribution']['datetime'] = date("Y-m-d H:i:s");
-				$this->data['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
-				$this->Sentence->Contribution->save($this->data);
-				
-				// Translation logs
-				$data['Contribution']['sentence_id'] = $this->data['Translation']['Translation'][0];
-				$data['Contribution']['sentence_lang'] = $this->data['Sentence']['sentence_lang'];
-				$data['Contribution']['translation_id'] = $this->Sentence->id;
-				$data['Contribution']['translation_lang'] = $this->data['Sentence']['lang'];
-				$data['Contribution']['action'] = 'insert';
-				$data['Contribution']['user_id'] = $this->Auth->user('id');
-				$data['Contribution']['datetime'] = date("Y-m-d H:i:s");
-				$data['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
-				$Contributions[] = $data;
-				
-				// Inverse translation logs
-				$data['Contribution']['sentence_id'] = $this->Sentence->id;
-				$data['Contribution']['sentence_lang'] = $this->data['Sentence']['lang'];
-				$data['Contribution']['translation_id'] = $this->data['Translation']['Translation'][0];
-				$data['Contribution']['translation_lang'] = $this->data['Sentence']['sentence_lang'];
-				$data['Contribution']['action'] = 'insert';
-				$data['Contribution']['user_id'] = $this->Auth->user('id');
-				$data['Contribution']['datetime'] = date("Y-m-d H:i:s");
-				$data['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
-				$Contributions[] = $data;
-				
-				$this->Sentence->Contribution->saveAll($Contributions);
-				
 				// Confirmation message
 				$this->flash(
 					__('Your translation has been saved.',true),
