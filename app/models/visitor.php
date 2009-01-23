@@ -1,5 +1,5 @@
 <?php
-class Visotor extends AppModel {
+class Visitor extends AppModel {
 
 	var $name = 'Visitor';
 	
