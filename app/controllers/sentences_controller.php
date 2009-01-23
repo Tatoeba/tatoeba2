@@ -2,7 +2,7 @@
 class SentencesController extends AppController{
 	var $name = 'Sentences';
 	var $components = array ('GoogleLanguageApi', 'Lucene', 'Permissions');
-	var $helpers = array('Sentences', 'Html', 'Logs', 'Pagination', 'Comments');
+	var $helpers = array('Sentences', 'Html', 'Logs', 'Pagination', 'Comments', 'Navigation');
 	
 	function beforeFilter() {
 	    parent::beforeFilter(); 

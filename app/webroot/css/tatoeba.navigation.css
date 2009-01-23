@@ -1,0 +1,34 @@
+/* navigation */
+.navigation{
+margin-bottom: 30px;
+margin-top: 10px;
+width: 100%;
+}
+
+.navigation ul{
+display:inline;
+}
+
+.navigation li{
+display:inline;
+}
+
+.navigation li.option a{
+background: #D3F3B9;
+padding: 3px 8px;
+margin-right: 10px;
+}
+
+.navigation li.option a:hover{
+background: #75C34B;
+color: #D3F3B9;
+}
+
+#SentenceGoToForm, #UserSearchForm{
+float:right;
+padding-left: 100px;
+}
+
+#SentenceGoToForm div.submit, #SentenceGoToForm div.input, #UserSearchForm div.submit, #UserSearchForm div.input{
+display: inline;
+}

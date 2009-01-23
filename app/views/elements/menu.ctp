@@ -18,7 +18,7 @@ $menuElements = array(
 	// ,__('Logs',true) 		=> array("controller" => "contributions", "action" => "index")
 	,__('Comments',true) 	=> array("controller" => "sentence_comments", "action" => "index")
 	// ,__('Statistics',true) 	=> array("controller" => "users_statistics")
-	,__('Members',true)		=> array("controller" => "users", "action" => "show", "random")
+	,__('Members',true)		=> array("controller" => "users", "action" => "all")
 );
 
 // displaying the menu

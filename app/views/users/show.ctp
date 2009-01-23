@@ -1,4 +1,6 @@
 <?php
+$navigation->displayUsersNavigation($user['User']['id'], $user['User']['username']);
+
 $this->pageTitle = __('Tatoeba user : ',true) . $user['User']['username'];
 
 echo '<h2>'.$user['User']['username'].'</h2>';

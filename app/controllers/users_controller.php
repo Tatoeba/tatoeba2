@@ -2,7 +2,7 @@
 class UsersController extends AppController {
 
 	var $name = 'Users';
-	var $helpers = array('Html', 'Form', 'Date', 'Logs', 'Sentences');
+	var $helpers = array('Html', 'Form', 'Date', 'Logs', 'Sentences', 'Navigation');
 	var $components = array ('Mailer');
 	var $paginate = array('limit' => 50); 
 
@@ -12,7 +12,7 @@ class UsersController extends AppController {
 		
 		// setting actions that are available to everyone, even guests
 		// no need to allow login
-		$this->Auth->allowedActions = array('search', 'show', 'logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration', 'resend_registration_mail');
+		$this->Auth->allowedActions = array('all', 'search', 'show', 'logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration', 'resend_registration_mail');
 		//$this->Auth->allowedActions = array('*');
 	}
 
@@ -294,15 +294,39 @@ class UsersController extends AppController {
 		}
 	}
 	
-	function search($username){
-		
-		//$this->redirect(array("action" => "show", $user['User']['id']));
+	function search(){
+		$user = $this->User->findByUsername($this->data['User']['username']);
+		if($user != null){
+			$id = ($user['User']['id'] < 1) ? 1 : $user['User']['id'];
+			$this->redirect(array("action" => "show", $id));	
+		}else{
+			$this->flash(__('No user with this username : ', true).$this->data['User']['username'], '/users/all/');
+		}
 	}
 	
-	function show($username){
+	function show($id){
 		$this->User->recursive = 1;
-		$user = $this->User->findByUsername($username);
-		$this->set('user', $user);
+		if($id == "random"){
+			$user = $this->User->find('first', array('conditions' => 'User.group_id < 5', 'order' => 'RAND()', 'limit' => 1));
+		}else{
+			$user = $this->User->findById($id);
+		}
+		
+		if($user != null){
+			$this->set('user', $user);
+		}else{
+			$this->Session->write('last_user_id', $id);
+			$this->flash(__('No user with this id : ', true).$id, '/users/all/');
+		}
+	}
+	
+	function all(){
+		// $this->User->recursive = 0;
+		// $users = $this->User->find('all', array('conditions' => 'User.group_id < 5', 'order' => 'since DESC', 'limit' => 5));
+		// $this->set('users', $users);
+		
+		$this->User->recursive = 0;
+		$this->set('users', $this->paginate(array('User.group_id < 5')));
 	}
 	
 	

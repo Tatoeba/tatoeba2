@@ -189,3 +189,24 @@ text-align: center;
 .editUser .actions a{
 color: white;
 }
+
+
+/* RECENT USERS */
+
+.recentUsers{
+width: 500px;
+text-align: center;
+}
+
+.recentUsers td{
+padding: 2px 5px;
+border: 1px solid #989898;
+}
+
+.recentUsers th{
+text-align: center;
+background: #767676;
+color: white;
+border: 1px solid #989898;
+padding: 2px 5px;
+}
