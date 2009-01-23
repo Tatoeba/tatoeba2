@@ -261,5 +261,5 @@ CREATE TABLE IF NOT EXISTS `latest_contributions` (
 CREATE TABLE IF NOT EXISTS `followers_users` (
   `follower_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  UNIQUE KEY `followers_id` (`followers_id`,`user_id`)
+  UNIQUE KEY `follower_id` (`follower_id`,`user_id`)
 )
