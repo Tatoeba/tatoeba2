@@ -2,7 +2,7 @@
 class UsersController extends AppController {
 
 	var $name = 'Users';
-	var $helpers = array('Html', 'Form', 'Date');
+	var $helpers = array('Html', 'Form', 'Date', 'Logs', 'Sentences');
 	var $components = array ('Mailer');
 	var $paginate = array('limit' => 50); 
 
@@ -12,7 +12,7 @@ class UsersController extends AppController {
 		
 		// setting actions that are available to everyone, even guests
 		// no need to allow login
-		$this->Auth->allowedActions = array('logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration', 'resend_registration_mail');
+		$this->Auth->allowedActions = array('search', 'show', 'logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration', 'resend_registration_mail');
 		//$this->Auth->allowedActions = array('*');
 	}
 
@@ -293,6 +293,18 @@ class UsersController extends AppController {
 			);
 		}
 	}
+	
+	function search($username){
+		
+		//$this->redirect(array("action" => "show", $user['User']['id']));
+	}
+	
+	function show($username){
+		$this->User->recursive = 1;
+		$user = $this->User->findByUsername($username);
+		$this->set('user', $user);
+	}
+	
 	
 	// temporary function to grant/deny access
 	function initDB() {

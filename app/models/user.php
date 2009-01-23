@@ -34,15 +34,37 @@ class User extends AppModel {
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 	var $belongsTo = array(
-			'Group' => array('className' => 'Group',
-								'foreignKey' => 'group_id',
-								'conditions' => '',
-								'fields' => '',
-								'order' => ''
-			)
+		'Group' => array(
+			'className' => 'Group',
+			'foreignKey' => 'group_id',
+			'conditions' => '',
+			'fields' => '',
+			'order' => ''
+		)
 	);
 	
-	var $hasMany = array('SentenceComments');
+	var $hasMany = array(
+		  'SentenceComments'
+		, 'UserStatistics'
+		, 'Contributions' => array('limit' => 10, 'order' => 'datetime DESC')
+		, 'Sentences' => array('limit' => 10, 'order' => 'modified DESC')
+	);
+	
+	var $hasAndBelongsToMany = array(
+		'Follower' => array(
+			'className' => 'Follower',
+			'joinTable' => 'followers_users',
+			'foreignKey' => 'follower_id',
+			'associationForeignKey' => 'user_id',
+			'conditions' => '',
+			'order' => '',
+			'limit' => '',
+			'unique' => true,
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		)
+	);
 	
 	function parentNode() {
 	    if (!$this->id && empty($this->data)) {
@@ -59,6 +81,7 @@ class User extends AppModel {
 	    }
 	}
 	
+	// this should probably be in the controller... why did I put it here I don't remember
 	function generate_password(){
 		$pw = '';
 		$c  = 'bcdfghjklmnprstvwz' . 'BCDFGHJKLMNPRSTVWZ' ; //consonants except hard to speak ones

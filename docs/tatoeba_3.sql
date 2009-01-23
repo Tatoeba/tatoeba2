@@ -221,14 +221,16 @@ CREATE TABLE IF NOT EXISTS `visitors` (
 -- --------------------------------------------------------
 
 --
--- Structure for view `users_statistics`
+-- Structure for table `users_statistics`
 --
-DROP VIEW IF EXISTS `users_statistics`;
 
-CREATE VIEW `users_statistics` AS
-SELECT user_id, COUNT(*) as quantity, action, translation_id != '' as is_translation
-FROM contributions
-GROUP BY user_id, action, translation_id = '';
+CREATE TABLE IF NOT EXISTS `users_statistics` (
+  `user_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `action` enum('insert','update','delete') NOT NULL,
+  `is_translation` int(11) NOT NULL,
+  KEY `user_id` (`user_id`)
+)
 
 -- --------------------------------------------------------
 
@@ -248,4 +250,16 @@ CREATE TABLE IF NOT EXISTS `latest_contributions` (
   `datetime` datetime NOT NULL,
   `ip` varchar(15) DEFAULT NULL,
   KEY `sentence_id` (`sentence_id`)
+)
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `followers_users`
+--
+
+CREATE TABLE IF NOT EXISTS `followers_users` (
+  `follower_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  UNIQUE KEY `followers_id` (`followers_id`,`user_id`)
 )
