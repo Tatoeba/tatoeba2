@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-01-22 00:54+0100\n"
+"POT-Creation-Date: 2009-01-24 00:14+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -23,31 +23,39 @@ msgstr ""
 msgid "Your comment has been saved."
 msgstr ""
 
-#: \controllers\sentences_controller.php:77
+#: \controllers\sentences_controller.php:68
 msgid "Your sentence has been saved. You can add a translation for it or add another new sentence."
 msgstr ""
 
-#: \controllers\sentences_controller.php:115
+#: \controllers\sentences_controller.php:100
 msgid "This sentence was not added by you. You can only edit sentences you have added."
 msgstr ""
 
-#: \controllers\sentences_controller.php:133
+#: \controllers\sentences_controller.php:109
 msgid "The sentence has been updated."
 msgstr ""
 
-#: \controllers\sentences_controller.php:228
+#: \controllers\sentences_controller.php:121
+msgid "You are now owner of this sentence. Besides of moderators and administratos, ONLY YOU can modify it (notice the \"Edit\" option next to \"Translate\"). It is now your responsibility to make sure that this does not have any mistake and is not linked to wrong translations."
+msgstr ""
+
+#: \controllers\sentences_controller.php:132
+msgid "You have abandonned your ownership for this sentence. Other people can now adopt it. If it was a mistake, you can just re-adopt it."
+msgstr ""
+
+#: \controllers\sentences_controller.php:190
 msgid "Your translation has been saved."
 msgstr ""
 
-#: \controllers\sentences_controller.php:233
+#: \controllers\sentences_controller.php:195
 msgid "A problem occured. Your translation has not been saved."
 msgstr ""
 
-#: \controllers\sentences_controller.php:246
+#: \controllers\sentences_controller.php:210
 msgid "Tatoeba search : "
 msgstr ""
 
-#: \controllers\sentences_controller.php:284
+#: \controllers\sentences_controller.php:248
 msgid "Tatoeba search"
 msgstr ""
 
@@ -139,6 +147,14 @@ msgstr ""
 msgid "No changes have been applied."
 msgstr ""
 
+#: \controllers\users_controller.php:303
+msgid "No user with this username : "
+msgstr ""
+
+#: \controllers\users_controller.php:319
+msgid "No user with this id : "
+msgstr ""
+
 #: \views\contributions\index.ctp:2
 #: \views\helpers\tooltip.php:42
 msgid "sentence added"
@@ -210,63 +226,68 @@ msgstr ""
 #: \views\helpers\sentences.php:200
 #: \views\sentence_comments\show.ctp:20
 #: \views\sentences\edit.ctp:23
+#: \views\users\show.ctp:62
 msgid "Comments"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:12
+#: \views\elements\menu.ctp:21
+msgid "Members"
+msgstr ""
+
+#: \views\elements\search_bar.ctp:11
 #: \views\helpers\languages.php:6
 msgid "English"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:13
+#: \views\elements\search_bar.ctp:12
 #: \views\helpers\languages.php:8
 msgid "Japanese"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:14
+#: \views\elements\search_bar.ctp:13
 #: \views\helpers\languages.php:7
 msgid "French"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:15
+#: \views\elements\search_bar.ctp:14
 #: \views\helpers\languages.php:9
 msgid "German"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:16
+#: \views\elements\search_bar.ctp:15
 #: \views\helpers\languages.php:10
 msgid "Spanish"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:17
+#: \views\elements\search_bar.ctp:16
 msgid "Italian"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:18
+#: \views\elements\search_bar.ctp:17
 msgid "Vietnamese"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:19
+#: \views\elements\search_bar.ctp:18
 msgid "Russian"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:20
+#: \views\elements\search_bar.ctp:19
 msgid "Chinese"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:21
+#: \views\elements\search_bar.ctp:20
 msgid "Korean"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:22
+#: \views\elements\search_bar.ctp:21
 msgid "Dutch"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:29
+#: \views\elements\search_bar.ctp:28
 msgid "search"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:31
+#: \views\elements\search_bar.ctp:30
 msgid "show examples"
 msgstr ""
 
@@ -297,13 +318,15 @@ msgid "Register"
 msgstr ""
 
 #: \views\groups\index.ctp:48
-#: \views\helpers\sentences.php:271
+#: \views\helpers\navigation.php:18;68
+#: \views\users\all.ctp:39;75
 #: \views\users\index.ctp:8;69
 msgid "previous"
 msgstr ""
 
 #: \views\groups\index.ctp:50
-#: \views\helpers\sentences.php:295
+#: \views\helpers\navigation.php:42;92
+#: \views\users\all.ctp:41;77
 #: \views\users\index.ctp:10;71
 msgid "next"
 msgstr ""
@@ -328,6 +351,31 @@ msgstr ""
 msgid "%s mn(s) ago"
 msgstr ""
 
+#: \views\helpers\navigation.php:11
+msgid "Show sentence nº : "
+msgstr ""
+
+#: \views\helpers\navigation.php:12
+#: \views\helpers\sentences.php:73;111;133
+msgid "OK"
+msgstr ""
+
+#: \views\helpers\navigation.php:30;80
+msgid "random"
+msgstr ""
+
+#: \views\helpers\navigation.php:60
+msgid "Enter a username : "
+msgstr ""
+
+#: \views\helpers\navigation.php:61
+msgid "show user"
+msgstr ""
+
+#: \views\helpers\navigation.php:104
+msgid "all"
+msgstr ""
+
 #: \views\helpers\sentences.php:63
 msgid "Your translation should be <strong>based on the main sentence</strong> (the one at the <strong>top</strong>)."
 msgstr ""
@@ -338,10 +386,6 @@ msgstr ""
 
 #: \views\helpers\sentences.php:67
 msgid "If you understand better one of the translations, you can <strong>click</strong> on it to make it as the <strong>main sentence</strong>, and translate from there."
-msgstr ""
-
-#: \views\helpers\sentences.php:73;111;133;265
-msgid "OK"
 msgstr ""
 
 #: \views\helpers\sentences.php:110
@@ -361,15 +405,15 @@ msgid "Edit"
 msgstr ""
 
 #: \views\helpers\sentences.php:223
+msgid "Adopt"
+msgstr ""
+
+#: \views\helpers\sentences.php:236
+msgid "Let go"
+msgstr ""
+
+#: \views\helpers\sentences.php:249
 msgid "Delete"
-msgstr ""
-
-#: \views\helpers\sentences.php:264
-msgid "Show sentence nº : "
-msgstr ""
-
-#: \views\helpers\sentences.php:283
-msgid "random"
 msgstr ""
 
 #: \views\helpers\tooltip.php:22
@@ -629,6 +673,34 @@ msgstr ""
 
 #: \views\users\resend_registration_mail.ctp:3
 msgid "Resend registration email"
+msgstr ""
+
+#: \views\users\show.ctp:4
+msgid "Tatoeba user : "
+msgstr ""
+
+#: \views\users\show.ctp:8
+msgid "Member since : "
+msgstr ""
+
+#: \views\users\show.ctp:28
+msgid "Contributions"
+msgstr ""
+
+#: \views\users\show.ctp:38
+msgid "This user didn't contribute yet."
+msgstr ""
+
+#: \views\users\show.ctp:46
+msgid "Sentences"
+msgstr ""
+
+#: \views\users\show.ctp:54
+msgid "This user doesn't own any sentence."
+msgstr ""
+
+#: \views\users\show.ctp:67
+msgid "This user didn't post any comment."
 msgstr ""
 
 #: \views\users_statistics\index.ctp:4
