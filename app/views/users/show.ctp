@@ -63,6 +63,34 @@ __('Comments');
 echo '</h3>';
 
 if(count($user['SentenceComments']) > 0){
+	pr($user['SentenceComments']);
+	echo '<table class="comments">';
+	foreach($user['SentenceComments'] as $comment) {
+		echo '<tr>';
+			echo '<td class="title">';
+			echo $html->link(
+				'['. $comment['sentence_id'] . '] ',
+				array(
+					"controller" => "sentence_comments",
+					"action" => "show",
+					$comment['sentence_id']
+					));
+			echo '</td>';
+			
+			echo '<td class="dateAndUser" rowspan="2">';
+			echo $date->ago($comment['datetime']);
+			echo '<br/>';
+			echo $user['User']['username'];
+			echo '</td>';
+		echo '</tr>';	
+		
+		echo '<tr>';
+			echo '<td class="commentPreview">';
+			echo $comment['text'];
+			echo '</td>';
+		echo '</tr>';
+	}
+	echo '</table>';
 }else{
 __('This user didn\'t post any comment.');
 }

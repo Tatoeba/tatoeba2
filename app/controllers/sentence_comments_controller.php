@@ -2,7 +2,7 @@
 class SentenceCommentsController extends AppController {
 	var $name = 'SentenceComments';
 	
-	var $helpers = array('Comments','Sentences', 'Languages', 'Tooltip');
+	var $helpers = array('Comments','Sentences', 'Languages', 'Tooltip', 'Navigation');
 	var $components = array ('GoogleLanguageApi', 'Permissions');
 	
 	var $langs = array('en', 'fr', 'jp', 'es', 'de');
@@ -37,7 +37,8 @@ class SentenceCommentsController extends AppController {
 		$sentence = new Sentence();
 		$sentence->id = $sentence_id;
 		$sentence->recursive = 2;
-		$this->set('sentence', $sentence->read());	
+		$sentence = $sentence->read();
+		$this->set('sentence', $sentence);	
 		
 		// checking which options user can access to
 		$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
