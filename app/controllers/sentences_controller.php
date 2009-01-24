@@ -5,7 +5,7 @@ class SentencesController extends AppController{
 	var $helpers = array('Sentences', 'Html', 'Logs', 'Pagination', 'Comments', 'Navigation');
 	
 	function beforeFilter() {
-	    parent::beforeFilter(); 
+	    parent::beforeFilter();
 		
 		// setting actions that are available to everyone, even guests
 	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo');
@@ -211,6 +211,8 @@ class SentencesController extends AppController{
 			$lucene_results = $this->Lucene->search($query, $from, null, $page);
 			$sentences = array();
 			
+			$ids = array();
+			$scores = array();
 			foreach($lucene_results['sentencesIds'] as $result){
 				$ids[] = $result['id'];
 				$scores[] = $result['score'];
@@ -226,16 +228,14 @@ class SentencesController extends AppController{
 				'all', array("conditions" => array("Sentence.id" => $ids))
 			);
 			
-			if($sentences != array()){
-				$resultsInfo['currentPage'] = $lucene_results['currentPage'];
-				$resultsInfo['pagesCount'] = $lucene_results['pagesCount'];
-				$resultsInfo['sentencesPerPage'] = $lucene_results['sentencesPerPage'];
-				$resultsInfo['sentencesCount'] = $lucene_results['sentencesCount'];
-				
-				$this->set('results', $sentences);
-				$this->set('resultsInfo', $resultsInfo);
-			}
 			
+			$resultsInfo['currentPage'] = $lucene_results['currentPage'];
+			$resultsInfo['pagesCount'] = $lucene_results['pagesCount'];
+			$resultsInfo['sentencesPerPage'] = $lucene_results['sentencesPerPage'];
+			$resultsInfo['sentencesCount'] = $lucene_results['sentencesCount'];
+				
+			$this->set('results', $sentences);
+			$this->set('resultsInfo', $resultsInfo);	
 			$this->set('sentences', $sentences);
 			$this->set('scores', $scores);
 			$this->set('query', $query);

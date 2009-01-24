@@ -6,7 +6,9 @@ class SentencesHelper extends AppHelper {
 	function displaySentence($sentence) {
 		echo '<div class="sentence">';
 		// Sentence
-		echo '<span class="original correctness'.$sentence['correctness'].' '.$sentence['lang'].'">'.$sentence['text'].'</span>';
+		echo '<span class="original correctness'.$sentence['correctness'].' '.$sentence['lang'].'">';
+		echo $this->Html->link($sentence['text'], array("controller" => "sentences", "action" => "show", $sentence['id']));
+		echo '</span>';
 		echo '</div>';
 	}
 	
