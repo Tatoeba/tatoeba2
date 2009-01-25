@@ -9,13 +9,13 @@ class User extends AppModel {
 	var $validate = array(
 		'username' => array(
 			'alphanumeric' => array(
-				'rule' => 'alphanumeric', 
-				'message' => 'Username must only contain letters and numbers'),
+				'rule' => '/^\\w*$/', 
+				'message' => 'Username can only contain letters, numbers, or underscore'),
 			'isUnique' => array(
 				'rule' => 'isUnique',
 				'message' => 'Username already taken.')
 			),
-		'password' => array('rule' => 'alphanumeric', 'message' => 'Username must only contain letters and numbers'),
+		'password' => array('rule' => array('minLength', 4), 'message' => 'Password too short'),
 		'email' => array(
 			'email' => array(
 				'rule' => 'email', 
