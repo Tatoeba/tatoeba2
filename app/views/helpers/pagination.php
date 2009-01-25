@@ -1,7 +1,7 @@
 <?php
 class PaginationHelper extends AppHelper{
 	var $helpers = array('Html');
-	const RANGE = 11;
+	const RANGE = 12;
 	
 	function searchUrl($page, $query, $from = null, $to = null){
 		$params  = '?page='.$page;
@@ -18,7 +18,7 @@ class PaginationHelper extends AppHelper{
 			echo '<div class="pagination">';
 			
 			// Navigation arrows
-			if($totalPages > 10){
+			if($totalPages > PaginationHelper::RANGE){
 				if($currentPage > 1){
 					echo $this->Html->link(
 						"<<",
@@ -66,7 +66,7 @@ class PaginationHelper extends AppHelper{
 			}
 			
 			// Navigation arrows
-			if($totalPages > 10){
+			if($totalPages > PaginationHelper::RANGE){
 				if($currentPage < $totalPages){
 					echo $this->Html->link(
 						">",
