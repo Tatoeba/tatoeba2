@@ -1,13 +1,13 @@
 <?php
 class CommentsHelper extends AppHelper {
 
-	var $helpers = array('Form', 'Date', 'Tooltip');
+	var $helpers = array('Form', 'Date', 'Tooltip', 'Html');
 
-	function displayComment($username, $datetime, $comment){
+	function displayComment($id, $username, $datetime, $comment){
 		echo '<div class="comment">';
 			echo '<div class="header">';
 			echo '<span class="username">';
-			echo $html->link($username, array("controller" => "users", "search" => $username));
+			echo $this->Html->link($username, array("controller" => "users", "action" => "show", $id));
 			echo '</span>';
 			echo '<span class="date">'.$this->Date->ago($datetime).'</span>';
 			echo '</div>';

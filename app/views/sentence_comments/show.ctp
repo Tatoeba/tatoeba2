@@ -25,7 +25,12 @@ echo '</h2>';
 echo '<div class="comments">';
 if(count($sentence['SentenceComment']) > 0){
 	foreach($sentence['SentenceComment'] as $comment){
-		$comments->displayComment($comment['User']['username'], $comment['datetime'], $comment['text']);
+		$comments->displayComment(
+			$comment['User']['id'],
+			$comment['User']['username'], 
+			$comment['datetime'], 
+			$comment['text']
+		);
 	}
 }else{
 	echo '<em>' . __('There are no comments for now.', true) .'</em>';	
