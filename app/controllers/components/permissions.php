@@ -34,7 +34,8 @@ class PermissionsComponent extends Object{
 			
 			$specialOptions['canDelete'] = $this->Acl->check(array('Group'=>$this->Auth->user('group_id')), 'controllers/Sentences/delete');
 			
-		}else if($sentence_owner_id == NULL OR $sentence_owner_id = 0){
+		}
+		if($sentence_owner_id == NULL OR $sentence_owner_id = 0){
 			
 			$specialOptions['canAdopt'] = true;
 			

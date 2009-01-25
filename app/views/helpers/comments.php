@@ -11,7 +11,7 @@ class CommentsHelper extends AppHelper {
 			echo '</div>';
 			
 			echo '<div class="content">';
-			echo $comment;
+			echo nl2br($comment);
 			echo '</div>';
 		echo '</div>';
 	}
