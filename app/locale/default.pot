@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-01-24 00:55+0100\n"
+"POT-Creation-Date: 2009-01-25 22:44+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -19,7 +19,7 @@ msgstr ""
 msgid "You need to be logged in."
 msgstr ""
 
-#: \controllers\sentence_comments_controller.php:74
+#: \controllers\sentence_comments_controller.php:75
 msgid "Your comment has been saved."
 msgstr ""
 
@@ -36,7 +36,7 @@ msgid "The sentence has been updated."
 msgstr ""
 
 #: \controllers\sentences_controller.php:121
-msgid "You are now owner of this sentence. Besides of moderators and administratos, ONLY YOU can modify it (notice the \"Edit\" option next to \"Translate\"). It is now your responsibility to make sure that this does not have any mistake and is not linked to wrong translations."
+msgid "You are now the owner of this sentence and can modify it as you wish (click on the \"Edit\" link for that). It is your responsibility to make sure that it doesn't have any mistake and, if possible, is not linked to wrong translations."
 msgstr ""
 
 #: \controllers\sentences_controller.php:132
@@ -185,7 +185,7 @@ msgid "Logs for : "
 msgstr ""
 
 #: \views\contributions\show.ctp:17
-#: \views\helpers\sentences.php:211
+#: \views\helpers\sentences.php:213
 msgid "Logs"
 msgstr ""
 
@@ -223,7 +223,7 @@ msgid "Contribute"
 msgstr ""
 
 #: \views\elements\menu.ctp:19
-#: \views\helpers\sentences.php:200
+#: \views\helpers\sentences.php:202
 #: \views\sentence_comments\show.ctp:20
 #: \views\sentences\edit.ctp:23
 #: \views\users\show.ctp:62
@@ -356,7 +356,7 @@ msgid "Show sentence nº : "
 msgstr ""
 
 #: \views\helpers\navigation.php:12
-#: \views\helpers\sentences.php:73;111;133
+#: \views\helpers\sentences.php:75;113;135
 msgid "OK"
 msgstr ""
 
@@ -376,52 +376,80 @@ msgstr ""
 msgid "all"
 msgstr ""
 
-#: \views\helpers\sentences.php:63
+#: \views\helpers\sentences.php:65
 msgid "Your translation should be <strong>based on the main sentence</strong> (the one at the <strong>top</strong>)."
 msgstr ""
 
-#: \views\helpers\sentences.php:65
+#: \views\helpers\sentences.php:67
 msgid "The other sentences <strong>below</strong> are displayed only so you know what <strong>translations</strong> have already been added."
 msgstr ""
 
-#: \views\helpers\sentences.php:67
+#: \views\helpers\sentences.php:69
 msgid "If you understand better one of the translations, you can <strong>click</strong> on it to make it as the <strong>main sentence</strong>, and translate from there."
 msgstr ""
 
-#: \views\helpers\sentences.php:110
+#: \views\helpers\sentences.php:112
 msgid "Correction : "
 msgstr ""
 
-#: \views\helpers\sentences.php:132
+#: \views\helpers\sentences.php:134
 msgid "Modification : "
 msgstr ""
 
-#: \views\helpers\sentences.php:164
+#: \views\helpers\sentences.php:166
 msgid "Translate"
 msgstr ""
 
-#: \views\helpers\sentences.php:176
+#: \views\helpers\sentences.php:178
 msgid "Edit"
 msgstr ""
 
-#: \views\helpers\sentences.php:223
+#: \views\helpers\sentences.php:225
 msgid "Adopt"
 msgstr ""
 
-#: \views\helpers\sentences.php:236
+#: \views\helpers\sentences.php:238
 msgid "Let go"
 msgstr ""
 
-#: \views\helpers\sentences.php:249
+#: \views\helpers\sentences.php:251
 msgid "Delete"
-msgstr ""
-
-#: \views\helpers\tooltip.php:22
-msgid "Warning!"
 msgstr ""
 
 #: \views\helpers\tooltip.php:39
 msgid "Meaning of the colors :"
+msgstr ""
+
+#: \views\helpers\tooltip.php:63
+msgid "Whenever you add a sentence or a translation, <strong>you</strong> are the creator of the sentence. "
+msgstr ""
+
+#: \views\helpers\tooltip.php:64
+msgid "Other \"normal\" users cannot modify the sentences that <strong>you</strong> have added. "
+msgstr ""
+
+#: \views\helpers\tooltip.php:65
+msgid "But there are about <strong>300,000 sentences</strong> (which is a lot) that have been added by <strong>\"no one\"</strong> and these orphan sentences <strong>need a parent</strong>. "
+msgstr ""
+
+#: \views\helpers\tooltip.php:66
+msgid "Adopting sort of makes you the creator of the sentence (in other words, you can - but don't have to - modify it after the adoption)."
+msgstr ""
+
+#: \views\helpers\tooltip.php:70
+msgid "The goal is to find a <strong>parent for each sentence</strong> in Tatoeba, which is an important step towards <strong>improving the quality</strong> of the corpus. "
+msgstr ""
+
+#: \views\helpers\tooltip.php:71
+msgid "It is therefore preferable that you adopt a sentence that you can understand because in case it has a mistake, you will be able to correct it."
+msgstr ""
+
+#: \views\helpers\tooltip.php:73
+msgid "You can read more about it here : <a href=\"http://blog.tatoeba.org/2009/01/new-validation-system.html\">in English</a>, or <a href=\"http://blog.tatoeba.org/2009/01/nouveau-systme-de-validation.html\">in French</a>."
+msgstr ""
+
+#: \views\helpers\tooltip.php:75
+msgid "Get involved, adopt sentences!"
 msgstr ""
 
 #: \views\pages\contact.ctp:3
@@ -468,11 +496,11 @@ msgstr ""
 msgid "Random sentence"
 msgstr ""
 
-#: \views\pages\home.ctp:31
+#: \views\pages\home.ctp:32
 msgid "Latest contributions"
 msgstr ""
 
-#: \views\pages\home.ctp:40
+#: \views\pages\home.ctp:41
 msgid "Latest comments"
 msgstr ""
 
@@ -594,11 +622,11 @@ msgstr ""
 msgid "Example sentence : "
 msgstr ""
 
-#: \views\sentences\show.ctp:16
+#: \views\sentences\show.ctp:19
 msgid "Sentence does not exist : "
 msgstr ""
 
-#: \views\sentences\show.ctp:22
+#: \views\sentences\show.ctp:25
 msgid "There is no sentence with id "
 msgstr ""
 
@@ -699,7 +727,7 @@ msgstr ""
 msgid "This user doesn't own any sentence."
 msgstr ""
 
-#: \views\users\show.ctp:67
+#: \views\users\show.ctp:95
 msgid "This user didn't post any comment."
 msgstr ""
 

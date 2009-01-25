@@ -12,6 +12,9 @@ if($sentence != null){
 		// sentence and translations
 		$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
 	echo '</div>';
+	
+	$tooltip->displayAdoptTooltip();
+	
 }else{
 	$this->pageTitle = __('Sentence does not exist : ', true) . $this->params['pass'][0];
 	

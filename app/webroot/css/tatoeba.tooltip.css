@@ -39,12 +39,16 @@ color: #65FF2D;
 
 
 .warning{
+font-size: 15px;
 padding: 10px;
 margin: 10px 0px;
-border:1px solid white;
+border:1px solid #96C17F;
+background-color:#D3F3B9; 
+color:#333;
 }
 
 .warning span{
+font-size: 15px;
 display: none
 }
 
@@ -53,13 +57,9 @@ display: block;
 }
 
 .warning:hover{
-font-size: 13px;
 font-variant: normal;
-border:1px solid #FFA347;
-background-color:#FFE0B5; 
-color:#333;
 font-weight: normal;
-cursor: pointer;
+cursor: default;
 }
 
 .warning img{
@@ -70,5 +70,5 @@ margin-right: 5px;
 }
 
 .warning strong{
-color: #F0491C;
+color: #0D4A22;
 }

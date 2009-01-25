@@ -24,6 +24,7 @@ __('Random sentence');
 echo '</h2>';
 echo $this->element('random_sentence');
 echo '</div>';
+$tooltip->displayAdoptTooltip();
 
 
 echo '<div class="element">';
