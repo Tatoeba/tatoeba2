@@ -20,7 +20,10 @@ foreach($sentenceComments as $lang => $commentsInLang){
 				echo '<td class="dateAndUser" rowspan="2">';
 				echo $date->ago($comment['SentenceComment']['datetime']);
 				echo '<br/>';
-				echo $comment['User']['username'];
+				echo $html->link(
+					$comment['User']['username'], 
+					array("controller" => "users", "action" => "show", $comment['User']['id'])	
+				);
 				echo '</td>';
 			echo '</tr>';	
 			

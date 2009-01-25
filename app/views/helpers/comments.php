@@ -6,7 +6,9 @@ class CommentsHelper extends AppHelper {
 	function displayComment($username, $datetime, $comment){
 		echo '<div class="comment">';
 			echo '<div class="header">';
-			echo '<span class="username">'.$username.'</span>';
+			echo '<span class="username">';
+			echo $html->link($username, array("controller" => "users", "search" => $username));
+			echo '</span>';
 			echo '<span class="date">'.$this->Date->ago($datetime).'</span>';
 			echo '</div>';
 			
