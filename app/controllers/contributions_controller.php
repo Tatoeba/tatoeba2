@@ -30,7 +30,9 @@ class ContributionsController extends AppController {
 	
 	function latest(){
 		$this->Contribution->recursive = -1;
-		return $this->Contribution->find('all', array('limit' => 10, 'order' => 'Contribution.datetime DESC'));
+		return $this->Contribution->find('all', array(
+		'conditions' => array('Contribution.translation_id' => null),
+		'limit' => 10, 'order' => 'Contribution.datetime DESC'));
 	}
 
 }

@@ -63,7 +63,6 @@ __('Comments');
 echo '</h3>';
 
 if(count($user['SentenceComments']) > 0){
-	pr($user['SentenceComments']);
 	echo '<table class="comments">';
 	foreach($user['SentenceComments'] as $comment) {
 		echo '<tr>';
