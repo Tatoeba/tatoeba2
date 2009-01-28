@@ -27,7 +27,7 @@ echo '</h2>';
 if(count($sentence['SentenceComment']) > 0){
 	echo '<div class="comments">';
 	foreach($sentence['SentenceComment'] as $comment){
-		$comments->displayComment($comment['User']['username'], $comment['datetime'], $comment['text']);
+		$comments->displayComment($comment['User']['id'], $comment['User']['username'], $comment['datetime'], $comment['text']);
 	}
 	echo '</div>';
 }else{
