@@ -29,10 +29,17 @@ class ContributionsController extends AppController {
 	}
 	
 	function latest(){
-		$this->Contribution->recursive = -1;
+		$this->Contribution->unbindModel(
+			array(
+				'belongsTo' => array('Sentence')
+			)
+		);
+		$this->Contribution->recursive = 0;
 		return $this->Contribution->find('all', array(
-		'conditions' => array('Contribution.translation_id' => null),
-		'limit' => 10, 'order' => 'Contribution.datetime DESC'));
+				'conditions' => array('Contribution.type' => 'sentence'),
+				'limit' => 10, 'order' => 'Contribution.datetime DESC'
+			)
+		);
 	}
 
 }

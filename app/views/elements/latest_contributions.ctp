@@ -6,8 +6,8 @@ if (isset($this->params['lang'])) {
 
 echo '<table id="logs">';
 foreach($contributions as $contribution){
-	//$logs->entry($contribution['Contribution'], $contribution['User']);
-	$logs->entry($contribution['Contribution']);
+	$logs->entry($contribution['Contribution'], $contribution['User']);
+	//$logs->entry($contribution['Contribution']);
 }
 echo '</table>';
 ?>
