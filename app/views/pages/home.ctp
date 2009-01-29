@@ -32,7 +32,9 @@ echo '<h2>';
 __('Latest contributions');
 echo ' ';
 $tooltip->displayLogsColors();
-echo '</h2>';
+echo ' (';
+echo $html->link(__('show more...',true), array("controller"=>"contributions"));
+echo ')</h2>';
 echo $this->element('latest_contributions');
 echo '</div>';
 

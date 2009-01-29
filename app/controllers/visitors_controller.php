@@ -11,6 +11,7 @@ class VisitorsController extends AppController {
 		, '66.249.67.2'
 		, '66.249.71.1'
 		, '66.249.71.3'
+		, '66.249.70.78'
 		// yahoo
 		, '72.30.79.84'
 		, '67.195.37.109'
@@ -22,6 +23,7 @@ class VisitorsController extends AppController {
 		, '65.55.210.163'
 		, '65.55.210.180'
 		, '65.55.210.173'
+		, '65.55.210.172'
 		// other
 		, '61.247.222.52'
 		, '61.247.222.53'

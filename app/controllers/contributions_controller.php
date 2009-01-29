@@ -13,7 +13,18 @@ class ContributionsController extends AppController {
 	
 	function index() {
 		$limit = 200;
-		$this->set('contributions', $this->Contribution->find('all', array('limit' => $limit, 'order' => 'Contribution.datetime DESC')));
+		$this->Contribution->unbindModel(
+			array(
+				'belongsTo' => array('Sentence')
+			)
+		);
+		$this->set('contributions', $this->Contribution->find('all', 
+				array(
+					'conditions' => array('Contribution.type' => 'sentence'),
+					'limit' => $limit, 'order' => 'Contribution.datetime DESC'
+				)
+			)
+		);
 	}
 	
 	function show($sentence_id){

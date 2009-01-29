@@ -7,6 +7,7 @@ echo '<h2>'.$user['User']['username'].'</h2>';
 
 __('Member since : ');
 echo $date->ago($user['User']['since']);
+echo ' (' . $user['Group']['name'] . ')';
 
 
 

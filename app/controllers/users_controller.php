@@ -65,6 +65,10 @@ class UsersController extends AppController {
 	function login() {
 		//-- code inside this function will execute only when autoRedirect was set to false (i.e. in a beforeFilter).
 		if ($this->Auth->user()) {
+			$data['User']['id'] = $this->Auth->user('id');
+			$data['User']['last_time_active'] = time();
+			$this->User->save($data);
+			
 			if (!empty($this->data) AND $this->data['User']['rememberMe']) {
 				$cookie = array();
 				$cookie['username'] = $this->data['User']['username'];
@@ -75,9 +79,6 @@ class UsersController extends AppController {
 			if($this->Auth->user('group_id') == 5){
 				$this->flash(__('Your account is not validated yet. You will not be able to add sentences, translate or post comments. To validate it, click on the link in the email that has been sent to you during your registration. You can have this email resent to you.', true), '/users/resend_registration_mail/');
 			}else{
-				$data['User']['id'] = $this->Auth->user('id');
-				$data['User']['last_time_active'] = time();
-				$this->User->save($data);
 				$this->redirect($this->Auth->redirect());
 			}
 		}
