@@ -8,7 +8,7 @@ class SentencesController extends AppController{
 	    parent::beforeFilter();
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo');
+	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo', 'statistics');
 	}
 
 	
@@ -280,6 +280,18 @@ class SentencesController extends AppController{
 		$this->set('sentence', $sentence['Sentence']);
 		$this->set('translations', $sentence['Translation']);
 		$this->set('specialOptions', $sentence['specialOptions']);
+	}
+	
+	function statistics(){
+		$this->Sentence->recursive = -1;
+		$stats = $this->Sentence->find('all', array(
+				'fields' => array('Sentence.lang', 'count(*) as count'), 
+				'order' => 'count DESC',
+				'group' => 'Sentence.lang',
+				'limit' => 5
+			)
+		);
+		return($stats);
 	}
 }
 ?>

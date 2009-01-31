@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-01-25 22:44+0100\n"
+"POT-Creation-Date: 2009-01-31 04:08+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -59,99 +59,99 @@ msgstr ""
 msgid "Tatoeba search"
 msgstr ""
 
-#: \controllers\users_controller.php:76
+#: \controllers\users_controller.php:80
 msgid "Your account is not validated yet. You will not be able to add sentences, translate or post comments. To validate it, click on the link in the email that has been sent to you during your registration. You can have this email resent to you."
 msgstr ""
 
-#: \controllers\users_controller.php:104;145
+#: \controllers\users_controller.php:105;146
 msgid "Tatoeba registration"
 msgstr ""
 
-#: \controllers\users_controller.php:105;146
+#: \controllers\users_controller.php:106;147
 msgid "Dear %s,"
 msgstr ""
 
-#: \controllers\users_controller.php:107;148
+#: \controllers\users_controller.php:108;149
 msgid "Welcome to Tatoeba and thank you for your interest in this project!"
 msgstr ""
 
-#: \controllers\users_controller.php:109;150
+#: \controllers\users_controller.php:110;151
 msgid "You can validate your registration by clicking on this link :"
 msgstr ""
 
-#: \controllers\users_controller.php:121
+#: \controllers\users_controller.php:122
 msgid "Thank you for registering. To validate your registration, click on the link in the email that has been sent to you."
 msgstr ""
 
-#: \controllers\users_controller.php:130
+#: \controllers\users_controller.php:131
 msgid "Passwords do not match"
 msgstr ""
 
-#: \controllers\users_controller.php:161
+#: \controllers\users_controller.php:162
 msgid "The registration email has been resent."
 msgstr ""
 
-#: \controllers\users_controller.php:165
+#: \controllers\users_controller.php:166
 msgid "Your registration has already been validated. Try to login again."
 msgstr ""
 
-#: \controllers\users_controller.php:171
+#: \controllers\users_controller.php:172
 msgid "There is no user with this email : "
 msgstr ""
 
-#: \controllers\users_controller.php:186
+#: \controllers\users_controller.php:187
 msgid "Your registration is already validated."
 msgstr ""
 
-#: \controllers\users_controller.php:197
+#: \controllers\users_controller.php:198
 msgid "Your registration has been validated."
 msgstr ""
 
-#: \controllers\users_controller.php:199
+#: \controllers\users_controller.php:200
 msgid "A problem occured. Your registration could not be validated."
 msgstr ""
 
-#: \controllers\users_controller.php:202
+#: \controllers\users_controller.php:203
 msgid "Non valid registration link."
 msgstr ""
 
-#: \controllers\users_controller.php:222
+#: \controllers\users_controller.php:223
 msgid "Tatoeba, new password"
 msgstr ""
 
-#: \controllers\users_controller.php:223
+#: \controllers\users_controller.php:224
 msgid "Your login : "
 msgstr ""
 
-#: \controllers\users_controller.php:226
+#: \controllers\users_controller.php:227
 msgid "Your new password : "
 msgstr ""
 
-#: \controllers\users_controller.php:237
+#: \controllers\users_controller.php:238
 msgid "Your new password has been sent at "
 msgstr ""
 
-#: \controllers\users_controller.php:243
+#: \controllers\users_controller.php:244
 msgid "There is no registered user with this email : "
 msgstr ""
 
-#: \controllers\users_controller.php:266
+#: \controllers\users_controller.php:267
 msgid "New password has been saved."
 msgstr ""
 
-#: \controllers\users_controller.php:272
+#: \controllers\users_controller.php:273
 msgid "Email saved : "
 msgstr ""
 
-#: \controllers\users_controller.php:285;291
+#: \controllers\users_controller.php:286;292
 msgid "No changes have been applied."
 msgstr ""
 
-#: \controllers\users_controller.php:303
+#: \controllers\users_controller.php:304
 msgid "No user with this username : "
 msgstr ""
 
-#: \controllers\users_controller.php:319
+#: \controllers\users_controller.php:320
 msgid "No user with this id : "
 msgstr ""
 
@@ -161,23 +161,12 @@ msgid "sentence added"
 msgstr ""
 
 #: \views\contributions\index.ctp:3
-#: \views\helpers\tooltip.php:43
 msgid "link added"
 msgstr ""
 
 #: \views\contributions\index.ctp:4
 #: \views\helpers\tooltip.php:52
 msgid "sentence modified"
-msgstr ""
-
-#: \views\contributions\index.ctp:6
-#: \views\helpers\tooltip.php:47
-msgid "sentence deleted"
-msgstr ""
-
-#: \views\contributions\index.ctp:7
-#: \views\helpers\tooltip.php:48
-msgid "link deleted"
 msgstr ""
 
 #: \views\contributions\show.ctp:2
@@ -226,7 +215,7 @@ msgstr ""
 #: \views\helpers\sentences.php:202
 #: \views\sentence_comments\show.ctp:20
 #: \views\sentences\edit.ctp:23
-#: \views\users\show.ctp:62
+#: \views\users\show.ctp:63
 msgid "Comments"
 msgstr ""
 
@@ -291,6 +280,10 @@ msgstr ""
 msgid "show examples"
 msgstr ""
 
+#: \views\elements\sentences_statistics.ctp:8
+msgid "Number of sentences :"
+msgstr ""
+
 #: \views\elements\top1.ctp:14
 msgid "Log out"
 msgstr ""
@@ -308,7 +301,7 @@ msgid "Edit my information"
 msgstr ""
 
 #: \views\elements\top2.ctp:28
-#: \views\users\login.ctp:19
+#: \views\users\login.ctp:20
 msgid "Log in"
 msgstr ""
 
@@ -331,11 +324,11 @@ msgstr ""
 msgid "next"
 msgstr ""
 
-#: \views\helpers\comments.php:21
+#: \views\helpers\comments.php:23
 msgid "Even though you can comment on the whole group of sentences, keep in mind that your comment will be <strong>linked only to the main sentence</strong> (at the top)."
 msgstr ""
 
-#: \views\helpers\comments.php:22
+#: \views\helpers\comments.php:24
 msgid "Add a comment : "
 msgstr ""
 
@@ -420,35 +413,39 @@ msgstr ""
 msgid "Meaning of the colors :"
 msgstr ""
 
-#: \views\helpers\tooltip.php:63
+#: \views\helpers\tooltip.php:47
+msgid "sentence deleted"
+msgstr ""
+
+#: \views\helpers\tooltip.php:62
 msgid "Whenever you add a sentence or a translation, <strong>you</strong> are the creator of the sentence. "
 msgstr ""
 
-#: \views\helpers\tooltip.php:64
+#: \views\helpers\tooltip.php:63
 msgid "Other \"normal\" users cannot modify the sentences that <strong>you</strong> have added. "
 msgstr ""
 
-#: \views\helpers\tooltip.php:65
+#: \views\helpers\tooltip.php:64
 msgid "But there are about <strong>300,000 sentences</strong> (which is a lot) that have been added by <strong>\"no one\"</strong> and these orphan sentences <strong>need a parent</strong>. "
 msgstr ""
 
-#: \views\helpers\tooltip.php:66
+#: \views\helpers\tooltip.php:65
 msgid "Adopting sort of makes you the creator of the sentence (in other words, you can - but don't have to - modify it after the adoption)."
 msgstr ""
 
-#: \views\helpers\tooltip.php:70
+#: \views\helpers\tooltip.php:69
 msgid "The goal is to find a <strong>parent for each sentence</strong> in Tatoeba, which is an important step towards <strong>improving the quality</strong> of the corpus. "
 msgstr ""
 
-#: \views\helpers\tooltip.php:71
+#: \views\helpers\tooltip.php:70
 msgid "It is therefore preferable that you adopt a sentence that you can understand because in case it has a mistake, you will be able to correct it."
 msgstr ""
 
-#: \views\helpers\tooltip.php:73
+#: \views\helpers\tooltip.php:72
 msgid "You can read more about it here : <a href=\"http://blog.tatoeba.org/2009/01/new-validation-system.html\">in English</a>, or <a href=\"http://blog.tatoeba.org/2009/01/nouveau-systme-de-validation.html\">in French</a>."
 msgstr ""
 
-#: \views\helpers\tooltip.php:75
+#: \views\helpers\tooltip.php:74
 msgid "Get involved, adopt sentences!"
 msgstr ""
 
@@ -492,15 +489,19 @@ msgstr ""
 msgid "This project aims to build a multilingual aligned corpus. In other words, to collect sentences translated in several languages. These sentences can be downloaded for free here : "
 msgstr ""
 
-#: \views\pages\home.ctp:23
+#: \views\pages\home.ctp:25
 msgid "Random sentence"
 msgstr ""
 
-#: \views\pages\home.ctp:32
+#: \views\pages\home.ctp:34
 msgid "Latest contributions"
 msgstr ""
 
-#: \views\pages\home.ctp:41
+#: \views\pages\home.ctp:38
+msgid "show more..."
+msgstr ""
+
+#: \views\pages\home.ctp:45
 msgid "Latest comments"
 msgstr ""
 
@@ -568,7 +569,7 @@ msgstr ""
 msgid "Add comment for sentence"
 msgstr ""
 
-#: \views\sentence_comments\index.ctp:35
+#: \views\sentence_comments\index.ctp:38
 msgid "There are no comments in this language"
 msgstr ""
 
@@ -585,7 +586,7 @@ msgstr ""
 msgid "If you see any mistake, don't hesitate to post a comment about it!"
 msgstr ""
 
-#: \views\sentence_comments\show.ctp:31
+#: \views\sentence_comments\show.ctp:36
 #: \views\sentences\edit.ctp:34
 msgid "There are no comments for now."
 msgstr ""
@@ -646,11 +647,11 @@ msgstr ""
 msgid "Password : "
 msgstr ""
 
-#: \views\users\login.ctp:17
+#: \views\users\login.ctp:18
 msgid "Remember me"
 msgstr ""
 
-#: \views\users\login.ctp:23
+#: \views\users\login.ctp:24
 msgid "Password forgotten?"
 msgstr ""
 
@@ -711,19 +712,19 @@ msgstr ""
 msgid "Member since : "
 msgstr ""
 
-#: \views\users\show.ctp:28
+#: \views\users\show.ctp:29
 msgid "Contributions"
 msgstr ""
 
-#: \views\users\show.ctp:38
+#: \views\users\show.ctp:39
 msgid "This user didn't contribute yet."
 msgstr ""
 
-#: \views\users\show.ctp:46
+#: \views\users\show.ctp:47
 msgid "Sentences"
 msgstr ""
 
-#: \views\users\show.ctp:54
+#: \views\users\show.ctp:55
 msgid "This user doesn't own any sentence."
 msgstr ""
 

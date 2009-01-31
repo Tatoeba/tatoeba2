@@ -5,7 +5,7 @@ if (isset($this->params['lang'])) {
 }
 
 $sentence = $random['Sentence'];
-$translations = $random['Translation'];
+$translations = isset($random['Translation']) ? $random['Translation'] : null;
 $specialOptions = $random['specialOptions'];
 
 echo '<div class="sentences_set">';

@@ -58,6 +58,7 @@ class Sentence extends AppModel{
 			$data['Contribution']['sentence_id'] = $this->id;
 			$data['Contribution']['sentence_lang'] = $this->data['Sentence']['lang'];
 			$data['Contribution']['text'] = $this->data['Sentence']['text'];
+			$data['Contribution']['type'] = 'sentence';
 			
 			if($created){
 				$data['Contribution']['action'] = 'insert';
@@ -70,6 +71,7 @@ class Sentence extends AppModel{
 					$data2['Contribution']['translation_id'] = $this->id;
 					$data2['Contribution']['translation_lang'] = $this->data['Sentence']['lang'];
 					$data2['Contribution']['action'] = 'insert';
+					$data2['Contribution']['type'] = 'link';
 					$contributions[] = $data2;
 				}
 				if(isset($this->data['InverseTranslation'])){
@@ -80,6 +82,7 @@ class Sentence extends AppModel{
 					$data2['Contribution']['translation_id'] = $this->data['Translation']['Translation'][0];
 					$data2['Contribution']['translation_lang'] = $this->data['Sentence']['sentence_lang'];
 					$data2['Contribution']['action'] = 'insert';
+					$data2['Contribution']['type'] = 'link';
 					$contributions[] = $data2;
 				}
 				if(isset($contributions)){
@@ -101,6 +104,7 @@ class Sentence extends AppModel{
 		$data['Contribution']['user_id'] = $this->data['User']['id'];
 		$data['Contribution']['datetime'] = date("Y-m-d H:i:s");
 		$data['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
+		$data['Contribution']['type'] = 'sentence';
 		$this->Contribution->save($data);
 	}
 }

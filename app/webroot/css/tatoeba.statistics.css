@@ -3,11 +3,49 @@ width: 300px;
 text-align: center;
 }
 
-
 table#userStatistics{
 width: 300px;
 }
 
 #userStatistics td{
 padding: 2px 5px;
+}
+
+
+/* SENTENCES STATS */
+.sentencesStats ul{
+display: inline;
+}
+
+.sentencesStats li{
+display: inline;
+margin: 15px;
+}
+
+.sentencesStats .stat{
+padding-left: 35px;
+}
+
+.stat .tooltip{
+display: none;
+}
+
+.stats_en{
+background:transparent url(../img/en.png) no-repeat scroll left center;
+}
+
+.stats_jp{
+background:transparent url(../img/jp.png) no-repeat scroll left center;
+}
+
+.stats_fr{
+background:transparent url(../img/fr.png) no-repeat scroll left center;
+}
+
+.stats_de{
+background:transparent url(../img/de.png) no-repeat scroll left center;
+}
+
+.stats_es{
+background:transparent url(../img/es.png) no-repeat scroll left center;
 }

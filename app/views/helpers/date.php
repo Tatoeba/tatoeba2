@@ -17,11 +17,11 @@ class DateHelper extends AppHelper{
 			$timestamp = $date;
 		}
 		
-		$now = time();	
+		$now = time();
 		$days = intval(($now-$timestamp)/(3600*24));
 		$hours = intval(($now-$timestamp) / 3600);
 		$minutes = intval(($now-$timestamp) / 60);
-		if(intval($now-$timestamp) > intval(3600*24*7)){
+		if($days > 30){
 			return date("M jS Y", $timestamp).', '.date("H:i",$timestamp);
 		}elseif($days > 0){
 			return sprintf(__('%s day(s) ago',true), $days);

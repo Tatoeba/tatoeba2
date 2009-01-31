@@ -2,12 +2,12 @@
 <?php 
 $this->pageTitle = __('Tatoeba : Collecting example sentences',true); 
 
-echo '<div class="element">';
+echo '<div class="element" style="font-size:16px">';
 echo '<h2>';
 __('Welcome on Tatoeba Project');
 echo '</h2>';
 
-echo '<p style="font-size:16px">';
+echo '<p>';
 __('This project aims to build a multilingual aligned corpus. In other words, to collect sentences translated in several languages. These sentences can be downloaded for free here : ');
 echo $html->link(
 	__('Downloads',true), 
@@ -15,6 +15,8 @@ echo $html->link(
 );
 echo '.';
 echo '</p>';
+
+echo $this->element('sentences_statistics', array('cache' => '+12 hours'));
 echo '</div>';
 
 
