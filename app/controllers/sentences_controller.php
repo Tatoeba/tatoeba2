@@ -27,7 +27,7 @@ class SentencesController extends AppController{
 		}else{
 			$this->Sentence->id = $id;
 			
-			//$this->Sentence->recursive = -1;
+			$this->Sentence->recursive = 2;
 			$sentence = $this->Sentence->read();
 			$this->set('sentence', $sentence);
 			
@@ -145,6 +145,14 @@ class SentencesController extends AppController{
 			//$this->Sentence->id = $randId;
 		}else{
 			$this->Sentence->id = $id;
+			$this->Sentence->unbindModel(
+				array(
+					'belongsTo' => array('User'),
+					'hasMany' => array('SentenceComment', 'Contribution'),
+					'hasAndBelongsToMany' => array('InverseTranslation')
+				)
+			);
+			$this->Sentence->recursive = 2;
 			$sentence = $this->Sentence->read();
 			$this->set('sentence',$sentence);
 			$this->data['Sentence']['id'] = $id;
@@ -220,6 +228,7 @@ class SentencesController extends AppController{
 			
 			$this->Sentence->unbindModel(
 				array(
+					'belongsTo' => array('User'),
 					'hasMany' => array('SentenceComment', 'Contribution'),
 					'hasAndBelongsToMany' => array('InverseTranslation')
 				)
@@ -292,6 +301,22 @@ class SentencesController extends AppController{
 			)
 		);
 		return($stats);
+	}
+	
+	function link($id){
+		$this->Sentence->unbindModel(
+			array(
+				'belongsTo' => array('User'),
+				'hasMany' => array('SentenceComment', 'Contribution'),
+				'hasAndBelongsToMany' => array('InverseTranslation')
+			)
+		);
+		$this->Sentence->recursive = 2;
+		$sentence = $this->Sentence->read();
+		$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
+		
+		$this->set('sentence', $sentence);
+		$this->set('specialOptions',$specialOptions);
 	}
 }
 ?>

@@ -58,12 +58,10 @@
 		<!-- ---------------- MENU ---------------- -->
 		<?php echo $this->element('menu'); ?>
 		
-		
 		<!-- ---------------- CONTENT---------------- -->
 		<div id="content">
 			<!-- ---------------- SEARCH BAR---------------- -->
 			<?php echo $this->element('search_bar'); ?>
-			
 			<div class="container1">
 			<?php
 			if($session->check('Message.flash')){
@@ -76,7 +74,9 @@
 		</div>
 		
 		<!-- ---------------- FOOT---------------- -->
-		<?php echo $this->element('foot'); ?>
+		<?php 
+		echo $this->element('foot'); 
+		?>
 	</div>
 	<?php echo $cakeDebug ?>
 </body>

@@ -1,3 +1,14 @@
+<?php 
+$key = isset($this->params['lang']) ? $this->params['lang'] : 'eng';
+echo $this->element('sentences_statistics', array('cache' => 
+		array(
+			'time' => '+12 hours', 
+			'key' => $key
+		)
+	)
+); 
+?>
+
 <div id="homepage">
 <?php 
 $this->pageTitle = __('Tatoeba : Collecting example sentences',true); 
@@ -15,10 +26,7 @@ echo $html->link(
 );
 echo '.';
 echo '</p>';
-
-echo $this->element('sentences_statistics', array('cache' => '+12 hours'));
 echo '</div>';
-
 
 echo '<div class="element">';
 echo '<h2>';

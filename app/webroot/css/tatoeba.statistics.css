@@ -13,13 +13,21 @@ padding: 2px 5px;
 
 
 /* SENTENCES STATS */
+.sentencesStats{
+font-size: 16px;
+padding: 5px 10px;
+float: right;
+background: #f0f0f0;
+border: 1px solid #dfdfdf;
+margin-top: 10px;
+}
+
 .sentencesStats ul{
-display: inline;
+margin-top: 15px;
 }
 
 .sentencesStats li{
-display: inline;
-margin: 15px;
+margin: 5px;
 }
 
 .sentencesStats .stat{

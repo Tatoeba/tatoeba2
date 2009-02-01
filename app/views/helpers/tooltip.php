@@ -73,5 +73,28 @@ class TooltipHelper extends AppHelper {
 		
 		$this->displayWarningDiv(__('Get involved, adopt sentences!',true), $tooltipMsg);
 	}
+	
+	function displayIndirectTranslationTooltip(){
+		$tooltipMsg  = '<p>';
+		$tooltipMsg .= __('Let\'s suppose you translate an English sentence into French, and someone translate your French translation into Spanish. In short : English ==> French ==> Spanish.', true);
+		$tooltipMsg .= '<br/>';
+		$tooltipMsg .= __('The <strong>French</strong> sentence is a <strong>direct</strong> translation of the English sentence. The <strong>Spanish</strong> sentence is an <strong>indirect</strong> translation of the English sentence.', true);
+		$tooltipMsg .= '</p>';
+		
+		$tooltipMsg .= '<p>';
+		$tooltipMsg .= __('There is currently no way to "upgrade" an indirect translation into a direct translation. Also, note that for performance reasons, indirect translations are not always displayed, but only when you are viewing or translating a sentence.',true);
+		$tooltipMsg .= '</p>';
+		
+		$this->displayWarningDiv(__('Green : direct translation / Orange : indirect translation',true), $tooltipMsg);
+	}
+	
+	function displayMainSentenceTooltip(){
+		$tooltipText  = __('Your translation should be <strong>based on the main sentence</strong> (the one at the <strong>top</strong>).',true);
+		$tooltipText .= '<br/>';
+		$tooltipText .= __('The other sentences <strong>below</strong> are displayed only so you know what <strong>translations</strong> have already been added.',true);
+		$tooltipText .= '<br/>';
+		$tooltipText .= __('If you understand better one of the translations, you can <strong>click</strong> on it to make it as the <strong>main sentence</strong>, and translate from there.', true);
+		$this->displayWarning($tooltipText);
+	}
 }
 ?>
