@@ -55,7 +55,7 @@ class SentencesHelper extends AppHelper {
 			}
 		
 			// indirect translations
-			$this->displayIndirectTranslations($indirectTranslations, $translationsIds);
+			$this->displayIndirectTranslations($indirectTranslations, $translationsIds, $sentence['lang']);
 			echo '</ul>';
 		}
 		
@@ -110,17 +110,17 @@ class SentencesHelper extends AppHelper {
 					}
 					
 					// indirect translations
-					$this->displayIndirectTranslations($indirectTranslations, $translationsIds);
+					$this->displayIndirectTranslations($indirectTranslations, $translationsIds, $sentence['lang']);
 				}
 			echo '</ul>';
 			
 		echo '</div>';
 	}
 	
-	function displayIndirectTranslations($indirectTranslations, $translationsIds){
+	function displayIndirectTranslations($indirectTranslations, $translationsIds, $sentenceLang){
 		if(count($indirectTranslations) > 0){
 			foreach($indirectTranslations as $translation){
-				if(!in_array($translation['id'], $translationsIds)){
+				if(!in_array($translation['id'], $translationsIds) AND $translation['lang'] != $sentenceLang){
 					echo '<li class="indirect translation correctness'.$translation['correctness'].'">';
 					echo $this->Html->link(
 						$translation['text'],
@@ -186,7 +186,7 @@ class SentencesHelper extends AppHelper {
 				}
 				
 				// indirect translations
-				$this->displayIndirectTranslations($indirectTranslations, $translationsIds);
+				$this->displayIndirectTranslations($indirectTranslations, $translationsIds, $sentence['lang']);
 				echo '</ul>';
 				
 				
