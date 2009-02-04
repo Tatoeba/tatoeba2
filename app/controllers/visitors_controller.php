@@ -19,6 +19,7 @@ class VisitorsController extends AppController {
 		, '67.195.37.109'
 		, '67.195.37.92'
 		, '67.195.37.125'
+		, '72.30.87.118'
 		// msn-bot
 		, '65.55.210.178'
 		, '65.55.107.221'
