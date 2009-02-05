@@ -80,5 +80,6 @@
 		?>
 	</div>
 	<?php echo $cakeDebug ?>
+	<?php echo $this->element('google_analytics'); ?>
 </body>
 </html>
