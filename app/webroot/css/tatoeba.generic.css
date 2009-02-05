@@ -279,14 +279,12 @@ width: 200px;
 
 .search_bar{
 background: #D3F3B9;
-padding: 7px 15px;
+padding: 10px;
 text-align:center;
 }
 
-#SentenceSearchForm img{
-vertical-align: middle;
-padding-right: 7px;
-margin-top: -3px;
+#SentenceSearchForm *{
+font-size: 18px;
 }
 
 #SentenceSearchForm{
@@ -299,7 +297,7 @@ display:inline;
 }
 
 #SentenceSearchForm div.input input{
-width: 50%;
+width: 40%;
 }
 
 #SentenceSearchForm div.submit{

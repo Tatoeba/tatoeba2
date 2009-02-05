@@ -54,6 +54,11 @@ class SentencesHelper extends AppHelper {
 					),
 					array("class" => $translation['lang'])
 				);
+				if($translation['lang'] == 'jp'){
+					echo '<span class="romaji">';
+					$this->Kakasi->convert($translation['text'], 'romaji');
+					echo '</span>';
+				}
 				echo '</li>';
 				
 				$translationsIds[] = $translation['id'];
