@@ -42,6 +42,7 @@
 		echo $html->css('tatoeba.users');
 		echo $html->css('tatoeba.tooltip');
 		echo $html->css('tatoeba.navigation');
+		echo $html->css('tatoeba.tools');
 		
 		echo $scripts_for_layout;
 	?>

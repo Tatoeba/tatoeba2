@@ -2,7 +2,7 @@
 class ToolsController extends AppController {
 
 	var $name = 'Tools';
-	var $helpers = array('Kakasi');
+	var $helpers = array('Kakasi', 'Javascript');
 	
 	function beforeFilter() {
 	    parent::beforeFilter();
