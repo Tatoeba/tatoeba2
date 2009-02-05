@@ -1,7 +1,7 @@
 <?php
 class SentencesHelper extends AppHelper {
 
-	var $helpers = array('Html', 'Form', 'Tooltip');
+	var $helpers = array('Html', 'Form', 'Tooltip', 'Kakasi');
 	
 	/**
 	 * Display a single sentence.
@@ -11,7 +11,12 @@ class SentencesHelper extends AppHelper {
 		// Sentence
 		echo '<span class="original correctness'.$sentence['correctness'].' '.$sentence['lang'].'">';
 		echo $this->Html->link($sentence['text'], array("controller" => "sentences", "action" => "show", $sentence['id']));
-		echo '</span>';
+		echo '</span> ';
+		if($sentence['lang'] == 'jp'){
+			echo '<span class="romaji">';
+			$this->Kakasi->convert($sentence['text'], 'romaji');
+			echo '</span>';
+		}
 		echo '</div>';
 	}
 	
@@ -23,7 +28,12 @@ class SentencesHelper extends AppHelper {
 		
 		// Sentence
 		echo '<div class="original correctness'.$sentence['correctness'].'">';
-		echo '<span class="'.$sentence['lang'].'">'.$sentence['text'].'</span>';
+		echo '<span class="'.$sentence['lang'].'">'.$sentence['text'].'</span> ';
+		if($sentence['lang'] == 'jp'){
+			echo '<span class="romaji">';
+			$this->Kakasi->convert($sentence['text'], 'romaji');
+			echo '</span>';
+		}
 		echo '</div>';
 		
 		// Translations
@@ -55,7 +65,7 @@ class SentencesHelper extends AppHelper {
 			}
 		
 			// indirect translations
-			$this->displayIndirectTranslations($indirectTranslations, $translationsIds, $sentence['lang']);
+			$this->displayIndirectTranslations($indirectTranslations, $translationsIds, $sentence['lang'], 'show');
 			echo '</ul>';
 		}
 		
@@ -110,14 +120,14 @@ class SentencesHelper extends AppHelper {
 					}
 					
 					// indirect translations
-					$this->displayIndirectTranslations($indirectTranslations, $translationsIds, $sentence['lang']);
+					$this->displayIndirectTranslations($indirectTranslations, $translationsIds, $sentence['lang'], 'translate');
 				}
 			echo '</ul>';
 			
 		echo '</div>';
 	}
 	
-	function displayIndirectTranslations($indirectTranslations, $translationsIds, $sentenceLang){
+	function displayIndirectTranslations($indirectTranslations, $translationsIds, $sentenceLang, $action){
 		if(count($indirectTranslations) > 0){
 			foreach($indirectTranslations as $translation){
 				if(!in_array($translation['id'], $translationsIds) AND $translation['lang'] != $sentenceLang){
@@ -126,7 +136,7 @@ class SentencesHelper extends AppHelper {
 						$translation['text'],
 						array(
 							"controller" => "sentences",
-							"action" => "translate",
+							"action" => $action,
 							$translation['id']
 						),
 						array("class" => $translation['lang'])
@@ -186,7 +196,7 @@ class SentencesHelper extends AppHelper {
 				}
 				
 				// indirect translations
-				$this->displayIndirectTranslations($indirectTranslations, $translationsIds, $sentence['lang']);
+				$this->displayIndirectTranslations($indirectTranslations, $translationsIds, $sentence['lang'], 'link');
 				echo '</ul>';
 				
 				
