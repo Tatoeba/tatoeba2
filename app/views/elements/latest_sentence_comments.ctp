@@ -5,10 +5,10 @@ if (isset($this->params['lang'])) {
 ?>
 
 <?php
-$comments = $this->requestAction('/sentence_comments/latest');
+$sentenceComments = $this->requestAction('/sentence_comments/latest');
 
 echo '<table class="comments">';
-foreach($comments as $comment) {
+foreach($sentenceComments as $comment) {
 	echo '<tr>';
 		echo '<td class="title">';
 		echo $html->link(
@@ -32,7 +32,7 @@ foreach($comments as $comment) {
 	
 	echo '<tr>';
 		echo '<td class="commentPreview">';
-		echo nl2br($comment['SentenceComment']['text']);
+		echo nl2br($comments->clickableURL($comment['SentenceComment']['text']));
 		echo '</td>';
 	echo '</tr>';
 }

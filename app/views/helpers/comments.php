@@ -13,9 +13,16 @@ class CommentsHelper extends AppHelper {
 			echo '</div>';
 			
 			echo '<div class="content">';
+			$comment = $this->clickableURL($comment);
 			echo nl2br($comment);
 			echo '</div>';
 		echo '</div>';
+	}
+	
+	function clickableURL($comment){
+		$comment = preg_replace('!((https?://[a-z0-9._/-?&%=#]{50}) ?([^< ])+)(<?)!i', '<a target="_blank" href="$1">$2[...]</a>$4', $comment);
+		$comment = preg_replace('!([^">])(https?://[a-z0-9._/-?&%=#] ?[^<) ]+)(<?)!i', '$1<a target="_blank" href="$2">$2</a>$3',$comment);
+		return $comment;
 	}
 	
 	function displayCommentForm($sentence_id){

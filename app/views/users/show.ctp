@@ -86,7 +86,7 @@ if(count($user['SentenceComments']) > 0){
 		
 		echo '<tr>';
 			echo '<td class="commentPreview">';
-			echo $comment['text'];
+			echo nl2br($comments->clickableURL($comment['SentenceComment']['text']));
 			echo '</td>';
 		echo '</tr>';
 	}
