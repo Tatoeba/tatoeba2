@@ -29,7 +29,7 @@ foreach($sentenceComments as $lang => $commentsInLang){
 			
 			echo '<tr>';
 				echo '<td class="commentPreview">';
-				echo nl2br($comment['SentenceComment']['text']);
+				echo nl2br($comments->clickableURL($comment['SentenceComment']['text']));
 				echo '</td>';
 			echo '</tr>';
 		}
