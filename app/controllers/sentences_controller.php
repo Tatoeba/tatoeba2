@@ -2,7 +2,7 @@
 class SentencesController extends AppController{
 	var $name = 'Sentences';
 	var $components = array ('GoogleLanguageApi', 'Lucene', 'Permissions');
-	var $helpers = array('Sentences', 'Html', 'Logs', 'Pagination', 'Comments', 'Navigation');
+	var $helpers = array('Sentences', 'Html', 'Logs', 'Pagination', 'Comments', 'Navigation', 'Languages');
 	
 	function beforeFilter() {
 	    parent::beforeFilter();
@@ -57,8 +57,12 @@ class SentencesController extends AppController{
 			// detecting language
 			$this->GoogleLanguageApi->text = $this->data['Sentence']['text'];
 			$response = $this->GoogleLanguageApi->detectLang();
+			if($response['isReliable']){
+				$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
+			}else{
+				$this->data['Sentence']['lang'] = null;
+			}
 			
-			$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
 			$this->data['Sentence']['user_id'] = $this->Auth->user('id');
 			
 			// saving
@@ -317,6 +321,35 @@ class SentencesController extends AppController{
 		
 		$this->set('sentence', $sentence);
 		$this->set('specialOptions',$specialOptions);
+	}
+	
+	function unknown_language(){
+		$this->Sentence->recursive = -1;
+		$sentences = $this->Sentence->find('all', array(
+				"conditions" => array(
+					  "Sentence.user_id" => $this->Auth->user('id')
+					, "OR" => array("Sentence.lang" => null, "Sentence.lang" => '')
+				)
+			)
+		);
+		$this->set('unknownLangSentences', $sentences);
+	}
+	
+	function set_languages(){
+		if(!empty($this->data)){
+			if($this->Sentence->saveAll($this->data['Sentence'])){
+				$flashMsg = __('The languages have been saved.', true);
+			}else{
+				$flashMsg = __('A problem occured while trying to save.', true);
+			}
+		}else{
+			$flashMsg = __('There is nothing to save.', true);
+		}
+		$this->flash(
+			$flashMsg,
+			'/sentences/unknown_language/'
+		);
+		//pr($this->data);
 	}
 }
 ?>

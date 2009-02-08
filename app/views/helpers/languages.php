@@ -1,16 +1,31 @@
 <?php
 class LanguagesHelper extends AppHelper{
-
-	function codeToName($code){
-		switch($code){
-			case 'en' : return __('English', true);
-			case 'fr' : return __('French', true);
-			case 'jp' : return __('Japanese', true);
-			case 'de' : return __('German', true);
-			case 'es' : return __('Spanish', true);
-		}
-		return null;
+	function languagesArray(){
+		$languages = array(
+			  'en' => __('English', true)
+			, 'jp' => __('Japanese', true)
+			, 'fr' => __('French', true)
+			, 'de' => __('German', true)
+			, 'es' => __('Spanish', true)
+			, 'it' => __('Italian', true)
+			, 'vn' => __('Vietnamese', true)
+			, 'ru' => __('Russian', true)
+			, 'ch' => __('Chinese', true)
+			, 'ko' => __('Korean', true)
+			, 'nl' => __('Dutch', true)
+			, 'he' => __('Hebrew', true)
+			, 'id' => __('Indonesian', true)
+		);
+		return $languages;
 	}
 	
+	function codeToName($code){
+		$languages = $this->languagesArray();
+		if(isset($languages["$code"])){
+			return $languages["$code"];
+		}else{
+			return null;
+		}
+	}
 }
 ?>

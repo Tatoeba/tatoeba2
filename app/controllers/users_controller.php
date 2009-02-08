@@ -353,6 +353,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Sentences/adopt');
 		$this->Acl->allow($group, 'controllers/Sentences/let_go');
 		$this->Acl->allow($group, 'controllers/Sentences/link');
+		$this->Acl->allow($group, 'controllers/Sentences/unknown_language');
+		$this->Acl->allow($group, 'controllers/Sentences/set_languages');
 		
 		//Permissions for trusted_users
 		$group->id = 3;
@@ -366,6 +368,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Sentences/adopt');
 		$this->Acl->allow($group, 'controllers/Sentences/let_go');
 		$this->Acl->allow($group, 'controllers/Sentences/link');
+		$this->Acl->allow($group, 'controllers/Sentences/unknown_language');
+		$this->Acl->allow($group, 'controllers/Sentences/set_languages');
 		
 	    //Permissions for users
 	    $group->id = 4;
@@ -379,6 +383,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Sentences/adopt');
 		$this->Acl->allow($group, 'controllers/Sentences/let_go');
 		$this->Acl->allow($group, 'controllers/Sentences/link');
+		$this->Acl->allow($group, 'controllers/Sentences/unknown_language');
+		$this->Acl->allow($group, 'controllers/Sentences/set_languages');
 	}
 }
 ?>
