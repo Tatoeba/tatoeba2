@@ -10,7 +10,7 @@ class LanguagesHelper extends AppHelper{
 			, 'it' => __('Italian', true)
 			, 'vn' => __('Vietnamese', true)
 			, 'ru' => __('Russian', true)
-			, 'ch' => __('Chinese', true)
+			, 'zh' => __('Chinese', true)
 			, 'ko' => __('Korean', true)
 			, 'nl' => __('Dutch', true)
 			, 'he' => __('Hebrew', true)

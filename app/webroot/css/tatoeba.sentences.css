@@ -41,7 +41,9 @@ float: right;
 background: #D3F3B9;
 }
 
+
 /* sentence */
+
 .search{
 margin-bottom: 20px;
 }
@@ -188,4 +190,14 @@ padding-left: 30px;
 
 input#SentenceText{
 width: 580px;
+}
+
+
+/* Unknown language */
+#SentenceSetLanguagesForm *{
+font-size: 16px;
+}
+
+#SentenceSetLanguagesForm li{
+margin: 10px;
 }

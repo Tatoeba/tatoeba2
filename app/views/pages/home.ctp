@@ -1,4 +1,17 @@
 <?php 
+$this->pageTitle = __('Tatoeba : Collecting example sentences',true); 
+
+if($session->read('Auth.User.id')){
+	$count_unknown_language = $this->requestAction('/sentences/count_unknown_language');
+	if($count_unknown_language > 0){
+		echo '<div id="flashMessage">';
+		__('The language of some the sentences you have added could not be detected. ');
+		echo $html->link(__('Click here.', true), '/sentences/unknown_language/');
+		echo '</div>';
+	}
+}
+
+
 $key = isset($this->params['lang']) ? $this->params['lang'] : 'eng';
 echo $this->element('sentences_statistics', array('cache' => 
 		array(
@@ -11,8 +24,6 @@ echo $this->element('sentences_statistics', array('cache' =>
 
 <div id="homepage">
 <?php 
-$this->pageTitle = __('Tatoeba : Collecting example sentences',true); 
-
 echo '<div class="element" style="font-size:16px">';
 echo '<h2>';
 __('Welcome on Tatoeba Project');

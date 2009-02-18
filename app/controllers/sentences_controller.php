@@ -8,7 +8,7 @@ class SentencesController extends AppController{
 	    parent::beforeFilter();
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo', 'statistics');
+	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo', 'statistics', 'count_unknown_language');
 	}
 
 	
@@ -323,12 +323,24 @@ class SentencesController extends AppController{
 		$this->set('specialOptions',$specialOptions);
 	}
 	
+	function count_unknown_language(){
+		$this->Sentence->recursive = -1;
+		$count = $this->Sentence->find('count', array(
+				"conditions" => array(
+					  "Sentence.user_id" => $this->Auth->user('id')
+					, "Sentence.lang" => null
+				)
+			)
+		);
+		return $count;
+	}
+	
 	function unknown_language(){
 		$this->Sentence->recursive = -1;
 		$sentences = $this->Sentence->find('all', array(
 				"conditions" => array(
 					  "Sentence.user_id" => $this->Auth->user('id')
-					, "OR" => array("Sentence.lang" => null, "Sentence.lang" => '')
+					, "Sentence.lang" => null
 				)
 			)
 		);
