@@ -1,6 +1,7 @@
 <?php 
 $this->pageTitle = __('Tatoeba : Collecting example sentences',true); 
 
+// Warning message prompting the user to specify languages
 if($session->read('Auth.User.id')){
 	$count_unknown_language = $this->requestAction('/sentences/count_unknown_language');
 	if($count_unknown_language > 0){

@@ -19,7 +19,6 @@ $menuElements = array(
 	,__('Comments',true) 	=> array("controller" => "sentence_comments", "action" => "index")
 	// ,__('Statistics',true) 	=> array("controller" => "users_statistics")
 	,__('Members',true)		=> array("controller" => "users", "action" => "all")
-	,__('My Tatoeba',true)	=> array("controller" => "pages", "action" => "my_tatoeba")
 );
 
 // displaying the menu
