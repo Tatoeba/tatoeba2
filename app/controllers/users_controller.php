@@ -73,7 +73,7 @@ class UsersController extends AppController {
 				$cookie = array();
 				$cookie['username'] = $this->data['User']['username'];
 				$cookie['password'] = $this->data['User']['password'];
-				$this->Cookie->write('Auth.User', $cookie, true, '+2 weeks');
+				$this->Cookie->write('Auth.User', $cookie, false, '+2 weeks');
 				unset($this->data['User']['rememberMe']);
 			}
 			if($this->Auth->user('group_id') == 5){
