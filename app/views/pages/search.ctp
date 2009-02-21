@@ -78,6 +78,6 @@ echo $html->link(
 		"?query=".urlencode("+like +(television sleep)")
 	));
 echo '</h2>';
-__('This will search for sentences containing "like" and "music", or "like" and "sleep".');
+__('This will search for sentences containing "like" and "television", or "like" and "sleep".');
 ?>
 

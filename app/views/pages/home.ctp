@@ -7,7 +7,7 @@ if($session->read('Auth.User.id')){
 	if($count_unknown_language > 0){
 		echo '<div id="flashMessage">';
 		__('The language of some the sentences you have added could not be detected. ');
-		echo $html->link(__('Click here.', true), '/sentences/unknown_language/');
+		echo $html->link(__('Click here.', true), array("controller" => "sentences", "action" => "unknown_language"));
 		echo '</div>';
 	}
 }
