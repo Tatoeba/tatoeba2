@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-01-31 04:08+0100\n"
-"PO-Revision-Date: 2009-01-31 04:09+0100\n"
+"POT-Creation-Date: 2009-02-21 16:09+0100\n"
+"PO-Revision-Date: 2009-03-09 23:00+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -24,41 +24,53 @@ msgstr "Vous devez vous connecter."
 msgid "Your comment has been saved."
 msgstr "Votre commentaire a été sauvegardé"
 
-#: \controllers\sentences_controller.php:68
+#: \controllers\sentences_controller.php:72
 msgid "Your sentence has been saved. You can add a translation for it or add another new sentence."
 msgstr "Votre phrase a été sauvegardée. Vous pouvez ajouter une traduction ou ajouter une nouvelle phrase."
 
-#: \controllers\sentences_controller.php:100
+#: \controllers\sentences_controller.php:104
 msgid "This sentence was not added by you. You can only edit sentences you have added."
 msgstr "Cette phrase n'a pas été ajoutée par vous. Vous pouvez seulement éditer des phrase que vous avez ajouté."
 
-#: \controllers\sentences_controller.php:109
+#: \controllers\sentences_controller.php:113
 msgid "The sentence has been updated."
 msgstr "La phrase a été mise à jour."
 
-#: \controllers\sentences_controller.php:121
+#: \controllers\sentences_controller.php:125
 msgid "You are now the owner of this sentence and can modify it as you wish (click on the \"Edit\" link for that). It is your responsibility to make sure that it doesn't have any mistake and, if possible, is not linked to wrong translations."
 msgstr "Vous êtes maintenant propriétaire de cette phrase et pouvez la modifier à votre gré (cliquez sur le lien \"Éditer\" pour cela). Il est de votre responsabilité de vous assurer qu'elle ne contient pas de fautes et, si possible, qu'elle n'est pas liée à de mauvaises traductions."
 
-#: \controllers\sentences_controller.php:132
+#: \controllers\sentences_controller.php:136
 msgid "You have abandonned your ownership for this sentence. Other people can now adopt it. If it was a mistake, you can just re-adopt it."
 msgstr "Vous avez renoncé à la propriété de cette phrase. D'autre personnes peuvent maintenant l'adopter. Si c'était une erreur, vous pouvez toujours la réadopter."
 
-#: \controllers\sentences_controller.php:190
+#: \controllers\sentences_controller.php:202
 msgid "Your translation has been saved."
 msgstr "Votre traduction a été sauvegardée."
 
-#: \controllers\sentences_controller.php:195
+#: \controllers\sentences_controller.php:207
 msgid "A problem occured. Your translation has not been saved."
 msgstr "Un problème est survenu. Votre traduction n'a pas été sauvegardée."
 
-#: \controllers\sentences_controller.php:210
+#: \controllers\sentences_controller.php:222
 msgid "Tatoeba search : "
 msgstr "Recherche Tatoeba : "
 
-#: \controllers\sentences_controller.php:248
+#: \controllers\sentences_controller.php:261
 msgid "Tatoeba search"
 msgstr "Recherche Tatoeba"
+
+#: \controllers\sentences_controller.php:353
+msgid "The languages have been saved."
+msgstr "Les langues ont été sauvegardées."
+
+#: \controllers\sentences_controller.php:355
+msgid "A problem occured while trying to save."
+msgstr "Un problème est survenu lors de la sauvegarde."
+
+#: \controllers\sentences_controller.php:358
+msgid "There is nothing to save."
+msgstr "Il n'y a rien à sauvegarder."
 
 #: \controllers\users_controller.php:80
 msgid "Your account is not validated yet. You will not be able to add sentences, translate or post comments. To validate it, click on the link in the email that has been sent to you during your registration. You can have this email resent to you."
@@ -175,7 +187,7 @@ msgid "Logs for : "
 msgstr "Historique pour : "
 
 #: \views\contributions\show.ctp:17
-#: \views\helpers\sentences.php:213
+#: \views\helpers\sentences.php:304
 msgid "Logs"
 msgstr "Historique"
 
@@ -192,9 +204,13 @@ msgid "Tatoeba Blog"
 msgstr "Tatoeba Blog"
 
 #: \views\elements\foot.ctp:16
-#: \views\pages\home.ctp:13
+#: \views\pages\home.ctp:36
 msgid "Downloads"
 msgstr "Téléchargements"
+
+#: \views\elements\foot.ctp:18
+msgid "Romaji & Furigana"
+msgstr "Romaji & Furigana"
 
 #: \views\elements\menu.ctp:14
 msgid "Home"
@@ -213,7 +229,7 @@ msgid "Contribute"
 msgstr "Contribuer"
 
 #: \views\elements\menu.ctp:19
-#: \views\helpers\sentences.php:202
+#: \views\helpers\sentences.php:293
 #: \views\sentence_comments\show.ctp:20
 #: \views\sentences\edit.ctp:23
 #: \views\users\show.ctp:63
@@ -225,12 +241,12 @@ msgid "Members"
 msgstr "Membres"
 
 #: \views\elements\search_bar.ctp:11
-#: \views\helpers\languages.php:6
+#: \views\helpers\languages.php:5
 msgid "English"
 msgstr "anglais"
 
 #: \views\elements\search_bar.ctp:12
-#: \views\helpers\languages.php:8
+#: \views\helpers\languages.php:6
 msgid "Japanese"
 msgstr "japonais"
 
@@ -240,36 +256,42 @@ msgid "French"
 msgstr "français"
 
 #: \views\elements\search_bar.ctp:14
-#: \views\helpers\languages.php:9
+#: \views\helpers\languages.php:8
 msgid "German"
 msgstr "allemand"
 
 #: \views\elements\search_bar.ctp:15
-#: \views\helpers\languages.php:10
+#: \views\helpers\languages.php:9
 msgid "Spanish"
 msgstr "espagnol"
 
 #: \views\elements\search_bar.ctp:16
+#: \views\helpers\languages.php:10
 msgid "Italian"
 msgstr "italien"
 
 #: \views\elements\search_bar.ctp:17
+#: \views\helpers\languages.php:11
 msgid "Vietnamese"
 msgstr "vietnamien"
 
 #: \views\elements\search_bar.ctp:18
+#: \views\helpers\languages.php:12
 msgid "Russian"
 msgstr "russe"
 
 #: \views\elements\search_bar.ctp:19
+#: \views\helpers\languages.php:13
 msgid "Chinese"
 msgstr "chinois"
 
 #: \views\elements\search_bar.ctp:20
+#: \views\helpers\languages.php:14
 msgid "Korean"
 msgstr "coréen"
 
 #: \views\elements\search_bar.ctp:21
+#: \views\helpers\languages.php:15
 msgid "Dutch"
 msgstr "néerlandais"
 
@@ -325,11 +347,11 @@ msgstr "précédent"
 msgid "next"
 msgstr "suivant"
 
-#: \views\helpers\comments.php:23
+#: \views\helpers\comments.php:30
 msgid "Even though you can comment on the whole group of sentences, keep in mind that your comment will be <strong>linked only to the main sentence</strong> (at the top)."
 msgstr "Même si vous pouvez commenter tout un gruope de phrases, gardez en tête que votre commentaire sera <strong>lié seulement à la phrase principale</strong> (celle située tout en haut)."
 
-#: \views\helpers\comments.php:24
+#: \views\helpers\comments.php:31
 msgid "Add a comment : "
 msgstr "Ajouter un commentaire : "
 
@@ -345,12 +367,20 @@ msgstr "il y a %s heure(s)"
 msgid "%s mn(s) ago"
 msgstr "il y a %s mn(s)"
 
+#: \views\helpers\languages.php:16
+msgid "Hebrew"
+msgstr "Hébreu"
+
+#: \views\helpers\languages.php:17
+msgid "Indonesian"
+msgstr "Indonésien"
+
 #: \views\helpers\navigation.php:11
 msgid "Show sentence nº : "
 msgstr "Montrer phrase nº : "
 
 #: \views\helpers\navigation.php:12
-#: \views\helpers\sentences.php:75;113;135
+#: \views\helpers\sentences.php:99;178;227
 msgid "OK"
 msgstr "OK"
 
@@ -370,43 +400,27 @@ msgstr "afficher"
 msgid "all"
 msgstr "tous"
 
-#: \views\helpers\sentences.php:65
-msgid "Your translation should be <strong>based on the main sentence</strong> (the one at the <strong>top</strong>)."
-msgstr "Votre traduction doit <strong>se baser sur la phrase principale</strong> (celle tout en <strong>haut</strong>)."
-
-#: \views\helpers\sentences.php:67
-msgid "The other sentences <strong>below</strong> are displayed only so you know what <strong>translations</strong> have already been added."
-msgstr "Les autres phrases <strong>en-dessous</strong> sont affichées seulement pour que vous sachiez quelles <strong>traductions</strong> ont déjà été ajoutées."
-
-#: \views\helpers\sentences.php:69
-msgid "If you understand better one of the translations, you can <strong>click</strong> on it to make it as the <strong>main sentence</strong>, and translate from there."
-msgstr "Si vous comprenez mieux une des traductions, vous pouvez <strong>cliquer</strong> dessus pour en faire la <strong>phrase principale</strong>, et traduire à partir de là."
-
-#: \views\helpers\sentences.php:112
-msgid "Correction : "
-msgstr "Correction : "
-
-#: \views\helpers\sentences.php:134
+#: \views\helpers\sentences.php:226
 msgid "Modification : "
 msgstr "Modification : "
 
-#: \views\helpers\sentences.php:166
+#: \views\helpers\sentences.php:258
 msgid "Translate"
 msgstr "Traduire"
 
-#: \views\helpers\sentences.php:178
+#: \views\helpers\sentences.php:281
 msgid "Edit"
 msgstr "Éditer"
 
-#: \views\helpers\sentences.php:225
+#: \views\helpers\sentences.php:316
 msgid "Adopt"
 msgstr "Adopter"
 
-#: \views\helpers\sentences.php:238
+#: \views\helpers\sentences.php:329
 msgid "Let go"
 msgstr "Se séparer"
 
-#: \views\helpers\sentences.php:251
+#: \views\helpers\sentences.php:342
 msgid "Delete"
 msgstr "Supprimer"
 
@@ -450,6 +464,34 @@ msgstr "Vous pouvez en lire plus sur ce sujet ici : <a href=\"http://blog.tatoeb
 msgid "Get involved, adopt sentences!"
 msgstr "Impliquez-vous, adoptez des phrases!"
 
+#: \views\helpers\tooltip.php:79
+msgid "Let's suppose you translate an English sentence into French, and someone translate your French translation into Spanish. In short : English ==> French ==> Spanish."
+msgstr "Supposont que vous traduisiez une phrase anglaise vers el français, et que quelqu'un traduise votre traduction français vers l'espagnol. En résumé : anglais ==> français ==> espagnol."
+
+#: \views\helpers\tooltip.php:81
+msgid "The <strong>French</strong> sentence is a <strong>direct</strong> translation of the English sentence. The <strong>Spanish</strong> sentence is an <strong>indirect</strong> translation of the English sentence."
+msgstr "La phrase <strong>française</strong> est une traduction <strong>directe</strong> de la phrase anglaise. La phrase <strong>espagnole</strong> est une traduction <strong>indirecte</strong> de la phrase anglaise."
+
+#: \views\helpers\tooltip.php:85
+msgid "There is currently no way to \"upgrade\" an indirect translation into a direct translation. Also, note that for performance reasons, indirect translations are not always displayed, but only when you are viewing or translating a sentence."
+msgstr "Il n'y a pour le moment aucun moyen pour convertir une traduction indirecte en traduction directe. Aussi, notez que pour des raisons de performances, les traductions indirectes ne sont affichées que si vous visualisez ou traduisez une phrase."
+
+#: \views\helpers\tooltip.php:88
+msgid "Green : direct translation / Orange : indirect translation"
+msgstr "Vert : traduction directe / Orange : traduction indirecte"
+
+#: \views\helpers\tooltip.php:92
+msgid "Your translation should be <strong>based on the main sentence</strong> (the one at the <strong>top</strong>)."
+msgstr "Votre traduction doit <strong>se baser sur la phrase principale</strong> (celle tout en <strong>haut</strong>)."
+
+#: \views\helpers\tooltip.php:94
+msgid "The other sentences <strong>below</strong> are displayed only so you know what <strong>translations</strong> have already been added."
+msgstr "Les autres phrases <strong>en-dessous</strong> sont affichées seulement pour que vous sachiez quelles <strong>traductions</strong> ont déjà été ajoutées."
+
+#: \views\helpers\tooltip.php:96
+msgid "If you understand better one of the translations, you can <strong>click</strong> on it to make it as the <strong>main sentence</strong>, and translate from there."
+msgstr "Si vous comprenez mieux une des traductions, vous pouvez <strong>cliquer</strong> dessus pour en faire la <strong>phrase principale</strong>, et traduire à partir de là."
+
 #: \views\pages\contact.ctp:3
 msgid "Contact"
 msgstr "Contact"
@@ -478,31 +520,39 @@ msgstr "Taille"
 msgid "Older files"
 msgstr "Fichiers plus anciens"
 
-#: \views\pages\home.ctp:3
+#: \views\pages\home.ctp:2
 msgid "Tatoeba : Collecting example sentences"
 msgstr "Tatoeba : Collection de phrases d'exemple"
 
-#: \views\pages\home.ctp:7
+#: \views\pages\home.ctp:9
+msgid "The language of some the sentences you have added could not be detected. "
+msgstr "La langue des certaines de vos phrases n'a pas pu être détectée."
+
+#: \views\pages\home.ctp:10
+msgid "Click here."
+msgstr "Cliquez ici."
+
+#: \views\pages\home.ctp:30
 msgid "Welcome on Tatoeba Project"
 msgstr "Bienvenue sur Tatoeba Project"
 
-#: \views\pages\home.ctp:11
+#: \views\pages\home.ctp:34
 msgid "This project aims to build a multilingual aligned corpus. In other words, to collect sentences translated in several languages. These sentences can be downloaded for free here : "
 msgstr "Ce projet a pour but de construire un corpus aligné multilingue. En d'autres termes, de collecter des phrases traduites dans plusieurs langues. Ces phrases peuvent être téléchargées gratuitement ici : "
 
-#: \views\pages\home.ctp:25
+#: \views\pages\home.ctp:45
 msgid "Random sentence"
 msgstr "Phrase aléatoire"
 
-#: \views\pages\home.ctp:34
+#: \views\pages\home.ctp:54
 msgid "Latest contributions"
 msgstr "Dernières contributions"
 
-#: \views\pages\home.ctp:38
+#: \views\pages\home.ctp:58
 msgid "show more..."
 msgstr "montrer plus..."
 
-#: \views\pages\home.ctp:45
+#: \views\pages\home.ctp:65
 msgid "Latest comments"
 msgstr "Derniers commentaires"
 
@@ -563,8 +613,8 @@ msgid "Grouping : "
 msgstr "Regroupement : "
 
 #: \views\pages\search.ctp:81
-msgid "This will search for sentences containing \"like\" and \"music\", or \"like\" and \"sleep\"."
-msgstr "Ceci cherchera les phrases contenant \"like\" et \"music\", ou \"like\" et \"sleep\"."
+msgid "This will search for sentences containing \"like\" and \"television\", or \"like\" and \"sleep\"."
+msgstr "Ceci cherchera les phrases contenant \"like\" et \"television\", ou \"like\" et \"sleep\"."
 
 #: \views\sentence_comments\add.ctp:2
 msgid "Add comment for sentence"
@@ -616,6 +666,10 @@ msgstr "Est-ce correct : "
 msgid "You can add a comment if you are registered and logged in."
 msgstr "Vous pouvez ajouter un commentaire si vous êtes inscrit et connecté."
 
+#: \views\sentences\link.ctp:2
+msgid "Potential translations for : "
+msgstr "Traduction potentielles pour : "
+
 #: \views\sentences\search.ctp:27
 msgid "No results for this search"
 msgstr "Pas de résultat pour cette recherche"
@@ -635,6 +689,42 @@ msgstr "Il n'y a pas de phrases ayant pour id : "
 #: \views\sentences\translate.ctp:2
 msgid "Please translate : "
 msgstr "Traduisez s'il vous plaît : "
+
+#: \views\sentences\unknown_language.ctp:3
+msgid "Unknown language"
+msgstr "Langue inconnue."
+
+#: \views\sentences\unknown_language.ctp:8
+msgid "The language of the following sentences could not be detected, you have to specify it manually. "
+msgstr "La langue des phrases suivantes n'a pas pu être détectée, vous devez la spécifier manuellement."
+
+#: \views\sentences\unknown_language.ctp:9
+msgid "If your language is not in the list, don't hesitate to contact me : trang.dictionary.project@gmail.com."
+msgstr "Si votre langue n'est pas dans la liste, n'hésitez pas à me contacter : trang.dictionary.project@gmail.com."
+
+#: \views\sentences\unknown_language.ctp:27
+msgid "save"
+msgstr "enregistrer"
+
+#: \views\sentences\unknown_language.ctp:30
+msgid "You don't have any sentence which language is unknown."
+msgstr "Vous n'avez pas de phrases dont la langue est inconnue."
+
+#: \views\tools\kakasi.ctp:3
+msgid "Convert Japanese text into romaji or furigana"
+msgstr "Convertir du texte japonais en romaji ou furigana"
+
+#: \views\tools\kakasi.ctp:6
+msgid "Convert Japanese text into romaji or furigana (powered by <a target=\"_blank\" href=\"http://kakasi.namazu.org/\">KAKASI</a>)"
+msgstr "Convertir du texte japonais en romaji ou furigana (powered by <a target=\"_blank\" href=\"http://kakasi.namazu.org/\">KAKASI</a>)"
+
+#: \views\tools\kakasi.ctp:21
+msgid "Convert japanese text into : "
+msgstr "Convertir texte japonais en : "
+
+#: \views\tools\kakasi.ctp:28
+msgid "Convert"
+msgstr "Convertir"
 
 #: \views\users\login.ctp:6
 msgid "Click here to register"
@@ -797,6 +887,8 @@ msgstr "inconnu"
 msgid "Debug setting does not allow access to this url."
 msgstr "Les paramètres de debug ne permettent pas l'accès à cette URL."
 
+#~ msgid "Correction : "
+#~ msgstr "Correction : "
 #~ msgid "link deleted"
 #~ msgstr "lien supprimé"
 #~ msgid "Warning!"
@@ -809,8 +901,6 @@ msgstr "Les paramètres de debug ne permettent pas l'accès à cette URL."
 #~ msgstr "Supprimer Utilisateur"
 #~ msgid "Are you sure you want to delete # %s?"
 #~ msgstr "Êtes-vous sûr de vouloir supprimer # %s?"
-#~ msgid "The suggestion has been saved"
-#~ msgstr "La suggestion a été sauvegardée"
 #~ msgid "The suggestion could not be saved. Please, try again."
 #~ msgstr "La suggestion n'a pas pu être sauvegardée. Veuillez réessayer."
 #~ msgid "Correction for : "
@@ -869,8 +959,6 @@ msgstr "Les paramètres de debug ne permettent pas l'accès à cette URL."
 #~ msgstr "Ajouter un commentaire"
 #~ msgid "Translation(s)"
 #~ msgstr "Traduction(s)"
-#~ msgid "There are no translations for now."
-#~ msgstr "Il n'y a pas de traductions pour l'instant."
 #~ msgid "Add a translation"
 #~ msgstr "Ajouter une traduction"
 #~ msgid "CakePHP: the rapid development php framework:"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-01-31 04:08+0100\n"
+"POT-Creation-Date: 2009-03-09 22:57+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -23,40 +23,52 @@ msgstr ""
 msgid "Your comment has been saved."
 msgstr ""
 
-#: \controllers\sentences_controller.php:68
+#: \controllers\sentences_controller.php:72
 msgid "Your sentence has been saved. You can add a translation for it or add another new sentence."
 msgstr ""
 
-#: \controllers\sentences_controller.php:100
+#: \controllers\sentences_controller.php:104
 msgid "This sentence was not added by you. You can only edit sentences you have added."
 msgstr ""
 
-#: \controllers\sentences_controller.php:109
+#: \controllers\sentences_controller.php:113
 msgid "The sentence has been updated."
 msgstr ""
 
-#: \controllers\sentences_controller.php:121
+#: \controllers\sentences_controller.php:125
 msgid "You are now the owner of this sentence and can modify it as you wish (click on the \"Edit\" link for that). It is your responsibility to make sure that it doesn't have any mistake and, if possible, is not linked to wrong translations."
 msgstr ""
 
-#: \controllers\sentences_controller.php:132
+#: \controllers\sentences_controller.php:136
 msgid "You have abandonned your ownership for this sentence. Other people can now adopt it. If it was a mistake, you can just re-adopt it."
 msgstr ""
 
-#: \controllers\sentences_controller.php:190
+#: \controllers\sentences_controller.php:202
 msgid "Your translation has been saved."
 msgstr ""
 
-#: \controllers\sentences_controller.php:195
+#: \controllers\sentences_controller.php:207
 msgid "A problem occured. Your translation has not been saved."
 msgstr ""
 
-#: \controllers\sentences_controller.php:210
+#: \controllers\sentences_controller.php:222
 msgid "Tatoeba search : "
 msgstr ""
 
-#: \controllers\sentences_controller.php:248
+#: \controllers\sentences_controller.php:261
 msgid "Tatoeba search"
+msgstr ""
+
+#: \controllers\sentences_controller.php:353
+msgid "The languages have been saved."
+msgstr ""
+
+#: \controllers\sentences_controller.php:355
+msgid "A problem occured while trying to save."
+msgstr ""
+
+#: \controllers\sentences_controller.php:358
+msgid "There is nothing to save."
 msgstr ""
 
 #: \controllers\users_controller.php:80
@@ -174,7 +186,7 @@ msgid "Logs for : "
 msgstr ""
 
 #: \views\contributions\show.ctp:17
-#: \views\helpers\sentences.php:213
+#: \views\helpers\sentences.php:304
 msgid "Logs"
 msgstr ""
 
@@ -191,8 +203,12 @@ msgid "Tatoeba Blog"
 msgstr ""
 
 #: \views\elements\foot.ctp:16
-#: \views\pages\home.ctp:13
+#: \views\pages\home.ctp:39
 msgid "Downloads"
+msgstr ""
+
+#: \views\elements\foot.ctp:18
+msgid "Romaji & Furigana"
 msgstr ""
 
 #: \views\elements\menu.ctp:14
@@ -212,7 +228,7 @@ msgid "Contribute"
 msgstr ""
 
 #: \views\elements\menu.ctp:19
-#: \views\helpers\sentences.php:202
+#: \views\helpers\sentences.php:293
 #: \views\sentence_comments\show.ctp:20
 #: \views\sentences\edit.ctp:23
 #: \views\users\show.ctp:63
@@ -224,12 +240,12 @@ msgid "Members"
 msgstr ""
 
 #: \views\elements\search_bar.ctp:11
-#: \views\helpers\languages.php:6
+#: \views\helpers\languages.php:5
 msgid "English"
 msgstr ""
 
 #: \views\elements\search_bar.ctp:12
-#: \views\helpers\languages.php:8
+#: \views\helpers\languages.php:6
 msgid "Japanese"
 msgstr ""
 
@@ -239,44 +255,55 @@ msgid "French"
 msgstr ""
 
 #: \views\elements\search_bar.ctp:14
-#: \views\helpers\languages.php:9
+#: \views\helpers\languages.php:8
 msgid "German"
 msgstr ""
 
 #: \views\elements\search_bar.ctp:15
-#: \views\helpers\languages.php:10
+#: \views\helpers\languages.php:9
 msgid "Spanish"
 msgstr ""
 
 #: \views\elements\search_bar.ctp:16
+#: \views\helpers\languages.php:10
 msgid "Italian"
 msgstr ""
 
 #: \views\elements\search_bar.ctp:17
-msgid "Vietnamese"
+#: \views\helpers\languages.php:17
+msgid "Indonesian"
 msgstr ""
 
 #: \views\elements\search_bar.ctp:18
-msgid "Russian"
+#: \views\helpers\languages.php:11
+msgid "Vietnamese"
 msgstr ""
 
 #: \views\elements\search_bar.ctp:19
-msgid "Chinese"
+#: \views\helpers\languages.php:12
+msgid "Russian"
 msgstr ""
 
 #: \views\elements\search_bar.ctp:20
-msgid "Korean"
+#: \views\helpers\languages.php:13
+msgid "Chinese"
 msgstr ""
 
 #: \views\elements\search_bar.ctp:21
+#: \views\helpers\languages.php:14
+msgid "Korean"
+msgstr ""
+
+#: \views\elements\search_bar.ctp:22
+#: \views\helpers\languages.php:15
 msgid "Dutch"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:28
+#: \views\elements\search_bar.ctp:29
 msgid "search"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:30
+#: \views\elements\search_bar.ctp:31
 msgid "show examples"
 msgstr ""
 
@@ -324,11 +351,11 @@ msgstr ""
 msgid "next"
 msgstr ""
 
-#: \views\helpers\comments.php:23
+#: \views\helpers\comments.php:35
 msgid "Even though you can comment on the whole group of sentences, keep in mind that your comment will be <strong>linked only to the main sentence</strong> (at the top)."
 msgstr ""
 
-#: \views\helpers\comments.php:24
+#: \views\helpers\comments.php:36
 msgid "Add a comment : "
 msgstr ""
 
@@ -344,12 +371,16 @@ msgstr ""
 msgid "%s mn(s) ago"
 msgstr ""
 
+#: \views\helpers\languages.php:16
+msgid "Hebrew"
+msgstr ""
+
 #: \views\helpers\navigation.php:11
 msgid "Show sentence nº : "
 msgstr ""
 
 #: \views\helpers\navigation.php:12
-#: \views\helpers\sentences.php:75;113;135
+#: \views\helpers\sentences.php:99;178;227
 msgid "OK"
 msgstr ""
 
@@ -369,43 +400,27 @@ msgstr ""
 msgid "all"
 msgstr ""
 
-#: \views\helpers\sentences.php:65
-msgid "Your translation should be <strong>based on the main sentence</strong> (the one at the <strong>top</strong>)."
-msgstr ""
-
-#: \views\helpers\sentences.php:67
-msgid "The other sentences <strong>below</strong> are displayed only so you know what <strong>translations</strong> have already been added."
-msgstr ""
-
-#: \views\helpers\sentences.php:69
-msgid "If you understand better one of the translations, you can <strong>click</strong> on it to make it as the <strong>main sentence</strong>, and translate from there."
-msgstr ""
-
-#: \views\helpers\sentences.php:112
-msgid "Correction : "
-msgstr ""
-
-#: \views\helpers\sentences.php:134
+#: \views\helpers\sentences.php:226
 msgid "Modification : "
 msgstr ""
 
-#: \views\helpers\sentences.php:166
+#: \views\helpers\sentences.php:258
 msgid "Translate"
 msgstr ""
 
-#: \views\helpers\sentences.php:178
+#: \views\helpers\sentences.php:281
 msgid "Edit"
 msgstr ""
 
-#: \views\helpers\sentences.php:225
+#: \views\helpers\sentences.php:316
 msgid "Adopt"
 msgstr ""
 
-#: \views\helpers\sentences.php:238
+#: \views\helpers\sentences.php:329
 msgid "Let go"
 msgstr ""
 
-#: \views\helpers\sentences.php:251
+#: \views\helpers\sentences.php:342
 msgid "Delete"
 msgstr ""
 
@@ -449,6 +464,34 @@ msgstr ""
 msgid "Get involved, adopt sentences!"
 msgstr ""
 
+#: \views\helpers\tooltip.php:79
+msgid "Let's suppose you translate an English sentence into French, and someone translate your French translation into Spanish. In short : English ==> French ==> Spanish."
+msgstr ""
+
+#: \views\helpers\tooltip.php:81
+msgid "The <strong>French</strong> sentence is a <strong>direct</strong> translation of the English sentence. The <strong>Spanish</strong> sentence is an <strong>indirect</strong> translation of the English sentence."
+msgstr ""
+
+#: \views\helpers\tooltip.php:85
+msgid "There is currently no way to \"upgrade\" an indirect translation into a direct translation. Also, note that for performance reasons, indirect translations are not always displayed, but only when you are viewing or translating a sentence."
+msgstr ""
+
+#: \views\helpers\tooltip.php:88
+msgid "Green : direct translation / Orange : indirect translation"
+msgstr ""
+
+#: \views\helpers\tooltip.php:92
+msgid "Your translation should be <strong>based on the main sentence</strong> (the one at the <strong>top</strong>)."
+msgstr ""
+
+#: \views\helpers\tooltip.php:94
+msgid "The other sentences <strong>below</strong> are displayed only so you know what <strong>translations</strong> have already been added."
+msgstr ""
+
+#: \views\helpers\tooltip.php:96
+msgid "If you understand better one of the translations, you can <strong>click</strong> on it to make it as the <strong>main sentence</strong>, and translate from there."
+msgstr ""
+
 #: \views\pages\contact.ctp:3
 msgid "Contact"
 msgstr ""
@@ -477,31 +520,39 @@ msgstr ""
 msgid "Older files"
 msgstr ""
 
-#: \views\pages\home.ctp:3
+#: \views\pages\home.ctp:2
 msgid "Tatoeba : Collecting example sentences"
 msgstr ""
 
-#: \views\pages\home.ctp:7
+#: \views\pages\home.ctp:9
+msgid "The language of some the sentences you have added could not be detected. "
+msgstr ""
+
+#: \views\pages\home.ctp:10
+msgid "Click here."
+msgstr ""
+
+#: \views\pages\home.ctp:33
 msgid "Welcome on Tatoeba Project"
 msgstr ""
 
-#: \views\pages\home.ctp:11
+#: \views\pages\home.ctp:37
 msgid "This project aims to build a multilingual aligned corpus. In other words, to collect sentences translated in several languages. These sentences can be downloaded for free here : "
 msgstr ""
 
-#: \views\pages\home.ctp:25
+#: \views\pages\home.ctp:48
 msgid "Random sentence"
 msgstr ""
 
-#: \views\pages\home.ctp:34
+#: \views\pages\home.ctp:57
 msgid "Latest contributions"
 msgstr ""
 
-#: \views\pages\home.ctp:38
+#: \views\pages\home.ctp:61
 msgid "show more..."
 msgstr ""
 
-#: \views\pages\home.ctp:45
+#: \views\pages\home.ctp:68
 msgid "Latest comments"
 msgstr ""
 
@@ -562,7 +613,7 @@ msgid "Grouping : "
 msgstr ""
 
 #: \views\pages\search.ctp:81
-msgid "This will search for sentences containing \"like\" and \"music\", or \"like\" and \"sleep\"."
+msgid "This will search for sentences containing \"like\" and \"television\", or \"like\" and \"sleep\"."
 msgstr ""
 
 #: \views\sentence_comments\add.ctp:2
@@ -615,6 +666,10 @@ msgstr ""
 msgid "You can add a comment if you are registered and logged in."
 msgstr ""
 
+#: \views\sentences\link.ctp:2
+msgid "Potential translations for : "
+msgstr ""
+
 #: \views\sentences\search.ctp:27
 msgid "No results for this search"
 msgstr ""
@@ -633,6 +688,42 @@ msgstr ""
 
 #: \views\sentences\translate.ctp:2
 msgid "Please translate : "
+msgstr ""
+
+#: \views\sentences\unknown_language.ctp:3
+msgid "Unknown language"
+msgstr ""
+
+#: \views\sentences\unknown_language.ctp:8
+msgid "The language of the following sentences could not be detected, you have to specify it manually. "
+msgstr ""
+
+#: \views\sentences\unknown_language.ctp:9
+msgid "If your language is not in the list, don't hesitate to contact me : trang.dictionary.project@gmail.com."
+msgstr ""
+
+#: \views\sentences\unknown_language.ctp:27
+msgid "save"
+msgstr ""
+
+#: \views\sentences\unknown_language.ctp:30
+msgid "You don't have any sentence which language is unknown."
+msgstr ""
+
+#: \views\tools\kakasi.ctp:3
+msgid "Convert Japanese text into romaji or furigana"
+msgstr ""
+
+#: \views\tools\kakasi.ctp:6
+msgid "Convert Japanese text into romaji or furigana (powered by <a target=\"_blank\" href=\"http://kakasi.namazu.org/\">KAKASI</a>)"
+msgstr ""
+
+#: \views\tools\kakasi.ctp:21
+msgid "Convert japanese text into : "
+msgstr ""
+
+#: \views\tools\kakasi.ctp:28
+msgid "Convert"
 msgstr ""
 
 #: \views\users\login.ctp:6
