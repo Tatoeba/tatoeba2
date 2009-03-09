@@ -25,6 +25,9 @@ echo $this->element('sentences_statistics', array('cache' =>
 
 <div id="homepage">
 <?php 
+if (isset($this->params['lang'])) { 
+	Configure::write('Config.language',  $this->params['lang']); 
+}
 echo '<div class="element" style="font-size:16px">';
 echo '<h2>';
 __('Welcome on Tatoeba Project');
