@@ -86,7 +86,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => '',
-		'database' => 'tatoeba_3',
+		'database' => 'tatoeba_4',
 		'prefix' => '',
 		'encoding' => 'utf8'
 	);
