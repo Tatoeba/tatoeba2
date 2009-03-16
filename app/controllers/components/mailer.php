@@ -26,8 +26,8 @@ class MailerComponent extends Object{
 		$smtpServer = "tls://smtp.gmail.com"; //does not accept STARTTLS
 		$port = "465"; // try 587 if this fails
 		$timeout = "45"; //typical timeout. try 45 for slow servers
-		$username = "trang.dictionary.project@gmail.com"; //your gmail account
-		$password = "ctrl266A"; //the pass for your gmail
+		$username = "tatoeba.tx03@gmail.com"; //your gmail account
+		$password = "toFGeF89"; //the pass for your gmail
 		$localhost = $_SERVER['REMOTE_ADDR']; //requires a real ip
 		$newLine = "\r\n"; //var just for newlines
 		 
