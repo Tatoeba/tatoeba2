@@ -46,10 +46,12 @@ echo '</div>';
 echo '<div class="element">';
 echo '<h2>';
 __('Random sentence'); 
-echo '</h2>';
+echo ' (';
+echo $html->link(__('show another',true), array("controller"=>"pages"));
+echo ')</h2>';
 echo $this->element('random_sentence');
 echo '</div>';
-$tooltip->displayAdoptTooltip();
+//$tooltip->displayAdoptTooltip();
 
 
 echo '<div class="element">';
