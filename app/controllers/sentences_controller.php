@@ -2,13 +2,13 @@
 class SentencesController extends AppController{
 	var $name = 'Sentences';
 	var $components = array ('GoogleLanguageApi', 'Lucene', 'Permissions');
-	var $helpers = array('Sentences', 'Html', 'Logs', 'Pagination', 'Comments', 'Navigation', 'Languages');
+	var $helpers = array('Sentences', 'Html', 'Logs', 'Pagination', 'Comments', 'Navigation', 'Languages', 'Javascript');
 	
 	function beforeFilter() {
 	    parent::beforeFilter();
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo', 'statistics', 'count_unknown_language');
+	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo', 'statistics', 'count_unknown_language', 'get_sentence');
 	}
 
 	
@@ -27,7 +27,7 @@ class SentencesController extends AppController{
 		}else{
 			$this->Sentence->id = $id;
 			
-			$this->Sentence->recursive = 2;
+			$this->Sentence->recursive = 0;
 			$sentence = $this->Sentence->read();
 			$this->set('sentence', $sentence);
 			
@@ -362,6 +362,14 @@ class SentencesController extends AppController{
 			'/sentences/unknown_language/'
 		);
 		//pr($this->data);
+	}
+	
+	function get_sentence($id){
+		$this->layout = null;
+		$this->Sentence->id = $id;
+		$this->Sentence->recursive = 0;
+		$sentence = $this->Sentence->read();
+		$this->set('sentence', $sentence);
 	}
 }
 ?>

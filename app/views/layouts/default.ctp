@@ -44,6 +44,7 @@
 		echo $html->css('tatoeba.navigation');
 		echo $html->css('tatoeba.tools');
 		
+		echo $javascript->link('jquery.js', true);
 		echo $scripts_for_layout;
 	?>
 </head>
