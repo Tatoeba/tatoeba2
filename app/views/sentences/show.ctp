@@ -10,7 +10,8 @@ if($sentence != null){
 		$sentences->displayMenu($sentence['Sentence']['id'], $specialOptions);
 
 		// sentence and translations
-		$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
+		$t = (isset($sentence['Translation'])) ? $sentence['Translation'] : array();
+		$sentences->displayGroup($sentence['Sentence'], $t);
 	echo '</div>';
 	
 	$tooltip->displayAdoptTooltip();
