@@ -36,31 +36,55 @@ class SentencesHelper extends AppHelper {
 		}
 		echo '</div>';
 		
-		// Translations
-		if(count($translations) > 0){	
-			$controller = (preg_match("/sentence_comments|contributions/", $this->params['controller'])) ? $this->params['controller'] : "sentences";
+		echo '<ul class="translations">';
+		if(count($translations) > 0){
+			// direct translations
+			$this->displayTranslations($translations, 'show');
 			
+			// indirect translations
+			$this->displayIndirectTranslations($sentence, 'show');
+		}
+		echo '</ul>';
+		
+		echo '</div>';
+    }
+	 
+	/**
+	 * Display direct translations.
+	 */
+	function displayTranslations($translations, $action){			
+		$controller = (preg_match("/sentence_comments|contributions/", $this->params['controller'])) ? $this->params['controller'] : "sentences";
+		
+		foreach($translations as $translation){
+			echo '<li class="direct translation correctness'.$translation['correctness'].'">';
+			echo $this->Html->link(
+				$translation['text'],
+				array(
+					"controller" => $controller,
+					"action" => $action,
+					$translation['id']
+				),
+				array("class" => $translation['lang'])
+			);
+			if($translation['lang'] == 'jp'){
+				echo '<span class="romaji">';
+				$this->Kakasi->convert($translation['text'], 'romaji');
+				echo '</span>';
+			}
+			echo '</li>';
+		}
+	}
+	
+	/**
+	 * Display indirect translations, that is to say translations of translations.
+	 */
+	function displayIndirectTranslations($sentence, $action){
+		if(isset($sentence['Translation'])){
+			$translations = $sentence['Translation'];
 			$translationsIds = array($sentence['id']);
 			$indirectTranslations = array();
-			echo '<ul class="translations">';
+			
 			foreach($translations as $translation){
-				echo '<li class="direct translation correctness'.$translation['correctness'].'">';
-				echo $this->Html->link(
-					$translation['text'],
-					array(
-						"controller" => $controller,
-						"action" => "show",
-						$translation['id']
-					),
-					array("class" => $translation['lang'])
-				);
-				if($translation['lang'] == 'jp'){
-					echo '<span class="romaji">';
-					$this->Kakasi->convert($translation['text'], 'romaji');
-					echo '</span>';
-				}
-				echo '</li>';
-				
 				$translationsIds[] = $translation['id'];
 				if(isset($translation['IndirectTranslation'])){
 					foreach($translation['IndirectTranslation'] as $indirectTranslation){
@@ -68,14 +92,26 @@ class SentencesHelper extends AppHelper {
 					}
 				}
 			}
-		
-			// indirect translations
-			$this->displayIndirectTranslations($indirectTranslations, $translationsIds, $sentence['lang'], 'show');
-			echo '</ul>';
+			
+			if(count($indirectTranslations) > 0){
+				foreach($indirectTranslations as $translation){
+					if(!in_array($translation['id'], $translationsIds) AND $translation['lang'] != $sentenceLang){
+						echo '<li class="indirect translation correctness'.$translation['correctness'].'">';
+						echo $this->Html->link(
+							$translation['text'],
+							array(
+								"controller" => "sentences",
+								"action" => $action,
+								$translation['id']
+							),
+							array("class" => $translation['lang'])
+						);
+						echo '</li>';
+					}
+				}
+			}
 		}
-		
-		echo '</div>';
-    }
+	}
 	
 	/**
 	 * Display group of sentence with a text input to add a translation.
@@ -130,26 +166,6 @@ class SentencesHelper extends AppHelper {
 			echo '</ul>';
 			
 		echo '</div>';
-	}
-	
-	function displayIndirectTranslations($indirectTranslations, $translationsIds, $sentenceLang, $action){
-		if(count($indirectTranslations) > 0){
-			foreach($indirectTranslations as $translation){
-				if(!in_array($translation['id'], $translationsIds) AND $translation['lang'] != $sentenceLang){
-					echo '<li class="indirect translation correctness'.$translation['correctness'].'">';
-					echo $this->Html->link(
-						$translation['text'],
-						array(
-							"controller" => "sentences",
-							"action" => $action,
-							$translation['id']
-						),
-						array("class" => $translation['lang'])
-					);
-					echo '</li>';
-				}
-			}
-		}
 	}
 	
 	/**

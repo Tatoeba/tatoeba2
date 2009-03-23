@@ -1,6 +1,5 @@
 <?php
 if($sentence != null){
-	$javascript->link('sentences.show_translations.js', false);
 	$this->pageTitle = __('Example sentence : ',true) . $sentence['Sentence']['text'];
 
 	// navigation (previous, random, next)
@@ -15,10 +14,14 @@ if($sentence != null){
 		$sentences->displayGroup($sentence['Sentence'], $t);
 	echo '</div>';
 	
-	//$tooltip->displayAdoptTooltip();
+	//$tooltip->displayAdoptTooltip(); 
 	
-	echo '<a href="#" id="test">Afficher machin</a>';
-	echo '<div id="test_result"></div>';
+	echo '<script type="text/javascript">
+	$(document).ready(function(){
+		$(".translations").load("http://localhost/tatoeba/sentences/get_translations/'.$sentence['Sentence']['id'].'");
+	});
+	</script>';
+	
 }else{
 	$this->pageTitle = __('Sentence does not exist : ', true) . $this->params['pass'][0];
 	
