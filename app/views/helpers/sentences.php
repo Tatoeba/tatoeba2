@@ -136,32 +136,11 @@ class SentencesHelper extends AppHelper {
 				echo '<li>';
 				
 				if(count($translations) > 0){
-					$translationsIds = array($sentence['id']);
-					$indirectTranslations = array();
-					
-					foreach($translations as $translation){
-						echo '<li class="direct translation correctness'.$translation['correctness'].'">';
-						echo $this->Html->link(
-							$translation['text'],
-							array(
-								"controller" => "sentences",
-								"action" => "translate",
-								$translation['id']
-							),
-							array("class" => $translation['lang'])
-						);
-						echo '</li>';
-						
-						$translationsIds[] = $translation['id'];
-						if(isset($translation['IndirectTranslation'])){
-							foreach($translation['IndirectTranslation'] as $indirectTranslation){
-								$indirectTranslations[] = $indirectTranslation;
-							}
-						}
-					}
-					
+					// direct translations
+					$this->displayTranslations($translations, 'translate');
+			
 					// indirect translations
-					$this->displayIndirectTranslations($indirectTranslations, $translationsIds, $sentence['lang'], 'translate');
+					$this->displayIndirectTranslations($sentence, 'translate');
 				}
 			echo '</ul>';
 			
@@ -180,48 +159,15 @@ class SentencesHelper extends AppHelper {
 			echo '<span class="'.$sentence['lang'].'">'.$sentence['text'].'</span>';
 			echo '</div>';
 			
+			echo '<ul class="translations">';
 			if(count($translations) > 0){
-				
-				$translationsIds = array($sentence['id']);
-				$indirectTranslations = array();
-				
-				echo '<ul class="translations">';
-				// form to link to a sentence
-				echo '<li class="form link">';
-					echo $this->Form->create('SentencesTranslations', array("action" => "add"));
-					echo $this->Form->input('translation_id', array("label" => 'Link to sentence nº '));
-					echo $this->Form->input('id', array("type" => "hidden", "value" => $sentence['id']));
-					echo $this->Form->end(__('OK',true));
-				echo '<li>';
-				
 				// direct translations
-				foreach($translations as $translation){
-					echo '<li class="direct translation correctness'.$translation['correctness'].'">';
-					echo $this->Html->link(
-						$translation['text'],
-						array(
-							"controller" => "sentences",
-							"action" => "translate",
-							$translation['id']
-						),
-						array("class" => $translation['lang'])
-					);
-					echo '</li>';
-					
-					$translationsIds[] = $translation['id'];
-					if(isset($translation['IndirectTranslation'])){
-						foreach($translation['IndirectTranslation'] as $indirectTranslation){
-							$indirectTranslations[] = $indirectTranslation;
-						}
-					}
-				}
+				$this->displayTranslations($translations, 'link');
 				
 				// indirect translations
-				$this->displayIndirectTranslations($indirectTranslations, $translationsIds, $sentence['lang'], 'link');
-				echo '</ul>';
-				
-				
+				$this->displayIndirectTranslations($sentence, 'link');
 			}
+			echo '</ul>';
 		echo '</div>';
 	}
 	
