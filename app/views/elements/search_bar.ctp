@@ -17,7 +17,7 @@ $languages = array(
 	, 'id' => __('Indonesian', true)
 	, 'vn' => __('Vietnamese', true)
 	, 'ru' => __('Russian', true)
-	, 'ch' => __('Chinese', true)
+	, 'zh' => __('Chinese', true)
 	, 'ko' => __('Korean', true)
 	, 'nl' => __('Dutch', true)
 );
