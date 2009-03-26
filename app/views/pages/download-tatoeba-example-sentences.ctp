@@ -1,5 +1,5 @@
 <h2>Public domain</h2>
-<p>In case you wonder, you can download without having to worry about copyrights or license, the data is released into the public domain. However, although it is not an obligation, it would be nice if you could :
+<p>You can find here the sentences collected through Tatoeba. In case you wonder, you can download without having to worry about copyrights or license, the data is released into the public domain. However, although it is not an obligation, it would be nice if you could :
 <ol>
 <li><a href="mailto:trang.dictionary.project@gmail.com">Let me know</a> what are you going to use the data for.</li>
 <li>If you are going to use them in some other project, mention in your work where the data is from.</li>
@@ -12,6 +12,107 @@
 
 <h2><?php __('Latest files'); ?></h2>
 
+<h3>Sentences in separate files</h3>
+
+<?php
+$samples = array(
+	"sentences_de_20090326" => '"166501";"de";"Lass uns {etwas}{1} versuchen!"',
+	"sentences_en_20090326" => '"166501";"en";"Let\'s try {something}{1}!"', 
+	"sentences_es_20090326" => '"166501";"es";"Intentemos {algo}{1}!"',
+	"sentences_fr_20090326" => '"2028";"fr";"Je ne supporte pas ce type."', 
+	"sentences_he_20090326" => '"168314";"he";"בוקר טוב."', 
+	"sentences_id_20090326" => '"331310";"id";"Ibu sedang masak di dapur."', 	
+	"sentences_it_20090326" => '"166502";"it";"Devo andare a dormire."', 
+	"sentences_jp_20090326" => '"168036";"jp";"きみにちょっとしたものをもってきたよ。"', 
+	"sentences_jp2_20090326" => '"1";"と言う{という}~ 記号~ は|1 を 指す[03]~"',
+	"sentences_ja_20090326" => '"168036";"ja";"きみにちょっとしたものをもってきたよ。"',
+	"sentences_romaji_20090326" => '"1297";" kiminichottoshitamonowomottekitayo . "',
+	"sentences_ko_20090326" => '"166501";"ko";"뭔가 해보자!"', 
+	"sentences_nl_20090326" => '"167866";"nl";"Neemt u een kopje koffie?"',
+	"sentences_pt_20090326" => '"166501";"pt";"Vamos tentar {alguma coisa}{1}!"', 
+	"sentences_ru_20090326" => '"166501";"ru";"Давайте что-нибудь попробуем!"', 
+	"sentences_vn_20090326" => '"166502";"vn";"Tôi phải đi ngủ."',
+	"sentences_zh_20090326" => '"166501";"zh";"我们試試看！"',
+	"sentences_zh-guoyu_20090326" => '"166501";"zh-guoyu";"我们試試看！"');
+
+$sizes = array(
+	"sentences_de_20090326" => '116 kb',
+	"sentences_en_20090326" => '8632 kb', 
+	"sentences_es_20090326" => '78 kb',
+	"sentences_fr_20090326" => '1430 kb', 
+	"sentences_he_20090326" => '2 kb', 
+	"sentences_id_20090326" => '10 kb', 	
+	"sentences_it_20090326" => '16 kb', 
+	"sentences_jp_20090326" => '10777 kb', 
+	"sentences_jp2_20090326" => '16883 kb',
+	"sentences_ja_20090326" => '10777 kb',
+	"sentences_romaji_20090326" => '9500 kb',
+	"sentences_ko_20090326" => '5 kb', 
+	"sentences_nl_20090326" => '3 kb',
+	"sentences_pt_20090326" => '1 kb', 
+	"sentences_ru_20090326" => '22 kb', 
+	"sentences_vn_20090326" => '19 kb',
+	"sentences_zh_20090326" => '5 kb',
+	"sentences_zh-guoyu_20090326" => '6 kb');
+
+	
+echo '<table class="download older">';
+	echo '<tr>';
+	echo '<th>'. __('File',true) .'</th>';
+	echo '<th>'. __('Sample', true) .'</th>';	
+	echo '<th>'. __('Size',true) .'</th>';	
+	echo '</tr>';
+
+	foreach($samples as $fileName => $sample){
+	echo '<tr>';
+		echo '<td>';
+		echo '<a href="/files/2009-03-26/sentences/'.$fileName.'.csv">'.$fileName.'.csv</a>';
+		echo '</td>';
+		
+		echo '<td>';
+		echo $sample;
+		echo '</td>';
+		
+		echo '<td>';
+		echo $sizes[$fileName];
+		echo '</td>';		
+	echo '</tr>';
+	}
+echo '</table>';
+?>
+
+<h3>Links in separate files</h3>
+<?php
+$links_languages = array('de', 'en', 'es', 'fr', 'jp');
+echo '<table class="download older">';
+
+echo '<tr>';
+echo '<td></td>';
+foreach($links_languages as $from){
+	echo '<td>';
+	echo 'From '.$languages->codeToName($from);
+	echo '</td>';
+}
+echo '</tr>';
+
+foreach($links_languages as $to){
+	echo '<tr>';
+	echo '<td>To '.$languages->codeToName($to).'</td>';
+	foreach($links_languages as $from){
+		echo '<td>';
+		if($from != $to){
+			echo '<a href="/files/2009-03-26/links/'.$from.'2'.$to.'.csv">'.$from.'2'.$to.'.csv</a>';
+		}
+		echo '</td>';
+	}
+	echo '</tr>';
+}
+echo '</table>';
+?>
+
+
+<h3>All in one</h3>
+
 <table class="download latest">
 
 <tr>
@@ -22,7 +123,7 @@
 <tr>
 
 <td>
-<?php echo $html->link('sentences_20090118.csv','/files/sentences_20090118.csv'); ?>
+<?php echo $html->link('sentences_20090326.csv','/files/2009-03-26/sentences_20090326.csv'); ?>
 </td>
 
 <td>
@@ -41,7 +142,7 @@
 
 <tr>
 <td>
-<?php echo $html->link('links_20090118.csv','/files/links_20090118.csv'); ?>
+<?php echo $html->link('links_20090326.csv','/files/2009-03-26/links_20090326.csv'); ?>
 </td>
 
 <td>
@@ -66,7 +167,9 @@
 
 <br/>
 
+
 <h2><?php __('Older files'); ?></h2>
+
 <?php
 $samples = array(
 	"tatoeba_ch_2008_12_06" => '"166501";"ch";"我们試試看！"',
@@ -87,22 +190,22 @@ $samples = array(
 	"tatoeba_vn_2008_12_06" => '"166502";"vn";"Tôi phải đi ngủ."');
 
 $sizes = array(	
-	"tatoeba_ch_2008_12_06" => '5 ko',
-	"tatoeba_zh-guoyu_2008_12_29" => '6 ko',
-	"tatoeba_de_2008_12_06" => '115 ko',
-	"tatoeba_en_2008_12_06" => '8582 ko', 
-	"tatoeba_es_2008_12_06" => '65 ko',
-	"tatoeba_fr_2008_12_06" => '1390 ko', 
-	"tatoeba_he_2008_12_06" => '2 ko', 
-	"tatoeba_it_2008_12_06" => '17 ko', 
-	"tatoeba_jp_2008_12_06" => '10687 ko', 
-	"tatoeba_jp2_2008_12_06" => '16804 ko',
-	"tatoeba_ja_2008_12_29" => '10687 ko',
-	"tatoeba_ko_2008_12_06" => '4 ko', 
-	"tatoeba_nl_2008_12_06" => '2 ko',
-	"tatoeba_pt_2008_12_06" => '1 ko', 
-	"tatoeba_ru_2008_12_06" => '23 ko', 
-	"tatoeba_vn_2008_12_06" => '19 ko');
+	"tatoeba_ch_2008_12_06" => '5 kb',
+	"tatoeba_zh-guoyu_2008_12_29" => '6 kb',
+	"tatoeba_de_2008_12_06" => '115 kb',
+	"tatoeba_en_2008_12_06" => '8582 kb', 
+	"tatoeba_es_2008_12_06" => '65 kb',
+	"tatoeba_fr_2008_12_06" => '1390 kb', 
+	"tatoeba_he_2008_12_06" => '2 kb', 
+	"tatoeba_it_2008_12_06" => '17 kb', 
+	"tatoeba_jp_2008_12_06" => '10687 kb', 
+	"tatoeba_jp2_2008_12_06" => '16804 kb',
+	"tatoeba_ja_2008_12_29" => '10687 kb',
+	"tatoeba_ko_2008_12_06" => '4 kb', 
+	"tatoeba_nl_2008_12_06" => '2 kb',
+	"tatoeba_pt_2008_12_06" => '1 kb', 
+	"tatoeba_ru_2008_12_06" => '23 kb', 
+	"tatoeba_vn_2008_12_06" => '19 kb');
 	
 echo '<table class="download older">';
 	echo '<tr>';
