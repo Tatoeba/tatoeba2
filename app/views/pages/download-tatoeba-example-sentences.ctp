@@ -81,6 +81,10 @@ echo '<table class="download older">';
 echo '</table>';
 ?>
 
+<p>There is no difference between the "ja" and "jp" file, besides the fact that the language code is "ja" in one and "jp" in the other. Tatoeba currently uses "jp" for "Japanese" but I was told that "ja" is the standard ISO code for "Japanese" and that it would be nice to provide data with the standard code.</p>
+
+<p>That's why there's is a "ja" and "jp" file. But they have exactly the same content. Same thing for "zh" and "zh-guoyu".</p>
+
 <h3>Links in separate files</h3>
 <?php
 $links_languages = array('de', 'en', 'es', 'fr', 'jp');

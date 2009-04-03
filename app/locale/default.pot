@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-03-09 22:57+0100\n"
+"POT-Creation-Date: 2009-04-03 12:06+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -186,7 +186,7 @@ msgid "Logs for : "
 msgstr ""
 
 #: \views\contributions\show.ctp:17
-#: \views\helpers\sentences.php:304
+#: \views\helpers\sentences.php:266
 msgid "Logs"
 msgstr ""
 
@@ -203,7 +203,7 @@ msgid "Tatoeba Blog"
 msgstr ""
 
 #: \views\elements\foot.ctp:16
-#: \views\pages\home.ctp:39
+#: \views\pages\home.ctp:41
 msgid "Downloads"
 msgstr ""
 
@@ -228,7 +228,7 @@ msgid "Contribute"
 msgstr ""
 
 #: \views\elements\menu.ctp:19
-#: \views\helpers\sentences.php:293
+#: \views\helpers\sentences.php:255
 #: \views\sentence_comments\show.ctp:20
 #: \views\sentences\edit.ctp:23
 #: \views\users\show.ctp:63
@@ -380,7 +380,7 @@ msgid "Show sentence nº : "
 msgstr ""
 
 #: \views\helpers\navigation.php:12
-#: \views\helpers\sentences.php:99;178;227
+#: \views\helpers\sentences.php:135;189
 msgid "OK"
 msgstr ""
 
@@ -400,27 +400,27 @@ msgstr ""
 msgid "all"
 msgstr ""
 
-#: \views\helpers\sentences.php:226
+#: \views\helpers\sentences.php:188
 msgid "Modification : "
 msgstr ""
 
-#: \views\helpers\sentences.php:258
+#: \views\helpers\sentences.php:220
 msgid "Translate"
 msgstr ""
 
-#: \views\helpers\sentences.php:281
+#: \views\helpers\sentences.php:243
 msgid "Edit"
 msgstr ""
 
-#: \views\helpers\sentences.php:316
+#: \views\helpers\sentences.php:278
 msgid "Adopt"
 msgstr ""
 
-#: \views\helpers\sentences.php:329
+#: \views\helpers\sentences.php:291
 msgid "Let go"
 msgstr ""
 
-#: \views\helpers\sentences.php:342
+#: \views\helpers\sentences.php:304
 msgid "Delete"
 msgstr ""
 
@@ -504,19 +504,19 @@ msgstr ""
 msgid "Latest files"
 msgstr ""
 
-#: \views\pages\download-tatoeba-example-sentences.ctp:18;109
+#: \views\pages\download-tatoeba-example-sentences.ctp:61;123;216
 msgid "File"
 msgstr ""
 
-#: \views\pages\download-tatoeba-example-sentences.ctp:19;110
+#: \views\pages\download-tatoeba-example-sentences.ctp:62;124;217
 msgid "Sample"
 msgstr ""
 
-#: \views\pages\download-tatoeba-example-sentences.ctp:20;111
+#: \views\pages\download-tatoeba-example-sentences.ctp:63;125;218
 msgid "Size"
 msgstr ""
 
-#: \views\pages\download-tatoeba-example-sentences.ctp:69
+#: \views\pages\download-tatoeba-example-sentences.ctp:175
 msgid "Older files"
 msgstr ""
 
@@ -537,22 +537,34 @@ msgid "Welcome on Tatoeba Project"
 msgstr ""
 
 #: \views\pages\home.ctp:37
-msgid "This project aims to build a multilingual aligned corpus. In other words, to collect sentences translated in several languages. These sentences can be downloaded for free here : "
+msgid "This project aims to build a multilingual aligned corpus. In other words, to collect sentences translated in several languages. "
 msgstr ""
 
-#: \views\pages\home.ctp:48
+#: \views\pages\home.ctp:38
+msgid "Everyone can contribute! "
+msgstr ""
+
+#: \views\pages\home.ctp:39
+msgid "These sentences can be downloaded for free here : "
+msgstr ""
+
+#: \views\pages\home.ctp:50
 msgid "Random sentence"
 msgstr ""
 
-#: \views\pages\home.ctp:57
-msgid "Latest contributions"
+#: \views\pages\home.ctp:52
+msgid "show another"
 msgstr ""
 
 #: \views\pages\home.ctp:61
+msgid "Latest contributions"
+msgstr ""
+
+#: \views\pages\home.ctp:65
 msgid "show more..."
 msgstr ""
 
-#: \views\pages\home.ctp:68
+#: \views\pages\home.ctp:72
 msgid "Latest comments"
 msgstr ""
 
@@ -678,11 +690,11 @@ msgstr ""
 msgid "Example sentence : "
 msgstr ""
 
-#: \views\sentences\show.ctp:19
+#: \views\sentences\show.ctp:26
 msgid "Sentence does not exist : "
 msgstr ""
 
-#: \views\sentences\show.ctp:25
+#: \views\sentences\show.ctp:32
 msgid "There is no sentence with id "
 msgstr ""
 
