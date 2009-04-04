@@ -49,7 +49,7 @@ echo '<div class="element">';
 echo '<h2>';
 __('Random sentence'); 
 echo ' (';
-echo $html->link(__('show another',true), array("controller"=>"pages"));
+echo $html->link(__('show another',true), array("controller"=>"pages", "action"=>"home"));
 echo ')</h2>';
 echo $this->element('random_sentence');
 echo '</div>';
