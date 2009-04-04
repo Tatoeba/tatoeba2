@@ -146,7 +146,9 @@ padding-right: 40px;
 color: #a1a1a1;
 }
 
-/* sentences languages */
+/* sentences languages 
+Note : Is there a way to define this without so much redundancy?
+*/
 .en{
 padding-right: 30px;
 display: block;
@@ -175,6 +177,54 @@ background:transparent url(../img/de.png) no-repeat scroll right;
 display: block;
 padding-right: 30px;
 background:transparent url(../img/es.png) no-repeat scroll right;
+}
+
+.he{
+display: block;
+padding-right: 30px;
+background:transparent url(../img/he.png) no-repeat scroll right;
+}
+
+.id{
+display: block;
+padding-right: 30px;
+background:transparent url(../img/id.png) no-repeat scroll right;
+}
+
+.it{
+display: block;
+padding-right: 30px;
+background:transparent url(../img/it.png) no-repeat scroll right;
+}
+
+.ko{
+display: block;
+padding-right: 30px;
+background:transparent url(../img/ko.png) no-repeat scroll right;
+}
+
+.pt{
+display: block;
+padding-right: 30px;
+background:transparent url(../img/pt.png) no-repeat scroll right;
+}
+
+.ru{
+display: block;
+padding-right: 30px;
+background:transparent url(../img/ru.png) no-repeat scroll right;
+}
+
+.vn{
+display: block;
+padding-right: 30px;
+background:transparent url(../img/vn.png) no-repeat scroll right;
+}
+
+.zh{
+display: block;
+padding-right: 30px;
+background:transparent url(../img/zh.png) no-repeat scroll right;
 }
 
 /* Contribute */

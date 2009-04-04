@@ -31,7 +31,7 @@ class LogsHelper extends AppHelper {
 		}
 		
 		echo '<tr class="'.$type.$status.'">';
-			echo '<td class="id">';
+			echo '<td class="sentence_id">';
 			echo $this->Html->link(
 				$contribution['sentence_id'],
 				array(
