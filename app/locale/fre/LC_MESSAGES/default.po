@@ -7,8 +7,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-04-04 16:18+0200\n"
-"PO-Revision-Date: 2009-04-04 16:26+0100\n"
+"POT-Creation-Date: 2009-04-05 12:47+0200\n"
+"PO-Revision-Date: 2009-04-05 12:48+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,15 @@ msgstr ""
 msgid "You need to be logged in."
 msgstr "Vous devez vous connecter."
 
-#: \controllers\sentence_comments_controller.php:75
+#: \controllers\sentence_comments_controller.php:95
+msgid "Tatoeba - Comment on sentence : "
+msgstr "Tatoeba - Commentaire sur la phrases : "
+
+#: \controllers\sentence_comments_controller.php:96
+msgid "%s has posted a comment on a sentence where you also posted a comment."
+msgstr "%s a posté un commentaire sur une phrase où vous avez aussi posté un commentaire."
+
+#: \controllers\sentence_comments_controller.php:112
 msgid "Your comment has been saved."
 msgstr "Votre commentaire a été sauvegardé"
 
@@ -281,30 +289,35 @@ msgid "Vietnamese"
 msgstr "vietnamien"
 
 #: \views\elements\search_bar.ctp:19
+#: \views\helpers\languages.php:18
+msgid "Portuguese"
+msgstr "portugais"
+
+#: \views\elements\search_bar.ctp:20
 #: \views\helpers\languages.php:12
 msgid "Russian"
 msgstr "russe"
 
-#: \views\elements\search_bar.ctp:20
+#: \views\elements\search_bar.ctp:21
 #: \views\helpers\languages.php:13
 msgid "Chinese"
 msgstr "chinois"
 
-#: \views\elements\search_bar.ctp:21
+#: \views\elements\search_bar.ctp:22
 #: \views\helpers\languages.php:14
 msgid "Korean"
 msgstr "coréen"
 
-#: \views\elements\search_bar.ctp:22
+#: \views\elements\search_bar.ctp:23
 #: \views\helpers\languages.php:15
 msgid "Dutch"
 msgstr "néerlandais"
 
-#: \views\elements\search_bar.ctp:29
+#: \views\elements\search_bar.ctp:31
 msgid "search"
 msgstr "recherche"
 
-#: \views\elements\search_bar.ctp:31
+#: \views\elements\search_bar.ctp:33
 msgid "show examples"
 msgstr "exemples"
 
@@ -375,10 +388,6 @@ msgstr "il y a %s mn(s)"
 #: \views\helpers\languages.php:16
 msgid "Hebrew"
 msgstr "Hébreu"
-
-#: \views\helpers\languages.php:18
-msgid "Portuguese"
-msgstr "portugais"
 
 #: \views\helpers\navigation.php:11
 msgid "Show sentence nº : "
@@ -637,13 +646,18 @@ msgstr "Ceci cherchera les phrases contenant \"like\" et \"television\", ou \"li
 msgid "Add comment for sentence"
 msgstr "Ajouter commentaire pour phrase "
 
-#: \views\sentence_comments\index.ctp:38
+#: \views\sentence_comments\index.ctp:7
+#: \views\sentences\unknown_language.ctp:3
+msgid "Unknown language"
+msgstr "Langue inconnue."
+
+#: \views\sentence_comments\index.ctp:42
 msgid "There are no comments in this language"
 msgstr "Il n'y a pas de commentaires dans cette langue"
 
 #: \views\sentence_comments\show.ctp:2
 msgid "Comments on the sentence : "
-msgstr "Commentaires sur les phrases : "
+msgstr "Commentaires sur la phrase : "
 
 #: \views\sentence_comments\show.ctp:14
 #: \views\sentences\edit.ctp:17
@@ -654,7 +668,7 @@ msgstr "Ajouter un commentaire"
 msgid "If you see any mistake, don't hesitate to post a comment about it!"
 msgstr "Si vous remarquez des fautes, n'hésitez pas à poster un commentaire!"
 
-#: \views\sentence_comments\show.ctp:36
+#: \views\sentence_comments\show.ctp:37
 #: \views\sentences\edit.ctp:34
 msgid "There are no comments for now."
 msgstr "Il n'y a pas de commentaires pour l'instant."
@@ -706,10 +720,6 @@ msgstr "Il n'y a pas de phrases ayant pour id : "
 #: \views\sentences\translate.ctp:2
 msgid "Please translate : "
 msgstr "Traduisez s'il vous plaît : "
-
-#: \views\sentences\unknown_language.ctp:3
-msgid "Unknown language"
-msgstr "Langue inconnue."
 
 #: \views\sentences\unknown_language.ctp:8
 msgid "The language of the following sentences could not be detected, you have to specify it manually. "
