@@ -22,13 +22,14 @@ echo ' ';
 $tooltip->display(__('If you see any mistake, don\'t hesitate to post a comment about it!',true));
 echo '</h2>';
 
+echo '<a name="comments"></a>';
 echo '<div class="comments">';
 if(count($sentence['SentenceComment']) > 0){
 	foreach($sentence['SentenceComment'] as $comment){
 		$comments->displayComment(
 			$comment['User']['id'],
 			$comment['User']['username'], 
-			$comment['datetime'], 
+			$comment['created'], 
 			$comment['text']
 		);
 	}

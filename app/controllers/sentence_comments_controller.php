@@ -2,8 +2,8 @@
 class SentenceCommentsController extends AppController {
 	var $name = 'SentenceComments';
 	
-	var $helpers = array('Comments','Sentences', 'Languages', 'Tooltip', 'Navigation');
-	var $components = array ('GoogleLanguageApi', 'Permissions');
+	var $helpers = array('Comments','Sentences', 'Languages', 'Tooltip', 'Navigation', 'Html');
+	var $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
 	
 	var $langs = array('en', 'fr', 'jp', 'es', 'de');
 	
@@ -25,10 +25,19 @@ class SentenceCommentsController extends AppController {
 				array( 
 					"conditions" => array("SentenceComment.lang" => $lang),
 					"limit"=> 10,
-					"order" => "SentenceComment.datetime DESC"
+					"order" => "SentenceComment.created DESC"
 				)
 			);
 		}
+		
+		$sentenceComments['unknown'] = $this->SentenceComment->find(
+			"all",
+			array( 
+				"conditions" => array("SentenceComment.lang" => null),
+				"limit"=> 10,
+				"order" => "SentenceComment.created DESC"
+			)
+		);
 		
 		$this->set('sentenceComments', $sentenceComments);
 	}
@@ -43,6 +52,15 @@ class SentenceCommentsController extends AppController {
 		// checking which options user can access to
 		$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
 		$this->set('specialOptions',$specialOptions);
+		
+		// saving participants in session variable so we can send notification to them
+		$participants = array();
+		foreach($sentence['SentenceComment'] as $comment){
+			if(!in_array($comment['User']['email'],$participants) AND $comment['User']['email'] != $this->Auth->user('email')){
+				$participants[] = $comment['User']['email'];
+			}
+		}
+		$this->Session->write('participants', $participants);
 	}
 	
 	// I don't like how 'show' is exactly the same as 'add' in the controller...
@@ -66,23 +84,41 @@ class SentenceCommentsController extends AppController {
 			$response = $this->GoogleLanguageApi->detectLang();
 			
 			$this->data['SentenceComment']['user_id'] = $this->Auth->user('id');
-			$this->data['SentenceComment']['datetime'] = date("Y-m-d H:i:s");
+			$this->data['SentenceComment']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
 			
-			if($response['language']){
-				$this->data['SentenceComment']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
-				if($this->SentenceComment->save($this->data)){
-					$this->flash(
-							__('Your comment has been saved.',true), 
-							'/sentence_comments/show/'.$this->data['SentenceComment']['sentence_id']
-						);
+			if($this->SentenceComment->save($this->data)){
+				// send message to the other participants of the thread
+				$participants = $this->Session->read('participants');
+				if(count($participants) > 0){
+					foreach($participants as $participant){
+						// prepare message
+						$subject = __('Tatoeba - Comment on sentence : ',true) . $this->data['SentenceComment']['sentence_text'];
+						$message = sprintf(__('%s has posted a comment on a sentence where you also posted a comment.',true), $this->Auth->user('username'))
+							. "\n"
+							.'http://'.$_SERVER['HTTP_HOST'] .'/sentence_comments/show/'.$this->data['SentenceComment']['sentence_id'].'#comments'
+							. "\n\n- - - - - - - - - - - - - - - - -\n\n" 
+							. $this->data['SentenceComment']['text']
+							. "\n\n- - - - - - - - - - - - - - - - -\n\n";
+							
+						// send notification
+						$this->Mailer->to = $participant;
+						$this->Mailer->toName = '';
+						$this->Mailer->subject = $subject;
+						$this->Mailer->message = $message;
+						$this->Mailer->send();
+					}
 				}
+				$this->flash(
+					__('Your comment has been saved.',true), 
+					'/sentence_comments/show/'.$this->data['SentenceComment']['sentence_id']
+				);
 			}
 		}
 	}
 	
 	
 	function latest() {
-		return $this->SentenceComment->find('all', array('order' => 'SentenceComment.datetime DESC', 'limit' => 5));
+		return $this->SentenceComment->find('all', array('order' => 'SentenceComment.created DESC', 'limit' => 5));
 	}
 
 }

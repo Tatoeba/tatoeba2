@@ -21,7 +21,7 @@ foreach($sentenceComments as $comment) {
 		echo '</td>';
 		
 		echo '<td class="dateAndUser" rowspan="2">';
-		echo $date->ago($comment['SentenceComment']['datetime']);
+		echo $date->ago($comment['SentenceComment']['created']);
 		echo '<br/>';
 		echo $html->link(
 			$comment['User']['username'], 

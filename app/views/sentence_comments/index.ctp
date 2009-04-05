@@ -1,7 +1,11 @@
 <ul>
 <?php
 foreach($sentenceComments as $lang => $commentsInLang){
-	echo '<h2>'.$languages->codeToName($lang).'</h2>';
+	if($lang != 'unknown'){
+		echo '<h2>'.$languages->codeToName($lang).'</h2>';
+	}else{
+		echo '<h2>'.__('Unknown language', true).'</h2>';
+	}
 	
 	if(count($commentsInLang) > 0){
 		echo '<table class="comments">';
@@ -18,7 +22,7 @@ foreach($sentenceComments as $lang => $commentsInLang){
 				echo '</td>';
 				
 				echo '<td class="dateAndUser" rowspan="2">';
-				echo $date->ago($comment['SentenceComment']['datetime']);
+				echo $date->ago($comment['SentenceComment']['created']);
 				echo '<br/>';
 				echo $html->link(
 					$comment['User']['username'], 
