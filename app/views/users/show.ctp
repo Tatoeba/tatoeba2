@@ -78,7 +78,7 @@ if(count($user['SentenceComments']) > 0){
 			echo '</td>';
 			
 			echo '<td class="dateAndUser" rowspan="2">';
-			echo $date->ago($comment['datetime']);
+			echo $date->ago($comment['created']);
 			echo '<br/>';
 			echo $user['User']['username'];
 			echo '</td>';

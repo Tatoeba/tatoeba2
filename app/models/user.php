@@ -44,7 +44,7 @@ class User extends AppModel {
 	);
 	
 	var $hasMany = array(
-		  'SentenceComments' => array('limit' => 10, 'order' => 'datetime DESC')
+		  'SentenceComments' => array('limit' => 10, 'order' => 'created DESC')
 		// , 'UserStatistics'
 		, 'Contributions' => array('limit' => 10, 'order' => 'datetime DESC')
 		, 'Sentences' => array('limit' => 10, 'order' => 'modified DESC')
