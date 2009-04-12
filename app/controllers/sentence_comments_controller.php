@@ -53,8 +53,16 @@ class SentenceCommentsController extends AppController {
 		$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
 		$this->set('specialOptions',$specialOptions);
 		
+		
+		// saving parent email in session variable
+		$this->Session->write('user_email', $sentence['User']['email']);
+		
 		// saving participants in session variable so we can send notification to them
-		$participants = array();
+		if($sentence['User']['email'] != '' AND $sentence['User']['email'] != $this->Auth->user('email')){
+			$participants = array($sentence['User']['email']);
+		}else{
+			$participants = array();
+		}
 		foreach($sentence['SentenceComment'] as $comment){
 			if(!in_array($comment['User']['email'],$participants) AND $comment['User']['email'] != $this->Auth->user('email')){
 				$participants[] = $comment['User']['email'];
@@ -86,14 +94,19 @@ class SentenceCommentsController extends AppController {
 			$this->data['SentenceComment']['user_id'] = $this->Auth->user('id');
 			$this->data['SentenceComment']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
 			
-			if($this->SentenceComment->save($this->data)){
+			if($this->SentenceComment->save($this->data)){	
 				// send message to the other participants of the thread
 				$participants = $this->Session->read('participants');
 				if(count($participants) > 0){
 					foreach($participants as $participant){
 						// prepare message
 						$subject = __('Tatoeba - Comment on sentence : ',true) . $this->data['SentenceComment']['sentence_text'];
-						$message = sprintf(__('%s has posted a comment on a sentence where you also posted a comment.',true), $this->Auth->user('username'))
+						if($participant == $this->Session->read('user_email')){
+							$msgStart = sprintf(__('%s has posted a comment one of your sentences.',true), $this->Auth->user('username'));
+						}else{
+							$msgStart = sprintf(__('%s has posted a comment on a sentence where you also posted a comment.',true), $this->Auth->user('username'));
+						}
+						$message = $msgStart
 							. "\n"
 							.'http://'.$_SERVER['HTTP_HOST'] .'/sentence_comments/show/'.$this->data['SentenceComment']['sentence_id'].'#comments'
 							. "\n\n- - - - - - - - - - - - - - - - -\n\n" 
