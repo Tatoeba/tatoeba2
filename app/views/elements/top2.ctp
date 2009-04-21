@@ -5,7 +5,7 @@ if (isset($this->params['lang'])) {
 ?>
 
 <div id="top2">
-	<div class="tatoeba_title"><strong>TATOEBA</strong> <em>Project</em></div>
+	<a href="/" class="tatoeba_title"><strong>TATOEBA</strong> <em>Project</em></a>
 	
 	<div id="UserMenu">
 	<?php 

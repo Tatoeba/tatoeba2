@@ -67,13 +67,19 @@ overflow:visible;
 min-height: 70px;
 }
 
-.tatoeba_title{
+a.tatoeba_title{
 margin-left: 10px;
+display: block;
 float:left;
 font-size: 48px;
+color: #0D4A22;
 }
 
-.tatoeba_title em{
+a.tatoeba_title:hover{
+color: #414141;
+}
+
+a.tatoeba_title em{
 font-size: 50%;
 font-style:normal;
 }
