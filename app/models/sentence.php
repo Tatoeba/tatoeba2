@@ -6,7 +6,7 @@ class Sentence extends AppModel{
 	
 	var $validate = array(
 		'lang' => array(
-			'rule' => array('inList', array('de', 'en', 'es', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'vn', 'zh', null))
+			'rule' => array('inList', array('ar', 'de', 'en', 'es', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'vn', 'zh', null))
 		),
 		'text' => array(
 			'rule' => array('minLength', '1')

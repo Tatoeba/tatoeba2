@@ -2,7 +2,8 @@
 class LanguagesHelper extends AppHelper{
 	function languagesArray(){
 		$languages = array(
-			  'en' => __('English', true)
+			  'ar' => __('Arabic', true)
+			, 'en' => __('English', true)
 			, 'jp' => __('Japanese', true)
 			, 'fr' => __('French', true)
 			, 'de' => __('German', true)
