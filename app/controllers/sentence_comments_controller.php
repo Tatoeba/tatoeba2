@@ -17,7 +17,7 @@ class SentenceCommentsController extends AppController {
 	function index(){
 		$sentenceComments = array();
 		
-		$this->SentenceComment->recursive = 2;
+		$this->SentenceComment->recursive = 1;
 		
 		foreach($this->langs as $lang){
 			$sentenceComments[$lang] = $this->SentenceComment->find(
@@ -33,7 +33,7 @@ class SentenceCommentsController extends AppController {
 		$sentenceComments['unknown'] = $this->SentenceComment->find(
 			"all",
 			array( 
-				"conditions" => array("SentenceComment.lang" => null),
+				"conditions" => array("NOT" => array("SentenceComment.lang" => $this->lang)),
 				"limit"=> 10,
 				"order" => "SentenceComment.created DESC"
 			)

@@ -4,7 +4,7 @@ foreach($sentenceComments as $lang => $commentsInLang){
 	if($lang != 'unknown'){
 		echo '<h2>'.$languages->codeToName($lang).'</h2>';
 	}else{
-		echo '<h2>'.__('Unknown language', true).'</h2>';
+		echo '<h2>'.__('Other languages', true).'</h2>';
 	}
 	
 	if(count($commentsInLang) > 0){
