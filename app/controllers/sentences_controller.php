@@ -278,6 +278,8 @@ class SentencesController extends AppController{
 		$random = $this->Sentence->read();
 		$random['specialOptions'] = $this->Permissions->getSentencesOptions($random['Sentence']['user_id'], $this->Auth->user('id'));
 		
+		$this->set('random', $random);
+		
 		return $random;
 	}
 	

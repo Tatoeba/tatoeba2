@@ -49,11 +49,10 @@ echo '<div class="element">';
 echo '<h2>';
 __('Random sentence'); 
 echo ' (';
-echo $html->link(__('show another',true), array("controller"=>"pages", "action"=>"home"));
+echo $html->link(__('show another',true), "#", array("id" => "showRandom", "lang" => $this->params['lang']));
 echo ')</h2>';
-echo $this->element('random_sentence');
+echo '<div class="random_sentences_set"></div>';
 echo '</div>';
-//$tooltip->displayAdoptTooltip();
 
 
 echo '<div class="element">';

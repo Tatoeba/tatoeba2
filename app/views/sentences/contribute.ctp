@@ -23,20 +23,11 @@ echo '<h2 class="translate">';
 __('Translate the sentence');
 
 echo ' (';
-echo $html->link(
-		__('show another sentence',true),
-		array(
-			"controller" => "sentences", 
-			"action" => "contribute"
-		)
-	);
+echo $html->link(__('show another',true), "#", array("id" => "showRandom", "lang" => $this->params['lang']));
 echo ')';
 echo '</h2>';
 
-echo '<div class="sentences_set">';
-	$sentences->displayMenu($sentence['id'], $specialOptions);
-	$sentences->displayForTranslation($sentence, $translations);
-echo '</div>';
+echo '<div class="random_sentences_set"></div>';
 
 
 ?>

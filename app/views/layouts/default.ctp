@@ -45,6 +45,7 @@
 		echo $html->css('tatoeba.tools');
 		
 		echo $javascript->link('jquery.js', true);
+		echo $javascript->link('sentences.show_another.js', true);
 		echo $scripts_for_layout;
 	?>
 </head>
