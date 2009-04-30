@@ -27,7 +27,7 @@ class SentencesController extends AppController{
 		}else{
 			$this->Sentence->id = $id;
 			
-			$this->Sentence->recursive = 0;
+			$this->Sentence->recursive = 1;
 			$sentence = $this->Sentence->read();
 			$this->set('sentence', $sentence);
 			
@@ -279,8 +279,6 @@ class SentencesController extends AppController{
 		$random['specialOptions'] = $this->Permissions->getSentencesOptions($random['Sentence']['user_id'], $this->Auth->user('id'));
 		
 		$this->set('random', $random);
-		
-		return $random;
 	}
 	
 	function contribute($id = null){
