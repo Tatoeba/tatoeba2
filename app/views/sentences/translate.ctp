@@ -12,5 +12,5 @@ echo '<div class="sentences_set">';
 	$sentences->displayForTranslation($sentence['Sentence'], $sentence['Translation']);
 echo '</div>';
 
-$tooltip->displayIndirectTranslationTooltip();
+//$tooltip->displayIndirectTranslationTooltip();
 ?>

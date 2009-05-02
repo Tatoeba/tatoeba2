@@ -23,11 +23,11 @@ echo '<h2 class="translate">';
 __('Translate the sentence');
 
 echo ' (';
-echo $html->link(__('show another',true), "#", array("id" => "showRandom", "lang" => $this->params['lang']));
+echo $html->link(__('show another',true), "#", array("id" => "showRandomToTranslate", "lang" => $this->params['lang']));
 echo ')';
 echo '</h2>';
 
-echo '<div class="random_sentences_set"></div>';
+echo '<div class="random_to_translate"></div>';
 
 
 ?>

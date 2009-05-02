@@ -5,6 +5,10 @@ $specialOptions = $random['specialOptions'];
 
 echo '<div class="sentences_set">';
 	$sentences->displayMenu($sentence['id'], $specialOptions);
-	$sentences->displayGroup($sentence, $translations);
+	if($type == 'translate'){
+		$sentences->displayForTranslation($sentence, $translations);
+	}else{
+		$sentences->displayGroup($sentence, $translations);
+	}
 echo '</div>';
 ?>

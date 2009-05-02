@@ -21,6 +21,23 @@ class SentencesHelper extends AppHelper {
 	}
 	
 	/**
+	 * Display a single sentence for edit in place.
+	 */
+	function displayEditableSentence($sentence) {
+		echo '<div class="editable original sentence">';
+			// Sentence
+			echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="editableSentence correctness'.$sentence['correctness'].' '.$sentence['lang'].'">';
+			echo $sentence['text'];
+			echo '</span> ';
+			if($sentence['lang'] == 'jp'){
+				echo '<span class="romaji">';
+				$this->Kakasi->convert($sentence['text'], 'romaji');
+				echo '</span>';
+			}
+		echo '</div>';
+	}
+	
+	/**
 	 * Diplay a sentence and its translations.
 	 */
 	function displayGroup($sentence, $translations) {
@@ -134,7 +151,7 @@ class SentencesHelper extends AppHelper {
 					echo $this->Form->input('sentence_lang', array("type" => "hidden", "value" => $sentence['lang'])); // for logs
 					echo $this->Form->end(__('OK',true));
 				echo '<li>';
-				
+				/*
 				if(count($translations) > 0){
 					// direct translations
 					$this->displayTranslations($translations, 'translate');
@@ -142,8 +159,8 @@ class SentencesHelper extends AppHelper {
 					// indirect translations
 					$this->displayIndirectTranslations($sentence, 'translate');
 				}
+				*/
 			echo '</ul>';
-			
 		echo '</div>';
 	}
 	

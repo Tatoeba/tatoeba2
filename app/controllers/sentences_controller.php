@@ -69,8 +69,8 @@ class SentencesController extends AppController{
 			if($this->Sentence->save($this->data)){			
 				// Confirmation message
 				$this->flash(
-					__('Your sentence has been saved. You can add a translation for it or add another new sentence.',true), 
-					'/sentences/contribute/'.$this->Sentence->id
+					__('Your sentence has been saved. You can add a translation for it.',true), 
+					'/sentences/translate/'.$this->Sentence->id
 				);
 			}
 		}
@@ -117,6 +117,18 @@ class SentencesController extends AppController{
 		}
 	}
 	
+	function save_sentence(){
+		if(isset($_POST['id']) AND isset($_POST['value'])){
+			$this->Sentence->id = substr($_POST['id'], 2);
+			$this->data['Sentence']['lang'] = substr($_POST['id'], 0, 2);
+			$this->data['Sentence']['text'] = $_POST['value'];
+			$this->data['Sentence']['user_id'] = $this->Auth->user('id'); // for the logs
+			if($this->Sentence->save($this->data)){
+				$this->set('sentence_text', $_POST['value']);
+			}
+		}
+	}
+	
 	function adopt($id){
 		$data['Sentence']['id'] = $id;
 		$data['Sentence']['user_id'] = $this->Auth->user('id');
@@ -156,7 +168,7 @@ class SentencesController extends AppController{
 					'hasAndBelongsToMany' => array('InverseTranslation')
 				)
 			);
-			$this->Sentence->recursive = 2;
+			$this->Sentence->recursive = 1;
 			$sentence = $this->Sentence->read();
 			$this->set('sentence',$sentence);
 			$this->data['Sentence']['id'] = $id;
@@ -263,11 +275,15 @@ class SentencesController extends AppController{
 		}
 	}
 	
-	function random(){
+	function random($type = null){
 		$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences', false);
 		$max = $resultMax[0][0]['MAX(id)'];
 		$randId = rand(1, $max);
 		$this->Sentence->id = $randId;
+		
+		if($type == 'translate'){
+			$this->Sentence->recursive = 0;
+		}
 		
 		$this->Sentence->unbindModel(
 			array(
@@ -279,6 +295,7 @@ class SentencesController extends AppController{
 		$random['specialOptions'] = $this->Permissions->getSentencesOptions($random['Sentence']['user_id'], $this->Auth->user('id'));
 		
 		$this->set('random', $random);
+		$this->set('type', $type);
 	}
 	
 	function contribute($id = null){
@@ -370,6 +387,14 @@ class SentencesController extends AppController{
 		$this->Sentence->recursive = 2;
 		$sentence = $this->Sentence->read();
 		$this->set('sentence', $sentence);
+	}
+	
+	function my_sentences(){
+		$this->Sentence->recursive = 0;
+		$sentences = $this->Sentence->find(
+			'all', array("conditions" => array("Sentence.user_id" => $this->Auth->user('id')))
+		);
+		$this->set('user_sentences', $sentences);
 	}
 }
 ?>

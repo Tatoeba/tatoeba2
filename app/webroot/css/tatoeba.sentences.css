@@ -257,3 +257,20 @@ font-size: 16px;
 #SentenceSetLanguagesForm li{
 margin: 10px;
 }
+
+
+/* Edit in place */
+.editable:hover{
+background: #eeee88;
+}
+
+.editInPlace{
+display: none;
+}
+
+.editInPlace textarea{
+width: 95%;
+display: block;
+font-family: Verdana, sans-serif;
+font-size: 16px;
+}
