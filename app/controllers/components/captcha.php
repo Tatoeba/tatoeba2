@@ -1,6 +1,4 @@
 <?php 
-App::import('Vendor', 'PhpCaptcha', array('file'=>'phpcaptcha/php-captcha.inc.php'));
-        
 class CaptchaComponent extends Object
 {
     var $controller;
@@ -10,7 +8,7 @@ class CaptchaComponent extends Object
     }
 
     function image(){
-        
+        App::import('Vendor', 'PhpCaptcha', array('file'=>'phpcaptcha/php-captcha.inc.php'));
         $imagesPath = APP . 'vendors'. DS .'phpcaptcha' . DS . 'fonts' . DS;
 		
         $aFonts = array(
@@ -35,6 +33,7 @@ class CaptchaComponent extends Object
         if (!empty($_SESSION[CAPTCHA_SESSION_ID]) && $userCode == $_SESSION[CAPTCHA_SESSION_ID]) {
             // clear to prevent re-use
             unset($_SESSION[CAPTCHA_SESSION_ID]);
+            pr($_SESSION[CAPTCHA_SESSION_ID]);
             return true;
         }else{
 			return false;
