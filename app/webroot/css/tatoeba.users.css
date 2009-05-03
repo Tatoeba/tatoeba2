@@ -46,12 +46,18 @@ background: #D3F3B9;
 }
 
 #UserRegisterForm{
-background: #f1f1f1;
-border: 1px solid #a1a1a1;
-width: 230px;
 padding: 20px;
 padding-top: 10px;
-margin: 20px;
+margin-left: 70px;
+width: 500px;
+}
+
+#UserRegisterForm img, #UserRegisterForm .submit{
+margin-left: 210px;
+}
+
+#UserRegisterForm .submit input{
+font-size: 20px;
 }
 
 #UserRegisterForm div.input{
@@ -62,6 +68,18 @@ margin: 10px 0px;
 #UserRegisterForm div.input input{
 display: block;
 width: 200px;
+}
+
+#UserRegisterForm label{
+width: 200px;
+text-align: right;
+margin-right: 10px;
+float: left;
+}
+
+.error-message{
+color:red;
+margin-left: 210px;
 }
 
 /* RETRIEVE PASSWORD and RESEND REGISTRATION MAIL */

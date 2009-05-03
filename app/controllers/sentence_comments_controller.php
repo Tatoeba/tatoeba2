@@ -33,7 +33,7 @@ class SentenceCommentsController extends AppController {
 		$sentenceComments['unknown'] = $this->SentenceComment->find(
 			"all",
 			array( 
-				"conditions" => array("NOT" => array("SentenceComment.lang" => $this->lang)),
+				"conditions" => array("NOT" => array("SentenceComment.lang" => $this->langs)),
 				"limit"=> 10,
 				"order" => "SentenceComment.created DESC"
 			)

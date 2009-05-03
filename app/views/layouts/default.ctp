@@ -46,6 +46,9 @@
 		
 		echo $javascript->link('jquery.js', true);
 		echo $javascript->link('sentences.show_another.js', true);
+		echo $javascript->link('jquery.jeditable.js', true);
+		echo $javascript->link('sentences.edit_in_place.js', true);
+		echo $javascript->link('sentences.add_translation.js', true);
 		echo $scripts_for_layout;
 	?>
 </head>

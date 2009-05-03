@@ -15,9 +15,7 @@ $menuElements = array(
 	,__('Browse',true) 		=> array("controller" => "sentences", "action" => "show", "random")
 	,__('Search',true) 		=> array("controller" => "sentences", "action" => "search")
 	,__('Contribute',true) 	=> array("controller" => "sentences", "action" => "contribute")
-	// ,__('Logs',true) 		=> array("controller" => "contributions", "action" => "index")
 	,__('Comments',true) 	=> array("controller" => "sentence_comments", "action" => "index")
-	// ,__('Statistics',true) 	=> array("controller" => "users_statistics")
 	,__('Members',true)		=> array("controller" => "users", "action" => "all")
 );
 
@@ -51,6 +49,13 @@ foreach($menuElements as $title => $route){
 	echo $html->link($title, $route);
 	echo '</li>';
 }
+
+// if($session->read('Auth.User.id')){
+	// $cssClass = ($this->params['controller'] == 'my_tatoeba') ? 'class="current"' : '';
+	// echo '<li '.$cssClass.'>';
+	// echo $html->link(__('My Tatoeba',true), array("controller" => "users", "action" => "my_tatoeba"));
+	// echo '</li>';
+// }
 ?>
 </ul>
 </div>

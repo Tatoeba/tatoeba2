@@ -25,8 +25,10 @@ echo $this->element('sentences_statistics', array('cache' =>
 
 <div id="homepage">
 <?php 
+$lang = 'eng';
 if (isset($this->params['lang'])) { 
 	Configure::write('Config.language',  $this->params['lang']); 
+	$lang = $this->params['lang'];
 }
 echo '<div class="element" style="font-size:16px">';
 echo '<h2>';
@@ -49,7 +51,7 @@ echo '<div class="element">';
 echo '<h2>';
 __('Random sentence'); 
 echo ' (';
-echo $html->link(__('show another',true), "#", array("id" => "showRandom", "lang" => $this->params['lang']));
+echo $html->link(__('show another',true), "#", array("id" => "showRandom", "lang" => $lang));
 echo ')</h2>';
 echo '<div class="random_sentences_set"></div>';
 echo '</div>';

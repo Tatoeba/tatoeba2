@@ -264,13 +264,9 @@ margin: 10px;
 background: #eeee88;
 }
 
-.editInPlace{
-display: none;
-}
-
-.editInPlace textarea{
-width: 95%;
-display: block;
+.editableSentence textarea{
+width: 400px;
+float:left;
 font-family: Verdana, sans-serif;
 font-size: 16px;
 }

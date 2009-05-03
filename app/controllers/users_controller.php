@@ -3,25 +3,36 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
 	var $helpers = array('Html', 'Form', 'Date', 'Logs', 'Sentences', 'Navigation');
-	var $components = array ('Mailer');
+	var $components = array ('Mailer', 'Captcha');
 	var $paginate = array('limit' => 50); 
 
 	function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->autoRedirect = false;
+		//$this->Auth->autoRedirect = false;
 		
 		// setting actions that are available to everyone, even guests
 		// no need to allow login
-		$this->Auth->allowedActions = array('all', 'search', 'show', 'logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration', 'resend_registration_mail');
+		$this->Auth->allowedActions = array('all', 'search', 'show', 'logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration', 'resend_registration_mail', 'captcha_image', 'captcha_audio');
 		//$this->Auth->allowedActions = array('*');
 	}
 
+	function updateAros(){
+		$this->User->recursive = 0;
+		$users = $this->User->find('all');
+		foreach($users as $user){
+			$aro = new Aro();
+			$data = $aro->find("first", array( "conditions" => array("foreign_key" => $user['User']['id'], "model" => "User")));
+			$data['Aro']['parent_id'] = $user['User']['group_id'];
+			$this->Acl->Aro->save($data);
+		}
+	}
 	
 	function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
 		
 		//$this->initDB();
+		//$this->updateAros();
 	}
 
 	function edit($id = null) {
@@ -88,17 +99,20 @@ class UsersController extends AppController {
 	function logout(){  
 		$this->Cookie->del('Auth.User'); // delete cookie when logout
 		$this->Session->setFlash('You are logged out.');  
-		$this->redirect($this->Auth->logout());  
+		$this->redirect($this->Auth->logout());
 	}
 	
 	function register(){
 		if (!empty($this->data)) {
+
+			$this->User->create();
+			$this->data['User']['since'] = date("Y-m-d H:i:s");
+			$this->data['User']['group_id'] = User::LOWEST_TRUST_GROUP_ID + 1;
 			$nonHashedPassword = $this->data['User']['password'];
-			if ($this->data['User']['password'] == $this->Auth->password($this->data['User']['password_confirm'])) {
-				$this->User->create();
-				$this->data['User']['since'] = date("Y-m-d H:i:s");
-				$this->data['User']['group_id'] = User::LOWEST_TRUST_GROUP_ID + 1;
-				if($this->User->save($this->data)){
+			
+			$this->User->set( $this->data );
+			if($this->User->validates()){
+				if($this->Captcha->check($this->data['User']['captcha'], true) AND $this->User->save($this->data)){
 					$pass = $this->Auth->password($this->data['User']['password']);
 					$token = $this->Auth->password($pass.$this->data['User']['since'].$this->data['User']['username']);
 					// prepare message
@@ -124,11 +138,12 @@ class UsersController extends AppController {
 					);
 				}else{
 					$this->data['User']['password'] = '';
-				}
+					$this->data['User']['captcha'] = '';
+					$this->Session->setFlash(__('The code you entered did not match with the image, please try again.',true));
+				}	
 			}else{
 				$this->data['User']['password'] = '';
-				$this->data['User']['password_confirm'] = '';
-				$this->set('error', __('Passwords do not match',true));
+				$this->data['User']['captcha'] = '';
 			}
 		}
 	}
@@ -321,15 +336,22 @@ class UsersController extends AppController {
 		}
 	}
 	
-	function all(){
-		// $this->User->recursive = 0;
-		// $users = $this->User->find('all', array('conditions' => 'User.group_id < 5', 'order' => 'since DESC', 'limit' => 5));
-		// $this->set('users', $users);
-		
+	function all(){		
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate(array('User.group_id < 5')));
 	}
 	
+	function my_tatoeba(){
+		$this->User->recursive = 1;
+		$this->User->id = $this->Auth->user('id');
+		$this->set('user', $this->User->read());
+	}
+	
+	function captcha_image(){
+	    Configure::write('debug',0);
+	    $this->layout = null;
+	    $this->Captcha->image();
+	} 
 	
 	// temporary function to grant/deny access
 	function initDB() {
@@ -345,52 +367,21 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/SuggestedModifications');
 		$this->Acl->allow($group, 'controllers/SentenceComments');
 		$this->Acl->allow($group, 'controllers/Sentences');
-		$this->Acl->allow($group, 'controllers/Sentences/edit');
-		$this->Acl->allow($group, 'controllers/Sentences/add');
-		$this->Acl->allow($group, 'controllers/Sentences/translate');
-		$this->Acl->allow($group, 'controllers/Sentences/save_translation');
-		$this->Acl->allow($group, 'controllers/Sentences/contribute');
-		$this->Acl->allow($group, 'controllers/Sentences/adopt');
-		$this->Acl->allow($group, 'controllers/Sentences/let_go');
-		$this->Acl->allow($group, 'controllers/Sentences/link');
-		$this->Acl->allow($group, 'controllers/Sentences/unknown_language');
-		$this->Acl->allow($group, 'controllers/Sentences/set_languages');
-		$this->Acl->allow($group, 'controllers/Sentences/my_sentences');
-		$this->Acl->allow($group, 'controllers/Sentences/save_sentence');
+		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');
 		
 		//Permissions for trusted_users
 		$group->id = 3;
 		$this->Acl->deny($group, 'controllers');
 		$this->Acl->allow($group, 'controllers/SentenceComments/add');
-		$this->Acl->allow($group, 'controllers/Sentences/edit');
-		$this->Acl->allow($group, 'controllers/Sentences/add');
-		$this->Acl->allow($group, 'controllers/Sentences/translate');
-		$this->Acl->allow($group, 'controllers/Sentences/save_translation');
-		$this->Acl->allow($group, 'controllers/Sentences/contribute');
-		$this->Acl->allow($group, 'controllers/Sentences/adopt');
-		$this->Acl->allow($group, 'controllers/Sentences/let_go');
-		$this->Acl->allow($group, 'controllers/Sentences/link');
-		$this->Acl->allow($group, 'controllers/Sentences/unknown_language');
-		$this->Acl->allow($group, 'controllers/Sentences/set_languages');
-		$this->Acl->allow($group, 'controllers/Sentences/my_sentences');
-		$this->Acl->allow($group, 'controllers/Sentences/save_sentence');
+		$this->Acl->allow($group, 'controllers/Sentences');
+		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');
 		
 	    //Permissions for users
 	    $group->id = 4;
 		$this->Acl->deny($group, 'controllers');
 		$this->Acl->allow($group, 'controllers/SentenceComments/add');
-		$this->Acl->allow($group, 'controllers/Sentences/edit');
-		$this->Acl->allow($group, 'controllers/Sentences/add');
-		$this->Acl->allow($group, 'controllers/Sentences/translate');
-		$this->Acl->allow($group, 'controllers/Sentences/save_translation');
-		$this->Acl->allow($group, 'controllers/Sentences/contribute');
-		$this->Acl->allow($group, 'controllers/Sentences/adopt');
-		$this->Acl->allow($group, 'controllers/Sentences/let_go');
-		$this->Acl->allow($group, 'controllers/Sentences/link');
-		$this->Acl->allow($group, 'controllers/Sentences/unknown_language');
-		$this->Acl->allow($group, 'controllers/Sentences/set_languages');
-		$this->Acl->allow($group, 'controllers/Sentences/my_sentences');
-		$this->Acl->allow($group, 'controllers/Sentences/save_sentence');
+		$this->Acl->allow($group, 'controllers/Sentences');
+		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');
 	}
 }
 ?>

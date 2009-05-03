@@ -168,7 +168,7 @@ class SentencesController extends AppController{
 					'hasAndBelongsToMany' => array('InverseTranslation')
 				)
 			);
-			$this->Sentence->recursive = 1;
+			$this->Sentence->recursive = 0;
 			$sentence = $this->Sentence->read();
 			$this->set('sentence',$sentence);
 			$this->data['Sentence']['id'] = $id;
@@ -212,12 +212,12 @@ class SentencesController extends AppController{
 				// Confirmation message
 				$this->flash(
 					__('Your translation has been saved.',true),
-					'/sentences/translate/'.$this->data['Translation']['Translation'][0]
+					'/sentences/show/'.$this->data['Translation']['Translation'][0]
 				);
 			}else{
 				$this->flash(
 					__('A problem occured. Your translation has not been saved.',true),
-					'/sentences/contribute/'.$this->data['Translation']['Translation'][0]
+					'/sentences/translate/'.$this->data['Translation']['Translation'][0]
 				);
 			}
 		}

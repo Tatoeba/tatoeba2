@@ -10,12 +10,21 @@ class User extends AppModel {
 		'username' => array(
 			'alphanumeric' => array(
 				'rule' => '/^\\w*$/', 
-				'message' => 'Username can only contain letters, numbers, or underscore'),
+				'message' => 'Username can only contain letters, numbers, or underscore'
+			),
 			'isUnique' => array(
 				'rule' => 'isUnique',
-				'message' => 'Username already taken.')
+				'message' => 'Username already taken.'
 			),
-		'password' => array('rule' => array('minLength', 4), 'message' => 'Password too short'),
+			'min' => array(
+				'rule' => array('minLength', 2), 
+				'message' => 'Username must be at least two letters'
+			)
+		),
+		'password' => array(
+			'rule' => array('minLength', 4), 
+			'message' => 'Password must be at least two letters'
+		),
 		'email' => array(
 			'email' => array(
 				'rule' => 'email', 

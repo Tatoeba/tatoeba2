@@ -53,6 +53,9 @@ class SentencesHelper extends AppHelper {
 		}
 		echo '</div>';
 		
+		echo '<ul class="addTranslations">';
+		echo '</ul>';
+		
 		echo '<ul class="translations">';
 		if(count($translations) > 0){
 			// direct translations
@@ -151,15 +154,6 @@ class SentencesHelper extends AppHelper {
 					echo $this->Form->input('sentence_lang', array("type" => "hidden", "value" => $sentence['lang'])); // for logs
 					echo $this->Form->end(__('OK',true));
 				echo '<li>';
-				/*
-				if(count($translations) > 0){
-					// direct translations
-					$this->displayTranslations($translations, 'translate');
-			
-					// indirect translations
-					$this->displayIndirectTranslations($sentence, 'translate');
-				}
-				*/
 			echo '</ul>';
 		echo '</div>';
 	}
@@ -232,14 +226,15 @@ class SentencesHelper extends AppHelper {
 			echo '</li>';
 			
 			// translate link => everyone can see
-			echo '<li class="'.$this->optionClass('translate').'">';
+			echo '<li class="'.$this->optionClass('translate').' translateLink" id="'. $id .'">';
 			echo $this->Html->link(
-				__('Translate',true),
-				array(
-					"controller" => "sentences",
-					"action" => "translate",
-					$id
-				));
+				__('Translate',true), '#'
+				// array(
+					// "controller" => "sentences",
+					// "action" => "translate",
+					// $id
+				// )
+			);
 			echo '</li>';
 			
 			// "link" link => everyone can see
