@@ -67,11 +67,13 @@ class SentencesController extends AppController{
 			
 			// saving
 			if($this->Sentence->save($this->data)){			
-				// Confirmation message
-				$this->flash(
-					__('Your sentence has been saved. You can add a translation for it.',true), 
-					'/sentences/translate/'.$this->Sentence->id
-				);
+				$this->data = null;
+				
+				$this->set('sentence', $this->Sentence->read());
+				
+				// checking which options user can access to
+				$specialOptions = $this->Permissions->getSentencesOptions($this->Auth->user('id'), $this->Auth->user('id'));
+				$this->set('specialOptions',$specialOptions);
 			}
 		}
 	}
@@ -118,13 +120,42 @@ class SentencesController extends AppController{
 	}
 	
 	function save_sentence(){
-		if(isset($_POST['id']) AND isset($_POST['value'])){
-			$this->Sentence->id = substr($_POST['id'], 2);
-			$this->data['Sentence']['lang'] = substr($_POST['id'], 0, 2);
-			$this->data['Sentence']['text'] = $_POST['value'];
-			$this->data['Sentence']['user_id'] = $this->Auth->user('id'); // for the logs
-			if($this->Sentence->save($this->data)){
-				$this->set('sentence_text', $_POST['value']);
+		if(isset($_POST['value'])){
+			if(isset($_POST['id'])){ 	
+				$this->Sentence->id = substr($_POST['id'], 2);
+				$this->data['Sentence']['lang'] = substr($_POST['id'], 0, 2);
+				$this->data['Sentence']['text'] = $_POST['value'];
+				$this->data['Sentence']['user_id'] = $this->Auth->user('id'); // for the logs
+				if($this->Sentence->save($this->data)){
+					$this->set('sentence_text', $_POST['value']);
+				}
+			}else{
+				// setting correctness of sentence
+				if($this->Auth->user('group_id')){
+					$this->data['Sentence']['correctness'] = Sentence::MAX_CORRECTNESS - $this->Auth->user('group_id');
+				}else{
+					$this->data['Sentence']['correctness'] = 1;
+				}
+				
+				// detecting language
+				$this->GoogleLanguageApi->text = $this->data['Sentence']['text'];
+				$response = $this->GoogleLanguageApi->detectLang();
+				if($response['isReliable']){
+					$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
+				}else{
+					$this->data['Sentence']['lang'] = null;
+				}
+				
+				$this->data['Sentence']['user_id'] = $this->Auth->user('id');
+				$this->data['Sentence']['text'] = $_POST['value'];
+				
+				// saving
+				if($this->Sentence->save($this->data)){
+					$this->set('sentence', $this->Sentence->read());
+					// checking which options user can access to
+					$specialOptions = $this->Permissions->getSentencesOptions($this->Auth->user('id'), $this->Auth->user('id'));
+					$this->set('specialOptions',$specialOptions);
+				}
 			}
 		}
 	}

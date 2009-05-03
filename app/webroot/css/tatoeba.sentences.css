@@ -237,11 +237,18 @@ background:transparent url(../img/zh.png) no-repeat scroll right;
 h2.add{
 background:transparent url(../img/add.png) no-repeat scroll left center;
 padding-left: 30px;
+margin-top: 20px;
 }
 
 h2.translate{
 background:transparent url(../img/translate.png) no-repeat scroll left center;
 padding-left: 30px;
+margin-top: 20px;
+}
+
+h1.contribute{
+text-align: center;
+margin-bottom: 20px;
 }
 
 input#SentenceText{

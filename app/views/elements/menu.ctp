@@ -14,7 +14,7 @@ $menuElements = array(
 	 __('Home',true) 		=> '/'.$lang
 	,__('Browse',true) 		=> array("controller" => "sentences", "action" => "show", "random")
 	,__('Search',true) 		=> array("controller" => "sentences", "action" => "search")
-	,__('Contribute',true) 	=> array("controller" => "sentences", "action" => "contribute")
+	,__('Contribute',true) 	=> array("controller" => "pages", "action" => "contribute")
 	,__('Comments',true) 	=> array("controller" => "sentence_comments", "action" => "index")
 	,__('Members',true)		=> array("controller" => "users", "action" => "all")
 );
