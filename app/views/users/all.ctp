@@ -1,32 +1,7 @@
 <?php
 $id = ($session->read('last_user_id') > 0) ? $session->read('last_user_id') : 1;
 $navigation->displayUsersNavigation($id);
-
-// echo '<h3>';
-// __('Recent members');
-// echo '</h3>';
-
-// echo '<table class="recentUsers">';
-// echo '<tr>';
-// echo '<th>'.__('username',true).'</th>';
-// echo '<th>'.__('member since',true).'</th>';
-// // echo '<th></th>';
-// echo '</tr>';
-// foreach($users as $user){
-	// echo '<tr>';
-	// echo '<td>';
-	// echo $html->link($user['User']['username'], array("controller" => "users", "action" => "show", $user['User']['id']));
-	// echo '</td>';
-	// echo '<td>';
-	// echo $date->ago($user['User']['since']);
-	// echo '</td>';
-	// // echo '<td>';
-	// // echo $html->link(__('About this user',true), array("controller" => "users", "action" => "show", $user['User']['username']));
-	// // echo '</td>';
-	// echo '</tr>';
-// }
-// echo '</table>';
-// ?>
+?>
 
 
 <h2>

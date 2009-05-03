@@ -62,18 +62,6 @@ class NavigationHelper extends AppHelper{
 			
 			echo '<ul>';
 			
-			// previous
-			echo '<li class="option">';
-			echo $this->Html->link(
-				'<< '.__('previous',true), 
-				array(
-					"controller" => "users",
-					"action" => "show",
-					$currentId-1
-				)
-			);
-			echo '</li>';
-			
 			// random
 			echo '<li class="option">';
 			echo $this->Html->link(
@@ -82,18 +70,6 @@ class NavigationHelper extends AppHelper{
 					"controller" => "users",
 					"action" => "show",
 					"random"
-				)
-			);
-			echo '</li>';
-			
-			// next
-			echo '<li class="option">';
-			echo $this->Html->link(
-				__('next',true).' >>', 
-				array(
-					"controller" => "users",
-					"action" => "show",
-					$currentId+1
 				)
 			);
 			echo '</li>';
