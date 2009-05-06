@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	$('.editableSentence').editable('http://localhost/sentences/save_sentence', { 
+	$('.editableSentence').editable('http://' + self.location.hostname + '/sentences/save_sentence', { 
 		type      : 'textarea',
 		cancel    : 'Cancel',
 		submit    : 'OK',

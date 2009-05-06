@@ -423,7 +423,9 @@ class SentencesController extends AppController{
 	function my_sentences(){
 		$this->Sentence->recursive = 0;
 		$sentences = $this->Sentence->find(
-			'all', array("conditions" => array("Sentence.user_id" => $this->Auth->user('id')))
+			'all', array(
+				"conditions" => array("Sentence.user_id" => $this->Auth->user('id')),
+				"order" => "Sentence.modified DESC")
 		);
 		$this->set('user_sentences', $sentences);
 	}
