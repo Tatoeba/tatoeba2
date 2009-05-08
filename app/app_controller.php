@@ -1,10 +1,11 @@
 <?php 
 class AppController extends Controller { 
-    var $components = array('Acl','Auth','Permissions','Cookie');
+    var $components = array('Acl','Auth','Permissions','RememberMe');
 	var $helpers = array('Sentences', 'Comments', 'Date', 'Html', 'Form', 'Logs', 'Tooltip', 'Javascript', 'Languages');
 	
     function beforeFilter() { 
 		Security::setHash('md5');
+		$this->disableCache(); // seems to be important so that the browser displays properly login info in header
 		
         if (isset($this->params['lang'])) { 
             Configure::write('Config.language',  $this->params['lang']); 
@@ -16,8 +17,11 @@ class AppController extends Controller {
 		$this->Auth->allow('display');
 		$this->Auth->authorize = 'actions';
 		$this->Auth->authError = __('You need to be logged in.',true);
+		$this->Auth->autoRedirect = false; // very important for the "remember me" to work
 		
+		$this->RememberMe->check();
 		
+		/*
 		$cookie = $this->Cookie->read('Auth.User');
 		if (!is_null($cookie)) {
 			if ($this->Auth->login($cookie)) {
@@ -28,7 +32,7 @@ class AppController extends Controller {
 				$this->Cookie->del('Auth.User');
 			}
 		}
-	
+		*/
 		
 		// to remove in production mode
 		//$this->buildAcl();

@@ -3,13 +3,11 @@ class UsersController extends AppController {
 
 	var $name = 'Users';
 	var $helpers = array('Html', 'Form', 'Date', 'Logs', 'Sentences', 'Navigation');
-	var $components = array ('Mailer', 'Captcha');
+	var $components = array ('Mailer', 'Captcha', 'RememberMe');
 	var $paginate = array('limit' => 50); 
 
 	function beforeFilter() {
 		parent::beforeFilter();
-		//$this->Auth->autoRedirect = false;
-		
 		// setting actions that are available to everyone, even guests
 		// no need to allow login
 		$this->Auth->allowedActions = array('all', 'search', 'show', 'logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration', 'resend_registration_mail', 'captcha_image', 'captcha_audio');
@@ -72,35 +70,45 @@ class UsersController extends AppController {
 		}
 	}
 	
-	
-	function login() {
-		//-- code inside this function will execute only when autoRedirect was set to false (i.e. in a beforeFilter).
-		if ($this->Auth->user()) {
-			$data['User']['id'] = $this->Auth->user('id');
-			$data['User']['last_time_active'] = time();
-			$this->User->save($data);
-			
-			if (!empty($this->data) AND $this->data['User']['rememberMe']) {
-				$cookie = array();
-				$cookie['username'] = $this->data['User']['username'];
-				$cookie['password'] = $this->data['User']['password'];
-				$this->Cookie->write('Auth.User', $cookie, false, '+2 weeks');
-				unset($this->data['User']['rememberMe']);
-			}
-			if($this->Auth->user('group_id') == 5){
-				$this->flash(__('Your account is not validated yet. You will not be able to add sentences, translate or post comments. To validate it, click on the link in the email that has been sent to you during your registration. You can have this email resent to you.', true), '/users/resend_registration_mail/');
-			}else{
-				$this->redirect($this->Auth->redirect());
-			}
+	function login()  
+	{  
+		if (!$this->Auth->user())  
+		{  
+			return;  
 		}
-	}
 
-	
-	function logout(){  
-		$this->Cookie->del('Auth.User'); // delete cookie when logout
-		$this->Session->setFlash('You are logged out.');  
-		$this->redirect($this->Auth->logout());
-	}
+		if($this->Auth->user('group_id') == 5)
+		{
+			$this->flash(__('Your account is not validated yet. You will not be able to add sentences, translate or post comments. To validate it, click on the link in the email that has been sent to you during your registration. You can have this email resent to you.', true), '/users/resend_registration_mail/');
+		}
+		
+		if (empty($this->data))  
+		{  
+			$this->redirect($this->Auth->redirect());  
+		}  
+
+		if (empty($this->data['User']['rememberMe']))  
+		{  
+			$this->RememberMe->delete();  
+		}  
+		else  
+		{  
+			$this->RememberMe->remember  
+			(  
+			$this->data['User']['username'],  
+			$this->data['User']['password']  
+			);  
+		}  
+		
+		unset($this->data['User']['rememberMe']);  
+		$this->redirect($this->Auth->redirect());  
+	}  
+
+	function logout()  
+	{  
+		$this->RememberMe->delete();  
+		$this->redirect($this->Auth->logout());  
+	}  
 	
 	function register(){
 		if (!empty($this->data)) {

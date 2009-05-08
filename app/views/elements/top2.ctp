@@ -7,6 +7,7 @@ if (isset($this->params['lang'])) {
 <div id="top2">
 	<a href="/" class="tatoeba_title"><strong>TATOEBA</strong> <em>Project</em></a>
 	
+	<cake:nocache>
 	<div id="UserMenu">
 	<?php 
 	if($session->read('Auth.User.id')){
@@ -43,4 +44,5 @@ if (isset($this->params['lang'])) {
 	}
 	?>
 	</div>
+	</cake:nocache>
 </div>

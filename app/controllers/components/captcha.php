@@ -19,13 +19,14 @@ class CaptchaComponent extends Object
         
         $oVisualCaptcha = new PhpCaptcha($aFonts, 200, 60);
         
-        $oVisualCaptcha->UseColour(true);
+        //$oVisualCaptcha->UseColour(true);
         //$oVisualCaptcha->SetOwnerText('Source: '.FULL_BASE_URL);
         $oVisualCaptcha->SetNumChars(6);
         $oVisualCaptcha->Create();
     }
     
     function check($userCode, $caseInsensitive = true){
+		App::import('Vendor', 'PhpCaptcha', array('file'=>'phpcaptcha/php-captcha.inc.php'));
         if ($caseInsensitive) {
             $userCode = strtoupper($userCode);
         }
@@ -33,7 +34,6 @@ class CaptchaComponent extends Object
         if (!empty($_SESSION[CAPTCHA_SESSION_ID]) && $userCode == $_SESSION[CAPTCHA_SESSION_ID]) {
             // clear to prevent re-use
             unset($_SESSION[CAPTCHA_SESSION_ID]);
-            pr($_SESSION[CAPTCHA_SESSION_ID]);
             return true;
         }else{
 			return false;
