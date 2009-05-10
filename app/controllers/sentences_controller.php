@@ -211,13 +211,14 @@ class SentencesController extends AppController{
 	}
 	
 	function save_translation(){
-		if(!empty($this->data)){
+		Configure::write('debug',0);
+		if(isset($_POST['value']) AND rtrim($_POST['value']) != '' AND isset($_POST['id'])){
 			// If we want the "HasAndBelongsToMany" association to work, we need the two lines below :
-			$this->Sentence->id = $this->data['Sentence']['id'];
-			$this->data['Translation']['Translation'][] = $this->data['Sentence']['id'];
+			$this->Sentence->id = $_POST['id'];
+			$this->data['Translation']['Translation'][] = $_POST['id'];
 			
 			// And this is because the translations are reciprocal :
-			$this->data['InverseTranslation']['InverseTranslation'][] = $this->data['Sentence']['id'];
+			$this->data['InverseTranslation']['InverseTranslation'][] = $_POST['id'];
 			
 			$this->data['Sentence']['id'] = null; // so that it saves a new sentences, otherwise it's like editing
 			
@@ -228,8 +229,10 @@ class SentencesController extends AppController{
 				$this->data['Sentence']['correctness'] = 1;
 			}
 			
+			$this->data['Sentence']['text'] = $_POST['value'];
+			
 			// detecting language
-			$this->GoogleLanguageApi->text = $this->data['Sentence']['text'];
+			$this->GoogleLanguageApi->text = $_POST['value'];
 			$response = $this->GoogleLanguageApi->detectLang();
 			if($response['isReliable']){
 				$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
@@ -240,16 +243,7 @@ class SentencesController extends AppController{
 			$this->data['Sentence']['user_id'] = $this->Auth->user('id');
 			
 			if($this->Sentence->save($this->data)){
-				// Confirmation message
-				$this->flash(
-					__('Your translation has been saved.',true),
-					'/sentences/show/'.$this->data['Translation']['Translation'][0]
-				);
-			}else{
-				$this->flash(
-					__('A problem occured. Your translation has not been saved.',true),
-					'/sentences/translate/'.$this->data['Translation']['Translation'][0]
-				);
+				$this->set('translation_text', $_POST['value']);
 			}
 		}
 	}
@@ -307,6 +301,7 @@ class SentencesController extends AppController{
 	}
 	
 	function random($type = null){
+		Configure::write('debug',0);
 		$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences', false);
 		$max = $resultMax[0][0]['MAX(id)'];
 		$randId = rand(1, $max);
@@ -413,6 +408,7 @@ class SentencesController extends AppController{
 	}
 	
 	function get_translations($id){
+		Configure::write('debug',0);
 		$this->layout = null;
 		$this->Sentence->id = $id;
 		$this->Sentence->recursive = 2;

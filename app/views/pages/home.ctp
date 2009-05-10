@@ -10,6 +10,7 @@ if($session->read('Auth.User.id')){
 		echo $html->link(__('Click here.', true), array("controller" => "sentences", "action" => "unknown_language"));
 		echo '</div>';
 	}
+	$javascript->link('sentences.add_translation.js', false);
 }
 
 

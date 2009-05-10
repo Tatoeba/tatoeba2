@@ -1,7 +1,7 @@
 <?php
 class SentencesHelper extends AppHelper {
 
-	var $helpers = array('Html', 'Form', 'Tooltip', 'Kakasi');
+	var $helpers = array('Html', 'Form', 'Tooltip', 'Kakasi', 'Javascript');
 	
 	/**
 	 * Display a single sentence.
@@ -53,10 +53,10 @@ class SentencesHelper extends AppHelper {
 		}
 		echo '</div>';
 		
-		echo '<ul class="addTranslations">';
+		echo '<ul id="translation_for_'.$sentence['id'].'" class="addTranslations">';
 		echo '</ul>';
 		
-		echo '<ul class="translations">';
+		echo '<ul id="'.$sentence['id'].'_translations" class="translations">';
 		if(count($translations) > 0){
 			// direct translations
 			$this->displayTranslations($translations, 'show');
@@ -225,17 +225,13 @@ class SentencesHelper extends AppHelper {
 				));
 			echo '</li>';
 			
-			// translate link => everyone can see
-			echo '<li class="'.$this->optionClass('translate').' translateLink" id="'. $id .'">';
-			echo $this->Html->link(
-				__('Translate',true), '#'
-				// array(
-					// "controller" => "sentences",
-					// "action" => "translate",
-					// $id
-				// )
-			);
-			echo '</li>';
+			// translate link
+			if($specialOptions['canTranslate']){
+				$this->Javascript->link('sentences.add_translation.js', false);
+				echo '<li class="'.$this->optionClass('translate').' translateLink" id="'. $id .'">';
+				echo '<a>' . __('Translate',true) . '</a>';
+				echo '</li>';
+			}
 			
 			// "link" link => everyone can see
 			// echo '<li class="'.$this->optionClass('link').'">';

@@ -15,10 +15,12 @@ class PermissionsComponent extends Object{
 			, 'canDelete' => false
 			, 'canAdopt' => false
 			, 'canLetGo' => false
+			, 'canTranslate' => false
 		);
 		
 		if($this->Auth->user('id')){
 			$specialOptions['canComment'] = true;
+			$specialOptions['canTranslate'] = true;
 			
 			if($this->Auth->user('group_id') < 3){
 				
