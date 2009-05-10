@@ -39,7 +39,7 @@ class RememberMeComponent extends Object
 		$cookie = array();
 		$cookie[$this->Auth->fields['username']] = $username;
 		$cookie[$this->Auth->fields['password']] = $password;
-		$this->Cookie->write($this->cookieName, $cookie, true, $this->period);
+		$this->Cookie->write($this->cookieName, $cookie, false, $this->period);
 	}
 
 	function check()
@@ -51,7 +51,7 @@ class RememberMeComponent extends Object
 
 		if ($this->Auth->login($cookie))
 		{
-			$this->Cookie->write($this->cookieName, $cookie, true, $this->period);
+			$this->Cookie->write($this->cookieName, $cookie, false, $this->period);
 		}
 		else
 		{
