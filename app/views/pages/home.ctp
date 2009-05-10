@@ -52,7 +52,7 @@ echo '<div class="element">';
 echo '<h2>';
 __('Random sentence'); 
 echo ' (';
-echo $html->link(__('show another',true), "#", array("id" => "showRandom", "lang" => $lang));
+echo '<a id="showRandom" lang='.$lang.'>' . __('show another',true) . '</a>';
 echo ')</h2>';
 echo '<div class="random_sentences_set"></div>';
 echo '</div>';
