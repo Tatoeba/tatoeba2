@@ -127,6 +127,7 @@ class SentencesController extends AppController{
 				$this->data['Sentence']['text'] = $_POST['value'];
 				$this->data['Sentence']['user_id'] = $this->Auth->user('id'); // for the logs
 				if($this->Sentence->save($this->data)){
+					Configure::write('debug',0);
 					$this->set('sentence_text', $_POST['value']);
 				}
 			}else{
@@ -151,6 +152,7 @@ class SentencesController extends AppController{
 				
 				// saving
 				if($this->Sentence->save($this->data)){
+					Configure::write('debug',0);
 					$this->set('sentence', $this->Sentence->read());
 					// checking which options user can access to
 					$specialOptions = $this->Permissions->getSentencesOptions($this->Auth->user('id'), $this->Auth->user('id'));
@@ -211,14 +213,16 @@ class SentencesController extends AppController{
 	}
 	
 	function save_translation(){
-		Configure::write('debug',0);
 		if(isset($_POST['value']) AND rtrim($_POST['value']) != '' AND isset($_POST['id'])){
-			// If we want the "HasAndBelongsToMany" association to work, we need the two lines below :
-			$this->Sentence->id = $_POST['id'];
-			$this->data['Translation']['Translation'][] = $_POST['id'];
+			$sentence_id = substr($_POST['id'], 2);
+			$this->data['Sentence']['sentence_lang'] = substr($_POST['id'], 0, 2); // needed for the logs
+			
+			// If we want the "HasAndBelongsToMany" association to work, we need the two lines below :			
+			$this->Sentence->id = $sentence_id;
+			$this->data['Translation']['Translation'][] = $sentence_id;
 			
 			// And this is because the translations are reciprocal :
-			$this->data['InverseTranslation']['InverseTranslation'][] = $_POST['id'];
+			$this->data['InverseTranslation']['InverseTranslation'][] = $sentence_id;
 			
 			$this->data['Sentence']['id'] = null; // so that it saves a new sentences, otherwise it's like editing
 			
@@ -241,8 +245,12 @@ class SentencesController extends AppController{
 			}
 			
 			$this->data['Sentence']['user_id'] = $this->Auth->user('id');
+			$this->data['Sentence']['lang'] = 'en'; // comment this line in prod mode
 			
 			if($this->Sentence->save($this->data)){
+				Configure::write('debug',0);
+				$this->set('translation_id', $this->Sentence->id);
+				$this->set('translation_lang', $this->data['Sentence']['lang']);
 				$this->set('translation_text', $_POST['value']);
 			}
 		}

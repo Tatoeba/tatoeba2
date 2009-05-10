@@ -436,7 +436,7 @@
                             });
                         /* otherwise use button with given string as text */
                         } else {
-                            var submit = $('<button type="submit" />');
+                            var submit = $('<button class="submit" type="submit" />');
                             submit.html(settings.submit);                            
                         }
                         $(this).append(submit);
@@ -447,7 +447,7 @@
                             var cancel = $(settings.cancel);
                         /* otherwise use button with given string as text */
                         } else {
-                            var cancel = $('<button type="cancel" />');
+                            var cancel = $('<button class="cancel" type="cancel" />');
                             cancel.html(settings.cancel);
                         }
                         $(this).append(cancel);
@@ -467,9 +467,9 @@
             },
             text: {
                 element : function(settings, original) {
-                    var input = $('<input />');
-                    if (settings.width  != 'none') { input.width(settings.width);  }
-                    if (settings.height != 'none') { input.height(settings.height); }
+                    var input = $('<input class="text" />');
+                    //if (settings.width  != 'none') { input.width(settings.width);  }
+                    //if (settings.height != 'none') { input.height(settings.height); }
                     /* https://bugzilla.mozilla.org/show_bug.cgi?id=236791 */
                     //input[0].setAttribute('autocomplete','off');
                     input.attr('autocomplete','off');

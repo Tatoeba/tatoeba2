@@ -206,7 +206,7 @@ class SentencesHelper extends AppHelper {
 	/**
 	 * Sentence options (translate, edit, correct, comments, logs, edit, ...)
 	 */
-	function displayMenu($id, $specialOptions, $score = null){		
+	function displayMenu($id, $lang, $specialOptions, $score = null){		
 		echo '<ul class="menu">';
 			if($score != null){
 				echo '<li class="score">';
@@ -228,7 +228,7 @@ class SentencesHelper extends AppHelper {
 			// translate link
 			if($specialOptions['canTranslate']){
 				$this->Javascript->link('sentences.add_translation.js', false);
-				echo '<li class="'.$this->optionClass('translate').' translateLink" id="'. $id .'">';
+				echo '<li class="'.$this->optionClass('translate').' translateLink" id="'. $id .'" lang="'.$lang.'">';
 				echo '<a>' . __('Translate',true) . '</a>';
 				echo '</li>';
 			}

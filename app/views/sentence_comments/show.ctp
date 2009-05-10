@@ -5,7 +5,7 @@ $this->pageTitle = __('Comments on the sentence : ',true) . $sentence['Sentence'
 $navigation->displaySentenceNavigation($sentence['Sentence']['id']);
 
 echo '<div class="sentences_set">';
-	$sentences->displayMenu($sentence['Sentence']['id'], $specialOptions);
+	$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
 	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
 echo '</div>';
 

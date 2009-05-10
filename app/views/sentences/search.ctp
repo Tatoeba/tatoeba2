@@ -13,7 +13,7 @@ if(isset($query)){
 		foreach($results as $sentence){
 			echo '<div class="sentences_set search">';
 			// sentence menu (translate, edit, comment, etc)
-			$sentences->displayMenu($sentence['Sentence']['id'], $specialOptions, $scores[$i]);
+			$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions, $scores[$i]);
 			$i++;
 
 			// sentence and translations

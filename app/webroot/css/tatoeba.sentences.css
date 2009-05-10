@@ -271,11 +271,11 @@ margin: 10px;
 background: #eeee88;
 }
 
-.editableSentence textarea{
-width: 400px;
-float:left;
+.editInPlaceForm input.text{
+width: 550px;
+display: inline;
 font-family: Verdana, sans-serif;
-font-size: 16px;
+font-size: 14px;
 }
 
 .addTranslationsTextInput{

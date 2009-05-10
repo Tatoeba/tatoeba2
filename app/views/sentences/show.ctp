@@ -7,7 +7,7 @@ if($sentence != null){
 	
 	echo '<div class="sentences_set">';
 		// sentence menu (translate, edit, comment, etc)
-		$sentences->displayMenu($sentence['Sentence']['id'], $specialOptions);
+		$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
 
 		// sentence and translations
 		$t = (isset($sentence['Translation'])) ? $sentence['Translation'] : array();
