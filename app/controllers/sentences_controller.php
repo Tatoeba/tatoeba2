@@ -245,7 +245,6 @@ class SentencesController extends AppController{
 			}
 			
 			$this->data['Sentence']['user_id'] = $this->Auth->user('id');
-			$this->data['Sentence']['lang'] = 'en'; // comment this line in prod mode
 			
 			if($this->Sentence->save($this->data)){
 				Configure::write('debug',0);
