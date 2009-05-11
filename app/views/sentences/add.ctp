@@ -1,4 +1,6 @@
 <?php
+$javascript->link('sentences.contribute.js', false);
+
 echo '<h2 class="add">';
 __('Add another sentence');
 echo '</h2>';
