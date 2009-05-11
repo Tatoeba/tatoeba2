@@ -7,8 +7,8 @@ echo '</h2>';
 
 echo '<div class="sentences_set">';
 	echo '<div class="new">';
-	echo $form->input('text', array("label" => __('Sentence : ', true)));
-	echo $form->button('OK');
+	echo $form->input('text', array("label" => __('Sentence : ', true), "id" => "newSentenceText"));
+	echo $form->button('OK', array("id" => "submitNewSentence"));
 	echo '</div>';
 echo '</div>';
 
