@@ -4,7 +4,7 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	var $helpers = array('Html', 'Form', 'Date', 'Logs', 'Sentences', 'Navigation');
 	var $components = array ('Mailer', 'Captcha', 'RememberMe');
-	var $paginate = array('limit' => 50); 
+	var $paginate = array('limit' => 50, 'order' => array('since' => 'desc')); 
 
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -382,6 +382,7 @@ class UsersController extends AppController {
 		$this->Acl->deny($group, 'controllers');
 		$this->Acl->allow($group, 'controllers/SentenceComments/add');
 		$this->Acl->allow($group, 'controllers/Sentences');
+		$this->Acl->deny($group, 'controllers/Sentences/delete');
 		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');
 		
 	    //Permissions for users
@@ -389,6 +390,7 @@ class UsersController extends AppController {
 		$this->Acl->deny($group, 'controllers');
 		$this->Acl->allow($group, 'controllers/SentenceComments/add');
 		$this->Acl->allow($group, 'controllers/Sentences');
+		$this->Acl->deny($group, 'controllers/Sentences/delete');
 		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');
 	}
 }
