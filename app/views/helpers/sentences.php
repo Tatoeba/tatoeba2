@@ -13,11 +13,15 @@ class SentencesHelper extends AppHelper {
 		echo $this->Html->link($sentence['text'], array("controller" => "sentences", "action" => "show", $sentence['id']));
 		echo '</span> ';
 		if($sentence['lang'] == 'jp'){
-			echo '<span class="romaji">';
-			$this->Kakasi->convert($sentence['text'], 'romaji');
-			echo '</span>';
+			$this->displayRomaji($sentence['text']);
 		}
 		echo '</div>';
+	}
+	
+	function displayRomaji($text){
+		echo '<span class="romaji" title="'.__('WARNING : the romaji is automatically generated and is not always reliable.',true).'">';
+			$this->Kakasi->convert($text, 'romaji');
+		echo '</span>';
 	}
 	
 	/**
@@ -30,9 +34,7 @@ class SentencesHelper extends AppHelper {
 			echo $sentence['text'];
 			echo '</span> ';
 			if($sentence['lang'] == 'jp'){
-				echo '<span class="romaji">';
-				$this->Kakasi->convert($sentence['text'], 'romaji');
-				echo '</span>';
+				$this->displayRomaji($sentence['text']);
 			}
 		echo '</div>';
 	}
@@ -47,9 +49,7 @@ class SentencesHelper extends AppHelper {
 		echo '<div class="original correctness'.$sentence['correctness'].'">';
 		echo '<span class="'.$sentence['lang'].'">'.$sentence['text'].'</span> ';
 		if($sentence['lang'] == 'jp'){
-			echo '<span class="romaji">';
-			$this->Kakasi->convert($sentence['text'], 'romaji');
-			echo '</span>';
+			$this->displayRomaji($sentence['text']);
 		}
 		echo '</div>';
 		
@@ -87,9 +87,7 @@ class SentencesHelper extends AppHelper {
 				array("class" => $translation['lang'])
 			);
 			if($translation['lang'] == 'jp'){
-				echo '<span class="romaji">';
-				$this->Kakasi->convert($translation['text'], 'romaji');
-				echo '</span>';
+				$this->displayRomaji($translation['text']);
 			}
 			echo '</li>';
 		}
