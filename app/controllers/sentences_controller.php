@@ -27,7 +27,7 @@ class SentencesController extends AppController{
 		}else{
 			$this->Sentence->id = $id;
 			
-			$this->Sentence->recursive = 1;
+			$this->Sentence->recursive = 0;
 			$sentence = $this->Sentence->read();
 			$this->set('sentence', $sentence);
 			
