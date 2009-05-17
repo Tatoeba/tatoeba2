@@ -416,6 +416,13 @@ class SentencesController extends AppController{
 	
 	function get_translations($id){
 		Configure::write('debug',0);
+		$this->Sentence->unbindModel(
+			array(
+				'belongsTo' => array('User'),
+				'hasMany' => array('SentenceComment', 'Contribution'),
+				'hasAndBelongsToMany' => array('InverseTranslation')
+			)
+		);
 		$this->layout = null;
 		$this->Sentence->id = $id;
 		$this->Sentence->recursive = 2;
