@@ -340,17 +340,15 @@ class UsersController extends AppController {
 			$this->set('user', $user);
 			
 			// check if we can follow that user or not (we can if we're NOT already following the user, or if the user is NOT ourself)
-			if($user['User']['id'] == $this->Auth->user('id')){
-				$can_follow = false;
-			}else{
+			if($user['User']['id'] != $this->Auth->user('id')){
 				$can_follow = true;
 				foreach($user['Follower'] as $follower){
 					if($follower['id'] == $this->Auth->user('id')){
 						$can_follow = false;
 					}
 				}
+				$this->set('can_follow', $can_follow);
 			}
-			$this->set('can_follow', $can_follow);
 		}else{
 			$this->Session->write('last_user_id', $id);
 			$this->flash(__('No user with this id : ', true).$id, '/users/all/');
@@ -398,6 +396,18 @@ class UsersController extends AppController {
 		$this->set('following', $this->User->read());	
 	}
 	
+	function start_following(){
+		$follower_id = $this->Auth->user('id');
+		$user_id = $_POST['user_id'];
+		$this->User->habtmAdd('Follower', $user_id, $follower_id); 
+	}
+	
+	function stop_following(){
+		$follower_id = $this->Auth->user('id');
+		$user_id = $_POST['user_id'];
+		$this->User->habtmDelete('Follower', $user_id, $follower_id); 
+	}
+	
 	// temporary function to grant/deny access
 	function initDB() {
 	    $group =& $this->User->Group;
@@ -413,6 +423,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/SentenceComments');
 		$this->Acl->allow($group, 'controllers/Sentences');
 		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');
+		$this->Acl->allow($group, 'controllers/Users/start_following');
+		$this->Acl->allow($group, 'controllers/Users/stop_following');
 		
 		//Permissions for trusted_users
 		$group->id = 3;
@@ -421,6 +433,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Sentences');
 		$this->Acl->deny($group, 'controllers/Sentences/delete');
 		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');
+		$this->Acl->allow($group, 'controllers/Users/start_following');
+		$this->Acl->allow($group, 'controllers/Users/stop_following');
 		
 	    //Permissions for users
 	    $group->id = 4;
@@ -429,6 +443,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Sentences');
 		$this->Acl->deny($group, 'controllers/Sentences/delete');
 		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');
+		$this->Acl->allow($group, 'controllers/Users/start_following');
+		$this->Acl->allow($group, 'controllers/Users/stop_following');
 	}
 }
 ?>

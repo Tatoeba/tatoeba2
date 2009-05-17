@@ -6,11 +6,18 @@ $navigation->displayUsersNavigation($user['User']['id'], $user['User']['username
 
 echo '<h2>';
 echo $user['User']['username'];
-echo ' ';
-if($can_follow){
-	echo '(<a class="startFollowing">'. __('Start following this person', true). '</a>)';
-}else{
-	echo '(<a class="stopFollowing">'. __('Stop following this person', true). '</a>)';
+if($session->read('Auth.User.id') AND isset($can_follow)){
+	if($can_follow){
+		$style2 = "style='display: none'";
+		$style1 = "";
+	}else{
+		$style1 = "style='display: none'";
+		$style2 = "";
+	}
+	echo ' (';
+	echo '<a id="start" class="followingOption" '.$style1.'>'. __('Start following this person', true). '</a>';
+	echo '<a id="stop" class="followingOption" '.$style2.'>'. __('Stop following this person', true). '</a>';
+	echo ')';
 }
 echo '</h2>';
 
@@ -22,33 +29,39 @@ echo '</div>';
 
 
 /* People that the user is following */
-echo '<div class="following">';
+
+echo '<h3>';
+__('Following');
+echo '</h3>';
+
+echo '<div class="following">';	
 if(count($user['Following']) > 0){
-	echo '<h3>';
-	__('Following');
-	echo '</h3>';
-	
 	echo '<ul>';
 	foreach($user['Following'] as $following){
 		echo '<li>'.$following['username'].'</li>';
 	}
 	echo '<ul>';
+}else{
+	__('None');
 }
 echo '</div>';
 
 
 /* People that are following the user */
-echo '<div class="followers">';
+
+echo '<h3>';
+__('Followers');
+echo '</h3>';
+
+echo '<div class="followers">';	
 if(count($user['Follower']) > 0){
-	echo '<h3>';
-	__('Followers');
-	echo '</h3>';
-	
 	echo '<ul>';
 	foreach($user['Follower'] as $follower){
 		echo '<li>'.$follower['username'].'</li>';
 	}
 	echo '<ul>';
+}else{
+	__('None');
 }
 echo '</div>';
 

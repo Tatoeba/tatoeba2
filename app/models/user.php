@@ -2,7 +2,7 @@
 class User extends AppModel {
 
 	var $name = 'User';
-	var $actsAs = array('Acl' => array('requester'));
+	var $actsAs = array('Acl' => array('requester'), 'ExtendAssociations');
 	
 	const LOWEST_TRUST_GROUP_ID = 4;
 	

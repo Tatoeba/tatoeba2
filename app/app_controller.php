@@ -13,7 +13,7 @@ class AppController extends Controller {
 		
 		//Configure AuthComponent
 		$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
-		$this->Auth->logoutRedirect = array('controller' => 'pages', 'action' => 'display', 'home', 'eng');
+		$this->Auth->logoutRedirect = array('controller' => 'pages', 'action' => 'display', 'home');
 		$this->Auth->allow('display');
 		$this->Auth->authorize = 'actions';
 		$this->Auth->authError = __('You need to be logged in.',true);
