@@ -10,7 +10,7 @@ class UsersController extends AppController {
 		parent::beforeFilter();
 		// setting actions that are available to everyone, even guests
 		// no need to allow login
-		$this->Auth->allowedActions = array('all', 'search', 'show', 'logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration', 'resend_registration_mail', 'captcha_image', 'captcha_audio');
+		$this->Auth->allowedActions = array('all', 'search', 'show', 'logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration', 'resend_registration_mail', 'captcha_image', 'followers', 'following');
 		//$this->Auth->allowedActions = array('*');
 	}
 
@@ -338,6 +338,19 @@ class UsersController extends AppController {
 		
 		if($user != null){
 			$this->set('user', $user);
+			
+			// check if we can follow that user or not (we can if we're NOT already following the user, or if the user is NOT ourself)
+			if($user['User']['id'] == $this->Auth->user('id')){
+				$can_follow = false;
+			}else{
+				$can_follow = true;
+				foreach($user['Follower'] as $follower){
+					if($follower['id'] == $this->Auth->user('id')){
+						$can_follow = false;
+					}
+				}
+			}
+			$this->set('can_follow', $can_follow);
 		}else{
 			$this->Session->write('last_user_id', $id);
 			$this->flash(__('No user with this id : ', true).$id, '/users/all/');
@@ -360,6 +373,30 @@ class UsersController extends AppController {
 	    $this->layout = null;
 	    $this->Captcha->image();
 	} 
+	
+	function followers($id){
+		$this->User->unbindModel(
+			array(
+				'belongsTo' => array('Group'),
+				'hasMany' => array('SentenceComments', 'Contributions', 'Sentences'),
+				'hasAndBelongsToMany' => array('Following')
+			)
+		);
+		$this->User->id = $id;
+		$this->set('followers', $this->User->read());
+	}
+	
+	function following($id){
+		$this->User->unbindModel(
+			array(
+				'belongsTo' => array('Group'),
+				'hasMany' => array('SentenceComments', 'Contributions', 'Sentences'),
+				'hasAndBelongsToMany' => array('Follower')
+			)
+		);
+		$this->User->id = $id;
+		$this->set('following', $this->User->read());	
+	}
 	
 	// temporary function to grant/deny access
 	function initDB() {

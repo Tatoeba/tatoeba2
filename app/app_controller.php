@@ -13,26 +13,13 @@ class AppController extends Controller {
 		
 		//Configure AuthComponent
 		$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
-		$this->Auth->logoutRedirect = array('controller' => 'pages', 'action' => 'display', 'home');
+		$this->Auth->logoutRedirect = array('controller' => 'pages', 'action' => 'display', 'home', 'eng');
 		$this->Auth->allow('display');
 		$this->Auth->authorize = 'actions';
 		$this->Auth->authError = __('You need to be logged in.',true);
 		$this->Auth->autoRedirect = false; // very important for the "remember me" to work
 		
 		$this->RememberMe->check();
-		
-		/*
-		$cookie = $this->Cookie->read('Auth.User');
-		if (!is_null($cookie)) {
-			if ($this->Auth->login($cookie)) {
-				//  Clear auth message, just in case we use it.
-				$this->Session->del('Message.auth');
-				//$this->redirect($this->Auth->redirect());
-			} else { // Delete invalid Cookie
-				$this->Cookie->del('Auth.User');
-			}
-		}
-		*/
 		
 		// to remove in production mode
 		//$this->buildAcl();

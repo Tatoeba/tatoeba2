@@ -54,26 +54,38 @@ class User extends AppModel {
 	
 	var $hasMany = array(
 		  'SentenceComments' => array('limit' => 10, 'order' => 'created DESC')
-		// , 'UserStatistics'
 		, 'Contributions' => array('limit' => 10, 'order' => 'datetime DESC')
 		, 'Sentences' => array('limit' => 10, 'order' => 'modified DESC')
 	);
 	
-	// var $hasAndBelongsToMany = array(
-		// 'Follower' => array(
-			// 'className' => 'Follower',
-			// 'joinTable' => 'followers_users',
-			// 'foreignKey' => 'follower_id',
-			// 'associationForeignKey' => 'user_id',
-			// 'conditions' => '',
-			// 'order' => '',
-			// 'limit' => '',
-			// 'unique' => true,
-			// 'finderQuery' => '',
-			// 'deleteQuery' => '',
-			// 'insertQuery' => ''
-		// )
-	// );
+	var $hasAndBelongsToMany = array(
+		'Follower' => array(
+			'className' => 'User',
+			'joinTable' => 'followers_users',
+			'foreignKey' => 'user_id',
+			'associationForeignKey' => 'follower_id',
+			'conditions' => '',
+			'order' => '',
+			'limit' => '',
+			'unique' => true,
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		),
+		'Following' => array(
+			'className' => 'Following',
+			'joinTable' => 'followers_users',
+			'foreignKey' => 'follower_id',
+			'associationForeignKey' => 'user_id',
+			'conditions' => '',
+			'order' => '',
+			'limit' => '',
+			'unique' => true,
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		)
+	);	
 	
 	function parentNode() {
 	    if (!$this->id && empty($this->data)) {
