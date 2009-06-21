@@ -1,23 +1,26 @@
-table#usersStatistics{
-width: 300px;
+#usersStatistics{
+width: 600px;
 text-align: center;
+margin: 20px auto;
+border: 1px #6CBC70 solid;
 }
 
-table#userStatistics{
-width: 300px;
+#usersStatistics td{
+padding: 5px;
+border-bottom: 1px #cccccc solid;
 }
 
-#userStatistics td{
-padding: 2px 5px;
+#usersStatistics th{
+background-color: #6CBC70;
+padding: 5px;
 }
-
 
 /* SENTENCES STATS */
 .sentencesStats{
 font-size: 16px;
 padding: 5px 10px;
 float: right;
-background: #f0f0f0;
+background-color: #f0f0f0;
 border: 1px solid #dfdfdf;
 margin-top: 10px;
 margin-left: 10px;

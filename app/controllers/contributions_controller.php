@@ -2,7 +2,7 @@
 class ContributionsController extends AppController {
 
 	var $name = 'Contributions';
-	var $helpers = array('Html', 'Form', 'Sentences', 'Logs', 'Tooltip', 'Navigation');
+	var $helpers = array('Html', 'Form', 'Sentences', 'Logs', 'Tooltip', 'Navigation', 'Date');
 	var $components = array('Permissions');
 
 	function beforeFilter() {
@@ -51,6 +51,22 @@ class ContributionsController extends AppController {
 				'limit' => 10, 'order' => 'Contribution.datetime DESC'
 			)
 		);
+	}
+	
+	function statistics(){
+		$this->Contribution->unbindModel(
+			array(
+				'belongsTo' => array('Sentence')
+			)
+		);
+		$this->Contribution->recursive = 0;
+		$stats = $this->Contribution->find('all', array(
+			'fields' => array('User.id', 'User.username', 'User.since', 'COUNT(*) as total'),
+			'conditions' => array('Contribution.user_id !=' => null),
+			'group' => array('Contribution.user_id'),
+			'order' => 'total DESC'
+		));
+		$this->set('stats', $stats);
 	}
 
 }
