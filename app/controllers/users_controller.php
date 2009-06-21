@@ -72,37 +72,31 @@ class UsersController extends AppController {
 	
 	function login()  
 	{  
-		if (!$this->Auth->user())  
-		{  
+		if(!$this->Auth->user()){  
 			return;  
 		}
-
-		if($this->Auth->user('group_id') == 5)
-		{
+		
+		$data['User']['id'] = $this->Auth->user('id');
+		$data['User']['last_time_active'] = time();
+		$this->User->save($data);
+		
+		if($this->Auth->user('group_id') == 5)	{
 			$this->flash(__('Your account is not validated yet. You will not be able to add sentences, translate or post comments. To validate it, click on the link in the email that has been sent to you during your registration. You can have this email resent to you.', true), '/users/resend_registration_mail/');
 		}
 		
-		if (empty($this->data))  
-		{  
+		if(empty($this->data)){  
 			$this->redirect($this->Auth->redirect());  
 		}  
-
-		if (empty($this->data['User']['rememberMe']))  
-		{  
+		
+		if(empty($this->data['User']['rememberMe'])){
 			$this->RememberMe->delete();  
-		}  
-		else  
-		{  
-			$this->RememberMe->remember  
-			(  
-			$this->data['User']['username'],  
-			$this->data['User']['password']  
-			);  
+		}else{
+			$this->RememberMe->remember($this->data['User']['username'], $this->data['User']['password']);  
 		}  
 		
 		unset($this->data['User']['rememberMe']);  
 		$this->redirect($this->Auth->redirect());  
-	}  
+	}
 
 	function logout()  
 	{  
