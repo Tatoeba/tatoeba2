@@ -133,6 +133,7 @@ class SentencesController extends AppController{
 				
 				if($this->Sentence->save($this->data)){
 					Configure::write('debug',0);
+					$this->layout = null;
 					$this->set('sentence_text', rtrim($_POST['value']));
 				}
 			}else{

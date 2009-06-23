@@ -7,7 +7,9 @@ $navigation->displaySentenceNavigation($sentence['Sentence']['id']);
 echo '<div class="sentences_set">';
 	$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
 	$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
-	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
+	
+	$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
+	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
 echo '</div>';
 
 echo '<div class="addComment">';

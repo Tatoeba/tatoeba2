@@ -10,7 +10,8 @@ echo '<div class="sentences_set">';
 	$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
 
 	// sentence and translations
-	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
+	$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
+	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
 echo '</div>';	
 
 $comments->displayCommentForm($sentence['Sentence']['id'], $sentence['Sentence']['text']);

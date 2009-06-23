@@ -12,7 +12,7 @@ if($sentence != null){
 
 		// sentence and translations
 		$t = (isset($sentence['Translation'])) ? $sentence['Translation'] : array();
-		$sentence['User']['canEdit'] = $specialOptions['canEdit'];
+		$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
 		$sentences->displayGroup($sentence['Sentence'], $t, $sentence['User']);
 	echo '</div>';
 	
