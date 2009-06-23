@@ -251,7 +251,7 @@
                 } else {
                     input_content = self.revert; 
                 }
-                content.apply(form, [input_content, settings, self]);
+                content.apply(form, [$.trim(input_content), settings, self]); // trim so there's no space when editing again...
 
                 input.attr('name', settings.name);
         
