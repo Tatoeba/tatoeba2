@@ -7,6 +7,7 @@ if($sentence != null){
 	
 	echo '<div class="sentences_set">';
 		// sentence menu (translate, edit, comment, etc)
+		$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
 		$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
 
 		// sentence and translations

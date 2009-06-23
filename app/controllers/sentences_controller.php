@@ -191,34 +191,6 @@ class SentencesController extends AppController{
 		}
 	}
 	
-	function translate($id){
-		if($id == "random"){
-			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences');
-			$max = $resultMax[0][0]['MAX(id)'];
-			
-			$randId = rand(1, $max);
-			$this->redirect(array("action"=>"translate", $randId));
-			//$this->Sentence->id = $randId;
-		}else{
-			$this->Sentence->id = $id;
-			$this->Sentence->unbindModel(
-				array(
-					'belongsTo' => array('User'),
-					'hasMany' => array('SentenceComment', 'Contribution'),
-					'hasAndBelongsToMany' => array('InverseTranslation')
-				)
-			);
-			$this->Sentence->recursive = 0;
-			$sentence = $this->Sentence->read();
-			$this->set('sentence',$sentence);
-			$this->data['Sentence']['id'] = $id;
-			
-			// checking which options user can access to
-			$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
-			$this->set('specialOptions',$specialOptions);
-		}
-	}
-	
 	function save_translation(){
 		if(isset($_POST['value']) AND rtrim($_POST['value']) != '' AND isset($_POST['id'])){
 			$sentence_id = substr($_POST['id'], 2);

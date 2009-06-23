@@ -258,23 +258,6 @@ class SentencesHelper extends AppHelper {
 				// ));
 			// echo '</li>';
 			
-			// edit link => modify or suggest correction
-			/*
-			if(isset($specialOptions['canEdit']) AND $specialOptions['canEdit'] == true){
-				$this->Javascript->link('sentences.edit.js', false);
-				
-				echo '<li class="'.$this->optionClass('edit').'">';
-				echo $this->Html->link(
-					__('Edit',true),
-					array(
-						"controller" => "sentences",
-						"action" => "edit",
-						$id
-					));
-				echo '</li>';
-			}
-			*/
-			
 			// discuss link
 			echo '<li class="'.$this->optionClass('comments').'">';
 			echo $this->Html->link(
@@ -335,6 +318,13 @@ class SentencesHelper extends AppHelper {
 					), 
 					null, 
 					'Are you sure?');
+				echo '</li>';
+			}
+			
+			if(isset($specialOptions['belongsTo'])){
+				echo '<li class="belongsTo">- ';
+				echo __('belongs to ', true);
+				echo $specialOptions['belongsTo'];
 				echo '</li>';
 			}
 		echo '</ul>';
