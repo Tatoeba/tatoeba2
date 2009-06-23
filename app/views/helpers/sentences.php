@@ -122,7 +122,9 @@ class SentencesHelper extends AppHelper {
 				$translationsIds[] = $translation['id'];
 				if(isset($translation['IndirectTranslation'])){
 					foreach($translation['IndirectTranslation'] as $indirectTranslation){
-						$indirectTranslations[] = $indirectTranslation;
+						if($indirectTranslation['id'] != $sentence['Sentence']['id']){
+							$indirectTranslations[] = $indirectTranslation;
+						}
 					}
 				}
 			}
