@@ -156,7 +156,6 @@ class SentencesController extends AppController{
 				$this->data['Sentence']['user_id'] = $this->Auth->user('id');
 				$this->data['Sentence']['text'] = $_POST['value'];
 				
-				echo 'we are here';
 				// saving
 				if($this->Sentence->save($this->data)){
 					Configure::write('debug',0);
@@ -256,7 +255,6 @@ class SentencesController extends AppController{
 			
 			$this->Sentence->unbindModel(
 				array(
-					'belongsTo' => array('User'),
 					'hasMany' => array('SentenceComment', 'Contribution'),
 					'hasAndBelongsToMany' => array('InverseTranslation')
 				)
@@ -265,21 +263,23 @@ class SentencesController extends AppController{
 				'all', array("conditions" => array("Sentence.id" => $ids))
 			);
 			
-			
 			$resultsInfo['currentPage'] = $lucene_results['currentPage'];
 			$resultsInfo['pagesCount'] = $lucene_results['pagesCount'];
 			$resultsInfo['sentencesPerPage'] = $lucene_results['sentencesPerPage'];
 			$resultsInfo['sentencesCount'] = $lucene_results['sentencesCount'];
 				
 			$this->set('results', $sentences);
-			$this->set('resultsInfo', $resultsInfo);	
-			$this->set('sentences', $sentences);
+			$this->set('resultsInfo', $resultsInfo);
 			$this->set('scores', $scores);
 			$this->set('query', $query);
 			$this->set('from', $from);
 			
+			
 			// checking which options user can access to
-			$specialOptions = $this->Permissions->getSentencesOptions(0,1);
+			$specialOptions = array();
+			foreach($sentences as $sentence){
+				$specialOptions[] = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
+			}
 			$this->set('specialOptions',$specialOptions);
 		}else{
 			$this->pageTitle = __('Tatoeba search',true);

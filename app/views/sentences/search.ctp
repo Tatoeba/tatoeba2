@@ -11,14 +11,20 @@ if(isset($query)){
 		$i = 0;
 		
 		foreach($results as $sentence){
+			pr($sentence);
+			//$specialOptions = $sentence['specialOptions'];
+			
 			echo '<div class="sentences_set search">';
 			// sentence menu (translate, edit, comment, etc)
-			$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions, $scores[$i]);
-			$i++;
-
+			$specialOptions[$i]['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
+			$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions[$i], $scores[$i]);
+			
 			// sentence and translations
-			$sentences->displayGroup($sentence['Sentence'], $sentence['Translation']);
+			$sentence['User']['canEdit'] = $specialOptions[$i]['canEdit']; // TODO set up a better mechanism
+			$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
 			echo '</div>';
+			
+			$i++;
 		}
 		
 		$pagination->displaySearchPagination($resultsInfo['pagesCount'], $resultsInfo['currentPage'], $query, $from);
