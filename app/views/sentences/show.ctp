@@ -11,7 +11,8 @@ if($sentence != null){
 
 		// sentence and translations
 		$t = (isset($sentence['Translation'])) ? $sentence['Translation'] : array();
-		$sentences->displayGroup($sentence['Sentence'], $t);
+		$sentence['User']['canEdit'] = $specialOptions['canEdit'];
+		$sentences->displayGroup($sentence['Sentence'], $t, $sentence['User']);
 	echo '</div>';
 	
 	//$tooltip->displayAdoptTooltip(); 

@@ -30,7 +30,6 @@ class SentencesController extends AppController{
 			$this->Sentence->recursive = 0;
 			$sentence = $this->Sentence->read();
 			$this->set('sentence', $sentence);
-			
 			// checking which options user can access to
 			$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
 			$this->set('specialOptions',$specialOptions);
@@ -66,7 +65,7 @@ class SentencesController extends AppController{
 			$this->data['Sentence']['user_id'] = $this->Auth->user('id');
 			
 			// saving
-			if($this->Sentence->save($this->data)){			
+			if($this->Sentence->save($this->data)){
 				$this->data = null;
 				
 				$this->set('sentence', $this->Sentence->read());
@@ -121,14 +120,20 @@ class SentencesController extends AppController{
 	
 	function save_sentence(){
 		if(isset($_POST['value'])){
-			if(isset($_POST['id'])){ 	
-				$this->Sentence->id = substr($_POST['id'], 2);
-				$this->data['Sentence']['lang'] = substr($_POST['id'], 0, 2);
-				$this->data['Sentence']['text'] = $_POST['value'];
+			if(isset($_POST['id'])){
+				if(preg_match("/[a-z]/", $_POST['id'])){
+					$this->Sentence->id = substr($_POST['id'], 2);
+					$this->data['Sentence']['lang'] = substr($_POST['id'], 0, 2); // language needed for the logs
+				}else{
+					$this->Sentence->id = $_POST['id'];
+					$this->data['Sentence']['lang'] = null; // language needed for the logs
+				}
+				$this->data['Sentence']['text'] = rtrim($_POST['value']);
 				$this->data['Sentence']['user_id'] = $this->Auth->user('id'); // for the logs
+				
 				if($this->Sentence->save($this->data)){
 					Configure::write('debug',0);
-					$this->set('sentence_text', $_POST['value']);
+					$this->set('sentence_text', rtrim($_POST['value']));
 				}
 			}else{
 				// setting correctness of sentence
@@ -150,9 +155,11 @@ class SentencesController extends AppController{
 				$this->data['Sentence']['user_id'] = $this->Auth->user('id');
 				$this->data['Sentence']['text'] = $_POST['value'];
 				
+				echo 'we are here';
 				// saving
 				if($this->Sentence->save($this->data)){
 					Configure::write('debug',0);
+					$this->layout = null;
 					$this->set('sentence', $this->Sentence->read());
 					// checking which options user can access to
 					$specialOptions = $this->Permissions->getSentencesOptions($this->Auth->user('id'), $this->Auth->user('id'));

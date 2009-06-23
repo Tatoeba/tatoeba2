@@ -42,12 +42,28 @@ class SentencesHelper extends AppHelper {
 	/**
 	 * Diplay a sentence and its translations.
 	 */
-	function displayGroup($sentence, $translations) {
+	function displayGroup($sentence, $translations, $user = null) {
 		echo '<div class="sentence">';
 		
 		// Sentence
-		echo '<div class="original correctness'.$sentence['correctness'].'">';
-		echo '<span class="'.$sentence['lang'].'">'.$sentence['text'].'</span> ';
+		$this->Javascript->link('jquery.jeditable.js', false);
+		$this->Javascript->link('sentences.edit_in_place.js', false);
+		
+		$editable = '';
+		$editableSentence = '';
+		$tooltip = __('This sentence does not belong to anyone, you can adopt it', true);
+		if($user != null){
+			if(isset($user['canEdit']) AND $user['canEdit']){
+				$editable = 'editable';
+				$editableSentence = 'editableSentence';
+			}
+			if(isset($user['username']) AND $user['username'] != ''){
+				$tooltip = __('This sentence belongs to :', true) .' '.$user['username'];
+			}
+		}
+		
+		echo '<div title="'.$tooltip.'" class="'.$editable.' original correctness'.$sentence['correctness'].'">';
+		echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="'.$editableSentence.' '.$sentence['lang'].'">'.$sentence['text'].'</span> ';
 		if($sentence['lang'] == 'jp'){
 			$this->displayRomaji($sentence['text']);
 		}
@@ -243,7 +259,10 @@ class SentencesHelper extends AppHelper {
 			// echo '</li>';
 			
 			// edit link => modify or suggest correction
+			/*
 			if(isset($specialOptions['canEdit']) AND $specialOptions['canEdit'] == true){
+				$this->Javascript->link('sentences.edit.js', false);
+				
 				echo '<li class="'.$this->optionClass('edit').'">';
 				echo $this->Html->link(
 					__('Edit',true),
@@ -254,6 +273,7 @@ class SentencesHelper extends AppHelper {
 					));
 				echo '</li>';
 			}
+			*/
 			
 			// discuss link
 			echo '<li class="'.$this->optionClass('comments').'">';

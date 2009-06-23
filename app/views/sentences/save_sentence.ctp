@@ -1,7 +1,7 @@
 <?php
 if(isset($sentence_text)){
 	
-	echo $sentence_text;
+	echo rtrim($sentence_text);
 	
 }elseif(isset($sentence)){
 
