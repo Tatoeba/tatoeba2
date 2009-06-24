@@ -1,8 +1,8 @@
 <?php
 if(isset($query)){
-	$query = stripslashes(htmlentities($query, ENT_QUOTES, 'UTF-8'));
+	$query = stripslashes($query);
 	
-	echo '<h2>Search : ' . $query . ', <em>' . $resultsInfo['sentencesCount'] . ' result(s)</em></h2>';
+	echo '<h2>Search : ' . htmlentities($query, ENT_QUOTES, 'UTF-8') . ', <em>' . $resultsInfo['sentencesCount'] . ' result(s)</em></h2>';
 	
 	if(isset($results)){
 		
