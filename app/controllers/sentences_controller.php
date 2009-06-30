@@ -174,7 +174,7 @@ class SentencesController extends AppController{
 		$data['Sentence']['user_id'] = $this->Auth->user('id');
 		if($this->Sentence->save($data)){
 			$this->flash(
-				__('You are now the owner of this sentence and can modify it as you wish (click on the "Edit" link for that). It is your responsibility to make sure that it doesn\'t have any mistake and, if possible, is not linked to wrong translations.',true),
+				__('You are now the owner of this sentence and can modify it as you wish. It is your responsibility to make sure that it doesn\'t have any mistake and, if possible, is not linked to wrong translations.',true),
 				'/sentences/show/'.$id
 			);
 		}
