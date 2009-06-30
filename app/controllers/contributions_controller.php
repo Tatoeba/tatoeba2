@@ -54,6 +54,7 @@ class ContributionsController extends AppController {
 	}
 	
 	function statistics(){
+		//Configure::write('debug',2);
 		$this->Contribution->unbindModel(
 			array(
 				'belongsTo' => array('Sentence')
@@ -61,7 +62,7 @@ class ContributionsController extends AppController {
 		);
 		$this->Contribution->recursive = 0;
 		$stats = $this->Contribution->find('all', array(
-			'fields' => array('User.id', 'User.username', 'User.since', 'COUNT(*) as total'),
+			'fields' => array('Contribution.user_id', 'User.id', 'User.username', 'User.since', 'User.group_id', 'COUNT(*) as total'),
 			'conditions' => array('Contribution.user_id !=' => null),
 			'group' => array('Contribution.user_id'),
 			'order' => 'total DESC'

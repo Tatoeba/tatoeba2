@@ -15,6 +15,17 @@ background-color: #6CBC70;
 padding: 5px;
 }
 
+#usersStatistics tr.admin{
+background-color: #FFCCCC;
+}
+
+#usersStatistics tr.normal{
+}
+
+#usersStatistics tr.pending{
+background-color: #CCCCCC;
+}
+
 /* SENTENCES STATS */
 .sentencesStats{
 font-size: 16px;

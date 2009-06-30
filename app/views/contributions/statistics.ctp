@@ -1,4 +1,5 @@
 <?php
+//pr($stats);
 echo '<table id="usersStatistics">';
 	echo '<tr>';
 	echo '<th>' . __('rank', true) . '</th>';
@@ -9,7 +10,18 @@ echo '<table id="usersStatistics">';
 	
 $i = 0;	
 foreach($stats as $stat){
-	echo '<tr><td>';
+	$css = 'class=';
+	if($stat['User']['group_id'] == 1){
+		$css .= '"admin"';
+	}
+	if($stat['User']['group_id'] == 4){
+		$css .= '"normal"';
+	}
+	if($stat['User']['group_id'] == 5){
+		$css .= '"pending"';
+	}
+	
+	echo '<tr '.$css.'><td>';
 	echo $i; $i++;
 	echo '</td><td>';
 	echo $html->link($stat['User']['username'], array("controller"=>"users", "action"=>"show", $stat['User']['id']));
