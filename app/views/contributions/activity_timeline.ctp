@@ -3,10 +3,10 @@
 
 // should not be in view but never mind...
 function color($number){
-	if($number > 500){
+	if($number > 200){
 		$color = 10;
 	}else{
-		$color = intval($number/50);
+		$color = intval($number/20);
 	}
 	return $color;
 }
