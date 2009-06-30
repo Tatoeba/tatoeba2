@@ -273,14 +273,14 @@ class UsersController extends AppController {
 	function save_profile(){
 		$this->User->id = $this->Auth->user('id');
 		$user = $this->User->read();
-		$hashedPass = $this->Auth->password($this->data['User']['old_password']);
+		$hashedPass = $this->Auth->password($this->data['old_password']['passwd']);
 		
 		$flashMsg = '';
 		$savePass = false;
 		$saveEmail = false;
 		
 		if($user['User']['password'] == $hashedPass){
-			$this->data['User']['password'] = $this->Auth->password($this->data['User']['new_password']);
+			$this->data['User']['password'] = $this->Auth->password($this->data['new_password']['passwd']);
 			$flashMsg .= __('New password has been saved.',true);
 			$flashMsg .= ' ';
 			$savePass = true;
