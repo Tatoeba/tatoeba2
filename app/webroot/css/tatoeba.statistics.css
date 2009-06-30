@@ -76,3 +76,83 @@ background:transparent url(../img/es.png) no-repeat scroll left center;
 .stats_zh{
 background:transparent url(../img/zh.png) no-repeat scroll left center;
 }
+
+
+/* TIMELINE */
+#timeline{
+overflow: hidden;
+width: 100%;
+color: #111111;
+}
+
+.logs_stats{
+text-align:center;
+float:left;
+padding: 5px;
+margin-right: 2px;
+margin-bottom: 2px;
+width: 70px;
+}
+
+.logs_stats strong{
+display:block;
+font-size: 150%;
+}
+
+#legend{
+overflow: hidden;
+width: 100%;
+margin: 20px 0px;
+}
+
+#legend div{
+width: 50px;
+float: left;
+text-align:center;
+padding: 5px;
+width: 55px;
+}
+
+.color0{
+background: #EDF9FF;
+}
+
+.color1{
+background: #E2FFF0;
+}
+
+.color2{
+background: #D1FFD1;
+}
+
+.color3{
+background: #D4FFBF;
+}
+
+.color4{
+background: #E8FFBA;
+}
+
+.color5{
+background: #FFFFB2;
+}
+
+.color6{
+background:#FFE5B2;
+}
+
+.color7{
+background: #FFD8B2;
+}
+
+.color8{
+background: #FFCCB2;
+}
+
+.color9{
+background: #FFBFB2;
+}
+
+.color10{
+background: #FF947F;
+}

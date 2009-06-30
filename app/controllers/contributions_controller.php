@@ -69,6 +69,16 @@ class ContributionsController extends AppController {
 		));
 		$this->set('stats', $stats);
 	}
-
+	
+	function activity_timeline(){
+		$this->Contribution->recursive = 0;
+		$stats = $this->Contribution->find('all', array(
+			'fields' => array('Contribution.datetime', 'COUNT(*) as total', 'date_format(datetime,\'%b %D %Y\') as day'),
+			'conditions' => array('Contribution.datetime > \'2008-01-01 00:00:00\''),
+			'group' => array('day'),
+			'order' => 'Contribution.datetime DESC'
+		));
+		$this->set('stats', $stats);
+	}
 }
 ?>
