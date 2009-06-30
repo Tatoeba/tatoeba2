@@ -17,7 +17,7 @@ if($session->read('Auth.User.id')){
 $key = isset($this->params['lang']) ? $this->params['lang'] : 'eng';
 echo $this->element('sentences_statistics', array('cache' => 
 		array(
-			'time' => '+12 hours', 
+			'time' => '+6 hours', 
 			'key' => $key
 		)
 	)
@@ -65,6 +65,7 @@ echo ' ';
 $tooltip->displayLogsColors();
 echo ' (';
 echo $html->link(__('show more...',true), array("controller"=>"contributions"));
+echo $html->link(__('activity timeline',true), array("controller"=>"contributions", "action"=>"activity_timeline"));
 echo ')</h2>';
 echo $this->element('latest_contributions');
 echo '</div>';
