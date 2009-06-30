@@ -1,0 +1,952 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# Generated from file: Revision: 7296 \webroot\test.php
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"POT-Creation-Date: 2009-06-30 21:13+0200\n"
+"PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
+"Last-Translator: NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: \app_controller.php:19
+msgid "You need to be logged in."
+msgstr "请先登录"
+
+#: \controllers\sentence_comments_controller.php:103
+msgid "Tatoeba - Comment on sentence : "
+msgstr "Tatoeba - 语句评论 ："
+
+#: \controllers\sentence_comments_controller.php:105
+msgid "%s has posted a comment one of your sentences."
+msgstr ""
+
+#: \controllers\sentence_comments_controller.php:107
+msgid "%s has posted a comment on a sentence where you also posted a comment."
+msgstr "%s 对你评论过的句子添加了评论。"
+
+#: \controllers\sentence_comments_controller.php:125
+msgid "Your comment has been saved."
+msgstr "你的评论已保存。"
+
+#: \controllers\sentences_controller.php:105
+msgid "This sentence was not added by you. You can only edit sentences you have added."
+msgstr "对不起，你只能对由你添加的句子进行编辑。"
+
+#: \controllers\sentences_controller.php:114
+msgid "The sentence has been updated."
+msgstr "句子已更新。"
+
+#: \controllers\sentences_controller.php:177
+msgid "You are now the owner of this sentence and can modify it as you wish. It is your responsibility to make sure that it doesn't have any mistake and, if possible, is not linked to wrong translations."
+msgstr ""
+
+#: \controllers\sentences_controller.php:188
+msgid "You have abandonned your ownership for this sentence. Other people can now adopt it. If it was a mistake, you can just re-adopt it."
+msgstr "你放弃了对该句的所有权。现在其他人可以将其收为己有。如果这属于误操作，你只要重新收藏就行了。"
+
+#: \controllers\sentences_controller.php:245
+msgid "Tatoeba search : "
+msgstr "Tatoeba搜索："
+
+#: \controllers\sentences_controller.php:285
+msgid "Tatoeba search"
+msgstr ""
+
+#: \controllers\sentences_controller.php:383
+msgid "The languages have been saved."
+msgstr "语言已保存。"
+
+#: \controllers\sentences_controller.php:385
+msgid "A problem occured while trying to save."
+msgstr "保存时出现问题。"
+
+#: \controllers\sentences_controller.php:388
+msgid "There is nothing to save."
+msgstr "无需保存。"
+
+#: \controllers\users_controller.php:84
+msgid "Your account is not validated yet. You will not be able to add sentences, translate or post comments. To validate it, click on the link in the email that has been sent to you during your registration. You can have this email resent to you."
+msgstr "你的帐户还未生效。你还不能添加句子，翻译或发表评论。点击注册时你收到的邮件中的链接以激活。如果你未收到邮件，输入你的邮箱地址以便再次获取激活邮件。"
+
+#: \controllers\users_controller.php:121;163
+msgid "Tatoeba registration"
+msgstr "Tatoeba 注册"
+
+#: \controllers\users_controller.php:122;164
+msgid "Dear %s,"
+msgstr "亲爱的%s"
+
+#: \controllers\users_controller.php:124;166
+msgid "Welcome to Tatoeba and thank you for your interest in this project!"
+msgstr "欢迎使用Tatoeba，感谢你对该项目的关注！"
+
+#: \controllers\users_controller.php:126;168
+msgid "You can validate your registration by clicking on this link :"
+msgstr "点击链接以激活你的帐户："
+
+#: \controllers\users_controller.php:138
+msgid "Thank you for registering. To validate your registration, click on the link in the email that has been sent to you."
+msgstr "感谢你的注册。点击我们发给你的邮件中的链接以激活你的帐户。"
+
+#: \controllers\users_controller.php:144
+msgid "The code you entered did not match with the image, please try again."
+msgstr ""
+
+#: \controllers\users_controller.php:179
+msgid "The registration email has been resent."
+msgstr "激活邮件已经重新发到你的邮箱了。"
+
+#: \controllers\users_controller.php:183
+msgid "Your registration has already been validated. Try to login again."
+msgstr "你的注册已被激活。请重新尝试登陆。"
+
+#: \controllers\users_controller.php:189
+msgid "There is no user with this email : "
+msgstr "以下邮箱地址有误: "
+
+#: \controllers\users_controller.php:204
+msgid "Your registration is already validated."
+msgstr "你的注册激活了。"
+
+#: \controllers\users_controller.php:215
+msgid "Your registration has been validated."
+msgstr "你的注册已被激活。"
+
+#: \controllers\users_controller.php:217
+msgid "A problem occured. Your registration could not be validated."
+msgstr "错误：你的注册无法被激活。"
+
+#: \controllers\users_controller.php:220
+msgid "Non valid registration link."
+msgstr "注册链接无效。"
+
+#: \controllers\users_controller.php:240
+msgid "Tatoeba, new password"
+msgstr "Tatoeba新密码"
+
+#: \controllers\users_controller.php:241
+msgid "Your login : "
+msgstr "你的账户："
+
+#: \controllers\users_controller.php:244
+msgid "Your new password : "
+msgstr "你的新密码："
+
+#: \controllers\users_controller.php:255
+msgid "Your new password has been sent at "
+msgstr "你的新密码已经发送到 "
+
+#: \controllers\users_controller.php:261
+msgid "There is no registered user with this email : "
+msgstr "以下邮箱地址没有注册："
+
+#: \controllers\users_controller.php:284
+msgid "New password has been saved."
+msgstr "新密码已保存。"
+
+#: \controllers\users_controller.php:290
+msgid "Email saved : "
+msgstr "电子邮件保存为："
+
+#: \controllers\users_controller.php:303;309
+msgid "No changes have been applied."
+msgstr ""
+
+#: \controllers\users_controller.php:321
+msgid "No user with this username : "
+msgstr ""
+
+#: \controllers\users_controller.php:348
+msgid "No user with this id : "
+msgstr ""
+
+#: \views\contributions\index.ctp:2
+#: \views\helpers\tooltip.php:42
+msgid "sentence added"
+msgstr ""
+
+#: \views\contributions\index.ctp:3
+msgid "link added"
+msgstr ""
+
+#: \views\contributions\index.ctp:4
+#: \views\helpers\tooltip.php:52
+msgid "sentence modified"
+msgstr ""
+
+#: \views\contributions\show.ctp:2
+msgid "Logs for : "
+msgstr ""
+
+#: \views\contributions\show.ctp:19
+#: \views\helpers\sentences.php:277
+msgid "Logs"
+msgstr ""
+
+#: \views\contributions\show.ctp:31
+msgid "There is no log for this sentence"
+msgstr ""
+
+#: \views\contributions\statistics.ctp:5
+#: \views\users_statistics\index.ctp:101
+msgid "rank"
+msgstr ""
+
+#: \views\contributions\statistics.ctp:6
+msgid "username"
+msgstr ""
+
+#: \views\contributions\statistics.ctp:7
+msgid "member since"
+msgstr ""
+
+#: \views\contributions\statistics.ctp:8
+msgid "number of contributions"
+msgstr ""
+
+#: \views\elements\foot.ctp:12
+msgid "Contact me"
+msgstr ""
+
+#: \views\elements\foot.ctp:14
+msgid "Tatoeba Blog"
+msgstr "Tatoeba博客"
+
+
+#: \views\elements\foot.ctp:16
+#: \views\pages\home.ctp:44
+msgid "Downloads"
+msgstr "下载"
+
+#: \views\elements\foot.ctp:18
+msgid "Romaji & Furigana"
+msgstr ""
+
+#: \views\elements\menu.ctp:14
+msgid "Home"
+msgstr "首页"
+
+#: \views\elements\menu.ctp:15
+msgid "Browse"
+msgstr "浏览"
+
+
+#: \views\elements\menu.ctp:16
+msgid "Search"
+msgstr "搜索"
+
+#: \views\elements\menu.ctp:17
+msgid "Contribute"
+msgstr ""
+
+#: \views\elements\menu.ctp:18
+#: \views\helpers\sentences.php:266
+#: \views\sentence_comments\show.ctp:23
+#: \views\users\show.ctp:98
+msgid "Comments"
+msgstr "评论"
+
+#: \views\elements\menu.ctp:19
+msgid "Members"
+msgstr "会员"
+
+#: \views\elements\search_bar.ctp:11
+#: \views\helpers\languages.php:6
+msgid "English"
+msgstr "英语"
+
+#: \views\elements\search_bar.ctp:12
+#: \views\helpers\languages.php:7
+msgid "Japanese"
+msgstr "日语"
+
+#: \views\elements\search_bar.ctp:13
+#: \views\helpers\languages.php:8
+msgid "French"
+msgstr "法语"
+
+#: \views\elements\search_bar.ctp:14
+#: \views\helpers\languages.php:9
+msgid "German"
+msgstr "德语"
+
+#: \views\elements\search_bar.ctp:15
+#: \views\helpers\languages.php:10
+msgid "Spanish"
+msgstr "西班牙语"
+
+#: \views\elements\search_bar.ctp:16
+#: \views\helpers\languages.php:11
+msgid "Italian"
+msgstr "意大利语"
+
+#: \views\elements\search_bar.ctp:17
+#: \views\helpers\languages.php:18
+msgid "Indonesian"
+msgstr "印尼语"
+
+#: \views\elements\search_bar.ctp:18
+#: \views\helpers\languages.php:12
+msgid "Vietnamese"
+msgstr "越南语"
+
+#: \views\elements\search_bar.ctp:19
+#: \views\helpers\languages.php:19
+msgid "Portuguese"
+msgstr "葡萄牙语"
+
+#: \views\elements\search_bar.ctp:20
+#: \views\helpers\languages.php:13
+msgid "Russian"
+msgstr "俄语"
+
+#: \views\elements\search_bar.ctp:21
+#: \views\helpers\languages.php:14
+msgid "Chinese"
+msgstr "中文"
+
+#: \views\elements\search_bar.ctp:22
+#: \views\helpers\languages.php:15
+msgid "Korean"
+msgstr "韩语"
+
+#: \views\elements\search_bar.ctp:23
+#: \views\helpers\languages.php:16
+msgid "Dutch"
+msgstr "荷兰语"
+
+#: \views\elements\search_bar.ctp:31
+msgid "search"
+msgstr "搜索"
+
+#: \views\elements\search_bar.ctp:33
+msgid "show examples"
+msgstr "显示例子"
+
+#: \views\elements\sentences_statistics.ctp:8
+msgid "Number of sentences :"
+msgstr "句子数量："
+
+#: \views\elements\top1.ctp:14
+msgid "Log out"
+msgstr "退出"
+
+#: \views\elements\top1.ctp:26
+msgid "Visitor(s) : "
+msgstr ""
+
+#: \views\elements\top2.ctp:16
+msgid "Welcome"
+msgstr ""
+
+#: \views\elements\top2.ctp:22
+msgid "Edit my information"
+msgstr ""
+
+#: \views\elements\top2.ctp:29
+#: \views\users\login.ctp:20
+msgid "Log in"
+msgstr "登录"
+
+#: \views\elements\top2.ctp:38
+#: \views\users\register.ctp:12
+msgid "Register"
+msgstr "注册"
+
+#: \views\groups\index.ctp:48
+#: \views\helpers\navigation.php:18
+#: \views\users\all.ctp:14;50
+#: \views\users\index.ctp:8;69
+msgid "previous"
+msgstr "上一页"
+
+#: \views\groups\index.ctp:50
+#: \views\helpers\navigation.php:42
+#: \views\users\all.ctp:16;52
+#: \views\users\index.ctp:10;71
+msgid "next"
+msgstr "下一页"
+
+#: \views\helpers\comments.php:35
+msgid "Even though you can comment on the whole group of sentences, keep in mind that your comment will be <strong>linked only to the main sentence</strong> (at the top)."
+msgstr ""
+
+#: \views\helpers\comments.php:36
+msgid "Add a comment : "
+msgstr "添加评论："
+
+#: \views\helpers\date.php:27
+msgid "%s day(s) ago"
+msgstr "%s天前"
+
+#: \views\helpers\date.php:29
+msgid "%s hour(s) ago"
+msgstr "%s小时前"
+
+#: \views\helpers\date.php:31
+msgid "%s mn(s) ago"
+msgstr "%s分钟前"
+
+#: \views\helpers\languages.php:5
+msgid "Arabic"
+msgstr ""
+
+#: \views\helpers\languages.php:17
+msgid "Hebrew"
+msgstr ""
+
+#: \views\helpers\navigation.php:11
+msgid "Show sentence nº : "
+msgstr ""
+
+#: \views\helpers\navigation.php:12
+#: \views\helpers\sentences.php:171;216
+msgid "OK"
+msgstr "确认"
+
+#: \views\helpers\navigation.php:30;68
+msgid "random"
+msgstr "随机"
+
+#: \views\helpers\navigation.php:60
+msgid "Enter a username : "
+msgstr "输入用户名："
+
+#: \views\helpers\navigation.php:61
+msgid "show user"
+msgstr "显示用户"
+
+#: \views\helpers\navigation.php:80
+msgid "all"
+msgstr "所有"
+
+#: \views\helpers\sentences.php:22
+msgid "WARNING : the romaji is automatically generated and is not always reliable."
+msgstr ""
+
+#: \views\helpers\sentences.php:54
+msgid "This sentence does not belong to anyone, you can adopt it"
+msgstr ""
+
+#: \views\helpers\sentences.php:61
+msgid "This sentence belongs to :"
+msgstr ""
+
+#: \views\helpers\sentences.php:215
+msgid "Modification : "
+msgstr ""
+
+#: \views\helpers\sentences.php:248
+msgid "Translate"
+msgstr "翻译"
+
+#: \views\helpers\sentences.php:289
+msgid "Adopt"
+msgstr "收藏"
+
+#: \views\helpers\sentences.php:302
+msgid "Let go"
+msgstr ""
+
+#: \views\helpers\sentences.php:315
+msgid "Delete"
+msgstr "删除"
+
+#: \views\helpers\sentences.php:328
+msgid "belongs to "
+msgstr ""
+
+#: \views\helpers\tooltip.php:39
+msgid "Meaning of the colors :"
+msgstr ""
+
+#: \views\helpers\tooltip.php:47
+msgid "sentence deleted"
+msgstr ""
+
+#: \views\helpers\tooltip.php:62
+msgid "Whenever you add a sentence or a translation, <strong>you</strong> are the creator of the sentence. "
+msgstr ""
+
+#: \views\helpers\tooltip.php:63
+msgid "Other \"normal\" users cannot modify the sentences that <strong>you</strong> have added. "
+msgstr ""
+
+#: \views\helpers\tooltip.php:64
+msgid "But there are about <strong>300,000 sentences</strong> (which is a lot) that have been added by <strong>\"no one\"</strong> and these orphan sentences <strong>need a parent</strong>. "
+msgstr ""
+
+#: \views\helpers\tooltip.php:65
+msgid "Adopting sort of makes you the creator of the sentence (in other words, you can - but don't have to - modify it after the adoption)."
+msgstr ""
+
+#: \views\helpers\tooltip.php:69
+msgid "The goal is to find a <strong>parent for each sentence</strong> in Tatoeba, which is an important step towards <strong>improving the quality</strong> of the corpus. "
+msgstr ""
+
+#: \views\helpers\tooltip.php:70
+msgid "It is therefore preferable that you adopt a sentence that you can understand because in case it has a mistake, you will be able to correct it."
+msgstr ""
+
+#: \views\helpers\tooltip.php:72
+msgid "You can read more about it here : <a href=\"http://blog.tatoeba.org/2009/01/new-validation-system.html\">in English</a>, or <a href=\"http://blog.tatoeba.org/2009/01/nouveau-systme-de-validation.html\">in French</a>."
+msgstr ""
+
+#: \views\helpers\tooltip.php:74
+msgid "Get involved, adopt sentences!"
+msgstr ""
+
+#: \views\helpers\tooltip.php:79
+msgid "Let's suppose you translate an English sentence into French, and someone translate your French translation into Spanish. In short : English ==> French ==> Spanish."
+msgstr ""
+
+#: \views\helpers\tooltip.php:81
+msgid "The <strong>French</strong> sentence is a <strong>direct</strong> translation of the English sentence. The <strong>Spanish</strong> sentence is an <strong>indirect</strong> translation of the English sentence."
+msgstr ""
+
+#: \views\helpers\tooltip.php:85
+msgid "There is currently no way to \"upgrade\" an indirect translation into a direct translation. Also, note that for performance reasons, indirect translations are not always displayed, but only when you are viewing or translating a sentence."
+msgstr ""
+
+#: \views\helpers\tooltip.php:88
+msgid "Green : direct translation / Orange : indirect translation"
+msgstr ""
+
+#: \views\helpers\tooltip.php:92
+msgid "Your translation should be <strong>based on the main sentence</strong> (the one at the <strong>top</strong>)."
+msgstr ""
+
+#: \views\helpers\tooltip.php:94
+msgid "The other sentences <strong>below</strong> are displayed only so you know what <strong>translations</strong> have already been added."
+msgstr ""
+
+#: \views\helpers\tooltip.php:96
+msgid "If you understand better one of the translations, you can <strong>click</strong> on it to make it as the <strong>main sentence</strong>, and translate from there."
+msgstr ""
+
+#: \views\pages\contact.ctp:3
+msgid "Contact"
+msgstr ""
+
+#: \views\pages\contact.ctp:6
+msgid "If you would like to contact the author of this project (in other words me), feel free to drop an email at : "
+msgstr ""
+
+#: \views\pages\contribute.ctp:3
+msgid "How would you like to contribute?"
+msgstr ""
+
+#: \views\pages\contribute.ctp:7
+msgid "Add your own sentences"
+msgstr ""
+
+#: \views\pages\contribute.ctp:12
+#: \views\sentences\add.ctp:10
+msgid "Sentence : "
+msgstr ""
+
+#: \views\pages\contribute.ctp:21
+msgid "Translate existing sentences"
+msgstr ""
+
+#: \views\pages\contribute.ctp:24
+msgid "Choose the language you would like to translate from : "
+msgstr ""
+
+#: \views\pages\download-tatoeba-example-sentences.ctp:13
+msgid "Latest files"
+msgstr ""
+
+#: \views\pages\download-tatoeba-example-sentences.ctp:61;123;216
+msgid "File"
+msgstr ""
+
+#: \views\pages\download-tatoeba-example-sentences.ctp:62;124;217
+msgid "Sample"
+msgstr ""
+
+#: \views\pages\download-tatoeba-example-sentences.ctp:63;125;218
+msgid "Size"
+msgstr ""
+
+#: \views\pages\download-tatoeba-example-sentences.ctp:175
+msgid "Older files"
+msgstr ""
+
+#: \views\pages\home.ctp:2
+msgid "Tatoeba : Collecting example sentences"
+msgstr ""
+
+#: \views\pages\home.ctp:9
+msgid "The language of some the sentences you have added could not be detected. "
+msgstr ""
+
+#: \views\pages\home.ctp:10
+msgid "Click here."
+msgstr ""
+
+#: \views\pages\home.ctp:36
+msgid "Welcome on Tatoeba Project"
+msgstr ""
+
+#: \views\pages\home.ctp:40
+msgid "This project aims to build a multilingual aligned corpus. In other words, to collect sentences translated in several languages. "
+msgstr ""
+
+#: \views\pages\home.ctp:41
+msgid "Everyone can contribute! "
+msgstr ""
+
+#: \views\pages\home.ctp:42
+msgid "These sentences can be downloaded for free here : "
+msgstr ""
+
+#: \views\pages\home.ctp:53
+msgid "Random sentence"
+msgstr ""
+
+#: \views\pages\home.ctp:55
+msgid "show another"
+msgstr "另一句"
+
+#: \views\pages\home.ctp:63
+msgid "Latest contributions"
+msgstr ""
+
+#: \views\pages\home.ctp:67
+msgid "show more..."
+msgstr "更多..."
+
+#: \views\pages\home.ctp:69
+msgid "show activity timeline"
+msgstr ""
+
+#: \views\pages\home.ctp:76
+msgid "Latest comments"
+msgstr "最新评论"
+
+#: \views\pages\search.ctp:3
+msgid "Examples of search"
+msgstr ""
+
+#: \views\pages\search.ctp:7
+msgid "Search one word : "
+msgstr ""
+
+#: \views\pages\search.ctp:16
+msgid "This will search for sentences containing the word \"example\"."
+msgstr ""
+
+#: \views\pages\search.ctp:18
+msgid "Note that if you specify the language, the search will not always be an exact search. More concretely, if you are searching \"thinking\", and do NOT specify any language, it will return sentences with EXACTLY the word \"think\". But if you specify that the language is English, it will also return sentences with \"thinks\" and \"thinking\"."
+msgstr ""
+
+#: \views\pages\search.ctp:22
+msgid "Using quotes : "
+msgstr ""
+
+#: \views\pages\search.ctp:31
+msgid "This will search for sentences containing \"I would like\". If you remove the quotes, see below."
+msgstr ""
+
+#: \views\pages\search.ctp:35
+msgid "Search with OR operator : "
+msgstr ""
+
+#: \views\pages\search.ctp:44
+msgid "This will search for sentences containing \"would\" or \"like\". "
+msgstr ""
+
+#: \views\pages\search.ctp:45
+msgid "Words with <strong>3 characters or less are ignored</strong> if they are not inside of quotes, which is why \"I\" is not taken into account here."
+msgstr ""
+
+#: \views\pages\search.ctp:48
+msgid "Search with AND operator : "
+msgstr ""
+
+#: \views\pages\search.ctp:57
+msgid "This will search for sentences containing \"here\" and \"there\"."
+msgstr ""
+
+#: \views\pages\search.ctp:60
+msgid "Search with NOT operator : "
+msgstr ""
+
+#: \views\pages\search.ctp:69
+msgid "This will search for sentences containing \"here\" but not \"there\"."
+msgstr ""
+
+#: \views\pages\search.ctp:72
+msgid "Grouping : "
+msgstr ""
+
+#: \views\pages\search.ctp:81
+msgid "This will search for sentences containing \"like\" and \"television\", or \"like\" and \"sleep\"."
+msgstr ""
+
+#: \views\sentence_comments\add.ctp:2
+msgid "Add comment for sentence"
+msgstr ""
+
+#: \views\sentence_comments\index.ctp:7
+msgid "Other languages"
+msgstr ""
+
+#: \views\sentence_comments\index.ctp:42
+msgid "There are no comments in this language"
+msgstr "没有用该语言作的评论"
+
+#: \views\sentence_comments\show.ctp:2
+msgid "Comments on the sentence : "
+msgstr ""
+
+#: \views\sentence_comments\show.ctp:17
+msgid "Add a comment"
+msgstr "添加评论"
+
+#: \views\sentence_comments\show.ctp:25
+msgid "If you see any mistake, don't hesitate to post a comment about it!"
+msgstr ""
+
+#: \views\sentence_comments\show.ctp:40
+msgid "There are no comments for now."
+msgstr ""
+
+#: \views\sentences\add.ctp:5
+msgid "Add another sentence"
+msgstr ""
+
+#: \views\sentences\add.ctp:18
+msgid "Sentences added"
+msgstr ""
+
+#: \views\sentences\link.ctp:2
+msgid "Potential translations for : "
+msgstr ""
+
+#: \views\sentences\search.ctp:33
+msgid "No results for this search"
+msgstr ""
+
+#: \views\sentences\show.ctp:3
+msgid "Example sentence : "
+msgstr ""
+
+#: \views\sentences\show.ctp:29
+msgid "Sentence does not exist : "
+msgstr ""
+
+#: \views\sentences\show.ctp:35
+msgid "There is no sentence with id "
+msgstr ""
+
+#: \views\sentences\unknown_language.ctp:3
+msgid "Unknown language"
+msgstr "未知语言"
+
+#: \views\sentences\unknown_language.ctp:8
+msgid "The language of the following sentences could not be detected, you have to specify it manually. "
+msgstr ""
+
+#: \views\sentences\unknown_language.ctp:9
+msgid "If your language is not in the list, don't hesitate to contact me : trang.dictionary.project@gmail.com."
+msgstr ""
+
+#: \views\sentences\unknown_language.ctp:27
+msgid "save"
+msgstr "保存"
+
+#: \views\sentences\unknown_language.ctp:30
+msgid "You don't have any sentence which language is unknown."
+msgstr ""
+
+#: \views\tools\kakasi.ctp:3
+msgid "Convert Japanese text into romaji or furigana"
+msgstr ""
+
+#: \views\tools\kakasi.ctp:6
+msgid "Convert Japanese text into romaji or furigana (powered by <a target=\"_blank\" href=\"http://kakasi.namazu.org/\">KAKASI</a>)"
+msgstr ""
+
+#: \views\tools\kakasi.ctp:21
+msgid "Convert japanese text into : "
+msgstr "将日语转换成："
+
+#: \views\tools\kakasi.ctp:28
+msgid "Convert"
+msgstr "转换"
+
+#: \views\users\followers.ctp:9
+#: \views\users\show.ctp:45;64
+msgid "None"
+msgstr ""
+
+#: \views\users\login.ctp:6
+msgid "Click here to register"
+msgstr ""
+
+#: \views\users\login.ctp:15
+msgid "Username : "
+msgstr "用户名："
+
+#: \views\users\login.ctp:16
+msgid "Password : "
+msgstr "密码："
+
+#: \views\users\login.ctp:18
+msgid "Remember me"
+msgstr "保持登录状态"
+
+#: \views\users\login.ctp:24
+msgid "Password forgotten?"
+msgstr ""
+
+#: \views\users\my_profile.ctp:3
+msgid "You can change your information here"
+msgstr "你可以在这里修改你的信息"
+
+#: \views\users\my_profile.ctp:7
+msgid "Old password"
+msgstr "旧密码"
+
+#: \views\users\my_profile.ctp:8
+msgid "New password"
+msgstr "新密码"
+
+#: \views\users\my_profile.ctp:9
+msgid "Email"
+msgstr "电子邮件"
+
+#: \views\users\my_profile.ctp:10
+msgid "Save"
+msgstr "保存"
+
+#: \views\users\new_password.ctp:3
+msgid "Send new password"
+msgstr "发送新密码"
+
+#: \views\users\new_password.ctp:8
+#: \views\users\resend_registration_mail.ctp:8
+msgid "Send"
+msgstr "发送"
+
+#: \views\users\register.ctp:6
+msgid "Username :"
+msgstr "用户名："
+
+#: \views\users\register.ctp:7
+msgid "Password :"
+msgstr "密码："
+
+#: \views\users\register.ctp:8
+msgid "Email :"
+msgstr "电子邮件："
+
+#: \views\users\register.ctp:11
+msgid "Code displayed above :"
+msgstr ""
+
+#: \views\users\resend_registration_mail.ctp:3
+msgid "Resend registration email"
+msgstr "重新发送注册邮件"
+
+#: \views\users\show.ctp:2
+msgid "Tatoeba user : "
+msgstr ""
+
+#: \views\users\show.ctp:18
+msgid "Start following this person"
+msgstr ""
+
+#: \views\users\show.ctp:19
+msgid "Stop following this person"
+msgstr ""
+
+#: \views\users\show.ctp:26
+msgid "Member since : "
+msgstr ""
+
+#: \views\users\show.ctp:34
+msgid "Following"
+msgstr ""
+
+#: \views\users\show.ctp:53
+msgid "Followers"
+msgstr ""
+
+#: \views\users\show.ctp:72
+msgid "Contributions"
+msgstr ""
+
+#: \views\users\show.ctp:87
+msgid "Sentences"
+msgstr ""
+
+#: \views\users_statistics\index.ctp:4
+msgid "Your Statistics"
+msgstr ""
+
+#: \views\users_statistics\index.ctp:6
+msgid "Statistics for anonym users"
+msgstr ""
+
+#: \views\users_statistics\index.ctp:45
+msgid "Number of sentences added"
+msgstr ""
+
+#: \views\users_statistics\index.ctp:48
+msgid "Number of sentences modified"
+msgstr ""
+
+#: \views\users_statistics\index.ctp:51
+msgid "Number of sentences deleted"
+msgstr ""
+
+#: \views\users_statistics\index.ctp:54
+msgid "Number of corrections suggested"
+msgstr ""
+
+#: \views\users_statistics\index.ctp:57
+msgid "Number of links added"
+msgstr ""
+
+#: \views\users_statistics\index.ctp:59
+msgid "Whenever you translate a sentence, it counts as <strong>1 sentence</strong> added and <strong>2 links added</strong>."
+msgstr ""
+
+#: \views\users_statistics\index.ctp:62
+msgid "Number of links deleted"
+msgstr ""
+
+#: \views\users_statistics\index.ctp:77
+msgid "Total"
+msgstr ""
+
+#: \views\users_statistics\index.ctp:94
+msgid "Statistics of all contributors"
+msgstr ""
+
+#: \views\users_statistics\index.ctp:105
+msgid "user"
+msgstr ""
+
+#: \views\users_statistics\index.ctp:109
+msgid "total contributions"
+msgstr ""
+
+#: \views\users_statistics\index.ctp:124
+msgid "unknown"
+msgstr ""
+
+#: \webroot\test.php:101
+msgid "Debug setting does not allow access to this url."
+msgstr ""
+
