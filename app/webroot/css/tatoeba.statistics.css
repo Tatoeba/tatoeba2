@@ -85,74 +85,66 @@ width: 100%;
 color: #111111;
 }
 
-.logs_stats{
-text-align:center;
-float:left;
-padding: 5px;
-margin-right: 2px;
-margin-bottom: 2px;
-width: 70px;
+#timeline td{
+padding: 0px;
+border-bottom: 1px solid #FFFFFF;
 }
 
-.logs_stats strong{
-display:block;
-font-size: 150%;
+#timeline .date{
+text-align: right;
+padding-right: 5px;
 }
 
-#legend{
-overflow: hidden;
-width: 100%;
-margin: 20px 0px;
+#timeline .number{
+text-align: center;
+padding: 0px 5px;
+border-right: 1px solid #FFFFFF;
 }
 
-#legend div{
-width: 50px;
-float: left;
-text-align:center;
-padding: 5px;
-width: 55px;
+#timeline .logs_stats{
+height: 18px;
 }
 
 .color0{
-background: #EDF9FF;
+background: #CDF2F2;
 }
 
 .color1{
-background: #E2FFF0;
+background: #ADF2DA;
 }
 
 .color2{
-background: #D1FFD1;
+background: #89F289;
 }
 
 .color3{
-background: #D4FFBF;
+background: #99F256;
 }
 
 .color4{
-background: #E8FFBA;
+background: #CDF239;
 }
 
 .color5{
-background: #FFFFB2;
+background: #F2F212;
 }
 
 .color6{
-background:#FFE5B2;
+background:#F2D535;
 }
 
 .color7{
-background: #FFD8B2;
+background: #F2BA45;
 }
 
 .color8{
-background: #FFCCB2;
+background: #F2A554;
 }
 
 .color9{
-background: #FFBFB2;
+background: #F28D65;
 }
 
 .color10{
-background: #FF947F;
+background: #F24A09;
 }

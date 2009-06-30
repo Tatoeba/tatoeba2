@@ -3,28 +3,42 @@
 
 // should not be in view but never mind...
 function color($number){
-	if($number > 1000){
+	if($number > 500){
 		$color = 10;
 	}else{
-		$color = intval($number/1000);
+		$color = intval($number/50);
 	}
 	return $color;
 }
 
-echo '<div id="legend">';
-for($i=0; $i < 11; $i++){
-	echo '<div class="color'.$i.'">';
-	echo 100*$i.'+';
-	echo '</div>';
-}
-echo '</div>';
-
-echo '<div id="timeline">';
+$maxWidth = 600;
+$maxTotal = 0;
 foreach($stats as $stat){
-	echo '<div class="logs_stats color'.color($stat[0]['total']).'">';
-	echo $stat[0]['day'];
-	echo '<strong>'.$stat[0]['total'].'</strong>';
-	echo '</div>';
+	if($stat[0]['total'] > $maxTotal){
+		$maxTotal = $stat[0]['total'];
+	}
 }
-echo '</div>';
+
+echo '<table id="timeline">';
+foreach($stats as $stat){
+	$total = $stat[0]['total'];
+	$percent = $total / $maxTotal;
+	$width = intval($percent * $maxWidth);
+	$color = color($total);
+	
+	echo '<tr>';
+		echo '<td class="date">';
+		echo $stat[0]['day'];
+		echo '</td>';
+		
+		echo '<td class="number color'.$color.'">';
+		echo '<strong>'.$total.'</strong>';
+		echo '</td>';
+		
+		echo '<td class="line">';
+		echo '<div class="logs_stats color'.$color.'" style="width:'.$width.'px"></div>';
+		echo '</td>';
+	echo '</tr>';
+}
+echo '</table>';
 ?>
