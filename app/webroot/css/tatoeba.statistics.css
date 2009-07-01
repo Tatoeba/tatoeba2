@@ -82,69 +82,72 @@ background:transparent url(../img/zh.png) no-repeat scroll left center;
 #timeline{
 overflow: hidden;
 width: 100%;
-color: #111111;
 }
 
 #timeline td{
 padding: 0px;
-border-bottom: 1px solid #FFFFFF;
+border: 1px solid #FFFFFF;
 }
 
 #timeline .date{
 text-align: right;
 padding-right: 5px;
+color: #545454;
 }
 
 #timeline .number{
 text-align: center;
 padding: 0px 5px;
-border-right: 1px solid #FFFFFF;
+color: #111111;
+border-right: 1px solid #767676;
 }
 
 #timeline .logs_stats{
-height: 18px;
+height: 12px;
+border: 1px solid #c1c1c1;
+border-left: none;
 }
 
 .color0{
-background: #CDF2F2;
+background: #EDFFBE;
 }
 
 .color1{
-background: #ADF2DA;
+background: #EDFFBE;
 }
 
 .color2{
-background: #89F289;
+background: #EDFFBE;
 }
 
 .color3{
-background: #99F256;
+background: #DBEEAA;
 }
 
 .color4{
-background: #CDF239;
+background: #DBEEAA;
 }
 
 .color5{
-background: #F2F212;
+background: #B0C97C;
 }
 
 .color6{
-background:#F2D535;
+background: #B0C97C;
 }
 
 .color7{
-background: #F2BA45;
+background: #B0C97C;
 }
 
 .color8{
-background: #F2A554;
+background: #99B363;
 }
 
 .color9{
-background: #F28D65;
+background: #99B363;
 }
 
 .color10{
-background: #F24A09;
+background: #799242;
 }
