@@ -22,9 +22,15 @@ class User extends AppModel {
 			)
 		),
 		'password' => array(
-			'rule' => array('minLength', 4), 
-			'message' => 'Password must be at least two letters'
-		),
+			array (
+			        VALID_NOT_EMPTY,
+                                'message' => 'Password can\'t be empty'
+                              ), 
+                        array(
+				'rule' => array('minLength', 4), 
+				'message' => 'Password must be at least two letters'
+                             )
+                ),
 		'email' => array(
 			'email' => array(
 				'rule' => 'email', 
