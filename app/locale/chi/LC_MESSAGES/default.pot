@@ -25,7 +25,7 @@ msgstr "Tatoeba - 语句评论 ："
 
 #: \controllers\sentence_comments_controller.php:105
 msgid "%s has posted a comment one of your sentences."
-msgstr ""
+msgstr "%s对你的句子作了评论。"
 
 #: \controllers\sentence_comments_controller.php:107
 msgid "%s has posted a comment on a sentence where you also posted a comment."
@@ -45,11 +45,11 @@ msgstr "句子已更新。"
 
 #: \controllers\sentences_controller.php:177
 msgid "You are now the owner of this sentence and can modify it as you wish. It is your responsibility to make sure that it doesn't have any mistake and, if possible, is not linked to wrong translations."
-msgstr ""
+msgstr "现在该句归你所有，你可以任意对其进行修改。确保没有任何错误是你的责任，如果可能的话，不要让它和错误的翻译有关联。"
 
 #: \controllers\sentences_controller.php:188
 msgid "You have abandonned your ownership for this sentence. Other people can now adopt it. If it was a mistake, you can just re-adopt it."
-msgstr "你放弃了对该句的所有权。现在其他人可以将其收为己有。如果这属于误操作，你只要重新收藏就行了。"
+msgstr "你放弃了对该句的所有权。现在其他人可以将其收藏。如果这属于误操作，你只需重新收藏即可。"
 
 #: \controllers\sentences_controller.php:245
 msgid "Tatoeba search : "
@@ -57,7 +57,7 @@ msgstr "Tatoeba搜索："
 
 #: \controllers\sentences_controller.php:285
 msgid "Tatoeba search"
-msgstr ""
+msgstr "Tatoeba搜索"
 
 #: \controllers\sentences_controller.php:383
 msgid "The languages have been saved."
@@ -65,11 +65,11 @@ msgstr "语言已保存。"
 
 #: \controllers\sentences_controller.php:385
 msgid "A problem occured while trying to save."
-msgstr "保存时出现问题。"
+msgstr "尝试保存时出现问题。"
 
 #: \controllers\sentences_controller.php:388
 msgid "There is nothing to save."
-msgstr "无需保存。"
+msgstr "没有内容需要保存。"
 
 #: \controllers\users_controller.php:84
 msgid "Your account is not validated yet. You will not be able to add sentences, translate or post comments. To validate it, click on the link in the email that has been sent to you during your registration. You can have this email resent to you."
@@ -97,7 +97,7 @@ msgstr "感谢你的注册。点击我们发给你的邮件中的链接以激活
 
 #: \controllers\users_controller.php:144
 msgid "The code you entered did not match with the image, please try again."
-msgstr ""
+msgstr "你输入的验证码与图片不符，请重新尝试。"
 
 #: \controllers\users_controller.php:179
 msgid "The registration email has been resent."
@@ -109,7 +109,7 @@ msgstr "你的注册已被激活。请重新尝试登陆。"
 
 #: \controllers\users_controller.php:189
 msgid "There is no user with this email : "
-msgstr "以下邮箱地址有误: "
+msgstr "以下电子邮件有误: "
 
 #: \controllers\users_controller.php:204
 msgid "Your registration is already validated."
@@ -157,68 +157,67 @@ msgstr "电子邮件保存为："
 
 #: \controllers\users_controller.php:303;309
 msgid "No changes have been applied."
-msgstr ""
+msgstr "密码或电子邮件与原来的相符，未作更改。"
 
 #: \controllers\users_controller.php:321
 msgid "No user with this username : "
-msgstr ""
+msgstr "以下用户名不存在："
 
 #: \controllers\users_controller.php:348
 msgid "No user with this id : "
-msgstr ""
+msgstr "以下用户号码不存在："
 
 #: \views\contributions\index.ctp:2
 #: \views\helpers\tooltip.php:42
 msgid "sentence added"
-msgstr ""
+msgstr "添加的句子"
 
 #: \views\contributions\index.ctp:3
 msgid "link added"
-msgstr ""
+msgstr "添加的链接"
 
 #: \views\contributions\index.ctp:4
 #: \views\helpers\tooltip.php:52
 msgid "sentence modified"
-msgstr ""
+msgstr "修改的句子"
 
 #: \views\contributions\show.ctp:2
 msgid "Logs for : "
-msgstr ""
+msgstr "历史记录："
 
 #: \views\contributions\show.ctp:19
 #: \views\helpers\sentences.php:277
 msgid "Logs"
-msgstr ""
+msgstr "历史记录"
 
 #: \views\contributions\show.ctp:31
 msgid "There is no log for this sentence"
-msgstr ""
+msgstr "没有关于该句的历史记录。"
 
 #: \views\contributions\statistics.ctp:5
 #: \views\users_statistics\index.ctp:101
 msgid "rank"
-msgstr ""
+msgstr "排行"
 
 #: \views\contributions\statistics.ctp:6
 msgid "username"
-msgstr ""
+msgstr "用户名"
 
 #: \views\contributions\statistics.ctp:7
 msgid "member since"
-msgstr ""
+msgstr "注册时间"
 
 #: \views\contributions\statistics.ctp:8
 msgid "number of contributions"
-msgstr ""
+msgstr "活动数量"
 
 #: \views\elements\foot.ctp:12
 msgid "Contact me"
-msgstr ""
+msgstr "联系我们"
 
 #: \views\elements\foot.ctp:14
 msgid "Tatoeba Blog"
 msgstr "Tatoeba博客"
-
 
 #: \views\elements\foot.ctp:16
 #: \views\pages\home.ctp:44
@@ -227,7 +226,7 @@ msgstr "下载"
 
 #: \views\elements\foot.ctp:18
 msgid "Romaji & Furigana"
-msgstr ""
+msgstr "罗马字及振假名"
 
 #: \views\elements\menu.ctp:14
 msgid "Home"
@@ -237,14 +236,13 @@ msgstr "首页"
 msgid "Browse"
 msgstr "浏览"
 
-
 #: \views\elements\menu.ctp:16
 msgid "Search"
 msgstr "搜索"
 
 #: \views\elements\menu.ctp:17
 msgid "Contribute"
-msgstr ""
+msgstr "我要出力"
 
 #: \views\elements\menu.ctp:18
 #: \views\helpers\sentences.php:266
@@ -255,7 +253,7 @@ msgstr "评论"
 
 #: \views\elements\menu.ctp:19
 msgid "Members"
-msgstr "会员"
+msgstr "成员"
 
 #: \views\elements\search_bar.ctp:11
 #: \views\helpers\languages.php:6
@@ -340,15 +338,15 @@ msgstr "退出"
 
 #: \views\elements\top1.ctp:26
 msgid "Visitor(s) : "
-msgstr ""
+msgstr "在线人数："
 
 #: \views\elements\top2.ctp:16
 msgid "Welcome"
-msgstr ""
+msgstr "欢迎"
 
 #: \views\elements\top2.ctp:22
 msgid "Edit my information"
-msgstr ""
+msgstr "编辑个人信息"
 
 #: \views\elements\top2.ctp:29
 #: \views\users\login.ctp:20
@@ -365,18 +363,18 @@ msgstr "注册"
 #: \views\users\all.ctp:14;50
 #: \views\users\index.ctp:8;69
 msgid "previous"
-msgstr "上一页"
+msgstr "上一句"
 
 #: \views\groups\index.ctp:50
 #: \views\helpers\navigation.php:42
 #: \views\users\all.ctp:16;52
 #: \views\users\index.ctp:10;71
 msgid "next"
-msgstr "下一页"
+msgstr "下一句"
 
 #: \views\helpers\comments.php:35
 msgid "Even though you can comment on the whole group of sentences, keep in mind that your comment will be <strong>linked only to the main sentence</strong> (at the top)."
-msgstr ""
+msgstr "尽管你可以对整组句子进行评论，但是你的评论只会与<strong>（置顶的）主句相关联</strong>。"
 
 #: \views\helpers\comments.php:36
 msgid "Add a comment : "
@@ -396,15 +394,15 @@ msgstr "%s分钟前"
 
 #: \views\helpers\languages.php:5
 msgid "Arabic"
-msgstr ""
+msgstr "阿拉伯语"
 
 #: \views\helpers\languages.php:17
 msgid "Hebrew"
-msgstr ""
+msgstr "希伯来语"
 
 #: \views\helpers\navigation.php:11
 msgid "Show sentence nº : "
-msgstr ""
+msgstr "显示句子号码："
 
 #: \views\helpers\navigation.php:12
 #: \views\helpers\sentences.php:171;216
@@ -421,27 +419,27 @@ msgstr "输入用户名："
 
 #: \views\helpers\navigation.php:61
 msgid "show user"
-msgstr "显示用户"
+msgstr "显示该用户动态"
 
 #: \views\helpers\navigation.php:80
 msgid "all"
-msgstr "所有"
+msgstr "所有用户"
 
 #: \views\helpers\sentences.php:22
 msgid "WARNING : the romaji is automatically generated and is not always reliable."
-msgstr ""
+msgstr "注意：罗马字是自动生成的，无法保证绝对正确。"
 
 #: \views\helpers\sentences.php:54
 msgid "This sentence does not belong to anyone, you can adopt it"
-msgstr ""
+msgstr "该句子不属于任何人，你可以收藏它"
 
 #: \views\helpers\sentences.php:61
 msgid "This sentence belongs to :"
-msgstr ""
+msgstr "该句属于："
 
 #: \views\helpers\sentences.php:215
 msgid "Modification : "
-msgstr ""
+msgstr "修改："
 
 #: \views\helpers\sentences.php:248
 msgid "Translate"
@@ -453,7 +451,7 @@ msgstr "收藏"
 
 #: \views\helpers\sentences.php:302
 msgid "Let go"
-msgstr ""
+msgstr "放弃收藏"
 
 #: \views\helpers\sentences.php:315
 msgid "Delete"
@@ -461,156 +459,156 @@ msgstr "删除"
 
 #: \views\helpers\sentences.php:328
 msgid "belongs to "
-msgstr ""
+msgstr "属于"
 
 #: \views\helpers\tooltip.php:39
 msgid "Meaning of the colors :"
-msgstr ""
+msgstr "颜色属性："
 
 #: \views\helpers\tooltip.php:47
 msgid "sentence deleted"
-msgstr ""
+msgstr "删除的句子"
 
 #: \views\helpers\tooltip.php:62
 msgid "Whenever you add a sentence or a translation, <strong>you</strong> are the creator of the sentence. "
-msgstr ""
+msgstr "每次你添加或翻译句子的时候，<strong>你</strong>就成为了这句句子的所有者。"
 
 #: \views\helpers\tooltip.php:63
 msgid "Other \"normal\" users cannot modify the sentences that <strong>you</strong> have added. "
-msgstr ""
+msgstr "其他\"普通\"用户无法修改由<strong>你</strong>添加的句子。"
 
 #: \views\helpers\tooltip.php:64
 msgid "But there are about <strong>300,000 sentences</strong> (which is a lot) that have been added by <strong>\"no one\"</strong> and these orphan sentences <strong>need a parent</strong>. "
-msgstr ""
+msgstr "但是大约有<strong>30万句句子</strong>(数量庞大)是由<strong>\"无名氏\"</strong>添加的，而且这些\"孤儿\"<strong>需要\"父母\"</strong>"
 
 #: \views\helpers\tooltip.php:65
-msgid "Adopting sort of makes you the creator of the sentence (in other words, you can - but don't have to - modify it after the adoption)."
-msgstr ""
+msgid "Adopting makes you sort of the creator of the sentence (in other words, you can - but don't have to - modify it after the adoption)."
+msgstr "收藏可以说使你成为了句子的创始人(换句话说，在收藏后，你可以但不是必须要修改它)。"
 
 #: \views\helpers\tooltip.php:69
 msgid "The goal is to find a <strong>parent for each sentence</strong> in Tatoeba, which is an important step towards <strong>improving the quality</strong> of the corpus. "
-msgstr ""
+msgstr "我们的目标是为Tatoeba上的每句句子找到一个<strong>\"监护人\"</strong>，这是<strong>提高语言素材库质量</strong>的一个重要步骤。"
 
 #: \views\helpers\tooltip.php:70
 msgid "It is therefore preferable that you adopt a sentence that you can understand because in case it has a mistake, you will be able to correct it."
-msgstr ""
+msgstr "因此你最好收藏一句你能理解的句子，以为万一它是错的，你可以纠正它。"
 
 #: \views\helpers\tooltip.php:72
 msgid "You can read more about it here : <a href=\"http://blog.tatoeba.org/2009/01/new-validation-system.html\">in English</a>, or <a href=\"http://blog.tatoeba.org/2009/01/nouveau-systme-de-validation.html\">in French</a>."
-msgstr ""
+msgstr "想要了解更多，请参见<a href=\"http://blog.tatoeba.org/2009/01/new-validation-system.html\">英语版</a>，或<a href=\"http://blog.tatoeba.org/2009/01/nouveau-systme-de-validation.html\">法语版</a>。"
 
 #: \views\helpers\tooltip.php:74
 msgid "Get involved, adopt sentences!"
-msgstr ""
+msgstr "加入我们的行列，收藏句子乐无穷！"
 
 #: \views\helpers\tooltip.php:79
 msgid "Let's suppose you translate an English sentence into French, and someone translate your French translation into Spanish. In short : English ==> French ==> Spanish."
-msgstr ""
+msgstr "假设你把一句英语句子翻成法语，有人将你的法语句子翻成西班牙语。简单地说，也就是英语==>法语==>西班牙语。"
 
 #: \views\helpers\tooltip.php:81
 msgid "The <strong>French</strong> sentence is a <strong>direct</strong> translation of the English sentence. The <strong>Spanish</strong> sentence is an <strong>indirect</strong> translation of the English sentence."
-msgstr ""
+msgstr "这句<strong>法语</strong>句子是英语句子的<strong>直接</strong>翻译，而那句<strong>西班牙语</strong>句子就是英语句子的<strong>间接</strong>翻译。"
 
 #: \views\helpers\tooltip.php:85
 msgid "There is currently no way to \"upgrade\" an indirect translation into a direct translation. Also, note that for performance reasons, indirect translations are not always displayed, but only when you are viewing or translating a sentence."
-msgstr ""
+msgstr "目前我们还没有办法将间接翻译\"升级\"为直接翻译。另外请注意，由于性能的关系，间接翻译只有在你查看或翻译一句句子的时候才会被显示。"
 
 #: \views\helpers\tooltip.php:88
 msgid "Green : direct translation / Orange : indirect translation"
-msgstr ""
+msgstr "绿色：直接翻译 / 橙色：简介翻译"
 
 #: \views\helpers\tooltip.php:92
 msgid "Your translation should be <strong>based on the main sentence</strong> (the one at the <strong>top</strong>)."
-msgstr ""
+msgstr "你的翻译会<strong>建立在(置顶的)主句上</strong>。"
 
 #: \views\helpers\tooltip.php:94
-msgid "The other sentences <strong>below</strong> are displayed only so you know what <strong>translations</strong> have already been added."
-msgstr ""
+msgid "The other sentences <strong>below</strong> are displayed only to make you know what <strong>translations</strong> have already been added."
+msgstr "显示在<strong>下面</strong>的句子只是为了让你知道已经添加了哪些<strong>翻译</strong>。"
 
 #: \views\helpers\tooltip.php:96
 msgid "If you understand better one of the translations, you can <strong>click</strong> on it to make it as the <strong>main sentence</strong>, and translate from there."
-msgstr ""
+msgstr "你可以<strong>点击</strong>你比较了解的那句句子作为<strong>主句</strong>，并且对它进行翻译。"
 
 #: \views\pages\contact.ctp:3
 msgid "Contact"
-msgstr ""
+msgstr "联系方式"
 
 #: \views\pages\contact.ctp:6
 msgid "If you would like to contact the author of this project (in other words me), feel free to drop an email at : "
-msgstr ""
+msgstr "如果你想联系该项目的作者（也就是我），你可以发邮件至："
 
 #: \views\pages\contribute.ctp:3
 msgid "How would you like to contribute?"
-msgstr ""
+msgstr "你想如何出力？"
 
 #: \views\pages\contribute.ctp:7
 msgid "Add your own sentences"
-msgstr ""
+msgstr "添加你自己的句子"
 
 #: \views\pages\contribute.ctp:12
 #: \views\sentences\add.ctp:10
 msgid "Sentence : "
-msgstr ""
+msgstr "句子："
 
 #: \views\pages\contribute.ctp:21
 msgid "Translate existing sentences"
-msgstr ""
+msgstr "翻译现有句子"
 
 #: \views\pages\contribute.ctp:24
 msgid "Choose the language you would like to translate from : "
-msgstr ""
+msgstr "选择你想要翻译的语言："
 
 #: \views\pages\download-tatoeba-example-sentences.ctp:13
 msgid "Latest files"
-msgstr ""
+msgstr "最新下载"
 
 #: \views\pages\download-tatoeba-example-sentences.ctp:61;123;216
 msgid "File"
-msgstr ""
+msgstr "名称"
 
 #: \views\pages\download-tatoeba-example-sentences.ctp:62;124;217
 msgid "Sample"
-msgstr ""
+msgstr "示例"
 
 #: \views\pages\download-tatoeba-example-sentences.ctp:63;125;218
 msgid "Size"
-msgstr ""
+msgstr "大小"
 
 #: \views\pages\download-tatoeba-example-sentences.ctp:175
 msgid "Older files"
-msgstr ""
+msgstr "更多下载"
 
 #: \views\pages\home.ctp:2
 msgid "Tatoeba : Collecting example sentences"
-msgstr ""
+msgstr "Tatoeba：收藏例句"
 
 #: \views\pages\home.ctp:9
-msgid "The language of some the sentences you have added could not be detected. "
-msgstr ""
+msgid "The language of some of the sentences you have added could not be detected. "
+msgstr "你添加的某些句子的语言无法被识别。"
 
 #: \views\pages\home.ctp:10
 msgid "Click here."
-msgstr ""
+msgstr "点击此处。"
 
 #: \views\pages\home.ctp:36
 msgid "Welcome on Tatoeba Project"
-msgstr ""
+msgstr "欢迎使用Tatoeba"
 
 #: \views\pages\home.ctp:40
 msgid "This project aims to build a multilingual aligned corpus. In other words, to collect sentences translated in several languages. "
-msgstr ""
+msgstr "该项目旨在建立一个多语相关的语言素材库。换言之，也就是为了便于大家收藏翻译成各种语言的句子。"
 
 #: \views\pages\home.ctp:41
 msgid "Everyone can contribute! "
-msgstr ""
+msgstr "人人都可以出一份力！"
 
 #: \views\pages\home.ctp:42
 msgid "These sentences can be downloaded for free here : "
-msgstr ""
+msgstr "这些句子可以在这里免费"
 
 #: \views\pages\home.ctp:53
 msgid "Random sentence"
-msgstr ""
+msgstr "随机句子"
 
 #: \views\pages\home.ctp:55
 msgid "show another"
@@ -618,7 +616,7 @@ msgstr "另一句"
 
 #: \views\pages\home.ctp:63
 msgid "Latest contributions"
-msgstr ""
+msgstr "最新动态"
 
 #: \views\pages\home.ctp:67
 msgid "show more..."
@@ -626,7 +624,7 @@ msgstr "更多..."
 
 #: \views\pages\home.ctp:69
 msgid "show activity timeline"
-msgstr ""
+msgstr "数据统计"
 
 #: \views\pages\home.ctp:76
 msgid "Latest comments"
@@ -634,79 +632,79 @@ msgstr "最新评论"
 
 #: \views\pages\search.ctp:3
 msgid "Examples of search"
-msgstr ""
+msgstr "搜索演示"
 
 #: \views\pages\search.ctp:7
 msgid "Search one word : "
-msgstr ""
+msgstr "搜索一个词："
 
 #: \views\pages\search.ctp:16
 msgid "This will search for sentences containing the word \"example\"."
-msgstr ""
+msgstr "这将会搜索带有\"example\"这个词的句子。"
 
 #: \views\pages\search.ctp:18
 msgid "Note that if you specify the language, the search will not always be an exact search. More concretely, if you are searching \"thinking\", and do NOT specify any language, it will return sentences with EXACTLY the word \"think\". But if you specify that the language is English, it will also return sentences with \"thinks\" and \"thinking\"."
-msgstr ""
+msgstr "注意：如果你指定了语言，搜索并不总是准确的搜索。具体来说，如果你搜索\"thinking\"的时候, 没有指定任何语言，它将确切地链接到带有\"think\"这个词的句子。但如果你把语言指定为英语，它也会链接到带有\"thinks\"和\"thinking\"的句子。"
 
 #: \views\pages\search.ctp:22
 msgid "Using quotes : "
-msgstr ""
+msgstr "使用引号："
 
 #: \views\pages\search.ctp:31
 msgid "This will search for sentences containing \"I would like\". If you remove the quotes, see below."
-msgstr ""
+msgstr "这将会搜索包含\"I would like\"的句子。如果去掉引号，解释如下。"
 
 #: \views\pages\search.ctp:35
 msgid "Search with OR operator : "
-msgstr ""
+msgstr "OR搜索功能："
 
 #: \views\pages\search.ctp:44
 msgid "This will search for sentences containing \"would\" or \"like\". "
-msgstr ""
+msgstr "这将会搜索包含\"would\"或\"like\"的句子。"
 
 #: \views\pages\search.ctp:45
 msgid "Words with <strong>3 characters or less are ignored</strong> if they are not inside of quotes, which is why \"I\" is not taken into account here."
-msgstr ""
+msgstr "如果没有引号，由<strong>3个或3个以下字母</strong>构成的词就会被忽略不计，这也就是为何\"I\"没有被考虑在内。"
 
 #: \views\pages\search.ctp:48
 msgid "Search with AND operator : "
-msgstr ""
+msgstr "AND搜索功能："
 
 #: \views\pages\search.ctp:57
 msgid "This will search for sentences containing \"here\" and \"there\"."
-msgstr ""
+msgstr "这将会搜索包含\"here\"和\"there\"的句子。"
 
 #: \views\pages\search.ctp:60
 msgid "Search with NOT operator : "
-msgstr ""
+msgstr "NOT搜索功能："
 
 #: \views\pages\search.ctp:69
 msgid "This will search for sentences containing \"here\" but not \"there\"."
-msgstr ""
+msgstr "这将会搜索包含\"here\"而非\"there\"的句子。"
 
 #: \views\pages\search.ctp:72
 msgid "Grouping : "
-msgstr ""
+msgstr "组合式搜索："
 
 #: \views\pages\search.ctp:81
 msgid "This will search for sentences containing \"like\" and \"television\", or \"like\" and \"sleep\"."
-msgstr ""
+msgstr "这将会搜索包含\"like\"和\"television\"，或者\"like\"和\"sleep\"的句子。"
 
 #: \views\sentence_comments\add.ctp:2
 msgid "Add comment for sentence"
-msgstr ""
+msgstr "为句子添加评论"
 
 #: \views\sentence_comments\index.ctp:7
 msgid "Other languages"
-msgstr ""
+msgstr "其他语言"
 
 #: \views\sentence_comments\index.ctp:42
 msgid "There are no comments in this language"
-msgstr "没有用该语言作的评论"
+msgstr "没有用该语言进行的评论"
 
 #: \views\sentence_comments\show.ctp:2
 msgid "Comments on the sentence : "
-msgstr ""
+msgstr "句子评论："
 
 #: \views\sentence_comments\show.ctp:17
 msgid "Add a comment"
@@ -714,51 +712,51 @@ msgstr "添加评论"
 
 #: \views\sentence_comments\show.ctp:25
 msgid "If you see any mistake, don't hesitate to post a comment about it!"
-msgstr ""
+msgstr "如果你发现任何错误，不要犹豫对其发表评论！"
 
 #: \views\sentence_comments\show.ctp:40
 msgid "There are no comments for now."
-msgstr ""
+msgstr "目前没有评论。"
 
 #: \views\sentences\add.ctp:5
 msgid "Add another sentence"
-msgstr ""
+msgstr "添加另一句"
 
 #: \views\sentences\add.ctp:18
 msgid "Sentences added"
-msgstr ""
+msgstr "添加的句子"
 
 #: \views\sentences\link.ctp:2
 msgid "Potential translations for : "
-msgstr ""
+msgstr "参考："
 
 #: \views\sentences\search.ctp:33
 msgid "No results for this search"
-msgstr ""
+msgstr "没有搜索到相应的结果"
 
 #: \views\sentences\show.ctp:3
 msgid "Example sentence : "
-msgstr ""
+msgstr "例句："
 
 #: \views\sentences\show.ctp:29
 msgid "Sentence does not exist : "
-msgstr ""
+msgstr "以下句子不存在："
 
 #: \views\sentences\show.ctp:35
 msgid "There is no sentence with id "
-msgstr ""
+msgstr "没有找到关于以下用户号码的句子"
 
 #: \views\sentences\unknown_language.ctp:3
-msgid "Unknown language"
-msgstr "未知语言"
+msgid "Unknown language."
+msgstr "语言无法识别。"
 
 #: \views\sentences\unknown_language.ctp:8
 msgid "The language of the following sentences could not be detected, you have to specify it manually. "
-msgstr ""
+msgstr "以下句子的语言无法被识别，你必须手动设置。"
 
 #: \views\sentences\unknown_language.ctp:9
 msgid "If your language is not in the list, don't hesitate to contact me : trang.dictionary.project@gmail.com."
-msgstr ""
+msgstr "如果列表中没有你的语言，请直接与我联系：trang.dictionary.project@gmail.com."
 
 #: \views\sentences\unknown_language.ctp:27
 msgid "save"
@@ -766,15 +764,15 @@ msgstr "保存"
 
 #: \views\sentences\unknown_language.ctp:30
 msgid "You don't have any sentence which language is unknown."
-msgstr ""
+msgstr "你没有任何语言无法被识别的句子。"
 
 #: \views\tools\kakasi.ctp:3
 msgid "Convert Japanese text into romaji or furigana"
-msgstr ""
+msgstr "将日语转换成罗马字或振假名"
 
 #: \views\tools\kakasi.ctp:6
 msgid "Convert Japanese text into romaji or furigana (powered by <a target=\"_blank\" href=\"http://kakasi.namazu.org/\">KAKASI</a>)"
-msgstr ""
+msgstr "将日语转换成罗马字或振假名(powered by <a target=\"_blank\" href=\"http://kakasi.namazu.org/\">KAKASI</a>)"
 
 #: \views\tools\kakasi.ctp:21
 msgid "Convert japanese text into : "
@@ -787,11 +785,11 @@ msgstr "转换"
 #: \views\users\followers.ctp:9
 #: \views\users\show.ctp:45;64
 msgid "None"
-msgstr ""
+msgstr "无"
 
 #: \views\users\login.ctp:6
 msgid "Click here to register"
-msgstr ""
+msgstr "点击这里注册"
 
 #: \views\users\login.ctp:15
 msgid "Username : "
@@ -803,11 +801,11 @@ msgstr "密码："
 
 #: \views\users\login.ctp:18
 msgid "Remember me"
-msgstr "保持登录状态"
+msgstr "记住登录状态"
 
 #: \views\users\login.ctp:24
 msgid "Password forgotten?"
-msgstr ""
+msgstr "忘记密码？"
 
 #: \views\users\my_profile.ctp:3
 msgid "You can change your information here"
@@ -852,101 +850,101 @@ msgstr "电子邮件："
 
 #: \views\users\register.ctp:11
 msgid "Code displayed above :"
-msgstr ""
+msgstr "输入验证码："
 
 #: \views\users\resend_registration_mail.ctp:3
 msgid "Resend registration email"
-msgstr "重新发送注册邮件"
+msgstr "重新发送激活邮件"
 
 #: \views\users\show.ctp:2
 msgid "Tatoeba user : "
-msgstr ""
+msgstr "Tatoeba用户："
 
 #: \views\users\show.ctp:18
 msgid "Start following this person"
-msgstr ""
+msgstr "开始关注此人动态"
 
 #: \views\users\show.ctp:19
 msgid "Stop following this person"
-msgstr ""
+msgstr "停止关注此人动态"
 
 #: \views\users\show.ctp:26
 msgid "Member since : "
-msgstr ""
+msgstr "注册日期"
 
 #: \views\users\show.ctp:34
 msgid "Following"
-msgstr ""
+msgstr "你关注的人"
 
 #: \views\users\show.ctp:53
 msgid "Followers"
-msgstr ""
+msgstr "关注你的人"
 
 #: \views\users\show.ctp:72
 msgid "Contributions"
-msgstr ""
+msgstr "动态"
 
 #: \views\users\show.ctp:87
 msgid "Sentences"
-msgstr ""
+msgstr "句子"
 
 #: \views\users_statistics\index.ctp:4
 msgid "Your Statistics"
-msgstr ""
+msgstr "你的统计"
 
 #: \views\users_statistics\index.ctp:6
 msgid "Statistics for anonym users"
-msgstr ""
+msgstr "匿名用户统计"
 
 #: \views\users_statistics\index.ctp:45
 msgid "Number of sentences added"
-msgstr ""
+msgstr "添加句子数量"
 
 #: \views\users_statistics\index.ctp:48
 msgid "Number of sentences modified"
-msgstr ""
+msgstr "修改句子数量"
 
 #: \views\users_statistics\index.ctp:51
 msgid "Number of sentences deleted"
-msgstr ""
+msgstr "删除句子数量"
 
 #: \views\users_statistics\index.ctp:54
 msgid "Number of corrections suggested"
-msgstr ""
+msgstr "建议修改数量"
 
 #: \views\users_statistics\index.ctp:57
 msgid "Number of links added"
-msgstr ""
+msgstr "添加链接数量"
 
 #: \views\users_statistics\index.ctp:59
 msgid "Whenever you translate a sentence, it counts as <strong>1 sentence</strong> added and <strong>2 links added</strong>."
-msgstr ""
+msgstr "每次你翻译一句句子，将被视为添加了<strong>1句句子</strong>和<strong>2个链接</strong>。"
 
 #: \views\users_statistics\index.ctp:62
 msgid "Number of links deleted"
-msgstr ""
+msgstr "删除链接数量"
 
 #: \views\users_statistics\index.ctp:77
 msgid "Total"
-msgstr ""
+msgstr "总计"
 
 #: \views\users_statistics\index.ctp:94
 msgid "Statistics of all contributors"
-msgstr ""
+msgstr "所有用户统计"
 
 #: \views\users_statistics\index.ctp:105
 msgid "user"
-msgstr ""
+msgstr "用户"
 
 #: \views\users_statistics\index.ctp:109
 msgid "total contributions"
-msgstr ""
+msgstr "所有动态"
 
 #: \views\users_statistics\index.ctp:124
 msgid "unknown"
-msgstr ""
+msgstr "未知"
 
 #: \webroot\test.php:101
 msgid "Debug setting does not allow access to this url."
-msgstr ""
+msgstr "调试设置不允许访问此网址。"
 
