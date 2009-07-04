@@ -33,8 +33,8 @@ if (isset($this->params['lang'])) {
 	<?php
 	$languages = array(
 		'eng' => 'English', 
-		'fre' => 'Français'
-		//, 
+		'fre' => 'Français', 
+		'chi' => '中文'
 		//'spa' => 'Español', 
 		//'jpn' => '日本語',
 		//'deu' => 'Deutsch',
