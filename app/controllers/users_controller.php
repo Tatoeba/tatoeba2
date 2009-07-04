@@ -401,6 +401,21 @@ class UsersController extends AppController {
 		$user_id = $_POST['user_id'];
 		$this->User->habtmDelete('Follower', $user_id, $follower_id); 
 	}
+        //check if the username already exist or not
+        function check_username(){
+		
+		$user = $this->User->findByUsername($username);
+		//$user.validates();
+		if($user != null){
+	        
+		}else{
+
+		}
+        }
+
+        function check_email($username){
+
+        }
 	
 	// temporary function to grant/deny access
 	function initDB() {

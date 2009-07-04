@@ -34,7 +34,7 @@ new function() {
             } else {
 	
              doError(o);
-             // __('username should be longer than 2 characters, and you can only use letters and \'_\'')
+             // __()
             };
 
         },
@@ -84,7 +84,8 @@ new function() {
 
 function doSuccess(o) {
       // add something visible ( a "ok" picture ?)
-      alert ('good :-)');
+      //alert ('good :-)');
+       $('#' + o.id +'_error').html('');
 };
 
 
@@ -92,14 +93,25 @@ function doSuccess(o) {
 function doError(o) {
 
       // display error text
-      alert ('wrong :-(');
+      //alert ('wrong :-(');
+
+          if(o.name == 'data[User][username]') { var error_text = 'Username can only contain letters, numbers, or underscore' };
+
+
+          if(o.name == 'data[User][password]') { var error_text = 'Password must be at least two letters' };
+
+          if(o.name == 'data[User][email]') { var error_text = 'Non valid email' };
+          $('#'+ o.id +'_error').html(error_text);
+
 };
 
      
 // this function check the data in the database
 function doValidate(o) {
-
-
+  
+  if(o.name == 'data[User][username]') {  $('#' + o.id +'_error').load("http://" + self.location.hostname + "/users/check_email/" + o.value) } ;
+  if(o.name == 'data[User][email]') { $('#' + o.id +'_error').load("http://" + self.location.hostname + "/users/check_email/" + o.value) } ;
+  // add load() ajax function  The URL would be : "http://" + self.location.hostname + "/users/check_username/" + username
   //TODO add a 
 
   doSuccess(o);
