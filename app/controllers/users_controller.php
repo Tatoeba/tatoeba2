@@ -402,15 +402,12 @@ class UsersController extends AppController {
 		$this->User->habtmDelete('Follower', $user_id, $follower_id); 
 	}
         //check if the username already exist or not
-        function check_username(){
+        function check_username($username){
 		
 		$user = $this->User->findByUsername($username);
-		//$user.validates();
-		if($user != null){
-	        
-		}else{
+		$this->set('data' , $user);
+		
 
-		}
         }
 
         function check_email($username){

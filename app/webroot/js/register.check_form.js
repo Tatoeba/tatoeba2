@@ -16,11 +16,11 @@ new function() {
 
           if(o.name == 'data[User][username]') { this.username(o) };
 
-
+/*
           if(o.name == 'data[User][password]') { this.password(o) };
 
           if(o.name == 'data[User][email]') { this.email(o) };
-
+*/
 
         },
 
@@ -97,10 +97,12 @@ function doError(o) {
 
           if(o.name == 'data[User][username]') { var error_text = 'Username can only contain letters, numbers, or underscore' };
 
-
+/*
           if(o.name == 'data[User][password]') { var error_text = 'Password must be at least two letters' };
 
           if(o.name == 'data[User][email]') { var error_text = 'Non valid email' };
+*/
+
           $('#'+ o.id +'_error').html(error_text);
 
 };
@@ -109,8 +111,12 @@ function doError(o) {
 // this function check the data in the database
 function doValidate(o) {
   
-  if(o.name == 'data[User][username]') {  $('#' + o.id +'_error').load("http://" + self.location.hostname + "/users/check_email/" + o.value) } ;
-  if(o.name == 'data[User][email]') { $('#' + o.id +'_error').load("http://" + self.location.hostname + "/users/check_email/" + o.value) } ;
+  if(o.name == 'data[User][username]') {
+
+     $('#' + o.id +'_error').load("http://" + self.location.hostname + "/users/check_username/" + o.value) 
+
+  } ;
+  /*if(o.name == 'data[User][email]') { $('#' + o.id +'_error').load("http://" + self.location.hostname + "/users/check_email/" + o.value) } ;*/
   // add load() ajax function  The URL would be : "http://" + self.location.hostname + "/users/check_username/" + username
   //TODO add a 
 

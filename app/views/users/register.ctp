@@ -2,6 +2,10 @@
 if(isset($error)){
 	echo $error;
 }
+if (isset($user)){
+   echo '<div id="UserUsername_error" class="error-message">frefreufrenuigrnreuigrngreuigner</div>';
+
+}
 echo $javascript->link('jquery.js', true);
 echo $javascript->link('register.check_form.js', true);
 
