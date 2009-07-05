@@ -1,7 +1,6 @@
 
 /*TODO 
-  *make the validate / invalid  visible
-  *check on database whether  the username or email already exist
+	*make the error message coming from the submitting dissapear when ajax add an error message for the same field
 
 */
 
@@ -16,11 +15,11 @@ new function() {
 
           if(o.name == 'data[User][username]') { this.username(o) };
 
-/*
+
           if(o.name == 'data[User][password]') { this.password(o) };
 
           if(o.name == 'data[User][email]') { this.email(o) };
-*/
+
 
         },
 
@@ -97,11 +96,11 @@ function doError(o) {
 
           if(o.name == 'data[User][username]') { var error_text = 'Username can only contain letters, numbers, or underscore' };
 
-/*
-          if(o.name == 'data[User][password]') { var error_text = 'Password must be at least two letters' };
+
+          if(o.name == 'data[User][password]') { var error_text = 'Password must be at least 4 characters' };
 
           if(o.name == 'data[User][email]') { var error_text = 'Non valid email' };
-*/
+
 
           $('#'+ o.id +'_error').html(error_text);
 
@@ -112,13 +111,16 @@ function doError(o) {
 function doValidate(o) {
   
   if(o.name == 'data[User][username]') {
-
-     $('#' + o.id +'_error').load("http://" + self.location.hostname + "/users/check_username/" + o.value) 
+	
+	
+	$('#' + o.id +'_error').load("http://" + self.location.hostname + "/users/check_username/" + o.value) ;
 
   } ;
-  /*if(o.name == 'data[User][email]') { $('#' + o.id +'_error').load("http://" + self.location.hostname + "/users/check_email/" + o.value) } ;*/
-  // add load() ajax function  The URL would be : "http://" + self.location.hostname + "/users/check_username/" + username
-  //TODO add a 
+  if(o.name == 'data[User][email]') {
+
+	 $('#' + o.id +'_error').load("http://" + self.location.hostname + "/users/check_email/" + o.value) ;
+
+  } ;
 
   doSuccess(o);
 

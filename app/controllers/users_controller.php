@@ -10,7 +10,7 @@ class UsersController extends AppController {
 		parent::beforeFilter();
 		// setting actions that are available to everyone, even guests
 		// no need to allow login
-		$this->Auth->allowedActions = array('all', 'search', 'show', 'logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration', 'resend_registration_mail', 'captcha_image', 'followers', 'following');
+		$this->Auth->allowedActions = array('all', 'search', 'show', 'logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration', 'resend_registration_mail', 'captcha_image', 'followers', 'following','check_username','check_email');
 		//$this->Auth->allowedActions = array('*');
 	}
 
@@ -405,13 +405,26 @@ class UsersController extends AppController {
         function check_username($username){
 		
 		$user = $this->User->findByUsername($username);
-		$this->set('data' , $user);
+		if ($user){
+		$this->set('data' , true );
+		}else{
+
+		$this->set('data' , false);
+		}
+		
 		
 
         }
 
-        function check_email($username){
+        function check_email($email){
+		$data = $this->User->findByEmail($email);
+		if ($data){
+		$this->set('data' , true );
+		}else{
 
+		$this->set('data' , false);
+		}
+		
         }
 	
 	// temporary function to grant/deny access
