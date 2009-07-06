@@ -403,7 +403,7 @@ class UsersController extends AppController {
 	}
         //check if the username already exist or not
         function check_username($username){
-		
+		$this->User->recursive = 0;
 		$user = $this->User->findByUsername($username);
 		if ($user){
 		$this->set('data' , true );
@@ -417,6 +417,7 @@ class UsersController extends AppController {
         }
 
         function check_email($email){
+		$this->User->recursive = 0;
 		$data = $this->User->findByEmail($email);
 		if ($data){
 		$this->set('data' , true );

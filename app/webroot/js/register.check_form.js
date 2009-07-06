@@ -84,7 +84,10 @@ new function() {
 function doSuccess(o) {
       // add something visible ( a "ok" picture ?)
       //alert ('good :-)');
+	//$().html('');
+
        $('#' + o.id +'_error').html('');
+       $('#' + o.id +'_ok').html('ok');
 };
 
 
@@ -94,15 +97,17 @@ function doError(o) {
       // display error text
       //alert ('wrong :-(');
 
-          if(o.name == 'data[User][username]') { var error_text = 'Username can only contain letters, numbers, or underscore' };
+	$('#' + o.id +'_ok').html('');
+
+	if(o.name == 'data[User][username]') { var error_text = 'Username can only contain letters, numbers, or underscore' };
 
 
-          if(o.name == 'data[User][password]') { var error_text = 'Password must be at least 4 characters' };
+	if(o.name == 'data[User][password]') { var error_text = 'Password must be at least 4 characters' };
 
-          if(o.name == 'data[User][email]') { var error_text = 'Non valid email' };
+	if(o.name == 'data[User][email]') { var error_text = 'Non valid email' };
 
 
-          $('#'+ o.id +'_error').html(error_text);
+	$('#'+ o.id +'_error').html(error_text);
 
 };
 
@@ -115,6 +120,8 @@ function doValidate(o) {
 	
 	$('#' + o.id +'_error').load("http://" + self.location.hostname + "/users/check_username/" + o.value) ;
 
+
+
   } ;
   if(o.name == 'data[User][email]') {
 
@@ -122,7 +129,17 @@ function doValidate(o) {
 
   } ;
 
-  doSuccess(o);
+if($('#' + o.id +'_error').text()!='')
+	{
+	 alert ('not ok');
+	 $('#' + o.id +'_ok').html('');
+
+	}else {
+
+	 doSuccess(o);
+	};
+
+
 
 };
 
