@@ -8,7 +8,7 @@ class SentencesController extends AppController{
 	    parent::beforeFilter();
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo', 'statistics', 'count_unknown_language', 'get_translations');
+	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo', 'statistics', 'count_unknown_language', 'get_translations' , 'check_translation');
 	}
 
 	
@@ -190,12 +190,58 @@ class SentencesController extends AppController{
 			);
 		}
 	}
-	
+
+
 	function save_translation(){
 		if(isset($_POST['value']) AND rtrim($_POST['value']) != '' AND isset($_POST['id'])){
 			$sentence_id = substr($_POST['id'], 2);
 			$this->data['Sentence']['sentence_lang'] = substr($_POST['id'], 0, 2); // needed for the logs
+			$this->data['Sentence']['lang'] = $this->data['Sentence']['sentence_lang'];
+			// If we want the "HasAndBelongsToMany" association to work, we need the two lines below :			
+			$this->Sentence->id = $sentence_id;
+			$this->data['Translation']['Translation'][] = $sentence_id;
 			
+			// And this is because the translations are reciprocal :
+			$this->data['InverseTranslation']['InverseTranslation'][] = $sentence_id;
+			
+			$this->data['Sentence']['id'] = null; // so that it saves a new sentences, otherwise it's like editing
+			
+			// setting level of correctness
+			if($this->Auth->user('group_id')){
+				$this->data['Sentence']['correctness'] = Sentence::MAX_CORRECTNESS - $this->Auth->user('group_id');
+			}else{
+				$this->data['Sentence']['correctness'] = 1;
+			}
+			
+			$this->data['Sentence']['text'] = $_POST['value'];
+			
+			// detecting language
+
+			$this->data['Sentence']['user_id'] = $this->Auth->user('id');		 	
+			
+
+			if($this->Sentence->save($this->data)){
+				Configure::write('debug',0);
+				$this->set('translation_id', $this->Sentence->id);
+				$this->set('translation_lang', $this->data['Sentence']['lang']);
+				$this->set('translation_text', $_POST['value']);
+			}
+
+					
+			//
+
+			//pr ($this);
+		}
+	}
+
+
+	// use before save translation, to check if we're not trying to translate a french sentence by an other french one for example
+	function check_translation(){
+
+		if(isset($_POST['value']) AND rtrim($_POST['value']) != '' AND isset($_POST['id'])){
+			$sentence_id = substr($_POST['id'], 2);
+			$this->data['Sentence']['sentence_lang'] = substr($_POST['id'], 0, 2); // needed for the logs
+
 			// If we want the "HasAndBelongsToMany" association to work, we need the two lines below :			
 			$this->Sentence->id = $sentence_id;
 			$this->data['Translation']['Translation'][] = $sentence_id;
@@ -222,15 +268,29 @@ class SentencesController extends AppController{
 			}else{
 				$this->data['Sentence']['lang'] = null;
 			}
+
+
+			$this->data['Sentence']['user_id'] = $this->Auth->user('id');		 	
 			
-			$this->data['Sentence']['user_id'] = $this->Auth->user('id');
-			
-			if($this->Sentence->save($this->data)){
-				Configure::write('debug',0);
+
+			if ($this->data['Sentence']['sentence_lang'] == $this->data['Sentence']['lang'] ) {
+				$this->set('is_the_same_language', true);
 				$this->set('translation_id', $this->Sentence->id);
 				$this->set('translation_lang', $this->data['Sentence']['lang']);
 				$this->set('translation_text', $_POST['value']);
-			}
+			}else{
+				$this->set('is_the_same_language', false);
+				if($this->Sentence->save($this->data)){
+					Configure::write('debug',0);
+					$this->set('translation_id', $this->Sentence->id);
+					$this->set('translation_lang', $this->data['Sentence']['lang']);
+					$this->set('translation_text', $_POST['value']);
+				}
+
+			}			
+			//
+
+			//pr ($this);
 		}
 	}
 	

@@ -1,4 +1,6 @@
 $(document).ready(function() {
+
+
 	$(".translateLink").click(function(){
 		var sentence_id = $(this).attr("id");
 		var sentence_lang = $(this).attr("lang");
@@ -6,8 +8,9 @@ $(document).ready(function() {
 		function save(){
 			var sentence_text = $("#" + sentence_id + "_text").val();
 			if($.trim(sentence_text) != ""){
+
 				$("#translation_for_" + sentence_id).html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
-				$.post("http://" + self.location.hostname + "/sentences/save_translation"
+				$.post("http://" + self.location.hostname + "/sentences/check_translation"
 					, { "id": sentence_lang+sentence_id, "value": sentence_text }
 					, function(data){
 						$(".addTranslations").html('');
@@ -15,8 +18,12 @@ $(document).ready(function() {
 					}
 					, "html"
 				);
+
 			}
 		}
+
+
+		$(".same_language_warning").html('');
 		
 		$("#translation_for_" + sentence_id).html('<li class="direct">'
 			+ '<input id="'+ sentence_id +'_text" class="addTranslationsTextInput" type="text" value=""/>'
@@ -39,4 +46,5 @@ $(document).ready(function() {
 			$(".addTranslations").html('');
 		});
 	});
+
 });

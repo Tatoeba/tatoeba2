@@ -137,6 +137,8 @@ li.indirect{
 background:transparent url(../img/indirect_translation.png) no-repeat scroll 10px;
 }
 
+
+
 li.link{
 background:transparent url(../img/link.png) no-repeat scroll 10px;
 padding-left: 60px;
@@ -295,3 +297,24 @@ font-size: 14px;
 .addTranslations li input{
 margin-right: 5px;
 }
+
+/* warning same language */
+
+
+
+#same_language_text {
+background:transparent url(../img/warning.png) no-repeat scroll 10px;
+float: left;
+width: 550px;
+color: red;
+font-family: Verdana, sans-serif;
+font-size: 14px;
+padding: 5px;
+padding-left: 40px;
+}
+
+#same_language_ok_cancel {
+float: right;
+}
+
+
