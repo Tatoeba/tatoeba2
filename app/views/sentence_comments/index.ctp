@@ -1,4 +1,3 @@
-<ul>
 <?php
 foreach($sentenceComments as $lang => $commentsInLang){
 	if($lang != 'unknown'){
@@ -43,4 +42,3 @@ foreach($sentenceComments as $lang => $commentsInLang){
 	}
 }
 ?>
-</ul>
