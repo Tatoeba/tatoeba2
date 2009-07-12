@@ -17,6 +17,7 @@ $menuElements = array(
 	,__('Contribute',true) 	=> array("controller" => "pages", "action" => "contribute")
 	,__('Comments',true) 	=> array("controller" => "sentence_comments", "action" => "index")
 	,__('Members',true)		=> array("controller" => "users", "action" => "all")
+	,__('What\'s new',true)	=> array("controller" => "pages", "action" => "whats_new")
 );
 
 // displaying the menu

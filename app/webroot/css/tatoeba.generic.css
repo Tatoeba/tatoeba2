@@ -33,12 +33,6 @@ form{
 margin: 0px;
 }
 
-ul{
-list-style: none;
-margin: 0;
-padding: 0;
-}
-
 /* TOP */
 
 #top1, #content, #foot, #top2, #menu{
@@ -335,4 +329,16 @@ padding: 2px 5px;
 /* LOADING */
 .loading{
 text-align: center;
+}
+
+/* What's new */
+#whatsNew{
+font-size: 180%;
+}
+
+.twitterLink{
+padding-right: 26px;
+padding-top: 10px;
+padding-bottom: 10px;
+background:transparent url(../img/twitter_24x24.png) no-repeat scroll right;
 }
