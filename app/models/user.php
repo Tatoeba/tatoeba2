@@ -21,24 +21,16 @@ class User extends AppModel {
 				'message' => 'Username must be at least two letters'
 			)
 		),
-		'password' => array(
-			array (
-			        VALID_NOT_EMPTY,
-                                'message' => 'Password can\'t be empty'
-                              ), 
-                        array(
-				'rule' => array('minLength', 4), 
-				'message' => 'Password must be at least two letters'
-                             )
-                ),
 		'email' => array(
 			'email' => array(
 				'rule' => 'email', 
-				'message' => 'Non valid email'),
+				'message' => 'Non valid email'
+			),
 			'isUnique' => array(
 				'rule' => 'isUnique',
-				'message' => 'Email already used.')
-			),
+				'message' => 'Email already used.'
+			)
+		),
 		'lang' => array('alphanumeric'),
 		'lastlogout' => array('numeric'),
 		'status' => array('numeric'),
