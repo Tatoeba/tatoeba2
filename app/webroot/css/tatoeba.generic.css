@@ -342,3 +342,16 @@ padding-top: 10px;
 padding-bottom: 10px;
 background:transparent url(../img/twitter_24x24.png) no-repeat scroll right;
 }
+
+.twit{
+margin: 30px;
+}
+
+.twit .created_at{
+color: #989898;
+}
+
+.twit .text{
+font-size: 150%;
+font-family: Georgia, serif;
+}

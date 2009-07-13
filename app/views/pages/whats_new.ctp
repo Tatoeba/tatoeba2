@@ -10,6 +10,34 @@ echo '<a class="twitterLink" target="_blank" href="http://twitter.com/tatoeba_pr
 ?>
 </p>
 
+<p>
+<?php
+// retrieve data...
+$curl = curl_init();
+curl_setopt ($curl, CURLOPT_URL, "http://twitter.com/statuses/user_timeline.xml?screen_name=tatoeba_project");
+curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+$result = curl_exec ($curl);
+curl_close ($curl);
+
+// parse xml
+$xml = simplexml_load_string($result);
+
+$fieldsWeWant = array('created_at', 'text');
+foreach($xml->children() as $child){ // <status>
+	echo '<div class="twit">';
+	foreach($child->children() as $twit){
+		$class = $twit->getName();
+		if(in_array($class, $fieldsWeWant)){
+			echo '<div class="'.$class.'">';
+			echo $twit;
+			echo '</div>';
+		}
+	}
+	echo '</div>';
+}
+?>
+</p>
+
 <hr/>
 <pre>
 Below is the description of Tatoeba and its features on July 12th, 2009.
