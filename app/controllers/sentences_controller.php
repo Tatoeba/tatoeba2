@@ -13,7 +13,7 @@ class SentencesController extends AppController{
 
 	
 	function index(){
-		$this->set('sentences',$this->Sentence->find('all'));
+		$this->redirect('/sentences/show/random');
 	}
 	
 	function show($id = null){
@@ -78,15 +78,25 @@ class SentencesController extends AppController{
 	}
 	
 	function delete($id){
-		// We log first
 		$this->Sentence->id = $id;
-		$this->Sentence->recursive = 0;
-		$this->Sentence->read();
-		$this->Sentence->Contribution->save($this->data);
 		
-		// Then we delete
-		$this->Sentence->del($id);
-		$this->flash('The sentence #'.$id.' has been deleted.', '/sentences');
+		// for the logs
+		$this->Sentence->recursive = 1;
+		$this->Sentence->read();
+		$this->Sentence->data['User']['id'] = $this->Auth->user('id'); 
+		
+		//$this->Sentence->del($id, true); 
+		// TODO : Deleting with del does not delete the right entries in sentences_translations.
+		// But I didn't figure out how to solve that =_=;
+		// So I'm just going to do something not pretty but whatever, I'm tired!!!
+		$this->Sentence->query('DELETE FROM sentences WHERE id='.$id);
+		$this->Sentence->query('DELETE FROM sentences_translations WHERE sentence_id='.$id);
+		$this->Sentence->query('DELETE FROM sentences_translations WHERE translation_id='.$id);
+		
+		// need to call afterDelete() manually for the logs
+		$this->Sentence->afterDelete();
+		
+		$this->flash('The sentence #'.$id.' has been deleted.', '/contributions/show/'.$id);
 	}
 
 	function edit($id){
