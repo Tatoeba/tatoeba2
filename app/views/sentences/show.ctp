@@ -3,7 +3,7 @@ if($sentence != null){
 	$this->pageTitle = __('Example sentence : ',true) . $sentence['Sentence']['text'];
 
 	// navigation (previous, random, next)
-	$navigation->displaySentenceNavigation($sentence['Sentence']['id']);
+	$navigation->displaySentenceNavigation();
 	
 	echo '<div class="sentences_set">';
 		// sentence menu (translate, edit, comment, etc)
@@ -29,7 +29,7 @@ if($sentence != null){
 	$this->pageTitle = __('Sentence does not exist : ', true) . $this->params['pass'][0];
 	
 	// navigation (previous, random, next)
-	$sentences->displayNavigation('random');
+	$navigation->displaySentenceNavigation('random');
 	
 	echo '<div class="error">';
 	__('There is no sentence with id ');

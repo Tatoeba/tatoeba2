@@ -1,19 +1,33 @@
 <?php
-$this->pageTitle = __('Logs for : ',true) . $sentence['Sentence']['text'];
-
+	
 // navigation (previous, random, next)
-$navigation->displaySentenceNavigation($sentence['Sentence']['id']);
+$navigation->displaySentenceNavigation();
+	
+if($sentenceExists){
 
-echo '<div class="sentences_set">';
-	// sentence menu (translate, edit, comment, etc)
-	$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
-	$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
+	$this->pageTitle = __('Logs for : ',true) . $sentence['Sentence']['text'];
 
-	// sentence and translations
-	$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
-	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
-echo '</div>';	
+	echo '<div class="sentences_set">';
+		// sentence menu (translate, edit, comment, etc)
+		$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
+		$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
 
+		// sentence and translations
+		$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
+		$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
+	echo '</div>';	
+
+
+	$contributions = $sentence['Contribution'];
+	
+}else{
+	
+	$this->pageTitle = __('Logs for sentence nº',true) . $this->params['pass'][0];
+	
+	echo '<em>';
+	__('The sentence has been deleted');
+	echo '</em>';
+}
 
 echo '<h2>';
 __('Logs'); 
@@ -21,10 +35,14 @@ echo ' ';
 $tooltip->displayLogsColors();
 echo '</h2>';
 
-if(count($sentence['Contribution']) > 0){
+if(count($contributions) > 0){
 	echo '<table id="logs">';
-	foreach($sentence['Contribution'] as $contribution){
-		$logs->entry($contribution, $contribution['User']);
+	foreach($contributions as $contribution){
+		if($sentenceExists){
+			$logs->entry($contribution, $contribution['User']);
+		}else{
+			$logs->entry($contribution['Contribution'], $contribution['User']);
+		}
 	}
 	echo '</table>';
 }else{

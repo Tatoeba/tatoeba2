@@ -29,10 +29,37 @@ class ContributionsController extends AppController {
 	
 	function show($sentence_id){
 		$s = new Sentence();
-		$s->id = $sentence_id;		
+		
+		if($sentence_id == "random"){
+			$resultMax = $s->query('SELECT MAX(id) FROM sentences');
+			$max = $resultMax[0][0]['MAX(id)'];
+			
+			$randId = rand(1, $max);
+			$this->redirect(array("action"=>"show", $randId));
+		}	
+		
+		$s->id = $sentence_id;
 		$s->recursive = 2;
 		$sentence = $s->read();
-		$this->set('sentence', $sentence);		
+		
+		if($sentence != null){
+			$this->set('sentenceExists', true);
+			$this->set('sentence', $sentence);
+		}else{
+			$this->set('sentenceExists', false);
+			$this->Contribution->unbindModel(
+				array(
+					'belongsTo' => array('Sentence')
+				)
+			);
+			$contributions = $this->Contribution->find('all', 
+				array(
+					'conditions' => array('Contribution.sentence_id' => $sentence_id),
+					'order' => 'Contribution.datetime DESC'
+				)
+			);
+			$this->set('contributions', $contributions);
+		}
 		
 		// checking which options user can access to
 		$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));

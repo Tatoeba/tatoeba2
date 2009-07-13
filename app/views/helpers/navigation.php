@@ -2,11 +2,16 @@
 class NavigationHelper extends AppHelper{
 	var $helpers = array('Html', 'Form');
 	
-	function displaySentenceNavigation($currentId){
-		$action = ($this->params['action'] == 'translate') ? 'translate' : 'show';
+	function displaySentenceNavigation($currentId = null){
+		$controller = $this->params['controller'];
+		$action = $this->params['action'];
+		$input = $this->params['pass'][0];
+		if($currentId == null){
+			$currentId = intval($this->params['pass'][0]);
+		}
 		
 		echo '<div class="navigation">';
-			$input = $this->params['pass'][0];
+			// go to form
 			echo $this->Form->create('Sentence', array("action" => "goTo", "type" => "get"));
 			echo $this->Form->input('sentence_id', array("label" => __('Show sentence nº : ', true), "value" => $input));
 			echo $this->Form->end(__('OK',true));
@@ -17,7 +22,7 @@ class NavigationHelper extends AppHelper{
 			echo $this->Html->link(
 				'<< '.__('previous',true), 
 				array(
-					"controller" => "sentences",
+					"controller" => $controller,
 					"action" => $action,
 					$currentId-1
 				)
@@ -29,7 +34,7 @@ class NavigationHelper extends AppHelper{
 			echo $this->Html->link(
 				__('random',true), 
 				array(
-					"controller" => "sentences",
+					"controller" => $controller,
 					"action" => $action,
 					"random"
 				)
@@ -41,7 +46,7 @@ class NavigationHelper extends AppHelper{
 			echo $this->Html->link(
 				__('next',true).' >>', 
 				array(
-					"controller" => "sentences",
+					"controller" => $controller,
 					"action" => $action,
 					$currentId+1
 				)

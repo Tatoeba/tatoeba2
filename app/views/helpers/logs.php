@@ -43,7 +43,7 @@ class LogsHelper extends AppHelper {
 			echo '</td>';
 			
 			echo '<td class="lang">';
-			if($type.$status == 'linkAdded'){
+			if($type == 'link'){
 				echo '>>>';
 				//echo ($contribution['translation_lang'] == '') ? '?' : $contribution['translation_lang'];
 			}else{
@@ -52,7 +52,7 @@ class LogsHelper extends AppHelper {
 			echo '</td>';
 			
 			echo '<td class="text">';
-			if($type.$status == 'linkAdded'){
+			if($type == 'link'){
 				echo $this->Html->link(
 				$contribution['translation_id'],
 				array(
