@@ -12,15 +12,40 @@ class SentencesHelper extends AppHelper {
 		echo '<span class="correctness'.$sentence['correctness'].' '.$sentence['lang'].'">';
 		echo $this->Html->link($sentence['text'], array("controller" => "sentences", "action" => "show", $sentence['id']));
 		echo '</span> ';
+		
+		// TODO I don't like how there's a lot of copy-paste of these if-blocks 
+		// in the rest of the code. Should factorize that somehow.
 		if($sentence['lang'] == 'jp'){
 			$this->displayRomaji($sentence['text']);
 		}
+		if($sentence['lang'] == 'zh'){
+			$this->displayPinyin($sentence['text']);
+		}
+		
 		echo '</div>';
 	}
 	
+	/**
+	 * Display romaji.
+	 */
 	function displayRomaji($text){
 		echo '<span class="romaji" title="'.__('WARNING : the romaji is automatically generated and is not always reliable.',true).'">';
 			$this->Kakasi->convert($text, 'romaji');
+		echo '</span>';
+	}
+	
+	/**
+	 * Display pinyin.
+	 */
+	function displayPinyin($text){
+		echo '<span class="pinyin">';
+		$curl = curl_init();
+		curl_setopt ($curl, CURLOPT_URL, "http://adsotrans.com/popup/pinyin.php?text=".$text);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		$result = curl_exec ($curl);
+		$pinyin = substr($result, 14);
+		$pinyin = substr($pinyin, 0, -44);
+		echo $pinyin;
 		echo '</span>';
 	}
 	
@@ -35,6 +60,9 @@ class SentencesHelper extends AppHelper {
 			echo '</span> ';
 			if($sentence['lang'] == 'jp'){
 				$this->displayRomaji($sentence['text']);
+			}
+			if($sentence['lang'] == 'zh'){
+				$this->displayPinyin($sentence['text']);
 			}
 		echo '</div>';
 	}
@@ -66,6 +94,9 @@ class SentencesHelper extends AppHelper {
 		echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="'.$editableSentence.' '.$sentence['lang'].'">'.$sentence['text'].'</span> ';
 		if($sentence['lang'] == 'jp'){
 			$this->displayRomaji($sentence['text']);
+		}
+		if($sentence['lang'] == 'zh'){
+			$this->displayPinyin($sentence['text']);
 		}
 		echo '</div>';
 		
@@ -104,6 +135,9 @@ class SentencesHelper extends AppHelper {
 			);
 			if($translation['lang'] == 'jp'){
 				$this->displayRomaji($translation['text']);
+			}
+			if($translation['lang'] == 'zh'){
+				$this->displayPinyin($translation['text']);
 			}
 			echo '</li>';
 		}
