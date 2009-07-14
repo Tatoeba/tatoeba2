@@ -21,7 +21,7 @@ if($sentence != null){
 	echo '<script type="text/javascript">
 	$(document).ready(function(){
 		$(".translations").html("<div class=\"loading\">'.addslashes($html->image('loading.gif')).'</div>");
-		$(".translations").load("../get_translations/'.$sentence['Sentence']['id'].'");
+		$(".translations").load("http://" + self.location.hostname + "/sentences/get_translations/'.$sentence['Sentence']['id'].'");
 	});
 	</script>';
 	
