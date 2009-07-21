@@ -1,15 +1,11 @@
 <?php 
 class AppController extends Controller { 
-    var $components = array('Acl','Auth','Permissions','RememberMe');
+    var $components = array('Acl','Auth','Permissions','RememberMe', 'Cookie');
 	var $helpers = array('Sentences', 'Comments', 'Date', 'Html', 'Form', 'Logs', 'Tooltip', 'Javascript', 'Languages');
 	
     function beforeFilter() { 
 		Security::setHash('md5');
 		$this->disableCache(); // seems to be important so that the browser displays properly login info in header
-		
-        if (isset($this->params['lang'])) { 
-            Configure::write('Config.language',  $this->params['lang']); 
-        } 
 		
 		//Configure AuthComponent
 		$this->Auth->loginAction = array('controller' => 'users', 'action' => 'login');
@@ -24,6 +20,33 @@ class AppController extends Controller {
 		// to remove in production mode
 		//$this->buildAcl();
     }
+	
+	function beforeRender(){
+		// Language of interface
+        if (isset($this->params['lang'])) { 
+            Configure::write('Config.language',  $this->params['lang']);
+			$this->Cookie->write('interfaceLanguage', $this->params['lang'], false, '+2 weeks');
+        }elseif($this->Cookie->read('interfaceLanguage')){
+			$interfaceLanguage = $this->Cookie->read('interfaceLanguage');
+			Configure::write('Config.language',  $interfaceLanguage); 
+			$this->params['lang'] = $interfaceLanguage;
+		}else{
+			$interfaceLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
+			switch($interfaceLanguage){
+				case 'fr': 
+					$lang = 'fre'; 
+					break;
+				case 'zh': 
+					$lang = 'chi'; 
+					break;
+				default  : 
+					$lang = 'eng';
+			}
+			Configure::write('Config.language',  $lang);
+			$this->Cookie->write('interfaceLanguage', $lang, false, '+2 weeks');
+			$this->params['lang'] = $lang;
+		}
+	}
 
 	function flash($msg,$to){
 		$this->Session->setFlash($msg);
