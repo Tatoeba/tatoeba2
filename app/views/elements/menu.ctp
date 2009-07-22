@@ -47,7 +47,7 @@ foreach($menuElements as $title => $route){
 	
 	// displaying <li> element
 	echo '<li '.$cssClass.'>';
-	echo $html->link($title, $route);
+	echo $html->link($title, $route, array("class"=>$route['action']));
 	echo '</li>';
 }
 
