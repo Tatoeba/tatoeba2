@@ -1,22 +1,25 @@
 $(document).ready(function(){
-	loadRandom();
-	loadRandomToTranslate();
+	var lang = $("#randomLangChoice").val();
+	loadRandom(lang);
+	loadRandomToTranslate(lang);
 	
 	$("#showRandom").click(function(){
-		loadRandom();
+		lang = $("#randomLangChoice").val();
+		loadRandom(lang);
 	})
 	
 	$("#showRandomToTranslate").click(function(){
-		loadRandomToTranslate();
+		lang = $("#randomLangChoice").val();
+		loadRandomToTranslate(lang);
 	})
 });
 
-function loadRandom(){
+function loadRandom(lang){
 	$(".random_sentences_set").html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
-	$(".random_sentences_set").load("http://" + self.location.hostname + "/" + $("#showRandom").attr("lang") + "/sentences/random/show");
+	$(".random_sentences_set").load("http://" + self.location.hostname + "/" + $("#showRandom").attr("lang") + "/sentences/random/show/" + lang);
 }
 
-function loadRandomToTranslate(){
+function loadRandomToTranslate(lang){
 	$(".random_to_translate").html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
-	$(".random_to_translate").load("http://" + self.location.hostname + "/" + $("#showRandom").attr("lang") + "/sentences/random/translate");
+	$(".random_to_translate").load("http://" + self.location.hostname + "/" + $("#showRandom").attr("lang") + "/sentences/random/translate/" + lang);
 }

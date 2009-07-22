@@ -48,11 +48,15 @@ echo '.';
 echo '</p>';
 echo '</div>';
 
+
+$langArray = $languages->languagesArray();
+asort($langArray);
 echo '<div class="element">';
 echo '<h2>';
 __('Random sentence'); 
 echo ' (';
-echo '<a id="showRandom" lang='.$lang.'>' . __('show another',true) . '</a>';
+echo '<a id="showRandom" lang='.$lang.'>' . __('show another ', true) . '</a>';
+echo $form->select("randomLangChoice", $langArray);
 echo ')</h2>';
 echo '<div class="random_sentences_set"></div>';
 echo '</div>';

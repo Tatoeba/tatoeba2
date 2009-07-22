@@ -1,6 +1,6 @@
 <?php
 class NavigationHelper extends AppHelper{
-	var $helpers = array('Html', 'Form');
+	var $helpers = array('Html', 'Form', 'Languages', 'Javascript', 'Session');
 	
 	function displaySentenceNavigation($currentId = null){
 		$controller = $this->params['controller'];
@@ -29,18 +29,6 @@ class NavigationHelper extends AppHelper{
 			);
 			echo '</li>';
 			
-			// random
-			echo '<li class="option">';
-			echo $this->Html->link(
-				__('random',true), 
-				array(
-					"controller" => $controller,
-					"action" => $action,
-					"random"
-				)
-			);
-			echo '</li>';
-			
 			// next
 			echo '<li class="option">';
 			echo $this->Html->link(
@@ -52,6 +40,26 @@ class NavigationHelper extends AppHelper{
 				)
 			);
 			echo '</li>';
+			
+			// random
+			$this->Javascript->link('sentences.random.js', false);
+			$langArray = $this->Languages->languagesArray();
+			asort($langArray);
+			$selectedLanguage = $this->Session->read('random_lang_selected');
+			
+			echo '<li class="option random">';
+			echo $this->Html->link(
+				__('random', true), 
+				array(
+					"controller" => $controller,
+					"action" => $action,
+					$selectedLanguage
+				),
+				array("id" => "randomLink", "lang" => $this->params['lang'])
+			);
+			echo $this->Form->select("randomLangChoiceInBrowse", $langArray, $selectedLanguage);
+			echo '</li>';
+			
 			
 			echo '</ul>';
 			

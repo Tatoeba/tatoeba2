@@ -17,22 +17,42 @@ class SentencesController extends AppController{
 	}
 	
 	function show($id = null){
-		if($id == "random"){
+		$languages = array('ar', 'de', 'en', 'es', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'vn', 'zh');
+		$this->Sentence->recursive = 0;
+		
+		if($id == "random" OR $id == null){
+			
 			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences');
 			$max = $resultMax[0][0]['MAX(id)'];
 			
 			$randId = rand(1, $max);
+			$this->Session->write('random_lang_selected', "random");
 			$this->redirect(array("action"=>"show", $randId));
-			//$this->Sentence->id = $randId;
+			
+		}elseif(in_array($id, $languages)){
+			
+			$conditions['Sentence.lang'] = $id;
+			$random = $this->Sentence->find(
+				'first', 
+				array(
+					'conditions' => $conditions,
+					'order' => 'RAND()'
+				)
+			);
+			$this->Session->write('random_lang_selected', $id);
+			$this->redirect(array("action"=>"show", $random['Sentence']['id']));
+			
 		}else{
+		
 			$this->Sentence->id = $id;
 			
-			$this->Sentence->recursive = 0;
 			$sentence = $this->Sentence->read();
 			$this->set('sentence', $sentence);
+
 			// checking which options user can access to
 			$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
 			$this->set('specialOptions',$specialOptions);
+			
 		}
 	}
 	
@@ -357,13 +377,12 @@ class SentencesController extends AppController{
 		}
 	}
 	
-	function random($type = null){
+	function random($type = null, $lang = null){
 		Configure::write('debug',0);
-		$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences', false);
-		$max = $resultMax[0][0]['MAX(id)'];
-		$randId = rand(1, $max);
-		$this->Sentence->id = $randId;
 		
+		// $type can be "show" or "translate"
+		// "translate" is used for the random sentence to translate in the "Contribution" section.
+		// "show" is used anywhere else.
 		if($type == 'translate'){
 			$this->Sentence->recursive = 0;
 		}
@@ -374,7 +393,26 @@ class SentencesController extends AppController{
 				'hasAndBelongsToMany' => array('InverseTranslation')
 			)
 		);
-		$random = $this->Sentence->read();
+		
+		if($lang == null OR $lang == 'any'){
+			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences', false);
+			$max = $resultMax[0][0]['MAX(id)'];
+			$randId = rand(1, $max);
+			
+			$this->Sentence->id = $randId;
+			$random = $this->Sentence->read();
+		}else{
+			$conditions['Sentence.lang'] = $lang;
+			$random = $this->Sentence->find(
+				'first', 
+				array(
+					'conditions' => $conditions,
+					'order' => 'RAND()'
+				)
+			);
+			// TODO : find another solution than using RAND() because it's quite slow.
+		}
+		
 		$random['specialOptions'] = $this->Permissions->getSentencesOptions($random['Sentence']['user_id'], $this->Auth->user('id'));
 		
 		$this->set('random', $random);
