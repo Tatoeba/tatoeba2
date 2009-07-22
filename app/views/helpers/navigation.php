@@ -51,8 +51,8 @@ class NavigationHelper extends AppHelper{
 			echo $this->Html->link(
 				__('random', true), 
 				array(
-					"controller" => $controller,
-					"action" => $action,
+					"controller" => "sentences",
+					"action" => "show",
 					$selectedLanguage
 				),
 				array("id" => "randomLink", "lang" => $this->params['lang'])
