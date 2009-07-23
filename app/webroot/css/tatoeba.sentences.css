@@ -310,7 +310,6 @@ padding: 0;
 
 #same_language_text {
 background:transparent url(../img/warning.png) no-repeat scroll 10px;
-float: left;
 width: 550px;
 color: red;
 font-family: Verdana, sans-serif;
@@ -319,8 +318,12 @@ padding: 5px;
 padding-left: 40px;
 }
 
-#same_language_ok_cancel {
-float: right;
+#same_language_ok_cancel{
+text-align: center;
+}
+
+#same_language_ok_cancel input{
+margin: 5px 10px;
 }
 
 
