@@ -8,7 +8,7 @@ class SentencesController extends AppController{
 	    parent::beforeFilter();
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo', 'statistics', 'count_unknown_language', 'get_translations' , 'check_translation');
+	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo', 'statistics', 'count_unknown_language', 'get_translations' , 'check_translation', 'map');
 	}
 
 	
@@ -378,7 +378,7 @@ class SentencesController extends AppController{
 	}
 	
 	function random($type = null, $lang = null){
-		Configure::write('debug',0);
+		//Configure::write('debug',0);
 		
 		// $type can be "show" or "translate"
 		// "translate" is used for the random sentence to translate in the "Contribution" section.
@@ -401,6 +401,20 @@ class SentencesController extends AppController{
 			
 			$this->Sentence->id = $randId;
 			$random = $this->Sentence->read();
+		}elseif($lang == 'jp' OR $lang == 'en'){
+			$min = ($lang == 'en') ? 15700 : 74000;
+			$max = ($lang == 'en') ? 74000 : 127300;
+			$randId = rand($min, $max);
+			
+			$random = $this->Sentence->find(
+				'first', 
+				array(
+					'conditions' => array(
+						'Sentence.id' => range($randId-50, $randId+50),
+						'Sentence.lang' => $lang
+					)
+				)
+			);
 		}else{
 			$conditions['Sentence.lang'] = $lang;
 			$random = $this->Sentence->find(
@@ -526,6 +540,23 @@ class SentencesController extends AppController{
 				"order" => "Sentence.modified DESC")
 		);
 		$this->set('user_sentences', $sentences);
+	}
+	
+	function map($page = 1){
+		$total = 10000;
+		$start = ($page-1) * $total;
+		$end = $start + $total;
+		$this->Sentence->recursive = -1;
+		$sentences = $this->Sentence->find(
+			'all',
+			array(
+				'fields' => array('Sentence.id', 'Sentence.lang'),
+				'order' => 'Sentence.id',
+				'conditions' => array('Sentence.id >' => $start, 'Sentence.id <=' => $end)
+			)
+		);
+		$this->set('page', $page);
+		$this->set('all_sentences', $sentences);
 	}
 }
 ?>

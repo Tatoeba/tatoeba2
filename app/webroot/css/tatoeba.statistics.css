@@ -154,3 +154,45 @@ background: #FFBFB2;
 .color10{
 background: #FF947F;
 }
+
+
+/* SENTENCES MAP */
+
+#sentencesMap{
+width: 700px;
+overflow: hidden;
+margin: auto;
+}
+
+#sentencesMap div{
+text-align: center;
+width: 6px;
+height: 6px;
+border-top: 1px solid white;
+border-left: 1px solid white;
+float:left;
+}
+
+#sentencesMap div.empty{
+background: black;
+}
+
+#sentencesMap div.jp_cluster{
+background: #FE8080;
+}
+
+#sentencesMap div.de_cluster{
+background: #FF3300;
+}
+
+#sentencesMap div.zh_cluster{
+background: #DFA921;
+}
+
+#sentencesMap div.fr_cluster{
+background: #CCFE80;
+}
+
+#sentencesMap div.en_cluster{
+background: #2B5497;
+}
