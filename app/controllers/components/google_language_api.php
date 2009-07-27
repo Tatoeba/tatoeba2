@@ -42,6 +42,7 @@ class GoogleLanguageApiComponent extends Object{
 			case 'de' :		return 'de';
 			case 'en' :		return 'en';
 			case 'es' :		return 'es';
+			case 'fi' :		return 'fi';
 			case 'fr' :		return 'fr';
 			case 'iw' : 	return 'he';
 			case 'it' :		return 'it';

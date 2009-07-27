@@ -17,6 +17,7 @@ class LanguagesHelper extends AppHelper{
 			, 'he' => __('Hebrew', true)
 			, 'id' => __('Indonesian', true)
 			, 'pt' => __('Portuguese', true)
+			, 'fi' => __('Finnish', true)
 		);
 		return $languages;
 	}

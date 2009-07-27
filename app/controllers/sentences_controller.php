@@ -17,7 +17,7 @@ class SentencesController extends AppController{
 	}
 	
 	function show($id = null){
-		$languages = array('ar', 'de', 'en', 'es', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'vn', 'zh');
+		$languages = array('ar', 'de', 'en', 'es', 'fi', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'vn', 'zh');
 		$this->Sentence->recursive = 0;
 		
 		if($id == "random" OR $id == null){
@@ -225,6 +225,7 @@ class SentencesController extends AppController{
 	// we always check the translation before we add it
 	function check_translation(){
 		if(isset($_POST['value']) AND rtrim($_POST['value']) != '' AND isset($_POST['id'])){
+			$sentenceId = substr($_POST['id'], 2);
 			$sourceLanguage = substr($_POST['id'], 0, 2); // language of the original sentence
 			
 			// detecting language of translation
@@ -239,12 +240,13 @@ class SentencesController extends AppController{
 			// checking if same language...
 			if ($sourceLanguage == $this->data['Sentence']['lang'] ) { 
 				// it will display a warning
-				$this->set('translation_id', substr($_POST['id'], 2));
-				$this->set('translation_lang', $this->data['Sentence']['lang']);
+				$this->set('sentence_id', $sentenceId);
 				$this->set('translation_text', $_POST['value']);
-			}else{ 
+			}else{
 				// we save
 				$this->save_translation();
+				// note : for some reason it won't redirect to save_translation.ctp...
+				// so we have to do everything in the check_translation.ctp
 			}		
 		}
 	}
