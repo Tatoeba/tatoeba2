@@ -244,6 +244,7 @@ class SentencesController extends AppController{
 				$this->set('translation_text', $_POST['value']);
 			}else{
 				// we save
+				$this->data['Sentence']['differentLang'] = true; // so we know the sentence is not same language as original
 				$this->save_translation();
 				// note : for some reason it won't redirect to save_translation.ctp...
 				// so we have to do everything in the check_translation.ctp
@@ -272,9 +273,9 @@ class SentencesController extends AppController{
 				$this->data['Sentence']['correctness'] = 1;
 			}
 			
-			// In the case where the user had to confirm saving, $this->data['Sentence']['lang'] is not set 
+			// In the case where the user had to confirm saving, $this->data['Sentence']['differentLang'] is not set 
 			// and the language of the translation is the same as the language of the sentence.
-			if(!isset($this->data['Sentence']['lang'])){
+			if(!isset($this->data['Sentence']['differentLang'])){
 				$this->data['Sentence']['lang'] = $this->data['Sentence']['sentence_lang'];
 			}
 			
