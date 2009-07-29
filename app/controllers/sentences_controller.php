@@ -283,7 +283,7 @@ class SentencesController extends AppController{
 			$this->data['Sentence']['user_id'] = $this->Auth->user('id');		 	
 			
 			if($this->Sentence->save($this->data)){
-				Configure::write('debug',0);
+				//Configure::write('debug',0);
 				$this->set('translation_id', $this->Sentence->id);
 				$this->set('translation_lang', $this->data['Sentence']['lang']);
 				$this->set('translation_text', $_POST['value']);
@@ -296,11 +296,13 @@ class SentencesController extends AppController{
 			$query = stripslashes($_GET['query']);
 			$page = isset($_GET['page']) ? $_GET['page'] : null;
 			$from = isset($_GET['from']) ? $_GET['from'] : null;
+			$to = isset($_GET['to'])   ? $_GET['to']   : null;
 			$this->Session->write('search_query', $query);
 			$this->Session->write('search_from', $from);
+			$this->Session->write('search_to', $to);
 			
 			$this->pageTitle = __('Tatoeba search : ',true) . $query;
-			$lucene_results = $this->Lucene->search($query, $from, null, $page);
+			$lucene_results = $this->Lucene->search($query, $from, $to, $page);
 			$sentences = array();
 			
 			$ids = array();
@@ -316,6 +318,9 @@ class SentencesController extends AppController{
 					'hasAndBelongsToMany' => array('InverseTranslation')
 				)
 			);
+			if($to != null){
+				$this->Sentence->hasAndBelongsToMany['Translation']['conditions'] = array("lang" => $to);
+			}
 			$sentences = $this->Sentence->find(
 				'all', array("conditions" => array("Sentence.id" => $ids))
 			);
@@ -330,6 +335,7 @@ class SentencesController extends AppController{
 			$this->set('scores', $scores);
 			$this->set('query', $query);
 			$this->set('from', $from);
+			$this->set('to', $to);
 			
 			
 			// checking which options user can access to

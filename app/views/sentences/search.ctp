@@ -11,9 +11,6 @@ if(isset($query)){
 		$i = 0;
 		
 		foreach($results as $sentence){
-			pr($sentence);
-			//$specialOptions = $sentence['specialOptions'];
-			
 			echo '<div class="sentences_set search">';
 			// sentence menu (translate, edit, comment, etc)
 			$specialOptions[$i]['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism

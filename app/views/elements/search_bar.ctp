@@ -23,10 +23,13 @@ $languages = array(
 	, 'nl' => __('Dutch', true)
 );
 asort($languages);
-$selectedLanguage = $session->read('search_from');
+$selectedLanguageFrom = $session->read('search_from');
+$selectedLanguageTo = $session->read('search_to');
 
 echo $form->create('Sentence', array("action" => "search", "type" => "get"));
-echo $form->select('from', $languages, $selectedLanguage);
+echo $form->select('from', $languages, $selectedLanguageFrom);
+echo ' >> ';
+echo $form->select('to', $languages, $selectedLanguageTo);
 echo $form->input('query', array("label" => '', "value" => $session->read('search_query')));
 echo $form->end(__('search',true));
 

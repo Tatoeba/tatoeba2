@@ -1,6 +1,7 @@
 <?php
 class Sentence extends AppModel{
 	var $name = 'Sentence';
+	var $actsAs = array('ExtendAssociations');
 	
 	const MAX_CORRECTNESS = 6;
 	
@@ -73,6 +74,16 @@ class Sentence extends AppModel{
 					$data2['Contribution']['action'] = 'insert';
 					$data2['Contribution']['type'] = 'link';
 					$contributions[] = $data2;
+					
+					// saving link with language. I hate doing this but habtm associations are such a headache...
+					// TODO find better solution
+					$this->query(
+						'UPDATE sentences_translations 
+						SET sentence_lang="'.$this->data['Sentence']['sentence_lang'].'",
+						    translation_lang="'.$this->data['Sentence']['lang'].'"
+						WHERE sentence_id='.$this->data['Translation']['Translation'][0].'
+						AND translation_id='.$this->id
+					);
 				}
 				if(isset($this->data['InverseTranslation'])){
 					// Inverse translation logs
@@ -84,6 +95,16 @@ class Sentence extends AppModel{
 					$data2['Contribution']['action'] = 'insert';
 					$data2['Contribution']['type'] = 'link';
 					$contributions[] = $data2;
+					
+					// saving link with language
+					// TODO find better solution
+					$this->query(
+						'UPDATE sentences_translations 
+						SET sentence_lang="'.$this->data['Sentence']['lang'].'",
+						    translation_lang="'.$this->data['Sentence']['sentence_lang'].'"
+						WHERE sentence_id='.$this->id.'
+						AND translation_id='.$this->data['Translation']['Translation'][0]
+					);
 				}
 				if(isset($contributions)){
 					$this->Contribution->saveAll($contributions);
