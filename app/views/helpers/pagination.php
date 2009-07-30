@@ -11,7 +11,7 @@ class PaginationHelper extends AppHelper{
 		return array("controller" => "sentences", "action" => "search", $params);
 	}
 	
-	function displaySearchPagination($totalPages, $currentPage, $query, $from = null){
+	function displaySearchPagination($totalPages, $currentPage, $query, $from = null, $to = null){
 		if($totalPages > 1){
 			$query = urlencode($query);
 			
@@ -22,13 +22,13 @@ class PaginationHelper extends AppHelper{
 				if($currentPage > 1){
 					echo $this->Html->link(
 						"<<",
-						$this->searchUrl(1, $query, $from),
+						$this->searchUrl(1, $query, $from, $to),
 						array("class" => "navigation")
 					);
 					
 					echo $this->Html->link(
 						"<",
-						$this->searchUrl($currentPage-1, $query, $from),
+						$this->searchUrl($currentPage-1, $query, $from, $to),
 						array("class" => "navigation")
 					);
 				}else{
@@ -60,7 +60,7 @@ class PaginationHelper extends AppHelper{
 				}else{
 					echo $this->Html->link(
 						$i, 
-						$this->searchUrl($i, $query, $from)
+						$this->searchUrl($i, $query, $from, $to)
 					);
 				}
 			}
@@ -70,13 +70,13 @@ class PaginationHelper extends AppHelper{
 				if($currentPage < $totalPages){
 					echo $this->Html->link(
 						">",
-						$this->searchUrl($currentPage+1, $query, $from),
+						$this->searchUrl($currentPage+1, $query, $from, $to),
 						array("class" => "navigation")
 					);
 					
 					echo $this->Html->link(
 						">>",
-						$this->searchUrl($totalPages, $query, $from),
+						$this->searchUrl($totalPages, $query, $from, $to),
 						array("class" => "navigation")
 					);
 				}else{
