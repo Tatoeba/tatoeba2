@@ -21,12 +21,16 @@ class SentencesController extends AppController{
 		$this->Sentence->recursive = 0;
 		
 		if($id == "random" OR $id == null){
+			$id = $this->Session->read('random_lang_selected');
+		}
+		
+		if($id == 'any'){
 			
 			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences');
 			$max = $resultMax[0][0]['MAX(id)'];
 			
 			$randId = rand(1, $max);
-			$this->Session->write('random_lang_selected', "random");
+			$this->Session->write('random_lang_selected', $id);
 			$this->redirect(array("action"=>"show", $randId));
 			
 		}elseif(in_array($id, $languages)){
@@ -367,14 +371,23 @@ class SentencesController extends AppController{
 			)
 		);
 		
-		if($lang == null OR $lang == 'any'){
+		if($lang == null){
+			$lang = $this->Session->read('random_lang_selected');
+		}
+		
+		if($lang == 'any'){
+			
 			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences', false);
 			$max = $resultMax[0][0]['MAX(id)'];
 			$randId = rand(1, $max);
 			
 			$this->Sentence->id = $randId;
 			$random = $this->Sentence->read();
+			$this->Session->write('random_lang_selected',$lang);
+			
+			
 		}elseif($lang == 'jp' OR $lang == 'en'){
+		
 			$min = ($lang == 'en') ? 15700 : 74000;
 			$max = ($lang == 'en') ? 74000 : 127300;
 			$randId = rand($min, $max);
@@ -388,7 +401,10 @@ class SentencesController extends AppController{
 					)
 				)
 			);
+			$this->Session->write('random_lang_selected', $lang);
+			
 		}else{
+		
 			$conditions['Sentence.lang'] = $lang;
 			$random = $this->Sentence->find(
 				'first', 
@@ -397,6 +413,7 @@ class SentencesController extends AppController{
 					'order' => 'RAND()'
 				)
 			);
+			$this->Session->write('random_lang_selected', $lang);
 			// TODO : find another solution than using RAND() because it's quite slow.
 		}
 		

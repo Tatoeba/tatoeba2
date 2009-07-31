@@ -51,12 +51,14 @@ echo '</div>';
 
 $langArray = $languages->languagesArray();
 asort($langArray);
+$selectedLanguage = $session->read('random_lang_selected');
+array_unshift($langArray, array('any' => __('any', true)));
 echo '<div class="element">';
 echo '<h2>';
 __('Random sentence'); 
 echo ' (';
 echo '<a id="showRandom" lang='.$lang.'>' . __('show another ', true) . '</a>';
-echo $form->select("randomLangChoice", $langArray);
+echo $form->select("randomLangChoice", $langArray, $selectedLanguage, null, false);
 echo ')</h2>';
 echo '<div class="random_sentences_set"></div>';
 echo '</div>';

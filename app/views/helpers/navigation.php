@@ -46,6 +46,7 @@ class NavigationHelper extends AppHelper{
 			$langArray = $this->Languages->languagesArray();
 			asort($langArray);
 			$selectedLanguage = $this->Session->read('random_lang_selected');
+			array_unshift($langArray, array('any' => __('any', true)));
 			
 			echo '<li class="option random">';
 			echo $this->Html->link(
@@ -57,7 +58,7 @@ class NavigationHelper extends AppHelper{
 				),
 				array("id" => "randomLink", "lang" => $this->params['lang'])
 			);
-			echo $this->Form->select("randomLangChoiceInBrowse", $langArray, $selectedLanguage);
+			echo $this->Form->select("randomLangChoiceInBrowse", $langArray, $selectedLanguage, null, false);
 			echo '</li>';
 			
 			
