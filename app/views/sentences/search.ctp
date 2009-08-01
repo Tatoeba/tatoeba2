@@ -4,7 +4,7 @@ if(isset($query)){
 	
 	echo '<h2>Search : ' . htmlentities($query, ENT_QUOTES, 'UTF-8') . ', <em>' . $resultsInfo['sentencesCount'] . ' result(s)</em></h2>';
 	
-	if(isset($mostFrequentWords) AND count($mostFrequentWords) > 0){
+	if(isset($mostFrequentWords) AND count($mostFrequentWords) > 0 AND $resultsInfo['sentencesCount'] > 0){
 		echo '<div id="mostFrequentWords">';
 		echo '<div>';
 		__('Most frequent words in the target language');
