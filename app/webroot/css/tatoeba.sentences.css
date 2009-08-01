@@ -337,3 +337,23 @@ margin: 5px 10px;
 }
 
 
+
+/* Most frequent words */
+
+#mostFrequentWords{
+font-size: 200%;
+margin-bottom: 20px;
+border-bottom: 1px dotted #cccccc;
+border-top: 1px dotted #cccccc;
+padding: 5px;
+text-align: center;
+}
+
+#mostFrequentWords span{
+padding-right: 20px;
+color: #6699CC;
+}
+
+#mostFrequentWords div{
+font-size: 55%;
+}

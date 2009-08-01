@@ -333,9 +333,12 @@ class SentencesController extends AppController{
 			$resultsInfo['pagesCount'] = $lucene_results['pagesCount'];
 			$resultsInfo['sentencesPerPage'] = $lucene_results['sentencesPerPage'];
 			$resultsInfo['sentencesCount'] = $lucene_results['sentencesCount'];
-				
+			
+			$mostFrequentWords = $lucene_results['mostFrequentWords'];
+			
 			$this->set('results', $sentences);
 			$this->set('resultsInfo', $resultsInfo);
+			$this->set('mostFrequentWords', $mostFrequentWords);
 			$this->set('scores', $scores);
 			$this->set('query', $query);
 			$this->set('from', $from);
