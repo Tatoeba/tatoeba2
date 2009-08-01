@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-06-30 21:13+0200\n"
+"POT-Creation-Date: 2009-08-01 17:16+0200\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: \app_controller.php:19
+#: \app_controller.php:15
 msgid "You need to be logged in."
 msgstr ""
 
@@ -35,39 +35,39 @@ msgstr ""
 msgid "Your comment has been saved."
 msgstr ""
 
-#: \controllers\sentences_controller.php:105
+#: \controllers\sentences_controller.php:139
 msgid "This sentence was not added by you. You can only edit sentences you have added."
 msgstr ""
 
-#: \controllers\sentences_controller.php:114
+#: \controllers\sentences_controller.php:148
 msgid "The sentence has been updated."
 msgstr ""
 
-#: \controllers\sentences_controller.php:177
+#: \controllers\sentences_controller.php:211
 msgid "You are now the owner of this sentence and can modify it as you wish. It is your responsibility to make sure that it doesn't have any mistake and, if possible, is not linked to wrong translations."
 msgstr ""
 
-#: \controllers\sentences_controller.php:188
+#: \controllers\sentences_controller.php:222
 msgid "You have abandonned your ownership for this sentence. Other people can now adopt it. If it was a mistake, you can just re-adopt it."
 msgstr ""
 
-#: \controllers\sentences_controller.php:245
+#: \controllers\sentences_controller.php:308
 msgid "Tatoeba search : "
 msgstr ""
 
-#: \controllers\sentences_controller.php:285
+#: \controllers\sentences_controller.php:355
 msgid "Tatoeba search"
 msgstr ""
 
-#: \controllers\sentences_controller.php:383
+#: \controllers\sentences_controller.php:498
 msgid "The languages have been saved."
 msgstr ""
 
-#: \controllers\sentences_controller.php:385
+#: \controllers\sentences_controller.php:500
 msgid "A problem occured while trying to save."
 msgstr ""
 
-#: \controllers\sentences_controller.php:388
+#: \controllers\sentences_controller.php:503
 msgid "There is nothing to save."
 msgstr ""
 
@@ -181,16 +181,24 @@ msgstr ""
 msgid "sentence modified"
 msgstr ""
 
-#: \views\contributions\show.ctp:2
+#: \views\contributions\show.ctp:8
 msgid "Logs for : "
 msgstr ""
 
-#: \views\contributions\show.ctp:19
-#: \views\helpers\sentences.php:277
+#: \views\contributions\show.ctp:25
+msgid "Logs for sentence nº"
+msgstr ""
+
+#: \views\contributions\show.ctp:28
+msgid "The sentence has been deleted"
+msgstr ""
+
+#: \views\contributions\show.ctp:33
+#: \views\helpers\sentences.php:311
 msgid "Logs"
 msgstr ""
 
-#: \views\contributions\show.ctp:31
+#: \views\contributions\show.ctp:49
 msgid "There is no log for this sentence"
 msgstr ""
 
@@ -245,7 +253,7 @@ msgid "Contribute"
 msgstr ""
 
 #: \views\elements\menu.ctp:18
-#: \views\helpers\sentences.php:266
+#: \views\helpers\sentences.php:300
 #: \views\sentence_comments\show.ctp:23
 #: \views\users\show.ctp:98
 msgid "Comments"
@@ -253,6 +261,11 @@ msgstr ""
 
 #: \views\elements\menu.ctp:19
 msgid "Members"
+msgstr ""
+
+#: \views\elements\menu.ctp:20
+#: \views\pages\whats_new.ctp:5
+msgid "What's new"
 msgstr ""
 
 #: \views\elements\search_bar.ctp:11
@@ -320,11 +333,11 @@ msgstr ""
 msgid "Dutch"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:31
+#: \views\elements\search_bar.ctp:34
 msgid "search"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:33
+#: \views\elements\search_bar.ctp:36
 msgid "show examples"
 msgstr ""
 
@@ -354,19 +367,19 @@ msgid "Log in"
 msgstr ""
 
 #: \views\elements\top2.ctp:38
-#: \views\users\register.ctp:12
+#: \views\users\register.ctp:29
 msgid "Register"
 msgstr ""
 
 #: \views\groups\index.ctp:48
-#: \views\helpers\navigation.php:18
+#: \views\helpers\navigation.php:23
 #: \views\users\all.ctp:14;50
 #: \views\users\index.ctp:8;69
 msgid "previous"
 msgstr ""
 
 #: \views\groups\index.ctp:50
-#: \views\helpers\navigation.php:42
+#: \views\helpers\navigation.php:35
 #: \views\users\all.ctp:16;52
 #: \views\users\index.ctp:10;71
 msgid "next"
@@ -400,64 +413,73 @@ msgstr ""
 msgid "Hebrew"
 msgstr ""
 
-#: \views\helpers\navigation.php:11
+#: \views\helpers\languages.php:20
+msgid "Finnish"
+msgstr ""
+
+#: \views\helpers\navigation.php:16
 msgid "Show sentence nº : "
 msgstr ""
 
-#: \views\helpers\navigation.php:12
-#: \views\helpers\sentences.php:171;216
+#: \views\helpers\navigation.php:17
+#: \views\helpers\sentences.php:205;250
 msgid "OK"
 msgstr ""
 
-#: \views\helpers\navigation.php:30;68
+#: \views\helpers\navigation.php:49
+#: \views\pages\home.ctp:55
+msgid "any"
+msgstr ""
+
+#: \views\helpers\navigation.php:53;82
 msgid "random"
 msgstr ""
 
-#: \views\helpers\navigation.php:60
+#: \views\helpers\navigation.php:74
 msgid "Enter a username : "
 msgstr ""
 
-#: \views\helpers\navigation.php:61
+#: \views\helpers\navigation.php:75
 msgid "show user"
 msgstr ""
 
-#: \views\helpers\navigation.php:80
+#: \views\helpers\navigation.php:94
 msgid "all"
 msgstr ""
 
-#: \views\helpers\sentences.php:22
+#: \views\helpers\sentences.php:32
 msgid "WARNING : the romaji is automatically generated and is not always reliable."
 msgstr ""
 
-#: \views\helpers\sentences.php:54
+#: \views\helpers\sentences.php:82
 msgid "This sentence does not belong to anyone, you can adopt it"
 msgstr ""
 
-#: \views\helpers\sentences.php:61
+#: \views\helpers\sentences.php:89
 msgid "This sentence belongs to :"
 msgstr ""
 
-#: \views\helpers\sentences.php:215
+#: \views\helpers\sentences.php:249
 msgid "Modification : "
 msgstr ""
 
-#: \views\helpers\sentences.php:248
+#: \views\helpers\sentences.php:282
 msgid "Translate"
 msgstr ""
 
-#: \views\helpers\sentences.php:289
+#: \views\helpers\sentences.php:323
 msgid "Adopt"
 msgstr ""
 
-#: \views\helpers\sentences.php:302
+#: \views\helpers\sentences.php:336
 msgid "Let go"
 msgstr ""
 
-#: \views\helpers\sentences.php:315
+#: \views\helpers\sentences.php:349
 msgid "Delete"
 msgstr ""
 
-#: \views\helpers\sentences.php:328
+#: \views\helpers\sentences.php:362
 msgid "belongs to "
 msgstr ""
 
@@ -482,7 +504,7 @@ msgid "But there are about <strong>300,000 sentences</strong> (which is a lot) t
 msgstr ""
 
 #: \views\helpers\tooltip.php:65
-msgid "Adopting makes you sort of the creator of the sentence (in other words, you can - but don't have to - modify it after the adoption)."
+msgid "Adopting sort of makes you the creator of the sentence (in other words, you can - but don't have to - modify it after the adoption)."
 msgstr ""
 
 #: \views\helpers\tooltip.php:69
@@ -522,7 +544,7 @@ msgid "Your translation should be <strong>based on the main sentence</strong> (t
 msgstr ""
 
 #: \views\helpers\tooltip.php:94
-msgid "The other sentences <strong>below</strong> are displayed only to make you know what <strong>translations</strong> have already been added."
+msgid "The other sentences <strong>below</strong> are displayed only so you know what <strong>translations</strong> have already been added."
 msgstr ""
 
 #: \views\helpers\tooltip.php:96
@@ -583,7 +605,7 @@ msgid "Tatoeba : Collecting example sentences"
 msgstr ""
 
 #: \views\pages\home.ctp:9
-msgid "The language of some of the sentences you have added could not be detected. "
+msgid "The language of some the sentences you have added could not be detected. "
 msgstr ""
 
 #: \views\pages\home.ctp:10
@@ -606,27 +628,27 @@ msgstr ""
 msgid "These sentences can be downloaded for free here : "
 msgstr ""
 
-#: \views\pages\home.ctp:53
+#: \views\pages\home.ctp:58
 msgid "Random sentence"
 msgstr ""
 
-#: \views\pages\home.ctp:55
-msgid "show another"
-msgstr ""
-
-#: \views\pages\home.ctp:63
-msgid "Latest contributions"
-msgstr ""
-
-#: \views\pages\home.ctp:67
-msgid "show more..."
+#: \views\pages\home.ctp:60
+msgid "show another "
 msgstr ""
 
 #: \views\pages\home.ctp:69
+msgid "Latest contributions"
+msgstr ""
+
+#: \views\pages\home.ctp:73;84
+msgid "show more..."
+msgstr ""
+
+#: \views\pages\home.ctp:75
 msgid "show activity timeline"
 msgstr ""
 
-#: \views\pages\home.ctp:76
+#: \views\pages\home.ctp:82
 msgid "Latest comments"
 msgstr ""
 
@@ -690,15 +712,19 @@ msgstr ""
 msgid "This will search for sentences containing \"like\" and \"television\", or \"like\" and \"sleep\"."
 msgstr ""
 
+#: \views\pages\whats_new.ctp:8
+msgid "You can follow the evolution of the project on "
+msgstr ""
+
 #: \views\sentence_comments\add.ctp:2
 msgid "Add comment for sentence"
 msgstr ""
 
-#: \views\sentence_comments\index.ctp:7
+#: \views\sentence_comments\index.ctp:6
 msgid "Other languages"
 msgstr ""
 
-#: \views\sentence_comments\index.ctp:42
+#: \views\sentence_comments\index.ctp:41
 msgid "There are no comments in this language"
 msgstr ""
 
@@ -726,11 +752,19 @@ msgstr ""
 msgid "Sentences added"
 msgstr ""
 
+#: \views\sentences\check_translation.ctp:7
+msgid "Are you sure you want to translate this sentence by a sentence in the same language ?"
+msgstr ""
+
 #: \views\sentences\link.ctp:2
 msgid "Potential translations for : "
 msgstr ""
 
-#: \views\sentences\search.ctp:33
+#: \views\sentences\search.ctp:10
+msgid "Most frequent words in the target language"
+msgstr ""
+
+#: \views\sentences\search.ctp:42
 msgid "No results for this search"
 msgstr ""
 
@@ -780,6 +814,14 @@ msgstr ""
 
 #: \views\tools\kakasi.ctp:28
 msgid "Convert"
+msgstr ""
+
+#: \views\users\check_email.ctp:5
+msgid "this email is already used, please choose an other"
+msgstr ""
+
+#: \views\users\check_username.ctp:5
+msgid "this username is already taken, please choose an other"
 msgstr ""
 
 #: \views\users\followers.ctp:9
@@ -836,19 +878,19 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-#: \views\users\register.ctp:6
+#: \views\users\register.ctp:14
 msgid "Username :"
 msgstr ""
 
-#: \views\users\register.ctp:7
+#: \views\users\register.ctp:18
 msgid "Password :"
 msgstr ""
 
-#: \views\users\register.ctp:8
+#: \views\users\register.ctp:22
 msgid "Email :"
 msgstr ""
 
-#: \views\users\register.ctp:11
+#: \views\users\register.ctp:28
 msgid "Code displayed above :"
 msgstr ""
 
