@@ -20,13 +20,7 @@ class CommentsHelper extends AppHelper {
 	}
 	
 	function clickableURL($comment){
-		/*
-		$comment = preg_replace('!((https?://[a-z0-9._/-?&%=#]{50}) ?([^< ])+)(<?)!i', '<a target="_blank" href="$1">$2[...]</a>$4', $comment);
-		$comment = preg_replace('!([^">])(https?://[a-z0-9._/-?&%=#] ?[^<) ]+)(<?)!i', '$1<a target="_blank" href="$2">$2</a>$3', $comment);
-		*/
-		$comment = preg_replace('#https?://[^<)\s ]+#i', '<a target="_blank" href="$0">$0</a>', $comment);
-		//$comment = preg_replace('!https?://[^<)\s ]+(?=\')!i', '<a target="_blank" href="$0">$0</a>', $comment);
-		//$comment = preg_replace('!https?://[^<)\s ]+(?=\")!i', '<a target="_blank" href=\'$0\'>$0</a>', $comment);
+		$comment = preg_replace('#(https?://[^<)\s ]{0,50})[^<)\s ]{0,}#i', '<a target="_blank" href=\'$0\'>$1</a>', $comment);
 		return $comment;
 	}
 	
