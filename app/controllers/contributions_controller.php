@@ -90,7 +90,7 @@ class ContributionsController extends AppController {
 		$this->Contribution->recursive = 0;
 		$stats = $this->Contribution->find('all', array(
 			'fields' => array('Contribution.user_id', 'User.id', 'User.username', 'User.since', 'User.group_id', 'COUNT(*) as total'),
-			'conditions' => array('Contribution.user_id !=' => null),
+			'conditions' => array('Contribution.user_id !=' => null, 'Contribution.type' => 'sentence'),
 			'group' => array('Contribution.user_id'),
 			'order' => 'total DESC'
 		));
