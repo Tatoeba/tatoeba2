@@ -356,6 +356,23 @@ class SentencesHelper extends AppHelper {
 					'Are you sure?');
 				echo '</li>';
 			}
+
+
+			if(isset($specialOptions['canFavorite']) AND $specialOptions['canFavorite'] == true){
+				
+				$this->Javascript->link('favorites.add.js', false);
+				echo '<li class="option favorite" id="favorite_'.$id.'">';
+				echo '<a>' .	__('Add to favorite',true) . '</a>' ; 
+				echo '</li>';
+			}
+
+			if(isset($specialOptions['canUnFavorite']) AND $specialOptions['canUnFavorite'] == true){
+				
+				$this->Javascript->link('favorites.remove.js', false);
+				echo '<li class="option unfavorite">';
+				echo '<a>' .	__('Remove from avorite',true) . '</a>' ; 
+				echo '</li>';
+			}
 			
 			if(isset($specialOptions['belongsTo'])){
 				echo '<li class="belongsTo">- ';

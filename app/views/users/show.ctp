@@ -4,37 +4,51 @@ $javascript->link('users.followers_and_following.js', false);
 
 $navigation->displayUsersNavigation($user['User']['id'], $user['User']['username']);
 
-echo '<h2>';
-echo $user['User']['username'];
-if($session->read('Auth.User.id') AND isset($can_follow)){
-	if($can_follow){
-		$style2 = "style='display: none'";
-		$style1 = "";
-	}else{
-		$style1 = "style='display: none'";
-		$style2 = "";
+echo '<div id="usertop" >' ;
+	echo '<h2>';
+	echo $user['User']['username'];
+	if($session->read('Auth.User.id') AND isset($can_follow)){
+		if($can_follow){
+			$style2 = "style='display: none'";
+			$style1 = "";
+		}else{
+			$style1 = "style='display: none'";
+			$style2 = "";
+		}
+		echo ' (';
+		echo '<a id="start" class="followingOption" '.$style1.'>'. __('Start following this person', true). '</a>';
+		echo '<a id="stop" class="followingOption" '.$style2.'>'. __('Stop following this person', true). '</a>';
+		echo ')';
 	}
-	echo ' (';
-	echo '<a id="start" class="followingOption" '.$style1.'>'. __('Start following this person', true). '</a>';
-	echo '<a id="stop" class="followingOption" '.$style2.'>'. __('Stop following this person', true). '</a>';
-	echo ')';
-}
-echo '</h2>';
+	echo '</h2>';
 
-/* User general information */
-echo '<div class="user" id="'.$user['User']['id'].'">';
-__('Member since : ');
-echo $date->ago($user['User']['since']);
+	/* User general information */
+	echo '<div class="user" id="'.$user['User']['id'].'">';
+	__('Member since : ');
+	echo $date->ago($user['User']['since']);
+	echo '</div>';
+
+
+	/*User's menu to acced more specific and detailled informations*/
+	echo '<div id="usermenu" >';
+		echo '<ul>';
+			echo '<li>' . __('Followers',true) . '</li>';  
+			echo '<li>' . __('Contributions',true) . '</li>';  
+			echo '<li>' . __('Favorite sentences',true) . '</li>';  
+			echo '<li>' . __('Sentences',true) . '</li>';  
+			echo '<li>' . __('Comments',true) . '</li>';  
+		
+		echo '</ul>';
+	echo '</div>';
 echo '</div>';
-
 
 /* People that the user is following */
 
+echo '<div class="following">';	
 echo '<h3>';
 __('Following');
 echo '</h3>';
 
-echo '<div class="following">';	
 if(count($user['Following']) > 0){
 	echo '<ul>';
 	foreach($user['Following'] as $following){
@@ -75,6 +89,21 @@ if(count($user['Contributions']) > 0){
 	echo '<table id="logs">';
 	foreach($user['Contributions'] as $contribution){
 		$logs->entry($contribution);
+	}
+	echo '</table>';
+	
+	echo '<br/>';
+}
+
+/* Latest favorites from the user */
+if(count($user['Favorite']) > 0){
+	echo '<h3>';
+	__('Favorite sentences');
+	echo '</h3>';
+
+	echo '<table id="logs">';
+	foreach($user['Favorite'] as $favorite){
+		$sentences->displaySentence($favorite);
 	}
 	echo '</table>';
 	

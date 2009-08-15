@@ -1,20 +1,25 @@
 <?php
 class Sentence extends AppModel{
 	var $name = 'Sentence';
-	var $actsAs = array('ExtendAssociations');
 	
 	const MAX_CORRECTNESS = 6;
 	
 	var $validate = array(
 		'lang' => array(
-			'rule' => array('inList', array('ar', 'de', 'en', 'es', 'fi', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'vn', 'zh', null))
+			'rule' => array('inList', array('ar', 'de', 'en', 'es', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'vn', 'zh', null))
 		),
 		'text' => array(
 			'rule' => array('minLength', '1')
 		)
 	);
 	
-	var $hasMany = array('Contribution', 'SentenceComment');
+	 	
+
+	var $hasMany = array('Contribution', 'SentenceComment', 
+			'Favorites_users' => array ( 
+					'classname'  => 'favorites',
+					'foreignKey' => 'favorite_id'  )
+			 );
 	
 	var $belongsTo = array('User');
 	
@@ -74,16 +79,6 @@ class Sentence extends AppModel{
 					$data2['Contribution']['action'] = 'insert';
 					$data2['Contribution']['type'] = 'link';
 					$contributions[] = $data2;
-					
-					// saving link with language. I hate doing this but habtm associations are such a headache...
-					// TODO find better solution
-					$this->query(
-						'UPDATE sentences_translations 
-						SET sentence_lang="'.$this->data['Sentence']['sentence_lang'].'",
-						    translation_lang="'.$this->data['Sentence']['lang'].'"
-						WHERE sentence_id='.$this->data['Translation']['Translation'][0].'
-						AND translation_id='.$this->id
-					);
 				}
 				if(isset($this->data['InverseTranslation'])){
 					// Inverse translation logs
@@ -95,16 +90,6 @@ class Sentence extends AppModel{
 					$data2['Contribution']['action'] = 'insert';
 					$data2['Contribution']['type'] = 'link';
 					$contributions[] = $data2;
-					
-					// saving link with language
-					// TODO find better solution
-					$this->query(
-						'UPDATE sentences_translations 
-						SET sentence_lang="'.$this->data['Sentence']['lang'].'",
-						    translation_lang="'.$this->data['Sentence']['sentence_lang'].'"
-						WHERE sentence_id='.$this->id.'
-						AND translation_id='.$this->data['Translation']['Translation'][0]
-					);
 				}
 				if(isset($contributions)){
 					$this->Contribution->saveAll($contributions);

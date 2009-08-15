@@ -10,7 +10,7 @@ class UsersController extends AppController {
 		parent::beforeFilter();
 		// setting actions that are available to everyone, even guests
 		// no need to allow login
-		$this->Auth->allowedActions = array('all', 'search', 'show', 'logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration', 'resend_registration_mail', 'captcha_image', 'followers', 'following','check_username','check_email');
+		$this->Auth->allowedActions = array('all', 'search', 'show', 'logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration', 'resend_registration_mail', 'captcha_image', 'followers', 'following', 'favoriting', 'check_username','check_email');
 		//$this->Auth->allowedActions = array('*');
 	}
 
@@ -353,12 +353,12 @@ class UsersController extends AppController {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate(array('User.group_id < 5')));
 	}
-	
+	/*
 	function my_tatoeba(){
 		$this->User->recursive = 1;
 		$this->User->id = $this->Auth->user('id');
 		$this->set('user', $this->User->read());
-	}
+	}*/
 	
 	function captcha_image(){
 	    Configure::write('debug',0);
@@ -390,6 +390,22 @@ class UsersController extends AppController {
 		$this->set('following', $this->User->read());	
 	}
 	
+
+	function favoriting($id){
+
+		$this->User->unbindModel(
+			array(
+				'belongsTo' => array('Group'),
+				'hasMany' => array('SentenceComments', 'Contributions', 'Sentences'),
+				'hasAndBelongsToMany' => array('Following' , 'Follower')
+			)
+		);
+
+		$this->User->id = $id;
+		$this->set('favorites', $this->User->read());	
+		
+
+	}
 	function start_following(){
 		$follower_id = $this->Auth->user('id');
 		$user_id = $_POST['user_id'];
@@ -444,7 +460,9 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Sentences');
 		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');
 		$this->Acl->allow($group, 'controllers/Users/start_following');
+		$this->Acl->allow($group, 'controllers/Users/favoriting');
 		$this->Acl->allow($group, 'controllers/Users/stop_following');
+		$this->Acl->allow($group, 'controllers/Favorites/add_favorite');
 		
 		//Permissions for trusted_users
 		$group->id = 3;
@@ -454,8 +472,9 @@ class UsersController extends AppController {
 		$this->Acl->deny($group, 'controllers/Sentences/delete');
 		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');
 		$this->Acl->allow($group, 'controllers/Users/start_following');
+		$this->Acl->allow($group, 'controllers/Users/favoriting');
 		$this->Acl->allow($group, 'controllers/Users/stop_following');
-		
+		$this->Acl->allow($group, 'controllers/Favorites/add_favorite');
 	    //Permissions for users
 	    $group->id = 4;
 		$this->Acl->deny($group, 'controllers');
@@ -464,7 +483,10 @@ class UsersController extends AppController {
 		$this->Acl->deny($group, 'controllers/Sentences/delete');
 		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');
 		$this->Acl->allow($group, 'controllers/Users/start_following');
+		$this->Acl->allow($group, 'controllers/Users/favoriting');
 		$this->Acl->allow($group, 'controllers/Users/stop_following');
+		$this->Acl->allow($group, 'controllers/Favorites/add_favorite');
+		$this->Acl->allow($group, 'controllers/Favorites/remove_favorite');
 	}
 }
 ?>

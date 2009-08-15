@@ -54,7 +54,7 @@ class SentencesController extends AppController{
 			$this->set('sentence', $sentence);
 
 			// checking which options user can access to
-			$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
+			$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 			$this->set('specialOptions',$specialOptions);
 			
 		}
@@ -95,7 +95,12 @@ class SentencesController extends AppController{
 				$this->set('sentence', $this->Sentence->read());
 				
 				// checking which options user can access to
-				$specialOptions = $this->Permissions->getSentencesOptions($this->Auth->user('id'), $this->Auth->user('id'));
+				// we use again this->data because of the argument
+				// needed by getSentencesOptions 
+
+				$this->data['Sentence']['user_id'] = $this->Auth->user('id');
+				$specialOptions = $this->Permissions->getSentencesOptions($this->data, $this->Auth->user('id'));
+				$this->data = null;
 				$this->set('specialOptions',$specialOptions);
 			}
 		}
@@ -132,7 +137,7 @@ class SentencesController extends AppController{
 				$this->Sentence->recursive = 2;
 				$this->data = $this->Sentence->read();
 				$this->set('sentence', $this->data);
-				$specialOptions = $this->Permissions->getSentencesOptions($this->data['Sentence']['user_id'], $this->Auth->user('id'));
+				$specialOptions = $this->Permissions->getSentencesOptions($this->data, $this->Auth->user('id'));
 				$this->set('specialOptions',$specialOptions);
 			}else{
 				$this->flash(
@@ -196,7 +201,11 @@ class SentencesController extends AppController{
 					$this->layout = null;
 					$this->set('sentence', $this->Sentence->read());
 					// checking which options user can access to
-					$specialOptions = $this->Permissions->getSentencesOptions($this->Auth->user('id'), $this->Auth->user('id'));
+					// we use again this->data because of the argument needed by getSentencesOptions 
+					$this->data['Sentence']['user_id'] = $this->Auth->user('id');
+					$specialOptions = $this->Permissions->getSentencesOptions($this->data, $this->Auth->user('id'));
+					$this->data = null;
+
 					$this->set('specialOptions',$specialOptions);
 				}
 			}
@@ -348,7 +357,7 @@ class SentencesController extends AppController{
 			// checking which options user can access to
 			$specialOptions = array();
 			foreach($sentences as $sentence){
-				$specialOptions[] = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
+				$specialOptions[] = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 			}
 			$this->set('specialOptions',$specialOptions);
 		}else{
@@ -420,7 +429,7 @@ class SentencesController extends AppController{
 			// TODO : find another solution than using RAND() because it's quite slow.
 		}
 		
-		$random['specialOptions'] = $this->Permissions->getSentencesOptions($random['Sentence']['user_id'], $this->Auth->user('id'));
+		$random['specialOptions'] = $this->Permissions->getSentencesOptions($random, $this->Auth->user('id'));
 		
 		$this->set('random', $random);
 		$this->set('type', $type);
@@ -430,7 +439,7 @@ class SentencesController extends AppController{
 		if(isset($id)){
 			$this->Sentence->id = $id;
 			$sentence = $this->Sentence->read();
-			$sentence['specialOptions'] = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
+			$sentence['specialOptions'] = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 		}else{
 			$sentence = $this->random();	
 		}
@@ -462,7 +471,7 @@ class SentencesController extends AppController{
 		);
 		$this->Sentence->recursive = 2;
 		$sentence = $this->Sentence->read();
-		$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
+		$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 		
 		$this->set('sentence', $sentence);
 		$this->set('specialOptions',$specialOptions);
