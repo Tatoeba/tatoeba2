@@ -18,7 +18,16 @@ class SentencesController extends AppController{
 	
 	function show($id = null){
 		$languages = array('ar', 'de', 'en', 'es', 'fi', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'vn', 'zh');
-		$this->Sentence->recursive = 0;
+		$this->Sentence->recursive = 1;
+
+		$this->Sentence->unbindModel(
+			array(
+				'hasMany' => array('SentenceComment', 'Contribution'),
+				'hasAndBelongsToMany' => array('InverseTranslation', 'Translation')
+			)
+		);			
+		
+
 		
 		if($id == "random" OR $id == null){
 			$id = $this->Session->read('random_lang_selected');
@@ -52,7 +61,7 @@ class SentencesController extends AppController{
 			
 			$sentence = $this->Sentence->read();
 			$this->set('sentence', $sentence);
-
+			pr($sentence);
 			// checking which options user can access to
 			$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 			$this->set('specialOptions',$specialOptions);
@@ -425,10 +434,12 @@ class SentencesController extends AppController{
 					'order' => 'RAND()'
 				)
 			);
+			
 			$this->Session->write('random_lang_selected', $lang);
 			// TODO : find another solution than using RAND() because it's quite slow.
 		}
 		
+		pr($random) ;
 		$random['specialOptions'] = $this->Permissions->getSentencesOptions($random, $this->Auth->user('id'));
 		
 		$this->set('random', $random);
