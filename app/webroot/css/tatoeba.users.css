@@ -246,7 +246,30 @@ position : absolute;
 top : 0px ;
 right:0px ;
 float : right ;
+}
 
 
+/* USER SETTINGS */
 
+#UserSettings form{
+background: #f1f1f1;
+border: 1px solid #a1a1a1;
+width: 430px;
+padding: 10px 20px;
+margin-bottom: 20px;
+}
+
+#UserSettings div.submit{
+margin-top: 15px;
+}
+
+#UserSettings div.input input{
+margin: 0px 10px;
+width: 200px;
+}
+
+#UserSettings div.input label{
+display: block;
+float: left;
+width: 150px;
 }

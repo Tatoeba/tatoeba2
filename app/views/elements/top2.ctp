@@ -27,7 +27,7 @@ if (isset($this->params['lang'])) {
 		echo '<div>';
 		echo $html->link(
 			__('Edit my information',true),
-			array("controller" => "users", "action" => "my_profile")
+			array("controller" => "users", "action" => "settings")
 		);
 		echo '</div>';
 	}else{

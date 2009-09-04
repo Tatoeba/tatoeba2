@@ -10,7 +10,7 @@ class UsersController extends AppController {
 		parent::beforeFilter();
 		// setting actions that are available to everyone, even guests
 		// no need to allow login
-		$this->Auth->allowedActions = array('all', 'search', 'show', 'logout','register','new_password', 'my_profile', 'save_profile', 'confirm_registration', 'resend_registration_mail', 'captcha_image', 'followers', 'following', 'favoriting', 'check_username','check_email');
+		$this->Auth->allowedActions = array('all', 'search', 'show', 'logout','register','new_password', 'confirm_registration', 'resend_registration_mail', 'captcha_image', 'followers', 'following', 'favoriting', 'check_username','check_email');
 		//$this->Auth->allowedActions = array('*');
 	}
 
@@ -106,7 +106,7 @@ class UsersController extends AppController {
 	
 	function register(){
 		if (!empty($this->data)) {
-
+			
 			$this->User->create();
 			$this->data['User']['since'] = date("Y-m-d H:i:s");
 			$this->data['User']['group_id'] = User::LOWEST_TRUST_GROUP_ID + 1;
@@ -265,51 +265,54 @@ class UsersController extends AppController {
 		}
 	}
 	
-	function my_profile(){
+	function settings(){
 		$id = $this->Auth->user('id');
+		$this->User->recursive = 0;
 		$this->set('user', $this->User->read(null, $id));
 	}
 	
-	function save_profile(){
+	function save_password(){
 		$this->User->id = $this->Auth->user('id');
+		$this->User->recursive = 0;
 		$user = $this->User->read();
 		$hashedPass = $this->Auth->password($this->data['old_password']['passwd']);
 		
-		$flashMsg = '';
-		$savePass = false;
-		$saveEmail = false;
-		
-		if($user['User']['password'] == $hashedPass){
+		if($user['User']['password'] == $hashedPass && $this->data['new_password']['passwd'] == $this->data['new_password2']['passwd']){
 			$this->data['User']['password'] = $this->Auth->password($this->data['new_password']['passwd']);
-			$flashMsg .= __('New password has been saved.',true);
-			$flashMsg .= ' ';
-			$savePass = true;
-		}
-		
-		if($user['User']['email'] != $this->data['User']['email']){
-			$flashMsg .= __('Email saved : ', true);
-			$flashMsg .= $this->data['User']['email'];
-			$saveEmail = true;
-		}
-		
-		if($savePass OR $saveEmail){
+			
 			if($this->User->save($this->data)){
-				$this->flash(
-					$flashMsg,
-					'/users/my_profile/'
-				);
+				$flashMsg = __('New password has been saved.',true);
 			}else{
-				$this->flash(
-					__('No changes have been applied.',true),
-					'/users/my_profile/'
-				);
+				$flashMsg = __('An error occured while saving.',true);
 			}
 		}else{
-			$this->flash(
-				__('No changes have been applied.',true),
-				'/users/my_profile/'
-			);
+			$flashMsg = __('Wrong old password or new password inputs do not match.',true);
 		}
+		
+		$this->flash($flashMsg,	'/users/settings/');
+	}
+	
+	function save_email(){
+		$this->User->id = $this->Auth->user('id');
+		if($this->User->save($this->data)){
+			$flashMsg  = __('Email saved : ', true);
+			$flashMsg .= $this->data['User']['email'];
+		}else{
+			$flashMsg  = __('An error occured while saving. The email you have entered is either not correct or is already used.', true);
+		}
+		
+		$this->flash($flashMsg,	'/users/settings/');
+	}
+	
+	function save_options(){
+		$this->User->id = $this->Auth->user('id');
+		if($this->User->save($this->data)){
+			$flashMsg = __('Options saved.',true);
+		}else{
+			$flashMsg = __('New password has been saved.',true);
+		}
+		
+		$this->flash($flashMsg,	'/users/settings/');
 	}
 	
 	function search(){
@@ -459,6 +462,10 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/SentenceComments');
 		$this->Acl->allow($group, 'controllers/Sentences');
 		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');
+		$this->Acl->allow($group, 'controllers/Users/settings');
+		$this->Acl->allow($group, 'controllers/Users/save_email');
+		$this->Acl->allow($group, 'controllers/Users/save_password');
+		$this->Acl->allow($group, 'controllers/Users/save_options');
 		$this->Acl->allow($group, 'controllers/Users/start_following');
 		$this->Acl->allow($group, 'controllers/Users/favoriting');
 		$this->Acl->allow($group, 'controllers/Users/stop_following');
@@ -471,10 +478,15 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Sentences');
 		$this->Acl->deny($group, 'controllers/Sentences/delete');
 		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');
+		$this->Acl->allow($group, 'controllers/Users/settings');
+		$this->Acl->allow($group, 'controllers/Users/save_email');
+		$this->Acl->allow($group, 'controllers/Users/save_password');
+		$this->Acl->allow($group, 'controllers/Users/save_options');
 		$this->Acl->allow($group, 'controllers/Users/start_following');
 		$this->Acl->allow($group, 'controllers/Users/favoriting');
 		$this->Acl->allow($group, 'controllers/Users/stop_following');
 		$this->Acl->allow($group, 'controllers/Favorites/add_favorite');
+		
 	    //Permissions for users
 	    $group->id = 4;
 		$this->Acl->deny($group, 'controllers');
@@ -482,6 +494,10 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Sentences');
 		$this->Acl->deny($group, 'controllers/Sentences/delete');
 		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');
+		$this->Acl->allow($group, 'controllers/Users/settings');
+		$this->Acl->allow($group, 'controllers/Users/save_email');
+		$this->Acl->allow($group, 'controllers/Users/save_password');
+		$this->Acl->allow($group, 'controllers/Users/save_options');
 		$this->Acl->allow($group, 'controllers/Users/start_following');
 		$this->Acl->allow($group, 'controllers/Users/favoriting');
 		$this->Acl->allow($group, 'controllers/Users/stop_following');
