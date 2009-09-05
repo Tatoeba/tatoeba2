@@ -19,14 +19,12 @@ if (isset($this->params['lang'])) {
 		
 		echo '<div>';
 		echo $html->link(
-			__('See my page',true),
+			__('My profile',true),
 			array("controller" => "users", "action" => "show/".$session->read('Auth.User.id' ))
 		);
-		echo '</div>';
-		
-		echo '<div>';
+		echo ' | ';
 		echo $html->link(
-			__('Edit my information',true),
+			__('My settings',true),
 			array("controller" => "users", "action" => "settings")
 		);
 		echo '</div>';
