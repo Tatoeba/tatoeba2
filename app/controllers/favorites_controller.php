@@ -3,13 +3,22 @@ class FavoritesController extends AppController{
 
 	var $name = 'Favorites' ;
 	var $paginate = array('limit' => 50); 
+	var $helpers = array('Navigation');
 
 	function beforeFilter() {
 	    parent::beforeFilter();
 		
 		// setting actions that are available to everyone, even guests
+		$this->Auth->allowedActions = array('of_user');
 	}
-
+	
+	function of_user($user_id){
+		$u = new User();
+		$u->id = $user_id;
+		$u->hasAndBelongsToMany['Favorite']['limit'] = null;
+		$user = $u->read();
+		$this->set('user', $user);
+	}
 
 	function add_favorite ($sentence_id){
 	        $user_id =$this->Auth->user('id');

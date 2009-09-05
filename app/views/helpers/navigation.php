@@ -88,7 +88,7 @@ class NavigationHelper extends AppHelper{
 			);
 			echo '</li>';
 			
-			// next
+			// all
 			echo '<li class="option">';
 			echo $this->Html->link(
 				__('all',true), 
@@ -97,6 +97,20 @@ class NavigationHelper extends AppHelper{
 					"action" => "all"
 				)
 			);
+			echo '</li>';
+			
+			// back to whole profile
+			if($this->params['controller'] != 'users' AND $this->params['action'] != 'show'){
+				echo '<li class="option">';
+				echo $this->Html->link(
+					$username . ' ' . __('profile',true), 
+					array(
+						"controller" => "users",
+						"action" => "show",
+						$currentId
+					)
+				);
+			}
 			echo '</li>';
 			
 			echo '</ul>';

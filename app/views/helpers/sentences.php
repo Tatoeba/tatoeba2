@@ -342,22 +342,6 @@ class SentencesHelper extends AppHelper {
 				echo '</li>';
 			}
 			
-			// delete link
-			if(isset($specialOptions['canDelete']) AND $specialOptions['canDelete'] == true){
-				echo '<li class="option delete">';
-				echo $this->Html->link(
-					__('Delete',true), 
-					array(
-						"controller" => "sentences",
-						"action" => "delete",
-						$id
-					), 
-					null, 
-					'Are you sure?');
-				echo '</li>';
-			}
-
-
 			if(isset($specialOptions['canFavorite']) AND $specialOptions['canFavorite'] == true){
 				
 				$this->Javascript->link('favorites.add.js', false);
@@ -371,6 +355,21 @@ class SentencesHelper extends AppHelper {
 				$this->Javascript->link('favorites.remove.js', false);
 				echo '<li class="option unfavorite">';
 				echo '<a>' .	__('Remove from avorite',true) . '</a>' ; 
+				echo '</li>';
+			}
+			
+			// delete link
+			if(isset($specialOptions['canDelete']) AND $specialOptions['canDelete'] == true){
+				echo '<li class="option delete">';
+				echo $this->Html->link(
+					__('Delete',true), 
+					array(
+						"controller" => "sentences",
+						"action" => "delete",
+						$id
+					), 
+					null, 
+					'Are you sure?');
 				echo '</li>';
 			}
 			

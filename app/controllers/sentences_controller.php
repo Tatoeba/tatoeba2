@@ -439,7 +439,6 @@ class SentencesController extends AppController{
 			// TODO : find another solution than using RAND() because it's quite slow.
 		}
 		
-		pr($random) ;
 		$random['specialOptions'] = $this->Permissions->getSentencesOptions($random, $this->Auth->user('id'));
 		
 		$this->set('random', $random);

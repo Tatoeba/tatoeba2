@@ -19,6 +19,19 @@ class Favorite extends AppModel{
 			'finderQuery' => '',
 			'deleteQuery' => '',
 			'insertQuery' => ''
+		),
+		'User' => array(
+			'className' => 'User',
+			'joinTable' => 'favorites_users',
+			'foreignKey' => 'user_id',
+			'associationForeignKey' => 'favorite_id',
+			'conditions' => '',
+			'order' => '',
+			'limit' => '',
+			'unique' => true,
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
 		)
 	);	
 
