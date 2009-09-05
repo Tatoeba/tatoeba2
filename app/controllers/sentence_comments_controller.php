@@ -50,7 +50,7 @@ class SentenceCommentsController extends AppController {
 		$this->set('sentence', $sentence);	
 		
 		// checking which options user can access to
-		$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
+		$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 		$this->set('specialOptions',$specialOptions);
 		
 		
@@ -58,13 +58,13 @@ class SentenceCommentsController extends AppController {
 		$this->Session->write('user_email', $sentence['User']['email']);
 		
 		// saving participants in session variable so we can send notification to them
-		if($sentence['User']['email'] != '' AND $sentence['User']['email'] != $this->Auth->user('email')){
+		if($sentence['User']['email'] != '' AND $sentence['User']['email'] != $this->Auth->user('email') AND $sentence['User']['send_notifications'] == 1){
 			$participants = array($sentence['User']['email']);
 		}else{
 			$participants = array();
 		}
 		foreach($sentence['SentenceComment'] as $comment){
-			if(!in_array($comment['User']['email'],$participants) AND $comment['User']['email'] != $this->Auth->user('email')){
+			if(!in_array($comment['User']['email'],$participants) AND $comment['User']['email'] != $this->Auth->user('email') AND $comment['User']['send_notifications'] == 1){
 				$participants[] = $comment['User']['email'];
 			}
 		}
@@ -81,7 +81,7 @@ class SentenceCommentsController extends AppController {
 		$this->set('sentence', $sentence);		
 		
 		// checking which options user can access to
-		$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
+		$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 		$this->set('specialOptions',$specialOptions);
 	}
 	
