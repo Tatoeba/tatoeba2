@@ -62,7 +62,7 @@ class ContributionsController extends AppController {
 		}
 		
 		// checking which options user can access to
-		$specialOptions = $this->Permissions->getSentencesOptions($sentence['Sentence']['user_id'], $this->Auth->user('id'));
+		$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 		$this->set('specialOptions',$specialOptions);
 	}
 	
