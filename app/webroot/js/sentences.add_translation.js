@@ -2,8 +2,8 @@ $(document).ready(function() {
 
 
 	$(".translateLink").click(function(){
-		var sentence_id = $(this).attr("id");
-		var sentence_lang = $(this).attr("lang");
+		var sentence_id = $(this).parent().attr("id");
+		var sentence_lang = $(this).parent().attr("lang");
 		
 		function save(){
 			var sentence_text = $("#" + sentence_id + "_text").val();

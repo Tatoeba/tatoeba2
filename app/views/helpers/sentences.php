@@ -257,7 +257,7 @@ class SentencesHelper extends AppHelper {
 	 * Sentence options (translate, edit, correct, comments, logs, edit, ...)
 	 */
 	function displayMenu($id, $lang, $specialOptions, $score = null){		
-		echo '<ul class="menu">';
+		echo '<ul class="menu" id="'. $id .'" lang="'.$lang.'">';
 			if($score != null){
 				echo '<li class="score">';
 				echo intval($score * 100);
@@ -278,7 +278,7 @@ class SentencesHelper extends AppHelper {
 			// translate link
 			if($specialOptions['canTranslate']){
 				$this->Javascript->link('sentences.add_translation.js', false);
-				echo '<li class="'.$this->optionClass('translate').' translateLink" id="'. $id .'" lang="'.$lang.'">';
+				echo '<li class="'.$this->optionClass('translate').' translateLink">';
 				echo '<a>' . __('Translate',true) . '</a>';
 				echo '</li>';
 			}
@@ -345,16 +345,16 @@ class SentencesHelper extends AppHelper {
 			if(isset($specialOptions['canFavorite']) AND $specialOptions['canFavorite'] == true){
 				
 				$this->Javascript->link('favorites.add.js', false);
-				echo '<li class="option favorite" id="favorite_'.$id.'">';
+				echo '<li class="option favorite add" id="favorite_'.$id.'">';
 				echo '<a>' .	__('Add to favorite',true) . '</a>' ; 
 				echo '</li>';
 			}
 
 			if(isset($specialOptions['canUnFavorite']) AND $specialOptions['canUnFavorite'] == true){
 				
-				$this->Javascript->link('favorites.remove.js', false);
-				echo '<li class="option unfavorite">';
-				echo '<a>' .	__('Remove from avorite',true) . '</a>' ; 
+				$this->Javascript->link('favorites.add.js', false);
+				echo '<li class="option favorite remove" id="favorite_'.$id.'">';
+				echo '<a>' .	__('Remove from favorite',true) . '</a>' ; 
 				echo '</li>';
 			}
 			
@@ -373,12 +373,15 @@ class SentencesHelper extends AppHelper {
 				echo '</li>';
 			}
 			
+			echo $this->Html->image('loading-small.gif', array("id"=>"favorite_".$id."_in_process", "style"=>"display:none"));
+			
 			if(isset($specialOptions['belongsTo'])){
 				echo '<li class="belongsTo">- ';
 				echo __('belongs to ', true);
 				echo $specialOptions['belongsTo'];
 				echo '</li>';
 			}
+			
 		echo '</ul>';
 	}
 	

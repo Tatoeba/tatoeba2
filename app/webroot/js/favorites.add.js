@@ -10,19 +10,18 @@ $(document).ready(function(){
 // so to get trough this we need to make a single function and a test for each class
 
 	$(".favorite").click(function(){
-		var favorite_id = $(this).attr("id");
-
+		var favorite_id = $(this).parent().attr("id");
+		var favorite_option = $(this);
+		
 		/*******************************
 		/ the sentence can be favorite 
 		********************************/
 
-		if ( $("#"+favorite_id).hasClass("favorite")){
+		if (favorite_option.hasClass("add")){
 			
-			var previousHtml = $(".sentence").html();
-			 $(".sentence").html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>" );
+			$("#favorite_"+favorite_id+"_in_process").show();
 
-
-			$.post("http://" + self.location.hostname + "/favorites/add_favorite/ "+ $(".translateLink").attr("id") 
+			$.post("http://" + self.location.hostname + "/favorites/add_favorite/"+ favorite_id
 				, {}	
 				,function(data){
 					// if add retrieve no data , then for a reason or an other, the sentence couldn't have been added 
@@ -31,33 +30,31 @@ $(document).ready(function(){
  						// this second test is here because with debug enable, the function always retrieve data
 						// so we test if the retrieving data is an <a> </a> 
 						if ( data[1] == "a" ){
-
-							$(".favorite").html(data);
-
-							$("#"+favorite_id).removeClass("favorite").addClass("unfavorite");
+							
+							favorite_option.html(data);
+							favorite_option.removeClass("add").addClass("remove");
+							
 						}
-
 					}
 		
-					$(".sentence").html(previousHtml);
+					$("#favorite_"+favorite_id+"_in_process").hide();
+					
 				}
 			);
 			
 
 		}
-
+	
 		/*******************************
 		/ the sentence can be unfavorite 
 		********************************/
 
-		if ( $("#"+favorite_id).hasClass("unfavorite")){
+		else if (favorite_option.hasClass("remove")){
 			
-			var previousHtml = $(".sentence").html();
-			 $(".sentence").html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>" );
-
-
-			$.post("http://" + self.location.hostname + "/favorites/remove_favorite/ "+ $(".translateLink").attr("id") 
-				, {}	
+			$("#favorite_"+favorite_id+"_in_process").show();
+			
+			$.post("http://" + self.location.hostname + "/favorites/remove_favorite/"+ favorite_id
+				, {}
 				,function(data){
 					// if add retrieve no data , then for a reason or an other, the sentence couldn't have been added					
 					// so we change nothing
@@ -65,14 +62,15 @@ $(document).ready(function(){
  						// this second test is here because with debug enable, the function always retrieve data
 						// so we test if the retrieving data is an <a> </a> 
 						if ( data[1] == "a" ){
-
-							$("#"+favorite_id).html(data);
-							$("#"+favorite_id).removeClass("unfavorite").addClass("favorite");
+							
+							favorite_option.html(data);
+							favorite_option.removeClass("remove").addClass("add");
+							
 						}
 
 					}
 		
-					$(".sentence").html(previousHtml);
+					$("#favorite_"+favorite_id+"_in_process").hide();
 				}
 			);
 			

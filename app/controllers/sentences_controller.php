@@ -61,7 +61,7 @@ class SentencesController extends AppController{
 			
 			$sentence = $this->Sentence->read();
 			$this->set('sentence', $sentence);
-			pr($sentence);
+
 			// checking which options user can access to
 			$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 			$this->set('specialOptions',$specialOptions);

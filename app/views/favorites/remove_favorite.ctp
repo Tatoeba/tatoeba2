@@ -1,5 +1,7 @@
 <?php
-if  ( isset ($sentence_id) ) 
+if  ( isset ($saved) ) {
 	echo '<a>' . __("Add to favorite",true) . '</a>' ;
-
+}else{
+	echo 'error';
+}
 ?> 

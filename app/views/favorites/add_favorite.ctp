@@ -1,5 +1,5 @@
 <?php
-if  ( isset ($sentence_id) ) 
+if  ( isset ($saved) ) 
 	echo '<a>' . __("Remove from favorite",true) . '</a>' ;
 
 ?> 

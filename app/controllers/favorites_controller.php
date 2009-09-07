@@ -21,36 +21,52 @@ class FavoritesController extends AppController{
 	}
 
 	function add_favorite ($sentence_id){
-	        $user_id =$this->Auth->user('id');
+		Configure::write('debug',0);
+		
+	    $user_id =$this->Auth->user('id');
+		
 		if ( $user_id != NULL ){
-	
+			
+			/*
 			$result = $this->Favorite->query("SELECT id FROM sentences WHERE ID= $sentence_id");
 
 			if ( $result != NULL ){ 
 				
-				$this->Favorite->habtmAdd ('Favorite' , $sentence_id , $this->Auth->user('id') );
+				$this->Favorite->habtmAdd ('User' , $sentence_id , $this->Auth->user('id') );
 				
 				$this->set('user_id' , $user_id );
 				$this->set('sentence_id' , $result[0]["sentences"]["id"] ) ;
 
 			}
+			*/
+			
+			if($this->Favorite->habtmAdd ('User' , $sentence_id , $this->Auth->user('id') )){
+				$this->set('saved' , true );
+			}
 		}
 	}
 
 	function remove_favorite ($sentence_id){
-	        	
-	        $user_id =$this->Auth->user('id');
-
+	    Configure::write('debug',0);
+    	
+		$user_id =$this->Auth->user('id');
+		
 		if ( $user_id != NULL ){
-
+			
+			/*
 			$result = $this->Favorite->query("SELECT id FROM sentences WHERE ID= $sentence_id");
-
+			
 			if ( $result != NULL ){ 
-				$this->Favorite->habtmDelete ('Favorite' , $sentence_id , $this->Auth->user('id') );
+				$this->Favorite->habtmDelete ('User' , $sentence_id , $this->Auth->user('id') );
 				
 				$this->set('user_id' , $user_id );
 				$this->set('sentence_id' , $result[0]["sentences"]["id"] ) ;
 
+			}
+			*/
+			
+			if($this->Favorite->habtmDelete ('User' , $sentence_id , $this->Auth->user('id') )){
+				$this->set('saved' , true );
 			}
 		}
 	}
