@@ -464,8 +464,7 @@ class SentencesController extends AppController{
 		$stats = $this->Sentence->find('all', array(
 				'fields' => array('Sentence.lang', 'count(*) as count'), 
 				'order' => 'count DESC',
-				'group' => 'Sentence.lang',
-				'limit' => 5
+				'group' => 'Sentence.lang'
 			)
 		);
 		return($stats);
