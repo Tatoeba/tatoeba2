@@ -16,14 +16,13 @@ if($session->read('Auth.User.id')){
 
 
 $key = isset($this->params['lang']) ? $this->params['lang'] : 'eng';
-echo $this->element('sentences_statistics');
-// , array('cache' => 
-		// array(
-			// 'time' => '+6 hours', 
-			// 'key' => $key
-		// )
-	// )
-// ); 
+echo $this->element('sentences_statistics', array('cache' => 
+		array(
+			'time' => '+6 hours', 
+			'key' => $key
+		)
+	)
+); 
 ?>
 
 <div id="homepage">
