@@ -48,8 +48,6 @@ background: #D3F3B9;
 #UserRegisterForm{
 padding: 20px;
 padding-top: 10px;
-margin-left: 70px;
-width: 500px;
 }
 
 #UserRegisterForm img, #UserRegisterForm .submit{
@@ -67,7 +65,7 @@ margin: 10px 0px;
 
 #UserRegisterForm div.input input{
 display: block;
-width: 200px;
+width: 250px;
 }
 
 #UserRegisterForm label{
@@ -77,15 +75,16 @@ margin-right: 10px;
 float: left;
 }
 
-.error-message{
-color:red;
-margin-left: 210px;
+#UserRegisterForm .valid{
+background:transparent url(../img/valid_16x16.png) no-repeat scroll right center;
 }
 
-.ok-message{
-color:green;
-margin-left: 210px;
+#UserRegisterForm .error{
+background:transparent url(../img/error_16x16.png) no-repeat scroll right center;
+}
 
+#UserRegisterForm .checking{
+background:transparent url(../img/loading-small.gif) no-repeat scroll right center;
 }
 
 /* RETRIEVE PASSWORD and RESEND REGISTRATION MAIL */

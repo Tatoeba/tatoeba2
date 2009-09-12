@@ -420,32 +420,34 @@ class UsersController extends AppController {
 		$user_id = $_POST['user_id'];
 		$this->User->habtmDelete('Follower', $user_id, $follower_id); 
 	}
-        //check if the username already exist or not
-        function check_username($username){
+	
+	/**
+	 * Check if the username already exist or not.
+	 */
+	function check_username($username){
+		Configure::write('debug',0);
 		$this->User->recursive = 0;
 		$user = $this->User->findByUsername($username);
 		if ($user){
-		$this->set('data' , true );
+			$this->set('data' , true );
 		}else{
-
-		$this->set('data' , false);
+			$this->set('data' , false);
 		}
-		
-		
-
-        }
-
-        function check_email($email){
+	}
+	
+	/**
+	 * Check if the email already exist or not.
+	 */
+	function check_email($email){
+		Configure::write('debug',0);
 		$this->User->recursive = 0;
 		$data = $this->User->findByEmail($email);
 		if ($data){
-		$this->set('data' , true );
+			$this->set('data' , true );
 		}else{
-
-		$this->set('data' , false);
+			$this->set('data' , false);
 		}
-		
-        }
+	}
 	
 	// temporary function to grant/deny access
 	function initDB() {
