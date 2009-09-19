@@ -39,6 +39,7 @@ class GoogleLanguageApiComponent extends Object{
 	function google2TatoebaCode($googleCode){
 		switch($googleCode){
 			case 'ar' :		return 'ar';
+			case 'bg' :		return 'bg';
 			case 'de' :		return 'de';
 			case 'en' :		return 'en';
 			case 'es' :		return 'es';
