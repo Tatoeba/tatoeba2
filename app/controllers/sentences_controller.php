@@ -17,7 +17,7 @@ class SentencesController extends AppController{
 	}
 	
 	function show($id = null){
-		$languages = array('ar', 'de', 'en', 'es', 'fi', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'vn', 'zh');
+		$languages = array('ar', 'bg', 'de', 'en', 'es', 'fi', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'vn', 'zh');
 		$this->Sentence->recursive = 1;
 
 		$this->Sentence->unbindModel(
@@ -29,10 +29,12 @@ class SentencesController extends AppController{
 		
 
 		
-		if($id == "random" OR $id == null){
+			
+
+		if($id == "random" OR $id == null OR $id == "" ){
 			$id = $this->Session->read('random_lang_selected');
 		}
-		
+
 		if($id == 'any'){
 			
 			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences');
@@ -40,7 +42,7 @@ class SentencesController extends AppController{
 			
 			$randId = rand(1, $max);
 			$this->Session->write('random_lang_selected', $id);
-			$this->redirect(array("action"=>"show", $randId));
+			$this->redirect(array("action"=>"show", $randId ));
 			
 		}elseif(in_array($id, $languages)){
 			
@@ -55,7 +57,7 @@ class SentencesController extends AppController{
 			$this->Session->write('random_lang_selected', $id);
 			$this->redirect(array("action"=>"show", $random['Sentence']['id']));
 			
-		}else{
+		}elseif (is_numeric($id)){
 		
 			$this->Sentence->id = $id;
 			
@@ -66,6 +68,15 @@ class SentencesController extends AppController{
 			$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 			$this->set('specialOptions',$specialOptions);
 			
+		}else {
+			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences');
+			$max = $resultMax[0][0]['MAX(id)'];
+			
+			$randId = rand(1, $max);
+			$this->Session->write('random_lang_selected', 'any');
+			$this->redirect(array("action"=>"show", $randId ));
+
+
 		}
 	}
 	
@@ -78,7 +89,9 @@ class SentencesController extends AppController{
 	}
 	
 	function add(){
-		if(!empty($this->data)){
+		$id_temp = $this->Auth->user('id');
+
+		if((!empty($this->data)) && (!empty($id_temp)) ){
 			// setting correctness of sentence
 			if($this->Auth->user('group_id')){
 				$this->data['Sentence']['correctness'] = Sentence::MAX_CORRECTNESS - $this->Auth->user('group_id');
@@ -246,7 +259,9 @@ class SentencesController extends AppController{
 	
 	// we always check the translation before we add it
 	function check_translation(){
-		if(isset($_POST['value']) AND rtrim($_POST['value']) != '' AND isset($_POST['id'])){
+		
+		$id_temp = $this->Auth->user('id');
+		if(isset($_POST['value']) AND rtrim($_POST['value']) != '' AND isset($_POST['id']) AND !(empty($id_temp))){
 			$sentenceId = substr($_POST['id'], 2);
 			$sourceLanguage = substr($_POST['id'], 0, 2); // language of the original sentence
 			
@@ -275,7 +290,9 @@ class SentencesController extends AppController{
 	}
 	
 	function save_translation(){
-		if(isset($_POST['value']) AND rtrim($_POST['value']) != '' AND isset($_POST['id'])){
+
+		$id_temp = $this->Auth->user('id');
+		if(isset($_POST['value']) AND rtrim($_POST['value']) != '' AND isset($_POST['id']) AND !(empty($id_temp))){
 			$sentence_id = substr($_POST['id'], 2); // id of original sentence
 			$this->data['Sentence']['sentence_lang'] = substr($_POST['id'], 0, 2); // language of original sentence, needed for the logs
 			
