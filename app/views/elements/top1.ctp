@@ -32,13 +32,13 @@ if (isset($this->params['lang'])) {
 	Language : 
 	<?php
 	$languages = array(
-		'eng' => 'English', 
-		'fre' => 'Français', 
-		'chi' => '中文'
-		//'spa' => 'Español', 
-		//'jpn' => '日本語',
-		//'deu' => 'Deutsch',
-		//'ita' => 'Italiano'
+		  'eng' => 'English' 
+		, 'fre' => 'Français'
+		, 'chi' => '中文'
+		, 'spa' => 'Español'
+		//, 'jpn' => '日本語'
+		//, 'deu' => 'Deutsch'
+		//, 'ita' => 'Italiano'
 	);
 	
 	foreach($languages as $code => $language){
