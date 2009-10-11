@@ -9,7 +9,10 @@ class KakasiHelper extends AppHelper{
 		$text = preg_replace("!\)!", "\\)", $text);
 		$options = '';
 		
-		$text = preg_replace("!今日は!", "kyou wa", $text); // need to figure out something better...
+		// need to figure out something better...
+		$text = preg_replace("!今日は!", "kyou wa", $text); // otherwise it displays "konnichiha"
+		$text = preg_replace("!死は生!", "shi wa sei", $text); // otherwise it displays "shi wa u"
+		$text = preg_replace("!生の!", "nama no", $text); // otherwise it display "uno"
 		
 		switch($type){
 			case 'romaji':
