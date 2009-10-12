@@ -4,8 +4,8 @@
  * Requests collector.
  *
  *  This file collects requests if:
- *	- no mod_rewrite is avilable or .htaccess files are not supported
- *	-/public is not set as a web root.
+*	- no mod_rewrite is avilable or .htaccess files are not supported
+*	-/public is not set as a web root.
  *
  * PHP versions 4 and 5
  *

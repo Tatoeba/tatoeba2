@@ -12,7 +12,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Database: `tatoeba_3`
 --
-
+use tatoeba_3 
 -- --------------------------------------------------------
 
 --
@@ -262,4 +262,4 @@ CREATE TABLE IF NOT EXISTS `followers_users` (
   `follower_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   UNIQUE KEY `follower_id` (`follower_id`,`user_id`)
-)
+);

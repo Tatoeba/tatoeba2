@@ -84,8 +84,8 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'root',
-		'password' => '',
+		'login' => 'tatoeba4_admin',
+		'password' => 'pouet',
 		'database' => 'tatoeba_4',
 		'prefix' => '',
 		'encoding' => 'utf8'

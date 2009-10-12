@@ -71,7 +71,7 @@
 				$session->flash();
 			}
 			
-			echo $content_for_layout; 
+			echo $content_for_layout;
 			?>
 			</div>
 		</div>
