@@ -286,7 +286,7 @@ class UsersController extends AppController {
 				$flashMsg = __('An error occured while saving.',true);
 			}
 		}else{
-			$flashMsg = __('Wrong old password or new password inputs do not match.',true);
+			$flashMsg = __('Password error. Please try again.',true);
 		}
 		
 		$this->flash($flashMsg,	'/users/settings/');

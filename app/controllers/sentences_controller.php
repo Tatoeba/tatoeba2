@@ -250,7 +250,7 @@ class SentencesController extends AppController{
 		$data['Sentence']['user_id'] = null;
 		if($this->Sentence->save($data)){
 			$this->flash(
-				__('You have abandonned your ownership for this sentence. Other people can now adopt it. If it was a mistake, you can just re-adopt it.',true),
+				__('You have abandoned your ownership for this sentence. Other people can now adopt it. If it was a mistake, you can just re-adopt it.',true),
 				'/sentences/show/'.$id
 			);
 		}

@@ -1,6 +1,6 @@
 <?php
 if  ( isset ($saved) ) {
-	echo '<a>' . __("Add to favorite",true) . '</a>' ;
+	echo '<a>' . __("Favorite",true) . '</a>' ;
 }else{
 	echo 'error';
 }

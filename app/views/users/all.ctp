@@ -6,7 +6,7 @@ $navigation->displayUsersNavigation($id);
 
 <h2>
 <?php
-echo $paginator->counter(array('format' => 'Users (total %count%)'));
+echo $paginator->counter(array('format' => __('Users (total %count%)', true)));
 ?>
 </h2>
 
@@ -19,9 +19,9 @@ echo $paginator->counter(array('format' => 'Users (total %count%)'));
 
 <table class="users">
 <tr>
-	<th><?php echo $paginator->sort('username');?></th>
-	<th><?php echo $paginator->sort('since');?></th>
-	<th><?php echo $paginator->sort('group_id');?></th>
+	<th><?php echo $paginator->sort(__('Username', true), 'username');?></th>
+	<th><?php echo $paginator->sort(__('Member since', true),'since');?></th>
+	<th><?php echo $paginator->sort(__('Member status', true),'group_id');?></th>
 </tr>
 <?php
 $i = 0;

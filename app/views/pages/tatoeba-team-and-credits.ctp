@@ -4,9 +4,9 @@ echo '<p><em>Note : the list is not complete yet...</em></p>';
 
 echo '<h2>'. __('The team', true) . '</h2>';
 echo '<ul>';
-	echo '<li>HO Ngoc Phuong Trang (aka. trang)</li>';
+	echo '<li>HO Ngoc Phuong Trang (aka. <span class="aka">trang</span>)</li>';
 	
-	//echo '<li>SIMON Allan (aka. sysko)</li>';
+	echo '<li>SIMON Allan (aka. <span class="aka">sysko</span>)</li>';
 	
 	//echo '<li>TAN Kévin (aka. keklesurvivant)</li>';
 	
@@ -16,13 +16,15 @@ echo '<ul>';
 echo '</ul>';
 
 echo '<h2>'. __('Credits', true) . '</h2>';
-echo '<ul>';
+echo '<ul class="credits">';
 	echo '<li>';
-	echo 'fucongcong : ' . __('Chinese translations', true);
+	echo '<strong>' . __('Chinese translations', true) . '</strong> - ';
+	echo 'FU Congcong 傅琮琮 (aka. <span class="aka">fuconfcong</span>), <em>fucongcong at gmail dot com</em>';
 	echo '</li>';
 	
 	echo '<li>';
-	echo 'Gabriel Jiménez (aka. Kylecito) : ' . __('Spanish translations', true);
+	echo '<strong>' . __('Spanish translations', true) . '</strong> - ';
+	echo 'JIMÉNEZ Gabriel (aka. <span class="aka">Kylecito</span>)';
 	echo '</li>';
 echo '</ul>';
 

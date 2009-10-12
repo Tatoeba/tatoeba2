@@ -1,5 +1,5 @@
 <?php
 if  ( isset ($saved) ) 
-	echo '<a>' . __("Remove from favorite",true) . '</a>' ;
+	echo '<a>' . __("Unfavorite",true) . '</a>' ;
 
 ?> 

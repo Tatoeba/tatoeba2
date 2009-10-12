@@ -34,7 +34,7 @@ if (isset($this->params['lang'])) {
 }
 echo '<div class="element" style="font-size:16px">';
 echo '<h2>';
-__('Welcome on Tatoeba Project');
+__('Welcome to Tatoeba Project');
 echo '</h2>';
 
 echo '<p>';

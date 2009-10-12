@@ -346,7 +346,7 @@ class SentencesHelper extends AppHelper {
 				
 				$this->Javascript->link('favorites.add.js', false);
 				echo '<li class="option favorite add" id="favorite_'.$id.'">';
-				echo '<a>' .	__('Add to favorite',true) . '</a>' ; 
+				echo '<a>' . __('Favorite',true) . '</a>' ; 
 				echo '</li>';
 			}
 
@@ -354,7 +354,22 @@ class SentencesHelper extends AppHelper {
 				
 				$this->Javascript->link('favorites.add.js', false);
 				echo '<li class="option favorite remove" id="favorite_'.$id.'">';
-				echo '<a>' .	__('Remove from favorite',true) . '</a>' ; 
+				echo '<a>' . __('Unfavorite',true) . '</a>' ; 
+				echo '</li>';
+			}
+			
+			if(isset($specialOptions['canAddToList']) AND $specialOptions['canAddToList'] == true){
+				//$this->Javascript->link('sentences_lists.menu.js', false);
+				$lists = $this->requestAction('/sentences_lists/choices');
+				echo '<li class="option addToList">';
+				//echo '<a>' . __('Add to list',true) . '</a>' ; 
+				echo '<select>';
+				foreach($lists as $list){
+					echo '<option value="'.$list['SentencesList']['id'].'">';
+					echo $list['SentencesList']['name'];
+					echo '</option>';
+				}
+				echo '</select>';
 				echo '</li>';
 			}
 			
