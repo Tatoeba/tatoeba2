@@ -18,40 +18,24 @@
 */
 ?>
 
-<div id="second_modules">
-	<div class="module">
-		<h2>Mon espace</h2>
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
-		?>
-	</div>
 
-</div>
+<?php
+echo $javascript->link('sentences.add_translation.js', true);
+echo $javascript->link('favorites.add.js',true);
 
-<div id="main_modules">
-	<div class="module">
-		<?php
-		echo $javascript->link('sentences.add_translation.js', true);
-		echo $javascript->link('favorites.add.js',true);
-		
-		$sentence = $random['Sentence'];
-		$translations = isset($random['Translation']) ? $random['Translation'] : null;
-		$specialOptions = $random['specialOptions'];
-		
-		echo '<div class="sentences_set">';
-			$specialOptions['belongsTo'] = $random['User']['username']; // TODO set up a better mechanism
-			$sentences->displayMenu($sentence['id'], $sentence['lang'], $specialOptions);
-			if($type == 'translate'){
-				$sentences->displayForTranslation($sentence, $translations);
-			}else{
-				$sentences->displayGroup($sentence, $translations, $random['User']);
-			}
-		echo '</div>';
-		?>
-	</div>
-</div>
+$sentence = $random['Sentence'];
+$translations = isset($random['Translation']) ? $random['Translation'] : null;
+$specialOptions = $random['specialOptions'];
+
+echo '<div class="sentences_set">';
+	$specialOptions['belongsTo'] = $random['User']['username']; // TODO set up a better mechanism
+	$sentences->displayMenu($sentence['id'], $sentence['lang'], $specialOptions);
+	if($type == 'translate'){
+		$sentences->displayForTranslation($sentence, $translations);
+	}else{
+		$sentences->displayGroup($sentence, $translations, $random['User']);
+	}
+echo '</div>';
+?>
+
 
