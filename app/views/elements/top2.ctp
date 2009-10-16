@@ -16,24 +16,31 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-if (isset($this->params['lang'])) { 
-	Configure::write('Config.language',  $this->params['lang']); 
+if (isset($this->params['lang'])) {
+	Configure::write('Config.language',  $this->params['lang']);
 }
 ?>
 
 <div id="top2">
 	<a href="/" class="tatoeba_title"><strong>TATOEBA</strong> <em>Project</em></a>
-	
+
 	<cake:nocache>
 	<div id="UserMenu">
-	<?php 
+	<?php
 	if($session->read('Auth.User.id')){
 		// Welcome message
 		echo '<div>';
 		__('Welcome');
-		echo ' '.$session->read('Auth.User.username'); 
+		echo ' '.$session->read('Auth.User.username');
 		echo '</div>';
-		
+
+		echo '<div>';
+		echo $html->link(
+			__('Messages', true),
+			array("controller" => "privatemessages", "action" => "index")
+		);
+		echo '</div>';
+
 		echo '<div>';
 		echo $html->link(
 			__('My profile',true),
@@ -54,7 +61,7 @@ if (isset($this->params['lang'])) {
 				"action" => "login"
 			));
 		echo '</span>';
-		
+
 		echo '<span>';
 		echo $html->link(
 			__('Register',true),
