@@ -20,11 +20,15 @@ echo $this->element('pmmenu');
 ?>
 <div id="main_modules">
 	<div class="module">
-	<h2><?php echo $content['title']; ?></h2>
-	<p class="pm_head">
-		<?php echo __('On ', true) . $content['date'] .
-		$html->link($content['from'], array('action' => 'write', $content['fromid'])) . __(' has written:', true); ?>
-	</p>
-	<p class="pm_content"><?php echo $content['content']; ?></p>
+		<h2><?php echo $folder; ?></h2>
+		<table>
+		<?php
+		echo '<tr><th>'.__('Date', true).'</th><th>'.__('From', true).'</th><th>'.__('Subject', true).'</th></tr>';
+		foreach($content as $msg){
+			echo '<tr><td>' . $html->link($msg['date'], array('action' => 'show', $msg['mid'])) . '</td>';
+			echo '<td>'.$html->link($msg['from'], array('action' => 'write', $msg['fromid'])).'</td>';
+			echo '<td>' . $html->link($msg['title'], array('action' => 'show', $msg['mid'])) . '</td></tr>';
+		} ?>
+		</table>
 	</div>
 </div>

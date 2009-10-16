@@ -17,8 +17,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-echo '<p>' . __('Welcome ', true) . $session->read('Auth.user.username') . '</p>'; ?>
-<ul>
-<li><?php echo $html->link(__('Inbox', true), array('controller' => 'private_messages', 'action' => 'folder', 'Inbox')); ?></li>
-<li><?php echo $html->link(__('Log out',true), array('controller' => 'users', 'action' => 'logout')); ?></li>
-</ul>
+?>
+<div id="second_modules">
+	<div class="module">
+		<ul>
+			<li><?php echo $html->link(__('Inbox', true), array('action' => 'folder', 'Inbox')); ?></li>
+			<li><?php echo $html->link(__('Sent', true), array('action' => 'folder', 'Sent')); ?></li>
+			<li><?php echo $html->link(__('Trash', true), array('action' => 'folder', 'Trash')); ?></li>
+		</ul>
+	</div>
+</div>
