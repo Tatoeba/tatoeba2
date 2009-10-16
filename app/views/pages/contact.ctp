@@ -16,10 +16,32 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-echo '<h2>';
-__('Contact');
-echo '</h2>';
-
-__('If you would like to contact the author of this project (in other words me), feel free to drop an email at : ');
-echo ' trang.dictionary.project@gmail.com';
 ?>
+
+<div id="second_modules">
+	<div class="module">
+		<h2>Mon espace</h2>
+		<?php
+			if(!$session->read('Auth.User.id')){
+				echo $this->element('login'); 
+			} else {
+				echo $this->element('space'); 
+			}
+		?>
+	</div>
+
+</div>
+
+<div id="main_modules">
+	<div class="module">
+		<?php
+		echo '<h2>';
+		__('Contact');
+		echo '</h2>';
+		
+		__('If you would like to contact the author of this project (in other words me), feel free to drop an email at : ');
+		echo ' trang.dictionary.project@gmail.com';
+		?>
+
+	</div>
+</div>

@@ -17,35 +17,56 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-echo '<h2>';
-__('Change password');
-echo '</h2>';
-echo $form->create('User', array("action" => "save_password"));
-echo $form->input('old_password/passwd', array("label" => __('Old password',true)));
-echo $form->input('new_password/passwd', array("label" => __('New password',true)));
-echo $form->input('new_password2/passwd', array("label" => __('New password again',true)));
-echo $form->end(__('Save',true));
-
-
-echo '<h2>';
-__('Change email');
-echo '</h2>';
-echo $form->create('User', array("action" => "save_email"));
-echo $form->input('email', array("label" => __('Email',true), "value" => $user['User']['email']));
-echo $form->end(__('Save',true));
-
-
-echo '<h2>';
-__('Change options');
-echo '</h2>';
-echo $form->create('User', array("action" => "save_options"));
-if($user['User']['send_notifications']){
-	$options = array('checked'=>'checked');
-}else{
-	$options = null;
-}
-echo $form->checkbox('send_notifications', $options); 
-echo '<label for="UserSendNotifications">' . __('Send me notification emails', true) . '</label>';
-echo $form->end(__('Save',true));
 ?>
+
+<div id="second_modules">
+	<div class="module">
+		<h2>Mon espace</h2>
+		<?php
+			if(!$session->read('Auth.User.id')){
+				echo $this->element('login'); 
+			} else {
+				echo $this->element('space'); 
+			}
+		?>
+	</div>
+
+</div>
+
+<div id="main_modules">
+	<div class="module">
+		<h2>Settings</h2>
+		
+		<h3><?php __('Change password'); ?></h3>
+		<?php
+		echo $form->create('User', array("action" => "save_password"));
+		echo $form->input('old_password/passwd', array("label" => __('Old password',true)));
+		echo $form->input('new_password/passwd', array("label" => __('New password',true)));
+		echo $form->input('new_password2/passwd', array("label" => __('New password again',true)));
+		echo $form->end(__('Save',true));
+		?>
+		
+		<h3><?php __('Change email'); ?></h3>
+		<?php
+		echo '</h2>';
+		echo $form->create('User', array("action" => "save_email"));
+		echo $form->input('email', array("label" => __('Email',true), "value" => $user['User']['email']));
+		echo $form->end(__('Save',true));
+		?>
+		
+		<h3><?php __('Change options'); ?></h3>
+		<?php
+		echo $form->create('User', array("action" => "save_options"));
+		if($user['User']['send_notifications']){
+			$options = array('checked'=>'checked');
+		}else{
+			$options = null;
+		}
+		echo $form->checkbox('send_notifications', $options); 
+		echo '<label for="UserSendNotifications">' . __('Send me notification emails', true) . '</label>';
+		echo $form->end(__('Save',true));
+		?>
+	</div>
+</div>
+
 </div>

@@ -1,0 +1,51 @@
+
+/* STATISTICS */
+	.total{
+	background: #989898;
+	color: white;
+	font-weight: bold;
+}
+
+/* PAGINATION */
+	.pagination, .paging{
+	margin-bottom: 20px;
+	text-align:center;
+}
+
+.pagination a, .paging a{
+	padding: 3px 5px;
+	margin: 3px;
+	background: #D3F3B9;
+	border: 1px solid #75C34B;
+}
+
+.pagination strong, .paging .disabled{
+	display: inline;
+	padding: 3px 5px;
+	margin: 3px;
+	background: #f1f1f1;
+	border: 1px solid #d1d1d1;
+}
+
+.pagination span.selected, .paging .current{
+	border: 1px solid #75C34B;
+	padding: 3px 5px;
+	margin: 3px;
+	background: #9FD374;
+	color: white;
+	font-weight:bold;
+}
+
+/* TIPS */
+.tips{
+	margin: 10px 0px;
+	padding: 5px 10px;
+	font-size: 16px;
+	border: 1px solid #c1c1c1;
+	background: #f1f1f1;
+	color: #878787;
+}
+
+.tips a{
+	margin-left: 10px;
+}

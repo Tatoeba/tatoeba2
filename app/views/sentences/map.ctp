@@ -16,17 +16,39 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-$i = 1+ ($page-1)*10000;
-echo '<div id="sentencesMap">';
-foreach($all_sentences as $sentence){
-	while($i < $sentence['Sentence']['id']){
-		echo '<div class="empty" title="'.$i.'"></div>';
-		$i++;
-	}
-	echo '<div class="'.$sentence['Sentence']['lang'].'_cluster" title="'.$i.', '.$sentence['Sentence']['lang'].'">';
-	//echo $i.'<br/>'.$sentence['Sentence']['lang'];
-	echo '</div>';
-	$i++;
-}
-echo '</div>';
 ?>
+
+<div id="second_modules">
+	<div class="module">
+		<h2>Mon espace</h2>
+		<?php
+			if(!$session->read('Auth.User.id')){
+				echo $this->element('login'); 
+			} else {
+				echo $this->element('space'); 
+			}
+		?>
+	</div>
+
+</div>
+
+<div id="main_modules">
+	<div class="module">
+		<?php
+		$i = 1+ ($page-1)*10000;
+		echo '<div id="sentencesMap">';
+		foreach($all_sentences as $sentence){
+			while($i < $sentence['Sentence']['id']){
+				echo '<div class="empty" title="'.$i.'"></div>';
+				$i++;
+			}
+			echo '<div class="'.$sentence['Sentence']['lang'].'_cluster" title="'.$i.', '.$sentence['Sentence']['lang'].'">';
+			//echo $i.'<br/>'.$sentence['Sentence']['lang'];
+			echo '</div>';
+			$i++;
+		}
+		echo '</div>';
+		?>
+	</div>
+</div>
+

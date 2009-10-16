@@ -17,64 +17,114 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 $onlineVisitors = $this->requestAction('/visitors/online');
+$lang = 'eng';
 if (isset($this->params['lang'])) { 
 	Configure::write('Config.language',  $this->params['lang']); 
+	$lang = $this->params['lang'];
 }
-?>
+// array containing the elements of the menu : $title => $route
+$menuElements = array(
+	 __('Home',true) 		=> '/'.$lang
+	,__('Browse',true) 		=> array("controller" => "sentences", "action" => "show", "random")
+	,__('Search',true) 		=> array("controller" => "sentences", "action" => "search")
+	,__('Contribute',true) 	=> array("controller" => "pages", "action" => "contribute")
+	,__('Comments',true) 	=> array("controller" => "sentence_comments", "action" => "index")
+	,__('Members',true)		=> array("controller" => "users", "action" => "all")
+	,__('What\'s new',true)	=> array("controller" => "pages", "action" => "whats_new")
+);
 
-<div id="top1">
-	<div class="logout">
+?>
+<div id="user_menu">
+<div id="navigation_menu">
+	<ul>
+	
 	<?php
-	// Log out link
-	if($session->read('Auth.User.id')){
-		echo $html->link(
-			__('Log out',true),
-			array(
-				"controller" => "users",
-				"action" => "logout"
-			)
-		);
+	// displaying the menu
+	foreach($menuElements as $title => $route){
+		$cssClass = '';
+		
+		// Checking if we should apply the "current" CSS class to the <li> element
+		if(is_array($route)){ // categories other than Home
+			if(isset($this->params['pass'][0]) AND isset($route['action']) AND $this->params['pass'][0] == $route['action']){
+				$cssClass = 'class="show"';
+			}elseif($this->params['controller'] == $route['controller']){
+				if(isset($route['action'])){
+					if($this->params['action'] == $route['action']){
+						$cssClass = 'class="show"';
+					}
+				}else{
+					if($this->params['action'] == 'index'){
+						$cssClass = 'class="show"';
+					}
+				}
+			}
+		}else{ // Home
+			if(isset($this->params['pass'][0]) AND $this->params['pass'][0] == 'home'){
+				$cssClass = 'class="show"';
+			}
+		}
+		
+		// displaying <li> element
+		?>
+		<li <?=$cssClass; ?>>
+		<?=$html->link($title, $route, array("class"=>$route['action'])); ?>
+		</li>
+		<?php
 	}
 	?>
-	</div>
 
-	<div class="online_visitors">
-	<?php
-	__('Visitor(s) : ');
-	echo $onlineVisitors;
-	?>
-	</div>
-	
-	<div class="language_choice">
-	Language : 
-	<?php
-	$languages = array(
-		  'eng' => 'English' 
-		, 'fre' => 'Français'
-		, 'chi' => '中文'
-		, 'spa' => 'Español'
-		//, 'jpn' => '日本語'
-		//, 'deu' => 'Deutsch'
-		//, 'ita' => 'Italiano'
-	);
-	
-	foreach($languages as $code => $language){
-		$path  = '/'.$code.'/';	
-		$path .= $this->params['controller'].'/';
-		
+	</ul>
+</div>
+
+
+	<div id="interfaceLanguageSelector">
+		<?php __('Language(s) : ') ?>
+		<?php
+		$languages = array(
+			  'eng' => 'English' 
+			, 'fre' => 'Français'
+			, 'chi' => '中文'
+			, 'spa' => 'Español'
+			//, 'jpn' => '日本語'
+			//, 'deu' => 'Deutsch'
+			//, 'ita' => 'Italiano'
+		);
+		$path = $this->params['controller'].'/';
 		if($this->params['action'] != 'display'){
 			$path .= $this->params['action'].'/';
 		}
-		
 		foreach($this->params['pass'] as $extraParam){
 			$path .= $extraParam.'/';
 		}
-	
-		// probably not the best way to do it but never mind
+		echo $form->create();
+		echo $form->select('lang', $languages, $lang, array("onchange" => "$(location).attr('href','/Tatoeba/' + this.value+ '/' + '".$path."');"));
+		echo $form->end();
 		
-		echo $html->link($language, $path);
-		echo ' | ';
-	}
-	?>
+	//	foreach($languages as $code => $language){
+	//		$path  = '/'.$code.'/';	
+	//		$path .= $this->params['controller'].'/';
+	//		
+	//		if($this->params['action'] != 'display'){
+	//			$path .= $this->params['action'].'/';
+	//		}
+	//		
+	//		foreach($this->params['pass'] as $extraParam){
+	//			$path .= $extraParam.'/';
+	//		}
+	//	
+	//		// probably not the best way to do it but never mind
+	//		
+	//		echo $html->link($language, $path);
+	//		echo ' | ';
+	//	}
+		?>
+		</select>
 	</div>
+</div>
+
+<div id="visitorsCounter">	
+<?php
+__('Online visitor(s) : ');
+echo $onlineVisitors;
+?>
 </div>

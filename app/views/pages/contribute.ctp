@@ -16,30 +16,52 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-echo '<h1 class="contribute">';
-__('How would you like to contribute?');
-echo '</h1>';
-
-echo '<h2 class="add">';
-__('Add your own sentences');
-echo '</h2>';
-echo '<div class="sentences_set">';
-	echo '<div class="new">';
-	echo $form->create('Sentence', array("action" => "add", "class" => "add"));
-	echo $form->input('text', array("label" => __('Sentence : ', true)));
-	echo $form->end('OK');
-	echo '</div>';
-echo '</div>';
-
-
-echo '<br/>';
-
-echo '<h2 class="translate">';
-__('Translate existing sentences');
-echo '</h2>';
-
-__('Choose the language you would like to translate from : ');
-$langArray = $languages->languagesArray();
-asort($langArray);
-echo $form->select('Sentence.lang', $langArray);
 ?>
+
+<div id="second_modules">
+	<div class="module">
+		<h2>Mon espace</h2>
+		<?php
+			if(!$session->read('Auth.User.id')){
+				echo $this->element('login'); 
+			} else {
+				echo $this->element('space'); 
+			}
+		?>
+	</div>
+
+</div>
+
+<div id="main_modules">
+	<div class="module">
+		<?php
+		echo '<h1 class="contribute">';
+		__('How would you like to contribute?');
+		echo '</h1>';
+		
+		echo '<h2 class="add">';
+		__('Add your own sentences');
+		echo '</h2>';
+		echo '<div class="sentences_set">';
+			echo '<div class="new">';
+			echo $form->create('Sentence', array("action" => "add", "class" => "add"));
+			echo $form->input('text', array("label" => __('Sentence : ', true)));
+			echo $form->end('OK');
+			echo '</div>';
+		echo '</div>';
+		
+		
+		echo '<br/>';
+		
+		echo '<h2 class="translate">';
+		__('Translate existing sentences');
+		echo '</h2>';
+		
+		__('Choose the language you would like to translate from : ');
+		$langArray = $languages->languagesArray();
+		asort($langArray);
+		echo $form->select('Sentence.lang', $langArray);
+		?>
+	</div>
+</div>
+

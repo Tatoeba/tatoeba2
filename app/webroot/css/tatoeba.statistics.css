@@ -48,7 +48,7 @@ background-color: #CCCCCC;
 
 /* SENTENCES STATS */
 .sentencesStats{
-font-size: 16px;
+font-size: 12px;
 padding: 5px 10px;
 float: right;
 background-color: #f0f0f0;
@@ -75,7 +75,11 @@ padding: 3px;
 }
 
 .sentencesStats .stat{
-padding-left: 35px;
+}
+
+.sentencesStats .stat img{
+width:16px;
+margin-right:6px;
 }
 
 .stat .tooltip{
@@ -84,78 +88,6 @@ display: none;
 
 .statsDisplay{
 font-size: 13px;
-}
-
-.stats_ar{
-background:transparent url(../img/ar.png) no-repeat scroll left center;
-}
-
-.stats_bg{
-background:transparent url(../img/bg.png) no-repeat scroll left center;
-}
-
-.stats_de{
-background:transparent url(../img/de.png) no-repeat scroll left center;
-}
-
-.stats_en{
-background:transparent url(../img/en.png) no-repeat scroll left center;
-}
-
-.stats_es{
-background:transparent url(../img/es.png) no-repeat scroll left center;
-}
-
-.stats_fi{
-background:transparent url(../img/fi.png) no-repeat scroll left center;
-}
-
-.stats_fr{
-background:transparent url(../img/fr.png) no-repeat scroll left center;
-}
-
-.stats_he{
-background:transparent url(../img/he.png) no-repeat scroll left center;
-}
-
-.stats_id{
-background:transparent url(../img/id.png) no-repeat scroll left center;
-}
-
-.stats_it{
-background:transparent url(../img/it.png) no-repeat scroll left center;
-}
-
-.stats_jp{
-background:transparent url(../img/jp.png) no-repeat scroll left center;
-}
-
-.stats_ru{
-background:transparent url(../img/ru.png) no-repeat scroll left center;
-}
-
-.stats_ko{
-background:transparent url(../img/ko.png) no-repeat scroll left center;
-}
-
-.stats_nl{
-background:transparent url(../img/nl.png) no-repeat scroll left center;
-}
-
-.stats_pt{
-background:transparent url(../img/pt.png) no-repeat scroll left center;
-}
-
-.stats_vn{
-background:transparent url(../img/vn.png) no-repeat scroll left center;
-}
-
-.stats_zh{
-background:transparent url(../img/zh.png) no-repeat scroll left center;
-}
-
-.stats_{
-background:transparent url(../img/unknown_lang.png) no-repeat scroll left center;
 }
 
 

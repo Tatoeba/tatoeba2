@@ -147,5 +147,13 @@ class AppController extends Controller {
         }
         debug($log);
     }
+    
+    /*
+     * Change the language of the interface
+     */
+    function changeLanguage() {
+    	
+    
+    }
 } 
 ?>

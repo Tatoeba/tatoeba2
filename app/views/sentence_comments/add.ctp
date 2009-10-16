@@ -17,27 +17,48 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 $this->pageTitle = __('Add comment for sentence',true);
-
-// navigation (previous, random, next)
-$navigation->displaySentenceNavigation($sentence['Sentence']['id']);
-
-echo '<div class="sentences_set">';
-	// sentence menu (translate, edit, comment, etc)
-	$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
-	$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
-
-	// sentence and translations
-	$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
-	$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
-echo '</div>';	
-
-$comments->displayCommentForm($sentence['Sentence']['id'], $sentence['Sentence']['text']);
-
-if(count($sentence['SentenceComment']) > 0){
-	echo '<div class="comments">';
-	foreach($sentence['SentenceComment'] as $comment){
-		$comments->displayComment($comment['User']['id'], $comment['User']['username'], $comment['created'], $comment['text']);
-	}
-	echo '</div>';
-}
 ?>
+
+<div id="second_modules">
+	<div class="module">
+		<h2>Mon espace</h2>
+		<?php
+			if(!$session->read('Auth.User.id')){
+				echo $this->element('login'); 
+			} else {
+				echo $this->element('space'); 
+			}
+		?>
+	</div>
+
+</div>
+
+<div id="main_modules">
+	<div class="module">
+	<?php
+	// navigation (previous, random, next)
+	$navigation->displaySentenceNavigation($sentence['Sentence']['id']);
+	
+	echo '<div class="sentences_set">';
+		// sentence menu (translate, edit, comment, etc)
+		$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
+		$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
+	
+		// sentence and translations
+		$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
+		$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
+	echo '</div>';	
+	
+	$comments->displayCommentForm($sentence['Sentence']['id'], $sentence['Sentence']['text']);
+	
+	if(count($sentence['SentenceComment']) > 0){
+		echo '<div class="comments">';
+		foreach($sentence['SentenceComment'] as $comment){
+			$comments->displayComment($comment['User']['id'], $comment['User']['username'], $comment['created'], $comment['text']);
+		}
+		echo '</div>';
+	}
+	?>
+	</div>
+</div>
+

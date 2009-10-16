@@ -17,33 +17,57 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 $javascript->link('sentences.contribute.js', false);
-
-echo '<h2 class="add">';
-__('Add another sentence');
-echo '</h2>';
-
-echo '<div class="sentences_set">';
-	echo '<div class="new">';
-	echo $form->input('text', array("label" => __('Sentence : ', true), "id" => "newSentenceText"));
-	echo $form->button('OK', array("id" => "submitNewSentence"));
-	echo '</div>';
-echo '</div>';
-
-echo '<br/>';
-
-echo '<h2>';
-__('Sentences added');
-echo '</h2>';
-
-echo '<div id="sentencesAdded">';
-	if(isset($sentence)){
-		echo "<h1>id =$fakeid;</h1>" .'<div class="sentences_set">';
-		// sentence menu (translate, edit, comment, etc)
-		$sentences->displayMenu($sentence['Sentence']['id'], $specialOptions);
-
-		// sentence and translations
-		$sentences->displayForTranslation($sentence['Sentence'], array());
-		echo '</div>';
-	}
-echo '</div>';
 ?>
+
+<div id="second_modules">
+	<div class="module">
+		<h2>Mon espace</h2>
+		<?php
+			if(!$session->read('Auth.User.id')){
+				echo $this->element('login'); 
+			} else {
+				echo $this->element('space'); 
+			}
+		?>
+	</div>
+
+</div>
+
+<div id="main_modules">
+	<div class="module main_module">
+	
+	</div>
+	<div class="module">
+		<?php
+		echo '<h2 class="add">';
+		__('Add another sentence');
+		echo '</h2>';
+		
+		echo '<div class="sentences_set">';
+			echo '<div class="new">';
+			echo $form->input('text', array("label" => __('Sentence : ', true), "id" => "newSentenceText"));
+			echo $form->button('OK', array("id" => "submitNewSentence"));
+			echo '</div>';
+		echo '</div>';
+		
+		echo '<br/>';
+		
+		echo '<h2>';
+		__('Sentences added');
+		echo '</h2>';
+		
+		echo '<div id="sentencesAdded">';
+			if(isset($sentence)){
+				echo "<h1>id =$fakeid;</h1>" .'<div class="sentences_set">';
+				// sentence menu (translate, edit, comment, etc)
+				$sentences->displayMenu($sentence['Sentence']['id'], $specialOptions);
+		
+				// sentence and translations
+				$sentences->displayForTranslation($sentence['Sentence'], array());
+				echo '</div>';
+			}
+		echo '</div>';
+		?>
+	</div>
+</div>
+

@@ -1,4 +1,4 @@
-<div id="foot">
+<div id="footer">
 <?php
 /*
     Tatoeba Project, free collaborativ creation of languages corpuses project

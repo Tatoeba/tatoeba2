@@ -1,0 +1,221 @@
+body {
+	padding:0;
+	margin: auto;
+	font-family: Trebuchet MS, sans;
+	padding-bottom: 10px;
+	color: #434343;
+}
+
+a img {
+	border:none;
+}
+
+a {
+	color:#2A5DB0;
+	text-decoration:none;
+}
+
+a:hover{
+cursor: pointer;
+}
+
+h2, h3{
+	font-variant: small-caps;
+}
+
+h3{
+	margin-left: 20px;
+	border-bottom: 1px solid;
+	color:#E55F0E;
+}
+
+table {
+	border-collapse:collapse;
+	width:100%;
+}
+
+/* User Menu */
+
+div#user_menu {
+	padding:0 5px;
+	height:24px;
+	font-height:24px;
+	border-bottom:1px dotted #CCCCCC;
+	background-color:#414141;
+	color:#FFFFFF;
+}
+
+
+div#user_menu a {
+	color:#FFFFFF;
+}
+
+div#user_menu form {
+	display:inline;
+}
+
+div#user_menu input, div#user_menu select {
+	margin:2px 0px 2px 5px;
+}
+
+/* User Menu : Main Menu */
+
+div#navigation_menu {
+	text-align:left;
+	display:inline;
+}
+
+div#navigation_menu ul {
+	margin:0;
+	padding:0;
+	display:inline;
+}
+
+div#navigation_menu ul li {
+	list-style-type:none;
+	display:inline;
+	margin-right: 16px;
+	font-size:0.9em;
+}
+div#navigation_menu ul li a{
+	text-decoration:none;
+	color:#FFFFFF;
+}
+
+
+div#navigation_menu ul li.show {
+	font-weight:bold;
+	font-size:1em;
+}
+
+div#navigation_menu ul li.show a {
+	color:#FFFFFF;
+}
+div#navigation_menu ul li a:hover {
+	color:#FB6B10;
+}
+
+div#navigation_menu ul li a.whats_new {
+	color:#FFCC00;
+	font-weight:bold;
+}
+
+
+/* User Menu : Interface Language Selector */
+
+div#interfaceLanguageSelector {
+	float:right;
+	font-size:0.8em;	
+}
+
+/* Visitors counter */
+
+
+div#visitorsCounter {
+	text-align:right;
+	font-size:0.8em;	
+}
+
+/* Container */
+
+div#container {
+	margin-left:auto;
+	margin-right:auto;
+	width:950px;
+}
+
+
+/* Search bar */
+
+div.search_bar {
+	text-align:center;
+	padding:5px;
+	background: url(../img/search_bar.png) no-repeat ;
+	margin:20px 0px;
+}
+
+div.search_bar a{
+	color:#FFFFFF;
+}
+
+div.search_bar a:hover{
+	color:#FFFFFF;
+	text-decoration:underline;
+}
+
+#SentenceSearchForm *{
+	font-size: 1em;
+}
+
+#SentenceSearchForm{
+	display:inline;
+	font-size: 1em;
+	margin-right: 15px;
+}
+
+#SentenceSearchForm div {
+	display:inline;
+}
+
+#SentenceSearchForm input#SentenceQuery{
+	width: 40%;
+	margin: 0px 15px;
+}
+
+
+/* Content */
+
+div#content {
+	font-size:0.8em;
+}
+
+/* Module */
+
+div#second_modules {
+	float:right;
+	width:250px;
+}
+
+div#main_modules {
+	width:700px;
+}
+
+div.module {
+	border:1px dotted #D1D1D1;
+	padding:10px;
+	margin:5px;
+	background: url(../img/module_background.png) repeat-x bottom left;
+}
+
+div.module h2 {
+	margin:0 0 15px 0;
+	font-size:1.25em;
+	border-bottom:1px dotted #8f8f8f;
+}
+
+div.main_module {
+	font-size:1.25em;
+	padding:20px;
+	
+}
+
+div.main_module h2 {
+	font-size:1.5em;
+	border-bottom:none;
+	margin:18px 0;
+}
+
+	
+/* Footer */
+
+div#footer {
+	text-align:center;
+	font-size:0.9em;
+}
+
+
+/* HTML Elements */
+
+p.join_link {
+	text-align:right;
+}

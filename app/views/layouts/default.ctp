@@ -33,8 +33,9 @@
 	</title>
 	<?php
 		//echo $html->meta('icon');
-		
-		echo $html->css('tatoeba.generic');
+		echo $html->css('tatoeba.newui');
+		echo $html->css('tatoeba.newgeneric');
+//		echo $html->css('tatoeba.generic');
 		echo $html->css('tatoeba.sentences');
 		echo $html->css('tatoeba.logs');
 		echo $html->css('tatoeba.comments');
@@ -42,7 +43,7 @@
 		echo $html->css('tatoeba.users');
 		echo $html->css('tatoeba.tooltip');
 		echo $html->css('tatoeba.navigation');
-		echo $html->css('tatoeba.tools');
+//		echo $html->css('tatoeba.tools');
 		
 		echo $javascript->link('jquery.js', true);
 		echo $javascript->link('sentences.show_another.js', true);
@@ -55,17 +56,21 @@
 		<!-- ---------------- TOP ---------------- -->
 		<?php echo $this->element('top1'); ?>
 		
-		<?php echo $this->element('top2');	?>
+		<?php //echo $this->element('top2');	?>
 		
+		<!-- ---------------- HEADER ---------------- -->
+		<?php echo $this->element('header');	?>
 		
 		<!-- ---------------- MENU ---------------- -->
-		<?php echo $this->element('menu'); ?>
+		<?php //echo $this->element('menu'); ?>
+		
+		<!-- ---------------- SEARCH BAR ---------------- -->
+		<?php echo $this->element('search_bar'); ?>
 		
 		<!-- ---------------- CONTENT---------------- -->
 		<div id="content">
 			<!-- ---------------- SEARCH BAR---------------- -->
-			<?php echo $this->element('search_bar'); ?>
-			<div class="container1">
+			<?php //echo $this->element('search_bar'); ?>
 			<?php
 			if($session->check('Message.flash')){
 				$session->flash();
@@ -73,7 +78,6 @@
 			
 			echo $content_for_layout;
 			?>
-			</div>
 		</div>
 		
 		<!-- ---------------- FOOT---------------- -->

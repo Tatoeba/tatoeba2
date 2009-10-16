@@ -16,16 +16,39 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-if(isset($translation_text)){
-
-	echo $javascript->link('jquery.jeditable.js', true);
-	echo $javascript->link('sentences.edit_in_place.js', true);
-
-	echo "<li class='direct editable translation'>";
-	echo '<span id="'.$translation_lang.$translation_id.'" class="editableSentence '.$translation_lang.'">';
-	echo $translation_text;
-	echo '</span> ';
-	echo "</li>";
-
-	}
 ?>
+
+<div id="second_modules">
+	<div class="module">
+		<h2>Mon espace</h2>
+		<?php
+			if(!$session->read('Auth.User.id')){
+				echo $this->element('login'); 
+			} else {
+				echo $this->element('space'); 
+			}
+		?>
+	</div>
+
+</div>
+
+<div id="main_modules">
+	<div class="module">
+		<?php
+		if(isset($translation_text)){
+		
+			echo $javascript->link('jquery.jeditable.js', true);
+			echo $javascript->link('sentences.edit_in_place.js', true);
+		
+			echo "<li class='direct editable translation'>";
+			echo '<span id="'.$translation_lang.$translation_id.'" class="editableSentence '.$translation_lang.'">';
+			echo $translation_text;
+			echo '</span> ';
+			echo "</li>";
+		
+			
+		}
+		?>
+	</div>
+</div>
+

@@ -16,19 +16,42 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-if(isset($sentence_text)){
-	
-	echo rtrim($sentence_text);
-	
-}elseif(isset($sentence)){
-
-	echo '<div class="sentences_set">';
-	// sentence menu (translate, edit, comment, etc)
-	$sentences->displayMenu($sentence['Sentence']['id'], $specialOptions);
-	
-	// sentence and translations
-	$sentences->displayForTranslation($sentence['Sentence'], array());
-	echo '</div>';
-	
-}
 ?>
+
+<div id="second_modules">
+	<div class="module">
+		<h2>Mon espace</h2>
+		<?php
+			if(!$session->read('Auth.User.id')){
+				echo $this->element('login'); 
+			} else {
+				echo $this->element('space'); 
+			}
+		?>
+	</div>
+
+</div>
+
+<div id="main_modules">
+	<div class="module">
+		<?php
+		if(isset($sentence_text)){
+			
+			echo rtrim($sentence_text);
+			
+		}elseif(isset($sentence)){
+		
+			echo '<div class="sentences_set">';
+			// sentence menu (translate, edit, comment, etc)
+			$sentences->displayMenu($sentence['Sentence']['id'], $specialOptions);
+			
+			// sentence and translations
+			$sentences->displayForTranslation($sentence['Sentence'], array());
+			echo '</div>';
+			
+		}
+		?>
+	</div>
+</div>
+
+

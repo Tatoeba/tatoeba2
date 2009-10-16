@@ -24,56 +24,48 @@
 \* **************** */
 
 #logs td{
-padding: 3px;
+	padding: 3px;
 }
 
 #logs .text{
 }
 
 #logs .date{
-width: 100px;
+	width: 100px;
 }
 
 #logs .username{
-width: 100px;
-padding: 0px 10px;
-text-align:center;
+	width: 100px;
+	padding: 0px 10px;
+	text-align:center;
 }
 
 #logs .sentence_id{
-padding: 0px 5px;
-text-align:right;
-width:60px;
+	padding: 0px 5px;
+	text-align:right;
+	width:60px;
 }
 
 #logs .lang{
-width: 30px;
-padding: 0px 5px;
-text-align:center;
+	width: 30px;
+	padding: 0px 5px;
+	text-align:center;
 }
 
 
 #logsLegend{
-color: black;
-margin-top: 10px;
-margin-bottom: 20px;
-text-align: center;
+	color: black;
+	margin-top: 10px;
+	margin-bottom: 20px;
+	text-align: center;
 }
 
 #logsLegend span{
-padding: 2px 5px;
+	padding: 2px 5px;
 }
 
 .sentenceAdded{
-background: #b1f090;
-}
-
-.sentenceModified{
-background: #96e0fc;
-}
-
-.sentenceDeleted{
-background: #f5aa98;
+	background: #b1f090;
 }
 
 .linkAdded{

@@ -16,53 +16,75 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-	
-// navigation (previous, random, next)
-$navigation->displaySentenceNavigation();
-	
-if($sentenceExists){
-
-	$this->pageTitle = __('Logs for : ',true) . $sentence['Sentence']['text'];
-
-	echo '<div class="sentences_set">';
-		// sentence menu (translate, edit, comment, etc)
-		$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
-		$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
-
-		// sentence and translations
-		$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
-		$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
-	echo '</div>';	
-
-
-	$contributions = $sentence['Contribution'];
-	
-}else{
-	
-	$this->pageTitle = __('Logs for sentence nº',true) . $this->params['pass'][0];
-	
-	echo '<em>';
-	__('The sentence has been deleted');
-	echo '</em>';
-}
-
-echo '<h2>';
-__('Logs'); 
-echo ' ';
-$tooltip->displayLogsColors();
-echo '</h2>';
-
-if(count($contributions) > 0){
-	echo '<table id="logs">';
-	foreach($contributions as $contribution){
-		if($sentenceExists){
-			$logs->entry($contribution, $contribution['User']);
-		}else{
-			$logs->entry($contribution['Contribution'], $contribution['User']);
-		}
-	}
-	echo '</table>';
-}else{
-	echo '<em>'. __('There is no log for this sentence', true) .'</em>';
-}
 ?>
+
+<div id="second_modules">
+	<div class="module">
+		<h2>Mon espace</h2>
+		<?php
+			if(!$session->read('Auth.User.id')){
+				echo $this->element('login'); 
+			} else {
+				echo $this->element('space'); 
+			}
+		?>
+	</div>
+
+</div>
+
+<div id="main_modules">
+	<div class="module">
+	<?php
+	// navigation (previous, random, next)
+	$navigation->displaySentenceNavigation();
+		
+	if($sentenceExists){
+	
+		$this->pageTitle = __('Logs for : ',true) . $sentence['Sentence']['text'];
+	
+		echo '<div class="sentences_set">';
+			// sentence menu (translate, edit, comment, etc)
+			$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
+			$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
+	
+			// sentence and translations
+			$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
+			$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
+		echo '</div>';	
+	
+	
+		$contributions = $sentence['Contribution'];
+		
+	}else{
+		
+		$this->pageTitle = __('Logs for sentence nº',true) . $this->params['pass'][0];
+		
+		echo '<em>';
+		__('The sentence has been deleted');
+		echo '</em>';
+	}
+	
+	echo '<h2>';
+	__('Logs'); 
+	echo ' ';
+	$tooltip->displayLogsColors();
+	echo '</h2>';
+	
+	if(count($contributions) > 0){
+		echo '<table id="logs">';
+		foreach($contributions as $contribution){
+			if($sentenceExists){
+				$logs->entry($contribution, $contribution['User']);
+			}else{
+				$logs->entry($contribution['Contribution'], $contribution['User']);
+			}
+		}
+		echo '</table>';
+	}else{
+		echo '<em>'. __('There is no log for this sentence', true) .'</em>';
+	}
+	?>
+	</div>
+</div>
+<?php
+

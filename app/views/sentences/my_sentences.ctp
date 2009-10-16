@@ -16,9 +16,30 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-$javascript->link('jquery.jeditable.js', false);
-$javascript->link('sentences.edit_in_place.js', false);
-foreach($user_sentences as $sentence){
-	$sentences->displayEditableSentence($sentence['Sentence']);
-}
 ?>
+
+<div id="second_modules">
+	<div class="module">
+		<h2>Mon espace</h2>
+		<?php
+			if(!$session->read('Auth.User.id')){
+				echo $this->element('login'); 
+			} else {
+				echo $this->element('space'); 
+			}
+		?>
+	</div>
+</div>
+
+<div id="main_modules">
+	<div class="module">
+		<?php
+		$javascript->link('jquery.jeditable.js', false);
+		$javascript->link('sentences.edit_in_place.js', false);
+		foreach($user_sentences as $sentence){
+			$sentences->displayEditableSentence($sentence['Sentence']);
+		}
+		?>
+
+	</div>
+</div>

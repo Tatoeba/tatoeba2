@@ -16,6 +16,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 if(isset($error)){
 	echo $error;
 }
@@ -40,10 +41,10 @@ echo $form->input('email', array(
 ));
 
 
-echo '<div>';
+
 echo $html->image('/users/captcha_image', array("id" => "captcha"));
 echo '<a href="javascript:void(0);" onclick="javascript:document.images.captcha.src=\''. $html->url('/users/captcha_image') .'?\' + Math.round(Math.random(0)*1000)+1">Reload image</a>';
-echo '</div>';
+
 echo $form->input('captcha', array("label" => __('Code displayed above :',true)));
 
 echo $form->submit(__('Register',true), array("id" => "registerButton"));
