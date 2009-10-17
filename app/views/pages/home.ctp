@@ -16,7 +16,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-$this->pageTitle = __('Tatoeba : Collecting example sentences',true); 
+$this->pageTitle = __('Tatoeba : Collecting example sentences',true);
 echo $javascript->link('sentences.statistics.js', false);
 
 // Warning message prompting the user to specify languages
@@ -36,8 +36,8 @@ $key = isset($this->params['lang']) ? $this->params['lang'] : 'eng';
 
 
 $lang = 'eng';
-if (isset($this->params['lang'])) { 
-	Configure::write('Config.language',  $this->params['lang']); 
+if (isset($this->params['lang'])) {
+	Configure::write('Config.language',  $this->params['lang']);
 	$lang = $this->params['lang'];
 }
 
@@ -53,19 +53,19 @@ array_unshift($langArray, array('any' => __('any', true)));
 		<h2>Mon espace</h2>
 		<?php
 			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
+				echo $this->element('login');
 			} else {
-				echo $this->element('space'); 
+				echo $this->element('space');
 			}
 		?>
 	</div>
 	<div class="module">
 		<h2>Tatoeba ? Kezako ?</h2>
-		<p>"Tatoeba" () signifie en japonais "par exemple". Le but n'est pas de concevoir un nouveau dictionnaire multilingue, mais un corpus de phrases montrant l'utilisation de différents mots <a href="">Plus d'infos...</a></p>
+		<p>"Tatoeba" () signifie en japonais "par exemple". Le but n'est pas de concevoir un nouveau dictionnaire multilingue, mais un corpus de phrases montrant l'utilisation de diffÃ©rents mots <a href="">Plus d'infos...</a></p>
 	</div>
 	<div class="module">
-		<h2>Actualités</h2>
-		<p>Ce 	projet a pour but de construire un corpus aligné multilingue. En	d'autres termes, de collecter des phrases traduites dans plusieurs	langues. <a href="http://tatoeba.fr/fre/sentences/contribute">Tout le monde peut contribuer! </a>Ces phrases peuvent être téléchargées ici : <a href="http://tatoeba.fr/fre/pages/download-tatoeba-example-sentences">Téléchargements</a>.</p>
+		<h2>ActualitÃ©s</h2>
+		<p>Ce 	projet a pour but de construire un corpus alignÃ© multilingue. En	d'autres termes, de collecter des phrases traduites dans plusieurs	langues. <a href="http://tatoeba.fr/fre/sentences/contribute">Tout le monde peut contribuer! </a>Ces phrases peuvent Ãªtre tÃ©lÃ©chargÃ©es ici : <a href="http://tatoeba.fr/fre/pages/download-tatoeba-example-sentences">TÃ©lÃ©chargements</a>.</p>
 	</div>
 </div>
 
@@ -73,12 +73,12 @@ array_unshift($langArray, array('any' => __('any', true)));
 	<div class="module main_module">
 		<h2><?php __('Welcome to Tatoeba Project'); ?></h2>
 		<p>
-		<?php 
+		<?php
 		__('This project aims to build a multilingual aligned corpus. In other words, to collect sentences translated in several languages. ');
 		echo $html->link(__('Everyone can contribute! ',true), array("controller" => "sentences", "action" => "contribute"));
-		__('These sentences can be downloaded for free here : '); 
+		__('These sentences can be downloaded for free here : ');
 		echo $html->link(
-			__('Downloads',true), 
+			__('Downloads',true),
 			array("controller" => "pages", "action" => "download-tatoeba-example-sentences")
 		);
 		?>
@@ -86,7 +86,7 @@ array_unshift($langArray, array('any' => __('any', true)));
 		</div>
 	<div class="module">
 		<h2>Qu'est ce que c'est ?</h2>
-		<p>Tatoeba est un projet libre et vise à mettre en place un patrimoine en essayant de réunir les gens des 4 coins de la Terre autour d'une des plus grandes inventions de l'Humanité: le langage. <a href="">Plus d'infos...</a></p>
+		<p>Tatoeba est un projet libre et vise Ã  mettre en place un patrimoine en essayant de rÃ©unir les gens des 4 coins de la Terre autour d'une des plus grandes inventions de l'HumanitÃ©: le langage. <a href="">Plus d'infos...</a></p>
 	</div>
 	<div class="module">
 		<h2><?php __('Random sentence'); ?> (<?='<a id="showRandom" lang='.$lang.'>' . __('show another ', true) . '</a>';?><?=$form->select("randomLangChoice", $langArray, $selectedLanguage, null, false); ?>)</h2>
