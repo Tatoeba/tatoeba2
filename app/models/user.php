@@ -72,6 +72,7 @@ class User extends AppModel {
 		  'SentenceComments' => array('limit' => 10, 'order' => 'created DESC')
 		, 'Contributions' => array('limit' => 10, 'order' => 'datetime DESC')
 		, 'Sentences' => array('limit' => 10, 'order' => 'modified DESC')
+		, 'SentencesLists'
 	);
 	
 	var $hasAndBelongsToMany = array(

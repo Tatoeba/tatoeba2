@@ -31,21 +31,24 @@ class PermissionsComponent extends Object{
 		$sentence_owner_id = $sentence['Sentence']['user_id'];
 
 		$specialOptions = array(
-			  '5canComment' => false
+			  'canComment' => false
 			, 'canEdit' => false
 			, 'canDelete' => false
 			, 'canAdopt' => false
 			, 'canLetGo' => false
 			, 'canTranslate' => false
-			, 'canFavorite' => false	
-			, 'canUnFavorite' => false	
+			, 'canFavorite' => false
+			, 'canUnFavorite' => false
+			, 'canAddToList' => false
 		);
 		
 		if($this->Auth->user('id')){
 			$specialOptions['canComment'] = true;
-			$specialOptions['canTranslate'] = true;
-	
+			$specialOptions['canTranslate'] = true;	
+			$specialOptions['canAddToList'] = true;
+			
 			$specialOptions['canFavorite'] = true;
+			
 			// if we have already favorite it then we just can
 			// unfavorite it
 			// is_array is here to avoid a warning when favorites_users is an empty array
