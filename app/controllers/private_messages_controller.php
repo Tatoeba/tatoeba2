@@ -19,7 +19,7 @@
 class PrivateMessagesController extends AppController {
 	var $name = 'PrivateMessages';
 
-	var $helpers = array('Comments', 'Languages', 'Tooltip', 'Navigation', 'Html');
+	var $helpers = array('Comments', 'Languages', 'Tooltip', 'Navigation', 'Html', 'Date');
 	var $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
 
 	var $langs = array('en', 'fr', 'jp', 'es', 'de');
@@ -35,15 +35,27 @@ class PrivateMessagesController extends AppController {
 
 	function folder($folder_id = 'Inbox'){
 
-		$inboxes = $this->PrivateMessage->find(
+		if($folder_id == 'Sent'){
+			$inboxes = $this->PrivateMessage->find(
 				'all',
 				array(
-					'conditions' => array('PrivateMessage.recpt' => $this->Auth->user('id'),
+					'conditions' => array('PrivateMessage.sender' => $this->Auth->user('id'),
 											'PrivateMessage.folder' => $folder_id),
 					'limit'=> 10,
 					'order' => 'PrivateMessage.date DESC'
 				)
 			);
+		}else{
+			$inboxes = $this->PrivateMessage->find(
+					'all',
+					array(
+						'conditions' => array('PrivateMessage.recpt' => $this->Auth->user('id'),
+												'PrivateMessage.folder' => $folder_id),
+						'limit'=> 10,
+						'order' => 'PrivateMessage.date DESC'
+					)
+				);
+		}
 
 		$content = array();
 
@@ -53,9 +65,8 @@ class PrivateMessagesController extends AppController {
 			$tou = $tou->read();
 			$content[] = array(
 				'from' => $tou['User']['username'],
-				'fromid' => $m['PrivateMessage']['sender'],
 				'title' => $m['PrivateMessage']['title'],
-				'mid' => $m['PrivateMessage']['mid'],
+				'id' => $m['PrivateMessage']['id'],
 				'date' => $m['PrivateMessage']['date']
 			);
 		}
@@ -65,23 +76,36 @@ class PrivateMessagesController extends AppController {
 		$this->set('content', $content);
 	}
 
-	function send($mid){
-		$message = new message();
+	function send(){
+		if(!empty($this->data)){
+			$this->data['PrivateMessage']['sender'] = $this->Auth->user('id');
+
+			$this->PrivateMessage->User->recursive = 0;
+			$tou = $this->PrivateMessage->User->findByUsername($this->data['PrivateMessage']['recpt']);
+			$this->data['PrivateMessage']['recpt'] = $tou['User']['id'];
+			$this->data['PrivateMessage']['folder'] = 'Inbox';
+			$this->data['PrivateMessage']['date'] = date("Y-m-d h:i:s", time());
+			$this->PrivateMessage->save($this->data);
+
+			$this->PrivateMessage->id = null;
+			$this->data['PrivateMessage']['folder'] = 'Sent';
+			$this->PrivateMessage->save($this->data);
+		}
+		$this->redirect(array('action' => 'folder', 'Sent'));
 	}
 
 	function show($mid){
 
-		$message = $this->PrivateMessage->findByMid($mid);
+		$message = $this->PrivateMessage->findById($mid);
 
 		$tou = new User();
 		$tou->id = $message['PrivateMessage']['sender'];
 		$tou = $tou->read();
 		$content = array(
 			'from' => $tou['User']['username'],
-			'fromid' => $message['PrivateMessage']['sender'],
 			'title' => $message['PrivateMessage']['title'],
 			'content' => $message['PrivateMessage']['content'],
-			'mid' => $message['PrivateMessage']['mid'],
+			'id' => $message['PrivateMessage']['id'],
 			'date' => $message['PrivateMessage']['date']
 		);
 
@@ -90,7 +114,9 @@ class PrivateMessagesController extends AppController {
 
 	}
 
-	function save(){
+	function create($toid = ''){
+		if($toid != '') $this->set('toid', $toid);
+		else $this->set('toid', '');
 	}
 
 }

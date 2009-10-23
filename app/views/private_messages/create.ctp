@@ -1,7 +1,7 @@
 <?php
 /*
     Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Copyright (C) 2009 Etienne Deparis <etienne.deparis@umaneti.net>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -16,5 +16,17 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
+echo $this->element('pmmenu');
 ?>
+<div id="main_modules">
+	<div class="module">
+		<h2><?php echo __('Send new message', true); ?></h2>
+		<?php
+		echo $form->create('PrivateMessage', array('action' => 'send'));
+		echo $form->input('recpt', array('label' => __('To', true), 'default' => $toid));
+		echo $form->input('title');
+		echo $form->input('content');
+		echo $form->end(__('Send',true));
+		?>
+	</div>
+</div>

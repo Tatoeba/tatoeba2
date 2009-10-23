@@ -22,8 +22,8 @@ echo $this->element('pmmenu');
 	<div class="module">
 	<h2><?php echo $content['title']; ?></h2>
 	<p class="pm_head">
-		<?php echo __('On ', true) . $content['date'] .
-		$html->link($content['from'], array('action' => 'write', $content['fromid'])) . __(' has written:', true); ?>
+		<?php echo $date->ago($content['date']) . ' ' .
+		$html->link($content['from'], array('action' => 'create', $content['from'])) . __(' has written:', true); ?>
 	</p>
 	<p class="pm_content"><?php echo $content['content']; ?></p>
 	</div>

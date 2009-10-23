@@ -19,6 +19,6 @@
 
 echo '<p>' . __('Welcome ', true) . $session->read('Auth.user.username') . '</p>'; ?>
 <ul>
-<li><?php echo $html->link(__('Inbox', true), array('controller' => 'private_messages', 'action' => 'folder', 'Inbox')); ?></li>
+<li><?php echo $html->link(__('Private Message', true), array('controller' => 'private_messages', 'action' => 'folder', 'Inbox')); ?></li>
 <li><?php echo $html->link(__('Log out',true), array('controller' => 'users', 'action' => 'logout')); ?></li>
 </ul>

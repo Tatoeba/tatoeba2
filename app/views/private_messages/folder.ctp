@@ -20,14 +20,17 @@ echo $this->element('pmmenu');
 ?>
 <div id="main_modules">
 	<div class="module">
-		<h2><?php echo $folder; ?></h2>
+		<h2><?php echo __($folder, true); ?></h2>
 		<table>
 		<?php
-		echo '<tr><th>'.__('Date', true).'</th><th>'.__('From', true).'</th><th>'.__('Subject', true).'</th></tr>';
+		if($folder == 'Sent')
+			echo '<tr><th>'.__('Date', true).'</th><th>'.__('To', true).'</th><th>'.__('Subject', true).'</th></tr>';
+		else
+			echo '<tr><th>'.__('Date', true).'</th><th>'.__('From', true).'</th><th>'.__('Subject', true).'</th></tr>';
 		foreach($content as $msg){
-			echo '<tr><td>' . $html->link($msg['date'], array('action' => 'show', $msg['mid'])) . '</td>';
-			echo '<td>'.$html->link($msg['from'], array('action' => 'write', $msg['fromid'])).'</td>';
-			echo '<td>' . $html->link($msg['title'], array('action' => 'show', $msg['mid'])) . '</td></tr>';
+			echo '<tr><td>' . $html->link($date->ago($msg['date']), array('action' => 'show', $msg['id'])) . '</td>';
+			echo '<td>'.$html->link($msg['from'], array('action' => 'create', $msg['from'])).'</td>';
+			echo '<td>' . $html->link($msg['title'], array('action' => 'show', $msg['id'])) . '</td></tr>';
 		} ?>
 		</table>
 	</div>

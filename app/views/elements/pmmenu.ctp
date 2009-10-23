@@ -20,6 +20,12 @@
 ?>
 <div id="second_modules">
 	<div class="module">
+		<?php echo $this->element('space'); ?>
+	</div>
+	<div class="module">
+		<ul>
+			<li><?php echo $html->link(__('New message', true), array('action' => 'create')); ?></li>
+		</ul>
 		<ul>
 			<li><?php echo $html->link(__('Inbox', true), array('action' => 'folder', 'Inbox')); ?></li>
 			<li><?php echo $html->link(__('Sent', true), array('action' => 'folder', 'Sent')); ?></li>
