@@ -19,9 +19,8 @@
 $this->pageTitle = __('Potential translations for : ',true) . $sentence['Sentence']['text'];
 ?>
 
-<div id="second_modules">
+<div id="annexe_content">
 	<div class="module">
-		<h2>Mon espace</h2>
 		<?php
 			if(!$session->read('Auth.User.id')){
 				echo $this->element('login'); 
@@ -33,7 +32,7 @@ $this->pageTitle = __('Potential translations for : ',true) . $sentence['Sentenc
 
 </div>
 
-<div id="main_modules">
+<div id="main_content">
 	<div class="module">
 		<?php
 		// navigation (previous, random, next)

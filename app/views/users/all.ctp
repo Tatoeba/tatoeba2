@@ -19,9 +19,8 @@
 ?>
 
 
-<div id="second_modules">
+<div id="annexe_content">
 	<div class="module">
-		<h2>Mon espace</h2>
 		<?php
 			if(!$session->read('Auth.User.id')){
 				echo $this->element('login'); 
@@ -33,7 +32,7 @@
 
 </div>
 
-<div id="main_modules">
+<div id="main_content">
 	<div class="module">
 		<h2><?=$paginator->counter(array('format' => __('Users (total %count%)', true))); ?></h2>
 		
@@ -50,6 +49,7 @@
 		<table class="users">
 		<tr>
 			<th><?php echo $paginator->sort(__('Username', true), 'username');?></th>
+			<th><?php echo $paginator->sort(__('Country', true), 'country');?></th>
 			<th><?php echo $paginator->sort(__('Member since', true),'since');?></th>
 			<th><?php echo $paginator->sort(__('Member status', true),'group_id');?></th>
 		</tr>
@@ -64,6 +64,8 @@
 			<tr<?php echo $class;?>>
 				<td>
 					<?php echo $html->link($user['User']['username'], '/users/show/'.$user['User']['id']); ?>
+				</td>
+				<td>
 				</td>
 				<td>
 					<?php echo $date->ago($user['User']['since']); ?>

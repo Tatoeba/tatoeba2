@@ -19,9 +19,8 @@
 $this->pageTitle = 'Tatoeba : What\'s new';
 ?>
 
-<div id="second_modules">
+<div id="annexe_content">
 	<div class="module">
-		<h2>Mon espace</h2>
 		<?php
 			if(!$session->read('Auth.User.id')){
 				echo $this->element('login'); 
@@ -30,21 +29,20 @@ $this->pageTitle = 'Tatoeba : What\'s new';
 			}
 		?>
 	</div>
-
-</div>
-
-<div id="main_modules">
-	<div class="module main_module">
-	
-	</div>
 	<div class="module">
-		<h1><?php __('What\'s new'); ?></h1>
 		<p id="whatsNew">
 		<?php
 		__('You can follow the evolution of the project on ');
 		echo '<a class="twitterLink" target="_blank" href="http://twitter.com/tatoeba_project">Twitter</a>.';
 		?>
 		</p>
+	</div>
+</div>
+
+<div id="main_content">
+	<div class="module">
+		<h2><?php __('What\'s new'); ?></h2>
+		
 		
 		<p>
 		<?php

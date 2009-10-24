@@ -18,7 +18,7 @@
 */
 echo $this->element('pmmenu');
 ?>
-<div id="main_modules">
+<div id="main_content">
 	<div class="module">
 	<h2><?php echo $content['title']; ?></h2>
 	<p class="pm_head">

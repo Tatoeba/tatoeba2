@@ -124,10 +124,9 @@ font-size: 16px;
 
 .original{
 	font-family: georgia;
-	font-size: 1.2em;
+	font-size:2em;
 	display:block;
-	padding: 5px;
-	border-bottom:1px dotted #c0c0c0;
+	padding: 10px 5px;
 }
 
 .original:hover {
@@ -145,15 +144,16 @@ padding: 5px;
 padding-left: 40px;
 }
 
-.translations{
+/*.translations{
 margin-top: 10px;
-}
+}*/
 
 ul.translations, .sentences_set ul.menu{
 list-style: none;
 margin: 0;
 padding: 0;
 }
+
 
 li.direct{
 background:transparent url(../img/translate.png) no-repeat scroll 10px;
@@ -175,6 +175,11 @@ color: #434343;
 font-weight: normal;
 padding: 2px;
 padding-right: 40px;
+}
+
+
+ul.translations li.translation:hover {
+	background-color:#e5e5e5;	
 }
 
 .romaji, .pinyin{
@@ -303,7 +308,7 @@ margin-bottom: 20px;
 }
 
 input#SentenceText{
-width: 580px;
+width: 530px;
 }
 
 
@@ -374,10 +379,6 @@ margin: 5px 10px;
 
 #mostFrequentWords{
 font-size: 200%;
-margin-bottom: 20px;
-border-bottom: 1px dotted #cccccc;
-border-top: 1px dotted #cccccc;
-padding: 5px;
 text-align: center;
 }
 

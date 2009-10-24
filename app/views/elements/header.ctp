@@ -38,7 +38,7 @@ $menuElements = array(
 //			)
 //		)
 //	); 
-echo $this->element('sentences_statistics');
+//echo $this->element('sentences_statistics');
 ?>
 
 <div id="header">

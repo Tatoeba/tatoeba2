@@ -61,10 +61,18 @@ class LogsHelper extends AppHelper {
 			
 			echo '<td class="lang">';
 			if($type == 'link'){
-				echo '>>>';
+				echo '&raquo;';
 				//echo ($contribution['translation_lang'] == '') ? '?' : $contribution['translation_lang'];
-			}else{
-				echo ($contribution['sentence_lang'] == '') ? '?' : $contribution['sentence_lang'];
+			} else {
+				if ($contribution['sentence_lang'] == '') {
+					echo '?';
+				} else {
+					echo $this->Html->image(
+						$contribution['sentence_lang'].".png", 
+						array("alt" => $contribution['sentence_lang'],
+							"class" => "flag"));
+				}
+				
 			}
 			echo '</td>';
 			

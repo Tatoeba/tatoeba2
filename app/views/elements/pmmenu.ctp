@@ -18,7 +18,7 @@
 */
 
 ?>
-<div id="second_modules">
+<div id="annexe_content">
 	<div class="module">
 		<?php echo $this->element('space'); ?>
 	</div>

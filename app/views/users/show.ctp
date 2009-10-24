@@ -20,9 +20,8 @@ $this->pageTitle = __('Tatoeba user : ',true) . $user['User']['username'];
 //$javascript->link('users.followers_and_following.js', false);
 ?>
 
-<div id="second_modules">
+<div id="annexe_content">
 	<div class="module">
-		<h2>Mon espace</h2>
 		<?php
 			if(!$session->read('Auth.User.id')){
 				echo $this->element('login'); 
@@ -34,7 +33,7 @@ $this->pageTitle = __('Tatoeba user : ',true) . $user['User']['username'];
 
 </div>
 
-<div id="main_modules">
+<div id="main_content">
 	<div class="module">
 		<?php
 		$navigation->displayUsersNavigation($user['User']['id'], $user['User']['username']);

@@ -37,5 +37,4 @@ echo '<div class="sentences_set">';
 echo '</div>';
 ?>
 
-echo $javascript->link('sentences_lists.menu.js',true);
 

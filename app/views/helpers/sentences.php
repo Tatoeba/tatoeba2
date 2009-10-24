@@ -90,7 +90,6 @@ class SentencesHelper extends AppHelper {
 	 */
 	function displayGroup($sentence, $translations, $user = null) {
 		echo '<div class="sentence">';
-		
 		// Sentence
 		$this->Javascript->link('jquery.jeditable.js', false);
 		$this->Javascript->link('sentences.edit_in_place.js', false);
@@ -117,7 +116,7 @@ class SentencesHelper extends AppHelper {
 			$this->displayPinyin($sentence['text']);
 		}
 		echo '</div>';
-		
+		echo '<h4>Translations</h4>';
 		echo '<ul id="translation_for_'.$sentence['id'].'" class="addTranslations">';
 		echo '</ul>';
 		
@@ -313,26 +312,26 @@ class SentencesHelper extends AppHelper {
 			// echo '</li>';
 			
 			// discuss link
-			echo '<li class="'.$this->optionClass('comments').'">';
-			echo $this->Html->link(
-				__('Comments',true),
-				array(
-					"controller" => "sentence_comments",
-					"action" => "show",
-					$id
-				));
-			echo '</li>';
+//			echo '<li class="'.$this->optionClass('comments').'">';
+//			echo $this->Html->link(
+//				__('Comments',true),
+//				array(
+//					"controller" => "sentence_comments",
+//					"action" => "show",
+//					$id
+//				));
+//			echo '</li>';
 			
 			// logs
-			echo '<li class="'.$this->optionClass('logs').'">';
-			echo $this->Html->link(
-				__('Logs',true),
-				array(
-					"controller" => "contributions",
-					"action" => "show",
-					$id
-				));
-			echo '</li>';
+//			echo '<li class="'.$this->optionClass('logs').'">';
+//			echo $this->Html->link(
+//				__('Logs',true),
+//				array(
+//					"controller" => "contributions",
+//					"action" => "show",
+//					$id
+//				));
+//			echo '</li>';
 			
 			// adopt
 			if(isset($specialOptions['canAdopt']) AND $specialOptions['canAdopt'] == true){

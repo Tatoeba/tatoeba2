@@ -19,9 +19,8 @@
 
 ?>
 
-<div id="second_modules">
+<div id="annexe_content">
 	<div class="module">
-		<h2>Mon espace</h2>
 		<?php
 			if(!$session->read('Auth.User.id')){
 				echo $this->element('login'); 
@@ -30,10 +29,44 @@
 			}
 		?>
 	</div>
+	<div class="module">
+		<?php
+		echo '<h2>';
+		__('Comments');
+		echo ' ';
+		$tooltip->display(__('If you see any mistake, don\'t hesitate to post a comment about it!',true));
+		echo '</h2>';
+		
+		echo '<a name="comments"></a>';
+		echo '<div class="comments">';
+		if(count($sentence['SentenceComment']) > 0){
+			foreach($sentence['SentenceComment'] as $comment){
+				$comments->displayComment(
+					$comment['User']['id'],
+					$comment['User']['username'], 
+					$comment['created'], 
+					$comment['text']
+				);
+			}
+		}else{
+			echo '<em>' . __('There are no comments for now.', true) .'</em>';	
+		}
+		echo '</div>';
+		?>
+		<p class="more_link">
+			<?=$html->link(
+				__('See all comments',true),
+				array(
+					"controller" => "sentence_comments",
+					"action" => "show",
+					$sentence['Sentence']['id']
+				)); ?>
+		</p>
+	</div>
 
 </div>
 
-<div id="main_modules">
+<div id="main_content">
 	<div class="module">
 		<?php
 		if($sentence != null){
@@ -54,13 +87,15 @@
 			echo '</div>';
 			
 			//$tooltip->displayAdoptTooltip(); 
-			
 			echo '<script type="text/javascript">
 			$(document).ready(function(){
 				$(".translations").html("<div class=\"loading\">'.addslashes($html->image('loading.gif')).'</div>");
 				$(".translations").load("http://" + self.location.hostname + "/sentences/get_translations/'.$sentence['Sentence']['id'].'");
 			});
 			</script>';
+			?>
+			<p class="more_link translateLink"><a><?=__('Add a translation',true); ?></a></p>
+			<?
 			
 		}else{
 			$this->pageTitle = __('Sentence does not exist : ', true) . $this->params['pass'][0];
@@ -74,6 +109,33 @@
 			echo '</div>';
 		}
 		?>
+	</div>
+	<div class="module">
+		<?php
+		echo '<h2>';
+		__('Logs'); 
+		echo ' ';
+		$tooltip->displayLogsColors();
+		echo '</h2>';
+		$contributions = $sentence['Contribution'];
+		if(count($contributions) > 0){
+			echo '<table id="logs">';
+			foreach($contributions as $contribution){
+				$logs->entry($contribution, $contribution['User']);
+			}
+			echo '</table>';
+		}else{
+			echo '<em>'. __('There is no log for this sentence', true) .'</em>';
+		}
+		?>
+		<p class="more_link"><?= $html->link(
+			__('See all logs',true),
+			array(
+				"controller" => "contributions",
+				"action" => "show",
+				$sentence['Sentence']['id']
+			));?>
+		</p>
 	</div>
 </div>
 

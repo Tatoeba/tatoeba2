@@ -4,6 +4,7 @@ body {
 	font-family: Trebuchet MS, sans;
 	padding-bottom: 10px;
 	color: #434343;
+	color: #333333;/*J'hésite entre les deux ou alors un noir total*/
 }
 
 a img {
@@ -16,10 +17,11 @@ a {
 }
 
 a:hover{
-cursor: pointer;
+	cursor: pointer;
+	text-decoration:underline;
 }
 
-h2, h3{
+h2, h3, h4{
 	font-variant: small-caps;
 }
 
@@ -27,6 +29,12 @@ h3{
 	margin-left: 20px;
 	border-bottom: 1px solid;
 	color:#E55F0E;
+}
+
+h4{
+	margin: 10px 0px 5px 20px;
+	color:#E55F0E;
+	font-size:1.1em;
 }
 
 table {
@@ -37,14 +45,19 @@ table {
 /* User Menu */
 
 div#user_menu {
-	padding:0 5px;
 	height:24px;
 	font-height:24px;
 	border-bottom:1px dotted #CCCCCC;
 	background-color:#414141;
 	color:#FFFFFF;
+	margin-bottom:20px;
 }
 
+div#menu_content {
+	margin-left:auto;
+	margin-right:auto;
+	width:950px;
+}
 
 div#user_menu a {
 	color:#FFFFFF;
@@ -80,6 +93,7 @@ div#navigation_menu ul li {
 div#navigation_menu ul li a{
 	text-decoration:none;
 	color:#FFFFFF;
+	font-size:0.9em;
 }
 
 
@@ -108,13 +122,10 @@ div#interfaceLanguageSelector {
 	font-size:0.8em;	
 }
 
-/* Visitors counter */
-
-
-div#visitorsCounter {
-	text-align:right;
-	font-size:0.8em;	
+span#onlineVisitors {
+	margin-left:10px;	
 }
+
 
 /* Container */
 
@@ -131,16 +142,23 @@ div.search_bar {
 	text-align:center;
 	padding:5px;
 	background: url(../img/search_bar.png) no-repeat ;
-	margin:20px 0px;
+	margin:20px 0px 20px 0px;
+	color:#FFFFFF;
 }
 
 div.search_bar a{
+	font-size:0.9em;
 	color:#FFFFFF;
+}
+
+div.search_bar span#into {
+	font-family:Arial, Sans-serif;
+	font-size:1.3em;
+	margin:0px 10px;
 }
 
 div.search_bar a:hover{
 	color:#FFFFFF;
-	text-decoration:underline;
 }
 
 #SentenceSearchForm *{
@@ -159,43 +177,62 @@ div.search_bar a:hover{
 
 #SentenceSearchForm input#SentenceQuery{
 	width: 40%;
-	margin: 0px 15px;
+	margin: 0px 15px 0px 20px;
 }
 
 
-/* Content */
+/* Content : when a page is not split into 2 parts*/
 
 div#content {
 	font-size:0.8em;
+	border:1px dotted #D1D1D1;
 }
 
-/* Module */
+/* Module : when a page is split into 2 main parts */
 
-div#second_modules {
+div#annexe_content {
 	float:right;
 	width:250px;
+	font-size:0.8em;
 }
 
-div#main_modules {
+div#main_content {
 	width:700px;
+	font-size:0.8em;
 }
+
+
 
 div.module {
 	border:1px dotted #D1D1D1;
-	padding:10px;
-	margin:5px;
+	padding:10px 10px 5px 10px;
+	margin:0px 0px 10px 0px;
 	background: url(../img/module_background.png) repeat-x bottom left;
+}
+
+div#main_content div.module {
+	margin-right:5px;
+}
+
+div#annexe_content div.module {
+	margin-left:5px;
 }
 
 div.module h2 {
 	margin:0 0 15px 0;
-	font-size:1.25em;
+	font-size:1.3em;
 	border-bottom:1px dotted #8f8f8f;
+}
+
+div.module h2 span.annexe {
+	font-variant:normal;
+	font-weight:normal;
+	font-size:0.8em;
 }
 
 div.main_module {
 	font-size:1.25em;
-	padding:20px;
+	padding:20px 20px 10px 20px;
 	
 }
 
@@ -205,6 +242,15 @@ div.main_module h2 {
 	margin:18px 0;
 }
 
+
+div#annexe_content div.module ul {
+	margin:5px 0px;
+	padding-left:20px;	
+}
+
+div#annexe_content div.module ul li {
+	list-style-type:none;
+}
 	
 /* Footer */
 
@@ -216,6 +262,11 @@ div#footer {
 
 /* HTML Elements */
 
-p.join_link {
+p.more_link {
 	text-align:right;
+}
+
+
+div.module ul.menu .selected a {
+	color:#257D0C;
 }

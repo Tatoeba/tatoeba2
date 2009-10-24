@@ -17,6 +17,7 @@
 	margin: 3px;
 	background: #D3F3B9;
 	border: 1px solid #75C34B;
+	color:#257D0C;
 }
 
 .pagination strong, .paging .disabled{
@@ -48,4 +49,33 @@
 
 .tips a{
 	margin-left: 10px;
+}
+
+
+
+/* What's new */
+
+#whatsNew{
+	font-size: 2em;
+	margin: 10px 0;
+}
+
+.twitterLink{
+	padding-right: 30px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background:transparent url(../img/twitter_24x24.png) no-repeat scroll right;
+}
+
+.twit{
+	margin: 15px 30px;
+}
+
+.twit .created_at{
+	color: #989898;
+}
+
+.twit .text{
+	font-size: 1.3em;
+	font-family: Georgia, serif;
 }

@@ -47,14 +47,15 @@
 		
 		echo $javascript->link('jquery.js', true);
 		echo $javascript->link('sentences.show_another.js', true);
+		echo $javascript->link('general.init.js', true);
 		echo $scripts_for_layout;
 	?>
 </head>
 <body>
-	<div id="container">
 		
 		<!-- ---------------- TOP ---------------- -->
 		<?php echo $this->element('top1'); ?>
+	<div id="container">
 		
 		<?php //echo $this->element('top2');	?>
 		
@@ -68,17 +69,17 @@
 		<?php echo $this->element('search_bar'); ?>
 		
 		<!-- ---------------- CONTENT---------------- -->
-		<div id="content">
-			<!-- ---------------- SEARCH BAR---------------- -->
-			<?php //echo $this->element('search_bar'); ?>
-			<?php
-			if($session->check('Message.flash')){
-				$session->flash();
-			}
-			
-			echo $content_for_layout;
-			?>
-		</div>
+
+		<!-- ---------------- SEARCH BAR---------------- -->
+		<?php //echo $this->element('search_bar'); ?>
+		<?php
+		if($session->check('Message.flash')){
+			$session->flash();
+		}
+		
+		echo $content_for_layout;
+		?>
+
 		
 		<!-- ---------------- FOOT---------------- -->
 		<?php 

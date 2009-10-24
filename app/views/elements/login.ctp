@@ -1,3 +1,4 @@
+<h2>Mon espace</h2>
 <?php
 /*
     Tatoeba Project, free collaborativ creation of languages corpuses project
@@ -35,7 +36,7 @@ if  ($session->check('Message.auth')) $session->flash('auth');
 		));
 	echo '</div>';
 ?>
-<p class="join_link">
+<p class="more_link">
 	<?php
 	echo $html->link(
 	//	__('Click here to register',true),

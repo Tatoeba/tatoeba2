@@ -45,7 +45,7 @@ $selectedLanguageTo = $session->read('search_to');
 
 echo $form->create('Sentence', array("action" => "search", "type" => "get"));
 echo $form->select('from', $languages, $selectedLanguageFrom);
-echo ' >> ';
+echo '<span id="into">&raquo;</span>';
 echo $form->select('to', $languages, $selectedLanguageTo);
 echo $form->input('query', array("label" => '', "value" => $session->read('search_query')));
 echo $form->end(__('search',true));

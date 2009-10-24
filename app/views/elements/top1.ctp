@@ -27,105 +27,106 @@ $menuElements = array(
 	 __('Home',true) 		=> '/'.$lang
 	,__('Browse',true) 		=> array("controller" => "sentences", "action" => "show", "random")
 	,__('Lists',true) 		=> array("controller" => "sentences_lists", "action" => "index")
-	,__('Search',true) 		=> array("controller" => "sentences", "action" => "search")
+//	,__('Search',true) 		=> array("controller" => "sentences", "action" => "search")
 	,__('Contribute',true) 	=> array("controller" => "pages", "action" => "contribute")
-	,__('Comments',true) 	=> array("controller" => "sentence_comments", "action" => "index")
 	,__('Members',true)		=> array("controller" => "users", "action" => "all")
+	,__('Tools',true) 	=> array("controller" => "tools", "action" => "index")
 	,__('What\'s new',true)	=> array("controller" => "pages", "action" => "whats_new")
 );
 
 ?>
 <div id="user_menu">
-<div id="navigation_menu">
-	<ul>
-	
-	<?php
-	// displaying the menu
-	foreach($menuElements as $title => $route){
-		$cssClass = '';
-		
-		// Checking if we should apply the "current" CSS class to the <li> element
-		if(is_array($route)){ // categories other than Home
-			if(isset($this->params['pass'][0]) AND isset($route['action']) AND $this->params['pass'][0] == $route['action']){
-				$cssClass = 'class="show"';
-			}elseif($this->params['controller'] == $route['controller']){
-				if(isset($route['action'])){
-					if($this->params['action'] == $route['action']){
+	<div id="menu_content">
+		<div id="navigation_menu">
+			<ul>
+			
+			<?php
+			// displaying the menu
+			foreach($menuElements as $title => $route){
+				$cssClass = '';
+				
+				// Checking if we should apply the "current" CSS class to the <li> element
+				if(is_array($route)){ // categories other than Home
+					if(isset($this->params['pass'][0]) AND isset($route['action']) AND $this->params['pass'][0] == $route['action']){
 						$cssClass = 'class="show"';
+					}elseif($this->params['controller'] == $route['controller']){
+						if(isset($route['action'])){
+							if($this->params['action'] == $route['action']){
+								$cssClass = 'class="show"';
+							}
+						}else{
+							if($this->params['action'] == 'index'){
+								$cssClass = 'class="show"';
+							}
+						}
 					}
-				}else{
-					if($this->params['action'] == 'index'){
+				}else{ // Home
+					if(isset($this->params['pass'][0]) AND $this->params['pass'][0] == 'home'){
 						$cssClass = 'class="show"';
 					}
 				}
+				
+				// displaying <li> element
+				?>
+				<li <?=$cssClass; ?>>
+				<?=$html->link($title, $route, array("class"=>$route['action'])); ?>
+				</li>
+				<?php
 			}
-		}else{ // Home
-			if(isset($this->params['pass'][0]) AND $this->params['pass'][0] == 'home'){
-				$cssClass = 'class="show"';
+			?>
+		
+			</ul>
+		</div>
+	
+	
+		<div id="interfaceLanguageSelector">
+			<?php __('Language(s) : ') ?>
+			<?php
+			$languages = array(
+				  'eng' => 'English' 
+				, 'fre' => 'Français'
+				, 'chi' => '中文'
+				, 'spa' => 'Español'
+				//, 'jpn' => '日本語'
+				//, 'deu' => 'Deutsch'
+				//, 'ita' => 'Italiano'
+			);
+			$path = $this->params['controller'].'/';
+			if($this->params['action'] != 'display'){
+				$path .= $this->params['action'].'/';
 			}
-		}
-		
-		// displaying <li> element
-		?>
-		<li <?=$cssClass; ?>>
-		<?=$html->link($title, $route, array("class"=>$route['action'])); ?>
-		</li>
-		<?php
-	}
-	?>
-
-	</ul>
-</div>
-
-
-	<div id="interfaceLanguageSelector">
-		<?php __('Language(s) : ') ?>
-		<?php
-		$languages = array(
-			  'eng' => 'English' 
-			, 'fre' => 'Français'
-			, 'chi' => '中文'
-			, 'spa' => 'Español'
-			//, 'jpn' => '日本語'
-			//, 'deu' => 'Deutsch'
-			//, 'ita' => 'Italiano'
-		);
-		$path = $this->params['controller'].'/';
-		if($this->params['action'] != 'display'){
-			$path .= $this->params['action'].'/';
-		}
-		foreach($this->params['pass'] as $extraParam){
-			$path .= $extraParam.'/';
-		}
-		echo $form->create();
-		echo $form->select('lang', $languages, $lang, array("onchange" => "$(location).attr('href','/Tatoeba/' + this.value+ '/' + '".$path."');"));
-		echo $form->end();
-		
-	//	foreach($languages as $code => $language){
-	//		$path  = '/'.$code.'/';	
-	//		$path .= $this->params['controller'].'/';
-	//		
-	//		if($this->params['action'] != 'display'){
-	//			$path .= $this->params['action'].'/';
-	//		}
-	//		
-	//		foreach($this->params['pass'] as $extraParam){
-	//			$path .= $extraParam.'/';
-	//		}
-	//	
-	//		// probably not the best way to do it but never mind
-	//		
-	//		echo $html->link($language, $path);
-	//		echo ' | ';
-	//	}
-		?>
-		</select>
+			foreach($this->params['pass'] as $extraParam){
+				$path .= $extraParam.'/';
+			}
+			echo $form->create();
+			echo $form->select('lang', $languages, $lang, array("onchange" => "$(location).attr('href', this.value+ '/' + '".$path."');"));
+			echo $form->end();
+			
+		//	foreach($languages as $code => $language){
+		//		$path  = '/'.$code.'/';	
+		//		$path .= $this->params['controller'].'/';
+		//		
+		//		if($this->params['action'] != 'display'){
+		//			$path .= $this->params['action'].'/';
+		//		}
+		//		
+		//		foreach($this->params['pass'] as $extraParam){
+		//			$path .= $extraParam.'/';
+		//		}
+		//	
+		//		// probably not the best way to do it but never mind
+		//		
+		//		echo $html->link($language, $path);
+		//		echo ' | ';
+		//	}
+			?>
+			<span id="onlineVisitors">
+				<?php
+				__('Online visitor(s) : ');
+				echo $onlineVisitors;
+				?>
+			</span>
+		</div>
 	</div>
 </div>
 
-<div id="visitorsCounter">	
-<?php
-__('Online visitor(s) : ');
-echo $onlineVisitors;
-?>
-</div>

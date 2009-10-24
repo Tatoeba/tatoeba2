@@ -20,9 +20,8 @@ $this->pageTitle = __('Comments on the sentence : ',true) . $sentence['Sentence'
 
 ?>
 
-<div id="second_modules">
+<div id="annexe_content">
 	<div class="module">
-		<h2>Mon espace</h2>
 		<?php
 			if(!$session->read('Auth.User.id')){
 				echo $this->element('login'); 
@@ -33,7 +32,7 @@ $this->pageTitle = __('Comments on the sentence : ',true) . $sentence['Sentence'
 	</div>
 </div>
 
-<div id="main_modules">
+<div id="main_content">
 	<div class="module">
 		<?php
 		// navigation (previous, random, next)

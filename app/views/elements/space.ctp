@@ -16,9 +16,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-echo '<p>' . __('Welcome ', true) . $session->read('Auth.user.username') . '</p>'; ?>
+?>
+<h2><?=__('Welcome ', true) . $session->read('Auth.User.username'); ?></h2>
 <ul>
-<li><?php echo $html->link(__('Private Message', true), array('controller' => 'private_messages', 'action' => 'folder', 'Inbox')); ?></li>
-<li><?php echo $html->link(__('Log out',true), array('controller' => 'users', 'action' => 'logout')); ?></li>
+	<li><?php echo $html->link(__('Private Message', true), array('controller' => 'private_messages', 'action' => 'folder', 'Inbox')); ?></li>
+	<li><?php echo $html->link(__('Comments',true), array('controller' => 'sentence_comments', 'action' => 'index')); ?></li>
+	<li><?php echo $html->link(__('Log out',true), array('controller' => 'users', 'action' => 'logout')); ?></li>
 </ul>

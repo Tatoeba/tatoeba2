@@ -52,6 +52,10 @@
 	text-align:center;
 }
 
+#logs td.lang img.flag{
+	width:20px;
+}
+
 
 #logsLegend{
 	color: black;
@@ -64,8 +68,16 @@
 	padding: 2px 5px;
 }
 
-.sentenceAdded{
-	background: #b1f090;
+.sentenceAdded {
+	background: #e2ffd2;
+}
+
+.sentenceDeleted {
+	background: #ffe5e0;
+}
+
+.sentenceModified {
+	background: #fff7b0;
 }
 
 .linkAdded{
@@ -73,9 +85,9 @@ background: #CCFF99;
 }
 
 .linkDeleted{
-background: #FFC7BC;
+background: #ffe5e0;
 }
 
 .correctionSuggested{
-background: #f7e969;
+background: #fff7b0;
 }

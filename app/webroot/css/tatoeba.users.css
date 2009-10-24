@@ -135,9 +135,12 @@ margin-bottom: 20px;
 }
 
 .users th{
-background: #6CBC70;
-border-bottom: #444444 2px solid;
-padding: 10px 3px;
+	border-bottom: #444444 1px dotted;
+	padding: 3px 3px;
+}
+
+.users th a {
+	color:#257D0C;	
 }
 
 .users td{

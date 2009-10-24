@@ -35,14 +35,14 @@ class SentencesController extends AppController{
 	
 	function show($id = null){
 		$languages = array('ar', 'bg', 'de', 'en', 'es', 'fi', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'vn', 'zh');
-		$this->Sentence->recursive = 1;
+		$this->Sentence->recursive = 2;
 
-		$this->Sentence->unbindModel(
-			array(
-				'hasMany' => array('SentenceComment', 'Contribution'),
-				'hasAndBelongsToMany' => array('InverseTranslation', 'Translation')
-			)
-		);			
+//		$this->Sentence->unbindModel(
+//			array(
+//				'hasMany' => array('SentenceComment', 'Contribution'),
+//				'hasAndBelongsToMany' => array('InverseTranslation', 'Translation')
+//			)
+//		);			
 		
 
 		
