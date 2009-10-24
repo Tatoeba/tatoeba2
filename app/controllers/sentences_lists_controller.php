@@ -48,6 +48,22 @@ class SentencesListsController extends AppController{
 		$this->redirect(array("action"=>"index"));
 	}
 	
+	function add_sentence_to_new_list($sentenceId, $listName){
+		Configure::write('debug', 0);
+		if($listName != ''){
+			$newList['SentencesList']['user_id'] = $this->Auth->user('id');
+			$newList['SentencesList']['name'] = $listName;
+			if($this->SentencesList->save($newList)){
+				$this->SentencesList->habtmAdd('Sentence', $this->SentencesList->id, $sentenceId);
+				$this->set('listId', $this->SentencesList->id);
+			}else{
+				$this->set('listId', 'error');
+			}
+		}else{
+			$this->set('listId', 'error');
+		}
+	}
+	
 	function edit(){
 	}
 	

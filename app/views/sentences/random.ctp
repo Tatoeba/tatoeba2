@@ -21,6 +21,7 @@
 echo $javascript->link('sentences.add_translation.js', true);
 echo $javascript->link('favorites.add.js',true);
 echo $javascript->link('sentences_lists.menu.js', true);
+echo $javascript->link('jquery.impromptu.js', true);
 
 $sentence = $random['Sentence'];
 $translations = isset($random['Translation']) ? $random['Translation'] : null;

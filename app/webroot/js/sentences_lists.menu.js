@@ -22,13 +22,46 @@ $(document).ready(function() {
 		var sentence_id = $(this).parent().parent().attr("id");
 		var list_id = $(".listSelection"+sentence_id).val();
 		
-		$("#favorite_"+sentence_id+"_in_process").show();
+		if(list_id > 0){
 		
-		$.post("http://" + self.location.hostname + "/sentences_lists/add_sentence_to_list/"+ sentence_id + "/" + list_id
-			, {}
-			,function(data){
-				$("#favorite_"+sentence_id+"_in_process").hide();
+			$("#favorite_"+sentence_id+"_in_process").show();
+			
+			$.post("http://" + self.location.hostname + "/sentences_lists/add_sentence_to_list/"+ sentence_id + "/" + list_id
+				, {}
+				,function(data){
+					$("#favorite_"+sentence_id+"_in_process").hide();
+				}
+			);
+			
+		}else if(list_id == 0){
+		
+			var txt = 'Name of the list : <br />'
+			+ '<input type="text" id="listName" name="listName" />';
+
+			function mycallbackform(value, message, form){
+				if(value != undefined){
+					$("#favorite_"+sentence_id+"_in_process").show();
+					$.post("http://" + self.location.hostname + "/sentences_lists/add_sentence_to_new_list/"+ sentence_id + "/"+ form.listName
+						, {}
+						,function(data){
+							if(data != 'error'){
+								$('.listSelection'+sentence_id).append('<option value="'+ data +'">'+ form.listName +'</option>');
+								$('.listSelection'+sentence_id).val(data);
+							}else{
+								$.prompt("Sorry, an error occured.");
+							}
+							$("#favorite_"+sentence_id+"_in_process").hide();
+						},
+						'html'
+					);
+				}
 			}
-		);
+
+			$.prompt(txt,{
+				callback: mycallbackform,
+				buttons: { Ok: 'OK'}
+			});
+			
+		}
 	});
 });

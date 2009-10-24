@@ -378,9 +378,17 @@ class SentencesHelper extends AppHelper {
 			// add to list
 			if(isset($specialOptions['canAddToList']) AND $specialOptions['canAddToList'] == true){
 				$this->Javascript->link('sentences_lists.menu.js', false);
+				$this->Javascript->link('jquery.impromptu.js', false);
 				$lists = $this->requestAction('/sentences_lists/choices');
 				echo '<li class="option">';
 				echo '<select class="listSelection'.$id.'">';
+				echo '<option value="-1">';
+				__('Add to list...');
+				echo '</option>';
+				echo '<option value="0">';
+				__('Create list...');
+				echo '</option>';
+				echo '<option value="-1">--------------</option>';
 				foreach($lists as $list){
 					echo '<option value="'.$list['SentencesList']['id'].'">';
 					echo $list['SentencesList']['name'];
