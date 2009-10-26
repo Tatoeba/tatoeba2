@@ -2,7 +2,6 @@ body {
 	padding:0;
 	margin: auto;
 	font-family: Trebuchet MS, sans;
-	padding-bottom: 10px;
 	color: #434343;
 	color: #333333;/*J'hésite entre les deux ou alors un noir total*/
 }
@@ -12,7 +11,7 @@ a img {
 }
 
 a {
-	color:#2A5DB0;
+	color:#649B3D;
 	text-decoration:none;
 }
 
@@ -46,11 +45,9 @@ table {
 
 div#user_menu {
 	height:24px;
-	font-height:24px;
 	border-bottom:1px dotted #CCCCCC;
 	background-color:#414141;
 	color:#FFFFFF;
-	margin-bottom:20px;
 }
 
 div#menu_content {
@@ -69,6 +66,7 @@ div#user_menu form {
 
 div#user_menu input, div#user_menu select {
 	margin:2px 0px 2px 5px;
+	height: 20px; /* Need to specify height otherwise in Firefox 3.5 (and perhaps other browsers) the height is too big */
 }
 
 /* User Menu : Main Menu */
@@ -130,54 +128,110 @@ span#onlineVisitors {
 /* Container */
 
 div#container {
-	margin-left:auto;
-	margin-right:auto;
-	width:950px;
+	margin-left:120px;
+	min-width: 760px;
 }
 
 
 /* Search bar */
 
+div.search_bar_container{
+	position:relative;
+	margin-right: 270px;
+}
+
+div.search_bar_left, div.search_bar_right{
+	position: absolute;
+	top:0px;
+	height: 50px;
+	width: 40px;
+}
+
+div.search_bar_left{
+	left:0px;
+	background: url(../img/search_bar_left.png) no-repeat left;
+}
+
+div.search_bar_right{
+	right: 0px;
+	background: url(../img/search_bar_right.png) no-repeat right;
+}
+
+
 div.search_bar {
-	text-align:center;
-	padding:5px;
-	background: url(../img/search_bar.png) no-repeat ;
-	margin:20px 0px 20px 0px;
+	height: 50px;
+	background: url(../img/search_bar_body.png) repeat;
+	position: relative;
 	color:#FFFFFF;
+	margin: 0px 40px 20px 40px;
 }
 
 div.search_bar a{
 	font-size:0.9em;
 	color:#FFFFFF;
-}
-
-div.search_bar span#into {
-	font-family:Arial, Sans-serif;
-	font-size:1.3em;
-	margin:0px 10px;
+	display:block;
+	margin-top: 24px;
 }
 
 div.search_bar a:hover{
 	color:#FFFFFF;
 }
 
-#SentenceSearchForm *{
-	font-size: 1em;
+div.search_bar span#into {
+	font-family:Arial, Sans-serif;
+	font-size:1.3em;
+	margin-top: 20px;
+	width: 2%;
+	text-align: center;
+}
+
+div.search_bar div.select{
+	width: 12%;
+}
+
+div.search_bar div.input{
+	width: 50%;
+}
+
+div.search_bar div.submit{
+	width: 15%;
+	margin-top: 22px;
+}
+
+div.search_bar a{
+	display: block;
+	float: left;
+	text-align: center;
+	width: 2%;
+}
+
+div.search_bar div, div.search_bar span#into{
+	display: block;
+	float: left;
+	margin-right: 1%;
+}
+
+#SentenceSearchForm label{
+	font-size: 0.8em;
 }
 
 #SentenceSearchForm{
-	display:inline;
+	display: inline;
 	font-size: 1em;
-	margin-right: 15px;
 }
 
-#SentenceSearchForm div {
-	display:inline;
+#SentenceSearchForm input#SentenceQuery, div.search_bar select, div.search_bar div.submit input{
+	width: 99%;
+}
+	
+	
+div.search_bar div.submit input{
+height: 24px; /* because with Chinese interface the height is too big */
+padding-bottom: 2px;
 }
 
-#SentenceSearchForm input#SentenceQuery{
-	width: 40%;
-	margin: 0px 15px 0px 20px;
+div.search_bar div.select select{
+	height: 22px; /* because with Chinese interface the height is too big */
 }
 
 
@@ -192,21 +246,21 @@ div#content {
 
 div#annexe_content {
 	float:right;
-	width:250px;
+	width: 250px;
 	font-size:0.8em;
 }
 
 div#main_content {
-	width:700px;
+	margin-right: 270px;
 	font-size:0.8em;
 }
 
 
 
 div.module {
-	border:1px dotted #D1D1D1;
+	/*border:1px dotted #D1D1D1;*/
 	padding:10px 10px 5px 10px;
-	margin:0px 0px 10px 0px;
+	margin:0px 0px 20px 0px;
 	background: url(../img/module_background.png) repeat-x bottom left;
 }
 
@@ -219,9 +273,10 @@ div#annexe_content div.module {
 }
 
 div.module h2 {
+	background: url('../img/title_4.png') no-repeat top left;
+	padding-left: 10px;
 	margin:0 0 15px 0;
-	font-size:1.3em;
-	border-bottom:1px dotted #8f8f8f;
+	font-size:1.5em;
 }
 
 div.module h2 span.annexe {
@@ -254,9 +309,43 @@ div#annexe_content div.module ul li {
 	
 /* Footer */
 
+/*
 div#footer {
 	text-align:center;
 	font-size:0.9em;
+}
+*/
+
+div#footer {
+	background: #e3e0d6;
+	height: 40px;
+	clear: both;
+}
+
+div#footer a {
+	color: #5c5c5c;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+div#footer ul {
+	height: 38px;
+	margin: 0;
+	display: block;
+	float: right;
+	font-size: 80%;
+}
+
+div#footer ul li {
+	display: block;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	cursor: pointer;
+	float: left;
+	list-style: none;
+	padding-left: 10px;
+	padding-right: 10px;
 }
 
 
@@ -269,4 +358,11 @@ p.more_link {
 
 div.module ul.menu .selected a {
 	color:#257D0C;
+}
+
+/* HEADER */
+
+div#header{
+	width: 100px;
+	float: left;
 }

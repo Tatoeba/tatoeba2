@@ -42,5 +42,5 @@ $menuElements = array(
 ?>
 
 <div id="header">
-	<a href="/"><?php echo $html->image('logo_header.png'); ?></a>
+	<a href="/"><?php echo $html->image('TatoebaProjectBeta2.png'); ?></a>
 </div>

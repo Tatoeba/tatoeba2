@@ -21,6 +21,7 @@ if (isset($this->params['lang'])) {
 }
 ?>
 
+<div class="search_bar_container">
 <div class="search_bar">
 
 <?php
@@ -44,12 +45,32 @@ $selectedLanguageFrom = $session->read('search_from');
 $selectedLanguageTo = $session->read('search_to');
 
 echo $form->create('Sentence', array("action" => "search", "type" => "get"));
+echo '<div class="select">';
+echo '<label>';
+__('From');
+echo '</label><br/>';
 echo $form->select('from', $languages, $selectedLanguageFrom);
-echo '<span id="into">&raquo;</span>';
+echo '</div>';
+
+	echo '<span id="into">&raquo;</span>';
+	
+echo '<div class="select">';
+echo '<label>';
+__('To');
+echo '</label><br/>';
 echo $form->select('to', $languages, $selectedLanguageTo);
-echo $form->input('query', array("label" => '', "value" => $session->read('search_query')));
+echo '</div>';
+
+echo $form->input('query', array(
+	"label" => __('Example sentences with the words :',true), 
+	"value" => $session->read('search_query')));
+
 echo $form->end(__('search',true));
 
-echo $html->link(__('show examples',true), array("controller" => "sentences", "action" => "search"	));
+echo $html->link('[?]', array("controller" => "sentences", "action" => "search"));
 ?>
+</div>
+
+<div class="search_bar_left"></div>
+<div class="search_bar_right"></div>
 </div>

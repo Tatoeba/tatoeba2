@@ -54,15 +54,18 @@
 </head>
 <body>
 		
-		<!-- ---------------- TOP ---------------- -->
-		<?php echo $this->element('top1'); ?>
+	<!-- ---------------- TOP ---------------- -->
+	<?php echo $this->element('top1'); ?>
+	
+	<!-- ---------------- HEADER ---------------- -->
+	
+	<?php echo $this->element('header');	?>
+	
+	
 	<div id="container">
 		
 		<?php //echo $this->element('top2');	?>
-		
-		<!-- ---------------- HEADER ---------------- -->
-		<?php echo $this->element('header');	?>
-		
+			
 		<!-- ---------------- MENU ---------------- -->
 		<?php //echo $this->element('menu'); ?>
 		
@@ -70,9 +73,6 @@
 		<?php echo $this->element('search_bar'); ?>
 		
 		<!-- ---------------- CONTENT---------------- -->
-
-		<!-- ---------------- SEARCH BAR---------------- -->
-		<?php //echo $this->element('search_bar'); ?>
 		<?php
 		if($session->check('Message.flash')){
 			$session->flash();
@@ -80,13 +80,14 @@
 		
 		echo $content_for_layout;
 		?>
-
-		
-		<!-- ---------------- FOOT---------------- -->
-		<?php 
-		echo $this->element('foot'); 
-		?>
 	</div>
+	
+	
+	<!-- ---------------- FOOT---------------- -->
+	<?php 
+	echo $this->element('foot'); 
+	?>
+	
 	<?php echo $cakeDebug ?>
 	<?php echo $this->element('google_analytics'); ?>
 </body>
