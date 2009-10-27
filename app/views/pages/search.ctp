@@ -50,7 +50,7 @@
 		echo '</h4>';
 		__('This will search for sentences containing the word "example".');
 		echo '<br/>';
-		__('Note that if you specify the language, the search will not always be an exact search. More concretely, if you are searching "thinking", and do NOT specify any language, it will return sentences with EXACTLY the word "think". But if you specify that the language is English, it will also return sentences with "thinks" and "thinking".');
+		__('Note that if you specify the language, the search will not always be an exact search. More concretely, if you are searching "thinking", and do NOT specify any language, it will return sentences with EXACTLY the word "thinking". But if you specify that the language is English, it will also return sentences with "thinks" and "thinking".');
 		
 		
 		echo '<h4>';

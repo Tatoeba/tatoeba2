@@ -93,7 +93,7 @@ class TooltipHelper extends AppHelper {
 	
 	function displayIndirectTranslationTooltip(){
 		$tooltipMsg  = '<p>';
-		$tooltipMsg .= __('Let\'s suppose you translate an English sentence into French, and someone translate your French translation into Spanish. In short : English ==> French ==> Spanish.', true);
+		$tooltipMsg .= __('Let\'s suppose you translate an English sentence into French, and someone translates your French translation into Spanish. In short : English ==> French ==> Spanish.', true);
 		$tooltipMsg .= '<br/>';
 		$tooltipMsg .= __('The <strong>French</strong> sentence is a <strong>direct</strong> translation of the English sentence. The <strong>Spanish</strong> sentence is an <strong>indirect</strong> translation of the English sentence.', true);
 		$tooltipMsg .= '</p>';

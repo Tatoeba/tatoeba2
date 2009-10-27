@@ -117,11 +117,11 @@ class SentenceCommentsController extends AppController {
 				if(count($participants) > 0){
 					foreach($participants as $participant){
 						// prepare message
-						$subject = __('Tatoeba - Comment on sentence : ',true) . $this->data['SentenceComment']['sentence_text'];
+						$subject = 'Tatoeba - Comment on sentence : ' . $this->data['SentenceComment']['sentence_text'];
 						if($participant == $this->Session->read('user_email')){
-							$msgStart = sprintf(__('%s has posted a comment one of your sentences.',true), $this->Auth->user('username'));
+							$msgStart = sprintf('%s has posted a comment on one of your sentences.', $this->Auth->user('username'));
 						}else{
-							$msgStart = sprintf(__('%s has posted a comment on a sentence where you also posted a comment.',true), $this->Auth->user('username'));
+							$msgStart = sprintf('%s has posted a comment on a sentence where you also posted a comment.', $this->Auth->user('username'));
 						}
 						$message = $msgStart
 							. "\n"
