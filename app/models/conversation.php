@@ -17,30 +17,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-echo '<h2>';
-__('Create a new list');
-echo '</h2>';
 
-echo $form->create('SentencesList');
-echo $form->input('name');
-echo $form->end('create');
-
-
-echo '<h2>';
-__('Lists');
-echo '</h2>';
-
-
-
-echo '<ul>';
-foreach($lists as $list){
-	echo '<li>';
-	echo $html->link(
-		$list['SentencesList']['name'], 
-		array("controller" => "sentences_lists", "action" => "show", $list['SentencesList']['id'])
+class Conversation extends AppModel{
+	var $name = 'Conversation';
+	
+	var $belongsTo = array('User');
+	var $actsAs = array('ExtendAssociations');
+	
+	var $hasAndBelongsToMany = array(
+		'Sentence' => array(
+			'className' => 'Sentence',
+			'joinTable' => 'conversations_sentences',
+			'foreignKey' => 'conversation_id',
+			'associationForeignKey' => 'sentence_id',
+			'conditions' => '',
+			'order' => '',
+			'limit' => '',
+			'unique' => true,
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		)
 	);
-	echo ', <em>' . $list['User']['username'] . '</em>';
-	echo '</li>';
+	
 }
-echo '</ul>';
 ?>

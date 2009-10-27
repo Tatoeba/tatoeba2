@@ -17,30 +17,32 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-echo '<h2>';
-__('Create a new list');
-echo '</h2>';
+?>
 
-echo $form->create('SentencesList');
-echo $form->input('name');
-echo $form->end('create');
+<div id="annexe_content">
+	<div class="module">
+		<?php
+			if(!$session->read('Auth.User.id')){
+				echo $this->element('login'); 
+			} else {
+				echo $this->element('space'); 
+			}
+		?>
+	</div>
 
+</div>
 
-echo '<h2>';
-__('Lists');
-echo '</h2>';
+<div id="main_content">
+	<div class="module">
+		<h2><?=__('Conversations', true); ?></h2>
+		<?=$html->link(__('Add a new conversation', true), array('controller' => 'conversations', 'action' => 'edit', 'new'));?>
+	</div>
+	<div class="module">
+		<h2><?=__('Last added conversations', true); ?></h2>
 
+	</div>
+</div>
 
-
-echo '<ul>';
-foreach($lists as $list){
-	echo '<li>';
-	echo $html->link(
-		$list['SentencesList']['name'], 
-		array("controller" => "sentences_lists", "action" => "show", $list['SentencesList']['id'])
-	);
-	echo ', <em>' . $list['User']['username'] . '</em>';
-	echo '</li>';
-}
-echo '</ul>';
+<?php
+pr($conversations);
 ?>

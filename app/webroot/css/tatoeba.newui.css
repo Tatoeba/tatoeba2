@@ -45,16 +45,12 @@ table {
 
 div#user_menu {
 	height:24px;
+	padding:0 24px;
 	border-bottom:1px dotted #CCCCCC;
 	background-color:#414141;
 	color:#FFFFFF;
 }
 
-div#menu_content {
-	margin-left:auto;
-	margin-right:auto;
-	width:950px;
-}
 
 div#user_menu a {
 	color:#FFFFFF;
@@ -234,6 +230,13 @@ div.search_bar div.select select{
 	height: 22px; /* because with Chinese interface the height is too big */
 }
 
+/* HEADER */
+
+div#header{
+	width:120px;
+	text-align:center;
+	float: left;
+}
 
 /* Content : when a page is not split into 2 parts*/
 
@@ -318,7 +321,7 @@ div#footer {
 
 div#footer {
 	background: #e3e0d6;
-	height: 40px;
+	height: 30px;
 	clear: both;
 }
 
@@ -329,7 +332,6 @@ div#footer a {
 }
 
 div#footer ul {
-	height: 38px;
 	margin: 0;
 	display: block;
 	float: right;
@@ -338,8 +340,8 @@ div#footer ul {
 
 div#footer ul li {
 	display: block;
-	height: 38px;
-	line-height: 38px;
+	height: 30px;
+	line-height: 30px;
 	text-align: center;
 	cursor: pointer;
 	float: left;
@@ -358,11 +360,4 @@ p.more_link {
 
 div.module ul.menu .selected a {
 	color:#257D0C;
-}
-
-/* HEADER */
-
-div#header{
-	width: 100px;
-	float: left;
 }

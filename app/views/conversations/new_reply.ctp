@@ -17,30 +17,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-echo '<h2>';
-__('Create a new list');
-echo '</h2>';
 
-echo $form->create('SentencesList');
-echo $form->input('name');
-echo $form->end('create');
-
-
-echo '<h2>';
-__('Lists');
-echo '</h2>';
-
-
-
-echo '<ul>';
-foreach($lists as $list){
-	echo '<li>';
-	echo $html->link(
-		$list['SentencesList']['name'], 
-		array("controller" => "sentences_lists", "action" => "show", $list['SentencesList']['id'])
-	);
-	echo ', <em>' . $list['User']['username'] . '</em>';
-	echo '</li>';
-}
-echo '</ul>';
+echo $form->inputs(
+	array(
+		'legend' => 'Sentence '.$order,
+		'speaker'.$order => array('label' => __('Speaker', true).' : ', 'class' => 'speaker'),
+		'content_from'.$order => array('label' =>'Content ()', 'class' => 'content_from'),
+		'content_to'.$order => array('label' =>'Content ()', 'class' => 'content_to')));
 ?>

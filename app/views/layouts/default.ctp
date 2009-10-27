@@ -44,10 +44,12 @@
 		echo $html->css('tatoeba.tooltip');
 		echo $html->css('tatoeba.navigation');
 		echo $html->css('tatoeba.popup');
+		echo $html->css('tatoeba.conversations');
 //		echo $html->css('tatoeba.tools');
 		
 		echo $javascript->link('jquery.js', true);
 		echo $javascript->link('sentences.show_another.js', true);
+		echo $javascript->link('sentences.conversations.js', true);
 		//echo $javascript->link('general.init.js', true);
 		echo $scripts_for_layout;
 	?>
