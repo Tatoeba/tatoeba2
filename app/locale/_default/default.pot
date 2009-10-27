@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2009-10-24 13:35+0200\n"
+"POT-Creation-Date: 2009-10-27 13:20+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -25,18 +25,6 @@ msgstr ""
 
 #: \controllers\private_messages_controller.php:112
 msgid " from "
-msgstr ""
-
-#: \controllers\sentence_comments_controller.php:120
-msgid "Tatoeba - Comment on sentence : "
-msgstr ""
-
-#: \controllers\sentence_comments_controller.php:122
-msgid "%s has posted a comment one of your sentences."
-msgstr ""
-
-#: \controllers\sentence_comments_controller.php:124
-msgid "%s has posted a comment on a sentence where you also posted a comment."
 msgstr ""
 
 #: \controllers\sentence_comments_controller.php:142
@@ -240,20 +228,19 @@ msgstr ""
 msgid "number of contributions"
 msgstr ""
 
-#: \views\elements\foot.ctp:26
+#: \views\elements\foot.ctp:28
 msgid "Contact me"
 msgstr ""
 
-#: \views\elements\foot.ctp:28
+#: \views\elements\foot.ctp:32
 msgid "Tatoeba Blog"
 msgstr ""
 
-#: \views\elements\foot.ctp:30
-#: \views\pages\home.ctp:80
+#: \views\elements\foot.ctp:36
 msgid "Downloads"
 msgstr ""
 
-#: \views\elements\foot.ctp:32
+#: \views\elements\foot.ctp:40
 msgid "Team & Credits"
 msgstr ""
 
@@ -348,90 +335,104 @@ msgstr ""
 msgid "Trash"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:28
+#: \views\elements\search_bar.ctp:29
 #: \views\elements\search_bar_bak.ctp:28
 #: \views\helpers\languages.php:23
 msgid "English"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:29
+#: \views\elements\search_bar.ctp:30
 #: \views\elements\search_bar_bak.ctp:29
 #: \views\helpers\languages.php:24
 msgid "Japanese"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:30
+#: \views\elements\search_bar.ctp:31
 #: \views\elements\search_bar_bak.ctp:30
 #: \views\helpers\languages.php:25
 msgid "French"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:31
+#: \views\elements\search_bar.ctp:32
 #: \views\elements\search_bar_bak.ctp:31
 #: \views\helpers\languages.php:26
 msgid "German"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:32
+#: \views\elements\search_bar.ctp:33
 #: \views\elements\search_bar_bak.ctp:32
 #: \views\helpers\languages.php:27
 msgid "Spanish"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:33
+#: \views\elements\search_bar.ctp:34
 #: \views\elements\search_bar_bak.ctp:33
 #: \views\helpers\languages.php:28
 msgid "Italian"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:34
+#: \views\elements\search_bar.ctp:35
 #: \views\elements\search_bar_bak.ctp:34
 #: \views\helpers\languages.php:35
 msgid "Indonesian"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:35
+#: \views\elements\search_bar.ctp:36
 #: \views\elements\search_bar_bak.ctp:35
 #: \views\helpers\languages.php:29
 msgid "Vietnamese"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:36
+#: \views\elements\search_bar.ctp:37
 #: \views\elements\search_bar_bak.ctp:36
 #: \views\helpers\languages.php:36
 msgid "Portuguese"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:37
+#: \views\elements\search_bar.ctp:38
 #: \views\elements\search_bar_bak.ctp:37
 #: \views\helpers\languages.php:30
 msgid "Russian"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:38
+#: \views\elements\search_bar.ctp:39
 #: \views\elements\search_bar_bak.ctp:38
 #: \views\helpers\languages.php:31
 msgid "Chinese"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:39
+#: \views\elements\search_bar.ctp:40
 #: \views\elements\search_bar_bak.ctp:39
 #: \views\helpers\languages.php:32
 msgid "Korean"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:40
+#: \views\elements\search_bar.ctp:41
 #: \views\elements\search_bar_bak.ctp:40
 #: \views\helpers\languages.php:33
 msgid "Dutch"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:51
+#: \views\elements\search_bar.ctp:50
+#: \views\private_messages\folder.ctp:29
+msgid "From"
+msgstr ""
+
+#: \views\elements\search_bar.ctp:59
+#: \views\private_messages\create.ctp:26
+#: \views\private_messages\folder.ctp:27
+msgid "To"
+msgstr ""
+
+#: \views\elements\search_bar.ctp:65
+msgid "Example sentences with the words :"
+msgstr ""
+
+#: \views\elements\search_bar.ctp:68
 #: \views\elements\search_bar_bak.ctp:51
 msgid "search"
 msgstr ""
 
-#: \views\elements\search_bar.ctp:53
 #: \views\elements\search_bar_bak.ctp:53
 msgid "show examples"
 msgstr ""
@@ -461,7 +462,7 @@ msgid "Log out"
 msgstr ""
 
 #: \views\elements\top1.ctp:29
-#: \views\sentences_lists\index.ctp:30
+#: \views\sentences_lists\index.ctp:36
 msgid "Lists"
 msgstr ""
 
@@ -629,11 +630,19 @@ msgstr ""
 msgid "Let go"
 msgstr ""
 
-#: \views\helpers\sentences.php:398
+#: \views\helpers\sentences.php:386
+msgid "Add to list..."
+msgstr ""
+
+#: \views\helpers\sentences.php:389
+msgid "Create list..."
+msgstr ""
+
+#: \views\helpers\sentences.php:406
 msgid "Delete"
 msgstr ""
 
-#: \views\helpers\sentences.php:413
+#: \views\helpers\sentences.php:421
 msgid "belongs to "
 msgstr ""
 
@@ -678,7 +687,7 @@ msgid "Get involved, adopt sentences!"
 msgstr ""
 
 #: \views\helpers\tooltip.php:96
-msgid "Let's suppose you translate an English sentence into French, and someone translate your French translation into Spanish. In short : English ==> French ==> Spanish."
+msgid "Let's suppose you translate an English sentence into French, and someone translates your French translation into Spanish. In short : English ==> French ==> Spanish."
 msgstr ""
 
 #: \views\helpers\tooltip.php:98
@@ -766,7 +775,7 @@ msgstr ""
 msgid "Tatoeba means \"for example\" in Japanese. The aim is not to implement a new multilingual dictionnary, but a corpus of sentence emphasizing use of different words"
 msgstr ""
 
-#: \views\pages\home.ctp:63;88
+#: \views\pages\home.ctp:63;75
 msgid "Details..."
 msgstr ""
 
@@ -774,51 +783,35 @@ msgstr ""
 msgid "News"
 msgstr ""
 
-#: \views\pages\home.ctp:73
-msgid "Welcome to Tatoeba Project"
-msgstr ""
-
-#: \views\pages\home.ctp:76
-msgid "This project aims to build a multilingual aligned corpus. In other words, to collect sentences translated in several languages. "
-msgstr ""
-
-#: \views\pages\home.ctp:77
-msgid "Everyone can contribute! "
-msgstr ""
-
-#: \views\pages\home.ctp:78
-msgid "These sentences can be downloaded for free here : "
-msgstr ""
-
-#: \views\pages\home.ctp:87
+#: \views\pages\home.ctp:74
 msgid "What is it ?"
 msgstr ""
 
-#: \views\pages\home.ctp:88
+#: \views\pages\home.ctp:75
 msgid "Tatoeba is a free project which aims to establish a patrimony by gathering people from all over the world around one of the greatest inventions of mankind : language."
 msgstr ""
 
-#: \views\pages\home.ctp:91
+#: \views\pages\home.ctp:79
 msgid "Random sentence"
 msgstr ""
 
-#: \views\pages\home.ctp:91
+#: \views\pages\home.ctp:79
 msgid "show another "
 msgstr ""
 
-#: \views\pages\home.ctp:95
+#: \views\pages\home.ctp:84
 msgid "Latest contributions"
 msgstr ""
 
-#: \views\pages\home.ctp:95;100
+#: \views\pages\home.ctp:84;89
 msgid "show more..."
 msgstr ""
 
-#: \views\pages\home.ctp:95
+#: \views\pages\home.ctp:84
 msgid "show activity timeline"
 msgstr ""
 
-#: \views\pages\home.ctp:100
+#: \views\pages\home.ctp:89
 msgid "Latest comments"
 msgstr ""
 
@@ -835,7 +828,7 @@ msgid "This will search for sentences containing the word \"example\"."
 msgstr ""
 
 #: \views\pages\search.ctp:53
-msgid "Note that if you specify the language, the search will not always be an exact search. More concretely, if you are searching \"thinking\", and do NOT specify any language, it will return sentences with EXACTLY the word \"think\". But if you specify that the language is English, it will also return sentences with \"thinks\" and \"thinking\"."
+msgid "Note that if you specify the language, the search will not always be an exact search. More concretely, if you are searching \"thinking\", and do NOT specify any language, it will return sentences with EXACTLY the word \"thinking\". But if you specify that the language is English, it will also return sentences with \"thinks\" and \"thinking\"."
 msgstr ""
 
 #: \views\pages\search.ctp:57
@@ -910,11 +903,6 @@ msgstr ""
 msgid "Send new message"
 msgstr ""
 
-#: \views\private_messages\create.ctp:26
-#: \views\private_messages\folder.ctp:27
-msgid "To"
-msgstr ""
-
 #: \views\private_messages\create.ctp:29
 #: \views\users\new_password.ctp:25
 #: \views\users\resend_registration_mail.ctp:25
@@ -927,10 +915,6 @@ msgstr ""
 
 #: \views\private_messages\folder.ctp:27;29
 msgid "Subject"
-msgstr ""
-
-#: \views\private_messages\folder.ctp:29
-msgid "From"
 msgstr ""
 
 #: \views\private_messages\show.ctp:26
@@ -1035,11 +1019,11 @@ msgstr ""
 msgid "You don't have any sentence which language is unknown."
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:21
+#: \views\sentences_lists\index.ctp:25
 msgid "Create a new list"
 msgstr ""
 
-#: \views\sentences_lists\show.ctp:25
+#: \views\sentences_lists\show.ctp:29
 msgid "This list does not have any sentence"
 msgstr ""
 

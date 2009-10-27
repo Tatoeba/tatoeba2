@@ -88,7 +88,7 @@ $menuElements = array(
 				, 'chi' => '中文'
 				, 'spa' => 'Español'
 				//, 'jpn' => '日本語'
-				//, 'deu' => 'Deutsch'
+				, 'deu' => 'Deutsch'
 				//, 'ita' => 'Italiano'
 			);
 			$path = $this->params['controller'].'/';
