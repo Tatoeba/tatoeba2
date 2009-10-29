@@ -25,20 +25,6 @@ class SentencesList extends AppModel{
 	
 	var $actsAs = array('ExtendAssociations');
 	
-	var $hasAndBelongsToMany = array(
-		'Sentence' => array(
-			'className' => 'Sentence',
-			'joinTable' => 'sentences_lists_sentences',
-			'foreignKey' => 'sentences_list_id',
-			'associationForeignKey' => 'sentence_id',
-			'conditions' => '',
-			'order' => '',
-			'limit' => '',
-			'unique' => true,
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		)
-	);
+	var $hasAndBelongsToMany = array('Sentence');
 }
 ?>

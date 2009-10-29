@@ -1,7 +1,7 @@
 <?php
 /*
     Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -46,28 +46,15 @@ class Sentence extends AppModel{
 			'className' => 'Translation',
 			'joinTable' => 'sentences_translations',
 			'foreignKey' => 'translation_id',
-			'associationForeignKey' => 'sentence_id',
-			'conditions' => '',
-			'order' => '',
-			'limit' => '',
-			'unique' => true,
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
+			'associationForeignKey' => 'sentence_id'
 		),
 		'InverseTranslation' => array(
 			'className' => 'InverseTranslation',
 			'joinTable' => 'sentences_translations',
 			'foreignKey' => 'sentence_id',
-			'associationForeignKey' => 'translation_id',
-			'conditions' => '',
-			'order' => '',
-			'limit' => '',
-			'unique' => true,
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		)
+			'associationForeignKey' => 'translation_id'
+		),
+		'SentencesList'
 	);
 	
 	function afterSave($created){
