@@ -17,6 +17,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
+echo '<div id="main_content">';
+
+echo '<div class="module">';
 echo '<h2>';
 __('Create a new list');
 echo '</h2>';
@@ -24,12 +28,13 @@ echo '</h2>';
 echo $form->create('SentencesList');
 echo $form->input('name');
 echo $form->end('create');
+echo '</div>';
 
 
+echo '<div class="module">';
 echo '<h2>';
 __('Lists');
 echo '</h2>';
-
 
 
 echo '<ul>';
@@ -43,4 +48,7 @@ foreach($lists as $list){
 	echo '</li>';
 }
 echo '</ul>';
+echo '</div>';
+
+echo '</div>';
 ?>

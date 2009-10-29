@@ -17,6 +17,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+echo '<div id="main_content">';
+echo '<div class="module">';
+echo '<h2>'.$list['SentencesList']['name'].'</h2>';
+
 if(count($list['Sentence']) > 0){
 	foreach($list['Sentence'] as $sentence){
 		$sentences->displaySentence($sentence);
@@ -24,4 +28,6 @@ if(count($list['Sentence']) > 0){
 }else{
 	__('This list does not have any sentence');
 }
+echo '</div>';
+echo '</div>';
 ?>
