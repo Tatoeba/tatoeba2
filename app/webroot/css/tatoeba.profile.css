@@ -1,0 +1,64 @@
+span.edit_link {
+	cursor:pointer;
+	float:right;
+}
+
+div.toolbox {
+	background:#fff;
+	position:absolute;
+	display:none;
+	margin:3px 0 0;
+	border:1px solid #649B3D;
+}
+
+div.toolbox div.t {
+	padding:3px;
+	border-bottom:1px solid #649B3D;
+}
+
+div.toolbox div.t span.x {
+	cursor:pointer;
+	float:right;
+}
+
+div.toolbox div.c {
+	padding:3px;
+}
+
+div.toolbox div.c label {
+	float:left;
+	width:60px;
+	text-align:right;
+	padding-right:3px;
+}
+
+div.toolbox div.c .submit {
+	text-align:right;
+}
+
+#pimg {
+	padding:1px;
+	width:130px;
+}
+#pimg img {
+	width:128px;
+	height:128px;
+}
+
+div.profile_image_edit {
+	background:#fff;
+	display:none;
+	position:absolute;
+	width: 256px;
+	margin:3px 0 0;
+	padding:3px;
+	border:1px solid #649B3D;
+	text-align:right;
+}
+div.profile_image_edit input[type=file]{
+	margin-bottom:3px;
+}
+
+div.profile_image_edit div.submit {
+	
+}

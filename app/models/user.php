@@ -54,7 +54,8 @@ class User extends AppModel {
 		'status' => array('numeric'),
 		'permissions' => array('numeric'),
 		'level' => array('numeric'),
-		'group_id' => array('numeric')
+		'group_id' => array('numeric'),
+		'homepage' => array('url'),
 	);
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
@@ -73,6 +74,8 @@ class User extends AppModel {
 		, 'Contributions' => array('limit' => 10, 'order' => 'datetime DESC')
 		, 'Sentences' => array('limit' => 10, 'order' => 'modified DESC')
 		, 'SentencesLists'
+		// , 'Mastering_lang'
+		// , 'Learning_lang'
 	);
 	
 	var $hasAndBelongsToMany = array(
