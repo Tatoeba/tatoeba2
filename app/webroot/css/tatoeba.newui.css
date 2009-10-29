@@ -290,11 +290,13 @@ div.module h2 span.annexe {
 
 div.main_module {
 	font-size:1.25em;
-	padding:20px 20px 10px 20px;
-	
+	padding:10px 10px 5px 10px;
+	background: url(../img/module_background.png) repeat-x bottom left;
 }
 
 div.main_module h2 {
+	background: url('../img/title_4.png') no-repeat top left;
+	padding-left: 10px;
 	font-size:1.5em;
 	border-bottom:none;
 	margin:18px 0;

@@ -32,6 +32,7 @@ $menuElements = array(
 	,__('Contribute',true) 	=> array("controller" => "pages", "action" => "contribute")
 	,__('Members',true)		=> array("controller" => "users", "action" => "all")
 	,__('Tools',true) 	=> array("controller" => "tools", "action" => "index")
+	,__('Help',true) 	=> array("controller" => "pages", "action" => "help")
 	,__('What\'s new',true)	=> array("controller" => "pages", "action" => "whats_new")
 );
 

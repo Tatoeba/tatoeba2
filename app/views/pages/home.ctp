@@ -70,7 +70,7 @@ array_unshift($langArray, array('any' => __('any', true)));
 
 <div id="main_content">
 	
-	<div class="module">
+	<div class="main_module">
 		<h2><?=__('What is it ?',true); ?></h2>
 		<p><?=__('Tatoeba is a free project which aims to establish a patrimony by gathering people from all over the world around one of the greatest inventions of mankind : language.',true); ?><a href=""><?=__('Details...',true)?></a></p>
 	</div>
