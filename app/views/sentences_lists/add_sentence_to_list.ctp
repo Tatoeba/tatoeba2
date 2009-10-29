@@ -18,9 +18,5 @@
 */
 
 
-if(isset($saved)){
-	echo 'saved';
-}else{
-	echo 'failed';
-}
+echo $listId;
 ?>

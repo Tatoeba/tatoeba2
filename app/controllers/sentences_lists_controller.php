@@ -48,6 +48,17 @@ class SentencesListsController extends AppController{
 		$this->redirect(array("action"=>"index"));
 	}
 	
+	function add_sentence_to_list($sentence_id, $list_id){
+		Configure::write('debug', 0);
+		$this->set('s', $sentence_id);
+		$this->set('l', $list_id);
+		if($this->SentencesList->habtmAdd('Sentence' , $list_id, $sentence_id)){
+			$this->set('listId', $list_id);
+		}else{
+			$this->set('listId', 'error');
+		}
+	}
+	
 	function add_sentence_to_new_list($sentenceId, $listName){
 		Configure::write('debug', 0);
 		if($listName != ''){
@@ -79,14 +90,6 @@ class SentencesListsController extends AppController{
 		);
 		//$this->set('lists', $lists);
 		return $lists;
-	}
-	
-	function add_sentence_to_list($sentence_id, $list_id){
-		$this->set('s', $sentence_id);
-		$this->set('l', $list_id);
-		if($this->SentencesList->habtmAdd('Sentence' , $list_id, $sentence_id)){
-			$this->set('saved', true);
-		}
 	}
 	
 }

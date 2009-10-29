@@ -1,7 +1,7 @@
 <?php
 /*
     Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -21,13 +21,10 @@ class PermissionsComponent extends Object{
 	
 	/**
 	 * Check which options user can access to and returns
-	 * an associative array with boolean value for each
-	 * of the options.
-	 * The options are : canComment, canEdit and canDelete.
+	 * data that is needed for the sentences menu.
 	 */
 
 	function getSentencesOptions($sentence, $current_user_id){
-	//function getSentencesOptions($sentence_owner_id, $current_user_id){
 		$sentence_owner_id = $sentence['Sentence']['user_id'];
 
 		$specialOptions = array(
@@ -40,15 +37,18 @@ class PermissionsComponent extends Object{
 			, 'canFavorite' => false
 			, 'canUnFavorite' => false
 			, 'canAddToList' => false
+			, 'belongsToLists' => array()
 		);
 		
 		if($this->Auth->user('id')){
+			// -- comment --
 			$specialOptions['canComment'] = true;
+			
+			// -- translate --
 			$specialOptions['canTranslate'] = true;	
-			$specialOptions['canAddToList'] = true;
 			
+			// -- favorite --
 			$specialOptions['canFavorite'] = true;
-			
 			// if we have already favorite it then we just can
 			// unfavorite it
 			// is_array is here to avoid a warning when favorites_users is an empty array
@@ -61,11 +61,15 @@ class PermissionsComponent extends Object{
 				}
 			}
 			
+			// -- edit --
 			if($this->Auth->user('group_id') < 3){
 				
 				$specialOptions['canEdit'] = true;
 				
 			}
+			
+			
+			// -- edit and adopt --
 			if($sentence_owner_id == $current_user_id){
 			
 				$specialOptions['canEdit'] = true;
@@ -73,9 +77,19 @@ class PermissionsComponent extends Object{
 				
 			}
 			
+			
+			// -- delete --
 			$specialOptions['canDelete'] = ($this->Auth->user('group_id') < 2);
 			
+			
+			// -- add to list --
+			$specialOptions['canAddToList'] = true;
+			foreach($sentence['SentencesList'] as $list){
+				array_push($specialOptions['belongsToLists'], $list['id']);
+			}
 		}
+		
+		// -- adopt --
 		if($sentence_owner_id == NULL OR $sentence_owner_id = 0){
 			
 			$specialOptions['canAdopt'] = true;

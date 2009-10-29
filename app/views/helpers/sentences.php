@@ -379,24 +379,36 @@ class SentencesHelper extends AppHelper {
 			if(isset($specialOptions['canAddToList']) AND $specialOptions['canAddToList'] == true){
 				$this->Javascript->link('sentences_lists.menu.js', false);
 				$this->Javascript->link('jquery.impromptu.js', false);
-				$lists = $this->requestAction('/sentences_lists/choices');
-				echo '<li class="option">';
-				echo '<select class="listSelection'.$id.'">';
-				echo '<option value="-1">';
-				__('Add to list...');
-				echo '</option>';
-				echo '<option value="0">';
-				__('Create list...');
-				echo '</option>';
-				echo '<option value="-1">--------------</option>';
-				foreach($lists as $list){
-					echo '<option value="'.$list['SentencesList']['id'].'">';
-					echo $list['SentencesList']['name'];
-					echo '</option>';
-				}
-				echo '</select>';
-				echo '<input type="button" value="+" class="addToListButton" />';
+				$lists = $this->requestAction('/sentences_lists/choices'); // this is probably not the best solution...
+				
+				echo '<li class="option addToList">';
+				echo '<a>' . __('Add to list',true) . '</a>' ; 
 				echo '</li>';
+				
+				echo '<span style="display:none" class="addToList'.$id.'">';
+					// select list
+					echo '<select id="listSelection'.$id.'">';
+					echo '<option value="-1">';
+					__('Add to new list...');
+					echo '</option>';
+					
+					echo '<option value="-2">';
+					__('Manage lists...');
+					echo '</option>';
+					
+					echo '<option value="0">--------------</option>';
+					
+					foreach($lists as $list){
+						if(!in_array($list['SentencesList']['id'], $specialOptions['belongsToLists'])){
+							echo '<option value="'.$list['SentencesList']['id'].'">';
+							echo $list['SentencesList']['name'];
+							echo '</option>';
+						}
+					}					
+					echo '</select>';
+					// ok button
+					echo '<input type="button" value="ok" class="addToListButton" />';
+				echo '</span>';
 			}
 			
 			// delete link
