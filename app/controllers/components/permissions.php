@@ -84,8 +84,10 @@ class PermissionsComponent extends Object{
 			
 			// -- add to list --
 			$specialOptions['canAddToList'] = true;
-			foreach($sentence['SentencesList'] as $list){
-				array_push($specialOptions['belongsToLists'], $list['id']);
+			if(isset($sentence['SentencesList'])){
+				foreach($sentence['SentencesList'] as $list){
+					array_push($specialOptions['belongsToLists'], $list['id']);
+				}
 			}
 		}
 		

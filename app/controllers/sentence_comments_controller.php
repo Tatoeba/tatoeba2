@@ -93,9 +93,26 @@ class SentenceCommentsController extends AppController {
 	function show($sentence_id){
 		$s = new Sentence();
 		$s->id = $sentence_id;		
-		$s->recursive = 2;
+		$s->recursive = 1;
 		$sentence = $s->read();
-		$this->set('sentence', $sentence);		
+		
+		$this->set('sentenceId', $sentence_id);
+		
+		if($sentence != null){
+			$this->set('sentenceExists', true);
+			$this->set('sentence', $sentence);
+		}else{
+			$this->set('sentenceExists', false);
+		}
+		
+		$sentenceComments = $this->SentenceComment->find('all', 
+			array(
+				'conditions' => array('SentenceComment.sentence_id' => $sentence_id),
+				'order' => 'SentenceComment.created'
+			)
+		);
+		$this->set('sentenceComments', $sentenceComments);
+		
 		
 		// checking which options user can access to
 		$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));

@@ -16,8 +16,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-$this->pageTitle = __('Comments on the sentence : ',true) . $sentence['Sentence']['text'];
-
 ?>
 
 <div id="annexe_content">
@@ -36,22 +34,36 @@ $this->pageTitle = __('Comments on the sentence : ',true) . $sentence['Sentence'
 	<div class="module">
 		<?php
 		// navigation (previous, random, next)
-		$navigation->displaySentenceNavigation($sentence['Sentence']['id']);
+		$navigation->displaySentenceNavigation();
 		
-		echo '<div class="sentences_set">';
-			$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
-			$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
+		if($sentenceExists){
 			
-			$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
-			$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
-		echo '</div>';
-		
-		echo '<div class="addComment">';
-		echo $html->link(
-			__('Add a comment',true),
-			array("controller" => "sentence_comments", "action" => "add", $sentence['Sentence']['id'])
-		);
-		echo '</div>';
+			$this->pageTitle = __('Comments on the sentence : ',true) . $sentence['Sentence']['text'];
+			
+			echo '<div class="sentences_set">';
+				$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
+				$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
+				
+				$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
+				$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
+			echo '</div>';
+			
+			echo '<div class="addComment">';
+			echo $html->link(
+				__('Add a comment',true),
+				array("controller" => "sentence_comments", "action" => "add", $sentence['Sentence']['id'])
+			);
+			echo '</div>';
+			
+		}else{
+			
+			$this->pageTitle = __('Comments for sentence nº',true) . $this->params['pass'][0];
+			
+			echo '<em>';
+			__('The sentence has been deleted');
+			echo '</em>';
+			
+		}
 		
 		echo '<h2>';
 		__('Comments');
@@ -61,13 +73,13 @@ $this->pageTitle = __('Comments on the sentence : ',true) . $sentence['Sentence'
 		
 		echo '<a name="comments"></a>';
 		echo '<div class="comments">';
-		if(count($sentence['SentenceComment']) > 0){
-			foreach($sentence['SentenceComment'] as $comment){
+		if(count($sentenceComments) > 0){
+			foreach($sentenceComments as $comment){
 				$comments->displayComment(
 					$comment['User']['id'],
 					$comment['User']['username'], 
-					$comment['created'], 
-					$comment['text']
+					$comment['SentenceComment']['created'], 
+					$comment['SentenceComment']['text']
 				);
 			}
 		}else{
