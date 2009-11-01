@@ -22,9 +22,9 @@
 $(document).ready(function() {
 
 	function save(){
-		var sentence_id = $(".translateLink").attr("id");
-		var sentence_lang = $(".translateLink").attr("lang");
-		//alert (sentence_id + sentence_lang );
+		var sentence_id = $(".translateLink").parent().attr("id");
+		var sentence_lang = $(".translateLink").parent().attr("lang");
+		alert (sentence_id + sentence_lang );
 
 		var sentence_text = $("#" + sentence_id + "_text").val();
 		//alert (sentence_text);
