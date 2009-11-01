@@ -34,7 +34,6 @@ class SentencesController extends AppController{
 	}
 	
 	function show($id = null){
-		$languages = array('ar', 'bg', 'de', 'en', 'es', 'fi', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'vn', 'zh');
 		$this->Sentence->recursive = 2;
 
 //		$this->Sentence->unbindModel(
@@ -61,7 +60,7 @@ class SentencesController extends AppController{
 			$this->Session->write('random_lang_selected', $id);
 			$this->redirect(array("action"=>"show", $randId ));
 			
-		}elseif(in_array($id, $languages)){
+		}elseif(in_array($id, $this->Sentence->languages)){
 			
 			$conditions['Sentence.lang'] = $id;
 			$random = $this->Sentence->find(

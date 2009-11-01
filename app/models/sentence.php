@@ -20,18 +20,22 @@
 class Sentence extends AppModel{
 	var $name = 'Sentence';
 	
-	const MAX_CORRECTNESS = 6;
+	const MAX_CORRECTNESS = 6; // This is not much in use. Should probably remove it someday
+	
+	var $languages = array('ar', 'bg', 'de', 'en', 'es', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'uk', 'vn', 'zh', null);
 	
 	var $validate = array(
 		'lang' => array(
-			'rule' => array('inList', array('ar', 'bg', 'de', 'en', 'es', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'uk', 'vn', 'zh', null))
+			'rule' => array() 	
+			// The rule will be defined in the constructor. 
+			// I would have declared a const LANGUAGES array 
+			// to use it here, but apprently you can't declare 
+			// const arrays in PHP.
 		),
 		'text' => array(
 			'rule' => array('minLength', '1')
 		)
-	);
-	
-	 	
+	);	
 
 	var $hasMany = array('Contribution', 'SentenceComment', 
 			'Favorites_users' => array ( 
@@ -56,6 +60,14 @@ class Sentence extends AppModel{
 		),
 		'SentencesList'
 	);
+	
+	/**
+	 * The constructor is here only to set the rule for languages.
+	 */
+	function __construct() {
+		parent::__construct();
+		$this->validate['lang']['rule'] = array('inList', $this->languages);
+	}
 	
 	function afterSave($created){
 		if(isset($this->data['Sentence']['text'])){
