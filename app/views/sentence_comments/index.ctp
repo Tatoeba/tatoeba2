@@ -48,13 +48,17 @@
 				foreach($commentsInLang as $comment){
 					echo '<tr>';
 						echo '<td class="title">';
+						$sentence = (isset($comment['Sentence']['text'])) ? $comment['Sentence']['text'] : '';
 						echo $html->link(
-							'['. $comment['Sentence']['id'] . '] ' . $comment['Sentence']['text'],
+							'['. $comment['SentenceComment']['sentence_id'] . '] ' . $sentence,
 							array(
 								"controller" => "sentence_comments",
 								"action" => "show",
 								$comment['Sentence']['id']
 								));
+						if(!isset($comment['Sentence']['text'])){
+							echo '<em>'. __('sentences deleted', true) . '</em>';
+						}
 						echo '</td>';
 						
 						echo '<td class="dateAndUser" rowspan="2">';
