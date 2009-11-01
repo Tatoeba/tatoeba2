@@ -1,7 +1,7 @@
 <?php
 /*
     Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -18,36 +18,19 @@
 */
 ?>
 
-<div id="annexe_content">
-	<div class="module">
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
-		?>
-	</div>
+<?php
+if(isset($translation_text)){
 
-</div>
+	echo $javascript->link('jquery.jeditable.js', true);
+	echo $javascript->link('sentences.edit_in_place.js', true);
 
-<div id="main_content">
-	<div class="module">
-		<?php
-		if(isset($translation_text)){
-		
-			echo $javascript->link('jquery.jeditable.js', true);
-			echo $javascript->link('sentences.edit_in_place.js', true);
-		
-			echo "<li class='direct editable translation'>";
-			echo '<span id="'.$translation_lang.$translation_id.'" class="editableSentence '.$translation_lang.'">';
-			echo $translation_text;
-			echo '</span> ';
-			echo "</li>";
-		
-			
-		}
-		?>
-	</div>
-</div>
+	echo "<li class='direct editable translation'>";
+	echo '<span id="'.$translation_lang.$translation_id.'" class="editableSentence '.$translation_lang.'">';
+	echo $translation_text;
+	echo '</span> ';
+	echo "</li>";
+
+	
+}
+?>
 
