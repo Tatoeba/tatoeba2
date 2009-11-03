@@ -67,12 +67,13 @@ class PrivateMessagesController extends AppController {
 				'from' => $tou['User']['username'],
 				'title' => $m['PrivateMessage']['title'],
 				'id' => $m['PrivateMessage']['id'],
-				'date' => $m['PrivateMessage']['date']
+				'date' => $m['PrivateMessage']['date'],
+				'isnonread' => $m['PrivateMessage']['isnonread']
 			);
 		}
 
 		$this->pageTitle = __('Private Messages - ', true) . $folder_id;
-		$this->set('folder', __($folder_id, true));
+		$this->set('folder', $folder_id);
 		$this->set('content', $content);
 	}
 
@@ -85,10 +86,12 @@ class PrivateMessagesController extends AppController {
 			$this->data['PrivateMessage']['recpt'] = $tou['User']['id'];
 			$this->data['PrivateMessage']['folder'] = 'Inbox';
 			$this->data['PrivateMessage']['date'] = date("Y-m-d h:i:s", time());
+			$this->data['PrivateMessage']['isnonread'] = 1;
 			$this->PrivateMessage->save($this->data);
 
 			$this->PrivateMessage->id = null;
 			$this->data['PrivateMessage']['folder'] = 'Sent';
+			$this->data['PrivateMessage']['isnonread'] = 0;
 			$this->PrivateMessage->save($this->data);
 		}
 		$this->redirect(array('action' => 'folder', 'Sent'));
@@ -97,6 +100,10 @@ class PrivateMessagesController extends AppController {
 	function show($mid){
 
 		$message = $this->PrivateMessage->findById($mid);
+		if($message['PrivateMessage']['isnonread'] == 1){
+			$message['PrivateMessage']['isnonread'] = 0;
+			$this->PrivateMessage->save($message);
+		}
 
 		$tou = new User();
 		$tou->id = $message['PrivateMessage']['sender'];
@@ -106,7 +113,8 @@ class PrivateMessagesController extends AppController {
 			'title' => $message['PrivateMessage']['title'],
 			'content' => $message['PrivateMessage']['content'],
 			'id' => $message['PrivateMessage']['id'],
-			'date' => $message['PrivateMessage']['date']
+			'date' => $message['PrivateMessage']['date'],
+			'isnonread' => $message['PrivateMessage']['isnonread']
 		);
 
 		$this->pageTitle = __('Private Messages - ', true) . $content['title'] . __(' from ', true) . $content['from'];
@@ -114,9 +122,40 @@ class PrivateMessagesController extends AppController {
 
 	}
 
+	function delete($folder, $mid){
+		$message = $this->PrivateMessage->findById($mid);
+		$message['PrivateMessage']['folder'] = 'Trash';
+		$this->PrivateMessage->save($message);
+		$this->redirect(array('action' => 'folder', $folder));
+	}
+
+	function mark($folder, $mid){
+		$message = $this->PrivateMessage->findById($mid);
+		switch($message['PrivateMessage']['isnonread']){
+			case 1 : $message['PrivateMessage']['isnonread'] = 0;break;
+			case 0 : $message['PrivateMessage']['isnonread'] = 1;break;
+		}
+		$this->PrivateMessage->save($message);
+		$this->redirect(array('action' => 'folder', $folder));
+	}
+
 	function create($toid = ''){
 		if($toid != '') $this->set('toid', $toid);
 		else $this->set('toid', '');
+	}
+
+	function check(){
+		if($this->Auth->user('id')){
+			return $this->PrivateMessage->find(
+				'count',
+				array(
+					'conditions' => array('PrivateMessage.recpt' => $this->Auth->user('id'),
+											'PrivateMessage.folder' => 'Inbox',
+											'PrivateMessage.isnonread' => 1)
+				)
+			);
+		}
+		return 0;
 	}
 
 }

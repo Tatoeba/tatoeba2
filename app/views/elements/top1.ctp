@@ -18,8 +18,8 @@
 */
 $onlineVisitors = $this->requestAction('/visitors/online');
 $lang = 'eng';
-if (isset($this->params['lang'])) { 
-	Configure::write('Config.language',  $this->params['lang']); 
+if (isset($this->params['lang'])) {
+	Configure::write('Config.language',  $this->params['lang']);
 	$lang = $this->params['lang'];
 }
 // array containing the elements of the menu : $title => $route
@@ -40,12 +40,12 @@ $menuElements = array(
 <div id="user_menu">
 	<div id="navigation_menu">
 		<ul>
-		
+
 		<?php
 		// displaying the menu
 		foreach($menuElements as $title => $route){
 			$cssClass = '';
-			
+
 			// Checking if we should apply the "current" CSS class to the <li> element
 			if(is_array($route)){ // categories other than Home
 				if(isset($this->params['pass'][0]) AND isset($route['action']) AND $this->params['pass'][0] == $route['action']){
@@ -66,7 +66,7 @@ $menuElements = array(
 					$cssClass = 'class="show"';
 				}
 			}
-			
+
 			// displaying <li> element
 			?>
 			<li <?=$cssClass; ?>>
@@ -75,7 +75,7 @@ $menuElements = array(
 			<?php
 		}
 		?>
-	
+
 		</ul>
 	</div>
 
@@ -84,7 +84,7 @@ $menuElements = array(
 		<?php __('Language(s) : ') ?>
 		<?php
 		$languages = array(
-			  'eng' => 'English' 
+			  'eng' => 'English'
 			, 'fre' => 'Français'
 			, 'chi' => '中文'
 			, 'spa' => 'Español'
@@ -102,21 +102,21 @@ $menuElements = array(
 		echo $form->create();
 		echo $form->select('lang', $languages, $lang, array("onchange" => "$(location).attr('href', this.value+ '/' + '".$path."');"));
 		echo $form->end();
-		
+
 	//	foreach($languages as $code => $language){
-	//		$path  = '/'.$code.'/';	
+	//		$path  = '/'.$code.'/';
 	//		$path .= $this->params['controller'].'/';
-	//		
+	//
 	//		if($this->params['action'] != 'display'){
 	//			$path .= $this->params['action'].'/';
 	//		}
-	//		
+	//
 	//		foreach($this->params['pass'] as $extraParam){
 	//			$path .= $extraParam.'/';
 	//		}
-	//	
+	//
 	//		// probably not the best way to do it but never mind
-	//		
+	//
 	//		echo $html->link($language, $path);
 	//		echo ' | ';
 	//	}
@@ -128,6 +128,11 @@ $menuElements = array(
 
 			?>
 		</span>
+		<?php $newMessages = $this->requestAction('/private_messages/check');
+		if($newMessages > 1) echo ' <span style="font-weight:bold;"> ' . $html->link(__('New messages: ', true) . $newMessages, '/private_messages/folder/Inbox') . '</span>';
+		else if($newMessages == 1) echo ' <span style="font-weight:bold;"> ' . $html->link(__('New message: ', true) . '1', '/private_messages/folder/Inbox') . '</span>';
+		?>
+
 	</div>
 </div>
 
