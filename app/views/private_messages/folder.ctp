@@ -19,9 +19,10 @@
 echo $this->element('pmmenu');
 ?>
 <div id="main_content">
+	<?php echo $this->element('pmtoolbox'); ?>
 	<div class="module">
 		<h2><?php echo __($folder, true); ?></h2>
-		<table>
+		<table class="pm_folder">
 		<?php
 		echo '<tr><th>'.__('Date', true).'</th>';
 		if($folder == 'Sent')
@@ -30,8 +31,8 @@ echo $this->element('pmmenu');
 			echo '<th>'.__('From', true).'</th>';
 		echo '<th>'.__('Subject', true).'</th><th>'.__('Actions', true).'</th></tr>';
 		foreach($content as $msg){
-			if($msg['isnonread'] == 1) echo '<tr style="font-weight:bold;">';
-			else echo '<tr>';
+			if($msg['isnonread'] == 1) echo '<tr class="pm_folder_line unread">';
+			else echo '<tr class="pm_folder_line">';
 			echo '<td>' . $html->link($date->ago($msg['date']), array('action' => 'show', $msg['id'])) . '</td>';
 			echo '<td>'.$html->link($msg['from'], array('action' => 'create', $msg['from'])).'</td>';
 			echo '<td>' . $html->link($msg['title'], array('action' => 'show', $msg['id'])) . '</td>';

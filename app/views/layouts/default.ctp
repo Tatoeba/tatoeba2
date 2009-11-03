@@ -45,8 +45,9 @@
 		echo $html->css('tatoeba.navigation');
 		echo $html->css('tatoeba.popup');
 		echo $html->css('tatoeba.conversations');
+		echo $html->css('tatoeba.private_messages');
 //		echo $html->css('tatoeba.tools');
-		
+
 		echo $javascript->link('jquery.js', true);
 		echo $javascript->link('sentences.show_another.js', true);
 		echo $javascript->link('sentences.conversations.js', true);
@@ -55,41 +56,41 @@
 	?>
 </head>
 <body>
-		
+
 	<!-- ---------------- TOP ---------------- -->
 	<?php echo $this->element('top1'); ?>
-	
+
 	<!-- ---------------- HEADER ---------------- -->
-	
+
 	<?php echo $this->element('header');	?>
-	
-	
+
+
 	<div id="container">
-		
+
 		<?php //echo $this->element('top2');	?>
-			
+
 		<!-- ---------------- MENU ---------------- -->
 		<?php //echo $this->element('menu'); ?>
-		
+
 		<!-- ---------------- SEARCH BAR ---------------- -->
 		<?php echo $this->element('search_bar'); ?>
-		
+
 		<!-- ---------------- CONTENT---------------- -->
 		<?php
 		if($session->check('Message.flash')){
 			$session->flash();
 		}
-		
+
 		echo $content_for_layout;
 		?>
 	</div>
-	
-	
+
+
 	<!-- ---------------- FOOT---------------- -->
-	<?php 
-	echo $this->element('foot'); 
+	<?php
+	echo $this->element('foot');
 	?>
-	
+
 	<?php echo $cakeDebug ?>
 	<?php echo $this->element('google_analytics'); ?>
 </body>

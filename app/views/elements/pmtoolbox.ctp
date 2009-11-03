@@ -16,10 +16,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 ?>
-<h2><?php echo __('Welcome ', true) . $session->read('Auth.User.username'); ?></h2>
-<ul>
-	<li><?php echo $html->link(__('Private Message', true), array('controller' => 'private_messages', 'action' => 'folder', 'Inbox')); ?></li>
-	<li><?php echo $html->link(__('Comments',true), array('controller' => 'sentence_comments', 'action' => 'index')); ?></li>
-	<li><?php echo $html->link(__('Log out',true), array('controller' => 'users', 'action' => 'logout')); ?></li>
+<ul class="pm_toolbox">
+	<li><?php echo $html->link(__('New message', true), array('action' => 'create')); ?></li>
+	<li><?php echo $html->link(__('Folders', true), array('action' => 'folder', 'Inbox')); ?> &darr;
+		<ul class="pm_toolbox_submenu">
+			<li><?php echo $html->link(__('Inbox', true), array('action' => 'folder', 'Inbox')); ?></li>
+			<li><?php echo $html->link(__('Sent', true), array('action' => 'folder', 'Sent')); ?></li>
+			<li><?php echo $html->link(__('Trash', true), array('action' => 'folder', 'Trash')); ?></li>
+		</ul>
+	</li>
 </ul>
