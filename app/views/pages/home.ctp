@@ -50,15 +50,6 @@ array_unshift($langArray, array('any' => __('any', true)));
 ?>
 <div id="annexe_content">
 	<div class="module">
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login');
-			} else {
-				echo $this->element('space');
-			}
-		?>
-	</div>
-	<div class="module">
 		<h2><?=__('Tatoeba ?',true); ?></h2>
 		<p><?=__('Tatoeba means "for example" in Japanese. The aim is not to implement a new multilingual dictionnary, but a corpus of sentence emphasizing use of different words',true); ?><a href=""><?=__('Details...',true)?></a></p>
 	</div>

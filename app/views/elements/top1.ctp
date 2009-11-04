@@ -37,7 +37,7 @@ $menuElements = array(
 );
 
 ?>
-<div id="user_menu">
+<div id="top_menu">
 	<div id="navigation_menu">
 		<ul>
 
@@ -79,29 +79,39 @@ $menuElements = array(
 		</ul>
 	</div>
 
-
-	<div id="interfaceLanguageSelector">
-		<?php __('Language(s) : ') ?>
+	<div id="user_menu">
+	<?php
+		if(!$session->read('Auth.User.id')){
+			echo $this->element('login');
+		} else {
+			echo $this->element('space');
+		}
+	?>
+	</div>
+		<?php //__('Language(s) : ') ?>
 		<?php
-		$languages = array(
-			  'eng' => 'English'
-			, 'fre' => 'Français'
-			, 'chi' => '中文'
-			, 'spa' => 'Español'
-			//, 'jpn' => '日本語'
-			//, 'deu' => 'Deutsch'
-			//, 'ita' => 'Italiano'
-		);
-		$path = $this->params['controller'].'/';
-		if($this->params['action'] != 'display'){
-			$path .= $this->params['action'].'/';
-		}
-		foreach($this->params['pass'] as $extraParam){
-			$path .= $extraParam.'/';
-		}
-		echo $form->create();
-		echo $form->select('lang', $languages, $lang, array("onchange" => "$(location).attr('href', this.value+ '/' + '".$path."');"));
-		echo $form->end();
+//		$languages = array(
+//			  'eng' => 'English'
+//			, 'fre' => 'Français'
+//			, 'chi' => '中文'
+//			, 'spa' => 'Español'
+//			//, 'jpn' => '日本語'
+//			//, 'deu' => 'Deutsch'
+//			//, 'ita' => 'Italiano'
+//		);
+//		$path = $this->params['controller'].'/';
+//		if($this->params['action'] != 'display'){
+//			$path .= $this->params['action'].'/';
+//		}
+//		foreach($this->params['pass'] as $extraParam){
+//			$path .= $extraParam.'/';
+//		}
+//		echo $form->create();
+//		echo $form->select('lang', $languages, $lang, array("onchange" => "$(location).attr('href', this.value+ '/' + '".$path."');"));
+//		echo $form->end();
+		
+		
+		
 
 	//	foreach($languages as $code => $language){
 	//		$path  = '/'.$code.'/';
@@ -121,18 +131,20 @@ $menuElements = array(
 	//		echo ' | ';
 	//	}
 		?>
-		<span id="onlineVisitors">
-			<?php
-			echo __('Online visitor(s) : ');
-			echo $onlineVisitors;
 
-			?>
-		</span>
-		<?php $newMessages = $this->requestAction('/private_messages/check');
-		if($newMessages > 1) echo ' <span style="font-weight:bold;"> ' . $html->link(__('New messages: ', true) . $newMessages, '/private_messages/folder/Inbox') . '</span>';
-		else if($newMessages == 1) echo ' <span style="font-weight:bold;"> ' . $html->link(__('New message: ', true) . '1', '/private_messages/folder/Inbox') . '</span>';
-		?>
 
-	</div>
 </div>
+
+<div id="visitorCounter">
+		<?php
+		echo __('Online visitor(s) : ');
+		echo $onlineVisitors;
+
+		?>
+	<?php $newMessages = $this->requestAction('/private_messages/check');
+	if($newMessages > 1) echo ' <span style="font-weight:bold;"> ' . $html->link(__('New messages: ', true) . $newMessages, '/private_messages/folder/Inbox') . '</span>';
+	else if($newMessages == 1) echo ' <span style="font-weight:bold;"> ' . $html->link(__('New message: ', true) . '1', '/private_messages/folder/Inbox') . '</span>';
+	?>
+</div>
+
 
