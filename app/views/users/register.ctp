@@ -1,7 +1,7 @@
 <?php
 /*
     Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -17,27 +17,23 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-if(isset($error)){
-	echo $error;
-}
-if (isset($user)){
-   echo '<div id="UserUsername_error" class="error-message">frefreufrenuigrnreuigrngreuigner</div>';
 
-}
-
-echo $javascript->link('users.check_registration.js', true);
+echo $javascript->link('users.check_registration.js', false);
 
 
 echo $form->create('User', array("action" => "register"));
 
 echo $form->input('username', array(
-	"label" => __('Username :',true)
+	"label" => __('Username :',true),
+	"id" => "registrationUsername"
 ));
 echo $form->input('password', array(
-	"label" => __('Password :',true)
+	"label" => __('Password :',true),
+	"id" => "registrationPassword"
 ));
 echo $form->input('email', array(
-	"label" => __('Email :',true)
+	"label" => __('Email :',true),
+	"id" => "registrationEmail"
 ));
 
 
