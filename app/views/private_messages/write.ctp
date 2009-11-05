@@ -21,11 +21,15 @@ echo $this->element('pmmenu');
 <div id="main_modules">
 	<div class="module">
 		<h2><?php echo __('Send new message', true); ?></h2>
-		<?php
+		<?php echo $this->element('pmtoolbox');
+
+		if(isset($errorString))
+			echo '<div style="border:1px solid red;color:red;">' . $errorString . '</div>';
+
 		echo $form->create('PrivateMessage', array('action' => 'send'));
-		echo $form->input('recpt', array('label' => __('To', true), 'default' => $toid));
-		echo $form->input('title');
-		echo $form->input('content');
+		echo $form->input('recpt', array('label' => __('To', true), 'default' => $toUserLogin));
+		echo $form->input('title', array('default' => $replyToTitle));
+		echo $form->input('content', array('label' => '', 'default' => $replyToContent));
 		echo $form->end(__('Send',true));
 		?>
 	</div>

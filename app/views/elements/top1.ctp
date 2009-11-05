@@ -109,9 +109,9 @@ $menuElements = array(
 //		echo $form->create();
 //		echo $form->select('lang', $languages, $lang, array("onchange" => "$(location).attr('href', this.value+ '/' + '".$path."');"));
 //		echo $form->end();
-		
-		
-		
+
+
+
 
 	//	foreach($languages as $code => $language){
 	//		$path  = '/'.$code.'/';
@@ -136,15 +136,16 @@ $menuElements = array(
 </div>
 
 <div id="visitorCounter">
-		<?php
-		echo __('Online visitor(s) : ');
-		echo $onlineVisitors;
+	<?php
+	echo __('Online visitor(s) : ');
+	echo $onlineVisitors;
 
-		?>
-	<?php $newMessages = $this->requestAction('/private_messages/check');
-	if($newMessages > 1) echo ' <span style="font-weight:bold;"> ' . $html->link(__('New messages: ', true) . $newMessages, '/private_messages/folder/Inbox') . '</span>';
-	else if($newMessages == 1) echo ' <span style="font-weight:bold;"> ' . $html->link(__('New message: ', true) . '1', '/private_messages/folder/Inbox') . '</span>';
+	$newMessages = $this->requestAction('/private_messages/check');
 	?>
+	<span style="font-weight:bold;">
+		<?php if($newMessages > 1) echo $html->link(__('New messages: ', true) . $newMessages, '/private_messages/folder/Inbox');
+		else if($newMessages == 1) echo $html->link(__('New message: ', true) . '1', '/private_messages/folder/Inbox'); ?>
+	</span>
 </div>
 
 

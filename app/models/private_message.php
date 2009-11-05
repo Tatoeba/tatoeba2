@@ -20,6 +20,6 @@
 class PrivateMessage extends AppModel{
 	var $name = 'PrivateMessage';
 
-	var $belongsTo = array('User' => array('className' => 'User', 'foreignKey' => 'recpt'));
+	var $belongsTo = array('User' => array('className' => 'User'));
 }
 ?>

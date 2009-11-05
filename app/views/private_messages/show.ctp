@@ -21,9 +21,20 @@ echo $this->element('pmmenu');
 <div id="main_content">
 	<div class="module">
 	<h2><?php echo $content['title']; ?></h2>
+
+	<?php
+	if($content['folder'] == 'Trash') $delOrRestLink = $html->link(__('Restore', true), array('action' => 'restore', $content['id']));
+			else $delOrRestLink = $html->link(__('Delete', true), array('action' => 'delete', $content['folder'], $content['id']));
+
+	echo $this->element('pmtoolbox', array(
+						'extralink' => '<li>' . $html->link(__('Reply', true), array('action' => 'write', $content['from'], $content['id'])) . '</li>
+		<li>' . $delOrRestLink . '</li>
+		<li>' . $html->link(__('Mark unread', true), array('action' => 'mark', 'Inbox', $content['id'])) . '</li>'
+	)); ?>
+
 	<p class="pm_head">
 		<?php echo $date->ago($content['date']) . ' ' .
-		$html->link($content['from'], array('action' => 'create', $content['from'])) . __(' has written:', true); ?>
+		$html->link($content['from'], array('action' => 'write', $content['from'])) . __(' has written:', true); ?>
 	</p>
 	<p class="pm_content"><?php echo $content['content']; ?></p>
 	</div>

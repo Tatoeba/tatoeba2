@@ -19,7 +19,7 @@
 
 ?>
 <ul class="pm_toolbox">
-	<li><?php echo $html->link(__('New message', true), array('action' => 'create')); ?></li>
+	<li><?php echo $html->link(__('New message', true), array('action' => 'write')); ?></li>
 	<li><?php echo $html->link(__('Folders', true), array('action' => 'folder', 'Inbox')); ?> &darr;
 		<ul class="pm_toolbox_submenu">
 			<li><?php echo $html->link(__('Inbox', true), array('action' => 'folder', 'Inbox')); ?></li>
@@ -27,4 +27,5 @@
 			<li><?php echo $html->link(__('Trash', true), array('action' => 'folder', 'Trash')); ?></li>
 		</ul>
 	</li>
+	<?php if(isset($extralink)) echo $extralink; ?>
 </ul>

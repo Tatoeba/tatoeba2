@@ -19,9 +19,9 @@
 echo $this->element('pmmenu');
 ?>
 <div id="main_content">
-	<?php echo $this->element('pmtoolbox'); ?>
 	<div class="module">
 		<h2><?php echo __($folder, true); ?></h2>
+		<?php echo $this->element('pmtoolbox'); ?>
 		<table class="pm_folder">
 		<?php
 		echo '<tr><th>'.__('Date', true).'</th>';
@@ -29,15 +29,19 @@ echo $this->element('pmmenu');
 			echo '<th>'.__('To', true).'</th>';
 		else
 			echo '<th>'.__('From', true).'</th>';
-		echo '<th>'.__('Subject', true).'</th><th>'.__('Actions', true).'</th></tr>';
+		echo '<th>'.__('Subject', true).'</th><th></th></tr>';
 		foreach($content as $msg){
 			if($msg['isnonread'] == 1) echo '<tr class="pm_folder_line unread">';
 			else echo '<tr class="pm_folder_line">';
 			echo '<td>' . $html->link($date->ago($msg['date']), array('action' => 'show', $msg['id'])) . '</td>';
 			echo '<td>'.$html->link($msg['from'], array('action' => 'create', $msg['from'])).'</td>';
 			echo '<td>' . $html->link($msg['title'], array('action' => 'show', $msg['id'])) . '</td>';
-			echo '<td>' . $html->link(__('Delete', true), array('action' => 'delete', $folder, $msg['id'])) . '
-			' . $html->link(__('Mark (un)read', true), array('action' => 'mark', $folder, $msg['id'])) . '</td></tr>';
+			echo '<td><span class="action_link">';
+			if($folder == 'Trash') echo $html->link(__('Restore', true), array('action' => 'restore', $msg['id']));
+			else echo $html->link(__('Delete', true), array('action' => 'delete', $folder, $msg['id']));
+			if($msg['isnonread'] == 1) $label = __('Mark as read', true);
+			else $label = __('Mark as unread', true);
+			echo ' - ' . $html->link($label, array('action' => 'mark', $folder, $msg['id'])) . '</span></td></tr>';
 		} ?>
 		</table>
 	</div>

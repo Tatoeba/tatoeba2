@@ -20,9 +20,6 @@
 ?>
 <div id="annexe_content">
 	<div class="module">
-		<?php echo $this->element('space'); ?>
-	</div>
-	<div class="module">
 		<h2><?php echo __('Folders', true); ?></h2>
 		<ul>
 			<li><?php echo $html->link(__('Inbox', true), array('action' => 'folder', 'Inbox')); ?></li>

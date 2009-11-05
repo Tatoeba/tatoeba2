@@ -18,12 +18,30 @@
 
 */
 
+.pm_folder th {
+	text-align:left;
+}
+.pm_folder td {
+	height:30px;
+}
+
+span.action_link {
+	visibility:hidden;
+}
 
 tr.pm_folder_line:hover{
 	background:#E2FFD2;
 }
+	tr.pm_folder_line:hover span.action_link {
+		visibility:visible;
+	}
 tr.unread {
 	font-weight:bold;
+}
+
+textarea#PrivateMessageContent{
+	width:500px;
+	height:200px;
 }
 
 
@@ -32,7 +50,7 @@ tr.unread {
 /* ------------------------------- */
 .pm_toolbox{
 	list-style:none;
-	margin:0;
+	margin:10px 0;
 	padding:0;
 	color:#649B3D;
 }
