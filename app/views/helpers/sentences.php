@@ -387,7 +387,7 @@ class SentencesHelper extends AppHelper {
 				
 				echo '<span style="display:none" class="addToList'.$id.'">';
 					// select list
-					echo '<select id="listSelection'.$id.'">';
+					echo '<select class="listOfLists" id="listSelection'.$id.'">';
 					echo '<option value="-1">';
 					__('Add to new list...');
 					echo '</option>';
@@ -426,7 +426,8 @@ class SentencesHelper extends AppHelper {
 				echo '</li>';
 			}
 			
-			echo $this->Html->image('loading-small.gif', array("id"=>"favorite_".$id."_in_process", "style"=>"display:none"));
+			echo $this->Html->image('loading-small.gif', array("id"=>$id."_in_process", "style"=>"display:none"));
+			echo $this->Html->image('valid_16x16.png', array("id"=>$id."_valid", "style" =>"display:none"));
 			
 			if(isset($specialOptions['belongsTo'])){
 				echo '<li class="belongsTo">- ';

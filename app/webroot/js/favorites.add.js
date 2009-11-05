@@ -39,7 +39,7 @@ $(document).ready(function(){
 
 		if (favorite_option.hasClass("add")){
 			
-			$("#favorite_"+favorite_id+"_in_process").show();
+			$("#"+favorite_id+"_in_process").show();
 
 			$.post("http://" + self.location.hostname + "/favorites/add_favorite/"+ favorite_id
 				, {}	
@@ -57,7 +57,7 @@ $(document).ready(function(){
 						}
 					}
 		
-					$("#favorite_"+favorite_id+"_in_process").hide();
+					$("#"+favorite_id+"_in_process").hide();
 					
 				}
 			);
@@ -71,7 +71,7 @@ $(document).ready(function(){
 
 		else if (favorite_option.hasClass("remove")){
 			
-			$("#favorite_"+favorite_id+"_in_process").show();
+			$("#"+favorite_id+"_in_process").show();
 			
 			$.post("http://" + self.location.hostname + "/favorites/remove_favorite/"+ favorite_id
 				, {}
@@ -90,7 +90,7 @@ $(document).ready(function(){
 
 					}
 		
-					$("#favorite_"+favorite_id+"_in_process").hide();
+					$("#"+favorite_id+"_in_process").hide();
 				}
 			);
 			

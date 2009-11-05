@@ -17,12 +17,35 @@
 */
 
 $(document).ready(function() {
+	
+	var sentence_id = -1;
+	
+	/*
+	 * Display the "check" green icon for a short time
+	 * after sentence has been added to list.
+	 */
+	function feedbackValid(){
+		$("#"+sentence_id+"_valid").show(); // TODO Set up a better system for this thing. 
+		// Because you can't have the "in process" AND the "valid" at the same time.
+		// It will be useful for favoriting as well.
+		setTimeout(removeFeedback, 500);
+	}
+	
+	/*
+	 * Remove the "check" green icon.
+	 */
+	function removeFeedback(){
+		$("#"+sentence_id+"_valid").hide();
+	}
+
+	
 	// Clicking on "Add to list" displays the list selection.
 	// Reclicking on it hides the list selection.
 	$(".addToList").click(function(){
-		var sentence_id = $(this).parent().attr("id");
+		sentence_id = $(this).parent().attr("id");
 		$(".addToList"+sentence_id).toggle();
 	});
+	
 	
 	// The sentence is added to the list after user has clicked
 	// the button. I was hesitating between this solution and
@@ -30,13 +53,13 @@ $(document).ready(function() {
 	// directly after the selection in the <select>.
 	$(".addToListButton").click(function(){
 		
-		var sentence_id = $(this).parent().parent().attr("id");
+		sentence_id = $(this).parent().parent().attr("id");
 		var list_id = $("#listSelection"+sentence_id).val();
 		
 		// Add sentence to selected list
 		if(list_id > 0){
 		
-			$("#favorite_"+sentence_id+"_in_process").show();
+			$("#"+sentence_id+"_in_process").show();
 			
 			$.post("http://" + self.location.hostname + "/sentences_lists/add_sentence_to_list/"+ sentence_id + "/" + list_id
 				, {}
@@ -44,8 +67,9 @@ $(document).ready(function() {
 					if(data != 'error'){
 						$('#listSelection'+sentence_id).val(-1);
 						$('#listSelection'+sentence_id+' option[value="'+data+'"]').remove();
+						feedbackValid(sentence_id);
 					}
-					$("#favorite_"+sentence_id+"_in_process").hide();
+					$("#"+sentence_id+"_in_process").hide();
 				},
 				'html'
 			);
@@ -63,7 +87,7 @@ $(document).ready(function() {
 				
 				if(value != undefined){ // need to check this, otherwise it loops indefinitely when canceling...
 				
-					$("#favorite_"+sentence_id+"_in_process").show();
+					$("#"+sentence_id+"_in_process").show();
 					
 					$.post("http://" + self.location.hostname + "/sentences_lists/add_sentence_to_new_list/"+ sentence_id + "/"+ form.listName
 						, {}
@@ -71,10 +95,12 @@ $(document).ready(function() {
 							if(data != 'error'){
 								$('#listSelection'+sentence_id).append('<option value="'+ data +'">'+ form.listName +'</option>');
 								$('#listSelection'+sentence_id).val(data);
+								feedbackValid(sentence_id);
+								
 							}else{
 								$.prompt("Sorry, an error occured.");
 							}
-							$("#favorite_"+sentence_id+"_in_process").hide();
+							$("#"+sentence_id+"_in_process").hide();
 						},
 						'html'
 					);
