@@ -85,7 +85,7 @@ class DATABASE_CONFIG {
 		'persistent' => false,
 		'host' => 'localhost',
 		'login' => 'root',
-		'password' => 'coucou',
+		'password' => '',
 		'database' => 'tatoeba_4',
 		'prefix' => '',
 		'encoding' => 'utf8'
