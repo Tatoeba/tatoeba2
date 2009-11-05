@@ -30,16 +30,35 @@ class SentencesListsController extends AppController{
 	    $this->Auth->allowedActions = array('*');
 	}
 	
+	
+	/**
+	 * Displays all the lists.
+	 * If user is logged in, it will also display a form to add
+	 * a new list and the lists that belongs to that user.
+	 */
 	function index(){
 		$lists = $this->SentencesList->find('all');
 		$this->set('lists', $lists);
+		
+		if($this->Auth->user('id')){
+			$myLists = $this->SentencesList->findAllByUserId($this->Auth->user('id'));
+			$this->set('myLists', $myLists);
+		}
 	}
 	
+	
+	/**
+	 * Display content of a list.
+	 */
 	function show($id){
 		$this->SentencesList->id = $id;
 		$this->set('list', $this->SentencesList->read());
 	}
 	
+	
+	/**
+	 * Create a list.
+	 */
 	function add(){
 		if(!empty($this->data)){
 			$this->data['SentencesList']['user_id'] = $this->Auth->user('id');
@@ -48,6 +67,38 @@ class SentencesListsController extends AppController{
 		$this->redirect(array("action"=>"index"));
 	}
 	
+	
+	/**
+	 * Saves the new name of a list. 
+	 * Used in AJAX request from sentences_lists.edit_name.js
+	 */
+	function save_name(){
+		Configure::write('debug', 0);
+		if(isset($_POST['value']) AND isset($_POST['id'])){
+			$this->SentencesList->id = $_POST['id'];
+			$list['SentencesList']['name'] = $_POST['value'];
+			if($this->SentencesList->save($list)){
+				$this->set('result', $_POST['value']);
+			}else{
+				$this->set('result', 'error');
+			}
+		}else{
+			$this->set('result', 'error');
+		}
+	}
+	
+	
+	/**
+	 * Delete list.
+	 */
+	function delete($list_id){
+		$this->SentencesList->delete($list_id);
+		$this->redirect(array("action" => "index"));
+	}
+	
+	/**
+	 * Add sentence to a list.
+	 */
 	function add_sentence_to_list($sentence_id, $list_id){
 		Configure::write('debug', 0);
 		$this->set('s', $sentence_id);
@@ -59,6 +110,10 @@ class SentencesListsController extends AppController{
 		}
 	}
 	
+	
+	/**
+	 * Create a new list and add a sentence to that list.
+	 */
 	function add_sentence_to_new_list($sentenceId, $listName){
 		Configure::write('debug', 0);
 		if($listName != ''){
@@ -75,13 +130,20 @@ class SentencesListsController extends AppController{
 		}
 	}
 	
-	function edit(){
-	}
 	
+	/**
+	 * Displays the lists of a specific user.
+	 */
 	function of_user($user_id){
-		
+		$lists = $this->SentencesList->findAllByUserId($user_id);
+		$this->set('lists', $lists);
 	}
 	
+	
+	/**
+	 * Returns the lists that belong to the user currently connected.
+	 * It is called in the SentencesHelper, in the displayMenu() method.
+	 */
 	function choices(){
 		$this->Package->recursive = -1;
 		$lists = $this->SentencesList->find(
