@@ -15,22 +15,22 @@ a {
 	text-decoration:none;
 }
 
-a:hover {
+a:hover{
 	cursor: pointer;
 	text-decoration:underline;
 }
 
-h2, h3, h4 {
+h2, h3, h4{
 	font-variant: small-caps;
 }
 
-h3 {
+h3{
 	margin-left: 20px;
 	border-bottom: 1px solid;
 	color:#E55F0E;
 }
 
-h4 {
+h4{
 	margin: 10px 0px 5px 20px;
 	color:#E55F0E;
 	font-size:1.1em;
@@ -44,8 +44,9 @@ table {
 /* User Menu : Main Menu */
 
 div#top_menu {
+	min-width:950px;
 	height:24px;
-	padding:0 4px 0 24px;
+	padding:0 6px 0 14px;
 	border-bottom:1px dotted #CCCCCC;
 	background-color:#414141;
 	color:#FFFFFF;
@@ -84,7 +85,7 @@ div#navigation_menu ul {
 div#navigation_menu ul li {
 	list-style-type:none;
 	display:inline;
-	margin-right: 12px;
+	margin-right: 10px;
 }
 
 div#navigation_menu ul li.show {
@@ -112,6 +113,7 @@ div#visitorCounter {
 div#user_menu {
 	float:right;
 	font-size:0.75em;
+	margin:3px;
 }
 
 div#user_menu span strong{
@@ -146,63 +148,82 @@ div#user_menu select#lang {
 }
 
 
-
-/* Container */
-
-div#container {
-	margin-left:120px;
-	min-width: 760px;
-}
-
-
 /* Search bar */
 
-h2#search_bar {
-	margin:20px 0 0 41px;
-	padding:0;
-	color:#616161;
-	font-size:0.8em;
-	font-variant: normal;
+div.search_bar_container{
+	position:relative;
+	margin-right: 270px;
 }
 
+div.search_bar_left, div.search_bar_right{
+	position: absolute;
+	top:0px;
+	height: 50px;
+	width: 40px;
+}
+
+div.search_bar_left{
+	left:0px;
+	background: url(../img/search_bar_left.png) no-repeat left;
+}
+
+div.search_bar_right{
+	right: 0px;
+	background: url(../img/search_bar_right.png) no-repeat right;
+}
+
+
 div.search_bar {
-	height:30px;
-	width:840px;
-	background: url(../img/search_bar.png) repeat;
+	height: 50px;
+	background: url(../img/search_bar_body.png) repeat;
+	position: relative;
 	color:#FFFFFF;
-	margin:0px 0 10px 40px;
-	padding:0 20px;
-	text-align:center;
+	margin: 0px 40px 20px 40px;
 }
 
 div.search_bar a{
 	font-size:0.9em;
+	color:#FFFFFF;
+	display:block;
+	margin-top: 24px;
+}
+
+div.search_bar a:hover{
 	color:#FFFFFF;
 }
 
 div.search_bar span#into {
 	font-family:Arial, Sans-serif;
 	font-size:1.3em;
-	margin:0 10px;
+	margin-top: 20px;
+	width: 2%;
+	text-align: center;
 }
 
-div.search_bar select {
+div.search_bar div.select{
 	width: 12%;
-	margin:5px 0;
 }
 
-div.search_bar input#SentenceQuery {
+div.search_bar div.input{
 	width: 50%;
-	margin-left:30px;
 }
 
-div.search_bar div {
-	display:inline;
+div.search_bar div.submit{
+	width: 15%;
+	margin-top: 22px;
 }
 
+div.search_bar a{
+	display: block;
+	float: left;
+	text-align: center;
+	width: 2%;
+}
 
-div.search_bar div.submit {
-	margin:0 20px 0 8px;
+div.search_bar div, div.search_bar span#into{
+	display: block;
+	float: left;
+	margin-right: 1%;
 }
 
 #SentenceSearchForm label{
@@ -214,6 +235,10 @@ div.search_bar div.submit {
 	font-size: 1em;
 }
 
+#SentenceSearchForm input#SentenceQuery, div.search_bar select, div.search_bar div.submit input{
+	width: 99%;
+}
+	
 	
 div.search_bar div.submit input{
 height: 24px; /* because with Chinese interface the height is too big */
@@ -224,12 +249,23 @@ div.search_bar div.select select{
 	height: 22px; /* because with Chinese interface the height is too big */
 }
 
+
+
 /* HEADER */
 
 div#header{
-	width:120px;
-	text-align:center;
+	width:72px;
+	text-align:right;
 	float: left;
+}
+
+
+/* Container */
+
+div#container {
+	min-width:878px;
+	margin-left:72px;
+	min-width: 760px;
 }
 
 /* Content : when a page is not split into 2 parts*/
@@ -248,7 +284,8 @@ div#annexe_content {
 }
 
 div#main_content {
-	margin-right: 270px;
+	margin-left: 10px;
+	margin-right: 260px;
 	font-size:0.8em;
 }
 
@@ -261,9 +298,6 @@ div.module {
 	background: url(../img/module_background.png) repeat-x bottom left;
 }
 
-div#main_content div.module {
-	margin-right:5px;
-}
 
 div#annexe_content div.module {
 	margin-left:5px;
@@ -272,7 +306,7 @@ div#annexe_content div.module {
 div.module h2 {
 	background: url('../img/title_4.png') no-repeat top left;
 	padding-left: 10px;
-	margin:0 0 15px 0;
+	margin:0 0 15px -8px;
 	font-size:1.5em;
 }
 
@@ -293,7 +327,7 @@ div.main_module h2 {
 	padding-left: 10px;
 	font-size:1.5em;
 	border-bottom:none;
-	margin:18px 0;
+	margin:18px 0 0 -8px;
 }
 
 

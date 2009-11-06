@@ -20,40 +20,56 @@ if (isset($this->params['lang'])) {
 	Configure::write('Config.language',  $this->params['lang']); 
 }
 ?>
-<h2 id="search_bar">Find some uses of word (blabla commercial)</h2>
+<div class="search_bar_container">
 <div class="search_bar">
-	<?php
-	$languages = array(
-		  'en' => __('English', true)
-		, 'jp' => __('Japanese', true)
-		, 'fr' => __('French', true)
-		, 'de' => __('German', true)
-		, 'es' => __('Spanish', true)
-		, 'it' => __('Italian', true)
-		, 'id' => __('Indonesian', true)
-		, 'vn' => __('Vietnamese', true)
-		, 'pt' => __('Portuguese', true)
-		, 'ru' => __('Russian', true)
-		, 'zh' => __('Chinese', true)
-		, 'ko' => __('Korean', true)
-		, 'nl' => __('Dutch', true)
-	);
-	asort($languages);
-	$selectedLanguageFrom = $session->read('search_from');
-	$selectedLanguageTo = $session->read('search_to');
-	
-	echo $form->create('Sentence', array("action" => "search", "type" => "get"));
-	echo $form->select('from', $languages, $selectedLanguageFrom);
-	echo '<span id="into">&raquo;</span>';
-	echo $form->select('to', $languages, $selectedLanguageTo);
 
-	echo $form->input('query', array(
-		"label" => "",
-		"value" => $session->read('search_query')));
+<?php
+$languages = array(
+	  'en' => __('English', true)
+	, 'jp' => __('Japanese', true)
+	, 'fr' => __('French', true)
+	, 'de' => __('German', true)
+	, 'es' => __('Spanish', true)
+	, 'it' => __('Italian', true)
+	, 'id' => __('Indonesian', true)
+	, 'vn' => __('Vietnamese', true)
+	, 'pt' => __('Portuguese', true)
+	, 'ru' => __('Russian', true)
+	, 'zh' => __('Chinese', true)
+	, 'ko' => __('Korean', true)
+	, 'nl' => __('Dutch', true)
+);
+asort($languages);
+$selectedLanguageFrom = $session->read('search_from');
+$selectedLanguageTo = $session->read('search_to');
+
+echo $form->create('Sentence', array("action" => "search", "type" => "get"));
+echo '<div class="select">';
+echo '<label>';
+__('From');
+echo '</label><br/>';
+echo $form->select('from', $languages, $selectedLanguageFrom);
+echo '</div>';
+
+	echo '<span id="into">&raquo;</span>';
 	
-	echo $form->end(__('search',true));
-	
-	echo $html->link('[Help]', array("controller" => "sentences", "action" => "search"));
-	?>
+echo '<div class="select">';
+echo '<label>';
+__('To');
+echo '</label><br/>';
+echo $form->select('to', $languages, $selectedLanguageTo);
+echo '</div>';
+
+echo $form->input('query', array(
+	"label" => __('Example sentences with the words :',true), 
+	"value" => $session->read('search_query')));
+
+echo $form->end(__('search',true));
+
+echo $html->link('[?]', array("controller" => "sentences", "action" => "search"));
+?>
 </div>
 
+<div class="search_bar_left"></div>
+<div class="search_bar_right"></div>
+</div>
