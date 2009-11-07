@@ -20,7 +20,7 @@
 class SentencesListsController extends AppController{
 
 	var $name = 'SentencesLists' ;
-	var $helpers = array('Sentences');
+	var $helpers = array('Sentences', 'Navigation', 'Html');
 	
 	
 	function beforeFilter() {
@@ -91,20 +91,21 @@ class SentencesListsController extends AppController{
 	/**
 	 * Delete list.
 	 */
-	function delete($list_id){
-		$this->SentencesList->delete($list_id);
+	function delete($listId){
+		$this->SentencesList->delete($listId);
 		$this->redirect(array("action" => "index"));
 	}
 	
 	/**
 	 * Add sentence to a list.
+	 * TODO : also check that user is actually the owner of the list.
 	 */
-	function add_sentence_to_list($sentence_id, $list_id){
+	function add_sentence_to_list($sentenceId, $listId){
 		Configure::write('debug', 0);
-		$this->set('s', $sentence_id);
-		$this->set('l', $list_id);
-		if($this->SentencesList->habtmAdd('Sentence' , $list_id, $sentence_id)){
-			$this->set('listId', $list_id);
+		$this->set('s', $sentenceId);
+		$this->set('l', $listId);
+		if($this->SentencesList->habtmAdd('Sentence' , $listId, $sentenceId)){
+			$this->set('listId', $listId);
 		}else{
 			$this->set('listId', 'error');
 		}
@@ -127,6 +128,19 @@ class SentencesListsController extends AppController{
 			}
 		}else{
 			$this->set('listId', 'error');
+		}
+	}
+	
+	
+	/**
+	 * Remove sentence from a list.
+	 * TODO : check that user is actually owner of the list.
+	 * NOTE : it would be nice to have an "undo" for this action...
+	 */
+	function remove_sentence_from_list($sentenceId, $listId){
+		Configure::write('debug', 0);
+		if($this->SentencesList->habtmDelete('Sentence' , $listId, $sentenceId)){
+			$this->set('removed', true);
 		}
 	}
 	

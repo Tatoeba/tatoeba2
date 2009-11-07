@@ -1,4 +1,3 @@
-<?php
 /*
     Tatoeba Project, free collaborative creation of multilingual corpuses project
     Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
@@ -17,32 +16,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$javascript->link('sentences_lists.remove_sentence_from_list.js', false);
+$(document).ready(function() {
 
-echo '<div id="main_content">';
-echo '<div class="module">';
+	$(".removeFromListButton").click(function(){
+		var sentence_id = $(this).attr("id");
+		var list_id = $(".sentencesList").attr("id");
+		
+		$("#sentence"+sentence_id).html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
+		$("#sentence"+sentence_id).load("http://" + self.location.hostname + "/sentences_lists/remove_sentence_from_list/"+ sentence_id + "/" + list_id);
+		
+	});
 
-$navigation->displaySentencesListsNavigation();
-
-echo '<h2>'.$list['SentencesList']['name'].'</h2>';
-
-if(count($list['Sentence']) > 0){
-	echo '<ul id="'.$list['SentencesList']['id'].'" class="sentencesList">';
-	foreach($list['Sentence'] as $sentence){
-		echo '<li id="sentence'.$sentence['id'].'">';
-			// display sentence
-			$sentences->displaySentence($sentence);
-			
-			// remove from list option
-			echo '<a id="'.$sentence['id'].'" class="removeFromListButton">';
-			__('remove from list');
-			echo '</a>';
-		echo '</li>';
-	}
-	echo '</ul>';
-}else{
-	__('This list does not have any sentence');
-}
-echo '</div>';
-echo '</div>';
-?>
+});

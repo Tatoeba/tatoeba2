@@ -17,32 +17,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$javascript->link('sentences_lists.remove_sentence_from_list.js', false);
-
-echo '<div id="main_content">';
-echo '<div class="module">';
-
-$navigation->displaySentencesListsNavigation();
-
-echo '<h2>'.$list['SentencesList']['name'].'</h2>';
-
-if(count($list['Sentence']) > 0){
-	echo '<ul id="'.$list['SentencesList']['id'].'" class="sentencesList">';
-	foreach($list['Sentence'] as $sentence){
-		echo '<li id="sentence'.$sentence['id'].'">';
-			// display sentence
-			$sentences->displaySentence($sentence);
-			
-			// remove from list option
-			echo '<a id="'.$sentence['id'].'" class="removeFromListButton">';
-			__('remove from list');
-			echo '</a>';
-		echo '</li>';
-	}
-	echo '</ul>';
+if(isset($removed)){
+	__('sentence successfully removed from list');
 }else{
-	__('This list does not have any sentence');
+	echo 'Uh oh, something wrong happened.';
 }
-echo '</div>';
-echo '</div>';
 ?>
