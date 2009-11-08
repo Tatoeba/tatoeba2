@@ -50,32 +50,32 @@ array_unshift($langArray, array('any' => __('any', true)));
 ?>
 <div id="annexe_content">
 	<div class="module">
-		<h2><?=__('Tatoeba ?',true); ?></h2>
-		<p><?=__('Tatoeba means "for example" in Japanese. The aim is not to implement a new multilingual dictionnary, but a corpus of sentence emphasizing use of different words',true); ?><a href=""><?=__('Details...',true)?></a></p>
+		<h2><?php echo __('Tatoeba ?',true); ?></h2>
+		<p><?php echo __('Tatoeba means "for example" in Japanese. The aim is not to implement a new multilingual dictionnary, but a corpus of sentence emphasizing use of different words',true); ?> <a href=""><?php echo __('Details...',true)?></a></p>
 	</div>
 	<div class="module">
 		<h2><?=__('News',true); ?></h2>
-		
+
 	</div>
 </div>
 
 <div id="main_content">
-	
+
 	<div class="main_module">
-		<h2><?=__('What is it ?',true); ?></h2>
-		<p><?=__('Tatoeba is a free project which aims to establish a patrimony by gathering people from all over the world around one of the greatest inventions of mankind : language.',true); ?><a href=""><?=__('Details...',true)?></a></p>
+		<h2><?php echo __('What is it ?',true); ?></h2>
+		<p><?php echo __('Tatoeba is a free project which aims to establish a patrimony by gathering people from all over the world around one of the greatest inventions of mankind : language.',true); ?> <a href=""><?php echo __('Details...',true)?></a></p>
 	</div>
-	
+
 	<div class="module">
 		<h2><?php __('Random sentence'); ?> <span class="annexe">(<?='<a id="showRandom" lang='.$lang.'>' . __('show another ', true) . '</a> ';?><?=$form->select("randomLangChoice", $langArray, $selectedLanguage, null, false); ?>)</span></h2>
 		<div class="random_sentences_set"></div>
 	</div>
-	
+
 	<div class="module">
 		<h2><?php __('Latest contributions'); ?> <span class="annexe"><?php $tooltip->displayLogsColors(); ?> (<?=$html->link(__('show more...',true), array("controller"=>"contributions")); ?>) (<?=$html->link(__('show activity timeline',true), array("controller"=>"contributions", "action"=>"activity_timeline")); ?>)</span></h2>
 		<?=$this->element('latest_contributions'); ?>
 	</div>
-	
+
 	<div class="module">
 		<h2><?php __('Latest comments'); ?> <span class="annexe">(<?=$html->link(__('show more...',true), array("controller"=>"sentence_comments")); ?>)</span></h2>
 		<?=$this->element('latest_sentence_comments'); ?>

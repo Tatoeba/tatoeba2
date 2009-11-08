@@ -24,26 +24,35 @@
 	right:0;
 	top:24px;
 	z-index:1000;
-	width:270px;
-	padding:3px;
+	min-width:270px;
+	padding:3px 3px 5px 5px;
 	background:#414141 url('../img/alert-overlay.png') repeat-x;
 	color:#fff;
 }
 	#UserLoginForm fieldset	{
 		border:0;
+		text-align:right;
 	}
 	#UserLoginForm label {
-		width:120px;
-		display:block;
-		float:left;
 		text-align:right;
 	}
 		#UserLoginForm input[type='text'], #UserLoginForm input[type='password'] {
-			border:1px solid #ccc;
+			height:15px;
 			width:120px;
-			height:14px;
+			background: #fff url('../img/alert-overlay.png') repeat-x;
+			display: inline-block;
+			padding:2px 0 0 3px;
+			color: #414141;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+			-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+			border:0;
+			border-bottom: 1px solid rgba(0,0,0,0.25);
+			font-size:0.9em;
 		}
 		#UserLoginForm input[type='submit'] {
+			width:120px;
 			background: #222 url('../img/alert-overlay.png') repeat-x;
 			display: inline-block;
 			padding: 1px 10px 6px;
@@ -57,7 +66,7 @@
 			border:0;
 			border-bottom: 1px solid rgba(0,0,0,0.25);
 			position: relative;
-			font-size:11px;
+			font-size:0.9em;
 		}
 			#UserLoginForm input[type='submit']:hover{
 				background-color:#111;
