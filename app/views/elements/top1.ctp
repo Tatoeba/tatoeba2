@@ -130,26 +130,6 @@ $menuElements = array(
 	//		echo ' | ';
 	//	}
 		?>
-
-
-	<form id="UserLoginForm" method="post" action="/eng/users/login" style="display:none;">
-	<fieldset style="display:none;">
-		<input type="hidden" name="_method" value="POST" />
-	</fieldset>
-	<fieldset>
-		<?php echo $html->link(__('Password forgotten?',true), array(
-												"controller" => "users",
-												"action" => "new_password"
-			)); ?> -
-		<label for="UserRememberMe" class="notInBlackBand"><?php echo __('Remember me', true); ?></label>
-		<input type="checkbox" name="data[User][rememberMe]" value="1" id="UserRememberMe" />
-		<label for="UserUsername"><?php echo __('Login:', true); ?> </label><input name="data[User][username]" type="text" maxlength="20" value="" id="UserUsername" />
-		<label for="UserPassword"><?php echo __('Pass:', true); ?> </label><input type="password" name="data[User][password]" value="" id="UserPassword" />
-		<input type="hidden" name="data[User][rememberMe]" value="0" id="UserRememberMe_" />
-		<input type="submit" value="<?php echo __('Log in', true); ?>" />
-	</fieldset>
-	</form>
-
 </div>
 
 <div id="languageChooser">

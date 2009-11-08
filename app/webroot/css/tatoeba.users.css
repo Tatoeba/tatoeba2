@@ -19,48 +19,55 @@
 */
 
 /* Login Form */
-
-/*form#UserLoginForm{
-	padding: 0px 10px;
-	margin: 0px 10px;
-}
-
-form#UserLoginForm div.input{
-	margin: 0px 0px 5px 0px;
-}
-
-form#UserLoginForm div.input input{
-	display: block;
-	width: 150px;
-}
-
-form#UserLoginForm .submit{
-	margin: 10px 0px 0px 5px;
-}
-
-form#UserLoginForm div.submit input{
-}
-
-#PasswordForgotten{
-	margin: 5px 35px;
-}*/
-#UserLoginForm, #UserLoginForm fieldset, #UserLoginForm label, form#UserLoginForm a {
-	margin:0;
-	padding:0;
+#UserLoginForm {
+	position:absolute;
+	right:0;
+	top:24px;
+	z-index:1000;
+	width:270px;
+	padding:3px;
+	background:#414141 url('../img/alert-overlay.png') repeat-x;
 	color:#fff;
 }
 	#UserLoginForm fieldset	{
 		border:0;
+	}
+	#UserLoginForm label {
+		width:120px;
+		display:block;
+		float:left;
 		text-align:right;
-		font-size:0.75em;
-		width:100%;
 	}
 		#UserLoginForm input[type='text'], #UserLoginForm input[type='password'] {
 			border:1px solid #ccc;
-			width:100px;
+			width:120px;
 			height:14px;
-			margin:0;
 		}
+		#UserLoginForm input[type='submit'] {
+			background: #222 url('../img/alert-overlay.png') repeat-x;
+			display: inline-block;
+			padding: 1px 10px 6px;
+			color: #fff;
+			text-decoration: none;
+			-moz-border-radius: 5px;
+			-webkit-border-radius: 5px;
+			-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+			-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+			text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+			border:0;
+			border-bottom: 1px solid rgba(0,0,0,0.25);
+			position: relative;
+			font-size:11px;
+		}
+			#UserLoginForm input[type='submit']:hover{
+				background-color:#111;
+				color:#fff;
+			}
+			#UserLoginForm input[type='submit']:active {top:1px;}
+	#UserLoginForm p {
+		margin:0;
+		padding:0;
+	}
 
 /* REGISTER */
 
