@@ -1,3 +1,42 @@
+#main_content textarea, #main_content input[type=text], #main_content input[type=password] {
+	padding:3px;
+	margin:1px 0;
+	border:1px solid #649B3D;
+	background: #fff;
+}
+
+#main_content input[type=submit] {
+	background:#649B3D;
+	color:#fff;
+	border:1px solid #649B3D;
+}
+
+#main_content textarea:focus, #main_content input[type=text]:focus, #main_content input[type=password]:focus {
+	outline:2px solid #ffa;
+}
+
+#main_content label {
+	cursor:pointer;
+}
+
+#flashMessage {
+	background:#FDF9F9;
+	border:#E7BABA;
+	color:#C25252;
+	padding:3px;
+	margin:3px 0;
+}
+
+.message {
+	
+}
+
+div.input label {
+	display:block;
+	float:left;
+	width:160px;
+}
+
 span.edit_link {
 	cursor:pointer;
 	float:right;
@@ -19,6 +58,8 @@ div.toolbox div.t {
 div.toolbox div.t span.x {
 	cursor:pointer;
 	float:right;
+	color:#f00;
+	background:transparent;
 }
 
 div.toolbox div.c {
@@ -30,6 +71,31 @@ div.toolbox div.c label {
 	width:60px;
 	text-align:right;
 	padding-right:3px;
+	margin-bottom:3px;
+}
+div.toolbox div.c input[type=text], div.toolbox div.c input[type=password] {
+	width:180px;
+}
+
+div.toolbox div.c textarea {
+	width:320px;
+	height:60px;
+}
+
+/*
+	TODO: add :hover and :focus for more usability issues
+*/
+div.toolbox div.c input {
+	padding:1px;
+	padding-right:3px;
+	margin-bottom:3px;
+	border:1px solid #649B3D;
+	background: transparent;
+}
+
+div.toolbox div.c input[type=submit] {
+	background:#649B3D;
+	color:#fff;
 }
 
 div.toolbox div.c .submit {

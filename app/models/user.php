@@ -66,7 +66,8 @@ class User extends AppModel {
 			'conditions' => '',
 			'fields' => '',
 			'order' => ''
-		)
+		),
+		'Country'
 	);
 	
 	var $hasMany = array(
