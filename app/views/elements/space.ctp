@@ -22,8 +22,8 @@ if (isset($this->params['lang'])) {
 	$lang = $this->params['lang'];
 }
 ?>
+<strong><?php echo $session->read('Auth.User.username'); ?> : </strong>
 <ul>
-	<span><strong><?php echo $session->read('Auth.User.username'); ?> : </strong></span>
 	<li><?php echo $html->link(__('Inbox', true), array('controller' => 'private_messages', 'action' => 'folder', 'Inbox')); ?></li>
 	<li><?php echo $html->link(__('Comments',true), array('controller' => 'sentence_comments', 'action' => 'index')); ?></li>
 	<li><?php echo $html->link(__('Log out',true), array('controller' => 'users', 'action' => 'logout')); ?></li>

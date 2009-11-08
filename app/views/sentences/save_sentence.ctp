@@ -18,36 +18,23 @@
 */
 ?>
 
-<div id="annexe_content">
-	<div class="module">
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
-		?>
-	</div>
-
-</div>
-
 <div id="main_content">
 	<div class="module">
 		<?php
 		if(isset($sentence_text)){
-			
+
 			echo rtrim($sentence_text);
-			
+
 		}elseif(isset($sentence)){
-		
+
 			echo '<div class="sentences_set">';
 			// sentence menu (translate, edit, comment, etc)
 			$sentences->displayMenu($sentence['Sentence']['id'], $specialOptions);
-			
+
 			// sentence and translations
 			$sentences->displayForTranslation($sentence['Sentence'], array());
 			echo '</div>';
-			
+
 		}
 		?>
 	</div>

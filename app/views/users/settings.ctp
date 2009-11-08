@@ -19,23 +19,10 @@
 */
 ?>
 
-<div id="annexe_content">
-	<div class="module">
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
-		?>
-	</div>
-
-</div>
-
 <div id="main_content">
 	<div class="module">
 		<h2>Settings</h2>
-		
+
 		<h3><?php __('Change password'); ?></h3>
 		<?php
 		echo $form->create('User', array("action" => "save_password"));
@@ -44,7 +31,7 @@
 		echo $form->input('new_password2/passwd', array("label" => __('New password again',true)));
 		echo $form->end(__('Save',true));
 		?>
-		
+
 		<h3><?php __('Change email'); ?></h3>
 		<?php
 		echo '</h2>';
@@ -52,7 +39,7 @@
 		echo $form->input('email', array("label" => __('Email',true), "value" => $user['User']['email']));
 		echo $form->end(__('Save',true));
 		?>
-		
+
 		<h3><?php __('Change options'); ?></h3>
 		<?php
 		echo $form->create('User', array("action" => "save_options"));
@@ -61,7 +48,7 @@
 		}else{
 			$options = null;
 		}
-		echo $form->checkbox('send_notifications', $options); 
+		echo $form->checkbox('send_notifications', $options);
 		echo '<label for="UserSendNotifications">' . __('Send me notification emails', true) . '</label>';
 		echo $form->end(__('Save',true));
 		?>

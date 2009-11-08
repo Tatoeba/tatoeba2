@@ -20,7 +20,7 @@
 
 /* Login Form */
 
-form#UserLoginForm{
+/*form#UserLoginForm{
 	padding: 0px 10px;
 	margin: 0px 10px;
 }
@@ -43,7 +43,24 @@ form#UserLoginForm div.submit input{
 
 #PasswordForgotten{
 	margin: 5px 35px;
+}*/
+#UserLoginForm, #UserLoginForm fieldset, #UserLoginForm label, form#UserLoginForm a {
+	margin:0;
+	padding:0;
+	color:#fff;
 }
+	#UserLoginForm fieldset	{
+		border:0;
+		text-align:right;
+		font-size:0.75em;
+		width:100%;
+	}
+		#UserLoginForm input[type='text'], #UserLoginForm input[type='password'] {
+			border:1px solid #ccc;
+			width:100px;
+			height:14px;
+			margin:0;
+		}
 
 /* REGISTER */
 
@@ -57,7 +74,7 @@ form#UserLoginForm div.submit input{
 }
 
 #UserRegisterForm img, #UserRegisterForm .submit{
-	
+
 }
 
 #UserRegisterForm .submit input{
@@ -113,7 +130,7 @@ form#UserLoginForm div.submit input{
 	width: 200px;
 }
 
-/* USER MENU 
+/* USER MENU
 #UserMenu{
 	float:right;
 	font-size: 15px;
@@ -140,7 +157,7 @@ margin-bottom: 20px;
 }
 
 .users th a {
-	color:#257D0C;	
+	color:#257D0C;
 }
 
 .users td{

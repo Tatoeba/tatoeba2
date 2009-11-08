@@ -22,34 +22,25 @@
 <div id="annexe_content">
 	<div class="module">
 		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
-		?>
-	</div>
-	<div class="module">
-		<?php
 		echo '<h2>';
 		__('Comments');
 		echo ' ';
 		$tooltip->display(__('If you see any mistake, don\'t hesitate to post a comment about it!',true));
 		echo '</h2>';
-		
+
 		echo '<a name="comments"></a>';
 		echo '<div class="comments">';
 		if(count($sentence['SentenceComment']) > 0){
 			foreach($sentence['SentenceComment'] as $comment){
 				$comments->displayComment(
 					$comment['User']['id'],
-					$comment['User']['username'], 
-					$comment['created'], 
+					$comment['User']['username'],
+					$comment['created'],
 					$comment['text']
 				);
 			}
 		}else{
-			echo '<em>' . __('There are no comments for now.', true) .'</em>';	
+			echo '<em>' . __('There are no comments for now.', true) .'</em>';
 		}
 		echo '</div>';
 		?>
@@ -71,22 +62,22 @@
 		<?php
 		if($sentence != null){
 			$this->pageTitle = __('Example sentence : ',true) . $sentence['Sentence']['text'];
-		
+
 			// navigation (previous, random, next)
 			$navigation->displaySentenceNavigation();
-			
+
 			echo '<div class="sentences_set">';
 				// sentence menu (translate, edit, comment, etc)
 				$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
 				$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
-		
+
 				// sentence and translations
 				$t = (isset($sentence['Translation'])) ? $sentence['Translation'] : array();
 				$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
 				$sentences->displayGroup($sentence['Sentence'], $t, $sentence['User']);
 			echo '</div>';
-			
-			//$tooltip->displayAdoptTooltip(); 
+
+			//$tooltip->displayAdoptTooltip();
 			echo '<script type="text/javascript">
 			$(document).ready(function(){
 				$(".translations").html("<div class=\"loading\">'.addslashes($html->image('loading.gif')).'</div>");
@@ -96,13 +87,13 @@
 			?>
 			<p class="more_link translateLink"><a><?=__('Add a translation',true); ?></a></p>
 			<?
-			
+
 		}else{
 			$this->pageTitle = __('Sentence does not exist : ', true) . $this->params['pass'][0];
-			
+
 			// navigation (previous, random, next)
 			$navigation->displaySentenceNavigation('random');
-			
+
 			echo '<div class="error">';
 			__('There is no sentence with id ');
 			echo $this->params['pass'][0];
@@ -113,7 +104,7 @@
 	<div class="module">
 		<?php
 		echo '<h2>';
-		__('Logs'); 
+		__('Logs');
 		echo ' ';
 		$tooltip->displayLogsColors();
 		echo '</h2>';

@@ -18,26 +18,13 @@
 */
 ?>
 
-<div id="annexe_content">
-	<div class="module">
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
-		?>
-	</div>
-
-</div>
-
 <div id="main_content">
 	<div class="module">
 		<?php
 		echo '<h2>';
 		__('Contact');
 		echo '</h2>';
-		
+
 		__('If you would like to contact the author of this project (in other words me), feel free to drop an email at : ');
 		echo ' trang.dictionary.project@gmail.com';
 		?>

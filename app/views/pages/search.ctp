@@ -18,26 +18,13 @@
 */
 ?>
 
-<div id="annexe_content">
-	<div class="module">
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
-		?>
-	</div>
-
-</div>
-
 <div id="main_content">
 	<div class="module">
 		<?php
 		echo '<h2>';
 		__('Examples of search');
 		echo '</h2>';
-		
+
 		echo '<h4>';
 		__('Search one word : ');
 		echo $html->link(
@@ -51,8 +38,8 @@
 		__('This will search for sentences containing the word "example".');
 		echo '<br/>';
 		__('Note that if you specify the language, the search will not always be an exact search. More concretely, if you are searching "thinking", and do NOT specify any language, it will return sentences with EXACTLY the word "thinking". But if you specify that the language is English, it will also return sentences with "thinks" and "thinking".');
-		
-		
+
+
 		echo '<h4>';
 		__('Using quotes : ');
 		echo $html->link(
@@ -64,10 +51,10 @@
 			));
 		echo '</h4>';
 		__('This will search for sentences containing "I would like". If you remove the quotes, see below.');
-		
-		
+
+
 		echo '<h4>';
-		__('Search with OR operator : ');	
+		__('Search with OR operator : ');
 		echo $html->link(
 			'I would like',
 			array(
@@ -78,7 +65,7 @@
 		echo '</h4>';
 		__('This will search for sentences containing "would" or "like". ');
 		__('Words with <strong>3 characters or less are ignored</strong> if they are not inside of quotes, which is why "I" is not taken into account here.');
-		
+
 		echo '<h4>';
 		__('Search with AND operator : ');
 		echo $html->link(
@@ -88,11 +75,11 @@
 				"action" => "search",
 				"?query=".urlencode("+here +there")
 			));
-		echo '</h4>';	
+		echo '</h4>';
 		__('This will search for sentences containing "here" and "there".');
-			
+
 		echo '<h4>';
-		__('Search with NOT operator : ');	
+		__('Search with NOT operator : ');
 		echo $html->link(
 			'here -there',
 			array(
@@ -102,7 +89,7 @@
 			));
 		echo '</h4>';
 		__('This will search for sentences containing "here" but not "there".');
-		
+
 		echo '<h4>';
 		__('Grouping : ');
 		echo $html->link(

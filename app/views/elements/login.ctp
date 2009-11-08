@@ -1,4 +1,3 @@
-<h2>Mon espace</h2>
 <?php
 /*
     Tatoeba Project, free collaborativ creation of languages corpuses project
@@ -17,14 +16,45 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+// echo '<h2>Mon espace</h2>';
+
 if  ($session->check('Message.auth')) $session->flash('auth');
 
-	echo $form->create('User', array('action' => 'login'));
+?>
+
+<script type="text/javascript">
+<!--
+	var status = true;
+	function displayLoginForm(){
+		if(status){
+			document.getElementById('UserLoginForm').style.display = 'block';
+			document.getElementById('login_pseudo_link').innerHTML = '<?php echo __('Close', true); ?>';
+			status = false;
+		}else{
+			document.getElementById('UserLoginForm').style.display = 'none';
+			document.getElementById('login_pseudo_link').innerHTML = '<?php echo __('Login', true); ?>';
+			status = true;
+		}
+	}
+-->
+</script>
+
+
+<ul id="UserLoginLinkList">
+	<li><?php echo $html->link(__('Join Tatoeba community !',true), array(
+											"controller" => "users",
+											"action" => "register"
+		)); ?></li>
+	<li onclick="javascript:displayLoginForm();" id="login_pseudo_link"><?php echo __('Login', true); ?></li>
+</ul>
+
+	<?php /*echo $form->create('User', array('action' => 'login'));
 	echo $form->input('username', array('label' => __('Username : ',true)));
 	echo $form->input('password', array('label' => __('Password : ',true)));
-	echo $form->checkbox('rememberMe'); 
+	echo $form->checkbox('rememberMe');
 	echo '<label for="UserRememberMe">'; __('Remember me'); echo '</label>';
-	echo '<br/>';
+	//echo '<br/>';
 	echo $form->end(__('Log in',true));
 
 	echo '<div id="PasswordForgotten">';
@@ -51,3 +81,4 @@ if  ($session->check('Message.auth')) $session->flash('auth');
 		));
 	?>
 </p>
+*/ ?>

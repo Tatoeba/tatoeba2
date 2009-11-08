@@ -18,32 +18,19 @@
 */
 ?>
 
-<div id="annexe_content">
-	<div class="module">
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
-		?>
-	</div>
-
-</div>
-
 <div id="main_content">
 	<div class="module">
 		<?php
 		echo '<h2>';
 		__('Unknown language');
 		echo '</h2>';
-		
-		
+
+
 		echo '<p>';
 		__('The language of the following sentences could not be detected, you have to specify it manually. ');
 		__('If your language is not in the list, don\'t hesitate to contact me : trang.dictionary.project@gmail.com.');
 		echo '</p>';
-		
+
 		if(count($unknownLangSentences) > 0){
 			$i = 0;
 			$langArray = $languages->languagesArray();

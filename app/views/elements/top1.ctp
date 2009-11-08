@@ -16,7 +16,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-$onlineVisitors = $this->requestAction('/visitors/online');
 $lang = 'eng';
 if (isset($this->params['lang'])) {
 	Configure::write('Config.language',  $this->params['lang']);
@@ -28,7 +27,7 @@ $menuElements = array(
 	,__('Browse',true) 		=> array("controller" => "sentences", "action" => "show", "random")
 	,__('Lists',true) 		=> array("controller" => "sentences_lists", "action" => "index")
 	,__('Wall',true) 		=> array("controller" => "wall", "action" => "index")
-	,__('Conversations',true) 		=> array("controller" => "conversations", "action" => "index")
+	//,__('Conversations',true) 		=> array("controller" => "conversations", "action" => "index")
 //	,__('Search',true) 		=> array("controller" => "sentences", "action" => "search")
 	,__('Contribute',true) 	=> array("controller" => "pages", "action" => "contribute")
 	,__('Members',true)		=> array("controller" => "users", "action" => "all")
@@ -133,17 +132,31 @@ $menuElements = array(
 		?>
 
 
+	<form id="UserLoginForm" method="post" action="/eng/users/login" style="display:none;">
+	<fieldset style="display:none;">
+		<input type="hidden" name="_method" value="POST" />
+	</fieldset>
+	<fieldset>
+		<?php echo $html->link(__('Password forgotten?',true), array(
+												"controller" => "users",
+												"action" => "new_password"
+			)); ?> -
+		<label for="UserRememberMe" class="notInBlackBand"><?php echo __('Remember me', true); ?></label>
+		<input type="checkbox" name="data[User][rememberMe]" value="1" id="UserRememberMe" />
+		<label for="UserUsername"><?php echo __('Login:', true); ?> </label><input name="data[User][username]" type="text" maxlength="20" value="" id="UserUsername" />
+		<label for="UserPassword"><?php echo __('Pass:', true); ?> </label><input type="password" name="data[User][password]" value="" id="UserPassword" />
+		<input type="hidden" name="data[User][rememberMe]" value="0" id="UserRememberMe_" />
+		<input type="submit" value="<?php echo __('Log in', true); ?>" />
+	</fieldset>
+	</form>
+
 </div>
 
-<div id="visitorCounter">
+<div id="languageChooser">
 	<?php
-	echo __('Online visitor(s) : ');
-	echo $onlineVisitors;
-
 	if($session->read('User.id')){
 		$newMessages = $this->requestAction('/private_messages/check');
 	}else $newMessages = 0;
-
 
 	__('Language(s) : ');
 		$languages = array(

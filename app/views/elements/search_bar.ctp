@@ -16,8 +16,8 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-if (isset($this->params['lang'])) { 
-	Configure::write('Config.language',  $this->params['lang']); 
+if (isset($this->params['lang'])) {
+	Configure::write('Config.language',  $this->params['lang']);
 }
 ?>
 <div class="search_bar_container">
@@ -52,7 +52,7 @@ echo $form->select('from', $languages, $selectedLanguageFrom);
 echo '</div>';
 
 	echo '<span id="into">&raquo;</span>';
-	
+
 echo '<div class="select">';
 echo '<label>';
 __('To');
@@ -61,7 +61,7 @@ echo $form->select('to', $languages, $selectedLanguageTo);
 echo '</div>';
 
 echo $form->input('query', array(
-	"label" => __('Example sentences with the words :',true), 
+	"label" => __('Example sentences with the words :',true),
 	"value" => $session->read('search_query')));
 
 echo $form->end(__('search',true));

@@ -17,13 +17,16 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-?>
-<?php
-if (isset($this->params['lang'])) { 
-	Configure::write('Config.language',  $this->params['lang']); 
+$onlineVisitors = $this->requestAction('/visitors/online');
+
+if (isset($this->params['lang'])) {
+	Configure::write('Config.language',  $this->params['lang']);
 }
 
 echo '<ul>';
+	echo '<li>';
+	echo __('Online visitor(s) : ') . $onlineVisitors;
+	echo '</li>';
 	echo '<li>';
 	echo $html->link(__('Contact me', true), array("controller" => 'pages', "action" => 'contact'));
 	echo '</li>';

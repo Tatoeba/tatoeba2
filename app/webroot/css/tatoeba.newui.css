@@ -45,7 +45,7 @@ table {
 
 div#top_menu {
 	min-width:950px;
-	height:24px;
+	min-height:24px;
 	padding:0 6px 0 14px;
 	border-bottom:1px dotted #CCCCCC;
 	background-color:#414141;
@@ -53,16 +53,14 @@ div#top_menu {
 }
 
 
-div#top_menu a {
+div#top_menu a, div#top_menu li#login_pseudo_link {
 	color:#FFFFFF;
+	cursor:pointer;
 }
 
-div#top_menu ul li a:hover {
+div#top_menu ul li a:hover, div#top_menu li#login_pseudo_link:hover {
 	color:#FB6B10;
-}
-
-div#top_menu form {
-	display:inline;
+	text-decoration:underline;
 }
 
 div#top_menu input, div#top_menu select {
@@ -105,10 +103,13 @@ div#navigation_menu ul li a.whats_new {
 
 /* User Menu : Interface Language Selector */
 
-div#visitorCounter {
+div#languageChooser {
 	float:right;
-	font-size:0.8em;	
+	font-size:0.8em;
 }
+	form#AddForm, select#lang {
+		display:inline;
+	}
 
 div#user_menu {
 	float:right;
@@ -123,16 +124,13 @@ div#user_menu span strong{
 div#user_menu ul {
 	margin:0;
 	padding:0;
-	list-style-type:none;	
+	list-style-type:none;
+	display:inline;
 }
 
 div#user_menu ul li {
 	display:inline;
 	margin:0 0 0 5px;
-}
-
-div#user_menu form {
-	display:inline;
 }
 
 div#user_menu select {
@@ -152,7 +150,8 @@ div#user_menu select#lang {
 
 div.search_bar_container{
 	position:relative;
-	margin-right: 270px;
+	/*margin-right: 270px;*/
+	width:80%;
 }
 
 div.search_bar_left, div.search_bar_right{
@@ -238,8 +237,8 @@ div.search_bar div, div.search_bar span#into{
 #SentenceSearchForm input#SentenceQuery, div.search_bar select, div.search_bar div.submit input{
 	width: 99%;
 }
-	
-	
+
+
 div.search_bar div.submit input{
 height: 24px; /* because with Chinese interface the height is too big */
 padding-bottom: 2px;
@@ -333,13 +332,13 @@ div.main_module h2 {
 
 div#annexe_content div.module ul {
 	margin:5px 0px;
-	padding-left:20px;	
+	padding-left:20px;
 }
 
 div#annexe_content div.module ul li {
 	list-style-type:none;
 }
-	
+
 /* Footer */
 
 /*
@@ -391,3 +390,4 @@ p.more_link {
 div.module ul.menu .selected a {
 	color:#257D0C;
 }
+

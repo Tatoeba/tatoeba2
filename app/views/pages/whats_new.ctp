@@ -21,15 +21,6 @@ $this->pageTitle = 'Tatoeba : What\'s new';
 
 <div id="annexe_content">
 	<div class="module">
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
-		?>
-	</div>
-	<div class="module">
 		<p id="whatsNew">
 		<?php
 		__('You can follow the evolution of the project on ');
@@ -42,8 +33,8 @@ $this->pageTitle = 'Tatoeba : What\'s new';
 <div id="main_content">
 	<div class="module">
 		<h2><?php __('What\'s new'); ?></h2>
-		
-		
+
+
 		<p>
 		<?php
 		// retrieve data...
@@ -52,10 +43,10 @@ $this->pageTitle = 'Tatoeba : What\'s new';
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		$result = curl_exec ($curl);
 		curl_close ($curl);
-		
+
 		// parse xml
 		$xml = simplexml_load_string($result);
-		
+
 		$fieldsWeWant = array('created_at', 'text');
 		foreach($xml->children() as $child){ // <status>
 			echo '<div class="twit">';
@@ -71,14 +62,14 @@ $this->pageTitle = 'Tatoeba : What\'s new';
 		}
 		?>
 		</p>
-		
+
 		<hr/>
 		<pre>
 		Below is the description of Tatoeba and its features on July 12th, 2009.
 		</pre>
-		
+
 		<h2>Quick description of the sections in the menu</h2>
-		
+
 		<h4>HOME</h4>
 		<ul>
 			<li>Displays number of sentences in the five most important languages</li>
@@ -97,7 +88,7 @@ $this->pageTitle = 'Tatoeba : What\'s new';
 				<li>Clicking on the username of the member will lead to the information page of that user.</li>
 			</ul>
 		</ul>
-			
+
 		<h4>BROWSE</h4>
 		<ul>
 			<li>Displays a random sentence if we get there through the "Browse" link in the menu.</li>
@@ -108,7 +99,7 @@ $this->pageTitle = 'Tatoeba : What\'s new';
 				<li>It's possible to go to a specific sentence by submitting its id next to "Show sentence nº".</li>
 			</ul>
 		</ul>
-		
+
 		<h4>SEARCH</h4>
 		<ul>
 			<li>Displays explanations about the search.</li>
@@ -116,7 +107,7 @@ $this->pageTitle = 'Tatoeba : What\'s new';
 				<li>Clicking on each example will trigger the search in question.</li>
 			</ul>
 		</ul>
-		
+
 		<h4>CONTRIBUTE</h4>
 		<ul>
 			<li>Enables members to add a new sentence.</li>
@@ -129,12 +120,12 @@ $this->pageTitle = 'Tatoeba : What\'s new';
 				<li>Clicking on "show another" will display another sentence to translate.</li>
 			</ul>
 		</ul>
-		
+
 		<h4>COMMENTS</h4>
 		<ul>
 			<li>Displays the last 10 comments in each language.</li>
 		</ul>
-		
+
 		<h4>MEMBERS</h4>
 		<ul>
 			<li>Displays the list of the members of Tatoeba Project, with the date since when they are members.</li>
@@ -145,27 +136,27 @@ $this->pageTitle = 'Tatoeba : What\'s new';
 				<li>Clicking on "all" will show the whole list.</li>
 			</ul>
 		</ul>
-		
+
 		<h2>Other pages</h2>
-		
+
 		<h4>Edit my information</h4>
 		<ul>
 			<li>Users can change their email and password.</li>
 		</ul>
-		
+
 		<h4>Romaji & Furigana</h4>
 		<ul>
 			<li>Converts Japanese text into romaji or hiragana.</li>
 		</ul>
-		
+
 		<h4>Downloads</h4>
 		<ul>
 			<li>Anyone can download the files with the sentences. It hasn't been updated for a while though...</li>
 		</ul>
-		
-		
+
+
 		<h2>Summary of what you can do...</h2>
-		
+
 		<ul>
 			<li>Browse sentences</li>
 			<ul>
@@ -173,29 +164,29 @@ $this->pageTitle = 'Tatoeba : What\'s new';
 				<li>You can browse by id from the "Browse" section.</li>
 				<li>Or browse randomly from the homepage and the "Browse" section.</li>
 			</ul>
-		
+
 			<li>Search sentences</li>
 			<ul>
 				<li>You can search sentences from the search bar, which is always visible.</li>
 				<li>You can use quotes and write logic expressions in the search query.</li>
 			</ul>
-				
+
 			<li>Add sentences</li>
 			<ul>
 				<li>You can add your own sentences from the "Contribution" section.</li>
 			</ul>
-		
+
 			<li>Delete sentences</li>
 			<ul>
 				<li>Only the admin can delete sentences. If you'd like to delete a sentence, you can only contact the admin.</li>
 			</ul>
-				
+
 			<li>Translate sentences</li>
 			<ul>
 				<li>Sentences can be translated from any "sentences box", by clicking on the "Translate" link.</li>
 				<li>Translation is handled with AJAX.</li>
 			</ul>
-				
+
 			<li>Modify sentences</li>
 			<ul>
 				<li>Only the owner and the admin can modify the sentences.</li>
@@ -203,21 +194,21 @@ $this->pageTitle = 'Tatoeba : What\'s new';
 				<li>Edit in place generally does not work with translations, only with the main sentences.</li>
 				<li>However, it is possible to edit a translation that you have just added (useful if you've noticed a mistake right after saving your translation).</li>
 			</ul>
-				
+
 			<li>Adopt sentences</li>
 			<ul>
 				<li>There are many sentences in Tatoeba that do not have an owner. These sentencse can be adopted.</li>
 				<li>If you notice a mistake in a sentence that is not owned by anyone, you can adopt the sentence, and afterwards modify it.</li>
 				<li>You can also adopt sentences that are correct. Adopting is also a way to mark a sentence as correct.</li>
 			</ul>
-				
+
 			<li>Post comments</li>
 			<ul>
 				<li>You can post comments about a specific sentence. This is useful when for instance you don't understand it and would like more explanations. But of course you can always add explanations for sentences that you understand, in order to help people who learn the language. You can also post a comment if you saw a mistake but are not the owner of the sentence, or if you are not sure about how to correct it.</li>
 				<li>The owner of the sentence will receive a notification by email every time someone posts a comment.</li>
 				<li>All the people who have participated to the thread will also receive a notification.</li>
 			</ul>
-				
+
 			<li>View logs & statistics</li>
 			<ul>
 				<li>Everytime a sentence is added, modified, or deleted, the action is logged.</li>

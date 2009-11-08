@@ -18,26 +18,13 @@
 */
 ?>
 
-<div id="annexe_content">
-	<div class="module">
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
-		?>
-	</div>
-
-</div>
-
 <div id="main_content">
 	<div class="module">
 		<?php
 		echo '<h1 class="contribute">';
 		__('How would you like to contribute?');
 		echo '</h1>';
-		
+
 		echo '<h2 class="add">';
 		__('Add your own sentences');
 		echo '</h2>';
@@ -48,14 +35,14 @@
 			echo $form->end('OK');
 			echo '</div>';
 		echo '</div>';
-		
-		
+
+
 		echo '<br/>';
-		
+
 		echo '<h2 class="translate">';
 		__('Translate existing sentences');
 		echo '</h2>';
-		
+
 		__('Choose the language you would like to translate from : ');
 		$langArray = $languages->languagesArray();
 		asort($langArray);

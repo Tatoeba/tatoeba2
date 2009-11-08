@@ -18,24 +18,10 @@
 */
 ?>
 
-
-<div id="annexe_content">
-	<div class="module">
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
-		?>
-	</div>
-
-</div>
-
 <div id="main_content">
 	<div class="module">
 		<h2><?=$paginator->counter(array('format' => __('Users (total %count%)', true))); ?></h2>
-		
+
 		<?php
 		$id = ($session->read('last_user_id') > 0) ? $session->read('last_user_id') : 1;
 		$navigation->displayUsersNavigation($id);
@@ -76,9 +62,9 @@
 			</tr>
 		<?php endforeach; ?>
 		</table>
-		
-		
-		
+
+
+
 		<div class="paging">
 		<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
 		<?php echo $paginator->numbers(array('separator' => ''));?>
