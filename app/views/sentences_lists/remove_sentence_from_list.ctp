@@ -18,7 +18,9 @@
 */
 
 if(isset($removed)){
-	__('sentence successfully removed from list');
+	echo '<em>';
+	__('Sentence successfully removed.');
+	echo '</em>';
 }else{
 	echo 'Uh oh, something wrong happened.';
 }

@@ -144,7 +144,7 @@ class NavigationHelper extends AppHelper{
 				__('all the lists',true), 
 				array(
 					"controller" => "sentences_lists",
-					"action" => "all"
+					"action" => "index"
 				)
 			);
 			echo '</li>';

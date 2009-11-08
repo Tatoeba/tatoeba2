@@ -22,6 +22,9 @@
 	
 <?php
 if(isset($myLists)){
+	$javascript->link('sentences_lists.edit_name.js', false);
+	$javascript->link('jquery.jeditable.js', false);
+
 	// Form to create a new list
 	echo '<div class="module">';
 		echo '<h2>';
@@ -34,38 +37,46 @@ if(isset($myLists)){
 	echo '</div>';
 	
 	// Lists of the user
-	echo $javascript->link('sentences_lists.edit_name.js', false);
-	echo $javascript->link('jquery.jeditable.js', false);
+
 	echo '<div class="module">';
 		echo '<h2>';
 		__('My lists');
 		echo '</h2>';
 		
-		echo '<ul>';
-		foreach($myLists as $myList){
-			echo '<li>';
-			echo '<span id="'.$myList['SentencesList']['id'].'" class="editable editableSentencesListName">';
-			echo $myList['SentencesList']['name'];
-			echo '</span>';
-			echo ', <em>' . $myList['User']['username'] . '</em> ';
+		if(count($myLists) > 0){		
+			echo '<div class="tips">';
+			__('You can change the name of the list by clicking on it.');
+			echo '</div>';
 			
-			echo '(';
-			echo $html->link(
-				__('show',true), 
-				array("controller" => "sentences_lists", "action" => "show", $myList['SentencesList']['id'])
-			);
-			echo ', ';
-			echo $html->link(
-				__('delete',true), 
-				array("controller" => "sentences_lists", "action" => "delete", $myList['SentencesList']['id']),
-				null,
-				__('Are you sure?',true)
-			);
-			echo ')';
-			echo '</li>';
+			echo '<ul class="sentencesLists">';
+			foreach($myLists as $myList){
+				echo '<li>';			
+				echo '<span id="'.$myList['SentencesList']['id'].'" class="listName editable editableSentencesListName">';
+				echo $myList['SentencesList']['name'];
+				echo '</span>';
+				echo ', <span class="username">' . $myList['User']['username'] . '</span> ';
+				
+				echo '[ ';
+				echo $html->link(
+					__('edit',true), 
+					array("controller" => "sentences_lists", "action" => "edit", $myList['SentencesList']['id'])
+				);
+				echo ', ';
+				echo $html->link(
+					__('delete',true), 
+					array("controller" => "sentences_lists", "action" => "delete", $myList['SentencesList']['id']),
+					null,
+					__('Are you sure?',true)
+				);
+				echo ' ] ';				
+				echo '</li>';
+			}
+			echo '</ul>';
+		}else{
+			__('You don\'t have any lists yet.');
 		}
-		echo '</ul>';
 	echo '</div>';
+
 }
 
 // All the lists
@@ -74,14 +85,21 @@ echo '<div class="module">';
 	echo __('All lists');
 	echo '</h2>';
 	
-	echo '<ul>';
+	echo '<ul class="sentencesLists">';
 	foreach($lists as $list){
-		echo '<li>';
-		echo $html->link(
-			$list['SentencesList']['name'], 
-			array("controller" => "sentences_lists", "action" => "show", $list['SentencesList']['id'])
-		);
-		echo ', <em>' . $list['User']['username'] . '</em>';
+		echo '<li>';			
+			echo '<span id="'.$list['SentencesList']['id'].'" class="listName">';
+			echo $list['SentencesList']['name'];
+			echo '</span>';
+			echo ', <span class="username">' . $list['User']['username'] . '</span> ';
+			
+			echo '[ ';
+			echo $html->link(
+				__('show',true), 
+				array("controller" => "sentences_lists", "action" => "show", $list['SentencesList']['id'])
+			);
+			echo ' ] ';
+
 		echo '</li>';
 	}
 	echo '</ul>';

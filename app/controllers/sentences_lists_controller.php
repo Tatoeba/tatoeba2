@@ -69,21 +69,36 @@ class SentencesListsController extends AppController{
 	
 	
 	/**
+	 * Edit list. From that page user can remove sentences from list, 
+	 * edit list name or delete list.
+	 */
+	function edit($id){ 
+		if(!$this->belongsToCurrentUser($id)){
+			$this->redirect(array("action" => "show"));
+		}else{
+			$this->SentencesList->id = $id;
+			$this->set('list', $this->SentencesList->read());
+		}
+	}
+	
+	
+	/**
 	 * Saves the new name of a list. 
 	 * Used in AJAX request from sentences_lists.edit_name.js
 	 */
 	function save_name(){
 		Configure::write('debug', 0);
-		if(isset($_POST['value']) AND isset($_POST['id'])){
-			$this->SentencesList->id = $_POST['id'];
-			$list['SentencesList']['name'] = $_POST['value'];
-			if($this->SentencesList->save($list)){
-				$this->set('result', $_POST['value']);
+		if($this->belongsToCurrentUser($_POST['id'])){
+			if(isset($_POST['value']) AND isset($_POST['id'])){
+				$this->SentencesList->id = $_POST['id'];
+				if($this->SentencesList->saveField('name', $_POST['value'])){
+					$this->set('result', $_POST['value']);
+				}else{
+					$this->set('result', 'error');
+				}
 			}else{
 				$this->set('result', 'error');
 			}
-		}else{
-			$this->set('result', 'error');
 		}
 	}
 	
@@ -92,22 +107,25 @@ class SentencesListsController extends AppController{
 	 * Delete list.
 	 */
 	function delete($listId){
-		$this->SentencesList->delete($listId);
+		if($this->belongsToCurrentUser($listId)){
+			$this->SentencesList->delete($listId);
+		}
 		$this->redirect(array("action" => "index"));
 	}
 	
 	/**
 	 * Add sentence to a list.
-	 * TODO : also check that user is actually the owner of the list.
 	 */
 	function add_sentence_to_list($sentenceId, $listId){
 		Configure::write('debug', 0);
 		$this->set('s', $sentenceId);
 		$this->set('l', $listId);
-		if($this->SentencesList->habtmAdd('Sentence' , $listId, $sentenceId)){
-			$this->set('listId', $listId);
-		}else{
-			$this->set('listId', 'error');
+		if($this->belongsToCurrentUser($listId)){
+			if($this->SentencesList->habtmAdd('Sentence' , $listId, $sentenceId)){
+				$this->set('listId', $listId);
+			}else{
+				$this->set('listId', 'error');
+			}
 		}
 	}
 	
@@ -117,30 +135,32 @@ class SentencesListsController extends AppController{
 	 */
 	function add_sentence_to_new_list($sentenceId, $listName){
 		Configure::write('debug', 0);
-		if($listName != ''){
-			$newList['SentencesList']['user_id'] = $this->Auth->user('id');
-			$newList['SentencesList']['name'] = $listName;
-			if($this->SentencesList->save($newList)){
-				$this->SentencesList->habtmAdd('Sentence', $this->SentencesList->id, $sentenceId);
-				$this->set('listId', $this->SentencesList->id);
+		if($this->belongsToCurrentUser($listId)){
+			if($listName != ''){
+				$newList['SentencesList']['user_id'] = $this->Auth->user('id');
+				$newList['SentencesList']['name'] = $listName;
+				if($this->SentencesList->save($newList)){
+					$this->SentencesList->habtmAdd('Sentence', $this->SentencesList->id, $sentenceId);
+					$this->set('listId', $this->SentencesList->id);
+				}else{
+					$this->set('listId', 'error');
+				}
 			}else{
 				$this->set('listId', 'error');
 			}
-		}else{
-			$this->set('listId', 'error');
 		}
 	}
 	
 	
 	/**
 	 * Remove sentence from a list.
-	 * TODO : check that user is actually owner of the list.
-	 * NOTE : it would be nice to have an "undo" for this action...
 	 */
 	function remove_sentence_from_list($sentenceId, $listId){
 		Configure::write('debug', 0);
-		if($this->SentencesList->habtmDelete('Sentence' , $listId, $sentenceId)){
-			$this->set('removed', true);
+		if($this->belongsToCurrentUser($listId)){
+			if($this->SentencesList->habtmDelete('Sentence' , $listId, $sentenceId)){
+				$this->set('removed', true);
+			}
 		}
 	}
 	
@@ -148,8 +168,8 @@ class SentencesListsController extends AppController{
 	/**
 	 * Displays the lists of a specific user.
 	 */
-	function of_user($user_id){
-		$lists = $this->SentencesList->findAllByUserId($user_id);
+	function of_user($userId){
+		$lists = $this->SentencesList->findAllByUserId($userId);
 		$this->set('lists', $lists);
 	}
 	
@@ -166,6 +186,20 @@ class SentencesListsController extends AppController{
 		);
 		//$this->set('lists', $lists);
 		return $lists;
+	}
+	
+	
+	/**
+	 * Check if list belongs to current user.
+	 */
+	function belongsToCurrentUser($listId){
+		$this->SentencesList->id = $listId;
+		$list = $this->SentencesList->read();
+		if($list['SentencesList']['user_id'] == $this->Auth->user('id')){
+			return true;
+		}else{
+			return false;
+		}
 	}
 	
 }

@@ -85,6 +85,25 @@ class SentencesHelper extends AppHelper {
 		echo '</div>';
 	}
 	
+	
+	/**
+	 * Display sentence in list.
+	 */
+	function displaySentenceInList($sentence) {		
+		// Sentence
+		echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="sentenceInList '.$sentence['lang'].'">';
+		echo $this->Html->link($sentence['text'], array("controller" => "sentences", "action" => "show", $sentence['id']));
+		echo '</span> ';
+		
+		if($sentence['lang'] == 'jp'){
+			$this->displayRomaji($sentence['text']);
+		}
+		if($sentence['lang'] == 'zh'){
+			$this->displayPinyin($sentence['text']);
+		}
+	}
+	
+	
 	/**
 	 * Diplay a sentence and its translations.
 	 */

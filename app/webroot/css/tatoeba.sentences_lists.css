@@ -24,3 +24,44 @@
 	margin: 10px;
 	width: 300px;
 }
+
+.sentencesLists li{
+	margin: 10px 0px;
+}
+
+ul.sentencesList{
+	list-style-type: none;
+	padding: 0px;
+	font-size: 1.5em;
+}
+
+.sentencesList li{
+	padding: 10px;
+	border-top: 1px dotted #989898;
+}
+
+.sentencesList .options{
+	float: right;
+}
+
+.sentencesLists .listName{
+	font-weight: bold;
+}
+
+.sentencesList .sentenceInList{
+	margin-right: 50px;
+}
+
+.sentencesLists .username{
+	color: #989898;
+}
+
+.deleteList{
+	float: right;
+}
+
+.deleteList a{
+	background: #656565;
+	color: #FFFFFF;
+	padding: 5px;
+}

@@ -21,7 +21,7 @@ $(document).ready(function() {
 		type      : 'text',
 		cancel    : 'Cancel',
 		submit    : 'OK',
-		indicator : '<img src="/img/loading.gif">',
+		indicator : '<img src="/img/loading-small.gif">',
 		tooltip   : 'Click to edit...',
 		cssclass  : 'editInPlaceForm'
 	});
