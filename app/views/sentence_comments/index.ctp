@@ -19,19 +19,6 @@
 
 ?>
 
-<div id="annexe_content">
-	<div class="module">
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
-		?>
-	</div>
-
-</div>
-
 <div id="main_content">
 	<div class="module">
 		<h2>Comments</h2>
@@ -42,7 +29,7 @@
 			}else{
 				echo '<h3>'.__('Other languages', true).'</h3>';
 			}
-			
+
 			if(count($commentsInLang) > 0){
 				echo '<table class="comments">';
 				foreach($commentsInLang as $comment){
@@ -60,17 +47,22 @@
 							echo '<em>'. __('sentences deleted', true) . '</em>';
 						}
 						echo '</td>';
-						
+
 						echo '<td class="dateAndUser" rowspan="2">';
 						echo $date->ago($comment['SentenceComment']['created']);
 						echo '<br/>';
 						echo $html->link(
-							$comment['User']['username'], 
-							array("controller" => "users", "action" => "show", $comment['User']['id'])	
+							$comment['User']['username'],
+							array("controller" => "users", "action" => "show", $comment['User']['id'])
+						);
+						echo '<br/>';
+						echo $html->link(
+							__('Contact this user', true),
+							array('controller' => 'privateMessages', 'action' => 'write', $comment['User']['username'])
 						);
 						echo '</td>';
-					echo '</tr>';	
-					
+					echo '</tr>';
+
 					echo '<tr>';
 						echo '<td class="commentPreview">';
 						echo nl2br($comments->clickableURL($comment['SentenceComment']['text']));

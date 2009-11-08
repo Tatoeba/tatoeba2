@@ -28,11 +28,11 @@ if  ($session->check('Message.auth')) $session->flash('auth');
 	var status = true;
 	function displayLoginForm(){
 		if(status){
-			document.getElementById('UserLoginForm').style.display = 'block';
+			document.getElementById('UserLoginForm_FromBar').style.display = 'block';
 			document.getElementById('login_pseudo_link').innerHTML = '<?php echo __('Close', true); ?>';
 			status = false;
 		}else{
-			document.getElementById('UserLoginForm').style.display = 'none';
+			document.getElementById('UserLoginForm_FromBar').style.display = 'none';
 			document.getElementById('login_pseudo_link').innerHTML = '<?php echo __('Login', true); ?>';
 			status = true;
 		}
@@ -82,7 +82,7 @@ if  ($session->check('Message.auth')) $session->flash('auth');
 	?>
 </p>
 */ ?>
-<form id="UserLoginForm" method="post" action="/eng/users/login" style="display:none;">
+<form id="UserLoginForm_FromBar" method="post" action="/eng/users/login" style="display:none;">
 	<fieldset style="display:none;">
 		<input type="hidden" name="_method" value="POST" />
 	</fieldset>

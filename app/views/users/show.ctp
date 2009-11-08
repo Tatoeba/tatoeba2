@@ -44,7 +44,8 @@ $this->pageTitle = __('Tatoeba user : ',true) . $user['User']['username'];
 		echo '</h2>';
 
 		echo '<div class="user" id="'.$user['User']['id'].'">';
-		__('Member since : ');
+		echo $html->link(__('Contact this user', true), array('controller' => 'privateMessages', 'action' => 'write', $user['User']['username']));
+		echo '<br/>' . __('Member since : ', true);
 		echo $date->ago($user['User']['since']);
 		echo '</div>';
 

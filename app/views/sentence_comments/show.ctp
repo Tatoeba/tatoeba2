@@ -18,72 +18,60 @@
 */
 ?>
 
-<div id="annexe_content">
-	<div class="module">
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
-		?>
-	</div>
-</div>
-
 <div id="main_content">
 	<div class="module">
 		<?php
 		// navigation (previous, random, next)
 		$navigation->displaySentenceNavigation();
-		
+
 		if($sentenceExists){
-			
+
 			$this->pageTitle = __('Comments on the sentence : ',true) . $sentence['Sentence']['text'];
-			
+
 			echo '<div class="sentences_set">';
 				$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
 				$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
-				
+
 				$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
 				$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
 			echo '</div>';
-			
+
 			echo '<div class="addComment">';
 			echo $html->link(
 				__('Add a comment',true),
 				array("controller" => "sentence_comments", "action" => "add", $sentence['Sentence']['id'])
 			);
 			echo '</div>';
-			
+
 		}else{
-			
+
 			$this->pageTitle = __('Comments for sentence nº',true) . $this->params['pass'][0];
-			
+
 			echo '<em>';
 			__('The sentence has been deleted');
 			echo '</em>';
-			
+
 		}
-		
+
 		echo '<h2>';
 		__('Comments');
 		echo ' ';
 		$tooltip->display(__('If you see any mistake, don\'t hesitate to post a comment about it!',true));
 		echo '</h2>';
-		
+
 		echo '<a name="comments"></a>';
 		echo '<div class="comments">';
 		if(count($sentenceComments) > 0){
 			foreach($sentenceComments as $comment){
 				$comments->displayComment(
 					$comment['User']['id'],
-					$comment['User']['username'], 
-					$comment['SentenceComment']['created'], 
+					$comment['User']['username'],
+					$comment['SentenceComment']['created'],
 					$comment['SentenceComment']['text']
 				);
 			}
 		}else{
-			echo '<em>' . __('There are no comments for now.', true) .'</em>';	
+			echo '<em>' . __('There are no comments for now.', true) .'</em>';
 		}
 		echo '</div>';
 		?>

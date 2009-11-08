@@ -19,7 +19,7 @@
 */
 
 /* Login Form */
-#UserLoginForm {
+#UserLoginForm_FromBar {
 	position:absolute;
 	right:0;
 	top:24px;
@@ -29,14 +29,14 @@
 	background:#414141 url('../img/alert-overlay.png') repeat-x;
 	color:#fff;
 }
-	#UserLoginForm fieldset	{
+	#UserLoginForm_FromBar fieldset	{
 		border:0;
 		text-align:right;
 	}
-	#UserLoginForm label {
+	#UserLoginForm_FromBar label {
 		text-align:right;
 	}
-		#UserLoginForm input[type='text'], #UserLoginForm input[type='password'] {
+		#UserLoginForm_FromBar input[type='text'], #UserLoginForm_FromBar input[type='password'] {
 			height:15px;
 			width:120px;
 			background: #fff url('../img/alert-overlay.png') repeat-x;
@@ -51,7 +51,7 @@
 			border-bottom: 1px solid rgba(0,0,0,0.25);
 			font-size:0.9em;
 		}
-		#UserLoginForm input[type='submit'] {
+		#UserLoginForm_FromBar input[type='submit'] {
 			width:120px;
 			background: #222 url('../img/alert-overlay.png') repeat-x;
 			display: inline-block;
@@ -68,12 +68,12 @@
 			position: relative;
 			font-size:0.9em;
 		}
-			#UserLoginForm input[type='submit']:hover{
+			#UserLoginForm_FromBar input[type='submit']:hover{
 				background-color:#111;
 				color:#fff;
 			}
-			#UserLoginForm input[type='submit']:active {top:1px;}
-	#UserLoginForm p {
+			#UserLoginForm_FromBar input[type='submit']:active {top:1px;}
+	#UserLoginForm_FromBar p {
 		margin:0;
 		padding:0;
 	}

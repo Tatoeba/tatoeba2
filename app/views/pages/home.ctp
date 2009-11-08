@@ -63,7 +63,8 @@ array_unshift($langArray, array('any' => __('any', true)));
 
 	<div class="main_module">
 		<h2><?php echo __('What is it ?',true); ?></h2>
-		<p><?php echo __('Tatoeba is a free project which aims to establish a patrimony by gathering people from all over the world around one of the greatest inventions of mankind : language.',true); ?> <a href=""><?php echo __('Details...',true)?></a></p>
+		<p><?php echo __('Tatoeba is a free project which aims to establish a patrimony by gathering people from all over the world around one of the greatest inventions of mankind : language.',true)
+		. ' ' . $html->link(__('Details...',true), array('controller' => 'pages', 'action' => 'about')); ?></p>
 	</div>
 
 	<div class="module">
