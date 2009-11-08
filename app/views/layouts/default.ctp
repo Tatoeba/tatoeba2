@@ -41,12 +41,14 @@
 		echo $html->css('tatoeba.comments');
 		echo $html->css('tatoeba.statistics');
 		echo $html->css('tatoeba.users');
+		echo $html->css('tatoeba.wall');
 		echo $html->css('tatoeba.tooltip');
 		echo $html->css('tatoeba.navigation');
 		echo $html->css('tatoeba.popup');
 		echo $html->css('tatoeba.conversations');
 		echo $html->css('tatoeba.private_messages');
 		echo $html->css('tatoeba.sentences_lists');
+    
 //		echo $html->css('tatoeba.tools');
 
 		echo $javascript->link('jquery.js', true);
