@@ -89,8 +89,7 @@ $menuElements = array(
 		}
 	?>
 	</div>
-		<?php //__('Language(s) : ') ?>
-		<?php
+		<?php //__('Language(s) : ')
 //		$languages = array(
 //			  'eng' => 'English'
 //			, 'fre' => 'Français'
@@ -141,11 +140,12 @@ $menuElements = array(
 	echo __('Online visitor(s) : ');
 	echo $onlineVisitors;
 
-	$newMessages = $this->requestAction('/private_messages/check');
-	?>
+	if($session->read('User.id')){
+		$newMessages = $this->requestAction('/private_messages/check');
+	}else $newMessages = 0;
 
-			<?php __('Language(s) : ') ?>
-		<?php
+
+	__('Language(s) : ');
 		$languages = array(
 			  'eng' => 'English'
 			, 'fre' => 'Français'

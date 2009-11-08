@@ -24,11 +24,6 @@ class PrivateMessagesController extends AppController {
 
 	var $langs = array('en', 'fr', 'jp', 'es', 'de');
 
-	function beforeFilter() {
-	    parent::beforeFilter();
-	    $this->Auth->allowedActions = array('*');
-	}
-
 	// We don't use index at all : by default, we just display the inbox folder to the user
 	function index(){
 		$this->redirect(array('action' => 'folder', 'Inbox'));
@@ -200,17 +195,14 @@ class PrivateMessagesController extends AppController {
 	 * This function is called in top1.ctp
 	 */
 	function check(){
-		if($this->Auth->user('id')){
-			return $this->PrivateMessage->find(
-				'count',
-				array(
-					'conditions' => array('PrivateMessage.recpt' => $this->Auth->user('id'),
-											'PrivateMessage.folder' => 'Inbox',
-											'PrivateMessage.isnonread' => 1)
-				)
-			);
-		}
-		return 0;
+		return $this->PrivateMessage->find(
+			'count',
+			array(
+				'conditions' => array('PrivateMessage.recpt' => $this->Auth->user('id'),
+										'PrivateMessage.folder' => 'Inbox',
+										'PrivateMessage.isnonread' => 1)
+			)
+		);
 	}
 
 }
