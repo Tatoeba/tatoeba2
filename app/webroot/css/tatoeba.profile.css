@@ -1,3 +1,7 @@
+dt {
+	font-weight:bold;
+}
+
 #main_content textarea, #main_content input[type=text], #main_content input[type=password] {
 	padding:3px;
 	margin:1px 0;
@@ -48,6 +52,7 @@ div.toolbox {
 	display:none;
 	margin:3px 0 0;
 	border:1px solid #649B3D;
+	max-width:500px;
 }
 
 div.toolbox div.t {
@@ -85,7 +90,7 @@ div.toolbox div.c textarea {
 /*
 	TODO: add :hover and :focus for more usability issues
 */
-div.toolbox div.c input {
+div.toolbox div.c input, div.toolbox div.c select {
 	padding:1px;
 	padding-right:3px;
 	margin-bottom:3px;

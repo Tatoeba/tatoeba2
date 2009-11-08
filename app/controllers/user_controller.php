@@ -43,10 +43,13 @@ class UserController extends AppController {
 		if(is_null($sUserName)){
 			$this->redirect(array('action' => 'index'));
 		}else{
+			$bLogin = $this->Auth->user('id') ? true : false;
 			// TODO: check if the username exits and then handle the error
 			$aUser = $this->User->findByUsername($sUserName);
 			// Check if his/her profile is public
-			// then display adequat message 
+			$this->set('login', $bLogin);
+			$this->set('is_public', $aUser['User']['is_public']);
+			$this->set('user', $aUser);
 		}
 	}
 
@@ -123,35 +126,20 @@ class UserController extends AppController {
 
 	function save_basic() {
 		if(!empty($this->data)){
-			
-			$aToSave = array();
 
-			if(!empty($this->data['profile_basic']['name'])){
-				$aToSave += array(
-					'name' => $this->data['profile_basic']['name']
-				);
-			}
-			if(!empty($this->data['profile_basic']['birthday']) and $this->data['profile_basic']['birthday'] != 'DD/MM/YYYY'){
-				$aToSave += array(
-					'birthday' => date('Y-m-d', strtotime($this->data['profile_basic']['birthday']))
-				);
-			}
-			if(!empty($this->data['profile_basic']['country'])){
-				$aToSave += array(
+				$aToSave = array(
+					'name' => $this->data['profile_basic']['name'],
+					'birthday' => date('Y-m-d', strtotime($this->data['profile_basic']['birthday'])),
 					'country_id' => $this->data['profile_basic']['country']
 				);
-			}
 
-			if(!empty($aToSave)){
 				$this->User->id = $this->Auth->user('id');
+				
 				if($this->User->save(array('User' => $aToSave))){
 					$this->Session->setFlash(__('Your basic informations have been updated.', true));
 				}else{
 					$this->Session->setFlash(__('An error occured while saving. Please try again or contact us to report this.', true));
 				}
-			}else{
-				$this->Session->setFlash(__('Nothing changed.', true));
-			}
 		}
 
 		$this->redirect(array('action' => 'index'));

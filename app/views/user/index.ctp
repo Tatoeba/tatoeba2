@@ -111,7 +111,7 @@ echo $form->end(__('Upload', true));
 			'label' => 'Birthday',
 			'value' => $sBirthday
 	));
-	echo $form->select('country', $countries, (is_null($user['User']['country_id']) ? null : $user['Country']['id']));
+	echo '<label for="profile_basicCountry">' . __('Country', true) . '</label>' . $form->select('country', $countries, (is_null($user['User']['country_id']) ? null : $user['Country']['id']));
 	echo $form->end(__('Edit', true));
 ?>
 		</div>
@@ -125,7 +125,7 @@ echo $form->end(__('Upload', true));
 			<dt>Birthday</dt>
 			<dd><?php echo ($sBirthday == 'DD/MM/YYYY' ? __('You haven\'t set your birthday yet!', true) : $sBirthday) ?></dd>
 			<dt>Country</dt>
-			<dd><?php echo (is_null($user['User']['country_id']) ? 'Tells us where you come from!' : $user['Country']['name']) ?></dd>
+			<dd><?php echo (is_null($user['User']['country_id']) ? __('Tells us where you come from!', true) : $user['Country']['name']) ?></dd>
 		</dl>
 	</div>
 
@@ -159,7 +159,6 @@ echo $form->end(__('Upload', true));
 			'label' => 'E-mail',
 			'value' => $user['User']['email']
 	));
-
 	echo $form->input('url', array(
 			'label' => 'Homepage',
 			'value' => (empty($user['User']['homepage']) ? 'http://' : $user['User']['homepage'])
@@ -179,7 +178,7 @@ echo $form->end(__('Upload', true));
 		</dl>
 	</div>
 
-	<div id="pcontact" class="module">
+	<div id="psettings" class="module">
 		<h3><?php __('Settings') ?></h3>
 		<?php echo $form->create('profile_setting', array(
 			'url' => array(
@@ -192,7 +191,7 @@ echo $form->end(__('Upload', true));
 		<?php echo $form->end(__('Save', true)) ?>
 	</div>
 
-	<div id="pcontact" class="module">
+	<div id="ppassword" class="module">
 		<h3><?php __('Change password'); ?></h3>
 		<?php echo $form->create('profile_password', array(
 				'url' => array(
