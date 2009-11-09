@@ -27,6 +27,7 @@ echo '<ul>';
 	echo '<li>';
 	echo __('Online visitor(s) : ') . $onlineVisitors;
 	echo '</li>';
+	
 	echo '<li>';
 	echo $html->link(__('Contact me', true), array("controller" => 'pages', "action" => 'contact'));
 	echo '</li>';
@@ -40,8 +41,16 @@ echo '<ul>';
 	echo '</li>';
 
 	echo '<li>';
+	echo $html->link(__('Tools', true), array("controller" => 'tools'));
+	echo '</li>';
+	
+	echo '<li>';
 	echo $html->link(__('Team & Credits', true), array("controller" => 'pages', "action" => 'tatoeba-team-and-credits'));
 	echo '</li>';
+	
+	echo '<li>';
+	echo $html->link(__('Help', true), array("controller" => 'pages', "action" => 'help'));
+	echo '</li>';	
 echo '</ul>';
 ?>
 </div>

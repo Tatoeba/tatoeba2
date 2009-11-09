@@ -16,13 +16,12 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-$this->pageTitle = __('Tatoeba : Collecting example sentences',true);
+$this->pageTitle = __('About Tatoeba',true);
 ?>
 <div id="main_content">
 	<div class="module">
 		<h2><?php echo __('About Tatoeba',true); ?></h2>
-		<p><?php echo __('Tatoeba means "for example" in Japanese. The aim is not to implement a new multilingual dictionnary, but a corpus of sentence emphasizing use of different words',true); ?></p>
-		<p><?php echo __('Tatoeba is a free project which aims to establish a patrimony by gathering people from all over the world around one of the greatest inventions of mankind : language.',true); ?></p>
+		<p>When Trang - or anyone - will have time to write more about it, you will be able to learn more about it.</p>
 	</div>
 </div>
 

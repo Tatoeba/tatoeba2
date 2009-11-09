@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -49,37 +49,69 @@ array_unshift($langArray, array('any' => __('any', true)));
 
 ?>
 <div id="annexe_content">
+	<?php
+	if(!$session->read('Auth.User.id')){
+	?>
 	<div class="module">
-		<h2><?php echo __('Tatoeba ?',true); ?></h2>
-		<p><?php echo __('Tatoeba means "for example" in Japanese. The aim is not to implement a new multilingual dictionnary, but a corpus of sentence emphasizing use of different words',true); ?> <a href=""><?php echo __('Details...',true)?></a></p>
+		<h2><?php __('Join Tatoeba community!'); ?></h2>
+		<?php __("The more contributors there are, the more useful Tatoeba will become! Besides, by contributing, not only you will be helpful to the rest of the world, but you will also get to learn a lot."); ?>
+		<p><?php 
+		echo $html->link(
+			'gros bouton register',
+			array("controller" => "users", "action" => "register")
+		);
+		?></p>
 	</div>
-	<div class="module">
-		<h2><?=__('News',true); ?></h2>
-
-	</div>
+	<?php
+	}
+	?>
 </div>
 
 <div id="main_content">
 
-	<div class="main_module">
-		<h2><?php echo __('What is it ?',true); ?></h2>
-		<p><?php echo __('Tatoeba is a free project which aims to establish a patrimony by gathering people from all over the world around one of the greatest inventions of mankind : language.',true)
-		. ' ' . $html->link(__('Details...',true), array('controller' => 'pages', 'action' => 'about')); ?></p>
+	<?php
+	if(!$session->read('Auth.User.id')){
+	?>
+	<div class="module">
+		<h2><?php __('What is Tatoeba?'); ?></h2>
+		<p>
+		<?php 
+			__('At its core, Tatoeba is a large database of <strong>example sentences</strong> translated into several languages. But as a whole, it is much more than that. It is an ambitious project which aims to tackle one of the most complex inventions in human history : language.');
+			echo ' ' . $html->link(__('Learn more...',true), array('controller' => 'pages', 'action' => 'about')); 
+		?>
+		</p>
 	</div>
-
+	<?php
+	}else{
+	?>
+	<div class="module">
+		<h2><?php __('Dashboard'); ?></h2>
+		<p>
+		// trucs utiles pour l'utilisateur.
+		</p>
+	</div>
+	<?php
+	}
+	?>
 	<div class="module">
 		<h2><?php __('Random sentence'); ?> <span class="annexe">(<?='<a id="showRandom" lang='.$lang.'>' . __('show another ', true) . '</a> ';?><?=$form->select("randomLangChoice", $langArray, $selectedLanguage, null, false); ?>)</span></h2>
 		<div class="random_sentences_set"></div>
 	</div>
-
-	<div class="module">
-		<h2><?php __('Latest contributions'); ?> <span class="annexe"><?php $tooltip->displayLogsColors(); ?> (<?=$html->link(__('show more...',true), array("controller"=>"contributions")); ?>) (<?=$html->link(__('show activity timeline',true), array("controller"=>"contributions", "action"=>"activity_timeline")); ?>)</span></h2>
-		<?=$this->element('latest_contributions'); ?>
-	</div>
-
-	<div class="module">
-		<h2><?php __('Latest comments'); ?> <span class="annexe">(<?=$html->link(__('show more...',true), array("controller"=>"sentence_comments")); ?>)</span></h2>
-		<?=$this->element('latest_sentence_comments'); ?>
-	</div>
+	
+	<?php
+	if($session->read('Auth.User.id')){
+	?>
+		<div class="module">
+			<h2><?php __('Latest contributions'); ?> <span class="annexe"><?php $tooltip->displayLogsColors(); ?> (<?=$html->link(__('show more...',true), array("controller"=>"contributions")); ?>) (<?=$html->link(__('show activity timeline',true), array("controller"=>"contributions", "action"=>"activity_timeline")); ?>)</span></h2>
+			<?=$this->element('latest_contributions'); ?>
+		</div>
+		
+		<div class="module">
+			<h2><?php __('Latest comments'); ?> <span class="annexe">(<?=$html->link(__('show more...',true), array("controller"=>"sentence_comments")); ?>)</span></h2>
+			<?=$this->element('latest_sentence_comments'); ?>
+		</div>
+	<?php
+	}
+	?>
 </div>
 

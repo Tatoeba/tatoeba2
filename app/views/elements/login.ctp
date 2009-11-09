@@ -42,10 +42,6 @@ if  ($session->check('Message.auth')) $session->flash('auth');
 
 
 <ul id="UserLoginLinkList">
-	<li><?php echo $html->link(__('Join Tatoeba community !',true), array(
-											"controller" => "users",
-											"action" => "register"
-		)); ?></li>
 	<li onclick="javascript:displayLoginForm();" id="login_pseudo_link"><?php echo __('Login', true); ?></li>
 </ul>
 
