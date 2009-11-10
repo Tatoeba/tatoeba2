@@ -20,7 +20,6 @@ class LogsHelper extends AppHelper {
 
 	var $helpers = array('Date', 'Html');
 	
-	//function entry($contribution, $user){
 	function entry($contribution, $user = null){
 		$type = '';
 		$status = '';
@@ -101,6 +100,70 @@ class LogsHelper extends AppHelper {
 			echo $this->Date->ago($contribution['datetime']);
 			echo '</td>';
 		echo '</tr>';
+	}
+	
+	function annexeEntry($contribution, $user = null){
+		$type = '';
+		$status = '';
+		
+		if($contribution['translation_id'] == ''){
+			$type = 'sentence';
+		}else{
+			$type = 'link';
+		}
+		
+		switch($contribution['action']){
+			case 'suggest' : 
+				$type = 'correction';
+				$status = 'Suggested'; 
+				break;
+			case 'insert' :
+				$status = 'Added';
+				break;
+			case 'update' :
+				$status = 'Modified';
+				break;
+			case 'delete' :
+				$status = 'Deleted';
+				break;
+		}
+		
+		echo '<div class="annexeLogEntry '.$type.$status.'">';
+			echo '<div>';
+				if(isset($user['username'])){
+					echo $this->Html->link($user['username'], array("controller" => "users", "action" => "show", $user['id']));
+					echo ' - ';
+				}
+				echo $this->Date->ago($contribution['datetime']);
+			echo '</div>';
+			
+			echo '<div>';
+			echo $this->Html->link(
+				$contribution['sentence_id'],
+				array(
+					"controller" => "contributions",
+					"action" => "show",
+					$contribution['sentence_id']
+				)
+			);
+			
+			if($type == 'link'){
+				
+				echo ' &raquo; ';
+				
+				echo $this->Html->link(
+				$contribution['translation_id'],
+				array(
+					"controller" => "contributions",
+					"action" => "show",
+					$contribution['translation_id']
+				));
+				
+			} else {
+				echo ' <span class="text">' . $contribution['text'] . '</span>';
+			}
+			echo '</div>';
+		echo '</div>';
 	}
 }
 ?>

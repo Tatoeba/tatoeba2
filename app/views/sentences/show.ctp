@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -17,9 +17,84 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
+// navigation (previous, random, next)
+$navigation->displaySentenceNavigation();
 ?>
 
 <div id="annexe_content">
+	
+	<div class="module">
+		<?php
+		echo '<h2>';
+		__('Logs');
+		echo ' ';
+		$tooltip->displayLogsColors();
+		echo '</h2>';
+		$contributions = $sentence['Contribution'];
+		if(count($contributions) > 0){
+			echo '<div id="logs">';
+			foreach($contributions as $contribution){
+				$logs->annexeEntry($contribution, $contribution['User']);
+			}
+			echo '</div>';
+		}else{
+			echo '<em>'. __('There is no log for this sentence', true) .'</em>';
+		}
+		?>
+		<p class="more_link"><?= $html->link(
+			__('See all logs',true),
+			array(
+				"controller" => "contributions",
+				"action" => "show",
+				$sentence['Sentence']['id']
+			));?>
+		</p>
+	</div>	
+	
+</div>
+
+<div id="main_content">
+	<div class="module">
+		<?php
+		if($sentence != null){
+			echo '<h2>' . __('Sentence nº', true) . $sentence['Sentence']['id'] . '</h2>';
+			$this->pageTitle = __('Example sentence : ',true) . $sentence['Sentence']['text'];
+
+			echo '<div class="sentences_set">';
+				// sentence menu (translate, edit, comment, etc)
+				$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
+				$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
+
+				// sentence and translations
+				$t = (isset($sentence['Translation'])) ? $sentence['Translation'] : array();
+				$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
+				$sentences->displayGroup($sentence['Sentence'], $t, $sentence['User']);
+			echo '</div>';
+
+			//$tooltip->displayAdoptTooltip();
+			echo '<script type="text/javascript">
+			$(document).ready(function(){
+				$(".translations").html("<div class=\"loading\">'.addslashes($html->image('loading.gif')).'</div>");
+				$(".translations").load("http://" + self.location.hostname + "/sentences/get_translations/'.$sentence['Sentence']['id'].'");
+			});
+			</script>';
+
+		}else{
+			$this->pageTitle = __('Sentence does not exist : ', true) . $this->params['pass'][0];
+			
+			echo '<h2>' . __('Sentence nº', true) . $this->params['pass'][0]. '</h2>';
+			// // navigation (previous, random, next)
+			// $navigation->displaySentenceNavigation('random');
+
+			echo '<div class="error">';
+			__('There is no sentence with id ');
+			echo $this->params['pass'][0];
+			echo '</div>';
+		}
+		?>
+	</div>
+
 	<div class="module">
 		<?php
 		echo '<h2>';
@@ -54,79 +129,6 @@
 				)); ?>
 		</p>
 	</div>
-
-</div>
-
-<div id="main_content">
-	<div class="module">
-		<?php
-		if($sentence != null){
-			$this->pageTitle = __('Example sentence : ',true) . $sentence['Sentence']['text'];
-
-			// navigation (previous, random, next)
-			$navigation->displaySentenceNavigation();
-
-			echo '<div class="sentences_set">';
-				// sentence menu (translate, edit, comment, etc)
-				$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
-				$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
-
-				// sentence and translations
-				$t = (isset($sentence['Translation'])) ? $sentence['Translation'] : array();
-				$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
-				$sentences->displayGroup($sentence['Sentence'], $t, $sentence['User']);
-			echo '</div>';
-
-			//$tooltip->displayAdoptTooltip();
-			echo '<script type="text/javascript">
-			$(document).ready(function(){
-				$(".translations").html("<div class=\"loading\">'.addslashes($html->image('loading.gif')).'</div>");
-				$(".translations").load("http://" + self.location.hostname + "/sentences/get_translations/'.$sentence['Sentence']['id'].'");
-			});
-			</script>';
-			?>
-			<p class="more_link translateLink"><a><?=__('Add a translation',true); ?></a></p>
-			<?
-
-		}else{
-			$this->pageTitle = __('Sentence does not exist : ', true) . $this->params['pass'][0];
-
-			// navigation (previous, random, next)
-			$navigation->displaySentenceNavigation('random');
-
-			echo '<div class="error">';
-			__('There is no sentence with id ');
-			echo $this->params['pass'][0];
-			echo '</div>';
-		}
-		?>
-	</div>
-	<div class="module">
-		<?php
-		echo '<h2>';
-		__('Logs');
-		echo ' ';
-		$tooltip->displayLogsColors();
-		echo '</h2>';
-		$contributions = $sentence['Contribution'];
-		if(count($contributions) > 0){
-			echo '<table id="logs">';
-			foreach($contributions as $contribution){
-				$logs->entry($contribution, $contribution['User']);
-			}
-			echo '</table>';
-		}else{
-			echo '<em>'. __('There is no log for this sentence', true) .'</em>';
-		}
-		?>
-		<p class="more_link"><?= $html->link(
-			__('See all logs',true),
-			array(
-				"controller" => "contributions",
-				"action" => "show",
-				$sentence['Sentence']['id']
-			));?>
-		</p>
-	</div>
+	
 </div>
 

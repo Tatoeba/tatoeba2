@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -16,11 +16,13 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 $lang = 'eng';
 if (isset($this->params['lang'])) {
 	Configure::write('Config.language',  $this->params['lang']);
 	$lang = $this->params['lang'];
 }
+
 // array containing the elements of the menu : $title => $route
 $menuElements = array(
 	 __('Home',true) 		=> '/'.$lang
@@ -78,33 +80,8 @@ $menuElements = array(
 		</ul>
 	</div>
 	
-	<div id="languageChooser">
-	<?php
-	if($session->read('User.id')){
-		$newMessages = $this->requestAction('/private_messages/check');
-	}else $newMessages = 0;
-
-	$languages = array(
-		  'eng' => 'English'
-		, 'fre' => 'Français'
-		, 'chi' => '中文'
-		, 'spa' => 'Español'
-		//, 'jpn' => '日本語'
-		, 'deu' => 'Deutsch'
-		//, 'ita' => 'Italiano'
-	);
-	$path = $this->params['controller'].'/';
-	if($this->params['action'] != 'display'){
-		$path .= $this->params['action'].'/';
-	}
-	foreach($this->params['pass'] as $extraParam){
-		$path .= $extraParam.'/';
-	}
-	echo $form->create();
-	echo $form->select('lang', $languages, $lang, array("onchange" => "$(location).attr('href', '/' + this.value+ '/' + '".$path."');"));
-	echo $form->end();
-	?>
-	</div>
+	
+	<?php echo $this->element('interface_language'); ?>
 	
 	<div id="user_menu">
 	<?php
@@ -117,9 +94,13 @@ $menuElements = array(
 	</div>
 	
 	<span style="font-weight:bold;">
-		<?php if($newMessages > 1) echo $html->link(__('New messages: ', true) . $newMessages, '/private_messages/folder/Inbox');
+		<?php 
+		if($session->read('User.id')){
+			$newMessages = $this->requestAction('/private_messages/check');
+		}else $newMessages = 0;
+		
+		if($newMessages > 1) echo $html->link(__('New messages: ', true) . $newMessages, '/private_messages/folder/Inbox');
 		else if($newMessages == 1) echo $html->link(__('New message: ', true) . '1', '/private_messages/folder/Inbox'); ?>
 	</span>
-
 </div>
 </div>

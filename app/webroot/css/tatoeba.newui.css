@@ -67,7 +67,7 @@ div#top_menu_container {
 }
 
 div#top_menu {
-	padding: 5px;
+	padding: 3px;
 	width: 960px;
 	margin:auto;
 }
@@ -124,8 +124,8 @@ div#navigation_menu ul li a.whats_new {
 /* User Menu : Interface Language Selector */
 
 div#languageChooser {
-	float:left;
-	width: 120px;
+	float:right;
+	margin-left: 15px;
 }
 
 form#AddForm, select#lang {
@@ -172,7 +172,7 @@ div#user_menu select#lang {
 
 div.search_bar_container{
 	position:relative;
-	margin-right: 50px;
+	margin-right: 30px;
 }
 
 div.search_bar_left, div.search_bar_right{
@@ -237,7 +237,7 @@ div.search_bar fieldset.select{
 }
 
 div.search_bar fieldset.input{
-	width: 250px;
+	width: 300px;
 }
 
 #SentenceSearchForm{
@@ -269,8 +269,8 @@ div#container1 {
 }
 
 div#container {
-	width: 840px;
-	margin-left:120px;
+	width: 850px;
+	margin-left:100px;
 	background: #FFFFFF;
 	min-height: 550px;
 }
@@ -286,13 +286,13 @@ div#content {
 
 div#annexe_content {
 	float:right;
-	width: 230px;
+	width: 250px;
 	font-size:0.8em;
 }
 
 div#main_content {
 	margin-left: 10px;
-	margin-right: 250px;
+	margin-right: 260px;
 	font-size:0.8em;
 }
 

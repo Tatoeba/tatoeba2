@@ -27,9 +27,6 @@
 	padding: 3px;
 }
 
-#logs .text{
-}
-
 #logs .date{
 	width: 100px;
 }
@@ -52,8 +49,17 @@
 	text-align:center;
 }
 
-#logs td.lang img.flag{
+#logs img.flag{
 	width:20px;
+}
+
+#logs .annexeLogEntry{
+	margin: 2px 0px;
+	padding: 3px;
+}
+
+#logs .annexeLogEntry .text{
+	font-family: Georgia;
 }
 
 
@@ -69,7 +75,7 @@
 }
 
 .sentenceAdded {
-	background: #e2ffd2;
+	background: #CCFF99;
 }
 
 .sentenceDeleted {
@@ -81,13 +87,13 @@
 }
 
 .linkAdded{
-background: #CCFF99;
+	background: #e2ffd2;
 }
 
 .linkDeleted{
-background: #ffe5e0;
+	background: #ffe5e0;
 }
 
 .correctionSuggested{
-background: #fff7b0;
+	background: #fff7b0;
 }
