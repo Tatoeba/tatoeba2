@@ -44,8 +44,7 @@
 }
 
 .sentences_set .menu li.option a:hover{
-background: #75C34B;
-color: #D3F3B9;
+color: #000000;
 }
 
 .sentences_set .menu li.delete a{
@@ -65,8 +64,8 @@ color: #75C34B;
 font-weight: bold;
 }
 
-.search .menu{
-background: #D3F3B9;
+.searchResult{
+margin: 40px 0px;
 }
 
 .listOfLists{
@@ -76,9 +75,8 @@ width: 150px;
 
 /* sentence */
 
-
 .sentences_set .sentence{
-border-top: 1px solid #D3F3B9;
+border-top: 1px dashed #cccccc;
 }
 
 .sentences_set .sentence em{

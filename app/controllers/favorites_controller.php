@@ -1,7 +1,8 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  Allan SIMON <allan.simon@supinfo.com>,
+	HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +21,7 @@ class FavoritesController extends AppController{
 
 	var $name = 'Favorites' ;
 	var $paginate = array('limit' => 50); 
-	var $helpers = array('Navigation');
+	var $helpers = array('Navigation', 'Html');
 
 	function beforeFilter() {
 	    parent::beforeFilter();
@@ -44,19 +45,6 @@ class FavoritesController extends AppController{
 		
 		if ( $user_id != NULL ){
 			
-			/*
-			$result = $this->Favorite->query("SELECT id FROM sentences WHERE ID= $sentence_id");
-
-			if ( $result != NULL ){ 
-				
-				$this->Favorite->habtmAdd ('User' , $sentence_id , $this->Auth->user('id') );
-				
-				$this->set('user_id' , $user_id );
-				$this->set('sentence_id' , $result[0]["sentences"]["id"] ) ;
-
-			}
-			*/
-			
 			if($this->Favorite->habtmAdd ('User' , $sentence_id , $this->Auth->user('id') )){
 				$this->set('saved' , true );
 			}
@@ -69,18 +57,6 @@ class FavoritesController extends AppController{
 		$user_id =$this->Auth->user('id');
 		
 		if ( $user_id != NULL ){
-			
-			/*
-			$result = $this->Favorite->query("SELECT id FROM sentences WHERE ID= $sentence_id");
-			
-			if ( $result != NULL ){ 
-				$this->Favorite->habtmDelete ('User' , $sentence_id , $this->Auth->user('id') );
-				
-				$this->set('user_id' , $user_id );
-				$this->set('sentence_id' , $result[0]["sentences"]["id"] ) ;
-
-			}
-			*/
 			
 			if($this->Favorite->habtmDelete ('User' , $sentence_id , $this->Auth->user('id') )){
 				$this->set('saved' , true );

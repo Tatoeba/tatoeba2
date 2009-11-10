@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -58,7 +58,7 @@
 			$i = 0;
 
 			foreach($results as $sentence){
-				echo '<div class="sentences_set search">';
+				echo '<div class="sentences_set searchResult">';
 				// sentence menu (translate, edit, comment, etc)
 				$specialOptions[$i]['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
 				$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions[$i], $scores[$i]);

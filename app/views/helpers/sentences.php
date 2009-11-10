@@ -1,7 +1,7 @@
 <?php
 /*
     Tatoeba Project, free collaborative creation of multilingual corpuses project
-    Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -19,7 +19,7 @@
 
 class SentencesHelper extends AppHelper {
 
-	var $helpers = array('Html', 'Form', 'Tooltip', 'Kakasi', 'Javascript');
+	var $helpers = array('Html', 'Form', 'Tooltip', 'Kakasi', 'Javascript', 'Menu');
 	
 	/**
 	 * Display a single sentence.
@@ -57,13 +57,13 @@ class SentencesHelper extends AppHelper {
 	 */
 	function displayPinyin($text){
 		echo '<span class="pinyin">';
-		// $curl = curl_init();
-		// curl_setopt ($curl, CURLOPT_URL, "http://adsotrans.com/popup/pinyin.php?text=".$text);
-		// curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		// $result = curl_exec ($curl);
-		// $pinyin = substr($result, 14);
-		// $pinyin = substr($pinyin, 0, -44);
-		// echo $pinyin;
+		$curl = curl_init();
+		curl_setopt ($curl, CURLOPT_URL, "http://adsotrans.com/popup/pinyin.php?text=".$text);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		$result = curl_exec ($curl);
+		$pinyin = substr($result, 14);
+		$pinyin = substr($pinyin, 0, -44);
+		echo $pinyin;
 		echo '</span>';
 	}
 	
@@ -115,7 +115,7 @@ class SentencesHelper extends AppHelper {
 		
 		$editable = '';
 		$editableSentence = '';
-		$tooltip = __('This sentence does not belong to anyone, you can adopt it', true);
+		$tooltip = __('This sentence does not belong to anyone. If you would like to edit it, you have to adopt it first.', true);
 		if($user != null){
 			if(isset($user['canEdit']) AND $user['canEdit']){
 				$editable = 'editable';
@@ -135,7 +135,7 @@ class SentencesHelper extends AppHelper {
 			$this->displayPinyin($sentence['text']);
 		}
 		echo '</div>';
-		echo '<h4>Translations</h4>';
+		
 		echo '<ul id="translation_for_'.$sentence['id'].'" class="addTranslations">';
 		echo '</ul>';
 		
@@ -301,22 +301,20 @@ class SentencesHelper extends AppHelper {
 				echo '</li>';
 			}
 			
-			echo '<li class="'.$this->optionClass('show').'">';
-				echo $this->Html->link(
-				$id,
-				array(
-					"controller" => "sentences",
-					"action" => "show",
-					$id
-				));
-			echo '</li>';
+			// echo '<li class="'.$this->optionClass('show').'">';
+				// echo $this->Html->link(
+				// $id,
+				// array(
+					// "controller" => "sentences",
+					// "action" => "show",
+					// $id
+				// ));
+			// echo '</li>';
 			
 			// translate link
 			if($specialOptions['canTranslate']){
 				$this->Javascript->link('sentences.add_translation.js', false);
-				echo '<li class="'.$this->optionClass('translate').' translateLink">';
-				echo '<a>' . __('Translate',true) . '</a>';
-				echo '</li>';
+				$this->Menu->translateButton();
 			}
 			
 			// "link" link => everyone can see
@@ -330,16 +328,6 @@ class SentencesHelper extends AppHelper {
 				// ));
 			// echo '</li>';
 			
-			// discuss link
-//			echo '<li class="'.$this->optionClass('comments').'">';
-//			echo $this->Html->link(
-//				__('Comments',true),
-//				array(
-//					"controller" => "sentence_comments",
-//					"action" => "show",
-//					$id
-//				));
-//			echo '</li>';
 			
 			// logs
 //			echo '<li class="'.$this->optionClass('logs').'">';
@@ -354,45 +342,29 @@ class SentencesHelper extends AppHelper {
 			
 			// adopt
 			if(isset($specialOptions['canAdopt']) AND $specialOptions['canAdopt'] == true){
-				echo '<li class="option">';
-				echo $this->Html->link(
-					__('Adopt',true),
-					array(
-						"controller" => "sentences",
-						"action" => "adopt",
-						$id
-					));
-				echo '</li>';
+				$this->Menu->adoptButton($id);
 			}
 			
 			// let go
 			if(isset($specialOptions['canLetGo']) AND $specialOptions['canLetGo'] == true){
-				echo '<li class="option">';
-				echo $this->Html->link(
-					__('Let go',true),
-					array(
-						"controller" => "sentences",
-						"action" => "let_go",
-						$id
-					));
-				echo '</li>';
+				$this->Menu->letGoButton($id);
 			}
 			
+			// comments link
+			$this->Menu->commentsButton($id);
+			
+			// favorite link
 			if(isset($specialOptions['canFavorite']) AND $specialOptions['canFavorite'] == true){
-				
 				$this->Javascript->link('favorites.add.js', false);
-				echo '<li class="option favorite add" id="favorite_'.$id.'">';
-				echo '<a>' . __('Favorite',true) . '</a>' ; 
-				echo '</li>';
+				$this->Menu->favoriteButton($id);
 			}
-
+			
+			// unfavorite link
 			if(isset($specialOptions['canUnFavorite']) AND $specialOptions['canUnFavorite'] == true){
-				
 				$this->Javascript->link('favorites.add.js', false);
-				echo '<li class="option favorite remove" id="favorite_'.$id.'">';
-				echo '<a>' . __('Unfavorite',true) . '</a>' ; 
-				echo '</li>';
+				$this->Menu->unfavoriteButton($id);
 			}
+			
 			
 			// add to list
 			if(isset($specialOptions['canAddToList']) AND $specialOptions['canAddToList'] == true){
@@ -400,9 +372,7 @@ class SentencesHelper extends AppHelper {
 				$this->Javascript->link('jquery.impromptu.js', false);
 				$lists = $this->requestAction('/sentences_lists/choices'); // this is probably not the best solution...
 				
-				echo '<li class="option addToList">';
-				echo '<a>' . __('Add to list',true) . '</a>' ; 
-				echo '</li>';
+				$this->Menu->addToListButton();
 				
 				echo '<span style="display:none" class="addToList'.$id.'">';
 					// select list
@@ -428,21 +398,11 @@ class SentencesHelper extends AppHelper {
 					// ok button
 					echo '<input type="button" value="ok" class="addToListButton" />';
 				echo '</span>';
-			}
+			}			
 			
 			// delete link
 			if(isset($specialOptions['canDelete']) AND $specialOptions['canDelete'] == true){
-				echo '<li class="option delete">';
-				echo $this->Html->link(
-					__('Delete',true), 
-					array(
-						"controller" => "sentences",
-						"action" => "delete",
-						$id
-					), 
-					null, 
-					'Are you sure?');
-				echo '</li>';
+				$this->Menu->deleteButton($id);
 			}
 			
 			echo $this->Html->image('loading-small.gif', array("id"=>$id."_in_process", "style"=>"display:none"));
