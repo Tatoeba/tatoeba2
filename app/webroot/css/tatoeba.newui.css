@@ -21,7 +21,7 @@ body {
 	margin: 0px;
 	font-family: Trebuchet MS, sans;
 	color: #222222;
-	background: #cccccc;
+	background: #e5e3da;
 }
 
 a img {
@@ -264,10 +264,8 @@ div#header{
 div#container1 {
 	width: 960px;
 	margin:auto;
-	background: #FFFFFF;
-	border-left: 1px solid #aaaaaa;
-	border-right: 1px solid #aaaaaa;
-	border-bottom: 1px solid #aaaaaa;
+	padding:0px 10px;
+	background: url(../img/bg_main.png) repeat-y;
 }
 
 div#container {
@@ -360,12 +358,20 @@ div#footer {
 
 div#footer {
 	background: #e3e0d6;
-	height: 30px;
+	height: 18px;
 	clear: both;
 }
 
+div#footer_container {
+	background:url(../img/bg_footer.png) bottom left;
+	width: 960px;
+	height:24px;
+	margin:auto;
+	padding:0px 10px;
+}
+
 div#footer a {
-	color: #5c5c5c;
+	color: #3d3d3d;
 	cursor: pointer;
 	text-decoration: none;
 }

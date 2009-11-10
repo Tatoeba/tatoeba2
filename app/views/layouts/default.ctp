@@ -97,6 +97,8 @@
 		?>
 	</div>
 	
+	<div id="footer_container">
+	</div>
 	<?php echo $cakeDebug ?>
 	<?php echo $this->element('google_analytics'); ?>
 </body>
