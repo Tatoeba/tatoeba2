@@ -34,6 +34,8 @@ $menuElements = array(
 );
 
 ?>
+
+<div id="top_menu_container">
 <div id="top_menu">
 	<div id="navigation_menu">
 		<ul>
@@ -75,7 +77,35 @@ $menuElements = array(
 
 		</ul>
 	</div>
+	
+	<div id="languageChooser">
+	<?php
+	if($session->read('User.id')){
+		$newMessages = $this->requestAction('/private_messages/check');
+	}else $newMessages = 0;
 
+	$languages = array(
+		  'eng' => 'English'
+		, 'fre' => 'Français'
+		, 'chi' => '中文'
+		, 'spa' => 'Español'
+		//, 'jpn' => '日本語'
+		, 'deu' => 'Deutsch'
+		//, 'ita' => 'Italiano'
+	);
+	$path = $this->params['controller'].'/';
+	if($this->params['action'] != 'display'){
+		$path .= $this->params['action'].'/';
+	}
+	foreach($this->params['pass'] as $extraParam){
+		$path .= $extraParam.'/';
+	}
+	echo $form->create();
+	echo $form->select('lang', $languages, $lang, array("onchange" => "$(location).attr('href', '/' + this.value+ '/' + '".$path."');"));
+	echo $form->end();
+	?>
+	</div>
+	
 	<div id="user_menu">
 	<?php
 		if(!$session->read('Auth.User.id')){
@@ -85,100 +115,11 @@ $menuElements = array(
 		}
 	?>
 	</div>
-		<?php //__('Language(s) : ')
-//		$languages = array(
-//			  'eng' => 'English'
-//			, 'fre' => 'Français'
-//			, 'chi' => '中文'
-//			, 'spa' => 'Español'
-//			//, 'jpn' => '日本語'
-//			//, 'deu' => 'Deutsch'
-//			//, 'ita' => 'Italiano'
-//		);
-//		$path = $this->params['controller'].'/';
-//		if($this->params['action'] != 'display'){
-//			$path .= $this->params['action'].'/';
-//		}
-//		foreach($this->params['pass'] as $extraParam){
-//			$path .= $extraParam.'/';
-//		}
-//		echo $form->create();
-//		echo $form->select('lang', $languages, $lang, array("onchange" => "$(location).attr('href', this.value+ '/' + '".$path."');"));
-//		echo $form->end();
-
-
-
-
-	//	foreach($languages as $code => $language){
-	//		$path  = '/'.$code.'/';
-	//		$path .= $this->params['controller'].'/';
-	//
-	//		if($this->params['action'] != 'display'){
-	//			$path .= $this->params['action'].'/';
-	//		}
-	//
-	//		foreach($this->params['pass'] as $extraParam){
-	//			$path .= $extraParam.'/';
-	//		}
-	//
-	//		// probably not the best way to do it but never mind
-	//
-	//		echo $html->link($language, $path);
-	//		echo ' | ';
-	//	}
-		?>
-</div>
-
-<div id="languageChooser">
-	<?php
-	if($session->read('User.id')){
-		$newMessages = $this->requestAction('/private_messages/check');
-	}else $newMessages = 0;
-
-	__('Language(s) : ');
-		$languages = array(
-			  'eng' => 'English'
-			, 'fre' => 'Français'
-			, 'chi' => '中文'
-			, 'spa' => 'Español'
-			//, 'jpn' => '日本語'
-			//, 'deu' => 'Deutsch'
-			//, 'ita' => 'Italiano'
-		);
-		$path = $this->params['controller'].'/';
-		if($this->params['action'] != 'display'){
-			$path .= $this->params['action'].'/';
-		}
-		foreach($this->params['pass'] as $extraParam){
-			$path .= $extraParam.'/';
-		}
-		echo $form->create();
-		echo $form->select('lang', $languages, $lang, array("onchange" => "$(location).attr('href', this.value+ '/' + '".$path."');"));
-		echo $form->end();
-
-	//	foreach($languages as $code => $language){
-	//		$path  = '/'.$code.'/';
-	//		$path .= $this->params['controller'].'/';
-	//
-	//		if($this->params['action'] != 'display'){
-	//			$path .= $this->params['action'].'/';
-	//		}
-	//
-	//		foreach($this->params['pass'] as $extraParam){
-	//			$path .= $extraParam.'/';
-	//		}
-	//
-	//		// probably not the best way to do it but never mind
-	//
-	//		echo $html->link($language, $path);
-	//		echo ' | ';
-	//	}
-		?>
-
+	
 	<span style="font-weight:bold;">
 		<?php if($newMessages > 1) echo $html->link(__('New messages: ', true) . $newMessages, '/private_messages/folder/Inbox');
 		else if($newMessages == 1) echo $html->link(__('New message: ', true) . '1', '/private_messages/folder/Inbox'); ?>
 	</span>
+
 </div>
-
-
+</div>

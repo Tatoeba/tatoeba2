@@ -16,31 +16,8 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-if (isset($this->params['lang'])) { 
-	Configure::write('Config.language',  $this->params['lang']); 
-}
-$lang = (isset($this->params['lang']))? $this->params['lang'].'/' : '';
-
-// array containing the elements of the menu : $title => $route
-$menuElements = array(
-	 __('Home',true) 		=> '/'.$lang
-	,__('Browse',true) 		=> array("controller" => "sentences", "action" => "show", "random")
-	,__('Search',true) 		=> array("controller" => "sentences", "action" => "search")
-	,__('Contribute',true) 	=> array("controller" => "pages", "action" => "contribute")
-	,__('Comments',true) 	=> array("controller" => "sentence_comments", "action" => "index")
-	,__('Members',true)		=> array("controller" => "users", "action" => "all")
-	,__('What\'s new',true)	=> array("controller" => "pages", "action" => "whats_new")
-);
-//	echo $this->element('sentences_statistics', array('cache' => 
-//			array(
-//				'time' => '+6 hours', 
-//				'key' => $key
-//			)
-//		)
-//	); 
-//echo $this->element('sentences_statistics');
 ?>
 
 <div id="header">
-	<a href="/"><?php echo $html->image('TatoebaProjectBeta2.png'); ?></a>
+	<a href="/"><?php echo $html->image('TatoebaProjectBeta.png'); ?></a>
 </div>

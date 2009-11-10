@@ -76,13 +76,9 @@ width: 150px;
 
 /* sentence */
 
-.search{
-margin-bottom: 20px;
-}
 
 .sentences_set .sentence{
 border-top: 1px solid #D3F3B9;
-border-bottom: 1px solid #D3F3B9;
 }
 
 .sentences_set .sentence em{
@@ -105,21 +101,21 @@ padding: 10px 5px;
 /* editing sentences */
 
 .sentences_set div.submit{
-font-size: 16px;
+font-size: 1.2em;
 display:inline;
 }
 .sentences_set div.input{
-font-size: 16px;
+font-size: 1.2em;
 display:inline;
 }
 
 .sentences_set .direct div.input input{
-font-size: 16px;
+font-size: 1.2em;
 width: 600px;
 }
 
 .sentences_set div.submit input{
-font-size: 16px;
+font-size: 1.2em;
 }
 
 
@@ -128,9 +124,9 @@ font-size: 16px;
 
 .original{
 	font-family: georgia;
-	font-size:2em;
 	display:block;
 	padding: 10px 5px;
+	font-size: 1.7em;
 }
 
 .original:hover {
@@ -142,15 +138,9 @@ font-size: 16px;
 	font-weight: normal;
 }
 
-
 .direct, .indirect{
 padding: 5px;
-padding-left: 40px;
 }
-
-/*.translations{
-margin-top: 10px;
-}*/
 
 ul.translations, .sentences_set ul.menu{
 list-style: none;
@@ -160,11 +150,11 @@ padding: 0;
 
 
 li.direct{
-background:transparent url(../img/translate.png) no-repeat scroll 10px;
+/*background:transparent url(../img/translate.png) no-repeat scroll 10px;*/
 }
 
 li.indirect{
-background:transparent url(../img/indirect_translation.png) no-repeat scroll 10px;
+/*background:transparent url(../img/indirect_translation.png) no-repeat scroll 10px;*/
 }
 
 

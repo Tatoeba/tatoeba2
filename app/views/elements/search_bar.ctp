@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -44,29 +44,36 @@ $selectedLanguageFrom = $session->read('search_from');
 $selectedLanguageTo = $session->read('search_to');
 
 echo $form->create('Sentence', array("action" => "search", "type" => "get"));
-echo '<div class="select">';
-echo '<label>';
-__('From');
-echo '</label><br/>';
+
+echo '<fieldset class="select">';
+echo '<label>' . __('From',true) . '</label>';
 echo $form->select('from', $languages, $selectedLanguageFrom);
-echo '</div>';
+echo '</fieldset>';
 
-	echo '<span id="into">&raquo;</span>';
-
-echo '<div class="select">';
-echo '<label>';
-__('To');
-echo '</label><br/>';
+echo '<fieldset class="into">';
+echo '<span id="into">&raquo;</span>';
+echo '</fieldset>';
+	
+echo '<fieldset class="select">';
+echo '<label>' . __('To',true) . '</label>';
 echo $form->select('to', $languages, $selectedLanguageTo);
-echo '</div>';
+echo '</fieldset>';
 
-echo $form->input('query', array(
-	"label" => __('Example sentences with the words :',true),
-	"value" => $session->read('search_query')));
+echo '<fieldset class="input text">';
+echo '<label for="SentenceQuery">Example sentences with the words :</label>';
+echo '<input id="SentenceQuery" type="text" value="'.$session->read('search_query').'" name="query"/>';
+echo '</fieldset>';
 
-echo $form->end(__('search',true));
+echo '<fieldset class="submit">';
+echo '<input type="submit" value="search"/>';
+echo '</fieldset>';
 
+echo '<fieldset class="help">';
 echo $html->link('[?]', array("controller" => "sentences", "action" => "search"));
+echo '</fieldset>';
+
+echo $form->end();
+
 ?>
 </div>
 

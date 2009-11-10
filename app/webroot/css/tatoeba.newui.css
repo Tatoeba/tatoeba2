@@ -1,9 +1,27 @@
+/*
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
 body {
-	padding:0;
-	margin: auto;
+	padding:0px;
+	margin: 0px;
 	font-family: Trebuchet MS, sans;
-	color: #434343;
-	color: #333333;/*J'hésite entre les deux ou alors un noir total*/
+	color: #222222;
+	background: #cccccc;
 }
 
 a img {
@@ -11,13 +29,12 @@ a img {
 }
 
 a {
-	color:#649B3D;
+	color:#849684;
 	text-decoration:none;
 }
 
 a:hover{
 	cursor: pointer;
-	text-decoration:underline;
 }
 
 h2, h3, h4{
@@ -43,13 +60,16 @@ table {
 
 /* User Menu : Main Menu */
 
-div#top_menu {
-	min-width:950px;
-	min-height:24px;
-	padding:0 6px 0 14px;
-	border-bottom:1px dotted #CCCCCC;
+div#top_menu_container {
 	background-color:#414141;
 	color:#FFFFFF;
+	border-bottom:1px solid #000000;	
+}
+
+div#top_menu {
+	padding: 5px;
+	width: 960px;
+	margin:auto;
 }
 
 
@@ -104,12 +124,13 @@ div#navigation_menu ul li a.whats_new {
 /* User Menu : Interface Language Selector */
 
 div#languageChooser {
-	float:right;
-	font-size:0.8em;
+	float:left;
+	width: 120px;
 }
-	form#AddForm, select#lang {
-		display:inline;
-	}
+
+form#AddForm, select#lang {
+	display:inline;
+}
 
 div#user_menu {
 	float:right;
@@ -151,8 +172,7 @@ div#user_menu select#lang {
 
 div.search_bar_container{
 	position:relative;
-	/*margin-right: 270px;*/
-	width:80%;
+	margin-right: 50px;
 }
 
 div.search_bar_left, div.search_bar_right{
@@ -172,7 +192,6 @@ div.search_bar_right{
 	background: url(../img/search_bar_right.png) no-repeat right;
 }
 
-
 div.search_bar {
 	height: 50px;
 	background: url(../img/search_bar_body.png) repeat;
@@ -185,7 +204,7 @@ div.search_bar a{
 	font-size:0.9em;
 	color:#FFFFFF;
 	display:block;
-	margin-top: 24px;
+	margin-bottom: 3px;
 }
 
 div.search_bar a:hover{
@@ -196,57 +215,37 @@ div.search_bar span#into {
 	font-family:Arial, Sans-serif;
 	font-size:1.3em;
 	margin-top: 20px;
-	width: 2%;
 	text-align: center;
 }
 
-div.search_bar div.select{
-	width: 12%;
+div.search_bar fieldset{
+	border: none;
+	padding: 0px;
+	margin: 0px;
+	margin-top: -1px;	
+	display: inline;
+	margin-right: 10px;
+	text-align: left;
 }
 
-div.search_bar div.input{
-	width: 50%;
-}
-
-div.search_bar div.submit{
-	width: 15%;
-	margin-top: 22px;
-}
-
-div.search_bar a{
-	display: block;
-	float: left;
-	text-align: center;
-	width: 2%;
-}
-
-div.search_bar div, div.search_bar span#into{
-	display: block;
-	float: left;
-	margin-right: 1%;
-}
-
-#SentenceSearchForm label{
+div.search_bar label{
 	font-size: 0.8em;
 }
 
+div.search_bar fieldset.select{
+	width: 110px;
+}
+
+div.search_bar fieldset.input{
+	width: 250px;
+}
+
 #SentenceSearchForm{
-	display: inline;
-	font-size: 1em;
+	text-align:center;
 }
 
 #SentenceSearchForm input#SentenceQuery, div.search_bar select, div.search_bar div.submit input{
-	width: 99%;
-}
-
-
-div.search_bar div.submit input{
-height: 24px; /* because with Chinese interface the height is too big */
-padding-bottom: 2px;
-}
-
-div.search_bar div.select select{
-	height: 22px; /* because with Chinese interface the height is too big */
+	width: 100%;
 }
 
 
@@ -254,18 +253,28 @@ div.search_bar div.select select{
 /* HEADER */
 
 div#header{
-	width:72px;
 	text-align:right;
 	float: left;
+	padding: 10px;
 }
 
 
 /* Container */
 
+div#container1 {
+	width: 960px;
+	margin:auto;
+	background: #FFFFFF;
+	border-left: 1px solid #aaaaaa;
+	border-right: 1px solid #aaaaaa;
+	border-bottom: 1px solid #aaaaaa;
+}
+
 div#container {
-	min-width:878px;
-	margin-left:72px;
-	min-width: 760px;
+	width: 840px;
+	margin-left:120px;
+	background: #FFFFFF;
+	min-height: 550px;
 }
 
 /* Content : when a page is not split into 2 parts*/
@@ -279,13 +288,13 @@ div#content {
 
 div#annexe_content {
 	float:right;
-	width: 250px;
+	width: 230px;
 	font-size:0.8em;
 }
 
 div#main_content {
 	margin-left: 10px;
-	margin-right: 260px;
+	margin-right: 250px;
 	font-size:0.8em;
 }
 

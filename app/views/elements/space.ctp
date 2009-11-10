@@ -1,6 +1,6 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
     Copyright (C) 2009 Etienne Deparis <etienne.deparis@umaneti.net>
 
     This program is free software: you can redistribute it and/or modify
@@ -25,6 +25,5 @@ if (isset($this->params['lang'])) {
 <strong><?php echo $session->read('Auth.User.username'); ?> : </strong>
 <ul>
 	<li><?php echo $html->link(__('Inbox', true), array('controller' => 'private_messages', 'action' => 'folder', 'Inbox')); ?></li>
-	<li><?php echo $html->link(__('Comments',true), array('controller' => 'sentence_comments', 'action' => 'index')); ?></li>
 	<li><?php echo $html->link(__('Log out',true), array('controller' => 'users', 'action' => 'logout')); ?></li>
 </ul>

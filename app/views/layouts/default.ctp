@@ -59,41 +59,44 @@
 	?>
 </head>
 <body>
-
-	<!-- ---------------- TOP ---------------- -->
+	
+	
+	<!--  TOP  -->
 	<?php echo $this->element('top1'); ?>
+		
 
-	<!-- ---------------- HEADER ---------------- -->
+	<div id="container1">
+		<!--  Title/Logo  -->
+		<?php echo $this->element('header');	?>
 
-	<?php echo $this->element('header');	?>
+
+		<div id="container">
+
+			<?php //echo $this->element('top2');	?>
+
+			<!--  MENU  -->
+			<?php //echo $this->element('menu'); ?>
+
+			<!--  SEARCH BAR  -->
+			<?php echo $this->element('search_bar'); ?>
+
+			<!--  CONTENT -->
+			<?php
+			if($session->check('Message.flash')){
+				$session->flash();
+			}
+
+			echo $content_for_layout;
+			?>
+		</div>
 
 
-	<div id="container">
-
-		<?php //echo $this->element('top2');	?>
-
-		<!-- ---------------- MENU ---------------- -->
-		<?php //echo $this->element('menu'); ?>
-
-		<!-- ---------------- SEARCH BAR ---------------- -->
-		<?php echo $this->element('search_bar'); ?>
-
-		<!-- ---------------- CONTENT---------------- -->
+		<!--  FOOT -->
 		<?php
-		if($session->check('Message.flash')){
-			$session->flash();
-		}
-
-		echo $content_for_layout;
+		echo $this->element('foot');
 		?>
 	</div>
-
-
-	<!-- ---------------- FOOT---------------- -->
-	<?php
-	echo $this->element('foot');
-	?>
-
+	
 	<?php echo $cakeDebug ?>
 	<?php echo $this->element('google_analytics'); ?>
 </body>
