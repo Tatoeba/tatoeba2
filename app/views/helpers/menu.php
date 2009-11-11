@@ -25,6 +25,27 @@ class MenuHelper extends AppHelper {
 
 	var $helpers = array('Html');
 	
+	
+	function showButton($sentenceId){
+		echo '<li class="option">';
+		echo $this->Html->link(
+			$this->Html->image(
+				'info.png',
+				array(
+					"alt"=>__('Show',true),
+					"title"=>__('Show',true)
+				)
+			),
+			array(
+				"controller" => "sentences",
+				"action" => "show",
+				$sentenceId
+			),
+			array("escape"=>false)
+		);
+		echo '</li>';
+	}
+	
 	function translateButton(){
 		echo '<li class="option translateLink">';
 		echo '<a>' . $this->Html->image(

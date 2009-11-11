@@ -28,9 +28,8 @@ $navigation->displaySentenceNavigation();
 		<?php
 		echo '<h2>';
 		__('Logs');
-		echo ' ';
-		$tooltip->displayLogsColors();
 		echo '</h2>';
+		
 		$contributions = $sentence['Contribution'];
 		if(count($contributions) > 0){
 			echo '<div id="logs">';
@@ -42,14 +41,6 @@ $navigation->displaySentenceNavigation();
 			echo '<em>'. __('There is no log for this sentence', true) .'</em>';
 		}
 		?>
-		<p class="more_link"><?= $html->link(
-			__('See all logs',true),
-			array(
-				"controller" => "contributions",
-				"action" => "show",
-				$sentence['Sentence']['id']
-			));?>
-		</p>
 	</div>	
 	
 </div>
@@ -84,8 +75,6 @@ $navigation->displaySentenceNavigation();
 			$this->pageTitle = __('Sentence does not exist : ', true) . $this->params['pass'][0];
 			
 			echo '<h2>' . __('Sentence nº', true) . $this->params['pass'][0]. '</h2>';
-			// // navigation (previous, random, next)
-			// $navigation->displaySentenceNavigation('random');
 
 			echo '<div class="error">';
 			__('There is no sentence with id ');
@@ -97,10 +86,15 @@ $navigation->displaySentenceNavigation();
 
 	<div class="module">
 		<?php
+		echo '<div class="addComment">';
+		echo $html->link(
+			__('Add a comment',true),
+			array("controller" => "sentence_comments", "action" => "add", $sentence['Sentence']['id'])
+		);
+		echo '</div>';			
+		
 		echo '<h2>';
-		__('Comments');
-		echo ' ';
-		$tooltip->display(__('If you see any mistake, don\'t hesitate to post a comment about it!',true));
+		__('Latest comments');
 		echo '</h2>';
 
 		echo '<a name="comments"></a>';

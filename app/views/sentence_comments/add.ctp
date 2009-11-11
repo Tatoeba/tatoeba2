@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -16,15 +16,18 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 $this->pageTitle = __('Add comment for sentence',true);
+
+// navigation (previous, random, next)
+$navigation->displaySentenceNavigation($sentence['Sentence']['id']);
 ?>
 
 <div id="main_content">
+
 	<div class="module">
 	<?php
-	// navigation (previous, random, next)
-	$navigation->displaySentenceNavigation($sentence['Sentence']['id']);
-
+	echo '<h2>' . __('Sentence nº', true) . $sentence['Sentence']['id'] . '</h2>';
 	echo '<div class="sentences_set">';
 		// sentence menu (translate, edit, comment, etc)
 		$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
@@ -34,7 +37,14 @@ $this->pageTitle = __('Add comment for sentence',true);
 		$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
 		$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
 	echo '</div>';
-
+	?>
+	</div>
+	
+	<div class="module">
+	<?php
+	echo '<h2>';
+	__('Comments');
+	echo '</h2>';
 	$comments->displayCommentForm($sentence['Sentence']['id'], $sentence['Sentence']['text']);
 
 	if(count($sentence['SentenceComment']) > 0){
@@ -46,5 +56,6 @@ $this->pageTitle = __('Add comment for sentence',true);
 	}
 	?>
 	</div>
+	
 </div>
 

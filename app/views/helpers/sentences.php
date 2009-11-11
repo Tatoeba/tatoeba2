@@ -48,7 +48,8 @@ class SentencesHelper extends AppHelper {
 	 */
 	function displayRomaji($text){
 		echo '<span class="romaji" title="'.__('WARNING : the romaji is automatically generated and is not always reliable.',true).'">';
-			$this->Kakasi->convert($text, 'romaji');
+			//$this->Kakasi->convert($text, 'romaji');
+			echo 'tesfdsfsgdfgdfgdfgdf';
 		echo '</span>';
 	}
 	
@@ -127,17 +128,16 @@ class SentencesHelper extends AppHelper {
 		}
 		
 		echo '<div title="'.$tooltip.'" class="'.$editable.' original correctness'.$sentence['correctness'].'">';
-		echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="'.$editableSentence.' '.$sentence['lang'].'">'.$sentence['text'].'</span> ';
-		if($sentence['lang'] == 'jp'){
-			$this->displayRomaji($sentence['text']);
-		}
-		if($sentence['lang'] == 'zh'){
-			$this->displayPinyin($sentence['text']);
-		}
+			echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="'.$editableSentence.' text '.$sentence['lang'].'">'.$sentence['text'].'</span> ';
+			if($sentence['lang'] == 'jp'){
+				$this->displayRomaji($sentence['text']);
+			}
+			if($sentence['lang'] == 'zh'){
+				$this->displayPinyin($sentence['text']);
+			}
 		echo '</div>';
 		
-		echo '<ul id="translation_for_'.$sentence['id'].'" class="addTranslations">';
-		echo '</ul>';
+		echo '<ul id="translation_for_'.$sentence['id'].'" class="addTranslations"></ul>';
 		
 		echo '<ul id="'.$sentence['id'].'_translations" class="translations">';
 		if(count($translations) > 0){
@@ -160,15 +160,25 @@ class SentencesHelper extends AppHelper {
 		
 		foreach($translations as $translation){
 			echo '<li class="direct translation correctness'.$translation['correctness'].'">';
+			// hidden 'info button'
 			echo $this->Html->link(
-				$translation['text'],
+				$this->Html->image(
+					'info.png',
+					array(
+						"alt"=>__('Show',true),
+						"title"=>__('Show',true)
+					)
+				),
 				array(
 					"controller" => $controller,
 					"action" => $action,
 					$translation['id']
 				),
-				array("class" => $translation['lang'])
+				array("escape"=>false)
 			);
+			
+			//translation and romanization
+			echo '<span class="text '.$translation['lang'].'">' . $translation['text'] . '</span>';
 			if($translation['lang'] == 'jp'){
 				$this->displayRomaji($translation['text']);
 			}
@@ -301,15 +311,7 @@ class SentencesHelper extends AppHelper {
 				echo '</li>';
 			}
 			
-			// echo '<li class="'.$this->optionClass('show').'">';
-				// echo $this->Html->link(
-				// $id,
-				// array(
-					// "controller" => "sentences",
-					// "action" => "show",
-					// $id
-				// ));
-			// echo '</li>';
+			$this->Menu->showButton($id);
 			
 			// translate link
 			if($specialOptions['canTranslate']){
@@ -364,7 +366,6 @@ class SentencesHelper extends AppHelper {
 				$this->Javascript->link('favorites.add.js', false);
 				$this->Menu->unfavoriteButton($id);
 			}
-			
 			
 			// add to list
 			if(isset($specialOptions['canAddToList']) AND $specialOptions['canAddToList'] == true){

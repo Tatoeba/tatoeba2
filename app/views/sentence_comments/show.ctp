@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -16,16 +16,18 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+
+// navigation (previous, random, next)
+$navigation->displaySentenceNavigation();
 ?>
 
 <div id="main_content">
 	<div class="module">
 		<?php
-		// navigation (previous, random, next)
-		$navigation->displaySentenceNavigation();
-
 		if($sentenceExists){
-
+			echo '<h2>' . __('Sentence nº', true) . $sentence['Sentence']['id'] . '</h2>';
+			
 			$this->pageTitle = __('Comments on the sentence : ',true) . $sentence['Sentence']['text'];
 
 			echo '<div class="sentences_set">';
@@ -36,29 +38,31 @@
 				$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
 			echo '</div>';
 
-			echo '<div class="addComment">';
-			echo $html->link(
-				__('Add a comment',true),
-				array("controller" => "sentence_comments", "action" => "add", $sentence['Sentence']['id'])
-			);
-			echo '</div>';
-
 		}else{
 
-			$this->pageTitle = __('Comments for sentence n�',true) . $this->params['pass'][0];
+			$this->pageTitle = __('Comments for sentence nº',true) . $this->params['pass'][0];
 
 			echo '<em>';
 			__('The sentence has been deleted');
 			echo '</em>';
 
 		}
-
+	?>
+	</div>
+	
+	<div class="module">
+	<?php		
+		echo '<div class="addComment">';
+		echo $html->link(
+			__('Add a comment',true),
+			array("controller" => "sentence_comments", "action" => "add", $sentence['Sentence']['id'])
+		);
+		echo '</div>';		
+		
 		echo '<h2>';
 		__('Comments');
-		echo ' ';
-		$tooltip->display(__('If you see any mistake, don\'t hesitate to post a comment about it!',true));
 		echo '</h2>';
-
+		
 		echo '<a name="comments"></a>';
 		echo '<div class="comments">';
 		if(count($sentenceComments) > 0){

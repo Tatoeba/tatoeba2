@@ -1,7 +1,7 @@
 <?php
 /*
     Tatoeba Project, free collaborative creation of multilingual corpuses project
-    Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -129,8 +129,7 @@ array_unshift($langArray, array('any' => __('any', true)));
 	}
 	?>
 	<div class="module">
-		<h2><?php __('Random sentence'); ?> <span class="annexe">(<?='<a id="showRandom" lang='.$lang.'>' . __('show another ', true) . '</a> ';?><?=$form->select("randomLangChoice", $langArray, $selectedLanguage, null, false); ?>)</span></h2>
-		<div class="random_sentences_set"></div>
+		<?php echo $this->element('random_sentence'); ?>
 	</div>
 	
 	<?php

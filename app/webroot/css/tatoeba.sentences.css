@@ -1,6 +1,6 @@
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -94,26 +94,36 @@ padding-bottom: 10px;
 padding: 10px 5px;
 }
 
+/* translation */
+.translation a{
+	float:left;
+	padding: 0px 5px;
+	margin-top: 2px;
+	visibility: hidden;
+}
+
+.translation span{
+	display: block;
+	padding-left: 30px;
+	padding-right: 30px;
+}
+
+.translations li.translation:hover {
+	background-color:#e5e5e5;
+}
+
+.translations li.translation:hover a{
+	visibility: visible;
+}
 
 
 /* editing sentences */
 
 .sentences_set div.submit{
-font-size: 1.2em;
 display:inline;
 }
 .sentences_set div.input{
-font-size: 1.2em;
 display:inline;
-}
-
-.sentences_set .direct div.input input{
-font-size: 1.2em;
-width: 600px;
-}
-
-.sentences_set div.submit input{
-font-size: 1.2em;
 }
 
 
@@ -162,25 +172,10 @@ background:transparent url(../img/link.png) no-repeat scroll 10px;
 padding-left: 60px;
 }
 
-ul.translations li a{
-color: #434343;
-font-weight: normal;
-padding: 2px;
-padding-right: 40px;
-}
-
-
-ul.translations li.translation:hover {
-	background-color:#e5e5e5;	
-}
-
 .romaji, .pinyin{
 color: #a1a1a1;
 }
 
-.translation span{
-padding: 2px 0px;
-}
 
 /* sentences languages 
 Note : Is there a way to define this without so much redundancy?
@@ -288,25 +283,10 @@ background:transparent url(../img/uk.png) no-repeat scroll right;
 }
 
 /* Contribute */
-h2.add{
-background:transparent url(../img/add.png) no-repeat scroll left center;
-padding-left: 30px;
-margin-top: 20px;
-}
-
-h2.translate{
-background:transparent url(../img/translate.png) no-repeat scroll left center;
-padding-left: 30px;
-margin-top: 20px;
-}
-
-h1.contribute{
-text-align: center;
-margin-bottom: 20px;
-}
 
 input#SentenceText{
-width: 530px;
+width: 400px;
+font-size: 1em;
 }
 
 
