@@ -18,26 +18,26 @@
 */
 ?>
 
-<div id="main_content">
-	<div class="module">
-		<?php
-		if(isset($sentence_text)){
+<?php
+// this is for edit in place
+if(isset($sentence_text)){
+	
+	echo rtrim($sentence_text);
 
-			echo rtrim($sentence_text);
+}
 
-		}elseif(isset($sentence)){
+// this is when adding new sentences
+elseif(isset($sentence)){
+	
+	echo $javascript->link('sentences.add_translation.js', true);
+	
+	echo '<div class="sentences_set freshlyAddedSentence">';
+	// sentence menu (translate, edit, comment, etc)
+	$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
+	
+	// sentence and translations
+	$sentences->displayGroup($sentence['Sentence'], array(), $session->read('Auth.User'));
+	echo '</div>';
 
-			echo '<div class="sentences_set">';
-			// sentence menu (translate, edit, comment, etc)
-			$sentences->displayMenu($sentence['Sentence']['id'], $specialOptions);
-
-			// sentence and translations
-			$sentences->displayForTranslation($sentence['Sentence'], array());
-			echo '</div>';
-
-		}
-		?>
-	</div>
-</div>
-
-
+}
+?>

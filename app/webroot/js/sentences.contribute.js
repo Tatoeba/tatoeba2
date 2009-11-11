@@ -1,6 +1,6 @@
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -21,11 +21,15 @@
 
 $(document).ready(function() {
 	$("#submitNewSentence").click(function()	{
-	    var valeur_de_l_input = $("#newSentenceText").val();
+	    var sentenceText = $("#newSentenceText").val();
+		
+		$(".loading").show();
+		
 	    $.post("http://" + self.location.hostname + "/sentences/save_sentence"
-		, { "value" : valeur_de_l_input }
+		, { "value" : sentenceText }
 		, function(data){			
-			 $("#sentencesAdded").prepend(data);
+			$("#sentencesAdded").prepend(data);
+			$(".loading").hide();
 		}
 		, "html");	    
 	})

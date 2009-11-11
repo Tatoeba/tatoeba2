@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -36,16 +36,11 @@ class SentencesController extends AppController{
 	function show($id = null){
 		$this->Sentence->recursive = 2;
 
-//		$this->Sentence->unbindModel(
-//			array(
-//				'hasMany' => array('SentenceComment', 'Contribution'),
-//				'hasAndBelongsToMany' => array('InverseTranslation', 'Translation')
-//			)
-//		);			
-		
-
-		
-			
+		$this->Sentence->unbindModel(
+			array(
+				'hasAndBelongsToMany' => array('InverseTranslation', 'Translation')
+			)
+		);			
 
 		if($id == "random" OR $id == null OR $id == "" ){
 			$id = $this->Session->read('random_lang_selected');
@@ -128,17 +123,10 @@ class SentencesController extends AppController{
 			
 			// saving
 			if($this->Sentence->save($this->data)){
-				$this->data = null;
+				$sentence = $this->Sentence->read();
+				$this->set('sentence', $sentence);
 				
-				$this->set('sentence', $this->Sentence->read());
-				
-				// checking which options user can access to
-				// we use again this->data because of the argument
-				// needed by getSentencesOptions 
-
-				$this->data['Sentence']['user_id'] = $this->Auth->user('id');
-				$specialOptions = $this->Permissions->getSentencesOptions($this->data, $this->Auth->user('id'));
-				$this->data = null;
+				$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 				$this->set('specialOptions',$specialOptions);
 			}
 		}
@@ -195,8 +183,13 @@ class SentencesController extends AppController{
 		}
 	}
 	
+	/**
+	 * Save sentence.
+	 * Used in AJAX request, in sentences.contribute.js and in sentences.edit_in_place.js.
+	 */
 	function save_sentence(){
 		if(isset($_POST['value'])){
+			// sentences.edit_in_place.js
 			if(isset($_POST['id'])){
 				if(preg_match("/[a-z]/", $_POST['id'])){
 					$this->Sentence->id = substr($_POST['id'], 2);
@@ -213,8 +206,10 @@ class SentencesController extends AppController{
 					$this->layout = null;
 					$this->set('sentence_text', rtrim($_POST['value']));
 				}
-			}else{
-				// setting correctness of sentence
+			}
+			// sentences.contribute.js
+			else{
+				// setting correctness of sentence (which is not in use by the way)
 				if($this->Auth->user('group_id')){
 					$this->data['Sentence']['correctness'] = Sentence::MAX_CORRECTNESS - $this->Auth->user('group_id');
 				}else{
@@ -222,7 +217,7 @@ class SentencesController extends AppController{
 				}
 				
 				// detecting language
-				$this->GoogleLanguageApi->text = $this->data['Sentence']['text'];
+				$this->GoogleLanguageApi->text = $_POST['value'];
 				$response = $this->GoogleLanguageApi->detectLang();
 				if($response['isReliable']){
 					$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
@@ -237,13 +232,11 @@ class SentencesController extends AppController{
 				if($this->Sentence->save($this->data)){
 					Configure::write('debug',0);
 					$this->layout = null;
-					$this->set('sentence', $this->Sentence->read());
-					// checking which options user can access to
-					// we use again this->data because of the argument needed by getSentencesOptions 
-					$this->data['Sentence']['user_id'] = $this->Auth->user('id');
-					$specialOptions = $this->Permissions->getSentencesOptions($this->data, $this->Auth->user('id'));
-					$this->data = null;
-
+					
+					$sentence = $this->Sentence->read();
+					$this->set('sentence', $sentence);
+					
+					$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 					$this->set('specialOptions',$specialOptions);
 				}
 			}

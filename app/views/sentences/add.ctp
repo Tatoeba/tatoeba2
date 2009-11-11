@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -16,16 +16,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+
 $javascript->link('sentences.contribute.js', false);
 ?>
-
 <div id="main_content">
-	<div class="module main_module">
 
-	</div>
 	<div class="module">
 		<?php
-		echo '<h2 class="add">';
+		echo '<h2>';
 		__('Add another sentence');
 		echo '</h2>';
 
@@ -35,21 +34,27 @@ $javascript->link('sentences.contribute.js', false);
 			echo $form->button('OK', array("id" => "submitNewSentence"));
 			echo '</div>';
 		echo '</div>';
-
-		echo '<br/>';
-
+		?>
+	</div>
+	
+	<div class="module">
+		<?php
 		echo '<h2>';
 		__('Sentences added');
 		echo '</h2>';
-
+		
+		echo '<div class="loading" style="display:none">';
+		echo $html->image('loading.gif');
+		echo '</div>';
+		
 		echo '<div id="sentencesAdded">';
 			if(isset($sentence)){
-				echo "<h1>id =$fakeid;</h1>" .'<div class="sentences_set">';
+				echo '<div class="sentences_set">';
 				// sentence menu (translate, edit, comment, etc)
-				$sentences->displayMenu($sentence['Sentence']['id'], $specialOptions);
+				$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
 
 				// sentence and translations
-				$sentences->displayForTranslation($sentence['Sentence'], array());
+				$sentences->displayGroup($sentence['Sentence'], array(), $session->read('Auth.User'));
 				echo '</div>';
 			}
 		echo '</div>';
