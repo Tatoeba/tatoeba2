@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -19,12 +19,35 @@
 ?>
 
 <?php
+/*
+ * WARNING : this is loaded only if the sentence is of the same language
+ * as the original sentence. The data that is loaded when adding a
+ * translation in another language is check_translation.ctp
+ *
+
 if(isset($translation_text)){
 
 	echo $javascript->link('jquery.jeditable.js', true);
 	echo $javascript->link('sentences.edit_in_place.js', true);
 
 	echo "<li class='direct editable translation'>";
+	// hidden 'info button'
+	echo $html->link(
+		$html->image(
+			'info.png',
+			array(
+				"alt"=>__('Show',true),
+				"title"=>__('Show',true)
+			)
+		),
+		array(
+			"controller" => "sentences",
+			"action" => "show",
+			$translation_id
+		),
+		array("escape"=>false)
+	);
+	
 	echo '<span id="'.$translation_lang.$translation_id.'" class="editableSentence '.$translation_lang.'">';
 	echo $translation_text;
 	echo '</span> ';
