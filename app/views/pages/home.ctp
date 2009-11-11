@@ -86,8 +86,38 @@ array_unshift($langArray, array('any' => __('any', true)));
 		?>
 		</p>
 	</div>
+	
+	<div class="module">
+		<h2><?php __('What can I do in Tatoeba?'); ?></h2>
+		<div class="keyIdea">
+			<span class="keyword">Learn</span> <span class="sub-keyword">languages</span>
+			<ul>
+				<li>Search sentences</li>
+				<li>Create lists</li>
+			</ul>
+		</div>
+		
+		<div class="keyIdea">
+			<span class="keyword">Share</span> <span class="sub-keyword">your knowledge</span>
+			<ul>
+				<li>Translate sentences</li>
+				<li>Correct the mistakes</li>
+			</ul>
+		</div>
+		
+		<div class="keyIdea">
+			<span class="keyword">Interact</span> <span class="sub-keyword">with the community</span>
+			<ul>
+				<li>Post comments</li>
+				<li>Contact other members</li>
+			</ul>
+		</div>
+	</div>
+	
 	<?php
+	
 	}else{
+	
 	?>
 	<div class="module">
 		<h2><?php __('Dashboard'); ?></h2>

@@ -47,14 +47,8 @@ background-color: #CCCCCC;
 }
 
 /* SENTENCES STATS */
-.sentencesStats{
-font-size: 12px;
-padding: 5px 10px;
-float: right;
-background-color: #f0f0f0;
-border: 1px solid #dfdfdf;
-margin-top: 10px;
-margin-left: 10px;
+#sentencesStats{
+font-size: 1.2em;
 z-index: 0;
 }
 
@@ -63,21 +57,18 @@ position: absolute;
 right: 15px;
 }
 
-.sentencesStats ul{
+#sentencesStats ul{
 margin-top: 15px;
 list-style: none;
-margin: 0;
-padding: 0;
+margin: 0px;
+padding: 0px;
 }
 
-.sentencesStats li{
+#sentencesStats li{
 padding: 3px;
 }
 
-.sentencesStats .stat{
-}
-
-.sentencesStats .stat img{
+#sentencesStats .stat img{
 width:16px;
 margin-right:6px;
 }

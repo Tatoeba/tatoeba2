@@ -303,6 +303,7 @@ div.module {
 	padding:10px 10px 5px 10px;
 	margin:0px 0px 20px 0px;
 	background: url(../img/module_background.png) repeat-x bottom left;
+	overflow: hidden;
 }
 
 
@@ -346,6 +347,41 @@ div#annexe_content div.module ul {
 div#annexe_content div.module ul li {
 	list-style-type:none;
 }
+
+/* Key ideas */
+
+.keyIdea{
+	float: left;
+	margin: 0px 10px;
+	padding: 10px;
+}
+
+.keyIdea .keyword{
+	display: block;
+	text-align: center;
+	font-size: 2em;
+	font-weight: bold;
+}
+
+.keyIdea .sub-keyword{
+	display: block;
+	text-align: center;
+	font-size: 1.5em;
+	font-style: italic;
+}
+
+.keyIdea ul{
+	list-style-type:none;
+	margin: 5px 0px;
+	padding: 5px;
+}
+
+.keyIdea li{
+	text-align: center;
+	margin: 3px 0px;
+}
+
+
 
 /* Footer */
 
