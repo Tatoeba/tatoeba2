@@ -21,9 +21,7 @@ if (isset($this->params['lang'])) {
 	Configure::write('Config.language',  $this->params['lang']); 
 }
 
-echo '<div class="sentencesStats">';
-__('Number of sentences :');
-
+echo '<div id="sentencesStats">';
 echo '<ul>';
 for($i = 0; $i < 5; $i++){
 	$stat = $stats[$i];

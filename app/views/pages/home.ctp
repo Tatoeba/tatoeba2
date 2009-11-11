@@ -65,6 +65,11 @@ array_unshift($langArray, array('any' => __('any', true)));
 	<?php
 	}
 	?>
+	
+	<div class="module">
+	<h2><?php __('Number of sentences') ?></h2>
+	<?php echo $this->element('sentences_statistics'); ?>
+	</div>
 </div>
 
 <div id="main_content">
