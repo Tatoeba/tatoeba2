@@ -77,7 +77,7 @@ array_unshift($langArray, array('any' => __('any', true)));
 	<?php
 	if(!$session->read('Auth.User.id')){
 	?>
-	<div class="module">
+	<div class="main_module">
 		<h2><?php __('What is Tatoeba?'); ?></h2>
 		<p>
 		<?php 

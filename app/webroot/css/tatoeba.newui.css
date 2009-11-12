@@ -67,7 +67,7 @@ div#top_menu_container {
 }
 
 div#top_menu {
-	padding: 3px;
+	padding: 1px;
 	width: 960px;
 	margin:auto;
 }
@@ -84,8 +84,9 @@ div#top_menu ul li a:hover, div#top_menu li#login_pseudo_link:hover {
 }
 
 div#top_menu input, div#top_menu select {
-	margin:2px 0px 2px 5px;
-	height: 20px; /* Need to specify height otherwise in Firefox 3.5 (and perhaps other browsers) the height is too big */
+	margin:0px 0px 0px 5px;
+	padding:0;
+	/* height: 20px; Need to specify height otherwise in Firefox 3.5 (and perhaps other browsers) the height is too big */
 }
 
 div#navigation_menu {
