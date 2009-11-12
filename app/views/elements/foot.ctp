@@ -29,7 +29,7 @@ echo '<ul>';
 	echo '</li>';
 	
 	echo '<li>';
-	echo $html->link(__('Contact me', true), array("controller" => 'pages', "action" => 'contact'));
+	echo $html->link(__('Feedback', true), array("controller" => 'pages', "action" => 'contact'));
 	echo '</li>';
 
 	echo '<li>';

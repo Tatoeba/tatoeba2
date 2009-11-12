@@ -65,7 +65,7 @@ echo '<input id="SentenceQuery" type="text" value="'.$session->read('search_quer
 echo '</fieldset>';
 
 echo '<fieldset class="submit">';
-echo '<input type="submit" value="search"/>';
+echo '<input type="submit" value="'.__('search',true).'"/>';
 echo '</fieldset>';
 
 echo '<fieldset class="help">';

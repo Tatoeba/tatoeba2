@@ -57,8 +57,9 @@ array_unshift($langArray, array('any' => __('any', true)));
 		<?php __("The more contributors there are, the more useful Tatoeba will become! Besides, by contributing, not only you will be helpful to the rest of the world, but you will also get to learn a lot."); ?>
 		<p><?php 
 		echo $html->link(
-			'gros bouton register',
-			array("controller" => "users", "action" => "register")
+			__('Register',true),
+			array("controller" => "users", "action" => "register"),
+			array("class" => "registerButton")
 		);
 		?></p>
 	</div>
