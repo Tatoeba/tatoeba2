@@ -98,7 +98,6 @@ class ContributionsController extends AppController {
 	}
 	
 	function statistics($return = null){
-		Configure::write('debug',2);
 		$this->Contribution->unbindModel(
 			array(
 				'belongsTo' => array('Sentence')
