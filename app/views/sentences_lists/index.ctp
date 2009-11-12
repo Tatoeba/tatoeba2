@@ -1,7 +1,7 @@
 <?php
 /*
     Tatoeba Project, free collaborative creation of multilingual corpuses project
-    Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -18,35 +18,80 @@
 */
 ?>
 
+<div id="annexe_content">
+	
+	<?php
+	if($session->read('Auth.User.id')){	
+	?>
+		<div class="module">
+		<h2><?php __('Create a new list'); ?></h2>
+		<?php
+			echo $form->create('SentencesList');
+			echo $form->input('name');
+			echo $form->end('create');
+		?>
+		</div>
+		
+		<div class="module">
+		<h2><?php __('Still beta'); ?></h2>
+		<p><?php __('This feature is still very basic. We will improve it as we get more time and some feedbacks from users.'); ?></p>
+		<p class="more_link"><?php echo $html->link(__('Feedback',true), array("controller"=>"pages", "action"=>"contact")); ?></p>
+		</div>
+		
+	<?php
+	}else{
+	?>
+		<div class="module">
+			<h2><?php __('About the lists'); ?></h2>
+			<p><?php __('Lists makes it possible to gather and organize sentences in Tatoeba.'); ?></p>
+			<p><?php __('You can create all kinds of lists! "Preparation for summer trip to Mexico", "English test nº4", "My favorite geek quotes"...'); ?></p>
+		</div>
+		
+		<div class="module">
+			<h2><?php __('Registration needed'); ?></h2>
+			<p><?php __('You can create lists only if you are registered.'); ?></p>
+
+			<p><?php 
+			echo $html->link(
+				__('Register',true),
+				array("controller" => "users", "action" => "register"),
+				array("class" => "registerButton")
+			);
+			?></p>		
+			
+			<p><?php __('If you are already registered, please log in.'); ?></p>
+		</div>
+	<?php
+	}
+	?>
+	
+	
+	<?php
+	if(count($myLists) > 0){	
+	?>
+		<div class="module">
+		<h2><?php __('Tips'); ?></h2>
+		<?php __('Click on the name of your list if you would like to change the name. You will be able to edit it in place.'); ?>
+		</div>
+	<?php
+	}
+	?>
+</div>
+
 <div id="main_content">
 	
 <?php
 if(isset($myLists)){
-	$javascript->link('sentences_lists.edit_name.js', false);
-	$javascript->link('jquery.jeditable.js', false);
 
-	// Form to create a new list
-	echo '<div class="module">';
-		echo '<h2>';
-		__('Create a new list');
-		echo '</h2>';
-		
-		echo $form->create('SentencesList');
-		echo $form->input('name');
-		echo $form->end('create');
-	echo '</div>';
-	
 	// Lists of the user
-
 	echo '<div class="module">';
 		echo '<h2>';
 		__('My lists');
 		echo '</h2>';
 		
 		if(count($myLists) > 0){		
-			echo '<div class="tips">';
-			__('You can change the name of the list by clicking on it.');
-			echo '</div>';
+			$javascript->link('sentences_lists.edit_name.js', false);
+			$javascript->link('jquery.jeditable.js', false);
 			
 			echo '<ul class="sentencesLists">';
 			foreach($myLists as $myList){
