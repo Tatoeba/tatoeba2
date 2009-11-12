@@ -97,21 +97,31 @@ class ContributionsController extends AppController {
 		);
 	}
 	
-	function statistics(){
-		//Configure::write('debug',2);
+	function statistics($return = null){
+		Configure::write('debug',2);
 		$this->Contribution->unbindModel(
 			array(
 				'belongsTo' => array('Sentence')
 			)
 		);
 		$this->Contribution->recursive = 0;
-		$stats = $this->Contribution->find('all', array(
+		$query = array(
 			'fields' => array('Contribution.user_id', 'User.id', 'User.username', 'User.since', 'User.group_id', 'COUNT(*) as total'),
 			'conditions' => array('Contribution.user_id !=' => null, 'Contribution.type' => 'sentence'),
 			'group' => array('Contribution.user_id'),
 			'order' => 'total DESC'
-		));
-		$this->set('stats', $stats);
+		);
+		if($return != null){
+			$query['limit'] = 20;
+			$query['conditions']['User.group_id <'] = 5; 
+		}
+		$stats = $this->Contribution->find('all', $query);
+		
+		if($return == 0 OR $return == null){
+			$this->set('stats', $stats);
+		}else{
+			return $stats;
+		}
 	}
 	
 	function activity_timeline(){

@@ -19,7 +19,6 @@
 */
 
 #usersStatistics{
-width: 600px;
 text-align: center;
 margin: 20px auto;
 border: 1px #6CBC70 solid;
@@ -196,4 +195,25 @@ background: #CCFE80;
 
 #sentencesMap div.en_cluster{
 background: #2B5497;
+}
+
+/* Top Members */
+#topMembers{
+	text-align: center;
+}
+
+#topMembers td{
+	padding: 5px;
+	border-bottom: 1px #cccccc solid;
+}
+
+#topMembers th{
+	border-bottom: 1px #000000 solid;
+}
+
+#topMembers tr.admin{
+	background-color: #FFCCCC;
+}
+
+#topMembers tr.normal{
 }
