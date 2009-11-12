@@ -21,6 +21,21 @@
 // navigation (previous, random, next)
 $navigation->displaySentenceNavigation();
 ?>
+<div id="annexe_content">
+	<div class="module">
+	<h2><?php __('Notifiy mistakes') ?></h2>
+	<p>
+	<?php
+	__('Do not hesitate to post a comment if you see a mistake!');
+	?>
+	</p>
+	<p>
+	<?php
+	__('NOTE : If the sentence does not belong to anyone and you know how to correct the mistake, feel free to correct it without posting any comment. You will have to adopt the sentence before you can edit it.');
+	?>
+	</p>
+	</div>
+</div>
 
 <div id="main_content">
 	<div class="module">

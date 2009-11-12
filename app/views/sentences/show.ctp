@@ -108,20 +108,28 @@ $navigation->displaySentenceNavigation();
 					$comment['text']
 				);
 			}
+			
+			if(count($sentence['SentenceComment']) > 3){
+				?>
+				<p class="more_link">
+				<?=$html->link(
+					__('See all comments',true),
+					array(
+						"controller" => "sentence_comments",
+						"action" => "show",
+						$sentence['Sentence']['id']
+					)); 
+				?>
+				</p>
+				<?php
+			}
 		}else{
 			echo '<em>' . __('There are no comments for now.', true) .'</em>';
 		}
 		echo '</div>';
 		?>
-		<p class="more_link">
-			<?=$html->link(
-				__('See all comments',true),
-				array(
-					"controller" => "sentence_comments",
-					"action" => "show",
-					$sentence['Sentence']['id']
-				)); ?>
-		</p>
+		
+		
 	</div>
 	
 </div>

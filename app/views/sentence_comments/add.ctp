@@ -23,6 +23,15 @@ $this->pageTitle = __('Add comment for sentence',true);
 $navigation->displaySentenceNavigation($sentence['Sentence']['id']);
 ?>
 
+<div id="annexe_content">
+	<div class="module">
+	<h2><?php __('Notifications'); ?></h2>
+	<p><?php __('You will receive notifications every time someone posts a comment on this sentence.'); ?></p>
+	<p><?php __('You can disactivate the notifications from your profile'); ?></p>
+	<p class="more_link"><?php echo $html->link(__('Go to my profile',true), array("controller"=>"user", "action"=>"profile")); ?></p>
+	</div>
+</div>
+
 <div id="main_content">
 
 	<div class="module">

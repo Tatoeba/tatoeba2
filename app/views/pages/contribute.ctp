@@ -58,10 +58,14 @@
 		</div>
 			
 		<div class="module">
-			<h2><?php __('Translate or adopt sentences'); ?></h2>
-			<br/>
-			// trois lignes qui expliquent comment traduire ou adopter.<br/>
-			<br/>
+			<h2><?php 
+			echo sprintf(
+				__('Translate (%s) or adopt sentences (%s)',true),
+				$html->image('translate.png'),
+				$html->image('adopt.png')
+			); 
+			?></h2>
+			<p><?php __("It's easy, try it out below with the random sentence.") ?></p>
 		</div>
 		
 		<div class="module">
