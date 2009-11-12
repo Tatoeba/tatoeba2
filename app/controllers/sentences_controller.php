@@ -35,7 +35,8 @@ class SentencesController extends AppController{
 	
 	function show($id = null){
 		$this->Sentence->recursive = 2;
-
+		
+		$this->Sentence->hasMany['SentenceComment']['limit'] = 3; // limiting comments to 3
 		$this->Sentence->unbindModel(
 			array(
 				'hasAndBelongsToMany' => array('InverseTranslation', 'Translation')
