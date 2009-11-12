@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -16,58 +16,75 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+
 $this->pageTitle = __('Tatoeba user : ',true) . $user['User']['username'];
 //$javascript->link('users.followers_and_following.js', false);
+
+$navigation->displayUsersNavigation($user['User']['id'], $user['User']['username']);
 ?>
+<div id="annexe_content">
+	<?php
+	if($session->read('Auth.User.id')){
+	?>
+		<div class="module">
+		<h2><?php __('Contact'); ?></h2>
+		<?php
+		echo $html->link(__('Contact this user', true), array('controller' => 'privateMessages', 'action' => 'write', $user['User']['username']));
+		?>
+		</div>
+	<?php
+	}
+	?>
+	
+	<?php
+	/* Latest contributions from the user */
+	if(count($user['Contributions']) > 0){
+		echo '<div class="module">';
+			echo '<h2>';
+			__('Latest contributions');
+			echo '</h2>';
+
+			echo '<div id="logs">';
+			foreach($user['Contributions'] as $contribution){
+				$logs->annexeEntry($contribution);
+			}
+			echo '</div>';
+		echo '</div>';
+	}
+	?>
+</div>
 
 <div id="main_content">
 	<div class="module">
-		<?php
-		$navigation->displayUsersNavigation($user['User']['id'], $user['User']['username']);
+	<h2><?php echo sprintf(__('About %s',true), $user['User']['username']); ?></h2>
+	<ul>
+		<li><?php __('Member since:'); echo ' '.$date->ago($user['User']['since']); ?></li>
+	</ul>
+	</div>
 
-		/* User general information */
-		echo '<h2>';
-		echo $user['User']['username'];
-		// if($session->read('Auth.User.id') AND isset($can_follow)){
-			// if($can_follow){
-				// $style2 = "style='display: none'";
-				// $style1 = "";
-			// }else{
-				// $style1 = "style='display: none'";
-				// $style2 = "";
-			// }
-			// echo ' (';
-			// echo '<a id="start" class="followingOption" '.$style1.'>'. __('Start following this person', true). '</a>';
-			// echo '<a id="stop" class="followingOption" '.$style2.'>'. __('Stop following this person', true). '</a>';
-			// echo ')';
+	<?php
+	// if($session->read('Auth.User.id') AND isset($can_follow)){
+		// if($can_follow){
+			// $style2 = "style='display: none'";
+			// $style1 = "";
+		// }else{
+			// $style1 = "style='display: none'";
+			// $style2 = "";
 		// }
-		echo '</h2>';
+		// echo ' (';
+		// echo '<a id="start" class="followingOption" '.$style1.'>'. __('Start following this person', true). '</a>';
+		// echo '<a id="stop" class="followingOption" '.$style2.'>'. __('Stop following this person', true). '</a>';
+		// echo ')';
+	// }
 
-		echo '<div class="user" id="'.$user['User']['id'].'">';
-		echo $html->link(__('Contact this user', true), array('controller' => 'privateMessages', 'action' => 'write', $user['User']['username']));
-		echo '<br/>' . __('Member since : ', true);
-		echo $date->ago($user['User']['since']);
-		echo '</div>';
+	/* People that the user is following */
 
-
-		/*User's menu to acced more specific and detailled informations*/
-		// echo '<div id="usermenu" >';
-			// echo '<ul>';
-				// echo '<li>' . __('Followers',true) . '</li>';
-				// echo '<li>' . __('Contributions',true) . '</li>';
-				// echo '<li>' . __('Favorite sentences',true) . '</li>';
-				// echo '<li>' . __('Sentences',true) . '</li>';
-				// echo '<li>' . __('Comments',true) . '</li>';
-
-			// echo '</ul>';
-		// echo '</div>';
-
-		/* People that the user is following */
-
-		if(count($user['Following']) > 0){
-			echo '<h3>';
+	if(count($user['Following']) > 0){
+		echo '<div class="module">';
+			echo '<h2>';
 			__('Following');
-			echo '</h3>';
+			echo '</h2>';
 
 			echo '<div class="following">';
 			echo '<ul>';
@@ -76,14 +93,16 @@ $this->pageTitle = __('Tatoeba user : ',true) . $user['User']['username'];
 			}
 			echo '<ul>';
 			echo '</div>';
-		}
+		echo '</div>';
+	}
 
 
-		/* People that are following the user */
-		if(count($user['Follower']) > 0){
-			echo '<h3>';
+	/* People that are following the user */
+	if(count($user['Follower']) > 0){
+		echo '<div class="module">';
+			echo '<h2>';
 			__('Followers');
-			echo '</h3>';
+			echo '</h2>';
 
 			echo '<div class="followers">';
 			echo '<ul>';
@@ -92,27 +111,13 @@ $this->pageTitle = __('Tatoeba user : ',true) . $user['User']['username'];
 			}
 			echo '<ul>';
 			echo '</div>';
-		}
+		echo '</div>';
+	}
 
-
-		/* Latest contributions from the user */
-		if(count($user['Contributions']) > 0){
-			echo '<h3>';
-			__('Contributions');
-			echo '</h3>';
-
-			echo '<table id="logs">';
-			foreach($user['Contributions'] as $contribution){
-				$logs->entry($contribution);
-			}
-			echo '</table>';
-
-			echo '<br/>';
-		}
-
-		/* Latest favorites from the user */
-		if(count($user['Favorite']) > 0){
-			echo '<h3>';
+	/* Latest favorites from the user */
+	if(count($user['Favorite']) > 0){
+		echo '<div class="module">';
+			echo '<h2>';
 			__('Favorite sentences');
 			echo ' (';
 			echo $html->link(
@@ -124,7 +129,7 @@ $this->pageTitle = __('Tatoeba user : ',true) . $user['User']['username'];
 				)
 			);
 			echo ')';
-			echo '</h3>';
+			echo '</h2>';
 
 			echo '<table id="logs">';
 			foreach($user['Favorite'] as $favorite){
@@ -132,25 +137,28 @@ $this->pageTitle = __('Tatoeba user : ',true) . $user['User']['username'];
 			}
 			echo '</table>';
 
-			echo '<br/>';
-		}
+		echo '</div>';
+	}
 
-		/* Latest sentences, translations or adoptions from the user */
-		if(count($user['Sentences']) > 0){
-			echo '<h3>';
-			__('Sentences');
-			echo '</h3>';
+	/* Latest sentences, translations or adoptions from the user */
+	if(count($user['Sentences']) > 0){
+		echo '<div class="module">';
+			echo '<h2>';
+			__('Latest sentences');
+			echo '</h2>';
 
 			foreach($user['Sentences'] as $sentence){
 				$sentences->displaySentence($sentence);
 			}
-		}
+		echo '</div>';
+	}
 
-		/* Latest comments from the user */
-		if(count($user['SentenceComments']) > 0){
-			echo '<h3>';
-			__('Comments');
-			echo '</h3>';
+	/* Latest comments from the user */
+	if(count($user['SentenceComments']) > 0){
+		echo '<div class="module">';
+			echo '<h2>';
+			__('Latest comments');
+			echo '</h2>';
 
 			echo '<table class="comments">';
 			foreach($user['SentenceComments'] as $comment) {
@@ -179,8 +187,9 @@ $this->pageTitle = __('Tatoeba user : ',true) . $user['User']['username'];
 				echo '</tr>';
 			}
 			echo '</table>';
-		}
-		?>
-	</div>
+		echo '</div>';
+	}
+	?>
+
 </div>
 

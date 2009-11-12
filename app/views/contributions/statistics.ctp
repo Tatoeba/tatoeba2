@@ -29,7 +29,7 @@ $this->pageTitle = __('Contributions statistics',true);
 	<div class="module">
 	<h2><?php __('About the colors'); ?></h2>
 	<p><?php __('In January 2009, a new version of Tatoeba was released and all the accounts have been disactivated. Users in grey are users who have not reactivated their account (yet?).'); ?></p>
-	<p><?php __('They are however displayed here because some of them really deserve some acknowledgement for their dedication.') ?></p>
+	<p><?php __('They are however displayed here because they still deserve some acknowledgement for their dedication.') ?></p>
 	<p><?php __('Users in red are admins (and there is only one so far).') ?></p>
 	</div>
 </div>

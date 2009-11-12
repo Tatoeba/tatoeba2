@@ -81,7 +81,7 @@ array_unshift($langArray, array('any' => __('any', true)));
 		<h2><?php __('What is Tatoeba?'); ?></h2>
 		<p>
 		<?php 
-			__('At its core, Tatoeba is a large database of <strong>example sentences</strong> translated into several languages. But as a whole, it is much more than that. It is an ambitious project which aims to tackle one of the most complex inventions in human history : language.');
+			__('At its core, Tatoeba is a large database of <strong>example sentences</strong> translated into several languages. But as a whole, it is much more than that.');
 			echo ' ' . $html->link(__('Learn more...',true), array('controller' => 'pages', 'action' => 'about')); 
 		?>
 		</p>
@@ -115,19 +115,9 @@ array_unshift($langArray, array('any' => __('any', true)));
 	</div>
 	
 	<?php
-	
-	}else{
-	
-	?>
-	<div class="module">
-		<h2><?php __('Dashboard'); ?></h2>
-		<p>
-		// trucs utiles pour l'utilisateur.
-		</p>
-	</div>
-	<?php
 	}
 	?>
+	
 	<div class="module">
 		<?php echo $this->element('random_sentence'); ?>
 	</div>

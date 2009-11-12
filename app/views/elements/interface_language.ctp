@@ -18,7 +18,6 @@
 */
 ?>
 
-<div id="languageChooser">
 <?php
 $lang = 'eng';
 if (isset($this->params['lang'])) {
@@ -42,8 +41,6 @@ if($this->params['action'] != 'display'){
 foreach($this->params['pass'] as $extraParam){
 	$path .= $extraParam.'/';
 }
-echo $form->create();
-echo $form->select('lang', $languages, $lang, array("onchange" => "$(location).attr('href', '/' + this.value+ '/' + '".$path."');"));
-echo $form->end();
+
+echo $form->select('languageSelection', $languages, $lang, array("onchange" => "$(location).attr('href', '/' + this.value+ '/' + '".$path."');"));
 ?>
-</div>

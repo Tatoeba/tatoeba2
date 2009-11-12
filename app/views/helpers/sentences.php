@@ -48,8 +48,7 @@ class SentencesHelper extends AppHelper {
 	 */
 	function displayRomaji($text){
 		echo '<span class="romaji" title="'.__('WARNING : the romaji is automatically generated and is not always reliable.',true).'">';
-			//$this->Kakasi->convert($text, 'romaji');
-			echo 'tesfdsfsgdfgdfgdfgdf';
+			$this->Kakasi->convert($text, 'romaji');
 		echo '</span>';
 	}
 	
