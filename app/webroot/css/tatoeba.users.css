@@ -76,8 +76,52 @@
 	#UserLoginForm_FromBar p {
 		margin:0;
 		padding:0;
+
 	}
 
+	
+/* Login for when trying to access restricted area */
+	
+#Login{
+margin: auto;
+background: #f1f1f1;
+border: 1px solid #a1a1a1;
+width: 270px;
+}
+
+#UserLoginForm{
+padding: 5px 20px;
+margin: 0px 10px;
+}
+
+#UserLoginForm div.input{
+font-size: 16px;
+margin: 10px 0px;
+}
+
+#UserLoginForm div.input input{
+display: block;
+width: 200px;
+}
+
+#UserLoginForm .submit{
+margin: 10px 0px 0px 5px;
+}
+
+#UserLoginForm div.submit input{
+font-size: 16px;
+}
+
+#PasswordForgotten{
+margin: 15px 30px;
+}
+
+#ClickHereToRegister{
+	text-align:center;
+}
+
+	
+	
 /* REGISTER */
 
 #UserRegisterForm{

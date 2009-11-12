@@ -437,8 +437,22 @@ div.module ul.menu .selected a {
 }
 
 /* Flash message */
-#flashMessage{
+#flashMessage, #authMessage{
 	margin: 20px 10px;
 	padding: 10px;
-	background: #FFEDD8;
+	color: #E05900;
+	background: #EDE0B8;
+	text-align: center;
+}
+
+
+/* Register */
+a.registerButton{
+	display: block;
+	background: #545454;
+	color: white;
+	padding: 5px 20px;
+	margin: 20px auto;
+	width: 100px;
+	text-align:center;
 }
