@@ -89,13 +89,13 @@ class PermissionsComponent extends Object{
 					array_push($specialOptions['belongsToLists'], $list['id']);
 				}
 			}
-		}
-		
-		// -- adopt --
-		if($sentence_owner_id == NULL OR $sentence_owner_id = 0){
 			
-			$specialOptions['canAdopt'] = true;
-			
+			// -- adopt --
+			if($sentence_owner_id == NULL OR $sentence_owner_id = 0){
+				
+				$specialOptions['canAdopt'] = true;
+				
+			}
 		}
 		
 		return $specialOptions;
