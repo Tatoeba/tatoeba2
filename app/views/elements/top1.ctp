@@ -39,6 +39,19 @@ $menuElements = array(
 
 <div id="top_menu_container">
 <div id="top_menu">
+
+	<?php echo $this->element('interface_language'); ?>
+
+	<div id="user_menu">
+	<?php
+		if(!$session->read('Auth.User.id')){
+			echo $this->element('login');
+		} else {
+			echo $this->element('space');
+		}
+	?>
+	</div>
+
 	<div id="navigation_menu">
 		<ul>
 
@@ -78,19 +91,6 @@ $menuElements = array(
 		?>
 
 		</ul>
-	</div>
-
-
-	<?php echo $this->element('interface_language'); ?>
-
-	<div id="user_menu">
-	<?php
-		if(!$session->read('Auth.User.id')){
-			echo $this->element('login');
-		} else {
-			echo $this->element('space');
-		}
-	?>
 	</div>
 </div>
 </div>
