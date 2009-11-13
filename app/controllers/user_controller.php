@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -46,6 +46,10 @@ class UserController extends AppController {
 			$bLogin = $this->Auth->user('id') ? true : false;
 			// TODO: check if the username exits and then handle the error
 			$aUser = $this->User->findByUsername($sUserName);
+			if($aUser['User']['name'] != '')
+				$this->pageTitle = sprintf(__("Profile of %s", true), $aUser['User']['name']);
+			else
+				$this->pageTitle = sprintf(__("%s's profile", true), $sUserName);
 			// Check if his/her profile is public
 			$this->set('login', $bLogin);
 			$this->set('is_public', $aUser['User']['is_public']);
@@ -74,7 +78,7 @@ class UserController extends AppController {
 
 						$this->redirect(array('action' => 'index'));
 					}
-					
+
 					$this->loadModel('User');
 
 					$aUser = $this->User->findById($this->Auth->user('id'));
@@ -120,7 +124,7 @@ class UserController extends AppController {
 				}
 			}
 		}
-		
+
 		$this->redirect(array('action' => 'index'));
 	}
 
@@ -134,7 +138,7 @@ class UserController extends AppController {
 				);
 
 				$this->User->id = $this->Auth->user('id');
-				
+
 				if($this->User->save(array('User' => $aToSave))){
 					$this->Session->setFlash(__('Your basic informations have been updated.', true));
 				}else{
@@ -207,7 +211,7 @@ class UserController extends AppController {
 		pr($this->data);
 
 		if(!empty($this->data)){
-			
+
 			$this->User->id = $this->Auth->user('id');
 			$this->User->recursive = 0;
 			$user = $this->User->read();

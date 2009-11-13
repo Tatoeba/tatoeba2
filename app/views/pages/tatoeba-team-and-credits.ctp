@@ -20,14 +20,29 @@ echo '<p><em>Note : the list is not complete yet...</em></p>';
 
 echo '<h2>'. __('The team', true) . '</h2>';
 echo '<ul>';
-	echo '<li>HO Ngoc Phuong Trang (aka. <span class="aka">trang</span>)</li>';
-	
-	echo '<li>SIMON Allan (aka. <span class="aka">sysko</span>)</li>';
-	
+	echo '<li>' . $html->link('HO Ngoc Phuong Trang', array(
+									'controller' => 'user',
+									'action' => 'profile',
+									'trang'));
+	echo ' (aka. <span class="aka" title="' . __('Contact me', true) . '">';
+	echo $html->link('trang', array(
+									'controller' => 'privateMessages',
+									'action' => 'write',
+									'trang')) . '</span>)</li>';
+	echo '<li>' . $html->link('SIMON Allan', array(
+									'controller' => 'user',
+									'action' => 'profile',
+									'sysko'));
+	echo ' (aka. <span class="aka" title="' . __('Contact me', true) . '">';
+	echo $html->link('sysko', array(
+									'controller' => 'privateMessages',
+									'action' => 'write',
+									'sysko')) . '</span>)</li>';
+
 	//echo '<li>TAN Kévin (aka. keklesurvivant)</li>';
-	
+
 	//echo '<li>BEN YAALA Salem (aka. socom)</li>';
-	
+
 	//echo '<li>DEPARIS Étienne (aka. milouse)</li>';
 echo '</ul>';
 
@@ -35,12 +50,27 @@ echo '<h2>'. __('Credits', true) . '</h2>';
 echo '<ul class="credits">';
 	echo '<li>';
 	echo '<strong>' . __('Chinese translations', true) . '</strong> - ';
-	echo 'FU Congcong 傅琮琮 (aka. <span class="aka">fucongcong</span>), <em>fucongcong at gmail dot com</em>';
-	echo '</li>';
-	
+	echo $html->link('FU Congcong 傅琮琮', array(
+							'controller' => 'user',
+							'action' => 'profile',
+							'fucongcong'));
+	echo ' (aka. <span class="aka" title="' . __('Contact me', true) . '">';
+	echo $html->link('fucongcong', array(
+									'controller' => 'privateMessages',
+									'action' => 'write',
+									'fucongcong')) . '</span>)';
+
 	echo '<li>';
 	echo '<strong>' . __('Spanish translations', true) . '</strong> - ';
-	echo 'JIMÉNEZ Gabriel (aka. <span class="aka">Kylecito</span>)';
+	echo $html->link('JIMÉNEZ Gabriel', array(
+							'controller' => 'user',
+							'action' => 'profile',
+							'kylecito'));
+	echo ' (aka. <span class="aka" title="' . __('Contact me', true) . '">';
+	echo $html->link('kylecito', array(
+									'controller' => 'privateMessages',
+									'action' => 'write',
+									'kylecito')) . '</span>)';
 	echo '</li>';
 echo '</ul>';
 

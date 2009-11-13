@@ -3,9 +3,47 @@ if($is_public or $login){
 
 	echo $html->css('tatoeba.profile', false);
 ?>
+
+<div id="annexe_content">
+
+	<div id="pcontact" class="module">
+		<h3><?php __('Contact informations') ?></h3>
+		<dl>
+			<dt><?php __('Private message'); ?></dt>
+			<dd><?php echo $html->link(sprintf(__('Contact %s', true), $user['User']['username']),
+			array('controller' => 'privateMessages', 'action' => 'write', $user['User']['username'])); ?></dd>
+<?php
+if(!empty($user['User']['homepage'])){
+?>
+			<dt>Homepage</dt>
+			<dd><?php echo '<a href="' . $user['User']['homepage'] . '" title="' . $user['User']['username'] . '">' . $user['User']['homepage'] . '</a>' ?></dd>
+<?php
+}
+?>
+		</dl>
+	</div>
+
+	<div class="module">
+		<h3>Activity informations</h3>
+		<dl>
+			<dt>Joined</dt>
+			<dd><?php echo date('r', strtotime($user['User']['since'])) ?></dd>
+			<dt>Last login</dt>
+			<dd><?php echo date('r', $user['User']['last_time_active']) ?></dd>
+			<dt>Comment posted</dt>
+			<dd><?php echo count($user['SentenceComments']) ?></dd>
+			<dt>Sentences owned</dt>
+			<dd><?php echo count($user['Sentences']) ?></dd>
+			<dt>Sentences favorited</dt>
+			<dd><?php echo count($user['Favorite']) ?></dd>
+		</dl>
+	</div>
+</div>
+
 <div id="main_content">
 	<div class="module">
-		<h3><?php echo $user['User']['username'] ?></h3>
+		<h3><?php if($user['User']['name'] != '') echo $user['User']['name'] . ' aka. ' . $user['User']['name'];
+		else echo $user['User']['username'] ?></h3>
 		<div id="pimg">
 <?php
 echo $html->image('profiles/' . (empty($user['User']['image']) ? 'tatoeba_user.png' : $user['User']['image'] ), array(
@@ -48,38 +86,6 @@ if(is_string($user['User']['country_id']) and strlen($user['User']['country_id']
 ?>
 			<dt>Country</dt>
 			<dd><?php echo $user['Country']['name'] ?></dd>
-<?php
-}
-?>
-		</dl>
-	</div>
-
-	<div class="module">
-		<h3>Activity informations</h3>
-		<dl>
-			<dt>Joined</dt>
-			<dd><?php echo date('r', strtotime($user['User']['since'])) ?></dd>
-			<dt>Last login</dt>
-			<dd><?php echo date('r', $user['User']['last_time_active']) ?></dd>
-			<dt>Comment posted</dt>
-			<dd><?php echo count($user['SentenceComments']) ?></dd>
-			<dt>Sentences owned</dt>
-			<dd><?php echo count($user['Sentences']) ?></dd>
-			<dt>Sentences favorited</dt>
-			<dd><?php echo count($user['Favorite']) ?></dd>
-		</dl>
-	</div>
-
-	<div id="pcontact" class="module">
-		<h3><?php __('Contact informations') ?></h3>
-		<dl>
-			<dt>E-mail</dt>
-			<dd><?php echo $user['User']['email'] ?></dd>
-<?php
-if(!empty($user['User']['homepage'])){
-?>
-			<dt>Homepage</dt>
-			<dd><?php echo '<a href="' . $user['User']['homepage'] . '" title="' . $user['User']['username'] . '">' . $user['User']['homepage'] . '</a>' ?></dd>
 <?php
 }
 ?>
