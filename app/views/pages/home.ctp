@@ -83,7 +83,8 @@ array_unshift($langArray, array('any' => __('any', true)));
 		<p>
 		<?php
 			__('At its core, Tatoeba is a large database of <strong>example sentences</strong> translated into several languages. But as a whole, it is much more than that.');
-			echo ' ' . $html->link(__('Learn more...',true), array('controller' => 'pages', 'action' => 'about'));
+			// TODO : write something in the "About"
+			// echo ' ' . $html->link(__('Learn more...',true), array('controller' => 'pages', 'action' => 'about'));
 		?>
 		</p>
 	</div>

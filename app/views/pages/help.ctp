@@ -41,29 +41,47 @@ $this->pageTitle = 'Tatoeba : ' . __('Help',true);
 	<a name="adding"></a>
 	<div class="module">
 		<h2><?php __('Adding new sentences'); ?></h2>
-		<p><?php __(''); ?></p>
-		<p><?php __(''); ?></p>
+		<p><?php __('Ideally, for any word you may want to search, we would like you to always get results. Indeed, one of the goala of the project is to illustrate as many words and expressions as possible.'); ?></p>
+		<p><?php __('However, even if there is a large amount of sentences, there is still a lot of vocabulary that is not covered. This is why we encourage you to add new sentences with new vocabulary, even if you do not know how to translate it into any language.'); ?></p>
+		<p><?php 
+		echo sprintf(
+			__('Just <a href="%s">register</a> if you have not done so already, then log in and go to the <a href="%s">contribution section</a>.',true),
+			$html->url(array("controller"=>"users", "action"=>"register")),
+			$html->url(array("controller"=>"pages", "action"=>"contribute"))
+		); ?></p>
 	</div>
 	
 	<a name="translating"></a>
 	<div class="module">
 		<h2><?php __('Translating sentences'); ?></h2>
-		<p><?php __(''); ?></p>
-		<p><?php __(''); ?></p>
+		<p><?php __('Translating is one of the most important tasks in Tatoeba, since the main goal of the project is to gather sentences translated into several languages.'); ?></p>
+		<p><?php echo sprintf(__('You can translate a sentence from pretty much everywhere. Just click on this icon %s whenever you see it.',true), $html->image('translate.png')); __(''); ?></p>
+		<p>
+			<?php 
+			__('Note that translations are limited to registered users.'); 
+			echo ' '; 
+			echo $html->link(__('Click here to register.',true), array("controller"=>"users", "action"=>"register")); 
+			?>
+		</p>
 	</div>
 	
 	<a name="correcting"></a>
 	<div class="module">
 		<h2><?php __('Correcting mistakes'); ?></h2>
-		<p><?php __(''); ?></p>
-		<p><?php __(''); ?></p>
+		<p><?php __('Tatoeba is a project that is open to everyone, and we are aware that people make mistakes.'); ?></p>
+		<p><?php __('It is not possible for you to directly correct mistakes in sentences that belong to other people because only the owner of the sentence can edit it. You can however post a comment (%s) on the sentence to notify the mistake. The owner will have to correct it himself or herself.'); ?></p>
+		<p><?php __('In certain cases, the sentence do not have an owner. Read the paragraph below (on adopting sentences) to learn more.'); ?></p>
 	</div>
 	
 	<a name="adopting"></a>
 	<div class="module">
 		<h2><?php __('Adopting sentences'); ?></h2>
-		<p><?php __(''); ?></p>
-		<p><?php __(''); ?></p>
+		<p><?php __('When you add a sentence, this sentence "belongs" to you - only you can edit it. However, most of the sentences in Tatoeba come from a Japanese-English corpus called Tanaka Corpus. These sentences do not have any owner because they have been collected outside of Tatoeba.'); ?></p>
+		<p><?php echo sprintf(__('If you see a mistake in an "orphan" sentence, you will not be able correct it because you are not the owner. This is why there is an "adopt" option (%s). Once you adopt a sentence, you become its owner and therefore can edit it.',true), $html->image('adopt.png')); ?></p>
+		<p>
+		<?php __('Adopting a sentence is also part the "quality process". You can find more information about it here:'); ?>
+		<a href="http://blog.tatoeba.org/2009/01/new-validation-system.html">http://blog.tatoeba.org/2009/01/new-validation-system.html</a>
+		</p>
 	</div>
 </div>
 

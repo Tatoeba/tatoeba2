@@ -85,31 +85,33 @@
 		<div class="main_module">
 		<h2><?php __('We need your help!'); ?></h2>
 		
-		<p><?php __('There are three ways you can contribute:') ?></p>
+		<p><?php __('You can help us by:') ?></p>
 		
 		<ul>
 			<li>
 			<?php 
-			__('By adding new sentences.');
-			echo ' '.$html->link(__('Learn more...',true), array("controller"=>"pages", "action"=>"about"));
+			echo ' '.$html->link(__('adding new sentences',true), array("controller"=>"pages", "action"=>"help#adding"));
 			?>
 			</li>
 			<li>
 			<?php 
-			__('By translating existing sentences.'); 
-			echo ' '.$html->link(__('Learn more...',true), array("controller"=>"pages", "action"=>"about"));
+			echo ' '.$html->link(__('translating existing sentences',true), array("controller"=>"pages", "action"=>"help#translating"));
 			?>
 			</li>
 			<li>
 			<?php 
-			__('By adopting sentences.'); 
-			echo ' '.$html->link(__('Learn more...',true), array("controller"=>"pages", "action"=>"about"));
+			echo ' '.$html->link(__('correcting mistakes',true), array("controller"=>"pages", "action"=>"help#correcting"));
+			?>
+			</li>
+			<li>
+			<?php 
+			echo ' '.$html->link(__('adopting sentences',true), array("controller"=>"pages", "action"=>"help#adopting"));
 			?>
 			</li>
 		</ul>
 		
 		<?php
-		__('Interested? Then please, register.');
+		__('If you are interested, please register.');
 		echo $html->link(
 			'register',
 			array("controller" => "users", "action" => "register"),
