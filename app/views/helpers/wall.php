@@ -21,7 +21,7 @@ helper used to display a form to add a message to a wall
 */
 class WallHelper extends AppHelper {
 
-    var $helpers = array('Html', 'Form' , 'Date' );
+    var $helpers = array('Html', 'Form' , 'Date');
 
     function displayAddMessageToWallForm(){
         /* we use models=>wall to force use wall, instead cakephp would have
@@ -29,12 +29,38 @@ class WallHelper extends AppHelper {
         */
         __('Add a Message : ');
         echo $this->Form->create('' , array("models" => "wall" , "action" => "save")) ;
+        //echo $this->Form->text('',array('class'=>'messageTitle'));
         echo $this->Form->input('content',array('label'=>""));
+        echo $this->Form->hidden('replyTo',array('value'=>"" ));
         echo "<div>";
             echo $this->Form->end(__('Send',true));
         echo "</div>";
     }
+function create_reply_div($message,$allMessages,$isAuthenticated){
+                echo "<div class=\"messagePart\" >\n";
+                    echo "<div class=\"replyHeader\" >\n"; 
+                        echo "<img src=\"/img/profiles/". $message["User"]["image"]."\" alt=\"Avatar of the user \" />\n";
+                        echo "<span class=\"nickname\" >". $message["User"]["username"]."</span>\n";
+                        echo "<span> ," . $message["Wall"]["date"] . ","  . __("says :" ,true) . "</span>\n" ;
+                        
+                        if($isAuthenticated){
+                            echo '<a class="replyLink ' . $message["Wall"]["id"] .'" id="reply_'. $message["Wall"]["id"] .'" >' . __("reply",true). "</a>"; 
+                        }
+                    echo '</div>';
 
+                    echo '<div class="messageBody" id="messageBody_'.  $message["Wall"]["id"]  .'" >';
+                        echo '<div class="messageTextContent" >';
+                            echo nl2br( $message["Wall"]["content"]);
+                        echo '</div>';
+
+                        //pr($message);
+                        foreach( $message['Reply'] as $reply ){
+                            $this->create_reply_div($allMessages[$reply['id'] - 1],$allMessages,$isAuthenticated);
+                        } 
+                    echo '</div>';
+
+                echo '</div>';
+}
 }
 
 ?>

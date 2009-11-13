@@ -21,6 +21,9 @@
 general view for the wall, here are displayed all the messages
 
 */
+
+
+
 $this->pageTitle = __('Wall',true);
 ?>
 <?php /*
@@ -41,27 +44,39 @@ $this->pageTitle = __('Wall',true);
     <div class="module">
         <h2><?php echo __("Wall",true) ?></h2>
         <?php
-            // leave a comment part 
+            // leave a comment part
+            $isAuthenticated = false ;
+             
              if($session->read('Auth.User.id')){
+                $isAuthenticated = true ;
                  echo "<div id=\"sendMessageForm\">\n";
                      echo $wall->displayAddMessageToWallForm();
                  echo "</div>\n";
              }
             // display comment part  
              echo "<div>\n" ;
-             foreach($messages as $message){
-                echo "<div class=\"messagePart\" >\n";
-
+             //pr ($allMessages);
+             foreach($firstMessages as $message){
+                echo "<div class=\"messagePart primaryMessage\" >\n";
                     echo "<div class=\"messageHeader\" >\n"; 
-                        //echo "<img src=\"".$message["User"]["image"]." alt=\"Avatar of the user \" />\n";
-                        echo "<img src=\"/img/profiles/unknown-avatar.jpg\" alt=\"Avatar of the user \" />\n";
+                        echo "<img src=\"/img/profiles/". $message["User"]["image"]."\" alt=\"Avatar of the user \" />\n";
                         echo "<span class=\"nickname\" >". $message["User"]["username"]."</span>\n";
-                        echo "<span> ," . $message["Wall"]["date"] . ","  . __("says :" ,true) . "</span>\n" ; 
-                    //pr($message);
+                        echo "<span> ," . $message["Wall"]["date"] . ","  . __("says :" ,true) . "</span>\n" ;
+                        
+                        if($session->read('Auth.User.id')){
+                            $javascript->link('wall.reply.js',false);
+                            echo '<a class="replyLink ' . $message["Wall"]["id"] .'" id="reply_'. $message["Wall"]["id"] .'" >' . __("reply",true). "</a>"; 
+                        }
                     echo '</div>';
 
-                    echo '<div class="messageBody">';
-                        echo nl2br( $message["Wall"]["content"]); 
+                    echo '<div class="messageBody" id="messageBody_'.  $message["Wall"]["id"]  .'" >';
+                        echo '<div class="messageTextContent" >';
+                            echo nl2br( $message["Wall"]["content"]);
+                        echo '</div>';
+                        //pr($message);
+                        foreach( $message['Reply'] as $reply ){
+                           echo $wall->create_reply_div($allMessages[$reply['id'] - 1], $allMessages, $isAuthenticated);
+                        } 
                     echo '</div>';
 
                 echo '</div>';

@@ -30,20 +30,33 @@
 }
 
 .messageHeader {
+  /*background-color: #E2FFD2;*/
+  background-color: #CCFF99;
+}
+
+
+.replyHeader {
   background-color: #E2FFD2;
 }
 
-.messageHeader img{
+.messageHeader img, .replyHeader img{
     width: 32px ;
     height: auto ;
 }
 
 .messageBody{
     padding-top : 10px ;
-    padding-left: 15px;
+    /*padding-left: 15px*/;
 }
 
-#sendMessageForm{
+.messageTextContent{
+    margin-left: 15px;
+}
+
+.primaryMessage{
+}
+
+#sendMessageForm {
 	border: 1px solid #c1c1c1;
 	background: #f1f1f1;
 	padding: 10px;
@@ -53,9 +66,19 @@
 }
 
 
-#sendMessageForm textarea{
+.replyFormDiv{
+	border: 1px solid #c1c1c1;
+	background: #f1f1f1;
+	padding: 10px;
+	font-size: 16px;
+	margin-top:15px;
+}
+
+
+
+#sendMessageForm textarea, .replyFormDiv textarea{
 	margin: 10px 0px;
 	padding:0;
-	width: 100%;
+	width: 100% ;
 
 }
