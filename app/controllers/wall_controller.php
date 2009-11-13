@@ -64,7 +64,7 @@ class WallController extends Appcontroller{
                         )
                     
                     ,"User" => array (
-                        "fields" => array("User.image","User.username") 
+                        "fields" => array("User.image","User.username","User.id") 
                         )
                     ) 
                 )
@@ -81,7 +81,7 @@ class WallController extends Appcontroller{
                         )
                     
                     ,"User" => array (
-                        "fields" => array("User.image","User.username") 
+                        "fields" => array("User.image","User.username", "User.id") 
                         )
                     ) 
                 )

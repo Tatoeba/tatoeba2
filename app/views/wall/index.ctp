@@ -65,7 +65,8 @@ $this->pageTitle = __('Wall',true);
                 echo "<div class=\"messagePart primaryMessage\" >\n";
                     echo "<div class=\"messageHeader\" >\n"; 
                         echo "<img src=\"/img/profiles/". $message["User"]["image"]."\" alt=\"Avatar of the user \" />\n";
-                        echo "<span class=\"nickname\" >". $message["User"]["username"]."</span>\n";
+                        echo "<a href=\"/users/show/" . $message["User"]["id"] ."\" ><span class=\"nickname\" >".
+                        $message["User"]["username"]."</span></a>\n";
                         echo "<span> ," . $message["Wall"]["date"] . ","  . __("says :" ,true) . "</span>\n" ;
                         
                         if($session->read('Auth.User.id')){

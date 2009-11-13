@@ -55,9 +55,10 @@ $(document).ready(function(){
     
 
         // we remove the previous inside reply form 
-        $("#replyFormDiv_" + replyFormInMessageID ).remove()  ;
 
         if ( messageId != replyFormInMessageID ){
+
+            $("#replyFormDiv_" + replyFormInMessageID ).remove()  ;
             replyFormInMessageID = messageId ;
             // i know that's a bit "hacky" to retrieve the send message form
             // but that way we're sure to always have a coherent form, and 
