@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009 TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -18,10 +18,32 @@
 */
 $this->pageTitle = __('About Tatoeba',true);
 ?>
+
+<div id="annexe_content">
+	<div class="module">
+		<h2><?php __('Table of contents'); ?></h2>
+		<ul>
+			<li><?php __('The origins'); ?></li>
+			<li><?php __('The concept'); ?></li>
+			<li><?php __('The ambition'); ?></li>
+		</ul>
+	</div>
+</div>
+
 <div id="main_content">
 	<div class="module">
-		<h2><?php echo __('About Tatoeba',true); ?></h2>
-		<p>When Trang - or anyone - will have time to write more about it, you will be able to learn more about it.</p>
+		<h2><?php echo __('The origins',true); ?></h2>
+		<p>...</p>
+	</div>
+	
+	<div class="module">
+		<h2><?php echo __('The concept',true); ?></h2>
+		<p>...</p>
+	</div>
+	
+	<div class="module">
+		<h2><?php echo __('The ambition',true); ?></h2>
+		<p>...</p>
 	</div>
 </div>
 

@@ -24,18 +24,13 @@ $this->pageTitle = __('Tatoeba user : ',true) . $user['User']['username'];
 $navigation->displayUsersNavigation($user['User']['id'], $user['User']['username']);
 ?>
 <div id="annexe_content">
+
+	<div class="module">
+	<h2><?php __('Contact'); ?></h2>
 	<?php
-	if($session->read('Auth.User.id')){
+	echo $html->link(__('Contact this user', true), array('controller' => 'privateMessages', 'action' => 'write', $user['User']['username']));
 	?>
-		<div class="module">
-		<h2><?php __('Contact'); ?></h2>
-		<?php
-		echo $html->link(__('Contact this user', true), array('controller' => 'privateMessages', 'action' => 'write', $user['User']['username']));
-		?>
-		</div>
-	<?php
-	}
-	?>
+	</div>
 	
 	<?php
 	/* Latest contributions from the user */

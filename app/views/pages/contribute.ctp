@@ -25,15 +25,21 @@
 	<?php __("You can add sentences that you do not know how to translate. Perhaps someone else will know!"); ?>
 	</div>
 	
-	<div class="module">
-	<h2><?php __("Good translations"); ?></h2>
-	<?php __("We know it's difficult, but do NOT translate word for word!"); ?>
-	</div>
-	
-	<div class="module">
-	<h2><?php __("Multiple translations"); ?></h2>
-	<?php __("If you feel there are several possible translations, note that for a same sentence, you can add several translations in the same language."); ?>
-	</div>
+	<?php 
+	if($session->read('Auth.User.id')){ 
+	?>
+		<div class="module">
+		<h2><?php __("Good translations"); ?></h2>
+		<?php __("We know it's difficult, but do NOT translate word for word!"); ?>
+		</div>
+		
+		<div class="module">
+		<h2><?php __("Multiple translations"); ?></h2>
+		<?php __("If you feel there are several possible translations, note that for a same sentence, you can add several translations in the same language."); ?>
+		</div>
+	<?php
+	}
+	?>
 </div>
 
 <div id="main_content">
@@ -76,10 +82,11 @@
 	}else{
 	?>
 		
-		<div class="module">
+		<div class="main_module">
 		<h2><?php __('We need your help!'); ?></h2>
 		
-		<?php __('There are three ways you can contribute:') ?>
+		<p><?php __('There are three ways you can contribute:') ?></p>
+		
 		<ul>
 			<li>
 			<?php 
@@ -103,9 +110,10 @@
 		
 		<?php
 		__('Interested? Then please, register.');
-		echo ' '.$html->link(
-			'gros bouton register',
-			array("controller" => "users", "action" => "register")
+		echo $html->link(
+			'register',
+			array("controller" => "users", "action" => "register"),
+			array("class"=>"registerButton")
 		);
 		?>
 		</div>

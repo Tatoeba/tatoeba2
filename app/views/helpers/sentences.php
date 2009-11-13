@@ -57,13 +57,13 @@ class SentencesHelper extends AppHelper {
 	 */
 	function displayPinyin($text){
 		echo '<span class="pinyin">';
-		$curl = curl_init();
-		curl_setopt ($curl, CURLOPT_URL, "http://adsotrans.com/popup/pinyin.php?text=".$text);
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-		$result = curl_exec ($curl);
-		$pinyin = substr($result, 14);
-		$pinyin = substr($pinyin, 0, -44);
-		echo $pinyin;
+		// $curl = curl_init();
+		// curl_setopt ($curl, CURLOPT_URL, "http://adsotrans.com/popup/pinyin.php?text=".$text);
+		// curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+		// $result = curl_exec ($curl);
+		// $pinyin = substr($result, 14);
+		// $pinyin = substr($pinyin, 0, -44);
+		// echo $pinyin;
 		echo '</span>';
 	}
 	

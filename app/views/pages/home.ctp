@@ -91,26 +91,26 @@ array_unshift($langArray, array('any' => __('any', true)));
 	<div class="module">
 		<h2><?php __('What can I do in Tatoeba?'); ?></h2>
 		<div class="keyIdea">
-			<span class="keyword">Learn</span> <span class="sub-keyword">languages</span>
+			<span class="keyword"><?php __('Learn'); ?></span> <span class="sub-keyword"><?php __('languages'); ?></span>
 			<ul>
-				<li>Search sentences</li>
-				<li>Create lists</li>
+				<li><?php echo $html->link(__('Search sentences',true), array("controller"=>"pages", "action"=>"search")); ?></li>
+				<li><?php echo $html->link(__('Create lists',true), array("controller"=>"sentences_lists")); ?></li>
 			</ul>
 		</div>
 		
 		<div class="keyIdea">
-			<span class="keyword">Share</span> <span class="sub-keyword">your knowledge</span>
+			<span class="keyword"><?php __('Share'); ?></span> <span class="sub-keyword"><?php __('your knowledge'); ?></span>
 			<ul>
-				<li>Translate sentences</li>
-				<li>Correct the mistakes</li>
+				<li><?php echo $html->link(__('Translate sentences',true), array("controller"=>"pages", "action"=>"help#translating")); ?></li>
+				<li><?php echo $html->link(__('Correct the mistakes',true), array("controller"=>"pages", "action"=>"help#correcting")); ?></li>
 			</ul>
 		</div>
 		
 		<div class="keyIdea">
-			<span class="keyword">Interact</span> <span class="sub-keyword">with the community</span>
+			<span class="keyword"><?php __('Interact'); ?></span> <span class="sub-keyword"><?php __('with the community'); ?></span>
 			<ul>
-				<li>Post comments</li>
-				<li>Contact other members</li>
+				<li><?php echo $html->link(__('Post comments',true), array("controller"=>"sentence_comments")) ?></li>
+				<li><?php echo $html->link(__('Contact other members',true), array("controller"=>"users", "action"=>"all")) ?></li>
 			</ul>
 		</div>
 	</div>
