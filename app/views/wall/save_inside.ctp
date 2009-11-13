@@ -21,9 +21,9 @@
        // pr($user);
        echo "<div class=\"messagePart\" >\n";
 
-            echo "<div class=\"messageHeader\" >\n"; 
+            echo "<div class=\"replyHeader\" >\n"; 
                 //echo "<img src=\"".$message["User"]["image"]." alt=\"Avatar of the user \" />\n";
-                echo "<img src=\"/img/profiles/". $message["User"]["image"]."\" alt=\"Avatar of the user \" />\n";
+                echo "<img src=\"/img/profiles/".  $message["User"]["image"]."\" alt=\"Avatar of the user \" />\n";
                 echo "<span class=\"nickname\" >". $message["User"]["username"]."</span>\n";
                 echo "<span> ," . $message["Wall"]["date"] . ","  . __("says :" ,true) . "</span>\n" ;
                 

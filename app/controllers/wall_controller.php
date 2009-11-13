@@ -141,6 +141,10 @@ class WallController extends Appcontroller{
                 $message['Wall']['id'] = '' ; // TODO find how to to retrive this value
                  
                 $message['User']['image'] = $user['User']['image'];
+                if ( empty($message['User']['image'])){
+                    $message['User']['image'] = 'unknown-avatar.jpg';
+                }
+
                 $message['User']['username'] = $user['User']['username'];
 
                 $this->set("message" , $message ); 

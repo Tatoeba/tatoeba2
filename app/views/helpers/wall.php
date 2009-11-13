@@ -37,6 +37,11 @@ class WallHelper extends AppHelper {
         echo "</div>";
     }
 function create_reply_div($message,$allMessages,$isAuthenticated){
+    
+                 // TODO : remove me 
+                if ( empty($message['User']['image'])){
+                    $message['User']['image'] = 'unknown-avatar.jpg';
+                }
                 echo "<div class=\"messagePart\" >\n";
                     echo "<div class=\"replyHeader\" >\n"; 
                         echo "<img src=\"/img/profiles/". $message["User"]["image"]."\" alt=\"Avatar of the user \" />\n";

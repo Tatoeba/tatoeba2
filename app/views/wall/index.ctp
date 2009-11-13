@@ -57,6 +57,11 @@ $this->pageTitle = __('Wall',true);
              echo "<div>\n" ;
              //pr ($allMessages);
              foreach($firstMessages as $message){
+                 // TODO : remove me 
+                if ( empty($message['User']['image'])){
+                    $message['User']['image'] = 'unknown-avatar.jpg';
+                }
+
                 echo "<div class=\"messagePart primaryMessage\" >\n";
                     echo "<div class=\"messageHeader\" >\n"; 
                         echo "<img src=\"/img/profiles/". $message["User"]["image"]."\" alt=\"Avatar of the user \" />\n";
