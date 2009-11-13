@@ -23,10 +23,15 @@ if (isset($this->params['lang'])) {
 }
 ?>
 <strong>
-	<?php echo $html->link($session->read('Auth.User.username'), array('controller' => 'user', 'action' => 'profile')); ?> : 
+	<?php echo $html->link($session->read('Auth.User.username'), array('controller' => 'user', 'action' => 'profile')); ?> :
 </strong>
 
+<?php $newMessages = $this->requestAction('/private_messages/check');
+if($newMessages > 0) $inboxLink = '<strong>'.$html->link(__('Inbox', true) . ' ('. $newMessages . ')', array('controller' => 'private_messages', 'action' => 'folder', 'Inbox')) . '</strong>';
+else $inboxLink = $html->link(__('Inbox', true), array('controller' => 'private_messages', 'action' => 'folder', 'Inbox')); ?>
+
+
 <ul>
-	<li><?php echo $html->link(__('Inbox', true), array('controller' => 'private_messages', 'action' => 'folder', 'Inbox')); ?></li>
+	<li><?php echo $inboxLink; ?></li>
 	<li><?php echo $html->link(__('Log out',true), array('controller' => 'users', 'action' => 'logout')); ?></li>
 </ul>

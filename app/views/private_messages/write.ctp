@@ -18,7 +18,7 @@
 */
 echo $this->element('pmmenu');
 ?>
-<div id="main_modules">
+<div id="main_content">
 	<div class="module">
 		<h2><?php echo __('Send new message', true); ?></h2>
 		<?php echo $this->element('pmtoolbox');

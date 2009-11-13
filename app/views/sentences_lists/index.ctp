@@ -19,9 +19,10 @@
 ?>
 
 <div id="annexe_content">
-	
+
 	<?php
-	if($session->read('Auth.User.id')){	
+	if($session->read('Auth.User.id')){
+		if(isset($myLists) && count($myLists) > 0){
 	?>
 		<div class="module">
 		<h2><?php __('Create a new list'); ?></h2>
@@ -31,13 +32,14 @@
 			echo $form->end('create');
 		?>
 		</div>
-		
+		<?php } ?>
+
 		<div class="module">
 		<h2><?php __('Still beta'); ?></h2>
 		<p><?php __('This feature is still very basic. We will improve it as we get more time and some feedbacks from users.'); ?></p>
 		<p class="more_link"><?php echo $html->link(__('Feedback',true), array("controller"=>"pages", "action"=>"contact")); ?></p>
 		</div>
-		
+
 	<?php
 	}else{
 	?>
@@ -46,28 +48,28 @@
 			<p><?php __('Lists makes it possible to gather and organize sentences in Tatoeba.'); ?></p>
 			<p><?php __('You can create all kinds of lists! "Preparation for summer trip to Mexico", "English test nº4", "My favorite geek quotes"...'); ?></p>
 		</div>
-		
+
 		<div class="module">
 			<h2><?php __('Registration needed'); ?></h2>
 			<p><?php __('You can create lists only if you are registered.'); ?></p>
 
-			<p><?php 
+			<p><?php
 			echo $html->link(
 				__('Register',true),
 				array("controller" => "users", "action" => "register"),
 				array("class" => "registerButton")
 			);
-			?></p>		
-			
+			?></p>
+
 			<p><?php __('If you are already registered, please log in.'); ?></p>
 		</div>
 	<?php
 	}
 	?>
-	
-	
+
+
 	<?php
-	if(count($myLists) > 0){	
+	if(count($myLists) > 0){
 	?>
 		<div class="module">
 		<h2><?php __('Tips'); ?></h2>
@@ -79,49 +81,56 @@
 </div>
 
 <div id="main_content">
-	
+
 <?php
 if(isset($myLists)){
 
 	// Lists of the user
 	echo '<div class="module">';
-		echo '<h2>';
-		__('My lists');
-		echo '</h2>';
-		
-		if(count($myLists) > 0){		
+
+		if(count($myLists) > 0){
+			echo '<h2>';
+			echo __('My lists');
+			echo '</h2>';
+
 			$javascript->link('sentences_lists.edit_name.js', false);
 			$javascript->link('jquery.jeditable.js', false);
-			
+
 			echo '<ul class="sentencesLists">';
 			foreach($myLists as $myList){
-				echo '<li>';			
+				echo '<li>';
 				echo '<span id="'.$myList['SentencesList']['id'].'" class="listName editable editableSentencesListName">';
 				echo $myList['SentencesList']['name'];
 				echo '</span>';
 				echo ', <span class="username">' . $myList['User']['username'] . '</span> ';
-				
+
 				echo '[ ';
 				echo $html->link(
-					__('edit',true), 
+					__('edit',true),
 					array("controller" => "sentences_lists", "action" => "edit", $myList['SentencesList']['id'])
 				);
 				echo ', ';
 				echo $html->link(
-					__('delete',true), 
+					__('delete',true),
 					array("controller" => "sentences_lists", "action" => "delete", $myList['SentencesList']['id']),
 					null,
 					__('Are you sure?',true)
 				);
-				echo ' ] ';				
+				echo ' ] ';
 				echo '</li>';
 			}
 			echo '</ul>';
 		}else{
-			__('You don\'t have any lists yet.');
+
+			echo '<h2>';
+			__('Create a new list');
+			echo '</h2>';
+			echo $form->create('SentencesList');
+			echo $form->input('name');
+			echo $form->end('create');
+
 		}
 	echo '</div>';
-
 }
 
 // All the lists
@@ -129,18 +138,18 @@ echo '<div class="module">';
 	echo '<h2>';
 	echo __('All lists');
 	echo '</h2>';
-	
+
 	echo '<ul class="sentencesLists">';
 	foreach($lists as $list){
-		echo '<li>';			
+		echo '<li>';
 			echo '<span id="'.$list['SentencesList']['id'].'" class="listName">';
 			echo $list['SentencesList']['name'];
 			echo '</span>';
 			echo ', <span class="username">' . $list['User']['username'] . '</span> ';
-			
+
 			echo '[ ';
 			echo $html->link(
-				__('show',true), 
+				__('show',true),
 				array("controller" => "sentences_lists", "action" => "show", $list['SentencesList']['id'])
 			);
 			echo ' ] ';
@@ -150,5 +159,5 @@ echo '<div class="module">';
 	echo '</ul>';
 echo '</div>';
 ?>
-	
+
 </div>

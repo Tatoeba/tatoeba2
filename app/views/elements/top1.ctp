@@ -79,10 +79,10 @@ $menuElements = array(
 
 		</ul>
 	</div>
-	
-	
+
+
 	<?php echo $this->element('interface_language'); ?>
-	
+
 	<div id="user_menu">
 	<?php
 		if(!$session->read('Auth.User.id')){
@@ -92,15 +92,5 @@ $menuElements = array(
 		}
 	?>
 	</div>
-	
-	<span style="font-weight:bold;">
-		<?php 
-		if($session->read('User.id')){
-			$newMessages = $this->requestAction('/private_messages/check');
-		}else $newMessages = 0;
-		
-		if($newMessages > 1) echo $html->link(__('New messages: ', true) . $newMessages, '/private_messages/folder/Inbox');
-		else if($newMessages == 1) echo $html->link(__('New message: ', true) . '1', '/private_messages/folder/Inbox'); ?>
-	</span>
 </div>
 </div>

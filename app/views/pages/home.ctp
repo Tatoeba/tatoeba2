@@ -55,7 +55,7 @@ array_unshift($langArray, array('any' => __('any', true)));
 	<div class="module">
 		<h2><?php __('Join the community!'); ?></h2>
 		<?php __("The more contributors there are, the more useful Tatoeba will become! Besides, by contributing, not only you will be helpful to the rest of the world, but you will also get to learn a lot."); ?>
-		<p><?php 
+		<p><?php
 		echo $html->link(
 			__('Register',true),
 			array("controller" => "users", "action" => "register"),
@@ -66,7 +66,7 @@ array_unshift($langArray, array('any' => __('any', true)));
 	<?php
 	}
 	?>
-	
+
 	<div class="module">
 	<h2><?php __('Number of sentences') ?></h2>
 	<?php echo $this->element('sentences_statistics'); ?>
@@ -81,13 +81,13 @@ array_unshift($langArray, array('any' => __('any', true)));
 	<div class="main_module">
 		<h2><?php __('What is Tatoeba?'); ?></h2>
 		<p>
-		<?php 
+		<?php
 			__('At its core, Tatoeba is a large database of <strong>example sentences</strong> translated into several languages. But as a whole, it is much more than that.');
-			echo ' ' . $html->link(__('Learn more...',true), array('controller' => 'pages', 'action' => 'about')); 
+			echo ' ' . $html->link(__('Learn more...',true), array('controller' => 'pages', 'action' => 'about'));
 		?>
 		</p>
 	</div>
-	
+
 	<div class="module">
 		<h2><?php __('What can I do in Tatoeba?'); ?></h2>
 		<div class="keyIdea">
@@ -97,7 +97,7 @@ array_unshift($langArray, array('any' => __('any', true)));
 				<li><?php echo $html->link(__('Create lists',true), array("controller"=>"sentences_lists")); ?></li>
 			</ul>
 		</div>
-		
+
 		<div class="keyIdea">
 			<span class="keyword"><?php __('Share'); ?></span> <span class="sub-keyword"><?php __('your knowledge'); ?></span>
 			<ul>
@@ -105,7 +105,7 @@ array_unshift($langArray, array('any' => __('any', true)));
 				<li><?php echo $html->link(__('Correct the mistakes',true), array("controller"=>"pages", "action"=>"help#correcting")); ?></li>
 			</ul>
 		</div>
-		
+
 		<div class="keyIdea">
 			<span class="keyword"><?php __('Interact'); ?></span> <span class="sub-keyword"><?php __('with the community'); ?></span>
 			<ul>
@@ -114,15 +114,15 @@ array_unshift($langArray, array('any' => __('any', true)));
 			</ul>
 		</div>
 	</div>
-	
+
 	<?php
 	}
 	?>
-	
+
 	<div class="module">
 		<?php echo $this->element('random_sentence'); ?>
 	</div>
-	
+
 	<?php
 	if($session->read('Auth.User.id')){
 	?>
@@ -130,7 +130,7 @@ array_unshift($langArray, array('any' => __('any', true)));
 			<h2><?php __('Latest contributions'); ?> <span class="annexe"><?php $tooltip->displayLogsColors(); ?> (<?=$html->link(__('show more...',true), array("controller"=>"contributions")); ?>) (<?=$html->link(__('show activity timeline',true), array("controller"=>"contributions", "action"=>"activity_timeline")); ?>)</span></h2>
 			<?=$this->element('latest_contributions'); ?>
 		</div>
-		
+
 		<div class="module">
 			<h2><?php __('Latest comments'); ?> <span class="annexe">(<?=$html->link(__('show more...',true), array("controller"=>"sentence_comments")); ?>)</span></h2>
 			<?=$this->element('latest_sentence_comments'); ?>

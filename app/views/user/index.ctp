@@ -28,17 +28,6 @@ if(!$session->read('Auth.User.id')){
 	echo $html->css('tatoeba.profile', false);
 ?>
 
-<div id="annexe_content">
-	<div class="module">
-		<h3>Your dashboard</h3>
-		<ul>
-			<li>Settings</li>
-			<li>Inbox (0)</li>
-			<li>Favorites</li>
-		</ul>
-	</div>
-</div>
-
 <div id="main_content">
 	<div class="module">
 		<h3><?php echo $user['User']['username'] ?></h3>
@@ -106,7 +95,7 @@ echo $form->end(__('Upload', true));
 	));
 
 	$sBirthday = (empty($user['User']['birthday']) or $user['User']['birthday'] == 'DD/MM/YYYY') ? 'DD/MM/YYYY' : date('d/m/Y', strtotime($user['User']['birthday']));
-	
+
 	echo $form->input('birthday', array(
 			'label' => 'Birthday',
 			'value' => $sBirthday
