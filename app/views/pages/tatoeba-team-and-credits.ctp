@@ -35,7 +35,7 @@ echo '<h2>'. __('Credits', true) . '</h2>';
 echo '<ul class="credits">';
 	echo '<li>';
 	echo '<strong>' . __('Chinese translations', true) . '</strong> - ';
-	echo 'FU Congcong 傅琮琮 (aka. <span class="aka">fuconfcong</span>), <em>fucongcong at gmail dot com</em>';
+	echo 'FU Congcong 傅琮琮 (aka. <span class="aka">fucongcong</span>), <em>fucongcong at gmail dot com</em>';
 	echo '</li>';
 	
 	echo '<li>';

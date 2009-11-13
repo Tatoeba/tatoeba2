@@ -29,6 +29,10 @@ echo '<ul>';
 	echo '</li>';
 	
 	echo '<li>';
+	echo $html->link(__('Terms of use', true), array("controller" => 'pages', "action" => 'terms-of-use'));
+	echo '</li>';
+
+	echo '<li>';
 	echo $html->link(__('Feedback', true), array("controller" => 'pages', "action" => 'contact'));
 	echo '</li>';
 
