@@ -1,7 +1,7 @@
 <?php
 /*
     Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -127,47 +127,53 @@ class UsersController extends AppController {
 
 	function register(){
 		if (!empty($this->data)) {
-
 			$this->User->create();
 			$this->data['User']['since'] = date("Y-m-d H:i:s");
 			$this->data['User']['group_id'] = User::LOWEST_TRUST_GROUP_ID + 1;
 			$nonHashedPassword = $this->data['User']['password'];
-
+			
 			$this->User->set( $this->data );
-			if($this->User->validates()){
-				if($this->Captcha->check($this->data['User']['captcha'], true) AND $this->User->save($this->data)){
-					$pass = $this->Auth->password($this->data['User']['password']);
-					$token = $this->Auth->password($pass.$this->data['User']['since'].$this->data['User']['username']);
-					// prepare message
-					$subject = __('Tatoeba registration',true);
-					$message = sprintf(__('Dear %s,',true), $this->data['User']['username'])
-						. "\n\n"
-						. __('Welcome to Tatoeba and thank you for your interest in this project!',true)
-						. "\n\n"
-						. __('You can validate your registration by clicking on this link :',true)
-						. "\n"
-						. 'http://' . $_SERVER['HTTP_HOST'] . '/users/confirm_registration/' . $this->User->id . '/' . $token;
+			if(!$this->data['User']['acceptation_terms_of_use']){
+				$this->Session->setFlash(__('You did not accept the terms of use.',true));
+				$this->data['User']['password'] = '';
+				$this->data['User']['captcha'] = '';
+			}else{
+				if($this->User->validates()){
+					if($this->Captcha->check($this->data['User']['captcha'], true) AND $this->User->save($this->data)){
+						$pass = $this->Auth->password($this->data['User']['password']);
+						$token = $this->Auth->password($pass.$this->data['User']['since'].$this->data['User']['username']);
+						// prepare message
+						$subject = __('Tatoeba registration',true);
+						$message = sprintf(__('Dear %s,',true), $this->data['User']['username'])
+							. "\n\n"
+							. __('Welcome to Tatoeba and thank you for your interest in this project!',true)
+							. "\n\n"
+							. __('You can validate your registration by clicking on this link :',true)
+							. "\n"
+							. 'http://' . $_SERVER['HTTP_HOST'] . '/users/confirm_registration/' . $this->User->id . '/' . $token;
 
-					// send email with new password
-					$this->Mailer->to = $this->data['User']['email'];
-					$this->Mailer->toName = '';
-					$this->Mailer->subject = $subject;
-					$this->Mailer->message = $message;
-					$this->Mailer->send();
+						// send email with new password
+						$this->Mailer->to = $this->data['User']['email'];
+						$this->Mailer->toName = '';
+						$this->Mailer->subject = $subject;
+						$this->Mailer->message = $message;
+						$this->Mailer->send();
 
-					$this->flash(
-						__('Thank you for registering. To validate your registration, click on the link in the email that has been sent to you.',true),
-						'/users/login'
-					);
+						$this->flash(
+							__('Thank you for registering. To validate your registration, click on the link in the email that has been sent to you.',true),
+							'/users/login'
+						);
+					}else{
+						$this->data['User']['password'] = '';
+						$this->data['User']['captcha'] = '';
+						$this->Session->setFlash(__('The code you entered did not match with the image, please try again.',true));
+					}
 				}else{
 					$this->data['User']['password'] = '';
 					$this->data['User']['captcha'] = '';
-					$this->Session->setFlash(__('The code you entered did not match with the image, please try again.',true));
 				}
-			}else{
-				$this->data['User']['password'] = '';
-				$this->data['User']['captcha'] = '';
 			}
+			
 		}
 	}
 

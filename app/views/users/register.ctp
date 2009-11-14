@@ -1,7 +1,7 @@
 <?php
 /*
     Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -20,7 +20,6 @@
 
 echo $javascript->link('users.check_registration.js', false);
 
-
 echo $form->create('User', array("action" => "register"));
 
 echo $form->input('username', array(
@@ -36,12 +35,18 @@ echo $form->input('email', array(
 	"id" => "registrationEmail"
 ));
 
-
-
 echo $html->image('/users/captcha_image', array("id" => "captcha"));
 echo '<a href="javascript:void(0);" onclick="javascript:document.images.captcha.src=\''. $html->url('/users/captcha_image') .'?\' + Math.round(Math.random(0)*1000)+1">Reload image</a>';
 
 echo $form->input('captcha', array("label" => __('Code displayed above :',true)));
+
+
+$lang =  $this->params['lang'];
+echo $form->checkbox('acceptation_terms_of_use'); echo ' ';
+echo sprintf(
+	__('I accept the <a href="%s">terms of use</a>',true), 
+	$html->url(array("controller"=>"pages", "action"=>"terms-of-use#$lang"))
+);
 
 echo $form->submit(__('Register',true), array("id" => "registerButton"));
 

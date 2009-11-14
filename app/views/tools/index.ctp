@@ -20,7 +20,7 @@
 $javascript->link('furigana', false);
 $this->pageTitle = __('Convert Japanese text into romaji or furigana',true);
 ?>
-<div class="content">
+<div id="main_content">
 	<div class="module">
 	<?php
 	echo '<h2>';
