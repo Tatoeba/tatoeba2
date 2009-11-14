@@ -1,0 +1,90 @@
+s/doushite/ doushite /g
+s/koko\([^r]\)/ koko \1/g
+s/toji te/ tojite /g
+s/byouin/byouin /g
+s/deka keta/ dekaketa/g
+s/ga \?suru/ ga suru /g
+s/i tai/itai /g
+s/niitai/ ni itai/g
+s/haii/ wa ii /g
+s/to omou/ to omou /g
+s/haike/ wa ike/g
+s/korede/ kore de /g
+s/ deo / de o/g
+s/nodesu/ no desu /g
+s/gau/ ga u/g
+s/iiyo/ ii yo /g
+s/gaina/ ga ina/g
+s/chi ga inai/ chigainai /g
+s/chigai nai/ chigainai /g
+s/chi ga u/ chigau /g
+s/totemo/ totemo /g
+s/umai/ umai /g
+s/madeni/ made ni/g
+s/niha/ ni wa /g
+s/i ru/iru /g
+s/su giru/ sugiru /g
+s/sugiru/ sugiru /g
+s/kotoga/ koto ga /g
+s/shaberu/ shaberu /g
+s/wakarana\(i\|ku\)/ wakarana\1 /g
+s/dekinai/ dekinai /g
+s/\(watashi\|anata\|kare\|boku\|kore\|sore\|soko\|kimi\)\(ha\|no\|ni\)/\1 \2 /g
+s/deha\(na\| \)/ dewa \1/g
+s/dokode/doko de/g
+s/kano /kare no /g
+s/kanojo ha/kanojo wa /g
+s/watashi ha/watashi wa /g
+s/\([0-9]{1,2}\) toki/\1ji /g
+s/wo/ o /g
+s/ ha\(\.\|,\| \)/ wa\1/g
+s/kun \(no\|wo\|wa\)/kimi \1/g
+s/ he / e /g
+s/du/dzu/g
+s/gaa/ga a/g
+s/ gana/ ga na/g
+s/\([0-9]{1,2}\) hito/ \1nin /g
+s/ nin\(\.\|,\| \)/ hito\1/g
+s/^nin /hito /g
+s/KA hito/KA jin/g
+s/^kun /kimi /g
+s/ nasai/nasai/g
+s/ sai/sai/g
+s/teike/te ike/g
+s/kusu ru/kussuru/g
+s/ noha / no wa /g
+s/ mono ha / mono wa /g
+s/\(masu\|su\)ka\./\1 ka\./g
+s/ \(masen\|masu\)\./\1\./g
+s/ \(t\?ta\)\./\1\./g
+s/atarashi i/atarashii/g
+s/otsurete/o tsurete /g
+s/deka kemasu/dekakemasu/g
+s/haitsumade/ wa itsumade /g
+s/hanakatta/ wa nakatta /g
+s/hanara/ wa nara/g
+s/atataka i/atatakai/g
+s/kae ru/ kaeru /g
+s/itoshi te/ aishite /g
+s/\([0-9]\) toki/\1 ji /g
+s/itsutta/itta/g
+s/youishi /youi shi/g
+s/youishi/youi shi/g
+s/shitekite/shite kite /g
+s/teiru/te iru/g
+s/ te iru/te iru /g
+s/n da/nda/g
+s/ nda/nda/g
+s/nishimashou/ ni shimashou /g
+s/tsugini/tsugi ni/g
+s/shouka/shou ka/g
+s/ iruni / iru ni /g
+s/\([^h]\)inda/\1i'n da/g
+s/ndayo/'n da yo/g
+s/runda/ru'n da/g
+s/yatte/ yatte /g
+s/ nda/'n da/g
+s/darou/ darou /g
+s/chotto/chotto /g
+s/ \(i\|ru\)\(\.\| \)/\1 /g
+s/ \+\(\.\|\?\|\!\|,\|'\)/\1/g
