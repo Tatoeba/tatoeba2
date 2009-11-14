@@ -38,14 +38,16 @@ class KakasiHelper extends AppHelper{
 		switch($type){
 			case 'romaji':
 				$options = ' -Ja -Ha -Ka -Ea -s';
+				$sedlist = 'sedlist';
 				break;
 				
 			case 'furigana':
 				$options = ' -JH -s -f ';
+				$sedlist = 'sedlist2';
 				break;
 		}
 		
-		//system("echo $text | iconv -f UTF8 -t SHIFT_JISX0213 | kakasi $options |iconv -f SHIFT_JISX0213 -t UTF8 | sed -f /home/tatoeba/www/app/webroot/sedlist");
+		system("echo $text | iconv -f UTF8 -t SHIFT_JISX0213 | kakasi $options |iconv -f SHIFT_JISX0213 -t UTF8 | sed -f /home/tatoeba/www/app/webroot/$sedlist");
 	}
 }
 ?>
