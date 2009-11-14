@@ -9,6 +9,9 @@
  *
  * @author Salem
  */
+
+App::import('Core', 'Sanitize');
+
 class UserController extends AppController {
 
 	var $name = 'User';
@@ -109,6 +112,7 @@ class UserController extends AppController {
 			$aToSave = array();
 
 			if(!empty($this->data['profile_description']['description'])){
+                Sanitize::html($this->data['profile_description']['description']);
 				$aToSave += array(
 					'description' => $this->data['profile_description']['description']
 				);
@@ -130,6 +134,8 @@ class UserController extends AppController {
 
 	function save_basic() {
 		if(!empty($this->data)){
+                Sanitize::html($this->data['profile_basic']['name']);
+
 
 				$aToSave = array(
 					'name' => $this->data['profile_basic']['name'],
@@ -151,7 +157,9 @@ class UserController extends AppController {
 
 	function save_contact() {
 		if(!empty($this->data)){
-
+            Sanitize::html($this->data['profile_contact']['description']);
+            Sanitize::html($this->data['profile_contact']['email']);
+            
 			$aToSave = array(
 				'User' => array(
 					'email' => $this->data['profile_contact']['email']

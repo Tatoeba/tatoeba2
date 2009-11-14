@@ -95,7 +95,7 @@ class WallController extends Appcontroller{
     function save(){
         //TODO
         if(!empty($this->data['Wall']['content'] )){
-            Sanitize::stripScripts( $this->data['Wall']['content']);
+            Sanitize::html( $this->data['Wall']['content']);
             $this->data['Wall']['owner'] = $this->Auth->user('id');
             $this->data['Wall']['date'] = date("Y-m-d H:i:s");  
             // now save to database 

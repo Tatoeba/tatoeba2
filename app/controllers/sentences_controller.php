@@ -16,6 +16,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+App::import('Core', 'Sanitize');
+
 class SentencesController extends AppController{
 	var $name = 'Sentences';
 	var $components = array ('GoogleLanguageApi', 'Lucene', 'Permissions');
@@ -34,6 +37,7 @@ class SentencesController extends AppController{
 	}
 	
 	function show($id = null){
+        Sanitize::html($id);
 		$this->Sentence->recursive = 2;
 		
 		$this->Sentence->hasMany['SentenceComment']['limit'] = 3; // limiting comments to 3
@@ -134,6 +138,7 @@ class SentencesController extends AppController{
 	}
 	
 	function delete($id){
+        Sanitize::paranoid($id);
 		$this->Sentence->id = $id;
 		
 		// for the logs
@@ -156,6 +161,7 @@ class SentencesController extends AppController{
 	}
 
 	function edit($id){
+        Sanitize::paranoid($id);
 		$this->Sentence->id = $id;
 		if(empty($this->data)){
 			$sentence = $this->Sentence->read();
@@ -189,6 +195,8 @@ class SentencesController extends AppController{
 	 * Used in AJAX request, in sentences.contribute.js and in sentences.edit_in_place.js.
 	 */
 	function save_sentence(){
+        Sanitize::paranoid($_POST['id']);
+        Sanitize::html($_POST['value']);
 		if(isset($_POST['value'])){
 			// sentences.edit_in_place.js
 			if(isset($_POST['id'])){
@@ -245,6 +253,7 @@ class SentencesController extends AppController{
 	}
 	
 	function adopt($id){
+        Sanitize::paranoid($id);
 		$data['Sentence']['id'] = $id;
 		$data['Sentence']['user_id'] = $this->Auth->user('id');
 		if($this->Sentence->save($data)){
@@ -256,6 +265,8 @@ class SentencesController extends AppController{
 	}
 	
 	function let_go($id){
+
+        Sanitize::paranoid($id);
 		$data['Sentence']['id'] = $id;
 		$data['Sentence']['user_id'] = null;
 		if($this->Sentence->save($data)){
@@ -270,6 +281,8 @@ class SentencesController extends AppController{
 	// we always check the translation before we add it
 	function check_translation(){
 		
+
+        Sanitize::html($_POST['value']);
 		$id_temp = $this->Auth->user('id');
 		if(isset($_POST['value']) AND rtrim($_POST['value']) != '' AND isset($_POST['id']) AND !(empty($id_temp))){
 			$sentenceId = substr($_POST['id'], 2);
@@ -301,6 +314,7 @@ class SentencesController extends AppController{
 	
 	function save_translation(){
 
+        Sanitize::html($_POST['value']);
 		$id_temp = $this->Auth->user('id');
 		if(isset($_POST['value']) AND rtrim($_POST['value']) != '' AND isset($_POST['id']) AND !(empty($id_temp))){
 			$sentence_id = substr($_POST['id'], 2); // id of original sentence
@@ -341,6 +355,9 @@ class SentencesController extends AppController{
 	}
 	
 	function search(){
+        
+        Sanitize::html($_GET['query']);
+        Sanitize::html($_GET['page']);
 		if(isset($_GET['query'])){
 			$query = stripslashes($_GET['query']);
 			$page = isset($_GET['page']) ? $_GET['page'] : null;
@@ -473,6 +490,7 @@ class SentencesController extends AppController{
 	}
 	
 	function contribute($id = null){
+        Sanitize::paranoid($id);
 		if(isset($id)){
 			$this->Sentence->id = $id;
 			$sentence = $this->Sentence->read();
@@ -498,6 +516,7 @@ class SentencesController extends AppController{
 	}
 	
 	function link($id){
+        Sanitize::paranoid($id);
 		$this->Sentence->unbindModel(
 			array(
 				'belongsTo' => array('User'),
@@ -555,6 +574,7 @@ class SentencesController extends AppController{
 	}
 	
 	function get_translations($id){
+        Sanitize::paranoid($id);
 		Configure::write('debug',0);
 		$this->Sentence->unbindModel(
 			array(

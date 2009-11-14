@@ -16,6 +16,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+
+App::import('Core', 'Sanitize');
+
 class PrivateMessagesController extends AppController {
 	var $name = 'PrivateMessages';
 
@@ -77,9 +81,13 @@ class PrivateMessagesController extends AppController {
 	/* This function has to send the message, then to display the sent folder
 	 */
 	function send(){
+        Sanitize::html($this->data['PrivateMessage']['recpt']);
+        Sanitize::html($this->data['PrivateMessage']['send']);
+        Sanitize::html($this->data['PrivateMessage']['content']);
+
 		if(!empty($this->data['PrivateMessage']['recpt']) && !empty($this->data['PrivateMessage']['content'])){
 			$this->data['PrivateMessage']['sender'] = $this->Auth->user('id');
-
+          // TODO add a check if the user to send doesn't exist 
 			$this->PrivateMessage->User->recursive = 0;
 			$toUser = $this->PrivateMessage->User->findByUsername($this->data['PrivateMessage']['recpt']);
 			$this->data['PrivateMessage']['recpt'] = $toUser['User']['id'];
@@ -103,6 +111,7 @@ class PrivateMessagesController extends AppController {
 	/* Function to show the content of a message */
 	function show($messageId){
 
+        Sanitize::paranoid($messageId);
 		/* The following lines of code check if a message is read, or not
 		 * and change is read value automatically.
 		 */
@@ -136,6 +145,7 @@ class PrivateMessagesController extends AppController {
 
 	// Delete message function
 	function delete($folder, $messageId){
+        Sanitize:: paranoid($messageId);
 		$message = $this->PrivateMessage->findById($messageId);
 		$message['PrivateMessage']['folder'] = 'Trash';
 		$this->PrivateMessage->save($message);
@@ -144,6 +154,8 @@ class PrivateMessagesController extends AppController {
 
 	// Restore message function
 	function restore($messageId){
+         
+        Sanitize:: paranoid($messageId);
 		$message = $this->PrivateMessage->findById($messageId);
 
 		if($message['PrivateMessage']['recpt'] == $this->Auth->user('id'))
@@ -157,6 +169,7 @@ class PrivateMessagesController extends AppController {
 
 	// Generalistic read/unread marker function.
 	function mark($folder, $messageId){
+        Sanitize:: paranoid($messageId);
 		$message = $this->PrivateMessage->findById($messageId);
 		switch($message['PrivateMessage']['isnonread']){
 			case 1 : $message['PrivateMessage']['isnonread'] = 0;break;
@@ -169,6 +182,9 @@ class PrivateMessagesController extends AppController {
 	// Create a new message
 	function write($toUserLogin = '', $replyToMessageId = null){
 
+        
+        Sanitize::html($toUserLogin);
+        Sanitize::paranoid($replyToMessageId);
 		if($replyToMessageId != null){
 			$message = $this->PrivateMessage->findById($replyToMessageId);
 			if($message['PrivateMessage']['title'] == '')

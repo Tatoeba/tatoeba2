@@ -16,6 +16,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+
+App::import('Core', 'Sanitize');
+
 class UsersController extends AppController {
 
 	var $name = 'Users';
@@ -333,6 +337,7 @@ class UsersController extends AppController {
 	}
 
 	function search(){
+        Sanitize::html($this->data['User']['username']);
 		$user = $this->User->findByUsername($this->data['User']['username']);
 		if($user != null){
 			$id = ($user['User']['id'] < 1) ? 1 : $user['User']['id'];
@@ -413,6 +418,7 @@ class UsersController extends AppController {
 
 	function favoriting($id){
 
+        Sanitize::paranoid($id);
 		$this->User->unbindModel(
 			array(
 				'belongsTo' => array('Group'),
@@ -442,6 +448,7 @@ class UsersController extends AppController {
 	 * Check if the username already exist or not.
 	 */
 	function check_username($username){
+        Sanitize::html($username);
 		Configure::write('debug',0);
 		$this->User->recursive = 0;
 		$user = $this->User->findByUsername($username);
@@ -456,6 +463,7 @@ class UsersController extends AppController {
 	 * Check if the email already exist or not.
 	 */
 	function check_email($email){
+
 		Configure::write('debug',0);
 		$this->User->recursive = 0;
 		$data = $this->User->findByEmail($email);

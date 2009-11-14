@@ -16,10 +16,13 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+App::import('Core', 'Sanitize');
+
 class KakasiHelper extends AppHelper{
 
 	function convert($text, $type){
 		
+        Sanitize::html($text);
 		//$text = escapeshellarg(nl2br($text)); // somehow that doesn't work anymore...
 		$text = preg_replace("!\\r\\n!", "\\<br/\\>", $text); // to handle new lines
 		$text = preg_replace("!\(!", "\\(", $text); // to handle parenthesis

@@ -16,6 +16,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+
+App::import('Core', 'Sanitize');
+
 class ContributionsController extends AppController {
 
 	var $name = 'Contributions';
@@ -45,6 +49,7 @@ class ContributionsController extends AppController {
 	}
 	
 	function show($sentence_id){
+        Sanitize::paranoid($sentence_id);
 		$s = new Sentence();
 		
 		if($sentence_id == "random"){

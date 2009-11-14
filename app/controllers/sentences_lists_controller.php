@@ -17,6 +17,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
+App::import('Core', 'Sanitize');
+
 class SentencesListsController extends AppController{
 
 	var $name = 'SentencesLists' ;
@@ -51,6 +54,7 @@ class SentencesListsController extends AppController{
 	 * Display content of a list.
 	 */
 	function show($id){
+        Sanitize::paranoid($id);
 		$this->SentencesList->id = $id;
 		$this->set('list', $this->SentencesList->read());
 	}
@@ -60,6 +64,7 @@ class SentencesListsController extends AppController{
 	 * Create a list.
 	 */
 	function add(){
+        Sanitize::html($this->data['SentencesList']['name']);
 		if(!empty($this->data)){
 			$this->data['SentencesList']['user_id'] = $this->Auth->user('id');
 			$this->SentencesList->save($this->data);
@@ -72,7 +77,8 @@ class SentencesListsController extends AppController{
 	 * Edit list. From that page user can remove sentences from list, 
 	 * edit list name or delete list.
 	 */
-	function edit($id){ 
+	function edit($id){
+        Sanitize::paranoid($id); 
 		if(!$this->belongsToCurrentUser($id)){
 			$this->redirect(array("action" => "show"));
 		}else{
@@ -87,6 +93,8 @@ class SentencesListsController extends AppController{
 	 * Used in AJAX request from sentences_lists.edit_name.js
 	 */
 	function save_name(){
+        Sanitize::paranoid($_POST['id']);
+        Sanitize::html($_POST['value']); 
 		Configure::write('debug', 0);
 		if($this->belongsToCurrentUser($_POST['id'])){
 			if(isset($_POST['value']) AND isset($_POST['id'])){
@@ -107,6 +115,7 @@ class SentencesListsController extends AppController{
 	 * Delete list.
 	 */
 	function delete($listId){
+        Sanitize::paranoid($listId);
 		if($this->belongsToCurrentUser($listId)){
 			$this->SentencesList->delete($listId);
 		}
@@ -117,6 +126,8 @@ class SentencesListsController extends AppController{
 	 * Add sentence to a list.
 	 */
 	function add_sentence_to_list($sentenceId, $listId){
+        Sanitize::paranoid($sentenceId);
+        Sanitize::paranoid($listId);
 		Configure::write('debug', 0);
 		$this->set('s', $sentenceId);
 		$this->set('l', $listId);
@@ -134,6 +145,8 @@ class SentencesListsController extends AppController{
 	 * Create a new list and add a sentence to that list.
 	 */
 	function add_sentence_to_new_list($sentenceId, $listName){
+        Sanitize::paranoid($sentenceId);
+        Sanitize::html($listName);
 		Configure::write('debug', 0);
 		if($this->belongsToCurrentUser($listId)){
 			if($listName != ''){
@@ -156,6 +169,8 @@ class SentencesListsController extends AppController{
 	 * Remove sentence from a list.
 	 */
 	function remove_sentence_from_list($sentenceId, $listId){
+        Sanitize::paranoid($sentenceId);
+        Sanitize::paranoid($listId);
 		Configure::write('debug', 0);
 		if($this->belongsToCurrentUser($listId)){
 			if($this->SentencesList->habtmDelete('Sentence' , $listId, $sentenceId)){

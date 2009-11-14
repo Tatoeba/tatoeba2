@@ -17,6 +17,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+App::import('Core', 'Sanitize');
+
 class FavoritesController extends AppController{
 
 	var $name = 'Favorites' ;
@@ -31,14 +34,16 @@ class FavoritesController extends AppController{
 	}
 	
 	function of_user($user_id){
-		$u = new User();
-		$u->id = $user_id;
-		$u->hasAndBelongsToMany['Favorite']['limit'] = null;
-		$user = $u->read();
+        Sanitize::paranoid($user_id); 
+		$user = new User();
+		$user->id = $user_id;
+		$user->hasAndBelongsToMany['Favorite']['limit'] = null;
+		$user = $user->read();
 		$this->set('user', $user);
 	}
 
 	function add_favorite ($sentence_id){
+        Sanitize::paranoid($sentence_id); 
 		Configure::write('debug',0);
 		
 	    $user_id =$this->Auth->user('id');
@@ -52,6 +57,7 @@ class FavoritesController extends AppController{
 	}
 
 	function remove_favorite ($sentence_id){
+        Sanitize::paranoid($sentence_id); 
 	    Configure::write('debug',0);
     	
 		$user_id =$this->Auth->user('id');

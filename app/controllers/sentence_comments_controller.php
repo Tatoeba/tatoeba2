@@ -16,6 +16,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+App::import('Core', 'Sanitize');
+
 class SentenceCommentsController extends AppController {
 	var $name = 'SentenceComments';
 	
@@ -60,6 +63,8 @@ class SentenceCommentsController extends AppController {
 	}
 	
 	function add($sentence_id){
+        Sanitize::paranoid($id);
+
 		$sentence = new Sentence();
 		$sentence->id = $sentence_id;
 		$sentence->recursive = 2;
@@ -91,7 +96,8 @@ class SentenceCommentsController extends AppController {
 	// I don't like how 'show' is exactly the same as 'add' in the controller...
 	// It's just the view that is different...
 	function show($sentence_id){
-		$s = new Sentence();
+        Sanitize::paranoid($sentence_id);
+        $s = new Sentence();
 		$s->id = $sentence_id;		
 		$s->recursive = 1;
 		$sentence = $s->read();
@@ -120,6 +126,7 @@ class SentenceCommentsController extends AppController {
 	}
 	
 	function save(){
+        Sanitize::html($this->data['SentenceComment']['text']);
 		if(!empty($this->data['SentenceComment']['text'])){
 			// detecting language
 			$this->GoogleLanguageApi->text = $this->data['SentenceComment']['text'];
