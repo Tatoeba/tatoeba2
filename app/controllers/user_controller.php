@@ -23,6 +23,30 @@ class UserController extends AppController {
 	}
 
 	function index() {
+
+        $this->User->unBindModel(
+            array('hasMany' => array('Contributions', 'Sentences', 'SentenceComments' )
+                , 'hasAndBelongsToMany' => array('Favorite')
+            )
+        );
+        $this->User->bindModel(
+            array('hasMany' => array('Sentences','SentenceComments' )
+                , 'hasAndBelongsToMany' => array (
+                    'Favorite' => array(
+                        'className' => 'Favorite',
+                        'joinTable' => 'favorites_users',
+                        'foreignKey' => 'user_id',
+                        'associationForeignKey' => 'favorite_id',
+                        'conditions' => '',
+                        'order' => '',
+                        'unique' => true,
+                        'finderQuery' => '',
+                        'deleteQuery'=> '',
+                        'insertQuery'=> ''
+                    ) 
+                )
+            ) 
+        );
 		$aUser = $this->User->findById($this->Auth->user('id'));
 
 		$this->loadModel('Country');
@@ -43,20 +67,26 @@ class UserController extends AppController {
 	}
 
 	function profile($sUserName = null) {
+        Sanitize::html($sUserName);
 		if(is_null($sUserName)){
 			$this->redirect(array('action' => 'index'));
-		}else{
+		} else {
 			$bLogin = $this->Auth->user('id') ? true : false;
-			// TODO: check if the username exits and then handle the error
 			$aUser = $this->User->findByUsername($sUserName);
-			if($aUser['User']['name'] != '')
-				$this->pageTitle = sprintf(__("Profile of %s", true), $aUser['User']['name']);
-			else
-				$this->pageTitle = sprintf(__("%s's profile", true), $sUserName);
-			// Check if his/her profile is public
-			$this->set('login', $bLogin);
-			$this->set('is_public', $aUser['User']['is_public']);
-			$this->set('user', $aUser);
+            if ( $aUser != null ){
+                if($aUser['User']['name'] != '')
+                    $this->pageTitle = sprintf(__("Profile of %s", true), $aUser['User']['name']);
+                else
+                    $this->pageTitle = sprintf(__("%s's profile", true), $sUserName);
+                // Check if his/her profile is public
+                $this->set('login', $bLogin);
+                $this->set('is_public', $aUser['User']['is_public']);
+                $this->set('user', $aUser);
+            } else {
+                // TODO better to had message "user %s doesn't exist" , but redirect is still
+                // better than a strange user's page 
+			    $this->redirect(array('action' => 'index'));
+            }
 		}
 	}
 
