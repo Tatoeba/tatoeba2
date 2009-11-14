@@ -76,7 +76,7 @@ echo $form->end(__('Upload', true));
 
 	<div id="pdescription" class="module">
 		<h3><?php __('Something about you') ?><span id="pdescription_edit_link" class="edit_link"><?php echo $html->image('edit.png', array('alt' => __('Edit', true))); ?></span></h3>
-		<div id="profile_description"><?php echo (empty($user['User']['description']) ? __('Tell us something about you!', true) : $user['User']['description']) ?></div>
+		<div id="profile_description"><?php echo (empty($user['User']['description']) ? __('Tell us something about you!', true) : nl2br($user['User']['description'])) ?></div>
 	</div>
 
 	<div id="pbasic_edit" class="toolbox">

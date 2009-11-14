@@ -57,7 +57,7 @@ if(!empty($user['User']['description'])){
 ?>
 	<div id="pdescription" class="module">
 		<h3><?php __('Something about you') ?></h3>
-		<div id="profile_description"><?php echo $user['User']['description'] ?></div>
+		<div id="profile_description"><?php echo nl2br($user['User']['description']) ?></div>
 	</div>
 <?php
 }
