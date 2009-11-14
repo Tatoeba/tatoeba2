@@ -54,7 +54,14 @@ $navigation->displayUsersNavigation($user['User']['id'], $user['User']['username
 	<div class="module">
 	<h2><?php echo sprintf(__('About %s',true), $user['User']['username']); ?></h2>
 	<ul>
-		<li><?php __('Member since:'); echo ' '.$date->ago($user['User']['since']); ?></li>
+		<li>
+        <?php __('Member since:'); echo ' '.$date->ago($user['User']['since']); ?>
+        </li>
+        <li>
+            <a href="/user/profile/<?php echo $user['User']['username']?>" >
+                <?php echo __("View this user's profile",true) ;?>
+            </a>
+        </li>
 	</ul>
 	</div>
 

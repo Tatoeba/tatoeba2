@@ -12,6 +12,10 @@ if($is_public or $login){
 			<dt><?php __('Private message'); ?></dt>
 			<dd><?php echo $html->link(sprintf(__('Contact %s', true), $user['User']['username']),
 			array('controller' => 'privateMessages', 'action' => 'write', $user['User']['username'])); ?></dd>
+			
+            <dt><?php __('Others'); ?></dt>
+			<dd><?php echo $html->link(sprintf(__("See this user's contributions", true)),
+			array('controller' => 'users', 'action' => 'show', $user['User']['id'])); ?></dd>
 <?php
 if(!empty($user['User']['homepage'])){
 ?>
