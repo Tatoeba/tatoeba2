@@ -51,7 +51,7 @@ class LogsHelper extends AppHelper {
 			echo $this->Html->link(
 				$contribution['sentence_id'],
 				array(
-					"controller" => "contributions",
+					"controller" => "sentences",
 					"action" => "show",
 					$contribution['sentence_id']
 				)
@@ -80,7 +80,7 @@ class LogsHelper extends AppHelper {
 				echo $this->Html->link(
 				$contribution['translation_id'],
 				array(
-					"controller" => "contributions",
+					"controller" => "sentences",
 					"action" => "show",
 					$contribution['translation_id']
 				)
@@ -141,7 +141,7 @@ class LogsHelper extends AppHelper {
 			echo $this->Html->link(
 				$contribution['sentence_id'],
 				array(
-					"controller" => "contributions",
+					"controller" => "sentences",
 					"action" => "show",
 					$contribution['sentence_id']
 				)
@@ -154,7 +154,7 @@ class LogsHelper extends AppHelper {
 				echo $this->Html->link(
 				$contribution['translation_id'],
 				array(
-					"controller" => "contributions",
+					"controller" => "sentences",
 					"action" => "show",
 					$contribution['translation_id']
 				));

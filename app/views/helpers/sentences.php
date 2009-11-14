@@ -194,12 +194,13 @@ class SentencesHelper extends AppHelper {
 	function displayIndirectTranslations($sentence, $action){
 		if(isset($sentence['Translation'])){
 			$translations = $sentence['Translation'];
-			$translationsIds = array($sentence['id']);
+			$translationsIds = array($sentence['Sentence']['id']);
 			$indirectTranslations = array();
 			
 			foreach($translations as $translation){
 				$translationsIds[] = $translation['id'];
 				if(isset($translation['IndirectTranslation'])){
+					pr($translation['IndirectTranslation']);
 					foreach($translation['IndirectTranslation'] as $indirectTranslation){
 						if($indirectTranslation['id'] != $sentence['Sentence']['id']){
 							$indirectTranslations[] = $indirectTranslation;
@@ -210,17 +211,26 @@ class SentencesHelper extends AppHelper {
 			
 			if(count($indirectTranslations) > 0){
 				foreach($indirectTranslations as $translation){
-					if(!in_array($translation['id'], $translationsIds) AND $translation['lang'] != $sentenceLang){
+					if(!in_array($translation['id'], $translationsIds)){
 						echo '<li class="indirect translation correctness'.$translation['correctness'].'">';
 						echo $this->Html->link(
-							$translation['text'],
+							$this->Html->image(
+								'info.png',
+								array(
+									"alt"=>__('Show',true),
+									"title"=>__('Show',true)
+								)
+							),
 							array(
 								"controller" => "sentences",
 								"action" => $action,
 								$translation['id']
 							),
-							array("class" => $translation['lang'])
+							array("escape"=>false)
 						);
+						
+						echo '<span title="'.__('indirect translation',true).'" class="text '.$translation['lang'].'">' . $translation['text'] . '</span>';
+						
 						echo '</li>';
 					}
 				}

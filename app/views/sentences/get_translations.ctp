@@ -18,5 +18,6 @@
 */
 if($sentence != null){
 	$sentences->displayTranslations($sentence['Translation'], 'show');
+	$sentences->displayIndirectTranslations($sentence, 'show');
 }
 ?>

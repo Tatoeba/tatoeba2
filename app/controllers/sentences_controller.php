@@ -62,14 +62,31 @@ class SentencesController extends AppController{
 			
 		}elseif(in_array($id, $this->Sentence->languages)){
 			
-			$conditions['Sentence.lang'] = $id;
-			$random = $this->Sentence->find(
-				'first', 
-				array(
-					'conditions' => $conditions,
-					'order' => 'RAND()'
-				)
-			);
+			if($id == 'jp' OR $id == 'en'){
+		
+				$min = ($id == 'en') ? 15700 : 74000;
+				$max = ($id == 'en') ? 74000 : 127300;
+				$randId = rand($min, $max);
+				
+				$random = $this->Sentence->find(
+					'first', 
+					array(
+						'conditions' => array(
+							'Sentence.id' => range($randId-50, $randId+50),
+							'Sentence.lang' => $id
+						)
+					)
+				);
+			}else{
+				$conditions['Sentence.lang'] = $id;
+				$random = $this->Sentence->find(
+					'first', 
+					array(
+						'conditions' => $conditions,
+						'order' => 'RAND()'
+					)
+				);
+			}
 			$this->Session->write('random_lang_selected', $id);
 			$this->redirect(array("action"=>"show", $random['Sentence']['id']));
 			
