@@ -126,6 +126,9 @@ class UsersController extends AppController {
 	}
 
 	function register(){
+		if($this->Auth->User('id')){
+			$this->redirect('/');
+		}
 		if (!empty($this->data)) {
 			$this->User->create();
 			$this->data['User']['since'] = date("Y-m-d H:i:s");
@@ -161,7 +164,7 @@ class UsersController extends AppController {
 
 						$this->flash(
 							__('Thank you for registering. To validate your registration, click on the link in the email that has been sent to you.',true),
-							'/users/login'
+							'/users/resend_registration_mail'
 						);
 					}else{
 						$this->data['User']['password'] = '';
@@ -230,9 +233,7 @@ class UsersController extends AppController {
 		if($user['User']['group_id'] < User::LOWEST_TRUST_GROUP_ID + 1){
 			$msg = __('Your registration is already validated.',true);
 		}else if($token == $correctToken){
-			$this->data['User']['id'] = $id;
-			$this->data['User']['group_id'] = User::LOWEST_TRUST_GROUP_ID;
-			if($this->User->save($this->data)){
+			if($this->User->saveField('group_id', User::LOWEST_TRUST_GROUP_ID)){
 				// update aro table
 				$aro = new Aro();
 				$data = $aro->find("first", array( "conditions" => array("foreign_key" => $id, "model" => "User")));
