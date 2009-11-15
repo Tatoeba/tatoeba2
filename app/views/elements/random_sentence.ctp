@@ -33,7 +33,7 @@ array_unshift($langArray, array('any' => __('any', true)));
 	<?php __('Random sentence'); ?> 
 	<span class="annexe">
 		(
-			<?='<a id="showRandom" lang='.$lang.'>' . __('show another ', true) . '</a> ';?>
+			<?='<a id="showRandom" lang="'.$lang.'" >' . __('show another ', true) . '</a> ';?>
 			<?=$form->select("randomLangChoice", $langArray, $selectedLanguage, null, false); ?>
 		)
 	</span>
