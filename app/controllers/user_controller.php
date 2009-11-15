@@ -37,12 +37,7 @@ class UserController extends AppController {
                         'joinTable' => 'favorites_users',
                         'foreignKey' => 'user_id',
                         'associationForeignKey' => 'favorite_id',
-                        'conditions' => '',
-                        'order' => '',
                         'unique' => true,
-                        'finderQuery' => '',
-                        'deleteQuery'=> '',
-                        'insertQuery'=> ''
                     ) 
                 )
             ) 
@@ -72,6 +67,26 @@ class UserController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		} else {
 			$bLogin = $this->Auth->user('id') ? true : false;
+			
+			$this->User->unBindModel(
+	            array('hasMany' => array('Contributions', 'Sentences', 'SentenceComments' )
+	                , 'hasAndBelongsToMany' => array('Favorite')
+	            )
+	        );
+	        $this->User->bindModel(
+	            array('hasMany' => array('Sentences','SentenceComments' )
+	                , 'hasAndBelongsToMany' => array (
+	                    'Favorite' => array(
+	                        'className' => 'Favorite',
+	                        'joinTable' => 'favorites_users',
+	                        'foreignKey' => 'user_id',
+	                        'associationForeignKey' => 'favorite_id',
+	                        'unique' => true,
+	                    ) 
+	                )
+	            ) 
+	        );
+			
 			$aUser = $this->User->findByUsername($sUserName);
             if ( $aUser != null ){
                 if($aUser['User']['name'] != '')
