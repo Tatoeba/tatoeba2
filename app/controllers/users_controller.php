@@ -116,7 +116,11 @@ class UsersController extends AppController {
 		}
 
 		unset($this->data['User']['rememberMe']);
-		$this->redirect($this->Auth->redirect());
+        if ( isset($_POST["redirectTo"])){
+            $this->redirect($_POST["redirectTo"] );
+        } else {
+            $this->redirect($this->Auth->redirect());
+        }
 	}
 
 	function logout()

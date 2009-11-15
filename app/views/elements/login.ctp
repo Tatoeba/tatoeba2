@@ -91,6 +91,7 @@ if  ($session->check('Message.auth')) $session->flash('auth');
 		<label for="UserRememberMe" class="notInBlackBand"><?php echo __('Remember me', true); ?></label>
 		<input type="checkbox" name="data[User][rememberMe]" value="1" id="UserRememberMe" /><br/>
 		<input type="submit" value="<?php echo __('Log in', true); ?>" />
+        <input type="hidden" name="redirectTo"  value="<?php echo $_SERVER['REQUEST_URI'] ;?>" />
 	</fieldset>
 	<p><?php echo $html->link(__('Password forgotten?',true), array(
 												"controller" => "users",
