@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 	$(".removeFromListButton").click(function(){
 		var sentence_id = $(this).attr("id");
-		var list_id = $(".sentencesList").attr("id");
+		var list_id = $(".sentencesListId").attr("id");
 		
 		$("#sentence"+sentence_id).html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
 		$("#sentence"+sentence_id).load("http://" + self.location.hostname + "/sentences_lists/remove_sentence_from_list/"+ sentence_id + "/" + list_id);

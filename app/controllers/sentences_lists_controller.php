@@ -236,13 +236,14 @@ class SentencesListsController extends AppController{
 			// do I have a choice, but to copy the code in the SentencesController...?
 			
 			// detecting language
-			$this->GoogleLanguageApi->text = $_POST['sentenceText'];
-			$response = $this->GoogleLanguageApi->detectLang();
-			if($response['isReliable']){
-				$data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
-			}else{
+			// $this->GoogleLanguageApi->text = $_POST['sentenceText'];
+			// $response = $this->GoogleLanguageApi->detectLang();
+			// if($response['isReliable']){
+				// //$data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
+				// $data['Sentence']['lang'] = null;
+			// }else{
 				$data['Sentence']['lang'] = null;
-			}
+			// }
 			
 			$data['Sentence']['user_id'] = $this->Auth->user('id');
 			$data['Sentence']['text'] = $_POST['sentenceText'];

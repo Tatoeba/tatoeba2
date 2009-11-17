@@ -21,7 +21,7 @@ echo $javascript->link('sentences_lists.remove_sentence_from_list.js', true);
 
 echo '<li id="sentence'.$sentence['Sentence']['id'].'">';
 	// empty span with id of the list, so that we can delete.
-	echo '<span class="sentencesList" id="'.$listId.'" />';
+	echo '<span class="sentencesListId" id="'.$listId.'" />';
 	
 	// delete button
 	echo '<span class="options">';

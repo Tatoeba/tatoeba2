@@ -75,13 +75,14 @@ $javascript->link('jquery.jeditable.js', false);
 	echo $html->image('loading.gif');
 	echo '</div>';
 	
-	echo '<ul id="'.$list['SentencesList']['id'].'" class="sentencesList">';
-	if(count($list['Sentence']) > 0){
+	echo '<span class="sentencesListId" id="'.$list['SentencesList']['id'].'" />'; // to retrieve id
 	
-		
+	echo '<ul class="sentencesList">';
+	if(count($list['Sentence']) > 0){
+
 		foreach($list['Sentence'] as $sentence){
 			echo '<li id="sentence'.$sentence['id'].'">';
-				// delete button			
+				// delete button
 				echo '<span class="options">';
 				echo '<a id="'.$sentence['id'].'" class="removeFromListButton">';
 				echo $html->image('close.png');
