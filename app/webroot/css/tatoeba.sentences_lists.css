@@ -55,12 +55,27 @@ ul.sentencesList{
 	color: #989898;
 }
 
+/* Delete list */
+
 .deleteList{
-	float: right;
 }
 
 .deleteList a{
-	background: #656565;
-	color: #FFFFFF;
-	padding: 5px;
+	color: #FF2128;
+}
+
+/* Add sentence */
+#newSentenceInList .submit, #newSentenceInList .input{
+	display:inline;
+}
+
+#newSentenceInList input#text{
+	width: 480px;
+}
+
+.sentencesListLoading{
+	margin-top: 10px;
+	padding-top: 10px;
+	margin-bottom: -10px;
+	border-top: 1px dotted #989898;
 }

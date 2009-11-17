@@ -32,6 +32,12 @@
 			echo $form->end('create');
 		?>
 		</div>
+		
+		<div class="module">
+		<h2><?php __('Tips'); ?></h2>
+		<?php __('Click on the name of your list if you would like to change the name. You will be able to edit it in place.'); ?>
+		</div>
+		
 		<?php } ?>
 
 		<div class="module">
@@ -68,16 +74,6 @@
 	?>
 
 
-	<?php
-	if(count($myLists) > 0){
-	?>
-		<div class="module">
-		<h2><?php __('Tips'); ?></h2>
-		<?php __('Click on the name of your list if you would like to change the name. You will be able to edit it in place.'); ?>
-		</div>
-	<?php
-	}
-	?>
 </div>
 
 <div id="main_content">

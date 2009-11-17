@@ -284,11 +284,14 @@ background:transparent url(../img/uk.png) no-repeat scroll right;
 
 /* Contribute */
 
-input#SentenceText{
+#newSentence input#SentenceText{
 width: 400px;
 font-size: 1em;
 }
 
+#newSentence .submit, #newSentence .input{
+display: inline;
+}
 
 /* Unknown language */
 #SentenceSetLanguagesForm *{

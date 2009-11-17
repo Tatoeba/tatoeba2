@@ -53,13 +53,9 @@
 			__('Add new sentences');
 			echo '</h2>';
 			
-			echo '<div class="sentences_set">';
-				echo '<div class="new">';
-				echo $form->create('Sentence', array("action" => "add", "class" => "add"));
-				echo $form->input('text', array("label" => __('Sentence : ', true)));
-				echo $form->end('OK');
-				echo '</div>';
-			echo '</div>';
+			echo $form->create('Sentence', array("action" => "add", "id" => "newSentence"));
+			echo $form->input('text', array("label" => __('Sentence : ', true)));
+			echo $form->end('OK');
 			?>
 		</div>
 			

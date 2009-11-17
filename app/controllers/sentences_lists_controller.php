@@ -24,7 +24,7 @@ class SentencesListsController extends AppController{
 
 	var $name = 'SentencesLists' ;
 	var $helpers = array('Sentences', 'Navigation', 'Html');
-	
+	var $components = array ('GoogleLanguageApi');
 	
 	function beforeFilter() {
 	    parent::beforeFilter();
@@ -53,10 +53,14 @@ class SentencesListsController extends AppController{
 	/**
 	 * Display content of a list.
 	 */
-	function show($id){
-        Sanitize::paranoid($id);
-		$this->SentencesList->id = $id;
-		$this->set('list', $this->SentencesList->read());
+	function show($id = null){
+		if(isset($id)){
+			Sanitize::paranoid($id);
+			$this->SentencesList->id = $id;
+			$this->set('list', $this->SentencesList->read());
+		}else{
+			$this->redirect(array("action"=>"index"));
+		}
 	}
 	
 	
@@ -214,6 +218,46 @@ class SentencesListsController extends AppController{
 			return true;
 		}else{
 			return false;
+		}
+	}
+	
+	
+	/**
+	 * Saves a new sentence (as if it was added from the Contribute
+	 * section) and add it to the list.
+	 * Used in AJAX request in sentences_lists.add_new_sentence_to_list.js.
+	 */
+	function add_new_sentence_to_list(){
+		if(isset($_POST['listId']) AND isset($_POST['sentenceText'])){
+			Sanitize::paranoid($_POST['listId']);
+			Sanitize::paranoid($_POST['sentenceText']);
+			
+			$sentence = new Sentence();
+			// do I have a choice, but to copy the code in the SentencesController...?
+			
+			// detecting language
+			$this->GoogleLanguageApi->text = $_POST['sentenceText'];
+			$response = $this->GoogleLanguageApi->detectLang();
+			if($response['isReliable']){
+				$data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
+			}else{
+				$data['Sentence']['lang'] = null;
+			}
+			
+			$data['Sentence']['user_id'] = $this->Auth->user('id');
+			$data['Sentence']['text'] = $_POST['sentenceText'];
+			
+			// saving
+			if($sentence->save($data)){
+				Configure::write('debug',0);
+				
+				$this->SentencesList->habtmAdd('Sentence', $_POST['listId'], $sentence->id);
+				$sentence->recursive = 0;
+				$sentenceSaved = $sentence->read();
+				$this->set('sentence', $sentenceSaved);
+				$this->set('listId', $_POST['listId']);
+			}
+			
 		}
 	}
 	
