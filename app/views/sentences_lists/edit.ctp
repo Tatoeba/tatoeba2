@@ -75,8 +75,9 @@ $javascript->link('jquery.jeditable.js', false);
 	echo $html->image('loading.gif');
 	echo '</div>';
 	
+	echo '<ul id="'.$list['SentencesList']['id'].'" class="sentencesList">';
 	if(count($list['Sentence']) > 0){
-		echo '<ul id="'.$list['SentencesList']['id'].'" class="sentencesList">';
+	
 		
 		foreach($list['Sentence'] as $sentence){
 			echo '<li id="sentence'.$sentence['id'].'">';
@@ -91,10 +92,8 @@ $javascript->link('jquery.jeditable.js', false);
 				$sentences->displaySentenceInList($sentence);
 			echo '</li>';
 		}
-		echo '</ul>';
-	}else{
-		__('This list does not have any sentence');
 	}
+	echo '</ul>';	
 	?>
 	</div>
 </div>
