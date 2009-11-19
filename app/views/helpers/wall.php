@@ -29,12 +29,12 @@ class WallHelper extends AppHelper {
         */
         __('Add a Message : ');
         echo $this->Form->create('' , array("models" => "wall" , "action" => "save")) ;
-        echo '<a class="cancelFormLink" >' . __("cancel",true) . '</a>'; 
         echo $this->Form->input('content',array('label'=>""));
         echo $this->Form->hidden('replyTo',array('value'=>"" ));
-        echo "<div>";
-            echo $this->Form->end(__('Send',true));
-        echo "</div>";
+		echo $this->Form->submit(__('Send',true));
+		echo '<a class="cancelFormLink" >' . __("cancel",true) . '</a>'; 
+        echo $this->Form->end();
+		
     }
 function create_reply_div($message,$allMessages,$isAuthenticated){
     

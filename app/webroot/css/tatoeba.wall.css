@@ -69,6 +69,14 @@
     visibility: hidden ;
 }
 
+.replyFormDiv .cancelFormLink{
+	margin-left: 40px;
+}
+
+#WallSaveForm .submit, .replyFormDiv .ajaxSubmit {
+	display: inline;
+}
+
 
 .replyFormDiv{
 	border: 1px solid #c1c1c1;
