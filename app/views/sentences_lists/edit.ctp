@@ -97,10 +97,9 @@ $javascript->link('jquery.jeditable.js', false);
 	
 	<div class="module">
 	<h2><?php __('Tips'); ?></h2>
-	<ul>
-		<li><?php __('You can change the name of the list by clicking on it.'); ?></li>
-		<li><?php __('You can remove a sentence from the list by clicking on the X icon.'); ?></li>
-	</ul>
+	<p><?php __('You can change the name of the list by clicking on it.'); ?></p>
+	<p><?php __('You can remove a sentence from the list by clicking on the X icon.'); ?></p>
+	<p><?php __('Removing a sentence will not delete it. The sentence will just not be part of the list anymore.'); ?></p>
 	</div>
 </div>
 
