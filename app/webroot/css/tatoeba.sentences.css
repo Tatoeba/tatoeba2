@@ -285,12 +285,17 @@ background:transparent url(../img/uk.png) no-repeat scroll right;
 /* Contribute */
 
 #newSentence input#SentenceText{
-width: 400px;
-font-size: 1em;
+	width: 400px;
+	font-size: 1em;
 }
 
 #newSentence .submit, #newSentence .input{
-display: inline;
+	display: inline;
+}
+
+#newSentenceText{
+	width: 400px;
+	font-size: 1em;
 }
 
 /* Unknown language */

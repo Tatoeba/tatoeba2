@@ -20,8 +20,18 @@
 
 
 $(document).ready(function() {
+	$("#newSentenceText").keyup(function(e){
+		if (e.keyCode == 13) {
+			save();
+		}
+	});
+	
 	$("#submitNewSentence").click(function()	{
-	    var sentenceText = $("#newSentenceText").val();
+	    save();
+	})
+	
+	function save(){
+		var sentenceText = $("#newSentenceText").val();
 		
 		$(".loading").show();
 		
@@ -30,7 +40,8 @@ $(document).ready(function() {
 		, function(data){			
 			$("#sentencesAdded").prepend(data);
 			$(".loading").hide();
+			$("#newSentenceText").val("");
 		}
 		, "html");	    
-	})
+	}
 });

@@ -212,11 +212,13 @@ class SentencesController extends AppController{
 	 * Used in AJAX request, in sentences.contribute.js and in sentences.edit_in_place.js.
 	 */
 	function save_sentence(){
-        Sanitize::paranoid($_POST['id']);
-        Sanitize::html($_POST['value']);
 		if(isset($_POST['value'])){
+			Sanitize::html($_POST['value']);
+					
 			// sentences.edit_in_place.js
 			if(isset($_POST['id'])){
+				Sanitize::paranoid($_POST['id']);
+				
 				if(preg_match("/[a-z]/", $_POST['id'])){
 					$this->Sentence->id = substr($_POST['id'], 2);
 					$this->data['Sentence']['lang'] = substr($_POST['id'], 0, 2); // language needed for the logs
@@ -233,6 +235,7 @@ class SentencesController extends AppController{
 					$this->set('sentence_text', rtrim($_POST['value']));
 				}
 			}
+			
 			// sentences.contribute.js
 			else{
 				// setting correctness of sentence (which is not in use by the way)
@@ -256,7 +259,7 @@ class SentencesController extends AppController{
 				
 				// saving
 				if($this->Sentence->save($this->data)){
-					Configure::write('debug',0);
+					Configure::write('debug',2);
 					$this->layout = null;
 					
 					$sentence = $this->Sentence->read();
@@ -264,6 +267,8 @@ class SentencesController extends AppController{
 					
 					$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 					$this->set('specialOptions',$specialOptions);
+					
+					$this->set('langResponse', $response);
 				}
 			}
 		}
@@ -295,15 +300,17 @@ class SentencesController extends AppController{
 	}
 
 	
-	// we always check the translation before we add it
+	/**
+	 * Check if translation is same language as original sentence.
+	 * We always check the translation before we save it.
+	 * Used in AJAX request in sentences.add_translation.js.
+	 */
 	function check_translation(){
-		
-
         Sanitize::html($_POST['value']);
 		$id_temp = $this->Auth->user('id');
 		if(isset($_POST['value']) AND rtrim($_POST['value']) != '' AND isset($_POST['id']) AND !(empty($id_temp))){
-			$sentenceId = substr($_POST['id'], 2);
-			$sourceLanguage = substr($_POST['id'], 0, 2); // language of the original sentence
+			$sentenceId = $_POST['id'];
+			$sourceLanguage = $_POST['lang']; // language of the original sentence
 			
 			// detecting language of translation
 			$this->GoogleLanguageApi->text = $_POST['value'];
@@ -329,13 +336,16 @@ class SentencesController extends AppController{
 		}
 	}
 	
+	/**
+	 * Save the translation.
+	 */ 
 	function save_translation(){
 
         Sanitize::html($_POST['value']);
 		$id_temp = $this->Auth->user('id');
 		if(isset($_POST['value']) AND rtrim($_POST['value']) != '' AND isset($_POST['id']) AND !(empty($id_temp))){
-			$sentence_id = substr($_POST['id'], 2); // id of original sentence
-			$this->data['Sentence']['sentence_lang'] = substr($_POST['id'], 0, 2); // language of original sentence, needed for the logs
+			$sentence_id = $_POST['id']; // id of original sentence
+			$this->data['Sentence']['sentence_lang'] = $_POST['lang']; // language of original sentence, needed for the logs
 			
 			// If we want the "HasAndBelongsToMany" association to work, we need the two lines below :			
 			$this->Sentence->id = $sentence_id;

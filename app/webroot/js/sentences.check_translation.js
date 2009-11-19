@@ -1,6 +1,6 @@
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -18,20 +18,24 @@
 
 */
 
+/**
+ * This is called check_translation but it actually doesn't check anything...
+ * It called AFTER translation is checked.
+ *
+ * TODO : some refactoring needed here, to make things less confusing.
+ */
 
 $(document).ready(function() {
 
 	function save(){
 		var sentence_id = $(".translateLink").parent().attr("id");
 		var sentence_lang = $(".translateLink").parent().attr("lang");
-		alert (sentence_id + sentence_lang );
 
 		var sentence_text = $("#" + sentence_id + "_text").val();
-		//alert (sentence_text);
 		if($.trim(sentence_text) != ""){
 			$("#translation_for_" + sentence_id).html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
 			$.post("http://" + self.location.hostname + "/sentences/save_translation"
-				, { "id": sentence_lang+sentence_id, "value": sentence_text }
+				, { "id":sentence_id, "lang":sentence_lang, "value":sentence_text }
 				, function(data){
 					$(".same_language_warning").html('');
 					$("#translation_for_" + sentence_id).html('');
