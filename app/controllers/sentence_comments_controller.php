@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -62,11 +62,11 @@ class SentenceCommentsController extends AppController {
 		$this->set('sentenceComments', $sentenceComments);
 	}
 	
-	function add($sentence_id){
-        Sanitize::paranoid($id);
+	function add($sentenceId){
+        Sanitize::paranoid($sentenceId);
 
 		$sentence = new Sentence();
-		$sentence->id = $sentence_id;
+		$sentence->id = $sentenceId;
 		$sentence->recursive = 2;
 		$sentence = $sentence->read();
 		$this->set('sentence', $sentence);	
@@ -95,14 +95,14 @@ class SentenceCommentsController extends AppController {
 	
 	// I don't like how 'show' is exactly the same as 'add' in the controller...
 	// It's just the view that is different...
-	function show($sentence_id){
-        Sanitize::paranoid($sentence_id);
+	function show($sentenceId){
+        Sanitize::paranoid($sentenceId);
         $s = new Sentence();
-		$s->id = $sentence_id;		
+		$s->id = $sentenceId;		
 		$s->recursive = 1;
 		$sentence = $s->read();
 		
-		$this->set('sentenceId', $sentence_id);
+		$this->set('sentence_id', $sentenceId);
 		
 		if($sentence != null){
 			$this->set('sentenceExists', true);
@@ -113,7 +113,7 @@ class SentenceCommentsController extends AppController {
 		
 		$sentenceComments = $this->SentenceComment->find('all', 
 			array(
-				'conditions' => array('SentenceComment.sentence_id' => $sentence_id),
+				'conditions' => array('SentenceComment.sentence_id' => $sentenceId),
 				'order' => 'SentenceComment.created'
 			)
 		);

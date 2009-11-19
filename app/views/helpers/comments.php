@@ -52,7 +52,7 @@ class CommentsHelper extends AppHelper {
 		__('Add a comment : ');
 		echo $this->Form->input('sentence_id', array("type"=>"hidden", "value"=>$sentence_id));
 		echo $this->Form->input('sentence_text', array("type"=>"hidden", "value"=>$sentence_text));
-		echo $this->Form->input('text', array("label"=> ""));
+		echo $this->Form->input('text', array("label"=> "", "cols"=>"64", "rows"=>"6"));
 		echo $this->Form->end('Submit');
 	}
 
