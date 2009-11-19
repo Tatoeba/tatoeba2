@@ -29,7 +29,7 @@ class WallHelper extends AppHelper {
         */
         __('Add a Message : ');
         echo $this->Form->create('' , array("models" => "wall" , "action" => "save")) ;
-        //echo $this->Form->text('',array('class'=>'messageTitle'));
+        echo '<a class="cancelFormLink" >' . __("cancel",true) . '</a>'; 
         echo $this->Form->input('content',array('label'=>""));
         echo $this->Form->hidden('replyTo',array('value'=>"" ));
         echo "<div>";

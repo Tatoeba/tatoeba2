@@ -70,6 +70,7 @@ $this->pageTitle = __('Wall',true);
                         echo "<span> ," . $message["Wall"]["date"] . ","  . __("says :" ,true) . "</span>\n" ;
                         
                         if($session->read('Auth.User.id')){
+                            $javascript->link('jquery.scrollTo-min.js',false);
                             $javascript->link('wall.reply.js',false);
                             echo '<a class="replyLink ' . $message["Wall"]["id"] .'" id="reply_'. $message["Wall"]["id"] .'" >' . __("reply",true). "</a>"; 
                         }

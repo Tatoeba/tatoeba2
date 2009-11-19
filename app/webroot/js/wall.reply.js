@@ -18,7 +18,18 @@
 
 $(document).ready(function(){
     var previousReplyFormInMessageID = -1;
-
+   
+    function closeThisReplyForm(thisForm){
+        // replace "close"  by "reply"  
+        $("#reply_"+previousReplyFormInMessageID).attr("class" ,"replyLink " + previousReplyFormInMessageID );
+        $("#reply_"+previousReplyFormInMessageID).html("reply"); 
+        // alert ("already exist") ; 
+        // we remove the previous inside reply form 
+        $("#replyFormDiv_" + previousReplyFormInMessageID ).remove();
+        previousReplyFormInMessageID = -1 ;      
+    }
+   
+    
     /*
     ** saveMessage 
     ** take the message written in the reply Form save it
@@ -26,15 +37,21 @@ $(document).ready(function(){
     */
 
     function saveMessage(){
-        var messageContent = $("#replyFormDiv_" + replyFormInMessageID).find("textarea").val();
+        var messageContent = $("#replyFormDiv_" + previousReplyFormInMessageID ).find("textarea").val();
         
-        $("#replyFormDiv_" + replyFormInMessageID ).remove()  ;
+        $("#replyFormDiv_" + previousReplyFormInMessageID ).remove()  ;
         
         $.post("http://" + self.location.hostname + "/wall/save_inside"
-            , { "content" : messageContent , "replyTo" : replyFormInMessageID } 
+            , { "content" : messageContent , "replyTo" : previousReplyFormInMessageID } 
             , function(data){
-                $("#messageBody_" + replyFormInMessageID).append(data);
-                replyFormInMessageID = -1;
+                $("#messageBody_" + previousReplyFormInMessageID).append(data);
+                // replace "close"  by "reply"  
+                $("#reply_"+previousReplyFormInMessageID).attr("class" ,"replyLink " + previousReplyFormInMessageID );
+                $("#reply_"+previousReplyFormInMessageID).html("reply"); 
+                // alert ("already exist") ; 
+                // we remove the previous inside reply form 
+                $("#replyFormDiv_" + previousReplyFormInMessageID ).remove();
+                previousReplyFormInMessageID = -1 ;        
             }
             , "html"
         );
@@ -61,7 +78,7 @@ $(document).ready(function(){
 
 
         if (aReplyFormAlreadyExist ){
-             // replace "reply"  by "close"  
+             // replace "close"  by "reply"  
             $("#reply_"+previousReplyFormInMessageID).attr("class" ,"replyLink " + previousReplyFormInMessageID );
             $("#reply_"+previousReplyFormInMessageID).html("reply"); 
         // alert ("already exist") ; 
@@ -96,66 +113,13 @@ $(document).ready(function(){
                  "<div id=\"replyFormDiv_"+currentMessageId+"\" class=\"replyFormDiv\" >"
                 + sendMessageForm.html()
                 +"</div>" );
-            
+            $.scrollTo('#replyFormDiv_' + currentMessageId,800 ); 
             previousReplyFormInMessageID = currentMessageId ; 
         }
 
     }
 
 
-//    function manageReplyForm(messageToReplyTo){
-//
-//        var messageId = messageToReplyTo.attr("class").split(' ')[1];
-//        /*  reply link case  */
-//        if ( messageToReplyTo.hasClass("replyLink")){
-//            
-//            var currentMessageBody = $('#messageBody_' + messageId );
-//            var messageText = currentMessageBody.html();
-//           
-//            // replace "reply"  by "close"  
-//            messageToReplyTo.attr("class" ,"closeLink " + messageId );
-//           messageToReplyTo.html("close"); 
-
-//           // we remove the previous inside reply form 
-
-//           $("#replyFormDiv_" + replyFormInMessageID ).remove()  ;
-//           if ( messageId != replyFormInMessageID ){
-
-//               replyFormInMessageID = messageId ;
-//               // i know that's a bit "hacky" to retrieve the send message form
-//               // but that way we're sure to always have a coherent form, and 
-//               // we only need to change the helper
-//               var sendMessageForm = $('#WallSaveForm').clone();
-                
-//               // change the form in order to make it unique 
-//               sendMessageForm.attr("id" , "replyForm_" + messageId ); 
-//               sendMessageForm.attr("method","");
-//               sendMessageForm.attr("action","");
-//               sendMessageForm.find('.submit').attr("class" , "ajaxSubmit"); 
-                
-                
-//               currentMessageBody.html(messageText 
-//                   + "<div id=\"replyFormDiv_"+messageId+"\" class=\"replyFormDiv\" >"
-//                   + sendMessageForm.html()
-//                   +"</div>" ); 
-//           }
-//       }
-//       /****** 
-//        a reply form is already opened for the same message
-//        so a "close" link is displayed 
-//        *******/
-//        else if ( messageToReplyTo.hasClass("closeLink") ){
-//           messageToReplyTo.attr("class" ,"replyLink " + messageId ) ;
-//           messageToReplyTo.html("reply"); 
-//           $("#replyFormDiv_" + replyFormInMessageID ).remove()  ;
-//           replyFormInMessageId = -1 ;
-
-//        }
-//   }
-
-    // without this all the element with ajaxSubmit class created after
-    // the page initial loading wouldn't have been bound with the saveMessage
-    // function, due to jquery mechanism
     $('.ajaxSubmit').live('click',
         function(){
             saveMessage() ;
@@ -170,7 +134,10 @@ $(document).ready(function(){
     });
 
 
-
-
+    $('.cancelFormLink').live('click',
+        function(){
+           closeThisReplyForm( $(this) );
+        }
+    );
 
 });
