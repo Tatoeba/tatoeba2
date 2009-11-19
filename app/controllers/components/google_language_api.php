@@ -35,7 +35,9 @@ class GoogleLanguageApiComponent extends Object{
 		$textToAnalyze = urlencode($this->text);
 		
 		$langDetectUrl = "http://ajax.googleapis.com/ajax/services/language/detect?v=1.0";
-		$url = $langDetectUrl . "&q=" . $textToAnalyze;
+		$url = $langDetectUrl . "&q=" . $textToAnalyze.$textToAnalyze; 
+			// send text in duplicate to re-balance confidence score, because the score
+			// depends on the length of the text.
 		
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_URL, $url);
