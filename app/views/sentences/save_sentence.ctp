@@ -38,8 +38,6 @@ elseif(isset($sentence)){
 	// sentence and translations
 	$sentences->displayGroup($sentence['Sentence'], array(), $session->read('Auth.User'));
 	echo '</div>';
-	
-	pr($langResponse);
 
 }
 ?>

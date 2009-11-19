@@ -27,7 +27,15 @@ $javascript->link('jquery.jeditable.js', false);
 <div id="annexe_content">
 	<div class="module">
 	<h2><?php __('Actions'); ?></h2>
-	<ul>
+	<ul class="sentencesListActions">
+		<li>
+			<?php 
+			echo $html->link(
+				__('Show list',true)
+				, array("controller"=>"sentences_lists", "action"=>"show", $list['SentencesList']['id'])
+			)
+			?>
+		</li>
 		<li>
 			<?php 
 			echo $html->link(
@@ -48,6 +56,44 @@ $javascript->link('jquery.jeditable.js', false);
 		</li>
 	</ul>
 	</div>
+	
+	<div class="module">
+	<h2><?php __('Printable versions'); ?></h2>
+	<ul class="sentencesListActions">
+		<li>
+			<?php 
+			echo $html->link(
+				__('Print as exercise',true)
+				, array("controller"=>"sentences_lists", "action"=>"print_as_exercise", $list['SentencesList']['id'], 'hide_romanization')
+				, array("target" => "_blank", "class" => "printAsExerciseOption")
+			);
+			?>
+		</li>
+		<li>
+			<?php 
+			$translationParam = isset($translationsLang) ? $translationsLang : '';
+			echo $html->link(
+				__('Print as correction',true)
+				, array("controller"=>"sentences_lists", "action"=>"print_as_correction", $list['SentencesList']['id'], $translationParam, 'hide_romanization')
+				, array("target" => "_blank", "class" => "printAsCorrectionOption")
+			);
+			?>
+		</li>
+		<li>
+			<?php 
+			$javascript->link('sentences_lists.romanization_option.js', false);
+			echo $form->checkbox(
+				'display_romanization'
+				, array("id" => "romanizationOption", "class" => "display")
+			);
+			echo ' ';
+			__('Check this box to display romanization in the print version');
+			?>
+		</li>
+	</ul>
+	</div>
+	
+	
 	
 	<div class="module">
 	<h2><?php __('Tips'); ?></h2>
@@ -77,7 +123,7 @@ $javascript->link('jquery.jeditable.js', false);
 	
 	echo '<span class="sentencesListId" id="'.$list['SentencesList']['id'].'" />'; // to retrieve id
 	
-	echo '<ul class="sentencesList">';
+	echo '<ul class="sentencesList editMode">';
 	if(count($list['Sentence']) > 0){
 
 		foreach($list['Sentence'] as $sentence){

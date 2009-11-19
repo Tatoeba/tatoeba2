@@ -31,17 +31,24 @@ class SentencesHelper extends AppHelper {
 		echo $this->Html->link($sentence['text'], array("controller" => "sentences", "action" => "show", $sentence['id']));
 		echo '</span> ';
 		
-		// TODO I don't like how there's a lot of copy-paste of these if-blocks 
-		// in the rest of the code. Should factorize that somehow.
-		if($sentence['lang'] == 'jp'){
-			$this->displayRomaji($sentence['text']);
-		}
-		if($sentence['lang'] == 'zh'){
-			$this->displayPinyin($sentence['text']);
-		}
+		$this->displayRomanization($sentence['lang'], $sentence['text']);
 		
 		echo '</div>';
 	}
+		
+		
+	/**
+	 * Display romanization.
+	 */
+	function displayRomanization($sentenceLang, $sentenceText){
+		if($sentenceLang == 'jp'){
+			$this->displayRomaji($sentenceText);
+		}
+		if($sentenceLang == 'zh'){
+			$this->displayPinyin($sentenceText);
+		}
+	}
+	
 	
 	/**
 	 * Display romaji.
@@ -51,6 +58,7 @@ class SentencesHelper extends AppHelper {
 			$this->Kakasi->convert($text, 'romaji');
 		echo '</span>';
 	}
+	
 	
 	/**
 	 * Display pinyin.
@@ -66,6 +74,8 @@ class SentencesHelper extends AppHelper {
 		echo $pinyin;
 		echo '</span>';
 	}
+
+	
 	
 	/**
 	 * Display a single sentence for edit in place.
@@ -76,12 +86,9 @@ class SentencesHelper extends AppHelper {
 			echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="editableSentence correctness'.$sentence['correctness'].' '.$sentence['lang'].'">';
 			echo $sentence['text'];
 			echo '</span> ';
-			if($sentence['lang'] == 'jp'){
-				$this->displayRomaji($sentence['text']);
-			}
-			if($sentence['lang'] == 'zh'){
-				$this->displayPinyin($sentence['text']);
-			}
+			
+			$this->displayRomanization($sentence['lang'], $sentence['text']);
+			
 		echo '</div>';
 	}
 	
@@ -89,17 +96,22 @@ class SentencesHelper extends AppHelper {
 	/**
 	 * Display sentence in list.
 	 */
-	function displaySentenceInList($sentence) {		
+	function displaySentenceInList($sentence, $translationsLang = null) {
 		// Sentence
 		echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="sentenceInList '.$sentence['lang'].'">';
 		echo $this->Html->link($sentence['text'], array("controller" => "sentences", "action" => "show", $sentence['id']));
 		echo '</span> ';
+		$this->displayRomanization($sentence['lang'], $sentence['text']);
 		
-		if($sentence['lang'] == 'jp'){
-			$this->displayRomaji($sentence['text']);
-		}
-		if($sentence['lang'] == 'zh'){
-			$this->displayPinyin($sentence['text']);
+		// Translations
+		if($translationsLang != null){
+			foreach($sentence['Translation'] as $translation){
+				if($translation['lang'] == $translationsLang){
+					echo '<span id="'.$translation['lang'].$translation['id'].'" class="translationInList '.$translation['lang'].'">';
+					echo $this->Html->link($translation['text'], array("controller" => "sentences", "action" => "show", $translation['id']));
+					echo '</span> ';
+				}
+			}
 		}
 	}
 	
@@ -128,12 +140,7 @@ class SentencesHelper extends AppHelper {
 		
 		echo '<div title="'.$tooltip.'" class="'.$editable.' original correctness'.$sentence['correctness'].'">';
 			echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="'.$editableSentence.' text '.$sentence['lang'].'">'.$sentence['text'].'</span> ';
-			if($sentence['lang'] == 'jp'){
-				$this->displayRomaji($sentence['text']);
-			}
-			if($sentence['lang'] == 'zh'){
-				$this->displayPinyin($sentence['text']);
-			}
+			$this->displayRomanization($sentence['lang'], $sentence['text']);
 		echo '</div>';
 		
 		echo '<ul id="translation_for_'.$sentence['id'].'" class="addTranslations"></ul>';
@@ -178,12 +185,9 @@ class SentencesHelper extends AppHelper {
 			
 			//translation and romanization
 			echo '<span class="text '.$translation['lang'].'">' . $translation['text'] . '</span>';
-			if($translation['lang'] == 'jp'){
-				$this->displayRomaji($translation['text']);
-			}
-			if($translation['lang'] == 'zh'){
-				$this->displayPinyin($translation['text']);
-			}
+			
+			$this->displayRomanization($translation['lang'], $translation['text']);
+			
 			echo '</li>';
 		}
 	}
@@ -200,7 +204,6 @@ class SentencesHelper extends AppHelper {
 			foreach($translations as $translation){
 				$translationsIds[] = $translation['id'];
 				if(isset($translation['IndirectTranslation'])){
-					pr($translation['IndirectTranslation']);
 					foreach($translation['IndirectTranslation'] as $indirectTranslation){
 						if($indirectTranslation['id'] != $sentence['Sentence']['id']){
 							$indirectTranslations[] = $indirectTranslation;
@@ -243,7 +246,7 @@ class SentencesHelper extends AppHelper {
 	 */
 	function displayForTranslation($sentence, $translations){
 		echo '<div class="sentence">';
-		
+			
 			// Sentence
 			echo '<div class="original correctness'.$sentence['correctness'].' '.$sentence['lang'].'">'.$sentence['text'].'</div>';
 			

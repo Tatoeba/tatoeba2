@@ -47,13 +47,26 @@ ul.sentencesList{
 	font-weight: bold;
 }
 
-.sentencesList .sentenceInList{
+.editMode .sentenceInList{
 	margin-right: 50px;
 }
 
 .sentencesLists .username{
 	color: #989898;
 }
+
+.sentencesListActions li{
+	margin: 10px 0px;
+}
+
+
+/* Translations */
+
+.translationInList{
+	margin: 5px 0px;
+	font-size: 0.8em;
+}
+
 
 /* Delete list */
 
@@ -78,4 +91,31 @@ ul.sentencesList{
 	padding-top: 10px;
 	margin-bottom: -10px;
 	border-top: 1px dotted #989898;
+}
+
+
+/* Print as exercise */
+#sentencesListContainer{
+	width: 700px;
+	margin: auto;
+	background-color: white;
+	padding: 10px 20px 30px 20px;
+	font-family: Georgia, serif;
+}
+
+#sentencesListContainer h1{
+	margin-bottom: 40px;
+}
+
+ol#listAsExercise li{
+	margin: 20px 0px;
+	padding-bottom: 40px;
+}
+
+ol#listAsCorrection li{
+	margin: 20px 0px;
+}
+
+#sentencesListContainer .romanization{
+	color: #989898;
 }

@@ -1,7 +1,7 @@
 <?php
 /*
     Tatoeba Project, free collaborative creation of multilingual corpuses project
-    Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -23,13 +23,14 @@ App::import('Core', 'Sanitize');
 class SentencesListsController extends AppController{
 
 	var $name = 'SentencesLists' ;
-	var $helpers = array('Sentences', 'Navigation', 'Html');
+	var $helpers = array('Sentences', 'Navigation', 'Html', 'Kakasi');
 	var $components = array ('GoogleLanguageApi');
 	
 	function beforeFilter() {
 	    parent::beforeFilter();
 		
 		// setting actions that are available to everyone, even guests
+		// TODO : update this... editing lists and stuff should not be accessable to anyone
 	    $this->Auth->allowedActions = array('*');
 	}
 	
@@ -53,10 +54,17 @@ class SentencesListsController extends AppController{
 	/**
 	 * Display content of a list.
 	 */
-	function show($id = null){
+	function show($id = null, $translationsLang = null){
 		if(isset($id)){
 			Sanitize::paranoid($id);
 			$this->SentencesList->id = $id;
+			
+			if(isset($translationsLang) AND in_array($translationsLang, $this->SentencesList->Sentence->languages)){
+				Sanitize::paranoid($translationsLang);
+				$this->SentencesList->recursive = 2; // TODO need optimization
+				$this->set('translationsLang', $translationsLang);
+			}
+			
 			$this->set('list', $this->SentencesList->read());
 		}else{
 			$this->redirect(array("action"=>"index"));
@@ -235,15 +243,15 @@ class SentencesListsController extends AppController{
 			$sentence = new Sentence();
 			// do I have a choice, but to copy the code in the SentencesController...?
 			
-			// detecting language
-			// $this->GoogleLanguageApi->text = $_POST['sentenceText'];
-			// $response = $this->GoogleLanguageApi->detectLang();
-			// if($response['isReliable']){
-				// //$data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
-				// $data['Sentence']['lang'] = null;
-			// }else{
+			//detecting language
+			$this->GoogleLanguageApi->text = $_POST['sentenceText'];
+			$response = $this->GoogleLanguageApi->detectLang();
+			if($response['isReliable']){
+				//$data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
 				$data['Sentence']['lang'] = null;
-			// }
+			}else{
+				$data['Sentence']['lang'] = null;
+			}
 			
 			$data['Sentence']['user_id'] = $this->Auth->user('id');
 			$data['Sentence']['text'] = $_POST['sentenceText'];
@@ -262,5 +270,40 @@ class SentencesListsController extends AppController{
 		}
 	}
 	
+	/**
+	 * Display list so that it can be printed for exercising 
+	 * translation/romanization on paper.
+	 */
+	function print_as_exercise($listId, $romanization = 'hide_romanization'){
+		Sanitize::paranoid($listId);
+		
+		$this->layout = 'lists';
+		$this->SentencesList->id = $listId;
+		$this->SentencesList->recursive = 2;
+		$list = $this->SentencesList->read();
+		$this->set('list', $list);
+		$this->set('displayRomanization', ($romanization == 'display_romanization'));
+	}
+	
+	
+	/**
+	 * Display list so that it can be printed as a correction reference.
+	 */
+	function print_as_correction($listId, $translationsLang = null, $romanization = 'hide_romanization'){
+		$this->layout = 'lists';
+		Sanitize::paranoid($listId);
+		$this->SentencesList->id = $listId;
+		
+		if(isset($translationsLang) AND in_array($translationsLang, $this->SentencesList->Sentence->languages)){
+			$this->SentencesList->recursive = 2;
+			$this->set('translationsLang', $translationsLang);
+		}else{
+			$this->SentencesList->recursive = -1;
+		}
+		
+		$list = $this->SentencesList->read();
+		$this->set('list', $list);
+		$this->set('displayRomanization', ($romanization == 'display_romanization'));
+	}
 }
 ?>
