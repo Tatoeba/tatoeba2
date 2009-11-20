@@ -20,7 +20,7 @@ App::import('Core', 'Sanitize');
 
 class CommentsHelper extends AppHelper {
 
-	var $helpers = array('Form', 'Date', 'Tooltip', 'Html');
+	var $helpers = array('Form', 'Date', 'Html');
 
 	function displayComment($id, $username, $datetime, $comment){
 		echo '<div class="comment">';
@@ -48,7 +48,6 @@ class CommentsHelper extends AppHelper {
 
 	function displayCommentForm($sentence_id, $sentence_text){
 		echo $this->Form->create('SentenceComment', array("action"=>"save"));
-		$this->Tooltip->display(__('Even though you can comment on the whole group of sentences, keep in mind that your comment will be <strong>linked only to the main sentence</strong> (at the top).',true));
 		__('Add a comment : ');
 		echo $this->Form->input('sentence_id', array("type"=>"hidden", "value"=>$sentence_id));
 		echo $this->Form->input('sentence_text', array("type"=>"hidden", "value"=>$sentence_text));

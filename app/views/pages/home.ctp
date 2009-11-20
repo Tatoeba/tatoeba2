@@ -128,7 +128,7 @@ array_unshift($langArray, array('any' => __('any', true)));
 	if($session->read('Auth.User.id')){
 	?>
 		<div class="module">
-			<h2><?php __('Latest contributions'); ?> <span class="annexe"><?php $tooltip->displayLogsColors(); ?> (<?=$html->link(__('show more...',true), array("controller"=>"contributions")); ?>) (<?=$html->link(__('show activity timeline',true), array("controller"=>"contributions", "action"=>"activity_timeline")); ?>)</span></h2>
+			<h2><?php __('Latest contributions'); ?> <span class="annexe">(<?=$html->link(__('show more...',true), array("controller"=>"contributions")); ?>) (<?=$html->link(__('show activity timeline',true), array("controller"=>"contributions", "action"=>"activity_timeline")); ?>)</span></h2>
 			<?=$this->element('latest_contributions'); ?>
 		</div>
 

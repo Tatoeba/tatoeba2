@@ -22,7 +22,7 @@ App::import('Core', 'Sanitize');
 class SentenceCommentsController extends AppController {
 	var $name = 'SentenceComments';
 	
-	var $helpers = array('Comments','Sentences', 'Languages', 'Tooltip', 'Navigation', 'Html');
+	var $helpers = array('Comments','Sentences', 'Languages', 'Navigation', 'Html');
 	var $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
 	
 	var $langs = array('en', 'fr', 'jp', 'es', 'de');

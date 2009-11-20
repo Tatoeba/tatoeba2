@@ -104,7 +104,7 @@
 				, array("id" => "romanizationOption", "class" => "display")
 			);
 			echo ' ';
-			__('Check this box to display romanization in the print version');
+			__('Check this box to display romanization in the printable version');
 			?>
 		</li>
 	</ul>

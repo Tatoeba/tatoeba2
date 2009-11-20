@@ -1,7 +1,7 @@
 <?php
 /*
     Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -30,53 +30,35 @@ function color($number){
 ?>
 
 
-<div id="annexe_content">
-	<div class="module">
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
-		?>
-	</div>
+<?php
+$maxWidth = 600;
+$maxTotal = 0;
+foreach($stats as $stat){
+	if($stat[0]['total'] > $maxTotal){
+		$maxTotal = $stat[0]['total'];
+	}
+}
 
-</div>
-
-<div id="main_content">
-	<div class="module">
-		<?php
-		$maxWidth = 600;
-		$maxTotal = 0;
-		foreach($stats as $stat){
-			if($stat[0]['total'] > $maxTotal){
-				$maxTotal = $stat[0]['total'];
-			}
-		}
+echo '<table id="timeline">';
+foreach($stats as $stat){
+	$total = $stat[0]['total'];
+	$percent = $total / $maxTotal;
+	$width = intval($percent * $maxWidth);
+	$color = color($total);
+	
+	echo '<tr>';
+		echo '<td class="date">';
+		echo $stat[0]['day'];
+		echo '</td>';
 		
-		echo '<table id="timeline">';
-		foreach($stats as $stat){
-			$total = $stat[0]['total'];
-			$percent = $total / $maxTotal;
-			$width = intval($percent * $maxWidth);
-			$color = color($total);
-			
-			echo '<tr>';
-				echo '<td class="date">';
-				echo $stat[0]['day'];
-				echo '</td>';
-				
-				echo '<td class="number color'.$color.'">';
-				echo '<strong>'.$total.'</strong>';
-				echo '</td>';
-				
-				echo '<td class="line">';
-				echo '<div class="logs_stats color'.$color.'" style="width:'.$width.'px"></div>';
-				echo '</td>';
-			echo '</tr>';
-		}
-		echo '</table>';
-		?>
-	</div>
-</div>
-
+		echo '<td class="number color'.$color.'">';
+		echo '<strong>'.$total.'</strong>';
+		echo '</td>';
+		
+		echo '<td class="line">';
+		echo '<div class="logs_stats color'.$color.'" style="width:'.$width.'px"></div>';
+		echo '</td>';
+	echo '</tr>';
+}
+echo '</table>';
+?>

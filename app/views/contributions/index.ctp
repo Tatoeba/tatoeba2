@@ -20,35 +20,26 @@
 
 <div id="annexe_content">
 	<div class="module">
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
+		<h2><?php __('Meaning of the colors') ?></h2>
+		<ul id="logsLegend">
+		<li class="sentenceAdded"><?php __('sentence added') ?></li>
+		<li class="sentenceModified"><?php __('sentence modified') ?></li>
+		<li class="sentenceDeleted"><?php __('sentence deleted') ?></li>
+		<?php 
+		// <li class="linkAdded"> __('link added')</li>
+		// <span class="linkDeleted"> __('link deleted') </span> 
 		?>
+		</ul>
 	</div>
-
 </div>
 
 <div id="main_content">
 	<div class="module">
-		<div id="logsLegend">
-		<span class="sentenceAdded"><?php __('sentence added') ?></span>
-		<span class="linkAdded"><?php __('link added') ?></span>
-		<span class="sentenceModified"><?php __('sentence modified') ?></span>
-		<?php 
-		//<span class="correctionSuggested"> __('correction suggested') </span> 
-		// <span class="sentenceDeleted"> __('sentence deleted') </span>
-		// <span class="linkDeleted"> __('link deleted') </span>
-		?>
-		</div>
-		
+		<h2><?php __('Latest contributions') ?></h2>
 		<table id="logs">
 		<?php
 		foreach ($contributions as $contribution){
 			$logs->entry($contribution['Contribution'], $contribution['User']);
-			//$logs->entry($contribution['Contribution']);
 		}
 		?>
 		</table>

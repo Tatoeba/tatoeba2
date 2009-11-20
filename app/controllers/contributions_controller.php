@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -23,7 +23,7 @@ App::import('Core', 'Sanitize');
 class ContributionsController extends AppController {
 
 	var $name = 'Contributions';
-	var $helpers = array('Html', 'Form', 'Sentences', 'Logs', 'Tooltip', 'Navigation', 'Date');
+	var $helpers = array('Html', 'Form', 'Sentences', 'Logs', 'Navigation', 'Date');
 	var $components = array('Permissions');
 
 	function beforeFilter() {
@@ -47,46 +47,7 @@ class ContributionsController extends AppController {
 			)
 		);
 	}
-	
-	function show($sentence_id){
-        Sanitize::paranoid($sentence_id);
-		$s = new Sentence();
-		
-		if($sentence_id == "random"){
-			$resultMax = $s->query('SELECT MAX(id) FROM sentences');
-			$max = $resultMax[0][0]['MAX(id)'];
-			
-			$randId = rand(1, $max);
-			$this->redirect(array("action"=>"show", $randId));
-		}	
-		
-		$s->id = $sentence_id;
-		$s->recursive = 2;
-		$sentence = $s->read();
-		
-		if($sentence != null){
-			$this->set('sentenceExists', true);
-			$this->set('sentence', $sentence);
-		}else{
-			$this->set('sentenceExists', false);
-			$this->Contribution->unbindModel(
-				array(
-					'belongsTo' => array('Sentence')
-				)
-			);
-			$contributions = $this->Contribution->find('all', 
-				array(
-					'conditions' => array('Contribution.sentence_id' => $sentence_id),
-					'order' => 'Contribution.datetime DESC'
-				)
-			);
-			$this->set('contributions', $contributions);
-		}
-		
-		// checking which options user can access to
-		$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
-		$this->set('specialOptions',$specialOptions);
-	}
+
 	
 	function latest(){
 		$this->Contribution->unbindModel(

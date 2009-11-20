@@ -1,6 +1,6 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
     Copyright (C) 2009 Etienne Deparis <etienne.deparis@umaneti.net>
 
     This program is free software: you can redistribute it and/or modify
@@ -23,7 +23,7 @@ App::import('Core', 'Sanitize');
 class PrivateMessagesController extends AppController {
 	var $name = 'PrivateMessages';
 
-	var $helpers = array('Comments', 'Languages', 'Tooltip', 'Navigation', 'Html', 'Date');//, 'PrivateMessages');
+	var $helpers = array('Comments', 'Languages', 'Navigation', 'Html', 'Date');//, 'PrivateMessages');
 	var $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
 
 	var $langs = array('en', 'fr', 'jp', 'es', 'de');
