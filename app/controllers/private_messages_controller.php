@@ -82,18 +82,19 @@ class PrivateMessagesController extends AppController {
 	 */
 	function send(){
         Sanitize::html($this->data['PrivateMessage']['recpt']);
-        Sanitize::html($this->data['PrivateMessage']['send']);
+        // This doesn't work... Why do you have write it ?
+        //Sanitize::html($this->data['PrivateMessage']['send']);
         Sanitize::html($this->data['PrivateMessage']['content']);
 
 		if(!empty($this->data['PrivateMessage']['recpt']) && !empty($this->data['PrivateMessage']['content'])){
 			$this->data['PrivateMessage']['sender'] = $this->Auth->user('id');
-          // TODO add a check if the user to send doesn't exist 
+          // TODO add a check if the user to send doesn't exist
 			$this->PrivateMessage->User->recursive = 0;
 			$toUser = $this->PrivateMessage->User->findByUsername($this->data['PrivateMessage']['recpt']);
 			$this->data['PrivateMessage']['recpt'] = $toUser['User']['id'];
 			$this->data['PrivateMessage']['user_id'] = $toUser['User']['id'];
 			$this->data['PrivateMessage']['folder'] = 'Inbox';
-			$this->data['PrivateMessage']['date'] = date("Y-m-d h:i:s", time());
+			$this->data['PrivateMessage']['date'] = date("Y/m/d H:i:s", time());
 			$this->data['PrivateMessage']['isnonread'] = 1;
 			$this->PrivateMessage->save($this->data);
 
@@ -154,7 +155,7 @@ class PrivateMessagesController extends AppController {
 
 	// Restore message function
 	function restore($messageId){
-         
+
         Sanitize:: paranoid($messageId);
 		$message = $this->PrivateMessage->findById($messageId);
 
@@ -182,7 +183,7 @@ class PrivateMessagesController extends AppController {
 	// Create a new message
 	function write($toUserLogin = '', $replyToMessageId = null){
 
-        
+
         Sanitize::html($toUserLogin);
         Sanitize::paranoid($replyToMessageId);
 		if($replyToMessageId != null){

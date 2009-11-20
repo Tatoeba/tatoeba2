@@ -46,7 +46,7 @@ if(!empty($user['User']['homepage'])){
 
 <div id="main_content">
 	<div class="module">
-		<h3><?php if($user['User']['name'] != '') echo $user['User']['name'] . ' aka. ' . $user['User']['name'];
+		<h3><?php if($user['User']['name'] != '') echo $user['User']['name'] . ' aka. ' . $user['User']['username'];
 		else echo $user['User']['username'] ?></h3>
 		<div id="pimg">
 <?php

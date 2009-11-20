@@ -19,7 +19,7 @@
 echo $this->element('pmmenu');
 ?>
 <div id="main_content">
-	<div class="module">
+	<div class="module pm_module">
 		<h2><?php echo __($folder, true); ?></h2>
 		<?php echo $this->element('pmtoolbox'); ?>
 		<table class="pm_folder">
