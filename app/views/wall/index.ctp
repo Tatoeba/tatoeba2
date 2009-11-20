@@ -27,6 +27,30 @@ general view for the wall, here are displayed all the messages
 $this->pageTitle = __('Wall',true);
 
 ?>
+<div id="annexe_content" >
+    <div class="module" >
+		<h2><?php __('Tips'); ?></h2>
+        <?php __('Here ask questions about how to use Tatoeba, general questions about translation, report if you see bugs or strange stuff, or simply
+        exchange with the other users.');
+        echo "<br />";
+        __('Have fun! Don\'t be shy to send message in whatever language you want! '); ?>
+    </div>
+
+    <div class="module" >
+        <h2><?php __('Last send Messages')?></h2>
+        <ul>
+            <?php
+                for($i = 0 ; $i < min(10,count($tenLastMessages)) ; $i++){
+                    echo '<li>';
+                        echo '<a href="#message_' . $tenLastMessages[$i]['Wall']['id'].'" >' .
+                          $date->ago($tenLastMessages[$i]["Wall"]["date"]) .", " .  __('by ',true) . $tenLastMessages[$i]["User"]["username"]
+                         .'</a>'; 
+                    echo '</li>';
+                }
+            ?>
+        </ul>
+    </div>
+</div>
 
 <div id="main_content">
     <div class="module">
@@ -50,7 +74,7 @@ $this->pageTitle = __('Wall',true);
                     $message['User']['image'] = 'unknown-avatar.jpg';
                 }
 
-                echo '<div class="messagePart primaryMessage" >'."\n";
+                echo '<div id="message_' .$message['Wall']['id'] .'"  class="messagePart primaryMessage" >'."\n";
                     echo '<div class="messageHeader" >'."\n";
                         echo '<img src="/img/profiles/'. $message['User']['image'].'" alt="'.__('User\'s avatar',true).'" />'."\n";
                         echo '<a href="/user/profile/' . $message['User']['username'] . '" ><span class="nickname" >'.

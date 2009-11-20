@@ -65,8 +65,12 @@
 
 }
 
-#WallSaveForm .cancelFormLink {
-    visibility: hidden ;
+#WallSaveForm .divCancelFormLink {
+    display: none;
+}
+
+#WallSaveForm .divCancelFormLink .cancelFormLink {
+    visibility: hidden;
 }
 
 .replyFormDiv .cancelFormLink{

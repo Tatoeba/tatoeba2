@@ -43,7 +43,7 @@ class WallController extends Appcontroller{
 
     var $name = 'Wall' ;
     var $paginate = array('limit' => 50);
-    var $helpers = array('Wall','Javascript');
+    var $helpers = array('Wall','Javascript','Date');
 
     function beforeFilter(){
         parent::beforeFilter();
@@ -76,7 +76,7 @@ class WallController extends Appcontroller{
                 "order" => "Wall.id", 
                 "contain"    => array (
                     "Reply" => array (
-                        "order" =>"Reply.date",
+                        "order" =>"Reply.date ",
                         "fields" => array("Reply.id") 
                         )
                     
@@ -86,8 +86,19 @@ class WallController extends Appcontroller{
                     ) 
                 )
             );
-        
+        $tenLastMessages = $this->Wall->find('all',
+            array(
+                "order" => "Wall.date DESC",
+                "limit" => 10,  
+                "contain"    => array (
+                    "User" => array (
+                        "fields" => array("User.username", "User.id") 
+                        )
+                    ) 
+                )
+            );
         $this->set('allMessages' , $messages) ;
+        $this->set('tenLastMessages',$tenLastMessages);
         $this->set('firstMessages' , $firstMessages) ;
 
     }

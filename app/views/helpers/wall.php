@@ -28,11 +28,15 @@ class WallHelper extends AppHelper {
            called "walls/save' which is not what we want 
         */
         __('Add a Message : ');
-        echo $this->Form->create('' , array("models" => "wall" , "action" => "save")) ;
-        echo $this->Form->input('content',array('label'=>""));
-        echo $this->Form->hidden('replyTo',array('value'=>"" ));
+        echo $this->Form->create('' , array( "action" => "save")) ;
+        echo "<fieldset>";
+            echo $this->Form->input('content',array('label'=>""));
+            echo $this->Form->hidden('replyTo',array('value'=>"" ));
+        echo "</fieldset>";
 		echo $this->Form->submit(__('Send',true));
-		echo '<a class="cancelFormLink" >' . __("cancel",true) . '</a>'; 
+        echo '<div class="divCancelFormLink" >';
+		    echo '<a class="cancelFormLink" >' . __("cancel",true) . '</a>'; 
+        echo '</div>';
         echo $this->Form->end();
 		
     }
@@ -42,7 +46,7 @@ function create_reply_div($message,$allMessages,$isAuthenticated){
                 if ( empty($message['User']['image'])){
                     $message['User']['image'] = 'unknown-avatar.jpg';
                 }
-                echo "<div class=\"messagePart\" >\n";
+                echo '<div id="message_' . $message["Wall"]["id"] . '" class="messagePart" >'."\n";
                     echo "<div class=\"replyHeader\" >\n"; 
                         echo "<img src=\"/img/profiles/". $message["User"]["image"]."\" alt=\"Avatar of the user \" />\n";
                         echo "<span class=\"nickname\" >". $message["User"]["username"]."</span>\n";
