@@ -25,22 +25,42 @@ echo $this->element('pmmenu');
 		<table class="pm_folder">
 		<?php
 		echo '<tr><th>'.__('Date', true).'</th>';
+
 		if($folder == 'Sent')
 			echo '<th>'.__('To', true).'</th>';
 		else
 			echo '<th>'.__('From', true).'</th>';
+
 		echo '<th>'.__('Subject', true).'</th><th></th></tr>';
+
 		foreach($content as $msg){
-			if($msg['isnonread'] == 1) echo '<tr class="pm_folder_line unread">';
-			else echo '<tr class="pm_folder_line">';
+			if($msg['isnonread'] == 1)
+                 echo '<tr class="pm_folder_line unread">';
+			else
+                 echo '<tr class="pm_folder_line">';
+                 
 			echo '<td>' . $html->link($date->ago($msg['date']), array('action' => 'show', $msg['id'])) . '</td>';
-			echo '<td>'.$html->link($msg['from'], array('action' => 'create', $msg['from'])).'</td>';
+
+            if($folder == 'sent'){
+			    echo '<td>'.$html->link($msg['from'], array('action' => 'create', $msg['from'])).'</td>';
+            } else {
+                // maybe it will be better to link to the rcpt profile, but as I don't know what "create" is supposed to do
+			    echo '<td>'.$html->link($msg['to'], array('action' => 'create', $msg['to'])).'</td>';
+            }
+
 			echo '<td>' . $html->link($msg['title'], array('action' => 'show', $msg['id'])) . '</td>';
-			echo '<td><span class="action_link">';
-			if($folder == 'Trash') echo $html->link(__('Restore', true), array('action' => 'restore', $msg['id']));
-			else echo $html->link(__('Delete', true), array('action' => 'delete', $folder, $msg['id']));
-			if($msg['isnonread'] == 1) $label = __('Mark as read', true);
-			else $label = __('Mark as unread', true);
+            echo '<td><span class="action_link">';
+
+			if($folder == 'Trash')
+                 echo $html->link(__('Restore', true), array('action' => 'restore', $msg['id']));
+			else
+                 echo $html->link(__('Delete', true), array('action' => 'delete', $folder, $msg['id']));
+
+			if($msg['isnonread'] == 1)
+                 $label = __('Mark as read', true);
+			else
+                 $label = __('Mark as unread', true);
+
 			echo ' - ' . $html->link($label, array('action' => 'mark', $folder, $msg['id'])) . '</span></td></tr>';
 		} ?>
 		</table>

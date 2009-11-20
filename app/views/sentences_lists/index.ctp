@@ -18,7 +18,7 @@
 */
 ?>
 
-<div id="annexe_content">
+<div id="annexe_content" >
 
 	<?php
 	if($session->read('Auth.User.id')){
