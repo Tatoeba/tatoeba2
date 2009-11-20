@@ -63,7 +63,7 @@ table {
 div#top_menu_container {
 	background-color:#414141;
 	color:#FFFFFF;
-	border-bottom:1px solid #000000;	
+	border-bottom:1px solid #000000;
 }
 
 div#top_menu {
@@ -73,12 +73,12 @@ div#top_menu {
 }
 
 
-div#top_menu a, div#top_menu li#login_pseudo_link {
+div#top_menu a, div#top_menu .login_pseudo_link {
 	color:#FFFFFF;
 	cursor:pointer;
 }
 
-div#top_menu ul li a:hover, div#top_menu li#login_pseudo_link:hover {
+div#top_menu ul li a:hover, div#top_menu a:hover, div#top_menu .login_pseudo_link:hover {
 	color:#FB6B10;
 	text-decoration:underline;
 }
@@ -222,7 +222,7 @@ div.search_bar fieldset{
 	border: none;
 	padding: 0px;
 	margin: 0px;
-	margin-top: -1px;	
+	margin-top: -1px;
 	display: inline;
 	margin-right: 10px;
 	text-align: left;

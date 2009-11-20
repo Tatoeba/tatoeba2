@@ -25,7 +25,7 @@ $this->pageTitle = __('Contributions statistics',true);
 	<h2><?php __('Number of contributions'); ?></h2>
 	<?php __('The number of contributions represents the number of sentences added + the number of translations added + the number of sentences modified.'); ?>
 	</div>
-	
+
 	<div class="module">
 	<h2><?php __('About the colors'); ?></h2>
 	<p><?php __('In January 2009, a new version of Tatoeba was released and all the accounts have been disactivated. Users in grey are users who have not reactivated their account (yet?).'); ?></p>
@@ -45,8 +45,8 @@ $this->pageTitle = __('Contributions statistics',true);
 		echo '<th>' . __('member since', true) . '</th>';
 		echo '<th>' . __('number of contributions', true) . '</th>';
 		echo '</tr>';
-		
-	$i = 0;	
+
+	$i = 0;
 	foreach($stats as $stat){
 		$css = 'class=';
 		if($stat['User']['group_id'] == 1){
@@ -58,11 +58,11 @@ $this->pageTitle = __('Contributions statistics',true);
 		if($stat['User']['group_id'] == 5){
 			$css .= '"pending"';
 		}
-		
+
 		echo '<tr '.$css.'><td>';
 		echo $i; $i++;
 		echo '</td><td>';
-		echo $html->link($stat['User']['username'], array("controller"=>"users", "action"=>"show", $stat['User']['id']));
+		echo $html->link($stat['User']['username'], array("controller"=>"user", "action"=>"profile", $stat['User']['username']));
 		echo '</td><td>';
 		echo $date->ago($stat['User']['since']);
 		echo '</td><td>';

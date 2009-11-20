@@ -35,31 +35,18 @@ $selectedLanguageFrom = 'en';
 $selectedLanguageTo = 'zh';
 ?>
 
-<div id="annexe_content">
-	<div class="module">
-		<?php
-			if(!$session->read('Auth.User.id')){
-				echo $this->element('login'); 
-			} else {
-				echo $this->element('space'); 
-			}
-		?>
-	</div>
-
-</div>
-
 <div id="main_content">
 	<div class="module">
 		<h2><?=__('Conversations', true); ?></h2>
-		
+
 		<?php
 		if ($mode == 'new') {
 			echo $form->select('from', $languages, $selectedLanguageFrom);
 			echo $form->select('to', $languages, $selectedLanguageTo);
-			
+
 			?>
 			<h3><?=__('Add a new conversation', true); ?></h3>
-			
+
 			<?php
 			echo $form->create('Conversation');
 			echo '<div id="sentencesList">';
@@ -70,7 +57,7 @@ $selectedLanguageTo = 'zh';
 					'speaker1' => array('label' => __('Speaker', true).' : ', 'class' => 'speaker'),
 					'content_from1' => array('label' =>'Content ('.$selectedLanguageFrom.')', 'class' => 'content_from'),
 					'content_to1' => array('label' =>'Content ('.$selectedLanguageTo.')', 'class' => 'content_to')));
-					
+
 			echo $form->inputs(
 				array(
 					'legend' => 'Sentence 2',
@@ -80,7 +67,7 @@ $selectedLanguageTo = 'zh';
 			echo $form->hidden('nb_replies', array('value' => '2'));
 			echo $form->hidden('lang_from', array('value' => $selectedLanguageFrom));
 			echo $form->hidden('lang_to', array('value' => $selectedLanguageTo));
-			
+
 			echo '</div>';
 			?>
 			<div id="testForm"></div>
@@ -89,7 +76,7 @@ $selectedLanguageTo = 'zh';
 			echo $form->end(__('Save this conversation', true));
 		}
 		?>
-		
+
 	</div>
 	<div class="module">
 		<h2><?=__('Last added conversations', true); ?></h2>

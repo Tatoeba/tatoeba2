@@ -22,8 +22,8 @@
 /* Login Form */
 #UserLoginForm_FromBar {
 	position:absolute;
-	right:0;
-	top:24px;
+	right:-100px;
+	top:20px;
 	z-index:1000;
 	min-width:270px;
 	padding:3px 3px 5px 5px;
@@ -33,6 +33,7 @@
 	#UserLoginForm_FromBar fieldset	{
 		border:0;
 		text-align:right;
+		line-height:25px;
 	}
 	#UserLoginForm_FromBar label {
 		text-align:right;
@@ -56,7 +57,7 @@
 			width:120px;
 			background: #222 url('../img/alert-overlay.png') repeat-x;
 			display: inline-block;
-			padding: 1px 10px 6px;
+			padding: 4px 10px 5px;
 			color: #fff;
 			text-decoration: none;
 			-moz-border-radius: 5px;
@@ -80,9 +81,9 @@
 
 	}
 
-	
+
 /* Login for when trying to access restricted area */
-	
+
 #Login{
 margin: auto;
 background: #f1f1f1;
@@ -121,8 +122,8 @@ margin: 15px 30px;
 	text-align:center;
 }
 
-	
-	
+
+
 /* REGISTER */
 
 #UserRegisterForm{

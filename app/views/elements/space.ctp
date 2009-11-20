@@ -22,7 +22,7 @@ if (isset($this->params['lang'])) {
 	$lang = $this->params['lang'];
 }
 ?>
-<strong>
+<strong title="<?php echo __('My profile', false);?>">
 	<?php echo $html->link($session->read('Auth.User.username'), array('controller' => 'user', 'action' => 'profile')); ?> :
 </strong>
 

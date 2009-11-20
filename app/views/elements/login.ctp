@@ -29,11 +29,9 @@ if  ($session->check('Message.auth')) $session->flash('auth');
 	function displayLoginForm(){
 		if(status){
 			document.getElementById('UserLoginForm_FromBar').style.display = 'block';
-			document.getElementById('login_pseudo_link').innerHTML = '<?php echo __('Close', true); ?>';
 			status = false;
 		}else{
 			document.getElementById('UserLoginForm_FromBar').style.display = 'none';
-			document.getElementById('login_pseudo_link').innerHTML = '<?php echo __('Login', true); ?>';
 			status = true;
 		}
 	}
@@ -42,7 +40,7 @@ if  ($session->check('Message.auth')) $session->flash('auth');
 
 
 <ul id="UserLoginLinkList">
-	<li onclick="javascript:displayLoginForm();" id="login_pseudo_link"><?php echo __('Login', true); ?></li>
+	<li onclick="javascript:displayLoginForm();" class="login_pseudo_link"><?php echo __('Login', true); ?></li>
 </ul>
 
 	<?php /*echo $form->create('User', array('action' => 'login'));
@@ -93,8 +91,11 @@ if  ($session->check('Message.auth')) $session->flash('auth');
 		<input type="submit" value="<?php echo __('Log in', true); ?>" />
         <input type="hidden" name="redirectTo"  value="<?php echo $_SERVER['REQUEST_URI'] ;?>" />
 	</fieldset>
-	<p><?php echo $html->link(__('Password forgotten?',true), array(
+	<p>
+		<?php echo $html->link(__('Password forgotten?',true), array(
 												"controller" => "users",
 												"action" => "new_password"
-			)); ?></p>
+			)); ?>
+		<span onclick="javascript:displayLoginForm();" class="login_pseudo_link" style="float:right;"><?php echo __('Close', true); ?></span>
+	</p>
 </form>

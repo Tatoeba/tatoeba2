@@ -34,8 +34,8 @@ $navigation->displayUsersNavigation($id);
 	echo '<th>' . __('username', true) . '</th>';
 	echo '<th>' . __('number of contributions', true) . '</th>';
 	echo '</tr>';
-	
-	$i = 1;	
+
+	$i = 1;
 	foreach($stats as $stat){
 		$css = 'class=';
 		if($stat['User']['group_id'] == 1){
@@ -44,11 +44,11 @@ $navigation->displayUsersNavigation($id);
 		if($stat['User']['group_id'] == 4){
 			$css .= '"normal"';
 		}
-		
+
 		echo '<tr '.$css.'><td>';
 		echo $i; $i++;
 		echo '</td><td>';
-		echo $html->link($stat['User']['username'], array("controller"=>"users", "action"=>"show", $stat['User']['id']));
+		echo $html->link($stat['User']['username'], array("controller"=>"user", "action"=>"profile", $stat['User']['username']));
 		echo '</td><td>';
 		echo $stat['0']['total'];
 		echo '</td></tr>';
@@ -56,14 +56,14 @@ $navigation->displayUsersNavigation($id);
 	echo '</table>';
 	?>
 	<p class="more_link">
-		<?php 
+		<?php
 		echo $html->link(
 			__('Show entire list',true),
 			array(
 				"controller" => "contributions",
 				"action" => "statistics"
 			)
-		); 
+		);
 		?>
 		</p>
 	</div>
@@ -72,7 +72,7 @@ $navigation->displayUsersNavigation($id);
 <div id="main_content">
 	<div class="module">
 		<h2><?=$paginator->counter(array('format' => __('Users (total %count%)', true))); ?></h2>
-		
+
 		<div class="paging">
 		<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
 		<?php echo $paginator->numbers(array('separator' => ''));?>
@@ -95,7 +95,7 @@ $navigation->displayUsersNavigation($id);
 		?>
 			<tr<?php echo $class;?>>
 				<td>
-					<?php echo $html->link($user['User']['username'], '/users/show/'.$user['User']['id']); ?>
+					<?php echo $html->link($user['User']['username'], '/user/profile/'.$user['User']['username']); ?>
 				</td>
 				<td>
 					<?php echo $user['Country']['name']; ?>

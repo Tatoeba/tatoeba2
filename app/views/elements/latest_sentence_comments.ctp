@@ -16,8 +16,8 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-if (isset($this->params['lang'])) { 
-	Configure::write('Config.language',  $this->params['lang']); 
+if (isset($this->params['lang'])) {
+	Configure::write('Config.language',  $this->params['lang']);
 }
 ?>
 
@@ -29,7 +29,7 @@ foreach($sentenceComments as $comment) {
 	echo '<tr>';
 		echo '<td class="title">';
 		$sentence = (isset($comment['Sentence']['text'])) ? $comment['Sentence']['text'] : '';
-		
+
 		echo $html->link(
 			'['. $comment['SentenceComment']['sentence_id'] . '] ' . $sentence,
 			array(
@@ -38,21 +38,21 @@ foreach($sentenceComments as $comment) {
 				$comment['SentenceComment']['sentence_id']
 				)
 			);
-		if(!isset($comment['Sentence']['text'])){ 
+		if(!isset($comment['Sentence']['text'])){
 			echo '<em>' . __('sentence deleted', true) . '</em>';
 		}
 		echo '</td>';
-		
+
 		echo '<td class="dateAndUser" rowspan="2">';
 		echo $date->ago($comment['SentenceComment']['created']);
 		echo '<br/>';
 		echo $html->link(
-			$comment['User']['username'], 
-			array("controller" => "users", "action" => "show", $comment['User']['id'])	
+			$comment['User']['username'],
+			array("controller" => "user", "action" => "profile", $comment['User']['username'])
 		);
 		echo '</td>';
-	echo '</tr>';	
-	
+	echo '</tr>';
+
 	echo '<tr>';
 		echo '<td class="commentPreview">';
 		echo nl2br($comments->clickableURL($comment['SentenceComment']['text']));

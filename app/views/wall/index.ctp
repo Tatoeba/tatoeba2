@@ -25,20 +25,8 @@ general view for the wall, here are displayed all the messages
 
 
 $this->pageTitle = __('Wall',true);
+
 ?>
-<?php /*
-<div id="annexe_content">
-    <div class="module">
-        <?php
-            if(!$session->read('Auth.User.id')){
-                echo $this->element('login'); 
-            } else {
-                echo $this->element('space'); 
-            }
-        ?>
-    </div>
-</div>
-*/?>
 
 <div id="main_content">
     <div class="module">
@@ -46,33 +34,33 @@ $this->pageTitle = __('Wall',true);
         <?php
             // leave a comment part
             $isAuthenticated = false ;
-             
+
              if($session->read('Auth.User.id')){
                 $isAuthenticated = true ;
-                 echo "<div id=\"sendMessageForm\">\n";
+                 echo '<div id="sendMessageForm">'."\n";
                      echo $wall->displayAddMessageToWallForm();
-                 echo "</div>\n";
+                 echo '</div>'."\n";
              }
-            // display comment part  
+            // display comment part
              echo "<div>\n" ;
              //pr ($allMessages);
              foreach($firstMessages as $message){
-                 // TODO : remove me 
+                 // TODO : remove me
                 if ( empty($message['User']['image'])){
                     $message['User']['image'] = 'unknown-avatar.jpg';
                 }
 
-                echo "<div class=\"messagePart primaryMessage\" >\n";
-                    echo "<div class=\"messageHeader\" >\n"; 
-                        echo "<img src=\"/img/profiles/". $message["User"]["image"]."\" alt=\"Avatar of the user \" />\n";
-                        echo "<a href=\"/users/show/" . $message["User"]["id"] ."\" ><span class=\"nickname\" >".
-                        $message["User"]["username"]."</span></a>\n";
-                        echo "<span> ," . $message["Wall"]["date"] . ","  . __("says :" ,true) . "</span>\n" ;
-                        
+                echo '<div class="messagePart primaryMessage" >'."\n";
+                    echo '<div class="messageHeader" >'."\n";
+                        echo '<img src="/img/profiles/'. $message['User']['image'].'" alt="'.__('User\'s avatar',true).'" />'."\n";
+                        echo '<a href="/user/profile/' . $message['User']['username'] . '" ><span class="nickname" >'.
+                        $message["User"]["username"].'</span></a>'."\n";
+                        echo '<span> ,' . $message["Wall"]["date"] . ','  . __('says :', true) . '</span>'."\n" ;
+
                         if($session->read('Auth.User.id')){
                             $javascript->link('jquery.scrollTo-min.js',false);
                             $javascript->link('wall.reply.js',false);
-                            echo '<a class="replyLink ' . $message["Wall"]["id"] .'" id="reply_'. $message["Wall"]["id"] .'" >' . __("reply",true). "</a>"; 
+                            echo '<a class="replyLink ' . $message["Wall"]["id"] .'" id="reply_'. $message["Wall"]["id"] .'" >' . __("reply",true). "</a>";
                         }
                     echo '</div>';
 
@@ -83,13 +71,13 @@ $this->pageTitle = __('Wall',true);
                         //pr($message);
                         foreach( $message['Reply'] as $reply ){
                            echo $wall->create_reply_div($allMessages[$reply['id'] - 1], $allMessages, $isAuthenticated);
-                        } 
+                        }
                     echo '</div>';
 
                 echo '</div>';
 
              }
-             echo "</div>";
+             echo '</div>';
 
         ?>
     </div>

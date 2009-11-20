@@ -34,7 +34,8 @@ echo $this->element('pmmenu');
 
 	<p class="pm_head">
 		<?php echo $date->ago($content['date']) . ' ' .
-		$html->link($content['from'], array('action' => 'write', $content['from'])) . __(' has written:', true); ?>
+		$html->link($content['from'], array('controller' => 'user', 'action' => 'profile', $content['from']));
+		echo __(' has written:', true); ?>
 	</p>
 	<p class="pm_content"><?php echo $content['content']; ?></p>
 	</div>
