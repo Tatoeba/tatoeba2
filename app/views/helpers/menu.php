@@ -109,7 +109,7 @@ class MenuHelper extends AppHelper {
 			array(
 				"controller" => "sentence_comments",
 				"action" => "show",
-				$sentenceId
+				$sentenceId.'#comments'
 			),
 			array('escape' => false));
 		echo '</li>';	

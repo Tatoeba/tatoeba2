@@ -513,7 +513,6 @@ class UsersController extends AppController {
 		//Permissions for trusted_users
 		$group->id = 3;
 		$this->Acl->deny($group, 'controllers');
-		$this->Acl->allow($group, 'controllers/SentenceComments/add');
 		$this->Acl->allow($group, 'controllers/Sentences');
 		$this->Acl->deny($group, 'controllers/Sentences/delete');
 		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');
@@ -530,7 +529,6 @@ class UsersController extends AppController {
 	    //Permissions for users
 	    $group->id = 4;
 		$this->Acl->deny($group, 'controllers');
-		$this->Acl->allow($group, 'controllers/SentenceComments/add');
 		$this->Acl->allow($group, 'controllers/Sentences');
 		$this->Acl->deny($group, 'controllers/Sentences/delete');
 		$this->Acl->allow($group, 'controllers/Users/my_tatoeba');

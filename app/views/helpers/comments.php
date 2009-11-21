@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -21,24 +21,76 @@ App::import('Core', 'Sanitize');
 class CommentsHelper extends AppHelper {
 
 	var $helpers = array('Form', 'Date', 'Html');
+	
+	/**
+	 * Display a sentence comment block.
+	 * If $displayAsThread is set to true, it will display the "view" button
+	 * and the sentence in relation to the comment.
+	 */
+	function displaySentenceComment($comment, $displayAsThread = false){
+		$sentenceComment = isset($comment['SentenceComment']) ? $comment['SentenceComment'] : $comment;
+		
+		echo '<li>';
+			echo '<ul class="meta">';
+				$image = (empty($comment['User']['image'])) ? 'unknown-avatar.jpg' : $comment['User']['image'];
+				
+				// view button
+				if($displayAsThread){
+					echo '<li class="viewButton">';
+					echo $this->Html->link(
+						$this->Html->image(
+							'view.png',
+							array("title" => __('View all comments on the related sentence',true))
+						),
+						array("controller" => "sentence_comments", "action" => "show", $sentenceComment['sentence_id'].'#comments'),
+						array("escape" => false)
+					);
+					echo '</li>';
+				}
+				
+				// user avatar
+				echo '<li class="image">';
+				echo $this->Html->link(
+					$this->Html->image('profiles/'.$image, array("title" => __('View this user\'s profile', true)))
+					, array("controller" => "user", "action" => "profile", $comment['User']['username'])
+					, array("escape" => false)
+				);
+				echo '<li>';
+				
+				// author
+				echo '<li class="author">';
+				echo $this->Html->link(
+					$comment['User']['username']
+					, array('controller' => 'privateMessages', 'action' => 'write', $comment['User']['username'])
+					, array("title" => __('Contact this user',true))
+				);
+				echo '</li>';
+				
+				// date
+				echo '<li class="date">'.$this->Date->ago($sentenceComment['created']).'</li>';
+			echo '</ul>';
 
-	function displayComment($id, $username, $datetime, $comment){
-		echo '<div class="comment">';
-			echo '<div class="header">';
-			echo '<span class="username">';
-			echo $this->Html->link($username, array("controller" => "users", "action" => "show", $id));
-			echo '</span>';
-			echo '<span class="username">';
-			echo $this->Html->link(__('Contact this user',true), array('controller' => 'privateMessages', 'action' => 'write', $username));
-			echo '</span>';
-			echo '<span class="date">'.$this->Date->ago($datetime).'</span>';
-			echo '</div>';
-
-			echo '<div class="content">';
-			$comment = $this->clickableURL($comment);
-			echo nl2br($comment);
-			echo '</div>';
-		echo '</div>';
+			
+			echo '<div class="body">';
+				// sentence
+				if($displayAsThread){
+					echo '<div class="sentence">';
+					if(isset($comment['Sentence']['text'])){
+						echo $this->Html->link(
+							$comment['Sentence']['text']
+							, array("controller"=>"sentences", "action"=>"show", $comment['Sentence']['id'].'#comments')
+						);
+					}else{
+						echo '<em>'.__('sentence deleted',true).'</em>';
+					}
+					echo '</div>';
+				}
+				
+				// comment text
+				$commentText = $this->clickableURL($sentenceComment['text']);
+				echo nl2br($commentText);
+				echo '</div>';
+		echo '</li>';
 	}
 
 	function clickableURL($comment){
@@ -48,7 +100,6 @@ class CommentsHelper extends AppHelper {
 
 	function displayCommentForm($sentence_id, $sentence_text){
 		echo $this->Form->create('SentenceComment', array("action"=>"save"));
-		__('Add a comment : ');
 		echo $this->Form->input('sentence_id', array("type"=>"hidden", "value"=>$sentence_id));
 		echo $this->Form->input('sentence_text', array("type"=>"hidden", "value"=>$sentence_text));
 		echo $this->Form->input('text', array("label"=> "", "cols"=>"64", "rows"=>"6"));

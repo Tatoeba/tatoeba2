@@ -61,45 +61,13 @@ class SentenceCommentsController extends AppController {
 		
 		$this->set('sentenceComments', $sentenceComments);
 	}
-	
-	function add($sentenceId){
-        Sanitize::paranoid($sentenceId);
 
-		$sentence = new Sentence();
-		$sentence->id = $sentenceId;
-		$sentence->recursive = 2;
-		$sentence = $sentence->read();
-		$this->set('sentence', $sentence);	
-		
-		// checking which options user can access to
-		$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
-		$this->set('specialOptions',$specialOptions);
-		
-		
-		// saving parent email in session variable
-		$this->Session->write('user_email', $sentence['User']['email']);
-		
-		// saving participants in session variable so we can send notification to them
-		if($sentence['User']['email'] != '' AND $sentence['User']['email'] != $this->Auth->user('email') AND $sentence['User']['send_notifications'] == 1){
-			$participants = array($sentence['User']['email']);
-		}else{
-			$participants = array();
-		}
-		foreach($sentence['SentenceComment'] as $comment){
-			if(!in_array($comment['User']['email'],$participants) AND $comment['User']['email'] != $this->Auth->user('email') AND $comment['User']['send_notifications'] == 1){
-				$participants[] = $comment['User']['email'];
-			}
-		}
-		$this->Session->write('participants', $participants);
-	}
 	
-	// I don't like how 'show' is exactly the same as 'add' in the controller...
-	// It's just the view that is different...
 	function show($sentenceId){
         Sanitize::paranoid($sentenceId);
         $s = new Sentence();
 		$s->id = $sentenceId;		
-		$s->recursive = 1;
+		$s->recursive = 2;
 		$sentence = $s->read();
 		
 		$this->set('sentence_id', $sentenceId);
@@ -119,10 +87,28 @@ class SentenceCommentsController extends AppController {
 		);
 		$this->set('sentenceComments', $sentenceComments);
 		
-		
 		// checking which options user can access to
 		$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 		$this->set('specialOptions',$specialOptions);
+		
+		
+		if($this->Auth->user('id')){
+			// saving parent email in session variable
+			$this->Session->write('user_email', $sentence['User']['email']);
+			
+			// saving participants in session variable so we can send notification to them
+			if($sentence['User']['email'] != '' AND $sentence['User']['email'] != $this->Auth->user('email') AND $sentence['User']['send_notifications'] == 1){
+				$participants = array($sentence['User']['email']);
+			}else{
+				$participants = array();
+			}
+			foreach($sentenceComments as $comment){
+				if(!in_array($comment['User']['email'],$participants) AND $comment['User']['email'] != $this->Auth->user('email') AND $comment['User']['send_notifications'] == 1){
+					$participants[] = $comment['User']['email'];
+				}
+			}
+			$this->Session->write('participants', $participants);
+		}
 	}
 	
 	function save(){

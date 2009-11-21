@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -24,40 +24,9 @@ if (isset($this->params['lang'])) {
 <?php
 $sentenceComments = $this->requestAction('/sentence_comments/latest');
 
-echo '<table class="comments">';
-foreach($sentenceComments as $comment) {
-	echo '<tr>';
-		echo '<td class="title">';
-		$sentence = (isset($comment['Sentence']['text'])) ? $comment['Sentence']['text'] : '';
-
-		echo $html->link(
-			'['. $comment['SentenceComment']['sentence_id'] . '] ' . $sentence,
-			array(
-				"controller" => "sentence_comments",
-				"action" => "show",
-				$comment['SentenceComment']['sentence_id']
-				)
-			);
-		if(!isset($comment['Sentence']['text'])){
-			echo '<em>' . __('sentence deleted', true) . '</em>';
-		}
-		echo '</td>';
-
-		echo '<td class="dateAndUser" rowspan="2">';
-		echo $date->ago($comment['SentenceComment']['created']);
-		echo '<br/>';
-		echo $html->link(
-			$comment['User']['username'],
-			array("controller" => "user", "action" => "profile", $comment['User']['username'])
-		);
-		echo '</td>';
-	echo '</tr>';
-
-	echo '<tr>';
-		echo '<td class="commentPreview">';
-		echo nl2br($comments->clickableURL($comment['SentenceComment']['text']));
-		echo '</td>';
-	echo '</tr>';
+echo '<ol class="comments">';
+foreach($sentenceComments as $comment){	
+	$comments->displaySentenceComment($comment, true);
 }
-echo '</table>';
+echo '</ol>';
 ?>

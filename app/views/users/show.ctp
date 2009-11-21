@@ -162,33 +162,12 @@ $navigation->displayUsersNavigation($user['User']['id'], $user['User']['username
 			__('Latest comments');
 			echo '</h2>';
 
-			echo '<table class="comments">';
+			echo '<ol class="comments">';
 			foreach($user['SentenceComments'] as $comment) {
-				echo '<tr>';
-					echo '<td class="title">';
-					echo $html->link(
-						'['. $comment['sentence_id'] . '] ',
-						array(
-							"controller" => "sentence_comments",
-							"action" => "show",
-							$comment['sentence_id']
-							));
-					echo '</td>';
-
-					echo '<td class="dateAndUser" rowspan="2">';
-					echo $date->ago($comment['created']);
-					echo '<br/>';
-					echo $user['User']['username'];
-					echo '</td>';
-				echo '</tr>';
-
-				echo '<tr>';
-					echo '<td class="commentPreview">';
-					echo nl2br($comments->clickableURL($comment['text']));
-					echo '</td>';
-				echo '</tr>';
+				$comment['User'] = $user['User'];
+				$comments->displaySentenceComment($comment);
 			}
-			echo '</table>';
+			echo '</ol>';
 		echo '</div>';
 	}
 	?>

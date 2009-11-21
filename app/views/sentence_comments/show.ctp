@@ -66,33 +66,38 @@ $navigation->displaySentenceNavigation();
 	</div>
 	
 	<div class="module">
-	<?php		
-		echo '<div class="addComment">';
-		echo $html->link(
-			__('Add a comment',true),
-			array("controller" => "sentence_comments", "action" => "add", $sentence['Sentence']['id'])
-		);
-		echo '</div>';		
-		
+	<?php
 		echo '<h2>';
 		__('Comments');
 		echo '</h2>';
 		
 		echo '<a name="comments"></a>';
-		echo '<div class="comments">';
+		echo '<ol class="comments">';
 		if(count($sentenceComments) > 0){
 			foreach($sentenceComments as $comment){
-				$comments->displayComment(
-					$comment['User']['id'],
-					$comment['User']['username'],
-					$comment['SentenceComment']['created'],
-					$comment['SentenceComment']['text']
-				);
+				$comments->displaySentenceComment($comment);
 			}
 		}else{
 			echo '<em>' . __('There are no comments for now.', true) .'</em>';
 		}
-		echo '</div>';
+		echo '</ol>';
+		
+		if($sentenceExists){
+			echo '<a name="add_comment"></a>';
+			echo '<h2>';
+			__('Add a comment');
+			echo '</h2>';
+			if($session->read('Auth.User.id')){
+				$comments->displayCommentForm($sentence['Sentence']['id'], $sentence['Sentence']['text']);
+			}else{
+				echo '<p>';
+				echo sprintf(
+					__('You need to be logged in to add a comment. If you are not registered, you can <a href="">register here</a>.',true),
+					$html->link(array("controller"=>"users", "action"=>"register"))
+				);
+				echo '</p>';
+			}
+		}
 		?>
 	</div>
 </div>

@@ -40,7 +40,7 @@ class SentencesController extends AppController{
         Sanitize::html($id);
 		$this->Sentence->recursive = 2;
 		
-		$this->Sentence->hasMany['SentenceComment']['limit'] = 3; // limiting comments to 3
+		$this->Sentence->hasMany['SentenceComment']['limit'] = 4; // limiting comments to 4, but we're actually only going to display 3.
 		$this->Sentence->unbindModel(
 			array(
 				'hasAndBelongsToMany' => array('InverseTranslation', 'Translation')

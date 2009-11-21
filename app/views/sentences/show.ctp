@@ -89,25 +89,21 @@ $navigation->displaySentenceNavigation();
 		echo '<div class="addComment">';
 		echo $html->link(
 			__('Add a comment',true),
-			array("controller" => "sentence_comments", "action" => "add", $sentence['Sentence']['id'])
+			array("controller" => "sentence_comments", "action" => "show", $sentence['Sentence']['id'].'#add_comment')
 		);
 		echo '</div>';			
 		
 		echo '<h2>';
-		__('Latest comments');
+		__('Comments');
 		echo '</h2>';
 
-		echo '<a name="comments"></a>';
-		echo '<div class="comments">';
 		if(count($sentence['SentenceComment']) > 0){
-			foreach($sentence['SentenceComment'] as $comment){
-				$comments->displayComment(
-					$comment['User']['id'],
-					$comment['User']['username'],
-					$comment['created'],
-					$comment['text']
-				);
+			echo '<ol class="comments">';
+			for($i = 0; $i < 3 AND $i < count($sentence['SentenceComment']); $i++){
+				$comment = $sentence['SentenceComment'][$i];
+				$comments->displaySentenceComment($comment);
 			}
+			echo '</div>';
 			
 			if(count($sentence['SentenceComment']) > 3){
 				?>

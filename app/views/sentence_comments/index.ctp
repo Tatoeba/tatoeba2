@@ -19,57 +19,44 @@
 
 ?>
 
-<div id="main_content">
+<div id="annexe_content">
+	
 	<div class="module">
-		<h2>Comments</h2>
+	<h2><?php __('Languages'); ?></h2>
+	<p><?php __('Comments are grouped by languages.'); ?></p>
+	<ul>
 		<?php
 		foreach($sentenceComments as $lang => $commentsInLang){
 			if($lang != 'unknown'){
-				echo '<h3>'.$languages->codeToName($lang).'</h3>';
+				$item = $languages->codeToName($lang);
 			}else{
-				echo '<h3>'.__('Other languages', true).'</h3>';
+				$item = __('Other languages', true);
+			}
+			echo '<li>' . $html->link($item, '#'.$lang) . '</li>';
+		}
+		?>
+	</ul>
+	<p><?php __('NOTE : Since the language of the comments is auto-detected, you may find certain sentences in the wrong category.') ?></p>
+	</div>
+</div>
+
+<div id="main_content">
+	<div class="module">
+		<?php
+		foreach($sentenceComments as $lang => $commentsInLang){
+			echo '<a name="'.$lang.'"></a>';
+			if($lang != 'unknown'){
+				echo '<h2>'.$languages->codeToName($lang).'</h2>';
+			}else{
+				echo '<h2>'.__('Other languages', true).'</h2>';
 			}
 
 			if(count($commentsInLang) > 0){
-				echo '<table class="comments">';
+				echo '<ol class="comments">';
 				foreach($commentsInLang as $comment){
-					echo '<tr>';
-						echo '<td class="title">';
-						$sentence = (isset($comment['Sentence']['text'])) ? $comment['Sentence']['text'] : '';
-						echo $html->link(
-							'['. $comment['SentenceComment']['sentence_id'] . '] ' . $sentence,
-							array(
-								"controller" => "sentence_comments",
-								"action" => "show",
-								$comment['Sentence']['id']
-								));
-						if(!isset($comment['Sentence']['text'])){
-							echo '<em>'. __('sentences deleted', true) . '</em>';
-						}
-						echo '</td>';
-
-						echo '<td class="dateAndUser" rowspan="2">';
-						echo $date->ago($comment['SentenceComment']['created']);
-						echo '<br/>';
-						echo $html->link(
-							$comment['User']['username'],
-							array("controller" => "users", "action" => "show", $comment['User']['id'])
-						);
-						echo '<br/>';
-						echo $html->link(
-							__('Contact this user', true),
-							array('controller' => 'privateMessages', 'action' => 'write', $comment['User']['username'])
-						);
-						echo '</td>';
-					echo '</tr>';
-
-					echo '<tr>';
-						echo '<td class="commentPreview">';
-						echo nl2br($comments->clickableURL($comment['SentenceComment']['text']));
-						echo '</td>';
-					echo '</tr>';
+					$comments->displaySentenceComment($comment, true);
 				}
-				echo '</table>';
+				echo '</ol>';
 			}else{
 				__('There are no comments in this language');
 			}
