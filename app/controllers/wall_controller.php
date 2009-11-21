@@ -55,7 +55,7 @@ class WallController extends Appcontroller{
     function index(){
         $firstMessages = $this->Wall->find('all',
             array(
-                "order" => "Wall.date", 
+                "order" => "Wall.date DESC", 
                 "conditions" => array ("Wall.replyTo" => 0),
                 "contain"    => array (
                     "Reply" => array (
