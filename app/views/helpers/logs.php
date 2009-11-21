@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -47,21 +47,10 @@ class LogsHelper extends AppHelper {
 		}
 		
 		echo '<tr class="'.$type.$status.'">';
-			echo '<td class="sentence_id">';
-			echo $this->Html->link(
-				$contribution['sentence_id'],
-				array(
-					"controller" => "sentences",
-					"action" => "show",
-					$contribution['sentence_id']
-				)
-			);
-			echo '</td>';
-			
+			// language flag
 			echo '<td class="lang">';
 			if($type == 'link'){
 				echo '&raquo;';
-				//echo ($contribution['translation_lang'] == '') ? '?' : $contribution['translation_lang'];
 			} else {
 				if ($contribution['sentence_lang'] == '') {
 					echo '?';
@@ -75,27 +64,24 @@ class LogsHelper extends AppHelper {
 			}
 			echo '</td>';
 			
+			// sentence text
 			echo '<td class="text">';
-			if($type == 'link'){
-				echo $this->Html->link(
-				$contribution['translation_id'],
+			echo $this->Html->link(
+				$contribution['text'],
 				array(
 					"controller" => "sentences",
 					"action" => "show",
-					$contribution['translation_id']
+					$contribution['sentence_id']
 				)
 			);
-			}else{
-				echo $contribution['text'];
-			}
 			echo '</td>';
 			
+			// contributor
 			echo '<td class="username">';
-			if(isset($user['username'])){
-				echo $this->Html->link($user['username'], array("controller" => "users", "action" => "show", $user['id']));
-			}
+			echo $this->Html->link($user['username'], array("controller" => "users", "action" => "show", $user['id']));
 			echo '</td>';
 			
+			// date of contribution
 			echo '<td class="date">';
 			echo $this->Date->ago($contribution['datetime']);
 			echo '</td>';
@@ -138,17 +124,8 @@ class LogsHelper extends AppHelper {
 			echo '</div>';
 			
 			echo '<div>';
-			echo $this->Html->link(
-				$contribution['sentence_id'],
-				array(
-					"controller" => "sentences",
-					"action" => "show",
-					$contribution['sentence_id']
-				)
-			);
-			
 			if($type == 'link'){
-				
+				__('linked to');
 				echo ' &raquo; ';
 				
 				echo $this->Html->link(

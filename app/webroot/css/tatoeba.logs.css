@@ -37,12 +37,6 @@
 	text-align:center;
 }
 
-#logs .sentence_id{
-	padding: 0px 5px;
-	text-align:right;
-	width:60px;
-}
-
 #logs .lang{
 	width: 30px;
 	padding: 0px 5px;
@@ -75,7 +69,7 @@
 }
 
 .sentenceAdded {
-	background: #CCFF99;
+	background: #DFEFD0;
 }
 
 .sentenceDeleted {
@@ -83,11 +77,11 @@
 }
 
 .sentenceModified {
-	background: #fff7b0;
+	background: #FBFFC9;
 }
 
 .linkAdded{
-	background: #e2ffd2;
+	background: #E6EFE8;
 }
 
 .linkDeleted{
