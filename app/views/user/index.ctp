@@ -39,7 +39,12 @@ echo $html->image('profiles/' . (empty($user['User']['image']) ? 'tatoeba_user.p
 ?>
 		</div>
 		<div id="pimg_edit" class="toolbox">
-			<div class="t"><?php __('Change your profile image?') ?><span class="x" title="<?php __('Close') ?>"><?php echo $html->image('close.png', array('alt' => __('Close', true))); ?></span></div>
+			<div class="t">
+                <?php __('Change your profile image?') ?>
+                <span class="x" title="<?php __('Close') ?>">
+                    <?php echo $html->image('close.png', array('alt' => __('Close', true))); ?>
+                </span>
+            </div>
 			<div class="c">
 <?php
 echo $form->create('profile_image', array(

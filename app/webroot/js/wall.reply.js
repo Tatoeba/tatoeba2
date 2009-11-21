@@ -140,4 +140,10 @@ $(document).ready(function(){
         }
     );
 
+    $(".linkToMessage").click(function(){
+            var linkToMessageId =  $(this).attr("class").split(' ')[1];
+            $.scrollTo('#message_' + linkToMessageId , 800);
+        }
+    );
+
 });
