@@ -103,7 +103,7 @@ $navigation->displaySentenceNavigation();
 				$comment = $sentence['SentenceComment'][$i];
 				$comments->displaySentenceComment($comment);
 			}
-			echo '</div>';
+			echo '</ol>';
 			
 			if(count($sentence['SentenceComment']) > 3){
 				?>
@@ -122,7 +122,6 @@ $navigation->displaySentenceNavigation();
 		}else{
 			echo '<em>' . __('There are no comments for now.', true) .'</em>';
 		}
-		echo '</div>';
 		?>
 		
 		

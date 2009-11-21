@@ -215,12 +215,8 @@ margin-bottom: 20px;
 }
 
 .users th{
-	border-bottom: #444444 1px dotted;
+	border-bottom: #cccccc 1px dotted;
 	padding: 3px 3px;
-}
-
-.users th a {
-	color:#257D0C;
 }
 
 .users td{
@@ -228,8 +224,8 @@ text-align: center;
 padding: 5px;
 }
 
-tr.altrow{
-background: #DEF0C9;
+.users img{
+	height: 36px;
 }
 
 .users th.num, .users th.actions{

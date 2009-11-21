@@ -25,7 +25,7 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	var $helpers = array('Html', 'Form', 'Date', 'Logs', 'Sentences', 'Navigation');
 	var $components = array ('Mailer', 'Captcha', 'RememberMe');
-	var $paginate = array('limit' => 50, 'order' => array('since' => 'desc'));
+	var $paginate = array('limit' => 20, 'order' => array('last_time_active' => 'desc'));
 
 	function beforeFilter() {
 		parent::beforeFilter();

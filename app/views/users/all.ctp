@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -80,9 +80,10 @@ $navigation->displayUsersNavigation($id);
 		</div>
 		<table class="users">
 		<tr>
+			<th></th>
 			<th><?php echo $paginator->sort(__('Username', true), 'username');?></th>
-			<th><?php echo $paginator->sort(__('Country', true), 'country');?></th>
 			<th><?php echo $paginator->sort(__('Member since', true),'since');?></th>
+			<th><?php echo $paginator->sort(__('Last login', true),'last_time_active');?></th>
 			<th><?php echo $paginator->sort(__('Member status', true),'group_id');?></th>
 		</tr>
 		<?php
@@ -93,15 +94,33 @@ $navigation->displayUsersNavigation($id);
 				$class = ' class="altrow"';
 			}
 		?>
-			<tr<?php echo $class;?>>
+			<tr>
 				<td>
-					<?php echo $html->link($user['User']['username'], '/user/profile/'.$user['User']['username']); ?>
+					<?php 
+					$image = (empty($user['User']['image'])) ? 'unknown-avatar.jpg' : $user['User']['image'];
+					echo $html->link(
+						$html->image(
+							'profiles/'.$image,
+							array("alt"=>$user['User']['username'])
+						)
+						, array("controller"=>'user', "action"=>'profile', $user['User']['username'])
+						, array("escape"=>false)
+					); 
+					?>
 				</td>
 				<td>
-					<?php echo $user['Country']['name']; ?>
+					<?php
+					echo $html->link(
+						$user['User']['username']
+						, array("controller"=>'user', "action"=>'profile', $user['User']['username'])
+					); 
+					?>
 				</td>
 				<td>
 					<?php echo $date->ago($user['User']['since']); ?>
+				</td>
+				<td>
+					<?php echo $date->ago($user['User']['last_time_active'], true); ?>
 				</td>
 				<td>
 					<?php echo $user['Group']['name']; ?>
