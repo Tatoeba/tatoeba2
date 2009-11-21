@@ -1,6 +1,6 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
     Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
@@ -389,12 +389,7 @@ class UsersController extends AppController {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate(array('User.group_id < 5')));
 	}
-	/*
-	function my_tatoeba(){
-		$this->User->recursive = 1;
-		$this->User->id = $this->Auth->user('id');
-		$this->set('user', $this->User->read());
-	}*/
+
 
 	function captcha_image(){
 	    Configure::write('debug',0);
