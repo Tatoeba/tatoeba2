@@ -1,7 +1,8 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  Allan SIMON <allan.simon@supinfo.com> 
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  Allan SIMON <allan.simon@supinfo.com>,
+	HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -17,31 +18,51 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-    if ( isset($user) ){
-       // pr($user);
-       echo "<div class=\"messagePart\" >\n";
+if ( isset($user) ){
+	
+	// TODO use a helper method to display this. It is actually pretty much
+	// a copy-paste of the create_reply_div() method in the WallHelper.
+	
+	echo '<li class="new thread" id="message_' . $message["Wall"]["id"] . '">'."\n";
+		echo '<div class="message">';
+			echo "<ul class=\"meta\" >\n"; 
+				// image
+				echo '<li class="image">';
+				echo $html->link(
+					$html->image(
+						'profiles/'. $message["User"]["image"], 
+						array(
+							"alt"=>$message["User"]["username"],
+							"title"=>__("View this user's profile",true)
+						)
+					),
+					array("controller"=>"user", "action"=>"profile", $message["User"]["username"]),
+					array("escape"=>false)
+				);
+				echo '</li>';
+				
+				// username
+				echo '<li class="author">';
+				echo $html->link(
+					$message["User"]["username"],
+					array("controller"=>"private_messages", "action"=>"write", $message["User"]["username"])
+				);
+				echo '</li>';
+				
+				// date
+				echo '<li class="date">';
+				echo $date->ago($message["Wall"]["date"]);
+				echo '</li>';
+			echo '</ul>';
+		
+			// message content
+			echo '<div class="body">';
+				echo nl2br( $message["Wall"]["content"]);
+			echo '</div>';				
+		echo '</div>';
 
-            echo "<div class=\"replyHeader\" >\n"; 
-                //echo "<img src=\"".$message["User"]["image"]." alt=\"Avatar of the user \" />\n";
-                echo "<img src=\"/img/profiles/".  $message["User"]["image"]."\" alt=\"Avatar of the user \" />\n";
-                echo "<span class=\"nickname\" >". $message["User"]["username"]."</span>\n";
-                echo "<span> ," . $message["Wall"]["date"] . ","  . __("says :" ,true) . "</span>\n" ;
-                
-                if($session->read('Auth.User.id')){
-                    $javascript->link('wall.reply.js',false);
-                    echo '<a class="replyLink ' . $message["Wall"]["id"] .'" id="reply_'. $message["Wall"]["id"] .'" >' . __("reply",true). "</a>"; 
-                }
-            echo '</div>';
+	echo '</li>';
 
-            echo '<div class="messageBody" id="messageBody_'.  $message["Wall"]["id"]  .'" >';
-                 echo '<div class="messageTextContent" >';
-                    echo nl2br( $message["Wall"]["content"]); 
-                echo '</div>';
-            echo '</div>';
-
-        echo '</div>';
-
-
-    }
+}
 
 ?>

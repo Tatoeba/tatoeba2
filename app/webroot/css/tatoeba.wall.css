@@ -1,6 +1,7 @@
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  Allan Simon <allan.simon@supinfo.com>
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  Allan Simon <allan.simon@supinfo.com>, 
+	HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -14,47 +15,94 @@
 
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
 */
 
 
-.messagePart{
-    width: 100%;
-    padding: 10px ;
+.wall, .wall ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+	}
+.wall li{
+	font-size:13px;
+	}
+.wall a{color:#89c140;text-decoration:none;}
+.wall a:hover{color:#555;}
+.wall .meta{}	
+.wall .meta li{
+	margin:0;
+	font-size:13px;
+	color:#777;
+	position:static;
+	}	
+
+.wall .meta .image{
+	float: left;
+	margin-right: 10px;
+	}
+.wall .meta .image img{
+	height: 36px;
+	}	
+.wall .meta .author{
+	font-weight:bold;
+	padding-left:10px;
+	}
+.wall .meta .date{
+	color:#999;
+	font-style:italic;
+	font-size:11px;
+	}	
+.wall .meta .action{
+	float: right;
+	margin-top: 10px;
+	margin-right: 10px;
+	}
+.wall .body{
+	clear:both;
+	}
+.wall .body .sentence{
+	padding-bottom: 5px;
+	margin-bottom: 15px;
+	border-bottom: 1px dashed #cccccc;
+	font-family: Georgia, serif;
+}
+.wall .body .sentence a{
+	color: #878787;
 }
 
-.messagePart .nickname{
-    font-weight: bold ;
-    color:#257D0C;
+/* **************************** */
+
+.topThread{
+	margin-top: 40px;
 }
 
-.messageHeader {
-  /*background-color: #E2FFD2;*/
-  background-color: #CCFF99;
+.root .body{
+	padding:15px;
+	background:#fff url(../img/bg_comments.gif) repeat-x;
 }
 
-
-.replyHeader {
-  background-color: #E2FFD2;
+.thread{
+	margin-top: 10px;
 }
 
-.messageHeader img, .replyHeader img{
-    width: 32px ;
-    height: auto ;
+.replies{
+	margin-top: 20px;
+	margin-bottom: 30px;
+	padding-left: 15px;
+	border-left: 1px solid #cccccc;
 }
 
-.messageBody{
-    padding-top : 10px ;
-    /*padding-left: 15px*/;
+.replies .body{
+	border-top: 1px solid #dddddd;
+	padding: 10px;
 }
 
-.messageTextContent{
-    margin-left: 15px;
+.new{
+	border: 1px solid #CEEA9A;
+	background: #E8FFCC;
+	padding: 5px;
 }
 
-.primaryMessage{
-}
 
 #sendMessageForm {
 	border: 1px solid #c1c1c1;
@@ -90,11 +138,12 @@
 	margin-top:15px;
 }
 
-
-
 #sendMessageForm textarea, .replyFormDiv textarea{
 	margin: 10px 0px;
 	padding:0;
 	width: 100% ;
+}
 
+.divCancelFormLink{
+	display: inline;
 }

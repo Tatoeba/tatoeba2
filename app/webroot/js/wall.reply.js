@@ -1,5 +1,5 @@
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
     Copyright (C) 2009 Allan SIMON <allan.simon@supinfo.com>
 
     This program is free software: you can redistribute it and/or modify
@@ -115,6 +115,9 @@ $(document).ready(function(){
                 +"</div>" );
             $.scrollTo('#replyFormDiv_' + currentMessageId,800 ); 
             previousReplyFormInMessageID = currentMessageId ; 
+			
+			// focus on textarea
+			$("#replyFormDiv_"+currentMessageId+" fieldset div textarea").focus();
         }
 
     }

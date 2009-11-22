@@ -1,6 +1,6 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
     Copyright (C) 2009 Allan SIMON <allan.simon@supinfo.com>
 
     This program is free software: you can redistribute it and/or modify
@@ -53,7 +53,8 @@ $this->pageTitle = __('Wall',true);
 </div>
 
 <div id="main_content">
-    <div class="module">
+	<?php // TRANG VERSION ?>
+	<div class="module">
         <h2><?php echo __("Wall",true) ?></h2>
         <?php
             // leave a comment part
@@ -66,7 +67,7 @@ $this->pageTitle = __('Wall',true);
                  echo '</div>'."\n";
              }
             // display comment part
-             echo "<div>\n" ;
+             echo '<ol class="wall">';
              //pr ($allMessages);
              foreach($firstMessages as $message){
                  // TODO : remove me
@@ -74,34 +75,50 @@ $this->pageTitle = __('Wall',true);
                     $message['User']['image'] = 'unknown-avatar.jpg';
                 }
 
-                echo '<div id="message_' .$message['Wall']['id'] .'"  class="messagePart primaryMessage" >'."\n";
-                    echo '<div class="messageHeader" >'."\n";
-                        echo '<img src="/img/profiles/'. $message['User']['image'].'" alt="'.__('User\'s avatar',true).'" />'."\n";
-                        echo '<a href="/user/profile/' . $message['User']['username'] . '" ><span class="nickname" >'.
-                        $message["User"]["username"].'</span></a>'."\n";
-                        echo '<span> ,' . $message["Wall"]["date"] . ','  . __('says :', true) . '</span>'."\n" ;
-
-                        if($session->read('Auth.User.id')){
-                            $javascript->link('jquery.scrollTo-min.js',false);
-                            $javascript->link('wall.reply.js',false);
-                            echo '<a class="replyLink ' . $message["Wall"]["id"] .'" id="reply_'. $message["Wall"]["id"] .'" >' . __("reply",true). "</a>";
-                        }
-                    echo '</div>';
-
-                    echo '<div class="messageBody" id="messageBody_'.  $message["Wall"]["id"]  .'" >';
-                        echo '<div class="messageTextContent" >';
-                            echo nl2br( $message["Wall"]["content"]);
-                        echo '</div>';
-                        //pr($message);
-                        foreach( $message['Reply'] as $reply ){
-                           echo $wall->create_reply_div($allMessages[$reply['id'] - 1], $allMessages, $isAuthenticated);
-                        }
-                    echo '</div>';
-
-                echo '</div>';
-
+                echo '<li id="message_' .$message['Wall']['id'] .'"  class="topThread" >'."\n";
+					echo '<div class="message root">';
+	                    echo '<ul class="meta">'."\n";
+							// reply option
+	                        if($session->read('Auth.User.id')){
+	                            $javascript->link('jquery.scrollTo-min.js',false);
+	                            $javascript->link('wall.reply.js',false);
+								echo '<li class="action">';
+	                            echo '<a class="replyLink ' . $message["Wall"]["id"] .'" id="reply_'. $message["Wall"]["id"] .'" >' . __("reply",true). "</a>";
+								echo '</li>';
+	                        }
+							
+							// image
+							echo '<li class="image">';
+								echo '<img src="/img/profiles/'. $message['User']['image'].'" alt="'.__('User\'s avatar',true).'" />'."\n";
+							echo '</li>';
+							
+							// username
+							echo '<li class="author">';
+								echo '<a href="/user/profile/' . $message['User']['username'] . '" ><span class="nickname" >'.
+								$message["User"]["username"].'</span></a>'."\n";
+							echo '</li>';
+	                        
+							// date
+							echo '<li class="date">';
+	                        echo $date->ago($message["Wall"]["date"]);
+							echo '</li>';
+	                    echo '</ul>';
+						
+						// message content
+						echo '<div class="body" >'; 
+						echo nl2br( $message["Wall"]["content"]);
+						echo '</div>';
+					echo '</div>';
+					
+					// replies
+					echo '<div class="replies" id="messageBody_'.  $message["Wall"]["id"]  .'" >';
+						foreach( $message['Reply'] as $reply ){
+						   echo $wall->create_reply_div($allMessages[$reply['id'] - 1], $allMessages, $isAuthenticated);
+						}
+					echo '</div>';					
+				echo '</li>';
              }
-             echo '</div>';
+             echo '</ol>';
 
         ?>
     </div>

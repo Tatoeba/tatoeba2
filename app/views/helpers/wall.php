@@ -1,6 +1,6 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
     Copyright (C) 2009 Allan SIMON <allan.simon@supinfo.com>
 
     This program is free software: you can redistribute it and/or modify
@@ -40,36 +40,66 @@ class WallHelper extends AppHelper {
         echo $this->Form->end();
 		
     }
-function create_reply_div($message,$allMessages,$isAuthenticated){
-    
-                 // TODO : remove me 
-                if ( empty($message['User']['image'])){
-                    $message['User']['image'] = 'unknown-avatar.jpg';
-                }
-                echo '<div id="message_' . $message["Wall"]["id"] . '" class="messagePart" >'."\n";
-                    echo "<div class=\"replyHeader\" >\n"; 
-                        echo "<img src=\"/img/profiles/". $message["User"]["image"]."\" alt=\"Avatar of the user \" />\n";
-                        echo "<span class=\"nickname\" >". $message["User"]["username"]."</span>\n";
-                        echo "<span> ," . $message["Wall"]["date"] . ","  . __("says :" ,true) . "</span>\n" ;
-                        
-                        if($isAuthenticated){
-                            echo '<a class="replyLink ' . $message["Wall"]["id"] .'" id="reply_'. $message["Wall"]["id"] .'" >' . __("reply",true). "</a>"; 
-                        }
-                    echo '</div>';
+	
+	function create_reply_div($message,$allMessages,$isAuthenticated){
+		 // TODO : remove me 
+		if ( empty($message['User']['image'])){
+			$message['User']['image'] = 'unknown-avatar.jpg';
+		}
+		echo '<li class="thread" id="message_' . $message["Wall"]["id"] . '">'."\n";
+			echo '<div class="message">';
+				echo "<ul class=\"meta\" >\n"; 
+					// reply option
+					if($isAuthenticated){
+						echo '<li class="action">';
+						echo '<a class="replyLink ' . $message["Wall"]["id"] .'" id="reply_'. $message["Wall"]["id"] .'" >' . __("reply",true). "</a>"; 
+						echo '</li>';
+					}
+					
+					// image
+					echo '<li class="image">';
+					echo $this->Html->link(
+						$this->Html->image(
+							'profiles/'. $message["User"]["image"], 
+							array(
+								"alt"=>$message["User"]["username"],
+								"title"=>__("View this user's profile",true)
+							)
+						),
+						array("controller"=>"user", "action"=>"profile", $message["User"]["username"]),
+						array("escape"=>false)
+					);
+					echo '</li>';
+					
+					// username
+					echo '<li class="author">';
+					echo $this->Html->link(
+						$message["User"]["username"],
+						array("controller"=>"private_messages", "action"=>"write", $message["User"]["username"])
+					);
+					echo '</li>';
+					
+					// date
+					echo '<li class="date">';
+					echo $this->Date->ago($message["Wall"]["date"]);
+					echo '</li>';
+				echo '</ul>';
+			
+				// message content
+				echo '<div class="body">';
+					echo nl2br( $message["Wall"]["content"]);
+				echo '</div>';				
+			echo '</div>';
+			
+			// replies
+			echo '<div class="replies" id="messageBody_'.  $message["Wall"]["id"]  .'" >';
+				foreach( $message['Reply'] as $reply ){
+					$this->create_reply_div($allMessages[$reply['id'] - 1],$allMessages,$isAuthenticated);
+				} 
+			echo '</div>';
 
-                    echo '<div class="messageBody" id="messageBody_'.  $message["Wall"]["id"]  .'" >';
-                        echo '<div class="messageTextContent" >';
-                            echo nl2br( $message["Wall"]["content"]);
-                        echo '</div>';
-
-                        //pr($message);
-                        foreach( $message['Reply'] as $reply ){
-                            $this->create_reply_div($allMessages[$reply['id'] - 1],$allMessages,$isAuthenticated);
-                        } 
-                    echo '</div>';
-
-                echo '</div>';
-}
+		echo '</li>';
+	}
 }
 
 ?>
