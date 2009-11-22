@@ -26,8 +26,6 @@
 .wall li{
 	font-size:13px;
 	}
-.wall a{color:#89c140;text-decoration:none;}
-.wall a:hover{color:#555;}
 .wall .meta{}	
 .wall .meta li{
 	margin:0;
@@ -60,34 +58,32 @@
 .wall .body{
 	clear:both;
 	}
-.wall .body .sentence{
-	padding-bottom: 5px;
-	margin-bottom: 15px;
-	border-bottom: 1px dashed #cccccc;
-	font-family: Georgia, serif;
-}
-.wall .body .sentence a{
-	color: #878787;
-}
 
 /* **************************** */
 
 .topThread{
-	margin-top: 40px;
+	margin-top: 50px;
 }
 
 .root .body{
 	padding:15px;
-	background:#fff url(../img/bg_comments.gif) repeat-x;
+	background:#fff url(../img/bg_wall_comments.gif) repeat-x;
 }
+.root a{color:#89c140;text-decoration:none;}
+.root a:hover{color:#555;}
+.root .meta a{font-weight:bold;}
 
 .thread{
 	margin-top: 10px;
 }
 
+.message{
+	padding: 10px 0px;
+}
+
 .replies{
-	margin-top: 20px;
-	margin-bottom: 30px;
+	margin-top: 10px;
+	margin-bottom: 10px;
 	padding-left: 15px;
 	border-left: 1px solid #cccccc;
 }
@@ -96,6 +92,9 @@
 	border-top: 1px solid #dddddd;
 	padding: 10px;
 }
+.replies a{color:#AF924D;text-decoration:none;}
+.replies a:hover{color:#555;}
+.replies .meta a{font-weight:bold;}
 
 .new{
 	border: 1px solid #CEEA9A;

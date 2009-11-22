@@ -36,7 +36,7 @@ class CommentsHelper extends AppHelper {
 				
 				// view button
 				if($displayAsThread){
-					echo '<li class="viewButton">';
+					echo '<li class="action">';
 					echo $this->Html->link(
 						$this->Html->image(
 							'view.png',
@@ -61,7 +61,7 @@ class CommentsHelper extends AppHelper {
 				echo '<li class="author">';
 				echo $this->Html->link(
 					$comment['User']['username']
-					, array('controller' => 'privateMessages', 'action' => 'write', $comment['User']['username'])
+					, array('controller' => 'private_messages', 'action' => 'write', $comment['User']['username'])
 					, array("title" => __('Contact this user',true))
 				);
 				echo '</li>';
