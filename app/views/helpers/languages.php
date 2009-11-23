@@ -37,6 +37,7 @@ class LanguagesHelper extends AppHelper{
 			, 'fi' => __('Finnish', true)
 			, 'bg' => __('Bulgarian', true)
 			, 'uk' => __('Ukrainian', true)
+            , 'cs' => __('Czech',true)
 		);
 		return $languages;
 	}

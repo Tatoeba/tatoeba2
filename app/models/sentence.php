@@ -22,7 +22,7 @@ class Sentence extends AppModel{
 	
 	const MAX_CORRECTNESS = 6; // This is not much in use. Should probably remove it someday
 	
-	var $languages = array('ar', 'bg', 'de', 'en', 'es', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'uk', 'vn', 'zh', null);
+	var $languages = array('ar', 'bg', 'cs', 'de', 'en', 'es', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'uk', 'vn', 'zh', null);
 	
 	var $validate = array(
 		'lang' => array(

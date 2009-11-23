@@ -60,6 +60,7 @@ class GoogleLanguageApiComponent extends Object{
 		switch($googleCode){
 			case 'ar' :		return 'ar';
 			case 'bg' :		return 'bg';
+            case 'cs' :     return 'cs';
 			case 'de' :		return 'de';
 			case 'en' :		return 'en';
 			case 'es' :		return 'es';
