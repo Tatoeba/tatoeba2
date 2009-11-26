@@ -34,6 +34,7 @@ class KakasiHelper extends AppHelper{
 		$text = preg_replace("!死は生!", "shi wa sei", $text); // otherwise it displays "shi wa u"
 		$text = preg_replace("!生の!", "nama no", $text); // otherwise it display "uno"
 		$text = preg_replace("!入った!", " haitta ", $text); // otherwise it display "itta"... although sometimes "itta" would be correct...
+		$text = preg_replace("!来れば!", " kureba ", $text); // otherwise it display "kore ba"...
 		
 		switch($type){
 			case 'romaji':
