@@ -19,21 +19,7 @@
 $this->pageTitle = __('Tatoeba : Collecting example sentences',true);
 echo $javascript->link('sentences.statistics.js', false);
 
-// Warning message prompting the user to specify languages
-if($session->read('Auth.User.id')){
-	$count_unknown_language = $this->requestAction('/sentences/count_unknown_language');
-	if($count_unknown_language > 0){
-		echo '<div id="flashMessage">';
-		__('The language of some the sentences you have added could not be detected. ');
-		echo $html->link(__('Click here.', true), array("controller" => "sentences", "action" => "unknown_language"));
-		echo '</div>';
-	}
-	$javascript->link('sentences.add_translation.js', false);
-}
-
-
 $key = isset($this->params['lang']) ? $this->params['lang'] : 'eng';
-
 
 $lang = 'eng';
 if (isset($this->params['lang'])) {
@@ -71,6 +57,25 @@ array_unshift($langArray, array('any' => __('any', true)));
 	<h2><?php __('Number of sentences') ?></h2>
 	<?php echo $this->element('sentences_statistics'); ?>
 	</div>
+	
+	<?php
+	// Warning message prompting the user to specify languages
+	if($session->read('Auth.User.id')){
+		$count_unknown_language = $this->requestAction('/sentences/count_unknown_language');
+		if($count_unknown_language > 0){
+			echo '<div class="module">';
+			echo '<p class="warning">';
+			__('WARNING : The language of some the sentences you have added could not be detected. ');
+			echo '</p>';
+			
+			echo '<p class="more_link">';
+			echo $html->link(__('Click here to set the languages', true), array("controller" => "sentences", "action" => "unknown_language"));
+			echo '</p>';
+			echo '</div>';
+		}
+		$javascript->link('sentences.add_translation.js', false);
+	}
+	?>
 </div>
 
 <div id="main_content">

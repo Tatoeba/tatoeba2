@@ -30,14 +30,14 @@ $this->pageTitle = __('Wall',true);
 <div id="annexe_content" >
     <div class="module" >
 		<h2><?php __('Tips'); ?></h2>
-        <?php __('Here ask questions about how to use Tatoeba, general questions about translation, report if you see bugs or strange stuff, or simply
-        exchange with the other users.');
-        echo "<br />";
-        __('Have fun! Don\'t be shy to send message in whatever language you want! '); ?>
+		<p><?php __('Here you can ask general questions like how to use Tatoeba, report bugs or strange behaviors, or simply
+        socialize with the rest of the community.'); ?></p>
+		
+		<p><?php __("Have fun! Don't be shy!"); ?></p>
     </div>
 
     <div class="module" >
-        <h2><?php __('Last send Messages')?></h2>
+        <h2><?php __('Latest messages')?></h2>
         <ul>
             <?php
                 for($i = 0 ; $i < min(10,count($tenLastMessages)) ; $i++){
@@ -53,7 +53,6 @@ $this->pageTitle = __('Wall',true);
 </div>
 
 <div id="main_content">
-	<?php // TRANG VERSION ?>
 	<div class="module">
         <h2><?php echo __("Wall",true) ?></h2>
         <?php
