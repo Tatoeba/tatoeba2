@@ -230,7 +230,6 @@ class SentencesController extends AppController{
 				$this->data['Sentence']['user_id'] = $this->Auth->user('id'); // for the logs
 				
 				if($this->Sentence->save($this->data)){
-					Configure::write('debug',0);
 					$this->layout = null;
 					$this->set('sentence_text', rtrim($_POST['value']));
 				}
@@ -259,7 +258,6 @@ class SentencesController extends AppController{
 				
 				// saving
 				if($this->Sentence->save($this->data)){
-					Configure::write('debug',2);
 					$this->layout = null;
 					
 					$sentence = $this->Sentence->read();
@@ -373,7 +371,6 @@ class SentencesController extends AppController{
 			$this->data['Sentence']['user_id'] = $this->Auth->user('id');		 	
 			
 			if($this->Sentence->save($this->data)){
-				//Configure::write('debug',0);
 				$this->set('translation_id', $this->Sentence->id);
 				$this->set('translation_lang', $this->data['Sentence']['lang']);
 				$this->set('translation_text', $_POST['value']);
@@ -446,9 +443,7 @@ class SentencesController extends AppController{
 		}
 	}
 	
-	function random($type = null, $lang = null){
-		//Configure::write('debug',0);
-		
+	function random($type = null, $lang = null){		
 		// $type can be "show" or "translate"
 		// "translate" is used for the random sentence to translate in the "Contribution" section.
 		// "show" is used anywhere else.
@@ -602,7 +597,6 @@ class SentencesController extends AppController{
 	
 	function get_translations($id){
         Sanitize::paranoid($id);
-		Configure::write('debug',0);
 		$this->Sentence->unbindModel(
 			array(
 				'belongsTo' => array('User'),
