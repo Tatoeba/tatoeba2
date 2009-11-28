@@ -40,6 +40,7 @@ class LanguagesHelper extends AppHelper{
             , 'cs' => __('Czech',true)
             , 'eo' => __('Esperanto',true)
             , 'el' => __('Modern Greek',true)
+            , 'tr' => __('Turkish',true)
 		);
 		return $languages;
 	}
