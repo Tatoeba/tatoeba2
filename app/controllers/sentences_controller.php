@@ -214,7 +214,6 @@ class SentencesController extends AppController{
 	function save_sentence(){
 		if(isset($_POST['value'])){
 			Sanitize::html($_POST['value']);
-					
 			// sentences.edit_in_place.js
 			if(isset($_POST['id'])){
 				Sanitize::paranoid($_POST['id']);
@@ -320,7 +319,7 @@ class SentencesController extends AppController{
 			}
 			
 			// checking if same language...
-			if ($sourceLanguage == $this->data['Sentence']['lang'] ) { 
+			if ($sourceLanguage == $this->data['Sentence']['lang'] AND !empty($this->data['Sentence']['lang']) ) { 
 				// it will display a warning
 				$this->set('sentence_id', $sentenceId);
 				$this->set('translation_text', $_POST['value']);
@@ -592,7 +591,6 @@ class SentencesController extends AppController{
 			$flashMsg,
 			'/sentences/unknown_language/'
 		);
-		//pr($this->data);
 	}
 	
 	function get_translations($id){
