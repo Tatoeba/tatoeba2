@@ -38,6 +38,8 @@ class LanguagesHelper extends AppHelper{
 			, 'bg' => __('Bulgarian', true)
 			, 'uk' => __('Ukrainian', true)
             , 'cs' => __('Czech',true)
+            , 'eo' => __('Esperanto',true)
+            , 'el' => __('Modern Greek',true)
 		);
 		return $languages;
 	}
