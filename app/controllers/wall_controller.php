@@ -169,7 +169,7 @@ class WallController extends Appcontroller{
 				$parentMessage->read();
 				
 				// prepare email
-				if($parentMessage->data['User']['send_notifications']){
+				if($parentMessage->data['User']['send_notifications'] AND $_POST['replyTo'] != $this->Auth->user('id')){
 					$participant = $parentMessage->data['User']['email'];
 					$subject  = 'Tatoeba - ' . $message['User']['username'] . ' has replied to you on the Wall';
 					$mailContent  = 'http://'.$_SERVER['HTTP_HOST'] .'/wall/index#message_'.$message['Wall']['id']."\n\n";
