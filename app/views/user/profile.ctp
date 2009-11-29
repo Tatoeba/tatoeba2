@@ -31,9 +31,9 @@ if(!empty($user['User']['homepage'])){
 		<h3>Activity informations</h3>
 		<dl>
 			<dt>Joined</dt>
-			<dd><?php echo date('r', strtotime($user['User']['since'])) ?></dd>
+			<dd><?php echo date('F j, Y', strtotime($user['User']['since'])) ?></dd>
 			<dt>Last login</dt>
-			<dd><?php echo date('r', $user['User']['last_time_active']) ?></dd>
+			<dd><?php echo date('F j, Y \\a\\t G:i', $user['User']['last_time_active']) ?></dd>
 			<dt>Comment posted</dt>
 			<dd><?php echo count($user['SentenceComments']) ?></dd>
 			<dt>Sentences owned</dt>
@@ -77,12 +77,17 @@ if(!empty($user['User']['name'])){
 <?php
 }
 
-$sBirthday = (empty($user['User']['birthday']) or $user['User']['birthday'] == 'DD/MM/YYYY') ? 'DD/MM/YYYY' : date('d/m/Y', strtotime($user['User']['birthday']));
+$aBirthday = explode('-', $user['User']['birthday']);
+// 0 => YYYY
+// 1 => MM
+// 2 => DD
 
-if($sBirthday != 'DD/MM/YYYY'){
+if(!is_null((integer) $aBirthday[0]) && !is_null((integer) $aBirthday[1]) && !is_null((integer) $aBirthday[2])){
+	$iTimestamp = mktime(0, 0, 0, $aBirthday[1], $aBirthday[2], $aBirthday[0]);
+
 ?>
 			<dt>Birthday</dt>
-			<dd><?php echo $sBirthday ?></dd>
+			<dd><?php echo date('F j, Y', $iTimestamp) ?></dd>
 <?php
 }
 

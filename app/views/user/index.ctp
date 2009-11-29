@@ -98,13 +98,22 @@ echo $form->end(__('Upload', true));
 			'label' => 'Name',
 			'value' => $user['User']['name']
 	));
-
-	$sBirthday = (empty($user['User']['birthday']) or $user['User']['birthday'] == 'DD/MM/YYYY') ? 'DD/MM/YYYY' : date('d/m/Y', strtotime($user['User']['birthday']));
+	
+	$aBirthday = explode('-', $user['User']['birthday']);
+	// 0 => YYYY
+	// 1 => MM
+	// 2 => DD
+	
+	$iTimestamp = mktime(0, 0, 0, $aBirthday[1], $aBirthday[2], $aBirthday[0]);
 
 	echo $form->input('birthday', array(
+			'type' => 'date',
+			'dateFormat' => 'MDY',
+			'minYear' => date('Y') - 70,
+			'maxYear' => date('Y') - 6,
 			'label' => 'Birthday',
-			'value' => $sBirthday
-	));
+			'selected' => $iTimestamp
+		));
 	echo '<label for="profile_basicCountry">' . __('Country', true) . '</label>' . $form->select('country', $countries, (is_null($user['User']['country_id']) ? null : $user['Country']['id']));
 	echo $form->end(__('Edit', true));
 ?>
@@ -117,7 +126,7 @@ echo $form->end(__('Upload', true));
 			<dt>Name</dt>
 			<dd><?php echo (empty($user['User']['name']) ? _('Tell us what is your real name to get to know you!') : $user['User']['name']) ?></dd>
 			<dt>Birthday</dt>
-			<dd><?php echo ($sBirthday == 'DD/MM/YYYY' ? __('You haven\'t set your birthday yet!', true) : $sBirthday) ?></dd>
+			<dd><?php echo (((integer) $aBirthday[0] == 0) ? __('You have not set your birthday yet!', true) : date('F j, Y', $iTimestamp)) ?></dd>
 			<dt>Country</dt>
 			<dd><?php echo (is_null($user['User']['country_id']) ? __('Tells us where you come from!', true) : $user['Country']['name']) ?></dd>
 		</dl>
@@ -127,9 +136,9 @@ echo $form->end(__('Upload', true));
 		<h3>Activity informations</h3>
 		<dl>
 			<dt>Joined</dt>
-			<dd><?php echo date('r', strtotime($user['User']['since'])) ?></dd>
+			<dd><?php echo date('F j, Y', strtotime($user['User']['since'])) ?></dd>
 			<dt>Last login</dt>
-			<dd><?php echo date('r', $user['User']['last_time_active']) ?></dd>
+			<dd><?php echo date('F j, Y \\a\\t G:i', $user['User']['last_time_active']) ?></dd>
 			<dt>Comment posted</dt>
 			<dd><?php echo count($user['SentenceComments']) ?></dd>
 			<dt>Sentences owned</dt>
@@ -201,18 +210,5 @@ echo $form->end(__('Upload', true));
 
 </div>
 <?php
-/*
-	<div class="module">
-		<h3>Settings</h3>
-		<dl>
-			<dt>Language</dt>
-			<dd><?php echo $user['User']['lang'] // array('eng' => 'English', 'fre' => 'Français', 'chi' => '中文', 'spa' => 'Español') ?></dd>
-			<dt>Notification</dt>
-			<dd><?php echo ($user['User']['send_notifications'] ? 'Activated' : 'Desactivated') ?></dd>
-			<dt>Is public ?</dt>
-			<dd>Your profile is <?php echo ($user['Profile']['is_public'] ? 'public' : 'private') ?></dd>
-		</dl>
-	</div>
- */
 }
 ?>

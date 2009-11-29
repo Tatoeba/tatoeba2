@@ -51,11 +51,7 @@ class UserController extends AppController {
 			$aCleanCountries[$aCountry['Country']['id']] = $aCountry['Country']['name'];
 		}
 
-		// pr($aCountries);
-
 		$this->pageTitle = 'Your profile';
-
-		// pr($aUser);
 
 		$this->set('countries', $aCleanCountries);
 		$this->set('user', $aUser);
@@ -63,6 +59,7 @@ class UserController extends AppController {
 
 	function profile($sUserName = null) {
         Sanitize::html($sUserName);
+
 		if(is_null($sUserName)){
 			$this->redirect(array('action' => 'index'));
 		} else {
@@ -181,10 +178,13 @@ class UserController extends AppController {
 		if(!empty($this->data)){
                 Sanitize::html($this->data['profile_basic']['name']);
 
+				$sBirthday  = $this->data['profile_basic']['birthday']['year'];
+				$sBirthday .= '-' . $this->data['profile_basic']['birthday']['month'];
+				$sBirthday .= '-' . $this->data['profile_basic']['birthday']['day'];
 
 				$aToSave = array(
 					'name' => $this->data['profile_basic']['name'],
-					'birthday' => date('Y-m-d', strtotime($this->data['profile_basic']['birthday'])),
+					'birthday' => $sBirthday,
 					'country_id' => $this->data['profile_basic']['country']
 				);
 
