@@ -39,7 +39,8 @@ $(document).ready(function(){
     function saveMessage(){
         var messageContent = $("#replyFormDiv_" + previousReplyFormInMessageID ).find("textarea").val();
         
-        $("#replyFormDiv_" + previousReplyFormInMessageID ).remove()  ;
+        $("#replyFormDiv_" + previousReplyFormInMessageID ).html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
+        
         
         $.post("http://" + self.location.hostname + "/wall/save_inside"
             , { "content" : messageContent , "replyTo" : previousReplyFormInMessageID } 

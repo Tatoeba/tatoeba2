@@ -172,7 +172,7 @@ class WallController extends Appcontroller{
 				if($parentMessage->data['User']['send_notifications']){
 					$participant = $parentMessage->data['User']['email'];
 					$subject  = 'Tatoeba - ' . $message['User']['username'] . ' has replied to you on the Wall';
-					$mailContent  = "\n".'http://'.$_SERVER['HTTP_HOST'] .'/wall'."\n\n";
+					$mailContent  = 'http://'.$_SERVER['HTTP_HOST'] .'/wall/index#message_'.$message['Wall']['id']."\n\n";
 					$mailContent .= $message['Wall']['content'];
 					
 					$this->Mailer->to = $participant;
