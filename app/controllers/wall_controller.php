@@ -44,6 +44,7 @@ class WallController extends Appcontroller{
     var $name = 'Wall' ;
     var $paginate = array('limit' => 50);
     var $helpers = array('Wall','Javascript','Date');
+	var $components = array ('Mailer');
 
     function beforeFilter(){
         parent::beforeFilter();
