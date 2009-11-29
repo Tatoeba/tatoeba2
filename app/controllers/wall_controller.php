@@ -167,8 +167,6 @@ class WallController extends Appcontroller{
 				$parentMessage->id = $_POST['replyTo'];
 				$parentMessage->read();
 				
-				Configure::write('debug', 2);
-				
 				// prepare email
 				if($parentMessage->data['User']['send_notifications']){
 					$participant = $parentMessage->data['User']['email'];
@@ -176,18 +174,11 @@ class WallController extends Appcontroller{
 					$mailContent  = "\n".'http://'.$_SERVER['HTTP_HOST'] .'/wall'."\n\n";
 					$mailContent .= $message['Wall']['content'];
 					
-					pr($participant);
-					pr($subject);
-					pr($mailContent);
-					
-					
-					/*
 					$this->Mailer->to = $participant;
 					$this->Mailer->toName = '';
 					$this->Mailer->subject = $subject;
 					$this->Mailer->message = $mailContent;
 					$this->Mailer->send();
-					*/
 				}
             }
         }
