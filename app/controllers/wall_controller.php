@@ -173,7 +173,9 @@ class WallController extends Appcontroller{
 					$participant = $parentMessage->data['User']['email'];
 					$subject  = 'Tatoeba - ' . $message['User']['username'] . ' has replied to you on the Wall';
 					$mailContent  = 'http://'.$_SERVER['HTTP_HOST'] .'/wall/index#message_'.$message['Wall']['id']."\n\n";
-					$mailContent .= $message['Wall']['content'];
+					$mailContent  = '- - - - - - - - - - - - - - - - -'."\n\n";
+					$mailContent .= $message['Wall']['content']."\n\n";
+					$mailContent  = '- - - - - - - - - - - - - - - - -'."\n\n";
 					
 					$this->Mailer->to = $participant;
 					$this->Mailer->toName = '';
