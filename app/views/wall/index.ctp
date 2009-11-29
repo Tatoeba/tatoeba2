@@ -88,13 +88,20 @@ $this->pageTitle = __('Wall',true);
 							
 							// image
 							echo '<li class="image">';
-								echo '<img src="/img/profiles/'. $message['User']['image'].'" alt="'.__('User\'s avatar',true).'" />'."\n";
+							echo $html->link(
+								$html->image('profiles/'.$message['User']['image'], array("title" => __('View this user\'s profile', true)))
+								, array("controller" => "user", "action" => "profile", $message['User']['username'])
+								, array("escape" => false)
+							);
 							echo '</li>';
 							
 							// username
 							echo '<li class="author">';
-								echo '<a href="/user/profile/' . $message['User']['username'] . '" ><span class="nickname" >'.
-								$message["User"]["username"].'</span></a>'."\n";
+								echo $html->link(
+									$message['User']['username']
+									, array("controller" => "user", "action" => "profile", $message['User']['username'])
+									, array("title" => __('View this user\'s profile', true))
+								);
 							echo '</li>';
 	                        
 							// date

@@ -60,22 +60,23 @@ class WallHelper extends AppHelper {
 					echo '<li class="image">';
 					echo $this->Html->link(
 						$this->Html->image(
-							'profiles/'. $message["User"]["image"], 
-							array(
-								"alt"=>$message["User"]["username"],
-								"title"=>__("View this user's profile",true)
+							'profiles/'. $message["User"]["image"]
+							, array(
+								"alt"=>$message["User"]["username"]
+								, "title"=>__("View this user's profile",true)
 							)
-						),
-						array("controller"=>"user", "action"=>"profile", $message["User"]["username"]),
-						array("escape"=>false)
+						)
+						, array("controller"=>"user", "action"=>"profile", $message["User"]["username"])
+						, array("escape"=>false)
 					);
 					echo '</li>';
 					
 					// username
 					echo '<li class="author">';
 					echo $this->Html->link(
-						$message["User"]["username"],
-						array("controller"=>"private_messages", "action"=>"write", $message["User"]["username"])
+						$message["User"]["username"]
+						, array("controller"=>"user", "action"=>"profile", $message["User"]["username"])
+						, array("title"=>__("View this user's profile",true))
 					);
 					echo '</li>';
 					

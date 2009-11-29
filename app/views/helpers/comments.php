@@ -61,8 +61,8 @@ class CommentsHelper extends AppHelper {
 				echo '<li class="author">';
 				echo $this->Html->link(
 					$comment['User']['username']
-					, array('controller' => 'private_messages', 'action' => 'write', $comment['User']['username'])
-					, array("title" => __('Contact this user',true))
+					, array("controller" => "user", "action" => "profile", $comment['User']['username'])
+					, array("title" => __('View this user\'s profile', true))
 				);
 				echo '</li>';
 				
