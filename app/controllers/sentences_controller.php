@@ -135,11 +135,7 @@ class SentencesController extends AppController{
 			// detecting language
 			$this->GoogleLanguageApi->text = $this->data['Sentence']['text'];
 			$response = $this->GoogleLanguageApi->detectLang();
-			if($response['isReliable']){
-				$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
-			}else{
-				$this->data['Sentence']['lang'] = null;
-			}
+			$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
 			
 			$this->data['Sentence']['user_id'] = $this->Auth->user('id');
 			
@@ -246,11 +242,8 @@ class SentencesController extends AppController{
 				// detecting language
 				$this->GoogleLanguageApi->text = $_POST['value'];
 				$response = $this->GoogleLanguageApi->detectLang();
-				if($response['isReliable']){
-					$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
-				}else{
-					$this->data['Sentence']['lang'] = null;
-				}
+				$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
+				
 				
 				$this->data['Sentence']['user_id'] = $this->Auth->user('id');
 				$this->data['Sentence']['text'] = $_POST['value'];
@@ -312,11 +305,8 @@ class SentencesController extends AppController{
 			// detecting language of translation
 			$this->GoogleLanguageApi->text = $_POST['value'];
 			$response = $this->GoogleLanguageApi->detectLang();
-			if($response['isReliable']){
-				$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
-			}else{
-				$this->data['Sentence']['lang'] = null;
-			}
+			$this->data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
+			
 			
 			// checking if same language...
 			if ($sourceLanguage == $this->data['Sentence']['lang'] AND !empty($this->data['Sentence']['lang']) ) { 
