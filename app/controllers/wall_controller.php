@@ -111,7 +111,7 @@ class WallController extends Appcontroller{
             $this->data['Wall']['date'] = date("Y-m-d H:i:s");  
             // now save to database 
             if ($this->Wall->save($this->data)){
-
+				
             }
         }
         $this->redirect(array('action'=>'index'));
@@ -142,14 +142,12 @@ class WallController extends Appcontroller{
                 $this->set("user" , $user ); 
                 
                 // we forge a message to be used in the view
-                // TODO find a way to retrieve the id of the just-saved message
-                // in case a guy try to reply to itself without reloading the page
                 
                 $message['Wall']['content'] = $_POST['content'] ; 
                 $message['Wall']['owner'] = $idTemp ;
                 $message['Wall']['replyTo'] = $_POST['replyTo'] ;
                 $message['Wall']['date'] = date("Y-m-d H:i:s");
-                $message['Wall']['id'] = '' ; // TODO find how to to retrive this value
+                $message['Wall']['id'] = $this->Wall->id ;
                  
                 $message['User']['image'] = $user['User']['image'];
                 if ( empty($message['User']['image'])){
@@ -159,6 +157,38 @@ class WallController extends Appcontroller{
                 $message['User']['username'] = $user['User']['username'];
 
                 $this->set("message" , $message ); 
+				
+				// ------------------
+				// send notification
+				// ------------------
+				
+				// Retrieve parent message
+				$parentMessage = new Wall();
+				$parentMessage->id = $_POST['replyTo'];
+				$parentMessage->read();
+				
+				Configure::write('debug', 2);
+				
+				// prepare email
+				if($parentMessage->data['User']['send_notifications']){
+					$participant = $parentMessage->data['User']['email'];
+					$subject  = 'Tatoeba - ' . $message['User']['username'] . ' has replied to you on the Wall';
+					$mailContent  = "\n".'http://'.$_SERVER['HTTP_HOST'] .'/wall'."\n\n";
+					$mailContent .= $message['Wall']['content'];
+					
+					pr($participant);
+					pr($subject);
+					pr($mailContent);
+					
+					
+					/*
+					$this->Mailer->to = $participant;
+					$this->Mailer->toName = '';
+					$this->Mailer->subject = $subject;
+					$this->Mailer->message = $mailContent;
+					$this->Mailer->send();
+					*/
+				}
             }
         }
     }

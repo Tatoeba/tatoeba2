@@ -23,6 +23,13 @@ if ( isset($user) ){
 	// TODO use a helper method to display this. It is actually pretty much
 	// a copy-paste of the create_reply_div() method in the WallHelper.
 	
+	// NOTE I took out the "reply" option here because :
+	// 1) User is not supposed to want to reply to himself right after
+	//    posting his reply... Instead he should post another reply
+	//    to the message he's replied to.
+	// 2) We should actually try to limit the the "deepness" of a thread.
+	//    Three levels of reply should be the maximum, I think.
+	
 	echo '<li class="new thread" id="message_' . $message["Wall"]["id"] . '">'."\n";
 		echo '<div class="message">';
 			echo "<ul class=\"meta\" >\n"; 
@@ -30,22 +37,23 @@ if ( isset($user) ){
 				echo '<li class="image">';
 				echo $html->link(
 					$html->image(
-						'profiles/'. $message["User"]["image"], 
-						array(
-							"alt"=>$message["User"]["username"],
-							"title"=>__("View this user's profile",true)
+						'profiles/'. $message["User"]["image"] 
+						, array(
+							"alt"=>$message["User"]["username"]
+							, "title"=>__("View this user's profile",true)
 						)
-					),
-					array("controller"=>"user", "action"=>"profile", $message["User"]["username"]),
-					array("escape"=>false)
+					)
+					, array("controller"=>"user", "action"=>"profile", $message["User"]["username"])
+					, array("escape"=>false)
 				);
 				echo '</li>';
 				
 				// username
 				echo '<li class="author">';
 				echo $html->link(
-					$message["User"]["username"],
-					array("controller"=>"private_messages", "action"=>"write", $message["User"]["username"])
+					$message["User"]["username"]
+					, array("controller"=>"private_messages", "action"=>"write", $message["User"]["username"])
+					, array("title"=>__("View this user's profile",true))
 				);
 				echo '</li>';
 				
