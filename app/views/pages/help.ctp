@@ -27,6 +27,7 @@ $this->pageTitle = 'Tatoeba : ' . __('Help',true);
 			<li><a href="#translating"><?php __('Translating sentences'); ?></a></li>
 			<li><a href="#correcting"><?php __('Correcting mistakes'); ?></a></li>
 			<li><a href="#adopting"><?php __('Adopting sentences'); ?></a></li>
+			<li><a href="#sentences_lists"><?php __('Sentences lists'); ?></a></li>
 		</ul>
 	</div>
 	
@@ -83,5 +84,15 @@ $this->pageTitle = 'Tatoeba : ' . __('Help',true);
 		<a href="http://blog.tatoeba.org/2009/01/new-validation-system.html">http://blog.tatoeba.org/2009/01/new-validation-system.html</a>
 		</p>
 	</div>
+	
+	<a name="sentences_lists"></a>
+	<div class="module">
+		<h2><?php __('Sentences lists'); ?></h2>
+		<p><?php __('You can create lists of sentences in Tatoeba. By default the list is <strong>private</strong>, which means it can only be edited by the person who created it.'); ?></p>
+		<p><?php __('However it is also possible to let any member in Tatoeba add and remove sentences by setting a list as <strong>public</strong>.'); ?></p>
+		<p><?php __('Someday we will also introduce <strong>group</strong> lists, that only a restricted group of members can edit.'); ?></p>
+	</div>
+	
+	<div style="height:300px"></div>
 </div>
 

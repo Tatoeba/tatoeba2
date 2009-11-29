@@ -62,6 +62,7 @@ $javascript->link('jquery.jeditable.js', false);
 			$checkboxValue = ($list['SentencesList']['is_public'] == 1) ? 'checked' : '';
 			echo ' '.$form->checkbox('isPublic', array("name" => "isPublic", "checked" => $checkboxValue));
 			echo ' '.$html->image('loading-small.gif', array("id"=>"inProcess", "style"=>"display:none;"));
+			echo ' '.$html->link('[?]', array("controller"=>"pages", "action"=>"help#sentences_lists"));
 			echo '</li>';
 		
 			echo '<li class="deleteList">';
