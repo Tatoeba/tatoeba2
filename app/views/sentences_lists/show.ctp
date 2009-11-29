@@ -45,31 +45,6 @@
 			); 
 			?>
 		</li>
-		
-		<?php 
-		if($session->read('Auth.User.id')){ 
-		?>
-		<li>
-			<?php 
-			echo $html->link(
-				__('Edit list',true)
-				, array("controller"=>"sentences_lists", "action"=>"edit", $list['SentencesList']['id'])
-			)
-			?>
-		</li>
-		<li class="deleteList">
-			<?php
-			echo $html->link(
-				__('Delete this list', true)
-				, array("controller" => "sentences_lists", "action" => "delete", $list['SentencesList']['id'])
-				, null
-				, __('Are you sure?', true)
-			);
-			?>
-		</li>
-		<?php
-		}
-		?>
 	</ul>
 	</div>
 

@@ -41,13 +41,31 @@ class SentencesListsController extends AppController{
 	 * a new list and the lists that belongs to that user.
 	 */
 	function index(){
-		$lists = $this->SentencesList->find('all');
-		$this->set('lists', $lists);
-		
+		// user's lists
 		if($this->Auth->user('id')){
 			$myLists = $this->SentencesList->findAllByUserId($this->Auth->user('id'));
 			$this->set('myLists', $myLists);
 		}
+		
+		// public lists
+		$publicLists = $this->SentencesList->find('all', array(
+			"conditions" => array(
+				  "SentencesList.user_id !=" => $this->Auth->user('id')
+				, "SentencesList.is_public" => 1
+			)
+		));
+		$this->set('publicLists', $publicLists);
+		
+		// all the other lists
+		$lists = $this->SentencesList->find('all', array(
+			"conditions" => array(
+				  "SentencesList.user_id !=" => $this->Auth->user('id')
+				, "SentencesList.is_public" => 0
+			)
+		));
+		$this->set('lists', $lists);
+		
+		
 	}
 	
 	
@@ -89,12 +107,26 @@ class SentencesListsController extends AppController{
 	 * Edit list. From that page user can remove sentences from list, 
 	 * edit list name or delete list.
 	 */
-	function edit($id){
+	function edit($id, $translationsLang = null){
         Sanitize::paranoid($id); 
-		if(!$this->belongsToCurrentUser($id)){
-			$this->redirect(array("action" => "show"));
+		
+		if(!$this->belongsToCurrentUser($id) OR !$this->Auth->user('id')){
+			if(!$this->Auth->user('id')){
+				$this->Session->setFlash(sprintf(
+					  __('NOTE : You can edit this list if you are <a href="%s">registered</a>.', true)
+					, "/".$this->params['lang']."/users/register"
+				));
+			}
+			$this->redirect(array("action" => "show", $id, $translationsLang));
 		}else{
 			$this->SentencesList->id = $id;
+
+			if(isset($translationsLang) AND in_array($translationsLang, $this->SentencesList->Sentence->languages)){
+				Sanitize::paranoid($translationsLang);
+				$this->SentencesList->recursive = 2; // TODO need optimization
+				$this->set('translationsLang', $translationsLang);
+			}
+			
 			$this->set('list', $this->SentencesList->read());
 		}
 	}
@@ -206,12 +238,17 @@ class SentencesListsController extends AppController{
 	 * It is called in the SentencesHelper, in the displayMenu() method.
 	 */
 	function choices(){
-		$this->Package->recursive = -1;
+		$this->SentencesList->recursive = 0;
 		$lists = $this->SentencesList->find(
 			'all', 
-			array("conditions" => array("SentencesList.user_id" => $this->Auth->user('id')))
+			array("conditions" => 
+				array("OR" => array(
+					  "SentencesList.user_id" => $this->Auth->user('id')
+					, "SentencesList.is_public" => 1
+				)
+			))
 		);
-		//$this->set('lists', $lists);
+		$lists = array_unique($lists);
 		return $lists;
 	}
 	
@@ -222,7 +259,7 @@ class SentencesListsController extends AppController{
 	function belongsToCurrentUser($listId){
 		$this->SentencesList->id = $listId;
 		$list = $this->SentencesList->read();
-		if($list['SentencesList']['user_id'] == $this->Auth->user('id')){
+		if($list['SentencesList']['user_id'] == $this->Auth->user('id') OR $list['SentencesList']['is_public']){
 			return true;
 		}else{
 			return false;
@@ -304,6 +341,17 @@ class SentencesListsController extends AppController{
 		$list = $this->SentencesList->read();
 		$this->set('list', $list);
 		$this->set('displayRomanization', ($romanization == 'display_romanization'));
+	}
+	
+	
+	/**
+	 * Set list as public. When a list is public, other people can add
+	 * sentences to that list.
+	 * Used in AJAX request in sentences_lists.set_as_public.js.
+	 */
+	function set_as_public(){
+		$this->SentencesList->id = $_POST['list_id'];
+		$this->SentencesList->saveField('is_public', $_POST['is_public']);
 	}
 }
 ?>

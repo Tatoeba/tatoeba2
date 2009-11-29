@@ -31,29 +31,49 @@ $javascript->link('jquery.jeditable.js', false);
 		<li>
 			<?php 
 			echo $html->link(
-				__('Show list',true)
-				, array("controller"=>"sentences_lists", "action"=>"show", $list['SentencesList']['id'])
-			)
-			?>
-		</li>
-		<li>
-			<?php 
-			echo $html->link(
 				__('Back to all the lists',true)
 				, array("controller"=>"sentences_lists", "action"=>"index")
 			)
 			?>
 		</li>
-		<li class="deleteList">
-			<?php
+		
+		<li>
+			<?php 
+			__('Show translations :'); echo ' ';
+			$langArray = $languages->languagesArray();
+			asort($langArray);
+			$path  = '/' . Configure::read('Config.language') . '/sentences_lists/edit/' . $list['SentencesList']['id'] . '/';
+			echo $form->select(
+				"translationLangChoice"
+				, $langArray
+				, null
+				, array("onchange" => "$(location).attr('href', '".$path."' + this.value);")
+			); 
+			?>
+		</li>
+		
+		
+		<?php
+		// only the creator of the list can delete a public list
+		if($session->read('Auth.User.id') == $list['SentencesList']['user_id']){
+			$javascript->link('sentences_lists.set_as_public.js', false);
+			echo '<li>';
+			echo '<label for="isPublic">' . __('Set list as public',true) . '</label>';
+			$checkboxValue = ($list['SentencesList']['is_public'] == 1) ? 'checked' : '';
+			echo ' '.$form->checkbox('isPublic', array("name" => "isPublic", "checked" => $checkboxValue));
+			echo ' '.$html->image('loading-small.gif', array("id"=>"inProcess", "style"=>"display:none;"));
+			echo '</li>';
+		
+			echo '<li class="deleteList">';
 			echo $html->link(
 				__('Delete this list', true)
 				, array("controller" => "sentences_lists", "action" => "delete", $list['SentencesList']['id'])
 				, null
 				, __('Are you sure?', true)
-			);
-			?>
-		</li>
+			);		
+			echo '</li>';
+		}
+		?>
 	</ul>
 	</div>
 	
@@ -94,10 +114,15 @@ $javascript->link('jquery.jeditable.js', false);
 	</div>
 	
 	
-	
 	<div class="module">
 	<h2><?php __('Tips'); ?></h2>
-	<p><?php __('You can change the name of the list by clicking on it.'); ?></p>
+	<?php
+	if($session->read('Auth.User.id') == $list['SentencesList']['user_id']){
+		echo '<p>';
+		echo __('You can change the name of the list by clicking on it.');
+		echo '</p>';
+	}
+	?>
 	<p><?php __('You can remove a sentence from the list by clicking on the X icon.'); ?></p>
 	<p><?php __('Removing a sentence will not delete it. The sentence will just not be part of the list anymore.'); ?></p>
 	</div>
@@ -108,12 +133,24 @@ $javascript->link('jquery.jeditable.js', false);
 <div id="main_content">
 	<div class="module">
 	<?php
-	echo '<h2 id="'.$list['SentencesList']['id'].'" class="editable editableSentencesListName">'.$list['SentencesList']['name'].'</h2>';
+	$class = '';
+	if($session->read('Auth.User.id') == $list['SentencesList']['user_id']){
+		$class = 'class="editable editableSentencesListName"';
+	}
+	echo '<h2 id="'.$list['SentencesList']['id'].'" '.$class.'>'.$list['SentencesList']['name'].'</h2>';
 
 	echo '<div id="newSentenceInList">';
 	echo $form->input('text', array("label" => __('Add a sentence to this list : ', true)));
 	echo $form->button('OK', array("id" => "submitNewSentenceToList"));
 	echo '</div>';
+	
+	echo '<p>';
+	echo sprintf(
+		  __('NOTE : You can also add existing sentences with this icon %s (while <a href="%s">browsing</a> for instance).',true)
+		, $html->image('add_to_list.png')		  
+		, $html->url(array("controller"=>"sentences", "action"=>"show", "random"))
+	);
+	echo '</p>';
 	
 
 	echo '<div class="sentencesListLoading" style="display:none">';
@@ -135,7 +172,11 @@ $javascript->link('jquery.jeditable.js', false);
 				echo '</span>';		
 				
 				// display sentence
-				$sentences->displaySentenceInList($sentence);
+				if(isset($translationsLang)){
+					$sentences->displaySentenceInList($sentence, $translationsLang);
+				}else{
+					$sentences->displaySentenceInList($sentence);
+				}
 			echo '</li>';
 		}
 	}
