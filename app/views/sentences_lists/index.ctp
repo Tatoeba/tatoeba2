@@ -109,7 +109,7 @@ if(isset($myLists)){
 					, $myList['User']['username']
 				);
 				if($myList['SentencesList']['is_public']){
-					echo ' ' . __('(public list)', true);
+					echo ' <span class="publicList">' . __('(public list)', true) . '</span>';
 				}
 				echo '</li>';
 			}
