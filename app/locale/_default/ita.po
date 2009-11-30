@@ -18,7 +18,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Project\n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2009-11-18 16:06+0100\n"
+"PO-Revision-Date: 2009-11-30 15:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -30,83 +30,87 @@ msgstr ""
 msgid "You need to be logged in."
 msgstr ""
 
-#: \controllers\private_messages_controller.php:63;129
+#: \controllers\private_messages_controller.php:63;130
 msgid "[no subject]"
 msgstr ""
 
-#: \controllers\private_messages_controller.php:76;142
+#: \controllers\private_messages_controller.php:76;143
 msgid "Private Messages - "
 msgstr ""
 
-#: \controllers\private_messages_controller.php:142
+#: \controllers\private_messages_controller.php:143
 msgid " from "
 msgstr ""
 
-#: \controllers\private_messages_controller.php:192
+#: \controllers\private_messages_controller.php:193
 msgid "Re: [no subject]"
 msgstr ""
 
-#: \controllers\private_messages_controller.php:198
+#: \controllers\private_messages_controller.php:199
 msgid " wrote:"
 msgstr ""
 
-#: \controllers\private_messages_controller.php:200
+#: \controllers\private_messages_controller.php:201
 msgid "You must fill at least the \"To\" field and the content field."
 msgstr ""
 
-#: \controllers\sentence_comments_controller.php:166
+#: \controllers\sentence_comments_controller.php:152
 msgid "Your comment has been saved."
 msgstr ""
 
-#: \controllers\sentences_controller.php:194
+#: \controllers\sentences_controller.php:190
 msgid "This sentence was not added by you. You can only edit sentences you have added."
 msgstr ""
 
-#: \controllers\sentences_controller.php:203
+#: \controllers\sentences_controller.php:199
 msgid "The sentence has been updated."
 msgstr ""
 
-#: \controllers\sentences_controller.php:278
+#: \controllers\sentences_controller.php:273
 msgid "You are now the owner of this sentence and can modify it as you wish. It is your responsibility to make sure that it doesn't have any mistake and, if possible, is not linked to wrong translations."
 msgstr ""
 
-#: \controllers\sentences_controller.php:291
+#: \controllers\sentences_controller.php:286
 msgid "You have abandoned your ownership for this sentence. Other people can now adopt it. If it was a mistake, you can just re-adopt it."
 msgstr ""
 
-#: \controllers\sentences_controller.php:387
+#: \controllers\sentences_controller.php:383
 msgid "Tatoeba search : "
 msgstr ""
 
-#: \controllers\sentences_controller.php:434
+#: \controllers\sentences_controller.php:430
 msgid "Tatoeba search"
 msgstr ""
 
-#: \controllers\sentences_controller.php:579
+#: \controllers\sentences_controller.php:573
 msgid "The languages have been saved."
 msgstr ""
 
-#: \controllers\sentences_controller.php:581
+#: \controllers\sentences_controller.php:575
 msgid "A problem occured while trying to save."
 msgstr ""
 
-#: \controllers\sentences_controller.php:584
+#: \controllers\sentences_controller.php:578
 msgid "There is nothing to save."
 msgstr ""
 
-#: \controllers\user_controller.php:93
+#: \controllers\sentences_lists_controller.php:116
+msgid "NOTE : You can edit this list if you are <a href=\"%s\">registered</a>."
+msgstr ""
+
+#: \controllers\user_controller.php:90
 msgid "Profile of %s"
 msgstr ""
 
-#: \controllers\user_controller.php:95
+#: \controllers\user_controller.php:92
 msgid "%s's profile"
 msgstr ""
 
-#: \controllers\user_controller.php:170
+#: \controllers\user_controller.php:167
 msgid "Your informations have been updated."
 msgstr ""
 
-#: \controllers\user_controller.php:172;196;222;254
+#: \controllers\user_controller.php:169;196;222;254
 msgid "An error occured while saving. Please try again or contact us to report this."
 msgstr ""
 
@@ -237,41 +241,30 @@ msgstr ""
 msgid "No user with this id : "
 msgstr ""
 
-#: \views\contributions\index.ctp:37
+#: \views\contributions\index.ctp:23
+msgid "Meaning of the colors"
+msgstr ""
+
+#: \views\contributions\index.ctp:25
 #: \views\helpers\tooltip.php:59
 msgid "sentence added"
 msgstr ""
 
-#: \views\contributions\index.ctp:38
-msgid "link added"
-msgstr ""
-
-#: \views\contributions\index.ctp:39
+#: \views\contributions\index.ctp:26
 #: \views\helpers\tooltip.php:69
 msgid "sentence modified"
 msgstr ""
 
-#: \views\contributions\show.ctp:42
-msgid "Logs for : "
+#: \views\contributions\index.ctp:27
+#: \views\helpers\comments.php:84
+#: \views\helpers\tooltip.php:64
+msgid "sentence deleted"
 msgstr ""
 
-#: \views\contributions\show.ctp:59
-msgid "Logs for sentence nº"
-msgstr ""
-
-#: \views\contributions\show.ctp:62
-#: \views\sentence_comments\show.ctp:61
-msgid "The sentence has been deleted"
-msgstr ""
-
-#: \views\contributions\show.ctp:67
-#: \views\sentences\show.ctp:30
-msgid "Logs"
-msgstr ""
-
-#: \views\contributions\show.ctp:83
-#: \views\sentences\show.ctp:41
-msgid "There is no log for this sentence"
+#: \views\contributions\index.ctp:38
+#: \views\pages\home.ctp:136
+#: \views\users\show.ctp:40
+msgid "Latest contributions"
 msgstr ""
 
 #: \views\contributions\statistics.ctp:20;39
@@ -323,124 +316,111 @@ msgstr ""
 
 #: \views\conversations\edit.ctp:20
 #: \views\elements\search_bar.ctp:28
-#: \views\elements\search_bar_bak.ctp:28
 #: \views\helpers\languages.php:23
 msgid "English"
 msgstr ""
 
 #: \views\conversations\edit.ctp:21
 #: \views\elements\search_bar.ctp:29
-#: \views\elements\search_bar_bak.ctp:29
 #: \views\helpers\languages.php:24
 msgid "Japanese"
 msgstr ""
 
 #: \views\conversations\edit.ctp:22
 #: \views\elements\search_bar.ctp:30
-#: \views\elements\search_bar_bak.ctp:30
 #: \views\helpers\languages.php:25
 msgid "French"
 msgstr ""
 
 #: \views\conversations\edit.ctp:23
 #: \views\elements\search_bar.ctp:31
-#: \views\elements\search_bar_bak.ctp:31
 #: \views\helpers\languages.php:26
 msgid "German"
 msgstr ""
 
 #: \views\conversations\edit.ctp:24
 #: \views\elements\search_bar.ctp:32
-#: \views\elements\search_bar_bak.ctp:32
 #: \views\helpers\languages.php:27
 msgid "Spanish"
 msgstr ""
 
 #: \views\conversations\edit.ctp:25
 #: \views\elements\search_bar.ctp:33
-#: \views\elements\search_bar_bak.ctp:33
 #: \views\helpers\languages.php:28
 msgid "Italian"
 msgstr ""
 
 #: \views\conversations\edit.ctp:26
 #: \views\elements\search_bar.ctp:34
-#: \views\elements\search_bar_bak.ctp:34
 #: \views\helpers\languages.php:35
 msgid "Indonesian"
 msgstr ""
 
 #: \views\conversations\edit.ctp:27
 #: \views\elements\search_bar.ctp:35
-#: \views\elements\search_bar_bak.ctp:35
 #: \views\helpers\languages.php:29
 msgid "Vietnamese"
 msgstr ""
 
 #: \views\conversations\edit.ctp:28
 #: \views\elements\search_bar.ctp:36
-#: \views\elements\search_bar_bak.ctp:36
 #: \views\helpers\languages.php:36
 msgid "Portuguese"
 msgstr ""
 
 #: \views\conversations\edit.ctp:29
 #: \views\elements\search_bar.ctp:37
-#: \views\elements\search_bar_bak.ctp:37
 #: \views\helpers\languages.php:30
 msgid "Russian"
 msgstr ""
 
 #: \views\conversations\edit.ctp:30
 #: \views\elements\search_bar.ctp:38
-#: \views\elements\search_bar_bak.ctp:38
 #: \views\helpers\languages.php:31
 msgid "Chinese"
 msgstr ""
 
 #: \views\conversations\edit.ctp:31
 #: \views\elements\search_bar.ctp:39
-#: \views\elements\search_bar_bak.ctp:39
 #: \views\helpers\languages.php:32
 msgid "Korean"
 msgstr ""
 
 #: \views\conversations\edit.ctp:32
 #: \views\elements\search_bar.ctp:40
-#: \views\elements\search_bar_bak.ctp:40
 #: \views\helpers\languages.php:33
 msgid "Dutch"
 msgstr ""
 
-#: \views\conversations\edit.ctp:53
-#: \views\conversations\index.ctp:37
+#: \views\conversations\edit.ctp:40
+#: \views\conversations\index.ctp:24
 msgid "Conversations"
 msgstr ""
 
-#: \views\conversations\edit.ctp:61
-#: \views\conversations\index.ctp:38
+#: \views\conversations\edit.ctp:48
+#: \views\conversations\index.ctp:25
 msgid "Add a new conversation"
 msgstr ""
 
-#: \views\conversations\edit.ctp:66
+#: \views\conversations\edit.ctp:53
 msgid "Title"
 msgstr ""
 
-#: \views\conversations\edit.ctp:70;77
+#: \views\conversations\edit.ctp:57;64
 #: \views\conversations\new_reply.ctp:24
 msgid "Speaker"
 msgstr ""
 
-#: \views\conversations\edit.ctp:87
+#: \views\conversations\edit.ctp:74
 msgid "Add a new reply"
 msgstr ""
 
-#: \views\conversations\edit.ctp:89
+#: \views\conversations\edit.ctp:76
 msgid "Save this conversation"
 msgstr ""
 
-#: \views\conversations\edit.ctp:95
-#: \views\conversations\index.ctp:41
+#: \views\conversations\edit.ctp:82
+#: \views\conversations\index.ctp:28
 msgid "Last added conversations"
 msgstr ""
 
@@ -453,7 +433,7 @@ msgid "Terms of use"
 msgstr ""
 
 #: \views\elements\foot.ctp:36
-#: \views\sentences_lists\index.ctp:46
+#: \views\sentences_lists\index.ctp:48
 #: \views\tools\kakasi.ctp:40
 msgid "Feedback"
 msgstr ""
@@ -479,79 +459,36 @@ msgstr ""
 msgid "Help"
 msgstr ""
 
-#: \views\elements\latest_sentence_comments.ctp:42
-#: \views\helpers\tooltip.php:64
-msgid "sentence deleted"
-msgstr ""
-
-#: \views\elements\login.ctp:32
-#: \views\user\index.ctp:42;42;60;60;83;83;138;138
-msgid "Close"
-msgstr ""
-
-#: \views\elements\login.ctp:36;45
+#: \views\elements\login.ctp:43
 msgid "Login"
 msgstr ""
 
-#: \views\elements\login.ctp:86
+#: \views\elements\login.ctp:84
 msgid "Username:"
 msgstr ""
 
-#: \views\elements\login.ctp:88
+#: \views\elements\login.ctp:86
 msgid "Password:"
 msgstr ""
 
-#: \views\elements\login.ctp:91
+#: \views\elements\login.ctp:89
 #: \views\users\login.ctp:27
 msgid "Remember me"
 msgstr ""
 
-#: \views\elements\login.ctp:93
-#: \views\elements\top2.ctp:58
+#: \views\elements\login.ctp:91
 #: \views\users\login.ctp:29
 msgid "Log in"
 msgstr ""
 
-#: \views\elements\login.ctp:96
+#: \views\elements\login.ctp:95
 #: \views\users\login.ctp:33
 msgid "Password forgotten?"
 msgstr ""
 
-#: \views\elements\menu.ctp:31
-#: \views\elements\top1.ctp:28
-msgid "Home"
-msgstr ""
-
-#: \views\elements\menu.ctp:32
-#: \views\elements\top1.ctp:29
-msgid "Browse"
-msgstr ""
-
-#: \views\elements\menu.ctp:33
-msgid "Search"
-msgstr ""
-
-#: \views\elements\menu.ctp:34
-#: \views\elements\top1.ctp:32
-msgid "Contribute"
-msgstr ""
-
-#: \views\elements\menu.ctp:35
-#: \views\helpers\menu.php:105;106
-#: \views\sentence_comments\add.ctp:55
-#: \views\sentence_comments\show.ctp:78
-msgid "Comments"
-msgstr ""
-
-#: \views\elements\menu.ctp:36
-#: \views\elements\top1.ctp:33
-msgid "Members"
-msgstr ""
-
-#: \views\elements\menu.ctp:37
-#: \views\elements\top1.ctp:35
-#: \views\pages\whats_new.ctp:35
-msgid "What's new"
+#: \views\elements\login.ctp:99
+#: \views\user\index.ctp:44;45;65;65;88;88;152;152
+msgid "Close"
 msgstr ""
 
 #: \views\elements\pmmenu.ctp:23
@@ -581,7 +518,7 @@ msgstr ""
 
 #: \views\elements\random_sentence.ctp:29
 #: \views\helpers\navigation.php:66
-#: \views\pages\home.ctp:47
+#: \views\pages\home.ctp:33
 msgid "any"
 msgstr ""
 
@@ -594,23 +531,18 @@ msgid "show another "
 msgstr ""
 
 #: \views\elements\search_bar.ctp:49
-#: \views\private_messages\folder.ctp:31
+#: \views\private_messages\folder.ctp:32
 msgid "From"
 msgstr ""
 
 #: \views\elements\search_bar.ctp:58
-#: \views\private_messages\folder.ctp:29
+#: \views\private_messages\folder.ctp:30
 #: \views\private_messages\write.ctp:30
 msgid "To"
 msgstr ""
 
 #: \views\elements\search_bar.ctp:68
-#: \views\elements\search_bar_bak.ctp:51
 msgid "search"
-msgstr ""
-
-#: \views\elements\search_bar_bak.ctp:53
-msgid "show examples"
 msgstr ""
 
 #: \views\elements\sentences_statistics.ctp:47
@@ -621,41 +553,42 @@ msgstr ""
 msgid "top 5 only"
 msgstr ""
 
+#: \views\elements\space.ctp:25
+msgid "My profile"
+msgstr ""
+
 #: \views\elements\space.ctp:36
 msgid "Log out"
+msgstr ""
+
+#: \views\elements\top1.ctp:28
+msgid "Home"
+msgstr ""
+
+#: \views\elements\top1.ctp:29
+msgid "Browse"
 msgstr ""
 
 #: \views\elements\top1.ctp:30
 msgid "Lists"
 msgstr ""
 
+#: \views\elements\top1.ctp:32
+msgid "Contribute"
+msgstr ""
+
+#: \views\elements\top1.ctp:33
+msgid "Members"
+msgstr ""
+
 #: \views\elements\top1.ctp:34
-#: \views\wall\index.ctp:27;45
+#: \views\wall\index.ctp:27;57
 msgid "Wall"
 msgstr ""
 
-#: \views\elements\top2.ctp:33
-msgid "Welcome"
-msgstr ""
-
-#: \views\elements\top2.ctp:39
-msgid "Messages"
-msgstr ""
-
-#: \views\elements\top2.ctp:46
-msgid "My profile"
-msgstr ""
-
-#: \views\elements\top2.ctp:51
-msgid "My settings"
-msgstr ""
-
-#: \views\elements\top2.ctp:67
-#: \views\pages\home.ctp:60
-#: \views\sentences_lists\index.ctp:64
-#: \views\users\login.ctp:44
-#: \views\users\register.ctp:51
-msgid "Register"
+#: \views\elements\top1.ctp:35
+#: \views\pages\whats_new.ctp:35
+msgid "What's new"
 msgstr ""
 
 #: \views\favorites\add_favorite.ctp:23;24
@@ -679,30 +612,28 @@ msgstr ""
 
 #: \views\groups\index.ctp:67
 #: \views\helpers\navigation.php:40
-#: \views\users\all.ctp:77;116
+#: \views\users\all.ctp:77;135
 #: \views\users\index.ctp:27;88
 msgid "previous"
 msgstr ""
 
 #: \views\groups\index.ctp:69
 #: \views\helpers\navigation.php:52
-#: \views\users\all.ctp:79;118
+#: \views\users\all.ctp:79;137
 #: \views\users\index.ctp:29;90
 msgid "next"
 msgstr ""
 
-#: \views\helpers\comments.php:32
-#: \views\sentence_comments\index.ctp:60
-#: \views\users\show.ctp:31
-msgid "Contact this user"
+#: \views\helpers\comments.php:43
+msgid "View all comments on the related sentence"
 msgstr ""
 
-#: \views\helpers\comments.php:51
-msgid "Even though you can comment on the whole group of sentences, keep in mind that your comment will be <strong>linked only to the main sentence</strong> (at the top)."
-msgstr ""
-
-#: \views\helpers\comments.php:52
-msgid "Add a comment : "
+#: \views\helpers\comments.php:54;65
+#: \views\helpers\wall.php:66;79
+#: \views\users\show.ctp:62
+#: \views\wall\index.ctp:92;103
+#: \views\wall\save_inside.ctp:43;56
+msgid "View this user's profile"
 msgstr ""
 
 #: \views\helpers\date.php:44
@@ -737,9 +668,30 @@ msgstr ""
 msgid "Ukrainian"
 msgstr ""
 
+#: \views\helpers\languages.php:40
+msgid "Czech"
+msgstr ""
+
+#: \views\helpers\languages.php:41
+msgid "Esperanto"
+msgstr ""
+
+#: \views\helpers\languages.php:42
+msgid "Modern Greek"
+msgstr ""
+
+#: \views\helpers\languages.php:43
+msgid "Turkish"
+msgstr ""
+
+#: \views\helpers\logs.php:128
+msgid "linked to"
+msgstr ""
+
 #: \views\helpers\menu.php:35;36
-#: \views\helpers\sentences.php:167;168;220;221
+#: \views\helpers\sentences.php:174;175;223;224
 #: \views\sentences\check_translation.ctp:46;47
+#: \views\sentences\save_translation.ctp:39;40
 msgid "Show"
 msgstr ""
 
@@ -755,12 +707,18 @@ msgstr ""
 msgid "Let go"
 msgstr ""
 
+#: \views\helpers\menu.php:105;106
+#: \views\sentence_comments\show.ctp:71
+#: \views\sentences\show.ctp:97
+msgid "Comments"
+msgstr ""
+
 #: \views\helpers\menu.php:145;146
 msgid "Add to list"
 msgstr ""
 
 #: \views\helpers\menu.php:157;158
-#: \views\private_messages\folder.ctp:41
+#: \views\private_messages\folder.ctp:57
 #: \views\private_messages\show.ctp:27
 msgid "Delete"
 msgstr ""
@@ -770,7 +728,6 @@ msgid "Show sentence nº : "
 msgstr ""
 
 #: \views\helpers\navigation.php:34
-#: \views\helpers\sentences.php:260;305
 msgid "OK"
 msgstr ""
 
@@ -798,35 +755,31 @@ msgstr ""
 msgid "all the lists"
 msgstr ""
 
-#: \views\helpers\sentences.php:50
+#: \views\helpers\sentences.php:57
 msgid "WARNING : the romaji is automatically generated and is not always reliable."
 msgstr ""
 
-#: \views\helpers\sentences.php:118
+#: \views\helpers\sentences.php:130
 msgid "This sentence does not belong to anyone. If you would like to edit it, you have to adopt it first."
 msgstr ""
 
-#: \views\helpers\sentences.php:125
+#: \views\helpers\sentences.php:137
 msgid "This sentence belongs to :"
 msgstr ""
 
-#: \views\helpers\sentences.php:232
+#: \views\helpers\sentences.php:235
 msgid "indirect translation"
 msgstr ""
 
-#: \views\helpers\sentences.php:304
-msgid "Modification : "
-msgstr ""
-
-#: \views\helpers\sentences.php:391
+#: \views\helpers\sentences.php:338
 msgid "Add to new list..."
 msgstr ""
 
-#: \views\helpers\sentences.php:395
+#: \views\helpers\sentences.php:342
 msgid "Manage lists..."
 msgstr ""
 
-#: \views\helpers\sentences.php:423
+#: \views\helpers\sentences.php:370
 msgid "belongs to "
 msgstr ""
 
@@ -905,38 +858,17 @@ msgstr ""
 msgid "Send"
 msgstr ""
 
-#: \views\helpers\wall.php:49
-#: \views\wall\index.ctp:70
-#: \views\wall\save_inside.ctp:28
-msgid "says :"
+#: \views\helpers\wall.php:38
+msgid "cancel"
 msgstr ""
 
-#: \views\helpers\wall.php:52
-#: \views\wall\index.ctp:74
-#: \views\wall\save_inside.ctp:32
+#: \views\helpers\wall.php:55
+#: \views\wall\index.ctp:85
 msgid "reply"
 msgstr ""
 
 #: \views\pages\about.ctp:19
 msgid "About Tatoeba"
-msgstr ""
-
-#: \views\pages\about.ctp:24
-#: \views\pages\help.ctp:24
-#: \views\pages\terms-of-use.ctp:23
-msgid "Table of contents"
-msgstr ""
-
-#: \views\pages\about.ctp:26;35
-msgid "The origins"
-msgstr ""
-
-#: \views\pages\about.ctp:27;40
-msgid "The concept"
-msgstr ""
-
-#: \views\pages\about.ctp:28;45
-msgid "The ambition"
 msgstr ""
 
 #: \views\pages\contact.ctp:25
@@ -1040,181 +972,203 @@ msgstr ""
 msgid "Size"
 msgstr ""
 
-#: \views\pages\help.ctp:26;43
+#: \views\pages\help.ctp:24
+#: \views\pages\terms-of-use.ctp:23
+msgid "Table of contents"
+msgstr ""
+
+#: \views\pages\help.ctp:26;44
 msgid "Adding new sentences"
 msgstr ""
 
-#: \views\pages\help.ctp:27;56
+#: \views\pages\help.ctp:27;57
 msgid "Translating sentences"
 msgstr ""
 
-#: \views\pages\help.ctp:28;70
+#: \views\pages\help.ctp:28;71
 msgid "Correcting mistakes"
 msgstr ""
 
-#: \views\pages\help.ctp:29;78
+#: \views\pages\help.ctp:29;79
 msgid "Adopting sentences"
 msgstr ""
 
-#: \views\pages\help.ctp:34
-msgid "Need more help?"
+#: \views\pages\help.ctp:30;90
+msgid "Sentences lists"
 msgstr ""
 
 #: \views\pages\help.ctp:35
+msgid "Need more help?"
+msgstr ""
+
+#: \views\pages\help.ctp:36
 msgid "If you cannot find the answer to your question, do not hesitate to contact us."
 msgstr ""
 
-#: \views\pages\help.ctp:44
+#: \views\pages\help.ctp:45
 msgid "Ideally, for any word you may want to search, we would like you to always get results. Indeed, one of the goala of the project is to illustrate as many words and expressions as possible."
 msgstr ""
 
-#: \views\pages\help.ctp:45
+#: \views\pages\help.ctp:46
 msgid "However, even if there is a large amount of sentences, there is still a lot of vocabulary that is not covered. This is why we encourage you to add new sentences with new vocabulary, even if you do not know how to translate it into any language."
 msgstr ""
 
-#: \views\pages\help.ctp:48
+#: \views\pages\help.ctp:49
 msgid "Just <a href=\"%s\">register</a> if you have not done so already, then log in and go to the <a href=\"%s\">contribution section</a>."
 msgstr ""
 
-#: \views\pages\help.ctp:57
+#: \views\pages\help.ctp:58
 msgid "Translating is one of the most important tasks in Tatoeba, since the main goal of the project is to gather sentences translated into several languages."
 msgstr ""
 
-#: \views\pages\help.ctp:58
+#: \views\pages\help.ctp:59
 msgid "You can translate a sentence from pretty much everywhere. Just click on this icon %s whenever you see it."
 msgstr ""
 
-#: \views\pages\help.ctp:61
+#: \views\pages\help.ctp:62
 msgid "Note that translations are limited to registered users."
 msgstr ""
 
-#: \views\pages\help.ctp:63
+#: \views\pages\help.ctp:64
 msgid "Click here to register."
 msgstr ""
 
-#: \views\pages\help.ctp:71
+#: \views\pages\help.ctp:72
 msgid "Tatoeba is a project that is open to everyone, and we are aware that people make mistakes."
 msgstr ""
 
-#: \views\pages\help.ctp:72
+#: \views\pages\help.ctp:73
 msgid "It is not possible for you to directly correct mistakes in sentences that belong to other people because only the owner of the sentence can edit it. You can however post a comment (%s) on the sentence to notify the mistake. The owner will have to correct it himself or herself."
 msgstr ""
 
-#: \views\pages\help.ctp:73
+#: \views\pages\help.ctp:74
 msgid "In certain cases, the sentence do not have an owner. Read the paragraph below (on adopting sentences) to learn more."
 msgstr ""
 
-#: \views\pages\help.ctp:79
+#: \views\pages\help.ctp:80
 msgid "When you add a sentence, this sentence \"belongs\" to you - only you can edit it. However, most of the sentences in Tatoeba come from a Japanese-English corpus called Tanaka Corpus. These sentences do not have any owner because they have been collected outside of Tatoeba."
 msgstr ""
 
-#: \views\pages\help.ctp:80
+#: \views\pages\help.ctp:81
 msgid "If you see a mistake in an \"orphan\" sentence, you will not be able correct it because you are not the owner. This is why there is an \"adopt\" option (%s). Once you adopt a sentence, you become its owner and therefore can edit it."
 msgstr ""
 
-#: \views\pages\help.ctp:82
+#: \views\pages\help.ctp:83
 msgid "Adopting a sentence is also part the \"quality process\". You can find more information about it here:"
+msgstr ""
+
+#: \views\pages\help.ctp:91
+msgid "You can create lists of sentences in Tatoeba. By default the list is <strong>private</strong>, which means it can only be edited by the person who created it."
+msgstr ""
+
+#: \views\pages\help.ctp:92
+msgid "However it is also possible to let any member in Tatoeba add and remove sentences by setting a list as <strong>public</strong>."
+msgstr ""
+
+#: \views\pages\help.ctp:93
+msgid "Someday we will also introduce <strong>group</strong> lists, that only a restricted group of members can edit."
 msgstr ""
 
 #: \views\pages\home.ctp:19
 msgid "Tatoeba : Collecting example sentences"
 msgstr ""
 
-#: \views\pages\home.ctp:27
-msgid "The language of some the sentences you have added could not be detected. "
-msgstr ""
-
-#: \views\pages\home.ctp:28
-msgid "Click here."
-msgstr ""
-
-#: \views\pages\home.ctp:56
+#: \views\pages\home.ctp:42
 msgid "Join the community!"
 msgstr ""
 
-#: \views\pages\home.ctp:57
+#: \views\pages\home.ctp:43
 msgid "The more contributors there are, the more useful Tatoeba will become! Besides, by contributing, not only you will be helpful to the rest of the world, but you will also get to learn a lot."
 msgstr ""
 
-#: \views\pages\home.ctp:71
+#: \views\pages\home.ctp:46
+#: \views\sentences_lists\index.ctp:66
+#: \views\users\login.ctp:44
+#: \views\users\register.ctp:51
+msgid "Register"
+msgstr ""
+
+#: \views\pages\home.ctp:57
 msgid "Number of sentences"
 msgstr ""
 
-#: \views\pages\home.ctp:82
+#: \views\pages\home.ctp:68
+msgid "WARNING : The language of some the sentences you have added could not be detected. "
+msgstr ""
+
+#: \views\pages\home.ctp:72
+msgid "Click here to set the languages"
+msgstr ""
+
+#: \views\pages\home.ctp:87
 msgid "What is Tatoeba?"
 msgstr ""
 
-#: \views\pages\home.ctp:85
+#: \views\pages\home.ctp:90
 msgid "At its core, Tatoeba is a large database of <strong>example sentences</strong> translated into several languages. But as a whole, it is much more than that."
 msgstr ""
 
-#: \views\pages\home.ctp:93
+#: \views\pages\home.ctp:98
 msgid "What can I do in Tatoeba?"
 msgstr ""
 
-#: \views\pages\home.ctp:95
+#: \views\pages\home.ctp:100
 msgid "Learn"
 msgstr ""
 
-#: \views\pages\home.ctp:95
+#: \views\pages\home.ctp:100
 msgid "languages"
 msgstr ""
 
-#: \views\pages\home.ctp:97
+#: \views\pages\home.ctp:102
 msgid "Search sentences"
 msgstr ""
 
-#: \views\pages\home.ctp:98
+#: \views\pages\home.ctp:103
 msgid "Create lists"
 msgstr ""
 
-#: \views\pages\home.ctp:103
+#: \views\pages\home.ctp:108
 msgid "Share"
 msgstr ""
 
-#: \views\pages\home.ctp:103
+#: \views\pages\home.ctp:108
 msgid "your knowledge"
 msgstr ""
 
-#: \views\pages\home.ctp:105
+#: \views\pages\home.ctp:110
 msgid "Translate sentences"
 msgstr ""
 
-#: \views\pages\home.ctp:106
+#: \views\pages\home.ctp:111
 msgid "Correct the mistakes"
 msgstr ""
 
-#: \views\pages\home.ctp:111
+#: \views\pages\home.ctp:116
 msgid "Interact"
 msgstr ""
 
-#: \views\pages\home.ctp:111
+#: \views\pages\home.ctp:116
 msgid "with the community"
 msgstr ""
 
-#: \views\pages\home.ctp:113
+#: \views\pages\home.ctp:118
 msgid "Post comments"
 msgstr ""
 
-#: \views\pages\home.ctp:114
+#: \views\pages\home.ctp:119
 msgid "Contact other members"
 msgstr ""
 
-#: \views\pages\home.ctp:131
-#: \views\users\show.ctp:40
-msgid "Latest contributions"
-msgstr ""
-
-#: \views\pages\home.ctp:131;136
+#: \views\pages\home.ctp:136;141
 msgid "show more..."
 msgstr ""
 
-#: \views\pages\home.ctp:131
+#: \views\pages\home.ctp:136
 msgid "show activity timeline"
 msgstr ""
 
-#: \views\pages\home.ctp:136
-#: \views\sentences\show.ctp:97
+#: \views\pages\home.ctp:141
 #: \views\users\show.ctp:162
 msgid "Latest comments"
 msgstr ""
@@ -1408,20 +1362,20 @@ msgstr ""
 msgid "Date"
 msgstr ""
 
-#: \views\private_messages\folder.ctp:32
+#: \views\private_messages\folder.ctp:34
 msgid "Subject"
 msgstr ""
 
-#: \views\private_messages\folder.ctp:40
+#: \views\private_messages\folder.ctp:55
 #: \views\private_messages\show.ctp:26
 msgid "Restore"
 msgstr ""
 
-#: \views\private_messages\folder.ctp:42
+#: \views\private_messages\folder.ctp:60
 msgid "Mark as read"
 msgstr ""
 
-#: \views\private_messages\folder.ctp:43
+#: \views\private_messages\folder.ctp:62
 msgid "Mark as unread"
 msgstr ""
 
@@ -1433,7 +1387,7 @@ msgstr ""
 msgid "Mark unread"
 msgstr ""
 
-#: \views\private_messages\show.ctp:37
+#: \views\private_messages\show.ctp:38
 msgid " has written:"
 msgstr ""
 
@@ -1441,41 +1395,23 @@ msgstr ""
 msgid "Send new message"
 msgstr ""
 
-#: \views\sentence_comments\add.ctp:20
-msgid "Add comment for sentence"
+#: \views\sentence_comments\index.ctp:25
+msgid "Languages"
 msgstr ""
 
-#: \views\sentence_comments\add.ctp:28
-msgid "Notifications"
+#: \views\sentence_comments\index.ctp:26
+msgid "Comments are grouped by languages."
 msgstr ""
 
-#: \views\sentence_comments\add.ctp:29
-msgid "You will receive notifications every time someone posts a comment on this sentence."
-msgstr ""
-
-#: \views\sentence_comments\add.ctp:30
-msgid "You can disactivate the notifications from your profile"
-msgstr ""
-
-#: \views\sentence_comments\add.ctp:31
-msgid "Go to my profile"
-msgstr ""
-
-#: \views\sentence_comments\add.ctp:39
-#: \views\sentence_comments\show.ctp:44
-#: \views\sentences\show.ctp:52;77
-msgid "Sentence nº"
-msgstr ""
-
-#: \views\sentence_comments\index.ctp:30
+#: \views\sentence_comments\index.ctp:33;51
 msgid "Other languages"
 msgstr ""
 
-#: \views\sentence_comments\index.ctp:47
-msgid "sentences deleted"
+#: \views\sentence_comments\index.ctp:39
+msgid "NOTE : Since the language of the comments is auto-detected, you may find certain sentences in the wrong category."
 msgstr ""
 
-#: \views\sentence_comments\index.ctp:74
+#: \views\sentence_comments\index.ctp:61
 msgid "There are no comments in this language"
 msgstr ""
 
@@ -1491,6 +1427,11 @@ msgstr ""
 msgid "NOTE : If the sentence does not belong to anyone and you know how to correct the mistake, feel free to correct it without posting any comment. You will have to adopt the sentence before you can edit it."
 msgstr ""
 
+#: \views\sentence_comments\show.ctp:44
+#: \views\sentences\show.ctp:52;77
+msgid "Sentence nº"
+msgstr ""
+
 #: \views\sentence_comments\show.ctp:46
 msgid "Comments on the sentence : "
 msgstr ""
@@ -1499,14 +1440,22 @@ msgstr ""
 msgid "Comments for sentence nº"
 msgstr ""
 
-#: \views\sentence_comments\show.ctp:72
+#: \views\sentence_comments\show.ctp:61
+msgid "The sentence has been deleted"
+msgstr ""
+
+#: \views\sentence_comments\show.ctp:81
+#: \views\sentences\show.ctp:123
+msgid "There are no comments for now."
+msgstr ""
+
+#: \views\sentence_comments\show.ctp:88
 #: \views\sentences\show.ctp:91
 msgid "Add a comment"
 msgstr ""
 
-#: \views\sentence_comments\show.ctp:93
-#: \views\sentences\show.ctp:127
-msgid "There are no comments for now."
+#: \views\sentence_comments\show.ctp:95
+msgid "You need to be logged in to add a comment. If you are not registered, you can <a href=\"\">register here</a>."
 msgstr ""
 
 #: \views\sentences\add.ctp:28
@@ -1533,6 +1482,14 @@ msgstr ""
 msgid "No results for this search"
 msgstr ""
 
+#: \views\sentences\show.ctp:30
+msgid "Logs"
+msgstr ""
+
+#: \views\sentences\show.ctp:41
+msgid "There is no log for this sentence"
+msgstr ""
+
 #: \views\sentences\show.ctp:53
 msgid "Example sentence : "
 msgstr ""
@@ -1545,7 +1502,7 @@ msgstr ""
 msgid "There is no sentence with id "
 msgstr ""
 
-#: \views\sentences\show.ctp:116
+#: \views\sentences\show.ctp:112
 msgid "See all comments"
 msgstr ""
 
@@ -1570,104 +1527,167 @@ msgid "You don't have any sentence which language is unknown."
 msgstr ""
 
 #: \views\sentences_lists\edit.ctp:29
+#: \views\sentences_lists\show.ctp:23
 msgid "Actions"
 msgstr ""
 
 #: \views\sentences_lists\edit.ctp:34
+#: \views\sentences_lists\show.ctp:28
 msgid "Back to all the lists"
 msgstr ""
 
 #: \views\sentences_lists\edit.ctp:42
+#: \views\sentences_lists\show.ctp:36
+msgid "Show translations :"
+msgstr ""
+
+#: \views\sentences_lists\edit.ctp:61
+msgid "Set list as public"
+msgstr ""
+
+#: \views\sentences_lists\edit.ctp:70
 msgid "Delete this list"
 msgstr ""
 
-#: \views\sentences_lists\edit.ctp:45
-#: \views\sentences_lists\index.ctp:113
+#: \views\sentences_lists\edit.ctp:73
 msgid "Are you sure?"
 msgstr ""
 
-#: \views\sentences_lists\edit.ctp:53
-#: \views\sentences_lists\index.ctp:37
+#: \views\sentences_lists\edit.ctp:82
+#: \views\sentences_lists\show.ctp:53
+msgid "Printable versions"
+msgstr ""
+
+#: \views\sentences_lists\edit.ctp:87
+#: \views\sentences_lists\show.ctp:58
+msgid "Print as exercise"
+msgstr ""
+
+#: \views\sentences_lists\edit.ctp:97
+#: \views\sentences_lists\show.ctp:68
+msgid "Print as correction"
+msgstr ""
+
+#: \views\sentences_lists\edit.ctp:111
+msgid "Check this box to display romanization in the print version"
+msgstr ""
+
+#: \views\sentences_lists\edit.ctp:119
+#: \views\sentences_lists\index.ctp:39
+#: \views\wall\index.ctp:32
 msgid "Tips"
 msgstr ""
 
-#: \views\sentences_lists\edit.ctp:55
+#: \views\sentences_lists\edit.ctp:123
 msgid "You can change the name of the list by clicking on it."
 msgstr ""
 
-#: \views\sentences_lists\edit.ctp:56
+#: \views\sentences_lists\edit.ctp:127
 msgid "You can remove a sentence from the list by clicking on the X icon."
 msgstr ""
 
-#: \views\sentences_lists\edit.ctp:69
+#: \views\sentences_lists\edit.ctp:128
+msgid "Removing a sentence will not delete it. The sentence will just not be part of the list anymore."
+msgstr ""
+
+#: \views\sentences_lists\edit.ctp:144
 msgid "Add a sentence to this list : "
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:28;122
+#: \views\sentences_lists\edit.ctp:150
+msgid "NOTE : You can also add existing sentences with this icon %s (while <a href=\"%s\">browsing</a> for instance)."
+msgstr ""
+
+#: \views\sentences_lists\index.ctp:30;120
 msgid "Create a new list"
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:38
+#: \views\sentences_lists\index.ctp:40
 msgid "Click on the name of your list if you would like to change the name. You will be able to edit it in place."
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:44
+#: \views\sentences_lists\index.ctp:46
 msgid "Still beta"
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:45
+#: \views\sentences_lists\index.ctp:47
 msgid "This feature is still very basic. We will improve it as we get more time and some feedbacks from users."
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:53
+#: \views\sentences_lists\index.ctp:55
 msgid "About the lists"
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:54
+#: \views\sentences_lists\index.ctp:56
 msgid "Lists makes it possible to gather and organize sentences in Tatoeba."
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:55
+#: \views\sentences_lists\index.ctp:57
 msgid "You can create all kinds of lists! \"Preparation for summer trip to Mexico\", \"English test nº4\", \"My favorite geek quotes\"..."
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:59
+#: \views\sentences_lists\index.ctp:61
 msgid "Registration needed"
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:60
+#: \views\sentences_lists\index.ctp:62
 msgid "You can create lists only if you are registered."
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:70
+#: \views\sentences_lists\index.ctp:72
 msgid "If you are already registered, please log in."
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:89
+#: \views\sentences_lists\index.ctp:91
 msgid "My lists"
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:105
-msgid "edit"
+#: \views\sentences_lists\index.ctp:107;147;174
+msgid "created by <a href=\"%s\">%s</a>"
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:110
-msgid "delete"
+#: \views\sentences_lists\index.ctp:112
+msgid "(public list)"
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:135
-msgid "All lists"
+#: \views\sentences_lists\index.ctp:134
+msgid "Public lists"
 msgstr ""
 
-#: \views\sentences_lists\index.ctp:148
-msgid "show"
+#: \views\sentences_lists\index.ctp:161
+msgid "All the other lists"
+msgstr ""
+
+#: \views\sentences_lists\print_as_correction.ctp:20
+#: \views\sentences_lists\print_as_exercise.ctp:20
+msgid "Tatoeba list :"
+msgstr ""
+
+#: \views\sentences_lists\print_as_correction.ctp:62
+msgid "You have to specify the language of the translations :"
+msgstr ""
+
+#: \views\sentences_lists\print_as_correction.ctp:76
+msgid "This version enables you to have a printable version of the list with translations in the language of your choice."
+msgstr ""
+
+#: \views\sentences_lists\print_as_correction.ctp:81
+msgid "It is practical, for instance, in the case you want to practice <a href=\"%s\">translating on paper</a> and would like also to have the correction printed somewhere on paper, to check if you have translated properly."
+msgstr ""
+
+#: \views\sentences_lists\print_as_correction.ctp:87
+msgid "WARNING : It is possible that the sentences do not have translations in the language you will specify."
 msgstr ""
 
 #: \views\sentences_lists\remove_sentence_from_list.ctp:22
 msgid "Sentence successfully removed."
 msgstr ""
 
-#: \views\sentences_lists\show.ctp:39
+#: \views\sentences_lists\show.ctp:82
+msgid "Check this box to display romanization in the printable version"
+msgstr ""
+
+#: \views\sentences_lists\show.ctp:108
 msgid "This list does not have any sentence"
 msgstr ""
 
@@ -1706,83 +1726,82 @@ msgstr ""
 msgid "More information"
 msgstr ""
 
-#: \views\user\index.ctp:42
+#: \views\user\index.ctp:43
 msgid "Change your profile image?"
 msgstr ""
 
-#: \views\user\index.ctp:53
+#: \views\user\index.ctp:58
 msgid "Upload"
 msgstr ""
 
-#: \views\user\index.ctp:60
+#: \views\user\index.ctp:65
 msgid "Tell us something about you"
 msgstr ""
 
-#: \views\user\index.ctp:72;180;194
+#: \views\user\index.ctp:77;194;208
 #: \views\users\settings.ctp:32;40;53
 msgid "Save"
 msgstr ""
 
-#: \views\user\index.ctp:78
+#: \views\user\index.ctp:83
 #: \views\user\profile.ctp:63
 msgid "Something about you"
 msgstr ""
 
-#: \views\user\index.ctp:78;104;110;155;161
+#: \views\user\index.ctp:83;118;124;169;175
 msgid "Edit"
 msgstr ""
 
-#: \views\user\index.ctp:79
+#: \views\user\index.ctp:84
 msgid "Tell us something about you!"
 msgstr ""
 
-#: \views\user\index.ctp:83;138
+#: \views\user\index.ctp:88;152
 msgid "Complete some informations?"
 msgstr ""
 
-#: \views\user\index.ctp:103
-#: \views\users\all.ctp:84
+#: \views\user\index.ctp:117
 msgid "Country"
 msgstr ""
 
-#: \views\user\index.ctp:110
+#: \views\user\index.ctp:124
 #: \views\user\profile.ctp:70
 msgid "Basic Information"
 msgstr ""
 
-#: \views\user\index.ctp:115
-msgid "You haven't set your birthday yet!"
+#: \views\user\index.ctp:129
+msgid "You have not set your birthday yet!"
 msgstr ""
 
-#: \views\user\index.ctp:117
+#: \views\user\index.ctp:131
 msgid "Tells us where you come from!"
 msgstr ""
 
-#: \views\user\index.ctp:161
+#: \views\user\index.ctp:175
 #: \views\user\profile.ctp:10
 msgid "Contact informations"
 msgstr ""
 
-#: \views\user\index.ctp:171
+#: \views\user\index.ctp:185
 msgid "Settings"
 msgstr ""
 
-#: \views\user\index.ctp:184
+#: \views\user\index.ctp:198
 #: \views\users\settings.ctp:26
 msgid "Change password"
 msgstr ""
 
-#: \views\user\index.ctp:191
+#: \views\user\index.ctp:205
 #: \views\users\settings.ctp:29
 msgid "Old password"
 msgstr ""
 
-#: \views\user\index.ctp:192
+#: \views\user\index.ctp:206
 #: \views\users\settings.ctp:30
 msgid "New password"
 msgstr ""
 
-#: \views\user\index.ctp:193
+#: \views\user\index.ctp:207
 #: \views\users\settings.ctp:31
 msgid "New password again"
 msgstr ""
@@ -1815,7 +1834,7 @@ msgstr ""
 msgid "Users (total %count%)"
 msgstr ""
 
-#: \views\users\all.ctp:83
+#: \views\users\all.ctp:84
 msgid "Username"
 msgstr ""
 
@@ -1824,6 +1843,10 @@ msgid "Member since"
 msgstr ""
 
 #: \views\users\all.ctp:86
+msgid "Last login"
+msgstr ""
+
+#: \views\users\all.ctp:87
 msgid "Member status"
 msgstr ""
 
@@ -1892,16 +1915,16 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
+#: \views\users\show.ctp:31
+msgid "Contact this user"
+msgstr ""
+
 #: \views\users\show.ctp:55
 msgid "About %s"
 msgstr ""
 
 #: \views\users\show.ctp:58
 msgid "Member since:"
-msgstr ""
-
-#: \views\users\show.ctp:62
-msgid "View this user's profile"
 msgstr ""
 
 #: \views\users\show.ctp:88
@@ -1918,6 +1941,24 @@ msgstr ""
 
 #: \views\users\show.ctp:149
 msgid "Latest sentences"
+msgstr ""
+
+#: \views\wall\index.ctp:33
+msgid ""
+"Here you can ask general questions like how to use Tatoeba, report bugs or strange behaviors, or simply\n"
+"        socialize with the rest of the community."
+msgstr ""
+
+#: \views\wall\index.ctp:36
+msgid "Have fun! Don't be shy!"
+msgstr ""
+
+#: \views\wall\index.ctp:40
+msgid "Latest messages"
+msgstr ""
+
+#: \views\wall\index.ctp:46
+msgid "by "
 msgstr ""
 
 #: \webroot\test.php:101
