@@ -19,31 +19,5 @@
 $this->pageTitle = __('About Tatoeba',true);
 ?>
 
-<div id="annexe_content">
-	<div class="module">
-		<h2><?php __('Table of contents'); ?></h2>
-		<ul>
-			<li><?php __('The origins'); ?></li>
-			<li><?php __('The concept'); ?></li>
-			<li><?php __('The ambition'); ?></li>
-		</ul>
-	</div>
-</div>
 
-<div id="main_content">
-	<div class="module">
-		<h2><?php echo __('The origins',true); ?></h2>
-		<p>...</p>
-	</div>
-	
-	<div class="module">
-		<h2><?php echo __('The concept',true); ?></h2>
-		<p>...</p>
-	</div>
-	
-	<div class="module">
-		<h2><?php echo __('The ambition',true); ?></h2>
-		<p>...</p>
-	</div>
-</div>
 
