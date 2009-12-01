@@ -238,7 +238,6 @@ class SentencesListsController extends AppController{
 	 * It is called in the SentencesHelper, in the displayMenu() method.
 	 */
 	function choices(){
-		Configure::write('debug', 2);
 		$this->SentencesList->recursive = -1;
 		$lists = $this->SentencesList->find(
 			'all', 
