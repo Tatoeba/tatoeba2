@@ -238,7 +238,8 @@ class SentencesListsController extends AppController{
 	 * It is called in the SentencesHelper, in the displayMenu() method.
 	 */
 	function choices(){
-		$this->SentencesList->recursive = 0;
+		Configure::write('debug', 2);
+		$this->SentencesList->recursive = -1;
 		$lists = $this->SentencesList->find(
 			'all', 
 			array("conditions" => 
@@ -248,7 +249,6 @@ class SentencesListsController extends AppController{
 				)
 			))
 		);
-		$lists = array_unique($lists);
 		return $lists;
 	}
 	
@@ -259,7 +259,7 @@ class SentencesListsController extends AppController{
 	function belongsToCurrentUser($listId){
 		$this->SentencesList->id = $listId;
 		$list = $this->SentencesList->read();
-		if($list['SentencesList']['user_id'] == $this->Auth->user('id') OR $list['SentencesList']['is_public']){
+		if($list['SentencesList']['user_id'] == $this->Auth->user('id') OR $list['SentencesList']['is_public'] == 1){
 			return true;
 		}else{
 			return false;

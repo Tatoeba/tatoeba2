@@ -344,13 +344,26 @@ class SentencesHelper extends AppHelper {
 					
 					echo '<option value="0">--------------</option>';
 					
+					// user's lists
 					foreach($lists as $list){
-						if(!in_array($list['SentencesList']['id'], $specialOptions['belongsToLists'])){
+						if(!in_array($list['SentencesList']['id'], $specialOptions['belongsToLists']) AND !$list['SentencesList']['is_public']){
 							echo '<option value="'.$list['SentencesList']['id'].'">';
 							echo $list['SentencesList']['name'];
 							echo '</option>';
 						}
-					}					
+					}
+
+					echo '<option value="0">--------------</option>';
+					
+					// public lists
+					foreach($lists as $list){
+						if(!in_array($list['SentencesList']['id'], $specialOptions['belongsToLists']) AND $list['SentencesList']['is_public']){
+							echo '<option value="'.$list['SentencesList']['id'].'">';
+							echo $list['SentencesList']['name'];
+							echo '</option>';
+						}
+					}
+					
 					echo '</select>';
 					// ok button
 					echo '<input type="button" value="ok" class="addToListButton" />';
