@@ -47,6 +47,7 @@
 		echo $html->css('tatoeba.private_messages');
 		echo $html->css('tatoeba.sentences_lists');    
 		echo $html->css('tatoeba.tools');
+        echo $html->css('tatoeba.sinograms');
 
 		echo $javascript->link('jquery.js', true);
 		echo $javascript->link('sentences.show_another.js', true);
