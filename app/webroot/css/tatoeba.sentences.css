@@ -98,7 +98,7 @@ padding: 10px 5px;
 .translation a{
 	float:left;
 	padding: 0px 5px;
-	margin-top: 2px;
+	margin-top: 5px;
 	visibility: hidden;
 }
 
@@ -106,10 +106,6 @@ padding: 10px 5px;
 	display: block;
 	padding-left: 30px;
 	padding-right: 30px;
-}
-
-.translations li.translation:hover {
-	background-color:#e5e5e5;
 }
 
 .translations li.translation:hover a{
@@ -132,13 +128,12 @@ display:inline;
 
 .original{
 	font-family: georgia;
-	display:block;
 	padding: 10px 5px;
 	font-size: 1.7em;
 }
 
-.original:hover {
-	background-color:#e5e5e5;
+.original div{
+	margin-right: 40px;
 }
 
 .original a{
@@ -146,8 +141,10 @@ display:inline;
 	font-weight: normal;
 }
 
-.direct, .indirect{
-padding: 5px;
+.direct div, .indirect div{
+	padding: 5px;
+	padding-left: 30px;
+	margin-right: 40px;
 }
 
 ul.translations, .sentences_set ul.menu{
@@ -157,8 +154,8 @@ padding: 0;
 }
 
 
-li.direct{
-/*background:transparent url(../img/translate.png) no-repeat scroll 10px;*/
+li.translation{
+padding: 2px 5px; /* the 2px are important because of flag's margin */
 }
 
 li.indirect{
@@ -179,6 +176,8 @@ color: #a1a1a1;
 
 /* sentences languages 
 Note : Is there a way to define this without so much redundancy?
+Note 2 : maybe we can delete this now, because I'm using an img tag to
+display the flags.
 */
 .en{
 padding-right: 30px;
@@ -341,7 +340,7 @@ background: #eeee88;
 }
 
 .editInPlaceForm input.text{
-width: 550px;
+width: 98%;
 display: inline;
 font-family: Verdana, sans-serif;
 font-size: 14px;
@@ -362,6 +361,23 @@ ul.addTranslations{
 list-style: none;
 margin: 0;
 padding: 0;
+}
+
+.languageFlag{
+	float: right;
+	margin: 5px;
+}
+
+.editableFlag:hover{
+	cursor: pointer;
+	border-top: 1px solid #aaaaaa;
+	border-left: 1px solid #aaaaaa;
+}
+
+.selectLang{
+	display:none;
+	float: right;
+	margin-top: 5px;
 }
 
 /* warning same language */

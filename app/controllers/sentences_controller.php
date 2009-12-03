@@ -28,7 +28,7 @@ class SentencesController extends AppController{
 	    parent::beforeFilter();
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo', 'statistics', 'count_unknown_language', 'get_translations' , 'check_translation', 'map');
+	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo', 'statistics', 'count_unknown_language', 'get_translations' , 'check_translation', 'change_language');
 	}
 
 	
@@ -36,6 +36,10 @@ class SentencesController extends AppController{
 		$this->redirect('/sentences/show/random');
 	}
 	
+	
+	/**
+	 * Show sentence of specified id (or a random one if no id specified).
+	 */
 	function show($id = null){
         Sanitize::html($id);
 		$this->Sentence->recursive = 2;
@@ -113,6 +117,10 @@ class SentencesController extends AppController{
 		}
 	}
 	
+	
+	/**
+	 * Display sentence of specified id.
+	 */
 	function goTo(){
 		$id = intval($this->params['url']['sentence_id']);
 		if($id == 0){
@@ -121,6 +129,10 @@ class SentencesController extends AppController{
 		$this->redirect(array("action"=>"show", $id));
 	}
 	
+	
+	/**
+	 * Add a new sentence.
+	 */
 	function add(){
 		$id_temp = $this->Auth->user('id');
 
@@ -150,6 +162,10 @@ class SentencesController extends AppController{
 		}
 	}
 	
+	
+	/**
+	 * Delete a sentence.
+	 */
 	function delete($id){
         Sanitize::paranoid($id);
 		$this->Sentence->id = $id;
@@ -172,36 +188,7 @@ class SentencesController extends AppController{
 		
 		$this->flash('The sentence #'.$id.' has been deleted.', '/contributions/show/'.$id);
 	}
-
-	function edit($id){
-        Sanitize::paranoid($id);
-		$this->Sentence->id = $id;
-		if(empty($this->data)){
-			$sentence = $this->Sentence->read();
-			if($this->Auth->user('group_id') < 3 OR 
-			$this->Auth->user('id') == $sentence['Sentence']['user_id']){
-				$this->Sentence->recursive = 2;
-				$this->data = $this->Sentence->read();
-				$this->set('sentence', $this->data);
-				$specialOptions = $this->Permissions->getSentencesOptions($this->data, $this->Auth->user('id'));
-				$this->set('specialOptions',$specialOptions);
-			}else{
-				$this->flash(
-					__('This sentence was not added by you. You can only edit sentences you have added.',true),
-					'/sentences/show/'.$id
-				);
-			}
-		}else{
-			$this->data['Sentence']['user_id'] = $this->Auth->user('id'); // for the logs
-			if($this->Sentence->save($this->data)){
-				// Confirmation message
-				$this->flash(
-					__('The sentence has been updated.',true),
-					'/sentences/edit/'.$id
-				);
-			}
-		}
-	}
+	
 	
 	/**
 	 * Save sentence.
@@ -264,6 +251,11 @@ class SentencesController extends AppController{
 		}
 	}
 	
+	
+	/**
+	 * Adopt a sentence. User can modify sentence and becomes
+	 * responsible of the sentence.
+	 */
 	function adopt($id){
         Sanitize::paranoid($id);
 		$data['Sentence']['id'] = $id;
@@ -276,6 +268,12 @@ class SentencesController extends AppController{
 		}
 	}
 	
+	
+	/**
+	 * Let go a sentence. Sentence does not belong to user anymore,
+	 * i.e. user cannot modify it anymore, and is not responsible
+	 * of it either.
+	 */
 	function let_go($id){
 
         Sanitize::paranoid($id);
@@ -367,6 +365,10 @@ class SentencesController extends AppController{
 		}
 	}
 	
+	
+	/**
+	 * Search sentences.
+	 */
 	function search(){
         
         Sanitize::html($_GET['query']);
@@ -432,6 +434,10 @@ class SentencesController extends AppController{
 		}
 	}
 	
+	
+	/**
+	 * Show random sentence.
+	 */
 	function random($type = null, $lang = null){		
 		// $type can be "show" or "translate"
 		// "translate" is used for the random sentence to translate in the "Contribution" section.
@@ -500,21 +506,10 @@ class SentencesController extends AppController{
 		$this->set('type', $type);
 	}
 	
-	function contribute($id = null){
-        Sanitize::paranoid($id);
-		if(isset($id)){
-			$this->Sentence->id = $id;
-			$sentence = $this->Sentence->read();
-			$sentence['specialOptions'] = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
-		}else{
-			$sentence = $this->random();	
-		}
-		
-		$this->set('sentence', $sentence['Sentence']);
-		$this->set('translations', $sentence['Translation']);
-		$this->set('specialOptions', $sentence['specialOptions']);
-	}
 	
+	/**
+	 * Count number of sentences in each language.
+	 */
 	function statistics(){
 		$this->Sentence->recursive = -1;
 		$stats = $this->Sentence->find('all', array(
@@ -526,6 +521,11 @@ class SentencesController extends AppController{
 		return($stats);
 	}
 	
+	
+	/**
+	 * Link two sentences...
+	 * NOTE : this is not used yet.
+	 */
 	function link($id){
         Sanitize::paranoid($id);
 		$this->Sentence->unbindModel(
@@ -543,6 +543,11 @@ class SentencesController extends AppController{
 		$this->set('specialOptions',$specialOptions);
 	}
 	
+	
+	/**
+	 * Count number of sentences that belongs to the current user
+	 * and have an unidentified language.
+	 */
 	function count_unknown_language(){
 		$this->Sentence->recursive = -1;
 		$count = $this->Sentence->find('count', array(
@@ -567,6 +572,9 @@ class SentencesController extends AppController{
 		$this->set('unknownLangSentences', $sentences);
 	}
 	
+	/**
+	 * Save languages for unknown language page.
+	 */
 	function set_languages(){
 		if(!empty($this->data)){
 			if($this->Sentence->saveAll($this->data['Sentence'])){
@@ -583,6 +591,11 @@ class SentencesController extends AppController{
 		);
 	}
 	
+	
+	/**
+	 * Display translations of a specific sentence.
+	 * Used in AJAX request in app/views/sentences/show.ctp, line 65.
+	 */
 	function get_translations($id){
         Sanitize::paranoid($id);
 		$this->Sentence->unbindModel(
@@ -599,16 +612,25 @@ class SentencesController extends AppController{
 		$this->set('sentence', $sentence);
 	}
 	
+	
+	/**
+	 * Display current user's sentences.
+	 */
 	function my_sentences(){
 		$this->Sentence->recursive = 0;
 		$sentences = $this->Sentence->find(
 			'all', array(
 				"conditions" => array("Sentence.user_id" => $this->Auth->user('id')),
-				"order" => "Sentence.modified DESC")
+				"order" => "Sentence.modified DESC",
+				"limit" => 100)
 		);
 		$this->set('user_sentences', $sentences);
 	}
 	
+	
+	/**
+	 * Display how the sentences are clustered according to their language.
+	 */
 	function map($page = 1){
 		$total = 10000;
 		$start = ($page-1) * $total;
@@ -624,6 +646,19 @@ class SentencesController extends AppController{
 		);
 		$this->set('page', $page);
 		$this->set('all_sentences', $sentences);
+	}
+	
+	
+	/**
+	 * Change language of a sentence.
+	 * Used in AJAX request in sentences.change_language.js.
+	 * TODO restrict permissions for this action.
+	 */
+	function change_language(){
+		if(isset($_POST['id']) AND isset($_POST['lang'])){
+			$this->Sentence->id = $_POST['id'];
+			$this->Sentence->saveField('lang', $_POST['lang']);
+		}
 	}
 }
 ?>

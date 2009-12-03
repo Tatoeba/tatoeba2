@@ -1,5 +1,24 @@
 <?php
 /*
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  Salem BEN YAALA <salem.benyaala@gmail.com>,
+	HO Ngoc Phuong Trang <tranglich@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -291,6 +310,15 @@ class UserController extends AppController {
 		 * TODO:
 		 * change password <- already implemnted, just to move here
 		 */
+	}
+	
+	function stats(){
+		
+        $this->User->hasMany['Sentences']['limit'] = null;
+        $this->User->hasMany['SentenceComments']['limit'] = null;
+        $this->User->hasMany['Contributions']['limit'] = null;
+		
+		return $this->User->findById($this->Auth->user('id'));
 	}
 }
 ?>

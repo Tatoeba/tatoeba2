@@ -38,21 +38,23 @@ array_unshift($langArray, array('any' => __('any', true)));
 	<?php
 	if(!$session->read('Auth.User.id')){
 	?>
-	<div class="module">
-		<h2><?php __('Join the community!'); ?></h2>
-		<?php __("The more contributors there are, the more useful Tatoeba will become! Besides, by contributing, not only you will be helpful to the rest of the world, but you will also get to learn a lot."); ?>
-		<p><?php
-		echo $html->link(
-			__('Register',true),
-			array("controller" => "users", "action" => "register"),
-			array("class" => "registerButton")
-		);
-		?></p>
-	</div>
+	
+		<div class="module">
+			<h2><?php __('Join the community!'); ?></h2>
+			<?php __("The more contributors there are, the more useful Tatoeba will become! Besides, by contributing, not only you will be helpful to the rest of the world, but you will also get to learn a lot."); ?>
+			<p><?php
+			echo $html->link(
+				__('Register',true),
+				array("controller" => "users", "action" => "register"),
+				array("class" => "registerButton")
+			);
+			?></p>
+		</div>
+		
 	<?php
 	}
 	?>
-
+	
 	<div class="module">
 	<h2><?php __('Number of sentences') ?></h2>
 	<?php echo $this->element('sentences_statistics'); ?>
@@ -74,6 +76,44 @@ array_unshift($langArray, array('any' => __('any', true)));
 			echo '</div>';
 		}
 		$javascript->link('sentences.add_translation.js', false);
+	}
+	?>
+	
+	<?php
+	if($session->read('Auth.User.id')){
+	?>
+		
+		<div class="module">
+			<h2><?php __('Your stats'); ?></h2>
+			<ul>
+			<?php 
+				$userStats = $this->requestAction('/user/stats');
+				echo '<li>';
+				echo sprintf(
+					  __("<a href='%s'><strong>%s</strong> sentences</a>", true)
+					, $html->url(array("controller" => "sentences", "action" => "my_sentences"))
+					, count($userStats['Sentences'])
+				);
+				echo '</li>';
+				
+				echo '<li>';
+				echo sprintf(
+					  __("<strong>%s</strong> comments", true)
+					, count($userStats['SentenceComments'])
+				);
+				echo '</li>';
+				
+				echo '<li>';
+				echo sprintf(
+					  __("<strong>%s</strong> contributions", true)
+					, count($userStats['Contributions'])
+				);
+				echo '</li>';
+			?>
+			</ul>
+		</div>
+		
+	<?php
 	}
 	?>
 </div>

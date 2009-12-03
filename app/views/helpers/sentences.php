@@ -19,7 +19,7 @@
 
 class SentencesHelper extends AppHelper {
 
-	var $helpers = array('Html', 'Form', 'Kakasi', 'Javascript', 'Menu');
+	var $helpers = array('Html', 'Form', 'Kakasi', 'Javascript', 'Menu', 'Languages');
 	
 	/**
 	 * Display a single sentence.
@@ -81,9 +81,12 @@ class SentencesHelper extends AppHelper {
 	 * Display a single sentence for edit in place.
 	 */
 	function displayEditableSentence($sentence) {
-		echo '<div class="editable original sentence">';
+		echo '<div id="'.$sentence['id'].'" class="editable original sentence">';
+			// Language flag
+			$this->displayLanguageFlag($sentence['id'], $sentence['lang'], true);
+			
 			// Sentence
-			echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="editableSentence correctness'.$sentence['correctness'].' '.$sentence['lang'].'">';
+			echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="editableSentence correctness'.$sentence['correctness'].'">';
 			echo $sentence['text'];
 			echo '</span> ';
 			
@@ -127,24 +130,35 @@ class SentencesHelper extends AppHelper {
 		
 		$editable = '';
 		$editableSentence = '';
+		$editableFlag = false;
 		$tooltip = __('This sentence does not belong to anyone. If you would like to edit it, you have to adopt it first.', true);
 		if($user != null){
 			if(isset($user['canEdit']) AND $user['canEdit']){
 				$editable = 'editable';
 				$editableSentence = 'editableSentence';
+				$editableFlag = true;
 			}
 			if(isset($user['username']) AND $user['username'] != ''){
 				$tooltip = __('This sentence belongs to :', true) .' '.$user['username'];
 			}
 		}
 		
-		echo '<div title="'.$tooltip.'" class="'.$editable.' original correctness'.$sentence['correctness'].'">';
-			echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="'.$editableSentence.' text '.$sentence['lang'].'">'.$sentence['text'].'</span> ';
-			$this->displayRomanization($sentence['lang'], $sentence['text']);
+		// Original sentence
+		echo '<div id="'.$sentence['id'].'" class="original">';
+			// language flag
+			$this->displayLanguageFlag($sentence['id'], $sentence['lang'], $editableFlag);
+			
+			// sentence text
+			echo '<div title="'.$tooltip.'" class="'.$editable.' correctness'.$sentence['correctness'].'">';
+				echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="'.$editableSentence.'">'.$sentence['text'].'</span> ';
+				$this->displayRomanization($sentence['lang'], $sentence['text']);
+			echo '</div>';
 		echo '</div>';
 		
+		// To add new translations
 		echo '<ul id="translation_for_'.$sentence['id'].'" class="addTranslations"></ul>';
 		
+		// Translations
 		echo '<ul id="'.$sentence['id'].'_translations" class="translations">';
 		if(count($translations) > 0){
 			// direct translations
@@ -165,7 +179,7 @@ class SentencesHelper extends AppHelper {
 		$controller = (preg_match("/sentence_comments|contributions/", $this->params['controller'])) ? $this->params['controller'] : "sentences";
 		
 		foreach($translations as $translation){
-			echo '<li class="direct translation correctness'.$translation['correctness'].'">';
+			echo '<li class="direct translation">';
 			// hidden 'info button'
 			echo $this->Html->link(
 				$this->Html->image(
@@ -183,9 +197,11 @@ class SentencesHelper extends AppHelper {
 				array("escape"=>false)
 			);
 			
-			//translation and romanization
-			echo '<span class="text '.$translation['lang'].'">' . $translation['text'] . '</span>';
+			// language flag
+			$this->displayLanguageFlag($translation['id'], $translation['lang']);
 			
+			//translation and romanization
+			echo '<div>' . $translation['text'] . '</div>';
 			$this->displayRomanization($translation['lang'], $translation['text']);
 			
 			echo '</li>';
@@ -215,7 +231,7 @@ class SentencesHelper extends AppHelper {
 			if(count($indirectTranslations) > 0){
 				foreach($indirectTranslations as $translation){
 					if(!in_array($translation['id'], $translationsIds)){
-						echo '<li class="indirect translation correctness'.$translation['correctness'].'">';
+						echo '<li class="indirect translation">';
 						echo $this->Html->link(
 							$this->Html->image(
 								'info.png',
@@ -232,7 +248,11 @@ class SentencesHelper extends AppHelper {
 							array("escape"=>false)
 						);
 						
-						echo '<span title="'.__('indirect translation',true).'" class="text '.$translation['lang'].'">' . $translation['text'] . '</span>';
+						// language flag
+						$this->displayLanguageFlag($translation['id'], $translation['lang']);
+						
+						// translation text
+						echo '<div title="'.__('indirect translation',true).'">' . $translation['text'] . '</div>';
 						
 						echo '</li>';
 					}
@@ -386,6 +406,29 @@ class SentencesHelper extends AppHelper {
 			}
 			
 		echo '</ul>';
+	}
+	
+	/**
+	 * Language flag.
+	 */
+	function displayLanguageFlag($id, $lang, $editable = false){
+		
+		$class = '';
+		if($editable){
+			$this->Javascript->link('sentences.change_language.js', false);
+			$class = 'editableFlag';
+			
+			// language select
+			$langArray = $this->Languages->languagesArray();
+			asort($langArray);
+			echo $this->Form->select('selectLang_'.$id, $langArray, null, array("class"=>"selectLang"));
+		}
+		
+		echo $this->Html->image(
+			  $lang.'.png'
+			, array("class" => "languageFlag ".$class)
+		);
+		
 	}
 }
 ?>

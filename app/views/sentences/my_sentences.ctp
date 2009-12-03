@@ -18,11 +18,22 @@
 */
 ?>
 
+<div id="annexe_content">
+	<div class="module">
+	<h2><?php __('Tips'); ?></h2>
+	<p><?php __('You can edit your sentences by clicking on them.'); ?></p>
+	<p><?php __('You can change the language of a sentence by clicking on the flag.'); ?></p>
+	</div>
+</div>
+	
+	
 <div id="main_content">
 	<div class="module">
 		<?php
 		$javascript->link('jquery.jeditable.js', false);
 		$javascript->link('sentences.edit_in_place.js', false);
+		$javascript->link('sentences.change_language.js', false);
+		
 		foreach($user_sentences as $sentence){
 			$sentences->displayEditableSentence($sentence['Sentence']);
 		}

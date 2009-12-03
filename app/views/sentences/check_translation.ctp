@@ -36,28 +36,33 @@ if(isset($translation_text)){
 	}else{
 		echo $javascript->link('jquery.jeditable.js', true);
 		echo $javascript->link('sentences.edit_in_place.js', true);
-
-		echo "<li class='direct editable translation'>";
-		// hidden 'info button'
-		echo $html->link(
-			$html->image(
-				'info.png',
+		echo $javascript->link('sentences.change_language.js', true);
+			
+		echo '<li id="'.$translation_id.'" class="direct translation">';
+			// hidden 'info button'
+			echo $html->link(
+				$html->image(
+					'info.png',
+					array(
+						"alt"=>__('Show',true),
+						"title"=>__('Show',true)
+					)
+				),
 				array(
-					"alt"=>__('Show',true),
-					"title"=>__('Show',true)
-				)
-			),
-			array(
-				"controller" => "sentences",
-				"action" => "show",
-				$translation_id
-			),
-			array("escape"=>false)
-		);		
-		
-		echo '<span id="'.$translation_lang.$translation_id.'" class="editableSentence '.$translation_lang.'">';
-		echo $translation_text;
-		echo '</span> ';
+					"controller" => "sentences",
+					"action" => "show",
+					$translation_id
+				),
+				array("escape"=>false)
+			);		
+			
+			// language flag
+			$sentences->displayLanguageFlag($translation_id, $translation_lang, true);
+			
+			// sentence text
+			echo '<div id="'.$translation_lang.$translation_id.'" class="editable editableSentence">';
+			echo $translation_text;
+			echo '</div> ';
 		echo "</li>";
 	}
 }
