@@ -621,8 +621,7 @@ class SentencesController extends AppController{
 		$sentences = $this->Sentence->find(
 			'all', array(
 				"conditions" => array("Sentence.user_id" => $this->Auth->user('id')),
-				"order" => "Sentence.modified DESC",
-				"limit" => 100)
+				"order" => "Sentence.modified DESC")
 		);
 		$this->set('user_sentences', $sentences);
 	}
