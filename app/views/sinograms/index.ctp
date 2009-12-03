@@ -53,6 +53,21 @@ $javascript->link("sinograms.search.js",false);
         </div>
         <div id="explosionResults">
         </div>
+    </div>
+    
+    <div class="module" >
+        <h2><?php __("Still beta:") ?></h2>
+
+        <div>
+            <p id="stillBetaText" >
+            <?php 
+            __('Please note this tool is still not complete yet and may contains errors
+            or incomplete (though it will be accurate for most of search), so don\'t hesitate to
+            report missing characters or any improvement suggestions.');
+
+            ?>
+            </p>
+        </div>
     </div> 
 </div>
 

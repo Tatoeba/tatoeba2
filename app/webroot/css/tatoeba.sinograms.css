@@ -56,8 +56,11 @@ a.radical:hover {
 
 p.introduction {
     font-size: 1em;
-    font: sans-serif; 
     text-align: justify;    
+}
+
+p#stillBetaText {
+    text-align: justify;
 }
 
 #search_form {
