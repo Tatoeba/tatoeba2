@@ -29,6 +29,14 @@
 	
 <div id="main_content">
 	<div class="module">
+		<h2><?=$paginator->counter(array('format' => __('My sentences (total %count%)', true))); ?></h2>
+		
+		<div class="paging">
+		<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
+		<?php echo $paginator->numbers(array('separator' => ''));?>
+		<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
+		</div>
+		
 		<?php
 		$javascript->link('jquery.jeditable.js', false);
 		$javascript->link('sentences.edit_in_place.js', false);
@@ -38,6 +46,12 @@
 			$sentences->displayEditableSentence($sentence['Sentence']);
 		}
 		?>
+		
+		<div class="paging">
+		<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
+		<?php echo $paginator->numbers(array('separator' => ''));?>
+		<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
+		</div>
 
 	</div>
 </div>

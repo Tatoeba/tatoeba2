@@ -23,6 +23,7 @@ class SentencesController extends AppController{
 	var $name = 'Sentences';
 	var $components = array ('GoogleLanguageApi', 'Lucene', 'Permissions');
 	var $helpers = array('Sentences', 'Html', 'Logs', 'Pagination', 'Comments', 'Navigation', 'Languages', 'Javascript');
+	var $paginate = array('limit' => 100, "order" => "Sentence.modified DESC");
 	
 	function beforeFilter() {
 	    parent::beforeFilter();
@@ -618,11 +619,12 @@ class SentencesController extends AppController{
 	 */
 	function my_sentences(){
 		$this->Sentence->recursive = 0;
-		$sentences = $this->Sentence->find(
-			'all', array(
-				"conditions" => array("Sentence.user_id" => $this->Auth->user('id')),
-				"order" => "Sentence.modified DESC")
-		);
+		$sentences = $this->paginate('Sentence', array('Sentence.user_id' => $this->Auth->user('id')));
+		// $sentences = $this->Sentence->find(
+			// 'all', array(
+				// "conditions" => array("Sentence.user_id" => $this->Auth->user('id')),
+				// "order" => "Sentence.modified DESC")
+		// );
 		$this->set('user_sentences', $sentences);
 	}
 	
