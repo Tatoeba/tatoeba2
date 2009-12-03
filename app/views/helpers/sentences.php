@@ -412,6 +412,7 @@ class SentencesHelper extends AppHelper {
 	 * Language flag.
 	 */
 	function displayLanguageFlag($id, $lang, $editable = false){
+		if($lang == '') $lang = 'unknown_lang';
 		
 		$class = '';
 		if($editable){
