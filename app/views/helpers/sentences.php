@@ -54,9 +54,9 @@ class SentencesHelper extends AppHelper {
 	 * Display romaji.
 	 */
 	function displayRomaji($text){
-		echo '<span class="romaji" title="'.__('WARNING : the romaji is automatically generated and is not always reliable.',true).'">';
+		echo '<div class="romanization" title="'.__('WARNING : the romaji is automatically generated and is not always reliable.',true).'">';
 			$this->Kakasi->convert($text, 'romaji');
-		echo '</span>';
+		echo '</div>';
 	}
 	
 	
@@ -64,7 +64,7 @@ class SentencesHelper extends AppHelper {
 	 * Display pinyin.
 	 */
 	function displayPinyin($text){
-		echo '<span class="pinyin">';
+		echo '<div class="romanization">';
 		$curl = curl_init();
 		curl_setopt ($curl, CURLOPT_URL, "http://adsotrans.com/popup/pinyin.php?text=".$text);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
@@ -72,7 +72,7 @@ class SentencesHelper extends AppHelper {
 		$pinyin = substr($result, 14);
 		$pinyin = substr($pinyin, 0, -44);
 		echo $pinyin;
-		echo '</span>';
+		echo '</div>';
 	}
 
 	
@@ -149,10 +149,8 @@ class SentencesHelper extends AppHelper {
 			$this->displayLanguageFlag($sentence['id'], $sentence['lang'], $editableFlag);
 			
 			// sentence text
-			echo '<div title="'.$tooltip.'" class="'.$editable.' correctness'.$sentence['correctness'].'">';
-				echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="'.$editableSentence.'">'.$sentence['text'].'</span> ';
-				$this->displayRomanization($sentence['lang'], $sentence['text']);
-			echo '</div>';
+			echo '<div id="'.$sentence['lang'].$sentence['id'].'" class="'.$editable.' '.$editableSentence.'" title="'.$tooltip.'">'.$sentence['text'].'</div> ';
+			$this->displayRomanization($sentence['lang'], $sentence['text']);
 		echo '</div>';
 		
 		// To add new translations

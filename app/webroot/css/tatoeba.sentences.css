@@ -155,7 +155,7 @@ padding: 0;
 
 
 li.translation{
-padding: 2px 5px; /* the 2px are important because of flag's margin */
+padding: 3px 5px; /* the 2px are important because of flag's margin */
 }
 
 li.indirect{
@@ -169,8 +169,9 @@ background:transparent url(../img/link.png) no-repeat scroll 10px;
 padding-left: 60px;
 }
 
-.romaji, .pinyin{
+.romanization{
 color: #a1a1a1;
+margin-top: -8px;
 }
 
 
