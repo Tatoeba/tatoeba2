@@ -81,14 +81,14 @@ class SentencesHelper extends AppHelper {
 	 * Display a single sentence for edit in place.
 	 */
 	function displayEditableSentence($sentence) {
-		echo '<div id="'.$sentence['id'].'" class="editable original sentence">';
+		echo '<div id="'.$sentence['id'].'" class="original sentence">';
 			// Language flag
 			$this->displayLanguageFlag($sentence['id'], $sentence['lang'], true);
 			
 			// Sentence
-			echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="editableSentence correctness'.$sentence['correctness'].'">';
+			echo '<div id="'.$sentence['lang'].$sentence['id'].'" class="editable editableSentence correctness'.$sentence['correctness'].'">';
 			echo $sentence['text'];
-			echo '</span> ';
+			echo '</div> ';
 			
 			$this->displayRomanization($sentence['lang'], $sentence['text']);
 			
