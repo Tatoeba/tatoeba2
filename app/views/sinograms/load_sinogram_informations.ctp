@@ -39,5 +39,16 @@
         <?php echo $sinogramInformations["english"];?>
     </div>
 
+    <div id="japaneseOn" >
+        <?php __('Japanese On:')   ?>
+        <?php echo $sinogramInformations["jap-on"];?>
+    </div>
+
+    <div id="japaneseKun" >
+        <?php __('Japanese Kun:')   ?>
+        <?php echo $sinogramInformations["jap-kun"];?>
+    </div>
+</div>
+
 </div>
 
