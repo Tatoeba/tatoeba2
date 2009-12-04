@@ -48,7 +48,7 @@ class SinogramsController extends AppController {
         /*keep sinogram only*/
         $glyphs = array();
         for ( $i = 0 ; $i < count($result) ; $i++){
-            array_push($glyphs , $result[$i]['sinograms']['glyph']);
+            array_push($glyphs , $result[$i]['Sinogram']['glyph']);
         }
         /*send them to the view*/
 

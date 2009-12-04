@@ -30,20 +30,38 @@ class Sinogram extends AppModel{
     */
     
     function search($subGlyphArray , $minStrokes = null , $minStrokes = null ){ 
+        $onlyOneCharacter = false ;
+        if ( count($subGlyphArray) == 1 ) {
+            $sinogram = $subGlyphArray[0];
+            $onlyOneCharacter = true;
+        }
         for ( $i = 0 ; $i < count($subGlyphArray) ; $i++){
             $subGlyphArray[$i] = "'".$subGlyphArray[$i] ."'" ;
         }
 
         $subglyphsString= implode("," , $subGlyphArray) ;
         $result = $this->query(
-            "SELECT sinograms.id , sinograms.glyph , sinograms.`chin-pinyin`
-             FROM  sinogram_subglyphs , sinograms
+            "SELECT Sinogram.id , Sinogram.glyph
+             FROM  sinogram_subglyphs , sinograms as Sinogram
              WHERE
-                sinograms.`glyph` = sinogram_subglyphs.`glyph`
+                Sinogram.`glyph` = sinogram_subglyphs.`glyph`
                 AND  subglyph IN ( ". $subglyphsString  ." )
             GROUP BY glyph 
                 HAVING count(DISTINCT sinogram_subglyphs.subglyph) =". count ($subGlyphArray ) .";" 
         );
+
+        // if there's only character, it should be logical that this character match itself
+        if ($onlyOneCharacter ){ 
+            $thisGlyph = $this->find('first',array(
+                "fields" => array("Sinogram.id","Sinogram.glyph"),
+                "conditions" => array("Sinogram.glyph" => $sinogram  )
+                )
+            );
+            array_push($result,$thisGlyph);
+            //pr ($result) ;
+            //pr ($thisGlyph);
+        }
+
 
         return $result ;
     }
