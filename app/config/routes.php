@@ -28,6 +28,30 @@
  * @lastmodified	$Date: 2008-06-27 02:09:03 -0700 (Fri, 27 Jun 2008) $
  * @license			http://www.opensource.org/licenses/mit-license.php The MIT License
  */
+
+/*  /!\ WARNING /!\ 
+**
+**  order of lines  is important here !
+**  router::connect works like this
+**  rules are ordered, the first is the first declared
+**  and we stop search once we have found a matching rule 
+*/
+
+/**
+ * To route tools, in order to still have tools in the URL, which is clearer for users IMHO
+ * this rule appears first, that way /fre/tools/search_sinograms  is not catch by the general rule
+ * for controllers
+ */
+    
+    Router::connect('/tools/search_hanzi_kanji/:action',
+                    array('controller' => 'sinograms','action' =>'index' )
+                    );
+
+    Router::connect('/:lang/tools/search_hanzi_kanji/:action ',
+                    array('lang'=>'eng','controller' => 'sinograms','action' =>'index' ),
+                    array('lang'=>'fre|eng|deu|spa|ita|jpn|chi')
+                    ); 
+
 /**
  * Here, we are connecting '/' (base path) to controller called 'Pages',
  * its action called 'display', and we pass a param to select the view file
@@ -49,4 +73,5 @@
  * La langue choisie sera maintenant disponible dans les contrôleurs par la variable $this->params['lang'].
  */ 	
 	Router::connect('/:lang/:controller/:action/*', array('lang'=>'eng'), array('lang'=>'fre|eng|deu|spa|ita|jpn|chi')); 
+
 ?>

@@ -17,40 +17,33 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$javascript->link('furigana', false);
-$this->pageTitle = __('Convert Japanese text into romaji or furigana',true);
+$this->pageTitle = __('Browse languages related tools provided by Tatoeba',true);
 ?>
+<div id="annexe_content" >
+    <div class="module" >
+        <h2><?php __("Need a tool?")?></h2>
+
+        <p>
+            <?php
+            echo sprintf(__("Well, Tatoeba's developpers don't have imagination to code every
+            possibl usefull tools for language learners, so if there's a must-have
+            tools which is missing or you have yourself code something you think can
+            help others (as long as you can provide it under a GPL compatible licence)
+            don't hesitate to talk about it<a href=%s> here</a>, we're always looking for new sutffs.", true),
+            "/wall/index"); 
+            ?>
+        </p>
+
+    </div>
+</div>
+
 <div id="main_content">
 	<div class="module">
-	<?php
-	echo '<h2>';
-	__('Convert Japanese text into romaji or furigana (powered by <a target="_blank" href="http://kakasi.namazu.org/">KAKASI</a>)');
-	echo '</h2>';
-	
-	$query = isset($_GET['query']) ? $_GET['query'] : '';
-	$type = isset($_GET['type']) ? $_GET['type'] : 'romaji';
-	
-	if($query != ''){
-		echo '<div id="conversion">';
-		$kakasi->convert($query, $type);
-		echo '</div>';
-	}
-	
-	echo $form->create('Tool', array("action" => "kakasi", "type" => "get"));
-	echo $form->textarea('query', array("label" => '', "value" => $query));
-	echo '<p>';
-	__('Convert japanese text into : ');
-	echo $form->radio(
-		'type', 
-		array('romaji' => 'romaji', 'furigana' => 'furigana'), 
-		array('value' => $type, 'legend' => '')
-	);
-	echo '</p>';
-	echo $form->end(__('Convert',true));
-	?>
-	
-	<script>
-	furigana();
-	</script>
+	    <h2> <?php __("Tools index:");?> </h2>
+
+        <ul>
+            <li><a href="kakasi" >Kakasi:</a> <?php __("convert japanese to romaji or furigana")  ?></li>
+            <li><a href="search_hanzi_kanji" >Sinogram Search:</a> <?php __("search all chinese characters / kanjis by all possible ways") ?></li> 
+        </ul>
 	</div>
 </div>

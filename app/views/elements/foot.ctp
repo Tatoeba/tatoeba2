@@ -45,7 +45,7 @@ echo '<ul>';
 	echo '</li>';
 
 	echo '<li>';
-	echo $html->link(__('Romaji & Furigana', true), array("controller" => 'tools', "action"=>'kakasi'));
+	echo $html->link(__('Tools', true), array("controller" => 'tools', "action"=>'index'));
 	echo '</li>';
 	
 	echo '<li>';
