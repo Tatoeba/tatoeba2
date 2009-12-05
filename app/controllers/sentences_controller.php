@@ -42,6 +42,7 @@ class SentencesController extends AppController{
 	 * Show sentence of specified id (or a random one if no id specified).
 	 */
 	function show($id = null){
+
         Sanitize::html($id);
 		$this->Sentence->recursive = 2;
 		
@@ -56,60 +57,28 @@ class SentencesController extends AppController{
 			$id = $this->Session->read('random_lang_selected');
 		}
 
-		if($id == 'any'){
+        // if we want a random sentence in a specific language
+		if(in_array($id, $this->Sentence->languages)){
 			
-			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences');
-			$max = $resultMax[0][0]['MAX(id)'];
-			
-			$randId = rand(1, $max);
-			$this->Session->write('random_lang_selected', $id);
-			$this->redirect(array("action"=>"show", $randId ));
-			
-		}elseif(in_array($id, $this->Sentence->languages)){
-			
-			if($id == 'jp' OR $id == 'en'){
-		
-				$min = ($id == 'en') ? 15700 : 74000;
-				$max = ($id == 'en') ? 74000 : 127300;
-				$randId = rand($min, $max);
-				
-				$random = $this->Sentence->find(
-					'first', 
-					array(
-						'conditions' => array(
-							'Sentence.id' => range($randId-50, $randId+50),
-							'Sentence.lang' => $id
-						)
-					)
-				);
-			}else{
-				$conditions['Sentence.lang'] = $id;
-				$random = $this->Sentence->find(
-					'first', 
-					array(
-						'conditions' => $conditions,
-						'order' => 'RAND()'
-					)
-				);
-			}
+            $random = $this->Sentence->getRandomId($id);
+            
 			$this->Session->write('random_lang_selected', $id);
 			$this->redirect(array("action"=>"show", $random['Sentence']['id']));
 			
+        // if we give directly an id
 		}elseif (is_numeric($id)){
 		
-			$this->Sentence->id = $id;
-			
-			$sentence = $this->Sentence->read();
+			$sentence = $this->Sentence->getSentenceWithId($id);
 			$this->set('sentence', $sentence);
 
 			// checking which options user can access to
 			$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 			$this->set('specialOptions',$specialOptions);
 			
+
+        // other case
 		}else {
-			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences');
-			$max = $resultMax[0][0]['MAX(id)'];
-			
+			$max = $this->Sentence->getMaxId();
 			$randId = rand(1, $max);
 			$this->Session->write('random_lang_selected', 'any');
 			$this->redirect(array("action"=>"show", $randId ));

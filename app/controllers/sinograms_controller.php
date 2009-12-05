@@ -23,7 +23,9 @@ App::import('Core', 'Sanitize');
 class SinogramsController extends AppController {
 
     var $name = 'Sinograms';
+    var $components = array('Lucene','Permissions');
     var $helpers = array('Form','Javascript','Html');
+    var $uses = array('Sinogram','Sentence');
 
     function beforeFilter() {
         parent::beforeFilter();
@@ -87,11 +89,35 @@ class SinogramsController extends AppController {
 
     /*load the informations we know about a sinograms */
     function loadSinogramInformations(){
-        $sinogram = $_POST["sinogram"];
-
+        $sinogram = "噥";
+        if( strlen(utf8_decode( $_POST["sinogram"]))== 1){
+            $sinogram = $_POST["sinogram"]; 
+        }
         $sinogramInformations = $this->Sinogram->informations($sinogram);
 
+    
+
+               
         $this->set("sinogramInformations" , $sinogramInformations["Sinogram"] );
+    }
+
+    /*load a sentence using this character*/
+    function loadExampleSentence(){
+        $sinogram = "噥";
+        if( strlen(utf8_decode( $_POST["sinogram"]))== 1){
+            $sinogram = $_POST["sinogram"]; 
+        }
+        $sentenceId = $this->Sentence->searchOneExampleSentenceWithSinogram($sinogram);
+        $sentenceWhichUseThisSinogram = null ;
+
+        if( $sentenceId != null ) {
+            $sentenceWhichUseThisSinogram = $this->Sentence->getSentenceWithId($sentenceId);
+            $specialOptions = $this->Permissions->getSentencesOptions($sentenceWhichUseThisSinogram, $this->Auth->user('id'));
+            $this->set('specialOptions',$specialOptions);
+        }
+        $this->set("sinogram",$sinogram);
+        $this->set("sentence" , $sentenceWhichUseThisSinogram );
+
     }
     
     /*used to display the radicals list on the right panel*/

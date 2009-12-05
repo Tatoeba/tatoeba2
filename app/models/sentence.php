@@ -157,5 +157,62 @@ class Sentence extends AppModel{
 			$this->Contribution->saveAll($contributions);
 		}
 	}
+
+    /*
+    ** search one random chinese/japanese sentence containing $sinogram
+    ** return the id of this sentence
+    */
+    function searchOneExampleSentenceWithSinogram($sinogram){
+        $results = $this->query("
+        SELECT Sentence.id  FROM sentences AS Sentence 
+            JOIN ( SELECT (RAND() *(SELECT MAX(id) FROM sentences)) AS id) AS r2
+            WHERE Sentence.id >= r2.id
+                AND Sentence.lang IN ( 'jp','zh')
+                AND Sentence.text LIKE ('%$sinogram%')
+            ORDER BY Sentence.id ASC LIMIT 1
+       ");
+       
+       return $results[0]['Sentence']['id'] ;  
+    }
+    
+    /*
+    ** get the highest id for sentences
+    */
+    function getMaxId(){
+        $resultMax = $this->query('SELECT MAX(id) FROM sentences');
+        return $resultMax[0][0]['MAX(id)'];
+    }
+    
+    /*
+    ** get the id of a random sentence, from a particular language if $lang is set
+    */
+    function getRandomId($lang = null){
+        /*
+        ** this query take constant time when lang=null
+        ** and linear time when lang is set, so do not touch this request
+        */
+
+        $query = 'SELECT Sentence.id  FROM sentences AS Sentence 
+                JOIN ( SELECT (RAND() *(SELECT MAX(id) FROM sentences)) AS id) AS r2
+                WHERE Sentence.id >= r2.id' ;
+
+        if ( $lang != null ){
+            $query .= " AND Sentence.lang ='" . $lang ."' "; 
+        }
+        $query .= " ORDER BY Sentence.id ASC LIMIT 1" ;
+
+        $results = $this->query($query);
+        return $results[0]; 
+    }
+
+    /*
+    ** get the sentence with the given id
+    */
+    function getSentenceWithId($id){
+        $this->id = $id;
+        return $this->read();
+
+    }
+
 }
 ?>

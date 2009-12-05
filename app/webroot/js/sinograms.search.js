@@ -28,6 +28,19 @@ $(document).ready(function(){
         );
     }
 
+    function loadExampleSentence(sinogram){
+       	$("#example_part").html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
+          $.post("http://" + self.location.hostname + "/sinograms/loadExampleSentence"
+            , { "sinogram" : sinogram  } 
+            , function(data){
+                $("#example_part").empty();
+                $("#example_part").html(data);
+            }
+            , "html"
+        );
+
+ 
+    }
 
     /*
     ** load radicals with the given number of strokes 
@@ -120,7 +133,9 @@ $(document).ready(function(){
 
     $('.glyph').live('click',
         function(){
-            loadSinogramInformations($(this).html());
+            glyph = $(this).html();
+            loadSinogramInformations(glyph);
+            loadExampleSentence(glyph);
         }
     );
 

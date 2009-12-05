@@ -136,6 +136,5 @@ $javascript->link("sinograms.search.js",false);
 
         <div id="information_part">
         </div>
-
     </div>
 </div>

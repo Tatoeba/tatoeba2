@@ -50,5 +50,6 @@
     </div>
 </div>
 
+<h3><?php __('Example of use:') ?></h3>
+<div id="example_part" >
 </div>
-

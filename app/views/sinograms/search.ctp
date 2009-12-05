@@ -24,7 +24,9 @@ echo '<div id="searchResults" >';
              echo '<div class="glyph">' .  $glyph . "</div>\n";
         }
     } else {
-       echo '<div id="noGlyphFound" >' .   __('No result found, try to search with less subglyph.', true) . "</div>\n";
+       echo '<div id="noGlyphFound" >' .
+            __('No result found, try to search with less subglyph.', true) .
+           "</div>\n";
     }
 echo '</div>';
 
