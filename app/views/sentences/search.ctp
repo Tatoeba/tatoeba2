@@ -18,30 +18,28 @@
 */
 ?>
 <div id="annexe_content">
-	<div class="module">
-		<?php
-			if(isset($mostFrequentWords) AND count($mostFrequentWords) > 0 AND $resultsInfo['sentencesCount'] > 0){
-				?>
-				<h2><?=__('Most frequent words in the target language'); ?></h2>
-				<div id="mostFrequentWords">
-					<?php
-					foreach($mostFrequentWords as $word){
-						echo '<span style="font-size:'.$word['fontSize'].'%" title="'.$word['details'].'">';
-						echo $word['word'];
-						echo '</span> ';
-					}
-					?>
-				</div>
+	<?php
+		if(isset($mostFrequentWords) AND count($mostFrequentWords) > 0 AND $resultsInfo['sentencesCount'] > 0){
+			?>
+			<div class="module">
+			<h2><?php __('Most frequent words in the target language'); ?></h2>
+			<div id="mostFrequentWords">
 				<?php
-			}
-		?>
-	</div>
+				foreach($mostFrequentWords as $word){
+					echo '<span style="font-size:'.$word['fontSize'].'%" title="'.$word['details'].'">';
+					echo $word['word'];
+					echo '</span> ';
+				}
+				?>
+			</div>
+			</div>
+			<?php
+		}
+	?>
 	<div class="module">
-		<h2>Tips for optimizing results</h2>
-	</div>
-	<div class="module">
-		<h2>Add as a new sentence</h2>
-
+		<h2><?php __('Tips'); ?></h2>
+		<p><?php __('If you specify the <strong>source language</strong>, the search will not be an <em>exact</em> search. That is to say, if you specify <em>English</em> and search for <em>think</em>, you will also have results with <em>thinks</em> or <em>thinking</em>.'); ?></p>
+		<p><?php __('If you specify the <strong>target language</strong>, you will have a word cloud with the 5 most frequent words in the target language. For simple words, it can give you a translation of the word you were looking for. Otherwise, it can also give you an idea of what words are linked to your search.'); ?></p>
 	</div>
 </div>
 <div id="main_content">
@@ -50,24 +48,60 @@
 	if(isset($query)){
 		$query = stripslashes($query);
 
-		echo '<h2>Search : ' . htmlentities($query, ENT_QUOTES, 'UTF-8') . ', <em>' . $resultsInfo['sentencesCount'] . ' result(s)</em></h2>';
-
 		if(isset($results)){
-			$pagination->displaySearchPagination($resultsInfo['pagesCount'], $resultsInfo['currentPage'], $query, $from, $to);
+			
+			if(count($results) > 0){
+				echo '<h2>Search : ' . htmlentities($query, ENT_QUOTES, 'UTF-8') . ', <em>' . $resultsInfo['sentencesCount'] . ' result(s)</em></h2>';
+				
+				$pagination->displaySearchPagination($resultsInfo['pagesCount'], $resultsInfo['currentPage'], $query, $from, $to);
+				
+				foreach($results as $index=>$sentence){
+					echo '<div class="sentences_set searchResult">';
+					// sentence menu (translate, edit, comment, etc)
+					$specialOptions[$index]['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
+					$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions[$index], $scores[$index]);
 
-			foreach($results as $index=>$sentence){
-				echo '<div class="sentences_set searchResult">';
-				// sentence menu (translate, edit, comment, etc)
-				$specialOptions[$index]['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
-				$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions[$index], $scores[$index]);
-
-				// sentence and translations
-				$sentence['User']['canEdit'] = $specialOptions[$index]['canEdit']; // TODO set up a better mechanism
-				$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
-				echo '</div>';
+					// sentence and translations
+					$sentence['User']['canEdit'] = $specialOptions[$index]['canEdit']; // TODO set up a better mechanism
+					$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
+					echo '</div>';
+				}
+				
+				$pagination->displaySearchPagination($resultsInfo['pagesCount'], $resultsInfo['currentPage'], $query, $from, $to);
+			}else{
+				
+				echo '<h2>';
+				echo sprintf(__('Add a sentence containing %s', true), htmlentities($query, ENT_QUOTES, 'UTF-8'));
+				echo '</h2>';
+				
+				echo '<p>';
+				__('There is no result for this search (yet) but you can help us feeding the corpus with new vocabulary!');
+				echo '</p>';
+				
+				if($session->read('Auth.User.id')){ 
+					
+					echo '<p>';
+					__('Feel free to submit a sentence with the words you were searching.');
+					echo '</p>';
+					
+					echo $form->create('Sentence', array("action" => "add", "id" => "newSentence"));
+					echo $form->input('text', array("label" => __('Sentence : ', true)));
+					echo $form->end('OK');
+					
+					
+				}else{
+				
+					__('If you are interested, please register.');
+					
+					echo $html->link(
+						'register',
+						array("controller" => "users", "action" => "register"),
+						array("class"=>"registerButton")
+					);
+					
+				}
+				
 			}
-
-			$pagination->displaySearchPagination($resultsInfo['pagesCount'], $resultsInfo['currentPage'], $query, $from, $to);
 
 		}else{
 			__('No results for this search');

@@ -372,18 +372,19 @@ class SentencesController extends AppController{
 	 */
 	function search(){
         
-        Sanitize::html($_GET['query']);
-        Sanitize::html($_GET['page']);
 		if(isset($_GET['query'])){
 			$query = stripslashes($_GET['query']);
 			$page = isset($_GET['page']) ? $_GET['page'] : null;
 			$from = isset($_GET['from']) ? $_GET['from'] : null;
 			$to = isset($_GET['to'])   ? $_GET['to']   : null;
+			
+			Sanitize::html($query);
+			Sanitize::html($page);
+			
 			$this->Session->write('search_query', $query);
 			$this->Session->write('search_from', $from);
 			$this->Session->write('search_to', $to);
 			
-			$this->pageTitle = __('Tatoeba search : ',true) . $query;
 			$lucene_results = $this->Lucene->search($query, $from, $to, $page);
 			$sentences = array();
 			
