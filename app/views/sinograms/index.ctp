@@ -37,6 +37,18 @@ $javascript->link("sinograms.search.js",false);
         ?>
         </div>
         <div id="radicalsList" >
+            <h3>1 Stroke</h3>
+            <a class="radical">一</a>
+            <a class="radical">丨</a>
+            <a class="radical">丶</a>
+            <a class="radical">丿</a>
+            <a class="radical">乀</a>
+            <a class="radical">乁</a>
+            <a class="radical">乙</a>
+
+            <a class="radical">乚</a>
+            <a class="radical">乛</a>
+            <a class="radical">亅</a>
 
         </div>
 
@@ -115,8 +127,8 @@ $javascript->link("sinograms.search.js",false);
                 <?php
                 __ ("Search a character by describing it"); 
                 echo $form->create("Sinogram", array("action" => "search"  ) );
-                echo $form->input("subglyphs", array("label" => __("Sublgyphs: ",true) , "div" => false ));
-                echo $form->end( array( "label" => __("Search",true), 'div' => false )  );
+                echo $form->input("subglyphs", array("label" => __("Sublgyphs: ",true) ));
+                echo $form->end( array( "label" => __("Search",true))  );
                 ?>
             </div> 
         </div>
