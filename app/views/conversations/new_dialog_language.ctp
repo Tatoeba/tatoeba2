@@ -17,27 +17,23 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+/*
+echo $form->inputs(
+	array(
+		'legend' => 'Sentence '.$order,
+		'speaker'.$order => array('label' => __('Speaker', true).' : ', 'class' => 'speaker'),
+		'content_from'.$order => array('label' =>'Content ()', 'class' => 'content_from'),
+		'content_to'.$order => array('label' =>'Content ()', 'class' => 'content_to')));
+*/	
+
+//echo $javascript->link('sentences.conversations.js', true);
+
 ?>
-
-<div id="main_content">
-	<div class="module">
-		<h2><?php echo __('Conversations', true); ?></h2>
-		<?=$html->link(__('Add a new conversation', true), array('controller' => 'conversations', 'action' => 'edit', 'new'));?>
-	</div>
-	<div class="module">
-		<h2><?php echo __('Last added conversations', true); ?></h2>
-		<?php
-		if (count($conversations) > 0) {
-
-		} else {
-			?>
-			<p>No dialog added</p>
-			<?php
-		}
-		?>
-	</div>
-</div>
-
+<td class="DialogLanguageFlag">
+	<?php echo $html->image($new_language.'.png'); ?>
+</td>
+<td>
 <?php
-//pr($conversations);
+	echo $form->input('ConversationContent'.$new_language, array('label' => '', 'class' => 'content'));
 ?>
+</td>

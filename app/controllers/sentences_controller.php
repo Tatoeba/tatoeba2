@@ -339,7 +339,7 @@ class SentencesController extends AppController{
 	/**
 	 * Search sentences.
 	 */
-	function search(){
+	function search() {
         
 		if(isset($_GET['query'])){
 			$query = stripslashes($_GET['query']);

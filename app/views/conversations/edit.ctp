@@ -33,47 +33,38 @@ $languages = array(
 );
 $selectedLanguageFrom = 'en';
 $selectedLanguageTo = 'zh';
+
+echo $javascript->link('sentences.conversations.js', true);
+echo $javascript->link('autocompletion/jquery.bgiframe.min.js', true);
+echo $javascript->link('autocompletion/jquery.ajaxQueue.js', true);
+echo $javascript->link('autocompletion/thickbox-compressed.js', true);
+echo $javascript->link('autocompletion/jquery.autocomplete.js', true);
 ?>
 
-<div id="main_content">
+<div id="content">
 	<div class="module">
 		<h2><?=__('Conversations', true); ?></h2>
 
 		<?php
 		if ($mode == 'new') {
-			echo $form->select('from', $languages, $selectedLanguageFrom);
-			echo $form->select('to', $languages, $selectedLanguageTo);
 
 			?>
 			<h3><?=__('Add a new conversation', true); ?></h3>
-
+			<div style="text-align:center">
+				<h4>Choose your languages</h4>
+				<div id="LanguagesList">
+				
+				</div>
+				<?php echo $form->select('DialogMainLanguage', $languages); ?>
+				<a id="AddDialogLanguageLink" style="display:none">+ Add another language</a>
+				<span id="AddDialogLanguageForm" style="display:none">
+					Add another language : <?php echo $form->select('DialogTranslationLanguage', $languages); ?>
+				</span>
+			</div>
+			<div id="DialogEditor">
+				
+			</div>
 			<?php
-			echo $form->create('Conversation');
-			echo '<div id="sentencesList">';
-			echo $form->input('title', array('label' => __('Title', true).' : '));
-			echo $form->inputs(
-				array(
-					'legend' => 'Sentence 1',
-					'speaker1' => array('label' => __('Speaker', true).' : ', 'class' => 'speaker'),
-					'content_from1' => array('label' =>'Content ('.$selectedLanguageFrom.')', 'class' => 'content_from'),
-					'content_to1' => array('label' =>'Content ('.$selectedLanguageTo.')', 'class' => 'content_to')));
-
-			echo $form->inputs(
-				array(
-					'legend' => 'Sentence 2',
-					'speaker2' => array('label' => __('Speaker', true).' : ', 'class' => 'speaker'),
-					'content_from2' => array('label' =>'Content ('.$selectedLanguageFrom.')', 'class' => 'content_from'),
-					'content_to2' => array('label' =>'Content ('.$selectedLanguageTo.')', 'class' => 'content_to')));
-			echo $form->hidden('nb_replies', array('value' => '2'));
-			echo $form->hidden('lang_from', array('value' => $selectedLanguageFrom));
-			echo $form->hidden('lang_to', array('value' => $selectedLanguageTo));
-
-			echo '</div>';
-			?>
-			<div id="testForm"></div>
-			<a id="addNewReply"><?=__('Add a new reply', true); ?></a>
-			<?php
-			echo $form->end(__('Save this conversation', true));
 		}
 		?>
 

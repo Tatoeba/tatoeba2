@@ -17,10 +17,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+App::import('Core', 'Sanitize');
+
 class ConversationsController extends AppController{
 
 	var $name = 'Conversations';
-	var $helpers = array('Html', 'Form', 'Sentences');
+	var $helpers = array('Html', 'Form', 'Pagination', 'Sentences');
+	var $components = array ('Lucene');
 	
 	
 	function beforeFilter() {
@@ -35,12 +38,7 @@ class ConversationsController extends AppController{
 		$this->set('conversations', $conversations);
 	}
 	
-	function show($id){
-		$this->SentencesList->id = $id;
-		$this->set('list', $this->SentencesList->read());
-	}
-	
-	function add(){
+	function add() {
 		if(!empty($this->data)){
 			$nb_replies = $this->data['Conversation']['nb_replies'];
 			$lang_from = $this->data['Conversation']['lang_from'];
@@ -78,52 +76,33 @@ class ConversationsController extends AppController{
 		$this->redirect(array("action"=>"index"));
 	}
 	
-	function add_sentence_to_new_list($sentenceId, $listName){
-		Configure::write('debug', 0);
-		if($listName != ''){
-			$newList['SentencesList']['user_id'] = $this->Auth->user('id');
-			$newList['SentencesList']['name'] = $listName;
-			if($this->SentencesList->save($newList)){
-				$this->SentencesList->habtmAdd('Sentence', $this->SentencesList->id, $sentenceId);
-				$this->set('listId', $this->SentencesList->id);
-			}else{
-				$this->set('listId', 'error');
-			}
-		}else{
-			$this->set('listId', 'error');
-		}
-	}
-	
 	function edit($param){
 		$this->set('mode', 'new');
 
 
 	}
-	function new_reply($order, $tesr){
+	function new_reply($order, $dialog_languages){
 		$this->layout = null;
 		$this->set('order', $order);
+		$this->set('dialog_languages', $dialog_languages);
 
 	}
-	function of_user($user_id){
-		
+
+	function new_dialog($main_language) {
+		$this->layout = null;
+		$this->set('main_language', $main_language);
+
 	}
 	
-	function choices(){
-		$this->Package->recursive = -1;
-		$lists = $this->SentencesList->find(
-			'all', 
-			array("conditions" => array("SentencesList.user_id" => $this->Auth->user('id')))
-		);
-		//$this->set('lists', $lists);
-		return $lists;
+	function new_dialog_language($new_language) {
+		$this->layout = null;
+		$this->set('new_language', $new_language);
+
 	}
 	
-	function add_sentence_to_list($sentence_id, $list_id){
-		$this->set('s', $sentence_id);
-		$this->set('l', $list_id);
-		if($this->SentencesList->habtmAdd('Sentence' , $list_id, $sentence_id)){
-			$this->set('saved', true);
-		}
+	function new_dialog_language_title($new_language) {
+		$this->layout = null;
+		$this->set('new_language', $new_language);
 	}
 	
 }

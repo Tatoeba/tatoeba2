@@ -30,6 +30,7 @@ a img {
 
 a {
 	color:#849684;
+	/*color:#2A5DB0; KT: illisible */
 	text-decoration:none;
 }
 
@@ -42,9 +43,8 @@ h2, h3, h4{
 }
 
 h3{
-	margin-left: 20px;
-	border-bottom: 1px solid;
-	color:#E55F0E;
+	margin-left: 10px;
+	font-size:1.3em;
 }
 
 h4{
@@ -283,7 +283,7 @@ div#container {
 
 div#content {
 	font-size:0.8em;
-	border:1px dotted #D1D1D1;
+	/* border:1px dotted #D1D1D1; */
 }
 
 /* Module : when a page is split into 2 main parts */
@@ -438,6 +438,13 @@ p.more_link {
 
 div.module ul.menu .selected a {
 	color:#257D0C;
+}
+
+/* ">>" */
+span.ToLanguage {
+	font-family:Arial, Sans-serif;
+	font-size:1.3em;
+	margin:0 5px;
 }
 
 /* Flash message */

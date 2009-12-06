@@ -18,19 +18,78 @@
 
 */
 
+$(document).ready(function() {$("#clictest").unbind("click");
 
-$(document).ready(function(){
-	$("#addNewReply").click(function(){
-		//alert($('#ConversationNbReplies').attr('value'));
-		$('#ConversationNbReplies').attr('value', parseInt($('#ConversationNbReplies').attr('value')) + 1);
-		//alert($('#ConversationNbReplies').attr('value'));
-		var newReply = $('#testForm').clone();
-		$('#sentencesList').append(newReply);
-		newReply.html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
-		newReply.load("http://" + self.location.hostname + "/conversations/new_reply/" + $('#ConversationNbReplies').attr('value') + '/' + 'blabla');
-		//$('#sentencesList').append($('#testForm').html());
-		//$('#testForm').html("");
-		//$('#ConversationAddForm').append(newReply);
-		
+	var speakers = new Array();
+	$(".SpeakerInput").each(function() {
+		speakers.push($(this).attr("value"));
 	});
+	
+	$(".SpeakerInput").autocomplete(speakers);
+	
+	$("#AddDialogLanguageLink").unbind("click");
+	$("#AddDialogLanguageLink").click(function() {
+		$("#AddDialogLanguageLink").hide();
+		$("#AddDialogLanguageForm").show();
+	});
+	
+	$("#addNewReply").unbind("click");
+	$("#addNewReply").click(function() {
+		$('#ConversationNbReplies').attr('value', parseInt($('#ConversationNbReplies').attr('value')) + 1);
+		var newReply = new $("<div></div>");
+		newReply.html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
+		newReply.load("http://" + self.location.hostname + "/conversations/new_reply/" + $('#ConversationNbReplies').attr('value') + '/' + $('#ConversationLanguages').attr('value'));
+		$('#sentencesList').append(newReply);
+	});
+
+	$("#DialogMainLanguage").unbind("change");
+	$("#DialogMainLanguage").change(function() {
+		if ($("#DialogMainLanguage").attr('value') != "") {
+			$("#DialogEditor").load("http://" + self.location.hostname + "/conversations/new_dialog/" + $('#DialogMainLanguage').attr('value'));
+			$("#AddDialogLanguageLink").show();
+			$("#DialogMainLanguage").hide();
+			var dialogElement = new $('<span></span>');
+			dialogElement.html($("#DialogMainLanguage option[value='" + $('#DialogMainLanguage').attr('value') +"']").text());
+			$("#LanguagesList").append(dialogElement);
+			$("#DialogTranslationLanguage option[value='" + $('#DialogMainLanguage').attr('value') +"']").remove();
+		}
+	});
+	
+	$("#AddDialogLanguageForm").unbind("change");
+	$("#AddDialogLanguageForm").change(function() {
+		if ($("#DialogTranslationLanguage").attr('value') != "") {
+			var sentence_pattern = new $('<tr></tr>');
+			var url = "http://" + self.location.hostname + "/conversations/new_dialog_language/" + $('#DialogTranslationLanguage').attr('value');
+			sentence_pattern.load(url, "", function() {
+				$(".DialogSentenceLanguages").each(function() {
+					var reply_id = parseInt($(this).attr("id").substring(24));
+					var reply_language = sentence_pattern.clone();
+					reply_language.find("input").each(function() {
+						$(this).attr("id", $(this).attr("id") + reply_id);
+						$(this).attr("name", "data[Conversation][content" + $('#DialogTranslationLanguage').attr('value') + reply_id + "]");
+					});
+					reply_language.find("label").each(function() {
+						$(this).attr("for", $(this).attr("for") + reply_id);
+					});
+					$(this).append(reply_language);
+				});
+				$('#ConversationLanguages').attr('value', $('#ConversationLanguages').attr('value') + ";" + $('#DialogTranslationLanguage').attr('value'));
+				$("#AddDialogLanguageLink").show();
+				$("#AddDialogLanguageForm").hide();
+				var dialogElement = new $('<span></span>');
+				dialogElement.html(", " + $("#DialogTranslationLanguage option[value='" + $('#DialogTranslationLanguage').attr('value') +"']").text());
+				$("#LanguagesList").append(dialogElement);
+				
+				
+				$("#DialogTranslationLanguage option[value='" + $('#DialogTranslationLanguage').attr('value') +"']").remove();
+			});
+			
+			var dialog_language_title = new $('<tr></tr>');
+			url = "http://" + self.location.hostname + "/conversations/new_dialog_language_title/" + $('#DialogTranslationLanguage').attr('value');
+			dialog_language_title.load(url, "", function() {
+				$("#DialogTitleLanguages").append(dialog_language_title);
+			});
+		}
+	});
+
 });

@@ -20,7 +20,7 @@ class PaginationHelper extends AppHelper{
 	var $helpers = array('Html');
 	const RANGE = 12;
 	
-	function searchUrl($page, $query, $from = null, $to = null){
+	function searchUrl($page, $query, $from = null, $to = null) {
 		$params  = '?page='.$page;
 		$params .= '&query='.$query;
 		$params .= ($from != null) ? '&from='.$from : '';
@@ -28,7 +28,7 @@ class PaginationHelper extends AppHelper{
 		return array("controller" => "sentences", "action" => "search", $params);
 	}
 	
-	function displaySearchPagination($totalPages, $currentPage, $query, $from = null, $to = null){
+	function displaySearchPagination($totalPages, $currentPage, $query, $from = null, $to = null) {
 		if($totalPages > 1){
 			$query = urlencode($query);
 			

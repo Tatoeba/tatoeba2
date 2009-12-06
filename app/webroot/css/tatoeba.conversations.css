@@ -23,37 +23,78 @@
 #ConversationAddForm {
 }
 #ConversationAddForm fieldset {
-	margin:0 40px;
-	padding:5px 10px;
+	margin:5px;
+	padding:0px;
+	border:1px solid #C4C4C4;
+}
+
+a#AddDialogLanguageLink {
+	margin-left:10px;
+}
+
+#LanguagesList span {
+	font-weight:bold;
+}
+
+#ConversationAddForm legend {
+	font-weight:bold;
+	margin-left:10px;
 }
 	
+#ConversationAddForm #DialogTitleLanguages input {
+	width:400px;
+}	
+#ConversationAddForm #DialogTitle legend {
+	font-size:1.1em;
+}
+
+#ConversationAddForm #DialogTitle table {
+	margin-left:auto;
+	margin-right:auto;
+	width:auto;
+}
+#ConversationAddForm #DialogTitle div {
+	margin:0;
+	padding:0;
+}
+
+#ConversationAddForm td {
+	padding:5px;
+}	
 #ConversationAddForm #ConversationTitle {
 	width:400px;	
 }
 	
-	
-#ConversationAddForm label {
-	float:left;
-	text-align:right;
-	margin-right:10px;
-	width:80px;
+
+#ConversationAddForm td.speaker {
+	width:120px;
+	padding:5px 10px;
 }
 
-#ConversationAddForm .speaker {
-	width:160px;
+#ConversationAddForm input.SpeakerInput {
+	width:100%;
+	margin:4px 0 0 0;
 }
 
 #ConversationAddForm input {
-	margin:10px 0;
-	display:block;
 	width:150px;
 }
 
-#ConversationAddForm .content_from {
-	width:400px;
-	height:40px;
+#ConversationAddForm .content {
+	width:100%;
+	margin:0;
 }
-#ConversationAddForm .content_to {
-	width:400px;
-	height:40px;
+
+#ConversationAddForm .DialogLanguageFlag {
+	width:20px;
+}
+
+#ConversationAddForm .DialogLanguageFlag img {
+	width:100%;
+}
+
+#ConversationAddForm td.findSimilar {
+	width:100px;
+	text-align:center;
+	padding:5px 8px;
 }

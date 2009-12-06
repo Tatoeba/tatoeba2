@@ -17,11 +17,43 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
+/*
 echo $form->inputs(
 	array(
 		'legend' => 'Sentence '.$order,
 		'speaker'.$order => array('label' => __('Speaker', true).' : ', 'class' => 'speaker'),
 		'content_from'.$order => array('label' =>'Content ()', 'class' => 'content_from'),
 		'content_to'.$order => array('label' =>'Content ()', 'class' => 'content_to')));
+*/	
+
+echo $javascript->link('sentences.conversations.js', true);
 ?>
+<fieldset>
+	<legend>Sentence <?php echo $order; ?></legend>
+	<table>
+		<tr>
+		<td class="speaker"><?php echo $form->input('speaker'.$order, array('label' => __('Speaker', true), "class" => "SpeakerInput")); ?></td>
+		<td>
+			<table id="DialogSentenceLanguages_<?php echo $order; ?>" class="DialogSentenceLanguages">
+				<?php
+				$dialog_languages_tab = explode(";", $dialog_languages);
+				foreach ($dialog_languages_tab as $dialog_language) {
+					?>
+					<tr>
+						<td class="DialogLanguageFlag">
+							<?php echo $html->image($dialog_language.'.png'); ?>
+						</td>
+						<td>
+						<?php
+							echo $form->input('ConversationContent'.$dialog_language, array('label' => '', 'class' => 'content'));
+						?>
+						</td>
+					</tr>
+					<?php
+				}
+				?>
+			</table>
+		</td>
+		</tr>
+	</table>
+</fieldset>
