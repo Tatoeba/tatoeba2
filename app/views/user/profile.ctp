@@ -77,12 +77,13 @@ if(!empty($user['User']['name'])){
 <?php
 }
 
-$aBirthday = explode('-', $user['User']['birthday']);
+$aBirthday = explode('-', substr($user['User']['birthday'], 0, 10));
 // 0 => YYYY
 // 1 => MM
 // 2 => DD
+// needed to do a substr because $user['User']['birthday'] is formatted as YYYY-MM-DD HH:mm:ss
 
-if(!is_null((integer) $aBirthday[0]) && !is_null((integer) $aBirthday[1]) && !is_null((integer) $aBirthday[2])){
+if(intval($aBirthday[0] + $aBirthday[1] + $aBirthday[2]) != 0){
 	$iTimestamp = mktime(0, 0, 0, $aBirthday[1], $aBirthday[2], $aBirthday[0]);
 
 ?>

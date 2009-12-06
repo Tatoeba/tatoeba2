@@ -165,7 +165,7 @@ $navigation->displayUsersNavigation($user['User']['id'], $user['User']['username
 			echo '<ol class="comments">';
 			foreach($user['SentenceComments'] as $comment) {
 				$comment['User'] = $user['User'];
-				$comments->displaySentenceComment($comment);
+				$comments->displaySentenceComment($comment, true);
 			}
 			echo '</ol>';
 		echo '</div>';

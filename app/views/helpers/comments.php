@@ -73,7 +73,7 @@ class CommentsHelper extends AppHelper {
 			
 			echo '<div class="body">';
 				// sentence
-				if($displayAsThread){
+				if($displayAsThread AND isset($comment['Sentence'])){
 					echo '<div class="sentence">';
 					if(isset($comment['Sentence']['text'])){
 						echo $this->Html->link(

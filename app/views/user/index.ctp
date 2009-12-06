@@ -99,7 +99,7 @@ echo $form->end(__('Upload', true));
 			'value' => $user['User']['name']
 	));
 	
-	$aBirthday = explode('-', $user['User']['birthday']);
+	$aBirthday = explode('-', substr($user['User']['birthday'], 0, 10));
 	// 0 => YYYY
 	// 1 => MM
 	// 2 => DD
