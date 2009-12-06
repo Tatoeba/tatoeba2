@@ -22,8 +22,15 @@ class Sentence extends AppModel{
 	
 	const MAX_CORRECTNESS = 6; // This is not much in use. Should probably remove it someday
 	
-	var $languages = array('ar', 'bg', 'cs', 'de', 'el', 'en', 'eo', 'es', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'tr', 'uk', 'vn', 'zh', null);
-	
+	//var $languages = array('ar', 'bg', 'cs', 'de', 'el', 'en', 'eo', 'es', 'fr', 'he', 'it', 'id', 'jp', 'ko', 'nl', 'pt', 'ru', 'tr', 'uk', 'vn', 'zh', null);
+    var $languages = array(
+        'ara' ,'bul' ,'deu' ,'ell' ,'eng',
+        'epo' ,'spa' ,'fra' ,'heb' ,'ind',
+        'jpn' ,'kor' ,'nld' ,'por' ,'rus',
+        'vie' ,'cmn' ,'ces' ,'fin' ,'ita',
+        'tur' ,'ukr' ,'wuu' ,
+         null
+        );	
 	var $validate = array(
 		'lang' => array(
 			'rule' => array() 	
@@ -167,7 +174,7 @@ class Sentence extends AppModel{
         SELECT Sentence.id  FROM sentences AS Sentence 
             JOIN ( SELECT (RAND() *(SELECT MAX(id) FROM sentences)) AS id) AS r2
             WHERE Sentence.id >= r2.id
-                AND Sentence.lang IN ( 'jp','zh')
+                AND Sentence.lang IN ( 'jpn','cmm','wuu')
                 AND Sentence.text LIKE ('%$sinogram%')
             ORDER BY Sentence.id ASC LIMIT 1
        ");

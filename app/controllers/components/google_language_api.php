@@ -58,30 +58,30 @@ class GoogleLanguageApiComponent extends Object{
 	
 	function google2TatoebaCode($googleCode){
 		switch($googleCode){
-			case 'ar' :		return 'ar';
-			case 'bg' :		return 'bg';
-            case 'cs' :     return 'cs';
-			case 'de' :		return 'de';
-            case 'el' :     return 'el';
-			case 'en' :		return 'en';
-			case 'eo' :		return 'eo';
-			case 'es' :		return 'es';
-			case 'fi' :		return 'fi';
-			case 'fr' :		return 'fr';
-			case 'iw' : 	return 'he';
-			case 'it' :		return 'it';
-			case 'id' :		return 'id';
-			case 'ja' :		return 'jp';
-			case 'ko' :		return 'ko';
-			case 'nl' :		return 'nl';
-			case 'pt-BR' :	return 'pt';
-			case 'pt-PT' :	return 'pt';
-			case 'ru' :		return 'ru';
-			case 'tr' :		return 'tr';
-			case 'uk' :		return 'uk';
-			case 'vi' : 	return 'vn';
-			case 'zh-CN' : 	return 'zh';
-			case 'zh-TW' : 	return 'zh';
+			case 'ar' :		return 'ara';
+			case 'bg' :		return 'bul';
+            case 'cs' :     return 'ces';
+			case 'de' :		return 'deu';
+            case 'el' :     return 'ell';
+			case 'en' :		return 'eng';
+			case 'eo' :		return 'epo';
+			case 'es' :		return 'spa';
+			case 'fi' :		return 'fin';
+			case 'fr' :		return 'fra';
+			case 'iw' : 	return 'heb';
+			case 'it' :		return 'ita';
+			case 'id' :		return 'ind';
+			case 'ja' :		return 'jpn';
+			case 'ko' :		return 'kor';
+			case 'nl' :		return 'nld';
+			case 'pt-BR' :	return 'por';
+			case 'pt-PT' :	return 'por';
+			case 'ru' :		return 'rus';
+			case 'tr' :		return 'tur';
+			case 'uk' :		return 'ukr';
+			case 'vi' : 	return 'vie';
+			case 'zh-CN' : 	return 'cmm';
+			case 'zh-TW' : 	return 'cmm';
 		}
 		return null;
 	}

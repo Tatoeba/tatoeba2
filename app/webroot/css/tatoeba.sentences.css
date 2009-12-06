@@ -183,131 +183,136 @@ Note : Is there a way to define this without so much redundancy?
 Note 2 : maybe we can delete this now, because I'm using an img tag to
 display the flags.
 */
-.en{
+.eng{
 padding-right: 30px;
 display: block;
-background:transparent url(../img/en.png) no-repeat scroll right;
+background:transparent url(../img/eng.png) no-repeat scroll right;
 }
 
-.jp{
+.jpn{
 display: block;
 padding-right: 30px;
-background:transparent url(../img/jp.png) no-repeat scroll right;
+background:transparent url(../img/jpn.png) no-repeat scroll right;
 }
 
-.el{
+.ell{
 display: block;
 padding-right: 30px;
-background:transparent url(../img/el.png) no-repeat scroll right;
+background:transparent url(../img/ell.png) no-repeat scroll right;
 }
-.eo{
+.epo{
 display: block;
 padding-right: 30px;
-background:transparent url(../img/eo.png) no-repeat scroll right;
-}
-
-.fr{
-display: block;
-padding-right: 30px;
-background:transparent url(../img/fr.png) no-repeat scroll right;
+background:transparent url(../img/epo.png) no-repeat scroll right;
 }
 
-.de{
+.fra{
 display: block;
 padding-right: 30px;
-background:transparent url(../img/de.png) no-repeat scroll right;
+background:transparent url(../img/fra.png) no-repeat scroll right;
 }
 
-.es{
+.deu{
 display: block;
 padding-right: 30px;
-background:transparent url(../img/es.png) no-repeat scroll right;
+background:transparent url(../img/deu.png) no-repeat scroll right;
 }
 
-.he{
+.spa{
 display: block;
 padding-right: 30px;
-background:transparent url(../img/he.png) no-repeat scroll right;
+background:transparent url(../img/spa.png) no-repeat scroll right;
 }
 
-.id{
+.heb{
 display: block;
 padding-right: 30px;
-background:transparent url(../img/id.png) no-repeat scroll right;
+background:transparent url(../img/heb.png) no-repeat scroll right;
 }
 
-.it{
+.ind{
 display: block;
 padding-right: 30px;
-background:transparent url(../img/it.png) no-repeat scroll right;
+background:transparent url(../img/ind.png) no-repeat scroll right;
 }
 
-.ko{
+.ita{
 display: block;
 padding-right: 30px;
-background:transparent url(../img/ko.png) no-repeat scroll right;
+background:transparent url(../img/ita.png) no-repeat scroll right;
 }
 
-.nl{
+.kor{
 display: block;
 padding-right: 30px;
-background:transparent url(../img/nl.png) no-repeat scroll right;
+background:transparent url(../img/kor.png) no-repeat scroll right;
 }
 
-.pt{
+.nld{
 display: block;
 padding-right: 30px;
-background:transparent url(../img/pt.png) no-repeat scroll right;
+background:transparent url(../img/nld.png) no-repeat scroll right;
 }
 
-.ru{
+.por{
 display: block;
 padding-right: 30px;
-background:transparent url(../img/ru.png) no-repeat scroll right;
+background:transparent url(../img/por.png) no-repeat scroll right;
 }
 
-.vn{
+.rus{
 display: block;
 padding-right: 30px;
-background:transparent url(../img/vn.png) no-repeat scroll right;
+background:transparent url(../img/rus.png) no-repeat scroll right;
 }
 
-.zh{
+.vie{
 display: block;
 padding-right: 30px;
-background:transparent url(../img/zh.png) no-repeat scroll right;
+background:transparent url(../img/vie.png) no-repeat scroll right;
 }
 
-.fi{
+.cmm{
+display: block;
+padding-right: 30px;
+background:transparent url(../img/cmm.png) no-repeat scroll right;
+}
+
+.fin{
 padding-right: 30px;
 display: block;
-background:transparent url(../img/fi.png) no-repeat scroll right;
+background:transparent url(../img/fin.png) no-repeat scroll right;
 }
 
-.bg{
+.bul{
 padding-right: 30px;
 display: block;
-background:transparent url(../img/bg.png) no-repeat scroll right;
+background:transparent url(../img/bul.png) no-repeat scroll right;
 }
 
-.uk{
+.ukr{
 padding-right: 30px;
 display: block;
-background:transparent url(../img/uk.png) no-repeat scroll right;
+background:transparent url(../img/ukr.png) no-repeat scroll right;
 }
 
-.tr{
+.tur{
 padding-right: 30px;
 display: block;
-background:transparent url(../img/tr.png) no-repeat scroll right;
+background:transparent url(../img/tur.png) no-repeat scroll right;
 }
 
-.cs{
+.ces{
 padding-right: 30px;
 display: block;
-background:transparent url(../img/cs.png) no-repeat scroll right;
+background:transparent url(../img/ces.png) no-repeat scroll right;
 }
 
+.wuu{
+padding-right: 30px;
+display: block;
+background:transparent url(../img/wuu.png) no-repeat scroll right;
+}
 /* Contribute */
 
 #newSentence input#SentenceText{
