@@ -72,7 +72,9 @@ $javascript->link("sinograms.search.js",false);
 
         <div>
             <p id="stillBetaText" >
-            <?php 
+            <?php
+            echo sprintf( __('this works is based on <a href="%s" >this project </a>',true)
+            ,"http://commons.wikimedia.org/wiki/Commons:Chinese_characters_decomposition");
             __('Please note this tool is still not complete yet and may contains errors
             or incomplete (though it will be accurate for most of search), so don\'t hesitate to
             report missing characters or any improvement suggestions.');
