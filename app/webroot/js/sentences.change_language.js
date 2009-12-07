@@ -23,7 +23,6 @@ $(document).ready(function() {
         // to avoid duplicate and xhtml error the id is  _XXXX_original
         // TODO find a better way to store the id ...
 		var sentenceId = $(this).parent().attr('id').split("_")[1];
-        alert(sentenceId);
 		
 		$("#selectLang_" + sentenceId).toggle();
 		
