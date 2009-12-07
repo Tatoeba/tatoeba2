@@ -149,7 +149,8 @@ class SentencesHelper extends AppHelper {
 			$this->displayLanguageFlag($sentence['id'], $sentence['lang'], $editableFlag);
 			
 			// sentence text
-			echo '<div id="'.$sentence['lang'].$sentence['id'].'" class="'.$editable.' '.$editableSentence.'" title="'.$tooltip.'">'.$sentence['text'].'</div> ';
+            // TODO : HACK SPOTTED id is made of lang + id  and then is used in edit_in_place 
+			echo '<div id="'.$sentence['lang'].'_'.$sentence['id'].'" class="'.$editable.' '.$editableSentence.'" title="'.$tooltip.'">'.$sentence['text'].'</div> ';
 			$this->displayRomanization($sentence['lang'], $sentence['text']);
 		echo '</div>';
 

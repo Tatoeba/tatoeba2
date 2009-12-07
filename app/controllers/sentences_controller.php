@@ -169,11 +169,15 @@ class SentencesController extends AppController{
 			Sanitize::html($_POST['value']);
 			// sentences.edit_in_place.js
 			if(isset($_POST['id'])){
-				Sanitize::paranoid($_POST['id']);
+                Sanitize::paranoid($_POST['id']);
 				
+
+                // TODO HACK SPOTTED $_POST['id'] store 2 informations, lang and id
+                // related to HACK in edit in place.js
 				if(preg_match("/[a-z]/", $_POST['id'])){
-					$this->Sentence->id = substr($_POST['id'], 2);
-					$this->data['Sentence']['lang'] = substr($_POST['id'], 0, 2); // language needed for the logs
+                    $hack_array = explode( "_" , $_POST["id"]);
+					$this->Sentence->id = $hack_array[1];
+					$this->data['Sentence']['lang'] = $hack_array[0]; // language needed for the logs
 				}else{
 					$this->Sentence->id = $_POST['id'];
 					$this->data['Sentence']['lang'] = null; // language needed for the logs
