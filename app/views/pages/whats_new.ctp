@@ -16,15 +16,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-$this->pageTitle = 'Tatoeba : What\'s new';
+$this->pageTitle = __("Tatoeba : What's new",true);
 ?>
 
 <div id="annexe_content">
 	<div class="module">
 		<p id="whatsNew">
 		<?php
-		__('You can follow the evolution of the project on ');
-		echo '<a class="twitterLink" target="_blank" href="http://twitter.com/tatoeba_project">Twitter</a>.';
+		__('You can follow the evolution of the project on <a class="twitterLink" target="_blank" href="http://twitter.com/tatoeba_project">Twitter</a>.');
 		?>
 		</p>
 	</div>
