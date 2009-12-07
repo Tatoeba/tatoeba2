@@ -19,7 +19,7 @@ if($is_public or $login){
 <?php
 if(!empty($user['User']['homepage'])){
 ?>
-			<dt>Homepage</dt>
+			<dt><?php __('Homepage'); ?></dt>
 			<dd><?php echo '<a href="' . $user['User']['homepage'] . '" title="' . $user['User']['username'] . '">' . $user['User']['homepage'] . '</a>' ?></dd>
 <?php
 }
@@ -28,17 +28,17 @@ if(!empty($user['User']['homepage'])){
 	</div>
 
 	<div class="module">
-		<h3>Activity informations</h3>
+		<h3><?php __('Activity information'); ?></h3>
 		<dl>
-			<dt>Joined</dt>
+			<dt><?php __('Member since'); ?></dt>
 			<dd><?php echo date('F j, Y', strtotime($user['User']['since'])) ?></dd>
-			<dt>Last login</dt>
+			<dt><?php __('Last login'); ?></dt>
 			<dd><?php echo date('F j, Y \\a\\t G:i', $user['User']['last_time_active']) ?></dd>
-			<dt>Comment posted</dt>
+			<dt><?php __('Comments posted'); ?></dt>
 			<dd><?php echo count($user['SentenceComments']) ?></dd>
-			<dt>Sentences owned</dt>
+			<dt><?php __('Sentences owned'); ?></dt>
 			<dd><?php echo count($user['Sentences']) ?></dd>
-			<dt>Sentences favorited</dt>
+			<dt><?php __('Sentences favorited'); ?></dt>
 			<dd><?php echo count($user['Favorite']) ?></dd>
 		</dl>
 	</div>
@@ -72,7 +72,7 @@ if(!empty($user['User']['description'])){
 <?php
 if(!empty($user['User']['name'])){
 ?>
-			<dt>Name</dt>
+			<dt><?php __('Name'); ?></dt>
 			<dd><?php echo $user['User']['name'] ?></dd>
 <?php
 }
@@ -87,14 +87,14 @@ if(intval($aBirthday[0] + $aBirthday[1] + $aBirthday[2]) != 0){
 	$iTimestamp = mktime(0, 0, 0, $aBirthday[1], $aBirthday[2], $aBirthday[0]);
 
 ?>
-			<dt>Birthday</dt>
+			<dt><?php __('Birthday'); ?></dt>
 			<dd><?php echo date('F j, Y', $iTimestamp) ?></dd>
 <?php
 }
 
 if(is_string($user['User']['country_id']) and strlen($user['User']['country_id']) == 2){
 ?>
-			<dt>Country</dt>
+			<dt><?php __('Country'); ?></dt>
 			<dd><?php echo $user['Country']['name'] ?></dd>
 <?php
 }
@@ -106,8 +106,10 @@ if(is_string($user['User']['country_id']) and strlen($user['User']['country_id']
 
 <?php
 }else{
-?>
-This profile is protected. You must login to see it.
-<?php
+
+	echo '<p>';
+	__('This profile is protected. You must login to see it.');
+	echo '</p>';
+	
 }
 ?>

@@ -85,7 +85,7 @@ echo $form->end(__('Upload', true));
 	</div>
 
 	<div id="pbasic_edit" class="toolbox">
-		<div class="t"><?php __('Complete some informations?') ?><span class="x" title="<?php __('Close') ?>"><?php echo $html->image('close.png', array('alt' => __('Close', true))); ?></span></div>
+		<div class="t"><?php __('Complete some information?') ?><span class="x" title="<?php __('Close') ?>"><?php echo $html->image('close.png', array('alt' => __('Close', true))); ?></span></div>
 		<div class="c">
 <?php
 	echo $form->create('profile_basic', array(
@@ -123,33 +123,33 @@ echo $form->end(__('Upload', true));
 	<div id="pbasic" class="module">
 		<h3><?php __('Basic Information') ?><span id="pbasic_edit_link" class="edit_link"><?php echo $html->image('edit.png', array('alt' => __('Edit', true))); ?></span></h3>
 		<dl>
-			<dt>Name</dt>
+			<dt><?php __('Name'); ?></dt>
 			<dd><?php echo (empty($user['User']['name']) ? _('Tell us what is your real name to get to know you!') : $user['User']['name']) ?></dd>
-			<dt>Birthday</dt>
+			<dt><?php __('Birthday'); ?></dt>
 			<dd><?php echo (((integer) $aBirthday[0] == 0) ? __('You have not set your birthday yet!', true) : date('F j, Y', $iTimestamp)) ?></dd>
-			<dt>Country</dt>
+			<dt><?php __('Country'); ?></dt>
 			<dd><?php echo (is_null($user['User']['country_id']) ? __('Tells us where you come from!', true) : $user['Country']['name']) ?></dd>
 		</dl>
 	</div>
 
 	<div class="module">
-		<h3>Activity informations</h3>
+		<h3><?php __('Activity information'); ?></h3>
 		<dl>
-			<dt>Joined</dt>
+			<dt><?php __('Member since'); ?></dt>
 			<dd><?php echo date('F j, Y', strtotime($user['User']['since'])) ?></dd>
-			<dt>Last login</dt>
+			<dt><?php __('Last login'); ?></dt>
 			<dd><?php echo date('F j, Y \\a\\t G:i', $user['User']['last_time_active']) ?></dd>
-			<dt>Comment posted</dt>
+			<dt><?php __('Comments posted'); ?></dt>
 			<dd><?php echo count($user['SentenceComments']) ?></dd>
-			<dt>Sentences owned</dt>
+			<dt><?php __('Sentences owned'); ?></dt>
 			<dd><?php echo count($user['Sentences']) ?></dd>
-			<dt>Sentences favorited</dt>
+			<dt><?php __('Sentences favorited'); ?></dt>
 			<dd><?php echo count($user['Favorite']) ?></dd>
 		</dl>
 	</div>
 
 	<div id="pcontact_edit" class="toolbox">
-		<div class="t"><?php __('Complete some informations?') ?><span class="x" title="<?php __('Close') ?>"><?php echo $html->image('close.png', array('alt' => __('Close', true))); ?></span></div>
+		<div class="t"><?php __('Complete some information?') ?><span class="x" title="<?php __('Close') ?>"><?php echo $html->image('close.png', array('alt' => __('Close', true))); ?></span></div>
 		<div class="c">
 <?php
 	echo $form->create('profile_contact', array(
@@ -172,12 +172,12 @@ echo $form->end(__('Upload', true));
 	</div>
 
 	<div id="pcontact" class="module">
-		<h3><?php __('Contact informations') ?><span id="pcontact_edit_link" class="edit_link"><?php echo $html->image('edit.png', array('alt' => __('Edit', true))); ?></span></h3>
+		<h3><?php __('Contact information') ?><span id="pcontact_edit_link" class="edit_link"><?php echo $html->image('edit.png', array('alt' => __('Edit', true))); ?></span></h3>
 		<dl>
-			<dt>E-mail</dt>
+			<dt><?php __('E-mail'); ?></dt>
 			<dd><?php echo $user['User']['email'] ?></dd>
-			<dt>Homepage</dt>
-			<dd><?php echo empty($user['User']['homepage']) ? _('Maybe you have a blog to share?') : '<a href="' . $user['User']['homepage'] . '" title="' . $user['User']['username'] . '">' . $user['User']['homepage'] . '</a>' ?></dd>
+			<dt><?php __('Homepage'); ?></dt>
+			<dd><?php echo empty($user['User']['homepage']) ? __('Maybe you have a blog to share?',true) : '<a href="' . $user['User']['homepage'] . '" title="' . $user['User']['username'] . '">' . $user['User']['homepage'] . '</a>' ?></dd>
 		</dl>
 	</div>
 
@@ -189,8 +189,8 @@ echo $form->end(__('Upload', true));
 				'action' => 'save_settings'
 			)
 		)); ?>
-		<div><?php echo $form->checkbox('send_notifications', (($user['User']['send_notifications']) ? array('checked'=>'checked') : array())); ?><label for="profile_settingSendNotifications">E-mail notifications</label></div>
-		<div><?php echo $form->checkbox('public_profile', (($user['User']['is_public']) ? array('checked'=>'checked') : array())); ?><label for="profile_settingPublicProfile">Set your profile public?</label></div>
+		<div><?php echo $form->checkbox('send_notifications', (($user['User']['send_notifications']) ? array('checked'=>'checked') : array())); ?><label for="profile_settingSendNotifications"><?php __('Email notifications'); ?></label></div>
+		<div><?php echo $form->checkbox('public_profile', (($user['User']['is_public']) ? array('checked'=>'checked') : array())); ?><label for="profile_settingPublicProfile"><?php __('Set your profile public?'); ?></label></div>
 		<?php echo $form->end(__('Save', true)) ?>
 	</div>
 

@@ -18,7 +18,7 @@
 */
 
 
-$this->pageTitle = __('Tatoeba user : ',true) . $user['User']['username'];
+$this->pageTitle = sprintf(__('Tatoeba user: %s',true), $user['User']['username']);
 //$javascript->link('users.followers_and_following.js', false);
 
 $navigation->displayUsersNavigation($user['User']['id'], $user['User']['username']);
@@ -55,7 +55,7 @@ $navigation->displayUsersNavigation($user['User']['id'], $user['User']['username
 	<h2><?php echo sprintf(__('About %s',true), $user['User']['username']); ?></h2>
 	<ul>
 		<li>
-        <?php __('Member since:'); echo ' '.$date->ago($user['User']['since']); ?>
+        <?php echo sprintf(__('Member since %s',true), $date->ago($user['User']['since'])); ?>
         </li>
         <li>
             <a href="/user/profile/<?php echo $user['User']['username']?>" >

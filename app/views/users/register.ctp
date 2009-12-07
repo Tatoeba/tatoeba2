@@ -23,15 +23,15 @@ echo $javascript->link('users.check_registration.js', false);
 echo $form->create('User', array("action" => "register"));
 
 echo $form->input('username', array(
-	"label" => __('Username :',true),
+	"label" => __('Username:',true),
 	"id" => "registrationUsername"
 ));
 echo $form->input('password', array(
-	"label" => __('Password :',true),
+	"label" => __('Password:',true),
 	"id" => "registrationPassword"
 ));
 echo $form->input('email', array(
-	"label" => __('Email :',true),
+	"label" => __('Email:',true),
 	"id" => "registrationEmail"
 ));
 
