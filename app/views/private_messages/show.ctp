@@ -1,6 +1,6 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
     Copyright (C) 2009 Etienne Deparis <etienne.deparis@umaneti.net>
 
     This program is free software: you can redistribute it and/or modify
@@ -29,13 +29,18 @@ echo $this->element('pmmenu');
 	echo $this->element('pmtoolbox', array(
 						'extralink' => '<li>' . $html->link(__('Reply', true), array('action' => 'write', $content['from'], $content['id'])) . '</li>
 		<li>' . $delOrRestLink . '</li>
-		<li>' . $html->link(__('Mark unread', true), array('action' => 'mark', 'Inbox', $content['id'])) . '</li>'
+		<li>' . $html->link(__('Mark as unread', true), array('action' => 'mark', 'Inbox', $content['id'])) . '</li>'
 	)); ?>
 
 	<p class="pm_head">
-		<?php echo $date->ago($content['date']) . ' ' .
-		$html->link($content['from'], array('controller' => 'user', 'action' => 'profile', $content['from']));
-		echo __(' has written:', true); ?>
+		<?php 
+		echo $date->ago($content['date']) . ', ';
+		echo sprintf(
+			__('<a href="%s">%s</a> has written:', true)
+			, $html->url(array('controller' => 'user', 'action' => 'profile', $content['from']))			
+			, $content['from']
+		);
+		?>
 	</p>
 	<p class="pm_content"><?php echo $content['content']; ?></p>
 	</div>

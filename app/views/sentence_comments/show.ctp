@@ -41,9 +41,9 @@ $navigation->displaySentenceNavigation();
 	<div class="module">
 		<?php
 		if($sentenceExists){
-			echo '<h2>' . __('Sentence nº', true) . $sentence['Sentence']['id'] . '</h2>';
+			echo '<h2>' . sprintf(__('Sentence nº%s', true), $sentence['Sentence']['id']) . '</h2>';
 			
-			$this->pageTitle = __('Comments on the sentence : ',true) . $sentence['Sentence']['text'];
+			$this->pageTitle = sprintf(__('Comments on the sentence : %s',true), $sentence['Sentence']['text']);
 
 			echo '<div class="sentences_set">';
 				$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
@@ -55,7 +55,7 @@ $navigation->displaySentenceNavigation();
 
 		}else{
 
-			$this->pageTitle = __('Comments for sentence nº',true) . $this->params['pass'][0];
+			$this->pageTitle = sprintf(__('Comments for sentence nº%s',true), $this->params['pass'][0]);
 
 			echo '<em>';
 			__('The sentence has been deleted');
@@ -92,7 +92,7 @@ $navigation->displaySentenceNavigation();
 			}else{
 				echo '<p>';
 				echo sprintf(
-					__('You need to be logged in to add a comment. If you are not registered, you can <a href="">register here</a>.',true),
+					__('You need to be logged in to add a comment. If you are not registered, you can <a href="%s">register here</a>.',true),
 					$html->link(array("controller"=>"users", "action"=>"register"))
 				);
 				echo '</p>';
