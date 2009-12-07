@@ -22,8 +22,6 @@ $(document).ready(function(){
 
 // there's only one  "click" function for favorite/unfavorite ( and a test inside to make the difference
 // instead of two "click" functions because of the way JQuery works
-// .ready  function before loading pages on the browser make a preprocessing stuff
-//   it will check and relace in the html all the div matching one of the xpath expression, and add to it "onclick" 
 // so as it is done only one time at the beginning and as we change the class of the block after the first loading
 //   jquery can't add to it "onclick" 
 // 
