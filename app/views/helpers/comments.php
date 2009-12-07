@@ -55,7 +55,7 @@ class CommentsHelper extends AppHelper {
 					, array("controller" => "user", "action" => "profile", $comment['User']['username'])
 					, array("escape" => false)
 				);
-				echo '<li>';
+				echo '</li>';
 				
 				// author
 				echo '<li class="author">';
