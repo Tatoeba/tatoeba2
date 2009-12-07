@@ -35,25 +35,19 @@ class UsersController extends AppController {
 		//$this->Auth->allowedActions = array('*');
 	}
 
-	function updateAros(){
-		$this->User->recursive = 0;
-		$users = $this->User->find('all');
-		foreach($users as $user){
-			$aro = new Aro();
-			$data = $aro->find("first", array( "conditions" => array("foreign_key" => $user['User']['id'], "model" => "User")));
-			$data['Aro']['parent_id'] = $user['User']['group_id'];
-			$this->Acl->Aro->save($data);
-		}
-	}
 
 	function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
-
+		
+		// Uncomment this when you want to update users permissions.
 		//$this->initDB();
-		//$this->updateAros();
 	}
-
+	
+	
+	/**
+	 * Edit user. Only for admin.
+	 */
 	function edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash('Invalid User');
@@ -79,7 +73,11 @@ class UsersController extends AppController {
 		$groups = $this->User->Group->find('list');
 		$this->set(compact('groups'));
 	}
-
+	
+	
+	/**
+	 * Delete user. Only for admin.
+	 */
 	function delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash('Invalid id for User');
@@ -90,7 +88,11 @@ class UsersController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 	}
-
+	
+	
+	/**
+	 * Login.
+	 */
 	function login()
 	{
 		if(!$this->Auth->user()){
@@ -122,13 +124,20 @@ class UsersController extends AppController {
             $this->redirect($this->Auth->redirect());
         }
 	}
-
+	
+	/**
+	 * Logout.
+	 */
 	function logout()
 	{
 		$this->RememberMe->delete();
 		$this->redirect($this->Auth->logout());
 	}
-
+	
+	
+	/**
+	 * Register.
+	 */
 	function register(){
 		if($this->Auth->User('id')){
 			$this->redirect('/');
@@ -183,7 +192,10 @@ class UsersController extends AppController {
 			
 		}
 	}
-
+	
+	/**
+	 * Send registration email again.
+	 */
 	function resend_registration_mail(){
 		if(!empty($this->data)) {
 			$user = $this->User->findByEmail($this->data['User']['email']);
@@ -226,15 +238,19 @@ class UsersController extends AppController {
 			}
 		}
 	}
-
+	
+	
+	/**
+	 * Validation of registration.
+	 */
 	function confirm_registration($id, $token){
 		$this->User->id = $id;
 		$user = $this->User->read();
 
 		$toHash = $this->Auth->password($user['User']['password']).$user['User']['since'].$user['User']['username'];
 		$correctToken = $this->Auth->password($toHash);
-
-		if($user['User']['group_id'] < User::LOWEST_TRUST_GROUP_ID + 1){
+		
+		if($user['User']['group_id'] > 0 AND $user['User']['group_id'] < User::LOWEST_TRUST_GROUP_ID + 1){
 			$msg = __('Your registration is already validated.',true);
 		}else if($token == $correctToken){
 			if($this->User->saveField('group_id', User::LOWEST_TRUST_GROUP_ID)){
@@ -246,15 +262,23 @@ class UsersController extends AppController {
 
 				$msg = __('Your registration has been validated.',true);
 			}else{
-				$msg = __('A problem occured. Your registration could not be validated.',true);
+				$msg = sprintf(
+					__('A problem occured. Your registration could not be validated. Please <a href="%s">contact us</a> to report the problem.',true),
+					'/' . $this->params['lang'] . '/pages/contact'
+				);
 			}
 		}else{
 			$msg = __('Non valid registration link.',true);
+			
 		}
-
+		
 		$this->flash($msg,'/users/login');
 	}
-
+	
+	
+	/**
+	 * Get new password, for those who have forgotten their password.
+	 */
 	function new_password(){
 		if (!empty($this->data)) {
 			$user = $this->User->findByEmail($this->data['User']['email']);
@@ -297,56 +321,9 @@ class UsersController extends AppController {
 		}
 	}
 
-	function settings(){
-		$id = $this->Auth->user('id');
-		$this->User->recursive = 0;
-		$this->set('user', $this->User->read(null, $id));
-	}
-
-	function save_password(){
-		$this->User->id = $this->Auth->user('id');
-		$this->User->recursive = 0;
-		$user = $this->User->read();
-		$hashedPass = $this->Auth->password($this->data['old_password']['passwd']);
-
-		if($user['User']['password'] == $hashedPass && $this->data['new_password']['passwd'] == $this->data['new_password2']['passwd']){
-			$this->data['User']['password'] = $this->Auth->password($this->data['new_password']['passwd']);
-
-			if($this->User->save($this->data)){
-				$flashMsg = __('New password has been saved.',true);
-			}else{
-				$flashMsg = __('An error occured while saving.',true);
-			}
-		}else{
-			$flashMsg = __('Password error. Please try again.',true);
-		}
-
-		$this->flash($flashMsg,	'/users/settings/');
-	}
-
-	function save_email(){
-		$this->User->id = $this->Auth->user('id');
-		if($this->User->save($this->data)){
-			$flashMsg  = __('Email saved : ', true);
-			$flashMsg .= $this->data['User']['email'];
-		}else{
-			$flashMsg  = __('An error occured while saving. The email you have entered is either not correct or is already used.', true);
-		}
-
-		$this->flash($flashMsg,	'/users/settings/');
-	}
-
-	function save_options(){
-		$this->User->id = $this->Auth->user('id');
-		if($this->User->save($this->data)){
-			$flashMsg = __('Options saved.',true);
-		}else{
-			$flashMsg = __('New password has been saved.',true);
-		}
-
-		$this->flash($flashMsg,	'/users/settings/');
-	}
-
+	/**
+	 * Search for user given a username.
+	 */
 	function search(){
         Sanitize::html($this->data['User']['username']);
 		$user = $this->User->findByUsername($this->data['User']['username']);
@@ -357,7 +334,13 @@ class UsersController extends AppController {
 			$this->flash(__('No user with this username : ', true).$this->data['User']['username'], '/users/all/');
 		}
 	}
-
+	
+	
+	/**
+	 * Display information about a user. 
+	 * NOTE : This should not be used anymore in the future. 
+	 * We'll use user/profile/$username instead.
+	 */
 	function show($id){
 		$this->User->recursive = 1;
 		if($id == "random"){
@@ -384,19 +367,28 @@ class UsersController extends AppController {
 			$this->flash(__('No user with this id : ', true).$id, '/users/all/');
 		}
 	}
-
+	
+	/**
+	 * Display list of all members.
+	 */
 	function all(){
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate(array('User.group_id < 5')));
 	}
 
-
+	/**
+	 * CAPTCHA image for registration.
+	 */
 	function captcha_image(){
-	    Configure::write('debug',0);
 	    $this->layout = null;
 	    $this->Captcha->image();
 	}
-
+	
+	
+	/**
+	 * Display followers of specified user.
+	 * NOTE : This is not used (yet).
+	 */
 	function followers($id){
 		$this->User->unbindModel(
 			array(
@@ -408,7 +400,12 @@ class UsersController extends AppController {
 		$this->User->id = $id;
 		$this->set('followers', $this->User->read());
 	}
-
+	
+	
+	/**
+	 * Display users following specified user.
+	 * NOTE : This is not used (yet).
+	 */
 	function following($id){
 		$this->User->unbindModel(
 			array(
@@ -420,35 +417,29 @@ class UsersController extends AppController {
 		$this->User->id = $id;
 		$this->set('following', $this->User->read());
 	}
-
-
-	function favoriting($id){
-
-        Sanitize::paranoid($id);
-		$this->User->unbindModel(
-			array(
-				'belongsTo' => array('Group'),
-				'hasMany' => array('SentenceComments', 'Contributions', 'Sentences'),
-				'hasAndBelongsToMany' => array('Following' , 'Follower')
-			)
-		);
-
-		$this->User->id = $id;
-		$this->set('favorites', $this->User->read());
-
-
-	}
+	
+	
+	/**
+	 * Start following a user.
+	 * Used in AJAX request in users.followers_and_following.js.
+	 */
 	function start_following(){
 		$follower_id = $this->Auth->user('id');
 		$user_id = $_POST['user_id'];
 		$this->User->habtmAdd('Follower', $user_id, $follower_id);
 	}
 
+	
+	/**
+	 * Stop following a user.
+	 * Used in AJAX request in users.followers_and_following.js.
+	 */
 	function stop_following(){
 		$follower_id = $this->Auth->user('id');
 		$user_id = $_POST['user_id'];
 		$this->User->habtmDelete('Follower', $user_id, $follower_id);
 	}
+	
 
 	/**
 	 * Check if the username already exist or not.
@@ -464,6 +455,7 @@ class UsersController extends AppController {
 			$this->set('data' , false);
 		}
 	}
+	
 
 	/**
 	 * Check if the email already exist or not.
@@ -480,7 +472,10 @@ class UsersController extends AppController {
 		}
 	}
 
-	// temporary function to grant/deny access
+	
+	/**
+	 * Temporary function to grant/deny access.
+	 */
 	function initDB() {
 	    $group =& $this->User->Group;
 

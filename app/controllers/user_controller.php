@@ -40,7 +40,10 @@ class UserController extends AppController {
 
 		$this->Auth->allowedActions = array('*');
 	}
-
+	
+	/**
+	 * Display current user's profile.
+	 */
 	function index() {
 
         $this->User->unBindModel(
@@ -75,7 +78,13 @@ class UserController extends AppController {
 		$this->set('countries', $aCleanCountries);
 		$this->set('user', $aUser);
 	}
-
+	
+	
+	/**
+	 * Display profile of given user. 
+	 * If no username is specified, redirect to index (that is current user's profile).
+	 * If wrong username is specified, redirect to list of members.
+	 */
 	function profile($sUserName = null) {
         Sanitize::html($sUserName);
 
@@ -116,11 +125,17 @@ class UserController extends AppController {
             } else {
                 // TODO better to had message "user %s doesn't exist" , but redirect is still
                 // better than a strange user's page 
-			    $this->redirect(array('action' => 'index'));
+			    $this->flash(
+					sprintf(__('There is no user with this username : %s', true), $sUserName),
+					'/users/all'
+				);
             }
 		}
 	}
-
+	
+	/**
+	 * Save avatar image of current user.
+	 */
 	function save_image() {
 		if(!empty($this->data)){
 			if($this->data['profile_image']['image']['error'] == UPLOAD_ERR_OK){
@@ -131,14 +146,14 @@ class UserController extends AppController {
 
 					// Check file extension
 					if(!in_array($sFileExt, $aValidExts)){
-						$this->Session->setFlash('Please choose GIF, JPEG or PNG image format.');
+						$this->Session->setFlash(__('Please choose GIF, JPEG or PNG image format.', true));
 
 						$this->redirect(array('action' => 'index'));
 					}
 
 					// Check file size, max 1 mo?
 					if($iFileSize > 1024){
-						$this->Session->setFlash('Please choose an image that do net exceed 1 Mo.');
+						$this->Session->setFlash(__('Please choose an image that do net exceed 1 Mo.', true));
 
 						$this->redirect(array('action' => 'index'));
 					}
@@ -166,7 +181,10 @@ class UserController extends AppController {
 
 		$this->redirect(array('action' => 'index'));
 	}
-
+	
+	/**
+	 * Save user's description about himself/herself.
+	 */
 	function save_description() {
 		if(!empty($this->data)){
 
@@ -183,7 +201,7 @@ class UserController extends AppController {
 				$this->User->id = $this->Auth->user('id');
 
 				if($this->User->save(array('User' => $aToSave))){
-					$this->Session->setFlash(__('Your informations have been updated.', true));
+					$this->Session->setFlash(__('Your information have been updated.', true));
 				}else{
 					$this->Session->setFlash(__('An error occured while saving. Please try again or contact us to report this.', true));
 				}
@@ -192,7 +210,11 @@ class UserController extends AppController {
 
 		$this->redirect(array('action' => 'index'));
 	}
-
+	
+	
+	/**
+	 * Save name, birthday and country.
+	 */
 	function save_basic() {
 		if(!empty($this->data)){
                 Sanitize::html($this->data['profile_basic']['name']);
@@ -210,7 +232,7 @@ class UserController extends AppController {
 				$this->User->id = $this->Auth->user('id');
 
 				if($this->User->save(array('User' => $aToSave))){
-					$this->Session->setFlash(__('Your basic informations have been updated.', true));
+					$this->Session->setFlash(__('Your basic information have been updated.', true));
 				}else{
 					$this->Session->setFlash(__('An error occured while saving. Please try again or contact us to report this.', true));
 				}
@@ -218,7 +240,11 @@ class UserController extends AppController {
 
 		$this->redirect(array('action' => 'index'));
 	}
-
+	
+	
+	/**
+	 * Save email and personal URL.
+	 */
 	function save_contact() {
 		if(!empty($this->data)){
             Sanitize::html($this->data['profile_contact']['description']);
@@ -236,7 +262,7 @@ class UserController extends AppController {
 
 			$this->User->id = $this->Auth->user('id');
 			if($this->User->save($aToSave)){
-				$flashMsg = __('Your contact informations have been saved.', true);
+				$flashMsg = __('Your contact information have been saved.', true);
 			}else{
 				$flashMsg  = __('An error occured while saving. Please try again or contact us to report this.', true);
 			}
@@ -251,7 +277,13 @@ class UserController extends AppController {
 		 * url
 		 */
 	}
-
+	
+	
+	/**
+	 * Save option settings. Options are :
+	 *  - send notification emails
+	 *  - set profile as public
+	 */
 	function save_settings() {
 		/*
 		 * TODO:
@@ -278,9 +310,12 @@ class UserController extends AppController {
 
 		$this->redirect(array('action' => 'index'));
 	}
-
+	
+	
+	/**
+	 * Change password.
+	 */
 	function save_password() {
-		pr($this->data);
 
 		if(!empty($this->data)){
 
@@ -312,6 +347,11 @@ class UserController extends AppController {
 		 */
 	}
 	
+	
+	/**
+	 * Retrieve stats about the user.
+	 * This is displayed on homepage for now...
+	 */
 	function stats(){
 		
         $this->User->hasMany['Sentences']['limit'] = null;

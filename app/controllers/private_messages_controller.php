@@ -85,7 +85,7 @@ class PrivateMessagesController extends AppController {
 
 		}
 
-		$this->pageTitle = __('Private Messages - ', true) . $folderId;
+		$this->pageTitle = __('Private messages', true) . ' - ' . $folderId;
 		$this->set('folder', $folderId);
 		$this->set('content', $content);
 	}
@@ -151,7 +151,7 @@ class PrivateMessagesController extends AppController {
 			'folder' => $message['PrivateMessage']['folder']
 		);
 
-		$this->pageTitle = __('Private Messages - ', true) . $content['title'] . __(' from ', true) . $content['from'];
+		$this->pageTitle = __('Private messages', true) . ' - ' . $content['title'] . __('from', true) . ' ' . $content['from'];
 		$this->set('content', $content);
 
 	}
