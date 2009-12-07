@@ -96,5 +96,5 @@ echo $form->hidden('nb_replies', array('value' => 2));
 ?>
 <a id="addNewReply"><?=__('Add a new reply', true); ?></a>
 <?php
-//echo $form->end(__('Save this conversation', true));
+echo $form->end(__('Save this conversation', true));
 ?>

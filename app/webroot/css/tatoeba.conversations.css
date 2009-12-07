@@ -40,7 +40,34 @@ a#AddDialogLanguageLink {
 	font-weight:bold;
 	margin-left:10px;
 }
+
+.list-box {
+	 -moz-border-radius: 6px; 
+	 -webkit-border-radius: 6px; 
+	 border-radius: 6px; 
+	 border: 1px solid #75C34B; 
+	 /*background: #DEE7F8;*/ 
+	 background-color: #D3F3B9;
+	 padding: 1px 16px 2px 5px; 
+	 margin:0 5px 4px 0;
+	 color:#257D0C;
+	 position:relative;
+}
 	
+.list-box a.closebutton { 
+	position: absolute; 
+	right: 4px; top: 5px; 
+	display: block; 
+	width: 7px; 
+	height: 7px; 
+	font-size: 1px; 
+	background: url('../img/close.gif'); 
+}
+	
+.list_box a.closebutton:hover { 
+	 background-position: 7px; 
+}
+
 #ConversationAddForm #DialogTitleLanguages input {
 	width:400px;
 }	

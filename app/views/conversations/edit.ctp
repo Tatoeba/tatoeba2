@@ -52,13 +52,12 @@ echo $javascript->link('autocompletion/jquery.autocomplete.js', true);
 			<h3><?=__('Add a new conversation', true); ?></h3>
 			<div style="text-align:center">
 				<h4>Choose your languages</h4>
-				<div id="LanguagesList">
-				
-				</div>
+				<span id="LanguagesList">
+				</span>
 				<?php echo $form->select('DialogMainLanguage', $languages); ?>
 				<a id="AddDialogLanguageLink" style="display:none">+ Add another language</a>
 				<span id="AddDialogLanguageForm" style="display:none">
-					Add another language : <?php echo $form->select('DialogTranslationLanguage', $languages); ?>
+					+&nbsp;<?php echo $form->select('DialogTranslationLanguage', $languages); ?>
 				</span>
 			</div>
 			<div id="DialogEditor">

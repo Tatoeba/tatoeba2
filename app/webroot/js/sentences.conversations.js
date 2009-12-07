@@ -48,8 +48,9 @@ $(document).ready(function() {$("#clictest").unbind("click");
 			$("#DialogEditor").load("http://" + self.location.hostname + "/conversations/new_dialog/" + $('#DialogMainLanguage').attr('value'));
 			$("#AddDialogLanguageLink").show();
 			$("#DialogMainLanguage").hide();
-			var dialogElement = new $('<span></span>');
+			var dialogElement = new $('<span class="DialogSelectedLanguage list-box"></span>');
 			dialogElement.html($("#DialogMainLanguage option[value='" + $('#DialogMainLanguage').attr('value') +"']").text());
+			dialogElement.append(new $('<a class="closebutton"></a>'));
 			$("#LanguagesList").append(dialogElement);
 			$("#DialogTranslationLanguage option[value='" + $('#DialogMainLanguage').attr('value') +"']").remove();
 		}
@@ -76,8 +77,9 @@ $(document).ready(function() {$("#clictest").unbind("click");
 				$('#ConversationLanguages').attr('value', $('#ConversationLanguages').attr('value') + ";" + $('#DialogTranslationLanguage').attr('value'));
 				$("#AddDialogLanguageLink").show();
 				$("#AddDialogLanguageForm").hide();
-				var dialogElement = new $('<span></span>');
-				dialogElement.html(", " + $("#DialogTranslationLanguage option[value='" + $('#DialogTranslationLanguage').attr('value') +"']").text());
+				var dialogElement = new $('<span class="DialogSelectedLanguage list-box"></span>');
+				dialogElement.html($("#DialogTranslationLanguage option[value='" + $('#DialogTranslationLanguage').attr('value') +"']").text());
+				dialogElement.append(new $('<a class="closebutton"></a>'));
 				$("#LanguagesList").append(dialogElement);
 				
 				
@@ -90,6 +92,14 @@ $(document).ready(function() {$("#clictest").unbind("click");
 				$("#DialogTitleLanguages").append(dialog_language_title);
 			});
 		}
+	});
+	
+	$("#ConversationAddForm").unbind("submit");
+	$("#ConversationAddForm").submit(function() {
+		var languages = $('#ConversationLanguages').attr('value').split(";");
+		var nbLanguages = languages.length;
+		alert(nbLanguages);
+		return false;
 	});
 
 });
