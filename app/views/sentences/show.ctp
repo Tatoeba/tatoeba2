@@ -49,8 +49,10 @@ $navigation->displaySentenceNavigation();
 	<div class="module">
 		<?php
 		if($sentence != null){
-			echo '<h2>' . __('Sentence nº', true) . $sentence['Sentence']['id'] . '</h2>';
-			$this->pageTitle = __('Example sentence : ',true) . $sentence['Sentence']['text'];
+			echo '<h2>' .
+                    sprintf ( __('Sentence nº%s', true) , $sentence['Sentence']['id']) .
+                '</h2>';
+			$this->pageTitle = __('Example sentence: ',true) . $sentence['Sentence']['text'];
 
 			echo '<div class="sentences_set">';
 				// sentence menu (translate, edit, comment, etc)
@@ -72,13 +74,14 @@ $navigation->displaySentenceNavigation();
 			</script>';
 
 		}else{
-			$this->pageTitle = __('Sentence does not exist : ', true) . $this->params['pass'][0];
+			$this->pageTitle = __('Sentence does not exist: ', true) . $this->params['pass'][0];
 			
-			echo '<h2>' . __('Sentence nº', true) . $this->params['pass'][0]. '</h2>';
+			echo '<h2>' .
+                sprintf (__('Sentence nº%s', true), $this->params['pass'][0]) .
+                '</h2>';
 
 			echo '<div class="error">';
-			__('There is no sentence with id ');
-			echo $this->params['pass'][0];
+                echo sprintf(__('There is no sentence with id %s'), $this->params['pass'][0]);
 			echo '</div>';
 		}
 		?>
