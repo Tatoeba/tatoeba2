@@ -17,7 +17,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 ?>
-<h3><?php echo __('informations about:', true) .$sinogramInformations["glyph"] ?></h3>
+<h3><?php echo __('Information about', true) .' '. $sinogramInformations["glyph"] ?></h3>
 
 <div id="sinogramGlyph" >
     <?php echo $sinogramInformations["glyph"] ?>
@@ -50,6 +50,6 @@
     </div>
 </div>
 
-<h3><?php __('Example of use:') ?></h3>
+<h3><?php __('Example of use') ?></h3>
 <div id="example_part" >
 </div>

@@ -2,7 +2,7 @@
 <?php
 if( $sentence == null ){
     echo '<div id="noExampleFound" >' ;
-    echo sprintf(__('No sentence using this character has been found, you can add one <a href="%s" >here</a> .', true),
+    echo sprintf(__('No sentence using this character has been found, you can add one <a href="%s">here</a>.', true),
             "/pages/contribute");
     echo "</div>\n";
 } else {
@@ -25,7 +25,7 @@ if( $sentence == null ){
     <p>
         <?php
         echo sprintf(
-            __('View all sentences using this character <a href="%s" >here</a>',true)
+            __('View all sentences using this character <a href="%s">here</a>',true)
             ,"/sentences/search?query=" .$sinogram
             )
         ?>

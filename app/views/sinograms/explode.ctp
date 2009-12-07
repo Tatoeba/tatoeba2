@@ -16,7 +16,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-    echo "<h3>" . __("Result:",true) . "</h3>\n";
+    echo "<h3>" . __("Result",true) . "</h3>\n";
 
     foreach ( $toExplodeGlyphs as $glyph ){
         foreach ( $explodedSinogramsArray[$glyph] as $subGlyph  ){

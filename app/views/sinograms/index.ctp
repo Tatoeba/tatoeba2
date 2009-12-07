@@ -16,14 +16,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-$this->pageTitle = __('Search Sinograms',true);
+$this->pageTitle = __('Search sinograms',true);
 $javascript->link("sinograms.search.js",false);
 
 ?>
 
 <div id="annexe_content" >
     <div class="module"  >
-        <h2><?php __('Browse Radicals') ?></h2>
+        <h2><?php __('Browse radicals') ?></h2>
         <div id="numberList" >
         <?php 
             for ($i = 1 ; $i < 10 ; $i++){
@@ -55,7 +55,7 @@ $javascript->link("sinograms.search.js",false);
     </div>
 
     <div id="explode_part" class="module" >
-        <h2><?php __('Explode A Character') ?></h2>
+        <h2><?php __('Explode a character') ?></h2>
         <div id="explodeForm" >
         <?php
             echo $form->create("Sinogram", array("action" => "explode"  ) );
@@ -68,17 +68,21 @@ $javascript->link("sinograms.search.js",false);
     </div>
     
     <div class="module" >
-        <h2><?php __("Still beta:") ?></h2>
+        <h2><?php __("Still beta") ?></h2>
 
         <div>
-            <p id="stillBetaText" >
+            <p id="stillBetaText">
             <?php
-            echo sprintf( __('this works is based on <a href="%s" >this project </a>',true)
+            echo sprintf( __('This work is based on <a href="%s">this project</a>.',true)
             ,"http://commons.wikimedia.org/wiki/Commons:Chinese_characters_decomposition");
-            __('Please note this tool is still not complete yet and may contains errors
-            or incomplete (though it will be accurate for most of search), so don\'t hesitate to
-            report missing characters or any improvement suggestions.');
-
+			?>
+			</p>
+			
+			<p>
+			<?php
+            __('Please note that this tool is still not complete yet and may contain errors
+            (although it will be accurate for most searches), so don\'t hesitate to
+            report missing characters or any suggestion of improvement.');
             ?>
             </p>
         </div>
@@ -87,18 +91,17 @@ $javascript->link("sinograms.search.js",false);
 
 <div id="main_content"  >
     <div id="introduction" class="module"  >
-        <h2><?php __('Hanzis - Kanjis research engine');?></h2>
+        <h2><?php __('Hanzis - Kanjis search');?></h2>
         
         <p class="introduction" >
             <?php
-            __('This tool allows you to find informations about kanjis/hanzis. ');
-            __('Especially when you don\'t know how to input them directly with IMEs. ');
-            __('The main way to use this, is by submitting subglyph of the character.');
+            __('This tool allows you to find information about kanjis/hanzis, especially when you don\'t know how to input them directly with IMEs. ');
+            __('The main way to use this is by submitting subglyph of the character.');
         ?>
         </p>
         <p class="introduction" >
             <?php
-            __('For example 蝴, you can enter 月虫 as subglyphs (you don\'t need to know every subglyph).');
+            __('For example for 蝴, you can enter 月虫 as subglyphs (you don\'t need to know every subglyph).');
            ?> 
         </p>
         <p class="introduction" >
@@ -111,14 +114,14 @@ $javascript->link("sinograms.search.js",false);
         <p class="introduction" >
             <?php
 
-            __('For example if you want to search 瞧, but you don\'t know how to input 隹 in order to make the research more accurate, if you know 推,
-            you can just explode it, clicking on a subglyph will add it to the research form.');
+            __('For example if you want to search 瞧, but you don\'t know how to input 隹 in order to make the search more accurate, if you know 推,
+            you can just explode it, clicking on a subglyph will add it to the search form.');
             
            ?> 
         </p>
         <p class="introduction" >
             <?php
-            __('On the right you also have the most common radicals grouped by strokes, in case you don\'t have anyway to type hankis/kanjis.');  
+            __('On the right you also have the most common radicals grouped by strokes, in case you don\'t have any way to type hankis/kanjis.');  
 
             ?>
         </p>

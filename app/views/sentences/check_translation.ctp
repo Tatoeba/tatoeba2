@@ -25,7 +25,7 @@ if(isset($translation_text)){
 		echo $javascript->link('sentences.check_translation.js', true);
 		echo '<li class="same_language_warning">';
 		echo '<span id="same_language_text">' ;
-		echo  __("Are you sure you want to translate this sentence into a sentence in the same language ?" , true );
+		echo  __("Are you sure you want to translate this sentence into a sentence in the same language?" , true );
 		echo '</span>';
 		echo '<div id="same_language_ok_cancel">';
 		echo    '<input id="are_you_sure_submit" type="button" value="OK" />';

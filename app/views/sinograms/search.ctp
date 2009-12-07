@@ -18,7 +18,7 @@
 */
 echo '<div id="searchResults" >';
 
-    echo '<h3>' . __('Results:',true) .'</h3>' ;    
+    echo '<h3>' . __('Results',true) .'</h3>' ;    
     if(count($glyphs)>0){
         foreach( $glyphs as $glyph ){
              echo '<div class="glyph">' .  $glyph . "</div>\n";

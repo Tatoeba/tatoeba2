@@ -25,11 +25,17 @@ $this->pageTitle = __('Browse languages related tools provided by Tatoeba',true)
 
         <p>
             <?php
-            echo sprintf(__("Well, Tatoeba's developpers don't have imagination to code every
-            possibl usefull tools for language learners, so if there's a must-have
-            tools which is missing or you have yourself code something you think can
-            help others (as long as you can provide it under a GPL compatible licence)
-            don't hesitate to talk about it<a href=%s> here</a>, we're always looking for new sutffs.", true),
+			__("Well, Tatoeba's developers don't have time to think of every
+            possible useful tools for language learners.");
+			?>
+		</p>
+		
+		<p>
+			<?php echo sprintf(__("So if there is a must-have tool which is missing, 
+			or if you have yourself coded something you think can help others 
+			(as long as you can provide it under a GPL compatible licence)
+            don't hesitate to talk about it <a href=\"%s\">here</a>, we're always 
+			looking for new stuff.", true),
             "/wall/index"); 
             ?>
         </p>
@@ -39,11 +45,29 @@ $this->pageTitle = __('Browse languages related tools provided by Tatoeba',true)
 
 <div id="main_content">
 	<div class="module">
-	    <h2> <?php __("Tools index:");?> </h2>
+	    <h2> <?php __("Tools");?> </h2>
 
         <ul>
-            <li><a href="kakasi" >Kakasi:</a> <?php __("convert japanese to romaji or furigana")  ?></li>
-            <li><a href="search_hanzi_kanji" >Sinogram Search:</a> <?php __("search all chinese characters / kanjis by all possible ways") ?></li> 
+            <li>
+				<?php 
+					echo $html->link(
+						'KAKASI',
+						array("controller" => "tools", "action" => "kakasi")
+					);
+					echo ': ';
+					__("convert japanese to romaji or furigana.");
+				?>
+			</li>
+            <li>
+				<?php
+					echo $html->link(
+						__('Sinogram search', true),
+						array("controller" => "tools", "action" => "search_hanzi_kanji")
+					);
+					echo ': ';
+					__("search all Chinese characters / kanjis by all possible ways.");
+				?>
+			</li> 
         </ul>
 	</div>
 </div>
