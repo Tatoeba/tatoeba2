@@ -16,7 +16,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-echo '<p><em>Note : the list is not complete yet...</em></p>';
+echo '<p><em>'.__('Note : the list is not complete yet...',true) .'</em></p>';
 
 echo '<h2>'. __('The team', true) . '</h2>';
 echo '<ul>';
@@ -76,6 +76,6 @@ echo '</ul>';
 
 echo '<h2>'. __('Special thanks', true) . '</h2>';
 echo '<ul>';
-echo '<li><em>Lots of people...</em></li>';
+echo '<li><em>' . __("Lots of people...",true).'</em></li>';
 echo '</ul>';
 ?>

@@ -34,7 +34,7 @@ $this->pageTitle = 'Tatoeba : ' . __('Help',true);
 	<div class="module">
 		<h2><?php __('Need more help?'); ?></h2>
 		<p><?php __('If you cannot find the answer to your question, do not hesitate to contact us.'); ?></p>
-		<p class="more_link"><?php echo $html->link('Contact us', array("controller"=>"pages", "action"=>"contact")); ?></p>
+		<p class="more_link"><?php echo $html->link(__('Contact us',true), array("controller"=>"pages", "action"=>"contact")); ?></p>
 	</div>
 </div>
 

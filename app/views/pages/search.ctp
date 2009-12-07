@@ -28,7 +28,7 @@
 		echo '<h4>';
 		__('Search one word : ');
 		echo $html->link(
-			'example',
+			__('example',true),
 			array(
 				"controller" => "sentences",
 				"action" => "search",

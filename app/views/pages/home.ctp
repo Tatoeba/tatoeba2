@@ -67,7 +67,7 @@ array_unshift($langArray, array('any' => __('any', true)));
 		if($count_unknown_language > 0){
 			echo '<div class="module">';
 			echo '<p class="warning">';
-			__('WARNING : The language of some the sentences you have added could not be detected. ');
+			__('WARNING: The language of some the sentences you have added could not be detected. ');
 			echo '</p>';
 			
 			echo '<p class="more_link">';

@@ -20,7 +20,7 @@
 
 <div id="annexe_content">
 	<div class="module">
-		<h2>Last update</h2>
+		<h2><?php __("Last update")?></h2>
 		<p>September 4th, 2009</p>
 	</div>
 	
