@@ -32,7 +32,7 @@ $(document).ready(function() {
 	
 	function save(){
 		var sentenceText = $("#text").val();
-		var listId = $(".editableSentencesListName").attr("id");
+		var listId = $(".editableSentencesListName").attr("id").slice(1);
 		
 		$(".sentencesListLoading").show();
 		

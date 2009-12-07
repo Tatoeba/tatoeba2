@@ -30,7 +30,7 @@ if(isset($translation_text)){
 		echo '<div id="same_language_ok_cancel">';
 		echo    '<input id="are_you_sure_submit" type="button" value="OK" />';
 		echo    '<input id="are_you_sure_cancel" type="button" value="Cancel" />';
-		echo    '<input id="'.$sentence_id.'_text" type="hidden" value="'.$translation_text.'" />';
+		echo    '<input id="_'.$sentence_id.'_text" type="hidden" value="'.$translation_text.'" />';
 		echo '</div>';
 		echo'</li>';
 	}else{

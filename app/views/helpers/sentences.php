@@ -81,7 +81,7 @@ class SentencesHelper extends AppHelper {
 	 * Display a single sentence for edit in place.
 	 */
 	function displayEditableSentence($sentence) {
-		echo '<div id="'.$sentence['id'].'" class="original sentence">';
+		echo '<div id="_'.$sentence['id'].'" class="original sentence">';
 			// Language flag
 			$this->displayLanguageFlag($sentence['id'], $sentence['lang'], true);
 			
@@ -144,7 +144,7 @@ class SentencesHelper extends AppHelper {
 		}
 		
 		// Original sentence
-		echo '<div id="'.$sentence['id'].'" class="original">';
+		echo '<div id="_'.$sentence['id'].'_original" class="original">';
 			// language flag
 			$this->displayLanguageFlag($sentence['id'], $sentence['lang'], $editableFlag);
 			
@@ -152,12 +152,15 @@ class SentencesHelper extends AppHelper {
 			echo '<div id="'.$sentence['lang'].$sentence['id'].'" class="'.$editable.' '.$editableSentence.'" title="'.$tooltip.'">'.$sentence['text'].'</div> ';
 			$this->displayRomanization($sentence['lang'], $sentence['text']);
 		echo '</div>';
+
+        echo "\n";
 		
 		// To add new translations
-		echo '<ul id="translation_for_'.$sentence['id'].'" class="addTranslations"></ul>';
+		echo '<ul id="translation_for_'.$sentence['id'].'" class="addTranslations"><li></li></ul>';
 		
 		// Translations
-		echo '<ul id="'.$sentence['id'].'_translations" class="translations">';
+		echo '<ul id="_'.$sentence['id'].'_translations" class="translations">';
+           echo '<li></li>';
 		if(count($translations) > 0){
 			// direct translations
 			$this->displayTranslations($translations, 'show');
@@ -168,6 +171,8 @@ class SentencesHelper extends AppHelper {
 		echo '</ul>';
 		
 		echo '</div>';
+
+        echo "\n";
     }
 	 
 	/**
@@ -289,7 +294,7 @@ class SentencesHelper extends AppHelper {
 	 * Sentence options (translate, edit, correct, comments, logs, edit, ...)
 	 */
 	function displayMenu($id, $lang, $specialOptions, $score = null){		
-		echo '<ul class="menu" id="'. $id .'" lang="'.$lang.'">';
+		echo '<ul class="menu" id="_'. $id .'" lang="'.$lang.'">';
 			if($score != null){
 				echo '<li class="score">';
 				echo intval($score * 100);
@@ -319,11 +324,13 @@ class SentencesHelper extends AppHelper {
 			// adopt
 			if(isset($specialOptions['canAdopt']) AND $specialOptions['canAdopt'] == true){
 				$this->Menu->adoptButton($id);
+                echo "\n";
 			}
 			
 			// let go
 			if(isset($specialOptions['canLetGo']) AND $specialOptions['canLetGo'] == true){
 				$this->Menu->letGoButton($id);
+                echo "\n";
 			}
 			
 			// comments link
@@ -333,12 +340,14 @@ class SentencesHelper extends AppHelper {
 			if(isset($specialOptions['canFavorite']) AND $specialOptions['canFavorite'] == true){
 				$this->Javascript->link('favorites.add.js', false);
 				$this->Menu->favoriteButton($id);
+                echo "\n";
 			}
 			
 			// unfavorite link
 			if(isset($specialOptions['canUnFavorite']) AND $specialOptions['canUnFavorite'] == true){
 				$this->Javascript->link('favorites.add.js', false);
 				$this->Menu->unfavoriteButton($id);
+                echo "\n";
 			}
 			
 			// add to list
@@ -349,7 +358,7 @@ class SentencesHelper extends AppHelper {
 				
 				$this->Menu->addToListButton();
 				
-				echo '<span style="display:none" class="addToList'.$id.'">';
+				echo '<li style="display:none" class="addToList'.$id.'">';
 					// select list
 					echo '<select class="listOfLists" id="listSelection'.$id.'">';
 					echo '<option value="-1">';
@@ -385,7 +394,8 @@ class SentencesHelper extends AppHelper {
 					echo '</select>';
 					// ok button
 					echo '<input type="button" value="ok" class="addToListButton" />';
-				echo '</span>';
+				echo '</li>';
+                echo "\n";
 			}			
 			
 			// delete link
@@ -393,9 +403,11 @@ class SentencesHelper extends AppHelper {
 				$this->Menu->deleteButton($id);
 			}
 			
-			echo $this->Html->image('loading-small.gif', array("id"=>$id."_in_process", "style"=>"display:none"));
-			echo $this->Html->image('valid_16x16.png', array("id"=>$id."_valid", "style" =>"display:none"));
+            echo "<li>";
+			echo $this->Html->image('loading-small.gif', array("id"=>"_".$id."_in_process", "style"=>"display:none"));
+			echo $this->Html->image('valid_16x16.png', array("id"=>"_".$id."_valid", "style" =>"display:none"));
 			
+            echo "</li>";
 			if(isset($specialOptions['belongsTo'])){
 				echo '<li class="belongsTo">- ';
 				echo __('belongs to ', true);

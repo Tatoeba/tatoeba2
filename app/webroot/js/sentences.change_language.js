@@ -20,7 +20,10 @@ $(document).ready(function() {
 	
 	$(".languageFlag").click(function(){
 		var flagImage = $(this);
-		var sentenceId = $(this).parent().attr('id');
+        // to avoid duplicate and xhtml error the id is  _XXXX_original
+        // TODO find a better way to store the id ...
+		var sentenceId = $(this).parent().attr('id').split("_")[1];
+        alert(sentenceId);
 		
 		$("#selectLang_" + sentenceId).toggle();
 		
@@ -35,7 +38,7 @@ $(document).ready(function() {
 				"http://" + self.location.hostname + "/sentences/change_language/"
 				, { "id": sentenceId, "lang": sentenceLang }
 				, function(){
-					$("#" + sentenceId + "_in_process").hide();
+					$("#_" + sentenceId + "_in_process").hide();
 					flagImage.attr('src', '/img/' + sentenceLang + '.png');
 				}
 			);

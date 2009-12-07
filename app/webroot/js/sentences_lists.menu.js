@@ -25,7 +25,7 @@ $(document).ready(function() {
 	 * after sentence has been added to list.
 	 */
 	function feedbackValid(){
-		$("#"+sentence_id+"_valid").show(); // TODO Set up a better system for this thing. 
+		$("#_"+sentence_id+"_valid").show(); // TODO Set up a better system for this thing. 
 		// Because you can't have the "in process" AND the "valid" at the same time.
 		// It will be useful for favoriting as well.
 		setTimeout(removeFeedback, 500);
@@ -35,14 +35,14 @@ $(document).ready(function() {
 	 * Remove the "check" green icon.
 	 */
 	function removeFeedback(){
-		$("#"+sentence_id+"_valid").hide();
+		$("#_"+sentence_id+"_valid").hide();
 	}
 
 	
 	// Clicking on "Add to list" displays the list selection.
 	// Reclicking on it hides the list selection.
 	$(".addToList").click(function(){
-		sentence_id = $(this).parent().attr("id");
+		sentence_id = $(this).parent().attr("id").slice(1);
 		$(".addToList"+sentence_id).toggle();
 	});
 	
@@ -53,7 +53,7 @@ $(document).ready(function() {
 	// directly after the selection in the <select>.
 	$(".addToListButton").click(function(){
 		
-		sentence_id = $(this).parent().parent().attr("id");
+		sentence_id = $(this).parent().parent().attr("id").slice(1);
 		var list_id = $("#listSelection"+sentence_id).val();
 		
 		// Add sentence to selected list
@@ -69,7 +69,7 @@ $(document).ready(function() {
 						$('#listSelection'+sentence_id+' option[value="'+data+'"]').remove();
 						feedbackValid(sentence_id);
 					}
-					$("#"+sentence_id+"_in_process").hide();
+					$("#_"+sentence_id+"_in_process").hide();
 				},
 				'html'
 			);
@@ -87,7 +87,7 @@ $(document).ready(function() {
 				
 				if(value != undefined){ // need to check this, otherwise it loops indefinitely when canceling...
 				
-					$("#"+sentence_id+"_in_process").show();
+					$("#_"+sentence_id+"_in_process").show();
 					
 					$.post("http://" + self.location.hostname + "/sentences_lists/add_sentence_to_new_list/"+ sentence_id + "/"+ form.listName
 						, {}
@@ -100,7 +100,7 @@ $(document).ready(function() {
 							}else{
 								$.prompt("Sorry, an error occured.");
 							}
-							$("#"+sentence_id+"_in_process").hide();
+							$("#_"+sentence_id+"_in_process").hide();
 						},
 						'html'
 					);

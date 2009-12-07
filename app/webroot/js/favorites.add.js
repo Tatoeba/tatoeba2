@@ -28,7 +28,7 @@ $(document).ready(function(){
 // so to get trough this we need to make a single function and a test for each class
 
 	$(".favorite").click(function(){
-		var favorite_id = $(this).parent().attr("id");
+		var favorite_id = $(this).parent().attr("id").slice(1);
 		var favorite_option = $(this);
 		
 		/*******************************
@@ -37,7 +37,7 @@ $(document).ready(function(){
 
 		if (favorite_option.hasClass("add")){
 			
-			$("#"+favorite_id+"_in_process").show();
+			$("#_"+favorite_id+"_in_process").show();
 
 			$.post("http://" + self.location.hostname + "/favorites/add_favorite/"+ favorite_id
 				, {}	
@@ -55,7 +55,7 @@ $(document).ready(function(){
 						}
 					}
 		
-					$("#"+favorite_id+"_in_process").hide();
+					$("#_"+favorite_id+"_in_process").hide();
 					
 				}
 			);
@@ -69,7 +69,7 @@ $(document).ready(function(){
 
 		else if (favorite_option.hasClass("remove")){
 			
-			$("#"+favorite_id+"_in_process").show();
+			$("#_"+favorite_id+"_in_process").show();
 			
 			$.post("http://" + self.location.hostname + "/favorites/remove_favorite/"+ favorite_id
 				, {}
@@ -88,7 +88,7 @@ $(document).ready(function(){
 
 					}
 		
-					$("#"+favorite_id+"_in_process").hide();
+					$("#_"+favorite_id+"_in_process").hide();
 				}
 			);
 			

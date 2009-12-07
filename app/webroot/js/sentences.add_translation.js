@@ -20,13 +20,15 @@
 
 $(document).ready(function() {
 
+// this javascript is really dependant to id of divs which contains the id of the sentence
+// for the moment, due to xhtml, the id is store that  id="_XXXX"  where XXXX is the sentence's id
 
 	$(".translateLink").click(function(){
-		var sentence_id = $(this).parent().attr("id");
+		var sentence_id = $(this).parent().attr("id").slice(1);
 		var sentence_lang = $(this).parent().attr("lang");
 		
 		function save(){
-			var sentence_text = $("#" + sentence_id + "_text").val();
+			var sentence_text = $("#_" + sentence_id + "_text").val();
 			if($.trim(sentence_text) != ""){
 
 				$("#translation_for_" + sentence_id).html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
@@ -34,7 +36,7 @@ $(document).ready(function() {
 					, { "id": sentence_id, "lang": sentence_lang, "value": sentence_text }
 					, function(data){
 						$(".addTranslations").html('');
-						$("#" + sentence_id + "_translations").prepend(data);
+						$("#_" + sentence_id + "_translations").prepend(data);
 					}
 					, "html"
 				);
@@ -46,13 +48,13 @@ $(document).ready(function() {
 		$(".same_language_warning").html('');
 		
 		$("#translation_for_" + sentence_id).html('<li class="direct">'
-			+ '<input id="'+ sentence_id +'_text" class="addTranslationsTextInput" type="text" value=""/>'
-			+ '<input id="'+ sentence_id +'_submit" type="button" value="OK" />'
-			+ '<input id="'+ sentence_id +'_cancel" type="button" value="Cancel" />'
+			+ '<input id="_'+ sentence_id +'_text" class="addTranslationsTextInput" type="text" value=""/>'
+			+ '<input id="_'+ sentence_id +'_submit" type="button" value="OK" />'
+			+ '<input id="_'+ sentence_id +'_cancel" type="button" value="Cancel" />'
 			+ '</li>');
-		$("#" + sentence_id + "_text").focus();
+		$("#_" + sentence_id + "_text").focus();
 			
-		$("#" + sentence_id + "_submit").click(function(){
+		$("#_" + sentence_id + "_submit").click(function(){
 			save();
 		});
 		
@@ -62,7 +64,7 @@ $(document).ready(function() {
 			}
 		});
 		
-		$("#" + sentence_id + "_cancel").click(function(){
+		$("#_" + sentence_id + "_cancel").click(function(){
 			$(".addTranslations").html('');
 		});
 	});

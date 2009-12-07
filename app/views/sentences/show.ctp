@@ -54,7 +54,8 @@ $navigation->displaySentenceNavigation();
                 '</h2>';
 			$this->pageTitle = __('Example sentence: ',true) . $sentence['Sentence']['text'];
 
-			echo '<div class="sentences_set">';
+            // /!\ the id is used in sentences.show.js , so do not touch the way we forge the id /!\ 
+			echo '<div id="__'.$sentence['Sentence']['id'] . '" class="sentences_set">';
 				// sentence menu (translate, edit, comment, etc)
 				$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
 				$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
@@ -66,12 +67,9 @@ $navigation->displaySentenceNavigation();
 			echo '</div>';
 
 			//$tooltip->displayAdoptTooltip();
-			echo '<script type="text/javascript">
-			$(document).ready(function(){
-				$(".translations").html("<div class=\"loading\">'.addslashes($html->image('loading.gif')).'</div>");
-				$(".translations").load("http://" + self.location.hostname + "/sentences/get_translations/'.$sentence['Sentence']['id'].'");
-			});
-			</script>';
+            // TODO link with sentences.show.js
+            $javascript->link('sentences.show.js',false);
+            
 
 		}else{
 			$this->pageTitle = __('Sentence does not exist: ', true) . $this->params['pass'][0];
