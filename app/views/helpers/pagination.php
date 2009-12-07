@@ -22,9 +22,9 @@ class PaginationHelper extends AppHelper{
 	
 	function searchUrl($page, $query, $from = null, $to = null) {
 		$params  = '?page='.$page;
-		$params .= '&query='.$query;
-		$params .= ($from != null) ? '&from='.$from : '';
-		$params .= ($to != null) ? '&to='.$to : '';
+		$params .= '&amp;query='.$query;
+		$params .= ($from != null) ? '&amp;from='.$from : '';
+		$params .= ($to != null) ? '&amp;to='.$to : '';
 		return array("controller" => "sentences", "action" => "search", $params);
 	}
 	
@@ -38,19 +38,19 @@ class PaginationHelper extends AppHelper{
 			if($totalPages > PaginationHelper::RANGE){
 				if($currentPage > 1){
 					echo $this->Html->link(
-						"<<",
+						"<<", // << in html
 						$this->searchUrl(1, $query, $from, $to),
 						array("class" => "navigation")
 					);
 					
 					echo $this->Html->link(
-						"<",
+						"<", // < in html
 						$this->searchUrl($currentPage-1, $query, $from, $to),
 						array("class" => "navigation")
 					);
 				}else{
-					echo '<strong><<</strong>';
-					echo '<strong><</strong>';
+					echo '<strong>'.htmlentities("<<").'</strong>';
+					echo '<strong>'.htmlentities("<").'</strong>';
 				}
 			}
 			
@@ -97,8 +97,8 @@ class PaginationHelper extends AppHelper{
 						array("class" => "navigation")
 					);
 				}else{
-					echo '<strong>></strong>';
-					echo '<strong>>></strong>';
+					echo '<strong>'.htmlentities(">").'</strong>';
+					echo '<strong>'.htmlentities(">>").'</strong>';
 				}
 			}
 			
