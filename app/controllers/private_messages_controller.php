@@ -54,8 +54,13 @@ class PrivateMessagesController extends AppController {
 		$content = array();
 
 		foreach($inboxes as $message){
+			$fromUser = new User();
+			$fromUser->id = $message['PrivateMessage']['sender'];
+			$fromUser = $fromUser->read();
+
+
 			$toUser = new User();
-			$toUser->id = $message['PrivateMessage']['sender'];
+			$toUser->id = $message['PrivateMessage']['recpt'];
 			$toUser = $toUser->read();
 
 
@@ -64,13 +69,20 @@ class PrivateMessagesController extends AppController {
 			else
 				$messageTitle = $message['PrivateMessage']['title'];
 
+			if($message['PrivateMessage']['title'] == '')
+				$messageTitle = __('[no subject]', true);
+			else
+				$messageTitle = $message['PrivateMessage']['title'];
+
 			$content[] = array(
-				'from' => $toUser['User']['username'],
-				'title' => $messageTitle,
-				'id' => $message['PrivateMessage']['id'],
-				'date' => $message['PrivateMessage']['date'],
+                'to'        => $toUser  ['User']['username'],
+				'from'      => $fromUser['User']['username'],
+				'title'     => $messageTitle,
+				'id'        => $message['PrivateMessage']['id'],
+				'date'      => $message['PrivateMessage']['date'],
 				'isnonread' => $message['PrivateMessage']['isnonread']
 			);
+
 		}
 
 		$this->pageTitle = __('Private Messages - ', true) . $folderId;
@@ -195,7 +207,9 @@ class PrivateMessagesController extends AppController {
 			$this->set('replyToTitle', $messageTitle);
 			$messNextRegExp = preg_replace("#\r?\n#iU", " ", $message['PrivateMessage']['content']);
 			$messNextRegExp = preg_replace("#\r?\n#iU", "\n > ", wordwrap($messNextRegExp, 50));
-			$this->set('replyToContent', "\n" . $toUserLogin . __(' wrote:', true) . "\n > " . $messNextRegExp);
+			$this->set('replyToContent',
+                 "\n" . sprintf( __('%s wrote:', true) , $toUserLogin ) . "\n > " . $messNextRegExp
+                 );
 		}else if($replyToMessageId == 'error'){
 			$this->set('errorString', __('You must fill at least the "To" field and the content field.', true));
 		}else{
