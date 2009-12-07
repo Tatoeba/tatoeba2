@@ -45,7 +45,7 @@ class DateHelper extends AppHelper{
 		}elseif($hours > 0){
 			return sprintf(__('%s hour(s) ago',true), $hours);
 		}else{
-			return sprintf(__('%s mn(s) ago',true), $minutes);
+			return sprintf(__('%s mn ago',true), $minutes);
 		}
 	}
 }

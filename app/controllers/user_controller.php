@@ -153,7 +153,7 @@ class UserController extends AppController {
 
 					// Check file size, max 1 mo?
 					if($iFileSize > 1024){
-						$this->Session->setFlash(__('Please choose an image that do net exceed 1 Mo.', true));
+						$this->Session->setFlash(__('Please choose an image that do not exceed 1 Mo.', true));
 
 						$this->redirect(array('action' => 'index'));
 					}

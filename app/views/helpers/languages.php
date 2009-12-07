@@ -28,7 +28,7 @@ class LanguagesHelper extends AppHelper{
 			, 'ita' => __('Italian', true)
 			, 'vie' => __('Vietnamese', true)
 			, 'rus' => __('Russian', true)
-			, 'cmm' => __('Chinese', true)
+			, 'cmn' => __('Chinese', true)
 			, 'kor' => __('Korean', true)
 			, 'nld' => __('Dutch', true)
 			, 'heb' => __('Hebrew', true)

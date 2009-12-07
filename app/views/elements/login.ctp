@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009 Etienne Deparis <etienne.deparis@umaneti.net>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -16,9 +16,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-// echo '<h2>Mon espace</h2>';
-
 if  ($session->check('Message.auth')) $session->flash('auth');
 
 ?>
@@ -43,39 +40,6 @@ if  ($session->check('Message.auth')) $session->flash('auth');
 	<li onclick="javascript:displayLoginForm();" class="login_pseudo_link"><?php echo __('Login', true); ?></li>
 </ul>
 
-	<?php /*echo $form->create('User', array('action' => 'login'));
-	echo $form->input('username', array('label' => __('Username : ',true)));
-	echo $form->input('password', array('label' => __('Password : ',true)));
-	echo $form->checkbox('rememberMe');
-	echo '<label for="UserRememberMe">'; __('Remember me'); echo '</label>';
-	//echo '<br/>';
-	echo $form->end(__('Log in',true));
-
-	echo '<div id="PasswordForgotten">';
-	echo $html->link(
-		__('Password forgotten?',true),
-		array(
-			"controller" => "users",
-			"action" => "new_password"
-		));
-	echo '</div>';
-?>
-<p class="more_link">
-	<?php
-	echo $html->link(
-	//	__('Click here to register',true),
-	//	array(
-	//		"controller" => "users",
-	//		"action" => "register"
-	//	));
-		__('Join Tatoeba community !',true),
-		array(
-			"controller" => "users",
-			"action" => "register"
-		));
-	?>
-</p>
-*/ ?>
 <form id="UserLoginForm_FromBar" method="post" action="/eng/users/login" style="display:none;">
 	<fieldset style="display:none;">
 		<input type="hidden" name="_method" value="POST" />
