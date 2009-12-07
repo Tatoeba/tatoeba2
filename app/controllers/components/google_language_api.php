@@ -80,8 +80,8 @@ class GoogleLanguageApiComponent extends Object{
 			case 'tr' :		return 'tur';
 			case 'uk' :		return 'ukr';
 			case 'vi' : 	return 'vie';
-			case 'zh-CN' : 	return 'cmm';
-			case 'zh-TW' : 	return 'cmm';
+			case 'zh-CN' : 	return 'cmn';
+			case 'zh-TW' : 	return 'cmn';
 		}
 		return null;
 	}

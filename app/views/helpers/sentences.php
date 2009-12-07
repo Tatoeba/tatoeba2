@@ -41,10 +41,10 @@ class SentencesHelper extends AppHelper {
 	 * Display romanization.
 	 */
 	function displayRomanization($sentenceLang, $sentenceText){
-		if($sentenceLang == 'jp'){
+		if($sentenceLang == 'jpn'){
 			$this->displayRomaji($sentenceText);
 		}
-		if($sentenceLang == 'zh'){
+		if($sentenceLang == 'cmn'){
 			$this->displayPinyin($sentenceText);
 		}
 	}

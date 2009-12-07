@@ -31,7 +31,7 @@ if(isset($translationsLang)){
 		echo '<li>';
 		echo '<div class="original">';
 			echo '<span class="sentence">'.$sentence['text'].'</span>';
-			if($displayRomanization AND in_array($sentence['lang'], array('jp', 'zh'))){
+			if($displayRomanization AND in_array($sentence['lang'], array('jpn', 'cmn'))){
 				echo '<div class="romanization">';
 				$kakasi->convert($sentence['text'], 'romaji');
 				echo '</div>';
@@ -42,7 +42,7 @@ if(isset($translationsLang)){
 			if($translation['lang'] == $translationsLang){
 				echo '<div class="translation">';
 					echo '<div class="text">'.$translation['text'].'</div>';
-					if($displayRomanization AND in_array($translation['lang'], array('jp', 'zh'))){
+					if($displayRomanization AND in_array($translation['lang'], array('jpn', 'cmn'))){
 						echo '<div class="romanization">';
 						$kakasi->convert($translation['text'], 'romaji');
 						echo '</div>';

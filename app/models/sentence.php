@@ -174,7 +174,7 @@ class Sentence extends AppModel{
         SELECT Sentence.id  FROM sentences AS Sentence 
             JOIN ( SELECT (RAND() *(SELECT MAX(id) FROM sentences)) AS id) AS r2
             WHERE Sentence.id >= r2.id
-                AND Sentence.lang IN ( 'jpn','cmm','wuu')
+                AND Sentence.lang IN ( 'jpn','cmn','wuu')
                 AND Sentence.text LIKE ('%$sinogram%')
             ORDER BY Sentence.id ASC LIMIT 1
        ");
