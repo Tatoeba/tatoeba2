@@ -60,7 +60,7 @@ echo $javascript->link('autocompletion/jquery.autocomplete.js', true);
 					+&nbsp;<?php echo $form->select('DialogTranslationLanguage', $languages); ?>
 				</span>
 			</div>
-			<div id="DialogEditor">
+			<div id="DialogContent">
 				
 			</div>
 			<?php

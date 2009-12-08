@@ -33,54 +33,76 @@ class ConversationsController extends AppController{
 	    $this->Auth->allowedActions = array('*');
 	}
 	
-	function index(){
+	function index() {
 		$conversations = $this->Conversation->find('all');
 		$this->set('conversations', $conversations);
 	}
 	
+	function show($id) {
+		if(!empty($id)) {
+			$conversation = $this->Conversation->getWithId($id);
+			$this->set('conversation', $conversation);
+		} else {
+			$this->redirect(array("action" => "index"));
+		}
+	}
+	
 	function add() {
-		if(!empty($this->data)){
+		if(!empty($this->data)) {
 			$nb_replies = $this->data['Conversation']['nb_replies'];
-			$lang_from = $this->data['Conversation']['lang_from'];
-			$lang_to = $this->data['Conversation']['lang_to'];
+			$languages = explode(";", $this->data['Conversation']['languages']);
+
+			$conversation_data['Conversation']['user_id'] = $this->Auth->user('id');
+			$this->Conversation->save($conversation_data);
 			
+			foreach ($languages as $language) {
+				$conversation_title = new ConversationTitle();
+				$conversation_title_data['title'] = $this->data['Conversation']['title'.$language];
+				$conversation_title_data['lang'] = $language;
+				$conversation_title_data['conversation_id'] = $this->Conversation->id;
+				$conversation_title->save($conversation_title_data);
+			}
 			
 			for($i = 1; $i <= $nb_replies; $i++) {
-				$sentence_to_add = new Sentence();
-				$translation_to_add = new Sentence();
-				
-				$sentence_to_add_data['Sentence']['text'] = $this->data['Conversation']['reply_from'.$i];
-				$sentence_to_add_data['Sentence']['lang'] = $lang_from;
-				$sentence_to_add_data['Sentence']['sentence_lang'] = $lang_from; // needed for the logs
-				$sentence_to_add_data['Sentence']['user_id'] = $this->Auth->user('id');
-				$translation_to_add_data['Sentence']['text'] = $this->data['Conversation']['reply_to'.$i];
-				$translation_to_add_data['Sentence']['lang'] = $lang_to;
-				$translation_to_add_data['Sentence']['sentence_lang'] = $lang_to; // needed for the logs
-				$translation_to_add_data['Sentence']['user_id'] = $this->Auth->user('id');
-	
-				$sentence_to_add->save($sentence_to_add_data);
-//				pr($sentence_to_add->id);
-				//$translation_to_add->id = $sentence_to_add->id;
-				$translation_to_add_data['Translation']['Translation'][] = $sentence_to_add->id;
-				$translation_to_add_data['InverseTranslation']['InverseTranslation'][] = $sentence_to_add->id;
-				$translation_to_add->save($translation_to_add_data);
-				//pr($translation_to_add->id);
+				$dialog_initial_language_reply_id = false;
+				foreach ($languages as $language) {
+					$dialog_sentence = new Sentence();
+					$dialog_sentence_data['Sentence']['text'] = $this->data['Conversation']['content'.$language.$i];
+					$dialog_sentence_data['Sentence']['lang'] = $language;
+					$dialog_sentence_data['Sentence']['sentence_lang'] = $language; // needed for the logs
+					$dialog_sentence_data['Sentence']['user_id'] = $this->Auth->user('id');
+					
+					if ($dialog_initial_language_reply_id === false) {//Occured in the first iteration, in order to consider the first language as the initial one
+						$dialog_sentence->save($dialog_sentence_data);
+						$dialog_initial_language_reply_id = $dialog_sentence->id;
+					} else {
+						$dialog_sentence_data['Translation']['Translation'][] = $dialog_initial_language_reply_id;
+						$dialog_sentence_data['InverseTranslation']['InverseTranslation'][] = $dialog_initial_language_reply_id;
+						$dialog_sentence->save($dialog_sentence_data);
+					}
+					
+					$dialog_reply = new ConversationsSentence();
+					$dialog_reply_data['ConversationsSentence']['conversation_id'] = $this->Conversation->id;
+					$dialog_reply_data['ConversationsSentence']['sentence_id'] = $dialog_sentence->id;
+					$dialog_reply_data['ConversationsSentence']['speaker'] = $this->data['Conversation']['speaker'.$i];
+					$dialog_reply_data['ConversationsSentence']['replies_order'] = $i;
+					$dialog_reply->save($dialog_reply_data);
+					
+				}
 			}
+			
+
 			//pr($this->data);
 			//$this->data['SentencesC']['user_id'] = $this->Auth->user('id');
 			//$this->Conversation->save($this->data);
-			$conversation_data['Conversation']['user_id'] = $this->Auth->user('id');
-			$conversation_data['Conversation']['title'] = $this->data['Conversation']['title'];
-			$this->Conversation->save($conversation_data);
 		}
 		$this->redirect(array("action"=>"index"));
 	}
 	
 	function edit($param){
 		$this->set('mode', 'new');
-
-
 	}
+	
 	function new_reply($order, $dialog_languages){
 		$this->layout = null;
 		$this->set('order', $order);

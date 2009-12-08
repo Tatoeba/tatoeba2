@@ -20,25 +20,14 @@
 
 class Conversation extends AppModel{
 	var $name = 'Conversation';
-	
 	var $belongsTo = array('User');
 	var $actsAs = array('ExtendAssociations');
+	var $hasAndBelongsToMany = array('Sentence');
+	var $hasMany = array('ConversationTitle');
 	
-	var $hasAndBelongsToMany = array(
-		'Sentence' => array(
-			'className' => 'Sentence',
-			'joinTable' => 'conversations_sentences',
-			'foreignKey' => 'conversation_id',
-			'associationForeignKey' => 'sentence_id',
-			'conditions' => '',
-			'order' => '',
-			'limit' => '',
-			'unique' => true,
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		)
-	);
-	
+	function getWithId($id){
+        $this->id = $id;
+        return $this->read();
+    }
 }
 ?>

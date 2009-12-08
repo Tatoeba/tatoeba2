@@ -28,7 +28,31 @@
 		<h2><?php echo __('Last added conversations', true); ?></h2>
 		<?php
 		if (count($conversations) > 0) {
-
+			?>
+			<dl class="ConversationTitle">
+				<?php
+				foreach ($conversations as $conversation) {
+					?>
+					<dt>
+						<?php echo $html->link($conversation["ConversationTitle"][0]["title"], array("controller"=>"conversations", "action" => "show", $conversation["Conversation"]["id"]), array("class" => "ConversationLink")); ?>
+						<span class="author"><span> - added by </span>
+						<?php echo $html->link($conversation["User"]["username"], array("controller"=>"users", "action" => "show", $conversation["User"]["id"]), array("class" => "author")); ?></span>
+					</dt>
+					<dd>Available languages : 
+						<?php
+						$languages = array();
+						foreach ($conversation["ConversationTitle"] as $title_version) {
+							$languages[] = $title_version["lang"];
+							echo $html->image($title_version["lang"].'.png');
+						}
+						?>
+					</dd>
+					<?php
+					
+				}
+				?>
+			</dl>
+			<?php
 		} else {
 			?>
 			<p>No dialog added</p>

@@ -20,9 +20,9 @@
 
 /* Conversations */
 
-#ConversationAddForm {
+#DialogContent {
 }
-#ConversationAddForm fieldset {
+#DialogContent fieldset {
 	margin:5px;
 	padding:0px;
 	border:1px solid #C4C4C4;
@@ -36,7 +36,7 @@ a#AddDialogLanguageLink {
 	font-weight:bold;
 }
 
-#ConversationAddForm legend {
+#DialogContent legend {
 	font-weight:bold;
 	margin-left:10px;
 }
@@ -68,60 +68,97 @@ a#AddDialogLanguageLink {
 	 background-position: 7px; 
 }
 
-#ConversationAddForm #DialogTitleLanguages input {
+#DialogContent #DialogTitleLanguages input {
 	width:400px;
 }	
-#ConversationAddForm #DialogTitle legend {
+#DialogContent #DialogTitle legend {
 	font-size:1.1em;
 }
 
-#ConversationAddForm #DialogTitle table {
+#DialogContent #DialogTitle table {
 	margin-left:auto;
 	margin-right:auto;
 	width:auto;
 }
-#ConversationAddForm #DialogTitle div {
+#DialogContent #DialogTitle div {
 	margin:0;
 	padding:0;
 }
 
-#ConversationAddForm td {
+#DialogContent td {
 	padding:5px;
 }	
-#ConversationAddForm #ConversationTitle {
+#DialogContent #ConversationTitle {
 	width:400px;	
 }
 	
 
-#ConversationAddForm td.speaker {
+#DialogContent td.speaker {
 	width:120px;
 	padding:5px 10px;
 }
 
-#ConversationAddForm input.SpeakerInput {
+#DialogContent input.SpeakerInput {
 	width:100%;
 	margin:4px 0 0 0;
 }
 
-#ConversationAddForm input {
+#DialogContent input {
 	width:150px;
 }
 
-#ConversationAddForm .content {
+#DialogContent .content {
 	width:100%;
 	margin:0;
 }
 
-#ConversationAddForm .DialogLanguageFlag {
+#DialogContent .DialogLanguageFlag {
 	width:20px;
 }
 
-#ConversationAddForm .DialogLanguageFlag img {
+#DialogContent .DialogLanguageFlag img {
 	width:100%;
 }
 
-#ConversationAddForm td.findSimilar {
+#DialogContent td.findSimilar {
 	width:100px;
 	text-align:center;
 	padding:5px 8px;
 }
+
+
+.ConversationTitle dl:hover {
+	background-color:#777777;
+}
+
+.ConversationTitle dt a.ConversationLink {
+	margin-left:20px;
+	font-size:1.1em;
+	color:#E55F0E;
+}
+
+.ConversationTitle dt a:hover {
+	color:#E55F0E;
+	text-decoration:underline;
+}
+
+.ConversationTitle dt span {
+	color:#849684;
+	font-style:italic;
+}
+
+.ConversationTitle dt a.author {
+	color:#2A5DB0;
+	font-style:italic;
+}
+
+.ConversationTitle dd {
+	text-align:right;
+}
+
+.ConversationTitle dd img {
+	width:22px;
+	margin:0 4px;
+}
+
+

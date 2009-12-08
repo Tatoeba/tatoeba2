@@ -17,21 +17,19 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-/*
-echo $form->inputs(
-	array(
-		'legend' => 'Sentence '.$order,
-		'speaker'.$order => array('label' => __('Speaker', true).' : ', 'class' => 'speaker'),
-		'content_from'.$order => array('label' =>'Content ()', 'class' => 'content_from'),
-		'content_to'.$order => array('label' =>'Content ()', 'class' => 'content_to')));
-*/	
-
-//echo $javascript->link('sentences.conversations.js', true);
-
 ?>
-	<td class="DialogLanguageFlag">
-		<?php echo $html->image($new_language.'.png'); ?>
-	</td>
-	<td>
-		<?php echo $form->input('ConversationTitle'.$new_language, array('label' => '', 'name' => 'data[Conversation][title'.$new_language.']')); ?>
-	</td>
+
+<div id="main_content">
+	<div class="module">
+	</div>
+	<div class="module">
+		<h2></h2>
+		<?php
+		debug($conversation);
+		?>
+	</div>
+</div>
+
+<?php
+//pr($conversations);
+?>
