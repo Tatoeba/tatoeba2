@@ -118,9 +118,13 @@ $this->pageTitle = __('Wall',true);
 					
 					// replies
 					echo '<div class="replies" id="messageBody_'.  $message["Wall"]["id"]  .'" >';
-						foreach( $message['Reply'] as $reply ){
+                        if ( count($message["Reply"]) >0){
+	                    echo '<ul>';
+    					foreach( $message['Reply'] as $reply ){
 						   echo $wall->create_reply_div($allMessages[$reply['id'] - 1], $allMessages, $isAuthenticated);
 						}
+                        echo '</ul>';
+                        }
 					echo '</div>';					
 				echo '</li>';
              }

@@ -94,11 +94,16 @@ class WallHelper extends AppHelper {
 			
 			// replies
 			echo '<div class="replies" id="messageBody_'.  $message["Wall"]["id"]  .'" >';
-				foreach( $message['Reply'] as $reply ){
-					$this->create_reply_div($allMessages[$reply['id'] - 1],$allMessages,$isAuthenticated);
-				} 
+            
+                if ( ! empty($message['Reply'] )){ 
+                echo '<ul class="toto" >';
+				    foreach( $message['Reply'] as $reply ){
+					    $this->create_reply_div($allMessages[$reply['id'] - 1],$allMessages,$isAuthenticated);
+				    } 
+                echo '</ul>' ;
+                }
 			echo '</div>';
-
+            
 		echo '</li>';
 	}
 }
