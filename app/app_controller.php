@@ -50,13 +50,13 @@ class AppController extends Controller {
 		}else{
 			$interfaceLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
 			switch($interfaceLanguage){
-				case 'fra':
+				case 'fr':
 					$lang = 'fre';
 					break;
-				case 'cmn':
+				case 'zh':
 					$lang = 'chi';
 					break;
-				case 'spa':
+				case 'es':
 					$lang = 'spa';
 					break;
 				default  :
