@@ -54,7 +54,7 @@ if(isset($translation_text)){
 		
 		// sentence text
 		echo '<div id="'.$translation_lang."_".$translation_id.'" class="editable editableSentence">';
-		echo $translation_text; echo"pouet" ; 
+		echo $translation_text; 
 		echo '</div> ';	
 	
 	echo "</li>";

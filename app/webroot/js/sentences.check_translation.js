@@ -28,10 +28,12 @@
 $(document).ready(function() {
 
 	function save(){
+
 		var sentence_id = $(".translateLink").parent().attr("id").slice(1);
 		var sentence_lang = $(".translateLink").parent().attr("lang");
 
 		var sentence_text = $("#_" + sentence_id + "_text").val();
+
 		if($.trim(sentence_text) != ""){
 			$("#translation_for_" + sentence_id).html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
 			$.post("http://" + self.location.hostname + "/sentences/save_translation"
@@ -40,7 +42,7 @@ $(document).ready(function() {
 					$(".same_language_warning").html('');
 					$("#translation_for_" + sentence_id).html('');
 					//alert(data);
-					$("#" + sentence_id + "_translations").prepend(data);
+					$("#_" + sentence_id + "_translations").prepend(data);
 				}
 				, "html"
 			);
