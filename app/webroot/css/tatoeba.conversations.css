@@ -20,9 +20,72 @@
 
 /* Conversations */
 
-#DialogContent {
+
+#Dialog h3.TitleMainLanguage {
+	margin:0 0 0 50px;
+	font-variant:normal;
+	background:none;
 }
-#DialogContent fieldset {
+
+#Dialog h3.TitleOtherLanguage {
+	margin:0 0 0 50px;
+	font-variant:normal;
+	background:none;
+}
+
+#Dialog h3 img {
+	width:20px;
+	margin:0 10px;
+}
+
+#DialogContent {
+	margin-top:30px;
+}
+
+#DialogContent a {
+	color:#2A5DB0;
+	margin-top:30px;
+}
+
+#DialogContent a:hover{
+	text-decoration:underline;
+}
+
+#DialogContent table.DialogReply {
+}
+#DialogContent .DialogReplyContainer {
+	border:1px solid #C4C4C4;
+	padding:10px;
+	margin:10px;
+}
+
+#DialogContent td.speaker {
+	font-weight:bold;
+	width:120px;
+	padding:5px 20px;
+	text-align:right;
+	
+}
+
+
+
+#DialogContent .DialogLanguageFlag {
+	width:40px;
+	padding-right:8px;
+	text-align:right;
+}
+
+#DialogContent .DialogLanguageFlag img {
+	width:20px;
+}
+
+#DialogContent td.DialogReplyContent {
+	padding:5px;
+}
+
+#DialogEditor {
+}
+#DialogEditor fieldset {
 	margin:5px;
 	padding:0px;
 	border:1px solid #C4C4C4;
@@ -36,7 +99,7 @@ a#AddDialogLanguageLink {
 	font-weight:bold;
 }
 
-#DialogContent legend {
+#DialogEditor legend {
 	font-weight:bold;
 	margin-left:10px;
 }
@@ -68,59 +131,59 @@ a#AddDialogLanguageLink {
 	 background-position: 7px; 
 }
 
-#DialogContent #DialogTitleLanguages input {
+#DialogEditor #DialogTitleLanguages input {
 	width:400px;
 }	
-#DialogContent #DialogTitle legend {
+#DialogEditor #DialogTitle legend {
 	font-size:1.1em;
 }
 
-#DialogContent #DialogTitle table {
+#DialogEditor #DialogTitle table {
 	margin-left:auto;
 	margin-right:auto;
 	width:auto;
 }
-#DialogContent #DialogTitle div {
+#DialogEditor #DialogTitle div {
 	margin:0;
 	padding:0;
 }
 
-#DialogContent td {
+#DialogEditor td {
 	padding:5px;
 }	
-#DialogContent #ConversationTitle {
+#DialogEditor #ConversationTitle {
 	width:400px;	
 }
 	
 
-#DialogContent td.speaker {
+#DialogEditor td.speaker {
 	width:120px;
 	padding:5px 10px;
 }
 
-#DialogContent input.SpeakerInput {
+#DialogEditor input.SpeakerInput {
 	width:100%;
 	margin:4px 0 0 0;
 }
 
-#DialogContent input {
+#DialogEditor input {
 	width:150px;
 }
 
-#DialogContent .content {
+#DialogEditor .content {
 	width:100%;
 	margin:0;
 }
 
-#DialogContent .DialogLanguageFlag {
+#DialogEditor .DialogLanguageFlag {
 	width:20px;
 }
 
-#DialogContent .DialogLanguageFlag img {
+#DialogEditor .DialogLanguageFlag img {
 	width:100%;
 }
 
-#DialogContent td.findSimilar {
+#DialogEditor td.findSimilar {
 	width:100px;
 	text-align:center;
 	padding:5px 8px;

@@ -45,7 +45,7 @@ $(document).ready(function() {$("#clictest").unbind("click");
 	$("#DialogMainLanguage").unbind("change");
 	$("#DialogMainLanguage").change(function() {
 		if ($("#DialogMainLanguage").attr('value') != "") {
-			$("#DialogContent").load("http://" + self.location.hostname + "/conversations/new_dialog/" + $('#DialogMainLanguage').attr('value'));
+			$("#DialogEditor").load("http://" + self.location.hostname + "/conversations/new_dialog/" + $('#DialogMainLanguage').attr('value'));
 			$("#AddDialogLanguageLink").show();
 			$("#DialogMainLanguage").hide();
 			var dialogElement = new $('<span class="DialogSelectedLanguage list-box"></span>');

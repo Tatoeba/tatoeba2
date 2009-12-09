@@ -60,16 +60,12 @@ echo $javascript->link('autocompletion/jquery.autocomplete.js', true);
 					+&nbsp;<?php echo $form->select('DialogTranslationLanguage', $languages); ?>
 				</span>
 			</div>
-			<div id="DialogContent">
+			<div id="DialogEditor">
 				
 			</div>
 			<?php
 		}
 		?>
-
-	</div>
-	<div class="module">
-		<h2><?=__('Last added conversations', true); ?></h2>
 
 	</div>
 </div>

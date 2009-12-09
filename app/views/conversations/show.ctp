@@ -17,16 +17,90 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+function sortDialogByLanguage($sentences) {
+	$sentences_sorted = array();
+	$nb_langues = count($sentences["ConversationTitle"]);
+	for ($i = 0; $i < count($sentences["ConversationTitle"]); $i++) {
+		for ($j = 0; $j < (count($sentences["Sentence"])/$nb_langues); $j++) {
+			$sentences_sorted[$j][$sentences["ConversationTitle"][$i]["lang"]] = $sentences["Sentence"][$i + $nb_langues*$j];
+		}
+	}
+	
+	return $sentences_sorted;
+}
+
 ?>
 
+<div id="annexe_content">
+	<div class="module">
+		<h2>About this module</h2>
+		<p>Author : <?php echo $html->link($conversation["User"]["username"], array("controller"=>"users", "action" => "show", $conversation["User"]["id"]), array("class" => "author")); ?></p>
+	</div>
+	<?php
+		if ($session->read('Auth.User.id') == $conversation["User"]["id"]) {
+			?>
+			<div class="module">
+				<ul>
+					<li><a href="">Edit content</a></li>
+					<li><a href="">Delete</a></li>
+				</ul>
+			</div>
+			<?php
+		}
+	?>
+</div>
 <div id="main_content">
 	<div class="module">
-	</div>
-	<div class="module">
-		<h2></h2>
-		<?php
-		debug($conversation);
-		?>
+		<h2>Dialogs</h2>
+		<div id="Dialog">
+			<h3 class="TitleMainLanguage"><?php echo $html->image($conversation["ConversationTitle"][0]["lang"].'.png'); ?> <?php echo $conversation["ConversationTitle"][0]["title"]; ?></h3>
+			<?php
+			for ($i = 1; $i < count($conversation["ConversationTitle"]); $i++) {
+				?>
+				<h3 class="TitleOtherLanguage"><?php echo $html->image($conversation["ConversationTitle"][$i]["lang"].'.png'); ?> <?php echo $conversation["ConversationTitle"][$i]["title"]; ?></h3>
+				<?php
+			}
+			?>
+			<div id="DialogContent">
+			<?php
+			foreach (sortDialogByLanguage($conversation) as $reply) {
+				?>
+				<div class="DialogReplyContainer">
+				<table class="DialogReply">
+					<tr>
+						<?php
+						$default_language = false;
+						foreach ($reply as $reply_version) {
+							if (!$default_language) {
+								?>
+								<td class="speaker"><?php echo $reply_version["ConversationsSentence"]["speaker"]; ?></td>
+								<td>
+									<table class="DialogSentenceLanguages">
+								<?php
+								$default_language = $reply_version["lang"];
+							}
+								?>
+							<tr>
+								<td class="DialogLanguageFlag">
+									<?php echo $html->image($reply_version["lang"].'.png'); ?>
+								</td>
+								<td class="DialogReplyContent">
+									<?php echo $html->link($reply_version["text"], array('controller' => 'sentences', 'action' => 'show', $reply_version["id"]));?>
+								</td>
+							</tr>
+							<?php
+						}
+								?>
+							</table>
+						</td>
+					</tr>
+				</table>
+				</div>
+				<?php
+			}
+			?>
+			</div>
+		</div>
 	</div>
 </div>
 
