@@ -53,8 +53,8 @@ if(isset($translation_text)){
 		$sentences->displayLanguageFlag($translation_id, $translation_lang, true);
 		
 		// sentence text
-		echo '<div id="'.$translation_lang.$translation_id.'" class="editable editableSentence">';
-		echo $translation_text;
+		echo '<div id="'.$translation_lang."_".$translation_id.'" class="editable editableSentence">';
+		echo $translation_text; echo"pouet" ; 
 		echo '</div> ';	
 	
 	echo "</li>";

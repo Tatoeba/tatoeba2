@@ -86,7 +86,7 @@ class SentencesHelper extends AppHelper {
 			$this->displayLanguageFlag($sentence['id'], $sentence['lang'], true);
 			
 			// Sentence
-			echo '<div id="'.$sentence['lang'].$sentence['id'].'" class="editable editableSentence correctness'.$sentence['correctness'].'">';
+			echo '<div id="'.$sentence['lang'].'_'.$sentence['id'].'" class="editable editableSentence correctness'.$sentence['correctness'].'">';
 			echo $sentence['text'];
 			echo '</div> ';
 			
@@ -132,10 +132,12 @@ class SentencesHelper extends AppHelper {
 		$editableSentence = '';
 		$editableFlag = false;
 		$tooltip = __('This sentence does not belong to anyone. If you would like to edit it, you have to adopt it first.', true);
+       // pr($user);
 		if($user != null){
 			if(isset($user['canEdit']) AND $user['canEdit']){
 				$editable = 'editable';
 				$editableSentence = 'editableSentence';
+              //  pr($editableFlag);
 				$editableFlag = true;
 			}
 			if(isset($user['username']) AND $user['username'] != ''){

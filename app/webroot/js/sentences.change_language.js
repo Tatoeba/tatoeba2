@@ -18,7 +18,7 @@
 
 $(document).ready(function() {
 	
-	$(".languageFlag").click(function(){
+	$(".languageFlag").live('click' ,function(){
 		var flagImage = $(this);
         // to avoid duplicate and xhtml error the id is  _XXXX_original
         // TODO find a better way to store the id ...

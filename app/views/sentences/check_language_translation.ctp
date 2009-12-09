@@ -26,7 +26,7 @@
 			echo $javascript->link('sentences.edit_in_place.js', true);
 
 			echo "<li class='direct editable translation'>";
-			echo '<span id="'.$translation_lang.$translation_id.'" class="editableSentence '.$translation_lang.'">';
+			echo '<span id="'.$translation_lang.'_'.$translation_id.'" class="editableSentence '.$translation_lang.'">';
 			echo $translation_text;
 			echo '</span> ';
 			echo "</li>";

@@ -36,7 +36,13 @@ elseif(isset($sentence)){
 	$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
 	
 	// sentence and translations
-	$sentences->displayGroup($sentence['Sentence'], array(), $session->read('Auth.User'));
+    $translation = array();
+    if ( isset($sentence['Translation'])){
+        $translation = $sentence['Translation'];
+    }
+    //pr($specialOptions);
+    $sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
+    $sentences->displayGroup($sentence['Sentence'], $translation, $sentence['User']);
 	echo '</div>';
 
 }
