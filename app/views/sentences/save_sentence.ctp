@@ -30,6 +30,8 @@ if(isset($sentence_text)){
 elseif(isset($sentence)){
 	
 	echo $javascript->link('sentences.add_translation.js', true);
+	echo $javascript->link('jquery.jeditable.js', true);
+	echo $javascript->link('sentences.edit_in_place.js', true);
 	
 	echo '<div class="sentences_set freshlyAddedSentence">';
 	// sentence menu (translate, edit, comment, etc)
