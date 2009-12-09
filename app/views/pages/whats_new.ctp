@@ -34,7 +34,7 @@ $this->pageTitle = __("Tatoeba : What's new",true);
 		<h2><?php __('What\'s new'); ?></h2>
 
 
-		<p>
+		<div>
 		<?php
 		// retrieve data...
 		$curl = curl_init();
@@ -60,7 +60,7 @@ $this->pageTitle = __("Tatoeba : What's new",true);
 			echo '</div>';
 		}
 		?>
-		</p>
+		</div>
 
 		<hr/>
 		<pre>
@@ -143,7 +143,7 @@ $this->pageTitle = __("Tatoeba : What's new",true);
 			<li>Users can change their email and password.</li>
 		</ul>
 
-		<h4>Romaji & Furigana</h4>
+		<h4>Romaji &amp; Furigana</h4>
 		<ul>
 			<li>Converts Japanese text into romaji or hiragana.</li>
 		</ul>
@@ -208,7 +208,7 @@ $this->pageTitle = __("Tatoeba : What's new",true);
 				<li>All the people who have participated to the thread will also receive a notification.</li>
 			</ul>
 
-			<li>View logs & statistics</li>
+			<li>View logs &amp; statistics</li>
 			<ul>
 				<li>Everytime a sentence is added, modified, or deleted, the action is logged.</li>
 				<li>The 10 last logs entries can be seen on the homepage. The 200 last logs entries can be seen after clicking on "Show more...".</li>
