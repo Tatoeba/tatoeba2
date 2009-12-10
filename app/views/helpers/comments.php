@@ -94,7 +94,7 @@ class CommentsHelper extends AppHelper {
 	}
 
 	function clickableURL($comment){
-		$comment = preg_replace('#(https?://[^<)\s ]{0,50})[^<)\s ]{0,}#i', '<a target="_blank" href=\'$0\'>$1</a>', $comment);
+		$comment = preg_replace('/#(https?:\/\/[^<)\s ]{0,50})[^<)\s ]{0,}#i/u', '<a onclick="window.open(this.href,‘_blank’);return false;" href=\'$0\'>$1</a>', $comment);
 		return $comment;
 	}
 
