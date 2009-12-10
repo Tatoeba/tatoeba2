@@ -7,7 +7,7 @@ if($is_public or $login){
 <div id="annexe_content">
 
 	<div id="pcontact" class="module">
-		<h3><?php __('Contact informations') ?></h3>
+		<h3><?php __('Contact information') ?></h3>
 		<dl>
 			<dt><?php __('Private message'); ?></dt>
 			<dd><?php echo $html->link(sprintf(__('Contact %s', true), $user['User']['username']),

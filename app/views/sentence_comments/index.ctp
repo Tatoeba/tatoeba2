@@ -1,6 +1,6 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
     Copyright (C) 2009  TATOEBA Project(should be changed)
 
     This program is free software: you can redistribute it and/or modify
@@ -36,7 +36,7 @@
 		}
 		?>
 	</ul>
-	<p><?php __('NOTE : Since the language of the comments is auto-detected, you may find certain sentences in the wrong category.') ?></p>
+	<p><?php __('NOTE : Since the language of the comments is auto-detected, you may find certain comments in the wrong category.') ?></p>
 	</div>
 </div>
 

@@ -17,17 +17,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
     $titles = array();
-
-    $titles["1"] = __('1 Stroke',true );
-    $titles["2"] = __('2 Strokes',true );
-    $titles["3"] = __('3 Strokes',true );
-    $titles["4"] = __('4 Strokes',true );
-    $titles["5"] = __('5 Strokes',true );
-    $titles["6"] = __('6 Strokes',true );
-    $titles["7"] = __('7 Strokes',true );
-    $titles["8"] = __('8 Strokes',true );
-    $titles["9"] = __('9 Strokes',true );
-    $titles["10+"]= __('10 Strokes and more',true );
+	
+	$titles[1] = __('1 stroke',true );
+	for($i = 2; $i < 10; $i++){
+		$titles[$i] = sprintf(__('%s strokes',true ), $i);
+	}
+    $titles["10+"]= __('10 strokes and more',true );
 
 
 echo '<h3>'.$titles[$numberOfStrokes] . '</h3>'."\n"  ;
