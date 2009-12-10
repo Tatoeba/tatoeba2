@@ -27,8 +27,8 @@ for($i = 0; $i < 5; $i++){
 	$stat = $stats[$i];
 	echo '<li class="stat" title="'.$languages->codeToName($stat['Sentence']['lang']).'">';
 	echo $html->image(($stat['Sentence']['lang']? $stat['Sentence']['lang']: "unknown_lang").'.png');
-	echo '<span class="tooltip">'.$stat['Sentence']['lang'].' : </span>';
-	echo $stat[0]['count'];
+	echo '<span class="langCode">'.$stat['Sentence']['lang'].' : </span>';
+	echo '<span class="total">'.$stat[0]['count'].'</span>';
 	echo '</li>';
 }
 echo '</ul>';
@@ -38,8 +38,8 @@ for($i = 5; $i < count($stats); $i++){
 	$stat = $stats[$i];
 	echo '<li class="stat" title="'.$languages->codeToName($stat['Sentence']['lang']).'">';
 	echo $html->image(($stat['Sentence']['lang']? $stat['Sentence']['lang']: "unknown_lang").'.png');
-	echo '<span class="tooltip">'.$stat['Sentence']['lang'].' : </span>';
-	echo $stat[0]['count'];
+	echo '<span class="langCode">'.$stat['Sentence']['lang'].' : </span>';
+	echo '<span class="total">'.$stat[0]['count'].'</span>';
 	echo '</li>';
 }
 echo '</ul>';

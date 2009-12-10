@@ -17,10 +17,24 @@
 */
 
 /* STATISTICS */
-	.total{
-	background: #989898;
-	color: white;
-	font-weight: bold;
+.stat{
+	overflow: auto;
+	margin: 5px 0px;
+}
+
+.stat .langCode{
+	display:none;
+}
+
+.stat .total{
+	line-height: 20px;
+	float: left;
+	display: block;
+	margin: 0px 5px;
+}
+
+.stat img{
+	float: left;
 }
 
 /* PAGINATION */

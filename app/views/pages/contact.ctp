@@ -26,7 +26,7 @@
 		echo '</h2>';
 		
 		$email = 'trang.dictionary.project@gmail.com';
-		echo sprintf(__('If you would like to contact the author of this project, feel free to drop an email at %s.'), $email);
+		echo sprintf(__('If you would like to contact the author of this project, feel free to drop an email at %s.', true), $email);
 		?>
 	</div>
 	
