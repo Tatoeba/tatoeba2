@@ -23,10 +23,26 @@ class KakasiHelper extends AppHelper{
 	function convert($text, $type){
 		
         Sanitize::html($text);
-		//$text = escapeshellarg(nl2br($text)); // somehow that doesn't work anymore...
-		$text = preg_replace("!\\r\\n!", "\\<br/\\>", $text); // to handle new lines
-		$text = preg_replace("!\(!", "\\(", $text); // to handle parenthesis
+		//$text = escapeshellarg(nl2br($text)); // somehow that doesn't work anymore... 
+												// and I found out it's probably because escapeshellarg() 
+												// doesn't process UTF-8 anymore...
+		
+		// escaping manually... until there is a better a solution...
+		$text = preg_replace("!\(!", "\\(", $text);
 		$text = preg_replace("!\)!", "\\)", $text);
+		$text = preg_replace("!\*!", "\\*", $text); 
+		$text = preg_replace("!\|!", "\\|", $text);
+		$text = preg_replace("!\>!", "\\>", $text);
+		$text = preg_replace("!\<!", "\\<", $text);
+		$text = preg_replace("!\[!", "\\[", $text);
+		$text = preg_replace("!\]!", "\\]", $text);
+		$text = preg_replace('!"!', '\\"', $text);
+		$text = preg_replace("!'!", "\\'", $text);
+		$text = preg_replace("!&!", "\\&", $text);
+		$text = preg_replace("!#!", "\\#", $text);
+
+		$text = preg_replace("!\\r\\n!", "\\<br/\\>", $text); // to handle new lines		
+		
 		$options = '';
 		
 		// need to figure out something better...
@@ -48,7 +64,7 @@ class KakasiHelper extends AppHelper{
 				break;
 		}
 		
-		system("echo $text | iconv -f UTF8 -t SHIFT_JISX0213 | kakasi $options |iconv -f SHIFT_JISX0213 -t UTF8 | sed -f /home/tatoeba/www/app/webroot/$sedlist");
+		system("echo $text | iconv -f UTF8 -t SHIFT_JISX0213 | /home/tatoeba/kakasi/bin/kakasi $options |iconv -f SHIFT_JISX0213 -t UTF8 | sed -f /home/tatoeba/www/app/webroot/$sedlist");
 	}
 }
 ?>
