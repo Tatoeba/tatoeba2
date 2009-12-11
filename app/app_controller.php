@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -16,11 +16,16 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 class AppController extends Controller {
     var $components = array('Acl','Auth','Permissions','RememberMe', 'Cookie');
 	var $helpers = array('Sentences', 'Comments', 'Date', 'Html', 'Form', 'Logs', 'Javascript', 'Languages');
 
     function beforeFilter() {
+		// When Tatoeba is being under maintenance, and website needs
+		// to be blocked temporarily, uncomment the line below:
+		// $this->layout = 'maintenance';
+		
 		Security::setHash('md5');
 		$this->disableCache(); // seems to be important so that the browser displays properly login info in header
 
@@ -81,12 +86,12 @@ class AppController extends Controller {
         return parent::redirect($url, $full);
     }
 
-/**
- * Rebuild the Acl based on the current controllers in the application
- * To be removed in production mode.
- *
- * @return void
- */
+	/**
+	 * Rebuild the Acl based on the current controllers in the application
+	 * To be removed in production mode.
+	 *
+	 * @return void
+	 */
     function buildAcl() {
         $log = array();
 
