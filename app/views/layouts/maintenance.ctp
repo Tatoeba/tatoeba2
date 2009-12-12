@@ -37,7 +37,7 @@ h1 {font-size:2.6em;}
 h3 {font-size:1.8em;font-style:italic;}
 p {margin-bottom:1em;}
 a:hover {color:#c33;}
-a:active, a:focus {color:#000;}
+a:active, a:focus {color:#ccc;}
 a:visited {color:#99c;}
 a {color:#36c;text-decoration:none;position:relative;padding:0.3em 0 .1em 0;}
 strong {font-weight:bold;}
@@ -56,7 +56,6 @@ ol { list-style-position: outside; list-style-type: decimal; }
 .notice {background:#FFF6BF;color:#514721;border-color:#FFD324;}
 .information {background:#F8FAFC;color:#10104C;border-color:#B5D4FE;}
 .notice a {color:#514721;}
-.information a {color:#10104C;}
 
 /* Grid */
 .container {width:950px;margin:0 auto;}
@@ -78,29 +77,21 @@ body {font-size:13px;background:#E5E3DA;}
 <body>
 	<div id="main" class="container">
 		<div class="span-12 notice">
-			<!--<h1>We are updating <span class="caps">Tatoeba</span>!</h1>-->
 			<h3>
-				Because we love you, we are updating <span class="caps">Tatoeba</span> to bring you a better use experience. See? We love you huh?
+				Because we love you, we are updating <span class="caps">Tatoeba</span> to bring you a better user experience. See? We love you huh?
 			</h3>
-			<!--
-			<p>Sorry for the inconvenience. It will take 10 to 15 mn. Please come back a bit later.</p>
-			-->
 		</div>
 		<div class="span-12 information">
 			<h1 class="alt">In the meantime...</h1>
 			<ul>
-				<li>You can grab a pen and a piece of paper and scratch some sentence's ideas. You won't like to leave those fly away, right?</li>
+				<li>You can grab a pen and a piece of paper and scratch some ideas of sentences. You won't like to leave those fly away, right?</li>
 				<li>You can take a look at our <a href="http://blog.tatoeba.org">blog</a> to learn more about the project and the lastest trends.</li>
 				<li>You can also follow us <a href="http://twitter.com/tatoeba_project">on Twitter</a>! What!? You don't tweet? :(</li>
 				<li>You can refresh the page, maybe we're done!</li>
 			</ul>
 			<p>
-				Sorry for the inconvenience guys. It would take a least 15 mins. Please come back a bit later. And then, let's spread the love in as much languages as we can! ;)
+				Anyway, sorry for the inconvenience guys. It will take about 15 minutes. Please come back a bit later. And then, let's spread the love in as many languages as we can! ;)
 			</p>
-			<!--
-			<h1 class="alt">In the meantime...</h1>
-			<p>If you have nothing else to do, you can always check the <a href="http://blog.tatoeba.org">blog</a> if you want to learn more about Tatoeba or if you want to know what we are up to.</p>
-			-->
 		</div>
 	</div>
 </body>
