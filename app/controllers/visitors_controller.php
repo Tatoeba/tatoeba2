@@ -81,7 +81,7 @@ class VisitorsController extends AppController {
 			}
 		}
 		
-		return count($this->Visitor->findAll());
+		return $this->Visitor->find('count');
 	}
 	
 }	
