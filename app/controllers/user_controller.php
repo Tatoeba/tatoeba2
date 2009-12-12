@@ -35,6 +35,8 @@ class UserController extends AppController {
 
 	var $name = 'User';
 
+    var $uses = array('User','Contribution','Sentence','SentenceComment','Favorite');
+
 	function beforeFilter() {
 		parent::beforeFilter();
 
@@ -65,6 +67,7 @@ class UserController extends AppController {
             ) 
         );
 		$aUser = $this->User->findById($this->Auth->user('id'));
+        $userStats = $this->stats($this->Auth->user('id'));
 
 		$this->loadModel('Country');
 		$aCountries = $this->Country->findAll();
@@ -77,6 +80,7 @@ class UserController extends AppController {
 
 		$this->set('countries', $aCleanCountries);
 		$this->set('user', $aUser);
+        $this->set('userStats',$userStats);
 	}
 	
 	
@@ -352,13 +356,45 @@ class UserController extends AppController {
 	 * Retrieve stats about the user.
 	 * This is displayed on homepage for now...
 	 */
-	function stats(){
-		
-        $this->User->hasMany['Sentences']['limit'] = null;
-        $this->User->hasMany['SentenceComments']['limit'] = null;
-        $this->User->hasMany['Contributions']['limit'] = null;
-		
-		return $this->User->findById($this->Auth->user('id'));
+	function stats($userId){
+        
+	
+        $numberOfSentences = $this->Sentence->find(
+            'count',
+            array(
+                'conditions' => array( 'Sentence.user_id' => $userId)
+                )
+            );
+
+        $numberOfComments =  $this->SentenceComment->find(
+            'count',
+            array(
+                'conditions' => array( 'SentenceComment.user_id' => $userId)
+                )
+            );
+
+        $numberOfContributions =  $this->Contribution->find(
+            'count',
+            array(
+                'conditions' => array( 'Contribution.user_id' => $userId)
+                )
+            );
+
+        $numberOfFavorites =  $this->Favorite->find(
+            'count',
+            array(
+                'conditions' => array( 'Favorite.user_id' => $userId)
+                )
+            );
+
+        $userStats = array(
+            'numberOfComments'      => $numberOfComments ,
+            'numberOfSentences'     => $numberOfSentences ,
+            'numberOfContributions' => $numberOfContributions,
+            'numberOfFavorites'     => $numberOfFavorites
+        );
+
+		return $userStats ;
 	}
 }
 ?>

@@ -28,6 +28,49 @@ if(!$session->read('Auth.User.id')){
 	echo $html->css('tatoeba.profile', false);
 ?>
 
+<div id="annexe_content">
+    <div class="module">
+	<h2><?php __('Your links'); ?></h2>
+			<ul>
+			    <li>
+                <?php
+				echo sprintf(
+					  __("<a href='%s'>view all my sentences</a>", true)
+					, $html->url(array("controller" => "sentences", "action" => "my_sentences"))
+				);
+				?>
+                </li>
+			
+                <li>
+                <?php
+				echo sprintf(
+					  __("<a href='%s'>uncorrectly detected sentences</a>", true)
+					, $html->url(array("controller" => "sentences", "action" => "unknown_language"))
+				);
+				?>
+                </li>
+            	
+			</ul>
+
+    </div>	
+    <div class="module">
+		<h2><?php __('Activity information'); ?></h2>
+		<dl>
+			<dt><?php __('Member since'); ?></dt>
+			<dd><?php echo date('F j, Y', strtotime($user['User']['since'])) ?></dd>
+			<dt><?php __('Last login'); ?></dt>
+			<dd><?php echo date('F j, Y \\a\\t G:i', $user['User']['last_time_active']) ?></dd>
+			<dt><?php __('Comments posted'); ?></dt>
+			<dd><?php echo $userStats['numberOfComments'] ?></dd>
+			<dt><?php __('Sentences owned'); ?></dt>
+			<dd><?php echo $userStats['numberOfSentences'] ?></dd>
+			<dt><?php __('Sentences favorited'); ?></dt>
+			<dd><?php echo $userStats['numberOfFavorites'] ?></dd>
+		</dl>
+	</div>
+
+</div>
+
 <div id="main_content">
 	<div class="module">
 		<h2><?php echo $user['User']['username'] ?></h2>
@@ -62,7 +105,12 @@ echo $form->end(__('Upload', true));
 	</div>
 
 	<div id="pdescription_edit" class="toolbox">
-		<div class="t"><?php __('Tell us something about you') ?><span class="x" title="<?php __('Close') ?>"><?php echo $html->image('close.png', array('alt' => __('Close', true))); ?></span></div>
+		<div class="t">
+            <?php __('Tell us something about you') ?>
+            <span class="x" title="<?php __('Close') ?>">
+                <?php echo $html->image('close.png', array('alt' => __('Close', true))); ?>
+            </span>
+        </div>
 		<div class="c">
 <?php
 	echo $form->create('profile_description', array(
@@ -80,12 +128,30 @@ echo $form->end(__('Upload', true));
 	</div>
 
 	<div id="pdescription" class="module">
-		<h2><?php __('Something about you') ?><span id="pdescription_edit_link" class="edit_link"><?php echo $html->image('edit.png', array('alt' => __('Edit', true))); ?></span></h2>
-		<div id="profile_description"><?php echo (empty($user['User']['description']) ? __('Tell us something about you!', true) : nl2br($user['User']['description'])) ?></div>
+		<h2>
+            <?php __('Something about you') ?>
+            <span id="pdescription_edit_link" class="edit_link">
+                <?php echo $html->image('edit.png', array('alt' => __('Edit', true))); ?>
+            </span>
+        </h2>
+		<div id="profile_description">
+            <?php
+                if (empty($user['User']['description'])){
+                  __('Tell us something about you!');
+                } else {
+                   echo  nl2br($user['User']['description']);
+                }    
+                ?>
+        </div>
 	</div>
 
 	<div id="pbasic_edit" class="toolbox">
-		<div class="t"><?php __('Complete some information?') ?><span class="x" title="<?php __('Close') ?>"><?php echo $html->image('close.png', array('alt' => __('Close', true))); ?></span></div>
+		<div class="t">
+            <?php __('Complete some information?') ?>
+            <span class="x" title="<?php __('Close') ?>">
+                <?php echo $html->image('close.png', array('alt' => __('Close', true))); ?>
+            </span>
+        </div>
 		<div class="c">
 <?php
 	echo $form->create('profile_basic', array(
@@ -114,39 +180,49 @@ echo $form->end(__('Upload', true));
 			'label' => 'Birthday',
 			'selected' => $iTimestamp
 		));
-	echo '<label for="profile_basicCountry">' . __('Country', true) . '</label>' . $form->select('country', $countries, (is_null($user['User']['country_id']) ? null : $user['Country']['id']));
+	echo '<label for="profile_basicCountry">' . __('Country', true) . '</label>' .
+        $form->select('country',
+            $countries,
+            (is_null($user['User']['country_id']) ? null : $user['Country']['id'])
+        );
 	echo $form->end(__('Edit', true));
 ?>
 		</div>
 	</div>
 
 	<div id="pbasic" class="module">
-		<h2><?php __('Basic Information') ?><span id="pbasic_edit_link" class="edit_link"><?php echo $html->image('edit.png', array('alt' => __('Edit', true))); ?></span></h2>
+		<h2>
+            <?php __('Basic Information') ?>
+            <span id="pbasic_edit_link" class="edit_link">
+                <?php echo $html->image('edit.png', array('alt' => __('Edit', true))); ?>
+            </span>
+        </h2>
 		<dl>
 			<dt><?php __('Name'); ?></dt>
-			<dd><?php echo (empty($user['User']['name']) ? _('Tell us what is your real name to get to know you!') : $user['User']['name']) ?></dd>
+			<dd>
+                <?php
+                    if(empty($user['User']['name'])) {
+                        __('Tell us what is your real name to get to know you!');
+                    } else {
+                        echo $user['User']['name'];
+                    }
+                 ?>
+            </dd>
 			<dt><?php __('Birthday'); ?></dt>
-			<dd><?php echo (((integer) $aBirthday[0] == 0) ? __('You have not set your birthday yet!', true) : date('F j, Y', $iTimestamp)) ?></dd>
+			<dd>
+                <?php
+                 echo (((integer) $aBirthday[0] == 0) ? __('You have not set your birthday yet!', true) : date('F j, Y', $iTimestamp)) 
+                 ?>
+            </dd>
 			<dt><?php __('Country'); ?></dt>
-			<dd><?php echo (is_null($user['User']['country_id']) ? __('Tells us where you come from!', true) : $user['Country']['name']) ?></dd>
+			<dd>
+                <?php
+                echo (is_null($user['User']['country_id']) ? __('Tells us where you come from!', true) : $user['Country']['name']) 
+                ?>
+            </dd>
 		</dl>
 	</div>
 
-	<div class="module">
-		<h2><?php __('Activity information'); ?></h2>
-		<dl>
-			<dt><?php __('Member since'); ?></dt>
-			<dd><?php echo date('F j, Y', strtotime($user['User']['since'])) ?></dd>
-			<dt><?php __('Last login'); ?></dt>
-			<dd><?php echo date('F j, Y \\a\\t G:i', $user['User']['last_time_active']) ?></dd>
-			<dt><?php __('Comments posted'); ?></dt>
-			<dd><?php echo count($user['SentenceComments']) ?></dd>
-			<dt><?php __('Sentences owned'); ?></dt>
-			<dd><?php echo count($user['Sentences']) ?></dd>
-			<dt><?php __('Sentences favorited'); ?></dt>
-			<dd><?php echo count($user['Favorite']) ?></dd>
-		</dl>
-	</div>
 
 	<div id="pcontact_edit" class="toolbox">
 		<div class="t"><?php __('Complete some information?') ?><span class="x" title="<?php __('Close') ?>"><?php echo $html->image('close.png', array('alt' => __('Close', true))); ?></span></div>

@@ -86,27 +86,28 @@ array_unshift($langArray, array('any' => __('any', true)));
 		<div class="module">
 			<h2><?php __('Your stats'); ?></h2>
 			<ul>
-			<?php 
-				$userStats = $this->requestAction('/user/stats');
+			<?php
+                // TODO  HACK SPOTTED , requestAction is hackish ! 
+				$userStats = $this->requestAction('/user/stats/' . $session->read('Auth.User.id') );
 				echo '<li>';
 				echo sprintf(
 					  __("<a href='%s'><strong>%s</strong> sentences</a>", true)
 					, $html->url(array("controller" => "sentences", "action" => "my_sentences"))
-					, count($userStats['Sentences'])
+					, $userStats['numberOfSentences']
 				);
 				echo '</li>';
 				
 				echo '<li>';
 				echo sprintf(
 					  __("<strong>%s</strong> comments", true)
-					, count($userStats['SentenceComments'])
+					, $userStats['numberOfComments'] 
 				);
 				echo '</li>';
 				
 				echo '<li>';
 				echo sprintf(
 					  __("<strong>%s</strong> contributions", true)
-					, count($userStats['Contributions'])
+					, $userStats['numberOfContributions']
 				);
 				echo '</li>';
 			?>
