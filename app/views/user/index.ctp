@@ -30,7 +30,7 @@ if(!$session->read('Auth.User.id')){
 
 <div id="main_content">
 	<div class="module">
-		<h3><?php echo $user['User']['username'] ?></h3>
+		<h2><?php echo $user['User']['username'] ?></h2>
 		<div id="pimg">
 <?php
 echo $html->image('profiles/' . (empty($user['User']['image']) ? 'tatoeba_user.png' : $user['User']['image'] ), array(
@@ -80,7 +80,7 @@ echo $form->end(__('Upload', true));
 	</div>
 
 	<div id="pdescription" class="module">
-		<h3><?php __('Something about you') ?><span id="pdescription_edit_link" class="edit_link"><?php echo $html->image('edit.png', array('alt' => __('Edit', true))); ?></span></h3>
+		<h2><?php __('Something about you') ?><span id="pdescription_edit_link" class="edit_link"><?php echo $html->image('edit.png', array('alt' => __('Edit', true))); ?></span></h2>
 		<div id="profile_description"><?php echo (empty($user['User']['description']) ? __('Tell us something about you!', true) : nl2br($user['User']['description'])) ?></div>
 	</div>
 
@@ -121,7 +121,7 @@ echo $form->end(__('Upload', true));
 	</div>
 
 	<div id="pbasic" class="module">
-		<h3><?php __('Basic Information') ?><span id="pbasic_edit_link" class="edit_link"><?php echo $html->image('edit.png', array('alt' => __('Edit', true))); ?></span></h3>
+		<h2><?php __('Basic Information') ?><span id="pbasic_edit_link" class="edit_link"><?php echo $html->image('edit.png', array('alt' => __('Edit', true))); ?></span></h2>
 		<dl>
 			<dt><?php __('Name'); ?></dt>
 			<dd><?php echo (empty($user['User']['name']) ? _('Tell us what is your real name to get to know you!') : $user['User']['name']) ?></dd>
@@ -133,7 +133,7 @@ echo $form->end(__('Upload', true));
 	</div>
 
 	<div class="module">
-		<h3><?php __('Activity information'); ?></h3>
+		<h2><?php __('Activity information'); ?></h2>
 		<dl>
 			<dt><?php __('Member since'); ?></dt>
 			<dd><?php echo date('F j, Y', strtotime($user['User']['since'])) ?></dd>
@@ -172,7 +172,7 @@ echo $form->end(__('Upload', true));
 	</div>
 
 	<div id="pcontact" class="module">
-		<h3><?php __('Contact information') ?><span id="pcontact_edit_link" class="edit_link"><?php echo $html->image('edit.png', array('alt' => __('Edit', true))); ?></span></h3>
+		<h2><?php __('Contact information') ?><span id="pcontact_edit_link" class="edit_link"><?php echo $html->image('edit.png', array('alt' => __('Edit', true))); ?></span></h2>
 		<dl>
 			<dt><?php __('E-mail'); ?></dt>
 			<dd><?php echo $user['User']['email'] ?></dd>
@@ -182,7 +182,7 @@ echo $form->end(__('Upload', true));
 	</div>
 
 	<div id="psettings" class="module">
-		<h3><?php __('Settings') ?></h3>
+		<h2><?php __('Settings') ?></h2>
 		<?php echo $form->create('profile_setting', array(
 			'url' => array(
 				'controller' => 'user',
@@ -195,7 +195,7 @@ echo $form->end(__('Upload', true));
 	</div>
 
 	<div id="ppassword" class="module">
-		<h3><?php __('Change password'); ?></h3>
+		<h2><?php __('Change password'); ?></h2>
 		<?php echo $form->create('profile_password', array(
 				'url' => array(
 					'controller' => 'user',

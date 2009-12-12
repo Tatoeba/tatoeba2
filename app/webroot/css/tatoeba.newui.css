@@ -317,10 +317,11 @@ div#annexe_content div.module {
 }
 
 div.module h2 {
-	background: url('../img/title_4.png') no-repeat top left;
-	padding-left: 10px;
+	background: url('../img/title.png') no-repeat top left;
+	padding-left: 28px;
 	margin:0 0 15px -8px;
 	font-size:1.5em;
+	color: #000;
 }
 
 div.module h2 span.annexe {
@@ -337,8 +338,8 @@ div.main_module {
 }
 
 div.main_module h2 {
-	background: url('../img/title_4.png') no-repeat top left;
-	padding-left: 10px;
+	background: url('../img/title_main.png') no-repeat top left;
+	padding-left: 32px;
 	font-size:1.5em;
 	border-bottom:none;
 	margin:0 0 0 -8px;

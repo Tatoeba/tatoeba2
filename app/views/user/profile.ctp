@@ -7,7 +7,7 @@ if($is_public or $login){
 <div id="annexe_content">
 
 	<div id="pcontact" class="module">
-		<h3><?php __('Contact information') ?></h3>
+		<h2><?php __('Contact information') ?></h2>
 		<dl>
 			<dt><?php __('Private message'); ?></dt>
 			<dd><?php echo $html->link(sprintf(__('Contact %s', true), $user['User']['username']),
@@ -28,7 +28,7 @@ if(!empty($user['User']['homepage'])){
 	</div>
 
 	<div class="module">
-		<h3><?php __('Activity information'); ?></h3>
+		<h2><?php __('Activity information'); ?></h2>
 		<dl>
 			<dt><?php __('Member since'); ?></dt>
 			<dd><?php echo date('F j, Y', strtotime($user['User']['since'])) ?></dd>
@@ -46,8 +46,8 @@ if(!empty($user['User']['homepage'])){
 
 <div id="main_content">
 	<div class="module">
-		<h3><?php if($user['User']['name'] != '') echo $user['User']['name'] . ' aka. ' . $user['User']['username'];
-		else echo $user['User']['username'] ?></h3>
+		<h2><?php if($user['User']['name'] != '') echo $user['User']['name'] . ' aka. ' . $user['User']['username'];
+		else echo $user['User']['username'] ?></h2>
 		<div id="pimg">
 <?php
 echo $html->image('profiles/' . (empty($user['User']['image']) ? 'tatoeba_user.png' : $user['User']['image'] ), array(
@@ -60,14 +60,14 @@ echo $html->image('profiles/' . (empty($user['User']['image']) ? 'tatoeba_user.p
 if(!empty($user['User']['description'])){
 ?>
 	<div id="pdescription" class="module">
-		<h3><?php __('Something about you') ?></h3>
+		<h2><?php __('Something about you') ?></h2>
 		<div id="profile_description"><?php echo nl2br($user['User']['description']) ?></div>
 	</div>
 <?php
 }
 ?>
 	<div id="pbasic" class="module">
-		<h3><?php __('Basic Information') ?></h3>
+		<h2><?php __('Basic Information') ?></h2>
 		<dl>
 <?php
 if(!empty($user['User']['name'])){

@@ -137,7 +137,7 @@
 	Vous pouvez réutiliser librement les contenus du projets Tatoeba, à l'exception du contenu qui est utilisé sous les conditions du fair use ou toute autre exemption au droit d'auteur similaire. Veuillez suivre les instructions suivantes :
 	</p>
 
-	<h3>Ré-utilisation de texte :</h3>
+	<h4>Ré-utilisation de texte :</h4>
 
 	<ul>
 	    <li> Attribution/Paternité : pour redistribuer de quelque façon que ce soit un texte, créditez les auteurs en incluant a) un hyperlien (si possible) ou une URL pointant vers la page que vous réutilisez ou b) un hyperlien (si possible) ou une URL pointant vers une autre version en ligne stable, librement accessible, conforme à la licence et qui crédite les auteurs d'une manière équivalente à ce qui est pratiqué sur le présent site ou c) une liste de tous les auteurs. (Toute liste d'auteurs pourra être filtrée pour exclure les contributions très petites ou non pertinentes.) Ceci s'applique aux textes écrits par la communauté Tatoeba. Les textes de sources externes peuvent exiger des conditions d'attribution additionnelles, que nous nous efforcerons de vous indiquer clairement. Par exemple, une page peut avoir un bandeau indiquant que tout ou partie de son contenu a déjà été publié par ailleurs. Partout où une telle indication est présente sur la page elle-même, elle doit être conservée par les ré-utilisateurs.
