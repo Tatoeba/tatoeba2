@@ -38,14 +38,17 @@ echo $this->element('pmmenu');
                  echo '<tr class="pm_folder_line unread">';
 			else
                  echo '<tr class="pm_folder_line">';
-                 
+
 			echo '<td>' . $html->link($date->ago($msg['date']), array('action' => 'show', $msg['id'])) . '</td>';
 
-            if($folder == 'sent'){
-			    echo '<td>'.$html->link($msg['from'], array('action' => 'create', $msg['from'])).'</td>';
+			/* Used to display properly the name of the sender, or receiver while we are in
+			 * Sent or other folder.
+			 * NOTA: the caps to the word 'Sent' is IMPORTANT.
+			 */
+            if($folder != 'Sent'){
+			    echo '<td>'.$html->link($msg['from'], array('action' => 'write', $msg['from'])).'</td>';
             } else {
-                // maybe it will be better to link to the rcpt profile, but as I don't know what "create" is supposed to do
-			    echo '<td>'.$html->link($msg['to'], array('action' => 'create', $msg['to'])).'</td>';
+			    echo '<td>'.$html->link($msg['to'], array('action' => 'write', $msg['to'])).'</td>';
             }
 
 			echo '<td>' . $html->link($msg['title'], array('action' => 'show', $msg['id'])) . '</td>';

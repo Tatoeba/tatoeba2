@@ -75,7 +75,7 @@ class PrivateMessagesController extends AppController {
 				$messageTitle = $message['PrivateMessage']['title'];
 
 			$content[] = array(
-                'to'        => $toUser  ['User']['username'],
+                'to'        => $toUser['User']['username'],
 				'from'      => $fromUser['User']['username'],
 				'title'     => $messageTitle,
 				'id'        => $message['PrivateMessage']['id'],
