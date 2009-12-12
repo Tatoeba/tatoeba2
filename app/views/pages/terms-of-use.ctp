@@ -1,6 +1,6 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
     Copyright (C) 2009  Allan SIMON <allan.simon@supinfo.com>
 
     This program is free software: you can redistribute it and/or modify
@@ -151,7 +151,8 @@ echo '</div>';
         2.0 et fournir soit a) un hyperlien ou une URL pointant vers le texte de la licence soit b) une copie de la licence. À cet effet une URL utile est : http://creativecommons.org/licenses/by/2.0/fr/</li>
 
 	    <li> Pour plus d'information merci de vous référer au code légal de la licence CC-BY 2.0(Français).</li>
-
+	</ul>
+	
 	<h3>Prééminence de la version françaisee</h3>
 
 	</li>Seule la version française originale de ces conditions d'utilisation fait autorité.</li>
