@@ -35,7 +35,7 @@ echo '<div class="main_module">';
 
 	echo '<h2>' . __( 'Information for text contributors to Tatoeba project' , true) . '</h2>';
 
-	echo '<p>' .__('To grow the commons of free knowledge and free culture, all users contributing to Tatoeba project are required to grant broad permissions to the general public to re-distribute and re-use their contributions freely, as long as the use is attributed and the same freedom to re-use and re-distribute applies to any derivative works. Therefore, for any text you hold the copyright to, by submitting it, you agree to license it under the Creative Commons Attribution/Share-Alike License 2.0 (fr). Please note that this licenses does allow commercial uses of your contributions, as long as such uses are compliant with the terms. ',true) . '</p>';
+	echo '<p>' .__('To grow the commons of free knowledge and free culture, all users contributing to Tatoeba project are required to grant broad permissions to the general public to re-distribute and re-use their contributions freely, as long as the use is attributed and the same freedom to re-use and re-distribute applies to any derivative works. Therefore, for any text you hold the copyright to, by submitting it, you agree to license it under the Creative Commons Attribution License 2.0 (fr). Please note that this licenses does allow commercial uses of your contributions, as long as such uses are compliant with the terms. ',true) . '</p>';
 
 	echo '<p>' . __( 'As an author, you agree to be attributed in any of the following fashions: a) through a hyperlink (where possible) or URL to the
 	sentence or sentences you contributed to, b) through a hyperlink (where possible) or URL to an alternative, stable online copy which is freely
@@ -44,7 +44,7 @@ echo '<div class="main_module">';
 
 	echo '<h3>' . __('Importing text:',true) . '</h3>' ; 
 
-	echo '<p>' . __('If you want to import text that you have found elsewhere or that you have co-authored with others, you can only do so if it is available under terms that are compatible with the CC-BY-SA license.',true) . '</p>';
+	echo '<p>' . __('If you want to import text that you have found elsewhere or that you have co-authored with others, you can only do so if it is available under terms that are compatible with the CC-BY license.',true) . '</p>';
 
 	echo '<p>' . __('If you import text under a compatible license which requires attribution, you must, in a reasonable fashion, credit the author(s). Where such credit is commonly given through sentence comments; it is sufficient to give attribution in the edit summary, which is recorded in the sentence history, when importing the text. Regardless of the license, the text you import may be rejected if the required attribution is deemed too intrusive.
 	Information for non-text media contributors',true) . '</p>';
@@ -71,13 +71,6 @@ echo '<div class="main_module">';
 
 	    echo '<li>';
 	        echo '<p>';
-	        echo __('Copyleft/Share Alike: If you make modifications or additions to the page you re-use, you must license them under the Creative Commons
-	        Attribution-Share-Alike License 3.0 or later.', true);
-	        echo '</p>';
-	    echo '</li>';
-
-	    echo '<li>';
-	        echo '<p>';
 	        echo __('Indicate changes: If you make modifications or additions, you must indicate in a reasonable fashion that the original work has been
 	        modified. If you are re-using the sentence in a wiki, for example, indicating this in the page history is sufficient.',true);
 	 
@@ -87,13 +80,13 @@ echo '<div class="main_module">';
 	    echo '<li>';
 	        echo '<p>';
 	        echo __('  Licensing notice: Each copy or modified version that you distribute must include a licensing notice stating that the work is
-	        released under CC-BY-SA and either a) a hyperlink or URL to the text of the license or b) a copy of the license. For this purpose, a suitable
-	        URL is: http://creativecommons.org/licenses/by-sa/2.0/fr/',true);    
+	        released under CC-BY and either a) a hyperlink or URL to the text of the license or b) a copy of the license. For this purpose, a suitable
+	        URL is: http://creativecommons.org/licenses/by/2.0/fr/',true);    
 	        echo '</p>';
 	    echo '</li>';
 	    echo '<li>';
 	        echo '<p>';
-	        echo __('For further information, please refer to the legal code of the CC-BY-SA License.',true); 
+	        echo __('For further information, please refer to the legal code of the CC-BY License.',true); 
 	        echo '</p>';
 	    echo '</li>';
 	echo '</ul>';
@@ -116,7 +109,10 @@ echo '</div>';
 	<h2>Information destinée aux contributeurs d'informations textuelles au projet Tatoeba</h2>
 
 	<p>
-	Pour élargir la base de connaissances de Tatoeba, tout utilisateur contribuant à ce projets doit impérativement donner de vastes permissions au public pour qu'il puisse redistribuer et réutiliser son contenu librement, pourvu que la source de ce contenu soit clairement indiquée et que la même liberté face à la redistribution et la réutilisation s'applique aux copies et produits dérivés. Ainsi, lorsque vous soumettez un texte dont vous détenez les droits d'auteur, vous consentez à le soumettre sous le contrat de licence Creative Commons Paternité-partage avec conditions identiques à l'initiale 3.0 (CC-BY-SA 3.0).. Veuillez noter que ce contrats permet l'utilisation commerciale de vos contributions, tant que les utilisations respectent les conditions de la licence.
+	Pour élargir la base de connaissances de Tatoeba, tout utilisateur contribuant à ce projets doit impérativement donner de vastes permissions au
+    public pour qu'il puisse redistribuer et réutiliser son contenu librement, pourvu que la source de ce contenu soit clairement indiquée et que la
+    même liberté face à la redistribution et la réutilisation s'applique aux copies et produits dérivés. Ainsi, lorsque vous soumettez un texte dont
+    vous détenez les droits d'auteur, vous consentez à le soumettre sous le contrat de licence Creative Commons Paternité 2.0 (CC-BY 2.0).. Veuillez noter que ce contrats permet l'utilisation commerciale de vos contributions, tant que les utilisations respectent les conditions de la licence.
 	</p>
 
 	<p>
@@ -126,7 +122,10 @@ echo '</div>';
 	<h3>Importer du texte :</h3>
 
 	<p>
-	Si vous voulez importer sur du texte que vous avez trouvé ailleurs ou que vous avez rédigé avec d'autres personnes, vous ne pouvez le faire que si ses conditions d'utilisation sont compatibles avec la CC-BY-SA 3.0. En d'autres mots, vous ne pouvez importer du texte que s'il est (a) soumis avec des conditions d'utilisation compatibles avec la CC-BY-SA 3.0, ou (b) soumis sous un autre contrat dont les conditions d'utilisation sont compatibles avec la CC-BY-SA 3.0.
+	Si vous voulez importer sur du texte que vous avez trouvé ailleurs ou que vous avez rédigé avec d'autres personnes, vous ne pouvez le faire que si
+    ses conditions d'utilisation sont compatibles avec la CC-BY 2.0. En d'autres mots, vous ne pouvez importer du texte que s'il est (a) soumis avec
+    des conditions d'utilisation compatibles avec la CC-BY 2.0, ou (b) soumis sous un autre contrat dont les conditions d'utilisation sont compatibles
+    avec la CC-BY 2.0.
 	</p>
 
 	<p>
@@ -146,14 +145,12 @@ echo '</div>';
 	    <li> Attribution/Paternité : pour redistribuer de quelque façon que ce soit un texte, créditez les auteurs en incluant a) un hyperlien (si possible) ou une URL pointant vers la page que vous réutilisez ou b) un hyperlien (si possible) ou une URL pointant vers une autre version en ligne stable, librement accessible, conforme à la licence et qui crédite les auteurs d'une manière équivalente à ce qui est pratiqué sur le présent site ou c) une liste de tous les auteurs. (Toute liste d'auteurs pourra être filtrée pour exclure les contributions très petites ou non pertinentes.) Ceci s'applique aux textes écrits par la communauté Tatoeba. Les textes de sources externes peuvent exiger des conditions d'attribution additionnelles, que nous nous efforcerons de vous indiquer clairement. Par exemple, une page peut avoir un bandeau indiquant que tout ou partie de son contenu a déjà été publié par ailleurs. Partout où une telle indication est présente sur la page elle-même, elle doit être conservée par les ré-utilisateurs.
 		</li>
 
-	    <li> Copyleft/Partage à l'identique : si vous effectuez des modifications ou des ajouts à la page que vous réutilisez, vous devez les placer sous la licence Creative Commons Paternité-Partage à l'identique 3.0 ou ultérieure.
-		</li>
-		
 	    <li> Indiquez les modifications : si vous effectuez des modifications ou des ajouts, vous devez indiquer de façon raisonnable que l'œuvre originale a été modifiée et en expliquant l'apport de la modification (correction orthographique, continuité du dialogue par exemple)</li>
 		
-	    <li> Notification de la licence : chaque copie ou version modifiée que vous distribuez doit inclure une notification indiquant que l'œuvre est sous licence CC-BY-SA 3.0 et fournir soit a) un hyperlien ou une URL pointant vers le texte de la licence soit b) une copie de la licence. À cet effet une URL utile est : http://creativecommons.org/licenses/by-sa/2.0/fr/</li>
+	    <li> Notification de la licence : chaque copie que vous distribuez doit inclure une notification indiquant que l'œuvre est sous licence CC-BY
+        2.0 et fournir soit a) un hyperlien ou une URL pointant vers le texte de la licence soit b) une copie de la licence. À cet effet une URL utile est : http://creativecommons.org/licenses/by/2.0/fr/</li>
 
-	    <li> Pour plus d'information merci de vous référer au code légal de la licence CC-BY-SA 2.0(Français).</li>
+	    <li> Pour plus d'information merci de vous référer au code légal de la licence CC-BY 2.0(Français).</li>
 
 	<h3>Prééminence de la version françaisee</h3>
 
