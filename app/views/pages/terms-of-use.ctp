@@ -16,23 +16,22 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+?>
+<div id="annexe_content">
+    <div class="module">
+	    <h2><?php __('Table of contents') ?></h2>
+	    <ul>
+		    <li> <?php echo $html->link(__('English version',true), '#eng'); ?></li>
+            <li> <?php echo $html->link(__('Version française',true), '#fre');?></li>
+        </ul>
+    </div>
+</div>
 
-echo '<div id="annexe_content">';
-	echo '<div class="module">';
-		echo '<h2>';
-		__('Table of contents');
-		echo '</h2>';
-		echo '<ul>';
-		echo '<li>'.$html->link(__('English version',true), '#eng').'</li>';
-		echo '<li>'.$html->link(__('Version française',true), '#fre').'</li>';
-	echo '</div>';
-echo '</div>';
+<div id="main_content">
 
-echo '<div id="main_content">';
-
-echo '<a name="eng"></a>';
-echo '<div class="main_module">';
-
+<a name="eng"></a>
+<div class="main_module">
+<?php
 	echo '<h2>' . __( 'Information for text contributors to Tatoeba project' , true) . '</h2>';
 
 	echo '<p>' .__('To grow the commons of free knowledge and free culture, all users contributing to Tatoeba project are required to grant broad permissions to the general public to re-distribute and re-use their contributions freely, as long as the use is attributed and the same freedom to re-use and re-distribute applies to any derivative works. Therefore, for any text you hold the copyright to, by submitting it, you agree to license it under the Creative Commons Attribution License 2.0 (fr). Please note that this licenses does allow commercial uses of your contributions, as long as such uses are compliant with the terms. ',true) . '</p>';
@@ -97,9 +96,8 @@ echo '<div class="main_module">';
 	echo __('These site terms are not to be modified. If there is any inconsistency between the french terms and any translation into other languages, the
 	French language version takes precedence.',true);
 	echo '</p>';
-
-echo '</div>';
 ?>
+</div>
 
 <hr/>
 
@@ -154,8 +152,8 @@ echo '</div>';
 	</ul>
 	
 	<h3>Prééminence de la version françaisee</h3>
-
-	</li>Seule la version française originale de ces conditions d'utilisation fait autorité.</li>
+    
+	<p>Seule la version française originale de ces conditions d'utilisation fait autorité.</p>
 	</div>
 
 </div>
