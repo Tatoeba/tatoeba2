@@ -475,8 +475,27 @@ class SentencesController extends AppController{
 			// TODO : find another solution than using RAND() because it's quite slow.
 		}
 		*/
-        $randomId = $this->Sentence->getRandomId($lang);
-        $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+        if($lang == 'jpn' OR $lang == 'eng'){
+		
+			$min = ($lang == 'eng') ? 15700 : 74000;
+			$max = ($lang == 'eng') ? 74000 : 127300;
+			$randId = rand($min, $max);
+			
+			$randomSentence = $this->Sentence->find(
+				'first', 
+				array(
+					'conditions' => array(
+						'Sentence.id' => range($randId-25, $randId+25),
+						'Sentence.lang' => $lang
+					)
+				)
+			);
+			
+            //pr($randomSentence);
+		}else{
+            $randomId = $this->Sentence->getRandomId($lang);
+            $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+        }
 		$this->Session->write('random_lang_selected', $lang);
 		$randomSentence['specialOptions'] = $this->Permissions->getSentencesOptions($randomSentence, $this->Auth->user('id'));
 		
