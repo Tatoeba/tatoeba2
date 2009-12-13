@@ -22,7 +22,9 @@
 <div id="main_content">
 	<div class="module">
 		<h2><?php echo __('Conversations', true); ?></h2>
-		<?php echo $html->link(__('Add a new conversation', true), array('controller' => 'conversations', 'action' => 'edit', 'new'));?>
+		<h3>Comment utiliser ce module</h3>
+		<h4>Comment utiliser ce module</h4>
+		<?php echo $html->link(__('Add a new conversation', true), array('controller' => 'conversations', 'action' => 'edit_new', 'new'));?>
 	</div>
 	<div class="module">
 		<h2><?php echo __('Last added conversations', true); ?></h2>

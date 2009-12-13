@@ -29,8 +29,8 @@ a img {
 }
 
 a {
-	color:#849684;
-	/*color:#2A5DB0;  */
+	/*color:#849684;*/
+	color:#2A5DB0;  
 	text-decoration:none;
 }
 
@@ -44,16 +44,23 @@ h2, h3, h4{
 	font-variant: small-caps;
 }
 
+h2 {
+	background: url('../img/title.png') no-repeat top left;
+	padding-left: 32px;
+	font-size:1.5em;
+	color: #000;
+	margin:0 0 15px -8px;
+}
 
 h3 {
-    border-bottom: 1px solid;
-    color:#E55F0E;
-	margin-left: 10px;
-	font-size:1.3em;
+	/* border-bottom: 1px solid; */
+	color:#E55F0E;
+	margin: 10px 10px;
+	font-size:1.35em;
 }
 
 h4 {
-	margin: 10px 0px 5px 20px;
+	margin: 5px 20px;
 	color:#E55F0E;
 	font-size:1.1em;
 }
@@ -225,6 +232,13 @@ div.search_bar span#into {
 	font-size:1.3em;
 	margin-top: 20px;
 	text-align: center;
+div.module h2 {
+	background: url('../img/title.png') no-repeat top left;
+	padding-left: 32px;
+	margin:0 0 15px -10px;
+	font-size:1.5em;
+	color: #000;
+}
 }
 
 div.search_bar fieldset{
@@ -310,7 +324,7 @@ div#main_content {
 div.module {
 	/*border:1px dotted #D1D1D1;*/
 	padding:10px 10px 5px 10px;
-	margin:0px 0px 20px 0px;
+	margin-bottom:10px;
 	background: url(../img/module_background.png) repeat-x bottom left;
 	overflow: hidden;
 }
@@ -320,18 +334,10 @@ div#annexe_content div.module {
 	margin-left:5px;
 }
 
-div.module h2 {
-	background: url('../img/title.png') no-repeat top left;
-	padding-left: 28px;
-	margin:0 0 15px -8px;
-	font-size:1.5em;
-	color: #000;
-}
-
 div.module h2 span.annexe {
 	font-variant:normal;
 	font-weight:normal;
-	font-size:0.8em;
+	font-size:0.7em;
 }
 
 div.main_module {
@@ -343,10 +349,8 @@ div.main_module {
 
 div.main_module h2 {
 	background: url('../img/title_main.png') no-repeat top left;
-	padding-left: 32px;
+	padding-left: 34px;
 	font-size:1.5em;
-	border-bottom:none;
-	margin:0 0 0 -8px;
 }
 
 
@@ -413,7 +417,6 @@ div#footer_container {
 div#footer a {
 	color: #3d3d3d;
 	cursor: pointer;
-	text-decoration: none;
 }
 
 div#footer ul {
@@ -439,6 +442,7 @@ div#footer ul li {
 
 p.more_link {
 	text-align:right;
+	margin:4px 0;
 }
 
 
@@ -464,12 +468,13 @@ span.ToLanguage {
 
 
 /* Register */
+
 a.registerButton{
 	display: block;
 	background: #545454;
 	color: white;
 	padding: 5px 20px;
-	margin: 20px auto;
+	margin: 0px auto;
 	width: 100px;
 	text-align:center;
 }

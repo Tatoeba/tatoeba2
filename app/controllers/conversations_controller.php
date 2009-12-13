@@ -67,12 +67,13 @@ class ConversationsController extends AppController{
 				$dialog_initial_language_reply_id = false;
 				foreach ($languages as $language) {
 					$dialog_sentence = new Sentence();
+					$dialog_sentence_data = array();
 					$dialog_sentence_data['Sentence']['text'] = $this->data['Conversation']['content'.$language.$i];
 					$dialog_sentence_data['Sentence']['lang'] = $language;
 					$dialog_sentence_data['Sentence']['sentence_lang'] = $language; // needed for the logs
 					$dialog_sentence_data['Sentence']['user_id'] = $this->Auth->user('id');
 					
-					if ($dialog_initial_language_reply_id === false) {//Occured in the first iteration, in order to consider the first language as the initial one
+					if (!$dialog_initial_language_reply_id) {//Occured in the first iteration, in order to consider the first language as the initial one
 						$dialog_sentence->save($dialog_sentence_data);
 						$dialog_initial_language_reply_id = $dialog_sentence->id;
 					} else {
@@ -99,8 +100,13 @@ class ConversationsController extends AppController{
 		$this->redirect(array("action"=>"index"));
 	}
 	
-	function edit($param){
+	function edit_new($param){
 		$this->set('mode', 'new');
+	}
+	
+	function edit($id){
+		$conversation = $this->Conversation->getWithId($id);
+		$this->set('conversation', $conversation);
 	}
 	
 	function new_reply($order, $dialog_languages){

@@ -41,7 +41,7 @@ function sortDialogByLanguage($sentences) {
 			?>
 			<div class="module">
 				<ul>
-					<li><a href="">Edit content</a></li>
+					<li><?php echo $html->link(__('Edit content', true), array('controller' => 'conversations', 'action' => 'edit', $conversation["Conversation"]["id"]));?></li>
 					<li><a href="">Delete</a></li>
 				</ul>
 			</div>

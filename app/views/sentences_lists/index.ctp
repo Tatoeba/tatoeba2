@@ -119,10 +119,15 @@ if(isset($myLists)){
 			echo '<h2>';
 			__('Create a new list');
 			echo '</h2>';
-			echo $form->create('SentencesList');
-			echo $form->input('name');
-			echo $form->end('create');
-
+			echo $form->create('SentencesList');			
+			?>
+			<table>
+				<tr>
+					<td class="input"><?php echo $form->input('name'); ?></td>
+					<td class="submit"><?php echo $form->end('Create'); ?></td>
+				</tr>
+			</table>
+			<?php
 		}
 	echo '</div>';
 }
@@ -169,7 +174,7 @@ if(count($lists) > 0){
 					$list['SentencesList']['name'],
 					array("controller" => "sentences_lists", "action" => "show", $list['SentencesList']['id'])
 				);
-				echo '</span>, ';
+				echo '</span><span class="listInfo"> - ';
 				echo sprintf(
 					__('created by <a href="%s">%s</a>', true)
 					, $html->url(array("controller"=>"user", "action"=>"profile", $list['User']['username']))

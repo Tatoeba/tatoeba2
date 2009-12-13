@@ -37,7 +37,7 @@ class NavigationHelper extends AppHelper{
 			// previous
 			echo '<li class="option">';
 			echo $this->Html->link(
-				'<< '.__('previous',true), 
+				'« '.__('previous',true), 
 				array(
 					"controller" => $controller,
 					"action" => $action,
@@ -49,7 +49,7 @@ class NavigationHelper extends AppHelper{
 			// next
 			echo '<li class="option">';
 			echo $this->Html->link(
-				__('next',true).' >>', 
+				__('next',true).' »', 
 				array(
 					"controller" => $controller,
 					"action" => $action,
