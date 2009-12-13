@@ -203,13 +203,13 @@ class Sentence extends AppModel{
                 JOIN ( SELECT (RAND() *(SELECT MAX(id) FROM sentences)) AS id) AS r2
                 WHERE Sentence.id >= r2.id' ;
 
-        if ( $lang != null ){
+        if ( $lang != null OR $lang =='any' ){
             $query .= " AND Sentence.lang ='" . $lang ."' "; 
         }
         $query .= " ORDER BY Sentence.id ASC LIMIT 1" ;
 
         $results = $this->query($query);
-        return $results[0]; 
+        return $results[0]['Sentence']['id']; 
     }
 
     /*

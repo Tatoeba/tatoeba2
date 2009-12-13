@@ -63,7 +63,7 @@ class SentencesController extends AppController{
             $random = $this->Sentence->getRandomId($id);
             
 			$this->Session->write('random_lang_selected', $id);
-			$this->redirect(array("action"=>"show", $random['Sentence']['id']));
+			$this->redirect(array("action"=>"show", $random));
 			
         // if we give directly an id
 		}elseif (is_numeric($id)){
@@ -432,10 +432,10 @@ class SentencesController extends AppController{
 			$lang = $this->Session->read('random_lang_selected');
 		}
 		
+        /*
 		if($lang == 'any'){
 			
-			$resultMax = $this->Sentence->query('SELECT MAX(id) FROM sentences', false);
-			$max = $resultMax[0][0]['MAX(id)'];
+			$max = $this->Sentence->getMaxId();
 			$randId = rand(1, $max);
 			
 			$this->Sentence->id = $randId;
@@ -474,10 +474,13 @@ class SentencesController extends AppController{
 			$this->Session->write('random_lang_selected', $lang);
 			// TODO : find another solution than using RAND() because it's quite slow.
 		}
+		*/
+        $randomId = $this->Sentence->getRandomId($lang);
+        $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+		$this->Session->write('random_lang_selected', $lang);
+		$randomSentence['specialOptions'] = $this->Permissions->getSentencesOptions($randomSentence, $this->Auth->user('id'));
 		
-		$random['specialOptions'] = $this->Permissions->getSentencesOptions($random, $this->Auth->user('id'));
-		
-		$this->set('random', $random);
+		$this->set('random', $randomSentence);
 		$this->set('type', $type);
 	}
 	
