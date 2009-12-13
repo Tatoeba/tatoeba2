@@ -79,7 +79,7 @@ $navigation->displaySentenceNavigation();
                 '</h2>';
 
 			echo '<div class="error">';
-                echo sprintf(__('There is no sentence with id %s'), $this->params['pass'][0]);
+                echo sprintf(__('There is no sentence with id %s',true), $this->params['pass'][0]);
 			echo '</div>';
 		}
 		?>
