@@ -34,16 +34,20 @@ a {
 	text-decoration:none;
 }
 
-a:hover{
+a:hover {
 	cursor: pointer;
 	text-decoration:underline;
 }
+
 
 h2, h3, h4{
 	font-variant: small-caps;
 }
 
+
 h3 {
+    border-bottom: 1px solid;
+    color:#E55F0E;
 	margin-left: 10px;
 	font-size:1.3em;
 }

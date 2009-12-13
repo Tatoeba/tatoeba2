@@ -123,6 +123,8 @@ class SentenceCommentsController extends AppController {
 			
 			if($this->SentenceComment->save($this->data)){	
 				// send message to the other participants of the thread
+
+                // TODO why participant is store in the session ??
 				$participants = $this->Session->read('participants');
 				if(count($participants) > 0){
 					foreach($participants as $participant){
