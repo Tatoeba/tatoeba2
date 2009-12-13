@@ -199,16 +199,26 @@ class Sentence extends AppModel{
         ** and linear time when lang is set, so do not touch this request
         */
 
+        
+        if ( $lang != null AND $lang !='any' ){
+        $query= ("SELECT Sentence.id FROM sentences AS Sentence
+                WHERE Sentence.lang = '$lang'
+                ORDER BY RAND() LIMIT 1 "
+                );
+
+        } else {
         $query = 'SELECT Sentence.id  FROM sentences AS Sentence 
                 JOIN ( SELECT (RAND() *(SELECT MAX(id) FROM sentences)) AS id) AS r2
-                WHERE Sentence.id >= r2.id' ;
-
-        if ( $lang != null OR $lang =='any' ){
-            $query .= " AND Sentence.lang ='" . $lang ."' "; 
+                WHERE Sentence.id >= r2.id
+                ORDER BY Sentence.id ASC LIMIT 1' ;
         }
-        $query .= " ORDER BY Sentence.id ASC LIMIT 1" ;
 
         $results = $this->query($query);
+        /*
+        while( !isset($results[0])){
+            $results = $this->query($query);
+        }
+        */
         return $results[0]['Sentence']['id']; 
     }
 
