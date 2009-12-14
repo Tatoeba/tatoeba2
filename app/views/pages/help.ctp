@@ -70,7 +70,7 @@ $this->pageTitle = 'Tatoeba : ' . __('Help',true);
 	<div class="module">
 		<h2><?php __('Correcting mistakes'); ?></h2>
 		<p><?php __('Tatoeba is a project that is open to everyone, and we are aware that people make mistakes.'); ?></p>
-		<p><?php __('It is not possible for you to directly correct mistakes in sentences that belong to other people because only the owner of the sentence can edit it. You can however post a comment (%s) on the sentence to notify the mistake. The owner will have to correct it himself or herself.'); ?></p>
+		<p><?php echo sprintf(__('It is not possible for you to directly correct mistakes in sentences that belong to other people because only the owner of the sentence can edit it. You can however post a comment (%s) on the sentence to notify the mistake. The owner will have to correct it himself or herself.', true), $html->image('comments.png')); ?></p>
 		<p><?php __('In certain cases, the sentence do not have an owner. Read the paragraph below (on adopting sentences) to learn more.'); ?></p>
 	</div>
 	
