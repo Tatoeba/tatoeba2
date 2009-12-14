@@ -17,8 +17,10 @@
 */
 
 $(document).ready(function(){
+	var lang = $("#languageSelection").val();
+	
     function loadSinogramInformations(sinogram){
-          $.post("http://" + self.location.hostname + "/sinograms/loadSinogramInformations"
+          $.post("http://" + self.location.hostname + "/" + lang + "/sinograms/loadSinogramInformations"
             , { "sinogram" : sinogram  } 
             , function(data){
                 $("#information_part").empty();
@@ -30,7 +32,7 @@ $(document).ready(function(){
 
     function loadExampleSentence(sinogram){
        	$("#example_part").html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
-          $.post("http://" + self.location.hostname + "/sinograms/loadExampleSentence"
+          $.post("http://" + self.location.hostname + "/" + lang + "/sinograms/loadExampleSentence"
             , { "sinogram" : sinogram  } 
             , function(data){
                 $("#example_part").empty();
@@ -46,7 +48,7 @@ $(document).ready(function(){
     ** load radicals with the given number of strokes 
     */
     function loadRadicals(numberOfStroke){
-          $.post("http://" + self.location.hostname + "/sinograms/loadRadicals"
+          $.post("http://" + self.location.hostname + "/" + lang + "/sinograms/loadRadicals"
             , { "number" : numberOfStroke  } 
             , function(data){
                 $("#radicalsList").empty();
@@ -88,7 +90,7 @@ $(document).ready(function(){
           
           if (subglyphs != ''){
           
-            $.post("http://" + self.location.hostname + "/sinograms/search"
+            $.post("http://" + self.location.hostname + "/" + lang + "/sinograms/search"
                 , { "data[Sinogram][subglyphs]" : subglyphs } 
                 , function(data){
                     $("#searchResults").remove();
@@ -109,7 +111,7 @@ $(document).ready(function(){
                 
           var toExplode = $("#SinogramToExplode").val()
 
-          $.post("http://" + self.location.hostname + "/sinograms/explode"
+          $.post("http://" + self.location.hostname + "/" + lang + "/sinograms/explode"
             , { "data[Sinogram][toExplode]" : toExplode } 
             , function(data){
                 $("#explosionResults").empty();
