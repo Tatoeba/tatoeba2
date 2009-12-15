@@ -1,4 +1,188 @@
-cmn_cluster{
+/*
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU Affero General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU Affero General Public License for more details.
+
+    You should have received a copy of the GNU Affero General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+#usersStatistics{
+text-align: center;
+margin: 20px auto;
+border: 1px #6CBC70 solid;
+}
+
+#usersStatistics td{
+padding: 5px;
+border-bottom: 1px #cccccc solid;
+}
+
+#usersStatistics th{
+background-color: #6CBC70;
+padding: 5px;
+}
+
+#usersStatistics tr.admin{
+background-color: #FFCCCC;
+}
+
+#usersStatistics tr.normal{
+}
+
+#usersStatistics tr.pending{
+background-color: #CCCCCC;
+}
+
+/* SENTENCES STATS */
+#sentencesStats{
+font-size: 1em;
+z-index: 0;
+}
+
+.allStats{
+position: absolute;
+right: 15px;
+}
+
+#sentencesStats ul{
+margin-top: 15px;
+list-style: none;
+margin: 0px;
+padding: 0px;
+}
+
+#sentencesStats li{
+padding: 2px;
+}
+
+#sentencesStats .stat img{
+margin-right:6px;
+}
+
+.stat .tooltip{
+display: none;
+}
+
+.statsDisplay{
+font-size: 13px;
+}
+
+
+/* TIMELINE */
+#timeline{
+overflow: hidden;
+width: 100%;
+font-size: 0.8em;
+}
+
+#timeline td{
+padding: 0px;
+border: 1px solid #FFFFFF;
+}
+
+#timeline .date{
+text-align: right;
+padding-right: 5px;
+color: #545454;
+}
+
+#timeline .number{
+text-align: center;
+padding: 0px 5px;
+color: #111111;
+border-right: 1px solid #767676;
+}
+
+#timeline .logs_stats{
+height: 12px;
+border: 1px solid #c1c1c1;
+border-left: none;
+}
+
+.color0{
+background: #EDF9FF;
+}
+
+.color1{
+background: #E2FFF0;
+}
+
+.color2{
+background: #D1FFD1;
+}
+
+.color3{
+background: #D4FFBF;
+}
+
+.color4{
+background: #E8FFBA;
+}
+
+.color5{
+background: #FFFFB2;
+}
+
+.color6{
+background:#FFE5B2;
+}
+
+.color7{
+background: #FFD8B2;
+}
+
+.color8{
+background: #FFCCB2;
+}
+
+.color9{
+background: #FFBFB2;
+}
+
+.color10{
+background: #FF947F;
+}
+
+
+/* SENTENCES MAP */
+
+#sentencesMap{
+width: 700px;
+overflow: hidden;
+margin: auto;
+}
+
+#sentencesMap div{
+text-align: center;
+width: 6px;
+height: 6px;
+border-top: 1px solid white;
+border-left: 1px solid white;
+float:left;
+}
+
+#sentencesMap div.empty{
+background: black;
+}
+
+#sentencesMap div.jpn_cluster{
+background: #FE8080;
+}
+
+#sentencesMap div.deu_cluster{
+background: #FF3300;
+}
+
+#sentencesMap div.cmn_cluster{
 background: #DFA921;
 }
 
