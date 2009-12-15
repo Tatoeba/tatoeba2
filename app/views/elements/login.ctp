@@ -37,7 +37,7 @@ if  ($session->check('Message.auth')) $session->flash('auth');
 
 
 <ul id="UserLoginLinkList">
-	<li onclick="javascript:displayLoginForm();" class="login_pseudo_link"><?php echo __('Login', true); ?></li>
+	<li onclick="javascript:displayLoginForm();" class="login_pseudo_link"><?php echo __('Log in', true); ?></li>
 </ul>
 
 <form id="UserLoginForm_FromBar" method="post" action="/eng/users/login" style="display:none;">

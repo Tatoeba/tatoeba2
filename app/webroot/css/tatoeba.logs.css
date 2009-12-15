@@ -27,10 +27,6 @@
 	padding: 3px;
 }
 
-#logs a {
-	color:#525d52;  
-}
-
 #logs .date {
 	width: 100px;
 }
@@ -72,18 +68,20 @@
 	padding: 2px 5px;
 }
 
-.sentenceAdded {
-	background: #DFEFD0;
+
+.sentenceAdded .text a{
+	color: #ccc;
 }
 
-.sentenceDeleted {
-	background: #ffe5e0;
+.sentenceDeleted .text a{
+	color: #6B1C1C;
 }
 
-.sentenceModified {
-	background: #FBFFC9;
+.sentenceModified .text a{
+	color: #ddd;
 }
 
+/*
 .linkAdded {
 	background: #E6EFE8;
 }
@@ -95,3 +93,4 @@
 .correctionSuggested {
 	background: #fff7b0;
 }
+*/

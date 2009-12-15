@@ -29,16 +29,19 @@ a img {
 }
 
 a {
-	/*color:#849684;*/
-	color:#2A5DB0;  
+	color:#57B441;
 	text-decoration:none;
 }
 
 a:hover {
+	color:#555;
 	cursor: pointer;
 	text-decoration:underline;
 }
 
+h2 a{
+	color: #AD8E3A;
+}
 
 h2, h3, h4{
 	font-variant: small-caps;
@@ -48,7 +51,7 @@ h2 {
 	background: url('../img/title.png') no-repeat top left;
 	padding-left: 32px;
 	font-size:1.5em;
-	color: #000;
+	color: #91734D;
 	margin:0 0 15px -8px;
 }
 

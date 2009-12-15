@@ -413,8 +413,8 @@ class SentencesHelper extends AppHelper {
             echo "</li>";
 			if(isset($specialOptions['belongsTo'])){
 				echo '<li class="belongsTo">- ';
-                    $belongsTo = sprintf ( __('belongs to %s', true),  $specialOptions['belongsTo']);
-                    echo $this->Html->link($belongsTo, array("controller" => "user", "action" => "profile", $specialOptions['belongsTo']));
+					$user = $this->Html->link($specialOptions['belongsTo'], array("controller" => "user", "action" => "profile", $specialOptions['belongsTo']));
+                    echo sprintf ( __('belongs to %s', true),  $user);
 				echo '</li>';
 			}
 			
