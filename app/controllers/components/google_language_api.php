@@ -52,7 +52,7 @@ class GoogleLanguageApiComponent extends Object{
 		if ($json['responseStatus'] != 200){
 			return false;
 		}
-
+		
 		return $json['responseData'];
 	}
 	
@@ -74,6 +74,7 @@ class GoogleLanguageApiComponent extends Object{
 			case 'ja' :		return 'jpn';
 			case 'ko' :		return 'kor';
 			case 'nl' :		return 'nld';
+			case 'pt' :		return 'por';
 			case 'pt-BR' :	return 'por';
 			case 'pt-PT' :	return 'por';
 			case 'ru' :		return 'rus';
