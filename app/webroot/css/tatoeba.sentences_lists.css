@@ -16,56 +16,38 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#SentencesListAddForm div.submit, #SentencesListAddForm div.input {
+#SentencesListAddForm div.submit, #SentencesListAddForm div.input{
 }
 
-#SentencesListAddForm div.input input {
+#SentencesListAddForm div.input input{
 	margin: 10px 0px;
 	width: 100%;
 }
 
-#SentencesListAddForm div.submit {
-	margin:10px 0px;
-}
-
-#SentencesListAddForm td.input {
-	vertical-align:bottom;
-	width: 100%;
-}
-
-#SentencesListAddForm td.submit {
-	vertical-align:bottom;
-	padding-left:8px;
-}
-
-.sentencesLists {
-	list-style-type:none;
-}
-
-.sentencesLists li {
+.sentencesLists li{
 	margin: 10px 0px;
 }
 
-ul.sentencesList {
+ul.sentencesList{
 	list-style-type: none;
 	padding: 0px;
 	font-size: 1.5em;
 }
 
-.sentencesList li {
+.sentencesList li{
 	padding: 10px;
 	border-top: 1px dotted #989898;
 }
 
-.sentencesList .options {
+.sentencesList .options{
 	float: right;
 }
 
-.sentencesLists .listName {
+.sentencesLists .listName{
 	font-weight: bold;
 }
 
-.editMode .sentenceInList, .editMode .translationInList {
+.editMode .sentenceInList, .editMode .translationInList{
 	margin-right: 50px;
 }
 
@@ -75,11 +57,6 @@ ul.sentencesList {
 
 .sentencesListActions li{
 	margin: 10px 0px;
-}
-
-.sentencesLists .listInfo {
-	color:#849684;
-	font-style:italic;
 }
 
 .publicList{

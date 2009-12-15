@@ -23,74 +23,71 @@
  * 		LOGS 		*
 \* **************** */
 
-#logs td {
+#logs td{
 	padding: 3px;
 }
 
-#logs .date {
+#logs .date{
 	width: 100px;
 }
 
-#logs .username {
+#logs .username{
 	width: 100px;
 	padding: 0px 10px;
 	text-align:center;
 }
 
-#logs .lang {
+#logs .lang{
 	width: 30px;
 	padding: 0px 5px;
 	text-align:center;
 }
 
-#logs img.flag {
+#logs img.flag{
 	width:20px;
 }
 
-#logs .annexeLogEntry {
+#logs .annexeLogEntry{
 	margin: 2px 0px;
 	padding: 3px;
 }
 
-#logs .annexeLogEntry .text {
+#logs .annexeLogEntry .text{
 	font-family: Georgia;
 }
 
 
-#logsLegend {
+#logsLegend{
 	color: black;
 	margin-top: 10px;
 	margin-bottom: 20px;
 	text-align: center;
 }
 
-#logsLegend span {
+#logsLegend span{
 	padding: 2px 5px;
 }
 
-
-.sentenceAdded .text a{
-	color: #555;
+.sentenceAdded {
+	background: #DFEFD0;
 }
 
-.sentenceDeleted .text a{
-	color: #6B1C1C;
-}
-
-.sentenceModified .text a{
-	color: #888
-}
-
-/*
-.linkAdded {
-	background: #E6EFE8;
-}
-
-.linkDeleted {
+.sentenceDeleted {
 	background: #ffe5e0;
 }
 
-.correctionSuggested {
+.sentenceModified {
+	background: #FBFFC9;
+}
+
+.linkAdded{
+	background: #E6EFE8;
+}
+
+.linkDeleted{
+	background: #ffe5e0;
+}
+
+.correctionSuggested{
 	background: #fff7b0;
 }
-*/

@@ -102,7 +102,7 @@ if(isset($myLists)){
 					$myList['SentencesList']['name'],
 					array("controller" => "sentences_lists", "action" => "edit", $myList['SentencesList']['id'])
 				);
-				echo '</span>, ';
+				echo '</span><span class="listInfo"> - ';
 				echo sprintf(
 					__('created by <a href="%s">%s</a>', true)
 					, $html->url(array("controller"=>"user", "action"=>"profile", $myList['User']['username']))
@@ -111,6 +111,7 @@ if(isset($myLists)){
 				if($myList['SentencesList']['is_public']){
 					echo ' <span class="publicList">' . __('(public list)', true) . '</span>';
 				}
+				echo '</span>';
 				echo '</li>';
 			}
 			echo '</ul>';
@@ -147,12 +148,13 @@ if(count($publicLists) > 0){
 					$publicList['SentencesList']['name'],
 					array("controller" => "sentences_lists", "action" => "edit", $publicList['SentencesList']['id'])
 				);
-				echo '</span>, ';
+				echo '</span><span class="listInfo"> - ';
 				echo sprintf(
 					__('created by <a href="%s">%s</a>', true)
 					, $html->url(array("controller"=>"user", "action"=>"profile", $publicList['User']['username']))
 					, $publicList['User']['username']
 				);
+				echo '</span>';
 				echo '</li>';
 			}
 		echo '</ul>';
