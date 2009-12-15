@@ -35,7 +35,7 @@ if(!$session->read('Auth.User.id')){
 			    <li>
                 <?php
 				echo sprintf(
-					  __("<a href='%s'>view all my sentences</a>", true)
+					  __("<a href='%s'>View all my sentences</a>", true)
 					, $html->url(array("controller" => "sentences", "action" => "my_sentences"))
 				);
 				?>
@@ -44,7 +44,7 @@ if(!$session->read('Auth.User.id')){
                 <li>
                 <?php
 				echo sprintf(
-					  __("<a href='%s'>uncorrectly detected sentences</a>", true)
+					  __("<a href='%s'>Sentences with undetected language</a>", true)
 					, $html->url(array("controller" => "sentences", "action" => "unknown_language"))
 				);
 				?>
