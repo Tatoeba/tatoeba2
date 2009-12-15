@@ -380,18 +380,19 @@ class UserController extends AppController {
                 )
             );
 
+        /* TODO find a way to retrieve it 
         $numberOfFavorites =  $this->Favorite->find(
             'count',
             array(
-                'conditions' => array( 'Favorite.user_id' => $userId)
+                'conditions' => array( 'Favorite.favorite_id' => $userId)
                 )
             );
-
+*/
         $userStats = array(
             'numberOfComments'      => $numberOfComments ,
             'numberOfSentences'     => $numberOfSentences ,
             'numberOfContributions' => $numberOfContributions,
-            'numberOfFavorites'     => $numberOfFavorites
+            //'numberOfFavorites'     => $numberOfFavorites
         );
 
 		return $userStats ;
