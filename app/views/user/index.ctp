@@ -44,11 +44,23 @@ if(!$session->read('Auth.User.id')){
                 <li>
                 <?php
 				echo sprintf(
+					  __("<a href='%s'>View my favorite sentences</a>", true)
+					, $html->url(array("controller" => "favorites", "action" => "of_user", $session->read('Auth.User.id') ))
+				);
+				?>
+                </li>
+ 
+
+                <li>
+                <?php
+				echo sprintf(
 					  __("<a href='%s'>Sentences with undetected language</a>", true)
 					, $html->url(array("controller" => "sentences", "action" => "unknown_language"))
 				);
 				?>
                 </li>
+
+
             	
 			</ul>
 
