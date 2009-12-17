@@ -2,6 +2,7 @@
 /*
     Tatoeba Project, free collaborativ creation of languages corpuses project
     Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
+    Copyright (C) 2009  Allan SIMON (allan.simon@supinfo.com)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -193,21 +194,34 @@ class Sentence extends AppModel{
     /*
     ** get the id of a random sentence, from a particular language if $lang is set
     */
-    function getRandomId($lang = null){
+    function getRandomId($lang = null,$type = null){
         /*
         ** this query take constant time when lang=null
         ** and linear time when lang is set, so do not touch this request
         */
+        if($lang == 'jpn' OR $lang == 'eng'){
+		
+			$min = ($lang == 'eng') ? 15700 : 74000;
+			$max = ($lang == 'eng') ? 74000 : 127300;
+			$randId =  rand($min, $max);
+            $query = ( "SELECT Sentence.id FROM sentences AS Sentence
+                WHERE Sentence.id IN (". ($randId - 1) .",". $randId . ",". ($randId +1) . ")
+                AND Sentence.lang = '$lang'
+                LIMIT 1 ;
+                ;"
+            );
 
-        
-        if ( $lang != null AND $lang !='any' ){
-        $query= ("SELECT Sentence.id FROM sentences AS Sentence
+
+		} elseif ( $lang != null AND $lang !='any' ){
+            
+            $query= ("SELECT Sentence.id FROM sentences AS Sentence
                 WHERE Sentence.lang = '$lang'
                 ORDER BY RAND() LIMIT 1 "
                 );
 
         } else {
-        $query = 'SELECT Sentence.id  FROM sentences AS Sentence 
+
+            $query = 'SELECT Sentence.id  FROM sentences AS Sentence 
                 JOIN ( SELECT (RAND() *(SELECT MAX(id) FROM sentences)) AS id) AS r2
                 WHERE Sentence.id >= r2.id
                 ORDER BY Sentence.id ASC LIMIT 1' ;
@@ -225,9 +239,52 @@ class Sentence extends AppModel{
     /*
     ** get the sentence with the given id
     */
-    function getSentenceWithId($id){
+    function getSentenceWithId($id,$type = null){
+        if($type == 'translate'){
+			$this->Sentence->recursive = 0;
+		}
+
+        $this->unbindModel(
+			array(
+				'hasAndBelongsToMany' => array('InverseTranslation')
+			)
+		);
+
         $this->id = $id;
         return $this->read();
+
+    }
+
+    /*
+    ** delete the sentence with the given id
+    */
+
+    function delete($id){
+        $this->id = $id;
+		
+		// for the logs
+		$this->recursive = 1;
+		$this->read();
+		$this->data['User']['id'] = $this->Auth->user('id'); 
+		
+		//$this->Sentence->del($id, true); 
+		// TODO : Deleting with del does not delete the right entries in sentences_translations.
+		// But I didn't figure out how to solve that =_=;
+		// So I'm just going to do something not pretty but whatever, I'm tired!!!
+		$this->query('DELETE FROM sentences WHERE id='.$id);
+		$this->query('DELETE FROM sentences_translations WHERE sentence_id='.$id);
+		$this->query('DELETE FROM sentences_translations WHERE translation_id='.$id);
+		
+		// need to call afterDelete() manually for the logs
+		$this->Sentence->afterDelete();
+
+
+    }
+
+    /*
+    ** Count number of sentences in each language
+    */
+    function statistics(){
 
     }
 

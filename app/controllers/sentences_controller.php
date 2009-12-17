@@ -41,6 +41,10 @@ class SentencesController extends AppController{
 	/**
 	 * Show sentence of specified id (or a random one if no id specified).
 	 */
+
+    // TODO HACK SPOTTED : nested controller and model code
+    // need to create a specific method in the model to get sentence from
+    // database 
 	function show($id = null){
 
         Sanitize::html($id);
@@ -138,24 +142,7 @@ class SentencesController extends AppController{
 	 */
 	function delete($id){
         Sanitize::paranoid($id);
-		$this->Sentence->id = $id;
-		
-		// for the logs
-		$this->Sentence->recursive = 1;
-		$this->Sentence->read();
-		$this->Sentence->data['User']['id'] = $this->Auth->user('id'); 
-		
-		//$this->Sentence->del($id, true); 
-		// TODO : Deleting with del does not delete the right entries in sentences_translations.
-		// But I didn't figure out how to solve that =_=;
-		// So I'm just going to do something not pretty but whatever, I'm tired!!!
-		$this->Sentence->query('DELETE FROM sentences WHERE id='.$id);
-		$this->Sentence->query('DELETE FROM sentences_translations WHERE sentence_id='.$id);
-		$this->Sentence->query('DELETE FROM sentences_translations WHERE translation_id='.$id);
-		
-		// need to call afterDelete() manually for the logs
-		$this->Sentence->afterDelete();
-		
+		$this->Sentence->delete($id);
 		$this->flash('The sentence #'.$id.' has been deleted.', '/contributions/show/'.$id);
 	}
 	
@@ -417,17 +404,8 @@ class SentencesController extends AppController{
 		// $type can be "show" or "translate"
 		// "translate" is used for the random sentence to translate in the "Contribution" section.
 		// "show" is used anywhere else.
-		if($type == 'translate'){
-			$this->Sentence->recursive = 0;
-		}
-		
-		$this->Sentence->unbindModel(
-			array(
-				'hasMany' => array('SentenceComment', 'Contribution'),
-				'hasAndBelongsToMany' => array('InverseTranslation')
-			)
-		);
-		
+			
+			
 		if($lang == null){
 			$lang = $this->Session->read('random_lang_selected');
 		}
@@ -475,6 +453,7 @@ class SentencesController extends AppController{
 			// TODO : find another solution than using RAND() because it's quite slow.
 		}
 		*/
+        /*
         if($lang == 'jpn' OR $lang == 'eng'){
 		
 			$min = ($lang == 'eng') ? 15700 : 74000;
@@ -493,9 +472,10 @@ class SentencesController extends AppController{
 			
             //pr($randomSentence);
 		}else{
-            $randomId = $this->Sentence->getRandomId($lang);
+        */
+            $randomId = $this->Sentence->getRandomId($lang,$type);
             $randomSentence = $this->Sentence->getSentenceWithId($randomId);
-        }
+        /*}*/
 		$this->Session->write('random_lang_selected', $lang);
 		$randomSentence['specialOptions'] = $this->Permissions->getSentencesOptions($randomSentence, $this->Auth->user('id'));
 		
