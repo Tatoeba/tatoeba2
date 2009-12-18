@@ -27,7 +27,17 @@ class PrivateMessagesController extends AppController {
 	var $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
 
 	var $langs = array('en', 'fr', 'jp', 'es', 'de');
-
+	
+	function beforeFilter() {
+	    parent::beforeFilter(); 
+		
+		// setting actions that are available to everyone, even guests
+	    $this->Auth->allowedActions = array('check'); 	// quick fix because "check" is called in top1.ctp, 
+														// and if a pending user tries to log in it will
+														// not work. "check" is currently defined as
+														// accessible only for registered users and above.
+	}
+	
 	// We don't use index at all : by default, we just display the inbox folder to the user
 	function index(){
 		$this->redirect(array('action' => 'folder', 'Inbox'));
