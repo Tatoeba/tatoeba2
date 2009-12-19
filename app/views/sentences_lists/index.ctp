@@ -97,7 +97,7 @@ if(isset($myLists)){
 			echo '<ul class="sentencesLists">';
 			foreach($myLists as $myList){
 				echo '<li>';
-				echo '<span id="'.$myList['SentencesList']['id'].'" class="listName">';
+				echo '<span id="_'.$myList['SentencesList']['id'].'" class="listName">';
 				echo $html->link(
 					$myList['SentencesList']['name'],
 					array("controller" => "sentences_lists", "action" => "edit", $myList['SentencesList']['id'])
@@ -143,7 +143,7 @@ if(count($publicLists) > 0){
 		echo '<ul class="sentencesLists">';
 			foreach($publicLists as $publicList){
 				echo '<li>';
-				echo '<span id="'.$publicList['SentencesList']['id'].'" class="listName">';
+				echo '<span id="_'.$publicList['SentencesList']['id'].'" class="listName">';
 				echo $html->link(
 					$publicList['SentencesList']['name'],
 					array("controller" => "sentences_lists", "action" => "edit", $publicList['SentencesList']['id'])
@@ -171,7 +171,7 @@ if(count($lists) > 0){
 		echo '<ul class="sentencesLists">';
 		foreach($lists as $list){
 			echo '<li>';
-				echo '<span id="'.$list['SentencesList']['id'].'" class="listName">';
+				echo '<span id="_'.$list['SentencesList']['id'].'" class="listName">';
 				echo $html->link(
 					$list['SentencesList']['name'],
 					array("controller" => "sentences_lists", "action" => "show", $list['SentencesList']['id'])
