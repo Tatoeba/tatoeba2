@@ -20,7 +20,7 @@
 class User extends AppModel {
 
 	var $name = 'User';
-	var $actsAs = array('Acl' => array('requester'), 'ExtendAssociations');
+	var $actsAs = array('Acl' => array('requester'), 'ExtendAssociations','containable');
 	
 	const LOWEST_TRUST_GROUP_ID = 4;
 	
@@ -190,5 +190,6 @@ class User extends AppModel {
 		return $this->findByUsername($userName);
 
     }
+
 }
 ?>

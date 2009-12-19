@@ -27,30 +27,33 @@ $navigation->displayUsersNavigation($id);
 	<div class="module">
 	<h2><?php __('Top members') ?></h2>
 	<?php
-	$stats = $this->requestAction('/contributions/statistics/1');
-	echo '<table id="topMembers">';
+	
+    echo '<table id="topMembers">';
 	echo '<tr>';
 	echo '<th>' . __('rank', true) . '</th>';
 	echo '<th>' . __('username', true) . '</th>';
 	echo '<th>' . __('number of contributions', true) . '</th>';
 	echo '</tr>';
 
-	$i = 1;
-	foreach($stats as $stat){
+	foreach($topContributors as $i=>$topContributor){
 		$css = 'class=';
-		if($stat['User']['group_id'] == 1){
+		if($topContributor['group_id'] == 1){
 			$css .= '"admin"';
-		}
-		if($stat['User']['group_id'] == 4){
+		} elseif ($topContributor['group_id'] == 4){
 			$css .= '"normal"';
 		}
 
 		echo '<tr '.$css.'><td>';
-		echo $i; $i++;
+		echo $i +1 ;
 		echo '</td><td>';
-		echo $html->link($stat['User']['username'], array("controller"=>"user", "action"=>"profile", $stat['User']['username']));
+		echo $html->link($topContributor['userName'],
+            array("controller"=>"user",
+                 "action"=>"profile",
+                  $topContributor['userName']
+            )
+        );
 		echo '</td><td>';
-		echo $stat['0']['total'];
+		echo $topContributor['numberOfContributions'];
 		echo '</td></tr>';
 	}
 	echo '</table>';

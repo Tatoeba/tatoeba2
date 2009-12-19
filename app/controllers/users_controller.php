@@ -25,7 +25,16 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	var $helpers = array('Html', 'Form', 'Date', 'Logs', 'Sentences', 'Navigation');
 	var $components = array ('Mailer', 'Captcha', 'RememberMe');
-	var $paginate = array('limit' => 20, 'order' => array('last_time_active' => 'desc'));
+	var $paginate = array(
+        'limit' => 20,
+        'order' => array('last_time_active' => 'desc'),
+        'contain' => array(
+            "Group" => array(
+                "fields" => "Group.name" 
+            )
+        )    
+    );
+  var $uses = array("User","Contribution"); 
 
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -372,8 +381,24 @@ class UsersController extends AppController {
 	 * Display list of all members.
 	 */
 	function all(){
-		$this->User->recursive = 0;
-		$this->set('users', $this->paginate(array('User.group_id < 5')));
+		//$this->User->recursive = -1;
+        /**/
+        $topContributors = $this->Contribution->getTopContributors(20);
+        // present result in a nicer array
+        foreach ( $topContributors as $i=>$contributor){
+            $topContributors[$i] = array (
+                'numberOfContributions' => $contributor[0]['total'],
+                'userName' => $contributor['User']['username'],
+                'group_id' => $contributor['User']['group_id']
+            );
+        }
+
+        //$this->Contribution->getTopContributors(20);
+        $this->set('topContributors',$topContributors);
+
+        $users = $this->paginate(array('User.group_id < 5'));
+        //pr ($users);
+		$this->set('users', $users);
 	}
 
 	/**

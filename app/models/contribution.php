@@ -20,7 +20,7 @@
 class Contribution extends AppModel {
 
 	var $name = 'Contribution';
-	
+	var $actsAs = array("Containable");
 	var $belongsTo = array('Sentence', 'User');
     
     /*
@@ -33,6 +33,38 @@ class Contribution extends AppModel {
                 'conditions' => array( 'Contribution.user_id' => $userId)
                 )
             );
+
+    }
+
+    /*
+    ** get the Xth best contributors
+    */
+    function getTopContributors($limit){
+        $result = $this->find(
+            'all',
+            array(
+                'order' => 'total DESC',
+                'fields' => array(
+                    'COUNT(Contribution.id) AS total',
+                    'User.username',
+                    'User.group_id'
+                ),
+                'group' => 'Contribution.user_id',
+                'conditions' => array (
+                    'Contribution.user_id !=' => null,
+                    'Contribution.type' => 'sentence',
+                    'User.group_id <' => 5
+                ),
+                'limit' => $limit ,
+                'contains' => array (
+                    'User' => array (
+                        'fields' => array( 'User.username', 'User.group_id'),
+                    ),
+                
+                ) 
+            )
+        );
+        return $result; 
 
     }
 
