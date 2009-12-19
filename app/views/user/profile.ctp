@@ -35,11 +35,11 @@ if(!empty($user['User']['homepage'])){
 			<dt><?php __('Last login'); ?></dt>
 			<dd><?php echo date('F j, Y \\a\\t G:i', $user['User']['last_time_active']) ?></dd>
 			<dt><?php __('Comments posted'); ?></dt>
-			<dd><?php echo count($user['SentenceComments']) ?></dd>
+			<dd><?php echo $userStats['numberOfComments'] ?></dd>
 			<dt><?php __('Sentences owned'); ?></dt>
-			<dd><?php echo count($user['Sentences']) ?></dd>
+			<dd><?php echo $userStats['numberOfSentences'] ?></dd>
 			<dt><?php __('Sentences favorited'); ?></dt>
-			<dd><?php echo count($user['Favorite']) ?></dd>
+			<dd><?php echo $userStats['numberOfFavorites'] ?></dd>
 		</dl>
 	</div>
 </div>

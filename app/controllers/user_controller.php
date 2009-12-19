@@ -48,9 +48,9 @@ class UserController extends AppController {
 	 * Display current user's profile.
 	 */
 	function index() {
-
-		$aUser = $this->User->getInformationForProfileOfUser($this->Auth->user('id'));
-        $userStats = $this->stats($this->Auth->user('id'));
+        $userId = $this->Auth->user('id');
+		$aUser = $this->User->getInformationOfCurrentUser($userId);
+        $userStats = $this->stats($userId);
 
 		$this->loadModel('Country');
 		$aCountries = $this->Country->findAll();
@@ -80,26 +80,11 @@ class UserController extends AppController {
 		} else {
 			$bLogin = $this->Auth->user('id') ? true : false;
 			
-			$this->User->unBindModel(
-	            array('hasMany' => array('Contributions', 'Sentences', 'SentenceComments' )
-	                , 'hasAndBelongsToMany' => array('Favorite')
-	            )
-	        );
-	        $this->User->bindModel(
-	            array('hasMany' => array('Sentences','SentenceComments' )
-	                , 'hasAndBelongsToMany' => array (
-	                    'Favorite' => array(
-	                        'className' => 'Favorite',
-	                        'joinTable' => 'favorites_users',
-	                        'foreignKey' => 'user_id',
-	                        'associationForeignKey' => 'favorite_id',
-	                        'unique' => true,
-	                    ) 
-	                )
-	            ) 
-	        );
-			
-			$aUser = $this->User->findByUsername($sUserName);
+            $aUser = $this->User->getInformationOfUser($sUserName);
+		    $userStats = $this->stats($aUser['User']['id']);
+
+            $this->set('userStats',$userStats);
+
             if ( $aUser != null ){
                 if($aUser['User']['name'] != '')
                     $this->pageTitle = sprintf(__("Profile of %s", true), $aUser['User']['name']);
@@ -312,7 +297,9 @@ class UserController extends AppController {
 
 			$hashedPass = $this->Auth->password($this->data['old_password']['passwd']);
 
-			if($user['User']['password'] == $hashedPass && $this->data['new_password']['passwd'] == $this->data['new_password2']['passwd']){
+			if ($user['User']['password'] == $hashedPass &&
+                $this->data['new_password']['passwd'] == $this->data['new_password2']['passwd']){
+
 				$this->data['User']['password'] = $this->Auth->password($this->data['new_password']['passwd']);
 
 				if($this->User->save($this->data)){
@@ -320,8 +307,11 @@ class UserController extends AppController {
 				}else{
 					$flashMsg = __('An error occured while saving.', true);
 				}
+
 			}else{
+
 				$flashMsg = __('Password error. Please try again.', true);
+
 			}
 
 			$this->Session->setFlash($flashMsg);
@@ -342,42 +332,18 @@ class UserController extends AppController {
 	function stats($userId){
         
 	
-        $numberOfSentences = $this->Sentence->find(
-            'count',
-            array(
-                'conditions' => array( 'Sentence.user_id' => $userId)
-                )
-            );
+        $numberOfSentences = $this->Sentence->numberOfSentencesOwnedBy($userId);
+        $numberOfComments  = $this->SentenceComment->numberOfCommentsOwnedBy($userId);
 
-        $numberOfComments =  $this->SentenceComment->find(
-            'count',
-            array(
-                'conditions' => array( 'SentenceComment.user_id' => $userId)
-                )
-            );
+        $numberOfContributions =  $this->Contribution->numberOfContributionsBy($userId);
+        $numberOfFavorites  = $this->Favorite->numberOfFavoritesOfUser($userId);
 
-        $numberOfContributions =  $this->Contribution->find(
-            'count',
-            array(
-                'conditions' => array( 'Contribution.user_id' => $userId)
-                )
-            );
-
-        /* TODO find a way to retrieve it 
-        $numberOfFavorites =  $this->Favorite->find(
-            'count',
-            array(
-                'conditions' => array( 'Favorite.favorite_id' => $userId)
-                )
-            );
-*/
         $userStats = array(
             'numberOfComments'      => $numberOfComments ,
             'numberOfSentences'     => $numberOfSentences ,
             'numberOfContributions' => $numberOfContributions,
-            //'numberOfFavorites'     => $numberOfFavorites
+            'numberOfFavorites'     => $numberOfFavorites
         );
-
 		return $userStats ;
 	}
 }

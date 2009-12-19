@@ -22,6 +22,20 @@ class Contribution extends AppModel {
 	var $name = 'Contribution';
 	
 	var $belongsTo = array('Sentence', 'User');
+    
+    /*
+    ** get number of contributions made by a given user
+    */
+    function numberOfContributionsBy($userId){
+        return $this->find(
+            'count',
+            array(
+                'conditions' => array( 'Contribution.user_id' => $userId)
+                )
+            );
+
+    }
+
 
 }
 ?>

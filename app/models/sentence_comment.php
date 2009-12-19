@@ -21,5 +21,19 @@ class SentenceComment extends AppModel{
 	var $name = 'SentenceComment';
 	
 	var $belongsTo = array('Sentence', 'User');
+
+    /*
+    ** get Number of sentences posted by a User
+    */
+    function numberOfCommentsOwnedBy ($userId){
+        return $this->find(
+            'count',
+            array(
+                'conditions' => array( 'SentenceComment.user_id' => $userId)
+             )
+        );
+
+    }
+    
 }
 ?>

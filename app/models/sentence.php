@@ -288,5 +288,17 @@ class Sentence extends AppModel{
 
     }
 
+    /*
+    ** get number of sentences owned by a given user
+    */
+    function numberOfSentencesOwnedBy($userId){
+        return $this->find(
+            'count',
+            array(
+                 'conditions' => array( 'Sentence.user_id' => $userId)
+            )
+        );
+    }
+
 }
 ?>

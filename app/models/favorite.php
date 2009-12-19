@@ -38,7 +38,18 @@ class Favorite extends AppModel{
 			'deleteQuery' => '',
 			'insertQuery' => ''
 		)
-	);	
+	);
+    /*
+    ** get number of favorite sentence of a user
+    */
+    function numberOfFavoritesOfUser($userId){
+        $result = $this->query("
+            SELECT count(user_id) AS numberOfFavorites FROM favorites_users
+            WHERE user_id = $userId
+        ");
+
+        return $result[0][0]["numberOfFavorites"];
+    }
 
 }
 ?>
