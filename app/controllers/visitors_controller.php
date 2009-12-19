@@ -68,7 +68,7 @@ class VisitorsController extends AppController {
 	}
 	
 	function online(){
-		// delete users with timestamp higer than 5 minutes
+		// delete users with timestamp higher than 5 minutes
 		$timestamp_5min = time() - (60 * 5);
 		$this->Visitor->deleteAll(array('timestamp < ' . $timestamp_5min),false);
 		

@@ -54,50 +54,12 @@ class WallController extends Appcontroller{
     }
 
     function index(){
-        $firstMessages = $this->Wall->find('all',
-            array(
-                "order" => "Wall.date DESC", 
-                "conditions" => array ("Wall.replyTo" => 0),
-                "contain"    => array (
-                    "Reply" => array (
-                        "order" =>"Reply.date",
-                        "fields" => array("Reply.id") 
-                        )
-                    
-                    ,"User" => array (
-                        "fields" => array("User.image","User.username","User.id") 
-                        )
-                    ) 
-                )
-            );
+        $firstMessages = $this->Wall->getFirstMessages();
 
         
-        $messages = $this->Wall->find('all',
-            array(
-                "order" => "Wall.id", 
-                "contain"    => array (
-                    "Reply" => array (
-                        "order" =>"Reply.date ",
-                        "fields" => array("Reply.id") 
-                        )
-                    
-                    ,"User" => array (
-                        "fields" => array("User.image","User.username", "User.id") 
-                        )
-                    ) 
-                )
-            );
-        $tenLastMessages = $this->Wall->find('all',
-            array(
-                "order" => "Wall.date DESC",
-                "limit" => 10,  
-                "contain"    => array (
-                    "User" => array (
-                        "fields" => array("User.username", "User.id") 
-                        )
-                    ) 
-                )
-            );
+        $messages = $this->Wall->getMessages();
+        $tenLastMessages = $this->Wall->getLastMessages(10);
+        
         $this->set('allMessages' , $messages) ;
         $this->set('tenLastMessages',$tenLastMessages);
         $this->set('firstMessages' , $firstMessages) ;

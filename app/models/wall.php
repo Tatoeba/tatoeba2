@@ -43,6 +43,69 @@ class Wall extends AppModel{
 
     }
 
+    /*
+    ** Get all the message which start a thread
+    */
+    function getFirstMessages(){
+       return  $this->find('all',
+            array(
+                "order" => "Wall.date DESC", 
+                "conditions" => array ("Wall.replyTo" => 0),
+                "contain"    => array (
+                    "Reply" => array (
+                        "order" =>"Reply.date",
+                        "fields" => array("Reply.id") 
+                        )
+                    
+                    ,"User" => array (
+                        "fields" => array("User.image","User.username","User.id") 
+                        )
+                    ) 
+                )
+            );
+    }
+
+    /*
+    ** get all Messages
+    */
+
+    function getMessages(){
+        return $this->find('all',
+            array(
+                "order" => "Wall.id", 
+                "contain"    => array (
+                    "Reply" => array (
+                        "order" =>"Reply.date ",
+                        "fields" => array("Reply.id") 
+                        )
+                    
+                    ,"User" => array (
+                        "fields" => array("User.image","User.username", "User.id") 
+                        )
+                    ) 
+                )
+            );
+    }
+
+    /*
+    ** get the 10 last messages posted
+    */
+
+    function getLastMessages($numberOfLastMessages){
+        return $this->find('all',
+            array(
+                "order" => "Wall.date DESC",
+                "limit" => $numberOfLastMessages,  
+                "contain"    => array (
+                    "User" => array (
+                        "fields" => array("User.username", "User.id") 
+                        )
+                    ) 
+                )
+            );
+    }
+    
+
 
 }
 ?>

@@ -2,7 +2,8 @@
 /*
     Tatoeba Project, free collaborative creation of multilingual corpuses project
     Copyright (C) 2009  Salem BEN YAALA <salem.benyaala@gmail.com>,
-	HO Ngoc Phuong Trang <tranglich@gmail.com>
+	Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+    Copyright (C) 2009  Allan SIMON <allan.simon@supinfo.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -48,25 +49,7 @@ class UserController extends AppController {
 	 */
 	function index() {
 
-        $this->User->unBindModel(
-            array('hasMany' => array('Contributions', 'Sentences', 'SentenceComments' )
-                , 'hasAndBelongsToMany' => array('Favorite')
-            )
-        );
-        $this->User->bindModel(
-            array('hasMany' => array('Sentences','SentenceComments' )
-                , 'hasAndBelongsToMany' => array (
-                    'Favorite' => array(
-                        'className' => 'Favorite',
-                        'joinTable' => 'favorites_users',
-                        'foreignKey' => 'user_id',
-                        'associationForeignKey' => 'favorite_id',
-                        'unique' => true,
-                    ) 
-                )
-            ) 
-        );
-		$aUser = $this->User->findById($this->Auth->user('id'));
+		$aUser = $this->User->getInformationForProfileOfUser($this->Auth->user('id'));
         $userStats = $this->stats($this->Auth->user('id'));
 
 		$this->loadModel('Country');

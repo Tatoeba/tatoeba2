@@ -161,5 +161,32 @@ class User extends AppModel {
 		return $pw;
 	}
 
+    /*
+    ** get all the information needed to generate the user's profile
+    */
+
+    function getInformationForProfileOfUser($userId){
+        $this->unBindModel(
+            array('hasMany' => array('Contributions', 'Sentences', 'SentenceComments' )
+                , 'hasAndBelongsToMany' => array('Favorite')
+            )
+        );
+        $this->bindModel(
+            array('hasMany' => array('Sentences','SentenceComments' )
+                , 'hasAndBelongsToMany' => array (
+                    'Favorite' => array(
+                        'className' => 'Favorite',
+                        'joinTable' => 'favorites_users',
+                        'foreignKey' => 'user_id',
+                        'associationForeignKey' => 'favorite_id',
+                        'unique' => true,
+                    ) 
+                )
+            ) 
+        );
+
+      return $this->findById($userId);  
+
+    }
 }
 ?>
