@@ -67,6 +67,33 @@ class Contribution extends AppModel {
         return $result; 
 
     }
+        
+    /*TODO*/
+    function getContributionsRelatedToSentence($sentenceId){
+        $result = $this->find(
+            'all',
+            array(
+                'fields' => array(
+                    'Contribution.text',
+                    'Contribution.translation_id',
+                    'Contribution.action',
+                    'Contribution.id',
+                    'Contribution.datetime',
+                    'User.username',
+                    'User.id'
+                ),
+                'conditions' => array (
+                    'Contribution.sentence_id' => $sentenceId     
+                ),
+                'contains' => array (
+                    'User'=> array(
+                        'fields' => array('User.username','User.id')
+                    ),
+                )
+            )
+        );
+        return $result ;
+    }
 	
 	/**
 	 * Get last contributions.

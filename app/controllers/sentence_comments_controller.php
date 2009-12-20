@@ -21,7 +21,7 @@ App::import('Core', 'Sanitize');
 
 class SentenceCommentsController extends AppController {
 	var $name = 'SentenceComments';
-	
+    var $uses = array("SentenceComment","Sentence");	
 	var $helpers = array('Comments','Sentences', 'Languages', 'Navigation', 'Html');
 	var $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
 	
@@ -47,16 +47,23 @@ class SentenceCommentsController extends AppController {
 	 */
 	function show($sentenceId){
         Sanitize::paranoid($sentenceId);
-        $s = new Sentence();
-		$s->id = $sentenceId;		
-		$s->recursive = 2;
-		$sentence = $s->read();
-		
+	    	
+		$sentence = $this->Sentence->getShowSentenceWithId($sentenceId);
+        $translations = $this->Sentence->getTranslationsOf($sentenceId);
+        $indirectTranslations = null ;
+        if ( $translations != null AND ! empty($translations) ){
+            $indirectTranslations = $this->Sentence->getIndirectTranslations($translations,$sentenceId);
+        }
+
+        
 		$this->set('sentence_id', $sentenceId);
 		
 		if($sentence != null){
 			$this->set('sentenceExists', true);
-			$this->set('sentence', $sentence);
+            $this->set('sentence',$sentence);
+            $this->set('translations',$translations);
+            $this->set('indirectTranslations', $indirectTranslations);
+
 		}else{
 			$this->set('sentenceExists', false);
 		}

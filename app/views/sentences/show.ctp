@@ -30,11 +30,11 @@ $navigation->displaySentenceNavigation();
 		__('Logs');
 		echo '</h2>';
 		
-		$contributions = $sentence['Contribution'];
+		//$contributions = $sentence['Contribution'];
 		if(count($contributions) > 0){
 			echo '<div id="logs">';
 			foreach($contributions as $contribution){
-				$logs->annexeEntry($contribution, $contribution['User']);
+                $logs->annexeEntry($contribution['Contribution'], $contribution['User']);
 			}
 			echo '</div>';
 		}else{
@@ -57,13 +57,25 @@ $navigation->displaySentenceNavigation();
             // /!\ the id is used in sentences.show.js , so do not touch the way we forge the id /!\ 
 			echo '<div id="__'.$sentence['Sentence']['id'] . '" class="sentences_set">';
 				// sentence menu (translate, edit, comment, etc)
-				$specialOptions['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
-				$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
+                // TODO set up a better mechanism
+				$specialOptions['belongsTo'] = $sentence['User']['username']; 
+				$sentences->displayMenu(
+                    $sentence['Sentence']['id'],
+                    $sentence['Sentence']['lang'],
+                    $specialOptions
+                );
 
 				// sentence and translations
-				$t = (isset($sentence['Translation'])) ? $sentence['Translation'] : array();
-				$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
-				$sentences->displayGroup($sentence['Sentence'], $t, $sentence['User']);
+
+                // TODO set up a better mechanism
+				$sentence['User']['canEdit'] = $specialOptions['canEdit'];
+               // pr ($sentence);
+				$sentences->displayGroup(
+                    $sentence['Sentence'],
+                    $translations,
+                    $sentence['User'],
+                    $indirectTranslations
+                );
 			echo '</div>';
 
 			//$tooltip->displayAdoptTooltip();
@@ -98,15 +110,15 @@ $navigation->displaySentenceNavigation();
 		__('Comments');
 		echo '</h2>';
 
-		if(count($sentence['SentenceComment']) > 0){
+		if(count($sentenceComments) > 0){
 			echo '<ol class="comments">';
-			for($i = 0; $i < 3 AND $i < count($sentence['SentenceComment']); $i++){
-				$comment = $sentence['SentenceComment'][$i];
+			for($i = 0; $i < 3 AND $i < count($sentenceComments); $i++){
+				$comment = $sentenceComments[$i];
 				$comments->displaySentenceComment($comment);
 			}
 			echo '</ol>';
 			
-			if(count($sentence['SentenceComment']) > 3){
+			if(count($sentenceComments) > 3){
 				?>
 				<p class="more_link">
 				<?=$html->link(

@@ -24,7 +24,6 @@ echo $javascript->link('sentences_lists.menu.js', true);
 echo $javascript->link('jquery.impromptu.js', true);
 
 $sentence = $random['Sentence'];
-$translations = isset($random['Translation']) ? $random['Translation'] : null;
 $specialOptions = $random['specialOptions'];
 
 echo '<div class="sentences_set">';
@@ -33,7 +32,7 @@ echo '<div class="sentences_set">';
 	if($type == 'translate'){
 		$sentences->displayForTranslation($sentence, $translations);
 	}else{
-		$sentences->displayGroup($sentence, $translations, $random['User']);
+		$sentences->displayGroup($sentence, $translations, $random['User'],$indirectTranslations);
 	}
 echo '</div>';
 ?>

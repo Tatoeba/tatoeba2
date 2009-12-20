@@ -19,6 +19,7 @@
 
 class Translation extends AppModel{
 	var $name = 'Translation';
+    var $actsAs = array('Containable');
 	var $useTable = 'sentences';
 	
 	var $hasAndBelongsToMany = array(
@@ -36,5 +37,15 @@ class Translation extends AppModel{
 			'insertQuery' => ''
 		)
 	);	
+
+/*
+            SELECT * FROM sentences AS Translations , sentences_translations
+            WHERE sentences_translations.sentence_id = $id 
+                AND sentences_translations.
+
+    }
+*/
+
+
 }
 ?>

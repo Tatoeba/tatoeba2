@@ -20,8 +20,9 @@ $(document).ready(function(){
     // use a little hack
     // we store the id of the sentence in a div
     sentenceId = $(".sentences_set").attr('id').slice(2);
-    
+   /* 
 
     $(".translations").html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
 	$(".translations").load("http://" + self.location.hostname + "/sentences/get_translations/" + sentenceId);
-			});
+	*/
+    		});

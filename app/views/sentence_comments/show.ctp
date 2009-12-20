@@ -50,7 +50,12 @@ $navigation->displaySentenceNavigation();
 				$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions);
 
 				$sentence['User']['canEdit'] = $specialOptions['canEdit']; // TODO set up a better mechanism
-				$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
+				$sentences->displayGroup(
+                    $sentence['Sentence'],
+                    $translations,
+                    $sentence['User'],
+                    $indirectTranslations
+                );
 			echo '</div>';
 
 		}else{

@@ -20,6 +20,7 @@
 
 class Sentence extends AppModel{
 	var $name = 'Sentence';
+    var $actsAs = array("Containable");
 	
 	const MAX_CORRECTNESS = 6; // This is not much in use. Should probably remove it someday
 	
@@ -246,13 +247,32 @@ class Sentence extends AppModel{
 
         $this->unbindModel(
 			array(
-				'hasAndBelongsToMany' => array('InverseTranslation')
+				'hasAndBelongsToMany' => array('InverseTranslation','Translation')
 			)
 		);
 
         $this->id = $id;
         return $this->read();
 
+    }
+
+    /*
+    ** get all the informations needed to display a sentences in show section
+    */
+    function getShowSentenceWithId($id){
+        $result = $this->find(
+            'first',
+            array(
+                'conditions' => array ('Sentence.id' => $id),
+                'contain'  => array (
+                    'Favorites_users' => array(),
+                    'User' =>array(),
+                    'Contribution'
+                )
+            )
+
+        );
+        return $result;
     }
 
     /*
@@ -298,6 +318,63 @@ class Sentence extends AppModel{
                  'conditions' => array( 'Sentence.user_id' => $userId)
             )
         );
+    }
+
+    /*
+    ** get translations of a given sentence
+    */
+    function getTranslationsOf($id,$excludeId = null){
+        $conditions = array (
+            'Sentence.id' => $id
+        );
+        $result = $this->find(
+            'first',
+            array(
+                'fields' => array('Sentence.id'),
+                'conditions' => $conditions,
+                'contain' => array(
+                    'Translation' => array (
+                        /*
+                        'conditions' => array (
+                            "not" => array ( 'Translation.id' =>  $excludeId)
+                        ),*/
+                        'fields' => array (
+                            'Translation.id',
+                            'Translation.text',
+                            'Translation.user_id',
+                            'Translation.lang'
+                        )
+                    )
+                )
+            )
+        );
+        if (isset($result)){
+            return $result['Translation'];
+        } else {
+            return array();
+        }
+    }
+
+    function getIndirectTranslations($translations,$id){
+        $indirectTranslations = array();
+        $directTranslationsId = array($id);
+        foreach ($translations as $translation){
+            array_push( $directTranslationsId,$translation['id']); 
+        }
+
+        foreach ($translations as $translation){
+
+            $temps = $this->getTranslationsOf($translation['id']);
+             
+            foreach ( $temps as $temp ){
+                if (! in_array($temp['id'],$directTranslationsId )) {
+                    $indirectTranslations[$temp['id']] = $temp ;
+                }
+            }
+
+        }
+
+        return $indirectTranslations ;
     }
 
 }

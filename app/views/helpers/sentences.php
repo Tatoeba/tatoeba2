@@ -122,7 +122,7 @@ class SentencesHelper extends AppHelper {
 	/**
 	 * Diplay a sentence and its translations.
 	 */
-	function displayGroup($sentence, $translations, $user = null) {
+	function displayGroup($sentence, $translations, $user = null, $indirectTranslations = array()) {
 		echo '<div class="sentence">';
 		// Sentence
 		$this->Javascript->link('jquery.jeditable.js', false);
@@ -169,7 +169,7 @@ class SentencesHelper extends AppHelper {
 			$this->displayTranslations($translations, 'show');
 			
 			// indirect translations
-			$this->displayIndirectTranslations($sentence, 'show');
+			$this->displayIndirectTranslations($indirectTranslations, 'show');
 		}
 		echo '</ul>';
 		
@@ -181,12 +181,18 @@ class SentencesHelper extends AppHelper {
 	/**
 	 * Display direct translations.
 	 */
-	function displayTranslations($translations, $action){			
-		$controller = (preg_match("/sentence_comments|contributions/", $this->params['controller'])) ? $this->params['controller'] : "sentences";
-		
+	function displayTranslations($translations, $action){
+
+        $controller = "sentences" ;
+        if (preg_match("/sentence_comments|contributions/", $this->params['controller'])){
+            $controller = $this->params['controller'];
+        }
+
 		foreach($translations as $translation){
+        
 			echo '<li class="direct translation">';
 			// hidden 'info button'
+            /*
 			echo $this->Html->link(
 				$this->Html->image(
 					'info.png',
@@ -202,12 +208,24 @@ class SentencesHelper extends AppHelper {
 				),
 				array("escape"=>false)
 			);
-			
+			*/
 			// language flag
 			$this->displayLanguageFlag($translation['id'], $translation['lang']);
 			
 			//translation and romanization
-			echo '<div>' . $translation['text'] . '</div>';
+			// translation text
+                    echo '<div >';
+                    echo $this->Html->link(
+                        $translation['text'],
+                        array(
+                            "controller" => "sentences",
+                            "action" => $action,
+                            $translation['id']
+                        ),
+                        array("escape"=>false)
+                    );
+                    echo '</div>';
+
 			$this->displayRomanization($translation['lang'], $translation['text']);
 			
 			echo '</li>';
@@ -217,80 +235,48 @@ class SentencesHelper extends AppHelper {
 	/**
 	 * Display indirect translations, that is to say translations of translations.
 	 */
-	function displayIndirectTranslations($sentence, $action){
-		if(isset($sentence['Translation'])){
-			$translations = $sentence['Translation'];
-			$translationsIds = array($sentence['Sentence']['id']);
-			$indirectTranslations = array();
-			
-			foreach($translations as $translation){
-				$translationsIds[] = $translation['id'];
-				if(isset($translation['IndirectTranslation'])){
-					foreach($translation['IndirectTranslation'] as $indirectTranslation){
-						if($indirectTranslation['id'] != $sentence['Sentence']['id']){
-							$indirectTranslations[] = $indirectTranslation;
-						}
-					}
-				}
-			}
-			
-			if(count($indirectTranslations) > 0){
-				foreach($indirectTranslations as $translation){
-					if(!in_array($translation['id'], $translationsIds)){
-						echo '<li class="indirect translation">';
-						echo $this->Html->link(
-							$this->Html->image(
-								'info.png',
-								array(
-									"alt"=>__('Show',true),
-									"title"=>__('Show',true)
-								)
-							),
-							array(
-								"controller" => "sentences",
-								"action" => $action,
-								$translation['id']
-							),
-							array("escape"=>false)
-						);
-						
-						// language flag
-						$this->displayLanguageFlag($translation['id'], $translation['lang']);
-						
-						// translation text
-						echo '<div title="'.__('indirect translation',true).'">' . $translation['text'] . '</div>';
-						
-						echo '</li>';
-					}
-				}
-			}
-		}
+	function displayIndirectTranslations($indirectTranslations, $action){
+        if(count($indirectTranslations) > 0){
+            foreach($indirectTranslations as $translation){
+                    echo '<li class="indirect translation">';
+                    /*
+                    echo $this->Html->link(
+                        $this->Html->image(
+                            'info.png',
+                            array(
+                                "alt"=>__('Show',true),
+                                "title"=>__('Show',true)
+                            )
+                        ),
+                        array(
+                            "controller" => "sentences",
+                            "action" => $action,
+                            $translation['id']
+                        ),
+                        array("escape"=>false)
+                    );
+                    */
+                    // language flag
+                    $this->displayLanguageFlag($translation['id'], $translation['lang']);
+                    
+                    // translation text
+                    echo '<div title="'.__('indirect translation',true).'">';
+                    echo $this->Html->link(
+                        $translation['text'],
+                        array(
+                            "controller" => "sentences",
+                            "action" => $action,
+                            $translation['id']
+                        ),
+                        array("escape"=>false)
+                    );
+                    echo '</div>';
+                    
+                    echo '</li>';
+            }
+        }
 	}
 	
-	
-	/**
-	 * Display sentences, direct translations and indirect ones. User can also enter the id
-	 * of another sentence if he wants to link that sentence to the current sentence.
-	 */
-	function displayForLink($sentence, $translations){
-		echo '<div class="sentence">';
-		
-			// Sentence
-			echo '<div class="original correctness'.$sentence['correctness'].'">';
-			echo '<span class="'.$sentence['lang'].'">'.$sentence['text'].'</span>';
-			echo '</div>';
-			
-			echo '<ul class="translations">';
-			if(count($translations) > 0){
-				// direct translations
-				$this->displayTranslations($translations, 'link');
-				
-				// indirect translations
-				$this->displayIndirectTranslations($sentence, 'link');
-			}
-			echo '</ul>';
-		echo '</div>';
-	}
 	
 	
 	/**
@@ -312,18 +298,6 @@ class SentencesHelper extends AppHelper {
 				$this->Javascript->link('sentences.add_translation.js', false);
 				$this->Menu->translateButton();
 			}
-			
-			// "link" link => everyone can see
-			// echo '<li class="'.$this->optionClass('link').'">';
-			// echo $this->Html->link(
-				// __('Link',true),
-				// array(
-					// "controller" => "sentences",
-					// "action" => "link",
-					// $id
-				// ));
-			// echo '</li>';
-			
 			// adopt
 			if(isset($specialOptions['canAdopt']) AND $specialOptions['canAdopt'] == true){
 				$this->Menu->adoptButton($id);

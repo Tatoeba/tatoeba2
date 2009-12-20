@@ -43,8 +43,8 @@
 	padding: 4px 10px 3px 10px;
 }
 
-.sentences_set .menu li.option a:hover{
-color: #000000;
+.sentences_set .menu li.option a:hover {
+    color: #000000;
 }
 
 .sentences_set .menu li.delete a{
@@ -95,22 +95,24 @@ padding: 10px 5px;
 }
 
 /* translation */
+/*
 .translation a{
 	float:left;
 	padding: 0px 5px;
 	margin-top: 5px;
 	visibility: hidden;
 }
-
+*/
 .translation span{
 	display: block;
 	padding-left: 30px;
 	padding-right: 30px;
 }
-
+/*
 .translations li.translation:hover a{
 	visibility: visible;
 }
+*/
 
 
 /* editing sentences */

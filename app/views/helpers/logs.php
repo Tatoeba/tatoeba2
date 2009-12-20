@@ -92,7 +92,7 @@ class LogsHelper extends AppHelper {
 		$type = '';
 		$status = '';
 		
-		if($contribution['translation_id'] == ''){
+		if($contribution['translation_id'] == null OR  $contribution['translation_id'] == '' ){
 			$type = 'sentence';
 		}else{
 			$type = 'link';

@@ -24,6 +24,7 @@ class SentencesController extends AppController{
 	var $components = array ('GoogleLanguageApi', 'Lucene', 'Permissions');
 	var $helpers = array('Sentences', 'Html', 'Logs', 'Pagination', 'Comments', 'Navigation', 'Languages', 'Javascript');
 	var $paginate = array('limit' => 100, "order" => "Sentence.modified DESC");
+    var $uses = array('Sentence','Translation','Contribution','SentenceComment');
 	
 	function beforeFilter() {
 	    parent::beforeFilter();
@@ -48,14 +49,8 @@ class SentencesController extends AppController{
 	function show($id = null){
 
         Sanitize::html($id);
-		$this->Sentence->recursive = 2;
 		
 		$this->Sentence->hasMany['SentenceComment']['limit'] = 4; // limiting comments to 4, but we're actually only going to display 3.
-		$this->Sentence->unbindModel(
-			array(
-				'hasAndBelongsToMany' => array('InverseTranslation', 'Translation')
-			)
-		);			
 
 		if($id == "random" OR $id == null OR $id == "" ){
 			$id = $this->Session->read('random_lang_selected');
@@ -72,8 +67,25 @@ class SentencesController extends AppController{
         // if we give directly an id
 		}elseif (is_numeric($id)){
 		
-			$sentence = $this->Sentence->getSentenceWithId($id);
+			$sentence = $this->Sentence->getShowSentenceWithId($id);
+            $translations = $this->Sentence->getTranslationsOf($id);
+            $contributions = $this->Contribution->getContributionsRelatedToSentence($id);
+            $comments = $this->SentenceComment->getCommentsForSentence($id);
+
+            $indirectTranslations = null ;
+            if ( $translations != null AND ! empty($translations) ){
+                $indirectTranslations = $this->getIndirectTranslations($translations,$id);
+            }
+
+            //pr ($translations) ;
+            //pr ($indirectTranslations);
+            //pr ($sentence);
+            //pr ($contributions);
+            $this->set('translations' ,$translations);
 			$this->set('sentence', $sentence);
+            $this->set('indirectTranslations', $indirectTranslations);
+            $this->set('sentenceComments',$comments);
+            $this->set('contributions',$contributions); 
 
 			// checking which options user can access to
 			$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
@@ -91,6 +103,34 @@ class SentencesController extends AppController{
 		}
 	}
 	
+    /*
+    ** retrive tranlations of translations 
+    */
+    // TODO HACK SPOTTED : we should be able to diretly get 
+    // undirect translations without needing to use translations
+
+    function getIndirectTranslations($translations,$id){
+        $indirectTranslations = array();
+        $directTranslationsId = array($id);
+        foreach ($translations as $translation){
+            array_push( $directTranslationsId,$translation['id']); 
+        }
+
+        foreach ($translations as $translation){
+
+            $temps = $this->Sentence->getTranslationsOf($translation['id']);
+             
+            foreach ( $temps as $temp ){
+                if (! in_array($temp['id'],$directTranslationsId )) {
+                    $indirectTranslations[$temp['id']] = $temp ;
+                }
+            }
+
+        }
+
+        return $indirectTranslations ;
+    }
+
 	
 	/**
 	 * Display sentence of specified id.
@@ -475,11 +515,18 @@ class SentencesController extends AppController{
         */
             $randomId = $this->Sentence->getRandomId($lang,$type);
             $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+            $translations = $this->Sentence->getTranslationsOf($randomId);
+            $indirectTranslations = null ;
+            if ( $translations != null AND ! empty($translations) ){
+                $indirectTranslations = $this->getIndirectTranslations($translations,$randomId);
+            }
         /*}*/
 		$this->Session->write('random_lang_selected', $lang);
 		$randomSentence['specialOptions'] = $this->Permissions->getSentencesOptions($randomSentence, $this->Auth->user('id'));
 		
 		$this->set('random', $randomSentence);
+        $this->set('translations',$translations);
+        $this->set('indirectTranslations', $indirectTranslations);
 		$this->set('type', $type);
 	}
 	
@@ -586,6 +633,8 @@ class SentencesController extends AppController{
 		$this->Sentence->id = $id;
 		$this->Sentence->recursive = 2;
 		$sentence = $this->Sentence->read();
+        pr ($sentence);
+
 		$this->set('sentence', $sentence);
 	}
 	

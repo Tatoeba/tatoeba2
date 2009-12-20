@@ -19,7 +19,7 @@
 
 class SentenceComment extends AppModel{
 	var $name = 'SentenceComment';
-	
+	var $actsAs = array('Containable');
 	var $belongsTo = array('Sentence', 'User');
 
     /*
