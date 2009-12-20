@@ -524,6 +524,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Users/stop_following');
 		$this->Acl->allow($group, 'controllers/Favorites/add_favorite');
 		$this->Acl->allow($group, 'controllers/PrivateMessages');
+		$this->Acl->allow($group, 'controllers/SentenceAnnotations');
 
 		//Permissions for trusted_users
 		$group->id = 3;
@@ -540,7 +541,8 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Users/stop_following');
 		$this->Acl->allow($group, 'controllers/Favorites/add_favorite');
 		$this->Acl->allow($group, 'controllers/PrivateMessages');
-
+		$this->Acl->allow($group, 'controllers/SentenceAnnotations');
+	
 	    //Permissions for users
 	    $group->id = 4;
 		$this->Acl->deny($group, 'controllers');
@@ -557,6 +559,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Favorites/add_favorite');
 		$this->Acl->allow($group, 'controllers/Favorites/remove_favorite');
 		$this->Acl->allow($group, 'controllers/PrivateMessages');
+		$this->Acl->allow($group, 'controllers/SentenceAnnotations');
 	}
 }
 ?>
