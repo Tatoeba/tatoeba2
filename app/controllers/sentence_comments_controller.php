@@ -25,8 +25,6 @@ class SentenceCommentsController extends AppController {
 	var $helpers = array('Comments','Sentences', 'Languages', 'Navigation', 'Html');
 	var $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
 	
-	var $langs = array('eng', 'fra', 'jpn', 'spa', 'deu');
-	
 	function beforeFilter() {
 	    parent::beforeFilter(); 
 		
@@ -34,35 +32,19 @@ class SentenceCommentsController extends AppController {
 	    $this->Auth->allowedActions = array('index', 'save', 'show','latest');
 	}
 	
+	/**
+	 * Display 10 latest comments for each language.
+	 */
 	function index(){
-		$sentenceComments = array();
-		
-		$this->SentenceComment->recursive = 1;
-		
-		foreach($this->langs as $lang){
-			$sentenceComments[$lang] = $this->SentenceComment->find(
-				"all",
-				array( 
-					"conditions" => array("SentenceComment.lang" => $lang),
-					"limit"=> 10,
-					"order" => "SentenceComment.created DESC"
-				)
-			);
-		}
-		
-		$sentenceComments['unknown'] = $this->SentenceComment->find(
-			"all",
-			array( 
-				"conditions" => array("NOT" => array("SentenceComment.lang" => $this->langs)),
-				"limit"=> 10,
-				"order" => "SentenceComment.created DESC"
-			)
+		$this->set(
+			'sentenceComments'
+			, $this->SentenceComment->getLatestCommentsInEachLanguage()
 		);
-		
-		$this->set('sentenceComments', $sentenceComments);
 	}
 
-	
+	/**
+	 * Display comments for given sentence.
+	 */
 	function show($sentenceId){
         Sanitize::paranoid($sentenceId);
         $s = new Sentence();
@@ -79,12 +61,7 @@ class SentenceCommentsController extends AppController {
 			$this->set('sentenceExists', false);
 		}
 		
-		$sentenceComments = $this->SentenceComment->find('all', 
-			array(
-				'conditions' => array('SentenceComment.sentence_id' => $sentenceId),
-				'order' => 'SentenceComment.created'
-			)
-		);
+		$sentenceComments = $this->SentenceComment->getCommentsForSentence($sentenceId);
 		$this->set('sentenceComments', $sentenceComments);
 		
 		// checking which options user can access to
@@ -111,6 +88,9 @@ class SentenceCommentsController extends AppController {
 		}
 	}
 	
+	/**
+	 * Save new comment.
+	 */
 	function save(){
         Sanitize::html($this->data['SentenceComment']['text']);
 		if(!empty($this->data['SentenceComment']['text'])){
@@ -124,8 +104,11 @@ class SentenceCommentsController extends AppController {
 			if($this->SentenceComment->save($this->data)){	
 				// send message to the other participants of the thread
 
-                // TODO why participant is store in the session ??
+				// Participants are stored in a session variable when the
+				// comments are displayed with show(). It avoids the necessity
+				// to query the database here again to get their emails.
 				$participants = $this->Session->read('participants');
+				
 				if(count($participants) > 0){
 					foreach($participants as $participant){
 						// prepare message
@@ -158,9 +141,12 @@ class SentenceCommentsController extends AppController {
 		}
 	}
 	
-	
+	/**
+	 * Return 5 latest comments.
+	 * Called in requestAction() on homepage.
+	 */
 	function latest() {
-		return $this->SentenceComment->find('all', array('order' => 'SentenceComment.created DESC', 'limit' => 5));
+		return $this->SentenceComment->getLatestComments(5);
 	}
 
 }

@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -34,6 +34,59 @@ class SentenceComment extends AppModel{
         );
 
     }
+	
+	/**
+	 * Return latest comments for each language.
+	 */
+	function getLatestCommentsInEachLanguage(){
+		$langs = array('eng', 'fra', 'jpn', 'spa', 'deu');
+		$sentenceComments = array();
+		
+		$this->recursive = 1;
+		
+		foreach($langs as $lang){
+			$sentenceComments[$lang] = $this->find(
+				"all",
+				array( 
+					"conditions" => array("SentenceComment.lang" => $lang),
+					"limit"=> 10,
+					"order" => "SentenceComment.created DESC"
+				)
+			);
+		}
+		
+		$sentenceComments['unknown'] = $this->find(
+			"all",
+			array( 
+				"conditions" => array("NOT" => array("SentenceComment.lang" => $langs)),
+				"limit"=> 10,
+				"order" => "SentenceComment.created DESC"
+			)
+		);
+		
+		return $sentenceComments;
+	}
     
+	/**
+	 * Return comments for given sentence.
+	 */
+	function getCommentsForSentence($sentenceId){
+		return $this->find('all', 
+			array(
+				'conditions' => array('SentenceComment.sentence_id' => $sentenceId),
+				'order' => 'SentenceComment.created'
+			)
+		);
+	}
+	
+	/**
+	 * Return latest comments.
+	 */
+	function getLatestComments($limit){
+		return $this->find(
+			'all'
+			, array('order' => 'SentenceComment.created DESC', 'limit' => $limit)
+		);
+	}
 }
 ?>
