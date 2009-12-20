@@ -32,7 +32,7 @@ $languages = array(
 	, 'spa' => 'Español'
 	//, 'jpn' => '日本語'
 	, 'deu' => 'Deutsch'
-	//, 'ita' => 'Italiano'
+	, 'ita' => 'Italiano'
 );
 $path = $this->params['controller'].'/';
 if($this->params['action'] != 'display'){
