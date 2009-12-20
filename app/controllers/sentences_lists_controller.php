@@ -48,24 +48,12 @@ class SentencesListsController extends AppController{
 		}
 		
 		// public lists
-		$publicLists = $this->SentencesList->find('all', array(
-			"conditions" => array(
-				  "SentencesList.user_id !=" => $this->Auth->user('id')
-				, "SentencesList.is_public" => 1
-			)
-		));
+		$publicLists = $this->SentencesList->getPublicListsNotFromUser($this->Auth->user('id'));
 		$this->set('publicLists', $publicLists);
 		
 		// all the other lists
-		$lists = $this->SentencesList->find('all', array(
-			"conditions" => array(
-				  "SentencesList.user_id !=" => $this->Auth->user('id')
-				, "SentencesList.is_public" => 0
-			)
-		));
+		$lists = $this->SentencesList->getNonEditableListsForUser($this->Auth->user('id'));
 		$this->set('lists', $lists);
-		
-		
 	}
 	
 	
@@ -234,21 +222,11 @@ class SentencesListsController extends AppController{
 	
 	
 	/**
-	 * Returns the lists that belong to the user currently connected.
+	 * Returns the lists that the user currently connected can add sentences to.
 	 * It is called in the SentencesHelper, in the displayMenu() method.
 	 */
 	function choices(){
-		$this->SentencesList->recursive = -1;
-		$lists = $this->SentencesList->find(
-			'all', 
-			array("conditions" => 
-				array("OR" => array(
-					  "SentencesList.user_id" => $this->Auth->user('id')
-					, "SentencesList.is_public" => 1
-				)
-			))
-		);
-		return $lists;
+		return $this->SentencesList->getUserChoices($this->Auth->user('id'));
 	}
 	
 	
@@ -282,13 +260,7 @@ class SentencesListsController extends AppController{
 			//detecting language
 			$this->GoogleLanguageApi->text = $_POST['sentenceText'];
 			$response = $this->GoogleLanguageApi->detectLang();
-			if($response['isReliable']){
-				//$data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
-				$data['Sentence']['lang'] = null;
-			}else{
-				$data['Sentence']['lang'] = null;
-			}
-			
+			$data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
 			$data['Sentence']['user_id'] = $this->Auth->user('id');
 			$data['Sentence']['text'] = $_POST['sentenceText'];
 			

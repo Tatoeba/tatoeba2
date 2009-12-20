@@ -26,5 +26,46 @@ class SentencesList extends AppModel{
 	var $actsAs = array('ExtendAssociations');
 	
 	var $hasAndBelongsToMany = array('Sentence');
+	
+	/**
+	 * Returns the sentences lists that the given user can 
+	 * add sentences to.
+	 */
+	function getUserChoices($userId){
+		$this->SentencesList->recursive = -1;
+		return $this->find(
+			'all', 
+			array("conditions" => 
+				array("OR" => array(
+					  "SentencesList.user_id" => $userId
+					, "SentencesList.is_public" => 1
+				)
+			))
+		);
+	}
+	
+	/**
+	 * Returns public lists that do not belong to given user.
+	 */
+	function getPublicListsNotFromUser($userId){
+		return $this->find('all', array(
+			"conditions" => array(
+				  "SentencesList.user_id !=" => $userId
+				, "SentencesList.is_public" => 1
+			)
+		));
+	}
+	
+	/**
+	 * Returns all the lists that given user cannot edit.
+	 */
+	function getNonEditableListsForUser($userId){
+		return $this->find('all', array(
+			"conditions" => array(
+				  "SentencesList.user_id !=" => $userId
+				, "SentencesList.is_public" => 0
+			)
+		));
+	}
 }
 ?>
