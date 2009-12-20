@@ -32,72 +32,34 @@ class ContributionsController extends AppController {
 		$this->Auth->allowedActions = array('*');
 	}
 	
+	/**
+	 * Display 200 last contributions.
+	 */
 	function index() {
-		$limit = 200;
-		$this->Contribution->unbindModel(
-			array(
-				'belongsTo' => array('Sentence')
-			)
-		);
-		$this->set('contributions', $this->Contribution->find('all', 
-				array(
-					'conditions' => array('Contribution.type' => 'sentence'),
-					'limit' => $limit, 'order' => 'Contribution.datetime DESC'
-				)
-			)
-		);
+		$this->set('contributions', $this->Contribution->getLastContributions(200));
 	}
 
-	
+	/**
+	 * Return 10 last contributions.
+	 * Called with requestAction on homepage.
+	 */
 	function latest(){
-		$this->Contribution->unbindModel(
-			array(
-				'belongsTo' => array('Sentence')
-			)
-		);
-		$this->Contribution->recursive = 0;
-		return $this->Contribution->find('all', array(
-				'conditions' => array('Contribution.type' => 'sentence'),
-				'limit' => 10, 'order' => 'Contribution.datetime DESC'
-			)
-		);
+		return $this->Contribution->getLastContributions(10);
 	}
 	
-	function statistics($return = null){
-		$this->Contribution->unbindModel(
-			array(
-				'belongsTo' => array('Sentence')
-			)
-		);
-		$this->Contribution->recursive = 0;
-		$query = array(
-			'fields' => array('Contribution.user_id', 'User.id', 'User.username', 'User.since', 'User.group_id', 'COUNT(*) as total'),
-			'conditions' => array('Contribution.user_id !=' => null, 'Contribution.type' => 'sentence'),
-			'group' => array('Contribution.user_id'),
-			'order' => 'total DESC'
-		);
-		if($return != null){
-			$query['limit'] = 20;
-			$query['conditions']['User.group_id <'] = 5; 
-		}
-		$stats = $this->Contribution->find('all', $query);
-		
-		if($return == 0 OR $return == null){
-			$this->set('stats', $stats);
-		}else{
-			return $stats;
-		}
+	
+	/**
+	 * Display number of contributions for each member.
+	 */
+	function statistics(){
+		$this->set('stats', $this->Contribution->getUsersStatistics());
 	}
 	
+	/**
+	 * Display number of contributions for each day.
+	 */
 	function activity_timeline(){
-		$this->Contribution->recursive = 0;
-		$stats = $this->Contribution->find('all', array(
-			'fields' => array('Contribution.datetime', 'COUNT(*) as total', 'date_format(datetime,\'%b %D %Y\') as day'),
-			'conditions' => array('Contribution.datetime > \'2008-01-01 00:00:00\'', 'Contribution.translation_id' => null, 'Contribution.action' => 'insert'),
-			'group' => array('day'),
-			'order' => 'Contribution.datetime DESC'
-		));
-		$this->set('stats', $stats);
+		$this->set('stats', $this->Contribution->getActivityTimelineStatistics());
 	}
 }
 ?>

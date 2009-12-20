@@ -1,7 +1,7 @@
 <?php
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -67,7 +67,73 @@ class Contribution extends AppModel {
         return $result; 
 
     }
-
-
+	
+	/**
+	 * Get last contributions.
+	 */
+	function getLastContributions($limit){
+		$this->recursive = 0;
+		$this->unbindModel(
+			array(
+				'belongsTo' => array('Sentence')
+			)
+		);
+		return $this->find('all', 
+			array(
+				'conditions' => array('Contribution.type' => 'sentence'),
+				'limit' => $limit, 'order' => 'Contribution.datetime DESC'
+			)
+		);
+	}
+	
+	/**
+	 * Returns number of contributions for each member,
+	 * ordered from the highest contributor to the lowest.
+	 */	
+	function getUsersStatistics(){
+		$this->unbindModel(
+			array(
+				'belongsTo' => array('Sentence')
+			)
+		);
+		$this->recursive = 0;
+		$query = array(
+			'fields' => array(
+				'Contribution.user_id', 'User.id', 'User.username'
+				, 'User.since', 'User.group_id', 'COUNT(*) as total'
+			),
+			'conditions' => array(
+				'Contribution.user_id !=' => null
+				, 'Contribution.type' => 'sentence'
+			),
+			'group' => array('Contribution.user_id'),
+			'order' => 'total DESC'
+		);
+		return $this->find('all', $query);
+	}	
+	
+	
+	/**
+	 * Returns number of contributions for each day.
+	 * We only count the number of new sentences, not the
+	 * number of modifications.
+	 */
+	function getActivityTimelineStatistics(){
+		$this->Contribution->recursive = 0;
+		return $this->find('all', array(
+			'fields' => array(
+				'Contribution.datetime'
+				, 'COUNT(*) as total'
+				, 'date_format(datetime,\'%b %D %Y\') as day'
+			),
+			'conditions' => array(
+				'Contribution.datetime > \'2008-01-01 00:00:00\''
+				, 'Contribution.translation_id' => null
+				, 'Contribution.action' => 'insert'
+			),
+			'group' => array('day'),
+			'order' => 'Contribution.datetime DESC'
+		));
+	}
 }
 ?>
