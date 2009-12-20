@@ -47,15 +47,15 @@ margin-right: 10px;
 }
 
 
-#SentenceGoToForm, #UserSearchForm{
+#SentenceGoToSentenceForm, #UserSearchForm{
 float:right;
 }
 
-#SentenceGoToForm input#SentenceSentenceId {
+#SentenceGoToSentenceForm input#SentenceSentenceId {
 	width:80px;
 	text-align:right;	
 }
 
-#SentenceGoToForm div.submit, #SentenceGoToForm div.input, #UserSearchForm div.submit, #UserSearchForm div.input{
+#SentenceGoToSentenceForm div.submit, #SentenceGoToSentenceForm div.input, #UserSearchForm div.submit, #UserSearchForm div.input{
 display: inline;
 }

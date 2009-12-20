@@ -29,7 +29,7 @@ class SentencesController extends AppController{
 	    parent::beforeFilter();
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goTo', 'statistics', 'count_unknown_language', 'get_translations' , 'check_translation', 'change_language');
+	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goToSentence', 'statistics', 'count_unknown_language', 'get_translations' , 'check_translation', 'change_language');
 	}
 
 	
@@ -95,7 +95,7 @@ class SentencesController extends AppController{
 	/**
 	 * Display sentence of specified id.
 	 */
-	function goTo(){
+	function goToSentence(){
 		$id = intval($this->params['url']['sentence_id']);
 		if($id == 0){
 			$id = 'random';
