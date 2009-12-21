@@ -53,7 +53,7 @@ if(isset($translation_text)){
 					"action" => "show",
 					$translation_id
 				),
-				array("escape"=>false)
+				array("escape"=>false, "class"=>"info")
 			);		
 			
 			// language flag

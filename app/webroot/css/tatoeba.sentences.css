@@ -95,24 +95,28 @@ padding: 10px 5px;
 }
 
 /* translation */
-/*
+
 .translation a{
+	text-decoration: none;
+}
+
+.translation a.info{
 	float:left;
 	padding: 0px 5px;
 	margin-top: 5px;
 	visibility: hidden;
 }
-*/
+
 .translation span{
 	display: block;
 	padding-left: 30px;
 	padding-right: 30px;
 }
-/*
-.translations li.translation:hover a{
+
+.translations li.translation:hover a.info{
 	visibility: visible;
 }
-*/
+
 
 
 /* editing sentences */
@@ -160,11 +164,13 @@ li.translation{
 padding: 3px 5px; /* the 2px are important because of flag's margin */
 }
 
-li.indirect{
-color: #998778;
+li.direct a{
+	color: #000000;
 }
 
-
+li.indirect a{
+	color: #998778;
+}
 
 li.link{
 background:transparent url(../img/link.png) no-repeat scroll 10px;

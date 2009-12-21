@@ -69,7 +69,6 @@ $navigation->displaySentenceNavigation();
 
                 // TODO set up a better mechanism
 				$sentence['User']['canEdit'] = $specialOptions['canEdit'];
-               // pr ($sentence);
 				$sentences->displayGroup(
                     $sentence['Sentence'],
                     $translations,

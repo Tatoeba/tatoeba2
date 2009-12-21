@@ -187,12 +187,11 @@ class SentencesHelper extends AppHelper {
         if (preg_match("/sentence_comments|contributions/", $this->params['controller'])){
             $controller = $this->params['controller'];
         }
-
+		
 		foreach($translations as $translation){
         
 			echo '<li class="direct translation">';
 			// hidden 'info button'
-            /*
 			echo $this->Html->link(
 				$this->Html->image(
 					'info.png',
@@ -206,9 +205,9 @@ class SentencesHelper extends AppHelper {
 					"action" => $action,
 					$translation['id']
 				),
-				array("escape"=>false)
+				array("escape"=>false, "class"=>"info")
 			);
-			*/
+			
 			// language flag
 			$this->displayLanguageFlag($translation['id'], $translation['lang']);
 			
@@ -239,7 +238,8 @@ class SentencesHelper extends AppHelper {
         if(count($indirectTranslations) > 0){
             foreach($indirectTranslations as $translation){
                     echo '<li class="indirect translation">';
-                    /*
+                    
+					// hidden 'info button'
                     echo $this->Html->link(
                         $this->Html->image(
                             'info.png',
@@ -253,9 +253,9 @@ class SentencesHelper extends AppHelper {
                             "action" => $action,
                             $translation['id']
                         ),
-                        array("escape"=>false)
+                        array("escape"=>false, "class"=>"info")
                     );
-                    */
+                    
                     // language flag
                     $this->displayLanguageFlag($translation['id'], $translation['lang']);
                     
