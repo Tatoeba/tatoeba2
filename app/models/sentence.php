@@ -30,7 +30,7 @@ class Sentence extends AppModel{
         'epo' ,'spa' ,'fra' ,'heb' ,'ind',
         'jpn' ,'kor' ,'nld' ,'por' ,'rus',
         'vie' ,'cmn' ,'ces' ,'fin' ,'ita',
-        'tur' ,'ukr' ,'wuu' ,
+        'tur' ,'ukr' ,'wuu' ,'swe' ,
          null
         );	
 	var $validate = array(

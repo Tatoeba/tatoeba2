@@ -41,6 +41,7 @@ class LanguagesHelper extends AppHelper{
             , 'epo' => __('Esperanto',true)
             , 'ell' => __('Modern Greek',true)
             , 'tur' => __('Turkish',true)
+            , 'swe' => __('Swedish',true)
             , 'wuu' => __('Shanghainese',true)// TODO to change when shanghainese will not be the only wu dialect
 		);
 		return $languages;
