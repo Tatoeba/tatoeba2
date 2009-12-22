@@ -86,7 +86,11 @@ $navigation->displaySentenceNavigation();
 			echo '<em>' . __('There are no comments for now.', true) .'</em>';
 		}
 		echo '</ol>';
-		
+	?>
+	</div>
+	
+	<div class="module">
+	<?php
 		if($sentenceExists){
 			echo '<a name="add_comment"></a>';
 			echo '<h2>';
@@ -98,7 +102,7 @@ $navigation->displaySentenceNavigation();
 				echo '<p>';
 				echo sprintf(
 					__('You need to be logged in to add a comment. If you are not registered, you can <a href="%s">register here</a>.',true),
-					$html->link(array("controller"=>"users", "action"=>"register"))
+					$html->url(array("controller"=>"users", "action"=>"register"))
 				);
 				echo '</p>';
 			}
