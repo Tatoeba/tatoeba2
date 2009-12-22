@@ -64,6 +64,9 @@ class AppController extends Controller {
 				case 'es':
 					$lang = 'spa';
 					break;
+				case 'it':
+					$lang = 'ita';
+					break;
 				default  :
 					$lang = 'eng';
 			}
