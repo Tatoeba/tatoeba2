@@ -25,19 +25,29 @@ if (isset($this->params['lang'])) {
 
 <?php
 $languages = array(
-	  'eng' => __('English', true)
-	, 'jpn' => __('Japanese', true)
-	, 'fra' => __('French', true)
-	, 'deu' => __('German', true)
-	, 'spa' => __('Spanish', true)
-	, 'ita' => __('Italian', true)
-	, 'ind' => __('Indonesian', true)
-	, 'vie' => __('Vietnamese', true)
-	, 'por' => __('Portuguese', true)
-	, 'rus' => __('Russian', true)
-	, 'cmn' => __('Chinese', true)
-	, 'kor' => __('Korean', true)
-	, 'nld' => __('Dutch', true)
+			  'ara' => __('Arabic', true)
+			, 'eng' => __('English', true)
+			, 'jpn' => __('Japanese', true)
+			, 'fra' => __('French', true)
+			, 'deu' => __('German', true)
+			, 'spa' => __('Spanish', true)
+			, 'ita' => __('Italian', true)
+			, 'vie' => __('Vietnamese', true)
+			, 'rus' => __('Russian', true)
+			, 'cmn' => __('Chinese', true)
+			, 'kor' => __('Korean', true)
+			, 'nld' => __('Dutch', true)
+			, 'heb' => __('Hebrew', true)
+			, 'ind' => __('Indonesian', true)
+			, 'por' => __('Portuguese', true)
+			, 'fin' => __('Finnish', true)
+			, 'bul' => __('Bulgarian', true)
+			, 'ukr' => __('Ukrainian', true)
+            , 'ces' => __('Czech',true)
+            , 'epo' => __('Esperanto',true)
+            , 'ell' => __('Modern Greek',true)
+            , 'tur' => __('Turkish',true)
+
 );
 asort($languages);
 $selectedLanguageFrom = $session->read('search_from');
