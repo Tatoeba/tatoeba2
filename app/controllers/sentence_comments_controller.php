@@ -46,6 +46,12 @@ class SentenceCommentsController extends AppController {
 	 * Display comments for given sentence.
 	 */
 	function show($sentenceId){
+
+        Sanitize::paranoid($sentenceId);
+        // redirect to sentences/show
+        // we don't remove the method to keep compatibily with previous google indexing
+        $this->redirect(array("controller" => "sentences" , "action" => "show" ,  $sentenceId  ),301 );
+        /*
         Sanitize::paranoid($sentenceId);
 	    	
 		$sentence = $this->Sentence->getShowSentenceWithId($sentenceId);
@@ -93,6 +99,7 @@ class SentenceCommentsController extends AppController {
 			}
 			$this->Session->write('participants', $participants);
 		}
+    */
 	}
 	
 	/**

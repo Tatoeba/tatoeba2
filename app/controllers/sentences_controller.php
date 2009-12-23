@@ -50,7 +50,7 @@ class SentencesController extends AppController{
 
         Sanitize::html($id);
 		
-		$this->Sentence->hasMany['SentenceComment']['limit'] = 4; // limiting comments to 4, but we're actually only going to display 3.
+		//$this->Sentence->hasMany['SentenceComment']['limit'] = 4; // limiting comments to 4, but we're actually only going to display 3.
 
 		if($id == "random" OR $id == null OR $id == "" ){
 			$id = $this->Session->read('random_lang_selected');
@@ -81,12 +81,16 @@ class SentencesController extends AppController{
             //pr ($indirectTranslations);
             //pr ($sentence);
             //pr ($contributions);
-            $this->set('translations' ,$translations);
-			$this->set('sentence', $sentence);
-            $this->set('indirectTranslations', $indirectTranslations);
-            $this->set('sentenceComments',$comments);
-            $this->set('contributions',$contributions); 
-
+            if($sentence != null){
+    			$this->set('sentenceExists', true);
+                $this->set('translations' ,$translations);
+                $this->set('sentence', $sentence);
+                $this->set('indirectTranslations', $indirectTranslations);
+                $this->set('sentenceComments',$comments);
+                $this->set('contributions',$contributions); 
+            }else{
+                $this->set('sentenceExists', false);
+            }
 			// checking which options user can access to
 			$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 			$this->set('specialOptions',$specialOptions);

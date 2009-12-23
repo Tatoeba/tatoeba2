@@ -42,7 +42,19 @@ $navigation->displaySentenceNavigation();
 		}
 		?>
 	</div>	
-	
+	<div class="module">
+	    <h2><?php __('Notifiy mistakes') ?></h2>
+	    <p>
+            <?php
+            __('Do not hesitate to post a comment if you see a mistake!');
+            ?>
+        </p>
+        <p>
+            <?php
+            __('NOTE : If the sentence does not belong to anyone and you know how to correct the mistake, feel free to correct it without posting any comment. You will have to adopt the sentence before you can edit it.');
+            ?>
+        </p>
+	</div>
 </div>
 
 <div id="main_content">
@@ -98,25 +110,31 @@ $navigation->displaySentenceNavigation();
 
 	<div class="module">
 		<?php
+        /*
 		echo '<div class="addComment">';
 		echo $html->link(
 			__('Add a comment',true),
 			array("controller" => "sentence_comments", "action" => "show", $sentence['Sentence']['id'].'#add_comment')
 		);
 		echo '</div>';			
-		
+		*/
 		echo '<h2>';
 		__('Comments');
 		echo '</h2>';
 
 		if(count($sentenceComments) > 0){
 			echo '<ol class="comments">';
-			for($i = 0; $i < 3 AND $i < count($sentenceComments); $i++){
+            // always do count outside the loop
+            // it's useless to call this function each iteration
+            $numberOfComments = count($sentenceComments);
+			for($i = 0; $i < $numberOfComments ; $i++){
 				$comment = $sentenceComments[$i];
 				$comments->displaySentenceComment($comment);
 			}
 			echo '</ol>';
-			
+		
+            // TODO remove this 
+            /*	
 			if(count($sentenceComments) > 3){
 				?>
 				<p class="more_link">
@@ -130,7 +148,7 @@ $navigation->displaySentenceNavigation();
 				?>
 				</p>
 				<?php
-			}
+			}*/
 		}else{
 			echo '<em>' . __('There are no comments for now.', true) .'</em>';
 		}
@@ -138,6 +156,26 @@ $navigation->displaySentenceNavigation();
 		
 		
 	</div>
-	
+    <div class="module">
+	<?php
+		if($sentenceExists){
+			echo '<a name="add_comment"></a>';
+			echo '<h2>';
+			__('Add a comment');
+			echo '</h2>';
+			if($session->read('Auth.User.id')){
+				$comments->displayCommentForm($sentence['Sentence']['id'], $sentence['Sentence']['text']);
+			}else{
+				echo '<p>';
+				echo sprintf(
+					__('You need to be logged in to add a comment. If you are not registered, you can <a href="%s">register here</a>.',true),
+					$html->url(array("controller"=>"users", "action"=>"register"))
+				);
+				echo '</p>';
+			}
+		}
+		?>
+	</div>
+
 </div>
 
