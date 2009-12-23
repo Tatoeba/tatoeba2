@@ -110,7 +110,7 @@
 	Pour élargir la base de connaissances de Tatoeba, tout utilisateur contribuant à ce projets doit impérativement donner de vastes permissions au
     public pour qu'il puisse redistribuer et réutiliser son contenu librement, pourvu que la source de ce contenu soit clairement indiquée et que la
     même liberté face à la redistribution et la réutilisation s'applique aux copies et produits dérivés. Ainsi, lorsque vous soumettez un texte dont
-    vous détenez les droits d'auteur, vous consentez à le soumettre sous le contrat de licence Creative Commons Paternité 2.0 (CC-BY 2.0).. Veuillez noter que ce contrats permet l'utilisation commerciale de vos contributions, tant que les utilisations respectent les conditions de la licence.
+    vous détenez les droits d'auteur, vous consentez à le soumettre sous le contrat de licence Creative Commons Paternité 2.0 (CC-BY 2.0). Veuillez noter que ce contrat permet l'utilisation commerciale de vos contributions, tant que les utilisations respectent les conditions de la licence.
 	</p>
 
 	<p>
@@ -120,14 +120,14 @@
 	<h3>Importer du texte :</h3>
 
 	<p>
-	Si vous voulez importer sur du texte que vous avez trouvé ailleurs ou que vous avez rédigé avec d'autres personnes, vous ne pouvez le faire que si
+	Si vous voulez importer du texte que vous avez trouvé ailleurs ou que vous avez rédigé avec d'autres personnes, vous ne pouvez le faire que si
     ses conditions d'utilisation sont compatibles avec la CC-BY 2.0. En d'autres mots, vous ne pouvez importer du texte que s'il est (a) soumis avec
     des conditions d'utilisation compatibles avec la CC-BY 2.0, ou (b) soumis sous un autre contrat dont les conditions d'utilisation sont compatibles
     avec la CC-BY 2.0.
 	</p>
 
 	<p>
-	Si vous importez du texte sous un contrat compatible qui requiert une attribution, vous devez, de manière raisonnable, créditer les auteurs.Il suffit de la donner dans les commentaires du texte modififé, lesquels sont enregistrés dans l'historique du texte. Peu importe le contrat de licence, le texte que vous importez peut être rejeté si l'attribution requise est jugée trop intrusive.
+	Si vous importez du texte sous un contrat compatible qui requiert une attribution, vous devez, de manière raisonnable, créditer les auteurs. Il suffit de donner cette attribution dans les commentaires du texte, lesquels sont enregistrés dans l'historique du texte. Peu importe le contrat de licence, le texte que vous importez peut être rejeté si l'attribution requise est jugée trop intrusive.
 	</p>
 
 
@@ -151,7 +151,7 @@
 	    <li> Pour plus d'information merci de vous référer au code légal de la licence CC-BY 2.0(Français).</li>
 	</ul>
 	
-	<h3>Prééminence de la version françaisee</h3>
+	<h3>Prééminence de la version française</h3>
     
 	<p>Seule la version française originale de ces conditions d'utilisation fait autorité.</p>
 	</div>
