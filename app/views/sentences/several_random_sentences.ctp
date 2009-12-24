@@ -39,7 +39,7 @@
 
             echo '<fieldset class="select">';
             echo '<label>' . __('Quantity',true) . '</label> ';
-            echo $form->select('numberWanted', $numberOfSentencesWanted , 5);
+            echo $form->select('numberWanted', $numberOfSentencesWanted , $lastNumberChosen);
             echo '</fieldset>';
 
 

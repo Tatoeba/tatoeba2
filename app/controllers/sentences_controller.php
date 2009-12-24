@@ -521,7 +521,7 @@ class SentencesController extends AppController{
 
         }
         $this->set("allSentences",$allSentences) ;
-        $this->set('type', $type);
+        $this->set('lastNumberChosen', $number);
     }
     	
 	/**
