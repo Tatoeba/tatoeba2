@@ -31,7 +31,7 @@ class SentencesController extends AppController{
 		
 		// setting actions that are available to everyone, even guests
 	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goToSentence', 'statistics', 'count_unknown_language',
-        'get_translations' , 'check_translation', 'change_language', 'several_randoms');
+        'get_translations' , 'check_translation', 'change_language', 'several_random_sentences');
 	}
 
 	
@@ -475,19 +475,27 @@ class SentencesController extends AppController{
     ** NOTE : TODO : this just a work around ! 
     */
 
-    function several_randoms(  ){
-        $number = $_POST['data']['Sentence']['numberWanted'] ;
-        $lang = $_POST['data']['Sentence']['into'] ;
-
+    function several_random_sentences(){
+		if(isset($_POST['data']['Sentence']['numberWanted'])){
+			$number = $_POST['data']['Sentence']['numberWanted'];
+		}else{
+			// default number of sentences when coming from "show more..."
+			$number = 5; 
+		}
+		
+		if(isset($_POST['data']['Sentence']['into'])){
+			$lang = $_POST['data']['Sentence']['into'] ;
+			$this->Session->write('random_lang_selected', $lang);
+		}else{
+			// default language when coming from "show more..."
+			$lang = $this->Session->read('random_lang_selected');
+		}
+		
         $type = null ;
         // to avoid "petit malin" 
         if ( $number > 15 or $number < 1){
             $number = 5 ;
         } 
-
-		if($lang == null){
-			$lang = $this->Session->read('random_lang_selected');
-		}
 		
        // for far better perfomance we must do it in one request, but hmmm no time for that
        // and as said above that's a work around

@@ -19,27 +19,37 @@
 ?>
 <div id="annexe_content">
        <div class="module">
-            <h2><?php __("For serial Translators"); ?></h2>
-            <?php __("Translating sentences one by one is too slow for you? You want to make your language rank first at the speed of light? So this
-            form is for you! Just Keep in mind our server is not as fast as you ;-)");
+            <h2><?php __("For serial translators"); ?></h2>
+            <?php 
+			echo '<p>';
+			__("Translating sentences one by one is too slow for you? 
+			You want to increase your rank in Tatoeba, 
+			or the rank of your language, at the speed of light? 
+			So this is for you!");
+			echo '</p>';
+			
+			echo '<p>';
+			__("Just Keep in mind our server is not as fast as you ;-)");
+			echo '</p>';
 
             $numberOfSentencesWanted = array (5 => 5 , 10 => 10 , 15 => 15);
-
-            echo $form->create('Sentence', array("action" => "several_randoms", "type" => "post"));
+			$selectedLanguage = $session->read('random_lang_selected');
+			
+            echo $form->create('Sentence', array("action" => "several_random_sentences", "type" => "post"));
 
             echo '<fieldset class="select">';
-            echo '<label>' . __('show ',true) . '</label>';
+            echo '<label>' . __('Quantity',true) . '</label> ';
             echo $form->select('numberWanted', $numberOfSentencesWanted , 5);
             echo '</fieldset>';
 
 
             echo '<fieldset class="select">';
-            echo '<label>' . __('sentences in ',true) . '</label>';
-            echo $form->select('into', $languages->languagesArray() , "eng");
+            echo '<label>' . __('Language',true) . '</label> ';
+            echo $form->select('into', $languages->languagesArray() , $selectedLanguage);
             echo '</fieldset>';
 
             echo '<fieldset class="submit">';
-            echo '<input type="submit" value="'.__('show',true).'"/>';
+            echo '<input type="submit" value="'.__('show random sentences',true).'"/>';
             echo '</fieldset>';
 
 
@@ -59,6 +69,7 @@
 
 <div id="main_content">
 	<div class="module">
+	<h2><?php __('Random sentences'); ?></h2>
         <?
             foreach($allSentences as $index=>$sentence){
 					echo '<div class="sentences_set searchResult">';
