@@ -195,7 +195,7 @@ class Sentence extends AppModel{
     /*
     ** get the id of a random sentence, from a particular language if $lang is set
     */
-    function getRandomId($lang = null,$type = null){
+    function getRandomId($lang = null,$type = null ){
         /*
         ** this query take constant time when lang=null
         ** and linear time when lang is set, so do not touch this request
@@ -217,13 +217,13 @@ class Sentence extends AppModel{
             
             $query= ("SELECT Sentence.id FROM sentences AS Sentence
                 WHERE Sentence.lang = '$lang'
-                ORDER BY RAND() LIMIT 1 "
+                ORDER BY RAND(".rand(). ") LIMIT  1"
                 );
 
         } else {
 
-            $query = 'SELECT Sentence.id  FROM sentences AS Sentence 
-                JOIN ( SELECT (RAND() *(SELECT MAX(id) FROM sentences)) AS id) AS r2
+            $query = 'SELECT Sentence.id  FROM sentences AS Sentence
+                JOIN ( SELECT (RAND('. rand() .') *(SELECT MAX(id) FROM sentences)) AS id) AS r2
                 WHERE Sentence.id >= r2.id
                 ORDER BY Sentence.id ASC LIMIT 1' ;
         }
@@ -235,6 +235,16 @@ class Sentence extends AppModel{
         }
         */
         return $results[0]['Sentence']['id']; 
+    }
+
+    function getSeveralRandomIds($lang = null , $numberOfIdWanted = 10){
+        $ids = array ();
+        
+        for ($i = 0 ; $i < min ( 20 ,$numberOfIdWanted);$i++){
+            $ids[$i] = $this->getRandomId($lang);
+        }
+        return $ids ; 
+
     }
 
     /*

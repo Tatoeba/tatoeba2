@@ -30,7 +30,8 @@ class SentencesController extends AppController{
 	    parent::beforeFilter();
 		
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goToSentence', 'statistics', 'count_unknown_language', 'get_translations' , 'check_translation', 'change_language');
+	    $this->Auth->allowedActions = array('index','show','search', 'add_comment', 'random', 'goToSentence', 'statistics', 'count_unknown_language',
+        'get_translations' , 'check_translation', 'change_language', 'several_randoms');
 	}
 
 	
@@ -454,69 +455,6 @@ class SentencesController extends AppController{
 			$lang = $this->Session->read('random_lang_selected');
 		}
 		
-        /*
-		if($lang == 'any'){
-			
-			$max = $this->Sentence->getMaxId();
-			$randId = rand(1, $max);
-			
-			$this->Sentence->id = $randId;
-			$random = $this->Sentence->read();
-			$this->Session->write('random_lang_selected',$lang);
-			
-			
-		}elseif($lang == 'jp' OR $lang == 'en'){
-		
-			$min = ($lang == 'en') ? 15700 : 74000;
-			$max = ($lang == 'en') ? 74000 : 127300;
-			$randId = rand($min, $max);
-			
-			$random = $this->Sentence->find(
-				'first', 
-				array(
-					'conditions' => array(
-						'Sentence.id' => range($randId-50, $randId+50),
-						'Sentence.lang' => $lang
-					)
-				)
-			);
-			$this->Session->write('random_lang_selected', $lang);
-			
-		}else{
-		
-			$conditions['Sentence.lang'] = $lang;
-			$random = $this->Sentence->find(
-				'first', 
-				array(
-					'conditions' => $conditions,
-					'order' => 'RAND()'
-				)
-			);
-			
-			$this->Session->write('random_lang_selected', $lang);
-			// TODO : find another solution than using RAND() because it's quite slow.
-		}
-		*/
-        /*
-        if($lang == 'jpn' OR $lang == 'eng'){
-		
-			$min = ($lang == 'eng') ? 15700 : 74000;
-			$max = ($lang == 'eng') ? 74000 : 127300;
-			$randId = rand($min, $max);
-			
-			$randomSentence = $this->Sentence->find(
-				'first', 
-				array(
-					'conditions' => array(
-						'Sentence.id' => range($randId-25, $randId+25),
-						'Sentence.lang' => $lang
-					)
-				)
-			);
-			
-            //pr($randomSentence);
-		}else{
-        */
             $randomId = $this->Sentence->getRandomId($lang,$type);
             $randomSentence = $this->Sentence->getSentenceWithId($randomId);
             $translations = $this->Sentence->getTranslationsOf($randomId);
@@ -524,7 +462,6 @@ class SentencesController extends AppController{
             if ( $translations != null AND ! empty($translations) ){
                 $indirectTranslations = $this->getIndirectTranslations($translations,$randomId);
             }
-        /*}*/
 		$this->Session->write('random_lang_selected', $lang);
 		$randomSentence['specialOptions'] = $this->Permissions->getSentencesOptions($randomSentence, $this->Auth->user('id'));
 		
@@ -533,8 +470,53 @@ class SentencesController extends AppController{
         $this->set('indirectTranslations', $indirectTranslations);
 		$this->set('type', $type);
 	}
-	
-	
+	/*
+    ** show several random sentences a time
+    ** NOTE : TODO : this just a work around ! 
+    */
+
+    function several_randoms(  ){
+        $number = $_POST['data']['Sentence']['numberWanted'] ;
+        $lang = $_POST['data']['Sentence']['into'] ;
+
+        $type = null ;
+        // to avoid "petit malin" 
+        if ( $number > 15 or $number < 1){
+            $number = 5 ;
+        } 
+
+		if($lang == null){
+			$lang = $this->Session->read('random_lang_selected');
+		}
+		
+       // for far better perfomance we must do it in one request, but hmmm no time for that
+       // and as said above that's a work around
+        $allSentences = array ( );
+        $randomIds = $this->Sentence->getSeveralRandomIds($lang,$number);
+        foreach ($randomIds as $i=>$randomId ){
+
+            $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+            $translations = $this->Sentence->getTranslationsOf($randomId);
+            $indirectTranslations = null ;
+            
+            if ( $translations != null AND ! empty($translations) ){
+                $indirectTranslations = $this->getIndirectTranslations($translations,$randomId);
+            }
+            $this->Session->write('random_lang_selected', $lang);
+            $randomSentence['specialOptions'] = $this->Permissions->getSentencesOptions($randomSentence, $this->Auth->user('id'));
+
+            $allSentences[$i] = array (
+                "Sentence" => $randomSentence,
+                "Translations" => $translations,
+                "IndirectTranslations" => $indirectTranslations
+
+            );
+
+        }
+        $this->set("allSentences",$allSentences) ;
+        $this->set('type', $type);
+    }
+    	
 	/**
 	 * Count number of sentences in each language.
 	 */
