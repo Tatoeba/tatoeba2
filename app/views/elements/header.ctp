@@ -19,5 +19,7 @@
 ?>
 
 <div id="header">
-	<a href="/"><?php echo $html->image('TatoebaProjectBeta.png'); ?></a>
+	<a href="<?php $html->url('/'); ?>">
+	<?php echo $html->image('TatoebaProjectBeta.png'); ?>
+	</a>
 </div>
