@@ -239,32 +239,68 @@ class Sentence extends AppModel{
 
     function getSeveralRandomIds($lang = null , $numberOfIdWanted = 10){
         $ids = array ();
-        
-        for ($i = 0 ; $i < min ( 20 ,$numberOfIdWanted);$i++){
-            $ids[$i] = $this->getRandomId($lang);
+
+        if (! is_numeric( $numberOfIdWanted )){
+            return $ids ;
         }
+
+        if ( $lang == null OR $lang == "any" ){ 
+
+            $query= "SELECT Sentence.id FROM sentences AS Sentence
+                ORDER BY RAND(".rand(). ") LIMIT  $numberOfIdWanted";
+            
+        } else {
+
+            $query= "SELECT Sentence.id FROM sentences AS Sentence
+            WHERE Sentence.lang = '$lang'
+            ORDER BY RAND(".rand(). ") LIMIT  $numberOfIdWanted";
+                                    
+        }
+        $results =  $this->query($query);
+
+        foreach ($results as $i=>$result){
+            $ids[$i] = $result['Sentence']['id'];
+        }
+         
+        
         return $ids ; 
 
     }
 
     /*
     ** get the sentence with the given id
+    ** TODO : to replace by getSentenceWithId 2
     */
     function getSentenceWithId($id,$type = null){
         if($type == 'translate'){
-			$this->Sentence->recursive = 0;
-		}
+              $result = $this->find(
+                'first',
+                array(
+                    'conditions' => array ('Sentence.id' => $id),
+                    'contain'  => array (
+                        'Favorites_users' => array(),
+                        'User' =>array(),
+                        'SentencesList' => array()
+                    )
+                )
 
-        $this->unbindModel(
-			array(
-				'hasAndBelongsToMany' => array('InverseTranslation','Translation')
-			)
-		);
+            );
+		} else {
 
-        $this->id = $id;
-        return $this->read();
+            $this->unbindModel(
+                array(
+                    'hasAndBelongsToMany' => array('InverseTranslation','Translation')
+                )
+            );
+
+            $this->id = $id;
+            $result = $this->read();
+        }
+        return $result;
 
     }
+
+
 
     /*
     ** get all the informations needed to display a sentences in show section
@@ -337,6 +373,62 @@ class Sentence extends AppModel{
         $conditions = array (
             'Sentence.id' => $id
         );
+        // DA ultimate Query 
+        $query = "
+                SELECT p1.text AS text, 
+                  p2.text AS translation_text,
+                  p2.id   AS translation_id,
+                  p2.lang AS translation_lang,
+                  p2.user_id AS translation_user_id,
+                  'Translation' as distance
+                FROM sentences AS p1
+                LEFT OUTER JOIN sentences_translations AS t ON p1.id = t.sentence_id
+                  LEFT OUTER JOIN sentences AS p2 ON t.translation_id = p2.id
+                WHERE 
+                 p1.id = '$id' 
+
+                UNION
+
+                SELECT p1.text AS text,
+                  p2.text AS translation_text,
+                  p2.id   AS translation_id,
+                  p2.lang AS translation_lang,
+                  p2.user_id AS translation_user_id,
+                  'IndirectTranslation'  as distance
+                FROM sentences AS p1
+                LEFT OUTER JOIN sentences_translations AS t ON p1.id = t.sentence_id
+                  LEFT OUTER JOIN sentences_translations AS t2 ON t2.sentence_id = t.translation_id
+                    LEFT OUTER JOIN sentences AS p2 ON t2.translation_id = p2.id
+                WHERE 
+                 p1.id != p2.id
+                 AND p2.id NOT IN (
+                     SELECT sentences_translations.translation_id FROM sentences_translations
+                     WHERE sentences_translations.sentence_id = '$id' )
+                 AND p1.id = '$id'
+        ";
+
+        $results = $this->query($query);
+        //pr ( $results ) ;
+
+        $orderedResults = array(
+            "Translation" => array() ,
+            "IndirectTranslation" => array()
+        );
+        foreach( $results as $result ){
+            $result = $result[0] ;
+            array_push(
+                $orderedResults[$result['distance']],
+                array(
+                    'id' => $result['translation_id'],
+                    'text' => $result['translation_text'],
+                    'user_id' => $result['translation_user_id'],
+                    'lang' => $result['translation_lang']
+                )
+        ); 
+
+        }
+        //pr($orderedResults ) ;
+        /*
         $result = $this->find(
             'first',
             array(
@@ -344,10 +436,6 @@ class Sentence extends AppModel{
                 'conditions' => $conditions,
                 'contain' => array(
                     'Translation' => array (
-                        /*
-                        'conditions' => array (
-                            "not" => array ( 'Translation.id' =>  $excludeId)
-                        ),*/
                         'fields' => array (
                             'Translation.id',
                             'Translation.text',
@@ -357,13 +445,17 @@ class Sentence extends AppModel{
                     )
                 )
             )
-        );
-        if (isset($result)){
-            return $result['Translation'];
-        } else {
-            return array();
-        }
+        );*/
+            return $orderedResults;
     }
+
+
+
+    /*
+    ** retrive tranlations of translations 
+    */
+    // TODO HACK SPOTTED : we should be able to diretly get 
+    // undirect translations without needing to use translations
 
     function getIndirectTranslations($translations,$id){
         $indirectTranslations = array();

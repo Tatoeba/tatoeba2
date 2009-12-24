@@ -73,10 +73,9 @@ class SentencesController extends AppController{
             $contributions = $this->Contribution->getContributionsRelatedToSentence($id);
             $comments = $this->SentenceComment->getCommentsForSentence($id);
 
-            $indirectTranslations = null ;
-            if ( $translations != null AND ! empty($translations) ){
-                $indirectTranslations = $this->getIndirectTranslations($translations,$id);
-            }
+            $alltranslations = $this->Sentence->getTranslationsOf($id);
+            $translations = $alltranslations['Translation'];
+            $indirectTranslations = $alltranslations['IndirectTranslation'];
 
             //pr ($translations) ;
             //pr ($indirectTranslations);
@@ -187,7 +186,8 @@ class SentencesController extends AppController{
 	 */
 	function delete($id){
         Sanitize::paranoid($id);
-		$this->Sentence->delete($id);
+		$this->Sentence->delete($id)
+;
 		$this->flash('The sentence #'.$id.' has been deleted.', '/contributions/show/'.$id);
 	}
 	
@@ -444,6 +444,7 @@ class SentencesController extends AppController{
 	
 	/**
 	 * Show random sentence.
+     * TODO : hack spotted => is type used correctly ???
 	 */
 	function random($type = null, $lang = null){		
 		// $type can be "show" or "translate"
@@ -456,19 +457,18 @@ class SentencesController extends AppController{
 		}
 		
             $randomId = $this->Sentence->getRandomId($lang,$type);
-            $randomSentence = $this->Sentence->getSentenceWithId($randomId);
-            $translations = $this->Sentence->getTranslationsOf($randomId);
-            $indirectTranslations = null ;
-            if ( $translations != null AND ! empty($translations) ){
-                $indirectTranslations = $this->getIndirectTranslations($translations,$randomId);
-            }
+            $randomSentence = $this->Sentence->getSentenceWithId($randomId,$type);
+            $alltranslations = $this->Sentence->getTranslationsOf($randomId);
+            $translations = $alltranslations['Translation'];
+            $indirectTranslations = $alltranslations['IndirectTranslation'];
+        
 		$this->Session->write('random_lang_selected', $lang);
 		$randomSentence['specialOptions'] = $this->Permissions->getSentencesOptions($randomSentence, $this->Auth->user('id'));
 		
 		$this->set('random', $randomSentence);
         $this->set('translations',$translations);
         $this->set('indirectTranslations', $indirectTranslations);
-		$this->set('type', $type);
+		$this->set('type', 'show');
 	}
 	/*
     ** show several random sentences a time
@@ -503,15 +503,14 @@ class SentencesController extends AppController{
         $randomIds = $this->Sentence->getSeveralRandomIds($lang,$number);
         foreach ($randomIds as $i=>$randomId ){
 
-            $randomSentence = $this->Sentence->getSentenceWithId($randomId);
-            $translations = $this->Sentence->getTranslationsOf($randomId);
-            $indirectTranslations = null ;
+            $randomSentence = $this->Sentence->getSentenceWithId($randomId,'translate');
             
-            if ( $translations != null AND ! empty($translations) ){
-                $indirectTranslations = $this->getIndirectTranslations($translations,$randomId);
-            }
             $this->Session->write('random_lang_selected', $lang);
             $randomSentence['specialOptions'] = $this->Permissions->getSentencesOptions($randomSentence, $this->Auth->user('id'));
+
+            $alltranslations = $this->Sentence->getTranslationsOf($randomId);
+            $translations = $alltranslations['Translation'];
+            $indirectTranslations = $alltranslations['IndirectTranslation'];
 
             $allSentences[$i] = array (
                 "Sentence" => $randomSentence,

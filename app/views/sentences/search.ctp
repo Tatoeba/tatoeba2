@@ -58,11 +58,11 @@
 				foreach($results as $index=>$sentence){
 					echo '<div class="sentences_set searchResult">';
 					// sentence menu (translate, edit, comment, etc)
-					$specialOptions[$index]['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
+					$specialOptions[$index]['belongsTo'] = $sentence['Sentence']['User']['username']; // TODO set up a better mechanism
 					$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions[$index], $scores[$index]);
 
 					// sentence and translations
-					$sentence['User']['canEdit'] = $specialOptions[$index]['canEdit']; // TODO set up a better mechanism
+					$sentence['Sentence']['User']['canEdit'] = $specialOptions[$index]['canEdit']; // TODO set up a better mechanism
 					$sentences->displayGroup($sentence['Sentence'], $sentence['Translation'], $sentence['User']);
 					echo '</div>';
 				}
