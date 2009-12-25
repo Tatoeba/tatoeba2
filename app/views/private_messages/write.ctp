@@ -27,7 +27,7 @@ echo $this->element('pmmenu');
 			echo '<div style="border:1px solid red;color:red;">' . $errorString . '</div>';
 
 		echo $form->create('PrivateMessage', array('action' => 'send'));
-		echo $form->input('recpt', array('label' => __('To', true), 'default' => $toUserLogin));
+		echo $form->input('recpt', array('label' => __('To', true), 'default' => $toUserLogin, 'maxLength' => 255));
 		echo $form->input('title', array('default' => $replyToTitle));
 		echo $form->input('content', array('label' => '', 'default' => $replyToContent));
 		echo $form->end(__('Send',true));

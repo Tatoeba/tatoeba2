@@ -27,17 +27,17 @@ class PrivateMessagesController extends AppController {
 	var $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
 
 	var $langs = array('en', 'fr', 'jp', 'es', 'de');
-	
+
 	function beforeFilter() {
-	    parent::beforeFilter(); 
-		
+	    parent::beforeFilter();
+
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('check'); 	// quick fix because "check" is called in top1.ctp, 
+	    $this->Auth->allowedActions = array('check'); 	// quick fix because "check" is called in top1.ctp,
 														// and if a pending user tries to log in it will
 														// not work. "check" is currently defined as
 														// accessible only for registered users and above.
 	}
-	
+
 	// We don't use index at all : by default, we just display the inbox folder to the user
 	function index(){
 		$this->redirect(array('action' => 'folder', 'Inbox'));
@@ -110,21 +110,33 @@ class PrivateMessagesController extends AppController {
 
 		if(!empty($this->data['PrivateMessage']['recpt']) && !empty($this->data['PrivateMessage']['content'])){
 			$this->data['PrivateMessage']['sender'] = $this->Auth->user('id');
-          // TODO add a check if the user to send doesn't exist
-			$this->PrivateMessage->User->recursive = 0;
-			$toUser = $this->PrivateMessage->User->findByUsername($this->data['PrivateMessage']['recpt']);
-			$this->data['PrivateMessage']['recpt'] = $toUser['User']['id'];
-			$this->data['PrivateMessage']['user_id'] = $toUser['User']['id'];
-			$this->data['PrivateMessage']['folder'] = 'Inbox';
-			$this->data['PrivateMessage']['date'] = date("Y/m/d H:i:s", time());
-			$this->data['PrivateMessage']['isnonread'] = 1;
-			$this->PrivateMessage->save($this->data);
 
-			$this->PrivateMessage->id = null;
-			$this->data['PrivateMessage']['user_id'] = $this->Auth->user('id');
-			$this->data['PrivateMessage']['folder'] = 'Sent';
-			$this->data['PrivateMessage']['isnonread'] = 0;
-			$this->PrivateMessage->save($this->data);
+			$recptArray = explode(',', $this->data['PrivateMessage']['recpt']);
+
+			// loop to send msg to different dest.
+			foreach($recptArray as $recpt){
+
+				$recpt = trim($recpt);
+				$this->PrivateMessage->User->recursive = 0;
+				$toUser = $this->PrivateMessage->User->findByUsername($recpt);
+				// we send the msg only if the user exists.
+				if($toUser){
+					$this->data['PrivateMessage']['recpt'] = $toUser['User']['id'];
+					$this->data['PrivateMessage']['user_id'] = $toUser['User']['id'];
+					$this->data['PrivateMessage']['folder'] = 'Inbox';
+					$this->data['PrivateMessage']['date'] = date("Y/m/d H:i:s", time());
+					$this->data['PrivateMessage']['isnonread'] = 1;
+					$this->PrivateMessage->save($this->data);
+					$this->PrivateMessage->id = null;
+
+					// we need to save the msg to our outbox folder of course.
+					$this->data['PrivateMessage']['user_id'] = $this->Auth->user('id');
+					$this->data['PrivateMessage']['folder'] = 'Sent';
+					$this->data['PrivateMessage']['isnonread'] = 0;
+					$this->PrivateMessage->save($this->data);
+					$this->PrivateMessage->id = null;
+				}
+			}
 			$this->redirect(array('action' => 'folder', 'Sent'));
 		}else{
 			$this->redirect(array('action' => 'write'), $this->data['PrivateMessage']['recpt'], 'error');
