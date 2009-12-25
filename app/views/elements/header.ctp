@@ -19,7 +19,7 @@
 ?>
 
 <div id="header">
-	<a href="<?php $html->url('/'); ?>">
+	<a href="<?php echo $html->url('/'.$this->params['lang']); ?>">
 	<?php echo $html->image('TatoebaProjectBeta.png'); ?>
 	</a>
 </div>
