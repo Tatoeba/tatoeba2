@@ -494,7 +494,7 @@ class Sentence extends AppModel{
 			  AND (`Sentence`.`lang` = '' 
 			  OR `Sentence`.`lang` IS NULL)
 		");
-		return $count;
+		return $count[0][0]['count'];
 	}
 	
 	/**
@@ -504,12 +504,13 @@ class Sentence extends AppModel{
 		// Need to do custom query because there is no way to say 
 		//  `Sentence`.`lang` = '' OR `Sentence`.`lang` IS NULL
 		// with CakePHP, it seems.
-		return $this->query("
+		$sentences = $this->query("
 			SELECT * FROM `sentences` AS `Sentence` 
 			WHERE `Sentence`.`user_id` = $userId 
 			  AND (`Sentence`.`lang` = '' 
 			  OR `Sentence`.`lang` IS NULL)
 		");
+		return $sentences;
 		
 	}
 }
