@@ -102,6 +102,7 @@ class WallController extends Appcontroller{
                 $user->id = $idTemp ;
                 $user->recursive = -1 ;
                 $user = $user->read();
+
                 $this->set("user" , $user ); 
                 
                 // we forge a message to be used in the view
@@ -126,11 +127,13 @@ class WallController extends Appcontroller{
 				// ------------------
 				
 				// Retrieve parent message
+                // TODO hack spotted : should use a model's method instead of this tricky code
 				$parentMessage = new Wall();
 				$parentMessage->id = $_POST['replyTo'];
 				$parentMessage->read();
 				
 				// prepare email
+                // TODO : i18n mail
 				if($parentMessage->data['User']['send_notifications'] AND $parentMessage->data['User']['id'] != $this->Auth->user('id')){
 					$participant = $parentMessage->data['User']['email'];
 					$subject  = 'Tatoeba - ' . $message['User']['username'] . ' has replied to you on the Wall';

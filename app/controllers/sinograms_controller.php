@@ -44,7 +44,6 @@ class SinogramsController extends AppController {
         preg_match_all('/./u', $inputSubglyphs, $array);
 
         /*launching the request*/
-        $this->Sinogram->recursive = 0 ;
         $result = $this->Sinogram->search($array[0]) ;
         
         /*keep sinogram only*/

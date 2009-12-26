@@ -107,34 +107,6 @@ class SentencesController extends AppController{
 		}
 	}
 	
-    /*
-    ** retrive tranlations of translations 
-    */
-    // TODO HACK SPOTTED : we should be able to diretly get 
-    // undirect translations without needing to use translations
-
-    function getIndirectTranslations($translations,$id){
-        $indirectTranslations = array();
-        $directTranslationsId = array($id);
-        foreach ($translations as $translation){
-            array_push( $directTranslationsId,$translation['id']); 
-        }
-
-        foreach ($translations as $translation){
-
-            $temps = $this->Sentence->getTranslationsOf($translation['id']);
-             
-            foreach ( $temps as $temp ){
-                if (! in_array($temp['id'],$directTranslationsId )) {
-                    $indirectTranslations[$temp['id']] = $temp ;
-                }
-            }
-
-        }
-
-        return $indirectTranslations ;
-    }
-
 	
 	/**
 	 * Display sentence of specified id.
@@ -302,7 +274,11 @@ class SentencesController extends AppController{
 	function check_translation(){
         Sanitize::html($_POST['value']);
 		$id_temp = $this->Auth->user('id');
-		if(isset($_POST['value']) AND rtrim($_POST['value']) != '' AND isset($_POST['id']) AND !(empty($id_temp))){
+		if( isset($_POST['value'])
+            AND rtrim($_POST['value']) != '' 
+            AND isset($_POST['id'])
+            AND !(empty($id_temp))) {
+
 			$sentenceId = $_POST['id'];
 			$sourceLanguage = $_POST['lang']; // language of the original sentence
 			
@@ -399,7 +375,8 @@ class SentencesController extends AppController{
 				$ids[] = $result['id'];
 				$scores[] = $result['score'];
 			}
-			
+		
+            /* model */	
 			$this->Sentence->unbindModel(
 				array(
 					'hasMany' => array('SentenceComment', 'Contribution'),
@@ -412,6 +389,7 @@ class SentencesController extends AppController{
 			$sentences = $this->Sentence->find(
 				'all', array("conditions" => array("Sentence.id" => $ids))
 			);
+            /*end of model */
 			
 			$resultsInfo['currentPage'] = $lucene_results['currentPage'];
 			$resultsInfo['pagesCount'] = $lucene_results['pagesCount'];
@@ -526,6 +504,8 @@ class SentencesController extends AppController{
     	
 	/**
 	 * Count number of sentences in each language.
+     * TODO : should be move in the model
+     * TODO : should used a specific table instead of doing count
 	 */
 	function statistics(){
 		$this->Sentence->recursive = -1;
@@ -545,6 +525,8 @@ class SentencesController extends AppController{
 	 */
 	function link($id){
         Sanitize::paranoid($id);
+
+        /*model */
 		$this->Sentence->unbindModel(
 			array(
 				'belongsTo' => array('User'),
@@ -552,8 +534,10 @@ class SentencesController extends AppController{
 				'hasAndBelongsToMany' => array('InverseTranslation')
 			)
 		);
+        // TODO : use containable instead !
 		$this->Sentence->recursive = 2;
 		$sentence = $this->Sentence->read();
+        /*end of model*/
 		$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
 		
 		$this->set('sentence', $sentence);
@@ -601,33 +585,11 @@ class SentencesController extends AppController{
 	
 	
 	/**
-	 * Display translations of a specific sentence.
-	 * Used in AJAX request in app/views/sentences/show.ctp, line 65.
-	 */
-	function get_translations($id){
-        Sanitize::paranoid($id);
-		$this->Sentence->unbindModel(
-			array(
-				'belongsTo' => array('User'),
-				'hasMany' => array('SentenceComment', 'Contribution'),
-				'hasAndBelongsToMany' => array('InverseTranslation')
-			)
-		);
-		$this->layout = null;
-		$this->Sentence->id = $id;
-		$this->Sentence->recursive = 2;
-		$sentence = $this->Sentence->read();
-        pr ($sentence);
-
-		$this->set('sentence', $sentence);
-	}
-	
-	
-	/**
 	 * Display current user's sentences.
 	 */
 	function my_sentences(){
-		$this->Sentence->recursive = 0;
+
+		$this->Sentence->recursive = 0; // => ??
 		$sentences = $this->paginate('Sentence', array('Sentence.user_id' => $this->Auth->user('id')));
 		// $sentences = $this->Sentence->find(
 			// 'all', array(
@@ -645,7 +607,8 @@ class SentencesController extends AppController{
 		$total = 10000;
 		$start = ($page-1) * $total;
 		$end = $start + $total;
-		$this->Sentence->recursive = -1;
+        /*model */
+		$this->Sentence->recursive = -1;// TODO : use containable
 		$sentences = $this->Sentence->find(
 			'all',
 			array(
@@ -654,6 +617,7 @@ class SentencesController extends AppController{
 				'conditions' => array('Sentence.id >' => $start, 'Sentence.id <=' => $end)
 			)
 		);
+        /* end of model */
 		$this->set('page', $page);
 		$this->set('all_sentences', $sentences);
 	}

@@ -30,6 +30,9 @@ class Sinogram extends AppModel{
     */
     
     function search($subGlyphArray , $minStrokes = null , $minStrokes = null ){ 
+        // TODO HACK SPOTTED : recursive should be banned ! use containable instead
+        $this->Sinogram->recursive = 0 ;
+
         $onlyOneCharacter = false ;
         if ( count($subGlyphArray) == 1 ) {
             $sinogram = $subGlyphArray[0];
@@ -51,7 +54,7 @@ class Sinogram extends AppModel{
         );
 
         // if there's only character, it should be logical that this character match itself
-        if ($onlyOneCharacter ){ 
+        if ($onlyOneCharacter ){
             $thisGlyph = $this->find('first',array(
                 "fields" => array("Sinogram.id","Sinogram.glyph"),
                 "conditions" => array("Sinogram.glyph" => $sinogram  )
