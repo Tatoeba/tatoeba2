@@ -25,7 +25,7 @@ class WallHelper extends AppHelper {
 
     function displayAddMessageToWallForm(){
         /* we use models=>wall to force use wall, instead cakephp would have
-           called "walls/save' which is not what we want 
+           called "walls/save' which is not what we want
         */
         __('Add a Message : ');
         echo $this->Form->create('' , array( "action" => "save")) ;
@@ -35,75 +35,76 @@ class WallHelper extends AppHelper {
         echo "</fieldset>";
 		echo $this->Form->submit(__('Send',true));
         echo '<div class="divCancelFormLink" >';
-		    echo '<a class="cancelFormLink" >' . __("cancel",true) . '</a>'; 
+		    echo '<a class="cancelFormLink" >' . __("cancel",true) . '</a>';
         echo '</div>';
         echo $this->Form->end();
-		
+
     }
-	
+
 	function create_reply_div($message,$allMessages,$isAuthenticated){
-		 // TODO : remove me 
+		 // TODO : remove me
 		if ( empty($message['User']['image'])){
 			$message['User']['image'] = 'unknown-avatar.jpg';
 		}
-		echo '<li class="thread" id="message_' . $message["Wall"]["id"] . '">'."\n";
+		echo '<li class="thread" id="message_' . $message['Wall']['id'] . '">'."\n";
 			echo '<div class="message">';
-				echo "<ul class=\"meta\" >\n"; 
+				echo "<ul class=\"meta\" >\n";
 					// reply option
+					echo '<li class="action">';
 					if($isAuthenticated){
-						echo '<li class="action">';
-						echo '<a class="replyLink ' . $message["Wall"]["id"] .'" id="reply_'. $message["Wall"]["id"] .'" >' . __("reply",true). "</a>"; 
-						echo '</li>';
+						echo '<a class="replyLink ' . $message['Wall']['id'] .'" id="reply_'. $message['Wall']['id'] .'" >' . __("reply",true). '</a> - ';
 					}
-					
+					echo '<a href="#message_'.$message['Wall']['id'].'">#</a>';
+					echo '</li>';
+
 					// image
 					echo '<li class="image">';
 					echo $this->Html->link(
 						$this->Html->image(
-							'profiles/'. $message["User"]["image"]
+							'profiles/'. $message['User']['image']
 							, array(
-								"alt"=>$message["User"]["username"]
+								"alt"=>$message['User']['username']
 								, "title"=>__("View this user's profile",true)
 							)
 						)
-						, array("controller"=>"user", "action"=>"profile", $message["User"]["username"])
+						, array("controller"=>"user", "action"=>"profile", $message['User']['username'])
 						, array("escape"=>false)
 					);
 					echo '</li>';
-					
+
 					// username
 					echo '<li class="author">';
 					echo $this->Html->link(
-						$message["User"]["username"]
-						, array("controller"=>"user", "action"=>"profile", $message["User"]["username"])
+						$message['User']['username']
+						, array("controller"=>"user", "action"=>"profile", $message['User']['username'])
 						, array("title"=>__("View this user's profile",true))
 					);
 					echo '</li>';
-					
+
 					// date
 					echo '<li class="date">';
-					echo $this->Date->ago($message["Wall"]["date"]);
+					echo $this->Date->ago($message['Wall']['date']);
 					echo '</li>';
 				echo '</ul>';
-			
+
 				// message content
 				echo '<div class="body">';
-					echo nl2br( $message["Wall"]["content"]);
-				echo '</div>';				
+					echo nl2br( $message['Wall']['content']);
+				echo '</div>';
 			echo '</div>';
-			
+
 			// replies
-			echo '<div class="replies" id="messageBody_'.  $message["Wall"]["id"]  .'" >';
-            
-                if ( ! empty($message['Reply'] )){ 
+			echo '<div class="replies" id="messageBody_'.  $message['Wall']['id']  .'" >';
+
+                if ( ! empty($message['Reply'] )){
                 echo '<ul class="toto" >';
 				    foreach( $message['Reply'] as $reply ){
 					    $this->create_reply_div($allMessages[$reply['id'] - 1],$allMessages,$isAuthenticated);
-				    } 
+				    }
                 echo '</ul>' ;
                 }
 			echo '</div>';
-            
+
 		echo '</li>';
 	}
 }

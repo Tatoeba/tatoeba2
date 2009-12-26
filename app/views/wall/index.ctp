@@ -32,7 +32,7 @@ $this->pageTitle = __('Wall',true);
 		<h2><?php __('Tips'); ?></h2>
 		<p><?php __('Here you can ask general questions like how to use Tatoeba, report bugs or strange behaviors, or simply
         socialize with the rest of the community.'); ?></p>
-		
+
 		<p><?php __("Have fun! Don't be shy!"); ?></p>
     </div>
 
@@ -43,8 +43,8 @@ $this->pageTitle = __('Wall',true);
                 for($i = 0 ; $i < min(10,count($tenLastMessages)) ; $i++){
                     echo '<li>';
                         echo '<a href="#message_' . $tenLastMessages[$i]['Wall']['id'].'" >' .
-                          $date->ago($tenLastMessages[$i]["Wall"]["date"]) .", " .  __('by ',true) . $tenLastMessages[$i]["User"]["username"]
-                         .'</a>'; 
+                          $date->ago($tenLastMessages[$i]['Wall']['date']) .", " .  __('by ',true) . $tenLastMessages[$i]['User']['username']
+                         .'</a>';
                     echo '</li>';
                 }
             ?>
@@ -78,54 +78,55 @@ $this->pageTitle = __('Wall',true);
 					echo '<div class="message root">';
 	                    echo '<ul class="meta">'."\n";
 							// reply option
+							echo '<li class="action">';
 	                        if($session->read('Auth.User.id')){
 	                            $javascript->link('jquery.scrollTo-min.js',false);
 	                            $javascript->link('wall.reply.js',false);
-								echo '<li class="action">';
-	                            echo '<a class="replyLink ' . $message["Wall"]["id"] .'" id="reply_'. $message["Wall"]["id"] .'" >' . __("reply",true). "</a>";
-								echo '</li>';
+	                            echo '<a class="replyLink ' . $message['Wall']['id'] .'" id="reply_'. $message['Wall']['id'] .'" >' . __('reply',true). '</a> - ';
 	                        }
-							
+							echo '<a href="#message_'.$message['Wall']['id'].'">#</a>';
+							echo '</li>';
+
 							// image
 							echo '<li class="image">';
 							echo $html->link(
-								$html->image('profiles/'.$message['User']['image'], array("title" => __('View this user\'s profile', true)))
-								, array("controller" => "user", "action" => "profile", $message['User']['username'])
-								, array("escape" => false)
+								$html->image('profiles/'.$message['User']['image'], array('title' => __('View this user\'s profile', true)))
+								, array('controller' => 'user', 'action' => 'profile', $message['User']['username'])
+								, array('escape' => false)
 							);
 							echo '</li>';
-							
+
 							// username
 							echo '<li class="author">';
 								echo $html->link(
 									$message['User']['username']
-									, array("controller" => "user", "action" => "profile", $message['User']['username'])
+									, array('controller' => 'user', 'action' => 'profile', $message['User']['username'])
 									, array("title" => __('View this user\'s profile', true))
 								);
 							echo '</li>';
-	                        
+
 							// date
 							echo '<li class="date">';
-	                        echo $date->ago($message["Wall"]["date"]);
+	                        echo $date->ago($message['Wall']['date']);
 							echo '</li>';
 	                    echo '</ul>';
-						
+
 						// message content
-						echo '<div class="body" >'; 
-						echo nl2br( $message["Wall"]["content"]);
+						echo '<div class="body" >';
+						echo nl2br( $message['Wall']['content']);
 						echo '</div>';
 					echo '</div>';
-					
+
 					// replies
-					echo '<div class="replies" id="messageBody_'.  $message["Wall"]["id"]  .'" >';
-                        if ( count($message["Reply"]) >0){
+					echo '<div class="replies" id="messageBody_'.  $message['Wall']['id']  .'" >';
+                        if ( count($message['Reply']) >0){
 	                    echo '<ul>';
     					foreach( $message['Reply'] as $reply ){
 						   echo $wall->create_reply_div($allMessages[$reply['id'] - 1], $allMessages, $isAuthenticated);
 						}
                         echo '</ul>';
                         }
-					echo '</div>';					
+					echo '</div>';
 				echo '</li>';
              }
              echo '</ol>';
