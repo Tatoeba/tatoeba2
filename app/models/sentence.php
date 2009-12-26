@@ -416,16 +416,19 @@ class Sentence extends AppModel{
         );
         foreach( $results as $result ){
             $result = $result[0] ;
-            array_push(
-                $orderedResults[$result['distance']],
-                array(
-                    'id' => $result['translation_id'],
-                    'text' => $result['translation_text'],
-                    'user_id' => $result['translation_user_id'],
-                    'lang' => $result['translation_lang']
-                )
-        ); 
-
+			if($result['translation_id']){ // need to check this because
+				// for sentences without translations it would otherwise
+				// return an empty translation array.
+				array_push(
+					$orderedResults[$result['distance']],
+					array(
+						'id' => $result['translation_id'],
+						'text' => $result['translation_text'],
+						'user_id' => $result['translation_user_id'],
+						'lang' => $result['translation_lang']
+					)
+				); 	
+			}
         }
         //pr($orderedResults ) ;
         /*
