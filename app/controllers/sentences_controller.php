@@ -564,28 +564,19 @@ class SentencesController extends AppController{
 	/**
 	 * Count number of sentences that belongs to the current user
 	 * and have an unidentified language.
+	 * Called in requestAction in pages/home.ctp.
 	 */
 	function count_unknown_language(){
-		$this->Sentence->recursive = -1;
-		$count = $this->Sentence->find('count', array(
-				"conditions" => array(
-					  "Sentence.user_id" => $this->Auth->user('id')
-					, "Sentence.lang" => null
-				)
-			)
-		);
-		return $count;
+		return $this->Sentence->numberOfUnknownLanguageForUser($this->Auth->user('id'));
 	}
 	
+	
+	/**
+	 * Display sentences with unknown language to let user
+	 * set the language.
+	 */
 	function unknown_language(){
-		$this->Sentence->recursive = -1;
-		$sentences = $this->Sentence->find('all', array(
-				"conditions" => array(
-					  "Sentence.user_id" => $this->Auth->user('id')
-					, "Sentence.lang" => null
-				)
-			)
-		);
+		$sentences = $this->Sentence->sentencesWithUnknownLanguageForUser($this->Auth->user('id'));
 		$this->set('unknownLangSentences', $sentences);
 	}
 	

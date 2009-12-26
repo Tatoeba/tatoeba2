@@ -478,6 +478,36 @@ class Sentence extends AppModel{
 
         return $indirectTranslations ;
     }
-
+	
+	
+	/**
+	 * Count number of sentences with unknown language.
+	 */
+	function numberOfUnknownLanguageForUser($userId){
+		$this->recursive = -1;
+		$count = $this->find('count', array(
+				"conditions" => array(
+					  "Sentence.user_id" => $userId
+					, "Sentence.lang" => array(null, "")
+				)
+			)
+		);
+		return $count;
+	}
+	
+	/**
+	 * Retrieve sentences with unknown language.
+	 */
+	function sentencesWithUnknownLanguageForUser($userId){
+		$this->recursive = -1;
+		return $this->find('all', array(
+				"conditions" => array(
+					  "Sentence.user_id" => $userId
+					, "Sentence.lang" => array(null, "")
+				)
+			)
+		);
+		
+	}
 }
 ?>

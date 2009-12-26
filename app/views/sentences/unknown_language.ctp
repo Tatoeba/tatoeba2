@@ -18,19 +18,27 @@
 */
 ?>
 
+<div id="annexe_content">
+	<div class="module">
+	<h2><?php __('Language not listed?') ?></h2>
+	<?php
+		echo '<p>';
+		__('If your language is not in the list, don\'t hesitate to contact me : trang.dictionary.project@gmail.com.');
+		echo '</p>';
+	?>
+	</div>
+</div>
+
 <div id="main_content">
 	<div class="module">
 		<?php
 		echo '<h2>';
 		__('Unknown language');
 		echo '</h2>';
-
-
+		
 		echo '<p>';
 		__('The language of the following sentences could not be detected, you have to specify it manually. ');
-		__('If your language is not in the list, don\'t hesitate to contact me : trang.dictionary.project@gmail.com.');
 		echo '</p>';
-
 		if(count($unknownLangSentences) > 0){
 			$i = 0;
 			$langArray = $languages->languagesArray();
