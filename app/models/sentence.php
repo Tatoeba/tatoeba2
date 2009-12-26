@@ -484,14 +484,16 @@ class Sentence extends AppModel{
 	 * Count number of sentences with unknown language.
 	 */
 	function numberOfUnknownLanguageForUser($userId){
-		$this->recursive = -1;
-		$count = $this->find('count', array(
-				"conditions" => array(
-					  "Sentence.user_id" => $userId
-					, "Sentence.lang" => array(null, "")
-				)
-			)
-		);
+		// Need to do custom query because there is no way to say 
+		//  `Sentence`.`lang` = '' OR `Sentence`.`lang` IS NULL
+		// with CakePHP, it seems.
+		$count = $this->query("
+			SELECT COUNT(*) AS `count` 
+			FROM `sentences` AS `Sentence` 
+			WHERE `Sentence`.`user_id` = $userId 
+			  AND (`Sentence`.`lang` = '' 
+			  OR `Sentence`.`lang` IS NULL)
+		");
 		return $count;
 	}
 	
@@ -499,14 +501,15 @@ class Sentence extends AppModel{
 	 * Retrieve sentences with unknown language.
 	 */
 	function sentencesWithUnknownLanguageForUser($userId){
-		$this->recursive = -1;
-		return $this->find('all', array(
-				"conditions" => array(
-					  "Sentence.user_id" => $userId
-					, "Sentence.lang" => array(null, "")
-				)
-			)
-		);
+		// Need to do custom query because there is no way to say 
+		//  `Sentence`.`lang` = '' OR `Sentence`.`lang` IS NULL
+		// with CakePHP, it seems.
+		return $this->query("
+			SELECT * FROM `sentences` AS `Sentence` 
+			WHERE `Sentence`.`user_id` = $userId 
+			  AND (`Sentence`.`lang` = '' 
+			  OR `Sentence`.`lang` IS NULL)
+		");
 		
 	}
 }
