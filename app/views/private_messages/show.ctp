@@ -16,11 +16,18 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+if($content['title'] == '')
+	$messageTitle = __('[no subject]', true);
+else
+	$messageTitle = $content['title'];
+
+$this->pageTitle = __('Private messages', true) . ' - ' . sprintf( __('%s from %s', true), $messageTitle, $content['from']);
+
 echo $this->element('pmmenu');
 ?>
 <div id="main_content">
 	<div class="module">
-	<h2><?php echo $content['title']; ?></h2>
+	<h2><?php echo $messageTitle; ?></h2>
 
 	<?php
 	if($content['folder'] == 'Trash') $delOrRestLink = $html->link(__('Restore', true), array('action' => 'restore', $content['id']));
@@ -33,11 +40,11 @@ echo $this->element('pmmenu');
 	)); ?>
 
 	<p class="pm_head">
-		<?php 
+		<?php
 		echo $date->ago($content['date']) . ', ';
 		echo sprintf(
 			__('<a href="%s">%s</a> has written:', true)
-			, $html->url(array('controller' => 'user', 'action' => 'profile', $content['from']))			
+			, $html->url(array('controller' => 'user', 'action' => 'profile', $content['from']))
 			, $content['from']
 		);
 		?>

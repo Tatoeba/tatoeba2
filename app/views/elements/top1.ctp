@@ -83,8 +83,8 @@ $menuElements = array(
 
 			// displaying <li> element
 			?>
-			<li <?=$cssClass; ?>>
-			<?=$html->link($title, $route, array("class"=>$route['action'])); ?>
+			<li <?php echo $cssClass; ?>>
+			<?php echo $html->link($title, $route, array("class"=>$route['action'])); ?>
 			</li>
 			<?php
 		}

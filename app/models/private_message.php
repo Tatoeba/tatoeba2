@@ -21,5 +21,23 @@ class PrivateMessage extends AppModel{
 	var $name = 'PrivateMessage';
 
 	var $belongsTo = array('User' => array('className' => 'User'));
+
+	function get_messages($folderId, $userId){
+		return $this->find(
+			'all',
+			array(
+				'conditions' => array('PrivateMessage.user_id' => $userId,
+										'PrivateMessage.folder' => $folderId),
+				'limit'=> 10,
+				'order' => 'PrivateMessage.date DESC'
+			)
+		);
+	}
+
+	function format_reply_message($content,$login){
+		$messNextRegExp = preg_replace("#\r?\n#iU", " ", $content);
+		$messNextRegExp = preg_replace("#\r?\n#iU", "\n > ", wordwrap($messNextRegExp, 50));
+		return "\n" . sprintf( __('%s wrote:', true) , $login ) . "\n > " . $messNextRegExp;
+	}
 }
 ?>

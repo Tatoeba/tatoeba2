@@ -17,6 +17,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 echo $this->element('pmmenu');
+
+if($isAReply){
+	if($replyToTitle == '')
+		$replyToTitle = __('Re: [no subject]', true);
+	else
+		$replyToTitle = 'Re: ' . $replyToTitle;
+}
 ?>
 <div id="main_content">
 	<div class="module">

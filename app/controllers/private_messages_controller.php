@@ -49,17 +49,7 @@ class PrivateMessagesController extends AppController {
 	 */
 	function folder($folderId = 'Inbox'){
 
-
-		// Workaround to change criterium if we want the sent folder
-		$inboxes = $this->PrivateMessage->find(
-			'all',
-			array(
-				'conditions' => array('PrivateMessage.user_id' => $this->Auth->user('id'),
-										'PrivateMessage.folder' => $folderId),
-				'limit'=> 10,
-				'order' => 'PrivateMessage.date DESC'
-			)
-		);
+		$inboxes = $this->PrivateMessage->get_messages($folderId, $this->Auth->user('id'));
 
 		$content = array();
 
@@ -73,21 +63,10 @@ class PrivateMessagesController extends AppController {
 			$toUser->id = $message['PrivateMessage']['recpt'];
 			$toUser = $toUser->read();
 
-
-			if($message['PrivateMessage']['title'] == '')
-				$messageTitle = __('[no subject]', true);
-			else
-				$messageTitle = $message['PrivateMessage']['title'];
-
-			if($message['PrivateMessage']['title'] == '')
-				$messageTitle = __('[no subject]', true);
-			else
-				$messageTitle = $message['PrivateMessage']['title'];
-
 			$content[] = array(
                 'to'        => $toUser['User']['username'],
 				'from'      => $fromUser['User']['username'],
-				'title'     => $messageTitle,
+				'title'     => $message['PrivateMessage']['title'],
 				'id'        => $message['PrivateMessage']['id'],
 				'date'      => $message['PrivateMessage']['date'],
 				'isnonread' => $message['PrivateMessage']['isnonread']
@@ -95,7 +74,6 @@ class PrivateMessagesController extends AppController {
 
 		}
 
-		$this->pageTitle = __('Private messages', true) . ' - ' . $folderId;
 		$this->set('folder', $folderId);
 		$this->set('content', $content);
 	}
@@ -159,13 +137,10 @@ class PrivateMessagesController extends AppController {
 		$toUser = new User();
 		$toUser->id = $message['PrivateMessage']['sender'];
 		$toUser = $toUser->read();
-		if($message['PrivateMessage']['title'] == '')
-			$messageTitle = __('[no subject]', true);
-		else
-			$messageTitle = $message['PrivateMessage']['title'];
+
 		$content = array(
 			'from' => $toUser['User']['username'],
-			'title' => $messageTitle,
+			'title' => $message['PrivateMessage']['title'],
 			'content' => nl2br($message['PrivateMessage']['content']),
 			'id' => $message['PrivateMessage']['id'],
 			'date' => $message['PrivateMessage']['date'],
@@ -173,7 +148,6 @@ class PrivateMessagesController extends AppController {
 			'folder' => $message['PrivateMessage']['folder']
 		);
 
-		$this->pageTitle = __('Private messages', true) . ' - ' . $content['title'] . __('from', true) . ' ' . $content['from'];
 		$this->set('content', $content);
 
 	}
@@ -222,19 +196,15 @@ class PrivateMessagesController extends AppController {
         Sanitize::paranoid($replyToMessageId);
 		if($replyToMessageId != null){
 			$message = $this->PrivateMessage->findById($replyToMessageId);
-			if($message['PrivateMessage']['title'] == '')
-				$messageTitle = __('Re: [no subject]', true);
-			else
-				$messageTitle = 'Re: ' . $message['PrivateMessage']['title'];
-			$this->set('replyToTitle', $messageTitle);
-			$messNextRegExp = preg_replace("#\r?\n#iU", " ", $message['PrivateMessage']['content']);
-			$messNextRegExp = preg_replace("#\r?\n#iU", "\n > ", wordwrap($messNextRegExp, 50));
-			$this->set('replyToContent',
-                 "\n" . sprintf( __('%s wrote:', true) , $toUserLogin ) . "\n > " . $messNextRegExp
-                 );
+
+			$this->set('isAReply', true);
+			$this->set('replyToTitle', $message['PrivateMessage']['title']);
+			$this->set('replyToContent', $this->PrivateMessage->format_reply_message($message['PrivateMessage']['content'],$toUserLogin));
 		}else if($replyToMessageId == 'error'){
+			$this->set('isAReply', false);
 			$this->set('errorString', __('You must fill at least the "To" field and the content field.', true));
 		}else{
+			$this->set('isAReply', false);
 			$this->set('replyToContent', '');
 			$this->set('replyToTitle', '');
 		}

@@ -16,6 +16,8 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+$this->pageTitle = __('Private messages', true) . ' - ' . __($folder, true);
+
 echo $this->element('pmmenu');
 ?>
 <div id="main_content">
@@ -51,7 +53,12 @@ echo $this->element('pmmenu');
 			    echo '<td>'.$html->link($msg['to'], array('action' => 'write', $msg['to'])).'</td>';
             }
 
-			echo '<td>' . $html->link($msg['title'], array('action' => 'show', $msg['id'])) . '</td>';
+			if($msg['title'] == '')
+				$messageTitle = __('[no subject]', true);
+			else
+				$messageTitle = $msg['title'];
+
+			echo '<td>' . $html->link($messageTitle, array('action' => 'show', $msg['id'])) . '</td>';
             echo '<td><span class="action_link">';
 
 			if($folder == 'Trash')
