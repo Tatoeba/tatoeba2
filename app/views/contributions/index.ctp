@@ -42,7 +42,7 @@
 			$langs = $languages->languagesArray();
 
 			echo $form->select(
-				'',
+				'filterLanguageSelect',
 				$langs,
 				$lang,
 				array(
