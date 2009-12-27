@@ -23,7 +23,7 @@ App::import('Core', 'Sanitize');
 class ContributionsController extends AppController {
 
 	var $name = 'Contributions';
-	var $helpers = array('Html', 'Form', 'Sentences', 'Logs', 'Navigation', 'Date');
+	var $helpers = array('Html', 'Form', 'Sentences', 'Logs', 'Navigation', 'Date','languages');
 	var $components = array('Permissions');
 
 	function beforeFilter() {
@@ -34,9 +34,11 @@ class ContributionsController extends AppController {
 	
 	/**
 	 * Display 200 last contributions.
+     * possibility to filter on a specific language
+     * send as 1st parameter
 	 */
-	function index() {
-		$this->set('contributions', $this->Contribution->getLastContributions(200));
+	function index($filter = 'any' ) {
+		$this->set('contributions', $this->Contribution->getLastContributions(200,$filter));
 	}
 
 	/**

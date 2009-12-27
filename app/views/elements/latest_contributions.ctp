@@ -16,14 +16,14 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-$contributions = $this->requestAction('/contributions/latest');
+$contributions =  ClassRegistry::init('Contribution')->getLastContributions(10) ;
 if (isset($this->params['lang'])) { 
 	Configure::write('Config.language',  $this->params['lang']); 
 }
 
 echo '<table id="logs">';
 foreach($contributions as $contribution){
-	$logs->entry($contribution['Contribution'], $contribution['User']);
+	$logs->entry($contribution['Contribution'], $contribution['User'],$contribution['Sentence']);
 }
 echo '</table>';
 ?>

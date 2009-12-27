@@ -20,7 +20,7 @@ class LogsHelper extends AppHelper {
 
 	var $helpers = array('Date', 'Html');
 	
-	function entry($contribution, $user = null){
+	function entry($contribution, $user = null , $sentence = null){
 		$type = '';
 		$status = '';
 		
@@ -52,12 +52,12 @@ class LogsHelper extends AppHelper {
 			if($type == 'link'){
 				echo '&raquo;';
 			} else {
-				if ($contribution['sentence_lang'] == '') {
+				if ($sentence['lang'] == '') {
 					echo '?';
 				} else {
 					echo $this->Html->image(
-						$contribution['sentence_lang'].".png", 
-						array("alt" => $contribution['sentence_lang'],
+						$sentence['lang'].".png", 
+						array("alt" => $sentence['lang'],//TODO should be replace by the real name
 							"class" => "flag"));
 				}
 				

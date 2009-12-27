@@ -35,11 +35,47 @@
 
 <div id="main_content">
 	<div class="module">
-		<h2><?php __('Latest contributions') ?></h2>
+		<h2>
+            <?php __('Latest contributions') ?>
+            <?php
+                /*to stay on the same page except language filter option*/
+
+                $path ='';
+                if( isset($this->params['lang'])){
+                    $path = $this->params['lang'] .'/' ;
+                }
+
+                $path = $this->params['controller'].'/';
+                if($this->params['action'] != 'display'){
+                    $path .= $this->params['action'].'/';
+                }
+
+                $lang = 'und' ;
+                // set default filter to the one previously selected 
+                if(isset($this->params['pass'][0])) {
+                    $lang = $this->params['pass'][0]; 
+                }
+                $langs = $languages->languagesArray();
+
+                echo $form->select(
+                    'languageSelection',
+                    $langs,
+                    $lang,
+                    array(
+                        "onchange" => "$(location).attr('href', '/$path' + this.value+ '/');"
+                    ),
+                    false
+                );
+            ?> 
+         </h2>
 		<table id="logs">
 		<?php
 		foreach ($contributions as $contribution){
-			$logs->entry($contribution['Contribution'], $contribution['User']);
+			$logs->entry(
+                $contribution['Contribution'],
+                $contribution['User'],
+                $contribution['Sentence']
+            );
 		}
 		?>
 		</table>

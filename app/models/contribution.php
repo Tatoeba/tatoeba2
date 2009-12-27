@@ -97,18 +97,41 @@ class Contribution extends AppModel {
 	
 	/**
 	 * Get last contributions.
+     * in a specific language is specified
+     * und => any languages
 	 */
-	function getLastContributions($limit){
-		$this->recursive = 0;
-		$this->unbindModel(
+	function getLastContributions($limit,$lang = 'und'){
+        $conditions = array('Contribution.type' => 'sentence');
+
+        if ($lang != 'und'){
+            $conditions['Sentence.lang'] = $lang ;
+        }
+
+        return $this->find(
+            'all', 
 			array(
-				'belongsTo' => array('Sentence')
-			)
-		);
-		return $this->find('all', 
-			array(
-				'conditions' => array('Contribution.type' => 'sentence'),
-				'limit' => $limit, 'order' => 'Contribution.datetime DESC'
+                'fields' => array(
+                    'Contribution.text',
+                    'Contribution.translation_id',
+                    'Contribution.sentence_id',
+                    'Contribution.action',
+                    'Contribution.id',
+                    'Contribution.datetime',
+                    'User.username',
+                    'User.id',
+                    'Sentence.lang'
+                ),
+				'conditions' => $conditions ,
+                'contains'   => array(
+                    'User' => array(
+                        'fields' => array('User.username','User.id') 
+                    ),
+                    'Sentence' => array(
+                        'fields' => array('Sentence.lang')
+                    )
+                ),
+				'limit' => $limit,
+                'order' => 'Contribution.datetime DESC'
 			)
 		);
 	}
