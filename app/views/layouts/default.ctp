@@ -32,6 +32,10 @@
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
+        // TIPS : to avoid css to be joined even when not needed
+        // you can use if ($this->params etc... to restrict css
+        // to some pages
+
 		echo $html->meta('icon');
 		echo $html->css('tatoeba.newui');
 		echo $html->css('tatoeba.newgeneric');
@@ -40,14 +44,18 @@
 		echo $html->css('tatoeba.comments');
 		echo $html->css('tatoeba.statistics');
 		echo $html->css('tatoeba.users');
-		echo $html->css('tatoeba.wall');
+        if($this->params['controller'] == 'wall'){
+            echo $html->css('tatoeba.wall');
+        }
 		echo $html->css('tatoeba.navigation');
 		echo $html->css('tatoeba.popup');
-		echo $html->css('tatoeba.conversations');
+//		echo $html->css('tatoeba.conversations');
 		echo $html->css('tatoeba.private_messages');
 		echo $html->css('tatoeba.sentences_lists');    
 		echo $html->css('tatoeba.tools');
-        echo $html->css('tatoeba.sinograms');
+        if($this->params['controller'] == 'sinograms'){
+            echo $html->css('tatoeba.sinograms');
+        }
 //      echo $html->css('jquery-ui-1.7.2.custom');
         
 //      echo $html->css('autocompletion.jquery.autocomplete');
@@ -62,7 +70,6 @@
 	?>
 </head>
 <body>
-	
 	
 	<!--  TOP  -->
 	<?php echo $this->element('top1'); ?>
