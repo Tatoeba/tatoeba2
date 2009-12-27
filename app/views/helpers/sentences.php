@@ -122,7 +122,7 @@ class SentencesHelper extends AppHelper {
 	/**
 	 * Diplay a sentence and its translations.
 	 */
-	function displayGroup($sentence, $translations, $user = null, $indirectTranslations = array()) {
+	function displayGroup($sentence, $translations, $user = null, $indirectTranslations = array(), $inBrowseMode = false) {
 		echo '<div class="sentence">';
 		// Sentence
 		$this->Javascript->link('jquery.jeditable.js', false);
@@ -132,12 +132,11 @@ class SentencesHelper extends AppHelper {
 		$editableSentence = '';
 		$editableFlag = false;
 		$tooltip = __('This sentence does not belong to anyone. If you would like to edit it, you have to adopt it first.', true);
-       // pr($user);
+       
 		if($user != null){
 			if(isset($user['canEdit']) AND $user['canEdit']){
 				$editable = 'editable';
 				$editableSentence = 'editableSentence';
-              //  pr($editableFlag);
 				$editableFlag = true;
 			}
 			if(isset($user['username']) AND $user['username'] != ''){
@@ -151,8 +150,22 @@ class SentencesHelper extends AppHelper {
 			$this->displayLanguageFlag($sentence['id'], $sentence['lang'], $editableFlag);
 			
 			// sentence text
-            // TODO : HACK SPOTTED id is made of lang + id  and then is used in edit_in_place 
-			echo '<div id="'.$sentence['lang'].'_'.$sentence['id'].'" class="'.$editable.' '.$editableSentence.'" title="'.$tooltip.'">'.$sentence['text'].'</div> ';
+            if($inBrowseMode){
+				// TODO : HACK SPOTTED id is made of lang + id  and then is used in edit_in_place 
+				echo '<div id="'.$sentence['lang'].'_'.$sentence['id'].'" class="'.$editable.' '.$editableSentence.'" title="'.$tooltip.'">'.$sentence['text'].'</div> ';
+			}else{
+				echo $this->Html->link(
+					$sentence['text']
+					, array(
+						"controller"=>"sentences"
+						, "action"=>"show"
+						, $sentence['id']
+					)
+				);
+			}
+			
+			
+			// romanization
 			$this->displayRomanization($sentence['lang'], $sentence['text']);
 		echo '</div>';
 
@@ -191,10 +204,10 @@ class SentencesHelper extends AppHelper {
 		foreach($translations as $translation){
         
 			echo '<li class="direct translation">';
-			// hidden 'info button'
+			// translation icon
 			echo $this->Html->link(
 				$this->Html->image(
-					'info.png',
+					'direct_translation.png',
 					array(
 						"alt"=>__('Show',true),
 						"title"=>__('Show',true)
@@ -239,10 +252,10 @@ class SentencesHelper extends AppHelper {
             foreach($indirectTranslations as $translation){
                     echo '<li class="indirect translation">';
                     
-					// hidden 'info button'
+					// translation icon
                     echo $this->Html->link(
                         $this->Html->image(
-                            'info.png',
+                            'indirect_translation.png',
                             array(
                                 "alt"=>__('Show',true),
                                 "title"=>__('Show',true)
@@ -284,6 +297,7 @@ class SentencesHelper extends AppHelper {
 	 */
 	function displayMenu($id, $lang, $specialOptions, $score = null){		
 		echo '<ul class="menu" id="_'. $id .'" lang="'.$lang.'">';
+			// score
 			if($score != null){
 				echo '<li class="score">';
 				echo intval($score * 100);
@@ -291,13 +305,20 @@ class SentencesHelper extends AppHelper {
 				echo '</li>';
 			}
 			
-			$this->Menu->showButton($id);
+			// owner
+			if(isset($specialOptions['belongsTo'])){
+				echo '<li class="belongsTo">';
+					$user = $this->Html->link($specialOptions['belongsTo'], array("controller" => "user", "action" => "profile", $specialOptions['belongsTo']));
+                    echo sprintf ( __('belongs to %s', true),  $user);
+				echo '</li>';
+			}
 			
-			// translate link
+			// translate
 			if($specialOptions['canTranslate']){
 				$this->Javascript->link('sentences.add_translation.js', false);
 				$this->Menu->translateButton();
 			}
+			
 			// adopt
 			if(isset($specialOptions['canAdopt']) AND $specialOptions['canAdopt'] == true){
 				$this->Menu->adoptButton($id);
@@ -310,17 +331,14 @@ class SentencesHelper extends AppHelper {
                 echo "\n";
 			}
 			
-			// comments link
-			$this->Menu->commentsButton($id);
-			
-			// favorite link
+			// favorite
 			if(isset($specialOptions['canFavorite']) AND $specialOptions['canFavorite'] == true){
 				$this->Javascript->link('favorites.add.js', false);
 				$this->Menu->favoriteButton($id);
                 echo "\n";
 			}
 			
-			// unfavorite link
+			// unfavorite
 			if(isset($specialOptions['canUnFavorite']) AND $specialOptions['canUnFavorite'] == true){
 				$this->Javascript->link('favorites.add.js', false);
 				$this->Menu->unfavoriteButton($id);
@@ -375,22 +393,15 @@ class SentencesHelper extends AppHelper {
                 echo "\n";
 			}			
 			
-			// delete link
+			// delete
 			if(isset($specialOptions['canDelete']) AND $specialOptions['canDelete'] == true){
 				$this->Menu->deleteButton($id);
 			}
 			
             echo "<li>";
 			echo $this->Html->image('loading-small.gif', array("id"=>"_".$id."_in_process", "style"=>"display:none"));
-			echo $this->Html->image('valid_16x16.png', array("id"=>"_".$id."_valid", "style" =>"display:none"));
-			
+			echo $this->Html->image('valid_16x16.png', array("id"=>"_".$id."_valid", "style" =>"display:none"));			
             echo "</li>";
-			if(isset($specialOptions['belongsTo'])){
-				echo '<li class="belongsTo">- ';
-					$user = $this->Html->link($specialOptions['belongsTo'], array("controller" => "user", "action" => "profile", $specialOptions['belongsTo']));
-                    echo sprintf ( __('belongs to %s', true),  $user);
-				echo '</li>';
-			}
 			
 		echo '</ul>';
 	}

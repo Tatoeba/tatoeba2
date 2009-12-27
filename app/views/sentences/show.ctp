@@ -77,15 +77,19 @@ $navigation->displaySentenceNavigation();
                     $specialOptions
                 );
 
-				// sentence and translations
+				
 
-                // TODO set up a better mechanism
-				$sentence['User']['canEdit'] = $specialOptions['canEdit'];
+                // for edit in place...
+				// TODO set up a better mechanism
+				$sentence['User']['canEdit'] = $specialOptions['canEdit']; 
+				
+				// display sentence and translations
 				$sentences->displayGroup(
                     $sentence['Sentence'],
                     $translations,
                     $sentence['User'],
-                    $indirectTranslations
+                    $indirectTranslations,
+					true // so that the sentence is a div and not a link
                 );
 			echo '</div>';
 

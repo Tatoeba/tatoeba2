@@ -35,7 +35,7 @@ if(isset($translation_text)){
 		// hidden 'info button'
 		echo $html->link(
 			$html->image(
-				'info.png',
+				'direct_translation.png',
 				array(
 					"alt"=>__('Show',true),
 					"title"=>__('Show',true)

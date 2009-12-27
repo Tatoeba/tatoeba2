@@ -39,10 +39,10 @@ if(isset($translation_text)){
 		echo $javascript->link('sentences.change_language.js', true);
 			
 		echo '<li id="_'.$translation_id.'" class="direct translation">';
-			// hidden 'info button'
+			// translation icon
 			echo $html->link(
 				$html->image(
-					'info.png',
+					'direct_translation.png',
 					array(
 						"alt"=>__('Show',true),
 						"title"=>__('Show',true)
