@@ -58,7 +58,9 @@
 				foreach($results as $index=>$sentence){
 					echo '<div class="sentences_set searchResult">';
 					// sentence menu (translate, edit, comment, etc)
-					$specialOptions[$index]['belongsTo'] = $sentence['Sentence']['User']['username']; // TODO set up a better mechanism
+					if(isset($sentence['User']['username'])){
+						$specialOptions[$index]['belongsTo'] = $sentence['User']['username']; // TODO set up a better mechanism
+					}
 					$sentences->displayMenu($sentence['Sentence']['id'], $sentence['Sentence']['lang'], $specialOptions[$index], $scores[$index]);
 
 					// sentence and translations
