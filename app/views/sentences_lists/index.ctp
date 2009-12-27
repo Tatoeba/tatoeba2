@@ -98,8 +98,12 @@ if(isset($myLists)){
 			foreach($myLists as $myList){
 				echo '<li>';
 				echo '<span id="_'.$myList['SentencesList']['id'].'" class="listName">';
+				$name = '('.__('unnamed list', true).')';
+				if(rtrim($myList['SentencesList']['name']) != ''){
+					$name = $myList['SentencesList']['name'];
+				}
 				echo $html->link(
-					$myList['SentencesList']['name'],
+					$name,
 					array("controller" => "sentences_lists", "action" => "edit", $myList['SentencesList']['id'])
 				);
 				echo '</span><span class="listInfo"> - ';
