@@ -194,9 +194,15 @@ echo $form->end(__('Upload', true));
 			'selected' => $iTimestamp
 		));
 	echo '<label for="profile_basicCountry">' . __('Country', true) . '</label>' .
-        $form->select('country',
+
+    
+        $form->select(
+            'country',
             $countries,
-            (is_null($user['User']['country_id']) ? null : $user['Country']['id'])
+            (is_null($user['User']['country_id']) ? null : $user['Country']['id'], // TODO : magic stuff spotted
+            null,
+            false
+            )
         );
 	echo $form->end(__('Edit', true));
 ?>

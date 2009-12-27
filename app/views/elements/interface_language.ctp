@@ -42,5 +42,11 @@ foreach($this->params['pass'] as $extraParam){
 	$path .= $extraParam.'/';
 }
 
-echo $form->select('languageSelection', $languages, $lang, array("onchange" => "$(location).attr('href', '/' + this.value+ '/' + '".$path."');"));
+echo $form->select(
+    'languageSelection',
+    $languages,
+    $lang,
+    array("onchange" => "$(location).attr('href', '/' + this.value+ '/' + '".$path."');"),
+    false
+    );
 ?>

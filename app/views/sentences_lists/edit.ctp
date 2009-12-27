@@ -48,6 +48,7 @@ $javascript->link('jquery.jeditable.js', false);
 				, $langArray
 				, null
 				, array("onchange" => "$(location).attr('href', '".$path."' + this.value);")
+                , false
 			); 
 			?>
 		</li>

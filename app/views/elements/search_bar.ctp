@@ -25,7 +25,8 @@ if (isset($this->params['lang'])) {
 
 <?php
 $languages = array(
-			  'ara' => __('Arabic', true)
+              'und' => __('Any', true)
+			, 'ara' => __('Arabic', true)
 			, 'eng' => __('English', true)
 			, 'jpn' => __('Japanese', true)
 			, 'fra' => __('French', true)
@@ -57,7 +58,7 @@ echo $form->create('Sentence', array("action" => "search", "type" => "get"));
 
 echo '<fieldset class="select">';
 echo '<label>' . __('From',true) . '</label>';
-echo $form->select('from', $languages, $selectedLanguageFrom);
+echo $form->select('from', $languages, $selectedLanguageFrom,null ,false);
 echo '</fieldset>';
 
 echo '<fieldset class="into">';
@@ -66,7 +67,7 @@ echo '</fieldset>';
 	
 echo '<fieldset class="select">';
 echo '<label>' . __('To',true) . '</label>';
-echo $form->select('to', $languages, $selectedLanguageTo);
+echo $form->select('to', $languages, $selectedLanguageTo,null,false);
 echo '</fieldset>';
 
 echo '<fieldset class="input text">';

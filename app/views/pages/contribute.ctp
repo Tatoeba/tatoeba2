@@ -48,13 +48,13 @@
 
             echo '<fieldset class="select">';
             echo '<label>' . __('Quantity',true) . '</label>';
-            echo $form->select('numberWanted', $numberOfSentencesWanted , 5);
+            echo $form->select('numberWanted', $numberOfSentencesWanted , 5,null,false);
             echo '</fieldset>';
 
 
             echo '<fieldset class="select">';
             echo '<label>' . __('Language',true) . '</label>';
-            echo $form->select('into', $languages->languagesArray() , $selectedLanguage);
+            echo $form->select('into', $languages->languagesArray() , $selectedLanguage,null,false);
             echo '</fieldset>';
 
             echo '<fieldset class="submit">';
