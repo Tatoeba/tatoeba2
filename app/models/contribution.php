@@ -101,12 +101,51 @@ class Contribution extends AppModel {
      * und => any languages
 	 */
 	function getLastContributions($limit,$lang = 'und'){
+        if( strlen ($lang) != 3 OR ! is_numeric($limit) ){
+            return array();
+        }
         $conditions = array('Contribution.type' => 'sentence');
 
         if ($lang != 'und'){
             $conditions['Sentence.lang'] = $lang ;
         }
 
+        $query ="
+            SELECT 
+                `Contribution`.`text`,
+                `Contribution`.`translation_id`,
+                `Contribution`.`sentence_id`,
+                `Contribution`.`action`,
+                `Contribution`.`id`,
+                `Contribution`.`datetime`,
+                `User`.`username`,
+                `User`.`id`,
+                `Sentence`.`lang`
+            FROM `contributions` AS `Contribution` 
+                INNER JOIN `sentences` AS `Sentence`
+                    ON (`Contribution`.`sentence_id` = `Sentence`.`id`
+        ";
+        if ($lang != 'und'){ 
+            $query .= "AND `Sentence`.`lang` = '$lang'";
+        }
+        $query.="
+                )
+                INNER JOIN `users` AS `User`
+                    ON (`Contribution`.`user_id` = `User`.`id`)
+            WHERE
+                `Contribution`.`type` = 'sentence' 
+            ";
+        if ($lang != 'und'){
+            $query .=  "AND `Sentence`.`lang` = '$lang'";
+        } 
+        $query .= "
+            ORDER BY `Contribution`.`datetime` DESC 
+            LIMIT $limit; 
+        "; 
+        
+
+        return  $this->query($query);
+        /*
         return $this->find(
             'all', 
 			array(
@@ -134,6 +173,7 @@ class Contribution extends AppModel {
                 'order' => 'Contribution.datetime DESC'
 			)
 		);
+        */
 	}
 	
 	/**
