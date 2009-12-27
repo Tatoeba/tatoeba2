@@ -29,16 +29,25 @@ $javascript->link('jquery.jeditable.js', false);
 	<h2><?php __('Actions'); ?></h2>
 	<ul class="sentencesListActions">
 		<li>
-			<?php 
+			<?php
 			echo $html->link(
 				__('Back to all the lists',true)
 				, array("controller"=>"sentences_lists", "action"=>"index")
 			)
 			?>
 		</li>
-		
 		<li>
-			<?php 
+			<?php echo $html->link(__('Send via Private Message', true),
+										array(
+											'controller' => 'private_messages',
+											'action' => 'join',
+											'list',
+											$list['SentencesList']['id']));
+			?>
+		</li>
+
+		<li>
+			<?php
 			__('Show translations :'); echo ' ';
 			$langArray = $languages->languagesArray();
 			asort($langArray);
@@ -49,11 +58,11 @@ $javascript->link('jquery.jeditable.js', false);
 				, null
 				, array("onchange" => "$(location).attr('href', '".$path."' + this.value);")
                 , false
-			); 
+			);
 			?>
 		</li>
-		
-		
+
+
 		<?php
 		// only the creator of the list can delete a public list
 		if($session->read('Auth.User.id') == $list['SentencesList']['user_id']){
@@ -65,25 +74,25 @@ $javascript->link('jquery.jeditable.js', false);
 			echo ' '.$html->image('loading-small.gif', array("id"=>"inProcess", "style"=>"display:none;"));
 			echo ' '.$html->link('[?]', array("controller"=>"pages", "action"=>"help#sentences_lists"));
 			echo '</li>';
-		
+
 			echo '<li class="deleteList">';
 			echo $html->link(
 				__('Delete this list', true)
 				, array("controller" => "sentences_lists", "action" => "delete", $list['SentencesList']['id'])
 				, null
 				, __('Are you sure?', true)
-			);		
+			);
 			echo '</li>';
 		}
 		?>
 	</ul>
 	</div>
-	
+
 	<div class="module">
 	<h2><?php __('Printable versions'); ?></h2>
 	<ul class="sentencesListActions">
 		<li>
-			<?php 
+			<?php
 			echo $html->link(
 				__('Print as exercise',true)
 				, array("controller"=>"sentences_lists", "action"=>"print_as_exercise", $list['SentencesList']['id'], 'hide_romanization')
@@ -92,7 +101,7 @@ $javascript->link('jquery.jeditable.js', false);
 			?>
 		</li>
 		<li>
-			<?php 
+			<?php
 			$translationParam = isset($translationsLang) ? $translationsLang : '';
 			echo $html->link(
 				__('Print as correction',true)
@@ -102,7 +111,7 @@ $javascript->link('jquery.jeditable.js', false);
 			?>
 		</li>
 		<li>
-			<?php 
+			<?php
 			$javascript->link('sentences_lists.romanization_option.js', false);
 			echo $form->checkbox(
 				'display_romanization'
@@ -114,8 +123,8 @@ $javascript->link('jquery.jeditable.js', false);
 		</li>
 	</ul>
 	</div>
-	
-	
+
+
 	<div class="module">
 	<h2><?php __('Tips'); ?></h2>
 	<?php
@@ -145,22 +154,22 @@ $javascript->link('jquery.jeditable.js', false);
 	echo $form->input('text', array("label" => __('Add a sentence to this list : ', true)));
 	echo $form->button('OK', array("id" => "submitNewSentenceToList"));
 	echo '</div>';
-	
+
 	echo '<p>';
 	echo sprintf(
 		  __('NOTE : You can also add existing sentences with this icon %s (while <a href="%s">browsing</a> for instance).',true)
-		, $html->image('add_to_list.png')		  
+		, $html->image('add_to_list.png')
 		, $html->url(array("controller"=>"sentences", "action"=>"show", "random"))
 	);
 	echo '</p>';
-	
+
 
 	echo '<div class="sentencesListLoading" style="display:none">';
 	echo $html->image('loading.gif');
 	echo '</div>';
-	
+
 	echo '<span class="sentencesListId" id="'.$list['SentencesList']['id'].'" />'; // to retrieve id
-	
+
 	echo '<ul class="sentencesList editMode">';
 	if(count($list['Sentence']) > 0){
 
@@ -171,8 +180,8 @@ $javascript->link('jquery.jeditable.js', false);
 				echo '<a id="'.$sentence['id'].'" class="removeFromListButton">';
 				echo $html->image('close.png');
 				echo '</a>';
-				echo '</span>';		
-				
+				echo '</span>';
+
 				// display sentence
 				if(isset($translationsLang)){
 					$sentences->displaySentenceInList($sentence, $translationsLang);
@@ -182,7 +191,7 @@ $javascript->link('jquery.jeditable.js', false);
 			echo '</li>';
 		}
 	}
-	echo '</ul>';	
+	echo '</ul>';
 	?>
 	</div>
 </div>

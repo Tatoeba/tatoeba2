@@ -49,6 +49,37 @@ echo $this->element('pmmenu');
 		);
 		?>
 	</p>
+	<?php
+	$matches = array();
+	$sentencesLists = array();
+	if(preg_match_all("#\[list:(\d+)]#", $content['content'], $matches) != false){
+		foreach($matches[1] as $sl){
+			$sentencesLists[] = $this->requestAction('/sentences_lists/show/'.$sl.'/return');
+			$content['content'] = str_replace('[list:'.$sl.']', '', $content['content']);
+		}
+	}
+	?>
 	<p class="pm_content"><?php echo $content['content']; ?></p>
+	<?php
+	foreach($sentencesLists as $list){
+		echo '<h3>'.$list['SentencesList']['name'].'</h3>';
+		if(count($list['Sentence']) > 0){
+			echo '<ul id="'.$list['SentencesList']['id'].'" class="sentencesList">';
+			foreach($list['Sentence'] as $sentence){
+				echo '<li id="sentence'.$sentence['id'].'">';
+					// display sentence
+					if(isset($translationsLang)){
+						$sentences->displaySentenceInList($sentence, $translationsLang);
+					}else{
+						$sentences->displaySentenceInList($sentence);
+					}
+				echo '</li>';
+			}
+			echo '</ul>';
+		}else{
+			__('This list does not have any sentence');
+		}
+	}
+	?>
 	</div>
 </div>

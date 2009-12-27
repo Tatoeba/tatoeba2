@@ -23,16 +23,25 @@
 	<h2><?php __('Actions'); ?></h2>
 	<ul class="sentencesListActions">
 		<li>
-			<?php 
+			<?php
 			echo $html->link(
 				__('Back to all the lists',true)
 				, array("controller"=>"sentences_lists", "action"=>"index")
 			)
 			?>
 		</li>
-		
 		<li>
-			<?php 
+			<?php echo $html->link(__('Send via Private Message', true),
+										array(
+											'controller' => 'private_messages',
+											'action' => 'join',
+											'list',
+											$list['SentencesList']['id']));
+			?>
+		</li>
+
+		<li>
+			<?php
 			__('Show translations :'); echo ' ';
 			$langArray = $languages->languagesArray();
 			asort($langArray);
@@ -42,18 +51,18 @@
 				, $langArray
 				, null
 				, array("onchange" => "$(location).attr('href', '".$path."' + this.value);")
-			); 
+			);
 			?>
 		</li>
 	</ul>
 	</div>
 
-	
+
 	<div class="module">
 	<h2><?php __('Printable versions'); ?></h2>
 	<ul class="sentencesListActions">
 		<li>
-			<?php 
+			<?php
 			echo $html->link(
 				__('Print as exercise',true)
 				, array("controller"=>"sentences_lists", "action"=>"print_as_exercise", $list['SentencesList']['id'], 'hide_romanization')
@@ -62,7 +71,7 @@
 			?>
 		</li>
 		<li>
-			<?php 
+			<?php
 			$translationParam = isset($translationsLang) ? $translationsLang : '';
 			echo $html->link(
 				__('Print as correction',true)
@@ -72,7 +81,7 @@
 			?>
 		</li>
 		<li>
-			<?php 
+			<?php
 			$javascript->link('sentences_lists.romanization_option.js', false);
 			echo $form->checkbox(
 				'display_romanization'
@@ -85,7 +94,7 @@
 	</ul>
 	</div>
 </div>
-	
+
 <div id="main_content">
 	<div class="module">
 	<h2><?php echo $list['SentencesList']['name'] ?></h2>

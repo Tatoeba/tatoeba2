@@ -32,7 +32,7 @@ class PrivateMessagesController extends AppController {
 	    parent::beforeFilter();
 
 		// setting actions that are available to everyone, even guests
-	    $this->Auth->allowedActions = array('check'); 	// quick fix because "check" is called in top1.ctp,
+	    $this->Auth->allowedActions = array('check','join'); 	// quick fix because "check" is called in top1.ctp,
 														// and if a pending user tries to log in it will
 														// not work. "check" is currently defined as
 														// accessible only for registered users and above.
@@ -117,7 +117,8 @@ class PrivateMessagesController extends AppController {
 			}
 			$this->redirect(array('action' => 'folder', 'Sent'));
 		}else{
-			$this->redirect(array('action' => 'write'), $this->data['PrivateMessage']['recpt'], 'error');
+			$this->Session->setFlash(__('You must fill at least the "To" field and the content field.', true));
+			$this->redirect(array('action' => 'write'));
 		}
 	}
 
@@ -191,26 +192,32 @@ class PrivateMessagesController extends AppController {
 	// Create a new message
 	function write($toUserLogin = '', $replyToMessageId = null){
 
-
         Sanitize::html($toUserLogin);
         Sanitize::paranoid($replyToMessageId);
 		if($replyToMessageId != null){
 			$message = $this->PrivateMessage->findById($replyToMessageId);
-
 			$this->set('isAReply', true);
 			$this->set('replyToTitle', $message['PrivateMessage']['title']);
 			$this->set('replyToContent', $this->PrivateMessage->format_reply_message($message['PrivateMessage']['content'],$toUserLogin));
-		}else if($replyToMessageId == 'error'){
-			$this->set('isAReply', false);
-			$this->set('errorString', __('You must fill at least the "To" field and the content field.', true));
 		}else{
 			$this->set('isAReply', false);
-			$this->set('replyToContent', '');
-			$this->set('replyToTitle', '');
 		}
 
 		if($toUserLogin != '') $this->set('toUserLogin', $toUserLogin);
 		else $this->set('toUserLogin', '');
+	}
+
+	function join($type = null, $joinObjectId = null){
+		Sanitize::paranoid($type);
+		Sanitize::paranoid($joinObjectId);
+
+		if($type != null && $joinObjectId != null){
+			$this->params['action'] = 'write';
+			$this->set('msgPreContent', '['.$type.':'.$joinObjectId.']');
+			$this->write();
+		}else{
+			$this->redirect(array('action' => 'write'));
+		}
 	}
 
 	/* No view behind this function, which aim is to inform the user

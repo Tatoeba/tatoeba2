@@ -25,16 +25,16 @@ class SentencesListsController extends AppController{
 	var $name = 'SentencesLists' ;
 	var $helpers = array('Sentences', 'Navigation', 'Html', 'Kakasi', 'Lists');
 	var $components = array ('GoogleLanguageApi');
-	
+
 	function beforeFilter() {
 	    parent::beforeFilter();
-		
+
 		// setting actions that are available to everyone, even guests
 		// TODO : update this... editing lists and stuff should not be accessable to anyone
 	    $this->Auth->allowedActions = array('*');
 	}
-	
-	
+
+
 	/**
 	 * Displays all the lists.
 	 * If user is logged in, it will also display a form to add
@@ -46,17 +46,17 @@ class SentencesListsController extends AppController{
 			$myLists = $this->SentencesList->findAllByUserId($this->Auth->user('id'));
 			$this->set('myLists', $myLists);
 		}
-		
+
 		// public lists
 		$publicLists = $this->SentencesList->getPublicListsNotFromUser($this->Auth->user('id'));
 		$this->set('publicLists', $publicLists);
-		
+
 		// all the other lists
 		$otherLists = $this->SentencesList->getNonEditableListsForUser($this->Auth->user('id'));
 		$this->set('otherLists', $otherLists);
 	}
-	
-	
+
+
 	/**
 	 * Display content of a list.
 	 */
@@ -64,20 +64,22 @@ class SentencesListsController extends AppController{
 		if(isset($id)){
 			Sanitize::paranoid($id);
 			$this->SentencesList->id = $id;
-			
-			if(isset($translationsLang) AND in_array($translationsLang, $this->SentencesList->Sentence->languages)){
+
+			if(isset($translationsLang) && in_array($translationsLang, $this->SentencesList->Sentence->languages)){
 				Sanitize::paranoid($translationsLang);
 				$this->SentencesList->recursive = 2; // TODO need optimization
 				$this->set('translationsLang', $translationsLang);
+			}else if(isset($translationsLang) && $translationsLang == 'return'){
+				return $this->SentencesList->read();
 			}
-			
+
 			$this->set('list', $this->SentencesList->read());
 		}else{
 			$this->redirect(array("action"=>"index"));
 		}
 	}
-	
-	
+
+
 	/**
 	 * Create a list.
 	 */
@@ -91,15 +93,15 @@ class SentencesListsController extends AppController{
 			$this->redirect(array("action"=>"index"));
 		}
 	}
-	
-	
+
+
 	/**
-	 * Edit list. From that page user can remove sentences from list, 
+	 * Edit list. From that page user can remove sentences from list,
 	 * edit list name or delete list.
 	 */
 	function edit($id, $translationsLang = null){
-        Sanitize::paranoid($id); 
-		
+        Sanitize::paranoid($id);
+
 		if(!$this->belongsToCurrentUser($id) OR !$this->Auth->user('id')){
 			if(!$this->Auth->user('id')){
 				$this->Session->setFlash(sprintf(
@@ -116,19 +118,19 @@ class SentencesListsController extends AppController{
 				$this->SentencesList->recursive = 2; // TODO need optimization
 				$this->set('translationsLang', $translationsLang);
 			}
-			
+
 			$this->set('list', $this->SentencesList->read());
 		}
 	}
-	
-	
+
+
 	/**
-	 * Saves the new name of a list. 
+	 * Saves the new name of a list.
 	 * Used in AJAX request from sentences_lists.edit_name.js
 	 */
 	function save_name(){
         Sanitize::paranoid($_POST['id']);
-        Sanitize::html($_POST['value']); 
+        Sanitize::html($_POST['value']);
 		Configure::write('debug', 0);
 		if($this->belongsToCurrentUser($_POST['id'])){
 			if(isset($_POST['value']) AND isset($_POST['id'])){
@@ -143,8 +145,8 @@ class SentencesListsController extends AppController{
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * Delete list.
 	 */
@@ -155,7 +157,7 @@ class SentencesListsController extends AppController{
 		}
 		$this->redirect(array("action" => "index"));
 	}
-	
+
 	/**
 	 * Add sentence to a list.
 	 */
@@ -173,8 +175,8 @@ class SentencesListsController extends AppController{
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * Create a new list and add a sentence to that list.
 	 */
@@ -197,8 +199,8 @@ class SentencesListsController extends AppController{
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * Remove sentence from a list.
 	 */
@@ -212,8 +214,8 @@ class SentencesListsController extends AppController{
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * Displays the lists of a specific user.
 	 */
@@ -221,8 +223,8 @@ class SentencesListsController extends AppController{
 		$lists = $this->SentencesList->findAllByUserId($userId);
 		$this->set('lists', $lists);
 	}
-	
-	
+
+
 	/**
 	 * Returns the lists that the user currently connected can add sentences to.
 	 * It is called in the SentencesHelper, in the displayMenu() method.
@@ -230,8 +232,8 @@ class SentencesListsController extends AppController{
 	function choices(){
 		return $this->SentencesList->getUserChoices($this->Auth->user('id'));
 	}
-	
-	
+
+
 	/**
 	 * Check if list belongs to current user.
 	 */
@@ -244,8 +246,8 @@ class SentencesListsController extends AppController{
 			return false;
 		}
 	}
-	
-	
+
+
 	/**
 	 * Saves a new sentence (as if it was added from the Contribute
 	 * section) and add it to the list.
@@ -255,38 +257,38 @@ class SentencesListsController extends AppController{
 		if(isset($_POST['listId']) AND isset($_POST['sentenceText'])){
 			Sanitize::paranoid($_POST['listId']);
 			Sanitize::paranoid($_POST['sentenceText']);
-			
+
 			$sentence = new Sentence();
 			// do I have a choice, but to copy the code in the SentencesController...?
-			
+
 			//detecting language
 			$this->GoogleLanguageApi->text = $_POST['sentenceText'];
 			$response = $this->GoogleLanguageApi->detectLang();
 			$data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
 			$data['Sentence']['user_id'] = $this->Auth->user('id');
 			$data['Sentence']['text'] = $_POST['sentenceText'];
-			
+
 			// saving
 			if($sentence->save($data)){
 				Configure::write('debug',0);
-				
+
 				$this->SentencesList->habtmAdd('Sentence', $_POST['listId'], $sentence->id);
 				$sentence->recursive = 0;
 				$sentenceSaved = $sentence->read();
 				$this->set('sentence', $sentenceSaved);
 				$this->set('listId', $_POST['listId']);
 			}
-			
+
 		}
 	}
-	
+
 	/**
-	 * Display list so that it can be printed for exercising 
+	 * Display list so that it can be printed for exercising
 	 * translation/romanization on paper.
 	 */
 	function print_as_exercise($listId, $romanization = 'hide_romanization'){
 		Sanitize::paranoid($listId);
-		
+
 		$this->layout = 'lists';
 		$this->SentencesList->id = $listId;
 		$this->SentencesList->recursive = 2;
@@ -294,8 +296,8 @@ class SentencesListsController extends AppController{
 		$this->set('list', $list);
 		$this->set('displayRomanization', ($romanization == 'display_romanization'));
 	}
-	
-	
+
+
 	/**
 	 * Display list so that it can be printed as a correction reference.
 	 */
@@ -303,20 +305,20 @@ class SentencesListsController extends AppController{
 		$this->layout = 'lists';
 		Sanitize::paranoid($listId);
 		$this->SentencesList->id = $listId;
-		
+
 		if(isset($translationsLang) AND in_array($translationsLang, $this->SentencesList->Sentence->languages)){
 			$this->SentencesList->recursive = 2;
 			$this->set('translationsLang', $translationsLang);
 		}else{
 			$this->SentencesList->recursive = -1;
 		}
-		
+
 		$list = $this->SentencesList->read();
 		$this->set('list', $list);
 		$this->set('displayRomanization', ($romanization == 'display_romanization'));
 	}
-	
-	
+
+
 	/**
 	 * Set list as public. When a list is public, other people can add
 	 * sentences to that list.
