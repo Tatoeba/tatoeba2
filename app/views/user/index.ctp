@@ -193,17 +193,21 @@ echo $form->end(__('Upload', true));
 			'label' => 'Birthday',
 			'selected' => $iTimestamp
 		));
-	echo '<label for="profile_basicCountry">' . __('Country', true) . '</label>' .
+	echo '<label for="profile_basicCountry">' . __('Country', true) . '</label>' ;
 
+    // what does this code ??
+    if(! is_null($user['User']['country_id'])){
+        $temp = $user['Country']['id']; // find a better name for this variable
+    }
     
-        $form->select(
+    echo $form->select(
             'country',
             $countries,
-            (is_null($user['User']['country_id']) ? null : $user['Country']['id'], // TODO : magic stuff spotted
+            $temp , // TODO : magic stuff spotted
             null,
             false
-            )
-        );
+        )
+    ;
 	echo $form->end(__('Edit', true));
 ?>
 		</div>
