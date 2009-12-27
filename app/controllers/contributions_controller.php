@@ -37,7 +37,7 @@ class ContributionsController extends AppController {
      * possibility to filter on a specific language
      * send as 1st parameter
 	 */
-	function index($filter = 'any' ) {
+	function index($filter = 'und' ) {
 		$this->set('contributions', $this->Contribution->getLastContributions(200,$filter));
 	}
 
