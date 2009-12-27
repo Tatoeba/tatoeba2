@@ -83,11 +83,13 @@ class SentencesListsController extends AppController{
 	 */
 	function add(){
         Sanitize::html($this->data['SentencesList']['name']);
-		if(!empty($this->data)){
+		if(!empty($this->data) AND rtrim($this->data['SentencesList']['name']) != ''){
 			$this->data['SentencesList']['user_id'] = $this->Auth->user('id');
 			$this->SentencesList->save($this->data);
+			$this->redirect(array("action"=>"edit", $this->SentencesList->id));
+		}else{
+			$this->redirect(array("action"=>"index"));
 		}
-		$this->redirect(array("action"=>"index"));
 	}
 	
 	
