@@ -23,7 +23,7 @@ App::import('Core', 'Sanitize');
 class SentencesListsController extends AppController{
 
 	var $name = 'SentencesLists' ;
-	var $helpers = array('Sentences', 'Navigation', 'Html', 'Kakasi');
+	var $helpers = array('Sentences', 'Navigation', 'Html', 'Kakasi', 'Lists');
 	var $components = array ('GoogleLanguageApi');
 	
 	function beforeFilter() {
@@ -52,8 +52,8 @@ class SentencesListsController extends AppController{
 		$this->set('publicLists', $publicLists);
 		
 		// all the other lists
-		$lists = $this->SentencesList->getNonEditableListsForUser($this->Auth->user('id'));
-		$this->set('lists', $lists);
+		$otherLists = $this->SentencesList->getNonEditableListsForUser($this->Auth->user('id'));
+		$this->set('otherLists', $otherLists);
 	}
 	
 	

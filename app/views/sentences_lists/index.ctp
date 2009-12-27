@@ -16,8 +16,6 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-
-// TODO Create a helper to display list item.
 ?>
 
 <div id="annexe_content" >
@@ -96,27 +94,7 @@ if(isset($myLists)){
 
 			echo '<ul class="sentencesLists">';
 			foreach($myLists as $myList){
-				echo '<li>';
-				echo '<span id="_'.$myList['SentencesList']['id'].'" class="listName">';
-				$name = '('.__('unnamed list', true).')';
-				if(rtrim($myList['SentencesList']['name']) != ''){
-					$name = $myList['SentencesList']['name'];
-				}
-				echo $html->link(
-					$name,
-					array("controller" => "sentences_lists", "action" => "edit", $myList['SentencesList']['id'])
-				);
-				echo '</span><span class="listInfo"> - ';
-				echo sprintf(
-					__('created by <a href="%s">%s</a>', true)
-					, $html->url(array("controller"=>"user", "action"=>"profile", $myList['User']['username']))
-					, $myList['User']['username']
-				);
-				if($myList['SentencesList']['is_public']){
-					echo ' <span class="publicList">' . __('(public list)', true) . '</span>';
-				}
-				echo '</span>';
-				echo '</li>';
+				$lists->displayItem($myList);
 			}
 			echo '</ul>';
 		}else{
@@ -146,48 +124,22 @@ if(count($publicLists) > 0){
 
 		echo '<ul class="sentencesLists">';
 			foreach($publicLists as $publicList){
-				echo '<li>';
-				echo '<span id="_'.$publicList['SentencesList']['id'].'" class="listName">';
-				echo $html->link(
-					$publicList['SentencesList']['name'],
-					array("controller" => "sentences_lists", "action" => "edit", $publicList['SentencesList']['id'])
-				);
-				echo '</span><span class="listInfo"> - ';
-				echo sprintf(
-					__('created by <a href="%s">%s</a>', true)
-					, $html->url(array("controller"=>"user", "action"=>"profile", $publicList['User']['username']))
-					, $publicList['User']['username']
-				);
-				echo '</span>';
-				echo '</li>';
+				$lists->displayItem($publicList);
 			}
 		echo '</ul>';
 	echo '</div>';
 }
 
 // All the lists
-if(count($lists) > 0){
+if(count($otherLists) > 0){
 	echo '<div class="module">';
 		echo '<h2>';
 		echo __('All the other lists');
 		echo '</h2>';
 
 		echo '<ul class="sentencesLists">';
-		foreach($lists as $list){
-			echo '<li>';
-				echo '<span id="_'.$list['SentencesList']['id'].'" class="listName">';
-				echo $html->link(
-					$list['SentencesList']['name'],
-					array("controller" => "sentences_lists", "action" => "show", $list['SentencesList']['id'])
-				);
-				echo '</span><span class="listInfo"> - ';
-				echo sprintf(
-					__('created by <a href="%s">%s</a>', true)
-					, $html->url(array("controller"=>"user", "action"=>"profile", $list['User']['username']))
-					, $list['User']['username']
-				);
-				echo '</span>';
-			echo '</li>';
+		foreach($otherLists as $otherList){
+			$lists->displayItem($otherList);
 		}
 		echo '</ul>';
 	echo '</div>';
