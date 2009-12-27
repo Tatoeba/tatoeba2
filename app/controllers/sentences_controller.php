@@ -355,9 +355,24 @@ class SentencesController extends AppController{
         
 		if(isset($_GET['query'])){
 			$query = stripslashes($_GET['query']);
-			$page = isset($_GET['page']) ? $_GET['page'] : null;
-			$from = isset($_GET['from']) ? $_GET['from'] : null;
-			$to = isset($_GET['to'])   ? $_GET['to']   : null;
+			
+			if(isset($_GET['page'])){
+				$page = $_GET['page'];
+			}else{
+				$page = null;
+			}
+			
+			if(isset($_GET['from']) AND $_GET['from'] != 'und'){
+				$from = $_GET['from'];
+			}else{
+				$from = null;
+			}
+			
+			if(isset($_GET['to']) AND $_GET['to'] != 'und'){
+				$to = $_GET['to'];
+			}else{
+				$to = null;
+			}			
 			
 			Sanitize::html($query);
 			Sanitize::html($page);

@@ -25,10 +25,10 @@ class LuceneComponent extends Object{
 		//$luceneUrl = "http://localhost:8080/tatoeba/search.jsp?query=";
 		$url = $luceneUrl . $query;
 		
-		if($lang_src != null){
+		if($lang_src != null AND $lang_src != 'und'){
 			$url .= "&lang_src=" . $lang_src;
 		}
-		if($lang_dest != null){
+		if($lang_dest != null AND $lang_dest != 'und'){
 			$url .= "&lang_dest=" . $lang_dest;
 		}
 		if($page != null){
