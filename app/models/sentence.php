@@ -200,6 +200,10 @@ class Sentence extends AppModel{
         ** this query take constant time when lang=null
         ** and linear time when lang is set, so do not touch this request
         */
+        if( $lang == "und" ){
+            $lang = null ;
+        }
+
         if($lang == 'jpn' OR $lang == 'eng'){
 		
 			$min = ($lang == 'eng') ? 15700 : 74000;
@@ -370,6 +374,10 @@ class Sentence extends AppModel{
     ** get translations of a given sentence
     */
     function getTranslationsOf($id,$excludeId = null){
+        if( ! is_numeric($id) ){
+            return array();
+        }
+
         $conditions = array (
             'Sentence.id' => $id
         );

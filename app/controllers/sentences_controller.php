@@ -445,7 +445,7 @@ class SentencesController extends AppController{
 		// "show" is used anywhere else.
 			
 			
-		if($lang == null){
+		if($lang == null OR $lang == 'und' ){
 			$lang = $this->Session->read('random_lang_selected');
 		}
 		

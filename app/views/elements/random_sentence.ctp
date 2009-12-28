@@ -26,7 +26,7 @@ if (isset($this->params['lang'])) {
 $langArray = $languages->languagesArray();
 asort($langArray);
 $selectedLanguage = $session->read('random_lang_selected');
-array_unshift($langArray, array('any' => __('any', true)));
+//array_unshift($langArray, array('any' => __('any', true)));
 ?>
 
 <h2>
