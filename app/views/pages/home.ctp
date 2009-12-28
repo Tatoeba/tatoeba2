@@ -63,6 +63,8 @@ array_unshift($langArray, array('any' => __('any', true)));
 	<?php
 	// Warning message prompting the user to specify languages
 	if($session->read('Auth.User.id')){
+
+        // TODO  HACK SPOTTED , requestAction is hackish ! 
 		$count_unknown_language = $this->requestAction('/sentences/count_unknown_language');
 		if($count_unknown_language > 0){
 			echo '<div class="module">';
