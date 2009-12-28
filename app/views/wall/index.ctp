@@ -43,8 +43,8 @@ $this->pageTitle = __('Wall',true);
                 for($i = 0 ; $i < min(10,count($tenLastMessages)) ; $i++){
                     echo '<li>';
                         echo '<a href="#message_' . $tenLastMessages[$i]['Wall']['id'].'" >' .
-                          $date->ago($tenLastMessages[$i]['Wall']['date']) .", " .  __('by ',true) . $tenLastMessages[$i]['User']['username']
-                         .'</a>';
+                            $date->ago($tenLastMessages[$i]['Wall']['date']) .", " .  __('by ',true) . $tenLastMessages[$i]['User']['username'];
+                        echo '</a>';
                     echo '</li>';
                 }
             ?>
@@ -113,7 +113,7 @@ $this->pageTitle = __('Wall',true);
 
 						// message content
 						echo '<div class="body" >';
-						echo nl2br( $message['Wall']['content']);
+						echo nl2br( htmlentities( $message['Wall']['content']) );
 						echo '</div>';
 					echo '</div>';
 

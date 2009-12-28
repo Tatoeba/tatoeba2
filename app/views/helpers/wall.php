@@ -89,7 +89,7 @@ class WallHelper extends AppHelper {
 
 				// message content
 				echo '<div class="body">';
-					echo nl2br( $message['Wall']['content']);
+					echo nl2br( htmlentities( $message['Wall']['content']));
 				echo '</div>';
 			echo '</div>';
 
