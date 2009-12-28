@@ -19,6 +19,7 @@
 
 class Following extends AppModel{
 	var $name = 'Following';
-	var $useTable = 'users';
+	var $useTable = 'followers';
+	var $hasAndBelongsToMany = array('User');
 }
 ?>

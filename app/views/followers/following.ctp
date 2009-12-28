@@ -16,13 +16,19 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-if(count($followers['Follower']) > 0){
-	echo '<ul>';
-	foreach($followers['Follower'] as $follower){
-		echo '<li>'.$follower['username'].'</li>';
+$navigation->displayUsersNavigation($user['User']['id'], $user['User']['username']);
+
+echo '<h3>';
+__('User following');
+echo '</h3>';
+
+var_dump($following);
+/*
+if(count($user['Follower']) > 0){
+	foreach($user['Follower'] as $follower){
+		var_dump($follower);
 	}
-	echo '<ul>';
 }else{
-	__('None');
-}
+	__('This user does not follow any users.');
+}*/
 ?>

@@ -20,5 +20,43 @@
 class Follower extends AppModel{
 	var $name = 'Follower';
 	var $useTable = 'users';
+
+	var $actsAs = array('ExtendAssociations');
+
+	var $hasAndBelongsToMany = array(
+		'User' => array(
+			'className' => 'User',
+			'joinTable' => 'followers_users',
+			'foreignKey' => 'follower_id',
+			'associationForeignKey' => 'user_id',
+			'conditions' => '',
+			'order' => '',
+			'limit' => '',
+			'unique' => true,
+			'finderQuery' => '',
+			'deleteQuery' => '',
+			'insertQuery' => ''
+		)
+	);
+
+	function get_followers($userId){
+		return $this->find(
+			'all',
+			array(
+				'conditions' => array('Follower.user_id' => $userId),
+				'limit'=> 10
+			)
+		);
+	}
+
+	function get_following($userId){
+		return $this->find(
+			'all',
+			array(
+				'conditions' => array('Follower.follower_id' => $userId),
+				'limit'=> 10,
+			)
+		);
+	}
 }
 ?>

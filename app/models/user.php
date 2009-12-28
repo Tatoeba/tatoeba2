@@ -81,23 +81,10 @@ class User extends AppModel {
 
 	var $hasAndBelongsToMany = array(
 		'Follower' => array(
-			'className' => 'User',
+			'className' => 'Follower',
 			'joinTable' => 'followers_users',
 			'foreignKey' => 'user_id',
 			'associationForeignKey' => 'follower_id',
-			'conditions' => '',
-			'order' => '',
-			'limit' => '',
-			'unique' => true,
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
-		),
-		'Following' => array(
-			'className' => 'Following',
-			'joinTable' => 'followers_users',
-			'foreignKey' => 'follower_id',
-			'associationForeignKey' => 'user_id',
 			'conditions' => '',
 			'order' => '',
 			'limit' => '',
@@ -191,11 +178,6 @@ class User extends AppModel {
 
     }
 
-    // echo in model ??
-    function habtmAdd($type = 'Follower', $user_id, $follower_id){
-		echo $type . ' ' . $user_id . ' ' . $follower_id;
-		exit;
-	}
 
 }
 ?>

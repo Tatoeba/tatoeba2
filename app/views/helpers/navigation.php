@@ -18,7 +18,7 @@
 */
 class NavigationHelper extends AppHelper{
 	var $helpers = array('Html', 'Form', 'Languages', 'Javascript', 'Session');
-	
+
 	function displaySentenceNavigation($currentId = null){
 		$controller = $this->params['controller'];
 		$action = $this->params['action'];
@@ -26,18 +26,18 @@ class NavigationHelper extends AppHelper{
 		if($currentId == null){
 			$currentId = intval($this->params['pass'][0]);
 		}
-		
+
 		echo '<div class="navigation">';
 			// go to form
 			echo $this->Form->create('Sentence', array("action" => "goToSentence", "type" => "get"));
 			echo $this->Form->input('sentence_id', array("label" => __('Show sentence nº : ', true), "value" => $input));
 			echo $this->Form->end(__('OK',true));
 			echo '<ul>';
-			
+
 			// previous
 			echo '<li class="option">';
 			echo $this->Html->link(
-				'« '.__('previous',true), 
+				'« '.__('previous',true),
 				array(
 					"controller" => $controller,
 					"action" => $action,
@@ -45,11 +45,11 @@ class NavigationHelper extends AppHelper{
 				)
 			);
 			echo '</li>';
-			
+
 			// next
 			echo '<li class="option">';
 			echo $this->Html->link(
-				__('next',true).' »', 
+				__('next',true).' »',
 				array(
 					"controller" => $controller,
 					"action" => $action,
@@ -57,17 +57,17 @@ class NavigationHelper extends AppHelper{
 				)
 			);
 			echo '</li>';
-			
+
 			// random
 			$this->Javascript->link('sentences.random.js', false);
 			$langArray = $this->Languages->languagesArray();
 			asort($langArray);
 			$selectedLanguage = $this->Session->read('random_lang_selected');
 			array_unshift($langArray, array('any' => __('any', true)));
-			
+
 			echo '<li class="option random">';
 			echo $this->Html->link(
-				__('random', true), 
+				__('random', true),
 				array(
 					"controller" => "sentences",
 					"action" => "show",
@@ -77,26 +77,26 @@ class NavigationHelper extends AppHelper{
 			);
 			echo $this->Form->select("randomLangChoiceInBrowse", $langArray, $selectedLanguage, null, false);
 			echo '</li>';
-			
-			
+
+
 			echo '</ul>';
-			
+
 		echo '</div>';
 	}
-	
+
 	function displayUsersNavigation($currentId, $username = null){
 		echo '<div class="navigation">';
 			if($username == null) $username = '';
 			echo $this->Form->create('User', array("action" => "search"));
 			echo $this->Form->input('username', array("label" => __('Enter a username : ',true), "value" => $username));
 			echo $this->Form->end(__('show user',true));
-			
+
 			echo '<ul>';
-			
+
 			// random
 			echo '<li class="option">';
 			echo $this->Html->link(
-				__('random',true), 
+				__('random',true),
 				array(
 					"controller" => "users",
 					"action" => "show",
@@ -104,23 +104,23 @@ class NavigationHelper extends AppHelper{
 				)
 			);
 			echo '</li>';
-			
+
 			// all
 			echo '<li class="option">';
 			echo $this->Html->link(
-				__('all',true), 
+				__('all',true),
 				array(
 					"controller" => "users",
 					"action" => "all"
 				)
 			);
 			echo '</li>';
-			
+
 			// back to whole profile
 			if($this->params['controller'] != 'users' AND $this->params['action'] != 'show'){
 				echo '<li class="option">';
 				echo $this->Html->link(
-					sprintf( __('% profile',true),$username), 
+					sprintf( __('%s profile',true), $username),
 					array(
 						"controller" => "users",
 						"action" => "show",
@@ -129,19 +129,19 @@ class NavigationHelper extends AppHelper{
 				);
 			}
 			echo '</li>';
-			
+
 			echo '</ul>';
-			
+
 		echo '</div>';
 	}
-	
-	
+
+
 	function displaySentencesListsNavigation(){
 		echo '<div class="navigation">';
 			echo '<ul>';
 			echo '<li class="option">';
 			echo $this->Html->link(
-				__('all the lists',true), 
+				__('all the lists',true),
 				array(
 					"controller" => "sentences_lists",
 					"action" => "index"
@@ -151,6 +151,6 @@ class NavigationHelper extends AppHelper{
 			echo '</ul>';
 		echo '</div>';
 	}
-	
+
 }
 ?>

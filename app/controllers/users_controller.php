@@ -30,11 +30,11 @@ class UsersController extends AppController {
         'order' => array('last_time_active' => 'desc'),
         'contain' => array(
             "Group" => array(
-                "fields" => "Group.name" 
+                "fields" => "Group.name"
             )
-        )    
+        )
     );
-  var $uses = array("User","Contribution"); 
+  var $uses = array("User","Contribution");
 
 	function beforeFilter() {
 		parent::beforeFilter();
@@ -48,12 +48,12 @@ class UsersController extends AppController {
 	function index() {
 		$this->User->recursive = 0;
 		$this->set('users', $this->paginate());
-		
+
 		// Uncomment this when you want to update users permissions.
 		//$this->initDB();
 	}
-	
-	
+
+
 	/**
 	 * Edit user. Only for admin.
 	 */
@@ -82,8 +82,8 @@ class UsersController extends AppController {
 		$groups = $this->User->Group->find('list');
 		$this->set(compact('groups'));
 	}
-	
-	
+
+
 	/**
 	 * Delete user. Only for admin.
 	 */
@@ -97,8 +97,8 @@ class UsersController extends AppController {
 			$this->redirect(array('action'=>'index'));
 		}
 	}
-	
-	
+
+
 	/**
 	 * Login.
 	 */
@@ -133,7 +133,7 @@ class UsersController extends AppController {
             $this->redirect($this->Auth->redirect());
         }
 	}
-	
+
 	/**
 	 * Logout.
 	 */
@@ -142,8 +142,8 @@ class UsersController extends AppController {
 		$this->RememberMe->delete();
 		$this->redirect($this->Auth->logout());
 	}
-	
-	
+
+
 	/**
 	 * Register.
 	 */
@@ -156,7 +156,7 @@ class UsersController extends AppController {
 			$this->data['User']['since'] = date("Y-m-d H:i:s");
 			$this->data['User']['group_id'] = User::LOWEST_TRUST_GROUP_ID + 1;
 			$nonHashedPassword = $this->data['User']['password'];
-			
+
 			$this->User->set( $this->data );
 			if(!$this->data['User']['acceptation_terms_of_use']){
 				$this->Session->setFlash(__('You did not accept the terms of use.',true));
@@ -198,10 +198,10 @@ class UsersController extends AppController {
 					$this->data['User']['captcha'] = '';
 				}
 			}
-			
+
 		}
 	}
-	
+
 	/**
 	 * Send registration email again.
 	 */
@@ -247,8 +247,8 @@ class UsersController extends AppController {
 			}
 		}
 	}
-	
-	
+
+
 	/**
 	 * Validation of registration.
 	 */
@@ -258,7 +258,7 @@ class UsersController extends AppController {
 
 		$toHash = $this->Auth->password($user['User']['password']).$user['User']['since'].$user['User']['username'];
 		$correctToken = $this->Auth->password($toHash);
-		
+
 		if($user['User']['group_id'] > 0 AND $user['User']['group_id'] < User::LOWEST_TRUST_GROUP_ID + 1){
 			$msg = __('Your registration is already validated.',true);
 		}else if($token == $correctToken){
@@ -278,13 +278,13 @@ class UsersController extends AppController {
 			}
 		}else{
 			$msg = __('Non valid registration link.',true);
-			
+
 		}
-		
+
 		$this->flash($msg,'/users/login');
 	}
-	
-	
+
+
 	/**
 	 * Get new password, for those who have forgotten their password.
 	 */
@@ -343,11 +343,11 @@ class UsersController extends AppController {
 			$this->flash(__('No user with this username : ', true).$this->data['User']['username'], '/users/all/');
 		}
 	}
-	
-	
+
+
 	/**
-	 * Display information about a user. 
-	 * NOTE : This should not be used anymore in the future. 
+	 * Display information about a user.
+	 * NOTE : This should not be used anymore in the future.
 	 * We'll use user/profile/$username instead.
 	 */
 	function show($id){
@@ -376,7 +376,7 @@ class UsersController extends AppController {
 			$this->flash(__('No user with this id : ', true).$id, '/users/all/');
 		}
 	}
-	
+
 	/**
 	 * Display list of all members.
 	 */
@@ -408,63 +408,6 @@ class UsersController extends AppController {
 	    $this->layout = null;
 	    $this->Captcha->image();
 	}
-	
-	
-	/**
-	 * Display followers of specified user.
-	 * NOTE : This is not used (yet).
-	 */
-	function followers($id){
-		$this->User->unbindModel(
-			array(
-				'belongsTo' => array('Group'),
-				'hasMany' => array('SentenceComments', 'Contributions', 'Sentences'),
-				'hasAndBelongsToMany' => array('Following')
-			)
-		);
-		$this->User->id = $id;
-		$this->set('followers', $this->User->read());
-	}
-	
-	
-	/**
-	 * Display users following specified user.
-	 * NOTE : This is not used (yet).
-	 */
-	function following($id){
-		$this->User->unbindModel(
-			array(
-				'belongsTo' => array('Group'),
-				'hasMany' => array('SentenceComments', 'Contributions', 'Sentences'),
-				'hasAndBelongsToMany' => array('Follower')
-			)
-		);
-		$this->User->id = $id;
-		$this->set('following', $this->User->read());
-	}
-	
-	
-	/**
-	 * Start following a user.
-	 * Used in AJAX request in users.followers_and_following.js.
-	 */
-	function start_following(){
-		$follower_id = $this->Auth->user('id');
-		$user_id = $_POST['user_id'];
-		$this->User->habtmAdd('Follower', $user_id, $follower_id);
-	}
-
-	
-	/**
-	 * Stop following a user.
-	 * Used in AJAX request in users.followers_and_following.js.
-	 */
-	function stop_following(){
-		$follower_id = $this->Auth->user('id');
-		$user_id = $_POST['user_id'];
-		$this->User->habtmDelete('Follower', $user_id, $follower_id);
-	}
-	
 
 	/**
 	 * Check if the username already exist or not.
@@ -480,7 +423,7 @@ class UsersController extends AppController {
 			$this->set('data' , false);
 		}
 	}
-	
+
 
 	/**
 	 * Check if the email already exist or not.
@@ -497,7 +440,7 @@ class UsersController extends AppController {
 		}
 	}
 
-	
+
 	/**
 	 * Temporary function to grant/deny access.
 	 */
@@ -542,7 +485,7 @@ class UsersController extends AppController {
 		$this->Acl->allow($group, 'controllers/Favorites/add_favorite');
 		$this->Acl->allow($group, 'controllers/PrivateMessages');
 		$this->Acl->allow($group, 'controllers/SentenceAnnotations');
-	
+
 	    //Permissions for users
 	    $group->id = 4;
 		$this->Acl->deny($group, 'controllers');
