@@ -191,6 +191,7 @@ class User extends AppModel {
 
     }
 
+    // echo in model ??
     function habtmAdd($type = 'Follower', $user_id, $follower_id){
 		echo $type . ' ' . $user_id . ' ' . $follower_id;
 		exit;
