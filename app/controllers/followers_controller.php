@@ -77,9 +77,9 @@ class FollowersController extends AppController {
 	 * Start following a user.
 	 * Used in AJAX request in users.followers_and_following.js.
 	 */
-	function start_following($user_id){
-		//$user_id = $_POST['user_id'];
-		$this->Follower->habtmAdd('User', $user_id, $this->Auth->user('id'));
+	function start_following(){
+		$user_id = $_POST['user_id'];
+		$this->Follower->habtmAdd('User', $this->Auth->user('id'), $user_id);
 	}
 
 
@@ -88,9 +88,8 @@ class FollowersController extends AppController {
 	 * Used in AJAX request in users.followers_and_following.js.
 	 */
 	function stop_following(){
-		$follower_id = $this->Auth->user('id');
 		$user_id = $_POST['user_id'];
-		return $this->User->habtmDelete('Follower', $user_id, $follower_id);
+		$this->Follower->habtmDelete('User', $this->Auth->user('id'), $user_id);
 	}
 }
 ?>

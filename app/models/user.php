@@ -84,27 +84,21 @@ class User extends AppModel {
 			'className' => 'Follower',
 			'joinTable' => 'followers_users',
 			'foreignKey' => 'user_id',
-			'associationForeignKey' => 'follower_id',
-			'conditions' => '',
-			'order' => '',
-			'limit' => '',
-			'unique' => true,
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
+			'associationForeignKey' => 'follower_id'
+		),
+		'Following' => array(
+			'className' => 'Following',
+			'joinTable' => 'followers_users',
+			'foreignKey' => 'follower_id',
+			'associationForeignKey' => 'user_id'
 		),
 		'Favorite' => array(
 			'className' => 'Favorite',
 			'joinTable' => 'favorites_users',
 			'foreignKey' => 'user_id',
 			'associationForeignKey' => 'favorite_id',
-			'conditions' => '',
-			'order' => '',
 			'limit' => '10',
-			'unique' => true,
-			'finderQuery' => '',
-			'deleteQuery' => '',
-			'insertQuery' => ''
+			'unique' => true
 		)
 	);
 

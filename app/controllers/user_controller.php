@@ -86,10 +86,25 @@ class UserController extends AppController {
             $this->set('userStats',$userStats);
 
             if ( $aUser != null ){
-                if($aUser['User']['name'] != '')
+                if($aUser['User']['name'] != ''){
                     $this->pageTitle = sprintf(__("Profile of %s", true), $aUser['User']['name']);
-                else
+				}else{
                     $this->pageTitle = sprintf(__("%s's profile", true), $sUserName);
+				}
+					
+				// Check if we can follow that user or not 
+				// (we can if we're NOT already following the user,
+				// or if the user is NOT ourself)
+				if($aUser['User']['id'] != $this->Auth->user('id')){
+					$can_follow = true;
+					foreach($aUser['Following'] as $following){
+						if($following['id'] == $this->Auth->user('id')){
+							$can_follow = false;
+						}
+					}
+					$this->set('can_follow', $can_follow);
+				}
+					
                 // Check if his/her profile is public
                 $this->set('login', $bLogin);
                 $this->set('is_public', $aUser['User']['is_public']);

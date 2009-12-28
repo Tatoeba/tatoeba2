@@ -360,17 +360,6 @@ class UsersController extends AppController {
 
 		if($user != null){
 			$this->set('user', $user);
-
-			// check if we can follow that user or not (we can if we're NOT already following the user, or if the user is NOT ourself)
-			if($user['User']['id'] != $this->Auth->user('id')){
-				$can_follow = true;
-				foreach($user['Follower'] as $follower){
-					if($follower['id'] == $this->Auth->user('id')){
-						$can_follow = false;
-					}
-				}
-				$this->set('can_follow', $can_follow);
-			}
 		}else{
 			$this->Session->write('last_user_id', $id);
 			$this->flash(__('No user with this id : ', true).$id, '/users/all/');

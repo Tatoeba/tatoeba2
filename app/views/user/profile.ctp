@@ -38,11 +38,24 @@ if(!empty($user['User']['homepage'])){
 			<li><?php echo $html->link(sprintf(__('Contact %s via Private Message', true), $user['User']['username']),
 			array('controller' => 'privateMessages', 'action' => 'write', $user['User']['username'])); ?>
 			</li>
-				<a href="#" id="followingOption">
-					<span class="user" id="<?php echo $user['User']['id']; ?>">
-						<?php echo sprintf(__("Start following %s", true), $user['User']['username']); ?>
-					</span>
-				</a>
+			
+			<?php
+			if($session->read('Auth.User.id') AND isset($can_follow)){
+				echo '<li class="user" id="_'.$user['User']['id'].'">';
+				if($can_follow){
+					$style2 = "style='display: none'";
+					$style1 = "";
+				}else{
+					$style1 = "style='display: none'";
+					$style2 = "";
+				}
+				echo '<a id="start" class="followingOption" '.$style1.'>'. __('Start following this person', true). '</a>';
+				echo '<a id="stop" class="followingOption" '.$style2.'>'. __('Stop following this person', true). '</a>';
+				echo '<span class="in_process"></span>';
+				echo '<li>';
+			}
+			?>
+			
 			<li>
 			</li><?php echo $html->link(sprintf(__("See this user's contributions", true)),
 			array('controller' => 'users', 'action' => 'show', $user['User']['id'])); ?>

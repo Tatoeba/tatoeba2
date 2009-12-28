@@ -1,6 +1,6 @@
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+    Tatoeba Project, free collaborative creation of multilingual corpuses project
+    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by
@@ -18,35 +18,25 @@
 
 */
 
-var followingAction = 'start'; // "start" or "stop"
-
 $(document).ready(function(){
-	$("#followingOption").click(function(){
-		var user_id = $(".user").attr("id");
-		var url = "http://" + self.location.hostname + "/users/" + followingAction + "_following";
-
-		var label = $("#followingOption").html();
-
-
-		$("#followingOption").html("<img src='/img/loading.gif' alt='loading'>");
-
+	$(".followingOption").click(function(){
+		var user_id = $(".user").attr("id").slice(1); // because id starts with an underscore to be compliant to standards
+		var action = $(this).attr("id"); // "start" or "stop"
+		var url = "http://" + self.location.hostname + "/followers/" + action + "_following";
+		
+		$(".in_process").html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
+		
 		$.post(
 			url,
 			{ "user_id": user_id },
 			function(data){
-				//load_followers(user_id);
-				if(followingAction == 'start'){
-					followingAction = 'stop';
-					$("#followingOption").html(label.replace(/start/i, 'Stop'));
-				}else{
-					followingAction = 'start';
-					$("#followingOption").html(label.replace(/stop/i, 'Start'));
-				}
+				$(".followingOption").toggle();
+				$(".in_process").html("");
 			}
 		);
 	});
+		
+	function load_followers(user_id){
+		$(".followers").load("http://" + self.location.hostname + "/users/followers/" + user_id);
+	}
 });
-
-function load_followers(user_id){
-	$("#followingOption").load("http://" + self.location.hostname + "/users/followers/" + user_id);
-}

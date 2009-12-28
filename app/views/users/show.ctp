@@ -66,20 +66,6 @@ $navigation->displayUsersNavigation($user['User']['id'], $user['User']['username
 	</div>
 
 	<?php
-	// if($session->read('Auth.User.id') AND isset($can_follow)){
-		// if($can_follow){
-			// $style2 = "style='display: none'";
-			// $style1 = "";
-		// }else{
-			// $style1 = "style='display: none'";
-			// $style2 = "";
-		// }
-		// echo ' (';
-		// echo '<a id="start" class="followingOption" '.$style1.'>'. __('Start following this person', true). '</a>';
-		// echo '<a id="stop" class="followingOption" '.$style2.'>'. __('Stop following this person', true). '</a>';
-		// echo ')';
-	// }
-
 	/* People that the user is following */
 
 	if(count($user['Following']) > 0){
