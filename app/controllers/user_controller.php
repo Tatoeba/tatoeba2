@@ -97,8 +97,8 @@ class UserController extends AppController {
 				// or if the user is NOT ourself)
 				if($aUser['User']['id'] != $this->Auth->user('id')){
 					$can_follow = true;
-					foreach($aUser['Following'] as $following){
-						if($following['id'] == $this->Auth->user('id')){
+					foreach($aUser['Follower'] as $follower){
+						if($follower['id'] == $this->Auth->user('id')){
 							$can_follow = false;
 						}
 					}
