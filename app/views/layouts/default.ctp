@@ -44,6 +44,10 @@
 		echo $html->css('tatoeba.comments');
 		echo $html->css('tatoeba.statistics');
 		echo $html->css('tatoeba.users');
+        if($this->params['controller'] == "user"){
+	        echo $html->css('tatoeba.profile', false);
+        }
+
         if($this->params['controller'] == 'wall'){
             echo $html->css('tatoeba.wall');
         }

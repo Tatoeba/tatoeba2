@@ -25,7 +25,6 @@ if(!$session->read('Auth.User.id')){
 	 * Include specific css and js files
 	 */
 	echo $javascript->link('profile.edit.js', false);
-	echo $html->css('tatoeba.profile', false);
 ?>
 
 <div id="annexe_content">

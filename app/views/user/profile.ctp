@@ -1,7 +1,6 @@
 <?php
 if($is_public or $login){
 
-	echo $html->css('tatoeba.profile', false);
 	echo $javascript->includeScript('users.followers_and_following');
 ?>
 
