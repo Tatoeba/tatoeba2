@@ -43,7 +43,7 @@ if($isAReply){
 			echo '<div style="border:1px solid red;color:red;">' . $errorString . '</div>';
 
 		echo $form->create('PrivateMessage', array('action' => 'send'));
-		echo $form->input('recpt', array('label' => __('To', true), 'default' => $toUserLogin, 'maxLength' => 255));
+		echo $form->input('recpt', array('label' => __('to', true), 'default' => $toUserLogin, 'maxLength' => 255));
 		echo $form->input('title', array('default' => $replyToTitle));
 		echo $form->input('content', array('label' => '', 'default' => $msgFinalPreContent));
 		echo $form->end(__('Send',true));

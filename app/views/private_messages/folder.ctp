@@ -30,9 +30,9 @@ echo $this->element('pmmenu');
 		echo '<tr><th>'.__('Date', true).'</th>';
 
 		if($folder == 'Sent')
-			echo '<th>'.__('To', true).'</th>';
+			echo '<th>'.__('to', true).'</th>';
 		else
-			echo '<th>'.__('From', true).'</th>';
+			echo '<th>'.__('from', true).'</th>';
 
 		echo '<th>'.__('Subject', true).'</th><th></th></tr>';
 
