@@ -2,20 +2,30 @@
 if($is_public or $login){
 
 	echo $html->css('tatoeba.profile', false);
+	echo $javascript->includeScript('users.followers_and_following');
 ?>
 
 <div id="annexe_content">
 
 	<div id="pcontact" class="module">
 		<h2><?php __('Contact information') ?></h2>
+		<?php /*
+		* Lists definitions are hype. Ok... But there I don't think it's the best
+		* usability way for users... one title with one link. The link says all and
+		* the title just adds overinformation.
+		* That's why I propose the simple list variant below. To be test and validated.
+		*
 		<dl>
 			<dt><?php __('Private message'); ?></dt>
 			<dd><?php echo $html->link(sprintf(__('Contact %s', true), $user['User']['username']),
 			array('controller' => 'privateMessages', 'action' => 'write', $user['User']['username'])); ?></dd>
-			
+
             <dt><?php __('Others'); ?></dt>
 			<dd><?php echo $html->link(sprintf(__("See this user's contributions", true)),
 			array('controller' => 'users', 'action' => 'show', $user['User']['id'])); ?></dd>
+
+            <dt><?php __('Follow'); ?></dt>
+			<dd><a href="#" id="followingOption"><span class="user" id="<?php echo $user['User']['id']; ?>"><?php echo sprintf(__("Start following %s", true), $user['User']['username']); ?></span></a></dd>
 <?php
 if(!empty($user['User']['homepage'])){
 ?>
@@ -24,8 +34,26 @@ if(!empty($user['User']['homepage'])){
 <?php
 }
 ?>
-		</dl>
+		</dl>*/ ?>
+		<ul>
+			<li><?php echo $html->link(sprintf(__('Contact %s via Private Message', true), $user['User']['username']),
+			array('controller' => 'privateMessages', 'action' => 'write', $user['User']['username'])); ?>
+			</li>
+				<a href="#" id="followingOption">
+					<span class="user" id="<?php echo $user['User']['id']; ?>">
+						<?php echo sprintf(__("Start following %s", true), $user['User']['username']); ?>
+					</span>
+				</a>
+			<li>
+			</li><?php echo $html->link(sprintf(__("See this user's contributions", true)),
+			array('controller' => 'users', 'action' => 'show', $user['User']['id'])); ?>
+			<li>
+			</li>
+		</ul>
 	</div>
+
+
+		<!--<div class="followers"></div>-->
 
 	<div class="module">
 		<h2><?php __('Activity information'); ?></h2>
@@ -110,6 +138,6 @@ if(is_string($user['User']['country_id']) and strlen($user['User']['country_id']
 	echo '<p>';
 	__('This profile is protected. You must login to see it.');
 	echo '</p>';
-	
+
 }
 ?>

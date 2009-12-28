@@ -18,26 +18,35 @@
 
 */
 
+var followingAction = 'start'; // "start" or "stop"
 
 $(document).ready(function(){
-	$(".followingOption").click(function(){
+	$("#followingOption").click(function(){
 		var user_id = $(".user").attr("id");
-		var action = $(this).attr("id"); // "start" or "stop"
-		var url = "http://" + self.location.hostname + "/users/" + action + "_following";
-		
-		$(".followers").html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
-		
+		var url = "http://" + self.location.hostname + "/users/" + followingAction + "_following";
+
+		var label = $("#followingOption").html();
+
+
+		$("#followingOption").html("<img src='/img/loading.gif' alt='loading'>");
+
 		$.post(
 			url,
 			{ "user_id": user_id },
 			function(data){
-				load_followers(user_id);
-				$(".followingOption").toggle();
+				//load_followers(user_id);
+				if(followingAction == 'start'){
+					followingAction = 'stop';
+					$("#followingOption").html(label.replace(/start/i, 'Stop'));
+				}else{
+					followingAction = 'start';
+					$("#followingOption").html(label.replace(/stop/i, 'Start'));
+				}
 			}
 		);
 	});
 });
 
 function load_followers(user_id){
-	$(".followers").load("http://" + self.location.hostname + "/users/followers/" + user_id);
+	$("#followingOption").load("http://" + self.location.hostname + "/users/followers/" + user_id);
 }

@@ -21,13 +21,13 @@ class User extends AppModel {
 
 	var $name = 'User';
 	var $actsAs = array('Acl' => array('requester'), 'ExtendAssociations','containable');
-	
+
 	const LOWEST_TRUST_GROUP_ID = 4;
-	
+
 	var $validate = array(
 		'username' => array(
 			'alphanumeric' => array(
-				'rule' => '/^\\w*$/', 
+				'rule' => '/^\\w*$/',
 				'message' => 'Username can only contain letters, numbers, or underscore'
 			),
 			'isUnique' => array(
@@ -35,13 +35,13 @@ class User extends AppModel {
 				'message' => 'Username already taken.'
 			),
 			'min' => array(
-				'rule' => array('minLength', 2), 
+				'rule' => array('minLength', 2),
 				'message' => 'Username must be at least two letters'
 			)
 		),
 		'email' => array(
 			'email' => array(
-				'rule' => 'email', 
+				'rule' => 'email',
 				'message' => 'Non valid email'
 			),
 			'isUnique' => array(
@@ -69,7 +69,7 @@ class User extends AppModel {
 		),
 		'Country'
 	);
-	
+
 	var $hasMany = array(
 		  'SentenceComments' => array('limit' => 10, 'order' => 'created DESC')
 		, 'Contributions' => array('limit' => 10, 'order' => 'datetime DESC')
@@ -78,7 +78,7 @@ class User extends AppModel {
 		// , 'Mastering_lang'
 		// , 'Learning_lang'
 	);
-	
+
 	var $hasAndBelongsToMany = array(
 		'Follower' => array(
 			'className' => 'User',
@@ -119,8 +119,8 @@ class User extends AppModel {
 			'deleteQuery' => '',
 			'insertQuery' => ''
 		)
-	);	
-	
+	);
+
 	function parentNode() {
 	    if (!$this->id && empty($this->data)) {
 	        return null;
@@ -135,14 +135,14 @@ class User extends AppModel {
 	        return array('Group' => array('id' => $data['User']['group_id']));
 	    }
 	}
-	
+
 	// this should probably be in the controller... why did I put it here I don't remember
 	function generate_password(){
 		$pw = '';
 		$c  = 'bcdfghjklmnprstvwz' . 'BCDFGHJKLMNPRSTVWZ' ; //consonants except hard to speak ones
 		$v  = 'aeiou';              //vowels
-		$a  = $c.$v;                //both 
-		
+		$a  = $c.$v;                //both
+
 		//use two syllables...
 		for($i=0;$i < 2; $i++){
 		$pw .= $c[rand(0, strlen($c)-1)];
@@ -151,13 +151,13 @@ class User extends AppModel {
 		}
 		//... and add a nice number
 		$pw .= rand(1,9);
-		
+
 		$pw = rtrim($pw);
-		
+
 		if (strlen($pw) == 7) {
 			$pw .= rand(0,9);
 		}
-		
+
 		return $pw;
 	}
 
@@ -172,7 +172,7 @@ class User extends AppModel {
             )
         );
 
-      return $this->findById($userId);  
+      return $this->findById($userId);
 
     }
 
@@ -190,6 +190,11 @@ class User extends AppModel {
 		return $this->findByUsername($userName);
 
     }
+
+    function habtmAdd($type = 'Follower', $user_id, $follower_id){
+		echo $type . ' ' . $user_id . ' ' . $follower_id;
+		exit;
+	}
 
 }
 ?>
