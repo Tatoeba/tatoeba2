@@ -132,13 +132,13 @@ class Contribution extends AppModel {
                 )
                 INNER JOIN `users` AS `User`
                     ON (`Contribution`.`user_id` = `User`.`id`)
-            WHERE
-                `Contribution`.`type` = 'sentence' 
-            ";
+            WHERE ";
         if ($lang != 'und'){
-            $query .=  "AND `Sentence`.`lang` = '$lang'";
+            $query .=  "`Sentence`.`lang` = '$lang' AND";
         } 
-        $query .= "
+
+        $query.="
+                `Contribution`.`type` = 'sentence'
             ORDER BY `Contribution`.`datetime` DESC 
             LIMIT $limit; 
         "; 
