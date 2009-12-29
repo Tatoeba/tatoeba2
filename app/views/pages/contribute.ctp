@@ -139,7 +139,7 @@
 		<?php
 		__('If you are interested, please register.');
 		echo $html->link(
-			'register',
+			__('register',true),
 			array("controller" => "users", "action" => "register"),
 			array("class"=>"registerButton")
 		);
