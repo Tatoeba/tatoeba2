@@ -16,6 +16,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+$this->pageTitle = __('Tatoeba team and credits',true);
+
+
 echo '<p><em>'.__('Note : the list is not complete yet...',true) .'</em></p>';
 
 echo '<h2>'. __('The team', true) . '</h2>';
