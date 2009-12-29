@@ -71,7 +71,10 @@ $this->pageTitle = __('Convert Japanese text into romaji or furigana',true);
 	__('Convert japanese text into : ');
 	echo $form->radio(
 		'type', 
-		array('romaji' => 'romaji', 'furigana' => 'furigana'), 
+		array(
+            'romaji' => __('romaji',true), 
+            'furigana' => __('furigana',true)
+        ), 
 		array('value' => $type, 'legend' => '')
 	);
 	echo '</p>';
