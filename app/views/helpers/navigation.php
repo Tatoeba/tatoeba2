@@ -63,7 +63,7 @@ class NavigationHelper extends AppHelper{
 			$langArray = $this->Languages->languagesArray();
 			asort($langArray);
 			$selectedLanguage = $this->Session->read('random_lang_selected');
-			array_unshift($langArray, array('any' => __('any', true)));
+			//array_unshift($langArray, array('any' => __('any', true)));
 
 			echo '<li class="option random">';
 			echo $this->Html->link(

@@ -58,9 +58,16 @@ $navigation->displayUsersNavigation($user['User']['id'], $user['User']['username
         <?php echo sprintf(__('Member since %s',true), $date->ago($user['User']['since'])); ?>
         </li>
         <li>
-            <a href="/user/profile/<?php echo $user['User']['username']?>" >
-                <?php echo __("View this user's profile",true) ;?>
-            </a>
+            <?php
+			echo $html->link(
+				__("View this user's profile",true),
+				array(
+					"controller" => "user",
+					"action" => "profile",
+					$user['User']['username']
+				)
+			);
+            ?>
         </li>
 	</ul>
 	</div>
