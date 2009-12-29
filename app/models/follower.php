@@ -40,23 +40,17 @@ class Follower extends AppModel{
 	);
 
 	function get_followers($userId){
-		return $this->find(
-			'all',
-			array(
-				'conditions' => array('Follower.user_id' => $userId),
-				'limit'=> 10
-			)
-		);
+		$user = new User();
+		$user->id = $userId;
+		$user->hasAndBelongsToMany['Follower']['limit'] = null;
+		return $user->read();
 	}
 
 	function get_following($userId){
-		return $this->find(
-			'all',
-			array(
-				'conditions' => array('Follower.follower_id' => $userId),
-				'limit'=> 10,
-			)
-		);
+		$user = new User();
+		$user->id = $userId;
+		$user->hasAndBelongsToMany['Following']['limit'] = null;
+		return $user->read();
 	}
 }
 ?>

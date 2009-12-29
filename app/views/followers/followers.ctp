@@ -22,9 +22,12 @@ echo '<h3>';
 __('User followers');
 echo '</h3>';
 if(count($user['Follower']) > 0){
+	echo '<ul>';
 	foreach($user['Follower'] as $follower){
-		var_dump($follower);
+		//var_dump($follower);
+		echo '<li>'.$follower['username'].'</li>';
 	}
+	echo '</ul>';
 }else{
 	__('This user does not have any followers.');
 }

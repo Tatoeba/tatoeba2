@@ -47,11 +47,7 @@ class FollowersController extends AppController {
 	 */
 	function followers($user_id){
 		Sanitize::paranoid($user_id);
-		$user = new User();
-		$user->id = $user_id;
-		$user->hasAndBelongsToMany['Follower']['limit'] = null;
-		$user = $user->read();
-		$this->set('user', $user);
+		$this->set('user', $this->Follower->get_followers($user_id));
 	}
 
 
@@ -60,16 +56,8 @@ class FollowersController extends AppController {
 	 * NOTE : This is not used (yet).
 	 */
 	function following($user_id){
-		/*$this->User->unbindModel(
-			array(
-				'belongsTo' => array('Group'),
-				'hasMany' => array('SentenceComments', 'Contributions', 'Sentences'),
-				'hasAndBelongsToMany' => array('Follower')
-			)
-		);
-		$this->User->id = $id;
-		$this->set('following', $this->User->read());*/
-		$this->set('following', $this->Follower->get_following($user_id));
+		Sanitize::paranoid($user_id);
+		$this->set('user', $this->Follower->get_following($user_id));
 	}
 
 

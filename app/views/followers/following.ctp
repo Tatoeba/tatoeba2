@@ -22,13 +22,14 @@ echo '<h3>';
 __('User following');
 echo '</h3>';
 
-var_dump($following);
-/*
-if(count($user['Follower']) > 0){
-	foreach($user['Follower'] as $follower){
-		var_dump($follower);
+if(count($user['Following']) > 0){
+	echo '<ul>';
+	foreach($user['Following'] as $following){
+		//var_dump($following);
+		echo '<li>'.$following['username'].'</li>';
 	}
+	echo '</ul>';
 }else{
 	__('This user does not follow any users.');
-}*/
+}
 ?>

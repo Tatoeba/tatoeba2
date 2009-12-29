@@ -38,9 +38,9 @@ if(!empty($user['User']['homepage'])){
 			<li><?php echo $html->link(sprintf(__('Contact %s via Private Message', true), $user['User']['username']),
 			array('controller' => 'privateMessages', 'action' => 'write', $user['User']['username'])); ?>
 			</li>
-			
+
 			<?php
-			if($session->read('Auth.User.id') AND isset($can_follow)){
+			if($session->read('Auth.User.id') && isset($can_follow)){
 				echo '<li class="user" id="_'.$user['User']['id'].'">';
 				if($can_follow){
 					$style2 = "style='display: none'";
@@ -55,7 +55,7 @@ if(!empty($user['User']['homepage'])){
 				echo '<li>';
 			}
 			?>
-			
+
 			<li>
 			</li><?php echo $html->link(sprintf(__("See this user's contributions", true)),
 			array('controller' => 'users', 'action' => 'show', $user['User']['id'])); ?>
