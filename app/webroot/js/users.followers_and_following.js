@@ -18,25 +18,30 @@
 
 */
 
+function load_followers(){
+	var user_id = $(".user").attr("id").slice(1);
+	$(".followers").load("http://" + self.location.hostname + "/followers/followers/" + user_id + "/true");
+	$(".following").load("http://" + self.location.hostname + "/followers/following/" + user_id + "/true");
+}
+
 $(document).ready(function(){
 	$(".followingOption").click(function(){
 		var user_id = $(".user").attr("id").slice(1); // because id starts with an underscore to be compliant to standards
 		var action = $(this).attr("id"); // "start" or "stop"
 		var url = "http://" + self.location.hostname + "/followers/" + action + "_following";
-		
+
 		$(".in_process").html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
-		
+
 		$.post(
 			url,
 			{ "user_id": user_id },
 			function(data){
 				$(".followingOption").toggle();
 				$(".in_process").html("");
+				load_followers();
 			}
 		);
 	});
-		
-	function load_followers(user_id){
-		$(".followers").load("http://" + self.location.hostname + "/users/followers/" + user_id);
-	}
+
+	load_followers();
 });

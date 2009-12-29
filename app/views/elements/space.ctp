@@ -23,7 +23,7 @@ if (isset($this->params['lang'])) {
 }
 ?>
 <strong title="<?php echo __('My profile', false);?>">
-	<?php echo $html->link($session->read('Auth.User.username'), array('controller' => 'user', 'action' => 'profile')); ?> :
+	<?php echo $html->link($session->read('Auth.User.username'), array('controller' => 'user', 'action' => 'index')); ?> :
 </strong>
 
 <?php $newMessages = $this->requestAction('/private_messages/check');

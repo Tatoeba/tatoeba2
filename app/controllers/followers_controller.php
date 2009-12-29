@@ -41,23 +41,29 @@ class FollowersController extends AppController {
 		$this->Auth->allowedActions = array('*');
 	}
 
-	/**
-	 * Display followers of specified user.
-	 * NOTE : This is not used (yet).
-	 */
-	function followers($user_id){
+	function followers($user_id, $ajax = 'false'){
 		Sanitize::paranoid($user_id);
-		$this->set('user', $this->Follower->get_followers($user_id));
+
+		if($ajax == 'true'){
+			$this->set('ajax', true);
+			$aUser = $this->Follower->get_followers($user_id, 10);
+		}else{
+			$aUser = $this->Follower->get_followers($user_id);
+		}
+
+		$this->set('user', $aUser);
 	}
 
-
-	/**
-	 * Display users following specified user.
-	 * NOTE : This is not used (yet).
-	 */
-	function following($user_id){
+	function following($user_id, $ajax = 'false'){
 		Sanitize::paranoid($user_id);
-		$this->set('user', $this->Follower->get_following($user_id));
+
+		if($ajax == 'true'){
+			$this->set('ajax', true);
+			$aUser = $this->Follower->get_following($user_id, 10);
+		}else{
+			$aUser = $this->Follower->get_following($user_id);
+		}
+		$this->set('user', $aUser);
 	}
 
 
@@ -78,6 +84,18 @@ class FollowersController extends AppController {
 	function stop_following(){
 		$user_id = $_POST['user_id'];
 		$this->Follower->habtmDelete('User', $this->Auth->user('id'), $user_id);
+	}
+
+
+	/**
+	 * Stop following a user.
+	 * Used in AJAX request in users.followers_and_following.js.
+	 */
+	function refuse_follower($user_id){
+		Sanitize::paranoid($user_id);
+
+		$this->Follower->habtmDelete('User', $user_id, $this->Auth->user('id'));
+		$this->redirect(array('action' => 'followers', $this->Auth->user('id')));
 	}
 }
 ?>

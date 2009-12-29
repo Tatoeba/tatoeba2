@@ -43,7 +43,7 @@ class UserController extends AppController {
 
 		$this->Auth->allowedActions = array('*');
 	}
-	
+
 	/**
 	 * Display current user's profile.
 	 */
@@ -65,61 +65,62 @@ class UserController extends AppController {
 		$this->set('user', $aUser);
         $this->set('userStats',$userStats);
 	}
-	
-	
+
+
 	/**
-	 * Display profile of given user. 
+	 * Display profile of given user.
 	 * If no username is specified, redirect to index (that is current user's profile).
 	 * If wrong username is specified, redirect to list of members.
 	 */
-	function profile($sUserName = null) {
+	function profile($sUserName = 'random') {
         Sanitize::html($sUserName);
 
-		if(is_null($sUserName)){
-			$this->redirect(array('action' => 'index'));
+		if($sUserName == 'random'){
+			$aUser = $this->User->find('first', array('conditions' => 'User.group_id < 5', 'order' => 'RAND()', 'limit' => 1));
 		} else {
-			$bLogin = $this->Auth->user('id') ? true : false;
-			
+
             $aUser = $this->User->getInformationOfUser($sUserName);
-		    $userStats = $this->stats($aUser['User']['id']);
+		}
 
-            $this->set('userStats',$userStats);
+		$userStats = $this->stats($aUser['User']['id']);
 
-            if ( $aUser != null ){
-                if($aUser['User']['name'] != ''){
-                    $this->pageTitle = sprintf(__("Profile of %s", true), $aUser['User']['name']);
-				}else{
-                    $this->pageTitle = sprintf(__("%s's profile", true), $sUserName);
-				}
-					
-				// Check if we can follow that user or not 
-				// (we can if we're NOT already following the user,
-				// or if the user is NOT ourself)
-				if($aUser['User']['id'] != $this->Auth->user('id')){
-					$can_follow = true;
-					foreach($aUser['Follower'] as $follower){
-						if($follower['id'] == $this->Auth->user('id')){
-							$can_follow = false;
-						}
+		$this->set('userStats',$userStats);
+
+		if ( $aUser != null ){
+			if($aUser['User']['name'] != ''){
+				$this->pageTitle = sprintf(__("Profile of %s", true), $aUser['User']['name']);
+			}else{
+				$this->pageTitle = sprintf(__("%s's profile", true), $sUserName);
+			}
+
+			// Check if we can follow that user or not
+			// (we can if we're NOT already following the user,
+			// or if the user is NOT ourself)
+			if($aUser['User']['id'] != $this->Auth->user('id')){
+				$can_follow = true;
+				foreach($aUser['Follower'] as $follower){
+					if($follower['id'] == $this->Auth->user('id')){
+						$can_follow = false;
 					}
-					$this->set('can_follow', $can_follow);
 				}
-					
-                // Check if his/her profile is public
-                $this->set('login', $bLogin);
-                $this->set('is_public', $aUser['User']['is_public']);
-                $this->set('user', $aUser);
-            } else {
-                // TODO better to had message "user %s doesn't exist" , but redirect is still
-                // better than a strange user's page 
-			    $this->flash(
-					sprintf(__('There is no user with this username : %s', true), $sUserName),
-					'/users/all'
-				);
-            }
+				$this->set('can_follow', $can_follow);
+			}
+
+			// Check if his/her profile is public
+			$bLogin = $this->Auth->user('id') ? true : false;
+			$this->set('login', $bLogin);
+			$this->set('is_public', $aUser['User']['is_public']);
+			$this->set('user', $aUser);
+		} else {
+			// TODO better to had message "user %s doesn't exist" , but redirect is still
+			// better than a strange user's page
+			$this->flash(
+				sprintf(__('There is no user with this username : %s', true), $sUserName),
+				'/users/all'
+			);
 		}
 	}
-	
+
 	/**
 	 * Save avatar image of current user.
 	 */
@@ -168,7 +169,7 @@ class UserController extends AppController {
 
 		$this->redirect(array('action' => 'index'));
 	}
-	
+
 	/**
 	 * Save user's description about himself/herself.
 	 */
@@ -197,8 +198,8 @@ class UserController extends AppController {
 
 		$this->redirect(array('action' => 'index'));
 	}
-	
-	
+
+
 	/**
 	 * Save name, birthday and country.
 	 */
@@ -227,8 +228,8 @@ class UserController extends AppController {
 
 		$this->redirect(array('action' => 'index'));
 	}
-	
-	
+
+
 	/**
 	 * Save email and personal URL.
 	 */
@@ -236,7 +237,7 @@ class UserController extends AppController {
 		if(!empty($this->data)){
             Sanitize::html($this->data['profile_contact']['description']);
             Sanitize::html($this->data['profile_contact']['email']);
-            
+
 			$aToSave = array(
 				'User' => array(
 					'email' => $this->data['profile_contact']['email']
@@ -264,8 +265,8 @@ class UserController extends AppController {
 		 * url
 		 */
 	}
-	
-	
+
+
 	/**
 	 * Save option settings. Options are :
 	 *  - send notification emails
@@ -297,8 +298,8 @@ class UserController extends AppController {
 
 		$this->redirect(array('action' => 'index'));
 	}
-	
-	
+
+
 	/**
 	 * Change password.
 	 */
@@ -338,15 +339,15 @@ class UserController extends AppController {
 		 * change password <- already implemnted, just to move here
 		 */
 	}
-	
-	
+
+
 	/**
 	 * Retrieve stats about the user.
 	 * This is displayed on homepage for now...
 	 */
 	function stats($userId){
-        
-	
+
+
         $numberOfSentences = $this->Sentence->numberOfSentencesOwnedBy($userId);
         $numberOfComments  = $this->SentenceComment->numberOfCommentsOwnedBy($userId);
 

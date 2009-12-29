@@ -8,12 +8,6 @@ if($is_public or $login){
 
 	<div id="pcontact" class="module">
 		<h2><?php __('Contact information') ?></h2>
-		<?php /*
-		* Lists definitions are hype. Ok... But there I don't think it's the best
-		* usability way for users... one title with one link. The link says all and
-		* the title just adds overinformation.
-		* That's why I propose the simple list variant below. To be test and validated.
-		*
 		<dl>
 			<dt><?php __('Private message'); ?></dt>
 			<dd><?php echo $html->link(sprintf(__('Contact %s', true), $user['User']['username']),
@@ -23,49 +17,16 @@ if($is_public or $login){
 			<dd><?php echo $html->link(sprintf(__("See this user's contributions", true)),
 			array('controller' => 'users', 'action' => 'show', $user['User']['id'])); ?></dd>
 
-            <dt><?php __('Follow'); ?></dt>
-			<dd><a href="#" id="followingOption"><span class="user" id="<?php echo $user['User']['id']; ?>"><?php echo sprintf(__("Start following %s", true), $user['User']['username']); ?></span></a></dd>
-<?php
-if(!empty($user['User']['homepage'])){
-?>
-			<dt><?php __('Homepage'); ?></dt>
-			<dd><?php echo '<a href="' . $user['User']['homepage'] . '" title="' . $user['User']['username'] . '">' . $user['User']['homepage'] . '</a>' ?></dd>
-<?php
-}
-?>
-		</dl>*/ ?>
-		<ul>
-			<li><?php echo $html->link(sprintf(__('Contact %s via Private Message', true), $user['User']['username']),
-			array('controller' => 'privateMessages', 'action' => 'write', $user['User']['username'])); ?>
-			</li>
-
 			<?php
-			if($session->read('Auth.User.id') && isset($can_follow)){
-				echo '<li class="user" id="_'.$user['User']['id'].'">';
-				if($can_follow){
-					$style2 = "style='display: none'";
-					$style1 = "";
-				}else{
-					$style1 = "style='display: none'";
-					$style2 = "";
-				}
-				echo '<a id="start" class="followingOption" '.$style1.'>'. __('Start following this person', true). '</a>';
-				echo '<a id="stop" class="followingOption" '.$style2.'>'. __('Stop following this person', true). '</a>';
-				echo '<span class="in_process"></span>';
-				echo '<li>';
+			if(!empty($user['User']['homepage'])){
+			?>
+				<dt><?php __('Homepage'); ?></dt>
+				<dd><?php echo '<a href="' . $user['User']['homepage'] . '" title="' . $user['User']['username'] . '">' . $user['User']['homepage'] . '</a>' ?></dd>
+			<?php
 			}
 			?>
-
-			<li>
-			</li><?php echo $html->link(sprintf(__("See this user's contributions", true)),
-			array('controller' => 'users', 'action' => 'show', $user['User']['id'])); ?>
-			<li>
-			</li>
-		</ul>
+		</dl>
 	</div>
-
-
-		<!--<div class="followers"></div>-->
 
 	<div class="module">
 		<h2><?php __('Activity information'); ?></h2>
@@ -82,12 +43,35 @@ if(!empty($user['User']['homepage'])){
 			<dd><?php echo $userStats['numberOfFavorites'] ?></dd>
 		</dl>
 	</div>
+
+	<div class="module">
+		<h2><?php __('Following'); ?></h2>
+		<div class="following"></div>
+	</div>
+
+	<div class="module">
+		<h2><?php __('Followers'); ?></h2>
+		<div class="followers"></div>
+	</div>
 </div>
 
 <div id="main_content">
-	<div class="module">
+	<div class="module profile_master_content">
 		<h2><?php if($user['User']['name'] != '') echo $user['User']['name'] . ' aka. ' . $user['User']['username'];
 		else echo $user['User']['username'] ?></h2>
+		<p class="user followLinkContainer" id="<?php echo '_'.$user['User']['id']; ?>">
+		<?php if($session->read('Auth.User.id') && isset($can_follow)){
+			if($can_follow){
+				$style2 = "style='display: none'";
+				$style1 = "";
+			}else{
+				$style1 = "style='display: none'";
+				$style2 = "";
+			}
+			echo '<a id="start" class="followingOption" '.$style1.'><span class="in_process"></span>'. __('Follow', true). '</a>';
+			echo '<a id="stop" class="followingOption" '.$style2.'><span class="in_process"></span>'. __('Unfollow', true). '</a>';
+		} ?>
+		</p>
 		<div id="pimg">
 <?php
 echo $html->image('profiles/' . (empty($user['User']['image']) ? 'tatoeba_user.png' : $user['User']['image'] ), array(

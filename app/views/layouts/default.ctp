@@ -44,7 +44,7 @@
 		echo $html->css('tatoeba.comments');
 		echo $html->css('tatoeba.statistics');
 		echo $html->css('tatoeba.users');
-        if($this->params['controller'] == "user"){
+        if($this->params['controller'] == 'user' || $this->params['controller'] == 'followers'){
 	        echo $html->css('tatoeba.profile', false);
         }
 
@@ -55,13 +55,13 @@
 		echo $html->css('tatoeba.popup');
 //		echo $html->css('tatoeba.conversations');
 		echo $html->css('tatoeba.private_messages');
-		echo $html->css('tatoeba.sentences_lists');    
+		echo $html->css('tatoeba.sentences_lists');
 		echo $html->css('tatoeba.tools');
         if($this->params['controller'] == 'sinograms'){
             echo $html->css('tatoeba.sinograms');
         }
 //      echo $html->css('jquery-ui-1.7.2.custom');
-        
+
 //      echo $html->css('autocompletion.jquery.autocomplete');
 //      echo $html->css('autocompletion.thickbox');
 
@@ -74,10 +74,10 @@
 	?>
 </head>
 <body>
-	
+
 	<!--  TOP  -->
 	<?php echo $this->element('top1'); ?>
-		
+
 
 	<div id="container1">
 		<!--  Title/Logo  -->
@@ -110,7 +110,7 @@
 		echo $this->element('foot');
 		?>
 	</div>
-	
+
 	<div id="footer_container">
 	</div>
 	<?php echo $cakeDebug ?>

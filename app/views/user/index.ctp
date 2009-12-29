@@ -39,7 +39,7 @@ if(!$session->read('Auth.User.id')){
 				);
 				?>
                 </li>
-			
+
                 <li>
                 <?php
 				echo sprintf(
@@ -48,7 +48,7 @@ if(!$session->read('Auth.User.id')){
 				);
 				?>
                 </li>
- 
+
 
                 <li>
                 <?php
@@ -60,10 +60,10 @@ if(!$session->read('Auth.User.id')){
                 </li>
 
 
-            	
+
 			</ul>
 
-    </div>	
+    </div>
     <div class="module">
 		<h2><?php __('Activity information'); ?></h2>
 		<dl>
@@ -77,7 +77,7 @@ if(!$session->read('Auth.User.id')){
 			<dd><?php echo $userStats['numberOfSentences'] ?></dd>
 			<dt><?php __('Sentences favorited'); ?></dt>
 			<dd><?php echo $userStats['numberOfFavorites'] ?></dd>
-            
+
 		</dl>
 	</div>
 
@@ -86,7 +86,7 @@ if(!$session->read('Auth.User.id')){
 <div id="main_content">
 	<div class="module">
 		<h2><?php echo $user['User']['username'] ?></h2>
-		<div id="pimg">
+		<div id="pimg" style="cursor:pointer;">
 <?php
 echo $html->image('profiles/' . (empty($user['User']['image']) ? 'tatoeba_user.png' : $user['User']['image'] ), array(
 	'alt' => $user['User']['username'],
@@ -152,7 +152,7 @@ echo $form->end(__('Upload', true));
                   __('Tell us something about you!');
                 } else {
                    echo  nl2br($user['User']['description']);
-                }    
+                }
                 ?>
         </div>
 	</div>
@@ -176,12 +176,12 @@ echo $form->end(__('Upload', true));
 			'label' => 'Name',
 			'value' => $user['User']['name']
 	));
-	
+
 	$aBirthday = explode('-', substr($user['User']['birthday'], 0, 10));
 	// 0 => YYYY
 	// 1 => MM
 	// 2 => DD
-	
+
 	$iTimestamp = mktime(0, 0, 0, $aBirthday[1], $aBirthday[2], $aBirthday[0]);
 
 	echo $form->input('birthday', array(
@@ -198,7 +198,7 @@ echo $form->end(__('Upload', true));
     if(! is_null($user['User']['country_id'])){
         $temp = $user['Country']['id']; // find a better name for this variable
     }
-    
+
     echo $form->select(
             'country',
             $countries,
@@ -233,13 +233,13 @@ echo $form->end(__('Upload', true));
 			<dt><?php __('Birthday'); ?></dt>
 			<dd>
                 <?php
-                 echo (((integer) $aBirthday[0] == 0) ? __('You have not set your birthday yet!', true) : date('F j, Y', $iTimestamp)) 
+                 echo (((integer) $aBirthday[0] == 0) ? __('You have not set your birthday yet!', true) : date('F j, Y', $iTimestamp))
                  ?>
             </dd>
 			<dt><?php __('Country'); ?></dt>
 			<dd>
                 <?php
-                echo (is_null($user['User']['country_id']) ? __('Tells us where you come from!', true) : $user['Country']['name']) 
+                echo (is_null($user['User']['country_id']) ? __('Tells us where you come from!', true) : $user['Country']['name'])
                 ?>
             </dd>
 		</dl>

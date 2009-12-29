@@ -83,14 +83,14 @@ class User extends AppModel {
 		'Follower' => array(
 			'className' => 'Follower',
 			'joinTable' => 'followers_users',
-			'foreignKey' => 'follower_id',
-			'associationForeignKey' => 'user_id'
+			'foreignKey' => 'user_id',
+			'associationForeignKey' => 'follower_id'
 		),
 		'Following' => array(
 			'className' => 'Following',
 			'joinTable' => 'followers_users',
-			'foreignKey' => 'user_id',
-			'associationForeignKey' => 'follower_id'
+			'foreignKey' => 'follower_id',
+			'associationForeignKey' => 'user_id'
 		),
 		'Favorite' => array(
 			'className' => 'Favorite',

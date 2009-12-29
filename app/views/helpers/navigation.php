@@ -98,9 +98,9 @@ class NavigationHelper extends AppHelper{
 			echo $this->Html->link(
 				__('random',true),
 				array(
-					"controller" => "users",
-					"action" => "show",
-					"random"
+					'controller' => 'user',
+					'action' => 'profile',
+					'random'
 				)
 			);
 			echo '</li>';
@@ -110,8 +110,8 @@ class NavigationHelper extends AppHelper{
 			echo $this->Html->link(
 				__('all',true),
 				array(
-					"controller" => "users",
-					"action" => "all"
+					'controller' => 'users',
+					'action' => 'all'
 				)
 			);
 			echo '</li>';
@@ -122,9 +122,9 @@ class NavigationHelper extends AppHelper{
 				echo $this->Html->link(
 					sprintf( __('Profile of %s',true), $username),
 					array(
-						"controller" => "users",
-						"action" => "show",
-						$currentId
+						'controller' => 'user',
+						'action' => 'profile',
+						$username
 					)
 				);
 			}
