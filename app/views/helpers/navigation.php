@@ -120,7 +120,7 @@ class NavigationHelper extends AppHelper{
 			if($this->params['controller'] != 'users' AND $this->params['action'] != 'show'){
 				echo '<li class="option">';
 				echo $this->Html->link(
-					sprintf( __('%s profile',true), $username),
+					sprintf( __('Profile of %s',true), $username),
 					array(
 						"controller" => "users",
 						"action" => "show",
