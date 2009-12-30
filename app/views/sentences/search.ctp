@@ -51,7 +51,13 @@
 		if(isset($results)){
 			
 			if(count($results) > 0){
-				echo '<h2>Search : ' . htmlentities($query, ENT_QUOTES, 'UTF-8') . ', <em>' . $resultsInfo['sentencesCount'] . ' result(s)</em></h2>';
+				echo '<h2>' ;
+                    echo  sprintf ( 
+                        __('Search : %s , <em>%s result(s)</em>',true),
+                        htmlentities($query, ENT_QUOTES, 'UTF-8'),
+                        $resultsInfo['sentencesCount']
+                    );
+                echo '</h2>';
 				
 				$pagination->displaySearchPagination($resultsInfo['pagesCount'], $resultsInfo['currentPage'], $query, $from, $to);
 				

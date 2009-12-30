@@ -43,8 +43,16 @@ $this->pageTitle = __('Convert Japanese text into romaji or furigana',true);
 	<div class="module">
 	<h2><?php __('More information'); ?></h2>
 	<ul>
-		<li><a href="http://blog.tatoeba.org/2009/02/tools-for-japanese-romanization.html">Tools for Japanese	romanization</a></li>
-		<li><a href="http://blog.tatoeba.org/2009/02/rules-for-romaji.html">Rules for romaji in Tatoeba</a></li>
+		<li>
+            <a href="http://blog.tatoeba.org/2009/02/tools-for-japanese-romanization.html">
+                <?php __('Tools for Japanese romanization') ?>
+            </a>
+        </li>
+		<li>
+            <a href="http://blog.tatoeba.org/2009/02/rules-for-romaji.html">
+               <?php __(' Rules for romaji in Tatoeba') ?>
+            </a>
+        </li>
 	</ul>
 	</div>
 </div>
