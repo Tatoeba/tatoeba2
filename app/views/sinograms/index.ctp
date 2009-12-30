@@ -37,7 +37,7 @@ $javascript->link("sinograms.search.js",false);
         ?>
         </div>
         <div id="radicalsList" >
-            <h3><? __('1 Stroke') ?></h3>
+            <h3><? __('1 stroke') ?></h3>
             <a class="radical">一</a>
             <a class="radical">丨</a>
             <a class="radical">丶</a>
