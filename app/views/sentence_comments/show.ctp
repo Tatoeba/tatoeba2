@@ -19,6 +19,7 @@
 
 
 // navigation (previous, random, next)
+/*
 $navigation->displaySentenceNavigation();
 ?>
 <div id="annexe_content">
@@ -110,5 +111,6 @@ $navigation->displaySentenceNavigation();
 		?>
 	</div>
 </div>
-
+*/
+?>
 
