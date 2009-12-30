@@ -45,7 +45,7 @@ class LanguagesHelper extends AppHelper{
             , 'ell' => __('Modern Greek',true)
             , 'tur' => __('Turkish',true)
             , 'swe' => __('Swedish',true)
-            , 'nob' => __('Norwegian (Bokmål',true)
+            , 'nob' => __('Norwegian (Bokmål)',true)
             , 'zsm' => __('Malay',true)
             , 'est' => __('Estonian',true)
             , 'wuu' => __('Shanghainese',true)// TODO to change when shanghainese will not be the only wu dialect
