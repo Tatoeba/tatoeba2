@@ -148,7 +148,7 @@ $javascript->link('jquery.jeditable.js', false);
 	if($session->read('Auth.User.id') == $list['SentencesList']['user_id']){
 		$class = 'class="editable editableSentencesListName"';
 	}
-	echo '<h2 id="'.$list['SentencesList']['id'].'" '.$class.'>'.$list['SentencesList']['name'].'</h2>';
+	echo '<h2 id="_'.$list['SentencesList']['id'].'" '.$class.'>'.$list['SentencesList']['name'].'</h2>';
 
 	echo '<div id="newSentenceInList">';
 	echo $form->input('text', array("label" => __('Add a sentence to this list : ', true)));
