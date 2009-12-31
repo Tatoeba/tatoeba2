@@ -91,7 +91,7 @@ class NavigationHelper extends AppHelper{
 			echo $this->Form->input('username', array("label" => __('Enter a username : ',true), "value" => $username));
 			echo $this->Form->end(__('show user',true));
 
-			echo '<ul>';
+			echo '<ul>'."\n";
 
 			// random
 			echo '<li class="option">';
@@ -103,7 +103,7 @@ class NavigationHelper extends AppHelper{
 					'random'
 				)
 			);
-			echo '</li>';
+			echo "</li>\n";
 
 			// all
 			echo '<li class="option">';
@@ -127,8 +127,9 @@ class NavigationHelper extends AppHelper{
 						$username
 					)
 				);
+
+			    echo '</li>';
 			}
-			echo '</li>';
 
 			echo '</ul>';
 
