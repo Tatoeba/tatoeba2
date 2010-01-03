@@ -56,6 +56,41 @@ class LanguagesHelper extends AppHelper{
 		return $languages;
 	}
 	
+    /*
+    ** get array of languages used in search bar
+    */
+    function getSearchableLanguagesArray(){
+        $languages = array(
+			  'ara' => __('Arabic', true)
+			, 'eng' => __('English', true)
+			, 'jpn' => __('Japanese', true)
+			, 'fra' => __('French', true)
+			, 'deu' => __('German', true)
+			, 'spa' => __('Spanish', true)
+			, 'ita' => __('Italian', true)
+			, 'vie' => __('Vietnamese', true)
+			, 'rus' => __('Russian', true)
+			, 'cmn' => __('Chinese', true)
+			, 'kor' => __('Korean', true)
+			, 'nld' => __('Dutch', true)
+			, 'heb' => __('Hebrew', true)
+			, 'ind' => __('Indonesian', true)
+			, 'por' => __('Portuguese', true)
+			, 'fin' => __('Finnish', true)
+			, 'bul' => __('Bulgarian', true)
+			, 'ukr' => __('Ukrainian', true)
+            , 'ces' => __('Czech',true)
+            , 'epo' => __('Esperanto',true)
+            , 'ell' => __('Modern Greek',true)
+            , 'tur' => __('Turkish',true)
+
+        );
+        asort($languages);
+        array_unshift($languages, array('und' => __('Any', true)) );
+
+        return $languages;
+    }
+
 	function codeToName($code){
 		$languages = $this->languagesArray();
 		if(isset($languages["$code"])){
