@@ -21,8 +21,8 @@ class LanguagesHelper extends AppHelper{
 		$languages = array(
             // can't use 'any' as it's the code for anyin language
             // only und is used for "undefined" 
-              'und' => __('All languages',true)
-			, 'ara' => __('Arabic', true)
+        //      'und' => __('All languages',true)
+			 'ara' => __('Arabic', true)
 			, 'eng' => __('English', true)
 			, 'jpn' => __('Japanese', true)
 			, 'fra' => __('French', true)
@@ -50,6 +50,9 @@ class LanguagesHelper extends AppHelper{
             , 'est' => __('Estonian',true)
             , 'wuu' => __('Shanghainese',true)// TODO to change when shanghainese will not be the only wu dialect
 		);
+        asort($languages);
+        array_unshift( $languages , array('und' => __('All languages',true)) );
+        
 		return $languages;
 	}
 	
