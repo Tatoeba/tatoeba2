@@ -21,8 +21,16 @@ App::import('Core', 'Sanitize');
 
 class ApiController extends AppController {
 
+	/**
+	 *
+	 * @var string
+	 */
 	var $name = 'Api';
 
+	/**
+	 *
+	 * @var array
+	 */
 	var $components = array('RequestHandler');
 
 	/**
@@ -31,12 +39,20 @@ class ApiController extends AppController {
 	 * @var array
 	 * @access private
 	 */
-	private $aWhat = array('user', 'sentence', 'comment', 'message');
+	private $aWhat = array(
+		'user', // add, edit, get, delete
+		'sentence', // add, edit, get, detele
+		// 'contribution', // get
+		'comment', // add, edit?, get, delete
+		'message', // send, get, delete
+		'alerte' // send?, get
+	);
 
 	/**
 	 * Array of useful HTTP return code
 	 *
 	 * @todo Complete the list if needed
+	 * @example http://en.wikipedia.org/wiki/List_of_HTTP_status_codes
 	 * @var array
 	 * @access private
 	 */
@@ -49,8 +65,8 @@ class ApiController extends AppController {
 
 		400 => 'Bad Request', // Malformed query
 		401 => 'Unauthorized', // Bad username/password
-		404 => 'Not Found', // User/Sentence/Comment not found
 		403 => 'Forbidden', // Forbiden action/query
+		404 => 'Not Found', // User/Sentence/Comment not found
 		408 => 'Request Timeout',
 		410 => 'Gone',
 
@@ -72,6 +88,7 @@ class ApiController extends AppController {
 	/**
 	 * Select output format
 	 *
+	 * @example http://en.wikipedia.org/wiki/Internet_media_type
 	 * @param string $sFormat Output format. It may be XML, JSON or PHP
 	 * @access private
 	 */
@@ -81,10 +98,14 @@ class ApiController extends AppController {
 				$this->header('content-type: text/xml');
 			break;
 			case 'json':
-				// ?
+				$this->header('Content-type: application/json');
 			break;
 			case 'php':
+				$this->header('Content-type: text/plain');
 				// useful for PHP applications -> deserialize response and then an expoitable PHP array
+			break;
+			case 'cvs':
+				$this->header('Content-type: text/csv');
 			break;
 			default:
 				// XML is default output format
@@ -96,6 +117,7 @@ class ApiController extends AppController {
 	/**
 	 * Send the specified view with adequate HTPP code and a friendly message
 	 *
+	 * @todo Maybe it is important to be able to set the HTTP protocol version (for combatibility issues)
 	 * @param string $sView View to output
 	 * @param integer $iCode HTTP Code
 	 * @param string $sMessage Message to display
@@ -109,12 +131,13 @@ class ApiController extends AppController {
 
 		$this->render($sView);
 
-		$this->header('HTTP/1.0 ' . $iCode . ' ' . $this->aCodeMsgs[$iCode]);
+		$this->header('HTTP/1.1 ' . $iCode . ' ' . $this->aCodeMsgs[$iCode]);
 	}
 
 	/**
 	 * Index of documentation
 	 *
+	 * @todo Write API documentation and examples
 	 * @example http://totoeba.fr/api/
 	 * @access public
 	 */
@@ -135,31 +158,21 @@ class ApiController extends AppController {
 
 		if($this->Auth->user('id')){
 			// Already logged in
-			$this->doSend('error', 200, 'Already logged in');
-
-			return;
+			$this->doSend('error', 200, 'Already logged in'); return;
 		}
 
 		if(empty($this->data['User'])){
-			$this->doSend('error', 403, 'Need username and password to login');
-
-			return;
+			$this->doSend('error', 403, 'Need username and password to login'); return;
 		}
 
 		if(!$this->Auth->login()){
-			$this->doSend('error', 401, 'Wrong username and password');
-			
-			return;
+			$this->doSend('error', 401, 'Wrong username and password'); return;
 		}else{
 			if($this->Auth->user('group_id') == 5)	{
-				$this->doSend('error', 401, 'Your account is not valide');
-
-				return;
+				$this->doSend('error', 401, 'Your account is not valide'); return;
 			}
 
-			$this->doSend('error', 200, 'Logged in successfully');
-			
-			return;
+			$this->doSend('error', 200, 'Logged in successfully'); return;
 		}
 	}
 
@@ -191,7 +204,7 @@ class ApiController extends AppController {
 	 * @example http://tatoeba.fr/api/view/user/socom/xml/
 	 * @access public
 	 */
-	function view($sWhat = null, $mID = null, $sFormat = 'xml') {
+	function get($sWhat = null, $mID = null, $sFormat = 'xml') {
 		$this->doHeader($sFormat);
 		
 		if($this->Auth->user('id')){
@@ -202,6 +215,10 @@ class ApiController extends AppController {
 				case 'user':
 					$this->loadModel('User');
 
+					/*
+					 * TODO: use containable and hide in model method
+					 * see http://book.cakephp.org/fr/view/474/Containable
+					 */
 					$this->User->unBindModel(
 						array('hasMany' => array('Contributions', 'Sentences', 'SentenceComments' )
 							, 'hasAndBelongsToMany' => array('Favorite')
@@ -226,9 +243,7 @@ class ApiController extends AppController {
 					}elseif(ctype_alnum($mID)){ // It is an alpha-numric id, thus a username
 						$aUser = $this->User->findByUsername($mID);
 					}else{
-						$this->doSend('error', 400, 'Bad Request');
-						
-						return;
+						$this->doSend('error', 400, 'Bad Request'); return;
 					}
 
 					if(!empty($aUser)){
@@ -241,9 +256,7 @@ class ApiController extends AppController {
 						}
 					}else {
 						// Send an error
-						$this->doSend('error', 404, 'User Not Found');
-
-						return;
+						$this->doSend('error', 404, 'User Not Found'); return;
 					}
 				break;
 
@@ -253,18 +266,15 @@ class ApiController extends AppController {
 
 					$sUsername = isset($_GET['u']) ? (string) Sanitize::paranoid($_GET['u']) : null;
 					$iUserID = isset($_GET['u_id']) ? (integer) Sanitize::paranoid($_GET['u_id']) : null;
-
-					// $sUsername = Sanitize::paranoid($_GET['u']);
-					// $iUserID = (integer) Sanitize::paranoid($_GET['u_id']);
+					// $iCount = isset($_GET['count']) ? (integer) Sanitize::paranoid($_GET['count']) : null;
+					$sLang = (isset($_GET['lang']) and strlen($_GET['lang']) == 3) ? (string) Sanitize::paranoid($_GET['lang']) : null;
+					
 					// $iLimit = (integer) Sanitize::paranoid($_GET['limit']);
 					// $iPage = (integer) Sanitize::paranoid($_GET['page']);
-					// $iCount = (integer) Sanitize::paranoid($_GET['count']);
 					// $iSince = (integer) Sanitize::paranoid($_GET['since']);
 
 					if($mID == null){
-						$this->doSend('error', 400, 'Missed Sentence ID');
-
-						return;
+						$this->doSend('error', 400, 'Missed Sentence ID'); return;
 					}elseif($mID == 'last'){
 
 						// last X sentences: count=?
@@ -275,56 +285,83 @@ class ApiController extends AppController {
 						// last sentences since a date from a user in a language: (u=? or u_id=?) and since=? and lang=?
 
 					}elseif ($mID == 'random') {
+						if($sUsername === null){
+							if($sLang === null){
+								// absolutly random
+								$sLang = array_rand($this->Sentence->languages);
+							}else{
+								$this->doSend('error', 501, 'Not Implemented Yet'); return;
+								
+								// absolutly random from a language: lang=?
+								if(!in_array($sLang, $this->Sentence->languages)){
+									$this->doSend('error', 400, 'Bad Request: Language Not Found'); return;
+								}
+							}
 
-						if(1){
-							// absolutly random
-							// absolutly random from a language: lang=?
-						}elseif(1){
+							$sSentence = null;
+
+							do{
+								$iSentenceID = rand(1, $this->Sentence->getMaxId());
+								$sSentence = $this->Sentence->getSentenceWithId($iSentenceID);
+							}while (is_null($sSentence));
+							
+							$aTranslations = $this->Sentence->getTranslationsOf($iSentenceID);
+
+							$this->set('sentence', $sSentence);
+							$this->set('translations', $aTranslations);
+
+							$this->doSend('sentence/view', 200, 'OK'); return;
+						}elseif(true){
 							// random from a user: u=? or u_id=?
 							// random from a user in a language: (u=? or u_id=?) and lang=?
+							
+							$this->doSend('error', 501, 'Not Implemented Yet'); return;
 						}else{
 							// error
+							$this->doSend('error', 400, 'Bad Request'); return;
 						}
 
 					}elseif (ctype_digit($mID)) {
-						$sSentence = $this->Sentence->getShowSentenceWithId($mID);
+						$sSentence = $this->Sentence->getSentenceWithId($mID);
 						$aTranslations = $this->Sentence->getTranslationsOf($mID);
 
 						if($sSentence != null){
 							$this->set('sentence', $sSentence);
 							$this->set('translations', $aTranslations);
 
-							$this->doSend('sentence/view', 200, 'OK');
+							$this->doSend('sentence/view', 200, 'OK'); return;
 						}else{
-							$this->doSend('error', 404, 'Sentence Not Found');
+							$this->doSend('error', 404, 'Sentence Not Found'); return;
 						}
 					}else {
-						$this->doSend('error', 400, 'Bad Request');
-
-						return;
+						$this->doSend('error', 400, 'Bad Request'); return;
 					}
-					
 				break;
 
 				// comments
 				case 'comment':
-					$this->doSend('error', 501, 'Not Implemented Yet');
+					$this->doSend('error', 501, 'Not Implemented Yet'); return;
 				break;
 
 				// private messages
 				case 'message':
-					$this->doSend('error', 501, 'Not Implemented Yet');
+					$this->doSend('error', 501, 'Not Implemented Yet'); return;
+				break;
+
+				// alertes
+				case 'alerte':
+					
 				break;
 
 				default:
 					// Send an error
-					$this->doSend('error', 400, 'Bad Request');
+					$this->doSend('error', 400, 'Bad Request'); return;
 				break;
 
 			}
 		}else{
 			// Guest
-			$this->doSend('error', 403, 'Need to be logged in');
+			$this->doSend('error', 403, 'Need to be logged in'); return;
 		}
 
 	}
