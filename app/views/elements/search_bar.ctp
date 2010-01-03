@@ -24,6 +24,7 @@ if (isset($this->params['lang'])) {
 <div class="search_bar">
 
 <?php
+// TODO hack spotted : should use a method from helper "languagesArray"
 $languages = array(
               'und' => __('Any', true)
 			, 'ara' => __('Arabic', true)
@@ -54,6 +55,16 @@ asort($languages);
 $selectedLanguageFrom = $session->read('search_from');
 $selectedLanguageTo = $session->read('search_to');
 
+
+// TODO HACK SPOTTED : in fact the array should be sort in the languagesArray method and "all languages" set as first
+// and 
+if($selectedLanguageFrom == null){
+    $selectedLanguageFrom = 'und' ;
+}
+
+if($selectedLanguageTo == null){
+    $selectedLanguageTo = 'und' ;
+}
 echo $form->create('Sentence', array("action" => "search", "type" => "get"));
 
 echo '<fieldset class="select">';

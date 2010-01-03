@@ -386,10 +386,13 @@ class SentencesController extends AppController{
 			
 			$ids = array();
 			$scores = array();
-			foreach($lucene_results['sentencesIds'] as $result){
-				$ids[] = $result['id'];
-				$scores[] = $result['score'];
-			}
+
+            if ( isset($lucene_results['sentencesIds'])){
+                foreach($lucene_results['sentencesIds'] as $result){
+                    $ids[] = $result['id'];
+                    $scores[] = $result['score'];
+                }
+            }
 		
             /* model */	
 			$this->Sentence->unbindModel(
@@ -445,7 +448,7 @@ class SentencesController extends AppController{
 		// "show" is used anywhere else.
 			
 			
-		if($lang == null OR $lang == 'und' ){
+		if($lang == null){
 			$lang = $this->Session->read('random_lang_selected');
 		}
 		
@@ -454,7 +457,7 @@ class SentencesController extends AppController{
             $alltranslations = $this->Sentence->getTranslationsOf($randomId);
             $translations = $alltranslations['Translation'];
             $indirectTranslations = $alltranslations['IndirectTranslation'];
-        
+       
 		$this->Session->write('random_lang_selected', $lang);
 		$randomSentence['specialOptions'] = $this->Permissions->getSentencesOptions($randomSentence, $this->Auth->user('id'));
 		

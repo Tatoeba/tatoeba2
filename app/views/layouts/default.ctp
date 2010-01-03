@@ -44,7 +44,7 @@
 		echo $html->css('tatoeba.comments');
 		echo $html->css('tatoeba.statistics');
 		echo $html->css('tatoeba.users');
-        if($this->params['controller'] == 'user' || $this->params['controller'] == 'followers'){
+        if ($this->params['controller'] == 'user' || $this->params['controller'] == 'followers'){
 	        echo $html->css('tatoeba.profile', false);
         }
 
@@ -55,9 +55,11 @@
 		echo $html->css('tatoeba.popup');
 //		echo $html->css('tatoeba.conversations');
 		echo $html->css('tatoeba.private_messages');
-		echo $html->css('tatoeba.sentences_lists');
+        if ($this->params['controller'] == 'sentences_lists') {
+            echo $html->css('tatoeba.sentences_lists');
+        }
 		echo $html->css('tatoeba.tools');
-        if($this->params['controller'] == 'sinograms'){
+        if ($this->params['controller'] == 'sinograms'){
             echo $html->css('tatoeba.sinograms');
         }
 //      echo $html->css('jquery-ui-1.7.2.custom');

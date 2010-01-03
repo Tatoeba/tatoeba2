@@ -420,7 +420,13 @@ class SentencesHelper extends AppHelper {
 			// language select
 			$langArray = $this->Languages->languagesArray();
 			asort($langArray);
-			echo $this->Form->select('selectLang_'.$id, $langArray, null, array("class"=>"selectLang"));
+			echo $this->Form->select(
+                'selectLang_'.$id,
+                $langArray,
+                'und',
+                array("class"=>"selectLang"),
+                false
+            );
 		}
 		
 		echo $this->Html->image(

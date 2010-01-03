@@ -248,7 +248,7 @@ class Sentence extends AppModel{
             return $ids ;
         }
 
-        if ( $lang == null OR $lang == "any" ){ 
+        if ( $lang == null OR $lang == "any" OR $lang = 'und'  ){ 
 
             $query= "SELECT Sentence.id FROM sentences AS Sentence
                 ORDER BY RAND(".rand(). ") LIMIT  $numberOfIdWanted";
