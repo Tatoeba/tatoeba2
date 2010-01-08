@@ -31,7 +31,7 @@ class Sentence extends AppModel{
         'jpn' ,'kor' ,'nld' ,'por' ,'rus',
         'vie' ,'cmn' ,'ces' ,'fin' ,'ita',
         'tur' ,'ukr' ,'wuu' ,'swe' ,'zsm',
-        'nob' ,'est' ,null
+        'nob' ,'est' ,'kat' ,null
         );	
 	var $validate = array(
 		'lang' => array(
