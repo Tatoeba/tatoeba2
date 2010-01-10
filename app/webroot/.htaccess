@@ -1,5 +1,9 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
+	
+	rewritecond %{http_host} ^tatoeba.fr
+	rewriteRule ^(.*) http://tatoeba.org/$1 [R=301,L]	
+	
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
