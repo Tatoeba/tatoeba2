@@ -89,7 +89,7 @@
 			<!-- Tanaka B lines -->
 			<tr>
 				<td>
-					<div><strong>Download:</strong> <a href="http://tatoeba.org/files/2009-11-06/jpn_indices_20100111.csv">jpn_indices</a></div>
+					<div><strong>Download:</strong> <a href="http://tatoeba.org/files/2010-01-11/jpn_indices_20100111.csv">jpn_indices</a></div>
 					<div><strong>Date:</strong> Jan 11th, 2009</div>
 					<div><strong>Size:</strong> 17.7 MB</div>
 				</td>
