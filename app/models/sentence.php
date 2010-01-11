@@ -329,13 +329,18 @@ class Sentence extends AppModel{
     ** delete the sentence with the given id
     */
 
-    function delete($id){
+    function delete($id, $userId){
         $this->id = $id;
 		
 		// for the logs
-		$this->recursive = 1;
-		$this->read();
-		$this->data['User']['id'] = $this->Auth->user('id'); 
+		$this->data = $this->find(
+			'first',
+			array(
+				'condition' => array('Sentence.id' => $id)
+				, 'contain' => array ('Translation', 'User')
+			)
+		);
+		$this->data['User']['id'] = $userId; 
 		
 		//$this->Sentence->del($id, true); 
 		// TODO : Deleting with del does not delete the right entries in sentences_translations.
@@ -346,8 +351,7 @@ class Sentence extends AppModel{
 		$this->query('DELETE FROM sentences_translations WHERE translation_id='.$id);
 		
 		// need to call afterDelete() manually for the logs
-		$this->Sentence->afterDelete();
-
+		$this->afterDelete();
 
     }
 

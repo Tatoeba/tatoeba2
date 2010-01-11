@@ -158,9 +158,8 @@ class SentencesController extends AppController{
 	 */
 	function delete($id){
         Sanitize::paranoid($id);
-		$this->Sentence->delete($id)
-;
-		$this->flash('The sentence #'.$id.' has been deleted.', '/contributions/show/'.$id);
+		$this->Sentence->delete($id, $this->Auth->user('id'));
+		$this->flash('The sentence #'.$id.' has been deleted.', '/sentences/show/'.$id);
 	}
 	
 	
