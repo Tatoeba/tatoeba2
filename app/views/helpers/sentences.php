@@ -81,7 +81,18 @@ class SentencesHelper extends AppHelper {
 	 * Display a single sentence for edit in place.
 	 */
 	function displayEditableSentence($sentence) {
-		echo '<div id="_'.$sentence['id'].'" class="original sentence">';
+		echo '<div id="_'.$sentence['id'].'" class="original sentence mine">';
+			// info icon
+			echo $this->Html->link(
+				$this->Html->image('info.png')
+				, array(
+					"controller"=>"sentences"
+					, "action"=>"show"
+					, $sentence['id']
+				)
+				, array("escape"=>false, "class"=>"infoIcon")
+			);
+			
 			// Language flag
 			$this->displayLanguageFlag($sentence['id'], $sentence['lang'], true);
 			
