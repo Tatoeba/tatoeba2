@@ -61,7 +61,6 @@ class NavigationHelper extends AppHelper{
 			// random
 			$this->Javascript->link('sentences.random.js', false);
 			$langArray = $this->Languages->languagesArray();
-			asort($langArray);
 			$selectedLanguage = $this->Session->read('random_lang_selected');
 			//array_unshift($langArray, array('any' => __('any', true)));
 

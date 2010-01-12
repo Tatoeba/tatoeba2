@@ -471,6 +471,8 @@ class SentencesController extends AppController{
     */
 
     function several_random_sentences(){
+
+        pr ($_POST);
 		if(isset($_POST['data']['Sentence']['numberWanted'])){
 			$number = $_POST['data']['Sentence']['numberWanted'];
 		}else{
@@ -495,6 +497,8 @@ class SentencesController extends AppController{
        // for far better perfomance we must do it in one request, but hmmm no time for that
        // and as said above that's a work around
         $allSentences = array ( );
+
+        pr ($lang);
         $randomIds = $this->Sentence->getSeveralRandomIds($lang,$number);
         foreach ($randomIds as $i=>$randomId ){
 

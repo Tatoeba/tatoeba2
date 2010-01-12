@@ -49,6 +49,7 @@ class LanguagesHelper extends AppHelper{
             , 'zsm' => __('Malay',true)
             , 'est' => __('Estonian',true)
 			, 'kat' => __('Georgian',true)
+			, 'pol' => __('Polish',true)
             , 'wuu' => __('Shanghainese',true)// TODO to change when shanghainese will not be the only wu dialect
 		);
         asort($languages);
