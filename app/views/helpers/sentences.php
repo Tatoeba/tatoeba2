@@ -74,8 +74,8 @@ class SentencesHelper extends AppHelper {
 		$pinyin = substr($result, 14);
 		$pinyin = substr($pinyin, 0, -44);
         */
-        $text = escapeshellarg($text); 
-        system("echo `adso.sh -i $text -y");
+        escapeshellarg($text); 
+        system("echo `adso.sh -i $text -y`");
 		echo '</div>';
 	}
 
