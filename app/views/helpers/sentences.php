@@ -65,13 +65,17 @@ class SentencesHelper extends AppHelper {
 	 */
 	function displayPinyin($text){
 		echo '<div class="romanization">';
-		$curl = curl_init();
+        
+		/* IF ADSO.SH DONT WORK OR IF YOU WANT TO SET UP ADSO
+        $curl = curl_init();
 		curl_setopt ($curl, CURLOPT_URL, "http://adsotrans.com/popup/pinyin.php?text=".$text);
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 		$result = curl_exec ($curl);
 		$pinyin = substr($result, 14);
 		$pinyin = substr($pinyin, 0, -44);
-		echo $pinyin;
+        */
+        $text = escapeshellarg($text); 
+        system("echo `adso.sh -i $text -y");
 		echo '</div>';
 	}
 
