@@ -51,55 +51,6 @@ class SentenceCommentsController extends AppController {
         // redirect to sentences/show
         // we don't remove the method to keep compatibily with previous google indexing
         $this->redirect(array("controller" => "sentences" , "action" => "show" ,  $sentenceId  ),301 );
-        /*
-        Sanitize::paranoid($sentenceId);
-	    	
-		$sentence = $this->Sentence->getShowSentenceWithId($sentenceId);
-        $translations = $this->Sentence->getTranslationsOf($sentenceId);
-        $indirectTranslations = null ;
-        if ( $translations != null AND ! empty($translations) ){
-            $indirectTranslations = $this->Sentence->getIndirectTranslations($translations,$sentenceId);
-        }
-
-        
-		$this->set('sentence_id', $sentenceId);
-		
-		if($sentence != null){
-			$this->set('sentenceExists', true);
-            $this->set('sentence',$sentence);
-            $this->set('translations',$translations);
-            $this->set('indirectTranslations', $indirectTranslations);
-
-		}else{
-			$this->set('sentenceExists', false);
-		}
-		
-		$sentenceComments = $this->SentenceComment->getCommentsForSentence($sentenceId);
-		$this->set('sentenceComments', $sentenceComments);
-		
-		// checking which options user can access to
-		$specialOptions = $this->Permissions->getSentencesOptions($sentence, $this->Auth->user('id'));
-		$this->set('specialOptions',$specialOptions);
-		
-		
-		if($this->Auth->user('id')){
-			// saving parent email in session variable
-			$this->Session->write('user_email', $sentence['User']['email']);
-			
-			// saving participants in session variable so we can send notification to them
-			if($sentence['User']['email'] != '' AND $sentence['User']['email'] != $this->Auth->user('email') AND $sentence['User']['send_notifications'] == 1){
-				$participants = array($sentence['User']['email']);
-			}else{
-				$participants = array();
-			}
-			foreach($sentenceComments as $comment){
-				if(!in_array($comment['User']['email'],$participants) AND $comment['User']['email'] != $this->Auth->user('email') AND $comment['User']['send_notifications'] == 1){
-					$participants[] = $comment['User']['email'];
-				}
-			}
-			$this->Session->write('participants', $participants);
-		}
-    */
 	}
 	
 	/**
@@ -116,18 +67,20 @@ class SentenceCommentsController extends AppController {
 			$this->data['SentenceComment']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode($response['language']);
 			
 			if($this->SentenceComment->save($this->data)){	
-				// send message to the other participants of the thread
-
-				// Participants are stored in a session variable when the
-				// comments are displayed with show(). It avoids the necessity
-				// to query the database here again to get their emails.
-				$participants = $this->Session->read('participants');
+				$sentenceId = $this->data['SentenceComment']['sentence_id'];
+				$participants = $this->SentenceComment->getEmailsFromComments($sentenceId);
+				$sentenceOwner = $this->SentenceComment->getEmailFromSentence($sentenceId);
 				
+				if($sentenceOwner != null){
+					$participants[] = $sentenceOwner;
+				}
+				
+				// send message to the other participants of the thread
 				if(count($participants) > 0){
 					foreach($participants as $participant){
 						// prepare message
 						$subject = 'Tatoeba - Comment on sentence : ' . $this->data['SentenceComment']['sentence_text'];
-						if($participant == $this->Session->read('user_email')){
+						if($participant == $sentenceOwner){
 							$msgStart = sprintf('%s has posted a comment on one of your sentences.', $this->Auth->user('username'));
 						}else{
 							$msgStart = sprintf('%s has posted a comment on a sentence where you also posted a comment.', $this->Auth->user('username'));

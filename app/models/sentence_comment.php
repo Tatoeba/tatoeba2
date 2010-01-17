@@ -88,5 +88,45 @@ class SentenceComment extends AppModel{
 			, array('order' => 'SentenceComment.created DESC', 'limit' => $limit)
 		);
 	}
+	
+	/**
+	 * Return emails of users who posted a comment on the sentence
+	 * and who didn't disable notification.
+	 */
+	function getEmailsFromComments($sentenceId){
+		$emails = array();
+		$comments = $this->find(
+			'all'
+			, array(
+				'conditions' => array('SentenceComment.sentence_id' => $sentenceId)
+				, 'contain' => array ('User')
+			)
+		);
+		foreach($comments as $comment){
+			if($comment['User']['send_notifications']){
+				$emails[] = $comment['User']['email'];
+			}
+		}
+		$emails = array_unique($emails);
+		return $emails;
+	}
+	
+	/**
+	 * Return email of owner of the sentence.
+	 */
+	function getEmailFromSentence($sentenceId){
+		$sentence = $this->Sentence->find(
+			'first'
+			, array(
+				'conditions' => array('Sentence.id' => $sentenceId)
+				, 'contain' => array ('User')
+			)
+		);
+		if(isset($sentence) AND $sentence['User']['send_notifications']){
+			return $sentence['User']['email'];
+		}else{
+			return null;
+		}
+	}
 }
 ?>
