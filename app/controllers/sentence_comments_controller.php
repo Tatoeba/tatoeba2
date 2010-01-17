@@ -71,7 +71,7 @@ class SentenceCommentsController extends AppController {
 				$participants = $this->SentenceComment->getEmailsFromComments($sentenceId);
 				$sentenceOwner = $this->SentenceComment->getEmailFromSentence($sentenceId);
 				
-				if($sentenceOwner != null){
+				if($sentenceOwner != null AND !in_array($sentenceOwner, $participants)){
 					$participants[] = $sentenceOwner;
 				}
 				
