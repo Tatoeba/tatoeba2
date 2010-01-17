@@ -78,26 +78,30 @@ class SentenceCommentsController extends AppController {
 				// send message to the other participants of the thread
 				if(count($participants) > 0){
 					foreach($participants as $participant){
-						// prepare message
-						$subject = 'Tatoeba - Comment on sentence : ' . $this->data['SentenceComment']['sentence_text'];
-						if($participant == $sentenceOwner){
-							$msgStart = sprintf('%s has posted a comment on one of your sentences.', $this->Auth->user('username'));
-						}else{
-							$msgStart = sprintf('%s has posted a comment on a sentence where you also posted a comment.', $this->Auth->user('username'));
-						}
-						$message = $msgStart
-							. "\n"
-							.'http://'.$_SERVER['HTTP_HOST'] .'/sentence_comments/show/'.$this->data['SentenceComment']['sentence_id'].'#comments'
-							. "\n\n- - - - - - - - - - - - - - - - -\n\n" 
-							. $this->data['SentenceComment']['text']
-							. "\n\n- - - - - - - - - - - - - - - - -\n\n";
+						if($participant != $this->Auth->user('email')){
+							// prepare message
+							$subject = 'Tatoeba - Comment on sentence : ' . $this->data['SentenceComment']['sentence_text'];
+							if($participant == $sentenceOwner){
+								$msgStart = sprintf('%s has posted a comment on one of your sentences.', $this->Auth->user('username'));
+							}else{
+								$msgStart = sprintf('%s has posted a comment on a sentence where you also posted a comment.', $this->Auth->user('username'));
+							}
+							$message = $msgStart
+								. "\n"
+								.'http://'.$_SERVER['HTTP_HOST'] .'/sentence_comments/show/'.$this->data['SentenceComment']['sentence_id'].'#comments'
+								. "\n\n- - - - - - - - - - - - - - - - -\n\n" 
+								. $this->data['SentenceComment']['text']
+								. "\n\n- - - - - - - - - - - - - - - - -\n\n";
+								
+							// send notification
+							$this->Mailer->to = $participant;
+							$this->Mailer->toName = '';
+							$this->Mailer->subject = $subject;
+							$this->Mailer->message = $message;
+							//$this->Mailer->send();
 							
-						// send notification
-						$this->Mailer->to = $participant;
-						$this->Mailer->toName = '';
-						$this->Mailer->subject = $subject;
-						$this->Mailer->message = $message;
-						$this->Mailer->send();
+							pr($participant);
+						}
 					}
 				}
 				$this->flash(
