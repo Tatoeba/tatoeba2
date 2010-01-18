@@ -16,6 +16,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+
+App::import('Core', 'Sanitize');
+
 if (isset($this->params['lang'])) {
 	Configure::write('Config.language',  $this->params['lang']);
 }
@@ -29,6 +33,9 @@ $languages = $languages->getSearchableLanguagesArray();
 
 $selectedLanguageFrom = $session->read('search_from');
 $selectedLanguageTo = $session->read('search_to');
+$searchQuery = $session->read('search_query');
+Sanitize::html($searchQuery);
+$searchQuery = htmlentities($searchQuery);
 
 
 // TODO HACK SPOTTED : in fact the array should be sort in the languagesArray method and "all languages" set as first
@@ -58,7 +65,7 @@ echo '</fieldset>';
 
 echo '<fieldset class="input text">';
 echo '<label for="SentenceQuery">'. __('Example sentences with the words :',true) .'</label>';
-echo '<input id="SentenceQuery" type="text" value="'.$session->read('search_query').'" name="query"/>';
+echo '<input id="SentenceQuery" type="text" value="'.$searchQuery .'" name="query"/>';
 echo '</fieldset>';
 
 echo '<fieldset class="submit">';

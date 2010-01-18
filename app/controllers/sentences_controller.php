@@ -353,10 +353,12 @@ class SentencesController extends AppController{
 	function search() {
         
 		if(isset($_GET['query'])){
-			$query = stripslashes($_GET['query']);
-			
+			$query = $_GET['query'];	
+			Sanitize::html($query);
+
 			if(isset($_GET['page'])){
 				$page = $_GET['page'];
+			    Sanitize::html($page);
 			}else{
 				$page = null;
 			}
@@ -373,8 +375,6 @@ class SentencesController extends AppController{
 				$to = null;
 			}			
 			
-			Sanitize::html($query);
-			Sanitize::html($page);
 			
 			$this->Session->write('search_query', $query);
 			$this->Session->write('search_from', $from);
