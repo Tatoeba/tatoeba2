@@ -51,7 +51,7 @@ BEGIN
     (select id  from sentences where text = duplicate_text);
 
 /*delete duplicates*/
-select "erase duplicates" ;
+select "erase duplicates" ; 
   delete from sentences where text = duplicate_text and id not in (duplicate_text_id);
 
 END |
@@ -73,9 +73,21 @@ BEGIN
     FETCH curseur_text INTO duplicate_text ;
     IF done = 0 THEN
       select duplicate_text ;
-      select id into duplicate_text_id  from sentences where text = duplicate_text limit 1 ;
+      SELECT id INTO duplicate_text_id FROM sentences 
+        WHERE text = duplicate_text
+            AND user_id IS NOT NULL 
+        ORDER BY created LIMIT 1 ;
       CALL erase_and_relink_duplicate_sentence(duplicate_text_id) ;
     END IF ;
   UNTIL done
   END REPEAT;
+
+  -- delete loop back --
+  DELETE FROM sentences_translations WHERE sentence_id = translation_id ;
+  -- reset sentence stats to comment if you don't have langStats table --
+  START TRANSACTION ;
+        TRUNCATE TABLE langStats;
+        INSERT INTO langStats 
+            SELECT lang , count(*) FROM sentences GROUP BY lang;
+  COMMIT ;
 END |
