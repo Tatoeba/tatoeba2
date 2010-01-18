@@ -18,6 +18,11 @@
 */
 App::import('Core', 'Sanitize');
 
+
+// TODO HACK SPOTTED :
+// Kakasi is not supposed to be an helper
+// as it deal with information retrieving, it should be set in the model part
+
 class KakasiHelper extends AppHelper{
 
 	function convert($text, $type){
@@ -41,7 +46,14 @@ class KakasiHelper extends AppHelper{
 		$text = preg_replace("!&!", "\\&", $text);
 		$text = preg_replace("!#!", "\\#", $text);
 
-		$text = preg_replace("!\\r\\n!", "\\<br/\\>", $text); // to handle new lines		
+        // TODO HACK SPOTTED! use nl1br instead
+        // because \r\n is windows only
+        // \n => linux based system
+        // \r => mac os based system
+        // 25 % of tatoeba visit !
+
+		$text = preg_replace("!\\r\\n!", "\\<br/\\>", $text); // to handle new lines
+        		
 		
 		$options = '';
 		

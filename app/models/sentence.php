@@ -18,6 +18,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
+App::import('Core', 'Sanitize');
+
 class Sentence extends AppModel{
 	var $name = 'Sentence';
     var $actsAs = array("Containable");
@@ -91,10 +94,14 @@ class Sentence extends AppModel{
 			$data['Contribution']['sentence_lang'] = $this->data['Sentence']['lang'];
 			$data['Contribution']['text'] = $this->data['Sentence']['text'];
 			$data['Contribution']['type'] = 'sentence';
+
 			
 			if($created){
 				$data['Contribution']['action'] = 'insert';
-				
+				// increase stats
+                $this->incrementStatistics($this->data['Sentence']['lang']);
+                
+
 				if(isset($this->data['Translation'])){
 					// Translation logs
 					$data2['Contribution'] = $whoWhenWhere;
@@ -129,6 +136,10 @@ class Sentence extends AppModel{
 	}
 	
 	function afterDelete(){
+        
+
+        $this->decrementStatistics($this->data['Sentence']['lang']);
+
 		$data['Contribution']['sentence_id'] = $this->data['Sentence']['id'];
 		$data['Contribution']['sentence_lang'] = $this->data['Sentence']['lang'];
 		$data['Contribution']['text'] = $this->data['Sentence']['text'];
@@ -313,15 +324,25 @@ class Sentence extends AppModel{
         $result = $this->find(
             'first',
             array(
-                'conditions' => array ('Sentence.id' => $id),
-                'contain'  => array (
-                    'Favorites_users' => array(),
-                    'User' =>array(),
-                    'Contribution'
+                    'conditions' => array ('Sentence.id' => $id),
+                    'contain'  => array (
+                        'Favorites_users' => array(),
+                        'User' =>array(),
+                        'Contribution'
                 )
             )
 
         );
+                // TODO : need to replace it by something more general
+                // like $romanisableArray, that way we will not need to
+                // change several time the same things 
+                if (in_array($result['Sentence']['lang'] , array('wuu','cmn','jpn'))){
+                    $result['Sentence']['romanization'] = $this->getRomanization(
+                        $result['Sentence']['text'],
+                        $result['Sentence']['lang']
+                    );
+                }
+         
         return $result;
     }
 
@@ -330,6 +351,7 @@ class Sentence extends AppModel{
     */
 
     function delete($id, $userId){
+        //TODO  why ?
         $this->id = $id;
 		
 		// for the logs
@@ -358,8 +380,58 @@ class Sentence extends AppModel{
     /*
     ** Count number of sentences in each language
     */
-    function statistics(){
+    function getStatistics(){
+        $query = "
+            SELECT ifnull(lang, 'unknown_lang') as lang , numberOfSentences
+                FROM langStats 
+                ORDER BY numberOfSentences DESC ;
+        ";
 
+        $results = $this->query($query);
+
+        // cakephp doesn't like use of AS 
+        foreach( $results as $i=>$result ){
+            $results[$i]['langStats']['lang'] = $result[0]['lang'];
+        }
+        return $results ;
+    }
+
+
+    /*
+    ** add one in stats of a given language
+    */
+    
+    function incrementStatistics($lang){
+
+        $endOfQuery = "lang = '$lang'";
+
+        if ($lang == '' or $lang == null){
+            $endOfQuery = 'lang is null';
+        }
+
+        // TODO sanitize lang
+        $query = "
+            UPDATE langStats SET numberOfSentences = numberOfSentences + 1 WHERE $endOfQuery ;
+        ";
+        $this->query($query);
+    }
+
+    /*
+    ** decrement stats of a given language
+    */
+    function decrementStatistics($lang){
+
+        $endOfQuery = "lang = '$lang'";
+
+        if ($lang == '' or $lang == null){
+            $endOfQuery = 'lang is null';
+        }
+
+        // TODO sanitize lang
+        $query = "
+            UPDATE langStats SET numberOfSentences = numberOfSentences - 1 WHERE $endOfQuery ;
+        ";
+        $this->query($query);
     }
 
     /*
@@ -376,6 +448,7 @@ class Sentence extends AppModel{
 
     /*
     ** get translations of a given sentence
+    ** and translations of translations
     */
     function getTranslationsOf($id,$excludeId = null){
         if( ! is_numeric($id) ){
@@ -431,68 +504,34 @@ class Sentence extends AppModel{
 			if($result['translation_id']){ // need to check this because
 				// for sentences without translations it would otherwise
 				// return an empty translation array.
+
+				$translation = array(
+                    'id' => $result['translation_id'],
+					'text' => $result['translation_text'],
+					'user_id' => $result['translation_user_id'],
+					'lang' => $result['translation_lang']
+				);
+
+                // TODO : need to replace it by something more general
+                // like $romanisableArray, that way we will not need to
+                // change several time the same things
+                if (in_array($translation['lang'] , array('wuu','cmn','jpn'))){
+                    $translation['romanization'] = $this->getRomanization(
+                        $translation['text'],
+                        $translation['lang']
+                    );
+                }
+
 				array_push(
 					$orderedResults[$result['distance']],
-					array(
-						'id' => $result['translation_id'],
-						'text' => $result['translation_text'],
-						'user_id' => $result['translation_user_id'],
-						'lang' => $result['translation_lang']
-					)
+                    $translation 
 				); 	
 			}
         }
-        //pr($orderedResults ) ;
-        /*
-        $result = $this->find(
-            'first',
-            array(
-                'fields' => array('Sentence.id'),
-                'conditions' => $conditions,
-                'contain' => array(
-                    'Translation' => array (
-                        'fields' => array (
-                            'Translation.id',
-                            'Translation.text',
-                            'Translation.user_id',
-                            'Translation.lang'
-                        )
-                    )
-                )
-            )
-        );*/
-            return $orderedResults;
+
+        return $orderedResults;
     }
 
-
-
-    /*
-    ** retrive tranlations of translations 
-    */
-    // TODO HACK SPOTTED : we should be able to diretly get 
-    // undirect translations without needing to use translations
-
-    function getIndirectTranslations($translations,$id){
-        $indirectTranslations = array();
-        $directTranslationsId = array($id);
-        foreach ($translations as $translation){
-            array_push( $directTranslationsId,$translation['id']); 
-        }
-
-        foreach ($translations as $translation){
-
-            $temps = $this->getTranslationsOf($translation['id']);
-             
-            foreach ( $temps as $temp ){
-                if (! in_array($temp['id'],$directTranslationsId )) {
-                    $indirectTranslations[$temp['id']] = $temp ;
-                }
-            }
-
-        }
-
-        return $indirectTranslations ;
-    }
 	
 	
 	/**
@@ -528,5 +567,101 @@ class Sentence extends AppModel{
 		return $sentences;
 		
 	}
+
+    /*
+    **  get how sentences are clustered in the database according to their language
+    */
+
+    function getMap($page = 1){
+
+    }
+
+    /*
+    ** get romanization or equivalent of a sentences
+    */
+
+    function getRomanization($text,$lang){
+
+        $romanization = '';
+
+        if ($lang == "wuu"){
+                        
+            //$romanization = "test" ;
+
+        } elseif ($lang == "jpn") {
+            $romanization = $this->getJapaneseRomanization($text,'romaji'); 
+            
+        } elseif ($lang == "cmn") {
+            escapeshellarg($text); 
+            $romanization =  exec("echo `adso.sh -i $text -y`");
+           
+
+        }
+        return $romanization;
+    }
+
+    /*
+    ** get "romanisation" of the $text sentences in japanese
+    ** into romaji or furigana depending of $type value
+    */
+
+    function getJapaneseRomanization($text,$type){
+       Sanitize::html($text);
+		//$text = escapeshellarg(nl2br($text)); // somehow that doesn't work anymore... 
+												// and I found out it's probably because escapeshellarg() 
+												// doesn't process UTF-8 anymore...
+		
+		// escaping manually... until there is a better a solution...
+		$text = preg_replace("!\(!", "\\(", $text);
+		$text = preg_replace("!\)!", "\\)", $text);
+		$text = preg_replace("!\*!", "\\*", $text); 
+		$text = preg_replace("!\|!", "\\|", $text);
+		$text = preg_replace("!\>!", "\\>", $text);
+		$text = preg_replace("!\<!", "\\<", $text);
+		$text = preg_replace("!\[!", "\\[", $text);
+		$text = preg_replace("!\]!", "\\]", $text);
+		$text = preg_replace('!"!', '\\"', $text);
+		$text = preg_replace("!'!", "\\'", $text);
+		$text = preg_replace("!&!", "\\&", $text);
+		$text = preg_replace("!#!", "\\#", $text);
+
+        // TODO HACK SPOTTED! use nl1br instead
+        // because \r\n is windows only
+        // \n => linux based system
+        // \r => mac os based system
+        // 25 % of tatoeba visit !
+
+		$text = preg_replace("!\\r\\n!", "\\<br/\\>", $text); // to handle new lines
+        		
+		
+		$options = '';
+		
+		// need to figure out something better...
+		$text = preg_replace("!今日は!", "kyou wa", $text); // otherwise it displays "konnichiha"
+		$text = preg_replace("!死は生!", "shi wa sei", $text); // otherwise it displays "shi wa u"
+		$text = preg_replace("!生の!", "nama no", $text); // otherwise it display "uno"
+		$text = preg_replace("!入った!", " haitta ", $text); // otherwise it display "itta"... although sometimes "itta" would be correct...
+		$text = preg_replace("!来れば!", " kureba ", $text); // otherwise it display "kore ba"...
+		
+		switch($type){
+			case 'romaji':
+				$options = ' -Ja -Ha -Ka -Ea -s';
+				$sedlist = 'sedlist';
+				break;
+				
+			case 'furigana':
+				$options = ' -JH -s -f ';
+				$sedlist = 'sedlist2';
+				break;
+		}
+		
+		$romanization = exec("echo $text | iconv -f UTF8 -t SHIFT_JISX0213 | /home/tatoeba/kakasi/bin/kakasi $options |iconv -f SHIFT_JISX0213 -t UTF8 | sed -f /home/tatoeba/www/app/webroot/$sedlist");
+
+
+        return $romanization;
+    }
+
+
+
 }
 ?>

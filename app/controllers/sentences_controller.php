@@ -472,7 +472,6 @@ class SentencesController extends AppController{
 
     function several_random_sentences(){
 
-        pr ($_POST);
 		if(isset($_POST['data']['Sentence']['numberWanted'])){
 			$number = $_POST['data']['Sentence']['numberWanted'];
 		}else{
@@ -498,7 +497,6 @@ class SentencesController extends AppController{
        // and as said above that's a work around
         $allSentences = array ( );
 
-        pr ($lang);
         $randomIds = $this->Sentence->getSeveralRandomIds($lang,$number);
         foreach ($randomIds as $i=>$randomId ){
 
@@ -529,13 +527,7 @@ class SentencesController extends AppController{
      * TODO : should used a specific table instead of doing count
 	 */
 	function statistics(){
-		$this->Sentence->recursive = -1;
-		$stats = $this->Sentence->find('all', array(
-				'fields' => array('Sentence.lang', 'count(*) as count'), 
-				'order' => 'count DESC',
-				'group' => 'Sentence.lang'
-			)
-		);
+        $stats = $this->Sentence->getStatistics();
 		return($stats);
 	}
 	

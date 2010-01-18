@@ -20,34 +20,43 @@ $stats = $this->requestAction('/sentences/statistics');
 if (isset($this->params['lang'])) {
 	Configure::write('Config.language',  $this->params['lang']);
 }
-
-echo '<div id="sentencesStats">';
-echo '<ul>';
-for($i = 0; $i < 5; $i++){
-	$stat = $stats[$i];
-	echo '<li class="stat" title="'.$languages->codeToName($stat['Sentence']['lang']).'">';
-	echo $html->image(($stat['Sentence']['lang']? $stat['Sentence']['lang']: "unknown_lang").'.png');
-	echo '<span class="langCode">'.$stat['Sentence']['lang'].' : </span>';
-	echo '<span class="total">'.$stat[0]['count'].'</span>';
-	echo '</li>';
-}
-echo '</ul>';
-
-echo '<ul class="minorityLanguages" style="display:none">';
-for($i = 5; $i < count($stats); $i++){
-	$stat = $stats[$i];
-	echo '<li class="stat" title="'.$languages->codeToName($stat['Sentence']['lang']).'">';
-	echo $html->image(($stat['Sentence']['lang']? $stat['Sentence']['lang']: "unknown_lang").'.png');
-	echo '<span class="langCode">'.$stat['Sentence']['lang'].' : </span>';
-	echo '<span class="total">'.$stat[0]['count'].'</span>';
-	echo '</li>';
-}
-echo '</ul>';
-
-echo '<a class="statsDisplay showStats">[+] '. __('show all', true) . '</a>';
-echo '<a class="statsDisplay hideStats" style="display:none">[-] '. __('top 5 only', true) . '</a>';
-
-echo '</div>';
-
-
 ?>
+<div id="sentencesStats">
+    <ul>
+        <?php
+            for($i = 0; $i < 5; $i++){
+	            $stat = $stats[$i];
+                //pr ($stat);
+                $langCode  = $stat['langStats']['lang'];
+                
+                echo '<li class="stat" title="'.$languages->codeToName($langCode).'">';
+                    echo $html->image($langCode .'.png');
+                    echo '<span class="langCode">'.$langCode.' : </span>';
+                    echo '<span class="total">'.$stat['langStats']['numberOfSentences'].'</span>';
+                echo '</li>';
+            }
+        ?>
+    </ul>
+
+<?php //TODO HACK SPOTTED  CSS in the code ! ?>
+<ul class="minorityLanguages" style="display:none">
+<?php
+    $size = count($stats);
+    for($i = 5; $i < $size; $i++){
+        $stat = $stats[$i];
+        $langCode  = $stat['langStats']['lang'];
+        
+        echo '<li class="stat" title="'.$languages->codeToName($langCode).'">';
+            echo $html->image($langCode .'.png');
+            echo '<span class="langCode">'.$langCode.' : </span>';
+            echo '<span class="total">'.$stat['langStats']['numberOfSentences'].'</span>';
+        echo '</li>';
+    }
+?>
+</ul>
+
+<a class="statsDisplay showStats">[+] <?php  __('show all') ?></a>
+<?php //TODO HACK SPOTTED  CSS in the code ! ?>
+<a class="statsDisplay hideStats" style="display:none">[-] <?php __('top 5 only') ?> </a>
+
+</div>

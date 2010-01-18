@@ -31,7 +31,7 @@ class SentencesHelper extends AppHelper {
 		echo $this->Html->link($sentence['text'], array("controller" => "sentences", "action" => "show", $sentence['id']));
 		echo '</span> ';
 		
-		$this->displayRomanization($sentence['lang'], $sentence['text']);
+		$this->displayRomanization($sentence);
 		
 		echo '</div>';
 	}
@@ -40,14 +40,13 @@ class SentencesHelper extends AppHelper {
 	/**
 	 * Display romanization.
 	 */
-	function displayRomanization($sentenceLang, $sentenceText){
-		if($sentenceLang == 'jpn'){
-			$this->displayRomaji($sentenceText);
-		}
-		if($sentenceLang == 'cmn'){
-			$this->displayPinyin($sentenceText);
-		}
-	}
+	function displayRomanization($sentence){
+	    if (isset($sentence['romanization'])){
+            echo '<div class="romanization">';
+                echo $sentence['romanization'];
+		    echo '</div>';
+        }
+    }
 	
 	
 	/**
@@ -105,7 +104,7 @@ class SentencesHelper extends AppHelper {
 			echo $sentence['text'];
 			echo '</div> ';
 			
-			$this->displayRomanization($sentence['lang'], $sentence['text']);
+			$this->displayRomanization($sentence);
 			
 		echo '</div>';
 	}
@@ -119,7 +118,7 @@ class SentencesHelper extends AppHelper {
 		echo '<span id="'.$sentence['lang'].$sentence['id'].'" class="sentenceInList '.$sentence['lang'].'">';
 		echo $this->Html->link($sentence['text'], array("controller" => "sentences", "action" => "show", $sentence['id']));
 		echo '</span> ';
-		$this->displayRomanization($sentence['lang'], $sentence['text']);
+		$this->displayRomanization($sentence);
 		
 		// Translations
 		if($translationsLang != null){
@@ -181,7 +180,7 @@ class SentencesHelper extends AppHelper {
 			
 			
 			// romanization
-			$this->displayRomanization($sentence['lang'], $sentence['text']);
+			$this->displayRomanization($sentence);
 		echo '</div>';
 
         echo "\n";
@@ -253,7 +252,7 @@ class SentencesHelper extends AppHelper {
                     );
                     echo '</div>';
 
-			$this->displayRomanization($translation['lang'], $translation['text']);
+			$this->displayRomanization($translation);
 			
 			echo '</li>';
 		}
