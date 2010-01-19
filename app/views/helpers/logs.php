@@ -16,6 +16,9 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
+
+App::import('Core', 'Sanitize');
+
 class LogsHelper extends AppHelper {
 
 	var $helpers = array('Date', 'Html');
@@ -137,7 +140,7 @@ class LogsHelper extends AppHelper {
 				));
 				
 			} else {
-				echo ' <span class="text">' . $contribution['text'] . '</span>';
+				echo ' <span class="text">' . Sanitize::html($contribution['text']) . '</span>';
 			}
 			echo '</div>';
 		echo '</div>';

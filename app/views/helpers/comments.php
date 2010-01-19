@@ -87,7 +87,7 @@ class CommentsHelper extends AppHelper {
 				}
 				
 				// comment text
-				$commentText = $this->clickableURL($sentenceComment['text']);
+				$commentText = $this->clickableURL(Sanitize::html($sentenceComment['text']));
 				echo nl2br($commentText);
 				echo '</div>';
 		echo '</li>';

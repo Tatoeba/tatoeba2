@@ -17,6 +17,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+App::import('Core', 'Sanitize');
+
 class SentencesHelper extends AppHelper {
 
 	var $helpers = array('Html', 'Form', 'Kakasi', 'Javascript', 'Menu', 'Languages');
@@ -166,7 +168,8 @@ class SentencesHelper extends AppHelper {
 			// sentence text
             if($inBrowseMode){
 				// TODO : HACK SPOTTED id is made of lang + id  and then is used in edit_in_place 
-				echo '<div id="'.$sentence['lang'].'_'.$sentence['id'].'" class="'.$editable.' '.$editableSentence.'" title="'.$tooltip.'">'.$sentence['text'].'</div> ';
+				echo '<div id="'.$sentence['lang'].'_'.$sentence['id'].'" class="'.$editable.' '.$editableSentence.'" title="'.$tooltip.'">'
+                    .Sanitize::html($sentence['text']).'</div> ';
 			}else{
 				echo $this->Html->link(
 					$sentence['text']
