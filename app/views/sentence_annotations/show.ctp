@@ -28,6 +28,16 @@
 		echo $form->end('OK');
 	?>
 	</div>
+	
+	<div class="module">
+	<?php
+		echo '<h2>Search</h2>';
+		
+		echo $form->create('SentenceAnnotation', array("action" => "search"));
+		echo $form->input('text', array("label" => ""));
+		echo $form->end('OK');
+	?>
+	</div>
 
 	<div class="module">
 	<?php

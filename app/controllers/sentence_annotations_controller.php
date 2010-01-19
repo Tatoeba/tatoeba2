@@ -62,5 +62,44 @@ class SentenceAnnotationsController extends AppController {
 			$this->redirect(array("action" => "show", $sentence_id));
 		}
 	}
+	
+	
+	/**
+	 * Search annotations.
+	 */
+	function search($query = null){
+		if($query == null){
+			
+			$this->redirect(array('action'=>'search', $this->data['SentenceAnnotation']['text']));
+			
+		}else{
+		
+			Sanitize::html($query);
+			
+			$annotations = null;
+			if(rtrim($query) != ''){
+				$annotations = $this->SentenceAnnotation->getAnnotationsMatchingQuery($query);
+			}
+			$this->set('query', $query);
+			$this->set('annotations', $annotations);
+			
+		}
+	}
+	
+	
+	/**
+	 * Replace text in annotations by some other text.
+	 * TODO The replacement process needs optimization...
+	 */
+	function replace(){
+		$textToReplace = $this->data['SentenceAnnotation']['textToReplace'];
+		$textReplacing = $this->data['SentenceAnnotation']['textReplacing'];
+		$newAnnotations = $this->SentenceAnnotation->replaceTextInAnnotations(
+			$textToReplace, $textReplacing
+		);
+		$this->set('textToReplace', $textToReplace);
+		$this->set('textReplacing', $textReplacing);
+		$this->set('annotations', $newAnnotations);
+	}
 }
 ?>

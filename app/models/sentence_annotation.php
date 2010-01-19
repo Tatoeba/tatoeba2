@@ -18,7 +18,7 @@
 */
 
 class SentenceAnnotation extends AppModel{
-	var $name = 'SentenceComment';
+	var $name = 'SentenceAnnotation';
 	var $belongsTo = array('Sentence');
 	
     /**
@@ -29,5 +29,40 @@ class SentenceAnnotation extends AppModel{
         return $this->findAllBySentenceId($sentenceId);
     }
     
+	/**
+     * Get annotations for the sentence specified.
+     */
+	function getAnnotationsMatchingQuery($query){	
+        return $this->find(
+			'all'
+			, array(
+				'conditions' => array('SentenceAnnotation.text LIKE' => '%'.$query.'%')
+			)
+		);
+    }
+	
+	/**
+	 * Replace text in results of a search by some other text.
+	 */
+	function replaceTextInAnnotations($textToReplace, $textReplacing){
+		$annotations = $this->getAnnotationsMatchingQuery($textToReplace);
+		$newAnnotations = array();
+		
+		foreach($annotations as $annotation){
+			$pattern = quotemeta($textToReplace);
+			$annotation['SentenceAnnotation']['text'] = preg_replace(
+				"/$pattern/"
+				, $textReplacing
+				, $annotation['SentenceAnnotation']['text']
+			);
+			
+			$newAnnotations[] = $annotation;
+			
+			$this->id = $annotation['SentenceAnnotation']['id'];
+			$this->saveField('text', $annotation['SentenceAnnotation']['text']);
+		}
+		
+		return $newAnnotations;
+	}
 }
 ?>

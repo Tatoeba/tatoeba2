@@ -28,11 +28,22 @@
 		echo $form->end('OK');
 	?>
 	</div>
+
+	<div class="module">
+	<?php
+		echo '<h2>Search</h2>';
+		
+		echo $form->create('SentenceAnnotation', array("action" => "search"));
+		echo $form->input('text', array("label" => ""));
+		echo $form->end('OK');
+	?>
+	</div>	
+
 	
 	<div class="module">
 		<h2>Tips</h2>
 		<p>You can use the <strong>Go to</strong> feature to check the text behing a certain id. The id you enter doesn't have to be the id of a Japanese sentence.</p>
-		<p>The id of a sentence is indicated its info page (which is basically a page in the "Browse" section of Tatoeba). To get to the info page, click on the <?php echo $html->image('info.png'); ?> icon. You can also just look at the link that this icon refers to. The last number represents the id of the sentence.</p>
+		<p>The id of a sentence is indicated its info page (which is basically a page in the "Browse" section of Tatoeba). To get to the info page, just click on the sentence itself. You can also just look at the link that the sentence refers to. The last number represents the id of the sentence.</p>
 	</div>
 </div>
 
