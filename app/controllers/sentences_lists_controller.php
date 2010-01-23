@@ -290,33 +290,38 @@ class SentencesListsController extends AppController{
 		Sanitize::paranoid($listId);
 
 		$this->layout = 'lists';
-		$this->SentencesList->id = $listId;
-		$this->SentencesList->recursive = 2;
-		$list = $this->SentencesList->read();
+		$list = $this->SentencesList->getSentences($listId, null, $romanization);
 		$this->set('list', $list);
-		$this->set('displayRomanization', ($romanization == 'display_romanization'));
+		$this->set('romanization', $romanization);
 	}
 
 
 	/**
-	 * Display list so that it can be printed as a correction reference.
-	 */
-	function print_as_correction($listId, $translationsLang = null, $romanization = 'hide_romanization'){
-		$this->layout = 'lists';
-		Sanitize::paranoid($listId);
-		$this->SentencesList->id = $listId;
-
-		if(isset($translationsLang) AND in_array($translationsLang, $this->SentencesList->Sentence->languages)){
-			$this->SentencesList->recursive = 2;
-			$this->set('translationsLang', $translationsLang);
-		}else{
-			$this->SentencesList->recursive = -1;
-		}
-
-		$list = $this->SentencesList->read();
-		$this->set('list', $list);
-		$this->set('displayRomanization', ($romanization == 'display_romanization'));
-	}
+     * Display list so that it can be printed as a correction reference.
+     */
+    function print_as_correction($listId, $translationsLang = 'und', $romanization = 'hide_romanization'){
+        $this->layout = 'lists';
+        Sanitize::paranoid($listId);
+        
+        if ( $translationsLang == 'und' ) {
+        
+            $translationsLang = null;
+        
+        } else {
+        
+            if($romanization == 'hide_romanization'){
+                $list = $this->SentencesList->getSentences($listId, $translationsLang);
+            }else{
+                $list = $this->SentencesList->getSentences($listId, $translationsLang, $romanization);
+            }
+            $this->set('list', $list);
+            
+        }
+        
+        $this->set('listId', $listId);
+        $this->set('translationsLang', $translationsLang);
+        $this->set('romanization', $romanization);
+    }
 
 
 	/**

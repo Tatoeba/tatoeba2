@@ -27,9 +27,9 @@ $this->pageTitle = __('Tatoeba list :',true) . ' ' . $list['SentencesList']['nam
 foreach($list['Sentence'] as $sentence){
 	echo '<li>';
 		echo '<div class="sentence">'.$sentence['text'].'</div>';
-		if($displayRomanization AND in_array($sentence['lang'], array('jpn', 'cmn'))){
+		if( isset($sentence['romanization']) ){
 			echo '<div class="romanization">';
-			$kakasi->convert($sentence['text'], 'romaji');
+			echo $sentence['romanization'];
 			echo '</div>';
 		}
 	echo '</li>';

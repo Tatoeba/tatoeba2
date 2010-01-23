@@ -17,38 +17,48 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-$this->pageTitle = __('Tatoeba list :',true) . ' ' . $list['SentencesList']['name'];
-?>
+if( isset($list) ){
 
-<h1><?php echo $list['SentencesList']['name']; ?></h1>
+    $this->pageTitle = __('Tatoeba list :',true) . ' ' . $list['SentencesList']['name'];
+     
+    echo '<h1>';
+    echo $list['SentencesList']['name'];
+    echo '</h1>';
+    
+}else{
+    
+    echo '<h1>';
+    __('Choose language of translations');
+    echo '</h1>';
+    
+}
 
-<?php
 if(isset($translationsLang)){
 ?>
 	<ol id="listAsCorrection">
 	<?php
+    $displayRomanization = ($romanization == 'display_romanization');
+    
 	foreach($list['Sentence'] as $sentence){
 		echo '<li>';
 		echo '<div class="original">';
 			echo '<span class="sentence">'.$sentence['text'].'</span>';
-			if($displayRomanization AND in_array($sentence['lang'], array('jpn', 'cmn'))){
+			if($displayRomanization AND isset($sentence['romanization'])){
 				echo '<div class="romanization">';
-				$kakasi->convert($sentence['text'], 'romaji');
+				echo $sentence['romanization'];
 				echo '</div>';
 			}
 		echo '</div>';
 		
-		foreach($sentence['Translation'] as $translation){
-			if($translation['lang'] == $translationsLang){
-				echo '<div class="translation">';
-					echo '<div class="text">'.$translation['text'].'</div>';
-					if($displayRomanization AND in_array($translation['lang'], array('jpn', 'cmn'))){
-						echo '<div class="romanization">';
-						$kakasi->convert($translation['text'], 'romaji');
-						echo '</div>';
-					}
-				echo '</div>';
-			}
+		foreach($sentence['Translation'] as $translation){			
+            echo '<div class="translation">';
+                echo '<div class="text">'.$translation['text'].'</div>';
+                if($displayRomanization AND isset($translation['romanization'])){
+                    echo '<div class="romanization">';
+                    echo $translation['romanization'];
+                    echo '</div>';
+                }
+            echo '</div>';
 		}
 		
 		echo '</li>';
@@ -56,17 +66,17 @@ if(isset($translationsLang)){
 	?>
 	</ol>
 <?php
-}else{
+} else {
+
 	$javascript->link('jquery.js', false);	
-	echo '<p>';
+	
+    echo '<p>';
 	__('You have to specify the language of the translations :'); echo ' ';
-	$langArray = $languages->languagesArray();
-	asort($langArray);
-	$romanization = $displayRomanization ? 'display_romanization' : 'hide_romanization';
-	$path  = '/' . Configure::read('Config.language') . '/sentences_lists/print_as_correction/' . $list['SentencesList']['id'] . '/';
+    
+	$path  = '/' . Configure::read('Config.language') . '/sentences_lists/print_as_correction/' . $listId . '/';
 	echo $form->select(
 		"translationLangChoice"
-		, $langArray
+		, $languages->languagesArray()
 		, null
 		, array("onchange" => "$(location).attr('href', '".$path."' + this.value + '/".$romanization."');")
 		, false); 
@@ -79,12 +89,13 @@ if(isset($translationsLang)){
 	echo '<p>';
 	echo sprintf(
 		__('It is practical, for instance, in the case you want to practice <a href="%s">translating on paper</a> and would like also to have the correction printed somewhere on paper, to check if you have translated properly.',true), 
-		$html->url(array("controller"=>"sentences_lists", "action"=>"print_as_exercise", $list['SentencesList']['id']))
+		$html->url(array("controller"=>"sentences_lists", "action"=>"print_as_exercise", $listId))
 	);
 	echo '</p>';	
 	
 	echo '<p>';
 	__('WARNING : It is possible that the sentences do not have translations in the language you will specify.');
 	echo '</p>';
+    
 }
 ?>

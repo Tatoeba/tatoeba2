@@ -49,12 +49,11 @@ $javascript->link('jquery.jeditable.js', false);
 		<li>
 			<?php
 			__('Show translations :'); echo ' ';
-			$langArray = $languages->languagesArray();
-			asort($langArray);
+			
 			$path  = '/' . Configure::read('Config.language') . '/sentences_lists/edit/' . $list['SentencesList']['id'] . '/';
 			echo $form->select(
 				"translationLangChoice"
-				, $langArray
+				, $languages->languagesArray()
 				, null
 				, array("onchange" => "$(location).attr('href', '".$path."' + this.value);")
                 , false
@@ -78,7 +77,11 @@ $javascript->link('jquery.jeditable.js', false);
 			echo '<li class="deleteList">';
 			echo $html->link(
 				__('Delete this list', true)
-				, array("controller" => "sentences_lists", "action" => "delete", $list['SentencesList']['id'])
+				, array(
+                    "controller" => "sentences_lists"
+                    , "action" => "delete"
+                    , $list['SentencesList']['id']
+                )
 				, null
 				, __('Are you sure?', true)
 			);
@@ -95,18 +98,37 @@ $javascript->link('jquery.jeditable.js', false);
 			<?php
 			echo $html->link(
 				__('Print as exercise',true)
-				, array("controller"=>"sentences_lists", "action"=>"print_as_exercise", $list['SentencesList']['id'], 'hide_romanization')
-				, array("target" => "_blank", "class" => "printAsExerciseOption")
+				, array(
+                    "controller"=>"sentences_lists"
+                    , "action"=>"print_as_exercise"
+                    , $list['SentencesList']['id']
+                    , 'hide_romanization'
+                )
+				, array(
+                    "onclick" => "window.open(this.href,‘_blank’);return false;"
+                    , "class" => "printAsExerciseOption"
+                )
 			);
 			?>
 		</li>
 		<li>
 			<?php
-			$translationParam = isset($translationsLang) ? $translationsLang : '';
+            if( !isset($translationsLang) ) { 
+                $translationsLang = 'und';
+            }
 			echo $html->link(
 				__('Print as correction',true)
-				, array("controller"=>"sentences_lists", "action"=>"print_as_correction", $list['SentencesList']['id'], $translationParam, 'hide_romanization')
-				, array("target" => "_blank", "class" => "printAsCorrectionOption")
+				, array(
+                    "controller"=>"sentences_lists"
+                    , "action"=>"print_as_correction"
+                    , $list['SentencesList']['id']
+                    , $translationsLang
+                    , 'hide_romanization'
+                )
+				, array(
+                    "onclick" => "window.open(this.href,‘_blank’);return false;"
+                    , "class" => "printAsCorrectionOption"
+                )
 			);
 			?>
 		</li>
@@ -183,7 +205,7 @@ $javascript->link('jquery.jeditable.js', false);
 				echo '</span>';
 
 				// display sentence
-				if(isset($translationsLang)){
+				if( $translationsLang != 'und' ){
 					$sentences->displaySentenceInList($sentence, $translationsLang);
 				}else{
 					$sentences->displaySentenceInList($sentence);

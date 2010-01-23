@@ -23,7 +23,7 @@ class SentencesList extends AppModel{
 	
 	var $belongsTo = array('User');
 	
-	var $actsAs = array('ExtendAssociations');
+	var $actsAs = array('ExtendAssociations', 'Containable');
 	
 	var $hasAndBelongsToMany = array('Sentence');
 	
@@ -67,5 +67,61 @@ class SentencesList extends AppModel{
 			)
 		));
 	}
+    
+    /**
+	 * Returns sentences from a list, along with the 
+     * translations of the sentences if language is specified.
+	 */
+    function getSentences ( $listId, $translationsLanguage = null, $romanization = null ) {
+        
+        $contain = array( "Sentence");
+        
+        if ( $translationsLanguage != null ) {
+            
+            $contain = array( "Sentence" => array( 
+                "Translation" => array( 
+                    "fields" => array("text")
+                    , "conditions" => array(
+                        "Translation.lang" => $translationsLanguage
+                    )
+                )
+            ));
+            
+        }
+        
+        $list = $this->find(
+            'first'
+            , array(
+                "conditions" => array("SentencesList.id" => $listId)
+                , "contain" => $contain
+            )
+        );
+        
+        if ( $romanization != null ) {
+            $sentences = array();
+            foreach( $list['Sentence'] as $sentence ){
+                $sentence['romanization'] = $this->Sentence->getRomanization(
+                    $sentence['text'], $sentence['lang']
+                );
+                
+                if( $translationsLanguage != null ){
+                    $translations = array();
+                    foreach( $sentence['Translation'] as $translation ){
+                        $translation['romanization'] = $this->Sentence->getRomanization(
+                            $translation['text'], $translationsLanguage
+                        );
+                        $translations[] = $translation;
+                    }
+                    
+                    $sentence['Translation'] = $translations;
+                }
+                
+                $sentences[] = $sentence;
+            }
+            $list['Sentence'] = $sentences;
+        }
+        
+        return $list;
+    }
 }
 ?>

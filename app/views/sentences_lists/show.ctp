@@ -65,18 +65,37 @@
 			<?php
 			echo $html->link(
 				__('Print as exercise',true)
-				, array("controller"=>"sentences_lists", "action"=>"print_as_exercise", $list['SentencesList']['id'], 'hide_romanization')
-				, array("target" => "_blank", "class" => "printAsExerciseOption")
+				, array(
+                    "controller"=>"sentences_lists"
+                    , "action"=>"print_as_exercise"
+                    , $list['SentencesList']['id']
+                    , 'hide_romanization'
+                )
+				, array(
+                    "onclick" => "window.open(this.href,‘_blank’);return false;"
+                    , "class" => "printAsExerciseOption"
+                )
 			);
 			?>
 		</li>
 		<li>
 			<?php
-			$translationParam = isset($translationsLang) ? $translationsLang : '';
+            if( !isset($translationsLang) ) { 
+                $translationsLang = 'und';
+            }
 			echo $html->link(
 				__('Print as correction',true)
-				, array("controller"=>"sentences_lists", "action"=>"print_as_correction", $list['SentencesList']['id'], $translationParam, 'hide_romanization')
-				, array("target" => "_blank", "class" => "printAsCorrectionOption")
+				, array(
+                    "controller"=>"sentences_lists"
+                    , "action"=>"print_as_correction"
+                    , $list['SentencesList']['id']
+                    , $translationsLang
+                    , 'hide_romanization'
+                )
+				, array(
+                    "onclick" => "window.open(this.href,‘_blank’);return false;"
+                    , "class" => "printAsCorrectionOption"
+                )
 			);
 			?>
 		</li>
@@ -88,7 +107,7 @@
 				, array("id" => "romanizationOption", "class" => "display")
 			);
 			echo ' ';
-			__('Check this box to display romanization in the printable version');
+			__('Check this box to display romanization in the print version');
 			?>
 		</li>
 	</ul>
@@ -105,7 +124,7 @@
 		foreach($list['Sentence'] as $sentence){
 			echo '<li id="sentence'.$sentence['id'].'">';
 				// display sentence
-				if(isset($translationsLang)){
+				if( $translationsLang != 'und' ){
 					$sentences->displaySentenceInList($sentence, $translationsLang);
 				}else{
 					$sentences->displaySentenceInList($sentence);
