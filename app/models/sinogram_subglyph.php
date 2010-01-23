@@ -1,5 +1,5 @@
 <?php
-/*
+/**
     Tatoeba Project, free collaborativ creation of languages corpuses project
     Copyright (C) 2009 Allan SIMON <allan.simon@supinfo.com>
 
@@ -15,14 +15,31 @@
 
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5 
+ *
+ * @category PHP
+ * @package  Tatoeba
+ * @author   Allan Simon <allan.simon@supinfo.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
+
+/**
+ * Model Class which represent sinograms compounds
+ *
+ * @category PHP
+ * @package  Tatoeba
+ * @author   Allan Simon <allan.simon@supinfo.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
 */
 
-class Sinogram_subglyph extends AppModel{
+class SinogramSubglyph extends AppModel
+{
 
-    var $name = "Sinogram_subglyph";
+    var $name = "SinogramSubglyph";
 
     var $belongsTo = array('Sinogram');
-
-
 
 }

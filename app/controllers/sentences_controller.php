@@ -68,11 +68,9 @@ class SentencesController extends AppController{
         // if we give directly an id
 		}elseif (is_numeric($id)){
 		
-			$sentence = $this->Sentence->getShowSentenceWithId($id);
-            $translations = $this->Sentence->getTranslationsOf($id);
+			$sentence = $this->Sentence->getSentenceWithId($id);
             $contributions = $this->Contribution->getContributionsRelatedToSentence($id);
             $comments = $this->SentenceComment->getCommentsForSentence($id);
-
             $alltranslations = $this->Sentence->getTranslationsOf($id);
             $translations = $alltranslations['Translation'];
             $indirectTranslations = $alltranslations['IndirectTranslation'];
@@ -451,11 +449,12 @@ class SentencesController extends AppController{
 			$lang = $this->Session->read('random_lang_selected');
 		}
 		
-            $randomId = $this->Sentence->getRandomId($lang,$type);
-            $randomSentence = $this->Sentence->getSentenceWithId($randomId,$type);
-            $alltranslations = $this->Sentence->getTranslationsOf($randomId);
-            $translations = $alltranslations['Translation'];
-            $indirectTranslations = $alltranslations['IndirectTranslation'];
+        $randomId = $this->Sentence->getRandomId($lang,$type);
+        //$contributions = $this->Contribution->getContributionRelatedToSentence($randomId);
+        $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+        $alltranslations = $this->Sentence->getTranslationsOf($randomId);
+        $translations = $alltranslations['Translation'];
+        $indirectTranslations = $alltranslations['IndirectTranslation'];
        
 		$this->Session->write('random_lang_selected', $lang);
 		$randomSentence['specialOptions'] = $this->Permissions->getSentencesOptions($randomSentence, $this->Auth->user('id'));
@@ -498,9 +497,10 @@ class SentencesController extends AppController{
         $allSentences = array ( );
 
         $randomIds = $this->Sentence->getSeveralRandomIds($lang,$number);
+
         foreach ($randomIds as $i=>$randomId ){
 
-            $randomSentence = $this->Sentence->getSentenceWithId($randomId,'translate');
+            $randomSentence = $this->Sentence->getSentenceWithId($randomId);
             
             $this->Session->write('random_lang_selected', $lang);
             $randomSentence['specialOptions'] = $this->Permissions->getSentencesOptions($randomSentence, $this->Auth->user('id'));
@@ -517,6 +517,7 @@ class SentencesController extends AppController{
             );
 
         }
+
         $this->set("allSentences",$allSentences) ;
         $this->set('lastNumberChosen', $number);
     }
@@ -524,7 +525,6 @@ class SentencesController extends AppController{
 	/**
 	 * Count number of sentences in each language.
      * TODO : should be move in the model
-     * TODO : should used a specific table instead of doing count
 	 */
 	function statistics(){
         $stats = $this->Sentence->getStatistics();

@@ -1,5 +1,5 @@
 <?php
-/*
+/**
     Tatoeba Project, free collaborativ creation of languages corpuses project
     Copyright (C) 2009 Allan SIMON <allan.simon@supinfo.com>
 
@@ -14,40 +14,68 @@
     GNU Affero General Public License for more details.
 
     You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+    along with this program.  If not, see <http://www.gnu.org/licenses/>
+ *
+ * PHP version 5 
+ *
+ * @category PHP
+ * @package  Tatoeba
+ * @author   Allan Simon <allan.simon@supinfo.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */.
+
+/**
+ * Model Class which represent the wall and messages posted on
+ *
+ * @category PHP
+ * @package  Tatoeba
+ * @author   Allan Simon <allan.simon@supinfo.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
 */
 
-class Wall extends AppModel{
+class Wall extends AppModel
+{
     var $name = 'Wall';
     var $useTable = 'wall';
     var $actsAs = array('Containable');
 
-	var $belongsTo = array('User' => array('className' => 'User', 'foreignKey'
+    var $belongsTo = array('User' => array('className' => 'User', 'foreignKey'
     => 'owner'));
 
-
-    var $hasMany = array( 'Reply' =>
-         array(
-            'className' => 'Wall',
-            'foreignKey' => 'replyTo',
-            'order' => 'date DESC',
-            'dependent'=> false
-        )
+    var $hasMany = array(
+        'Reply' =>
+             array(
+                'className' => 'Wall',
+                'foreignKey' => 'replyTo',
+                'order' => 'date DESC',
+                'dependent'=> false
+            )
     );
+    
+    /**
+     * 
+     */ 
      
-    function afterSave($created){
-        if(isset($this->data['Wall']['content'])){
+    function afterSave($created)
+    {
+        if (isset($this->data['Wall']['content'])) {
             $data['newMessage']['owner'] = $this->data['Wall']['owner'] ;
             $data['newMessage']['date'] = date("Y-m-d H:i:s");
         }
 
     }
 
-    /*
-    ** Get all the message which start a thread
-    */
-    function getFirstMessages(){
-       return  $this->find('all',
+    /**
+     * Get all the message which start a thread
+     *
+     * @return array of all messages which start a thread
+     */
+    function getFirstMessages()
+    {
+        return  $this->find(
+            'all',
             array(
                 "order" => "Wall.date DESC", 
                 "conditions" => array ("Wall.replyTo" => 0),
@@ -61,16 +89,20 @@ class Wall extends AppModel{
                         "fields" => array("User.image","User.username","User.id") 
                         )
                     ) 
-                )
-            );
+            )
+        );
     }
 
-    /*
-    ** get all Messages
-    */
+    /**
+     * get all Messages
+     *
+     * @return array of all messages
+     */
 
-    function getMessages(){
-        return $this->find('all',
+    function getMessages()
+    {
+        return $this->find(
+            'all',
             array(
                 "order" => "Wall.id", 
                 "contain"    => array (
@@ -83,16 +115,22 @@ class Wall extends AppModel{
                         "fields" => array("User.image","User.username", "User.id") 
                         )
                     ) 
-                )
-            );
+            )
+        );
     }
 
-    /*
-    ** get the 10 last messages posted
-    */
+    /**
+     * get the X last messages posted
+     *
+     * @param int $numberOfLastMessages number of messages wanted
+     *
+     * @return array of these messages
+     */
 
-    function getLastMessages($numberOfLastMessages){
-        return $this->find('all',
+    function getLastMessages($numberOfLastMessages)
+    {
+        return $this->find(
+            'all',
             array(
                 "order" => "Wall.date DESC",
                 "limit" => $numberOfLastMessages,  
@@ -101,8 +139,8 @@ class Wall extends AppModel{
                         "fields" => array("User.username", "User.id") 
                         )
                     ) 
-                )
-            );
+            )
+        );
     }
     
 
