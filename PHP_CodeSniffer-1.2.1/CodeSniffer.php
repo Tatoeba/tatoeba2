@@ -1964,13 +1964,6 @@ class PHP_CodeSniffer
         if (preg_match('|[A-Z]|', $string) !== 0) {
             // Name does not have upper case
             $validName = false;
-        } else {
-            foreach ($nameBits as $bit) {
-                if ($bit{0} !== strtolower($bit{0})) {
-                    $validName = false;
-                    break;
-                }
-            }
         }
 
         return $validName;
