@@ -80,7 +80,7 @@ class Generic_Sniffs_PHP_ForbiddenFunctionsSniff implements PHP_CodeSniffer_Snif
 
         $ignore = array(
                    T_DOUBLE_COLON,
-                   T_OBJECT_OPERATOR,
+                   //T_OBJECT_OPERATOR,
                    T_FUNCTION,
                    T_CONST,
                   );

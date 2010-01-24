@@ -126,6 +126,7 @@ class PHP_CodeSniffer
      * @var array
      */
     public $allowedFileExtensions = array(
+                                     'ctp' => 'PHP',
                                      'php' => 'PHP',
                                      'inc' => 'PHP',
                                      'js'  => 'JS',

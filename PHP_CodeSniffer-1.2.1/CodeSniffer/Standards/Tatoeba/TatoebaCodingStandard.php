@@ -32,9 +32,15 @@ class PHP_CodeSniffer_Standards_Tatoeba_TatoebaCodingStandard extends PHP_CodeSn
     public function getIncludedSniffs()
     {
         return array(
+            
             'Squiz/Sniffs/Scope/MethodScopeSniff.php',
             'Squiz/Sniffs/Scope/MemberVarScopeSniff.php',
-            'PEAR'
+            'PEAR',
+            'Squiz/Sniffs/CSS',
+            'Squiz/Sniffs/PHP/DisallowSizeFunctionsInLoopsSniff.php',
+            'Squiz/Sniffs/PHP/EmbeddedPhpSniff.php',
+            'Squiz/Sniffs/PHP/NonExecutableCodeSniff.php'
+
         );
 
     }
@@ -42,7 +48,10 @@ class PHP_CodeSniffer_Standards_Tatoeba_TatoebaCodingStandard extends PHP_CodeSn
     public function getExcludedSniffs()
     {
         return array(
-            'PEAR/Sniffs/NamingConventions/ValidFunctionNameSniff.php'
+
+            'PEAR/Sniffs/NamingConventions/ValidFunctionNameSniff.php',
+            'PEAR/Sniffs/Files/LineLengthSniff.php'
+
         );
 
     }
