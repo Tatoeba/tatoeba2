@@ -1943,6 +1943,39 @@ class PHP_CodeSniffer
 
     }//end isUnderscoreName()
 
+    /**
+     * Returns true if the specified string is in the underscore lower case format.
+     *
+     * @param string $string The string to verify.
+     *
+     * @return boolean
+     */
+    public static function isUnderscoreLowerCaseName($string)
+    {
+        // If there are space in the name, it can't be valid.
+        if (strpos($string, ' ') !== false) {
+            return false;
+        }
+
+        $validName = true;
+        $nameBits  = explode('_', $string);
+
+        if (preg_match('|[A-Z]|', $string) !== 0) {
+            // Name does not have upper case
+            $validName = false;
+        } else {
+            foreach ($nameBits as $bit) {
+                if ($bit{0} !== strtolower($bit{0})) {
+                    $validName = false;
+                    break;
+                }
+            }
+        }
+
+        return $validName;
+
+    }//end isUnderscoreName()
+
 
     /**
      * Returns a valid variable type for param/var tag.
@@ -2145,7 +2178,7 @@ class PHP_CodeSniffer
         if ($temp === false) {
             $configFile = dirname(__FILE__).'/CodeSniffer.conf';
             if (is_file($configFile) === false) {
-                $configFile = '@data_dir@/PHP_CodeSniffer/CodeSniffer.conf';
+                $configFile = 'CodeSniffer.conf';
             }
 
             if (is_file($configFile) === true
@@ -2197,7 +2230,7 @@ class PHP_CodeSniffer
 
         $configFile = dirname(__FILE__).'/CodeSniffer.conf';
         if (is_file($configFile) === false) {
-            $configFile = '@data_dir@/PHP_CodeSniffer/CodeSniffer.conf';
+            $configFile = 'CodeSniffer.conf';
         }
 
         if (is_file($configFile) === false) {
