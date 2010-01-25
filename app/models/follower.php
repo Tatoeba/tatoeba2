@@ -39,14 +39,14 @@ class Follower extends AppModel{
 		)
 	);
 
-	function get_followers($userId, $limit = null){
+	function getFollowers($userId, $limit = null){
 		$user = new User();
 		$user->id = $userId;
 		$user->hasAndBelongsToMany['Follower']['limit'] = $limit;
 		return $user->read();
 	}
 
-	function get_following($userId, $limit = null){
+	function getFollowing($userId, $limit = null){
 		$user = new User();
 		$user->id = $userId;
 		$user->hasAndBelongsToMany['Following']['limit'] = $limit;

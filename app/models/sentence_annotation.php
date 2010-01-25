@@ -32,7 +32,7 @@ class SentenceAnnotation extends AppModel{
 	/**
      * Get annotations for the sentence specified.
      */
-	function getAnnotationsMatchingQuery($query){	
+	function search($query){	
         return $this->find(
 			'all'
 			, array(

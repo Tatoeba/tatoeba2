@@ -1,30 +1,47 @@
 <?php
-/*
-    Tatoeba Project, free collaborative creation of multilingual corpuses project
-    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5
+ *
+ * @category PHP
+ * @package  Tatoeba
+ * @author   Etienne Deparis <etienne.deparis@umaneti.net>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
 */
-
 
 App::import('Core', 'Sanitize');
 
-class FollowersController extends AppController {
-
-	var $name = 'Followers';
-	var $helpers = array('Html', 'Navigation');
-	var $paginate = array(
+/**
+ * Controller for followers.
+ *
+ * @category Followers
+ * @package  Controllers
+ * @author   Etienne Deparis <etienne.deparis@umaneti.net>
+ * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
+class FollowersController extends AppController
+{
+    public $name = 'Followers';
+    public $helpers = array('Html', 'Navigation');
+    public $paginate = array(
         'limit' => 20,
         'order' => array('last_time_active' => 'desc'),
         'contain' => array(
@@ -33,69 +50,100 @@ class FollowersController extends AppController {
             )
         )
     );
+    
+    /**
+     * Before filter.
+     * 
+     * @return void
+     */
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        // setting actions that are available to everyone, even guests
+        // no need to allow login
+        $this->Auth->allowedActions = array('*');
+    }
+    
+    /**
+     * Display followers.
+     *
+     * @param int    $userId Id of user.
+     * @param string $ajax   TODO
+     * 
+     * @return void
+     */
+    public function followers($userId, $ajax = 'false')
+    {
+        Sanitize::paranoid($userId);
 
-	function beforeFilter() {
-		parent::beforeFilter();
-		// setting actions that are available to everyone, even guests
-		// no need to allow login
-		$this->Auth->allowedActions = array('*');
-	}
+        if ($ajax == 'true') {
+            $this->set('ajax', true);
+            $aUser = $this->Follower->getFollowers($userId, 10);
+        } else {
+            $aUser = $this->Follower->getFollowers($userId);
+        }
 
-	function followers($user_id, $ajax = 'false'){
-		Sanitize::paranoid($user_id);
+        $this->set('user', $aUser);
+    }
+    
+    /**
+     * Display following of specified user.
+     * 
+     * @param int    $userId Id of user.
+     * @param string $ajax   TODO
+     *
+     * @return void
+     */
+    public function following($userId, $ajax = 'false')
+    {
+        Sanitize::paranoid($userId);
 
-		if($ajax == 'true'){
-			$this->set('ajax', true);
-			$aUser = $this->Follower->get_followers($user_id, 10);
-		}else{
-			$aUser = $this->Follower->get_followers($user_id);
-		}
+        if ($ajax == 'true') {
+            $this->set('ajax', true);
+            $aUser = $this->Follower->getFollowing($userId, 10);
+        } else {
+            $aUser = $this->Follower->getFollowing($userId);
+        }
+        $this->set('user', $aUser);
+    }
 
-		$this->set('user', $aUser);
-	}
+    /**
+     * Start following a user.
+     * Used in AJAX request in users.followers_and_following.js.
+     *
+     * @return void
+     */
+    public function start_following()
+    {
+        $userId = $_POST['user_id'];
+        $this->Follower->habtmAdd('User', $this->Auth->user('id'), $userId);
+    }
 
-	function following($user_id, $ajax = 'false'){
-		Sanitize::paranoid($user_id);
+    /**
+     * Stop following a user.
+     * Used in AJAX request in users.followers_and_following.js.
+     *
+     * @return void
+     */
+    public function stop_following()
+    {
+        $userId = $_POST['user_id'];
+        $this->Follower->habtmDelete('User', $this->Auth->user('id'), $userId);
+    }
 
-		if($ajax == 'true'){
-			$this->set('ajax', true);
-			$aUser = $this->Follower->get_following($user_id, 10);
-		}else{
-			$aUser = $this->Follower->get_following($user_id);
-		}
-		$this->set('user', $aUser);
-	}
+    /**
+     * Block a user... supposedly.
+     *
+     * @param int $userId Id of user.
+     *
+     * @return void
+     */
+    public function refuse_follower($userId)
+    {
+        Sanitize::paranoid($userId);
 
-
-	/**
-	 * Start following a user.
-	 * Used in AJAX request in users.followers_and_following.js.
-	 */
-	function start_following(){
-		$user_id = $_POST['user_id'];
-		$this->Follower->habtmAdd('User', $this->Auth->user('id'), $user_id);
-	}
-
-
-	/**
-	 * Stop following a user.
-	 * Used in AJAX request in users.followers_and_following.js.
-	 */
-	function stop_following(){
-		$user_id = $_POST['user_id'];
-		$this->Follower->habtmDelete('User', $this->Auth->user('id'), $user_id);
-	}
-
-
-	/**
-	 * Stop following a user.
-	 * Used in AJAX request in users.followers_and_following.js.
-	 */
-	function refuse_follower($user_id){
-		Sanitize::paranoid($user_id);
-
-		$this->Follower->habtmDelete('User', $user_id, $this->Auth->user('id'));
-		$this->redirect(array('action' => 'followers', $this->Auth->user('id')));
-	}
+        $this->Follower->habtmDelete('User', $userId, $this->Auth->user('id'));
+        $this->redirect(array('action' => 'followers', $this->Auth->user('id')));
+    }
 }
 ?>
