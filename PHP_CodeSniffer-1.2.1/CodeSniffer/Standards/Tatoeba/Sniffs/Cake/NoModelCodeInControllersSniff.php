@@ -92,7 +92,6 @@ class Tatoeba_Sniffs_Cake_NoModelCodeInControllersSniff implements PHP_CodeSniff
 
         // content is a method
         $content = strtolower($tokens[$stackPtr]['content']);
-        echo $content . "\n" ;
         if (in_array($content, $this->forbiddenMethods ) === false) {
             if (preg_match('|^findBy|', $content) === 0) {
                 // Not in a Controller Class
