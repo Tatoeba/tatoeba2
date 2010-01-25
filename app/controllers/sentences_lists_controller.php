@@ -102,22 +102,11 @@ class SentencesListsController extends AppController
     {
         if (isset($id)) {
             Sanitize::paranoid($id);
-            $this->SentencesList->id = $id;
             
-            $languages =  $this->SentencesList->Sentence->languages;
-            if (isset($translationsLang) 
-                AND in_array($translationsLang, $languages)
-            ) {
-                
-                Sanitize::paranoid($translationsLang);
-                $this->SentencesList->recursive = 2; // TODO need optimization
-                $this->set('translationsLang', $translationsLang);
-                
-            } else if (isset($translationsLang) && $translationsLang == 'return') {
-                return $this->SentencesList->read();
-            }
-
-            $this->set('list', $this->SentencesList->read());
+            $list = $this->SentencesList->getSentences($id, $translationsLang);
+            
+            $this->set('translationsLang', $translationsLang);
+            $this->set('list', $list);
         } else {
             $this->redirect(array("action"=>"index"));
         }
@@ -156,9 +145,11 @@ class SentencesListsController extends AppController
     public function edit($id, $translationsLang = null)
     {
         Sanitize::paranoid($id);
-
-        if (!$this->_belongs_to_current_user($id) OR !$this->Auth->user('id')) {
-            if (!$this->Auth->user('id')) {
+        
+        $userId = $this->Auth->user('id');
+        
+        if (!$this->SentencesList->belongsToCurrentUser($id, $userId) OR !$userId) {
+            if (!$userId) {
                 $this->Session->setFlash(
                     sprintf(
                         __(
@@ -171,18 +162,9 @@ class SentencesListsController extends AppController
             }
             $this->redirect(array("action" => "show", $id, $translationsLang));
         } else {
-            $this->SentencesList->id = $id;
-            
-            $languages = $this->SentencesList->Sentence->languages;
-            if (isset($translationsLang) 
-                AND in_array($translationsLang, $languages)
-            ) {
-                Sanitize::paranoid($translationsLang);
-                $this->SentencesList->recursive = 2; // TODO need optimization
-                $this->set('translationsLang', $translationsLang);
-            }
-
-            $this->set('list', $this->SentencesList->read());
+            $list = $this->SentencesList->getSentences($id, $translationsLang);
+            $this->set('translationsLang', $translationsLang);
+            $this->set('list', $list);
         }
     }
 
@@ -197,8 +179,10 @@ class SentencesListsController extends AppController
     {
         Sanitize::paranoid($_POST['id']);
         Sanitize::html($_POST['value']);
-        Configure::write('debug', 0);
-        if ($this->_belongs_to_current_user($_POST['id'])) {
+        
+        $userId = $this->Auth->user('id');
+        
+        if ($this->SentencesList->belongsToCurrentUser($_POST['id'], $userId)) {
             if (isset($_POST['value']) AND isset($_POST['id'])) {
                 $this->SentencesList->id = $_POST['id'];
                 if ($this->SentencesList->saveField('name', $_POST['value'])) {
@@ -223,7 +207,10 @@ class SentencesListsController extends AppController
     public function delete($listId)
     {
         Sanitize::paranoid($listId);
-        if ($this->_belongs_to_current_user($listId)) {
+        
+        $userId = $this->Auth->user('id');
+        
+        if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
             $this->SentencesList->delete($listId);
         }
         $this->redirect(array("action" => "index"));
@@ -241,10 +228,11 @@ class SentencesListsController extends AppController
     {
         Sanitize::paranoid($sentenceId);
         Sanitize::paranoid($listId);
-        Configure::write('debug', 0);
+        
         $this->set('s', $sentenceId);
         $this->set('l', $listId);
-        if ($this->_belongs_to_current_user($listId)) {
+        $userId = $this->Auth->user('id');
+        if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
             if ($this->SentencesList->habtmAdd('Sentence', $listId, $sentenceId)) {
                 $this->set('listId', $listId);
             } else {
@@ -266,8 +254,10 @@ class SentencesListsController extends AppController
     {
         Sanitize::paranoid($sentenceId);
         Sanitize::html($listName);
-        Configure::write('debug', 0);
-        if ($this->_belongs_to_current_user($listId)) {
+        
+        $userId = $this->Auth->user('id');
+        
+        if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
             if ($listName != '') {
                 $newList['SentencesList']['user_id'] = $this->Auth->user('id');
                 $newList['SentencesList']['name'] = $listName;
@@ -298,8 +288,10 @@ class SentencesListsController extends AppController
     {
         Sanitize::paranoid($sentenceId);
         Sanitize::paranoid($listId);
-        Configure::write('debug', 0);
-        if ($this->_belongs_to_current_user($listId)) {
+        
+        $userId = $this->Auth->user('id');
+        
+        if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
             $isRemoved = $this->SentencesList->habtmDelete(
                 'Sentence', $listId, $sentenceId
             );
@@ -335,28 +327,6 @@ class SentencesListsController extends AppController
         return $this->SentencesList->getUserChoices($this->Auth->user('id'));
     }
 
-
-    /**
-     * Check if list belongs to current user.
-     *
-     * @param int $listId Id of list.
-     *
-     * @return bool
-     */
-    private function _belongs_to_current_user($listId)
-    {
-        $this->SentencesList->id = $listId;
-        $list = $this->SentencesList->read();
-        if ($list['SentencesList']['user_id'] == $this->Auth->user('id') 
-            OR $list['SentencesList']['is_public'] == 1
-        ) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
     /**
      * Saves a new sentence (as if it was added from the Contribute section) and
      * add it to the list.
@@ -387,8 +357,7 @@ class SentencesListsController extends AppController
                 $this->SentencesList->habtmAdd(
                     'Sentence', $_POST['listId'], $sentence->id
                 );
-                $sentence->recursive = 0;
-                $sentenceSaved = $sentence->read();
+                $sentenceSaved = $sentence->getSentenceWithId($sentence->id);
                 $this->set('sentence', $sentenceSaved);
                 $this->set('listId', $_POST['listId']);
                 

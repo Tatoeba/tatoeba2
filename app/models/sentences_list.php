@@ -80,7 +80,7 @@ class SentencesList extends AppModel{
             
             $contain = array( "Sentence" => array( 
                 "Translation" => array( 
-                    "fields" => array("text")
+                    "fields" => array("id", "text")
                     , "conditions" => array(
                         "Translation.lang" => $translationsLanguage
                     )
@@ -122,6 +122,27 @@ class SentencesList extends AppModel{
         }
         
         return $list;
+    }
+    
+    /**
+     * Check if list belongs to current user.
+     *
+     * @param int $listId Id of list.
+     * @param int $userId Id of user.
+     *
+     * @return bool
+     */
+    public function belongsToCurrentUser($listId, $userId)
+    {
+        $this->id = $listId;
+        $list = $this->read();
+        if ($list['SentencesList']['user_id'] == $userId
+            OR $list['SentencesList']['is_public'] == 1
+        ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 ?>

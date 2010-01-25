@@ -121,14 +121,12 @@
 	<?php
 	if(count($list['Sentence']) > 0){
 		echo '<ul id="'.$list['SentencesList']['id'].'" class="sentencesList">';
+        if ($translationsLang == 'und') {
+            $translationsLang = null;
+        }
 		foreach($list['Sentence'] as $sentence){
 			echo '<li id="sentence'.$sentence['id'].'">';
-				// display sentence
-				if( $translationsLang != 'und' ){
-					$sentences->displaySentenceInList($sentence, $translationsLang);
-				}else{
-					$sentences->displaySentenceInList($sentence);
-				}
+			$sentences->displaySentenceInList($sentence, $translationsLang);
 			echo '</li>';
 		}
 		echo '</ul>';

@@ -124,12 +124,10 @@ class SentencesHelper extends AppHelper {
 		
 		// Translations
 		if($translationsLang != null){
-			foreach($sentence['Translation'] as $translation){
-				if($translation['lang'] == $translationsLang){
-					echo '<span id="'.$translation['lang'].$translation['id'].'" class="translationInList '.$translation['lang'].'">';
-					echo $this->Html->link($translation['text'], array("controller" => "sentences", "action" => "show", $translation['id']));
-					echo '</span> ';
-				}
+			foreach($sentence['Translation'] as $translation){				
+                echo '<span id="'.$translationsLang.$translation['id'].'" class="translationInList '.$translationsLang.'">';
+                echo $this->Html->link($translation['text'], array("controller" => "sentences", "action" => "show", $translation['id']));
+                echo '</span> ';
 			}
 		}
 	}
