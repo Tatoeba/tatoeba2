@@ -22,8 +22,6 @@
 	<ul>
 		<li><?php echo $html->link('Delete', array('action'=>'delete', $form->value('User.id')), null, sprintf('Are you sure you want to delete # %s?', $form->value('User.id'))); ?></li>
 		<li><?php echo $html->link('List Users', array('action'=>'index'));?></li>
-		<li><?php echo $html->link('List Groups', array('controller'=> 'groups', 'action'=>'index')); ?> </li>
-		<li><?php echo $html->link('New Group', array('controller'=> 'groups', 'action'=>'add')); ?> </li>
 	</ul>
 </div>
 

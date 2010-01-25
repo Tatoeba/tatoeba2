@@ -73,7 +73,7 @@ foreach ($users as $user):
 			<?php echo $date->ago($user['User']['last_time_active'],true); ?>
 		</td>
 		<td>
-			<?php echo $html->link($user['Group']['name'], array('controller'=> 'groups', 'action'=>'view', $user['User']['group_id'])); ?>
+			<?php echo $user['Group']['name']; ?>
 		</td>
 		<td class="actions">
 			<?php echo $html->link('Edit', array('action'=>'edit', $user['User']['id'])); ?>
