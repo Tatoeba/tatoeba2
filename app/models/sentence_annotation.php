@@ -32,7 +32,8 @@ class SentenceAnnotation extends AppModel{
 	/**
      * Get annotations for the sentence specified.
      */
-	function search($query){	
+	function search($query){
+        $query = preg_replace("/<space>/", " ", $query);
         return $this->find(
 			'all'
 			, array(
@@ -45,7 +46,8 @@ class SentenceAnnotation extends AppModel{
 	 * Replace text in results of a search by some other text.
 	 */
 	function replaceTextInAnnotations($textToReplace, $textReplacing){
-		$annotations = $this->getAnnotationsMatchingQuery($textToReplace);
+        $textToReplace = preg_replace("/<space>/", " ", $textToReplace);
+		$annotations = $this->search($textToReplace);
 		$newAnnotations = array();
 		
 		foreach($annotations as $annotation){
