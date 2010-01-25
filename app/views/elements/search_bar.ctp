@@ -65,7 +65,7 @@ echo $form->select('to', $languages, $selectedLanguageTo,null,false);
 echo '</fieldset>';
 
 echo '<fieldset class="input text">';
-echo '<label for="SentenceQuery">'
+echo '<label for="SentenceQuery">';
 echo __('Example sentences with the words :',true);
 echo '</label>';
 echo '<input id="SentenceQuery" type="text" value="'.$searchQuery.'" name="query"/>';
