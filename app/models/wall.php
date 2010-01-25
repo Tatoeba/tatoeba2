@@ -23,7 +23,7 @@
  * @author   Allan Simon <allan.simon@supinfo.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
- */.
+ */
 
 /**
  * Model Class which represent the wall and messages posted on
