@@ -35,10 +35,11 @@ $selectedLanguageFrom = $session->read('search_from');
 $selectedLanguageTo = $session->read('search_to');
 $searchQuery = $session->read('search_query');
 Sanitize::html($searchQuery);
-$searchQuery = htmlentities($searchQuery);
+$searchQuery = htmlentities($searchQuery, ENT_QUOTES, 'UTF-8');
 
 
-// TODO HACK SPOTTED : in fact the array should be sort in the languagesArray method and "all languages" set as first
+// TODO HACK SPOTTED : in fact the array should be sort in the languagesArray method 
+// and "all languages" set as first
 // and 
 if($selectedLanguageFrom == null){
     $selectedLanguageFrom = 'und' ;
@@ -64,8 +65,10 @@ echo $form->select('to', $languages, $selectedLanguageTo,null,false);
 echo '</fieldset>';
 
 echo '<fieldset class="input text">';
-echo '<label for="SentenceQuery">'. __('Example sentences with the words :',true) .'</label>';
-echo '<input id="SentenceQuery" type="text" value="'.$searchQuery .'" name="query"/>';
+echo '<label for="SentenceQuery">'
+echo __('Example sentences with the words :',true);
+echo '</label>';
+echo '<input id="SentenceQuery" type="text" value="'.$searchQuery.'" name="query"/>';
 echo '</fieldset>';
 
 echo '<fieldset class="submit">';
