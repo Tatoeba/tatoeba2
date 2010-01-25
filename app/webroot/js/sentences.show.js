@@ -23,6 +23,6 @@ $(document).ready(function(){
    /* 
 
     $(".translations").html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
-	$(".translations").load("http://" + self.location.hostname + "/sentences/get_translations/" + sentenceId);
+	$(".translations").load("http://" + self.location.hostname + ":" + self.location.port + "/sentences/get_translations/" + sentenceId);
 	*/
     		});

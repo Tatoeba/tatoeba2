@@ -38,14 +38,14 @@ $(document).ready(function() {$("#clictest").unbind("click");
 		$('#ConversationNbReplies').attr('value', parseInt($('#ConversationNbReplies').attr('value')) + 1);
 		var newReply = new $("<div></div>");
 		newReply.html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
-		newReply.load("http://" + self.location.hostname + "/conversations/new_reply/" + $('#ConversationNbReplies').attr('value') + '/' + $('#ConversationLanguages').attr('value'));
+		newReply.load("http://" + self.location.hostname + ":" + self.location.port + "/conversations/new_reply/" + $('#ConversationNbReplies').attr('value') + '/' + $('#ConversationLanguages').attr('value'));
 		$('#sentencesList').append(newReply);
 	});
 
 	$("#DialogMainLanguage").unbind("change");
 	$("#DialogMainLanguage").change(function() {
 		if ($("#DialogMainLanguage").attr('value') != "") {
-			$("#DialogEditor").load("http://" + self.location.hostname + "/conversations/new_dialog/" + $('#DialogMainLanguage').attr('value'));
+			$("#DialogEditor").load("http://" + self.location.hostname + ":" + self.location.port + "/conversations/new_dialog/" + $('#DialogMainLanguage').attr('value'));
 			$("#AddDialogLanguageLink").show();
 			$("#DialogMainLanguage").hide();
 			var dialogElement = new $('<span class="DialogSelectedLanguage list-box"></span>');
@@ -60,7 +60,7 @@ $(document).ready(function() {$("#clictest").unbind("click");
 	$("#AddDialogLanguageForm").change(function() {
 		if ($("#DialogTranslationLanguage").attr('value') != "") {
 			var sentence_pattern = new $('<tr></tr>');
-			var url = "http://" + self.location.hostname + "/conversations/new_dialog_language/" + $('#DialogTranslationLanguage').attr('value');
+			var url = "http://" + self.location.hostname + ":" + self.location.port + "/conversations/new_dialog_language/" + $('#DialogTranslationLanguage').attr('value');
 			sentence_pattern.load(url, "", function() {
 				$(".DialogSentenceLanguages").each(function() {
 					var reply_id = parseInt($(this).attr("id").substring(24));
@@ -87,7 +87,7 @@ $(document).ready(function() {$("#clictest").unbind("click");
 			});
 			
 			var dialog_language_title = new $('<tr></tr>');
-			url = "http://" + self.location.hostname + "/conversations/new_dialog_language_title/" + $('#DialogTranslationLanguage').attr('value');
+			url = "http://" + self.location.hostname + ":" + self.location.port + "/conversations/new_dialog_language_title/" + $('#DialogTranslationLanguage').attr('value');
 			dialog_language_title.load(url, "", function() {
 				$("#DialogTitleLanguages").append(dialog_language_title);
 			});

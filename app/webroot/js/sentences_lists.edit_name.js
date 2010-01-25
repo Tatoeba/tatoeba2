@@ -17,7 +17,7 @@
 */
 
 $(document).ready(function() {
-	$('.editableSentencesListName').editable('http://' + self.location.hostname + '/sentences_lists/save_name', { 
+	$('.editableSentencesListName').editable('http://' + self.location.hostname + ":" + self.location.port + '/sentences_lists/save_name', { 
 		type      : 'text',
 		cancel    : 'Cancel',
 		submit    : 'OK',

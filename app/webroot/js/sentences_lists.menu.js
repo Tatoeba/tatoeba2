@@ -61,7 +61,7 @@ $(document).ready(function() {
 		
 			$("#"+sentence_id+"_in_process").show();
 			
-			$.post("http://" + self.location.hostname + "/sentences_lists/add_sentence_to_list/"+ sentence_id + "/" + list_id
+			$.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/add_sentence_to_list/"+ sentence_id + "/" + list_id
 				, {}
 				,function(data){
 					if(data != 'error'){
@@ -89,7 +89,7 @@ $(document).ready(function() {
 				
 					$("#_"+sentence_id+"_in_process").show();
 					
-					$.post("http://" + self.location.hostname + "/sentences_lists/add_sentence_to_new_list/"+ sentence_id + "/"+ form.listName
+					$.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/add_sentence_to_new_list/"+ sentence_id + "/"+ form.listName
 						, {}
 						,function(data){
 							if(data != 'error'){
@@ -120,7 +120,7 @@ $(document).ready(function() {
 		// redirect to lists
 		else if(list_id == -2){
 			
-			$(location).attr('href', "http://" + self.location.hostname + "/sentences_lists/");
+			$(location).attr('href', "http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/");
 			
 		}
 		

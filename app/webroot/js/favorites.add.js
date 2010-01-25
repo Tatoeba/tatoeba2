@@ -39,7 +39,7 @@ $(document).ready(function(){
 			
 			$("#_"+favorite_id+"_in_process").show();
 
-			$.post("http://" + self.location.hostname + "/favorites/add_favorite/"+ favorite_id
+			$.post("http://" + self.location.hostname + ":" + self.location.port + "/favorites/add_favorite/"+ favorite_id
 				, {}	
 				,function(data){
 					// if add retrieve no data , then for a reason or an other, the sentence couldn't have been added 
@@ -71,7 +71,7 @@ $(document).ready(function(){
 			
 			$("#_"+favorite_id+"_in_process").show();
 			
-			$.post("http://" + self.location.hostname + "/favorites/remove_favorite/"+ favorite_id
+			$.post("http://" + self.location.hostname + ":" + self.location.port + "/favorites/remove_favorite/"+ favorite_id
 				, {}
 				,function(data){
 					// if add retrieve no data , then for a reason or an other, the sentence couldn't have been added					

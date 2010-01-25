@@ -31,7 +31,7 @@ $(document).ready(function() {
 		$("#inProcess").show();
 		
 		$.post(
-			"http://" + self.location.hostname + "/sentences_lists/set_as_public/",
+			"http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/set_as_public/",
 			{ "list_id": list_id, "is_public": is_public },
 			function(){
 				$("#inProcess").hide();

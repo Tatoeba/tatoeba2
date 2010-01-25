@@ -35,7 +35,7 @@ $(document).ready(function() {
 		
 		$(".loading").show();
 		
-	    $.post("http://" + self.location.hostname + "/sentences/save_sentence"
+	    $.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences/save_sentence"
 		, { "value" : sentenceText }
 		, function(data){			
 			$("#sentencesAdded").prepend(data);

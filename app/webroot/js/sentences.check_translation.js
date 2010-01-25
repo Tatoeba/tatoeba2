@@ -36,7 +36,7 @@ $(document).ready(function() {
 
 		if($.trim(sentence_text) != ""){
 			$("#translation_for_" + sentence_id).html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
-			$.post("http://" + self.location.hostname + "/sentences/save_translation"
+			$.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences/save_translation"
 				, { "id":sentence_id, "lang":sentence_lang, "value":sentence_text }
 				, function(data){
 					$(".same_language_warning").html('');

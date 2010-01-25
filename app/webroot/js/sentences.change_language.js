@@ -34,7 +34,7 @@ $(document).ready(function() {
 			$("#selectLang_" + sentenceId).hide();
 			
 			$.post(
-				"http://" + self.location.hostname + "/sentences/change_language/"
+				"http://" + self.location.hostname + ":" + self.location.port + "/sentences/change_language/"
 				, { "id": sentenceId, "lang": sentenceLang }
 				, function(){
 					$("#_" + sentenceId + "_in_process").hide();

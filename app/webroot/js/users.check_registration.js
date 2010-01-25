@@ -23,7 +23,7 @@ function check(fieldName, string){
 	
 	$("#registration"+inputId).removeClass("error").removeClass("valid").addClass("checking");
 	$.post(
-		"http://" + self.location.hostname + "/users/check_" + fieldName + "/" + string
+		"http://" + self.location.hostname + ":" + self.location.port + "/users/check_" + fieldName + "/" + string
 		, {}
 		, function(data){
 			if(data == 'valid'){

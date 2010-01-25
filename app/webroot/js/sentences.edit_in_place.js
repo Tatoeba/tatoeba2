@@ -19,7 +19,7 @@
 */
 
 $(document).ready(function() {
-	$('.editableSentence').editable('http://' + self.location.hostname + '/sentences/save_sentence', { 
+	$('.editableSentence').editable('http://' + self.location.hostname + ":" + self.location.port + '/sentences/save_sentence', { 
 		type      : 'text',
 		cancel    : 'Cancel',
 		submit    : 'OK',

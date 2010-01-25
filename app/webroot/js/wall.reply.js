@@ -42,7 +42,7 @@ $(document).ready(function(){
         $("#replyFormDiv_" + previousReplyFormInMessageID ).html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
         
         
-        $.post("http://" + self.location.hostname + "/wall/save_inside"
+        $.post("http://" + self.location.hostname + ":" + self.location.port + "/wall/save_inside"
             , { "content" : messageContent , "replyTo" : previousReplyFormInMessageID } 
             , function(data){
                 $("#messageBody_" + previousReplyFormInMessageID).append(data);
