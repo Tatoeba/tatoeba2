@@ -156,7 +156,7 @@ class SentenceCommentsController extends AppController
                         $this->Mailer->toName = '';
                         $this->Mailer->subject = $subject;
                         $this->Mailer->message = $message;
-                        //$this->Mailer->send();
+                        $this->Mailer->send();
                     }
                 }
                 
