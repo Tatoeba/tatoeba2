@@ -28,7 +28,7 @@
 /**
  * Model Class which represent chinese-like characters into the database
  *
- * @category PHP
+ * @category Sinograms
  * @package  Tatoeba
  * @author   Allan Simon <allan.simon@supinfo.com>
  * @license  Affero General Public License
@@ -38,9 +38,9 @@
 class Sinogram extends AppModel
 {
 
-    var $name = "Sinogram";
-    var $hasMany = array ('SinogramSubglyph'); 
-
+    public $name = "Sinogram";
+    public $hasMany = array ('SinogramSubglyph'); 
+    public $actsAs = array("Containable");
     /**
     * search a sinogram matching the input requirements
     *
@@ -52,21 +52,28 @@ class Sinogram extends AppModel
     * @return array of matching sinograms
     */
     
-    function search($subGlyphArray , $minStrokes = -1 , $maxStrokes = -1 )
-    { 
-        // TODO HACK SPOTTED : recursive should be banned ! use containable instead
-        $this->Sinogram->recursive = 0 ;
-
+    public function search($subGlyphArray , $minStrokes = -1 , $maxStrokes = -1 )
+    {
+       
+        // if there's only character in subglyph search then we should
+        // execute one more request to try to match itself 
+        // it's because the characters decomposition data are trees
+        // so you have'nt loopback  
         $onlyOneCharacter = false ;
         if ( count($subGlyphArray) == 1 ) {
             $sinogram = $subGlyphArray[0];
             $onlyOneCharacter = true;
         }
-        for ($i = 0 ; $i < count($subGlyphArray); $i++) {
+
+        // generate the IN() statement
+        // TODO I think there's a better way to do that in sql
+        // as IN statement will be very slow when exceeding 5+
+        $numberOfSublyph = count($subGlyphArray);
+        for ($i = 0 ; $i < $numberOfSublyph; $i++) {
             $subGlyphArray[$i] = "'".$subGlyphArray[$i] ."'" ;
         }
-
         $subglyphsString= implode(",", $subGlyphArray);
+        
         $result = $this->query(
             "SELECT Sinogram.id , Sinogram.glyph
              FROM  sinogram_subglyphs , sinograms as Sinogram
@@ -89,8 +96,6 @@ class Sinogram extends AppModel
                 )
             );
             array_push($result, $thisGlyph);
-            //pr ($result) ;
-            //pr ($thisGlyph);
         }
 
 
@@ -105,9 +110,10 @@ class Sinogram extends AppModel
     * @return array of compounds
     */
 
-    function explode($toExplodeArray)
+    public function explode($toExplodeArray)
     {
-        for ($i = 0 ; $i < count($toExplodeArray); $i++) {
+        $explodeArraySize = count($toExplodeArray);
+        for ($i = 0 ; $i < $explodeArraySize; $i++) {
             $toExplodeArray[$i] = "'".$toExplodeArray[$i] ."'" ;
         }
 
@@ -129,9 +135,8 @@ class Sinogram extends AppModel
      * @return array informations concerning this sinogram
      */
 
-    function informations($sinogram)
+    public function informations($sinogram)
     {
-        $this->recursive = 0 ; 
         $return = $this->find(
             'first',
             array(
@@ -152,3 +157,4 @@ class Sinogram extends AppModel
     }
 
 }
+?>
