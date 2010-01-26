@@ -20,19 +20,20 @@ $(document).ready(function(){
 	var lang = $("#languageSelection").val();
 	
     function loadSinogramInformations(sinogram){
-          $.post("http://" + self.location.hostname + ":" + self.location.port + "/" + lang + "/sinograms/loadSinogramInformations"
-            , { "sinogram" : sinogram  } 
-            , function(data){
+        $.post(
+            "http://" + self.location.hostname + ":" + self.location.port + "/" + lang + "/sinograms/load_sinogram_informations",
+            { "sinogram" : sinogram  },
+            function(data){
                 $("#information_part").empty();
                 $("#information_part").html(data);
-            }
-            , "html"
+            },
+            "html"
         );
     }
 
     function loadExampleSentence(sinogram){
        	$("#example_part").html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
-          $.post("http://" + self.location.hostname + ":" + self.location.port + "/" + lang + "/sinograms/loadExampleSentence"
+          $.post("http://" + self.location.hostname + ":" + self.location.port + "/" + lang + "/sinograms/load_example_sentence"
             , { "sinogram" : sinogram  } 
             , function(data){
                 $("#example_part").empty();
@@ -48,14 +49,14 @@ $(document).ready(function(){
     ** load radicals with the given number of strokes 
     */
     function loadRadicals(numberOfStroke){
-          $.post("http://" + self.location.hostname + ":" + self.location.port + "/" + lang + "/sinograms/loadRadicals"
+          
+          $.post("http://" + self.location.hostname + ":" + self.location.port +  "/" + lang + "/sinograms/load_radicals"
             , { "number" : numberOfStroke  } 
             , function(data){
                 $("#radicalsList").empty();
                 $("#radicalsList").html(data);
             }
-            , "html"
-        );
+            , "html");
     }
 
     /*

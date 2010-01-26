@@ -1,5 +1,5 @@
 <?php
-/**
+ /**
     Tatoeba Project, free collaborative creation of multilingual corpuses project
     Copyright (C) 2009  Allan SIMON <allan.simon@supinfo.com>
 
@@ -41,10 +41,10 @@ App::import('Core', 'Sanitize');
 class SinogramsController extends AppController
 {
 
-    var $name = 'Sinograms';
-    var $components = array('Lucene','Permissions');
-    var $helpers = array('Form','Javascript','Html');
-    var $uses = array('Sinogram','Sentence');
+    public $name = 'Sinograms';
+    public $components = array('Lucene','Permissions');
+    public $helpers = array('Form','Javascript','Html');
+    public $uses = array('Sinogram','Sentence');
 
     /**
      * to know who can do what
@@ -52,7 +52,7 @@ class SinogramsController extends AppController
      * @return void
      */
 
-    function beforeFilter()
+    public function beforeFilter()
     {
         parent::beforeFilter();
         $this->Auth->allowedActions = array("*");
@@ -65,7 +65,7 @@ class SinogramsController extends AppController
      */
 
 
-    function index()
+    public function index()
     {
 
 
@@ -77,7 +77,7 @@ class SinogramsController extends AppController
      * @return void
      */
 
-    function search()
+    public function search()
     { 
         
         $inputSubglyphs = $_POST["data"]["Sinogram"]["subglyphs"] ;
@@ -85,12 +85,13 @@ class SinogramsController extends AppController
         preg_match_all('/./u', $inputSubglyphs, $array);
 
         /*launching the request*/
-        $result = $this->Sinogram->search($array[0]);
+        $results = $this->Sinogram->search($array[0]);
         
         /*keep sinogram only*/
         $glyphs = array();
-        for ($i = 0 ; $i < count($result); $i++) {
-            array_push($glyphs, $result[$i]['Sinogram']['glyph']);
+        $numberOfResults = count($results) ;
+        for ($i = 0 ; $i < $numberOfResults; $i++) {
+            array_push($glyphs, $results[$i]['Sinogram']['glyph']);
         }
         /*send them to the view*/
 
@@ -105,7 +106,7 @@ class SinogramsController extends AppController
      * @return void
      */
 
-    function explode()
+    public function explode()
     {
         $toExplodeGlyphs = $_POST["data"]["Sinogram"]["toExplode"] ;
         /*use preg_match instead of str_split as we're working
@@ -113,7 +114,7 @@ class SinogramsController extends AppController
         preg_match_all('/./u', $toExplodeGlyphs, $array);
 
         $results = $this->Sinogram->explode($array[0]);
-
+        $numberOfResults = count($results);
         
         /*
             regroup the result in this way
@@ -121,7 +122,8 @@ class SinogramsController extends AppController
         
         */
         $explodedSinogramsArray = array();
-        for ($i = 0 ; $i < count($results); $i++) {
+
+        for ($i = 0 ; $i < $numberOfResults; $i++) {
             $currentGlyph = $results[$i]["sinogram_subglyphs"]["glyph"];
             if (!isset($explodedSinogramsArray[$currentGlyph])) {
                 $explodedSinogramsArray[$currentGlyph] = array();
@@ -146,7 +148,7 @@ class SinogramsController extends AppController
      * @return void
      */
 
-    function loadSinogramInformations()
+    public function load_sinogram_informations()
     {
         $sinogram = "噥";
         if (strlen(utf8_decode($_POST["sinogram"])) == 1) {
@@ -166,7 +168,7 @@ class SinogramsController extends AppController
      * @return void
      */
 
-    function loadExampleSentence()
+    public function load_example_sentence()
     {
         $sinogram = "噥";
         if (strlen(utf8_decode($_POST["sinogram"]))== 1) {
@@ -197,7 +199,7 @@ class SinogramsController extends AppController
      *
      * @return void
      */
-    function loadRadicals()
+     function load_radicals()
     {
         $numberOfStrokes = $_POST["number"];
         
@@ -261,3 +263,4 @@ class SinogramsController extends AppController
 
     }
 }
+?>
