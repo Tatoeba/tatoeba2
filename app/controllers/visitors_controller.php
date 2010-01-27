@@ -58,18 +58,7 @@ class VisitorsController extends AppController
      */
     public function online()
     {
-        // delete users with timestamp higher than 5 minutes
-        $timestamp_5min = time() - (60 * 5);
-        $this->Visitor->deleteAll(array('timestamp < ' . $timestamp_5min), false);
-        
-        // adding visitor to the list
-        if ($this->Visitor->findByIp($_SERVER['REMOTE_ADDR']) == null) {
-            $this->data['Visitor']['timestamp'] = time();
-            $this->data['Visitor']['ip'] = $_SERVER['REMOTE_ADDR'];
-            $this->Visitor->save($this->data);
-        }
-    
-        return $this->Visitor->find('count');
+        return $this->Visitor->numberOfOnlineVisitors();
     }
     
 }    
