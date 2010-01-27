@@ -58,7 +58,7 @@
                      false 
                     );
 				echo ' ';
-				echo $sentence['Sentence']['text'];
+				echo Sanitize::html($sentence['Sentence']['text']);
 				echo '</li>';
 			}
 			echo '</ul>';

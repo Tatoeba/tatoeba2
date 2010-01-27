@@ -17,8 +17,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-App::import('Core', 'Sanitize');
-
 class SentencesHelper extends AppHelper {
 
 	var $helpers = array('Html', 'Form', 'Kakasi', 'Javascript', 'Menu', 'Languages');
@@ -86,7 +84,7 @@ class SentencesHelper extends AppHelper {
 	 * Display a single sentence for edit in place.
 	 */
 	function displayEditableSentence($sentence) {
-		echo '<div id="_'.$sentence['id'].'" class="original sentence mine">';
+		echo '<div class="original sentence mine">';
 			// info icon
 			echo $this->Html->link(
 				$this->Html->image('info.png')
@@ -102,8 +100,8 @@ class SentencesHelper extends AppHelper {
 			$this->displayLanguageFlag($sentence['id'], $sentence['lang'], true);
 			
 			// Sentence
-			echo '<div id="'.$sentence['lang'].'_'.$sentence['id'].'" class="editable editableSentence correctness'.$sentence['correctness'].'">';
-			echo $sentence['text'];
+			echo '<div id="_'.$sentence['id'].'" class="editable editableSentence correctness'.$sentence['correctness'].'">';
+			echo Sanitize::html($sentence['text']);
 			echo '</div> ';
 			
 			$this->displayRomanization($sentence);
@@ -310,7 +308,10 @@ class SentencesHelper extends AppHelper {
 	/**
 	 * Sentence options (translate, edit, correct, comments, logs, edit, ...)
 	 */
-	function displayMenu($id, $lang, $specialOptions, $score = null){		
+	function displayMenu($id, $lang, $specialOptions, $score = null){
+        if($lang == ''){
+            $lang = 'und';
+        }
 		echo '<ul class="menu" id="_'. $id .'" lang="'.$lang.'">';
 			// score
 			if($score != null){

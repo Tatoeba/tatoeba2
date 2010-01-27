@@ -100,10 +100,18 @@ class CommentsHelper extends AppHelper {
 
 	function displayCommentForm($sentence_id, $sentence_text){
 		echo $this->Form->create('SentenceComment', array("action"=>"save"));
-		echo $this->Form->input('sentence_id', array("type"=>"hidden", "value"=>$sentence_id));
-		echo $this->Form->input('sentence_text', array("type"=>"hidden", "value"=>$sentence_text));
+        
+        echo '<p>';
+		echo $this->Form->hidden('sentence_id', array("value"=>$sentence_id));
+        echo '</p>';
+        
+        echo '<p>';
+		echo $this->Form->hidden('sentence_text', array("value"=>$sentence_text));
+        echo '</p>';
+        
 		echo $this->Form->input('text', array("label"=> "", "cols"=>"64", "rows"=>"6"));
-		echo $this->Form->end('Submit');
+		
+        echo $this->Form->end('Submit');
 	}
 
 }
