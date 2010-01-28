@@ -18,7 +18,8 @@
 */
 
 class FavoritedBy extends AppModel{
-	var $name = 'FavoritedBy';
-	var $useTable = 'users';
+	public $name = 'FavoritedBy';
+	public $useTable = 'users';
+    public $actsAs = array('Containable');
 }
 ?>

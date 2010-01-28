@@ -19,7 +19,8 @@
 
 class ConversationsSentence extends AppModel {
 
-	var $name = 'ConversationsSentence';
+	public $name = 'ConversationsSentence';
+    public $actsAs = array('Containable');
 
 }
 ?>

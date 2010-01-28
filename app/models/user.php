@@ -19,8 +19,12 @@
 
 class User extends AppModel {
 
-	var $name = 'User';
-	var $actsAs = array('Acl' => array('requester'), 'ExtendAssociations','containable');
+	public $name = 'User';
+	public $actsAs = array(
+        'Acl' => array('requester'),
+        'ExtendAssociations',
+        'Containable'
+    );
 
 	const LOWEST_TRUST_GROUP_ID = 4;
 
@@ -103,6 +107,7 @@ class User extends AppModel {
 	);
 
 	function parentNode() {
+
 	    if (!$this->id && empty($this->data)) {
 	        return null;
 	    }

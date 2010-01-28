@@ -38,8 +38,9 @@
 class SinogramSubglyph extends AppModel
 {
 
-    var $name = "SinogramSubglyph";
+    public $name = "SinogramSubglyph";
 
-    var $belongsTo = array('Sinogram');
+    public $belongsTo = array('Sinogram');
 
+    public $actsAs = array('Containable');
 }

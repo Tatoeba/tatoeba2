@@ -38,6 +38,7 @@ class SentenceAnnotation extends AppModel
 {
     public $belongsTo = array('Sentence');
     
+    public $actsAs = array('Containable');
     /**
      * Get annotations for the sentence specified.
      *

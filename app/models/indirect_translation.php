@@ -37,5 +37,6 @@
 class IndirectTranslation extends AppModel
 {
     public $useTable = 'sentences';
+    public $actsAs = array('Containable');
 }
 ?>

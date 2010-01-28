@@ -37,14 +37,18 @@
 
 class Wall extends AppModel
 {
-    var $name = 'Wall';
-    var $useTable = 'wall';
-    var $actsAs = array('Containable');
+    public $name = 'Wall';
+    public $useTable = 'wall';
+    public $actsAs = array('Containable');
 
-    var $belongsTo = array('User' => array('className' => 'User', 'foreignKey'
-    => 'owner'));
+    public $belongsTo = array(
+        'User' => array(
+            'className'  => 'User',
+            'foreignKey' => 'owner'
+        )
+    );
 
-    var $hasMany = array(
+    public $hasMany = array(
         'Reply' =>
              array(
                 'className' => 'Wall',

@@ -21,7 +21,7 @@ class Follower extends AppModel{
 	var $name = 'Follower';
 	var $useTable = 'users';
 
-	var $actsAs = array('ExtendAssociations');
+	var $actsAs = array('ExtendAssociations','Containable');
 
 	var $hasAndBelongsToMany = array(
 		'User' => array(

@@ -19,7 +19,8 @@
 
 class Country extends AppModel {
 
-	var $name = 'Country';
+	public $name = 'Country';
 
+    public $actsAs = array('Containable');
 }
 ?>

@@ -18,9 +18,10 @@
 */
 
 class PrivateMessage extends AppModel{
-	var $name = 'PrivateMessage';
+	public $name = 'PrivateMessage';
 
-	var $belongsTo = array('User' => array('className' => 'User'));
+    public $actsAs = array('Containable');
+	public $belongsTo = array('User' => array('className' => 'User'));
 
 	function get_messages($folderId, $userId){
 		return $this->find(

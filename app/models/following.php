@@ -18,10 +18,10 @@
 */
 
 class Following extends AppModel{
-	var $name = 'Following';
-	var $useTable = 'users';
+	public $name = 'Following';
+	public $useTable = 'users';
 	
-	var $hasAndBelongsToMany = array(
+	public $hasAndBelongsToMany = array(
 		'User' => array(
 			'className' => 'User',
 			'joinTable' => 'followers_users',

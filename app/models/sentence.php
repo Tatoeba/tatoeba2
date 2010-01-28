@@ -44,13 +44,13 @@ App::import('Core', 'Sanitize');
 class Sentence extends AppModel
 {
 
-    var $name = 'Sentence';
-    var $actsAs = array("Containable");
+    public $name = 'Sentence';
+    public $actsAs = array("Containable");
 
     // This is not much in use. Should probably remove it someday
     const MAX_CORRECTNESS = 6; 
     
-    var $languages = array(
+    public $languages = array(
         'ara' ,'bul' ,'deu' ,'ell' ,'eng',
         'epo' ,'spa' ,'fra' ,'heb' ,'ind',
         'jpn' ,'kor' ,'nld' ,'por' ,'rus',

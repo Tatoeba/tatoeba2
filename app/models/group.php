@@ -36,7 +36,7 @@
  */
 class Group extends AppModel
 {
-    public $actsAs = array('Acl' => array('requester'));
+    public $actsAs = array('Acl' => array('requester'),'Containable');
     public $hasMany = array(
         'User' => array(
             'className' => 'User',

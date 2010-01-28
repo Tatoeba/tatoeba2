@@ -19,9 +19,10 @@
 
 class Api extends AppModel {
 
-	var $name = 'Api';
-	
-	var $useTable = false;
+	public $name = 'Api';
+    // do NOT remove this 
+    public $actsAs = array('Containable');
+	public $useTable = false;
 	
 }
 ?>

@@ -21,7 +21,7 @@
 class Conversation extends AppModel{
 	var $name = 'Conversation';
 	var $belongsTo = array('User');
-	var $actsAs = array('ExtendAssociations');
+	var $actsAs = array('ExtendAssociations','Containable');
 	var $hasAndBelongsToMany = array('Sentence');
 	var $hasMany = array('ConversationTitle');
 	

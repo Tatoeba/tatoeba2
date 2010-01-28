@@ -37,5 +37,6 @@
 class Tool extends AppModel
 {
     public $useTable = false;
+    public $actsAs = array('Containable');
 }
 ?>

@@ -36,6 +36,9 @@
  */
 class Visitor extends AppModel
 {
+
+    public $actsAs = array('Containable');
+
     /**
      * Returns number of online visitors.
      *

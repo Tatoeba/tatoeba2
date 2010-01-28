@@ -19,7 +19,8 @@
 
 class ConversationTitle extends AppModel {
 
-	var $name = 'ConversationTitle';
+	public $name = 'ConversationTitle';
+    public $actsAs = array('Containable');
 
 }
 ?>

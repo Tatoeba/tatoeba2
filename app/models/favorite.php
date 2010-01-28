@@ -21,7 +21,7 @@ class Favorite extends AppModel{
 	var $name = 'Favorite';
 	var $useTable = 'sentences';
 
-	var $actsAs = array('ExtendAssociations');
+	var $actsAs = array('ExtendAssociations','Containable');
 
 
 	var $hasAndBelongsToMany = array(
@@ -51,5 +51,56 @@ class Favorite extends AppModel{
         return $result[0][0]["numberOfFavorites"];
     }
 
+    /**
+     * retrieve all favorites of a user
+     *
+     * @param int $user_id user to retrieve favorites 
+     * 
+     * @return array 
+     */
+
+     public function getAllFavoritesOfUser($userId){
+        
+        // TODO HACK SPOTTED the main things here is favorite, not user
+        // so the query should be reviewed moreover it's all but optimized 
+        $user = new User();
+        $user->id = $user_id;
+        $user->hasAndBelongsToMany['Favorite']['limit'] = null;
+        $user = $user->read();
+
+        return $user;
+     }
+
+    /**
+     * add a sentence to current user's ones
+     *
+     * @param int $sentenceId id of the sentence to favorite
+     *
+     * @return bool
+     */
+
+    public function addFavorite($sentenceId, $userId){
+        return $this->Favorite->habtmAdd(
+            'User',
+            $sentenceId,
+            $userId
+        );
+    } 
+
+    /**
+     * add a sentence to current user's ones
+     *
+     * @param int $sentenceId id of the sentence to favorite
+     *
+     * @return bool
+     */
+
+    public function removeFavorite($sentenceId, $userId){
+        return $this->Favorite->habtmDelete(
+            'User',
+            $sentenceId,
+            $userId
+        );
+    } 
 }
 ?>
