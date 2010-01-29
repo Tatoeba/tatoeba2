@@ -30,7 +30,7 @@ $languages = array(
 	, 'fre' => 'Français'
 	, 'chi' => '中文'
 	, 'spa' => 'Español'
-	//, 'jpn' => '日本語'
+	, 'jpn' => '日本語'
 	, 'deu' => 'Deutsch'
 	, 'ita' => 'Italiano'
 );
