@@ -175,22 +175,24 @@ class SentencesListsController extends AppController
      */
     public function save_name()
     {
-        Sanitize::paranoid($_POST['id']);
-        Sanitize::html($_POST['value']);
-        
         $userId = $this->Auth->user('id');
+        $listId = substr($_POST['id'], 1);
+        $listName = $_POST['value'];
         
-        if ($this->SentencesList->belongsToCurrentUser($_POST['id'], $userId)) {
-            if (isset($_POST['value']) AND isset($_POST['id'])) {
-                $this->SentencesList->id = $_POST['id'];
-                if ($this->SentencesList->saveField('name', $_POST['value'])) {
-                    $this->set('result', $_POST['value']);
-                } else {
-                    $this->set('result', 'error');
-                }
+        Sanitize::paranoid($listId);
+        Sanitize::html($listName);
+        
+        if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
+            
+            $this->SentencesList->id = $listId;
+            if ($this->SentencesList->saveField('name', $listName)) {
+                $this->set('result', $listName);
             } else {
                 $this->set('result', 'error');
             }
+            
+        } else {
+            $this->set('result', 'error');
         }
     }
 

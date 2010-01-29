@@ -59,7 +59,7 @@ $(document).ready(function() {
 		// Add sentence to selected list
 		if(list_id > 0){
 		
-			$("#"+sentence_id+"_in_process").show();
+			$("#_"+sentence_id+"_in_process").show();
 			
 			$.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/add_sentence_to_list/"+ sentence_id + "/" + list_id
 				, {}

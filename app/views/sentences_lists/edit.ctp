@@ -170,7 +170,7 @@ $javascript->link('jquery.jeditable.js', false);
 	if($session->read('Auth.User.id') == $list['SentencesList']['user_id']){
 		$class = 'class="editable editableSentencesListName"';
 	}
-	echo '<h2 id="_'.$list['SentencesList']['id'].'" '.$class.'>'.$list['SentencesList']['name'].'</h2>';
+	echo '<h2 id="l'.$list['SentencesList']['id'].'" '.$class.'>'.$list['SentencesList']['name'].'</h2>';
 
 	echo '<div id="newSentenceInList">';
 	echo $form->input('text', array("label" => __('Add a sentence to this list : ', true)));
@@ -190,7 +190,7 @@ $javascript->link('jquery.jeditable.js', false);
 	echo $html->image('loading.gif');
 	echo '</div>';
 
-	echo '<span class="sentencesListId" id="'.$list['SentencesList']['id'].'" />'; // to retrieve id
+	echo '<span class="sentencesListId" id="_'.$list['SentencesList']['id'].'" />'; // to retrieve id
 
 	echo '<ul class="sentencesList editMode">';
 	if(count($list['Sentence']) > 0){
@@ -199,7 +199,7 @@ $javascript->link('jquery.jeditable.js', false);
 			echo '<li id="sentence'.$sentence['id'].'">';
 				// delete button
 				echo '<span class="options">';
-				echo '<a id="'.$sentence['id'].'" class="removeFromListButton">';
+				echo '<a id="_'.$sentence['id'].'" class="removeFromListButton">';
 				echo $html->image('close.png');
 				echo '</a>';
 				echo '</span>';

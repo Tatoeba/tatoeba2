@@ -19,8 +19,8 @@
 $(document).ready(function() {
 
 	$(".removeFromListButton").click(function(){
-		var sentence_id = $(this).attr("id");
-		var list_id = $(".sentencesListId").attr("id");
+		var sentence_id = $(this).attr("id").slice(1);
+		var list_id = $(".sentencesListId").attr("id").slice(1);
 		
 		$("#sentence"+sentence_id).html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
 		$("#sentence"+sentence_id).load("http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/remove_sentence_from_list/"+ sentence_id + "/" + list_id);

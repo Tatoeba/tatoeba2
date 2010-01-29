@@ -120,7 +120,7 @@
 
 	<?php
 	if(count($list['Sentence']) > 0){
-		echo '<ul id="'.$list['SentencesList']['id'].'" class="sentencesList">';
+		echo '<ul class="sentencesList">';
         if ($translationsLang == 'und') {
             $translationsLang = null;
         }

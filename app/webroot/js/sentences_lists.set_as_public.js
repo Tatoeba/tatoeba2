@@ -20,7 +20,7 @@ $(document).ready(function() {
 
 	$("#isPublic").change(function(){
 		var is_public;
-		var list_id = $(".sentencesListId").attr('id');
+		var list_id = $(".sentencesListId").attr('id').slice(1);
 		
 		if($(this).is(':checked')){	
 			is_public = 1;
