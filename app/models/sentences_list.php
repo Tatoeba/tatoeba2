@@ -188,5 +188,33 @@ class SentencesList extends AppModel
             return false;
         }
     }
+    
+    /**
+     * Add sentence to list.
+     *
+     * @param int $sentenceId Id of the sentence.
+     * @param int $listId     Id of the list.
+     *
+     * @return array
+     */
+    public function addSentenceToList($sentenceId, $listId)
+    {
+        return $this->habtmAdd('Sentence', $listId, $sentenceId);
+    }
+    
+    
+    /**
+     * Remove sentence from list.
+     *
+     * @param int $sentenceId Id of the sentence.
+     * @param int $listId     Id of the list.
+     *
+     * @return array
+     */
+    public function removeSentenceFromList($sentenceId, $listId)
+    {
+        return $this->habtmDelete('Sentence', $listId, $sentenceId);
+    }
+    
 }
 ?>

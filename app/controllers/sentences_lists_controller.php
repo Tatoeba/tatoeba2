@@ -25,8 +25,6 @@
  * @link     http://tatoeba.org
  */
 
-App::import('Core', 'Sanitize');
-
 /**
  * Controller for sentences lists.
  *
@@ -233,7 +231,7 @@ class SentencesListsController extends AppController
         $this->set('l', $listId);
         $userId = $this->Auth->user('id');
         if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
-            if ($this->SentencesList->habtmAdd('Sentence', $listId, $sentenceId)) {
+            if ($this->SentencesList->addSentenceToList($sentenceId, $listId)) {
                 $this->set('listId', $listId);
             } else {
                 $this->set('listId', 'error');
@@ -262,8 +260,8 @@ class SentencesListsController extends AppController
                 $newList['SentencesList']['user_id'] = $this->Auth->user('id');
                 $newList['SentencesList']['name'] = $listName;
                 if ($this->SentencesList->save($newList)) {
-                    $this->SentencesList->habtmAdd(
-                        'Sentence', $this->SentencesList->id, $sentenceId
+                    $this->SentencesList->addSentenceToList(
+                        $sentenceId, $this->SentencesList->id
                     );
                     $this->set('listId', $this->SentencesList->id);
                 } else {
@@ -292,8 +290,8 @@ class SentencesListsController extends AppController
         $userId = $this->Auth->user('id');
         
         if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
-            $isRemoved = $this->SentencesList->habtmDelete(
-                'Sentence', $listId, $sentenceId
+            $isRemoved = $this->SentencesList->removeSentenceFromList(
+                $sentenceId, $listId
             );
             if ($isRemoved) {
                 $this->set('removed', true);
@@ -354,8 +352,8 @@ class SentencesListsController extends AppController
             // saving
             if ($sentence->save($data)) {
 
-                $this->SentencesList->habtmAdd(
-                    'Sentence', $_POST['listId'], $sentence->id
+                $this->SentencesList->addSentenceToList(
+                    $sentence->id, $_POST['listId']
                 );
                 $sentenceSaved = $sentence->getSentenceWithId($sentence->id);
                 $this->set('sentence', $sentenceSaved);
