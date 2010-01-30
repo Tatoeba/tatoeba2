@@ -22,22 +22,20 @@ if  ($session->check('Message.auth')) $session->flash('auth');
 
 <script type="text/javascript">
 <!--
-	var status = true;
-	function displayLoginForm(){
-		if(status){
+	function openLoginForm(){
 			document.getElementById('UserLoginForm_FromBar').style.display = 'block';
-			status = false;
-		}else{
-			document.getElementById('UserLoginForm_FromBar').style.display = 'none';
-			status = true;
-		}
 	}
+	function closeLoginForm(){
+			document.getElementById('UserLoginForm_FromBar').style.display = 'none';
+    }
+	
+	
 -->
 </script>
 
 
 <ul id="UserLoginLinkList">
-	<li onclick="javascript:displayLoginForm();" class="login_pseudo_link"><?php echo __('Log in', true); ?></li>
+	<li onclick="javascript:openLoginForm();" class="login_pseudo_link"><?php echo __('Log in', true); ?></li>
 </ul>
 
 <form id="UserLoginForm_FromBar" method="post" action="/eng/users/login" style="display:none;">
@@ -60,6 +58,8 @@ if  ($session->check('Message.auth')) $session->flash('auth');
 												"controller" => "users",
 												"action" => "new_password"
 			)); ?>
-		<span onclick="javascript:displayLoginForm();" class="login_pseudo_link" style="float:right;"><?php echo __('Close', true); ?></span>
+        <span onclick="javascript:closeLoginForm();" class="login_pseudo_link" style="float:right;">
+		  <?php echo __('Close', true); ?>
+	   </span>
 	</p>
 </form>
