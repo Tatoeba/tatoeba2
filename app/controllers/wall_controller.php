@@ -1,109 +1,134 @@
 <?php
-/*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009 Allan SIMON <allan.simon@supinfo.com>
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2009  Allan SIMON <allan.simon@supinfo.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5
+ *
+ * @category PHP
+ * @package  Tatoeba
+ * @author   Allan SIMON <allan.simon@supinfo.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-/*
-controller for the wall
-should contains all the method related to send a new message on the wall
-replying and so
-+---------+--------------+------+-----+---------+----------------+
-| Field   | Type         | Null | Key | Default | Extra          |
-+---------+--------------+------+-----+---------+----------------+
-| id      | int(11)      | NO   | PRI | NULL    | auto_increment | 
-| owner   | int(11)      | NO   |     | NULL    |                | 
-| replyTo | int(11)      | YES  |     | NULL    |                | 
-| date    | datetime     | NO   |     | NULL    |                | 
-| title   | varchar(255) | NO   |     | NULL    |                | 
-| content | text         | NO   |     | NULL    |                | 
-+---------+--------------+------+-----+---------+----------------+
-
- 
-*/
 
 // Permit to sanitize input, to avoid xss
 App::import('Core', 'Sanitize');
+/**
+ * Controller for the wall.
+ *
+ * @category Contributions
+ * @package  Controllers
+ * @author   Allan SIMON <allan.simon@supinfo.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
 
-class WallController extends Appcontroller{
+class WallController extends Appcontroller
+{
     
 
-    var $name = 'Wall' ;
-    var $paginate = array('limit' => 50);
-    var $helpers = array('Wall','Javascript','Date');
-	var $components = array ('Mailer');
+    public $name = 'Wall' ;
+    public $paginate = array('limit' => 50);
+    public $helpers = array('Wall','Javascript','Date');
+    public $components = array ('Mailer');
 
-    function beforeFilter(){
+    /**
+     * to know who can do what
+     *
+     * @return void
+     */
+
+    public function beforeFilter()
+    {
         parent::beforeFilter();
         $this->Auth->allowedActions = array('*');
            
         // TODO complete this method
     }
 
-    function index(){
+    /**
+     * display main wall page with all messages
+     * TODO need to paginate it
+     *
+     * @return void
+     */
+
+    public function index()
+    {
         $firstMessages = $this->Wall->getFirstMessages();
 
         
         $messages = $this->Wall->getMessages();
         $tenLastMessages = $this->Wall->getLastMessages(10);
         
-        $this->set('allMessages' , $messages) ;
-        $this->set('tenLastMessages',$tenLastMessages);
-        $this->set('firstMessages' , $firstMessages) ;
+        $this->set('allMessages', $messages);
+        $this->set('tenLastMessages', $tenLastMessages);
+        $this->set('firstMessages', $firstMessages);
 
     }
 
-    function save(){
+    /**
+     * save a new first message
+     *
+     * @return void
+     */
+
+    public function save()
+    {
         //TODO
-        if(!empty($this->data['Wall']['content'] )){
-            Sanitize::html( $this->data['Wall']['content']);
+        if (!empty($this->data['Wall']['content'])) {
+            Sanitize::html($this->data['Wall']['content']);
             $this->data['Wall']['owner'] = $this->Auth->user('id');
             $this->data['Wall']['date'] = date("Y-m-d H:i:s");  
             // now save to database 
-            if ($this->Wall->save($this->data)){
-				
+            if ($this->Wall->save($this->data)) {
             }
         }
         $this->redirect(array('action'=>'index'));
     }
 
+    /**
+     * save a new reply
+     *
+     * @return void
+     */ 
    
-   
-    function save_inside(){
+    public function save_inside()
+    {
         $idTemp = $this->Auth->user('id');
-        if( isset($_POST['content'])
-            AND  rtrim($_POST['content']) != ''
-            AND isset($_POST['replyTo'])
-            AND !(empty($idTemp))
-            ) {
+        if (isset($_POST['content'])
+            && rtrim($_POST['content']) != ''
+            && isset($_POST['replyTo'])
+            && !(empty($idTemp))
+        ) {
              
-            Sanitize::stripScripts( $_POST['content']);
+            Sanitize::stripScripts($_POST['content']);
             $this->data['Wall']['content'] = $_POST['content'] ; 
             $this->data['Wall']['owner'] = $idTemp ;
             $this->data['Wall']['replyTo'] = $_POST['replyTo'] ;
             $this->data['Wall']['date'] = date("Y-m-d H:i:s"); 
             // now save to database 
-            if ($this->Wall->save($this->data)){
+            if ($this->Wall->save($this->data)) {
                 
-                $user = new User();
-                $user->id = $idTemp ;
-                $user->recursive = -1 ;
-                $user = $user->read();
-
-                $this->set("user" , $user ); 
+                App::import('Model', 'User');
+                $userModel =  new User(); 
+                $user = $userModel->getInfoWallUser($idTemp);
+                $this->set("user", $user); 
                 
                 // we forge a message to be used in the view
                 
@@ -114,40 +139,45 @@ class WallController extends Appcontroller{
                 $message['Wall']['id'] = $this->Wall->id ;
                  
                 $message['User']['image'] = $user['User']['image'];
-                if ( empty($message['User']['image'])){
+                if (empty($message['User']['image'])) {
                     $message['User']['image'] = 'unknown-avatar.jpg';
                 }
 
                 $message['User']['username'] = $user['User']['username'];
 
-                $this->set("message" , $message ); 
-				
-				// ------------------
-				// send notification
-				// ------------------
-				
-				// Retrieve parent message
-                // TODO hack spotted : should use a model's method instead of this tricky code
-				$parentMessage = new Wall();
-				$parentMessage->id = $_POST['replyTo'];
-				$parentMessage->read();
-				
-				// prepare email
+                $this->set("message", $message); 
+                
+                // ------------------
+                // send notification
+                // ------------------
+                
+                // Retrieve parent message
+                $parentMessage = $this->Wall->getMessageForMail($_POST['replyTo']);
+                
+                // prepare email
                 // TODO : i18n mail
-				if($parentMessage->data['User']['send_notifications'] AND $parentMessage->data['User']['id'] != $this->Auth->user('id')){
-					$participant = $parentMessage->data['User']['email'];
-					$subject  = 'Tatoeba - ' . $message['User']['username'] . ' has replied to you on the Wall';
-					$mailContent  = 'http://'.$_SERVER['HTTP_HOST'] .'/wall/index#message_'.$message['Wall']['id']."\n\n";
-					$mailContent .= '- - - - - - - - - - - - - - - - -'."\n\n";
-					$mailContent .= $message['Wall']['content']."\n\n";
-					$mailContent .= '- - - - - - - - - - - - - - - - -'."\n\n";
-					
-					$this->Mailer->to = $participant;
-					$this->Mailer->toName = '';
-					$this->Mailer->subject = $subject;
-					$this->Mailer->message = $mailContent;
-					$this->Mailer->send();
-				}
+
+                if ($parentMessage['User']['send_notifications']
+                    && $parentMessage['User']['id'] != $this->Auth->user('id')
+                ) {
+                    $participant = $parentMessage['User']['email'];
+                    $subject  = 'Tatoeba - ' .
+                         $message['User']['username'] .
+                         ' has replied to you on the Wall';
+                    $mailContent 
+                        = 'http://' .
+                        $_SERVER['HTTP_HOST'] .
+                        '/wall/index#message_'.$message['Wall']['id']."\n\n";
+                    $mailContent .= '- - - - - - - - - - - - - - - - -'."\n\n";
+                    $mailContent .= $message['Wall']['content']."\n\n";
+                    $mailContent .= '- - - - - - - - - - - - - - - - -'."\n\n";
+                    
+                    $this->Mailer->to = $participant;
+                    $this->Mailer->toName = '';
+                    $this->Mailer->subject = $subject;
+                    $this->Mailer->message = $mailContent;
+                    $this->Mailer->send();
+                }
             }
         }
     }
