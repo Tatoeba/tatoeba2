@@ -76,7 +76,7 @@ echo $this->element('pmmenu');
             'Inbox',
              $content['id']
         )
-    ) 
+    );
     
     echo $this->element(
         'pmtoolbox',
