@@ -89,7 +89,7 @@ class SinogramsController extends AppController
         
         /*keep sinogram only*/
         $glyphs = array();
-        $numberOfResults = count($results) ;
+        $numberOfResults = count($results);
         for ($i = 0 ; $i < $numberOfResults; $i++) {
             array_push($glyphs, $results[$i]['Sinogram']['glyph']);
         }
@@ -199,7 +199,7 @@ class SinogramsController extends AppController
      *
      * @return void
      */
-     function load_radicals()
+    public function load_radicals()
     {
         $numberOfStrokes = $_POST["number"];
         
