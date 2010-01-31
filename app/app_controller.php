@@ -28,7 +28,7 @@
 /**
  * Controller for contributions.
  *
- * @category Contributions
+ * @category App
  * @package  Controllers
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
