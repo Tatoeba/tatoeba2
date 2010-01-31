@@ -551,7 +551,7 @@ class SentencesHelper extends AppHelper
         }
         
         echo $this->Html->image(
-            $lang.'.png',
+            'png_fin/' . $lang.'.png',
             array("class" => "languageFlag ".$class)
         );
         
