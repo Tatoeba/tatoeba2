@@ -1,74 +1,122 @@
 <?php
-/*
-    Tatoeba Project, free collaborative creation of multilingual corpuses project
-    Copyright (C) 2009  Allan SIMON <allan.simon@supinfo.com>,
-	HO Ngoc Phuong Trang <tranglich@gmail.com>
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2009  Allan SIMON <allan.simon@supinfo.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5
+ *
+ * @category PHP
+ * @package  Tatoeba
+ * @author   Allan SIMON <allan.simon@supinfo.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
 
 App::import('Core', 'Sanitize');
 
-class FavoritesController extends AppController{
+/**
+ * Controller for favorite.
+ *
+ * @category TODEFINE 
+ * @package  Controllers
+ * @author   Allan SIMON <allan.simon@supinfo.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
 
-	var $name = 'Favorites' ;
-	var $paginate = array('limit' => 50); 
-	var $helpers = array('Navigation', 'Html');
+class FavoritesController extends AppController
+{
 
-	function beforeFilter() {
-	    parent::beforeFilter();
-		
-		// setting actions that are available to everyone, even guests
-		$this->Auth->allowedActions = array('of_user');
-	}
-	
-	function of_user($user_id){
-        Sanitize::paranoid($user_id); 
-		$user = new User();
-		$user->id = $user_id;
-		$user->hasAndBelongsToMany['Favorite']['limit'] = null;
-		$user = $user->read();
-		$this->set('user', $user);
-	}
+    public $name = 'Favorites' ;
+    public $paginate = array('limit' => 50); 
+    public $helpers = array('Navigation', 'Html');
 
-	function add_favorite ($sentence_id){
-        Sanitize::paranoid($sentence_id); 
-		Configure::write('debug',0);
-		
-	    $user_id =$this->Auth->user('id');
-		
-		if ( $user_id != NULL ){
-			
-			if($this->Favorite->habtmAdd ('User' , $sentence_id , $this->Auth->user('id') )){
-				$this->set('saved' , true );
-			}
-		}
-	}
+    /**
+     * to know who can do what
+     *
+     * @return void
+     */
 
-	function remove_favorite ($sentence_id){
-        Sanitize::paranoid($sentence_id); 
-	    Configure::write('debug',0);
-    	
-		$user_id =$this->Auth->user('id');
-		
-		if ( $user_id != NULL ){
-			
-			if($this->Favorite->habtmDelete ('User' , $sentence_id , $this->Auth->user('id') )){
-				$this->set('saved' , true );
-			}
-		}
-	}
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        
+        // setting actions that are available to everyone, even guests
+        $this->Auth->allowedActions = array('of_user');
+    }
+    
+    /**
+     * view all favorites sentences of a given user
+     *
+     * @param int $userId user to retrieve favorites 
+     *
+     * @return void
+     */
+
+    public function of_user($userId)
+    {
+        Sanitize::paranoid($userId);
+        //TODO : recode me  
+        $user = $this->Favorite->getAllFavoritesOfUser($userId);
+        $this->set('user', $user);
+    }
+
+    /**
+     * add a sentence to current user's ones
+     *
+     * @param int $sentenceId id of the sentence to favorite
+     *
+     * @return void
+     */
+
+    public function add_favorite ($sentenceId)
+    {
+        Sanitize::paranoid($sentenceId); 
+        
+        $userId =$this->Auth->user('id');
+        
+        if ($userId != null) {
+            
+            if ($this->Favorite->addFavorite($sentenceId, $userId)) {
+                $this->set('saved', true);
+            }
+        }
+    }
+
+    /**
+     * remove a favorite to current user's ones
+     *
+     * @param int $sentenceId id of the sentence to remove from favorites
+     *
+     * @return void
+     */
+
+    public function remove_favorite ($sentenceId)
+    {
+        Sanitize::paranoid($sentenceId);
+         
+        $userId =$this->Auth->user('id');
+        
+        if ($userId != null) {
+            
+            if ($this->Favorite->removeFavorite($sentenceId, $userId)) {
+                $this->set('saved', true);
+            }
+        }
+    }
 
 
 }
