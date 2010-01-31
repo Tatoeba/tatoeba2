@@ -64,7 +64,9 @@ class Tatoeba_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSn
      * @var array
      */
     protected $cakePhpMethods = array(
-                               'beforeFilter'
+                               'beforeFilter',
+                               'beforeRender',
+                               '_buildAcl'
                               );
 
     /**
@@ -152,7 +154,7 @@ class Tatoeba_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSn
 
         // If we're checking a Controller class then method should use underscore
         // Instead of camel case, as their name will be used in the url
-        if (preg_match('|Controller$|', $className) !== 0) {
+        if (preg_match('|Controller$|', $className) !== 0 && $className !== 'AppController') {
             if (!in_array($testMethodName,$this->cakePhpMethods)) {
                 if (PHP_CodeSniffer::isUnderscoreLowerCaseName($testMethodName) === false) {
                     if ($scopeSpecified === true) {

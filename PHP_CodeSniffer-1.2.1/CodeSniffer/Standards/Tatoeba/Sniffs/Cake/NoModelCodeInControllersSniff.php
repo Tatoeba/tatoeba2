@@ -66,6 +66,7 @@ class Tatoeba_Sniffs_Cake_NoModelCodeInControllersSniff implements PHP_CodeSniff
         $tokens = $phpcsFile->getTokens();
 
         $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
+        $objectName = $phpcsFile->findPrevious(T_WHITESPACE, ($prevToken - 1), null, true);
         
         $nextToken = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);
 
@@ -90,6 +91,11 @@ class Tatoeba_Sniffs_Cake_NoModelCodeInControllersSniff implements PHP_CodeSniff
             return;
         }
 
+        if ($tokens[$objectName]['content'] === 'Cookie') {
+            // call to Cookie read method
+            return;
+        }
+
         // content is a method
         $content = strtolower($tokens[$stackPtr]['content']);
         if (in_array($content, $this->forbiddenMethods ) === false) {
@@ -100,7 +106,7 @@ class Tatoeba_Sniffs_Cake_NoModelCodeInControllersSniff implements PHP_CodeSniff
         }
 
         
-        $error = "The use of ::$content() in the controller is forbidden";
+        $error = "The use of " . $tokens[$objectName]['content'].  "::$content() in the controller is forbidden";
 
         $phpcsFile->addError($error, $stackPtr);
 
