@@ -177,6 +177,31 @@ class User extends AppModel {
 
     }
 
+    /**
+     * get all the information about a user needed by the Wall 
+     *
+     * @params
+     *
+     * @return array
+     */
+
+     public function getInfoWallUser($userId)
+     {
+        $result = $this->find(
+            'first',
+            array(
+                'conditions' => array('User.id' => $userId),
+                'fields' => array(
+                    'User.image',
+                    'User.username',
+                    'User.id'
+                ),
+                'contain' => array()
+            )
+        ); 
+        
+        return $result ; 
+     }
 
 }
 ?>
