@@ -59,10 +59,14 @@ class Wall extends AppModel
     );
     
     /**
+     * used after a save is made in the database
+     *
+     * @param bool $created if succeed or not TODO: to check
      * 
+     * @return void
      */ 
      
-    function afterSave($created)
+    public function afterSave($created)
     {
         if (isset($this->data['Wall']['content'])) {
             $data['newMessage']['owner'] = $this->data['Wall']['owner'] ;
@@ -76,7 +80,8 @@ class Wall extends AppModel
      *
      * @return array of all messages which start a thread
      */
-    function getFirstMessages()
+
+    public function getFirstMessages()
     {
         return  $this->find(
             'all',
@@ -90,9 +95,13 @@ class Wall extends AppModel
                         )
                     
                     ,"User" => array (
-                        "fields" => array("User.image","User.username","User.id") 
-                        )
-                    ) 
+                        "fields" => array(
+                            "User.image",
+                            "User.username",
+                            "User.id"
+                        ) 
+                    )
+                ) 
             )
         );
     }
@@ -103,7 +112,7 @@ class Wall extends AppModel
      * @return array of all messages
      */
 
-    function getMessages()
+    public function getMessages()
     {
         return $this->find(
             'all',
@@ -131,7 +140,7 @@ class Wall extends AppModel
      * @return array of these messages
      */
 
-    function getLastMessages($numberOfLastMessages)
+    public function getLastMessages($numberOfLastMessages)
     {
         return $this->find(
             'all',
@@ -140,14 +149,46 @@ class Wall extends AppModel
                 "limit" => $numberOfLastMessages,  
                 "contain"    => array (
                     "User" => array (
-                        "fields" => array("User.username", "User.id") 
-                        )
-                    ) 
+                        "fields" => array(
+                            "User.username",
+                            "User.id"
+                        ) 
+                    )
+                ) 
             )
         );
     }
-    
 
+    /**
+     * retrieve information of a parent message
+     * needed to generate an email
+     * 
+     * @param int $parentMessageId id of the parent message
+     *
+     * @return array
+     */
+
+    public function getMessageForMail($parentMessageId)
+    {
+        return $this->find(
+            'first',
+            array(
+                "order" => "Wall.id",
+                "fields"=> array('Wall.id'),
+                "conditions" => array("Wall.id" => $parentMessageId),
+                "contain"    => array(
+                    "User" => array (
+                        "fields" => array(
+                            "User.username",
+                            "User.id",
+                            "User.email",
+                            "User.send_notifications",
+                        ) 
+                    )
+                ) 
+            )
+        );
+    }
 
 }
 ?>
