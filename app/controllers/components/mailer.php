@@ -26,8 +26,6 @@ class MailerComponent extends Object{
 	
 	function send(){
 		/* email notification */
-		//$subject = "=?UTF-8?B?".base64_encode("TATOEBA Forum - $_POST[title]")."?=\n";
-		// will need to be test with Japanese message
 		$this->authgMail(
 			$this->from, 
 			$this->fromName, 
@@ -38,6 +36,10 @@ class MailerComponent extends Object{
 	}
 
 	function authgMail($from, $namefrom, $to, $nameto, $subject, $message){
+        if($_SERVER['SERVER_NAME'] != 'tatoeba.org'){
+            return;
+        }
+        
 		/*  your configuration here  */
 
 		$smtpServer = "tls://smtp.gmail.com"; //does not accept STARTTLS
