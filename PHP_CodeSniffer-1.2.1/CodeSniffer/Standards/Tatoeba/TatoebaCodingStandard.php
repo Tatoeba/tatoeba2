@@ -32,7 +32,7 @@ class PHP_CodeSniffer_Standards_Tatoeba_TatoebaCodingStandard extends PHP_CodeSn
     public function getIncludedSniffs()
     {
         return array(
-            
+
             'Squiz/Sniffs/Scope/MethodScopeSniff.php',
             'Squiz/Sniffs/Scope/MemberVarScopeSniff.php',
             'PEAR',
@@ -50,7 +50,8 @@ class PHP_CodeSniffer_Standards_Tatoeba_TatoebaCodingStandard extends PHP_CodeSn
         return array(
 
             'PEAR/Sniffs/NamingConventions/ValidFunctionNameSniff.php',
-            'PEAR/Sniffs/Files/LineLengthSniff.php'
+            'PEAR/Sniffs/Files/LineLengthSniff.php',
+            'PEAR/Sniffs/WhiteSpace/ScopeIndentSniff.php',
 
         );
 
