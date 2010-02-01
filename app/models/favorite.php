@@ -26,7 +26,7 @@
  */
 
 /**
- * Controller for contributions.
+ * Model for favorite
  *
  * @category Favorite
  * @package  Models
