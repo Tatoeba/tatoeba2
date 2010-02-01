@@ -34,13 +34,36 @@ if (isset($this->params['lang'])) {
 // array containing the elements of the menu : $title => $route
 $menuElements = array(
     __('Home', true) => '/'.$lang,
-    __('Browse', true) => array("controller" => "sentences", "action" => "show", "random"),
-    __('Lists', true) => array("controller" => "sentences_lists", "action" => "index"),
-    //,__('Conversations',true) => array("controller" => "conversations", "action" => "index")
-    __('Contribute', true) => array("controller" => "pages", "action" => "contribute"),
-    __('Members', true) => array("controller" => "users", "action" => "all"),
-    __('Wall', true) => array("controller" => "wall", "action" => "index"),
-    __('What\'s new', true) => array("controller" => "pages", "action" => "whats_new")
+    __('Browse', true) => array(
+        "controller" => "sentences",
+        "action" => "show",
+        "random"
+    ),
+    __('Lists', true) => array(
+        "controller" => "sentences_lists",
+        "action" => "index"
+    ),
+    /*,__('Conversations',true) => array(
+        "controller" => "conversations",
+        "action" => "index"
+    ),
+    */
+    __('Contribute', true) => array(
+        "controller" => "pages",
+        "action" => "contribute"
+    ),
+    __('Members', true) => array(
+        "controller" => "users",
+        "action" => "all"
+    ),
+    __('Wall', true) => array(
+        "controller" => "wall",
+        "action" => "index"
+    ),
+    __('What\'s new', true) => array(
+        "controller" => "pages",
+        "action" => "whats_new"
+    )
 );
 
 ?>
