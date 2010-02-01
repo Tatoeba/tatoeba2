@@ -125,15 +125,15 @@ echo $this->element('pmmenu');
             echo '<ul id="'.$list['SentencesList']['id'].'" class="sentencesList">';
             foreach ($list['Sentence'] as $sentence) {
                 echo '<li id="sentence'.$sentence['id'].'">';
-                    // display sentence
-                    if (isset($translationsLang)) {
-                        $sentences->displaySentenceInList(
-                            $sentence,
-                            $translationsLang
-                        );
-                    } else {
-                        $sentences->displaySentenceInList($sentence);
-                    }
+                // display sentence
+                if (isset($translationsLang)) {
+                    $sentences->displaySentenceInList(
+                        $sentence,
+                        $translationsLang
+                    );
+                } else {
+                    $sentences->displaySentenceInList($sentence);
+                }
                 echo '</li>';
             }
             echo '</ul>';

@@ -58,15 +58,19 @@ if ($isAReply) {
 
         echo $form->create('PrivateMessage', array('action' => 'send'));
         echo $form->input(
-            'recpt', array(
+            'recpt',
+            array(
                 'label' => __('to', true),
-                'default' => $toUserLogin, 'maxLength' => 255
+                'default' => $toUserLogin,
+                'maxLength' => 255
             )
         );
         echo $form->input('title', array('default' => $replyToTitle));
         echo $form->input(
-            'content', array(
-                'label' => '', 'default' => $msgFinalPreContent
+            'content',
+            array(
+                'label' => '',
+                'default' => $msgFinalPreContent
             )
         );
         echo $form->end(__('Send', true));
