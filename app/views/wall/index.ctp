@@ -160,7 +160,7 @@ $this->pageTitle = __('Wall', true);
             if (count($message['Reply']) >0) {
                 echo '<ul>';
                 foreach ($message['Reply'] as $reply ) {
-                    echo $wall->create_reply_div(
+                    echo $wall->createReplyDiv(
                         $allMessages[$reply['id'] - 1],
                         $allMessages, $isAuthenticated
                     );

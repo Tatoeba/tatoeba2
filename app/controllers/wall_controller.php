@@ -31,7 +31,7 @@ App::import('Core', 'Sanitize');
 /**
  * Controller for the wall.
  *
- * @category Contributions
+ * @category Wall
  * @package  Controllers
  * @author   Allan SIMON <allan.simon@supinfo.com>
  * @license  Affero General Public License

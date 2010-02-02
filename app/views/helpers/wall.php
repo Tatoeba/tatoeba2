@@ -1,112 +1,252 @@
 <?php
-/*
-    Tatoeba Project, free collaborative creation of multilingual corpuses project
-    Copyright (C) 2009 Allan SIMON <allan.simon@supinfo.com>
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2009  Allan SIMON <allan.simon@supinfo.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5
+ *
+ * @category PHP
+ * @package  Tatoeba
+ * @author   Allan SIMON <allan.simon@supinfo.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+/**
+ * Helper used to display a form to add a message to a wall
+ *
+ * @category Wall
+ * @package  Help
+ * @author   Allan SIMON <allan.simon@supinfo.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
+class WallHelper extends AppHelper
+{
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-/*
-helper used to display a form to add a message to a wall
-*/
-class WallHelper extends AppHelper {
+    public $helpers = array('Html', 'Form' , 'Date');
 
-    var $helpers = array('Html', 'Form' , 'Date');
+    /**
+     * create the reply link to a given message 
+     *
+     * @param int  $messageId       the id of the replied message
+     * @param bool $isAuthenticated to know if the request come from a
+     *                              connected user
+     *
+     * @return void
+     */
 
-    function displayAddMessageToWallForm(){
+    private function _createReplyLink($messageId, $isAuthenticated)
+    {
+        if ($isAuthenticated) {
+            $replyLinkId = 'reply_' . $messageId;
+            $replyClasses = 'replyLink ' . $messageId;
+            echo '<a class="'.$replyClasses.'" id="'.$replyLinkId.'" >';
+             __("reply");
+            echo '</a>';
+            echo ' - ';
+        }
+        echo '<a href="#message_'.$messageId.'">#</a>';
+    }
+
+    /**
+     * display the avatar of the one who write current message 
+     *
+     * @param string $userName  name of the user
+     * @param string $userImage filename of user's picture
+     *
+     * @return void
+     */
+    
+    private function _displayMessagePosterImage($userName, $userImage)
+    {
+        echo $this->Html->link(
+            $this->Html->image(
+                'profiles/'. $userImage,
+                array(
+                    "alt" => $userName,
+                    "title" => __("View this user's profile", true)
+                )
+            ),
+            array(
+                "controller"=>"user",
+                "action"=>"profile",
+                $userName
+            ),
+            array("escape"=>false)
+        );
+    }
+
+    /**
+     * create the form to add a new message
+     *
+     * @return void
+     */
+
+    public function displayAddMessageToWallForm()
+    {
         /* we use models=>wall to force use wall, instead cakephp would have
            called "walls/save' which is not what we want
         */
         __('Add a Message : ');
-        echo $this->Form->create('' , array( "action" => "save")) ;
+        echo $this->Form->create('', array( "action" => "save"));
         echo "<fieldset>";
-            echo $this->Form->input('content',array('label'=>""));
-            echo $this->Form->hidden('replyTo',array('value'=>"" ));
+            echo $this->Form->input('content', array('label'=>""));
+            echo $this->Form->hidden('replyTo', array('value'=>"" ));
         echo "</fieldset>";
-		echo $this->Form->submit(__('Send',true));
+        echo $this->Form->submit(__('Send', true));
         echo '<div class="divCancelFormLink" >';
-		    echo '<a class="cancelFormLink" >' . __("cancel",true) . '</a>';
+            echo '<a class="cancelFormLink" >' . __("cancel", true) . '</a>';
         echo '</div>';
         echo $this->Form->end();
 
     }
 
-	function create_reply_div($message,$allMessages,$isAuthenticated){
-		 // TODO : remove me
-		if ( empty($message['User']['image'])){
-			$message['User']['image'] = 'unknown-avatar.jpg';
-		}
-		echo '<li class="thread" id="message_' . $message['Wall']['id'] . '">'."\n";
-			echo '<div class="message">';
-				echo "<ul class=\"meta\" >\n";
-					// reply option
-					echo '<li class="action">';
-					if($isAuthenticated){
-						echo '<a class="replyLink ' . $message['Wall']['id'] .'" id="reply_'. $message['Wall']['id'] .'" >' . __("reply",true). '</a> - ';
-					}
-					echo '<a href="#message_'.$message['Wall']['id'].'">#</a>';
-					echo '</li>';
+    /**
+     * display username as a link to his profile
+     *
+     * @param string $userName nickname of the user
+     *
+     * @return void
+     */
 
-					// image
-					echo '<li class="image">';
-					echo $this->Html->link(
-						$this->Html->image(
-							'profiles/'. $message['User']['image']
-							, array(
-								"alt"=>$message['User']['username']
-								, "title"=>__("View this user's profile",true)
-							)
-						)
-						, array("controller"=>"user", "action"=>"profile", $message['User']['username'])
-						, array("escape"=>false)
-					);
-					echo '</li>';
+    private function _displayLinkToUserProfile($userName)
+    {
+        echo $this->Html->link(
+            $userName,
+            array(
+                "controller"=>"user",
+                "action"=>"profile",
+                $userName
+            ),
+            array(
+                "title"=>__("View this user's profile", true)
+            )
+        );
+    }
 
-					// username
-					echo '<li class="author">';
-					echo $this->Html->link(
-						$message['User']['username']
-						, array("controller"=>"user", "action"=>"profile", $message['User']['username'])
-						, array("title"=>__("View this user's profile",true))
-					);
-					echo '</li>';
+    /**
+     * Create the ul containing all the replies and subreplies
+     *
+     * @param array $message         the reply to be displayed
+     * @param array $allMessages     contains all the messages 
+     * @param bool  $isAuthenticated to know if the request come from a
+     *                               connected user
+     *
+     * @return void
+     */
+    private function _displayAllReplies($message,$allMessages,$isAuthenticated)
+    {
+        if (!empty($message['Reply'])) {
+            echo '<ul class="toto" >';
+            foreach ($message['Reply'] as $reply) {
+                $this->createReplyDiv(
+                    $allMessages[$reply['id'] - 1],
+                    $allMessages,
+                    $isAuthenticated
+                );
+            }
+             echo '</ul>' ;
+        }
+    }
 
-					// date
-					echo '<li class="date">';
-					echo $this->Date->ago($message['Wall']['date']);
-					echo '</li>';
-				echo '</ul>';
+    /**
+     * Create the div containing a reply to a message and all the sub reply
+     * the call is recursive
+     *
+     * @param array $message         the reply to be displayed
+     * @param array $allMessages     contains all the messages 
+     * @param bool  $isAuthenticated to know if the request come from a
+     *                               connected user
+     *
+     * @return void
+     */
+    public function createReplyDiv($message,$allMessages,$isAuthenticated)
+    {
+         // TODO : remove me
 
-				// message content
-				echo '<div class="body">';
-					echo nl2br( htmlentities( $message['Wall']['content'], ENT_QUOTES, 'UTF-8'));
-				echo '</div>';
-			echo '</div>';
+        $messageId = $message['Wall']['id'];
+        $userName = $message['User']['username'];
+        $userImage = $message['User']['image'];
 
-			// replies
-			echo '<div class="replies" id="messageBody_'.  $message['Wall']['id']  .'" >';
+        if (empty($userImage)) {
+            $userImage = 'unknown-avatar.jpg';
+        }
+        echo '<li class="thread" id="message_' . $messageId . '">'."\n";
+        ?>
+            <div class="message">
+                <ul class="meta" >
+                    <!-- reply option -->
+                    <li class="action">
+                        <?php
+                        $this->_createReplyLink(
+                            $messageId,
+                            $isAuthenticated
+                        );
+                        ?>
 
-                if ( ! empty($message['Reply'] )){
-                echo '<ul class="toto" >';
-				    foreach( $message['Reply'] as $reply ){
-					    $this->create_reply_div($allMessages[$reply['id'] - 1],$allMessages,$isAuthenticated);
-				    }
-                echo '</ul>' ;
-                }
-			echo '</div>';
+                    </li>
+                    <li class="image">
+                        <?php
+                        $this->_displayMessagePosterImage(
+                            $userName,
+                            $userImage
+                        )
+                        ?>
 
-		echo '</li>';
-	}
+                    </li>
+                    <li class="author">
+                        <?php $this-> _displayLinkToUserProfile($userName); ?>
+
+                    </li>
+                    <li class="date">
+                        <?php echo $this->Date->ago($message['Wall']['date']); ?>
+
+                    </li>
+                </ul>
+
+                <!-- message content -->
+                <div class="body">
+                    <?php
+                    echo nl2br(
+                        htmlentities(
+                            $message['Wall']['content'],
+                            ENT_QUOTES,
+                            'UTF-8'
+                        )
+                    );
+                    ?>
+
+                </div>
+            </div>
+            <?php
+            //replies
+            echo '<div class="replies" id="messageBody_'.  $messageId .'" >';
+            $this->_displayAllReplies(
+                $message,
+                $allMessages,
+                $isAuthenticated
+            );
+            ?>
+
+            </div>
+        </li>
+        <?php
+    }
 }
 
 ?>
