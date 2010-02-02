@@ -36,12 +36,13 @@
  */
 class LanguagesHelper extends AppHelper
 {
-    /** 
-     * Return array of languages in Tatoeba.
+    /**
+     * Return array of languages in Tatoeba
      *
      * @return array
      */
-    public function languagesArray()
+
+    public function onlyLanguagesArray()
     {
         $languages = array(
             'ara' => __('Arabic', true),
@@ -76,6 +77,18 @@ class LanguagesHelper extends AppHelper
             // TODO to change when shanghainese will not be the only wu dialect
         );
         asort($languages);
+        
+        return $languages;
+    }
+
+    /** 
+     * Return array of languages in Tatoeba. + all languages
+     *
+     * @return array
+     */
+    public function languagesArray()
+    {
+        $languages = $this->onlyLanguagesArray();
         
         // Can't use 'any' as it's the code for anyin language.
         // Only 'und' is used for "undefined".

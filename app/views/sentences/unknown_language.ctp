@@ -40,12 +40,10 @@
 		__('The language of the following sentences could not be detected, you have to specify it manually. ');
 		echo '</p>';
 		if(count($unknownLangSentences) > 0){
-			$langArray = $languages->languagesArray();
-            // TODO : hack spotted should have a direct method to retrieve languages array without "und"
-            unset($langArray['und']);// to avoid possibility to set a sentence as "any languages" :p
-
-			asort($langArray);
-			echo $form->create('Sentence', array('action'=>'set_languages'));
+		
+        	$langArray = $languages->onlyLanguagesArray();
+			
+            echo $form->create('Sentence', array('action'=>'set_languages'));
 			echo '<ul>';
 			foreach($unknownLangSentences as $i=>$sentence){
 				echo '<li>';

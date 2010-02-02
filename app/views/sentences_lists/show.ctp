@@ -57,7 +57,6 @@
             __('Show translations :');
             echo ' ';
             $langArray = $languages->languagesArray();
-            asort($langArray);
             $path  = '/' . Configure::read('Config.language') .
                 '/sentences_lists/show/' . $list['SentencesList']['id'] . '/';
             echo $form->select(
