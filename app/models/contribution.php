@@ -147,16 +147,15 @@ class Contribution extends AppModel
         $query ="
             SELECT 
                 `Contribution`.`text`,
-                `Contribution`.`translation_id`,
-                `Contribution`.`sentence_id`,
                 `Contribution`.`action`,
                 `Contribution`.`id`,
+                `Contribution`.`sentence_id`,
                 `Contribution`.`datetime`,
                 `User`.`username`,
                 `User`.`id`,
                 `Sentence`.`lang`
             FROM `contributions` AS `Contribution` 
-                INNER JOIN `sentences` AS `Sentence`
+                LEFT JOIN `sentences` AS `Sentence`
                     ON (`Contribution`.`sentence_id` = `Sentence`.`id`
         ";
         if ($lang != 'und') {
