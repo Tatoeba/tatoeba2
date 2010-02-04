@@ -57,7 +57,7 @@ class NavigationHelper extends AppHelper
         echo '<div class="navigation">';
             // go to form
             echo $this->Form->create(
-                'Sentence', array("action" => "goToSentence", "type" => "get")
+                'Sentence', array("action" => "go_to_sentence", "type" => "get")
             );
             echo $this->Form->input(
                 'sentence_id', 

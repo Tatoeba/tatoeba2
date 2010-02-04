@@ -28,8 +28,6 @@
  */
 
 
-App::import('Core', 'Sanitize');
-
 /**
  * Model Class which represent sentences
  *
@@ -40,7 +38,6 @@ App::import('Core', 'Sanitize');
  * @license  Affero General Public License
  * @link     http://tatoeba.org
 */
-
 class Sentence extends AppModel
 {
 
@@ -58,7 +55,7 @@ class Sentence extends AppModel
         'tur' ,'ukr' ,'wuu' ,'swe' ,'zsm',
         'nob' ,'est' ,'kat' ,'pol' ,null
         );    
-    var $validate = array(
+    public $validate = array(
         'lang' => array(
             'rule' => array()     
             // The rule will be defined in the constructor. 
@@ -71,15 +68,15 @@ class Sentence extends AppModel
         )
     );    
 
-    var $hasMany = array('Contribution', 'SentenceComment', 
+    public $hasMany = array('Contribution', 'SentenceComment', 
             'Favorites_users' => array ( 
                     'classname'  => 'favorites',
                     'foreignKey' => 'favorite_id'  )
              );
     
-    var $belongsTo = array('User');
+    public $belongsTo = array('User');
     
-    var $hasAndBelongsToMany = array(
+    public $hasAndBelongsToMany = array(
         'Translation' => array(
             'className' => 'Translation',
             'joinTable' => 'sentences_translations',
@@ -97,23 +94,25 @@ class Sentence extends AppModel
     
     /**
      * The constructor is here only to set the rule for languages.
+     * 
+     * @return void
      */
-    function __construct() 
+    public function __construct() 
     {
         parent::__construct();
         $this->validate['lang']['rule'] = array('inList', $this->languages);
     }
 
     /**
-     * called after a sentence is saved
+     * Called after a sentence is saved.
      * 
-     * @param bool $created true if a new line has been created
-     *                      false if a line has been updated
+     * @param bool $created true if a new line has been created.
+     *                      false if a line has been updated.
      * 
      * @return void
      */
 
-    function afterSave($created)
+    public function afterSave($created)
     {
         if (isset($this->data['Sentence']['text'])) {
             $whoWhenWhere = array(
@@ -169,12 +168,12 @@ class Sentence extends AppModel
     }
     
     /**
-     * call after a deletion
+     * Call after a deletion.
      *
      * @return void
      */
      
-    function afterDelete()
+    public function afterDelete()
     {
         
 
@@ -219,14 +218,13 @@ class Sentence extends AppModel
     }
 
     /**
-     * search one random chinese/japanese sentence containing $sinogram
+     * Search one random chinese/japanese sentence containing $sinogram.
      *
-     * @param string $sinogram sinogram to search an example sentence
-                               containing it
+     * @param string $sinogram Sinogram to search an example sentence containing it.
      *
-     * @return int the id of this sentence
+     * @return int The id of this sentence.
      */
-    function searchOneExampleSentenceWithSinogram($sinogram)
+    public function searchOneExampleSentenceWithSinogram($sinogram)
     {
         $results = $this->query(
             "SELECT Sentence.id  FROM sentences AS Sentence 
@@ -242,25 +240,24 @@ class Sentence extends AppModel
     }
     
     /**
-     * get the highest id for sentences
+     * Get the highest id for sentences.
      *
-     * @return int the highest sentence id
+     * @return int The highest sentence id.
      */
-    function getMaxId()
+    public function getMaxId()
     {
         $resultMax = $this->query('SELECT MAX(id) FROM sentences');
         return $resultMax[0][0]['MAX(id)'];
     }
     
     /**
-     * get the id of a random sentence, from a particular language if $lang is set
+     * Get the id of a random sentence, from a particular language if $lang is set.
      *
-     * @param string $lang restrict random id from the specified code lang
-     * @param string $type not use anymore imho
+     * @param string $lang Restrict random id from the specified code lang.
      *
-     * @return int a random id
+     * @return int A random id.
      */
-    function getRandomId($lang = null,$type = null )
+    public function getRandomId($lang = null)
     {
         /*
         ** this query take constant time when lang=null
@@ -269,7 +266,7 @@ class Sentence extends AppModel
         if ( $lang == "und" ) {
             $lang = null ;
         }
-
+        
         if ($lang == 'jpn' OR $lang == 'eng') {
         
             $min = ($lang == 'eng') ? 15700 : 74000;
@@ -304,24 +301,19 @@ class Sentence extends AppModel
         }
 
         $results = $this->query($query);
-        /*
-        while( !isset($results[0])) {
-            $results = $this->query($query);
-        }
-        */
+        
         return $results[0]['Sentence']['id']; 
     }
     
     /**
-     * request for several random sentence id
+     * Request for several random sentence id.
      *
-     * @param string $lang             lang of the sentences we want
-     * @param int    $numberOfIdWanted number of ids needed
+     * @param string $lang             Langguage of the sentences we want.
+     * @param int    $numberOfIdWanted Number of ids needed.
      *
-     * @return array an array of ids
+     * @return array An array of ids.
      */
-
-    function getSeveralRandomIds($lang = null , $numberOfIdWanted = 10)
+    public function getSeveralRandomIds($lang = null , $numberOfIdWanted = 10)
     {
         $ids = array ();
         // exit if we don't have good params
@@ -358,13 +350,13 @@ class Sentence extends AppModel
 
 
     /**
-     * get all the informations needed to display a sentences in show section
+     * Get all the informations needed to display a sentences in show section.
      *
-     * @param int $id id of the sentence asked
+     * @param int $id Id of the sentence asked.
      *
-     * @return array informations about the sentence
+     * @return array Information about the sentence.
      */
-    function getSentenceWithId($id)
+    public function getSentenceWithId($id)
     {
         $result = $this->find(
             'first',
@@ -389,17 +381,46 @@ class Sentence extends AppModel
          
         return $result;
     }
-
+    
     /**
-     * delete the sentence with the given id
+     * Get sentences with specified ids as well as their translations.
      *
-     * @param int $id     id of the sentence to be deleted
-     * @param int $userId TODO ???
+     * @param array  $ids              Ids of the sentences.
+     * @param string $translationsLang Language of the translations.
+     *
+     * @return array
+     */
+    public function getSentencesWithIds($ids, $translationsLang = null)
+    {
+        return $this->find(
+            'all', 
+            array(
+                "conditions" => array("Sentence.id" => $ids),
+                "contain" => array(
+                    "Favorites_users",
+                    "User" => array(
+                        "fields" => array("username")
+                    ),
+                    "Translation" => array(
+                        "fields" => array("id", "lang", "text"),
+                        "conditions" => array(
+                            "Translation.lang" => $translationsLang
+                        )
+                    )
+                )
+            )
+        );
+    }
+    
+    /**
+     * Delete the sentence with the given id.
+     *
+     * @param int $id     Id of the sentence to be deleted.
+     * @param int $userId Id of the user who deleted the sentence. Used for logs.
      *
      * @return void
      */
-
-    function delete($id, $userId)
+    public function delete($id, $userId)
     {
         //TODO  why ?
         $this->id = $id;
@@ -430,11 +451,11 @@ class Sentence extends AppModel
     }
 
     /**
-     * Count number of sentences in each language
+     * Count number of sentences in each language.
      *
-     * @return array  of each lang => numbr of sentences in this lang
+     * @return array [lang => number of sentences in this lang]
      */
-    function getStatistics()
+    public function getStatistics()
     {
         $query = "
             SELECT ifnull(lang, 'unknown_lang') as lang , numberOfSentences
@@ -453,14 +474,13 @@ class Sentence extends AppModel
 
 
     /**
-     * add one in stats of a given language
+     * Add one in stats of a given language.
      *
-     * @param string $lang language to be incremented
+     * @param string $lang Language to be incremented.
      * 
      * @return void
      */
-    
-    function incrementStatistics($lang)
+    public function incrementStatistics($lang)
     {
 
         $endOfQuery = "lang = '$lang'";
@@ -478,13 +498,13 @@ class Sentence extends AppModel
     }
 
     /**
-     * decrement stats of a given language
+     * Decrement stats of a given language.
      *
-     * @param string $lang language to be decremented
+     * @param string $lang Language to be decremented.
      *
      * @return void
      */
-    function decrementStatistics($lang)
+    public function decrementStatistics($lang)
     {
 
         $endOfQuery = "lang = '$lang'";
@@ -502,13 +522,13 @@ class Sentence extends AppModel
     }
 
     /**
-     * get number of sentences owned by a given user
+     * Get number of sentences owned by a given user.
      *
-     * @param int $userId id of the user we want number of sentences of
+     * @param int $userId Id of the user we want number of sentences of
      *
      * @return array TODO should return an int
      */
-    function numberOfSentencesOwnedBy($userId)
+    public function numberOfSentencesOwnedBy($userId)
     {
         return $this->find(
             'count',
@@ -519,15 +539,14 @@ class Sentence extends AppModel
     }
 
     /**
-     * get translations of a given sentence
-     * and translations of translations
+     * Get translations of a given sentence and translations of translations.
      *
-     * @param int   $id        id of the sentence we want translations of
-     * @param array $excludeId not used anymore imho
+     * @param int   $id        Id of the sentence we want translations of.
+     * @param array $excludeId Not used anymore imho.
      *
-     * @return array of translations direct and undirect
+     * @return array Array of translations (direct and indirect).
      */
-    function getTranslationsOf($id,$excludeId = null)
+    public function getTranslationsOf($id,$excludeId = null)
     {
         if ( ! is_numeric($id) ) {
             return array();
@@ -618,13 +637,13 @@ class Sentence extends AppModel
     
     
     /**
-     * Count number of sentences with unknown language
+     * Count number of sentences with unknown language.
      *
-     * @param int $userId id of the user we want the unknown language sentences
+     * @param int $userId id of the user we want the unknown language sentences.
      * 
-     * @return int number of sentences
+     * @return int Number of sentences.
      */
-    function numberOfUnknownLanguageForUser($userId)
+    public function numberOfUnknownLanguageForUser($userId)
     {
         // Need to do custom query because there is no way to say 
         //  `Sentence`.`lang` = '' OR `Sentence`.`lang` IS NULL
@@ -644,12 +663,11 @@ class Sentence extends AppModel
     /**
      * Retrieve sentences with unknown language.
      *
-     * @param int $userId the user id
+     * @param int $userId The user id.
      *
-     * @return array array of the sentences with uknown languages of the user
+     * @return array Array of the sentences with uknown languages of the user.
      */
-
-    function sentencesWithUnknownLanguageForUser($userId)
+    public function sentencesWithUnknownLanguageForUser($userId)
     {
         // Need to do custom query because there is no way to say 
         //  `Sentence`.`lang` = '' OR `Sentence`.`lang` IS NULL
@@ -667,19 +685,6 @@ class Sentence extends AppModel
     }
 
     /**
-     * get how sentences are clustered in the database according to their language
-     *
-     * @param int $page do nothing yet
-     *
-     * @return void
-     */
-
-    function getMap($page = 1)
-    {
-
-    }
-
-    /**
      * get romanization or equivalent of a sentences
      *
      * @param string $text text to be romanized
@@ -687,8 +692,7 @@ class Sentence extends AppModel
      *
      * @return string romanisation of the text
      */
-
-    function getRomanization($text,$lang)
+    public function getRomanization($text,$lang)
     {
 
         $romanization = '';
@@ -718,8 +722,7 @@ class Sentence extends AppModel
      *
      * @return string romanized japanese text
      */
-
-    function getJapaneseRomanization($text, $type)
+    public function getJapaneseRomanization($text, $type)
     {
         Sanitize::html($text);
         //$text = escapeshellarg(nl2br($text)); 
@@ -766,16 +769,15 @@ class Sentence extends AppModel
         $text = preg_replace("!来れば!", " kureba ", $text); 
         
         switch($type) {
-
-        case 'romaji':
-            $options = ' -Ja -Ha -Ka -Ea -s';
-            $sedlist = 'sedlist';
-            break;
-                
-        case 'furigana':
-            $options = ' -JH -s -f ';
-            $sedlist = 'sedlist2';
-            break;
+            case 'romaji':
+                $options = ' -Ja -Ha -Ka -Ea -s';
+                $sedlist = 'sedlist';
+                break;
+            
+            case 'furigana':
+                $options = ' -JH -s -f ';
+                $sedlist = 'sedlist2';
+                break;
         }
         
         $romanization = exec(
@@ -789,7 +791,28 @@ class Sentence extends AppModel
         return $romanization;
     }
 
-
+    /**
+     * Get sentences to display in map.
+     *
+     * @param int $start Id from where to start.
+     * @param int $end   Id from where to end.
+     *
+     * @return array
+     */
+    public function getSentencesForMap($start, $end)
+    {
+        return $this->find(
+            'all',
+            array(
+                'fields' => array('Sentence.id', 'Sentence.lang'),
+                'order' => 'Sentence.id',
+                'conditions' => array(
+                    'Sentence.id >' => $start, 'Sentence.id <=' => $end
+                ),
+                'contain' => array()
+            )
+        );
+    }
 
 }
 ?>
