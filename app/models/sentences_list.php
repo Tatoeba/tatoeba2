@@ -122,13 +122,14 @@ class SentencesList extends AppModel
             
             $contain = array(
                 "Sentence" => array( 
-                "Translation" => array( 
-                    "fields" => array("id", "text"),
-                    "conditions" => array(
-                        "Translation.lang" => $translationsLang
+                    "Translation" => array( 
+                        "fields" => array("id", "text"),
+                        "conditions" => array(
+                            "Translation.lang" => $translationsLang
+                        )
                     )
                 )
-            ));
+            );
             
         }
         

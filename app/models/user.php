@@ -26,11 +26,12 @@
  */
 
 /**
- * Controller for sentence comments.
+ * Model for users.
  *
- * @category User
+ * @category Users
  * @package  Models
  * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
+ * @author   HO Ngoc Phuong Trang <tranglich@gmail.com> 
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
@@ -93,9 +94,7 @@ class User extends AppModel
         'group_id' => array('numeric'),
         'homepage' => array('url'),
     );
-
-    // The Associations below have been created with all possible keys,
-    // those that are not needed can be removed
+    
     /**
      *
      * @var array
@@ -174,12 +173,11 @@ class User extends AppModel
     }
 
     /**
-     * this should probably be in the controller...
-     * why did I put it here I don't remember
+     * Generate a random password.
      *
      * @return string
      */
-    public function generate_password()
+    public function generatePassword()
     {
         $pw = '';
         $c  = 'bcdfghjklmnprstvwz' . 'BCDFGHJKLMNPRSTVWZ' ;
@@ -276,6 +274,29 @@ class User extends AppModel
         
         return $result ; 
     }
-
+    
+    /**
+     * Get user by id.
+     *
+     * @param int|null $id Id of the user. If null we take a random one.
+     *
+     * @return void
+     */
+    public function getUserById($id = null)
+    {
+        if ($id == null) {
+            $user = $this->User->find(
+                'first', 
+                array(
+                    'conditions' => 'User.group_id < 5', 
+                    'order' => 'RAND()', 
+                    'limit' => 1
+                )
+            );
+        } else {
+            $user = $this->User->findById($id);
+        }
+        return $user;
+    }
 }
 ?>
