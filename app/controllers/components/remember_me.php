@@ -1,68 +1,108 @@
 <?php
-/*
-	This file is part of NeutrinoCMS.
+/**
+ * This file is part of NeutrinoCMS.
+ *
+ * NeutrinoCMS is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * NeutrinoCMS is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with NeutrinoCMS.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5
+ *
+ * @category PHP
+ * @package  Tatoeba
+ * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org 
+ */
 
-	NeutrinoCMS is free software: you can redistribute it and/or modify
-	it under the terms of the GNU General Public License as published by
-	the Free Software Foundation, either version 3 of the License, or
-	(at your option) any later version.
-
-	NeutrinoCMS is distributed in the hope that it will be useful,
-	but WITHOUT ANY WARRANTY; without even the implied warranty of
-	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-	GNU General Public License for more details.
-
-	You should have received a copy of the GNU General Public License
-	along with NeutrinoCMS.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
+/**
+ * Component for permissions.
+ *
+ * @category Default
+ * @package  Components
+ * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
 class RememberMeComponent extends Object
 {
-	var $components = array('Auth', 'Cookie');
-	var $controller = null;
+    public $components = array('Auth', 'Cookie');
+    public $controller = null;
 
-	/**
-	 * Cookie retention period.
-	 *
-	 * @var string
-	 */
-	var $period = '+2 weeks';
-	var $cookieName = 'User';
+    /**
+     * Cookie retention period.
+     *
+     * @var string
+     */
+    private $_period = '+2 weeks';
+    private $_cookieName = 'User';
+    
+    /**
+     * ?
+     *
+     * @param unknown &$controller ?
+     *
+     * @return void
+     */
+    public function startup(&$controller)
+    {
+        $this->controller = &$controller;
+    }
+    
+    /**
+     * Remember user so (s)he doesn't have to log in again.
+     *
+     * @param string $username Username.
+     * @param string $password Password.
+     *
+     * @return void
+     */
+    public function remember($username, $password)
+    {
+        $cookie = array();
+        $cookie[$this->Auth->fields['username']] = $username;
+        $cookie[$this->Auth->fields['password']] = $password;
+        $this->Cookie->write($this->_cookieName, $cookie, false, $this->_period);
+    }
+    
+    /**
+     * Check if user can be automatically logged in.
+     *
+     * @return void
+     */
+    public function check()
+    {
+        $cookie = $this->Cookie->read($this->_cookieName);
 
-	function startup(&$controller)
-	{
-		$this->controller =& $controller;
-	}
+        if (!is_array($cookie) || $this->Auth->user()) {
+            return;
+        }
 
-	function remember($username, $password)
-	{
-		$cookie = array();
-		$cookie[$this->Auth->fields['username']] = $username;
-		$cookie[$this->Auth->fields['password']] = $password;
-		$this->Cookie->write($this->cookieName, $cookie, false, $this->period);
-	}
-
-	function check()
-	{
-		$cookie = $this->Cookie->read($this->cookieName);
-
-		if (!is_array($cookie) || $this->Auth->user())
-			return;
-
-		if ($this->Auth->login($cookie))
-		{
-			$this->Cookie->write($this->cookieName, $cookie, false, $this->period);
-		}
-		else
-		{
-			$this->delete();
-		}
-	}
-
-	function delete()
-	{
-		$this->Cookie->del($this->cookieName);
-	}
+        if ($this->Auth->login($cookie)) {
+            $this->Cookie->write($this->_cookieName, $cookie, false, $this->_period);
+        } else {
+            $this->delete();
+        }
+    }
+    
+    /**
+     * Delete cookie.
+     *
+     * @return void
+     */
+    public function delete()
+    {
+        $this->Cookie->del($this->cookieName);
+    }
 }
 
 ?>

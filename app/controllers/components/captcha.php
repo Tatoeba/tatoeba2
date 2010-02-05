@@ -1,33 +1,54 @@
 <?php 
-/*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+/** 
+ * Securimage-Driven Captcha Component.
+ *
+ * PHP version 5
+ *
+ * @category PHP
+ * @package  Tatoeba 
+ * @author   debuggeddesigns <unknown@debuggeddesigns.com>
+ * @license  MIT license
+ * @link     http://tatoeba.org
+ */
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+/**
+ * Component for CAPTCHA.
+ * http://bakery.cakephp.org/articles/view/captcha-component-with-securimage
+ *
+ * @category Default
+ * @package  Components
+ * @author   HO Ngoc Phuong Trang <tranglich@gmail.com> 
+ * @license  MIT license
+ * @link     http://tatoeba.org
+ */
 class CaptchaComponent extends Object
 {
-    var $controller;
- 
-    function startup( &$controller ) {
+    public $controller;
+    
+    /**
+     * ?
+     *
+     * @param unknown &$controller ?
+     *
+     * @return void
+     */
+    public function startup(&$controller)
+    {
         $this->controller = &$controller;
     }
-
-    function image(){
-        App::import('Vendor', 'PhpCaptcha', array('file'=>'phpcaptcha/php-captcha.inc.php'));
+    
+    /**
+     * Generate image CAPTCHA.
+     *
+     * @return void
+     */
+    public function image()
+    {
+        App::import(
+            'Vendor', 'PhpCaptcha', array('file'=>'phpcaptcha/php-captcha.inc.php')
+        );
         $imagesPath = APP . 'vendors'. DS .'phpcaptcha' . DS . 'fonts' . DS;
-		
+        
         $aFonts = array(
             $imagesPath.'VeraBd.ttf',
             $imagesPath.'VeraIt.ttf',
@@ -36,25 +57,36 @@ class CaptchaComponent extends Object
         
         $oVisualCaptcha = new PhpCaptcha($aFonts, 200, 60);
         
-        //$oVisualCaptcha->UseColour(true);
-        //$oVisualCaptcha->SetOwnerText('Source: '.FULL_BASE_URL);
         $oVisualCaptcha->SetNumChars(6);
         $oVisualCaptcha->Create();
     }
     
-    function check($userCode, $caseInsensitive = true){
-		App::import('Vendor', 'PhpCaptcha', array('file'=>'phpcaptcha/php-captcha.inc.php'));
+    /**
+     * Check of user input matches CAPTCHA code.
+     *
+     * @param string $userCode        Code entered by user.
+     * @param bool   $caseInsensitive Set to false if case sensitive.
+     *
+     * @return void
+     */
+    public function check($userCode, $caseInsensitive = true)
+    {
+        App::import(
+            'Vendor', 'PhpCaptcha', array('file'=>'phpcaptcha/php-captcha.inc.php')
+        );
         if ($caseInsensitive) {
             $userCode = strtoupper($userCode);
         }
         
-        if (!empty($_SESSION[CAPTCHA_SESSION_ID]) && $userCode == $_SESSION[CAPTCHA_SESSION_ID]) {
+        if (!empty($_SESSION[CAPTCHA_SESSION_ID]) 
+            && $userCode == $_SESSION[CAPTCHA_SESSION_ID]
+        ) {
             // clear to prevent re-use
             unset($_SESSION[CAPTCHA_SESSION_ID]);
             return true;
-        }else{
-			return false;
-		}
+        } else {
+            return false;
+        }
     }
 }
 ?>
