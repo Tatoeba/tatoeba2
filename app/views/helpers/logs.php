@@ -53,7 +53,7 @@ class LogsHelper extends AppHelper
         $type = '';
         $status = '';
         
-        if ($contribution['translation_id'] == '') {
+        if (!isset($contribution['translation_id'])) {
             $type = 'sentence';
         } else {
             $type = 'link';
