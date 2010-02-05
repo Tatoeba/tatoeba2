@@ -122,24 +122,24 @@ class ApiController extends AppController
     private function _header($sFormat)
     {
         switch ($sFormat) {
-        case 'xml':
-            $this->header('content-type: text/xml');
-            break;
-        case 'json':
-            $this->header('Content-type: application/json');
-            break;
-        case 'php':
-            $this->header('Content-type: text/plain');
-            // useful for PHP applications -> deserialize response and then an
-            // expoitable PHP array
-            break;
-        case 'cvs':
-            $this->header('Content-type: text/csv');
-            break;
-        default:
-            // XML is default output format
-            $this->header('content-type: text/xml');
-            break;
+            case 'xml':
+                $this->header('content-type: text/xml');
+                break;
+            case 'json':
+                $this->header('Content-type: application/json');
+                break;
+            case 'php':
+                $this->header('Content-type: text/plain');
+                // useful for PHP applications -> deserialize response and then an
+                // expoitable PHP array
+                break;
+            case 'cvs':
+                $this->header('Content-type: text/csv');
+                break;
+            default:
+                // XML is default output format
+                $this->header('content-type: text/xml');
+                break;
         }
     }
 
@@ -262,198 +262,198 @@ class ApiController extends AppController
             // Logged in
             switch ($sWhat) {
 
-            // users
-            case 'user':
-                $this->loadModel('User');
+                // users
+                case 'user':
+                    $this->loadModel('User');
 
-                /*
-                 * TODO: use containable and hide in model method
-                 * see http://book.cakephp.org/fr/view/474/Containable
-                 */
-                $this->User->unBindModel(
-                    array('hasMany' => array(
-                            'Contributions',
-                            'Sentences',
-                            'SentenceComments'
-                        ), 'hasAndBelongsToMany' => array('Favorite')
-                    )
-                );
-                $this->User->bindModel(
-                    array('hasMany' => array('Sentences','SentenceComments')
-                        , 'hasAndBelongsToMany' => array (
-                            'Favorite' => array(
-                                'className' => 'Favorite',
-                                'joinTable' => 'favorites_users',
-                                'foreignKey' => 'user_id',
-                                'associationForeignKey' => 'favorite_id',
-                                'unique' => true,
+                    /*
+                     * TODO: use containable and hide in model method
+                     * see http://book.cakephp.org/fr/view/474/Containable
+                     */
+                    $this->User->unBindModel(
+                        array('hasMany' => array(
+                                'Contributions',
+                                'Sentences',
+                                'SentenceComments'
+                            ), 'hasAndBelongsToMany' => array('Favorite')
+                        )
+                    );
+                    $this->User->bindModel(
+                        array('hasMany' => array('Sentences','SentenceComments')
+                            , 'hasAndBelongsToMany' => array (
+                                'Favorite' => array(
+                                    'className' => 'Favorite',
+                                    'joinTable' => 'favorites_users',
+                                    'foreignKey' => 'user_id',
+                                    'associationForeignKey' => 'favorite_id',
+                                    'unique' => true,
+                                )
                             )
                         )
-                    )
-                );
+                    );
 
-                if (ctype_digit($mID)) {
-                    // It is a numerical id
-                    $aUser = $this->User->findById($mID);
-                } elseif (ctype_alnum($mID)) {
-                    // It is an alpha-numric id, thus a username
-                    $aUser = $this->User->findByUsername($mID);
-                } else {
-                    $this->_send('error', 400, 'Bad Request');
-                    return;
-                }
-
-                if (!empty($aUser)) {
-                    if ($aUser['User']['is_public']) {
-                        $this->set('user', $aUser);
-
-                        $this->_send('user/view', 200, 'OK');
+                    if (ctype_digit($mID)) {
+                        // It is a numerical id
+                        $aUser = $this->User->findById($mID);
+                    } elseif (ctype_alnum($mID)) {
+                        // It is an alpha-numric id, thus a username
+                        $aUser = $this->User->findByUsername($mID);
                     } else {
-                        $this->_send('error', 401, 'Protected User Profile');
-                    }
-                } else {
-                    // Send an error
-                    $this->_send('error', 404, 'User Not Found');
-                    return;
-                }
-                break;
-
-                // sentences
-            case 'sentence':
-                $this->loadModel('Sentence');
-
-                if (isset($_GET['u'])) {
-                    $sUsername = (string) Sanitize::paranoid($_GET['u']);
-                } else {
-                    $sUsername = null;
-                }
-
-                if (isset($_GET['u_id'])) {
-                    $iUserID = (integer) Sanitize::paranoid($_GET['u_id']);
-                } else {
-                    $iUserID = null;
-                }
-
-                // $iCount = isset($_GET['count']) ?
-                // (integer) Sanitize::paranoid($_GET['count']) : null;
-                if (isset($_GET['lang']) and strlen($_GET['lang']) == 3) {
-                    $sLang = (string) Sanitize::paranoid($_GET['lang']);
-                } else {
-                    $sLang = null;
-                }
-
-                // $iLimit = (integer) Sanitize::paranoid($_GET['limit']);
-                // $iPage = (integer) Sanitize::paranoid($_GET['page']);
-                // $iSince = (integer) Sanitize::paranoid($_GET['since']);
-
-                if ($mID == null) {
-                    $this->_send('error', 400, 'Missed Sentence ID');
-                    return;
-                } elseif ($mID == 'last') {
-
-                    // last X sentences: count=?
-                    // last X sentences from a user: (u=? or u_id=?) and count=X
-                    // last X sentences from a user in a language:
-                    // (u=? or u_id=?) and count=X and lang=?
-                    // last sentences since a date: since=?
-                    // last sentences since a date from a user:
-                    // (u=? or u_id=?) and since=?
-                    // last sentences since a date from a user in a language:
-                    // (u=? or u_id=?) and since=? and lang=?
-
-                } elseif ($mID == 'random') {
-                    if ($sUsername === null) {
-                        if ($sLang === null) {
-                            // absolutly random
-                            $sLang = array_rand($this->Sentence->languages);
-                        } else {
-                            $this->_send('error', 501, 'Not Implemented Yet');
-                            return;
-
-                            // absolutly random from a language: lang=?
-                            if (!in_array($sLang, $this->Sentence->languages)) {
-                                $this->_send(
-                                    'error',
-                                    400,
-                                    'Bad Request: Language Not Found'
-                                );
-                                return;
-                            }
-                        }
-
-                        $sSentence = null;
-
-                        do {
-                            $iSentenceID = rand(1, $this->Sentence->getMaxId());
-                            $sSentence = $this->Sentence->getSentenceWithId(
-                                $iSentenceID
-                            );
-                        } while (is_null($sSentence));
-
-                        $aTranslations = $this->Sentence->getTranslationsOf(
-                            $iSentenceID
-                        );
-
-                        $this->set('sentence', $sSentence);
-                        $this->set('translations', $aTranslations);
-
-                        $this->_send('sentence/view', 200, 'OK');
-                        return;
-                    } elseif (true) {
-                        // random from a user: u=? or u_id=?
-                        // random from a user in a language:
-                        // (u=? or u_id=?) and lang=?
-
-                        $this->_send('error', 501, 'Not Implemented Yet');
-                        return;
-                    } else {
-                        // error
                         $this->_send('error', 400, 'Bad Request');
                         return;
                     }
 
-                } elseif (ctype_digit($mID)) {
-                    $sSentence = $this->Sentence->getSentenceWithId($mID);
-                    $aTranslations = $this->Sentence->getTranslationsOf($mID);
+                    if (!empty($aUser)) {
+                        if ($aUser['User']['is_public']) {
+                            $this->set('user', $aUser);
 
-                    if ($sSentence != null) {
-                        $this->set('sentence', $sSentence);
-                        $this->set('translations', $aTranslations);
-
-                        $this->_send('sentence/view', 200, 'OK');
-                        return;
+                            $this->_send('user/view', 200, 'OK');
+                        } else {
+                            $this->_send('error', 401, 'Protected User Profile');
+                        }
                     } else {
-                        $this->_send('error', 404, 'Sentence Not Found');
+                        // Send an error
+                        $this->_send('error', 404, 'User Not Found');
                         return;
                     }
-                } else {
+                    break;
+
+                    // sentences
+                case 'sentence':
+                    $this->loadModel('Sentence');
+
+                    if (isset($_GET['u'])) {
+                        $sUsername = (string) Sanitize::paranoid($_GET['u']);
+                    } else {
+                        $sUsername = null;
+                    }
+
+                    if (isset($_GET['u_id'])) {
+                        $iUserID = (integer) Sanitize::paranoid($_GET['u_id']);
+                    } else {
+                        $iUserID = null;
+                    }
+
+                    // $iCount = isset($_GET['count']) ?
+                    // (integer) Sanitize::paranoid($_GET['count']) : null;
+                    if (isset($_GET['lang']) and strlen($_GET['lang']) == 3) {
+                        $sLang = (string) Sanitize::paranoid($_GET['lang']);
+                    } else {
+                        $sLang = null;
+                    }
+
+                    // $iLimit = (integer) Sanitize::paranoid($_GET['limit']);
+                    // $iPage = (integer) Sanitize::paranoid($_GET['page']);
+                    // $iSince = (integer) Sanitize::paranoid($_GET['since']);
+
+                    if ($mID == null) {
+                        $this->_send('error', 400, 'Missed Sentence ID');
+                        return;
+                    } elseif ($mID == 'last') {
+
+                        // last X sentences: count=?
+                        // last X sentences from a user: (u=? or u_id=?) and count=X
+                        // last X sentences from a user in a language:
+                        // (u=? or u_id=?) and count=X and lang=?
+                        // last sentences since a date: since=?
+                        // last sentences since a date from a user:
+                        // (u=? or u_id=?) and since=?
+                        // last sentences since a date from a user in a language:
+                        // (u=? or u_id=?) and since=? and lang=?
+
+                    } elseif ($mID == 'random') {
+                        if ($sUsername === null) {
+                            if ($sLang === null) {
+                                // absolutly random
+                                $sLang = array_rand($this->Sentence->languages);
+                            } else {
+                                $this->_send('error', 501, 'Not Implemented Yet');
+                                return;
+
+                                // absolutly random from a language: lang=?
+                                if (!in_array($sLang, $this->Sentence->languages)) {
+                                    $this->_send(
+                                        'error',
+                                        400,
+                                        'Bad Request: Language Not Found'
+                                    );
+                                    return;
+                                }
+                            }
+
+                            $sSentence = null;
+
+                            do {
+                                $iSentenceID = rand(1, $this->Sentence->getMaxId());
+                                $sSentence = $this->Sentence->getSentenceWithId(
+                                    $iSentenceID
+                                );
+                            } while (is_null($sSentence));
+
+                            $aTranslations = $this->Sentence->getTranslationsOf(
+                                $iSentenceID
+                            );
+
+                            $this->set('sentence', $sSentence);
+                            $this->set('translations', $aTranslations);
+
+                            $this->_send('sentence/view', 200, 'OK');
+                            return;
+                        } elseif (true) {
+                            // random from a user: u=? or u_id=?
+                            // random from a user in a language:
+                            // (u=? or u_id=?) and lang=?
+
+                            $this->_send('error', 501, 'Not Implemented Yet');
+                            return;
+                        } else {
+                            // error
+                            $this->_send('error', 400, 'Bad Request');
+                            return;
+                        }
+
+                    } elseif (ctype_digit($mID)) {
+                        $sSentence = $this->Sentence->getSentenceWithId($mID);
+                        $aTranslations = $this->Sentence->getTranslationsOf($mID);
+
+                        if ($sSentence != null) {
+                            $this->set('sentence', $sSentence);
+                            $this->set('translations', $aTranslations);
+
+                            $this->_send('sentence/view', 200, 'OK');
+                            return;
+                        } else {
+                            $this->_send('error', 404, 'Sentence Not Found');
+                            return;
+                        }
+                    } else {
+                        $this->_send('error', 400, 'Bad Request');
+                        return;
+                    }
+                    break;
+
+                    // comments
+                case 'comment':
+                    $this->_send('error', 501, 'Not Implemented Yet');
+                    return;
+                    break;
+
+                    // private messages
+                case 'message':
+                    $this->_send('error', 501, 'Not Implemented Yet');
+                    return;
+                    break;
+
+                    // alertes
+                case 'alerte':
+
+                    break;
+
+                default:
+                    // Send an error
                     $this->_send('error', 400, 'Bad Request');
                     return;
-                }
-                break;
-
-                // comments
-            case 'comment':
-                $this->_send('error', 501, 'Not Implemented Yet');
-                return;
-                break;
-
-                // private messages
-            case 'message':
-                $this->_send('error', 501, 'Not Implemented Yet');
-                return;
-                break;
-
-                // alertes
-            case 'alerte':
-
-                break;
-
-            default:
-                // Send an error
-                $this->_send('error', 400, 'Bad Request');
-                return;
-                break;
+                    break;
 
             }
         } else {

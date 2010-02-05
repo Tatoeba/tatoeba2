@@ -1,192 +1,266 @@
 <?php
-/*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2009  BEN YAALA Salem <salem.benyaala@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5
+ *
+ * @category PHP
+ * @package  Tatoeba
+ * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+/**
+ * Controller for sentence comments.
+ *
+ * @category User
+ * @package  Models
+ * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
+class User extends AppModel
+{
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
+    /**
+     *
+     * @var string
+     */
+    public $name = 'User';
 
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
-class User extends AppModel {
-
-	public $name = 'User';
-	public $actsAs = array(
+    /**
+     *
+     * @var array
+     */
+    public $actsAs = array(
         'Acl' => array('requester'),
         'ExtendAssociations',
         'Containable'
     );
 
-	const LOWEST_TRUST_GROUP_ID = 4;
+    const LOWEST_TRUST_GROUP_ID = 4;
 
-	var $validate = array(
-		'username' => array(
-			'alphanumeric' => array(
-				'rule' => '/^\\w*$/',
-				'message' => 'Username can only contain letters, numbers, or underscore'
-			),
-			'isUnique' => array(
-				'rule' => 'isUnique',
-				'message' => 'Username already taken.'
-			),
-			'min' => array(
-				'rule' => array('minLength', 2),
-				'message' => 'Username must be at least two letters'
-			)
-		),
-		'email' => array(
-			'email' => array(
-				'rule' => 'email',
-				'message' => 'Non valid email'
-			),
-			'isUnique' => array(
-				'rule' => 'isUnique',
-				'message' => 'Email already used.'
-			)
-		),
-		'lang' => array('alphanumeric'),
-		'lastlogout' => array('numeric'),
-		'status' => array('numeric'),
-		'permissions' => array('numeric'),
-		'level' => array('numeric'),
-		'group_id' => array('numeric'),
-		'homepage' => array('url'),
-	);
+    /**
+     *
+     * @var array
+     */
+    public $validate = array(
+        'username' => array(
+            'alphanumeric' => array(
+                'rule' => '/^\\w*$/',
+                'message'
+                    => 'Username can only contain letters, numbers, or underscore'
+            ),
+            'isUnique' => array(
+                'rule' => 'isUnique',
+                'message' => 'Username already taken.'
+            ),
+            'min' => array(
+                'rule' => array('minLength', 2),
+                'message' => 'Username must be at least two letters'
+            )
+        ),
+        'email' => array(
+            'email' => array(
+                'rule' => 'email',
+                'message' => 'Non valid email'
+            ),
+            'isUnique' => array(
+                'rule' => 'isUnique',
+                'message' => 'Email already used.'
+            )
+        ),
+        'lang' => array('alphanumeric'),
+        'lastlogout' => array('numeric'),
+        'status' => array('numeric'),
+        'permissions' => array('numeric'),
+        'level' => array('numeric'),
+        'group_id' => array('numeric'),
+        'homepage' => array('url'),
+    );
 
-	//The Associations below have been created with all possible keys, those that are not needed can be removed
-	var $belongsTo = array(
-		'Group' => array(
-			'className' => 'Group',
-			'foreignKey' => 'group_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		),
-		'Country'
-	);
+    // The Associations below have been created with all possible keys,
+    // those that are not needed can be removed
+    /**
+     *
+     * @var array
+     */
+    public $belongsTo = array(
+        'Group' => array(
+            'className' => 'Group',
+            'foreignKey' => 'group_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ),
+        'Country'
+    );
 
-	var $hasMany = array(
-		  'SentenceComments' => array('limit' => 10, 'order' => 'created DESC')
-		, 'Contributions' => array('limit' => 10, 'order' => 'datetime DESC')
-		, 'Sentences' => array('limit' => 10, 'order' => 'modified DESC')
-		, 'SentencesLists'
-		// , 'Mastering_lang'
-		// , 'Learning_lang'
-	);
+    /**
+     *
+     * @var array
+     */
+    public $hasMany = array(
+          'SentenceComments' => array('limit' => 10, 'order' => 'created DESC')
+        , 'Contributions' => array('limit' => 10, 'order' => 'datetime DESC')
+        , 'Sentences' => array('limit' => 10, 'order' => 'modified DESC')
+        , 'SentencesLists'
+        // , 'Mastering_lang'
+        // , 'Learning_lang'
+    );
 
-	var $hasAndBelongsToMany = array(
-		'Follower' => array(
-			'className' => 'Follower',
-			'joinTable' => 'followers_users',
-			'foreignKey' => 'user_id',
-			'associationForeignKey' => 'follower_id'
-		),
-		'Following' => array(
-			'className' => 'Following',
-			'joinTable' => 'followers_users',
-			'foreignKey' => 'follower_id',
-			'associationForeignKey' => 'user_id'
-		),
-		'Favorite' => array(
-			'className' => 'Favorite',
-			'joinTable' => 'favorites_users',
-			'foreignKey' => 'user_id',
-			'associationForeignKey' => 'favorite_id',
-			'limit' => '10',
-			'unique' => true
-		)
-	);
+    /**
+     *
+     * @var array
+     */
+    public $hasAndBelongsToMany = array(
+        'Follower' => array(
+            'className' => 'Follower',
+            'joinTable' => 'followers_users',
+            'foreignKey' => 'user_id',
+            'associationForeignKey' => 'follower_id'
+        ),
+        'Following' => array(
+            'className' => 'Following',
+            'joinTable' => 'followers_users',
+            'foreignKey' => 'follower_id',
+            'associationForeignKey' => 'user_id'
+        ),
+        'Favorite' => array(
+            'className' => 'Favorite',
+            'joinTable' => 'favorites_users',
+            'foreignKey' => 'user_id',
+            'associationForeignKey' => 'favorite_id',
+            'limit' => '10',
+            'unique' => true
+        )
+    );
 
-	function parentNode() {
+    /**
+     * ?
+     *
+     * @return array
+     */
+    public function parentNode()
+    {
 
-	    if (!$this->id && empty($this->data)) {
-	        return null;
-	    }
-	    $data = $this->data;
-	    if (empty($this->data)) {
-	        $data = $this->read();
-	    }
-	    if (!$data['User']['group_id']) {
-	        return null;
-	    } else {
-	        return array('Group' => array('id' => $data['User']['group_id']));
-	    }
-	}
+        if (!$this->id && empty($this->data)) {
+            return null;
+        }
+        $data = $this->data;
+        if (empty($this->data)) {
+            $data = $this->read();
+        }
+        if (!$data['User']['group_id']) {
+            return null;
+        } else {
+            return array('Group' => array('id' => $data['User']['group_id']));
+        }
+    }
 
-	// this should probably be in the controller... why did I put it here I don't remember
-	function generate_password(){
-		$pw = '';
-		$c  = 'bcdfghjklmnprstvwz' . 'BCDFGHJKLMNPRSTVWZ' ; //consonants except hard to speak ones
-		$v  = 'aeiou';              //vowels
-		$a  = $c.$v;                //both
+    /**
+     * this should probably be in the controller...
+     * why did I put it here I don't remember
+     *
+     * @return string
+     */
+    public function generate_password()
+    {
+        $pw = '';
+        $c  = 'bcdfghjklmnprstvwz' . 'BCDFGHJKLMNPRSTVWZ' ;
+        //consonants except hard to speak ones
+        $v  = 'aeiou';              //vowels
+        $a  = $c.$v;                //both
 
-		//use two syllables...
-		for($i=0;$i < 2; $i++){
-		$pw .= $c[rand(0, strlen($c)-1)];
-		$pw .= $v[rand(0, strlen($v)-1)];
-		$pw .= $a[rand(0, strlen($a)-1)];
-		}
-		//... and add a nice number
-		$pw .= rand(1,9);
+        //use two syllables...
+        for ($i=0; $i < 2; $i++) {
+            $pw .= $c[rand(0, strlen($c)-1)];
+            $pw .= $v[rand(0, strlen($v)-1)];
+            $pw .= $a[rand(0, strlen($a)-1)];
+        }
+        //... and add a nice number
+        $pw .= rand(1, 9);
 
-		$pw = rtrim($pw);
+        $pw = rtrim($pw);
 
-		if (strlen($pw) == 7) {
-			$pw .= rand(0,9);
-		}
+        if (strlen($pw) == 7) {
+            $pw .= rand(0, 9);
+        }
 
-		return $pw;
-	}
+        return $pw;
+    }
 
-    /*
-    ** get all the information needed to generate the user's profile
-    */
-
-    function getInformationOfCurrentUser($userId){
+    /**
+     * get all the information needed to generate the user's profile
+     *
+     * @param integer $userId User Identifiant
+     * 
+     * @return array
+     */
+    public function getInformationOfCurrentUser($userId)
+    {
         $this->unBindModel(
-            array('hasMany' => array('Contributions', 'Sentences', 'SentenceComments' )
-                , 'hasAndBelongsToMany' => array('Favorite')
+            array('hasMany' => array(
+                    'Contributions',
+                    'Sentences',
+                    'SentenceComments'
+                ),
+                'hasAndBelongsToMany' => array(
+                    'Favorite'
+                )
             )
         );
 
-      return $this->findById($userId);
-
+        return $this->findById($userId);
     }
 
-    /*
-    ** get all the information needed to generate a user profile
-    */
-
-    function getInformationOfUser($userName){
+    /**
+     * get all the information needed to generate a user profile
+     *
+     * @param string $userName User's screen name
+     * 
+     * @return array
+     */
+    public function getInformationOfUser($userName)
+    {
         $this->unBindModel(
-	        array('hasMany' => array('Contributions', 'Sentences', 'SentenceComments' )
-	            , 'hasAndBelongsToMany' => array('Favorite')
-	        )
-	    );
+            array('hasMany' => array(
+                    'Contributions',
+                    'Sentences',
+                    'SentenceComments'
+                ),
+                'hasAndBelongsToMany' => array('Favorite')
+            )
+        );
 
-		return $this->findByUsername($userName);
+        return $this->findByUsername($userName);
 
     }
 
     /**
-     * get all the information about a user needed by the Wall 
+     * get all the information about a user needed by the Wall
      *
-     * @params
-     *
+     * @param integer $userId User Indentifiant
+     * 
      * @return array
      */
-
-     public function getInfoWallUser($userId)
-     {
+    public function getInfoWallUser($userId)
+    {
         $result = $this->find(
             'first',
             array(
@@ -201,7 +275,7 @@ class User extends AppModel {
         ); 
         
         return $result ; 
-     }
+    }
 
 }
 ?>
