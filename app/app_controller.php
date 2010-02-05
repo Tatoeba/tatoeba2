@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+App::import('Core', 'Sanitize');
  
 /**
  * Controller for contributions.
