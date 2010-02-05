@@ -157,8 +157,8 @@ $selectedLanguage = $session->read('random_lang_selected');
                 <?php
                 __(
                     'At its core, Tatoeba is a large database of <strong>example '.
-                    'sentences </strong> translated into several languages. But as '.
-                    'a whole, it is much more than that.'
+                    'sentences</strong> translated into several languages. '.
+                    'But as a whole, it is much more than that.'
                 );
                 // TODO : write something in the "About"
                 // echo ' ' . $html->link(__('Learn more...',true), 
