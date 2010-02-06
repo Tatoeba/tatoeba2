@@ -28,7 +28,7 @@
 App::import('Core', 'Sanitize');
 
 /**
- * Controller for sentence comments.
+ * Controller for API.
  *
  * @category API
  * @package  Controllers

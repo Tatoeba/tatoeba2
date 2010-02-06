@@ -26,7 +26,7 @@
  */
 
 /**
- * Controller for sentence comments.
+ * Model for API.
  *
  * @category API
  * @package  Models
