@@ -26,22 +26,23 @@ $(document).ready(function() {
 		}
 	});
 	
-	$("#submitNewSentence").click(function()	{
+	$("#submitNewSentence").click(function(){
 	    save();
 	})
 	
 	function save(){
 		var sentenceText = $("#newSentenceText").val();
-		
-		$(".loading").show();
-		
-	    $.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences/save_sentence"
-		, { "value" : sentenceText }
-		, function(data){			
-			$("#sentencesAdded").prepend(data);
-			$(".loading").hide();
-			$("#newSentenceText").val("");
-		}
-		, "html");	    
+		if($.trim(sentenceText) != ''){
+            $(".loading").show();
+            
+            $.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences/save_sentence"
+            , { "value" : sentenceText }
+            , function(data){			
+                $("#sentencesAdded").prepend(data);
+                $(".loading").hide();
+                $("#newSentenceText").val("");
+            }
+            , "html");
+        }
 	}
 });

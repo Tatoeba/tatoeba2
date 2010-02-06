@@ -157,7 +157,7 @@ class SentencesController extends AppController
     {
         $idTemp = $this->Auth->user('id');
 
-        if ((!empty($this->data)) && (!empty($idTemp)) ) {
+        if (rtrim($this->data['Sentence']['text']) != '' && !empty($idTemp)) {
             // setting correctness of sentence
             if ($this->Auth->user('group_id')) {
                 $this->data['Sentence']['correctness'] 
@@ -214,7 +214,7 @@ class SentencesController extends AppController
      */
     public function save_sentence()
     {
-        if (isset($_POST['value'])) {
+        if (isset($_POST['value']) AND rtrim($_POST['value'] != '')) {
             Sanitize::html($_POST['value']);
             
             if (isset($_POST['id'])) {
