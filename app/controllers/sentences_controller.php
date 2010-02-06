@@ -178,7 +178,7 @@ class SentencesController extends AppController
             
             // saving
             if ($this->Sentence->save($this->data)) {
-                $sentence = $this->Sentence->read();
+                $sentence = $this->Sentence->getSentenceWithId($this->Sentence->id);
                 $this->set('sentence', $sentence);
                 
                 $specialOptions = $this->Permissions->getSentencesOptions(
@@ -271,7 +271,8 @@ class SentencesController extends AppController
                 if ($this->Sentence->save($this->data)) {
                     $this->layout = null;
                     
-                    $sentence = $this->Sentence->read();
+                    $sentenceId = $this->Sentence->id;
+                    $sentence = $this->Sentence->getSentenceWithId($sentenceId);
                     $this->set('sentence', $sentence);
                     
                     $specialOptions = $this->Permissions->getSentencesOptions(
