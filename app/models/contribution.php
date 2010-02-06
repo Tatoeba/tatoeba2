@@ -85,7 +85,7 @@ class Contribution extends AppModel
                     'User.group_id <' => 5
                 ),
                 'limit' => $limit ,
-                'contains' => array (
+                'contain' => array (
                     'User' => array (
                         'fields' => array( 'User.username', 'User.group_id'),
                     ),
@@ -119,7 +119,7 @@ class Contribution extends AppModel
                 'conditions' => array(
                     'Contribution.sentence_id' => $sentenceId     
                 ),
-                'contains' => array(
+                'contain' => array(
                     'User'=> array(
                         'fields' => array('User.username','User.id')
                     ),
