@@ -27,7 +27,6 @@
 
 echo $this->element('pmmenu');
 
-$replyToTitle = '';
 if ($isAReply) {
     if ($replyToTitle == '') {
         $replyToTitle = __('Re: [no subject]', true);
@@ -39,7 +38,7 @@ if ($isAReply) {
 <div id="main_content">
     <div class="module">
         <h2><?php echo __('Send new message', true); ?></h2>
-        <?php 
+        <?php
         echo $this->element('pmtoolbox');
 
         $msgFinalPreContent = '';
@@ -51,8 +50,8 @@ if ($isAReply) {
         }
 
         if (isset($errorString)) {
-            echo '<div style="border:1px solid red;color:red;">' 
-            . $errorString 
+            echo '<div style="border:1px solid red;color:red;">'
+            . $errorString
             . '</div>';
         }
 

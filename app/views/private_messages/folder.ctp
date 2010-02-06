@@ -1,8 +1,8 @@
 <?php
 /**
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009 Etienne Deparis <etienne.deparis@umaneti.net>
-
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2009 DEPARIS Étienne <etienne.deparis@umaneti.net>
+ *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -20,7 +20,7 @@
  *
  * @category PHP
  * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * @author   DEPARIS Étienne <etienne.deparis@umaneti.net>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
@@ -30,8 +30,8 @@ echo $this->element('pmmenu');
 ?>
 <div id="main_content">
 	<div class="module pm_module">
-        <?php 
-        // echo $folder is not suitable if we want to i18n it  
+        <?php
+        // echo $folder is not suitable if we want to i18n it
         ?>
 		<h2><?php echo __($folder, true); ?></h2>
 		<?php echo $this->element('pmtoolbox'); ?>
@@ -62,7 +62,7 @@ echo $this->element('pmmenu');
                 );
             echo '</td>';
 
-            /* Used to display properly the name of the sender, or receiver 
+            /* Used to display properly the name of the sender, or receiver
              * while we are in Sent or other folder.
 			 * NOTA: the caps to the word 'Sent' is IMPORTANT.
 			 */
@@ -79,7 +79,7 @@ echo $this->element('pmmenu');
             } else {
                 echo '<td>'.
                     $html->link(
-                        $msg['to'], 
+                        $msg['to'],
                         array(
                             'action' => 'write',
                              $msg['to']
@@ -101,15 +101,15 @@ echo $this->element('pmmenu');
                         'action' => 'show',
                         $msg['id']
                     )
-                ) 
+                )
                 .'</td>';
             echo '<td><span class="action_link">';
 
             if ($folder == 'Trash') {
                 echo $html->link(
-                    __('Restore', true), 
+                    __('Restore', true),
                     array(
-                        'action' => 'restore', 
+                        'action' => 'restore',
                         $msg['id']
                      )
                 );
@@ -128,16 +128,16 @@ echo $this->element('pmmenu');
             } else {
                  $label = __('Mark as unread', true);
             }
-    echo ' - ' . 
+    echo ' - ' .
         $html->link(
-            $label, 
+            $label,
             array(
-                'action' => 'mark', 
+                'action' => 'mark',
                 $folder, $msg['id']
             )
-        ) 
+        )
     . '</span></td></tr>';
-        } 
+        }
         ?>
 		</table>
 	</div>
