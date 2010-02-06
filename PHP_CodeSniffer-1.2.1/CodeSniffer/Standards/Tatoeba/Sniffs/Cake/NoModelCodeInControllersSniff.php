@@ -37,7 +37,6 @@ class Tatoeba_Sniffs_Cake_NoModelCodeInControllersSniff implements PHP_CodeSniff
         'unbindmodel',
         'habtmadd',
         'habtmdelete',
-        'findbyusername'
     ); 
 
 

@@ -68,9 +68,20 @@ class Tatoeba_Sniffs_Cake_ForbiddenRecursiveSniff implements PHP_CodeSniffer_Sni
 
         // content is either a method or a public attribute
         $content = strtolower($tokens[$stackPtr]['content']);
+
+        if (preg_match('|^findby|', $content) !== 0 ||  preg_match('|^findallby|', $content) !== 0) {
+                $error = "The use of findBy* or findAllBy* is forbidden";
+                $phpcsFile->addError($error, $stackPtr);
+                return; 
+        }
+
+
+
         if (in_array($content, array('recursive')) === false) {
             return;
         }
+
+        
 
         $error = "The use of recursive is forbidden";
 
