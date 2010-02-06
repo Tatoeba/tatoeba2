@@ -39,7 +39,7 @@ if (isset($this->params['lang'])) {
             $langCode = $stat['langStats']['lang'];
             
             echo '<li class="stat" title="'.$languages->codeToName($langCode).'">';
-                echo $html->image($langCode .'.png');
+                echo $html->image('flags/'.$langCode .'.png');
                 echo '<span class="langCode">'.$langCode.' : </span>';
                 echo '<span class="total">'.$stat['langStats']['numberOfSentences']
                     .'</span>';
@@ -57,7 +57,7 @@ for ($i = 5; $i < $size; $i++) {
     $langCode  = $stat['langStats']['lang'];
         
     echo '<li class="stat" title="'.$languages->codeToName($langCode).'">';
-        echo $html->image($langCode .'.png');
+        echo $html->image('flags/'.$langCode .'.png');
         echo '<span class="langCode">'.$langCode.' : </span>';
         echo '<span class="total">'.$stat['langStats']['numberOfSentences']
                 .'</span>';
