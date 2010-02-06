@@ -66,23 +66,25 @@ class SentencesListsController extends AppController
      */
     public function index()
     {
+        $currentUserId =  $this->Auth->user('id'); 
         // user's lists
-        if ($this->Auth->user('id')) {
-            $myLists = $this->SentencesList->findAllByUserId(
-                $this->Auth->user('id')
+        if ($currentUserId) {
+            $myLists = $this->SentencesList->getUserLists(
+                $currentUserId
             );
+
             $this->set('myLists', $myLists);
         }
 
         // public lists
         $publicLists = $this->SentencesList->getPublicListsNotFromUser(
-            $this->Auth->user('id')
+            $currentUserId
         );
         $this->set('publicLists', $publicLists);
 
         // all the other lists
         $otherLists = $this->SentencesList->getNonEditableListsForUser(
-            $this->Auth->user('id')
+            $currentUserId
         );
         $this->set('otherLists', $otherLists);
     }

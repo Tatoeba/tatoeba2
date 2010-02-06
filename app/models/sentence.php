@@ -68,11 +68,14 @@ class Sentence extends AppModel
         )
     );    
 
-    public $hasMany = array('Contribution', 'SentenceComment', 
-            'Favorites_users' => array ( 
-                    'classname'  => 'favorites',
-                    'foreignKey' => 'favorite_id'  )
-             );
+    public $hasMany = array(
+        'Contribution',
+        'SentenceComment', 
+        'Favorites_users' => array ( 
+                'classname'  => 'favorites',
+                'foreignKey' => 'favorite_id'
+            )
+    );
     
     public $belongsTo = array('User');
     
@@ -397,7 +400,9 @@ class Sentence extends AppModel
             array(
                 "conditions" => array("Sentence.id" => $ids),
                 "contain" => array(
-                    "Favorites_users",
+                    "Favorites_users" => array(
+                        'fields' => array()
+                    ),
                     "User" => array(
                         "fields" => array("username")
                     ),
@@ -533,7 +538,9 @@ class Sentence extends AppModel
         return $this->find(
             'count',
             array(
-                 'conditions' => array( 'Sentence.user_id' => $userId)
+                 'conditions' => array(
+                    'Sentence.user_id' => $userId
+                )
             )
         );
     }
@@ -564,8 +571,8 @@ class Sentence extends AppModel
                   p2.user_id AS translation_user_id,
                   'Translation' as distance
                 FROM sentences AS p1
-                LEFT OUTER JOIN sentences_translations AS t ON p1.id = t.sentence_id
-                  LEFT OUTER JOIN sentences AS p2 ON t.translation_id = p2.id
+                LEFT  JOIN sentences_translations AS t ON p1.id = t.sentence_id
+                  LEFT  JOIN sentences AS p2 ON t.translation_id = p2.id
                 WHERE 
                  p1.id = '$id' 
 
@@ -578,11 +585,11 @@ class Sentence extends AppModel
                   p2.user_id AS translation_user_id,
                   'IndirectTranslation'  as distance
                 FROM sentences AS p1
-                    LEFT OUTER JOIN sentences_translations AS t
+                    LEFT JOIN sentences_translations AS t
                         ON p1.id = t.sentence_id
-                    LEFT OUTER JOIN sentences_translations AS t2
+                    LEFT JOIN sentences_translations AS t2
                         ON t2.sentence_id = t.translation_id
-                    LEFT OUTER JOIN sentences AS p2
+                    LEFT JOIN sentences AS p2
                         ON t2.translation_id = p2.id
                 WHERE 
                     p1.id != p2.id
@@ -653,8 +660,7 @@ class Sentence extends AppModel
             SELECT COUNT(*) AS `count` 
             FROM `sentences` AS `Sentence` 
             WHERE `Sentence`.`user_id` = $userId 
-              AND (`Sentence`.`lang` = '' 
-              OR `Sentence`.`lang` IS NULL)
+              AND `Sentence`.`lang` IS NULL;
             "
         );
         return $count[0][0]['count'];
@@ -676,8 +682,7 @@ class Sentence extends AppModel
             "
             SELECT * FROM `sentences` AS `Sentence` 
             WHERE `Sentence`.`user_id` = $userId 
-              AND (`Sentence`.`lang` = '' 
-              OR `Sentence`.`lang` IS NULL)
+              AND `Sentence`.`lang` IS NULL
         "
         );
         return $sentences;

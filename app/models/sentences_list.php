@@ -57,7 +57,8 @@ class SentencesList extends AppModel
                         "SentencesList.user_id" => $userId,
                         "SentencesList.is_public" => 1
                     )
-                )
+                ),
+                'contain' => array()
             )
         );
     }
@@ -77,6 +78,11 @@ class SentencesList extends AppModel
                 "conditions" => array(
                     "SentencesList.user_id !=" => $userId,
                     "SentencesList.is_public" => 1
+                ),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array('username')
+                    )
                 )
             )
         );
@@ -97,6 +103,11 @@ class SentencesList extends AppModel
                 "conditions" => array(
                     "SentencesList.user_id !=" => $userId,
                     "SentencesList.is_public" => 0
+                ),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array('username')
+                    )
                 )
             )
         );
@@ -119,7 +130,6 @@ class SentencesList extends AppModel
         $contain = array("Sentence");
         
         if ($translationsLang != null) {
-            
             $contain = array(
                 "Sentence" => array( 
                     "Translation" => array( 
@@ -179,10 +189,28 @@ class SentencesList extends AppModel
      */
     public function belongsToCurrentUser($listId, $userId)
     {
-        $this->id = $listId;
-        $list = $this->read();
+
+        // TODO it would be simpler to all do in the request
+        // if no result = don't belong to
+        // if result = belong to
+        // it will make the request lighter
+
+        $list = $this->find(
+            'first',
+            array(
+                "conditions" => array(
+                    "SentencesList.id" => $listId
+                ),
+                "contain" => array(),
+                "fields" => array(
+                    'user_id',
+                    'is_public'
+                )
+            )
+        );
+
         if ($list['SentencesList']['user_id'] == $userId
-            OR $list['SentencesList']['is_public'] == 1
+            || $list['SentencesList']['is_public'] == 1
         ) {
             return true;
         } else {
@@ -203,6 +231,33 @@ class SentencesList extends AppModel
         return $this->habtmAdd('Sentence', $listId, $sentenceId);
     }
     
+    /**
+     * get all the list of a given user
+     *
+     * @param int $userId Id of the user
+     *
+     * @return array
+     */
+
+    public function getUserLists($userId)
+    {
+        $myLists = $this->find(
+            'all',
+            array(
+                'conditions' => array(
+                    "SentencesList.user_id =" => $userId,
+                ),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array('username')
+                    )
+                )
+            )
+        );
+
+        return $myLists;
+
+    }
     
     /**
      * Remove sentence from list.

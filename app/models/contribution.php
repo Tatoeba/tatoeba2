@@ -50,7 +50,12 @@ class Contribution extends AppModel
     {
         return $this->find(
             'count',
-            array('conditions' => array('Contribution.user_id' => $userId))
+            array(
+                'contain' => array(),
+                'conditions' => array(
+                    'Contribution.user_id' => $userId
+                )
+            )
         );
     }
 
