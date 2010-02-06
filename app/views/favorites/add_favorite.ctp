@@ -25,17 +25,15 @@
  * @link     http://tatoeba.org
  */
 
-
-
 if (isset($saved)) {
-    echo '<a>'
-        .$html->image(
-            'unfavorite.png',
-            array(
-                'alt'=>__('Remove from favorites', true), 
-                'title'=>__('Remove from favorites', true)
-            )
-        ).
+    echo '<a>';
+    echo $html->image(
+        'unfavorite.png',
+        array(
+            'alt'=>__('Remove from favorites', true), 
+            'title'=>__('Remove from favorites', true)
+        )
+    );
     echo '</a>';
 }
 

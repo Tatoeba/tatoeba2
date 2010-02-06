@@ -110,7 +110,7 @@ class Favorite extends AppModel
 
     public function addFavorite($sentenceId, $userId)
     {
-        return $this->Favorite->habtmAdd(
+        return $this->habtmAdd(
             'User',
             $sentenceId,
             $userId
@@ -128,7 +128,7 @@ class Favorite extends AppModel
 
     public function removeFavorite($sentenceId, $userId)
     {
-        return $this->Favorite->habtmDelete(
+        return $this->habtmDelete(
             'User',
             $sentenceId,
             $userId
