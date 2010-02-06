@@ -115,7 +115,7 @@ class PrivateMessagesController extends AppController
             );
 
         }
-        pr($content);
+        
         $this->set('folder', $folderId);
         $this->set('content', $content);
     }
