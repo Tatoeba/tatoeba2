@@ -101,7 +101,7 @@ class RememberMeComponent extends Object
      */
     public function delete()
     {
-        $this->Cookie->del($this->cookieName);
+        $this->Cookie->del($this->_cookieName);
     }
 }
 
