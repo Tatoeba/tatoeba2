@@ -54,7 +54,7 @@
         <?php
         if (count($unknownLangSentences) > 0) {
         
-            $langArray = $languages->onlyLanguagesArray();
+            $langArray = $languages->unknownLanguagesArray();
             
             echo $form->create('Sentence', array('action'=>'set_languages'));
             echo '<ul>';

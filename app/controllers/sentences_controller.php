@@ -669,8 +669,20 @@ class SentencesController extends AppController
      */
     public function set_languages()
     {
+
         if (!empty($this->data)) {
-            if ($this->Sentence->saveAll($this->data['Sentence'])) {
+
+            $sentences = $this->data['Sentence'];
+
+            // if the language is still unknow
+            // we unset the lang field to save it as NULL
+            foreach ($sentences as $i=>$sentence) {
+                if ($sentence['lang'] === 'xxx') {
+                    unset($sentences[$i]['lang']);
+                }
+            }
+
+            if ($this->Sentence->saveAll($sentences)) {
                 $flashMsg = __('The languages have been saved.', true);
             } else {
                 $flashMsg = __('A problem occured while trying to save.', true);
@@ -678,11 +690,14 @@ class SentencesController extends AppController
         } else {
             $flashMsg = __('There is nothing to save.', true);
         }
+        
         $this->flash(
             $flashMsg,
             '/sentences/unknown_language/'
         );
+        
     }
+    
     
     /**
      * Display current user's sentences.

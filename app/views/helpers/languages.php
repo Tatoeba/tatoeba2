@@ -96,6 +96,23 @@ class LanguagesHelper extends AppHelper
         
         return $languages;
     }
+
+    /** 
+     * Return array of languages in Tatoeba. + 'unknown language'
+     *
+     * @return array
+     */
+    public function unknownLanguagesArray()
+    {
+        $languages = $this->onlyLanguagesArray();
+        
+        // Can't use 'any' as it's the code for anyin language.
+        // Only 'und' is used for "undefined".
+        // TODO xxx to be remplace by the code for 'unknown'
+        array_unshift($languages, array('xxx' => __('unknown language', true)));
+        
+        return $languages;
+    }
     
     /** 
      * Return array of languages in which you can search.
