@@ -89,7 +89,7 @@ class LogsHelper extends AppHelper
                 echo '?';
             } else {
                 echo $this->Html->image(
-                    $sentence['lang'].".png", 
+                    'flags/'.$sentence['lang'].".png", 
                     array("alt" => $sentence['lang'], "class" => "flag")
                 );
                 // TODO should be replace by the real name
