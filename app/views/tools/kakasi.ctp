@@ -110,15 +110,19 @@ $this->pageTitle = __('Convert Japanese text into romaji or furigana', true);
                 "type" => "get"
             )
         );
+        ?>
+        <p>
+        <?php
         echo $form->textarea(
             'query',
             array(
-                "label" => '',
-                "value" => $query
+                "value" => $query,
+                "rows" => 30,
+                "cols"=> 40
             )
         );
         ?>
-
+        </p>
         <p>
             <?php
             __('Convert japanese text into : ');
@@ -138,6 +142,6 @@ $this->pageTitle = __('Convert Japanese text into romaji or furigana', true);
         <?php echo $form->end(__('Convert', true)); ?>
     </div>
 </div>
-<script>
+<script type="text/javascript">
 furigana();
 </script>
