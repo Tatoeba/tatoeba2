@@ -298,5 +298,25 @@ class User extends AppModel
         }
         return $user;
     }
+    
+    /**
+     * Return id of a user from the username.
+     *
+     * @param string $username Username.
+     *
+     * @return int
+     */
+    public function getIdFromUsername($username)
+    {
+        $user = $this->find(
+            'first',
+            array(
+                'conditions' => array('User.username' => $username),
+                'contain' => array(),
+                'fields' => 'User.id'
+            )
+        );
+        return $user['User']['id'];
+    }
 }
 ?>

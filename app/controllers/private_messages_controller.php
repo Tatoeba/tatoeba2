@@ -56,9 +56,8 @@ class PrivateMessagesController extends AppController
         parent::beforeFilter();
 
         // setting actions that are available to everyone, even guests
-        $this->Auth->allowedActions = array('check','join');
-        /**
-         * quick fix because "check" is called in top1.ctp,
+        $this->Auth->allowedActions = array('check');
+        /* quick fix because "check" is called in top1.ctp,
          * and if a pending user tries to log in it will
          * not work. "check" is currently defined as
          * accessible only for registered users and above.
@@ -81,42 +80,19 @@ class PrivateMessagesController extends AppController
      * The folder name is given in parameters, as messages are stored by
      * folder name in the database (SQL ENUM)
      *
-     * @param string $folderId The folder identifier we want to display
+     * @param string $folder The folder we want to display
      *
      * @return void
      */
-    public function folder($folderId = 'Inbox')
+    public function folder($folder = 'Inbox')
     {
 
-        $inboxes = $this->PrivateMessage->getMessages(
-            $folderId,
+        $content = $this->PrivateMessage->getMessages(
+            $folder,
             $this->Auth->user('id')
         );
-
-        $content = array();
-
-        foreach ($inboxes as $message) {
-            $fromUser = new User();
-            $fromUser->id = $message['PrivateMessage']['sender'];
-            $fromUser = $fromUser->read();
-
-
-            $toUser = new User();
-            $toUser->id = $message['PrivateMessage']['recpt'];
-            $toUser = $toUser->read();
-
-            $content[] = array(
-                'to'        => $toUser['User']['username'],
-                'from'      => $fromUser['User']['username'],
-                'title'     => $message['PrivateMessage']['title'],
-                'id'        => $message['PrivateMessage']['id'],
-                'date'      => $message['PrivateMessage']['date'],
-                'isnonread' => $message['PrivateMessage']['isnonread']
-            );
-
-        }
         
-        $this->set('folder', $folderId);
+        $this->set('folder', $folder);
         $this->set('content', $content);
     }
 
@@ -128,41 +104,27 @@ class PrivateMessagesController extends AppController
     public function send()
     {
         Sanitize::html($this->data['PrivateMessage']['recpt']);
-        // This doesn't work... Why do you have write it ?
-        //Sanitize::html($this->data['PrivateMessage']['send']);
         Sanitize::html($this->data['PrivateMessage']['content']);
         Sanitize::html($this->data['PrivateMessage']['title']);
 
         if (!empty($this->data['PrivateMessage']['recpt'])
             && !empty($this->data['PrivateMessage']['content'])
         ) {
-            $this->data['PrivateMessage']['sender']
-                = $this->Auth->user('id');
-
-            $recptArray = explode(
-                ',',
-                $this->data['PrivateMessage']['recpt']
-            );
-
+            $this->data['PrivateMessage']['sender'] = $this->Auth->user('id');
+            
+            $recptArray = explode(',', $this->data['PrivateMessage']['recpt']);
+            
             // loop to send msg to different dest.
             foreach ($recptArray as $recpt) {
-
+            
                 $recpt = trim($recpt);
-
-                /**
-                 * I keep the recursive as I disable it, in order to have
-                 * only tiny results.
-                 */
-                $this->PrivateMessage->User->recursive = 0;
-                $toUser = $this->PrivateMessage->User->findByUsername($recpt);
+                $recptId = $this->PrivateMessage->User->getIdFromUsername($recpt);
 
                 // we send the msg only if the user exists.
-                if ($toUser) {
+                if ($recptId) {
 
-                    $this->data['PrivateMessage']['recpt']
-                        = $toUser['User']['id'];
-                    $this->data['PrivateMessage']['user_id']
-                        = $toUser['User']['id'];
+                    $this->data['PrivateMessage']['recpt'] = $recptId;
+                    $this->data['PrivateMessage']['user_id'] = $recptId;
                     $this->data['PrivateMessage']['folder'] = 'Inbox';
                     $this->data['PrivateMessage']['date']
                         = date("Y/m/d H:i:s", time());
@@ -220,27 +182,13 @@ class PrivateMessagesController extends AppController
          * The following lines of code check if a message is read, or not
          * and change is read value automatically.
          */
-        $message = $this->PrivateMessage->findById($messageId);
+        $message = $this->PrivateMessage->getMessageWithId($messageId);
         if ($message['PrivateMessage']['isnonread'] == 1) {
             $message['PrivateMessage']['isnonread'] = 0;
             $this->PrivateMessage->save($message);
         }
 
-        $toUser = new User();
-        $toUser->id = $message['PrivateMessage']['sender'];
-        $toUser = $toUser->read();
-
-        $content = array(
-            'from' => $toUser['User']['username'],
-            'title' => $message['PrivateMessage']['title'],
-            'content' => nl2br($message['PrivateMessage']['content']),
-            'id' => $message['PrivateMessage']['id'],
-            'date' => $message['PrivateMessage']['date'],
-            'isnonread' => $message['PrivateMessage']['isnonread'],
-            'folder' => $message['PrivateMessage']['folder']
-        );
-
-        $this->set('content', $content);
+        $this->set('message', $message);
 
     }
 

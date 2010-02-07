@@ -30,10 +30,18 @@ echo $this->element('pmmenu');
 ?>
 <div id="main_content">
 	<div class="module pm_module">
+        <h2>
         <?php
-        // echo $folder is not suitable if we want to i18n it
+        if ($folder == 'Inbox') {
+            __('Inbox');
+        } elseif ($folder == 'Sent') {
+            __('Sent');
+        } elseif ($folder == 'Trash') {
+            __('Trash');
+        }
         ?>
-		<h2><?php echo __($folder, true); ?></h2>
+		</h2>
+        
 		<?php echo $this->element('pmtoolbox'); ?>
 		<table class="pm_folder">
 		<?php
@@ -47,17 +55,17 @@ echo $this->element('pmmenu');
         echo '<th>'.__('Subject', true).'</th><th></th></tr>';
 
         foreach ($content as $msg) {
-            if ($msg['isnonread'] == 1) {
+            if ($msg['PrivateMessage']['isnonread'] == 1) {
                  echo '<tr class="pm_folder_line unread">';
             } else {
                  echo '<tr class="pm_folder_line">';
             }
             echo '<td>' ;
                 echo $html->link(
-                    $date->ago($msg['date']),
+                    $date->ago($msg['PrivateMessage']['date']),
                     array('
                         action' => 'show',
-                        $msg['id']
+                        $msg['PrivateMessage']['id']
                     )
                 );
             echo '</td>';
@@ -67,31 +75,18 @@ echo $this->element('pmmenu');
 			 * NOTA: the caps to the word 'Sent' is IMPORTANT.
 			 */
             if ($folder != 'Sent') {
-                echo '<td>'.
-                    $html->link(
-                        $msg['from'],
-                        array(
-                            'action' => 'write',
-                            $msg['from']
-                        )
-                    );
-                echo '</td>';
+                $username = $msg['Sender']['username'];
             } else {
-                echo '<td>'.
-                    $html->link(
-                        $msg['to'],
-                        array(
-                            'action' => 'write',
-                             $msg['to']
-                        )
-                    )
-                .'</td>';
+                $username = $msg['Recipient']['username'];
             }
+            echo '<td>';
+            echo $html->link($username, array('action' => 'write', $username));
+            echo '</td>';
 
-            if ($msg['title'] == '') {
+            if ($msg['PrivateMessage']['title'] == '') {
                 $messageTitle = __('[no subject]', true);
             } else {
-                $messageTitle = $msg['title'];
+                $messageTitle = $msg['PrivateMessage']['title'];
             }
 
             echo '<td>' .
@@ -99,7 +94,7 @@ echo $this->element('pmmenu');
                     $messageTitle,
                     array(
                         'action' => 'show',
-                        $msg['id']
+                        $msg['PrivateMessage']['id']
                     )
                 )
                 .'</td>';
@@ -110,7 +105,7 @@ echo $this->element('pmmenu');
                     __('Restore', true),
                     array(
                         'action' => 'restore',
-                        $msg['id']
+                        $msg['PrivateMessage']['id']
                      )
                 );
             } else {
@@ -118,25 +113,26 @@ echo $this->element('pmmenu');
                     __('Delete', true),
                     array(
                         'action' => 'delete',
-                        $folder, $msg['id']
+                        $folder, $msg['PrivateMessage']['id']
                     )
                 );
             }
 
-    if ($msg['isnonread'] == 1) {
-                 $label = __('Mark as read', true);
+            if ($msg['PrivateMessage']['isnonread'] == 1) {
+                $label = __('Mark as read', true);
             } else {
-                 $label = __('Mark as unread', true);
+                $label = __('Mark as unread', true);
             }
-    echo ' - ' .
-        $html->link(
-            $label,
-            array(
-                'action' => 'mark',
-                $folder, $msg['id']
-            )
-        )
-    . '</span></td></tr>';
+            
+            echo ' - ' .
+                $html->link(
+                    $label,
+                    array(
+                        'action' => 'mark',
+                        $folder, $msg['PrivateMessage']['id']
+                    )
+                )
+            . '</span></td></tr>';
         }
         ?>
 		</table>

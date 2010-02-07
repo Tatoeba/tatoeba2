@@ -25,16 +25,16 @@
  * @link     http://tatoeba.org
  */
  
-if ($content['title'] == '') {
+if ($message['PrivateMessage']['title'] == '') {
     $messageTitle = __('[no subject]', true);
 } else {
-    $messageTitle = $content['title'];
+    $messageTitle = $message['PrivateMessage']['title'];
 }
 $this->pageTitle = __('Private messages', true) 
 .' - ' 
 . sprintf(
     __('%s from %s', true),
-    $messageTitle, $content['from']
+    $messageTitle, $message['Sender']['username']
 );
 
 echo $this->element('pmmenu');
@@ -44,19 +44,21 @@ echo $this->element('pmmenu');
     <h2><?php echo $messageTitle; ?></h2>
 
     <?php
-    if ($content['folder'] == 'Trash') {
+    if ($message['PrivateMessage']['folder'] == 'Trash') {
         $delOrRestLink = $html->link(
             __('Restore', true), 
             array(
-                'action' => 'restore', $content['id']
+                'action' => 'restore', $message['PrivateMessage']['id']
             )
         );
     } else {
         $delOrRestLink = $html->link(
             __('Delete', true), 
             array(
-                'action' => 'delete', $content['folder'], $content['id']
-                )
+                'action' => 'delete', 
+                $message['PrivateMessage']['folder'], 
+                $message['PrivateMessage']['id']
+            )
         );
     }
 
@@ -64,8 +66,8 @@ echo $this->element('pmmenu');
         __('Reply', true), 
         array(
             'action' => 'write',
-            $content['from'],
-            $content['id']
+            $message['Sender']['username'],
+            $message['PrivateMessage']['id']
         )
     ); 
     
@@ -74,7 +76,7 @@ echo $this->element('pmmenu');
         array(
             'action' => 'mark',
             'Inbox',
-             $content['id']
+            $message['PrivateMessage']['id']
         )
     );
     
@@ -90,33 +92,36 @@ echo $this->element('pmmenu');
 
     <p class="pm_head">
         <?php
-        echo $date->ago($content['date']) . ', ';
+        echo $date->ago($message['PrivateMessage']['date']) . ', ';
         echo sprintf(
             __('<a href="%s">%s</a> has written:', true), 
             $html->url(
                 array(
-                    'controller' => 'user', 'action' => 'profile', $content['from']
+                    'controller' => 'user', 
+                    'action' => 'profile', 
+                    $message['Sender']['username']
                 )
             ), 
-            $content['from']
+            $message['Sender']['username']
         );
         ?>
     </p>
     <?php
     $matches = array();
     $sentencesLists = array();
-    if (preg_match_all("#\[list:(\d+)]#", $content['content'], $matches) != false) {
+    $content = $message['PrivateMessage']['content'];
+    if (preg_match_all("#\[list:(\d+)]#", $content, $matches) != false) {
         foreach ($matches[1] as $sl) {
             $sentencesLists[] = $this->requestAction(
                 '/sentences_lists/show/'.$sl.'/return'
             );
-            $content['content'] = str_replace(
-                '[list:'.$sl.']', '', $content['content']
+            $message['content'] = str_replace(
+                '[list:'.$sl.']', '', $message['content']
             );
         }
     }
     ?>
-    <p class="pm_content"><?php echo $content['content']; ?></p>
+    <p class="pm_content"><?php echo $content; ?></p>
     <?php
     foreach ($sentencesLists as $list) {
         echo '<h3>'.$list['SentencesList']['name'].'</h3>';

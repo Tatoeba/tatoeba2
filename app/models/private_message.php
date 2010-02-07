@@ -39,7 +39,17 @@ class PrivateMessage extends AppModel
     public $name = 'PrivateMessage';
 
     public $actsAs = array('Containable');
-    public $belongsTo = array('User' => array('className' => 'User'));
+    public $belongsTo = array(
+        'User',
+        'Recipient' => array(
+            'className' => 'User',
+            'foreignKey' => 'recpt'
+        ),
+        'Sender' => array(
+            'className' => 'User',
+            'foreignKey' => 'sender'
+        )
+    );
 
     /**
      * function to retrieve private message by folder
@@ -59,7 +69,37 @@ class PrivateMessage extends AppModel
                     'PrivateMessage.folder' => $folderId
                 ),
                 'limit'=> 10,
-                'order' => 'PrivateMessage.date DESC'
+                'order' => 'PrivateMessage.date DESC',
+                'contain' => array(
+                    'Sender' => array(
+                        'fields' => array('username')
+                    ),
+                    'Recipient' => array(
+                        'fields' => array('username')
+                    )
+                )
+            )
+        );
+    }
+    
+    /**
+     * Return message corresponding to given id.
+     *
+     * @param int $messageId Id of the message to retrieve.
+     *
+     * @return Array
+     */
+    public function getMessageWithId($messageId)
+    {
+        return $this->find(
+            'first',
+            array(
+                'conditions' => array('PrivateMessage.id' => $messageId),
+                'contain' => array(
+                    'Sender' => array(
+                        'fields' => array('username')
+                    )
+                )
             )
         );
     }
