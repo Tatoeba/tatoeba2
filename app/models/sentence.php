@@ -366,10 +366,21 @@ class Sentence extends AppModel
             array(
                     'conditions' => array ('Sentence.id' => $id),
                     'contain'  => array (
-                        'Favorites_users' => array(),
-                        'User'            => array(),
-                        'SentencesList'   => array()
-                )
+                        'Favorites_users' => array(
+                            'fields' => array()
+                        ),
+                        'User'            => array(
+                            'fields' => array('username')
+                        ),
+                        'SentencesList'   => array(
+                            'fields' => array('id')
+                        )
+                    ),
+                    'fields' => array(
+                        'text',
+                        'lang',
+                        'user_id'
+                    )
             )
         );
         // TODO : need to replace it by something more general

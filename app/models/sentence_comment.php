@@ -51,7 +51,8 @@ class SentenceComment extends AppModel
         return $this->find(
             'count',
             array(
-                'conditions' => array( 'SentenceComment.user_id' => $userId)
+                'conditions' => array( 'SentenceComment.user_id' => $userId),
+                'contain' => array()
              )
         );
 
@@ -66,14 +67,23 @@ class SentenceComment extends AppModel
     {
         $langs = array('eng', 'fra', 'jpn', 'spa', 'deu');
         $sentenceComments = array();
-        
+       
+        /*TODO all of this this should be done in one request */ 
         foreach ($langs as $lang) {
             $sentenceComments[$lang] = $this->find(
                 "all",
                 array( 
                     "conditions" => array("SentenceComment.lang" => $lang),
                     "limit"=> 10,
-                    "order" => "SentenceComment.created DESC"
+                    "order" => "SentenceComment.created DESC",
+                    "contain" => array(
+                        'User' => array(
+                            'fields' => array(
+                                'username',
+                                'image'
+                            )
+                        )  
+                    )
                 )
             );
         }
@@ -85,7 +95,15 @@ class SentenceComment extends AppModel
                     "NOT" => array("SentenceComment.lang" => $langs)
                 ),
                 "limit"=> 10,
-                "order" => "SentenceComment.created DESC"
+                "order" => "SentenceComment.created DESC",
+                "contain" => array(
+                    'User' => array(
+                        'fields' => array(
+                            'username',
+                            'image'
+                        )
+                    )  
+                )
             )
         );
         
@@ -105,7 +123,8 @@ class SentenceComment extends AppModel
             'all', 
             array(
                 'conditions' => array('SentenceComment.sentence_id' => $sentenceId),
-                'order' => 'SentenceComment.created'
+                'order' => 'SentenceComment.created',
+                'contain' => array()
             )
         );
     }
@@ -121,7 +140,18 @@ class SentenceComment extends AppModel
     {
         return $this->find(
             'all',
-            array('order' => 'SentenceComment.created DESC', 'limit' => $limit)
+            array(
+                'order' => 'SentenceComment.created DESC',
+                'limit' => $limit,
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array(
+                            'username',
+                            'image'
+                        )
+                    )  
+                )
+            )
         );
     }
     
@@ -140,7 +170,13 @@ class SentenceComment extends AppModel
             'all',
             array(
                 'conditions' => array('SentenceComment.sentence_id' => $sentenceId),
-                'contain' => array ('User')
+                'contain' => array (
+                    'User' => array(
+                        'fields' => array(
+                            'username'
+                        )
+                    )    
+                )
             )
         );
         foreach ($comments as $comment) {
@@ -165,7 +201,11 @@ class SentenceComment extends AppModel
             'first',
             array(
                 'conditions' => array('Sentence.id' => $sentenceId),
-                'contain' => array ('User')
+                'contain' => array (
+                    'User' => array(
+                        'fields' => array('email')
+                    )   
+                )
             )
         );
         if (isset($sentence) AND $sentence['User']['send_notifications']) {

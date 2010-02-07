@@ -313,7 +313,7 @@ class SentencesListsController extends AppController
      */
     public function of_user($userId)
     {
-        $lists = $this->SentencesList->findAllByUserId($userId);
+        $lists = $this->SentencesList->getUserLists($userId);
         $this->set('lists', $lists);
     }
 

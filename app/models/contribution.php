@@ -160,7 +160,7 @@ class Contribution extends AppModel
                 `User`.`id`,
                 `Sentence`.`lang`
             FROM `contributions` AS `Contribution` 
-                LEFT JOIN `sentences` AS `Sentence`
+                INNER JOIN `sentences` AS `Sentence`
                     ON (`Contribution`.`sentence_id` = `Sentence`.`id`
         ";
         if ($lang != 'und') {
@@ -170,7 +170,7 @@ class Contribution extends AppModel
                 )
                 INNER JOIN `users` AS `User`
                     ON (`Contribution`.`user_id` = `User`.`id`)
-            WHERE ";
+            WHERE `User`.id IS NOT NULL AND ";
         if ($lang != 'und') {
             $query .=  "`Sentence`.`lang` = '$lang' AND";
         } 

@@ -137,7 +137,8 @@ class SentencesList extends AppModel
                         "conditions" => array(
                             "Translation.lang" => $translationsLang
                         )
-                    )
+                    ),
+                    "fields" => array("text")
                 )
             );
             
