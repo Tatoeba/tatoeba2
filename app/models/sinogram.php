@@ -113,6 +113,11 @@ class Sinogram extends AppModel
     public function explode($toExplodeArray)
     {
         $explodeArraySize = count($toExplodeArray);
+
+        if ($explodeArraySize == 0){
+            return array();
+        }
+
         for ($i = 0 ; $i < $explodeArraySize; $i++) {
             $toExplodeArray[$i] = "'".$toExplodeArray[$i] ."'" ;
         }
