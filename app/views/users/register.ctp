@@ -34,21 +34,22 @@ echo $form->input('email', array(
 	"label" => __('Email:',true),
 	"id" => "registrationEmail"
 ));
-
+echo '<div>';
 echo $html->image('/users/captcha_image', array("id" => "captcha"));
 echo '<a href="javascript:void(0);" onclick="javascript:document.images.captcha.src=\''. $html->url('/users/captcha_image') .'?\' + Math.round(Math.random(0)*1000)+1">Reload image</a>';
+echo '</div>';
 
 echo $form->input('captcha', array("label" => __('Code displayed above :',true)));
 
 
 $lang =  $this->params['lang'];
+echo '<div>';
 echo $form->checkbox('acceptation_terms_of_use'); echo ' ';
 echo sprintf(
 	__('I accept the <a href="%s">terms of use</a>',true), 
 	$html->url(array("controller"=>"pages", "action"=>"terms-of-use#$lang"))
 );
-
+echo '</div>';
 echo $form->submit(__('Register',true), array("id" => "registerButton"));
-
 echo $form->end();
 ?>

@@ -21,11 +21,29 @@ if  ($session->check('Message.auth')) $session->flash('auth');
 
 echo '<div id="Login">';
 	echo $form->create('User', array('action' => 'login'));
-	echo $form->input('username', array('label' => __('Username : ',true)));
-	echo $form->input('password', array('label' => __('Password : ',true)));
-	echo $form->checkbox('rememberMe'); 
+	echo '<div>';
+	echo $form->input(
+        'username', array(
+	        'label' => __('Username : ',true),
+	        'id' => 'username_main',
+	        "div" => 'usernameMainLoginDiv'
+	        )
+	    );
+	echo $form->input(
+	    'password', array(
+	        'label' => __('Password : ',true),
+	        'id' => 'password_main',
+	        "div" => 'passwordMainLoginDiv'
+	        )
+	    );
+	echo $form->checkbox(
+	    'rememberMe', array(
+	        'id'=>'rememberMe_main'
+	    )
+	); 
 	echo '<label for="UserRememberMe">'; __('Remember me'); echo '</label>';
 	echo '<br/>';
+	echo '</div>';
 	echo $form->end(__('Log in',true));
 
 	echo '<div id="PasswordForgotten">';
