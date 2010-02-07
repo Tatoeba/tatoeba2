@@ -284,6 +284,7 @@ class User extends AppModel
      */
     public function getUserById($id = null)
     {
+        //TODO: HACK SPOTTED user of order rand, and use of findById
         if ($id == null) {
             $user = $this->User->find(
                 'first', 
@@ -294,7 +295,7 @@ class User extends AppModel
                 )
             );
         } else {
-            $user = $this->User->findById($id);
+            $user = $this->findById($id);
         }
         return $user;
     }
