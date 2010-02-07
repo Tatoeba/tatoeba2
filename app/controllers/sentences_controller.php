@@ -90,12 +90,12 @@ class SentencesController extends AppController
         
         if (in_array($id, $this->Sentence->languages)) {
             // ----- if we want a random sentence in a specific language -----
+            // here only to make things clearer  
+            $lang = $id; 
+            $randomId = $this->Sentence->getRandomId($lang);
             
-            $random = $this->Sentence->getRandomId($id);
-            
-            $this->Session->write('random_lang_selected', $id);
-            $this->redirect(array("action"=>"show", $random));
-           
+            $this->Session->write('random_lang_selected', $lang);
+            $this->redirect(array("action"=>"show", $randomId));  
         
         } elseif (is_numeric($id)) {
             // ----- if we give directly an id -----
@@ -214,6 +214,8 @@ class SentencesController extends AppController
      */
     public function save_sentence()
     {
+        $userId = $this->Auth->user('id');
+
         if (isset($_POST['value']) AND rtrim($_POST['value'] != '')) {
             Sanitize::html($_POST['value']);
             
@@ -235,7 +237,7 @@ class SentencesController extends AppController
                     // language is needed for the logs
                 }
                 $this->data['Sentence']['text'] = rtrim($_POST['value']);
-                $this->data['Sentence']['user_id'] = $this->Auth->user('id');
+                $this->data['Sentence']['user_id'] = $userId;
                 // user id is needed for the logs
                 
                 if ($this->Sentence->save($this->data)) {
@@ -249,11 +251,11 @@ class SentencesController extends AppController
                 // ----- sentences.contribute.js -----
                 
                 // setting correctness of sentence (which is not in use by the way)
+                $this->data['Sentence']['correctness'] = 1;
+                
                 if ($this->Auth->user('group_id')) {
                     $this->data['Sentence']['correctness'] 
                         = Sentence::MAX_CORRECTNESS - $this->Auth->user('group_id');
-                } else {
-                    $this->data['Sentence']['correctness'] = 1;
                 }
                 
                 // detecting language
@@ -264,7 +266,7 @@ class SentencesController extends AppController
                         $response['language']
                     );
                 
-                $this->data['Sentence']['user_id'] = $this->Auth->user('id');
+                $this->data['Sentence']['user_id'] = $userId;
                 $this->data['Sentence']['text'] = $_POST['value'];
                 
                 // saving
@@ -273,13 +275,14 @@ class SentencesController extends AppController
                     
                     $sentenceId = $this->Sentence->id;
                     $sentence = $this->Sentence->getSentenceWithId($sentenceId);
-                    $this->set('sentence', $sentence);
                     
                     $specialOptions = $this->Permissions->getSentencesOptions(
-                        $sentence, $this->Auth->user('id')
+                        $sentence,
+                        $userId
                     );
+
                     $this->set('specialOptions', $specialOptions);
-                    
+                    $this->set('sentence', $sentence);
                     $this->set('langResponse', $response);
                 }
             }
