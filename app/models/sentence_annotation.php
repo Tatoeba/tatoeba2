@@ -87,6 +87,9 @@ class SentenceAnnotation extends AppModel
         
         foreach ($annotations as $annotation) {
             $pattern = quotemeta($textToReplace);
+            $pattern = preg_replace("/\|/", "\\|", $pattern); 
+                // because the character | is not taken into account in quotemeta()
+            
             $annotation['SentenceAnnotation']['text'] = preg_replace(
                 "/$pattern/",
                 $textReplacing,

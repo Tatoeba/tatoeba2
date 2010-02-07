@@ -25,7 +25,8 @@
 	<?php
 	$numberOfResults = count($annotations);
 	echo '<h2>';
-	echo 'Replaced ' . $textToReplace . ' by ' . $textReplacing;
+	echo 'Replaced '.$textToReplace.' by '.$textReplacing
+          .' ('.$numberOfResults.' results)';
 	echo '</h2>';
 	
 	if($numberOfResults > 0){
