@@ -74,9 +74,11 @@ class SentencesHelper extends AppHelper
     private function _displayRomanization($sentence)
     {
         if (isset($sentence['romanization'])) {
-            echo '<div class="romanization">';
-                echo $sentence['romanization'];
-            echo '</div>';
+            ?>
+            <div class="romanization">
+                <?php echo $sentence['romanization']; ?>
+            </div>
+        <?php
         }
     }
     
@@ -89,7 +91,10 @@ class SentencesHelper extends AppHelper
      */
     public function displayEditableSentence($sentence)
     {
-        echo '<div class="original sentence mine">';
+        ?>
+        <div class="original sentence mine">
+
+            <?php
             // info icon
             echo $this->Html->link(
                 $this->Html->image('info.png'),
@@ -111,8 +116,9 @@ class SentencesHelper extends AppHelper
             echo '</div> ';
             
             $this->_displayRomanization($sentence);
-            
-        echo '</div>';
+            ?>    
+        </div>
+        <?php
     }
     
     /**
