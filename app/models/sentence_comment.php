@@ -82,7 +82,10 @@ class SentenceComment extends AppModel
                                 'username',
                                 'image'
                             )
-                        )  
+                        ),
+                        'Sentence' => array(
+                            'fields' => array('id', 'text')
+                        )
                     )
                 )
             );
@@ -124,7 +127,7 @@ class SentenceComment extends AppModel
             array(
                 'conditions' => array('SentenceComment.sentence_id' => $sentenceId),
                 'order' => 'SentenceComment.created',
-                'contain' => array()
+                'contain' => array('User')
             )
         );
     }
@@ -149,7 +152,10 @@ class SentenceComment extends AppModel
                             'username',
                             'image'
                         )
-                    )  
+                    ),
+                    'Sentence' => array(
+                        'fields' => array('id', 'text')
+                    )
                 )
             )
         );
