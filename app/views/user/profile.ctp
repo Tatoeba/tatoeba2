@@ -36,7 +36,7 @@
  */
 
 if ($is_public or $login) {
-    echo $javascript->includeScript('users.followers_and_following');
+    //echo $javascript->includeScript('users.followers_and_following');
 ?>
 
 <div id="annexe_content">
@@ -78,7 +78,8 @@ if ($is_public or $login) {
             <dd><?php echo $userStats['numberOfFavorites']; ?></dd>
         </dl>
     </div>
-
+    <?php
+    /*
     <div class="module">
         <h2><?php __('Following'); ?></h2>
         <div class="following"></div>
@@ -88,12 +89,16 @@ if ($is_public or $login) {
         <h2><?php __('Followers'); ?></h2>
         <div class="followers"></div>
     </div>
+    */
+    ?>
 </div>
 
 <div id="main_content">
     <div class="module profile_master_content">
         <h2><?php if($user['User']['name'] != '') echo $user['User']['name'] . ' aka. ' . $user['User']['username'];
         else echo $user['User']['username'] ?></h2>
+        <?php 
+        /*
         <p class="user followLinkContainer" id="<?php echo '_'.$user['User']['id']; ?>">
         <?php if($session->read('Auth.User.id') && isset($can_follow)){
             if($can_follow){
@@ -107,6 +112,8 @@ if ($is_public or $login) {
             echo '<a id="stop" class="followingOption" '.$style2.'><span class="in_process"></span>'. __('Unfollow', true). '</a>';
         } ?>
         </p>
+        */
+        ?>
         <div id="pimg">
 <?php
 echo $html->image('profiles/' . (empty($user['User']['image']) ? 'tatoeba_user.png' : $user['User']['image'] ), array(

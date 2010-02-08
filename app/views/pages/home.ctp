@@ -103,6 +103,7 @@ $selectedLanguage = $session->read('random_lang_selected');
     ?>
     
     <?php
+    /*
     if ($session->read('Auth.User.id')) {
         ?>
         
@@ -143,6 +144,7 @@ $selectedLanguage = $session->read('random_lang_selected');
         
     <?php
     }
+    */
     ?>
 </div>
 
