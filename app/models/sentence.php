@@ -406,6 +406,11 @@ class Sentence extends AppModel
      */
     public function getSentencesWithIds($ids, $translationsLang = null)
     {
+        $translationsConditions = array();
+        if($translationsLang != null){
+            $translationsConditions["Translation.lang"] = $translationsLang;
+        }
+        
         return $this->find(
             'all', 
             array(
@@ -419,9 +424,7 @@ class Sentence extends AppModel
                     ),
                     "Translation" => array(
                         "fields" => array("id", "lang", "text"),
-                        "conditions" => array(
-                            "Translation.lang" => $translationsLang
-                        )
+                        "conditions" => $translationsConditions
                     )
                 )
             )
