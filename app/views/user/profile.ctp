@@ -153,7 +153,6 @@ if (intval($aBirthday[0] + $aBirthday[1] + $aBirthday[2]) != 0) {
 
 if (is_string($user['User']['country_id'])
     and strlen($user['User']['country_id']) == 2) {
-}
 ?>
             <dt><?php __('Country'); ?></dt>
             <dd><?php echo $user['Country']['name'] ?></dd>
