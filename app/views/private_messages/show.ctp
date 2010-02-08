@@ -121,7 +121,7 @@ echo $this->element('pmmenu');
         }
     }
     ?>
-    <p class="pm_content"><?php echo $content; ?></p>
+    <p class="pm_content"><?php echo nl2br($content); ?></p>
     <?php
     foreach ($sentencesLists as $list) {
         echo '<h3>'.$list['SentencesList']['name'].'</h3>';
