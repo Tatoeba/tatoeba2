@@ -38,7 +38,7 @@ $(document).ready(function() {
 				, { "id": sentenceId, "lang": sentenceLang }
 				, function(){
 					$("#_" + sentenceId + "_in_process").hide();
-					flagImage.attr('src', '/img/' + sentenceLang + '.png');
+					flagImage.attr('src', '/img/flags/' + sentenceLang + '.png');
 				}
 			);
 		});
