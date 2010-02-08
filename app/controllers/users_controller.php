@@ -377,6 +377,7 @@ class UsersController extends AppController
      */
     public function confirm_registration($id, $token)
     {
+        $this->User->id = $id; // important for when we do saveField() later
         $user = $this->User->getUserById($id);
 
         $toHash = $this->Auth->password(
