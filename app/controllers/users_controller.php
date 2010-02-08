@@ -577,7 +577,7 @@ class UsersController extends AppController
     public function check_username($username)
     {
         Sanitize::html($username);
-        $user = $this->User->findByUsername($username); // TODO move to model
+        $user = $this->User->getIdFromUsername($username); // TODO move to model
                                                         // and use contain
         if ($user) {
             $this->set('data', true);
@@ -596,9 +596,11 @@ class UsersController extends AppController
      */
     public function check_email($email)
     {
-        $data = $this->User->findByEmail($email); // TODO move to model 
+        $userId = $this->User->getIdFromEmail($email); // TODO move to model 
                                                   // and use contain
-        if ($data) {
+        
+        pr($userId);
+        if ($userId) {
             $this->set('data', true);
         } else {
             $this->set('data', false);
