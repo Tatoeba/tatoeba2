@@ -61,7 +61,7 @@ class CommentsHelper extends AppHelper
         
         // profile picture
         $image = 'unknown-avatar.jpg';
-        if (empty($comment['User']['image'])) {
+        if (!empty($comment['User']['image'])) {
             $image = $comment['User']['image'];
         }
         
