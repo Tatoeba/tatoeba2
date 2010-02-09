@@ -131,17 +131,16 @@ class SentencesList extends AppModel
         
         if ($translationsLang != null) {
             $contain = array(
-                "Sentence" => array( 
+                "Sentence" => array(
+                    "fields" => array("id", "lang", "text"),
                     "Translation" => array( 
-                        "fields" => array("id", "text"),
+                        "fields" => array("id", "lang", "text"),
                         "conditions" => array(
-                            "Translation.lang" => $translationsLang
+                            "lang" => $translationsLang
                         )
-                    ),
-                    "fields" => array("text")
+                    )
                 )
             );
-            
         }
         
         $list = $this->find(
