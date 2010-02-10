@@ -340,7 +340,24 @@ class User extends AppModel
         return $user['User']['email'];
     }
 
-
-
+    /**
+     * Return password of a user.
+     *
+     * @param int $userId Id of the user.
+     *
+     * @return string
+     */
+    public function getPassword($userId)
+    {
+        $user = $this->find(
+            'first',
+            array(
+                'conditions' => array('User.id' => $userId),
+                'fields' => 'User.password',
+                'contain' => array()
+            )
+        );
+        return $user['User']['password'];
+    }
 }
 ?>

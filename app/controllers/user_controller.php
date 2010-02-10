@@ -409,26 +409,25 @@ class UserController extends AppController
     public function save_password()
     {
         if (!empty($this->data)) {
-
-            $this->User->id = $this->Auth->user('id');
-            $this->User->recursive = 0;
-            $user = $this->User->read();
-
-            $hashedPass = $this->Auth->password(
+            
+            $userId = $this->Auth->user('id');
+            
+            $submittedPassword = $this->Auth->password(
                 $this->data['old_password']['passwd']
             );
+            $actualPassword = $this->User->getPassword($userId);
+            
+            $newPassword1 = $this->data['new_password']['passwd'];
+            $newPassword2 = $this->data['new_password2']['passwd'];
 
-            $sNewPassword = $this->data['new_password']['passwd'];
-
-            if ($user['User']['password'] == $hashedPass
-                && $sNewPassword == $this->data['new_password2']['passwd']
+            if ($submittedPassword == $actualPassword
+                && $newPassword1 == $newPassword2
             ) {
 
-                $this->data['User']['password'] = $this->Auth->password(
-                    $sNewPassword
-                );
-
-                if ($this->User->save($this->data)) {
+                $newPassword1 = $this->Auth->password($newPassword1);
+                
+                $this->User->id = $userId;
+                if ($this->User->saveField('password', $newPassword1)) {
                     $flashMsg = __('New password has been saved.', true);
                 } else {
                     $flashMsg = __('An error occured while saving.', true);
@@ -444,10 +443,6 @@ class UserController extends AppController
         }
 
         $this->redirect(array('action' => 'index'));
-        /*
-         * TODO:
-         * change password <- already implemnted, just to move here
-         */
     }
 
     /**
