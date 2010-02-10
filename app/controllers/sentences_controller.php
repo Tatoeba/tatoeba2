@@ -56,7 +56,7 @@ class SentencesController extends AppController
         
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array(
-            'index','show','search', 'add_comment', 'random', 'goToSentence',
+            'index','show','search', 'add_comment', 'random', 'go_to_sentence',
             'statistics', 'count_unknown_language', 'get_translations',
             'check_translation', 'change_language', 'several_random_sentences'
         );
