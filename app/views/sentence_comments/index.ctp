@@ -36,55 +36,14 @@
  */
 ?>
 
-<div id="annexe_content">
-    
-    <div class="module">
-    <h2><?php __('Languages'); ?></h2>
-    <p><?php __('Comments are grouped by languages.'); ?></p>
-    <ul>
-        <?php
-        foreach ($sentenceComments as $lang => $commentsInLang) {
-            if ($lang != 'unknown') {
-                $item = $languages->codeToName($lang);
-            } else {
-                $item = __('Other languages', true);
-            }
-            echo '<li>' . $html->link($item, '#'.$lang) . '</li>';
-        }
-        ?>
-    </ul>
-    <p>
-    <?php 
-    __(
-        'NOTE : Since the language of the comments is auto-detected, you may find 
-        certain comments in the wrong category.'
-    );
-    ?>
-    </p>
-    </div>
-</div>
-
 <div id="main_content">
     <div class="module">
         <?php
-        foreach ($sentenceComments as $lang => $commentsInLang) {
-            echo '<a name="'.$lang.'"></a>';
-            if ($lang != 'unknown') {
-                echo '<h2>'.$languages->codeToName($lang).'</h2>';
-            } else {
-                echo '<h2>'.__('Other languages', true).'</h2>';
-            }
-
-            if (count($commentsInLang) > 0) {
-                echo '<ol class="comments">';
-                foreach($commentsInLang as $comment){
-                    $comments->displaySentenceComment($comment, true);
-                }
-                echo '</ol>';
-            } else {
-                __('There are no comments in this language');
-            }
+        echo '<ol class="comments">';
+        foreach ($sentenceComments as $comment) {
+            $comments->displaySentenceComment($comment, true);
         }
+        echo '</ol>';
         ?>
     </div>
 </div>

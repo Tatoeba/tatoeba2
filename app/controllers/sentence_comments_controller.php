@@ -25,8 +25,6 @@
  * @link     http://tatoeba.org
  */
 
-App::import('Core', 'Sanitize');
-
 /**
  * Controller for sentence comments.
  *
@@ -67,7 +65,7 @@ class SentenceCommentsController extends AppController
     {
         $this->set(
             'sentenceComments',
-            $this->SentenceComment->getLatestCommentsInEachLanguage()
+            $this->SentenceComment->getLatestComments(100)
         );
     }
 
