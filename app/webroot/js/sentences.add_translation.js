@@ -36,7 +36,7 @@ $(document).ready(function() {
                 $("#_" + sentence_id + "_loading").show();
                 $(".addTranslations").hide();
                 
-                $.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences/check_translation"
+                $.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences/save_translation"
                     , { "id": sentence_id, "lang": sentence_lang, "value": sentence_text }
                     , function(data){
                         $("#_" + sentence_id + "_loading").hide();
@@ -49,7 +49,7 @@ $(document).ready(function() {
             }
         }
         
-        $(".same_language_warning").html('');
+        $(".same_language_warning").remove();
         
         // Displaying translation input and hiding translations
         $("#translation_for_" + sentence_id).show();

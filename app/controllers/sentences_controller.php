@@ -155,9 +155,9 @@ class SentencesController extends AppController
      */
     public function add()
     {
-        $idTemp = $this->Auth->user('id');
+        $userId = $this->Auth->user('id');
 
-        if (rtrim($this->data['Sentence']['text']) != '' && !empty($idTemp)) {
+        if (rtrim($this->data['Sentence']['text']) != '' && !empty($userId)) {
             // setting correctness of sentence
             if ($this->Auth->user('group_id')) {
                 $this->data['Sentence']['correctness'] 
@@ -174,7 +174,7 @@ class SentencesController extends AppController
                     $response['language']
                 );
             
-            $this->data['Sentence']['user_id'] = $this->Auth->user('id');
+            $this->data['Sentence']['user_id'] = $userId;
             
             // saving
             if ($this->Sentence->save($this->data)) {
@@ -182,7 +182,7 @@ class SentencesController extends AppController
                 $this->set('sentence', $sentence);
                 
                 $specialOptions = $this->Permissions->getSentencesOptions(
-                    $sentence, $this->Auth->user('id')
+                    $sentence, $userId
                 );
                 $this->set('specialOptions', $specialOptions);
             }
@@ -342,54 +342,6 @@ class SentencesController extends AppController
     }
     
     /**
-     * Check if translation is same language as original sentence.
-     * We always check the translation before we save it.
-     * Used in AJAX request in sentences.add_translation.js.
-     *
-     * @return void
-     */
-    public function check_translation()
-    {
-        Sanitize::html($_POST['value']);
-        $idTemp = $this->Auth->user('id');
-        if ( isset($_POST['value'])
-            AND rtrim($_POST['value']) != '' 
-            AND isset($_POST['id'])
-            AND !(empty($idTemp))
-        ) {
-            
-            $sentenceId = $_POST['id'];
-            $sourceLanguage = $_POST['lang']; // language of the original sentence
-            
-            // detecting language of translation
-            $this->GoogleLanguageApi->text = $_POST['value'];
-            $response = $this->GoogleLanguageApi->detectLang();
-            $this->data['Sentence']['lang'] 
-                = $this->GoogleLanguageApi->google2TatoebaCode(
-                    $response['language']
-                );
-            
-            
-            // checking if same language...
-            if ($sourceLanguage == $this->data['Sentence']['lang'] 
-                AND !empty($this->data['Sentence']['lang']) 
-            ) { 
-                // it will display a warning
-                $this->set('sentence_id', $sentenceId);
-                $this->set('translation_text', $_POST['value']);
-            } else {
-                // we save
-                $this->data['Sentence']['differentLang'] = true; // so we know the 
-                // sentence is not same language as original
-                
-                $this->save_translation();
-                // NOTE: for some reason it won't redirect to save_translation.ctp...
-                // so we have to do everything in the check_translation.ctp
-            }        
-        }
-    }
-    
-    /**
      * Save the translation.
      *
      * @return void
@@ -398,46 +350,41 @@ class SentencesController extends AppController
     {
 
         Sanitize::html($_POST['value']);
-        $idTemp = $this->Auth->user('id');
+        $userId = $this->Auth->user('id');
+        
         if (isset($_POST['value']) AND rtrim($_POST['value']) != '' 
-            AND isset($_POST['id']) AND !(empty($idTemp))
+            AND isset($_POST['id']) AND !(empty($userId))
         ) {
-             // id of original sentence
-            $sentence_id = $_POST['id'];
-            
-            // language of original sentence, needed for the logs
-            $this->data['Sentence']['sentence_lang'] = $_POST['lang']; 
-            
-            // If we want the "HasAndBelongsToMany" association to work, 
-            // we need the two lines below :            
-            $this->Sentence->id = $sentence_id;
-            $this->data['Translation']['Translation'][] = $sentence_id;
-            
-            // And this is because the translations are reciprocal :
-            $this->data['InverseTranslation']['InverseTranslation'][] = $sentence_id;
+            // Id of original sentence
+            $sentenceId = $_POST['id'];
             
             // So that it saves a new sentences, otherwise it's like editing :
             $this->data['Sentence']['id'] = null; 
             
-            // setting level of correctness
-            if ($this->Auth->user('group_id')) {
-                $this->data['Sentence']['correctness'] 
-                    = Sentence::MAX_CORRECTNESS - $this->Auth->user('group_id');
-            } else {
-                $this->data['Sentence']['correctness'] = 1;
-            }
+            // Language of original sentence, needed for the logs
+            $this->data['Sentence']['sentence_lang'] = $_POST['lang']; 
             
-            // In the case where the user had to confirm saving, 
-            // $this->data['Sentence']['differentLang'] is not set and the language 
-            // of the translation is the same as the language of the sentence.
-            if (!isset($this->data['Sentence']['differentLang'])) {
-                $this->data['Sentence']['lang'] 
-                    = $this->data['Sentence']['sentence_lang'];
-            }
+            // If we want the "HasAndBelongsToMany" association to work, 
+            // we need the two lines below : 
+            $this->Sentence->id = $sentenceId;
+            $this->data['Translation']['Translation'][] = $sentenceId;
+            $this->data['InverseTranslation']['InverseTranslation'][] = $sentenceId;
             
+            // Detecting language of translation
+            $this->GoogleLanguageApi->text = $_POST['value'];
+            $response = $this->GoogleLanguageApi->detectLang();
+            $this->data['Sentence']['lang'] 
+                = $this->GoogleLanguageApi->google2TatoebaCode(
+                    $response['language']
+                );
+            
+            // Sentence text
             $this->data['Sentence']['text'] = $_POST['value'];
-            $this->data['Sentence']['user_id'] = $this->Auth->user('id');
             
+            // User who added the translation
+            $this->data['Sentence']['user_id'] = $userId;
+            
+            // Saving...
             if ($this->Sentence->save($this->data)) {
                 $this->set('translation_id', $this->Sentence->id);
                 $this->set('translation_lang', $this->data['Sentence']['lang']);
