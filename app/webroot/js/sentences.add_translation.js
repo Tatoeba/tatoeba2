@@ -23,50 +23,58 @@ $(document).ready(function() {
 // this javascript is really dependant to id of divs which contains the id of the sentence
 // for the moment, due to xhtml, the id is store that  id="_XXXX"  where XXXX is the sentence's id
 
-	$(".translateLink").click(function(){
-		var sentence_id = $(this).parent().attr("id").slice(1);
-		var sentence_lang = $(this).parent().attr("lang");
-		
-		function save(){
-			var sentence_text = $("#_" + sentence_id + "_text").val();
-			if($.trim(sentence_text) != ""){
+    $(".translateLink").click(function(){
+        var sentence_id = $(this).parent().attr("id").slice(1);
+        var sentence_lang = $(this).parent().attr("lang");
+        
+        function save(){
+            var sentence_text = $("#_" + sentence_id + "_text").val();
+            
+            if($.trim(sentence_text) != ""){
+                
+                $("#_" + sentence_id + "_translations").show();
+                $("#_" + sentence_id + "_loading").show();
+                $(".addTranslations").hide();
+                
+                $.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences/check_translation"
+                    , { "id": sentence_id, "lang": sentence_lang, "value": sentence_text }
+                    , function(data){
+                        $("#_" + sentence_id + "_loading").hide();
+                        $("#_" + sentence_id + "_translations").prepend(data);
+                        $("#_" + sentence_id + "_text").val('');
+                    }
+                    , "html"
+                );
 
-				$("#translation_for_" + sentence_id).html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
-				$.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences/check_translation"
-					, { "id": sentence_id, "lang": sentence_lang, "value": sentence_text }
-					, function(data){
-						$(".addTranslations").html('');
-						$("#_" + sentence_id + "_translations").prepend(data);
-					}
-					, "html"
-				);
-
-			}
-		}
-
-
-		$(".same_language_warning").html('');
-		
-		$("#translation_for_" + sentence_id).html('<li class="direct">'
-			+ '<input id="_'+ sentence_id +'_text" class="addTranslationsTextInput" type="text" value=""/>'
-			+ '<input id="_'+ sentence_id +'_submit" type="button" value="OK" />'
-			+ '<input id="_'+ sentence_id +'_cancel" type="button" value="Cancel" />'
-			+ '</li>');
-		$("#_" + sentence_id + "_text").focus();
-			
-		$("#_" + sentence_id + "_submit").click(function(){
-			save();
-		});
-		
-		$("#translation_for_" + sentence_id + " li input").keypress(function(e){
-			if(e.keyCode == 13) {
-				save();
-			}
-		});
-		
-		$("#_" + sentence_id + "_cancel").click(function(){
-			$(".addTranslations").html('');
-		});
-	});
+            }
+        }
+        
+        $(".same_language_warning").html('');
+        
+        // Displaying translation input and hiding translations
+        $("#translation_for_" + sentence_id).show();
+        $("#_" + sentence_id + "_text").focus();
+        $("#_" + sentence_id + "_translations").hide();
+        
+        // Submitting translation by clicking on button
+        $("#_" + sentence_id + "_submit").click(function(){
+            save();
+        });
+        
+        // Submitting translation by pressing enter
+        // NOTE : this is annoying when entering Japanese or Chinese because
+        // enter is used to validate the choice of kanjis
+        $("#translation_for_" + sentence_id + " li input").keypress(function(e){
+            if(e.keyCode == 13) {
+                save();
+            }
+        });
+        
+        // Cancel
+        $("#_" + sentence_id + "_cancel").click(function(){
+            $("#_" + sentence_id + "_translations").show();
+            $(".addTranslations").hide();
+        });
+    });
 
 });

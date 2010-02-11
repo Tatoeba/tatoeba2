@@ -74,11 +74,18 @@ class SentencesHelper extends AppHelper
     private function _displayRomanization($sentence)
     {
         if (isset($sentence['romanization'])) {
-            ?>
-            <div class="romanization">
-                <?php echo $sentence['romanization']; ?>
-            </div>
-        <?php
+            if ($sentence['lang'] == 'jpn') {
+                $title = __(
+                    'WARNING : the romaji is automatically generated '.
+                    'and is not always reliable.', true
+                );
+                echo '<div class="romanization" title="'.$title.'">';
+            } else {
+                echo '<div class="romanization">';
+            }
+            
+            echo $sentence['romanization'];
+            echo '</div>';
         }
     }
     
@@ -167,10 +174,10 @@ class SentencesHelper extends AppHelper
      * Diplay a sentence and its translations.
      *
      * @param array $sentence             Sentence to display.
-     * @param array $translations         Language of translation.
-     * @param array $user                 Language of translation.
-     * @param array $indirectTranslations Language of translation.
-     * @param bool  $inBrowseMode         Language of translation.
+     * @param array $translations         Translations of the sentence.
+     * @param array $user                 Owner of the sentence.
+     * @param array $indirectTranslations Indirect translations of the sentence.
+     * @param bool  $inBrowseMode         ???
      *
      * @return void
      */
@@ -233,12 +240,40 @@ class SentencesHelper extends AppHelper
         $this->_displayRomanization($sentence);
         
         echo '</div>';
-
+        echo "\n";
+        
+        $id = $sentence['id'];
+        
+        // Loading animation
+        echo $this->Html->image(
+            'loading.gif',
+            array(
+                "id" => "_".$id."_loading",
+                "class" => "loading"
+            )
+        );
         echo "\n";
         
         // To add new translations
-        echo '<ul id="translation_for_'.$sentence['id'].'" 
-            class="addTranslations"><li></li></ul>';
+        echo '<ul id="translation_for_'.$id.'" class="addTranslations">'
+            . '<li class="direct">'
+            . '<input id="_'.$id.'_text" class="addTranslationsTextInput"'
+            .   ' type="text" value=""/>'
+            . '<input id="_'.$id.'_submit" type="button"' 
+            .   ' value="'.__('Submit translation', true).'" />'
+            . '<input id="_'.$id.'_cancel" type="button"'
+            .   ' value="'.__('Cancel', true).'"/>'
+            . '</li>'
+            . '<li class="important">'
+            . __(
+                'Important! You are about to add a translation to the sentence '
+                . 'above. If you do not understand this sentence, click on '
+                . '"Cancel" to display everything again, and then click on '
+                . 'the sentence that you understand and want to translate from.'
+                , true
+            )
+            . '</li>'
+            . '</ul>';
         
         // Translations
         echo '<ul id="_'.$sentence['id'].'_translations" class="translations">';
