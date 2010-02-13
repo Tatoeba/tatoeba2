@@ -53,6 +53,7 @@ class SentenceCommentsController extends AppController
         parent::beforeFilter(); 
         
         // setting actions that are available to everyone, even guests
+        // TODO does it mean visitors can save comments if they figure out how
         $this->Auth->allowedActions = array('index', 'save', 'show','latest');
     }
     
@@ -98,6 +99,7 @@ class SentenceCommentsController extends AppController
         Sanitize::html($this->data['SentenceComment']['text']);
         if (!empty($this->data['SentenceComment']['text'])) {
             // detecting language
+            //TODO  I think we don't need it anymore 
             $this->GoogleLanguageApi->text = $this->data['SentenceComment']['text'];
             $response = $this->GoogleLanguageApi->detectLang();
             

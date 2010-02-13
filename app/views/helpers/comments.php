@@ -163,10 +163,9 @@ class CommentsHelper extends AppHelper
      */
     public function clickableURL($comment)
     {
-        $newWindow = 'onclick="window.open(this.href,\'_blank\');return false;"';
         $comment = preg_replace(
             '/(https?:\/\/[^<)\(\s ]{0,50})[^<)\(\s ]{0,}/u', 
-            "<a $newWindow href=\'$0\'>$1</a>", 
+            "<a href='$0'>$1</a>", 
             $comment
         );
         return $comment;

@@ -179,7 +179,9 @@ class SentenceComment extends AppModel
                 'contain' => array (
                     'User' => array(
                         'fields' => array(
-                            'username'
+                            'username',
+                            'email',
+                            'send_notifications'
                         )
                     )    
                 )
@@ -209,12 +211,15 @@ class SentenceComment extends AppModel
                 'conditions' => array('Sentence.id' => $sentenceId),
                 'contain' => array (
                     'User' => array(
-                        'fields' => array('email')
+                        'fields' => array(
+                            'email',
+                            'send_notifications'
+                        )
                     )   
                 )
             )
         );
-        if (isset($sentence) AND $sentence['User']['send_notifications']) {
+        if (isset($sentence) && $sentence['User']['send_notifications']) {
             return $sentence['User']['email'];
         } else {
             return null;
