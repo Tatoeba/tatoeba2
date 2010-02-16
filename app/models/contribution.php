@@ -156,18 +156,15 @@ class Contribution extends AppModel
                 `Contribution`.`id`,
                 `Contribution`.`sentence_id`,
                 `Contribution`.`datetime`,
+                `Contribution`.`sentence_lang`,
                 `User`.`username`,
-                `User`.`id`,
-                `Sentence`.`lang`
-            FROM `contributions` AS `Contribution` 
-                LEFT JOIN `sentences` AS `Sentence`
-                    ON (`Contribution`.`sentence_id` = `Sentence`.`id`
+                `User`.`id`
+            FROM `contributions` AS `Contribution`  
         ";
         if ($lang != 'und') {
             $query .= "AND `Sentence`.`lang` = '$lang'";
         }
-        $query.="
-                )
+        $query.=" 
                 INNER JOIN `users` AS `User`
                     ON (`Contribution`.`user_id` = `User`.`id`)
             WHERE ";
@@ -178,7 +175,7 @@ class Contribution extends AppModel
         $query.="
                 `Contribution`.`type` = 'sentence'
             ORDER BY `Contribution`.`datetime` DESC 
-            LIMIT $limit; 
+            LIMIT $limit 
         "; 
         
         return  $this->query($query);
@@ -239,6 +236,29 @@ class Contribution extends AppModel
                 'contain' => array()
             )
         );
+    }
+
+    /**
+     * update the language of all the entries for a specific sentence
+     * it is used as it increase a lot perfomance for contributions logs
+     * even if the join is more "pretty"
+     *
+     * @param int $sentence_id the sentence to be updated
+     * @param int $lang        the new lang
+     *
+     * @return void
+     */
+    public function updateLanguage($sentence_id, $lang)
+    {
+        $this->updateAll(
+            array(
+                "sentence_lang" => "'$lang'"
+            ),
+            array(
+                "sentence_id" => $sentence_id
+            )
+        );
+
     }
 }
 ?>

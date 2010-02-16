@@ -706,9 +706,24 @@ class SentencesController extends AppController
      */
     public function change_language()
     {
-        if (isset($_POST['id']) AND isset($_POST['lang'])) {
-            $this->Sentence->id = $_POST['id'];
-            $this->Sentence->saveField('lang', $_POST['lang']);
+        if (isset($_POST['id'])
+            && isset($_POST['newLang'])
+            && isset($_POST['prevLang'])
+        ) {
+            $newlang = $_POST['newLang'];
+            $prevLang = $_POST['prevLang'];
+            $id = $_POST['id'];
+            Sanitize::paranoid($id);
+            Sanitize::html($newlang);
+
+            // TODO create  method in the model to encapsulate this
+            $this->Sentence->id = $id;
+            $this->Sentence->saveField('lang', $newlang);
+
+            $this->Contribution->updateLanguage($id, $newlang);
+
+            $this->Sentence->incrementStatistics($newlang);
+            $this->Sentence->decrementStatistics($prevLang);
         }
     }
 }

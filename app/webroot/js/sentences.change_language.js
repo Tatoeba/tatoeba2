@@ -18,27 +18,36 @@
 
 $(document).ready(function() {
 	
-	$(".languageFlag").live('click' ,function(){
+    var host = self.location.hostname;
+    var port = self.location.port;
+	
+    $(".languageFlag").live('click' ,function(){
 		var flagImage = $(this);
         // to avoid duplicate and xhtml error the id is  _XXXX_original
         // TODO find a better way to store the id ...
 		var sentenceId = $(this).parent().attr('id').split("_")[1];
-		
+        // TODO for the moment we retrive the previous language by
+        // parsing the src attribute of the flag image ... I can be
+        // hacky too someday ... need to find a generic way to store
+        // information in a xhtml doc
+		var prevLang = flagImage.attr('src').split('/')[3].split(".")[0];
+
 		$("#selectLang_" + sentenceId).toggle();
 		
 		$("#selectLang_" + sentenceId).change(function(){
 		
-			var sentenceLang = $(this).val();
+			var newLang = $(this).val();
+
 			
 			flagImage.attr('src', '/img/loading-small.gif');
 			$("#selectLang_" + sentenceId).hide();
 			
 			$.post(
-				"http://" + self.location.hostname + ":" + self.location.port + "/sentences/change_language/"
-				, { "id": sentenceId, "lang": sentenceLang }
-				, function(){
+				"http://" + host + ":" + port + "/sentences/change_language/",
+                { "id": sentenceId, "newLang": newLang, "prevLang": prevLang },
+				function(){
 					$("#_" + sentenceId + "_in_process").hide();
-					flagImage.attr('src', '/img/flags/' + sentenceLang + '.png');
+					flagImage.attr('src', '/img/flags/' + newLang + '.png');
 				}
 			);
 		});

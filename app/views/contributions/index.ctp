@@ -89,8 +89,7 @@
         foreach ($contributions as $contribution) {
             $logs->entry(
                 $contribution['Contribution'],
-                $contribution['User'],
-                $contribution['Sentence']
+                $contribution['User']
             );
         }
         ?>

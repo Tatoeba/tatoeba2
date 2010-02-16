@@ -85,12 +85,12 @@ class LogsHelper extends AppHelper
         if ($type == 'link') {
             echo '&raquo;';
         } else {
-            if ($sentence['lang'] == '') {
+            if ($contribution['sentence_lang'] == '') {
                 echo '?';
             } else {
                 echo $this->Html->image(
-                    'flags/'.$sentence['lang'].".png", 
-                    array("alt" => $sentence['lang'], "class" => "flag")
+                    'flags/'.$contribution['sentence_lang'].".png", 
+                    array("alt" => $contribution['sentence_lang'], "class" => "flag")
                 );
                 // TODO should be replace by the real name
             }
