@@ -56,9 +56,17 @@ class SentencesController extends AppController
         
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array(
-            'index','show','search', 'add_comment', 'random', 'go_to_sentence',
-            'statistics', 'count_unknown_language', 'get_translations',
-            'check_translation', 'change_language', 'several_random_sentences'
+            'index',
+            'show',
+            'search',
+            'add_comment',
+            'random',
+            'go_to_sentence',
+            'statistics',
+            'count_unknown_language',
+            'get_translations',
+            'change_language',
+            'several_random_sentences'
         );
     }
 
@@ -84,7 +92,7 @@ class SentencesController extends AppController
 
         Sanitize::html($id);
 
-        if ($id == "random" OR $id == null OR $id == "" ) {
+        if ($id == "random" || $id == null || $id == "" ) {
             $id = $this->Session->read('random_lang_selected');
         }
         
@@ -139,6 +147,7 @@ class SentencesController extends AppController
      *
      * @return void
      */
+
     public function go_to_sentence()
     {
         $id = intval($this->params['url']['sentence_id']);
@@ -153,6 +162,7 @@ class SentencesController extends AppController
      *
      * @return void
      */
+
     public function add()
     {
         $userId = $this->Auth->user('id');
@@ -216,7 +226,7 @@ class SentencesController extends AppController
     {
         $userId = $this->Auth->user('id');
 
-        if (isset($_POST['value']) AND rtrim($_POST['value'] != '')) {
+        if (isset($_POST['value']) && rtrim($_POST['value'] != '')) {
             Sanitize::html($_POST['value']);
             
             if (isset($_POST['id'])) {
@@ -303,6 +313,8 @@ class SentencesController extends AppController
         $data['Sentence']['id'] = $id;
         $data['Sentence']['user_id'] = $this->Auth->user('id');
         if ($this->Sentence->save($data)) {
+            $this->set('saved', true);
+            /*
             $this->flash(
                 __(
                     'You are now the owner of this sentence and can modify it as '.
@@ -312,6 +324,7 @@ class SentencesController extends AppController
                 ),
                 '/sentences/show/'.$id
             );
+            */
         }
     }
     
@@ -330,6 +343,8 @@ class SentencesController extends AppController
         $data['Sentence']['id'] = $id;
         $data['Sentence']['user_id'] = null;
         if ($this->Sentence->save($data)) {
+            $this->set('saved', true);
+            /*
             $this->flash(
                 __(
                     'You have abandoned your ownership for this sentence. '.
@@ -338,6 +353,7 @@ class SentencesController extends AppController
                 ),
                 '/sentences/show/'.$id
             );
+            */
         }
     }
     

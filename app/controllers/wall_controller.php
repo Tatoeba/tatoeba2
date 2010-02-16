@@ -43,7 +43,9 @@ class WallController extends Appcontroller
     
 
     public $name = 'Wall' ;
-    public $paginate = array('limit' => 50);
+    public $paginate = array(
+        'limit' => 50
+    );
     public $helpers = array('Wall','Javascript','Date');
     public $components = array ('Mailer');
 

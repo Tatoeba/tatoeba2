@@ -64,6 +64,7 @@ class MenuHelper extends AppHelper
      */
 	function adoptButton($sentenceId)
     {
+        /*
 		echo '<li class="option">';
 		echo $this->Html->link(
 			$this->Html->image(
@@ -80,6 +81,17 @@ class MenuHelper extends AppHelper
 			),
 			array('escape' => false));
 		echo '</li>';
+        */
+		echo '<li class="option adopt add" id="adopt_'.$sentenceId.'">';
+		echo '<a>'.
+        $this->Html->image(
+			'adopt.png',
+			array(
+				'alt'=>__('Adopt',true), 
+				'title'=>__('Adopt',true)
+			)
+        ).'</a>';
+		echo '</li>';
 	}
 	
     /** 
@@ -89,6 +101,7 @@ class MenuHelper extends AppHelper
      */
 	function letGoButton($sentenceId)
     {
+        /*
 		echo '<li class="option">';
 		echo $this->Html->link(
 			$this->Html->image(
@@ -104,6 +117,17 @@ class MenuHelper extends AppHelper
 				$sentenceId
 			),
 			array('escape' => false));
+		echo '</li>';
+        */
+		echo '<li class="option adopt remove" id="adopt_'.$sentenceId.'">';
+		echo '<a>'.
+        $this->Html->image(
+			'let_go.png',
+			array(
+				'alt'=>__('Let go',true), 
+				'title'=>__('Let go',true)
+			)
+        ).'</a>';
 		echo '</li>';
 	}
 	

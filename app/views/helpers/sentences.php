@@ -269,8 +269,8 @@ class SentencesHelper extends AppHelper
                 'Important! You are about to add a translation to the sentence '
                 . 'above. If you do not understand this sentence, click on '
                 . '"Cancel" to display everything again, and then click on '
-                . 'the sentence that you understand and want to translate from.'
-                , true
+                . 'the sentence that you understand and want to translate from.',
+                true
             )
             . '</li>'
             . '</ul>';
@@ -446,6 +446,8 @@ class SentencesHelper extends AppHelper
         if (isset($specialOptions['canAdopt']) 
             AND $specialOptions['canAdopt'] == true
         ) {
+
+            $this->Javascript->link('sentences.adopt.js', false);
             $this->Menu->adoptButton($id);
             echo "\n";
         }
@@ -454,6 +456,7 @@ class SentencesHelper extends AppHelper
         if (isset($specialOptions['canLetGo']) 
             AND $specialOptions['canLetGo'] == true
         ) {
+            $this->Javascript->link('sentences.adopt.js', false);
             $this->Menu->letGoButton($id);
             echo "\n";
         }
