@@ -50,9 +50,37 @@ class WallHelper extends AppHelper
      * @return void
      */
 
-    private function _createReplyLink($messageId, $isAuthenticated)
+    private function _createLinks($messageId, $isAuthenticated)
     {
         if ($isAuthenticated) {
+            
+            /* * * * * * * * * * * * * * * * *\
+             *    _____ ___  ____   ___      *
+             *   |_   _/ _ \|  _ \ / _ \     *
+             *     | || | | | | | | | | |    *
+             *     | || |_| | |_| | |_| |    *
+             *     |_| \___/|____/ \___/     *
+             *                               *
+            \* * * * * * * * * * * * * * * * */
+            $canDelete = true;
+            if($canDelete){
+                // delete link
+                echo $this->Html->link(
+                    __('delete',true),
+                    array(
+                        "controller"=>"wall", 
+                        "action"=>"delete",
+                        $messageId
+                    ),
+                    null,
+                    __('Are you sure?', true)
+                );
+                echo ' - ';
+            }
+            /* * * * * * * * * * * * * * * * */
+            
+            
+            // reply link
             $replyLinkId = 'reply_' . $messageId;
             $replyClasses = 'replyLink ' . $messageId;
             echo '<a class="'.$replyClasses.'" id="'.$replyLinkId.'" >';
@@ -60,6 +88,8 @@ class WallHelper extends AppHelper
             echo '</a>';
             echo ' - ';
         }
+        
+        // message link
         echo '<a href="#message_'.$messageId.'">#</a>';
     }
 
@@ -193,7 +223,7 @@ class WallHelper extends AppHelper
                     <!-- reply option -->
                     <li class="action">
                         <?php
-                        $this->_createReplyLink(
+                        $this->_createLinks(
                             $messageId,
                             $isAuthenticated
                         );

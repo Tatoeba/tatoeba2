@@ -48,8 +48,7 @@ class CommentsHelper extends AppHelper
      * 
      * @return void
      */
-    public function displaySentenceComment($comment, $displayAsThread = false)
-    {
+    public function displaySentenceComment($comment, $displayAsThread = false) {
         $sentenceComment = $comment;
         if (isset($comment['SentenceComment'])) { 
             $sentenceComment = $comment['SentenceComment'];
@@ -87,6 +86,40 @@ class CommentsHelper extends AppHelper
             );
             echo '</li>';
         }
+        
+        /* * * * * * * * * * * * * * * * *\
+         *    _____ ___  ____   ___      *
+         *   |_   _/ _ \|  _ \ / _ \     *
+         *     | || | | | | | | | | |    *
+         *     | || |_| | |_| | |_| |    *
+         *     |_| \___/|____/ \___/     *
+         *                               *
+        \* * * * * * * * * * * * * * * * */
+        // delete button
+        $canDelete = true;
+        if($canDelete){
+            echo '<li class="action">';
+            echo $this->Html->link(
+                $this->Html->image(
+                    'delete_comment.png',
+                    array(
+                        "title" => __(
+                            'Delete this comment',
+                            true
+                        )
+                    )
+                ),
+                array(
+                    "controller" => "sentence_comments", 
+                    "action" => "delete", 
+                    $sentenceComment['sentence_id'].'#comments'
+                ),
+                array("escape" => false),
+                __('Are you sure?', true)
+            );
+            echo '</li>';
+        }
+        /* * * * * * * * * * * * * * * * */
         
         // user avatar
         echo '<li class="image">';

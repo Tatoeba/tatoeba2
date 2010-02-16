@@ -98,15 +98,43 @@ $this->pageTitle = __('Wall', true);
                 .'" class="topThread" >'."\n";
             echo '<div class="message root">';
             echo '<ul class="meta">'."\n";
-            // reply option
+            echo '<li class="action">';
+            
             echo '<li class="action">';
             if ($session->read('Auth.User.id')) {
+                /* * * * * * * * * * * * * * * * *\
+                 *    _____ ___  ____   ___      *
+                 *   |_   _/ _ \|  _ \ / _ \     *
+                 *     | || | | | | | | | | |    *
+                 *     | || |_| | |_| | |_| |    *
+                 *     |_| \___/|____/ \___/     *
+                 *                               *
+                \* * * * * * * * * * * * * * * * */
+                // link to delete message
+                $canDelete = true; 
+                if($canDelete){
+                    echo $html->link(
+                        __('delete',true),
+                        array(
+                            "controller"=>"wall", 
+                            "action"=>"delete",
+                            $message['Wall']['id']
+                        ),
+                        null,
+                        __('Are you sure?', true)
+                    );
+                    echo ' - ';
+                }
+                /* * * * * * * * * * * * * * * * */
+                
+                // link for replying
                 $javascript->link('jquery.scrollTo-min.js', false);
                 $javascript->link('wall.reply.js', false);
                 echo '<a class="replyLink ' . $message['Wall']['id'] 
                     .'" id="reply_'. $message['Wall']['id'] .'" >' 
                     . __('reply', true). '</a> - ';
             }
+            // link to message
             echo '<a href="#message_'.$message['Wall']['id'].'">'
                 .'#';
             echo '</a>';
