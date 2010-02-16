@@ -725,14 +725,15 @@ class Sentence extends AppModel
             
         } elseif ($lang == "cmn") {
             escapeshellarg($text); 
-            //$romanization =  exec("echo `adso.sh -i $text -y`");
-            
+            $romanization =  exec("echo `adso.sh -i $text -y`");
+            /*
             $curl = curl_init();
             curl_setopt ($curl, CURLOPT_URL, "http://adsotrans.com/popup/pinyin.php?text=".$text);
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             $result = curl_exec ($curl);
             $pinyin = substr($result, 14);
             $romanization = substr($pinyin, 0, -44);
+            */
 
         }
         return $romanization;
