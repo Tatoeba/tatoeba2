@@ -412,13 +412,13 @@ class SentencesController extends AppController
                 $page = null;
             }
             
-            if (isset($_GET['from']) AND $_GET['from'] != 'und') {
+            if (isset($_GET['from']) && $_GET['from'] != 'und') {
                 $from = $_GET['from'];
             } else {
                 $from = null;
             }
             
-            if (isset($_GET['to']) AND $_GET['to'] != 'und') {
+            if (isset($_GET['to']) && $_GET['to'] != 'und') {
                 $to = $_GET['to'];
             } else {
                 $to = null;
@@ -469,6 +469,7 @@ class SentencesController extends AppController
             }
             $this->set('specialOptions', $specialOptions);
         } else {
+            //TODO pageTitle should be done in the view
             $this->pageTitle = __('Tatoeba search', true);
             $this->redirect(
                 array(
