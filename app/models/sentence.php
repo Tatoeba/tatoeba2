@@ -407,7 +407,7 @@ class Sentence extends AppModel
     public function getSentencesWithIds($ids, $translationsLang = null)
     {
         $translationsConditions = array();
-        if($translationsLang != null){
+        if ($translationsLang != null) {
             $translationsConditions["Translation.lang"] = $translationsLang;
         }
         
@@ -577,42 +577,54 @@ class Sentence extends AppModel
             'Sentence.id' => $id
         );
         // DA ultimate Query 
+
+        $direcTranslationsQuery = "
+            SELECT
+              p1.text AS text, 
+              p2.text AS translation_text,
+              p2.id   AS translation_id,
+              p2.lang AS translation_lang,
+              p2.user_id AS translation_user_id,
+              'Translation' as distance
+            FROM sentences AS p1
+            LEFT  JOIN sentences_translations AS t ON p1.id = t.sentence_id
+              LEFT  JOIN sentences AS p2 ON t.translation_id = p2.id
+            WHERE 
+             p1.id IN ($id) 
+        ";
+
+        // query use to retrieve sentence which are already direct
+        // translations
+        $subQuery = "
+            SELECT sentences_translations.translation_id
+            FROM sentences_translations
+            WHERE sentences_translations.sentence_id IN ( $id ) 
+        ";
+
+        $indirectTranslationQuery = "
+         SELECT p1.text AS text,
+              p2.text AS translation_text,
+              p2.id   AS translation_id,
+              p2.lang AS translation_lang,
+              p2.user_id AS translation_user_id,
+              'IndirectTranslation'  as distance
+            FROM sentences AS p1
+                LEFT JOIN sentences_translations AS t
+                    ON p1.id = t.sentence_id
+                LEFT JOIN sentences_translations AS t2
+                    ON t2.sentence_id = t.translation_id
+                LEFT JOIN sentences AS p2
+                    ON t2.translation_id = p2.id
+            WHERE 
+                p1.id != p2.id
+                AND p2.id NOT IN ( $subQuery )
+                AND p1.id IN ( $id )
+        "; 
+
         $query = "
-                SELECT p1.text AS text, 
-                  p2.text AS translation_text,
-                  p2.id   AS translation_id,
-                  p2.lang AS translation_lang,
-                  p2.user_id AS translation_user_id,
-                  'Translation' as distance
-                FROM sentences AS p1
-                LEFT  JOIN sentences_translations AS t ON p1.id = t.sentence_id
-                  LEFT  JOIN sentences AS p2 ON t.translation_id = p2.id
-                WHERE 
-                 p1.id = '$id' 
-
-                UNION
-
-                SELECT p1.text AS text,
-                  p2.text AS translation_text,
-                  p2.id   AS translation_id,
-                  p2.lang AS translation_lang,
-                  p2.user_id AS translation_user_id,
-                  'IndirectTranslation'  as distance
-                FROM sentences AS p1
-                    LEFT JOIN sentences_translations AS t
-                        ON p1.id = t.sentence_id
-                    LEFT JOIN sentences_translations AS t2
-                        ON t2.sentence_id = t.translation_id
-                    LEFT JOIN sentences AS p2
-                        ON t2.translation_id = p2.id
-                WHERE 
-                    p1.id != p2.id
-                    AND p2.id NOT IN (
-                        SELECT sentences_translations.translation_id
-                        FROM sentences_translations
-                        WHERE sentences_translations.sentence_id = '$id' 
-                    )
-                    AND p1.id = '$id'
+            $direcTranslationsQuery 
+            UNION
+            $indirectTranslationQuery
         ";
 
         $results = $this->query($query);
@@ -728,7 +740,11 @@ class Sentence extends AppModel
             $romanization =  exec("echo `adso.sh -i $text -y`");
             /*
             $curl = curl_init();
-            curl_setopt ($curl, CURLOPT_URL, "http://adsotrans.com/popup/pinyin.php?text=".$text);
+            curl_setopt (
+                $curl,
+                CURLOPT_URL,
+                "http://adsotrans.com/popup/pinyin.php?text=".$text
+            );
             curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
             $result = curl_exec ($curl);
             $pinyin = substr($result, 14);
