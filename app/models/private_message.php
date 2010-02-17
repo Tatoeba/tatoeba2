@@ -114,10 +114,9 @@ class PrivateMessage extends AppModel
      */
     public function formatReplyMessage($content, $login)
     {
-        $messNextRegExp = preg_replace("#\r?\n#iU", " ", $content);
         $messNextRegExp = preg_replace(
             "#\r?\n#iU", "\n > ",
-            wordwrap($messNextRegExp, 50)
+            wordwrap($content, 60)
         );
         return "\n" . sprintf(__('%s wrote:', true), $login) . "\n > "
             . $messNextRegExp;
