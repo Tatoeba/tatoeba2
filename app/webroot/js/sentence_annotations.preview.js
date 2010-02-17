@@ -23,12 +23,16 @@ $(document).ready(function() {
     var textToReplace = $("#SentenceAnnotationTextToReplace").val();
     var textReplacing = '';
     
+    textToReplace = textToReplace.replace("<space>", " ");
+    
     $("#previewButton").click( function() {
         
         // reset first...
         if(textReplacing != ''){
             $(".annotation").each( function() {
-                $(this).html( $(this).html().replace(textReplacing, textToReplace) );
+                $(this).html( 
+                    $(this).html().replace(textReplacing, textToReplace) 
+                );
             });
         }
         
@@ -38,7 +42,9 @@ $(document).ready(function() {
         
         // replace
         $(".annotation").each( function() {
-            $(this).html( $(this).html().replace(textToReplace, textReplacing) );
+            $(this).html(
+                $(this).html().replace(textToReplace, textReplacing)
+            );
         });
         
     });
