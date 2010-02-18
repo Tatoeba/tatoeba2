@@ -411,7 +411,7 @@ class Sentence extends AppModel
             $translationsConditions["Translation.lang"] = $translationsLang;
         }
         
-        return $this->find(
+        $sentences = $this->find(
             'all', 
             array(
                 "conditions" => array("Sentence.id" => $ids),
@@ -429,6 +429,36 @@ class Sentence extends AppModel
                 )
             )
         );
+        
+        $results = array();
+        foreach ($sentences as $sentence) {
+            // Romanization for original sentence
+            $sentenceLang = $sentence['Sentence']['lang'];
+            if (in_array($sentenceLang, array('wuu','cmn','jpn'))) {
+                $sentence['Sentence']['romanization'] = $this->getRomanization(
+                    $sentence['Sentence']['text'],
+                    $sentence['Sentence']['lang']
+                );
+            }
+            
+            // Romanization for translations
+            $translations = array();
+            foreach ($sentence['Translation'] as $translation) {
+                $translationLang = $translation['lang'];
+                $translation['romanization'] = $this->getRomanization(
+                    $translation['text'],
+                    $translation['lang']
+                );
+                $translations[] = $translation;
+            }
+            $sentence['Translation'] = $translations;
+            
+            // TODO Perhaps add romanization for indirect translations
+            
+            $results[] = $sentence;
+        }
+        
+        return $results;
     }
     
     /**
