@@ -25,16 +25,21 @@
  * @link     http://tatoeba.org
  */
 
-$navigation->displayUsersNavigation($user['User']['id'], $user['User']['username']);
-
-echo '<h3>';
-__('Favorite sentences');
-echo '</h3>';
-if (count($user['Favorite']) > 0) {
-    foreach ($user['Favorite'] as $favorite) {
-        $sentences->displaySentence($favorite);
-    }
-} else {
-    __('This user does not have any favorites.');
-}
+$navigation->displayUsersNavigation($user['id'], $user['username']);
 ?>
+<div id="main_content">
+	<div class="module">
+    
+    <h3><?php __('Favorite sentences'); ?></h3>
+    
+    <?php
+    if (count($favorites) > 0) {
+        foreach ($favorites as $favorite) {
+            $sentences->displaySentence($favorite);
+        }
+    } else {
+        __('This user does not have any favorites.');
+    }
+    ?>
+    </div>
+</div>

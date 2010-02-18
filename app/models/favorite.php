@@ -42,20 +42,12 @@ class Favorite extends AppModel
 
     public $actsAs = array('ExtendAssociations','Containable');
 
-
     public $hasAndBelongsToMany = array(
         'User' => array(
             'className' => 'User',
             'joinTable' => 'favorites_users',
-            'foreignKey' => 'favorite_id',
-            'associationForeignKey' => 'user_id',
-            'conditions' => '',
-            'order' => '',
-            'limit' => '',
-            'unique' => true,
-            'finderQuery' => '',
-            'deleteQuery' => '',
-            'insertQuery' => ''
+            'foreignKey' => 'user_id',
+            'associationForeignKey' => 'favorite_id',
         )
     );
 
@@ -88,15 +80,16 @@ class Favorite extends AppModel
 
     public function getAllFavoritesOfUser($userId)
     {
+        $favorites = $this->User->find(
+            'first',
+            array(
+                'conditions' => array('User.id' => $userId),
+                'fields' => array('id', 'username'),
+                'contain' => array('Favorite')
+            )
+        );
         
-        // TODO HACK SPOTTED the main things here is favorite, not user
-        // so the query should be reviewed moreover it's all but optimized 
-        $user = new User();
-        $user->id = $user_id;
-        $user->hasAndBelongsToMany['Favorite']['limit'] = null;
-        $user = $user->read();
-
-        return $user;
+        return $favorites;
     }
 
     /**
@@ -110,11 +103,15 @@ class Favorite extends AppModel
 
     public function addFavorite($sentenceId, $userId)
     {
-        return $this->habtmAdd(
-            'User',
-            $sentenceId,
-            $userId
-        );
+        // habtmAdd() was behaving strangely so we're doing it manually
+        $this->query("
+            INSERT INTO `favorites_users` (`favorite_id`,`user_id`) 
+            VALUES ($sentenceId, $userId)
+        ");
+        
+        // TODO Find a way not to return always true.
+        // $this->query() won't return anything if it's an "INSERT"
+        return true;
     } 
 
     /**
@@ -128,11 +125,15 @@ class Favorite extends AppModel
 
     public function removeFavorite($sentenceId, $userId)
     {
-        return $this->habtmDelete(
-            'User',
-            $sentenceId,
-            $userId
-        );
+        // habtmDelete() was behaving strangely so we're doing it manually
+        $this->query("
+            DELETE FROM `favorites_users` 
+            WHERE favorite_id = $sentenceId AND user_id = $userId
+        ");
+        
+        // TODO Find a way not to return always true.
+        // $this->query() won't return anything if it's a "DELETE"
+        return true;
     } 
 }
 ?>
