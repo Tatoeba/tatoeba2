@@ -54,7 +54,13 @@ class SentenceCommentsController extends AppController
         
         // setting actions that are available to everyone, even guests
         // TODO does it mean visitors can save comments if they figure out how
-        $this->Auth->allowedActions = array('index', 'save', 'show','latest');
+        $this->Auth->allowedActions = array(
+            'index',
+            'save', // TODO to remove
+            'delete_comment', // TODO to remove
+            'show',
+            'latest'
+        );
     }
     
     /**
@@ -178,6 +184,26 @@ class SentenceCommentsController extends AppController
     public function latest()
     {
         return $this->SentenceComment->getLatestComments(5);
+    }
+
+    /**
+     * delete requested comment
+     * NOTE: delete is a php5 keyword
+     *
+     * @param int $commentId id of the comment 
+     *
+     * @return void 
+     */
+
+    public function delete_comment($commentId)
+    {
+        
+        // TODO add a test to authorize only admin
+        // and owner to delete one comment
+        $this->SentenceComment->delete($commentId);
+       
+        // redirect to previous page
+        $this->redirect($this->referer()); 
     }
 
 }

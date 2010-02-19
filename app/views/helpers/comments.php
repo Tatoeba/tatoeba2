@@ -111,8 +111,8 @@ class CommentsHelper extends AppHelper
                 ),
                 array(
                     "controller" => "sentence_comments", 
-                    "action" => "delete", 
-                    $sentenceComment['sentence_id'].'#comments'
+                    "action" => "delete_comment", 
+                    $sentenceComment['id']
                 ),
                 array("escape" => false),
                 __('Are you sure?', true)
@@ -160,7 +160,7 @@ class CommentsHelper extends AppHelper
         
         echo '<div class="body">';
         // sentence
-        if ($displayAsThread AND isset($comment['Sentence'])) {
+        if ($displayAsThread && isset($comment['Sentence'])) {
             echo '<div class="sentence">';
             if (isset($comment['Sentence']['text'])) {
                 echo $this->Html->link(
