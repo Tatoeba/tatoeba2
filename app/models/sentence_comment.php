@@ -219,7 +219,7 @@ class SentenceComment extends AppModel
                 )
             )
         );
-        if (isset($sentence) && $sentence['User']['send_notifications']) {
+        if (isset($sentence) && $sentence['User']['send_notifications'] == 1) {
             return $sentence['User']['email'];
         } else {
             return null;
