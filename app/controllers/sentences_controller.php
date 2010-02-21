@@ -309,11 +309,14 @@ class SentencesController extends AppController
      */
     public function adopt($id)
     {
+        //Configure::write("debug",0);
         Sanitize::paranoid($id);
         $data['Sentence']['id'] = $id;
         $data['Sentence']['user_id'] = $this->Auth->user('id');
         if ($this->Sentence->save($data)) {
             $this->set('saved', true);
+            $this->set('sentenceId', $id);
+            $this->set('ownerName', $this->Auth->user('username'));
             /*
             $this->flash(
                 __(

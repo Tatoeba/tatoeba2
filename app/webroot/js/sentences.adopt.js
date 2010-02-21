@@ -38,10 +38,11 @@ $(document).ready(function(){
                 "http://" + host + ":" + port + "/sentences/adopt/"+  adopt_id
                 , {}    
                 ,function(data){
-                    // if add retrieve no data , then for a reason or an other, the sentence couldn't have been added 
-                    // so we change nothing
+                    // if add retrieve no data , then for a reason or an other,
+                    // the sentence couldn't have been added so we change nothing
                     if ( null != data && "" != data ){
-                         // this second test is here because with debug enable, the function always retrieve data
+                        // this second test is here because with debug enable,
+                        // the function always retrieve data
                         // so we test if the retrieving data is an <a> </a> 
                         if ( data[1] == "a" ){
                             
@@ -64,7 +65,7 @@ $(document).ready(function(){
         ********************************/
 
         else if (adopt_option.hasClass("remove")){
-            
+            $("#belongsTo_"+adopt_id).remove(); 
             $("#_"+adopt_id+"_in_process").show();
             
             $.post(

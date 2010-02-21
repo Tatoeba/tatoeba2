@@ -35,5 +35,5 @@ if (isset($saved)) {
     );
     echo '</a>';
 }
-
+$sentences->displayBelongsTo($sentenceId, $ownerName);
 ?> 

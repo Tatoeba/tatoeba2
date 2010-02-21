@@ -396,6 +396,32 @@ class SentencesHelper extends AppHelper
             }
         }
     }
+
+    /**
+     * display a <li></li> with the current owner name
+     * and a link to owner's profile
+     *
+     * @param int    $sentenceId The sentence's id.
+     * @param string $ownerName  The owner's name.
+     *
+     * @return void
+     */
+
+    public function displayBelongsTo($sentenceId,$ownerName)
+    {
+        // the id is used by sentence.adopt.js
+        echo '<li class="belongsTo" id="belongsTo_'.$sentenceId.'">';
+        $userLink = $this->Html->link(
+            $ownerName,
+            array(
+                "controller" => "user",
+                "action" => "profile",
+                $ownerName
+            )
+        );
+        echo sprintf(__('belongs to %s', true), $userLink);
+        echo '</li>';
+    }
     
     /**
      * Sentences options (translate, edit, correct, comments, logs, edit, etc).
@@ -423,17 +449,7 @@ class SentencesHelper extends AppHelper
         
         // owner
         if (isset($specialOptions['belongsTo'])) {
-            echo '<li class="belongsTo">';
-            $user = $this->Html->link(
-                $specialOptions['belongsTo'],
-                array(
-                    "controller" => "user",
-                    "action" => "profile",
-                    $specialOptions['belongsTo']
-                )
-            );
-            echo sprintf(__('belongs to %s', true), $user);
-            echo '</li>';
+            $this->displayBelongsTo($id, $specialOptions['belongsTo']);
         }
         
         // translate
