@@ -70,7 +70,11 @@
             echo '<fieldset class="select">';
             echo '<label>' . __('Quantity', true) . '</label>';
             echo $form->select(
-                'numberWanted', $numberOfSentencesWanted, 5, null, false
+                'numberWanted',
+                $numberOfSentencesWanted,
+                5,
+                null,
+                false
             );
             echo '</fieldset>';
 
@@ -78,7 +82,11 @@
             echo '<fieldset class="select">';
             echo '<label>' . __('Language', true) . '</label>';
             echo $form->select(
-                'into', $languages->languagesArray(), $selectedLanguage, null, false
+                'into',
+                $languages->languagesArray(),
+                $selectedLanguage,
+                null,
+                false
             );
             echo '</fieldset>';
 
@@ -104,15 +112,27 @@
         ?>
     
         <div class="module">
+            <h2><?php __('Add new sentences'); ?></h2>
             <?php
-            echo '<h2>';
-            __('Add new sentences');
-            echo '</h2>';
-            
             echo $form->create(
                 'Sentence', array("action" => "add", "id" => "newSentence")
             );
             echo $form->input('text', array("label" => __('Sentence : ', true)));
+
+            // permit users to directly specify in which language they contribute
+            $langArray = $languages->translationsArray();
+            $preSelectedLang = $session->read('contribute_lang');
+
+            if (empty($preSelectedLang)) {
+                $preSelectedLang = 'auto';
+            }
+            echo $form->select(
+                'contributionLang',
+                $langArray,
+                $preSelectedLang,
+                array("class"=>"translationLang"),
+                false
+            );
             echo $form->end('OK');
             ?>
         </div>

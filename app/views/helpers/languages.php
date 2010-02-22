@@ -113,6 +113,22 @@ class LanguagesHelper extends AppHelper
         
         return $languages;
     }
+
+    /**
+     * Return array of language + "auto"
+     * used to know if the user want the language of a contribution
+     * to be manualy set or auto detect
+     *
+     * @return array
+     */
+
+    public function translationsArray()
+    {
+        $languages = $this->onlyLanguagesArray();
+        
+        array_unshift($languages, array('auto' => __('Auto detect', true)));
+        return $languages;
+    }
     
     /** 
      * Return array of languages in which you can search.

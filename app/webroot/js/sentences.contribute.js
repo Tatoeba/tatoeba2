@@ -32,17 +32,23 @@ $(document).ready(function() {
 	
 	function save(){
 		var sentenceText = $("#newSentenceText").val();
-		if($.trim(sentenceText) != ''){
+        var selectedLang = $("#contributionLang").val();
+		if ($.trim(sentenceText) != '') {
             $(".loading").show();
             
-            $.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences/save_sentence"
-            , { "value" : sentenceText }
-            , function(data){			
-                $("#sentencesAdded").prepend(data);
-                $(".loading").hide();
-                $("#newSentenceText").val("");
-            }
-            , "html");
+            $.post(
+                "http://" + self.location.hostname + ":" + self.location.port + "/sentences/save_sentence",
+                {
+                    "value": sentenceText,
+                    "selectedLang": selectedLang
+                },
+                function(data){			
+                    $("#sentencesAdded").prepend(data);
+                    $(".loading").hide();
+                    $("#newSentenceText").val("");
+                },
+                "html"
+            );
         }
 	}
 });

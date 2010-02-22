@@ -45,6 +45,20 @@ $javascript->link('sentences.contribute.js', false);
                     "id" => "newSentenceText"
                 )
             );
+            $langArray = $languages->translationsArray();
+            $preSelectedLang = $session->read('contribute_lang');
+
+            if (empty($preSelectedLang)) {
+                $preSelectedLang = 'auto';
+            }
+            echo $form->select(
+                'contributionLang',
+                $langArray,
+                $preSelectedLang,
+                array("class"=>"translationLang"),
+                false
+            );
+
             echo $form->button('OK', array("id" => "submitNewSentence"));
             echo '</div>';
         echo '</div>';

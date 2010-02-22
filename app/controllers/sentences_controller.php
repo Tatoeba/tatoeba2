@@ -166,8 +166,14 @@ class SentencesController extends AppController
     public function add()
     {
         $userId = $this->Auth->user('id');
+        $sentenceLang = $this->data['Sentence']['contributionLang'];
+        $sentenceText = $this->data['Sentence']['text'];
+        Sanitize::html($sentenceText);
+        $sentenceText = rtrim($sentenceText);
 
-        if (rtrim($this->data['Sentence']['text']) != '' && !empty($userId)) {
+        $this->Session->write('contribute_lang', $sentenceLang);
+
+        if ( !empty($sentenceText) && !empty($userId)) {
             // setting correctness of sentence
             if ($this->Auth->user('group_id')) {
                 $this->data['Sentence']['correctness'] 
@@ -177,15 +183,15 @@ class SentencesController extends AppController
             }
             
             // detecting language
-            $this->GoogleLanguageApi->text = $this->data['Sentence']['text'];
-            $response = $this->GoogleLanguageApi->detectLang();
-            $this->data['Sentence']['lang'] 
-                = $this->GoogleLanguageApi->google2TatoebaCode(
-                    $response['language']
+            if ($sentenceLang === 'auto') {
+                $sentenceLang = $this->GoogleLanguageApi->detectLang(
+                    $sentenceText
                 );
-            
+            }
+            unset($this->data['Sentence']['contributionLang']);
             $this->data['Sentence']['user_id'] = $userId;
-            
+            $this->data['Sentence']['text'] = $sentenceText;
+            $this->data['Sentence']['lang'] = $sentenceLang;
             // saving
             if ($this->Sentence->save($this->data)) {
                 $sentence = $this->Sentence->getSentenceWithId($this->Sentence->id);
@@ -224,35 +230,49 @@ class SentencesController extends AppController
      */
     public function save_sentence()
     {
+        // TODO : to be split in 2 method
+        // * add_sentence 
+        // * edit_sentence
         $userId = $this->Auth->user('id');
+        $sentenceText = $_POST['value'];
+        $sentenceLang = $_POST['selectedLang'];
+        $sentenceId = $_POST['id'];
 
-        if (isset($_POST['value']) && rtrim($_POST['value'] != '')) {
-            Sanitize::html($_POST['value']);
+        $this->Session->write('contribute_lang', $translationLang);
+        
+        if (isset($sentenceText)
+            && rtrim($sentenceText != '')
+        ) {
+            Sanitize::html($sentenceText);
+            $sentenceText = rtrim($sentenceText);
             
-            if (isset($_POST['id'])) {
+            if (isset($sentenceId)) {
                 // ---- sentences.edit_in_place.js -----
                 
-                Sanitize::paranoid($_POST['id']);
+                Sanitize::paranoid($sentenceId);
                 
                 // TODO HACK SPOTTED $_POST['id'] store 2 informations, lang and id
                 // related to HACK in edit in place.js
-                if (preg_match("/[a-z]/", $_POST['id'])) {
-                    $hack_array = explode("_", $_POST["id"]);
+                if (preg_match("/[a-z]/", $sentenceId)) {
+                    $hack_array = explode("_", $sentenceId);
                     $this->Sentence->id = $hack_array[1];
-                    $this->data['Sentence']['lang'] = $hack_array[0]; 
+
+                    $sentenceLang = $hack_array[0]; 
                     // language is needed for the logs
                 } else {
-                    $this->Sentence->id = $_POST['id'];
-                    $this->data['Sentence']['lang'] = null;
+                    $this->Sentence->id = $sentenceId;
+                    $sentenceLang = null;
                     // language is needed for the logs
                 }
-                $this->data['Sentence']['text'] = rtrim($_POST['value']);
+
+                $this->data['Sentence']['lang'] = $sentenceLang;
+                $this->data['Sentence']['text'] = $sentenceText;
                 $this->data['Sentence']['user_id'] = $userId;
                 // user id is needed for the logs
                 
                 if ($this->Sentence->save($this->data)) {
                     $this->layout = null;
-                    $this->set('sentence_text', rtrim($_POST['value']));
+                    $this->set('sentence_text', $sentenceText);
                 }
                 
                 
@@ -269,13 +289,13 @@ class SentencesController extends AppController
                 }
                 
                 // detecting language
-                $this->GoogleLanguageApi->text = $_POST['value'];
-                $response = $this->GoogleLanguageApi->detectLang();
-                $this->data['Sentence']['lang'] 
-                    = $this->GoogleLanguageApi->google2TatoebaCode(
-                        $response['language']
+                if ($sentenceLang === 'auto'){
+                    $sentenceLang = $this->GoogleLanguageApi->detectLang(
+                        $sentenceText
                     );
-                
+                }
+
+                $this->data['Sentence']['lang'] = $sentenceLang;
                 $this->data['Sentence']['user_id'] = $userId;
                 $this->data['Sentence']['text'] = $_POST['value'];
                 
@@ -370,35 +390,45 @@ class SentencesController extends AppController
 
         Sanitize::html($_POST['value']);
         $userId = $this->Auth->user('id');
+        // Id of original sentence
+        $sentenceId = $_POST['id'];
+        $sentenceLang = $_POST['originLang'];
+        $translationText = $_POST['value'];
+        $translationLang = $_POST['selectLang'];
+
+        // we store the selected language to be reuse after
+        // that way, as users are likely to contribute in the 
+        // same language, they don't need to reselect each time
+        $this->Session->write('contribute_lang', $translationLang);
         
-        if (isset($_POST['value']) AND rtrim($_POST['value']) != '' 
-            AND isset($_POST['id']) AND !(empty($userId))
+        if (isset($translationText)
+            && rtrim($translationText) != '' 
+            && isset($sentenceId)
+            && !(empty($userId))
         ) {
-            // Id of original sentence
-            $sentenceId = $_POST['id'];
+
             
             // So that it saves a new sentences, otherwise it's like editing :
             $this->data['Sentence']['id'] = null; 
             
             // Language of original sentence, needed for the logs
-            $this->data['Sentence']['sentence_lang'] = $_POST['lang']; 
+            $this->data['Sentence']['sentence_lang'] = $sentenceLang; 
             
             // If we want the "HasAndBelongsToMany" association to work, 
             // we need the two lines below : 
-            $this->Sentence->id = $sentenceId;
+            $this->Sentence->id = $sentenceId; // TODO why this line ?
             $this->data['Translation']['Translation'][] = $sentenceId;
             $this->data['InverseTranslation']['InverseTranslation'][] = $sentenceId;
-            
+           
+            if ($translationLang === 'auto') { 
             // Detecting language of translation
-            $this->GoogleLanguageApi->text = $_POST['value'];
-            $response = $this->GoogleLanguageApi->detectLang();
-            $this->data['Sentence']['lang'] 
-                = $this->GoogleLanguageApi->google2TatoebaCode(
-                    $response['language']
+                $translationLang = $this->GoogleLanguageApi->detectLang(
+                    $translationText
                 );
-            
+            }
+            $this->data['Sentence']['lang'] = $translationLang;
             // Sentence text
-            $this->data['Sentence']['text'] = $_POST['value'];
+            $this->data['Sentence']['text'] = $translationText;
             
             // User who added the translation
             $this->data['Sentence']['user_id'] = $userId;
@@ -407,7 +437,7 @@ class SentencesController extends AppController
             if ($this->Sentence->save($this->data)) {
                 $this->set('translation_id', $this->Sentence->id);
                 $this->set('translation_lang', $this->data['Sentence']['lang']);
-                $this->set('translation_text', $_POST['value']);
+                $this->set('translation_text', $translationText);
             }
         }
     }

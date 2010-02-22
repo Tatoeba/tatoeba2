@@ -45,12 +45,15 @@ class GoogleLanguageApiComponent extends Object
      *
      * The function returns an associative array with the indices :
      *   "language", "isReliable" and "confidence".     
+     * which is after transform into a tatoeba language code
      *
-     * @return array
+     * @param string $text Sentence to detect.
+     *
+     * @return string 
      */
-    public function detectLang()
+    public function detectLang($text)
     {
-        $textToAnalyze = urlencode($this->text);
+        $textToAnalyze = urlencode($text);
         
         $langDetectUrl = "http://ajax.googleapis.com/ajax/services/language/detect?";
         $version = "v=1.0";
@@ -67,10 +70,11 @@ class GoogleLanguageApiComponent extends Object
         $json = json_decode($body, true);
 
         if ($json['responseStatus'] != 200) {
-            return false;
+            // if something goes wrong
+            return 'und';
         }
-        
-        return $json['responseData'];
+        $googleLang = $json['responseData']['language']; 
+        return $this->google2TatoebaCode($googleLang);
     }
     
     /** 

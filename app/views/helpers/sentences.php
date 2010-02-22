@@ -37,7 +37,13 @@
 class SentencesHelper extends AppHelper
 {
     public $helpers = array(
-        'Html', 'Form', 'Kakasi', 'Javascript', 'Menu', 'Languages'
+        'Html',
+        'Form',
+        'Kakasi',
+        'Javascript',
+        'Menu',
+        'Languages',
+        'Session'
     );
     
     /**
@@ -254,26 +260,8 @@ class SentencesHelper extends AppHelper
         );
         echo "\n";
         
-        // To add new translations
-        echo '<ul id="translation_for_'.$id.'" class="addTranslations">'
-            . '<li class="direct">'
-            . '<input id="_'.$id.'_text" class="addTranslationsTextInput"'
-            .   ' type="text" value=""/>'
-            . '<input id="_'.$id.'_submit" type="button"' 
-            .   ' value="'.__('Submit translation', true).'" />'
-            . '<input id="_'.$id.'_cancel" type="button"'
-            .   ' value="'.__('Cancel', true).'"/>'
-            . '</li>'
-            . '<li class="important">'
-            . __(
-                'Important! You are about to add a translation to the sentence '
-                . 'above. If you do not understand this sentence, click on '
-                . '"Cancel" to display everything again, and then click on '
-                . 'the sentence that you understand and want to translate from.',
-                true
-            )
-            . '</li>'
-            . '</ul>';
+        // add a new translation
+        $this->_displayNewTranslationForm($id);
         
         // Translations
         echo '<ul id="_'.$sentence['id'].'_translations" class="translations">';
@@ -577,6 +565,57 @@ class SentencesHelper extends AppHelper
             
         echo '</ul>';
     }
+
+    /**
+     * display the form to translate a sentence
+     * appear when clicking on the translate icon
+     *
+     * @param int $id The id of the sentence to translate.
+     *
+     * @return void
+     */
+
+    private function _displayNewTranslationForm($id)
+    {
+        
+        $langArray = $this->Languages->translationsArray();
+        $preSelectedLang = $this->Session->read('contribute_lang');
+        if (empty($preSelectedLang)) {
+            $preSelectedLang = 'auto';
+        }
+
+        // To add new translations
+        echo '<ul id="translation_for_'.$id.'" class="addTranslations">';
+        echo '<li class="direct">';
+        echo '<input '.
+            'id="_'.$id.'_text" '.
+            'class="addTranslationsTextInput" '.
+            'type="text" value="" '.
+        '/>';
+        // language select
+        echo $this->Form->select(
+            'translationLang_'.$id,
+            $langArray,
+            $preSelectedLang,
+            array("class"=>"translationLang"),
+            false
+        );
+        echo '<input id="_'.$id.'_submit" type="button"' 
+            .   ' value="'.__('Submit translation', true).'" />';
+        echo  '<input id="_'.$id.'_cancel" type="button"'
+            .   ' value="'.__('Cancel', true).'"/>';
+        echo '</li>';
+        echo '<li class="important">'
+            . __(
+                'Important! You are about to add a translation to the sentence '
+                . 'above. If you do not understand this sentence, click on '
+                . '"Cancel" to display everything again, and then click on '
+                . 'the sentence that you understand and want to translate from.',
+                true
+            );
+        echo '</li>';
+        echo '</ul>';
+    }
     
     /**
      * Language flag.
@@ -600,7 +639,6 @@ class SentencesHelper extends AppHelper
             
             // language select
             $langArray = $this->Languages->languagesArray();
-            asort($langArray);
             echo $this->Form->select(
                 'selectLang_'.$id,
                 $langArray,
