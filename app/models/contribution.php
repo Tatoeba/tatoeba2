@@ -161,15 +161,12 @@ class Contribution extends AppModel
                 `User`.`id`
             FROM `contributions` AS `Contribution`  
         ";
-        if ($lang != 'und') {
-            $query .= "AND `Sentence`.`lang` = '$lang'";
-        }
         $query.=" 
                 INNER JOIN `users` AS `User`
                     ON (`Contribution`.`user_id` = `User`.`id`)
             WHERE ";
         if ($lang != 'und') {
-            $query .=  "`Sentence`.`lang` = '$lang' AND";
+            $query .=  "`Contribution`.`sentence_lang` = '$lang' AND ";
         } 
 
         $query.="
