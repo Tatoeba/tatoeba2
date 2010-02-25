@@ -2,6 +2,7 @@
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
  * Copyright (C) 2009 DEPARIS Étienne <etienne.deparis@umaneti.net>
+ * Copyright (C) 2010 SIMON   Allan   <allan.simon@supinfo.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -31,6 +32,7 @@
  * @category PrivateMessage
  * @package  Models
  * @author   DEPARIS Étienne <etienne.deparis@umaneti.net>
+ * @author   SIMON   Allan   <allan.simon@supinfo.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
@@ -121,5 +123,31 @@ class PrivateMessage extends AppModel
         return "\n" . sprintf(__('%s wrote:', true), $login) . "\n > "
             . $messNextRegExp;
     }
+
+    /**
+     * Count how many unread messages a specific user has
+     *
+     * @param int $userId The user id. 
+     *
+     * @return int
+     */
+
+    public function numberOfUnreadMessages($userId)
+    {
+
+        return $this->find(
+            'count',
+            array(
+                'conditions' => array(
+                    'PrivateMessage.recpt' => $userId,
+                    'PrivateMessage.folder' => 'Inbox',
+                    'PrivateMessage.isnonread' => 1
+                ),
+                "contain" => array()
+            )
+        );
+    }
+
+
 }
 ?>
