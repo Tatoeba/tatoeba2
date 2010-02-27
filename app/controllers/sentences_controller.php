@@ -89,8 +89,10 @@ class SentencesController extends AppController
      */
     public function show($id = null)
     {
-
         Sanitize::html($id);
+        
+        $userId = $this->Auth->user('id');
+        $groupId = $this->Auth->user('group_id');
 
         if ($id == "random" || $id == null || $id == "" ) {
             $id = $this->Session->read('random_lang_selected');
@@ -109,36 +111,55 @@ class SentencesController extends AppController
             // ----- if we give directly an id -----
             
             $sentence = $this->Sentence->getSentenceWithId($id);
+
+            if ($sentence == null) {
+                // if there's no sentence for this id, no need to call the other
+                // methods, we return directly
+                $this->set('sentenceExists', false);
+                return;
+            }
+
             $contributions = $this->Contribution->getContributionsRelatedToSentence(
                 $id
             );
             $comments = $this->SentenceComment->getCommentsForSentence($id);
+            $commentsPermissions = $this->Permissions->getCommentsOptions(
+                $comments,
+                $userId,
+                $groupId 
+            );
             $alltranslations = $this->Sentence->getTranslationsOf($id);
             $translations = $alltranslations['Translation'];
             $indirectTranslations = $alltranslations['IndirectTranslation'];
-            
-            if ($sentence != null) {
-                $this->set('sentenceExists', true);
-                $this->set('translations', $translations);
-                $this->set('sentence', $sentence);
-                $this->set('indirectTranslations', $indirectTranslations);
-                $this->set('sentenceComments', $comments);
-                $this->set('contributions', $contributions); 
-            } else {
-                $this->set('sentenceExists', false);
-            }
+
             // checking which options user can access to
             $specialOptions = $this->Permissions->getSentencesOptions(
-                $sentence, $this->Auth->user('id')
+                $sentence,
+                $userId
             );
+            
+            $this->set('sentenceExists', true);
+            $this->set('translations', $translations);
+            $this->set('sentence', $sentence);
+            $this->set('indirectTranslations', $indirectTranslations);
+            $this->set('sentenceComments', $comments);
+            $this->set('commentsPermissions', $commentsPermissions);
+            $this->set('contributions', $contributions); 
             $this->set('specialOptions', $specialOptions);
+
+
             
         } else {
             // ----- other case -----
             $max = $this->Sentence->getMaxId();
             $randId = rand(1, $max);
             $this->Session->write('random_lang_selected', 'any');
-            $this->redirect(array("action"=>"show", $randId ));
+            $this->redirect(
+                array(
+                    "action"=>"show",
+                    $randId
+                )
+            );
         }
     }
     
@@ -289,7 +310,7 @@ class SentencesController extends AppController
                 }
                 
                 // detecting language
-                if ($sentenceLang === 'auto'){
+                if ($sentenceLang === 'auto') {
                     $sentenceLang = $this->GoogleLanguageApi->detectLang(
                         $sentenceText
                     );
@@ -337,17 +358,6 @@ class SentencesController extends AppController
             $this->set('saved', true);
             $this->set('sentenceId', $id);
             $this->set('ownerName', $this->Auth->user('username'));
-            /*
-            $this->flash(
-                __(
-                    'You are now the owner of this sentence and can modify it as '.
-                    'you wish. It is your responsibility to make sure that it '.
-                    ' doesn\'t have any mistake and, if possible, is not linked to '.
-                    'wrong translations.', true
-                ),
-                '/sentences/show/'.$id
-            );
-            */
         }
     }
     
@@ -367,16 +377,6 @@ class SentencesController extends AppController
         $data['Sentence']['user_id'] = null;
         if ($this->Sentence->save($data)) {
             $this->set('saved', true);
-            /*
-            $this->flash(
-                __(
-                    'You have abandoned your ownership for this sentence. '.
-                    'Other people can now adopt it. If it was a mistake, you '.
-                    'can just re-adopt it.', true
-                ),
-                '/sentences/show/'.$id
-            );
-            */
         }
     }
     
@@ -421,7 +421,7 @@ class SentencesController extends AppController
             $this->data['InverseTranslation']['InverseTranslation'][] = $sentenceId;
            
             if ($translationLang === 'auto') { 
-            // Detecting language of translation
+                // Detecting language of translation
                 $translationLang = $this->GoogleLanguageApi->detectLang(
                     $translationText
                 );

@@ -41,28 +41,30 @@ class PagesController extends AppController {
  * @var string
  * @access public
  */
-	var $name = 'Pages';
+    public $name = 'Pages';
 /**
  * Default helper
  *
  * @var array
  * @access public
  */
-	var $helpers = array('Html');
+	public $helpers = array('Html');
 /**
  * This controller does not use a model
  *
  * @var array
  * @access public
  */
-	var $uses = array();
+	public $uses = array();
+
+    public $components = array('Permissions');
 /**
  * Displays a view
  *
  * @param mixed What page to display
  * @access public
  */
-	function display() {
+	public function display() {
 		$path = func_get_args();
 
 		if (!count($path)) {
@@ -80,6 +82,7 @@ class PagesController extends AppController {
                 //$Sentence = ClassRegistry::init('Sentences'); // Add Post Class
                 //$sentence= $Sentence->getSentenceWithId(33);    // Using the class
                 //pr($sentence);
+                $this->_home();
             }
         }
 
@@ -93,8 +96,37 @@ class PagesController extends AppController {
 			$title = Inflector::humanize($path[$count - 1]);
 		}
 		$this->set(compact('page', 'subpage', 'title'));
-		$this->render(join('/', $path));
+    	$this->render(join('/', $path));
 	}
+
+    /**
+     * use to retrive data needed to display all the home module
+     * data are sent to pages/home.ctp
+     *
+     * @return void
+     */
+
+    private function _home()
+    {
+        $userId = $this->Auth->user('id');
+        $groupId = $this->Auth->user('group_id');
+
+        /*latest comments part */
+        $SentenceComment = ClassRegistry::init('SentenceComment');
+        $latestComments = $SentenceComment->getLatestComments(5);
+
+        $commentsPermissions = $this->Permissions->getCommentsOptions(
+            $latestComments,
+            $userId,
+            $groupId
+        );
+
+
+        $this->set('sentenceComments', $latestComments);
+        $this->set('commentsPermissions', $commentsPermissions);       
+
+    }
 }
+
 
 ?>

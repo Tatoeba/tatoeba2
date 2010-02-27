@@ -293,7 +293,15 @@ $selectedLanguage = $session->read('random_lang_selected');
                     )
                 </span>
             </h2>
-            <?php echo $this->element('latest_sentence_comments'); ?>
+            <?php
+            echo $this->element(
+                'latest_sentence_comments',
+                array(
+                    'sentenceComments' => $sentenceComments,
+                    'commentsPermissions' => $commentsPermissions
+                )
+            ); 
+            ?>
         </div>
     <?php
     }

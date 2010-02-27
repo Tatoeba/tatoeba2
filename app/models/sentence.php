@@ -886,5 +886,31 @@ class Sentence extends AppModel
         );
     }
 
+    /**
+     * Return email of owner of the sentence.
+     *
+     * @param int $sentenceId Id of the sentence.
+     *
+     * @return array
+     */
+    public function getEmailFromSentence($sentenceId)
+    {
+        $sentence = $this->find(
+            'first',
+            array(
+                'fields' => array(),
+                'conditions' => array('Sentence.id' => $sentenceId),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array('email'),
+                        'conditions' => array('send_notifications' => 1)
+                    )
+                )
+            )
+        );
+        
+        return $sentence['User']['email'];
+    }
+
 }
 ?>

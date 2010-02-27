@@ -127,7 +127,15 @@ class SentenceComment extends AppModel
             array(
                 'conditions' => array('SentenceComment.sentence_id' => $sentenceId),
                 'order' => 'SentenceComment.created',
-                'contain' => array('User')
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array(
+                            'id',
+                            'username',
+                            'image'
+                        )
+                    )
+                )
             )
         );
     }
@@ -149,6 +157,7 @@ class SentenceComment extends AppModel
                 'contain' => array(
                     'User' => array(
                         'fields' => array(
+                            'id',
                             'username',
                             'image'
                         )
@@ -175,55 +184,44 @@ class SentenceComment extends AppModel
         $comments = $this->find(
             'all',
             array(
+                'fields' => array(),
                 'conditions' => array('SentenceComment.sentence_id' => $sentenceId),
                 'contain' => array (
                     'User' => array(
-                        'fields' => array(
-                            'username',
-                            'email',
-                            'send_notifications'
-                        )
+                        'fields' => array('email'),
+                        'conditions' => array('send_notifications' => 1)
                     )    
                 )
             )
         );
         foreach ($comments as $comment) {
-            if ($comment['User']['send_notifications']) {
-                $emails[] = $comment['User']['email'];
-            }
+            $emails[] = $comment['User']['email'];
         }
         $emails = array_unique($emails);
         return $emails;
     }
-    
+
     /**
-     * Return email of owner of the sentence.
+     * Retrieve the id of one comment's owner
      *
-     * @param int $sentenceId Id of the sentence.
+     * @param int $commentId Id of the comment
      *
-     * @return array
+     * @return int The owner id
      */
-    public function getEmailFromSentence($sentenceId)
+
+    public function getOwnerIdOfComment($commentId)
     {
-        $sentence = $this->Sentence->find(
-            'first',
+        $result = $this->find(
+            "first",
             array(
-                'conditions' => array('Sentence.id' => $sentenceId),
-                'contain' => array (
-                    'User' => array(
-                        'fields' => array(
-                            'email',
-                            'send_notifications'
-                        )
-                    )   
-                )
+                'fields' => array('SentenceComment.user_id'),
+                'conditions' => array('SentenceComment.id' => $commentId),
+                'contain' => array()
             )
         );
-        if (isset($sentence) && $sentence['User']['send_notifications'] == 1) {
-            return $sentence['User']['email'];
-        } else {
-            return null;
-        }
+
+        return $result['SentenceComment']['user_id'];
     }
+
 }
 ?>

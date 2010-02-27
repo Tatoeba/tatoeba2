@@ -138,48 +138,21 @@ $navigation->displaySentenceNavigation();
 
     <div class="module">
         <?php
-        /*
-        echo '<div class="addComment">';
-        echo $html->link(
-            __('Add a comment',true),
-            array(
-                "controller" => "sentence_comments", 
-                "action" => "show", 
-                $sentence['Sentence']['id'].'#add_comment')
-        );
-        echo '</div>';            
-        */
         echo '<h2>';
         __('Comments');
         echo '</h2>';
 
         if (count($sentenceComments) > 0) {
             echo '<ol class="comments">';
-            // always do count outside the loop
-            // it's useless to call this function each iteration
-            $numberOfComments = count($sentenceComments);
-            for ($i = 0; $i < $numberOfComments ; $i++) {
-                $comment = $sentenceComments[$i];
-                $comments->displaySentenceComment($comment);
+            foreach ($sentenceComments as $i=>$comment) {
+                $comments->displaySentenceComment(
+                    $comment,
+                    true,
+                    $commentsPermissions[$i]
+                );
             }
             echo '</ol>';
         
-            // TODO remove this 
-            /*    
-            if(count($sentenceComments) > 3){
-                ?>
-                <p class="more_link">
-                <?=$html->link(
-                    __('See all comments',true),
-                    array(
-                        "controller" => "sentence_comments",
-                        "action" => "show",
-                        $sentence['Sentence']['id']
-                    )); 
-                ?>
-                </p>
-                <?php
-            }*/
         } else {
             echo '<em>' . __('There are no comments for now.', true) .'</em>';
         }

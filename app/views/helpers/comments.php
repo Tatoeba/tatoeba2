@@ -45,10 +45,16 @@ class CommentsHelper extends AppHelper
      * @param array $comment         Comment to display.
      * @param bool  $displayAsThread If set to true it will display the "view" button
      *                               and the sentence in relation to the comment.
+     * @param array $permissions     Array contaning what one can do with this
+     *                               comment.
      * 
      * @return void
      */
-    public function displaySentenceComment($comment, $displayAsThread = false) {
+    public function displaySentenceComment(
+        $comment,
+        $displayAsThread = false,
+        $permissions = array()
+    ) {
         $sentenceComment = $comment;
         if (isset($comment['SentenceComment'])) { 
             $sentenceComment = $comment['SentenceComment'];
@@ -87,17 +93,9 @@ class CommentsHelper extends AppHelper
             echo '</li>';
         }
         
-        /* * * * * * * * * * * * * * * * *\
-         *    _____ ___  ____   ___      *
-         *   |_   _/ _ \|  _ \ / _ \     *
-         *     | || | | | | | | | | |    *
-         *     | || |_| | |_| | |_| |    *
-         *     |_| \___/|____/ \___/     *
-         *                               *
-        \* * * * * * * * * * * * * * * * */
         // delete button
-        $canDelete = true;
-        if($canDelete){
+        $canDelete = $permissions['canDelete'];
+        if ($canDelete) {
             echo '<li class="action">';
             echo $this->Html->link(
                 $this->Html->image(

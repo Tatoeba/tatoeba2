@@ -40,8 +40,12 @@
     <div class="module">
         <?php
         echo '<ol class="comments">';
-        foreach ($sentenceComments as $comment) {
-            $comments->displaySentenceComment($comment, true);
+        foreach ($sentenceComments as $i=>$comment) {
+            $comments->displaySentenceComment(
+                $comment,
+                true,
+                $commentsPermissions[$i]
+            );
         }
         echo '</ol>';
         ?>

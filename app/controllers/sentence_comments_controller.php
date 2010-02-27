@@ -37,9 +37,13 @@
 class SentenceCommentsController extends AppController
 {
     public $name = 'SentenceComments';
-    public $uses = array("SentenceComment","Sentence");    
+    public $uses = array("SentenceComment", "Sentence");    
     public $helpers = array(
-        'Comments','Sentences', 'Languages', 'Navigation', 'Html'
+        'Comments',
+        'Sentences',
+        'Languages',
+        'Navigation',
+        'Html'
     );
     public $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
     
@@ -70,10 +74,22 @@ class SentenceCommentsController extends AppController
      */
     public function index()
     {
-        $this->set(
-            'sentenceComments',
-            $this->SentenceComment->getLatestComments(100)
+        $numberOfComments = 100;
+        $permissions = array();
+
+        $latestComments = $this->SentenceComment->getLatestComments(
+            $numberOfComments
         );
+
+        $permissions = $this->Permissions->getCommentsOptions(
+            $latestComments,
+            $this->Auth->user('id'),
+            $this->Auth->user('group_id')
+        );
+
+        $this->set('sentenceComments', $latestComments);
+        $this->set('commentsPermissions', $permissions);
+
     }
 
     /**
@@ -90,7 +106,11 @@ class SentenceCommentsController extends AppController
         // redirect to sentences/show
         // we don't remove the method to be compatible with previous google indexing
         $this->redirect(
-            array("controller" => "sentences" , "action" => "show" ,  $sentenceId),
+            array(
+                "controller" => "sentences",
+                "action" => "show", 
+                $sentenceId
+            ),
             301
         );
     }
@@ -103,48 +123,47 @@ class SentenceCommentsController extends AppController
     public function save()
     {
         Sanitize::html($this->data['SentenceComment']['text']);
+
+        $userId = $this->Auth->user('id');
+        $userName = $this->Auth->user('username');
+        $userEmail = $this->Auth->user('email');
+
+
         if (!empty($this->data['SentenceComment']['text'])) {
-            // detecting language
-            //TODO  I think we don't need it anymore 
-            $this->GoogleLanguageApi->text = $this->data['SentenceComment']['text'];
-            $response = $this->GoogleLanguageApi->detectLang();
             
-            $this->data['SentenceComment']['user_id'] = $this->Auth->user('id');
-            $this->data['SentenceComment']['lang'] 
-                = $this->GoogleLanguageApi->google2TatoebaCode(
-                    $response['language']
-                );
+            $this->data['SentenceComment']['user_id'] = $userId;
             
             if ($this->SentenceComment->save($this->data)) {
                 $sentenceId = $this->data['SentenceComment']['sentence_id'];
                 $participants = $this->SentenceComment->getEmailsFromComments(
                     $sentenceId
                 );
-                $sentenceOwner = $this->SentenceComment->getEmailFromSentence(
+                $sentenceOwner = $this->Sentence->getEmailFromSentence(
                     $sentenceId
                 );
                 
                 if ($sentenceOwner != null 
-                    AND !in_array($sentenceOwner, $participants)
+                    && !in_array($sentenceOwner, $participants)
                 ) {
                     $participants[] = $sentenceOwner;
                 }
                 
                 // send message to the other participants of the thread
                 foreach ($participants as $participant) {
-                    if ($participant != $this->Auth->user('email')) {
+                    if ($participant != $userEmail) {
                         // prepare message
                         $subject = 'Tatoeba - Comment on sentence : ' 
                             . $this->data['SentenceComment']['sentence_text'];
                         if ($participant == $sentenceOwner) {
                             $msgStart = sprintf(
                                 '%s has posted a comment on one of your sentences.', 
-                                $this->Auth->user('username')
+                                $userName
                             );
                         } else {
                             $msgStart = sprintf(
                                 '%s has posted a comment on a sentence where you also
-                                posted a comment.', $this->Auth->user('username')
+                                posted a comment.',
+                                $userName
                             );
                         }
                         $message = $msgStart
@@ -176,17 +195,6 @@ class SentenceCommentsController extends AppController
     }
     
     /**
-     * Return 5 latest comments.
-     * Called in requestAction() on homepage.
-     * 
-     * @return array
-     */
-    public function latest()
-    {
-        return $this->SentenceComment->getLatestComments(5);
-    }
-
-    /**
      * delete requested comment
      * NOTE: delete is a php5 keyword
      *
@@ -197,11 +205,20 @@ class SentenceCommentsController extends AppController
 
     public function delete_comment($commentId)
     {
+        $commentOwnerId = $this->SentenceComment->getOwnerIdOfComment($commentId);
         
-        // TODO add a test to authorize only admin
-        // and owner to delete one comment
-        $this->SentenceComment->delete($commentId);
-       
+        //we check a second time even if it has been checked while displaying
+        // or not the delete icon, but one can try to directly call delete_comment
+        // so we need to recheck
+        $commentPermissions = $this->Permissions->getCommentOptions(
+            null,
+            $commentOwnerId,
+            $this->Auth->user('id'),
+            $this->Auth->user('group_id')
+        );
+        if ($commentPermissions['canDelete']) {
+            $this->SentenceComment->delete($commentId);
+        }
         // redirect to previous page
         $this->redirect($this->referer()); 
     }

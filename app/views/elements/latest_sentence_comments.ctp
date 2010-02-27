@@ -30,11 +30,14 @@ if (isset($this->params['lang'])) {
 ?>
 
 <?php
-$sentenceComments = $this->requestAction('/sentence_comments/latest');
 
 echo '<ol class="comments">';
-foreach ($sentenceComments as $comment) {    
-    $comments->displaySentenceComment($comment, true);
+foreach ($sentenceComments as $i=>$comment) {    
+    $comments->displaySentenceComment(
+        $comment,
+        true,
+        $commentsPermissions[$i]
+    );
 }
 echo '</ol>';
 ?>

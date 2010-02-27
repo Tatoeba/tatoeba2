@@ -123,5 +123,64 @@ class PermissionsComponent extends Object
         
         return $specialOptions;
     }
+
+    /**
+     * Convenience function to get permissions for an array of comments
+     *
+     * @param array $comments         Array of comments.
+     * @param int   $currentUserId    Id of the requester.
+     * @param int   $currentUserGroup Group of the requester.
+     *
+     * @return array
+     */
+
+    public function  getCommentsOptions(
+        $comments,
+        $currentUserId,
+        $currentUserGroup
+    ) {
+        $commentsPermissions = array();
+        foreach ($comments as $comment) {
+            $commentPermissions = $this->getCommentOptions(
+                $comment,
+                $comment['User']['id'],
+                $this->Auth->user('id'),
+                $this->Auth->user('group_id')
+            );
+            array_push($commentsPermissions, $commentPermissions);
+        }
+        return $commentsPermissions;
+    }
+
+    /**
+     * Check which options user can access to and returns
+     * data that is needed for the comments menu.
+     *
+     * @param array $comment          Comment.
+     * @param int   $ownerId          Id of the comment owner.
+     * @param int   $currentUserId    Id of currently logged in user.
+     * @param int   $currentUserGroup Id of the user's group.
+     *
+     * @return array
+     */
+
+    public function getCommentOptions(
+        $comment,
+        $ownerId,
+        $currentUserId,
+        $currentUserGroup
+    ) {
+        $rightsOnComment = array(
+            "canDelete" => false
+        );
+        // TODO add functions to determine options
+        if ($ownerId === $currentUserId
+            || $currentUserGroup < 2 // TODO replace 2 by an explicit constant 
+        ) {
+            $rightsOnComment['canDelete'] = true; 
+        }
+        
+        return $rightsOnComment;
+    }
 }
 ?>
