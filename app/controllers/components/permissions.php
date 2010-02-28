@@ -144,8 +144,8 @@ class PermissionsComponent extends Object
             $commentPermissions = $this->getCommentOptions(
                 $comment,
                 $comment['User']['id'],
-                $this->Auth->user('id'),
-                $this->Auth->user('group_id')
+                $currentUserId,
+                $currentUserGroup
             );
             array_push($commentsPermissions, $commentPermissions);
         }
@@ -181,6 +181,72 @@ class PermissionsComponent extends Object
         }
         
         return $rightsOnComment;
+    }
+
+    /**
+     * Check which options user can access to and returns
+     * data that is needed for the message on the Wall.
+     *
+     * @param array $message          Message.
+     * @param int   $ownerId          Id of the message owner.
+     * @param int   $currentUserId    Id of currently logged in user.
+     * @param int   $currentUserGroup Id of the user's group.
+     *
+     * @return array
+     */
+    public function getWallMessageOptions(
+        $message,
+        $ownerId,
+        $currentUserId,
+        $currentUserGroup
+    ) {
+        $rightsOnWallMessage = array(
+            "canReply"  => false,
+            "canDelete" => false
+        );
+        // TODO add functions to determine options
+        if (($ownerId === $currentUserId || $currentUserGroup < 2)
+            && empty($message['Reply']) // TODO replace 2
+        ) {
+            
+            $rightsOnWallMessage['canDelete'] = true; 
+        }
+
+        if (!empty($currentUserId)) {
+            $rightsOnWallMessage['canReply'] = true;
+        }
+        
+        return $rightsOnWallMessage;
+    }
+
+    /**
+     * Convenience function to get permissions for an array of wall's messages
+     *
+     * @param array $messages         Array of comments.
+     * @param int   $currentUserId    Id of the requester.
+     * @param int   $currentUserGroup Group of the requester.
+     *
+     * @return array
+     */
+
+    public function  getWallMessagesOptions(
+        $messages,
+        $currentUserId,
+        $currentUserGroup
+    ) {
+        $messagesPermissions = array();
+        foreach ($messages as $message) {
+            $messagePermissions = $this->getWallMessageOptions(
+                $message,
+                $message['User']['id'],
+                $currentUserId,
+                $currentUserGroup
+            );
+            // that way it will be easy to find which permissions belong to which
+            // message
+            $messagesPermissions[$message['Wall']['id']] =  $messagePermissions;
+        }
+        return $messagesPermissions;
     }
 }
 ?>

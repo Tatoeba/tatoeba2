@@ -30,8 +30,6 @@ general view for the wall, here are displayed all the messages
 
 */
 
-
-
 $this->pageTitle = __('Wall', true);
 
 ?>
@@ -77,95 +75,48 @@ $this->pageTitle = __('Wall', true);
         <h2><?php echo __("Wall", true); ?></h2>
         <?php
         // leave a comment part
-        $isAuthenticated = false;
             
-        if ($session->read('Auth.User.id')) {
-            $isAuthenticated = true ;
+        if ($isAuthenticated) {
             echo '<div id="sendMessageForm">'."\n";
             echo $wall->displayAddMessageToWallForm();
             echo '</div>'."\n";
         }
+        ?>
+        <ol class="wall">
+        <?php
         // display comment part
-        echo '<ol class="wall">';
-        //pr ($allMessages);
-        foreach ($firstMessages as $message) {    
-            // TODO : remove me
-            if (empty($message['User']['image'])) {
-                $message['User']['image'] = 'unknown-avatar.jpg';
-            }
+        foreach ($firstMessages as $message) {
             
-            echo '<li id="message_' .$message['Wall']['id']
-                .'" class="topThread" >'."\n";
+            $writerImage = $message['User']['image'];
+            $writerName  = $message['User']['username'];
+
+            if (empty($writerImage)) {
+                $writerImage = 'unknown-avatar.jpg';
+            }
+
+            $messageId = $message['Wall']['id'];
+            
+            echo '<li id="message_'.$messageId.'" class="topThread" >'."\n";
             echo '<div class="message root">';
             echo '<ul class="meta">'."\n";
-            echo '<li class="action">';
             
             echo '<li class="action">';
-            if ($session->read('Auth.User.id')) {
-                /* * * * * * * * * * * * * * * * *\
-                 *    _____ ___  ____   ___      *
-                 *   |_   _/ _ \|  _ \ / _ \     *
-                 *     | || | | | | | | | | |    *
-                 *     | || |_| | |_| | |_| |    *
-                 *     |_| \___/|____/ \___/     *
-                 *                               *
-                \* * * * * * * * * * * * * * * * */
-                // link to delete message
-                $canDelete = true; 
-                if($canDelete){
-                    echo $html->link(
-                        __('delete',true),
-                        array(
-                            "controller"=>"wall", 
-                            "action"=>"delete",
-                            $message['Wall']['id']
-                        ),
-                        null,
-                        __('Are you sure?', true)
-                    );
-                    echo ' - ';
-                }
-                /* * * * * * * * * * * * * * * * */
-                
-                // link for replying
-                $javascript->link('jquery.scrollTo-min.js', false);
-                $javascript->link('wall.reply.js', false);
-                echo '<a class="replyLink ' . $message['Wall']['id'] 
-                    .'" id="reply_'. $message['Wall']['id'] .'" >' 
-                    . __('reply', true). '</a> - ';
-            }
-            // link to message
-            echo '<a href="#message_'.$message['Wall']['id'].'">'
-                .'#';
-            echo '</a>';
+                $wall->createLinks(
+                    $messageId,
+                    $messagesPermissions[$messageId],
+                    true
+                ); 
             echo '</li>';
                  
             // image
+
             echo '<li class="image">';
-            echo $html->link(
-                $html->image(
-                    'profiles/'.$message['User']['image'],
-                    array(
-                        'title' => __('View this user\'s profile', true)
-                    )
-                ),
-                array('controller' => 'user', 'action' => 'profile',
-                    $message['User']['username']),
-                array('escape' => false)
-            );
+            $wall->displayMessagePosterImage($writerName, $writerImage);
             echo '</li>';
                  
             // username
             echo '<li class="author">';
-            echo $html->link(
-                $message['User']['username'],
-                array(
-                    'controller' => 'user',
-                    'action' => 'profile',
-                    $message['User']['username']
-                ),
-                array("title" => __('View this user\'s profile', true))
-            );
+            $wall->displayLinkToUserProfile($writerName);
             echo '</li>';
                         
             // date
@@ -183,14 +134,16 @@ $this->pageTitle = __('Wall', true);
             echo '</div>';
 
             // replies
-            echo '<div class="replies" id="messageBody_'
-                . $message['Wall']['id']  .'" >';
+            echo '<div class="replies" id="messageBody_'.$messageId .'" >';
             if (count($message['Reply']) >0) {
                 echo '<ul>';
                 foreach ($message['Reply'] as $reply ) {
                     echo $wall->createReplyDiv(
-                        $allMessages[$reply['id'] - 1],
-                        $allMessages, $isAuthenticated
+                        // this is because the allMessages array
+                        // is indexed with message Id
+                        $allMessages[$reply['id']],
+                        $allMessages,
+                        $messagesPermissions
                     );
                 }
                 echo '</ul>';
@@ -198,7 +151,7 @@ $this->pageTitle = __('Wall', true);
             echo '</div>';
             echo '</li>';
         }
-        echo '</ol>';
         ?>
+        </ol>
     </div>
 </div>

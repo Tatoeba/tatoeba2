@@ -38,49 +38,43 @@
 class WallHelper extends AppHelper
 {
 
-    public $helpers = array('Html', 'Form' , 'Date');
+    public $helpers = array('Html', 'Form' , 'Date', 'Javascript');
 
     /**
      * create the reply link to a given message 
      *
-     * @param int  $messageId       the id of the replied message
-     * @param bool $isAuthenticated to know if the request come from a
-     *                              connected user
+     * @param int   $messageId   the id of the replied message
+     * @param array $permissions Permissions the current user as on this message
+     * @param bool  $firstTime   to know if the first time we call it
+     *                           to add add or not the JS
      *
      * @return void
      */
 
-    private function _createLinks($messageId, $isAuthenticated)
+    public function createLinks($messageId, $permissions, $firstTime = false)
     {
-        if ($isAuthenticated) {
+        if ($permissions['canDelete']) {
+            // delete link
+            echo $this->Html->link(
+                __('delete', true),
+                array(
+                    "controller"=>"wall", 
+                    "action"=>"delete_message",
+                    $messageId
+                ),
+                null,
+                __('Are you sure?', true)
+            );
+            echo ' - ';
+        }
+        /* * * * * * * * * * * * * * * * */
             
-            /* * * * * * * * * * * * * * * * *\
-             *    _____ ___  ____   ___      *
-             *   |_   _/ _ \|  _ \ / _ \     *
-             *     | || | | | | | | | | |    *
-             *     | || |_| | |_| | |_| |    *
-             *     |_| \___/|____/ \___/     *
-             *                               *
-            \* * * * * * * * * * * * * * * * */
-            $canDelete = true;
-            if($canDelete){
-                // delete link
-                echo $this->Html->link(
-                    __('delete',true),
-                    array(
-                        "controller"=>"wall", 
-                        "action"=>"delete",
-                        $messageId
-                    ),
-                    null,
-                    __('Are you sure?', true)
-                );
-                echo ' - ';
-            }
-            /* * * * * * * * * * * * * * * * */
-            
-            
+        if ($permissions['canReply']) { 
             // reply link
+            if ($firstTime === true) {
+                $this->Javascript->link('jquery.scrollTo-min.js', false);
+                $this->Javascript->link('wall.reply.js', false);
+            }
             $replyLinkId = 'reply_' . $messageId;
             $replyClasses = 'replyLink ' . $messageId;
             echo '<a class="'.$replyClasses.'" id="'.$replyLinkId.'" >';
@@ -102,7 +96,7 @@ class WallHelper extends AppHelper
      * @return void
      */
     
-    private function _displayMessagePosterImage($userName, $userImage)
+    public function displayMessagePosterImage($userName, $userImage)
     {
         echo $this->Html->link(
             $this->Html->image(
@@ -154,7 +148,7 @@ class WallHelper extends AppHelper
      * @return void
      */
 
-    private function _displayLinkToUserProfile($userName)
+    public function displayLinkToUserProfile($userName)
     {
         echo $this->Html->link(
             $userName,
@@ -172,22 +166,23 @@ class WallHelper extends AppHelper
     /**
      * Create the ul containing all the replies and subreplies
      *
-     * @param array $message         the reply to be displayed
-     * @param array $allMessages     contains all the messages 
-     * @param bool  $isAuthenticated to know if the request come from a
-     *                               connected user
+     * @param array $message     the reply to be displayed
+     * @param array $allMessages contains all the messages 
+     * @param array $permissions permisions the current user have on each messages
      *
      * @return void
      */
-    private function _displayAllReplies($message,$allMessages,$isAuthenticated)
+    private function _displayAllReplies($message,$allMessages,$permissions)
     {
         if (!empty($message['Reply'])) {
-            echo '<ul class="toto" >';
+            echo '<ul class="toto" >'; // TODO why toto ?
             foreach ($message['Reply'] as $reply) {
                 $this->createReplyDiv(
-                    $allMessages[$reply['id'] - 1],
+                    // this is because the allMessages array
+                    // is indexed with message Id
+                    $allMessages[$reply['id']],
                     $allMessages,
-                    $isAuthenticated
+                    $permissions
                 );
             }
              echo '</ul>' ;
@@ -198,14 +193,14 @@ class WallHelper extends AppHelper
      * Create the div containing a reply to a message and all the sub reply
      * the call is recursive
      *
-     * @param array $message         the reply to be displayed
-     * @param array $allMessages     contains all the messages 
-     * @param bool  $isAuthenticated to know if the request come from a
-     *                               connected user
+     * @param array $message             the reply to be displayed
+     * @param array $allMessages         contains all the messages 
+     * @param array $messagesPermissions permisions the current user have
+     *                                   on each messages
      *
      * @return void
      */
-    public function createReplyDiv($message,$allMessages,$isAuthenticated)
+    public function createReplyDiv($message,$allMessages,$messagesPermissions)
     {
          // TODO : remove me
 
@@ -223,16 +218,16 @@ class WallHelper extends AppHelper
                     <!-- reply option -->
                     <li class="action">
                         <?php
-                        $this->_createLinks(
+                        $this->createLinks(
                             $messageId,
-                            $isAuthenticated
+                            $messagesPermissions[$messageId]
                         );
                         ?>
 
                     </li>
                     <li class="image">
                         <?php
-                        $this->_displayMessagePosterImage(
+                        $this->displayMessagePosterImage(
                             $userName,
                             $userImage
                         )
@@ -240,7 +235,7 @@ class WallHelper extends AppHelper
 
                     </li>
                     <li class="author">
-                        <?php $this-> _displayLinkToUserProfile($userName); ?>
+                        <?php $this->displayLinkToUserProfile($userName); ?>
 
                     </li>
                     <li class="date">
@@ -269,7 +264,7 @@ class WallHelper extends AppHelper
             $this->_displayAllReplies(
                 $message,
                 $allMessages,
-                $isAuthenticated
+                $messagesPermissions
             );
             ?>
 

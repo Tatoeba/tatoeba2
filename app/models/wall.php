@@ -132,6 +132,7 @@ class Wall extends AppModel
         );
     }
 
+    
     /**
      * get the X last messages posted
      *
@@ -189,6 +190,29 @@ class Wall extends AppModel
             )
         );
     }
+
+    /**
+     * Retrieve the id of one message's owner
+     *
+     * @param int $messageId Id of the message
+     *
+     * @return int The owner id
+     */
+
+    public function getOwnerIdOfMessage($messageId)
+    {
+        $result = $this->find(
+            "first",
+            array(
+                'fields' => array('owner'),
+                'conditions' => array('id' => $messageId),
+                'contain' => array()
+            )
+        );
+
+        return $result['Wall']['owner'];
+    }
+
 
 }
 ?>
