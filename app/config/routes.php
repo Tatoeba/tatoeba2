@@ -57,8 +57,11 @@
  * its action called 'display', and we pass a param to select the view file
  * to use (in this case, /app/views/pages/home.thtml)...
  */
-	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'home'));
-	Router::connect('/:lang', array('lang' => ':lang', 'controller' => 'pages', 'action' => 'display', 'home'), array('lang'=>'fre|eng|deu|spa|ita|jpn|chi'));
+	Router::connect('/', array('controller' => 'pages', 'action' => 'display', 'index'));
+	Router::connect('/:lang', array('lang' => ':lang', 'controller' => 'pages', 'action' => 'display', 'index'), array('lang'=>'fre|eng|deu|spa|ita|jpn|chi'));
+	// TODO : can we use directly "home" action instead of display ?
+    Router::connect('/home', array('controller' => 'pages', 'action' => 'display', 'home'));
+	Router::connect('/:lang/home', array('lang' => ':lang', 'controller' => 'pages', 'action' => 'display', 'home'), array('lang'=>'fre|eng|deu|spa|ita|jpn|chi'));
 /**
  * ...and connect the rest of 'Pages' controller's urls.
  */
