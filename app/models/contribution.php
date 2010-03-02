@@ -234,6 +234,27 @@ class Contribution extends AppModel
             )
         );
     }
+    
+    /**
+    * Return number of contributions for current day since midnight.   
+    * @return one value
+    */
+    
+    public function getDailyContributions()
+    {
+        $currentDate = 'Contribution.datetime >'.'\''.date('Y-m-d').' 00:00:00\'';
+        return $this->find(
+            'count',
+            array(      
+                'conditions' => array(
+                    $currentDate,
+                    'Contribution.translation_id' => null,
+                    'Contribution.action' => 'insert'
+                )
+            )        
+        );
+    }
+
 
     /**
      * update the language of all the entries for a specific sentence
@@ -257,5 +278,8 @@ class Contribution extends AppModel
         );
 
     }
+    
+    
+    
 }
 ?>

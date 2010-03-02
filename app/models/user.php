@@ -359,5 +359,19 @@ class User extends AppModel
         );
         return $user['User']['password'];
     }
+    
+    /**
+     * Return numbers of actives members.
+     *
+     * @return one value
+     */
+     
+    public function getNumberOfActiveMembers()
+    {
+        return $this->find(
+            'count',
+            array('conditions' => array('last_time_active <>' => 0))        
+        );
+    }  
 }
 ?>

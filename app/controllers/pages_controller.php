@@ -77,12 +77,7 @@ class PagesController extends AppController {
             $page = $path[0];
 
             if ($page == 'home') { // IF HOME PAGE
-                // TODO @ROBIN 
-                // c'est pour toi :)
-                //$Sentence = ClassRegistry::init('Sentences'); // Add Post Class
-                //$sentence= $Sentence->getSentenceWithId(33);    // Using the class
-                //pr($sentence);
-                $this->_home();
+                $this->_home();     
             }
         }
 
@@ -123,8 +118,19 @@ class PagesController extends AppController {
 
 
         $this->set('sentenceComments', $latestComments);
-        $this->set('commentsPermissions', $commentsPermissions);       
-
+        $this->set('commentsPermissions', $commentsPermissions);  
+        
+        /*Some numbers part*/
+        $Contribution = ClassRegistry::init('Contribution'); // Add Post Class
+        $nombreDeContribution = $Contribution->getDailyContributions(); // Using the class
+       
+        $this->set('nombreDeContribution', $nombreDeContribution);
+        
+        $User = ClassRegistry::init('User'); // Add Post Class
+        $nombreDeMembresActifs = $User->getNumberOfActiveMembers();// Using the class
+       
+        $this->set('nombreDeMembresActifs', $nombreDeMembresActifs);
+            
     }
 }
 

@@ -44,7 +44,6 @@ $selectedLanguage = $session->read('random_lang_selected');
     <?php
     if (!$session->read('Auth.User.id')) {
         ?>
-    
         <div class="module">
             <h2><?php __('Join the community!'); ?></h2>
             <?php
@@ -63,6 +62,15 @@ $selectedLanguage = $session->read('random_lang_selected');
                 );
             ?></p>
         </div>
+        <div class="module">
+            <h2><?php __('Some numbers'); ?></h2>
+            <p>
+                <?php echo $nombreDeContribution;?>
+                <?php __('Contributions today');?> <br/>
+                <?php echo $nombreDeMembresActifs;?>
+                <?php __('Actives members');?>
+            </p>
+        </div>
         
     <?php
     }
@@ -70,7 +78,9 @@ $selectedLanguage = $session->read('random_lang_selected');
     
     <div class="module">
     <h2><?php __('Number of sentences'); ?></h2>
-    <?php echo $this->element('sentences_statistics'); ?>
+    <?php 
+    echo $this->element('sentences_statistics');
+    ?>
     </div>
     
     <?php
