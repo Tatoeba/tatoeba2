@@ -76,9 +76,17 @@ class PagesController extends AppController {
         if (!empty($path[0])) {
             $page = $path[0];
 
+            if ($page == 'index') { // IF INDEX PAGE
+                /* if ($session->read('Auth.User.id')) {
+                    $this->redirect('/home');
+                }
+               */
+                $this->_index();     
+                }
             if ($page == 'home') { // IF HOME PAGE
                 $this->_home();     
             }
+
         }
 
 		if (!empty($path[0])) {
@@ -101,7 +109,7 @@ class PagesController extends AppController {
      * @return void
      */
 
-    private function _home()
+    private function _index()
     {
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
@@ -132,6 +140,28 @@ class PagesController extends AppController {
         $this->set('nombreDeMembresActifs', $nombreDeMembresActifs);
             
     }
+    
+    private function _home()
+    {
+        $userId = $this->Auth->user('id');
+        $groupId = $this->Auth->user('group_id');
+
+        /*latest comments part */
+        $SentenceComment = ClassRegistry::init('SentenceComment');
+        $latestComments = $SentenceComment->getLatestComments(5);
+
+        $commentsPermissions = $this->Permissions->getCommentsOptions(
+            $latestComments,
+            $userId,
+            $groupId
+        );
+
+
+        $this->set('sentenceComments', $latestComments);
+        $this->set('commentsPermissions', $commentsPermissions);  
+            
+    }
+
 }
 
 
