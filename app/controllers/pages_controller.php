@@ -121,7 +121,7 @@ class PagesController extends AppController
     {
         /*Some numbers part*/
         $Contribution = ClassRegistry::init('Contribution'); 
-        $nbrContributions = $Contribution->getDailyContributions(); 
+        $nbrContributions = $Contribution->getTodayContributions(); 
        
         
         $User = ClassRegistry::init('User');

@@ -363,14 +363,19 @@ class User extends AppModel
     /**
      * Return numbers of actives members.
      *
-     * @return one value
+     * @return int
      */
      
     public function getNumberOfActiveMembers()
     {
         return $this->find(
             'count',
-            array('conditions' => array('last_time_active <>' => 0))        
+            array(
+                'conditions' => array(
+                    'last_time_active <>' => 0
+                ),
+                'contain' => array()
+            )        
         );
     }  
 }

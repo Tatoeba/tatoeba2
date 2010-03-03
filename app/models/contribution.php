@@ -236,11 +236,12 @@ class Contribution extends AppModel
     }
     
     /**
-    * Return number of contributions for current day since midnight.   
-    * @return one value
+    * Return number of contributions for current day since midnight.  
+    * 
+    * @return int
     */
     
-    public function getDailyContributions()
+    public function getTodayContributions()
     {
         $currentDate = 'Contribution.datetime >'.'\''.date('Y-m-d').' 00:00:00\'';
         return $this->find(
@@ -250,7 +251,8 @@ class Contribution extends AppModel
                     $currentDate,
                     'Contribution.translation_id' => null,
                     'Contribution.action' => 'insert'
-                )
+                ),
+                'contain' => array()
             )        
         );
     }
