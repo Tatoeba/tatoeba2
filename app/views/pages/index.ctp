@@ -41,91 +41,41 @@ $selectedLanguage = $session->read('random_lang_selected');
 
 ?>
 <div id="annexe_content">
-    <?php
-    if (!$session->read('Auth.User.id')) {
+    <div class="module">
+        <h2><?php __('Join the community!'); ?></h2>
+        <?php
+        __(
+            "The more contributors there are, the more useful Tatoeba will ".
+            "become! Besides, by contributing, not only you will be helpful ".
+            "to the rest of the world, but you will also get to learn a lot."
+        );
         ?>
-        <div class="module">
-            <h2><?php __('Join the community!'); ?></h2>
+        <p>
             <?php
-            __(
-                "The more contributors there are, the more useful Tatoeba will ".
-                "become! Besides, by contributing, not only you will be helpful ".
-                "to the rest of the world, but you will also get to learn a lot."
+            echo $html->link(
+                __('Register', true),
+                array("controller" => "users", "action" => "register"),
+                array("class" => "registerButton")
             );
             ?>
-            <p>
-                <?php
-                echo $html->link(
-                    __('Register', true),
-                    array("controller" => "users", "action" => "register"),
-                    array("class" => "registerButton")
-                );
-            ?></p>
-        </div>
-        <div class="module">
-            <h2><?php __('Some numbers'); ?></h2>
-            <p>
-                <?php echo $nombreDeContribution;?>
-                <?php __('Contributions today');?> <br/>
-                <?php echo $nombreDeMembresActifs;?>
-                <?php __('Actives members');?>
-            </p>
-        </div>
-        
-    <?php
-    }
-    ?>
+        </p>
+    </div>
+    <div class="module">
+        <h2><?php __('Some numbers'); ?></h2>
+        <p>
+            <?php echo $nombreDeContribution; ?>
+            <?php __('Contributions today'); ?> <br/>
+            <?php echo $nombreDeMembresActifs; ?>
+            <?php __('Actives members'); ?>
+        </p>
+    </div>
     
     <div class="module">
-    <h2><?php __('Number of sentences'); ?></h2>
-    <?php 
-    echo $this->element('sentences_statistics');
-    ?>
-    </div>
-    <?php
-    /*
-    if ($session->read('Auth.User.id')) {
+        <h2><?php __('Number of sentences'); ?></h2>
+        <?php 
+        echo $this->element('sentences_statistics');
         ?>
-        
-        <div class="module">
-            <h2><?php __('Your stats'); ?></h2>
-            <ul>
-            <?php
-            // TODO  HACK SPOTTED , requestAction is hackish ! 
-            $userStats = $this->requestAction(
-                '/user/stats/' . $session->read('Auth.User.id')
-            );
-            echo '<li>';
-            echo sprintf(
-                __("<a href='%s'><strong>%s</strong> sentences</a>", true),
-                $html->url(
-                    array("controller" => "sentences", "action" => "my_sentences")
-                ),
-                $userStats['numberOfSentences']
-            );
-            echo '</li>';
-                
-            echo '<li>';
-            echo sprintf(
-                __("<strong>%s</strong> comments", true),
-                $userStats['numberOfComments'] 
-            );
-            echo '</li>';
-                
-            echo '<li>';
-            echo sprintf(
-                __("<strong>%s</strong> contributions", true),
-                $userStats['numberOfContributions']
-            );
-            echo '</li>';
-            ?>
-            </ul>
-        </div>
-        
-    <?php
-    }
-    */
-    ?>
+    </div>
 </div>
 
 <div id="main_content">
@@ -152,19 +102,19 @@ $selectedLanguage = $session->read('random_lang_selected');
             <span class="sub-keyword"><?php __('languages'); ?></span>
             <ul>
                 <li>
-                <?php
-                echo $html->link(
-                    __('Search sentences', true), 
-                    array("controller"=>"pages", "action"=>"search")
-                );
-                ?>
+                    <?php
+                    echo $html->link(
+                        __('Search sentences', true), 
+                        array("controller"=>"pages", "action"=>"search")
+                    );
+                    ?>
                 </li>
                 <li>
-                <?php
-                echo $html->link(
-                    __('Create lists', true),
-                    array("controller"=>"sentences_lists")
-                );
+                    <?php
+                    echo $html->link(
+                        __('Create lists', true),
+                        array("controller"=>"sentences_lists")
+                    );
                 ?>
                 </li>
             </ul>
@@ -175,20 +125,26 @@ $selectedLanguage = $session->read('random_lang_selected');
             <span class="sub-keyword"><?php __('your knowledge'); ?></span>
             <ul>
                 <li>
-                <?php
-                echo $html->link(
-                    __('Translate sentences', true),
-                    array("controller"=>"pages", "action"=>"help#translating")
-                );
-                ?>
+                    <?php
+                    echo $html->link(
+                        __('Translate sentences', true),
+                        array(
+                            "controller"=>"pages",
+                            "action"=>"help#translating"
+                        )
+                    );
+                    ?>
                 </li>
                 <li>
-                <?php
-                echo $html->link(
-                    __('Correct the mistakes', true),
-                    array("controller"=>"pages", "action"=>"help#correcting")
-                );
-                ?>
+                    <?php
+                    echo $html->link(
+                        __('Correct the mistakes', true),
+                        array(
+                            "controller"=>"pages",
+                            "action"=>"help#correcting"
+                        )
+                    );
+                    ?>
                 </li>
             </ul>
         </div>
@@ -198,20 +154,23 @@ $selectedLanguage = $session->read('random_lang_selected');
             <span class="sub-keyword"><?php __('with the community'); ?></span>
             <ul>
                 <li>
-                <?php
-                echo $html->link(
-                    __('Post comments', true),
-                    array("controller"=>"sentence_comments")
-                );
-                ?>
+                    <?php
+                    echo $html->link(
+                        __('Post comments', true),
+                        array("controller"=>"sentence_comments")
+                    );
+                    ?>
                 </li>
                 <li>
-                <?php
-                echo $html->link(
-                    __('Contact other members', true),
-                    array("controller"=>"users", "action"=>"all")
-                );
-                ?>
+                    <?php
+                    echo $html->link(
+                        __('Contact other members', true),
+                        array(
+                            "controller"=>"users",
+                            "action"=>"all"
+                        )
+                    );
+                    ?>
                 </li>
             </ul>
         </div>

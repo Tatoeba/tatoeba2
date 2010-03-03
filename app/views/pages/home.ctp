@@ -62,16 +62,6 @@ $selectedLanguage = $session->read('random_lang_selected');
                 );
             ?></p>
         </div>
-        <div class="module">
-            <h2><?php __('Some numbers'); ?></h2>
-            <p>
-                <?php echo $nombreDeContribution;?>
-                <?php __('Contributions today');?> <br/>
-                <?php echo $nombreDeMembresActifs;?>
-                <?php __('Actives members');?>
-            </p>
-        </div>
-        
     <?php
     }
     ?>
@@ -160,161 +150,60 @@ $selectedLanguage = $session->read('random_lang_selected');
 
 <div id="main_content">
 
-    <?php
-    if (!$session->read('Auth.User.id')) {
-        ?>
-        <div class="main_module">
-            <h2><?php __('What is Tatoeba?'); ?></h2>
-            <p>
-                <?php
-                __(
-                    'At its core, Tatoeba is a large database of <strong>example '.
-                    'sentences</strong> translated into several languages. '.
-                    'But as a whole, it is much more than that.'
-                );
-                // TODO : write something in the "About"
-                // echo ' ' . $html->link(__('Learn more...',true), 
-                //     array('controller' => 'pages', 'action' => 'about'));
-            ?>
-            </p>
-        </div>
-
-        <div class="module">
-            <h2><?php __('What can I do in Tatoeba?'); ?></h2>
-            <div class="keyIdea">
-                <span class="keyword"><?php __('Learn'); ?></span> 
-                <span class="sub-keyword"><?php __('languages'); ?></span>
-                <ul>
-                    <li>
-                    <?php
-                    echo $html->link(
-                        __('Search sentences', true), 
-                        array("controller"=>"pages", "action"=>"search")
-                    );
-                    ?>
-                    </li>
-                    <li>
-                    <?php
-                    echo $html->link(
-                        __('Create lists', true),
-                        array("controller"=>"sentences_lists")
-                    );
-                    ?>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="keyIdea">
-                <span class="keyword"><?php __('Share'); ?></span> 
-                <span class="sub-keyword"><?php __('your knowledge'); ?></span>
-                <ul>
-                    <li>
-                    <?php
-                    echo $html->link(
-                        __('Translate sentences', true),
-                        array("controller"=>"pages", "action"=>"help#translating")
-                    );
-                    ?>
-                    </li>
-                    <li>
-                    <?php
-                    echo $html->link(
-                        __('Correct the mistakes', true),
-                        array("controller"=>"pages", "action"=>"help#correcting")
-                    );
-                    ?>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="keyIdea">
-                <span class="keyword"><?php __('Interact'); ?></span> 
-                <span class="sub-keyword"><?php __('with the community'); ?></span>
-                <ul>
-                    <li>
-                    <?php
-                    echo $html->link(
-                        __('Post comments', true),
-                        array("controller"=>"sentence_comments")
-                    );
-                    ?>
-                </li>
-                <li>
-                    <?php
-                    echo $html->link(
-                        __('Contact other members', true),
-                        array("controller"=>"users", "action"=>"all")
-                    );
-                    ?>
-                </li>
-            </ul>
-        </div>
-        </div>
-
-    <?php
-    }
-    ?>
-
     <div class="module">
         <?php echo $this->element('random_sentence'); ?>
     </div>
 
-    <?php
-    if ($session->read('Auth.User.id')) {
-        ?>
-        <div class="module">
-            <h2>
-                <?php __('Latest contributions'); ?> 
-                <span class="annexe">
-                    (
-                        <?php
-                        echo $html->link(
-                            __('show more...', true),
-                            array("controller"=>"contributions")
-                        ); 
-                        ?>
-                    ) (
-                        <?php 
-                        echo $html->link(
-                            __('show activity timeline', true),
-                            array(
-                                "controller"=>"contributions",
-                                "action"=>"activity_timeline"
-                            )
-                        );
-                        ?>
-                    )
-                </span>
-            </h2>
-            <?php echo $this->element('latest_contributions'); ?>
-        </div>
-
-        <div class="module">
-            <h2>
-                <?php __('Latest comments'); ?>
-                <span class="annexe">
-                    (
-                        <?php
-                        echo $html->link(
-                            __('show more...', true),
-                            array("controller"=>"sentence_comments")
-                        ); 
-                        ?>
-                    )
-                </span>
-            </h2>
-            <?php
-            echo $this->element(
-                'latest_sentence_comments',
-                array(
-                    'sentenceComments' => $sentenceComments,
-                    'commentsPermissions' => $commentsPermissions
+    <div class="module">
+        <h2>
+            <?php __('Latest contributions'); ?> 
+            <span class="annexe">
+                (
+                    <?php
+                    echo $html->link(
+                        __('show more...', true),
+                        array("controller"=>"contributions")
+                    ); 
+                    ?>
+                ) (
+                    <?php 
+                    echo $html->link(
+                        __('show activity timeline', true),
+                        array(
+                            "controller"=>"contributions",
+                            "action"=>"activity_timeline"
+                        )
+                    );
+                    ?>
                 )
-            ); 
-            ?>
-        </div>
-    <?php
-    }
-    ?>
+            </span>
+        </h2>
+            <?php echo $this->element('latest_contributions'); ?>
+    </div>
+
+    <div class="module">
+        <h2>
+            <?php __('Latest comments'); ?>
+            <span class="annexe">
+                (
+                    <?php
+                    echo $html->link(
+                        __('show more...', true),
+                        array("controller"=>"sentence_comments")
+                    ); 
+                    ?>
+                )
+            </span>
+        </h2>
+        <?php
+        echo $this->element(
+            'latest_sentence_comments',
+            array(
+                'sentenceComments' => $sentenceComments,
+                'commentsPermissions' => $commentsPermissions
+            )
+        ); 
+        ?>
+    </div>
 </div>
 

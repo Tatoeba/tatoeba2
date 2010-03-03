@@ -77,13 +77,17 @@ class PagesController extends AppController {
             $page = $path[0];
 
             if ($page == 'index') { // IF INDEX PAGE
-                /* if ($session->read('Auth.User.id')) {
-                    $this->redirect('/home');
+                if ($this->Auth->user('id')) {
+                    $this->redirect(
+                        array(
+                            "action" => "display",
+                            "home"
+                        )
+                    );
                 }
-               */
                 $this->_index();     
-                }
-            if ($page == 'home') { // IF HOME PAGE
+
+            } else if ($page == 'home') { // IF HOME PAGE
                 $this->_home();     
             }
 
@@ -114,19 +118,6 @@ class PagesController extends AppController {
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
 
-        /*latest comments part */
-        $SentenceComment = ClassRegistry::init('SentenceComment');
-        $latestComments = $SentenceComment->getLatestComments(5);
-
-        $commentsPermissions = $this->Permissions->getCommentsOptions(
-            $latestComments,
-            $userId,
-            $groupId
-        );
-
-
-        $this->set('sentenceComments', $latestComments);
-        $this->set('commentsPermissions', $commentsPermissions);  
         
         /*Some numbers part*/
         $Contribution = ClassRegistry::init('Contribution'); // Add Post Class
