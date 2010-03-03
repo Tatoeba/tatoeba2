@@ -1,38 +1,41 @@
 <?php
 /**
- * Static content controller.
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2010 Allan SIMON <allan.simon@supinfo.com>
  *
- * This file will render views from views/pages/
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
  *
- * PHP versions 4 and 5
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
  *
- * CakePHP(tm) :  Rapid Development Framework <http://www.cakephp.org/>
- * Copyright 2005-2008, Cake Software Foundation, Inc.
- *                                1785 E. Sahara Avenue, Suite 490-204
- *                                Las Vegas, Nevada 89104
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
+ * PHP version 5
  *
- * @filesource
- * @copyright        Copyright 2005-2008, Cake Software Foundation, Inc.
- * @link                http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
- * @package            cake
- * @subpackage        cake.cake.libs.controller
- * @since            CakePHP(tm) v 0.2.9
- * @version            $Revision: 7118 $
- * @modifiedby        $LastChangedBy: gwoo $
- * @lastmodified    $Date: 2008-06-04 13:49:29 -0700 (Wed, 04 Jun 2008) $
- * @license            http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @category PHP
+ * @package  Tatoeba
+ * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
  */
+
 /**
- * Static content controller
+ * Controller for static content
+ * used to render the files in views/pages/*
  *
- * Override this controller by placing a copy in controllers directory of an application
- *
- * @package        cake
- * @subpackage    cake.cake.libs.controller
+ * @category Contributions
+ * @package  Controllers
+ * @author   Allan SIMON <allan.simon@supinfo.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
  */
+
 class PagesController extends AppController
 {
     /**
@@ -66,6 +69,7 @@ class PagesController extends AppController
      */
     public function display($path)
     {
+        $path = func_get_args();
 
         if (!count($path)) {
             $this->redirect('/');
@@ -115,20 +119,16 @@ class PagesController extends AppController
 
     private function _index()
     {
-        $userId = $this->Auth->user('id');
-        $groupId = $this->Auth->user('group_id');
-
-        
         /*Some numbers part*/
         $Contribution = ClassRegistry::init('Contribution'); 
         $nbrContributions = $Contribution->getDailyContributions(); 
        
         
-        $User = ClassRegistry::init('User'); // Add Post Class
-        $nombreDeMembresActifs = $User->getNumberOfActiveMembers();
+        $User = ClassRegistry::init('User');
+        $nbrActiveMembers = $User->getNumberOfActiveMembers();
        
-        $this->set('nombreDeMembresActifs', $nombreDeMembresActifs); 
-        $this->set('nombreDeContribution', $nbrContributions);
+        $this->set('nbrActiveMembers', $nbrActiveMembers); 
+        $this->set('nbrContributions', $nbrContributions);
     }
  
      /**

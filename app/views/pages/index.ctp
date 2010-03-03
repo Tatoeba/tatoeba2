@@ -63,10 +63,26 @@ $selectedLanguage = $session->read('random_lang_selected');
     <div class="module">
         <h2><?php __('Some numbers'); ?></h2>
         <p>
-            <?php echo $nombreDeContribution; ?>
-            <?php __('Contributions today'); ?> <br/>
-            <?php echo $nombreDeMembresActifs; ?>
-            <?php __('Actives members'); ?>
+            <?php
+            echo sprintf(
+                __('%s Contribution(s) today', true),
+                $nbrContributions
+            );
+            echo "<br />";
+            echo sprintf(
+                __('%s active members', true),
+                $nbrActiveMembers
+            );
+            echo "<br />";
+            echo $html->link(
+                __('View more', true),
+                array(
+                    "controller" => "pages",
+                    "action" => "display",
+                    "home"
+                )
+            );
+            ?>
         </p>
     </div>
     
