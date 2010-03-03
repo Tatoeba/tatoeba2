@@ -37,13 +37,31 @@
 class SentencesController extends AppController
 {
     public $name = 'Sentences';
-    public $components = array ('GoogleLanguageApi', 'Lucene', 'Permissions');
-    public $helpers = array(
-        'Sentences', 'Html', 'Logs', 'Pagination', 'Comments', 'Navigation',
-        'Languages', 'Javascript'
+    public $components = array (
+        'GoogleLanguageApi',
+        'Lucene',
+        'Permissions'
     );
-    public $paginate = array('limit' => 100, "order" => "Sentence.modified DESC");
-    public $uses = array('Sentence','Translation','Contribution','SentenceComment');
+    public $helpers = array(
+        'Sentences',
+        'Html',
+        'Logs',
+        'Pagination',
+        'Comments',
+        'Navigation',
+        'Languages',
+        'Javascript'
+    );
+    public $paginate = array(
+        'limit' => 100,
+        "order" => "Sentence.modified DESC"
+    );
+    public $uses = array(
+        'Sentence',
+        'Translation',
+        'Contribution',
+        'SentenceComment'
+    );
     
     /**
      * Before filter.
