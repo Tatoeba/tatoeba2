@@ -39,7 +39,7 @@ $this->pageTitle = __('Wall', true);
         <p>
             <?php
             __(
-                'Here you can ask general questions like how to use Tatoeba,' .
+                'Here you can ask general questions like how to use Tatoeba, ' .
                 'report bugs or strange behaviors, or simply socialize with the'.
                 ' rest of the community.'
             );
