@@ -144,19 +144,12 @@ if (isset($myLists)) {
             }
             echo '</ul>';
         } else {
-
             echo '<h2>';
             __('Create a new list');
             echo '</h2>';
             echo $form->create('SentencesList');            
-            ?>
-            <table>
-                <tr>
-                    <td class="input"><?php echo $form->input('name'); ?></td>
-                    <td class="submit"><?php echo $form->end('Create'); ?></td>
-                </tr>
-            </table>
-        <?php
+            echo $form->input('name');
+            echo $form->end('Create');
         }
     echo '</div>';
 }

@@ -17,11 +17,12 @@
 */
 
 #SentencesListAddForm div.submit, #SentencesListAddForm div.input{
+    display: inline;
 }
 
 #SentencesListAddForm div.input input{
-	margin: 10px 0px;
-	width: 100%;
+	margin: 10px;
+	width: 60%;
 }
 
 .sentencesLists li{
