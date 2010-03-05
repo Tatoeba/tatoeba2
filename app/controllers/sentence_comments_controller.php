@@ -60,8 +60,6 @@ class SentenceCommentsController extends AppController
         // TODO does it mean visitors can save comments if they figure out how
         $this->Auth->allowedActions = array(
             'index',
-            'save', // TODO to remove
-            'delete_comment', // TODO to remove
             'show',
             'latest'
         );

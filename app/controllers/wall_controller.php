@@ -61,8 +61,6 @@ class WallController extends Appcontroller
         // TODO set correct right
         $this->Auth->allowedActions = array(
             'index',
-            'save', // TODO to remove
-            'save_inside', // TODO to remove
             'delete_message'
         );
            
