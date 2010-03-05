@@ -173,10 +173,13 @@ class PermissionsComponent extends Object
         $rightsOnComment = array(
             "canDelete" => false
         );
-        // TODO add functions to determine options
-        if ($ownerId === $currentUserId
-            || $currentUserGroup < 2 // TODO replace 2 by an explicit constant 
-        ) {
+        if (empty($currentUserId) || empty($currentUserGroup)) {
+            return $rightsOnComment;
+        }
+
+        if ($ownerId === $currentUserId) {
+            $rightsOnComment['canDelete'] = true; 
+        } elseif ($currentUserGroup < 2) {
             $rightsOnComment['canDelete'] = true; 
         }
         
@@ -205,16 +208,19 @@ class PermissionsComponent extends Object
             "canDelete" => false
         );
         // TODO add functions to determine options
-        if (($ownerId === $currentUserId || $currentUserGroup < 2)
-            && empty($message['Reply']) // TODO replace 2
-        ) {
-            
-            $rightsOnWallMessage['canDelete'] = true; 
+        if (empty($currentUserId) || empty($currentUserGroup)) {
+            return $rightsOnWallMessage;
         }
 
-        if (!empty($currentUserId)) {
-            $rightsOnWallMessage['canReply'] = true;
+        if (empty($message['Reply'])) {
+            if ($ownerId === $currentUserId) {
+                $rightsOnWallMessage['canDelete'] = true; 
+            } elseif ($currentUserGroup < 2) {
+                $rightsOnWallMessage['canDelete'] = true; 
+            }
         }
+
+        $rightsOnWallMessage['canReply'] = true;
         
         return $rightsOnWallMessage;
     }
