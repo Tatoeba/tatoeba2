@@ -199,8 +199,8 @@ class SentencesHelper extends AppHelper
         $editableSentence = '';
         $editableFlag = false;
         $tooltip = __(
-            'This sentence does not belong to anyone. 
-            If you would like to edit it, you have to adopt it first.', true
+            'This sentence does not belong to anyone. '.
+            'If you would like to edit it, you have to adopt it first.', true
         );
         $linkStyle = '';
         $divStyle = 'display:none;';
