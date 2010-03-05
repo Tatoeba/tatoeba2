@@ -54,7 +54,7 @@ class Sentence extends AppModel
         'vie' ,'cmn' ,'ces' ,'fin' ,'ita',
         'tur' ,'ukr' ,'wuu' ,'swe' ,'zsm',
         'nob' ,'est' ,'kat' ,'pol' ,'swh',
-        null
+        'lat' ,null
         );    
     public $validate = array(
         'lang' => array(

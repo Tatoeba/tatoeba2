@@ -74,6 +74,7 @@ class LanguagesHelper extends AppHelper
             'kat' => __('Georgian', true),
             'pol' => __('Polish', true), 
             'swh' => __('Swahili', true), 
+            'lat' => __('Latin', true), 
             'wuu' => __('Shanghainese', true)
             // TODO to change when shanghainese will not be the only wu dialect
         );
