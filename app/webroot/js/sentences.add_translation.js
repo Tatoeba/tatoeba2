@@ -29,6 +29,19 @@ $(document).ready(function() {
         var sentenceId = $(this).parent().attr("id").slice(1);
         var sentenceLang = $(this).parent().attr("lang");
         
+        var submitHandler = function(){
+            save();
+        };
+        var keypressHandler = function(e){
+            if(e.keyCode == 13) {
+                save();
+            }
+        }
+        var cancelHandler = function(){
+            $("#_" + sentenceId + "_translations").show();
+            $(".addTranslations").hide();
+        }
+        
         function save(){
             var sentenceText = $("#_" + sentenceId + "_text").val();
             var selectLang = $("#translationLang_" + sentenceId).val();
@@ -52,6 +65,17 @@ $(document).ready(function() {
                         $("#_" + sentenceId + "_loading").hide();
                         $("#_" + sentenceId + "_translations").prepend(data);
                         $("#_" + sentenceId + "_text").val('');
+                        
+                        // unbind stuff...
+                        $("#_" + sentenceId + "_submit").unbind(
+                            'click', submitHandler
+                        );
+                        $("#translation_for_" + sentenceId + " li input").unbind(
+                            'keypress', keypressHandler
+                        );
+                        $("#_" + sentenceId + "_cancel").unbind(
+                            'click', cancelHandler
+                        );
                     },
                     "html"
                 );
@@ -59,33 +83,22 @@ $(document).ready(function() {
             }
         }
         
-        $(".same_language_warning").remove();
-        
         // Displaying translation input and hiding translations
         $("#translation_for_" + sentenceId).show();
         $("#_" + sentenceId + "_text").focus();
         $("#_" + sentenceId + "_translations").hide();
         
         // Submitting translation by clicking on button
-        $("#_" + sentenceId + "_submit").click(function(){
-            save();
-        });
+        $("#_" + sentenceId + "_submit").click(submitHandler);
         
         // Submitting translation by pressing enter
         // NOTE : this is annoying when entering Japanese or Chinese because
         // enter is used to validate the choice of kanjis
         // NOTE2: on Linux it's space which is used to validate
-        $("#translation_for_" + sentenceId + " li input").keypress(function(e){
-            if(e.keyCode == 13) {
-                save();
-            }
-        });
+        $("#translation_for_" + sentenceId + " li input").keypress(keypressHandler);
         
         // Cancel
-        $("#_" + sentenceId + "_cancel").click(function(){
-            $("#_" + sentenceId + "_translations").show();
-            $(".addTranslations").hide();
-        });
+        $("#_" + sentenceId + "_cancel").click(cancelHandler);
     });
 
 });
