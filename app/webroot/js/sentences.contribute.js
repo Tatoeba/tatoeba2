@@ -34,7 +34,7 @@ $(document).ready(function() {
 		var sentenceText = $("#newSentenceText").val();
         var selectedLang = $("#contributionLang").val();
 		if ($.trim(sentenceText) != '') {
-            $(".loading").show();
+            $(".sentencesAddedloading").show();
             
             $.post(
                 "http://" + self.location.hostname + ":" + self.location.port + "/sentences/save_sentence",
@@ -43,8 +43,8 @@ $(document).ready(function() {
                     "selectedLang": selectedLang
                 },
                 function(data){			
+                    $(".sentencesAddedloading").hide();
                     $("#sentencesAdded").prepend(data);
-                    $(".loading").hide();
                     $("#newSentenceText").val("");
                 },
                 "html"

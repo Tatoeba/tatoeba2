@@ -71,7 +71,7 @@ $javascript->link('sentences.contribute.js', false);
         __('Sentences added');
         echo '</h2>';
         
-        echo '<div class="loading" style="display:none">';
+        echo '<div class="sentencesAddedloading" style="display:none">';
         echo $html->image('loading.gif');
         echo '</div>';
         
