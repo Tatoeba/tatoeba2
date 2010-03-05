@@ -38,6 +38,39 @@
 
 <div id="main_content">
     <div class="module">
+        <h2>
+            <?php 
+            echo $paginator->counter(
+                array(
+                    'format' => __(
+                        'Comments on sentences (total %count%)',
+                        true
+                    )
+                )
+            ); 
+            ?>
+        </h2>
+        
+        <div class="paging">
+        <?php 
+        echo $paginator->prev(
+            '<< '.__('previous', true), 
+            array(), 
+            null, 
+            array('class'=>'disabled')
+        ); 
+        ?>
+        <?php echo $paginator->numbers(array('separator' => '')); ?>
+        <?php 
+        echo $paginator->next(
+            __('next', true).' >>',
+            array(),
+            null, 
+            array('class'=>'disabled')
+        ); 
+        ?>
+        </div>
+        
         <?php
         echo '<ol class="comments">';
         foreach ($sentenceComments as $i=>$comment) {
@@ -49,6 +82,27 @@
         }
         echo '</ol>';
         ?>
+        
+        <div class="paging">
+        <?php 
+        echo $paginator->prev(
+            '<< '.__('previous', true), 
+            array(), 
+            null, 
+            array('class'=>'disabled')
+        ); 
+        ?>
+        <?php echo $paginator->numbers(array('separator' => '')); ?>
+        <?php 
+        echo $paginator->next(
+            __('next', true).' >>', 
+            array(), 
+            null, 
+            array('class'=>'disabled')
+        ); 
+        ?>
+        </div>
+        
     </div>
 </div>
 

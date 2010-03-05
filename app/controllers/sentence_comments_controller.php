@@ -46,6 +46,11 @@ class SentenceCommentsController extends AppController
         'Html'
     );
     public $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
+    public $paginate = array(
+        'limit' => 100,
+        "order" => "SentenceComment.created DESC"
+    );
+    
     
     /**
      * Before filter.
@@ -72,12 +77,9 @@ class SentenceCommentsController extends AppController
      */
     public function index()
     {
-        $numberOfComments = 100;
         $permissions = array();
 
-        $latestComments = $this->SentenceComment->getLatestComments(
-            $numberOfComments
-        );
+        $latestComments = $this->paginate();
 
         $permissions = $this->Permissions->getCommentsOptions(
             $latestComments,
