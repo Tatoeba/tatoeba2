@@ -116,6 +116,7 @@ class GoogleLanguageApiComponent extends Object
             case 'tr' :     return 'tur';
             case 'uk' :     return 'ukr';
             case 'vi' :     return 'vie';
+            case 'sw' :     return 'swh';
             case 'zh-CN' :  return 'cmn';
             case 'zh-TW' :  return 'cmn';
         }
