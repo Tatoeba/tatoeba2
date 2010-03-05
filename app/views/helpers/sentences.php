@@ -232,7 +232,7 @@ class SentencesHelper extends AppHelper
         if ($inBrowseMode) {
             $divStyle = '';
             $toggle = '';
-        }else{
+        } else {
             echo $this->Html->link(
                 $sentence['text'],
                 array(
