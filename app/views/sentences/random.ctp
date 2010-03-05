@@ -31,6 +31,8 @@ echo $javascript->link('favorites.add.js', true);
 echo $javascript->link('sentences_lists.menu.js', true);
 echo $javascript->link('jquery.impromptu.js', true);
 echo $javascript->link('sentences.adopt.js', true);
+echo $javascript->link('jquery.jeditable.js', true);
+echo $javascript->link('sentences.edit_in_place.js', true);
 
 $sentence = $random['Sentence'];
 $specialOptions = $random['specialOptions'];
@@ -38,6 +40,8 @@ $specialOptions = $random['specialOptions'];
 echo '<div class="sentences_set">';
     // TODO set up a better mechanism
     $specialOptions['belongsTo'] = $random['User']['username']; 
+    $random['User']['canEdit'] = $specialOptions['canEdit']; 
+    
     $sentences->displayMenu(
         $sentence['id'], 
         $sentence['lang'], 

@@ -25,6 +25,7 @@ $(document).ready(function(){
     $(".adopt").click(function(){
         var adopt_id = $(this).parent().attr("id").slice(1);
         var adopt_option = $(this);
+        var lang = $("#_"+adopt_id).attr("lang");
         
         /*******************************
         / the sentence can be adopted
@@ -48,6 +49,21 @@ $(document).ready(function(){
                             
                             adopt_option.html(data);
                             adopt_option.removeClass("add").addClass("remove");
+                            
+                            $(".toggleOriginalSentence").toggle();
+                            $("#"+lang+"_"+adopt_id).addClass("editable");
+                            $("#"+lang+"_"+adopt_id).addClass("editableSentence");
+                            
+                            $('.editableSentence').editable(
+                                'http://' + self.location.hostname + ":" 
+                                + self.location.port + '/sentences/save_sentence', { 
+                                type      : 'text',
+                                cancel    : 'Cancel',
+                                submit    : 'OK',
+                                indicator : '<img src="/img/loading.gif">',
+                                tooltip   : 'Click to edit...',
+                                cssclass  : 'editInPlaceForm'
+                            });
                             
                         }
                     }
@@ -81,6 +97,11 @@ $(document).ready(function(){
                         if ( data[1] == "a" ){
                             adopt_option.html(data);
                             adopt_option.removeClass("remove").addClass("add");
+                            
+                            $(".toggleOriginalSentence").toggle();
+                            $("#"+lang+"_"+adopt_id).removeClass("editable");
+                            $("#"+lang+"_"+adopt_id).removeClass("editableSentence");
+                            $("#"+lang+"_"+adopt_id).editable('disable');
                         }
 
                     }

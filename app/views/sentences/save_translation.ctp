@@ -27,12 +27,6 @@
 ?>
 
 <?php
-/*
- * WARNING : this is loaded only if the sentence is of the same language
- * as the original sentence. The view that is loaded when adding a
- * translation in another language is check_translation.ctp.
- */
-
 if (isset($translation_text)) {
 
     echo $javascript->link('jquery.jeditable.js', true);
