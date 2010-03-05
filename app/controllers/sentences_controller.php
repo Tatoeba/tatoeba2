@@ -207,6 +207,7 @@ class SentencesController extends AppController
         $userId = $this->Auth->user('id');
         $sentenceLang = $this->data['Sentence']['contributionLang'];
         $sentenceText = $this->data['Sentence']['text'];
+        
         Sanitize::html($sentenceText);
         $sentenceText = rtrim($sentenceText);
 
@@ -272,13 +273,16 @@ class SentencesController extends AppController
         // TODO : to be split in 2 method
         // * add_sentence 
         // * edit_sentence
+        // Trang explained me something about this
+        // need to find the mail
+        //pr ($_POST);
         $userId = $this->Auth->user('id');
         $sentenceText = $_POST['value'];
         $sentenceLang = $_POST['selectedLang'];
         $sentenceId = $_POST['id'];
 
-        $this->Session->write('contribute_lang', $translationLang);
-        
+        $this->Session->write('contribute_lang', $sentenceLang);
+
         if (isset($sentenceText)
             && rtrim($sentenceText != '')
         ) {
