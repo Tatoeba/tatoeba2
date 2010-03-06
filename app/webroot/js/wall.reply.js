@@ -39,7 +39,7 @@ $(document).ready(function(){
     function saveMessage(){
         var messageContent = $("#replyFormDiv_" + previousReplyFormInMessageID ).find("textarea").val();
         
-        $("#replyFormDiv_" + previousReplyFormInMessageID ).html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
+        $("#replyFormDiv_" + previousReplyFormInMessageID ).html("<img src='/img/loading.gif' alt='loading'>");
         
         
         $.post("http://" + self.location.hostname + ":" + self.location.port + "/wall/save_inside"
