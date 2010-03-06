@@ -87,32 +87,39 @@ $menuElements = array(
         <ul>
 
         <?php
-        // displaying the menu
+        // current path param
+        $param = '';
+        if (isset($this->params['pass'][0])) {
+            $param = $this->params['pass'][0];
+        };
+        
+        // current path action
+        $action = $this->params['action'];
+        if ($action == 'display') {
+            $action = $param;
+        }
+        
+        // current path controller
+        $controller = $this->params['controller'];
+        
         foreach ($menuElements as $title => $route) {
             $cssClass = '';
             
             //Checking if we should apply the "current" CSS class to the <li> element
             if (is_array($route)) { // categories other than Home
-                if (isset($this->params['pass'][0])
-                    AND isset($route['action'])
-                    AND $this->params['pass'][0] == $route['action']
-                ) {
-                    $cssClass = 'class="show"';
-                } elseif ($this->params['controller'] == $route['controller']) {
+                if ($controller == $route['controller']) {
                     if (isset($route['action'])) {
-                        if ($this->params['action'] == $route['action']) {
+                        if ($action == $route['action']) {
                             $cssClass = 'class="show"';
                         }
                     } else {
-                        if ($this->params['action'] == 'index') {
+                        if ($action == 'index') {
                             $cssClass = 'class="show"';
                         }
                     }
                 }
             } else { // Home
-                if (isset($this->params['pass'][0])
-                    AND $this->params['pass'][0] == 'home'
-                ) {
+                if (isset($param) && ($param == 'home' || $param == 'index')) {
                     $cssClass = 'class="show"';
                 }
             }

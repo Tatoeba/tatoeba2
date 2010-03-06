@@ -36,7 +36,6 @@ a {
 
 a:hover {
 	cursor: pointer;
-	text-decoration:underline;
 }
 
 
@@ -71,7 +70,6 @@ fieldset{
 
 div#top_menu_container {
 	background-color:#414141;
-	color:#FFFFFF;
 	border-bottom:1px solid #000000;
 }
 
@@ -83,13 +81,12 @@ div#top_menu {
 
 
 div#top_menu a, div#top_menu .login_pseudo_link {
-	color:#FFFFFF;
+    color:#FFFFFF;
 	cursor:pointer;
 }
 
 div#top_menu ul li a:hover, div#top_menu a:hover, div#top_menu .login_pseudo_link:hover {
 	color:#FB6B10;
-	text-decoration:underline;
 }
 
 div#navigation_menu {
@@ -112,16 +109,19 @@ div#navigation_menu ul li {
 
 div#navigation_menu ul li.show {
 	font-weight:bold;
-	font-size:1em;
+	font-size:1.2em;
 }
 
 div#navigation_menu ul li.show a {
-	color:#FFFFFF;
 }
 
 div#navigation_menu ul li a.whats_new {
+    font-weight:bold;
 	color:#FFCC00;
-	font-weight:bold;
+}
+
+div#navigation_menu ul li a:hover.whats_new {
+	color:#FB6B10;
 }
 
 
