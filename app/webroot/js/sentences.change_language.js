@@ -21,7 +21,14 @@ $(document).ready(function() {
     var host = self.location.hostname;
     var port = self.location.port;
 	
-    $(".languageFlag").live('click' ,function(){
+    $(".languageFlag").unbind('click');
+    // NOTE: It's important to unbind because when adding two translations in a row,
+    // it will rebind again the same function. So the second time the user clicks
+    // on a flag, the function is triggered twice and therefore it looks like 
+    // nothing happens. But what happens is that the <select> is displayed then
+    // hidden right away.
+    
+    $(".languageFlag").click(function(){
 		var flagImage = $(this);
         // to avoid duplicate and xhtml error the id is  _XXXX_original
         // TODO find a better way to store the id ...
