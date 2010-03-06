@@ -361,7 +361,7 @@ class User extends AppModel
     }
     
     /**
-     * Return numbers of actives members.
+     * Return number of members who have validated their registration.
      *
      * @return int
      */
@@ -372,7 +372,7 @@ class User extends AppModel
             'count',
             array(
                 'conditions' => array(
-                    'last_time_active <>' => 0
+                    'group_id <' => 5
                 ),
                 'contain' => array()
             )        

@@ -65,12 +65,12 @@ $selectedLanguage = $session->read('random_lang_selected');
         <p>
             <?php
             echo sprintf(
-                __('%s Contribution(s) today', true),
+                __('%s contribution today', true),
                 $nbrContributions
             );
             echo "<br />";
             echo sprintf(
-                __('%s active members', true),
+                __('%s members so far', true),
                 $nbrActiveMembers
             );
             echo "<br />";
