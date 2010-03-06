@@ -40,6 +40,10 @@ ul.sentencesList{
 	border-top: 1px dotted #989898;
 }
 
+.sentencesList li span{
+    display: block;
+}
+
 .sentencesList .options{
 	float: right;
 }
