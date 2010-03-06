@@ -276,11 +276,22 @@ class SentencesController extends AppController
         // Trang explained me something about this
         // need to find the mail
         //pr ($_POST);
+        // NOTE: spliting in 2 methods will also require to update the permissions
+        // because it will create new functions.
         $userId = $this->Auth->user('id');
-        $sentenceText = $_POST['value'];
-        $sentenceLang = $_POST['selectedLang'];
-        $sentenceId = $_POST['id'];
-
+        $sentenceLang = '';
+        $sentenceText = '';
+        $sentenceId = '';
+        if (isset($_POST['value'])){
+            $sentenceText = $_POST['value'];
+        }
+        if (isset($_POST['selectedLang'])) {
+            $sentenceLang = $_POST['selectedLang'];
+        }
+        if (isset($_POST['id'])) {
+            $sentenceId = $_POST['id'];
+        }
+        
         $this->Session->write('contribute_lang', $sentenceLang);
 
         if (isset($sentenceText)
@@ -295,17 +306,13 @@ class SentencesController extends AppController
                 Sanitize::paranoid($sentenceId);
                 
                 // TODO HACK SPOTTED $_POST['id'] store 2 informations, lang and id
-                // related to HACK in edit in place.js
-                if (preg_match("/[a-z]/", $sentenceId)) {
-                    $hack_array = explode("_", $sentenceId);
-                    $this->Sentence->id = $hack_array[1];
-
+                // related to HACK in edit in place.js 
+                $hack_array = explode("_", $sentenceId);
+                $this->Sentence->id = $hack_array[1];
+                
+                $sentenceLang = null; // language is needed for the logs
+                if ($hack_array[0] != '') {
                     $sentenceLang = $hack_array[0]; 
-                    // language is needed for the logs
-                } else {
-                    $this->Sentence->id = $sentenceId;
-                    $sentenceLang = null;
-                    // language is needed for the logs
                 }
 
                 $this->data['Sentence']['lang'] = $sentenceLang;
@@ -317,8 +324,6 @@ class SentencesController extends AppController
                     $this->layout = null;
                     $this->set('sentence_text', $sentenceText);
                 }
-                
-                
             
             } else {
                 // ----- sentences.contribute.js -----
