@@ -31,7 +31,8 @@ if (isset($translation_text)) {
 
     echo $javascript->link('jquery.jeditable.js', true);
     echo $javascript->link('sentences.edit_in_place.js', true);
-
+    echo $javascript->link('sentences.change_language.js', true);
+    
     echo '<li id="_'.$translation_id.'" class="direct editable translation">';
     
         // hidden 'info button'
