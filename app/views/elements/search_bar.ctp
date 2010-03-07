@@ -45,9 +45,6 @@ Sanitize::html($searchQuery);
 $searchQuery = htmlentities($searchQuery, ENT_QUOTES, 'UTF-8');
 
 
-// TODO HACK SPOTTED : in fact the array should be sort in the languagesArray method 
-// and "all languages" set as first
-// and 
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';
 }
@@ -55,37 +52,70 @@ if ($selectedLanguageFrom == null) {
 if ($selectedLanguageTo == null) {
     $selectedLanguageTo = 'und';
 }
-echo $form->create('Sentence', array("action" => "search", "type" => "get"));
+echo $form->create(
+    'Sentence',
+    array(
+        "action" => "search",
+        "type" => "get"
+    )
+);
+?>
+<fieldset class="select">
+    <label><?php __('From'); ?></label>
+    <?php
+    echo $form->select(
+        'from',
+        $languages,
+        $selectedLanguageFrom,
+        null,
+        false
+    );
+    ?>
+</fieldset>
 
-echo '<fieldset class="select">';
-echo '<label>' . __('From', true) . '</label>';
-echo $form->select('from', $languages, $selectedLanguageFrom, null, false);
-echo '</fieldset>';
-
-echo '<fieldset class="into">';
-echo '<span id="into">&raquo;</span>';
-echo '</fieldset>';
+<fieldset class="into">
+    <span id="into">&raquo;</span>
+</fieldset>
     
-echo '<fieldset class="select">';
-echo '<label>' . __('To', true) . '</label>';
-echo $form->select('to', $languages, $selectedLanguageTo, null, false);
-echo '</fieldset>';
+<fieldset class="select">
+    <label><?php __('To'); ?></label>
+    <?php
+    echo $form->select(
+        'to',
+        $languages,
+        $selectedLanguageTo,
+        null, 
+        false
+    );
+    ?>
+</fieldset>
 
-echo '<fieldset class="input text">';
-echo '<label for="SentenceQuery">';
-echo __('Example sentences with the words :', true);
-echo '</label>';
-echo '<input id="SentenceQuery" type="text" value="'.$searchQuery.'" name="query"/>';
-echo '</fieldset>';
+<fieldset class="input text">
+    <label for="SentenceQuery">
+        <?php __('Example sentences with the words :'); ?>
+    </label>
+    <?php
+    $id = 'SentenceQuery';
+    echo '<input id="'.$id.'" type="text" value="'.$searchQuery.'" name="query"/>';
+    ?>
+</fieldset>
 
-echo '<fieldset class="submit">';
-echo '<input type="submit" value="'.__('search', true).'"/>';
-echo '</fieldset>';
+<fieldset class="submit">
+    <input type="submit" value="<?php echo __('search'); ?>"/>
+</fieldset>
 
-echo '<fieldset class="help">';
-echo $html->link('[?]', array("controller" => "sentences", "action" => "search"));
-echo '</fieldset>';
-
+<fieldset class="help">
+    <?php
+    echo $html->link(
+        '[?]',
+        array(
+            "controller" => "sentences",
+            "action" => "search"
+        )
+    );
+    ?>
+</fieldset>
+<?php
 echo $form->end();
 ?>
 </div>
