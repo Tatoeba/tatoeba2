@@ -34,13 +34,14 @@ if (isset($this->params['lang'])) {
 }
 
 $languages = array(
-      'eng' => 'English'
-    , 'fre' => 'Français'
-    , 'chi' => '中文'
-    , 'spa' => 'Español'
-    , 'jpn' => '日本語'
-    , 'deu' => 'Deutsch'
-    , 'ita' => 'Italiano'
+    'eng' => 'English', 
+    'fre' => 'Français', 
+    'chi' => '中文', 
+    'spa' => 'Español', 
+    'jpn' => '日本語', 
+    'deu' => 'Deutsch', 
+    'ita' => 'Italiano', 
+    'pol' => 'Polski'
 );
 $path = $this->params['controller'].'/';
 if ($this->params['action'] != 'display') {
