@@ -56,7 +56,7 @@
             <?php
             __('Show translations :');
             echo ' ';
-            $langArray = $languages->languagesArray();
+            $langArray = $languages->onlyLanguagesArray();
             $path  = '/' . Configure::read('Config.language') .
                 '/sentences_lists/show/' . $list['SentencesList']['id'] . '/';
             echo $form->select(
@@ -66,7 +66,8 @@
                 array(
                     "onchange" => "$(location).attr('href', '"
                     .$path."' + this.value);"
-                )
+                ),
+                false
             );
             ?>
         </li>

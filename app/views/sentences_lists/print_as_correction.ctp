@@ -82,6 +82,9 @@ if (isset($translationsLang)) {
     echo '<p>';
     __('You have to specify the language of the translations :'); echo ' ';
     
+    //2* TODO => see edit.ctp , javascript hidden inside the html +
+    //  hackish use of the "languagesArray"
+
     $path  = '/' . Configure::read('Config.language') . 
         '/sentences_lists/print_as_correction/' . $listId . '/';
     echo $form->select(

@@ -649,7 +649,7 @@ class SentencesHelper extends AppHelper
             $class = 'editableFlag';
             
             // language select
-            $langArray = $this->Languages->languagesArray();
+            $langArray = $this->Languages->onlyLanguagesArray();
             echo $this->Form->select(
                 'selectLang_'.$id,
                 $langArray,

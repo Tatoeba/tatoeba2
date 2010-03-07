@@ -64,6 +64,16 @@ $javascript->link('jquery.jeditable.js', false);
             
             $path  = '/' . Configure::read('Config.language') . 
                 '/sentences_lists/edit/' . $list['SentencesList']['id'] . '/';
+
+            // TODO onChange should be define in a separate js file
+            // TODO use of languagesArray is a hack as for the moment
+            // "all languages" is always the first selected, so you're not able to
+            // select
+            // it would be better to do the following 
+            //  1 - set the previous selected language or "none" by default 
+            //      (create a specific method to in language helper)
+            //  2 - "all languages" would display all translations 
+            //    - "none" would display only the sentence
             echo $form->select(
                 "translationLangChoice",
                 $languages->languagesArray(),
