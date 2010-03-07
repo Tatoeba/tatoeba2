@@ -709,6 +709,8 @@ class SentencesController extends AppController
                 }
             }
 
+            // TODO don't forget to update language stats count 
+
             if ($this->Sentence->saveAll($sentences)) {
                 $flashMsg = __('The languages have been saved.', true);
             } else {
