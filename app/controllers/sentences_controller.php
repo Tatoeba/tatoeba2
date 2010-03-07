@@ -282,7 +282,7 @@ class SentencesController extends AppController
         $sentenceLang = '';
         $sentenceText = '';
         $sentenceId = '';
-        if (isset($_POST['value'])){
+        if (isset($_POST['value'])) {
             $sentenceText = $_POST['value'];
         }
         if (isset($_POST['selectedLang'])) {

@@ -120,23 +120,23 @@ class AppController extends Controller
             $interfaceLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
             switch($interfaceLanguage){
                 
-            case 'fr':
-                $lang = 'fre';
-                break;
-            case 'zh':
-                $lang = 'chi';
-                break;
-            case 'es':
-                $lang = 'spa';
-                break;
-            case 'it':
-                $lang = 'ita';
-                break;
-            case 'pl':
-                $lang = 'pol';
-                break;
-            default  :
-                $lang = 'eng';
+                case 'fr':
+                    $lang = 'fre';
+                    break;
+                case 'zh':
+                    $lang = 'chi';
+                    break;
+                case 'es':
+                    $lang = 'spa';
+                    break;
+                case 'it':
+                    $lang = 'ita';
+                    break;
+                case 'pl':
+                    $lang = 'pol';
+                    break;
+                default  :
+                    $lang = 'eng';
             }
             Configure::write('Config.language', $lang);
             $this->Cookie->write('interfaceLanguage', $lang, false, '+2 weeks');
