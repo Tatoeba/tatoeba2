@@ -153,8 +153,8 @@ class SentencesListsController extends AppController
                 $this->Session->setFlash(
                     sprintf(
                         __(
-                            'NOTE : You can edit this list if you are 
-                            <a href="%s">registered</a>.', true
+                            'NOTE : You can edit this list if you are '.
+                            '<a href="%s">registered</a>.', true
                         ), 
                         "/".$this->params['lang']."/users/register"
                     )

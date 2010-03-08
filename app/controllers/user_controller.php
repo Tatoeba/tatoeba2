@@ -272,8 +272,8 @@ class UserController extends AppController
                 } else {
                     $this->Session->setFlash(
                         __(
-                            'An error occured while saving. Please try again or
-                            contact us to report this.',
+                            'An error occured while saving. Please try again or '.
+                            'contact us to report this.',
                             true
                         )
                     );
@@ -313,8 +313,8 @@ class UserController extends AppController
             } else {
                 $this->Session->setFlash(
                     __(
-                        'An error occured while saving. Please try again or contact
-                        us to report this.',
+                        'An error occured while saving. Please try again or '.
+                        'contact us to report this.',
                         true
                     )
                 );
@@ -351,8 +351,8 @@ class UserController extends AppController
                 $flashMsg = __('Your contact information have been saved.', true);
             } else {
                 $flashMsg = __(
-                    'An error occured while saving. Please try again or contact us
-                    to report this.',
+                    'An error occured while saving. Please try again or contact '.
+                    'us to report this.',
                     true
                 );
             }
@@ -389,8 +389,8 @@ class UserController extends AppController
                 $flashMsg = __('Your settings have been saved.', true);
             } else {
                 $flashMsg = __(
-                    'An error occured while saving. Please try again or contact us
-                    to report this.',
+                    'An error occured while saving. Please try again or contact '.
+                    'us to report this.',
                     true
                 );
             }

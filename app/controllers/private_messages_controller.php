@@ -143,9 +143,9 @@ class PrivateMessagesController extends AppController
                     $this->Session->setFlash(
                         sprintf(
                             __(
-                                'The user %s you to want to send this message
-                                to does not exist. Please try with another
-                                username.',
+                                'The user %s you to want to send this message '.
+                                'to does not exist. Please try with another '.
+                                'username.',
                                 true
                             ),
                             $recpt
@@ -158,8 +158,7 @@ class PrivateMessagesController extends AppController
         } else {
             $this->Session->setFlash(
                 __(
-                    'You must fill at least the "To" field and the content
-                    field.',
+                    'You must fill at least the "To" field and the content field.',
                     true
                 )
             );

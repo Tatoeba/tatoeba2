@@ -43,8 +43,8 @@ $this->pageTitle = __('Contributions statistics', true);
     <h2><?php __('Number of contributions'); ?></h2>
     <?php 
     __(
-        'The number of contributions represents the number of sentences added 
-        + the number of translations added + the number of sentences modified.'
+        'The number of contributions represents the number of sentences added '.
+        '+ the number of translations added + the number of sentences modified.'
     ); 
     ?>
     </div>
@@ -54,17 +54,17 @@ $this->pageTitle = __('Contributions statistics', true);
     <p>
     <?php
     __(
-        'In January 2009, a new version of Tatoeba was released and all the
-        accounts have been disactivated. Users in grey are users who have not
-        reactivated their account (yet?).'
+        'In January 2009, a new version of Tatoeba was released and all the '.
+        'accounts have been disactivated. Users in grey are users who have not '.
+        'reactivated their account (yet?).'
     ); 
     ?>
     </p>
     <p>
     <?php
     __(
-        'They are however displayed here because they still deserve some
-        acknowledgement for their dedication.'
+        'They are however displayed here because they still deserve some '.
+        'acknowledgement for their dedication.'
     );
     ?>
     </p>

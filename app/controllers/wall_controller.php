@@ -25,9 +25,6 @@
  * @link     http://tatoeba.org
  */
 
-
-// Permit to sanitize input, to avoid xss
-App::import('Core', 'Sanitize');
 /**
  * Controller for the wall.
  *
