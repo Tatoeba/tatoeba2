@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+// TODO add an helper for this in order to have a cleaner code
  
 if ($message['PrivateMessage']['title'] == '') {
     $messageTitle = __('[no subject]', true);
@@ -121,7 +123,13 @@ echo $this->element('pmmenu');
         }
     }
     ?>
-    <p class="pm_content"><?php echo nl2br($content); ?></p>
+    <p class="pm_content">
+        <?php
+        echo $clickableLinks->clickableURL(
+            nl2br($content)
+        );
+        ?>
+    </p>
     <?php
     foreach ($sentencesLists as $list) {
         echo '<h3>'.$list['SentencesList']['name'].'</h3>';
