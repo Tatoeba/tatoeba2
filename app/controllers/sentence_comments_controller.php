@@ -67,10 +67,7 @@ class SentenceCommentsController extends AppController
         
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array(
-            'index',
-            'show',
-            'latest',
-            'of_user',
+            "*"
         );
     }
     
@@ -246,7 +243,7 @@ class SentenceCommentsController extends AppController
                     'created',
                     'sentence_id',
                 ),
-                'conditions' => array('user_id' => $userId),
+                'conditions' => array('SentenceComment.user_id' => $userId),
                 'contain' => array(
                     'User' => array(
                         'fields' => array(
@@ -254,6 +251,9 @@ class SentenceCommentsController extends AppController
                             'username',
                             'image',
                         )
+                    ),
+                    'Sentence' => array(
+                        'fields' => "text"
                     )
                 ),
                 'limit' => 50,
@@ -277,6 +277,64 @@ class SentenceCommentsController extends AppController
         $this->set('userName', $userName);
         $this->set('commentsPermissions', $permissions);
     }
+
+
+    /**
+     * show all the comments on sentences of a specified user
+     *
+     * @param int $userId Id of the user we want comments on his sentences
+     *
+     * @return void
+     */
+
+    public function on_sentences_of_user($userId)
+    {
+        $this->paginate = array(
+            'SentenceComment' => array(
+                'fields' => array(
+                    'id',
+                    'user_id',
+                    'text',
+                    'created',
+                    'sentence_id',
+                ),
+                'conditions' => array(
+                    'Sentence.user_id' => $userId
+                ),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array(
+                            'id',
+                            'username',
+                            'image',
+                        )
+                    ),
+                    'Sentence' => array(
+                        'fields' => "text"
+                    )
+                ),
+                'limit' => 50,
+                'order' => 'created DESC',
+            )
+        ); 
+        
+        $userComments = $this->paginate(
+            'SentenceComment'
+        );
+
+        $userName = $this->User->getUserNameFromId($userId);
+
+        $permissions = $this->Permissions->getCommentsOptions(
+            $userComments,
+            $this->Auth->user('id'),
+            $this->Auth->user('group_id')
+        );
+
+        $this->set('userComments', $userComments);
+        $this->set('userName', $userName);
+        $this->set('commentsPermissions', $permissions);
+    }
+
 
 }
 ?>

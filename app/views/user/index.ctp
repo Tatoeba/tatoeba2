@@ -44,6 +44,7 @@
 if (!$session->read('Auth.User.id')) {
     echo $this->element('login');
 } else {
+    $currentUserId = $session->read('Auth.User.id');
     $userName = $user['User']['username'];
     // Include specific css and js files
     echo $javascript->link('profile.edit.js', false);
@@ -73,7 +74,7 @@ if (!$session->read('Auth.User.id')) {
                         array(
                             "controller" => "favorites",
                             "action" => "of_user",
-                            $session->read('Auth.User.id')
+                            $currentUserId
                         )
                     )
                 );
@@ -88,7 +89,22 @@ if (!$session->read('Auth.User.id')) {
                         array(
                             "controller" => "sentence_comments",
                             "action" => "of_user",
-                            $session->read('Auth.User.id')
+                            $currentUserId
+                        )
+                    )
+                );
+                ?>
+                </li>
+
+                <li>
+                <?php
+                echo sprintf(
+                    "<a href='%s'>".__("View comments on my sentences", true)."</a>",
+                    $html->url(
+                        array(
+                            "controller" => "sentence_comments",
+                            "action" => "on_sentences_of_user",
+                            $currentUserId
                         )
                     )
                 );

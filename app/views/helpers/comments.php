@@ -55,6 +55,11 @@ class CommentsHelper extends AppHelper
         $displayAsThread = false,
         $permissions = array()
     ) {
+        // TODO explode this functions in smaller one
+        // and make parameters more explicit 
+        // (we don't see with the protype that we need sentences inside comment 
+        // it should be a entire parameter, stop using universe-variable
+
         $sentenceComment = $comment;
         if (isset($comment['SentenceComment'])) { 
             $sentenceComment = $comment['SentenceComment'];
