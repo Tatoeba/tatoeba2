@@ -29,8 +29,7 @@
 
 if (isset($user)) {
 
-    // TODO use a helper method to display this. It is actually pretty much
-    // a copy-paste of the create_reply_div() method in the WallHelper.
+    // TODO the code can still be refactor a bit with wall helper
     
     // NOTE I took out the "reply" option here because :
     // 1) User is not supposed to want to reply to himself right after
@@ -38,38 +37,26 @@ if (isset($user)) {
     //    to the message he's replied to.
     // 2) We should actually try to limit the the "deepness" of a thread.
     //    Three levels of reply should be the maximum, I think.
-    
-    echo '<li class="new thread" id="message_' . $message["Wall"]["id"] . '">'."\n";
-    echo '<div class="message">';
+    $messageId = $message["Wall"]["id"];
+    $userName = $message['User']['username'];
+    $userImage = $message['User']['image'];
+    $messageContent =  $message['Wall']['content'];
+
+    echo '<li class="new thread" id="message_' . $messageId . '">'."\n";
+
+    '<div class="message">';
     echo "<ul class=\"meta\" >\n"; 
     // image
     echo '<li class="image">';
-    echo $html->link(
-        $html->image(
-            'profiles/'. $message["User"]["image"],
-            array( "alt"=>$message["User"]["username"],
-                "title"=>__("View this user's profile", true)
-            )
-        ),
-        array("controller"=>"user",
-            "action"=>"profile", $message["User"]["username"]),
-        array("escape"=>false)
+    $wall->displayMessagePosterImage(
+        $userName,
+        $userImage
     );
     echo '</li>';
                 
     // username
     echo '<li class="author">';
-    echo $html->link(
-        $message["User"]["username"],
-        array(
-            "controller" => "private_messages",
-            "action"=>"write",
-            $message["User"]["username"]
-        ),
-        array(
-            "title" => __("View this user's profile", true)
-        )
-    );
+    $wall->displayLinkToUserProfile($userName);
     echo '</li>';
                 
     // date
@@ -80,7 +67,7 @@ if (isset($user)) {
     
     // message content
     echo '<div class="body">';
-    echo nl2br($message["Wall"]["content"]);
+    $wall->displayContent($messageContent);
     echo '</div>';                
     echo '</div>';
     

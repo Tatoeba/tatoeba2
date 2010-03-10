@@ -127,9 +127,7 @@ $this->pageTitle = __('Wall', true);
 
             // message content
             echo '<div class="body" >';
-            echo nl2br(
-                htmlentities($message['Wall']['content'], ENT_QUOTES, 'UTF-8')
-            );
+            $wall->displayContent($message['Wall']['content']);
             echo '</div>';
             echo '</div>';
 
@@ -138,7 +136,7 @@ $this->pageTitle = __('Wall', true);
             if (count($message['Reply']) >0) {
                 echo '<ul>';
                 foreach ($message['Reply'] as $reply ) {
-                    echo $wall->createReplyDiv(
+                    $wall->createReplyDiv(
                         // this is because the allMessages array
                         // is indexed with message Id
                         $allMessages[$reply['id']],

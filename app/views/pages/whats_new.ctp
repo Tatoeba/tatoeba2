@@ -64,16 +64,23 @@ $this->pageTitle = __("Tatoeba : What's new", true);
         $xml = simplexml_load_string($result);
         if (!empty($xml)) {
             $fieldsWeWant = array('created_at', 'text');
+
             foreach ($xml->children() as $child) { // <status>
                 echo '<div class="twit">';
+
                 foreach ($child->children() as $twit) {
+
                     $class = $twit->getName();
                     if (in_array($class, $fieldsWeWant)) {
                         echo '<div class="'.$class.'">';
-                        echo $twit;
+                        
+                        echo $clickableLinks->clickableURL($twit);
+                        
                         echo '</div>';
                     }
+
                 }
+
                 echo '</div>';
             }
         }

@@ -26,7 +26,7 @@
  */
 
 /**
- * Controller for contributions.
+ * Helper for contributions.
  *
  * @category SentenceComments
  * @package  Helpers
@@ -37,7 +37,7 @@
 class CommentsHelper extends AppHelper
 {
 
-    public $helpers = array('Form', 'Date', 'Html');
+    public $helpers = array('Form', 'Date', 'Html', 'ClickableLinks');
     
     /**
      * Display a sentence comment block.
@@ -176,7 +176,7 @@ class CommentsHelper extends AppHelper
         }
         
         // comment text
-        $commentText = $this->clickableURL(
+        $commentText = $this->ClickableLinks->clickableURL(
             Sanitize::html($sentenceComment['text'])
         );
         echo nl2br($commentText);
@@ -185,22 +185,7 @@ class CommentsHelper extends AppHelper
         echo '</li>';
     }
     
-    /**
-     * Replace URLs by clickable URLs.
-     *
-     * @param array $comment Text to process.
-     * 
-     * @return string
-     */
-    public function clickableURL($comment)
-    {
-        $comment = preg_replace(
-            '/(https?:\/\/[^<)\(\s ]{0,50})[^<)\(\s ]{0,}/u', 
-            "<a href='$0'>$1</a>", 
-            $comment
-        );
-        return $comment;
-    }
+
     
     /**
      * Display form to post a comment.

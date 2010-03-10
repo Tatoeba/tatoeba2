@@ -38,7 +38,7 @@
 class WallHelper extends AppHelper
 {
 
-    public $helpers = array('Html', 'Form' , 'Date', 'Javascript');
+    public $helpers = array('Html', 'Form' , 'Date', 'Javascript', 'ClickableLinks');
 
     /**
      * create the reply link to a given message 
@@ -139,6 +139,31 @@ class WallHelper extends AppHelper
         echo $this->Form->end();
 
     }
+
+
+    /**
+     * display content of a message
+     *
+     * @param string $content Message to be rendered
+     *
+     * @return void
+     */
+
+    public function displayContent($content)
+    {
+        echo nl2br(
+            $this->ClickableLinks->clickableURL(
+                htmlentities(
+                    $content,
+                    ENT_QUOTES,
+                    'UTF-8'
+                )
+            )
+        );
+
+    }
+
+
 
     /**
      * display username as a link to his profile
@@ -246,16 +271,7 @@ class WallHelper extends AppHelper
 
                 <!-- message content -->
                 <div class="body">
-                    <?php
-                    echo nl2br(
-                        htmlentities(
-                            $message['Wall']['content'],
-                            ENT_QUOTES,
-                            'UTF-8'
-                        )
-                    );
-                    ?>
-
+                    <?php $this->displayContent($message['Wall']['content']); ?>
                 </div>
             </div>
             <?php
