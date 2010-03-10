@@ -35,9 +35,16 @@
  * @link     http://tatoeba.org
  */
 
+// TODO /!\ use an helper to deobfuscate this /!\
+
+// TODO : indent the code 
+// TODO : stop using one letter class name , c? t?
+// TODO : get <a> outside the __()
+// TODO : use dedicated variable instead of calling the array several times
 if (!$session->read('Auth.User.id')) {
     echo $this->element('login');
 } else {
+    $userName = $user['User']['username'];
     // Include specific css and js files
     echo $javascript->link('profile.edit.js', false);
     ?>
@@ -46,60 +53,70 @@ if (!$session->read('Auth.User.id')) {
             <h2><?php __('Your links'); ?></h2>
             <ul>
                 <li>
-    <?php
-    echo sprintf(
-        __("<a href='%s'>View all my sentences</a>", true),
-        $html->url(
-            array(
-                "controller" => "sentences",
-                "action" => "my_sentences"
-            )
-        )
-    );
-    ?>
+                <?php
+                echo sprintf(
+                    __("<a href='%s'>View all my sentences</a>", true),
+                    $html->url(
+                        array(
+                            "controller" => "sentences",
+                            "action" => "my_sentences"
+                        )
+                    )
+                );
+                ?>
                 </li>
                 <li>
-    <?php
-    echo sprintf(
-        __("<a href='%s'>View my favorite sentences</a>", true),
-        $html->url(
-            array(
-                "controller" => "favorites",
-                "action" => "of_user",
-                $session->read('Auth.User.id')
-            )
-        )
-    );
-    ?>
+                <?php
+                echo sprintf(
+                    __("<a href='%s'>View my favorite sentences</a>", true),
+                    $html->url(
+                        array(
+                            "controller" => "favorites",
+                            "action" => "of_user",
+                            $session->read('Auth.User.id')
+                        )
+                    )
+                );
+                ?>
                 </li>
+
                 <li>
-    <?php
-    echo sprintf(
-        __("<a href='%s'>Sentences with undetected language</a>", true),
-        $html->url(
-            array(
-                "controller" => "sentences",
-                "action" => "unknown_language"
-            )
-        )
-    );
-    ?>
+                <?php
+                echo sprintf(
+                    "<a href='%s'>".__("View my comments", true)."</a>",
+                    $html->url(
+                        array(
+                            "controller" => "sentence_comments",
+                            "action" => "of_user",
+                            $session->read('Auth.User.id')
+                        )
+                    )
+                );
+                ?>
+                </li>
+
+                <li>
+                <?php
+                echo sprintf(
+                    __("<a href='%s'>Sentences with undetected language</a>", true),
+                    $html->url(
+                        array(
+                            "controller" => "sentences",
+                            "action" => "unknown_language"
+                        )
+                    )
+                );
+                ?>
                 </li>
             </ul>
         </div>
         <div class="module">
             <h2><?php __('Activity information'); ?></h2>
             <dl>
-                <dt>
-    <?php __('Member since'); ?>
-                </dt>
-                <dd>
-    <?php echo date('F j, Y', strtotime($user['User']['since'])); ?>
-                </dd>
+                <dt><?php __('Member since'); ?></dt>
+                <dd><?php echo date('F j, Y', strtotime($user['User']['since'])); ?></dd>
                 <dt><?php __('Last login'); ?></dt>
-                <dd>
-    <?php echo date('F j, Y \\a\\t G:i', $user['User']['last_time_active']); ?>
-                </dd>
+                <dd><?php echo date('F j, Y \\a\\t G:i', $user['User']['last_time_active']); ?></dd>
                 <dt><?php __('Comments posted'); ?></dt>
                 <dd><?php echo $userStats['numberOfComments']; ?></dd>
                 <dt><?php __('Sentences owned'); ?></dt>
@@ -111,18 +128,22 @@ if (!$session->read('Auth.User.id')) {
     </div>
     <div id="main_content">
         <div class="module">
-            <h2><?php echo $user['User']['username']; ?></h2>
+            <h2><?php echo $userName; ?></h2>
+            <!-- TODO HACK SPOTTED style inside the html, use css file -->
             <div id="pimg" style="cursor:pointer;">
-    <?php
-    echo $html->image(
-        'profiles/' . (empty($user['User']['image']) ?
-            'tatoeba_user.png' :
-            $user['User']['image'] ),
-        array(
-            'alt' => $user['User']['username']
-        )
-    );
-    ?>
+                <?php
+                // TODO HACK spotted  ternary operator mix with associative
+                // array of associative array inside a call function 
+                // ultra combo 
+                echo $html->image(
+                    'profiles/' . (empty($user['User']['image']) ?
+                        'tatoeba_user.png' :
+                        $user['User']['image'] ),
+                    array(
+                        'alt' => $userName
+                    )
+                );
+                ?>
             </div>
             <div id="pimg_edit" class="toolbox">
                 <div class="t">
@@ -185,13 +206,13 @@ if (!$session->read('Auth.User.id')) {
                 </span>
             </h2>
             <div id="profile_description">
-    <?php
+        <?php
         if (empty($user['User']['description'])) {
             __('Tell us something about you!');
         } else {
                 echo nl2br($user['User']['description']);
         }
-    ?>
+        ?>
             </div>
         </div>
         <div id="pbasic_edit" class="toolbox">
@@ -216,7 +237,7 @@ if (!$session->read('Auth.User.id')) {
         'name',
         array(
             'label' => 'Name',
-            'value' => $user['User']['name']
+            'value' => $userName
         )
     );
 
@@ -343,7 +364,7 @@ if (!$session->read('Auth.User.id')) {
     echo empty($user['User']['homepage']) ?
         __('Maybe you have a blog to share?', true) :
         '<a href="' . $user['User']['homepage'] .
-            '" title="' . $user['User']['username'] . '">' .
+            '" title="' . $userName . '">' .
             $user['User']['homepage'] . '</a>';
     ?>
                 </dd>

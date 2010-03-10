@@ -37,7 +37,11 @@
 class SentenceCommentsController extends AppController
 {
     public $name = 'SentenceComments';
-    public $uses = array("SentenceComment", "Sentence");    
+    public $uses = array(
+        "SentenceComment",
+        "Sentence",
+        "User"
+    );    
     public $helpers = array(
         'Comments',
         'Sentences',
@@ -62,16 +66,16 @@ class SentenceCommentsController extends AppController
         parent::beforeFilter(); 
         
         // setting actions that are available to everyone, even guests
-        // TODO does it mean visitors can save comments if they figure out how
         $this->Auth->allowedActions = array(
             'index',
             'show',
-            'latest'
+            'latest',
+            'of_user',
         );
     }
     
     /**
-     * Display 10 latest comments for each language.
+     * Display latest comments.
      * 
      * @return void
      */
@@ -221,6 +225,57 @@ class SentenceCommentsController extends AppController
         }
         // redirect to previous page
         $this->redirect($this->referer()); 
+    }
+
+    /**
+     * show all the comments of a specified user
+     *
+     * @param int $userId Id of the user we want comments of
+     *
+     * @return void
+     */
+
+    public function of_user($userId)
+    {
+        $this->paginate = array(
+            'SentenceComment' => array(
+                'fields' => array(
+                    'id',
+                    'user_id',
+                    'text',
+                    'created',
+                    'sentence_id',
+                ),
+                'conditions' => array('user_id' => $userId),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array(
+                            'id',
+                            'username',
+                            'image',
+                        )
+                    )
+                ),
+                'limit' => 50,
+                'order' => 'created DESC',
+            )
+        ); 
+        
+        $userComments = $this->paginate(
+            'SentenceComment'
+        );
+
+        $userName = $this->User->getUserNameFromId($userId);
+
+        $permissions = $this->Permissions->getCommentsOptions(
+            $userComments,
+            $this->Auth->user('id'),
+            $this->Auth->user('group_id')
+        );
+
+        $this->set('userComments', $userComments);
+        $this->set('userName', $userName);
+        $this->set('commentsPermissions', $permissions);
     }
 
 }
