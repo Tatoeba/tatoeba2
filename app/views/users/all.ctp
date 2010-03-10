@@ -90,10 +90,9 @@ $navigation->displayUsersNavigation($id);
 			<th><?php echo $paginator->sort(__('Member status', true),'group_id');?></th>
 		</tr>
 		<?php
-		$i = 0;
-		foreach ($users as $user):
-			$class = null;
-			if ($i++ % 2 == 0) {
+		foreach ($users as $i=>$user):
+			$class = '';
+			if (($i % 2) == 0) {
 				$class = ' class="altrow"';
 			}
 		?>
