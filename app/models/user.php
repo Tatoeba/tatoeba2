@@ -115,10 +115,10 @@ class User extends AppModel
      * @var array
      */
     public $hasMany = array(
-          'SentenceComments' => array('limit' => 10, 'order' => 'created DESC')
-        , 'Contributions' => array('limit' => 10, 'order' => 'datetime DESC')
-        , 'Sentences' => array('limit' => 10, 'order' => 'modified DESC')
-        , 'SentencesLists'
+        'SentenceComments',
+        'Contributions',
+        'Sentences',
+        'SentencesLists',
         // , 'Mastering_lang'
         // , 'Learning_lang'
     );
@@ -145,8 +145,6 @@ class User extends AppModel
             'joinTable' => 'favorites_users',
             'foreignKey' => 'user_id',
             'associationForeignKey' => 'favorite_id',
-            'limit' => '10',
-            'unique' => true
         )
     );
 
@@ -284,18 +282,74 @@ class User extends AppModel
      */
     public function getUserById($id = null)
     {
-        //TODO: HACK SPOTTED user of order rand, and use of findById
+        //TODO: HACK SPOTTED user of order rand
         if ($id == null) {
-            $user = $this->User->find(
+            // TODO add containable here 
+            $user = $this->find(
                 'first', 
                 array(
                     'conditions' => 'User.group_id < 5', 
                     'order' => 'RAND()', 
-                    'limit' => 1
+                    'limit' => 1,
                 )
             );
         } else {
-            $user = $this->findById($id);
+            $user = $this->find(
+                'first',
+                array(
+                    'conditions' => array('User.id' => $id),
+                    'contain' => array(
+                        'Favorite' => array(
+                            'limit' => 10,
+                            'fields' => array(
+                                'id',
+                                'lang',
+                                'correctness',
+                                'text',
+                            )
+                        ),
+                        'Sentences' => array(
+                            'limit' => 10,
+                            'fields' => array(
+                                'id',
+                                'lang',
+                                'correctness',
+                                'text',
+                            ),
+                            'order' => 'modified DESC'
+                        ),
+                        'Contributions' => array(
+                            'limit' => 10,
+                            'fields' => array(
+                                'id',
+                                'translation_id',
+                                'action',
+                                'datetime',
+                                'text',
+                            ),
+                            'order' => 'datetime DESC '
+                        ),
+                        'SentenceComments' => array(
+                            'limit' => 10,
+                            'fields' => array(
+                                'id',
+                                'text',
+                                'created',
+                                'sentence_id',
+                            ),
+                            'order' => 'created DESC'
+                        ),
+                        'Following' => array(
+                            'limit' => 10,
+                            'fields' => array('id')
+                        ),
+                        'Follower' => array(
+                            'limit' => 10,
+                            'fields' => array('id')
+                        ),
+                    )
+                )
+            );
         }
         return $user;
     }
