@@ -735,8 +735,31 @@ class SentencesController extends AppController
      */
     public function my_sentences()
     {
+        $this->paginate = array(
+            'Sentence' => array(
+                'fields' => array(
+                    'id',
+                    'text',
+                    'lang',
+                    'user_id',
+                    'correctness'
+                ),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array('id')
+                    )
+                ),
+                'limit' => 100,
+                'order' => "Sentence.modified DESC"
+
+            )
+        );
+
         $sentences = $this->paginate(
-            'Sentence', array('Sentence.user_id' => $this->Auth->user('id'))
+            'Sentence',
+            array(
+                'Sentence.user_id' => $this->Auth->user('id'),
+            )
         );
         $this->set('user_sentences', $sentences);
     }
