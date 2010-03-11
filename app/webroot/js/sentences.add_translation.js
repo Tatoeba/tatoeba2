@@ -29,25 +29,16 @@ $(document).ready(function() {
         var sentenceId = $(this).parent().attr("id").slice(1);
         var sentenceLang = $(this).parent().attr("lang");
         
-        var submitHandler = function(){
-            save();
-        };
-        var keypressHandler = function(e){
-            if(e.keyCode == 13) {
-                save();
-            }
-        }
-        var cancelHandler = function(){
-            $("#_" + sentenceId + "_translations").show();
-            $(".addTranslations").hide();
-        }
-        
+        /*
+         * Save translation.
+         */
         function save(){
             var sentenceText = $("#_" + sentenceId + "_text").val();
             var selectLang = $("#translationLang_" + sentenceId).val();
-
             
             if($.trim(sentenceText) != ""){
+                unbind(); // very important
+                // This unbind() applies for the submit button and input field.
                 
                 $("#_" + sentenceId + "_translations").show();
                 $("#_" + sentenceId + "_loading").show();
@@ -65,22 +56,23 @@ $(document).ready(function() {
                         $("#_" + sentenceId + "_loading").hide();
                         $("#_" + sentenceId + "_translations").prepend(data);
                         $("#_" + sentenceId + "_text").val('');
-                        
-                        // unbind stuff...
-                        $("#_" + sentenceId + "_submit").unbind(
-                            'click', submitHandler
-                        );
-                        $("#translation_for_" + sentenceId + " li input").unbind(
-                            'keypress', keypressHandler
-                        );
-                        $("#_" + sentenceId + "_cancel").unbind(
-                            'click', cancelHandler
-                        );
                     },
                     "html"
                 );
 
             }
+        }
+        
+        /*
+         * Function to unbind the handlers binded to the submit button, input field 
+         * and cancel button. It is very important to unbind, otherwise a same 
+         * translation will be save as many times as the user clicked on the 
+         * "translate" icon.
+         */
+        function unbind(){
+            $("#_" + sentenceId + "_submit").unbind('click');
+            $("#translation_for_" + sentenceId + " li input").unbind('keypress');
+            $("#_" + sentenceId + "_cancel").unbind('click');
         }
         
         // Displaying translation input and hiding translations
@@ -89,16 +81,26 @@ $(document).ready(function() {
         $("#_" + sentenceId + "_translations").hide();
         
         // Submitting translation by clicking on button
-        $("#_" + sentenceId + "_submit").click(submitHandler);
+        $("#_" + sentenceId + "_submit").click(function(){
+            save();
+        });
         
         // Submitting translation by pressing enter
         // NOTE : this is annoying when entering Japanese or Chinese because
         // enter is used to validate the choice of kanjis
         // NOTE2: on Linux it's space which is used to validate
-        $("#translation_for_" + sentenceId + " li input").keypress(keypressHandler);
+        $("#translation_for_" + sentenceId + " li input").keypress(function(e){
+            if(e.keyCode == 13) {
+                save();
+            }
+        });
         
         // Cancel
-        $("#_" + sentenceId + "_cancel").click(cancelHandler);
+        $("#_" + sentenceId + "_cancel").click(function(){
+            unbind(); // very important
+            $("#_" + sentenceId + "_translations").show();
+            $(".addTranslations").hide();
+        });
     });
 
 });
