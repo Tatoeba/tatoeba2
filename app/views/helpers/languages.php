@@ -157,11 +157,20 @@ class LanguagesHelper extends AppHelper
             'por' => __('Portuguese', true),
             'fin' => __('Finnish', true),
             'bul' => __('Bulgarian', true),
-            'ukr' => __('Ukrainian', true), 
+            'ukr' => __('Ukrainian', true),
             'ces' => __('Czech', true),
             'epo' => __('Esperanto', true),
-            'ell' => __('Modern Greek', true), 
-            'tur' => __('Turkish', true)
+            'ell' => __('Modern Greek', true),
+            'tur' => __('Turkish', true),
+            'swe' => __('Swedish', true),
+            'nob' => __('Norwegian (Bokmål)', true),
+            'zsm' => __('Malay', true),
+            'est' => __('Estonian', true),
+            'kat' => __('Georgian', true),
+            'pol' => __('Polish', true), 
+            'swh' => __('Swahili', true), 
+            'lat' => __('Latin', true), 
+            'wuu' => __('Shanghainese', true)
         );
         asort($languages);
         array_unshift($languages, array('und' => __('Any', true)));
