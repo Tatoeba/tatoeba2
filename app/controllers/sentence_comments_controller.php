@@ -52,7 +52,26 @@ class SentenceCommentsController extends AppController
     public $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
     public $paginate = array(
         'limit' => 100,
-        "order" => "SentenceComment.created DESC"
+        "order" => "SentenceComment.created DESC",
+        'fields' => array(
+            'id',
+            'user_id',
+            'text',
+            'created',
+            'sentence_id',
+        ),
+        "contain" => array(
+            'User' => array(
+                'fields' => array(
+                    'id',
+                    'username',
+                    'image',
+                )
+            ),
+            'Sentence' => array(
+                'fields' => "text"
+            )
+        )
     );
     
     
