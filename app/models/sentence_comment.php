@@ -57,6 +57,30 @@ class SentenceComment extends AppModel
         );
 
     }
+
+    /**
+     * get number of comments posted on all the sentences owned by
+     * a specified user
+     *
+     * @param int $userId Id of the user.
+     *
+     * @return int
+     */
+
+    public function numberOfCommentsOnSentencesOf($userId)
+    {
+        return $this->find(
+            'count',
+            array(
+                'conditions' => array('Sentence.user_id' => $userId),
+                'contain' => array(
+                    'Sentence' => array(
+                    )
+                )
+            )
+        );
+
+    }
     
     /**
      * Return latest comments for each language.

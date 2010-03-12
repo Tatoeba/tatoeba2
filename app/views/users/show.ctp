@@ -181,7 +181,7 @@ $navigation->displayUsersNavigation(
                 array(
                     "controller" => "sentence_comments",
                     "action" => "of_user",
-                    $userId
+                    $userName
                 )
             );
             echo ')';

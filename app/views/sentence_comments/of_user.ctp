@@ -36,16 +36,42 @@
  */
 
 // use to send the same arguments to each pages
-$paginator->options(
-    array(
-        'url' => $this->params['pass']
-    ) 
-); 
+// not called if user doesn't actually exist
+if ($userExists === true && $noComment === false){
+    $paginator->options(
+        array(
+            'url' => $this->params['pass']
+        ) 
+    );
+}
 
+// create an helper a lot of the code is the same of "on_sentences_of_user"
 ?>
 
 <div id="main_content">
     <div class="module">
+    <?php
+    if ($userExists === false) {
+        echo '<h2>';
+        echo sprintf(
+            __("There's no user called %s", true),
+            $userName
+        );
+        echo '</h2>';
+
+        echo $html->link(__('Go back to previous page', true), $backLink);
+    } elseif ($noComment === true) {
+        echo '<h2>';
+        echo sprintf(
+            __("%s has posted no comment", true),
+            $userName
+        );
+        echo '</h2>';
+
+        echo $html->link(__('Go back to previous page', true), $backLink);
+
+    } else {
+        ?>
         <h2>
             <?php 
             echo $paginator->counter(
@@ -112,7 +138,9 @@ $paginator->options(
             ); 
             ?>
         </div>
-        
+    <?php
+    }
+    ?>
     </div>
 </div>
 

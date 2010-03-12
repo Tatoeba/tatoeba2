@@ -246,13 +246,37 @@ class SentenceCommentsController extends AppController
     /**
      * show all the comments of a specified user
      *
-     * @param int $userId Id of the user we want comments of
+     * @param int $userName name of the user we want comments of
      *
      * @return void
      */
 
-    public function of_user($userId)
+    public function of_user($userName)
     {
+        $userId = $this->User->getIdfromUsername($userName);
+        $backLink = $this->referer(array('action'=>'index'), true);
+        // if there's no such user no need to do more computation
+        if (empty($userId)) {
+
+            $this->set('backLink', $backLink);
+            $this->set('userName', $userName);
+            $this->set("userExists", false);
+            $this->set("noComment", true);
+            return; 
+        }
+
+        // in the same idea, we do not need to do extra request if the user
+        // has no comment
+        $numberOfComments = $this->SentenceComment->numberOfCommentsOwnedBy($userId);
+        if ($numberOfComments === 0) {
+
+            $this->set('backLink', $backLink);
+            $this->set('userName', $userName);
+            $this->set("userExists", true);
+            $this->set("noComment", true);
+            return; 
+        }
+
         $this->paginate = array(
             'SentenceComment' => array(
                 'fields' => array(
@@ -284,7 +308,6 @@ class SentenceCommentsController extends AppController
             'SentenceComment'
         );
 
-        $userName = $this->User->getUserNameFromId($userId);
 
         $permissions = $this->Permissions->getCommentsOptions(
             $userComments,
@@ -295,19 +318,22 @@ class SentenceCommentsController extends AppController
         $this->set('userComments', $userComments);
         $this->set('userName', $userName);
         $this->set('commentsPermissions', $permissions);
+        $this->set("noComment", false);
+        $this->set("userExists", true);
     }
 
 
     /**
      * show all the comments on sentences of a specified user
      *
-     * @param int $userId Id of the user we want comments on his sentences
+     * @param string $userName Name of the user we want comments on his sentences
      *
      * @return void
      */
 
-    public function on_sentences_of_user($userId)
+    public function on_sentences_of_user($userName)
     {
+		$userId = $this->User->getIdfromUsername($userName);
         $this->paginate = array(
             'SentenceComment' => array(
                 'fields' => array(
@@ -341,14 +367,39 @@ class SentenceCommentsController extends AppController
             'SentenceComment'
         );
 
-        $userName = $this->User->getUserNameFromId($userId);
+        $userId = $this->User->getIdfromUsername($userName);
+        $backLink = $this->referer(array('action'=>'index'), true);
+        // if there's no such user no need to do more computation
+        if (empty($userId)) {
+
+            $this->set('backLink', $backLink);
+            $this->set('userName', $userName);
+            $this->set("userExists", false);
+            $this->set("noComment", false);
+            return; 
+        }
+
+        // in the same idea, we do not need to do extra request if the user
+        // has no comment
+        $numberOfComments = $this->SentenceComment->numberOfCommentsOnSentencesOf(
+            $userId
+        );
+        if ($numberOfComments === 0) {
+            $this->set('backLink', $backLink);
+            $this->set('userName', $userName);
+            $this->set("userExists", true);
+            $this->set("noComment", true);
+            return; 
+        }
+
 
         $permissions = $this->Permissions->getCommentsOptions(
             $userComments,
             $this->Auth->user('id'),
             $this->Auth->user('group_id')
         );
-
+        $this->set('userExists', true);
+        $this->set('noComment', false);
         $this->set('userComments', $userComments);
         $this->set('userName', $userName);
         $this->set('commentsPermissions', $permissions);

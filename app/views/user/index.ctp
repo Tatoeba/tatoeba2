@@ -89,7 +89,7 @@ if (!$session->read('Auth.User.id')) {
                         array(
                             "controller" => "sentence_comments",
                             "action" => "of_user",
-                            $currentUserId
+                            $userName
                         )
                     )
                 );
@@ -104,7 +104,7 @@ if (!$session->read('Auth.User.id')) {
                         array(
                             "controller" => "sentence_comments",
                             "action" => "on_sentences_of_user",
-                            $currentUserId
+                            $userName
                         )
                     )
                 );

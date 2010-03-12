@@ -36,16 +36,41 @@
  */
 
 // use to send the same arguments to each pages
-$paginator->options(
-    array(
-        'url' => $this->params['pass']
-    ) 
-); 
+// not called if user doesn't actually exist
+if ($userExists === true){
+    $paginator->options(
+        array(
+            'url' => $this->params['pass']
+        ) 
+    ); 
+}
 
 ?>
 
 <div id="main_content">
     <div class="module">
+    <?php
+    if ($userExists === false) {
+        echo '<h2>';
+        echo sprintf(
+            __("There's no user called %s", true),
+            $userName
+        );
+        echo '</h2>';
+
+        echo $html->link(__('Go back to previous page', true), $backLink);
+    } elseif ($noComment === true) {
+        echo '<h2>';
+        echo sprintf(
+            __("%s has no comment posted on his/her sentences", true),
+            $userName
+        );
+        echo '</h2>';
+
+        echo $html->link(__('Go back to previous page', true), $backLink);
+
+    } else {
+        ?>
         <h2>
             <?php 
             echo $paginator->counter(
@@ -112,7 +137,9 @@ $paginator->options(
             ); 
             ?>
         </div>
-        
+    <?php
+    }
+    ?> 
     </div>
 </div>
 
