@@ -30,14 +30,10 @@ $this->pageTitle = __("Tatoeba : What's new", true);
 
 <div id="annexe_content">
     <div class="module">
+        <h2><?php __('Follow us'); ?></h2>
         <p id="whatsNew">
-        <?php
-        __(
-            'You can follow the evolution of the project on '.
-            '<a class="twitterLink" target="_blank" '.
-            'href="http://twitter.com/tatoeba_project">Twitter</a>.'
-        );
-        ?>
+            <a class="twitterLink" href="http://twitter.com/tatoeba_project">Twitter</a>
+            <a class="bloggerLink" href="http://blog.tatoeba.org">Tatoeba Blog</a>
         </p>
     </div>
 </div>

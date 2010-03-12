@@ -87,15 +87,20 @@
 /* What's new */
 
 #whatsNew{
-	font-size: 2em;
-	margin: 10px 0;
+	font-size: 1.4em;
 }
 
 .twitterLink{
-	padding-right: 30px;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	background:transparent url(../img/twitter_24x24.png) no-repeat scroll right;
+	padding: 7px 0px 7px 40px;
+	margin: 0px 0px 10px 20px;
+	background:transparent url(../img/twitter_icon.png) no-repeat scroll left;
+	display:block;
+}
+
+.bloggerLink{
+	padding: 7px 0px 7px 40px;
+	margin: 0px 0px 0px 20px;
+    background:transparent url(../img/blogger_icon.png) no-repeat scroll left;
 }
 
 .twit{
