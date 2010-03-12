@@ -40,18 +40,47 @@ class ClickableLinksHelper extends AppHelper
 
     /**
      * Replace URLs by clickable URLs.
+     * Inspired from :
+     * http://prajapatinilesh.wordpress.com/2007/08/08/php-make-urls-clickable-and-short-down/
      *
      * @param array $text Text to process.
      * 
      * @return string
      */
     public function clickableURL($text)
-    {
-        $text = preg_replace(
-            '/(https?:\/\/[^<)\(\s ]{0,50})[^<)\(\s ]{0,}/u', 
-            "<a href='$0'>$1</a>", 
-            $text
-        );
+    {        
+        $pattern = '/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n\(\)"\'\,\!]+)/siu';
+        $match = preg_match_all($pattern, $text, $urls);
+        if ($match) {
+            $maxUrlLength = 50;
+            $offset1 = ceil(0.65*$maxUrlLength) - 2;
+            $offset2 = ceil(0.30*$maxUrlLength) - 1;
+
+            foreach (array_unique($urls[1]) as $url) {
+                if (strlen($url) > $maxUrlLength) {
+                    $urlText = substr($url, 0, $offset1) 
+                        . '...' 
+                        . substr($url, -$offset2);
+                } else {
+                    $urlText = $url;
+                }
+                
+                // Checking last character and taking it out if it's a puncturation
+                $unwantedLastCharacters = array('?', '!', '.', ',', ')', ';', ':');
+                $lastCharacter = substr($url, -1, 1);
+                if (in_array($lastCharacter, $unwantedLastCharacters)) {
+                    $url = substr($url, 0, -1);
+                    $urlText = substr($urlText, 0, -1);
+                }
+                
+                $text = str_replace(
+                    $url, 
+                    '<a href="'. $url .'">'. $urlText .'</a>', 
+                    $text
+                );
+            }
+        }
+        
         return $text;
     }
 
