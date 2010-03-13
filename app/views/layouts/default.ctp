@@ -35,8 +35,9 @@
         // TIPS : to avoid css to be joined even when not needed
         // you can use if ($this->params etc... to restrict css
         // to some pages
-
+        
 		echo $html->meta('icon');
+        
 		echo $html->css('tatoeba.newui');
 		echo $html->css('tatoeba.newgeneric');
 		echo $html->css('tatoeba.sentences');
@@ -53,7 +54,6 @@
         }
 		echo $html->css('tatoeba.navigation');
 		echo $html->css('tatoeba.popup');
-//		echo $html->css('tatoeba.conversations');
 		echo $html->css('tatoeba.private_messages');
         if ($this->params['controller'] == 'sentences_lists') {
             echo $html->css('tatoeba.sentences_lists');
@@ -62,16 +62,9 @@
         if ($this->params['controller'] == 'sinograms'){
             echo $html->css('tatoeba.sinograms');
         }
-//      echo $html->css('jquery-ui-1.7.2.custom');
-
-//      echo $html->css('autocompletion.jquery.autocomplete');
-//      echo $html->css('autocompletion.thickbox');
-
+        
 		echo $javascript->link('jquery-mini.js', true);
-//		echo $javascript->link('jqueryui/jquery-1.3.2.min.js', true);
-//		echo $javascript->link('jqueryui/jquery-ui-1.7.2.custom.min.js', true);
-		echo $javascript->link('sentences.show_another.js', true);
-		//echo $javascript->link('general.init.js', true);
+
 		echo $scripts_for_layout;
 	?>
 </head>

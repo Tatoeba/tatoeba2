@@ -27,6 +27,7 @@
 
 $this->pageTitle = __('Tatoeba : Collecting example sentences', true);
 echo $javascript->link('sentences.statistics.js', false);
+echo $javascript->link('sentences.show_another.js', false);
 
 $key = isset($this->params['lang']) ? $this->params['lang'] : 'eng';
 

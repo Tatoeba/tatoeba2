@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+ 
+echo $javascript->link('sentences.show_another.js', false);
 ?>
 
 
