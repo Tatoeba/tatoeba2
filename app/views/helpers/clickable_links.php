@@ -48,14 +48,18 @@ class ClickableLinksHelper extends AppHelper
      * @return string
      */
     public function clickableURL($text)
-    {        
+    {
+        // get rid of \r
+        $text = preg_replace('#\r#u', '', $text);
+        
         $pattern = '/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n\(\)"\'\,\!<]+)/siu';
         $match = preg_match_all($pattern, $text, $urls);
         if ($match) {
             $maxUrlLength = 50;
             $offset1 = ceil(0.65*$maxUrlLength) - 2;
             $offset2 = ceil(0.30*$maxUrlLength) - 1;
-
+            
+            
             foreach (array_unique($urls[1]) as $url) {
                 if (strlen($url) > $maxUrlLength) {
                     $urlText = substr($url, 0, $offset1) 
@@ -73,9 +77,17 @@ class ClickableLinksHelper extends AppHelper
                     $urlText = substr($urlText, 0, -1);
                 }
                 
-                $text = str_replace(
-                    $url, 
-                    '<a href="'. $url .'">'. $urlText .'</a>', 
+                // There was a problem when one URL is be included in another one.
+                // For instance, http://tatoeba.org is included in 
+                // http://tatoeba.org/wall.
+                // Because of the presence of http://tatoeba.org, the other URLS
+                // beginning with http://tatoeba.org would be messed up.
+                // That's why we need to do replace only if there's a stop character.
+                $escapedUrl = str_replace('/', '\/', $url);
+                $pattern2 = '/('.$escapedUrl.'([\?!\.,\);:< \n]))|('.$escapedUrl.'$)/u';
+                $text = preg_replace(
+                    $pattern2, 
+                    '<a href="'. $url .'">'. $urlText .'</a>$2', 
                     $text
                 );
             }
