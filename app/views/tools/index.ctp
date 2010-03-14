@@ -89,7 +89,23 @@ $this->pageTitle = __('Browse languages related tools provided by Tatoeba', true
                 echo ': ';
                 __("search all Chinese characters / kanjis by all possible ways.");
                 ?>
-            </li> 
+            </li>
+            <li>
+                <?php
+                echo $html->link(
+                    __('Pinyin converter', true),
+                    array(
+                        "controller" => "tools",
+                        "action" => "pinyin_converter"
+                    )
+                );
+                echo ': ';
+                __(
+                    "convert chinese to pinyin, numerical pinyin ".
+                    "to diacritical pinyin etc."
+                );
+                ?>
+            </li>  
         </ul>
     </div>
 </div>

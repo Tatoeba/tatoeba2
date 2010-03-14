@@ -95,7 +95,7 @@ class SentencesHelper extends AppHelper
             }
 
             if ($sentence['lang'] === 'cmn') {
-                echo $this->Pinyin->numeric2diacritical(
+                echo $this->Pinyin->numeric2diacritic(
                     $romanization               
                 );
             } else {

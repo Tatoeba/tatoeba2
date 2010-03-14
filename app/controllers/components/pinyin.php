@@ -26,7 +26,7 @@
  */
 
 /**
- * Helper for pinyin
+ * Component for pinyin conversion
  *
  * @category Utilities
  * @package  Helpers
@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */
 
-class PinyinHelper extends AppHelper
+class PinyinComponent extends Object
 {
 
     private $_constTone2ToneConsti_search = array(
@@ -226,7 +226,6 @@ class PinyinHelper extends AppHelper
 
         return $text;
     }
-
 
 
 }

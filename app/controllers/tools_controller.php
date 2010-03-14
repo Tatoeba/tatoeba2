@@ -38,6 +38,7 @@ class ToolsController extends AppController
 {
     public $name = 'Tools';
     public $helpers = array('Kakasi', 'Javascript');
+    public $components = array('Pinyin');
     
     /**
      * Before filter.
@@ -68,6 +69,52 @@ class ToolsController extends AppController
      */
     public function kakasi()
     {
+    }
+
+    /**
+     * Different converters chinese/pinyin
+     *
+     * @return void
+     */
+    public function pinyin_converter()
+    {
+        $text = $this->data['Tool']['query'];
+        $from = $this->data['Tool']['from'];
+        $to = $this->data['Tool']['to'];
+        
+        if (!empty($text)) {
+            // we don't need to do nothing if we have choose the same output
+            // than input
+            if ($from === $to) {
+                $this->set('pinyin', $text);
+                $this->set('lastText', $text);
+                return;
+            }
+
+
+            if ($from === 'chinese') {
+                // then we need to call the adso function
+                $Sentence = ClassRegistry::init('Sentence');
+                $pinyin = $Sentence->getRomanization($text, 'cmn');
+                
+                if ($to === 'diacPinyin') {
+                    $pinyin = $this->Pinyin->numeric2diacritic($pinyin);
+                }
+                
+                $this->set('convertedText', $pinyin);
+                $this->set('lastText', $text);
+                return;
+            }
+
+            if ($from == 'numPinyin') {
+                $pinyin = $this->Pinyin->numeric2diacritic($text);
+                $this->set('convertedText', $pinyin);
+                $this->set('lastText', $text);
+                return;
+            }
+
+        }
+
     }
 }
 ?>
