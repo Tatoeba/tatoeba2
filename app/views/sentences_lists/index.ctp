@@ -140,7 +140,12 @@ if (isset($myLists)) {
 
             echo '<ul class="sentencesLists">';
             foreach ($myLists as $myList) {
-                $lists->displayItem($myList);
+                $lists->displayItem(
+                    $myList['SentencesList']['id'],
+                    $myList['SentencesList']['name'],
+                    $myList['User']['username'],
+                    $myList['SentencesList']['is_public']
+                );
             }
             echo '</ul>';
         } else {
@@ -163,7 +168,12 @@ if (count($publicLists) > 0) {
 
         echo '<ul class="sentencesLists">';
             foreach ($publicLists as $publicList) {
-                $lists->displayItem($publicList);
+                $lists->displayItem(
+                    $publicList['SentencesList']['id'],
+                    $publicList['SentencesList']['name'],
+                    $publicList['User']['username'],
+                    $publicList['SentencesList']['is_public']                   
+                );
             }
         echo '</ul>';
     echo '</div>';
@@ -178,7 +188,12 @@ if (count($otherLists) > 0) {
 
         echo '<ul class="sentencesLists">';
         foreach ($otherLists as $otherList) {
-            $lists->displayItem($otherList);
+            $lists->displayItem(
+                $otherList['SentencesList']['id'],
+                $otherList['SentencesList']['name'],
+                $otherList['User']['username'],
+                $otherList['SentencesList']['is_public']             
+            );
         }
         echo '</ul>';
     echo '</div>';

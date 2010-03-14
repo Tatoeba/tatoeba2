@@ -41,24 +41,33 @@ class ListsHelper extends AppHelper
     /** 
      * Display item of a list of lists.
      *
-     * @param array $list Item to display.
+     * @param int     $listId          Id of the list to display.
+     * @param string  $listName        Name of the list.
+     * @param string  $listCreatorName Name of the list's creator.
+     * @param boolean $isPublic        If the list is public or not.
+     * @param int     $count           Number of sentences in the list.
      *
      * @return void
      */
-    public function displayItem($list)
-    {
+    public function displayItem(
+        $listId,
+        $listName,
+        $listCreatorName,
+        $isPublic,
+        $count = 0
+    ) {
         echo '<li>';
-        echo '<span id="_'.$list['SentencesList']['id'].'" class="listName">';
+        echo '<span id="_'.$listId.'" class="listName">';
         $name = '('.__('unnamed list', true).')';
-        if (rtrim($list['SentencesList']['name']) != '') {
-            $name = $list['SentencesList']['name'];
+        if (rtrim($listName) != '') {
+            $name = $listName;
         }
         echo $this->Html->link(
             $name,
             array(
                 "controller" => "sentences_lists",
                 "action" => "edit",
-                $list['SentencesList']['id']
+                $listId
             )
         );
         echo '</span><span class="listInfo"> - ';
@@ -68,12 +77,12 @@ class ListsHelper extends AppHelper
                 array(
                     "controller"=>"user",
                     "action"=>"profile",
-                    $list['User']['username']
+                    $listCreatorName
                 )
             ),
-            $list['User']['username']
+            $listCreatorName
         );
-        if ($list['SentencesList']['is_public']) {
+        if ($isPublic) {
             echo ' <span class="publicList">'.__('(public list)', true) .'</span>';
         }
         echo '</span>';
