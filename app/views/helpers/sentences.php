@@ -43,7 +43,8 @@ class SentencesHelper extends AppHelper
         'Javascript',
         'Menu',
         'Languages',
-        'Session'
+        'Session',
+        'Pinyin'
     );
     
     /**
@@ -79,7 +80,10 @@ class SentencesHelper extends AppHelper
      */
     private function _displayRomanization($sentence)
     {
+
         if (isset($sentence['romanization'])) {
+            $romanization = $sentence['romanization'];
+            
             if ($sentence['lang'] == 'jpn') {
                 $title = __(
                     'WARNING : the romaji is automatically generated '.
@@ -89,8 +93,14 @@ class SentencesHelper extends AppHelper
             } else {
                 echo '<div class="romanization">';
             }
-            
-            echo $sentence['romanization'];
+
+            if ($sentence['lang'] === 'cmn') {
+                echo $this->Pinyin->numeric2diacritical(
+                    $romanization               
+                );
+            } else {
+                echo $romanization;
+            }
             echo '</div>';
         }
     }
