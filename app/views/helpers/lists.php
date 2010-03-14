@@ -89,5 +89,48 @@ class ListsHelper extends AppHelper
         echo '</li>';
     }
     
+    
+    /** 
+     * Display row of a list of lists.
+     *
+     * @param array $list Item to display.
+     *
+     * @return void
+     */
+    public function displayRow($list)
+    {
+        echo '<tr>';
+        echo '<td><span id="_'.$list['SentencesList']['id'].'" class="listName">';
+        $name = '('.__('unnamed list', true).')';
+        if (rtrim($list['SentencesList']['name']) != '') {
+            $name = $list['SentencesList']['name'];
+        }
+        echo $this->Html->link(
+            $name,
+            array(
+                "controller" => "sentences_lists",
+                "action" => "edit",
+                $list['SentencesList']['id']
+            )
+        );
+        echo '</span></td>';
+        
+        echo '<td><span class="listInfo">';
+        echo sprintf(
+            __('<a href="%s">%s</a>', true),
+            $this->Html->url(
+                array(
+                    "controller"=>"user",
+                    "action"=>"profile",
+                    $list['User']['username']
+                )
+            ),
+            $list['User']['username']
+        );
+        echo '</span></td>';
+        
+        echo '<td>XX</td>';
+        echo '</tr>';
+    }
 }
 ?>
