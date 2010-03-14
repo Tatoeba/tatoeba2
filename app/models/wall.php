@@ -74,6 +74,19 @@ class Wall extends AppModel
         }
 
     }
+    
+    /**
+     * Get message with given id.
+     *
+     * @param int id Id of the message.
+     *
+     * @return void
+     */
+    public function getMessageWithId($id)
+    {
+        return $this->findById($id);
+    }
+    
 
     /**
      * Get all the message which start a thread

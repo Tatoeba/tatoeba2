@@ -67,7 +67,6 @@ class WallHelper extends AppHelper
             );
             echo ' - ';
         }
-        /* * * * * * * * * * * * * * * * */
             
         if ($permissions['canReply']) { 
             // reply link
@@ -84,7 +83,14 @@ class WallHelper extends AppHelper
         }
         
         // message link
-        echo '<a href="#message_'.$messageId.'">#</a>';
+        echo $this->Html->link(
+            '#',
+            array(
+                'controller' => 'wall',
+                'action' => 'show_message',
+                $messageId
+            )
+        );
     }
 
     /**
@@ -212,6 +218,51 @@ class WallHelper extends AppHelper
             }
              echo '</ul>' ;
         }
+    }
+    
+    
+    public function createRootDiv($message, $author, $permissions){
+        $writerImage = $author['image'];
+        $writerName  = $author['username'];
+
+        if (empty($writerImage)) {
+            $writerImage = 'unknown-avatar.jpg';
+        }
+
+        $messageId = $message['id'];
+        
+        echo '<div class="message root">';
+            echo '<ul class="meta">'."\n";
+                // delete, view
+                echo '<li class="action">';
+                    $this->createLinks(
+                        $messageId,
+                        $permissions,
+                        true
+                    ); 
+                echo '</li>';
+                     
+                // image
+                echo '<li class="image">';
+                $this->displayMessagePosterImage($writerName, $writerImage);
+                echo '</li>';
+                     
+                // username
+                echo '<li class="author">';
+                $this->displayLinkToUserProfile($writerName);
+                echo '</li>';
+                            
+                // date
+                echo '<li class="date">';
+                echo $this->Date->ago($message['date']);
+                echo '</li>';
+            echo '</ul>';
+
+            // message content
+            echo '<div class="body" >';
+            $this->displayContent($message['content']);
+            echo '</div>';
+        echo '</div>';
     }
 
     /**

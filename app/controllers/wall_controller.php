@@ -41,7 +41,23 @@ class WallController extends Appcontroller
 
     public $name = 'Wall' ;
     public $paginate = array(
-        'limit' => 50
+        "order" => "Wall.date DESC", 
+        "limit" => 10,
+        "conditions" => array ("Wall.replyTo" => 0),
+        "contain"    => array (
+            "Reply" => array (
+                "order" =>"Reply.date",
+                "fields" => array("Reply.id") 
+                )
+            
+            ,"User" => array (
+                "fields" => array(
+                    "User.image",
+                    "User.username",
+                    "User.id"
+                ) 
+            )
+        )
     );
     public $helpers = array('Wall','Javascript','Date');
     public $components = array ('Mailer');
@@ -58,9 +74,9 @@ class WallController extends Appcontroller
         // TODO set correct right
         $this->Auth->allowedActions = array(
             'index',
-            'delete_message'
+            'delete_message',
+            'show_message',
         );
-           
     }
 
     /**
@@ -69,14 +85,20 @@ class WallController extends Appcontroller
      *
      * @return void
      */
-
-    public function index()
+    public function index($option = null)
     {
         // TODO it seems to me this can be possible to make everything
         // easier with tree behaviour in cakephp, but for the moment
         // it works quite well 
-        $firstMessages = $this->Wall->getFirstMessages();
-
+        
+        // NOTE: When the tree behavior is implemented, we won't need the
+        // $option parameter anymore. The wall will be paginated and there
+        // won't be a non-pagianted version.
+        if($option != null){
+            $firstMessages = $this->paginate('Wall');
+        } else {
+            $firstMessages = $this->Wall->getFirstMessages();
+        }
         
         $messages = $this->Wall->getMessages();
         $messages = $this->_organize_messages($messages);
@@ -99,7 +121,8 @@ class WallController extends Appcontroller
         $this->set('allMessages', $messages);
         $this->set('tenLastMessages', $tenLastMessages);
         $this->set('firstMessages', $firstMessages);
-
+        
+        $this->set('option', $option);// TODO Remove me when tree behavior ready
 
     }
 
@@ -122,7 +145,38 @@ class WallController extends Appcontroller
 
         return $newMessages;
     }
-
+    
+    
+    /**
+     * Display message with given id.
+     *
+     * @param int id Id of the message.
+     *
+     * @return void
+     */
+    public function show_message($id)
+    {
+        // TODO For now this only shows the message alone.
+        // In near the future it should also display the whole thread.
+        $message = $this->Wall->getMessageWithId($id);
+        
+        $userId = $this->Auth->user('id');
+        $groupId = $this->Auth->user('group_id');
+        $messagePermissions = $this->Permissions->getWallMessageOptions(
+            $message,
+            $message['Wall']['owner'],
+            $userId,
+            $groupId
+        );
+        
+        $isAuthenticated = !empty($userId);
+        
+        $this->set('isAuthenticated', $isAuthenticated); 
+        $this->set('message', $message);
+        $this->set('messagePermissions', $messagePermissions); 
+    }
+    
+    
     /**
      * save a new first message
      *
@@ -143,7 +197,8 @@ class WallController extends Appcontroller
             }
         }
 
-        $this->redirect(array('action'=>'index'));
+        $this->redirect(array('action'=>'index', 'paginated'));
+        // TODO Remove 'paginated' param when tree behavior ready
     }
 
     /**

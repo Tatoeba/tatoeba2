@@ -25,10 +25,15 @@
  * @link     http://tatoeba.org
  */
 
-/*
-general view for the wall, here are displayed all the messages
-
-*/
+/**
+ * General view for the wall. Here are displayed all the messages.
+ *
+ * @category Wall
+ * @package  Views
+ * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */ 
 
 $this->pageTitle = __('Wall', true);
 
@@ -54,15 +59,30 @@ $this->pageTitle = __('Wall', true);
         <ul>
             <?php
             $mesg = count($tenLastMessages);
+            
             for ($i = 0 ; $i < min(10, $mesg); $i++) {
                 $currentMessage = $tenLastMessages[$i] ;
                 echo '<li>';
-                echo '<a href="#message_' . $currentMessage['Wall']['id'] .
-                    '" >' . $date->ago($currentMessage['Wall']['date'])
-                     . ", "
-                     . __('by ', true)
-                     . $currentMessage['User']['username'];
-                echo '</a>';
+                // text of the link
+                $text = $date->ago($currentMessage['Wall']['date'])
+                        . ", "
+                        . __('by ', true)
+                        . $currentMessage['User']['username'];
+                // path of the link
+                $path = array(
+                    'controller' => 'wall',
+                    'action' => 'show_message',
+                    $currentMessage['Wall']['id']
+                );
+                // TODO Remove the whole if block when tree behavior ready
+                if ($option == null) {
+                    $path = array(
+                        'controller' => 'wall',
+                        'action' => 'index#message_'.$currentMessage['Wall']['id']
+                    );
+                }
+                // link
+                echo $html->link($text, $path);
                 echo '</li>';
             };
             ?>
@@ -72,64 +92,99 @@ $this->pageTitle = __('Wall', true);
 
 <div id="main_content">
     <div class="module">
-        <h2><?php echo __("Wall", true); ?></h2>
+        
+        <h2>
+        <?php 
+        if ($option != null) {
+            echo $paginator->counter(
+                array(
+                    'format' => __(
+                        'Wall (%count% threads)',
+                        true
+                    )
+                )
+            );
+        } else {
+            __('Wall');
+            echo ' (';
+            echo $html->link(
+                'Back to paginated version', // temporary text, no i18n
+                array(
+                    'controller' => 'wall',
+                    'action' => 'index',
+                    'paginated'
+                )
+            );
+            echo ')';
+        }
+        ?>
+        </h2>
+        
+        
         <?php
         // leave a comment part
-            
         if ($isAuthenticated) {
             echo '<div id="sendMessageForm">'."\n";
             echo $wall->displayAddMessageToWallForm();
             echo '</div>'."\n";
         }
         ?>
+        
+        <?php
+        // Pagination
+        
+        // TODO Remove "if paginated" as well when tree behavior ready
+        if ($option == 'paginated') {
+            // This is needed so that the paginator uses the right link.
+            // Otherwise it won't add the 'paginated' in the link.
+            $paginator->options(
+                array(
+                    'url' => array( 
+                        'controller' => 'wall', 
+                        'action' => 'index', 
+                        'paginated'
+                    )
+                )
+            );
+        
+            ?>
+            <div class="paging">
+            <?php 
+            echo $paginator->prev(
+                '<< '.__('previous', true), 
+                array(), 
+                null, 
+                array('class'=>'disabled')
+            ); 
+            
+            echo $paginator->numbers(array('separator' => ''));
+            
+            echo $paginator->next(
+                __('next', true).' >>',
+                array(),
+                null, 
+                array('class'=>'disabled')
+            ); 
+            ?>
+            </div>
+            <?php
+        }
+        ?>
+        
         <ol class="wall">
         <?php
         // display comment part
         foreach ($firstMessages as $message) {
-            
-            $writerImage = $message['User']['image'];
-            $writerName  = $message['User']['username'];
-
-            if (empty($writerImage)) {
-                $writerImage = 'unknown-avatar.jpg';
-            }
-
+        
             $messageId = $message['Wall']['id'];
             
             echo '<li id="message_'.$messageId.'" class="topThread" >'."\n";
-            echo '<div class="message root">';
-            echo '<ul class="meta">'."\n";
-            
-            echo '<li class="action">';
-                $wall->createLinks(
-                    $messageId,
-                    $messagesPermissions[$messageId],
-                    true
-                ); 
-            echo '</li>';
-                 
-            // image
-
-            echo '<li class="image">';
-            $wall->displayMessagePosterImage($writerName, $writerImage);
-            echo '</li>';
-                 
-            // username
-            echo '<li class="author">';
-            $wall->displayLinkToUserProfile($writerName);
-            echo '</li>';
-                        
-            // date
-            echo '<li class="date">';
-            echo $date->ago($message['Wall']['date']);
-            echo '</li>';
-            echo '</ul>';
-
-            // message content
-            echo '<div class="body" >';
-            $wall->displayContent($message['Wall']['content']);
-            echo '</div>';
-            echo '</div>';
+            // Root message
+            $wall->createRootDiv(
+                $message['Wall'], 
+                $message['User'], 
+                $messagesPermissions[$messageId]
+            );
 
             // replies
             echo '<div class="replies" id="messageBody_'.$messageId .'" >';
@@ -151,5 +206,34 @@ $this->pageTitle = __('Wall', true);
         }
         ?>
         </ol>
+        
+        <?php
+        // Pagination
+        // TODO Remove "if paginated" when tree behavior ready
+        if ($option != null) {
+            ?>
+            <div class="paging">
+            <?php 
+            echo $paginator->prev(
+                '<< '.__('previous', true), 
+                array(), 
+                null, 
+                array('class'=>'disabled')
+            ); 
+            
+            echo $paginator->numbers(array('separator' => ''));
+            
+            echo $paginator->next(
+                __('next', true).' >>',
+                array(),
+                null, 
+                array('class'=>'disabled')
+            ); 
+            ?>
+            </div>
+            <?php
+        }
+        ?>
+        
     </div>
 </div>
