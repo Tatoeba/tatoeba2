@@ -155,7 +155,7 @@ if (isset($myLists)) {
                 foreach ($myLists as $myList) {
                     $lists->displayRow($myList);
                 }
-            echo '<table>';
+            echo '</table>';
         } else {
             echo '<h2>';
             __('Create a new list');
@@ -191,7 +191,7 @@ if (count($publicLists) > 0) {
             foreach ($publicLists as $publicList) {
                 $lists->displayRow($publicList);
             }
-        echo '<table>';
+        echo '</table>';
     echo '</div>';
 }
 
@@ -219,7 +219,7 @@ if (count($otherLists) > 0) {
             foreach ($otherLists as $otherList) {
                 $lists->displayRow($otherList);
             }
-        echo '<table>';
+        echo '</table>';
     echo '</div>';
 }
 ?>
