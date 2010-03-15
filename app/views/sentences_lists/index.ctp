@@ -138,24 +138,8 @@ if (isset($myLists)) {
             $javascript->link('sentences_lists.edit_name.js', false);
             $javascript->link('jquery.jeditable.js', false);
 
-//            echo '<ul class="sentencesLists">';
-//            foreach ($myLists as $myList) {
-//                $lists->displayItem(
-//                    $myList['SentencesList']['id'],
-//                    $myList['SentencesList']['name'],
-//                    $myList['User']['username'],
-//                    $myList['SentencesList']['is_public']
-//                );
-//            }
-//            echo '</ul>';
-            echo '<table>';
-                echo '<tr>';
-                echo '<th>Name</th><th>Created by</th><th>Number of sentences</th>';
-                echo '</tr>';
-                foreach ($myLists as $myList) {
-                    $lists->displayRow($myList);
-                }
-            echo '</table>';
+            $lists->displayListTable($myLists);
+
         } else {
             echo '<h2>';
             __('Create a new list');
@@ -173,25 +157,9 @@ if (count($publicLists) > 0) {
         echo '<h2>';
         echo __('Public lists');
         echo '</h2>';
-
-//        echo '<ul class="sentencesLists">';
-//            foreach ($publicLists as $publicList) {
-//                $lists->displayItem(
-//                    $publicList['SentencesList']['id'],
-//                    $publicList['SentencesList']['name'],
-//                    $publicList['User']['username'],
-//                    $publicList['SentencesList']['is_public']                   
-//                );
-//            }
-//        echo '</ul>';
-        echo '<table>';
-            echo '<tr>';
-            echo '<th>Name</th><th>Created by</th><th>Number of sentences</th>';
-            echo '</tr>';
-            foreach ($publicLists as $publicList) {
-                $lists->displayRow($publicList);
-            }
-        echo '</table>';
+        
+        $lists->displayListTable($publicLists);
+    
     echo '</div>';
 }
 
@@ -201,25 +169,9 @@ if (count($otherLists) > 0) {
         echo '<h2>';
         echo __('All the other lists');
         echo '</h2>';
+            
+        $lists->displayListTable($otherLists);
 
-//        echo '<ul class="sentencesLists">';
-//        foreach ($otherLists as $otherList) {
-//            $lists->displayItem(
-//                $otherList['SentencesList']['id'],
-//                $otherList['SentencesList']['name'],
-//                $otherList['User']['username'],
-//                $otherList['SentencesList']['is_public']             
-//            );
-//        }
-//        echo '</ul>';
-        echo '<table>';
-            echo '<tr>';
-            echo '<th>Name</th><th>Created by</th><th>Number of sentences</th>';
-            echo '</tr>';
-            foreach ($otherLists as $otherList) {
-                $lists->displayRow($otherList);
-            }
-        echo '</table>';
     echo '</div>';
 }
 ?>

@@ -89,47 +89,102 @@ class ListsHelper extends AppHelper
         echo '</li>';
     }
     
-    
-    /** 
-     * Display row of a list of lists.
+    /**
+     * display an array of lists in an HTML table
      *
-     * @param array $list Item to display.
+     * @param array $arrayOfLists Terrible array of lists with array of array in it
      *
      * @return void
      */
-    public function displayRow($list)
+
+    public function displayListTable($arrayOfLists)
     {
-        echo '<tr>';
-        echo '<td><span id="_'.$list['SentencesList']['id'].'" class="listName">';
-        $name = '('.__('unnamed list', true).')';
-        if (rtrim($list['SentencesList']['name']) != '') {
-            $name = $list['SentencesList']['name'];
+        ?>
+        <table>
+            <tr>
+                <th><?php __('Name'); ?></th>
+                <th><?php __('Created by'); ?></th>
+                <th><?php __('Number of sentences'); ?></th>
+            </tr>
+        <?php
+        foreach ($arrayOfLists as $list) {
+            $this->displayRow(
+                $list['SentencesList']['id'],
+                $list['SentencesList']['name'],
+                $list['User']['username'],
+                $list['SentencesList']['is_public']
+            );
         }
+        ?>
+        </table>
+        <?php
+    }
+
+
+    /** 
+     * Display row of a list of lists.
+     *
+     * @param int     $listId          Id of the list to display.
+     * @param string  $listName        Name of the list.
+     * @param string  $listCreatorName Name of the list's creator.
+     * @param boolean $isPublic        If the list is public or not.
+     * @param int     $count           Number of sentences in the list.
+     *
+     * @return void
+     */
+
+    public function displayRow(
+        $listId,
+        $listName,
+        $listCreatorName,
+        $isPublic,
+        $count = 0
+    ) {
+
+        // list name
+
+        echo '<tr>';
+        echo '<td>';
+        echo '<span id="_'.$listId.'" class="listName">';
+        $name = '('.__('unnamed list', true).')';
+        if (rtrim($listName) != '') {
+            $name = $listName;
+        }
+
+        //  list id  
+
         echo $this->Html->link(
             $name,
             array(
                 "controller" => "sentences_lists",
                 "action" => "edit",
-                $list['SentencesList']['id']
+                $listId
             )
         );
-        echo '</span></td>';
-        
-        echo '<td><span class="listInfo">';
+        echo '</span>';
+        echo '</td>';
+       
+        // creator link 
+         
+        echo '<td>';
+        echo '<span class="listInfo">';
         echo sprintf(
             __('<a href="%s">%s</a>', true),
             $this->Html->url(
                 array(
                     "controller"=>"user",
                     "action"=>"profile",
-                    $list['User']['username']
+                    $listCreatorName
                 )
             ),
-            $list['User']['username']
+            $listCreatorName
         );
-        echo '</span></td>';
+        echo '</span>';
+        echo '</td>';
+       
+        // number of sentences in the list
         
-        echo '<td>XX</td>';
+        echo "<td>$count</td>";
         echo '</tr>';
     }
 }
