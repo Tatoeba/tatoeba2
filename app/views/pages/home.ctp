@@ -68,10 +68,23 @@ $selectedLanguage = $session->read('random_lang_selected');
     ?>
     
     <div class="module">
-    <h2><?php __('Number of sentences'); ?></h2>
-    <?php 
-    echo $this->element('sentences_statistics');
-    ?>
+        <h2><?php __('Number of sentences'); ?></h2>
+        <?php 
+        echo $this->element('sentences_statistics');
+        ?>
+    </div>
+    
+    <div class="module">
+        <h2><?php __('Latest messages'); ?></h2>
+        <?php 
+        foreach ($latestMessages as $value) {
+            echo $date->ago($value['Wall']['date']);
+            echo ', by '. $value['User']['username'];
+            echo '<br/>';
+            echo substr($value['Wall']['content'], 0, 200);
+            echo '<br/>';
+        }
+        ?>
     </div>
     
     <?php
@@ -181,7 +194,7 @@ $selectedLanguage = $session->read('random_lang_selected');
         </h2>
             <?php echo $this->element('latest_contributions'); ?>
     </div>
-
+    <?php pr($latestMessages); ?>
     <div class="module">
         <h2>
             <?php __('Latest comments'); ?>

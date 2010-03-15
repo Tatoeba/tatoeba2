@@ -156,7 +156,12 @@ class PagesController extends AppController
 
         $this->set('sentenceComments', $latestComments);
         $this->set('commentsPermissions', $commentsPermissions);  
-            
+        
+        /*latest messages part */
+        $Wall = ClassRegistry::init('Wall');
+        $latestMessages = $Wall->getLastMessages(5);
+        
+        $this->set('latestMessages', $latestMessages); 
     }
 
 }
