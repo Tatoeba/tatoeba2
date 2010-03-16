@@ -72,6 +72,23 @@ class ToolsController extends AppController
     }
 
     /**
+     * will convert a sentence in traditional chinese
+     * to simplified and vice versa
+     *
+     * @return void
+     */
+    public function switch_script()
+    {
+        $text = $this->data['Tool']['query'];    
+        escapeshellarg($text); 
+        $convertedText =  exec("adso.sh --switch-script -cn -i $text");
+     
+        $this->set('convertedText',$convertedText); 
+        $this->set('lastText', $text);
+    }
+
+
+    /**
      * Different converters chinese/pinyin
      *
      * @return void

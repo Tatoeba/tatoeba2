@@ -106,6 +106,22 @@ $this->pageTitle = __('Browse languages related tools provided by Tatoeba', true
                 );
                 ?>
             </li>  
+            <li>
+                <?php
+                echo $html->link(
+                    __('Chinese switch script', true),
+                    array(
+                        "controller" => "tools",
+                        "action" => "switch_script"
+                    )
+                );
+                echo ': ';
+                __(
+                    "convert traditional chinese to simplified ".
+                    "and vice versa (powered by adso)"
+                );
+                ?>
+            </li>  
         </ul>
     </div>
 </div>
