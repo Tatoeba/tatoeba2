@@ -334,34 +334,42 @@ class SentencesListsController extends AppController
      * add it to the list.
      * Used in AJAX request in sentences_lists.add_new_sentence_to_list.js.
      *
+     * TODO refactor this, we should call the saving part of sentence controller
+     *  and the adding part should be factorized with the adding part of other
+     *  method of this controller
+     *
      * @return void
      */
     public function add_new_sentence_to_list()
     {
-        if (isset($_POST['listId']) AND isset($_POST['sentenceText'])) {
-            Sanitize::paranoid($_POST['listId']);
-            Sanitize::paranoid($_POST['sentenceText']);
+        if (isset($_POST['listId']) && isset($_POST['sentenceText'])) {
+
+            $listId = $_POST['listId'];
+            $sentenceText = $_POST['sentenceText'];
+
+            Sanitize::paranoid($listId);
+            Sanitize::paranoid($sentenceText);
 
             $sentence = new Sentence();
 
             //detecting language
-            $this->GoogleLanguageApi->text = $_POST['sentenceText'];
-            $response = $this->GoogleLanguageApi->detectLang();
-            $data['Sentence']['lang'] = $this->GoogleLanguageApi->google2TatoebaCode(
-                $response['language']
+            $sentenceLang = $this->GoogleLanguageApi->detectLang(
+                $sentenceText
             );
-            $data['Sentence']['user_id'] = $this->Auth->user('id');
-            $data['Sentence']['text'] = $_POST['sentenceText'];
 
+            $data['Sentence']['user_id'] = $this->Auth->user('id');
+            $data['Sentence']['text'] = $sentenceText;
+            $data['Sentence']['lang'] = $sentenceLang;
             // saving
             if ($sentence->save($data)) {
 
                 $this->SentencesList->addSentenceToList(
-                    $sentence->id, $_POST['listId']
+                    $sentence->id,
+                    $listId
                 );
                 $sentenceSaved = $sentence->getSentenceWithId($sentence->id);
                 $this->set('sentence', $sentenceSaved);
-                $this->set('listId', $_POST['listId']);
+                $this->set('listId', $listId);
                 
             }
 
