@@ -25,6 +25,13 @@
  * @link     http://tatoeba.org
  */
 
+if (isset($sentence)) {
+    $this->pageTitle = __('Example sentence: ', true).$sentence['Sentence']['text'];
+} else {
+    $this->pageTitle = __('Sentence does not exist: ', true).$this->params['pass'][0];
+}
+
+$sentenceId = $sentence['Sentence']['id'];
 
 // navigation (previous, random, next)
 $navigation->displaySentenceNavigation();
@@ -80,19 +87,20 @@ $navigation->displaySentenceNavigation();
             echo '<h2>' .
                     sprintf(__('Sentence nº%s', true), $sentence['Sentence']['id']).
                 '</h2>';
-            $this->pageTitle = __('Example sentence: ', true) . $sentence['Sentence']['text'];
 
             /** /!\ the id is used in sentences.show.js ,
             so do not touch the way we forge the id /!\ */
             
-            echo '<div id="__'.$sentence['Sentence']['id'] . '" class="sentences_set">';
+            echo '<div id="__'.$sentenceId . '" class="sentences_set">';
                 // sentence menu (translate, edit, comment, etc)
                 // TODO set up a better mechanism
                 $specialOptions['belongsTo'] = $sentence['User']['username']; 
                 $sentences->displayMenu(
-                    $sentence['Sentence']['id'],
+                    $sentenceId,
                     $sentence['Sentence']['lang'],
-                    $specialOptions
+                    $specialOptions,
+                    null,
+                    $sentence['Sentence']['script']
                 );
 
                 
@@ -117,7 +125,6 @@ $navigation->displaySentenceNavigation();
             
 
         } else {
-            $this->pageTitle = __('Sentence does not exist: ', true) . $this->params['pass'][0];
             
             echo '<h2>' .
                 sprintf(__('Sentence nº%s', true), $this->params['pass'][0]) .

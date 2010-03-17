@@ -27,6 +27,7 @@
 
 
 echo $javascript->link('sentences.add_translation.js', true);
+//echo $javascript->link('sentences.switch_script.js', true);
 echo $javascript->link('favorites.add.js', true);
 echo $javascript->link('sentences_lists.menu.js', true);
 echo $javascript->link('jquery.impromptu.js', true);
@@ -35,22 +36,25 @@ echo $javascript->link('jquery.jeditable.js', true);
 echo $javascript->link('sentences.edit_in_place.js', true);
 
 $sentence = $random['Sentence'];
+$sentenceOwner = $random['User'];
 $specialOptions = $random['specialOptions'];
 
 echo '<div class="sentences_set">';
     // TODO set up a better mechanism
-    $specialOptions['belongsTo'] = $random['User']['username']; 
-    $random['User']['canEdit'] = $specialOptions['canEdit']; 
+    $specialOptions['belongsTo'] = $sentenceOwner['username']; 
+    $sentenceOwner['canEdit'] = $specialOptions['canEdit']; 
     
     $sentences->displayMenu(
         $sentence['id'], 
         $sentence['lang'], 
-        $specialOptions
+        $specialOptions,
+        null,
+        $sentence['script']
     );
     $sentences->displayGroup(
         $sentence, 
         $translations, 
-        $random['User'],
+        $sentenceOwner,
         $indirectTranslations
     );
 echo '</div>';

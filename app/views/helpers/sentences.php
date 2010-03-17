@@ -62,7 +62,14 @@ class SentencesHelper extends AppHelper
             .$sentence['lang'].'">';
         echo $this->Html->link(
             $sentence['text'], 
-            array("controller" => "sentences", "action" => "show", $sentence['id'])
+            array(
+                "controller" => "sentences",
+                "action" => "show",
+                $sentence['id']
+            ),
+            array(
+                'id' => '_'.$sentence['id']
+            )
         );
         echo '</span> ';
         
@@ -104,6 +111,25 @@ class SentencesHelper extends AppHelper
             echo '</div>';
         }
     }
+
+    /**
+     * display alternate script (traditional / simplfied)
+     * for chinese sentence
+     *
+     * @param array $sentence Sentence for which to display alternate script 
+     *
+     * @return void
+     */
+    private function _displayAlternateScript($sentence)
+    {
+        if (isset($sentence['alternateScript'])) {
+            ?>
+            <div class="romanization">
+            <?php echo $sentence['alternateScript']; ?>
+            </div>
+        <?php
+        }
+    }
     
     /**
      * Display a single sentence for edit in place.
@@ -139,6 +165,7 @@ class SentencesHelper extends AppHelper
             echo '</div> ';
             
             $this->_displayRomanization($sentence);
+            $this->_displayAlternateScript($sentence);
             ?>    
         </div>
         <?php
@@ -167,6 +194,7 @@ class SentencesHelper extends AppHelper
         );
         echo '</span> ';
         $this->_displayRomanization($sentence);
+        $this->_displayAlternateScript($sentence);
         
         // Translations
         if ($translationsLang != null) {
@@ -197,8 +225,12 @@ class SentencesHelper extends AppHelper
      *
      * @return void
      */
-    public function displayGroup($sentence, $translations, $user = null, 
-        $indirectTranslations = array(), $inBrowseMode = false
+    public function displayGroup(
+        $sentence,
+        $translations,
+        $user = null, 
+        $indirectTranslations = array(),
+        $inBrowseMode = false
     ) {
         echo '<div class="sentence">';
         // Sentence
@@ -216,14 +248,14 @@ class SentencesHelper extends AppHelper
         $divStyle = 'display:none;';
         
         if ($user != null) {
-            if (isset($user['canEdit']) AND $user['canEdit']) {
+            if (isset($user['canEdit']) && $user['canEdit']) {
                 $editable = 'editable';
                 $editableSentence = 'editableSentence';
                 $linkStyle = 'display:none;';
                 $divStyle = '';
                 $editableFlag = true;
             }
-            if (isset($user['username']) AND $user['username'] != '') {
+            if (isset($user['username']) && $user['username'] != '') {
                 $tooltip = __('This sentence belongs to :', true).' '
                     .$user['username'];
             }
@@ -260,11 +292,15 @@ class SentencesHelper extends AppHelper
         // and then is used in edit_in_place 
         echo '<div id="'.$sentence['lang'].'_'.$sentence['id'].'" 
             class="'.$toggle.' '.$editable.' '.$editableSentence.'" 
-            title="'.$tooltip.'" style="'.$divStyle.'">'
-            .Sanitize::html($sentence['text']).'</div> ';
+            title="'.$tooltip.'" style="'.$divStyle.'">';
+
+        echo Sanitize::html($sentence['text']);
+
+        echo '</div> ';
             
         // romanization
         $this->_displayRomanization($sentence);
+        $this->_displayAlternateScript($sentence);
         
         echo '</div>';
         echo "\n";
@@ -439,11 +475,17 @@ class SentencesHelper extends AppHelper
      * @param string $lang           Language of the sentence.
      * @param array  $specialOptions Options for the sentence.
      * @param int    $score          Score of the sentence. Used for search results.
+     * @param string $chineseScript  For chinese only, 'traditional' or 'simplified'
      *
      * @return void
      */
-    public function displayMenu($id, $lang, $specialOptions, $score = null)
-    {
+    public function displayMenu(
+        $id,
+        $lang,
+        $specialOptions,
+        $score = null,
+        $chineseScript = null
+    ) {
         if ($lang == '') {
             $lang = 'und';
         }
@@ -469,7 +511,7 @@ class SentencesHelper extends AppHelper
         
         // adopt
         if (isset($specialOptions['canAdopt']) 
-            AND $specialOptions['canAdopt'] == true
+            && $specialOptions['canAdopt'] == true
         ) {
 
             $this->Javascript->link('sentences.adopt.js', false);
@@ -479,7 +521,7 @@ class SentencesHelper extends AppHelper
         
         // let go
         if (isset($specialOptions['canLetGo']) 
-            AND $specialOptions['canLetGo'] == true
+            && $specialOptions['canLetGo'] == true
         ) {
             $this->Javascript->link('sentences.adopt.js', false);
             $this->Menu->letGoButton($id);
@@ -488,7 +530,7 @@ class SentencesHelper extends AppHelper
         
         // favorite
         if (isset($specialOptions['canFavorite']) 
-            AND $specialOptions['canFavorite'] == true
+            && $specialOptions['canFavorite'] == true
         ) {
             $this->Javascript->link('favorites.add.js', false);
             $this->Menu->favoriteButton($id);
@@ -497,16 +539,27 @@ class SentencesHelper extends AppHelper
         
         // unfavorite
         if (isset($specialOptions['canUnFavorite']) 
-            AND $specialOptions['canUnFavorite'] == true
+            && $specialOptions['canUnFavorite'] == true
         ) {
             $this->Javascript->link('favorites.add.js', false);
             $this->Menu->unfavoriteButton($id);
             echo "\n";
         }
+
+        // indicate which script is used for chinese sentence
+        if ($lang === 'cmn') {
+
+            if ($chineseScript === 'simplified') {
+                $this->Menu->simplifiedButton(); 
+            } else if ($chineseScript === 'traditional') {
+                $this->Menu->traditionalButton(); 
+            }
+            echo "\n";
+        }
         
         // add to list
         if (isset($specialOptions['canAddToList']) 
-            AND $specialOptions['canAddToList'] == true
+            && $specialOptions['canAddToList'] == true
         ) {
             $this->Javascript->link('sentences_lists.menu.js', false);
             $this->Javascript->link('jquery.impromptu.js', false);
@@ -535,7 +588,7 @@ class SentencesHelper extends AppHelper
                     $list['SentencesList']['id'],
                     $specialOptions['belongsToLists']
                 );
-                if ($belongsToList AND !$list['SentencesList']['is_public']) {
+                if ($belongsToList && !$list['SentencesList']['is_public']) {
                     echo '<option value="'.$list['SentencesList']['id'].'">';
                     echo $list['SentencesList']['name'];
                     echo '</option>';
@@ -550,7 +603,7 @@ class SentencesHelper extends AppHelper
                     $list['SentencesList']['id'],
                     $specialOptions['belongsToLists']
                 );
-                if ($belongsToList AND $list['SentencesList']['is_public']) {
+                if ($belongsToList && $list['SentencesList']['is_public']) {
                     echo '<option value="'.$list['SentencesList']['id'].'">';
                     echo $list['SentencesList']['name'];
                     echo '</option>';
@@ -568,7 +621,7 @@ class SentencesHelper extends AppHelper
         
         // delete
         if (isset($specialOptions['canDelete']) 
-            AND $specialOptions['canDelete'] == true
+            && $specialOptions['canDelete'] == true
         ) {
             $this->Menu->deleteButton($id);
         }

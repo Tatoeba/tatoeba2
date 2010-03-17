@@ -50,7 +50,9 @@ if ($sentence == null) {
         $sentences->displayMenu(
             $sentence['Sentence']['id'],
             $sentence['Sentence']['lang'],
-            $specialOptions
+            $specialOptions,
+            null,
+            $sentence['Sentence']['script']
         );
         // sentence and translations
         // TODO set up a better mechanism

@@ -81,9 +81,9 @@ class ToolsController extends AppController
     {
         $text = $this->data['Tool']['query'];    
         escapeshellarg($text); 
-        $convertedText =  exec("adso.sh --switch-script -cn -i $text");
+        $convertedText =  exec("adso.sh --switch-script -cn -i '$text'");
      
-        $this->set('convertedText',$convertedText); 
+        $this->set('convertedText', $convertedText); 
         $this->set('lastText', $text);
     }
 

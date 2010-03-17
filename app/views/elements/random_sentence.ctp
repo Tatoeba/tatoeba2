@@ -37,7 +37,6 @@ $selectedLanguage = $session->read('random_lang_selected');
 if ($selectedLanguage == null) {
     $selectedLanguage == 'und';
 }
-//array_unshift($langArray, array('any' => __('any', true)));
 ?>
 
 <h2>
@@ -55,7 +54,7 @@ if ($selectedLanguage == null) {
     </span>
     <?php
     if ($session->read('Auth.User.id')) {
-    ?>
+        ?>
         <span class="annexe">
             (<?php
              echo $html->link(

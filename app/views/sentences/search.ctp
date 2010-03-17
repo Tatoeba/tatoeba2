@@ -36,6 +36,7 @@
                 <div id="mostFrequentWords">
                     <?php
                     foreach ($mostFrequentWords as $word) {
+                        // TODO hack spotted css in the html
                         echo '<span style="font-size:'.$word['fontSize'].'%" title="'.$word['details'].'">';
                         echo $word['word'];
                         echo '</span> ';
@@ -112,7 +113,8 @@
                         $sentence['Sentence']['id'], 
                         $sentence['Sentence']['lang'], 
                         $specialOptions[$index], 
-                        $scores[$index]
+                        $scores[$index],
+                        $sentence['Sentence']['script']
                     );
 
                     // sentence and translations

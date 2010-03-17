@@ -42,7 +42,9 @@ if (isset($sentence_text)) {
     $sentences->displayMenu(
         $sentence['Sentence']['id'], 
         $sentence['Sentence']['lang'], 
-        $specialOptions
+        $specialOptions,
+        null,
+        $sentence['Sentence']['script']
     );
     
     // sentence and translations

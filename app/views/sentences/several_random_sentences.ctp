@@ -91,20 +91,22 @@
                     // sentence menu (translate, edit, comment, etc)
                     $specialOptions =  $sentence['Sentence']['specialOptions'] ;
                     // TODO set up a better mechanism
-                    $specialOptions['belongsTo']= $sentence['Sentence']['User']['username']; 
+                    $specialOptions['belongsTo']= $sentence['User']['username']; 
                     $sentences->displayMenu(
-                        $sentence['Sentence']['Sentence']['id'],
-                        $sentence['Sentence']['Sentence']['lang'],
-                        $specialOptions
+                        $sentence['Sentence']['id'],
+                        $sentence['Sentence']['lang'],
+                        $specialOptions,
+                        null,
+                        $sentence['Sentence']['script']
                     );
 
                     // sentence and translations
                     // TODO set up a better mechanism
-                    $sentence['Sentence']['User']['canEdit'] = $specialOptions['canEdit']; 
+                    $sentence['User']['canEdit'] = $specialOptions['canEdit']; 
                     $sentences->displayGroup(
-                        $sentence['Sentence']['Sentence'],
+                        $sentence['Sentence'],
                         $sentence['Translations'],
-                        $sentence['Sentence']['User'],
+                        $sentence['User'],
                         $sentence['IndirectTranslations']
                     );
                     echo '</div>';

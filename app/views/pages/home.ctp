@@ -115,51 +115,6 @@ $selectedLanguage = $session->read('random_lang_selected');
         $javascript->link('sentences.add_translation.js', false);
     }
     ?>
-    
-    <?php
-    /*
-    if ($session->read('Auth.User.id')) {
-        ?>
-        
-        <div class="module">
-            <h2><?php __('Your stats'); ?></h2>
-            <ul>
-            <?php
-            // TODO  HACK SPOTTED , requestAction is hackish ! 
-            $userStats = $this->requestAction(
-                '/user/stats/' . $session->read('Auth.User.id')
-            );
-            echo '<li>';
-            echo sprintf(
-                __("<a href='%s'><strong>%s</strong> sentences</a>", true),
-                $html->url(
-                    array("controller" => "sentences", "action" => "my_sentences")
-                ),
-                $userStats['numberOfSentences']
-            );
-            echo '</li>';
-                
-            echo '<li>';
-            echo sprintf(
-                __("<strong>%s</strong> comments", true),
-                $userStats['numberOfComments'] 
-            );
-            echo '</li>';
-                
-            echo '<li>';
-            echo sprintf(
-                __("<strong>%s</strong> contributions", true),
-                $userStats['numberOfContributions']
-            );
-            echo '</li>';
-            ?>
-            </ul>
-        </div>
-        
-    <?php
-    }
-    */
-    ?>
 </div>
 
 <div id="main_content">

@@ -628,7 +628,8 @@ class SentencesController extends AppController
             $randomSentence = $this->Sentence->getSentenceWithId($randomId);
             
             $this->Session->write('random_lang_selected', $lang);
-            $randomSentence['specialOptions'] 
+
+            $randomSentence['Sentence']['specialOptions']
                 = $this->Permissions->getSentencesOptions(
                     $randomSentence, $this->Auth->user('id')
                 );
@@ -638,7 +639,8 @@ class SentencesController extends AppController
             $indirectTranslations = $alltranslations['IndirectTranslation'];
 
             $allSentences[$i] = array (
-                "Sentence" => $randomSentence,
+                "Sentence" => $randomSentence['Sentence'],
+                "User" => $randomSentence['User'],
                 "Translations" => $translations,
                 "IndirectTranslations" => $indirectTranslations
             );

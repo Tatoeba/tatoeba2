@@ -124,10 +124,15 @@ class Sentence extends AppModel
                 , 'datetime' => date("Y-m-d H:i:s")
                 , 'ip' => $_SERVER['REMOTE_ADDR']
             );
+           
+            $sentenceLang =  $this->data['Sentence']['lang'];
+            $translationId = $this->data['Translation']['Translation'][0];
+            $translationLang = $this->data['Sentence']['sentence_lang'];
+
             
             $data['Contribution'] = $whoWhenWhere;
             $data['Contribution']['sentence_id'] = $this->id;
-            $data['Contribution']['sentence_lang'] = $this->data['Sentence']['lang'];
+            $data['Contribution']['sentence_lang'] = $sentenceLang;
             $data['Contribution']['text'] = $this->data['Sentence']['text'];
             $data['Contribution']['type'] = 'sentence';
 
@@ -141,10 +146,10 @@ class Sentence extends AppModel
                 if (isset($this->data['Translation'])) {
                     // Translation logs
                     $data2['Contribution'] = $whoWhenWhere;
-                    $data2['Contribution']['sentence_id'] = $this->data['Translation']['Translation'][0];
-                    $data2['Contribution']['sentence_lang'] = $this->data['Sentence']['sentence_lang'];
+                    $data2['Contribution']['sentence_id'] = $translationId;
+                    $data2['Contribution']['sentence_lang'] = $translationLang;
                     $data2['Contribution']['translation_id'] = $this->id;
-                    $data2['Contribution']['translation_lang'] = $this->data['Sentence']['lang'];
+                    $data2['Contribution']['translation_lang'] = $sentenceLang;
                     $data2['Contribution']['action'] = 'insert';
                     $data2['Contribution']['type'] = 'link';
                     $contributions[] = $data2;
@@ -153,9 +158,9 @@ class Sentence extends AppModel
                     // Inverse translation logs
                     $data2['Contribution'] = $whoWhenWhere;
                     $data2['Contribution']['sentence_id'] = $this->id;
-                    $data2['Contribution']['sentence_lang'] = $this->data['Sentence']['lang'];
-                    $data2['Contribution']['translation_id'] = $this->data['Translation']['Translation'][0];
-                    $data2['Contribution']['translation_lang'] = $this->data['Sentence']['sentence_lang'];
+                    $data2['Contribution']['sentence_lang'] = $sentenceLang;
+                    $data2['Contribution']['translation_id'] = $translationId;
+                    $data2['Contribution']['translation_lang'] = $translationsLang;
                     $data2['Contribution']['action'] = 'insert';
                     $data2['Contribution']['type'] = 'link';
                     $contributions[] = $data2;
@@ -179,12 +184,13 @@ class Sentence extends AppModel
      
     public function afterDelete()
     {
-        
+        $lang = $this->data['Sentence']['lang'];
+        $sentenceId = $this->data['Sentence']['id']; 
 
-        $this->decrementStatistics($this->data['Sentence']['lang']);
+        $this->decrementStatistics($lang);
 
-        $data['Contribution']['sentence_id'] = $this->data['Sentence']['id'];
-        $data['Contribution']['sentence_lang'] = $this->data['Sentence']['lang'];
+        $data['Contribution']['sentence_id'] = $sentenceId;
+        $data['Contribution']['sentence_lang'] = $lang;
         $data['Contribution']['text'] = $this->data['Sentence']['text'];
         $data['Contribution']['action'] = 'delete';
         $data['Contribution']['user_id'] = $this->data['User']['id'];
@@ -194,8 +200,8 @@ class Sentence extends AppModel
         $this->Contribution->save($data);
         
         foreach ($this->data['Translation'] as $translation) {
-            $data2['Contribution']['sentence_id'] = $this->data['Sentence']['id'];
-            $data2['Contribution']['sentence_lang'] = $this->data['Sentence']['lang'];
+            $data2['Contribution']['sentence_id'] = $sentenceId;
+            $data2['Contribution']['sentence_lang'] = $lang;
             $data2['Contribution']['translation_id'] = $translation['id'];
             $data2['Contribution']['translation_lang'] = $translation['lang'];
             $data2['Contribution']['action'] = 'delete';
@@ -207,8 +213,8 @@ class Sentence extends AppModel
             
             $data2['Contribution']['sentence_id'] = $translation['id'];
             $data2['Contribution']['sentence_lang'] = $translation['lang'];
-            $data2['Contribution']['translation_id'] = $this->data['Sentence']['id'];
-            $data2['Contribution']['translation_lang'] = $this->data['Sentence']['lang'];
+            $data2['Contribution']['translation_id'] = $sentenceId;
+            $data2['Contribution']['translation_lang'] = $lang;
             $data2['Contribution']['action'] = 'delete';
             $data2['Contribution']['user_id'] = $this->data['User']['id'];
             $data2['Contribution']['datetime'] = date("Y-m-d H:i:s");
@@ -384,15 +390,14 @@ class Sentence extends AppModel
                     )
             )
         );
-        // TODO : need to replace it by something more general
-        // like $romanisableArray, that way we will not need to
-        // change several time the same things 
-        if (in_array($result['Sentence']['lang'], array('wuu','cmn','jpn'))) {
-                $result['Sentence']['romanization'] = $this->getRomanization(
-                    $result['Sentence']['text'],
-                    $result['Sentence']['lang']
-                );
-        }
+
+        $result['Sentence'];
+
+       
+        $this->generateRomanization($result['Sentence']);
+        $this->generateAlternateScript($result['Sentence']);
+        $this->generateScript($result['Sentence']);
+
          
         return $result;
     }
@@ -434,25 +439,22 @@ class Sentence extends AppModel
         $results = array();
         foreach ($sentences as $sentence) {
             // Romanization for original sentence
-            $sentenceLang = $sentence['Sentence']['lang'];
-            if (in_array($sentenceLang, array('wuu','cmn','jpn'))) {
-                $sentence['Sentence']['romanization'] = $this->getRomanization(
-                    $sentence['Sentence']['text'],
-                    $sentence['Sentence']['lang']
-                );
-            }
-            
+            $this->generateRomanization($sentence['Sentence']);
+            // simplified/traditional
+            $this->generateAlternateScript($sentence['Sentence']);
+            $this->generateScript($sentence['Sentence']);
+
             // Romanization for translations
             $translations = array();
             foreach ($sentence['Translation'] as $translation) {
-                $translationLang = $translation['lang'];
-                $translation['romanization'] = $this->getRomanization(
-                    $translation['text'],
-                    $translation['lang']
-                );
+                
+                $this->generateRomanization($translation);
+                
                 $translations[] = $translation;
             }
+
             $sentence['Translation'] = $translations;
+
             
             // TODO Perhaps add romanization for indirect translations
             
@@ -678,15 +680,7 @@ class Sentence extends AppModel
                     'lang' => $result['translation_lang']
                 );
 
-                // TODO : need to replace it by something more general
-                // like $romanisableArray, that way we will not need to
-                // change several time the same things
-                if (in_array($translation['lang'], array('wuu','cmn','jpn'))) {
-                    $translation['romanization'] = $this->getRomanization(
-                        $translation['text'],
-                        $translation['lang']
-                    );
-                }
+                $this->generateRomanization($translation);
 
                 array_push(
                     $orderedResults[$result['distance']],
@@ -747,7 +741,35 @@ class Sentence extends AppModel
     }
 
     /**
-     * get romanization or equivalent of a sentences
+     * get romanization for several sentences
+     * it wrap the getRomanization method
+     *
+     * @param array &$sentenceArray an array "a la cakephp", the array should
+     *                              have a 'text' and 'lang' field, and will add
+     *                              a 'romanization' field if the language need it
+     * 
+     * @return void
+     */
+
+    public function generateRomanization(&$sentenceArray)
+    {
+   
+        // TODO : need to replace it by something more general
+        // like $romanisableArray, that way we will not need to
+        // change several time the same things
+        if (in_array($sentenceArray['lang'], array('wuu','cmn','jpn'))) {
+            $sentenceArray['romanization'] = $this->getRomanization(
+                $sentenceArray['text'],
+                $sentenceArray['lang']
+            );
+
+
+        }
+
+    }
+
+    /**
+     * get romanization or equivalent of a sentence
      *
      * @param string $text text to be romanized
      * @param string $lang lang to know which method apply
@@ -784,6 +806,85 @@ class Sentence extends AppModel
 
         }
         return $romanization;
+    }
+
+    /**
+     * wrap the detectScript method,
+     * it will add a 'script' field if the sentence need it
+     *
+     * @param array &$sentenceArray Sentence array a la cakephp with a 'lang'
+     *                              and 'text' field
+     *
+     * @return void
+     */
+
+    public function generateScript(&$sentenceArray)
+    {
+        $sentenceArray['script'] = '';
+
+        if ($sentenceArray['lang'] === 'cmn') {
+            $sentenceArray['script'] = $this->detectScript(
+                $sentenceArray['text']
+            );
+        }
+
+    }
+
+    /**
+     * detect script of a chinese sentence, will return either
+     * 'simplified' 'traditional' or ''
+     *
+     * @param string $text Text to detect script
+     *
+     * @return string
+     */
+    public function detectScript($text)
+    {
+        escapeshellarg($text); 
+        $script =  exec("adso.sh --rscript -i '$text'");
+       
+        if ($script == 'simplified' || $script == 'traditional') {
+            return $script;
+        } else {
+            return '';
+        }
+    }
+
+    /**
+     * wrap the getOtherScriptVersion method
+     * it will add a 'alternateScript' field if the sentence
+     * language need it
+     *
+     * @param array &$sentenceArray Sentence array a la cakephp with a 'lang'
+     *                              and 'text' field
+     *
+     * @return void
+     */
+
+    public function generateAlternateScript(&$sentenceArray)
+    {
+
+        if ($sentenceArray['lang'] === 'cmn') {
+            $sentenceArray['alternateScript'] = $this->getOtherScriptVersion(
+                $sentenceArray['text']
+            );
+        }
+    }
+
+    /**
+     * convert a chinese text from traditional to simplified
+     * and vice versa
+     *
+     * @param string $chineseText chinese text to switch
+     *
+     * @return string
+     */
+
+    public function getOtherScriptVersion($chineseText)
+    {
+        escapeshellarg($chineseText);
+        $convertedText =  exec("adso.sh --switch-script -cn -i '$chineseText'");
+        return $convertedText;
     }
 
     /**

@@ -56,7 +56,48 @@ class MenuHelper extends AppHelper
 		) . '</a>';
 		echo '</li>';
 	}
-	
+
+
+    /** 
+     * Display button to notify the chinese sentence is in
+     * simplified script
+     *
+     * @return void
+     */
+	function simplifiedButton()
+    {
+		echo '<li class="option simplified">';
+		echo '<a>' . $this->Html->image(
+			'simplified_chinese.png', 
+			array(
+				'alt'=>__('This sentence is in simplified chinese',true), 
+				'title'=>__('This sentence is in simplified chinese',true)
+			)
+		) . '</a>';
+		echo '</li>';
+	}
+
+    /** 
+     * Display button to notify the chinese sentence is in
+     * traditional script
+     *
+     * @return void
+     */
+	function traditionalButton()
+    {
+		echo '<li class="option traditional">';
+		echo '<a>' . $this->Html->image(
+			'traditional_chinese.png', 
+			array(
+				'alt'=>__('This sentence is in traditional chinese',true), 
+				'title'=>__('This sentence is in traditional chinese',true)
+			)
+		) . '</a>';
+		echo '</li>';
+	}
+
+
+
     /** 
      * Display button to adopt a sentence.
      *
@@ -64,24 +105,6 @@ class MenuHelper extends AppHelper
      */
 	function adoptButton($sentenceId)
     {
-        /*
-		echo '<li class="option">';
-		echo $this->Html->link(
-			$this->Html->image(
-				'adopt.png',
-				array(
-					'alt'=>__('Adopt',true), 
-					'title'=>__('Adopt',true)
-				)
-			),
-			array(
-				"controller" => "sentences",
-				"action" => "adopt",
-				$sentenceId
-			),
-			array('escape' => false));
-		echo '</li>';
-        */
 		echo '<li class="option adopt add" id="adopt_'.$sentenceId.'">';
 		echo '<a>'.
         $this->Html->image(
@@ -101,24 +124,6 @@ class MenuHelper extends AppHelper
      */
 	function letGoButton($sentenceId)
     {
-        /*
-		echo '<li class="option">';
-		echo $this->Html->link(
-			$this->Html->image(
-				'let_go.png',
-				array(
-					'alt'=>__('Let go',true), 
-					'title'=>__('Let go',true)
-				)
-			),
-			array(
-				"controller" => "sentences",
-				"action" => "let_go",
-				$sentenceId
-			),
-			array('escape' => false));
-		echo '</li>';
-        */
 		echo '<li class="option adopt remove" id="adopt_'.$sentenceId.'">';
 		echo '<a>'.
         $this->Html->image(

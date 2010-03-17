@@ -31,13 +31,10 @@ $javascript->link('sentences.contribute.js', false);
 <div id="main_content">
 
     <div class="module">
-        <?php
-        echo '<h2>';
-        __('Add another sentence');
-        echo '</h2>';
-
-        echo '<div class="sentences_set">';
-            echo '<div class="new">';
+        <h2><?php __('Add another sentence'); ?></h2>
+        <div class="sentences_set">
+            <div class="new">
+            <?php
             echo $form->input(
                 'text', 
                 array(
@@ -60,9 +57,9 @@ $javascript->link('sentences.contribute.js', false);
             );
 
             echo $form->button('OK', array("id" => "submitNewSentence"));
-            echo '</div>';
-        echo '</div>';
-        ?>
+            ?>
+            </div>
+        </div>
     </div>
     
     <div class="module">
@@ -82,7 +79,9 @@ $javascript->link('sentences.contribute.js', false);
                 $sentences->displayMenu(
                     $sentence['Sentence']['id'],
                     $sentence['Sentence']['lang'],
-                    $specialOptions
+                    $specialOptions,
+                    null,
+                    $sentence['Sentence']['script']
                 );
 
                 // sentence and translations
