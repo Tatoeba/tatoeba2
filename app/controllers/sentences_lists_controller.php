@@ -299,6 +299,7 @@ class SentencesListsController extends AppController
             );
             if ($isRemoved) {
                 $this->set('removed', true);
+                $this->SentencesList->decrementNumberOfSentencesToList($listId);
             }
         }
     }
@@ -367,6 +368,7 @@ class SentencesListsController extends AppController
                     $sentence->id,
                     $listId
                 );
+                $this->SentencesList->incrementNumberOfSentencesToList($listId);
                 $sentenceSaved = $sentence->getSentenceWithId($sentence->id);
                 $this->set('sentence', $sentenceSaved);
                 $this->set('listId', $listId);

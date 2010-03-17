@@ -272,5 +272,34 @@ class SentencesList extends AppModel
         return $this->habtmDelete('Sentence', $listId, $sentenceId);
     }
     
+    /**
+     * Increment number of sentence to list.
+     *
+     * @param int $listId     Id of the list.
+     *
+     * @return array
+     */
+    public function incrementNumberOfSentencesToList($listId)
+    {
+        return $this->updateAll(
+            array('SentencesList.numberOfSentences'=>'SentencesList.numberOfSentences+1'),
+            array('SentencesList.id'=>$listId)
+        );
+    }
+
+    /**
+     * Decrement number of sentence to list.
+     *
+     * @param int $listId     Id of the list.
+     *
+     * @return array
+     */
+    public function decrementNumberOfSentencesToList($listId)
+    {
+        return $this->updateAll(
+            array('SentencesList.numberOfSentences'=>'SentencesList.numberOfSentences-1'),
+            array('SentencesList.id'=>$listId)
+        );
+    }
 }
 ?>
