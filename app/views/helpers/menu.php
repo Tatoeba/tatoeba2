@@ -37,25 +37,25 @@
 class MenuHelper extends AppHelper
 {
 
-	public $helpers = array('Html');
-	
+    public $helpers = array('Html');
+    
     /** 
      * Display button to add a translation.
      *
      * @return void
      */
-	function translateButton()
+    public function translateButton()
     {
-		echo '<li class="option translateLink">';
-		echo '<a>' . $this->Html->image(
-			'translate.png', 
-			array(
-				'alt'=>__('Translate',true), 
-				'title'=>__('Translate',true)
-			)
-		) . '</a>';
-		echo '</li>';
-	}
+        echo '<li class="option translateLink">';
+        echo '<a>' . $this->Html->image(
+            'translate.png', 
+            array(
+                'alt'=>__('Translate', true), 
+                'title'=>__('Translate', true)
+            )
+        ) . '</a>';
+        echo '</li>';
+    }
 
 
     /** 
@@ -64,18 +64,18 @@ class MenuHelper extends AppHelper
      *
      * @return void
      */
-	function simplifiedButton()
+    public function simplifiedButton()
     {
-		echo '<li class="option simplified">';
-		echo '<a>' . $this->Html->image(
-			'simplified_chinese.png', 
-			array(
-				'alt'=>__('This sentence is in simplified chinese',true), 
-				'title'=>__('This sentence is in simplified chinese',true)
-			)
-		) . '</a>';
-		echo '</li>';
-	}
+        echo '<li class="option simplified">';
+        echo '<a>' . $this->Html->image(
+            'simplified_chinese.png', 
+            array(
+                'alt'=>__('This sentence is in simplified chinese', true), 
+                'title'=>__('This sentence is in simplified chinese', true)
+            )
+        ) . '</a>';
+        echo '</li>';
+    }
 
     /** 
      * Display button to notify the chinese sentence is in
@@ -83,137 +83,157 @@ class MenuHelper extends AppHelper
      *
      * @return void
      */
-	function traditionalButton()
+    public function traditionalButton()
     {
-		echo '<li class="option traditional">';
-		echo '<a>' . $this->Html->image(
-			'traditional_chinese.png', 
-			array(
-				'alt'=>__('This sentence is in traditional chinese',true), 
-				'title'=>__('This sentence is in traditional chinese',true)
-			)
-		) . '</a>';
-		echo '</li>';
-	}
+        echo '<li class="option traditional">';
+        echo '<a>' . $this->Html->image(
+            'traditional_chinese.png', 
+            array(
+                'alt'=>__('This sentence is in traditional chinese', true), 
+                'title'=>__('This sentence is in traditional chinese', true)
+            )
+        ) . '</a>';
+        echo '</li>';
+    }
 
 
 
     /** 
      * Display button to adopt a sentence.
      *
+     * @param int $sentenceId Id of the sentence on which this button
+     *                        is displayed
+     *
      * @return void
      */
-	function adoptButton($sentenceId)
+    public function adoptButton($sentenceId)
     {
-		echo '<li class="option adopt add" id="adopt_'.$sentenceId.'">';
-		echo '<a>'.
+        echo '<li class="option adopt add" id="adopt_'.$sentenceId.'">';
+        echo '<a>'.
         $this->Html->image(
-			'adopt.png',
-			array(
-				'alt'=>__('Adopt',true), 
-				'title'=>__('Adopt',true)
-			)
+            'adopt.png',
+            array(
+                'alt'=>__('Adopt', true), 
+                'title'=>__('Adopt', true)
+            )
         ).'</a>';
-		echo '</li>';
-	}
-	
+        echo '</li>';
+    }
+    
     /** 
      * Display button to let go.
      *
+     * @param int $sentenceId Id of the sentence on which this button
+     *                        is displayed
+     *
      * @return void
      */
-	function letGoButton($sentenceId)
+    public function letGoButton($sentenceId)
     {
-		echo '<li class="option adopt remove" id="adopt_'.$sentenceId.'">';
-		echo '<a>'.
+        echo '<li class="option adopt remove" id="adopt_'.$sentenceId.'">';
+        echo '<a>'.
         $this->Html->image(
-			'let_go.png',
-			array(
-				'alt'=>__('Let go',true), 
-				'title'=>__('Let go',true)
-			)
+            'let_go.png',
+            array(
+                'alt'=>__('Let go', true), 
+                'title'=>__('Let go', true)
+            )
         ).'</a>';
-		echo '</li>';
-	}
-	
+        echo '</li>';
+    }
+    
     /** 
      * Display button to add to favorites.
      *
-     * @return void
-     */
-	function favoriteButton($sentenceId)
-    {
-		echo '<li class="option favorite add" id="favorite_'.$sentenceId.'">';
-		echo '<a>'.$this->Html->image(
-			'favorite.png',
-			array(
-				'alt'=>__('Add to favorites',true), 
-				'title'=>__('Add to favorites',true)
-			)).'</a>';
-		echo '</li>';
-	}
-	
-    /** 
-     * Display button to remove from favorites.
+     * @param int $sentenceId Id of the sentence on which this button
+     *                        is displayed
      *
      * @return void
      */
-	function unfavoriteButton($sentenceId)
+    public function favoriteButton($sentenceId)
     {
-		echo '<li class="option favorite remove" id="favorite_'.$sentenceId.'">';
-		echo '<a>'.$this->Html->image(
-			'unfavorite.png',
-			array(
-				'alt'=>__('Remove from favorites',true), 
-				'title'=>__('Remove from favorites',true)
-			)).'</a>';
-		echo '</li>';
-	}
-	
+        echo '<li class="option favorite add" id="favorite_'.$sentenceId.'">';
+        echo '<a>'.$this->Html->image(
+            'favorite.png',
+            array(
+                'alt'=>__('Add to favorites', true), 
+                'title'=>__('Add to favorites', true)
+            )
+        );
+        echo '</a>';
+        echo '</li>';
+    }
+    
+    /** 
+     * Display button to remove from favorites.
+     *
+     * @param int $sentenceId Id of the sentence on which this button
+     *                        is displayed
+     *
+     * @return void
+     */
+    public function unfavoriteButton($sentenceId)
+    {
+        echo '<li class="option favorite remove" id="favorite_'.$sentenceId.'">';
+        echo '<a>'.$this->Html->image(
+            'unfavorite.png',
+            array(
+                'alt'=>__('Remove from favorites', true), 
+                'title'=>__('Remove from favorites', true)
+            )
+        );
+        echo '</a>';
+        echo '</li>';
+    }
+    
     /** 
      * Display button to add to list.
      *
      * @return void
      */
-	function addToListButton()
+    public function addToListButton()
     {
-		echo '<li class="option addToList">';
-		echo '<a>';
+        echo '<li class="option addToList">';
+        echo '<a>';
         echo $this->Html->Image(
-			'add_to_list.png',
-			array(
-				'alt'=>__('Add to list',true), 
-				'title'=>__('Add to list',true)
-			)
+            'add_to_list.png',
+            array(
+                'alt'=>__('Add to list', true), 
+                'title'=>__('Add to list', true)
+            )
         );
         echo '</a>';
-		echo '</li>';
-	}
-	
+        echo '</li>';
+    }
+    
     /** 
      * Display button to delete.
      *
+     * @param int $sentenceId Id of the sentence on which this button
+     *                        is displayed
+     *
      * @return void
      */
-	function deleteButton($sentenceId)
+    public function deleteButton($sentenceId)
     {
-		echo '<li class="option delete">';
-		echo $this->Html->link(
-			$this->Html->image(
-				'delete.png',
-				array(
-					'alt'=>__('Delete',true), 
-					'title'=>__('Delete',true)
-				)
-			),
-			array(
-				"controller" => "sentences",
-				"action" => "delete",
-				$sentenceId
-			), 
-			array('escape' => false), 
-			'Are you sure?');
-		echo '</li>';
-	}
+        echo '<li class="option delete">';
+        echo $this->Html->link(
+            $this->Html->image(
+                'delete.png',
+                array(
+                    'alt'=>__('Delete', true), 
+                    'title'=>__('Delete', true)
+                )
+            ),
+            array(
+                "controller" => "sentences",
+                "action" => "delete",
+                $sentenceId
+            ), 
+            array('escape' => false), 
+            'Are you sure?'
+        );
+        echo '</li>';
+    }
 }
 ?>
