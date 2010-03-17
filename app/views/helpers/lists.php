@@ -112,7 +112,8 @@ class ListsHelper extends AppHelper
                 $list['SentencesList']['id'],
                 $list['SentencesList']['name'],
                 $list['User']['username'],
-                $list['SentencesList']['is_public']
+                $list['SentencesList']['is_public'],
+                $list['SentencesList']['numberOfSentences']
             );
         }
         ?>
