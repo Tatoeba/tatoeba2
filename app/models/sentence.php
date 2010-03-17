@@ -126,8 +126,6 @@ class Sentence extends AppModel
             );
            
             $sentenceLang =  $this->data['Sentence']['lang'];
-            $translationId = $this->data['Translation']['Translation'][0];
-            $translationLang = $this->data['Sentence']['sentence_lang'];
 
             
             $data['Contribution'] = $whoWhenWhere;
@@ -141,6 +139,9 @@ class Sentence extends AppModel
                 $data['Contribution']['action'] = 'insert';
                 // increase stats
                 $this->incrementStatistics($this->data['Sentence']['lang']);
+
+                $translationId = $this->data['Translation']['Translation'][0];
+                $translationLang = $this->data['Sentence']['sentence_lang'];
                 
 
                 if (isset($this->data['Translation'])) {
