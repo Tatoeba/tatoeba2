@@ -52,6 +52,12 @@
         if($this->params['controller'] == 'wall'){
             echo $html->css('tatoeba.wall');
         }
+        // TODO change display action which is the same for all
+        if($this->params['controller'] == 'pages'){
+            if($this->params['action'] == 'display'){
+                echo $html->css('tatoeba.pages.home');
+            }
+        }
 		echo $html->css('tatoeba.navigation');
 		echo $html->css('tatoeba.popup');
 		echo $html->css('tatoeba.private_messages');

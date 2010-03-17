@@ -38,8 +38,6 @@ if (isset($this->params['lang'])) {
 }
 
 $selectedLanguage = $session->read('random_lang_selected');
-
-
 ?>
 <div id="annexe_content">
     <?php
@@ -73,20 +71,7 @@ $selectedLanguage = $session->read('random_lang_selected');
         echo $this->element('sentences_statistics');
         ?>
     </div>
-    
-    <div class="module">
-        <h2><?php __('Latest messages'); ?></h2>
-        <?php 
-        foreach ($latestMessages as $value) {
-            echo $date->ago($value['Wall']['date']);
-            echo ', by '. $value['User']['username'];
-            echo '<br/>';
-            echo substr($value['Wall']['content'], 0, 200);
-            echo '<br/>';
-        }
-        ?>
-    </div>
-    
+
     <?php
     // Warning message prompting the user to specify languages
     if ($session->read('Auth.User.id')) {
@@ -115,6 +100,45 @@ $selectedLanguage = $session->read('random_lang_selected');
         $javascript->link('sentences.add_translation.js', false);
     }
     ?>
+        
+    <div class="module">
+        <h2><?php __('Latest messages'); ?></h2>
+        <ul>
+        <?php 
+        foreach ($latestMessages as $value) {
+            echo '<li class="lm_username">';
+            echo $date->ago($value['Wall']['date']);
+            // Text of link
+            $text = sprintf(
+                __(' by %s', true), 
+                $value['User']['username']
+            );
+            // Path of link
+            $pathToUserProfile = array("controller"=>"user",
+                    "action"=>"profile",
+                    $value['User']['username']);
+            // Link
+            echo $html->link($text, $pathToUserProfile);
+            echo '</li>';
+            
+            echo '<li class="lm_messages">';
+            // Display only 200 first character of message
+            echo substr($value['Wall']['content'], 0, 200);
+            // Text of the Link
+            $text = ' [...]';
+            // Path of the link
+            $pathToWallMessage = array(
+                        'controller' => 'wall',
+                        'action' => 'index#message_'.$value['Wall']['id']
+                    );
+            // Link
+            echo $html->link($text, $pathToWallMessage);
+            echo '</li>';
+        }
+        ?>
+        </ul>
+    </div>
+    
 </div>
 
 <div id="main_content">
