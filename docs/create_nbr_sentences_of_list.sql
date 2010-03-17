@@ -1,6 +1,6 @@
 Delimiter |
--- DROP PROCEDURE create_nrb_sentences_of_list | --
-CREATE PROCEDURE create_nrb_sentences_of_list()
+DROP PROCEDURE create_nbr_sentences_of_list | 
+CREATE PROCEDURE create_nbr_sentences_of_list()
 BEGIN
 
     DECLARE done INT DEFAULT 0;
@@ -35,3 +35,4 @@ BEGIN
     END REPEAT;
 
 END |
+CALL create_nbr_sentences_of_list() |
