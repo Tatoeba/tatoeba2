@@ -160,7 +160,7 @@ class Sentence extends AppModel
                     $data2['Contribution']['sentence_id'] = $this->id;
                     $data2['Contribution']['sentence_lang'] = $sentenceLang;
                     $data2['Contribution']['translation_id'] = $translationId;
-                    $data2['Contribution']['translation_lang'] = $translationsLang;
+                    $data2['Contribution']['translation_lang'] = $translationLang;
                     $data2['Contribution']['action'] = 'insert';
                     $data2['Contribution']['type'] = 'link';
                     $contributions[] = $data2;
