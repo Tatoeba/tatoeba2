@@ -18,16 +18,15 @@
 
 /* Latest Messages */
 
-.lm_username {padding: 10px 0px 3px 0px;}
+.lm_username {margin: 10px 0px 3px 0px;}
 .lm_username a {color:rgb(137, 193, 64);}
 .lm_username a:hover {color: rgb(85, 85, 85);}
 
 .lm_messages {
     padding: 5px 5px;
+    margin: 0px 0px 10px 0px;
     text-indent: 20px;
-    border-style:solid;
-    border-width:1px;
-    border-color: #AFD0B0;
-    background-color:#F1FBF1;
+    border-top:1px solid #AEBCAE;
+    color: rgb(135, 135, 135);
 }
 
