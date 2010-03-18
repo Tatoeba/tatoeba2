@@ -80,7 +80,9 @@ class ToolsController extends AppController
     public function switch_script()
     {
         $text = $this->data['Tool']['query'];    
-        escapeshellarg($text); 
+        // very important escapeshellarg return the escaped string 
+        // not directly by refere,ce
+        $text = escapeshellarg($text); 
         $convertedText =  exec("adso.sh --switch-script -cn -i '$text'");
      
         $this->set('convertedText', $convertedText); 

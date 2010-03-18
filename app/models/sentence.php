@@ -790,7 +790,7 @@ class Sentence extends AppModel
             $romanization = $this->getJapaneseRomanization($text, 'romaji'); 
             
         } elseif ($lang == "cmn") {
-            escapeshellarg($text); 
+            $text = escapeshellarg($text); 
             $romanization =  exec("echo `adso.sh -i $text -y`");
             /*
             $curl = curl_init();
@@ -841,7 +841,7 @@ class Sentence extends AppModel
      */
     public function detectScript($text)
     {
-        escapeshellarg($text); 
+        $text = escapeshellarg($text); 
         $script =  exec("adso.sh --rscript -i '$text'");
        
         if ($script == 'simplified' || $script == 'traditional') {
@@ -883,7 +883,7 @@ class Sentence extends AppModel
 
     public function getOtherScriptVersion($chineseText)
     {
-        escapeshellarg($chineseText);
+        $chineseText = escapeshellarg($chineseText);
         $convertedText =  exec("adso.sh --switch-script -cn -i '$chineseText'");
         return $convertedText;
     }
