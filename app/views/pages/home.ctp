@@ -173,7 +173,6 @@ $selectedLanguage = $session->read('random_lang_selected');
         </h2>
             <?php echo $this->element('latest_contributions'); ?>
     </div>
-    <?php pr($latestMessages); ?>
     <div class="module">
         <h2>
             <?php __('Latest comments'); ?>
