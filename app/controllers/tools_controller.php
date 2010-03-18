@@ -82,8 +82,8 @@ class ToolsController extends AppController
         $text = $this->data['Tool']['query'];    
         // very important escapeshellarg return the escaped string 
         // not directly by refere,ce
-        $text = escapeshellarg($text); 
-        $convertedText =  exec("adso.sh --switch-script -cn -i '$text'");
+        $escapedText = escapeshellarg($text); 
+        $convertedText =  exec("adso.sh --switch-script -cn -i '$escapedText'");
      
         $this->set('convertedText', $convertedText); 
         $this->set('lastText', $text);
