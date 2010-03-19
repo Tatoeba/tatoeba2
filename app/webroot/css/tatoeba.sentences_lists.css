@@ -25,6 +25,8 @@
 	width: 60%;
 }
 
+/* index.ctp */
+
 .listTable{
     border: 1px solid #e1e1e1;
     margin-bottom: 20px;
@@ -48,6 +50,27 @@
 
 .listTable .creator{
     width: 80px;
+}
+
+/* show.ctp, edit.ctp */
+
+ul.sentencesList{
+	list-style-type: none;
+	padding: 0px;
+	font-size: 1.5em;
+}
+
+.sentencesList li{
+	padding: 10px;
+	border-top: 1px dotted #989898;
+}
+
+.sentencesList li span{
+    display: block;
+}
+
+.sentencesList .options{
+	float: right;
 }
 
 
