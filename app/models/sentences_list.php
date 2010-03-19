@@ -228,7 +228,10 @@ class SentencesList extends AppModel
      */
     public function addSentenceToList($sentenceId, $listId)
     {
-        return $this->habtmAdd('Sentence', $listId, $sentenceId);
+          $savedValue = $this->habtmAdd('Sentence', $listId, $sentenceId);
+          $this->_incrementNumberOfSentencesToList($listId);
+        
+          return $savedValue;
     }
     
     /**
@@ -269,20 +272,25 @@ class SentencesList extends AppModel
      */
     public function removeSentenceFromList($sentenceId, $listId)
     {
-        return $this->habtmDelete('Sentence', $listId, $sentenceId);
+        $savedValue = $this->habtmDelete('Sentence', $listId, $sentenceId);
+
+        $this->_decrementNumberOfSentencesToList($listId);
+        return $savedValue;
     }
     
     /**
      * Increment number of sentence to list.
      *
-     * @param int $listId     Id of the list.
+     * @param int $listId Id of the list.
      *
-     * @return array
+     * @return boolean
      */
-    public function incrementNumberOfSentencesToList($listId)
+    private function _incrementNumberOfSentencesToList($listId)
     {
         return $this->updateAll(
-            array('SentencesList.numberOfSentences'=>'SentencesList.numberOfSentences+1'),
+            array(
+                'numberOfSentences'=>'numberOfSentences+1'
+            ),
             array('SentencesList.id'=>$listId)
         );
     }
@@ -290,16 +298,19 @@ class SentencesList extends AppModel
     /**
      * Decrement number of sentence to list.
      *
-     * @param int $listId     Id of the list.
+     * @param int $listId Id of the list.
      *
-     * @return array
+     * @return boolean
      */
-    public function decrementNumberOfSentencesToList($listId)
+    private function _decrementNumberOfSentencesToList($listId)
     {
-        return $this->updateAll(
-            array('SentencesList.numberOfSentences'=>'SentencesList.numberOfSentences-1'),
+        $success = $this->updateAll(
+            array('numberOfSentences'=>'numberOfSentences-1'),
             array('SentencesList.id'=>$listId)
         );
+
+
+        return $success;
     }
 }
 ?>

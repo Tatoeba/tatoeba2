@@ -260,14 +260,16 @@ class SentencesListsController extends AppController
         $userId = $this->Auth->user('id');
         
         if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
-            if ($listName != '') {
+            if (!empty($listName)) {
                 $newList['SentencesList']['user_id'] = $this->Auth->user('id');
                 $newList['SentencesList']['name'] = $listName;
+
                 if ($this->SentencesList->save($newList)) {
                     $this->SentencesList->addSentenceToList(
                         $sentenceId, $this->SentencesList->id
                     );
                     $this->set('listId', $this->SentencesList->id);
+
                 } else {
                     $this->set('listId', 'error');
                 }
@@ -299,7 +301,6 @@ class SentencesListsController extends AppController
             );
             if ($isRemoved) {
                 $this->set('removed', true);
-                $this->SentencesList->decrementNumberOfSentencesToList($listId);
             }
         }
     }
@@ -368,7 +369,6 @@ class SentencesListsController extends AppController
                     $sentence->id,
                     $listId
                 );
-                $this->SentencesList->incrementNumberOfSentencesToList($listId);
                 $sentenceSaved = $sentence->getSentenceWithId($sentence->id);
                 $this->set('sentence', $sentenceSaved);
                 $this->set('listId', $listId);
