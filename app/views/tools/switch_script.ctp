@@ -120,6 +120,5 @@ if (!isset($lastText)) {
         <?php echo $form->end(__('Switch script', true)); ?>
     </div>
 
-    </div>
 </div>
 

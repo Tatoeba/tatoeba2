@@ -100,5 +100,4 @@ if (!isset($lastText)) {
         <?php echo $form->end(__('Convert', true)); ?>
     </div>
 
-    </div>
 </div>
