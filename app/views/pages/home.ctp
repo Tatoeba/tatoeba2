@@ -103,40 +103,46 @@ $selectedLanguage = $session->read('random_lang_selected');
         
     <div class="module">
         <h2><?php __('Latest messages'); ?></h2>
-        <ul>
         <?php 
         foreach ($latestMessages as $value) {
-            echo '<li class="lm_username">';
-            echo $date->ago($value['Wall']['date']);
-            // Text of link
-            $text = sprintf(
-                __(' by %s', true), 
-                $value['User']['username']
-            );
-            // Path of link
-            $pathToUserProfile = array("controller"=>"user",
-                    "action"=>"profile",
-                    $value['User']['username']);
-            // Link
-            echo $html->link($text, $pathToUserProfile);
-            echo '</li>';
-            
-            echo '<li class="lm_messages">';
-            // Display only 200 first character of message
-            echo substr($value['Wall']['content'], 0, 200);
-            // Text of the Link
-            $text = ' [...]';
-            // Path of the link
-            $pathToWallMessage = array(
-                        'controller' => 'wall',
-                        'action' => 'index#message_'.$value['Wall']['id']
-                    );
-            // Link
-            echo $html->link($text, $pathToWallMessage);
-            echo '</li>';
+            echo '<div class="lastWallMessages">';
+                echo '<div class="header">';
+                echo $date->ago($value['Wall']['date']);
+                // Text of link
+                $text = sprintf(
+                    __(' by %s', true), 
+                    $value['User']['username']
+                );
+                // Path of link
+                $pathToUserProfile = array("controller"=>"user",
+                        "action"=>"profile",
+                        $value['User']['username']);
+                // Link
+                echo $html->link($text, $pathToUserProfile);
+                echo '</div>';
+                
+                echo '<div class="body">';
+                // Display only 200 first character of message
+                echo substr($value['Wall']['content'], 0, 200);
+                // Text of the Link
+                if (strlen($value['Wall']['content']) > 200) {
+                    echo ' [...]';
+                }
+                
+                echo '</div>';
+                
+                echo '<div class="link">';
+                // Path of the link
+                $pathToWallMessage = array(
+                            'controller' => 'wall',
+                            'action' => 'index#message_'.$value['Wall']['id']
+                        );
+                // Link
+                echo $html->link('>>>', $pathToWallMessage);
+                echo '</div>';
+            echo '</div>';
         }
         ?>
-        </ul>
     </div>
     
 </div>

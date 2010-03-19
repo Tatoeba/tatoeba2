@@ -18,15 +18,22 @@
 
 /* Latest Messages */
 
-.lm_username {margin: 10px 0px 3px 0px;}
-.lm_username a {color:rgb(137, 193, 64);}
-.lm_username a:hover {color: rgb(85, 85, 85);}
+.lastWallMessages {margin: 15px 0px;}
+.lastWallMessages a {color:#89C140;}
+.lastWallMessages a:hover {color:#EAA315;}
 
-.lm_messages {
-    padding: 5px 5px;
-    margin: 0px 0px 10px 0px;
-    text-indent: 20px;
-    border-top:1px solid #AEBCAE;
-    color: rgb(135, 135, 135);
+.lastWallMessages .header{
+    padding: 5px;
 }
 
+.lastWallMessages .body{
+    padding: 5px 5px 0px 5px;
+    text-indent: 20px;
+    border-top:1px solid #d1d1d1;
+    color: #656565;
+    text-align: justify;
+}
+
+.lastWallMessages .link{
+    text-align: right;
+}
