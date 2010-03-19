@@ -25,39 +25,34 @@
 	width: 60%;
 }
 
-.sentencesLists li{
-	margin: 10px 0px;
+.listTable{
+    border: 1px solid #e1e1e1;
+    margin-bottom: 20px;
 }
 
-ul.sentencesList{
-	list-style-type: none;
-	padding: 0px;
-	font-size: 1.5em;
+.listTable th{
+    background-color: #f1f1f1;
+    padding: 5px 10px;
+    text-align: left;
+    border: 1px solid #e1e1e1;
 }
 
-.sentencesList li{
-	padding: 10px;
-	border-top: 1px dotted #989898;
+.listTable td{
+    padding: 5px 10px;
+    border-left: 1px solid #e1e1e1;
 }
 
-.sentencesList li span{
-    display: block;
+.listTable .name{
+    width: 350px;
 }
 
-.sentencesList .options{
-	float: right;
+.listTable .creator{
+    width: 80px;
 }
 
-.sentencesLists .listName{
-	font-weight: bold;
-}
 
 .editMode .sentenceInList, .editMode .translationInList{
 	margin-right: 50px;
-}
-
-.sentencesLists .username{
-	color: #989898;
 }
 
 .sentencesListActions li{

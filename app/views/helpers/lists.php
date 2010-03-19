@@ -100,7 +100,7 @@ class ListsHelper extends AppHelper
     public function displayListTable($arrayOfLists)
     {
         ?>
-        <table>
+        <table class="listTable">
             <tr>
                 <th><?php __('Name'); ?></th>
                 <th><?php __('Created by'); ?></th>
@@ -145,8 +145,7 @@ class ListsHelper extends AppHelper
         // list name
 
         echo '<tr>';
-        echo '<td>';
-        echo '<span id="_'.$listId.'" class="listName">';
+        echo '<td class="name">';
         $name = '('.__('unnamed list', true).')';
         if (rtrim($listName) != '') {
             $name = $listName;
@@ -162,13 +161,11 @@ class ListsHelper extends AppHelper
                 $listId
             )
         );
-        echo '</span>';
         echo '</td>';
        
         // creator link 
          
-        echo '<td>';
-        echo '<span class="listInfo">';
+        echo '<td class="creator">';
         echo sprintf(
             __('<a href="%s">%s</a>', true),
             $this->Html->url(
@@ -180,12 +177,11 @@ class ListsHelper extends AppHelper
             ),
             $listCreatorName
         );
-        echo '</span>';
         echo '</td>';
        
         // number of sentences in the list
         
-        echo "<td>$count</td>";
+        echo "<td class='count'>$count</td>";
         echo '</tr>';
     }
 }
