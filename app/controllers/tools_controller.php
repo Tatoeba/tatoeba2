@@ -81,7 +81,11 @@ class ToolsController extends AppController
     {
         $text = $this->data['Tool']['query'];    
         // very important escapeshellarg return the escaped string 
-        // not directly by refere,ce
+        // not directly by reference
+        
+        // important to add this line before escaping a
+        // utf8 string, workaround for an apache/php bug  
+        setlocale(LC_CTYPE, "en_US.UTF-8");
         $escapedText = escapeshellarg($text); 
         $convertedText =  exec("adso.sh --switch-script -cn -i '$escapedText'");
      

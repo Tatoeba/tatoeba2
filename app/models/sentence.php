@@ -790,8 +790,12 @@ class Sentence extends AppModel
             $romanization = $this->getJapaneseRomanization($text, 'romaji'); 
             
         } elseif ($lang == "cmn") {
+            // important to add this line before escaping a
+            // utf8 string, workaround for an apache/php bug  
+            setlocale(LC_CTYPE, "en_US.UTF-8");
             $text = escapeshellarg($text); 
-            $romanization =  exec("echo `adso.sh -i $text -y`");
+            
+            $romanization =  exec("adso.sh -i $text -y");
             /*
             $curl = curl_init();
             curl_setopt (
@@ -841,6 +845,10 @@ class Sentence extends AppModel
      */
     public function detectScript($text)
     {
+
+        // important to add this line before escaping a
+        // utf8 string, workaround for an apache/php bug  
+        setlocale(LC_CTYPE, "en_US.UTF-8");
         $text = escapeshellarg($text); 
         $script =  exec("adso.sh --rscript -i '$text'");
        
@@ -883,6 +891,10 @@ class Sentence extends AppModel
 
     public function getOtherScriptVersion($chineseText)
     {
+
+        // important to add this line before escaping a
+        // utf8 string, workaround for an apache/php bug  
+        setlocale(LC_CTYPE, "en_US.UTF-8");
         $chineseText = escapeshellarg($chineseText);
         $convertedText =  exec("adso.sh --switch-script -cn -i '$chineseText'");
         return $convertedText;
@@ -900,32 +912,13 @@ class Sentence extends AppModel
     public function getJapaneseRomanization($text, $type)
     {
         Sanitize::html($text);
-        //$text = escapeshellarg(nl2br($text)); 
-        // somehow that doesn't work anymore... 
-        // and I found out it's probably because escapeshellarg() 
-        // doesn't process UTF-8 anymore...
-        
-        // escaping manually... until there is a better a solution...
-        $text = preg_replace("!\(!", "\\(", $text);
-        $text = preg_replace("!\)!", "\\)", $text);
-        $text = preg_replace("!\*!", "\\*", $text); 
-        $text = preg_replace("!\|!", "\\|", $text);
-        $text = preg_replace("!\>!", "\\>", $text);
-        $text = preg_replace("!\<!", "\\<", $text);
-        $text = preg_replace("!\[!", "\\[", $text);
-        $text = preg_replace("!\]!", "\\]", $text);
-        $text = preg_replace('!"!', '\\"', $text);
-        $text = preg_replace("!'!", "\\'", $text);
-        $text = preg_replace("!&!", "\\&", $text);
-        $text = preg_replace("!#!", "\\#", $text);
 
-        // TODO HACK SPOTTED! use nl1br instead
-        // because \r\n is windows only
-        // \n => linux based system
-        // \r => mac os based system
-        // 25 % of tatoeba visit !
+        // important to add this line before escaping a
+        // utf8 string, workaround for an apache/php bug  
+        setlocale(LC_CTYPE, "en_US.UTF-8");
+        $text = escapeshellarg($text); 
 
-        $text = preg_replace("!\\r\\n!", "\\<br/\\>", $text); // to handle new lines
+        $text = nl2br($text);
                 
         
         $options = '';
