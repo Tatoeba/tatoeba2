@@ -786,7 +786,7 @@ class Sentence extends AppModel
 
         if ($lang == "wuu") {
                         
-            //$romanization = "test" ;
+            //$romanization = $this->getShanghaineseRomanization($text);
 
         } elseif ($lang == "jpn") {
             $romanization = $this->getJapaneseRomanization($text, 'romaji'); 
@@ -794,7 +794,7 @@ class Sentence extends AppModel
         } elseif ($lang == "cmn") {
             // important to add this line before escaping a
             // utf8 string, workaround for an apache/php bug  
-            setlocale(LC_CTYPE, "en_US.UTF-8");
+            setlocale(LC_CTYPE, "fr_FR.UTF-8");
             $text = escapeshellarg($text); 
             
             $romanization =  exec("adso.sh -i $text -y");
@@ -850,7 +850,7 @@ class Sentence extends AppModel
 
         // important to add this line before escaping a
         // utf8 string, workaround for an apache/php bug  
-        setlocale(LC_CTYPE, "en_US.UTF-8");
+        setlocale(LC_CTYPE, "fr_FR.UTF-8");
         $text = escapeshellarg($text); 
         $script =  exec("adso.sh --rscript -i '$text'");
        
@@ -896,7 +896,7 @@ class Sentence extends AppModel
 
         // important to add this line before escaping a
         // utf8 string, workaround for an apache/php bug  
-        setlocale(LC_CTYPE, "en_US.UTF-8");
+        setlocale(LC_CTYPE, "fr_FR.UTF-8");
         $chineseText = escapeshellarg($chineseText);
         $convertedText =  exec("adso.sh --switch-script -cn -i '$chineseText'");
         return $convertedText;
@@ -917,7 +917,7 @@ class Sentence extends AppModel
 
         // important to add this line before escaping a
         // utf8 string, workaround for an apache/php bug  
-        setlocale(LC_CTYPE, "en_US.UTF-8");
+        setlocale(LC_CTYPE, "fr_FR.UTF-8");
         $text = escapeshellarg($text); 
 
         $text = nl2br($text);
@@ -1010,5 +1010,17 @@ class Sentence extends AppModel
         return $sentence['User']['email'];
     }
 
+    /**
+     * Return IPA of a shanghainese text
+     *
+     * @param string $shanghaineseText text in shanghainese
+     *
+     * @return string
+     */
+
+     public function getShanghaineseRomanization($shanghaineseText)
+     {
+
+     }
 }
 ?>

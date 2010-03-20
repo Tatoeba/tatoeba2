@@ -85,7 +85,7 @@ class ToolsController extends AppController
         
         // important to add this line before escaping a
         // utf8 string, workaround for an apache/php bug  
-        setlocale(LC_CTYPE, "en_US.UTF-8");
+        setlocale(LC_CTYPE, "fr_FR.UTF-8");
         $escapedText = escapeshellarg($text); 
         $convertedText =  exec("adso.sh --switch-script -cn -i '$escapedText'");
      
