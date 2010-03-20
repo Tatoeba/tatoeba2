@@ -82,7 +82,7 @@ if (!isset($lastText)) {
 
 <div id="main_content">
     <div class="module">
-        <h2><?php __('Pinyin converter'); ?></h2>
+        <h2><?php __('Traditional/simplified chinese converter'); ?></h2>
 
         <?php
         if (isset($convertedText)) {
@@ -117,7 +117,7 @@ if (!isset($lastText)) {
         </p>
         <p>
         </p>
-        <?php echo $form->end(__('Switch script', true)); ?>
+        <?php echo $form->end(__('Convert', true)); ?>
     </div>
 
 </div>
