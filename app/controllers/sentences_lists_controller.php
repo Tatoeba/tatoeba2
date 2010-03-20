@@ -38,7 +38,7 @@ class SentencesListsController extends AppController
 {
     public $name = 'SentencesLists';
     public $helpers = array(
-        'Sentences', 'Navigation', 'Html', 'Kakasi', 'Lists'
+        'Sentences', 'Navigation', 'Html', 'Lists'
     );
     public $components = array ('GoogleLanguageApi');
     
