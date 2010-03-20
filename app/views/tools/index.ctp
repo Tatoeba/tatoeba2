@@ -109,10 +109,10 @@ $this->pageTitle = __('Browse languages related tools provided by Tatoeba', true
             <li>
                 <?php
                 echo $html->link(
-                    __('Chinese switch script', true),
+                    __('Chinese simplified/traditional tool', true),
                     array(
                         "controller" => "tools",
-                        "action" => "switch_script"
+                        "action" => "conversion_simplified_traditional_chinese"
                     )
                 );
                 echo ': ';

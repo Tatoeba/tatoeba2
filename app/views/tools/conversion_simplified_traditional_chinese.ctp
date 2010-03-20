@@ -27,7 +27,7 @@
 
 //TODO to factorize with pinyin converter in a tool helper
 
-$this->pageTitle = __('Chinese script switcher tool', true);
+$this->pageTitle = __('Chinese conversion traditional/simplified tool', true);
 
 // if it's the first time we call this tool
 if (!isset($lastText)) {
@@ -94,7 +94,7 @@ if (!isset($lastText)) {
         echo $form->create(
             'Tool',
             array(
-                "action" => "switch_script",
+                "action" => "conversion_simplified_traditional_chinese",
                 "type" => "post"
             )
         );

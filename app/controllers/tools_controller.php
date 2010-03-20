@@ -88,7 +88,7 @@ class ToolsController extends AppController
      *
      * @return void
      */
-    public function switch_script()
+    public function conversion_simplified_traditional_chinese()
     {
         $text = $this->data['Tool']['query'];    
         // very important escapeshellarg return the escaped string 
