@@ -108,7 +108,7 @@ $this->pageTitle = __('Wall', true);
             __('Wall');
             echo ' (';
             echo $html->link(
-                'Back to paginated version', // temporary text, no i18n
+                'Display paginated version', // temporary text, no i18n
                 array(
                     'controller' => 'wall',
                     'action' => 'index',
