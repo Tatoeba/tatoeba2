@@ -37,7 +37,7 @@
 class ToolsController extends AppController
 {
     public $name = 'Tools';
-    public $helpers = array('Kakasi', 'Javascript');
+    public $helpers = array('Javascript');
     public $components = array('Pinyin');
     
     /**
@@ -68,7 +68,18 @@ class ToolsController extends AppController
      * @return void
      */
     public function kakasi()
-    {
+    {        
+        $query = isset($_GET['query']) ? $_GET['query'] : '';
+        $type = isset($_GET['type']) ? $_GET['type'] : 'romaji';
+        Sanitize::html($query);
+        Sanitize::html($type);
+        
+        $Sentence = ClassRegistry::init('Sentence');
+        $result = $Sentence->getJapaneseRomanization($query, $type);
+        
+        $this->set('query', $query);
+        $this->set('type', $type);
+        $this->set('result', $result);
     }
 
     /**

@@ -93,18 +93,11 @@ $this->pageTitle = __('Convert Japanese text into romaji or furigana', true);
     <div class="module">
         <h2><?php __('Convert Japanese text into romaji or furigana'); ?></h2>
         <?php
-        // TODO /!\ THAT is Totaly hackish , should have a method in tool controller /!\
-
-        //////////////////////////////////////////////////////////////////
-        $query = isset($_GET['query']) ? $_GET['query'] : '';
-        $type = isset($_GET['type']) ? $_GET['type'] : 'romaji';
-    
-        if ($query != '') {
-            echo '<div id="conversion">';
-            $kakasi->convert($query, $type);
-            echo '</div>';
-        }   
-        /////////////////////////////////////////////////////////////////    
+        
+        echo '<div id="conversion">';
+        echo $result;
+        echo '</div>';
+        
         echo $form->create(
             'Tool',
             array(

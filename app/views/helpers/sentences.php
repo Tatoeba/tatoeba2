@@ -39,7 +39,6 @@ class SentencesHelper extends AppHelper
     public $helpers = array(
         'Html',
         'Form',
-        'Kakasi',
         'Javascript',
         'Menu',
         'Languages',
