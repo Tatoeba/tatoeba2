@@ -54,6 +54,7 @@ class ClickableLinksHelper extends AppHelper
         
         $pattern = '/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n\(\)"\'\,\!<]+)/siu';
         $match = preg_match_all($pattern, $text, $urls);
+        
         if ($match) {
             $maxUrlLength = 50;
             $offset1 = ceil(0.65*$maxUrlLength) - 2;
@@ -83,7 +84,8 @@ class ClickableLinksHelper extends AppHelper
                 // Because of the presence of http://tatoeba.org, the other URLS
                 // beginning with http://tatoeba.org would be messed up.
                 // That's why we need to do replace only if there's a stop character.
-                $escapedUrl = str_replace('/', '\/', $url);
+                $escapedUrl = quotemeta($url);  // meta characters
+                $escapedUrl = str_replace('/', '\/', $escapedUrl); // identifier
                 $pattern2 = '/('.$escapedUrl.'([\?!\.,\);:< \n]))|('.$escapedUrl.'$)/u';
                 $text = preg_replace(
                     $pattern2, 
