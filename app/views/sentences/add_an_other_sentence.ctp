@@ -27,12 +27,8 @@
 ?>
 
 <?php
-// this is for edit in place
-if (isset($sentence_text)) {
-    
-    echo rtrim($sentence_text);
     // this is when adding new sentences
-} elseif (isset($sentence)) {
+if (isset($sentence)) {
     echo $javascript->link('sentences.add_translation.js', true);
     echo $javascript->link('jquery.jeditable.js', true);
     echo $javascript->link('sentences.edit_in_place.js', true);

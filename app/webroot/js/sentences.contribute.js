@@ -37,12 +37,12 @@ $(document).ready(function() {
             $(".sentencesAddedloading").show();
             
             $.post(
-                "http://" + self.location.hostname + ":" + self.location.port + "/sentences/save_sentence",
+                "http://" + self.location.hostname + ":" + self.location.port + "/sentences/add_an_other_sentence",
                 {
                     "value": sentenceText,
                     "selectedLang": selectedLang
                 },
-                function(data){			
+                function(data){
                     $(".sentencesAddedloading").hide();
                     $("#sentencesAdded").prepend(data);
                     $("#newSentenceText").val("");

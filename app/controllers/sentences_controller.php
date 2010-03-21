@@ -213,35 +213,25 @@ class SentencesController extends AppController
 
         $this->Session->write('contribute_lang', $sentenceLang);
 
-        if ( !empty($sentenceText) && !empty($userId)) {
-            // setting correctness of sentence
-            if ($this->Auth->user('group_id')) {
-                $this->data['Sentence']['correctness'] 
-                    = Sentence::MAX_CORRECTNESS - $this->Auth->user('group_id');
-            } else {
-                $this->data['Sentence']['correctness'] = 1;
-            }
+        if (empty($sentenceText) || empty($userId)) {
+            return ;
+        }
+
+        // saving
+        $isSaved = $this->wrapper_save_sentence(
+            $sentenceLang,
+            $sentenceText,
+            $userId
+        );
+
+        if ($isSaved) {
+            $sentence = $this->Sentence->getSentenceWithId($this->Sentence->id);
+            $this->set('sentence', $sentence);
             
-            // detecting language
-            if ($sentenceLang === 'auto') {
-                $sentenceLang = $this->GoogleLanguageApi->detectLang(
-                    $sentenceText
-                );
-            }
-            unset($this->data['Sentence']['contributionLang']);
-            $this->data['Sentence']['user_id'] = $userId;
-            $this->data['Sentence']['text'] = $sentenceText;
-            $this->data['Sentence']['lang'] = $sentenceLang;
-            // saving
-            if ($this->Sentence->save($this->data)) {
-                $sentence = $this->Sentence->getSentenceWithId($this->Sentence->id);
-                $this->set('sentence', $sentence);
-                
-                $specialOptions = $this->Permissions->getSentencesOptions(
-                    $sentence, $userId
-                );
-                $this->set('specialOptions', $specialOptions);
-            }
+            $specialOptions = $this->Permissions->getSentencesOptions(
+                $sentence, $userId
+            );
+            $this->set('specialOptions', $specialOptions);
         }
     }
     
@@ -262,22 +252,60 @@ class SentencesController extends AppController
     }
     
     /**
+     * used by sentences.contribute.js
+     * save an other new sentence 
+     *
+     * @return void
+     */
+    public function add_an_other_sentence()
+    {
+
+        if (!isset($_POST['value'])
+            || !isset($_POST['selectedLang'])
+        ) {
+            //TODO add error handling
+            return;
+        }
+        $userId = $this->Auth->user('id');
+
+        $sentenceLang = $_POST['selectedLang'];
+        $sentenceText = $_POST['value'];
+
+        $isSaved = $this->wrapper_save_sentence(
+            $sentenceLang,
+            $sentenceText,
+            $userId
+        );
+        
+        $this->Session->write('contribute_lang', $sentenceLang);
+        
+        // saving
+        if ($isSaved) {
+            $this->layout = null;
+            
+            $sentenceId = $this->Sentence->id;
+            $sentence = $this->Sentence->getSentenceWithId($sentenceId);
+            
+            $specialOptions = $this->Permissions->getSentencesOptions(
+                $sentence,
+                $userId
+            );
+
+            $this->set('specialOptions', $specialOptions);
+            $this->set('sentence', $sentence);
+        }
+
+    }
+
+    /**
      * Save sentence.
-     * Used in AJAX request, in sentences.contribute.js and in 
+     * Used in AJAX request, in  
      * sentences.edit_in_place.js.
      *
      * @return void
      */
-    public function save_sentence()
+    public function edit_sentence()
     {
-        // TODO : to be split in 2 method
-        // * add_sentence 
-        // * edit_sentence
-        // Trang explained me something about this
-        // need to find the mail
-        //pr ($_POST);
-        // NOTE: spliting in 2 methods will also require to update the permissions
-        // because it will create new functions.
         $userId = $this->Auth->user('id');
         $sentenceLang = '';
         $sentenceText = '';
@@ -294,77 +322,43 @@ class SentencesController extends AppController
         
         $this->Session->write('contribute_lang', $sentenceLang);
 
-        if (isset($sentenceText)
-            && rtrim($sentenceText != '')
+        if (!isset($sentenceText) || rtrim($sentenceText) === ''
         ) {
-            Sanitize::html($sentenceText);
-            $sentenceText = rtrim($sentenceText);
-            
-            if (isset($sentenceId)) {
-                // ---- sentences.edit_in_place.js -----
-                
-                Sanitize::paranoid($sentenceId);
-                
-                // TODO HACK SPOTTED $_POST['id'] store 2 informations, lang and id
-                // related to HACK in edit in place.js 
-                $hack_array = explode("_", $sentenceId);
-                $this->Sentence->id = $hack_array[1];
-                
-                $sentenceLang = null; // language is needed for the logs
-                if ($hack_array[0] != '') {
-                    $sentenceLang = $hack_array[0]; 
-                }
-
-                $this->data['Sentence']['lang'] = $sentenceLang;
-                $this->data['Sentence']['text'] = $sentenceText;
-                $this->data['Sentence']['user_id'] = $userId;
-                // user id is needed for the logs
-                
-                if ($this->Sentence->save($this->data)) {
-                    $this->layout = null;
-                    $this->set('sentence_text', $sentenceText);
-                }
-            
-            } else {
-                // ----- sentences.contribute.js -----
-                
-                // setting correctness of sentence (which is not in use by the way)
-                $this->data['Sentence']['correctness'] = 1;
-                
-                if ($this->Auth->user('group_id')) {
-                    $this->data['Sentence']['correctness'] 
-                        = Sentence::MAX_CORRECTNESS - $this->Auth->user('group_id');
-                }
-                
-                // detecting language
-                if ($sentenceLang === 'auto') {
-                    $sentenceLang = $this->GoogleLanguageApi->detectLang(
-                        $sentenceText
-                    );
-                }
-
-                $this->data['Sentence']['lang'] = $sentenceLang;
-                $this->data['Sentence']['user_id'] = $userId;
-                $this->data['Sentence']['text'] = $_POST['value'];
-                
-                // saving
-                if ($this->Sentence->save($this->data)) {
-                    $this->layout = null;
-                    
-                    $sentenceId = $this->Sentence->id;
-                    $sentence = $this->Sentence->getSentenceWithId($sentenceId);
-                    
-                    $specialOptions = $this->Permissions->getSentencesOptions(
-                        $sentence,
-                        $userId
-                    );
-
-                    $this->set('specialOptions', $specialOptions);
-                    $this->set('sentence', $sentence);
-                    $this->set('langResponse', $response);
-                }
-            }
+            // if the sentence contain no text (empty or only space)
+            // the we directly return without saving
+            return;
         }
+
+        Sanitize::html($sentenceText);
+        $sentenceText = rtrim($sentenceText);
+        
+        if (isset($sentenceId)) {
+            // ---- sentences.edit_in_place.js -----
+            
+            Sanitize::paranoid($sentenceId);
+            
+            // TODO HACK SPOTTED $_POST['id'] store 2 informations, lang and id
+            // related to HACK in edit in place.js 
+            $hack_array = explode("_", $sentenceId);
+            $this->Sentence->id = $hack_array[1];
+            
+            $sentenceLang = null; // language is needed for the logs
+            if ($hack_array[0] != '') {
+                $sentenceLang = $hack_array[0]; 
+            }
+            $isSaved = $this->wrapper_save_sentence(
+                $sentenceLang,
+                $sentenceText,
+                $userId,
+                $this->Sentence->id
+            );
+                            
+            if ($isSaved) {
+                $this->layout = null;
+                $this->set('sentence_text', $sentenceText);
+            }
+        
+        } 
     }
     
     /**
@@ -433,35 +427,21 @@ class SentencesController extends AppController
             && isset($sentenceId)
             && !(empty($userId))
         ) {
-
-            
-            // So that it saves a new sentences, otherwise it's like editing :
-            $this->data['Sentence']['id'] = null; 
-            
-            // Language of original sentence, needed for the logs
-            $this->data['Sentence']['sentence_lang'] = $sentenceLang; 
-            
             // If we want the "HasAndBelongsToMany" association to work, 
             // we need the two lines below : 
             $this->Sentence->id = $sentenceId; // TODO why this line ?
-            $this->data['Translation']['Translation'][] = $sentenceId;
-            $this->data['InverseTranslation']['InverseTranslation'][] = $sentenceId;
-           
-            if ($translationLang === 'auto') { 
-                // Detecting language of translation
-                $translationLang = $this->GoogleLanguageApi->detectLang(
-                    $translationText
-                );
-            }
-            $this->data['Sentence']['lang'] = $translationLang;
-            // Sentence text
-            $this->data['Sentence']['text'] = $translationText;
-            
-            // User who added the translation
-            $this->data['Sentence']['user_id'] = $userId;
+
+            $isSaved = $this->wrapper_save_sentence(
+                $translationLang,
+                $translationText,
+                $userId,
+                null,
+                $sentenceId,
+                $sentenceLang
+            );
             
             // Saving...
-            if ($this->Sentence->save($this->data)) {
+            if ($isSaved) {
                 $this->set('translation_id', $this->Sentence->id);
                 $this->set('translation_lang', $this->data['Sentence']['lang']);
                 $this->set('translation_text', $translationText);
@@ -812,6 +792,66 @@ class SentencesController extends AppController
             $this->Sentence->incrementStatistics($newlang);
             $this->Sentence->decrementStatistics($prevLang);
         }
+    }
+
+    /**
+     * all the stuff to save a sentence is made here
+     * whatever it is editing / saving a translation etc..
+     *
+     * this function is never called directly and is only here
+     * to factorize :)
+     *
+     * @param string $lang                   The lang of the sentence to be saved,
+     *                                       if lang is 'auto' then we will try to
+     *                                       auto detect it
+     * @param string $text                   The sentence text.
+     * @param int    $userId                 The Id of the user who add/edit this
+     *                                       sentence.
+     * @param int    $sentenceId             If we edit the sentence, it's the id of
+     *                                       the sentence.
+     * @param int    $translatedSentenceId   If the sentence is a translation of an
+     *                                       other, id of the translated sentence
+     * @param string $translatedSentenceLang Lang of the translated sentence if the
+     *                                       Sentence to add is a translation.
+     *
+     * @return boolean
+     *
+     */
+    public function  wrapper_save_sentence(
+        $lang,
+        $text,
+        $userId,
+        $sentenceId = null,
+        $translatedSentenceId = null,
+        $translatedSentenceLang = null
+    ) {
+        $correctness = 1;
+       
+        // if the sentence to save is a translation 
+        if (isset($translatedSentenceId)) {
+            $this->data['Translation']['Translation'][] 
+                = $translatedSentenceId ;
+            $this->data['InverseTranslation']['InverseTranslation'][]
+                = $translatedSentenceId;
+
+            // Language of original sentence, needed for the logs
+            $this->data['Sentence']['sentence_lang']
+                = $translatedSentenceLang; 
+        }
+
+        if ($lang === 'auto') {
+            $lang = $this->GoogleLanguageApi->detectLang($text);
+        }
+
+        $this->data['Sentence']['id'] = $sentenceId; 
+        $this->data['Sentence']['correctness'] = $correctness;
+        $this->data['Sentence']['lang'] = $lang;
+        $this->data['Sentence']['user_id'] = $userId;
+        $this->data['Sentence']['text'] = $text;
+
+        $isSaved = $this->Sentence->save($this->data);
+                
+        return $isSaved;
     }
 }
 ?>

@@ -352,18 +352,15 @@ class SentencesListsController extends AppController
             Sanitize::paranoid($listId);
             Sanitize::paranoid($sentenceText);
 
+            //saving
             $sentence = new Sentence();
-
-            //detecting language
-            $sentenceLang = $this->GoogleLanguageApi->detectLang(
-                $sentenceText
+            $isSaved = $sentence->wrapper_save_sentence(
+                $sentenceLang,
+                $sentenceText,
+                $this->Auth->user('id')
             );
 
-            $data['Sentence']['user_id'] = $this->Auth->user('id');
-            $data['Sentence']['text'] = $sentenceText;
-            $data['Sentence']['lang'] = $sentenceLang;
-            // saving
-            if ($sentence->save($data)) {
+            if ($isSaved) {
 
                 $this->SentencesList->addSentenceToList(
                     $sentence->id,
