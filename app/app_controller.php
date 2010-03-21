@@ -76,6 +76,12 @@ class AppController extends Controller
             'action' => 'display',
             'home'
         );
+
+        // this line will call views/elements/session_expired.ctp
+        // when one try to do an ajax action after is session expired
+        // the action will return the content of this file instead of
+        // the whole pages
+        $this->Auth->ajaxLogin = 'session_expired'; 
         $this->Auth->allow('display');
         $this->Auth->authorize = 'actions';
         $this->Auth->authError = __('You need to be logged in.', true);
