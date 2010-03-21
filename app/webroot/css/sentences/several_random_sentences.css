@@ -1,4 +1,3 @@
-<?php
 /*
     Tatoeba Project, free collaborative creation of multilingual corpuses project
     Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
@@ -16,26 +15,10 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-	<?php echo $html->charset(); ?>
-	<title>
-		<?php echo $title_for_layout; ?>
-	</title>
-	<?php
-		echo $html->meta('icon');
-		echo $html->css('tatoeba.newui');
-		echo $html->css('layouts/lists');
-		echo $scripts_for_layout;
-	?>
-</head>
-<body>
-	<div id="sentencesListContainer">
-	<?php echo $content_for_layout; ?>
-	<?php echo $cakeDebug ?>
-	<?php echo $this->element('google_analytics'); ?>
-	</div>
-</body>
-</html>
+
+
+/*
+ * Sentences
+ * TODO Don't use sentences_group. Instead create a file for single sentences.
+ */
+@import url(../elements/sentences_group.css);

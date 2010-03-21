@@ -32,45 +32,36 @@
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
-        // TIPS : to avoid css to be joined even when not needed
-        // you can use if ($this->params etc... to restrict css
-        // to some pages
-        
 		echo $html->meta('icon');
         
-		echo $html->css('tatoeba.newui');
-		echo $html->css('tatoeba.newgeneric');
-		echo $html->css('tatoeba.sentences');
-		echo $html->css('tatoeba.logs');
-		echo $html->css('tatoeba.comments');
-		echo $html->css('tatoeba.statistics');
-		echo $html->css('tatoeba.users');
-        if ($this->params['controller'] == 'user' || $this->params['controller'] == 'followers'){
-	        echo $html->css('tatoeba.profile', false);
+        // ---------------------- //
+        //          CSS           //
+        // ---------------------- //
+        // Only two CSS files are loaded. One that is generic, and one that is
+        // specific to the view. The specific CSS file is auto-loaded. It must be 
+        // named with name of the view it is linked to, and put it in a folder with 
+        // the name of the controller.
+        
+        // Generic
+        echo $html->css('layouts/default.css');
+        
+        // Specific
+        $cssFolder = APP.WEBROOT_DIR.DS."css";
+        $controller = $this->params["controller"];
+        $action = $this->params["action"];
+        if ($controller == 'pages') {
+            $action = $this->params["pass"][0];
         }
-
-        if($this->params['controller'] == 'wall'){
-            echo $html->css('tatoeba.wall');
-        }
-        // TODO change display action which is the same for all
-        if($this->params['controller'] == 'pages'){
-            if($this->params['action'] == 'display'){
-                echo $html->css('tatoeba.pages.home');
-            }
-        }
-		echo $html->css('tatoeba.navigation');
-		echo $html->css('tatoeba.popup');
-		echo $html->css('tatoeba.private_messages');
-        if ($this->params['controller'] == 'sentences_lists') {
-            echo $html->css('tatoeba.sentences_lists');
-        }
-		echo $html->css('tatoeba.tools');
-        if ($this->params['controller'] == 'sinograms'){
-            echo $html->css('tatoeba.sinograms');
+        $cssFile = $cssFolder.DS.$controller.DS.$action.'.css';
+        if (is_file($cssFile)){ 
+            echo $html->css($controller."/".$action); 
         }
         
+        
+        // ---------------------- //
+        //      Javascript        //
+        // ---------------------- //
 		echo $javascript->link('jquery-mini.js', true);
-
 		echo $scripts_for_layout;
 	?>
 </head>
