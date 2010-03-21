@@ -39,16 +39,12 @@
 	font-size: 150%;
 }
 
-.sentences_set .menu li.option a{
+.menu a{
 	padding: 4px 10px 3px 10px;
 }
 
-.sentences_set .menu li.option a:hover {
+.menu a:hover {
     color: #000000;
-}
-
-.sentences_set .menu li.delete a{
-color: #a1a1a1;
 }
 
 .score{
@@ -214,19 +210,6 @@ padding-left: 60px;
 #newSentenceText{
 	width: 400px;
 	font-size: 1em;
-}
-
-/* Unknown language */
-#SentenceSetLanguagesForm *{
-font-size: 16px;
-}
-
-#SentenceSetLanguagesForm li{
-margin: 10px;
-}
-
-#sentencesAdded .sentences_set{
-	margin: 40px 0px;
 }
 
 

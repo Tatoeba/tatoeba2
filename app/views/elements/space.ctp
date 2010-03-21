@@ -35,7 +35,8 @@ if (isset($this->params['lang'])) {
     <?php
     echo $html->link(
         $session->read('Auth.User.username'),
-        array('controller' => 'user', 'action' => 'index')
+        array('controller' => 'user', 'action' => 'index'),
+        array('class' => 'menuItem')
     );
     ?> :
 </strong>
@@ -45,12 +46,14 @@ $newMessages = $this->requestAction('/private_messages/check');
 if ($newMessages > 0) {
     $inboxLink = '<strong>'.$html->link(
         __('Inbox', true) . ' ('. $newMessages . ')',
-        array('controller' => 'private_messages', 'action' => 'folder', 'Inbox')
+        array('controller' => 'private_messages', 'action' => 'folder', 'Inbox'),
+        array('class' => 'menuItem')
     ). '</strong>';
 } else {
     $inboxLink = $html->link(
         __('Inbox', true),
-        array('controller' => 'private_messages', 'action' => 'folder', 'Inbox')
+        array('controller' => 'private_messages', 'action' => 'folder', 'Inbox'),
+        array('class' => 'menuItem')
     );
 }
 ?>
@@ -61,7 +64,8 @@ if ($newMessages > 0) {
     <li><?php
         echo $html->link(
             __('Log out', true),
-            array('controller' => 'users', 'action' => 'logout')
+            array('controller' => 'users', 'action' => 'logout'),
+            array('class' => 'menuItem')
         );
         ?>
     </li>

@@ -79,7 +79,7 @@ dt {
 }
 
 #top_menu {
-    padding: 1px;
+    padding: 2px; /* Those 2px are important otherwise the search bar gets messed up in some parts */
     width: 950px;
     margin:auto;
 }
@@ -176,8 +176,9 @@ dt {
 }
 
 
-/* Search bar */
-
+/*
+ * Search bar 
+ */
 .search_bar_container{
     position:relative;
     margin-right: 30px;
@@ -226,25 +227,25 @@ dt {
     text-align: center;
 }
 
-.search_bar fieldset{
+.search_bar fieldset {
     border: none;
     padding: 0px;
-    margin: 0px;
-    margin-top: -1px;
+    margin: 2px;
     display: inline;
-    margin-right: 10px;
+    margin-right: 5px;
     text-align: left;
 }
 
-.search_bar label{
+.search_bar label {
     font-size: 0.8em;
+    display: block;
 }
 
-.search_bar fieldset.select{
+.search_bar .select {
     width: 110px;
 }
 
-.search_bar fieldset.input{
+.search_bar .input {
     width: 300px;
 }
 
@@ -252,8 +253,12 @@ dt {
     text-align:center;
 }
 
-#SentenceSearchForm input#SentenceQuery, .search_bar select{
-    width: 100%;
+#SentenceQuery{
+    width: 300px;
+}
+
+.search_bar select{
+    width: 110px;
 }
 
 
