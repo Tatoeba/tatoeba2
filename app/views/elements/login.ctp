@@ -45,10 +45,11 @@ if ($session->check('Message.auth')) {
 </script>
 
 
-<ul id="UserLoginLinkList">
-    <li onclick="javascript:openLoginForm();" class="login_pseudo_link">
-    <?php echo __('Log in', true); ?></li>
-</ul>
+
+<a class="menuItem" onclick="javascript:openLoginForm();">
+    <?php echo __('Log in', true); ?>
+</a>
+
 
 <form id="UserLoginForm_FromBar" method="post" action="/eng/users/login"
     style="display:none;">

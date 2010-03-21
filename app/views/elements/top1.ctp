@@ -33,7 +33,10 @@ if (isset($this->params['lang'])) {
 
 // array containing the elements of the menu : $title => $route
 $menuElements = array(
-    __('Home', true) => '/'.$lang,
+    __('Home', true) => array(
+        "controller" => "pages",
+        "action" => "home"
+    ),
     __('Browse', true) => array(
         "controller" => "sentences",
         "action" => "show",
@@ -104,38 +107,30 @@ $menuElements = array(
         $controller = $this->params['controller'];
         
         foreach ($menuElements as $title => $route) {
-            $cssClass = '';
             
-            //Checking if we should apply the "current" CSS class to the <li> element
-            if (is_array($route)) { // categories other than Home
-                if ($controller == $route['controller']) {
-                    if (isset($route['action'])) {
-                        if ($action == $route['action']) {
-                            $cssClass = 'class="show"';
-                        }
-                    } else {
-                        if ($action == 'index') {
-                            $cssClass = 'class="show"';
-                        }
-                    }
-                }
-            } else { // Home
-                if (isset($param) && ($param == 'home' || $param == 'index')) {
-                    $cssClass = 'class="show"';
-                }
+            if ($route['controller'] == 'pages' && $route['action'] == 'whats_new') {
+                $cssClass = 'whatsNewItem';
+            } else {
+                $cssClass = 'menuItem';
+            }
+            
+            // General case
+            if ($controller == $route['controller'] && $action == $route['action']) {
+                $cssClass .= ' show';
+            }
+            
+            // Special case for homepage
+            if ($controller == 'pages' && $action == 'index'
+                && $route['action'] == 'home') {
+                $cssClass .= ' show';
             }
             
             // displaying <li> element
-            ?>
-            <li <?php echo $cssClass; ?>>
-            <?php
-            echo $html->link($title, $route, array("class"=>$route['action']));
-            ?>
-            </li>
-        <?php
+            echo "<li>";
+            echo $html->link($title, $route, array("class"=>$cssClass));
+            echo '</li>';
         }
         ?>
-
         </ul>
     </div>
 </div>

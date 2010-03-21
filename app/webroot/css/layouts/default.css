@@ -73,67 +73,61 @@ dt {
 
 /* User Menu : Main Menu */
 
-div#top_menu_container {
+#top_menu_container {
     background-color:#414141;
     border-bottom:1px solid #000000;
 }
 
-div#top_menu {
+#top_menu {
     padding: 1px;
     width: 950px;
     margin:auto;
 }
 
+#top_menu .whatsNewItem {
+    font-weight:bold;
+    color:#FFCC00;
+}
 
-div#top_menu a, div#top_menu .login_pseudo_link {
+#top_menu .menuItem {   
     color:#FFFFFF;
     cursor:pointer;
 }
 
-div#top_menu ul li a:hover, div#top_menu a:hover, div#top_menu .login_pseudo_link:hover {
+#top_menu a:hover {
     color:#FB6B10;
 }
 
-div#navigation_menu {
+#navigation_menu {
     text-align:left;
     display:inline;
     font-size:0.9em;
 }
 
-div#navigation_menu ul {
+#navigation_menu ul {
     margin:0;
     padding:0;
     display:inline;
 }
 
-div#navigation_menu ul li {
+#navigation_menu li {
     list-style-type:none;
     display:inline;
     margin-right: 10px;
 }
 
-div#navigation_menu ul li.show {
+#navigation_menu .show {
     font-weight:bold;
     font-size:1.2em;
 }
 
-div#navigation_menu ul li.show a {
-}
-
-div#navigation_menu ul li a.whats_new {
-    font-weight:bold;
-    color:#FFCC00;
-}
-
-div#navigation_menu ul li a:hover.whats_new {
+#navigation_menu ul li a:hover.whats_new {
     color:#FB6B10;
 }
 
 
 /* User Menu : Interface Language Selector */
-
-
-select#languageSelection{
+#languageSelection{
     float: right;
     display:block;
     font-size: 0.8em;
@@ -142,39 +136,39 @@ select#languageSelection{
     height: 20px; /* need to specify height otherwise in Firefox and Opera it's too big */
 }
 
-form#AddForm{
+#AddForm{
     display:inline;
 }
 
-div#user_menu {
+#user_menu {
     float:right;
     font-size:0.75em;
     margin:3px;
     position:relative;
 }
 
-div#user_menu span strong{
+#user_menu strong{
     font-size:1.1em;
 }
 
-div#user_menu ul {
+#user_menu ul {
     margin:0;
     padding:0;
     list-style-type:none;
     display:inline;
 }
 
-div#user_menu ul li {
+#user_menu li {
     display:inline;
     margin:0 0 0 5px;
 }
 
-div#user_menu select {
+#user_menu select {
     margin:2px 0px 2px 5px;
     height: 20px; /* Need to specify height otherwise in Firefox 3.5 (and perhaps other browsers) the height is too big */
 }
 
-div#user_menu select#lang {
+#user_menu #lang {
     font-size:0.9em;
     padding:0;
     margin:4px 0;
@@ -184,29 +178,29 @@ div#user_menu select#lang {
 
 /* Search bar */
 
-div.search_bar_container{
+.search_bar_container{
     position:relative;
     margin-right: 30px;
 }
 
-div.search_bar_left, div.search_bar_right{
+.search_bar_left, .search_bar_right{
     position: absolute;
     top:0px;
     height: 50px;
     width: 40px;
 }
 
-div.search_bar_left{
+.search_bar_left{
     left:0px;
     background: url(../../img/search_bar_left.png) no-repeat left;
 }
 
-div.search_bar_right{
+.search_bar_right{
     right: 0px;
     background: url(../../img/search_bar_right.png) no-repeat right;
 }
 
-div.search_bar {
+.search_bar {
     height: 50px;
     background: url(../../img/search_bar_body.png) repeat;
     position: relative;
@@ -214,25 +208,25 @@ div.search_bar {
     margin: 0px 40px 20px 40px;
 }
 
-div.search_bar a{
+.search_bar a{
     font-size:0.9em;
     color:#FFFFFF;
     display:block;
     margin-bottom: 3px;
 }
 
-div.search_bar a:hover{
+.search_bar a:hover{
     color:#FFFFFF;
 }
 
-div.search_bar span#into {
+.search_bar #into {
     font-family:Arial, Sans-serif;
     font-size:1.3em;
     margin-top: 20px;
     text-align: center;
 }
 
-div.search_bar fieldset{
+.search_bar fieldset{
     border: none;
     padding: 0px;
     margin: 0px;
@@ -242,15 +236,15 @@ div.search_bar fieldset{
     text-align: left;
 }
 
-div.search_bar label{
+.search_bar label{
     font-size: 0.8em;
 }
 
-div.search_bar fieldset.select{
+.search_bar fieldset.select{
     width: 110px;
 }
 
-div.search_bar fieldset.input{
+.search_bar fieldset.input{
     width: 300px;
 }
 
@@ -258,7 +252,7 @@ div.search_bar fieldset.input{
     text-align:center;
 }
 
-#SentenceSearchForm input#SentenceQuery, div.search_bar select, div.search_bar div.submit input{
+#SentenceSearchForm input#SentenceQuery, .search_bar select{
     width: 100%;
 }
 
@@ -266,7 +260,7 @@ div.search_bar fieldset.input{
 
 /* HEADER */
 
-div#header{
+#header{
     text-align:right;
     float: left;
     padding: 10px;
@@ -275,14 +269,14 @@ div#header{
 
 /* Container */
 
-div#container1 {
+#container1 {
     width: 960px;
     margin:auto;
     padding:0px 10px;
     background: url(../../img/bg_main.png) repeat-y;
 }
 
-div#container {
+#container {
     width: 850px;
     margin-left:100px;
     background: #FFFFFF;
@@ -291,20 +285,20 @@ div#container {
 
 /* Content : when a page is not split into 2 parts*/
 
-div#content {
+#content {
     font-size:0.8em;
     /* border:1px dotted #D1D1D1; */
 }
 
 /* Module : when a page is split into 2 main parts */
 
-div#annexe_content {
+#annexe_content {
     float:right;
     width: 250px;
     font-size:0.8em;
 }
 
-div#main_content {
+#main_content {
     margin-left: 10px;
     margin-right: 260px;
     font-size:0.8em;
@@ -312,7 +306,7 @@ div#main_content {
 
 
 
-div.module {
+.module {
     /*border:1px dotted #D1D1D1;*/
     padding:10px 10px 5px 10px;
     margin:0px 0px 20px 0px;
@@ -321,11 +315,11 @@ div.module {
 }
 
 
-div#annexe_content div.module {
+#annexe_content .module {
     margin-left:5px;
 }
 
-div.module h2 {
+.module h2 {
     background: url(../../img/title.png) no-repeat top left;
     padding-left: 28px;
     margin:0 0 15px -8px;
@@ -333,20 +327,20 @@ div.module h2 {
     color: #000;
 }
 
-div.module h2 span.annexe {
+.module h2 .annexe {
     font-variant:normal;
     font-weight:normal;
     font-size:0.8em;
 }
 
-div.main_module {
+.main_module {
     font-size:1.25em;
     padding:10px 10px 5px 10px;
     background: url(../../img/module_background.png) repeat-x bottom left;
     margin-bottom: 20px;
 }
 
-div.main_module h2 {
+.main_module h2 {
     background: url(../../img/title_main.png) no-repeat top left;
     padding-left: 32px;
     font-size:1.5em;
@@ -355,25 +349,25 @@ div.main_module h2 {
 }
 
 
-div#annexe_content div.module ul {
-    margin:5px 0px;
+#annexe_content ul {
+    margin: 5px 0px;
     padding-left:20px;
 }
 
-div#annexe_content div.module ul li {
+#annexe_content li {
     list-style-type:none;
 }
 
 
 /* Footer */
 
-div#footer {
+#footer {
     background: #e3e0d6;
     height: 18px;
     clear: both;
 }
 
-div#footer_container {
+#footer_container {
     background:url(../../img/bg_footer.png) bottom left;
     width: 960px;
     height:24px;
@@ -381,20 +375,20 @@ div#footer_container {
     padding:0px 10px;
 }
 
-div#footer a {
+#footer a {
     color: #3d3d3d;
     cursor: pointer;
     text-decoration: none;
 }
 
-div#footer ul {
+#footer ul {
     margin: 0;
     display: block;
     float: right;
     font-size: 80%;
 }
 
-div#footer ul li {
+#footer li {
     display: block;
     height: 30px;
     line-height: 30px;
@@ -408,17 +402,13 @@ div#footer ul li {
 
 /* HTML Elements */
 
-p.more_link {
+.more_link {
     text-align:right;
 }
 
 
-div.module ul.menu .selected a {
-    color:#257D0C;
-}
-
 /* ">>" */
-span.ToLanguage {
+.ToLanguage {
     font-family:Arial, Sans-serif;
     font-size:1.3em;
     margin:0 5px;
@@ -443,7 +433,9 @@ span.ToLanguage {
 	color:#D1523C;
 }
 
-/* Login Form */
+/*
+ * Login Form 
+ */
 #UserLoginForm_FromBar {
 	position:absolute;
 	right:-100px;
@@ -454,53 +446,54 @@ span.ToLanguage {
 	background:#414141 url('../../img/alert-overlay.png') repeat-x;
 	color:#fff;
 }
-	#UserLoginForm_FromBar fieldset	{
-		border:0;
-		text-align:right;
-		line-height:25px;
-	}
-	#UserLoginForm_FromBar label {
-		text-align:right;
-	}
-		#UserLoginForm_FromBar input[type='text'], #UserLoginForm_FromBar input[type='password'] {
-			height:15px;
-			width:120px;
-			background: #fff url('../../img/alert-overlay.png') repeat-x;
-			display: inline-block;
-			padding:2px 0 0 3px;
-			color: #414141;
-			-moz-border-radius: 5px;
-			-webkit-border-radius: 5px;
-			-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-			-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-			border:0;
-			border-bottom: 1px solid rgba(0,0,0,0.25);
-			font-size:0.9em;
-		}
-		#UserLoginForm_FromBar input[type='submit'] {
-			width:120px;
-			background: #222 url('../../img/alert-overlay.png') repeat-x;
-			display: inline-block;
-			padding: 4px 10px 5px;
-			color: #fff;
-			text-decoration: none;
-			-moz-border-radius: 5px;
-			-webkit-border-radius: 5px;
-			-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-			-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-			text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
-			border:0;
-			border-bottom: 1px solid rgba(0,0,0,0.25);
-			position: relative;
-			font-size:0.9em;
-		}
-			#UserLoginForm_FromBar input[type='submit']:hover{
-				background-color:#111;
-				color:#fff;
-			}
-			#UserLoginForm_FromBar input[type='submit']:active {top:1px;}
-	#UserLoginForm_FromBar p {
-		margin:0;
-		padding:0;
 
-	}
+#UserLoginForm_FromBar fieldset	{
+    border:0;
+    text-align:right;
+    line-height:25px;
+}
+
+#UserLoginForm_FromBar label {
+    text-align:right;
+}
+
+#UserLoginForm_FromBar input[type='text'], #UserLoginForm_FromBar input[type='password'] {
+    height:15px;
+    width:120px;
+    background: #fff url('../../img/alert-overlay.png') repeat-x;
+    display: inline-block;
+    padding:2px 0 0 3px;
+    color: #414141;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    border:0;
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    font-size:0.9em;
+}
+#UserLoginForm_FromBar input[type='submit'] {
+    width:120px;
+    background: #222 url('../../img/alert-overlay.png') repeat-x;
+    display: inline-block;
+    padding: 4px 10px 5px;
+    color: #fff;
+    text-decoration: none;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
+    border:0;
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    position: relative;
+    font-size:0.9em;
+}
+
+#UserLoginForm_FromBar input[type='submit']:active {top:1px;}
+
+#UserLoginForm_FromBar p {
+    margin:0;
+    padding:0;
+
+}
