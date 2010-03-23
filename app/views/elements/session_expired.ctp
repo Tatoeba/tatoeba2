@@ -25,8 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-
-
-__('Your session has expired please refresh the page');
-
 ?>
+<div id="session_expired" >
+<?php __('Your session has expired please refresh the page'); ?>
+</div>

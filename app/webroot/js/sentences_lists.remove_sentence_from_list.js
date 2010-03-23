@@ -19,7 +19,8 @@
 $(document).ready(function() {
 
 	$(".removeFromListButton").click(function(){
-		var sentence_id = $(this).attr("id").slice(1);
+		// TODO HACK SPOTTED here we used the "data in html hack"
+        var sentence_id = $(this).attr("id").slice(1);
 		var list_id = $(".sentencesListId").attr("id").slice(1);
 		
 		$("#sentence"+sentence_id).html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");

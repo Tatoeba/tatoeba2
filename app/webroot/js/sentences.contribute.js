@@ -43,6 +43,7 @@ $(document).ready(function() {
                     "selectedLang": selectedLang
                 },
                 function(data){
+                    $("#session_expired").remove();
                     $(".sentencesAddedloading").hide();
                     $("#sentencesAdded").prepend(data);
                     $("#newSentenceText").val("");

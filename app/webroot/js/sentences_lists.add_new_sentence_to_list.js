@@ -39,6 +39,7 @@ $(document).ready(function() {
 	    $.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/add_new_sentence_to_list/"
 		, { "listId": listId, "sentenceText" : sentenceText }
 		, function(data){
+            $("#session_expired").close();
 			$(".sentencesList").prepend(data);
 			$(".sentencesListLoading").hide();
 			$("#text").val("");

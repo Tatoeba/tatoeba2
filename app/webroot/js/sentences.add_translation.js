@@ -53,6 +53,7 @@ $(document).ready(function() {
                         "value": sentenceText
                     },
                     function(data){
+                        $("#session_expired").remove();
                         $("#_" + sentenceId + "_loading").hide();
                         $("#_" + sentenceId + "_translations").prepend(data);
                         $("#_" + sentenceId + "_text").val('');
