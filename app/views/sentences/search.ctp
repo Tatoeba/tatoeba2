@@ -23,7 +23,10 @@
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
- */?>
+ */
+ 
+ $this->pageTitle = __('Tatoeba search', true);
+ ?>
 <div id="annexe_content">
     <?php
     if (isset($mostFrequentWords) 

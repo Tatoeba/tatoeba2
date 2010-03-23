@@ -34,6 +34,12 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+ 
+if ($user['User']['name'] != '') {
+    $this->pageTitle = sprintf(__("Profile of %s", true), $user['User']['name']);
+} else {
+    $this->pageTitle = sprintf(__("%s's profile", true), $user['User']['username']);
+}
 
 if ($is_public or $login) {
     //echo $javascript->includeScript('users.followers_and_following');

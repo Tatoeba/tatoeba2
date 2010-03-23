@@ -92,8 +92,6 @@ class UserController extends AppController
                 = $aCountry['Country']['name'];
         }
 
-        $this->pageTitle = 'Your profile';
-
         $this->set('countries', $aCleanCountries);
         $this->set('user', $aUser);
         $this->set('userStats', $userStats);
@@ -133,12 +131,6 @@ class UserController extends AppController
         $this->set('userStats', $userStats);
 
         if ( $aUser != null ) {
-            if ($aUser['User']['name'] != '') {
-                $this->pageTitle
-                    = sprintf(__("Profile of %s", true), $aUser['User']['name']);
-            } else {
-                $this->pageTitle = sprintf(__("%s's profile", true), $sUserName);
-            }
 
             // Check if we can follow that user or not
             // (we can if we're NOT already following the user,

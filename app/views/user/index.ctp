@@ -41,6 +41,9 @@
 // TODO : stop using one letter class name , c? t?
 // TODO : get <a> outside the __()
 // TODO : use dedicated variable instead of calling the array several times
+
+$this->pageTitle = 'Your profile';
+
 if (!$session->read('Auth.User.id')) {
     echo $this->element('login');
 } else {

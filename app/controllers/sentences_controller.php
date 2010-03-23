@@ -525,8 +525,6 @@ class SentencesController extends AppController
             }
             $this->set('specialOptions', $specialOptions);
         } else {
-            //TODO pageTitle should be done in the view
-            $this->pageTitle = __('Tatoeba search', true);
             $this->redirect(
                 array(
                     "lang" => $this->params['lang'], 
