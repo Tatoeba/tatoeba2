@@ -313,7 +313,14 @@ class ExtractTask extends Shell{
                     $currentLine = $line;
                 } elseif ($i18nStringFound) {
                     // i18n has been found previously, filling the content...
-                    $currentContent .= $this->__formatString($string);
+                    if ($type == T_CONSTANT_ENCAPSED_STRING) {
+                        $currentContent .= $this->__formatString($string);
+                    } else {
+                        $this->out(
+                            "\n\nWARNING!\n".
+                            $this->__file .", line $line: not a string!\n\n"
+                        );
+                    }
 				}
             } else {
                 // We find a parenthesis or a comma, it's the end
