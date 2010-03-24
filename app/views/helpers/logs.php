@@ -177,10 +177,8 @@ class LogsHelper extends AppHelper
         
         echo '<div>';
         if ($type == 'link') {
-            __('linked to');
-            echo ' &raquo; ';
             
-            echo $this->Html->link(
+            $linkToTranslation = $this->Html->link(
                 $contribution['translation_id'],
                 array(
                     "controller" => "sentences",
@@ -188,6 +186,8 @@ class LogsHelper extends AppHelper
                     $contribution['translation_id']
                 )
             );
+            
+            echo sprintf(__('linked to &raquo; %s', true), $linkToTranslation);
             
         } else {
             echo ' <span class="text">';

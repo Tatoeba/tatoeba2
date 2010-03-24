@@ -82,7 +82,7 @@ if (!isset($lastText)) {
 
 <div id="main_content">
     <div class="module">
-        <h2><?php __('Traditional/simplified chinese converter'); ?></h2>
+        <h2><?php __('Traditional/simplified Chinese converter'); ?></h2>
 
         <?php
         if (isset($convertedText)) {
@@ -103,7 +103,7 @@ if (!isset($lastText)) {
         <?php
         echo $form->label(
             'query',
-            __('Enter either traditional or simplified chinese', true)
+            __('Enter either traditional or simplified Chinese', true)
         );
         echo $form->textarea(
             'query',

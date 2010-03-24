@@ -24,22 +24,24 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-$this->pageTitle = __('Private messages', true) . ' - ' . __($folder, true);
+ 
+$folderName = '';
+if ($folder == 'Inbox') {
+    $folderName = __('Inbox', true);
+} elseif ($folder == 'Sent') {
+    $folderName = __('Sent', true);
+} elseif ($folder == 'Trash') {
+    $folderName = __('Trash', true);
+}
+
+$this->pageTitle = __('Private messages', true) . ' - ' . $folderName;
 
 echo $this->element('pmmenu');
 ?>
 <div id="main_content">
 	<div class="module pm_module">
         <h2>
-        <?php
-        if ($folder == 'Inbox') {
-            __('Inbox');
-        } elseif ($folder == 'Sent') {
-            __('Sent');
-        } elseif ($folder == 'Trash') {
-            __('Trash');
-        }
-        ?>
+        <?php echo $folderName; ?>
 		</h2>
         
 		<?php echo $this->element('pmtoolbox'); ?>

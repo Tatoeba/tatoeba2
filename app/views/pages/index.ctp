@@ -115,8 +115,12 @@ $selectedLanguage = $session->read('random_lang_selected');
     <div class="module">
         <h2><?php __('What can I do in Tatoeba?'); ?></h2>
         <div class="keyIdea">
-            <span class="keyword"><?php __('Learn'); ?></span> 
-            <span class="sub-keyword"><?php __('languages'); ?></span>
+            <?php 
+            __(
+                '<span class="keyword">Learn</span> '.
+                '<span class="sub-keyword">languages</span>'
+            ); 
+            ?>
             <ul>
                 <li>
                     <?php
@@ -138,8 +142,11 @@ $selectedLanguage = $session->read('random_lang_selected');
         </div>
 
         <div class="keyIdea">
-            <span class="keyword"><?php __('Share'); ?></span> 
-            <span class="sub-keyword"><?php __('your knowledge'); ?></span>
+            <?php 
+            __(
+                '<span class="keyword">Share</span> '.
+                '<span class="sub-keyword">your knowledge</span>'
+            ); ?>
             <ul>
                 <li>
                     <?php
@@ -167,8 +174,12 @@ $selectedLanguage = $session->read('random_lang_selected');
         </div>
 
         <div class="keyIdea">
-            <span class="keyword"><?php __('Interact'); ?></span> 
-            <span class="sub-keyword"><?php __('with the community'); ?></span>
+            <?php 
+            __(
+                '<span class="keyword">Interact</span> '.
+                '<span class="sub-keyword">with the community</span>'
+            ); 
+            ?>
             <ul>
                 <li>
                     <?php

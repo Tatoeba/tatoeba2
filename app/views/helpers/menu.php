@@ -70,8 +70,8 @@ class MenuHelper extends AppHelper
         echo '<a>' . $this->Html->image(
             'simplified_chinese.png', 
             array(
-                'alt'=>__('This sentence is in simplified chinese', true), 
-                'title'=>__('This sentence is in simplified chinese', true)
+                'alt'=>__('This sentence is in simplified Chinese.', true), 
+                'title'=>__('This sentence is in simplified Chinese.', true)
             )
         ) . '</a>';
         echo '</li>';
@@ -89,8 +89,8 @@ class MenuHelper extends AppHelper
         echo '<a>' . $this->Html->image(
             'traditional_chinese.png', 
             array(
-                'alt'=>__('This sentence is in traditional chinese', true), 
-                'title'=>__('This sentence is in traditional chinese', true)
+                'alt'=>__('This sentence is in traditional Chinese.', true), 
+                'title'=>__('This sentence is in traditional Chinese.', true)
             )
         ) . '</a>';
         echo '</li>';

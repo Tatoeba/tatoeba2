@@ -71,7 +71,7 @@ if (!isset($lastText)) {
             echo $form->radio(
                 'from', 
                 array(
-                    'chinese' => __('chinese', true), 
+                    'chinese' => __('Chinese', true), 
                     'numPinyin' => __('numerical pinyin', true),
                 ), 
                 array(
