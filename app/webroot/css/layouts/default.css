@@ -438,6 +438,18 @@ dt {
 	color:#D1523C;
 }
 
+/* Important */
+.important{
+    color: red;
+}
+
+#session_expired{
+    color: red;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border: #e1e1e1 1px solid;
+}
+
 /*
  * Login Form 
  */
