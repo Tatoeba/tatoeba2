@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = 'Tatoeba : ' . __('Help', true);
+$this->pageTitle = 'Tatoeba - ' . __('Help', true);
 ?>
 
 <div id="annexe_content">

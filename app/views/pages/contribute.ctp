@@ -24,7 +24,9 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
+
+$this->pageTitle = 'Tatoeba - ' . __('Contribute', true);
+
 echo $javascript->link('sentences.show_another.js', false);
 ?>
 

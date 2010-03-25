@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = __('Pinyin converter tools', true);
+$this->pageTitle = 'Tatoeba - ' . __('Pinyin converter', true);
 
 // if it's the first time we call this tool
 if (!isset($lastText)) {

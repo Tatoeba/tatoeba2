@@ -25,6 +25,7 @@
  * @link     http://tatoeba.org
  */
 
+$this->pageTitle = 'Tatoeba - ' . __('Add sentences', true);
 
 $javascript->link('sentences.contribute.js', false);
 ?>

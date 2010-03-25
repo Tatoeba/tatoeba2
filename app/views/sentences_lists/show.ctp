@@ -25,8 +25,7 @@
  * @link     http://tatoeba.org
  */
  
- 
- $this->pageTitle = $list['SentencesList']['name'];
+$this->pageTitle = 'Tatoeba - ' . $list['SentencesList']['name'];
 ?>
 
 <div id="annexe_content">

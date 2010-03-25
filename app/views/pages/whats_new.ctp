@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = __("Tatoeba : What's new", true);
+$this->pageTitle = 'Tatoeba - ' . __("What's new", true);
 ?>
 
 <div id="annexe_content">
@@ -40,7 +40,7 @@ $this->pageTitle = __("Tatoeba : What's new", true);
 
 <div id="main_content">
     <div class="module">
-        <h2><?php __('What\'s new'); ?></h2>
+        <h2><?php __("What's new"); ?></h2>
 
 
         <div>

@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
  
- $this->pageTitle = __('Tatoeba search', true);
+ $this->pageTitle = 'Tatoeba ' . __('Search sentences', true);
  ?>
 <div id="annexe_content">
     <?php

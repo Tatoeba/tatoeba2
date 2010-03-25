@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+$this->pageTitle = sprintf(__("%s's favorite sentences", true), $user['username']); 
+ 
 $navigation->displayUsersNavigation($user['id'], $user['username']);
 ?>
 <div id="main_content">

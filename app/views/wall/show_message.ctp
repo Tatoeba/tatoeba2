@@ -34,6 +34,9 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */ 
+
+$this->pageTitle = 'Tatoeba - #' . $message['Wall']['id'] . ' - ' 
+    . substr($message['Wall']['content'], 0, 30);
 ?>
 <div id="annexe_content">
     <div class="module">

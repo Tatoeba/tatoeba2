@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+$this->pageTitle = 'Tatoeba - ' . __('List of sentences', true);
 ?>
 
 <div id="annexe_content" >

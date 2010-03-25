@@ -35,6 +35,10 @@
  * @link     http://tatoeba.org
  */
 
+$this->pageTitle = 'Tatoeba - ' . sprintf(
+    __("Comments on %s's sentences", true), $userName
+); 
+ 
 // use to send the same arguments to each pages
 // not called if user doesn't actually exist
 if ($userExists === true){

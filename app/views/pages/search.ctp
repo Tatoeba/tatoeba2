@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+$this->pageTitle = 'Tatoeba - ' . __('Examples of search', true);
 ?>
 
 <div id="main_content">

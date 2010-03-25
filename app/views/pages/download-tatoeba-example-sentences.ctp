@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+$this->pageTitle = 'Tatoeba - ' . __('Download sentences', true);
 ?>
 
 <div id="annexe_content">    
@@ -100,12 +102,10 @@
                     <p><strong>Fields:</strong> "id"; "lang"; "text"</p>
                     <p>
                         Contains all the sentences. Each sentence is associated to a
-                        unique id and a language code (
-                        <a href="http://en.wikipedia.org/wiki/List_of_ISO_639-3_codes">
-                            ISO 639-3
-                        </a>
-                        ).
+                        unique id and a language code 
+                        (<a href="http://en.wikipedia.org/wiki/List_of_ISO_639-3_codes">ISO 639-3</a>).
                     </p>
+                </td>
             </tr>
             
             <!-- Links -->
@@ -171,9 +171,8 @@
                         Contains the equivalent of the "B lines" in the file of the 
                         Tanaka Corpus distributed by Jim Breen (cf. Current format,
                         <a href="http://www.csse.monash.edu.au/~jwb/tanakacorpus.html">
-                            on this page
-                        </a>
-                        ). Each entry is associated to a pair of Japanese/English 
+                            on this page</a>). 
+                        Each entry is associated to a pair of Japanese/English 
                         sentences. <strong>sentence_id</strong> refers to the id of 
                         the Japanese sentence. <strong>meaning_id</strong> refers 
                         to the id of the English sentence.

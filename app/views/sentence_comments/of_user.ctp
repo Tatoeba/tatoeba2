@@ -35,6 +35,8 @@
  * @link     http://tatoeba.org
  */
 
+$this->pageTitle = 'Tatoeba - ' . sprintf(__("%s's comments", true), $userName);
+
 // use to send the same arguments to each pages
 // not called if user doesn't actually exist
 if ($userExists === true && $noComment === false){
@@ -77,7 +79,7 @@ if ($userExists === true && $noComment === false){
             echo $paginator->counter(
                 array(
                     'format' => sprintf(
-                        __("%s's Comments (total %s)", true),
+                        __("%s's comments (total %s)", true),
                         $userName,
                         '%count%'
                     )

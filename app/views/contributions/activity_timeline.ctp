@@ -36,6 +36,8 @@
  * @link     http://tatoeba.org
  */
 
+$this->pageTitle = "Tatoeba - " . __("Activity timeline", true); 
+ 
 $maxWidth = 600;
 $maxTotal = 0;
 

@@ -25,7 +25,9 @@
  * @link     http://tatoeba.org
  */
 $javascript->link('furigana', false);
-$this->pageTitle = __('Convert Japanese text into romaji or furigana', true);
+$this->pageTitle = 'Tatoeba - '. __(
+    'Convert Japanese text into romaji or furigana', true
+);
 
 ?>
 

@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = __('Contributions statistics', true);
+$this->pageTitle = 'Tatoeba - ' . __('Contributors statistics', true);
 ?>
 
 <div id="annexe_content">

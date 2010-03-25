@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = __('Browse languages related tools provided by Tatoeba', true);
+$this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
 ?>
 <div id="annexe_content" >
     <div class="module" >

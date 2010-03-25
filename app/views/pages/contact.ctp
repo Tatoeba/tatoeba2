@@ -24,20 +24,33 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+/**
+ * Page to display contact information.
+ *
+ * @category Pages
+ * @package  Views
+ * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */ 
+ 
+$this->pageTitle = 'Tatoeba - ' . __('Contact us', true);
 ?>
 
 <div id="main_content">
     <div class="module">
         <?php
         echo '<h2>';
-        __('Contact Trang');
+        __('Contact us');
         echo '</h2>';
         
-        $email = 'trang.dictionary.project@gmail.com';
+        $email = 'team@tatoeba.fr';
         echo sprintf(
             __(
-                'If you would like to contact the author of this project, '.
-                'feel free to drop an email at %s.', true
+                'If you have any question, suggestion, request (or if you would '.
+                'just like to say thank you) feel free to drop us an email at %s.',
+                true
             ), $email
         );
         ?>

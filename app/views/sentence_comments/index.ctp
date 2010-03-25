@@ -34,6 +34,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+$this->pageTitle = 'Tatoeba - ' . __('Comments on sentences', true);
 ?>
 
 <div id="main_content">

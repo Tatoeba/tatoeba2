@@ -29,6 +29,8 @@ $javascript->link('sentences_lists.remove_sentence_from_list.js', false);
 $javascript->link('sentences_lists.edit_name.js', false);
 $javascript->link('sentences_lists.add_new_sentence_to_list.js', false);
 $javascript->link('jquery.jeditable.js', false);
+
+$this->pageTitle = 'Tatoeba - ' . $list['SentencesList']['name'];
 ?>
 
 
