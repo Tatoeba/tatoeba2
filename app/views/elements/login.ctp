@@ -83,9 +83,9 @@ if ($session->check('Message.auth')) {
             )
         );
         ?>
-        <span onclick="javascript:closeLoginForm();" class="login_pseudo_link"
+        <a class="menuItem" onclick="javascript:closeLoginForm();"
             style="float:right;">
             <?php echo __('Close', true); ?>
-       </span>
+       </a>
     </p>
 </form>
