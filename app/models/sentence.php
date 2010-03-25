@@ -785,7 +785,6 @@ class Sentence extends AppModel
         $romanization = '';
 
         if ($lang == "wuu") {
-                        
             //$romanization = $this->getShanghaineseRomanization($text);
 
         } elseif ($lang == "jpn") {
@@ -797,7 +796,7 @@ class Sentence extends AppModel
             setlocale(LC_CTYPE, "fr_FR.UTF-8");
             $text = escapeshellarg($text); 
             
-            $romanization =  exec("adso.sh -i $text -y");
+            $romanization =  exec("adso.sh -i '$text' -y");
             /*
             $curl = curl_init();
             curl_setopt (
@@ -1018,9 +1017,29 @@ class Sentence extends AppModel
      * @return string
      */
 
-     public function getShanghaineseRomanization($shanghaineseText)
-     {
+    public function getShanghaineseRomanization($shanghaineseText)
+    {
+        $ipaFile = fopen( MODELS . "shanghainese2IPA2.txt","r");
 
-     }
+        $ipaArray = array();
+        $sinogramsArray = array();
+
+        // the file is tab separated value
+        // we create two array one with characters, the other
+        // with the IPA
+        while ($line = fgets($ipaFile)) {
+            $arrayLine = explode("\t",$line);
+            // there's some blank line in this file so mustn't
+            // handle them
+            if (count($arrayLine) > 1) {
+               array_push($ipaArray,str_replace("\n","",$arrayLine[1]));
+               array_push($sinogramsArray,$arrayLine[0]);
+            }
+        }
+
+        $ipaSentence = str_replace($sinogramsArray,$ipaArray,$shanghaineseText);
+        return $ipaSentence;
+
+    }
 }
 ?>
