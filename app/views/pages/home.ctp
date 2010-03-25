@@ -104,6 +104,7 @@ $selectedLanguage = $session->read('random_lang_selected');
     <div class="module">
         <h2><?php __('Latest messages'); ?></h2>
         <?php 
+        // TODO to extract
         foreach ($latestMessages as $value) {
             echo '<div class="lastWallMessages">';
                 echo '<div class="header">';
@@ -123,8 +124,18 @@ $selectedLanguage = $session->read('random_lang_selected');
                 
                 echo '<div class="body">';
                 // Display only 200 first character of message
-                echo substr($value['Wall']['content'], 0, 200);
+                $contentFirst200 = substr($value['Wall']['content'], 0, 200);
                 // Text of the Link
+                // TODO to extract 
+                echo nl2br(
+                    $clickableLinks->clickableURL(
+                        htmlentities(
+                            $contentFirst200,
+                            ENT_QUOTES,
+                            'UTF-8'
+                        )
+                    )
+                );
                 if (strlen($value['Wall']['content']) > 200) {
                     echo ' [...]';
                 }
