@@ -182,7 +182,11 @@ class CommentsHelper extends AppHelper
         
         // comment text
         $commentText = $this->ClickableLinks->clickableURL(
-            Sanitize::html($sentenceComment['text'])
+            htmlentities(
+                $sentenceComment['text'],
+                ENT_QUOTES,
+                'UTF-8'    
+            )
         );
         echo nl2br($commentText);
         echo '</div>';
