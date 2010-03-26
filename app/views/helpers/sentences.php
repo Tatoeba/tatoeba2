@@ -544,17 +544,6 @@ class SentencesHelper extends AppHelper
             $this->Menu->unfavoriteButton($id);
             echo "\n";
         }
-
-        // indicate which script is used for chinese sentence
-        if ($lang === 'cmn') {
-
-            if ($chineseScript === 'simplified') {
-                $this->Menu->simplifiedButton(); 
-            } else if ($chineseScript === 'traditional') {
-                $this->Menu->traditionalButton(); 
-            }
-            echo "\n";
-        }
         
         // add to list
         if (isset($specialOptions['canAddToList']) 
@@ -635,7 +624,19 @@ class SentencesHelper extends AppHelper
             array("id"=>"_".$id."_valid", "style" =>"display:none")
         );
         echo "</li>";
-            
+        
+        // indicate which script is used for chinese sentence
+        if ($lang === 'cmn') {
+        
+            if ($chineseScript === 'simplified') {
+                $this->Menu->simplifiedButton(); 
+            } else if ($chineseScript === 'traditional') {
+                $this->Menu->traditionalButton(); 
+            }
+            echo "\n";
+        }
+        
+        
         echo '</ul>';
     }
 
