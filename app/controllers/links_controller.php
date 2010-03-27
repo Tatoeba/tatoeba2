@@ -65,7 +65,26 @@ class LinksController extends AppController
         Sanitize::paranoid($sentenceId);
         Sanitize::paranoid($translationId);
         $saved = $this->Link->add($sentenceId, $translationId);
-        $this->set('saved', $saved);
+        // $this->set('saved', $saved);
+        
+        if ($saved) {
+            $flashMessage = sprintf(
+                __(
+                    'Sentences #%s and #%s are now '.
+                    'direct translations of each other.',
+                    true
+                ),
+                $sentenceId, $translationId
+            );
+        } else {
+            $flashMessage = __(
+                'An error occured while saving. '.
+                'Please try again or contact us to report this.',
+                true
+            );
+        }
+        
+        $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
     }
     
     
@@ -82,7 +101,26 @@ class LinksController extends AppController
         Sanitize::paranoid($sentenceId);
         Sanitize::paranoid($translationId);
         $saved = $this->Link->delete($sentenceId, $translationId);
-        $this->set('saved', $saved);
+        // $this->set('saved', $saved);
+        
+        if ($saved) {
+            $flashMessage = sprintf(
+                __(
+                    'Sentences #%s and #%s are not anymore '.
+                    'direct translations of each other.',
+                    true
+                ),
+                $sentenceId, $translationId
+            );
+        } else {
+            $flashMessage = __(
+                'An error occured while saving. '.
+                'Please try again or contact us to report this.',
+                true
+            );
+        }
+        
+        $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
     }
     
 }

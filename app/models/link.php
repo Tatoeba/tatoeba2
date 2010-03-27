@@ -20,18 +20,16 @@
  *
  * @category PHP
  * @package  Tatoeba
- * @author   Allan Simon <allan.simon@supinfo.com>
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
 
 /**
- * Model Class which represent sentences
+ * Model for links. Links indicate which sentence is translation of which.
  *
  * @category PHP
  * @package  Tatoeba
- * @author   Allan Simon <allan.simon@supinfo.com>
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org

@@ -324,10 +324,14 @@ class SentencesHelper extends AppHelper
            echo '<li></li>';
         if (count($translations) > 0) {
             // direct translations
-            $this->_displayTranslations($translations);
+            $this->_displayTranslations(
+                $translations, $sentence['id'], $user['canEdit']
+            );
             
             // indirect translations
-            $this->_displayIndirectTranslations($indirectTranslations);
+            $this->_displayIndirectTranslations(
+                $indirectTranslations, $sentence['id'], $user['canEdit']
+            );
         }
         echo '</ul>';
         
@@ -340,29 +344,45 @@ class SentencesHelper extends AppHelper
      * Display direct translations.
      *
      * @param array $translations Translations to display.
+     * @param int   $originalId   Id of the original sentence.
+     * @param bool  $canUnlink    'true' if user can unlink the translation.
      *
      * @return void
      */
-    private function _displayTranslations($translations)
+    private function _displayTranslations($translations, $originalId, $canUnlink)
     {
-        foreach ($translations as $translation) {
         
-            echo '<li class="direct translation">';
-            // translation icon
-            echo $this->Html->link(
-                $this->Html->image(
-                    'direct_translation.png',
-                    array(
-                        "alt"=>__('Show', true),
-                        "title"=>__('Show', true)
-                    )
-                ),
-                array(
-                    "controller" => "sentences",
-                    "action" => "show",
+        foreach ($translations as $translation) {
+            
+            $css = "";
+            $url = array(
+                "controller" => "sentences", 
+                "action" => "show",
+                $translation['id']
+            );
+            $title = __('Show', true);
+            
+            if ($canUnlink) {
+                $css = "editableLink";
+                $url = array(
+                    "controller" => "links", 
+                    "action" => "delete",
+                    $originalId, 
                     $translation['id']
-                ),
-                array("escape"=>false, "class"=>"info")
+                );
+                $title = __('Unlink this translation.', true);
+            }
+            
+        
+            echo '<li class="direct '.$css.' translation">';
+            // translation icon            
+            echo $this->Html->link(
+                null, $url,
+                array(
+                    "escape" => false, 
+                    "class" => "linkIcon info",
+                    "title" => $title
+                )
             );
             
             // language flag
@@ -392,30 +412,47 @@ class SentencesHelper extends AppHelper
      * Display indirect translations, that is to say translations of translations.
      *
      * @param array $indirectTranslations Indirect translations to display.
+     * @param int   $originalId   Id of the original sentence.
+     * @param bool  $canLink    'true' if user can link the translation.
      *
      * @return void
      */
-    private function _displayIndirectTranslations($indirectTranslations)
-    {
+    private function _displayIndirectTranslations(
+        $indirectTranslations, $originalId, $canLink
+    ) {
         if (count($indirectTranslations) > 0) {
+            
             foreach ($indirectTranslations as $translation) {
-                echo '<li class="indirect translation">';
+                $css = "";
+                $url = array(
+                    "controller" => "sentences", 
+                    "action" => "show",
+                    $translation['id']
+                );
+                $title = __('Show', true);
+                
+                if ($canLink) {
+                    $css = "editableLink";
+                    $url = array(
+                        "controller" => "links", 
+                        "action" => "add",
+                        $originalId, 
+                        $translation['id']
+                    );
+                    $title = __('Make as direct translation.', true);
+                }
+                
+                
+                echo '<li class="indirect '.$css.' translation">';
                 
                 // translation icon
                 echo $this->Html->link(
-                    $this->Html->image(
-                        'indirect_translation.png',
-                        array(
-                            "alt"=>__('Show', true),
-                            "title"=>__('Show', true)
-                        )
-                    ),
+                    null, $url,
                     array(
-                        "controller" => "sentences",
-                        "action" => "show",
-                        $translation['id']
-                    ),
-                    array("escape"=>false, "class"=>"info")
+                        "escape" => false, 
+                        "class" => "linkIcon info",
+                        "title" => $title
+                    )
                 );
                 
                 // language flag

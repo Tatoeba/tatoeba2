@@ -37,19 +37,17 @@ if (isset($translation_text)) {
     
         // hidden 'info button'
         echo $html->link(
-            $html->image(
-                'direct_translation.png',
-                array(
-                    "alt"=>__('Show', true),
-                    "title"=>__('Show', true)
-                )
-            ),
+            null,
             array(
                 "controller" => "sentences",
                 "action" => "show",
                 $translation_id
             ),
-            array("escape"=>false, "class"=>"info")
+            array(
+                "escape" => false, 
+                "class" => "linkIcon info",
+                "title" => __('Show', true)
+            )
         );
         
         // language flag

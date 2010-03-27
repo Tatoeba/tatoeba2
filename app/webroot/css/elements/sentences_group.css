@@ -109,7 +109,6 @@ padding: 10px 5px;
 
 .translation a.info{
 	float:left;
-	padding: 0px 5px;
 	margin-top: 5px;
 }
 
@@ -123,6 +122,23 @@ padding: 10px 5px;
 	color: #EAA315;
 }
 
+.editableLink .linkIcon:hover{
+    background-position: -18px 0; 
+}
+
+.translation .linkIcon{
+    width: 18px;
+    height: 16px;
+    background: transparent url(/img/direct_translation.png) no-repeat; 
+}
+
+.direct .linkIcon{
+    background: transparent url(/img/direct_translation.png) no-repeat; 
+}
+
+.indirect .linkIcon{
+    background: transparent url(/img/indirect_translation.png) no-repeat; 
+}
 
 
 /* editing sentences */
