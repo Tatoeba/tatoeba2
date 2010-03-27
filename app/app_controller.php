@@ -88,7 +88,11 @@ class AppController extends Controller
         // very important for the "remember me" to work
         $this->Auth->autoRedirect = false; 
         $this->RememberMe->check();
-
+        
+        // So that we can access the current users info from models.
+        App::import('Model', 'CurrentUser');
+        CurrentUser::store($this->Auth->user());
+        
         // to remove in production mode
         //$this->_buildAcl();
     }

@@ -1,21 +1,20 @@
 <?php
 /**
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
-    Copyright (C) 2009  Allan SIMON (allan.simon@supinfo.com)
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  * PHP version 5 
  *
@@ -41,6 +40,58 @@ class Link extends AppModel
 {
     public $useTable = 'sentences_translations';
     
+    
+    /**
+     * Called after a link is saved.
+     * 
+     * @param bool $created true if a new line has been created.
+     *                      false if a line has been updated.
+     * 
+     * @return void
+     */
+    public function afterSave($created)
+    {
+        // Can't set 'Contribution' as a real association, otherwise other methods
+        // will make an unnecessary "join".
+        $this->bindModel(
+            array('hasOne' => array('Contribution'))
+        );
+        
+        $this->Contribution->saveLinkContribution(
+            $this->data['Link']['sentence_id'],
+            $this->data['Link']['translation_id'],
+            'insert'
+        );
+    }
+    
+    
+    /**
+     * Called after a link is deleted.
+     * 
+     * @return void
+     */
+    public function afterDelete()
+    {
+        // Can't set 'Contribution' as a real association, otherwise other methods
+        // will make an unnecessary "join".
+        $this->bindModel(
+            array('hasOne' => array('Contribution'))
+        );
+        
+        $this->Contribution->saveLinkContribution(
+            $this->data['Link']['sentence_id'],
+            $this->data['Link']['translation_id'],
+            'delete'
+        );
+        
+        // We need to add manually the reciprochal link deletion because the
+        // callback is called manually.
+        $this->Contribution->saveLinkContribution(
+            $this->data['Link']['translation_id'],
+            $this->data['Link']['sentence_id'],
+            'delete'
+        );
+    }
     
     /**
      * Add link.
@@ -84,7 +135,16 @@ class Link extends AppModel
             )
         );
         
-        return $this->deleteAll($conditions);
+        $deleted = $this->deleteAll($conditions);
+        
+        // It's hackish, but deleteAll won't behave properly if we set callback=true
+        if ($deleted) {
+            $this->data['Link']['sentence_id'] = $sentenceId;
+            $this->data['Link']['translation_id'] = $translationId;
+            $this->afterDelete(); // calling callback manually...
+        }
+        
+        return $deleted;
     }
 }
 ?>

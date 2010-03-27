@@ -282,6 +282,28 @@ class Contribution extends AppModel
     }
     
     
-    
+    /**
+     * Log contributions related to links.
+     *
+     * @param int $sentenceId    Id of the sentence.
+     * @param int $translationId Id of the translation.
+     * @param int $action        Action performed ('insert' or 'delete').
+     *
+     * @return void
+     */
+    public function saveLinkContribution($sentenceId, $translationId, $action)
+    {
+        $data = array(
+            'sentence_id' => $sentenceId,
+            'translation_id' => $translationId,
+            'user_id' => CurrentUser::get('id'),
+            'datetime' => date("Y-m-d H:i:s"),
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'type' => 'link',
+            'action' => $action
+        );
+        
+        $this->save($data);
+    }
 }
 ?>
