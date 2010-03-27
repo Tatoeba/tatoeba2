@@ -235,5 +235,38 @@ class MenuHelper extends AppHelper
         );
         echo '</li>';
     }
+    
+    
+    /** 
+     * Display button to delete.
+     *
+     * @param int  $sentenceId       Id of the sentence on which this button
+     *                               is displayed
+     * @param bool $soundIsAvailable 'true' if there is an audio for the sentence.
+     *
+     * @return void
+     */
+    public function audioButton($sentenceId, $soundIsAvailable)
+    {
+        echo '<li class="option"><a>';
+        if ($soundIsAvailable) {
+            echo $this->Html->image(
+                'audio.png', 
+                array(
+                    'alt'=>__('Play audio', true), 
+                    'title'=>__('Play audio', true)
+                )
+            );
+        } else {
+            echo $this->Html->image(
+                'audio_unavailable.png', 
+                array(
+                    'alt'=>__('Audio not available.', true), 
+                    'title'=>__('Audio not available.', true)
+                )
+            );
+        }
+        echo '</a></li>';
+    }
 }
 ?>

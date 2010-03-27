@@ -644,6 +644,10 @@ class SentencesHelper extends AppHelper
             echo "\n";
         }
         
+        // audio
+        $soundIsAvailable = true;
+        $this->Menu->audioButton($id, $soundIsAvailable);
+        
         // delete
         if (isset($specialOptions['canDelete']) 
             && $specialOptions['canDelete'] == true
