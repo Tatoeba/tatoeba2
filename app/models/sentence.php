@@ -961,7 +961,6 @@ class Sentence extends AppModel
     }
     
     /**
-     * Actually in development
      * get "romanisation" of the $text sentences in japanese
      * into romaji or furigana depending of $type value
      *
@@ -1003,9 +1002,6 @@ class Sentence extends AppModel
         "を","ん","ゔ","ゕ","ゖ");
 
         $romanization = str_replace($katakana, $hiragana, $romanization);
-
-        echo count($katakana)." ";
-        echo count($hiragana);
         
         return $romanization;
     }
