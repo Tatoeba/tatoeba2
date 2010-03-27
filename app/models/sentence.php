@@ -788,7 +788,7 @@ class Sentence extends AppModel
             //$romanization = $this->getShanghaineseRomanization($text);
 
         } elseif ($lang == "jpn") {
-            $romanization = $this->getJapaneseRomanization($text, 'romaji'); 
+            $romanization = $this->getJapaneseRomanization2($text, 'romaji'); 
             
         } elseif ($lang == "cmn") {
             // important to add this line before escaping a
@@ -959,6 +959,56 @@ class Sentence extends AppModel
 
         return $romanization;
     }
+    
+    /**
+     * Actually in development
+     * get "romanisation" of the $text sentences in japanese
+     * into romaji or furigana depending of $type value
+     *
+     * @param string $text text to romanized
+     * @param string $type type of romanization to apply
+     *
+     * @return string romanized japanese text
+     */
+    public function getJapaneseRomanization2($text, $type)
+    {
+        // important to add this line before escaping a
+        // utf8 string, workaround for an apache/php bug  
+        setlocale(LC_CTYPE, "fr_FR.UTF-8");
+        $text = escapeshellarg($text);
+        
+        $text = nl2br($text);
+        
+        $romanization = exec(
+            "export LC_ALL=fr_FR.UTF-8 ; ".
+            "echo $text | ".
+            "mecab -Owakati | ".
+            "mecab -Oyomi"
+        );
+        
+        $katakana = array(
+        "ァ","ア","ィ","イ","ゥ","ウ","ェ","エ","ォ","オ","カ","ガ","キ","ギ","ク",
+        "グ","ケ","ゲ","コ","ゴ","サ","ザ","シ","ジ","ス","ズ","セ","ゼ","ソ","ゾ","タ",
+        "ダ","チ","ヂ","ッ","ツ","ヅ","テ","デ","ト","ド","ナ","ニ","ヌ","ネ","ノ","ハ",
+        "バ","パ","ヒ","ビ","ピ","フ","ブ","プ","ヘ","ベ","ペ","ホ","ボ","ポ","マ","ミ",
+        "ム","メ","モ","ャ","ヤ","ュ","ユ","ョ","ヨ","ラ","リ","ル","レ","ロ","ヮ","ワ",
+        "ヲ","ン","ヴ","ヵ","ヶ");
+        
+        $hiragana = array(
+        "ぁ","あ","ぃ","い","ぅ","う","ぇ","え","ぉ","お","か","が","き","ぎ","く",
+        "ぐ","け","げ","こ","ご","さ","ざ","し","じ","す","ず","せ","ぜ","そ","ぞ","た",
+        "だ","ち","ぢ","っ","つ","づ","て","で","と","ど","な","に","ぬ","ね","の","は",
+        "ば","ぱ","ひ","び","ぴ","ふ","ぶ","ぷ","へ","べ","ぺ","ほ","ぼ","ぽ","ま","み",
+        "む","め","も","ゃ","や","ゅ","ゆ","ょ","よ","ら","り","る","れ","ろ","ゎ","わ",
+        "を","ん","ゔ","ゕ","ゖ");
+
+        $romanization = str_replace($katakana, $hiragana, $romanization);
+
+        echo count($katakana)." ";
+        echo count($hiragana);
+        
+        return $romanization;
+    }
 
     /**
      * Get sentences to display in map.
@@ -1019,7 +1069,7 @@ class Sentence extends AppModel
 
     public function getShanghaineseRomanization($shanghaineseText)
     {
-        $ipaFile = fopen( MODELS . "shanghainese2IPA2.txt","r");
+        $ipaFile = fopen(MODELS . "shanghainese2IPA2.txt", "r");
 
         $ipaArray = array();
         $sinogramsArray = array();
@@ -1028,16 +1078,16 @@ class Sentence extends AppModel
         // we create two array one with characters, the other
         // with the IPA
         while ($line = fgets($ipaFile)) {
-            $arrayLine = explode("\t",$line);
+            $arrayLine = explode("\t", $line);
             // there's some blank line in this file so mustn't
             // handle them
             if (count($arrayLine) > 1) {
-               array_push($ipaArray,str_replace("\n","",$arrayLine[1]));
-               array_push($sinogramsArray,$arrayLine[0]);
+                array_push($ipaArray, str_replace("\n", "", $arrayLine[1]));
+                array_push($sinogramsArray, $arrayLine[0]);
             }
         }
 
-        $ipaSentence = str_replace($sinogramsArray,$ipaArray,$shanghaineseText);
+        $ipaSentence = str_replace($sinogramsArray, $ipaArray, $shanghaineseText);
         return $ipaSentence;
 
     }
