@@ -265,7 +265,7 @@ class SentencesHelper extends AppHelper
         
         // audio
         $soundIsAvailable = true;
-        $this->Menu->audioButton($id, $soundIsAvailable);
+        $this->Menu->audioButton($sentence['id'], $soundIsAvailable);
         
         // language flag
         $this->displayLanguageFlag(
@@ -391,7 +391,7 @@ class SentencesHelper extends AppHelper
             
             // audio
             $soundIsAvailable = true;
-            $this->Menu->audioButton($id, $soundIsAvailable);            
+            $this->Menu->audioButton($translation['id'], $soundIsAvailable);            
             
             // language flag
             $this->displayLanguageFlag($translation['id'], $translation['lang']);
@@ -465,7 +465,7 @@ class SentencesHelper extends AppHelper
                 
                 // audio
                 $soundIsAvailable = false;
-                $this->Menu->audioButton($id, $soundIsAvailable);
+                $this->Menu->audioButton($translation['id'], $soundIsAvailable);
                 
                 // language flag
                 $this->displayLanguageFlag(
