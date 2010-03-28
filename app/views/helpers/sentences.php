@@ -263,6 +263,10 @@ class SentencesHelper extends AppHelper
         // Original sentence
         echo '<div id="_'.$sentence['id'].'_original" class="original">';
         
+        // audio
+        $soundIsAvailable = true;
+        $this->Menu->audioButton($id, $soundIsAvailable);
+        
         // language flag
         $this->displayLanguageFlag(
             $sentence['id'], $sentence['lang'], $editableFlag
@@ -385,6 +389,10 @@ class SentencesHelper extends AppHelper
                 )
             );
             
+            // audio
+            $soundIsAvailable = true;
+            $this->Menu->audioButton($id, $soundIsAvailable);            
+            
             // language flag
             $this->displayLanguageFlag($translation['id'], $translation['lang']);
             
@@ -454,6 +462,10 @@ class SentencesHelper extends AppHelper
                         "title" => $title
                     )
                 );
+                
+                // audio
+                $soundIsAvailable = false;
+                $this->Menu->audioButton($id, $soundIsAvailable);
                 
                 // language flag
                 $this->displayLanguageFlag(
@@ -643,10 +655,6 @@ class SentencesHelper extends AppHelper
             echo '</li>';
             echo "\n";
         }
-        
-        // audio
-        $soundIsAvailable = true;
-        $this->Menu->audioButton($id, $soundIsAvailable);
         
         // delete
         if (isset($specialOptions['canDelete']) 

@@ -248,13 +248,13 @@ class MenuHelper extends AppHelper
      */
     public function audioButton($sentenceId, $soundIsAvailable)
     {
-        echo '<li class="option"><a>';
         if ($soundIsAvailable) {
             echo $this->Html->image(
                 'audio.png', 
                 array(
                     'alt'=>__('Play audio', true), 
-                    'title'=>__('Play audio', true)
+                    'title'=>__('Play audio', true),
+                    'class' => 'audioButton'
                 )
             );
         } else {
@@ -262,11 +262,11 @@ class MenuHelper extends AppHelper
                 'audio_unavailable.png', 
                 array(
                     'alt'=>__('Audio not available.', true), 
-                    'title'=>__('Audio not available.', true)
+                    'title'=>__('Audio not available.', true),
+                    'class' => 'audioButton'
                 )
             );
         }
-        echo '</a></li>';
     }
 }
 ?>
