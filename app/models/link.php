@@ -120,29 +120,18 @@ class Link extends AppModel
      */
     public function delete($sentenceId, $translationId)
     {
-        $conditions = array(
-            'OR' => array(
-                array(
-                    'sentence_id' => $sentenceId,
-                    'translation_id' => $translationId
-                ),
-                array(
-                    'sentence_id' => $translationId,
-                    'translation_id' => $sentenceId
-                )
-            )
-        );
+        // custom query to avoid having to create an 'id' field.
+        $this->query("
+            DELETE FROM sentences_translations 
+            WHERE (sentence_id = $sentenceId AND translation_id = $translationId)
+               OR (sentence_id = $translationId AND translation_id = $sentenceId) 
+        ");
         
-        $deleted = $this->deleteAll($conditions);
-        
-        // It's hackish, but deleteAll won't behave properly if we set callback=true
-        if ($deleted) {
-            $this->data['Link']['sentence_id'] = $sentenceId;
-            $this->data['Link']['translation_id'] = $translationId;
-            $this->afterDelete(); // calling callback manually...
-        }
-        
-        return $deleted;
+        $this->data['Link']['sentence_id'] = $sentenceId;
+        $this->data['Link']['translation_id'] = $translationId;
+        $this->afterDelete(); // calling callback manually...
+                
+        return true; // yes, it's useless, never mind...
     }
 }
 ?>
