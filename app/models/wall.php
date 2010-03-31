@@ -39,7 +39,7 @@ class Wall extends AppModel
 {
     public $name = 'Wall';
     public $useTable = 'wall';
-    public $actsAs = array('Containable');
+    public $actsAs = array('Tree','Containable');
 
     public $belongsTo = array(
         'User' => array(
@@ -48,16 +48,14 @@ class Wall extends AppModel
         )
     );
 
-    public $hasMany = array(
-        'Reply' =>
-             array(
-                'className' => 'Wall',
-                'foreignKey' => 'replyTo',
-                'order' => 'date DESC',
-                'dependent'=> false
-            )
+    public $hasOne = array(
+        'WallThread' => array(
+            'className' => 'WallThread',
+             'dependent' => true,
+             'foreignKey' => 'id'
+        )
     );
-    
+
     /**
      * used after a save is made in the database
      *
@@ -74,19 +72,6 @@ class Wall extends AppModel
         }
 
     }
-    
-    /**
-     * Get message with given id.
-     *
-     * @param int id Id of the message.
-     *
-     * @return void
-     */
-    public function getMessageWithId($id)
-    {
-        return $this->findById($id);
-    }
-    
 
     /**
      * Get all the message which start a thread
@@ -100,14 +85,9 @@ class Wall extends AppModel
             'all',
             array(
                 "order" => "Wall.date DESC", 
-                "conditions" => array ("Wall.replyTo" => 0),
+                "conditions" => array ("Wall.parent_id" => 0),
                 "contain"    => array (
-                    "Reply" => array (
-                        "order" =>"Reply.date",
-                        "fields" => array("Reply.id") 
-                        )
-                    
-                    ,"User" => array (
+                    "User" => array (
                         "fields" => array(
                             "User.image",
                             "User.username",
@@ -132,12 +112,7 @@ class Wall extends AppModel
             array(
                 "order" => "Wall.id", 
                 "contain"    => array (
-                    "Reply" => array (
-                        "order" =>"Reply.date ",
-                        "fields" => array("Reply.id") 
-                        )
-                    
-                    ,"User" => array (
+                    "User" => array (
                         "fields" => array("User.image","User.username", "User.id") 
                         )
                     ) 
@@ -145,7 +120,55 @@ class Wall extends AppModel
         );
     }
 
-    
+    /**
+     * retrieve all the thread of the given root message
+     *
+     * @param array $rootMessages Array of array with 'lft' and 'rght' field
+     *                            take a look at how to store hierarchical data
+     *                            with mysql for more informations
+     *
+     * @return array A nested array of array of array ... nested in a logical way
+     *                children are nested in their parent etc...
+     */
+
+    public function getMessagesThreaded($rootMessages)
+    {
+        // generate the condition array as it's a bit complicated
+        $orArray = array();
+        foreach ($rootMessages as $rootMessage) {
+            $lftRghtArray = array($rootMessage['lft'], $rootMessage['rght']);
+            $betweenArray = array (
+                'Wall.lft BETWEEN ? AND ?' => $lftRghtArray
+            );
+
+            array_push($orArray, $betweenArray);
+        }
+        // execute the request
+        $result = $this->find(
+            'threaded',
+            array(
+                "order" => "WallThread.last_message_date DESC", 
+                "conditions" => array(
+                    'OR' => $orArray 
+                ),
+                "contain" => array (
+                    "User" => array (
+                        "fields" => array(
+                            "User.image",
+                            "User.username",
+                            "User.id"
+                        )
+                    ),
+                    "WallThread" => array(
+                        'fields' => "last_message_date"
+                    ) 
+                ) 
+            )
+        );
+
+        return $result;
+
+    }
     /**
      * get the X last messages posted
      *
@@ -226,6 +249,45 @@ class Wall extends AppModel
         return $result['Wall']['owner'];
     }
 
+    /**
+     * Return of the id of the first of the thread of the given
+     * message
+     *
+     * @param int $replyId The id of the message we want the root.
+     *
+     * @return int Return the root id.
+     */
+
+    public function getRootMessageIdOfReply($replyId)
+    {
+
+        
+        $replyLftRght = $this->find(
+            'first',
+            array(
+                'fields' => array('lft', 'rght'),
+                'conditions' => array('id' => $replyId),
+                'contain' => array()
+            )
+        ); 
+
+        $replyLft = $replyLftRght['Wall']['lft'];
+        $replyRght = $replyLftRght['Wall']['rght'];
+        $result = $this->find(
+            'first',
+            array(
+                'fields' => 'id',
+                'conditions' => array(
+                    'parent_id' => null,
+                    'lft <=' => $replyLft,
+                    'rght >=' => $replyRght
+                ),
+                'contain' => array()
+            )
+        ); 
+
+        return $result['Wall']['id'];
+    }
 
 }
 ?>

@@ -68,19 +68,10 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
                         . ", "
                         . __('by ', true)
                         . $currentMessage['User']['username'];
-                // path of the link
                 $path = array(
                     'controller' => 'wall',
-                    'action' => 'show_message',
-                    $currentMessage['Wall']['id']
-                );
-                // TODO Remove the whole if block when tree behavior ready
-                if ($option == null) {
-                    $path = array(
-                        'controller' => 'wall',
-                        'action' => 'index#message_'.$currentMessage['Wall']['id']
+                    'action' => 'index#message_'.$currentMessage['Wall']['id']
                     );
-                }
                 // link
                 echo $html->link($text, $path);
                 echo '</li>';
@@ -92,10 +83,9 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
 
 <div id="main_content">
     <div class="module">
-        
         <h2>
-        <?php 
-        if ($option != null) {
+            <?php
+            // TODO extract this 
             echo $paginator->counter(
                 array(
                     'format' => __(
@@ -104,22 +94,8 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
                     )
                 )
             );
-        } else {
-            __('Wall');
-            echo ' (';
-            echo $html->link(
-                'Display paginated version', // temporary text, no i18n
-                array(
-                    'controller' => 'wall',
-                    'action' => 'index',
-                    'paginated'
-                )
-            );
-            echo ')';
-        }
-        ?>
+            ?>
         </h2>
-        
         
         <?php
         // leave a comment part
@@ -132,23 +108,9 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
         
         <?php
         // Pagination
-        
-        // TODO Remove "if paginated" as well when tree behavior ready
-        if ($option == 'paginated') {
-            // This is needed so that the paginator uses the right link.
-            // Otherwise it won't add the 'paginated' in the link.
-            $paginator->options(
-                array(
-                    'url' => array( 
-                        'controller' => 'wall', 
-                        'action' => 'index', 
-                        'paginated'
-                    )
-                )
-            );
-        
-            ?>
-            <div class="paging">
+        // TODO extract this
+        ?>
+        <div class="paging">
             <?php 
             echo $paginator->prev(
                 '<< '.__('previous', true), 
@@ -166,15 +128,12 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
                 array('class'=>'disabled')
             ); 
             ?>
-            </div>
-            <?php
-        }
-        ?>
+        </div>
         
         <ol class="wall">
         <?php
         // display comment part
-        foreach ($firstMessages as $message) {
+        foreach ($allMessages as $message) {
         
             $messageId = $message['Wall']['id'];
             
@@ -183,20 +142,21 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
             $wall->createRootDiv(
                 $message['Wall'], 
                 $message['User'], 
-                $messagesPermissions[$messageId]
+                $message['Permissions']
             );
 
             // replies
             echo '<div class="replies" id="messageBody_'.$messageId .'" >';
-            if (count($message['Reply']) >0) {
+            if (!empty($message['children'])) {
                 echo '<ul>';
-                foreach ($message['Reply'] as $reply ) {
+                foreach ($message['children'] as $child ) {
                     $wall->createReplyDiv(
                         // this is because the allMessages array
                         // is indexed with message Id
-                        $allMessages[$reply['id']],
-                        $allMessages,
-                        $messagesPermissions
+                        $child['Wall'],
+                        $child['User'],
+                        $child['children'],
+                        $child['Permissions']
                     );
                 }
                 echo '</ul>';
@@ -209,10 +169,9 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
         
         <?php
         // Pagination
-        // TODO Remove "if paginated" when tree behavior ready
-        if ($option != null) {
-            ?>
-            <div class="paging">
+        // TODO extract it
+        ?>
+        <div class="paging">
             <?php 
             echo $paginator->prev(
                 '<< '.__('previous', true), 
@@ -230,10 +189,6 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
                 array('class'=>'disabled')
             ); 
             ?>
-            </div>
-            <?php
-        }
-        ?>
-        
+        </div>
     </div>
 </div>

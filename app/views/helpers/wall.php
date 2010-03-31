@@ -135,7 +135,7 @@ class WallHelper extends AppHelper
         __('Add a Message : ');
         echo $this->Form->create('', array( "action" => "save"));
         echo "<fieldset>";
-            echo $this->Form->input('content', array('label'=>""));
+            echo $this->Form->textarea('content', array('label'=>""));
             echo $this->Form->hidden('replyTo', array('value'=>"" ));
         echo "</fieldset>";
         echo $this->Form->submit(__('Send', true));
@@ -197,31 +197,47 @@ class WallHelper extends AppHelper
     /**
      * Create the ul containing all the replies and subreplies
      *
-     * @param array $message     the reply to be displayed
-     * @param array $allMessages contains all the messages 
-     * @param array $permissions permisions the current user have on each messages
+     * @param array $children the reply to be displayed with nested inside
+     *                        "Wall" (message itselft)
+     *                        "User" the owner of this message
+     *                        "children" the replies of this message
+     *                        "Permission" the right current user have on this
+     *                         message
      *
      * @return void
      */
-    private function _displayAllReplies($message,$allMessages,$permissions)
+    private function _displayAllReplies($children)
     {
-        if (!empty($message['Reply'])) {
+        if (!empty($children)) {
             echo '<ul class="toto" >'; // TODO why toto ?
-            foreach ($message['Reply'] as $reply) {
+            foreach ($children as $child) {
                 $this->createReplyDiv(
                     // this is because the allMessages array
                     // is indexed with message Id
-                    $allMessages[$reply['id']],
-                    $allMessages,
-                    $permissions
+                    $child['Wall'],
+                    $child['User'],
+                    $child['children'],
+                    $child['Permissions']
                 );
             }
              echo '</ul>' ;
         }
     }
     
+    /**
+     * create the visual representation of the root message of a thread
+     *
+     * @param array $message     A simple array with only the information about
+     *                           the message
+     * @param array $author      Same as $message but for the message's author
+     * @param array $permissions Array of the permisions current user have on
+     *                           This message
+     *  
+     * @return void
+     */
     
-    public function createRootDiv($message, $author, $permissions){
+    public function createRootDiv($message, $author, $permissions)
+    {
         $writerImage = $author['image'];
         $writerName  = $author['username'];
 
@@ -235,11 +251,13 @@ class WallHelper extends AppHelper
             echo '<ul class="meta">'."\n";
                 // delete, view
                 echo '<li class="action">';
+                
                     $this->createLinks(
                         $messageId,
                         $permissions,
                         true
-                    ); 
+                    );
+                
                 echo '</li>';
                      
                 // image
@@ -269,20 +287,21 @@ class WallHelper extends AppHelper
      * Create the div containing a reply to a message and all the sub reply
      * the call is recursive
      *
-     * @param array $message             the reply to be displayed
-     * @param array $allMessages         contains all the messages 
-     * @param array $messagesPermissions permisions the current user have
-     *                                   on each messages
+     * @param array $message           the reply to be displayed
+     * @param array $owner             Information about the message's author
+     * @param array $children          Replies for this message
+     * @param array $messagePermission permisions the current user have
+     *                                 on this message
      *
      * @return void
      */
-    public function createReplyDiv($message,$allMessages,$messagesPermissions)
+    public function createReplyDiv($message,$owner,$children,$messagePermission)
     {
          // TODO : remove me
 
-        $messageId = $message['Wall']['id'];
-        $userName = $message['User']['username'];
-        $userImage = $message['User']['image'];
+        $messageId = $message['id'];
+        $userName = $owner['username'];
+        $userImage = $owner['image'];
 
         if (empty($userImage)) {
             $userImage = 'unknown-avatar.jpg';
@@ -296,7 +315,7 @@ class WallHelper extends AppHelper
                         <?php
                         $this->createLinks(
                             $messageId,
-                            $messagesPermissions[$messageId]
+                            $messagePermission
                         );
                         ?>
 
@@ -315,24 +334,25 @@ class WallHelper extends AppHelper
 
                     </li>
                     <li class="date">
-                        <?php echo $this->Date->ago($message['Wall']['date']); ?>
+                        <?php echo $this->Date->ago($message['date']); ?>
 
                     </li>
                 </ul>
 
                 <!-- message content -->
                 <div class="body">
-                    <?php $this->displayContent($message['Wall']['content']); ?>
+                    <?php $this->displayContent($message['content']); ?>
                 </div>
             </div>
             <?php
             //replies
             echo '<div class="replies" id="messageBody_'.  $messageId .'" >';
-            $this->_displayAllReplies(
-                $message,
-                $allMessages,
-                $messagesPermissions
-            );
+
+            if (!empty($children)) {
+                $this->_displayAllReplies(
+                    $children
+                );
+            }
             ?>
 
             </div>

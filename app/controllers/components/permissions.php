@@ -212,7 +212,7 @@ class PermissionsComponent extends Object
             return $rightsOnWallMessage;
         }
 
-        if (empty($message['Reply'])) {
+        if (empty($message['children'])) {
             if ($ownerId === $currentUserId) {
                 $rightsOnWallMessage['canDelete'] = true; 
             } elseif ($currentUserGroup < 2) {
@@ -240,19 +240,26 @@ class PermissionsComponent extends Object
         $currentUserId,
         $currentUserGroup
     ) {
-        $messagesPermissions = array();
-        foreach ($messages as $message) {
-            $messagePermissions = $this->getWallMessageOptions(
+        
+        foreach ($messages as $i=>$message) {
+            $messages[$i]['Permissions'] = $this->getWallMessageOptions(
                 $message,
                 $message['User']['id'],
                 $currentUserId,
                 $currentUserGroup
             );
-            // that way it will be easy to find which permissions belong to which
-            // message
-            $messagesPermissions[$message['Wall']['id']] =  $messagePermissions;
+
+            if (!empty($message['children'])) {
+                $messages[$i]['children'] = $this->getWallMessagesOptions(
+                    $message['children'],
+                    $currentUserId,
+                    $currentUserGroup              
+                );
+            }
+
         }
-        return $messagesPermissions;
+        //pr($messages);
+        return $messages;
     }
 }
 ?>

@@ -41,27 +41,20 @@ class WallController extends Appcontroller
 
     public $name = 'Wall' ;
     public $paginate = array(
-        "order" => "Wall.date DESC", 
+        "order" => "WallThread.last_message_date DESC", 
         "limit" => 10,
-        "conditions" => array ("Wall.replyTo" => 0),
-        "contain"    => array (
-            "Reply" => array (
-                "order" =>"Reply.date",
-                "fields" => array("Reply.id") 
-                )
-            
-            ,"User" => array (
-                "fields" => array(
-                    "User.image",
-                    "User.username",
-                    "User.id"
-                ) 
+        "fields" => array ("lft",'rght'), 
+        "conditions" => array (
+            "Wall.parent_id" => null ,
+        ),
+        "contain" => array (
+            "WallThread" => array(
+                'fields' => "last_message_date"
             )
         )
     );
     public $helpers = array('Wall','Javascript','Date');
     public $components = array ('Mailer');
-
     /**
      * to know who can do what
      *
@@ -76,6 +69,7 @@ class WallController extends Appcontroller
             'index',
             'delete_message',
             'show_message',
+            'generate_new_wall'
         );
     }
 
@@ -85,44 +79,39 @@ class WallController extends Appcontroller
      *
      * @return void
      */
-    public function index($option = null)
+    public function index()
     {
-        // TODO it seems to me this can be possible to make everything
-        // easier with tree behaviour in cakephp, but for the moment
-        // it works quite well 
         
-        // NOTE: When the tree behavior is implemented, we won't need the
-        // $option parameter anymore. The wall will be paginated and there
-        // won't be a non-pagianted version.
-        if($option != null){
-            $firstMessages = $this->paginate('Wall');
-        } else {
-            $firstMessages = $this->Wall->getFirstMessages();
-        }
-        
-        $messages = $this->Wall->getMessages();
-        $messages = $this->_organize_messages($messages);
+        //$messages = $this->_organize_messages($messages);
         $tenLastMessages = $this->Wall->getLastMessages(10);
-
+        //pr($messages);
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
 
-        $messagesPermissions = $this->Permissions->getWallMessagesOptions(
+        $messagesIdDirty = $this->paginate();
+        $messageLftRght = array();
+        foreach ($messagesIdDirty as $messageDirty) {
+            array_push($messageLftRght, $messageDirty['Wall']);
+        }
+        
+        $messages = $this->Wall->getMessagesThreaded($messageLftRght);
+
+        
+        $messages = $this->Permissions->getWallMessagesOptions(
             $messages,
             $userId,
             $groupId
         );
-       
+         
         $isAuthenticated = !empty($userId);
 
         //pr($messagesPermissions);
         $this->set('isAuthenticated', $isAuthenticated); 
-        $this->set('messagesPermissions', $messagesPermissions); 
+        //$this->set('messagesPermissions', $messagesPermissions); 
         $this->set('allMessages', $messages);
         $this->set('tenLastMessages', $tenLastMessages);
-        $this->set('firstMessages', $firstMessages);
+        //$this->set('firstMessages', $firstMessages);
         
-        $this->set('option', $option);// TODO Remove me when tree behavior ready
 
     }
 
@@ -146,37 +135,6 @@ class WallController extends Appcontroller
         return $newMessages;
     }
     
-    
-    /**
-     * Display message with given id.
-     *
-     * @param int id Id of the message.
-     *
-     * @return void
-     */
-    public function show_message($id)
-    {
-        // TODO For now this only shows the message alone.
-        // In near the future it should also display the whole thread.
-        $message = $this->Wall->getMessageWithId($id);
-        
-        $userId = $this->Auth->user('id');
-        $groupId = $this->Auth->user('group_id');
-        $messagePermissions = $this->Permissions->getWallMessageOptions(
-            $message,
-            $message['Wall']['owner'],
-            $userId,
-            $groupId
-        );
-        
-        $isAuthenticated = !empty($userId);
-        
-        $this->set('isAuthenticated', $isAuthenticated); 
-        $this->set('message', $message);
-        $this->set('messagePermissions', $messagePermissions); 
-    }
-    
-    
     /**
      * save a new first message
      *
@@ -190,15 +148,22 @@ class WallController extends Appcontroller
         if (!empty($this->data['Wall']['content'])
             && $this->Auth->user('id')
         ) {
+            $now = date("Y-m-d H:i:s");  
+
             $this->data['Wall']['owner'] = $this->Auth->user('id');
-            $this->data['Wall']['date'] = date("Y-m-d H:i:s");  
+            $this->data['Wall']['date'] = $now; 
             // now save to database 
             if ($this->Wall->save($this->data)) {
+                $this->update_thread_date(
+                    $this->Wall->id,
+                    $now
+                );
             }
         }
 
-        $this->redirect(array('action'=>'index', 'paginated'));
-        // TODO Remove 'paginated' param when tree behavior ready
+        $this->redirect(
+            array('action'=>'index')
+        );
     }
 
     /**
@@ -209,33 +174,40 @@ class WallController extends Appcontroller
    
     public function save_inside()
     {
+        
         $idTemp = $this->Auth->user('id');
         if (isset($_POST['content'])
             && rtrim($_POST['content']) != ''
             && isset($_POST['replyTo'])
             && !(empty($idTemp))
         ) {
+
+            $content = $_POST['content'];
+            $parentId = $_POST['replyTo'];
+            $now = date("Y-m-d H:i:s"); 
              
-            Sanitize::stripScripts($_POST['content']);
-            $this->data['Wall']['content'] = $_POST['content'] ; 
+            Sanitize::stripScripts($content);
+            $this->data['Wall']['content'] = $content ; 
             $this->data['Wall']['owner'] = $idTemp ;
-            $this->data['Wall']['replyTo'] = $_POST['replyTo'] ;
-            $this->data['Wall']['date'] = date("Y-m-d H:i:s"); 
+            $this->data['Wall']['parent_id'] = $parentId ;
+            $this->data['Wall']['date'] = $now;
             // now save to database 
             if ($this->Wall->save($this->data)) {
+                $newMessageId = $this->Wall->id ;
                 
-                App::import('Model', 'User');
-                $userModel =  new User(); 
-                $user = $userModel->getInfoWallUser($idTemp);
+                $User =  ClassRegistry::init('User');
+                $user = $User->getInfoWallUser($idTemp);
                 $this->set("user", $user); 
+               
+                $this->update_thread_date($newMessageId, $now);
                 
                 // we forge a message to be used in the view
                 
-                $message['Wall']['content'] = $_POST['content'] ; 
-                $message['Wall']['owner'] = $idTemp ;
-                $message['Wall']['replyTo'] = $_POST['replyTo'] ;
-                $message['Wall']['date'] = date("Y-m-d H:i:s");
-                $message['Wall']['id'] = $this->Wall->id ;
+                $message['Wall']['content'] = $content; 
+                $message['Wall']['owner'] = $idTemp;
+                $message['Wall']['parent_id'] = $parentId;
+                $message['Wall']['date'] = $now;
+                $message['Wall']['id'] = $newMessageId; 
                  
                 $message['User']['image'] = $user['User']['image'];
                 if (empty($message['User']['image'])) {
@@ -251,18 +223,20 @@ class WallController extends Appcontroller
                 // ------------------
                 
                 // Retrieve parent message
-                $parentMessage = $this->Wall->getMessageForMail($_POST['replyTo']);
+                $parentMessage = $this->Wall->getMessageForMail($parentId);
                 
                 // prepare email
                 // TODO : i18n mail
 
                 if ($parentMessage['User']['send_notifications']
-                    && $parentMessage['User']['id'] != $this->Auth->user('id')
+                    && $parentMessage['User']['id'] != $idTemp 
                 ) {
                     $participant = $parentMessage['User']['email'];
                     $subject  = 'Tatoeba - ' .
                          $message['User']['username'] .
                          ' has replied to you on the Wall';
+
+                    //TODO add a mechanism if the link is not on first page
                     $mailContent 
                         = 'http://' .
                         $_SERVER['HTTP_HOST'] .
@@ -302,10 +276,34 @@ class WallController extends Appcontroller
             $this->Auth->user('group_id')
         );
         if ($messagePermissions['canDelete']) {
-            $this->Wall->delete($messageId);
+            // second parameter "true" => delete in cascade
+            $this->Wall->delete($messageId, true);
         }
         // redirect to previous page
         $this->redirect($this->referer()); 
+    }
+
+    /**
+     * update the WallThread table
+     * 
+     * @param int  $messageId Message that have been add/updated
+     * @param date $newDate   Date of the event.
+     *
+     * @return void
+     */
+
+    public function update_thread_date($messageId, $newDate)
+    {
+        $WallThread = ClassRegistry::init('WallThread');
+
+        $rootId = $this->Wall->getRootMessageIdOfReply($messageId);
+        
+        $newThreadData = array(
+            'id' => $rootId,
+            'last_message_date' => $newDate
+        );
+        
+        $WallThread->save($newThreadData);
     }
 
 }

@@ -40,49 +40,30 @@ $this->pageTitle = 'Tatoeba - #' . $message['Wall']['id'] . ' - '
 ?>
 <div id="annexe_content">
     <div class="module">
-    <h2>Menu</h2>
-    <?php
-        echo '<p>';
-        echo $html->link(
-            __('Back to Wall', true),
-            array(
-                'controller' => 'wall',
-                'action' => 'index',
-                'paginated'
-            )
-        );
-        echo '</p>';
-        
-        echo '<p>';        
-        echo $html->link(
-            'Show message in its context',
-            array(
-                'controller' => 'wall',
-                'action' => 'index#message_'.$message['Wall']['id']
-            )
-        );
-        echo '</p>';
-    ?>
-    </div>
+        <h2>Menu</h2>
+        <p>
+            <?php
+            echo $html->link(
+                __('Back to Wall', true),
+                array(
+                    'controller' => 'wall',
+                    'action' => 'index',
+                )
+            );
+            ?>
+        </p>
     
-    <div class="module">
-    <h2>Warning</h2>
-    <p>
-    This message is displayed out of context. Yes, we know it would be more 
-    practical if you could see the whole thread instead of the message alone. 
-    Please wait until April... In the meantime you can click on this:
-    </p>
-    
-    <p>
-    <?php
-    echo $html->link(
-        'Show message in its context',
-        array(
-            'controller' => 'wall',
-            'action' => 'index#message_'.$message['Wall']['id']
-        )
-    );
-    ?>
+        <p>
+            <?php        
+            echo $html->link(
+                'Show message in its context',
+                array(
+                    'controller' => 'wall',
+                    'action' => 'index#message_'.$message['Wall']['id']
+                )
+            );
+            ?>
+        </p>'
     </div>
 </div>
 
