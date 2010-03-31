@@ -238,34 +238,79 @@ class MenuHelper extends AppHelper
     
     
     /** 
-     * Display button to delete.
+     * Display audio button.
      *
-     * @param int  $sentenceId       Id of the sentence on which this button
-     *                               is displayed
-     * @param bool $soundIsAvailable 'true' if there is an audio for the sentence.
+     * @param int $sentenceId   Id of the sentence on which this button is displayed.       
+     * @param int $sentenceLang Language of the sentence.
      *
      * @return void
      */
-    public function audioButton($sentenceId, $soundIsAvailable)
+    public function audioButton($sentenceId, $sentenceLang)
     {
-        if ($soundIsAvailable) {
-            echo $this->Html->image(
-                'audio.png', 
-                array(
-                    'alt'=>__('Play audio', true), 
-                    'title'=>__('Play audio', true),
-                    'class' => 'audioButton'
-                )
-            );
+        $path = 'http://static.tatoeba.org/audio/sentences/'
+            .$sentenceLang.'/'.$sentenceId.'.mp3'; 
+        $soundIsAvailable = $this->_validateUrl($path);
+        
+        $css = 'audioAvailable';
+        if (!$soundIsAvailable) {
+            $css = 'audioUnavailable';
+            $path = 'http://blog.tatoeba.org/'; // TODO Link to blog post that I haven't written yet
+        }
+        echo $this->Html->Link(
+            null, $path,
+            array(
+                'title'=>__('Play audio', true),
+                'class' => "audioButton $css",
+                'onclick' => 'return false'
+            )
+        );
+    }
+    
+    /** 
+     * Check if a file exists on remove server. Inspired from this:
+     * http://www.php.net/manual/en/function.fsockopen.php#39948
+     *
+     * TODO Move this to a more general helper someday.
+     * 
+     * @param string $url URL of the file.
+     *
+     * @return void
+     */
+    
+    private function _validateUrl($url)
+    {       
+        $urlParts = @parse_url($url);
+        
+        if (empty($urlParts["host"])) {
+            return false;
+        }
+
+        if (!empty($urlParts["path"])){
+            $filePath = $urlParts["path"];
         } else {
-            echo $this->Html->image(
-                'audio_unavailable.png', 
-                array(
-                    'alt'=>__('Audio not available.', true), 
-                    'title'=>__('Audio not available.', true),
-                    'class' => 'audioButton'
-                )
-            );
+            $filePath = "/";
+        }
+
+        if (!empty( $url_parts["query"])){
+            $filePath .= "?" . $url_parts["query"];
+        }
+
+        $host = $urlParts["host"];
+        $port = "80";
+        
+        $socket = @fsockopen($host, $port, $errno, $errstr, 30);
+        if (!$socket){
+            return false;
+        } else {
+            fwrite($socket, "HEAD ".$filePath." HTTP/1.0\r\nHost: $host\r\n\r\n");
+            $httpResponse = fgets($socket, 22);
+           
+            if (preg_match("/200 OK/", $httpResponse)) {
+                fclose($socket);
+                return true;
+            } else {
+                return false;
+            }
         }
     }
 }

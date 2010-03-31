@@ -276,34 +276,27 @@ display: none;
 	margin-top: 5px;
 }
 
+/* audio */
+
 .audioButton {
     margin: 6px;
     float: right;
-    cursor: pointer;
+    width: 20px;
+    height: 16px;
 }
 
-/* warning same language */
-
-
-
-#same_language_text {
-background:transparent url(../img/warning.png) no-repeat scroll 10px;
-width: 550px;
-color: red;
-font-family: Verdana, sans-serif;
-font-size: 14px;
-padding: 5px;
-padding-left: 40px;
+.audioAvailable {
+    background: url(../../img/audio.png);
 }
 
-#same_language_ok_cancel{
-text-align: center;
+.audioUnavailable {
+    background: url(../../img/audio_unavailable.png);
 }
 
-#same_language_ok_cancel input{
-margin: 5px 10px;
+#audioPlayer {
+    width: 0px;
+    height: 0px;
 }
-
 
 
 /* Most frequent words */

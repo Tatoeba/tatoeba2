@@ -264,8 +264,7 @@ class SentencesHelper extends AppHelper
         echo '<div id="_'.$sentence['id'].'_original" class="original">';
         
         // audio
-        $soundIsAvailable = true;
-        $this->Menu->audioButton($sentence['id'], $soundIsAvailable);
+        $this->Menu->audioButton($sentence['id'], $sentence['lang']);
         
         // language flag
         $this->displayLanguageFlag(
@@ -390,8 +389,7 @@ class SentencesHelper extends AppHelper
             );
             
             // audio
-            $soundIsAvailable = true;
-            $this->Menu->audioButton($translation['id'], $soundIsAvailable);            
+            $this->Menu->audioButton($translation['id'], $translation['lang']);
             
             // language flag
             $this->displayLanguageFlag($translation['id'], $translation['lang']);
@@ -464,8 +462,7 @@ class SentencesHelper extends AppHelper
                 );
                 
                 // audio
-                $soundIsAvailable = false;
-                $this->Menu->audioButton($translation['id'], $soundIsAvailable);
+                $this->Menu->audioButton($translation['id'], $translation['lang']);
                 
                 // language flag
                 $this->displayLanguageFlag(
@@ -685,8 +682,11 @@ class SentencesHelper extends AppHelper
             echo "\n";
         }
         
-        
         echo '</ul>';
+        
+        // to play audio
+        $this->Javascript->link('sentences.play_audio.js', false);
+        echo '<div id="audioPlayer"></div>';
     }
 
     /**
