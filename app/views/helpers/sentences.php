@@ -364,6 +364,7 @@ class SentencesHelper extends AppHelper
                 $translation['id']
             );
             $title = __('Show', true);
+            $confirmationMessage = null;
             
             if ($canUnlink) {
                 $css = "editableLink";
@@ -374,6 +375,10 @@ class SentencesHelper extends AppHelper
                     $translation['id']
                 );
                 $title = __('Unlink this translation.', true);
+                $confirmationMessage = __(
+                    'Do you want to unlink this translation from the main sentence?',
+                    true
+                );
             }
             
         
@@ -385,7 +390,8 @@ class SentencesHelper extends AppHelper
                     "escape" => false, 
                     "class" => "linkIcon info",
                     "title" => $title
-                )
+                ),
+                $confirmationMessage
             );
             
             // audio
@@ -436,6 +442,7 @@ class SentencesHelper extends AppHelper
                     $translation['id']
                 );
                 $title = __('Show', true);
+                $confirmationMessage = null;
                 
                 if ($canLink) {
                     $css = "editableLink";
@@ -446,6 +453,11 @@ class SentencesHelper extends AppHelper
                         $translation['id']
                     );
                     $title = __('Make as direct translation.', true);
+                    $confirmationMessage = __(
+                        'Do you want to make this as a direct translation '.
+                        'of the main sentence?',
+                        true
+                    );
                 }
                 
                 
@@ -458,7 +470,8 @@ class SentencesHelper extends AppHelper
                         "escape" => false, 
                         "class" => "linkIcon info",
                         "title" => $title
-                    )
+                    ),
+                    $confirmationMessage
                 );
                 
                 // audio
