@@ -785,7 +785,7 @@ class Sentence extends AppModel
         $romanization = '';
 
         if ($lang == "wuu") {
-            //$romanization = $this->getShanghaineseRomanization($text);
+            $romanization = $this->getShanghaineseRomanization($text);
 
         } elseif ($lang == "jpn") {
             $romanization = $this->getJapaneseRomanization2($text, 'romaji'); 
@@ -1065,7 +1065,7 @@ class Sentence extends AppModel
 
     public function getShanghaineseRomanization($shanghaineseText)
     {
-        $ipaFile = fopen(MODELS . "shanghainese2IPA2.txt", "r");
+        $ipaFile = fopen("http://static.tatoeba.org/data/shanghainese2IPA2.txt", "r");
 
         $ipaArray = array();
         $sinogramsArray = array();
@@ -1078,11 +1078,11 @@ class Sentence extends AppModel
             // there's some blank line in this file so mustn't
             // handle them
             if (count($arrayLine) > 1) {
-                array_push($ipaArray, str_replace("\n", "", $arrayLine[1]));
+                array_push($ipaArray, str_replace("\n", ".", $arrayLine[1]));
                 array_push($sinogramsArray, $arrayLine[0]);
             }
         }
-
+    
         $ipaSentence = str_replace($sinogramsArray, $ipaArray, $shanghaineseText);
         return $ipaSentence;
 
