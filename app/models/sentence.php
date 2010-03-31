@@ -785,7 +785,7 @@ class Sentence extends AppModel
         $romanization = '';
 
         if ($lang == "wuu") {
-            $romanization = $this->getShanghaineseRomanization($text);
+            //$romanization = $this->getShanghaineseRomanization($text);
 
         } elseif ($lang == "jpn") {
             $romanization = $this->getJapaneseRomanization2($text, 'romaji'); 
@@ -978,7 +978,13 @@ class Sentence extends AppModel
         
         $text = nl2br($text);
         
-        $romanization = exec(
+        $Owakati = exec(
+            "export LC_ALL=fr_FR.UTF-8 ; ".
+            "echo $text | ".
+            "mecab -Owakati"
+        );
+        
+        $Oyomi = exec(
             "export LC_ALL=fr_FR.UTF-8 ; ".
             "echo $text | ".
             "mecab -Owakati | ".
@@ -1000,10 +1006,26 @@ class Sentence extends AppModel
         "ば","ぱ","ひ","び","ぴ","ふ","ぶ","ぷ","へ","べ","ぺ","ほ","ぼ","ぽ","ま","み",
         "む","め","も","ゃ","や","ゅ","ゆ","ょ","よ","ら","り","る","れ","ろ","ゎ","わ",
         "を","ん","ゔ","ゕ","ゖ");
-
-        $romanization = str_replace($katakana, $hiragana, $romanization);
         
-        return $romanization;
+        $Owakati = explode(' ', $Owakati);
+        $Oyomi = explode(' ', $Oyomi);
+        $romanization = array();
+        
+        $i = 0;
+        foreach ($Owakati as $word) {
+            preg_match_all('/./u', $word, $char);
+            if (in_array($char[0][0], $katakana)) {
+                array_push($romanization, $word);
+            } else {
+                array_push(
+                    $romanization,
+                    str_replace($katakana, $hiragana, $Oyomi[$i])
+                );
+            }
+            $i = $i + 1;
+        }
+        
+        return implode(" ", $romanization);
     }
 
     /**
@@ -1065,7 +1087,7 @@ class Sentence extends AppModel
 
     public function getShanghaineseRomanization($shanghaineseText)
     {
-        $ipaFile = fopen("http://static.tatoeba.org/data/shanghainese2IPA2.txt", "r");
+        $ipaFile = fopen(MODELS . "shanghainese2IPA2.txt", "r");
 
         $ipaArray = array();
         $sinogramsArray = array();
@@ -1078,11 +1100,11 @@ class Sentence extends AppModel
             // there's some blank line in this file so mustn't
             // handle them
             if (count($arrayLine) > 1) {
-                array_push($ipaArray, str_replace("\n", ".", $arrayLine[1]));
+                array_push($ipaArray, str_replace("\n", "", $arrayLine[1]));
                 array_push($sinogramsArray, $arrayLine[0]);
             }
         }
-    
+
         $ipaSentence = str_replace($sinogramsArray, $ipaArray, $shanghaineseText);
         return $ipaSentence;
 
