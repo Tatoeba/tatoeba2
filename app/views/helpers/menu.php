@@ -252,16 +252,20 @@ class MenuHelper extends AppHelper
         $soundIsAvailable = $this->_validateUrl($path);
         
         $css = 'audioAvailable';
+        $title = __('Play audio', true);
+        $onClick = 'return false';
         if (!$soundIsAvailable) {
             $css = 'audioUnavailable';
-            $path = 'http://blog.tatoeba.org/'; // TODO Link to blog post that I haven't written yet
+            $path = 'http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html';
+            $title = __('Audio unavailable. Click to learn more.', true);
+            $onClick = 'window.open(this.href); return false;';
         }
         echo $this->Html->Link(
             null, $path,
             array(
-                'title'=>__('Play audio', true),
+                'title' => $title,
                 'class' => "audioButton $css",
-                'onclick' => 'return false'
+                'onclick' => $onClick
             )
         );
     }
@@ -285,13 +289,13 @@ class MenuHelper extends AppHelper
             return false;
         }
 
-        if (!empty($urlParts["path"])){
+        if (!empty($urlParts["path"])) {
             $filePath = $urlParts["path"];
         } else {
             $filePath = "/";
         }
 
-        if (!empty( $url_parts["query"])){
+        if (!empty( $url_parts["query"])) {
             $filePath .= "?" . $url_parts["query"];
         }
 
@@ -299,7 +303,7 @@ class MenuHelper extends AppHelper
         $port = "80";
         
         $socket = @fsockopen($host, $port, $errno, $errstr, 30);
-        if (!$socket){
+        if (!$socket) {
             return false;
         } else {
             fwrite($socket, "HEAD ".$filePath." HTTP/1.0\r\nHost: $host\r\n\r\n");
