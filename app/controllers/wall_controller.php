@@ -306,6 +306,32 @@ class WallController extends Appcontroller
         $WallThread->save($newThreadData);
     }
 
+    /**
+     *
+     *
+     */
+    public function show_message($messageId)
+    {
+        Sanitize::paranoid($messageId);
+        $userId = $this->Auth->user('id');
+        $groupId = $this->Auth->user('group_id');
+
+        $thread = $this->Wall->getWholeThreadContaining($messageId);
+
+        /* NOTE : have a link to point the thread within the other thread
+           is virtually impossible, as the ordering can change between the page
+           generation and the user click on the link
+        */
+
+
+        $thread = $this->Permissions->getWallMessagesOptions(
+            $thread,
+            $userId,
+            $groupId
+        );
+        $this->set("message", $thread[0]);
+    }
+
 }
 
 

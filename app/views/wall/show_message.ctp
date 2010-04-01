@@ -35,8 +35,8 @@
  * @link     http://tatoeba.org
  */ 
 
-$this->pageTitle = 'Tatoeba - #' . $message['Wall']['id'] . ' - ' 
-    . substr($message['Wall']['content'], 0, 30);
+
+$this->pageTitle = 'Tatoeba - Thread #' . $message['Wall']['id'] ; 
 ?>
 <div id="annexe_content">
     <div class="module">
@@ -52,18 +52,6 @@ $this->pageTitle = 'Tatoeba - #' . $message['Wall']['id'] . ' - '
             );
             ?>
         </p>
-    
-        <p>
-            <?php        
-            echo $html->link(
-                'Show message in its context',
-                array(
-                    'controller' => 'wall',
-                    'action' => 'index#message_'.$message['Wall']['id']
-                )
-            );
-            ?>
-        </p>'
     </div>
 </div>
 
@@ -73,6 +61,8 @@ $this->pageTitle = 'Tatoeba - #' . $message['Wall']['id'] . ' - '
         <?php
         // Users are not suppoed to the able to post new message from here,
         // but we need the form so that the Javascript works properly.
+        // TODO display:none is hackish for accessibility reason 
+        // but i agree it's my own :(
         if ($isAuthenticated) {
             echo '<div id="sendMessageForm">'."\n";
             echo $wall->displayAddMessageToWallForm();
@@ -83,18 +73,37 @@ $this->pageTitle = 'Tatoeba - #' . $message['Wall']['id'] . ' - '
     
     <div class="module">    
         <ol class="wall">
-        <div class="topThread" 
+        <li class="topThread" 
             id="messageBody_<?php echo $message['Wall']['id']; ?>">
             <ul>
                 <?php
                 $wall->createRootDiv(
                     $message['Wall'],
                     $message['User'],
-                    $messagePermissions
+                    $message['Permissions']
                 );
                 ?>
             <ul>
-        </div>
+            <?php
+            // replies
+            echo '<div class="replies" id="messageBody_'.$message['Wall']['id'] .'" >';
+            if (!empty($message['children'])) {
+                echo '<ul>';
+                foreach ($message['children'] as $child ) {
+                    $wall->createReplyDiv(
+                        // this is because the allMessages array
+                        // is indexed with message Id
+                        $child['Wall'],
+                        $child['User'],
+                        $child['children'],
+                        $child['Permissions']
+                    );
+                }
+                echo '</ul>';
+            }
+            echo '</div>';
+            ?>
+        </li>
         </ol>
     </div>
     

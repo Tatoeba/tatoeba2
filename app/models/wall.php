@@ -262,17 +262,10 @@ class Wall extends AppModel
     {
 
         
-        $replyLftRght = $this->find(
-            'first',
-            array(
-                'fields' => array('lft', 'rght'),
-                'conditions' => array('id' => $replyId),
-                'contain' => array()
-            )
-        ); 
+        $replyLftRght  = $this->_getLftRghtOfMessage($replyId);
 
-        $replyLft = $replyLftRght['Wall']['lft'];
-        $replyRght = $replyLftRght['Wall']['rght'];
+        $replyLft = $replyLftRght['lft'];
+        $replyRght = $replyLftRght['rght'];
         $result = $this->find(
             'first',
             array(
@@ -288,6 +281,98 @@ class Wall extends AppModel
 
         return $result['Wall']['id'];
     }
+
+
+
+
+
+    /**
+     *
+     *
+     */
+    public function getWholeThreadContaining($messageId)
+    {
+        $rootLftRght = $this->_getLftRghtOfMessage($messageId);
+        $lftRghtArray = array(
+            $rootLftRght['lft'],
+            $rootLftRght['rght']
+        );
+
+        // execute the request
+        $result = $this->find(
+            'threaded',
+            array(
+                "order" => "Wall.date DESC", 
+                "conditions" => array(
+                    'Wall.lft BETWEEN ? AND ?' => $lftRghtArray
+                ),
+                "contain" => array (
+                    "User" => array (
+                        "fields" => array(
+                            "User.image",
+                            "User.username",
+                            "User.id"
+                        )
+                    )
+                ) 
+            )
+        );
+
+        return $result;
+
+    }
+
+    /**
+     *
+     *
+     */
+    private function _getLftRghtOfMessage($messageId)
+    {
+        $replyLftRght = $this->find(
+            'first',
+            array(
+                'fields' => array('lft', 'rght'),
+                'conditions' => array('id' => $messageId),
+                'contain' => array()
+            )
+        ); 
+
+        return $replyLftRght['Wall'];
+    }
+
+    /**
+     * Return of the id of the first of the thread of the given
+     * message
+     *
+     * @param int $replyId The id of the message we want the root.
+     *
+     * @return int Return the root id.
+     */
+
+    private function _getRootMessageIdLftRghtOfReply($replyId)
+    {
+
+        
+        $replyLftRght  = $this->_getLftRghtOfMessage($replyId);
+
+        $replyLft = $replyLftRght['lft'];
+        $replyRght = $replyLftRght['rght'];
+        $result = $this->find(
+            'first',
+            array(
+                'fields' => array('lft', 'rght'),
+                'conditions' => array(
+                    'parent_id' => null,
+                    'lft <=' => $replyLft,
+                    'rght >=' => $replyRght
+                ),
+                'contain' => array()
+            )
+        ); 
+
+        return $result['Wall'];
+    }
+
 
 }
 ?>
