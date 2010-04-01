@@ -203,8 +203,8 @@ START TRANSACTION ;
     TRUNCATE TABLE wall_threads_last_message;
 
     CALL create_new_wall() \G
-    DELETE TABLE 'wall' ;
-    RENAME TABLE 'wall2' to 'wall';
+    DROP TABLE wall ;
+    RENAME TABLE wall2 to wall;
     CALL create_wall_threads_last_message ();
 
 COMMIT ;
