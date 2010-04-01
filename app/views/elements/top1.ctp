@@ -61,8 +61,7 @@ $menuElements = array(
     ),
     __('Wall', true) => array(
         "controller" => "wall",
-        "action" => "index",
-        "paginated"
+        "action" => "index"
     ),
     __('What\'s new', true) => array(
         "controller" => "pages",
