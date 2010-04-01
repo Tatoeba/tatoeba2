@@ -34,6 +34,7 @@ echo $javascript->link('jquery.impromptu.js', true);
 echo $javascript->link('sentences.adopt.js', true);
 echo $javascript->link('jquery.jeditable.js', true);
 echo $javascript->link('sentences.edit_in_place.js', true);
+echo $javascript->link('sentences.play_audio.js', true);
 
 $sentence = $random['Sentence'];
 $sentenceOwner = $random['User'];
