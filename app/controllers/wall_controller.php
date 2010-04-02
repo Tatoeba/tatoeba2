@@ -307,8 +307,12 @@ class WallController extends Appcontroller
     }
 
     /**
+     * Use to display a single thread
+     * usefull when we want a permalink to a message with its whole thread
      *
+     * @param int $messageId the message to display with its thread
      *
+     * @return void
      */
     public function show_message($messageId)
     {

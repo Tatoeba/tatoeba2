@@ -287,8 +287,12 @@ class Wall extends AppModel
 
 
     /**
+     * retriev a nested array with all the messages of the thread
+     * which contain the message id given as parameter
      *
+     * @param int $messageId Id of the message.
      *
+     * @return array the whole thread
      */
     public function getWholeThreadContaining($messageId)
     {
@@ -323,8 +327,12 @@ class Wall extends AppModel
     }
 
     /**
+     * retrive the left and right field (use for hierarchical data in mysql)
+     * of a message
      *
+     * @param int $messageId The message id.
      *
+     * @return array Array with 'lft'  and 'rght' fields.
      */
     private function _getLftRghtOfMessage($messageId)
     {

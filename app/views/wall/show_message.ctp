@@ -33,10 +33,10 @@
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
- */ 
+ */
+$rootMessageId = $message['Wall']['id'];
 
-
-$this->pageTitle = 'Tatoeba - Thread #' . $message['Wall']['id'] ; 
+$this->pageTitle = 'Tatoeba - Thread #' . $rootMessageId ; 
 ?>
 <div id="annexe_content">
     <div class="module">
@@ -74,19 +74,16 @@ $this->pageTitle = 'Tatoeba - Thread #' . $message['Wall']['id'] ;
     <div class="module">    
         <ol class="wall">
         <li class="topThread" 
-            id="messageBody_<?php echo $message['Wall']['id']; ?>">
-            <ul>
-                <?php
-                $wall->createRootDiv(
-                    $message['Wall'],
-                    $message['User'],
-                    $message['Permissions']
-                );
-                ?>
-            <ul>
+            id="message_<?php echo $rootMessageId; ?>">
             <?php
+            //Root Message
+            $wall->createRootDiv(
+                $message['Wall'],
+                $message['User'],
+                $message['Permissions']
+            );
             // replies
-            echo '<div class="replies" id="messageBody_'.$message['Wall']['id'] .'" >';
+            echo '<div class="replies" id="messageBody_'.$rootMessageId .'" >';
             if (!empty($message['children'])) {
                 echo '<ul>';
                 foreach ($message['children'] as $child ) {
