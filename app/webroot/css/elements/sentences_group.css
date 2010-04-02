@@ -204,8 +204,13 @@ background:transparent url(../img/link.png) no-repeat scroll 10px;
 padding-left: 60px;
 }
 
-.romanization, a.romanization{
+.romanization{
 	color: #a1a1a1;
+}
+
+a.romanization {
+    color: #a1a1a1 !important;
+    display: block;
 }
 
 .translation .romanization{
