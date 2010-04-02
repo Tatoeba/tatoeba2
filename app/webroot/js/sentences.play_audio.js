@@ -18,7 +18,7 @@
 
 $(document).ready(function() {
     
-    $('.audioButton').click(function() {
+    $('.audioAvailable').click(function() {
        var audioURL = $(this).attr('href');
        
        $('#audioPlayer').html(
