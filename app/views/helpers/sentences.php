@@ -91,7 +91,7 @@ class SentencesHelper extends AppHelper
             
             if ($sentence['lang'] == 'jpn') {
                 
-                $title = 'ROMAJI: '.$sentence['romaji']."\n\n";
+                $title = 'ROMAJI: '.$sentence['romaji']."\n\n ";
                 $title .= __(
                     'WARNING : this is automatically generated '.
                     'and is not always reliable. Click to learn more.', true
@@ -502,6 +502,8 @@ class SentencesHelper extends AppHelper
                     array("escape"=>false)
                 );
                 echo '</div>';
+                
+                $this->_displayRomanization($translation);
                 
                 echo '</li>';
             }

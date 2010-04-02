@@ -213,6 +213,12 @@ a.romanization {
     display: block;
 }
 
+.direct a.romanization, .indirect a.romanization {
+    padding: 5px;
+	padding-left: 30px;
+	margin-right: 40px;
+}
+
 .translation .romanization{
 	margin-top: -8px;
 }
