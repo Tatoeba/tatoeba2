@@ -86,28 +86,36 @@ class SentencesHelper extends AppHelper
      */
     private function _displayRomanization($sentence)
     {
-
         if (isset($sentence['romanization'])) {
             $romanization = $sentence['romanization'];
             
             if ($sentence['lang'] == 'jpn') {
-                $title = __(
-                    'WARNING : the romaji is automatically generated '.
-                    'and is not always reliable.', true
+                
+                $title = 'ROMAJI: '.$sentence['romaji']."\n\n";
+                $title .= __(
+                    'WARNING : this is automatically generated '.
+                    'and is not always reliable. Click to learn more.', true
                 );
-                echo '<div class="romanization" title="'.$title.'">';
+                echo $this->Html->link(
+                    $romanization,
+                    'http://blog.tatoeba.org/2010/04/japanese-romanization-in-tatoeba-now.html',
+                    array(
+                        'class' => 'romanization',
+                        'title' => $title
+                    )
+                );
+                
             } else {
+            
                 echo '<div class="romanization">';
+                    if ($sentence['lang'] === 'cmn') {
+                    echo $this->Pinyin->numeric2diacritic(
+                        $romanization               
+                    );
+                }
+                echo '</div>';
+                
             }
-
-            if ($sentence['lang'] === 'cmn') {
-                echo $this->Pinyin->numeric2diacritic(
-                    $romanization               
-                );
-            } else {
-                echo $romanization;
-            }
-            echo '</div>';
         }
     }
 

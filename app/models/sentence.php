@@ -765,8 +765,14 @@ class Sentence extends AppModel
                 $sentenceArray['text'],
                 $sentenceArray['lang']
             );
-
-
+            
+            // getRomanization() returns hiragana for the Japanese.
+            // Here we also get the romaji.
+            $sentenceArray['romaji'] = $this->getJapaneseRomanization(
+                $sentenceArray['text'],
+                'romaji'
+            );
+            
         }
 
     }
@@ -955,8 +961,7 @@ class Sentence extends AppModel
             "|iconv -f SHIFT_JISX0213 -t UTF8".
             "| sed -f /home/tatoeba/www/app/webroot/$sedlist"
         );
-
-
+        
         return $romanization;
     }
     
