@@ -107,9 +107,11 @@ padding: 10px 5px;
 	text-decoration: none;
 }
 
-.translation a.info{
+.translation .button{
 	float:left;
 	margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
 .translation span{
@@ -120,24 +122,6 @@ padding: 10px 5px;
 
 .translation a:hover{
 	color: #EAA315;
-}
-
-.editableLink .linkIcon:hover{
-    background-position: -18px 0; 
-}
-
-.translation .linkIcon{
-    width: 18px;
-    height: 16px;
-    background: transparent url(/img/direct_translation.png) no-repeat; 
-}
-
-.direct .linkIcon{
-    background: transparent url(/img/direct_translation.png) no-repeat; 
-}
-
-.indirect .linkIcon{
-    background: transparent url(/img/indirect_translation.png) no-repeat; 
 }
 
 

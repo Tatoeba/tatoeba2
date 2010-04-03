@@ -41,6 +41,7 @@ class SentencesHelper extends AppHelper
         'Form',
         'Javascript',
         'Menu',
+        'SentenceButtons',
         'Languages',
         'Session',
         'Pinyin'
@@ -163,7 +164,9 @@ class SentencesHelper extends AppHelper
             );
             
             // Language flag
-            $this->displayLanguageFlag($sentence['id'], $sentence['lang'], true);
+            $this->SentenceButtons->displayLanguageFlag(
+                $sentence['id'], $sentence['lang'], true
+            );
             
             // Sentence
             echo '<div id="_'.$sentence['id'].'" 
@@ -272,10 +275,10 @@ class SentencesHelper extends AppHelper
         echo '<div id="_'.$sentence['id'].'_original" class="original">';
         
         // audio
-        $this->Menu->audioButton($sentence['id'], $sentence['lang']);
+        $this->SentenceButtons->audioButton($sentence['id'], $sentence['lang']);
         
         // language flag
-        $this->displayLanguageFlag(
+        $this->SentenceButtons->displayLanguageFlag(
             $sentence['id'], $sentence['lang'], $editableFlag
         );
         
@@ -364,49 +367,26 @@ class SentencesHelper extends AppHelper
     {
         
         foreach ($translations as $translation) {
-            
-            $css = "";
-            $url = array(
-                "controller" => "sentences", 
-                "action" => "show",
-                $translation['id']
-            );
-            $title = __('Show', true);
-            $confirmationMessage = null;
-            
+        
+            echo '<li class="direct translation">';
+            // unlink button
             if ($canUnlink) {
-                $css = "editableLink";
-                $url = array(
-                    "controller" => "links", 
-                    "action" => "delete",
-                    $originalId, 
-                    $translation['id']
-                );
-                $title = __('Unlink this translation.', true);
-                $confirmationMessage = __(
-                    'Do you want to unlink this translation from the main sentence?',
-                    true
+                $this->SentenceButtons->unlinkButton(
+                    $originalId, $translation['id']
                 );
             }
             
-        
-            echo '<li class="direct '.$css.' translation">';
-            // translation icon            
-            echo $this->Html->link(
-                null, $url,
-                array(
-                    "escape" => false, 
-                    "class" => "linkIcon info",
-                    "title" => $title
-                ),
-                $confirmationMessage
+            // goto button
+            $this->SentenceButtons->translationShowButton(
+                $translation['id'], 'direct'
             );
             
+            
             // audio
-            $this->Menu->audioButton($translation['id'], $translation['lang']);
+            $this->SentenceButtons->audioButton($translation['id'], $translation['lang']);
             
             // language flag
-            $this->displayLanguageFlag($translation['id'], $translation['lang']);
+            $this->SentenceButtons->displayLanguageFlag($translation['id'], $translation['lang']);
             
             //translation and romanization
             // translation text
@@ -443,50 +423,23 @@ class SentencesHelper extends AppHelper
         if (count($indirectTranslations) > 0) {
             
             foreach ($indirectTranslations as $translation) {
-                $css = "";
-                $url = array(
-                    "controller" => "sentences", 
-                    "action" => "show",
-                    $translation['id']
+                
+                echo '<li class="indirect translation">';
+                // unlink button
+                $this->SentenceButtons->linkButton(
+                    $originalId, $translation['id']
                 );
-                $title = __('Show', true);
-                $confirmationMessage = null;
                 
-                if ($canLink) {
-                    $css = "editableLink";
-                    $url = array(
-                        "controller" => "links", 
-                        "action" => "add",
-                        $originalId, 
-                        $translation['id']
-                    );
-                    $title = __('Make as direct translation.', true);
-                    $confirmationMessage = __(
-                        'Do you want to make this as a direct translation '.
-                        'of the main sentence?',
-                        true
-                    );
-                }
-                
-                
-                echo '<li class="indirect '.$css.' translation">';
-                
-                // translation icon
-                echo $this->Html->link(
-                    null, $url,
-                    array(
-                        "escape" => false, 
-                        "class" => "linkIcon info",
-                        "title" => $title
-                    ),
-                    $confirmationMessage
+                // goto button
+                $this->SentenceButtons->translationShowButton(
+                    $translation['id'], 'indirect'
                 );
                 
                 // audio
-                $this->Menu->audioButton($translation['id'], $translation['lang']);
+                $this->SentenceButtons->audioButton($translation['id'], $translation['lang']);
                 
                 // language flag
-                $this->displayLanguageFlag(
+                $this->SentenceButtons->displayLanguageFlag(
                     $translation['id'], $translation['lang']
                 );
                 
@@ -761,44 +714,6 @@ class SentencesHelper extends AppHelper
             );
         echo '</li>';
         echo '</ul>';
-    }
-    
-    /**
-     * Language flag.
-     *
-     * @param int    $id       Id of the sentence.
-     * @param string $lang     Language of the sentence.
-     * @param bool   $editable Set to true of flag can be changed.
-     *
-     * @return void
-     */
-    public function displayLanguageFlag($id, $lang, $editable = false)
-    {
-        if ($lang == '') {
-            $lang = 'unknown_lang';
-        }
-        
-        $class = '';
-        if ($editable) {
-            $this->Javascript->link('sentences.change_language.js', false);
-            $class = 'editableFlag';
-            
-            // language select
-            $langArray = $this->Languages->onlyLanguagesArray();
-            echo $this->Form->select(
-                'selectLang_'.$id,
-                $langArray,
-                'und',
-                array("class"=>"selectLang"),
-                false
-            );
-        }
-        
-        echo $this->Html->image(
-            'flags/'.$lang.'.png',
-            array("class" => "languageFlag ".$class)
-        );
-        
     }
 }
 ?>

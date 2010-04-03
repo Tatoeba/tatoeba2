@@ -27,35 +27,28 @@
 ?>
 
 <?php
-if (isset($translation_text)) {
+if (isset($translationText)) {
 
     echo $javascript->link('jquery.jeditable.js', true);
     echo $javascript->link('sentences.edit_in_place.js', true);
     echo $javascript->link('sentences.change_language.js', true);
     
-    echo '<li id="_'.$translation_id.'" class="direct editable translation">';
-    
-        // hidden 'info button'
-        echo $html->link(
-            null,
-            array(
-                "controller" => "sentences",
-                "action" => "show",
-                $translation_id
-            ),
-            array(
-                "escape" => false, 
-                "class" => "linkIcon info",
-                "title" => __('Show', true)
-            )
-        );
+    echo '<li id="_'.$translationId.'" class="direct editable translation">';
+        
+        // unlink button
+        $sentenceButtons->unlinkButton($originalId, $translationId);
+        
+        // goto button
+        $sentenceButtons->translationShowButton($translationId, 'direct');
         
         // language flag
-        $sentences->displayLanguageFlag($translation_id, $translation_lang, true);
+        $sentenceButtons->displayLanguageFlag(
+            $translationId, $translationLang, true
+        );
         
         // sentence text
-        echo '<div id="'.$translation_lang."_".$translation_id.'" class="editable editableSentence">';
-        echo $translation_text; 
+        echo '<div id="'.$translationLang."_".$translationId.'" class="editable editableSentence">';
+        echo $translationText; 
         echo '</div> ';    
     
     echo "</li>";

@@ -44,6 +44,8 @@ class SentencesController extends AppController
     );
     public $helpers = array(
         'Sentences',
+        'Menu',
+        'SentenceButtons',
         'Html',
         'Logs',
         'Pagination',
@@ -442,9 +444,10 @@ class SentencesController extends AppController
             
             // Saving...
             if ($isSaved) {
-                $this->set('translation_id', $this->Sentence->id);
-                $this->set('translation_lang', $this->data['Sentence']['lang']);
-                $this->set('translation_text', $translationText);
+                $this->set('originalId', $sentenceId);
+                $this->set('translationId', $this->Sentence->id);
+                $this->set('translationLang', $this->data['Sentence']['lang']);
+                $this->set('translationText', $translationText);
             }
         }
     }
