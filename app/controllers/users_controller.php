@@ -659,6 +659,7 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/SentenceAnnotations');
         $this->Acl->allow($group, 'controllers/SentenceComments');
         $this->Acl->allow($group, 'controllers/Wall');
+        $this->Acl->allow($group, 'controllers/Link');
 
         //Permissions for users
         $group->id = 4;

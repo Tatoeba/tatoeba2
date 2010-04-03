@@ -50,18 +50,19 @@ class PermissionsComponent extends Object
     public function getSentencesOptions($sentence, $currentUserId)
     {
         $sentenceOwnerId = $sentence['Sentence']['user_id'];
-
+        
         $specialOptions = array(
-              'canComment' => false
-            , 'canEdit' => false
-            , 'canDelete' => false
-            , 'canAdopt' => false
-            , 'canLetGo' => false
-            , 'canTranslate' => false
-            , 'canFavorite' => false
-            , 'canUnFavorite' => false
-            , 'canAddToList' => false
-            , 'belongsToLists' => array()
+            'canComment' => false,
+            'canEdit' => false,
+            'canLinkAndUnlink' => false,
+            'canDelete' => false,
+            'canAdopt' => false,
+            'canLetGo' => false, 
+            'canTranslate' => false,
+            'canFavorite' => false,
+            'canUnFavorite' => false,
+            'canAddToList' => false,
+            'belongsToLists' => array()
         );
         
         if ($this->Auth->user('id')) {
@@ -86,20 +87,20 @@ class PermissionsComponent extends Object
             
             // -- edit --
             if ($this->Auth->user('group_id') < 3) {
-                
                 $specialOptions['canEdit'] = true;
-                
             }
-            
             
             // -- edit and adopt --
             if ($sentenceOwnerId == $currentUserId) {
-            
                 $specialOptions['canEdit'] = true;
                 $specialOptions['canLetGo'] = true;
-                
             }
             
+            // -- link/unlink --
+            // It's important to set this permission after canEdit has been set.
+            if ($this->Auth->user('group_id') < 4 && $specialOptions['canEdit']) {
+                $specialOptions['canLinkAndUnlink'] = true;
+            }
             
             // -- delete --
             $specialOptions['canDelete'] = ($this->Auth->user('group_id') < 2);

@@ -339,12 +339,12 @@ class SentencesHelper extends AppHelper
         if (count($translations) > 0) {
             // direct translations
             $this->_displayTranslations(
-                $translations, $sentence['id'], $user['canEdit']
+                $translations, $sentence['id'], $user['canLinkAndUnlink']
             );
             
             // indirect translations
             $this->_displayIndirectTranslations(
-                $indirectTranslations, $sentence['id'], $user['canEdit']
+                $indirectTranslations, $sentence['id'], $user['canLinkAndUnlink']
             );
         }
         echo '</ul>';
@@ -426,9 +426,11 @@ class SentencesHelper extends AppHelper
                 
                 echo '<li class="indirect translation">';
                 // unlink button
-                $this->SentenceButtons->linkButton(
-                    $originalId, $translation['id']
-                );
+                if ($canLink) {
+                    $this->SentenceButtons->linkButton(
+                        $originalId, $translation['id']
+                    );
+                }
                 
                 // goto button
                 $this->SentenceButtons->translationShowButton(

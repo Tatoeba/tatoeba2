@@ -44,6 +44,7 @@ echo '<div class="sentences_set">';
     // TODO set up a better mechanism
     $specialOptions['belongsTo'] = $sentenceOwner['username']; 
     $sentenceOwner['canEdit'] = $specialOptions['canEdit']; 
+    $sentenceOwner['canLinkAndUnlink'] = $specialOptions['canLinkAndUnlink']; 
     
     $sentences->displayMenu(
         $sentence['id'], 

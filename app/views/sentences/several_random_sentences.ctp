@@ -106,6 +106,8 @@ $this->pageTitle = 'Tatoeba - ' . __('Random sentences', true);
                     // sentence and translations
                     // TODO set up a better mechanism
                     $sentence['User']['canEdit'] = $specialOptions['canEdit']; 
+                    $sentence['User']['canLinkAndUnlink'] 
+                        = $specialOptions['canLinkAndUnlink']; 
                     $sentences->displayGroup(
                         $sentence['Sentence'],
                         $sentence['Translations'],

@@ -108,6 +108,8 @@ $navigation->displaySentenceNavigation();
                 // for edit in place...
                 // TODO set up a better mechanism
                 $sentence['User']['canEdit'] = $specialOptions['canEdit']; 
+                $sentence['User']['canLinkAndUnlink'] 
+                    = $specialOptions['canLinkAndUnlink']; 
                 
                 // display sentence and translations
                 $sentences->displayGroup(
