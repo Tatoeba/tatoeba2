@@ -109,10 +109,12 @@ class SentencesHelper extends AppHelper
             } else {
             
                 echo '<div class="romanization">';
-                    if ($sentence['lang'] === 'cmn') {
+                if ($sentence['lang'] === 'cmn') {
                     echo $this->Pinyin->numeric2diacritic(
-                        $romanization               
+                        $romanization             
                     );
+                } else {
+                    echo $romanization;
                 }
                 echo '</div>';
                 
