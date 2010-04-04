@@ -296,7 +296,8 @@ class Wall extends AppModel
      */
     public function getWholeThreadContaining($messageId)
     {
-        $rootLftRght = $this->_getLftRghtOfMessage($messageId);
+        $rootId = $this->getRootMessageIdOfReply($messageId);
+        $rootLftRght = $this->_getLftRghtOfMessage($rootId);
         $lftRghtArray = array(
             $rootLftRght['lft'],
             $rootLftRght['rght']
@@ -306,7 +307,7 @@ class Wall extends AppModel
         $result = $this->find(
             'threaded',
             array(
-                "order" => "Wall.date DESC", 
+                "order" => "Wall.date ASC", 
                 "conditions" => array(
                     'Wall.lft BETWEEN ? AND ?' => $lftRghtArray
                 ),
