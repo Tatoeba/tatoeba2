@@ -36,10 +36,15 @@ if (isset($translationText)) {
     echo '<li id="_'.$translationId.'" class="direct editable translation">';
         
         // unlink button
-        $sentenceButtons->unlinkButton($originalId, $translationId);
+        if ($canLinkAndUnlink) {
+            $sentenceButtons->unlinkButton($originalId, $translationId);
+        }
         
         // goto button
         $sentenceButtons->translationShowButton($translationId, 'direct');
+        
+        // audio button
+        $sentenceButtons->audioButton($translationId, $translationLang);
         
         // language flag
         $sentenceButtons->displayLanguageFlag(

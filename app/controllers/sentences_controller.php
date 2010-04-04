@@ -442,8 +442,19 @@ class SentencesController extends AppController
                 $sentenceLang
             );
             
+            
+            
             // Saving...
             if ($isSaved) {
+                // TODO Need to rethink the whole permission system
+                $sentenceBelongsToUser = $this->Sentence->doesBelongToUser(
+                    $sentenceId, $this->Auth->user('id')
+                );
+                $userIsTrusted = ($this->Auth->user('group_id') < 4);
+                $canLinkAndUnlink = $sentenceBelongsToUser && $userIsTrusted;
+                // -------------
+                
+                $this->set('canLinkAndUnlink', $canLinkAndUnlink);
                 $this->set('originalId', $sentenceId);
                 $this->set('translationId', $this->Sentence->id);
                 $this->set('translationLang', $this->data['Sentence']['lang']);
