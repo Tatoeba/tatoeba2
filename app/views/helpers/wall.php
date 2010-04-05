@@ -248,14 +248,15 @@ class WallHelper extends AppHelper
         $messageId = $message['id'];
         ?> 
         <div class="message root">
-                    <?php
-                    $this->_displayMessageMeta(
-                        $message,
-                        $author,
-                        $permissions,
-                        true
-                    );
-                    ?>
+            <?php
+            $this->_displayMessageMeta(
+                $message,
+                $author,
+                $permissions,
+                true
+            );
+            ?>
+            
             <!-- message content -->
             <div class="body" >
                <?php $this->displayContent($message['content']); ?> 
@@ -279,35 +280,34 @@ class WallHelper extends AppHelper
     public function createReplyDiv($message,$owner,$children,$messagePermission)
     {
         $messageId = $message['id'];
-
-        echo '<li class="thread" id="message_' . $messageId . '">'."\n";
         ?>
-            <div class="message">
-                <!-- message meta -->
-                <?php
-                $this->_displayMessageMeta(
-                    $message,
-                    $owner,
-                    $messagePermission
-                );
-                ?>
-                <!-- message content -->
-                <div class="body">
-                    <?php $this->displayContent($message['content']); ?>
-                </div>
-            </div>
+        <li class="thread" id="message_<?php echo $messageId; ?>">
+        
+        <div class="message">
+            <!-- message meta -->
             <?php
-            //replies
-            echo '<div class="replies" id="messageBody_'.  $messageId .'" >';
-
-            if (!empty($children)) {
-                $this->_displayAllReplies(
-                    $children
-                );
-            }
+            $this->_displayMessageMeta(
+                $message,
+                $owner,
+                $messagePermission
+            );
             ?>
-
+            <!-- message content -->
+            <div class="body">
+                <?php $this->displayContent($message['content']); ?>
             </div>
+        </div>
+        
+        <div class="replies" id="messageBody_<?php echo $messageId; ?>" >
+        <?php
+        if (!empty($children)) {
+            $this->_displayAllReplies(
+                $children
+            );
+        }
+        ?>
+        </div>
+            
         </li>
     <?php
     }
@@ -348,8 +348,8 @@ class WallHelper extends AppHelper
                     $firstTime
                 );
                 ?>
-
             </li>
+            
             <li class="image">
                 <?php
                 $this->displayMessagePosterImage(
@@ -357,15 +357,14 @@ class WallHelper extends AppHelper
                     $userImage
                 )
                 ?>
-
             </li>
+            
             <li class="author">
                 <?php $this->displayLinkToUserProfile($userName); ?>
-
             </li>
+            
             <li class="date">
                 <?php echo $this->Date->ago($messageDate); ?>
-
             </li>
         </ul>
     <?php

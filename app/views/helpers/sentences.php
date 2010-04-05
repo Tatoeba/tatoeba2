@@ -385,10 +385,14 @@ class SentencesHelper extends AppHelper
             
             
             // audio
-            $this->SentenceButtons->audioButton($translation['id'], $translation['lang']);
+            $this->SentenceButtons->audioButton(
+                $translation['id'], $translation['lang']
+            );
             
             // language flag
-            $this->SentenceButtons->displayLanguageFlag($translation['id'], $translation['lang']);
+            $this->SentenceButtons->displayLanguageFlag(
+                $translation['id'], $translation['lang']
+            );
             
             //translation and romanization
             // translation text
@@ -414,8 +418,8 @@ class SentencesHelper extends AppHelper
      * Display indirect translations, that is to say translations of translations.
      *
      * @param array $indirectTranslations Indirect translations to display.
-     * @param int   $originalId   Id of the original sentence.
-     * @param bool  $canLink    'true' if user can link the translation.
+     * @param int   $originalId           Id of the original sentence.
+     * @param bool  $canLink              'true' if user can link the translation.
      *
      * @return void
      */
@@ -440,7 +444,9 @@ class SentencesHelper extends AppHelper
                 );
                 
                 // audio
-                $this->SentenceButtons->audioButton($translation['id'], $translation['lang']);
+                $this->SentenceButtons->audioButton(
+                    $translation['id'], $translation['lang']
+                );
                 
                 // language flag
                 $this->SentenceButtons->displayLanguageFlag(

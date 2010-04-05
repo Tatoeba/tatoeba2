@@ -159,7 +159,7 @@ class SentenceButtonsHelper extends AppHelper
     /** 
      * Display audio button.
      *
-     * @param int $sentenceId   Id of the sentence on which this button is displayed.       
+     * @param int $sentenceId   Id of the sentence on which this button is displayed.
      * @param int $sentenceLang Language of the sentence.
      *
      * @return void

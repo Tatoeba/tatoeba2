@@ -60,22 +60,22 @@ class LogsHelper extends AppHelper
         }
         
         switch ($contribution['action']) {
-        case 'suggest' : 
-            $type = 'correction';
-            $status = 'Suggested'; 
-            break;
-        
-        case 'insert' :
-            $status = 'Added';
-            break;
-        
-        case 'update' :
-            $status = 'Modified';
-            break;
-        
-        case 'delete' :
-            $status = 'Deleted';
-            break;
+            case 'suggest' : 
+                $type = 'correction';
+                $status = 'Suggested'; 
+                break;
+            
+            case 'insert' :
+                $status = 'Added';
+                break;
+            
+            case 'update' :
+                $status = 'Modified';
+                break;
+            
+            case 'delete' :
+                $status = 'Deleted';
+                break;
         }
         
         echo '<tr class="'.$type.$status.'">';
@@ -147,19 +147,19 @@ class LogsHelper extends AppHelper
         }
         
         switch ($contribution['action']) {
-        case 'suggest' : 
-            $type = 'correction';
-            $status = 'Suggested'; 
-            break;
-        case 'insert' :
-            $status = 'Added';
-            break;
-        case 'update' :
-            $status = 'Modified';
-            break;
-        case 'delete' :
-            $status = 'Deleted';
-            break;
+            case 'suggest' : 
+                $type = 'correction';
+                $status = 'Suggested'; 
+                break;
+            case 'insert' :
+                $status = 'Added';
+                break;
+            case 'update' :
+                $status = 'Modified';
+                break;
+            case 'delete' :
+                $status = 'Deleted';
+                break;
         }
         
         echo '<div class="annexeLogEntry '.$type.$status.'">';
