@@ -17,6 +17,16 @@
 */
 
 
+/*
+ * Sentence
+ */
+@import url(../elements/sentences_group.css);
+
+
+/*
+ * Glyphs
+ */
+
 div.glyph {
     display: inline;
     font-size: 2em;
@@ -24,6 +34,7 @@ div.glyph {
 
 div.glyph:hover {
     background-color: #e55f0e;
+    color: white;
     cursor: pointer; 
 }
 
@@ -34,6 +45,7 @@ a.radical{
 a.radical:hover {
     
     background-color: #ffa800;
+    color: white;
 }
 
 #sinogramGlyph {
