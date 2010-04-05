@@ -266,11 +266,22 @@ class SentenceButtonsHelper extends AppHelper
                 array("class"=>"selectLang"),
                 false
             );
+            
+            // setting data for sentences.change_language.js
+            echo "<script type='text/javascript'>
+            $(document).ready(function() {
+                $('#flag_$id').data('sentenceId', $id);
+                $('#flag_$id').data('currentLang', '$lang');
+            });
+            </script>";
         }
         
         echo $this->Html->image(
             'flags/'.$lang.'.png',
-            array("class" => "languageFlag ".$class)
+            array(
+                "id" => "flag_".$id,
+                "class" => "languageFlag ".$class
+            )
         );
         
     }

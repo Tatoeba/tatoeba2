@@ -30,15 +30,11 @@ $(document).ready(function() {
     
     $(".languageFlag").click(function(){
 		var flagImage = $(this);
-        // to avoid duplicate and xhtml error the id is  _XXXX_original
-        // TODO find a better way to store the id ...
-		var sentenceId = $(this).parent().attr('id').split("_")[1];
-        // TODO for the moment we retrive the previous language by
-        // parsing the src attribute of the flag image ... I can be
-        // hacky too someday ... need to find a generic way to store
-        // information in a xhtml doc
-		var prevLang = flagImage.attr('src').split('/')[3].split(".")[0];
-
+        
+        // The data is set in sentence_buttons.php, displayLanguageFlag()
+        var sentenceId = $(this).data('sentenceId');
+        var prevLang = $(this).data('currentLang');
+        
 		$("#selectLang_" + sentenceId).toggle();
 		
 		$("#selectLang_" + sentenceId).change(function(){
