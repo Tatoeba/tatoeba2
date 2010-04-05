@@ -610,6 +610,23 @@ class UsersController extends AppController
 
 
     /**
+     * special function to update rights
+     * go on this page when you add new action
+     *
+     * @return void
+     */
+    public function update_rights()
+    {
+        $this->_buildAcl();
+        $this->_init_db();
+        die; //TODO it's a hack
+
+    }
+
+
+
+
+    /**
      * Temporary public function to grant/deny access.
      * 
      * @return void
@@ -644,7 +661,7 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/SentenceAnnotations');
         $this->Acl->allow($group, 'controllers/Wall');
         
-        $this->Acl->allow($group, 'controlers/User'); 
+        $this->Acl->allow($group, 'controllers/User'); 
         
         //Permissions for trusted_users
         $group->id = 3;
@@ -669,7 +686,7 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/Wall');
         $this->Acl->allow($group, 'controllers/Links');
 
-        $this->Acl->allow($group, 'controlers/User'); 
+        $this->Acl->allow($group, 'controllers/User'); 
         
         //Permissions for users
         $group->id = 4;
@@ -693,7 +710,7 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/SentenceAnnotations');
         $this->Acl->allow($group, 'controllers/SentenceComments');
         $this->Acl->allow($group, 'controllers/Wall');
-        $this->Acl->allow($group, 'controlers/User'); 
+        $this->Acl->allow($group, 'controllers/User'); 
     }
 }
 ?>

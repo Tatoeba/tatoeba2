@@ -85,7 +85,7 @@ class UserController extends AppController
 
         $userId = $this->Auth->user('id');
         // redirect the page if a simple visitor try to access it
-        if (empty($userId)) {
+        if ($userId == null) {
             $this->redirect($this->referer());
             return;
         }

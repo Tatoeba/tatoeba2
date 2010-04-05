@@ -93,8 +93,6 @@ class AppController extends Controller
         App::import('Model', 'CurrentUser');
         CurrentUser::store($this->Auth->user());
         
-        // to remove in production mode
-        //$this->_buildAcl();
     }
 
     /**
@@ -187,7 +185,7 @@ class AppController extends Controller
      *
      * @return void
      */
-    private function _buildAcl()
+    protected function _buildAcl()
     {
         $log = array();
 
