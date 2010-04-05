@@ -171,8 +171,8 @@ class SentencesHelper extends AppHelper
             );
             
             // Sentence
-            echo '<div id="_'.$sentence['id'].'" 
-                class="editable editableSentence'.$sentence['correctness'].'">';
+            echo '<div id="'.$sentence['lang'].'_'.$sentence['id'].'" 
+                class="editable editableSentence">';
             echo Sanitize::html($sentence['text']);
             echo '</div> ';
             
