@@ -246,41 +246,22 @@ class WallHelper extends AppHelper
         }
 
         $messageId = $message['id'];
-        
-        echo '<div class="message root">';
-            echo '<ul class="meta">'."\n";
-                // delete, view
-                echo '<li class="action">';
-                
-                    $this->createLinks(
-                        $messageId,
+        ?> 
+        <div class="message root">
+                    <?php
+                    $this->_displayMessageMeta(
+                        $message,
+                        $author,
                         $permissions,
                         true
                     );
-                
-                echo '</li>';
-                     
-                // image
-                echo '<li class="image">';
-                $this->displayMessagePosterImage($writerName, $writerImage);
-                echo '</li>';
-                     
-                // username
-                echo '<li class="author">';
-                $this->displayLinkToUserProfile($writerName);
-                echo '</li>';
-                            
-                // date
-                echo '<li class="date">';
-                echo $this->Date->ago($message['date']);
-                echo '</li>';
-            echo '</ul>';
-
-            // message content
-            echo '<div class="body" >';
-            $this->displayContent($message['content']);
-            echo '</div>';
-        echo '</div>';
+                    ?>
+            <!-- message content -->
+            <div class="body" >
+               <?php $this->displayContent($message['content']); ?> 
+            </div>
+        </div>
+    <?php
     }
 
     /**
@@ -297,48 +278,19 @@ class WallHelper extends AppHelper
      */
     public function createReplyDiv($message,$owner,$children,$messagePermission)
     {
-         // TODO : remove me
-
         $messageId = $message['id'];
-        $userName = $owner['username'];
-        $userImage = $owner['image'];
 
-        if (empty($userImage)) {
-            $userImage = 'unknown-avatar.jpg';
-        }
         echo '<li class="thread" id="message_' . $messageId . '">'."\n";
         ?>
             <div class="message">
-                <ul class="meta" >
-                    <!-- reply option -->
-                    <li class="action">
-                        <?php
-                        $this->createLinks(
-                            $messageId,
-                            $messagePermission
-                        );
-                        ?>
-
-                    </li>
-                    <li class="image">
-                        <?php
-                        $this->displayMessagePosterImage(
-                            $userName,
-                            $userImage
-                        )
-                        ?>
-
-                    </li>
-                    <li class="author">
-                        <?php $this->displayLinkToUserProfile($userName); ?>
-
-                    </li>
-                    <li class="date">
-                        <?php echo $this->Date->ago($message['date']); ?>
-
-                    </li>
-                </ul>
-
+                <!-- message meta -->
+                <?php
+                $this->_displayMessageMeta(
+                    $message,
+                    $owner,
+                    $messagePermission
+                );
+                ?>
                 <!-- message content -->
                 <div class="body">
                     <?php $this->displayContent($message['content']); ?>
@@ -357,8 +309,116 @@ class WallHelper extends AppHelper
 
             </div>
         </li>
-        <?php
+    <?php
     }
+
+    /**
+     * Display the informations and menu on top of each wall messages
+     *
+     * @param array $message     Message to displayed informations of.
+     * @param array $author      Author of the message.
+     * @param array $permissions Permissions current user have on this message.
+     * @param bool  $firstTime   To know if the js need to be linked.
+     *
+     * @return void
+     */
+
+    private function _displayMessageMeta(
+        $message,
+        $author,
+        $permissions,
+        $firstTime = false
+    ) {
+        $messageId = $message['id'];
+        $messageDate = $message['date'];
+        $userName = $author['username'];
+        $userImage = $author['image'];
+
+        if (empty($userImage)) {
+            $userImage = 'unknown-avatar.jpg';
+        }
+        ?>
+        <ul class="meta" >
+            <!-- reply option -->
+            <li class="action">
+                <?php
+                $this->createLinks(
+                    $messageId,
+                    $permissions,
+                    $firstTime
+                );
+                ?>
+
+            </li>
+            <li class="image">
+                <?php
+                $this->displayMessagePosterImage(
+                    $userName,
+                    $userImage
+                )
+                ?>
+
+            </li>
+            <li class="author">
+                <?php $this->displayLinkToUserProfile($userName); ?>
+
+            </li>
+            <li class="date">
+                <?php echo $this->Date->ago($messageDate); ?>
+
+            </li>
+        </ul>
+    <?php
+    }
+
+
+    /**
+     * Create a whole thread from a root message and its children
+     *
+     * @param array $message     Root message array
+     * @param array $author      Root message's author array.
+     * @param array $permissions Root message permissions for current user.
+     * @param array $children    Nested array of children and children of
+     *                           children.
+     *
+     * @return return void
+     */
+
+    public function createThread($message, $author, $permissions, $children)
+    {
+
+        $messageId = $message['id'];
+        
+        echo '<li id="message_'.$messageId.'" class="topThread" >'."\n";
+        // Root message
+        $this->createRootDiv(
+            $message, 
+            $author, 
+            $permissions
+        );
+
+        // replies
+        echo '<div class="replies" id="messageBody_'.$messageId .'" >';
+        if (!empty($children)) {
+            echo '<ul>';
+            foreach ($children as $child ) {
+                $this->createReplyDiv(
+                    // this is because the allMessages array
+                    // is indexed with message Id
+                    $child['Wall'],
+                    $child['User'],
+                    $child['children'],
+                    $child['Permissions']
+                );
+            }
+            echo '</ul>';
+        }
+        echo '</div>';
+        echo '</li>';
+
+
+    }
+
 }
 
 ?>

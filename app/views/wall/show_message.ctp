@@ -73,32 +73,13 @@ $this->pageTitle = 'Tatoeba - Thread #' . $rootMessageId ;
     
     <div class="module">    
         <ol class="wall">
-        <li class="topThread" 
-            id="message_<?php echo $rootMessageId; ?>">
             <?php
-            //Root Message
-            $wall->createRootDiv(
+            $wall->createThread(
                 $message['Wall'],
                 $message['User'],
-                $message['Permissions']
+                $message['Permissions'],
+                $message['children']
             );
-            // replies
-            echo '<div class="replies" id="messageBody_'.$rootMessageId .'" >';
-            if (!empty($message['children'])) {
-                echo '<ul>';
-                foreach ($message['children'] as $child ) {
-                    $wall->createReplyDiv(
-                        // this is because the allMessages array
-                        // is indexed with message Id
-                        $child['Wall'],
-                        $child['User'],
-                        $child['children'],
-                        $child['Permissions']
-                    );
-                }
-                echo '</ul>';
-            }
-            echo '</div>';
             ?>
         </li>
         </ol>
