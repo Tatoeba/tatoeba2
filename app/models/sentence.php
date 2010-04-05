@@ -139,37 +139,18 @@ class Sentence extends AppModel
                 $data['Contribution']['action'] = 'insert';
                 // increase stats
                 $this->incrementStatistics($this->data['Sentence']['lang']);
-
                 
-
+                // Logs for links
                 if (isset($this->data['Translation'])) {
-                    // Translation logs
-
+                    $action = 'insert';
                     $translationId = $this->data['Translation']['Translation'][0];
-                    $translationLang = $this->data['Sentence']['sentence_lang'];
-
-                    $data2['Contribution'] = $whoWhenWhere;
-                    $data2['Contribution']['sentence_id'] = $translationId;
-                    $data2['Contribution']['sentence_lang'] = $translationLang;
-                    $data2['Contribution']['translation_id'] = $this->id;
-                    $data2['Contribution']['translation_lang'] = $sentenceLang;
-                    $data2['Contribution']['action'] = 'insert';
-                    $data2['Contribution']['type'] = 'link';
-                    $contributions[] = $data2;
-                }
-                if (isset($this->data['InverseTranslation'])) {
-                    // Inverse translation logs
-                    $data2['Contribution'] = $whoWhenWhere;
-                    $data2['Contribution']['sentence_id'] = $this->id;
-                    $data2['Contribution']['sentence_lang'] = $sentenceLang;
-                    $data2['Contribution']['translation_id'] = $translationId;
-                    $data2['Contribution']['translation_lang'] = $translationLang;
-                    $data2['Contribution']['action'] = 'insert';
-                    $data2['Contribution']['type'] = 'link';
-                    $contributions[] = $data2;
-                }
-                if (isset($contributions)) {
-                    $this->Contribution->saveAll($contributions);
+                    
+                    $this->Contribution->saveLinkContribution(
+                        $this->id, $translationId, $action
+                    );
+                    $this->Contribution->saveLinkContribution(
+                        $translationId, $this->id, $action
+                    );
                 }
                 
             } else {
@@ -202,31 +183,16 @@ class Sentence extends AppModel
         $data['Contribution']['type'] = 'sentence';
         $this->Contribution->save($data);
         
+        
+        // Logs for links
         foreach ($this->data['Translation'] as $translation) {
-            $data2['Contribution']['sentence_id'] = $sentenceId;
-            $data2['Contribution']['sentence_lang'] = $lang;
-            $data2['Contribution']['translation_id'] = $translation['id'];
-            $data2['Contribution']['translation_lang'] = $translation['lang'];
-            $data2['Contribution']['action'] = 'delete';
-            $data2['Contribution']['user_id'] = $this->data['User']['id'];
-            $data2['Contribution']['datetime'] = date("Y-m-d H:i:s");
-            $data2['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
-            $data2['Contribution']['type'] = 'link';
-            $contributions[] = $data2;
-            
-            $data2['Contribution']['sentence_id'] = $translation['id'];
-            $data2['Contribution']['sentence_lang'] = $translation['lang'];
-            $data2['Contribution']['translation_id'] = $sentenceId;
-            $data2['Contribution']['translation_lang'] = $lang;
-            $data2['Contribution']['action'] = 'delete';
-            $data2['Contribution']['user_id'] = $this->data['User']['id'];
-            $data2['Contribution']['datetime'] = date("Y-m-d H:i:s");
-            $data2['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
-            $data2['Contribution']['type'] = 'link';
-            $contributions[] = $data2;
-        }
-        if (isset($contributions)) {
-            $this->Contribution->saveAll($contributions);
+            $action = 'insert';
+            $this->Contribution->saveLinkContribution(
+                $sentenceId, $translation['id'], $action
+            );
+            $this->Contribution->saveLinkContribution(
+                $translation['id'], $sentenceId, $action
+            );
         }
     }
 
