@@ -249,7 +249,7 @@ class SentenceButtonsHelper extends AppHelper
     public function displayLanguageFlag($id, $lang, $editable = false)
     {
         if ($lang == '') {
-            $lang = 'unknown_lang';
+            $lang = 'und';
         }
         
         $class = '';

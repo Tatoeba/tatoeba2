@@ -37,7 +37,7 @@
 class LogsHelper extends AppHelper
 {
 
-    public $helpers = array('Date', 'Html');
+    public $helpers = array('Date', 'Html', 'Languages');
     
     /** 
      * Display a contribution.
@@ -52,6 +52,7 @@ class LogsHelper extends AppHelper
     {
         $type = '';
         $status = '';
+        $lang = $contribution['sentence_lang'];
         
         if (!isset($contribution['translation_id'])) {
             $type = 'sentence';
@@ -85,14 +86,17 @@ class LogsHelper extends AppHelper
         if ($type == 'link') {
             echo '&raquo;';
         } else {
-            if ($contribution['sentence_lang'] == '') {
+            if ($lang == '') {
                 echo '?';
             } else {
                 echo $this->Html->image(
-                    'flags/'.$contribution['sentence_lang'].".png", 
-                    array("alt" => $contribution['sentence_lang'], "class" => "flag")
+                    'flags/'.$lang.".png", 
+                    array(
+                        "alt" => $lang,
+                        "class" => "flag",
+                        "title" => $this->Languages->codeToName($lang)
+                    )
                 );
-                // TODO should be replace by the real name
             }
         }
         echo '</td>';
@@ -187,7 +191,15 @@ class LogsHelper extends AppHelper
                 )
             );
             
-            echo sprintf(__('linked to &raquo; %s', true), $linkToTranslation);
+            if ($contribution['action'] == 'insert') {
+                echo sprintf(
+                    __('linked to %s', true), $linkToTranslation
+                );
+            } else {
+                echo sprintf(
+                    __('unlinked from %s', true), $linkToTranslation
+                );
+            }
             
         } else {
             echo ' <span class="text">';

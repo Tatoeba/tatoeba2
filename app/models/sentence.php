@@ -513,7 +513,7 @@ class Sentence extends AppModel
     public function getStatistics()
     {
         $query = "
-            SELECT ifnull(lang, 'unknown_lang') as lang , numberOfSentences
+            SELECT ifnull(lang, 'und') as lang , numberOfSentences
                 FROM langStats 
                 ORDER BY numberOfSentences DESC ;
         ";
