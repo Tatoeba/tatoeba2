@@ -283,6 +283,32 @@ class Contribution extends AppModel
     
     
     /**
+     * Log contributions related to sentences.
+     *
+     * @param int $sentenceId   Id of the sentence.
+     * @param int $sentenceLang Languuage of the sentence.
+     * @param int $action       Action performed ('insert', 'delete', or 'update').
+     *
+     * @return void
+     */
+    public function saveSentenceContribution($id, $lang, $text, $action)
+    {
+        $data = array(
+            'sentence_id' => $id,
+            'sentence_lang' => $lang,
+            'text' => $text,
+            'user_id' => CurrentUser::get('id'),
+            'datetime' => date("Y-m-d H:i:s"),
+            'ip' => $_SERVER['REMOTE_ADDR'],
+            'type' => 'sentence',
+            'action' => $action
+        );
+        
+        $this->save($data);
+    }
+    
+    
+    /**
      * Log contributions related to links.
      *
      * @param int $sentenceId    Id of the sentence.

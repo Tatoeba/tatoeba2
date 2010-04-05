@@ -27,7 +27,6 @@
  * @link     http://tatoeba.org
  */
 
-
 /**
  * Model Class which represent sentences
  *
@@ -115,48 +114,34 @@ class Sentence extends AppModel
      * 
      * @return void
      */
-
     public function afterSave($created)
     {
         if (isset($this->data['Sentence']['text'])) {
-            $whoWhenWhere = array(
-                  'user_id' => $this->data['Sentence']['user_id']
-                , 'datetime' => date("Y-m-d H:i:s")
-                , 'ip' => $_SERVER['REMOTE_ADDR']
-            );
-           
+            // --- Logs for sentence ---
             $sentenceLang =  $this->data['Sentence']['lang'];
-
-            
-            $data['Contribution'] = $whoWhenWhere;
-            $data['Contribution']['sentence_id'] = $this->id;
-            $data['Contribution']['sentence_lang'] = $sentenceLang;
-            $data['Contribution']['text'] = $this->data['Sentence']['text'];
-            $data['Contribution']['type'] = 'sentence';
-
-            
+            $sentenceAction = 'update';
+            $sentenceText = $this->data['Sentence']['text'];
             if ($created) {
-                $data['Contribution']['action'] = 'insert';
-                // increase stats
-                $this->incrementStatistics($this->data['Sentence']['lang']);
-                
-                // Logs for links
-                if (isset($this->data['Translation'])) {
-                    $action = 'insert';
-                    $translationId = $this->data['Translation']['Translation'][0];
-                    
-                    $this->Contribution->saveLinkContribution(
-                        $this->id, $translationId, $action
-                    );
-                    $this->Contribution->saveLinkContribution(
-                        $translationId, $this->id, $action
-                    );
-                }
-                
-            } else {
-                $data['Contribution']['action'] = 'update';
+                $sentenceAction = 'insert';
+                $this->incrementStatistics($sentenceLang);
             }
-            $this->Contribution->save($data);
+            
+            $this->Contribution->saveSentenceContribution(
+                $this->id, $sentenceLang, $sentenceText, $sentenceAction
+            );
+            
+            // --- Logs for links ---
+            if (isset($this->data['Translation'])) {
+                $linkAction = 'insert';
+                $translationId = $this->data['Translation']['Translation'][0];
+                
+                $this->Contribution->saveLinkContribution(
+                    $this->id, $translationId, $linkAction
+                );
+                $this->Contribution->saveLinkContribution(
+                    $translationId, $this->id, $linkAction
+                );
+            }
         }
     }
     
@@ -165,28 +150,20 @@ class Sentence extends AppModel
      *
      * @return void
      */
-     
     public function afterDelete()
     {
-        $lang = $this->data['Sentence']['lang'];
+        $action = 'delete';
+        
+        // --- Logs for sentence ---
+        $sentenceLang = $this->data['Sentence']['lang'];
         $sentenceId = $this->data['Sentence']['id']; 
-
-        $this->decrementStatistics($lang);
-
-        $data['Contribution']['sentence_id'] = $sentenceId;
-        $data['Contribution']['sentence_lang'] = $lang;
-        $data['Contribution']['text'] = $this->data['Sentence']['text'];
-        $data['Contribution']['action'] = 'delete';
-        $data['Contribution']['user_id'] = $this->data['User']['id'];
-        $data['Contribution']['datetime'] = date("Y-m-d H:i:s");
-        $data['Contribution']['ip'] = $_SERVER['REMOTE_ADDR'];
-        $data['Contribution']['type'] = 'sentence';
-        $this->Contribution->save($data);
+        $sentenceText = $this->data['Sentence']['text'];
+        $this->Contribution->saveSentenceContribution(
+            $sentenceId, $sentenceLang, $sentenceText, 'delete'
+        );
         
-        
-        // Logs for links
+        // --- Logs for links ---
         foreach ($this->data['Translation'] as $translation) {
-            $action = 'insert';
             $this->Contribution->saveLinkContribution(
                 $sentenceId, $translation['id'], $action
             );
@@ -194,6 +171,9 @@ class Sentence extends AppModel
                 $translation['id'], $sentenceId, $action
             );
         }
+        
+        // Decrement statistics
+        $this->decrementStatistics($sentenceLang);
     }
 
     /**
