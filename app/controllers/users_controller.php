@@ -626,8 +626,10 @@ class UsersController extends AppController
         $group->id = 2;
         $this->Acl->deny($group, 'controllers');
         $this->Acl->allow($group, 'controllers/SuggestedModifications');
+        
         $this->Acl->allow($group, 'controllers/SentenceComments');
         $this->Acl->allow($group, 'controllers/Sentences');
+        
         $this->Acl->allow($group, 'controllers/Users/my_tatoeba');
         $this->Acl->allow($group, 'controllers/Users/settings');
         $this->Acl->allow($group, 'controllers/Users/save_email');
@@ -635,17 +637,22 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/Users/save_options');
         $this->Acl->allow($group, 'controllers/Users/start_following');
         $this->Acl->allow($group, 'controllers/Users/favoriting');
+        
         $this->Acl->allow($group, 'controllers/Users/stop_following');
         $this->Acl->allow($group, 'controllers/Favorites/add_favorite');
         $this->Acl->allow($group, 'controllers/PrivateMessages');
         $this->Acl->allow($group, 'controllers/SentenceAnnotations');
         $this->Acl->allow($group, 'controllers/Wall');
-
+        
+        $this->Acl->allow($group, 'controlers/User'); 
+        
         //Permissions for trusted_users
         $group->id = 3;
         $this->Acl->deny($group, 'controllers');
+        
         $this->Acl->allow($group, 'controllers/Sentences');
         $this->Acl->deny($group, 'controllers/Sentences/delete');
+        
         $this->Acl->allow($group, 'controllers/Users/my_tatoeba');
         $this->Acl->allow($group, 'controllers/Users/settings');
         $this->Acl->allow($group, 'controllers/Users/save_email');
@@ -654,6 +661,7 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/Users/start_following');
         $this->Acl->allow($group, 'controllers/Users/favoriting');
         $this->Acl->allow($group, 'controllers/Users/stop_following');
+        
         $this->Acl->allow($group, 'controllers/Favorites/add_favorite');
         $this->Acl->allow($group, 'controllers/PrivateMessages');
         $this->Acl->allow($group, 'controllers/SentenceAnnotations');
@@ -661,11 +669,14 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/Wall');
         $this->Acl->allow($group, 'controllers/Links');
 
+        $this->Acl->allow($group, 'controlers/User'); 
+        
         //Permissions for users
         $group->id = 4;
         $this->Acl->deny($group, 'controllers');
         $this->Acl->allow($group, 'controllers/Sentences');
         $this->Acl->deny($group, 'controllers/Sentences/delete');
+        
         $this->Acl->allow($group, 'controllers/Users/my_tatoeba');
         $this->Acl->allow($group, 'controllers/Users/settings');
         $this->Acl->allow($group, 'controllers/Users/save_email');
@@ -674,12 +685,15 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/Users/start_following');
         $this->Acl->allow($group, 'controllers/Users/favoriting');
         $this->Acl->allow($group, 'controllers/Users/stop_following');
+
         $this->Acl->allow($group, 'controllers/Favorites/add_favorite');
         $this->Acl->allow($group, 'controllers/Favorites/remove_favorite');
+        
         $this->Acl->allow($group, 'controllers/PrivateMessages');
         $this->Acl->allow($group, 'controllers/SentenceAnnotations');
         $this->Acl->allow($group, 'controllers/SentenceComments');
         $this->Acl->allow($group, 'controllers/Wall');
+        $this->Acl->allow($group, 'controlers/User'); 
     }
 }
 ?>

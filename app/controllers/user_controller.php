@@ -47,7 +47,7 @@ class UserController extends AppController
     public $name = 'User';
 
     /**
-     * ?
+     * TODO load model only where needed
      *
      * @var array
      */
@@ -70,7 +70,9 @@ class UserController extends AppController
     {
         parent::beforeFilter();
 
-        $this->Auth->allowedActions = array('*');
+        $this->Auth->allowedActions = array(
+            'profile',
+        );
     }
 
     /**
@@ -80,9 +82,15 @@ class UserController extends AppController
      */
     public function index()
     {
+
         $userId = $this->Auth->user('id');
+        // redirect the page if a simple visitor try to access it
+        if (empty($userId)) {
+            $this->redirect($this->referer());
+            return;
+        }
         $aUser = $this->User->getInformationOfCurrentUser($userId);
-        $userStats = $this->stats($userId);
+        $userStats = $this->_stats($userId);
 
         $this->loadModel('Country');
         $aCountries = $this->Country->findAll();
@@ -126,7 +134,7 @@ class UserController extends AppController
             $aUser = $this->User->getInformationOfUser($sUserName);
         }
 
-        $userStats = $this->stats($aUser['User']['id']);
+        $userStats = $this->_stats($aUser['User']['id']);
 
         $this->set('userStats', $userStats);
 
@@ -445,7 +453,7 @@ class UserController extends AppController
      * 
      * @return array
      */
-    public function stats($userId)
+    private function _stats($userId)
     {
         $numberOfSentences = $this->Sentence->numberOfSentencesOwnedBy($userId);
         $numberOfComments
