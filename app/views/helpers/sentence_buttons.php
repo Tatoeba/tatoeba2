@@ -263,7 +263,10 @@ class SentenceButtonsHelper extends AppHelper
                 'selectLang_'.$id,
                 $langArray,
                 'und',
-                array("class"=>"selectLang"),
+                array(
+                    "class"=>"selectLang", 
+                    "title"=> $this->Languages->codeToName($lang)
+                ),
                 false
             );
             
@@ -280,7 +283,8 @@ class SentenceButtonsHelper extends AppHelper
             'flags/'.$lang.'.png',
             array(
                 "id" => "flag_".$id,
-                "class" => "languageFlag ".$class
+                "class" => "languageFlag ".$class,
+                "title"=> $this->Languages->codeToName($lang)
             )
         );
         
