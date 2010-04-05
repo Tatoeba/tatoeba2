@@ -186,10 +186,21 @@ class SinogramsController extends AppController
                 = $this->Permissions->getSentencesOptions(
                     $sentenceWhichUseThisSinogram, $this->Auth->user('id')
                 );
+
+            $alltranslations = $this->Sentence->getTranslationsOf($sentenceId);
+            $translations = $alltranslations['Translation'];
+            $indirectTranslations = $alltranslations['IndirectTranslation'];    
+            
             $this->set('specialOptions', $specialOptions);
+            $this->set("sentenceFound", true);
+        } else {
+            $this->set("sentenceFound", false);
         }
         $this->set("sinogram", $sinogram);
-        $this->set("sentence", $sentenceWhichUseThisSinogram);
+        $this->set("sentence", $sentenceWhichUseThisSinogram['Sentence']);
+        $this->set("sentenceOwner", $sentenceWhichUseThisSinogram['User']);
+        $this->set('indirectTranslations', $indirectTranslations);
+        $this->set('translations', $translations);
 
     }
     

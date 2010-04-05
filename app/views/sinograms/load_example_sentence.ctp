@@ -26,7 +26,7 @@
  */
 ?>
 <?php
-if ($sentence == null) {
+if ($sentenceFound == false) {
     echo '<div id="noExampleFound" >' ;
     echo sprintf(
         __(
@@ -41,26 +41,26 @@ if ($sentence == null) {
     ?>
     <div class="sentences_set searchResult">
         <?php
-        // TODO replace variable names  + add a if no results has been found 
         // TODO add a link to all result or a link to contribute 
         // sentence menu (translate, edit, comment, etc)
-
         // TODO set up a better mechanism
-        $specialOptions['belongsTo'] = $sentence['User']['username']; 
+        $specialOptions['belongsTo'] = $sentenceOwner['username'];
+        $sentenceOwner['canEdit'] = $specialOptions['canEdit']; 
+        $sentenceOwner['canLinkAndUnlink'] = $specialOptions['canLinkAndUnlink'];  
+
         $sentences->displayMenu(
-            $sentence['Sentence']['id'],
-            $sentence['Sentence']['lang'],
+            $sentence['id'],
+            $sentence['lang'],
             $specialOptions,
             null,
-            $sentence['Sentence']['script']
+            $sentence['script']
         );
         // sentence and translations
-        // TODO set up a better mechanism
-        $sentence['User']['canEdit'] = $specialOptions['canEdit']; 
         $sentences->displayGroup(
-            $sentence['Sentence'],
-            $sentence['Translation'],
-            $sentence['User']
+            $sentence,
+            $translations,
+            $sentenceOwner,
+            $indirectTranslations
         );
         ?>
     </div>
