@@ -88,6 +88,7 @@ class WallHelper extends AppHelper
             array(
                 'controller' => 'wall',
                 'action' => 'show_message',
+                '#' => "message_" .$messageId,
                 $messageId
             )
         );
