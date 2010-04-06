@@ -38,7 +38,12 @@ if ($session->read('Auth.User.id')) {
         <h2><?php __('Create a new list'); ?></h2>
         <?php
         echo $form->create('SentencesList');
-        echo $form->input('name');
+        echo $form->input(
+            'name',
+            array(
+                'type' => 'text'
+            )
+        );
         echo $form->end('create');
         ?>
         </div>
