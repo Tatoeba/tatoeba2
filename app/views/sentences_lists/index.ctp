@@ -152,7 +152,12 @@ if (isset($myLists)) {
             __('Create a new list');
             echo '</h2>';
             echo $form->create('SentencesList');            
-            echo $form->input('name');
+            echo $form->input(
+                'name',
+                array(
+                    'type' => 'text'
+                )
+            );
             echo $form->end('Create');
         }
     echo '</div>';
