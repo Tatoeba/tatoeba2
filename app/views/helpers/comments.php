@@ -219,7 +219,11 @@ class CommentsHelper extends AppHelper
         echo '</p>';
         
         echo $this->Form->input(
-            'text', array("label"=> "", "cols"=>"64", "rows"=>"6")
+            'text',
+            array(
+                "label"=> "",
+                "cols"=>"64", "rows"=>"6"
+            )
         );
         
         echo $this->Form->end('Submit');
