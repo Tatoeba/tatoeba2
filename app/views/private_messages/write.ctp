@@ -61,10 +61,17 @@ if ($isAReply) {
             array(
                 'label' => __('to', true),
                 'default' => $toUserLogin,
+                'type' => 'text',
                 'maxLength' => 255
             )
         );
-        echo $form->input('title', array('default' => $replyToTitle));
+        echo $form->input(
+            'title',
+            array(
+                'default' => $replyToTitle,
+                'type' => 'text'
+            )
+        );
         echo $form->input(
             'content',
             array(
