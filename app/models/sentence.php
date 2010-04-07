@@ -339,7 +339,9 @@ class Sentence extends AppModel
                     )
             )
         );
-
+        if ($result == null) {
+            return;
+        }
         $result['Sentence'];
 
        
@@ -714,10 +716,12 @@ class Sentence extends AppModel
             
             // getRomanization() returns hiragana for the Japanese.
             // Here we also get the romaji.
-            $sentenceArray['romaji'] = $this->getJapaneseRomanization(
-                $sentenceArray['text'],
-                'romaji'
-            );
+            if ($sentenceArray['lang'] == 'jpn') {
+                $sentenceArray['romaji'] = $this->getJapaneseRomanization(
+                    $sentenceArray['text'],
+                    'romaji'
+                );
+            }
             
         }
 
@@ -738,7 +742,6 @@ class Sentence extends AppModel
 
         if ($lang == "wuu") {
             $romanization = $this->getShanghaineseRomanization($text);
-
         } elseif ($lang == "jpn") {
             $romanization = $this->getJapaneseRomanization2($text, 'romaji'); 
             
