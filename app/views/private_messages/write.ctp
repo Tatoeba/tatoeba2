@@ -76,7 +76,8 @@ if ($isAReply) {
             'content',
             array(
                 'label' => '',
-                'default' => $msgFinalPreContent
+                'default' => $msgFinalPreContent,
+                'type' => 'textarea'
             )
         );
         echo $form->end(__('Send', true));

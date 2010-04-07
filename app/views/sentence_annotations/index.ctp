@@ -34,7 +34,13 @@
 		echo '<h2>Search</h2>';
 		
 		echo $form->create('SentenceAnnotation', array("action" => "search"));
-		echo $form->input('text', array("label" => ""));
+		echo $form->input(
+            'text', 
+            array(
+                "label" => "",
+                "type" => "text"
+            )
+        );
 		echo $form->end('OK');
 	?>
 	</div>	
