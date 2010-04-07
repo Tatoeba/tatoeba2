@@ -150,5 +150,27 @@ class ToolsController extends AppController
         }
 
     }
+
+    /**
+     * Convert a text in shanghainese into ipa
+     *
+     * @param string $text Shanghainese text to convert.
+     *
+     * @return void
+     */
+    public function shanghainese_to_ipa($text = null)
+    {
+        if (empty($text)) {
+            $text = $this->data['Tool']['query'];
+        }
+
+        if (!empty($text)) {
+            $Sentence = ClassRegistry::init('Sentence');
+            $ipa = $Sentence->getShanghaineseRomanization($text);
+
+            $this->set('convertedText', $ipa); 
+            $this->set('lastText', $text);
+        }
+    }
 }
 ?>

@@ -121,6 +121,22 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
                     "and vice versa (powered by adso)"
                 );
                 ?>
+            </li>
+            <li>
+                <?php
+                echo $html->link(
+                    __('Shanghainese to IPA', true),
+                    array(
+                        "controller" => "tools",
+                        "action" => "shanghainese_to_ipa"
+                    )
+                );
+                echo ': ';
+                __(
+                    "Convert a shanghainese text into its pronunciation ".
+                    "using the International Phonetic Alphabet"
+                );
+                ?>
             </li>  
         </ul>
     </div>
