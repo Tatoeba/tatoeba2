@@ -86,7 +86,7 @@ class SentencesController extends AppController
             'count_unknown_language',
             'get_translations',
             'change_language',
-            'several_random_sentences'
+            'several_random_sentences',
         );
     }
 
@@ -247,7 +247,10 @@ class SentencesController extends AppController
     public function delete($id)
     {
         Sanitize::paranoid($id);
-        $this->Sentence->delete($id, $this->Auth->user('id'));
+        $this->Sentence->delete(
+            $id,
+            true
+        );
         $this->flash(
             'The sentence #'.$id.' has been deleted.', '/sentences/show/'.$id
         );
