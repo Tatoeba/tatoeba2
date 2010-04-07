@@ -1045,7 +1045,10 @@ class Sentence extends AppModel
 
     public function getShanghaineseRomanization($shanghaineseText)
     {
-        $ipaFile = fopen("http://static.tatoeba.org/data/shanghainese2IPA2.txt", "r");
+        $ipaFile = fopen(
+            "http://static.tatoeba.org/data/shanghainese2IPA2.txt",
+            "r"
+        );
 
         $ipaArray = array();
         $sinogramsArray = array();
