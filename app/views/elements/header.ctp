@@ -28,6 +28,14 @@
 
 <div id="header">
 	<a href="<?php echo $html->url('/'.$this->params['lang']); ?>">
-	<?php echo $html->image('TatoebaProjectBeta.png'); ?>
+	<?php 
+    echo $html->image(
+        'TatoebaProjectBeta.png',
+        array(
+            'width' => 72,
+            'height' => 450
+        )
+    );
+    ?>
 	</a>
 </div>

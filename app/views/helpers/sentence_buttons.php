@@ -284,7 +284,9 @@ class SentenceButtonsHelper extends AppHelper
             array(
                 "id" => "flag_".$id,
                 "class" => "languageFlag ".$class,
-                "title"=> $this->Languages->codeToName($lang)
+                "title"=> $this->Languages->codeToName($lang),
+                "width" => 30,
+                "height" => 20
             )
         );
         

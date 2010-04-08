@@ -649,11 +649,21 @@ class SentencesHelper extends AppHelper
         echo "<li>";
         echo $this->Html->image(
             'loading-small.gif', 
-            array("id"=>"_".$id."_in_process", "style"=>"display:none")
+            array(
+                "id"=>"_".$id."_in_process", 
+                "style"=>"display:none",
+                "width" => 16,
+                "height" => 16
+            )
         );
         echo $this->Html->image(
             'valid_16x16.png', 
-            array("id"=>"_".$id."_valid", "style" =>"display:none")
+            array(
+                "id" => "_".$id."_valid", 
+                "style" =>"display:none",
+                "width" => 16,
+                "height" => 16
+            )
         );
         echo "</li>";
         
