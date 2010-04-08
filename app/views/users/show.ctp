@@ -40,7 +40,7 @@ $navigation->displayUsersNavigation(
     echo $html->link(
         __('Contact this user', true),
         array(
-            'controller' => 'privateMessages',
+            'controller' => 'private_messages',
             'action' => 'write',
             $userName
         )

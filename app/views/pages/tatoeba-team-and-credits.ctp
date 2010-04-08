@@ -44,7 +44,7 @@ echo '<ul>';
     echo $html->link(
         'trang',
         array(
-            'controller' => 'privateMessages',
+            'controller' => 'private_messages',
             'action' => 'write',
             'trang'
         )
@@ -61,7 +61,7 @@ echo '<ul>';
     echo $html->link(
         'sysko',
         array(
-            'controller' => 'privateMessages',
+            'controller' => 'private_messages',
             'action' => 'write',
             'sysko'
         )
@@ -90,7 +90,7 @@ echo '<ul class="credits">';
     echo $html->link(
         'fucongcong',
         array(
-            'controller' => 'privateMessages',
+            'controller' => 'private_messages',
             'action' => 'write',
             'fucongcong'
         )
@@ -110,7 +110,7 @@ echo '<ul class="credits">';
     echo $html->link(
         'kylecito',
         array(
-            'controller' => 'privateMessages',
+            'controller' => 'private_messages',
             'action' => 'write',
             'kylecito'
         )

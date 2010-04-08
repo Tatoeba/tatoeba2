@@ -52,7 +52,7 @@ if ($is_public or $login) {
         <dl>
             <dt><?php __('Private message'); ?></dt>
             <dd><?php echo $html->link(sprintf(__('Contact %s', true), $user['User']['username']),
-            array('controller' => 'privateMessages', 'action' => 'write', $user['User']['username'])); ?></dd>
+            array('controller' => 'private_messages', 'action' => 'write', $user['User']['username'])); ?></dd>
 
             <dt><?php __('Others'); ?></dt>
             <dd><?php echo $html->link(sprintf(__("See this user's contributions", true)),
