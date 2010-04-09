@@ -17,6 +17,13 @@ class CurrentUser extends AppModel
 {
     public $useTable = null;
     
+    public public $hasMany = array(
+        'SentenceComments',
+        'Contributions',
+        'Sentences',
+        'SentencesLists'
+    );
+    
     function &getInstance($user=null) 
     {
         static $instance = array();
@@ -61,6 +68,71 @@ class CurrentUser extends AppModel
         }
 
         return $value[0];
+    }
+    
+    
+    /**
+     * Indicates if current user is admin or not.
+     * 
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return CurrentUser::get('group_id') == 1;
+    }
+    
+    
+    /**
+     * Indicates if current user is trusted or not.
+     * 
+     * @return bool
+     */
+    public function isTrusted()
+    {
+        return CurrentUser::get('group_id') < 4;
+    }
+    
+    
+    /**
+     * Indicates if current user is owner of the sentence with given id.
+     *
+     * @param int $sentenceId Id of the sentence.
+     * 
+     * @return bool
+     */
+    public function isOwnerOfSentence($sentenceId)
+    {
+        $sentence = $this->Sentence->find(
+            'first',
+            array(
+                'fields' => array(),
+                'conditions' => array(
+                    'Sentence.id' => $sentenceId,
+                    'Sentence.user_id' => CurrentUser::get('id')
+                ),
+                'contain' => array()
+            )
+        );
+        return !empty($sentence);
+    }
+    
+    /**
+     * Indicates if current user can link/unlink translations to the sentence of
+     * given id.
+     *
+     * @param int $sentenceId Id of the main sentence.
+     * 
+     * @return bool
+     */
+    public function canLinkAndUnlink($sentenceId)
+    {
+        if (CurrentUser::isAdmin()) {
+            return true;
+        }
+        
+        $sentenceBelongsToUser = CurrentUser::isOwnerOfSentence($sentenceId);
+        
+        return $sentenceBelongsToUser && CurrentUser::isTrusted();
     }
 }
 ?>

@@ -1070,30 +1070,5 @@ class Sentence extends AppModel
         return $ipaSentence;
 
     }
-    
-    
-    /**
-     * Check if a sentence belongs to a certain user.
-     *
-     * @param int $sentenceId Id of the sentence.
-     * @param int $userId     Id of the user.
-     *
-     * @return bool
-     */
-    public function doesBelongToUser($sentenceId, $userId)
-    {
-        $sentence = $this->find(
-            'first',
-            array(
-                'fields' => array(),
-                'conditions' => array(
-                    'Sentence.id' => $sentenceId,
-                    'Sentence.user_id' => $userId
-                ),
-                'contain' => array()
-            )
-        );
-        return !empty($sentence);
-    }
 }
 ?>
