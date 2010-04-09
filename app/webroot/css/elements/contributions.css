@@ -19,9 +19,9 @@
 */
 
 
-/* **************** *\
- * 		LOGS 		*
-\* **************** */
+/*
+ * Logs
+ */
 
 #logs td{
 	padding: 3px;
@@ -54,18 +54,6 @@
 
 #logs .annexeLogEntry .text{
 	font-family: Georgia;
-}
-
-
-#logsLegend{
-	color: black;
-	margin-top: 10px;
-	margin-bottom: 20px;
-	text-align: center;
-}
-
-#logsLegend span{
-	padding: 2px 5px;
 }
 
 .sentenceAdded {

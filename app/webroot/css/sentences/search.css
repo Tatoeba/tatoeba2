@@ -23,10 +23,26 @@
 
 
 /*
- * Results
- * TODO Don't use sentences_group. Instead create a file for single sentences.
+ * Sentences
  */
 @import url(../elements/sentences_group.css);
+
+
+/**
+ * Search results
+ */
+.searchResult{
+    margin: 40px 0px;
+}
+
+.score{
+	display: block;
+	margin-right: 10px;
+	float: right;
+	color: #666;
+	width: 30px;
+	text-align: right;
+}
 
 
 /* 

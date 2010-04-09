@@ -1,20 +1,20 @@
-/*
-    Tatoeba Project, free collaborative creation of multilingual corpuses project
-    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 body {
     padding:0px;
@@ -136,10 +136,6 @@ dt {
     height: 20px; /* need to specify height otherwise in Firefox and Opera it's too big */
 }
 
-#AddForm{
-    display:inline;
-}
-
 #user_menu {
     float:right;
     font-size:0.75em;
@@ -161,18 +157,6 @@ dt {
 #user_menu li {
     display:inline;
     margin:0 0 0 5px;
-}
-
-#user_menu select {
-    margin:2px 0px 2px 5px;
-    height: 20px; /* Need to specify height otherwise in Firefox 3.5 (and perhaps other browsers) the height is too big */
-}
-
-#user_menu #lang {
-    font-size:0.9em;
-    padding:0;
-    margin:4px 0;
-    height:16px;
 }
 
 

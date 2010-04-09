@@ -1,25 +1,25 @@
-/*
-    Tatoeba Project, free collaborative creation of multilingual corpuses project
-    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
-*/
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 
-/* sentence menu */
+/* 
+ * sentence menu 
+ */
 
 .sentences_set ul.menu{
 	vertical-align: text-bottom;
@@ -32,47 +32,16 @@
 	font-size: 13px;
 }
 
-.sentences_set .menu .selected{
-	margin: 0px;
-	background: #D3F3B9;
-	padding: 10px;
-	font-size: 150%;
-}
-
 .menu a{
 	padding: 4px 10px 3px 10px;
 }
 
-.menu a:hover {
-    color: #000000;
-}
-
-.score{
-	display: block;
-	margin-right: 10px;
-	float: right;
-	color: #666;
-	width: 30px;
-	text-align: right;
-}
-
-.belongsTo, .orphanSentence{
+.belongsTo{
 	display: block;
 	float: right;
 	margin-right: 20px;
 	font-weight: bold;
-}
-
-.belongsTo{
 	color: #75C34B;
-}
-
-.orphanSentence{
-	color: #FF9C3A;
-}
-
-.searchResult{
-margin: 40px 0px;
 }
 
 .listOfLists{
@@ -80,28 +49,18 @@ width: 150px;
 }
 
 
-/* sentence */
+/* 
+ * Sentences
+ */
 
 .sentences_set .sentence{
 border-top: 1px dashed #cccccc;
 }
 
-.sentences_set .sentence em{
-background:#f1f1f1; 
-padding: 0px 5px;
-font-style:normal;
-}
 
-.sentences_set .sentence li.form{
-padding-top: 10px;
-padding-bottom: 10px;
-}
-
-.sentences_set .sentence .new{
-padding: 10px 5px;
-}
-
-/* translation */
+/* 
+ * Translations
+ */
 
 .translation a{
 	text-decoration: none;
@@ -125,7 +84,9 @@ padding: 10px 5px;
 }
 
 
-/* editing sentences */
+/* 
+ * Editing sentences 
+ */
 
 .sentences_set div.submit{
 display:inline;
@@ -134,9 +95,9 @@ display:inline;
 display:inline;
 }
 
-
-
-/* Types of sentence */
+/* 
+ * Types of sentence 
+ */
 
 .original{
 	font-family: georgia;
@@ -207,24 +168,10 @@ a.romanization {
 	margin-top: -8px;
 }
 
-/* Contribute */
 
-#newSentence input#SentenceText{
-	width: 400px;
-	font-size: 1em;
-}
-
-#newSentence .submit, #newSentence .input{
-	display: inline;
-}
-
-#newSentenceText{
-	width: 400px;
-	font-size: 1em;
-}
-
-
-/* Edit in place */
+/* 
+ * Edit in place 
+ */
 .editable:hover{
 background: #eeee88;
 }
@@ -271,7 +218,9 @@ display: none;
 	margin-top: 5px;
 }
 
-/* audio */
+/* 
+ * Audio 
+ */
 
 .audioButton {
     margin: 6px;
@@ -294,31 +243,17 @@ display: none;
 }
 
 
-/* Most frequent words */
-
-#mostFrequentWords{
-font-size: 200%;
-text-align: center;
-}
-
-#mostFrequentWords span{
-padding-right: 20px;
-color: #6699CC;
-}
-
-#mostFrequentWords div{
-font-size: 55%;
-}
-
-
-
-/* Random sentence */
+/* 
+ * Random sentence 
+ */
 
 #randomLangChoice{
 	width: 110px;
 }
 
-/* My sentences */
+/* 
+ * My sentences 
+ */
 .mine .infoIcon{
 	float: left;
 	margin-right: 10px;
