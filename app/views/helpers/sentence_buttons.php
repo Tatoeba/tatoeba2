@@ -62,7 +62,7 @@ class SentenceButtonsHelper extends AppHelper
                 "alt" => __('Show', true),
                 "title" => __('Show', true),
                 "width" => 18,
-                "heigh" => 16
+                "height" => 16
             )
         );
         echo $this->Html->link(
