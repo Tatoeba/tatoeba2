@@ -27,7 +27,8 @@
 /*
  * Latest contributions
  */
-@import url(../elements/contributions.css);
+@import url(../elements/logs_main.css);
+@import url(../elements/logs_colors.css);
 
 
 /*
@@ -40,6 +41,15 @@
  * Join the community
  */
 @import url(../elements/register_button.css);
+
+
+
+/* 
+ * Random sentence 
+ */
+#randomLangChoice{
+	width: 110px;
+}
 
 
 /*

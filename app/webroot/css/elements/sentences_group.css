@@ -18,16 +18,15 @@
 
 
 /* 
- * sentence menu 
+ * Sentence menu 
  */
-
 .sentences_set ul.menu{
 	vertical-align: text-bottom;
 	overflow: hidden;
 	width: 100%;
 }
 
-.sentences_set .menu li{
+.menu li{
 	display: inline;
 	font-size: 13px;
 }
@@ -45,23 +44,21 @@
 }
 
 .listOfLists{
-width: 150px;
+    width: 150px;
 }
 
 
 /* 
  * Sentences
  */
-
 .sentences_set .sentence{
-border-top: 1px dashed #cccccc;
+    border-top: 1px dashed #cccccc;
 }
 
 
 /* 
  * Translations
  */
-
 .translation a{
 	text-decoration: none;
 }
@@ -87,7 +84,6 @@ border-top: 1px dashed #cccccc;
 /* 
  * Editing sentences 
  */
-
 .sentences_set div.submit{
 display:inline;
 }
@@ -95,10 +91,10 @@ display:inline;
 display:inline;
 }
 
+
 /* 
  * Types of sentence 
  */
-
 .original{
 	font-family: georgia;
 	padding: 10px 5px;
@@ -136,17 +132,12 @@ li.translation{
 padding: 5px 5px; /* the 2px are important because of flag's margin */
 }
 
-li.direct a{
+.direct a{
 	color: #000000;
 }
 
-li.indirect a{
+.indirect a{
 	color: #998778;
-}
-
-li.link{
-background:transparent url(../img/link.png) no-repeat scroll 10px;
-padding-left: 60px;
 }
 
 .romanization{
@@ -190,7 +181,7 @@ font-family: Verdana, sans-serif;
 font-size: 14px;
 }
 
-.addTranslations li input{
+.addTranslations input{
 margin-right: 5px;
 }
 
@@ -221,7 +212,6 @@ display: none;
 /* 
  * Audio 
  */
-
 .audioButton {
     margin: 6px;
     float: right;
@@ -242,14 +232,6 @@ display: none;
     height: 0px;
 }
 
-
-/* 
- * Random sentence 
- */
-
-#randomLangChoice{
-	width: 110px;
-}
 
 /* 
  * My sentences 
