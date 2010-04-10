@@ -85,7 +85,9 @@ class CommentsHelper extends AppHelper
                         "title" => __(
                             'View all comments on the related sentence',
                             true
-                        )
+                        ),
+                        "width" => 24,
+                        "height" => 24
                     )
                 ),
                 array(

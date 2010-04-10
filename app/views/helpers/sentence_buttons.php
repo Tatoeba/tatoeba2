@@ -59,8 +59,10 @@ class SentenceButtonsHelper extends AppHelper
         $image = $this->Html->image(
             $type.'_translation.png',
             array(
-                "alt"=>__('Show', true),
-                "title"=>__('Show', true)
+                "alt" => __('Show', true),
+                "title" => __('Show', true),
+                "width" => 18,
+                "heigh" => 16
             )
         );
         echo $this->Html->link(
@@ -97,7 +99,9 @@ class SentenceButtonsHelper extends AppHelper
             'unlink.png',
             array(
                 "alt"=>__('Unlink', true),
-                "title" => __('Unlink this translation.', true)
+                "title" => __('Unlink this translation.', true),
+                "width" => 16,
+                "height" => 16
             )
         );
         echo $this->Html->link(
@@ -136,7 +140,9 @@ class SentenceButtonsHelper extends AppHelper
             'link.png',
             array(
                 "alt"=>__('Link', true),
-                "title" => __('Make as direct translation.', true)
+                "title" => __('Make as direct translation.', true),
+                "width" => 16,
+                "height" => 16
             )
         );
         echo $this->Html->link(
