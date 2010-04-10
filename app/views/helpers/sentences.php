@@ -341,12 +341,12 @@ class SentencesHelper extends AppHelper
         if (count($translations) > 0) {
             // direct translations
             $this->_displayTranslations(
-                $translations, $sentence['id'], $user['canLinkAndUnlink']
+                $translations, $sentence['id']
             );
             
             // indirect translations
             $this->_displayIndirectTranslations(
-                $indirectTranslations, $sentence['id'], $user['canLinkAndUnlink']
+                $indirectTranslations, $sentence['id']
             );
         }
         echo '</ul>';
@@ -365,11 +365,12 @@ class SentencesHelper extends AppHelper
      *
      * @return void
      */
-    private function _displayTranslations($translations, $originalId, $canUnlink)
+    private function _displayTranslations($translations, $originalId)
     {
         
         foreach ($translations as $translation) {
-        
+            $canUnlink = CurrentUser::canLinkAndUnlink($originalId);
+            
             echo '<li class="direct translation">';
             // unlink button
             if ($canUnlink) {
@@ -424,11 +425,12 @@ class SentencesHelper extends AppHelper
      * @return void
      */
     private function _displayIndirectTranslations(
-        $indirectTranslations, $originalId, $canLink
+        $indirectTranslations, $originalId
     ) {
         if (count($indirectTranslations) > 0) {
             
             foreach ($indirectTranslations as $translation) {
+                $canLink = CurrentUser::canLinkAndUnlink($originalId);
                 
                 echo '<li class="indirect translation">';
                 // unlink button
