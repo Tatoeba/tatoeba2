@@ -90,8 +90,7 @@ echo '<p>' . __(
     'is commonly given through sentence comments; it is sufficient to give '.
     'attribution in the edit summary, which is recorded in the sentence history, '.
     'when importing the text. Regardless of the license, the text you import may '.
-    'be rejected if the required attribution is deemed too intrusive. Information '.
-    'for non-text media contributors', true
+    'be rejected if the required attribution is deemed too intrusive.', true
 ) . '</p>';
 
 echo '<h3>' . __('Information for re-users:', true) . '</h3>' ;

@@ -111,7 +111,7 @@ $selectedLanguage = $session->read('random_lang_selected');
                 echo $date->ago($value['Wall']['date']);
                 // Text of link
                 $text = sprintf(
-                    __(' by %s', true), 
+                    __('by %s', true), 
                     $value['User']['username']
                 );
                 // Path of link
@@ -119,7 +119,7 @@ $selectedLanguage = $session->read('random_lang_selected');
                         "action"=>"profile",
                         $value['User']['username']);
                 // Link
-                echo $html->link($text, $pathToUserProfile);
+                echo $html->link(' '.$text, $pathToUserProfile);
                 echo '</div>';
                 
                 echo '<div class="body">';

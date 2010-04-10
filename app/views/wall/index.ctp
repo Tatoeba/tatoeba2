@@ -64,10 +64,13 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
                 $currentMessage = $tenLastMessages[$i] ;
                 echo '<li>';
                 // text of the link
+                $author = sprintf(
+                    __('by %s', true), $currentMessage['User']['username']
+                );
                 $text = $date->ago($currentMessage['Wall']['date'])
                         . ", "
-                        . __('by ', true)
-                        . $currentMessage['User']['username'];
+                        . $author;
+                
                 $path = array(
                     'controller' => 'wall',
                     'action' => 'index#message_'.$currentMessage['Wall']['id']
