@@ -46,9 +46,9 @@ if (!isset($lastText)) {
         <p>
             <?php
             __(
-                "This tool is in a very early stage, and we're looking forward ".
+                "This tool is in a very early stage, and we're looking for ".
                 "people who can help us ameliorate the transcription ".
-                "by provindg IPA of non-converted characters or reporting ".
+                "by providing IPA of non-converted characters or reporting ".
                 "mistakes."
             );
             ?>
