@@ -86,10 +86,10 @@ echo $this->element('pmmenu');
                     )
                 );
                 // Title
-                echo '<a class="linkToMessage" href='.$url.'>';
-                echo '<div class="title">';
+                echo '<a class="linkToMessage" href="'.$url.'">';
+                echo '<span class="title">';
                 echo $messageTitle;
-                echo '</div>';
+                echo '</span>';
                 
                 // User and date
                 echo '<span class="userAndDate">';
