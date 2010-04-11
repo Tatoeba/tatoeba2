@@ -98,7 +98,7 @@ class PrivateMessage extends AppModel
                 'conditions' => array('PrivateMessage.id' => $messageId),
                 'contain' => array(
                     'Sender' => array(
-                        'fields' => array('username')
+                        'fields' => array('username', 'image')
                     )
                 )
             )

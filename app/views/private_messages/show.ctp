@@ -90,70 +90,84 @@ echo $this->element('pmmenu');
             '<li>' . $markAsUnread . '</li>'
         )
     ); 
+    
+    $userName = $message['Sender']['username'];
+    $userImage = $message['Sender']['image'];
+    $messageDate = $message['PrivateMessage']['date'];
+    
+    // TODO Create a more general helper that can display comments on sentences, 
+    // messages on Wall and private message, and use it to display this private 
+    // message below
     ?>
-
-    <p class="pm_head">
-        <?php
-        echo $date->ago($message['PrivateMessage']['date']) . ', ';
-        echo sprintf(
-            __('<a href="%s">%s</a> has written:', true), 
-            $html->url(
-                array(
-                    'controller' => 'user', 
-                    'action' => 'profile', 
-                    $message['Sender']['username']
+    
+    <div class="privateMessage">
+    
+        <ul class="meta" >
+            <li class="image">
+                <?php
+                $wall->displayMessagePosterImage(
+                    $userName,
+                    $userImage
                 )
-            ), 
-            $message['Sender']['username']
-        );
-        ?>
-    </p>
-    <?php
-    $matches = array();
-    $sentencesLists = array();
-    $content = $message['PrivateMessage']['content'];
-    if (preg_match_all("#\[list:(\d+)]#", $content, $matches) != false) {
-        foreach ($matches[1] as $sl) {
-            $sentencesLists[] = $this->requestAction(
-                '/sentences_lists/show/'.$sl.'/return'
-            );
-            $message['content'] = str_replace(
-                '[list:'.$sl.']', '', $message['content']
-            );
-        }
-    }
-    ?>
-    <p class="pm_content">
+                ?>
+            </li>
+            
+            <li class="author">
+                <?php $wall->displayLinkToUserProfile($userName); ?>
+            </li>
+            
+            <li class="date">
+                <?php echo $date->ago($messageDate); ?>
+            </li>
+        </ul>
+        
+        <div class="body">
         <?php
+        $matches = array();
+        $sentencesLists = array();
+        $content = $message['PrivateMessage']['content'];
+        if (preg_match_all("#\[list:(\d+)]#", $content, $matches) != false) {
+            foreach ($matches[1] as $sl) {
+                $sentencesLists[] = $this->requestAction(
+                    '/sentences_lists/show/'.$sl.'/return'
+                );
+                $message['content'] = str_replace(
+                    '[list:'.$sl.']', '', $message['content']
+                );
+            }
+        }
+        
         echo $clickableLinks->clickableURL(
             nl2br($content)
         );
         ?>
-    </p>
-    <?php
-    foreach ($sentencesLists as $list) {
-        echo '<h3>'.$list['SentencesList']['name'].'</h3>';
+        </div>
         
-        if (count($list['Sentence']) > 0) {
-            echo '<ul id="'.$list['SentencesList']['id'].'" class="sentencesList">';
-            foreach ($list['Sentence'] as $sentence) {
-                echo '<li id="sentence'.$sentence['id'].'">';
-                // display sentence
-                if (isset($translationsLang)) {
-                    $sentences->displaySentenceInList(
-                        $sentence,
-                        $translationsLang
-                    );
-                } else {
-                    $sentences->displaySentenceInList($sentence);
+        <?php
+        foreach ($sentencesLists as $list) {
+            echo '<h3>'.$list['SentencesList']['name'].'</h3>';
+            
+            if (count($list['Sentence']) > 0) {
+                echo '<ul id="'.$list['SentencesList']['id'].'" class="sentencesList">';
+                foreach ($list['Sentence'] as $sentence) {
+                    echo '<li id="sentence'.$sentence['id'].'">';
+                    // display sentence
+                    if (isset($translationsLang)) {
+                        $sentences->displaySentenceInList(
+                            $sentence,
+                            $translationsLang
+                        );
+                    } else {
+                        $sentences->displaySentenceInList($sentence);
+                    }
+                    echo '</li>';
                 }
-                echo '</li>';
+                echo '</ul>';
+            } else {
+                __('This list does not have any sentence');
             }
-            echo '</ul>';
-        } else {
-            __('This list does not have any sentence');
         }
-    }
-    ?>
+        ?>
+    </div>
     </div>
 </div>
