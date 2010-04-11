@@ -39,7 +39,7 @@ App::import('Core', 'Sanitize');
 
 class AppController extends Controller
 {
-    public $components = array('Acl','Auth','Permissions','RememberMe', 'Cookie');
+    public $components = array('Acl','Auth','Permissions','RememberMe', 'Cookie','RequestHandler');
     public $helpers = array(
         'Sentences',
         'Comments',
@@ -63,19 +63,6 @@ class AppController extends Controller
         // $this->layout = 'maintenance';
         
         Security::setHash('md5');
-        // seems to be important so that the browser displays properly 
-        //login info in header
-        $this->disableCache(); 
-        //Configure AuthComponent
-        $this->Auth->loginAction = array(
-            'controller' => 'users',
-            'action' => 'login'
-        );
-        $this->Auth->logoutRedirect = array(
-            'controller' => 'pages',
-            'action' => 'display',
-            'home'
-        );
 
         // this line will call views/elements/session_expired.ctp
         // when one try to do an ajax action after is session expired
@@ -91,8 +78,8 @@ class AppController extends Controller
         
         // So that we can access the current users info from models.
         App::import('Model', 'CurrentUser');
-        CurrentUser::store($this->Auth->user());
-        
+        CurrentUser::store($this->Auth->user());        
+
     }
 
     /**
@@ -103,6 +90,10 @@ class AppController extends Controller
      */
     public function beforeRender()
     {
+        // without this 3 lines, html send by ajax will have the whole layout
+        if($this->RequestHandler->isAjax()) {
+            $this->layout = '';
+        }
         // Language of interface
         if (isset($this->params['lang'])) {
 
