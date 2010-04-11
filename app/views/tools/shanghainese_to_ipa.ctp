@@ -78,7 +78,7 @@ if (!isset($lastText)) {
         <?php
         if (isset($convertedText)) {
             echo '<div id="conversion">';
-                echo $convertedText;
+                echo Sanitize::html($convertedText);
             echo '</div>';
         }
 
