@@ -70,14 +70,13 @@ class PrivateMessage extends AppModel
                     'PrivateMessage.user_id' => $userId,
                     'PrivateMessage.folder' => $folderId
                 ),
-                'limit'=> 10,
                 'order' => 'PrivateMessage.date DESC',
                 'contain' => array(
                     'Sender' => array(
-                        'fields' => array('username')
+                        'fields' => array('username', 'image'),
                     ),
                     'Recipient' => array(
-                        'fields' => array('username')
+                        'fields' => array('username', 'image')
                     )
                 )
             )

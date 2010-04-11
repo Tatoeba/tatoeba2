@@ -105,6 +105,10 @@ class WallHelper extends AppHelper
     
     public function displayMessagePosterImage($userName, $userImage)
     {
+        if (empty($userImage)) {
+            $userImage = 'unknown-avatar.jpg';
+        }
+        
         echo $this->Html->link(
             $this->Html->image(
                 'profiles/'. $userImage,
@@ -334,10 +338,6 @@ class WallHelper extends AppHelper
         $messageDate = $message['date'];
         $userName = $author['username'];
         $userImage = $author['image'];
-
-        if (empty($userImage)) {
-            $userImage = 'unknown-avatar.jpg';
-        }
         ?>
         <ul class="meta" >
             <!-- reply option -->

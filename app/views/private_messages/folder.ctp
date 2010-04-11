@@ -47,30 +47,13 @@ echo $this->element('pmmenu');
 		<?php echo $this->element('pmtoolbox'); ?>
 		<table class="pm_folder">
 		<?php
-        echo '<tr><th>'.__('Date', true).'</th>';
-
-        if ($folder == 'Sent') {
-            echo '<th>'.__('to', true).'</th>';
-        } else {
-            echo '<th>'.__('from', true).'</th>';
-        }
-        echo '<th>'.__('Subject', true).'</th><th></th></tr>';
 
         foreach ($content as $msg) {
             if ($msg['PrivateMessage']['isnonread'] == 1) {
-                 echo '<tr class="pm_folder_line unread">';
+                 echo '<tr class="messageHeader unread">';
             } else {
-                 echo '<tr class="pm_folder_line">';
+                 echo '<tr class="messageHeader">';
             }
-            echo '<td>' ;
-                echo $html->link(
-                    $date->ago($msg['PrivateMessage']['date']),
-                    array('
-                        action' => 'show',
-                        $msg['PrivateMessage']['id']
-                    )
-                );
-            echo '</td>';
 
             /* Used to display properly the name of the sender, or receiver
              * while we are in Sent or other folder.
@@ -78,11 +61,15 @@ echo $this->element('pmmenu');
 			 */
             if ($folder != 'Sent') {
                 $username = $msg['Sender']['username'];
+                $userImage = $msg['Sender']['image'];
+                $label = sprintf(__('from %s', true), $username);
             } else {
                 $username = $msg['Recipient']['username'];
+                $userImage = $msg['Recipient']['image'];
+                $label = sprintf(__('to %s', true), $username);
             }
             echo '<td>';
-            echo $html->link($username, array('action' => 'write', $username));
+            $wall->displayMessagePosterImage($username, $userImage);
             echo '</td>';
 
             if ($msg['PrivateMessage']['title'] == '') {
@@ -90,18 +77,31 @@ echo $this->element('pmmenu');
             } else {
                 $messageTitle = $msg['PrivateMessage']['title'];
             }
-
-            echo '<td>' .
-                $html->link(
-                    $messageTitle,
+            
+            echo '<td>';
+                $url = $html->url(
                     array(
                         'action' => 'show',
                         $msg['PrivateMessage']['id']
                     )
-                )
-                .'</td>';
-            echo '<td><span class="action_link">';
-
+                );
+                // Title
+                echo '<a class="linkToMessage" href='.$url.'>';
+                echo '<div class="title">';
+                echo $messageTitle;
+                echo '</div>';
+                
+                // User and date
+                echo '<span class="userAndDate">';
+                echo $label;
+                echo ', ';
+                echo $date->ago($msg['PrivateMessage']['date']);
+                echo '</span>';
+                echo '</a>';
+            echo '</td>';
+            
+            // Delete
+            echo '<td>';
             if ($folder == 'Trash') {
                 echo $html->link(
                     __('Restore', true),
@@ -119,22 +119,9 @@ echo $this->element('pmmenu');
                     )
                 );
             }
-
-            if ($msg['PrivateMessage']['isnonread'] == 1) {
-                $label = __('Mark as read', true);
-            } else {
-                $label = __('Mark as unread', true);
-            }
-            
-            echo ' - ' .
-                $html->link(
-                    $label,
-                    array(
-                        'action' => 'mark',
-                        $folder, $msg['PrivateMessage']['id']
-                    )
-                )
-            . '</span></td></tr>';
+           echo '</td>';
+           
+           echo '</tr>';
         }
         ?>
 		</table>

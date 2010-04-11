@@ -40,8 +40,15 @@ class PrivateMessagesController extends AppController
 {
     public $name = 'PrivateMessages';
 
-    public $helpers = array('Comments', 'Languages',
-                        'Navigation', 'Html', 'Date');
+    public $helpers = array(
+        'Comments',
+        'Languages',
+        'Navigation', 
+        'Html', 
+        'Date',
+        'Wall' // TODO Move the displayMessagePosterImage() method of
+               // WallHelper into a more general helper
+    );
     public $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
 
     public $langs = array('en', 'fr', 'jp', 'es', 'de');

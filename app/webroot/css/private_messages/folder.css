@@ -30,11 +30,35 @@
 .pm_module {min-height:150px;}
 
 .pm_folder th {text-align:left;}
-.pm_folder td {height:30px;}
+.pm_folder td {}
 
-span.action_link {visibility:hidden;}
+.messageHeader{
+    border-top: 1px dotted #CCC;
+}
 
-tr.pm_folder_line:hover{background:#E2FFD2;}
-tr.pm_folder_line:hover span.action_link {visibility:visible;}
+.messageHeader .userAndDate {
+    color:#999;
+	font-style:italic;
+	font-size:11px;
+    display: block;
+    font-weight: normal;
+}
 
-tr.unread {font-weight:bold;}
+.linkToMessage{
+    padding: 5px;
+    font-weight:bold; 
+    color:#89c140; 
+    display:block;
+}
+.linkToMessage:hover{
+    color:#555;
+    background:#E4FFD1;
+}
+
+.messageHeader img {
+    height: 40px;
+}
+
+.unread a{
+    color: #FF6A00;
+}
