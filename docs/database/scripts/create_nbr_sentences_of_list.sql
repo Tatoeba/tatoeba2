@@ -1,3 +1,4 @@
+
 Delimiter |
 DROP PROCEDURE create_nbr_sentences_of_list | 
 CREATE PROCEDURE create_nbr_sentences_of_list()
@@ -15,8 +16,7 @@ BEGIN
     
     OPEN curseur_list ;
     
-    ALTER TABLE  `sentences_lists`
-    ADD  `numberOfSentences` MEDIUMINT( 8 ) UNSIGNED NOT NULL DEFAULT  '0' AFTER  `user_id`;
+
     
     REPEAT
         FETCH curseur_list INTO list_id ;
@@ -36,3 +36,4 @@ BEGIN
 
 END |
 CALL create_nbr_sentences_of_list() |
+Delimiter ;
