@@ -45,47 +45,73 @@ if ($session->check('Message.auth')) {
 </script>
 
 
-
 <a class="menuItem" onclick="javascript:openLoginForm();">
     <?php echo __('Log in', true); ?>
 </a>
 
+<?php
+echo $form->create(
+    'User', 
+    array(
+        'action' => 'login',
+        'id' => 'UserLoginForm_FromBar',
+        'style' => 'display:none;'
+    )
+);
 
-<form id="UserLoginForm_FromBar" method="post" action="/eng/users/login"
-    style="display:none;">
-    <fieldset style="display:none;">
-        <input type="hidden" name="_method" value="POST" />
-    </fieldset>
-    <fieldset>
-        <label for="UserUsername"><?php echo __('Username:', true); ?> </label>
-        <input name="data[User][username]" type="text" maxlength="20" value=""
-          id="UserUsername" /><br/>
-        <label for="UserPassword"><?php echo __('Password:', true); ?> </label>
-        <input type="password" name="data[User][password]" value=""
-            id="UserPassword" />
-        <input type="hidden" name="data[User][rememberMe]" value="0"
-            id="UserRememberMe_" /><br/>
-        <label for="UserRememberMe" class="notInBlackBand">
-            <?php echo __('Remember me', true); ?></label>
-        <input type="checkbox" name="data[User][rememberMe]" value="1"
-            id="UserRememberMe" /><br/>
-        <input type="submit" value="<?php echo __('Log in', true); ?>" />
-        <input type="hidden" name="redirectTo"
-            value="<?php echo htmlentities($_SERVER['REQUEST_URI']); ?>" />
-    </fieldset>
-    <p>
-        <?php
-        echo $html->link(
-            __('Password forgotten?', true),
-            array(
-                "controller" => "users",
-                "action" => "new_password"
-            )
-        );
-        ?>
-        <a class="menuItem" onclick="javascript:closeLoginForm();"
-            style="float:right;">
-            <?php echo __('Close', true); ?>
-       </a>
-    </p>
-</form>
+echo '<fieldset>';
+// Username
+echo $form->input(
+    'username',
+    array(
+        'label' => __('Username : ',true)
+    )
+);
+// Password
+echo $form->input(
+    'password', 
+    array(
+        'label' => __('Password : ',true)
+    )
+);
+// Checkbox
+echo $form->checkbox('rememberMe'); 
+echo '<label for="UserRememberMe" class="notInBlackBand">';
+echo __('Remember me', true);
+echo '</label>';
+// Redirect
+echo $form->hidden(
+    'redirectTo', 
+    array(
+        'value' => htmlentities($_SERVER['REQUEST_URI'])
+    )
+);
+// Login button
+echo $form->submit(__('Log in', true));
+echo '</fieldset>';
+?>
+
+<p>
+<?php
+echo $html->link(
+    __('Password forgotten?', true),
+    array(
+        "controller" => "users",
+        "action" => "new_password"
+    )
+);
+echo $html->link(
+    __('Close', true),
+    '#',
+    array(
+        'class' => 'menuItem',
+        'style' => 'float:right;',
+        'onclick' => 'javascript:closeLoginForm();'
+    )
+);
+?>
+</p>
+
+<?php
+echo $form->end();
+?>
