@@ -39,6 +39,7 @@ class SentencesController extends AppController
     public $name = 'Sentences';
     public $components = array (
         'GoogleLanguageApi',
+        'SaveSentence',
         'Lucene',
         'Permissions'
     );
@@ -220,7 +221,7 @@ class SentencesController extends AppController
         }
 
         // saving
-        $isSaved = $this->wrapper_save_sentence(
+        $isSaved = $this->SaveSentence->wrapper_save_sentence(
             $sentenceLang,
             $sentenceText,
             $userId
@@ -276,7 +277,7 @@ class SentencesController extends AppController
         $sentenceLang = $_POST['selectedLang'];
         $sentenceText = $_POST['value'];
 
-        $isSaved = $this->wrapper_save_sentence(
+        $isSaved = $this->SaveSentence->wrapper_save_sentence(
             $sentenceLang,
             $sentenceText,
             $userId
@@ -348,7 +349,7 @@ class SentencesController extends AppController
             if ($hack_array[0] != '') {
                 $sentenceLang = $hack_array[0]; 
             }
-            $isSaved = $this->wrapper_save_sentence(
+            $isSaved = $this->SaveSentence->wrapper_save_sentence(
                 $sentenceLang,
                 $sentenceText,
                 $userId,
@@ -791,45 +792,6 @@ class SentencesController extends AppController
             $this->Sentence->incrementStatistics($newlang);
             $this->Sentence->decrementStatistics($prevLang);
         }
-    }
-
-    /**
-     * all the stuff to save a sentence is made here
-     * whatever it is editing / saving a sentence
-     *
-     * this function is never called directly and is only here
-     * to factorize :)
-     *
-     * @param string $lang                   The lang of the sentence to be saved,
-     *                                       if lang is 'auto' then we will try to
-     *                                       auto detect it
-     * @param string $text                   The sentence text.
-     * @param int    $userId                 The Id of the user who add/edit this
-     *                                       sentence.
-     * @param int    $sentenceId             If we edit the sentence, it's the id of
-     *                                       the sentence.
-     *
-     * @return boolean
-     *
-     */
-    public function  wrapper_save_sentence(
-        $lang,
-        $text,
-        $userId,
-        $sentenceId = null
-    ) {
-        if ($lang === 'auto') {
-            $lang = $this->GoogleLanguageApi->detectLang($text);
-        }
-
-        $this->data['Sentence']['id'] = $sentenceId; 
-        $this->data['Sentence']['lang'] = $lang;
-        $this->data['Sentence']['user_id'] = $userId;
-        $this->data['Sentence']['text'] = $text;
-        
-        $isSaved = $this->Sentence->save($this->data);
-                
-        return $isSaved;
     }
 }
 ?>

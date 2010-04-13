@@ -40,7 +40,7 @@ class SentencesListsController extends AppController
     public $helpers = array(
         'Sentences', 'Navigation', 'Html', 'Lists'
     );
-    public $components = array ('GoogleLanguageApi');
+    public $components = array ('SaveSentence');
     
     /**
      * Before filter.
@@ -122,7 +122,7 @@ class SentencesListsController extends AppController
     {
         Sanitize::html($this->data['SentencesList']['name']);
         if (!empty($this->data) 
-            AND rtrim($this->data['SentencesList']['name']) != ''
+            and rtrim($this->data['SentencesList']['name']) != ''
         ) {
             $this->data['SentencesList']['user_id'] = $this->Auth->user('id');
             $this->SentencesList->save($this->data);
@@ -353,15 +353,16 @@ class SentencesListsController extends AppController
             Sanitize::paranoid($sentenceText);
 
             //saving
-            $sentence = new Sentence();
-            $isSaved = $sentence->wrapper_save_sentence(
-                $sentenceLang,
+            $isSaved = $this->SaveSentence->wrapper_save_sentence(
+                'auto',
                 $sentenceText,
                 $this->Auth->user('id')
             );
 
             if ($isSaved) {
 
+                $sentence = new Sentence();
+                pr($sentence->id);
                 $this->SentencesList->addSentenceToList(
                     $sentence->id,
                     $listId
@@ -369,9 +370,8 @@ class SentencesListsController extends AppController
                 $sentenceSaved = $sentence->getSentenceWithId($sentence->id);
                 $this->set('sentence', $sentenceSaved);
                 $this->set('listId', $listId);
-                
             }
-
+            $this->set('isSaved', $isSaved);
         }
     }
 

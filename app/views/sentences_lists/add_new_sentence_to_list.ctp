@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+
+if ($isSaved) {
 echo $javascript->link('sentences_lists.remove_sentence_from_list.js', true);
 
 echo '<li id="sentence'.$sentence['Sentence']['id'].'">';
@@ -42,4 +44,9 @@ echo '<li id="sentence'.$sentence['Sentence']['id'].'">';
     $sentences->displaySentenceInList($sentence['Sentence']);
 echo '</li>';
 
+} else {
+    echo '<li>';
+        __("Problem while saving");
+    echo '</li>';
+}
 ?>
