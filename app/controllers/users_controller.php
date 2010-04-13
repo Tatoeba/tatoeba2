@@ -64,9 +64,18 @@ class UsersController extends AppController
         // setting actions that are available to everyone, even guests
         // no need to allow login
         $this->Auth->allowedActions = array(
-            'all', 'search', 'show', 'logout','register','new_password', 
-            'confirm_registration', 'resend_registration_mail', 'captcha_image', 
-            'check_username','check_email'
+            'all',
+            'search',
+            'show',
+            'check_login',
+            'logout',
+            'register',
+            'new_password', 
+            'confirm_registration',
+            'resend_registration_mail',
+            'captcha_image', 
+            'check_username',
+            'check_email'
         );
         //$this->Auth->allowedActions = array('*');
     }
@@ -156,14 +165,57 @@ class UsersController extends AppController
      */
     public function login()
     {
+        /*maybe factor in _common login too*/
         if (!$this->Auth->user()) {
             return;
         }
 
+        $this->_common_login();
+
+    }
+
+
+    /**
+     * used by the element form
+     *
+     * @return void
+     */
+    public function check_login()
+    {
+        $this->Auth->login($this->data);
+
+
+        if (!$this->Auth->user()) {
+            /*TODO add a flash message "login failed" */
+            $this->redirect();
+        }
+
+        $this->_common_login();
+
+        if ( isset($_POST["redirectTo"])) {
+            $this->redirect($_POST["redirectTo"]);
+        } else {
+            $this->redirect($this->Auth->redirect());
+        }
+
+    }
+
+    /**
+     * Used by the login functions
+     *
+     * @return void
+     */
+
+    private function _common_login()
+    {
+
+
+        // update the last login time
         $data['User']['id'] = $this->Auth->user('id');
         $data['User']['last_time_active'] = time();
         $this->User->save($data);
 
+        // group_id 5 is the group of users who haven't valided their account
         if ($this->Auth->user('group_id') == 5) {
             $this->flash(
                 __(
@@ -181,6 +233,7 @@ class UsersController extends AppController
             $this->redirect($this->Auth->redirect());
         }
 
+
         if (empty($this->data['User']['rememberMe'])) {
             $this->RememberMe->delete();
         } else {
@@ -189,13 +242,8 @@ class UsersController extends AppController
             );
         }
 
-        unset($this->data['User']['rememberMe']);
-        if ( isset($_POST["redirectTo"])) {
-            $this->redirect($_POST["redirectTo"]);
-        } else {
-            $this->redirect($this->Auth->redirect());
-        }
     }
+
 
     /**
      * Logout.
