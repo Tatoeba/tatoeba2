@@ -39,7 +39,15 @@ App::import('Core', 'Sanitize');
 
 class AppController extends Controller
 {
-    public $components = array('Acl','Auth','Permissions','RememberMe', 'Cookie','RequestHandler');
+    public $components = array(
+        'Acl',
+        'Auth',
+        'Permissions',
+        'RememberMe',
+        'Cookie',
+        'RequestHandler'
+    );
+
     public $helpers = array(
         'Sentences',
         'Comments',
@@ -91,7 +99,7 @@ class AppController extends Controller
     public function beforeRender()
     {
         // without this 3 lines, html send by ajax will have the whole layout
-        if($this->RequestHandler->isAjax()) {
+        if ($this->RequestHandler->isAjax()) {
             $this->layout = '';
         }
         // Language of interface
