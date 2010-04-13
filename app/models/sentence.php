@@ -69,12 +69,13 @@ class Sentence extends AppModel
     );    
 
     public $hasMany = array(
+        'Link',
         'Contribution',
         'SentenceComment', 
         'Favorites_users' => array ( 
-                'classname'  => 'favorites',
-                'foreignKey' => 'favorite_id'
-            )
+            'classname'  => 'favorites',
+            'foreignKey' => 'favorite_id'
+        )
     );
     
     public $belongsTo = array('User');
@@ -129,19 +130,6 @@ class Sentence extends AppModel
             $this->Contribution->saveSentenceContribution(
                 $this->id, $sentenceLang, $sentenceText, $sentenceAction
             );
-            
-            // --- Logs for links ---
-            if (isset($this->data['Translation'])) {
-                $linkAction = 'insert';
-                $translationId = $this->data['Translation']['Translation'][0];
-                
-                $this->Contribution->saveLinkContribution(
-                    $this->id, $translationId, $linkAction
-                );
-                $this->Contribution->saveLinkContribution(
-                    $translationId, $this->id, $linkAction
-                );
-            }
         }
     }
     
@@ -1069,6 +1057,32 @@ class Sentence extends AppModel
         $ipaSentence = str_replace($sinogramsArray, $ipaArray, $shanghaineseText);
         return $ipaSentence;
 
+    }
+    
+    
+    /**
+     * Add translation to sentence with given id. Adding a translation means adding
+     * a new sentence, and two links.
+     *
+     * @param int    $sentenceId
+     * @param string $translationText
+     * @param string $translationLang
+     */
+    public function saveTranslation($sentenceId, $translationText, $translationLang)
+    {
+        // saving translation
+        $data['Sentence']['text'] = $translationText;
+        $data['Sentence']['lang'] = $translationLang;
+        $data['Sentence']['user_id'] = CurrentUser::get('id');
+        $sentenceSaved = $this->save($data);
+        
+        // saving links
+        if ($sentenceSaved) {
+            $this->Link->add($sentenceId, $this->id);
+        }
+        
+        return $sentenceSaved; // The most important is that the sentence is saved.
+                               // Never mind for the links.
     }
 }
 ?>

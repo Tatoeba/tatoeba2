@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -303,9 +303,8 @@ class SentencesController extends AppController
     }
 
     /**
-     * Save sentence.
-     * Used in AJAX request, in  
-     * sentences.edit_in_place.js.
+     * Edit sentence.
+     * Used in AJAX request, in sentences.edit_in_place.js.
      *
      * @return void
      */
@@ -327,8 +326,7 @@ class SentencesController extends AppController
         
         $this->Session->write('contribute_lang', $sentenceLang);
 
-        if (!isset($sentenceText) || rtrim($sentenceText) === ''
-        ) {
+        if (!isset($sentenceText) || rtrim($sentenceText) === '') {
             // if the sentence contain no text (empty or only space)
             // the we directly return without saving
             return;
@@ -338,7 +336,6 @@ class SentencesController extends AppController
         $sentenceText = rtrim($sentenceText);
         
         if (isset($sentenceId)) {
-            // ---- sentences.edit_in_place.js -----
             
             Sanitize::paranoid($sentenceId);
             
@@ -432,27 +429,27 @@ class SentencesController extends AppController
             && isset($sentenceId)
             && !(empty($userId))
         ) {
-            // If we want the "HasAndBelongsToMany" association to work, 
-            // we need the two lines below : 
-            $this->Sentence->id = $sentenceId; // TODO why this line ?
-
-            $isSaved = $this->wrapper_save_sentence(
-                $translationLang,
-                $translationText,
-                $userId,
-                null,
-                $sentenceId,
-                $sentenceLang
-            );
+            // Language detection
+            if ($translationLang == 'auto') {
+                $translationLang = $this->GoogleLanguageApi->detectLang(
+                    $translationText
+                );
+            }
             
             // Saving...
+            $isSaved = $this->Sentence->saveTranslation(
+                $sentenceId,
+                $translationText,
+                $translationLang
+            );
+            
             if ($isSaved) {
                 $canLinkAndUnlink = CurrentUser::canLinkAndUnlink($sentenceId);
                 
                 $this->set('canLinkAndUnlink', $canLinkAndUnlink);
                 $this->set('originalId', $sentenceId);
                 $this->set('translationId', $this->Sentence->id);
-                $this->set('translationLang', $this->data['Sentence']['lang']);
+                $this->set('translationLang', $translationLang);
                 $this->set('translationText', $translationText);
             }
         }
@@ -469,26 +466,21 @@ class SentencesController extends AppController
         if (isset($_GET['query'])) {
             $query = $_GET['query'];    
             Sanitize::html($query);
-
+            
+            $page = null;
+            $from = null;
+            $to = null;
+            
             if (isset($_GET['page'])) {
                 $page = $_GET['page'];
                 Sanitize::html($page);
-            } else {
-                $page = null;
             }
-            
             if (isset($_GET['from']) && $_GET['from'] != 'und') {
                 $from = $_GET['from'];
-            } else {
-                $from = null;
             }
-            
             if (isset($_GET['to']) && $_GET['to'] != 'und') {
                 $to = $_GET['to'];
-            } else {
-                $to = null;
-            }            
-            
+            }
             
             $this->Session->write('search_query', $query);
             $this->Session->write('search_from', $from);
@@ -803,7 +795,7 @@ class SentencesController extends AppController
 
     /**
      * all the stuff to save a sentence is made here
-     * whatever it is editing / saving a translation etc..
+     * whatever it is editing / saving a sentence
      *
      * this function is never called directly and is only here
      * to factorize :)
@@ -816,10 +808,6 @@ class SentencesController extends AppController
      *                                       sentence.
      * @param int    $sentenceId             If we edit the sentence, it's the id of
      *                                       the sentence.
-     * @param int    $translatedSentenceId   If the sentence is a translation of an
-     *                                       other, id of the translated sentence
-     * @param string $translatedSentenceLang Lang of the translated sentence if the
-     *                                       Sentence to add is a translation.
      *
      * @return boolean
      *
@@ -828,34 +816,17 @@ class SentencesController extends AppController
         $lang,
         $text,
         $userId,
-        $sentenceId = null,
-        $translatedSentenceId = null,
-        $translatedSentenceLang = null
+        $sentenceId = null
     ) {
-        $correctness = 1;
-       
-        // if the sentence to save is a translation 
-        if (isset($translatedSentenceId)) {
-            $this->data['Translation']['Translation'][] 
-                = $translatedSentenceId ;
-            $this->data['InverseTranslation']['InverseTranslation'][]
-                = $translatedSentenceId;
-
-            // Language of original sentence, needed for the logs
-            $this->data['Sentence']['sentence_lang']
-                = $translatedSentenceLang; 
-        }
-
         if ($lang === 'auto') {
             $lang = $this->GoogleLanguageApi->detectLang($text);
         }
 
         $this->data['Sentence']['id'] = $sentenceId; 
-        $this->data['Sentence']['correctness'] = $correctness;
         $this->data['Sentence']['lang'] = $lang;
         $this->data['Sentence']['user_id'] = $userId;
         $this->data['Sentence']['text'] = $text;
-
+        
         $isSaved = $this->Sentence->save($this->data);
                 
         return $isSaved;
