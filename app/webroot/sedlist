@@ -46,7 +46,32 @@ s/ gana/ ga na/g
 s/\([0-9]{1,2}\) hito/ \1nin /g
 s/ nin\(\.\|,\| \)/ hito\1/g
 s/^nin /hito /g
-s/KA hito/KA jin/g
+s/2 hito/futari/g
+s/\([A-Z]\) hito/\1 jin/g
+s/3 gatsu/sangatsu/g
+s/4 gatsu/shigatsu/g
+s/5 gatsu/gogatsu/g
+s/6 gatsu/rokugatsu/g
+s/7 gatsu/shichigatsu/g
+s/8 gatsu/hachigatsu/g
+s/9 gatsu/kugatsu/g
+s/10 gatsu/juugatsu/g
+s/11 gatsu/juuichigatsu/g
+s/12 gatsu/juunigatsu/g
+s/1 gatsu/ichigatsu/g
+s/2 gatsu/nigatsu/g
+s/gatsu 1 nichi/gatsu tsuitachi/g
+s/gatsu 2 nichi/gatsu futsuka/g
+s/gatsu 3 nichi/gatsu mikka/g
+s/gatsu 4 nichi/gatsu yokka/g
+s/gatsu 5 nichi/gatsu itsuka/g
+s/gatsu 6 nichi/gatsu muika/g
+s/gatsu 7 nichi/gatsu nanoka/g
+s/gatsu 8 nichi/gatsu youka/g
+s/gatsu 9 nichi/gatsu kokonoka/g
+s/gatsu 10 nichi/gatsu tooka/g
+s/gatsu 20 nichi/gatsu hatsuka/g
+s/gatsu 24 nichi/gatsu ni juu yokka/g
 s/^kun /kimi /g
 s/ nasai/nasai/g
 s/ sai/sai/g
@@ -86,5 +111,14 @@ s/yatte/ yatte /g
 s/ nda/'n da/g
 s/darou/ darou /g
 s/chotto/chotto /g
+s/isshoni/issho ni/g
+s/yokatta/ yokatta /g
+s/saki nama no/sensei no/g
+s/n'o kin/n o kane/g
+s/takusan/ takusan /g
+s/ teoki/te oki/g
+s/teoki/te oki/g
+s/monoda/ mono da/g
+s/konoka\(ban\|rashi\|gi\)ha/kono ka\1 wa/g
 s/ \(i\|ru\)\(\.\| \)/\1 /g
 s/ \+\(\.\|\?\|\!\|,\|'\)/\1/g

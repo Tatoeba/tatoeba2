@@ -1,0 +1,1 @@
+SELECT sentence_id, meaning_id, text FROM `sentence_annotations`INTO OUTFILE '/home/tatoeba/www/app/tmp/jpn_indices.csv'FIELDS TERMINATED BY ';' ENCLOSED BY '"' LINES TERMINATED BY '\n';

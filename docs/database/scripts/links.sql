@@ -1,0 +1,1 @@
+SELECT sentence_id, translation_id FROM `sentences_translations`INTO OUTFILE '/home/tatoeba/www/app/tmp/links.csv'FIELDS TERMINATED BY ';' ENCLOSED BY '"' LINES TERMINATED BY '\n';

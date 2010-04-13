@@ -1,0 +1,15 @@
+User-Agent: *
+Disallow: /users
+Disallow: /eng/users
+Disallow: /fre/users
+Disallow: /spa/users
+Disallow: /chi/users
+Disallow: /deu/users
+Disallow: /ita/users
+
+Disallow: /*.css$
+Disallow: /*.js$
+
+Disallow: */contributions/show/*
+Disallow: */sentences_comments/show/*
+Disallow: */sentences/get_translations/*
