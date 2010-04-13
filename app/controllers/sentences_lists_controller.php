@@ -361,17 +361,19 @@ class SentencesListsController extends AppController
 
             if ($isSaved) {
 
-                $sentence = new Sentence();
-                pr($sentence->id);
+                $Sentence = ClassRegistry::init('Sentence');
                 $this->SentencesList->addSentenceToList(
-                    $sentence->id,
+                    $Sentence->id,
                     $listId
                 );
-                $sentenceSaved = $sentence->getSentenceWithId($sentence->id);
+                $sentenceSaved = $Sentence->getSentenceWithId($Sentence->id);
                 $this->set('sentence', $sentenceSaved);
                 $this->set('listId', $listId);
+                $this->set('isSaved', true);
+            } else {
+
+                $this->set('isSaved', false);
             }
-            $this->set('isSaved', $isSaved);
         }
     }
 
