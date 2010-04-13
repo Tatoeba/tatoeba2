@@ -46,55 +46,10 @@ echo $this->element('pmmenu');
     <h2><?php echo $messageTitle; ?></h2>
 
     <?php
-    if ($message['PrivateMessage']['folder'] == 'Trash') {
-        $delOrRestLink = $html->link(
-            __('Restore', true), 
-            array(
-                'action' => 'restore', $message['PrivateMessage']['id']
-            )
-        );
-    } else {
-        $delOrRestLink = $html->link(
-            __('Delete', true), 
-            array(
-                'action' => 'delete', 
-                $message['PrivateMessage']['folder'], 
-                $message['PrivateMessage']['id']
-            )
-        );
-    }
-
-    $replyLink = $html->link(
-        __('Reply', true), 
-        array(
-            'action' => 'write',
-            $message['Sender']['username'],
-            $message['PrivateMessage']['id']
-        )
-    ); 
-    
-    $markAsUnread = $html->link(
-        __('Mark as unread', true), 
-        array(
-            'action' => 'mark',
-            'Inbox',
-            $message['PrivateMessage']['id']
-        )
-    );
-    
-    echo $this->element(
-        'pmtoolbox',
-        array(
-            'extralink' => '<li>' . $replyLink . '</li>'.
-            '<li>' . $delOrRestLink . '</li>' .
-            '<li>' . $markAsUnread . '</li>'
-        )
-    ); 
-    
     $userName = $message['Sender']['username'];
     $userImage = $message['Sender']['image'];
     $messageDate = $message['PrivateMessage']['date'];
-    
+    $folder = $message['PrivateMessage']['folder'];
     // TODO Create a more general helper that can display comments on sentences, 
     // messages on Wall and private message, and use it to display this private 
     // message below
@@ -103,6 +58,47 @@ echo $this->element('pmmenu');
     <div class="privateMessage">
     
         <ul class="meta" >
+            <li class="action">
+                <?php
+                if ($folder == 'Trash') {
+                    echo $html->link(
+                        __('restore', true), 
+                        array(
+                            'action' => 'restore',
+                            $message['PrivateMessage']['id']
+                        )
+                    );
+                } else {
+                    echo $html->link(
+                        __('delete', true), 
+                        array(
+                            'action' => 'delete', 
+                            $message['PrivateMessage']['folder'], 
+                            $message['PrivateMessage']['id']
+                        )
+                    );
+                }
+                
+                echo ' - ';
+                
+                echo $html->link(
+                    __('mark as unread', true), 
+                    array(
+                        'action' => 'mark',
+                        'Inbox',
+                        $message['PrivateMessage']['id']
+                    )
+                );
+                
+                if ($folder == 'Inbox') {
+                    echo ' - ';
+                    echo $html->link(
+                        __('reply', true), 
+                        '#reply'
+                    );
+                }
+                ?>
+            </li>
             <li class="image">
                 <?php
                 $wall->displayMessagePosterImage(
@@ -169,5 +165,14 @@ echo $this->element('pmmenu');
         }
         ?>
     </div>
+    
+    <a name="reply"></a>
+    <h2><?php __('Reply'); ?></h2>
+    <?php
+    if ($folder == 'Inbox') {
+        $privateMessages->displayForm($userName, $messageTitle, $content);
+    }
+    ?>
+    
     </div>
 </div>

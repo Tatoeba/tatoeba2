@@ -44,7 +44,6 @@ echo $this->element('pmmenu');
         <?php echo $folderName; ?>
 		</h2>
         
-		<?php echo $this->element('pmtoolbox'); ?>
 		<table class="pm_folder">
 		<?php
 

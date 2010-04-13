@@ -106,24 +106,6 @@ class PrivateMessage extends AppModel
     }
 
     /**
-     * function to format the text of the messages in case of answer
-     *
-     * @param string $content The content of the message
-     * @param string $login   The author of the original message
-     *
-     * @return string
-     */
-    public function formatReplyMessage($content, $login)
-    {
-        $messNextRegExp = preg_replace(
-            "#\r?\n#iU", "\n > ",
-            wordwrap($content, 60)
-        );
-        return "\n" . sprintf(__('%s wrote:', true), $login) . "\n > "
-            . $messNextRegExp;
-    }
-
-    /**
      * Count how many unread messages a specific user has
      *
      * @param int $userId The user id. 

@@ -46,6 +46,7 @@ class PrivateMessagesController extends AppController
         'Navigation', 
         'Html', 
         'Date',
+        'PrivateMessages',
         'Wall' // TODO Move the displayMessagePosterImage() method of
                // WallHelper into a more general helper
     );
@@ -266,39 +267,20 @@ class PrivateMessagesController extends AppController
     /**
      * Create a new message
      *
-     * @param string $toUserLogin      The login, or the string containing
-     * various login separated by a comma, to which we have to send the message
-     * @param int    $replyToMessageId The identifier of the message to
-     * which the present message is an answer
+     * @param string $recipients The login, or the string containing various login
+     *                           separated by a comma, to which we have to send the 
+     *                           message.
      *
      * @return void
      */
-    public function write($toUserLogin = '', $replyToMessageId = null)
+    public function write($recipients = null)
     {
-
-        Sanitize::html($toUserLogin);
-        Sanitize::paranoid($replyToMessageId);
-        if ($replyToMessageId != null) {
-            $message = $this->PrivateMessage->findById($replyToMessageId);
-            $this->set('isAReply', true);
-            $this->set('replyToTitle', $message['PrivateMessage']['title']);
-            $this->set(
-                'replyToContent',
-                $this->PrivateMessage->formatReplyMessage(
-                    $message['PrivateMessage']['content'],
-                    $toUserLogin
-                )
-            );
+        if ($recipients == null) {
+            $recipients = '';
         } else {
-            $this->set('isAReply', false);
-            $this->set('replyToTitle', '');
+            Sanitize::html($recipients);
         }
-
-        if ($toUserLogin != '') {
-            $this->set('toUserLogin', $toUserLogin);
-        } else {
-            $this->set('toUserLogin', '');
-        }
+        $this->set('recipients', $recipients);        
     }
 
     /**
