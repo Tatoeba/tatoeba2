@@ -25,9 +25,26 @@
 
 
 /*
+ * Header
+ */
+#PrivateMessageSendForm label {
+    width: 100px;
+    display: block;
+    float: left;
+}
+
+#PrivateMessageSendForm .input {
+    margin: 3px 0px;
+}
+
+#PrivateMessageSendForm .input input {
+    width: 400px;
+}
+ 
+/*
  * Textarea
  */
-textarea#PrivateMessageContent{
+#PrivateMessageContent{
 	width:500px;
 	height:200px;
 }

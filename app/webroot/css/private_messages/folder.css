@@ -46,7 +46,6 @@
 
 .linkToMessage{
     padding: 5px;
-    font-weight:bold; 
     color:#89c140; 
     display:block;
 }
@@ -60,5 +59,6 @@
 }
 
 .unread a{
+    font-weight:bold; 
     color: #FF6A00;
 }

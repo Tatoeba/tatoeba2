@@ -62,7 +62,7 @@ if ($isAReply) {
                 'label' => __('to', true),
                 'default' => $toUserLogin,
                 'type' => 'text',
-                'maxLength' => 255
+                'maxlength' => 250
             )
         );
         echo $form->input(
