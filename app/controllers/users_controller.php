@@ -728,6 +728,8 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/Users/stop_following');
         
         $this->Acl->allow($group, 'controllers/Favorites/add_favorite');
+        $this->Acl->allow($group, 'controllers/Favorites/remove_favorite');
+        
         $this->Acl->allow($group, 'controllers/PrivateMessages');
         $this->Acl->allow($group, 'controllers/SentenceAnnotations');
         $this->Acl->allow($group, 'controllers/SentenceComments');
