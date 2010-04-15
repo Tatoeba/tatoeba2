@@ -98,7 +98,7 @@ class ToolsController extends AppController
         // utf8 string, workaround for an apache/php bug  
         setlocale(LC_CTYPE, "fr_FR.UTF-8");
         $escapedText = escapeshellarg($text); 
-        $convertedText =  exec("adso.sh --switch-script -cn -i '$escapedText'");
+        $convertedText =  exec("adso --switch-script -cn -i '$escapedText'");
      
         $this->set('convertedText', $convertedText); 
         $this->set('lastText', $text);
