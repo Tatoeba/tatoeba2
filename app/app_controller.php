@@ -142,6 +142,12 @@ class AppController extends Controller
                 case 'pl':
                     $lang = 'pol';
                     break;
+                case 'ja':
+                    $lang = 'jpn';
+                    break;
+                case 'de':
+                    $lang = 'deu';
+                    break;
                 default  :
                     $lang = 'eng';
             }
