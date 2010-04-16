@@ -169,7 +169,10 @@
                     );
                     echo $form->input(
                         'text', 
-                        array("label" => __('Sentence : ', true))
+                        array(
+                            "label" => __('Sentence : ', true),
+                            "type" => "text"
+                        )
                     );
                     echo $form->end('OK');
                     

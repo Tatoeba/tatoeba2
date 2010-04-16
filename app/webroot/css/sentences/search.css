@@ -28,6 +28,12 @@
 @import url(../elements/sentences_group.css);
 
 
+/*
+ * Register
+ */
+@import url(../elements/register_button.css);
+
+
 /**
  * Search results
  */
@@ -60,4 +66,12 @@ color: #6699CC;
 
 #mostFrequentWords div{
 font-size: 55%;
+}
+
+
+/**
+ * New sentence
+ */
+#SentenceText {
+    width: 100%;
 }
