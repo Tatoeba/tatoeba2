@@ -612,6 +612,9 @@ class UsersController extends AppController
      */
     public function captcha_image()
     {
+        Configure::write('debug', 0); // NOTE: It's normally not good to set debug
+                                   // in controllers, but here we really need to
+                                   // have debug set to 0
         $this->layout = null;
         $this->Captcha->image();
     }
