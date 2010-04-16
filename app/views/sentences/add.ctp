@@ -40,7 +40,7 @@ $javascript->link('sentences.contribute.js', false);
                 'text', 
                 array(
                     "label" => __('Sentence : ', true),
-                    "id" => "newSentenceText"
+                    "id" => "SentenceText"
                 )
             );
             $langArray = $languages->translationsArray();
@@ -49,6 +49,8 @@ $javascript->link('sentences.contribute.js', false);
             if (empty($preSelectedLang)) {
                 $preSelectedLang = 'auto';
             }
+
+            echo '<div class="languageSelection">';
             echo $form->select(
                 'contributionLang',
                 $langArray,
@@ -56,6 +58,7 @@ $javascript->link('sentences.contribute.js', false);
                 array("class"=>"translationLang"),
                 false
             );
+            echo '</div>';
 
             echo $form->button('OK', array("id" => "submitNewSentence"));
             ?>

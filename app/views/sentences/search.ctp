@@ -174,6 +174,23 @@
                             "type" => "text"
                         )
                     );
+                    
+                    $langArray = $languages->translationsArray();
+                    $preSelectedLang = $session->read('contribute_lang');
+
+                    if (empty($preSelectedLang)) {
+                        $preSelectedLang = 'auto';
+                    }
+                    
+                    echo '<div class="languageSelection">';
+                    echo $form->select(
+                        'contributionLang',
+                        $langArray,
+                        $preSelectedLang,
+                        array("class"=>"translationLang"),
+                        false
+                    );
+                    echo '</div>';
                     echo $form->end('OK');
                     
                     

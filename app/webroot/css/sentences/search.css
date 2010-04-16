@@ -34,6 +34,13 @@
 @import url(../elements/register_button.css);
 
 
+/*
+ * New sentence form
+ */
+@import url(../elements/new_sentence_form.css);
+
+
+
 /**
  * Search results
  */
@@ -66,12 +73,4 @@ color: #6699CC;
 
 #mostFrequentWords div{
 font-size: 55%;
-}
-
-
-/**
- * New sentence
- */
-#SentenceText {
-    width: 100%;
 }

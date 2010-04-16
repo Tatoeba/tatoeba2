@@ -130,6 +130,8 @@ echo $javascript->link('sentences.show_another.js', false);
             if (empty($preSelectedLang)) {
                 $preSelectedLang = 'auto';
             }
+            
+            echo '<div class="languageSelection">';
             echo $form->select(
                 'contributionLang',
                 $langArray,
@@ -137,6 +139,8 @@ echo $javascript->link('sentences.show_another.js', false);
                 array("class"=>"translationLang"),
                 false
             );
+            echo '</div>';
+            
             echo $form->end('OK');
             ?>
         </div>
