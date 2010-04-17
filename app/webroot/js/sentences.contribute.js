@@ -20,7 +20,7 @@
 
 
 $(document).ready(function() {
-	$("#newSentenceText").keyup(function(e){
+	$("#SentenceText").keyup(function(e){
 		if (e.keyCode == 13) {
 			save();
 		}
@@ -31,7 +31,7 @@ $(document).ready(function() {
 	})
 	
 	function save(){
-		var sentenceText = $("#newSentenceText").val();
+		var sentenceText = $("#SentenceText").val();
         var selectedLang = $("#contributionLang").val();
 		if ($.trim(sentenceText) != '') {
             $(".sentencesAddedloading").show();
@@ -46,7 +46,7 @@ $(document).ready(function() {
                     $("#session_expired").remove();
                     $(".sentencesAddedloading").hide();
                     $("#sentencesAdded").prepend(data);
-                    $("#newSentenceText").val("");
+                    $("#SentenceText").val("");
                 },
                 "html"
             );
