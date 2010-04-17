@@ -911,7 +911,7 @@ class Sentence extends AppModel
      *
      * @return string romanized japanese text
      */
-    public function getJapaneseRomanization2($text, $type)
+    public function getJapaneseRomanization2($text, $type=1)
     {
         // important to add this line before escaping a
         // utf8 string, workaround for an apache/php bug  
@@ -961,22 +961,79 @@ class Sentence extends AppModel
         "ん","ゔ","ゕ","ゖ"
         );
         
+        $kata = array(
+        "キャ","キュ","キョ","ギャ","ギュ","ギョ","シャ","シュ","ショ",
+        "ジャ","ジュ","ジョ","チャ","チュ","チョ","ニャ","ニュ","ニョ",
+        "ヒャ","ヒュ","ヒョ","ビャ","ビュ","ビョ","ピャ","ピュ","ピョ",
+        "ミャ","ミュ","ミョ","リャ","リュ","リョ",
+        
+        "ウィ","ウェ","ウォ","ヴァ","ヴィ","ヴ","ヴェ","ヴォ","シェ","ジェ",
+        "チェ","ツァ","ツィ","ツェ","ツォ","デュ","ティ","トゥ","テュ","ディ",
+        "ドゥ","ファ","フィ","フェ","フォ","フュ",
+        
+        "ァ","ア","ィ","イ","ゥ","ウ","ェ","エ","ォ","オ",
+        "カ","ガ","キ","ギ","ク","グ","ケ","ゲ","コ","ゴ",
+        "サ","ザ","シ","ジ","ス","ズ","セ","ゼ","ソ","ゾ",
+        "タ","ダ","チ","ヂ","ッ","ツ","ヅ","テ","デ","ト",
+        "ド","ナ","ニ","ヌ","ネ","ノ","ハ","バ","パ","ヒ",
+        "ビ","ピ","フ","ブ","プ","ヘ","ベ","ペ","ホ","ボ",
+        "ポ","マ","ミ","ム","メ","モ","ャ","ヤ","ュ","ユ",
+        "ョ","ヨ","ラ","リ","ル","レ","ロ","ヮ","ワ","ヲ",
+        "ン","ヴ","ヵ","ヶ",
+        
+        "。","、"
+        );
+        
+        $romanji = array(
+        "kya","kyu","kyo","gya","gyu","gyo","sha","shu","sho",
+        "ja","ju","jo","cha","chu","cho","nya","nyu","nyo",
+        "hya","hyu","hyo","bya","byu","byo","pya","pyu","pyo",
+        "mya","myu","myo","rya","ryu","ryo",
+        
+        "wi","we","wo","va","vi","vu","vr","vo","she","je",
+        "che","tsa","tsi","tse","tso","dyu","ti","tu","tyu","di",
+        "du","fa","fi","fe","fo","fyu",
+        
+        "a","a","i","i","u","u","e","e","o","o",
+        "ka","ga","ki","gi","ku","gu","ke","ge","ko","go",
+        "sa","za","shi","ji","su","zu","se","ze","so","zo",
+        "ta","da","chi","ji","","tsu","zu","te","de","to",
+        "do","na","ni","nu","ne","no","ha","ba","pa","hi",
+        "bi","pi","fu","bu","pu","he","be","pe","ho","bo",
+        "po","ma","mi","mu","me","mo","ya","ya","yu","yu",
+        "yo","yo","ra","ri","ru","re","ro","wa","wa","wo",
+        "n","","","",
+        
+        ".",", "
+        );
+        
         $Owakati = explode(' ', $Owakati);
         $Oyomi = explode(' ', $Oyomi);
         $romanization = array();
         
-        $i = 0;
-        foreach ($Owakati as $word) {
-            preg_match_all('/./u', $word, $char);
-            if (in_array($char[0][0], $katakana)) {
-                array_push($romanization, $word);
-            } else {
-                array_push(
-                    $romanization,
-                    str_replace($katakana, $hiragana, $Oyomi[$i])
-                );
+        if ($type == 1) {
+            $i = 0;
+            foreach ($Owakati as $word) {
+                preg_match_all('/./u', $word, $char);
+                if (in_array($char[0][0], $katakana)) {
+                    array_push($romanization, $word);
+                } else {
+                    array_push(
+                        $romanization,
+                        str_replace($katakana, $hiragana, $Oyomi[$i])
+                    );
+                }
+                $i = $i + 1;
             }
-            $i = $i + 1;
+        } else {
+            $i = 0;
+            foreach ($Owakati as $word) {
+                    array_push(
+                        $romanization,
+                        str_replace($kata, $romanji, $Oyomi[$i])
+                    );
+                $i = $i + 1;
+            }
         }
         
         return implode(" ", $romanization);
