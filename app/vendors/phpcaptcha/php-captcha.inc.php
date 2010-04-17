@@ -43,7 +43,7 @@
    
    // start a PHP session - this class uses sessions to store the generated 
    // code. Comment out if you are calling already from your application
-   session_start();
+   // session_start();
    
    // class defaults - change to effect globally
    
