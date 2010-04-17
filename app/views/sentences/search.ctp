@@ -49,7 +49,16 @@
             </div>
     <?php
     }
-?>
+    ?>
+
+    <div class="module">
+        <p class="warning">
+        NOTE: We are switching to a new search engine. The search feature will
+        therefore temporarily remain very basic.<br/><br/>
+        You will only be able to specify the source language, not the target language.
+        </p>
+    </div>
+    
     <div class="module">
         <h2>
         <?php 
@@ -99,7 +108,6 @@
                 }
                 $getv = substr_replace($getv ,"",-1); // remove the last char '&'
                 $paginator->options(array('url' => array("?"=>$getv)));
-
                 
                 ?>
                 <h2>
@@ -117,17 +125,6 @@
                 ); 
                 ?>
                 </h2>
-                
-                <?php
-                // echo '<h2>' ;
-                    // echo sprintf(
-                        // __('Search : %s , <em>%s result(s)</em>', true),
-                        // htmlentities($query, ENT_QUOTES, 'UTF-8'),
-                        // $resultsInfo['sentencesCount']
-                    // );
-                // echo '</h2>';
-                
-                ?>
                 
                 
                 <div class="paging">

@@ -28,6 +28,16 @@
 $this->pageTitle = 'Tatoeba - ' . __('Examples of search', true);
 ?>
 
+<div id="annexe_content">
+    <div class="module">
+        <p class="warning">
+        NOTE: We are switching to a new search engine. The search feature will
+        therefore temporarily remain very basic.<br/><br/>
+        You will only be able to specify the source language, not the target language.
+        </p>
+    </div>
+</div>
+    
 <div id="main_content">
     <div class="module">
         <?php
