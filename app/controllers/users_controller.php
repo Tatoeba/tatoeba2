@@ -170,7 +170,7 @@ class UsersController extends AppController
             return;
         }
 
-        $this->_common_login();
+        $this->_common_login($this->Auth->redirect());
 
     }
 
