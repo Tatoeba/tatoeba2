@@ -470,8 +470,15 @@ class SentencesController extends AppController
         
         $query = $_GET['query'];    
         Sanitize::html($query);
+       
+        $from = 'und'; 
+        if (isset($_GET['from'])) {
+            $from = $_GET['from'];
+        }
+
         
         $sphinx = array(
+            'index' => array($from . '_index'),
             'matchMode' => SPH_MATCH_ALL, 
             'sortMode' => array(SPH_SORT_EXTENDED => '@relevance DESC')
         );
