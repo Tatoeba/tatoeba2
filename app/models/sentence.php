@@ -702,10 +702,10 @@ class Sentence extends AppModel
                 $sentenceArray['lang']
             );
             
-            // getRomanization() returns hiragana for the Japanese.
+            // getRomanization (just above) returns hiragana for the Japanese.
             // Here we also get the romaji.
             if ($sentenceArray['lang'] == 'jpn') {
-                $sentenceArray['romaji'] = $this->getJapaneseRomanization(
+                $sentenceArray['romaji'] = $this->getJapaneseRomanization2(
                     $sentenceArray['text'],
                     'romaji'
                 );
@@ -731,8 +731,8 @@ class Sentence extends AppModel
         if ($lang == "wuu") {
             $romanization = $this->getShanghaineseRomanization($text);
         } elseif ($lang == "jpn") {
-            $romanization = $this->getJapaneseRomanization2($text, 'romaji'); 
-            
+            $romanization = $this->getJapaneseRomanization2($text, 1); 
+                                                // 1 is for "hiragana"
         } elseif ($lang == "cmn") {
             // important to add this line before escaping a
             // utf8 string, workaround for an apache/php bug  
@@ -843,64 +843,7 @@ class Sentence extends AppModel
         $convertedText =  exec("adso --switch-script -cn -i '$chineseText'");
         return $convertedText;
     }
-
-    /**
-     * get "romanisation" of the $text sentences in japanese
-     * into romaji or furigana depending of $type value
-     *
-     * @param string $text text to romanized
-     * @param string $type type of romanization to apply
-     *
-     * @return string romanized japanese text
-     */
-    public function getJapaneseRomanization($text, $type)
-    {
-        Sanitize::html($text);
-
-        // important to add this line before escaping a
-        // utf8 string, workaround for an apache/php bug  
-        setlocale(LC_CTYPE, "fr_FR.UTF-8");
-        $text = escapeshellarg($text); 
-
-        $text = nl2br($text);
-                
-        
-        $options = '';
-        
-        // need to figure out something better...
-        // otherwise it displays "konnichiha"
-        $text = preg_replace("!今日は!", "kyou wa", $text);
-        // otherwise it displays "shi wa u" 
-        $text = preg_replace("!死は生!", "shi wa sei", $text); 
-        // otherwise it display "uno"
-        $text = preg_replace("!生の!", "nama no", $text); 
-        // otherwise it display "itta"... 
-        //although sometimes "itta" would be correct...
-        $text = preg_replace("!入った!", " haitta ", $text); 
-        // otherwise it display "kore ba"...
-        $text = preg_replace("!来れば!", " kureba ", $text); 
-        
-        switch($type) {
-            case 'romaji':
-                $options = ' -Ja -Ha -Ka -Ea -s';
-                $sedlist = 'sedlist';
-                break;
-            
-            case 'furigana':
-                $options = ' -JH -s -f ';
-                $sedlist = 'sedlist2';
-                break;
-        }
-        
-        $romanization = exec(
-            "echo $text | iconv -f UTF8 -t SHIFT_JISX0213 ".
-            "| /home/tatoeba/kakasi/bin/kakasi $options ".
-            "|iconv -f SHIFT_JISX0213 -t UTF8".
-            "| sed -f /home/tatoeba/www/app/webroot/$sedlist"
-        );
-        
-        return $romanization;
-    }
+    
     
     /**
      * get "romanisation" of the $text sentences in japanese

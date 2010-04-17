@@ -67,10 +67,10 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
             <li>
                 <?php 
                 echo $html->link(
-                    'KAKASI',
+                    'Romaji/furigana conversion',
                     array(
                         "controller" => "tools",
-                        "action" => "kakasi"
+                        "action" => "romaji_furigana"
                     )
                 );
                 echo ': ';

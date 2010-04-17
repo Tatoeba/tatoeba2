@@ -69,18 +69,42 @@ class ToolsController extends AppController
      */
     public function kakasi()
     {        
+        // Redirect to romaji_furigana.
+        // We don't remove the method to be compatible with previous Google indexing.
+        $this->redirect(
+            array(
+                "action" => "romaji_furigana"
+            ),
+            301
+        );
+    }
+    
+    
+    /**
+     * Japanese to romaji/furigana converter. Powered by MeCab.
+     * 
+     * @return void
+     */
+    public function romaji_furigana()
+    {        
         $query = isset($_GET['query']) ? $_GET['query'] : '';
         $type = isset($_GET['type']) ? $_GET['type'] : 'romaji';
         Sanitize::html($query);
         Sanitize::html($type);
         
+        $option = 0;
+        if ($type == 'furigana') {
+            $option = 1;
+        }
+        
         $Sentence = ClassRegistry::init('Sentence');
-        $result = $Sentence->getJapaneseRomanization($query, $type);
+        $result = $Sentence->getJapaneseRomanization2($query, $option);
         
         $this->set('query', $query);
         $this->set('type', $type);
         $this->set('result', $result);
     }
+    
 
     /**
      * will convert a sentence in traditional chinese
