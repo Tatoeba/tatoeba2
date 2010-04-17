@@ -52,9 +52,9 @@ class PaginationHelper extends AppHelper
     private function _searchUrl($page, $query, $from = null, $to = null)
     {
         $params  = '?page='.$page;
-        $params .= '&amp;query='.$query;
-        $params .= ($from != null) ? '&amp;from='.$from : '';
-        $params .= ($to != null) ? '&amp;to='.$to : '';
+        $params .= '&query='.$query;
+        $params .= ($from != null) ? '&from='.$from : '';
+        $params .= ($to != null) ? '&to='.$to : '';
         return array("controller" => "sentences", "action" => "search", $params);
     }
     
