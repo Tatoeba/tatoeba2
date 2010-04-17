@@ -390,7 +390,7 @@ class UsersController extends AppController
                     $this->Session->setFlash(
                         __('The registration email has been resent.', true)
                     );
-                    $this->redirect($this->Auth->logout());
+                    $this->redirect('/users/resend_registration_mail');
                 } else {
                     $this->flash(
                         __(
@@ -452,6 +452,10 @@ class UsersController extends AppController
                 $this->Acl->Aro->save($data);
 
                 $msg = __('Your registration has been validated.', true);
+                $this->Session->setFlash($msg);
+                $this->data = $user;
+                $this->Auth->login($user);
+                $this->redirect('/');
             } else {
                 $msg = sprintf(
                     __(
