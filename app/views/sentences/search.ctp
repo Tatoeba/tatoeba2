@@ -83,27 +83,66 @@
 <div id="main_content">
     <div class="module">
     <?php
-    if (isset($query)) {
+    if (isset($query)) { 
         $query = stripslashes($query);
-
+        
         if (isset($results)) {
             
+            
             if (count($results) > 0) {
-                echo '<h2>' ;
-                    echo sprintf(
-                        __('Search : %s , <em>%s result(s)</em>', true),
-                        htmlentities($query, ENT_QUOTES, 'UTF-8'),
-                        $resultsInfo['sentencesCount']
-                    );
-                echo '</h2>';
-                
-                $pagination->displaySearchPagination(
-                    $resultsInfo['pagesCount'], 
-                    $resultsInfo['currentPage'], 
-                    $query, 
-                    $from, 
-                    $to
+            
+                ?>
+                <h2>
+                <?php 
+                echo sprintf(
+                    __('Search : %s', true),
+                    htmlentities($query, ENT_QUOTES, 'UTF-8')
                 );
+                
+                echo ' ';
+                echo $paginator->counter(
+                    array(
+                        'format' => __('(%count% results)', true)
+                    )
+                ); 
+                ?>
+                </h2>
+                
+                <?php
+                // echo '<h2>' ;
+                    // echo sprintf(
+                        // __('Search : %s , <em>%s result(s)</em>', true),
+                        // htmlentities($query, ENT_QUOTES, 'UTF-8'),
+                        // $resultsInfo['sentencesCount']
+                    // );
+                // echo '</h2>';
+                
+                ?>
+                
+                
+                <div class="paging">
+                <?php 
+                echo $paginator->prev(
+                    '<< '.__('previous', true), 
+                    array(), 
+                    null, 
+                    array('class'=>'disabled')
+                ); 
+                ?>
+                <?php echo $paginator->numbers(array('separator' => '')); ?>
+                <?php 
+                echo $paginator->next(
+                    __('next', true).' >>',
+                    array(),
+                    null, 
+                    array('class'=>'disabled')
+                ); 
+                ?>
+                </div>
+                
+                
+                
+                <?php
                 
                 foreach ($results as $index=>$sentence) {
                     echo '<div class="sentences_set searchResult">';
@@ -116,8 +155,8 @@
                         $sentence['Sentence']['id'], 
                         $sentence['Sentence']['lang'], 
                         $specialOptions[$index], 
-                        $scores[$index],
-                        $sentence['Sentence']['script']
+                        null,
+                        null
                     );
 
                     // sentence and translations
@@ -131,13 +170,32 @@
                     echo '</div>';
                 }
                 
-                $pagination->displaySearchPagination(
-                    $resultsInfo['pagesCount'], 
-                    $resultsInfo['currentPage'], 
-                    $query, 
-                    $from, 
-                    $to
-                );
+                ?>
+                
+                
+                <div class="paging">
+                <?php 
+                echo $paginator->prev(
+                    '<< '.__('previous', true), 
+                    array(), 
+                    null, 
+                    array('class'=>'disabled')
+                ); 
+                ?>
+                <?php echo $paginator->numbers(array('separator' => '')); ?>
+                <?php 
+                echo $paginator->next(
+                    __('next', true).' >>',
+                    array(),
+                    null, 
+                    array('class'=>'disabled')
+                ); 
+                ?>
+                </div>
+                
+                
+                
+                <?php
             } else {
                 
                 echo '<h2>';

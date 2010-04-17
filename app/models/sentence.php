@@ -41,7 +41,7 @@ class Sentence extends AppModel
 {
 
     public $name = 'Sentence';
-    public $actsAs = array("Containable");
+    public $actsAs = array("Containable", "Sphinx");
 
     // This is not much in use. Should probably remove it someday
     const MAX_CORRECTNESS = 6; 

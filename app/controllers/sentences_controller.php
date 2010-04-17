@@ -88,6 +88,7 @@ class SentencesController extends AppController
             'get_translations',
             'change_language',
             'several_random_sentences',
+            'test'
         );
     }
 
@@ -463,79 +464,127 @@ class SentencesController extends AppController
      */
     public function search()
     {
+        if (!isset($_GET['query'])) {
+            return;
+        }
         
-        if (isset($_GET['query'])) {
-            $query = $_GET['query'];    
-            Sanitize::html($query);
-            
-            $page = null;
-            $from = null;
-            $to = null;
-            
-            if (isset($_GET['page'])) {
-                $page = $_GET['page'];
-                Sanitize::html($page);
-            }
-            if (isset($_GET['from']) && $_GET['from'] != 'und') {
-                $from = $_GET['from'];
-            }
-            if (isset($_GET['to']) && $_GET['to'] != 'und') {
-                $to = $_GET['to'];
-            }
-            
-            $this->Session->write('search_query', $query);
-            $this->Session->write('search_from', $from);
-            $this->Session->write('search_to', $to);
-            
-            $lucene_results = $this->Lucene->search($query, $from, $to, $page);
-            $sentences = array();
-            
-            $ids = array();
-            $scores = array();
-            
-            if ( isset($lucene_results['sentencesIds'])) {
-                foreach ($lucene_results['sentencesIds'] as $result) {
-                    $ids[] = $result['id'];
-                    $scores[] = $result['score'];
-                }
-            }
-            
-            $sentences = $this->Sentence->getSentencesWithIds($ids, $to);
-            
-            $resultsInfo['currentPage'] = $lucene_results['currentPage'];
-            $resultsInfo['pagesCount'] = $lucene_results['pagesCount'];
-            $resultsInfo['sentencesPerPage'] = $lucene_results['sentencesPerPage'];
-            $resultsInfo['sentencesCount'] = $lucene_results['sentencesCount'];
-            
-            $mostFrequentWords = $lucene_results['mostFrequentWords'];
-            
-            $this->set('results', $sentences);
-            $this->set('resultsInfo', $resultsInfo);
-            $this->set('mostFrequentWords', $mostFrequentWords);
-            $this->set('scores', $scores);
-            $this->set('query', $query);
-            $this->set('from', $from);
-            $this->set('to', $to);
-            
-            
-            // checking which options user can access to
-            $specialOptions = array();
-            foreach ($sentences as $sentence) {
-                $specialOptions[] = $this->Permissions->getSentencesOptions(
-                    $sentence, $this->Auth->user('id')
-                );
-            }
-            $this->set('specialOptions', $specialOptions);
-        } else {
-            $this->redirect(
-                array(
-                    "lang" => $this->params['lang'], 
-                    "controller" => "pages", 
-                    "action" => "display", 
-                    "search"
-                )
+        $query = $_GET['query'];    
+        Sanitize::html($query);
+        
+        $sphinx = array(
+            'matchMode' => SPH_MATCH_ALL, 
+            'sortMode' => array(SPH_SORT_EXTENDED => '@relevance DESC')
+        );
+        
+        $pagination = array(
+            'Sentence' => array(
+                'fields' => array(
+                    'id',
+                    'text',
+                    'lang',
+                    'user_id',
+                    'correctness'
+                ),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array('id', 'username')
+                    ),
+                    'Translation',
+                    'Favorites_users'
+                ),
+                'limit' => 10,
+                'sphinx' => $sphinx,
+                'search' => $query
+            )
+        );
+
+        $this->paginate = $pagination;
+        $results = $this->paginate();
+        
+        $this->set('query', $query);
+        $this->set('results', $results);
+        
+        $specialOptions = array();
+        foreach ($results as $sentence) {
+            $specialOptions[] = $this->Permissions->getSentencesOptions(
+                $sentence, $this->Auth->user('id')
             );
         }
+        $this->set('specialOptions', $specialOptions);
+        
+        
+        // if (isset($_GET['query'])) {
+            // $query = $_GET['query'];    
+            // Sanitize::html($query);
+            
+            // $page = null;
+            // $from = null;
+            // $to = null;
+            
+            // if (isset($_GET['page'])) {
+                // $page = $_GET['page'];
+                // Sanitize::html($page);
+            // }
+            // if (isset($_GET['from']) && $_GET['from'] != 'und') {
+                // $from = $_GET['from'];
+            // }
+            // if (isset($_GET['to']) && $_GET['to'] != 'und') {
+                // $to = $_GET['to'];
+            // }
+            
+            // $this->Session->write('search_query', $query);
+            // $this->Session->write('search_from', $from);
+            // $this->Session->write('search_to', $to);
+            
+            // $lucene_results = $this->Lucene->search($query, $from, $to, $page);
+            // $sentences = array();
+            
+            // $ids = array();
+            // $scores = array();
+            
+            // if ( isset($lucene_results['sentencesIds'])) {
+                // foreach ($lucene_results['sentencesIds'] as $result) {
+                    // $ids[] = $result['id'];
+                    // $scores[] = $result['score'];
+                // }
+            // }
+            
+            // $sentences = $this->Sentence->getSentencesWithIds($ids, $to);
+            
+            // $resultsInfo['currentPage'] = $lucene_results['currentPage'];
+            // $resultsInfo['pagesCount'] = $lucene_results['pagesCount'];
+            // $resultsInfo['sentencesPerPage'] = $lucene_results['sentencesPerPage'];
+            // $resultsInfo['sentencesCount'] = $lucene_results['sentencesCount'];
+            
+            // $mostFrequentWords = $lucene_results['mostFrequentWords'];
+            
+            // $this->set('results', $sentences);
+            // $this->set('resultsInfo', $resultsInfo);
+            // $this->set('mostFrequentWords', $mostFrequentWords);
+            // $this->set('scores', $scores);
+            // $this->set('query', $query);
+            // $this->set('from', $from);
+            // $this->set('to', $to);
+            
+            
+            // // checking which options user can access to
+            // $specialOptions = array();
+            // foreach ($sentences as $sentence) {
+                // $specialOptions[] = $this->Permissions->getSentencesOptions(
+                    // $sentence, $this->Auth->user('id')
+                // );
+            // }
+            // $this->set('specialOptions', $specialOptions);
+        // } else {
+            // $this->redirect(
+                // array(
+                    // "lang" => $this->params['lang'], 
+                    // "controller" => "pages", 
+                    // "action" => "display", 
+                    // "search"
+                // )
+            // );
+        // }
     }
     
     /**
@@ -792,6 +841,40 @@ class SentencesController extends AppController
             $this->Sentence->incrementStatistics($newlang);
             $this->Sentence->decrementStatistics($prevLang);
         }
+    }
+    
+    public function test($query = null) {
+        $query = 'cependant';
+        
+        $sphinx = array(
+            'matchMode' => SPH_MATCH_ALL, 
+            'sortMode' => array(SPH_SORT_EXTENDED => '@relevance DESC')
+        );
+        
+        $pagination = array(
+            'Sentence' => array(
+                'fields' => array(
+                    'id',
+                    'text',
+                    'lang',
+                    'user_id',
+                    'correctness'
+                ),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array('id')
+                    )
+                ),
+                'limit' => 10,
+                'sphinx' => $sphinx,
+                'search' => $query
+            )
+        );
+
+        $this->paginate = $pagination;
+        $results = $this->paginate();
+        
+        $this->set('results', $results);
     }
 }
 ?>
