@@ -20,13 +20,14 @@
 
 function check(fieldName, string){
 	var inputId = fieldName.charAt(0).toUpperCase() + fieldName.substr(1);
-	
+
 	$("#registration"+inputId).removeClass("error").removeClass("valid").addClass("checking");
+    
 	$.post(
 		"http://" + self.location.hostname + ":" + self.location.port + "/users/check_" + fieldName + "/" + string
 		, {}
 		, function(data){
-			if(data == 'valid'){
+			if(data.match('valid')){
 				$("#registration"+inputId).removeClass("checking").removeClass("error").addClass("valid");
 			}else{
 				$("#registration"+inputId).removeClass("checking").removeClass("valid").addClass("error");

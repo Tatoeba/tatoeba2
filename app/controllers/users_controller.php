@@ -628,6 +628,7 @@ class UsersController extends AppController
      */
     public function check_username($username)
     {
+        $this->layout = null;
         Sanitize::html($username);
         $user = $this->User->getIdFromUsername($username); // TODO move to model
                                                         // and use contain
@@ -648,6 +649,7 @@ class UsersController extends AppController
      */
     public function check_email($email)
     {
+        $this->layout = null;
         $userId = $this->User->getIdFromEmail($email); // TODO move to model 
                                                   // and use contain
         
