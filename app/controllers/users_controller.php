@@ -229,11 +229,6 @@ class UsersController extends AppController
             );
         }
 
-        if (empty($this->data)) {
-            $this->redirect($this->Auth->redirect());
-        }
-
-
         if (empty($this->data['User']['rememberMe'])) {
             $this->RememberMe->delete();
         } else {
@@ -241,7 +236,8 @@ class UsersController extends AppController
                 $this->data['User']['username'], $this->data['User']['password']
             );
         }
-
+        
+        $this->redirect($this->Auth->redirect());
     }
 
 
