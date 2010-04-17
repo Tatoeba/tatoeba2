@@ -483,7 +483,10 @@ class SentencesController extends AppController
         if (isset($_GET['from'])) {
             $from = $_GET['from'];
         }
-
+        
+        // Session variables for search bar
+        $this->Session->write('search_query', $query);
+        $this->Session->write('search_from', $from);
         
         $sphinx = array(
             'index' => array($from . '_index'),
