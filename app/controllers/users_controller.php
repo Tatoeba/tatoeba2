@@ -183,30 +183,30 @@ class UsersController extends AppController
     public function check_login()
     {
         $this->Auth->login($this->data);
-
-
+        
+        $redirectUrl = $this->Auth->redirect();
+        if (isset($this->data["User"]["redirectTo"])) {
+            $redirectUrl = $this->data["User"]["redirectTo"];
+        }
+        
         if (!$this->Auth->user()) {
-            /*TODO add a flash message "login failed" */
-            $this->redirect();
-        }
-
-        $this->_common_login();
-
-        if ( isset($_POST["redirectTo"])) {
-            $this->redirect($_POST["redirectTo"]);
+            $this->Session->setFlash(__('Login failed', true));
         } else {
-            $this->redirect($this->Auth->redirect());
+            $this->_common_login($redirectUrl);
         }
-
+        
+        $this->redirect($redirectUrl);
     }
 
     /**
      * Used by the login functions
      *
+     * @param mixed $redirectUrl URL to which user is redirected after logged in.
+     *
      * @return void
      */
 
-    private function _common_login()
+    private function _common_login($redirectUrl)
     {
 
 
@@ -237,7 +237,7 @@ class UsersController extends AppController
             );
         }
         
-        $this->redirect($this->Auth->redirect());
+        $this->redirect($redirectUrl);
     }
 
 
