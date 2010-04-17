@@ -90,7 +90,17 @@
             
             
             if (count($results) > 0) {
-            
+                
+                $urls = $this->params['url']; $getv = "";
+                foreach($urls as $key=>$value)
+                {
+                    if($key == 'url') continue; // we need to ignor the url field
+                    $getv .= urlencode($key)."=".urlencode($value)."&"; // making the passing parameters
+                }
+                $getv = substr_replace($getv ,"",-1); // remove the last char '&'
+                $paginator->options(array('url' => array("?"=>$getv)));
+
+                
                 ?>
                 <h2>
                 <?php 

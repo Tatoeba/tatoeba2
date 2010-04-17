@@ -462,11 +462,19 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function search()
+    public function search($query = null)
     {
         if (!isset($_GET['query'])) {
-            return;
+            $this->redirect(
+                array(
+                    "lang" => $this->params['lang'], 
+                    "controller" => "pages", 
+                    "action" => "display", 
+                    "search"
+                )
+            );
         }
+        
         
         $query = $_GET['query'];    
         Sanitize::html($query);
