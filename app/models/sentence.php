@@ -856,6 +856,9 @@ class Sentence extends AppModel
      */
     public function getJapaneseRomanization2($text, $type=1)
     {
+        //TODO type = 1 ???  can you replace it by much more
+        // evident constant 
+
         // important to add this line before escaping a
         // utf8 string, workaround for an apache/php bug  
         setlocale(LC_CTYPE, "fr_FR.UTF-8");
@@ -905,14 +908,16 @@ class Sentence extends AppModel
         );
         
         $kata = array(
-        "キャ","キュ","キョ","ギャ","ギュ","ギョ","シャ","シュ","ショ",
-        "ジャ","ジュ","ジョ","チャ","チュ","チョ","ニャ","ニュ","ニョ",
-        "ヒャ","ヒュ","ヒョ","ビャ","ビュ","ビョ","ピャ","ピュ","ピョ",
-        "ミャ","ミュ","ミョ","リャ","リュ","リョ",
+        "キャ","キュ","キョ","ギャ","ギュ","ギョ","シャ",
+        "シュ","ショ","ジャ","ジュ","ジョ","チャ","チュ",
+        "チョ","ニャ","ニュ","ニョ","ヒャ","ヒュ","ヒョ",
+        "ビャ","ビュ","ビョ","ピャ","ピュ","ピョ","ミャ",
+        "ミュ","ミョ","リャ","リュ","リョ",
         
-        "ウィ","ウェ","ウォ","ヴァ","ヴィ","ヴ","ヴェ","ヴォ","シェ","ジェ",
-        "チェ","ツァ","ツィ","ツェ","ツォ","デュ","ティ","トゥ","テュ","ディ",
-        "ドゥ","ファ","フィ","フェ","フォ","フュ",
+        "ウィ","ウェ","ウォ","ヴァ","ヴィ","ヴ","ヴェ",
+        "ヴォ","シェ","ジェ","チェ","ツァ","ツィ","ツェ",
+        "ツォ","デュ","ティ","トゥ","テュ","ディ","ドゥ",
+        "ファ","フィ","フェ","フォ","フュ",
         
         "ァ","ア","ィ","イ","ゥ","ウ","ェ","エ","ォ","オ",
         "カ","ガ","キ","ギ","ク","グ","ケ","ゲ","コ","ゴ",
@@ -955,8 +960,7 @@ class Sentence extends AppModel
         $romanization = array();
         
         if ($type == 1) {
-            $i = 0;
-            foreach ($Owakati as $word) {
+            foreach ($Owakati as $i=>$word) {
                 preg_match_all('/./u', $word, $char);
                 if (in_array($char[0][0], $katakana)) {
                     array_push($romanization, $word);
@@ -966,16 +970,13 @@ class Sentence extends AppModel
                         str_replace($katakana, $hiragana, $Oyomi[$i])
                     );
                 }
-                $i = $i + 1;
             }
         } else {
-            $i = 0;
-            foreach ($Owakati as $word) {
-                    array_push(
-                        $romanization,
-                        str_replace($kata, $romanji, $Oyomi[$i])
-                    );
-                $i = $i + 1;
+            foreach ($Owakati as $i=>$word) {
+                array_push(
+                    $romanization,
+                    str_replace($kata, $romanji, $Oyomi[$i])
+                );
             }
         }
         
@@ -1072,6 +1073,7 @@ class Sentence extends AppModel
      * Add translation to sentence with given id. Adding a translation means adding
      * a new sentence, and two links.
      *
+     * @TODO finish the doc plz
      * @param int    $sentenceId
      * @param string $translationText
      * @param string $translationLang
