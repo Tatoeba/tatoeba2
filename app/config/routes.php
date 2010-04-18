@@ -58,7 +58,7 @@
             'controller' => 'sinograms',
             'action' =>'index'
         ),
-        array('lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol')
+        array('lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol|pt_BR')
     ); 
 
 /**
@@ -83,7 +83,7 @@
             'index'
         ),
         array(
-            'lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol'
+            'lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol|pt_BR'
         )
     );
     // TODO : can we use directly "home" action instead of display ?
@@ -126,7 +126,7 @@
             'action' => 'display'
         ),
         array(
-            'lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol'
+            'lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol|pt_BR'
         )
     );
 /**
@@ -150,7 +150,7 @@
             'lang'=>'eng'
         ),
         array(
-            'lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol'
+            'lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol|pt_BR'
         )
     ); 
 

@@ -124,33 +124,7 @@ class AppController extends Controller
             $this->params['lang'] = $interfaceLanguage;
         
         } else {
-            $interfaceLanguage = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);
-            switch($interfaceLanguage){
-                
-                case 'fr':
-                    $lang = 'fre';
-                    break;
-                case 'zh':
-                    $lang = 'chi';
-                    break;
-                case 'es':
-                    $lang = 'spa';
-                    break;
-                case 'it':
-                    $lang = 'ita';
-                    break;
-                case 'pl':
-                    $lang = 'pol';
-                    break;
-                case 'ja':
-                    $lang = 'jpn';
-                    break;
-                case 'de':
-                    $lang = 'deu';
-                    break;
-                default  :
-                    $lang = 'eng';
-            }
+            $lang = $this->getSupportedLanguage();
             Configure::write('Config.language', $lang);
             $this->Cookie->write('interfaceLanguage', $lang, false, '+2 weeks');
             $this->params['lang'] = $lang;
@@ -282,14 +256,38 @@ class AppController extends Controller
     }
 
     /**
-     * Change the language of the interface
+     * Returns the ISO code of the language in which we should set the interface, 
+     * considering the languages of the user's browser.
      *
-     * @return void
+     * @return string
      */
-    public function changeLanguage()
+    public function getSupportedLanguage()
     {
-
-
+        $supportedLanguages = array(
+            'ja'    => 'jpn',
+            'fr'    => 'fre',
+            'es'    => 'spa',
+            'de'    => 'deu',
+            'zh'    => 'chi',
+            'it'    => 'ita',
+            'pl'    => 'pol',
+            'pt-BR' => 'pt_BR'
+        );
+        
+        $browserLanguages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+        
+        foreach ($browserLanguages as $browserLang) {
+            $browserLangArray = explode(';', $browserLang);
+            $lang = $browserLangArray[0];
+            
+            foreach ($supportedLanguages as $key => $supportedLang) {
+                if ($lang == $key) {
+                    return $supportedLang;
+                }
+            }
+        }
+        
+        return 'eng';
     }
 }
 ?>
