@@ -36,13 +36,17 @@
 **  and we stop search once we have found a matching rule 
 */
 
+// array which list all the languages in which tatoeba interface has been translated
+$interfaceLanguages = array('lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol|pt_BR');
+
 /**
  * To route tools, in order to still have tools in the URL, which is
  * clearer for users IMHO
  * this rule appears first, that way /fre/tools/search_sinograms  is 
  * not catch by the general rule for controllers
  */
-    
+
+
     Router::connect(
         '/tools/search_hanzi_kanji/:action',
         array(
@@ -58,7 +62,7 @@
             'controller' => 'sinograms',
             'action' =>'index'
         ),
-        array('lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol|pt_BR')
+        $interfaceLanguages
     ); 
 
 /**
@@ -82,9 +86,7 @@
             'action' => 'display',
             'index'
         ),
-        array(
-            'lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol|pt_BR'
-        )
+        $interfaceLanguages
     );
     // TODO : can we use directly "home" action instead of display ?
 
@@ -104,9 +106,7 @@
             'action' => 'display',
             'home'
         ),
-        array(
-            'lang'=> 'fre|eng|deu|spa|ita|jpn|chi'
-        )
+        $interfaceLanguages
     );
 /**
  * ...and connect the rest of 'Pages' controller's urls.
@@ -125,9 +125,7 @@
             'controller' => 'pages',
             'action' => 'display'
         ),
-        array(
-            'lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol|pt_BR'
-        )
+        $interfaceLanguages
     );
 /**
  * Then we connect url '/test' to our test controller. This is helpful in
@@ -149,9 +147,7 @@
         array(
             'lang'=>'eng'
         ),
-        array(
-            'lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol|pt_BR'
-        )
+        $interfaceLanguages
     ); 
 
 ?>
