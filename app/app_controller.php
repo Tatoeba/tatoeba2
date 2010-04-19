@@ -280,11 +280,9 @@ class AppController extends Controller
             $browserLangArray = explode(';', $browserLang);
             $lang = $browserLangArray[0];
             
-            foreach ($supportedLanguages as $key => $supportedLang) {
-                if ($lang == $key) {
-                    return $supportedLang;
-                }
-            }
+            if(isset($supportedLanguages[$lang])) {
+                return $supportedLanguages[$lang];
+            } 
         }
         
         return 'eng';
