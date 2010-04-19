@@ -124,6 +124,13 @@ class SentenceAnnotationsHelper extends AppHelper
     }
     
     
+    /**
+     * Display form to replace massively.
+     *
+     * @param string $stringToReplace String to replace.
+     *
+     * @return void
+     */
     public function displayReplaceBox($stringToReplace)
     {
         ?>
