@@ -36,7 +36,7 @@
  */
 class SentenceAnnotationsHelper extends AppHelper
 {
-    public $helpers = array('Form');
+    public $helpers = array('Form', 'Javascript');
     
     /**
      * Displays the form that lets you search annotations of a specific sentence.
@@ -89,37 +89,70 @@ class SentenceAnnotationsHelper extends AppHelper
     
     
     /**
-     * Displays the form that lets you add a new annotation.
+     * Displays the form that lets you add a new annotation to a sentence.
+     *
+     * @param int $sentenceId Id of the sentence.
      *
      * @return void
      */
-    public function displayNewIndexBox()
+    public function displayNewIndexBox($sentenceId)
     {
         ?>
         <div class="module">
         <h2>Add new index</h2>
         <?php
-            if(isset($sentence)){
-                echo $this->Form->create(
-                    'SentenceAnnotation', array("action" => "save")
-                );
-                echo $this->Form->hidden(
-                    'SentenceAnnotation.sentence_id',
-                    array("value" => $sentence['Sentence']['id'])
-                );
-                echo $this->Form->input('meaning_id');			
-                echo $this->Form->textarea(
-                    'text', 
-                    array(
-                        "label" => '',
-                        "cols" => 24,
-                        "rows" => 3
-                    )
-                );
-                echo $this->Form->end('save');
-            }
+        echo $this->Form->create(
+            'SentenceAnnotation', array("action" => "save")
+        );
+        echo $this->Form->hidden(
+            'SentenceAnnotation.sentence_id',
+            array("value" => $sentenceId)
+        );
+        echo $this->Form->input('meaning_id');			
+        echo $this->Form->textarea(
+            'text', 
+            array(
+                "label" => null,
+                "cols" => 24,
+                "rows" => 3
+            )
+        );
+        echo $this->Form->end('save');
         ?>
         </div>
+        <?php
+    }
+    
+    
+    public function displayReplaceBox($stringToReplace)
+    {
+        ?>
+        <div class="module">
+        <?php
+            echo '<h2>Replace</h2>';
+            
+            echo $this->Javascript->link('sentence_annotations.preview.js', false);
+            echo $this->Form->create(
+                'SentenceAnnotation', array("action" => "replace")
+            );
+            echo '<div>';
+            echo $this->Form->hidden(
+                'SentenceAnnotation.textToReplace', 
+                array("value" => $stringToReplace)
+            );
+            echo '</div>';
+            echo $this->Form->input(
+                'SentenceAnnotation.textReplacing',
+                array(
+                    "label" => "Replace ". Sanitize::html($stringToReplace) ." by:"
+                )
+            );
+            echo '<div>';
+            echo $this->Form->button('Preview', array("id"=>"previewButton"));
+            echo '</div>';
+            echo $this->Form->end('Replace');
+        ?>
+        </div>	
         <?php
     }
 }

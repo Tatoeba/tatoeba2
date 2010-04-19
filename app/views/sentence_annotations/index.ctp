@@ -19,31 +19,11 @@
 ?>
 
 <div id="annexe_content">
-	<div class="module">
-	<?php
-		echo '<h2>Go to...</h2>';
-		
-		echo $form->create('SentenceAnnotation', array("action" => "show"));
-		echo $form->input('sentence_id', array("label" => "Sentence nº"));
-		echo $form->end('OK');
-	?>
-	</div>
-
-	<div class="module">
-	<?php
-		echo '<h2>Search</h2>';
-		
-		echo $form->create('SentenceAnnotation', array("action" => "search"));
-		echo $form->input(
-            'text', 
-            array(
-                "label" => "",
-                "type" => "text"
-            )
-        );
-		echo $form->end('OK');
-	?>
-	</div>	
+    <?php
+    $sentenceAnnotations->displayGoToBox();
+	
+    $sentenceAnnotations->displaySearchBox();
+    ?>
 
 	
 	<div class="module">

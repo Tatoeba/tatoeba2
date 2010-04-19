@@ -19,71 +19,46 @@
 ?>
 
 <div id="annexe_content">
-	<div class="module">
-	<?php
-		echo '<h2>Go to...</h2>';
-				
-		echo $form->create('SentenceAnnotation', array("action" => "show"));
-		echo $form->input('sentence_id', array("label" => "Sentence nº"));
-		echo $form->end('OK');
-	?>
-	</div>
+    <?php
+    $sentenceAnnotations->displayGoToBox();
 	
-	<div class="module">
-	<?php
-		echo '<h2>Search</h2>';
-		
-		echo $form->create('SentenceAnnotation', array("action" => "search"));
-		echo $form->input(
-            'text', 
-            array(
-                "label" => "",
-                "type" => "text"
-            )
-        );
-		echo $form->end('OK');
+    $sentenceAnnotations->displaySearchBox();
+    
+    if(isset($sentence)){
+        $sentenceAnnotations->displayNewIndexBox($sentence['Sentence']['id']);
+    }
 	?>
-	</div>
-
-	<div class="module">
-	<?php
-		echo '<h2>Add new index</h2>';
-		
-		if(isset($sentence)){
-			echo $form->create('SentenceAnnotation', array("action" => "save"));
-			echo $form->hidden(
-				'SentenceAnnotation.sentence_id'
-				, array("value" => $sentence['Sentence']['id'])
-			);
-			echo $form->input('meaning_id');			
-			echo $form->textarea('text', array(
-				  "label" => ''
-				, "cols" => 24
-				, "rows" => 3
-			));
-			echo $form->end('save');
-		}
-	?>
-	</div>
 </div>
 
 <div id="main_content">
 	<div class="module">
 	<?php
 	if(isset($sentence)){
-		echo '<h2>';
-		echo sprintf ( __('Sentence nº%s', true) , $sentence['Sentence']['id']);
-		echo '</h2>';
+        ?>
+        <h2>
+        <?php
+        echo sprintf(__('Sentence nº%s', true) , $sentence['Sentence']['id']);
+        ?>
+        </h2>
 		
-		echo '<p class="original">'.$sentence['Sentence']['text'].'</p>';
+		<p class="original">
+        <?php echo $sentence['Sentence']['text']; ?>
+        </p>
 		
+        <?php
 		foreach($annotations as $annotation){
-			echo '<hr/>';
-			echo '<p>'.$annotation['SentenceAnnotation']['text'].'</p>';
+            ?>
+            <hr/>
 			
+            <p>
+            <?php echo Sanitize::html($annotation['SentenceAnnotation']['text']); ?>
+            </p>
+            
+			<?php
 			echo $form->create('SentenceAnnotation', array("action" => "save"));
 			
 			// hidden ids necessary for saving
+            echo '<div>';
 			echo $form->hidden(
 				'SentenceAnnotation.id'
 				, array("value" => $annotation['SentenceAnnotation']['id'])
@@ -92,7 +67,8 @@
 				'SentenceAnnotation.sentence_id'
 				, array("value" => $annotation['SentenceAnnotation']['sentence_id'])
 			);
-			
+			echo '</div>';
+            
 			// id of the "meaning" (i.e. English sentence for Tanaka sentences annotations)
 			echo $form->input('meaning_id', array(
 				"value" => $annotation['SentenceAnnotation']['meaning_id']
@@ -100,7 +76,7 @@
 			
 			// annotations text
 			echo $form->textarea('text', array(
-				"label" => ''
+				"label" => null
 				, "value" => $annotation['SentenceAnnotation']['text']
 				, "cols" => 60
 				, "rows" => 3
