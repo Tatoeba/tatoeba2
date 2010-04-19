@@ -89,12 +89,13 @@ class SentenceAnnotationsController extends AppController
             if (!isset($this->data['SentenceAnnotation']['id'])) {
                 $this->SentenceAnnotation->create();
             }
+            
+            $sentenceId = $this->data['SentenceAnnotation']['sentence_id'];
+            
             if ($this->SentenceAnnotation->save($this->data)) {
-                $this->redirect(
-                    array(
-                        "action" => "show", 
-                        $this->data['SentenceAnnotation']['sentence_id']
-                    )
+                $this->flash(
+                    'Index saved.',
+                    "sentence_annotations/show/".$sentenceId
                 );
             }
         }
