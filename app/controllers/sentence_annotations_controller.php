@@ -39,6 +39,9 @@ App::import('Core', 'Sanitize');
 class SentenceAnnotationsController extends AppController
 {
     public $name = 'SentenceAnnotations';
+    public $helpers = array(
+        'SentenceAnnotations'
+    );
     
     /**
      * Index page. Doesn't do anything, just displays text to explain how it works.
