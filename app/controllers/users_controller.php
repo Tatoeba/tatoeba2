@@ -89,8 +89,6 @@ class UsersController extends AppController
     {
         $this->set('users', $this->paginate());
 
-        // Uncomment this when you want to update users permissions.
-        $this->_init_db();
     }
 
 
@@ -692,6 +690,8 @@ class UsersController extends AppController
         $group->id = 1;
         $this->Acl->allow($group, 'controllers');
 
+
+
         //Permissions for moderators
         $group->id = 2;
         $this->Acl->deny($group, 'controllers');
@@ -713,6 +713,8 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/PrivateMessages');
         $this->Acl->allow($group, 'controllers/SentenceAnnotations');
         $this->Acl->allow($group, 'controllers/Wall');
+
+        $this->Acl->allow($group, 'controllers/Links');
         
         $this->Acl->allow($group, 'controllers/User'); 
         
@@ -739,6 +741,7 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/SentenceAnnotations');
         $this->Acl->allow($group, 'controllers/SentenceComments');
         $this->Acl->allow($group, 'controllers/Wall');
+
         $this->Acl->allow($group, 'controllers/Links');
 
         $this->Acl->allow($group, 'controllers/User'); 
