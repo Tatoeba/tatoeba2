@@ -432,7 +432,7 @@ if (!$session->read('Auth.User.id')) {
             <h2><?php __('Change password'); ?></h2>
     <?php
     echo $form->create(
-        'profile_password',
+        'User',
         array(
             'url' => array(
                 'controller' => 'user',
@@ -441,16 +441,25 @@ if (!$session->read('Auth.User.id')) {
         )
     );
     echo $form->input(
-        'old_password/passwd',
-        array("label" => __('Old password', true))
+        'old_password',
+        array(
+            "label" => __('Old password', true),
+            "type" => "password"
+        )
     );
     echo $form->input(
-        'new_password/passwd',
-        array("label" => __('New password', true))
+        'new_password',
+        array(
+            "label" => __('New password', true),
+            "type" => "password"
+        )
     );
     echo $form->input(
-        'new_password2/passwd',
-        array("label" => __('New password again', true))
+        'new_password2',
+        array(
+            "label" => __('New password again', true),
+            "type" => "password"
+        )
     );
     echo $form->end(__('Save', true));
     ?>

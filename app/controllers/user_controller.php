@@ -413,12 +413,12 @@ class UserController extends AppController
             $userId = $this->Auth->user('id');
             
             $submittedPassword = $this->Auth->password(
-                $this->data['old_password']['passwd']
+                $this->data['User']['old_password']
             );
             $actualPassword = $this->User->getPassword($userId);
             
-            $newPassword1 = $this->data['new_password']['passwd'];
-            $newPassword2 = $this->data['new_password2']['passwd'];
+            $newPassword1 = $this->data['User']['new_password'];
+            $newPassword2 = $this->data['User']['new_password2'];
 
             if ($submittedPassword == $actualPassword
                 && $newPassword1 == $newPassword2
