@@ -42,6 +42,7 @@ class Sentence extends AppModel
 
     public $name = 'Sentence';
     public $actsAs = array("Containable", "Sphinx");
+    public static $romanji = array('furigana' => 1, 'mix' => 2, 'romanji' => 3);
 
     // This is not much in use. Should probably remove it someday
     const MAX_CORRECTNESS = 6; 
@@ -731,7 +732,9 @@ class Sentence extends AppModel
         if ($lang == "wuu") {
             $romanization = $this->getShanghaineseRomanization($text);
         } elseif ($lang == "jpn") {
-            $romanization = $this->getJapaneseRomanization2($text, 1); 
+            $romanization = $this->getJapaneseRomanization2(
+                $text, Sentence::$romanji['mix']
+            ); 
                                                 // 1 is for "hiragana"
         } elseif ($lang == "cmn") {
             // important to add this line before escaping a
@@ -854,10 +857,10 @@ class Sentence extends AppModel
      *
      * @return string romanized japanese text
      */
-    public function getJapaneseRomanization2($text, $type=1)
+    public function getJapaneseRomanization2($text, $type)
     {
         //TODO type = 1 ???  can you replace it by much more
-        // evident constant 
+        // evident constant
 
         // important to add this line before escaping a
         // utf8 string, workaround for an apache/php bug  
@@ -892,7 +895,7 @@ class Sentence extends AppModel
         "ビ","ピ","フ","ブ","プ","ヘ","ベ","ペ","ホ","ボ",
         "ポ","マ","ミ","ム","メ","モ","ャ","ヤ","ュ","ユ",
         "ョ","ヨ","ラ","リ","ル","レ","ロ","ヮ","ワ","ヲ",
-        "ン","ヴ","ヵ","ヶ"
+        "ン","ヴ","ヵ","ヶ","。","、"
         );
         
         $hiragana = array(
@@ -904,7 +907,7 @@ class Sentence extends AppModel
         "び","ぴ","ふ","ぶ","ぷ","へ","べ","ぺ","ほ","ぼ",
         "ぽ","ま","み","む","め","も","ゃ","や","ゅ","ゆ",
         "ょ","よ","ら","り","る","れ","ろ","ゎ","わ","を",
-        "ん","ゔ","ゕ","ゖ"
+        "ん","ゔ","ゕ","ゖ","。","、"
         );
         
         $kata = array(
@@ -959,7 +962,7 @@ class Sentence extends AppModel
         $Oyomi = explode(' ', $Oyomi);
         $romanization = array();
         
-        if ($type == 1) {
+        if ($type == Sentence::$romanji['furigana']) {
             foreach ($Owakati as $i=>$word) {
                 preg_match_all('/./u', $word, $char);
                 if (in_array($char[0][0], $katakana)) {
@@ -971,13 +974,32 @@ class Sentence extends AppModel
                     );
                 }
             }
-        } else {
+        }
+        elseif ($type == Sentence::$romanji['mix']) {
+            foreach ($Owakati as $i=>$word) {
+                preg_match_all('/./u', $word, $char);
+                if (in_array($char[0][0], $katakana) || in_array($char[0][0], $hiragana)) {
+                    array_push(
+                    $romanization,
+                    $word
+                );
+                } else {
+                    $plop = str_replace($kata, $romanji, $Oyomi[$i]);
+                    array_push(
+                        $romanization,
+                        $word."[$plop]"
+                    );
+                }
+            }
+        } elseif ($type == Sentence::$romanji['romanji']) {
             foreach ($Owakati as $i=>$word) {
                 array_push(
                     $romanization,
                     str_replace($kata, $romanji, $Oyomi[$i])
                 );
             }
+        } else {
+            $romanization = "";
         }
         
         return implode(" ", $romanization);
