@@ -708,7 +708,7 @@ class Sentence extends AppModel
             if ($sentenceArray['lang'] == 'jpn') {
                 $sentenceArray['romaji'] = $this->getJapaneseRomanization2(
                     $sentenceArray['text'],
-                    'romaji'
+                    Sentence::$romanji['romaji']
                 );
             }
             
@@ -999,7 +999,7 @@ class Sentence extends AppModel
                 );
             }
         } else {
-            $romanization = "";
+            $romanization = array();
         }
         
         return implode(" ", $romanization);
