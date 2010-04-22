@@ -40,6 +40,26 @@ if (!isset($lastText)) {
 ?>
 <div id="annexe_content">
 
+    <div class="module">
+        <h2><?php __('Credits'); ?></h2>
+        <p>
+            <?php
+            echo sprintf(
+                __(
+                    "We really want to thanks <a href='%s'>Kellen Parker</a> ".
+                    "who has provided us a much more complete data files, if ".
+                    "you're intereted in his works, you can check his project ".
+                    "page <a href='%s'>here</a>, without him the Shanghainese ".
+                    "sentences wouldn't have a so much complete IPA",
+                    true
+                ),
+                'http://www.sinoglot.com/wu',
+                'http://www.sinoglot.com/wu/tools/data'
+            );
+            ?>
+        </p>
+    </div>
+
 
     <div class="module">
         <h2><?php __("Note"); ?></h2>
