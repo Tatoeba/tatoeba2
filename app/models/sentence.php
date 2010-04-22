@@ -708,7 +708,7 @@ class Sentence extends AppModel
             if ($sentenceArray['lang'] == 'jpn') {
                 $sentenceArray['romaji'] = $this->getJapaneseRomanization2(
                     $sentenceArray['text'],
-                    Sentence::$romanji['romaji']
+                    Sentence::$romanji['romanji']
                 );
             }
             
