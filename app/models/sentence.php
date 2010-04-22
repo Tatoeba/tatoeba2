@@ -984,10 +984,10 @@ class Sentence extends AppModel
                     $word
                 );
                 } else {
-                    $plop = str_replace($kata, $romanji, $Oyomi[$i]);
+                    $translatedWord = str_replace($katakana, $hiragana, $Oyomi[$i]);
                     array_push(
                         $romanization,
-                        $word."[$plop]"
+                        $word."[$translatedWord]"
                     );
                 }
             }
