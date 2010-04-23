@@ -407,6 +407,26 @@ class User extends AppModel
             array(
                 'conditions' => array('User.email' => $userEmail),
                 'contain' => array(),
+                'fields' => 'User.id'
+            )
+        );
+        return $user['User']['id'];
+    }
+
+    /**
+     * Return an email from a user id.
+     *
+     * @param int $userId user id.
+     *
+     * @return string
+     */
+    public function getEmailFromId($userId)
+    {
+        $user = $this->find(
+            'first',
+            array(
+                'conditions' => array('User.id' => $userId),
+                'contain' => array(),
                 'fields' => 'User.email'
             )
         );
