@@ -97,13 +97,10 @@ class ToolsController extends AppController
             $option = Sentence::$romanji['mix'];
         }
         
-        // $Sentence = ClassRegistry::init('Sentence');
-        // $result = $Sentence->getJapaneseRomanization2(
-            // $query, $option
-        // );
-        
-        
-        $result = '彼女[かのじょ] が すぐ に プレゼント を 捨て[すて] て しまっ て 、 彼[かれ] は 傷つき[きずつき] まし た 。';
+        $Sentence = ClassRegistry::init('Sentence');
+        $result = $Sentence->getJapaneseRomanization2(
+            $query, $option
+        );
         
         $this->set('query', $query);
         $this->set('type', $type);
