@@ -48,13 +48,14 @@ class Sentence extends AppModel
     const MAX_CORRECTNESS = 6; 
     
     public $languages = array(
-        'ara' ,'bul' ,'deu' ,'ell' ,'eng',
-        'epo' ,'spa' ,'fra' ,'heb' ,'ind',
-        'jpn' ,'kor' ,'nld' ,'por' ,'rus',
-        'vie' ,'cmn' ,'ces' ,'fin' ,'ita',
-        'tur' ,'ukr' ,'wuu' ,'swe' ,'zsm',
-        'nob' ,'est' ,'kat' ,'pol' ,'swh',
-        'lat' ,null
+        'ara', 'bul', 'deu', 'ell', 'eng',
+        'epo', 'spa', 'fra', 'heb', 'ind',
+        'jpn', 'kor', 'nld', 'por', 'rus',
+        'vie', 'cmn', 'ces', 'fin', 'ita',
+        'tur', 'ukr', 'wuu', 'swe', 'zsm',
+        'nob', 'est', 'kat', 'pol', 'swh',
+        'lat', 'arz', 'bel', 'hun', 'isl',
+        'sqi', 'yue', null
         );    
     public $validate = array(
         'lang' => array(
@@ -261,7 +262,7 @@ class Sentence extends AppModel
      *
      * @return array An array of ids.
      */
-    public function getSeveralRandomIds($lang = null , $numberOfIdWanted = 10)
+    public function getSeveralRandomIds($lang = null,  $numberOfIdWanted = 10)
     {
         $ids = array ();
         // exit if we don't have good params
@@ -422,7 +423,7 @@ class Sentence extends AppModel
             'first',
             array(
                 'condition' => array('Sentence.id' => $id)
-                , 'contain' => array ('Translation', 'User')
+               ,  'contain' => array ('Translation', 'User')
             )
         );
 
@@ -450,7 +451,7 @@ class Sentence extends AppModel
     public function getStatistics()
     {
         $query = "
-            SELECT ifnull(lang, 'und') as lang , numberOfSentences
+            SELECT ifnull(lang, 'und') as lang,  numberOfSentences
                 FROM langStats 
                 ORDER BY numberOfSentences DESC ;
         ";
@@ -604,7 +605,7 @@ class Sentence extends AppModel
         //pr ( $results ) ;
 
         $orderedResults = array(
-            "Translation" => array() ,
+            "Translation" => array(), 
             "IndirectTranslation" => array()
         );
         foreach ($results as $result) {
