@@ -116,30 +116,17 @@ class UserController extends AppController
      *
      * @return void
      */
-    public function profile($sUserName = 'random')
+    public function profile($sUserName = null)
     {
         Sanitize::html($sUserName);
 
-        if ($sUserName == 'random') {
-            $aUser = $this->User->find(
-                'first',
-                array(
-                    'conditions' => 'User.group_id < 5',
-                    'order' => 'RAND()',
-                    'limit' => 1
-                )
-            );
-        } else {
-
-            $aUser = $this->User->getInformationOfUser($sUserName);
-        }
-
-        $userStats = $this->_stats($aUser['User']['id']);
-
-        $this->set('userStats', $userStats);
+        $aUser = $this->User->getInformationOfUser($sUserName);
 
         if ( $aUser != null ) {
 
+            $userStats = $this->_stats($aUser['User']['id']);
+            $this->set('userStats', $userStats);
+            
             // Check if we can follow that user or not
             // (we can if we're NOT already following the user,
             // or if the user is NOT ourself)
