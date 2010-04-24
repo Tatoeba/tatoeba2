@@ -94,7 +94,7 @@ class ToolsController extends AppController
         
         $option = 0;
         if ($type == 'furigana') {
-            $option = Sentence::$romanji['mix'];
+            $option = 2;
         }
         
         $Sentence = ClassRegistry::init('Sentence');
