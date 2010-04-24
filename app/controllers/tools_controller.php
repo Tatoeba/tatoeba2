@@ -92,7 +92,7 @@ class ToolsController extends AppController
         Sanitize::html($query);
         Sanitize::html($type);
         
-        $option = 0;
+        $option = 3;
         if ($type == 'furigana') {
             $option = 2;
         }
