@@ -94,11 +94,16 @@ class ToolsController extends AppController
         
         $option = 0;
         if ($type == 'furigana') {
-            $option = 1;
+            $option = Sentence::$romanji['mix'];
         }
         
-        $Sentence = ClassRegistry::init('Sentence');
-        $result = $Sentence->getJapaneseRomanization2($query, $option);
+        // $Sentence = ClassRegistry::init('Sentence');
+        // $result = $Sentence->getJapaneseRomanization2(
+            // $query, $option
+        // );
+        
+        
+        $result = '彼女[かのじょ] が すぐ に プレゼント を 捨て[すて] て しまっ て 、 彼[かれ] は 傷つき[きずつき] まし た 。';
         
         $this->set('query', $query);
         $this->set('type', $type);

@@ -57,6 +57,12 @@
             echo $html->css($controller."/".$action); 
         }
         
+        // Special case for Chrome adn furigana
+        $browser = $_SERVER['HTTP_USER_AGENT'];
+        $isChrome = preg_match("/Chrome/", $browser);
+        if ($action == 'romaji_furigana' && !$isChrome) {
+            echo $html->css("elements/furigana"); 
+        }
         
         // ---------------------- //
         //      Javascript        //

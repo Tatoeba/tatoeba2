@@ -116,8 +116,7 @@ $this->pageTitle = 'Tatoeba - '. __(
         <?php echo $form->end(__('Convert', true)); ?>
     </div>
 </div>
-<!--
+
 <script type="text/javascript">
 furigana();
 </script>
--->
