@@ -43,11 +43,6 @@ $this->pageTitle = 'Tatoeba - '. __(
             
             ?>
         </p>
-        <p class="warning">
-            NOTE: We recently switch to MeCab and as a result, the "furigana"
-            mode is only displaying hiragana. We try to will insert furigana
-            back as soon as possible. Probably on April 24th or 25th.
-        </p>
     </div>
     
     <div class="module">
