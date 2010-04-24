@@ -32,6 +32,8 @@ if (isset($sentence)) {
     echo $javascript->link('sentences.add_translation.js', true);
     echo $javascript->link('jquery.jeditable.js', true);
     echo $javascript->link('sentences.edit_in_place.js', true);
+    echo $javascript->link('sentences.change_language.js', true);
+
     
     echo '<div class="sentences_set freshlyAddedSentence">';
     // sentence menu (translate, edit, comment, etc)
@@ -49,7 +51,7 @@ if (isset($sentence)) {
         $translation = $sentence['Translation'];
     }
     //pr($specialOptions);
-     // TODO set up a better mechanism
+    // TODO set up a better mechanism
     $sentence['User']['canEdit'] = $specialOptions['canEdit'];
     $sentences->displayGroup($sentence['Sentence'], $translation, $sentence['User']);
     echo '</div>';
