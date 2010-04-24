@@ -98,7 +98,7 @@ class SentenceAnnotationsController extends AppController
             if ($this->SentenceAnnotation->save($this->data)) {
                 $this->flash(
                     'Index saved.',
-                    "sentence_annotations/show/".$sentenceId
+                    "/sentence_annotations/show/".$sentenceId
                 );
             }
         }
