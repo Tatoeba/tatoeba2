@@ -148,18 +148,6 @@ class NavigationHelper extends AppHelper
 
         echo '<ul>'."\n";
 
-        // random
-        echo '<li class="option">';
-        echo $this->Html->link(
-            __('random', true),
-            array(
-                'controller' => 'user',
-                'action' => 'profile',
-                'random'
-            )
-        );
-        echo "</li>\n";
-
         // all
         echo '<li class="option">';
         echo $this->Html->link(
