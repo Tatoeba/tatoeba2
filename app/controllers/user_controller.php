@@ -25,6 +25,7 @@
  * @link     http://tatoeba.org
  */
 
+
 App::import('Core', 'Sanitize');
 
 /**
@@ -82,13 +83,9 @@ class UserController extends AppController
      */
     public function index()
     {
-
         $userId = $this->Auth->user('id');
         // redirect the page if a simple visitor try to access it
-        if ($userId == null) {
-            $this->redirect($this->referer());
-            return;
-        }
+   
         $aUser = $this->User->getInformationOfCurrentUser($userId);
         $userStats = $this->_stats($userId);
 
@@ -116,17 +113,30 @@ class UserController extends AppController
      *
      * @return void
      */
-    public function profile($sUserName = null)
+    public function profile($sUserName = 'random')
     {
         Sanitize::html($sUserName);
 
-        $aUser = $this->User->getInformationOfUser($sUserName);
+        if ($sUserName == 'random') {
+            $aUser = $this->User->find(
+                'first',
+                array(
+                    'conditions' => 'User.group_id < 5',
+                    'order' => 'RAND()',
+                    'limit' => 1
+                )
+            );
+        } else {
+
+            $aUser = $this->User->getInformationOfUser($sUserName);
+        }
+
+        $userStats = $this->_stats($aUser['User']['id']);
+
+        $this->set('userStats', $userStats);
 
         if ( $aUser != null ) {
 
-            $userStats = $this->_stats($aUser['User']['id']);
-            $this->set('userStats', $userStats);
-            
             // Check if we can follow that user or not
             // (we can if we're NOT already following the user,
             // or if the user is NOT ourself)
@@ -160,7 +170,7 @@ class UserController extends AppController
 
     /**
      * Save avatar image of current user.
-     *
+     * 
      * @return void
      */
     public function save_image()
@@ -203,33 +213,139 @@ class UserController extends AppController
 
                         $this->redirect(array('action' => 'index'));
                     }
+                    
+                    // Use _resize_image method here
+                    $this->_resize_image(100, $sFileExt, "profiles");
+                    $this->_resize_image(40, $sFileExt, "profiles_40");
 
-                    $this->loadModel('User');
-
-                    $aUser = $this->User->findById($this->Auth->user('id'));
-
-                    $sTmpFile = $this->data['profile_image']['image']['tmp_name'];
-                    $sEmail = $aUser['User']['email'];
-                    $sProfilesPath = IMAGES . 'profiles' . DS;
-                    $sNewFile =  md5($sEmail) . '.' . $sFileExt;
-
-                    if (move_uploaded_file($sTmpFile, $sProfilesPath . $sNewFile)) {
-                        $this->User->id = $this->Auth->user('id');
-                        $this->User->save(
-                            array(
-                                'User' => array(
-                                    'image' => $sNewFile
-                                )
-                            )
-                        );
-                    }
+                                        
                 }
             }
         }
 
         $this->redirect(array('action' => 'index'));
     }
+    
+    /**
+     * Resize user's avatar and save it
+     *
+     * @param int    $width      width of resize picture in px
+     * @param string $sFileExt   file extension
+     * @param string $folderName folder name
+     *
+     * @return void
+     */
+     
+    private function _resize_image($width,$sFileExt,$folderName)
+    {
+        // Temporary file
+        $sTmpFile = $this->data['profile_image']['image']['tmp_name'];
+                    
+        // Use the right fonction to create picture
+        switch ($sFileExt) {
+            case "jpg":
+            case "jpeg":
+                $selectedPicture = imagecreatefromjpeg($sTmpFile);
+                break;
+            case "png":
+                $selectedPicture = imagecreatefrompng($sTmpFile);
+                break;
+            case "gif":
+                $selectedPicture = imagecreatefromgif($sTmpFile);
+                break;
+            default:
+                $this->Session->setFlash(
+                    __('Erreur', true)
+                );
+                return;
+        }
 
+        // calcul new height, width and keep ratio
+        $sizeOfPicture = getimagesize($sTmpFile);
+        $newWidth = $width;
+        // prevent big height
+        if ($sizeOfPicture[1] > 1.5*$sizeOfPicture[0]) {
+            $newHeight = 1.5*$width;
+        } else {
+            $reduction = ( ($newWidth * 100)/$sizeOfPicture[0] );
+            $newHeight = (int)(($sizeOfPicture[1] * $reduction)/100 );
+        }
+        // create a new empty picture
+        $newPicture = imagecreatetruecolor(
+            $newWidth, 
+            $newHeight
+        );
+                    
+        // Put old picture into empty picture with new size     
+        imagecopyresampled(
+            $newPicture, 
+            $selectedPicture, 
+            0, 0, 0, 0, 
+            $newWidth, 
+            $newHeight, 
+            $sizeOfPicture[0],
+            $sizeOfPicture[1]
+        );
+                        
+        // Destroy old picture
+        imagedestroy($selectedPicture);                    
+                    
+        // Generate name for picture
+        $this->loadModel('User');
+        $sEmail = $this->User->getEmailFromId($this->Auth->user('id'));
+        $sProfilesPath = IMAGES . $folderName . DS;
+        $sNewFile =  md5($sEmail) . '.' . $sFileExt;
+                    
+        // Save picture
+        $quality = 100; 
+        switch ($sFileExt) {
+            case "jpg":
+            case "jpeg":
+                $saveSucced = imagejpeg(
+                    $newPicture, 
+                    $sProfilesPath.$sNewFile, 
+                    $quality
+                );
+                break;
+            case "png":
+                $saveSucced = imagepng(
+                    $newPicture, 
+                    $sProfilesPath.$sNewFile, 
+                    $quality
+                );
+                break;
+            case "gif":
+                 $saveSucced = imagegif(
+                     $newPicture, 
+                     $sProfilesPath.$sNewFile, 
+                     $quality
+                 );
+                break;
+            default:
+                $this->Session->setFlash(
+                    __('Error : bad file extension', true)
+                );
+                break;
+        }
+        
+        if ($saveSucced) {
+            $this->User->id = $this->Auth->user('id');
+            $this->User->save(
+                array(
+                    'User' => array(
+                        'image' => $sNewFile
+                     )
+                )
+            );
+        
+        } else {
+            $this->Session->setFlash(
+                __("Error while saving.", true)
+            );
+        }
+
+   
+    }
     /**
      * Save user's description about himself/herself.
      *
