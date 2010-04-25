@@ -2,7 +2,7 @@ Delimiter |
 
 DROP PROCEDURE erase_and_relink_duplicate_sentence |
 
-CREATE PROCEDURE erase_and_relink_duplicate_sentence(IN duplicate_text_id INT(11) )
+CREATE PROCEDURE erase_and_relink_duplicate_sentence(IN duplicate_text_id INT(11), IN duplicate_lang VARCHAR(4) )
 BEGIN
 
   DECLARE duplicate_text VARBINARY(2500);
@@ -15,7 +15,7 @@ BEGIN
         select id  from sentences
         where text = (
             select text from sentences where id = duplicate_text_id limit 1
-        );
+        ) AND lang = duplicate_lang ;
 
   DECLARE CONTINUE HANDLER FOR SQLSTATE '23000' SET duplicate_text_id = duplicate_text_id;
   DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET done = 1;
@@ -90,7 +90,7 @@ BEGIN
         -- table as the table that will have deleted lines
       delete from sentences where text = (
         select text from ( select text from sentences where id = duplicate_text_id ) as x
-       ) and id != (duplicate_text_id);
+       ) and id != (duplicate_text_id) and lang = duplicate_lang;
 
       IF done = 1 THEN
         SET done = 0;
@@ -113,20 +113,21 @@ BEGIN
   DECLARE done INT DEFAULT 0;
   DECLARE duplicate_text VARBINARY(2500);
   DECLARE duplicate_text_id INT;
+  DECLARE duplicate_lang VARCHAR(4);
   
-  DECLARE curseur_text CURSOR FOR select text from sentences group by text having count(DISTINCT id ) > 1 ;
+  DECLARE curseur_text CURSOR FOR select text, lang from sentences group by text, lang having count(DISTINCT id ) > 1 ;
 
   DECLARE CONTINUE HANDLER FOR SQLSTATE '02000' SET done = 1;
   
   OPEN curseur_text ;
 
   REPEAT
-    FETCH curseur_text INTO duplicate_text ;
+    FETCH curseur_text INTO duplicate_text,duplicate_lang ;
     IF done = 0 THEN
-      select duplicate_text ;
+      select duplicate_text , duplicate_lang ;
 
       SELECT id INTO duplicate_text_id FROM sentences 
-        WHERE text = duplicate_text
+        WHERE text = duplicate_text AND lang = duplicate_lang
             AND user_id IS NOT NULL 
         ORDER BY created LIMIT 1 ;
       -- hack but no way, if a select ... into ...  return no result --
@@ -136,12 +137,12 @@ BEGIN
         SET done = 0;
       -- si tout les duplicats n'appartiennent à personne -
           SELECT id INTO duplicate_text_id FROM sentences 
-            WHERE text = duplicate_text
+            WHERE text = duplicate_text AND lang = duplicate_lang
             ORDER BY created LIMIT 1 ;
       END IF;
 
       SELECT duplicate_text_id ;
-      CALL erase_and_relink_duplicate_sentence(duplicate_text_id) ; --
+      CALL erase_and_relink_duplicate_sentence(duplicate_text_id, duplicate_lang) ; --
 
     END IF ;
   UNTIL done
