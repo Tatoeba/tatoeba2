@@ -62,15 +62,13 @@ class Favorite extends AppModel
      */
     public function numberOfFavoritesOfUser($userId)
     {  
-        return $this->find(
-            'count',
-            array(
-                'conditions' => array(
-                    'user_id =' => $userId
-                ),
-                'contain' => array()
-            )        
+        $result = $this->query(
+            "
+            SELECT count(user_id) AS numberOfFavorites FROM favorites_users
+            WHERE user_id = $userId
+            "
         );
+        return $result[0][0]["numberOfFavorites"];
     }
 
     /**
