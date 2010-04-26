@@ -31,42 +31,77 @@ if (isset($this->params['lang'])) {
     $lang = $this->params['lang'];
 }
 ?>
-<strong title="<?php echo __('My profile', false); ?>">
-    <?php
-    echo $html->link(
-        $session->read('Auth.User.username'),
-        array('controller' => 'user', 'action' => 'index'),
-        array('class' => 'menuItem')
-    );
-    ?> :
-</strong>
 
+
+<span id="profile" title="<?php __('Profile'); ?>">
+<?php
+$profileIcon = $html->image(
+    'profile.png',
+    array(
+        "alt" => __('Profile', true),
+        "width" => 14,
+        "height" => 14
+    )
+);
+echo $html->link(
+    $profileIcon . $session->read('Auth.User.username'),
+    array(
+        'controller' => 'user',
+        'action' => 'index'
+    ),
+    array(
+        'escape' => false
+    )
+);
+?>
+</span>
+
+<span id="inbox" title="<?php __('Inbox'); ?>">
 <?php
 $newMessages = $this->requestAction('/private_messages/check');
-if ($newMessages > 0) {
-    $inboxLink = '<strong>'.$html->link(
-        __('Inbox', true) . ' ('. $newMessages . ')',
-        array('controller' => 'private_messages', 'action' => 'folder', 'Inbox'),
-        array('class' => 'menuItem')
-    ). '</strong>';
-} else {
-    $inboxLink = $html->link(
-        __('Inbox', true),
-        array('controller' => 'private_messages', 'action' => 'folder', 'Inbox'),
-        array('class' => 'menuItem')
-    );
-}
+// TODO Get rid of requestAction
+$mailIcon = $html->image(
+    'mail.png',
+    array(
+        "alt" => __('Inbox', true),
+        "width" => 14,
+        "height" => 12
+    )
+);
+echo $html->link(
+    $mailIcon .' '. $newMessages,
+    array(
+        'controller' => 'private_messages', 
+        'action' => 'folder', 
+        'Inbox'
+    ),
+    array(
+        'escape' => false
+    )
+);
 ?>
+</span>
 
-
-<ul>
-    <li><?php echo $inboxLink; ?></li>
-    <li><?php
-        echo $html->link(
-            __('Log out', true),
-            array('controller' => 'users', 'action' => 'logout'),
-            array('class' => 'menuItem')
-        );
-        ?>
-    </li>
-</ul>
+<span id="log_out">
+<?php
+$logOutIcon = $html->image(
+    'log_out.png',
+    array(
+        "alt" => __('Log out', true),
+        "title" => __('Log out', true),
+        "width" => 14,
+        "height" => 14
+    )
+);
+echo $html->link(
+    $logOutIcon,
+    array(
+        'controller' => 'users', 
+        'action' => 'logout'
+    ),
+    array(
+        'escape' => false
+    )
+);
+?>
+</span>

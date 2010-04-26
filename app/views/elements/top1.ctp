@@ -72,22 +72,9 @@ $menuElements = array(
 ?>
 
 <div id="top_menu_container">
-<div id="top_menu">
-
-    <?php echo $this->element('interface_language'); ?>
-
-    <div id="user_menu">
-    <?php
-    if (!$session->read('Auth.User.id')) {
-        echo $this->element('login');
-    } else {
-        echo $this->element('space');
-    }
-    ?>
-    </div>
-
-    <div id="navigation_menu">
-        <ul>
+    <div id="top_menu">
+        
+        <ul id="navigation_menu">
 
         <?php
         // current path param
@@ -131,6 +118,19 @@ $menuElements = array(
         }
         ?>
         </ul>
+        
+        <?php echo $this->element('interface_language'); ?>
+        
+        <div id="user_menu">
+        <?php
+        // User menu
+        if (!$session->read('Auth.User.id')) {
+            echo $this->element('login');
+        } else {
+            echo $this->element('space');
+        }
+        ?>
+        </div>
+        
     </div>
-</div>
 </div>

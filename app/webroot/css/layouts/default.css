@@ -82,6 +82,7 @@ dt {
     width: 950px;
     margin:auto;
     padding: 3px;
+    height: 25px;
 }
 
 #top_menu .whatsNewItem {
@@ -89,21 +90,24 @@ dt {
     color:#FFCC00;
 }
 
-#top_menu .menuItem {   
+#top_menu a{
     color:#FFFFFF;
-    cursor:pointer;
 }
 
 #top_menu a:hover {
     color:#FB6B10;
 }
 
+/*
+ * Menu (Home, Browse, etc)
+ */
 #navigation_menu {
     text-align:left;
     font-size:0.9em;
+    display:inline;
 }
 
-#navigation_menu ul {
+#navigation_menu {
     margin:0px;
     padding:1px;
     max-width: 500px;
@@ -120,44 +124,61 @@ dt {
     font-size:1.2em;
 }
 
-#navigation_menu ul li a:hover.whats_new {
+#navigation_menu li a:hover.whats_new {
     color:#FB6B10;
 }
 
 
-/* User Menu : Interface Language Selector */
+/* 
+ * Interface Language Selector
+ */
 #languageSelection{
+    display: block;
     float: right;
-    display:block;
     font-size: 0.8em;
-    margin-left: 15px;
+    margin-left: 10px;
     margin-top: 1px;
     height: 20px; /* need to specify height otherwise in Firefox and Opera it's too big */
 }
 
+/* 
+ * User Menu 
+ */
 #user_menu {
-    float:right;
-    font-size:0.75em;
-    margin:3px;
-    position:relative;
-}
-
-#user_menu strong{
-    font-size:1.1em;
-}
-
-#user_menu ul {
-    margin:0;
-    padding:0;
+    float: right;
+    margin: 0;
+    padding: 3px;
     list-style-type:none;
-    display:inline;
+    font-size:0.9em;
 }
 
-#user_menu li {
-    display:inline;
-    margin:0 0 0 5px;
+#user_menu span {
+    padding: 0px;
 }
 
+#profile img {
+    position: relative;
+    top: 2px;
+    margin-right: 2px;
+}
+
+#log_out img{
+    position: relative;
+    top: 2px;
+}
+
+#log_out {
+    margin-left: 20px;
+}
+
+#inbox img {
+    position: relative;
+    top: 1px;
+}
+
+#inbox {
+    margin-left: 20px;
+}
 
 /*
  * Search bar 
@@ -438,8 +459,8 @@ dt {
  */
 #UserLoginForm_FromBar {
 	position:absolute;
-	right:-100px;
-	top:20px;
+	right:200px;
+	top:27px;
 	z-index:1000;
 	min-width:270px;
 	padding:3px 3px 5px 5px;
