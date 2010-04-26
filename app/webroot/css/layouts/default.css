@@ -1,6 +1,6 @@
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -82,7 +82,6 @@ dt {
     width: 950px;
     margin:auto;
     padding: 3px;
-    height: 25px;
 }
 
 #top_menu .whatsNewItem {
@@ -102,15 +101,11 @@ dt {
  * Menu (Home, Browse, etc)
  */
 #navigation_menu {
-    text-align:left;
+    max-width: 600px;
     font-size:0.9em;
-    display:inline;
-}
-
-#navigation_menu {
+    text-align: left;
     margin:0px;
     padding:1px;
-    max-width: 500px;
 }
 
 #navigation_menu li {
@@ -168,7 +163,7 @@ dt {
 }
 
 #log_out {
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 #inbox img {
@@ -177,7 +172,7 @@ dt {
 }
 
 #inbox {
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 /*
