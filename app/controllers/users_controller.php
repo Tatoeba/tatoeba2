@@ -182,18 +182,15 @@ class UsersController extends AppController
     {
         $this->Auth->login($this->data);
         
-        $redirectUrl = $this->Auth->redirect();
-        if (isset($this->data["User"]["redirectTo"])) {
-            $redirectUrl = $this->data["User"]["redirectTo"];
-        }
-        
-        if (!$this->Auth->user()) {
-            $this->Session->setFlash(__('Login failed', true));
-        } else {
+        if ($this->Auth->user()) {
+            $redirectUrl = $this->Auth->redirect();
+            if (isset($this->data["User"]["redirectTo"])) {
+                $redirectUrl = $this->data["User"]["redirectTo"];
+            }
             $this->_common_login($redirectUrl);
+        } else {
+            $this->redirect(array('action' => 'login'));
         }
-        
-        $this->redirect($redirectUrl);
     }
 
     /**
