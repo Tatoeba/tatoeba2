@@ -75,6 +75,11 @@ $selectedLanguage = $session->read('random_lang_selected');
                 $nbrActiveMembers
             );
             echo "<br />";
+            echo sprintf(
+                __('%s supported languages', true),
+                $languages->getNumberOfLanguages()
+            );
+            echo "<br />";
             echo $html->link(
                 __('View more', true),
                 array(
@@ -146,7 +151,8 @@ $selectedLanguage = $session->read('random_lang_selected');
             __(
                 '<span class="keyword">Share</span> '.
                 '<span class="sub-keyword">your knowledge</span>'
-            ); ?>
+            ); 
+            ?>
             <ul>
                 <li>
                     <?php

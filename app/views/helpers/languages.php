@@ -200,5 +200,18 @@ class LanguagesHelper extends AppHelper
             return null;
         }
     }
+    
+    /** 
+     * Return number of languages
+     *
+     * @return int
+     */
+     
+    public function getNumberOfLanguages()
+    {
+        $languages = $this->onlyLanguagesArray();
+        $numberOfLanguages = count($languages);
+        return $numberOfLanguages;
+    }
 }
 ?>
