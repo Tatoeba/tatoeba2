@@ -25,111 +25,30 @@
  * @link     http://tatoeba.org
  */
  
-$this->pageTitle = 'Tatoeba - ' . $list['SentencesList']['name'];
+$listId = $list['SentencesList']['id'];
+$listName = $list['SentencesList']['name'];
+ 
+$this->pageTitle = 'Tatoeba - ' . $listName;
 ?>
 
 <div id="annexe_content">
     <div class="module">
     <h2><?php __('Actions'); ?></h2>
     <ul class="sentencesListActions">
-        <li>
-            <?php
-            echo $html->link(
-                __('Back to all the lists', true),
-                array("controller"=>"sentences_lists", "action"=>"index")
-            );
-            ?>
-        </li>
-        <li>
-            <?php
-            echo $html->link(
-                __('Send via Private Message', true),
-                array(
-                    'controller' => 'private_messages',
-                    'action' => 'join',
-                    'list',
-                    $list['SentencesList']['id']
-                )
-            );
-            ?>
-        </li>
-
-        <li>
-            <?php
-            __('Show translations :');
-            echo ' ';
-            $langArray = $languages->onlyLanguagesArray();
-            $path  = '/' . Configure::read('Config.language') .
-                '/sentences_lists/show/' . $list['SentencesList']['id'] . '/';
-            echo $form->select(
-                "translationLangChoice",
-                $langArray,
-                null,
-                array(
-                    "onchange" => "$(location).attr('href', '"
-                    .$path."' + this.value);"
-                ),
-                false
-            );
-            ?>
-        </li>
+        <?php
+        $lists->displayPublicActions(
+            $listId, $translationsLang, 'show'
+        );
+        ?>
     </ul>
     </div>
 
 
     <div class="module">
     <h2><?php __('Printable versions'); ?></h2>
-    <ul class="sentencesListActions">
-        <li>
-            <?php
-            echo $html->link(
-                __('Print as exercise', true),
-                array(
-                    "controller"=>"sentences_lists",
-                    "action"=>"print_as_exercise",
-                    $list['SentencesList']['id'],
-                    'hide_romanization'
-                ),
-                array(
-                    "onclick" => "window.open(this.href,‘_blank’);return false;",
-                    "class" => "printAsExerciseOption"
-                )
-            );
-            ?>
-        </li>
-        <li>
-            <?php
-            if (!isset($translationsLang)) { 
-                $translationsLang = 'und';
-            }
-            echo $html->link(
-                __('Print as correction', true),
-                array(
-                    "controller"=>"sentences_lists",
-                    "action"=>"print_as_correction",
-                    $list['SentencesList']['id'],
-                    $translationsLang,
-                    'hide_romanization'
-                ),
-                array(
-                    "onclick" => "window.open(this.href,‘_blank’);return false;",
-                    "class" => "printAsCorrectionOption"
-                )
-            );
-            ?>
-        </li>
-        <li>
-            <?php
-            $javascript->link('sentences_lists.romanization_option.js', false);
-            echo $form->checkbox(
-                'display_romanization',
-                array("id" => "romanizationOption", "class" => "display")
-            );
-            echo ' ';
-            __('Check this box to display romanization in the print version');
-            ?>
-        </li>
-    </ul>
+    <?php
+    $lists->displayLinksToPrintableVersions($listId, $translationsLang);
+    ?>
     </div>
 </div>
 
