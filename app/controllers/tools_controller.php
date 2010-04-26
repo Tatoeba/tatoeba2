@@ -117,14 +117,9 @@ class ToolsController extends AppController
     public function conversion_simplified_traditional_chinese()
     {
         $text = $this->data['Tool']['query'];    
-        // very important escapeshellarg return the escaped string 
-        // not directly by reference
-        
-        // important to add this line before escaping a
-        // utf8 string, workaround for an apache/php bug  
-        setlocale(LC_CTYPE, "fr_FR.UTF-8");
-        $escapedText = escapeshellarg($text); 
-        $convertedText =  exec("adso --switch-script -cn -i '$escapedText'");
+         
+        $Sentence = ClassRegistry::init('Sentence');
+        $convertedText = $Sentence->getOtherScriptVersion($text);
      
         $this->set('convertedText', $convertedText); 
         $this->set('lastText', $text);

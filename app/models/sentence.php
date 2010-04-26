@@ -743,7 +743,7 @@ class Sentence extends AppModel
             setlocale(LC_CTYPE, "fr_FR.UTF-8");
             $text = escapeshellarg($text); 
             
-            $romanization =  exec("adso -i '$text' -y");
+            $romanization =  exec("adso -i $text -y");
             /*
             $curl = curl_init();
             curl_setopt (
@@ -798,7 +798,7 @@ class Sentence extends AppModel
         // utf8 string, workaround for an apache/php bug  
         setlocale(LC_CTYPE, "fr_FR.UTF-8");
         $text = escapeshellarg($text); 
-        $script =  exec("adso --rscript -i '$text'");
+        $script =  exec("adso --rscript -i $text");
        
         if ($script == 'simplified' || $script == 'traditional') {
             return $script;
@@ -844,7 +844,7 @@ class Sentence extends AppModel
         // utf8 string, workaround for an apache/php bug  
         setlocale(LC_CTYPE, "fr_FR.UTF-8");
         $chineseText = escapeshellarg($chineseText);
-        $convertedText =  exec("adso --switch-script -cn -i '$chineseText'");
+        $convertedText =  exec("adso --switch-script -cn -i $chineseText");
         return $convertedText;
     }
     
