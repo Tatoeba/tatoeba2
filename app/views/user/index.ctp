@@ -142,6 +142,8 @@ if (!$session->read('Auth.User.id')) {
                 <dd><?php echo $userStats['numberOfSentences']; ?></dd>
                 <dt><?php __('Sentences favorited'); ?></dt>
                 <dd><?php echo $userStats['numberOfFavorites']; ?></dd>
+                <dt><?php __('Number of contributions'); ?></dt>
+                <dd><?php echo $userStats['numberOfContributions']; ?></dd>
             </dl>
         </div>
     </div>
