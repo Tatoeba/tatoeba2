@@ -33,7 +33,7 @@ $javascript->link('jquery.jeditable.js', false);
 $listId = $list['SentencesList']['id'];
 $listName = $list['SentencesList']['name'];
 $listOwner = $list['SentencesList']['user_id'];
-$listIsPublic = $list['SentencesList']['is_public'];
+$isListPublic = ($list['SentencesList']['is_public'] == 1);
 
 $this->pageTitle = 'Tatoeba - ' . $listName;
 ?>
@@ -49,7 +49,7 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
         
         if ($session->read('Auth.User.id') == $listOwner) {
             $lists->displayRestrictedActions(
-                $listId, $listIsPublic
+                $listId, $isListPublic
             );
         }
         ?>

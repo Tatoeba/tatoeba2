@@ -244,18 +244,18 @@ class ListsHelper extends AppHelper
      * Display actions that are restricted to the creator of the list.
      *
      * @param int $listId       Id of the list.
-     * @param int $listIsPublic 1 if list is public. 0 otherwise.
+     * @param int $isListPublic true if list is public. false otherwise.
      *
      * @return void
      */
-    public function displayRestrictedActions($listId, $listIsPublic = 0)
+    public function displayRestrictedActions($listId, $isListPublic = false)
     {
         ?>
         <li>
         <label for="isPublic"><?php __('Set list as public'); ?></label>
         <?php
         $this->Javascript->link('sentences_lists.set_as_public.js', false);
-        if ($listIsPublic == 1) {
+        if ($isListPublic) {
             $checkboxValue = 'checked';
         } else {
             $checkboxValue = '';
