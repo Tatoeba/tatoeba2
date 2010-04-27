@@ -53,7 +53,7 @@ if (isset($translationText)) {
         
         // sentence text
         echo '<div id="'.$translationLang."_".$translationId.'" class="editable editableSentence">';
-        echo $translationText; 
+        echo Sanitize::html($translationText);
         echo '</div> ';    
     
     echo "</li>";
