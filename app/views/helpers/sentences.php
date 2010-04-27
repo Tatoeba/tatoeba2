@@ -404,8 +404,7 @@ class SentencesHelper extends AppHelper
                     "controller" => "sentences",
                     "action" => "show",
                     $translation['id']
-                ),
-                array("escape"=>false)
+                )
             );
             echo '</div>';
 
@@ -463,8 +462,7 @@ class SentencesHelper extends AppHelper
                         "controller" => "sentences",
                         "action" => "show",
                         $translation['id']
-                    ),
-                    array("escape"=>false)
+                    )
                 );
                 echo '</div>';
                 
