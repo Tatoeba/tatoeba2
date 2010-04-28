@@ -28,25 +28,26 @@
 
 if ($isSaved) {
 echo $javascript->link('sentences_lists.remove_sentence_from_list.js', true);
+?>
 
-echo '<li id="sentence'.$sentence['Sentence']['id'].'">';
-    // empty span with id of the list, so that we can delete.
-    echo '<span class="sentencesListId" id="'.$listId.'" />';
-    
-    // delete button
-    echo '<span class="options">';
-    echo '<a id="'.$sentence['Sentence']['id'].'" class="removeFromListButton">';
-    echo $html->image('close.png');
-    echo '</a>';
-    echo '</span>';        
-    
-    // display sentence
-    $sentences->displaySentenceInList($sentence['Sentence']);
-echo '</li>';
+<script type='text/javascript'>
+$(document).ready(function() {
+    $('#sentencesList').data(
+        'id', <?php echo $listId; ?>
+    );
+});
+</script>
+
+<?php
+$lists->displaySentence($sentence['Sentence']);
 
 } else {
-    echo '<li>';
-        __("Problem while saving");
-    echo '</li>';
+?>
+
+    <li>
+    <?php __("Problem while saving"); ?>
+    </li>
+
+<?php
 }
 ?>

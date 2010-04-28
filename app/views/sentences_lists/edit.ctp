@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2009-2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -37,6 +37,14 @@ $isListPublic = ($list['SentencesList']['is_public'] == 1);
 
 $this->pageTitle = 'Tatoeba - ' . $listName;
 ?>
+        
+<script type='text/javascript'>
+$(document).ready(function() {
+    $('#sentencesList').data(
+        'id', <?php echo $listId; ?>
+    );
+});
+</script>
 
 <div id="annexe_content">
     <div class="module">
@@ -103,9 +111,7 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
         $class = 'editable editableSentencesListName';
     }
     ?>
-    <h2 id="l<?php echo $listId; ?>" class="<?php echo $class; ?>">
-        <?php $list['SentencesList']['name']; ?>
-    </h2>
+    <h2 id="l<?php echo $listId; ?>" class="<?php echo $class; ?>"><?php echo $listName ?></h2>
     
     <div id="newSentenceInList">
     <?php
@@ -141,34 +147,11 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     <?php echo $html->image('loading.gif'); ?>
     </div>
     
-    <?php
-    // TODO Use jQuery.data
-    ?>
-    <span class="sentencesListId" id="_<?php $listId; ?>" />
-    
-    <ul class="sentencesList editMode">
+    <ul id="sentencesList" class="sentencesList editMode">
     <?php
     if (count($list['Sentence']) > 0) {
         foreach ($list['Sentence'] as $sentence) {
-            ?>
-            <li id="sentence<?php echo $sentence['id']; ?>">
-           <?php
-            // delete button
-            echo '<span class="options">';
-            echo '<a id="_'.$sentence['id'].'" class="removeFromListButton">';
-            echo $html->image('close.png');
-            echo '</a>';
-            echo '</span>';
-
-            // display sentence
-            if ($translationsLang != 'und') {
-                $sentences->displaySentenceInList($sentence, $translationsLang);
-            } else {
-                $sentences->displaySentenceInList($sentence);
-            }
-            ?>
-            </li>
-            <?php
+            $lists->displaySentence($sentence, $translationsLang);
         }
     }
     ?>

@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2009-2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -446,8 +446,8 @@ class SentencesListsController extends AppController
      */
     public function set_as_public()
     {
-        $this->SentencesList->id = $_POST['list_id'];
-        $this->SentencesList->saveField('is_public', $_POST['is_public']);
+        $this->SentencesList->id = $_POST['listId'];
+        $this->SentencesList->saveField('is_public', $_POST['isPublic']);
     }
 }
 ?>

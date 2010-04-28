@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2009-2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -36,7 +36,13 @@
  */
 class ListsHelper extends AppHelper
 {
-    public $helpers = array('Html', 'Javascript', 'Form', 'Languages');
+    public $helpers = array(
+        'Html', 
+        'Javascript', 
+        'Form', 
+        'Languages',
+        'Sentences'
+    );
     
     /** 
      * Display item of a list of lists.
@@ -265,7 +271,7 @@ class ListsHelper extends AppHelper
             'isPublic',
             array(
                 "name" => "isPublic", 
-                "checked" => $checkboxValue
+                "checked" => $checkboxValue,
             )
         );
         echo $this->Html->image(
@@ -366,6 +372,49 @@ class ListsHelper extends AppHelper
             ?>
         </li>
         </ul>
+        <?php
+    }
+    
+    /**
+     * Display sentence.
+     *
+     * @param array  $sentence         Sentence data.
+     * @param string $translationsLang Language of the translations.
+     *
+     * @return void
+     */
+    public function displaySentence($sentence, $translationsLang = null)
+    {
+        ?>
+        <li id="sentence<?php echo $sentence['id']; ?>">
+        <script type='text/javascript'>
+        $(document).ready(function() {
+            $('#deleteButton<?php echo $sentence['id']?>').data(
+                'sentenceId',
+                <?php echo $sentence['id']; ?>
+            );
+        });
+        </script>
+       <?php
+        // delete button
+        echo '<span class="options">';
+        echo $this->Html->image(
+            'close.png',
+            array(
+                "class" => "removeFromListButton",
+                "id" => 'deleteButton'.$sentence['id']
+            )
+        );
+        echo '</span>';
+
+        // display sentence
+        if ($translationsLang != 'und') {
+            $this->Sentences->displaySentenceInList($sentence, $translationsLang);
+        } else {
+            $this->Sentences->displaySentenceInList($sentence);
+        }
+        ?>
+        </li>
         <?php
     }
 }
