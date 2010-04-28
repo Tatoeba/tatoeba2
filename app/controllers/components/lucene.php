@@ -96,7 +96,7 @@ class LuceneComponent extends Object
      */
     private function _processQuery($query)
     {
-        $query = rtrim($query);
+        $query = trim($query);
         $query = preg_replace("!\[!", "", $query);
         $query = preg_replace("!\]!", "", $query);
         if (!preg_match('!^"!', $query) AND !preg_match('!"$!', $query)) {
@@ -112,8 +112,8 @@ class LuceneComponent extends Object
                 "! [a-z]{1,3} (([a-z]{1,3} )?){1,5}!i", " ", $query
             ); 
             
-            if (rtrim($query) == '') { 
-                $query = '"'.rtrim($query).'"';
+            if (trim($query) == '') { 
+                $query = '"'.trim($query).'"';
             }
             
         }

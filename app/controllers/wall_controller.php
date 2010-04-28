@@ -177,7 +177,7 @@ class WallController extends Appcontroller
         
         $idTemp = $this->Auth->user('id');
         if (isset($_POST['content'])
-            && rtrim($_POST['content']) != ''
+            && trim($_POST['content']) != ''
             && isset($_POST['replyTo'])
             && !(empty($idTemp))
         ) {

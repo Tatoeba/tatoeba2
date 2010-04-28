@@ -192,7 +192,7 @@ class User extends AppModel
         //... and add a nice number
         $pw .= rand(1, 9);
 
-        $pw = rtrim($pw);
+        $pw = trim($pw);
 
         if (strlen($pw) == 7) {
             $pw .= rand(0, 9);

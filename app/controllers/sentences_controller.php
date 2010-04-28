@@ -213,7 +213,7 @@ class SentencesController extends AppController
         $sentenceText = $this->data['Sentence']['text'];
         
         Sanitize::html($sentenceText);
-        $sentenceText = rtrim($sentenceText);
+        $sentenceText = trim($sentenceText);
 
         $this->Session->write('contribute_lang', $sentenceLang);
 
@@ -328,14 +328,14 @@ class SentencesController extends AppController
         
         $this->Session->write('contribute_lang', $sentenceLang);
 
-        if (!isset($sentenceText) || rtrim($sentenceText) === '') {
+        if (!isset($sentenceText) || trim($sentenceText) === '') {
             // if the sentence contain no text (empty or only space)
             // the we directly return without saving
             return;
         }
 
         Sanitize::html($sentenceText);
-        $sentenceText = rtrim($sentenceText);
+        $sentenceText = trim($sentenceText);
         
         if (isset($sentenceId)) {
             
@@ -427,7 +427,7 @@ class SentencesController extends AppController
         $this->Session->write('contribute_lang', $translationLang);
         
         if (isset($translationText)
-            && rtrim($translationText) != '' 
+            && trim($translationText) != '' 
             && isset($sentenceId)
             && !(empty($userId))
         ) {

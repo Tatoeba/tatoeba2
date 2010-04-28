@@ -122,7 +122,7 @@ class SentencesListsController extends AppController
     {
         Sanitize::html($this->data['SentencesList']['name']);
         if (!empty($this->data) 
-            and rtrim($this->data['SentencesList']['name']) != ''
+            and trim($this->data['SentencesList']['name']) != ''
         ) {
             $this->data['SentencesList']['user_id'] = $this->Auth->user('id');
             $this->SentencesList->save($this->data);

@@ -139,7 +139,7 @@ class SentenceAnnotationsController extends AppController
             Sanitize::html($query);
             
             $annotations = null;
-            if (rtrim($query) != '') {
+            if (trim($query) != '') {
                 $annotations = $this->SentenceAnnotation->search($query);
             }
             $this->set('query', $query);

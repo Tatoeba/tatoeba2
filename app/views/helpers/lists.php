@@ -65,7 +65,7 @@ class ListsHelper extends AppHelper
         echo '<li>';
         echo '<span id="_'.$listId.'" class="listName">';
         $name = '('.__('unnamed list', true).')';
-        if (rtrim($listName) != '') {
+        if (trim($listName) != '') {
             $name = $listName;
         }
         echo $this->Html->link(
@@ -152,7 +152,7 @@ class ListsHelper extends AppHelper
         echo '<tr>';
         echo '<td class="name">';
         $name = '('.__('unnamed list', true).')';
-        if (rtrim($listName) != '') {
+        if (trim($listName) != '') {
             $name = $listName;
         }
 
