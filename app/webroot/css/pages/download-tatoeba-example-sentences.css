@@ -17,17 +17,8 @@
 */
 
 
-/*
- * Downloads table
- */
-.downloads th{
-	text-align: left;
-	padding: 2px 5px;
-	background: #f1f1f1;
-	border: 1px solid #cccccc;
-}
+dt{margin: 15px 0px 5px 0px;}
 
-.downloads td{
-	padding: 2px 5px;
-	border: 1px solid #cccccc;
-}
+.param{color:#000000; font-weight:bold;}
+.symbol{color:#97BC5C;}
+
