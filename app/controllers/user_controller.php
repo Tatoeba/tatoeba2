@@ -216,7 +216,7 @@ class UserController extends AppController
                     
                     // Use _resize_image method here
                     $this->_resize_image(100, $sFileExt, "profiles");
-                    $this->_resize_image(40, $sFileExt, "profiles_40");
+                    $this->_resize_image(36, $sFileExt, "profiles_36");
 
                                         
                 }
