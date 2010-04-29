@@ -55,7 +55,8 @@ class Sentence extends AppModel
         'tur', 'ukr', 'wuu', 'swe', 'zsm',
         'nob', 'est', 'kat', 'pol', 'swh',
         'lat', 'arz', 'bel', 'hun', 'isl',
-        'sqi', 'yue', null
+        'sqi', 'yue', 'afr', 'fao', 'fry',
+        null
         );    
     public $validate = array(
         'lang' => array(
