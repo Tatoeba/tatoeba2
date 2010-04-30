@@ -255,7 +255,7 @@ class UserController extends AppController
                 break;
             default:
                 $this->Session->setFlash(
-                    __('Erreur', true)
+                    __('Error', true)
                 );
                 return;
         }
