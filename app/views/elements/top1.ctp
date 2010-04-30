@@ -73,7 +73,9 @@ $menuElements = array(
 
 <div id="top_menu_container">
     <div id="top_menu">
+        <div id="languageSelectionContainer">
         <?php echo $this->element('interface_language'); ?>
+        </div>
         
         <div id="user_menu">
         <?php

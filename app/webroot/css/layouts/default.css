@@ -105,7 +105,8 @@ dt {
     font-size:0.9em;
     text-align: left;
     margin:0px;
-    padding:1px;
+    padding:0px;
+    line-height: 24px;
 }
 
 #navigation_menu li {
@@ -127,9 +128,12 @@ dt {
 /* 
  * Interface Language Selector
  */
-#languageSelection{
-    display: block;
+#languageSelectionContainer{
+    line-height: 24px;
     float: right;
+}
+
+#languageSelection{
     font-size: 0.8em;
     margin-left: 10px;
     margin-top: 1px;
@@ -142,9 +146,10 @@ dt {
 #user_menu {
     float: right;
     margin: 0;
-    padding: 3px;
+    padding: 0px 3px;
     list-style-type:none;
     font-size:0.9em;
+    line-height: 24px;
 }
 
 #user_menu span {
