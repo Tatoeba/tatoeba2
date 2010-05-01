@@ -73,8 +73,7 @@ class UserController extends AppController
         parent::beforeFilter();
 
         $this->Auth->allowedActions = array(
-            'profile',
-            'resize_old_profiles',
+            'profile'
         );
     }
 
@@ -306,35 +305,6 @@ class UserController extends AppController
         $oldImage->destroy();
         
         return $isSuccess;
-    }
-
-    /**
-     * I AM DIRTYYYYYY
-     */
-    public function resize_old_profiles() {
-        //running the while loop
-        $profilesDir = opendir(IMAGES . "profiles");
-
-        while ($file = readdir($profilesDir)) {
-            if ($file[0] != '.') {
-            $baseFile = pathinfo($file, PATHINFO_FILENAME); 
-            $newFileFullPath128 = IMAGES . "profiles_128". DS . $baseFile . ".png";
-            $newFileFullPath36 = IMAGES . "profiles_36". DS . $baseFile . ".png";
-            // Use _resize_image method here
-            $save128Succed = $this->_resize_image(
-                IMAGES . 'profiles' . DS . $file,
-                $newFileFullPath128,
-                128
-            );
-            $save36Succed = $this->_resize_image(
-                IMAGES . 'profiles' . DS . $file,
-                $newFileFullPath36,
-                36
-            );
-            }
-        }
-        closedir($profilesDir);
-        die;
     }
 
     /**
