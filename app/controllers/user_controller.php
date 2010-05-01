@@ -215,7 +215,7 @@ class UserController extends AppController
                     }
                     
                     // Use _resize_image method here
-                    $this->_resize_image(100, $sFileExt, "profiles");
+                    $this->_resize_image(128, $sFileExt, "profiles");
                     $this->_resize_image(36, $sFileExt, "profiles_36");
 
                                         
@@ -311,7 +311,7 @@ class UserController extends AppController
                 $saveSucced = imagepng(
                     $newPicture, 
                     $sProfilesPath.$sNewFile, 
-                    $quality
+                    9 // for PNG, quality goes from 0 to 9
                 );
                 break;
             case "gif":
