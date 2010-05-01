@@ -50,7 +50,7 @@ if (count($user['Follower']) > 0) {
                     <img src="/img/profiles/';
 
         if (empty($follower['image'])) {
-            echo 'unknown-avatar.jpg';
+            echo 'unknown-avatar.png';
         } else {
             echo $follower['image'];
         }

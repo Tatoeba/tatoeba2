@@ -106,7 +106,7 @@ class WallHelper extends AppHelper
     public function displayMessagePosterImage($userName, $userImage)
     {
         if (empty($userImage)) {
-            $userImage = 'unknown-avatar.jpg';
+            $userImage = 'unknown-avatar.png';
         }
         
         echo $this->Html->link(
@@ -247,7 +247,7 @@ class WallHelper extends AppHelper
         $writerName  = $author['username'];
 
         if (empty($writerImage)) {
-            $writerImage = 'unknown-avatar.jpg';
+            $writerImage = 'unknown-avatar.png';
         }
 
         $messageId = $message['id'];

@@ -70,7 +70,7 @@ class CommentsHelper extends AppHelper
         echo '<ul class="meta">';
         
         // profile picture
-        $image = 'unknown-avatar.jpg';
+        $image = 'unknown-avatar.png';
         if (!empty($comment['User']['image'])) {
             $image = $comment['User']['image'];
         }

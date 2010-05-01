@@ -117,7 +117,7 @@ $navigation->displayUsersNavigation($id);
 			<tr>
 				<td>
 					<?php 
-					$image = (empty($user['User']['image'])) ? 'unknown-avatar.jpg' : $user['User']['image'];
+					$image = (empty($user['User']['image'])) ? 'unknown-avatar.png' : $user['User']['image'];
 					echo $html->link(
 						$html->image(
 							'profiles_36/'.$image,

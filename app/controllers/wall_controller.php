@@ -211,7 +211,7 @@ class WallController extends Appcontroller
                  
                 $message['User']['image'] = $user['User']['image'];
                 if (empty($message['User']['image'])) {
-                    $message['User']['image'] = 'unknown-avatar.jpg';
+                    $message['User']['image'] = 'unknown-avatar.png';
                 }
 
                 $message['User']['username'] = $user['User']['username'];
