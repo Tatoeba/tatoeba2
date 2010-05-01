@@ -157,7 +157,7 @@ if (!$session->read('Auth.User.id')) {
                 // array of associative array inside a call function 
                 // ultra combo 
                 echo $html->image(
-                    'profiles/' . (empty($user['User']['image']) ?
+                    'profiles_128/' . (empty($user['User']['image']) ?
                         'tatoeba_user.png' :
                         $user['User']['image'] ),
                     array(

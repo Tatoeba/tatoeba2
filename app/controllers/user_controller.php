@@ -34,6 +34,7 @@ App::import('Core', 'Sanitize');
  * @category Users
  * @package  Controllers
  * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
+ * @author   Allan SIMON <allan.simon@supinfo.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
@@ -175,165 +176,72 @@ class UserController extends AppController
      */
     public function save_image()
     {
-        if (!empty($this->data)) {
-            if ($this->data['profile_image']['image']['error'] == UPLOAD_ERR_OK) {
-                $b = is_uploaded_file(
-                    $this->data['profile_image']['image']['tmp_name']
-                );
-                if ($b) {
-                    $sFileExt = strtolower(
-                        end(
-                            explode(
-                                '.',
-                                $this->data['profile_image']['image']['name']
-                            )
-                        )
-                    );
-                    $aValidExts = array('png', 'jpg', 'jpeg', 'gif');
-                    $iFileSize // Size in ko
-                        = (int) $this->data['profile_image']['image']['size']/1024;
 
-                    // Check file extension
-                    if (!in_array($sFileExt, $aValidExts)) {
-                        $this->Session->setFlash(
-                            __('Please choose GIF, JPEG or PNG image format.', true)
-                        );
+        // We first check if a file has been correctly uploaded
+        if (empty($this->data) || !isset($this->data['profile_image']['image'])) {
+            $this->redirect(array('action' => 'index'));
+        }
+        $image = $this->data['profile_image']['image'];
 
-                        $this->redirect(array('action' => 'index'));
-                    }
-
-                    // Check file size, max 1 mo?
-                    if ($iFileSize > 1024) {
-                        $this->Session->setFlash(
-                            __(
-                                'Please choose an image that do not exceed 1 MB.',
-                                true
-                            )
-                        );
-
-                        $this->redirect(array('action' => 'index'));
-                    }
-                    
-                    // Use _resize_image method here
-                    $this->_resize_image(128, $sFileExt, "profiles");
-                    $this->_resize_image(36, $sFileExt, "profiles_36");
-
-                                        
-                }
-            }
+        if ($image['error'] != UPLOAD_ERR_OK) {
+            $this->redirect(array('action' => 'index'));
         }
 
-        $this->redirect(array('action' => 'index'));
-    }
-    
-    /**
-     * Resize user's avatar and save it
-     *
-     * @param int    $width      width of resize picture in px
-     * @param string $sFileExt   file extension
-     * @param string $folderName folder name
-     *
-     * @return void
-     */
-     
-    private function _resize_image($width,$sFileExt,$folderName)
-    {
-        // Temporary file
-        $sTmpFile = $this->data['profile_image']['image']['tmp_name'];
-                    
-        // Use the right fonction to create picture
-        switch ($sFileExt) {
-            case "jpg":
-            case "jpeg":
-                $selectedPicture = imagecreatefromjpeg($sTmpFile);
-                break;
-            case "png":
-                $selectedPicture = imagecreatefrompng($sTmpFile);
-                break;
-            case "gif":
-                $selectedPicture = imagecreatefromgif($sTmpFile);
-                break;
-            default:
-                $this->Session->setFlash(
-                    __('Error', true)
-                );
-                return;
+        if (!is_uploaded_file($image['tmp_name'])) {
+            $this->redirect(array('action' => 'index'));
         }
 
-        // calcul new height, width and keep ratio
-        $sizeOfPicture = getimagesize($sTmpFile);
-        $newWidth = $width;
-        // prevent big height
-        if ($sizeOfPicture[1] > 1.5*$sizeOfPicture[0]) {
-            $newHeight = 1.5*$width;
-        } else {
-            $reduction = ( ($newWidth * 100)/$sizeOfPicture[0] );
-            $newHeight = (int)(($sizeOfPicture[1] * $reduction)/100 );
-        }
-        // create a new empty picture
-        $newPicture = imagecreatetruecolor(
-            $newWidth, 
-            $newHeight
-        );
-                    
-        // Put old picture into empty picture with new size     
-        imagecopyresampled(
-            $newPicture, 
-            $selectedPicture, 
-            0, 0, 0, 0, 
-            $newWidth, 
-            $newHeight, 
-            $sizeOfPicture[0],
-            $sizeOfPicture[1]
-        );
-                        
-        // Destroy old picture
-        imagedestroy($selectedPicture);                    
-                    
-        // Generate name for picture
-        $this->loadModel('User');
-        $sEmail = $this->User->getEmailFromId($this->Auth->user('id'));
-        $sProfilesPath = IMAGES . $folderName . DS;
-        $sNewFile =  md5($sEmail) . '.' . $sFileExt;
-                    
-        // Save picture
-        $quality = 100; 
-        switch ($sFileExt) {
-            case "jpg":
-            case "jpeg":
-                $saveSucced = imagejpeg(
-                    $newPicture, 
-                    $sProfilesPath.$sNewFile, 
-                    $quality
-                );
-                break;
-            case "png":
-                $saveSucced = imagepng(
-                    $newPicture, 
-                    $sProfilesPath.$sNewFile, 
-                    9 // for PNG, quality goes from 0 to 9
-                );
-                break;
-            case "gif":
-                 $saveSucced = imagegif(
-                     $newPicture, 
-                     $sProfilesPath.$sNewFile, 
-                     $quality
-                 );
-                break;
-            default:
-                $this->Session->setFlash(
-                    __('Error : bad file extension', true)
-                );
-                break;
+        // we retrieve file extension
+        $fileExtension = pathinfo($image['name'], PATHINFO_EXTENSION);
+        // Check file extension
+        $validExtensions = array('png', 'jpg', 'jpeg', 'gif');
+        
+        if (!in_array($fileExtension, $validExtensions)) {
+            $this->Session->setFlash(
+                __('Please choose GIF, JPEG or PNG image format.', true)
+            );
+
+            $this->redirect(array('action' => 'index'));
         }
         
-        if ($saveSucced) {
+        // The file size must be < 1mo        
+        $fileSize = (int) $image['size']/1024;
+
+        if ($fileSize > 1024) {
+            $this->Session->setFlash(
+                __(
+                    'Please choose an image that do not exceed 1 MB.',
+                    true
+                )
+            );
+
+            $this->redirect(array('action' => 'index'));
+        }
+         // Generate name for picture
+        $email = $this->Auth->user('email');
+        $newFileName =  md5($email) . '.' . $fileExtension;               
+
+        $newFileFullPath128 = IMAGES . "profiles_128". DS . $newFileName;
+        $newFileFullPath36 = IMAGES . "profiles_36". DS . $newFileName;
+        // Use _resize_image method here
+        $save128Succed = $this->_resize_image(
+            $image['tmp_name'],
+            $newFileFullPath128,
+            128
+        );
+        $save36Succed = $this->_resize_image(
+            $image['tmp_name'],
+            $newFileFullPath36,
+            36
+        );
+                                   
+        // if all resize has worked we can save it in user information
+        if ($save36Succed && $save128Succed) {
             $this->User->id = $this->Auth->user('id');
             $this->User->save(
                 array(
                     'User' => array(
-                        'image' => $sNewFile
+                        'image' => $newFileName
                      )
                 )
             );
@@ -344,7 +252,57 @@ class UserController extends AppController
             );
         }
 
-   
+        $this->redirect(array('action' => 'index'));
+    }
+    
+    /**
+     * Resize an image and save it
+     *
+     * @param string $oldFile   Full path to the old picture to resize
+     * @param string $newFile   Full path where the resized file will be saved 
+     * @param int    $dimension Dimension of the new image, if the old picture
+     *                          is not squarre the picture will be filled with
+     *                          Transparent background 
+     *
+     * @return boolean If save has succeded
+     */
+     
+    private function _resize_image($oldFile, $newFile, $dimension)
+    {
+        $oldImage = new Imagick($oldFile);
+        $oldWidth = $oldImage->getImageWidth();  
+        $oldHeight = $oldImage->getImageHeight();
+        
+        if ($oldWidth > $oldHeight) {
+            $oldImage->thumbnailImage($dimension, null);
+        } else {
+            $oldImage->thumbnailImage(null, $dimension);
+        }
+         
+        $newImage = new Imagick();     
+        $newImage->newImage(
+            $dimension,
+            $dimension,
+            new ImagickPixel("transparent")
+        );
+        
+        
+        $newImage->compositeImage(
+            $oldImage,
+            Imagick::COMPOSITE_OVER,
+            0,
+            0
+        );
+        $newImage->setImageFormat("png32");
+        $isSuccess = $newImage->writeImage($newFile);
+        
+
+        $newImage->clear();
+        $newImage->destroy();
+        $oldImage->clear();
+        $oldImage->destroy();
+        
+        return $isSuccess;
     }
     /**
      * Save user's description about himself/herself.

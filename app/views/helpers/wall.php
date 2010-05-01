@@ -111,7 +111,7 @@ class WallHelper extends AppHelper
         
         echo $this->Html->link(
             $this->Html->image(
-                'profiles/'. $userImage,
+                'profiles_36/'. $userImage,
                 array(
                     "alt" => $userName,
                     "title" => __("View this user's profile", true)

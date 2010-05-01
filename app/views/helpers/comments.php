@@ -130,7 +130,7 @@ class CommentsHelper extends AppHelper
         echo '<li class="image">';
         echo $this->Html->link(
             $this->Html->image(
-                'profiles/'.$image, 
+                'profiles_36/'.$image, 
                 array("title" => __('View this user\'s profile', true))
             ),
             array(

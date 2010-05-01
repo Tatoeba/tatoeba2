@@ -122,7 +122,7 @@ if ($is_public or $login) {
         ?>
         <div id="pimg">
 <?php
-echo $html->image('profiles/' . (empty($user['User']['image']) ? 'tatoeba_user.png' : $user['User']['image'] ), array(
+echo $html->image('profiles_128/' . (empty($user['User']['image']) ? 'tatoeba_user.png' : $user['User']['image'] ), array(
     'alt' => $user['User']['username'],
 ));
 ?>

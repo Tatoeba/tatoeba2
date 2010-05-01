@@ -120,7 +120,7 @@ $navigation->displayUsersNavigation($id);
 					$image = (empty($user['User']['image'])) ? 'unknown-avatar.jpg' : $user['User']['image'];
 					echo $html->link(
 						$html->image(
-							'profiles/'.$image,
+							'profiles_36/'.$image,
 							array("alt"=>$user['User']['username'])
 						)
 						, array("controller"=>'user', "action"=>'profile', $user['User']['username'])
