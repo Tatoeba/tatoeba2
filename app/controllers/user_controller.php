@@ -74,6 +74,7 @@ class UserController extends AppController
 
         $this->Auth->allowedActions = array(
             'profile',
+            'resize_old_profiles',
         );
     }
 
@@ -191,19 +192,6 @@ class UserController extends AppController
             $this->redirect(array('action' => 'index'));
         }
 
-        // we retrieve file extension
-        $fileExtension = pathinfo($image['name'], PATHINFO_EXTENSION);
-        // Check file extension
-        $validExtensions = array('png', 'jpg', 'jpeg', 'gif');
-        
-        if (!in_array($fileExtension, $validExtensions)) {
-            $this->Session->setFlash(
-                __('Please choose GIF, JPEG or PNG image format.', true)
-            );
-
-            $this->redirect(array('action' => 'index'));
-        }
-        
         // The file size must be < 1mo        
         $fileSize = (int) $image['size']/1024;
 
@@ -217,9 +205,24 @@ class UserController extends AppController
 
             $this->redirect(array('action' => 'index'));
         }
+
+        // we retrieve file extension
+        $fileExtension = pathinfo($image['name'], PATHINFO_EXTENSION);
+        // Check file extension
+        $validExtensions = array('png', 'jpg', 'jpeg', 'gif');
+        
+        if (!in_array($fileExtension, $validExtensions)) {
+            $this->Session->setFlash(
+                __('Please choose GIF, JPEG or PNG image format.', true)
+            );
+
+            $this->redirect(array('action' => 'index'));
+        }
+        
+
          // Generate name for picture
         $email = $this->Auth->user('email');
-        $newFileName =  md5($email) . '.' . $fileExtension;               
+        $newFileName =  md5($email) . '.png' ;               
 
         $newFileFullPath128 = IMAGES . "profiles_128". DS . $newFileName;
         $newFileFullPath36 = IMAGES . "profiles_36". DS . $newFileName;
@@ -304,6 +307,32 @@ class UserController extends AppController
         
         return $isSuccess;
     }
+
+    /**
+     *
+     */
+    public function resize_old_profiles() {
+        //running the while loop
+        echo IMAGES . "profiles" .DS;
+        while ($file = readdir(IMAGES . "profiles")) {
+            $baseFile = pathinfo($file, PATHINFO_FILENAME); 
+            $newFileFullPath128 = IMAGES . "profiles_128". DS . $baseFile . ".png";
+            $newFileFullPath36 = IMAGES . "profiles_36". DS . $baseFile . ".png";
+            // Use _resize_image method here
+            $save128Succed = $this->_resize_image(
+                $image['tmp_name'],
+                $newFileFullPath128,
+                128
+            );
+            $save36Succed = $this->_resize_image(
+                $image['tmp_name'],
+                $newFileFullPath36,
+                36
+            );
+        }
+        die;
+    }
+
     /**
      * Save user's description about himself/herself.
      *
