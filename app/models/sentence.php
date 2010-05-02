@@ -809,8 +809,6 @@ class Sentence extends AppModel
         $text = escapeshellarg($text); 
         $script =  exec("adso --rscript -i $text");
         
-        return 'traditional';
-        
         if ($script == 'simplified' || $script == 'traditional') {
             return $script;
         } else {
