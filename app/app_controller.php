@@ -103,8 +103,7 @@ class AppController extends Controller
             $this->layout = '';
         }
         // Language of interface
-        if (isset($this->params['lang'])) {
-
+        if (!empty($this->params['lang'])) {
             Configure::write(
                 'Config.language',
                 $this->params['lang']

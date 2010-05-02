@@ -153,17 +153,22 @@
                 
                 foreach ($results as $index=>$sentence) {
                     echo '<div class="sentences_set searchResult">';
-                    // sentence menu (translate, edit, comment, etc)
-                    if (isset($sentence['User']['username'])) {
-                        // TODO set up a better mechanism
-                        $specialOptions[$index]['belongsTo'] = $sentence['User']['username']; 
+                    $sentenceId = $sentence['Sentence']['id'];
+                    $ownerName = $sentence['User']['username'];
+                    
+                    // Checking is user has favorited the sentence... Since we're
+                    // using the pagination, we have to check manually here.
+                    $isFavorited = false;
+                    foreach ($sentence['Favorites_users'] as $favUser) {
+                        if ($favUser['user_id'] == CurrentUser::get('id')) {
+                            $isFavorited = true;
+                        }
                     }
-                    $sentences->displayMenu(
-                        $sentence['Sentence']['id'], 
-                        $sentence['Sentence']['lang'], 
-                        $specialOptions[$index], 
-                        null,
-                        null
+                    
+                    $menu->displayMenu(
+                        $sentenceId,
+                        $ownerName,
+                        $isFavorited
                     );
 
                     // sentence and translations

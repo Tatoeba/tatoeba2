@@ -78,30 +78,27 @@ $javascript->link('sentences.contribute.js', false);
         
         echo '<div id="sentencesAdded">';
         if (isset($sentence)) {
-                echo '<div class="sentences_set">';
-                // sentence menu (translate, edit, comment, etc)
-                $sentences->displayMenu(
-                    $sentence['Sentence']['id'],
-                    $sentence['Sentence']['lang'],
-                    $specialOptions,
-                    null,
-                    $sentence['Sentence']['script']
-                );
+            echo '<div class="sentences_set">';
+            // sentence menu (translate, edit, comment, etc)
+            $sentenceId = $sentence['Sentence']['id'];
+            $ownerName = $sentence['User']['username']; 
+            $isFavorited = $sentence['isFavorited'];
+            $menu->displayMenu($sentenceId, $ownerName, $isFavorited);
 
-                // sentence and translations
-                $translation = array();
+            // sentence and translations
+            $translation = array();
             if ( isset($sentence['Translation'])) {
-                    $translation = $sentence['Translation'];
+                $translation = $sentence['Translation'];
             }
-                //pr($specialOptions);
-                // TODO set up a better mechanism
-                $sentence['User']['canEdit'] = $specialOptions['canEdit']; 
-                $sentences->displayGroup(
-                    $sentence['Sentence'],
-                    $translation,
-                    $sentence['User']
-                );
-                echo '</div>';
+            //pr($specialOptions);
+            // TODO set up a better mechanism
+            $sentence['User']['canEdit'] = $specialOptions['canEdit']; 
+            $sentences->displayGroup(
+                $sentence['Sentence'],
+                $translation,
+                $sentence['User']
+            );
+            echo '</div>';
         }
         echo '</div>';
         ?>

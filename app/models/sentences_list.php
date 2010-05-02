@@ -49,7 +49,7 @@ class SentencesList extends AppModel
      */
     public function getUserChoices($userId)
     {
-        return $this->find(
+        $results = $this->find(
             "all", 
             array(
                 "conditions" => 
@@ -58,9 +58,45 @@ class SentencesList extends AppModel
                         "SentencesList.is_public" => 1
                     )
                 ),
-                'contain' => array()
+                'contain' => array(),
+                'fields' => array('id', 'name', 'user_id')
             )
         );
+        
+        $privateLists = array();
+        $publicLists = array();
+        foreach ($results as $result) {
+            $listId = $result['SentencesList']['id'];
+            $listName = $result['SentencesList']['name'];
+            $userId = $result['SentencesList']['user_id'];
+            
+            if (CurrentUser::get('id') == $userId) {
+                $privateLists[$listId] = $listName;
+            } else {
+                $publicLists[$listId] = $listName;
+            }
+        }
+        
+        // This seems to be the only way to keep the keys...
+        $listsKeys = array(-1, -2, 0);
+        $listsValues = array(
+            __('Add to new list...', true), 
+            __('Manage lists...', true),
+            '-----------------' 
+        );
+        foreach ($privateLists as $key => $privateList) {
+            $listsKeys[] = $key;
+            $listsValues[] = $privateList;
+        }
+        $listsKeys[] = -3;
+        $listsValues[] = '-----------------';
+        foreach ($publicLists as $key => $publicList) {
+            $listsKeys[] = $key;
+            $listsValues[] = $publicList;
+        }
+        $lists = array_combine($listsKeys, $listsValues);
+        
+        return $lists;
     }
     
     /**

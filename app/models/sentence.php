@@ -334,13 +334,21 @@ class Sentence extends AppModel
             return;
         }
         $result['Sentence'];
-
+        
        
         $this->generateRomanization($result['Sentence']);
         $this->generateAlternateScript($result['Sentence']);
         $this->generateScript($result['Sentence']);
-
-         
+        
+        // Checking if sentence is favorited by current user
+        $currentUserId = CurrentUser::get('id');
+        $result['isFavorited'] = false;
+        foreach ($result['Favorites_users'] as $favoriteUser) {
+            if ($favoriteUser['user_id'] == $currentUserId){
+                $result['isFavorited'] = true;
+            }
+        }
+        
         return $result;
     }
     
@@ -800,7 +808,9 @@ class Sentence extends AppModel
         setlocale(LC_CTYPE, "fr_FR.UTF-8");
         $text = escapeshellarg($text); 
         $script =  exec("adso --rscript -i $text");
-       
+        
+        return 'traditional';
+        
         if ($script == 'simplified' || $script == 'traditional') {
             return $script;
         } else {

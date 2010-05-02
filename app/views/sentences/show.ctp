@@ -84,32 +84,25 @@ $navigation->displaySentenceNavigation();
     <div class="module">
         <?php
         if ($sentence != null) {
-            echo '<h2>' .
-                    sprintf(__('Sentence nº%s', true), $sentence['Sentence']['id']).
-                '</h2>';
-
-            /** /!\ the id is used in sentences.show.js ,
-            so do not touch the way we forge the id /!\ */
+        ?>
+            <h2>
+            <?php 
+            echo sprintf(__('Sentence nº%s', true), $sentence['Sentence']['id']); 
+            ?>
+            </h2>
             
-            echo '<div id="__'.$sentenceId . '" class="sentences_set">';
-                // sentence menu (translate, edit, comment, etc)
-                // TODO set up a better mechanism
-                $specialOptions['belongsTo'] = $sentence['User']['username']; 
-                $sentences->displayMenu(
-                    $sentenceId,
-                    $sentence['Sentence']['lang'],
-                    $specialOptions,
-                    null,
-                    $sentence['Sentence']['script']
-                );
-
+            <div class="sentences_set">
+                <?php
+                $username = $sentence['User']['username'];
+                $chineseScript = $sentence['Sentence']['script'];
                 
+                $menu->displayMenu(
+                    $sentenceId, $username, $isFavorited, $chineseScript
+                );
 
                 // for edit in place...
                 // TODO set up a better mechanism
                 $sentence['User']['canEdit'] = $specialOptions['canEdit']; 
-                $sentence['User']['canLinkAndUnlink'] 
-                    = $specialOptions['canLinkAndUnlink']; 
                 
                 // display sentence and translations
                 $sentences->displayGroup(
@@ -119,13 +112,10 @@ $navigation->displaySentenceNavigation();
                     $indirectTranslations,
                     true // so that the sentence is a div and not a link
                 );
-            echo '</div>';
-
-            //$tooltip->displayAdoptTooltip();
-            // TODO link with sentences.show.js
-            $javascript->link('sentences.show.js', false);
+                ?>
+            </div>
             
-
+        <?php
         } else {
             
             echo '<h2>' .

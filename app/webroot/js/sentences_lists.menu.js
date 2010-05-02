@@ -18,14 +18,14 @@
 
 $(document).ready(function() {
 	
-	var sentence_id = -1;
+	var sentenceId = -1;
 	
 	/*
 	 * Display the "check" green icon for a short time
 	 * after sentence has been added to list.
 	 */
 	function feedbackValid(){
-		$("#_"+sentence_id+"_valid").show(); // TODO Set up a better system for this thing. 
+		$("#sentence"+sentenceId+"_saved_in_list").show(); // TODO Set up a better system for this thing. 
 		// Because you can't have the "in process" AND the "valid" at the same time.
 		// It will be useful for favoriting as well.
 		setTimeout(removeFeedback, 500);
@@ -35,15 +35,15 @@ $(document).ready(function() {
 	 * Remove the "check" green icon.
 	 */
 	function removeFeedback(){
-		$("#_"+sentence_id+"_valid").hide();
+		$("#sentence"+sentenceId+"_saved_in_list").hide();
 	}
 
 	
 	// Clicking on "Add to list" displays the list selection.
 	// Reclicking on it hides the list selection.
 	$(".addToList").click(function(){
-		sentence_id = $(this).parent().attr("id").slice(1);
-		$(".addToList"+sentence_id).toggle();
+		sentenceId = $(this).data("sentenceId");
+		$("#addToList"+sentenceId).toggle();
 	});
 	
 	
@@ -51,25 +51,27 @@ $(document).ready(function() {
 	// the button. I was hesitating between this solution and
 	// having the sentence added to the list onChange, that is,
 	// directly after the selection in the <select>.
-	$(".addToListButton").click(function(){
-		
-		sentence_id = $(this).parent().parent().attr("id").slice(1);
-		var list_id = $("#listSelection"+sentence_id).val();
-		
+	$(".validateButton").click(function(){
+        
+		var listId = $("#listSelection"+sentenceId).val();
+        
 		// Add sentence to selected list
-		if(list_id > 0){
+		if(listId > 0){
 		
-			$("#_"+sentence_id+"_in_process").show();
+			$("#_"+sentenceId+"_in_process").show();
 			
-			$.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/add_sentence_to_list/"+ sentence_id + "/" + list_id
+			$.post(
+                "http://" + self.location.hostname + ":" + self.location.port 
+                + "/sentences_lists/add_sentence_to_list/"
+                + sentenceId + "/" + listId
 				, {}
 				,function(data){
-					if(data != 'error'){
-						$('#listSelection'+sentence_id).val(-1);
-						$('#listSelection'+sentence_id+' option[value="'+data+'"]').remove();
-						feedbackValid(sentence_id);
+					if(!data.match('error')){
+						$('#listSelection'+sentenceId).val(-1);
+						$('#listSelection'+sentenceId+' option[value="'+data+'"]').remove();
+						feedbackValid(sentenceId);
 					}
-					$("#_"+sentence_id+"_in_process").hide();
+					$("#_"+sentenceId+"_in_process").hide();
 				},
 				'html'
 			);
@@ -77,7 +79,7 @@ $(document).ready(function() {
 		}
 		
 		// Create a new list and add sentence to this new list
-		else if(list_id == -1){
+		else if(listId == -1){
 			
 			var txt = 'Name of the list : <br />'
 			+ '<input type="text" id="listName" name="listName" />';
@@ -87,20 +89,27 @@ $(document).ready(function() {
 				
 				if(value != undefined){ // need to check this, otherwise it loops indefinitely when canceling...
 				
-					$("#_"+sentence_id+"_in_process").show();
+					$("#_"+sentenceId+"_in_process").show();
 					
-					$.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/add_sentence_to_new_list/"+ sentence_id + "/"+ form.listName
+					$.post(
+                        "http://" + self.location.hostname + ":" + self.location.port 
+                        + "/sentences_lists/add_sentence_to_new_list/"
+                        + sentenceId + "/"+ form.listName
 						, {}
 						,function(data){
 							if(data != 'error'){
-								$('#listSelection'+sentence_id).append('<option value="'+ data +'">'+ form.listName +'</option>');
-								$('#listSelection'+sentence_id).val(data);
-								feedbackValid(sentence_id);
+								$('#listSelection'+sentenceId).append(
+                                    '<option value="'+ data +'">'
+                                    + form.listName 
+                                    +'</option>'
+                                );
+								$('#listSelection'+sentenceId).val(data);
+								feedbackValid(sentenceId);
 								
 							}else{
 								$.prompt("Sorry, an error occured.");
 							}
-							$("#_"+sentence_id+"_in_process").hide();
+							$("#_"+sentenceId+"_in_process").hide();
 						},
 						'html'
 					);
@@ -118,10 +127,14 @@ $(document).ready(function() {
 		}
 		
 		// redirect to lists
-		else if(list_id == -2){
+		else if(listId == -2){
 			
-			$(location).attr('href', "http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/");
-			
+			$(location).attr(
+                'href', 
+                "http://" + self.location.hostname + ":" + self.location.port 
+                + "/sentences_lists/"
+            );
+            
 		}
 		
 	});

@@ -90,31 +90,28 @@ $this->pageTitle = 'Tatoeba - ' . __('Random sentences', true);
     <h2><?php __('Random sentences'); ?></h2>
         <?php
         foreach ($allSentences as $index=>$sentence) {
-                    echo '<div class="sentences_set searchResult">';
-                    // sentence menu (translate, edit, comment, etc)
-                    $specialOptions =  $sentence['Sentence']['specialOptions'] ;
-                    // TODO set up a better mechanism
-                    $specialOptions['belongsTo']= $sentence['User']['username']; 
-                    $sentences->displayMenu(
-                        $sentence['Sentence']['id'],
-                        $sentence['Sentence']['lang'],
-                        $specialOptions,
-                        null,
-                        $sentence['Sentence']['script']
-                    );
-
-                    // sentence and translations
-                    // TODO set up a better mechanism
-                    $sentence['User']['canEdit'] = $specialOptions['canEdit']; 
-                    $sentence['User']['canLinkAndUnlink'] 
-                        = $specialOptions['canLinkAndUnlink']; 
-                    $sentences->displayGroup(
-                        $sentence['Sentence'],
-                        $sentence['Translations'],
-                        $sentence['User'],
-                        $sentence['IndirectTranslations']
-                    );
-                    echo '</div>';
+            echo '<div class="sentences_set searchResult">';
+            $sentenceId = $sentence['Sentence']['id'];
+            $ownerName = $sentence['User']['username']; 
+            $isFavorited = $sentence['isFavorited'];
+            $chineseScript = $sentence['Sentence']['script'];
+            $menu->displayMenu(
+                $sentenceId, $ownerName, $isFavorited, $chineseScript
+            );
+            
+            // sentence and translations
+            // TODO set up a better mechanism
+            $specialOptions =  $sentence['Sentence']['specialOptions'] ;
+            $sentence['User']['canEdit'] = $specialOptions['canEdit']; 
+            $sentence['User']['canLinkAndUnlink'] 
+                = $specialOptions['canLinkAndUnlink']; 
+            $sentences->displayGroup(
+                $sentence['Sentence'],
+                $sentence['Translations'],
+                $sentence['User'],
+                $sentence['IndirectTranslations']
+            );
+            echo '</div>';
         }
         ?>
     </div>

@@ -37,24 +37,47 @@
 class MenuHelper extends AppHelper
 {
 
-    public $helpers = array('Html');
+    public $helpers = array(
+        'Html',
+        'Javascript',
+        'Form'
+    );
+    
     
     /** 
      * Display button to add a translation.
      *
+     * @param int $sentenceId Id of the original sentence.
+     *
      * @return void
      */
-    public function translateButton()
+    public function translateButton($sentenceId)
     {
-        echo '<li class="option translateLink">';
-        echo '<a>' . $this->Html->image(
+        $this->Javascript->link('sentences.add_translation.js', false);
+        ?>
+        <li class="option translateLink"
+            id="translate_<?php echo $sentenceId; ?>"><a>
+        
+        <script type='text/javascript'>
+        $(document).ready(function() {
+            $('#translate_<?php echo $sentenceId; ?>').data(
+                'sentenceId',
+                <?php echo $sentenceId; ?>
+            );
+        });
+        </script>
+        
+        <?php
+        echo $this->Html->image(
             'translate.png', 
             array(
                 'alt'=>__('Translate', true), 
                 'title'=>__('Translate', true)
             )
-        ) . '</a>';
-        echo '</li>';
+        );
+        ?>
+        </a></li>
+        <?php
     }
 
 
@@ -66,15 +89,19 @@ class MenuHelper extends AppHelper
      */
     public function simplifiedButton()
     {
-        echo '<li class="option simplified">';
-        echo '<a>' . $this->Html->image(
+        ?>
+        <li class="option simplified"><a>
+        <?php
+        echo $this->Html->image(
             'simplified_chinese.png', 
             array(
                 'alt'=>__('This sentence is in simplified Chinese.', true), 
                 'title'=>__('This sentence is in simplified Chinese.', true)
             )
-        ) . '</a>';
-        echo '</li>';
+        );
+        ?>
+        </a></li>
+        <?php
     }
 
     /** 
@@ -85,15 +112,19 @@ class MenuHelper extends AppHelper
      */
     public function traditionalButton()
     {
-        echo '<li class="option traditional">';
-        echo '<a>' . $this->Html->image(
+        ?>
+        <li class="option traditional"><a>
+        <?php
+        echo $this->Html->image(
             'traditional_chinese.png', 
             array(
                 'alt'=>__('This sentence is in traditional Chinese.', true), 
                 'title'=>__('This sentence is in traditional Chinese.', true)
             )
-        ) . '</a>';
-        echo '</li>';
+        );
+        ?>
+        </a></li>
+        <?php
     }
 
 
@@ -101,100 +132,122 @@ class MenuHelper extends AppHelper
     /** 
      * Display button to adopt a sentence.
      *
-     * @param int $sentenceId Id of the sentence on which this button
-     *                        is displayed
+     * @param int  $sentenceId Id of the sentence on which this button
+     *                         is displayed
+     * @param bool $isAdopted  Indicates whether the sentence is adopted by current
+     *                         user or not.
      *
      * @return void
      */
-    public function adoptButton($sentenceId)
+    public function adoptButton($sentenceId, $isAdopted)
     {
-        echo '<li class="option adopt add" id="adopt_'.$sentenceId.'">';
-        echo '<a>'.
-        $this->Html->image(
-            'adopt.png',
+        $this->Javascript->link('sentences.adopt.js', false);
+        
+        if ($isAdopted) {
+            $cssClass = 'remove';
+            $image = 'let_go.png';
+            $tooltip = __('Let go', true);
+        } else {
+            $cssClass = 'add';
+            $image = 'adopt.png';
+            $tooltip = __('Adopt', true);
+        }
+        ?>
+        
+        <li class="option adopt <?php echo $cssClass; ?>" 
+            id="adopt_<?php echo $sentenceId; ?>"><a>
+            
+        <script type='text/javascript'>
+        $(document).ready(function() {
+            $('#adopt_<?php echo $sentenceId; ?>').data(
+                'sentenceId',
+                <?php echo $sentenceId; ?>
+            );
+        });
+        </script>
+        <?php
+        echo $this->Html->image(
+            $image,
             array(
-                'alt'=>__('Adopt', true), 
-                'title'=>__('Adopt', true)
+                'alt'=> $tooltip, 
+                'title'=> $tooltip
             )
-        ).'</a>';
-        echo '</li>';
+        );
+        ?>
+        </a></li>
+        
+        <?php
     }
     
-    /** 
-     * Display button to let go.
-     *
-     * @param int $sentenceId Id of the sentence on which this button
-     *                        is displayed
-     *
-     * @return void
-     */
-    public function letGoButton($sentenceId)
-    {
-        echo '<li class="option adopt remove" id="adopt_'.$sentenceId.'">';
-        echo '<a>'.
-        $this->Html->image(
-            'let_go.png',
-            array(
-                'alt'=>__('Let go', true), 
-                'title'=>__('Let go', true)
-            )
-        ).'</a>';
-        echo '</li>';
-    }
     
     /** 
      * Display button to add to favorites.
      *
-     * @param int $sentenceId Id of the sentence on which this button
-     *                        is displayed
+     * @param int  $sentenceId  Id of the sentence on which this button
+     *                          is displayed
+     * @param bool $isFavorited Indicates whether the sentence is favorited by
+     *                          current user or not.
      *
      * @return void
      */
-    public function favoriteButton($sentenceId)
+    public function favoriteButton($sentenceId, $isFavorited)
     {
-        echo '<li class="option favorite add" id="favorite_'.$sentenceId.'">';
-        echo '<a>'.$this->Html->image(
-            'favorite.png',
+        $this->Javascript->link('favorites.add.js', false);
+        
+        if ($isFavorited) {
+            $cssClass = 'remove';
+            $image = 'unfavorite.png';
+            $tooltip = __('Remove from favorites', true);
+        } else {
+            $cssClass = 'add';
+            $image = 'favorite.png';
+            $tooltip = __('Add to favorites', true);
+        }
+        ?>
+        
+        
+        <li class="option favorite <?php echo $cssClass; ?>" 
+            id="favorite_<?php echo $sentenceId; ?>">
+        
+        <script type='text/javascript'>
+        $(document).ready(function() {
+            $('#favorite_<?php echo $sentenceId; ?>').data(
+                'sentenceId',
+                <?php echo $sentenceId; ?>
+            );
+        });
+        </script>
+        
+        <a>
+        <?php
+        echo $this->Html->image(
+            $image,
             array(
-                'alt'=>__('Add to favorites', true), 
-                'title'=>__('Add to favorites', true)
+                'alt'=> $tooltip, 
+                'title'=> $tooltip
             )
         );
-        echo '</a>';
-        echo '</li>';
+        ?>
+        </a>
+        </li>
+        
+        <?php
     }
     
+    
     /** 
-     * Display button to remove from favorites.
+     * Display button to add a sentence to a list.
      *
-     * @param int $sentenceId Id of the sentence on which this button
-     *                        is displayed
+     * @param int $sentenceId Id of the sentence.
      *
      * @return void
      */
-    public function unfavoriteButton($sentenceId)
+    public function addToListButton($sentenceId)
     {
-        echo '<li class="option favorite remove" id="favorite_'.$sentenceId.'">';
-        echo '<a>'.$this->Html->image(
-            'unfavorite.png',
-            array(
-                'alt'=>__('Remove from favorites', true), 
-                'title'=>__('Remove from favorites', true)
-            )
-        );
-        echo '</a>';
-        echo '</li>';
-    }
-    
-    /** 
-     * Display button to add to list.
-     *
-     * @return void
-     */
-    public function addToListButton()
-    {
-        echo '<li class="option addToList">';
-        echo '<a>';
+        ?>
+        <li class="option addToList"
+            id="addToListButton<?php echo $sentenceId; ?>"><a>
+        <?php
         echo $this->Html->Image(
             'add_to_list.png',
             array(
@@ -202,7 +255,43 @@ class MenuHelper extends AppHelper
                 'title'=>__('Add to list', true)
             )
         );
-        echo '</a>';
+        ?>
+        </a>
+        
+        <script type='text/javascript'>
+        $(document).ready(function() {
+            $('#addToListButton<?php echo $sentenceId; ?>').data(
+                'sentenceId',
+                <?php echo $sentenceId; ?>
+            );
+        });
+        </script>
+        
+        </li>
+        
+        
+        <?php
+        $this->Javascript->link('sentences_lists.menu.js', false);
+        $this->Javascript->link('jquery.impromptu.js', false);
+        $lists = $this->requestAction('/sentences_lists/choices'); 
+        // TODO Remove requestAction someday
+        
+        // TODO Still not done refactoring here...
+        echo '<li style="display:none" id="addToList'.$sentenceId.'">';
+        
+        echo $this->Form->select(
+            'listSelection'.$sentenceId,
+            $lists,
+            null,
+            array(
+                "class" => "listOfLists"
+            ),
+            false
+        );
+        
+        // ok button
+        echo '<input type="button" value="ok" class="validateButton" />';
+        
         echo '</li>';
     }
     
@@ -216,7 +305,9 @@ class MenuHelper extends AppHelper
      */
     public function deleteButton($sentenceId)
     {
-        echo '<li class="option delete">';
+        ?>
+        <li class="option delete">
+        <?php
         echo $this->Html->link(
             $this->Html->image(
                 'delete.png',
@@ -233,7 +324,114 @@ class MenuHelper extends AppHelper
             array('escape' => false), 
             'Are you sure?'
         );
+        ?>
+        </li>
+        <?php
+    }
+    
+    
+    /**
+     * Display a <li></li> with the current owner name
+     * and a link to owner's profile
+     *
+     * @param int    $sentenceId The sentence's id.
+     * @param string $ownerName  The owner's name.
+     *
+     * @return void
+     */
+    public function belongsTo($sentenceId,$ownerName)
+    {
+        if (empty($ownerName)) {
+            return;
+        }
+        
+        // the id is used by sentence.adopt.js
+        echo '<li class="belongsTo" id="belongsTo_'.$sentenceId.'">';
+        $userLink = $this->Html->link(
+            $ownerName,
+            array(
+                "controller" => "user",
+                "action" => "profile",
+                $ownerName
+            )
+        );
+        echo sprintf(__('belongs to %s', true), $userLink);
         echo '</li>';
+    }
+    
+    
+    /**
+     * Display menu for the main sentence.
+     *
+     * @param int    $sentenceId    Id of the sentence.
+     * @param int    $ownerName     Username of the owner of the sentence.
+     * @param bool   $isFavorited   Indicates if the sentence is favorited by the 
+     *                              current user.
+     * @param string $chineseScript For chinese only, 'traditional' or 'simplified'
+     *
+     * @return void
+     */
+    public function displayMenu(
+        $sentenceId, $ownerName = null, $isFavorited = false, $chineseScript = null
+    ) {
+        ?>
+        <ul class="menu">
+        
+        <?php
+        if (CurrentUser::isMember()) {
+            $this->translateButton($sentenceId);
+            
+            $isAdopted = (CurrentUser::get('username') == $ownerName);
+            $this->adoptButton($sentenceId, $isAdopted);
+            
+            $this->favoriteButton($sentenceId, $isFavorited);
+            
+            $this->addToListButton($sentenceId);
+        }
+        
+        if (CurrentUser::isAdmin()) {
+            $this->deleteButton($sentenceId);
+        }
+        
+        if ($chineseScript === 'simplified') {
+            $this->simplifiedButton(); 
+        } else if ($chineseScript === 'traditional') {
+            $this->traditionalButton(); 
+        }
+        
+        $this->belongsTo($sentenceId, $ownerName);
+        ?>
+        
+        <li>
+        <?php
+        echo $this->Html->image(
+            'loading-small.gif', 
+            array(
+                "id"=>"_".$sentenceId."_in_process", 
+                "style"=>"display:none",
+                "width" => 16,
+                "height" => 16
+            )
+        );
+        echo $this->Html->image(
+            'valid_16x16.png', 
+            array(
+                "id" => "sentence".$sentenceId."_saved_in_list", 
+                "style" =>"display:none",
+                "width" => 16,
+                "height" => 16
+            )
+        );
+        ?>
+        </li>
+        
+        </ul>
+        <?php
+        // to play audio
+        // TODO Put it somewhere else. In search results and several random, it
+        // will cause a conflict of ids.
+        $this->Javascript->link('sentences.play_audio.js', false);
+        echo '<div id="audioPlayer"></div>';
     }
 }
 ?>

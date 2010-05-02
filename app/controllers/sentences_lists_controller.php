@@ -234,11 +234,11 @@ class SentencesListsController extends AppController
         $this->set('s', $sentenceId);
         $this->set('l', $listId);
         $userId = $this->Auth->user('id');
+        
         if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
+            $this->set('listId', 'error');  
             if ($this->SentencesList->addSentenceToList($sentenceId, $listId)) {
                 $this->set('listId', $listId);
-            } else {
-                $this->set('listId', 'error');
             }
         }
     }

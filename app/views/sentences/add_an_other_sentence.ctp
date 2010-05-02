@@ -33,17 +33,15 @@ if (isset($sentence)) {
     echo $javascript->link('jquery.jeditable.js', true);
     echo $javascript->link('sentences.edit_in_place.js', true);
     echo $javascript->link('sentences.change_language.js', true);
-
+    ?>
     
-    echo '<div class="sentences_set freshlyAddedSentence">';
+    <div class="sentences_set freshlyAddedSentence">
+    <?php
     // sentence menu (translate, edit, comment, etc)
-    $sentences->displayMenu(
-        $sentence['Sentence']['id'], 
-        $sentence['Sentence']['lang'], 
-        $specialOptions,
-        null,
-        $sentence['Sentence']['script']
-    );
+    $sentenceId = $sentence['Sentence']['id'];
+    $ownerName = $sentence['User']['username']; 
+    $isFavorited = $sentence['isFavorited'];
+    $menu->displayMenu($sentenceId, $ownerName, $isFavorited);
     
     // sentence and translations
     $translation = array();
@@ -54,7 +52,9 @@ if (isset($sentence)) {
     // TODO set up a better mechanism
     $sentence['User']['canEdit'] = $specialOptions['canEdit'];
     $sentences->displayGroup($sentence['Sentence'], $translation, $sentence['User']);
-    echo '</div>';
-
+    ?>
+    </div>
+    
+    <?php
 }
 ?>

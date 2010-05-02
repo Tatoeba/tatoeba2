@@ -109,9 +109,20 @@ class CurrentUser extends AppModel
      */
     public static function isTrusted()
     {
-        return self::get('group_id') < 4;
+        return self::get('group_id') && self::get('group_id') < 4;
     }
     
+    
+    /**
+     * Indicates if current user is a member or not, in other words: did he/she
+     * validated his/her registration.
+     * 
+     * @return bool
+     */
+    public static function isMember()
+    {
+        return self::get('group_id') && self::get('group_id') < 5;
+    }
     
     /**
      * Indicates if current user is owner of the sentence with given id.

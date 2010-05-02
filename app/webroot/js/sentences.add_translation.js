@@ -20,14 +20,8 @@
 
 $(document).ready(function() {
 
-// this javascript is really dependant to id of divs which 
-// contains the id of the sentence for the moment, due to xhtml,
-// the id is store that  id="_XXXX"  where XXXX is the sentence's id
-// when HTML5 will be over we can use a special field to store data
-
     $(".translateLink").click(function(){
-        var sentenceId = $(this).parent().attr("id").slice(1);
-        var sentenceLang = $(this).parent().attr("lang");
+        var sentenceId = $(this).data("sentenceId");
         
         /*
          * Save translation.
@@ -48,7 +42,6 @@ $(document).ready(function() {
                     "http://" + self.location.hostname + ":" + self.location.port + "/sentences/save_translation",
                     {
                         "id": sentenceId,
-                        "originLang": sentenceLang,
                         "selectLang": selectLang,
                         "value": sentenceText
                     },

@@ -37,21 +37,20 @@ echo $javascript->link('sentences.edit_in_place.js', true);
 echo $javascript->link('sentences.play_audio.js', true);
 
 $sentence = $random['Sentence'];
-$sentenceOwner = $random['User'];
+$sentenceId = $random['Sentence']['id'];
+$ownerName = $random['User']['username'];
 $specialOptions = $random['specialOptions'];
 
 echo '<div class="sentences_set">';
     // TODO set up a better mechanism
-    $specialOptions['belongsTo'] = $sentenceOwner['username']; 
     $sentenceOwner['canEdit'] = $specialOptions['canEdit']; 
     $sentenceOwner['canLinkAndUnlink'] = $specialOptions['canLinkAndUnlink']; 
     
-    $sentences->displayMenu(
-        $sentence['id'], 
-        $sentence['lang'], 
-        $specialOptions,
-        null,
-        $sentence['script']
+    $menu->displayMenu(
+        $sentenceId,
+        $ownerName,
+        $isFavorited,
+        $sentenceScript
     );
     $sentences->displayGroup(
         $sentence, 

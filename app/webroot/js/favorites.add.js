@@ -31,19 +31,19 @@ $(document).ready(function(){
 // single function and a test for each class
 
     $(".favorite").click(function(){
-        var favorite_id = $(this).parent().attr("id").slice(1);
-        var favorite_option = $(this);
+        var favoriteId = $(this).data("sentenceId");
+        var favoriteOption = $(this);
         
         /*******************************
         / the sentence can be favorite 
         ********************************/
 
-        if (favorite_option.hasClass("add")){
+        if (favoriteOption.hasClass("add")){
             
-            $("#_"+favorite_id+"_in_process").show();
+            $("#_"+favoriteId+"_in_process").show();
 
-            $.post("http://" + host + ":" + port + "/favorites/add_favorite/"+ favorite_id
-                , {}    
+            $.post("http://" + host + ":" + port + "/favorites/add_favorite/"+ favoriteId
+                , {}
                 ,function(data){
                     // if add retrieve no data , then for a reason or
                     // an other, the sentence couldn't have been added 
@@ -54,13 +54,13 @@ $(document).ready(function(){
                         // so we test if the retrieving data is an <a> </a> 
                         if ( data[1] == "a" ){
                             
-                            favorite_option.html(data);
-                            favorite_option.removeClass("add").addClass("remove");
+                            favoriteOption.html(data);
+                            favoriteOption.removeClass("add").addClass("remove");
                             
                         }
                     }
         
-                    $("#_"+favorite_id+"_in_process").hide();
+                    $("#_"+favoriteId+"_in_process").hide();
                     
                 }
             );
@@ -72,11 +72,11 @@ $(document).ready(function(){
         / the sentence can be unfavorite 
         ********************************/
 
-        else if (favorite_option.hasClass("remove")){
+        else if (favoriteOption.hasClass("remove")){
             
-            $("#_"+favorite_id+"_in_process").show();
+            $("#_"+favoriteId+"_in_process").show();
             
-            $.post("http://" + host + ":" + port + "/favorites/remove_favorite/"+ favorite_id
+            $.post("http://" + host + ":" + port + "/favorites/remove_favorite/"+ favoriteId
                 , {}
                 ,function(data){
                     // if add retrieve no data , then for a reason or an
@@ -88,12 +88,12 @@ $(document).ready(function(){
                         // so we test if the retrieving data is an <a> </a> 
                         if ( data[1] == "a" ){
 
-                            favorite_option.html(data);
-                            favorite_option.removeClass("remove").addClass("add");
+                            favoriteOption.html(data);
+                            favoriteOption.removeClass("remove").addClass("add");
 
                         }
                     }
-                    $("#_"+favorite_id+"_in_process").hide();
+                    $("#_"+favoriteId+"_in_process").hide();
                 }
             );
             
