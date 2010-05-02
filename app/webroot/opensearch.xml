@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>Tatoeba project</ShortName>
+  <Description>Collection of example sentences in many languages</Description>
+  <Tags>languages, sentences, translations, multilingual, corpus</Tags>
+ <Url type="text/html" method="get" template="http://tatoeba.org/fre/sentences/search?from=und&amp;to=und&amp;query={searchTerms}"/>
+ <Image height="16" width="16" type="image/png">http://tatoeba.org/favicon.ico</Image>
+ <Developer>Tatoeba Project</Developer>
+ <Language>en-en</Language>
+</OpenSearchDescription>

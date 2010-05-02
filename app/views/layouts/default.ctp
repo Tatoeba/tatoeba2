@@ -70,6 +70,8 @@
 		echo $javascript->link('jquery-mini.js', true);
 		echo $scripts_for_layout;
 	?>
+    
+    <link rel="search" type="application/opensearchdescription+xml" href="http://tatoeba.org/opensearch.xml" title="Tatoeba project" />
 </head>
 <body>
 
