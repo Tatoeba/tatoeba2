@@ -46,7 +46,7 @@ $navigation->displaySentenceNavigation();
         echo '</h2>';
         
         //$contributions = $sentence['Contribution'];
-        if (count($contributions) > 0) {
+        if (!empty($contributions)) {
             echo '<div id="logs">';
             foreach ($contributions as $contribution) {
                 $logs->annexeEntry(
