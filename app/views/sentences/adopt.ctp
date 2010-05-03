@@ -35,5 +35,5 @@ if (isset($saved)) {
     );
     echo '</a>';
 }
-$menu->displayBelongsTo($sentenceId, $ownerName);
+$menu->belongsTo($sentenceId, $ownerName);
 ?> 
