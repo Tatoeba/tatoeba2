@@ -27,11 +27,11 @@
 
 if (isset($sentence)) {
     $this->pageTitle = __('Example sentence: ', true).$sentence['Sentence']['text'];
+    $sentenceId = $sentence['Sentence']['id'];
 } else {
     $this->pageTitle = __('Sentence does not exist: ', true).$this->params['pass'][0];
 }
 
-$sentenceId = $sentence['Sentence']['id'];
 
 // navigation (previous, random, next)
 $navigation->displaySentenceNavigation();
@@ -83,7 +83,7 @@ $navigation->displaySentenceNavigation();
 <div id="main_content">
     <div class="module">
         <?php
-        if ($sentence != null) {
+        if (isset($sentence)) {
         ?>
             <h2>
             <?php 
@@ -141,7 +141,7 @@ $navigation->displaySentenceNavigation();
         __('Comments');
         echo '</h2>';
 
-        if (count($sentenceComments) > 0) {
+        if (!empty($sentenceComments)) {
             echo '<ol class="comments">';
             foreach ($sentenceComments as $i=>$comment) {
                 $comments->displaySentenceComment(
