@@ -56,6 +56,11 @@ class SentencesHelper extends AppHelper
     public function displaySentence($sentence)
     {
         echo '<div class="original sentence">';
+        // Language flag
+            $this->SentenceButtons->displayLanguageFlag(
+                $sentence['id'], $sentence['lang'], false
+            );
+            
         // Sentence
         echo '<span class="correctness'.$sentence['correctness'].' '
             .$sentence['lang'].'">';
@@ -154,15 +159,7 @@ class SentencesHelper extends AppHelper
 
             <?php
             // info icon
-            echo $this->Html->link(
-                $this->Html->image('info.png'),
-                array(
-                    "controller"=>"sentences"
-                    , "action"=>"show"
-                    , $sentence['id']
-                ),
-                array("escape"=>false, "class"=>"infoIcon")
-            );
+            $this->SentenceButtons->displayInfoButton($sentence['id']);
             
             // Language flag
             $this->SentenceButtons->displayLanguageFlag(
@@ -360,7 +357,6 @@ class SentencesHelper extends AppHelper
      *
      * @param array $translations Translations to display.
      * @param int   $originalId   Id of the original sentence.
-     * @param bool  $canUnlink    'true' if user can unlink the translation.
      *
      * @return void
      */
@@ -418,7 +414,6 @@ class SentencesHelper extends AppHelper
      *
      * @param array $indirectTranslations Indirect translations to display.
      * @param int   $originalId           Id of the original sentence.
-     * @param bool  $canLink              'true' if user can link the translation.
      *
      * @return void
      */

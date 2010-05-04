@@ -161,7 +161,17 @@ $navigation->displayUsersNavigation(
     if (count($user['Sentences']) > 0) {
         echo '<div class="module">';
             echo '<h2>';
-            __('Latest sentences');
+                __('Latest sentences');
+                echo ' (';
+                echo $html->link(
+                    __('view all', true),
+                    array(
+                        "controller" => "sentences",
+                        "action" => "of_user",
+                        $userName
+                    )
+                );
+                echo ')';
             echo '</h2>';
 
             foreach ($user['Sentences'] as $sentence) {

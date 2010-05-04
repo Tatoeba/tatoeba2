@@ -47,7 +47,8 @@ class SentenceCommentsController extends AppController
         'Sentences',
         'Languages',
         'Navigation',
-        'Html'
+        'Html',
+        'CommonModules',
     );
     public $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
     public $paginate = array(
@@ -333,7 +334,7 @@ class SentenceCommentsController extends AppController
 
     public function on_sentences_of_user($userName)
     {
-		$userId = $this->User->getIdfromUsername($userName);
+        $userId = $this->User->getIdfromUsername($userName);
         $this->paginate = array(
             'SentenceComment' => array(
                 'fields' => array(

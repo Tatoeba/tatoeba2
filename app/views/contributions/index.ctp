@@ -39,40 +39,7 @@ $this->pageTitle = "Tatoeba - " . __("Latest contributions", true);
 ?>
 
 <div id="annexe_content">
-    <div class="module">
-        <h2><?php __('Filter by language'); ?></h2>
-        <?php
-        /*to stay on the same page except language filter option*/
-
-        $path ='';
-        if (isset($this->params['lang'])) {
-            $path = $this->params['lang'] .'/' ;
-        }
-
-        $path = $this->params['controller'].'/';
-        if ($this->params['action'] != 'display') {
-            $path .= $this->params['action'].'/';
-        }
-
-        $lang = 'und' ;
-        // set default filter to the one previously selected 
-        if (isset($this->params['pass'][0])) {
-            $lang = $this->params['pass'][0]; 
-        }
-        $langs = $languages->languagesArray();
-
-        echo $form->select(
-            'filterLanguageSelect',
-            $langs,
-            $lang,
-            array(
-                "onchange" => "$(location).attr('href','/$path'+this.value+'/');"
-            ),
-            false
-        );
-        ?> 
-    </div>
-    
+    <?php $commonModules->createFilterByLangMod(); ?> 
     <div class="module">
         <h2><?php __('Meaning of the colors'); ?></h2>
         <ul id="logsLegend">

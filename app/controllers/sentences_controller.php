@@ -53,7 +53,8 @@ class SentencesController extends AppController
         'Comments',
         'Navigation',
         'Languages',
-        'Javascript'
+        'Javascript',
+        'CommonModules',
     );
     public $paginate = array(
         'limit' => 100,
@@ -98,7 +99,12 @@ class SentencesController extends AppController
      */
     public function index()
     {
-        $this->redirect('/sentences/show/random');
+        $this->redirect(
+            array(
+                "action" => "show",
+                "random"
+            )
+        );
     }
     
     /**
@@ -459,6 +465,8 @@ class SentencesController extends AppController
     /**
      * Search sentences.
      *
+     * @param string $query The research query.
+     *
      * @return void
      */
     public function search($query = null)
@@ -482,15 +490,27 @@ class SentencesController extends AppController
         if (isset($_GET['from'])) {
             $from = $_GET['from'];
         }
+       
+        $to = 'und'; 
+        if (isset($_GET['to'])) {
+            $to = $_GET['to'];
+        }
         
         // Session variables for search bar
         $this->Session->write('search_query', $query);
         $this->Session->write('search_from', $from);
+        $this->Session->write('search_to', $to);
+       
+        $translationsConditions = array();
+        if ($to != 'und') {
+            $translationsConditions["Translation.lang"] = $to;
+        }
+       
         
         $sphinx = array(
             'index' => array($from . '_index'),
             'matchMode' => SPH_MATCH_ALL, 
-            'sortMode' => array(SPH_SORT_EXTENDED => '@relevance DESC')
+            'sortMode' => array(SPH_SORT_RELEVANCE => "")
         );
         
         $pagination = array(
@@ -506,7 +526,9 @@ class SentencesController extends AppController
                     'User' => array(
                         'fields' => array('id', 'username')
                     ),
-                    'Translation',
+                    'Translation' => array(
+                        'fields' => array("id", "lang", "text"),
+                    ),
                     'Favorites_users'
                 ),
                 'limit' => 10,
@@ -702,14 +724,56 @@ class SentencesController extends AppController
         );
         
     }
-    
+   
+    /**
+     * Show all the sentences of a given user
+     *
+     * @param string $userName The user's name.
+     * @param string $lang     Filter only sentences in this language.
+     *
+     * @return void
+     */
+    public function of_user($userName, $lang = null)
+    {
+        $UserModel = ClassRegistry::init('User');
+        $userId = $UserModel->getIdFromUserName($userName);
+        
+        $backLink = $this->referer(array('action'=>'index'), true);
+        // if there's no such user no need to do more computation
+        
+        $this->set('backLink', $backLink);
+        $this->set("userName", $userName);
+        if (empty($userId)) {
+
+            $this->set("userExists", false);
+            return; 
+        }
+        
+        $this->set("userExists", true);
+        $this->_sentences_of_user_common($userId, $lang);
+        
+    }
     
     /**
      * Display current user's sentences.
      *
+     * @param string $lang Filter only the sentences in this language.
+     *
      * @return void
      */
-    public function my_sentences()
+    public function my_sentences($lang = null)
+    {
+        $this->_sentences_of_user_common($this->Auth->user('id'), $lang);
+    }
+    /**
+     * Private function to factorize my_sentences and of_user
+     *
+     * @param int    $userId The id of the user whose we want the sentences.
+     * @param string $lang   Filter only the sentences in this language.
+     *
+     * @return void
+     */
+    private function _sentences_of_user_common($userId, $lang)
     {
         $this->paginate = array(
             'Sentence' => array(
@@ -731,12 +795,25 @@ class SentencesController extends AppController
             )
         );
 
+
+        $conditions = array(
+            'Sentence.user_id' => $userId,
+        );
+        // if the lang is specified then we also filter on the language
+        if (isset($lang)) {
+            $conditions = array(
+                "AND" => array(
+                    'Sentence.user_id' => $userId,
+                    'Sentence.lang' => $lang
+                )
+            ); 
+        }
+
         $sentences = $this->paginate(
             'Sentence',
-            array(
-                'Sentence.user_id' => $this->Auth->user('id'),
-            )
+            $conditions
         );
+
         $this->set('user_sentences', $sentences);
     }
     

@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2010  Allan SIMON <allan.simon@supinfo.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -20,35 +20,50 @@
  *
  * @category PHP
  * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * @author   Allan SIMON <allan.simon@supinfo.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+if ($userExists === true) {
+    $numberOfSentences = (int) $paginator->counter(
+        array(
+            "format" => "%count%"
+        )
+    );
+}
 ?>
 
 <div id="annexe_content">
-    <div class="module">
-    <h2><?php __('Tips'); ?></h2>
-    <p><?php __('You can edit your sentences by clicking on them.'); ?></p>
-    <p>
-        <?php 
-        __('You can change the language of a sentence by clicking on the flag.'); 
-        ?>
-    </p>
-    </div>
-    
-    <?php $commonModules->createFilterByLangMod(); ?> 
+    <?php $commonModules->createFilterByLangMod(2); ?> 
 </div>
     
     
 <div id="main_content">
     <div class="module">
+
+    <?php
+    if ($userExists === false) {
+        $commonModules->displayNoSuchUser($userName, $backLink);
+    } elseif ($numberOfSentences === 0) {
+        echo '<h2>';
+        echo sprintf(
+            __("%s owns no sentences in this language", true),
+            $userName
+        );
+        echo '</h2>';
+
+        echo $html->link(__('Go back to previous page', true), $backLink);
+
+    } else {
+        ?>
+
         <h2>
             <?php 
             echo $paginator->counter(
                 array(
                     'format' => __(
-                        'My sentences (total %count%)',
+                        'This user owns (total %count%) sentences',
                         true
                     )
                 )
@@ -77,12 +92,8 @@
         </div>
         
         <?php
-        $javascript->link('jquery.jeditable.js', false);
-        $javascript->link('sentences.edit_in_place.js', false);
-        $javascript->link('sentences.change_language.js', false);
-        
         foreach ($user_sentences as $sentence) {
-            $sentences->displayEditableSentence($sentence['Sentence']);
+            $sentences->displaySentence($sentence['Sentence']);
         }
         ?>
         
@@ -106,5 +117,8 @@
         ?>
         </div>
 
+    <?php
+    }
+    ?>
     </div>
 </div>

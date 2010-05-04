@@ -39,7 +39,7 @@ $this->pageTitle = 'Tatoeba - ' . sprintf(__("%s's comments", true), $userName);
 
 // use to send the same arguments to each pages
 // not called if user doesn't actually exist
-if ($userExists === true && $noComment === false){
+if ($userExists === true && $noComment === false) {
     $paginator->options(
         array(
             'url' => $this->params['pass']
@@ -54,14 +54,7 @@ if ($userExists === true && $noComment === false){
     <div class="module">
     <?php
     if ($userExists === false) {
-        echo '<h2>';
-        echo sprintf(
-            __("There's no user called %s", true),
-            $userName
-        );
-        echo '</h2>';
-
-        echo $html->link(__('Go back to previous page', true), $backLink);
+        $commonModules->displayNoSuchUser($userName, $backLink);
     } elseif ($noComment === true) {
         echo '<h2>';
         echo sprintf(

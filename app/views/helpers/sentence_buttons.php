@@ -79,7 +79,26 @@ class SentenceButtonsHelper extends AppHelper
             )
         );
     }
-    
+
+    /**
+     * Display info button which links to the sentence page
+     * 
+     * @param int $sentenceId The sentence id.
+     * 
+     * @return void
+     */    
+    public function displayInfoButton($sentenceId)
+    {
+        echo $this->Html->link(
+            $this->Html->image('info.png'),
+            array(
+                "controller"=>"sentences"
+                , "action"=>"show"
+                , $sentenceId
+            ),
+            array("escape"=>false, "class"=>"infoIcon")
+        );
+    }
     
     /** 
      * Display unlink button for translations.

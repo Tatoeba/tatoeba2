@@ -40,7 +40,14 @@ class ContributionsController extends AppController
 {
     public $name = 'Contributions';
     public $helpers = array(
-        'Html', 'Form', 'Sentences', 'Logs', 'Navigation', 'Date','languages'
+        'Html',
+        'Form',
+        'Sentences',
+        'Logs',
+        'Navigation',
+        'Date',
+        'languages',
+        'CommonModules'
     );
     public $components = array('Permissions');
     
