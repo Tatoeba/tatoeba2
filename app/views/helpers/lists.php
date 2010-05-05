@@ -162,7 +162,7 @@ class ListsHelper extends AppHelper
             $name,
             array(
                 "controller" => "sentences_lists",
-                "action" => "edit",
+                "action" => "show",
                 $listId
             )
         );
@@ -191,17 +191,12 @@ class ListsHelper extends AppHelper
     }
     
     
-    /** 
-     * Display actions that can be done by everyone.
-     *
-     * @param int    $listId           Id of the list.
-     * @param string $translationsLang Language of the translations for the
-     *                                 'correction version'.
-     * @param string $action           Can be 'show' or 'edit'.
+    /**
+     * Display 'back to index' link.
      *
      * @return void
      */
-    public function displayPublicActions($listId, $translationsLang, $action)
+    public function displayBackToIndexLink()
     {
         ?>
         <li>
@@ -215,6 +210,74 @@ class ListsHelper extends AppHelper
         );
         ?>
         </li>
+        <?php
+    }
+    
+    
+    /**
+     * Display 'back to this list' link.
+     *
+     * @return void
+     */
+    public function displayBackToListLink($listId)
+    {
+        ?>
+        <li>
+        <?php
+        echo $this->Html->link(
+            __('Back to this list', true),
+            array(
+                "controller"=>"sentences_lists", 
+                "action"=>"show",
+                $listId
+            )
+        );
+        ?>
+        </li>
+        <?php
+    }
+    
+    
+    /**
+     * Display 'back to this list' link.
+     *
+     * @return void
+     */
+    public function displayDownloadPageLink($listId)
+    {
+        ?>
+        <li>
+        <?php
+        echo $this->Html->link(
+            __('Download this list', true),
+            array(
+                "controller"=>"sentences_lists", 
+                "action"=>"download",
+                $listId
+            )
+        );
+        ?>
+        </li>
+        <?php
+    }
+    
+    
+    /** 
+     * Display actions that can be done by everyone.
+     *
+     * @param int    $listId           Id of the list.
+     * @param string $translationsLang Language of the translations for the
+     *                                 'correction version'.
+     * @param string $action           Can be 'show' or 'edit'.
+     *
+     * @return void
+     */
+    public function displayPublicActions(
+        $listId, $translationsLang = null, $action = null
+    ) {
+        
+        $this->displayBackToIndexLink();
+        ?>
 
         <li>
         <?php
@@ -224,17 +287,9 @@ class ListsHelper extends AppHelper
             '/sentences_lists/'.$action.'/'. $listId.'/';
         
         // TODO onChange should be define in a separate js file
-        // TODO use of languagesArray is a hack as for the moment
-        // "all languages" is always the first selected, so you're not able to
-        // select
-        // it would be better to do the following 
-        //  1 - set the previous selected language or "none" by default 
-        //      (create a specific method to in language helper)
-        //  2 - "all languages" would display all translations 
-        //    - "none" would display only the sentence
         echo $this->Form->select(
             "translationLangChoice",
-            $this->Languages->languagesArray(),
+            $this->Languages->languagesArrayForLists(),
             $translationsLang,
             array(
                 "onchange" => "$(location).attr('href', '".$path."' + this.value);"
@@ -243,7 +298,10 @@ class ListsHelper extends AppHelper
         );
         ?>
         </li>
+        
         <?php
+        //$this->displayDownloadPageLink($listId);
+        
     }
     
     /** 
@@ -383,30 +441,39 @@ class ListsHelper extends AppHelper
      *
      * @return void
      */
-    public function displaySentence($sentence, $translationsLang = null)
-    {
+    public function displaySentence(
+        $sentence, $translationsLang = null, $canCurrentUserEdit = false
+    ) {
         ?>
         <li id="sentence<?php echo $sentence['id']; ?>">
-        <script type='text/javascript'>
-        $(document).ready(function() {
-            $('#deleteButton<?php echo $sentence['id']?>').data(
-                'sentenceId',
-                <?php echo $sentence['id']; ?>
-            );
-        });
-        </script>
        <?php
         // delete button
-        echo '<span class="options">';
-        echo $this->Html->image(
-            'close.png',
-            array(
-                "class" => "removeFromListButton",
-                "id" => 'deleteButton'.$sentence['id']
-            )
-        );
-        echo '</span>';
-
+        if ($canCurrentUserEdit) {
+            ?>
+            <span class="options">
+            
+            <script type='text/javascript'>
+            $(document).ready(function() {
+                $('#deleteButton<?php echo $sentence['id']?>').data(
+                    'sentenceId',
+                    <?php echo $sentence['id']; ?>
+                );
+            });
+            </script>
+            
+            <?php
+            echo $this->Html->image(
+                'close.png',
+                array(
+                    "class" => "removeFromListButton",
+                    "id" => 'deleteButton'.$sentence['id']
+                )
+            );
+            ?>
+            </span>
+            <?php
+        }
+        
         // display sentence
         if ($translationsLang != 'und') {
             $this->Sentences->displaySentenceInList($sentence, $translationsLang);
@@ -415,6 +482,62 @@ class ListsHelper extends AppHelper
         }
         ?>
         </li>
+        <?php
+    }
+    
+    
+    /**
+     * Form to add a new sentence.
+     *
+     * @return void
+     */
+    public function displayAddSentenceForm()
+    {
+        $this->Javascript->link(
+            'sentences_lists.add_new_sentence_to_list.js', false
+        );
+        ?>
+        <script type='text/javascript'>
+        $(document).ready(function() {
+            $('#sentencesList').data(
+                'id', <?php echo $listId; ?>
+            );
+        });
+        </script>
+        
+        <div id="newSentenceInList">
+        <?php
+        echo $this->Form->input(
+            'text',
+            array(
+                "label" => __('Add a sentence to this list : ', true)
+            )
+        );
+        echo $this->Form->button(
+            'OK', array(
+                "id" => "submitNewSentenceToList"
+            )
+        );
+        ?>
+        </div>
+        
+        <p>
+        <?php
+        echo sprintf(
+            __(
+                'NOTE : You can also add existing sentences with this icon %s '.
+                '(while <a href="%s">browsing</a> for instance).', true
+            ),
+            $this->Html->image('add_to_list.png'),
+            $this->Html->url(array("controller"=>"sentences", "action"=>"show", "random"))
+        );
+        ?>
+        </p>
+
+
+        <div class="sentencesListLoading" style="display:none">
+        <?php echo $this->Html->image('loading.gif'); ?>
+        </div>
         <?php
     }
 }

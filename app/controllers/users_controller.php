@@ -687,33 +687,25 @@ class UsersController extends AppController
         $group->id = 1;
         $this->Acl->allow($group, 'controllers');
 
-
-
         //Permissions for moderators
         $group->id = 2;
         $this->Acl->deny($group, 'controllers');
-        $this->Acl->allow($group, 'controllers/SuggestedModifications');
         
         $this->Acl->allow($group, 'controllers/SentenceComments');
         $this->Acl->allow($group, 'controllers/Sentences');
         
-        $this->Acl->allow($group, 'controllers/Users/my_tatoeba');
-        $this->Acl->allow($group, 'controllers/Users/settings');
-        $this->Acl->allow($group, 'controllers/Users/save_email');
-        $this->Acl->allow($group, 'controllers/Users/save_password');
-        $this->Acl->allow($group, 'controllers/Users/save_options');
-        $this->Acl->allow($group, 'controllers/Users/start_following');
-        $this->Acl->allow($group, 'controllers/Users/favoriting');
+        $this->Acl->allow($group, 'controllers/Users');
+        $this->Acl->deny($group, 'controllers/Users/index');
+        $this->Acl->deny($group, 'controllers/Users/edit');
+        $this->Acl->deny($group, 'controllers/Users/delete');
         
-        $this->Acl->allow($group, 'controllers/Users/stop_following');
-        $this->Acl->allow($group, 'controllers/Favorites/add_favorite');
+        $this->Acl->allow($group, 'controllers/Favorites');
         $this->Acl->allow($group, 'controllers/PrivateMessages');
         $this->Acl->allow($group, 'controllers/SentenceAnnotations');
         $this->Acl->allow($group, 'controllers/Wall');
-
         $this->Acl->allow($group, 'controllers/Links');
-        
         $this->Acl->allow($group, 'controllers/User'); 
+        $this->Acl->allow($group, 'controllers/SentenceLists');
         
         //Permissions for trusted_users
         $group->id = 3;
@@ -722,26 +714,19 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/Sentences');
         $this->Acl->deny($group, 'controllers/Sentences/delete');
         
-        $this->Acl->allow($group, 'controllers/Users/my_tatoeba');
-        $this->Acl->allow($group, 'controllers/Users/settings');
-        $this->Acl->allow($group, 'controllers/Users/save_email');
-        $this->Acl->allow($group, 'controllers/Users/save_password');
-        $this->Acl->allow($group, 'controllers/Users/save_options');
-        $this->Acl->allow($group, 'controllers/Users/start_following');
-        $this->Acl->allow($group, 'controllers/Users/favoriting');
-        $this->Acl->allow($group, 'controllers/Users/stop_following');
+        $this->Acl->allow($group, 'controllers/Users');
+        $this->Acl->deny($group, 'controllers/Users/index');
+        $this->Acl->deny($group, 'controllers/Users/edit');
+        $this->Acl->deny($group, 'controllers/Users/delete');
         
-        $this->Acl->allow($group, 'controllers/Favorites/add_favorite');
-        $this->Acl->allow($group, 'controllers/Favorites/remove_favorite');
-        
+        $this->Acl->allow($group, 'controllers/Favorites');
         $this->Acl->allow($group, 'controllers/PrivateMessages');
         $this->Acl->allow($group, 'controllers/SentenceAnnotations');
         $this->Acl->allow($group, 'controllers/SentenceComments');
         $this->Acl->allow($group, 'controllers/Wall');
-
         $this->Acl->allow($group, 'controllers/Links');
-
         $this->Acl->allow($group, 'controllers/User'); 
+        $this->Acl->allow($group, 'controllers/SentenceLists');
         
         //Permissions for users
         $group->id = 4;
@@ -749,23 +734,19 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/Sentences');
         $this->Acl->deny($group, 'controllers/Sentences/delete');
         
-        $this->Acl->allow($group, 'controllers/Users/my_tatoeba');
-        $this->Acl->allow($group, 'controllers/Users/settings');
-        $this->Acl->allow($group, 'controllers/Users/save_email');
-        $this->Acl->allow($group, 'controllers/Users/save_password');
-        $this->Acl->allow($group, 'controllers/Users/save_options');
-        $this->Acl->allow($group, 'controllers/Users/start_following');
-        $this->Acl->allow($group, 'controllers/Users/favoriting');
-        $this->Acl->allow($group, 'controllers/Users/stop_following');
+        $this->Acl->allow($group, 'controllers/Users');
+        $this->Acl->deny($group, 'controllers/Users/index');
+        $this->Acl->deny($group, 'controllers/Users/edit');
+        $this->Acl->deny($group, 'controllers/Users/delete');
 
-        $this->Acl->allow($group, 'controllers/Favorites/add_favorite');
-        $this->Acl->allow($group, 'controllers/Favorites/remove_favorite');
+        $this->Acl->allow($group, 'controllers/Favorites');
         
         $this->Acl->allow($group, 'controllers/PrivateMessages');
         $this->Acl->allow($group, 'controllers/SentenceAnnotations');
         $this->Acl->allow($group, 'controllers/SentenceComments');
         $this->Acl->allow($group, 'controllers/Wall');
         $this->Acl->allow($group, 'controllers/User'); 
+        $this->Acl->allow($group, 'controllers/SentenceLists');
     }
 }
 ?>

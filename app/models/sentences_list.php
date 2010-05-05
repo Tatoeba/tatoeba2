@@ -348,5 +348,29 @@ class SentencesList extends AppModel
 
         return $success;
     }
+    
+    
+    /**
+     * Returns name of the list of given id.
+     *
+     * @param id $listId Id of the list.
+     *
+     * @return string
+     */
+    public function getNameForListWithId($listId)
+    {
+        $result = $this->find(
+            'first',
+            array(
+                'conditions' => array(
+                    'id' => $listId
+                ),
+                'fields' => array('name'),
+                'contain' => array()
+            )
+        );
+        
+        return $result['SentencesList']['name'];
+    }
 }
 ?>

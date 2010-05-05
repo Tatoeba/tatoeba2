@@ -50,11 +50,14 @@ class SentencesListsController extends AppController
     public function beforeFilter() 
     {
         parent::beforeFilter();
-
-        // setting actions that are available to everyone, even guests
-        // TODO : update this... editing lists and stuff should not be 
-        // accessable to anyone
-        $this->Auth->allowedActions = array('*');
+        
+        $this->Auth->allowedActions = array(
+            'index',
+            'show',
+            'of_user',
+            'print_as_exercise',
+            'print_as_correction'
+        );
     }
 
 
@@ -136,6 +139,7 @@ class SentencesListsController extends AppController
     /**
      * Edit list. From that page user can remove sentences from list, edit list
      * name or delete list.
+     * NOTE: This is has been merged with show().
      *
      * @param int    $id               Id of list.
      * @param string $translationsLang Language of translations.
@@ -145,27 +149,14 @@ class SentencesListsController extends AppController
     public function edit($id, $translationsLang = null)
     {
         Sanitize::paranoid($id);
-        
-        $userId = $this->Auth->user('id');
-        
-        if (!$this->SentencesList->belongsToCurrentUser($id, $userId) OR !$userId) {
-            if (!$userId) {
-                $this->Session->setFlash(
-                    sprintf(
-                        __(
-                            'NOTE : You can edit this list if you are '.
-                            '<a href="%s">registered</a>.', true
-                        ), 
-                        "/".$this->params['lang']."/users/register"
-                    )
-                );
-            }
-            $this->redirect(array("action" => "show", $id, $translationsLang));
-        } else {
-            $list = $this->SentencesList->getSentences($id, $translationsLang);
-            $this->set('translationsLang', $translationsLang);
-            $this->set('list', $list);
-        }
+        $this->redirect(
+            array(
+                "action" => "show", 
+                $id, 
+                $translationsLang
+            ),
+            301
+        );
     }
 
 
@@ -308,6 +299,7 @@ class SentencesListsController extends AppController
 
     /**
      * Displays the lists of a specific user.
+     * TODO There's no view for this...
      *
      * @param int $userId Id of user we want lists of.
      *

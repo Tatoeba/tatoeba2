@@ -27,6 +27,11 @@
  
 $listId = $list['SentencesList']['id'];
 $listName = $list['SentencesList']['name'];
+$listOwnerId = $list['SentencesList']['user_id'];
+$isListPublic = ($list['SentencesList']['is_public'] == 1);
+$belongsToUser = $session->read('Auth.User.id') == $listOwnerId;
+$canUserEdit = $isListPublic || $belongsToUser;
+
  
 $this->pageTitle = 'Tatoeba - ' . $listName;
 ?>
@@ -39,6 +44,12 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
         $lists->displayPublicActions(
             $listId, $translationsLang, 'show'
         );
+        
+        if ($canUserEdit) {
+            $lists->displayRestrictedActions(
+                $listId, $isListPublic
+            );
+        }
         ?>
     </ul>
     </div>
@@ -50,27 +61,88 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     $lists->displayLinksToPrintableVersions($listId, $translationsLang);
     ?>
     </div>
+    
+    
+    <?php
+    if ($canUserEdit) {
+        ?>
+        <div class="module">
+        
+        <h2><?php __('Tips'); ?></h2>
+    
+        <p>
+        <?php __('You can change the name of the list by clicking on it.'); ?>
+        </p>
+    
+    
+        <p>
+        <?php
+        __('You can remove a sentence from the list by clicking on the X icon.'); 
+        ?>
+        </p>
+        
+        <p>
+        <?php
+        __(
+            'Removing a sentence will not delete it. '.
+            'The sentence will just not be part of the list anymore.'
+        );
+        ?>
+        </p>
+        
+        </div>
+        <?php
+    }
+    ?>
+    
 </div>
 
 <div id="main_content">
     <div class="module">
-    <h2><?php echo $list['SentencesList']['name']; ?></h2>
+    <?php
+    $class = '';
+    if ($session->read('Auth.User.id') == $listOwnerId) {
+        $class = 'editable editableSentencesListName';
+        ?>
+        <script type='text/javascript'>
+        $(document).ready(function() {
+            $('#sentencesList').data(
+                'id', <?php echo $listId; ?>
+            );
+        });
+        </script>
+        <?php
+    }
+    ?>
+    <h2 id="l<?php echo $listId; ?>" class="<?php echo $class; ?>">
+    <?php echo $listName ?>
+    </h2>
 
     <?php
-    if (count($list['Sentence']) > 0) {
-        echo '<ul class="sentencesList">';
+    if ($canUserEdit) {
+        $lists->displayAddSentenceForm();
+    }
+    ?>
+    
+    
+    <?php
+    if (!empty($list['Sentence'])) {
+        ?>
+        <ul class="sentencesList">
+        <?php
         if ($translationsLang == 'und') {
             $translationsLang = null;
         }
         foreach ($list['Sentence'] as $sentence) {
-            echo '<li id="sentence'.$sentence['id'].'">';
-            $sentences->displaySentenceInList($sentence, $translationsLang);
-            echo '</li>';
+            $lists->displaySentence($sentence, $translationsLang, $canUserEdit);
         }
-        echo '</ul>';
+        ?>
+        </ul>
+        <?php
     } else {
         __('This list does not have any sentence');
     }
     ?>
+    
     </div>
 </div>

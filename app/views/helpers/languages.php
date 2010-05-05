@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2009-2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -140,6 +140,30 @@ class LanguagesHelper extends AppHelper
         array_unshift($languages, array('auto' => __('Auto detect', true)));
         return $languages;
     }
+    
+    
+    /**
+     * Return array of language + "auto"
+     * used to know if the user want the language of a contribution
+     * to be manualy set or auto detect
+     *
+     * @return array
+     */
+    public function languagesArrayForLists()
+    {
+        $languages = $this->onlyLanguagesArray();
+        
+        array_unshift(
+            $languages, 
+            array(
+                'none' => __('None', true),
+                'und' => __('All languages', true)
+            )
+        );
+        
+        return $languages;
+    }
+    
     
     /** 
      * Return array of languages in which you can search.
