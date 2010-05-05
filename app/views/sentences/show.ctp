@@ -26,8 +26,14 @@
  */
 
 if (isset($sentence)) {
-    $this->pageTitle = __('Example sentence: ', true).$sentence['Sentence']['text'];
     $sentenceId = $sentence['Sentence']['id'];
+    $sentenceLang = $sentence['Sentence']['lang'];
+    $sentenceText = $sentence['Sentence']['text'];
+    
+    $languageName = $languages->codeToName($sentenceLang);
+    $title = sprintf(__('%s example sentence: ', true), $languageName);
+    $this->pageTitle = $title . $sentenceText;
+    
 } else {
     $this->pageTitle = __('Sentence does not exist: ', true).$this->params['pass'][0];
 }
