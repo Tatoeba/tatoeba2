@@ -43,6 +43,22 @@ class SentenceAnnotationsController extends AppController
         'SentenceAnnotations'
     );
     
+    
+    /**
+     * Before filter.
+     *
+     * @return void
+     */
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+
+        $this->Auth->allowedActions = array(
+            'last_modified'
+        );
+    }
+    
+    
     /**
      * Index page. Doesn't do anything, just displays text to explain how it works.
      *
@@ -50,6 +66,8 @@ class SentenceAnnotationsController extends AppController
      */
     public function index()
     {
+        $annotations = $this->SentenceAnnotation->getLatestAnnotations(20);
+        $this->set('annotations', $annotations);
     }
     
     /**
@@ -70,14 +88,12 @@ class SentenceAnnotationsController extends AppController
             );
         } else {
             Sanitize::html($sentenceId);
-            $this->set(
-                'sentence',
-                $this->SentenceAnnotation->Sentence->findById($sentenceId)
+            $result = $this->SentenceAnnotation->getAnnotationsForSentenceId(
+                $sentenceId
             );
-            $this->set(
-                'annotations', 
-                $this->SentenceAnnotation->getAnnotationsForSentenceId($sentenceId)
-            );
+            
+            $this->set('sentence', $result['Sentence']);
+            $this->set('annotations', $result['SentenceAnnotation']);
         }
     }
     
@@ -94,6 +110,7 @@ class SentenceAnnotationsController extends AppController
             }
             
             $sentenceId = $this->data['SentenceAnnotation']['sentence_id'];
+            $this->data['SentenceAnnotation']['user_id'] = CurrentUser::get('id');
             
             if ($this->SentenceAnnotation->save($this->data)) {
                 $this->flash(
@@ -164,6 +181,38 @@ class SentenceAnnotationsController extends AppController
         $this->set('textToReplace', $textToReplace);
         $this->set('textReplacing', $textReplacing);
         $this->set('annotations', $newAnnotations);
+    }
+    
+    /**
+     * Latest modifications.
+     *
+     * @return void
+     */
+    public function last_modified()
+    {
+        $pagination = array(
+            'SentenceAnnotation' => array(
+                'fields' => array(
+                    'sentence_id',
+                    'modified',
+                    'user_id',
+                    'text'
+                ),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array('username')
+                    )
+                ),
+                'limit' => 200,
+                'order' => 'modified DESC'
+            )
+        );
+
+        $this->paginate = $pagination;
+        $results = $this->paginate();
+        
+        //$annotations = $this->SentenceAnnotation->getLatestAnnotations(500);
+        $this->set('annotations', $results);
     }
 }
 ?>

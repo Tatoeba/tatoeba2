@@ -25,7 +25,7 @@
     $sentenceAnnotations->displaySearchBox();
     
     if(isset($sentence)){
-        $sentenceAnnotations->displayNewIndexBox($sentence['Sentence']['id']);
+        $sentenceAnnotations->displayNewIndexBox($sentence['id']);
     }
 	?>
 </div>
@@ -37,21 +37,22 @@
         ?>
         <h2>
         <?php
-        echo sprintf(__('Sentence nº%s', true) , $sentence['Sentence']['id']);
+        echo sprintf(__('Sentence nº%s', true) , $sentence['id']);
         ?>
         </h2>
 		
 		<p class="original">
-        <?php echo $sentence['Sentence']['text']; ?>
+        <?php echo $sentence['text']; ?>
         </p>
 		
         <?php
+        
 		foreach($annotations as $annotation){
             ?>
             <hr/>
 			
             <p>
-            <?php echo Sanitize::html($annotation['SentenceAnnotation']['text']); ?>
+            <?php echo Sanitize::html($annotation['text']); ?>
             </p>
             
 			<?php
@@ -61,23 +62,23 @@
             echo '<div>';
 			echo $form->hidden(
 				'SentenceAnnotation.id'
-				, array("value" => $annotation['SentenceAnnotation']['id'])
+				, array("value" => $annotation['id'])
 			);
 			echo $form->hidden(
 				'SentenceAnnotation.sentence_id'
-				, array("value" => $annotation['SentenceAnnotation']['sentence_id'])
+				, array("value" => $annotation['sentence_id'])
 			);
 			echo '</div>';
             
 			// id of the "meaning" (i.e. English sentence for Tanaka sentences annotations)
 			echo $form->input('meaning_id', array(
-				"value" => $annotation['SentenceAnnotation']['meaning_id']
+				"value" => $annotation['meaning_id']
 			));			
 			
 			// annotations text
 			echo $form->textarea('text', array(
 				"label" => null
-				, "value" => $annotation['SentenceAnnotation']['text']
+				, "value" => $annotation['text']
 				, "cols" => 60
 				, "rows" => 3
 			));
@@ -88,8 +89,8 @@
 				, array(
 					"controller" => "sentence_annotations"
 					, "action" => "delete"
-					, $annotation['SentenceAnnotation']['id']
-					, $annotation['SentenceAnnotation']['sentence_id']
+					, $annotation['id']
+					, $annotation['sentence_id']
 				)
 				, array("style"=>"float:right")
 				, 'Are you sure?'

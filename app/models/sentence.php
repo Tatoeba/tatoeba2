@@ -78,7 +78,8 @@ class Sentence extends AppModel
         'Favorites_users' => array ( 
             'classname'  => 'favorites',
             'foreignKey' => 'favorite_id'
-        )
+        ),
+        'SentenceAnnotation'
     );
     
     public $belongsTo = array('User');

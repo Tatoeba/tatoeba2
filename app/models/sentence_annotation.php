@@ -36,9 +36,11 @@
  */
 class SentenceAnnotation extends AppModel
 {
-    public $belongsTo = array('Sentence');
+    public $belongsTo = array('Sentence', 'User');
     
     public $actsAs = array('Containable');
+    
+    
     /**
      * Get annotations for the sentence specified.
      *
@@ -48,8 +50,43 @@ class SentenceAnnotation extends AppModel
      */
     public function getAnnotationsForSentenceId($sentenceId)
     {
-        return $this->findAllBySentenceId($sentenceId);
+        return $this->Sentence->find(
+            'first',
+            array(
+                'limit' => 10,
+                'conditions' => array(
+                    'Sentence.id' => $sentenceId
+                ),
+                'contain' => array('SentenceAnnotation')
+            )
+        );
     }
+    
+    
+    /**
+     * Get latest annotations. NOTE: Annotations are not logged. Here, we simply
+     * display the annotations order by last modified first.
+     *
+     * @param int $sentenceId Id of the sentence.
+     *
+     * @return array
+     */
+    public function getLatestAnnotations($limit)
+    {
+        return $this->find(
+            'all',
+            array( 
+                'order' => 'modified DESC',
+                'limit' => $limit,
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array('username')
+                    )
+                )
+            )
+        );
+    }
+    
     
     /**
      * Get annotations for the sentence specified.

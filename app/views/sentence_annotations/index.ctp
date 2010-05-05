@@ -24,30 +24,79 @@
 	
     $sentenceAnnotations->displaySearchBox();
     ?>
-
-	
+    
 	<div class="module">
 		<h2>Tips</h2>
-		<p>You can use the <strong>Go to</strong> feature to check the text behing a certain id. The id you enter doesn't have to be the id of a Japanese sentence.</p>
-		<p>The id of a sentence is indicated its info page (which is basically a page in the "Browse" section of Tatoeba). To get to the info page, just click on the sentence itself. You can also just look at the link that the sentence refers to. The last number represents the id of the sentence.</p>
+		<p>You can use the <strong>Go to</strong> feature to check the text behind 
+        a certain id. The id you enter doesn't have to be the id of a Japanese 
+        sentence.</p>
+		<p>The id of a sentence is indicated its info page (which is basically a 
+        page in the "Browse" section of Tatoeba). To get to the info page, just click
+        on the sentence itself. You can also just look at the link that the sentence
+        refers to. The last number represents the id of the sentence.</p>
 	</div>
 </div>
 
 <div id="main_content">
+    
+	<div class="module">
+    <h2>
+    Last modified (
+    <?php
+    echo $html->link(
+        'show more',
+        array(
+            'controller' => 'sentence_annotations',
+            'action' => 'last_modified'
+        )
+    );
+    ?>
+    )
+    </h2>
+    <table class="logs">
+    <?php
+    //pr($annotations);
+    foreach ($annotations as $annotation) {
+        $username = $annotation['User']['username'];
+        if (empty($username)) {
+            $username = 'unknown';
+        }
+        $sentenceAnnotations->displayLogEntry(
+            $annotation['SentenceAnnotation']['sentence_id'],
+            $annotation['SentenceAnnotation']['text'],
+            $username,
+            $annotation['SentenceAnnotation']['modified']
+        );
+    }
+    ?>
+    </table>
+    </div>
+    
 	<div class="module">
 	<h2>How to edit the indices</h2>
-	<p>To edit the indices of a sentence, you have to enter the id of that sentence in the <strong>Go to...</strong> section. It will then display the sentence and its indices.</p>
-	<p>You will actually be able to edit two fields : the <strong>index</strong> and the id of the <strong>meaning</strong>. The reason why there's a <strong>Meaning</strong> field is because an index is associated to a pair of sentences. More specifically, the <strong>Meaning</strong> field refers to the id of the <strong>English sentence</strong>. Normally, you don't need to edit it.</p>
+	<p>To edit the indices of a sentence, you have to enter the id of that sentence 
+    in the <strong>Go to...</strong> section. It will then display the sentence 
+    and its indices.</p>
+	<p>You will actually be able to edit two fields : the <strong>index</strong> 
+    and the id of the <strong>meaning</strong>. The reason why there's a 
+    <strong>Meaning</strong> field is because an index is associated to a pair of 
+    sentences. More specifically, the <strong>Meaning</strong> field refers to the 
+    id of the <strong>English sentence</strong>. Normally, you don't need to edit 
+    it.</p>
 	</div>
 	
 	<div class="module">
 	<h2>How to add a new index</h2>
-	<p>On the page to edit the indices, you will also see a section called <strong>Add new index</strong>.</p>
-	<p>You just have to enter your index in the textarea, the id of the associated English sentence in the "Meaning" field, and click "save".</p>
+	<p>On the page to edit the indices, you will also see a section called 
+    <strong>Add new index</strong>.</p>
+	<p>You just have to enter your index in the textarea, the id of the associated 
+    English sentence in the "Meaning" field, and click "save".</p>
 	</div>
 	
 	<div class="module">
 	<h2>How to delete an index</h2>
-	<p>It is also possible to delete the index of a sentence. On the right of the index textarea you will see a "delete" link. Clicking on it will prompt a dialog box that asks you to confirm that you want to delete the index.</p>
+	<p>It is also possible to delete the index of a sentence. On the right of the 
+    index textarea you will see a "delete" link. Clicking on it will prompt a dialog 
+    box that asks you to confirm that you want to delete the index.</p>
 	</div>
 </div>

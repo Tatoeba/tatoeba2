@@ -36,7 +36,7 @@
  */
 class SentenceAnnotationsHelper extends AppHelper
 {
-    public $helpers = array('Form', 'Javascript');
+    public $helpers = array('Form', 'Javascript', 'Html', 'Date');
     
     /**
      * Displays the form that lets you search annotations of a specific sentence.
@@ -160,6 +160,51 @@ class SentenceAnnotationsHelper extends AppHelper
             echo $this->Form->end('Replace');
         ?>
         </div>	
+        <?php
+    }
+    
+    
+    /**
+     * Display log entry.
+     *
+     * @param int    $sentenceId
+     * @param string $text
+     * @param string $username
+     * @param string $date
+     *
+     * @return void
+     */
+    public function displayLogEntry($sentenceId, $text, $username, $date) 
+    {
+        ?>
+        <tr>
+        
+        <td class="sentenceId">
+        <?php
+        echo $this->Html->link(
+            $sentenceId,
+            array(
+                'controller' => 'sentence_annotations',
+                'action' => 'show',
+                $sentenceId
+            )
+        );
+        ?>
+        </td>
+        
+        <td class="text">
+        <?php echo Sanitize::html($text); ?>
+        </td>
+        
+        <td class="username">
+        <?php echo $username; ?>
+        </td>
+        
+        <td class="date">
+        <?php echo $this->Date->ago($date); ?>
+        </td>
+        
+        </tr>
         <?php
     }
 }
