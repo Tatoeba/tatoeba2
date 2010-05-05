@@ -56,7 +56,9 @@ class SentencesListsController extends AppController
             'show',
             'of_user',
             'print_as_exercise',
-            'print_as_correction'
+            'print_as_correction',
+            'download',
+            'test'
         );
     }
 
@@ -440,6 +442,30 @@ class SentencesListsController extends AppController
     {
         $this->SentencesList->id = $_POST['listId'];
         $this->SentencesList->saveField('is_public', $_POST['isPublic']);
+    }
+    
+    
+    /**
+     * Page to export a list.
+     *
+     * @return void
+     */
+    public function download($listId = null)
+    {
+        if (empty($listId)) {
+            $this->redirect(array('action' => 'index'));
+        }
+        
+        Sanitize::paranoid($listId);
+        $listName = $this->SentencesList->getNameForListWithId($listId);
+        $this->set('listId', $listId);
+        $this->set('listName', $listName);
+    }
+    
+    public function test($filename)
+    {
+        $this->layout = null;
+        $this->set('content', 'blabla');
     }
 }
 ?>
