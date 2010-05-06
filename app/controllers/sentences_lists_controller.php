@@ -58,6 +58,7 @@ class SentencesListsController extends AppController
             'print_as_exercise',
             'print_as_correction',
             'download',
+            'choices',
             'test'
         );
     }
