@@ -273,15 +273,21 @@ class MenuHelper extends AppHelper
         <?php
         $this->Javascript->link('sentences_lists.menu.js', false);
         $this->Javascript->link('jquery.impromptu.js', false);
-        $lists = $this->requestAction('/sentences_lists/choices'); 
+        
         // TODO Remove requestAction someday
+        $lists = $this->requestAction('/sentences_lists/choices'); 
         
-        // TODO Still not done refactoring here...
-        echo '<li style="display:none" id="addToList'.$sentenceId.'">';
+        $privateLists = __('Add to your lists', true);
+        $publicLists = __('Add to public list', true);
+        $selectItems[$privateLists] = $lists['Private'];
+        $selectItems[$publicLists] = $lists['Public'];
+        ?>
         
+        <li style="display:none" id="addToList<?php echo $sentenceId; ?>">
+        <?php
         echo $this->Form->select(
             'listSelection'.$sentenceId,
-            $lists,
+            $selectItems,
             null,
             array(
                 "class" => "listOfLists"
@@ -290,9 +296,18 @@ class MenuHelper extends AppHelper
         );
         
         // ok button
-        echo '<input type="button" value="ok" class="validateButton" />';
+        echo $this->Form->button(
+            null,
+            array(
+                'type' => 'button',
+                'class' => 'validateButton',
+                'value' => 'ok'
+            )
+        );
+        ?>
+        </li>
         
-        echo '</li>';
+        <?php
     }
     
     /** 
@@ -372,7 +387,7 @@ class MenuHelper extends AppHelper
      * @return void
      */
     public function displayMenu(
-        $sentenceId, $ownerName = null, $isFavorited = false, $chineseScript = null
+        $sentenceId, $ownerName = null, $chineseScript = null
     ) {
         ?>
         <ul class="menu">
@@ -384,6 +399,7 @@ class MenuHelper extends AppHelper
             $isAdopted = (CurrentUser::get('username') == $ownerName);
             $this->adoptButton($sentenceId, $isAdopted);
             
+            $isFavorited = CurrentUser::hasFavorited($sentenceId);
             $this->favoriteButton($sentenceId, $isFavorited);
             
             $this->addToListButton($sentenceId);

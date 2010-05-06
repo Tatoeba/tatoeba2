@@ -77,24 +77,8 @@ class SentencesList extends AppModel
             }
         }
         
-        // This seems to be the only way to keep the keys...
-        $listsKeys = array(-1, -2, 0);
-        $listsValues = array(
-            __('Add to new list...', true), 
-            __('Manage lists...', true),
-            '-----------------' 
-        );
-        foreach ($privateLists as $key => $privateList) {
-            $listsKeys[] = $key;
-            $listsValues[] = $privateList;
-        }
-        $listsKeys[] = -3;
-        $listsValues[] = '-----------------';
-        foreach ($publicLists as $key => $publicList) {
-            $listsKeys[] = $key;
-            $listsValues[] = $publicList;
-        }
-        $lists = array_combine($listsKeys, $listsValues);
+        $lists['Private'] = $privateLists;
+        $lists['Public'] = $publicLists;
         
         return $lists;
     }
