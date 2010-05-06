@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2009-2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -397,7 +397,10 @@ class MenuHelper extends AppHelper
             $this->translateButton($sentenceId);
             
             $isAdopted = (CurrentUser::get('username') == $ownerName);
-            $this->adoptButton($sentenceId, $isAdopted);
+            $canAdopt = ($ownerName == null) || $isAdopted;
+            if ($canAdopt) {
+                $this->adoptButton($sentenceId, $isAdopted);
+            }
             
             $isFavorited = CurrentUser::hasFavorited($sentenceId);
             $this->favoriteButton($sentenceId, $isFavorited);

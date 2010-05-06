@@ -90,8 +90,12 @@ $this->pageTitle = 'Tatoeba - ' . __('Random sentences', true);
     <h2><?php __('Random sentences'); ?></h2>
         <?php
         foreach ($allSentences as $index=>$sentence) {
-            echo '<div class="sentences_set searchResult">';
             $sentenceId = $sentence['Sentence']['id'];
+            ?>
+            <div class="sentences_set searchResult"
+                id="sentences_group_<?php echo $sentenceId; ?>">
+                
+            <?php
             $ownerName = $sentence['User']['username']; 
             $chineseScript = $sentence['Sentence']['script'];
             $menu->displayMenu(
@@ -110,7 +114,9 @@ $this->pageTitle = 'Tatoeba - ' . __('Random sentences', true);
                 $sentence['User'],
                 $sentence['IndirectTranslations']
             );
-            echo '</div>';
+            ?>
+            </div>
+            <?php
         }
         ?>
     </div>

@@ -252,15 +252,11 @@ class SentencesHelper extends AppHelper
             'This sentence does not belong to anyone. '.
             'If you would like to edit it, you have to adopt it first.', true
         );
-        $linkStyle = '';
-        $divStyle = 'display:none;';
         
         if ($user != null) {
             if (isset($user['canEdit']) && $user['canEdit']) {
                 $editable = 'editable';
                 $editableSentence = 'editableSentence';
-                $linkStyle = 'display:none;';
-                $divStyle = '';
                 $editableFlag = true;
             }
             if (isset($user['username']) && $user['username'] != '') {
@@ -281,10 +277,16 @@ class SentencesHelper extends AppHelper
         );
         
         // sentence text
-        $toggle = "toggleOriginalSentence";
         if ($inBrowseMode) {
-            $divStyle = '';
-            $toggle = '';
+            // TODO : HACK SPOTTED id is made of lang + id
+            // and then is used in edit_in_place 
+            echo '<div id="'.$sentence['lang'].'_'.$sentence['id'].'" 
+                class="'.$editable.' '.$editableSentence.'" 
+                title="'.$tooltip.'">';
+                
+            echo Sanitize::html($sentence['text']);
+            
+            echo '</div> ';
         } else {
             echo $this->Html->link(
                 $sentence['text'],
@@ -292,22 +294,9 @@ class SentencesHelper extends AppHelper
                     "controller"=>"sentences",
                     "action"=>"show",
                     $sentence['id']
-                ),
-                array(
-                    "style" => $linkStyle,
-                    "class" => "toggleOriginalSentence"
                 )
             );
-        }
-        // TODO : HACK SPOTTED id is made of lang + id
-        // and then is used in edit_in_place 
-        echo '<div id="'.$sentence['lang'].'_'.$sentence['id'].'" 
-            class="'.$toggle.' '.$editable.' '.$editableSentence.'" 
-            title="'.$tooltip.'" style="'.$divStyle.'">';
-
-        echo Sanitize::html($sentence['text']);
-
-        echo '</div> ';
+        }      
             
         // romanization
         $this->_displayRomanization($sentence);

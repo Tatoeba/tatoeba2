@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2009-2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -88,7 +88,8 @@ class SentencesController extends AppController
             'count_unknown_language',
             'get_translations',
             'change_language',
-            'several_random_sentences'
+            'several_random_sentences',
+            'sentences_group'
         );
     }
 
@@ -382,13 +383,12 @@ class SentencesController extends AppController
     {
         //Configure::write("debug",0);
         Sanitize::paranoid($id);
-        $data['Sentence']['id'] = $id;
-        $data['Sentence']['user_id'] = $this->Auth->user('id');
-        if ($this->Sentence->save($data)) {
-            $this->set('saved', true);
-            $this->set('sentenceId', $id);
-            $this->set('ownerName', $this->Auth->user('username'));
-        }
+        $this->Sentence->id = $id;
+        $userId = $this->Auth->user('id');
+        $this->Sentence->saveField('user_id', $userId);
+        
+        $this->show($id);
+        $this->render('sentences_group');
     }
     
     /**
@@ -403,11 +403,10 @@ class SentencesController extends AppController
     public function let_go($id)
     {
         Sanitize::paranoid($id);
-        $data['Sentence']['id'] = $id;
-        $data['Sentence']['user_id'] = null;
-        if ($this->Sentence->save($data)) {
-            $this->set('saved', true);
-        }
+        $this->Sentence->id = $id;
+        $this->Sentence->saveField('user_id', null);
+        $this->show($id);
+        $this->render('sentences_group');
     }
     
     /**

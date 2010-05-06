@@ -23,93 +23,27 @@ $(document).ready(function(){
     var port = self.location.port;
 
     $(".adopt").click(function(){
-        var sentenceId = $(this).data("sentenceId");
         var adoptOption = $(this);
-        var lang = $("#_"+sentenceId).attr("lang");
+        var sentenceId = $(this).data("sentenceId");
         
-        /*******************************
-        / the sentence can be adopted
-        ********************************/
-
+        // Displaying loading gif
+        $("#sentences_group_" + sentenceId).html(
+            "<img src='/img/loading.gif' alt='loading'>"
+        );
+        
+        // The sentence can be adopted
         if (adoptOption.hasClass("add")){
-            
-            $("#_"+sentenceId+"_in_process").show();
-
-            $.post(
+            $("#sentences_group_" + sentenceId).load(
                 "http://" + host + ":" + port + "/sentences/adopt/"+  sentenceId
-                , {}    
-                ,function(data){
-                    // if add retrieve no data , then for a reason or an other,
-                    // the sentence couldn't have been added so we change nothing
-                    if ( null != data && "" != data ){
-                        // this second test is here because with debug enable,
-                        // the function always retrieve data
-                        // so we test if the retrieving data is an <a> </a> 
-                        if ( data[1] == "a" ){
-                            
-                            adoptOption.html(data);
-                            adoptOption.removeClass("add").addClass("remove");
-                            
-                            $(".toggleOriginalSentence").toggle();
-                            $("#"+lang+"_"+sentenceId).addClass("editable");
-                            $("#"+lang+"_"+sentenceId).addClass("editableSentence");
-                            
-                            $('.editableSentence').editable(
-                                'http://' + self.location.hostname + ":" 
-                                + self.location.port + '/sentences/edit_sentence', { 
-                                type      : 'text',
-                                cancel    : 'Cancel',
-                                submit    : 'OK',
-                                indicator : '<img src="/img/loading.gif">',
-                                tooltip   : 'Click to edit...',
-                                cssclass  : 'editInPlaceForm'
-                            });
-                            
-                        }
-                    }
+            );
+        }
         
-                    $("#_"+sentenceId+"_in_process").hide();
-                    
-                }
-            );
-            
-
-        }
-    
-        /*******************************
-        / the sentence can be unadopted 
-        ********************************/
-
+        // The sentence can be unadopted 
         else if (adoptOption.hasClass("remove")){
-            $("#belongsTo_"+sentenceId).remove(); 
-            $("#_"+sentenceId+"_in_process").show();
-            
-            $.post(
-                "http://" + host + ":" + port + "/sentences/let_go/"+ sentenceId,
-                {},
-                function(data){
-                    // if add retrieve no data , then for a reason or an other,
-                    // the sentence couldn't have been added so we change nothing
-                    if ( null != data && "" != data ){
-                        // this second test is here because with debug enable,
-                        // the function always retrieve data so we test if the
-                        // retrieving data is an <a></a> 
-                        if ( data[1] == "a" ){
-                            adoptOption.html(data);
-                            adoptOption.removeClass("remove").addClass("add");
-                            
-                            $(".toggleOriginalSentence").toggle();
-                            $("#"+lang+"_"+sentenceId).removeClass("editable");
-                            $("#"+lang+"_"+sentenceId).removeClass("editableSentence");
-                            $("#"+lang+"_"+sentenceId).editable('disable');
-                        }
-
-                    }
-                    $("#_"+sentenceId+"_in_process").hide();
-                }
+            $("#sentences_group_" + sentenceId).load(
+                "http://" + host + ":" + port + "/sentences/let_go/"+  sentenceId
             );
         }
-
     });
 });
 

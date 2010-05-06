@@ -36,7 +36,8 @@ if (isset($sentence)) {
     echo $javascript->link('sentences.adopt.js', true);
     ?>
     
-    <div class="sentences_set freshlyAddedSentence">
+    <div class="sentences_set freshlyAddedSentence"
+        id="sentences_group_<?php echo $sentenceId; ?>">
     <?php
     // sentence menu (translate, edit, comment, etc)
     $sentenceId = $sentence['Sentence']['id'];

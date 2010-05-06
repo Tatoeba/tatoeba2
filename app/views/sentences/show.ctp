@@ -93,11 +93,12 @@ $navigation->displaySentenceNavigation();
         ?>
             <h2>
             <?php 
-            echo sprintf(__('Sentence nº%s', true), $sentence['Sentence']['id']); 
+            echo sprintf(__('Sentence nº%s', true), $sentenceId); 
             ?>
             </h2>
             
-            <div class="sentences_set">
+            <div class="sentences_set"
+                id="sentences_group_<?php echo $sentenceId; ?>">
                 <?php
                 $username = $sentence['User']['username'];
                 $chineseScript = $sentence['Sentence']['script'];

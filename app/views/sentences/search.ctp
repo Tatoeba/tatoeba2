@@ -152,7 +152,10 @@
                 <?php
                 
                 foreach ($results as $index=>$sentence) {
-                    echo '<div class="sentences_set searchResult">';
+                    ?>
+                    <div class="sentences_set searchResult"
+                        id="sentences_group_<?php echo $sentenceId; ?>">
+                    <?php
                     $sentenceId = $sentence['Sentence']['id'];
                     $ownerName = $sentence['User']['username'];
                     
@@ -169,7 +172,9 @@
                         $sentence['Translation'], 
                         $sentence['User']
                     );
-                    echo '</div>';
+                    ?>
+                    </div>
+                    <?php
                 }
                 
                 ?>
