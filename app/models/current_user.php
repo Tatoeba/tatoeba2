@@ -167,5 +167,21 @@ class CurrentUser extends AppModel
         
         return $sentenceBelongsToUser && self::isTrusted();
     }
+    
+    
+    /**
+     * Indicates if sentence of given id has been favorited by current user.
+     *
+     * @param int $sentenceId Id of the sentence.
+     * 
+     * @return bool
+     */
+    public static function hasFavorited($sentenceId)
+    {
+        $userId = self::get('id');
+        $FavoritedBy = ClassRegistry::init('FavoritedBy');
+        return $FavoritedBy->isSentenceFavoritedByUser($sentenceId, $userId);
+    }
+    
 }
 ?>

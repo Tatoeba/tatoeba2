@@ -49,7 +49,6 @@ echo '<div class="sentences_set">';
     $menu->displayMenu(
         $sentenceId,
         $ownerName,
-        $isFavorited,
         $sentenceScript
     );
     $sentences->displayGroup(

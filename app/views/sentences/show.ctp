@@ -103,7 +103,7 @@ $navigation->displaySentenceNavigation();
                 $chineseScript = $sentence['Sentence']['script'];
                 
                 $menu->displayMenu(
-                    $sentenceId, $username, $isFavorited, $chineseScript
+                    $sentenceId, $username, $chineseScript
                 );
 
                 // for edit in place...

@@ -93,10 +93,9 @@ $this->pageTitle = 'Tatoeba - ' . __('Random sentences', true);
             echo '<div class="sentences_set searchResult">';
             $sentenceId = $sentence['Sentence']['id'];
             $ownerName = $sentence['User']['username']; 
-            $isFavorited = $sentence['isFavorited'];
             $chineseScript = $sentence['Sentence']['script'];
             $menu->displayMenu(
-                $sentenceId, $ownerName, $isFavorited, $chineseScript
+                $sentenceId, $ownerName, $chineseScript
             );
             
             // sentence and translations

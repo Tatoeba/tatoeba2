@@ -41,8 +41,7 @@ if (isset($sentence)) {
     // sentence menu (translate, edit, comment, etc)
     $sentenceId = $sentence['Sentence']['id'];
     $ownerName = $sentence['User']['username']; 
-    $isFavorited = $sentence['isFavorited'];
-    $menu->displayMenu($sentenceId, $ownerName, $isFavorited);
+    $menu->displayMenu($sentenceId, $ownerName);
     
     // sentence and translations
     $translation = array();

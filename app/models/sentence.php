@@ -340,16 +340,7 @@ class Sentence extends AppModel
         $this->generateRomanization($result['Sentence']);
         $this->generateAlternateScript($result['Sentence']);
         $this->generateScript($result['Sentence']);
-        
-        // Checking if sentence is favorited by current user
-        $currentUserId = CurrentUser::get('id');
-        $result['isFavorited'] = false;
-        foreach ($result['Favorites_users'] as $favoriteUser) {
-            if ($favoriteUser['user_id'] == $currentUserId){
-                $result['isFavorited'] = true;
-            }
-        }
-        
+                
         return $result;
     }
     

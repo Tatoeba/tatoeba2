@@ -38,7 +38,30 @@
 class FavoritedBy extends AppModel
 {
     public $name = 'FavoritedBy';
-    public $useTable = 'users';
+    public $useTable = 'favorites_users';
     public $actsAs = array('Containable');
+    
+    
+    /**
+     * Indicates whether a sentence has been favorited by a user or not.
+     *
+     * @param int $sentenceId Id of the sentence.
+     * @param int $userId     Id of the user.
+     *
+     * @param void
+     */
+    public function isSentenceFavoritedByUser($sentenceId, $userId)
+    {
+        $result = $this->find(
+            'first',
+            array(
+                'conditions' => array(
+                    'favorite_id' => $sentenceId,
+                    'user_id' => $userId
+                )
+            )
+        );
+        return !empty($result);
+    }
 }
 ?>

@@ -173,7 +173,6 @@ class SentencesController extends AppController
             $this->set('commentsPermissions', $commentsPermissions);
             $this->set('contributions', $contributions); 
             $this->set('specialOptions', $specialOptions);
-            $this->set('isFavorited', $sentence['isFavorited']);
 
             
         } else {
@@ -580,7 +579,6 @@ class SentencesController extends AppController
         $this->set('sentenceScript', $randomSentence['Sentence']['script']);
         $this->set('translations', $translations);
         $this->set('indirectTranslations', $indirectTranslations);
-        $this->set('isFavorited', $randomSentence['isFavorited']);
     }
     
     /**
@@ -638,8 +636,7 @@ class SentencesController extends AppController
                 "Sentence" => $randomSentence['Sentence'],
                 "User" => $randomSentence['User'],
                 "Translations" => $translations,
-                "IndirectTranslations" => $indirectTranslations,
-                "isFavorited" => $randomSentence['isFavorited']
+                "IndirectTranslations" => $indirectTranslations
             );
         }
 

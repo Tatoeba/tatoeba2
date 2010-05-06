@@ -156,19 +156,9 @@
                     $sentenceId = $sentence['Sentence']['id'];
                     $ownerName = $sentence['User']['username'];
                     
-                    // Checking is user has favorited the sentence... Since we're
-                    // using the pagination, we have to check manually here.
-                    $isFavorited = false;
-                    foreach ($sentence['Favorites_users'] as $favUser) {
-                        if ($favUser['user_id'] == CurrentUser::get('id')) {
-                            $isFavorited = true;
-                        }
-                    }
-                    
                     $menu->displayMenu(
                         $sentenceId,
-                        $ownerName,
-                        $isFavorited
+                        $ownerName
                     );
 
                     // sentence and translations
