@@ -334,6 +334,7 @@ class WallController extends Appcontroller
             $groupId
         );
         $this->set("message", $thread[0]);
+        $this->set("isAuthenticated", $this->Auth->user());
     }
 
 }
