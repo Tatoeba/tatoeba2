@@ -33,6 +33,7 @@ if (isset($sentence)) {
     echo $javascript->link('jquery.jeditable.js', true);
     echo $javascript->link('sentences.edit_in_place.js', true);
     echo $javascript->link('sentences.change_language.js', true);
+    echo $javascript->link('sentences.adopt.js', true);
     ?>
     
     <div class="sentences_set freshlyAddedSentence">
