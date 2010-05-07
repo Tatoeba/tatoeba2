@@ -27,7 +27,14 @@
 
 $this->pageTitle = 'Tatoeba - ' . __('Add sentences', true);
 
-$javascript->link('sentences.contribute.js', false);
+echo $javascript->link('sentences.add_translation.js', true);
+echo $javascript->link('favorites.add.js', true);
+echo $javascript->link('sentences_lists.menu.js', true);
+echo $javascript->link('sentences.adopt.js', true);
+echo $javascript->link('jquery.jeditable.js', true);
+echo $javascript->link('sentences.edit_in_place.js', true);
+echo $javascript->link('sentences.play_audio.js', true);
+echo $javascript->link('sentences.change_language.js', true);
 ?>
 <div id="main_content">
 

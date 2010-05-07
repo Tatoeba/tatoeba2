@@ -41,7 +41,6 @@
 echo $javascript->link('sentences.add_translation.js', true);
 echo $javascript->link('favorites.add.js', true);
 echo $javascript->link('sentences_lists.menu.js', true);
-echo $javascript->link('jquery.impromptu.js', true);
 echo $javascript->link('sentences.adopt.js', true);
 echo $javascript->link('jquery.jeditable.js', true);
 echo $javascript->link('sentences.edit_in_place.js', true);
