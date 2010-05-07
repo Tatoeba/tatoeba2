@@ -28,9 +28,10 @@
 $listId = $list['SentencesList']['id'];
 $listName = $list['SentencesList']['name'];
 $listOwnerId = $list['SentencesList']['user_id'];
+$isAuthenticated = $session->read('Auth.User.id');
 $isListPublic = ($list['SentencesList']['is_public'] == 1);
 $belongsToUser = $session->read('Auth.User.id') == $listOwnerId;
-$canUserEdit = $isListPublic || $belongsToUser;
+$canUserEdit = $isAuthenticated && ($isListPublic || $belongsToUser);
 
  
 $this->pageTitle = 'Tatoeba - ' . $listName;
@@ -102,6 +103,8 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     <?php
     $class = '';
     if ($session->read('Auth.User.id') == $listOwnerId) {
+        $javascript->link('sentences_lists.remove_sentence_from_list.js', false);
+        
         $class = 'editable editableSentencesListName';
         ?>
         <script type='text/javascript'>
@@ -128,7 +131,7 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     <?php
     if (!empty($list['Sentence'])) {
         ?>
-        <ul class="sentencesList">
+        <ul class="sentencesList" id="sentencesList">
         <?php
         if ($translationsLang == 'und') {
             $translationsLang = null;
