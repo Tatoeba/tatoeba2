@@ -37,46 +37,49 @@
  
 if  ($session->check('Message.auth')) $session->flash('auth');
 
+echo $form->create('User', array('action' => 'login'));
 
-echo '<div id="Login">';
-	echo $form->create('User', array('action' => 'login'));
-	echo '<div>';
-	echo $form->input(
-        'username', array(
-	        'label' => __('Username : ',true),
-	        'id' => 'username_main',
-	        "div" => 'usernameMainLoginDiv'
-	        )
-	    );
-	echo $form->input(
-	    'password', array(
-	        'label' => __('Password : ',true),
-	        'id' => 'password_main',
-	        "div" => 'passwordMainLoginDiv'
-	        )
-	    );
-	echo $form->checkbox(
-	    'rememberMe', array(
-	        'id'=>'rememberMe_main'
-	    )
-	); 
-	echo '<label for="UserRememberMe">'; __('Remember me'); echo '</label>';
-	echo '<br/>';
-	echo '</div>';
-	echo $form->end(__('Log in',true));
+echo $form->input(
+    'username', array(
+        'label' => __('Username : ',true),
+    )
+);
+echo $form->input(
+    'password', array(
+        'label' => __('Password : ',true),
+    )
+);
+?>
 
-	echo '<div id="PasswordForgotten">';
-	echo $html->link(
-		__('Password forgotten?',true),
-		array(
-			"controller" => "users",
-			"action" => "new_password"
-		));
-	echo '</div>';
-echo '</div>';
+<div>
+<?php
+echo $form->checkbox(
+    'rememberMe'
+); 
+echo '<label for="UserRememberMe">'; __('Remember me'); echo '</label>';
+?>
+</div>
+
+<?php
+echo $form->end(__('Log in',true));
+?>
 
 
-echo '<div id="ClickHereToRegister">';
+<div id="PasswordForgotten">
+<?php
+echo $html->link(
+    __('Password forgotten?',true),
+    array(
+        "controller" => "users",
+        "action" => "new_password"
+    )
+);
+?>
+</div>
+
+
+<div id="ClickHereToRegister">
+<?php
 echo $html->link(
 	__('Register',true),
 	array(
@@ -85,6 +88,5 @@ echo $html->link(
 	),
 	array("class"=>"registerButton")
 	);
-echo '</div>';
-
 ?>
+</div>

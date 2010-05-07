@@ -79,9 +79,14 @@ $menuElements = array(
         
         <div id="user_menu">
         <?php
-        // User menu
+        // User menu    
         if (!$session->read('Auth.User.id')) {
-            echo $this->element('login');
+            $isOnLoginPage = ($this->params['controller'] == 'users')
+            && ($this->params['action'] == 'login');
+            
+            if (!$isOnLoginPage) {
+                echo $this->element('login');
+            }
         } else {
             echo $this->element('space');
         }
