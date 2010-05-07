@@ -48,8 +48,9 @@ if ($userExists === true) {
     } elseif ($numberOfSentences === 0) {
         echo '<h2>';
         echo sprintf(
-            __("%s owns no sentences in this language", true),
-            $userName
+            __("%s does not have sentences in %s", true),
+            $userName,
+            $languages->codeToName($lang)
         );
         echo '</h2>';
 
@@ -62,10 +63,8 @@ if ($userExists === true) {
             <?php 
             echo $paginator->counter(
                 array(
-                    'format' => __(
-                        'This user owns (total %count%) sentences',
-                        true
-                    )
+                    'format' => sprintf(__("%s's sentences", true), $userName) 
+                        . ' ' . __("(total %count%)", true)
                 )
             ); 
             ?>

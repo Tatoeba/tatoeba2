@@ -747,6 +747,7 @@ class SentencesController extends AppController
         
         $this->set("userExists", true);
         $this->_sentences_of_user_common($userId, $lang);
+        $this->set("lang", $lang);
         
     }
     
