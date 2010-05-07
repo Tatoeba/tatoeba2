@@ -78,9 +78,14 @@ if ($userExists === true) {
             null, 
             array('class'=>'disabled')
         ); 
-        ?>
-        <?php echo $paginator->numbers(array('separator' => '')); ?>
-        <?php 
+        
+        echo $paginator->numbers(
+            array(
+                'url' => array($userName, $lang),
+                'separator' => ''
+            )
+        ); 
+        
         echo $paginator->next(
             __('next', true).' >>',
             array(),
