@@ -103,7 +103,13 @@ class AppController extends Controller
             $this->layout = '';
         }
         // Language of interface
-        if (!empty($this->params['lang'])) {
+        if (isset($this->params['lang'])) {
+            // NOTE 1: It is improtant to use isset() in the condition. Using 
+            //         !empty() will cause users/login.ctp NOT to work... Don't ask.
+            // NOTE 2: I had used !empty() because sometimes, data loaded from AJAX
+            //         calls would be in English instead of the language of the 
+            //         interface. There has been a lot of refactoring since then so
+            //         it is possible that this language issue is no more valid.
             Configure::write(
                 'Config.language',
                 $this->params['lang']
