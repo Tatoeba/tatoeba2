@@ -46,7 +46,7 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
             $listId, $translationsLang, 'show'
         );
         
-        if ($canUserEdit) {
+        if ($belongsToUser) {
             $lists->displayRestrictedActions(
                 $listId, $isListPublic
             );
@@ -102,7 +102,7 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     <div class="module">
     <?php
     $class = '';
-    if ($session->read('Auth.User.id') == $listOwnerId) {
+    if ($canUserEdit) {
         $javascript->link('sentences_lists.remove_sentence_from_list.js', false);
         
         $class = 'editable editableSentencesListName';

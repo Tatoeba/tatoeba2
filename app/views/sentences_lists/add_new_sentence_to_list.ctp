@@ -27,27 +27,27 @@
 
 
 if ($isSaved) {
-echo $javascript->link('sentences_lists.remove_sentence_from_list.js', true);
-?>
+    echo $javascript->link('sentences_lists.remove_sentence_from_list.js', true);
+    ?>
 
-<script type='text/javascript'>
-$(document).ready(function() {
-    $('#sentencesList').data(
-        'id', <?php echo $listId; ?>
-    );
-});
-</script>
+    <script type='text/javascript'>
+    $(document).ready(function() {
+        $('#sentencesList').data(
+            'id', <?php echo $listId; ?>
+        );
+    });
+    </script>
 
-<?php
-$lists->displaySentence($sentence['Sentence']);
+    <?php
+    $lists->displaySentence($sentence['Sentence'], null, true);
 
 } else {
-?>
+    ?>
 
     <li>
     <?php __("Problem while saving"); ?>
     </li>
 
-<?php
+    <?php
 }
 ?>
