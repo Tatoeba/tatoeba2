@@ -38,7 +38,11 @@ class SentencesListsController extends AppController
 {
     public $name = 'SentencesLists';
     public $helpers = array(
-        'Sentences', 'Navigation', 'Html', 'Lists'
+        'Sentences',
+        'Navigation',
+        'Html',
+        'Lists',
+        'Menu'
     );
     public $components = array ('SaveSentence');
     
@@ -59,7 +63,7 @@ class SentencesListsController extends AppController
             'print_as_correction',
             'download',
             'choices',
-            'test'
+            'checking_and_correcting'
         );
     }
 
@@ -463,10 +467,21 @@ class SentencesListsController extends AppController
         $this->set('listName', $listName);
     }
     
-    public function test($filename)
+    
+    /**
+     * Page for massive correction of sentences. It's displayed pretty much like
+     * search results, except we're listing the sentences of a list.
+     *
+     * @param int $listId Id of the list to display.
+     *
+     * @return void
+     */
+    public function checking_and_correcting($listId)
     {
-        $this->layout = null;
-        $this->set('content', 'blabla');
+        $results = $this->SentencesList->getListForCheckingAndCorrecting($listId);
+        $this->set('list', $results['SentencesList']);
+        $this->set('sentencesInList', $results['Sentence']);
     }
+    
 }
 ?>

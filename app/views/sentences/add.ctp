@@ -28,6 +28,7 @@
 $this->pageTitle = 'Tatoeba - ' . __('Add sentences', true);
 
 echo $javascript->link('sentences.add_translation.js', true);
+echo $javascript->link('sentences.contribute.js', true);
 echo $javascript->link('favorites.add.js', true);
 echo $javascript->link('sentences_lists.menu.js', true);
 echo $javascript->link('sentences.adopt.js', true);
@@ -56,8 +57,10 @@ echo $javascript->link('sentences.change_language.js', true);
             if (empty($preSelectedLang)) {
                 $preSelectedLang = 'auto';
             }
-
-            echo '<div class="languageSelection">';
+            ?>
+            
+            <div class="languageSelection">
+            <?php
             echo $form->select(
                 'contributionLang',
                 $langArray,
@@ -65,8 +68,10 @@ echo $javascript->link('sentences.change_language.js', true);
                 array("class"=>"translationLang"),
                 false
             );
-            echo '</div>';
-
+            ?>
+            </div>
+            
+            <?php
             echo $form->button('OK', array("id" => "submitNewSentence"));
             ?>
             </div>
@@ -74,29 +79,31 @@ echo $javascript->link('sentences.change_language.js', true);
     </div>
     
     <div class="module">
+        <h2><?php __('Sentences added'); ?></h2>
+        
+        <div class="sentencesAddedloading" style="display:none">
+        <?php echo $html->image('loading.gif'); ?>
+        </div>
+        
+        <div id="sentencesAdded">
         <?php
-        echo '<h2>';
-        __('Sentences added');
-        echo '</h2>';
-        
-        echo '<div class="sentencesAddedloading" style="display:none">';
-        echo $html->image('loading.gif');
-        echo '</div>';
-        
-        echo '<div id="sentencesAdded">';
         if (isset($sentence)) {
-            echo '<div class="sentences_set">';
-            // sentence menu (translate, edit, comment, etc)
             $sentenceId = $sentence['Sentence']['id'];
             $ownerName = $sentence['User']['username']; 
+            ?>
+            <div class="sentences_set" 
+                id="sentences_group_<?php echo $sentenceId; ?>">
+                
+            <?php
+            // sentence menu (translate, edit, comment, etc)
             $menu->displayMenu($sentenceId, $ownerName);
 
             // sentence and translations
             $translation = array();
-            if ( isset($sentence['Translation'])) {
+            if (isset($sentence['Translation'])) {
                 $translation = $sentence['Translation'];
             }
-            //pr($specialOptions);
+            
             // TODO set up a better mechanism
             $sentence['User']['canEdit'] = $specialOptions['canEdit']; 
             $sentences->displayGroup(
@@ -104,10 +111,11 @@ echo $javascript->link('sentences.change_language.js', true);
                 $translation,
                 $sentence['User']
             );
-            echo '</div>';
+            ?>
+            </div>
+            <?php
         }
-        echo '</div>';
         ?>
+        </div>
     </div>
 </div>
-

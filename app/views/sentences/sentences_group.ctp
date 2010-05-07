@@ -50,7 +50,9 @@ echo $javascript->link('sentences.change_language.js', true);
 $sentenceId = $sentence['Sentence']['id'];
 $username = $sentence['User']['username'];
 $chineseScript = $sentence['Sentence']['script'];
+?>
 
+<?php
 $menu->displayMenu(
     $sentenceId, $username, $chineseScript
 );
