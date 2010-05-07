@@ -698,6 +698,7 @@ class UsersController extends AppController
         $this->Acl->deny($group, 'controllers/Users/index');
         $this->Acl->deny($group, 'controllers/Users/edit');
         $this->Acl->deny($group, 'controllers/Users/delete');
+        $this->Acl->deny($group, 'controllers/Users/update_rights');
         
         $this->Acl->allow($group, 'controllers/Favorites');
         $this->Acl->allow($group, 'controllers/PrivateMessages');
@@ -705,7 +706,7 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/Wall');
         $this->Acl->allow($group, 'controllers/Links');
         $this->Acl->allow($group, 'controllers/User'); 
-        $this->Acl->allow($group, 'controllers/SentenceLists');
+        $this->Acl->allow($group, 'controllers/SentencesLists');
         
         //Permissions for trusted_users
         $group->id = 3;
@@ -718,6 +719,7 @@ class UsersController extends AppController
         $this->Acl->deny($group, 'controllers/Users/index');
         $this->Acl->deny($group, 'controllers/Users/edit');
         $this->Acl->deny($group, 'controllers/Users/delete');
+        $this->Acl->deny($group, 'controllers/Users/update_rights');
         
         $this->Acl->allow($group, 'controllers/Favorites');
         $this->Acl->allow($group, 'controllers/PrivateMessages');
@@ -726,7 +728,7 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/Wall');
         $this->Acl->allow($group, 'controllers/Links');
         $this->Acl->allow($group, 'controllers/User'); 
-        $this->Acl->allow($group, 'controllers/SentenceLists');
+        $this->Acl->allow($group, 'controllers/SentencesLists');
         
         //Permissions for users
         $group->id = 4;
@@ -738,6 +740,7 @@ class UsersController extends AppController
         $this->Acl->deny($group, 'controllers/Users/index');
         $this->Acl->deny($group, 'controllers/Users/edit');
         $this->Acl->deny($group, 'controllers/Users/delete');
+        $this->Acl->deny($group, 'controllers/Users/update_rights');
 
         $this->Acl->allow($group, 'controllers/Favorites');
         
@@ -746,7 +749,7 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/SentenceComments');
         $this->Acl->allow($group, 'controllers/Wall');
         $this->Acl->allow($group, 'controllers/User'); 
-        $this->Acl->allow($group, 'controllers/SentenceLists');
+        $this->Acl->allow($group, 'controllers/SentencesLists');
     }
 }
 ?>
