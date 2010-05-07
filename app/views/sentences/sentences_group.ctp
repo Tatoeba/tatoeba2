@@ -64,7 +64,6 @@ $sentences->displayGroup(
     $sentence['Sentence'],
     $translations,
     $sentence['User'],
-    $indirectTranslations,
-    true // so that the sentence is a div and not a link
+    $indirectTranslations
 );    
 ?> 

@@ -229,16 +229,14 @@ class SentencesHelper extends AppHelper
      * @param array $translations         Translations of the sentence.
      * @param array $user                 Owner of the sentence.
      * @param array $indirectTranslations Indirect translations of the sentence.
-     * @param bool  $inBrowseMode         ???
      *
      * @return void
      */
     public function displayGroup(
         $sentence,
         $translations,
-        $user = null, 
-        $indirectTranslations = array(),
-        $inBrowseMode = false
+        $user = null,
+        $indirectTranslations = array()
     ) {
         echo '<div class="sentence">';
         // Sentence
@@ -277,7 +275,7 @@ class SentencesHelper extends AppHelper
         );
         
         // sentence text
-        if ($inBrowseMode) {
+        if ($user['canEdit']) {
             // TODO : HACK SPOTTED id is made of lang + id
             // and then is used in edit_in_place 
             echo '<div id="'.$sentence['lang'].'_'.$sentence['id'].'" 
