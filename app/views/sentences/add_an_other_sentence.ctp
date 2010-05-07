@@ -34,14 +34,15 @@ if (isset($sentence)) {
     echo $javascript->link('sentences.edit_in_place.js', true);
     echo $javascript->link('sentences.change_language.js', true);
     echo $javascript->link('sentences.adopt.js', true);
+    
+    $sentenceId = $sentence['Sentence']['id'];
+    $ownerName = $sentence['User']['username']; 
     ?>
     
     <div class="sentences_set freshlyAddedSentence"
         id="sentences_group_<?php echo $sentenceId; ?>">
     <?php
     // sentence menu (translate, edit, comment, etc)
-    $sentenceId = $sentence['Sentence']['id'];
-    $ownerName = $sentence['User']['username']; 
     $menu->displayMenu($sentenceId, $ownerName);
     
     // sentence and translations

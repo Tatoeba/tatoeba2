@@ -152,13 +152,14 @@
                 <?php
                 
                 foreach ($results as $index=>$sentence) {
-                    ?>
-                    <div class="sentences_set searchResult"
-                        id="sentences_group_<?php echo $sentenceId; ?>">
-                    <?php
                     $sentenceId = $sentence['Sentence']['id'];
                     $ownerName = $sentence['User']['username'];
+                    ?>
                     
+                    <div class="sentences_set searchResult"
+                        id="sentences_group_<?php echo $sentenceId; ?>">
+                        
+                    <?php
                     $menu->displayMenu(
                         $sentenceId,
                         $ownerName
