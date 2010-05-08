@@ -87,7 +87,9 @@ class GoogleLanguageApiComponent extends Object
     public function google2TatoebaCode($googleCode)
     {
         switch ($googleCode) {
+            case 'af' :     return 'afr';
             case 'ar' :     return 'ara';
+            case 'be' :     return 'bel';
             case 'bg' :     return 'bul';
             case 'cs' :     return 'ces';
             case 'de' :     return 'deu';
@@ -98,7 +100,11 @@ class GoogleLanguageApiComponent extends Object
             case 'et' :     return 'est';
             case 'fi' :     return 'fin';
             case 'fr' :     return 'fra';
+            case 'fo' :     return 'fao';
+            case 'fy' :     return 'fry';
+            case 'hu' :     return 'hun';
             case 'iw' :     return 'heb';
+            case 'is' :     return 'isl';
             case 'it' :     return 'ita';
             case 'id' :     return 'ind';
             case 'ja' :     return 'jpn';
@@ -112,6 +118,7 @@ class GoogleLanguageApiComponent extends Object
             case 'pt-BR' :  return 'por';
             case 'pt-PT' :  return 'por';
             case 'ru' :     return 'rus';
+            case 'sq' :     return 'sqi';
             case 'sv' :     return 'swe';
             case 'tr' :     return 'tur';
             case 'uk' :     return 'ukr';
