@@ -64,7 +64,7 @@ class CommonModulesHelper extends AppHelper
             // we reconstruct the path
             $path ='/';
             // language of the interface
-            if (isset($this->params['lang'])) {
+            if (!empty($this->params['lang'])) {
                 $path .= $this->params['lang'] .'/';
             }
 
