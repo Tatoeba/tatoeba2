@@ -244,7 +244,6 @@ class SentencesHelper extends AppHelper
         $this->Javascript->link('sentences.edit_in_place.js', false);
         
         $editable = '';
-        $editableSentence = '';
         $editableFlag = false;
         $tooltip = __(
             'This sentence does not belong to anyone. '.
@@ -253,8 +252,7 @@ class SentencesHelper extends AppHelper
         
         if ($user != null) {
             if (isset($user['canEdit']) && $user['canEdit']) {
-                $editable = 'editable';
-                $editableSentence = 'editableSentence';
+                $editable = 'editable editableSentence';
                 $editableFlag = true;
             }
             if (isset($user['username']) && $user['username'] != '') {
@@ -276,10 +274,13 @@ class SentencesHelper extends AppHelper
         
         // sentence text
         if ($user['canEdit']) {
+            // Info icon, so we can browse to the sentence
+            $this->SentenceButtons->displayInfoButton($sentence['id']);
+            
             // TODO : HACK SPOTTED id is made of lang + id
             // and then is used in edit_in_place 
             echo '<div id="'.$sentence['lang'].'_'.$sentence['id'].'" 
-                class="'.$editable.' '.$editableSentence.'" 
+                class="'.$editable.'" 
                 title="'.$tooltip.'">';
                 
             echo Sanitize::html($sentence['text']);

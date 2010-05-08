@@ -163,8 +163,11 @@ a.romanization {
 /* 
  * Edit in place 
  */
+.editable{
+    margin-left: 20px;
+}
 .editable:hover{
-background: #eeee88;
+    background: #eeee88;
 }
 
 .editInPlaceForm input.text{
@@ -236,7 +239,7 @@ display: none;
 /* 
  * My sentences 
  */
-.mine .infoIcon{
+.infoIcon{
 	float: left;
 	margin-right: 10px;
 }
