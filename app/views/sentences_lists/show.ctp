@@ -127,25 +127,16 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     }
     ?>
     
-    
+    <ul class="sentencesList" id="sentencesList">
     <?php
-    if (!empty($list['Sentence'])) {
-        ?>
-        <ul class="sentencesList" id="sentencesList">
-        <?php
-        if ($translationsLang == 'und') {
-            $translationsLang = null;
-        }
-        foreach ($list['Sentence'] as $sentence) {
-            $lists->displaySentence($sentence, $translationsLang, $canUserEdit);
-        }
-        ?>
-        </ul>
-        <?php
-    } else {
-        __('This list does not have any sentence');
+    if ($translationsLang == 'und') {
+        $translationsLang = null;
+    }
+    foreach ($list['Sentence'] as $sentence) {
+        $lists->displaySentence($sentence, $translationsLang, $canUserEdit);
     }
     ?>
+    </ul>
     
     </div>
 </div>
