@@ -32,9 +32,10 @@ if (isset($translationText)) {
     echo $javascript->link('jquery.jeditable.js', true);
     echo $javascript->link('sentences.edit_in_place.js', true);
     echo $javascript->link('sentences.change_language.js', true);
+    ?>
     
-    echo '<li id="_'.$translationId.'" class="direct editable translation">';
-        
+    <li class="direct translation">
+        <?php  
         // unlink button
         if ($canLinkAndUnlink) {
             $sentenceButtons->unlinkButton($originalId, $translationId);
@@ -52,12 +53,12 @@ if (isset($translationText)) {
         );
         
         // sentence text
-        echo '<div id="'.$translationLang."_".$translationId.'" class="editable editableSentence">';
+        echo '<div id="'.$translationLang."_".$translationId.'" class="editableSentence">';
         echo Sanitize::html($translationText);
         echo '</div> ';    
-    
-    echo "</li>";
-
+        ?>
+    </li>
+    <?php
     
 }
 ?>
