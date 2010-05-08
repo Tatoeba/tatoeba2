@@ -87,6 +87,9 @@ class AppController extends Controller
         // So that we can access the current users info from models.
         App::import('Model', 'CurrentUser');
         CurrentUser::store($this->Auth->user());        
+        
+        $browserLanguages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+        pr($browserLanguages);
 
     }
 
@@ -269,6 +272,7 @@ class AppController extends Controller
     public function getSupportedLanguage()
     {
         $supportedLanguages = array(
+            'en'    => 'eng',
             'ja'    => 'jpn',
             'fr'    => 'fre',
             'es'    => 'spa',
@@ -280,7 +284,7 @@ class AppController extends Controller
         );
         
         $browserLanguages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-        
+        pr($browserLanguages);
         foreach ($browserLanguages as $browserLang) {
             $browserLangArray = explode(';', $browserLang);
             $lang = $browserLangArray[0];
