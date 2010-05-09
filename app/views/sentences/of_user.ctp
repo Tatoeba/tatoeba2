@@ -31,6 +31,12 @@ if ($userExists === true) {
             "format" => "%count%"
         )
     );
+    $paginator->options(
+        array(
+            'url' => $this->params['pass']
+        ) 
+    );
+
 }
 ?>
 
