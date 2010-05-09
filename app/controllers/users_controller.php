@@ -648,7 +648,6 @@ class UsersController extends AppController
         $userId = $this->User->getIdFromEmail($email); // TODO move to model 
                                                   // and use contain
         
-        pr($userId);
         if ($userId) {
             $this->set('data', true);
         } else {
