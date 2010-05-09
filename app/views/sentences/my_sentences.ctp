@@ -24,6 +24,14 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+// without this, filters won't works with pagination
+$paginator->options(
+    array(
+        'url' => $this->params['pass']
+    ) 
+);
+
 ?>
 
 <div id="annexe_content">
