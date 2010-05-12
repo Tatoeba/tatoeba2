@@ -52,93 +52,90 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
 
 <div id="main_content">
     <div class="module">
-    <h2><?php echo $listName; ?></h2>
+    <h2><?php echo $listName; ?></h2>    
+    
+    <h3><?php __('Download'); ?></h3>
+    
+    <p>
+    NOTE: You can just click "Download" if you simply want the sentences, and 
+    nothing else.
+    </p>
+    <?php
+    // ------------- DOWNLOAD FORM -------------
+    echo $form->create(
+        'SentencesList',
+        array(
+            'action' => 'export_to_csv',
+            'class' => 'downloadForm'
+        )
+    );
+    ?>
+    
+    <table>
+        <tr>
+            <td><?php __('Download with id'); ?></td>
+            <td>
+            <?php 
+            echo $form->checkbox('insertId');
+            ?>
+            </td>
+        </tr>
+    
+        <tr>
+            <td><?php __('Translations language'); ?></td>
+            <td>
+            <?php
+            $langArray = $languages->languagesArrayWithNone();
+            echo $form->select(
+                'TranslationsLang',
+                $langArray,
+                null,
+                null,
+                false
+            );
+            ?>
+            </td>
+        </tr>
+    </table>
+    <?php
+    echo $form->end(__('Download',true));
+    // -------------------------------------------
+    ?>
     
     
-    <dl>
-        <dt><?php __('Download'); ?></dt>
-        <dd>
-        <p>
-        NOTE: You can just click "Download" if you simply want the sentences, and 
-        nothing else.
-        </p>
-        <?php
-        // ------------- DOWNLOAD FORM -------------
-        echo $form->create(
-            'SentencesList',
-            array(
-                'action' => 'export_to_csv',
-                'class' => 'downloadForm'
-            )
-        );
-        ?>
-        
-        <table>
-            <tr>
-                <td><?php __('Download with id'); ?></td>
-                <td>
-                <?php 
-                echo $form->checkbox('insertId');
-                ?>
-                </td>
-                <td><?php __('optional'); ?></td>
-            </tr>
-        
-            <tr>
-                <td><?php __('Translations language'); ?></td>
-                <td>
-                <?php
-                $langArray = $languages->onlyLanguagesArray();
-                echo $form->select(
-                    'TranslationsLang',
-                    $langArray
-                );
-                ?>
-                </td>
-                <td><?php __('optional'); ?></td>
-            </tr>
-        </table>
-        
-        <?php
-        echo $form->end(__('Download',true));
-        // -------------------------------------------
-        ?>
-        </dd>
+    
+    <h3>Description</h3>
+    <p>
+    You can download lists to use them in Anki.
+    </p>
+    <div><a href="http://www.ichi2.net/anki/">
+    <img alt="Anki" src="http://ichi2.net/anki/anki-logo2.png">
+    </div></a>
+    
+    <p>
+    We are also using this feature in our process of
+    <a href="http://blog.tatoeba.org/2010/04/reliability-of-sentences-how-will-we.html">
+    checking and correcting sentences</a> massively.
+    </p>
         
         
-        <dt>Fields and structure</dt>
-        <dd>
-            <p>
-            If you choose all options (id + translations), the structure will be the 
-            following:
-            </p>
-            <p>
-            <span class="param">sentence_id</span>
-            <span class="symbol">[tab]</span>
-            <span class="param">sentence_text</span>
-            <span class="symbol">[tab]</span>
-            <span class="param">translation_text</span>
-            </p>
-            
-            <p>
-            And if you omit an option, the corresponding field won't appear.
-            </p>
-        </dd>
-        
-        
-        <dt>Description</dt>
-        <dd>
-            <p>
-            We have integrated this feature mostly in order to start checking 
-            sentences massively. 
-            </p>
-            
-            <p>
-            But you can of course use it for another purpose.
-            For instance, you can use them in Anki.
-            </p>
-        </dd>
-    </dl>
+    <h3>Fields and structure</h3>
+    <p>
+    If you choose all options (id + translations), the structure will be the 
+    following:
+    </p>
+    <p>
+    <span class="param">sentence_id</span>
+    <span class="symbol">[tab]</span>
+    <span class="param">sentence_text</span>
+    <span class="symbol">[tab]</span>
+    <span class="param">translation_text</span>
+    </p>
+    
+    <p>
+    And if you omit an option, the corresponding field won't appear.
+    </p>
+
     </div>
 
 </div>
