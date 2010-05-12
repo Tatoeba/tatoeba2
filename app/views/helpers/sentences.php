@@ -92,7 +92,7 @@ class SentencesHelper extends AppHelper
     private function _displayRomanization($sentence)
     {
         if (isset($sentence['romanization'])) {
-            $romanization = $sentence['romanization'];
+            $romanization = 'hophop hophpo hophopoh'; //$sentence['romanization'];
             
             if ($sentence['lang'] == 'jpn') {
                 
@@ -238,10 +238,7 @@ class SentencesHelper extends AppHelper
         $user = null,
         $indirectTranslations = array()
     ) {
-        echo '<div class="sentence">';
-        // Sentence
-        $this->Javascript->link('jquery.jeditable.js', false);
-        $this->Javascript->link('sentences.edit_in_place.js', false);
+        echo '<div class="toto">';
         
         $editable = '';
         $editableFlag = false;
@@ -261,48 +258,9 @@ class SentencesHelper extends AppHelper
             }
         }
         
-        // Original sentence
-        echo '<div id="_'.$sentence['id'].'_original" class="original">';
         
-        // audio
-        $this->SentenceButtons->audioButton($sentence['id'], $sentence['lang']);
+        $this->_displaySentenceWithButtons($sentence, $user['username']);
         
-        // language flag
-        $this->SentenceButtons->displayLanguageFlag(
-            $sentence['id'], $sentence['lang'], $editableFlag
-        );
-        
-        // sentence text
-        if ($user['canEdit']) {
-            // Info icon, so we can browse to the sentence
-            $this->SentenceButtons->displayInfoButton($sentence['id']);
-            
-            // TODO : HACK SPOTTED id is made of lang + id
-            // and then is used in edit_in_place 
-            echo '<div id="'.$sentence['lang'].'_'.$sentence['id'].'" 
-                class="'.$editable.'" 
-                title="'.$tooltip.'">';
-                
-            echo Sanitize::html($sentence['text']);
-            
-            echo '</div> ';
-        } else {
-            echo $this->Html->link(
-                $sentence['text'],
-                array(
-                    "controller"=>"sentences",
-                    "action"=>"show",
-                    $sentence['id']
-                )
-            );
-        }      
-            
-        // romanization
-        $this->_displayRomanization($sentence);
-        $this->_displayAlternateScript($sentence);
-        
-        echo '</div>';
-        echo "\n";
         
         $id = $sentence['id'];
         
@@ -505,6 +463,137 @@ class SentencesHelper extends AppHelper
             );
         echo '</li>';
         echo '</ul>';
+    }
+    
+    /**
+     * ====================================================================
+     */
+    
+    /**
+     * Displays the main sentence. The main sentence is composed of a sentence and a 
+     * menu of action that can be applied on this sentence. This is the sentence at 
+     * the top.
+     *
+     * @param array  $sentence  Sentence data.
+     * @param string $ownerName Name of the owner of the sentence.
+     *
+     * @return void
+     */
+    public function displayMainSentence($sentence, $ownerName){
+    }
+    
+    
+    /**
+     * Displays the generic version of a sentence. This is used to display direct and
+     * indirect translations as well (by definition, a translation is a sentence).
+     * The generic sentence contains :
+     *  - the sentence content (text, romanization, alternate Chinese script)
+     *  - the navigation button (clicking on it leads to the "Browse" section)
+     *  - the language flag
+     *  - the audio button
+     *  - the link/unlink buttons
+     *
+     * @param array  $sentence  Sentence data.
+     * @param string $ownerName Name of the owner of the sentence.
+     * @param int    $parentId  Id of the parent sentence, if type is 'translation'.
+     *
+     * @return void
+     */
+    public function displayGenericSentence($sentence, $ownerName, $type, $parentId = null) {
+        // TODO Perhaps display this on the "Adopt" button...
+        $tooltip = __(
+            'This sentence does not belong to anyone. '.
+            'If you would like to edit it, you have to adopt it first.', true
+        );
+        if (!empty($ownerName)) {
+            $tooltip = sprintf(__('This sentence belongs to %s', true), $ownerName);
+        }
+        
+        $sentenceId = $sentence['id'];
+        $sentenceLang = $sentence['lang'];
+        $isEditable = (CurrentUser::get('username') == $ownerName);
+        ?>
+        
+        <div class="sentence <?php echo $type; ?>">
+        <?php
+        // audio
+        $this->SentenceButtons->audioButton($sentenceId, $sentenceLang);
+        
+        // language flag
+        $this->SentenceButtons->displayLanguageFlag(
+            $sentenceId, $sentenceLang, $isEditable
+        );
+        
+        // Navigation icon, so we can browse to the sentence + link/unlink
+        if ($type == 'original') {
+            $this->SentenceButtons->displayInfoButton($sentenceId);
+        } else if ($type == 'directTranslation') {
+            $this->SentenceButtons->translationShowButton($sentenceId, 'direct');
+        } else if ($type == 'indirectTranslation') {
+            $this->SentenceButtons->translationShowButton($sentenceId, 'indirect');
+        }
+        
+        // Sentence and romanization
+        $this->_displayBasicSentence($sentence, $isEditable);
+        ?>
+        </div>
+        
+        <?php
+    }
+    
+    
+    public function _displayBasicSentence($sentence, $isEditable) {
+        $sentenceId = $sentence['id'];
+        $sentenceLang = $sentence['lang'];
+        $sentenceText = $sentence['text'];
+        ?>
+        
+        <div class="basicSentence">
+        <?php
+        // text
+        $this->_displaySentenceText($sentenceId, $sentenceText, $isEditable);
+        
+        // romanization
+        $this->_displayRomanization($sentence);
+        
+        // traditional or simplified Chinese
+        $this->_displayAlternateScript($sentence);
+        ?>
+        </div>
+        
+        <?php
+    }
+    
+    
+    public function _displaySentenceText($sentenceId, $sentenceText, $isEditable)
+    {
+        if ($isEditable) {
+            
+            $this->Javascript->link('jquery.jeditable.js', false);
+            $this->Javascript->link('sentences.edit_in_place.js', false);
+            
+            // TODO: HACK SPOTTED id is used in edit_in_place
+            // NOTE: I didn't find an easy way to difficult to find another way to 
+            // pass the sentenceId to jEditable using jQuery.data...
+            echo '<div id="_'.$sentenceId.'" class="text editableSentence">';
+            echo Sanitize::html($sentenceText);
+            echo '</div>';
+            // NOTE: I'm echo-ing this because we don't want to have extra spaces
+            // before or after the sentence text.
+            
+        } else {
+            echo $this->Html->link(
+                $sentenceText,
+                array(
+                    'controller' => 'sentences',
+                    'action' => 'show',
+                    $sentenceId
+                ),
+                array(
+                    'class' => 'text'
+                )
+            );
+        }
     }
 }
 ?>
