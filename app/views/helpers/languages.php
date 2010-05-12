@@ -143,9 +143,7 @@ class LanguagesHelper extends AppHelper
     
     
     /**
-     * Return array of language + "auto"
-     * used to know if the user want the language of a contribution
-     * to be manualy set or auto detect
+     * Return array of languages, with "None" and "All languages" options.
      *
      * @return array
      */
@@ -158,6 +156,26 @@ class LanguagesHelper extends AppHelper
             array(
                 'none' => __('None', true),
                 'und' => __('All languages', true)
+            )
+        );
+        
+        return $languages;
+    }
+    
+    
+    /**
+     * Return array of languages with, "None" option.
+     *
+     * @return array
+     */
+    public function languagesArrayWithNone()
+    {
+        $languages = $this->onlyLanguagesArray();
+        
+        array_unshift(
+            $languages, 
+            array(
+                'none' => __('None', true)
             )
         );
         
