@@ -283,8 +283,11 @@ class ListsHelper extends AppHelper
         <?php
         __('Show translations :'); echo ' ';
         
-        $path  = '/' . Configure::read('Config.language') . 
-            '/sentences_lists/'.$action.'/'. $listId.'/';
+        $path = '/';
+        if (!empty($this->params['lang'])) {
+            $path .= $this->params['lang'] . '/';
+        }
+        $path .= 'sentences_lists/'.$action.'/'. $listId.'/';
         
         // TODO onChange should be define in a separate js file
         echo $this->Form->select(
