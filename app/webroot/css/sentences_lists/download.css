@@ -29,3 +29,24 @@ dt{margin: 15px 0px 5px 0px;}
 .sentencesListActions li{
 	margin: 10px 0px;
 }
+
+
+/*
+ * Export form
+ */
+#SentencesListExportToCsvForm table{
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+}
+
+#SentencesListExportToCsvForm td{
+    padding: 10px;
+    border-bottom: 1px dotted #ccc;
+}
+
+#SentencesListExportToCsvForm .submit{
+    width: 100px;
+    text-align: center;
+    margin: auto;
+    padding: 15px 0px 5px 0px;
+}

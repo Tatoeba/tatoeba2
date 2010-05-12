@@ -35,7 +35,6 @@
  * @link     http://tatoeba.org
  */ 
 
-$listName = 'toto';  // TODO Remove me
 $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
 ?>
 <div id="annexe_content">
@@ -55,65 +54,89 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
     <div class="module">
     <h2><?php echo $listName; ?></h2>
     
-    <h3>Simple download</h3>
+    
     <dl>
         <dt><?php __('Download'); ?></dt>
         <dd>
-            <?php
-            $simpleFileName = 'simple_'.$listName.'.csv';
-            echo $html->link(
-                $simpleFileName,
-                array(
-                    'controller' => 'sentences_lists',
-                    'action' => 'test', // TODO Rename accordingly
-                    $simpleFileName
-                )
-            );
-            ?>
+        <p>
+        NOTE: You can just click "Download" if you simply want the sentences, and 
+        nothing else.
+        </p>
+        <?php
+        // ------------- DOWNLOAD FORM -------------
+        echo $form->create(
+            'SentencesList',
+            array(
+                'action' => 'export_to_csv',
+                'class' => 'downloadForm'
+            )
+        );
+        ?>
+        
+        <table>
+            <tr>
+                <td><?php __('Download with id'); ?></td>
+                <td>
+                <?php 
+                echo $form->checkbox('insertId');
+                ?>
+                </td>
+                <td><?php __('optional'); ?></td>
+            </tr>
+        
+            <tr>
+                <td><?php __('Translations language'); ?></td>
+                <td>
+                <?php
+                $langArray = $languages->onlyLanguagesArray();
+                echo $form->select(
+                    'TranslationsLang',
+                    $langArray
+                );
+                ?>
+                </td>
+                <td><?php __('optional'); ?></td>
+            </tr>
+        </table>
+        
+        <?php
+        echo $form->end(__('Download',true));
+        // -------------------------------------------
+        ?>
         </dd>
+        
         
         <dt>Fields and structure</dt>
         <dd>
+            <p>
+            If you choose all options (id + translations), the structure will be the 
+            following:
+            </p>
+            <p>
             <span class="param">sentence_id</span>
             <span class="symbol">[tab]</span>
-            <span class="param">text</span>
-        </dd>
-        
-        <dt>Description</dt>
-        <dd>
-            This is simply a file with all the sentences in the list. We have 
-            integrated this feature mostly in order to start checking sentences 
-            massively.
-        </dd>
-    </dl>    
-    
-    <h3>Download for Anki</h3>
-    <dl>
-        <dt><?php __('Download'); ?></dt>
-        <dd>
-            <?php
-            $ankiFileName = 'anki_'.$listName.'.csv';
-            echo $html->link(
-                $ankiFileName,
-                array(
-                    'controller' => 'sentences_lists',
-                    'action' => 'test', // TODO Rename accordingly
-                    $ankiFileName
-                )
-            );
-            ?>
-        </dd>
-        
-        <dt>Fields and structure</dt>
-        <dd>
             <span class="param">sentence_text</span>
             <span class="symbol">[tab]</span>
             <span class="param">translation_text</span>
+            </p>
+            
+            <p>
+            And if you omit an option, the corresponding field won't appear.
+            </p>
         </dd>
+        
         
         <dt>Description</dt>
         <dd>
-            This file is formatted in a way that you can import it into Anki.
+            <p>
+            We have integrated this feature mostly in order to start checking 
+            sentences massively. 
+            </p>
+            
+            <p>
+            But you can of course use it for another purpose.
+            For instance, you can use them in Anki.
+            </p>
         </dd>
     </dl>
     </div>
