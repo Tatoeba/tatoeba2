@@ -173,9 +173,19 @@ $navigation->displayUsersNavigation(
                 );
                 echo ')';
             echo '</h2>';
-
+            
+            $type = 'mainSentence';
+            $parentId = null;
+            $withAudio = false;
+            $ownerName = $user['User']['username'];
             foreach ($user['Sentences'] as $sentence) {
-                $sentences->displaySentence($sentence);
+                $sentences->displayGenericSentence(
+                    $sentence,
+                    $ownerName,
+                    $type,
+                    $parentId,
+                    $withAudio
+                );
             }
         echo '</div>';
     }
