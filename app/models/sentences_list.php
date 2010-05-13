@@ -157,12 +157,16 @@ class SentencesList extends AppModel
         );
         
         if ($translationsLang != null) {
+            
             $contain['Sentence']['Translation'] = array(
                 "fields" => array("id", "lang", "text"),
-                "conditions" => array(
-                    "lang" => $translationsLang
-                )
             );
+            
+            if ($translationsLang != 'und') {
+                $contain['Sentence']['Translation']['conditions'] = array(
+                    "lang" => $translationsLang
+                );
+            }
         }
         
         $list = $this->find(

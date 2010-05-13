@@ -114,7 +114,7 @@ class SentencesListsController extends AppController
             Sanitize::paranoid($id);
             
             $list = $this->SentencesList->getSentences($id, $translationsLang);
-            pr($list);
+            
             $this->set('translationsLang', $translationsLang);
             $this->set('list', $list);
         } else {
