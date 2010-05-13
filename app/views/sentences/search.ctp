@@ -92,6 +92,7 @@
 <div id="main_content">
     <div class="module">
     <?php
+    // ?!!!?!!! gné ??!
     if (isset($query)) { 
         $query = stripslashes($query);
         
@@ -151,7 +152,7 @@
                 
                 <?php
                 
-                foreach ($results as $index=>$sentence) {
+                foreach ($results as $sentence) {
                     $sentenceId = $sentence['Sentence']['id'];
                     $ownerName = $sentence['User']['username'];
                     ?>
@@ -167,8 +168,9 @@
                     
                     $sentences->displayGroup(
                         $sentence['Sentence'], 
-                        $sentence['Translation'], 
-                        $sentence['User']
+                        $sentence['Translations'], 
+                        $sentence['User'],
+                        $sentence['IndirectTranslations']
                     );
                     ?>
                     </div>

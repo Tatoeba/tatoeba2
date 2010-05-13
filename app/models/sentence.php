@@ -542,30 +542,30 @@ class Sentence extends AppModel
      *
      * @return array Array of translations (direct and indirect).
      */
-    public function getTranslationsOf($id,$excludeId = null)
+    public function getTranslationsOf($id,$lang = null)
     {
         if ( ! is_numeric($id) ) {
             return array();
         }
 
-        $conditions = array (
-            'Sentence.id' => $id
-        );
+        $optionalWhere = "";
+        if (!empty($lang) && $lang != "und") {
+            $optionalWhere = "AND p2.lang = '$lang'";    
+        }
+
         // DA ultimate Query 
 
         $direcTranslationsQuery = "
             SELECT
-              p1.text AS text, 
               p2.text AS translation_text,
               p2.id   AS translation_id,
               p2.lang AS translation_lang,
               p2.user_id AS translation_user_id,
               'Translation' as distance
-            FROM sentences AS p1
-            LEFT  JOIN sentences_translations AS t ON p1.id = t.sentence_id
+            FROM sentences_translations AS t 
               LEFT  JOIN sentences AS p2 ON t.translation_id = p2.id
             WHERE 
-             p1.id IN ($id) 
+                t.sentence_id IN ($id) $optionalWhere
         ";
 
         // query use to retrieve sentence which are already direct
@@ -577,23 +577,22 @@ class Sentence extends AppModel
         ";
 
         $indirectTranslationQuery = "
-         SELECT p1.text AS text,
+         SELECT 
               p2.text AS translation_text,
               p2.id   AS translation_id,
               p2.lang AS translation_lang,
               p2.user_id AS translation_user_id,
               'IndirectTranslation'  as distance
-            FROM sentences AS p1
-                LEFT JOIN sentences_translations AS t
-                    ON p1.id = t.sentence_id
+            FROM sentences_translations AS t
                 LEFT JOIN sentences_translations AS t2
                     ON t2.sentence_id = t.translation_id
                 LEFT JOIN sentences AS p2
                     ON t2.translation_id = p2.id
             WHERE 
-                p1.id != p2.id
+                t.sentence_id != p2.id
                 AND p2.id NOT IN ( $subQuery )
-                AND p1.id IN ( $id )
+                AND t.sentence_id IN ( $id )
+                $optionalWhere
         "; 
 
         $query = "

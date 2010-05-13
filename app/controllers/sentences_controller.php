@@ -464,15 +464,9 @@ class SentencesController extends AppController
         $this->Session->write('search_from', $from);
         $this->Session->write('search_to', $to);
        
-        $translationsConditions = array();
-        if ($to != 'und') {
-            $translationsConditions["Translation.lang"] = $to;
-        }
-       
-        
         $sphinx = array(
-            'index' => array($from . '_index'),
-            'matchMode' => SPH_MATCH_ALL, 
+            'index' => array($from . "_" . $to . '_index'),
+            'matchMode' => SPH_MATCH_EXTENDED2, 
             'sortMode' => array(SPH_SORT_RELEVANCE => "")
         );
         
@@ -480,31 +474,28 @@ class SentencesController extends AppController
             'Sentence' => array(
                 'fields' => array(
                     'id',
-                    'text',
-                    'lang',
-                    'user_id',
-                    'correctness'
                 ),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('id', 'username')
-                    ),
-                    'Translation' => array(
-                        'fields' => array("id", "lang", "text"),
-                    ),
-                    'Favorites_users'
-                ),
+                'contain' => array(),
                 'limit' => 10,
                 'sphinx' => $sphinx,
                 'search' => $query
             )
         );
 
+
         $this->paginate = $pagination;
         $results = $this->paginate();
+
+        $sentenceIds = array();
+
+        foreach($results as $i=>$sentence) {
+            $sentenceIds[$i] = $sentence['Sentence']['id'];
+        }
+
+        $allSentences = $this->_getAllNeededForSentences($sentenceIds, $to);
         
         $this->set('query', $query);
-        $this->set('results', $results);
+        $this->set('results', $allSentences);
     }
     
     /**
@@ -566,32 +557,44 @@ class SentencesController extends AppController
         
         // for far better perfomance we must do it in one request, but hmmm no time
         // for that and as said above that's a work around
-        $allSentences = array();
 
         $randomIds = $this->Sentence->getSeveralRandomIds($lang, $number);
+    
+        $this->Session->write('random_lang_selected', $lang);
+        
+        $allSentences = $this->_getAllNeededForSentences($randomIds);
+        
+        $this->set("allSentences", $allSentences);
+        $this->set('lastNumberChosen', $number);
+    }
+       
+    private function _getAllNeededForSentences($sentenceIds, $lang = null)
+    {
+ 
+        $allSentences = array();
+        
+        foreach ($sentenceIds as $i=>$sentenceId) {
 
-        foreach ($randomIds as $i=>$randomId ) {
-
-            $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+            $sentence = $this->Sentence->getSentenceWithId($sentenceId);
             
-            $this->Session->write('random_lang_selected', $lang);
 
-            $alltranslations = $this->Sentence->getTranslationsOf($randomId);
+            $alltranslations = $this->Sentence->getTranslationsOf(
+                $sentenceId,
+                $lang
+            );
             $translations = $alltranslations['Translation'];
             $indirectTranslations = $alltranslations['IndirectTranslation'];
 
             $allSentences[$i] = array (
-                "Sentence" => $randomSentence['Sentence'],
-                "User" => $randomSentence['User'],
+                "Sentence" => $sentence['Sentence'],
+                "User" => $sentence['User'],
                 "Translations" => $translations,
                 "IndirectTranslations" => $indirectTranslations
             );
         }
-
-        $this->set("allSentences", $allSentences);
-        $this->set('lastNumberChosen', $number);
+        return $allSentences;
     }
-        
+
     /**
      * Count number of sentences in each language.
      * TODO : should be move in the model
