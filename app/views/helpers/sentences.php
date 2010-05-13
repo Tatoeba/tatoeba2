@@ -61,12 +61,16 @@ class SentencesHelper extends AppHelper
     
     
     /**
+     * TODO Rename into displaySentencesGroup and use displayMainSentence() instead
+     * of displayGenericSentence().
+     *
      * Diplays a sentence and its translations.
      *
      * @param array $sentence             Sentence to display.
      * @param array $translations         Translations of the sentence.
      * @param array $user                 Owner of the sentence.
      * @param array $indirectTranslations Indirect translations of the sentence.
+     * @param bool  $withAudio            Set to 'true' if audio icon is displayed.
      *
      * @return void
      */
@@ -74,14 +78,17 @@ class SentencesHelper extends AppHelper
         $sentence,
         $translations,
         $user = null,
-        $indirectTranslations = array()
+        $indirectTranslations = array(),
+        $withAudio = false
     ) {
         
         $ownerName = null;
         if (isset($user['username'])) {
             $ownerName = $user['username'];
         }
-        $this->displayGenericSentence($sentence, $ownerName, 'mainSentence');
+        $this->displayGenericSentence(
+            $sentence, $ownerName, 'mainSentence', null, $withAudio
+        );
         
         $id = $sentence['id'];
         
@@ -104,14 +111,14 @@ class SentencesHelper extends AppHelper
             // direct translations
             foreach ($translations as $translation) {
                 $this->displayGenericSentence(
-                    $translation, null, 'directTranslation'
+                    $translation, null, 'directTranslation', null, $withAudio
                 );
             }
             
             // indirect translations
             foreach ($indirectTranslations as $translation) {
                 $this->displayGenericSentence(
-                    $translation, null, 'indirectTranslation'
+                    $translation, null, 'indirectTranslation', null, $withAudio
                 );
             }
             ?>
@@ -242,7 +249,9 @@ class SentencesHelper extends AppHelper
         <div class="sentence <?php echo $type; ?>">
         <?php
         // Navigation button (info or arrow icon)
-        $this->_displayNavigation($sentenceId, $type);
+        if ($type != 'mainSentence' || $isEditable) {
+            $this->_displayNavigation($sentenceId, $type);
+        }
         
         // Link/unlink button
         if (CurrentUser::canLinkWithSentenceOfUser($ownerName)) {
@@ -437,6 +446,7 @@ class SentencesHelper extends AppHelper
             }
         }
     }
+    
 
     /**
      * display alternate script (traditional / simplfied)
@@ -454,52 +464,6 @@ class SentencesHelper extends AppHelper
             <?php echo $sentence['alternateScript']; ?>
             </div>
         <?php
-        }
-    }
-    
-    
-    /**
-     * TODO Delete me!!
-     * 
-     * Display sentence in list.
-     *
-     * @param array  $sentence         Sentence to display.
-     * @param string $translationsLang Language of translation.
-     *
-     * @return void
-     */
-    public function displaySentenceInList($sentence, $translationsLang = null)
-    {
-        // Sentence
-        echo '<span id="'.$sentence['lang'].$sentence['id'].'" 
-            class="sentenceInList '.$sentence['lang'].'">';
-        echo $this->Html->link(
-            $sentence['text'], 
-            array(
-                "controller" => "sentences", 
-                "action" => "show", 
-                $sentence['id']
-            )
-        );
-        echo '</span> ';
-        $this->_displayRomanization($sentence);
-        $this->_displayAlternateScript($sentence);
-        
-        // Translations
-        if ($translationsLang != null) {
-            foreach ($sentence['Translation'] as $translation) {            
-                echo '<span id="'.$translationsLang.$translation['id'].'" 
-                    class="translationInList '.$translationsLang.'">';
-                echo $this->Html->link(
-                    $translation['text'], 
-                    array(
-                        "controller" => "sentences", 
-                        "action" => "show", 
-                        $translation['id']
-                    )
-                );
-                echo '</span> ';
-            }
         }
     }
 }
