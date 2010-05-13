@@ -303,7 +303,7 @@ class ListsHelper extends AppHelper
         </li>
         
         <?php
-        //$this->displayDownloadPageLink($listId);
+        $this->displayDownloadPageLink($listId);
         
     }
     
