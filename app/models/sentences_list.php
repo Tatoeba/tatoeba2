@@ -156,7 +156,7 @@ class SentencesList extends AppModel
             )
         );
         
-        if ($translationsLang != null) {
+        if ($translationsLang != null && $translationsLang != 'none') {
             
             $contain['Sentence']['Translation'] = array(
                 "fields" => array("id", "lang", "text"),

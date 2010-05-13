@@ -130,7 +130,10 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     <div class="sentencesList" id="sentencesList">
     <?php
     foreach ($list['Sentence'] as $sentence) {
-        $translations = $sentence['Translation'];
+        $translations = array();
+        if (!empty($sentence['Translation'])) {
+            $translations = $sentence['Translation'];
+        }
         $lists->displaySentence($sentence, $translations, $canUserEdit);
     }
     ?>
