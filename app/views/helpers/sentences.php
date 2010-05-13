@@ -111,14 +111,14 @@ class SentencesHelper extends AppHelper
             // direct translations
             foreach ($translations as $translation) {
                 $this->displayGenericSentence(
-                    $translation, null, 'directTranslation', null, $withAudio
+                    $translation, $ownerName, 'directTranslation', null, $withAudio
                 );
             }
             
             // indirect translations
             foreach ($indirectTranslations as $translation) {
                 $this->displayGenericSentence(
-                    $translation, null, 'indirectTranslation', null, $withAudio
+                    $translation, $ownerName, 'indirectTranslation', null, $withAudio
                 );
             }
             ?>
@@ -229,12 +229,12 @@ class SentencesHelper extends AppHelper
      *  - the language flag
      *  - the audio button
      *
-     * @param array  $sentence  Sentence data.
-     * @param string $ownerName Name of the owner of the sentence.
-     * @param string $type      Type of sentence. Can be 'mainSentence', 
-     *                          'directTranslation' or 'indirectTranslation'.
-     * @param int    $parentId  Id of the parent sentence, if type is 'translation'.
-     * @param bool   $withAudio Set to 'true' if audio icon is displayed.
+     * @param array  $sentence        Sentence data.
+     * @param string $parentOwnerName Name of the owner of the *main* sentence.
+     * @param string $type            Type of sentence. Can be 'mainSentence', 
+     *                                'directTranslation' or 'indirectTranslation'.
+     * @param int    $parentId        Id of the parent sentence (i.e. main sentence).
+     * @param bool   $withAudio       Set to 'true' if audio icon is displayed.
      *
      * @return void
      */
