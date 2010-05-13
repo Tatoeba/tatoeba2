@@ -22,8 +22,12 @@ $(document).ready(function() {
         var sentenceId = $(this).data("sentenceId");
 		var listId = $("#sentencesList").data('id');
 		
-		$("#sentence"+sentenceId).html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
-		$("#sentence"+sentenceId).load("http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/remove_sentence_from_list/"+ sentenceId + "/" + listId);
+		$("#sentence"+sentenceId).html("<img src='/img/loading.gif' alt='loading'>");
+		$("#sentence"+sentenceId).load(
+            "http://" + self.location.hostname + ":" + self.location.port 
+            + "/sentences_lists/remove_sentence_from_list/"
+            + sentenceId + "/" + listId
+        );
 		
 	});
 

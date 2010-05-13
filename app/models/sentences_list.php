@@ -147,18 +147,20 @@ class SentencesList extends AppModel
         $listId, $translationsLang = null, $romanization = null
     ) {
         
-        $contain = array("Sentence");
+        $contain = array(
+            "Sentence" => array(
+                "fields" => array("id", "lang", "text"),
+                "User" => array(
+                    "fields" => array("id", "username")
+                )
+            )
+        );
         
         if ($translationsLang != null) {
-            $contain = array(
-                "Sentence" => array(
-                    "fields" => array("id", "lang", "text"),
-                    "Translation" => array( 
-                        "fields" => array("id", "lang", "text"),
-                        "conditions" => array(
-                            "lang" => $translationsLang
-                        )
-                    )
+            $contain['Sentence']['Translation'] = array(
+                "fields" => array("id", "lang", "text"),
+                "conditions" => array(
+                    "lang" => $translationsLang
                 )
             );
         }
@@ -171,6 +173,7 @@ class SentencesList extends AppModel
             )
         );
         
+        // TODO Better way to get romanization. I'm not found of this...
         if ($romanization != null) {
             $sentences = array();
             foreach ($list['Sentence'] as $sentence) {

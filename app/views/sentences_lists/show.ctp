@@ -127,16 +127,14 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     }
     ?>
     
-    <ul class="sentencesList" id="sentencesList">
+    <div class="sentencesList" id="sentencesList">
     <?php
-    if ($translationsLang == 'und') {
-        $translationsLang = null;
-    }
     foreach ($list['Sentence'] as $sentence) {
-        $lists->displaySentence($sentence, $translationsLang, $canUserEdit);
+        $translations = $sentence['Translation'];
+        $lists->displaySentence($sentence, $translations, $canUserEdit);
     }
     ?>
-    </ul>
+    </div>
     
     </div>
 </div>

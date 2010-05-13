@@ -15,6 +15,12 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+ 
+
+/*
+ * Sentences
+ */
+@import url(../elements/sentences_group.css);
 
 
 /* 
@@ -39,23 +45,18 @@
 /*
  * List
  */
-ul.sentencesList{
-	list-style-type: none;
-	padding: 0px;
-	font-size: 1.5em;
-}
-
-.sentencesList li{
-	padding: 10px;
+.sentenceInListWrapper{
 	border-top: 1px dotted #989898;
 }
 
-.sentencesList li span{
-    display: block;
+.sentenceInListWrapper .options{
+    margin-top: 22px;
+	float: right;
 }
 
-.sentencesList .options{
-	float: right;
+.sentenceInList {
+    padding: 10px;
+    margin-right: 20px;
 }
 
 .editMode .sentenceInList, .editMode .translationInList{

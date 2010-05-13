@@ -114,7 +114,7 @@ class SentencesListsController extends AppController
             Sanitize::paranoid($id);
             
             $list = $this->SentencesList->getSentences($id, $translationsLang);
-            
+            pr($list);
             $this->set('translationsLang', $translationsLang);
             $this->set('list', $list);
         } else {
@@ -466,22 +466,5 @@ class SentencesListsController extends AppController
         $this->set('listId', $listId);
         $this->set('listName', $listName);
     }
-    
-    
-    /**
-     * Page for massive correction of sentences. It's displayed pretty much like
-     * search results, except we're listing the sentences of a list.
-     *
-     * @param int $listId Id of the list to display.
-     *
-     * @return void
-     */
-    public function checking_and_correcting($listId)
-    {
-        $results = $this->SentencesList->getListForCheckingAndCorrecting($listId);
-        $this->set('list', $results['SentencesList']);
-        $this->set('sentencesInList', $results['Sentence']);
-    }
-    
 }
 ?>

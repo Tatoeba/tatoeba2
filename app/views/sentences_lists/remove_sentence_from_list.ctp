@@ -24,7 +24,10 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+?>
 
+<div class="sentenceInList">
+<?php
 if (isset($removed)) {
     echo '<em>';
     __('Sentence successfully removed.');
@@ -33,3 +36,4 @@ if (isset($removed)) {
     echo 'Uh oh, something wrong happened.';
 }
 ?>
+</div>

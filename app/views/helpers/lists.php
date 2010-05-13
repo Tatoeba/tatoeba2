@@ -436,6 +436,7 @@ class ListsHelper extends AppHelper
         <?php
     }
     
+    
     /**
      * Display sentence.
      *
@@ -445,46 +446,54 @@ class ListsHelper extends AppHelper
      * @return void
      */
     public function displaySentence(
-        $sentence, $translationsLang = null, $canCurrentUserEdit = false
+        $sentence, $translations = array(), $canCurrentUserEdit = false
     ) {
+        // TODO Re-adapt this when SentencesHelper::displayGroup() is finished.
         ?>
-        <li id="sentence<?php echo $sentence['id']; ?>">
-       <?php
-        // delete button
-        if ($canCurrentUserEdit) {
-            ?>
-            <span class="options">
-            
-            <script type='text/javascript'>
-            $(document).ready(function() {
-                $('#deleteButton<?php echo $sentence['id']?>').data(
-                    'sentenceId',
-                    <?php echo $sentence['id']; ?>
-                );
-            });
-            </script>
-            
+        <div id="sentence<?php echo $sentence['id']; ?>"
+            class="sentenceInListWrapper">        
+        
             <?php
-            echo $this->Html->image(
-                'close.png',
-                array(
-                    "class" => "removeFromListButton",
-                    "id" => 'deleteButton'.$sentence['id']
-                )
+            // Remove from list button
+            if ($canCurrentUserEdit) {
+                ?>
+                <span class="options">
+                
+                <script type='text/javascript'>
+                $(document).ready(function() {
+                    $('#deleteButton<?php echo $sentence['id']?>').data(
+                        'sentenceId',
+                        <?php echo $sentence['id']; ?>
+                    );
+                });
+                </script>
+                
+                <?php
+                echo $this->Html->image(
+                    'close.png',
+                    array(
+                        "class" => "removeFromListButton",
+                        "id" => 'deleteButton'.$sentence['id']
+                    )
+                );
+                ?>
+                </span>
+                <?php
+            }
+            ?>
+            
+            <div class="sentenceInList">
+            <?php
+            $user = $sentence['User'];
+            $withAudio = false;
+            $indirectTranslations = array();
+            $this->Sentences->displayGroup(
+                $sentence, $translations, $user, $indirectTranslations, $withAudio
             );
             ?>
-            </span>
-            <?php
-        }
-        
-        // display sentence
-        if ($translationsLang != 'und') {
-            $this->Sentences->displaySentenceInList($sentence, $translationsLang);
-        } else {
-            $this->Sentences->displaySentenceInList($sentence);
-        }
-        ?>
-        </li>
+            </div>
+            
+        </div>
         <?php
     }
     
