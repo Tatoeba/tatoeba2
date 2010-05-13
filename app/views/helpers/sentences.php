@@ -227,11 +227,12 @@ class SentencesHelper extends AppHelper
      * @param string $type      Type of sentence. Can be 'mainSentence', 
      *                          'directTranslation' or 'indirectTranslation'.
      * @param int    $parentId  Id of the parent sentence, if type is 'translation'.
+     * @param bool   $withAudio Set to 'true' if audio icon is displayed.
      *
      * @return void
      */
     public function displayGenericSentence(
-        $sentence, $ownerName, $type, $parentId = null
+        $sentence, $ownerName, $type, $parentId = null, $withAudio = true
     ) {
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
@@ -249,7 +250,9 @@ class SentencesHelper extends AppHelper
         }
         
         // audio
-        $this->SentenceButtons->audioButton($sentenceId, $sentenceLang);
+        if ($withAudio) {
+            $this->SentenceButtons->audioButton($sentenceId, $sentenceLang);
+        }
         
         // language flag
         // TODO For Chinese sentences, it is better to display the 
@@ -491,41 +494,6 @@ class SentencesHelper extends AppHelper
         }
     }
     
-    /**
-     * TODO Delete me!!
-     *
-     * Display a single sentence for edit in place.
-     *
-     * @param array $sentence Sentence to display.
-     *
-     * @return void
-     */
-    public function displayEditableSentence($sentence)
-    {
-        ?>
-        <div class="original sentence mine">
-
-            <?php
-            // info icon
-            $this->SentenceButtons->displayInfoButton($sentence['id']);
-            
-            // Language flag
-            $this->SentenceButtons->displayLanguageFlag(
-                $sentence['id'], $sentence['lang'], true
-            );
-            
-            // Sentence
-            echo '<div id="'.$sentence['lang'].'_'.$sentence['id'].'" 
-                class="editable editableSentence">';
-            echo Sanitize::html($sentence['text']);
-            echo '</div> ';
-            
-            $this->_displayRomanization($sentence);
-            $this->_displayAlternateScript($sentence);
-            ?>    
-        </div>
-        <?php
-    }
     
     /**
      * TODO Delete me!!

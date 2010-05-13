@@ -89,8 +89,18 @@ $paginator->options(
         $javascript->link('sentences.edit_in_place.js', false);
         $javascript->link('sentences.change_language.js', false);
         
+        $ownerName = $session->read('Auth.user.username');
+        $type = 'mainSentence';
+        $parentId = null;
+        $withAudio = false;
         foreach ($user_sentences as $sentence) {
-            $sentences->displayEditableSentence($sentence['Sentence']);
+            $sentences->displayGenericSentence(
+                $sentence['Sentence'],
+                $ownerName,
+                $type,
+                $parentId,
+                $withAudio
+            );
         }
         ?>
         
