@@ -24,6 +24,9 @@
 	vertical-align: text-bottom;
 	overflow: hidden;
 	width: 100%;
+    border-bottom: 1px dashed #cccccc;
+    padding: 2px 5px;
+    margin: 2px 0px;
 }
 
 .menu li{
@@ -39,8 +42,12 @@
 	display: block;
 	float: right;
 	margin-right: 20px;
-	font-weight: bold;
-	color: #75C34B;
+    color: #75C34B;
+    font-weight: bold;
+}
+
+.belongsTo a{
+    padding: 0;
 }
 
 .listOfLists{
@@ -49,97 +56,73 @@
 
 
 /* 
- * Sentences
+ * Main sentences
  */
-.sentences_set .sentence{
-    border-top: 1px dashed #cccccc;
+.mainSentence{
+	font-family: georgia;
+	font-size: 1.7em;
+}
+
+.mainSentence .languageFlag, .mainSentence .audioButton {
+    margin-top: 10px;
 }
 
 
 /* 
- * Translations
+ * Sentence
  */
-.translation a{
+.sentenceContent .text{
+    display: block;
+    padding: 5px;
+} 
+ 
+.sentence{
+    padding: 2px;
+}
+
+.sentence a{
+    color: #434343;
 	text-decoration: none;
 }
 
-.translation .button{
+.sentence a:hover{
+	color: #EAA315;
+}
+
+.sentence .button{
 	float:left;
-	margin-top: 5px;
+	margin-top: 8px;
     margin-right: 5px;
     margin-left: 5px;
 }
 
-.translation span{
-	display: block;
-	padding-left: 30px;
-	padding-right: 30px;
+
+/*
+ * Translations
+ */
+.directTranslation, .indirectTranslation {
+    font-size: 1.2em;
 }
 
-.translation a:hover{
-	color: #EAA315;
+.indirectTranslation a{
+    color: #998778;
 }
-
-
+ 
+ 
 /* 
  * Editing sentences 
  */
 .sentences_set div.submit{
-display:inline;
+    display:inline;
 }
 .sentences_set div.input{
-display:inline;
+    display:inline;
 }
 
 
 /* 
- * Types of sentence 
+ * Romanization
  */
-.original{
-	font-family: georgia;
-	padding: 10px 5px;
-	font-size: 1.7em;
-}
-
-.original div{
-	margin-right: 40px;
-}
-
-.original a{
-	color: #434343;
-	font-weight: normal;
-}
-
-.original a:hover{
-	text-decoration: none;
-	color: #EAA315;
-}
-
-.direct div, .indirect div{
-	padding: 5px;
-	padding-left: 30px;
-	margin-right: 40px;
-}
-
-ul.translations, .sentences_set ul.menu{
-list-style: none;
-margin: 0;
-padding: 0;
-}
-
-
-li.translation{
-padding: 5px 5px; /* the 2px are important because of flag's margin */
-}
-
-.direct a{
-	color: #000000;
-}
-
-.indirect a{
-	color: #998778;
-}
-
 .romanization{
 	color: #a1a1a1;
 }
@@ -149,14 +132,11 @@ a.romanization {
     display: block;
 }
 
-.direct a.romanization, .indirect a.romanization {
+.romanization {
     padding: 5px;
 	padding-left: 30px;
 	margin-right: 40px;
-}
-
-.translation .romanization{
-	margin-top: -8px;
+    margin-top: -8px;
 }
 
 
@@ -168,35 +148,16 @@ a.romanization {
 }
 
 .editInPlaceForm input.text{
-width: 98%;
-display: inline;
-font-family: Verdana, sans-serif;
-font-size: 14px;
+    width: 98%;
+    display: inline;
+    font-family: Verdana, sans-serif;
+    font-size: 14px;
 }
 
-.addTranslationsTextInput{
-width: 550px;
-float:left;
-font-family: Verdana, sans-serif;
-font-size: 14px;
-}
 
-.addTranslations input{
-margin-right: 5px;
-}
-
-ul.addTranslations{
-list-style: none;
-margin: 0;
-padding: 0;
-display: none;
-}
-
-.languageFlag{
-	float: right;
-	margin: 5px;
-}
-
+/*
+ * Flag
+ */
 .editableFlag:hover{
 	cursor: pointer;
 	border-top: 1px solid #aaaaaa;
@@ -208,6 +169,31 @@ display: none;
 	float: right;
 	margin-top: 5px;
 }
+
+
+/*
+ * Add Translations
+ */
+.addTranslations {
+    display: none;
+}
+
+.addTranslations input{
+    display: inline;
+}
+
+.addTranslationsTextInput{
+    width: 550px;
+    float:left;
+    font-family: Verdana, sans-serif;
+    font-size: 14px;
+}
+
+.languageFlag{
+	float: right;
+	margin: 5px;
+}
+
 
 /* 
  * Audio 
@@ -238,7 +224,7 @@ display: none;
  */
 .infoIcon{
 	float: left;
-	margin: 2px 10px 2px 5px;
+	margin: 6px 10px 2px 5px;
 }
 
 .loading {

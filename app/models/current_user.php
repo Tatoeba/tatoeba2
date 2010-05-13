@@ -103,6 +103,17 @@ class CurrentUser extends AppModel
     
     
     /**
+     * Indicates if current user is moderator or not.
+     * 
+     * @return bool
+     */
+    public static function isModerator()
+    {
+        return self::get('group_id') && self::get('group_id') < 3;
+    }
+    
+    
+    /**
      * Indicates if current user is trusted or not.
      * 
      * @return bool
@@ -124,30 +135,6 @@ class CurrentUser extends AppModel
         return self::get('group_id') && self::get('group_id') < 5;
     }
     
-    /**
-     * Indicates if current user is owner of the sentence with given id.
-     *
-     * @param int $sentenceId Id of the sentence.
-     * 
-     * @return bool
-     */
-    public static function isOwnerOfSentence($sentenceId)
-    {
-        $Sentence = ClassRegistry::init('Sentence');
-        $result = $Sentence->find(
-            'first',
-            array(
-                'fields' => array(),
-                'conditions' => array(
-                    'Sentence.id' => $sentenceId,
-                    'Sentence.user_id' => self::get('id')
-                ),
-                'contain' => array()
-            )
-        );
-        return !empty($result);
-    }
-    
     
     /**
      * Indicates if current user can link/unlink translations to the sentence of
@@ -157,15 +144,36 @@ class CurrentUser extends AppModel
      * 
      * @return bool
      */
-    public static function canLinkAndUnlink($sentenceId)
+    public static function canLinkWithSentenceOfUser($username)
     {
-        if (self::isAdmin()) {
+        if (!self::isMember()) {
+            return false;
+        }
+        
+        if (self::isModerator()) {
             return true;
         }
         
-        $sentenceBelongsToUser = self::isOwnerOfSentence($sentenceId);
+        $belongsToCurrentUser = (self::get('username') == $username);
+        return $belongsToCurrentUser && self::isTrusted();
+    }
+    
+    
+    /**
+     * Indicates if current user can edit sentence of user with give username.
+     *
+     * @param int $username Username of owner of the sentence.
+     * 
+     * @return bool
+     */
+    public static function canEditSentenceOfUser($username)
+    {
+        if (!self::isMember()) {
+            return false;
+        }
         
-        return $sentenceBelongsToUser && self::isTrusted();
+        $belongsToCurrentUser = (self::get('username') == $username);
+        return $belongsToCurrentUser || self::isModerator();
     }
     
     
