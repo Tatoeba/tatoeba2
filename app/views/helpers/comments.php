@@ -101,8 +101,7 @@ class CommentsHelper extends AppHelper
         }
         
         // delete button
-        $canDelete = $permissions['canDelete'];
-        if ($canDelete) {
+        if (isset($permissions['canDelete']) && $permissions['canDelete'] == true) {
             echo '<li class="action">';
             echo $this->Html->link(
                 $this->Html->image(
