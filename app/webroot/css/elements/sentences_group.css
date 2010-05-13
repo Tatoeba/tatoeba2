@@ -47,7 +47,7 @@
 }
 
 .belongsTo a{
-    padding: 0;
+    padding: 0px 0px 0px 5px;
 }
 
 .listOfLists{
@@ -92,7 +92,7 @@
 .sentence .button{
 	float:left;
 	margin-top: 8px;
-    margin-right: 5px;
+    margin-right: 8px;
     margin-left: 5px;
 }
 
@@ -125,6 +125,9 @@
  */
 .romanization{
 	color: #a1a1a1;
+    margin-top: -8px;
+    padding: 5px;
+    margin-right: 40px;
 }
 
 a.romanization {
@@ -132,11 +135,8 @@ a.romanization {
     display: block;
 }
 
-.romanization {
-    padding: 5px;
-	padding-left: 30px;
-	margin-right: 40px;
-    margin-top: -8px;
+.translations .romanization {
+    padding-left: 30px;
 }
 
 
