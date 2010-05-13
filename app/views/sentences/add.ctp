@@ -98,14 +98,7 @@ echo $javascript->link('sentences.change_language.js', true);
             // sentence menu (translate, edit, comment, etc)
             $menu->displayMenu($sentenceId, $ownerName);
 
-            // sentence and translations
-            $translation = array();
-            if (isset($sentence['Translation'])) {
-                $translation = $sentence['Translation'];
-            }
-            
-            // TODO set up a better mechanism
-            $sentence['User']['canEdit'] = $specialOptions['canEdit']; 
+            $translation = array();            
             $sentences->displayGroup(
                 $sentence['Sentence'],
                 $translation,

@@ -47,13 +47,11 @@ if (isset($sentence)) {
     
     // sentence and translations
     $translation = array();
-    if (isset($sentence['Translation'])) {
-        $translation = $sentence['Translation'];
-    }
-    //pr($specialOptions);
-    // TODO set up a better mechanism
-    $sentence['User']['canEdit'] = $specialOptions['canEdit'];
-    $sentences->displayGroup($sentence['Sentence'], $translation, $sentence['User']);
+    $sentences->displayGroup(
+        $sentence['Sentence'], 
+        $translation, 
+        $sentence['User']
+    );
     ?>
     </div>
     

@@ -39,8 +39,8 @@ echo $javascript->link('sentences.change_language.js', true);
 
 $sentence = $random['Sentence'];
 $sentenceId = $random['Sentence']['id'];
-$ownerName = $random['User']['username'];
-$specialOptions = $random['specialOptions'];
+$sentenceOwner = $random['User'];
+$ownerName = $sentenceOwner['username'];
 ?>
 <div class="sentences_set"
     id="sentences_group_<?php echo $sentenceId; ?>">
@@ -51,9 +51,6 @@ $specialOptions = $random['specialOptions'];
         $sentenceScript
     );
     
-    // TODO set up a better mechanism
-    $sentenceOwner['canEdit'] = $specialOptions['canEdit']; 
-    $sentenceOwner['canLinkAndUnlink'] = $specialOptions['canLinkAndUnlink']; 
     $sentences->displayGroup(
         $sentence, 
         $translations, 

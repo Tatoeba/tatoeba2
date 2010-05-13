@@ -106,10 +106,6 @@ $navigation->displaySentenceNavigation();
                 $menu->displayMenu(
                     $sentenceId, $username, $chineseScript
                 );
-
-                // for edit in place...
-                // TODO set up a better mechanism
-                $sentence['User']['canEdit'] = $specialOptions['canEdit']; 
                 
                 // display sentence and translations
                 $sentences->displayGroup(

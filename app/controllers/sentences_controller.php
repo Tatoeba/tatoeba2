@@ -159,12 +159,6 @@ class SentencesController extends AppController
             $alltranslations = $this->Sentence->getTranslationsOf($id);
             $translations = $alltranslations['Translation'];
             $indirectTranslations = $alltranslations['IndirectTranslation'];
-
-            // checking which options user can access to
-            $specialOptions = $this->Permissions->getSentencesOptions(
-                $sentence,
-                $userId
-            );
             
             $this->set('sentenceExists', true);
             $this->set('translations', $translations);
@@ -173,8 +167,6 @@ class SentencesController extends AppController
             $this->set('sentenceComments', $comments);
             $this->set('commentsPermissions', $commentsPermissions);
             $this->set('contributions', $contributions); 
-            $this->set('specialOptions', $specialOptions);
-
             
         } else {
             // ----- other case -----
@@ -237,11 +229,6 @@ class SentencesController extends AppController
         if ($isSaved) {
             $sentence = $this->Sentence->getSentenceWithId($this->Sentence->id);
             $this->set('sentence', $sentence);
-            
-            $specialOptions = $this->Permissions->getSentencesOptions(
-                $sentence, $userId
-            );
-            $this->set('specialOptions', $specialOptions);
         }
     }
     
@@ -299,12 +286,6 @@ class SentencesController extends AppController
             $sentenceId = $this->Sentence->id;
             $sentence = $this->Sentence->getSentenceWithId($sentenceId);
             
-            $specialOptions = $this->Permissions->getSentencesOptions(
-                $sentence,
-                $userId
-            );
-
-            $this->set('specialOptions', $specialOptions);
             $this->set('sentence', $sentence);
         }
 
@@ -524,14 +505,6 @@ class SentencesController extends AppController
         
         $this->set('query', $query);
         $this->set('results', $results);
-        
-        $specialOptions = array();
-        foreach ($results as $sentence) {
-            $specialOptions[] = $this->Permissions->getSentencesOptions(
-                $sentence, $this->Auth->user('id')
-            );
-        }
-        $this->set('specialOptions', $specialOptions);
     }
     
     /**
@@ -554,9 +527,6 @@ class SentencesController extends AppController
         $indirectTranslations = $alltranslations['IndirectTranslation'];
        
         $this->Session->write('random_lang_selected', $lang);
-        $randomSentence['specialOptions'] = $this->Permissions->getSentencesOptions(
-            $randomSentence, $this->Auth->user('id')
-        );
         
         $this->set('random', $randomSentence);
         $this->set('sentenceScript', $randomSentence['Sentence']['script']);
@@ -605,11 +575,6 @@ class SentencesController extends AppController
             $randomSentence = $this->Sentence->getSentenceWithId($randomId);
             
             $this->Session->write('random_lang_selected', $lang);
-
-            $randomSentence['Sentence']['specialOptions']
-                = $this->Permissions->getSentencesOptions(
-                    $randomSentence, $this->Auth->user('id')
-                );
 
             $alltranslations = $this->Sentence->getTranslationsOf($randomId);
             $translations = $alltranslations['Translation'];

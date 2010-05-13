@@ -164,10 +164,7 @@
                         $sentenceId,
                         $ownerName
                     );
-
-                    // sentence and translations
-                    // TODO set up a better mechanism
-                    $sentence['Sentence']['User']['canEdit'] = $specialOptions[$index]['canEdit'];
+                    
                     $sentences->displayGroup(
                         $sentence['Sentence'], 
                         $sentence['Translation'], 

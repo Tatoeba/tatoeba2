@@ -102,12 +102,6 @@ $this->pageTitle = 'Tatoeba - ' . __('Random sentences', true);
                 $sentenceId, $ownerName, $chineseScript
             );
             
-            // sentence and translations
-            // TODO set up a better mechanism
-            $specialOptions =  $sentence['Sentence']['specialOptions'] ;
-            $sentence['User']['canEdit'] = $specialOptions['canEdit']; 
-            $sentence['User']['canLinkAndUnlink'] 
-                = $specialOptions['canLinkAndUnlink']; 
             $sentences->displayGroup(
                 $sentence['Sentence'],
                 $sentence['Translations'],
