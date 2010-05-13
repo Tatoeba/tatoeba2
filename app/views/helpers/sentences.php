@@ -79,7 +79,7 @@ class SentencesHelper extends AppHelper
         $translations,
         $user = null,
         $indirectTranslations = array(),
-        $withAudio = false
+        $withAudio = true
     ) {
         
         $ownerName = null;
