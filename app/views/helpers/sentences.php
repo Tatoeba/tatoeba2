@@ -345,7 +345,9 @@ class SentencesHelper extends AppHelper
         <div class="sentenceContent">
         <?php
         // text
-        $this->displaySentenceText($sentenceId, $sentenceText, $isEditable);
+        $this->displaySentenceText(
+            $sentenceId, $sentenceText, $isEditable, $sentenceLang
+        );
         
         // romanization
         $this->_displayRomanization($sentence);
@@ -365,11 +367,12 @@ class SentencesHelper extends AppHelper
      * @param array $sentenceId   Id of the sentence.
      * @param array $sentenceText Text of the sentence.
      * @param bool  $isEditable   Set to 'true' if sentence is editable.
+     * @param bool  $sentenceLang Used for logs... We need to get rid of it someday.
      *
      * @return void
      */
     public function displaySentenceText(
-        $sentenceId, $sentenceText, $isEditable = false
+        $sentenceId, $sentenceText, $isEditable = false, $sentenceLang = ''
     ) {
         if ($isEditable) {
             
@@ -379,7 +382,7 @@ class SentencesHelper extends AppHelper
             // TODO: HACK SPOTTED id is used in edit_in_place
             // NOTE: I didn't find an easy way to pass the sentenceId to jEditable
             // using jQuery.data...
-            echo '<div id="_'.$sentenceId.'" class="text editableSentence">';
+            echo '<div id="'.$sentenceLang.'_'.$sentenceId.'" class="text editableSentence">';
             echo Sanitize::html($sentenceText);
             echo '</div>';
             // NOTE: I'm echo-ing this because we don't want to have extra spaces

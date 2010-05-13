@@ -319,49 +319,33 @@ class SentencesController extends AppController
     public function edit_sentence()
     {
         $userId = $this->Auth->user('id');
-        $sentenceLang = '';
         $sentenceText = '';
         $sentenceId = '';
         if (isset($_POST['value'])) {
-            $sentenceText = $_POST['value'];
-        }
-        if (isset($_POST['selectedLang'])) {
-            $sentenceLang = $_POST['selectedLang'];
+            $sentenceText = trim($_POST['value']);
         }
         if (isset($_POST['id'])) {
             $sentenceId = $_POST['id'];
         }
         
-        $this->Session->write('contribute_lang', $sentenceLang);
-
-        if (!isset($sentenceText) || trim($sentenceText) === '') {
+        if (!isset($sentenceText) || $sentenceText === '') {
             // if the sentence contain no text (empty or only space)
             // the we directly return without saving
             return;
         }
-
-        Sanitize::html($sentenceText);
-        $sentenceText = trim($sentenceText);
         
         if (isset($sentenceId)) {
-            
+        
+            Sanitize::html($sentenceText);
             Sanitize::paranoid($sentenceId);
             
             // TODO HACK SPOTTED $_POST['id'] store 2 informations, lang and id
             // related to HACK in edit in place.js 
             $hack_array = explode("_", $sentenceId);
             $this->Sentence->id = $hack_array[1];
-            
-            $sentenceLang = null; // language is needed for the logs
-            if ($hack_array[0] != '') {
-                $sentenceLang = $hack_array[0]; 
-            }
-            $isSaved = $this->SaveSentence->wrapper_save_sentence(
-                $sentenceLang,
-                $sentenceText,
-                $userId,
-                $this->Sentence->id
-            );
+            $data['Sentence']['lang'] = $hack_array[0];
+            $data['Sentence']['text'] = $sentenceText;
+            $isSaved = $this->Sentence->save($data);
                             
             if ($isSaved) {
                 $this->layout = null;
