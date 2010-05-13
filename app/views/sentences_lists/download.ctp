@@ -71,6 +71,15 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
     );
     ?>
     
+    <div>
+    <?php
+    echo $form->hidden(
+        'id',
+        array('value' => $listId)
+    );
+    ?>
+    </div>
+    
     <table>
         <tr>
             <td><?php __('Download with id'); ?></td>
@@ -109,8 +118,8 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
     You can download lists to use them in Anki.
     </p>
     <div><a href="http://www.ichi2.net/anki/">
-    <img alt="Anki" src="http://ichi2.net/anki/anki-logo2.png">
-    </div></a>
+    <img alt="Anki" src="http://ichi2.net/anki/anki-logo2.png"/></a>
+    </div>
     
     <p>
     We are also using this feature in our process of
