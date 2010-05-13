@@ -139,14 +139,14 @@ class SentencesList extends AppModel
      *
      * @param int    $listId           Id of the list.
      * @param string $translationsLang Language of the translations.
-     * @param string $romanization     Display or not romanizations.
      *
      * @return array
      */
     public function getSentences(
-        $listId, $translationsLang = null, $romanization = null
+        $listId, $translationsLang = null
     ) {
         
+        // If no translations
         $contain = array(
             "Sentence" => array(
                 "fields" => array("id", "lang", "text"),
@@ -156,12 +156,13 @@ class SentencesList extends AppModel
             )
         );
         
+        // If translations
         if ($translationsLang != null && $translationsLang != 'none') {
-            
+            // All
             $contain['Sentence']['Translation'] = array(
                 "fields" => array("id", "lang", "text"),
             );
-            
+            // Specific language
             if ($translationsLang != 'und') {
                 $contain['Sentence']['Translation']['conditions'] = array(
                     "lang" => $translationsLang
@@ -169,6 +170,7 @@ class SentencesList extends AppModel
             }
         }
         
+        // Fetch list
         $list = $this->find(
             "first",
             array(
@@ -177,32 +179,13 @@ class SentencesList extends AppModel
             )
         );
         
-        // TODO Better way to get romanization. I'm not found of this...
-        if ($romanization != null) {
-            $sentences = array();
-            foreach ($list['Sentence'] as $sentence) {
-                $sentence['romanization'] = $this->Sentence->getRomanization(
-                    $sentence['text'], $sentence['lang']
-                );
-                
-                if ($translationsLang != null) {
-                    $translations = array();
-                    foreach ($sentence['Translation'] as $translation) {
-                        $translation['romanization'] 
-                            = $this->Sentence->getRomanization(
-                                $translation['text'], $translationsLang
-                            );
-                        $translations[] = $translation;
-                    }
-                    
-                    $sentence['Translation'] = $translations;
-                }
-                
-                $sentences[] = $sentence;
-            }
-            $list['Sentence'] = $sentences;
+        // Romanization of the sentence
+        $sentences = array();
+        foreach ($list['Sentence'] as $sentence) {
+            $this->Sentence->generateRomanization($sentence);
+            $sentences[] = $sentence;
         }
-        
+        $list['Sentence'] = $sentences;
         return $list;
     }
     
