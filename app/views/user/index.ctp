@@ -63,7 +63,8 @@ if (!$session->read('Auth.User.id')) {
                     $html->url(
                         array(
                             "controller" => "sentences",
-                            "action" => "my_sentences"
+                            "action" => "of_user",
+                            $userName
                         )
                     )
                 );

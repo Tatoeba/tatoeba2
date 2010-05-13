@@ -393,43 +393,6 @@ class SentencesHelper extends AppHelper
         }
     }
     
-    /**
-     * TODO Delete me!!
-     *
-     * Display a single sentence.
-     *
-     * @param array $sentence Sentence to display.
-     *
-     * @return void
-     */
-    public function displaySentence($sentence)
-    {
-        echo '<div class="original sentence">';
-        // Language flag
-            $this->SentenceButtons->displayLanguageFlag(
-                $sentence['id'], $sentence['lang'], false
-            );
-            
-        // Sentence
-        echo '<span class="correctness'.$sentence['correctness'].' '
-            .$sentence['lang'].'">';
-        echo $this->Html->link(
-            $sentence['text'], 
-            array(
-                "controller" => "sentences",
-                "action" => "show",
-                $sentence['id']
-            ),
-            array(
-                'id' => '_'.$sentence['id']
-            )
-        );
-        echo '</span> ';
-        
-        $this->_displayRomanization($sentence);
-        
-        echo '</div>';
-    }
         
     /**
      * Display romanization.

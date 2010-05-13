@@ -102,8 +102,18 @@ if ($userExists === true) {
         </div>
         
         <?php
+        $type = 'mainSentence';
+        $parentId = null;
+        $withAudio = false;
         foreach ($user_sentences as $sentence) {
-            $sentences->displaySentence($sentence['Sentence']);
+            $ownerName = $sentence['User']['username'];
+            $sentences->displayGenericSentence(
+                $sentence['Sentence'],
+                $ownerName,
+                $type,
+                $parentId,
+                $withAudio
+            );
         }
         ?>
         

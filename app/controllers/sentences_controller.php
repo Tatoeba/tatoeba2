@@ -751,17 +751,7 @@ class SentencesController extends AppController
         
     }
     
-    /**
-     * Display current user's sentences.
-     *
-     * @param string $lang Filter only the sentences in this language.
-     *
-     * @return void
-     */
-    public function my_sentences($lang = null)
-    {
-        $this->_sentences_of_user_common($this->Auth->user('id'), $lang);
-    }
+    
     /**
      * Private function to factorize my_sentences and of_user
      *
@@ -783,7 +773,7 @@ class SentencesController extends AppController
                 ),
                 'contain' => array(
                     'User' => array(
-                        'fields' => array('id')
+                        'fields' => array('username')
                     )
                 ),
                 'limit' => 100,
