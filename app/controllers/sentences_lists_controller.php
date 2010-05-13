@@ -40,6 +40,7 @@ class SentencesListsController extends AppController
     public $helpers = array(
         'Sentences',
         'Navigation',
+        'Csv',
         'Html',
         'Lists',
         'Menu'
@@ -58,6 +59,7 @@ class SentencesListsController extends AppController
         $this->Auth->allowedActions = array(
             'index',
             'show',
+            'export_to_csv',
             'of_user',
             'print_as_exercise',
             'print_as_correction',
@@ -445,8 +447,11 @@ class SentencesListsController extends AppController
      */
     public function set_as_public()
     {
-        $this->SentencesList->id = $_POST['listId'];
-        $this->SentencesList->saveField('is_public', $_POST['isPublic']);
+        $listId = $_POST['listId'];
+        Sanitize::paranoid($listId);
+
+        $this->SentencesList->id = $listId;
+        $this->SentencesList->saveField('is_public', $listId);
     }
     
     
@@ -465,6 +470,58 @@ class SentencesListsController extends AppController
         $listName = $this->SentencesList->getNameForListWithId($listId);
         $this->set('listId', $listId);
         $this->set('listName', $listName);
+    }
+   
+    /**
+     *
+     *
+     */
+    
+    public function export_to_csv()
+    {
+        $exportId = $_POST['data']['SentencesList']['insertId'];
+        $translationsLang = $_POST['data']['SentencesList']['TranslationsLang'];
+        $listId = $_POST['data']['SentencesList']['id'];
+
+        // Sanitize part
+        Sanitize::paranoid($exportId);
+        Sanitize::paranoid($translationsLang);
+        Sanitize::paranoid($listId);
+          
+        if ($translationsLang === "none") {
+            $translationsLang = null;
+        }
+        
+        $exportId = ($exportId === "1");
+        $withTranslation = ($translationsLang !== null);
+        
+        // as the view is a file to be downloaded we need to say
+        // to cakephp that he must not add the layout
+        $this->layout = null;
+        $this->autoLayout = false;
+        // to prevent cakephp from adding debug output
+        Configure::write("debug",0); 
+        
+        $results = $this->SentencesList->getSentencesAndTranslationsOnly(
+            $listId, $translationsLang 
+        );
+  
+        // we specify which field will be present in the csv
+        // order is important 
+        $fieldsList = array(); 
+        if ($exportId === true) {
+            array_push($fieldsList, "Sentence.id");
+        }
+        array_push($fieldsList, 'Sentence.text');
+        if ($withTranslation === true) {
+            array_push($fieldsList, "Translation.text");
+        }
+     
+        // send to the view 
+        $this->set("listId", $listId); 
+        $this->set("fieldsList", $fieldsList);
+        $this->set("translationsLang", $translationsLang);
+        $this->set("sentencesWithTranslation", $results);
     }
 }
 ?>

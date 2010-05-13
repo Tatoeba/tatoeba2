@@ -132,6 +132,45 @@ class SentencesList extends AppModel
             )
         );
     }
+
+
+    /**
+     *
+     *
+     *
+     */
+    public function getSentencesAndTranslationsOnly($listId, $translationLang)
+    {
+        if (empty($translationLang)) {
+            $request = '
+            SELECT Sentence.id, Sentence.text
+            from sentences_sentences_lists as ssls
+            left join sentences as Sentence on ssls.sentence_id = Sentence.id
+            where ssls.sentences_list_id = '.$listId 
+            ; 
+        } else {
+            $request = '
+            select Sentence.id, Sentence.text, Translation.text
+            from sentences_sentences_lists as ssls
+            left join sentences as Sentence on ssls.sentence_id = Sentence.id
+            left join 
+            (select s.id as sentence_id , t.text as text
+            from sentences_sentences_lists as ssls
+                left join sentences as s on ssls.sentence_id = s.id
+                left join sentences_translations as st on (s.id = st.sentence_id)
+                left join sentences as t on ( st.translation_id = t.id )
+            where ssls.sentences_list_id = '.$listId.' 
+                and t.lang  = "'.$translationLang.'" 
+            ) as Translation on Sentence.id = Translation.sentence_id 
+            where ssls.sentences_list_id = '.$listId 
+            ; 
+        }
+        $results = $this->query($request);
+
+        //foreach($results as $result);
+        return $results; 
+    }
+ 
     
     /**
      * Returns sentences from a list, along with the translations of the sentences 
@@ -174,12 +213,12 @@ class SentencesList extends AppModel
         $list = $this->find(
             "first",
             array(
+                "fields" => array("name", "user_id", "is_public"),
                 "conditions" => array("SentencesList.id" => $listId),
                 "contain" => $contain
             )
         );
         
-        // Romanization of the sentence
         $sentences = array();
         foreach ($list['Sentence'] as $sentence) {
             $this->Sentence->generateRomanization($sentence);
