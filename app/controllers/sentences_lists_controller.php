@@ -61,11 +61,8 @@ class SentencesListsController extends AppController
             'show',
             'export_to_csv',
             'of_user',
-            'print_as_exercise',
-            'print_as_correction',
             'download',
-            'choices',
-            'checking_and_correcting'
+            'choices'
         );
     }
 
@@ -376,65 +373,6 @@ class SentencesListsController extends AppController
                 $this->set('isSaved', false);
             }
         }
-    }
-
-    /**
-     * Display list so that it can be printed for exercising
-     * translation/romanization on paper.
-     *
-     * @param int    $listId       Id of list.
-     * @param string $romanization 'show_romanization' or 'hide_romanization'.
-     *
-     * @return void
-     */
-    public function print_as_exercise($listId, $romanization = 'hide_romanization')
-    {
-        Sanitize::paranoid($listId);
-
-        $this->layout = 'lists';
-        $list = $this->SentencesList->getSentences($listId, null, $romanization);
-        $this->set('list', $list);
-        $this->set('romanization', $romanization);
-    }
-
-
-    /**
-     * Display list so that it can be printed as a correction reference.
-     *
-     * @param int    $listId           Id of list.
-     * @param string $translationsLang Language of translations.
-     * @param string $romanization     'show_romanization' or 'hide_romanization'. 
-     *
-     * @return void
-     */
-    public function print_as_correction($listId, $translationsLang = 'und',
-        $romanization = 'hide_romanization'
-    ) {
-        $this->layout = 'lists';
-        Sanitize::paranoid($listId);
-        
-        if ( $translationsLang == 'und' ) {
-        
-            $translationsLang = null;
-        
-        } else {
-        
-            if ($romanization == 'hide_romanization') {
-                $list = $this->SentencesList->getSentences(
-                    $listId, $translationsLang
-                );
-            } else {
-                $list = $this->SentencesList->getSentences(
-                    $listId, $translationsLang, $romanization
-                );
-            }
-            $this->set('list', $list);
-            
-        }
-        
-        $this->set('listId', $listId);
-        $this->set('translationsLang', $translationsLang);
-        $this->set('romanization', $romanization);
     }
 
 

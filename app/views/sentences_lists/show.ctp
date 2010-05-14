@@ -57,9 +57,9 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
 
 
     <div class="module">
-    <h2><?php __('Printable versions'); ?></h2>
+    <h2><?php __('Download'); ?></h2>
     <?php
-    $lists->displayLinksToPrintableVersions($listId, $translationsLang);
+    $lists->displayDownloadLink($listId);
     ?>
     </div>
     

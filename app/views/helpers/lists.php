@@ -239,14 +239,14 @@ class ListsHelper extends AppHelper
     
     
     /**
-     * Display 'back to this list' link.
+     * Display 'download' link.
      *
      * @return void
      */
-    public function displayDownloadPageLink($listId)
+    public function displayDownloadLink($listId)
     {
         ?>
-        <li>
+        <div class="download">
         <?php
         echo $this->Html->link(
             __('Download this list', true),
@@ -257,7 +257,7 @@ class ListsHelper extends AppHelper
             )
         );
         ?>
-        </li>
+        </div>
         <?php
     }
     
@@ -301,10 +301,7 @@ class ListsHelper extends AppHelper
         );
         ?>
         </li>
-        
         <?php
-        $this->displayDownloadPageLink($listId);
-        
     }
     
     /** 
