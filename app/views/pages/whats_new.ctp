@@ -84,9 +84,10 @@ $this->pageTitle = 'Tatoeba - ' . __("What's new", true);
         </div>
 
         <hr/>
-        <pre>
+        
+        <p>
         Below is the description of Tatoeba and its features on July 12th, 2009.
-        </pre>
+        </p>
 
         <h2>Quick description of the sections in the menu</h2>
 
