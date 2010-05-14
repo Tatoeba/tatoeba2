@@ -95,29 +95,17 @@ $navigation->displaySentenceNavigation();
             <?php 
             echo sprintf(__('Sentence nº%s', true), $sentenceId); 
             ?>
-            </h2>
+            </h2>            
             
-            <div class="sentences_set"
-                id="sentences_group_<?php echo $sentenceId; ?>">
-                <?php
-                $username = $sentence['User']['username'];
-                $chineseScript = $sentence['Sentence']['script'];
-                
-                $menu->displayMenu(
-                    $sentenceId, $username, $chineseScript
-                );
-                
-                // display sentence and translations
-                $sentences->displayGroup(
-                    $sentence['Sentence'],
-                    $translations,
-                    $sentence['User'],
-                    $indirectTranslations
-                );
-                ?>
-            </div>
+            <?php
+            // display sentence and translations
+            $sentences->displaySentencesGroup(
+                $sentence['Sentence'],
+                $translations,
+                $sentence['User'],
+                $indirectTranslations
+            );
             
-        <?php
         } else {
             
             echo '<h2>' .

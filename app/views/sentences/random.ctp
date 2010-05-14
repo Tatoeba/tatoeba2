@@ -38,24 +38,12 @@ echo $javascript->link('sentences.play_audio.js', true);
 echo $javascript->link('sentences.change_language.js', true);
 
 $sentence = $random['Sentence'];
-$sentenceId = $random['Sentence']['id'];
 $sentenceOwner = $random['User'];
-$ownerName = $sentenceOwner['username'];
+
+$sentences->displaySentencesGroup(
+    $sentence, 
+    $translations, 
+    $sentenceOwner,
+    $indirectTranslations
+);
 ?>
-<div class="sentences_set"
-    id="sentences_group_<?php echo $sentenceId; ?>">
-<?php
-    $menu->displayMenu(
-        $sentenceId,
-        $ownerName,
-        $sentenceScript
-    );
-    
-    $sentences->displayGroup(
-        $sentence, 
-        $translations, 
-        $sentenceOwner,
-        $indirectTranslations
-    );
-?>
-</div>

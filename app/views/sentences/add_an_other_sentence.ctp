@@ -24,10 +24,20 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-?>
 
-<?php
-    // this is when adding new sentences
+/**
+ * This view displays a new sentence added from sentences/add. It is loaded by
+ * AJAX request from sentences.contribute.js.
+ *
+ * It is used by the adopt() and let_go() actions in the controller. There are no 
+ * action called sentences_group() in the controller.
+ *
+ * @category Sentences
+ * @package  Views
+ * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */  
 if (isset($sentence)) {
     echo $javascript->link('sentences.add_translation.js', true);
     echo $javascript->link('jquery.jeditable.js', true);
@@ -35,26 +45,12 @@ if (isset($sentence)) {
     echo $javascript->link('sentences.change_language.js', true);
     echo $javascript->link('sentences.adopt.js', true);
     
-    $sentenceId = $sentence['Sentence']['id'];
-    $ownerName = $sentence['User']['username']; 
-    ?>
-    
-    <div class="sentences_set freshlyAddedSentence"
-        id="sentences_group_<?php echo $sentenceId; ?>">
-    <?php
-    // sentence menu (translate, edit, comment, etc)
-    $menu->displayMenu($sentenceId, $ownerName);
-    
     // sentence and translations
     $translation = array();
-    $sentences->displayGroup(
+    $sentences->displaySentencesGroup(
         $sentence['Sentence'], 
         $translation, 
         $sentence['User']
     );
-    ?>
-    </div>
-    
-    <?php
 }
 ?>

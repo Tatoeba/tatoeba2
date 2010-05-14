@@ -29,88 +29,75 @@ $this->pageTitle = 'Tatoeba - ' . __('Random sentences', true);
 
 ?>
 <div id="annexe_content">
-       <div class="module">
-            <h2><?php __("For serial translators"); ?></h2>
-            <?php 
-            echo '<p>';
-            __(
-                'Translating sentences one by one is too slow for you? '.
-                'You want to increase your rank in Tatoeba, or the rank of '.
-                'your language, at the speed of light? So this is for you!'
-            );
-            echo '</p>';
-            
-            echo '<p>';
-            __("Just Keep in mind our server is not as fast as you ;-)");
-            echo '</p>';
+    <div class="module">
+        <h2><?php __("For serial translators"); ?></h2>
+        <?php 
+        echo '<p>';
+        __(
+            'Translating sentences one by one is too slow for you? '.
+            'You want to increase your rank in Tatoeba, or the rank of '.
+            'your language, at the speed of light? So this is for you!'
+        );
+        echo '</p>';
+        
+        echo '<p>';
+        __("Just Keep in mind our server is not as fast as you ;-)");
+        echo '</p>';
 
-            $numberOfSentencesWanted = array (5 => 5 , 10 => 10 , 15 => 15);
-            $selectedLanguage = $session->read('random_lang_selected');
-            
-            echo $form->create(
-                'Sentence', 
-                array(
-                    "action" => "several_random_sentences",
-                    "type" => "post"
-                )
-            );
+        $numberOfSentencesWanted = array (5 => 5 , 10 => 10 , 15 => 15);
+        $selectedLanguage = $session->read('random_lang_selected');
+        
+        echo $form->create(
+            'Sentence', 
+            array(
+                "action" => "several_random_sentences",
+                "type" => "post"
+            )
+        );
 
-            echo '<fieldset class="select">';
-            echo '<label>' . __('Quantity', true) . '</label> ';
-            echo $form->select(
-                'numberWanted', 
-                $numberOfSentencesWanted, 
-                $lastNumberChosen,
-                null,
-                false
-            );
-            echo '</fieldset>';
+        echo '<fieldset class="select">';
+        echo '<label>' . __('Quantity', true) . '</label> ';
+        echo $form->select(
+            'numberWanted', 
+            $numberOfSentencesWanted, 
+            $lastNumberChosen,
+            null,
+            false
+        );
+        echo '</fieldset>';
 
 
-            echo '<fieldset class="select">';
-            echo '<label>' . __('Language', true) . '</label> ';
-            echo $form->select(
-                'into', 
-                $languages->languagesArray(), 
-                $selectedLanguage,
-                null,
-                false
-            );
-            echo '</fieldset>';
+        echo '<fieldset class="select">';
+        echo '<label>' . __('Language', true) . '</label> ';
+        echo $form->select(
+            'into', 
+            $languages->languagesArray(), 
+            $selectedLanguage,
+            null,
+            false
+        );
+        echo '</fieldset>';
 
-            echo '<fieldset class="submit">';
-            echo '<input type="submit" value="'.__('show random sentences', true).'"/>';
-            echo '</fieldset>';
-            echo $form->end();
-            ?>
-        </div>
-    </div>    
+        echo '<fieldset class="submit">';
+        echo '<input type="submit" value="'.__('show random sentences', true).'"/>';
+        echo '</fieldset>';
+        echo $form->end();
+        ?>
+    </div>
+</div>    
+    
+    
 <div id="main_content">
     <div class="module">
     <h2><?php __('Random sentences'); ?></h2>
         <?php
         foreach ($allSentences as $index=>$sentence) {
-            $sentenceId = $sentence['Sentence']['id'];
-            ?>
-            <div class="sentences_set searchResult"
-                id="sentences_group_<?php echo $sentenceId; ?>">
-                
-            <?php
-            $ownerName = $sentence['User']['username']; 
-            $chineseScript = $sentence['Sentence']['script'];
-            $menu->displayMenu(
-                $sentenceId, $ownerName, $chineseScript
-            );
-            
-            $sentences->displayGroup(
+            $sentences->displaySentencesGroup(
                 $sentence['Sentence'],
                 $sentence['Translations'],
                 $sentence['User'],
                 $sentence['IndirectTranslations']
             );
-            ?>
-            </div>
-            <?php
         }
         ?>
     </div>

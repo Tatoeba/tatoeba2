@@ -88,25 +88,12 @@ echo $javascript->link('sentences.change_language.js', true);
         <div id="sentencesAdded">
         <?php
         if (isset($sentence)) {
-            $sentenceId = $sentence['Sentence']['id'];
-            $ownerName = $sentence['User']['username']; 
-            ?>
-            <div class="sentences_set" 
-                id="sentences_group_<?php echo $sentenceId; ?>">
-                
-            <?php
-            // sentence menu (translate, edit, comment, etc)
-            $menu->displayMenu($sentenceId, $ownerName);
-
             $translation = array();            
-            $sentences->displayGroup(
+            $sentences->displaySentencesGroup(
                 $sentence['Sentence'],
                 $translation,
                 $sentence['User']
             );
-            ?>
-            </div>
-            <?php
         }
         ?>
         </div>

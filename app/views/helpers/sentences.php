@@ -56,14 +56,12 @@ class SentencesHelper extends AppHelper
         'SentenceButtons',
         'Languages',
         'Session',
-        'Pinyin'
+        'Pinyin',
+        'Menu'
     );
     
     
     /**
-     * TODO Rename into displaySentencesGroup and use displayMainSentence() instead
-     * of displayGenericSentence().
-     *
      * Diplays a sentence and its translations.
      *
      * @param array $sentence             Sentence to display.
@@ -71,26 +69,33 @@ class SentencesHelper extends AppHelper
      * @param array $user                 Owner of the sentence.
      * @param array $indirectTranslations Indirect translations of the sentence.
      * @param bool  $withAudio            Set to 'true' if audio icon is displayed.
+     * @param bool  $withDivWrapper       Set to 'true' to display the div wrapper
+     *                                    (id=sentences_group_$id).
      *
      * @return void
      */
-    public function displayGroup(
+    public function displaySentencesGroup(
         $sentence,
         $translations,
         $user = null,
         $indirectTranslations = array(),
-        $withAudio = true
+        $withAudio = true,
+        $withDivWrapper = true
     ) {
+        $id = $sentence['id'];
         
+        if ($withDivWrapper) {
+        ?>
+        <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
+        <?php
+        }
+         
         $ownerName = null;
         if (isset($user['username'])) {
             $ownerName = $user['username'];
         }
-        $this->displayGenericSentence(
-            $sentence, $ownerName, 'mainSentence', null, $withAudio
-        );
+        $this->displayMainSentence($sentence, $ownerName, $withAudio);
         
-        $id = $sentence['id'];
         
         // Loading gif
         echo $this->Html->image(
@@ -111,19 +116,33 @@ class SentencesHelper extends AppHelper
             // direct translations
             foreach ($translations as $translation) {
                 $this->displayGenericSentence(
-                    $translation, $ownerName, 'directTranslation', null, $withAudio
+                    $translation, 
+                    $ownerName, 
+                    'directTranslation', 
+                    null, 
+                    $withAudio
                 );
             }
             
             // indirect translations
             foreach ($indirectTranslations as $translation) {
                 $this->displayGenericSentence(
-                    $translation, $ownerName, 'indirectTranslation', null, $withAudio
+                    $translation, 
+                    $ownerName, 
+                    'indirectTranslation', 
+                    null, 
+                    $withAudio
                 );
             }
             ?>
         </div>
+        
         <?php
+        if ($withDivWrapper) {
+        ?>
+        </div>
+        <?php
+        }
     }
     
 
@@ -203,8 +222,6 @@ class SentencesHelper extends AppHelper
     
 
     /**
-     * TODO
-     *
      * Displays the main sentence. The main sentence is composed of a sentence and a 
      * menu of action that can be applied on this sentence. This is the sentence at 
      * the top.
@@ -214,7 +231,20 @@ class SentencesHelper extends AppHelper
      *
      * @return void
      */
-    public function displayMainSentence($sentence, $ownerName){
+    public function displayMainSentence($sentence, $ownerName, $withAudio){
+        $sentenceId = $sentence['id'];
+        $chineseScript = null;
+        if (isset($sentence['script'])) {
+            $chineseScript = $sentence['script'];
+        }
+        
+        $this->Menu->displayMenu(
+            $sentenceId, $ownerName, $chineseScript
+        );
+        
+        $this->displayGenericSentence(
+            $sentence, $ownerName, 'mainSentence', null, $withAudio
+        );
     }
     
     
@@ -326,6 +356,7 @@ class SentencesHelper extends AppHelper
             
         }
     }
+    
     
     /**
      * Displays the text and, if they exists, the romanization and alternate Chinese

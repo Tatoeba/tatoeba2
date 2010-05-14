@@ -20,10 +20,9 @@
 /* 
  * Sentence menu 
  */
-.sentences_set ul.menu{
+.sentences_set .menu{
 	vertical-align: text-bottom;
 	overflow: hidden;
-	width: 100%;
     border-bottom: 1px dashed #cccccc;
     padding: 2px 5px;
     margin: 2px 0px;
@@ -41,7 +40,6 @@
 .belongsTo{
 	display: block;
 	float: right;
-	margin-right: 20px;
     color: #75C34B;
     font-weight: bold;
 }
