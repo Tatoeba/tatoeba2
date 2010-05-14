@@ -36,8 +36,18 @@ $navigation->displayUsersNavigation($user['id'], $user['username']);
     
     <?php
     if (count($favorites) > 0) {
-        foreach ($favorites as $favorite) {
-            $sentences->displaySentence($favorite);
+        $type = 'mainSentence';
+        $parentId = null;
+        $withAudio = false;
+        $ownerName = null;
+        foreach ($favorites as $sentence) {
+            $sentences->displayGenericSentence(
+                $sentence,
+                $ownerName,
+                $type,
+                $parentId,
+                $withAudio
+            );
         }
     } else {
         __('This user does not have any favorites.');
