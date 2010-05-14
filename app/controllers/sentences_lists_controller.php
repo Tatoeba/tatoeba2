@@ -365,6 +365,9 @@ class SentencesListsController extends AppController
                     $listId
                 );
                 $sentenceSaved = $Sentence->getSentenceWithId($Sentence->id);
+                $sentenceSaved['Sentence']['User'] = array( // HACK
+                    'username' => $this->Auth->user('username')
+                );
                 $this->set('sentence', $sentenceSaved);
                 $this->set('listId', $listId);
                 $this->set('isSaved', true);

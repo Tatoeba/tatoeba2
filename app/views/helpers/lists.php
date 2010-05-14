@@ -437,8 +437,9 @@ class ListsHelper extends AppHelper
     /**
      * Display sentence.
      *
-     * @param array  $sentence         Sentence data.
-     * @param string $translationsLang Language of the translations.
+     * @param array  $sentence           Sentence data.
+     * @param string $translationsLang   Language of the translations.
+     * @param bool   $canCurrentUserEdit 'true' if user remove sentence from list.
      *
      * @return void
      */
