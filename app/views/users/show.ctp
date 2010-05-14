@@ -148,11 +148,21 @@ $navigation->displayUsersNavigation(
             echo ')';
             echo '</h2>';
 
-            echo '<table id="logs">';
-            foreach ($user['Favorite'] as $favorite) {
-                $sentences->displaySentence($favorite);
+            
+            $type = 'mainSentence';
+            $parentId = null;
+            $withAudio = false;
+            $ownerName = null;
+            foreach ($user['Favorite'] as $sentence) {
+                $sentences->displayGenericSentence(
+                    $sentence,
+                    $ownerName,
+                    $type,
+                    $parentId,
+                    $withAudio
+                );
             }
-            echo '</table>';
+            
 
         echo '</div>';
     }

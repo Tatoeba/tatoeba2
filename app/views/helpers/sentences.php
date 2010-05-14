@@ -117,10 +117,11 @@ class SentencesHelper extends AppHelper
             foreach ($translations as $translation) {
                 $this->displayGenericSentence(
                     $translation, 
-                    $ownerName, 
-                    'directTranslation', 
                     null, 
-                    $withAudio
+                    'directTranslation', 
+                    $withAudio,
+                    $id,
+                    $ownerName
                 );
             }
             
@@ -128,10 +129,11 @@ class SentencesHelper extends AppHelper
             foreach ($indirectTranslations as $translation) {
                 $this->displayGenericSentence(
                     $translation, 
-                    $ownerName, 
-                    'indirectTranslation', 
                     null, 
-                    $withAudio
+                    'indirectTranslation', 
+                    $withAudio,
+                    $id,
+                    $ownerName
                 );
             }
             ?>
@@ -243,7 +245,7 @@ class SentencesHelper extends AppHelper
         );
         
         $this->displayGenericSentence(
-            $sentence, $ownerName, 'mainSentence', null, $withAudio
+            $sentence, $ownerName, 'mainSentence', $withAudio
         );
     }
     
@@ -260,16 +262,22 @@ class SentencesHelper extends AppHelper
      *  - the audio button
      *
      * @param array  $sentence        Sentence data.
-     * @param string $parentOwnerName Name of the owner of the *main* sentence.
+     * @param string $ownerName       Name of the owner of sentence.
      * @param string $type            Type of sentence. Can be 'mainSentence', 
      *                                'directTranslation' or 'indirectTranslation'.
+     * @param bool   $withAudio       Set to 'true' if audio icon is displayed.     
      * @param int    $parentId        Id of the parent sentence (i.e. main sentence).
-     * @param bool   $withAudio       Set to 'true' if audio icon is displayed.
+     * @param string $parentOwnerName Name of the owner of the *main* sentence.
      *
      * @return void
      */
     public function displayGenericSentence(
-        $sentence, $ownerName, $type, $parentId = null, $withAudio = true
+        $sentence, 
+        $ownerName, 
+        $type, 
+        $withAudio = true, 
+        $parentId = null,
+        $parentOwnerName = null
     ) {
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
@@ -284,7 +292,7 @@ class SentencesHelper extends AppHelper
         }
         
         // Link/unlink button
-        if (CurrentUser::canLinkWithSentenceOfUser($ownerName)) {
+        if (CurrentUser::canLinkWithSentenceOfUser($parentOwnerName)) {
             $this->_displayLinkOrUnlinkButton($parentId, $sentenceId, $type);
         }
         
