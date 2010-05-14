@@ -446,11 +446,6 @@ class MenuHelper extends AppHelper
         
         </ul>
         <?php
-        // to play audio
-        // TODO Put it somewhere else. In search results and several random, it
-        // will cause a conflict of ids.
-        $this->Javascript->link('sentences.play_audio.js', false);
-        echo '<div id="audioPlayer"></div>';
     }
 }
 ?>

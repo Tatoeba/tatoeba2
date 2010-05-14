@@ -447,14 +447,13 @@ class ListsHelper extends AppHelper
     ) {
         // TODO Re-adapt this when SentencesHelper::displayGroup() is finished.
         ?>
-        <div id="sentence<?php echo $sentence['id']; ?>"
-            class="sentenceInListWrapper">        
+        <div id="sentence<?php echo $sentence['id']; ?>" class="sentenceInList">        
         
             <?php
             // Remove from list button
             if ($canCurrentUserEdit) {
                 ?>
-                <span class="options">
+                <span class="remove">
                 
                 <script type='text/javascript'>
                 $(document).ready(function() {
@@ -477,18 +476,14 @@ class ListsHelper extends AppHelper
                 </span>
                 <?php
             }
-            ?>
             
-            <div class="sentenceInList">
-            <?php
             $user = $sentence['User'];
             $withAudio = false;
             $indirectTranslations = array();
-            $this->Sentences->displayGroup(
+            $this->Sentences->displaySentencesGroup(
                 $sentence, $translations, $user, $indirectTranslations, $withAudio
             );
             ?>
-            </div>
             
         </div>
         <?php

@@ -176,6 +176,8 @@ class SentencesList extends AppModel
      * Returns sentences from a list, along with the translations of the sentences 
      * if language is specified.
      *
+     * TODO Somebody, optimize this!
+     *
      * @param int    $listId           Id of the list.
      * @param string $translationsLang Language of the translations.
      *

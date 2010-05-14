@@ -45,22 +45,17 @@
 /*
  * List
  */
-.sentenceInListWrapper{
-	border-top: 1px dotted #989898;
-}
-
-.sentenceInListWrapper .options{
-    margin-top: 22px;
-	float: right;
-}
-
 .sentenceInList {
-    padding: 10px;
-    margin-right: 20px;
+    margin: 40px 0px;
 }
 
-.editMode .sentenceInList, .editMode .translationInList{
-	margin-right: 50px;
+.sentenceInList .sentences_set{
+    margin-right: 40px;
+}
+
+.sentenceInList .remove{
+    float: right;
+    margin-top: 42px;
 }
 
 .sentencesListActions li{

@@ -68,13 +68,16 @@
         //      Javascript        //
         // ---------------------- //
 		echo $javascript->link('jquery-mini.js', true);
+        echo $javascript->link('sentences.play_audio.js', false);
 		echo $scripts_for_layout;
+        
 	?>
     
     <link rel="search" type="application/opensearchdescription+xml" href="http://tatoeba.org/opensearch.xml" title="Tatoeba project" />
 </head>
 <body>
-
+    <div id="audioPlayer"></div>
+    
 	<!--  TOP  -->
 	<?php echo $this->element('top1'); ?>
 
@@ -85,11 +88,6 @@
 
 
 		<div id="container">
-
-			<?php //echo $this->element('top2');	?>
-
-			<!--  MENU  -->
-			<?php //echo $this->element('menu'); ?>
 
 			<!--  SEARCH BAR  -->
 			<?php echo $this->element('search_bar'); ?>
