@@ -453,7 +453,7 @@ class ListsHelper extends AppHelper
             // Remove from list button
             if ($canCurrentUserEdit) {
                 ?>
-                <span class="remove">
+                <span class="removeFromList">
                 
                 <script type='text/javascript'>
                 $(document).ready(function() {
