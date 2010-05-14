@@ -47,11 +47,12 @@ class MenuHelper extends AppHelper
     /** 
      * Display button to add a translation.
      *
-     * @param int $sentenceId Id of the original sentence.
+     * @param int    $sentenceId Id of the original sentence.
+     * @param string $ownerName  Username of the owner of the main sentence.
      *
      * @return void
      */
-    public function translateButton($sentenceId)
+    public function translateButton($sentenceId, $ownerName)
     {
         $this->Javascript->link('sentences.add_translation.js', false);
         ?>
@@ -63,6 +64,10 @@ class MenuHelper extends AppHelper
             $('#translate_<?php echo $sentenceId; ?>').data(
                 'sentenceId',
                 <?php echo $sentenceId; ?>
+            );
+            $('#translate_<?php echo $sentenceId; ?>').data(
+                'parentOwnerName',
+                '<?php echo $ownerName; ?>'
             );
         });
         </script>
@@ -394,21 +399,26 @@ class MenuHelper extends AppHelper
         
         <?php
         if (CurrentUser::isMember()) {
-            $this->translateButton($sentenceId);
+            // Translate
+            $this->translateButton($sentenceId, $ownerName);
             
+            // Adopt
             $isAdopted = (CurrentUser::get('username') == $ownerName);
             $canAdopt = ($ownerName == null) || $isAdopted;
             if ($canAdopt) {
                 $this->adoptButton($sentenceId, $isAdopted);
             }
             
+            // Favorite
             $isFavorited = CurrentUser::hasFavorited($sentenceId);
             $this->favoriteButton($sentenceId, $isFavorited);
             
+            // Add to list
             $this->addToListButton($sentenceId);
         }
         
         if (CurrentUser::isAdmin()) {
+            // Delete
             $this->deleteButton($sentenceId);
         }
         

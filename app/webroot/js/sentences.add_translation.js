@@ -22,6 +22,7 @@ $(document).ready(function() {
 
     $(".translateLink").click(function(){
         var sentenceId = $(this).data("sentenceId");
+        var parentOwnerName = $(this).data("parentOwnerName");
         
         /*
          * Save translation.
@@ -43,7 +44,8 @@ $(document).ready(function() {
                     {
                         "id": sentenceId,
                         "selectLang": selectLang,
-                        "value": sentenceText
+                        "value": sentenceText,
+                        "parentOwnerName": parentOwnerName
                     },
                     function(data){
                         $("#session_expired").remove();
@@ -83,7 +85,7 @@ $(document).ready(function() {
         // NOTE : this is annoying when entering Japanese or Chinese because
         // enter is used to validate the choice of kanjis
         // NOTE2: on Linux it's space which is used to validate
-        $("#translation_for_" + sentenceId + " li input").keypress(function(e){
+        $("#translation_for_" + sentenceId + " div input").keypress(function(e){
             if(e.keyCode == 13) {
                 save();
             }

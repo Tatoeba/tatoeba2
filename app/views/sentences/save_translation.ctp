@@ -27,38 +27,22 @@
 ?>
 
 <?php
-if (isset($translationText)) {
+if (isset($translation)) {
 
     echo $javascript->link('jquery.jeditable.js', true);
     echo $javascript->link('sentences.edit_in_place.js', true);
     echo $javascript->link('sentences.change_language.js', true);
-    ?>
     
-    <li class="direct translation">
-        <?php  
-        // unlink button
-        if ($canLinkAndUnlink) {
-            $sentenceButtons->unlinkButton($originalId, $translationId);
-        }
-        
-        // goto button
-        $sentenceButtons->translationShowButton($translationId, 'direct');
-        
-        // audio button
-        $sentenceButtons->audioButton($translationId, $translationLang);
-        
-        // language flag
-        $sentenceButtons->displayLanguageFlag(
-            $translationId, $translationLang, true
-        );
-        
-        // sentence text
-        echo '<div id="'.$translationLang."_".$translationId.'" class="editableSentence">';
-        echo Sanitize::html($translationText);
-        echo '</div> ';    
-        ?>
-    </li>
-    <?php
+    $type = 'directTranslation';
+    $withAudio = true;
+    $sentences->displayGenericSentence(
+        $translation, 
+        $ownerName, 
+        $type, 
+        $withAudio, 
+        $parentId,
+        $parentOwnerName
+    );
     
 }
 ?>

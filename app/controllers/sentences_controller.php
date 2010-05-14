@@ -386,6 +386,7 @@ class SentencesController extends AppController
         $userId = $this->Auth->user('id');
         // Id of original sentence
         $sentenceId = $_POST['id'];
+        $parentOwnerName = $_POST['parentOwnerName'];
         $translationText = $_POST['value'];
         $translationLang = $_POST['selectLang'];
 
@@ -414,13 +415,18 @@ class SentencesController extends AppController
             );
             
             if ($isSaved) {
-                $canLinkAndUnlink = CurrentUser::canLinkAndUnlink($sentenceId);
+                // We reconstruct the translation to use it in the helper's function
+                $translation['id'] = $this->Sentence->id;
+                $translation['lang'] = $translationLang;
+                $translation['text'] = $translationText;
                 
-                $this->set('canLinkAndUnlink', $canLinkAndUnlink);
-                $this->set('originalId', $sentenceId);
-                $this->set('translationId', $this->Sentence->id);
-                $this->set('translationLang', $translationLang);
-                $this->set('translationText', $translationText);
+                $ownerName = $this->Auth->user('username');
+                
+                $this->set('translation', $translation);
+                $this->set('ownerName', $ownerName);
+                $this->set('parentId', $sentenceId);
+                $this->set('parentOwnerName', $parentOwnerName);
+                
             }
         }
     }
