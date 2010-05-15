@@ -104,19 +104,10 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     $class = '';
     if ($canUserEdit) {
         $javascript->link('sentences_lists.remove_sentence_from_list.js', false);
-        $javascript->link('sentences_lists.jEditable.js', false);
+        $javascript->link('jquery.jeditable.js', false);
         $javascript->link('sentences_lists.edit_name.js', false);
         
         $class = 'editable editableSentencesListName';
-        ?>
-        <script type='text/javascript'>
-        $(document).ready(function() {
-            $('#sentencesList').data(
-                'id', <?php echo $listId; ?>
-            );
-        });
-        </script>
-        <?php
     }
     
     echo '<h2 id="l'.$listId.'" class="'.$class.'">';
