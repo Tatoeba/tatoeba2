@@ -1,33 +1,30 @@
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-/*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
-    Copyright (C) 2009  TATOEBA Project(should be changed)
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-
-*/
-/* ruby characters */
+/* Ruby characters */
 function furigana(){
-	// reg = new RegExp("^(([^\\[ ])*)\\[(([^\\]])*)\\]", "gi");
-	// reg2 = new RegExp(" (([^\\[ ])*)\\[(([^\\]])*)\\]", "gi");
-	// div = document.getElementById("conversion");
-	// div.innerHTML = div.innerHTML.replace(reg,"<ruby><rb>$1</rb><rp>[</rp><rt>$3</rt><rp>]</rp></ruby>");
-	// div.innerHTML = div.innerHTML.replace(reg2,"<ruby><rb>$1</rb><rp>[</rp><rt>$3</rt><rp>]</rp></ruby>");
-	
-	reg = new RegExp("(([^\\[ ])*)\\[(([^\\]])*)\\]", "gi");
-	div = document.getElementById("conversion");
-	div.innerHTML = div.innerHTML.replace(reg,"<ruby><rb>$1</rb><rp>(</rp><rt>$3</rt><rp>)</rp></ruby>");
-	div.innerHTML = div.innerHTML.replace(reg2,"<ruby><rb>$1</rb><rp>(</rp><rt>$3</rt><rp>)</rp></ruby>");
+    reg = new RegExp("(([^\\[ ])*)\\[(([^\\]])*)\\]", "gi");
+    div = document.getElementById("conversion");
+    div.innerHTML = div.innerHTML.replace(
+        reg,"<ruby><rb>$1</rb><rp>(</rp><rt>$3</rt><rp>)</rp></ruby>"
+    );
+    div.innerHTML = div.innerHTML.replace(
+        reg2,"<ruby><rb>$1</rb><rp>(</rp><rt>$3</rt><rp>)</rp></ruby>"
+    );
 }

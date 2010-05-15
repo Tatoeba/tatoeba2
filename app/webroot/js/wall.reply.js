@@ -16,6 +16,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
 $(document).ready(function(){
     var previousReplyFormInMessageID = -1;
    
@@ -117,9 +118,9 @@ $(document).ready(function(){
                 +"</div>" );
             $.scrollTo('#replyFormDiv_' + currentMessageId,800 ); 
             previousReplyFormInMessageID = currentMessageId ; 
-			
-			// focus on textarea
-			$("#replyFormDiv_"+currentMessageId+" fieldset div textarea").focus();
+            
+            // focus on textarea
+            $("#replyFormDiv_"+currentMessageId+" fieldset div textarea").focus();
         }
 
     }
