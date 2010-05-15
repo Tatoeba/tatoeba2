@@ -34,7 +34,7 @@ if (isset($translation)) {
     echo $javascript->link('sentences.change_language.js', true);
     
     $type = 'directTranslation';
-    $withAudio = true;
+    
     $sentences->displayGenericSentence(
         $translation, 
         $ownerName, 

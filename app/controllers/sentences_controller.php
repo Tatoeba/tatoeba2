@@ -386,12 +386,14 @@ class SentencesController extends AppController
         Sanitize::html($_POST['value']);
         Sanitize::paranoid($_POST['selectLang']);
         Sanitize::html($_POST['parentOwnerName']);
+        Sanitize::paranoid($_POST['withAudio']);
         
         $userId = $this->Auth->user('id');
         $sentenceId = $_POST['id'];
         $translationText = $_POST['value'];
         $translationLang = $_POST['selectLang'];
         $parentOwnerName = $_POST['parentOwnerName'];
+        $withAudio = $_POST['withAudio'];
         
         // we store the selected language to be reuse after
         // that way, as users are likely to contribute in the 
@@ -429,7 +431,7 @@ class SentencesController extends AppController
                 $this->set('ownerName', $ownerName);
                 $this->set('parentId', $sentenceId);
                 $this->set('parentOwnerName', $parentOwnerName);
-                
+                $this->set('withAudio', $withAudio);
             }
         }
     }

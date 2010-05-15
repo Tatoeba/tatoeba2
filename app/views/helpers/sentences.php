@@ -107,7 +107,7 @@ class SentencesHelper extends AppHelper
         );
         
         // Form to add a new translation
-        $this->_displayNewTranslationForm($id);
+        $this->_displayNewTranslationForm($id, $withAudio);
         
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
@@ -152,19 +152,30 @@ class SentencesHelper extends AppHelper
      * Displays the form to translate a sentence. Appears when clicking on the
      * translate icon.
      *
-     * @param int $id The id of the sentence to translate.
+     * @param int  $id        The id of the sentence to translate.
+     * @param bool $withAudio Set to 'true' to indicate that audio icon is displaye
+     *                        in the translation.
      *
      * @return void
      */
-    private function _displayNewTranslationForm($id)
+    private function _displayNewTranslationForm($id, $withAudio)
     {
         $langArray = $this->Languages->translationsArray();
         $preSelectedLang = $this->Session->read('contribute_lang');
         if (empty($preSelectedLang)) {
             $preSelectedLang = 'auto';
         }
+        if (!$withAudio) {
+            $withAudio = 0;
+        }
         ?>
-        
+        <script type='text/javascript'>
+        $(document).ready(function() {
+            $('#translate_<?php echo $id; ?>').data(
+                'withAudio', <?php echo $withAudio; ?>
+            );
+        });
+        </script>
         <div id="translation_for_<?php echo $id; ?>" class="addTranslations">
         
             <?php

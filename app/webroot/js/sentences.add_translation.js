@@ -22,6 +22,7 @@ $(document).ready(function() {
     $(".translateLink").click(function(){
         var sentenceId = $(this).data("sentenceId");
         var parentOwnerName = $(this).data("parentOwnerName");
+        var withAudio = $(this).data("withAudio");
         
         /*
          * Save translation.
@@ -44,7 +45,8 @@ $(document).ready(function() {
                         "id": sentenceId,
                         "selectLang": selectLang,
                         "value": sentenceText,
-                        "parentOwnerName": parentOwnerName
+                        "parentOwnerName": parentOwnerName,
+                        "withAudio": withAudio
                     },
                     function(data){
                         $("#session_expired").remove();
