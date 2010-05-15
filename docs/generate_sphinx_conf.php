@@ -168,6 +168,7 @@ $languageWithStemmer = array(
     "ita"=>0,
     "tur"=>0,
     "swe"=>0,
+    "eng"=>0,
 ); 
 
     
