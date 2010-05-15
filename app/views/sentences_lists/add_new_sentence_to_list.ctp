@@ -51,7 +51,7 @@ if ($isSaved) {
     </script>
 
     <?php
-    $lists->displaySentence($sentence['Sentence'], null, true);
+    $lists->displaySentence($sentence['Sentence'], array(), true);
 
 } else {
     ?>
