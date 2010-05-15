@@ -102,8 +102,7 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     <div class="module">
     <?php
     $class = '';
-    if ($canUserEdit) {
-        $javascript->link('sentences_lists.remove_sentence_from_list.js', false);
+    if ($belongsToUser) {
         $javascript->link('jquery.jeditable.js', false);
         $javascript->link('sentences_lists.edit_name.js', false);
         
@@ -115,6 +114,7 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     echo '</h2>';
 
     if ($canUserEdit) {
+        $javascript->link('sentences_lists.remove_sentence_from_list.js', false);
         $lists->displayAddSentenceForm($listId);
     }
     ?>
