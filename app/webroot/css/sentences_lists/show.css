@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
- 
+
 
 /*
  * Sentences
@@ -26,19 +26,19 @@
 /* 
  * Add sentence 
  */
-#newSentenceInList .submit, #newSentenceInList .input{
-	display:inline;
+#newSentenceInList .submit, #newSentenceInList .input {
+    display: inline;
 }
 
-#newSentenceInList input#text{
-	width: 480px;
+#newSentenceInList input#text {
+    width: 480px;
 }
 
-.sentencesListLoading{
-	margin-top: 10px;
-	padding-top: 10px;
-	margin-bottom: -10px;
-	border-top: 1px dotted #989898;
+.sentencesListLoading {
+    margin-top: 10px;
+    padding-top: 10px;
+    margin-bottom: -10px;
+    border-top: 1px dotted #989898;
 }
 
 
@@ -49,30 +49,30 @@
     margin: 40px 0px;
 }
 
-.sentenceInList .sentences_set{
+.sentenceInList .sentences_set {
     margin-right: 40px;
 }
 
-.sentenceInList .removeFromList{
+.sentenceInList .removeFromList {
     float: right;
     margin-top: 42px;
 }
 
-.sentencesListActions li{
-	margin: 10px 0px;
+.sentencesListActions li {
+    margin: 10px 0px;
 }
 
-.publicList{
-	color: #4ABC00;
-	font-weight: bold;
+.publicList {
+    color: #4ABC00;
+    font-weight: bold;
 }
 
-.translationInList{
-	margin: 5px 0px;
-	font-size: 0.8em;
+.translationInList {
+    margin: 5px 0px;
+    font-size: 0.8em;
 }
 
-.removeFromListButton{
+.removeFromListButton {
     cursor: pointer;
 }
 
@@ -80,18 +80,15 @@
 /*
  * Delete list 
  */
-.deleteList{
-}
-
-.deleteList a{
-	color: #FF2128;
+.deleteList a {
+    color: #FF2128;
 }
 
 
 /*
  * Download
  */
-.download a{
+.download a {
     background: url(../../img/search_bar_body.png) repeat;
     padding: 8px 12px;
     color: #1A3502;
@@ -101,11 +98,11 @@
     -webkit-border-radius: 8px;
     border-radius: 8px;
     margin: 20px auto;
-    display:block;
+    display: block;
     text-align: center;
     width: 150px;
 }
 
-.download a:hover{
+.download a:hover {
     color: #D5E5C9;
 }
