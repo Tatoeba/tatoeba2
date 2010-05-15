@@ -1,6 +1,6 @@
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -15,6 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 
 /*
  * Pagination
@@ -40,37 +41,36 @@
 @import url(../elements/new_sentence_form.css);
 
 
-
-/**
+/*
  * Search results
  */
-.sentences_set{
+.sentences_set {
     margin: 40px 0px;
 }
 
-.score{
-	display: block;
-	margin-right: 10px;
-	float: right;
-	color: #666;
-	width: 30px;
-	text-align: right;
+.score {
+    display: block;
+    margin-right: 10px;
+    float: right;
+    color: #666;
+    width: 30px;
+    text-align: right;
 }
 
 
 /* 
  * Most frequent words 
  */
-#mostFrequentWords{
-font-size: 200%;
-text-align: center;
+#mostFrequentWords {
+    font-size: 200%;
+    text-align: center;
 }
 
-#mostFrequentWords span{
-padding-right: 20px;
-color: #6699CC;
+#mostFrequentWords span {
+    padding-right: 20px;
+    color: #69C;
 }
 
-#mostFrequentWords div{
-font-size: 55%;
+#mostFrequentWords div {
+    font-size: 55%;
 }
