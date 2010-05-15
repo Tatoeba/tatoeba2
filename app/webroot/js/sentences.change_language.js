@@ -1,26 +1,27 @@
-/*
-    Tatoeba Project, free collaborative creation of multilingual corpuses project
-    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
 
 $(document).ready(function() {
-	
+    
     var host = self.location.hostname;
     var port = self.location.port;
-	
+    
     $(".languageFlag").unbind('click');
     // NOTE: It's important to unbind because when adding two translations in a row,
     // it will rebind again the same function. So the second time the user clicks
@@ -29,32 +30,32 @@ $(document).ready(function() {
     // hidden right away.
     
     $(".languageFlag").click(function(){
-		var flagImage = $(this);
+        var flagImage = $(this);
         
         // The data is set in sentence_buttons.php, displayLanguageFlag()
         var sentenceId = $(this).data('sentenceId');
         var prevLang = $(this).data('currentLang');
         
-		$("#selectLang_" + sentenceId).toggle();
-		
-		$("#selectLang_" + sentenceId).change(function(){
-		
-			var newLang = $(this).val();
+        $("#selectLang_" + sentenceId).toggle();
+        
+        $("#selectLang_" + sentenceId).change(function(){
+        
+            var newLang = $(this).val();
 
-			
-			flagImage.attr('src', '/img/loading-small.gif');
-			$("#selectLang_" + sentenceId).hide();
-			
-			$.post(
-				"http://" + host + ":" + port + "/sentences/change_language/",
+            
+            flagImage.attr('src', '/img/loading-small.gif');
+            $("#selectLang_" + sentenceId).hide();
+            
+            $.post(
+                "http://" + host + ":" + port + "/sentences/change_language/",
                 { "id": sentenceId, "newLang": newLang, "prevLang": prevLang },
-				function(){
-					$("#_" + sentenceId + "_in_process").hide();
-					flagImage.attr('src', '/img/flags/' + newLang + '.png');
-				}
-			);
-		});
-		
-	});
-	
+                function(){
+                    $("#_" + sentenceId + "_in_process").hide();
+                    flagImage.attr('src', '/img/flags/' + newLang + '.png');
+                }
+            );
+        });
+        
+    });
+    
 });

@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+// TODO Can we delete this?
+
 $(document).ready(function(){
     // use a little hack
     // we store the id of the sentence in a div
