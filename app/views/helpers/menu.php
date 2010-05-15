@@ -398,6 +398,9 @@ class MenuHelper extends AppHelper
         <ul class="menu">
         
         <?php
+        // Username of the owner
+        $this->belongsTo($sentenceId, $ownerName);
+        
         if (CurrentUser::isMember()) {
             // Translate
             $this->translateButton($sentenceId, $ownerName);
@@ -427,8 +430,6 @@ class MenuHelper extends AppHelper
         } else if ($chineseScript === 'traditional') {
             $this->traditionalButton(); 
         }
-        
-        $this->belongsTo($sentenceId, $ownerName);
         ?>
         
         <li>
