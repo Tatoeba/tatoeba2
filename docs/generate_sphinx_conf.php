@@ -182,7 +182,9 @@ $cjkLanguages = array(
 ); 
 
 foreach ($languages as $lang=>$name){
-    echo "#$name\n";
+    echo "
+
+#$name\n";
 
     foreach ($languages as $trans=>$name) {
         // generate source for this pair
@@ -238,9 +240,26 @@ index ".$lang."_und_index : common_index
        echo "    local           = $lang"."_$trans"."_index\n";
     }
     echo"
-}
-";
-}
+}";
+
+
+    echo "
+index und_".$lang."_index : common_index
+{
+    type = distributed
+
+    ";
+    foreach ($languages as $trans=>$name) {
+       echo "    local           = $trans"."_$lang"."_index\n";
+    }
+    echo"
+}";
+
+
+
+}// end of first foreach 
+
+
 
     echo "
 index und_und_index : common_index
