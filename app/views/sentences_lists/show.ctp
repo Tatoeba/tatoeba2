@@ -70,12 +70,17 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
         <div class="module">
         
         <h2><?php __('Tips'); ?></h2>
-    
-        <p>
-        <?php __('You can change the name of the list by clicking on it.'); ?>
-        </p>
-    
-    
+        
+        <?php
+        if ($belongsToUser) {
+            ?>
+            <p>
+            <?php __('You can change the name of the list by clicking on it.'); ?>
+            </p>
+            <?php
+        }
+        ?>
+        
         <p>
         <?php
         __('You can remove a sentence from the list by clicking on the X icon.'); 
