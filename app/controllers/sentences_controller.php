@@ -382,14 +382,17 @@ class SentencesController extends AppController
     public function save_translation()
     {
 
+        Sanitize::paranoid($_POST['id']);
         Sanitize::html($_POST['value']);
+        Sanitize::paranoid($_POST['selectLang']);
+        Sanitize::html($_POST['parentOwnerName']);
+        
         $userId = $this->Auth->user('id');
-        // Id of original sentence
         $sentenceId = $_POST['id'];
-        $parentOwnerName = $_POST['parentOwnerName'];
         $translationText = $_POST['value'];
         $translationLang = $_POST['selectLang'];
-
+        $parentOwnerName = $_POST['parentOwnerName'];
+        
         // we store the selected language to be reuse after
         // that way, as users are likely to contribute in the 
         // same language, they don't need to reselect each time
@@ -458,11 +461,13 @@ class SentencesController extends AppController
         $from = 'und'; 
         if (isset($_GET['from'])) {
             $from = $_GET['from'];
+            Sanitize::paranoid($from);
         }
        
         $to = 'und'; 
         if (isset($_GET['to'])) {
             $to = $_GET['to'];
+            Sanitize::paranoid($to);
         }
         
         // Session variables for search bar
@@ -797,7 +802,8 @@ class SentencesController extends AppController
             $prevLang = $_POST['prevLang'];
             $id = $_POST['id'];
             Sanitize::paranoid($id);
-            Sanitize::html($newlang);
+            Sanitize::paranoid($newlang);
+            Sanitize::paranoid($prevlang);
 
             // TODO create  method in the model to encapsulate this
             $this->Sentence->id = $id;
