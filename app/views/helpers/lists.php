@@ -408,7 +408,6 @@ class ListsHelper extends AppHelper
                 <?php
             }
             
-            $translations = array();
             $user = $sentence['User'];
             $withAudio = false;
             $indirectTranslations = array();
