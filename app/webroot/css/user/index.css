@@ -110,7 +110,7 @@ div.toolbox div.c textarea {
 }
 
 /*
- * TODO: add : hover and : focus for more usability issues
+ * TODO: add :hover and : focus for more usability issues
  */
 div.toolbox div.c input, div.toolbox div.c select {
     padding: 1px;
@@ -157,7 +157,7 @@ li.followerAvatar, li.followingAvatar {
     list-style: none;
 }
 
-li.followerAvatar a: hover, li.followingAvatar a: hover {
+li.followerAvatar a:hover, li.followingAvatar a:hover {
     text-decoration: none;
 }
 
@@ -179,7 +179,7 @@ li.followerAvatar a.blockFollower span.blockFollowerContent {
     display: none;
 }
 
-li.followerAvatar: hover a.blockFollower {
+li.followerAvatar:hover a.blockFollower {
     display: block;
 }
 
@@ -199,7 +199,7 @@ p.followLinkContainer a.followingOption {
     background-color: #649B3D;
 }
 
-p.followLinkContainer a.followingOption: hover {
+p.followLinkContainer a.followingOption:hover {
     text-decoration: none;
     color: #888;
     background-color: #E2FFD2;

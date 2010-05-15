@@ -83,7 +83,7 @@
     text-decoration: none;
 }
 
-.sentence a: hover {
+.sentence a:hover {
     color: #EAA315;
 }
 
@@ -142,7 +142,7 @@ a.romanization {
 /* 
  * Edit in place 
  */
-.editableSentence: hover {
+.editableSentence:hover {
     background: #EE8;
 }
 
@@ -157,7 +157,7 @@ a.romanization {
 /*
  * Flag
  */
-.editableFlag: hover {
+.editableFlag:hover {
     cursor: pointer;
     border-top: 1px solid #AAA;
     border-left: 1px solid #AAA;
