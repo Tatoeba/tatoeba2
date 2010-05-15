@@ -478,6 +478,7 @@ class ListsHelper extends AppHelper
                 <?php
             }
             
+            $translations = array();
             $user = $sentence['User'];
             $withAudio = false;
             $indirectTranslations = array();
@@ -492,11 +493,11 @@ class ListsHelper extends AppHelper
     
     
     /**
-     * Form to add a new sentence.
+     * Form to add a new sentence to a list.
      *
      * @return void
      */
-    public function displayAddSentenceForm()
+    public function displayAddSentenceForm($listId)
     {
         $this->Javascript->link(
             'sentences_lists.add_new_sentence_to_list.js', false

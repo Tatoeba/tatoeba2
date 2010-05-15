@@ -104,6 +104,8 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     $class = '';
     if ($canUserEdit) {
         $javascript->link('sentences_lists.remove_sentence_from_list.js', false);
+        $javascript->link('sentences_lists.jEditable.js', false);
+        $javascript->link('sentences_lists.edit_name.js', false);
         
         $class = 'editable editableSentencesListName';
         ?>
@@ -116,14 +118,13 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
         </script>
         <?php
     }
-    ?>
-    <h2 id="l<?php echo $listId; ?>" class="<?php echo $class; ?>">
-    <?php echo $listName ?>
-    </h2>
+    
+    echo '<h2 id="l'.$listId.'" class="'.$class.'">';
+    echo $listName;
+    echo '</h2>';
 
-    <?php
     if ($canUserEdit) {
-        $lists->displayAddSentenceForm();
+        $lists->displayAddSentenceForm($listId);
     }
     ?>
     
