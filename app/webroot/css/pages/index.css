@@ -1,23 +1,23 @@
-/*
-    Tatoeba Project, free collaborative creation of multilingual corpuses project
-    Copyright (C) 2009  Parisi Robin <parisi.robin@gmail.com>
-    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2009  Parisi Robin <parisi.robin@gmail.com>
+ * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
+ */
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
-
- 
 /*
  * Random sentence
  */
@@ -33,58 +33,58 @@
 /*
  * What can I do in Tatoeba
  */
-.keyIdea{
-	float: left;
-	margin: 0px 5px;
-	padding: 0px 5px;
+.keyIdea {
+    float: left;
+    margin: 0px 5px;
+    padding: 0px 5px;
     max-width: 180px;
 }
 
-.keyIdea .keyword{
-	display: block;
-	text-align: center;
-	font-size: 2em;
-	font-weight: bold;
+.keyIdea .keyword {
+    display: block;
+    text-align: center;
+    font-size: 2em;
+    font-weight: bold;
 }
 
-.keyIdea .sub-keyword{
-	display: block;
-	text-align: center;
-	font-size: 1.2em;
-	font-style: italic;
+.keyIdea .sub-keyword {
+    display: block;
+    text-align: center;
+    font-size: 1.2em;
+    font-style: italic;
 }
 
-.keyIdea ul{
-	list-style-type:none;
-	margin: 5px 0px;
-	padding: 5px;
+.keyIdea ul {
+    list-style-type: none;
+    margin: 5px 0px;
+    padding: 5px;
 }
 
-.keyIdea li{
-	text-align: center;
-	margin: 3px 0px;
+.keyIdea li {
+    text-align: center;
+    margin: 3px 0px;
 }
 
 
 /*
  * Sentences statistics
  */
-.stat{
-	overflow: auto;
-	margin: 5px 0px;
+.stat {
+    overflow: auto;
+    margin: 5px 0px;
 }
 
-.stat .langCode{
-	display:none;
+.stat .langCode {
+    display: none;
 }
 
-.stat .total{
-	line-height: 20px;
-	float: left;
-	display: block;
-	margin: 0px 5px;
+.stat .total {
+    line-height: 20px;
+    float: left;
+    display: block;
+    margin: 0px 5px;
 }
 
-.stat img{
-	float: left;
+.stat img {
+    float: left;
 }
