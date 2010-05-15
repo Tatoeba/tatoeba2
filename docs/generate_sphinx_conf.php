@@ -205,16 +205,16 @@ source ".$lang."_".$trans."_src : default
         ";
         // generate index for this pair
         $parent = "common_index" ;
-        if (isset($cjk_common_index[$lang])) {
+        if (isset($cjkLanguages[$lang])) {
             $parent = "cjk_common_index";
         }
 echo "
 index ".$lang."_".$trans."_index : $parent
 {
     source = ".$lang."_".$trans."_src 
-    path = "$sourcePath . DIRECTORY_SEPARATOR.$lang. DIRECTORY_SEPARATOR .$lang."_".$trans."
-";
-    if (isset($languageWithStemmer[$lang])){
+    path = " . $sourcePath . DIRECTORY_SEPARATOR.$lang. DIRECTORY_SEPARATOR .$lang."_".$trans;
+
+    if (isset($languageWithStemmer[$lang])) {
         echo "
     morphology              = libstemmer_$lang
     min_stemming_len        = 4
