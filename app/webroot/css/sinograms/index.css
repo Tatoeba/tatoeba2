@@ -1,20 +1,20 @@
-/*
-    Tatoeba Project, free collaborative creation of multilingual corpuses project
-    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 
 /*
@@ -26,25 +26,23 @@
 /*
  * Glyphs
  */
-
 div.glyph {
     display: inline;
     font-size: 2em;
 }
 
 div.glyph:hover {
-    background-color: #e55f0e;
+    background-color: #E55F0E;
     color: white;
     cursor: pointer; 
 }
 
-a.radical{
+a.radical {
     font-size: 2em;
 }
 
 a.radical:hover {
-    
-    background-color: #ffa800;
+    background-color: #FFA800;
     color: white;
 }
 
@@ -55,14 +53,7 @@ a.radical:hover {
 .radicalStrokesNumber {  
     padding-right: 5px;
     padding-left: 5px; 
-    /*display: inline;*/
     font-size: 1.5em;
-    /*width: 30px;
-    height:30px;*/
-}
-
-.radicalStrokesNumber {
-
 }
 
 p.introduction {
@@ -75,22 +66,20 @@ p#stillBetaText {
 }
 
 #search_form {
-	border: 1px solid #c1c1c1;
-	background: #f1f1f1;
-	padding: 10px;
-	font-size: 16px;
-	margin-top:15px;
-	margin-bottom: 40px;
-
+    border: 1px solid #C1C1C1;
+    background: #F1F1F1;
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 15px;
+    margin-bottom: 40px;
 }
 
 #searchResults {
     padding-top: 20px;
-
 }
 
 #noGlyphFound {
-    color: #ec8383;
+    color: #EC8383;
 }
 
 #SinogramSearchForm div {
