@@ -52,14 +52,10 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
 
 <div id="main_content">
     <div class="module">
-    <h2><?php echo $listName; ?></h2>    
+    <h2><?php echo $listName; ?></h2>
+    
     
     <h3><?php __('Download'); ?></h3>
-    
-    <p>
-    NOTE: You can just click "Download" if you simply want the sentences, and 
-    nothing else.
-    </p>
     <?php
     // ------------- DOWNLOAD FORM -------------
     echo $form->create(
@@ -82,16 +78,21 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
     
     <table>
         <tr>
-            <td><?php __('Download with id'); ?></td>
+            <td><?php __('Insert id (optiontal)'); ?></td>
             <td>
             <?php 
             echo $form->checkbox('insertId');
             ?>
             </td>
+            <td>
+            <?php 
+            __('Checking this box will add the id of the sentences in the file.'); 
+            ?>
+            </td>
         </tr>
     
         <tr>
-            <td><?php __('Translations language'); ?></td>
+            <td><?php __('Translations (optional)'); ?></td>
             <td>
             <?php
             $langArray = $languages->languagesArrayWithNone();
@@ -104,34 +105,66 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
             );
             ?>
             </td>
+            <td>
+            <?php
+            $image = $html->image(
+                'anki-logo.png',
+                array(
+                    'alt' => 'Anki',
+                    'title' => 'Anki'
+                )
+            );
+            $link = $html->link(
+                $image,
+                'http://www.ichi2.net/anki/',
+                array(
+                    "escape" => false
+                )
+            );
+            echo sprintf(
+                __(
+                    'You can also have translations in a specific language '.
+                    '(if they exist). You can then use the file in %s.', true
+                ), 
+                $link
+            );
+            ?>
+            </td>
+        </tr>
+        
+        <tr>
+            <td></td>
+            
+            <td>
+            <?php
+            echo $form->submit(__('Download',true));
+            ?>
+            </td>
+            
+            <td>
+            <?php 
+                __(
+                    'You can simply click "Download" if you only want the '.
+                    'sentences, and nothing else.'
+                );
+            ?>
+            </td>
         </tr>
     </table>
     <?php
-    echo $form->end(__('Download',true));
+    echo $form->end();
     // -------------------------------------------
     ?>
     
     
-    
-    <h3>Description</h3>
+    <h3><?php __('Fields and structure'); ?></h3>
     <p>
-    You can download lists to use them in Anki.
-    </p>
-    <div><a href="http://www.ichi2.net/anki/">
-    <img alt="Anki" src="http://ichi2.net/anki/anki-logo2.png"/></a>
-    </div>
-    
-    <p>
-    We are also using this feature in our process of
-    <a href="http://blog.tatoeba.org/2010/04/reliability-of-sentences-how-will-we.html">
-    checking and correcting sentences</a> massively.
-    </p>
-        
-        
-    <h3>Fields and structure</h3>
-    <p>
-    If you choose all options (id + translations), the structure will be the 
-    following:
+    <?php
+        __(
+            'If you choose all options (id + translations), the structure will '.
+            'be the following:'
+        );
+    ?>
     </p>
     <p>
     <span class="param">sentence_id</span>
@@ -142,7 +175,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
     </p>
     
     <p>
-    And if you omit an option, the corresponding field won't appear.
+    <?php __("And if you omit an option, the corresponding field won't appear."); ?>
     </p>
 
     </div>
