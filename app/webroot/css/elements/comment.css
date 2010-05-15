@@ -1,59 +1,59 @@
 /*
- * Based on http://templatica.com/articles/comments/02.html
+ * Based on http: //templatica.com/articles/comments/02.html
  */
  
-.comments, .comments ul, #comments li{
-	margin:0;
-	padding:0;
-	list-style:none;
-	}
-.comments li{
-	margin:1.5em 0;
-	position:relative;
-	font-size:13px;
-	}
-.comments a{color:#89c140;text-decoration:none;}
-.comments a:hover{color:#555;}
-.comments .meta{}	
-.comments .meta li{
-	margin:0;
-	font-size:13px;
-	color:#777;
-	position:static;
-	}	
+.comments, .comments ul, #comments li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    }
+.comments li {
+    margin: 1.5em 0;
+    position: relative;
+    font-size: 13px;
+    }
+.comments a {color: #89c140;text-decoration: none;}
+.comments a: hover {color: #555;}
+.comments .meta {}    
+.comments .meta li {
+    margin: 0;
+    font-size: 13px;
+    color: #777;
+    position: static;
+    }    
 
-.comments .meta .image{
-	float: left;
-	margin-right: 10px;
-	}
-.comments .meta .image img{
-	height: 36px;
-	}	
-.comments .meta .author{
-	font-weight:bold;
-	padding-left:10px;
-	}
-.comments .meta .date{
-	color:#999;
-	font-style:italic;
-	font-size:11px;
-	}	
-.comments .meta .action{
-	float: right;
-	margin-top: 10px;
-	margin-right: 10px;
-	}
-.comments .body{
-	clear:both;
-	padding:15px;
-	background:#fff url(../../img/bg_comments.gif) repeat-x;
-	}	
-.comments .body .sentence{
-	padding-bottom: 5px;
-	margin-bottom: 15px;
-	border-bottom: 1px dashed #cccccc;
-	font-family: Georgia, serif;
+.comments .meta .image {
+    float: left;
+    margin-right: 10px;
+    }
+.comments .meta .image img {
+    height: 36px;
+    }    
+.comments .meta .author {
+    font-weight: bold;
+    padding-left: 10px;
+    }
+.comments .meta .date {
+    color: #999;
+    font-style: italic;
+    font-size: 11px;
+    }    
+.comments .meta .action {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+    }
+.comments .body {
+    clear: both;
+    padding: 15px;
+    background: #FFF url(../../img/bg_comments.gif) repeat-x;
+    }    
+.comments .body .sentence {
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-bottom: 1px dashed #CCC;
+    font-family: Georgia, serif;
 }
-.comments .body .sentence a{
-	color: #878787;
+.comments .body .sentence a {
+    color: #878787;
 }

@@ -13,7 +13,7 @@
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
 
@@ -22,42 +22,42 @@
  * NOTE: I don't remember where I got this from...
  */
 ruby
-{
-	display: inline-table;
-	text-align: center;
-	white-space: nowrap;
-	text-indent: 0;
-	margin: 0;	
-	vertical-align: bottom;
+ {
+    display: inline-table;
+    text-align: center;
+    white-space: nowrap;
+    text-indent: 0;
+    margin: 0;    
+    vertical-align: bottom;
 }
 
 /* ルビベース */
 ruby > rb, ruby > rbc
-{
-	display: table-row-group;
+ {
+    display: table-row-group;
 }
 
 /* 前側ルビテキスト */
 ruby > rt, ruby > rbc + rtc
-{
-	display: table-header-group;
-	font-size: 60%;
-	letter-spacing: 0;
+ {
+    display: table-header-group;
+    font-size: 60%;
+    letter-spacing: 0;
 }
 
 /* 後側ルビテキスト */
 ruby > rbc + rtc + rtc
-{
-	display: table-footer-group;
-	font-size: 60%;
-	letter-spacing: 0;
+ {
+    display: table-footer-group;
+    font-size: 60%;
+    letter-spacing: 0;
 }
 
 /* 複雑ルビテキスト */
 rbc > rb, rtc > rt
-{
-	display: table-cell;
-	letter-spacing: 0;
+ {
+    display: table-cell;
+    letter-spacing: 0;
 }
 
 /* rt[rbspan] should be transformed into td[colspan] but that requires xslt */

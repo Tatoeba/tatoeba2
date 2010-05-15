@@ -13,11 +13,14 @@
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
- 
 
-.registerButton{
+
+/*
+ * Register button
+ */
+.registerButton {
     background: url(../../img/search_bar_body.png) repeat;
     padding: 8px 12px;
     color: #1A3502;
@@ -27,11 +30,11 @@
     -webkit-border-radius: 8px;
     border-radius: 8px;
     margin: 20px auto;
-    display:block;
+    display: block;
     text-align: center;
     width: 150px;
 }
 
-.registerButton:hover{
+.registerButton: hover {
     color: #D5E5C9;
 }

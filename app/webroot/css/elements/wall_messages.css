@@ -1,1 +1,127 @@
-/*    Tatoeba Project, free collaborative creation of multilingual corpuses project    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>    This program is free software: you can redistribute it and/or modify    it under the terms of the GNU Affero General Public License as published by    the Free Software Foundation, either version 3 of the License, or    (at your option) any later version.    This program is distributed in the hope that it will be useful,    but WITHOUT ANY WARRANTY; without even the implied warranty of    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the    GNU Affero General Public License for more details.    You should have received a copy of the GNU Affero General Public License    along with this program.  If not, see <http://www.gnu.org/licenses/>.*/.wall, .wall ul{	margin:0;	padding:0;	list-style:none;	}.wall li{	font-size:13px;	}.meta li{	margin:0;	font-size:13px;	color:#777;	position:static;	}	.meta .image{	float: left;	margin-right: 10px;	}.meta img{	height: 36px;	}	.meta .author{	font-weight:bold;	padding-left:10px;	}.meta .date{	color:#999;	font-style:italic;	font-size:11px;	}	.meta .action{	float: right;	margin-top: 10px;	margin-right: 10px;	}.wall .body{	clear:both;	}/* **************************** */.topThread{	margin-bottom: 50px;}.meta a{font-weight:bold;}.root .body{	padding:15px;	background:#fff url(../../img/bg_wall_comments.gif) repeat-x;}.root a{color:#89c140;text-decoration:none;}.root a:hover{color:#555;}.thread{	margin-top: 10px;}.message{	padding: 5px 0px;}.replies{	margin-top: 10px;	margin-bottom: 10px;	padding-left: 15px;	border-left: 1px solid #cccccc;}.replies .body{	border-top: 1px solid #dddddd;	padding: 10px;}.replies a{color:#AF924D;text-decoration:none;}.replies a:hover{color:#555;}.new{	border: 1px solid #CEEA9A;	background: #E8FFCC;	padding: 5px;}
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
+ */
+
+
+/*
+ * Wall
+ */
+.wall, .wall ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.wall li {
+    font-size: 13px;
+}
+
+.meta li {
+    margin: 0;
+    font-size: 13px;
+    color: #777;
+    position: static;
+}    
+
+.meta .image {
+    float: left;
+    margin-right: 10px;
+}
+
+.meta img {
+    height: 36px;
+}    
+
+.meta .author {
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.meta .date {
+    color: #999;
+    font-style: italic;
+    font-size: 11px;
+}
+
+.meta .action {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.wall .body {
+    clear: both;
+}
+
+/* **************************** */
+
+.topThread {
+    margin-bottom: 50px;
+}
+
+.meta a {
+    font-weight: bold;
+}
+
+.root .body {
+    padding: 15px;
+    background: #FFF url(../../img/bg_wall_comments.gif) repeat-x;
+}
+
+.root a {
+    color: #89C140;
+    text-decoration: none;
+}
+
+.root a: hover {
+    color: #555;
+}
+
+.thread {
+    margin-top: 10px;
+}
+
+.message {
+    padding: 5px 0px;
+}
+
+.replies {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    border-left: 1px solid #CCC;
+}
+
+.replies .body {
+    border-top: 1px solid #DDD;
+    padding: 10px;
+}
+
+.replies a {
+    color: #AF924D;
+    text-decoration: none;
+}
+
+.replies a: hover {
+    color: #555;
+}
+
+.new {
+    border: 1px solid #CEEA9A;
+    background: #E8FFCC;
+    padding: 5px;
+}

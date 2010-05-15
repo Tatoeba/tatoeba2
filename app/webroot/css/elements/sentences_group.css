@@ -1,6 +1,6 @@
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -13,42 +13,42 @@
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
 
 /* 
  * Sentence menu 
  */
-.sentences_set .menu{
-	vertical-align: text-bottom;
-	overflow: hidden;
-    border-bottom: 1px dashed #cccccc;
+.sentences_set .menu {
+    vertical-align: text-bottom;
+    overflow: hidden;
+    border-bottom: 1px dashed #CCC;
     padding: 2px 5px;
     margin: 2px 0px;
 }
 
-.menu li{
-	display: inline;
-	font-size: 13px;
+.menu li {
+    display: inline;
+    font-size: 13px;
 }
 
-.menu a{
-	padding: 4px 15px 3px 5px;
+.menu a {
+    padding: 4px 15px 3px 5px;
 }
 
-.belongsTo{
-	display: block;
-	float: right;
+.belongsTo {
+    display: block;
+    float: right;
     color: #75C34B;
     font-weight: bold;
 }
 
-.belongsTo a{
+.belongsTo a {
     padding: 0px 0px 0px 5px;
 }
 
-.listOfLists{
+.listOfLists {
     width: 150px;
 }
 
@@ -56,9 +56,9 @@
 /* 
  * Main sentences
  */
-.mainSentence{
-	font-family: georgia;
-	font-size: 1.7em;
+.mainSentence {
+    font-family: georgia;
+    font-size: 1.7em;
 }
 
 .mainSentence .languageFlag, .mainSentence .audioButton, .mainSentence select {
@@ -69,27 +69,27 @@
 /* 
  * Sentence
  */
-.sentenceContent .text{
+.sentenceContent .text {
     display: block;
     padding: 5px;
-} 
- 
-.sentence{
+}
+
+.sentence {
     padding: 2px;
 }
 
-.sentence a{
+.sentence a {
     color: #434343;
-	text-decoration: none;
+    text-decoration: none;
 }
 
-.sentence a:hover{
-	color: #EAA315;
+.sentence a: hover {
+    color: #EAA315;
 }
 
-.sentence .button{
-	float:left;
-	margin-top: 8px;
+.sentence .button {
+    float: left;
+    margin-top: 8px;
     margin-right: 8px;
     margin-left: 5px;
 }
@@ -102,34 +102,35 @@
     font-size: 1.2em;
 }
 
-.indirectTranslation a{
+.indirectTranslation a {
     color: #998778;
 }
- 
- 
+
+
 /* 
  * Editing sentences 
  */
-.sentences_set div.submit{
-    display:inline;
+.sentences_set div.submit {
+    display: inline;
 }
-.sentences_set div.input{
-    display:inline;
+
+.sentences_set div.input {
+    display: inline;
 }
 
 
 /* 
  * Romanization
  */
-.romanization{
-	color: #a1a1a1;
+.romanization {
+    color: #A1A1A1;
     margin-top: -8px;
     padding: 5px;
     margin-right: 40px;
 }
 
 a.romanization {
-    color: #a1a1a1 !important;
+    color: #A1A1A1 !important;
     display: block;
 }
 
@@ -141,14 +142,14 @@ a.romanization {
 /* 
  * Edit in place 
  */
-.editableSentence:hover{
-    background: #eeee88;
+.editableSentence: hover {
+    background: #EE8;
 }
 
-.editInPlaceForm input.text{
+.editInPlaceForm input.text {
     width: 98%;
     display: inline;
-    font-family: Verdana, sans-serif;
+    font-family: verdana, sans-serif;
     font-size: 14px;
 }
 
@@ -156,16 +157,16 @@ a.romanization {
 /*
  * Flag
  */
-.editableFlag:hover{
-	cursor: pointer;
-	border-top: 1px solid #aaaaaa;
-	border-left: 1px solid #aaaaaa;
+.editableFlag: hover {
+    cursor: pointer;
+    border-top: 1px solid #AAA;
+    border-left: 1px solid #AAA;
 }
 
-.selectLang{
-	display:none;
-	float: right;
-	margin-top: 5px;
+.selectLang {
+    display: none;
+    float: right;
+    margin-top: 5px;
 }
 
 
@@ -176,20 +177,20 @@ a.romanization {
     display: none;
 }
 
-.addTranslations input{
+.addTranslations input {
     display: inline;
 }
 
-.addTranslationsTextInput{
+.addTranslationsTextInput {
     width: 550px;
-    float:left;
-    font-family: Verdana, sans-serif;
+    float: left;
+    font-family: verdana, sans-serif;
     font-size: 14px;
 }
 
-.languageFlag{
-	float: right;
-	margin: 5px;
+.languageFlag {
+    float: right;
+    margin: 5px;
 }
 
 
@@ -220,9 +221,9 @@ a.romanization {
 /* 
  * My sentences 
  */
-.infoIcon{
-	float: left;
-	margin: 6px 10px 2px 5px;
+.infoIcon {
+    float: left;
+    margin: 6px 10px 2px 5px;
 }
 
 .loading {
