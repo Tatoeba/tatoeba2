@@ -1,21 +1,21 @@
-/*
-    Tatoeba Project, free collaborative creation of multilingual corpuses project
-    Copyright (C) 2009  Etienne Deparis <etienne.deparis@umaneti.net>
-    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
-
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU Affero General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
-
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU Affero General Public License for more details.
-
-    You should have received a copy of the GNU Affero General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2009  Etienne Deparis <etienne.deparis@umaneti.net>
+ * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
+ */
 
 
 /*
@@ -27,38 +27,42 @@
 /*
  * Folder content
  */
-.pm_module {min-height:150px;}
+.pm_module {
+    min-height: 150px;
+}
 
-.pm_folder th {text-align:left;}
-.pm_folder td {}
+.pm_folder th {
+    text-align: left;
+}
 
-.messageHeader{
+.messageHeader {
     border-top: 1px dotted #CCC;
 }
 
 .messageHeader .userAndDate {
-    color:#999;
-	font-style:italic;
-	font-size:11px;
+    color: #999;
+    font-style: italic;
+    font-size: 11px;
     display: block;
     font-weight: normal;
 }
 
-.linkToMessage{
+.linkToMessage {
     padding: 5px;
-    color:#89c140; 
-    display:block;
+    color: #89C140; 
+    display: block;
 }
-.linkToMessage:hover{
-    color:#555;
-    background:#E4FFD1;
+
+.linkToMessage: hover {
+    color: #555;
+    background: #E4FFD1;
 }
 
 .messageHeader img {
     height: 40px;
 }
 
-.unread a{
-    font-weight:bold; 
+.unread a {
+    font-weight: bold; 
     color: #FF6A00;
 }
