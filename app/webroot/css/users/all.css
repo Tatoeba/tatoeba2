@@ -1,1 +1,71 @@
-/*    Tatoeba Project, free collaborative creation of multilingual corpuses project    Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>    This program is free software: you can redistribute it and/or modify    it under the terms of the GNU Affero General Public License as published by    the Free Software Foundation, either version 3 of the License, or    (at your option) any later version.    This program is distributed in the hope that it will be useful,    but WITHOUT ANY WARRANTY; without even the implied warranty of    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the    GNU Affero General Public License for more details.    You should have received a copy of the GNU Affero General Public License    along with this program.  If not, see <http://www.gnu.org/licenses/>.*//* * Navigation */@import url(../elements/navigation.css);/* * Pagination */@import url(../elements/pagination.css);/* * Users */.users{    margin-bottom: 20px;}.users th{	border-bottom: #cccccc 1px dotted;	padding: 3px 3px;}.users td{    text-align: center;    padding: 5px;}.users img{	height: 36px;}/* * Top members */#topMembers{	text-align: center;}#topMembers td{	padding: 5px 3px;}#topMembers th{	border-bottom: 1px #000000 solid;}#topMembers tr.admin{	background-color: #FFCCCC;}#topMembers tr.normal{}
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+/*
+ * Navigation
+ */
+@import url(../elements/navigation.css);
+
+
+/*
+ * Pagination
+ */
+@import url(../elements/pagination.css);
+
+
+/*
+ * Users
+ */
+.users {
+    margin-bottom: 20px;
+}
+
+.users th {
+    border-bottom: #CCC 1px dotted;
+    padding: 3px 3px;
+}
+
+.users td {
+    text-align: center;
+    padding: 5px;
+}
+
+.users img {
+    height: 36px;
+}
+
+
+/*
+ * Top members
+ */
+#topMembers {
+    text-align: center;
+}
+
+#topMembers td {
+    padding: 5px 3px;
+}
+
+#topMembers th {
+    border-bottom: 1px #000 solid;
+}
+
+#topMembers tr.admin {
+    background-color: #FCC;
+}
