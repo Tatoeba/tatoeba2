@@ -14,29 +14,30 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
-*/
+ */
+
 
 $(document).ready(function() {
 
-	$("#isPublic").change(function(){
-		var isPublic;
-		var listId = $("#sentencesList").data('id');
-		
-		if($(this).is(':checked')){
-			isPublic = 1;
-		}else{
-			isPublic = 0;
-		}
-		
-		$("#inProcess").show();
-		
-		$.post(
-			"http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/set_as_public/",
-			{ "listId": listId, "isPublic": isPublic },
-			function(){
-				$("#inProcess").hide();
-			}
-		);
-	});
+    $("#isPublic").change(function(){
+        var isPublic;
+        var listId = $("#sentencesList").data('id');
+        
+        if($(this).is(':checked')){
+            isPublic = 1;
+        }else{
+            isPublic = 0;
+        }
+        
+        $("#inProcess").show();
+        
+        $.post(
+            "http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/set_as_public/",
+            { "listId": listId, "isPublic": isPublic },
+            function(){
+                $("#inProcess").hide();
+            }
+        );
+    });
 
 });

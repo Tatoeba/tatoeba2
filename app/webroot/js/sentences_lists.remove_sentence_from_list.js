@@ -16,19 +16,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+
 $(document).ready(function() {
 
-	$(".removeFromListButton").click(function(){
+    $(".removeFromListButton").click(function(){
         var sentenceId = $(this).data("sentenceId");
-		var listId = $("#sentencesList").data('id');
-		
-		$("#sentence"+sentenceId).html("<img src='/img/loading.gif' alt='loading'>");
-		$("#sentence"+sentenceId).load(
+        var listId = $("#sentencesList").data('id');
+        
+        $("#sentence"+sentenceId).html("<img src='/img/loading.gif' alt='loading'>");
+        $("#sentence"+sentenceId).load(
             "http://" + self.location.hostname + ":" + self.location.port 
             + "/sentences_lists/remove_sentence_from_list/"
             + sentenceId + "/" + listId
         );
-		
-	});
+        
+    });
 
 });

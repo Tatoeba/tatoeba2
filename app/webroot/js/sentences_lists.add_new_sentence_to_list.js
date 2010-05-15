@@ -18,30 +18,30 @@
 
 
 $(document).ready(function() {
-	$("#text").keyup(function(e){
-		if (e.keyCode == 13) {
-			save();
-		}
-	});
-	
-	$("#submitNewSentenceToList").click(function(){
-	    save();
-	});
-	
-	function save(){
-		var sentenceText = $("#text").val();
-		var listId = $("#sentencesList").data('id');
-		
-		$(".sentencesListLoading").show();
-		
-	    $.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/add_new_sentence_to_list/"
-		, { "listId": listId, "sentenceText" : sentenceText }
-		, function(data){
+    $("#text").keyup(function(e){
+        if (e.keyCode == 13) {
+            save();
+        }
+    });
+    
+    $("#submitNewSentenceToList").click(function(){
+        save();
+    });
+    
+    function save(){
+        var sentenceText = $("#text").val();
+        var listId = $("#sentencesList").data('id');
+        
+        $(".sentencesListLoading").show();
+        
+        $.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/add_new_sentence_to_list/"
+        , { "listId": listId, "sentenceText" : sentenceText }
+        , function(data){
             $("#session_expired").remove();
-			$(".sentencesList").prepend(data);
-			$(".sentencesListLoading").hide();
-			$("#text").val("");
-		}
-		, "html");	    
-	}
+            $(".sentencesList").prepend(data);
+            $(".sentencesListLoading").hide();
+            $("#text").val("");
+        }
+        , "html");        
+    }
 });
