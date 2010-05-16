@@ -47,8 +47,9 @@ class LinksController extends AppController
      */
     public function add($sentenceId, $translationId) 
     {
-        Sanitize::paranoid($sentenceId);
-        Sanitize::paranoid($translationId);
+        $sentenceId = Sanitize::paranoid($sentenceId);
+        $translationId = Sanitize::paranoid($translationId);
+        
         $saved = $this->Link->add($sentenceId, $translationId);
         // $this->set('saved', $saved);
         
@@ -83,8 +84,9 @@ class LinksController extends AppController
      */
     public function delete($sentenceId, $translationId) 
     {
-        Sanitize::paranoid($sentenceId);
-        Sanitize::paranoid($translationId);
+        $sentenceId = Sanitize::paranoid($sentenceId);
+        $translationId = Sanitize::paranoid($translationId);
+        
         $saved = $this->Link->delete($sentenceId, $translationId);
         // $this->set('saved', $saved);
         
