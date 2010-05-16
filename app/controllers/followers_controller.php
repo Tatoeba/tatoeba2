@@ -25,8 +25,6 @@
  * @link     http://tatoeba.org
 */
 
-App::import('Core', 'Sanitize');
-
 /**
  * Controller for followers.
  *
@@ -74,7 +72,7 @@ class FollowersController extends AppController
      */
     public function followers($userId, $ajax = 'false')
     {
-        Sanitize::paranoid($userId);
+        $userId = Sanitize::paranoid($userId);
 
         if ($ajax == 'true') {
             $this->set('ajax', true);
@@ -96,7 +94,7 @@ class FollowersController extends AppController
      */
     public function following($userId, $ajax = 'false')
     {
-        Sanitize::paranoid($userId);
+        $userId = Sanitize::paranoid($userId);
 
         if ($ajax == 'true') {
             $this->set('ajax', true);
@@ -115,7 +113,8 @@ class FollowersController extends AppController
      */
     public function start_following()
     {
-        $userId = $_POST['user_id'];
+        $userId = Sanitize::paranoid($_POST['user_id']);
+        
         $this->Follower->habtmAdd('User', $this->Auth->user('id'), $userId);
     }
 
@@ -127,7 +126,8 @@ class FollowersController extends AppController
      */
     public function stop_following()
     {
-        $userId = $_POST['user_id'];
+        $userId = Sanitize::paranoid($_POST['user_id']);
+        
         $this->Follower->habtmDelete('User', $this->Auth->user('id'), $userId);
     }
 
@@ -140,7 +140,7 @@ class FollowersController extends AppController
      */
     public function refuse_follower($userId)
     {
-        Sanitize::paranoid($userId);
+        $userId = Sanitize::paranoid($userId);
 
         $this->Follower->habtmDelete('User', $userId, $this->Auth->user('id'));
         $this->redirect(array('action' => 'followers', $this->Auth->user('id')));
