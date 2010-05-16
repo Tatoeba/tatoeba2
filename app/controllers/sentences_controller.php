@@ -755,7 +755,7 @@ class SentencesController extends AppController
             'Sentence.user_id' => $userId,
         );
         // if the lang is specified then we also filter on the language
-        if (isset($lang)) {
+        if (!empty($lang)) {
             $conditions = array(
                 "AND" => array(
                     'Sentence.user_id' => $userId,
@@ -763,12 +763,12 @@ class SentencesController extends AppController
                 )
             ); 
         }
-
+        
         $sentences = $this->paginate(
             'Sentence',
             $conditions
         );
-
+        
         $this->set('user_sentences', $sentences);
     }
     
