@@ -123,7 +123,7 @@ class SentenceCommentsController extends AppController
     public function show($sentenceId)
     {
 
-        Sanitize::paranoid($sentenceId);
+        $sentenceId = Sanitize::paranoid($sentenceId);
         // redirect to sentences/show
         // we don't remove the method to be compatible with previous google indexing
         $this->redirect(
@@ -143,8 +143,6 @@ class SentenceCommentsController extends AppController
      */
     public function save()
     {
-        Sanitize::html($this->data['SentenceComment']['text']);
-
         $userId = $this->Auth->user('id');
         $userName = $this->Auth->user('username');
         $userEmail = $this->Auth->user('email');
@@ -226,6 +224,8 @@ class SentenceCommentsController extends AppController
 
     public function delete_comment($commentId)
     {
+        $commentId = Sanitize::paranoid($commentId);
+        
         $commentOwnerId = $this->SentenceComment->getOwnerIdOfComment($commentId);
         
         //we check a second time even if it has been checked while displaying
