@@ -124,6 +124,7 @@ class SentencesController extends AppController
 
         if ($id == "random" || $id == null || $id == "" ) {
             $id = $this->Session->read('random_lang_selected');
+            $id = Sanitize::paranoid($id);
         }
         
         if (in_array($id, $this->Sentence->languages)) {
