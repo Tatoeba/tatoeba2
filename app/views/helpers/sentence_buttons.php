@@ -203,6 +203,8 @@ class SentenceButtonsHelper extends AppHelper
             $path = 'http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html';
             $title = __('Audio unavailable. Click to learn more.', true);
             $onClick = 'window.open(this.href); return false;';
+        } else {
+            echo $this->Javascript->link('sentences.play_audio.js', false);
         }
         echo $this->Html->Link(
             null, $path,

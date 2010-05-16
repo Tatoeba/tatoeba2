@@ -68,7 +68,6 @@
         //      Javascript        //
         // ---------------------- //
 		echo $javascript->link('jquery-mini.js', true);
-        echo $javascript->link('sentences.play_audio.js', false);
 		echo $scripts_for_layout;
         
 	?>
