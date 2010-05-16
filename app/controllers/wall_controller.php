@@ -140,11 +140,8 @@ class WallController extends Appcontroller
      *
      * @return void
      */
-
     public function save()
     {
-
-        Sanitize::html($this->data['Wall']['content']);
         if (!empty($this->data['Wall']['content'])
             && $this->Auth->user('id')
         ) {
@@ -182,11 +179,10 @@ class WallController extends Appcontroller
             && !(empty($idTemp))
         ) {
 
-            $content = $_POST['content'];
-            $parentId = $_POST['replyTo'];
+            $content = Sanitize::stripScripts($_POST['content']);
+            $parentId = Sanitize::paranoid($_POST['replyTo']);
             $now = date("Y-m-d H:i:s"); 
-             
-            Sanitize::stripScripts($content);
+            
             $this->data['Wall']['content'] = $content ; 
             $this->data['Wall']['owner'] = $idTemp ;
             $this->data['Wall']['parent_id'] = $parentId ;
@@ -265,6 +261,8 @@ class WallController extends Appcontroller
 
     public function delete_message($messageId)
     {
+        $messageId = Sanitize::paranoid($messageId);
+        
         $messageOwnerId = $this->Wall->getOwnerIdOfMessage($messageId);
         //we check a second time even if it has been checked while displaying
         // or not the delete icon, but one can try to directly call delete_message
@@ -294,6 +292,9 @@ class WallController extends Appcontroller
 
     public function update_thread_date($messageId, $newDate)
     {
+        $messageId = Sanitize::paranoid($messageId);
+        // TODO Not sure what to do with $newDate...
+        
         $WallThread = ClassRegistry::init('WallThread');
 
         $rootId = $this->Wall->getRootMessageIdOfReply($messageId);
@@ -316,7 +317,8 @@ class WallController extends Appcontroller
      */
     public function show_message($messageId)
     {
-        Sanitize::paranoid($messageId);
+        $messageId = Sanitize::paranoid($messageId);
+        
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
 
