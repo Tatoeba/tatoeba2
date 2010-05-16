@@ -318,15 +318,15 @@ class SentencesController extends AppController
         }
         
         if (isset($sentenceId)) {
-        
-            Sanitize::html($sentenceText);
-            $sentenceId = Sanitize::paranoid($sentenceId);
-            
             // TODO HACK SPOTTED $_POST['id'] store 2 informations, lang and id
             // related to HACK in edit in place.js 
             $hack_array = explode("_", $sentenceId);
-            $this->Sentence->id = $hack_array[1];
-            $data['Sentence']['lang'] = $hack_array[0];
+            
+            $realSentenceId = Sanitize::paranoid($hack_array[1]);
+            $sentenceLang = Sanitize::paranoid($hack_array[0]);
+            
+            $this->Sentence->id = $realSentenceId;
+            $data['Sentence']['lang'] = $sentenceLang;
             $data['Sentence']['text'] = $sentenceText;
             $isSaved = $this->Sentence->save($data);
                             
