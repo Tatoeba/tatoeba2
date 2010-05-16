@@ -211,8 +211,6 @@ class SentencesController extends AppController
         $sentenceLang = $this->data['Sentence']['contributionLang'];
         $sentenceLang = Sanitize::paranoid($sentenceLang);
         $sentenceText = $this->data['Sentence']['text'];
-        
-        Sanitize::html($sentenceText);
         $sentenceText = trim($sentenceText);
 
         $this->Session->write('contribute_lang', $sentenceLang);
@@ -308,7 +306,8 @@ class SentencesController extends AppController
             $sentenceText = trim($_POST['value']);
         }
         if (isset($_POST['id'])) {
-            $sentenceId = $_POST['id'];
+            $sentenceId = $_POST['id']; // NOTE: do not Sanitize::paranoid() this
+                                        // ...because hack mentionned below
         }
         
         if (!isset($sentenceText) || $sentenceText === '') {
@@ -348,8 +347,8 @@ class SentencesController extends AppController
      */
     public function adopt($id)
     {
-        //Configure::write("debug",0);
         $id = Sanitize::paranoid($id);
+        
         $this->Sentence->id = $id;
         $userId = $this->Auth->user('id');
         $this->Sentence->saveField('user_id', $userId);
@@ -370,6 +369,7 @@ class SentencesController extends AppController
     public function let_go($id)
     {
         $id = Sanitize::paranoid($id);
+        
         $this->Sentence->id = $id;
         $this->Sentence->saveField('user_id', null);
         $this->show($id);
@@ -383,11 +383,10 @@ class SentencesController extends AppController
      */ 
     public function save_translation()
     {
-
         $sentenceId = Sanitize::paranoid($_POST['id']);
         $translationLang = Sanitize::paranoid($_POST['selectLang']);
         $withAudio = Sanitize::paranoid($_POST['withAudio']);
-        $parentOwnerName = Sanitize::paranoid($_POST['parentOwnerName']);
+        $parentOwnerName = $_POST['parentOwnerName'];
         
         $userId = $this->Auth->user('id');
         $translationText = $_POST['value'];
@@ -455,7 +454,7 @@ class SentencesController extends AppController
         
         
         $query = $_GET['query'];    
-       
+        
         $from = 'und'; 
         if (isset($_GET['from'])) {
             $from = $_GET['from'];
@@ -517,6 +516,7 @@ class SentencesController extends AppController
     public function random($lang = null)
     {
         $lang = Sanitize::paranoid($lang);
+        
         if ($lang == null) {
             $lang = $this->Session->read('random_lang_selected');
         }
@@ -695,11 +695,9 @@ class SentencesController extends AppController
      */
     public function of_user($userName, $lang = null)
     {
-        $UserModel = ClassRegistry::init('User');
-        $userName = Sanitize::paranoid($userName);
         $lang = Sanitize::paranoid($lang);
         
-        
+        $UserModel = ClassRegistry::init('User');
         $userId = $UserModel->getIdFromUserName($userName);
         
         $backLink = $this->referer(array('action'=>'index'), true);
@@ -805,12 +803,9 @@ class SentencesController extends AppController
             && isset($_POST['newLang'])
             && isset($_POST['prevLang'])
         ) {
-            $newlang = $_POST['newLang'];
-            $prevLang = $_POST['prevLang'];
-            $id = $_POST['id'];
-            $id = Sanitize::paranoid($id);
-            $newLang = Sanitize::paranoid($newlang);
-            $prevLang = Sanitize::paranoid($prevlang);
+            $newlang = Sanitize::paranoid($_POST['newLang']);
+            $prevLang = Sanitize::paranoid($_POST['prevLang']);
+            $id = Sanitize::paranoid($_POST['id']);
 
             // TODO create  method in the model to encapsulate this
             $this->Sentence->id = $id;
