@@ -25,7 +25,6 @@
  * @link     http://tatoeba.org
  */
 
-App::import('Core', 'Sanitize');
 
 /**
  * Controller for private messages.
@@ -94,7 +93,8 @@ class PrivateMessagesController extends AppController
      */
     public function folder($folder = 'Inbox')
     {
-
+        $folder = Sanitize::paranoid($folder);
+        
         $content = $this->PrivateMessage->getMessages(
             $folder,
             $this->Auth->user('id')
@@ -111,10 +111,6 @@ class PrivateMessagesController extends AppController
      */
     public function send()
     {
-        Sanitize::html($this->data['PrivateMessage']['recpt']);
-        Sanitize::html($this->data['PrivateMessage']['content']);
-        Sanitize::html($this->data['PrivateMessage']['title']);
-
         if (!empty($this->data['PrivateMessage']['recpt'])
             && !empty($this->data['PrivateMessage']['content'])
         ) {
@@ -184,7 +180,7 @@ class PrivateMessagesController extends AppController
     public function show($messageId)
     {
 
-        Sanitize::paranoid($messageId);
+        $messageId = Sanitize::paranoid($messageId);
         /**
          * The following lines of code check if a message is read, or not
          * and change is read value automatically.
@@ -210,7 +206,8 @@ class PrivateMessagesController extends AppController
      */
     public function delete($folderId, $messageId)
     {
-        Sanitize:: paranoid($messageId);
+        $messageId = Sanitize::paranoid($messageId);
+        
         $message = $this->PrivateMessage->findById($messageId);
         $message['PrivateMessage']['folder'] = 'Trash';
         $this->PrivateMessage->save($message);
@@ -227,7 +224,8 @@ class PrivateMessagesController extends AppController
     public function restore($messageId)
     {
 
-        Sanitize:: paranoid($messageId);
+        $messageId = Sanitize::paranoid($messageId);
+        
         $message = $this->PrivateMessage->findById($messageId);
 
         if ($message['PrivateMessage']['recpt'] == $this->Auth->user('id')) {
@@ -252,7 +250,8 @@ class PrivateMessagesController extends AppController
      */
     public function mark($folderId, $messageId)
     {
-        Sanitize:: paranoid($messageId);
+        $messageId = Sanitize:: paranoid($messageId);
+        
         $message = $this->PrivateMessage->findById($messageId);
         switch ($message['PrivateMessage']['isnonread']) {
             case 1 : $message['PrivateMessage']['isnonread'] = 0;
@@ -277,9 +276,8 @@ class PrivateMessagesController extends AppController
     {
         if ($recipients == null) {
             $recipients = '';
-        } else {
-            Sanitize::html($recipients);
         }
+        
         $this->set('recipients', $recipients);        
     }
 
@@ -293,8 +291,8 @@ class PrivateMessagesController extends AppController
      */
     public function join($type = null, $joinObjectId = null)
     {
-        Sanitize::paranoid($type);
-        Sanitize::paranoid($joinObjectId);
+        $type = Sanitize::paranoid($type);
+        $joinObjectId = Sanitize::paranoid($joinObjectId);
 
         if ($type != null && $joinObjectId != null) {
             $this->params['action'] = 'write';
