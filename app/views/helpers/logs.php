@@ -44,23 +44,29 @@ class LogsHelper extends AppHelper
      *
      * @param array $contribution Contribution to display.
      * @param array $user         User who contributed.
-     * @param array $sentence     Sentence related.
      *
      * @return void
      */
-    public function entry($contribution, $user = null , $sentence = null)
+    public function entry($contribution, $user = null)
     {
-        $type = '';
+        $type = 'link';
         $status = '';
-        $lang = $contribution['sentence_lang'];
         
-        if (!isset($contribution['translation_id'])) {
+        $userName = Sanitize::paranoid($user['username']);
+        $userId = Sanitize::paranoid($user['id']);
+        
+        $contributionText = Sanitize::html($contribution['text']);
+        $contributionId = Sanitize::paranoid($contribution['sentence_id']);
+        $translationId = Sanitize::paranoid($contribution['translation_id']); 
+        $action = Sanitize::paranoid($contribution['action']);
+        $contributionDate = $contribution['datetime'];
+        $lang = Sanitize::paranoid($contribution['sentence_lang']);
+        
+        if (empty($translationId)) {
             $type = 'sentence';
-        } else {
-            $type = 'link';
         }
         
-        switch ($contribution['action']) {
+        switch ($action) {
             case 'suggest' : 
                 $type = 'correction';
                 $status = 'Suggested'; 
@@ -104,26 +110,23 @@ class LogsHelper extends AppHelper
         // sentence text
         echo '<td class="text">';
         echo $this->Html->link(
-            $contribution['text'],
+            $contributionText,
             array(
                 "controller" => "sentences",
                 "action" => "show",
-                $contribution['sentence_id']
+                $contributionId
             )
         );
         echo '</td>';
         
         // contributor
         echo '<td class="username">';
-        echo $this->Html->link(
-            $user['username'], 
-            array("controller" => "users", "action" => "show", $user['id'])
-        );
+        echo $this->_displayLinkToUserProfile($username, $userId);
         echo '</td>';
         
         // date of contribution
         echo '<td class="date">';
-        echo $this->Date->ago($contribution['datetime']);
+        echo $this->Date->ago($contributionDate);
         echo '</td>';
         
         echo '</tr>';
@@ -139,18 +142,22 @@ class LogsHelper extends AppHelper
      */
     public function annexeEntry($contribution, $user = null)
     {
-        $type = '';
+        $type = 'link';
         $status = '';
         
-        if ($contribution['translation_id'] == null 
-            OR $contribution['translation_id'] == ''
-        ) {
-            $type = 'sentence';
-        } else {
-            $type = 'link';
-        }
+        $userName = Sanitize::paranoid($user['username']);
+        $userId = Sanitize::paranoid($user['id']);
         
-        switch ($contribution['action']) {
+        $contributionText = Sanitize::html($contribution['text']);
+        $translationId = Sanitize::paranoid($contribution['translation_id']); 
+        $action = Sanitize::paranoid($contribution['action']);
+        $contributionDate = $contribution['datetime'];
+
+        if (empty($translationId)) {
+            $type = 'sentence';
+        } 
+        
+        switch ($action) {
             case 'suggest' : 
                 $type = 'correction';
                 $status = 'Suggested'; 
@@ -169,29 +176,26 @@ class LogsHelper extends AppHelper
         echo '<div class="annexeLogEntry '.$type.$status.'">';
         
         echo '<div>';
-        if (isset($user['username'])) {
-            echo $this->Html->link(
-                $user['username'], 
-                array("controller" => "users", "action" => "show", $user['id'])
-            );
+        if (isset($username)) {
+            echo $this->_displayLinkToUserProfile($username, $userId);
             echo ' - ';
         }
-        echo $this->Date->ago($contribution['datetime']);
+        echo $this->Date->ago($contributionDate);
         echo '</div>';
         
         echo '<div>';
-        if ($type == 'link') {
+        if ($type === 'link') {
             
             $linkToTranslation = $this->Html->link(
-                $contribution['translation_id'],
+                $translationId,
                 array(
                     "controller" => "sentences",
                     "action" => "show",
-                    $contribution['translation_id']
+                    $translationId
                 )
             );
             
-            if ($contribution['action'] == 'insert') {
+            if ($action == 'insert') {
                 echo sprintf(
                     __('linked to %s', true), $linkToTranslation
                 );
@@ -203,12 +207,32 @@ class LogsHelper extends AppHelper
             
         } else {
             echo ' <span class="text">';
-            echo Sanitize::html($contribution['text']);
+            echo $contributionText;
             echo '</span>';
         }
         echo '</div>';
         
         echo '</div>';
+    }
+
+    /**
+     * Create the html link to the profile of a given user
+     * 
+     * @param string $userName The user name
+     * @param int    $userId   The id of this user.
+     *
+     * @return string The html link.
+     */
+
+    private function _displayLinkToUserProfile($username, $userId) {
+        return $this->Html->link(
+            $username, 
+            array(
+                "controller" => "users",
+                "action" => "show",
+                $userId
+            )
+        );
     }
 }
 ?>
