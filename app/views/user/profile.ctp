@@ -34,15 +34,28 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
-if ($user['User']['name'] != '') {
-    $this->pageTitle = sprintf(__("Profile of %s", true), $user['User']['name']);
-} else {
-    $this->pageTitle = sprintf(__("%s's profile", true), $user['User']['username']);
+
+
+$realName = Sanitize::html($user['name']);
+$userName = Sanitize::html($user['username']);
+$userDescription = Sanitize::html($user['description']);
+$homepage = Sanitize::html($user['homepage']);
+$userId = $user['id'];
+
+$birthday = $user['birthday'];
+$userSince = $user['since'];
+$lastTimeActive = $user['last_time_active'];
+
+$userImage = 'tatoeba_user.png';
+if (!empty($user['image'])) {
+    $userImage = Sanitize::html($user['image']);
 }
 
-if ($is_public or $login) {
-    //echo $javascript->includeScript('users.followers_and_following');
+if (!empty($realName)) {
+    $this->pageTitle = "$realName ($userName) - Tatoeba";
+} else {
+    $this->pageTitle = "$userName - Tatoeba"; 
+}
 ?>
 
 <div id="annexe_content">
@@ -50,19 +63,40 @@ if ($is_public or $login) {
     <div id="pcontact" class="module">
         <h2><?php __('Contact information'); ?></h2>
         <dl>
+            
             <dt><?php __('Private message'); ?></dt>
-            <dd><?php echo $html->link(sprintf(__('Contact %s', true), $user['User']['username']),
-            array('controller' => 'private_messages', 'action' => 'write', $user['User']['username'])); ?></dd>
+            <dd>
+                <?php
+                echo $html->link(
+                    sprintf(__('Contact %s', true), $userName),
+                    array(
+                        'controller' => 'private_messages',
+                        'action' => 'write',
+                        $userName
+                    )
+                );
+                ?>
+            </dd>
 
             <dt><?php __('Others'); ?></dt>
-            <dd><?php echo $html->link(sprintf(__("See this user's contributions", true)),
-            array('controller' => 'users', 'action' => 'show', $user['User']['id'])); ?></dd>
+            <dd>
+                <?php
+                echo $html->link(
+                    sprintf(__("See this user's contributions", true)),
+                    array(
+                        'controller' => 'users',
+                        'action' => 'show',
+                        $userId
+                    )
+                );
+                ?>
+            </dd>
 
             <?php
-            if(!empty($user['User']['homepage'])){
-            ?>
+            if (!empty($homepage)) {
+                ?>
                 <dt><?php __('Homepage'); ?></dt>
-                <dd><?php echo '<a href="' . $user['User']['homepage'] . '" title="' . $user['User']['username'] . '">' . $user['User']['homepage'] . '</a>'; ?></dd>
+                <dd><?php echo $html->link($homepage); ?></dd>
             <?php
             }
             ?>
@@ -73,9 +107,9 @@ if ($is_public or $login) {
         <h2><?php __('Activity information'); ?></h2>
         <dl>
             <dt><?php __('Member since'); ?></dt>
-            <dd><?php echo date('F j, Y', strtotime($user['User']['since'])); ?></dd>
+            <dd><?php echo date('F j, Y', strtotime($userSince)); ?></dd>
             <dt><?php __('Last login'); ?></dt>
-            <dd><?php echo date('F j, Y \\a\\t G:i', $user['User']['last_time_active']); ?></dd>
+            <dd><?php echo date('F j, Y \\a\\t G:i', $lastTimeActive); ?></dd>
             <dt><?php __('Comments posted'); ?></dt>
             <dd><?php echo $userStats['numberOfComments']; ?></dd>
             <dt><?php __('Sentences owned'); ?></dt>
@@ -84,105 +118,78 @@ if ($is_public or $login) {
             <dd><?php echo $userStats['numberOfFavorites']; ?></dd>
         </dl>
     </div>
-    <?php
-    /*
-    <div class="module">
-        <h2><?php __('Following'); ?></h2>
-        <div class="following"></div>
-    </div>
-
-    <div class="module">
-        <h2><?php __('Followers'); ?></h2>
-        <div class="followers"></div>
-    </div>
-    */
-    ?>
 </div>
+
+<!-- Main Content -->
 
 <div id="main_content">
     <div class="module profile_master_content">
-        <h2><?php if($user['User']['name'] != '') echo $user['User']['name'] . ' aka. ' . $user['User']['username'];
-        else echo $user['User']['username'] ?></h2>
-        <?php 
-        /*
-        <p class="user followLinkContainer" id="<?php echo '_'.$user['User']['id']; ?>">
-        <?php if($session->read('Auth.User.id') && isset($can_follow)){
-            if($can_follow){
-                $style2 = "style='display: none'";
-                $style1 = "";
-            }else{
-                $style1 = "style='display: none'";
-                $style2 = "";
+        <h2>
+            <?php
+            if (!empty($realName)) {
+                echo $realName . ' aka. ' . $userName;
+            } else {
+                echo $userName;
             }
-            echo '<a id="start" class="followingOption" '.$style1.'><span class="in_process"></span>'. __('Follow', true). '</a>';
-            echo '<a id="stop" class="followingOption" '.$style2.'><span class="in_process"></span>'. __('Unfollow', true). '</a>';
-        } ?>
-        </p>
-        */
-        ?>
+            ?>    
+        </h2>
+        <!-- self image -->
         <div id="pimg">
-<?php
-echo $html->image('profiles_128/' . (empty($user['User']['image']) ? 'tatoeba_user.png' : $user['User']['image'] ), array(
-    'alt' => $user['User']['username'],
-));
-?>
+            <?php
+            echo $html->image(
+                'profiles_128/'.$userImage,
+                array(
+                    'alt' => $userName
+                )
+            );
+            ?>
         </div>
     </div>
-<?php
-if (!empty($user['User']['description'])) {
-?>
-    <div id="pdescription" class="module">
-        <h2><?php __('Something about you') ?></h2>
-        <div id="profile_description"><?php echo nl2br($user['User']['description']) ?></div>
-    </div>
-<?php
-}
-?>
+    
+    <!-- self description  -->
+    
+    <?php
+    if (!empty($userDescription)) {
+        ?>
+        <div id="pdescription" class="module">
+            <h2><?php __('Something about you'); ?></h2>
+            <div id="profile_description">
+                <?php echo nl2br($userDescription); ?>
+            </div>
+        </div>
+    <?php
+    }
+    ?>
+
+    <!-- self basic info -->
     <div id="pbasic" class="module">
-        <h2><?php __('Basic Information') ?></h2>
+        <h2><?php __('Basic Information'); ?></h2>
         <dl>
-<?php
-if (!empty($user['User']['name'])) {
-?>
-            <dt><?php __('Name'); ?></dt>
-            <dd><?php echo $user['User']['name'] ?></dd>
-<?php
-}
+            <?php
+            if (!empty($realName)) {
+                ?>
+                <dt><?php __('Name'); ?></dt>
+                <dd><?php echo $realName; ?></dd>
+            <?php
+            }
 
-$aBirthday = explode('-', substr($user['User']['birthday'], 0, 10));
-// 0 => YYYY
-// 1 => MM
-// 2 => DD
-// needed to do a substr because $user['User']['birthday'] is formatted as YYYY-MM-DD HH:mm:ss
 
-if (intval($aBirthday[0] + $aBirthday[1] + $aBirthday[2]) != 0) {
-    $iTimestamp = mktime(0, 0, 0, $aBirthday[1], $aBirthday[2], $aBirthday[0]);
+            // TODO change this, no birthday should be stored as null value
+            if ($birthday !== "0000-00-00 00:00:00") {
+                $date = DateTime::createFromFormat('Y-m-d H:i:s', $birthday);
+                ?>
+                <dt><?php __('Birthday'); ?></dt>
+                <dd><?php echo $date->format('F j, Y'); ?></dd>
+            <?php
+            }
 
-?>
-            <dt><?php __('Birthday'); ?></dt>
-            <dd><?php echo date('F j, Y', $iTimestamp) ?></dd>
-<?php
-}
-
-if (is_string($user['User']['country_id'])
-    and strlen($user['User']['country_id']) == 2) {
-?>
-            <dt><?php __('Country'); ?></dt>
-            <dd><?php echo $user['Country']['name'] ?></dd>
-<?php
-}
-?>
+            if (!empty($userCountry['name'])) {
+                ?>
+                <dt><?php __('Country'); ?></dt>
+                <dd><?php echo $userCountry['name']; ?></dd>
+            <?php
+            }
+            ?>
         </dl>
     </div>
-
 </div>
-
-<?php
-} else {
-
-    echo '<p>';
-    __('This profile is protected. You must login to see it.');
-    echo '</p>';
-
-}
-?>

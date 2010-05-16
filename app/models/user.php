@@ -234,18 +234,27 @@ class User extends AppModel
      */
     public function getInformationOfUser($userName)
     {
-        $this->unBindModel(
-            array('hasMany' => array(
-                    'Contributions',
-                    'Sentences',
-                    'SentenceComments'
+        return $this->find(
+            'first',
+            array(
+                'conditions' => array('User.username' => $userName),
+                'fields' => array(
+                    'User.image',
+                    'User.id',
+                    'User.name',
+                    'User.homepage',
+                    'User.since',
+                    'User.last_time_active',
+                    'User.description',
+                    'User.username',
+                    'User.birthday',
+                    'User.is_public',
                 ),
-                'hasAndBelongsToMany' => array('Favorite')
+                'contain' => array(
+                    'Country'
+                )
             )
         );
-
-        return $this->findByUsername($userName);
-
     }
 
     /**

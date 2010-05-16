@@ -110,23 +110,25 @@ class UserController extends AppController
      * (that is current user's profile).
      * If wrong username is specified, redirect to list of members.
      *
-     * @param string $sUserName User screen identifiant
+     * @param string $userName User screen identifiant
      *
      * @return void
      */
-    public function profile($sUserName)
+    public function profile($userName)
     {
-        $sUserName = Sanitize::paranoid($sUserName);
+        $userName = Sanitize::paranoid($userName);
+        $currentUserId = Sanitize::paranoid($this->Auth->user('id'));
 
-        $aUser = $this->User->getInformationOfUser($sUserName);
+        $infoOfUser = $this->User->getInformationOfUser($userName);
 
-        if (empty($aUser)) {
+
+        if (empty($infoOfUser)) {
             // TODO better to had message "user %s doesn't exist",
             // but redirect is still better than a strange user's page
             $this->flash(
                 sprintf(
                     __('There is no user with this username : %s', true),
-                    $sUserName
+                    $userName
                 ),
                 '/users/all'
             );
@@ -134,27 +136,29 @@ class UserController extends AppController
         }
 
 
-        $userStats = $this->_stats($aUser['User']['id']);
+        $user = $infoOfUser['User'];
+        $isPublic = ($user['is_public'] == 1);
 
-        $this->set('userStats', $userStats);
-        // Check if we can follow that user or not
-        // (we can if we're NOT already following the user,
-        // or if the user is NOT ourself)
-        if ($aUser['User']['id'] != $this->Auth->user('id')) {
-            $can_follow = true;
-            foreach ($aUser['Follower'] as $follower) {
-                if ($follower['id'] == $this->Auth->user('id')) {
-                    $can_follow = false;
-                }
-            }
-            $this->set('can_follow', $can_follow);
+        // Check if his/her profile is accessible
+        if (empty($currentUserId) && !$isPublic) {
+            $this->flash(
+                sprintf(
+                    __('This profile is protected. You must login to see it.')
+                ),
+                '/users/all'
+            );
+            return;
         }
 
-        // Check if his/her profile is public
-        $bLogin = $this->Auth->user('id') ? true : false;
-        $this->set('login', $bLogin);
-        $this->set('is_public', $aUser['User']['is_public']);
-        $this->set('user', $aUser);
+
+        $userCountry = $infoOfUser['Country'];
+        
+        $userId = $user['id']; 
+        $userStats = $this->_stats($userId);
+
+        $this->set('userStats', $userStats);
+        $this->set('user', $user);
+        $this->set('userCountry', $userCountry);
     }
 
     /**
