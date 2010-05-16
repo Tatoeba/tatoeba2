@@ -176,10 +176,10 @@ if (!empty($realName)) {
 
             // TODO change this, no birthday should be stored as null value
             if ($birthday !== "0000-00-00 00:00:00") {
-                $date = DateTime::createFromFormat('Y-m-d H:i:s', $birthday);
+                $birthdayDate = new DateTime ($birthday);
                 ?>
                 <dt><?php __('Birthday'); ?></dt>
-                <dd><?php echo $date->format('F j, Y'); ?></dd>
+                <dd><?php echo $birthdayDate->format('F j, Y'); ?></dd>
             <?php
             }
 

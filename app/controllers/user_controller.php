@@ -61,6 +61,8 @@ class UserController extends AppController
         'Favorite'
     );
 
+    public $helpers = array('Html', 'Date');
+
     /**
      * ?
      *
