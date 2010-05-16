@@ -110,7 +110,8 @@ class SentencesListsController extends AppController
     public function show($id = null, $translationsLang = null)
     {
         if (isset($id)) {
-            Sanitize::paranoid($id);
+            $id = Sanitize::paranoid($id);
+            $translationsLang = Sanitize::paranoid($translationsLang);
             
             $list = $this->SentencesList->getSentences($id, $translationsLang);
             
@@ -129,10 +130,8 @@ class SentencesListsController extends AppController
      */
     public function add()
     {
-        Sanitize::html($this->data['SentencesList']['name']);
-        if (!empty($this->data) 
-            and trim($this->data['SentencesList']['name']) != ''
-        ) {
+        $listName = $this->data['SentencesList']['name'];
+        if (!empty($this->data) && trim($listName) != '') {
             $this->data['SentencesList']['user_id'] = $this->Auth->user('id');
             $this->SentencesList->save($this->data);
             $this->redirect(array("action"=>"edit", $this->SentencesList->id));
@@ -154,7 +153,8 @@ class SentencesListsController extends AppController
      */
     public function edit($id, $translationsLang = null)
     {
-        Sanitize::paranoid($id);
+        $id = Sanitize::paranoid($id);
+        $translationsLang = Sanitize::paranoid($translationsLang);
         $this->redirect(
             array(
                 "action" => "show", 
@@ -178,8 +178,7 @@ class SentencesListsController extends AppController
         $listId = substr($_POST['id'], 1);
         $listName = $_POST['value'];
         
-        Sanitize::paranoid($listId);
-        Sanitize::html($listName);
+        $listId = Sanitize::paranoid($listId);
         
         if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
             
@@ -205,7 +204,7 @@ class SentencesListsController extends AppController
      */
     public function delete($listId)
     {
-        Sanitize::paranoid($listId);
+        $listId = Sanitize::paranoid($listId);
         
         $userId = $this->Auth->user('id');
         
@@ -225,8 +224,8 @@ class SentencesListsController extends AppController
      */
     public function add_sentence_to_list($sentenceId, $listId)
     {
-        Sanitize::paranoid($sentenceId);
-        Sanitize::paranoid($listId);
+        $sentenceId = Sanitize::paranoid($sentenceId);
+        $listId = Sanitize::paranoid($listId);
         
         $this->set('s', $sentenceId);
         $this->set('l', $listId);
@@ -251,8 +250,7 @@ class SentencesListsController extends AppController
      */
     public function add_sentence_to_new_list($sentenceId, $listName)
     {
-        Sanitize::paranoid($sentenceId);
-        Sanitize::html($listName);
+        $sentenceId = Sanitize::paranoid($sentenceId);
         
         $userId = $this->Auth->user('id');
         
@@ -287,8 +285,8 @@ class SentencesListsController extends AppController
      */
     public function remove_sentence_from_list($sentenceId, $listId)
     {
-        Sanitize::paranoid($sentenceId);
-        Sanitize::paranoid($listId);
+        $sentenceId = Sanitize::paranoid($sentenceId);
+        $listId = Sanitize::paranoid($listId);
         
         $userId = $this->Auth->user('id');
         
@@ -313,6 +311,8 @@ class SentencesListsController extends AppController
      */
     public function of_user($userId)
     {
+        $userId = Sanitize::paranoid($userId);
+        
         $lists = $this->SentencesList->getUserLists($userId);
         $this->set('lists', $lists);
     }
@@ -344,12 +344,9 @@ class SentencesListsController extends AppController
     {
         if (isset($_POST['listId']) && isset($_POST['sentenceText'])) {
 
-            $listId = $_POST['listId'];
+            $listId = Sanitize::paranoid($_POST['listId']);
             $sentenceText = $_POST['sentenceText'];
-
-            Sanitize::paranoid($listId);
-            Sanitize::paranoid($sentenceText);
-
+            
             //saving
             $isSaved = $this->SaveSentence->wrapper_save_sentence(
                 'auto',
@@ -388,8 +385,7 @@ class SentencesListsController extends AppController
      */
     public function set_as_public()
     {
-        $listId = $_POST['listId'];
-        Sanitize::paranoid($listId);
+        $listId = Sanitize::paranoid($_POST['listId']);
 
         $this->SentencesList->id = $listId;
         $this->SentencesList->saveField('is_public', $listId);
@@ -407,7 +403,8 @@ class SentencesListsController extends AppController
             $this->redirect(array('action' => 'index'));
         }
         
-        Sanitize::paranoid($listId);
+        $listId = Sanitize::paranoid($listId);
+        
         $listName = $this->SentencesList->getNameForListWithId($listId);
         $this->set('listId', $listId);
         $this->set('listName', $listName);
@@ -425,9 +422,9 @@ class SentencesListsController extends AppController
         $listId = $_POST['data']['SentencesList']['id'];
 
         // Sanitize part
-        Sanitize::paranoid($exportId);
-        Sanitize::paranoid($translationsLang);
-        Sanitize::paranoid($listId);
+        $exportId = Sanitize::paranoid($exportId);
+        $translationsLang = Sanitize::paranoid($translationsLang);
+        $listId = Sanitize::paranoid($listId);
           
         if ($translationsLang === "none") {
             $translationsLang = null;
