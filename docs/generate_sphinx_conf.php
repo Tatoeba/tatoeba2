@@ -243,7 +243,16 @@ index ".$lang."_und_index : common_index
 }";
 
 
+
+}// end of first foreach 
+
+
+foreach ($languages as $lang=>$name){
+
+
     echo "
+# all to $name
+
 index und_".$lang."_index : common_index
 {
     type = distributed
@@ -254,11 +263,7 @@ index und_".$lang."_index : common_index
     }
     echo"
 }";
-
-
-
-}// end of first foreach 
-
+}
 
 
     echo "
@@ -292,7 +297,7 @@ searchd
     pid_file                = /var/log/searchd.pid
     max_matches             = 1000
     seamless_rotate         = 1
-    preopen_indexes         = 0
+    preopen_indexes         = 1
     unlink_old              = 1
 }
 
