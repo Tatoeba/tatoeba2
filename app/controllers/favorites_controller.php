@@ -68,7 +68,8 @@ class FavoritesController extends AppController
 
     public function of_user($userId)
     {
-        Sanitize::paranoid($userId);
+        $userId = Sanitize::paranoid($userId);
+        
         $favorites = $this->Favorite->getAllFavoritesOfUser($userId);
         $this->set('favorites', $favorites['Favorite']);
         $this->set('user', $favorites['User']);
@@ -84,7 +85,7 @@ class FavoritesController extends AppController
 
     public function add_favorite($sentenceId)
     {
-        Sanitize::paranoid($sentenceId); 
+        $sentenceId = Sanitize::paranoid($sentenceId); 
         
         $userId =$this->Auth->user('id');
         
@@ -105,7 +106,7 @@ class FavoritesController extends AppController
 
     public function remove_favorite ($sentenceId)
     {
-        Sanitize::paranoid($sentenceId);
+        $sentenceId = Sanitize::paranoid($sentenceId);
          
         $userId =$this->Auth->user('id');
         
