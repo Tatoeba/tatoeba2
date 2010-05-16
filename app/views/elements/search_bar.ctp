@@ -104,17 +104,6 @@ echo $form->create(
     <input type="submit" value="<?php echo __('search'); ?>"/>
 </fieldset>
 
-<fieldset class="help">
-    <?php
-    echo $html->link(
-        '[?]',
-        array(
-            "controller" => "sentences",
-            "action" => "search"
-        )
-    );
-    ?>
-</fieldset>
 <?php
 echo $form->end();
 ?>

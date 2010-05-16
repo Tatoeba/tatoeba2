@@ -50,14 +50,7 @@
     <?php
     }
     ?>
-
-    <div class="module">
-        <p class="warning">
-        NOTE: We are switching to a new search engine. The search feature will
-        therefore temporarily remain very basic.<br/><br/>
-        You will only be able to specify the source language, not the target language.
-        </p>
-    </div>
+    
     
     <div class="module">
         <h2>
@@ -68,22 +61,8 @@
         <p>
             <?php 
             __(
-                'If you specify the <strong>source language</strong>, the search '.
-                'will not be an <em>exact</em> search. That is to say, if you '.
-                'specify <em>English</em> and search for <em>think</em>, you will '.
-                'also have results with <em>thinks</em> or <em>thinking</em>.'
-            ); 
-            ?>
-        </p>
-        <p>
-            <?php 
-            __(
-                'If you specify the <strong>target language</strong>, you will '.
-                'have a word cloud with the 5 most frequent words in the '.
-                'target language. For simple words, it can give you a '.
-                'translation of the word you were '.
-                'looking for. Otherwise, it can '.
-                'also give you an idea of what words are linked to your search.'
+                'If you want to do an exact search, start your query with "=". '.
+                'For instance: =singing.'
             ); 
             ?>
         </p>
