@@ -117,7 +117,7 @@ class SentencesController extends AppController
      */
     public function show($id = null)
     {
-        Sanitize::html($id);
+        $id = Sanitize::paranoid($id);
         
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
@@ -208,6 +208,7 @@ class SentencesController extends AppController
     {
         $userId = $this->Auth->user('id');
         $sentenceLang = $this->data['Sentence']['contributionLang'];
+        $sentenceLang = Sanitize::paranoid($sentenceLang);
         $sentenceText = $this->data['Sentence']['text'];
         
         Sanitize::html($sentenceText);
@@ -241,7 +242,7 @@ class SentencesController extends AppController
      */
     public function delete($id)
     {
-        Sanitize::paranoid($id);
+        $id = Sanitize::paranoid($id);
         $this->Sentence->delete(
             $id,
             true
@@ -268,7 +269,7 @@ class SentencesController extends AppController
         }
         $userId = $this->Auth->user('id');
 
-        $sentenceLang = $_POST['selectedLang'];
+        $sentenceLang = Sanitize::paranoid($_POST['selectedLang']);
         $sentenceText = $_POST['value'];
 
         $isSaved = $this->SaveSentence->wrapper_save_sentence(
@@ -318,7 +319,7 @@ class SentencesController extends AppController
         if (isset($sentenceId)) {
         
             Sanitize::html($sentenceText);
-            Sanitize::paranoid($sentenceId);
+            $sentenceId = Sanitize::paranoid($sentenceId);
             
             // TODO HACK SPOTTED $_POST['id'] store 2 informations, lang and id
             // related to HACK in edit in place.js 
@@ -347,7 +348,7 @@ class SentencesController extends AppController
     public function adopt($id)
     {
         //Configure::write("debug",0);
-        Sanitize::paranoid($id);
+        $id = Sanitize::paranoid($id);
         $this->Sentence->id = $id;
         $userId = $this->Auth->user('id');
         $this->Sentence->saveField('user_id', $userId);
@@ -367,7 +368,7 @@ class SentencesController extends AppController
      */
     public function let_go($id)
     {
-        Sanitize::paranoid($id);
+        $id = Sanitize::paranoid($id);
         $this->Sentence->id = $id;
         $this->Sentence->saveField('user_id', null);
         $this->show($id);
@@ -382,18 +383,13 @@ class SentencesController extends AppController
     public function save_translation()
     {
 
-        Sanitize::paranoid($_POST['id']);
-        Sanitize::html($_POST['value']);
-        Sanitize::paranoid($_POST['selectLang']);
-        Sanitize::html($_POST['parentOwnerName']);
-        Sanitize::paranoid($_POST['withAudio']);
+        $sentenceId = Sanitize::paranoid($_POST['id']);
+        $translationLang = Sanitize::paranoid($_POST['selectLang']);
+        $withAudio = Sanitize::paranoid($_POST['withAudio']);
+        $parentOwnerName = Sanitize::paranoid($_POST['parentOwnerName']);
         
         $userId = $this->Auth->user('id');
-        $sentenceId = $_POST['id'];
         $translationText = $_POST['value'];
-        $translationLang = $_POST['selectLang'];
-        $parentOwnerName = $_POST['parentOwnerName'];
-        $withAudio = $_POST['withAudio'];
         
         // we store the selected language to be reuse after
         // that way, as users are likely to contribute in the 
@@ -458,18 +454,17 @@ class SentencesController extends AppController
         
         
         $query = $_GET['query'];    
-        Sanitize::html($query);
        
         $from = 'und'; 
         if (isset($_GET['from'])) {
             $from = $_GET['from'];
-            Sanitize::paranoid($from);
+            $from = Sanitize::paranoid($from);
         }
        
         $to = 'und'; 
         if (isset($_GET['to'])) {
             $to = $_GET['to'];
-            Sanitize::paranoid($to);
+            $to = Sanitize::paranoid($to);
         }
         
         // Session variables for search bar
@@ -520,6 +515,7 @@ class SentencesController extends AppController
      */
     public function random($lang = null)
     {
+        $lang = Sanitize::paranoid($lang);
         if ($lang == null) {
             $lang = $this->Session->read('random_lang_selected');
         }
@@ -549,6 +545,7 @@ class SentencesController extends AppController
 
         if (isset($_POST['data']['Sentence']['numberWanted'])) {
             $number = $_POST['data']['Sentence']['numberWanted'];
+            $number = Sanitize::paranoid($number);
         } else {
             // default number of sentences when coming from "show more..."
             $number = 5; 
@@ -556,6 +553,7 @@ class SentencesController extends AppController
         
         if (isset($_POST['data']['Sentence']['into'])) {
             $lang = $_POST['data']['Sentence']['into'] ;
+            $lang = Sanitize::paranoid($lang);
             $this->Session->write('random_lang_selected', $lang);
         } else {
             // default language when coming from "show more..."
@@ -782,6 +780,8 @@ class SentencesController extends AppController
      */
     public function map($page = 1)
     {
+        $page = Sanitize::paranoid($page);
+
         $total = 10000;
         $start = ($page-1) * $total;
         $end = $start + $total;
@@ -807,9 +807,9 @@ class SentencesController extends AppController
             $newlang = $_POST['newLang'];
             $prevLang = $_POST['prevLang'];
             $id = $_POST['id'];
-            Sanitize::paranoid($id);
-            Sanitize::paranoid($newlang);
-            Sanitize::paranoid($prevlang);
+            $id = Sanitize::paranoid($id);
+            $newLang = Sanitize::paranoid($newlang);
+            $prevLang = Sanitize::paranoid($prevlang);
 
             // TODO create  method in the model to encapsulate this
             $this->Sentence->id = $id;

@@ -114,49 +114,13 @@ class UserController extends AppController
      *
      * @return void
      */
-    public function profile($sUserName = 'random')
+    public function profile($sUserName)
     {
-        Sanitize::html($sUserName);
+        $sUserName = Sanitize::paranoid($sUserName);
 
-        if ($sUserName == 'random') {
-            $aUser = $this->User->find(
-                'first',
-                array(
-                    'conditions' => 'User.group_id < 5',
-                    'order' => 'RAND()',
-                    'limit' => 1
-                )
-            );
-        } else {
+        $aUser = $this->User->getInformationOfUser($sUserName);
 
-            $aUser = $this->User->getInformationOfUser($sUserName);
-        }
-
-        $userStats = $this->_stats($aUser['User']['id']);
-
-        $this->set('userStats', $userStats);
-
-        if ( $aUser != null ) {
-
-            // Check if we can follow that user or not
-            // (we can if we're NOT already following the user,
-            // or if the user is NOT ourself)
-            if ($aUser['User']['id'] != $this->Auth->user('id')) {
-                $can_follow = true;
-                foreach ($aUser['Follower'] as $follower) {
-                    if ($follower['id'] == $this->Auth->user('id')) {
-                        $can_follow = false;
-                    }
-                }
-                $this->set('can_follow', $can_follow);
-            }
-
-            // Check if his/her profile is public
-            $bLogin = $this->Auth->user('id') ? true : false;
-            $this->set('login', $bLogin);
-            $this->set('is_public', $aUser['User']['is_public']);
-            $this->set('user', $aUser);
-        } else {
+        if (empty($aUser)) {
             // TODO better to had message "user %s doesn't exist",
             // but redirect is still better than a strange user's page
             $this->flash(
@@ -166,7 +130,31 @@ class UserController extends AppController
                 ),
                 '/users/all'
             );
+            return;
         }
+
+
+        $userStats = $this->_stats($aUser['User']['id']);
+
+        $this->set('userStats', $userStats);
+        // Check if we can follow that user or not
+        // (we can if we're NOT already following the user,
+        // or if the user is NOT ourself)
+        if ($aUser['User']['id'] != $this->Auth->user('id')) {
+            $can_follow = true;
+            foreach ($aUser['Follower'] as $follower) {
+                if ($follower['id'] == $this->Auth->user('id')) {
+                    $can_follow = false;
+                }
+            }
+            $this->set('can_follow', $can_follow);
+        }
+
+        // Check if his/her profile is public
+        $bLogin = $this->Auth->user('id') ? true : false;
+        $this->set('login', $bLogin);
+        $this->set('is_public', $aUser['User']['is_public']);
+        $this->set('user', $aUser);
     }
 
     /**
