@@ -697,6 +697,10 @@ class SentencesController extends AppController
     public function of_user($userName, $lang = null)
     {
         $UserModel = ClassRegistry::init('User');
+        Sanitize::paranoid($userName);
+        Sanitize::paranoid($lang);
+        
+        
         $userId = $UserModel->getIdFromUserName($userName);
         
         $backLink = $this->referer(array('action'=>'index'), true);
