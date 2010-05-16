@@ -697,8 +697,8 @@ class SentencesController extends AppController
     public function of_user($userName, $lang = null)
     {
         $UserModel = ClassRegistry::init('User');
-        Sanitize::paranoid($userName);
-        Sanitize::paranoid($lang);
+        $userName = Sanitize::paranoid($userName);
+        $lang = Sanitize::paranoid($lang);
         
         
         $userId = $UserModel->getIdFromUserName($userName);
