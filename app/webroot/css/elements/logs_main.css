@@ -43,3 +43,8 @@
 #logs img.flag {
     width: 20px;
 }
+
+#logs .text{
+    max-width: 200px;
+    overflow: hidden;
+}
