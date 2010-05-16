@@ -86,11 +86,16 @@ class ToolsController extends AppController
      * @return void
      */
     public function romaji_furigana()
-    {        
-        $query = isset($_GET['query']) ? $_GET['query'] : '';
-        $type = isset($_GET['type']) ? $_GET['type'] : 'romaji';
-        Sanitize::html($query);
-        Sanitize::html($type);
+    {
+        $query = '';
+        $type = 'romaji';
+        
+        if (isset($_GET['query'])) {
+            $query = $_GET['query'];
+        }
+        if (isset($_GET['type'])) {
+            $type = Sanitize::paranoid($_GET['type']);
+        }
         
         $option = 3;
         if ($type == 'furigana') {
@@ -134,8 +139,8 @@ class ToolsController extends AppController
     public function pinyin_converter()
     {
         $text = $this->data['Tool']['query'];
-        $from = $this->data['Tool']['from'];
-        $to = $this->data['Tool']['to'];
+        $from = Sanitize::paranoid($this->data['Tool']['from']);
+        $to = Sanitize::paranoid($this->data['Tool']['to']);
         
         if (!empty($text)) {
             // we don't need to do nothing if we have choose the same output
