@@ -52,12 +52,16 @@ class LogsHelper extends AppHelper
         $type = 'link';
         $status = '';
         
-        $userName = Sanitize::paranoid($user['username']);
-        $userId = Sanitize::paranoid($user['id']);
+        if (isset($user)) {
+            $username = Sanitize::paranoid($user['username']);
+            $userId = Sanitize::paranoid($user['id']);
+        }
         
         $contributionText = Sanitize::html($contribution['text']);
         $contributionId = Sanitize::paranoid($contribution['sentence_id']);
-        $translationId = Sanitize::paranoid($contribution['translation_id']); 
+        if (isset($contribution['translation_id'])) {
+            $translationId = Sanitize::paranoid($contribution['translation_id']); 
+        }
         $action = Sanitize::paranoid($contribution['action']);
         $contributionDate = $contribution['datetime'];
         $lang = Sanitize::paranoid($contribution['sentence_lang']);
@@ -145,8 +149,10 @@ class LogsHelper extends AppHelper
         $type = 'link';
         $status = '';
         
-        $userName = Sanitize::paranoid($user['username']);
-        $userId = Sanitize::paranoid($user['id']);
+        if (isset($user)) {
+            $username = Sanitize::paranoid($user['username']);
+            $userId = Sanitize::paranoid($user['id']);
+        }
         
         $contributionText = Sanitize::html($contribution['text']);
         $translationId = Sanitize::paranoid($contribution['translation_id']); 
