@@ -101,6 +101,8 @@ class UsersController extends AppController
      */
     public function edit($id = null)
     {
+        $id = Sanitize::paranoid($id);
+        
         if (!$id && empty($this->data)) {
             $this->Session->setFlash('Invalid User');
             $this->redirect(array('action'=>'index'));
@@ -145,6 +147,8 @@ class UsersController extends AppController
      */
     public function delete($id = null)
     {
+        $id = Sanitize::paranoid($id);
+        
         if (!$id) {
             $this->Session->setFlash('Invalid id for User');
             $this->redirect(array('action'=>'index'));
@@ -416,6 +420,9 @@ class UsersController extends AppController
      */
     public function confirm_registration($id, $token)
     {
+        $id = Sanitize::paranoid($id);
+        $token = Sanitize::paranoid($token);
+        
         $this->User->id = $id; // important for when we do saveField() later
         $user = $this->User->getUserById($id);
 
@@ -532,9 +539,9 @@ class UsersController extends AppController
      * @return void
      */
     public function search()
-    {
-        Sanitize::html($this->data['User']['username']);
+    {        
         $user = $this->User->findByUsername($this->data['User']['username']);
+        
         if ($user != null) {
             $id = ($user['User']['id'] < 1) ? 1 : $user['User']['id'];
             $this->redirect(array("action" => "show", $id));
@@ -560,6 +567,8 @@ class UsersController extends AppController
      */
     public function show($id)
     {
+        $id = Sanitize::paranoid($id);
+        
         if ($id == 'random') {
             $id = null;
         }
@@ -624,7 +633,6 @@ class UsersController extends AppController
     public function check_username($username)
     {
         $this->layout = null;
-        Sanitize::html($username);
         $user = $this->User->getIdFromUsername($username); // TODO move to model
                                                         // and use contain
         if ($user) {
