@@ -57,7 +57,8 @@ class LogsHelper extends AppHelper
             $userId = Sanitize::paranoid($user['id']);
         }
         
-        $contributionText = Sanitize::html($contribution['text']);
+        $contributionText = $contribution['text']; // No sanitize here, we use
+            // the value in Html::link() which already already sanitizes.
         $contributionId = Sanitize::paranoid($contribution['sentence_id']);
         if (isset($contribution['translation_id'])) {
             $translationId = Sanitize::paranoid($contribution['translation_id']); 
