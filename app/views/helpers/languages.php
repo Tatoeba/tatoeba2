@@ -221,7 +221,16 @@ class LanguagesHelper extends AppHelper
             'pol' => __('Polish', true), 
             'swh' => __('Swahili', true), 
             'lat' => __('Latin', true), 
-            'wuu' => __('Shanghainese', true)
+            'wuu' => __('Shanghainese', true),
+            'arz' => __('Egyptian Arabic', true),
+            'bel' => __('Belarusian', true),
+            'hun' => __('Hungarian', true),
+            'isl' => __('Icelandic', true),
+            'sqi' => __('Albanian', true),
+            'yue' => __('Cantonese', true),
+            'afr' => __('Afrikaans', true),
+            'fao' => __('Faroese', true),
+            'fry' => __('Frisian', true)
         );
         asort($languages);
         array_unshift($languages, array('und' => __('Any', true)));
