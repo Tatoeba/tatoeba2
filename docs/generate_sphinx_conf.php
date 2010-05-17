@@ -201,8 +201,8 @@ source ".$lang."_".$trans."_src : default
     left join sentences_translations stt2 on stt.translation_id = stt2.sentence_id\
     left join sentences tt on stt2.translation_id = tt.id \
     where s.lang = '".$lang."' \
-        and ( t.lang = '".$trans."'  or tt.lang = '".$trans."' )
-
+        and ( t.lang = '".$trans."'  or tt.lang = '".$trans."' )\
+        and s.id != tt.id 
 }
         ";
         // generate index for this pair
@@ -229,17 +229,31 @@ echo
     }
 
 // now generate the this language to all index
+        echo 
+        "
 
-    echo "
+source ".$lang."_und_src : default
+{
+    sql_query = select distinct s.id, s.text \
+        from sentences s\
+        where s.lang = '".$lang."' 
+}
+
+
 index ".$lang."_und_index : common_index
 {
-    type = distributed
+    source = ".$lang."_und_src 
+    path = " . $sourcePath . DIRECTORY_SEPARATOR.$lang. DIRECTORY_SEPARATOR .$lang."_und";
 
-    ";
-    foreach ($languages as $trans=>$name) {
-       echo "    local           = $lang"."_$trans"."_index\n";
+    if (isset($languageWithStemmer[$lang])) {
+        echo "
+    morphology              = libstemmer_$lang
+    min_stemming_len        = 4
+";
     }
-    echo"
+echo 
+"
+
 }";
 
 
@@ -273,9 +287,7 @@ index und_und_index : common_index
 
     ";
     foreach ($languages as $lang=>$name) {
-        foreach($languages as $trans=>$name){
-            echo "    local           = $lang"."_$trans"."_index\n";
-        }
+        echo "    local           = $lang"."_und_index\n";
     }
     echo"
 }
