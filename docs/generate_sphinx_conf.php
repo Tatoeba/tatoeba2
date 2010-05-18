@@ -240,7 +240,7 @@ source ".$lang."_und_src : default
 }
 
 
-index ".$lang."_und_index : common_index
+index ".$lang."_und_index : $parent
 {
     source = ".$lang."_und_src 
     path = " . $sourcePath . DIRECTORY_SEPARATOR.$lang. DIRECTORY_SEPARATOR .$lang."_und";
