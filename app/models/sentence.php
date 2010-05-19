@@ -537,8 +537,8 @@ class Sentence extends AppModel
     /**
      * Get translations of a given sentence and translations of translations.
      *
-     * @param int   $id        Id of the sentence we want translations of.
-     * @param array $excludeId Not used anymore imho.
+     * @param int    $id   Id of the sentence we want translations of.
+     * @param string $lang To filter translations only in some language
      *
      * @return array Array of translations (direct and indirect).
      */
@@ -602,7 +602,6 @@ class Sentence extends AppModel
         ";
 
         $results = $this->query($query);
-        //pr ( $results ) ;
 
         $orderedResults = array(
             "Translation" => array(), 
@@ -975,11 +974,11 @@ class Sentence extends AppModel
                     );
                 }
             }
-        }
-        elseif ($type == Sentence::$romanji['mix']) {
+        } elseif ($type == Sentence::$romanji['mix']) {
             foreach ($Owakati as $i=>$word) {
-                preg_match_all('/./u', $word, $char);
-                if (in_array($char[0][0], $katakana) || in_array($char[0][0], $hiragana)) {
+                preg_match_all('/./u', $word, $chars);
+                $char = $chars[0][0];
+                if (in_array($char, $katakana) || in_array($char, $hiragana)) {
                     array_push(
                     $romanization,
                     $word
@@ -1027,6 +1026,34 @@ class Sentence extends AppModel
                 'contain' => array()
             )
         );
+    }
+
+    /**
+     *
+     */
+    public function getNeighborsSentenceIds($sourceId, $lang = null)
+    {
+        $conditions = array();
+        if (!empty($lang)) {
+            $conditions["Sentence.lang"] = $lang;
+        }
+
+        $this->id = $sourceId;
+        $neighborsCake = $this->find(
+            'neighbors',
+            array(
+                'fields' => array("id"),
+                'conditions' => $conditions,
+                'contain'=> array()   
+            )
+        );
+        
+        $neighbors = array(
+            "prev" => $neighborsCake['prev']['Sentence']['id'],
+            "next" => $neighborsCake['next']['Sentence']['id'],
+        );
+        
+        return $neighbors; 
     }
 
     /**

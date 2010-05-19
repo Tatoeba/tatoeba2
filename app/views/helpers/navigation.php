@@ -45,48 +45,59 @@ class NavigationHelper extends AppHelper
      *
      * @return void
      */
-    public function displaySentenceNavigation($currentId = null)
-    {
+    public function displaySentenceNavigation(
+        $currentId = null,
+        $next = null,
+        $prev = null
+    ) {
         $controller = $this->params['controller'];
         $action = $this->params['action'];
         $input = $this->params['pass'][0];
         if ($currentId == null) {
-            $currentId = intval($this->params['pass'][0]);
+            $currentId = intval($input);
+            $next = $currentId + 1;
+            $prev = $currentId - 1;
         }
 
         echo '<div class="navigation">';
             // go to form
             echo $this->Form->create(
-                'Sentence', array("action" => "go_to_sentence", "type" => "get")
+                'Sentence',
+                array(
+                    "action" => "go_to_sentence",
+                    "type" => "get"
+                )
             );
             echo $this->Form->input(
                 'sentence_id', 
-                array("label" => __('Show sentence nº : ', true), 
-                "value" => $input)
+                array(
+                    "label" => __('Show sentence nº : ', true), 
+                    "value" => $input
+                )
             );
             echo $this->Form->end(__('OK', true));
             echo '<ul>';
 
             // previous
-            echo '<li class="option">';
+            echo '<li class="option" id="prevSentence">';
             echo $this->Html->link(
                 '« '.__('previous', true),
                 array(
                     "controller" => $controller,
                     "action" => $action,
-                    $currentId-1
+                    $prev
                 )
             );
             echo '</li>';
 
             // next
-            echo '<li class="option">';
+            echo '<li class="option" id="nextSentence">';
             echo $this->Html->link(
                 __('next', true).' »',
                 array(
                     "controller" => $controller,
                     "action" => $action,
-                    $currentId+1
+                    $next
                 )
             );
             echo '</li>';
@@ -97,6 +108,7 @@ class NavigationHelper extends AppHelper
             $selectedLanguage = $this->Session->read('random_lang_selected');
 
             echo '<li class="option random">';
+            
             echo $this->Html->link(
                 __('random', true),
                 array(
@@ -104,8 +116,12 @@ class NavigationHelper extends AppHelper
                     "action" => "show",
                     $selectedLanguage
                 ),
-                array("id" => "randomLink", "lang" => $this->params['lang'])
+                array(
+                    "id" => "randomLink",
+                    "lang" => $this->params['lang']
+                )
             );
+
             echo $this->Form->select(
                 "randomLangChoiceInBrowse", 
                 $langArray, 

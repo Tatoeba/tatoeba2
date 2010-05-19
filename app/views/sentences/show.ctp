@@ -40,7 +40,11 @@ if (isset($sentence)) {
 
 
 // navigation (previous, random, next)
-$navigation->displaySentenceNavigation();
+$navigation->displaySentenceNavigation(
+    $sentenceId,
+    $nextSentence,
+    $prevSentence
+);
 ?>
 
 <div id="annexe_content">

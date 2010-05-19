@@ -19,10 +19,16 @@
 
 $(document).ready(function(){
     $("#randomLangChoiceInBrowse").change(function(){
+        var host = self.location.hostname;
+        var port = self.location.port;
         var lang = $(this).val();
+        var interfaceLang = $("#randomLink").attr("lang");
+        
         $("#randomLink").attr(
-            "href", "http://" + self.location.hostname + ":" + self.location.port 
-            + "/" + $("#randomLink").attr("lang") + "/sentences/show/" + lang
+            "href",
+            "http://"+host+":"+port+"/"+interfaceLang+"/sentences/show/"+lang
         );
+        // TODO make ajax request to get neighbors value 
+        
     });
 });

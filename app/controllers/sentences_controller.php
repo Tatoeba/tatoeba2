@@ -129,7 +129,7 @@ class SentencesController extends AppController
         
         if (in_array($id, $this->Sentence->languages)) {
             // ----- if we want a random sentence in a specific language -----
-            // here only to make things clearer  
+            // here only to make things clearer as "id" is not a number 
             $lang = $id; 
             $randomId = $this->Sentence->getRandomId($lang);
             
@@ -151,19 +151,32 @@ class SentencesController extends AppController
             $contributions = $this->Contribution->getContributionsRelatedToSentence(
                 $id
             );
+
+            // get Comments on this sentence and permissions of current user
+            // on these sentences
             $comments = $this->SentenceComment->getCommentsForSentence($id);
             $commentsPermissions = $this->Permissions->getCommentsOptions(
                 $comments,
                 $userId,
                 $groupId 
             );
+
+            // we get translations and split them
             $alltranslations = $this->Sentence->getTranslationsOf($id);
             $translations = $alltranslations['Translation'];
             $indirectTranslations = $alltranslations['IndirectTranslation'];
             
+            // this way "next" and "previous"  
+            $lang = $this->Session->read('random_lang_selected');
+            $neighbors = $this->Sentence->getNeighborsSentenceIds($id, $lang); 
+
+            
+
             $this->set('sentenceExists', true);
             $this->set('translations', $translations);
             $this->set('sentence', $sentence);
+            $this->set('nextSentence', $neighbors['next']);
+            $this->set('prevSentence', $neighbors['prev']);
             $this->set('indirectTranslations', $indirectTranslations);
             $this->set('sentenceComments', $comments);
             $this->set('commentsPermissions', $commentsPermissions);
@@ -617,20 +630,6 @@ class SentencesController extends AppController
     {
         $stats = $this->Sentence->getStatistics();
         return($stats);
-    }
-    
-    /**
-     * Count number of sentences that belongs to the current user
-     * and have an unidentified language.
-     * Called in requestAction in pages/home.ctp.
-     *
-     * @return array
-     */
-    public function count_unknown_language()
-    {
-        return $this->Sentence->numberOfUnknownLanguageForUser(
-            $this->Auth->user('id')
-        );
     }
     
     /**
