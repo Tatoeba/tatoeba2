@@ -142,10 +142,11 @@ class PagesController extends AppController
     {
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
-
+        $isLogged = !empty($userId);
         /*latest comments part */
         $SentenceComment = ClassRegistry::init('SentenceComment');
         $latestComments = $SentenceComment->getLatestComments(5);
+
 
         $commentsPermissions = $this->Permissions->getCommentsOptions(
             $latestComments,
@@ -156,11 +157,21 @@ class PagesController extends AppController
 
         $this->set('sentenceComments', $latestComments);
         $this->set('commentsPermissions', $commentsPermissions);  
+       
+        /*Uknown language's sentences part */
+        if ($isLogged) {  
+            $Sentence = ClassRegistry::init('Sentence');
+            $nbrUnknownSentences = $Sentence->numberOfUnknownLanguageForUser(
+                $userId
+            );
+            $this->set('nbrUnknownSentences', $nbrUnknownSentences);
+        }
         
         /*latest messages part */
         $Wall = ClassRegistry::init('Wall');
         $latestMessages = $Wall->getLastMessages(5);
-        
+
+        $this->set('isLogged', $isLogged); 
         $this->set('latestMessages', $latestMessages); 
     }
 

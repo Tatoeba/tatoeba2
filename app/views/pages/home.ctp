@@ -41,7 +41,7 @@ $selectedLanguage = $session->read('random_lang_selected');
 ?>
 <div id="annexe_content">
     <?php
-    if (!$session->read('Auth.User.id')) {
+    if (!$isLogged) {
         ?>
         <div class="module">
             <h2><?php __('Join the community!'); ?></h2>
@@ -74,13 +74,9 @@ $selectedLanguage = $session->read('random_lang_selected');
 
     <?php
     // Warning message prompting the user to specify languages
-    if ($session->read('Auth.User.id')) {
+    if ($isLogged) {
 
-        // TODO  HACK SPOTTED , requestAction is hackish ! 
-        $count_unknown_language = $this->requestAction(
-            '/sentences/count_unknown_language'
-        );
-        if ($count_unknown_language > 0) {
+        if ($nbrUnknownSentences > 0) {
             echo '<div class="module">';
             echo '<p class="warning">';
             __(
@@ -92,7 +88,10 @@ $selectedLanguage = $session->read('random_lang_selected');
             echo '<p class="more_link">';
             echo $html->link(
                 __('Click here to set the languages', true),
-                array("controller" => "sentences", "action" => "unknown_language")
+                array(
+                    "controller" => "sentences",
+                    "action" => "unknown_language"
+                )
             );
             echo '</p>';
             echo '</div>';
@@ -105,26 +104,34 @@ $selectedLanguage = $session->read('random_lang_selected');
         <h2><?php __('Latest messages'); ?></h2>
         <?php 
         // TODO to extract
-        foreach ($latestMessages as $value) {
+        foreach ($latestMessages as $message) {
+
+            $messageOwner = $message['User']['username'];
+            $messageContent = $message['Wall']['content'];
+            $messageDate = $message['Wall']['date'];
+            $messageId = $message['Wall']['id'];
+
             echo '<div class="lastWallMessages">';
                 echo '<div class="header">';
-                echo $date->ago($value['Wall']['date']);
+                echo $date->ago($messageDate);
                 // Text of link
                 $text = sprintf(
                     __('by %s', true), 
-                    $value['User']['username']
+                    $messageOwner
                 );
                 // Path of link
-                $pathToUserProfile = array("controller"=>"user",
-                        "action"=>"profile",
-                        $value['User']['username']);
+                $pathToUserProfile = array(
+                    "controller"=>"user",
+                    "action"=>"profile",
+                    $messageOwner
+                );
                 // Link
                 echo $html->link(' '.$text, $pathToUserProfile);
                 echo '</div>';
                 
                 echo '<div class="body">';
                 // Display only 200 first character of message
-                $contentFirst200 = substr($value['Wall']['content'], 0, 200);
+                $contentFirst200 = substr($messageContent, 0, 200);
                 // Text of the Link
                 // TODO to extract 
                 echo nl2br(
@@ -136,7 +143,7 @@ $selectedLanguage = $session->read('random_lang_selected');
                         )
                     )
                 );
-                if (strlen($value['Wall']['content']) > 200) {
+                if (strlen($messageContent) > 200) {
                     echo ' [...]';
                 }
                 
@@ -146,7 +153,7 @@ $selectedLanguage = $session->read('random_lang_selected');
                 // Path of the link
                 $pathToWallMessage = array(
                             'controller' => 'wall',
-                            'action' => 'index#message_'.$value['Wall']['id']
+                            'action' => 'index#message_'.$messageId
                         );
                 // Link
                 echo $html->link('>>>', $pathToWallMessage);
