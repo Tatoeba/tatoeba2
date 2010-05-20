@@ -24,6 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+$userName = Sanitize::paranoid($username,array("_"));
 
 if ($userExists === true) {
     $numberOfSentences = (int) $paginator->counter(

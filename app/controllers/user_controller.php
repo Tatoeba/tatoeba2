@@ -118,7 +118,7 @@ class UserController extends AppController
      */
     public function profile($userName)
     {
-        $userName = Sanitize::paranoid($userName);
+        $userName = Sanitize::paranoid($userName,array('_'));
         $currentUserId = Sanitize::paranoid($this->Auth->user('id'));
 
         $infoOfUser = $this->User->getInformationOfUser($userName);
