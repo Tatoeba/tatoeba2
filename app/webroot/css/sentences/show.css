@@ -43,8 +43,17 @@
 
 
 /* 
- * Navigation - language of random sentence
+ * Navigation
  */
-#randomLangChoice {
-    width: 110px;
+.languageSelect {
+    margin-bottom: 30px;
+}
+
+.languageSelect select {
+    width: 120px;
+}
+
+.smallTip {
+    font-size: 0.8em;
+    color: #888;
 }

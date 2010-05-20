@@ -33,20 +33,16 @@
 
 .navigation li {
     display: inline;
-    margin-right: 10px;
     padding: 3px;
-    background: #F1F1F1;
-}
-
-.navigation li.option a {
-    padding: 0px 5px;
-    color: #777;
-}
-
-.navigation li.random {
-    padding: 3px 8px;
     margin-right: 10px;
+    background: #D3F3B9;
 }
+
+.navigation .option a {
+    color: #257D0C;
+    padding: 3px;
+}
+
 
 
 /*

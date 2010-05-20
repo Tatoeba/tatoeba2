@@ -58,8 +58,9 @@ class NavigationHelper extends AppHelper
             $next = $currentId + 1;
             $prev = $currentId - 1;
         }
-
-        echo '<div class="navigation">';
+        ?>
+        <div class="navigation">
+            <?php
             // go to form
             echo $this->Form->create(
                 'Sentence',
@@ -76,10 +77,35 @@ class NavigationHelper extends AppHelper
                 )
             );
             echo $this->Form->end(__('OK', true));
-            echo '<ul>';
-
+            ?>
+            
+            <div class="languageSelect">
+            <?php
+            $this->Javascript->link('sentences.random.js', false);
+            $langArray = $this->Languages->languagesArray();
+            $selectedLanguage = $this->Session->read('random_lang_selected');
+            
+            echo $this->Form->select(
+                "randomLangChoiceInBrowse", 
+                $langArray, 
+                $selectedLanguage, 
+                null, 
+                false
+            );
+            ?>
+            
+            <span class="smallTip">
+            &lt;=
+            <?php
+            __('Language for previous, next or random sentence');
+            ?>
+            </span>
+            </div>
+            
+            <ul>
+            <li class="option" id="prevSentence">
+            <?php
             // previous
-            echo '<li class="option" id="prevSentence">';
             echo $this->Html->link(
                 '« '.__('previous', true),
                 array(
@@ -88,10 +114,11 @@ class NavigationHelper extends AppHelper
                     $prev
                 )
             );
-            echo '</li>';
-
+            ?></li>
+            
+            <li class="option" id="nextSentence">
+            <?php
             // next
-            echo '<li class="option" id="nextSentence">';
             echo $this->Html->link(
                 __('next', true).' »',
                 array(
@@ -100,15 +127,12 @@ class NavigationHelper extends AppHelper
                     $next
                 )
             );
-            echo '</li>';
-
-            // random
-            $this->Javascript->link('sentences.random.js', false);
-            $langArray = $this->Languages->languagesArray();
-            $selectedLanguage = $this->Session->read('random_lang_selected');
-
-            echo '<li class="option random">';
+            ?></li>
             
+            
+            <li class="option random">
+            <?php
+            // random
             echo $this->Html->link(
                 __('random', true),
                 array(
@@ -121,20 +145,12 @@ class NavigationHelper extends AppHelper
                     "lang" => $this->params['lang']
                 )
             );
-
-            echo $this->Form->select(
-                "randomLangChoiceInBrowse", 
-                $langArray, 
-                $selectedLanguage, 
-                null, 
-                false
-            );
-            echo '</li>';
-
-
-            echo '</ul>';
-
-        echo '</div>';
+            ?>
+            </li>
+            
+            </ul>
+        </div>
+        <?php
     }
     
     /** 
