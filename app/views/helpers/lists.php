@@ -106,12 +106,7 @@ class ListsHelper extends AppHelper
     public function displayListTable($arrayOfLists)
     {
         ?>
-        <table class="listTable">
-            <tr>
-                <th><?php __('Name'); ?></th>
-                <th><?php __('Created by'); ?></th>
-                <th><?php __('Number of sentences'); ?></th>
-            </tr>
+        <table class="listIndex">
         <?php
         foreach ($arrayOfLists as $list) {
             $this->displayRow(
@@ -146,48 +141,83 @@ class ListsHelper extends AppHelper
         $isPublic,
         $count = 0
     ) {
-
-        // list name
-
-        echo '<tr>';
-        echo '<td class="name">';
-        $name = '('.__('unnamed list', true).')';
-        if (trim($listName) != '') {
-            $name = $listName;
+        if (!CurrentUser::isMember()){
+            $canEdit = false;
+        } else {
+            $belongsToCurrentUser = (CurrentUser::get('username') == $listCreatorName);
+            $canEdit = $isPublic || $belongsToCurrentUser;
         }
-
-        //  list id  
-
-        echo $this->Html->link(
-            $name,
-            array(
-                "controller" => "sentences_lists",
-                "action" => "show",
-                $listId
-            )
-        );
-        echo '</td>';
-       
-        // creator link 
-         
-        echo '<td class="creator">';
-        echo sprintf(
-            __('<a href="%s">%s</a>', true),
-            $this->Html->url(
+        ?>
+        <tr class="listSummary">
+        
+        <td class="nameAndCreator">
+            <div class="name">
+            <?php
+            $name = '('.__('unnamed list', true).')';
+            if (trim($listName) != '') {
+                $name = $listName;
+            }
+            
+            echo $this->Html->link(
+                $name,
+                array(
+                    "controller" => "sentences_lists",
+                    "action" => "show",
+                    $listId
+                )
+            );
+            ?>
+            </div>
+            
+            <div class="creator">
+            <?php
+            $link = $this->Html->link(
+                $listCreatorName,
                 array(
                     "controller"=>"user",
                     "action"=>"profile",
                     $listCreatorName
                 )
-            ),
-            $listCreatorName
-        );
-        echo '</td>';
-       
-        // number of sentences in the list
+            );
+            echo sprintf(__('created by %s', true), $link);
+            ?>
+            </div>
+        </td>
         
-        echo "<td class='count'>$count</td>";
-        echo '</tr>';
+        <td>
+            <div class="count" title="<?php __('Number of sentences') ?>">
+                <?php echo $count; ?>
+            </div>
+        </td>
+        
+        <td class="options">
+            <span class="optionsContainer">
+            <?php
+            echo $this->Html->link(
+                __('Show', true),
+                array(
+                    "controller" => "sentences_lists",
+                    "action" => "show",
+                    $listId
+                )
+            );
+            
+            if ($canEdit) {
+                echo $this->Html->link(
+                    __('Edit', true),
+                    array(
+                        "controller" => "sentences_lists",
+                        "action" => "edit",
+                        $listId
+                    )
+                );
+            }
+            ?>
+            </span>
+        </td>    
+        
+        </tr>
+        <?php
     }
     
     
