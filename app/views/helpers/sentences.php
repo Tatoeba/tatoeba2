@@ -147,6 +147,49 @@ class SentencesHelper extends AppHelper
         }
     }
     
+    
+    /**
+     * Displays group of sentencs with only text, flag and audio button.
+     *
+     * @param array $sentence             Sentence to display.
+     * @param array $translations         Translations of the sentence.
+     *
+     * @return void
+     */
+    public function displaySimpleSentencesGroup($sentence, $translations)
+    {
+        $withAudio = true;
+        $id = $sentence['id'];
+        ?>
+        <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
+        
+        <?php
+        $this->displayGenericSentence(
+            $sentence, 
+            null, 
+            'mainSentence', 
+            $withAudio
+        );
+        ?>
+        
+        <div id="_<?php echo $id; ?>_translations" class="translations">
+        <?php
+        // direct translations
+        foreach ($translations as $translation) {
+            $this->displayGenericSentence(
+                $translation, 
+                null, 
+                'directTranslation', 
+                $withAudio
+            );
+        }
+        ?>
+        </div>
+        
+        </div>
+        <?php
+    }
+    
 
     /**
      * Displays the form to translate a sentence. Appears when clicking on the
@@ -309,7 +352,7 @@ class SentencesHelper extends AppHelper
         
         // audio
         if ($withAudio) {
-            $this->SentenceButtons->audioButton($sentenceId, $sentenceLang);
+            //$this->SentenceButtons->audioButton($sentenceId, $sentenceLang);
         }
         
         // language flag
