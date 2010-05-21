@@ -36,118 +36,36 @@
  */
 class PaginationHelper extends AppHelper
 {
-    public $helpers = array('Html');
-    const RANGE = 12;
+    public $helpers = array('Paginator');
     
-    /** 
-     * Return URL of search.
-     *
-     * @param int    $page  Current page.
-     * @param string $query Search query.
-     * @param string $from  Source language.
-     * @param string $to    Target language.
-     *
-     * @return array
-     */
-    private function _searchUrl($page, $query, $from = null, $to = null)
+    public function display($url)
     {
-        $params  = '?page='.$page;
-        $params .= '&query='.$query;
-        $params .= ($from != null) ? '&from='.$from : '';
-        $params .= ($to != null) ? '&to='.$to : '';
-        return array("controller" => "sentences", "action" => "search", $params);
-    }
-    
-    /** 
-     * Display navigation links for search
-     *
-     * @param int    $totalPages  Total number of pages.
-     * @param int    $currentPage Current page.
-     * @param string $query       Search query.
-     * @param string $from        Source language.
-     * @param string $to          Target language.
-     *
-     * @return void
-     */
-    public function displaySearchPagination(
-        $totalPages, $currentPage, $query, $from = null, $to = null
-    ) {
-        if ($totalPages > 1) {
-            $query = urlencode($query);
-            
-            echo '<div class="pagination">';
-            
-            // Navigation arrows
-            if ($totalPages > PaginationHelper::RANGE) {
-                if ($currentPage > 1) {
-                    echo $this->Html->link(
-                        "<<",
-                        $this->_searchUrl(1, $query, $from, $to),
-                        array("class" => "navigation")
-                    );
-                    
-                    echo $this->Html->link(
-                        "<",
-                        $this->_searchUrl($currentPage-1, $query, $from, $to),
-                        array("class" => "navigation")
-                    );
-                } else {
-                    echo '<strong>'.htmlentities("<<").'</strong>';
-                    echo '<strong>'.htmlentities("<").'</strong>';
-                }
-            }
-            
-            // Setting range
-            $halfRange = PaginationHelper::RANGE/2;
-            if ($totalPages <= PaginationHelper::RANGE) {            
-                $start = 1;
-                $end = $totalPages;
-            } else {
-                if ($currentPage < ceil($halfRange)) {
-                    $start = 1;
-                    $end = PaginationHelper::RANGE;
-                } elseif ($currentPage > $totalPages-ceil($halfRange)) {
-                    $start = $totalPages - PaginationHelper::RANGE;
-                    $end = $totalPages;
-                } else {
-                    $start = $currentPage - floor($halfRange);
-                    $end = $currentPage + floor($halfRange);
-                }
-            }
-            
-            for ($i = $start ; $i <= $end ; $i++) {
-                if ($i == $currentPage) {
-                    echo '<span class="selected">'.$i.'</span>';
-                } else {
-                    echo $this->Html->link(
-                        $i, 
-                        $this->_searchUrl($i, $query, $from, $to)
-                    );
-                }
-            }
-            
-            // Navigation arrows
-            if ($totalPages > PaginationHelper::RANGE) {
-                if ($currentPage < $totalPages) {
-                    echo $this->Html->link(
-                        ">",
-                        $this->_searchUrl($currentPage+1, $query, $from, $to),
-                        array("class" => "navigation")
-                    );
-                    
-                    echo $this->Html->link(
-                        ">>",
-                        $this->_searchUrl($totalPages, $query, $from, $to),
-                        array("class" => "navigation")
-                    );
-                } else {
-                    echo '<strong>'.htmlentities(">").'</strong>';
-                    echo '<strong>'.htmlentities(">>").'</strong>';
-                }
-            }
-            
-            echo '</div>';
-        }
+        ?>
+        <div class="paging">
+        <?php 
+        echo $this->Paginator->prev(
+            '<< '.__('previous', true), 
+            array(), 
+            null, 
+            array('class'=>'disabled')
+        ); 
+        
+        echo $this->Paginator->numbers(
+            array(
+                'url' => $url,
+                'separator' => ''
+            )
+        ); 
+        
+        echo $this->Paginator->next(
+            __('next', true).' >>',
+            array(),
+            null, 
+            array('class'=>'disabled')
+        ); 
+        ?>
+        </div>
+        <?php
     }
 }
 ?>
