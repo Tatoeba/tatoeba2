@@ -36,9 +36,40 @@
  */
 class SentencesList extends AppModel
 {
-    public $belongsTo = array('User');
     public $actsAs = array('ExtendAssociations', 'Containable');
+    
+    public $belongsTo = array('User');
+    public $hasMany = array('SentencesSentencesLists');
     public $hasAndBelongsToMany = array('Sentence');
+    
+    
+    /**
+     * Retrieves list.
+     *
+     * @param int $id Id of the list.
+     *
+     * @return void
+     */
+    public function getList($id)
+    {
+        return $this->find(
+            'first',
+            array(
+                'conditions' => array('SentencesList.id' => $id),
+                'fields' => array(
+                    'SentencesList.id', 
+                    'SentencesList.name', 
+                    'SentencesList.user_id',
+                    'SentencesList.is_public'
+                ),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array('User.username')
+                    )
+                )
+            )
+        );
+    }
     
     /**
      * Returns the sentences lists that the given user can add sentences to.
@@ -170,64 +201,52 @@ class SentencesList extends AppModel
         //foreach($results as $result);
         return $results; 
     }
- 
+    
     
     /**
-     * Returns sentences from a list, along with the translations of the sentences 
-     * if language is specified.
+     * Returns value of $this->paginate, for paginating sentences of a list.
      *
-     * TODO Somebody, optimize this!
-     *
-     * @param int    $listId           Id of the list.
+     * @param int    $id               Id of the list.
      * @param string $translationsLang Language of the translations.
-     *
-     * @return array
+     * @param bool   $isEditable       'true' if the sentences are editable.
+     * @param int    $limit            Number of sentences per page.
      */
-    public function getSentences(
-        $listId, $translationsLang = null
-    ) {
-        
-        // If no translations
-        $contain = array(
-            "Sentence" => array(
-                "fields" => array("id", "lang", "text"),
-                "User" => array(
-                    "fields" => array("id", "username")
-                )
-            )
+    public function paramsForPaginate($id, $translationsLang, $isEditable, $limit)
+    {
+        $sentenceParams = array(
+            'fields' => array('id', 'text', 'lang'),
         );
         
-        // If translations
-        if ($translationsLang != null && $translationsLang != 'none') {
+        if ($isEditable) {
+            $sentenceParams['User'] = array(
+                "fields" => array("id", "username")
+            );
+        }
+        
+        if ($translationsLang != null) {
             // All
-            $contain['Sentence']['Translation'] = array(
+            $sentenceParams['Translation'] = array(
                 "fields" => array("id", "lang", "text"),
             );
             // Specific language
             if ($translationsLang != 'und') {
-                $contain['Sentence']['Translation']['conditions'] = array(
+                $sentenceParams['Translation']['conditions'] = array(
                     "lang" => $translationsLang
                 );
             }
         }
         
-        // Fetch list
-        $list = $this->find(
-            "first",
-            array(
-                "fields" => array("name", "user_id", "is_public"),
-                "conditions" => array("SentencesList.id" => $listId),
-                "contain" => $contain
+        $params = array(
+            'SentencesSentencesLists' => array(
+                'limit' => $limit,
+                'conditions' => array('sentences_list_id' => $id),
+                'contain' => array(
+                    'Sentence' => $sentenceParams
+                )
             )
         );
         
-        $sentences = array();
-        foreach ($list['Sentence'] as $sentence) {
-            $this->Sentence->generateRomanization($sentence);
-            $sentences[] = $sentence;
-        }
-        $list['Sentence'] = $sentences;
-        return $list;
+        return $params;
     }
     
     /**

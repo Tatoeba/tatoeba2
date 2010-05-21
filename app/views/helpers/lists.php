@@ -381,45 +381,59 @@ class ListsHelper extends AppHelper
         <div id="sentence<?php echo $sentence['id']; ?>" class="sentenceInList">        
         
             <?php
-            // Remove from list button
-            if ($canCurrentUserEdit) {
-                ?>
-                <span class="removeFromList">
-                
-                <script type='text/javascript'>
-                $(document).ready(function() {
-                    $('#deleteButton<?php echo $sentence['id']?>').data(
-                        'sentenceId',
-                        <?php echo $sentence['id']; ?>
-                    );
-                });
-                </script>
-                
-                <?php
-                echo $this->Html->image(
-                    'close.png',
-                    array(
-                        "class" => "removeFromListButton",
-                        "id" => 'deleteButton'.$sentence['id']
-                    )
-                );
-                ?>
-                </span>
-                <?php
-            }
             
-            $user = $sentence['User'];
-            $withAudio = false;
-            $indirectTranslations = array();
-            $this->Sentences->displaySentencesGroup(
-                $sentence, $translations, $user, $indirectTranslations, $withAudio
-            );
+            if ($canCurrentUserEdit) {
+                // Remove from list button
+                $this->_displayRemoveButton($sentence['id']);
+                
+                // Sentences group
+                $user = $sentence['User'];
+                $withAudio = false;
+                $indirectTranslations = array();
+                $this->Sentences->displaySentencesGroup(
+                    $sentence,
+                    $translations, 
+                    $user, 
+                    $indirectTranslations,
+                    $withAudio
+                );
+            } else {
+                $this->Sentences->displaySimpleSentencesGroup(
+                    $sentence, 
+                    $translations
+                );
+            }
             ?>
             
         </div>
         <?php
     }
     
+    
+    private function _displayRemoveButton($sentenceId) {
+        ?>
+        <span class="removeFromList">
+        <script type='text/javascript'>
+        $(document).ready(function() {
+            $('#deleteButton<?php echo $sentenceId?>').data(
+                'sentenceId',
+                <?php echo $sentenceId; ?>
+            );
+        });
+        </script>
+        
+        <?php
+        echo $this->Html->image(
+            'close.png',
+            array(
+                "class" => "removeFromListButton",
+                "id" => 'deleteButton'.$sentenceId
+            )
+        );
+        ?>
+        </span>
+        <?php
+    }
     
     /**
      * Form to add a new sentence to a list.
@@ -454,7 +468,6 @@ class ListsHelper extends AppHelper
             )
         );
         ?>
-        </div>
         
         <p>
         <?php
@@ -468,8 +481,8 @@ class ListsHelper extends AppHelper
         );
         ?>
         </p>
-
-
+        </div>
+        
         <div class="sentencesListLoading" style="display:none">
         <?php echo $this->Html->image('loading.gif'); ?>
         </div>

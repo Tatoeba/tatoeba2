@@ -43,9 +43,11 @@ class SentencesListsController extends AppController
         'Csv',
         'Html',
         'Lists',
-        'Menu'
+        'Menu',
+        'Pagination',
     );
     public $components = array ('SaveSentence');
+    
     
     /**
      * Before filter.
@@ -109,17 +111,63 @@ class SentencesListsController extends AppController
      */
     public function show($id = null, $translationsLang = null)
     {
-        if (isset($id)) {
-            $id = Sanitize::paranoid($id);
-            $translationsLang = Sanitize::paranoid($translationsLang);
-            
-            $list = $this->SentencesList->getSentences($id, $translationsLang);
-            
-            $this->set('translationsLang', $translationsLang);
-            $this->set('list', $list);
-        } else {
+        $id = Sanitize::paranoid($id);
+        $translationsLang = Sanitize::paranoid($translationsLang);
+        
+        if (!isset($id)) {
             $this->redirect(array("action"=>"index"));
         }
+        
+        $this->_get_sentences_for_list($id, $translationsLang, false, 10);
+    }
+    
+    
+    /**
+     * Displays a list for editing purpose.
+     *
+     * @param int    $id               Id of list.
+     * @param string $translationsLang Language of translations.
+     *
+     * @return mixed
+     */
+    public function edit($id = null, $translationsLang = null)
+    {
+        $id = Sanitize::paranoid($id);
+        $translationsLang = Sanitize::paranoid($translationsLang);
+        
+        if (!isset($id)) {
+            $this->redirect(array("action"=>"index"));
+        }
+        
+        $userId = $this->Auth->user('id');
+        if (!$this->SentencesList->belongsToCurrentUser($id, $userId)) {
+            $this->redirect(array("action"=>"show", $id));
+        }
+        
+        $this->_get_sentences_for_list($id, $translationsLang, true, 10);
+    }
+    
+    /**
+     * Retrieve sentences for a list. Used in show() and edit().
+     * 
+     * @param int    $id               Id of the list.
+     * @param string $translationsLang Language of the translations.
+     * @param bool   $isEditable       'true' if the sentences are editable.
+     * @param int    $limit            Number of sentences per page.
+     */
+    private function _get_sentences_for_list(
+        $id, $translationsLang, $isEditable, $limit
+    ) {
+        $list = $this->SentencesList->getList($id);
+        
+        $this->paginate = $this->SentencesList->paramsForPaginate(
+            $id, $translationsLang, $isEditable, $limit
+        );
+        $sentencesInList = $this->paginate('SentencesSentencesLists');
+        
+        $this->set('translationsLang', $translationsLang);
+        $this->set('list', $list);
+        $this->set('sentencesInList', $sentencesInList);
     }
 
 
@@ -138,31 +186,6 @@ class SentencesListsController extends AppController
         } else {
             $this->redirect(array("action"=>"index"));
         }
-    }
-
-
-    /**
-     * Edit list. From that page user can remove sentences from list, edit list
-     * name or delete list.
-     * NOTE: This is has been merged with show().
-     *
-     * @param int    $id               Id of list.
-     * @param string $translationsLang Language of translations.
-     *
-     * @return void
-     */
-    public function edit($id, $translationsLang = null)
-    {
-        $id = Sanitize::paranoid($id);
-        $translationsLang = Sanitize::paranoid($translationsLang);
-        $this->redirect(
-            array(
-                "action" => "show", 
-                $id, 
-                $translationsLang
-            ),
-            301
-        );
     }
 
 

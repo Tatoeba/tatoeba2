@@ -63,78 +63,37 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     ?>
     </div>
     
-    
-    <?php
-    if ($canUserEdit) {
-        ?>
-        <div class="module">
-        
-        <h2><?php __('Tips'); ?></h2>
-        
-        <?php
-        if ($belongsToUser) {
-            ?>
-            <p>
-            <?php __('You can change the name of the list by clicking on it.'); ?>
-            </p>
-            <?php
-        }
-        ?>
-        
-        <p>
-        <?php
-        __('You can remove a sentence from the list by clicking on the X icon.'); 
-        ?>
-        </p>
-        
-        <p>
-        <?php
-        __(
-            'Removing a sentence will not delete it. '.
-            'The sentence will just not be part of the list anymore.'
-        );
-        ?>
-        </p>
-        
-        </div>
-        <?php
-    }
-    ?>
-    
 </div>
 
 <div id="main_content">
     <div class="module">
-    <?php
-    $class = '';
-    if ($belongsToUser) {
-        $javascript->link('jquery.jeditable.js', false);
-        $javascript->link('sentences_lists.edit_name.js', false);
-        
-        $class = 'editable editableSentencesListName';
-    }
     
-    echo '<h2 id="l'.$listId.'" class="'.$class.'">';
-    echo $listName;
-    echo '</h2>';
-
-    if ($canUserEdit) {
-        $javascript->link('sentences_lists.remove_sentence_from_list.js', false);
-        $lists->displayAddSentenceForm($listId);
-    }
+    <h2 id="l<?php echo $listId; ?>">
+    <?php echo $listName; ?>
+    </h2>
+    
+    <?php
+    $url = array($listId, $translationsLang);
+    $pagination->display($url);
     ?>
     
     <div class="sentencesList" id="sentencesList">
     <?php
-    foreach ($list['Sentence'] as $sentence) {
+    foreach ($sentencesInList as $item) {
+        $sentence = $item['Sentence'];
         $translations = array();
         if (!empty($sentence['Translation'])) {
             $translations = $sentence['Translation'];
         }
+        $canUserEdit = false;
         $lists->displaySentence($sentence, $translations, $canUserEdit);
     }
     ?>
     </div>
+    
+    <?php
+    $pagination->display($url);
+    ?>
     
     </div>
 </div>

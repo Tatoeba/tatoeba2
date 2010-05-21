@@ -23,6 +23,12 @@
 @import url(../elements/sentences_group.css);
 
 
+/*
+ * Sentences
+ */
+@import url(../elements/pagination.css);
+
+
 /* 
  * Add sentence 
  */
@@ -46,42 +52,17 @@
  * List
  */
 .sentenceInList {
-    margin: 40px 0px;
-}
-
-.sentenceInList .sentences_set {
-    margin-right: 40px;
-}
-
-.sentenceInList .removeFromList {
-    float: right;
-    margin-top: 42px;
+    padding: 20px 0px;
+    border-top: 1px dotted #CCC;
 }
 
 .sentencesListActions li {
     margin: 10px 0px;
 }
 
-.publicList {
-    color: #4ABC00;
-    font-weight: bold;
-}
-
 .translationInList {
     margin: 5px 0px;
     font-size: 0.8em;
-}
-
-.removeFromListButton {
-    cursor: pointer;
-}
-
-
-/*
- * Delete list 
- */
-.deleteList a {
-    color: #FF2128;
 }
 
 
