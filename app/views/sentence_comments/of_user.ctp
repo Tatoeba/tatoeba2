@@ -37,16 +37,6 @@
 
 $this->pageTitle = 'Tatoeba - ' . sprintf(__("%s's comments", true), $userName);
 
-// use to send the same arguments to each pages
-// not called if user doesn't actually exist
-if ($userExists === true && $noComment === false) {
-    $paginator->options(
-        array(
-            'url' => $this->params['pass']
-        ) 
-    );
-}
-
 // create an helper a lot of the code is the same of "on_sentences_of_user"
 ?>
 
@@ -81,25 +71,10 @@ if ($userExists === true && $noComment === false) {
             ?>
         </h2>
         
-        <div class="paging">
-        <?php 
-        echo $paginator->prev(
-            '<< '.__('previous', true), 
-            array(), 
-            null, 
-            array('class'=>'disabled')
-        ); 
+        <?php
+        $paginatorUrl = array($userName);
+        $pagination->display($paginatorUrl);
         ?>
-        <?php echo $paginator->numbers(array('separator' => '')); ?>
-        <?php 
-        echo $paginator->next(
-            __('next', true).' >>',
-            array(),
-            null, 
-            array('class'=>'disabled')
-        ); 
-        ?>
-        </div>
         
         <ol class="comments">
         <?php
@@ -113,27 +88,9 @@ if ($userExists === true && $noComment === false) {
         ?>
         </ol>
         
-        <div class="paging">
-            <?php
-            echo $paginator->prev(
-                '<< '.__('previous', true), 
-                array(), 
-                null, 
-                array('class'=>'disabled')
-            ); 
-            ?>
-
-            <?php echo $paginator->numbers(array('separator' => '')); ?>
-            <?php 
-            echo $paginator->next(
-                __('next', true).' >>', 
-                array(), 
-                null, 
-                array('class'=>'disabled')
-            ); 
-            ?>
-        </div>
-    <?php
+       <?php
+        $pagination->display($paginatorUrl);
+        
     }
     ?>
     </div>

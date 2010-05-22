@@ -38,17 +38,6 @@
 $this->pageTitle = 'Tatoeba - ' . sprintf(
     __("Comments on %s's sentences", true), $userName
 ); 
- 
-// use to send the same arguments to each pages
-// not called if user doesn't actually exist
-if ($userExists === true){
-    $paginator->options(
-        array(
-            'url' => $this->params['pass']
-        ) 
-    ); 
-}
-
 ?>
 
 <div id="main_content">
@@ -89,25 +78,12 @@ if ($userExists === true){
             ?>
         </h2>
         
-        <div class="paging">
+        
         <?php 
-        echo $paginator->prev(
-            '<< '.__('previous', true), 
-            array(), 
-            null, 
-            array('class'=>'disabled')
-        ); 
+        $paginatorUrl = array($userName);
+        $pagination->display($paginatorUrl);
         ?>
-        <?php echo $paginator->numbers(array('separator' => '')); ?>
-        <?php 
-        echo $paginator->next(
-            __('next', true).' >>',
-            array(),
-            null, 
-            array('class'=>'disabled')
-        ); 
-        ?>
-        </div>
+        
         
         <ol class="comments">
         <?php
@@ -121,27 +97,10 @@ if ($userExists === true){
         ?>
         </ol>
         
-        <div class="paging">
-            <?php
-            echo $paginator->prev(
-                '<< '.__('previous', true), 
-                array(), 
-                null, 
-                array('class'=>'disabled')
-            ); 
-            ?>
-
-            <?php echo $paginator->numbers(array('separator' => '')); ?>
-            <?php 
-            echo $paginator->next(
-                __('next', true).' >>', 
-                array(), 
-                null, 
-                array('class'=>'disabled')
-            ); 
-            ?>
-        </div>
-    <?php
+        
+        <?php
+        $pagination->display($paginatorUrl);
+        
     }
     ?> 
     </div>

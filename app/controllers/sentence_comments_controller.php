@@ -49,6 +49,7 @@ class SentenceCommentsController extends AppController
         'Navigation',
         'Html',
         'CommonModules',
+        'Pagination'
     );
     public $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
     public $paginate = array(

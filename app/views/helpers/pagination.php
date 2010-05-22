@@ -38,14 +38,23 @@ class PaginationHelper extends AppHelper
 {
     public $helpers = array('Paginator');
     
-    public function display($url)
+    
+    /**
+     * Display pagination.
+     *
+     * @param array $url Array containing the extra params that should appear
+     *                   in the pagination URL.
+     *
+     * @return void
+     */
+    public function display($url = array())
     {
         ?>
         <div class="paging">
         <?php 
         echo $this->Paginator->prev(
             '<< '.__('previous', true), 
-            array(), 
+            array('url' => $url), 
             null, 
             array('class'=>'disabled')
         ); 
@@ -59,7 +68,7 @@ class PaginationHelper extends AppHelper
         
         echo $this->Paginator->next(
             __('next', true).' >>',
-            array(),
+            array('url' => $url),
             null, 
             array('class'=>'disabled')
         ); 

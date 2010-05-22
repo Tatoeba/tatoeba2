@@ -53,28 +53,12 @@ $this->pageTitle = 'Tatoeba - ' . __('Comments on sentences', true);
             ?>
         </h2>
         
-        <div class="paging">
-        <?php 
-        echo $paginator->prev(
-            '<< '.__('previous', true), 
-            array(), 
-            null, 
-            array('class'=>'disabled')
-        ); 
-        ?>
-        <?php echo $paginator->numbers(array('separator' => '')); ?>
-        <?php 
-        echo $paginator->next(
-            __('next', true).' >>',
-            array(),
-            null, 
-            array('class'=>'disabled')
-        ); 
-        ?>
-        </div>
-        
         <?php
-        echo '<ol class="comments">';
+        $pagination->display();
+        ?>
+        
+        <ol class="comments">
+        <?php
         foreach ($sentenceComments as $i=>$comment) {
             $comments->displaySentenceComment(
                 $comment,
@@ -82,30 +66,12 @@ $this->pageTitle = 'Tatoeba - ' . __('Comments on sentences', true);
                 $commentsPermissions[$i]
             );
         }
-        echo '</ol>';
         ?>
+        </ol>
         
-        <div class="paging">
-        <?php 
-        echo $paginator->prev(
-            '<< '.__('previous', true), 
-            array(), 
-            null, 
-            array('class'=>'disabled')
-        ); 
+        <?php
+        $pagination->display();
         ?>
-        <?php echo $paginator->numbers(array('separator' => '')); ?>
-        <?php 
-        echo $paginator->next(
-            __('next', true).' >>', 
-            array(), 
-            null, 
-            array('class'=>'disabled')
-        ); 
-        ?>
-        </div>
         
     </div>
 </div>
-
-
