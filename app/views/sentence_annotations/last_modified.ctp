@@ -60,25 +60,9 @@
     ?>
     </h2>
     
-    <div class="paging">
-    <?php 
-    echo $paginator->prev(
-        '<< '.__('previous', true), 
-        array(), 
-        null, 
-        array('class'=>'disabled')
-    ); 
+    <?php
+    $pagination->display();
     ?>
-    <?php echo $paginator->numbers(array('separator' => '')); ?>
-    <?php 
-    echo $paginator->next(
-        __('next', true).' >>',
-        array(),
-        null, 
-        array('class'=>'disabled')
-    ); 
-    ?>
-    </div>
     
     <table class="logs">
     <?php
@@ -99,23 +83,7 @@
     </table>
     </div>
     
-    <div class="paging">
-    <?php 
-    echo $paginator->prev(
-        '<< '.__('previous', true), 
-        array(), 
-        null, 
-        array('class'=>'disabled')
-    ); 
+    <?php
+    $pagination->display();
     ?>
-    <?php echo $paginator->numbers(array('separator' => '')); ?>
-    <?php 
-    echo $paginator->next(
-        __('next', true).' >>',
-        array(),
-        null, 
-        array('class'=>'disabled')
-    ); 
-    ?>
-    </div>
 </div>

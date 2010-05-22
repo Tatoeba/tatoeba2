@@ -40,7 +40,8 @@ class SentenceAnnotationsController extends AppController
 {
     public $name = 'SentenceAnnotations';
     public $helpers = array(
-        'SentenceAnnotations'
+        'SentenceAnnotations',
+        'Pagination'
     );
     
     
