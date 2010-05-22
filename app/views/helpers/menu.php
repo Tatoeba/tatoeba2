@@ -420,7 +420,7 @@ class MenuHelper extends AppHelper
             $this->addToListButton($sentenceId);
         }
         
-        if (CurrentUser::isAdmin()) {
+        if (CurrentUser::isModerator()) {
             // Delete
             $this->deleteButton($sentenceId);
         }
