@@ -299,6 +299,7 @@ class Contribution extends AppModel
     public function saveSentenceContribution($id, $lang, $text, $action)
     {
         $data = array(
+            'id' => null,
             'sentence_id' => $id,
             'sentence_lang' => $lang,
             'text' => $text,
@@ -325,6 +326,7 @@ class Contribution extends AppModel
     public function saveLinkContribution($sentenceId, $translationId, $action)
     {
         $data = array(
+            'id' => null,
             'sentence_id' => $sentenceId,
             'translation_id' => $translationId,
             'user_id' => CurrentUser::get('id'),
@@ -333,7 +335,6 @@ class Contribution extends AppModel
             'type' => 'link',
             'action' => $action
         );
-        
         $this->save($data);
     }
 
