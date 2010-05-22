@@ -150,8 +150,9 @@ class Contribution extends AppModel
         
         $conditions = array('Contribution.type' => 'sentence');
 
-        if ($lang != 'und') {
-            $conditions['Sentence.lang'] = $lang ;
+        $table = "contributions";
+        if ($lang == 'und'|| empty($lang)) {
+            $table = "last_contributions"; 
         }
 
         $query ="
@@ -164,7 +165,7 @@ class Contribution extends AppModel
                 `Contribution`.`sentence_lang`,
                 `User`.`username`,
                 `User`.`id`
-            FROM `contributions` AS `Contribution`  
+            FROM `$table` AS `Contribution`  
         ";
         $query.=" 
                 INNER JOIN `users` AS `User`
