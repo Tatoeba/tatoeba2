@@ -19,17 +19,22 @@
 
 $(document).ready(function(){
     $("#randomLangChoiceInBrowse").change(function(){
+        var currentId = $(this).data('currentSentenceId');
+        var lang = $(this).val();
+        
         var host = self.location.hostname;
         var port = self.location.port;
-        var lang = $(this).val();
         var interfaceLang = $("#randomLink").attr("lang");
+        var baseURL = "http://"+host+":"+port+"/"+interfaceLang+"/sentences/show/";
         
-        $("#randomLink").attr(
-            "href",
-            "http://"+host+":"+port+"/"+interfaceLang+"/sentences/show/"+lang
-        );
-        var currentId = $(this).data('currentSentenceId');
-        // TODO make ajax request to get neighbors value
+        
+        // Showing loading animation
+        $("#loadingAnimationForNavigation").show();
+        
+        // Update random link
+        $("#randomLink").attr("href",baseURL+lang);
+        
+        
         $.post(
             "http://" + host + ":" + port + "/sentences/get_neighbors_for_ajax/"+currentId+"/"+ lang,
             {},
@@ -38,15 +43,25 @@ $(document).ready(function(){
                 prevId = neighbors[0];
                 nextId = neighbors[1];
                 
+                // Update "previous" link
                 if (prevId == "") {
-                    $("#prevSentence").attr("class","unactive");
+                    $("#prevSentence").attr("class", "inactive");
+                    $("#prevSentence a").attr("href", "");
+                } else {
+                    $("#prevSentence").attr("class", "active");
+                    $("#prevSentence a").attr("href",baseURL+prevId);
                 }
-                // TODO set to active if not null
-            
+                
+                // Update "next" link
                 if (nextId == "") {
-                    $("#nextSentence").attr("class","unactive");
+                    $("#nextSentence").attr("class", "inactive");
+                    $("#nextSentence a").attr("href", "");
+                } else {
+                    $("#nextSentence").attr("class", "active");
+                    $("#nextSentence a").attr("href", baseURL+nextId);
                 }
-                // same
+                
+                $("#loadingAnimationForNavigation").hide();
             }
         );
     });

@@ -140,7 +140,7 @@ class NavigationHelper extends AppHelper
             ?></li>
             
             
-            <li class="active random">
+            <li class="active" id="randomLink">
             <?php
             // random
             echo $this->Html->link(
@@ -151,10 +151,15 @@ class NavigationHelper extends AppHelper
                     $selectedLanguage
                 ),
                 array(
-                    "id" => "randomLink",
                     "lang" => $this->params['lang']
                 )
             );
+            ?>
+            </li>
+            
+            <li id="loadingAnimationForNavigation" style="display:none">
+            <?php
+            echo $this->Html->image('loading-small.gif');
             ?>
             </li>
             
