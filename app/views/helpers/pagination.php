@@ -47,28 +47,45 @@ class PaginationHelper extends AppHelper
      *
      * @return void
      */
-    public function display($url = array())
+    public function display($url = null)
     {
+        // -----------------------------------------------------------
+        // So that we can pass GET variables into the pagination links.
+        // Took it from here:
+        // http://bdsarwar.wordpress.com/2010/01/12/passing-get-variable-in-cakephp-pagination-url/
+        $urls = $this->params['url']; $getv = "";
+        foreach($urls as $key=>$value)
+        {
+            if($key == 'url') continue; // we need to ignor the url field
+            $getv .= urlencode($key)."=".urlencode($value)."&"; // making the passing parameters
+        }
+        $getv = substr_replace($getv ,"",-1); // remove the last char '&'
+        $this->Paginator->options(array('url' => array("?"=>$getv)));
+        // -----------------------------------------------------------
+        
+        
+        $prevNextOptions = array();
+        $numbersOptions = array('separator' => '');
+        
+        if (!empty($url)) {
+            $prevNextOptions['url'] = $url;
+            $numbersOptions['url'] = $url;
+        }        
         ?>
         <div class="paging">
         <?php 
         echo $this->Paginator->prev(
             '<< '.__('previous', true), 
-            array('url' => $url), 
+            $prevNextOptions, 
             null, 
             array('class'=>'disabled')
         ); 
         
-        echo $this->Paginator->numbers(
-            array(
-                'url' => $url,
-                'separator' => ''
-            )
-        ); 
+        echo $this->Paginator->numbers($numbersOptions); 
         
         echo $this->Paginator->next(
             __('next', true).' >>',
-            array('url' => $url),
+            $prevNextOptions,
             null, 
             array('class'=>'disabled')
         ); 
