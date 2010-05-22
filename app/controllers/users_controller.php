@@ -38,7 +38,13 @@ class UsersController extends AppController
 {
     public $name = 'Users';
     public $helpers = array(
-        'Html', 'Form', 'Date', 'Logs', 'Sentences', 'Navigation'
+        'Html',
+        'Form',
+        'Date',
+        'Logs',
+        'Sentences',
+        'Navigation',
+        'Pagination'
     );
     public $components = array ('Mailer', 'Captcha', 'RememberMe');
     public $paginate = array(

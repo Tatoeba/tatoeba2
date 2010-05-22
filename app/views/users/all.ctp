@@ -94,11 +94,9 @@ $navigation->displayUsersNavigation($id);
 	<div class="module">
 		<h2><?=$paginator->counter(array('format' => __('Members (total %count%)', true))); ?></h2>
 
-		<div class="paging">
-		<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
-		<?php echo $paginator->numbers(array('separator' => ''));?>
-		<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
-		</div>
+		<?php
+        $pagination->display();
+        ?>
 		<table class="users">
 		<tr>
 			<th></th>
@@ -148,14 +146,10 @@ $navigation->displayUsersNavigation($id);
 			</tr>
 		<?php endforeach; ?>
 		</table>
-
-
-
-		<div class="paging">
-		<?php echo $paginator->prev('<< '.__('previous', true), array(), null, array('class'=>'disabled'));?>
-		<?php echo $paginator->numbers(array('separator' => ''));?>
-		<?php echo $paginator->next(__('next', true).' >>', array(), null, array('class'=>'disabled'));?>
-		</div>
+        
+        <?php
+        $pagination->display();
+        ?>
 	</div>
 </div>
 
