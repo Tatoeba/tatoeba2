@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-$userName = Sanitize::paranoid($username,array("_"));
+$userName = Sanitize::paranoid($userName, array("_"));
 
 if ($userExists === true) {
     $numberOfSentences = (int) $paginator->counter(
@@ -77,32 +77,11 @@ if ($userExists === true) {
             ?>
         </h2>
         
-        <div class="paging">
-        <?php 
-        echo $paginator->prev(
-            '<< '.__('previous', true), 
-            array(), 
-            null, 
-            array('class'=>'disabled')
-        ); 
-        
-        echo $paginator->numbers(
-            array(
-                'url' => array($userName, $lang),
-                'separator' => ''
-            )
-        ); 
-        
-        echo $paginator->next(
-            __('next', true).' >>',
-            array(),
-            null, 
-            array('class'=>'disabled')
-        ); 
-        ?>
-        </div>
-        
         <?php
+        $paginationUrl = array($userName, $lang);
+        $pagination->display($paginationUrl);
+        
+        
         $type = 'mainSentence';
         $parentId = null;
         $withAudio = false;
@@ -116,29 +95,9 @@ if ($userExists === true) {
                 $withAudio
             );
         }
-        ?>
         
-        <div class="paging">
-        <?php 
-        echo $paginator->prev(
-            '<< '.__('previous', true), 
-            array(), 
-            null, 
-            array('class'=>'disabled')
-        ); 
-        ?>
-        <?php echo $paginator->numbers(array('separator' => '')); ?>
-        <?php 
-        echo $paginator->next(
-            __('next', true).' >>', 
-            array(), 
-            null, 
-            array('class'=>'disabled')
-        ); 
-        ?>
-        </div>
-
-    <?php
+        
+        $pagination->display($paginationUrl);
     }
     ?>
     </div>
