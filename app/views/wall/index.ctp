@@ -110,28 +110,8 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
         ?>
         
         <?php
-        // Pagination
-        // TODO extract this
+        $pagination->display();
         ?>
-        <div class="paging">
-            <?php 
-            echo $paginator->prev(
-                '<< '.__('previous', true), 
-                array(), 
-                null, 
-                array('class'=>'disabled')
-            ); 
-            
-            echo $paginator->numbers(array('separator' => ''));
-            
-            echo $paginator->next(
-                __('next', true).' >>',
-                array(),
-                null, 
-                array('class'=>'disabled')
-            ); 
-            ?>
-        </div>
         
         <ol class="wall">
         <?php
@@ -148,27 +128,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
         </ol>
         
         <?php
-        // Pagination
-        // TODO extract it
+        $pagination->display();
         ?>
-        <div class="paging">
-            <?php 
-            echo $paginator->prev(
-                '<< '.__('previous', true), 
-                array(), 
-                null, 
-                array('class'=>'disabled')
-            ); 
-            
-            echo $paginator->numbers(array('separator' => ''));
-            
-            echo $paginator->next(
-                __('next', true).' >>',
-                array(),
-                null, 
-                array('class'=>'disabled')
-            ); 
-            ?>
-        </div>
     </div>
 </div>

@@ -53,7 +53,12 @@ class WallController extends Appcontroller
             )
         )
     );
-    public $helpers = array('Wall','Javascript','Date');
+    public $helpers = array(
+        'Wall',
+        'Javascript',
+        'Date',
+        'Pagination'
+    );
     public $components = array ('Mailer');
     /**
      * to know who can do what
