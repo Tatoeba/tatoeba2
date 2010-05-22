@@ -89,7 +89,8 @@ class SentencesController extends AppController
             'get_translations',
             'change_language',
             'several_random_sentences',
-            'sentences_group'
+            'sentences_group',
+            'get_neighbors_for_ajax',
         );
     }
 
@@ -814,6 +815,18 @@ class SentencesController extends AppController
             $this->Sentence->incrementStatistics($newlang);
             $this->Sentence->decrementStatistics($prevLang);
         }
+    }
+
+    /**
+     *
+     */
+    public function get_neighbors_for_ajax($id, $lang) {
+        $this->layout = null;
+
+        $this->Session->write('random_lang_selected', $lang);
+        $neighbors = $this->Sentence->getNeighborsSentenceIds($id, $lang);
+        $this->set('nextSentence', $neighbors['next']);
+        $this->set('prevSentence', $neighbors['prev']);
     }
     
 }

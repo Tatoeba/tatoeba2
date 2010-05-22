@@ -28,7 +28,26 @@ $(document).ready(function(){
             "href",
             "http://"+host+":"+port+"/"+interfaceLang+"/sentences/show/"+lang
         );
-        // TODO make ajax request to get neighbors value 
-        
+        var currentId = $(this).data('currentSentenceId');
+        // TODO make ajax request to get neighbors value
+        $.post(
+            "http://" + host + ":" + port + "/sentences/get_neighbors_for_ajax/"+currentId+"/"+ lang,
+            {},
+            function(data){
+                neighbors = data.split(";");
+                prevId = neighbors[0];
+                nextId = neighbors[1];
+                
+                if (prevId == "") {
+                    $("#prevSentence").attr("class","unactive");
+                }
+                // TODO set to active if not null
+            
+                if (nextId == "") {
+                    $("#nextSentence").attr("class","unactive");
+                }
+                // same
+            }
+        );
     });
 });

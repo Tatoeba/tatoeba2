@@ -80,8 +80,18 @@ class NavigationHelper extends AppHelper
             ?>
             
             <div class="languageSelect">
+            <script type='text/javascript'>
+            $(document).ready(function() {
+            $('#randomLangChoiceInBrowse').data(
+                'currentSentenceId', <?php echo $currentId ?>
+            );
+            });
+            </script>
+           
             <?php
             $this->Javascript->link('sentences.random.js', false);
+            
+            
             $langArray = $this->Languages->languagesArray();
             $selectedLanguage = $this->Session->read('random_lang_selected');
             
@@ -103,7 +113,7 @@ class NavigationHelper extends AppHelper
             </div>
             
             <ul>
-            <li class="option" id="prevSentence">
+            <li class="active" id="prevSentence">
             <?php
             // previous
             echo $this->Html->link(
@@ -116,7 +126,7 @@ class NavigationHelper extends AppHelper
             );
             ?></li>
             
-            <li class="option" id="nextSentence">
+            <li class="active" id="nextSentence">
             <?php
             // next
             echo $this->Html->link(
@@ -130,7 +140,7 @@ class NavigationHelper extends AppHelper
             ?></li>
             
             
-            <li class="option random">
+            <li class="active random">
             <?php
             // random
             echo $this->Html->link(
