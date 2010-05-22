@@ -35,12 +35,23 @@
     display: inline;
     padding: 3px;
     margin-right: 10px;
+}
+
+.navigation a {
+    padding: 3px;
+}
+
+.navigation .active {
     background: #D3F3B9;
 }
 
-.navigation .option a {
+.navigation .active a{
     color: #257D0C;
-    padding: 3px;
+}
+
+.navigation .inactive {
+    color: #849684;
+    background: #F1F1F1;
 }
 
 
