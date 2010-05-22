@@ -140,9 +140,14 @@ class Contribution extends AppModel
      */
     public function getLastContributions($limit,$lang = 'und')
     {
-        if (strlen($lang) != 3 OR !is_numeric($limit)) {
+        // we sanitize, really important here as we forge our own query
+        $limit = Sanitize::paranoid($limit);
+        $lang = Sanitize::paranoid($lang);
+
+        if (strlen($lang) != 3 || !is_numeric($limit)) {
             return array();
         }
+        
         $conditions = array('Contribution.type' => 'sentence');
 
         if ($lang != 'und') {
@@ -171,7 +176,7 @@ class Contribution extends AppModel
 
         $query.="
                 `Contribution`.`type` = 'sentence'
-            ORDER BY `Contribution`.`datetime` DESC 
+            ORDER BY `Contribution`.`id` DESC 
             LIMIT $limit 
         "; 
         
@@ -299,7 +304,7 @@ class Contribution extends AppModel
             'text' => $text,
             'user_id' => CurrentUser::get('id'),
             'datetime' => date("Y-m-d H:i:s"),
-            'ip' => $_SERVER['REMOTE_ADDR'],
+            'ip' => CurrentUser::getIp(), 
             'type' => 'sentence',
             'action' => $action
         );
@@ -324,12 +329,13 @@ class Contribution extends AppModel
             'translation_id' => $translationId,
             'user_id' => CurrentUser::get('id'),
             'datetime' => date("Y-m-d H:i:s"),
-            'ip' => $_SERVER['REMOTE_ADDR'],
+            'ip' => CurrentUser::getIp(),
             'type' => 'link',
             'action' => $action
         );
         
         $this->save($data);
     }
+
 }
 ?>

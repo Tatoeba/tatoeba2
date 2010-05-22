@@ -43,20 +43,20 @@ class CurrentUser extends AppModel
 {
     public $useTable = null;
     
-    private static $auth;
+    private static $_auth;
     
     
     /**
      * Store the Auth information of the user, i.e. the value is the one returned 
      * by Auth::user(). Used in app_controller.php, in beforeFilter().
      * 
-     * @param array $user 
+     * @param array $user Value returned by Auth::user()
      *
      * @return void
      */
     public static function store($user)
     {
-        self::$auth = $user;
+        self::$_auth = $user;
     }
     
     
@@ -68,10 +68,15 @@ class CurrentUser extends AppModel
      * http://github.com/mcurry/cakephp/tree/master/snippets/static_user
      * http://www.pseudocoder.com/archives/2008/10/06/accessing-user-sessions-from-models-or-anywhere-in-cakephp-revealed/
      *
+     * @param string $path
+     *
      * @author      Matt Curry <matt@pseudocoder.com>
      * @license     MIT
+     *
+     * @return string
      */
-    public static function get($path) {
+    public static function get($path)
+    {
         $path = str_replace('.', '/', $path);
         if (strpos($path, 'User') !== 0) {
             $path = sprintf('User/%s', $path);
@@ -81,7 +86,7 @@ class CurrentUser extends AppModel
             $path = sprintf('/%s', $path);
         }
 
-        $value = Set::extract($path, self::$auth);
+        $value = Set::extract($path, self::$_auth);
 
         if (!$value) {
             return false;
@@ -138,9 +143,9 @@ class CurrentUser extends AppModel
     
     /**
      * Indicates if current user can link/unlink translations to the sentence of
-     * given id.
+     * given id. TODO something is wrong here
      *
-     * @param int $sentenceId Id of the main sentence.
+     * @param string $username Name of the sentence owner (?).
      * 
      * @return bool
      */
@@ -190,6 +195,26 @@ class CurrentUser extends AppModel
         $FavoritedBy = ClassRegistry::init('FavoritedBy');
         return $FavoritedBy->isSentenceFavoritedByUser($sentenceId, $userId);
     }
+
+    /**
+     * Get user's ip, even if behind a proxy (anyway tatoeba is currently
+     * behind a proxy
+     *
+     * @return IP
+     */
+    public function getIp()
+    {
+        if (getenv("HTTP_CLIENT_IP")) {
+            return getenv("HTTP_CLIENT_IP"); 
+        } elseif (getenv("HTTP_X_FORWARDED_FOR")) {
+            return getenv("HTTP_X_FORWARDED_FOR"); 
+        } else { 
+            return getenv("REMOTE_ADDR"); 
+        }
+    } 
+
+
+
     
 }
 ?>

@@ -169,7 +169,6 @@ class SentencesController extends AppController
             // this way "next" and "previous"  
             $lang = $this->Session->read('random_lang_selected');
             $neighbors = $this->Sentence->getNeighborsSentenceIds($id, $lang); 
-
             
 
             $this->set('sentenceExists', true);

@@ -51,23 +51,14 @@ class Visitor extends AppModel
         $this->deleteAll(array('timestamp < ' . $timestamp_5min), false);
         
         // adding visitor to the list
-        if ($this->findByIp($this->_findIp()) == null) {
+        if ($this->findByIp(CurrentUser::getIp()) == null) {
             $data['Visitor']['timestamp'] = time();
-            $data['Visitor']['ip'] = $this->_findIp();
+            $data['Visitor']['ip'] = CurrentUser::getIp();
             $this->save($data);
         }
     
         return $this->find('count');
     }
 
-
-    private function _findIp() {
-      if(getenv("HTTP_CLIENT_IP"))
-        return getenv("HTTP_CLIENT_IP"); 
-      elseif(getenv("HTTP_X_FORWARDED_FOR"))
-        return getenv("HTTP_X_FORWARDED_FOR"); 
-      else 
-        return getenv("REMOTE_ADDR"); 
-    } 
 }
 ?>
