@@ -1034,7 +1034,7 @@ class Sentence extends AppModel
     public function getNeighborsSentenceIds($sourceId, $lang = null)
     {
         $conditions = array();
-        if (!empty($lang)) {
+        if (!empty($lang) && $lang != 'und') {
             $conditions["Sentence.lang"] = $lang;
         }
 
