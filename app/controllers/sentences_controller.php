@@ -821,6 +821,7 @@ class SentencesController extends AppController
      *
      */
     public function get_neighbors_for_ajax($id, $lang) {
+        Configure::write('debug', 0);
         $this->layout = null;
 
         $this->Session->write('random_lang_selected', $lang);
