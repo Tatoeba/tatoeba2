@@ -52,5 +52,3 @@ CREATE TRIGGER insert_in_last_contributions AFTER INSERT ON contributions
 |
 delimiter ;
 
-
-Query: INSERT INTO `contributions` (`id`, `sentence_id`, `sentence_lang`, `text`, `user_id`, `datetime`, `ip`, `type`, `action`) VALUES (NULL, 373729, 'fra', 'bonjour bonjour', 935, '2010-05-22 16:33:13', '127.0.0.3', 'sentence', 'insert') 
