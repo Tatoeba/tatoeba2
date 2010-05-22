@@ -562,5 +562,22 @@ class SentencesHelper extends AppHelper
         <?php
         }
     }
+    
+    
+    /**
+     * Inline Javascript for AJAX loaded sentences group.
+     *
+     * @return void
+     */
+    public function javascriptForAJAXSentencesGroup() {
+        echo $this->Javascript->link('sentences.add_translation.js', true);
+        echo $this->Javascript->link('favorites.add.js', true);
+        echo $this->Javascript->link('sentences_lists.menu.js', true);
+        echo $this->Javascript->link('sentences.adopt.js', true);
+        echo $this->Javascript->link('jquery.jeditable.js', true);
+        echo $this->Javascript->link('sentences.edit_in_place.js', true);
+        echo $this->Javascript->link('sentences.play_audio.js', true);
+        echo $this->Javascript->link('sentences.change_language.js', true);
+    }
 }
 ?>

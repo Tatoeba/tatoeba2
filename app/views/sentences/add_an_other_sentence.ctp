@@ -39,11 +39,7 @@
  * @link     http://tatoeba.org
  */  
 if (isset($sentence)) {
-    echo $javascript->link('sentences.add_translation.js', true);
-    echo $javascript->link('jquery.jeditable.js', true);
-    echo $javascript->link('sentences.edit_in_place.js', true);
-    echo $javascript->link('sentences.change_language.js', true);
-    echo $javascript->link('sentences.adopt.js', true);
+    $sentences->javascriptForAJAXSentencesGroup();
     
     // sentence and translations
     $translation = array();
