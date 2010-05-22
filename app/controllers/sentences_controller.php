@@ -185,7 +185,7 @@ class SentencesController extends AppController
             // ----- other case -----
             $max = $this->Sentence->getMaxId();
             $randId = rand(1, $max);
-            $this->Session->write('random_lang_selected', 'any');
+            $this->Session->write('random_lang_selected', 'und');
             $this->redirect(
                 array(
                     "action"=>"show",
