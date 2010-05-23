@@ -84,7 +84,9 @@ class LanguagesHelper extends AppHelper
             'yue' => __('Cantonese', true),
             'afr' => __('Afrikaans', true),
             'fao' => __('Faroese', true),
-            'fry' => __('Frisian', true)
+            'fry' => __('Frisian', true),
+            'bre' => __('Breton', true),
+            'ron' => __('Romanian', true)
             // TODO to change when shanghainese will not be the only wu dialect
         );
         asort($languages);
