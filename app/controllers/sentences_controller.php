@@ -140,28 +140,35 @@ class SentencesController extends AppController
         } elseif (is_numeric($id)) {
             // ----- if we give directly an id -----
             
-            $sentence = $this->Sentence->getSentenceWithId($id);
-
-            if ($sentence == null) {
-                // if there's no sentence for this id, no need to call the other
-                // methods, we return directly
-                $this->set('sentenceExists', false);
-                return;
-            }
-
+            // Whether the sentence still exists or not, we retrieve the
+            // contributions and the comments because we don't want them
+            // to disappear just because the sentence was deleted.
             $contributions = $this->Contribution->getContributionsRelatedToSentence(
                 $id
             );
-
-            // get Comments on this sentence and permissions of current user
-            // on these sentences
+            
             $comments = $this->SentenceComment->getCommentsForSentence($id);
             $commentsPermissions = $this->Permissions->getCommentsOptions(
                 $comments,
                 $userId,
                 $groupId 
             );
+            
+            $this->set('sentenceComments', $comments);
+            $this->set('commentsPermissions', $commentsPermissions);
+            $this->set('contributions', $contributions); 
+            
+            
+            // And now we retrieve the sentence
+            $sentence = $this->Sentence->getSentenceWithId($id);
 
+            // If no sentence, we don't need to go further
+            if ($sentence == null) {
+                return;
+            }
+            
+            $this->set('sentence', $sentence);
+            
             // we get translations and split them
             $alltranslations = $this->Sentence->getTranslationsOf($id);
             $translations = $alltranslations['Translation'];
@@ -169,18 +176,13 @@ class SentencesController extends AppController
             
             // this way "next" and "previous"  
             $lang = $this->Session->read('random_lang_selected');
-            $neighbors = $this->Sentence->getNeighborsSentenceIds($id, $lang); 
+            $neighbors = $this->Sentence->getNeighborsSentenceIds($id, $lang);                 
             
-
-            $this->set('sentenceExists', true);
             $this->set('translations', $translations);
-            $this->set('sentence', $sentence);
+            $this->set('indirectTranslations', $indirectTranslations);
             $this->set('nextSentence', $neighbors['next']);
             $this->set('prevSentence', $neighbors['prev']);
-            $this->set('indirectTranslations', $indirectTranslations);
-            $this->set('sentenceComments', $comments);
-            $this->set('commentsPermissions', $commentsPermissions);
-            $this->set('contributions', $contributions); 
+            
             
         } else {
             // ----- other case -----

@@ -35,6 +35,9 @@ if (isset($sentence)) {
     $this->pageTitle = $title . $sentenceText;
     
 } else {
+    $sentenceId = $this->params['pass'][0];
+    $prevSentence = $sentenceId - 1;
+    $nextSentence = $sentenceId + 1;
     $this->pageTitle = __('Sentence does not exist: ', true).$this->params['pass'][0];
 }
 
@@ -153,33 +156,37 @@ $navigation->displaySentenceNavigation(
         
         
     </div>
-    <div class="module">
+    
+    <?php
+    if (isset($sentence)) {
+        ?>
+        <a name="add_comment"></a>
+        <div class="module">
+        
+        <h2><?php __('Add a comment'); ?></h2>
+        
         <?php
-        if ($sentenceExists) {
-            echo '<a name="add_comment"></a>';
-            echo '<h2>';
-            __('Add a comment');
-            echo '</h2>';
-            if ($session->read('Auth.User.id')) {
-                $comments->displayCommentForm(
-                    $sentence['Sentence']['id'], 
-                    $sentence['Sentence']['text']
-                );
-            } else {
-                echo '<p>';
-                echo sprintf(
-                    __(
-                        'You need to be logged in to add a comment. If you are '.
-                        'not registered, you can <a href="%s">register here</a>.', 
-                        true
-                    ),
-                    $html->url(array("controller"=>"users", "action"=>"register"))
-                );
-                echo '</p>';
-            }
+        if ($session->read('Auth.User.id')) {
+            $comments->displayCommentForm(
+                $sentence['Sentence']['id'], 
+                $sentence['Sentence']['text']
+            );
+        } else {
+            echo '<p>';
+            echo sprintf(
+                __(
+                    'You need to be logged in to add a comment. If you are '.
+                    'not registered, you can <a href="%s">register here</a>.', 
+                    true
+                ),
+                $html->url(array("controller"=>"users", "action"=>"register"))
+            );
+            echo '</p>';
         }
+        ?>
+        </div>
+        <?php
+    }
     ?>
-    </div>
-
 </div>
 
