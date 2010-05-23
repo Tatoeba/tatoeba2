@@ -136,7 +136,9 @@ class SentenceAnnotation extends AppModel
             $newAnnotations[] = $annotation;
             
             $this->id = $annotation['SentenceAnnotation']['id'];
-            $this->saveField('text', $annotation['SentenceAnnotation']['text']);
+            $data['text'] = $annotation['SentenceAnnotation']['text'];
+            $data['user_id'] = CurrentUser::get('id');
+            $this->save($data);
         }
         
         return $newAnnotations;
