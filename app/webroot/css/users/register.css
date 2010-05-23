@@ -27,28 +27,23 @@
  * Registration form
  */
 #UserRegisterForm {
-    padding: 20px;
-    padding-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 500px;
-    text-align: center;
+    padding: 10px;
+    padding-bottom: 20px;
+    margin: auto;
+    width: 420px;
+    border: 1px solid #B3C6A9;
+    background: #DBEFCB;
+    -moz-border-radius: 15px;
+    -webkit-border-radius: 15px;
+    border-radius: 15px;
 }
 
-#UserRegisterForm div.input {
-    margin: 10px 0px;
+#UserRegisterForm input {
+    font-family: verdana, sans-serif;
 }
 
-#UserRegisterForm div.input input {
-    display: block;
-    width: 150px;
-}
-
-#UserRegisterForm label {
-    width: 200px;
+#UserRegisterForm .field {
     text-align: right;
-    margin-right: 10px;
-    float: left;
 }
 
 #UserRegisterForm .valid {
@@ -62,4 +57,37 @@
 
 #UserRegisterForm .checking {
     background: url(/img/loading-small.gif) no-repeat scroll right center;
+}
+
+#userInformation {
+    margin: 10px 0px;
+}
+
+#userInformation td {
+    padding: 10px;
+    vertical-align: top;
+}
+
+#quiz {
+    border-top: 1px dotted #B3C6A9;
+    border-bottom: 1px dotted #B3C6A9;
+    padding: 20px;
+    text-align: center;
+}
+
+#quiz input {
+    margin: 5px auto;
+}
+
+#termsOfUse {
+    border-bottom: 1px dotted #B3C6A9;
+    padding: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#registerButton {
+    display: block;
+    margin: auto;
+    font-size: 1.5em;
 }

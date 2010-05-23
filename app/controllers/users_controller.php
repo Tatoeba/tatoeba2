@@ -265,223 +265,70 @@ class UsersController extends AppController
      */
     public function register()
     {
+        // --------------------------------------------------
+        //   Cases where registration shouldn't work. 
+        // --------------------------------------------------
+        
+        // Already logged in
         if ($this->Auth->User('id')) {
             $this->redirect('/');
         }
-        if (!empty($this->data)) {
-            $this->User->create();
-            $this->data['User']['since'] = date("Y-m-d H:i:s");
-            $this->data['User']['group_id'] = User::LOWEST_TRUST_GROUP_ID + 1;
-            $nonHashedPassword = $this->data['User']['password'];
-
-            $this->User->set($this->data);
-            if (!$this->data['User']['acceptation_terms_of_use']) {
-                $this->Session->setFlash(
-                    __('You did not accept the terms of use.', true)
-                );
-                $this->data['User']['password'] = '';
-                $this->data['User']['captcha'] = '';
-            } else {
-                if ($this->User->validates()) {
-                    if ($this->Captcha->check($this->data['User']['captcha'], true) 
-                        AND $this->User->save($this->data)
-                    ) {
-                        $pass = $this->Auth->password(
-                            $this->data['User']['password']
-                        );
-                        $token = $this->Auth->password(
-                            $pass.$this->data['User']['since']
-                            .$this->data['User']['username']
-                        );
-                        // prepare message
-                        $subject = __('Tatoeba registration', true);
-                        $message = sprintf(
-                            __('Dear %s,', true), $this->data['User']['username']
-                        )
-                        . "\n\n"
-                        . __(
-                            'Welcome to Tatoeba and thank you for your '.
-                            'interest in this project!', true
-                        )
-                        . "\n\n"
-                        . __(
-                            'You can validate your registration by clicking '.
-                            'on this link :', true
-                        )
-                        . "\n"
-                        . 'http://' . $_SERVER['HTTP_HOST'] 
-                        . '/users/confirm_registration/' 
-                        . $this->User->id . '/' . $token;
-
-                        // send email with new password
-                        $this->Mailer->to = $this->data['User']['email'];
-                        $this->Mailer->toName = '';
-                        $this->Mailer->subject = $subject;
-                        $this->Mailer->message = $message;
-                        $this->Mailer->send();
-
-                        $this->flash(
-                            __(
-                                'Thank you for registering. To validate your '.
-                                'registration, click on the link in the email '.
-                                'that has been sent to you.', true
-                            ),
-                            '/users/resend_registration_mail'
-                        );
-                    } else {
-                        $this->data['User']['password'] = '';
-                        $this->data['User']['captcha'] = '';
-                        $this->Session->setFlash(
-                            __(
-                                'The code you entered did not match with the '.
-                                'image, please try again.', true
-                            )
-                        );
-                    }
-                } else {
-                    $this->data['User']['password'] = '';
-                    $this->data['User']['captcha'] = '';
-                }
-            }
-
-        }
-    }
-
-    /**
-     * Send registration email again.
-     * 
-     * @return void
-     */
-    public function resend_registration_mail()
-    {
-        if (!empty($this->data)) {
-            $user = $this->User->findByEmail($this->data['User']['email']);
-
-            if ($user) {
-                if ($user['User']['group_id'] == 5) {
-                    $toHash = $this->Auth->password(
-                        $user['User']['password']
-                    ).$user['User']['since']
-                    .$user['User']['username'];
-                    
-                    $token = $this->Auth->password($toHash);
-
-                    // prepare message
-                    $subject = __('Tatoeba registration', true);
-                    $message = sprintf(
-                        __('Dear %s,', true), $user['User']['username']
-                    ). "\n\n"
-                    . __(
-                        'Welcome to Tatoeba and thank you for your interest '.
-                        'in this project!', true
-                    )
-                    . "\n\n"
-                    . __(
-                        'You can validate your registration by clicking on '.
-                        'this link :', true
-                    )
-                    . "\n"
-                    . 'http://' . $_SERVER['HTTP_HOST'] 
-                    . '/users/confirm_registration/' . $user['User']['id'] 
-                    . '/' . $token;
-
-                    // send email with new password
-                    $this->Mailer->to = $user['User']['email'];
-                    $this->Mailer->toName = '';
-                    $this->Mailer->subject = $subject;
-                    $this->Mailer->message = $message;
-                    $this->Mailer->send();
-
-                    $this->Session->setFlash(
-                        __('The registration email has been resent.', true)
-                    );
-                    $this->redirect('/users/resend_registration_mail');
-                } else {
-                    $this->flash(
-                        __(
-                            'Your registration has already been validated. '.
-                            'Try to login again.', true
-                        ),
-                        '/users/resend_registration_mail'
-                    );
-                }
-            } else {
-                $this->flash(
-                    __('There is no user with this email : ', true)
-                    .$user['User']['email'],
-                    '/users/resend_registration_mail'
-                );
-            }
-        }
-    }
-
-
-    /**
-     * Validation of registration.
-     *
-     * @param int    $id    Id of the user.
-     * @param string $token Validation token.
-     * 
-     * @return void
-     */
-    public function confirm_registration($id, $token)
-    {
-        $id = Sanitize::paranoid($id);
-        $token = Sanitize::paranoid($token);
         
-        $this->User->id = $id; // important for when we do saveField() later
-        $user = $this->User->getUserById($id);
-
-        $toHash = $this->Auth->password(
-            $user['User']['password']
-        ).$user['User']['since'].$user['User']['username'];
-        $correctToken = $this->Auth->password($toHash);
-
-        if ($user['User']['group_id'] > 0 
-            AND $user['User']['group_id'] < User::LOWEST_TRUST_GROUP_ID + 1
+        // No data
+        if (empty($this->data)) {
+            return;
+        }
+        
+        // Did not accept terms of use
+        if (!$this->data['User']['acceptation_terms_of_use']) {
+            $this->Session->setFlash(
+                __('You did not accept the terms of use.', true)
+            );
+            $this->data['User']['password'] = '';
+            $this->data['User']['quiz'] = '';
+            return;
+        }
+        
+        // Did not answer the quiz properly
+        $correctAnswer = substr($this->data['User']['email'], 0, 5);
+        if($this->data['User']['quiz'] != $correctAnswer) {
+             $this->Session->setFlash(
+                __('Wrong answer to the question.', true)
+            );
+            $this->data['User']['password'] = '';
+            $this->data['User']['quiz'] = '';
+            return;
+        }
+        
+        // Username or password does not fit requirements
+        if (!$this->User->validates()
+            || $this->data['User']['password'] == ''
         ) {
+            $this->data['User']['password'] = '';
+            $this->data['User']['quiz'] = '';
+            return;
+        }
         
-            $msg = __('Your registration is already validated.', true);
-            
-        } else if ($token == $correctToken) {
+        // --------------------------------------------------
         
-            if ($this->User->saveField('group_id', User::LOWEST_TRUST_GROUP_ID)) {
-                // update aro table
-                $aro = new Aro();
-                $data = $aro->find(
-                    "first", 
-                    array(
-                        "conditions" => array(
-                            "foreign_key" => $id, "model" => "User"
-                        )
-                    )
-                );
-                $data['Aro']['parent_id'] = User::LOWEST_TRUST_GROUP_ID;
-                $this->Acl->Aro->save($data);
-
-                $msg = __('Your registration has been validated.', true);
-                $this->Session->setFlash($msg);
-                $this->data = $user;
-                $this->Auth->login($user);
-                $this->redirect('/');
-            } else {
-                $msg = sprintf(
-                    __(
-                        'A problem occured. Your registration could not be '.
-                        'validated. Please <a href="%s">contact us</a> to '.
-                        'report the problem.', true
-                    ),
-                    '/' . $this->params['lang'] . '/pages/contact'
-                );
-            }
-            
-        } else {
         
-            $msg = __('Non valid registration link.', true);
-
+        // At this point, we're fine, so we can create the user
+        $this->User->create();
+        $this->data['User']['since'] = date("Y-m-d H:i:s");
+        $this->data['User']['group_id'] = 4;
+        $this->User->set($this->data);
+        
+        // And we save
+        if ($this->User->save($this->data)) {
+            $this->Auth->login($this->data);
+            $this->redirect(
+                array(
+                    'controller' => 'pages',
+                    'action' => 'help'
+                )
+            );
         }
 
-        $this->flash($msg, '/users/login');
     }
 
 

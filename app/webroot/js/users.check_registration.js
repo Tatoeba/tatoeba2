@@ -128,5 +128,21 @@ $(document).ready(function()
         }
         
     });
+    
+    /*
+     * Mask or unmask password.
+     */
+    $("#UserMaskPassword").change(function(){
+        if($(this).is(':checked')){
+            var currentPassword = $("#registrationPassword").val();
+            $("#registrationPassword").hide();
+            $("#unmaskedPasswordContainer").html(
+                '<input type="text" value="'+currentPassword+'">'
+            );
+        }else{
+            $("#unmaskedPasswordContainer").html("");
+            $("#registrationPassword").show();
+        }
+    });
   
 });

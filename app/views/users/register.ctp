@@ -40,35 +40,92 @@ $this->pageTitle = 'Tatoeba - ' . __('Register', true);
 echo $javascript->link('users.check_registration.js', false);
 
 echo $form->create('User', array("action" => "register"));
+?>
+<table id="userInformation">
+<tr>
+    <td class="field">
+        <label for="registrationUsername"><?php __('Username:'); ?></label>
+    </td>
+    <td>
+        <?php
+        echo $form->input(
+            'username',
+            array(
+                "label" => "",
+                "id" => "registrationUsername",
+                "class" => "registrationField"
+            )
+        );
+        ?>
+    </td>
+</tr>
+<tr>
+    <td class="field">
+        <label for="registrationPassword"><?php __('Password:'); ?></label>
+    </td>
+    <td>
+        <div id="unmaskedPasswordContainer"></div>
+        <?php
+        echo $form->input(
+            'password',
+            array(
+                "label" => "",
+                "id" => "registrationPassword",
+                "class" => "registrationField"
+            )
+        );
+        
+        // Box for users to actually see what their writing
+        echo $form->checkbox('mask_password'); 
+        echo ' ';
+        __('unmask password');
+        ?>
+    </td>
+</tr>
+<tr>
+    <td class="field">
+        <label for="registrationEmail"><?php __('Email:'); ?></label>
+    </td>
+    <td>
+        <?php
+        echo $form->input(
+            'email',
+            array(
+                "label" => "",
+                "id" => "registrationEmail",
+                "class" => "registrationField"
+            )
+        );
+        ?>
+    </td>
+</tr>
+</table>
 
-echo $form->input('username', array(
-	"label" => __('Username:',true),
-	"id" => "registrationUsername"
-));
-echo $form->input('password', array(
-	"label" => __('Password:',true),
-	"id" => "registrationPassword"
-));
-echo $form->input('email', array(
-	"label" => __('Email:',true),
-	"id" => "registrationEmail"
-));
-echo '<div>';
-echo $html->image('/users/captcha_image', array("id" => "captcha"));
-echo '<a href="javascript:void(0);" onclick="javascript:document.images.captcha.src=\''. $html->url('/users/captcha_image') .'?\' + Math.round(Math.random(0)*1000)+1">Reload image</a>';
-echo '</div>';
+<div id="quiz">
+<?php
+__('We need to make sure you are human.');
 
-echo $form->input('captcha', array("label" => __('Code displayed above :',true)));
+echo $form->input(
+    'quiz', 
+    array(
+        "label" => __('What are the five first letters of your email?', true)
+    )
+);
+?>
+</div>
 
-
-$lang =  $this->params['lang'];
-echo '<div>';
+<div id="termsOfUse">
+<?php
+$lang = $this->params['lang'];
 echo $form->checkbox('acceptation_terms_of_use'); echo ' ';
 echo sprintf(
-	__('I accept the <a href="%s">terms of use</a>',true), 
-	$html->url(array("controller"=>"pages", "action"=>"terms-of-use#$lang"))
+    __('I accept the <a href="%s">terms of use</a>',true), 
+    $html->url(array("controller"=>"pages", "action"=>"terms-of-use#$lang"))
 );
-echo '</div>';
+?>
+</div>
+
+<?php
 echo $form->submit(__('Register',true), array("id" => "registerButton"));
 echo $form->end();
 ?>
