@@ -15,43 +15,50 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-*/
 
-
-function check(fieldName, string){
-    var inputId = fieldName.charAt(0).toUpperCase() + fieldName.substr(1);
-
-    $("#registration"+inputId).removeClass("error").removeClass("valid").addClass("checking");
-    
-    $.post(
-        "http://" + self.location.hostname + ":" + self.location.port + "/users/check_" + fieldName + "/" + string
-        , {}
-        , function(data){
-            if(data.match('valid')){
-                $("#registration"+inputId).removeClass("checking").removeClass("error").addClass("valid");
-            }else{
-                $("#registration"+inputId).removeClass("checking").removeClass("valid").addClass("error");
-            }
-        }
-    );
-}
-
-function triggerChecking(fieldName, inputText){
-    // we need to set some delay before checking in the database
-    clearTimeout($.data(this, "timer"));
-    var ms = 500;
-    var wait = setTimeout(function() {
-      check(fieldName, inputText);
-    }, ms);
-    $.data(this, "timer", wait);
-}
-
-
+// TODO This still needs some refactoring...
+ 
 $(document).ready(function()
-{    
-    /************************
-     *    Username validation
-     ************************/
+{
+    /*
+     * Check in database if the value already exists.
+     */
+    function check(fieldName, string){
+        var inputId = fieldName.charAt(0).toUpperCase() + fieldName.substr(1);
+        
+        $("#registration"+inputId).attr("class", "checking");
+        
+        $.post(
+            "http://" + self.location.hostname + ":" + self.location.port + "/users/check_" + fieldName + "/" + string
+            , {}
+            , function(data){
+                if(data.match('valid')){
+                    $("#registration"+inputId).attr("class", "valid");
+                }else{
+                    $("#registration"+inputId).attr("class", "error");
+                }
+            }
+        );
+    }
+    
+    /*
+     * Timer, to add a delay before checking in database.
+     */
+    function triggerChecking(fieldName, inputText){
+        clearTimeout($.data(this, "timer"));
+        var ms = 500;
+        var wait = setTimeout(
+            function() {
+                check(fieldName, inputText);
+            }, 
+            ms
+        );
+        $.data(this, "timer", wait);
+    }
+
+    /*
+     * Username validation
+     */
     $("#registrationUsername").keyup(function(e){
         var correctUsername = /[A-Za-z_]{2,20}/;
         
@@ -66,7 +73,7 @@ $(document).ready(function()
                 
             }else{
             
-                $(this).removeClass("valid").addClass("error");
+                $(this).attr("class", "error");
                 
             }
             
@@ -74,9 +81,9 @@ $(document).ready(function()
         
     });
     
-    /************************
-     *    Password validation
-     ************************/
+    /*
+     * Password validation
+     */
     $("#registrationPassword").keyup(function(e){
         var correctPassword  = /(.){4,}/;
         
@@ -86,21 +93,20 @@ $(document).ready(function()
             
             if(password.match(correctPassword)){
                 
-                $(this).removeClass("error").addClass("valid");
+                $(this).attr("class", "valid");
                 
             }else{
                 
-                $(this).removeClass("valid").addClass("error");
+                $(this).attr("class", "error");
                 
             }
         }
         
     });
     
-    
-    /************************
-     *    Email validation
-     ************************/
+    /*
+     * Email validation
+     */
     $("#registrationEmail").keyup(function(e){
         var correctEmail  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
         
@@ -115,7 +121,7 @@ $(document).ready(function()
                 
             }else{
                 
-                $(this).removeClass("valid").addClass("error");
+                $(this).attr("class", "error");
                 
             }
             
