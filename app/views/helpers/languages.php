@@ -87,6 +87,8 @@ class LanguagesHelper extends AppHelper
             'fry' => __('Frisian', true),
             'bre' => __('Breton', true),
             'ron' => __('Romanian', true)
+            'uig' => __('Uyghur', true),
+            'uzb' => __('Uzbek', true),
             // TODO to change when shanghainese will not be the only wu dialect
         );
         asort($languages);
@@ -285,6 +287,7 @@ class LanguagesHelper extends AppHelper
         $rightToLeftLangs = array(
             "ara",
             "heb",
+            "uig",
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
