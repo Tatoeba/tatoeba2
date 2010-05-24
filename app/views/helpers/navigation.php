@@ -113,29 +113,51 @@ class NavigationHelper extends AppHelper
             </div>
             
             <ul>
-            <li class="active" id="prevSentence">
+
+            <?php
+            $prevClass = "inactive";
+            $prevLink = ""; 
+            
+            if (!empty($prev)) {
+                $prevClass = "active";
+                $prevLink = array(
+                    "controller" => $controller,
+                    "action" => $action,
+                    $prev
+                );
+            } 
+
+            ?>
+            <li class="<?php echo $prevClass; ?>" id="prevSentence">
             <?php
             // previous
             echo $this->Html->link(
                 '« '.__('previous', true),
-                array(
-                    "controller" => $controller,
-                    "action" => $action,
-                    $prev
-                )
+                $prevLink
             );
             ?></li>
+ 
+            <?php
+            $nextClass = "inactive";
+            $nextLink = ""; 
             
-            <li class="active" id="nextSentence">
+            if (!empty($next)) {
+                $nextClass = "active";
+                $nextLink = array(
+                    "controller" => $controller,
+                    "action" => $action,
+                    $next
+                );
+            } 
+
+            ?>
+           
+            <li class="<?php echo $nextClass; ?>" id="nextSentence">
             <?php
             // next
             echo $this->Html->link(
                 __('next', true).' »',
-                array(
-                    "controller" => $controller,
-                    "action" => $action,
-                    $next
-                )
+                $nextLink
             );
             ?></li>
             
