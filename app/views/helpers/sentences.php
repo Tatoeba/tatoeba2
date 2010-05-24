@@ -477,7 +477,7 @@ class SentencesHelper extends AppHelper
             // TODO: HACK SPOTTED id is used in edit_in_place
             // NOTE: I didn't find an easy way to pass the sentenceId to jEditable
             // using jQuery.data...
-            echo '<div dir="$dir" id="'.$sentenceLang.'_'.$sentenceId.'" class="text editableSentence">';
+            echo '<div dir="'.$dir.'" id="'.$sentenceLang.'_'.$sentenceId.'" class="text editableSentence">';
             echo Sanitize::html($sentenceText);
             echo '</div>';
             // NOTE: I'm echo-ing this because we don't want to have extra spaces
