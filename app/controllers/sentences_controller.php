@@ -254,9 +254,13 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function delete($id)
+    public function delete($id = null)
     {
         $id = Sanitize::paranoid($id);
+        if (empty($id)) {
+            return;
+        }
+        
         $this->Sentence->delete(
             $id,
             true

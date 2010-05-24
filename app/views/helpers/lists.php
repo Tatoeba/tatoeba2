@@ -406,12 +406,18 @@ class ListsHelper extends AppHelper
     public function displaySentence(
         $sentence, $translations = array(), $canCurrentUserEdit = false
     ) {
-        // TODO Re-adapt this when SentencesHelper::displayGroup() is finished.
+        if (empty($sentence['id'])) {
+            // In case the sentence has been deleted, we don't want to display
+            // it in the list.
+            // We may also want to run the script to update the count of sentences
+            // in the lists, and remove unnecessary entries in the
+            // sentences_sentences_lists table.
+            return;
+        }
         ?>
         <div id="sentence<?php echo $sentence['id']; ?>" class="sentenceInList">        
         
             <?php
-            
             if ($canCurrentUserEdit) {
                 // Remove from list button
                 $this->_displayRemoveButton($sentence['id']);
