@@ -86,7 +86,7 @@ class LanguagesHelper extends AppHelper
             'fao' => __('Faroese', true),
             'fry' => __('Frisian', true),
             'bre' => __('Breton', true),
-            'ron' => __('Romanian', true)
+            'ron' => __('Romanian', true),
             'uig' => __('Uyghur', true),
             'uzb' => __('Uzbek', true),
             // TODO to change when shanghainese will not be the only wu dialect
