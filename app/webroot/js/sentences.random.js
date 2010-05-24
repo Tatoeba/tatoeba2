@@ -21,7 +21,6 @@ $(document).ready(function(){
     $("#randomLangChoiceInBrowse").change(function(){
         var currentId = $(this).data('currentSentenceId');
         var lang = $(this).val();
-        alert(lang); 
         var host = self.location.hostname;
         var port = self.location.port;
         var interfaceLang = $("#randomLink").attr("lang");
