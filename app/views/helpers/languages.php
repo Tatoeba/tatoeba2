@@ -269,5 +269,30 @@ class LanguagesHelper extends AppHelper
         $numberOfLanguages = count($languages);
         return $numberOfLanguages;
     }
+
+
+    /**
+     * Get the direction (right to left or left to right) of a language
+     *
+     * @param string $lang ISO-639-3 code
+     *
+     * @return string "rtl" (right to left) or "ltr" (left to right)
+     */
+    public function getLanguageDirection($lang) {
+
+        $direction = "ltr";
+
+        $rightToLeftLangs = array(
+            "ara",
+            "heb",
+        );
+
+        if (in_array($lang, $rightToLeftLangs)) {
+            $direction = "rtl";
+        }
+
+        return $direction;
+    }
+
 }
 ?>
