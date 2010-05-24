@@ -21,7 +21,7 @@ $(document).ready(function(){
     $("#randomLangChoiceInBrowse").change(function(){
         var currentId = $(this).data('currentSentenceId');
         var lang = $(this).val();
-        
+        alert(lang); 
         var host = self.location.hostname;
         var port = self.location.port;
         var interfaceLang = $("#randomLink").attr("lang");
@@ -32,7 +32,7 @@ $(document).ready(function(){
         $("#loadingAnimationForNavigation").show();
         
         // Update random link
-        $("#randomLink").attr("href",baseURL+lang);
+        $("#randomLink a").attr("href",baseURL+lang);
         
         
         $.post(
