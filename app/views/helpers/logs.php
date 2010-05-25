@@ -112,6 +112,7 @@ class LogsHelper extends AppHelper
         }
         echo '</td>';
         
+        $dir = $this->Languages->getLanguageDirection($sentenceLang);
         // sentence text
         echo '<td class="text">';
         echo $this->Html->link(
@@ -120,6 +121,9 @@ class LogsHelper extends AppHelper
                 "controller" => "sentences",
                 "action" => "show",
                 $contributionId
+            ),
+            array(
+                'dir' => $dir
             )
         );
         echo '</td>';
@@ -156,6 +160,7 @@ class LogsHelper extends AppHelper
         }
         
         $contributionText = Sanitize::html($contribution['text']);
+        $lang = Sanitize::paranoid($contribution['sentence_lang']);
         $translationId = Sanitize::paranoid($contribution['translation_id']); 
         $action = Sanitize::paranoid($contribution['action']);
         $contributionDate = $contribution['datetime'];
@@ -213,7 +218,8 @@ class LogsHelper extends AppHelper
             }
             
         } else {
-            echo ' <span class="text">';
+            $dir = $this->Languages->getLanguageDirection($lang);
+            echo ' <span class="text" dir="'.$dir.'" >';
             echo $contributionText;
             echo '</span>';
         }

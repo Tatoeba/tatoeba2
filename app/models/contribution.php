@@ -108,6 +108,7 @@ class Contribution extends AppModel
             'all',
             array(
                 'fields' => array(
+                    'Contribution.sentence_lang',
                     'Contribution.text',
                     'Contribution.translation_id',
                     'Contribution.action',
