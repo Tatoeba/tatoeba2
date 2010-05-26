@@ -112,7 +112,7 @@ class LogsHelper extends AppHelper
         }
         echo '</td>';
         
-        $dir = $this->Languages->getLanguageDirection($sentenceLang);
+        $dir = $this->Languages->getLanguageDirection($lang);
         // sentence text
         echo '<td class="text">';
         echo $this->Html->link(
