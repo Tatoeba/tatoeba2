@@ -83,61 +83,6 @@ class SentenceComment extends AppModel
     }
     
     /**
-     * Return latest comments for each language.
-     *
-     * @return array
-     */
-    public function getLatestCommentsInEachLanguage()
-    {
-        $langs = array('eng', 'fra', 'jpn', 'spa', 'deu');
-        $sentenceComments = array();
-       
-        /*TODO all of this this should be done in one request */ 
-        foreach ($langs as $lang) {
-            $sentenceComments[$lang] = $this->find(
-                "all",
-                array( 
-                    "conditions" => array("SentenceComment.lang" => $lang),
-                    "limit"=> 10,
-                    "order" => "SentenceComment.created DESC",
-                    "contain" => array(
-                        'User' => array(
-                            'fields' => array(
-                                'username',
-                                'image'
-                            )
-                        ),
-                        'Sentence' => array(
-                            'fields' => array('id', 'text')
-                        )
-                    )
-                )
-            );
-        }
-        
-        $sentenceComments['unknown'] = $this->find(
-            "all",
-            array( 
-                "conditions" => array(
-                    "NOT" => array("SentenceComment.lang" => $langs)
-                ),
-                "limit"=> 10,
-                "order" => "SentenceComment.created DESC",
-                "contain" => array(
-                    'User' => array(
-                        'fields' => array(
-                            'username',
-                            'image'
-                        )
-                    )  
-                )
-            )
-        );
-        
-        return $sentenceComments;
-    }
-    
-    /**
      * Return comments for given sentence.
      *
      * @param int $sentenceId Id of the sentence.
@@ -187,7 +132,7 @@ class SentenceComment extends AppModel
                         )
                     ),
                     'Sentence' => array(
-                        'fields' => array('id', 'text')
+                        'fields' => array('id', 'text', 'lang')
                     )
                 )
             )

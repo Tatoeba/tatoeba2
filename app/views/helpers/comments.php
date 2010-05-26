@@ -37,7 +37,7 @@
 class CommentsHelper extends AppHelper
 {
 
-    public $helpers = array('Form', 'Date', 'Html', 'ClickableLinks');
+    public $helpers = array('Languages', 'Form', 'Date', 'Html', 'ClickableLinks');
     
     /**
      * Display a sentence comment block.
@@ -59,6 +59,8 @@ class CommentsHelper extends AppHelper
         // and make parameters more explicit 
         // (we don't see with the protype that we need sentences inside comment 
         // it should be a entire parameter, stop using universe-variable
+        $user = $comment['User'];
+        $userName = $user["username"];
 
         $sentenceComment = $comment;
         if (isset($comment['SentenceComment'])) { 
@@ -71,9 +73,10 @@ class CommentsHelper extends AppHelper
         
         // profile picture
         $image = 'unknown-avatar.png';
-        if (!empty($comment['User']['image'])) {
-            $image = $comment['User']['image'];
+        if (!empty($user['image'])) {
+            $image = $user['image'];
         }
+
         
         // view button
         if ($displayAsThread) {
@@ -135,7 +138,7 @@ class CommentsHelper extends AppHelper
             array(
                 "controller" => "user",
                 "action" => "profile",
-                $comment['User']['username']
+                $user['username']
             ),
             array("escape" => false)
         );
@@ -144,11 +147,11 @@ class CommentsHelper extends AppHelper
         // author
         echo '<li class="author">';
         echo $this->Html->link(
-            $comment['User']['username'],
+            $userName,
             array(
                 "controller" => "user", 
                 "action" => "profile", 
-                $comment['User']['username']
+                $userName
             ),
             array("title" => __('View this user\'s profile', true))
         );
@@ -165,14 +168,25 @@ class CommentsHelper extends AppHelper
         echo '<div class="body">';
         // sentence
         if ($displayAsThread && isset($comment['Sentence'])) {
+
+            $sentence = $comment['Sentence'];
+            $sentenceText = $sentence['text'];
+            $sentenceId = $sentence['id'];
+            $sentenceLang = $sentence['lang'];
+
+            $dir = $this->Languages->getLanguageDirection($sentenceLang);
+
             echo '<div class="sentence">';
-            if (isset($comment['Sentence']['text'])) {
+            if (isset($sentenceText)) {
                 echo $this->Html->link(
-                    $comment['Sentence']['text'],
+                    $sentenceText,
                     array(
                         "controller"=>"sentences",
                         "action"=>"show",
-                        $comment['Sentence']['id'].'#comments'
+                        $sentenceId.'#comments'
+                    ),
+                    array(
+                        'dir' => $dir
                     )
                 );
             } else {
