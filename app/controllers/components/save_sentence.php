@@ -76,6 +76,10 @@ class SaveSentenceComponent extends Object
 
         if ($lang === 'auto') {
             $lang = $this->GoogleLanguageApi->detectLang($text);
+
+        }
+        if (empty($lang)) {
+            $lang = null;
         }
 
         $this->data['Sentence']['id'] = $sentenceId; 
