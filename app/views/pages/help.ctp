@@ -30,17 +30,6 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
 
 <div id="annexe_content">
     <div class="module">
-        <h2><?php __('Table of contents'); ?></h2>
-        <ul>
-            <li><a href="#adding"><?php __('Adding new sentences'); ?></a></li>
-            <li><a href="#translating"><?php __('Translating sentences'); ?></a></li>
-            <li><a href="#correcting"><?php __('Correcting mistakes'); ?></a></li>
-            <li><a href="#adopting"><?php __('Adopting sentences'); ?></a></li>
-            <li><a href="#sentences_lists"><?php __('Sentences lists'); ?></a></li>
-        </ul>
-    </div>
-    
-    <div class="module">
         <h2><?php __('Need more help?'); ?></h2>
         <p><?php
            __(
@@ -49,56 +38,128 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
            );
            ?>
         </p>
-        <p class="more_link">
+    </div>
+    
+    <div class="module">
+        <h2><?php __('Contact us'); ?></h2>
+        <dl>
+            <dt><?php __('By email'); ?></dt>
+            <dd>team@tatoeba.fr</dd>
+            <dt><?php __('From the Wall'); ?></dt>
+            <dd>
             <?php
             echo $html->link(
-                __('Contact us', true),
-                array("controller"=>"pages", "action"=>"contact")
+                __('Click here to go to the Wall.', true),
+                array("controller"=>"wall")
             );
             ?>
+            </dd>
+            <dt><?php __('On IRC'); ?></dt>
+            <dd>irc://freenode/tatoeba</dd>
+        </dl>
+    </div>
+    
+    <div class="module">
+        <h2><?php __('How to use IRC'); ?></h2>
+        <p>
+        <?php
+        __(
+            'For those who are not familiar with IRC, it is pretty much like an '.
+            'instant messenger. You will be able to talk to us in real time, '.
+            'if we are there.'
+        );
+        ?>
         </p>
+        <p>
+        <?php
+        __('To join our channel, there are many ways but you can go to this website:');
+        ?>
+        <a href="http://webchat.freenode.net/">http://webchat.freenode.net/</a>
+        </p>
+        <?php
+        __(
+            'Enter a nickname, enter "tatoeba" for the channel, and click '.
+            'on "connect". That\'s it!'
+        );
+        ?>
     </div>
 </div>
 
 <div id="main_content">
-    <a name="adding"></a>
+    
+    <?php
+    if ($session->read('Auth.User.id')) {
+        ?>
+        <div class="main_module">
+            <h2><?php __('Getting started'); ?></h2>
+            
+            
+            <p>
+            <?php
+            __(
+                'If you want to read this page later, just know that you can '.
+                'access it from the <strong>"Help"</strong> link at the very '.
+                '<strong>bottom</strong> of the website.'
+            );
+            ?>
+            </p>
+            <p>
+            <?php
+            __(
+                'If you have no idea what to do now that you are registered, '.
+                'and still have no idea after browsing for 5 minutes, '.
+                'join us on <strong>IRC</strong>, we will give you a purpose :)'
+            );
+            ?>
+            </p>
+            <p>
+            <?php
+            __(
+                'If you think this project is awesome and would like to help '.
+                'actively, here is a link you <strong>MUST</strong> read:'
+            );
+            ?>
+            <a href="http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html">
+            http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html
+            </a>
+            </p>
+            
+            <p>
+            <?php
+                __(
+                    "That being said, welcome to Tatoeba! We hope you'll enjoy being ".
+                    "part of this project :)"
+                );
+            ?>
+            </p>
+        </div>
+        <?php
+    }
+    ?>
+    
+    
     <div class="module">
         <h2><?php __('Adding new sentences'); ?></h2>
         <p>
-            <?php
-            __(
-                'Ideally, for any word you may want to search, we would like you '.
-                'to always get results. Indeed, one of the goala of the project '.
-                'is to illustrate as many words and expressions as possible.'
-            );
-            ?>
+        <?php __('There are two ways to add new sentences.'); ?>
+        <ul>
+            <li><?php __('From the Contribute section'); ?></li>
+            <li><?php __('By creating a new list, and going to edit page of that list.'); ?></li>
+        </ul>
         </p>
         <p>
             <?php
             __(
-                'However, even if there is a large amount of sentences, there '.
+                'Even if there is a large amount of sentences in Tatoeba, there '.
                 'is still a lot of vocabulary that is not covered. This is why '.
                 'we encourage you to add new sentences with new vocabulary, even '.
                 'if you do not know how to translate it into any language.'
             );
             ?>
         </p>
-        <p>
-            <?php 
-            echo sprintf(
-                __(
-                    'Just <a href="%s">register</a> if you have not done so '.
-                    'already, then log in and go to the <a href="%s">contribution '.
-                    'section</a>.', true
-                ),
-                $html->url(array("controller"=>"users", "action"=>"register")),
-                $html->url(array("controller"=>"pages", "action"=>"contribute"))
-            );
-            ?>
-        </p>
     </div>
     
-    <a name="translating"></a>
+    
     <div class="module">
         <h2><?php __('Translating sentences'); ?></h2>
         <p>
@@ -134,28 +195,15 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
         </p>
     </div>
     
-    <a name="correcting"></a>
+    
     <div class="module">
         <h2><?php __('Correcting mistakes'); ?></h2>
         <p>
-            <?php
+            <?php            
             __(
-                'Tatoeba is a project that is open to everyone, and we are aware '.
-                'that people make mistakes.'
-            );
-            ?>
-        </p>
-        <p>
-            <?php
-            echo sprintf(
-                __(
-                    'It is not possible for you to directly correct mistakes in '.
-                    'sentences that belong to other people because only the owner '.
-                    'of the sentence can edit it. You can however post a comment '.
-                    '(%s) on the sentence to notify the mistake. The owner will '.
-                    'have to correct it himself or herself.', true
-                ),
-                $html->image('comments.png')
+                'You can only correct mistakes in sentences that belong to you. '.
+                'If you see a mistake in someone else\'s sentence, you have the '.
+                'possibility to post a comment to notify the mistake.'
             );
             ?>
         </p>
@@ -169,7 +217,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
         </p>
     </div>
     
-    <a name="adopting"></a>
+    
     <div class="module">
         <h2><?php __('Adopting sentences'); ?></h2>
         <p>
@@ -210,7 +258,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
         </p>
     </div>
     
-    <a name="sentences_lists"></a>
+    
     <div class="module">
         <h2><?php __('Sentences lists'); ?></h2>
         <p>
