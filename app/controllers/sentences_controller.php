@@ -460,7 +460,7 @@ class SentencesController extends AppController
      */
     public function search($query = null)
     {
-        if (!isset($_GET['query']) || empty(trim($_GET['query']))) {
+        if (!isset($_GET['query']) || empty($_GET['query'])) {
             $this->redirect(
                 array(
                     "lang" => $this->params['lang'], 
