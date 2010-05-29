@@ -26,5 +26,5 @@
  */
 
 
-echo $listId;
+echo $result;
 ?>

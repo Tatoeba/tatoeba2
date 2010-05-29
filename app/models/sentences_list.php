@@ -298,10 +298,23 @@ class SentencesList extends AppModel
      */
     public function addSentenceToList($sentenceId, $listId)
     {
-          $savedValue = $this->habtmAdd('Sentence', $listId, $sentenceId);
-          $this->_incrementNumberOfSentencesToList($listId);
+        $checkIfInList = $this->query("
+            SELECT * FROM sentences_sentences_lists
+            WHERE sentences_list_id = $listId
+              AND sentence_id = $sentenceId
+        ");
         
-          return $savedValue;
+        $saved = false;
+        if (empty($checkIfInList)) {
+            $this->query("
+                INSERT INTO sentences_sentences_lists (sentences_list_id,sentence_id)
+                VALUES ($listId, $sentenceId)
+            ");
+            $this->_incrementNumberOfSentencesToList($listId);
+            $saved = true;
+        }
+            
+        return $saved;
     }
     
     /**

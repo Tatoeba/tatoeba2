@@ -247,24 +247,30 @@ class SentencesListsController extends AppController
      */
     public function add_sentence_to_list($sentenceId, $listId)
     {
+        Configure::write('debug', 0); // Need to have debug at 0 if we want the
+                                      // list to be removed from the select
+                                      // right after the sentence was added.
+        
         $sentenceId = Sanitize::paranoid($sentenceId);
         $listId = Sanitize::paranoid($listId);
-        
-        $this->set('s', $sentenceId);
-        $this->set('l', $listId);
         $userId = $this->Auth->user('id');
         
-        if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
-            $this->set('listId', 'error');  
-            if ($this->SentencesList->addSentenceToList($sentenceId, $listId)) {
-                $this->set('listId', $listId);
-            }
+        $this->set('result', 'error');
+        
+        if (!$this->SentencesList->belongsToCurrentUser($listId, $userId)) {
+            return;
+        }
+        
+        if ($this->SentencesList->addSentenceToList($sentenceId, $listId)) {
+            $this->set('result', $listId);
         }
     }
 
 
     /**
      * Create a new list and add a sentence to that list.
+     * 
+     * TODO Remove me. This is not available anymore.
      *
      * @param int    $sentenceId Id of sentence to be added to new list.
      * @param string $listName   Name of new list.
