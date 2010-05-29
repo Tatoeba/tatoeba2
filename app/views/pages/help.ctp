@@ -105,10 +105,13 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
             </p>
             <p>
             <?php
-            __(
-                'If you have no idea what to do now that you are registered, '.
-                'and still have no idea after browsing for 5 minutes, '.
-                'join us on <strong>IRC</strong>, we will give you a purpose :)'
+            echo sprintf(
+                __(
+                    'If you have no idea what to do now that you are registered, '.
+                    'you can introduce yourself on the <a href="%s">Wall</a>, or '.
+                    'join us on <strong>IRC</strong>, we will give you a purpose :)'
+                ),
+                $html->url(array('controller' => 'wall'))
             );
             ?>
             </p>
@@ -143,8 +146,35 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
         <p>
         <?php __('There are two ways to add new sentences.'); ?>
         <ul>
-            <li><?php __('From the Contribute section'); ?></li>
-            <li><?php __('By creating a new list, and going to edit page of that list.'); ?></li>
+            <li>
+                <?php 
+                echo sprintf(
+                    __('From the <a href="%s">Contribute</a> section', true),
+                    $html->url(
+                        array(
+                            'controller' => 'pages', 
+                            'action' => 'contribute'
+                        )
+                    )
+                ); 
+                ?>
+            </li>
+            <li>
+                <?php 
+                echo sprintf(
+                    __(
+                        'By creating a new <a href="%s">list</a>, and going to '.
+                        'edit page of that list.', true
+                    ),
+                    $html->url(
+                        array(
+                            'controller' => 'sentences_lists', 
+                            'action' => 'index'
+                        )
+                    )
+                );
+                ?>
+            </li>
         </ul>
         </p>
         <p>
@@ -287,7 +317,5 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
             ?>
         </p>
     </div>
-    
-    <div style="height:300px"></div>
 </div>
 
