@@ -409,9 +409,10 @@ class SentencesListsController extends AppController
     public function set_as_public()
     {
         $listId = Sanitize::paranoid($_POST['listId']);
-
+        $isPublic = Sanitize::paranoid($_POST['isPublic']);
+        
         $this->SentencesList->id = $listId;
-        $this->SentencesList->saveField('is_public', $listId);
+        $this->SentencesList->saveField('is_public', $isPublic);
     }
     
     
