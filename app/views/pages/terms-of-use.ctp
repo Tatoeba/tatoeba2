@@ -181,7 +181,7 @@ echo '</p>';
 
     <p>
     Pour élargir la base de connaissances de Tatoeba, tout utilisateur contribuant 
-    à ce projets doit impérativement donner de vastes permissions au
+    à ce projet doit impérativement donner de vastes permissions au
     public pour qu'il puisse redistribuer et réutiliser son contenu librement, 
     pourvu que la source de ce contenu soit clairement indiquée et que la
     même liberté face à la redistribution et la réutilisation s'applique aux 
