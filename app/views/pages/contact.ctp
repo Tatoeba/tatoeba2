@@ -71,4 +71,26 @@ $this->pageTitle = 'Tatoeba - ' . __('Contact us', true);
         );
         ?>
     </div>
+    
+    
+    <div class="module">
+        <?php
+        echo '<h2>';
+        __('Join us on IRC');
+        echo '</h2>';
+
+        echo sprintf(
+            __(
+                'We also have an IRC channel on freenode, #tatoeba. If you are not '.
+                'familiar with IRC, you can read the <a href="%s">Help</a>.', true
+            ),
+            $html->url(
+                array(
+                    "controller" => "pages",
+                    "action" => "help"
+                )
+            )
+        );
+        ?>
+    </div>
 </div>
