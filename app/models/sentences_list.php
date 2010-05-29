@@ -298,8 +298,11 @@ class SentencesList extends AppModel
      */
     public function addSentenceToList($sentenceId, $listId)
     {
+        Sanitize::paranoid($sentenceId);
+        Sanitize::paranoid($listId);
+        
         $checkIfInList = $this->query("
-            SELECT * FROM sentences_sentences_lists
+            SELECT 1 FROM sentences_sentences_lists
             WHERE sentences_list_id = $listId
               AND sentence_id = $sentenceId
         ");
