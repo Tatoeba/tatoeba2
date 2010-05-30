@@ -93,6 +93,8 @@ class PagesController extends AppController
 
             } else if ($page == 'home') { // IF HOME PAGE
                 $this->_home();     
+            } else if ($page == 'contribute') {
+                $this->_contribute();
             }
 
         }
@@ -174,7 +176,19 @@ class PagesController extends AppController
         $this->set('isLogged', $isLogged); 
         $this->set('latestMessages', $latestMessages); 
     }
-
+    
+    
+    /**
+     * Contribute page. Non registered users are redirected to "How to contribute".
+     *
+     * @return void
+     */
+    private function _contribute()
+    {
+        if (!$this->Auth->user('id')) {
+            $this->redirect(array('how-to-contribute'));
+        }
+    }
 }
 
 
