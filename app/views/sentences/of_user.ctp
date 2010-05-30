@@ -54,11 +54,18 @@ if ($userExists === true) {
         $commonModules->displayNoSuchUser($userName, $backLink);
     } elseif ($numberOfSentences === 0) {
         echo '<h2>';
-        echo sprintf(
-            __("%s does not have sentences in %s", true),
-            $userName,
-            $languages->codeToName($lang)
-        );
+        if (!empty($lang)) {
+            echo sprintf(
+                __("%s does not have any sentence in %s", true),
+                $userName,
+                $languages->codeToName($lang)
+            );
+        } else {
+            echo sprintf(
+                __("%s does not have any sentence", true),
+                $userName
+            );
+        }
         echo '</h2>';
 
         echo $html->link(__('Go back to previous page', true), $backLink);
