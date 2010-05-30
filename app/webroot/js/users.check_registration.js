@@ -85,7 +85,7 @@ $(document).ready(function()
      * Password validation
      */
     $("#registrationPassword").keyup(function(e){
-        var correctPassword  = /(.){4,}/;
+        var correctPassword  = /(.){6,}/;
         
         if(e.keyCode > 40 || e.keyCode == 8 || e.keyCode == 13){     // so we don't take account keys like shift, home, end, etc... 
                                                                     // But we accept backspace.
