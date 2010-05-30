@@ -25,8 +25,6 @@
  * @link     http://tatoeba.org
  */
  
-App::import('Core', 'Sanitize');
- 
 /**
  * Controller for contributions.
  *
@@ -105,23 +103,28 @@ class SentenceAnnotationsController extends AppController
      */
     public function save()
     {
-        if (!empty($this->data)) {
-            if (!isset($this->data['SentenceAnnotation']['id'])) {
-                $this->SentenceAnnotation->create();
-            }
-            
-            $sentenceId = Sanitize::paranoid(
-                $this->data['SentenceAnnotation']['sentence_id']
+        if (empty($this->data)) {
+            return;
+        }
+        
+        if (!isset($this->data['SentenceAnnotation']['id'])) {
+            $this->SentenceAnnotation->create();
+        }
+        
+        $sentenceId = Sanitize::paranoid(
+            $this->data['SentenceAnnotation']['sentence_id']
+        );
+        
+        $this->data['SentenceAnnotation']['user_id'] = CurrentUser::get('id');
+        
+        $this->data['SentenceAnnotation']['text'] =
+            trim($this->data['SentenceAnnotation']['text']);
+        
+        if ($this->SentenceAnnotation->save($this->data)) {
+            $this->flash(
+                'Index saved.',
+                "/sentence_annotations/show/".$sentenceId
             );
-            
-            $this->data['SentenceAnnotation']['user_id'] = CurrentUser::get('id');
-            
-            if ($this->SentenceAnnotation->save($this->data)) {
-                $this->flash(
-                    'Index saved.',
-                    "/sentence_annotations/show/".$sentenceId
-                );
-            }
         }
     }
     
