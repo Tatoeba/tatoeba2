@@ -253,7 +253,7 @@ echo $javascript->link('sentences.show_another.js', false);
                 array(
                     "controller" => "sentences_lists",
                     "action" => "show",
-                    35
+                    108
                 )
             );
             ?>
