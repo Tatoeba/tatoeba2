@@ -56,18 +56,30 @@ echo $html->link(
 ?>
 </span>
 
-<span id="inbox" title="<?php __('Inbox'); ?>">
+
 <?php
 $newMessages = $this->requestAction('/private_messages/check');
+$class = '';
+$imageName = 'no_mail.png';
+if ($newMessages > 0) {
+    $class = 'class="newMessage"';
+    $imageName = 'mail.png';
+}
+?>
+<span id="inbox" <?php echo $class; ?> title="<?php __('Inbox'); ?>">
+<?php
 // TODO Get rid of requestAction
+
 $mailIcon = $html->image(
-    'mail.png',
+    $imageName,
     array(
         "alt" => __('Inbox', true),
-        "width" => 14,
-        "height" => 12
+        "width" => 16,
+        "height" => 16
     )
 );
+
+
 echo $html->link(
     $mailIcon .' '. $newMessages,
     array(

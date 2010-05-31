@@ -173,12 +173,17 @@ dt {
 
 #inbox img {
     position: relative;
-    top: 1px;
+    top: 3px;
 }
 
 #inbox {
     margin-left: 10px;
 }
+
+.newMessage {
+    font-weight: bold;
+}
+
 
 /*
  * Search bar 
