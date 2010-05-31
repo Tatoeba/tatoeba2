@@ -89,6 +89,10 @@ class LanguagesHelper extends AppHelper
             'ron' => __('Romanian', true),
             'uig' => __('Uyghur', true),
             'uzb' => __('Uzbek', true),
+            'non' => __('Norwegian (Nynorsk)', true),
+            'srp' => __('Serbian', true),
+            'tat' => __('Tartar', true),
+            'yid' => __('Yiddish', true)
             // TODO to change when shanghainese will not be the only wu dialect
         );
         asort($languages);

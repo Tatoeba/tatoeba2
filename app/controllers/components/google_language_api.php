@@ -113,7 +113,6 @@ class GoogleLanguageApiComponent extends Object
             case 'ko' :     return 'kor';
             case 'ms' :     return 'zsm';
             case 'nl' :     return 'nld';
-            case 'no' :     return 'nob';
             case 'pl' :     return 'pol';
             case 'pt' :     return 'por';
             case 'pt-BR' :  return 'por';
@@ -122,6 +121,7 @@ class GoogleLanguageApiComponent extends Object
             case 'ru' :     return 'rus';
             case 'sq' :     return 'sqi';
             case 'sv' :     return 'swe';
+            case 'sr' :     return 'srp';
             case 'tr' :     return 'tur';
             case 'ug' :     return 'uig';
             case 'uk' :     return 'ukr';
