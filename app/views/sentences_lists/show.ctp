@@ -48,7 +48,9 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
         
         if ($belongsToUser) {
             $lists->displayRestrictedActions(
-                $listId, $isListPublic
+                $listId,
+                'show',
+                $isListPublic
             );
         }
         ?>

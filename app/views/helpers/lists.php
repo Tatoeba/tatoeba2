@@ -338,12 +338,16 @@ class ListsHelper extends AppHelper
      * Display actions that are restricted to the creator of the list.
      *
      * @param int $listId       Id of the list.
+     * @param string $action    Can be 'show' or 'edit'.
      * @param int $isListPublic true if list is public. false otherwise.
      *
      * @return void
      */
-    public function displayRestrictedActions($listId, $isListPublic = false)
-    {
+    public function displayRestrictedActions(
+        $listId,
+        $action,
+        $isListPublic = false
+    ) {
         ?>
         <li>
         <label for="isPublic"><?php __('Set list as public'); ?></label>
@@ -375,7 +379,28 @@ class ListsHelper extends AppHelper
         );
         ?>
         </li>
-        
+
+        <li class="otherAction" >
+        <?php
+        if ($action == "show") {
+            $otherAction = "edit";
+            $otherActionText = __("Edit this list", true);
+        } else {
+            $otherAction = "show";
+            $otherActionText = __("View this list", true);
+        }
+        echo $this->Html->link(
+            $otherActionText,
+            array(
+                "controller"=>"sentences_lists", 
+                "action"=>$otherAction,
+                $listId
+            )
+        );
+
+        ?>
+        </li>
+
         <li class="deleteList">
         <?php
         echo $this->Html->link(
