@@ -154,7 +154,7 @@ $languages = array(
     'yue' => 'Cantonese',
     'afr' => 'Afrikaans',
     'fao' => 'Faroese',
-    'fry' => 'Frisian'
+    'fry' => 'Frisian',
     
     'bre' => 'Breton',
     'ron' => 'Romanian',
