@@ -155,6 +155,16 @@ $languages = array(
     'afr' => 'Afrikaans',
     'fao' => 'Faroese',
     'fry' => 'Frisian'
+    
+    'bre' => 'Breton',
+    'ron' => 'Romanian',
+    'uig' => 'Uyghur',
+    'uzb' => 'Uzbek',
+    'non' => 'Norwegian (Nynorsk)',
+    'srp' => 'Serbian',
+    'tat' => 'Tartar',
+    'yid' => 'Yiddish',
+ 
 );
 
 $languageWithStemmer = array(
