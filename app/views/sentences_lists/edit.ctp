@@ -42,7 +42,7 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     <ul class="sentencesListActions">
         <?php
         $lists->displayPublicActions(
-            $listId, $translationsLang, 'show'
+            $listId, $translationsLang, 'edit'
         );
         
         if ($belongsToUser) {
