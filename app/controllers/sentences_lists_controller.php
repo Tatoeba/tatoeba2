@@ -45,6 +45,7 @@ class SentencesListsController extends AppController
         'Lists',
         'Menu',
         'Pagination',
+        'AttentionPlease'
     );
     public $components = array ('SaveSentence');
     

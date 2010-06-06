@@ -37,7 +37,7 @@
 class ToolsController extends AppController
 {
     public $name = 'Tools';
-    public $helpers = array('Javascript');
+    public $helpers = array('Javascript','AttentionPlease');
     public $components = array('Pinyin');
     
     /**

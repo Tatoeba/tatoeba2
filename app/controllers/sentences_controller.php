@@ -55,6 +55,7 @@ class SentencesController extends AppController
         'Languages',
         'Javascript',
         'CommonModules',
+        'AttentionPlease'
     );
     public $paginate = array(
         'limit' => 100,
