@@ -31,6 +31,10 @@ $this->pageTitle = sprintf(__('Sentences with: %s', true), $query);
 ?>
 
 <div id="annexe_content">
+    <?php
+    $attentionPlease->tatoebaNeedsYou();
+    ?>
+    
     <div class="module">
         <h2>
         <?php __('Tips'); ?>
