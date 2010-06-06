@@ -26,19 +26,16 @@
  */
 
 $this->pageTitle = 'Tatoeba - ' . __('Add sentences', true);
-
-echo $javascript->link('sentences.add_translation.js', true);
-echo $javascript->link('sentences.contribute.js', true);
-echo $javascript->link('favorites.add.js', true);
-echo $javascript->link('sentences_lists.menu.js', true);
-echo $javascript->link('sentences.adopt.js', true);
-echo $javascript->link('jquery.jeditable.js', true);
-echo $javascript->link('sentences.edit_in_place.js', true);
-echo $javascript->link('sentences.play_audio.js', true);
-echo $javascript->link('sentences.change_language.js', true);
 ?>
-<div id="main_content">
 
+<div id="annexe_content">
+    <?php
+    $attentionPlease->tatoebaNeedsYou();
+    ?>
+</div>
+
+<div id="main_content">
+    
     <div class="module">
         <h2><?php __('Add another sentence'); ?></h2>
         <div class="sentences_set">
