@@ -57,6 +57,12 @@ class AttentionPleaseHelper extends AppHelper
             /> 
             <span style="font-size: 1.5em;">Vote for us, on Drumbeat!</span>
             </a>
+            <p>
+            <strong>NOTE:</strong> You will need to 
+            <a href="http://www.drumbeat.org/user/register" 
+            style="font-weight: bold; color:#C36931;">register on Drumbeat</a> 
+            before you can vote.
+            </p>
         </div>
         <?php
     }
