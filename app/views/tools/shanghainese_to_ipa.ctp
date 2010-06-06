@@ -39,7 +39,10 @@ if (!isset($lastText)) {
 
 ?>
 <div id="annexe_content">
-
+    <?php
+    $attentionPlease->tatoebaNeedsYou();
+    ?>
+    
     <div class="module">
         <h2><?php __('Credits'); ?></h2>
         <p>

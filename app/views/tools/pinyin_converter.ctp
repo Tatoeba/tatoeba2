@@ -34,6 +34,11 @@ if (!isset($lastText)) {
 
 ?>
 
+<div id="annexe_content">
+    <?php
+    $attentionPlease->tatoebaNeedsYou();
+    ?>
+</div>
 
 <div id="main_content">
     <div class="module">

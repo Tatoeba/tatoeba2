@@ -31,6 +31,10 @@ $this->pageTitle = 'Tatoeba - ' . __('List of sentences', true);
 <div id="annexe_content" >
 
 <?php
+$attentionPlease->tatoebaNeedsYou();
+?>
+
+<?php
 if ($session->read('Auth.User.id')) {
     if (isset($myLists) && count($myLists) > 0) {
         ?>
