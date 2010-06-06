@@ -29,6 +29,10 @@ $this->pageTitle = 'Tatoeba - ' . __('Download sentences', true);
 ?>
 
 <div id="annexe_content">
+    <?php
+    $attentionPlease->tatoebaNeedsYou();
+    ?>
+    
     <div class="module">
         <h2>Warning</h2>
         <p>

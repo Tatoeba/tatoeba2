@@ -29,6 +29,10 @@ $this->pageTitle = 'Tatoeba - ' . __('Examples of search', true);
 ?>
 
 <div id="annexe_content">
+    <?php
+    $attentionPlease->tatoebaNeedsYou();
+    ?>
+    
     <div class="module">
         <h2><?php __('Search features'); ?></h2>
         <p>

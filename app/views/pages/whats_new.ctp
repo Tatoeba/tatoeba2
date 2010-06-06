@@ -29,6 +29,10 @@ $this->pageTitle = 'Tatoeba - ' . __("What's new", true);
 ?>
 
 <div id="annexe_content">
+    <?php
+    $attentionPlease->tatoebaNeedsYou();
+    ?>
+    
     <div class="module">
         <h2><?php __('Follow us'); ?></h2>
         <p id="whatsNew">

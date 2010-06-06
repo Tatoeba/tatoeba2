@@ -41,6 +41,10 @@ $selectedLanguage = $session->read('random_lang_selected');
 ?>
 <div id="annexe_content">
     <?php
+    $attentionPlease->tatoebaNeedsYou();
+    ?>
+    
+    <?php
     if (!$isLogged) {
         ?>
         <div class="module">

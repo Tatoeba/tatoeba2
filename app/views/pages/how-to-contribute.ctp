@@ -29,7 +29,7 @@ $this->pageTitle = 'Tatoeba - ' . __('How to contribute', true);
 ?>
 
 
-<div id="annexe_content">    
+<div id="annexe_content">
     <div class="module">
     <?php
     if ($session->read('Auth.User.id')) {
@@ -62,6 +62,10 @@ $this->pageTitle = 'Tatoeba - ' . __('How to contribute', true);
     }
     ?>
     </div>
+    
+    <?php
+    $attentionPlease->tatoebaNeedsYou();
+    ?>
 </div>
 
 <div id="main_content">    

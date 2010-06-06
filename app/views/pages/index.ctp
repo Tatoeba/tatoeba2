@@ -61,6 +61,11 @@ $selectedLanguage = $session->read('random_lang_selected');
             ?>
         </p>
     </div>
+    
+    <?php
+    $attentionPlease->tatoebaNeedsYou();
+    ?>
+    
     <div class="module">
         <h2><?php __('Some numbers'); ?></h2>
         <p>
