@@ -86,6 +86,7 @@ index common_index
                         U+3a3..U+3ab->U+3c3..U+3cb, U+3ac..U+3ce, U+3d0..U+3d7, U+3d8..U+3ef/2, U+3f0..U+3f3, U+3f4->U+3b8,\
                         U+3f5, U+3f7..U+3f8/2, U+3f9->U+3f2, U+3fa..U+3fb/2, U+3fc..U+3ff,\
                         U+5d0..U+5ea, U+5f0..U+5f2,\
+                        U+410..U+42F->U+430..U+44F, U+430..U+44F,\
                         U+10a0..U+10c5->U+2d00..U+2d25, U+10d0..U+10fa, U+10fc, U+2d00..U+2d25,\
                         U+C0..U+D6->U+E0..U+F6, U+D8..U+DE->U+F8..U+FE, U+178->U+FF, U+FF, U+100..U+177/2, U+179..U+17E/2
 
