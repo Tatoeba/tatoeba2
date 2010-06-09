@@ -167,7 +167,7 @@ class CurrentUser extends AppModel
     /**
      * Indicates if current user can edit sentence of user with give username.
      *
-     * @param int $username Username of owner of the sentence.
+     * @param string $username Username of owner of the sentence.
      * 
      * @return bool
      */
@@ -179,6 +179,30 @@ class CurrentUser extends AppModel
         
         $belongsToCurrentUser = (self::get('username') == $username);
         return $belongsToCurrentUser || self::isModerator();
+    }
+
+
+    /**
+     * Indicates if current user can remove a given tag on a given sentence.
+     *
+     * @param int $taggerId Id of the guy who add this tag on the current sentence.
+     *
+     * @return bool True if he can, False otherwise.
+     */
+    public static function canRemoveTagFromSentence($taggerId)
+    {
+        if (!self::isMember()) {
+            return false;
+        }
+        
+        if (self::isModerator()) {
+            return true;
+        }
+        
+        $TagAddedByCurrentUser = (self::get('id') == $taggerId);
+        return $TagAddedByCurrentUser;
+
+
     }
     
     

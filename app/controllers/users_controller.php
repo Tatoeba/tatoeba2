@@ -550,6 +550,9 @@ class UsersController extends AppController
         //Permissions for moderators
         $group->id = 2;
         $this->Acl->deny($group, 'controllers');
+       
+       
+        $this->Acl->allow($group, 'controllers/Tags');
         
         $this->Acl->allow($group, 'controllers/SentenceComments');
         $this->Acl->allow($group, 'controllers/Sentences');
@@ -575,6 +578,8 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/Sentences');
         $this->Acl->deny($group, 'controllers/Sentences/delete');
         
+        $this->Acl->allow($group, 'controllers/Tags');
+        
         $this->Acl->allow($group, 'controllers/Users');
         $this->Acl->deny($group, 'controllers/Users/index');
         $this->Acl->deny($group, 'controllers/Users/edit');
@@ -595,6 +600,9 @@ class UsersController extends AppController
         $this->Acl->deny($group, 'controllers');
         $this->Acl->allow($group, 'controllers/Sentences');
         $this->Acl->deny($group, 'controllers/Sentences/delete');
+
+        
+        $this->Acl->allow($group, 'controllers/Tags');
         
         $this->Acl->allow($group, 'controllers/Users');
         $this->Acl->deny($group, 'controllers/Users/index');

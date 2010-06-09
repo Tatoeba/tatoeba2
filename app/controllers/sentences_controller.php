@@ -39,7 +39,7 @@ class SentencesController extends AppController
     public $name = 'Sentences';
     public $components = array (
         'GoogleLanguageApi',
-        'SaveSentence',
+        'CommonSentence',
         'Lucene',
         'Permissions'
     );
@@ -119,6 +119,8 @@ class SentencesController extends AppController
      */
     public function show($id = null)
     {
+       $this->helpers[] = 'Tags'; 
+
         $id = Sanitize::paranoid($id);
         
         $userId = $this->Auth->user('id');
@@ -159,7 +161,7 @@ class SentencesController extends AppController
             $this->set('commentsPermissions', $commentsPermissions);
             $this->set('contributions', $contributions); 
             
-            
+
             // And now we retrieve the sentence
             $sentence = $this->Sentence->getSentenceWithId($id);
 
@@ -167,6 +169,9 @@ class SentencesController extends AppController
             if ($sentence == null) {
                 return;
             }
+
+            $tags = $this->Sentence->getAllTagsOnSentence($id); 
+
             
             $this->set('sentence', $sentence);
             
@@ -178,7 +183,7 @@ class SentencesController extends AppController
             // this way "next" and "previous"  
             $lang = $this->Session->read('random_lang_selected');
             $neighbors = $this->Sentence->getNeighborsSentenceIds($id, $lang);                 
-            
+            $this->set('tagsArray', $tags); 
             $this->set('translations', $translations);
             $this->set('indirectTranslations', $indirectTranslations);
             $this->set('nextSentence', $neighbors['next']);
@@ -236,7 +241,7 @@ class SentencesController extends AppController
         }
 
         // saving
-        $isSaved = $this->SaveSentence->wrapper_save_sentence(
+        $isSaved = $this->CommonSentence->wrapper_save_sentence(
             $sentenceLang,
             $sentenceText,
             $userId
@@ -291,7 +296,7 @@ class SentencesController extends AppController
         $sentenceLang = Sanitize::paranoid($_POST['selectedLang']);
         $sentenceText = $_POST['value'];
 
-        $isSaved = $this->SaveSentence->wrapper_save_sentence(
+        $isSaved = $this->CommonSentence->wrapper_save_sentence(
             $sentenceLang,
             $sentenceText,
             $userId
@@ -520,7 +525,7 @@ class SentencesController extends AppController
             $sentenceIds[$i] = $sentence['Sentence']['id'];
         }
 
-        $allSentences = $this->_getAllNeededForSentences($sentenceIds, $to);
+        $allSentences = $this->CommonSentence->getAllNeededForSentences($sentenceIds, $to);
         
         $this->set('query', $query);
         $this->set('results', $allSentences);
@@ -594,39 +599,11 @@ class SentencesController extends AppController
     
         $this->Session->write('random_lang_selected', $lang);
         
-        $allSentences = $this->_getAllNeededForSentences($randomIds);
+        $allSentences = $this->CommonSentence->getAllNeededForSentences($randomIds);
         
         $this->set("allSentences", $allSentences);
         $this->set('lastNumberChosen', $number);
     }
-       
-    private function _getAllNeededForSentences($sentenceIds, $lang = null)
-    {
- 
-        $allSentences = array();
-        
-        foreach ($sentenceIds as $i=>$sentenceId) {
-
-            $sentence = $this->Sentence->getSentenceWithId($sentenceId);
-            
-
-            $alltranslations = $this->Sentence->getTranslationsOf(
-                $sentenceId,
-                $lang
-            );
-            $translations = $alltranslations['Translation'];
-            $indirectTranslations = $alltranslations['IndirectTranslation'];
-
-            $allSentences[$i] = array (
-                "Sentence" => $sentence['Sentence'],
-                "User" => $sentence['User'],
-                "Translations" => $translations,
-                "IndirectTranslations" => $indirectTranslations
-            );
-        }
-        return $allSentences;
-    }
-
     /**
      * Count number of sentences in each language.
      * TODO : should be move in the model

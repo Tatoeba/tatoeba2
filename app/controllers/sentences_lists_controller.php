@@ -47,7 +47,7 @@ class SentencesListsController extends AppController
         'Pagination',
         'AttentionPlease'
     );
-    public $components = array ('SaveSentence');
+    public $components = array ('CommonSentence');
     
     
     /**
@@ -378,7 +378,7 @@ class SentencesListsController extends AppController
             $sentenceText = $_POST['sentenceText'];
             
             //saving
-            $isSaved = $this->SaveSentence->wrapper_save_sentence(
+            $isSaved = $this->CommonSentence->wrapper_save_sentence(
                 'auto',
                 $sentenceText,
                 $this->Auth->user('id')

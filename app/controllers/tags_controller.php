@@ -1,0 +1,134 @@
+<?php
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2010 Allan SIMON <allan.simon@supinfo.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5
+ *
+ * @category PHP
+ * @package  Tatoeba
+ * @author   Allan SIMON <allan.simon@supinfo.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
+
+/**
+ * Controller for tags
+ *
+ * @category Tags
+ * @package  Controllers
+ * @author   Allan SIMON <allan.simon@supinfo.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
+
+class TagsController extends AppController
+{
+    /**
+     * Controller name
+     *
+     * @var string
+     * @access public
+     */
+    public $name = 'Tags';
+   
+    public $components = array('CommonSentence'); 
+    /**
+     * Before filter.
+     * 
+     * @return void
+     */
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        // setting actions that are available to everyone, even guests
+        $this->Auth->allowedActions = array(
+            "show_sentences_with_tag"
+        );
+    } 
+
+    public function add_tag(){
+        $tagName = $_POST['data']['Tag']['tag_name'];
+        $sentenceId = $_POST['data']['Tag']['sentence_id'];
+        $userId = CurrentUser::get("id"); 
+
+        // save and check if the tag has been added
+        if ( $this->Tag->addTag($tagName, $userId, $sentenceId) == null) {
+            $infoMessage = sprintf(
+                __("Tag '%s' added on sentence number %s", true),
+                $tagName,
+                $sentenceId
+            ); 
+            
+        } else {
+            $infoMessage = sprintf(
+                __("Tag '%s' already exists on sentence number %s", true),
+                $tagName,
+                $sentenceId
+            );   
+        };
+        $this->Session->setFlash($infoMessage);
+        $this->redirect(
+            array(
+                'controller' => 'sentences',
+                'action' => 'show',
+                $sentenceId
+            ) 
+        );
+    
+    }
+
+    public function remove_tag_from_sentence($tagId, $sentenceId)
+    {
+        $this->Tag->removeTagFromSentence($tagId, $sentenceId);
+        $this->redirect(
+            array(
+                'controller' => 'sentences',
+                'action' => 'show',
+                $sentenceId
+            ) 
+        );
+    
+    }
+
+    public function show_sentences_with_tag($tagInternalName) 
+    {
+
+        $this->helpers[] = 'Pagination';
+        $this->helpers[] = 'Tags';
+
+        $tagId = $this->Tag->getIdFromInternalName($tagInternalName); 
+        $this->paginate = $this->Tag->paramsForPaginate($tagInternalName, 10);
+
+        $sentencesIdsTaggerIds = $this->paginate('TagsSentences');
+        
+        $taggerIds = array();
+        $sentenceIds = array();
+
+        foreach ($sentencesIdsTaggerIds as $sentenceIdTaggerId) {
+            $taggerIds[] = $sentenceIdTaggerId['TagsSentences']['user_id'];    
+            $sentenceIds[] = $sentenceIdTaggerId['TagsSentences']['sentence_id'];   
+        } 
+        $allSentences = $this->CommonSentence->getAllNeededForSentences($sentenceIds);
+
+        $this->set('tagId', $tagId);
+        $this->set('allSentences', $allSentences);
+        $this->set('tagInternalName', $tagInternalName);
+        $this->set('taggerIds', $taggerIds);
+
+    }
+
+}

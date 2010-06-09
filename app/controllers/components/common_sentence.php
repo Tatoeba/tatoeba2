@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */
 
-class SaveSentenceComponent extends Object
+class CommonSentenceComponent extends Object
 {
 
     public $components = array(
@@ -93,6 +93,36 @@ class SaveSentenceComponent extends Object
                 
         return $isSaved;
     }
+       
+    public function getAllNeededForSentences($sentenceIds, $lang = null)
+    {
+ 
+        $allSentences = array();
+        
+        $Sentence = ClassRegistry::init('Sentence');
+        foreach ($sentenceIds as $i=>$sentenceId) {
+
+            $sentence = $Sentence->getSentenceWithId($sentenceId);
+            
+
+            $alltranslations = $Sentence->getTranslationsOf(
+                $sentenceId,
+                $lang
+            );
+            $translations = $alltranslations['Translation'];
+            $indirectTranslations = $alltranslations['IndirectTranslation'];
+
+            $allSentences[$i] = array (
+                "Sentence" => $sentence['Sentence'],
+                "User" => $sentence['User'],
+                "Translations" => $translations,
+                "IndirectTranslations" => $indirectTranslations
+            );
+        }
+        return $allSentences;
+    }
+
+
 
 
 }

@@ -83,7 +83,7 @@ class Sentence extends AppModel
         'SentenceAnnotation'
     );
     
-    public $belongsTo = array('User');
+    public $belongsTo = array('User','TagsSentences');
     
     public $hasAndBelongsToMany = array(
         'Translation' => array(
@@ -98,7 +98,15 @@ class Sentence extends AppModel
             'foreignKey' => 'sentence_id',
             'associationForeignKey' => 'translation_id'
         ),
-        'SentencesList'
+        'SentencesList',
+        'Tag' => array(
+            'className' => 'Tag',
+            'joinTable' => 'tags_sentences',
+            'foreignKey' => 'sentence_id',
+            'associationForeignKey' => 'tag_id'
+        ),
+
+
     );
     
     /**
@@ -419,7 +427,7 @@ class Sentence extends AppModel
     {
         //TODO  why ?
         $this->id = $id;
-        
+        $id = Sanitize::paranoid($id);  
         // for the logs
         $this->data = $this->find(
             'first',
@@ -477,14 +485,13 @@ class Sentence extends AppModel
      */
     public function incrementStatistics($lang)
     {
-
+        $lang = Sanitize::paranoid($lang);
         $endOfQuery = "lang = '$lang'";
 
         if ($lang == '' or $lang == null) {
             $endOfQuery = 'lang is null';
         }
 
-        // TODO sanitize lang
         $query = "
             UPDATE langStats SET numberOfSentences = numberOfSentences + 1
                 WHERE $endOfQuery ;
@@ -502,13 +509,13 @@ class Sentence extends AppModel
     public function decrementStatistics($lang)
     {
 
+        $lang = Sanitize::paranoid($lang);
         $endOfQuery = "lang = '$lang'";
 
         if ($lang == '' or $lang == null) {
             $endOfQuery = 'lang is null';
         }
 
-        // TODO sanitize lang
         $query = "
             UPDATE langStats SET numberOfSentences = numberOfSentences - 1
                 WHERE $endOfQuery ;
@@ -545,6 +552,9 @@ class Sentence extends AppModel
      */
     public function getTranslationsOf($id,$lang = null)
     {
+        
+        $id = Sanitize::paranoid($id);
+        $lang = Sanitize::paranoid($lang);
         if ( ! is_numeric($id) ) {
             return array();
         }
@@ -647,6 +657,8 @@ class Sentence extends AppModel
         // Need to do custom query because there is no way to say 
         //  `Sentence`.`lang` = '' OR `Sentence`.`lang` IS NULL
         // with CakePHP, it seems.
+
+        $userId = Sanitize::paranoid($userId);
         $count = $this->query(
             "
             SELECT COUNT(*) AS `count` 
@@ -670,6 +682,8 @@ class Sentence extends AppModel
         // Need to do custom query because there is no way to say 
         //  `Sentence`.`lang` = '' OR `Sentence`.`lang` IS NULL
         // with CakePHP, it seems.
+        // TODO it's possible google => "complex query cakephp"
+        $userId = Sanitize::paranoid($userId);
         $sentences = $this->query(
             "
             SELECT * FROM `sentences` AS `Sentence` 
@@ -1119,6 +1133,10 @@ class Sentence extends AppModel
 
     }
     
+
+    public function getAllTagsOnSentence($sentenceId) {
+        return $this->TagsSentences->getAllTagsOnSentence($sentenceId);
+    }
     
     /**
      * Add translation to sentence with given id. Adding a translation means adding
