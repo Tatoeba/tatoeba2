@@ -484,11 +484,17 @@ class ListsHelper extends AppHelper
         </script>
         
         <?php
+        $removeFromListAlt = sprintf(
+            __("remove sentence % from list", true),
+            $sentenceId
+        );
+
         echo $this->Html->image(
             'close.png',
             array(
                 "class" => "removeFromListButton",
-                "id" => 'deleteButton'.$sentenceId
+                "id" => 'deleteButton'.$sentenceId,
+                "alt" => $removeFromListAlt 
             )
         );
         ?>
