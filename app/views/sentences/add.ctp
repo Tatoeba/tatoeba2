@@ -26,6 +26,8 @@
  */
 
 $this->pageTitle = 'Tatoeba - ' . __('Add sentences', true);
+
+echo $javascript->link('sentences.contribute.js', true);
 ?>
 
 <div id="annexe_content">
