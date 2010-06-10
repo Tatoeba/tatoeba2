@@ -39,11 +39,7 @@ if (isset($this->params['lang'])) {
 
 $selectedLanguage = $session->read('random_lang_selected');
 ?>
-<div id="annexe_content">
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-    
+<div id="annexe_content">    
     <?php
     if (!$isLogged) {
         ?>
