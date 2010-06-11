@@ -535,9 +535,10 @@ class Sentence extends AppModel
         return $this->find(
             'count',
             array(
-                 'conditions' => array(
+                'conditions' => array(
                     'Sentence.user_id' => $userId
-                )
+                ),
+                'contain' => array()
             )
         );
     }
