@@ -57,3 +57,39 @@
     font-size: 0.8em;
     color: #888;
 }
+
+
+/* 
+ * Tags
+ */
+.tagsListOnSentence {
+    margin: 10px 0px;
+    margin-bottom: 30px;
+}
+
+.tag {
+    border-bottom: 1px solid #DDD;
+    border-right: 1px solid #DDD;
+    background: #F4CD4B;
+    padding: 3px 8px;
+    margin: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.tagName {
+    color: #333;
+    font-size: 1.2em;
+}
+
+.tag a:hover {
+    color: #7F6A27;
+}
+
+.removeTagFromSentenceButton {
+    border-left: 1px dotted #CCC;
+    padding-left: 5px;
+    margin-left: 5px;
+    color: red;
+}

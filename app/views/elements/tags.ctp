@@ -30,6 +30,9 @@ $currentUser =  CurrentUser::get('id');
 <div class="tagsListOnSentence" >
 <?
 foreach ($tagsArray as $tag) {
+    ?>
+    <span class="tag">
+    <?php
     $tagName =  $tag['Tag']['name'];
     $tagInternalName =  $tag['Tag']['internal_name'];
     $taggerId = $tag['TagsSentences']['user_id'];
@@ -41,38 +44,37 @@ foreach ($tagsArray as $tag) {
             "controller" => "tags",
             "action" => "show_sentences_with_tag",
             $tagInternalName
+        ),
+        array(
+            "class" => "tagName"
         )
     );
-    echo " "; 
+    
     if (CurrentUser::canRemoveTagFromSentence($taggerId)) {
         $removeTagFromSentenceAlt = sprintf(
             __("remove tag '%s' from this sentence.", true),
             $tagName
         );
-
-        $removeTagFromSentenceImg = $html->image(
-            'close.png',
-            array(
-                "class" => "removeTagFromSentenceButton",
-                "id" => 'deleteButton'.$tagId.$sentenceId,
-                "alt" => $removeTagFromSentenceAlt
-            )
-        );
+        
         echo $html->link(
-            $removeTagFromSentenceImg,
+            'x',
             array(
                 "controller" => "tags",
                 "action" => "remove_tag_from_sentence",
                 $tagId,
                 $sentenceId
             ),
-            array(),
+            array(
+                "class" => "removeTagFromSentenceButton",
+                "id" => 'deleteButton'.$tagId.$sentenceId,
+                "title" => $removeTagFromSentenceAlt
+            ),
             null,
             false
         );
     }
-    echo " "; 
-
+    ?></span>
+    <?php
 }
 
 ?>
