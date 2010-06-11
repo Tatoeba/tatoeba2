@@ -63,15 +63,16 @@
  * Tags
  */
 .tagsListOnSentence {
-    margin: 10px 0px;
-    margin-bottom: 30px;
+    overflow: auto;
 }
 
 .tag {
+    display: block;
+    float: left;
     border-bottom: 1px solid #DDD;
     border-right: 1px solid #DDD;
     background: #FFE684;
-    padding: 3px 8px;
+    padding: 2px 8px;
     margin: 5px;
     -moz-border-radius: 5px;
     -webkit-border-radius: 5px;
@@ -92,4 +93,19 @@
     padding-left: 5px;
     margin-left: 5px;
     color: red;
+}
+
+
+/* 
+ * Tags form
+ */
+#TagAddTagForm {
+    margin-top: 10px;
+    border-top: 1px dotted #CCC;
+    padding: 10px 5px 5px 5px;
+}
+
+#TagAddTagForm div {
+    display: inline;
+    margin: 3px;
 }

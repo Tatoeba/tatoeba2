@@ -68,35 +68,28 @@ class TagsHelper extends AppHelper
 
     public function displayAddTagForm($sentenceId = null)
     {
-        ?>
-        <div id="addTagForm">
-            <?php
-            // go to form
-            echo $this->Form->create(
-                'Tag',
-                array(
-                    "action" => "add_tag/".$sentenceId,
-                    "type" => "post"
-                )
-            );
-            echo $this->Form->input(
-                'tag_name', 
-                array(
-                    "label" => __('Add Tag: ', true), 
-                )
-            );
-
-            echo $this->Form->hidden(
-                'sentence_id',
-                array('value' => $sentenceId)
-            );
-
-            echo $this->Form->end(__('Add', true));
-
-            ?>
-        </div>
-        <?php
-
+        echo $this->Form->create(
+            'Tag',
+            array(
+                "action" => "add_tag",
+                "type" => "post",
+            )
+        );
+        echo $this->Form->input(
+            'tag_name', 
+            array(
+                "label" => ''
+            )
+        );
+        
+        echo '<div>';
+        echo $this->Form->hidden(
+            'sentence_id',
+            array('value' => $sentenceId)
+        );
+        echo '</div>';
+        
+        echo $this->Form->end('+');
     }
 
     

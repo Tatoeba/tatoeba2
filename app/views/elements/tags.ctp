@@ -57,7 +57,7 @@ foreach ($tagsArray as $tag) {
         );
         
         echo $html->link(
-            'x',
+            'X',
             array(
                 "controller" => "tags",
                 "action" => "remove_tag_from_sentence",

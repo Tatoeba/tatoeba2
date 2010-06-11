@@ -61,21 +61,21 @@ class TagsController extends AppController
     } 
 
     public function add_tag(){
-        $tagName = $_POST['data']['Tag']['tag_name'];
-        $sentenceId = $_POST['data']['Tag']['sentence_id'];
+        $tagName = $this->data['Tag']['tag_name'];
+        $sentenceId = $this->data['Tag']['sentence_id'];
         $userId = CurrentUser::get("id"); 
 
         // save and check if the tag has been added
         if ( $this->Tag->addTag($tagName, $userId, $sentenceId) == null) {
             $infoMessage = sprintf(
-                __("Tag '%s' added on sentence number %s", true),
+                __("Tag '%s' added to sentence #%s", true),
                 $tagName,
                 $sentenceId
             ); 
             
         } else {
             $infoMessage = sprintf(
-                __("Tag '%s' already exists on sentence number %s", true),
+                __("Tag '%s' already exists for sentence #%s", true),
                 $tagName,
                 $sentenceId
             );   
