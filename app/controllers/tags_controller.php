@@ -110,7 +110,10 @@ class TagsController extends AppController
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'Tags';
 
-        $tagId = $this->Tag->getIdFromInternalName($tagInternalName); 
+        $tag = $this->Tag->getInfoFromInternalName($tagInternalName); 
+        $tagId = $tag['Tag']['id'];
+        $tagName = $tag['Tag']['name'];
+        
         $this->paginate = $this->Tag->paramsForPaginate($tagInternalName, 10);
 
         $sentencesIdsTaggerIds = $this->paginate('TagsSentences');
@@ -126,6 +129,7 @@ class TagsController extends AppController
 
         $this->set('tagId', $tagId);
         $this->set('allSentences', $allSentences);
+        $this->set('tagName', $tagName);
         $this->set('tagInternalName', $tagInternalName);
         $this->set('taggerIds', $taggerIds);
 

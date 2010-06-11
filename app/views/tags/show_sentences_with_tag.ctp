@@ -25,19 +25,12 @@
  * @link     http://tatoeba.org
  */
 
-//TODO change this
-$this->pageTitle = 'Tatoeba - Sentences with Tag : ';
+$this->pageTitle = 'Tatoeba - ' . __('Sentences with tag: ', true) . $tagName;
 
 ?> 
 <div id="main_content">
     <div class="module">
-    <?php
-    
-    echo '<h2>';
-    echo 'toto';
-    echo '</h2>';
-    
-    ?>
+    <h2><?php echo $tagName; ?></h2>
     
     <?php
     $url = array($tagInternalName);

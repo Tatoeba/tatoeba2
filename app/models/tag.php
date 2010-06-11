@@ -156,4 +156,25 @@ class Tag extends AppModel
         );
         return $result['Tag']['id'];
     }
+    
+    
+    /**
+     * Get id and name of tag, from given 'internal name'.
+     *
+     * @param string $tagInternalName Internal name of the tag.
+     *
+     * @return array
+     */
+    public function getInfoFromInternalName($tagInternalName) {
+
+        $result = $this->find(
+            'first',
+            array(
+                'conditions' => array('Tag.internal_name'=>$tagInternalName),
+                'contain' => array(),
+                'fields' => array('id', 'name')
+            )
+        );
+        return $result;
+    }
 }
