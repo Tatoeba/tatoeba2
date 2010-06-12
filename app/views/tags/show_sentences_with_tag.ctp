@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = 'Tatoeba - ' . __('Sentences with tag: ', true) . $tagName;
+$this->pageTitle = 'Tatoeba - '.sprintf(__('Sentences with tag %s', true), $tagName);
 
 ?> 
 <div id="main_content">
