@@ -92,7 +92,8 @@ class LanguagesHelper extends AppHelper
             'non' => __('Norwegian (Nynorsk)', true),
             'srp' => __('Serbian', true),
             'tat' => __('Tartar', true),
-            'yid' => __('Yiddish', true)
+            'yid' => __('Yiddish', true),
+            'pes' => __('Persian', true)
             // TODO to change when shanghainese will not be the only wu dialect
         );
         asort($languages);
@@ -292,6 +293,7 @@ class LanguagesHelper extends AppHelper
             "ara",
             "heb",
             "uig",
+            "pes",
         );
 
         if (in_array($lang, $rightToLeftLangs)) {

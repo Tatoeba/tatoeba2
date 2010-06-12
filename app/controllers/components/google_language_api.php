@@ -100,6 +100,7 @@ class GoogleLanguageApiComponent extends Object
             case 'es' :     return 'spa';
             case 'et' :     return 'est';
             case 'fi' :     return 'fin';
+            case 'fa' :     return 'pes';
             case 'fr' :     return 'fra';
             case 'fo' :     return 'fao';
             case 'fy' :     return 'fry';
