@@ -118,6 +118,10 @@ class Tag extends AppModel
                 $userId
             );
         }
+        
+        return true; // TODO This function was not returning anything but the
+                     // return value is needed in TagsController::add_tag().
+                     // I'm making it return true for now.
     }
 
     private function _tag_to_internal_name($tagName)

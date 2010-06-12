@@ -25,8 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+$tagName = Sanitize::html($tagName);
 $this->pageTitle = 'Tatoeba - '.sprintf(__('Sentences with tag %s', true), $tagName);
-
 ?> 
 <div id="main_content">
     <div class="module">

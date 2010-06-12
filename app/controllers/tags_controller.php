@@ -68,7 +68,7 @@ class TagsController extends AppController
     public function add_tag()
     {
         $tagName = $this->data['Tag']['tag_name'];
-        $sentenceId = $this->data['Tag']['sentence_id'];
+        $sentenceId = Sanitize::paranoid($this->data['Tag']['sentence_id']);
         $userId = CurrentUser::get("id"); 
 
         // if we try to access the page without POST info, we redirect to
@@ -84,21 +84,15 @@ class TagsController extends AppController
         }
 
         // save and check if the tag has been added
-        if ( $this->Tag->addTag($tagName, $userId, $sentenceId) == null) {
-            $infoMessage = sprintf(
-                __("Tag '%s' added to sentence #%s", true),
-                $tagName,
-                $sentenceId
-            ); 
-            
-        } else {
+        if (!$this->Tag->addTag($tagName, $userId, $sentenceId)) {
             $infoMessage = sprintf(
                 __("Tag '%s' already exists for sentence #%s", true),
                 $tagName,
                 $sentenceId
-            );   
-        };
-        $this->Session->setFlash($infoMessage);
+            );
+            $this->Session->setFlash($infoMessage);
+        }
+        
         $this->redirect(
             array(
                 'controller' => 'sentences',

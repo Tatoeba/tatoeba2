@@ -67,7 +67,7 @@ class TagsHelper extends AppHelper
                 )
             );
             
-            if (CurrentUser::isMember()) {
+            if (CurrentUser::isTrusted()) {
                 $this->displayAddTagForm($sentenceId);
             }
             ?>
