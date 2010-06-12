@@ -51,7 +51,7 @@ $navigation->displaySentenceNavigation(
 ?>
 
 <div id="annexe_content">
-    <?php $tags->displayTagsModule($sentenceId, $tagsArray); ?>
+    <?php $tags->displayTagsModule($tagsArray, $sentenceId); ?>
     
     <div class="module">
         <?php

@@ -60,10 +60,28 @@ class TagsController extends AppController
         );
     } 
 
-    public function add_tag(){
+    /**
+     * Add a tag to a Sentence
+     * 
+     * @return void
+     */
+    public function add_tag()
+    {
         $tagName = $this->data['Tag']['tag_name'];
         $sentenceId = $this->data['Tag']['sentence_id'];
         $userId = CurrentUser::get("id"); 
+
+        // if we try to access the page without POST info, we redirect to
+        // the home page
+        if (empty($tagName) || empty($sentenceId)) {
+            $this->redirect(
+                array(
+                    'controller' => 'pages',
+                    'action' => 'display',
+                    'home'
+                )
+            );
+        }
 
         // save and check if the tag has been added
         if ( $this->Tag->addTag($tagName, $userId, $sentenceId) == null) {
@@ -91,9 +109,20 @@ class TagsController extends AppController
     
     }
 
+    /**
+     * Remove a tag from a sentence when on this sentence page
+     *
+     * @param int $tagId      Id of the tag to remove from the this sentence
+     * @param int $sentenceId Id of the sentence to remove the tag from
+     *
+     * @return void
+     */
+
     public function remove_tag_from_sentence($tagId, $sentenceId)
     {
-        $this->Tag->removeTagFromSentence($tagId, $sentenceId);
+        if (!empty($tagId) && !empty($sentenceId)) {
+            $this->Tag->removeTagFromSentence($tagId, $sentenceId);
+        }
         $this->redirect(
             array(
                 'controller' => 'sentences',
@@ -104,6 +133,33 @@ class TagsController extends AppController
     
     }
 
+
+    /**
+     * Remove a tag from a sentence when on the "show all sentences with
+     * this tag" page
+     *
+     * @param int $tagId      Id of the tag to remove from the this sentence
+     * @param int $sentenceId Id of the sentence to remove the tag from
+     *
+     * @return void
+     */
+    public function remove_tag_of_sentence_from_tags_show($tagId, $sentenceId)
+    {
+        if (!empty($tagId) && !empty($sentenceId)) {
+            $this->Tag->removeTagFromSentence($tagId, $sentenceId);
+        }
+        $this->redirect($_SERVER['HTTP_REFERER']);
+    
+    }
+
+
+    /**
+     * Display a list of all sentences with a given tag
+     *
+     * @param string $tagInternalName Internal name of the tag
+     *
+     * @return void
+     */
     public function show_sentences_with_tag($tagInternalName) 
     {
 
@@ -125,7 +181,9 @@ class TagsController extends AppController
             $taggerIds[] = $sentenceIdTaggerId['TagsSentences']['user_id'];    
             $sentenceIds[] = $sentenceIdTaggerId['TagsSentences']['sentence_id'];   
         } 
-        $allSentences = $this->CommonSentence->getAllNeededForSentences($sentenceIds);
+        $allSentences = $this->CommonSentence->getAllNeededForSentences(
+            $sentenceIds
+        );
 
         $this->set('tagId', $tagId);
         $this->set('allSentences', $allSentences);
@@ -136,3 +194,4 @@ class TagsController extends AppController
     }
 
 }
+?>

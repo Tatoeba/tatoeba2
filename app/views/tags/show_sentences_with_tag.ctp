@@ -31,27 +31,30 @@ $this->pageTitle = 'Tatoeba - ' . __('Sentences with tag: ', true) . $tagName;
 <div id="main_content">
     <div class="module">
     <h2><?php echo $tagName; ?></h2>
-    
     <?php
     $url = array($tagInternalName);
     $pagination->display($url);
     ?>
-    
-    <div class="sentencesList" id="sentencesList">
-    <?php
-    foreach ($allSentences as $i=>$sentence) {
-        $canUserRemove = CurrentUser::canRemoveTagFromSentence($taggerIds[$i]);
-        $tags->displaySentence(
-            $sentence['Sentence'],
-            $sentence['User'],
-            $sentence['Translations'],
-            $sentence['IndirectTranslations'],
-            $canUserRemove,
-            $tagId
-        );
-    }
-    ?>
-    </div>
+        
+        <div class="sentencesList" id="sentencesList">
+        <?php
+        foreach ($allSentences as $i=>$sentence) {
+            // this should be done in the controller but this way
+            // we avoid another full loop on the sentence Array
+            $canUserRemove = CurrentUser::canRemoveTagFromSentence(
+                $taggerIds[$i]
+            );
+            $tags->displaySentence(
+                $sentence['Sentence'],
+                $sentence['User'],
+                $sentence['Translations'],
+                $sentence['IndirectTranslations'],
+                $canUserRemove,
+                $tagId
+            );
+        }
+        ?>
+        </div>
     
     <?php
     $pagination->display($url);

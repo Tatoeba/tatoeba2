@@ -59,6 +59,13 @@ class Tag extends AppModel
         ),
     );
   
+    /**
+     * Cakephp callback before each saving operations
+     *
+     * @return bool True if the saving operation can continue
+     *              False if we have to abort it
+     */
+
     public function beforeSave()
     {
 
@@ -75,7 +82,10 @@ class Tag extends AppModel
         return empty($result);
     }
   
-  
+    /**
+     *
+     *
+     */ 
     public function addTag($tagName, $userId, $sentenceId = null)
     {
         $internalName = $this->_tag_to_internal_name($tagName);      

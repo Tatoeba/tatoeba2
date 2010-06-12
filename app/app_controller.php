@@ -99,7 +99,7 @@ class AppController extends Controller
     {
         // without this 3 lines, html send by ajax will have the whole layout
         if ($this->RequestHandler->isAjax()) {
-            $this->layout = '';
+            $this->layout = null;
         }
         // Language of interface
         if (isset($this->params['lang'])) {

@@ -42,7 +42,17 @@ class TagsHelper extends AppHelper
         'Sentences',
     );
 
-    public function displayTagsModule($sentenceId = null, $tagsArray)
+    /**
+     * Display all the tags in the Array
+     *
+     * @param array $tagsArray  Array with all the information to display
+     *                          tags
+     * @param int   $sentenceId Id of the sentence if tags are related
+     *                          to a sentence
+     *
+     * @return void
+     */
+    public function displayTagsModule($tagsArray, $sentenceId = null)
     {
         ?>
         <div class="module">
@@ -56,15 +66,23 @@ class TagsHelper extends AppHelper
                     "sentenceId" => $sentenceId
                 )
             );
-            ?>
-            <?php
+            
             if (CurrentUser::isMember()) {
                 $this->displayAddTagForm($sentenceId);
             }
             ?>
         </div>
-        <?php
+    <?php
     }
+
+    /**
+     * Display a little form to add a tag
+     *
+     * @param int $sentenceId If precise will add the tag only
+     *                        To this sentence.
+     *
+     * @return void
+     */
 
     public function displayAddTagForm($sentenceId = null)
     {
@@ -94,12 +112,17 @@ class TagsHelper extends AppHelper
 
     
     /**
-     * Display sentence.
+     * Display sentence for a list of tagged sentences.
      *
-     * @param array  $sentence           Sentence data.
-     * @param string $translationsLang   Language of the translations.
-     * @param bool   $canCurrentUserEdit 'true' if user remove sentence from list.
-     *
+     * @param array $sentence             Sentence data.
+     * @param array $sentenceOwner        Array with Sentence owner info. 
+     * @param array $translations         Array with translations of this sentence.
+     * @param array $indirectTranslations Array with Ind. translations of this
+     *                                    sentence.
+     * @param bool  $canCurrentUserRemove 'true' if user can remove tag from this
+     *                                    sentence..
+     * @param int   $tagId                Id of the tag.
+     * 
      * @return void
      */
     public function displaySentence(
@@ -113,9 +136,6 @@ class TagsHelper extends AppHelper
         if (empty($sentence['id'])) {
             // In case the sentence has been deleted, we don't want to display
             // it in the list.
-            // We may also want to run the script to update the count of sentences
-            // in the lists, and remove unnecessary entries in the
-            // sentences_sentences_lists table.
             return;
         }
         $sentenceId = $sentence['id'];
@@ -139,16 +159,24 @@ class TagsHelper extends AppHelper
             ?>
             
         </div>
-        <?php
+    <?php
     }
     
-    
-    private function _displayRemoveButton($sentenceId, $tagId) {
+    /**
+     * Display a [X] button to remove the tag from the sentence.
+     *
+     * @param int $sentenceId Id of the sentence to remove the tag from.
+     * @param int $tagId      Id of the tag to remove from the sentence.
+     *
+     * @return void
+     */ 
+    private function _displayRemoveButton($sentenceId, $tagId)
+    {
         ?>
         <span class="removeFromList">
         <script type='text/javascript'>
         $(document).ready(function() {
-            $('#deleteButton<?php echo $sentenceId?>').data(
+            $('#deleteButton<?php echo $sentenceId; ?>').data(
                 'sentenceId',
                 <?php echo $sentenceId; ?>
             );
@@ -173,7 +201,7 @@ class TagsHelper extends AppHelper
             $removeTagFromSentenceImg,
             array(
                 "controller" => "tags",
-                "action" => "remove_tag_from_sentence",
+                "action" => "remove_tag_of_sentence_from_tags_show",
                 $tagId,
                 $sentenceId
             ),
