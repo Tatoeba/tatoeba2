@@ -61,19 +61,19 @@ echo $javascript->link('sentences.show_another.js', false);
         <ol>
             <li>
             <a href="http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html">
-            <?php __('Guide of the good contributor') ?>
+            <?php __('Guide of the good contributor'); ?>
             </a>
             </li>
             
             <li>
             <a href="http://blog.tatoeba.org/2010/05/moderators-in-tatoeba.html">
-            <?php __('Role of moderators') ?>
+            <?php __('Role of moderators'); ?>
             </a>
             </li>
             
             <li>
             <a href="http://blog.tatoeba.org/2010/04/reliability-of-sentences-how-will-we.html">
-            <?php __('Reliability of the sentences') ?>
+            <?php __('Reliability of the sentences'); ?>
             </a>
             </li>
         </ol>
@@ -204,83 +204,6 @@ echo $javascript->link('sentences.show_another.js', false);
             $html->image('adopt.png'),
             'http://blog.tatoeba.org/2010/04/reliability-of-sentences-how-will-we.html'
         )
-        ?>
-        </p>
-    </div>
-    
-    
-    <div class="module">
-        <h2><?php __('Help the moderators'); ?></h2>
-        <p>
-        <?php
-        __(
-            'Certain actions can only be done by moderators. In order to help '.
-            'them filter out the flow of contributions, you can add sentences '.
-            'that require an action from a moderator in the corresponding '.
-            'list.'
-        );
-        ?>
-        </p>
-        
-        <ul>
-            <li>
-            <?php
-            echo $html->link(
-                __('[@moderators] Needs to be corrected', true),
-                array(
-                    "controller" => "sentences_lists",
-                    "action" => "show",
-                    92
-                )
-            );
-            ?>
-            </li>
-            
-            <li>
-            <?php
-            echo $html->link(
-                __('[@moderators] Should be deleted', true),
-                array(
-                    "controller" => "sentences_lists",
-                    "action" => "show",
-                    35
-                )
-            );
-            ?>
-            </li>
-            
-            <li>
-            <?php
-            echo $html->link(
-                __('[@moderators] Should be linked or unlinked', true),
-                array(
-                    "controller" => "sentences_lists",
-                    "action" => "show",
-                    108
-                )
-            );
-            ?>
-            </li>
-        </ul>
-        
-        <p>
-        <?php
-        echo sprintf(
-            __(
-                'TIP: In order to add a sentence to a list, click on this icon %s, '.
-                'select a list and click on "ok".', true
-            ),
-            $html->image('add_to_list.png')
-        );
-        ?>
-        </p>
-        
-        <p>
-        <?php        
-        __(
-            'NOTE: We know it is not optimal, but it is the best solution '.
-            'until we have time to implement a better system'
-        );
         ?>
         </p>
     </div>
