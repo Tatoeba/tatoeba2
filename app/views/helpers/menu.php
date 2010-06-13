@@ -49,31 +49,13 @@ class MenuHelper extends AppHelper
      *
      * @param int    $sentenceId Id of the original sentence.
      * @param string $ownerName  Username of the owner of the main sentence.
+     * @param bool   $isLogged   True if user is logged in, false otherwise.
      *
      * @return void
      */
-    public function translateButton($sentenceId, $ownerName)
+    public function translateButton($sentenceId, $ownerName, $isLogged)
     {
-        $this->Javascript->link('sentences.add_translation.js', false);
-        ?>
-        <li class="option translateLink"
-            id="translate_<?php echo $sentenceId; ?>"><a>
-        
-        <script type='text/javascript'>
-        $(document).ready(function() {
-            $('#translate_<?php echo $sentenceId; ?>').data(
-                'sentenceId',
-                <?php echo $sentenceId; ?>
-            );
-            $('#translate_<?php echo $sentenceId; ?>').data(
-                'parentOwnerName',
-                '<?php echo $ownerName; ?>'
-            );
-        });
-        </script>
-        
-        <?php
-        echo $this->Html->image(
+        $translateButton = $this->Html->image(
             'translate.png', 
             array(
                 'alt'=>__('Translate', true), 
@@ -81,8 +63,45 @@ class MenuHelper extends AppHelper
             )
         );
         ?>
-        </a></li>
+        
+        <li class="option translateLink"
+            id="translate_<?php echo $sentenceId; ?>">
+        
         <?php
+        if ($isLogged) {
+            $this->Javascript->link('sentences.add_translation.js', false);
+            ?>
+            
+            <script type='text/javascript'>
+            $(document).ready(function() {
+                $('#translate_<?php echo $sentenceId; ?>').data(
+                    'sentenceId',
+                    <?php echo $sentenceId; ?>
+                );
+                $('#translate_<?php echo $sentenceId; ?>').data(
+                    'parentOwnerName',
+                    '<?php echo $ownerName; ?>'
+                );
+            });
+            </script>
+        
+            <?php
+            echo $translateButton;
+        } else {
+            echo $this->Html->link(
+                $translateButton,
+                array(
+                    "controller" => "users",
+                    "action" => "login"
+                ),
+                array(),
+                null,
+                false
+            );
+        }
+        ?>
+        </li>
+    <?php
     }
 
 
@@ -106,7 +125,7 @@ class MenuHelper extends AppHelper
         );
         ?>
         </a></li>
-        <?php
+    <?php
     }
 
     /** 
@@ -129,7 +148,7 @@ class MenuHelper extends AppHelper
         );
         ?>
         </a></li>
-        <?php
+    <?php
     }
 
 
@@ -141,13 +160,12 @@ class MenuHelper extends AppHelper
      *                         is displayed
      * @param bool $isAdopted  Indicates whether the sentence is adopted by current
      *                         user or not.
+     * @param bool $isLogged   True if user is logged in, false otherwise.
      *
      * @return void
      */
-    public function adoptButton($sentenceId, $isAdopted)
+    public function adoptButton($sentenceId, $isAdopted, $isLogged)
     {
-        $this->Javascript->link('sentences.adopt.js', false);
-        
         if ($isAdopted) {
             $cssClass = 'remove';
             $image = 'let_go.png';
@@ -157,21 +175,8 @@ class MenuHelper extends AppHelper
             $image = 'adopt.png';
             $tooltip = __('Adopt', true);
         }
-        ?>
         
-        <li class="option adopt <?php echo $cssClass; ?>" 
-            id="adopt_<?php echo $sentenceId; ?>"><a>
-            
-        <script type='text/javascript'>
-        $(document).ready(function() {
-            $('#adopt_<?php echo $sentenceId; ?>').data(
-                'sentenceId',
-                <?php echo $sentenceId; ?>
-            );
-        });
-        </script>
-        <?php
-        echo $this->Html->image(
+        $addoptImage = $this->Html->image(
             $image,
             array(
                 'alt'=> $tooltip, 
@@ -179,9 +184,41 @@ class MenuHelper extends AppHelper
             )
         );
         ?>
-        </a></li>
+        
+        <li class="option adopt <?php echo $cssClass; ?>" 
+            id="adopt_<?php echo $sentenceId; ?>">
         
         <?php
+        if ($isLogged) {
+            $this->Javascript->link('sentences.adopt.js', false);
+            ?>
+            
+            <script type='text/javascript'>
+            $(document).ready(function() {
+                $('#adopt_<?php echo $sentenceId; ?>').data(
+                    'sentenceId',
+                    <?php echo $sentenceId; ?>
+                );
+            });
+            </script>
+            
+            <?php
+            echo $addoptImage;
+        } else {
+            echo $this->Html->link(
+                $addoptImage,
+                array(
+                    "controller" => "users",
+                    "action" => "login"
+                ),
+                array(),
+                null,
+                false
+            );
+        }
+        ?>
+        </li>
+    <?php
     }
     
     
@@ -192,13 +229,12 @@ class MenuHelper extends AppHelper
      *                          is displayed
      * @param bool $isFavorited Indicates whether the sentence is favorited by
      *                          current user or not.
+     * @param bool $isLogged    True if user is logged in, false otherwise.
      *
      * @return void
      */
-    public function favoriteButton($sentenceId, $isFavorited)
+    public function favoriteButton($sentenceId, $isFavorited, $isLogged)
     {
-        $this->Javascript->link('favorites.add.js', false);
-        
         if ($isFavorited) {
             $cssClass = 'remove';
             $image = 'unfavorite.png';
@@ -208,24 +244,8 @@ class MenuHelper extends AppHelper
             $image = 'favorite.png';
             $tooltip = __('Add to favorites', true);
         }
-        ?>
         
-        
-        <li class="option favorite <?php echo $cssClass; ?>" 
-            id="favorite_<?php echo $sentenceId; ?>">
-        
-        <script type='text/javascript'>
-        $(document).ready(function() {
-            $('#favorite_<?php echo $sentenceId; ?>').data(
-                'sentenceId',
-                <?php echo $sentenceId; ?>
-            );
-        });
-        </script>
-        
-        <a>
-        <?php
-        echo $this->Html->image(
+        $favoriteImage = $this->Html->image(
             $image,
             array(
                 'alt'=> $tooltip, 
@@ -233,27 +253,55 @@ class MenuHelper extends AppHelper
             )
         );
         ?>
-        </a>
-        </li>
+        
+        <li class="option favorite <?php echo $cssClass; ?>" 
+            id="favorite_<?php echo $sentenceId; ?>">
         
         <?php
+        if ($isLogged) {
+            $this->Javascript->link('favorites.add.js', false);
+            ?>
+            
+            <script type='text/javascript'>
+            $(document).ready(function() {
+                $('#favorite_<?php echo $sentenceId; ?>').data(
+                    'sentenceId',
+                    <?php echo $sentenceId; ?>
+                );
+            });
+            </script>
+        
+            <?php
+            echo $favoriteImage;
+        } else {
+            echo $this->Html->link(
+                $favoriteImage,
+                array(
+                    "controller" => "users",
+                    "action" => "login"
+                ),
+                array(),
+                null,
+                false
+            );
+        }
+        ?>
+        </li>
+    <?php
     }
     
     
     /** 
      * Display button to add a sentence to a list.
      *
-     * @param int $sentenceId Id of the sentence.
+     * @param int  $sentenceId Id of the sentence.
+     * @param bool $isLogged   True if user is logged in, false otherwise.
      *
      * @return void
      */
-    public function addToListButton($sentenceId)
+    public function addToListButton($sentenceId, $isLogged)
     {
-        ?>
-        <li class="option addToList"
-            id="addToListButton<?php echo $sentenceId; ?>"><a>
-        <?php
-        echo $this->Html->Image(
+        $addToListButton = $this->Html->Image(
             'add_to_list.png',
             array(
                 'alt'=>__('Add to list', true), 
@@ -261,19 +309,40 @@ class MenuHelper extends AppHelper
             )
         );
         ?>
-        </a>
         
-        <script type='text/javascript'>
-        $(document).ready(function() {
-            $('#addToListButton<?php echo $sentenceId; ?>').data(
-                'sentenceId',
-                <?php echo $sentenceId; ?>
+        <li class="option addToList"
+            id="addToListButton<?php echo $sentenceId; ?>">
+        
+        <?php
+        if ($isLogged) {
+            ?>
+            
+            <script type='text/javascript'>
+            $(document).ready(function() {
+                $('#addToListButton<?php echo $sentenceId; ?>').data(
+                    'sentenceId',
+                    <?php echo $sentenceId; ?>
+                );
+            });
+            </script>
+            
+            <?php
+            echo $addToListButton;
+        } else {
+            echo $this->Html->link(
+                $addToListButton,
+                array(
+                    "controller" => "users",
+                    "action" => "login"
+                ),
+                array(),
+                null,
+                false
             );
-        });
-        </script>
+        }
+        ?>
         
         </li>
-        
         
         <?php
         $this->Javascript->link('sentences_lists.menu.js', false);
@@ -289,6 +358,7 @@ class MenuHelper extends AppHelper
         ?>
         
         <li style="display:none" id="addToList<?php echo $sentenceId; ?>">
+        
         <?php
         echo $this->Form->select(
             'listSelection'.$sentenceId,
@@ -311,8 +381,7 @@ class MenuHelper extends AppHelper
         );
         ?>
         </li>
-        
-        <?php
+    <?php
     }
     
     /** 
@@ -346,7 +415,7 @@ class MenuHelper extends AppHelper
         );
         ?>
         </li>
-        <?php
+    <?php
     }
     
     
@@ -385,8 +454,6 @@ class MenuHelper extends AppHelper
      *
      * @param int    $sentenceId    Id of the sentence.
      * @param int    $ownerName     Username of the owner of the sentence.
-     * @param bool   $isFavorited   Indicates if the sentence is favorited by the 
-     *                              current user.
      * @param string $chineseScript For chinese only, 'traditional' or 'simplified'
      *
      * @return void
@@ -401,24 +468,28 @@ class MenuHelper extends AppHelper
         // Username of the owner
         $this->belongsTo($sentenceId, $ownerName);
         
-        if (CurrentUser::isMember()) {
-            // Translate
-            $this->translateButton($sentenceId, $ownerName);
-            
-            // Adopt
-            $isAdopted = (CurrentUser::get('username') == $ownerName);
-            $canAdopt = ($ownerName == null) || $isAdopted;
-            if ($canAdopt) {
-                $this->adoptButton($sentenceId, $isAdopted);
-            }
-            
-            // Favorite
-            $isFavorited = CurrentUser::hasFavorited($sentenceId);
-            $this->favoriteButton($sentenceId, $isFavorited);
-            
-            // Add to list
-            $this->addToListButton($sentenceId);
+        $isLogged = CurrentUser::isMember();
+        
+        // Translate
+        $this->translateButton($sentenceId, $ownerName, $isLogged);
+        
+        // Adopt
+        $currentUserName = CurrentUser::get('username');
+        $isAlreadyAdoptedBySomeoneElse = (!empty($ownerName) 
+            && $ownerName != $currentUserName);
+        
+        if (!$isAlreadyAdoptedBySomeoneElse) {
+            $isOwnedByCurrentUser = ($ownerName == $currentUserName 
+                && !empty($ownerName));
+            $this->adoptButton($sentenceId, $isOwnedByCurrentUser, $isLogged);
         }
+        
+        // Favorite
+        $isFavorited = CurrentUser::hasFavorited($sentenceId);
+        $this->favoriteButton($sentenceId, $isFavorited, $isLogged);
+        
+        // Add to list
+        $this->addToListButton($sentenceId, $isLogged);
         
         if (CurrentUser::isModerator()) {
             // Delete
@@ -456,7 +527,7 @@ class MenuHelper extends AppHelper
         </li>
         
         </ul>
-        <?php
+    <?php
     }
 }
 ?>
