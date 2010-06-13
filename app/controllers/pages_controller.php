@@ -51,7 +51,12 @@ class PagesController extends AppController
      * @var array
      * @access public
      */
-    public $helpers = array('Html','Languages','AttentionPlease');
+    public $helpers = array(
+        'Html',
+        'Languages',
+        'AttentionPlease',
+        'Wall'
+    );
     /**
      * This controller does not use a model
      *

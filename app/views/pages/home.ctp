@@ -110,55 +110,11 @@ $selectedLanguage = $session->read('random_lang_selected');
             $messageContent = $message['Wall']['content'];
             $messageDate = $message['Wall']['date'];
             $messageId = $message['Wall']['id'];
-
-            echo '<div class="lastWallMessages">';
-                echo '<div class="header">';
-                echo $date->ago($messageDate);
-                // Text of link
-                $text = sprintf(
-                    __('by %s', true), 
-                    $messageOwner
-                );
-                // Path of link
-                $pathToUserProfile = array(
-                    "controller"=>"user",
-                    "action"=>"profile",
-                    $messageOwner
-                );
-                // Link
-                echo $html->link(' '.$text, $pathToUserProfile);
-                echo '</div>';
-                
-                echo '<div class="body">';
-                // Display only 200 first character of message
-                $contentFirst200 = substr($messageContent, 0, 200);
-                // Text of the Link
-                // TODO to extract 
-                echo nl2br(
-                    $clickableLinks->clickableURL(
-                        htmlentities(
-                            $contentFirst200,
-                            ENT_QUOTES,
-                            'UTF-8'
-                        )
-                    )
-                );
-                if (strlen($messageContent) > 200) {
-                    echo ' [...]';
-                }
-                
-                echo '</div>';
-                
-                echo '<div class="link">';
-                // Path of the link
-                $pathToWallMessage = array(
-                            'controller' => 'wall',
-                            'action' => 'index#message_'.$messageId
-                        );
-                // Link
-                echo $html->link('>>>', $pathToWallMessage);
-                echo '</div>';
-            echo '</div>';
+            
+            $wall->messagePreview(
+                $messageId, $messageOwner, $messageContent, $messageDate
+            );
+            
         }
         ?>
     </div>

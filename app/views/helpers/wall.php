@@ -418,6 +418,74 @@ class WallHelper extends AppHelper
 
 
     }
+    
+    
+    /**
+     * Display wall message preview (on homepage).
+     *
+     * @param int    $id      Id of the message.
+     * @param string $author  Author of the message.
+     * @param string $content Content of the message.
+     * @param string $date    Date of the message.
+     *
+     * @return void
+     */
+    public function messagePreview($id, $author, $content, $date)
+    {
+        ?>
+        <div class="lastWallMessages">
+        
+        <div class="header">
+        <?php
+        echo $this->Date->ago($date);
+        // Text of link
+        $text = sprintf(
+            __('by %s', true), 
+            $author
+        );
+        // Path of link
+        $pathToUserProfile = array(
+            "controller"=>"user",
+            "action"=>"profile",
+            $author
+        );
+        // Link
+        echo $this->Html->link(' '.$text, $pathToUserProfile);
+        ?>
+        </div>
+            
+        <div class="body">
+        <?php
+        // Display only 200 first character of message
+        $contentFirst200 = substr($content, 0, 200);
+        echo nl2br(
+            $this->ClickableLinks->clickableURL(
+                htmlentities(
+                    $contentFirst200,
+                    ENT_QUOTES,
+                    'UTF-8'
+                )
+            )
+        );
+        if (strlen($content) > 200) {
+            echo ' [...]';
+        }
+        ?>
+        </div>
+        
+        <div class="link">
+        <?php
+        $pathToWallMessage = array(
+            'controller' => 'wall',
+            'action' => 'index#message_'.$id
+        );
+        echo $this->Html->link('>>>', $pathToWallMessage);
+        ?>
+        </div>
+        
+        </div>
+        <?php
+    }
 
 }
 
