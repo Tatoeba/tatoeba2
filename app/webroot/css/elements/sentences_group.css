@@ -24,24 +24,22 @@
     vertical-align: text-bottom;
     overflow: hidden;
     border-bottom: 1px dashed #CCC;
-    padding: 2px 5px;
     margin: 2px 0px;
+    padding: 0px;
 }
 
 .menu li {
     display: inline;
     font-size: 13px;
-}
-
-.menu a {
-    padding: 4px 15px 3px 5px;
+    padding: 2px 10px;
+    line-height: 20px;
 }
 
 .belongsTo {
-    display: block;
     float: right;
     color: #75C34B;
     font-weight: bold;
+    margin-top: -2px;
 }
 
 .belongsTo a {
