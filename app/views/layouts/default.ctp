@@ -49,9 +49,7 @@
         $cssFolder = APP.WEBROOT_DIR.DS."css";
         $controller = $this->params["controller"];
         $action = $this->params["action"];
-        if ($controller == 'pages') {
-            $action = $this->params["pass"][0];
-        }
+        
         $cssFile = $cssFolder.DS.$controller.DS.$action.'.css';
         if (is_file($cssFile)){ 
             echo $html->css($controller."/".$action); 

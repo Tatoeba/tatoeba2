@@ -65,56 +65,19 @@ class PagesController extends AppController
     public $uses = array();
 
     public $components = array('Permissions');
+
+    
     /**
-     * Displays a view
-     *
-     * @param mixed $path What page to display
-     *
+     * Before filter.
+     * 
      * @return void
      */
-    public function display($path)
+    public function beforeFilter()
     {
-        $path = func_get_args();
-
-        if (!count($path)) {
-            $this->redirect('/');
-        }
-        $count = count($path);
-        $page = $subpage = $title = null;
-
-        if (!empty($path[0])) {
-            $page = $path[0];
-
-            if ($page == 'index') { // IF INDEX PAGE
-                if ($this->Auth->user('id')) {
-                    $this->redirect(
-                        array(
-                            "action" => "display",
-                            "home"
-                        )
-                    );
-                }
-                $this->_index();     
-
-            } else if ($page == 'home') { // IF HOME PAGE
-                $this->_home();     
-            } else if ($page == 'contribute') {
-                $this->_contribute();
-            }
-
-        }
-
-        if (!empty($path[0])) {
-            $page = $path[0];
-        }
-        if (!empty($path[1])) {
-            $subpage = $path[1];
-        }
-        if (!empty($path[$count - 1])) {
-            $title = Inflector::humanize($path[$count - 1]);
-        }
-        $this->set(compact('page', 'subpage', 'title'));
-        $this->render(join('/', $path));
+        parent::beforeFilter();
+        
+        // setting actions that are available to everyone, even guests
+        $this->Auth->allowedActions = array("*");
     }
 
     /**
@@ -124,7 +87,7 @@ class PagesController extends AppController
      * @return void
      */
 
-    private function _index()
+    public function index()
     {
         /*Some numbers part*/
         $Contribution = ClassRegistry::init('Contribution'); 
@@ -145,7 +108,7 @@ class PagesController extends AppController
      * @return void
      */   
  
-    private function _home()
+    public function home()
     {
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
@@ -188,13 +151,94 @@ class PagesController extends AppController
      *
      * @return void
      */
-    private function _contribute()
+    public function contribute()
     {
         if (!$this->Auth->user('id')) {
-            $this->redirect(array('how-to-contribute'));
+            $this->redirect(
+                array(
+                    'controller' => 'pages',
+                    'action' => 'how_to_contribute'
+                )
+            );
         }
     }
+
+    /**
+     *
+     *
+     */
+    public function about()
+    {
+    }
+
+    /**
+     *
+     *
+     */
+   
+    public function search()
+    {
+        //TODO should be moved in "search" controller
+    }
+
+    /**
+     *
+     *
+     */
+
+    public function contact()
+    {
+    }
+
+    /**
+     *
+     *
+     */
+
+    public function help()
+    {
+    }
+    
+    /**
+     *
+     *
+     */
+    public function how_to_contribute()
+    {
+    }
+
+    /**
+     *
+     *
+     */
+    public function tatoeba_team_and_credits()
+    {
+    }
+
+    /**
+     *
+     *
+     */
+    public function download_tatoeba_example_sentences()
+    {
+    }
+
+    /**
+     *
+     *
+     */
+    public function terms_of_use()
+    {
+
+    }
+
+   
+    /**
+     *
+     *
+     */
+    public function whats_new()
+    {
+    }
 }
-
-
 ?>

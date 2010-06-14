@@ -1,4 +1,3 @@
-<div id="footer">
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
@@ -26,65 +25,89 @@
  * @link     http://tatoeba.org
  */
 
-$onlineVisitors = $this->requestAction('/visitors/online');
-
+$onlineVisitors = ClassRegistry::init('Visitor')->numberOfOnlineVisitors();
 if (isset($this->params['lang'])) {
     Configure::write('Config.language', $this->params['lang']);
 }
-
-echo '<ul>';
-    echo '<li>';
-    echo __('Online visitor(s) : ') . $onlineVisitors;
-    echo '</li>';
-    
-    echo '<li>';
-    echo $html->link(
-        __('Terms of use', true),
-        array("controller" => 'pages', "action" => 'terms-of-use')
-    );
-    echo '</li>';
-
-    echo '<li>';
-    echo $html->link(
-        __('Feedback', true),
-        array("controller" => 'pages', "action" => 'contact')
-    );
-    echo '</li>';
-
-    echo '<li>';
-    echo $html->link(__('Tatoeba Blog', true), 'http://blog.tatoeba.org');
-    echo '</li>';
-
-    echo '<li>';
-    echo $html->link(
-        __('Downloads', true),
-        array(
-            "controller" => 'pages',
-            "action" => 'download-tatoeba-example-sentences'
-        )
-    );
-    echo '</li>';
-
-    echo '<li>';
-    echo $html->link(
-        __('Tools', true),
-        array("controller" => 'tools', "action"=>'index')
-    );
-    echo '</li>';
-    
-    echo '<li>';
-    echo $html->link(
-        __('Team & Credits', true),
-        array("controller" => 'pages', "action" => 'tatoeba-team-and-credits')
-    );
-    echo '</li>';
-    
-    echo '<li>';
-    echo $html->link(
-        __('Help', true),
-        array("controller" => 'pages', "action" => 'help')
-    );
-    echo '</li>';    
-echo '</ul>';
 ?>
+<div id="footer">
+<ul>
+    <li>
+        <?php echo __('Online visitor(s) : ') . $onlineVisitors; ?>
+    </li>
+    <li>
+        <?php
+        echo $html->link(
+            __('Terms of use', true),
+            array(
+                "controller" => 'pages',
+                "action" => 'terms_of_use'
+            )
+        );
+        ?>
+    </li>
+    <li>
+        <?php
+        echo $html->link(
+            __('Feedback', true),
+            array(
+                "controller" => 'pages',
+                "action" => 'contact'
+            )
+        );
+        ?>
+    </li>
+    <li>
+        <?php
+        echo $html->link(
+            __('Tatoeba Blog', true),
+            'http://blog.tatoeba.org'
+        );
+        ?>
+    </li>
+    <li>
+        <?php
+        echo $html->link(
+            __('Downloads', true),
+            array(
+                "controller" => 'pages',
+                "action" => 'download_tatoeba_example_sentences'
+            )
+        );
+        ?>
+    </li>
+    <li>
+        <?php
+        echo $html->link(
+            __('Tools', true),
+            array(
+                "controller" => 'tools',
+                "action"=>'index'
+            )
+        );
+        ?>
+    </li>
+    <li>
+        <?php
+        echo $html->link(
+            __('Team & Credits', true),
+            array(
+                "controller" => 'pages',
+                "action" => 'tatoeba_team_and_credits'
+            )
+        );
+        ?>
+    </li>
+    <li>
+        <?php
+        echo $html->link(
+            __('Help', true),
+            array(
+                "controller" => 'pages',
+                "action" => 'help'
+            )
+        );
+        ?>
+    </li>
+</ul>
 </div>

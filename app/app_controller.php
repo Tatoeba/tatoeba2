@@ -103,6 +103,8 @@ class AppController extends Controller
         }
         // Language of interface
         if (isset($this->params['lang']) && !empty($this->params['lang'])) {
+            
+            //echo "tata";
             // NOTE 1: It is improtant to use isset() in the condition. Using 
             //         !empty() will cause users/login.ctp NOT to work... Don't ask.
             // NOTE 2: I had used !empty() because sometimes, data loaded from AJAX
@@ -124,12 +126,13 @@ class AppController extends Controller
 
             // cases where the interface language is not set in the url
         } elseif ($this->Cookie->read('interfaceLanguage')) {
-
+            //echo "toto";
             $interfaceLanguage = $this->Cookie->read('interfaceLanguage');
             Configure::write('Config.language', $interfaceLanguage);
             $this->params['lang'] = $interfaceLanguage;
         
         } else {
+            echo "titi";
             $lang = $this->getSupportedLanguage();
             Configure::write('Config.language', $lang);
             $this->Cookie->write('interfaceLanguage', $lang, false, '+2 weeks');

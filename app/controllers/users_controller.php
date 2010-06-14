@@ -71,6 +71,7 @@ class UsersController extends AppController
         // no need to allow login
         $this->Auth->allowedActions = array(
             'all',
+            'login',
             'search',
             'show',
             'check_login',
@@ -291,8 +292,8 @@ class UsersController extends AppController
         
         // Did not answer the quiz properly
         $correctAnswer = substr($this->data['User']['email'], 0, 5);
-        if($this->data['User']['quiz'] != $correctAnswer) {
-             $this->Session->setFlash(
+        if ($this->data['User']['quiz'] != $correctAnswer) {
+            $this->Session->setFlash(
                 __('Wrong answer to the question.', true)
             );
             $this->data['User']['password'] = '';
@@ -334,6 +335,7 @@ class UsersController extends AppController
 
     /**
      * Get new password, for those who have forgotten their password.
+     * TODO HACKISH FUNCTION
      * 
      * @return void
      */
@@ -388,6 +390,7 @@ class UsersController extends AppController
 
     /**
      * Search for user given a username.
+     * TODO HACKISH FUNCTION
      * 
      * @return void
      */

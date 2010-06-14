@@ -28,52 +28,53 @@
 $currentUser =  CurrentUser::get('id');
 ?>
 <div class="tagsListOnSentence" >
-<?
+<?php
 foreach ($tagsArray as $tag) {
     ?>
     <span class="tag">
-    <?php
-    $tagName =  $tag['Tag']['name'];
-    $tagInternalName =  $tag['Tag']['internal_name'];
-    $taggerId = $tag['TagsSentences']['user_id'];
-    $tagId = $tag['TagsSentences']['tag_id'];
+        <?php
+        $tagName =  $tag['Tag']['name'];
+        $tagInternalName =  $tag['Tag']['internal_name'];
+        $taggerId = $tag['TagsSentences']['user_id'];
+        $tagId = $tag['TagsSentences']['tag_id'];
 
-    echo $html->link(
-        $tagName,
-        array(
-            "controller" => "tags",
-            "action" => "show_sentences_with_tag",
-            $tagInternalName
-        ),
-        array(
-            "class" => "tagName"
-        )
-    );
-    
-    if (CurrentUser::canRemoveTagFromSentence($taggerId)) {
-        $removeTagFromSentenceAlt = sprintf(
-            __("remove tag '%s' from this sentence.", true),
-            $tagName
-        );
-        
         echo $html->link(
-            'X',
+            $tagName,
             array(
                 "controller" => "tags",
-                "action" => "remove_tag_from_sentence",
-                $tagId,
-                $sentenceId
+                "action" => "show_sentences_with_tag",
+                $tagInternalName
             ),
             array(
-                "class" => "removeTagFromSentenceButton",
-                "id" => 'deleteButton'.$tagId.$sentenceId,
-                "title" => $removeTagFromSentenceAlt
-            ),
-            null,
-            false
+                "class" => "tagName"
+            )
         );
-    }
-    ?></span>
+        
+        if (CurrentUser::canRemoveTagFromSentence($taggerId)) {
+            $removeTagFromSentenceAlt = sprintf(
+                __("remove tag '%s' from this sentence.", true),
+                $tagName
+            );
+            
+            echo $html->link(
+                'X',
+                array(
+                    "controller" => "tags",
+                    "action" => "remove_tag_from_sentence",
+                    $tagId,
+                    $sentenceId
+                ),
+                array(
+                    "class" => "removeTagFromSentenceButton",
+                    "id" => 'deleteButton'.$tagId.$sentenceId,
+                    "title" => $removeTagFromSentenceAlt
+                ),
+                null,
+                false
+            );
+        }
+        ?>
+    </span>
     <?php
 }
 

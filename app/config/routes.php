@@ -36,6 +36,11 @@
 **  and we stop search once we have found a matching rule 
 */
 
+/**
+ * TODO all rules are have a with and without :lang ,
+ * maybe we can have a rule to handle both 
+ */
+
 // array which list all the languages in which tatoeba interface has been translated
 $interfaceLanguages = array('lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol|pt_BR');
 
@@ -74,8 +79,7 @@ $interfaceLanguages = array('lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol|pt_BR');
         '/',
         array(
             'controller' => 'pages',
-            'action' => 'display',
-            'index'
+            'action' => 'index',
         )
     );
     Router::connect(
@@ -83,50 +87,29 @@ $interfaceLanguages = array('lang'=>'fre|eng|deu|spa|ita|jpn|chi|pol|pt_BR');
         array(
             'lang' => ':lang',
             'controller' => 'pages',
-            'action' => 'display',
-            'index'
+            'action' => 'index',
         ),
         $interfaceLanguages
     );
     // TODO : can we use directly "home" action instead of display ?
 
     Router::connect(
-        '/home',
+        '/:action',
         array(
             'controller' => 'pages',
-            'action' => 'display',
-            'home'
         )
     );
     Router::connect(
-        '/:lang/home',
+        '/:lang/:action',
         array(
             'lang' => ':lang',
             'controller' => 'pages',
-            'action' => 'display',
-            'home'
         ),
         $interfaceLanguages
     );
-/**
- * ...and connect the rest of 'Pages' controller's urls.
- */
-    Router::connect(
-        '/pages/*',
-        array(
-            'controller' => 'pages',
-            'action' => 'display'
-        )
-    );
-    Router::connect(
-        '/:lang/pages/*',
-        array(
-            'lang' => ':lang',
-            'controller' => 'pages',
-            'action' => 'display'
-        ),
-        $interfaceLanguages
-    );
+
+
+
 /**
  * Then we connect url '/test' to our test controller. This is helpful in
  * developement.

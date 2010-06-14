@@ -35,8 +35,7 @@ $this->pageTitle = 'Tatoeba - ' . __('How to contribute', true);
     if ($session->read('Auth.User.id')) {
         ?>
         <h2><?php __("Contribute"); ?></h2>
-        <?php
-        
+        <?php  
         echo sprintf(
             __('Go to <a href="%s">Contribute page</a>.', true),
             $html->url(
@@ -46,11 +45,12 @@ $this->pageTitle = 'Tatoeba - ' . __('How to contribute', true);
                 )
             )
         );
-        
+            
     } else {
-    
         ?>
+        
         <h2><?php __("Register"); ?></h2>
+        
         <?php    
         __('If you are interested, please register.');
         echo $html->link(
