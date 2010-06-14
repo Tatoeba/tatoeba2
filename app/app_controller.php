@@ -102,7 +102,7 @@ class AppController extends Controller
             $this->layout = null;
         }
         // Language of interface
-        if (isset($this->params['lang'])) {
+        if (isset($this->params['lang']) && !empty($this->params['lang'])) {
             // NOTE 1: It is improtant to use isset() in the condition. Using 
             //         !empty() will cause users/login.ctp NOT to work... Don't ask.
             // NOTE 2: I had used !empty() because sometimes, data loaded from AJAX
@@ -120,7 +120,9 @@ class AppController extends Controller
                 false,
                 '+2 weeks'
             );
+            return;
 
+            // cases where the interface language is not set in the url
         } elseif ($this->Cookie->read('interfaceLanguage')) {
 
             $interfaceLanguage = $this->Cookie->read('interfaceLanguage');
@@ -133,10 +135,12 @@ class AppController extends Controller
             $this->Cookie->write('interfaceLanguage', $lang, false, '+2 weeks');
             $this->params['lang'] = $lang;
         }
+        $redirectPage = "/".$this->params['lang']."/".$this->params['url']['url'];
+        $this->redirect($redirectPage);
     }
 
     /**
-     * TODO
+     * TODO This method smells
      *
      * @return void
      */
@@ -149,13 +153,19 @@ class AppController extends Controller
     }
 
     /**
-     * TODO
+     * Redirect to a given url, and precise the interface language
      *
-     *
+     * @param mixed $url  The url to go to, can be a raw url (string)
+     *                    or a cakephp array
+     * @param bool  $full TODO
+     * 
+     * @return TODO
      */
 
     public function redirect($url = null, $full = false)
     {
+        // if the developper has used "redirect" method without
+        // precising the lang params, then we add it
         if (isset($this->params['lang']) && is_array($url)) {
             $url['lang'] = $this->params['lang'];
         }
@@ -278,18 +288,20 @@ class AppController extends Controller
             'pl'    => 'pol',
             'pt-BR' => 'pt_BR'
         );
-        
-        $browserLanguages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
-        
-        foreach ($browserLanguages as $browserLang) {
-            $browserLangArray = explode(';', $browserLang);
-            $lang = $browserLangArray[0];
+        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) { 
             
-            if(isset($supportedLanguages[$lang])) {
-                return $supportedLanguages[$lang];
-            } 
+            $browserLanguages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
+            
+            foreach ($browserLanguages as $browserLang) {
+                $browserLangArray = explode(';', $browserLang);
+                $lang = $browserLangArray[0];
+                
+                if (isset($supportedLanguages[$lang])) {
+                    return $supportedLanguages[$lang];
+                } 
+            }
+            
         }
-        
         return 'eng';
     }
 }
