@@ -350,6 +350,28 @@ class Wall extends AppModel
     }
 
     /**
+     * Tell if the current Message Id has replies
+     *
+     * @param int $messageId The message id.
+     *
+     * @return bool True if the message has replies, False otherwise 
+     */
+    public function hasMessageReplies($messageId)
+    {
+        $replyLftRght = $this->find(
+            'first',
+            array(
+                'fields' => array('lft', 'rght'),
+                'conditions' => array(
+                    'id' => $messageId,
+                ),
+                'contain' => array()
+            )
+        );
+        return $replyLftRght['Wall']['lft'] != ($replyLftRght['Wall']['rght'] - 1);
+    }
+
+    /**
      * Return of the id of the first of the thread of the given
      * message
      *

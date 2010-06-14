@@ -268,7 +268,11 @@ class WallController extends Appcontroller
     public function delete_message($messageId)
     {
         $messageId = Sanitize::paranoid($messageId);
-        
+        if ($this->Wall->hasMessageReplies($messageId)) {
+            // if the message has replies then we can't delete it
+            // redirect to previous page
+            $this->redirect($this->referer()); 
+        }
         $messageOwnerId = $this->Wall->getOwnerIdOfMessage($messageId);
         //we check a second time even if it has been checked while displaying
         // or not the delete icon, but one can try to directly call delete_message
