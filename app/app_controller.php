@@ -136,7 +136,7 @@ class AppController extends Controller
             $this->params['lang'] = $lang;
         }
         $redirectPage = "/".$this->params['lang']."/".$this->params['url']['url'];
-        $this->redirect($redirectPage);
+        $this->redirect($redirectPage, 301);
     }
 
     /**
@@ -155,21 +155,22 @@ class AppController extends Controller
     /**
      * Redirect to a given url, and precise the interface language
      *
-     * @param mixed $url  The url to go to, can be a raw url (string)
-     *                    or a cakephp array
-     * @param bool  $full TODO
-     * 
-     * @return TODO
+     * @param mixed $url    The url to go to, can be a raw url (string)
+     *                      or a cakephp array
+     * @param int   $status HTTP status code to send
+     * @param bool  $exit   If true, exit() will be called after the redirect
+     *
+     * @return mixed 
      */
 
-    public function redirect($url = null, $full = false)
+    public function redirect($url = null, $status = null, $exit = true)
     {
         // if the developper has used "redirect" method without
         // precising the lang params, then we add it
         if (isset($this->params['lang']) && is_array($url)) {
             $url['lang'] = $this->params['lang'];
         }
-        return parent::redirect($url, $full);
+        return parent::redirect($url, $status, $exit);
     }
 
     /**
