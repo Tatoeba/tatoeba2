@@ -26,100 +26,112 @@
  */
 
 $this->pageTitle = __('Tatoeba team and credits', true);
-
-
-echo '<p><em>'.__('Note : the list is not complete yet...', true) .'</em></p>';
-
-echo '<h2>'. __('The team', true) . '</h2>';
-echo '<ul>';
-    echo '<li>' . $html->link(
-        'HO Ngoc Phuong Trang',
-        array(
-            'controller' => 'user',
-            'action' => 'profile',
-            'trang'
-        )
-    );
-    echo ' (aka. <span class="aka" title="' . __('Contact me', true) . '">';
-    echo $html->link(
-        'trang',
-        array(
-            'controller' => 'private_messages',
-            'action' => 'write',
-            'trang'
-        )
-    ) . '</span>)</li>';
-    echo '<li>' . $html->link(
-        'SIMON Allan',
-        array(
-            'controller' => 'user',
-            'action' => 'profile',
-            'sysko'
-        )
-    );
-    echo ' (aka. <span class="aka" title="' . __('Contact me', true) . '">';
-    echo $html->link(
-        'sysko',
-        array(
-            'controller' => 'private_messages',
-            'action' => 'write',
-            'sysko'
-        )
-    ) . '</span>)</li>';
-
-    //echo '<li>TAN Kévin (aka. keklesurvivant)</li>';
-
-    //echo '<li>BEN YAALA Salem (aka. socom)</li>';
-
-    //echo '<li>DEPARIS Étienne (aka. milouse)</li>';
-echo '</ul>';
-
-echo '<h2>'. __('Credits', true) . '</h2>';
-echo '<ul class="credits">';
-    echo '<li>';
-    echo '<strong>' . __('Chinese translations', true) . '</strong> - ';
-    echo $html->link(
-        'FU Congcong 傅琮琮',
-        array(
-            'controller' => 'user',
-            'action' => 'profile',
-            'fucongcong'
-        )
-    );
-    echo ' (aka. <span class="aka" title="' . __('Contact me', true) . '">';
-    echo $html->link(
-        'fucongcong',
-        array(
-            'controller' => 'private_messages',
-            'action' => 'write',
-            'fucongcong'
-        )
-    ) . '</span>)';
-
-    echo '<li>';
-    echo '<strong>' . __('Spanish translations', true) . '</strong> - ';
-    echo $html->link(
-        'JIMÉNEZ Gabriel',
-        array(
-            'controller' => 'user',
-            'action' => 'profile',
-            'kylecito'
-        )
-    );
-    echo ' (aka. <span class="aka" title="' . __('Contact me', true) . '">';
-    echo $html->link(
-        'kylecito',
-        array(
-            'controller' => 'private_messages',
-            'action' => 'write',
-            'kylecito'
-        )
-    ) . '</span>)';
-    echo '</li>';
-echo '</ul>';
-
-echo '<h2>'. __('Special thanks', true) . '</h2>';
-echo '<ul>';
-echo '<li><em>' . __("Lots of people...", true).'</em></li>';
-echo '</ul>';
 ?>
+
+<div id="main_content">
+    
+    <div class="module">
+        <h2><?php __('The dev team'); ?></h2>
+        
+        <h3><?php __('Core members'); ?></h3>
+        <table>
+        <?php
+        $people = array(
+            'HO Ngoc Phuong Trang' => 'trang',
+            'SIMON Allan' => 'sysko'
+        );
+        
+        foreach ($people as $realName => $username) {
+            $members->creditsToUser($realName, $username);
+        }
+        ?>
+        </table>
+        
+        
+        <h3><?php __('Padawan members'); ?></h3>
+        <table>
+        <?php
+        $people = array(
+            'BEN YAALA Salem' => 'socom',
+            'DEPARIS Étienne' => 'milouse',
+            'PARIS Robin' => 'fendtwick',
+            'DUCATEL Baptiste' => 'biptaste'
+        );
+        
+        foreach ($people as $realName => $username) {
+            $members->creditsToUser($realName, $username);
+        }
+        ?>
+        </table>
+
+        <h3><?php __('Ex-members'); ?></h3>
+        <table>
+        <?php
+        $people = array(
+            'TAN Kevin' => 'keklesurvivant',
+            'ERNALSTEEN Jonathan' => '9h0ost'
+        );
+        
+        foreach ($people as $realName => $username) {
+            $members->creditsToUser($realName, $username);
+        }
+        ?>
+        </table>
+    
+    </div>
+    
+    
+    
+    <div class="module">
+        <h2><?php __('Translations of the interface'); ?></h2>
+        
+        <?php
+        $launchpadUrl = 'https://launchpad.net/tatoeba/+topcontributors';
+        $launchpadDescription = sprintf(
+            __(
+                'Thank you to everyone who translated on '.
+                '<a href="%s">Launchpad</a>.', true
+            ), $launchpadUrl
+        );
+        
+        $people = array(
+            array(__('Chinese', true), 'FU Congcong 傅琮琮', 'fucongcong'),
+            array(__('Spanish', true), 'JIMÉNEZ Gabriel', 'kylecito'),
+            array(__('Spanish', true), 'sirgazil', 'sirgazil'),
+            array(__('Italian', true), 'Pharamp', 'pharamp'),
+            array(__('Portuguese', true), 'brauliobezerra', 'brauliobezerra'),
+            array(__('Japanese', true), 'BLAY Paul', 'blay_paul'),
+            array(__('Polish', true), 'zipangu', 'zipangu'),
+            array($launchpadDescription, 'Launchpad translators', null),
+        );
+        
+        foreach ($people as $memberInfo) {
+            $description = $memberInfo[0];
+            $realName = $memberInfo[1];
+            $username = $memberInfo[2];
+            
+            $members->creditsToUser($realName, $username, $description);
+        }
+        ?>
+    </div>
+    
+    <div class="module">
+    
+    <h2><?php __('Special thanks'); ?></h2
+    <?php
+    $people = array(
+        array('Coded search engine a while ago.', 'BOUCHER François', 'kentril'),
+        array('Hosted Tatoeba for a few years.', 'Masa', 'masa'),
+        array('Free Software Foundation. Currently hosting Tatoeba.', 'FSF (France)', null)
+    );
+    foreach ($people as $memberInfo) {
+        $description = $memberInfo[0];
+        $realName = $memberInfo[1];
+        $username = $memberInfo[2];
+        
+        $members->creditsToUser($realName, $username, $description);
+    }
+    ?>
+    </div>
+    
+</div>
