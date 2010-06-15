@@ -55,7 +55,8 @@ class PagesController extends AppController
         'Html',
         'Languages',
         'AttentionPlease',
-        'Wall'
+        'Wall',
+        'Members'
     );
     /**
      * This controller does not use a model
@@ -238,6 +239,15 @@ class PagesController extends AppController
      *
      */
     public function whats_new()
+    {
+    }
+    
+    
+    /**
+     *
+     *
+     */
+    public function faq()
     {
     }
 }

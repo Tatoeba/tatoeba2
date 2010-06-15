@@ -37,14 +37,27 @@
  
 $this->pageTitle = 'Tatoeba - ' . __('Contact us', true);
 ?>
-
+<div id="annexe_content">
+    <div class="module">
+    <h2><?php __('FAQ'); ?></h2>
+    <p>
+    <?php
+    $faqUrl = $html->url(array('action' => 'faq'));
+    echo sprintf(
+        __(
+            'Please, make sure to <a href="%s">read the FAQ</a> '.
+            'before asking a question.', true
+        ), $faqUrl
+    );
+    ?>
+    </p>
+    </div>
+</div>
+    
 <div id="main_content">
     <div class="module">
+        <h2><?php __('Contact us'); ?></h2>
         <?php
-        echo '<h2>';
-        __('Contact us');
-        echo '</h2>';
-        
         $email = 'team@tatoeba.fr';
         echo sprintf(
             __(
@@ -57,11 +70,8 @@ $this->pageTitle = 'Tatoeba - ' . __('Contact us', true);
     </div>
     
     <div class="module">
+        <h2><?php __('Post on the wall'); ?></h2>
         <?php
-        echo '<h2>';
-        __('Post on the wall');
-        echo '</h2>';
-
         echo sprintf(
             __(
                 'You can also tell us what you think by posting on the '.
@@ -74,11 +84,8 @@ $this->pageTitle = 'Tatoeba - ' . __('Contact us', true);
     
     
     <div class="module">
+        <h2><?php __('Join us on IRC'); ?></h2>
         <?php
-        echo '<h2>';
-        __('Join us on IRC');
-        echo '</h2>';
-
         echo sprintf(
             __(
                 'We also have an IRC channel on freenode, #tatoeba. If you are not '.
