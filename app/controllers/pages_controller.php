@@ -55,8 +55,6 @@ class PagesController extends AppController
         'Html',
         'Languages',
         'AttentionPlease',
-        'Wall',
-        'Members'
     );
     /**
      * This controller does not use a model
@@ -160,6 +158,8 @@ class PagesController extends AppController
      */ 
     public function home()
     {
+        $this->helpers[] = 'Wall';
+        
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
         $isLogged = !empty($userId);
@@ -263,6 +263,7 @@ class PagesController extends AppController
      */
     public function tatoeba_team_and_credits()
     {
+        $this->helpers[] = 'Members';
     }
 
     /**
