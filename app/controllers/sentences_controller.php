@@ -119,7 +119,7 @@ class SentencesController extends AppController
      */
     public function show($id = null)
     {
-       $this->helpers[] = 'Tags'; 
+        $this->helpers[] = 'Tags'; 
 
         $id = Sanitize::paranoid($id);
         
@@ -142,7 +142,6 @@ class SentencesController extends AppController
         
         } elseif (is_numeric($id)) {
             // ----- if we give directly an id -----
-            
             // Whether the sentence still exists or not, we retrieve the
             // contributions and the comments because we don't want them
             // to disappear just because the sentence was deleted.
@@ -182,7 +181,7 @@ class SentencesController extends AppController
             
             // this way "next" and "previous"  
             $lang = $this->Session->read('random_lang_selected');
-            $neighbors = $this->Sentence->getNeighborsSentenceIds($id, $lang);                 
+            $neighbors = $this->Sentence->getNeighborsSentenceIds($id, $lang);
             $this->set('tagsArray', $tags); 
             $this->set('translations', $translations);
             $this->set('indirectTranslations', $indirectTranslations);
@@ -521,11 +520,14 @@ class SentencesController extends AppController
 
         $sentenceIds = array();
 
-        foreach($results as $i=>$sentence) {
+        foreach ($results as $i=>$sentence) {
             $sentenceIds[$i] = $sentence['Sentence']['id'];
         }
 
-        $allSentences = $this->CommonSentence->getAllNeededForSentences($sentenceIds, $to);
+        $allSentences = $this->CommonSentence->getAllNeededForSentences(
+            $sentenceIds,
+            $to
+        );
         
         $this->set('query', $query);
         $this->set('results', $allSentences);
@@ -603,17 +605,6 @@ class SentencesController extends AppController
         
         $this->set("allSentences", $allSentences);
         $this->set('lastNumberChosen', $number);
-    }
-    /**
-     * Count number of sentences in each language.
-     * TODO : should be move in the model
-     *
-     * @return array
-     */
-    public function statistics()
-    {
-        $stats = $this->Sentence->getStatistics();
-        return($stats);
     }
     
     /**

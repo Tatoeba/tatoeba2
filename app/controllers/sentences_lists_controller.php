@@ -65,7 +65,6 @@ class SentencesListsController extends AppController
             'export_to_csv',
             'of_user',
             'download',
-            'choices'
         );
     }
 
@@ -155,6 +154,8 @@ class SentencesListsController extends AppController
      * @param string $translationsLang Language of the translations.
      * @param bool   $isEditable       'true' if the sentences are editable.
      * @param int    $limit            Number of sentences per page.
+     *
+     * @return void
      */
     private function _get_sentences_for_list(
         $id, $translationsLang, $isEditable, $limit
@@ -347,18 +348,6 @@ class SentencesListsController extends AppController
         $this->set('lists', $lists);
     }
 
-
-    /**
-     * Returns the lists that the user currently connected can add sentences to.
-     * It is called in the SentencesHelper, in the displayMenu() method.
-     *
-     * @return array
-     */
-    public function choices()
-    {
-        return $this->SentencesList->getUserChoices($this->Auth->user('id'));
-    }
-
     /**
      * Saves a new sentence (as if it was added from the Contribute section) and
      * add it to the list.
@@ -469,7 +458,7 @@ class SentencesListsController extends AppController
         $this->layout = null;
         $this->autoLayout = false;
         // to prevent cakephp from adding debug output
-        Configure::write("debug",0); 
+        Configure::write("debug", 0); 
         
         $results = $this->SentencesList->getSentencesAndTranslationsOnly(
             $listId, $translationsLang 

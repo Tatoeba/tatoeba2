@@ -87,20 +87,8 @@ class AppController extends Controller
         // So that we can access the current users info from models.
         App::import('Model', 'CurrentUser');
         CurrentUser::store($this->Auth->user());
-    }
 
-    /**
-     * Called after the controller action is run, i
-     * but before the view is rendered.
-     *
-     * @return void
-     */
-    public function beforeRender()
-    {
-        // without this 3 lines, html send by ajax will have the whole layout
-        if ($this->RequestHandler->isAjax()) {
-            $this->layout = null;
-        }
+
         // Language of interface
         if (isset($this->params['lang']) && !empty($this->params['lang'])) {
             
@@ -126,13 +114,13 @@ class AppController extends Controller
 
             // cases where the interface language is not set in the url
         } elseif ($this->Cookie->read('interfaceLanguage')) {
-            //echo "toto";
+            
             $interfaceLanguage = $this->Cookie->read('interfaceLanguage');
             Configure::write('Config.language', $interfaceLanguage);
             $this->params['lang'] = $interfaceLanguage;
         
         } else {
-            echo "titi";
+            
             $lang = $this->getSupportedLanguage();
             Configure::write('Config.language', $lang);
             $this->Cookie->write('interfaceLanguage', $lang, false, '+2 weeks');
@@ -140,6 +128,22 @@ class AppController extends Controller
         }
         $redirectPage = "/".$this->params['lang']."/".$this->params['url']['url'];
         $this->redirect($redirectPage, 301);
+
+
+    }
+
+    /**
+     * Called after the controller action is run, i
+     * but before the view is rendered.
+     *
+     * @return void
+     */
+    public function beforeRender()
+    {
+        // without this 3 lines, html send by ajax will have the whole layout
+        if ($this->RequestHandler->isAjax()) {
+            $this->layout = null;
+        }
     }
 
     /**

@@ -122,11 +122,16 @@ echo $this->element('pmmenu');
         $matches = array();
         $sentencesLists = array();
         $content = $message['PrivateMessage']['content'];
+        // TODO regexp  like this are HACK
+        // What is the purpose of this? Can someone comment it?
         if (preg_match_all("#\[list:(\d+)]#", $content, $matches) != false) {
             foreach ($matches[1] as $sl) {
-                $sentencesLists[] = $this->requestAction(
-                    '/sentences_lists/show/'.$sl.'/return'
+                    
+                $sentencesLists[] = ClassRegistry::init('SentencesList')->show(
+                    $sl,
+                    'return'
                 );
+                
                 $message['content'] = str_replace(
                     '[list:'.$sl.']', '', $message['content']
                 );

@@ -58,7 +58,10 @@ echo $html->link(
 
 
 <?php
-$newMessages = $this->requestAction('/private_messages/check');
+
+$newMessages = ClassRegistry::init('PrivateMessage')->numberOfUnreadMessages(
+    CurrentUser::get('id')
+);
 $class = '';
 $imageName = 'no_mail.png';
 if ($newMessages > 0) {
@@ -68,7 +71,6 @@ if ($newMessages > 0) {
 ?>
 <span id="inbox" <?php echo $class; ?> title="<?php __('Inbox'); ?>">
 <?php
-// TODO Get rid of requestAction
 
 $mailIcon = $html->image(
     $imageName,

@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$stats = $this->requestAction('/sentences/statistics');
+$stats = ClassRegistry::init('Sentence')->getStatistics();
 if (isset($this->params['lang'])) {
     Configure::write('Config.language', $this->params['lang']);
 }

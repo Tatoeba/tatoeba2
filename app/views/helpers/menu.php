@@ -348,8 +348,9 @@ class MenuHelper extends AppHelper
         $this->Javascript->link('sentences_lists.menu.js', false);
         $this->Javascript->link('jquery.impromptu.js', false);
         
-        // TODO Remove requestAction someday
-        $lists = $this->requestAction('/sentences_lists/choices'); 
+        $lists = ClassRegistry::init('SentencesList')->getUserChoices(
+            CurrentUser::get('id')
+        );
         
         $privateLists = __('Add to your lists', true);
         $publicLists = __('Add to public list', true);

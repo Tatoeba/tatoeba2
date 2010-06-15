@@ -76,7 +76,7 @@ class PagesController extends AppController
     public function beforeFilter()
     {
         parent::beforeFilter();
-        
+        $this->_redirect_for_old_url();
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array("*");
     }
@@ -102,13 +102,62 @@ class PagesController extends AppController
         $this->set('nbrContributions', $nbrContributions);
     }
  
-     /**
-     * use to retrive data needed to display all the home module
-     * data are sent to pages/home.ctp
+    /**
+     * Hackish function create because I haven't succed to create
+     * rewriterule with mod_rewrite, in order to redirect for old
+     * /pages/xxxx to new url 
      *
      * @return void
-     */   
- 
+     */
+    
+    private function _redirect_for_old_url()
+    {
+    
+        // TODO it's an hack
+        $urlArray = explode("/", $this->params['url']['url']);
+        if ($urlArray[1] != "pages") {
+            return;
+        }
+        
+        $action = $urlArray[2];
+
+        switch ($action) {
+            case "tatoeba-team-and-credits":
+                $action = "tatoeba_team_and_credits";
+                break;
+
+            case "how-to-contribute":
+                $action = "how_to_contribute";
+                break;
+
+            case "download-tatoeba-example-sentences":
+                $action = "download_tatoeba_example_sentences";
+                break;
+
+            case "terms-of-use":
+                $action = "terms_of_use";
+                break;
+
+            case "whats-new":
+                $action = "whats_new";
+                break;
+        }
+         
+        $this->redirect(
+            array(
+                "controller" => "pages",
+                "action" => $action
+            ),
+            301
+        );
+
+    }
+    /**
+     * Display the "home" page which is the default page for
+     * logged user
+     *
+     * @return void
+     */ 
     public function home()
     {
         $userId = $this->Auth->user('id');

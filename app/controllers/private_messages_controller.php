@@ -302,18 +302,5 @@ class PrivateMessagesController extends AppController
             $this->redirect(array('action' => 'write'));
         }
     }
-
-    /**
-     * No view behind this function, which aim is to inform the user
-     * how many unread messages stay on his inbox.
-     * This function is called in top1.ctp
-     *
-     * @return int
-     */
-    public function check()
-    {
-        $userId = $this->Auth->user('id');
-        return $this->PrivateMessage->numberOfUnreadMessages($userId);
-    }
 }
 ?>
