@@ -477,8 +477,61 @@ class User extends AppModel
                     'group_id <' => 5
                 ),
                 'contain' => array()
-            )        
+            ) 
         );
     }  
+
+    /**
+     * Return all the informations needed for the Team and credits page
+     *
+     * @return array The big array of users and their informations
+     */ 
+    public function getMembersForTeamAndCredits() {
+
+        $launchpadUrl = 'https://launchpad.net/tatoeba/+topcontributors';
+        $launchpadDescription = sprintf(
+            __(
+                'Thank you to everyone who translated on '.
+                '<a href="%s">Launchpad</a>.', true
+            ), $launchpadUrl
+        );
+
+        return array(
+            'Padawan' => array(
+                array('BEN YAALA Salem', 'socom'),
+                array('DEPARIS Étienne', 'milouse'),
+                array('PARIS Robin', 'fendtwick'),
+                array('DUCATEL Baptiste', 'biptaste')
+            ),
+            'Core' => array(
+                array('HO Ngoc Phuong Trang', 'trang'),
+                array('SIMON Allan', 'sysko')
+            ),
+            'Ex' => array(
+                array('TAN Kevin', 'keklesurvivant'),
+                array('ERNALSTEEN Jonathan', '9h0ost')
+            ),
+            'Translator' => array(
+                array('FU Congcong 傅琮琮', 'fucongcong', __('Chinese', true)),
+                array('JIMÉNEZ Gabriel', 'kylecito',__('Spanish', true)),
+                array('sirgazil', 'sirgazil',__('Spanish', true)),
+                array('Pharamp', 'pharamp',__('Italian', true)),
+                array('brauliobezerra', 'brauliobezerra',__('Portuguese', true)),
+                array('BLAY Paul', 'blay_paul',__('Japanese', true)),
+                array('zipangu', 'zipangu',__('Polish', true)),
+                array('Launchpad translators', null,$launchpadDescription),
+            ),
+            'Special' => array(
+                array('BOUCHER François', 'kentril', 'Coded former search engine a while ago.'),
+                array('Masa', 'masa','Hosted Tatoeba for a few years.'),
+                array('FSF (France)', null,'Free Software Foundation. Currently hosting Tatoeba.')
+            ),
+        );
+
+
+    }
 }
+
+
+
 ?>

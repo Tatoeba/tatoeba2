@@ -264,6 +264,14 @@ class PagesController extends AppController
     public function tatoeba_team_and_credits()
     {
         $this->helpers[] = 'Members';
+
+        $peoples = ClassRegistry::init('User')->getMembersForTeamAndCredits();
+
+        $this->set("padawans", $peoples['Padawan']);
+        $this->set("cores", $peoples['Core']);
+        $this->set("exmembers", $peoples['Ex']);
+        $this->set("translators", $peoples['Translator']);
+        $this->set("specialThanks", $peoples['Special']);
     }
 
     /**

@@ -36,12 +36,10 @@ $this->pageTitle = __('Tatoeba team and credits', true);
         <h3><?php __('Core members'); ?></h3>
         <table>
         <?php
-        $people = array(
-            'HO Ngoc Phuong Trang' => 'trang',
-            'SIMON Allan' => 'sysko'
-        );
         
-        foreach ($people as $realName => $username) {
+        foreach ($cores as $people) {
+            $realName = $people[0];
+            $username = $people[1];
             $members->creditsToUser($realName, $username);
         }
         ?>
@@ -51,14 +49,10 @@ $this->pageTitle = __('Tatoeba team and credits', true);
         <h3><?php __('Padawan members'); ?></h3>
         <table>
         <?php
-        $people = array(
-            'BEN YAALA Salem' => 'socom',
-            'DEPARIS Étienne' => 'milouse',
-            'PARIS Robin' => 'fendtwick',
-            'DUCATEL Baptiste' => 'biptaste'
-        );
         
-        foreach ($people as $realName => $username) {
+        foreach ($padawans as $people) {
+            $realName = $people[0];
+            $username = $people[1];
             $members->creditsToUser($realName, $username);
         }
         ?>
@@ -67,12 +61,10 @@ $this->pageTitle = __('Tatoeba team and credits', true);
         <h3><?php __('Ex-members'); ?></h3>
         <table>
         <?php
-        $people = array(
-            'TAN Kevin' => 'keklesurvivant',
-            'ERNALSTEEN Jonathan' => '9h0ost'
-        );
-        
-        foreach ($people as $realName => $username) {
+            
+        foreach ($exmembers as $people) {
+            $realName = $people[0];
+            $username = $people[1];
             $members->creditsToUser($realName, $username);
         }
         ?>
@@ -86,29 +78,12 @@ $this->pageTitle = __('Tatoeba team and credits', true);
         <h2><?php __('Translations of the interface'); ?></h2>
         
         <?php
-        $launchpadUrl = 'https://launchpad.net/tatoeba/+topcontributors';
-        $launchpadDescription = sprintf(
-            __(
-                'Thank you to everyone who translated on '.
-                '<a href="%s">Launchpad</a>.', true
-            ), $launchpadUrl
-        );
+
         
-        $people = array(
-            array(__('Chinese', true), 'FU Congcong 傅琮琮', 'fucongcong'),
-            array(__('Spanish', true), 'JIMÉNEZ Gabriel', 'kylecito'),
-            array(__('Spanish', true), 'sirgazil', 'sirgazil'),
-            array(__('Italian', true), 'Pharamp', 'pharamp'),
-            array(__('Portuguese', true), 'brauliobezerra', 'brauliobezerra'),
-            array(__('Japanese', true), 'BLAY Paul', 'blay_paul'),
-            array(__('Polish', true), 'zipangu', 'zipangu'),
-            array($launchpadDescription, 'Launchpad translators', null),
-        );
-        
-        foreach ($people as $memberInfo) {
-            $description = $memberInfo[0];
-            $realName = $memberInfo[1];
-            $username = $memberInfo[2];
+        foreach ($translators as $people) {
+            $description = $people[2];
+            $realName = $people[0];
+            $username = $people[1];
             
             $members->creditsToUser($realName, $username, $description);
         }
@@ -117,17 +92,13 @@ $this->pageTitle = __('Tatoeba team and credits', true);
     
     <div class="module">
     
-    <h2><?php __('Special thanks'); ?></h2
+    <h2><?php __('Special thanks'); ?></h2>
     <?php
-    $people = array(
-        array('Coded search engine a while ago.', 'BOUCHER François', 'kentril'),
-        array('Hosted Tatoeba for a few years.', 'Masa', 'masa'),
-        array('Free Software Foundation. Currently hosting Tatoeba.', 'FSF (France)', null)
-    );
-    foreach ($people as $memberInfo) {
-        $description = $memberInfo[0];
-        $realName = $memberInfo[1];
-        $username = $memberInfo[2];
+    
+    foreach ($specialThanks as $people) {
+        $description = $people[2];
+        $realName = $people[0];
+        $username = $people[1];
         
         $members->creditsToUser($realName, $username, $description);
     }
