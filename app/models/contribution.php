@@ -226,7 +226,6 @@ class Contribution extends AppModel
             'all', 
             array(
                 'fields' => array(
-                    'Contribution.datetime'
                     , 'COUNT(*) as total'
                     , 'date_format(datetime,\'%b %D %Y\') as day'
                 ),
