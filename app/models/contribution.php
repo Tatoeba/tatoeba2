@@ -226,13 +226,13 @@ class Contribution extends AppModel
             'all', 
             array(
                 'fields' => array(
-                    , 'COUNT(*) as total'
-                    , 'date_format(datetime,\'%b %D %Y\') as day'
+                    'COUNT(*) as total',
+                    'date_format(datetime,\'%b %D %Y\') as day',
                 ),
                 'conditions' => array(
-                    'Contribution.datetime > \'2008-01-01 00:00:00\''
-                    , 'Contribution.translation_id' => null
-                    , 'Contribution.action' => 'insert'
+                    'Contribution.datetime > \'2008-01-01 00:00:00\'',
+                    'Contribution.translation_id' => null,
+                    'Contribution.action' => 'insert',
                 ),
                 'group' => array('day'),
                 'order' => 'Contribution.datetime DESC',
