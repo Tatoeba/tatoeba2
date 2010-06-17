@@ -113,7 +113,7 @@ class PagesController extends AppController
     
         // TODO it's an hack
         $urlArray = explode("/", $this->params['url']['url']);
-        if ($urlArray[1] != "pages") {
+        if (empty($urlArray[1]) || $urlArray[1] != "pages") {
             return;
         }
         
