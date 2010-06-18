@@ -88,6 +88,10 @@ class PagesController extends AppController
 
     public function index()
     {
+        if ($this->Auth->user()) {
+            $this->redirect(array('action' => 'home'));
+        }
+        
         /*Some numbers part*/
         $Contribution = ClassRegistry::init('Contribution'); 
         $nbrContributions = $Contribution->getTodayContributions(); 
