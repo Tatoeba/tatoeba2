@@ -120,7 +120,7 @@ $lang = $this->params['lang'];
 echo $form->checkbox('acceptation_terms_of_use'); echo ' ';
 echo sprintf(
     __('I accept the <a href="%s">terms of use</a>',true), 
-    $html->url(array("controller"=>"pages", "action"=>"terms-of-use#$lang"))
+    $html->url(array("controller"=>"pages", "action"=>"terms_of_use#$lang"))
 );
 ?>
 </div>
