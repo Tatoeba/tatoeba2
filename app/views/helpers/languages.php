@@ -93,7 +93,8 @@ class LanguagesHelper extends AppHelper
             'srp' => __('Serbian', true),
             'tat' => __('Tartar', true),
             'yid' => __('Yiddish', true),
-            'pes' => __('Persian', true)
+            'pes' => __('Persian', true),
+            'nan' => __('Teochew', true),
             // TODO to change when shanghainese will not be the only wu dialect
         );
         asort($languages);
