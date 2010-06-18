@@ -172,10 +172,13 @@ class CommentsHelper extends AppHelper
             $sentence = $comment['Sentence'];
             $sentenceText = $sentence['text'];
             $sentenceId = $sentence['id'];
-            $sentenceLang = $sentence['lang'];
-
+            
+            $sentenceLang = null;
+            if (!empty($sentence['lang'])) {
+                $sentenceLang = $sentence['lang'];
+            }
             $dir = $this->Languages->getLanguageDirection($sentenceLang);
-
+            
             echo '<div class="sentence">';
             if (isset($sentenceText)) {
                 echo $this->Html->link(
