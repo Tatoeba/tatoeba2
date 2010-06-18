@@ -283,15 +283,10 @@ if (!$session->read('Auth.User.id')) {
     );
     echo '<label for="profile_basicCountry">' . __('Country', true) . '</label>' ;
 
-        // what does this code ??
-        if (!is_null($user['User']['country_id'])) {
-            $temp = $user['Country']['id']; // find a better name for this variable
-        }
-
     echo $form->select(
         'country',
         $countries,
-        $temp, // TODO : magic stuff spotted
+        $user['Country']['id'],
         null,
         false
     );
