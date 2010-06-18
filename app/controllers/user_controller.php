@@ -144,11 +144,11 @@ class UserController extends AppController
         // Check if his/her profile is accessible
         if (empty($currentUserId) && !$isPublic) {
             $this->flash(
-                sprintf(
-                    __('This profile is protected. You must login to see it.')
-                ),
-                '/users/all'
+                __('This profile is protected. You must login to see it.', true),
+                '/users/all' 
             );
+            // NOTE: using an array here won't work...
+            // But the interface language is properly added in the link.
             return;
         }
 
