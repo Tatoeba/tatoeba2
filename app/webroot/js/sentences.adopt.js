@@ -19,12 +19,11 @@
 
 $(document).ready(function(){
 
-    var host = self.location.hostname;
-    var port = self.location.port;
-
     $(".adopt").click(function(){
         var adoptOption = $(this);
         var sentenceId = $(this).data("sentenceId");
+        
+        var rootUrl = get_tatoeba_root_url();
         
         // Displaying loading gif
         $("#sentences_group_" + sentenceId).html(
@@ -34,14 +33,14 @@ $(document).ready(function(){
         // The sentence can be adopted
         if (adoptOption.hasClass("add")){
             $("#sentences_group_" + sentenceId).load(
-                "http://" + host + ":" + port + "/sentences/adopt/"+  sentenceId
+                rootUrl + "/sentences/adopt/"+  sentenceId
             );
         }
         
         // The sentence can be unadopted 
         else if (adoptOption.hasClass("remove")){
             $("#sentences_group_" + sentenceId).load(
-                "http://" + host + ":" + port + "/sentences/let_go/"+  sentenceId
+                rootUrl + "/sentences/let_go/"+  sentenceId
             );
         }
     });

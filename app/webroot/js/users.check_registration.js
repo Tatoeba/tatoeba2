@@ -26,10 +26,11 @@ $(document).ready(function()
     function check(fieldName, string){
         var inputId = fieldName.charAt(0).toUpperCase() + fieldName.substr(1);
         
+        var rootUrl = get_tatoeba_root_url();
         $("#registration"+inputId).attr("class", "checking");
         
         $.post(
-            "http://" + self.location.hostname + ":" + self.location.port + "/users/check_" + fieldName + "/" + string
+            rootUrl + "/users/check_" + fieldName + "/" + string
             , {}
             , function(data){
                 if(data.match('valid')){
@@ -61,9 +62,10 @@ $(document).ready(function()
      */
     $("#registrationUsername").keyup(function(e){
         var correctUsername = /[A-Za-z_]{2,20}/;
-        
-        if(e.keyCode > 40 || e.keyCode == 8 || e.keyCode == 13){     // so we don't take account keys like shift, home, end, etc... 
-                                                                    // But we accept backspace.
+        // so we don't take account keys like shift, home, end, etc.
+        // But we accept backspace... 
+        if(e.keyCode > 40 || e.keyCode == 8 || e.keyCode == 13){     
+                                                                    
                                                     
             var username = $(this).val();
             
@@ -86,9 +88,10 @@ $(document).ready(function()
      */
     $("#registrationPassword").keyup(function(e){
         var correctPassword  = /(.){6,}/;
-        
-        if(e.keyCode > 40 || e.keyCode == 8 || e.keyCode == 13){     // so we don't take account keys like shift, home, end, etc... 
-                                                                    // But we accept backspace.
+        // so we don't take account keys like shift, home, end, etc... 
+        // But we accept backspace.
+        if(e.keyCode > 40 || e.keyCode == 8 || e.keyCode == 13){     
+                                                                    
             var password = $(this).val();
             
             if(password.match(correctPassword)){
@@ -109,9 +112,10 @@ $(document).ready(function()
      */
     $("#registrationEmail").keyup(function(e){
         var correctEmail  = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-        
-        if(e.keyCode > 40 || e.keyCode == 8 || e.keyCode == 13){     // so we don't take account keys like shift, home, end, etc... 
-                                                                    // But we accept backspace and enter
+        // so we don't take account keys like shift, home, end, etc... 
+        // But we accept backspace and enter
+        if(e.keyCode > 40 || e.keyCode == 8 || e.keyCode == 13){     
+                                                                    
             
             var email = $(this).val();
             

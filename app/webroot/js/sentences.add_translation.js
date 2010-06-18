@@ -24,6 +24,8 @@ $(document).ready(function() {
         var parentOwnerName = $(this).data("parentOwnerName");
         var withAudio = $(this).data("withAudio");
         
+        var rootUrl = get_tatoeba_root_url();
+
         /*
          * Save translation.
          */
@@ -40,7 +42,7 @@ $(document).ready(function() {
                 $(".addTranslations").hide();
                 
                 $.post(
-                    "http://" + self.location.hostname + ":" + self.location.port + "/sentences/save_translation",
+                    rootUrl + "/sentences/save_translation",
                     {
                         "id": sentenceId,
                         "selectLang": selectLang,

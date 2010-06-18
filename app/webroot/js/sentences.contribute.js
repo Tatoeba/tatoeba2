@@ -29,13 +29,16 @@ $(document).ready(function() {
     })
     
     function save(){
+
+        var rootUrl = get_tatoeba_root_url();
+        
         var sentenceText = $("#SentenceText").val();
         var selectedLang = $("#contributionLang").val();
         if ($.trim(sentenceText) != '') {
             $(".sentencesAddedloading").show();
             
             $.post(
-                "http://" + self.location.hostname + ":" + self.location.port + "/sentences/add_an_other_sentence",
+                rootUrl + "/sentences/add_an_other_sentence",
                 {
                     "value": sentenceText,
                     "selectedLang": selectedLang

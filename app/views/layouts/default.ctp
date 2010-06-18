@@ -66,6 +66,7 @@
         //      Javascript        //
         // ---------------------- //
 		echo $javascript->link('jquery-mini.js', true);
+		echo $javascript->link('generic_functions.js', true);
 		echo $scripts_for_layout;
         
 	?>

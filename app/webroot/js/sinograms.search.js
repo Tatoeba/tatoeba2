@@ -18,11 +18,11 @@
 
 
 $(document).ready(function(){
-    var lang = $("#languageSelection").val();
     
     function loadSinogramInformations(sinogram){
+        var rootUrl = get_tatoeba_root_url();
         $.post(
-            "http://" + self.location.hostname + ":" + self.location.port + "/" + lang + "/sinograms/load_sinogram_informations",
+            rootUrl + "/sinograms/load_sinogram_informations",
             { "sinogram" : sinogram  },
             function(data){
                 $("#information_part").empty();
@@ -33,8 +33,10 @@ $(document).ready(function(){
     }
 
     function loadExampleSentence(sinogram){
-           $("#example_part").html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
-          $.post("http://" + self.location.hostname + ":" + self.location.port + "/" + lang + "/sinograms/load_example_sentence"
+        var rootUrl = get_tatoeba_root_url();
+        $("#example_part").html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
+          $.post(
+            rootUrl + "/sinograms/load_example_sentence"
             , { "sinogram" : sinogram  } 
             , function(data){
                 $("#example_part").empty();
@@ -51,7 +53,9 @@ $(document).ready(function(){
     */
     function loadRadicals(numberOfStroke){
           
-          $.post("http://" + self.location.hostname + ":" + self.location.port +  "/" + lang + "/sinograms/load_radicals"
+        var rootUrl = get_tatoeba_root_url();
+        $.post(
+            rootUrl + "/sinograms/load_radicals"
             , { "number" : numberOfStroke  } 
             , function(data){
                 $("#radicalsList").empty();
@@ -87,12 +91,12 @@ $(document).ready(function(){
     */
     
     function sendSearchInformations(){
-                
-          var subglyphs = $("#SinogramSubglyphs").val() ;
-          
-          if (subglyphs != ''){
-          
-            $.post("http://" + self.location.hostname + ":" + self.location.port + "/" + lang + "/sinograms/search"
+        var subglyphs = $("#SinogramSubglyphs").val() ;
+        
+        if (subglyphs != ''){
+            var rootUrl = get_tatoeba_root_url();
+            $.post(
+                rootUrl + "/sinograms/search"
                 , { "data[Sinogram][subglyphs]" : subglyphs } 
                 , function(data){
                     $("#searchResults").remove();
@@ -100,20 +104,21 @@ $(document).ready(function(){
                 }
                 , "html"
             );
-          } else {
+        } else {
             $("#searchResults").remove();
-          }
-          return false;
+        }
+        return false;
     }
    
     /*
     ** send a post request to retrieve decomposition of some characters
     */
     function sendExplodeInformations(){
-                
-          var toExplode = $("#SinogramToExplode").val()
-
-          $.post("http://" + self.location.hostname + ":" + self.location.port + "/" + lang + "/sinograms/explode"
+        var toExplode = $("#SinogramToExplode").val()
+        var rootUrl = get_tatoeba_root_url();
+        
+        $.post(
+            rootUrl + "/sinograms/explode"
             , { "data[Sinogram][toExplode]" : toExplode } 
             , function(data){
                 $("#explosionResults").empty();

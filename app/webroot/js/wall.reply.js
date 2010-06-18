@@ -42,10 +42,12 @@ $(document).ready(function(){
         
         $("#replyFormDiv_" + previousReplyFormInMessageID ).html("<img src='/img/loading.gif' alt='loading'>");
         
+        var rootUrl = get_tatoeba_root_url();
         
-        $.post("http://" + self.location.hostname + ":" + self.location.port + "/wall/save_inside"
-            , { "content" : messageContent , "replyTo" : previousReplyFormInMessageID } 
-            , function(data){
+        $.post(
+            rootUrl + "/wall/save_inside",
+            { "content" : messageContent , "replyTo" : previousReplyFormInMessageID },
+            function(data){
                 $("#session_expired").remove();
                 $("#messageBody_" + previousReplyFormInMessageID).append(data);
                 // replace "close"  by "reply"  
