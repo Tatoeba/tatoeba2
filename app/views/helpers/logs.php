@@ -160,7 +160,10 @@ class LogsHelper extends AppHelper
         }
         
         $contributionText = Sanitize::html($contribution['text']);
-        $lang = Sanitize::paranoid($contribution['sentence_lang']);
+        $lang = null;
+        if (!empty($contribution['sentence_lang'])) {
+            $lang = Sanitize::paranoid($contribution['sentence_lang']);
+        }
         $translationId = Sanitize::paranoid($contribution['translation_id']); 
         $action = Sanitize::paranoid($contribution['action']);
         $contributionDate = $contribution['datetime'];
