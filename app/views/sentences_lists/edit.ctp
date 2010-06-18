@@ -113,13 +113,11 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     echo $listName;
     echo '</h2>';
     
-    $javascript->link('sentences_lists.remove_sentence_from_list.js', false);
-    $lists->displayAddSentenceForm($listId);    
-    ?>
-    
-    <?php
     $url = array($listId, $translationsLang);
     $pagination->display($url);
+    
+    $javascript->link('sentences_lists.remove_sentence_from_list.js', false);
+    $lists->displayAddSentenceForm($listId);    
     ?>
     
     <div class="sentencesList" id="sentencesList">
