@@ -18,7 +18,10 @@
 
 
 $(document).ready(function() {
-    $('.editableSentencesListName').editable('http://' + self.location.hostname + ":" + self.location.port + '/sentences_lists/save_name', { 
+
+    var rootUrl = get_tatoeba_root_url();
+    
+    $('.editableSentencesListName').editable(rootUrl + '/sentences_lists/save_name', { 
         type      : 'text',
         cancel    : 'Cancel',
         submit    : 'OK',

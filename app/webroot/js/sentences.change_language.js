@@ -19,9 +19,6 @@
 
 $(document).ready(function() {
     
-    var host = self.location.hostname;
-    var port = self.location.port;
-    
     $(".languageFlag").unbind('click');
     // NOTE: It's important to unbind because when adding two translations in a row,
     // it will rebind again the same function. So the second time the user clicks
@@ -41,13 +38,13 @@ $(document).ready(function() {
         $("#selectLang_" + sentenceId).change(function(){
         
             var newLang = $(this).val();
-
+            var rootUrl = get_tatoeba_root_url();
             
             flagImage.attr('src', '/img/loading-small.gif');
             $("#selectLang_" + sentenceId).hide();
             
             $.post(
-                "http://" + host + ":" + port + "/sentences/change_language/",
+                rootUrl + "/sentences/change_language/",
                 { "id": sentenceId, "newLang": newLang, "prevLang": prevLang },
                 function(){
                     $("#_" + sentenceId + "_in_process").hide();

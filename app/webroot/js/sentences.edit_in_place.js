@@ -18,7 +18,9 @@
 
 
 $(document).ready(function() {
-    $('.editableSentence').editable('http://' + self.location.hostname + ":" + self.location.port + '/sentences/edit_sentence', { 
+    var rootUrl = get_tatoeba_root_url();
+    
+    $('.editableSentence').editable(rootUrl + '/sentences/edit_sentence', { 
         type      : 'text',
         cancel    : 'Cancel',
         submit    : 'OK',

@@ -31,10 +31,11 @@ $(document).ready(function() {
     function save(){
         var sentenceText = $("#text").val();
         var listId = $("#sentencesList").data('id');
+        var rootUrl = get_tatoeba_root_url();
         
         $(".sentencesListLoading").show();
         
-        $.post("http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/add_new_sentence_to_list/"
+        $.post(rootUrl + "/sentences_lists/add_new_sentence_to_list/"
         , { "listId": listId, "sentenceText" : sentenceText }
         , function(data){
             $("#session_expired").remove();

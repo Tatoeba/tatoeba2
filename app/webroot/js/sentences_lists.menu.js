@@ -55,6 +55,7 @@ $(document).ready(function() {
     $(".validateButton").click(function(){
         
         var listId = $("#listSelection"+sentenceId).val();
+        var rootUrl = get_tatoeba_root_url();
         
         // Add sentence to selected list
         if(listId > 0){
@@ -62,7 +63,7 @@ $(document).ready(function() {
             $("#_"+sentenceId+"_in_process").show();
             
             $.post(
-                "http://" + self.location.hostname + ":" + self.location.port 
+                rootUrl 
                 + "/sentences_lists/add_sentence_to_list/"
                 + sentenceId + "/" + listId
                 , {}
@@ -93,7 +94,7 @@ $(document).ready(function() {
                     $("#_"+sentenceId+"_in_process").show();
                     
                     $.post(
-                        "http://" + self.location.hostname + ":" + self.location.port 
+                        rootUrl 
                         + "/sentences_lists/add_sentence_to_new_list/"
                         + sentenceId + "/"+ form.listName
                         , {}
@@ -132,7 +133,7 @@ $(document).ready(function() {
             
             $(location).attr(
                 'href', 
-                "http://" + self.location.hostname + ":" + self.location.port 
+                rootUrl 
                 + "/sentences_lists/"
             );
             

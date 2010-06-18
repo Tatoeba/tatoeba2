@@ -32,10 +32,11 @@ $(document).ready(function(){
 });
 
 function loadRandom(lang){
+    var rootUrl = get_tatoeba_root_url();
+    
     $(".random_sentences_set").html("<img src='/img/loading.gif' alt='loading'>");
     $(".random_sentences_set").load(
-        "http://" + self.location.hostname + ":" + self.location.port + "/" 
-        + $("#showRandom").attr("lang") 
+        rootUrl
         + "/sentences/random/" + lang + "/"
         + Math.random() // needed for IE
         // otherwise it always displays the same sentence when logged in...

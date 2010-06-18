@@ -19,16 +19,19 @@
 
 function load_followers(){
     var user_id = $(".user").attr("id").slice(1);
-    $(".followers").load("http://" + self.location.hostname + ":" + self.location.port + "/followers/followers/" + user_id + "/true");
-    $(".following").load("http://" + self.location.hostname + ":" + self.location.port + "/followers/following/" + user_id + "/true");
+    var rootUrl = get_tatoeba_root_url();
+    
+    $(".followers").load(rootUrl + "/followers/followers/" + user_id + "/true");
+    $(".following").load(rootUrl + "/followers/following/" + user_id + "/true");
 }
 
 $(document).ready(function(){
     $(".followingOption").click(function(){
         var user_id = $(".user").attr("id").slice(1); // because id starts with an underscore to be compliant to standards
         var action = $(this).attr("id"); // "start" or "stop"
-        var url = "http://" + self.location.hostname + ":" + self.location.port + "/followers/" + action + "_following";
-
+        var rootUrl = get_tatoeba_root_url();
+        var url = rootUrl + "/followers/" + action + "_following";
+        
         $(".in_process").html("<div class='loading'><img src='/img/loading.gif' alt='loading'></div>");
 
         $.post(

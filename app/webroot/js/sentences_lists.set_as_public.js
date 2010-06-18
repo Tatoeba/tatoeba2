@@ -22,6 +22,7 @@ $(document).ready(function() {
     $("#isPublic").change(function(){
         var isPublic;
         var listId = $("#sentencesList").data('id');
+        var rootUrl = get_tatoeba_root_url();
         
         if($(this).is(':checked')){
             isPublic = 1;
@@ -32,7 +33,7 @@ $(document).ready(function() {
         $("#inProcess").show();
         
         $.post(
-            "http://" + self.location.hostname + ":" + self.location.port + "/sentences_lists/set_as_public/",
+            rootUrl + "/sentences_lists/set_as_public/",
             { "listId": listId, "isPublic": isPublic },
             function(){
                 $("#inProcess").hide();

@@ -22,10 +22,11 @@ $(document).ready(function() {
     $(".removeFromListButton").click(function(){
         var sentenceId = $(this).data("sentenceId");
         var listId = $("#sentencesList").data('id');
+        var rootUrl = get_tatoeba_root_url();
         
         $("#sentence"+sentenceId).html("<img src='/img/loading.gif' alt='loading'>");
         $("#sentence"+sentenceId).load(
-            "http://" + self.location.hostname + ":" + self.location.port 
+            rootUrl
             + "/sentences_lists/remove_sentence_from_list/"
             + sentenceId + "/" + listId
         );

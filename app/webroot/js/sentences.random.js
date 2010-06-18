@@ -21,10 +21,9 @@ $(document).ready(function(){
     $("#randomLangChoiceInBrowse").change(function(){
         var currentId = $(this).data('currentSentenceId');
         var lang = $(this).val();
-        var host = self.location.hostname;
-        var port = self.location.port;
+        var rootUrl = get_tatoeba_root_url();
         var interfaceLang = $("#randomLink").attr("lang");
-        var baseURL = "http://"+host+":"+port+"/"+interfaceLang+"/sentences/show/";
+        var baseURL = rootUrl + "/sentences/show/";
         
         
         // Showing loading animation
@@ -35,7 +34,7 @@ $(document).ready(function(){
         
         
         $.post(
-            "http://" + host + ":" + port + "/sentences/get_neighbors_for_ajax/"+currentId+"/"+ lang,
+            rootUrl + "/sentences/get_neighbors_for_ajax/"+currentId+"/"+ lang,
             {},
             function(data){
                 neighbors = data.split(";");

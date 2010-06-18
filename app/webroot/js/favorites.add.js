@@ -19,8 +19,8 @@
 
 $(document).ready(function(){
 
-    var host = self.location.hostname;
-    var port = self.location.port;
+    var rootUrl = get_tatoeba_root_url();
+    
     // there's only one  "click" function for favorite/unfavorite
     // ( and a test inside to make the difference instead of two 
     // "click" functions because of the way JQuery works so as it
@@ -41,7 +41,7 @@ $(document).ready(function(){
             
             $("#_"+favoriteId+"_in_process").show();
 
-            $.post("http://" + host + ":" + port + "/favorites/add_favorite/"+ favoriteId
+            $.post(rootUrl + "/favorites/add_favorite/"+ favoriteId
                 , {}
                 ,function(data){
                     // if add retrieve no data , then for a reason or
@@ -75,7 +75,7 @@ $(document).ready(function(){
             
             $("#_"+favoriteId+"_in_process").show();
             
-            $.post("http://" + host + ":" + port + "/favorites/remove_favorite/"+ favoriteId
+            $.post(rootUrl + "/favorites/remove_favorite/"+ favoriteId
                 , {}
                 ,function(data){
                     // if add retrieve no data , then for a reason or an
