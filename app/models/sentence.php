@@ -1165,5 +1165,22 @@ class Sentence extends AppModel
         return $sentenceSaved; // The most important is that the sentence is saved.
                                // Never mind for the links.
     }
+
+    /**
+     * wrapping function
+     */
+    public function getContributionsRelatedToSentence($id)
+    {
+        return $this->Contribution->getContributionsRelatedToSentence($id);
+
+    }
+
+    /**
+     * wrapping function
+     */
+    public function getCommentsForSentence($id)
+    {
+        return $this->SentenceComment->getCommentsForSentence($id);
+    }
 }
 ?>

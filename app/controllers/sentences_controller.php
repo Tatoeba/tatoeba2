@@ -63,9 +63,6 @@ class SentencesController extends AppController
     );
     public $uses = array(
         'Sentence',
-        'Translation',
-        'Contribution',
-        'SentenceComment'
     );
     
     /**
@@ -92,6 +89,7 @@ class SentencesController extends AppController
             'several_random_sentences',
             'sentences_group',
             'get_neighbors_for_ajax',
+            'show_all_in',
         );
     }
 
@@ -145,11 +143,11 @@ class SentencesController extends AppController
             // Whether the sentence still exists or not, we retrieve the
             // contributions and the comments because we don't want them
             // to disappear just because the sentence was deleted.
-            $contributions = $this->Contribution->getContributionsRelatedToSentence(
+            $contributions = $this->Sentence->getContributionsRelatedToSentence(
                 $id
             );
             
-            $comments = $this->SentenceComment->getCommentsForSentence($id);
+            $comments = $this->Sentence->getCommentsForSentence($id);
             $commentsPermissions = $this->Permissions->getCommentsOptions(
                 $comments,
                 $userId,
@@ -392,6 +390,8 @@ class SentencesController extends AppController
      */
     public function let_go($id)
     {
+        // TODO Add a check if current user is the sentence owner
+        // otherwise any member can desadopt sentences of other users
         $id = Sanitize::paranoid($id);
         
         $this->Sentence->id = $id;
@@ -514,7 +514,55 @@ class SentencesController extends AppController
             )
         );
 
+        $allSentences = $his->_common_sentences_pagination(
+            $pagination,
+            $to
+        ); 
+        
+        $this->set('query', $query);
+        $this->set('results', $allSentences);
+    }
+    
+    /**
+     * Show all sentences in a specific language
+     *
+     * @return void
+     */
+    function show_all_in($lang, $translationLang = null)
+    {
+      
+        $pagination = array(
+            'Sentence' => array(
+                'fields' => array(
+                    'id',
+                ),
+                'conditions' => array('lang' => $lang),
+                'contain' => array(),
+                'limit' => 10,
+            )
+        );
 
+        $allSentences = $this->_common_sentences_pagination(
+            $pagination,
+            $translationLang
+        ); 
+        $this->set('lang', $lang);
+        $this->set('translationLang', $translationLang);
+        $this->set('results', $allSentences);
+    }
+    /**
+     * Return all informations needed to display a paginate
+     * list of sentences
+     *
+     * @param array  $pagination      The pagination request.
+     * @param string $translationLang If different of null, will only
+     *                                retrieve translation in this language.
+     */
+    private function _common_sentences_pagination(
+        $pagination,
+        $translationLang = null
+    ) {
+ 
         $this->paginate = $pagination;
         $results = $this->paginate();
 
@@ -526,13 +574,10 @@ class SentencesController extends AppController
 
         $allSentences = $this->CommonSentence->getAllNeededForSentences(
             $sentenceIds,
-            $to
+            $translationLang
         );
-        
-        $this->set('query', $query);
-        $this->set('results', $allSentences);
+        return $allSentences;     
     }
-    
     /**
      * Show random sentence.
      *
@@ -689,8 +734,7 @@ class SentencesController extends AppController
         $this->_sentences_of_user_common($userId, $lang);
         $this->set("lang", $lang);
         
-    }
-    
+    } 
     
     /**
      * Private function to factorize my_sentences and of_user
@@ -785,7 +829,8 @@ class SentencesController extends AppController
             $this->Sentence->id = $id;
             $this->Sentence->saveField('lang', $newlang);
 
-            $this->Contribution->updateLanguage($id, $newlang);
+            $Contribution = ClassRegistry::init('Contribution');
+            $Contribution->updateLanguage($id, $newlang);
 
             $this->Sentence->incrementStatistics($newlang);
             $this->Sentence->decrementStatistics($prevLang);

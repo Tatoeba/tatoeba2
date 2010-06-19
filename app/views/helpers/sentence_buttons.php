@@ -220,7 +220,8 @@ class SentenceButtonsHelper extends AppHelper
      * Check if a file exists on remove server. Inspired from this:
      * http://www.php.net/manual/en/function.fsockopen.php#39948
      *
-     * TODO Move this to a more general helper someday.
+     * TODO Move this to a more general model (this is about data retrieving)
+     * someday.
      * 
      * @param string $url URL of the file.
      *
