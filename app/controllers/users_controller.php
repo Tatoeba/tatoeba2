@@ -73,6 +73,7 @@ class UsersController extends AppController
             'all',
             'search',
             'show',
+            'login',
             'check_login',
             'logout',
             'register',

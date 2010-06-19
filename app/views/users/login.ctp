@@ -37,7 +37,13 @@
  
 if  ($session->check('Message.auth')) $session->flash('auth');
 
-echo $form->create('User', array('action' => 'login'));
+echo $form->create(
+    'User',
+    array(
+        'action' => 'check_login',
+        'id' => "UserLoginForm"
+    )
+    );
 
 echo $form->input(
     'username', array(

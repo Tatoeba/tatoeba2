@@ -90,7 +90,7 @@ class AppController extends Controller
 
 
         // Language of interface
-        if (isset($this->params['lang'])) {
+        if (isset($this->params['lang']) && !empty($this->params['lang'])) {
             
             //echo "tata";
             // NOTE 1: It is improtant to use isset() in the condition. Using 
