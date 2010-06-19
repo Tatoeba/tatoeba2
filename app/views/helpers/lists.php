@@ -313,6 +313,7 @@ class ListsHelper extends AppHelper
         <?php
         __('Show translations :'); echo ' ';
         
+        // TODO User $html->url()
         $path = '/';
         if (!empty($this->params['lang'])) {
             $path .= $this->params['lang'] . '/';
@@ -350,7 +351,15 @@ class ListsHelper extends AppHelper
     ) {
         ?>
         <li>
-        <label for="isPublic"><?php __('Set list as public'); ?></label>
+        <script type='text/javascript'>
+            $(document).ready(function() {
+                $('#isPublicCheckbox').data(
+                    'listId',
+                    <?php echo $listId; ?>
+                );
+            });
+        </script>
+        <label for="isPublicCheckbox"><?php __('Set list as public'); ?></label>
         <?php
         $this->Javascript->link('sentences_lists.set_as_public.js', false);
         if ($isListPublic) {
@@ -362,6 +371,7 @@ class ListsHelper extends AppHelper
         echo $this->Form->checkbox(
             'isPublic',
             array(
+                "id" => "isPublicCheckbox",
                 "name" => "isPublic", 
                 "checked" => $checkboxValue,
             )

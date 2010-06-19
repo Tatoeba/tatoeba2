@@ -19,9 +19,9 @@
 
 $(document).ready(function() {
 
-    $("#isPublic").change(function(){
+    $("#isPublicCheckbox").change(function(){
         var isPublic;
-        var listId = $("#sentencesList").data('id');
+        var listId = $(this).data('listId');
         var rootUrl = get_tatoeba_root_url();
         
         if($(this).is(':checked')){
@@ -35,7 +35,7 @@ $(document).ready(function() {
         $.post(
             rootUrl + "/sentences_lists/set_as_public/",
             { "listId": listId, "isPublic": isPublic },
-            function(){
+            function(data){
                 $("#inProcess").hide();
             }
         );
