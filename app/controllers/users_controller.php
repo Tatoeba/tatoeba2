@@ -71,7 +71,6 @@ class UsersController extends AppController
         // no need to allow login
         $this->Auth->allowedActions = array(
             'all',
-            'login',
             'search',
             'show',
             'check_login',
