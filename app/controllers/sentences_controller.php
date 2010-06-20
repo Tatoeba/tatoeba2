@@ -514,7 +514,7 @@ class SentencesController extends AppController
             )
         );
 
-        $allSentences = $his->_common_sentences_pagination(
+        $allSentences = $this->_common_sentences_pagination(
             $pagination,
             $to
         ); 
