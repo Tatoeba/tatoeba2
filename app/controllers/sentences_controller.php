@@ -470,8 +470,7 @@ class SentencesController extends AppController
                 array(
                     "lang" => $this->params['lang'], 
                     "controller" => "pages", 
-                    "action" => "display", 
-                    "search"
+                    "action" => "search", 
                 )
             );
         }
