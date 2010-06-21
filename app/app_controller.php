@@ -126,7 +126,27 @@ class AppController extends Controller
             $this->Cookie->write('interfaceLanguage', $lang, false, '+2 weeks');
             $this->params['lang'] = $lang;
         }
+        
         $redirectPage = "/".$this->params['lang']."/".$this->params['url']['url'];
+        
+        // incredible hack
+        // in fact it's to transfer GET parameters to redirecting url
+        // otherwise  tatoeba.org/sentences/search?query="toto"
+        // would be redirected to tatoeba.org/eng/sentences/search
+        // without the "?query etc."
+
+        // TODO find if cakephp doesn't provide a function for this
+        if (count($this->params['url']) > 1) {
+            $redirectPage .= "?";
+                
+            foreach ($this->params['url'] as $name => $value) {
+                if ($name == "url") {
+                    continue;
+                }
+                $redirectPage .= "&$name=$value";
+            }
+        }
+        
         $this->redirect($redirectPage, 301);
 
 
