@@ -77,8 +77,7 @@ class TagsController extends AppController
             $this->redirect(
                 array(
                     'controller' => 'pages',
-                    'action' => 'display',
-                    'home'
+                    'action' => 'home',
                 )
             );
         }

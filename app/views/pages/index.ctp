@@ -89,8 +89,7 @@ $selectedLanguage = $session->read('random_lang_selected');
                 __('View more', true),
                 array(
                     "controller" => "pages",
-                    "action" => "display",
-                    "home"
+                    "action" => "home"
                 )
             );
             ?>
