@@ -29,59 +29,69 @@ $stats = ClassRegistry::init('Sentence')->getStatistics();
 if (isset($this->params['lang'])) {
     Configure::write('Config.language', $this->params['lang']);
 }
+
+//TODO hack to be moved in a helper
+function generateSentenceStatLine($stat, $html, $languages)
+{
+    $langCode = $stat['langStats']['lang'];
+    $flagImage = $html->image(
+        'flags/'.$langCode .'.png',
+        array(
+            'width' => 30,
+            'height' => 20
+        )
+    );
+    
+    $linkToAllSentences = $html->link(
+        $flagImage,
+        array(
+            "controller" => "sentences",
+            "action" => "show_all_in",
+            $langCode,
+            'und',
+            'none',
+        ),
+        array(),
+        null,
+        false
+    );
+
+
+    $numberOfSentences = $stat['langStats']['numberOfSentences'];
+    
+    echo '<li class="stat" title="'.$languages->codeToName($langCode).'">';
+        echo $linkToAllSentences;
+        echo '<span class="langCode">'.$langCode.' : </span>';
+        echo '<span class="total">'.$numberOfSentences.'</span>';
+    echo '</li>';
+}
+
+
 ?>
 <div id="sentencesStats">
     <ul>
         <?php
         for ($i = 0 ; $i < 5 ; $i++) {
             $stat = $stats[$i];
-            //pr ($stat);
-            $langCode = $stat['langStats']['lang'];
-            
-            echo '<li class="stat" title="'.$languages->codeToName($langCode).'">';
-                echo $html->image(
-                    'flags/'.$langCode .'.png',
-                    array(
-                        'width' => 30,
-                        'height' => 20
-                    )
-                );
-                echo '<span class="langCode">'.$langCode.' : </span>';
-                echo '<span class="total">'.$stat['langStats']['numberOfSentences']
-                    .'</span>';
-            echo '</li>';
+            generateSentenceStatLine($stat, $html, $languages);
         }
         ?>
     </ul>
 
-<?php /*TODO HACK SPOTTED  CSS in the code !*/ ?>
-<ul class="minorityLanguages" style="display:none">
-<?php
-$size = count($stats);
-for ($i = 5; $i < $size; $i++) {
-    $stat = $stats[$i];
-    $langCode  = $stat['langStats']['lang'];
-        
-    echo '<li class="stat" title="'.$languages->codeToName($langCode).'">';
-        echo $html->image(
-            'flags/'.$langCode .'.png',
-            array(
-                'width' => 30,
-                'height' => 20
-            )
-        );
-        echo '<span class="langCode">'.$langCode.' : </span>';
-        echo '<span class="total">'.$stat['langStats']['numberOfSentences']
-                .'</span>';
-    echo '</li>';
-}
-?>
-</ul>
+    <?php /*TODO HACK SPOTTED  CSS in the code !*/ ?>
+    <ul class="minorityLanguages" style="display:none">
+        <?php
+        $size = count($stats);
+        for ($i = 5; $i < $size; $i++) {
+            $stat = $stats[$i];
+            generateSentenceStatLine($stat, $html, $languages);
+        }
+        ?>
+    </ul>
 
-<a class="statsDisplay showStats">[+] <?php __('show all'); ?></a>
-<?php /*TODO HACK SPOTTED  CSS in the code !*/ ?>
-<a class="statsDisplay hideStats" style="display:none">
-    [-] <?php __('top 5 only'); ?>
-</a>
-
+    <a class="statsDisplay showStats">[+] <?php __('show all'); ?></a>
+    <?php /*TODO HACK SPOTTED  CSS in the code !*/ ?>
+    <a class="statsDisplay hideStats" style="display:none">
+        [-] <?php __('top 5 only'); ?>
+    </a>
 </div>

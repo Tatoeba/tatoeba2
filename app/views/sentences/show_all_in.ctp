@@ -32,7 +32,13 @@ $this->pageTitle = sprintf(__('All sentences in %s', true), $languageName);
 <div id="annexe_content">
     <?php
     $attentionPlease->tatoebaNeedsYou();
+
+    $showAll->displayShowAllInSelect($lang);
+    $showAll->displayShowOnlyTranslationInSelect($translationLang);
+    $showAll->displayShowNotTranslatedIn($notTranslatedIn);
     ?>
+
+
 </div> 
 <div id="main_content">
     <div class="module">
@@ -54,7 +60,7 @@ $this->pageTitle = sprintf(__('All sentences in %s', true), $languageName);
         
         
         <?php
-        $paginationUrl = array($lang, $translationLang);
+        $paginationUrl = array($lang, $translationLang, $notTranslatedIn);
         $pagination->display($paginationUrl);
         
         foreach ($results as $sentence) {

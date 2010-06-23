@@ -62,7 +62,7 @@ class SentencesController extends AppController
         "order" => "Sentence.modified DESC"
     );
     public $uses = array(
-        'Sentence',
+        'Sentence','SentenceNotTranslatedIn'
     );
     
     /**
@@ -500,7 +500,8 @@ class SentencesController extends AppController
             'matchMode' => SPH_MATCH_EXTENDED2, 
             'sortMode' => array(SPH_SORT_RELEVANCE => "")
         );
-        
+       
+        $model = 'Sentence'; 
         $pagination = array(
             'Sentence' => array(
                 'fields' => array(
@@ -515,6 +516,7 @@ class SentencesController extends AppController
 
         $allSentences = $this->_common_sentences_pagination(
             $pagination,
+            $model,
             $to
         ); 
         
@@ -525,11 +527,22 @@ class SentencesController extends AppController
     /**
      * Show all sentences in a specific language
      *
+     * @param string $lang            Show all sentences in this language.
+     * @param string $translationLang Show only translation in this lang.
+     * @param string $notTranslatedIn Show only sentences which have no direct
+     *                                translation in this language
+     *
      * @return void
      */
-    function show_all_in($lang, $translationLang = null)
-    {
-      
+    public function show_all_in(
+        $lang,
+        $translationLang,
+        $notTranslatedIn
+    ) {
+
+        $this->helpers[] = 'ShowAll'; 
+        
+        $model = 'Sentence'; 
         $pagination = array(
             'Sentence' => array(
                 'fields' => array(
@@ -541,11 +554,35 @@ class SentencesController extends AppController
             )
         );
 
+        if (!empty($notTranslatedIn)
+            && $notTranslatedIn != 'none'
+            && $notTranslatedIn != 'und'
+        ) {
+            $model = 'SentenceNotTranslatedIn';
+            $pagination = array(
+                'SentenceNotTranslatedIn' => array(
+                    'fields' => array(
+                        'id',
+                    ),
+                    'conditions' => array(
+                        'source' => $lang,
+                        'target' => $notTranslatedIn,
+                    ),
+                    'contain' => array(),
+                    'limit' => 10,
+                )
+            );
+            
+
+        }
+
         $allSentences = $this->_common_sentences_pagination(
             $pagination,
+            $model,
             $translationLang
         ); 
         $this->set('lang', $lang);
+        $this->set('notTranslatedIn', $notTranslatedIn);
         $this->set('translationLang', $translationLang);
         $this->set('results', $allSentences);
     }
@@ -554,21 +591,29 @@ class SentencesController extends AppController
      * list of sentences
      *
      * @param array  $pagination      The pagination request.
+     * @param string $model           Model to use for pagination
      * @param string $translationLang If different of null, will only
      *                                retrieve translation in this language.
+     *
+     * @return array Big nested array of sentences + information related to senences
      */
     private function _common_sentences_pagination(
         $pagination,
+        $model,
         $translationLang = null
     ) {
  
         $this->paginate = $pagination;
-        $results = $this->paginate();
+        $results = $this->paginate($model);
 
         $sentenceIds = array();
 
         foreach ($results as $i=>$sentence) {
             $sentenceIds[$i] = $sentence['Sentence']['id'];
+        }
+        
+        if ($translationLang == "und") {
+            $translationLang = null ;
         }
 
         $allSentences = $this->CommonSentence->getAllNeededForSentences(
@@ -837,9 +882,15 @@ class SentencesController extends AppController
     }
 
     /**
+     * Use by ajax only, get previous and next valid sentence id
      *
+     * @param int    $id   Id of the current sentence.
+     * @param string $lang Previous and next in this language.
+     *
+     * @return void
      */
-    public function get_neighbors_for_ajax($id, $lang) {
+    public function get_neighbors_for_ajax($id, $lang)
+    {
         Configure::write('debug', 0);
         $this->layout = null;
 
