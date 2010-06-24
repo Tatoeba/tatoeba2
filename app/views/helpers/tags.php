@@ -54,25 +54,60 @@ class TagsHelper extends AppHelper
      */
     public function displayTagsModule($tagsArray, $sentenceId = null)
     {
+        $currentUser =  CurrentUser::get('id');
         ?>
+        
         <div class="module">
             <h2><?php __('Tags'); ?></h2> 
 
+            <div class="tagsListOnSentence" >
+                <?php
+                foreach ($tagsArray as $tagArray) {
+                    ?>
+                    <span class="tag">
+                    <?php
+                    $tagName =  $tagArray['Tag']['name'];
+                    $tagInternalName =  $tagArray['Tag']['internal_name'];
+                    $taggerId = $tagArray['TagsSentences']['user_id'];
+                    $tagId = $tagArray['TagsSentences']['tag_id'];
+                    
+                    $this->displayTagLink($tagName, $tagInternalName);
+                    if (CurrentUser::canRemoveTagFromSentence($taggerId)) {
+                        $this->_displayRemoveLink($tagId, $tagName, $sentenceId);
+                    }
+                    ?>
+                    </span>
+                <?php
+                }
+                ?>
+            </div>
             <?php
-            echo ClassRegistry::init('View')->element(
-                'tags',
-                array(
-                    "tagsArray" => $tagsArray,
-                    "sentenceId" => $sentenceId
-                )
-            );
-            
             if (CurrentUser::isTrusted()) {
                 $this->displayAddTagForm($sentenceId);
             }
             ?>
         </div>
     <?php
+    }
+    
+    /**
+     *
+     *
+     */
+    public function displayTagLink($tagName, $tagInternalName)
+    {
+        echo $this->Html->link(
+            $tagName,
+            array(
+                "controller" => "tags",
+                "action" => "show_sentences_with_tag",
+                $tagInternalName
+            ),
+            array(
+                "class" => "tagName"
+            )
+        );
+
     }
 
     /**
@@ -161,7 +196,32 @@ class TagsHelper extends AppHelper
         </div>
     <?php
     }
-    
+
+    private function _displayRemoveLink($tagId, $tagName, $sentenceId)
+    {
+        $removeTagFromSentenceAlt = sprintf(
+            __("remove tag '%s' from this sentence.", true),
+            $tagName
+        );
+        // X link to remove tag from sentence 
+        echo $html->link(
+            'X',
+            array(
+                "controller" => "tags",
+                "action" => "remove_tag_from_sentence",
+                $tagId,
+                $sentenceId
+            ),
+            array(
+                "class" => "removeTagFromSentenceButton",
+                "id" => 'deleteButton'.$tagId.$sentenceId,
+                "title" => $removeTagFromSentenceAlt
+            ),
+            null,
+            false
+        );
+    }
+        
     /**
      * Display a [X] button to remove the tag from the sentence.
      *

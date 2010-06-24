@@ -25,45 +25,40 @@
  * @link     http://tatoeba.org
  */
 
-$tagName = Sanitize::html($tagName);
-$this->pageTitle = 'Tatoeba - '.sprintf(__('Sentences with tag %s', true), $tagName);
-?> 
+$this->pageTitle = 'Tatoeba - '. __('All existing tags', true);
+?>
 
 <div id="annexe_content">
-    <?php $commonModules->createFilterByLangMod(2); ?> 
+    
+    <div class="module">
+        <h2>Disclaimer</h2>
+        
+        <p>
+             This page is a 'better than nothing' version.
+             In future releases we will improve it a lot. For the moment, a better page can be found <a href="http://a4esl.com/temporary/tatoeba/#tags">here</a> (thanks to CK)
+        </p>
+    </div>
 </div>
+
+
 
 <div id="main_content">
     <div class="module">
-    <h2><?php echo $tagName; ?></h2>
-    <?php
-    $url = array($tagInternalName);
-    $pagination->display($url);
-    ?>
-        
-        <div class="sentencesList" id="sentencesList">
-        <?php
-        foreach ($allSentences as $i=>$sentence) {
-            // this should be done in the controller but this way
-            // we avoid another full loop on the sentence Array
-            $canUserRemove = CurrentUser::canRemoveTagFromSentence(
-                $taggerIds[$i]
-            );
-            $tags->displaySentence(
-                $sentence['Sentence'],
-                $sentence['User'],
-                $sentence['Translations'],
-                $sentence['IndirectTranslations'],
-                $canUserRemove,
-                $tagId
-            );
-        }
-        ?>
+        <h2><?php __('All Tags'); ?></h2> 
+        <div>
+            <?php
+            foreach( $allTags as $tag) {
+                ?>
+                <span class="tag">
+                    <?php
+                    $tagName =  $tag['Tag']['name'];
+                    $tagInternalName =  $tag['Tag']['internal_name'];
+                    $tags->displayTagLink($tagName, $tagInternalName);
+                    ?>
+                </span>
+            <?php
+            }
+            ?>
         </div>
-    
-    <?php
-    $pagination->display($url);
-    ?>
-    
     </div>
 </div>

@@ -56,7 +56,8 @@ class TagsController extends AppController
         parent::beforeFilter();
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array(
-            "show_sentences_with_tag"
+            "show_sentences_with_tag",
+            'view_all',
         );
     } 
 
@@ -100,6 +101,20 @@ class TagsController extends AppController
             ) 
         );
     
+    }
+
+    /**
+     * Display all tags page
+     * @TODO it's only a "better than nothing" page yet
+     *
+     */
+    public function view_all()
+    {
+        
+        $this->helpers[] = 'Tags';
+        
+        $allTags = $this->Tag->getAllTags();
+        $this->set("allTags", $allTags);
     }
 
     /**
@@ -150,20 +165,22 @@ class TagsController extends AppController
      * Display a list of all sentences with a given tag
      *
      * @param string $tagInternalName Internal name of the tag
+     * @param string $lang     Filter only sentences in this language.
      *
      * @return void
      */
-    public function show_sentences_with_tag($tagInternalName) 
+    public function show_sentences_with_tag($tagInternalName, $lang = null) 
     {
 
         $this->helpers[] = 'Pagination';
+        $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Tags';
 
         $tag = $this->Tag->getInfoFromInternalName($tagInternalName); 
         $tagId = $tag['Tag']['id'];
         $tagName = $tag['Tag']['name'];
         
-        $this->paginate = $this->Tag->paramsForPaginate($tagInternalName, 10);
+        $this->paginate = $this->Tag->paramsForPaginate($tagInternalName, 10, $lang);
 
         $sentencesIdsTaggerIds = $this->paginate('TagsSentences');
         
