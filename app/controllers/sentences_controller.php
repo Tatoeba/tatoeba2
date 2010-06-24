@@ -556,7 +556,6 @@ class SentencesController extends AppController
 
         if (!empty($notTranslatedIn)
             && $notTranslatedIn != 'none'
-            && $notTranslatedIn != 'und'
         ) {
             $model = 'SentenceNotTranslatedIn';
             $pagination = array(

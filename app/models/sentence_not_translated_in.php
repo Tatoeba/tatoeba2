@@ -64,16 +64,17 @@ class SentenceNotTranslatedIn extends AppModel
 
         $source = Sanitize::paranoid($source); 
         $target = Sanitize::paranoid($target); 
+        
+        if ($page < 1) {
+         $page = 1;
+        } 
 
         $limitHigh = $limit * $page;
         $limitLow = $limitHigh - $limit; 
-        
-        
-        $result = $this->query(
-            "
+
+        $sql
+            = "
             SELECT distinct Sentence.id FROM sentences as Sentence 
-              JOIN sentences_translations st ON ( Sentence.id = st.sentence_id ) 
-              JOIN sentences t on ( st.translation_id = t.id ) 
             WHERE Sentence.lang = '$source' 
               AND Sentence.id NOT IN 
               ( 
@@ -83,8 +84,27 @@ class SentenceNotTranslatedIn extends AppModel
                 WHERE s.lang = '$source' AND t.lang = '$target'
               ) 
             LIMIT $limitLow,$limitHigh;
-            " 
-        );
+            ";
+      
+        // if we want only orphan sentences 
+        if ($target == 'und') {
+        $sql
+            = "
+            SELECT distinct Sentence.id FROM sentences as Sentence 
+            WHERE Sentence.lang = '$source' 
+              AND Sentence.id NOT IN 
+              ( 
+                SELECT s.id FROM sentences s 
+                  JOIN sentences_translations st ON ( s.id = st.sentence_id ) 
+                WHERE s.lang = '$source'
+              ) 
+            LIMIT $limitLow,$limitHigh;
+            ";
+ 
+
+        }
+        
+        $result = $this->query($sql);
         return $result; 
     }
 
@@ -119,7 +139,22 @@ class SentenceNotTranslatedIn extends AppModel
                 WHERE t.lang = '$source' AND s.lang = '$target'
               ) 
             " ;
-    
+      
+        // if we want only orphan sentences 
+        if ($target == 'und') {
+            $sql
+                = "
+                SELECT count(distinct Sentence.id) as Count FROM sentences as Sentence 
+                WHERE Sentence.lang = '$source' 
+                  AND Sentence.id NOT IN 
+                  ( 
+                    SELECT s.id FROM sentences s 
+                      JOIN sentences_translations st ON ( s.id = st.sentence_id ) 
+                    WHERE s.lang = '$source'
+                  ) 
+                "; 
+        }
+           
         $results = $this->query($sql);
     
         return $results[0][0]['Count']; 

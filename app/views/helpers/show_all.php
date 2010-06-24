@@ -185,7 +185,7 @@ class ShowAllHelper extends AppHelper
         <div class="module">
             <h2><?php __('Not translated in:'); ?></h2>
             <?php
-            $langs = $this->Languages->LanguagesArrayWithNone();
+            $langs = $this->Languages->LanguagesArrayForLists();
            
             echo $this->_generateSelect(
                 $selectedLanguage,
