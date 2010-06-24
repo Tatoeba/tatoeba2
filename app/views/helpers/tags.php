@@ -62,6 +62,10 @@ class TagsHelper extends AppHelper
 
             <div class="tagsListOnSentence" >
                 <?php
+                if (count($tagsArray) == 0) {
+                    __('No tag on this sentence yet');
+                }
+
                 foreach ($tagsArray as $tagArray) {
                     ?>
                     <span class="tag">
@@ -85,6 +89,14 @@ class TagsHelper extends AppHelper
             if (CurrentUser::isTrusted()) {
                 $this->displayAddTagForm($sentenceId);
             }
+            echo $this->Html->link(
+                __('View all tags', true),
+                array(
+                    "controller" => "tags",
+                    "action" => "view_all",
+                )
+            );
+
             ?>
         </div>
     <?php
