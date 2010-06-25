@@ -215,7 +215,20 @@ $selectedLanguage = $session->read('random_lang_selected');
         </div>
 
     <div class="module">
-        <?php echo $this->element('random_sentence'); ?>
+        <?php echo $this->element('random_sentence_header'); ?>
+        <div class="random_sentences_set">
+        <?php
+        $sentence = $random['Sentence'];
+        $sentenceOwner = $random['User'];
+
+        $sentences->displaySentencesGroup(
+            $sentence, 
+            $translations, 
+            $sentenceOwner,
+            $indirectTranslations
+        );
+        ?>
+        </div>
     </div>
 </div>
 

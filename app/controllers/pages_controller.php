@@ -102,6 +102,9 @@ class PagesController extends AppController
        
         $this->set('nbrActiveMembers', $nbrActiveMembers); 
         $this->set('nbrContributions', $nbrContributions);
+        
+        // Random sentence part
+        $this->_random_sentence();
     }
  
     /**
@@ -163,6 +166,7 @@ class PagesController extends AppController
     public function home()
     {
         $this->helpers[] = 'Wall';
+        $this->helpers[] = 'Sentences';
         
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
@@ -197,6 +201,33 @@ class PagesController extends AppController
 
         $this->set('isLogged', $isLogged); 
         $this->set('latestMessages', $latestMessages); 
+        
+        // Random sentence part
+        $this->_random_sentence();
+    }
+    
+    
+    /**
+     * Random sentence on homepage.
+     *
+     * NOTE: It's pretty much a copy-paste from SentencesController::random().
+     * Not sure what's the good way to call an action from another controller...
+     *
+     * @return void
+     */
+    private function _random_sentence() {
+        $Sentence = ClassRegistry::init('Sentence');
+        $lang = $this->Session->read('random_lang_selected');
+        $randomId = $Sentence->getRandomId($lang);
+        $randomSentence = $Sentence->getSentenceWithId($randomId);
+        $alltranslations = $Sentence->getTranslationsOf($randomId);
+        $translations = $alltranslations['Translation'];
+        $indirectTranslations = $alltranslations['IndirectTranslation'];
+        
+        $this->set('random', $randomSentence);
+        $this->set('sentenceScript', $randomSentence['Sentence']['script']);
+        $this->set('translations', $translations);
+        $this->set('indirectTranslations', $indirectTranslations);
     }
     
     

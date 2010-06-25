@@ -23,8 +23,6 @@ $(document).ready(function(){
         lang = '';
     }
     
-    loadRandom(lang);
-    
     $("#showRandom").click(function(){
         lang = $("#randomLangChoice").val();
         loadRandom(lang);

@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2009-2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -43,14 +43,19 @@ if ($selectedLanguage == null) {
     <?php __('Random sentence'); ?> 
     <span class="annexe">
         (<?php
-         echo '<a id="showRandom" lang="'.$lang.'" >'
-            . __('show another ', true) . '</a> ';
-         ?>
-         <?php
-         echo $form->select(
+        echo $form->select(
              "randomLangChoice", $langArray, $selectedLanguage, null, false
-         );
-         ?>)
+        );
+        echo ' ';
+        echo $html->link(
+            __('show another ', true),
+            array(),
+            array(
+                "id" => "showRandom",
+                "onclick" => "return false;"
+            )
+        );
+        ?>)
     </span>
     <?php
     if ($session->read('Auth.User.id')) {
@@ -70,5 +75,3 @@ if ($selectedLanguage == null) {
     }
     ?>
 </h2>
-
-<div class="random_sentences_set"></div>
