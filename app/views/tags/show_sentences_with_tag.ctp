@@ -31,6 +31,17 @@ $this->pageTitle = 'Tatoeba - '.sprintf(__('Sentences with tag %s', true), $tagN
 
 <div id="annexe_content">
     <?php $commonModules->createFilterByLangMod(2); ?> 
+    <div class="module">
+        <?php
+        echo $html->link(
+            __('View all tags', true),
+            array(
+                "controller" => "tags",
+                "action" => "view_all",
+            )
+        );
+        ?>
+    </div>
 </div>
 
 <div id="main_content">
