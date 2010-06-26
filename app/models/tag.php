@@ -139,23 +139,55 @@ class Tag extends AppModel
         );
     }
 
-    public function paramsForPaginate($tagInternalName, $limit)
+    public function paramsForPaginate($tagInternalName, $limit, $lang = null)
     {
+        $conditions = array('Tag.internal_name' => $tagInternalName);
+        $contain =  array(
+            'Tag' => array(
+                'fields' => array()
+            )
+        );
+
+        if (!empty($lang) && $lang != 'und') {
+             $conditions = array(
+                "AND" => array(
+                    'Tag.internal_name' => $tagInternalName,
+                    'Sentence.lang' => $lang
+                )
+            );
+
+            $contain =  array(
+                'Tag' => array(
+                    'fields' => array()
+                ),
+                'Sentence' => array(
+                    'fields' => array()
+                ),
+            );
+     
+        }
         $params = array(
             'TagsSentences' => array(
                 'limit' => $limit,
                 'fields' => array('user_id','sentence_id'), 
-                'conditions' => array('Tag.internal_name' => $tagInternalName),
-                'contain' => array(
-                    'Tag' => array(
-                        'fields' => array()
-                    )
-                )
+                'conditions' => $conditions,
+                'contain' => $contain
             )
         );
         
         return $params;
 
+    }
+
+
+    public function getAllTags(){
+        return $this->find(
+            'all',
+            array(
+                'fields' => array('name', 'internal_name'),
+                'contain' => array()
+            )
+        );
     }
 
     public function getIdFromInternalName($tagInternalName) {
