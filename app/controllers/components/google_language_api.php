@@ -99,6 +99,7 @@ class GoogleLanguageApiComponent extends Object
             case 'eo' :     return 'epo';
             case 'es' :     return 'spa';
             case 'et' :     return 'est';
+            case 'eu' :     return 'eus';
             case 'fi' :     return 'fin';
             case 'fa' :     return 'pes';
             case 'fr' :     return 'fra';
@@ -120,6 +121,7 @@ class GoogleLanguageApiComponent extends Object
             case 'pt-PT' :  return 'por';
             case 'ro' :     return 'ron';
             case 'ru' :     return 'rus';
+            case 'sk' :     return 'slk';
             case 'sq' :     return 'sqi';
             case 'sv' :     return 'swe';
             case 'sr' :     return 'srp';
