@@ -346,7 +346,6 @@ class MenuHelper extends AppHelper
         
         <?php
         $this->Javascript->link('sentences_lists.menu.js', false);
-        $this->Javascript->link('jquery.impromptu.js', false);
         
         $lists = ClassRegistry::init('SentencesList')->getUserChoices(
             CurrentUser::get('id')
