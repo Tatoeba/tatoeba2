@@ -136,7 +136,7 @@ class SentenceNotTranslatedIn extends AppModel
                 SELECT DISTINCT s.id FROM sentences s 
                   JOIN sentences_translations st ON ( s.id = st.sentence_id ) 
                   JOIN sentences t on ( st.translation_id = t.id ) 
-                WHERE t.lang = '$source' AND s.lang = '$target'
+                WHERE t.lang = '$target' AND s.lang = '$source'
               ) 
             " ;
       
