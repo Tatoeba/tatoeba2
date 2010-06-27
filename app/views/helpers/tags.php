@@ -216,7 +216,7 @@ class TagsHelper extends AppHelper
             $tagName
         );
         // X link to remove tag from sentence 
-        echo $html->link(
+        echo $this->Html->link(
             'X',
             array(
                 "controller" => "tags",
