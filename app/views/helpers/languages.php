@@ -36,6 +36,8 @@
  */
 class LanguagesHelper extends AppHelper
 {
+    public $helpers = array('Html');
+    
     /**
      * Return array of languages in Tatoeba
      *
@@ -303,6 +305,46 @@ class LanguagesHelper extends AppHelper
 
         return $direction;
     }
-
+    
+        
+    /**
+     * Display flag and number of sentences in the "sentences stats" block.
+     *
+     * @param string $langCode          Language code.
+     * @param int    $numberOfSentences Number of sentences.
+     *
+     * @return void
+     */
+    function stat($langCode, $numberOfSentences)
+    {
+        $flagImage = $this->Html->image(
+            'flags/'.$langCode .'.png',
+            array(
+                'width' => 30,
+                'height' => 20
+            )
+        );
+        $numberOfSentencesHtml = '<span class="total">'.$numberOfSentences.'</span>';
+        
+        $linkToAllSentences = $this->Html->link(
+            $flagImage . $numberOfSentencesHtml,
+            array(
+                "controller" => "sentences",
+                "action" => "show_all_in",
+                $langCode,
+                'und',
+                'none',
+            ),
+            array(),
+            null,
+            false
+        );
+        
+        ?>
+        <li class="stat" title="<?php echo $this->codeToName($langCode); ?>">
+        <?php echo $linkToAllSentences; ?>
+        </li>
+        <?php
+    }
 }
 ?>

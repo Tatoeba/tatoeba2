@@ -29,51 +29,16 @@ $stats = ClassRegistry::init('Sentence')->getStatistics();
 if (isset($this->params['lang'])) {
     Configure::write('Config.language', $this->params['lang']);
 }
-
-//TODO hack to be moved in a helper
-function generateSentenceStatLine($stat, $html, $languages)
-{
-    $langCode = $stat['langStats']['lang'];
-    $flagImage = $html->image(
-        'flags/'.$langCode .'.png',
-        array(
-            'width' => 30,
-            'height' => 20
-        )
-    );
-    
-    $linkToAllSentences = $html->link(
-        $flagImage,
-        array(
-            "controller" => "sentences",
-            "action" => "show_all_in",
-            $langCode,
-            'und',
-            'none',
-        ),
-        array(),
-        null,
-        false
-    );
-
-
-    $numberOfSentences = $stat['langStats']['numberOfSentences'];
-    
-    echo '<li class="stat" title="'.$languages->codeToName($langCode).'">';
-        echo $linkToAllSentences;
-        echo '<span class="langCode">'.$langCode.' : </span>';
-        echo '<span class="total">'.$numberOfSentences.'</span>';
-    echo '</li>';
-}
-
-
 ?>
+
 <div id="sentencesStats">
     <ul>
         <?php
         for ($i = 0 ; $i < 5 ; $i++) {
             $stat = $stats[$i];
-            generateSentenceStatLine($stat, $html, $languages);
+            $langCode = $stat['langStats']['lang'];
+            $numberOfSentences = $stat['langStats']['numberOfSentences'];
+            $languages->stat($langCode, $numberOfSentences);
         }
         ?>
     </ul>
@@ -84,7 +49,9 @@ function generateSentenceStatLine($stat, $html, $languages)
         $size = count($stats);
         for ($i = 5; $i < $size; $i++) {
             $stat = $stats[$i];
-            generateSentenceStatLine($stat, $html, $languages);
+            $langCode = $stat['langStats']['lang'];
+            $numberOfSentences = $stat['langStats']['numberOfSentences'];
+            $languages->stat($langCode, $numberOfSentences);
         }
         ?>
     </ul>
