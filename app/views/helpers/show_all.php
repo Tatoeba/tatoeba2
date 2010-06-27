@@ -156,7 +156,7 @@ class ShowAllHelper extends AppHelper
     {
         ?>
         <div class="module">
-            <h2><?php __('Translated in:'); ?></h2>
+            <h2><?php __('Show only translations in:'); ?></h2>
             <?php
             $langs = $this->Languages->languagesArrayForLists();
            
