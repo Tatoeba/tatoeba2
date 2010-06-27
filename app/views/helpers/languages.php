@@ -332,7 +332,7 @@ class LanguagesHelper extends AppHelper
                 "controller" => "sentences",
                 "action" => "show_all_in",
                 $langCode,
-                'und',
+                'none',
                 'none',
             ),
             array(),

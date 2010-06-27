@@ -22,15 +22,16 @@
  */
 @import url(../elements/pagination.css);
 
+
 /*
  * Sentences
  */
 @import url(../elements/sentences_group.css);
 
 
-@import url(../elements/register_button.css);
-
 /*
- * New sentence form
+ * List of sentences
  */
-@import url(../elements/new_sentence_form.css);
+.sentences_set {
+    margin: 60px 0px;
+}

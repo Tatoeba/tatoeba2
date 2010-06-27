@@ -130,7 +130,7 @@ class ShowAllHelper extends AppHelper
     {
         ?>
         <div class="module">
-            <h2><?php __('Filter by language'); ?></h2>
+            <h2><?php __('Sentences in:'); ?></h2>
             <?php
             $langs = $this->Languages->onlyLanguagesArray();
            
@@ -152,13 +152,13 @@ class ShowAllHelper extends AppHelper
      *
      * @return void
      */
-    public function displayShowOnlyTranslationInSelect($selectedLanguage = 'und')
+    public function displayShowOnlyTranslationInSelect($selectedLanguage = 'none')
     {
         ?>
         <div class="module">
-            <h2><?php __('Show only translations in:'); ?></h2>
+            <h2><?php __('Translated in:'); ?></h2>
             <?php
-            $langs = $this->Languages->languagesArray();
+            $langs = $this->Languages->languagesArrayForLists();
            
             echo $this->_generateSelect(
                 $selectedLanguage,
