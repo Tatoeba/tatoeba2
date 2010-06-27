@@ -166,6 +166,11 @@ class ShowAllHelper extends AppHelper
                 1
             );
             ?> 
+            <p>
+            <?php
+            __('NOTE: It will show both direct and indirect translations.');
+            ?>
+            </p>
         </div>
     <?php 
     }
