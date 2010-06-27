@@ -26,7 +26,17 @@
  */
 
 $languageName = $languages->codeToName($lang);
-$this->pageTitle = sprintf(__('All sentences in %s', true), $languageName);
+
+$title = sprintf(__('All sentences in %s', true), $languageName);
+if (!empty($notTranslatedIn) && $notTranslatedIn != 'none') {
+    $notTranslatedInName = $languages->codeToName($notTranslatedIn);
+     $title = sprintf(
+        __('Sentences in %s not translated in %s', true), 
+        $languageName, $notTranslatedInName
+    );
+}
+
+$this->pageTitle = $title;
 ?>
 
 <div id="annexe_content">
@@ -48,7 +58,7 @@ $this->pageTitle = sprintf(__('All sentences in %s', true), $languageName);
         
         <h2>
         <?php 
-        echo sprintf(__('All sentences in %s', true), $languageName);
+        echo $title;
         echo ' ';
         echo $paginator->counter(
             array(
