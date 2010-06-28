@@ -188,7 +188,7 @@ class ShowAllHelper extends AppHelper
     {
         ?>
         <div class="module">
-            <h2><?php __('Not translated in:'); ?></h2>
+            <h2><?php __('Not directly translated into:'); ?></h2>
             <?php
             $langs = $this->Languages->LanguagesArrayForLists();
            
@@ -198,6 +198,11 @@ class ShowAllHelper extends AppHelper
                 2
             );
             ?> 
+            <p>
+            <?php
+            __('NOTE: Sentences that have an indirect translation will show up.');
+            ?>
+            </p>
         </div>
     <?php 
     }
