@@ -90,6 +90,7 @@ class SentencesController extends AppController
             'sentences_group',
             'get_neighbors_for_ajax',
             'show_all_in',
+            'import' // TODO Remove me!!
         );
     }
 
@@ -899,5 +900,12 @@ class SentencesController extends AppController
         $this->set('prevSentence', $neighbors['prev']);
     }
     
+    
+    /**
+     * TODO
+     */
+    public function import()
+    {
+    }
 }
 ?>
