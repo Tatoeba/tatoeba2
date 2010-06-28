@@ -99,6 +99,7 @@ class LanguagesHelper extends AppHelper
             'nan' => __('Teochew', true),
             'eus' => __('Basque', true),
             'slk' => __('Slovak', true),
+            'dan' => __('Danish', true),
             // TODO to change when shanghainese will not be the only wu dialect
         );
         asort($languages);

@@ -58,7 +58,7 @@ class Sentence extends AppModel
         'sqi', 'yue', 'afr', 'fao', 'fry',
         'uig', 'uzb', 'bre', 'ron', 'non',
         'srp', 'yid', 'tat', 'pes', 'nan',
-        'eus', 'slk',
+        'eus', 'slk', 'dan',
         null
         );    
     public $validate = array(
