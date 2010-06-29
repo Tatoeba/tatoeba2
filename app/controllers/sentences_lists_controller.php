@@ -270,43 +270,6 @@ class SentencesListsController extends AppController
 
 
     /**
-     * Create a new list and add a sentence to that list.
-     * 
-     * TODO Remove me. This is not available anymore.
-     *
-     * @param int    $sentenceId Id of sentence to be added to new list.
-     * @param string $listName   Name of new list.
-     *
-     * @return void
-     */
-    public function add_sentence_to_new_list($sentenceId, $listName)
-    {
-        $sentenceId = Sanitize::paranoid($sentenceId);
-        
-        $userId = $this->Auth->user('id');
-        
-        if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
-            if (!empty($listName)) {
-                $newList['SentencesList']['user_id'] = $this->Auth->user('id');
-                $newList['SentencesList']['name'] = $listName;
-
-                if ($this->SentencesList->save($newList)) {
-                    $this->SentencesList->addSentenceToList(
-                        $sentenceId, $this->SentencesList->id
-                    );
-                    $this->set('listId', $this->SentencesList->id);
-
-                } else {
-                    $this->set('listId', 'error');
-                }
-            } else {
-                $this->set('listId', 'error');
-            }
-        }
-    }
-
-
-    /**
      * Remove sentence from a list.
      *
      * @param int $sentenceId Id of sentence to be removed from list.
