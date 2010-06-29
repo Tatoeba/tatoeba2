@@ -41,35 +41,13 @@ class PrivateMessagesController extends AppController
 
     public $helpers = array(
         'Comments',
-        'Languages',
-        'Navigation', 
         'Html', 
         'Date',
         'PrivateMessages',
         'Wall' // TODO Move the displayMessagePosterImage() method of
                // WallHelper into a more general helper
     );
-    public $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
-
-    public $langs = array('en', 'fr', 'jp', 'es', 'de');
-
-    /**
-     * Framework function called to manage access to this controller
-     *
-     * @return void
-     */
-    public function beforeFilter()
-    {
-        parent::beforeFilter();
-
-        // setting actions that are available to everyone, even guests
-        $this->Auth->allowedActions = array('check');
-        /* quick fix because "check" is called in top1.ctp,
-         * and if a pending user tries to log in it will
-         * not work. "check" is currently defined as
-         * accessible only for registered users and above.
-         */
-    }
+    
 
     /**
      * We don't use index at all : by default, we just display the
