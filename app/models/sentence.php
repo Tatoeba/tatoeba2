@@ -1279,5 +1279,69 @@ class Sentence extends AppModel
     {
         return $this->SentenceComment->getCommentsForSentence($id);
     }
+    
+    
+    /**
+     * Set owner for a sentence.
+     *
+     * @param int $sentenceId Id of the sentence.
+     * @param int $userId     Id of the user.
+     * 
+     * @return void
+     */
+    public function setOwner($sentenceId, $userId)
+    {
+        $this->id = $sentenceId;
+        $currentOwner = $this->getOwnerIdOfSentence($sentenceId);
+        if (empty($currentOwner)) {
+            $this->saveField('user_id', $userId);
+            return true;
+        }
+        return false;
+    }
+    
+    
+    /**
+     * Unset owner for a sentence.
+     *
+     * @param int $sentenceId Id of the sentence.
+     * @param int $userId     Id of the user.
+     * 
+     * @return void
+     */
+    public function unsetOwner($sentenceId, $userId)
+    {
+        $this->id = $sentenceId;
+        $currentOwner = $this->getOwnerIdOfSentence($sentenceId);
+        if ($currentOwner == $userId) {
+            $this->saveField('user_id', null);
+            return true;
+        }
+        return false;
+    }
+    
+    
+    /**
+     * Return sentence owner's id.
+     *
+     * @param int $sentenceId Id of the sentence.
+     * 
+     * @return void
+     */
+    public function getOwnerIdOfSentence($sentenceId)
+    {
+        $sentence = $this->find(
+            'first',
+            array(
+                'conditions' => array(
+                    'id' => $sentenceId
+                ),
+                'fields' => array('user_id'),
+                'contain' => array()
+            )
+        );
+        
+        return $sentence['Sentence']['user_id'];
+    }
 }
 ?>

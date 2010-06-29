@@ -370,13 +370,12 @@ class SentencesController extends AppController
     public function adopt($id)
     {
         $id = Sanitize::paranoid($id);
-        
-        $this->Sentence->id = $id;
         $userId = $this->Auth->user('id');
-        $this->Sentence->saveField('user_id', $userId);
+        
+        $this->Sentence->setOwner($id, $userId);
         
         $this->show($id);
-        $this->render('sentences_group');
+        $this->render('sentences_group'); // We render with another view than "show"
     }
     
     /**
@@ -390,14 +389,13 @@ class SentencesController extends AppController
      */
     public function let_go($id)
     {
-        // TODO Add a check if current user is the sentence owner
-        // otherwise any member can desadopt sentences of other users
         $id = Sanitize::paranoid($id);
+        $userId = $this->Auth->user('id');
         
-        $this->Sentence->id = $id;
-        $this->Sentence->saveField('user_id', null);
+        $this->Sentence->unsetOwner($id, $userId);
+        
         $this->show($id);
-        $this->render('sentences_group');
+        $this->render('sentences_group'); // We render with another view than "show"
     }
     
     /**
