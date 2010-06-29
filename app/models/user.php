@@ -522,9 +522,10 @@ class User extends AppModel
                 array('Launchpad translators', null,$launchpadDescription),
             ),
             'Special' => array(
-                array('BOUCHER François', 'kentril', 'Coded former search engine a while ago.'),
+                array('BOUCHER François', 'kentril', 'Coded former search engine.'),
                 array('Masa', 'masa','Hosted Tatoeba for a few years.'),
-                array('FSF (France)', null,'Free Software Foundation. Currently hosting Tatoeba.')
+                array('FSF (France)', null,'Free Software Foundation. Currently hosting Tatoeba.'),
+                array('Shtooka', null, 'Helping us bringing audio to Tatoeba. http://shtooka.net/')
             ),
         );
 
