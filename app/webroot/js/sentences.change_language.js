@@ -46,9 +46,9 @@ $(document).ready(function() {
             $.post(
                 rootUrl + "/sentences/change_language/",
                 { "id": sentenceId, "newLang": newLang, "prevLang": prevLang },
-                function(){
+                function(data){
                     $("#_" + sentenceId + "_in_process").hide();
-                    flagImage.attr('src', '/img/flags/' + newLang + '.png');
+                    flagImage.attr('src', '/img/flags/' + data + '.png');
                 }
             );
         });

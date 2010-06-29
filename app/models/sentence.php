@@ -1287,7 +1287,7 @@ class Sentence extends AppModel
      * @param int $sentenceId Id of the sentence.
      * @param int $userId     Id of the user.
      * 
-     * @return void
+     * @return bool
      */
     public function setOwner($sentenceId, $userId)
     {
@@ -1307,7 +1307,7 @@ class Sentence extends AppModel
      * @param int $sentenceId Id of the sentence.
      * @param int $userId     Id of the user.
      * 
-     * @return void
+     * @return bool
      */
     public function unsetOwner($sentenceId, $userId)
     {
@@ -1326,7 +1326,7 @@ class Sentence extends AppModel
      *
      * @param int $sentenceId Id of the sentence.
      * 
-     * @return void
+     * @return int
      */
     public function getOwnerIdOfSentence($sentenceId)
     {
@@ -1342,6 +1342,35 @@ class Sentence extends AppModel
         );
         
         return $sentence['Sentence']['user_id'];
+    }
+    
+    
+    /**
+     * Change language of a sentence.
+     *
+     * @param int $sentenceId Id of the sentence.
+     * @param int $prevLang   Previous language. Used for decrementing.
+     * @param int $newLang    New Language.
+     *
+     * @return string
+     */
+    public function changeLanguage($sentenceId, $prevLang, $newLang)
+    {
+        $ownerId = $this->getOwnerIdOfSentence($sentenceId);
+        $currentUserId = CurrentUser::get('id');
+        
+        if ($ownerId == $currentUserId || CurrentUser::isModerator()) {
+            $this->id = $sentenceId;
+            $this->saveField('lang', $newLang);
+            
+            $this->Contribution->updateLanguage($id, $newLang);        
+            $this->incrementStatistics($newLang);
+            $this->decrementStatistics($prevLang);
+            
+            return $newLang;
+        }
+        
+        return $prevLang;
     }
 }
 ?>

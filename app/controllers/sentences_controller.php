@@ -853,7 +853,6 @@ class SentencesController extends AppController
     /**
      * Change language of a sentence.
      * Used in AJAX request in sentences.change_language.js.
-     * TODO restrict permissions for this action.
      *
      * @return void
      */
@@ -863,19 +862,14 @@ class SentencesController extends AppController
             && isset($_POST['newLang'])
             && isset($_POST['prevLang'])
         ) {
-            $newlang = Sanitize::paranoid($_POST['newLang']);
+            Configure::write('debug', 0);
+            
+            $newLang = Sanitize::paranoid($_POST['newLang']);
             $prevLang = Sanitize::paranoid($_POST['prevLang']);
             $id = Sanitize::paranoid($_POST['id']);
-
-            // TODO create  method in the model to encapsulate this
-            $this->Sentence->id = $id;
-            $this->Sentence->saveField('lang', $newlang);
-
-            $Contribution = ClassRegistry::init('Contribution');
-            $Contribution->updateLanguage($id, $newlang);
-
-            $this->Sentence->incrementStatistics($newlang);
-            $this->Sentence->decrementStatistics($prevLang);
+            
+            $lang = $this->Sentence->changeLanguage($id, $prevLang, $newLang);
+            $this->set('lang', $lang);
         }
     }
 
