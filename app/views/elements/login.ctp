@@ -24,11 +24,6 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-
-if ($session->check('Message.auth')) {
-    $session->flash('auth');
-}
-
 ?>
 
 <script type="text/javascript">
@@ -39,17 +34,33 @@ if ($session->check('Message.auth')) {
     function closeLoginForm(){
             document.getElementById('UserLoginForm_FromBar').style.display = 'none';
     }
-    
-    
 -->
 </script>
 
-
-<a class="menuItem" onclick="javascript:openLoginForm();">
-    <?php echo __('Log in', true); ?>
-</a>
-
 <?php
+echo $html->link(
+    __('Register', true),
+    array(
+        'controller' => 'users',
+        'action' => 'register'
+    ),
+    array(
+        'class' => 'menuItem'
+    )
+);
+
+echo $html->link(
+    __('Log in', true),
+    array(
+        'controller' => 'users',
+        'action' => 'login'
+    ),
+    array(
+        'onclick' => 'javascript:openLoginForm(); return false;',
+        'class' => 'menuItem'
+    )
+);
+
 echo $form->create(
     'User', 
     array(
