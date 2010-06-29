@@ -184,28 +184,42 @@ class SentenceButtonsHelper extends AppHelper
     /** 
      * Display audio button.
      *
-     * @param int $sentenceId   Id of the sentence on which this button is displayed.
-     * @param int $sentenceLang Language of the sentence.
+     * @param int   $sentenceId    Id of the sentence on which this button is
+     *                             displayed.
+     * @param int   $sentenceLang  Language of the sentence.
+     * @param sting $sentenceAudio Kind of audio related to this sentence
+     *                             (no audio, from shtooka etc.)
      *
      * @return void
      */
-    public function audioButton($sentenceId, $sentenceLang)
+    public function audioButton($sentenceId, $sentenceLang, $sentenceAudio)
     {
-        $path = 'http://static.tatoeba.org/audio/sentences/'
-            .$sentenceLang.'/'.$sentenceId.'.mp3'; 
-        $soundIsAvailable = $this->_validateUrl($path);
         
-        $css = 'audioAvailable';
-        $title = __('Play audio', true);
-        $onClick = 'return false';
-        if (!$soundIsAvailable) {
-            $css = 'audioUnavailable';
-            $path = 'http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html';
-            $title = __('Audio unavailable. Click to learn more.', true);
-            $onClick = 'window.open(this.href); return false;';
-        } else {
-            echo $this->Javascript->link('sentences.play_audio.js', false);
-        }
+        switch ($sentenceAudio) {
+
+            // if the sentence has no audio
+            case 'no' :
+                $onClick = 'return false';
+                $css = 'audioUnavailable';
+                $path = 'http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html';
+                $title = __('Audio unavailable. Click to learn more.', true);
+                $onClick = 'window.open(this.href); return false;';
+                break;
+            
+            // user-submitted audio
+            case 'from_users' :
+                //TODO add a specific image / css / explanation text 
+                break;   
+            // from shtooka or tatoeba audio (ie really good quality audio):
+            case 'shtooka' : 
+                $path = 'http://static.tatoeba.org/audio/sentences/'
+                    .$sentenceLang.'/'.$sentenceId.'.mp3'; 
+                $css = 'audioAvailable';
+                $title = __('Play audio', true);           
+                echo $this->Javascript->link('sentences.play_audio.js', false);
+                break;
+        };
+         
         echo $this->Html->Link(
             null, $path,
             array(

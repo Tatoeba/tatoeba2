@@ -335,6 +335,7 @@ class SentencesHelper extends AppHelper
     ) {
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
+        $sentenceAudio = $sentence['hasaudio'];
         $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);
         ?>
         
@@ -352,7 +353,7 @@ class SentencesHelper extends AppHelper
         
         // audio
         if ($withAudio) {
-            $this->SentenceButtons->audioButton($sentenceId, $sentenceLang);
+            $this->SentenceButtons->audioButton($sentenceId, $sentenceLang, $sentenceAudio);
         }
         
         // language flag

@@ -338,7 +338,8 @@ class Sentence extends AppModel
                     'fields' => array(
                         'text',
                         'lang',
-                        'user_id'
+                        'user_id',
+                        'hasaudio',
                     )
             )
         );
@@ -382,7 +383,12 @@ class Sentence extends AppModel
                         "fields" => array("username")
                     ),
                     "Translation" => array(
-                        "fields" => array("id", "lang", "text"),
+                        "fields" => array(
+                            "id",
+                            "lang",
+                            "text",
+                            "hasaudio"
+                        ),
                         "conditions" => $translationsConditions
                     )
                 )
@@ -572,6 +578,7 @@ class Sentence extends AppModel
         $direcTranslationsQuery = "
             SELECT
               p2.text AS translation_text,
+              p2.hasaudio AS hasaudio,
               p2.id   AS translation_id,
               p2.lang AS translation_lang,
               p2.user_id AS translation_user_id,
@@ -593,6 +600,7 @@ class Sentence extends AppModel
         $indirectTranslationQuery = "
          SELECT 
               p2.text AS translation_text,
+              p2.hasaudio AS hasaudio,
               p2.id   AS translation_id,
               p2.lang AS translation_lang,
               p2.user_id AS translation_user_id,
@@ -631,7 +639,8 @@ class Sentence extends AppModel
                     'id' => $result['translation_id'],
                     'text' => $result['translation_text'],
                     'user_id' => $result['translation_user_id'],
-                    'lang' => $result['translation_lang']
+                    'lang' => $result['translation_lang'],
+                    'hasaudio' => $result['hasaudio'],
                 );
 
                 $this->generateRomanization($translation);
