@@ -90,7 +90,6 @@ class SentencesController extends AppController
             'sentences_group',
             'get_neighbors_for_ajax',
             'show_all_in',
-            'import' // TODO Remove me!!
         );
     }
 
@@ -566,7 +565,8 @@ class SentencesController extends AppController
                     ),
                     'conditions' => array(
                         'source' => $lang,
-                        'target' => $notTranslatedIn,
+                        'translatedIn' => $translatedIn,
+                        'notTranslatedIn' => $notTranslatedIn,
                     ),
                     'contain' => array(),
                     'limit' => 10,
@@ -902,10 +902,23 @@ class SentencesController extends AppController
     
     
     /**
-     * TODO
+     * action uses to display the import forms
+     *
+     * @TODO maybe move this in pages controller
+     *
+     * @return void
      */
     public function import()
     {
+        if (! CurrentUser::isModerator()) {
+            $this->redirect(
+                array(
+                    "controller" => "pages", 
+                    "action" => "home", 
+                )
+            );
+           
+        }
     }
 }
 ?>

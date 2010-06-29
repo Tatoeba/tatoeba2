@@ -554,6 +554,7 @@ class UsersController extends AppController
         $group->id = 2;
         $this->Acl->deny($group, 'controllers');
        
+        $this->Acl->allow($group, 'controllers/Imports');
        
         $this->Acl->allow($group, 'controllers/Tags');
         
@@ -575,11 +576,13 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/SentencesLists');
         
         //Permissions for trusted_users
+        // TODO it's really dangerous to have "allow" by default
         $group->id = 3;
         $this->Acl->deny($group, 'controllers');
         
         $this->Acl->allow($group, 'controllers/Sentences');
         $this->Acl->deny($group, 'controllers/Sentences/delete');
+        $this->Acl->deny($group, 'controllers/Sentences/import');
         
         $this->Acl->allow($group, 'controllers/Tags');
         
@@ -603,6 +606,7 @@ class UsersController extends AppController
         $this->Acl->deny($group, 'controllers');
         $this->Acl->allow($group, 'controllers/Sentences');
         $this->Acl->deny($group, 'controllers/Sentences/delete');
+        $this->Acl->deny($group, 'controllers/Sentences/import');
 
         
         $this->Acl->allow($group, 'controllers/Tags');

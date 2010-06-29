@@ -35,8 +35,14 @@ $langArray = $languages->onlyLanguagesArray();
         
         <?php 
         echo $form->create(
-            'SingleSentences',
-            array('action' => 'toto') // TODO Rename with correct action
+            null,
+            array(
+                'url' => array(
+                    'controller' => 'imports',
+                    'action' => 'import_single_sentences'
+                ),
+                'type' => 'file',
+            ) 
         ); 
         ?>
         
@@ -60,8 +66,14 @@ $langArray = $languages->onlyLanguagesArray();
         <h2>Sentences and translations</h2>
         <?php 
         echo $form->create(
-            'SentencesAndSentences',
-            array('action' => 'toto') // TODO Rename with correct action
+            null,    
+            array(
+                'url' => array(
+                    'controller' => 'imports',
+                    'action' => 'import_sentences_with_translation'
+                ),
+                'type' => 'file',
+            )
         ); 
         ?>
         

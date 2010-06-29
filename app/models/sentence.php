@@ -998,9 +998,9 @@ class Sentence extends AppModel
                 $char = $chars[0][0];
                 if (in_array($char, $katakana) || in_array($char, $hiragana)) {
                     array_push(
-                    $romanization,
-                    $word
-                );
+                        $romanization,
+                        $word
+                    );
                 } else {
                     $translatedWord = str_replace($katakana, $hiragana, $Oyomi[$i]);
                     array_push(
@@ -1047,7 +1047,13 @@ class Sentence extends AppModel
     }
 
     /**
+     * Return previous and following sentence id
      *
+     * @param int    $sourceId The sentence id to take as starting point
+     * @param string $lang     Will return the next and following sentence id
+     *                         in this language
+     *
+     * @return array
      */
     public function getNeighborsSentenceIds($sourceId, $lang = null)
     {
@@ -1136,8 +1142,15 @@ class Sentence extends AppModel
 
     }
     
-
-    public function getAllTagsOnSentence($sentenceId) {
+    /**
+     * Return all tags on a given sentence
+     *
+     * @param int $sentenceId The sentence which we want the tags
+     *
+     * @return array
+     */
+    public function getAllTagsOnSentence($sentenceId)
+    {
         return $this->TagsSentences->getAllTagsOnSentence($sentenceId);
     }
     
@@ -1145,19 +1158,22 @@ class Sentence extends AppModel
      * Add translation to sentence with given id. Adding a translation means adding
      * a new sentence, and two links.
      *
-     * @TODO finish the doc plz
      * @param int    $sentenceId
      * @param string $translationText
      * @param string $translationLang
+     * @TODO finish the doc plz
+     *
+     * @return boolean 
      */
     public function saveTranslation($sentenceId, $translationText, $translationLang)
     {
         // saving translation
-        $data['Sentence']['text'] = $translationText;
-        $data['Sentence']['lang'] = $translationLang;
-        $data['Sentence']['user_id'] = CurrentUser::get('id');
-        $sentenceSaved = $this->save($data);
-        
+        $sentenceSaved = $this->saveNewSentence(
+            $translationText,
+            $translationLang,
+            CurrentUser::get('id')
+        );
+         
         // saving links
         if ($sentenceSaved) {
             $this->Link->add($sentenceId, $this->id);
@@ -1167,8 +1183,75 @@ class Sentence extends AppModel
                                // Never mind for the links.
     }
 
+
+    /**
+     * Add a new sentence in the database
+     * 
+     * @param string $text   The text of the sentence
+     * @param string $lang   The lang of the sentence
+     * @param int    $userId The id of the user who added this sentence
+     *
+     * @return bool
+     */
+    public function saveNewSentence($text, $lang, $userId)
+    {
+        $data['Sentence']['id'] = null;
+        $data['Sentence']['text'] = $text;
+        $data['Sentence']['lang'] = $lang;
+        $data['Sentence']['user_id'] = $userId;
+        $sentenceSaved = $this->save($data);
+    
+        return $sentenceSaved;
+    }
+
+    /**
+     * Add a new sentence and a translation in the database
+     * 
+     * @param string $sentenceText    The text of the sentence
+     * @param string $sentenceLang    The lang of the sentence
+     * @param string $translationText The text of the translation
+     * @param string $translationLang The lang of the translation
+     * @param int    $userId          The id of the user who added them
+     *
+     * @return bool
+     */
+    
+    public function saveNewSentenceWithTranslation(
+        $sentenceText,
+        $sentenceLang,
+        $translationText,
+        $translationLang,
+        $userId
+    ) {
+        // saving sentence
+        $sentenceSaved = $this->saveNewSentence(
+            $sentenceText,
+            $sentenceLang,
+            $userId
+        );
+        $sentenceId = $this->id;
+        // saving translation
+        $translationSaved = $this->saveNewSentence(
+            $translationText,
+            $translationLang,
+            $userId
+        );
+         
+        $translationId = $this->id;
+        // saving links
+        if ($sentenceSaved && $translationSaved) {
+            $this->Link->add($sentenceId, $translationId);
+        }
+ 
+
+    }
+
     /**
      * wrapping function
+     *
+     * @param int $id Sentence id.
+     *
+     * @return array
      */
     public function getContributionsRelatedToSentence($id)
     {
@@ -1178,6 +1261,10 @@ class Sentence extends AppModel
 
     /**
      * wrapping function
+     *
+     * @param int $id Sentence id.
+     *
+     * @return array
      */
     public function getCommentsForSentence($id)
     {
