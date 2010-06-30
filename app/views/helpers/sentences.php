@@ -335,7 +335,10 @@ class SentencesHelper extends AppHelper
     ) {
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
-        $sentenceAudio = $sentence['hasaudio'];
+        $sentenceAudio = 'no';
+        if (isset($sentence['hasaudio'])) {
+            $sentenceAudio = $sentence['hasaudio'];
+        }
         $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);
         ?>
         
