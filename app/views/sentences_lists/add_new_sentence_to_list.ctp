@@ -26,20 +26,10 @@
  */
 
 
-if ($isSaved) {
+if (!empty($sentence)) {
     echo $javascript->link('sentences_lists.remove_sentence_from_list.js', true);
     
-    // TODO Have a helper to add all of these javascript... Unless there is a
-    // solution so that we don't have to add the javascript inline when the content 
-    // is loaded in AJAX.
-    echo $javascript->link('sentences.add_translation.js', true);
-    echo $javascript->link('favorites.add.js', true);
-    echo $javascript->link('sentences_lists.menu.js', true);
-    echo $javascript->link('sentences.adopt.js', true);
-    echo $javascript->link('jquery.jeditable.js', true);
-    echo $javascript->link('sentences.edit_in_place.js', true);
-    echo $javascript->link('sentences.play_audio.js', true);
-    echo $javascript->link('sentences.change_language.js', true);
+    $sentences->javascriptForAJAXSentencesGroup();
     ?>
 
     <script type='text/javascript'>
@@ -51,7 +41,7 @@ if ($isSaved) {
     </script>
 
     <?php
-    $lists->displaySentence($sentence['Sentence'], array(), true);
+    $lists->displaySentence($sentence, array(), true);
 
 } else {
     ?>

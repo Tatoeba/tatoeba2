@@ -47,8 +47,7 @@ class SentencesListsController extends AppController
         'Pagination',
         'AttentionPlease'
     );
-    public $components = array ('CommonSentence');
-    
+    public $components = array('GoogleLanguageApi');
     
     /**
      * Before filter.
@@ -324,37 +323,23 @@ class SentencesListsController extends AppController
      */
     public function add_new_sentence_to_list()
     {
+        $sentence = null;
+        
         if (isset($_POST['listId']) && isset($_POST['sentenceText'])) {
-
             $listId = Sanitize::paranoid($_POST['listId']);
             $sentenceText = $_POST['sentenceText'];
+            $sentenceLang = $this->GoogleLanguageApi->detectLang($sentenceText);
             
-            //saving
-            $isSaved = $this->CommonSentence->wrapper_save_sentence(
-                'auto',
+            $tmp = $this->SentencesList->addNewSentenceToList(
+                $listId,
                 $sentenceText,
-                $this->Auth->user('id')
+                $sentenceLang
             );
-
-            if ($isSaved) {
-
-                $Sentence = ClassRegistry::init('Sentence');
-                $this->SentencesList->addSentenceToList(
-                    $Sentence->id,
-                    $listId
-                );
-                $sentenceSaved = $Sentence->getSentenceWithId($Sentence->id);
-                $sentenceSaved['Sentence']['User'] = array( // HACK
-                    'username' => $this->Auth->user('username')
-                );
-                $this->set('sentence', $sentenceSaved);
-                $this->set('listId', $listId);
-                $this->set('isSaved', true);
-            } else {
-
-                $this->set('isSaved', false);
-            }
+            $sentence = $tmp['Sentence'];
+            $sentence['User'] = $tmp['User'];
         }
+        
+        $this->set('sentence', $sentence);
     }
 
 

@@ -422,5 +422,42 @@ class SentencesList extends AppModel
         
         return $result['SentencesList']['name'];
     }
+    
+    
+    /**
+     * Add new sentence to list.
+     *
+     * @param int    $listId
+     * @param string $sentenceText
+     * @param string $sentenceLang
+     *
+     * @return bool
+     */
+    public function addNewSentenceToList($listId, $sentenceText, $sentenceLang)
+    {
+        $userId = CurrentUser::get('id');
+        
+        // Checking if user can add to list.
+        $canAdd = $this->belongsToCurrentUser($listId, $userId);
+        if (!$canAdd) {
+            return false;
+        }
+        
+        // Saving sentence
+        $sentenceSaved = $this->Sentence->saveNewSentence(
+            $sentenceText, $sentenceLang, $userId
+        );
+        if (!$sentenceSaved) {
+            return false;
+        }
+        
+        // Adding to list
+        $sentenceId = $this->Sentence->id;
+        if ($this->addSentenceToList($sentenceId, $listId)) {
+            return $this->Sentence->getSentenceWithId($sentenceId);
+        } else {
+            return null;
+        }
+    }
 }
 ?>
