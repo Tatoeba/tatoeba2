@@ -535,7 +535,8 @@ class SentencesController extends AppController
     public function show_all_in(
         $lang,
         $translationLang,
-        $notTranslatedIn
+        $notTranslatedIn,
+        $filterAudioOnly = 0
     ) {
 
         $this->helpers[] = 'ShowAll'; 
@@ -546,12 +547,21 @@ class SentencesController extends AppController
                 'fields' => array(
                     'id',
                 ),
-                'conditions' => array('lang' => $lang),
+                'conditions' => array(
+                    'lang' => $lang,
+                ),
                 'contain' => array(),
                 'limit' => 10,
                 'order' => "Sentence.id desc"
             )
         );
+
+        
+
+        if ($filterAudioOnly == 1) {
+            $pagination['Sentence']['conditions']['hasaudio !='] = "no";
+        }
+
 
         if (!empty($notTranslatedIn)
             && $notTranslatedIn != 'none'
@@ -566,6 +576,7 @@ class SentencesController extends AppController
                         'source' => $lang,
                         'translatedIn' => $translationLang,
                         'notTranslatedIn' => $notTranslatedIn,
+                        'audioOnly' => $filterAudioOnly,
                     ),
                     'contain' => array(),
                     'limit' => 10,

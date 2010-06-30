@@ -61,27 +61,36 @@ class SentenceNotTranslatedIn extends AppModel
         $recursive = -1;
         $source = $conditions['source'] ;
         $target = $conditions['notTranslatedIn'] ;
-
+        $audioOnly = $conditions['audioOnly'];
+        
         $source = Sanitize::paranoid($source); 
         $target = Sanitize::paranoid($target); 
+        $audioOnly = Sanitize::paranoid($audioOnly); 
         
         if ($page < 1) {
          $page = 1;
-        } 
+        }
+         
 
         $limitHigh = $limit * $page;
         $limitLow = $limitHigh - $limit; 
 
+        // to add to the sql conditions, if we want only sentences with audio
+        $filterAudio = '';
+        if ($audioOnly == 1) {
+            $filterAudio = "AND Sentence.hasaudio != 'no' ";
+        }
+        
         $sql
             = "
             SELECT distinct Sentence.id FROM sentences as Sentence 
-            WHERE Sentence.lang = '$source' 
+            WHERE Sentence.lang = '$source' $filterAudio 
               AND Sentence.id NOT IN 
               ( 
                 SELECT DISTINCT s.id FROM sentences s 
                   JOIN sentences_translations st ON ( s.id = st.sentence_id ) 
                   JOIN sentences t on ( st.translation_id = t.id ) 
-                WHERE s.lang = '$source' AND t.lang = '$target'
+                WHERE s.lang = '$source' AND t.lang = '$target' 
               )
             ORDER BY Sentence.id DESC
             LIMIT $limitLow,$limitHigh;
@@ -92,12 +101,12 @@ class SentenceNotTranslatedIn extends AppModel
         $sql
             = "
             SELECT distinct Sentence.id FROM sentences as Sentence 
-            WHERE Sentence.lang = '$source' 
+            WHERE Sentence.lang = '$source' $filterAudio
               AND Sentence.id NOT IN 
               ( 
                 SELECT s.id FROM sentences s 
                   JOIN sentences_translations st ON ( s.id = st.sentence_id ) 
-                WHERE s.lang = '$source'
+                WHERE s.lang = '$source' 
               ) 
             ORDER BY Sentence.id DESC
             LIMIT $limitLow,$limitHigh;
@@ -123,16 +132,24 @@ class SentenceNotTranslatedIn extends AppModel
     ) {
         $source = $conditions['source'] ;
         $target = $conditions['notTranslatedIn'] ;
+        $audioOnly = $conditions['audioOnly'];
         
         $source = Sanitize::paranoid($source); 
         $target = Sanitize::paranoid($target); 
-        
+        $audioOnly = Sanitize::paranoid($audioOnly); 
+ 
+        // to add to the sql conditions, if we want only sentences with audio
+        $filterAudio = '';
+        if ($audioOnly == 1) {
+            $filterAudio = "AND Sentence.hasaudio != 'no' ";
+        }
+       
         $sql
             = "
             SELECT count(DISTINCT Sentence.id) as Count FROM sentences as Sentence 
               JOIN sentences_translations st ON ( Sentence.id = st.sentence_id ) 
               JOIN sentences t on ( st.translation_id = t.id ) 
-            WHERE Sentence.lang = '$source' 
+            WHERE Sentence.lang = '$source' $filterAudio 
               AND Sentence.id NOT IN 
               ( 
                 SELECT DISTINCT s.id FROM sentences s 
@@ -147,7 +164,7 @@ class SentenceNotTranslatedIn extends AppModel
             $sql
                 = "
                 SELECT count(distinct Sentence.id) as Count FROM sentences as Sentence 
-                WHERE Sentence.lang = '$source' 
+                WHERE Sentence.lang = '$source' $filterAudio 
                   AND Sentence.id NOT IN 
                   ( 
                     SELECT s.id FROM sentences s 
