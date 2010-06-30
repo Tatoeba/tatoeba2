@@ -549,6 +549,7 @@ class SentencesController extends AppController
                 'conditions' => array('lang' => $lang),
                 'contain' => array(),
                 'limit' => 10,
+                'order' => "Sentence.id desc"
             )
         );
 
@@ -563,7 +564,7 @@ class SentencesController extends AppController
                     ),
                     'conditions' => array(
                         'source' => $lang,
-                        'translatedIn' => $translatedIn,
+                        'translatedIn' => $translationLang,
                         'notTranslatedIn' => $notTranslatedIn,
                     ),
                     'contain' => array(),

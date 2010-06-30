@@ -60,7 +60,7 @@ class SentenceNotTranslatedIn extends AppModel
     ) {
         $recursive = -1;
         $source = $conditions['source'] ;
-        $target = $conditions['target'] ;
+        $target = $conditions['notTranslatedIn'] ;
 
         $source = Sanitize::paranoid($source); 
         $target = Sanitize::paranoid($target); 
@@ -82,7 +82,8 @@ class SentenceNotTranslatedIn extends AppModel
                   JOIN sentences_translations st ON ( s.id = st.sentence_id ) 
                   JOIN sentences t on ( st.translation_id = t.id ) 
                 WHERE s.lang = '$source' AND t.lang = '$target'
-              ) 
+              )
+            ORDER BY Sentence.id DESC
             LIMIT $limitLow,$limitHigh;
             ";
       
@@ -98,6 +99,7 @@ class SentenceNotTranslatedIn extends AppModel
                   JOIN sentences_translations st ON ( s.id = st.sentence_id ) 
                 WHERE s.lang = '$source'
               ) 
+            ORDER BY Sentence.id DESC
             LIMIT $limitLow,$limitHigh;
             ";
  
@@ -120,7 +122,7 @@ class SentenceNotTranslatedIn extends AppModel
         $extra = array()
     ) {
         $source = $conditions['source'] ;
-        $target = $conditions['target'] ;
+        $target = $conditions['notTranslatedIn'] ;
         
         $source = Sanitize::paranoid($source); 
         $target = Sanitize::paranoid($target); 
