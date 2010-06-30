@@ -959,7 +959,7 @@ class Sentence extends AppModel
         "ョ","ヨ","ラ","リ","ル","レ","ロ","ヮ","ワ","ヲ",
         "ン","ヴ","ヵ","ヶ",
         
-        "。","、"
+        "。","、","？","！",
         );
         
         $romanji = array(
@@ -982,7 +982,7 @@ class Sentence extends AppModel
         "yo","yo","ra","ri","ru","re","ro","wa","wa","wo",
         "n","","","",
         
-        ".",", "
+        ".",", ","?","!",
         );
         
         $Owakati = explode(' ', $Owakati);
