@@ -536,7 +536,7 @@ class SentencesController extends AppController
         $lang,
         $translationLang,
         $notTranslatedIn,
-        $filterAudioOnly = 0
+        $filterAudioOnly = "indifferent"
     ) {
 
         $this->helpers[] = 'ShowAll'; 
@@ -556,9 +556,10 @@ class SentencesController extends AppController
             )
         );
 
-        
-
-        if ($filterAudioOnly == 1) {
+        // filter or not sentences-with-audio-only  
+        $audioOnly = false ;
+        if ($filterAudioOnly === "only-with-audio") {
+            $audioOnly = true ;
             $pagination['Sentence']['conditions']['hasaudio !='] = "no";
         }
 
@@ -576,7 +577,7 @@ class SentencesController extends AppController
                         'source' => $lang,
                         'translatedIn' => $translationLang,
                         'notTranslatedIn' => $notTranslatedIn,
-                        'audioOnly' => $filterAudioOnly,
+                        'audioOnly' => $audioOnly,
                     ),
                     'contain' => array(),
                     'limit' => 10,
@@ -592,6 +593,7 @@ class SentencesController extends AppController
             $translationLang
         ); 
         $this->set('lang', $lang);
+        $this->set('filterAudioOnly', $filterAudioOnly);
         $this->set('notTranslatedIn', $notTranslatedIn);
         $this->set('translationLang', $translationLang);
         $this->set('results', $allSentences);

@@ -70,7 +70,12 @@ $this->pageTitle = $title;
         
         
         <?php
-        $paginationUrl = array($lang, $translationLang, $notTranslatedIn);
+        $paginationUrl = array(
+            $lang,
+            $translationLang,
+            $notTranslatedIn,
+            $filterAudioOnly,
+        );
         $pagination->display($paginationUrl);
         
         foreach ($results as $sentence) {

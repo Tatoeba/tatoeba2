@@ -77,7 +77,7 @@ class SentenceNotTranslatedIn extends AppModel
 
         // to add to the sql conditions, if we want only sentences with audio
         $filterAudio = '';
-        if ($audioOnly == 1) {
+        if ($audioOnly == true) {
             $filterAudio = "AND Sentence.hasaudio != 'no' ";
         }
         
@@ -140,7 +140,7 @@ class SentenceNotTranslatedIn extends AppModel
  
         // to add to the sql conditions, if we want only sentences with audio
         $filterAudio = '';
-        if ($audioOnly == 1) {
+        if ($audioOnly == true) {
             $filterAudio = "AND Sentence.hasaudio != 'no' ";
         }
        

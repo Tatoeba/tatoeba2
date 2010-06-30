@@ -337,6 +337,7 @@ class LanguagesHelper extends AppHelper
                 $langCode,
                 'none',
                 'none',
+                'indifferent',
             ),
             array(),
             null,
