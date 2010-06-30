@@ -197,8 +197,24 @@ class SentenceButtonsHelper extends AppHelper
         
         switch ($sentenceAudio) {
 
+
+            // user-submitted audio
+            case 'from_users' :
+                //TODO add a specific image / css / explanation text 
+                break;   
+            // from shtooka or tatoeba audio (ie really good quality audio):
+            case 'shtooka' : 
+                $onClick = 'return false';
+                $path = 'http://static.tatoeba.org/audio/sentences/'
+                    .$sentenceLang.'/'.$sentenceId.'.mp3'; 
+                $css = 'audioAvailable';
+                $title = __('Play audio', true);           
+                echo $this->Javascript->link('sentences.play_audio.js', false);
+                break;
+
             // if the sentence has no audio
             case 'no' :
+            default:
                 $onClick = 'return false';
                 $css = 'audioUnavailable';
                 $path = 'http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html';
@@ -206,18 +222,7 @@ class SentenceButtonsHelper extends AppHelper
                 $onClick = 'window.open(this.href); return false;';
                 break;
             
-            // user-submitted audio
-            case 'from_users' :
-                //TODO add a specific image / css / explanation text 
-                break;   
-            // from shtooka or tatoeba audio (ie really good quality audio):
-            case 'shtooka' : 
-                $path = 'http://static.tatoeba.org/audio/sentences/'
-                    .$sentenceLang.'/'.$sentenceId.'.mp3'; 
-                $css = 'audioAvailable';
-                $title = __('Play audio', true);           
-                echo $this->Javascript->link('sentences.play_audio.js', false);
-                break;
+
         };
          
         echo $this->Html->Link(
