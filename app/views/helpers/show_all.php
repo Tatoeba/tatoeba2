@@ -219,7 +219,7 @@ class ShowAllHelper extends AppHelper
     {
         ?>
         <div class="module">
-            <h2><?php __('View audio only:'); ?></h2>
+            <h2><?php __('Only sentences with audio:'); ?></h2>
             <?php
             $options = array(
                 'indifferent' => __('no', true),
@@ -234,7 +234,7 @@ class ShowAllHelper extends AppHelper
             ?> 
             <p>
             <?php
-            __('NOTE: Only few languages have audios yet.');
+            __('NOTE: Only a few languages have audio at the moment.');
             ?>
             </p>
         </div>
