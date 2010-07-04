@@ -207,6 +207,41 @@ class ShowAllHelper extends AppHelper
     <?php 
     }
 
+    /**
+     * Diplsay the module to filter (or not) only main sentences with audio
+     *
+     * @param string $selectedOption The default selected option
+     *
+     * @return void
+     */
+
+    public function displayFilterOrNotAudioOnly($selectedOption = 'indifferent')
+    {
+        ?>
+        <div class="module">
+            <h2><?php __('View audio only:'); ?></h2>
+            <?php
+            $options = array(
+                'indifferent' => __('no', true),
+                'only-with-audio' =>  __('yes', true),
+            );
+             
+            echo $this->_generateSelect(
+                $selectedOption,
+                $options,
+                3
+            );
+            ?> 
+            <p>
+            <?php
+            __('NOTE: Only few languages have audios yet.');
+            ?>
+            </p>
+        </div>
+    <?php 
+    }
+
+
 
 }
 ?>

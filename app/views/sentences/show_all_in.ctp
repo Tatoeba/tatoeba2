@@ -46,6 +46,7 @@ $this->pageTitle = $title;
     $showAll->displayShowAllInSelect($lang);
     $showAll->displayShowOnlyTranslationInSelect($translationLang);
     $showAll->displayShowNotTranslatedIn($notTranslatedIn);
+    $showAll->displayFilterOrNotAudioOnly($filterAudioOnly);
     ?>
 
 
