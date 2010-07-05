@@ -86,7 +86,7 @@ $this->pageTitle = 'Tatoeba - ' . __('How to contribute', true);
     __(
         "But you don't have to be a polyglot in order to contribute! You can help ".
         "us a lot simply by <strong>checking sentences</strong> and ".
-        "<strong>reporting mitakes</strong>. This is something everyone can do!"
+        "<strong>reporting mistakes</strong>. This is something everyone can do!"
     );
     ?>
     </p>
