@@ -67,8 +67,10 @@ class ImportsController extends AppController
         $sentencesListFile = $this->data['Sentence']['file'];
         if ( !$this->_common_upload_check($sentencesListFile)) {
             $this->redirect(
-                'controller' => 'sentences',
-                'action' => 'import'
+                array(
+                    'controller' => 'sentences',
+                    'action' => 'import'
+                )
             ); 
         };
         
@@ -81,8 +83,10 @@ class ImportsController extends AppController
         }
         
         $this->redirect(
-            'controller' => 'sentences',
-            'action' => 'import'
+            array(
+                'controller' => 'sentences',
+                'action' => 'import'
+            )
         );        
 
     }
@@ -102,8 +106,10 @@ class ImportsController extends AppController
         
         if ( !$this->_common_upload_check($sentencesListFile)) {
             $this->redirect(
-                'controller' => 'sentences',
-                'action' => 'import'
+                array(
+                    'controller' => 'sentences',
+                    'action' => 'import'
+                )
             );        
         };
         
@@ -121,8 +127,10 @@ class ImportsController extends AppController
         }
         
         $this->redirect(
-            'controller' => 'sentences',
-            'action' => 'import'
+            array(
+                'controller' => 'sentences',
+                'action' => 'import'
+            )
         );        
     }
 
