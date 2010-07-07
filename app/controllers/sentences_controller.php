@@ -541,20 +541,36 @@ class SentencesController extends AppController
 
         $this->helpers[] = 'ShowAll'; 
         
-        $model = 'Sentence'; 
-        $pagination = array(
-            'Sentence' => array(
-                'fields' => array(
-                    'id',
-                ),
-                'conditions' => array(
-                    'lang' => $lang,
-                ),
-                'contain' => array(),
-                'limit' => 10,
-                'order' => "Sentence.id desc"
-            )
-        );
+        $model = 'Sentence';
+        if ($lang == 'und') {
+            $pagination = array(
+                'Sentence' => array(
+                    'fields' => array(
+                        'id',
+                    ),
+                    'conditions' => array(
+                        'lang' => null,
+                    ),
+                    'contain' => array(),
+                    'limit' => 10,
+                    'order' => "Sentence.id desc"
+                )
+            );
+        } else {
+            $pagination = array(
+                'Sentence' => array(
+                    'fields' => array(
+                        'id',
+                    ),
+                    'conditions' => array(
+                        'lang' => $lang,
+                    ),
+                    'contain' => array(),
+                    'limit' => 10,
+                    'order' => "Sentence.id desc"
+                )
+            );
+        }
 
         // filter or not sentences-with-audio-only  
         $audioOnly = false ;
@@ -564,27 +580,42 @@ class SentencesController extends AppController
         }
 
 
-        if (!empty($notTranslatedIn)
-            && $notTranslatedIn != 'none'
-        ) {
-            $model = 'SentenceNotTranslatedIn';
-            $pagination = array(
-                'SentenceNotTranslatedIn' => array(
-                    'fields' => array(
-                        'id',
-                    ),
-                    'conditions' => array(
-                        'source' => $lang,
-                        'translatedIn' => $translationLang,
-                        'notTranslatedIn' => $notTranslatedIn,
-                        'audioOnly' => $audioOnly,
-                    ),
-                    'contain' => array(),
-                    'limit' => 10,
-                )
-            );
-            
-
+        if (!empty($notTranslatedIn) && $notTranslatedIn != 'none') {
+            if ($lang == 'und') {
+                $model = 'SentenceNotTranslatedIn';
+                $pagination = array(
+                    'SentenceNotTranslatedIn' => array(
+                        'fields' => array(
+                            'id',
+                        ),
+                        'conditions' => array(
+                            'source' => null,
+                            'translatedIn' => $translationLang,
+                            'notTranslatedIn' => $notTranslatedIn,
+                            'audioOnly' => $audioOnly,
+                        ),
+                        'contain' => array(),
+                        'limit' => 10,
+                    )
+                );
+            } else {
+                $model = 'SentenceNotTranslatedIn';
+                $pagination = array(
+                    'SentenceNotTranslatedIn' => array(
+                        'fields' => array(
+                            'id',
+                        ),
+                        'conditions' => array(
+                            'source' => $lang,
+                            'translatedIn' => $translationLang,
+                            'notTranslatedIn' => $notTranslatedIn,
+                            'audioOnly' => $audioOnly,
+                        ),
+                        'contain' => array(),
+                        'limit' => 10,
+                    )
+                );
+            }
         }
 
         $allSentences = $this->_common_sentences_pagination(
