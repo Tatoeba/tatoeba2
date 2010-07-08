@@ -108,7 +108,9 @@ $selectedLanguage = $session->read('random_lang_selected');
     <div class="main_module">
         <h2><?php __('What is Tatoeba?'); ?></h2>
         <p>
-        <object width="480" height="385"><param name="movie" value="http://www.youtube.com/v/ac9SmJuwHqk&hl=en_US&fs=1&"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/ac9SmJuwHqk&hl=en_US&fs=1&" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="480" height="385"></embed></object>
+<object type="application/x-shockwave-flash" style="width:480px; height:385px;" data="http://www.youtube.com/v/ac9SmJuwHqk&amp;hl=en_US&amp;fs=1&amp;"><param name="movie"
+value="http://www.youtube.com/v/ac9SmJuwHqk&amp;hl=en_US&amp;fs=1&amp;" /></object> 
+
         </p>
     </div>
 
