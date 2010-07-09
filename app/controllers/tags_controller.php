@@ -195,6 +195,7 @@ class TagsController extends AppController
             $sentenceIds
         );
 
+        $this->set('langFilter', $lang);
         $this->set('tagId', $tagId);
         $this->set('allSentences', $allSentences);
         $this->set('tagName', $tagName);
