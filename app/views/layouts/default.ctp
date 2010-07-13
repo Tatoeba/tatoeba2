@@ -32,7 +32,7 @@
 		<?php echo $title_for_layout; ?>
 	</title>
 	<?php
-		echo $html->meta('icon');
+        echo $html->meta('icon');
         
         // ---------------------- //
         //          CSS           //
@@ -57,7 +57,7 @@
         
         // Special case for Chrome adn furigana
         $browser = $_SERVER['HTTP_USER_AGENT'];
-        $isChrome = preg_match("/Chrome/", $browser);
+        $isChrome = (strpos($browser, "Chrome")) !== false;
         if ($action == 'romaji_furigana' && !$isChrome) {
             echo $html->css("elements/furigana"); 
         }
