@@ -42,54 +42,60 @@ class PaginationHelper extends AppHelper
     /**
      * Display pagination.
      *
-     * @param array $url Array containing the extra params that should appear
-     *                   in the pagination URL.
+     * @param array $extramParams Array containing the extra params that should
+     *                            appear in the pagination URL.
      *
      * @return void
      */
-    public function display($url = null)
+    public function display($extramParams = array())
     {
         // -----------------------------------------------------------
         // So that we can pass GET variables into the pagination links.
         // Took it from here:
         // http://bdsarwar.wordpress.com/2010/01/12/passing-get-variable-in-cakephp-pagination-url/
-        $urls = $this->params['url']; $getv = "";
-        foreach($urls as $key=>$value)
-        {
-            if($key == 'url') continue; // we need to ignor the url field
-            $getv .= urlencode($key)."=".urlencode($value)."&"; // making the passing parameters
+        $urls = $this->params['url'];
+        $getv = "";
+        foreach ($urls as $key=>$value) {
+            if ($key === 'url') {
+                continue; // we need to ignore the url field
+            }
+            // making the passing parameters
+            $getv .= urlencode($key)."=".urlencode($value)."&"; 
         }
-        $getv = substr_replace($getv ,"",-1); // remove the last char '&'
-        $this->Paginator->options(array('url' => array("?"=>$getv)));
+        $getv = substr_replace($getv, "", -1); // remove the last char '&'
+        
+        $extramParams['?'] = $getv;
+        $this->Paginator->options(array('url' => $extramParams));
         // -----------------------------------------------------------
         
         
         $prevNextOptions = array();
         $numbersOptions = array('separator' => '');
-        
-        if (!empty($url)) {
-            $prevNextOptions['url'] = $url;
-            $numbersOptions['url'] = $url;
-        }        
         ?>
         <div class="paging">
-        <?php 
-        echo $this->Paginator->prev(
-            '<< '.__('previous', true), 
-            $prevNextOptions, 
-            null, 
-            array('class'=>'disabled')
-        ); 
-        
-        echo $this->Paginator->numbers($numbersOptions); 
-        
-        echo $this->Paginator->next(
-            __('next', true).' >>',
-            $prevNextOptions,
-            null, 
-            array('class'=>'disabled')
-        ); 
-        ?>
+            <?php
+            echo $this->Paginator->first(
+                __("first", true)
+            );
+            echo $this->Paginator->prev(
+                '<< '.__('previous', true), 
+                $prevNextOptions, 
+                null, 
+                array('class'=>'disabled')
+            ); 
+            
+            echo $this->Paginator->numbers($numbersOptions); 
+            
+            echo $this->Paginator->next(
+                __('next', true).' >>',
+                $prevNextOptions,
+                null, 
+                array('class'=>'disabled')
+            ); 
+            echo $this->Paginator->last(
+                __("last", true)
+            );
+            ?>
         </div>
         <?php
     }
