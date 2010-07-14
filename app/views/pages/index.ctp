@@ -112,6 +112,18 @@ $selectedLanguage = $session->read('random_lang_selected');
 value="http://www.youtube.com/v/ac9SmJuwHqk&amp;hl=en_US&amp;fs=1&amp;" /></object> 
 
         </p>
+        <p>
+            <?php
+            __(
+                'At its core, Tatoeba is a large database of <strong>example '.
+                'sentences</strong> translated into several languages. '.
+                'But as a whole, it is much more than that.'
+            );
+            // TODO : write something in the "About
+            // echo ' ' . $html->link(__('Learn more...',true), 
+            //     array('controller' => 'pages', 'action' => 'about'));
+            ?>
+        </p>
     </div>
 
     <div class="module">
