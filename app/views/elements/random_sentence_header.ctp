@@ -25,11 +25,8 @@
  * @link     http://tatoeba.org
  */
 
-$lang = 'eng';
-if (isset($this->params['lang'])) {
-    Configure::write('Config.language', $this->params['lang']);
-    $lang = $this->params['lang'];
-}
+echo $javascript->link(JS_PATH . 'sentences.statistics.js', false);
+echo $javascript->link(JS_PATH . 'sentences.show_another.js', false);
 
 $langArray = $languages->languagesArray();
 $selectedLanguage = $session->read('random_lang_selected');

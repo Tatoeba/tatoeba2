@@ -26,7 +26,7 @@
  */
 
 $this->pageTitle = __('Search sinograms', true);
-$javascript->link("sinograms.search.js", false);
+$javascript->link(JS_PATH . "sinograms.search.js", false);
 
 ?>
 

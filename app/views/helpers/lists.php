@@ -377,7 +377,7 @@ class ListsHelper extends AppHelper
             )
         );
         echo $this->Html->image(
-            'loading-small.gif',
+            IMG_PATH . 'loading-small.gif',
             array("id"=>"inProcess", "style"=>"display:none;")
         );
         echo $this->Html->link(
@@ -500,7 +500,7 @@ class ListsHelper extends AppHelper
         );
 
         echo $this->Html->image(
-            'close.png',
+            IMG_PATH . 'close.png',
             array(
                 "class" => "removeFromListButton",
                 "id" => 'deleteButton'.$sentenceId,
@@ -553,7 +553,7 @@ class ListsHelper extends AppHelper
                 'NOTE : You can also add existing sentences with this icon %s '.
                 '(while <a href="%s">browsing</a> for instance).', true
             ),
-            $this->Html->image('add_to_list.png'),
+            $this->Html->image(IMG_PATH . 'add_to_list.png'),
             $this->Html->url(array("controller"=>"sentences", "action"=>"show", "random"))
         );
         ?>
@@ -561,7 +561,7 @@ class ListsHelper extends AppHelper
         </div>
         
         <div class="sentencesListLoading" style="display:none">
-        <?php echo $this->Html->image('loading.gif'); ?>
+        <?php echo $this->Html->image(IMG_PATH . 'loading.gif'); ?>
         </div>
         <?php
     }

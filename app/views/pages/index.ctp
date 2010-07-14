@@ -26,16 +26,6 @@
  */
 
 $this->pageTitle = __('Tatoeba : Collecting example sentences', true);
-echo $javascript->link('sentences.statistics.js', false);
-echo $javascript->link('sentences.show_another.js', false);
-
-$key = isset($this->params['lang']) ? $this->params['lang'] : 'eng';
-
-$lang = 'eng';
-if (isset($this->params['lang'])) {
-    Configure::write('Config.language', $this->params['lang']);
-    $lang = $this->params['lang'];
-}
 
 $selectedLanguage = $session->read('random_lang_selected');
 

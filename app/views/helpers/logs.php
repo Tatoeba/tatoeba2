@@ -101,7 +101,7 @@ class LogsHelper extends AppHelper
                 echo '?';
             } else {
                 echo $this->Html->image(
-                    'flags/'.$lang.".png", 
+                    IMG_PATH . 'flags/'.$lang.".png", 
                     array(
                         "alt" => $lang,
                         "class" => "flag",

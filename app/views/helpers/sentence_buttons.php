@@ -57,7 +57,7 @@ class SentenceButtonsHelper extends AppHelper
             $type = 'direct';
         }
         $image = $this->Html->image(
-            $type.'_translation.png',
+            IMG_PATH . $type.'_translation.png',
             array(
                 "alt" => __('Show', true),
                 "title" => __('Show', true),
@@ -90,7 +90,7 @@ class SentenceButtonsHelper extends AppHelper
     public function displayInfoButton($sentenceId)
     {
         echo $this->Html->link(
-            $this->Html->image('info.png'),
+            $this->Html->image(IMG_PATH . 'info.png'),
             array(
                 "controller"=>"sentences"
                 , "action"=>"show"
@@ -115,7 +115,7 @@ class SentenceButtonsHelper extends AppHelper
             true
         );
         $image = $this->Html->image(
-            'unlink.png',
+            IMG_PATH . 'unlink.png',
             array(
                 "alt"=>__('Unlink', true),
                 "title" => __('Unlink this translation.', true),
@@ -156,7 +156,7 @@ class SentenceButtonsHelper extends AppHelper
             true
         );
         $image = $this->Html->image(
-            'link.png',
+            IMG_PATH . 'link.png',
             array(
                 "alt"=>__('Link', true),
                 "title" => __('Make as direct translation.', true),
@@ -327,7 +327,7 @@ class SentenceButtonsHelper extends AppHelper
         }
         
         echo $this->Html->image(
-            'flags/'.$lang.'.png',
+            IMG_PATH . 'flags/'.$lang.'.png',
             array(
                 "id" => "flag_".$id,
                 "class" => "languageFlag ".$class,

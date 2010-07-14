@@ -43,30 +43,28 @@
         // the name of the controller.
         
         // Generic
-        echo $html->css('layouts/default.css');
+        echo $html->css(CSS_PATH . 'layouts/default.css');
         
         // Specific
-        $cssFolder = APP.WEBROOT_DIR.DS."css";
         $controller = $this->params["controller"];
         $action = $this->params["action"];
         
-        $cssFile = $cssFolder.DS.$controller.DS.$action.'.css';
-        if (is_file($cssFile)){ 
-            echo $html->css($controller."/".$action); 
-        }
+        
+        echo $html->css(CSS_PATH . $controller."/".$action .".css"); 
+        
         
         // Special case for Chrome adn furigana
         $browser = $_SERVER['HTTP_USER_AGENT'];
         $isChrome = (strpos($browser, "Chrome")) !== false;
         if ($action == 'romaji_furigana' && !$isChrome) {
-            echo $html->css("elements/furigana"); 
+            echo $html->css(CSS_PATH . "elements/furigana.css"); 
         }
         
         // ---------------------- //
         //      Javascript        //
         // ---------------------- //
-		echo $javascript->link('jquery-mini.js', true);
-		echo $javascript->link('generic_functions.js', true);
+		echo $javascript->link(JS_PATH . 'jquery-mini.js', true);
+		echo $javascript->link(JS_PATH . 'generic_functions.js', true);
 		echo $scripts_for_layout;
         
 	?>

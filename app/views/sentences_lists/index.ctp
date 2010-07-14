@@ -146,8 +146,8 @@ if (isset($myLists)) {
             echo __('My lists');
             echo '</h2>';
 
-            $javascript->link('sentences_lists.edit_name.js', false);
-            $javascript->link('jquery.jeditable.js', false);
+            $javascript->link(JS_PATH . 'sentences_lists.edit_name.js', false);
+            $javascript->link(JS_PATH . 'jquery.jeditable.js', false);
 
             $lists->displayListTable($myLists);
 

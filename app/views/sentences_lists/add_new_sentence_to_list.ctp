@@ -27,7 +27,7 @@
 
 
 if (!empty($sentence)) {
-    echo $javascript->link('sentences_lists.remove_sentence_from_list.js', true);
+    echo $javascript->link(JS_PATH . 'sentences_lists.remove_sentence_from_list.js', true);
     
     $sentences->javascriptForAJAXSentencesGroup();
     ?>

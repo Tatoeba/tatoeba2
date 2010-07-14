@@ -103,8 +103,8 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     <?php
     $class = '';
     if ($belongsToUser) {
-        $javascript->link('jquery.jeditable.js', false);
-        $javascript->link('sentences_lists.edit_name.js', false);
+        $javascript->link(JS_PATH . 'jquery.jeditable.js', false);
+        $javascript->link(JS_PATH . 'sentences_lists.edit_name.js', false);
         
         $class = 'editable editableSentencesListName';
     }
@@ -116,7 +116,7 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     $url = array($listId, $translationsLang);
     $pagination->display($url);
     
-    $javascript->link('sentences_lists.remove_sentence_from_list.js', false);
+    $javascript->link(JS_PATH . 'sentences_lists.remove_sentence_from_list.js', false);
     $lists->displayAddSentenceForm($listId);    
     ?>
     

@@ -36,7 +36,7 @@ if (isset($this->params['lang'])) {
 <span id="profile" title="<?php __('Profile'); ?>">
 <?php
 $profileIcon = $html->image(
-    'profile.png',
+    IMG_PATH . 'profile.png',
     array(
         "alt" => __('Profile', true),
         "width" => 14,
@@ -73,7 +73,7 @@ if ($newMessages > 0) {
 <?php
 
 $mailIcon = $html->image(
-    $imageName,
+    IMG_PATH . $imageName,
     array(
         "alt" => __('Inbox', true),
         "width" => 16,
@@ -99,7 +99,7 @@ echo $html->link(
 <span id="log_out">
 <?php
 $logOutIcon = $html->image(
-    'log_out.png',
+    IMG_PATH . 'log_out.png',
     array(
         "alt" => __('Log out', true),
         "title" => __('Log out', true),

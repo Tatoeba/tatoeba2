@@ -212,7 +212,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
                     'You can translate a sentence from pretty much everywhere. '.
                     'Just click on this icon %s whenever you see it.', true
                 ),
-                $html->image('translate.png')
+                $html->image(IMG_PATH . 'translate.png')
             );
             __('');
             ?>
@@ -275,7 +275,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
                     'adopt a sentence, you become its owner and therefore can '.
                     'edit it.', true
                 ),
-                $html->image('adopt.png')
+                $html->image(IMG_PATH . 'adopt.png')
             );
             ?>
         </p>

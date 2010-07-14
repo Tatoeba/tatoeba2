@@ -181,7 +181,7 @@ class NavigationHelper extends AppHelper
             
             <li id="loadingAnimationForNavigation" style="display:none">
             <?php
-            echo $this->Html->image('loading-small.gif');
+            echo $this->Html->image(IMG_PATH . 'loading-small.gif');
             ?>
             </li>
             

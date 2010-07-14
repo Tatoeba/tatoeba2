@@ -30,7 +30,7 @@
 	<a href="<?php echo $html->url('/'.$this->params['lang']); ?>">
 	<?php 
     echo $html->image(
-        'TatoebaProjectBeta.png',
+        IMG_PATH . 'TatoebaProjectBeta.png',
         array(
             'width' => 72,
             'height' => 450

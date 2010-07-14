@@ -37,7 +37,7 @@
 
 $this->pageTitle = 'Tatoeba - ' . __('Register', true);
 
-echo $javascript->link('users.check_registration.js', false);
+echo $javascript->link(JS_PATH . 'users.check_registration.js', false);
 
 echo $form->create('User', array("action" => "register"));
 ?>

@@ -83,7 +83,7 @@ class CommentsHelper extends AppHelper
             echo '<li class="action">';
             echo $this->Html->link(
                 $this->Html->image(
-                    'view.png',
+                    IMG_PATH . 'view.png',
                     array(
                         "title" => __(
                             'View all comments on the related sentence',
@@ -108,7 +108,7 @@ class CommentsHelper extends AppHelper
             echo '<li class="action">';
             echo $this->Html->link(
                 $this->Html->image(
-                    'delete_comment.png',
+                    IMG_PATH . 'delete_comment.png',
                     array(
                         "title" => __(
                             'Delete this comment',
@@ -132,7 +132,7 @@ class CommentsHelper extends AppHelper
         echo '<li class="image">';
         echo $this->Html->link(
             $this->Html->image(
-                'profiles_36/'.$image, 
+                IMG_PATH . 'profiles_36/'.$image, 
                 array("title" => __('View this user\'s profile', true))
             ),
             array(

@@ -69,7 +69,7 @@ class MembersHelper extends AppHelper
                 <div class="username">
                 <?php
                 $profileIcon = $this->Html->image(
-                    'profile.png',
+                    IMG_PATH . 'profile.png',
                     array(
                         "alt" => __('Profile', true),
                         "width" => 14,

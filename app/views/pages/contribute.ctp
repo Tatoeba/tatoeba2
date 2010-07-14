@@ -27,7 +27,7 @@
 
 $this->pageTitle = 'Tatoeba - ' . __('Contribute', true);
 
-echo $javascript->link('sentences.show_another.js', false);
+echo $javascript->link(JS_PATH . 'sentences.show_another.js', false);
 ?>
 
 

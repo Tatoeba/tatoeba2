@@ -50,7 +50,7 @@ if (!$session->read('Auth.User.id')) {
     $currentUserId = $session->read('Auth.User.id');
     $userName = $user['User']['username'];
     // Include specific css and js files
-    echo $javascript->link('profile.edit.js', false);
+    echo $javascript->link(JS_PATH . 'profile.edit.js', false);
     ?>
     <div id="annexe_content">
         <div class="module">

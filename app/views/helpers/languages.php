@@ -321,7 +321,7 @@ class LanguagesHelper extends AppHelper
     function stat($langCode, $numberOfSentences)
     {
         $flagImage = $this->Html->image(
-            'flags/'.$langCode .'.png',
+            IMG_PATH . 'flags/'.$langCode .'.png',
             array(
                 'width' => 30,
                 'height' => 20

@@ -56,7 +56,7 @@ class MenuHelper extends AppHelper
     public function translateButton($sentenceId, $ownerName, $isLogged)
     {
         $translateButton = $this->Html->image(
-            'translate.png', 
+            IMG_PATH . 'translate.png', 
             array(
                 'alt'=>__('Translate', true), 
                 'title'=>__('Translate', true)
@@ -116,7 +116,7 @@ class MenuHelper extends AppHelper
         <li class="option simplified">
         <?php
         echo $this->Html->image(
-            'simplified_chinese.png', 
+            IMG_PATH . 'simplified_chinese.png', 
             array(
                 'alt'=>__('This sentence is in simplified Chinese.', true), 
                 'title'=>__('This sentence is in simplified Chinese.', true)
@@ -139,7 +139,7 @@ class MenuHelper extends AppHelper
         <li class="option traditional">
         <?php
         echo $this->Html->image(
-            'traditional_chinese.png', 
+            IMG_PATH . 'traditional_chinese.png', 
             array(
                 'alt'=>__('This sentence is in traditional Chinese.', true), 
                 'title'=>__('This sentence is in traditional Chinese.', true)
@@ -176,7 +176,7 @@ class MenuHelper extends AppHelper
         }
         
         $adoptImage = $this->Html->image(
-            $image,
+            IMG_PATH . $image,
             array(
                 'alt'=> $tooltip, 
                 'title'=> $tooltip
@@ -245,7 +245,7 @@ class MenuHelper extends AppHelper
         }
         
         $favoriteImage = $this->Html->image(
-            $image,
+            IMG_PATH . $image,
             array(
                 'alt'=> $tooltip, 
                 'title'=> $tooltip
@@ -302,7 +302,7 @@ class MenuHelper extends AppHelper
     public function addToListButton($sentenceId, $isLogged)
     {
         $addToListButton = $this->Html->Image(
-            'add_to_list.png',
+            IMG_PATH . 'add_to_list.png',
             array(
                 'alt'=>__('Add to list', true), 
                 'title'=>__('Add to list', true)
@@ -399,7 +399,7 @@ class MenuHelper extends AppHelper
         <?php
         echo $this->Html->link(
             $this->Html->image(
-                'delete.png',
+                IMG_PATH . 'delete.png',
                 array(
                     'alt'=>__('Delete', true), 
                     'title'=>__('Delete', true)
@@ -506,7 +506,7 @@ class MenuHelper extends AppHelper
         <li>
         <?php
         echo $this->Html->image(
-            'loading-small.gif', 
+            IMG_PATH . 'loading-small.gif', 
             array(
                 "id"=>"_".$sentenceId."_in_process", 
                 "style"=>"display:none",
@@ -515,7 +515,7 @@ class MenuHelper extends AppHelper
             )
         );
         echo $this->Html->image(
-            'valid_16x16.png', 
+            IMG_PATH . 'valid_16x16.png', 
             array(
                 "id" => "sentence".$sentenceId."_saved_in_list", 
                 "style" =>"display:none",

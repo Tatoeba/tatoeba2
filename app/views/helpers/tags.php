@@ -261,7 +261,7 @@ class TagsHelper extends AppHelper
         );
 
         $removeTagFromSentenceImg =  $this->Html->image(
-            'close.png',
+            IMG_PATH . 'close.png',
             array(
                 "class" => "removeTagButton",
                 "id" => 'deleteButton'.$sentenceId,
