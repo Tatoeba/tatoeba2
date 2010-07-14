@@ -228,8 +228,7 @@ class WallController extends Appcontroller
                 $parentMessage = $this->Wall->getMessageForMail($parentId);
                 
                 // prepare email
-                // TODO : i18n mail
-
+                // TODO : i18n mail + move this out of here.
                 if ($parentMessage['User']['send_notifications']
                     && $parentMessage['User']['id'] != $idTemp 
                 ) {
@@ -237,12 +236,11 @@ class WallController extends Appcontroller
                     $subject  = 'Tatoeba - ' .
                          $message['User']['username'] .
                          ' has replied to you on the Wall';
-
-                    //TODO add a mechanism if the link is not on first page
+                    
                     $mailContent 
-                        = 'http://' .
-                        $_SERVER['HTTP_HOST'] .
-                        '/wall/index#message_'.$message['Wall']['id']."\n\n";
+                        = 'http://'.$_SERVER['HTTP_HOST'].'/wall/show_message/'
+                        .$message['Wall']['id'].'#message_'.$message['Wall']['id']
+                        ."\n\n";
                     $mailContent .= '- - - - - - - - - - - - - - - - -'."\n\n";
                     $mailContent .= $message['Wall']['content']."\n\n";
                     $mailContent .= '- - - - - - - - - - - - - - - - -'."\n\n";
