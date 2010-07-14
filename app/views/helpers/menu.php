@@ -84,9 +84,8 @@ class MenuHelper extends AppHelper
                 );
             });
             </script>
-        
-            <?php
-            echo $translateButton;
+            <a href="#" ><?php echo $translateButton;?></a>
+           <?php 
         } else {
             echo $this->Html->link(
                 $translateButton,
@@ -114,7 +113,7 @@ class MenuHelper extends AppHelper
     public function simplifiedButton()
     {
         ?>
-        <li class="option simplified"><a>
+        <li class="option simplified">
         <?php
         echo $this->Html->image(
             'simplified_chinese.png', 
@@ -124,7 +123,7 @@ class MenuHelper extends AppHelper
             )
         );
         ?>
-        </a></li>
+        </li>
     <?php
     }
 
@@ -137,7 +136,7 @@ class MenuHelper extends AppHelper
     public function traditionalButton()
     {
         ?>
-        <li class="option traditional"><a>
+        <li class="option traditional">
         <?php
         echo $this->Html->image(
             'traditional_chinese.png', 
@@ -147,7 +146,7 @@ class MenuHelper extends AppHelper
             )
         );
         ?>
-        </a></li>
+        </li>
     <?php
     }
 
@@ -176,7 +175,7 @@ class MenuHelper extends AppHelper
             $tooltip = __('Adopt', true);
         }
         
-        $addoptImage = $this->Html->image(
+        $adoptImage = $this->Html->image(
             $image,
             array(
                 'alt'=> $tooltip, 
@@ -202,11 +201,11 @@ class MenuHelper extends AppHelper
             });
             </script>
             
+            <a href="#" ><?php echo $adoptImage; ?></a>
             <?php
-            echo $addoptImage;
         } else {
             echo $this->Html->link(
-                $addoptImage,
+                $adoptImage,
                 array(
                     "controller" => "users",
                     "action" => "login"
@@ -271,8 +270,9 @@ class MenuHelper extends AppHelper
             });
             </script>
         
+            <a href="#" ><?php echo $favoriteImage;?></a>
+
             <?php
-            echo $favoriteImage;
         } else {
             echo $this->Html->link(
                 $favoriteImage,
@@ -326,8 +326,8 @@ class MenuHelper extends AppHelper
             });
             </script>
             
+            <a href="#"><?php echo $addToListButton; ?></a>
             <?php
-            echo $addToListButton;
         } else {
             echo $this->Html->link(
                 $addToListButton,
