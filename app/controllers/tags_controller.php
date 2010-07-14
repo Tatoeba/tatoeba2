@@ -105,8 +105,10 @@ class TagsController extends AppController
 
     /**
      * Display all tags page
+     *
      * @TODO it's only a "better than nothing" page yet
      *
+     * @return void
      */
     public function view_all()
     {
@@ -165,7 +167,7 @@ class TagsController extends AppController
      * Display a list of all sentences with a given tag
      *
      * @param string $tagInternalName Internal name of the tag
-     * @param string $lang     Filter only sentences in this language.
+     * @param string $lang            Filter only sentences in this language.
      *
      * @return void
      */

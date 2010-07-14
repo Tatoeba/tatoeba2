@@ -117,8 +117,8 @@ class SentenceAnnotationsController extends AppController
         
         $this->data['SentenceAnnotation']['user_id'] = CurrentUser::get('id');
         
-        $this->data['SentenceAnnotation']['text'] =
-            trim($this->data['SentenceAnnotation']['text']);
+        $this->data['SentenceAnnotation']['text']
+            = trim($this->data['SentenceAnnotation']['text']);
         
         if ($this->SentenceAnnotation->save($this->data)) {
             $this->flash(

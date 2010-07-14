@@ -362,6 +362,8 @@ class SentencesListsController extends AppController
     
     /**
      * Page to export a list.
+     * 
+     * @param int $listId Id of the list to download
      *
      * @return void
      */
@@ -379,8 +381,9 @@ class SentencesListsController extends AppController
     }
    
     /**
+     * Export to csv a list
      *
-     *
+     * @return void
      */
     
     public function export_to_csv()

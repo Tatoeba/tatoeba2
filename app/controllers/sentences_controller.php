@@ -529,6 +529,7 @@ class SentencesController extends AppController
      * @param string $translationLang Show only translation in this lang.
      * @param string $notTranslatedIn Show only sentences which have no direct
      *                                translation in this language
+     * @param string $filterAudioOnly Show only sentences which have a mp3
      *
      * @return void
      */
@@ -544,7 +545,7 @@ class SentencesController extends AppController
         $model = 'Sentence';
         
         if ($lang == 'und') {
-        	$lang = null;
+            $lang = null;
         }
 
         $pagination = array(
