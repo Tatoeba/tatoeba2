@@ -251,7 +251,7 @@ class User extends AppModel
                     'User.is_public',
                 ),
                 'contain' => array(
-                    'Country'
+                    'Country' => array('fields' => array('name'))
                 )
             )
         );
