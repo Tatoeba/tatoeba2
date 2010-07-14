@@ -85,8 +85,8 @@ class SentencesHelper extends AppHelper
         $id = $sentence['id'];
         
         if ($withDivWrapper) {
-        ?>
-        <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
+            ?>
+            <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
         <?php
         }
          
@@ -108,12 +108,14 @@ class SentencesHelper extends AppHelper
         
         // Form to add a new translation
         $this->_displayNewTranslationForm($id, $withAudio);
-        
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
             <div></div>
             <?php
             // direct translations
+        if ($translations === null) {
+                echo __("There is no sentence in this language", true);     
+        } else {
             foreach ($translations as $translation) {
                 $this->displayGenericSentence(
                     $translation, 
@@ -136,6 +138,7 @@ class SentencesHelper extends AppHelper
                     $ownerName
                 );
             }
+        }
             ?>
         </div>
         
