@@ -113,9 +113,6 @@ class SentencesHelper extends AppHelper
             <div></div>
             <?php
             // direct translations
-        if ($translations === null) {
-                echo __("There is no sentence in this language", true);     
-        } else {
             foreach ($translations as $translation) {
                 $this->displayGenericSentence(
                     $translation, 
@@ -138,7 +135,7 @@ class SentencesHelper extends AppHelper
                     $ownerName
                 );
             }
-        }
+        
             ?>
         </div>
         
