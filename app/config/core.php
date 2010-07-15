@@ -40,7 +40,7 @@
  * In production mode, flash messages redirect after a time interval.
  * In development mode, you need to click the flash message to continue.
  */
-	Configure::write('debug', 0);
+	Configure::write('debug', 1);
 /**
  * Application wide charset encoding
  */
@@ -200,17 +200,24 @@
  *	));
  *
  * Xcache (http://xcache.lighttpd.net/)
- *
- * 	 Cache::config('default', array(
- *		'engine' => 'Xcache', //[required]
- *		'duration'=> 3600, //[optional]
- *		'probability'=> 100, //[optional]
- * 		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional] prefix every cache file with this string
- *		'user' => 'user', //user from xcache.admin.user settings
- *      'password' => 'password', //plaintext password (xcache.admin.pass)
- *	));
- *
- *
+*/ 
+  	 Cache::config('default', array(
+ 		'engine' => 'Xcache', //[required]
+ 		'duration'=> 3600, //[optional]
+ 		'probability'=> 100, //[optional]
+  		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional] prefix every cache file with this string
+ 		'user' => 'user', //user from xcache.admin.user settings
+       'password' => 'password', //plaintext password (xcache.admin.pass)
+ 	));
+   	 Cache::config('_cake_core_', array(
+ 		'engine' => 'Xcache', //[required]
+ 		'duration'=> 3600, //[optional]
+ 		'probability'=> 100, //[optional]
+  		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional] prefix every cache file with this string
+ 		'user' => 'user', //user from xcache.admin.user settings
+       'password' => 'password', //plaintext password (xcache.admin.pass)
+ 	));
+/* 
  * Memcache (http://www.danga.com/memcached/)
  *
  * 	 Cache::config('default', array(
@@ -227,16 +234,17 @@
  */
 	Cache::config('default', array('engine' => 'File'));
 
+/*
     define("TATOEBA_DOMAIN", "tatoeba.org");
     define("CSS_PATH", "http://css.tatoeba.org/css/");
     define("JS_PATH", "http://js.tatoeba.org/js/");
     define("IMG_PATH", "http://flags.tatoeba.org/img/");
-    
+ */   
     # FOR LOCAL DEVELOPPEMENT
 
-    #define("TATOEBA_DOMAIN", "127.0.0.1");
-    #define("CSS_PATH", "");
-    #define("JS_PATH", "");
-    #define("IMG_PATH", "");
+    define("TATOEBA_DOMAIN", "127.0.0.3");
+    define("CSS_PATH", "");
+    define("JS_PATH", "");
+    define("IMG_PATH", "");
 
 ?>
