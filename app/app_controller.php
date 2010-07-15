@@ -58,7 +58,6 @@ class AppController extends Controller
         'Javascript',
         'Languages'
     );
-
     /**
      * to know who can do what
      *
@@ -71,7 +70,7 @@ class AppController extends Controller
         // $this->layout = 'maintenance';
         
         Security::setHash('md5');
-
+        $this->Cookie->domain = TATOEBA_DOMAIN;
         // this line will call views/elements/session_expired.ctp
         // when one try to do an ajax action after is session expired
         // the action will return the content of this file instead of

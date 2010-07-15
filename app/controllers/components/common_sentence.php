@@ -87,9 +87,9 @@ class CommonSentenceComponent extends Object
         $this->data['Sentence']['user_id'] = $userId;
         $this->data['Sentence']['text'] = $text;
 
-        $Sentence = ClassRegistry::init('Sentence');
+        $this->loadModel('Sentence');
 
-        $isSaved = $Sentence->save($this->data);
+        $isSaved = $this->Sentence->save($this->data);
                 
         return $isSaved;
     }
@@ -99,13 +99,13 @@ class CommonSentenceComponent extends Object
  
         $allSentences = array();
         
-        $Sentence = ClassRegistry::init('Sentence');
+        $this->loadModel('Sentence');
         foreach ($sentenceIds as $i=>$sentenceId) {
 
-            $sentence = $Sentence->getSentenceWithId($sentenceId);
+            $sentence = $this->Sentence->getSentenceWithId($sentenceId);
             
 
-            $alltranslations = $Sentence->getTranslationsOf(
+            $alltranslations = $this->Sentence->getTranslationsOf(
                 $sentenceId,
                 $lang
             );

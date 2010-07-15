@@ -36,6 +36,7 @@
  */
 class SentencesController extends AppController
 {
+    public $persistentModel = true;
     public $name = 'Sentences';
     public $components = array (
         'GoogleLanguageApi',
@@ -61,6 +62,7 @@ class SentencesController extends AppController
         'limit' => 100,
         "order" => "Sentence.modified DESC"
     );
+
     public $uses = array(
         'Sentence','SentenceNotTranslatedIn'
     );
@@ -775,8 +777,8 @@ class SentencesController extends AppController
     {
         $lang = Sanitize::paranoid($lang);
         
-        $UserModel = ClassRegistry::init('User');
-        $userId = $UserModel->getIdFromUserName($userName);
+        $this->loadModel('User');
+        $userId = $this->User->getIdFromUserName($userName);
         
         $backLink = $this->referer(array('action'=>'index'), true);
         // if there's no such user no need to do more computation

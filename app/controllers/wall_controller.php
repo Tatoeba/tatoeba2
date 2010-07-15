@@ -38,6 +38,7 @@
 class WallController extends Appcontroller
 {
     
+    public $persistentModel = true;
 
     public $name = 'Wall' ;
     public $paginate = array(
@@ -197,8 +198,8 @@ class WallController extends Appcontroller
             if ($this->Wall->save($this->data)) {
                 $newMessageId = $this->Wall->id ;
                 
-                $User =  ClassRegistry::init('User');
-                $user = $User->getInfoWallUser($idTemp);
+                $this->loadModel('User');
+                $user = $this->User->getInfoWallUser($idTemp);
                 $this->set("user", $user); 
                
                 $this->update_thread_date($newMessageId, $now);
@@ -303,7 +304,7 @@ class WallController extends Appcontroller
         $messageId = Sanitize::paranoid($messageId);
         // TODO Not sure what to do with $newDate...
         
-        $WallThread = ClassRegistry::init('WallThread');
+        $this->loadModel('WallThread');
 
         $rootId = $this->Wall->getRootMessageIdOfReply($messageId);
         
@@ -312,7 +313,7 @@ class WallController extends Appcontroller
             'last_message_date' => $newDate
         );
         
-        $WallThread->save($newThreadData);
+        $this->WallThread->save($newThreadData);
     }
 
     /**

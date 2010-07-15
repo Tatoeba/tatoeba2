@@ -38,6 +38,7 @@ App::import('Core', 'Sanitize');
  */
 class ContributionsController extends AppController
 {
+    public $persistentModel = true;
     public $name = 'Contributions';
     public $helpers = array(
         'Html',

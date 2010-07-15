@@ -36,6 +36,7 @@
  */
 class UsersController extends AppController
 {
+    public $persistentModel = true;
     public $name = 'Users';
     public $helpers = array(
         'Html',

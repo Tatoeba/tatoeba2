@@ -102,8 +102,8 @@ class ToolsController extends AppController
             $option = 2;
         }
         
-        $Sentence = ClassRegistry::init('Sentence');
-        $result = $Sentence->getJapaneseRomanization2(
+        $this->loadModel('Sentence');
+        $result = $this->Sentence->getJapaneseRomanization2(
             $query, $option
         );
         
@@ -123,8 +123,8 @@ class ToolsController extends AppController
     {
         $text = $this->data['Tool']['query'];    
          
-        $Sentence = ClassRegistry::init('Sentence');
-        $convertedText = $Sentence->getOtherScriptVersion($text);
+        $this->loadModel('Sentence');
+        $convertedText = $this->Sentence->getOtherScriptVersion($text);
      
         $this->set('convertedText', $convertedText); 
         $this->set('lastText', $text);
@@ -154,8 +154,8 @@ class ToolsController extends AppController
 
             if ($from === 'chinese') {
                 // then we need to call the adso function
-                $Sentence = ClassRegistry::init('Sentence');
-                $pinyin = $Sentence->getRomanization($text, 'cmn');
+                $this->loadModel('Sentence');
+                $pinyin = $this->Sentence->getRomanization($text, 'cmn');
                 
                 if ($to === 'diacPinyin') {
                     $pinyin = $this->Pinyin->numeric2diacritic($pinyin);
@@ -191,8 +191,8 @@ class ToolsController extends AppController
         }
 
         if (!empty($text)) {
-            $Sentence = ClassRegistry::init('Sentence');
-            $ipa = $Sentence->getShanghaineseRomanization($text);
+            $this->loadModel('Sentence');
+            $ipa = $this->Sentence->getShanghaineseRomanization($text);
 
             $this->set('convertedText', $ipa); 
             $this->set('lastText', $text);

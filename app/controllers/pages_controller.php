@@ -93,12 +93,12 @@ class PagesController extends AppController
         }
         
         /*Some numbers part*/
-        $Contribution = ClassRegistry::init('Contribution'); 
-        $nbrContributions = $Contribution->getTodayContributions(); 
+        $this->loadModel('Contribution'); 
+        $nbrContributions = $this->Contribution->getTodayContributions(); 
        
         
-        $User = ClassRegistry::init('User');
-        $nbrActiveMembers = $User->getNumberOfActiveMembers();
+        $this->loadModel('User');
+        $nbrActiveMembers = $this->User->getNumberOfActiveMembers();
        
         $this->set('nbrActiveMembers', $nbrActiveMembers); 
         $this->set('nbrContributions', $nbrContributions);
@@ -172,8 +172,8 @@ class PagesController extends AppController
         $groupId = $this->Auth->user('group_id');
         $isLogged = !empty($userId);
         /*latest comments part */
-        $SentenceComment = ClassRegistry::init('SentenceComment');
-        $latestComments = $SentenceComment->getLatestComments(5);
+        $this->loadModel('SentenceComment');
+        $latestComments = $this->SentenceComment->getLatestComments(5);
 
 
         $commentsPermissions = $this->Permissions->getCommentsOptions(
@@ -188,16 +188,16 @@ class PagesController extends AppController
        
         /*Uknown language's sentences part */
         if ($isLogged) {  
-            $Sentence = ClassRegistry::init('Sentence');
-            $nbrUnknownSentences = $Sentence->numberOfUnknownLanguageForUser(
+            $this->loadModel('Sentence');
+            $nbrUnknownSentences = $this->Sentence->numberOfUnknownLanguageForUser(
                 $userId
             );
             $this->set('nbrUnknownSentences', $nbrUnknownSentences);
         }
         
         /*latest messages part */
-        $Wall = ClassRegistry::init('Wall');
-        $latestMessages = $Wall->getLastMessages(5);
+        $this->loadModel('Wall');
+        $latestMessages = $this->Wall->getLastMessages(5);
 
         $this->set('isLogged', $isLogged); 
         $this->set('latestMessages', $latestMessages); 
@@ -213,14 +213,17 @@ class PagesController extends AppController
      * NOTE: It's pretty much a copy-paste from SentencesController::random().
      * Not sure what's the good way to call an action from another controller...
      *
+     * @TODO then move it to "commentSentence" component when a method is share
+     * by several controller it's the way to do
+     *
      * @return void
      */
     private function _random_sentence() {
-        $Sentence = ClassRegistry::init('Sentence');
+        $this->loadModel('Sentence');
         $lang = $this->Session->read('random_lang_selected');
-        $randomId = $Sentence->getRandomId($lang);
-        $randomSentence = $Sentence->getSentenceWithId($randomId);
-        $alltranslations = $Sentence->getTranslationsOf($randomId);
+        $randomId = $this->Sentence->getRandomId($lang);
+        $randomSentence = $this->Sentence->getSentenceWithId($randomId);
+        $alltranslations = $this->Sentence->getTranslationsOf($randomId);
         $translations = $alltranslations['Translation'];
         $indirectTranslations = $alltranslations['IndirectTranslation'];
         
@@ -300,7 +303,8 @@ class PagesController extends AppController
     {
         $this->helpers[] = 'Members';
 
-        $peoples = ClassRegistry::init('User')->getMembersForTeamAndCredits();
+        $this->loadModel('User');
+        $peoples = $this->User->getMembersForTeamAndCredits();
 
         $this->set("padawans", $peoples['Padawan']);
         $this->set("cores", $peoples['Core']);
