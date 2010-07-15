@@ -70,7 +70,10 @@ class PaginationHelper extends AppHelper
         
         
         $prevNextOptions = array();
-        $numbersOptions = array('separator' => '');
+        $numbersOptions = array(
+            'separator' => '',
+            'modulus' => 4
+        );
         ?>
         <div class="paging">
             <?php
