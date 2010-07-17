@@ -33,31 +33,18 @@ $this->pageTitle = sprintf(__('Sentences with: %s', true), $query);
 <div id="annexe_content">
     <?php
     $attentionPlease->tatoebaNeedsYou();
-    ?>
     
-    <div class="module">
-        <h2>
-        <?php __('Tips'); ?>
-        </h2>
-        
-        <p>
-        <?php 
-        __(
-            'If you want to do an exact search, start your query with "=". '.
-            'For instance: =singing.'
-        );
-        ?>
-        </p>
-    </div>
+    echo $this->element('search_features');
+    ?>
 </div>
 
 
 <div id="main_content">
+<?php
+if (!empty($results)) {
+    
+    ?>
     <div class="module">
-    <?php
-    if (!empty($results)) {
-        ?>
-        
         <h2>
         <?php 
         echo sprintf(__('Search : %s', true), $query);
@@ -69,7 +56,6 @@ $this->pageTitle = sprintf(__('Sentences with: %s', true), $query);
         ); 
         ?>
         </h2>
-        
         
         <?php
         $pagination->display();
@@ -84,81 +70,14 @@ $this->pageTitle = sprintf(__('Sentences with: %s', true), $query);
         }
         
         $pagination->display();
-        
-    } else {
-        
         ?>
-        <h2>
-        <?php echo sprintf(__('Add a sentence containing %s', true), $query); ?>
-        </h2>
-        
-        <p>
-        <?php
-        __(
-            'There is no result for this search (yet) but you '.
-            'can help us feeding the corpus with new vocabulary!'
-        );
-        ?>
-        </p>
-        
-        <?php
-        if ($session->read('Auth.User.id')) {
-            ?>
-            <p>
-            <?php
-            __('Feel free to submit a sentence with the words you were searching.');
-            ?>
-            </p>
-            
-            <?php
-            echo $form->create(
-                'Sentence', 
-                array("action" => "add", "id" => "newSentence")
-            );
-            echo $form->input(
-                'text', 
-                array(
-                    "label" => __('Sentence : ', true),
-                    "type" => "text"
-                )
-            );
-            
-            $langArray = $languages->translationsArray();
-            $preSelectedLang = $session->read('contribute_lang');
-
-            if (empty($preSelectedLang)) {
-                $preSelectedLang = 'auto';
-            }
-            ?>
-            
-            <div class="languageSelection">
-            <?php
-            echo $form->select(
-                'contributionLang',
-                $langArray,
-                $preSelectedLang,
-                array("class"=>"translationLang"),
-                false
-            );
-            ?>
-            </div>
-            
-            <?php
-            echo $form->end('OK');
-            
-        } else {
-        
-            __('If you are interested, please register.');
-            
-            echo $html->link(
-                'register',
-                array("controller" => "users", "action" => "register"),
-                array("class"=>"registerButton")
-            );
-            
-        }
-        
-    }
-    ?>
     </div>
+    <?php
+    
+} else {
+    
+    echo $this->element('search_with_no_result');
+    
+}
+?>  
 </div>

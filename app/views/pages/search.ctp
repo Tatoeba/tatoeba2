@@ -31,23 +31,9 @@ $this->pageTitle = 'Tatoeba - ' . __('Examples of search', true);
 <div id="annexe_content">
     <?php
     $attentionPlease->tatoebaNeedsYou();
-    ?>
     
-    <div class="module">
-        <h2><?php __('Search features'); ?></h2>
-        <p>
-        <?php
-        __('The search is powered by <a href="%s">Sphinx</a>.');
-        ?>
-        </p>
-        
-        <p>
-        Until we have time to write more about the search features, you can always
-        take a look at the documentation 
-        <a href="http://sphinxsearch.com/docs/current.html#boolean-syntax">here</a>.
-        
-        </p>
-    </div>
+    echo $this->element('search_features');
+    ?>
 </div>
     
 <div id="main_content">
