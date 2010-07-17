@@ -602,6 +602,11 @@ class SentencesController extends AppController
             $model,
             $translationLang
         ); 
+        
+        if ($lang === null) {
+            $lang = 'unknown';
+        }
+        
         $this->set('lang', $lang);
         $this->set('filterAudioOnly', $filterAudioOnly);
         $this->set('notTranslatedIn', $notTranslatedIn);
