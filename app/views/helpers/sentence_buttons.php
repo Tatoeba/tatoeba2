@@ -247,7 +247,9 @@ class SentenceButtonsHelper extends AppHelper
      * @return void
      */
     private function _validateUrl($url)
-    {       
+    {     
+        return false;
+        
         $urlParts = @parse_url($url);
         
         if (empty($urlParts["host"])) {
@@ -295,8 +297,8 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function displayLanguageFlag($id, $lang, $editable = false)
     {
-        if ($lang == '') {
-            $lang = 'und';
+        if (empty($lang)) {
+            $lang = 'unknown';
         }
         
         $class = '';
