@@ -246,6 +246,14 @@ class LanguagesHelper extends AppHelper
             'afr' => __('Afrikaans', true),
             'fao' => __('Faroese', true),
             'fry' => __('Frisian', true)
+            'bre' => __('Breton', true),
+            'ron' => __('Romanian', true),
+            'uig' => __('Uyghur', true),
+            'uzb' => __('Uzbek', true),
+            'non' => __('Norwegian (Nynorsk)', true),
+            'srp' => __('Serbian', true),
+            'tat' => __('Tartar', true),
+            'yid' => __('Yiddish', true),
         );
         asort($languages);
         array_unshift($languages, array('und' => __('Any', true)));
