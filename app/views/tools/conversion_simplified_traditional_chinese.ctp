@@ -28,7 +28,7 @@
 //TODO to factorize with pinyin converter in a tool helper
 
 $this->pageTitle = 'Tatoeba - ' . __(
-    'Chinese conversion traditional/simplified tool', true
+    'Chinese traditional/simplified conversion', true
 );
 
 // if it's the first time we call this tool
@@ -86,7 +86,7 @@ if (!isset($lastText)) {
 
 <div id="main_content">
     <div class="module">
-        <h2><?php __('Traditional/simplified Chinese converter'); ?></h2>
+        <h2><?php __('Chinese traditional/simplified conversion'); ?></h2>
 
         <?php
         if (isset($convertedText)) {

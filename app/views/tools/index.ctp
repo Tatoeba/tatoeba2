@@ -71,7 +71,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
             <li>
                 <?php 
                 echo $html->link(
-                    'Romaji/furigana conversion',
+                    __('Romaji/furigana conversion', true),
                     array(
                         "controller" => "tools",
                         "action" => "romaji_furigana"
@@ -113,7 +113,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
             <li>
                 <?php
                 echo $html->link(
-                    __('Chinese simplified/traditional tool', true),
+                    __('Chinese simplified/traditional conversion', true),
                     array(
                         "controller" => "tools",
                         "action" => "conversion_simplified_traditional_chinese"
