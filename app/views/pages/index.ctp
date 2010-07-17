@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = __('Tatoeba : Collecting example sentences', true);
+$this->pageTitle = __('Tatoeba: Collecting example sentences', true);
 
 $selectedLanguage = $session->read('random_lang_selected');
 
