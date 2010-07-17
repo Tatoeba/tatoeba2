@@ -1,6 +1,8 @@
+-- if decrease_number_of_sentence_of_list exist kill them
 DROP TRIGGER decrease_number_of_sentence_of_list ;
+DROP TRIGGER delete_dependencies_of_sentences ;
 Delimiter |
-CREATE TRIGGER decrease_number_of_sentence_of_list AFTER DELETE ON sentences
+CREATE TRIGGER delete_dependencies_of_sentences AFTER DELETE ON sentences
   FOR EACH ROW BEGIN
     
     -- decreament the number of sentence for all list
@@ -15,6 +17,10 @@ CREATE TRIGGER decrease_number_of_sentence_of_list AFTER DELETE ON sentences
     
     -- delete the sentence of the list
     DELETE FROM `sentences_sentences_lists`
+    WHERE `sentence_id` = OLD.`id`;
+    
+    -- delete associated to the sentences
+    DELETE FROM `tags_sentences`
     WHERE `sentence_id` = OLD.`id`;
     
   END|
