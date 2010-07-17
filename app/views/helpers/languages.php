@@ -135,7 +135,7 @@ class LanguagesHelper extends AppHelper
         // Can't use 'any' as it's the code for anyin language.
         // Only 'und' is used for "undefined".
         // TODO xxx to be remplace by the code for 'unknown'
-        array_unshift($languages, array('xxx' => __('unknown language', true)));
+        array_unshift($languages, array('unknown' => __('unknown language', true)));
         
         return $languages;
     }

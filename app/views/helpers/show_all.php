@@ -132,7 +132,7 @@ class ShowAllHelper extends AppHelper
         <div class="module">
             <h2><?php __('Sentences in:'); ?></h2>
             <?php
-            $langs = $this->Languages->onlyLanguagesArray();
+            $langs = $this->Languages->unknownLanguagesArray();
            
             echo $this->_generateSelect(
                 $selectedLanguage,

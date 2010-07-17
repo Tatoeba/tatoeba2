@@ -551,7 +551,7 @@ class SentencesController extends AppController
         
         $model = 'Sentence';
         
-        if ($lang == 'und') {
+        if ($lang == 'unknown') {
             $lang = null;
         }
 
@@ -747,7 +747,7 @@ class SentencesController extends AppController
             // if the language is still unknow
             // we unset the lang field to save it as NULL
             foreach ($sentences as $i=>$sentence) {
-                if ($sentence['lang'] === 'xxx') {
+                if ($sentence['lang'] === 'unknown') {
                     unset($sentences[$i]['lang']);
                 }
             }
