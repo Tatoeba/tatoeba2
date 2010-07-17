@@ -1,6 +1,6 @@
--- if decrease_number_of_sentence_of_list exist kill them
-DROP TRIGGER decrease_number_of_sentence_of_list ;
-DROP TRIGGER delete_dependencies_of_sentences ;
+-- if decrease_number_of_sentence_of_list exist kill them (it's the ancestor)
+DROP TRIGGER IF EXISTS decrease_number_of_sentence_of_list ;
+DROP TRIGGER IF EXISTS delete_dependencies_of_sentences ;
 Delimiter |
 CREATE TRIGGER delete_dependencies_of_sentences AFTER DELETE ON sentences
   FOR EACH ROW BEGIN
