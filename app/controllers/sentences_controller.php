@@ -164,8 +164,13 @@ class SentencesController extends AppController
             // And now we retrieve the sentence
             $sentence = $this->Sentence->getSentenceWithId($id);
 
-            // If no sentence, we don't need to go further
+            // If no sentence, we don't need to go further.
+            // We just set some variable so we don't get warnings.
             if ($sentence == null) {
+                $this->set('sentenceId', $id);
+                $this->set('nextSentence', $id - 1);
+                $this->set('prevSentence', $id + 1);
+                $this->set('tagsArray', array()); 
                 return;
             }
 

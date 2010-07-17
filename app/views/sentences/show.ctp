@@ -35,9 +35,7 @@ if (isset($sentence)) {
     $this->pageTitle = $title . $sentenceText;
     
 } else {
-    $sentenceId = $this->params['pass'][0];
-    $prevSentence = $sentenceId - 1;
-    $nextSentence = $sentenceId + 1;
+    // Case where the sentence has been deleted
     $this->pageTitle = __('Sentence does not exist: ', true).$this->params['pass'][0];
 }
 
