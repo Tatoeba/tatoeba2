@@ -32,10 +32,10 @@
 	?>
 </head>
 <body>
-	<div id="sentencesListContainer">
+	<?php echo $this->element('google_analytics'); ?>
+    <div id="sentencesListContainer">
 	<?php echo $content_for_layout; ?>
 	<?php echo $cakeDebug ?>
-	<?php echo $this->element('google_analytics'); ?>
 	</div>
 </body>
 </html>

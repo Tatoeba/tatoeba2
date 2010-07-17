@@ -72,6 +72,7 @@
     <link rel="search" type="application/opensearchdescription+xml" href="http://tatoeba.org/opensearch.xml" title="Tatoeba project" />
 </head>
 <body>
+	<?php echo $this->element('google_analytics'); ?>
     <div id="audioPlayer"></div>
     
 	<!--  TOP  -->
@@ -108,6 +109,5 @@
 	<div id="footer_container">
 	</div>
 	<?php echo $cakeDebug ?>
-	<?php echo $this->element('google_analytics'); ?>
 </body>
 </html>

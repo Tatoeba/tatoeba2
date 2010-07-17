@@ -26,23 +26,15 @@
  */
 ?>
 <script type="text/javascript">
-var gaJsHost;
-if ("https:" == document.location.protocol)
-{
-    gaJsHost = "https://ssl.";
-}
-else
-{
-    gaJsHost = "http://www.";
-}
-
-document.write(unescape(
-    "%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' " +
-    "type='text/javascript'%3E%3C/script%3E")
-);
+  var _gaq = _gaq || []; 
+  _gaq.push(['_setAccount', 'UA-2905820-1']); 
+  _gaq.push(['_trackPageview']); 
+ 
+  (function() { 
+  var ga = document.createElement('script'); 
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' :  
+  'http://www') + '.google-analytics.com/ga.js'; 
+  ga.setAttribute('async', 'true'); 
+  document.documentElement.firstChild.appendChild(ga); 
+  })(); 
 </script>
-<script type="text/javascript">
-try {
-var pageTracker = _gat._getTracker("UA-2905820-1");
-pageTracker._trackPageview();
-} catch(err) {}</script>
