@@ -63,7 +63,11 @@ class TagsHelper extends AppHelper
             <div class="tagsListOnSentence" >
                 <?php
                 if (count($tagsArray) == 0) {
-                    __('No tag on this sentence yet');
+                    ?>
+                    
+                    <p><?php __('No tag on this sentence yet.'); ?></p>
+                    
+                    <?php
                 }
 
                 foreach ($tagsArray as $tagArray) {
