@@ -73,7 +73,7 @@ $navigation->displaySentenceNavigation(
         ?>
     </div>    
     <div class="module">
-        <h2><?php __('Notify mistakes'); ?> </h2>
+        <h2><?php __('Report mistakes'); ?> </h2>
         <p>
             <?php
             __('Do not hesitate to post a comment if you see a mistake!');
