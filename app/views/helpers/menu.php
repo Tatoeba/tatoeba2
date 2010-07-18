@@ -84,7 +84,7 @@ class MenuHelper extends AppHelper
                 );
             });
             </script>
-            <a href="#" ><?php echo $translateButton;?></a>
+            <a href="#self" ><?php echo $translateButton;?></a>
            <?php 
         } else {
             echo $this->Html->link(
@@ -201,7 +201,7 @@ class MenuHelper extends AppHelper
             });
             </script>
             
-            <a href="#" ><?php echo $adoptImage; ?></a>
+            <a href="#self" ><?php echo $adoptImage; ?></a>
             <?php
         } else {
             echo $this->Html->link(
@@ -270,7 +270,7 @@ class MenuHelper extends AppHelper
             });
             </script>
         
-            <a href="#" ><?php echo $favoriteImage;?></a>
+            <a href="#self" ><?php echo $favoriteImage;?></a>
 
             <?php
         } else {
