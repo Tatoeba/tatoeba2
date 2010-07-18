@@ -84,7 +84,7 @@ class MenuHelper extends AppHelper
                 );
             });
             </script>
-            <a href="#toto" ><?php echo $translateButton;?></a>
+            <a><?php echo $translateButton;?></a>
            <?php 
         } else {
             echo $this->Html->link(
@@ -201,7 +201,7 @@ class MenuHelper extends AppHelper
             });
             </script>
             
-            <a href="#toto" ><?php echo $adoptImage; ?></a>
+            <a><?php echo $adoptImage; ?></a>
             <?php
         } else {
             echo $this->Html->link(
@@ -270,7 +270,7 @@ class MenuHelper extends AppHelper
             });
             </script>
         
-            <a href="#toto" ><?php echo $favoriteImage;?></a>
+            <a><?php echo $favoriteImage;?></a>
 
             <?php
         } else {
