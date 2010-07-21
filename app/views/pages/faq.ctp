@@ -40,7 +40,7 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
         <dt>I'd like to request a new language. What do I have to do?</dt>
         <dd>
             <p><strong>1)</strong> Send us an email (team@tatoeba.fr) and indicate in the title the language(s) that you would like us to add.</p>
-            <p><strong>2)</strong> In your email, tell us what icon we can use for each requested language. It does not necessarily has to be the flag of a country. We just want a picture that people can easily associate to the language. Keep in mind that our icons are only 30x20 pixels.</p>
+            <p><strong>2)</strong> In your email, tell us what icon we can use for each requested language. It does not necessarily have to be the flag of a country. We just want a picture that people can easily associate to the language. Keep in mind that our icons are only 30x20 pixels.</p>
             <p>You do not have create the icon yourself. For graphical consistency, it's better that we do it. Simply send us (or link us) an image from which we will create the icon.</p>
             <p><strong>3)</strong> Translate five sentences into your language(s), and indicate in your email the ID's of your sentences. The language of your sentences will either not be detected, or will be mis-detected, but this is not an issue. You will be able to set the correct language once it's available.</p>
             <p><strong>IMPORTANT:</strong> We will only add your language(s) if you have done all of this.</p>
