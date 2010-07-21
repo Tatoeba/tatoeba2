@@ -326,7 +326,7 @@ class MenuHelper extends AppHelper
             });
             </script>
             
-            <a href="#"><?php echo $addToListButton; ?></a>
+            <a><?php echo $addToListButton; ?></a>
             <?php
         } else {
             echo $this->Html->link(
