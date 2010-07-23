@@ -339,7 +339,12 @@ class SentencesHelper extends AppHelper
         if (isset($sentence['hasaudio'])) {
             $sentenceAudio = $sentence['hasaudio'];
         }
-        $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);
+        $isMainSentence = empty($parentId);
+        $isEditable = CurrentUser::canEditSentenceOfUser($ownerName)
+            && $isMainSentence; // Only main sentence can be edited. It's actually
+                                // dangerous to enable people to edit translations
+                                // as they cannot really see what is linked to the
+                                // translation.
         ?>
         
         <div class="sentence <?php echo $type; ?>">
