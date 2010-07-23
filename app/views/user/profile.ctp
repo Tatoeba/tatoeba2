@@ -35,16 +35,18 @@
  * @link     http://tatoeba.org
  */
 
+$userId = $user['id'];
 
 $realName = Sanitize::html($user['name']);
 $userName = Sanitize::html($user['username']);
 $userDescription = Sanitize::html($user['description']);
-$homepage = Sanitize::html($user['homepage']);
-$userId = $user['id'];
+$homepage = $user['homepage']; // no need to sanitize, used in $html->link()
 
 $birthday = $user['birthday'];
 $userSince = $user['since'];
 $lastTimeActive = $user['last_time_active'];
+
+
 
 $userImage = 'tatoeba_user.png';
 if (!empty($user['image'])) {
@@ -154,7 +156,10 @@ if (!empty($realName)) {
         <div id="pdescription" class="module">
             <h2><?php __('Something about you'); ?></h2>
             <div id="profile_description">
-                <?php echo nl2br($userDescription); ?>
+                <?php 
+                $userDescription = $clickableLinks->clickableURL($userDescription);
+                echo nl2br($userDescription); 
+                ?>
             </div>
         </div>
     <?php

@@ -86,6 +86,8 @@ class UserController extends AppController
      */
     public function index()
     {
+        $this->helpers[] = 'ClickableLinks';
+        
         $userId = $this->Auth->user('id');
         // redirect the page if a simple visitor try to access it
    
@@ -118,6 +120,8 @@ class UserController extends AppController
      */
     public function profile($userName)
     {
+        $this->helpers[] = 'ClickableLinks';
+        
         $userName = Sanitize::paranoid($userName, array('_'));
         $currentUserId = Sanitize::paranoid($this->Auth->user('id'));
 

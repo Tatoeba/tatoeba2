@@ -47,6 +47,9 @@ $this->pageTitle = 'Your profile';
 if (!$session->read('Auth.User.id')) {
     echo $this->element('login');
 } else {
+
+    $userDescription = Sanitize::html($user['User']['description']);
+    
     $currentUserId = $session->read('Auth.User.id');
     $userName = $user['User']['username'];
     // Include specific css and js files
@@ -232,7 +235,10 @@ if (!$session->read('Auth.User.id')) {
         if (empty($user['User']['description'])) {
             __('Tell us something about you!');
         } else {
-                echo nl2br($user['User']['description']);
+            $userDescription = $clickableLinks->clickableURL(
+                $userDescription
+            );
+            echo nl2br($userDescription);
         }
         ?>
             </div>
