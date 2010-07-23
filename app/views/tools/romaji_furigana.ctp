@@ -74,7 +74,7 @@ $this->pageTitle = 'Tatoeba - '. __(
         <h2><?php __('Convert Japanese text into romaji or furigana'); ?></h2>
         <?php
         
-        echo '<div class="furigana">';
+        echo '<div id="conversion" class="furigana">';
         echo $result;
         echo '</div>';
         
