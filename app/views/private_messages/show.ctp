@@ -121,25 +121,13 @@ echo $this->element('pmmenu');
         <?php
         $matches = array();
         $sentencesLists = array();
-        $content = $message['PrivateMessage']['content'];
-        // TODO regexp  like this are HACK
-        // What is the purpose of this? Can someone comment it?
-        if (preg_match_all("#\[list:(\d+)]#", $content, $matches) != false) {
-            foreach ($matches[1] as $sl) {
-                    
-                $sentencesLists[] = ClassRegistry::init('SentencesList')->show(
-                    $sl,
-                    'return'
-                );
-                
-                $message['content'] = str_replace(
-                    '[list:'.$sl.']', '', $message['content']
-                );
-            }
-        }
-        
+        $content = $message['PrivateMessage']['content']; // we don't sanitize here
+                                                          // because we use $content
+                                                          // below, and we need the
+                                                          // string to NOT have
+                                                          // HTML entities escaped
         echo $clickableLinks->clickableURL(
-            nl2br($content)
+            nl2br(Sanitize::html($content))  // So we sanitize here.
         );
         ?>
         </div>
