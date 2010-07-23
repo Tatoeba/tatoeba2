@@ -53,10 +53,10 @@
         echo $html->css(CSS_PATH . $controller."/".$action .".css"); 
         
         
-        // Special case for Chrome adn furigana
+        // Special case for Chrome and furigana.
         $browser = $_SERVER['HTTP_USER_AGENT'];
         $isChrome = (strpos($browser, "Chrome")) !== false;
-        if ($action == 'romaji_furigana' && !$isChrome) {
+        if (!$isChrome) {
             echo $html->css(CSS_PATH . "elements/furigana.css"); 
         }
         

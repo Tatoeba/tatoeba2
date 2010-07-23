@@ -19,12 +19,13 @@
 
 /* Ruby characters */
 function furigana(){
-    reg = new RegExp("(([^\\[ ])*)\\[(([^\\]])*)\\]", "gi");
-    div = document.getElementById("conversion");
-    div.innerHTML = div.innerHTML.replace(
+    var reg = new RegExp("(([^\\[ ])*)\\[(([^\\]])*)\\]", "gi");
+    var content = $(".furigana").html();
+    $(".furigana").html(content.replace(
         reg,"<ruby><rb>$1</rb><rp>(</rp><rt>$3</rt><rp>)</rp></ruby>"
-    );
-    div.innerHTML = div.innerHTML.replace(
-        reg2,"<ruby><rb>$1</rb><rp>(</rp><rt>$3</rt><rp>)</rp></ruby>"
-    );
+    ));
 }
+
+$(document).ready(function(){
+    furigana();
+});

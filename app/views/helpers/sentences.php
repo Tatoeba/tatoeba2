@@ -519,6 +519,7 @@ class SentencesHelper extends AppHelper
             $romanization = $sentence['romanization'];
             
             if ($sentence['lang'] == 'jpn') {
+                $this->Javascript->link(JS_PATH . 'furigana.js', false);
                 
                 $title = 'ROMAJI: '.$sentence['romaji']."\n\n ";
                 $title .= __(
@@ -529,7 +530,7 @@ class SentencesHelper extends AppHelper
                     $romanization,
                     'http://blog.tatoeba.org/2010/04/japanese-romanization-in-tatoeba-now.html',
                     array(
-                        'class' => 'romanization',
+                        'class' => 'romanization furigana',
                         'title' => $title
                     )
                 );
@@ -585,6 +586,7 @@ class SentencesHelper extends AppHelper
         echo $this->Javascript->link('sentences.edit_in_place.js', true);
         echo $this->Javascript->link('sentences.play_audio.js', true);
         echo $this->Javascript->link('sentences.change_language.js', true);
+        echo $this->Javascript->link('furigana.js', true);
     }
 }
 ?>
