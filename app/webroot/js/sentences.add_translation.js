@@ -88,7 +88,7 @@ $(document).ready(function() {
         // NOTE : this is annoying when entering Japanese or Chinese because
         // enter is used to validate the choice of kanjis
         // NOTE2: on Linux it's space which is used to validate
-        $("#translation_for_" + sentenceId + " div input").keypress(function(e){
+        $("#_" + sentenceId + "_text").keypress(function(e){
             if(e.keyCode == 13) {
                 save();
             }

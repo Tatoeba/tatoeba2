@@ -223,7 +223,7 @@ class SentencesHelper extends AppHelper
         
             <?php
             // Input field
-            echo $this->Form->input(
+            echo $this->Form->textarea(
                 'translation',
                 array(
                     'label' => '',
