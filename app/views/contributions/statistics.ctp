@@ -84,7 +84,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Contributors statistics', true);
         echo '<th>' . __('number of contributions', true) . '</th>';
         echo '</tr>';
 
-    $i = 0;
+    $i = 1;
     foreach ($stats as $stat) {
         $css = 'class=';
         if ($stat['User']['group_id'] == 1) {
