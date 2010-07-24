@@ -100,6 +100,8 @@ class LanguagesHelper extends AppHelper
             'eus' => __('Basque', true),
             'slk' => __('Slovak', true),
             'dan' => __('Danish', true),
+            'hye' => __('Armenian', true),
+            'acm' => __('Iraqi Arabic', true),
             // TODO to change when shanghainese will not be the only wu dialect
         );
         asort($languages);
