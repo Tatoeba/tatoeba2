@@ -61,6 +61,10 @@ class DateHelper extends AppHelper
             $timestamp = $date;
         }
         
+        if ($timestamp == 0) {
+            return __('date unknown', true);
+        }
+        
         $now = time();
         $days = intval(($now-$timestamp)/(3600*24));
         $hours = intval(($now-$timestamp) / 3600);
