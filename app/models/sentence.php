@@ -655,58 +655,7 @@ class Sentence extends AppModel
 
         return $orderedResults;
     }
-
     
-    
-    /**
-     * Count number of sentences with unknown language.
-     *
-     * @param int $userId id of the user we want the unknown language sentences.
-     * 
-     * @return int Number of sentences.
-     */
-    public function numberOfUnknownLanguageForUser($userId)
-    {
-        // Need to do custom query because there is no way to say 
-        //  `Sentence`.`lang` = '' OR `Sentence`.`lang` IS NULL
-        // with CakePHP, it seems.
-
-        $userId = Sanitize::paranoid($userId);
-        $count = $this->query(
-            "
-            SELECT COUNT(*) AS `count` 
-            FROM `sentences` AS `Sentence` 
-            WHERE `Sentence`.`user_id` = $userId 
-              AND `Sentence`.`lang` IS NULL;
-            "
-        );
-        return $count[0][0]['count'];
-    }
-    
-    /**
-     * Retrieve sentences with unknown language.
-     *
-     * @param int $userId The user id.
-     *
-     * @return array Array of the sentences with uknown languages of the user.
-     */
-    public function sentencesWithUnknownLanguageForUser($userId)
-    {
-        // Need to do custom query because there is no way to say 
-        //  `Sentence`.`lang` = '' OR `Sentence`.`lang` IS NULL
-        // with CakePHP, it seems.
-        // TODO it's possible google => "complex query cakephp"
-        $userId = Sanitize::paranoid($userId);
-        $sentences = $this->query(
-            "
-            SELECT * FROM `sentences` AS `Sentence` 
-            WHERE `Sentence`.`user_id` = $userId 
-              AND `Sentence`.`lang` IS NULL
-        "
-        );
-        return $sentences;
-        
-    }
 
     /**
      * get romanization for several sentences

@@ -185,15 +185,7 @@ class PagesController extends AppController
 
         $this->set('sentenceComments', $latestComments);
         $this->set('commentsPermissions', $commentsPermissions);  
-       
-        /*Uknown language's sentences part */
-        if ($isLogged) {  
-            $this->loadModel('Sentence');
-            $nbrUnknownSentences = $this->Sentence->numberOfUnknownLanguageForUser(
-                $userId
-            );
-            $this->set('nbrUnknownSentences', $nbrUnknownSentences);
-        }
+        
         
         /*latest messages part */
         $this->loadModel('Wall');

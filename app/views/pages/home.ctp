@@ -62,34 +62,7 @@ $selectedLanguage = $session->read('random_lang_selected');
         echo $this->element('sentences_statistics');
         ?>
     </div>
-
-    <?php
-    // Warning message prompting the user to specify languages
-    if ($isLogged) {
-
-        if ($nbrUnknownSentences > 0) {
-            echo '<div class="module">';
-            echo '<p class="warning">';
-            __(
-                'WARNING: The language of some the sentences you have added could '.
-                'not be detected. '
-            );
-            echo '</p>';
-            
-            echo '<p class="more_link">';
-            echo $html->link(
-                __('Click here to set the languages', true),
-                array(
-                    "controller" => "sentences",
-                    "action" => "unknown_language"
-                )
-            );
-            echo '</p>';
-            echo '</div>';
-        }
-        $javascript->link(JS_PATH . 'sentences.add_translation.js', false);
-    }
-    ?>
+    
         
     <div class="module">
         <h2><?php __('Latest messages'); ?></h2>

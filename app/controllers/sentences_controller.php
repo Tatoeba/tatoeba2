@@ -723,19 +723,6 @@ class SentencesController extends AppController
         $this->set('lastNumberChosen', $number);
     }
     
-    /**
-     * Display sentences with unknown language to let user
-     * set the language.
-     *
-     * @return void
-     */
-    public function unknown_language()
-    {
-        $sentences = $this->Sentence->sentencesWithUnknownLanguageForUser(
-            $this->Auth->user('id')
-        );
-        $this->set('unknownLangSentences', $sentences);
-    }
     
     /**
      * Save languages for unknown language page.
