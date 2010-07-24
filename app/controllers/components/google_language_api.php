@@ -124,11 +124,13 @@ class GoogleLanguageApiComponent extends Object
             case 'ro' :     return 'ron';
             case 'ru' :     return 'rus';
             case 'sk' :     return 'slk';
+            case 'sa' :     return 'san';
             case 'sq' :     return 'sqi';
             case 'sv' :     return 'swe';
             case 'sr' :     return 'srp';
             case 'tr' :     return 'tur';
             case 'ug' :     return 'uig';
+            case 'ur' :     return 'urd';
             case 'uk' :     return 'ukr';
             case 'uz' :     return 'uzb';
             case 'vi' :     return 'vie';

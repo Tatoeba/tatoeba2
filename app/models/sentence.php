@@ -59,6 +59,7 @@ class Sentence extends AppModel
         'uig', 'uzb', 'bre', 'ron', 'non',
         'srp', 'yid', 'tat', 'pes', 'nan',
         'eus', 'slk', 'dan', 'hye', 'acm',
+        'san', 'urd',
         null
         );    
     public $validate = array(
