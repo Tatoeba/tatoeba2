@@ -1207,7 +1207,7 @@ class Sentence extends AppModel
     public function saveNewSentence($text, $lang, $userId)
     {
         $data['Sentence']['id'] = null;
-        $data['Sentence']['text'] = $text;
+        $data['Sentence']['text'] = trim($text);
         $data['Sentence']['lang'] = $lang;
         $data['Sentence']['user_id'] = $userId;
         $sentenceSaved = $this->save($data);
