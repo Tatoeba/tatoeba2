@@ -309,7 +309,7 @@ $this->pageTitle = 'Tatoeba - ' . __("What's new", true);
                 <ul>
                     <li>
                         There are many sentences in Tatoeba that do not have an owner. 
-                        These sentencse can be adopted.
+                        These sentences can be adopted.
                     </li>
                     <li>
                         If you notice a mistake in a sentence that is not owned by 
