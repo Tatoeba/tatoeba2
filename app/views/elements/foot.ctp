@@ -60,14 +60,6 @@ if (isset($this->params['lang'])) {
     <li>
         <?php
         echo $html->link(
-            __('Tatoeba Blog', true),
-            'http://blog.tatoeba.org'
-        );
-        ?>
-    </li>
-    <li>
-        <?php
-        echo $html->link(
             __('Downloads', true),
             array(
                 "controller" => 'pages',
@@ -94,6 +86,17 @@ if (isset($this->params['lang'])) {
             array(
                 "controller" => 'pages',
                 "action" => 'tatoeba_team_and_credits'
+            )
+        );
+        ?>
+    </li>
+    <li>
+        <?php
+        echo $html->link(
+            __('FAQ', true),
+            array(
+                "controller" => 'pages',
+                "action" => 'faq'
             )
         );
         ?>
