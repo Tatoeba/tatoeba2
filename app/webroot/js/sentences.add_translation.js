@@ -70,7 +70,7 @@ $(document).ready(function() {
          */
         function unbind(){
             $("#_" + sentenceId + "_submit").unbind('click');
-            $("#translation_for_" + sentenceId + " div input").unbind('keypress');
+            $("#_" + sentenceId + "_text").unbind('keypress');
             $("#_" + sentenceId + "_cancel").unbind('click');
         }
         
