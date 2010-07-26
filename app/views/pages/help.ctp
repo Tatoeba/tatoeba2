@@ -35,6 +35,14 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
     
     <div class="module">
         <h2><?php __('Need more help?'); ?></h2>
+        <p>
+        <?php 
+        echo sprintf(
+            __('You can check out the <a href="%s">FAQ</a>.', true),
+            $html->url(array('controller' => 'pages', 'action' => 'faq'))
+        );
+        ?>
+        </p>
         <p><?php
            __(
                'If you cannot find the answer to your question, do not hesitate '.

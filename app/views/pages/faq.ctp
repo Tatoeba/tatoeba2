@@ -31,7 +31,7 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
 <div id="annexe_content">
     <div class="module">
     <h2>Something not clear?</h2>
-    <p>In any of the answers here are not clear, let us know, we'll try to reformulate.</p>
+    <p>If any of the answers here are not clear, let us know, we'll try to reformulate.</p>
     </div>
 </div>
     

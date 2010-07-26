@@ -46,16 +46,26 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
     <div class="module" >
         <h2><?php __('Tips'); ?></h2>
         <p>
-            <?php
+        <?php
+        __(
+            'Here you can ask general questions like how to use Tatoeba, ' .
+            'report bugs or strange behaviors, or simply socialize with the'.
+            ' rest of the community.'
+        );
+        ?>
+        </p>
+        
+        <p>
+        <?php
+        echo sprintf(
             __(
-                'Here you can ask general questions like how to use Tatoeba, ' .
-                'report bugs or strange behaviors, or simply socialize with the'.
-                ' rest of the community.'
-            );
-            ?>
-         </p>
-
-        <p><?php __("Have fun! Don't be shy!"); ?></p>
+                'Before asking a question, '.
+                'make sure to read the <a href="%s">FAQ</a>.', true
+            ),
+            $html->url(array('controller' => 'pages', 'action' => 'faq'))
+        );
+        ?>
+        </p>
     </div>
 
     <div class="module" >
