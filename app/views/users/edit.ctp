@@ -35,6 +35,7 @@
  * @link     http://tatoeba.org
  */
 
+$userId = $form->value('User.id');
 ?>
 <div class="editUser">
 <div class="actions">
@@ -45,10 +46,10 @@ echo $html->link(
     'Delete',
     array(
         'action' => 'delete',
-        $form->value('User.id')
+        $userId
     ),
     null,
-    sprintf('Are you sure you want to delete # %s?', $form->value('User.id'))
+    sprintf('Are you sure you want to delete # %s?', $userId)
 );
 ?>
         </li>
@@ -58,16 +59,28 @@ echo $html->link(
     </ul>
 </div>
 
-<?php echo $form->create('User'); ?>
-    <fieldset>
-         <legend><?php echo 'Edit User'; ?></legend>
-<?php
-echo $form->input('id');
-echo $form->input('username');
-echo $form->input('email');
-echo $form->input('lang');
-echo $form->input('group_id');
+<?php 
+// HACK / quick fix
+echo '<form id="UserEditForm" method="post" action="/eng/users/edit/'.$userId.'">';
+// Because...
+//   echo $form->create('User'); 
+// will echo this:
+//   <form id="UserEditForm" method="post" action="/users/edit/218/lang:eng">
+// And that doesn't work because the URL doesn't start with a language.
+// So until someone figures out what's wrong, I'm just hardcoding the HTML...
+
+$form->create('User'); // But we still need to call $form->create() 
+                       // to retrieve the user data...
 ?>
+    <fieldset>
+    <legend><?php echo 'Edit User'; ?></legend>
+    <?php
+    echo $form->input('id');
+    echo $form->input('username');
+    echo $form->input('email');
+    echo $form->input('lang');
+    echo $form->input('group_id');
+    ?>
     </fieldset>
 <?php echo $form->end('Submit'); ?>
 </div>
