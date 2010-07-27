@@ -117,20 +117,6 @@ if (!$session->read('Auth.User.id')) {
                 );
                 ?>
                 </li>
-
-                <li>
-                <?php
-                echo sprintf(
-                    __("<a href='%s'>Sentences with undetected language</a>", true),
-                    $html->url(
-                        array(
-                            "controller" => "sentences",
-                            "action" => "unknown_language"
-                        )
-                    )
-                );
-                ?>
-                </li>
             </ul>
         </div>
         <div class="module">
