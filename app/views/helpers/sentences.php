@@ -226,9 +226,10 @@ class SentencesHelper extends AppHelper
             echo $this->Form->textarea(
                 'translation',
                 array(
-                    'label' => '',
                     'id' => '_'.$id.'_text',
-                    'class' => 'addTranslationsTextInput'
+                    'class' => 'addTranslationsTextInput',
+                    'rows' => 2,
+                    'cols' => 90,
                 )
             );
             
