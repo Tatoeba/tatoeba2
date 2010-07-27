@@ -20,10 +20,13 @@
 /* Ruby characters */
 function furigana(){
     var reg = new RegExp("(([^\\[ ])*)\\[(([^\\]])*)\\]", "gi");
-    var content = $(".furigana").html();
-    $(".furigana").html(content.replace(
-        reg,"<ruby><rb>$1</rb><rp>(</rp><rt>$3</rt><rp>)</rp></ruby>"
-    ));
+    
+    $(".furigana").each(function(){
+        var content = $(this).html();
+        $(this).html(content.replace(
+            reg,"<ruby><rb>$1</rb><rp>(</rp><rt>$3</rt><rp>)</rp></ruby>"
+        ));
+    });
 }
 
 $(document).ready(function(){
