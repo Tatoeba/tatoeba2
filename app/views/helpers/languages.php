@@ -104,6 +104,9 @@ class LanguagesHelper extends AppHelper
             'acm' => __('Iraqi Arabic', true),
             'san' => __('Sanskrit', true),
             'urd' => __('Urdu', true),
+            'hin' => __('Hindi', true),
+            'ben' => __('Bengali', true),
+            'cycl' => __('CycL', true),
             // TODO to change when shanghainese will not be the only wu dialect
         );
         asort($languages);
