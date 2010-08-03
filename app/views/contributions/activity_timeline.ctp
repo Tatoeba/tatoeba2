@@ -53,10 +53,10 @@ foreach ($stats as $stat) {
     $percent = $total / $maxTotal;
     $width = intval($percent * $maxWidth);
     
-    if ($total > 200) {
+    if ($total > 1000) {
         $color = 10;
     } else {
-        $color = intval($total/20);
+        $color = intval($total/100);
     }
     
     echo '<tr>';
