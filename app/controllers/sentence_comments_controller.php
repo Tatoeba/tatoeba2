@@ -106,8 +106,9 @@ class SentenceCommentsController extends AppController
         $permissions = array();
         
         if ($langFilter != 'und') {
-            $this->paginate['conditions'] = array("Sentence.lang" 
-                                                => $langFilter);
+            $this->paginate['conditions'] = array(
+                "Sentence.lang" => $langFilter
+            );
         }
         
         $latestComments = $this->paginate();
