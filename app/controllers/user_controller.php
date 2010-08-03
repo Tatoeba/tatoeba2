@@ -329,7 +329,7 @@ class UserController extends AppController
 
                 if ($this->User->save(array('User' => $aToSave))) {
                     $this->Session->setFlash(
-                        __('Your information have been updated.', true)
+                        __('Your information has been updated.', true)
                     );
                 } else {
                     $this->Session->setFlash(
