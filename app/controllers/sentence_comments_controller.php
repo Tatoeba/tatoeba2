@@ -95,14 +95,21 @@ class SentenceCommentsController extends AppController
     }
     
     /**
-     * Display latest comments.
+     * Display latest comments. Can be filtered by the language of sentences.
+     * 
+     * @param string $langFilter To filter comments by the language of sentences
      * 
      * @return void
      */
-    public function index()
+    public function index($langFilter = 'und')
     {
         $permissions = array();
-
+        
+        if ($langFilter != 'und') {
+            $this->paginate['conditions'] = array("Sentence.lang" 
+                                                => $langFilter);
+        }
+        
         $latestComments = $this->paginate();
 
         $permissions = $this->Permissions->getCommentsOptions(

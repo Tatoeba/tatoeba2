@@ -38,6 +38,10 @@
 $this->pageTitle = 'Tatoeba - ' . __('Comments on sentences', true);
 ?>
 
+<div id="annexe_content">
+    <?php $commonModules->createFilterByLangMod(); ?>
+</div>
+
 <div id="main_content">
     <div class="module">
         <h2>
