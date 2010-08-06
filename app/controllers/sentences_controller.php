@@ -547,6 +547,22 @@ class SentencesController extends AppController
         $filterAudioOnly = "indifferent"
     ) {
 
+
+        // TODO it's a hack need to find  in contribute.ctp how to make
+        // a form who directly forge a cakephp-compliant url
+        if (isset($_POST['data']['Sentence']['into'])) {
+            $this->redirect(
+                array(
+                    "controller" => "sentences",
+                    "action" => "show_all_in",
+                    $_POST['data']['Sentence']['into'],
+                    'none',
+                    'none',
+                    'indifferent'
+                )
+            );
+        }
+
         $this->helpers[] = 'ShowAll'; 
         
         $model = 'Sentence';
