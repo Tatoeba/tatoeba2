@@ -532,15 +532,13 @@ class SentencesHelper extends AppHelper
                     'WARNING : this is automatically generated '.
                     'and is not always reliable. Click to learn more.', true
                 );
-                echo $this->Html->link(
-                    $romanization,
-                    'http://blog.tatoeba.org/2010/04/japanese-romanization-in-tatoeba-now.html',
-                    array(
-                        'class' => 'romanization furigana',
-                        'title' => $title
-                    )
-                );
+                ?>
                 
+                <div class="romanization furigana" title="<?php echo $title; ?>">
+                <?php echo $romanization; ?>
+                </div>
+                
+                <?php
             } else {
             
                 echo '<div class="romanization">';
