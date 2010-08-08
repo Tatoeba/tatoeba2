@@ -165,6 +165,19 @@ $languages = array(
     'srp' => 'Serbian',
     'tat' => 'Tartar',
     'yid' => 'Yiddish',
+    
+    'pes' => 'Persian',
+    'nan' => 'Teochew',
+    'eus' => 'Basque',
+    'slk' => 'Slovak',
+    'dan' => 'Danish',
+    'hye' => 'Armenian',
+    'acm' => 'Iraqi Arabic',
+    'san' => 'Sanskrit',
+    'urd' => 'Urdu',
+    'hin' => 'Hindi',
+    'ben' => 'Bengali',
+    'cycl' => 'CycL',
  
 );
 
