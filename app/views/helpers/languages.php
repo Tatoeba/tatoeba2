@@ -316,6 +316,7 @@ class LanguagesHelper extends AppHelper
             "uig",
             "pes",
             "acm",
+            "urd",
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
