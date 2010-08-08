@@ -109,7 +109,7 @@ class SentenceNotTranslatedIn extends AppModel
                 WHERE s.lang = '$source' 
               ) 
             ORDER BY Sentence.id DESC
-            LIMIT $limitLow,$limitHigh;
+            LIMIT $limitLow,$limit;
             ";
  
 
