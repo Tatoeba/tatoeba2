@@ -71,7 +71,7 @@ class SentenceNotTranslatedIn extends AppModel
          $page = 1;
         }
          
-
+        
         $limitHigh = $limit * $page;
         $limitLow = $limitHigh - $limit; 
 
@@ -93,7 +93,7 @@ class SentenceNotTranslatedIn extends AppModel
                 WHERE s.lang = '$source' AND t.lang = '$target' 
               )
             ORDER BY Sentence.id DESC
-            LIMIT $limitLow,$limitHigh;
+            LIMIT $limitLow,$limit;
             ";
       
         // if we want only orphan sentences 
