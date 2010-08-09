@@ -509,7 +509,7 @@ class User extends AppModel
             ),
             'Ex' => array(
                 array('TAN Kevin', 'keklesurvivant'),
-                array('ERNALSTEEN Jonathan', '9h0ost')
+                array('9h0ost', '9h0ost')
             ),
             'Translator' => array(
                 array('FU Congcong 傅琮琮', 'fucongcong', __('Chinese', true)),
