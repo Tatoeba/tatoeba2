@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+ 
+$query = Sanitize::html($query);
 ?>
 
 <div class="module">
