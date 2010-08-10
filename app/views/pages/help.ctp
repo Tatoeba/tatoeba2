@@ -90,7 +90,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
         </p>
         <?php
         __(
-            'Enter a nickname, enter "tatoeba" for the channel, and click '.
+            'Enter a nickname, enter "#tatoeba" for the channel, and click '.
             'on "connect". That\'s it!'
         );
         ?>
