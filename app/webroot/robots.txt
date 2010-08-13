@@ -6,7 +6,10 @@ Disallow: /spa/users
 Disallow: /chi/users
 Disallow: /deu/users
 Disallow: /ita/users
+Disallow: /*/users
 
+Disallow: *sentences/of_user/*
+Disallow: */contributions/statistics
 Disallow: /*.css$
 Disallow: /*.js$
 
