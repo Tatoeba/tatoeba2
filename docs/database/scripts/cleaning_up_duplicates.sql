@@ -30,25 +30,39 @@ BEGIN
 
   REPEAT
     FETCH curseur_ids INTO temp_id;
-    IF done = 0 THEN        select duplicate_text_id ;
+    IF done = 0 THEN
+    
+      select duplicate_text_id ;
 
         -- mettre à jour la relation   phrase/traduction --
       select 'update text -> translation' ;
       update sentences_translations
       set    sentence_id = duplicate_text_id
       where  sentence_id = temp_id;
-      
+ 
+      IF done = 1 THEN
+        SET done = 0;
+      END IF;
 
       select 'update translation -> text' ;
       update sentences_translations
       set    translation_id  = duplicate_text_id
       where  translation_id  = temp_id;
 
+      IF done = 1 THEN
+        SET done = 0;
+      END IF;
+
         -- mettre à jour sentence annotation --
       select 'update text annotations' ;
       update sentence_annotations
       set    sentence_id  = duplicate_text_id
       where  sentence_id  = temp_id;
+
+      IF done = 1 THEN
+        SET done = 0;
+      END IF;
+
 
     -- mettre à jour sentence_comments --
       select 'update text comments' ;
