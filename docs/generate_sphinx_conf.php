@@ -178,7 +178,9 @@ $languages = array(
     'hin' => 'Hindi',
     'ben' => 'Bengali',
     'cycl' => 'CycL',
- 
+    'cat' => 'Catalan',
+    'kaz' => 'Kazakh',
+    'lvs' => 'Latvian',
 );
 
 $languageWithStemmer = array(
