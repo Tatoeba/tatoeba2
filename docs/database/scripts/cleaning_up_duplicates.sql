@@ -1,6 +1,6 @@
 Delimiter | 
 
-DROP PROCEDURE erase_and_relink_duplicate_sentence |
+DROP PROCEDURE IF EXISTS erase_and_relink_duplicate_sentence |
 
 CREATE PROCEDURE erase_and_relink_duplicate_sentence(IN duplicate_text_id INT(11), IN duplicate_lang VARCHAR(4) )
 BEGIN
@@ -26,7 +26,7 @@ BEGIN
 
   REPEAT
     FETCH curseur_ids INTO temp_id;
-    IF done = 0 THEN        select duplicate_text_id ;
+    IF done = 0 THEN        select duplicate_text_id ;
 
         -- mettre à jour la relation   phrase/traduction --
       select 'update text -> translation' ;
@@ -67,6 +67,17 @@ BEGIN
         SET done = 0;
       END IF;
 
+    -- mettre à jour relation phrase -> liste --
+     select 'update tags' ;
+      update tags_sentences
+      set    sentence_id  = duplicate_text_id
+      where  sentence_id  = temp_id;
+
+      IF done = 1 THEN
+        SET done = 0;
+      END IF;
+
+
     -- mettre à jour sentence_annotations --
      select 'update sentence_annotations' ;
       update sentence_annotations 
@@ -106,7 +117,7 @@ END |
 /******/
 
 
-DROP PROCEDURE erase_and_relink_all_duplicate_sentences |
+DROP PROCEDURE IF EXISTS erase_and_relink_all_duplicate_sentences |
 CREATE PROCEDURE erase_and_relink_all_duplicate_sentences()
 BEGIN
 
@@ -128,14 +139,22 @@ BEGIN
 
       SELECT id INTO duplicate_text_id FROM sentences 
         WHERE text = duplicate_text AND lang = duplicate_lang
-            AND user_id IS NOT NULL 
+            AND user_id IS NOT NULL AND hasaudio != 'no' 
         ORDER BY created LIMIT 1 ;
       -- hack but no way, if a select ... into ...  return no result --
       -- it produce also the '02000' sql state (which is the same used --
       -- handle the end of cursor ...  --
       IF done = 1 THEN
         SET done = 0;
-      -- si tout les duplicats n'appartiennent à personne -
+
+        -- si aucun duplicat n'a d'audio -
+        SELECT id INTO duplicate_text_id FROM sentences 
+          WHERE text = duplicate_text AND lang = duplicate_lang
+            AND user_id IS NOT NULL  
+          ORDER BY created LIMIT 1 ;
+        IF done = 1 THEN
+          SET done = 0;
+          -- si tout les duplicats n'appartiennent à personne -
           SELECT id INTO duplicate_text_id FROM sentences 
             WHERE text = duplicate_text AND lang = duplicate_lang
             ORDER BY created LIMIT 1 ;
@@ -157,4 +176,4 @@ BEGIN
             SELECT lang , count(*) FROM sentences GROUP BY lang;
         CALL create_nbr_sentences_of_list();
   COMMIT ;
-END |Delimiter ;
+END |Delimiter ;
