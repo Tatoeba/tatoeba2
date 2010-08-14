@@ -107,6 +107,9 @@ class LanguagesHelper extends AppHelper
             'hin' => __('Hindi', true),
             'ben' => __('Bengali', true),
             'cycl' => __('CycL', true),
+            'cat' => __('Catalan', true),
+            'kaz' => __('Kazakh', true),
+            'lvs' => __('Latvian', true),
             // TODO to change when shanghainese will not be the only wu dialect
         );
         asort($languages);
