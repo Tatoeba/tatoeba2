@@ -1,7 +1,7 @@
--- TODO for the moment the case sentences has an audio but no owner is not handle 
--- TODO for the moment we don't make the difference between shtooka / from user audio
---      so a "user" audio can be kept even if a shtooka audio exist, but as no audio are removed
---      we should be able to handle manually this
+-- TODO for the moment the case sentences has an audio but no owner is not handle --
+-- TODO for the moment we don't make the difference between shtooka / from user audio --
+--      so a "user" audio can be kept even if a shtooka audio exist, but as no audio are removed --
+--      we should be able to handle manually this --
 Delimiter | 
 
 DROP PROCEDURE IF EXISTS erase_and_relink_duplicate_sentence |
@@ -38,7 +38,6 @@ BEGIN
       set    sentence_id = duplicate_text_id
       where  sentence_id = temp_id;
       
-
 
       select 'update translation -> text' ;
       update sentences_translations
@@ -162,6 +161,7 @@ BEGIN
           SELECT id INTO duplicate_text_id FROM sentences 
             WHERE text = duplicate_text AND lang = duplicate_lang
             ORDER BY created LIMIT 1 ;
+        END IF;
       END IF;
 
       SELECT duplicate_text_id ;
@@ -180,4 +180,6 @@ BEGIN
             SELECT lang , count(*) FROM sentences GROUP BY lang;
         CALL create_nbr_sentences_of_list();
   COMMIT ;
-END |Delimiter ;
+END |
+
+Delimiter ;
