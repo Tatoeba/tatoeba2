@@ -1,3 +1,7 @@
+-- TODO for the moment the case sentences has an audio but no owner is not handle 
+-- TODO for the moment we don't make the difference between shtooka / from user audio
+--      so a "user" audio can be kept even if a shtooka audio exist, but as no audio are removed
+--      we should be able to handle manually this
 Delimiter | 
 
 DROP PROCEDURE IF EXISTS erase_and_relink_duplicate_sentence |
