@@ -14,7 +14,6 @@ BEGIN
   DECLARE done INT DEFAULT 0;
   DECLARE temp_id INT;
 
-
   DECLARE curseur_ids CURSOR FOR
         select id  from sentences
         where text = (
@@ -175,6 +174,8 @@ BEGIN
           SELECT id INTO duplicate_text_id FROM sentences 
             WHERE text = duplicate_text AND lang = duplicate_lang
             ORDER BY created LIMIT 1 ;
+
+          SET done = 0;
         END IF;
       END IF;
 
