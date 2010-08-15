@@ -88,7 +88,9 @@ index common_index
                         U+5d0..U+5ea, U+5f0..U+5f2,\
                         U+410..U+42F->U+430..U+44F, U+430..U+44F,\
                         U+10a0..U+10c5->U+2d00..U+2d25, U+10d0..U+10fa, U+10fc, U+2d00..U+2d25,\
-                        U+C0..U+D6->U+E0..U+F6, U+D8..U+DE->U+F8..U+FE, U+178->U+FF, U+FF, U+100..U+177/2, U+179..U+17E/2
+                        U+C0..U+D6->U+E0..U+F6, U+D8..U+DE->U+F8..U+FE, U+178->U+FF, U+FF, U+100..U+177/2, U+179..U+17E/2,\
+                        U+980..U+9FC,\
+                        U+900..U+97F, U+A8E0..U+A8FB
 
     docinfo                 = extern
     charset_type            = utf-8
