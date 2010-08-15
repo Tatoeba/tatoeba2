@@ -264,6 +264,18 @@ class LanguagesHelper extends AppHelper
             'srp' => __('Serbian', true),
             'tat' => __('Tartar', true),
             'yid' => __('Yiddish', true),
+            'pes' => __('Persian', true),
+            'nan' => __('Teochew', true),
+            'eus' => __('Basque', true),
+            'slk' => __('Slovak', true),
+            'dan' => __('Danish', true),
+            'hye' => __('Armenian', true),
+            'acm' => __('Iraqi Arabic', true),
+            'san' => __('Sanskrit', true),
+            'urd' => __('Urdu', true),
+            'hin' => __('Hindi', true),
+            'ben' => __('Bengali', true),
+            'cycl' => __('CycL', true),
         );
         asort($languages);
         array_unshift($languages, array('und' => __('Any', true)));
