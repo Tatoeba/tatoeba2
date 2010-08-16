@@ -482,7 +482,7 @@ class SentencesController extends AppController
         
         
         $query = $_GET['query'];    
-        
+                
         $from = 'und'; 
         if (isset($_GET['from'])) {
             $from = $_GET['from'];
@@ -499,7 +499,14 @@ class SentencesController extends AppController
         $this->Session->write('search_query', $query);
         $this->Session->write('search_from', $from);
         $this->Session->write('search_to', $to);
-       
+
+        // replace strange space
+        $query = str_replace(
+            array('　', ' '),
+            ' ',
+            $query
+        );
+ 
         $sphinx = array(
             'index' => array($from . "_" . $to . '_index'),
             'matchMode' => SPH_MATCH_EXTENDED2, 
