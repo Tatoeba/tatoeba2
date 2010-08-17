@@ -224,45 +224,27 @@ class Sentence extends AppModel
     public function getRandomId($lang = null)
     {
         /*
-        ** this query take constant time when lang=null
-        ** and linear time when lang is set, so do not touch this request
+        ** this query take constant time, so do not touch this request
         */
-        if ( $lang == "und" ) {
-            $lang = null ;
+
+       
+        $lang = Sanitize::paranoid($lang);
+          
+        $table = 'sentences'; 
+        $select = 'SELECT Sentence.id FROM ';
+        if ($lang != null && $lang != 'und') {
+           $select = 'SELECT Sentence.sentence_id as id FROM ';
+           $table  = 'random_sentence_id_' . $lang; 
         }
-        
-        if ($lang == 'jpn' OR $lang == 'eng') {
-        
-            $min = ($lang == 'eng') ? 15700 : 74000;
-            $max = ($lang == 'eng') ? 74000 : 127300;
-            $randId =  rand($min, $max);
-            $query = ( "SELECT Sentence.id FROM sentences AS Sentence
-                WHERE Sentence.id 
-                    IN (". ($randId - 1) .",". $randId . ",". ($randId +1) . ")
-                AND Sentence.lang = '$lang'
-                LIMIT 1 ;
-                ;"
-            );
 
-
-        } elseif ( $lang != null AND $lang !='any' ) {
-            
-            $query= ("SELECT Sentence.id FROM sentences AS Sentence
-                WHERE Sentence.lang = '$lang'
-                ORDER BY RAND(".rand(). ") LIMIT  1"
-                );
-
-        } else {
-
-            $query = 'SELECT Sentence.id  FROM sentences AS Sentence
-                JOIN ( 
-                    SELECT (
-                        RAND('. rand() .') * (SELECT MAX(id) FROM sentences)
-                        ) AS id
-                    ) AS r2
-                WHERE Sentence.id >= r2.id
-                ORDER BY Sentence.id ASC LIMIT 1' ;
-        }
+        $query = $select . $table .' AS Sentence
+            JOIN ( 
+                SELECT (
+                    RAND('.rand().') * (SELECT MAX(id) FROM '.$table.')
+                    ) AS id
+                ) AS r2
+            WHERE   Sentence.id >= r2.id
+            ORDER BY Sentence.id ASC LIMIT 1' ;
 
         $results = $this->query($query);
         
@@ -285,30 +267,13 @@ class Sentence extends AppModel
             return $ids ;
         }
         
-        // if we don't a specific lang
-        if ($lang == null OR $lang == "any" OR $lang == 'und') { 
-
-            $query= "SELECT Sentence.id FROM sentences AS Sentence
-                ORDER BY RAND(". rand() .") LIMIT  $numberOfIdWanted";
-        
-       
-        } else { // restrict to a specific lang
-
-            $query= "SELECT Sentence.id FROM sentences AS Sentence
-            WHERE Sentence.lang = '$lang'
-            ORDER BY RAND(".rand(). ") LIMIT  $numberOfIdWanted";
-                                    
-        }
-
-        $results =  $this->query($query);
 
         // transform results in simple array of ids
-        foreach ($results as $i=>$result) {
-            $ids[$i] = $result['Sentence']['id'];
+        for ($i = 0; $i < $numberOfIdWanted; $i++) {
+            $ids[] = $this->getRandomId($lang); 
         }
          
-        
-        return $ids ; 
+        return array_unique($ids) ; 
 
     }
 

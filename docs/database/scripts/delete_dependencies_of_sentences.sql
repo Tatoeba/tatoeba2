@@ -1,3 +1,4 @@
+-- TODO to delete this is now handle in the generate_rand_table.php
 -- if decrease_number_of_sentence_of_list exist kill them (it's the ancestor)
 DROP TRIGGER IF EXISTS decrease_number_of_sentence_of_list ;
 DROP TRIGGER IF EXISTS delete_dependencies_of_sentences ;
