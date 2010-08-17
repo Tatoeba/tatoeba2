@@ -6,7 +6,7 @@ CREATE PROCEDURE wwwjdic_issues_fix()
 
 BEGIN
     -- Delete sentences with indices linked to a deleted sentence
-    DELETE sa.*
+    DELETE sa
     FROM sentence_annotations sa
       LEFT JOIN sentences s ON sa.sentence_id = s.id
     WHERE s.id IS NULL;
