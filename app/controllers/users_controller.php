@@ -292,7 +292,7 @@ class UsersController extends AppController
         }
         
         // Did not answer the quiz properly
-        $correctAnswer = substr($this->data['User']['email'], 0, 5);
+        $correctAnswer = mb_substr($this->data['User']['email'], 0, 5, 'UTF-8');
         if ($this->data['User']['quiz'] != $correctAnswer) {
             $this->Session->setFlash(
                 __('Wrong answer to the question.', true)
