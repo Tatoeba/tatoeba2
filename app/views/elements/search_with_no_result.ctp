@@ -47,48 +47,16 @@ $query = Sanitize::html($query);
         ?>
         <p>
         <?php
-        __('Feel free to submit a sentence with the words you were searching.');
+        echo sprintf(
+            __(
+                'Feel free to <a href="%s">submit a sentence</a> '.
+                'with the words you were searching.', true
+            ),
+            $html->url(array('controller' => 'pages', 'action' => 'contribute'))
+        );
         ?>
         </p>
-        
         <?php
-        // TODO Create a helper or something for this form. We find also it in the 
-        // "Contribute" section.
-        echo $form->create(
-            'Sentence', 
-            array("action" => "add", "id" => "newSentence")
-        );
-        echo $form->input(
-            'text', 
-            array(
-                "label" => __('Sentence : ', true),
-                "type" => "text"
-            )
-        );
-        
-        $langArray = $languages->translationsArray();
-        $preSelectedLang = $session->read('contribute_lang');
-
-        if (empty($preSelectedLang)) {
-            $preSelectedLang = 'auto';
-        }
-        ?>
-        
-        <div class="languageSelection">
-        <?php
-        echo $form->select(
-            'contributionLang',
-            $langArray,
-            $preSelectedLang,
-            array("class"=>"translationLang"),
-            false
-        );
-        ?>
-        </div>
-        
-        <?php
-        echo $form->end('OK');
-        
     } else {
 
         __('If you are interested, please register.');
