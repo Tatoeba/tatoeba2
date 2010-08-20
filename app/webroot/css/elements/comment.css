@@ -57,3 +57,17 @@
 .comments .body .sentence a {
     color: #878787;
 }
+
+
+/*
+ * Comment form
+ */
+#SentenceCommentSaveForm {
+    background: #F1F1F1;
+    border: 1px solid #CCC;
+    padding: 20px;
+}
+
+#SentenceCommentSaveForm textarea {
+    width: 100%;
+}

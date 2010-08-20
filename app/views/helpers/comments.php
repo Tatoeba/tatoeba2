@@ -244,7 +244,7 @@ class CommentsHelper extends AppHelper
             )
         );
         
-        echo $this->Form->end('Submit');
+        echo $this->Form->end('Submit comment');
     }
 
 }
