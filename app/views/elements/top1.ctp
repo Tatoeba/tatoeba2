@@ -25,47 +25,65 @@
  * @link     http://tatoeba.org
  */
 
-$lang = 'eng';
-if (isset($this->params['lang'])) {
-    Configure::write('Config.language', $this->params['lang']);
-    $lang = $this->params['lang'];
+// Detecting language for "browse by language"
+$currentLanguage = $session->read('random_lang_selected');
+if ($currentLanguage == 'und') {
+    $currentLanguage = $this->params['lang'];
 }
 
 // array containing the elements of the menu : $title => $route
 $menuElements = array(
     __('Home', true) => array(
-        "controller" => "pages",
-        "action" => "home"
+        "route" => array(
+            "controller" => "pages",
+            "action" => "home"
+        )
     ),
     __('Browse', true) => array(
-        "controller" => "sentences",
-        "action" => "show",
-        "random"
+        "route" => array(
+            "controller" => "sentences",
+            "action" => "show",
+            "random"
+        ),
+        "sub-menu" => array(
+            __('Browse by language', true) => array(
+                "controller" => "sentences",
+                "action" => "show_all_in",
+                $currentLanguage, "none", "none"
+            ),
+            __('Browse by list', true) => array(
+                "controller" => "sentences_lists",
+                "action" => "index"
+            ),
+            __('Browse by tag', true) => array(
+                "controller" => "tags",
+                "action" => "view_all"
+            )
+        )
     ),
-    __('Lists', true) => array(
-        "controller" => "sentences_lists",
-        "action" => "index"
-    ),
-    /*,__('Conversations',true) => array(
-        "controller" => "conversations",
-        "action" => "index"
-    ),
-    */
     __('Contribute', true) => array(
-        "controller" => "pages",
-        "action" => "contribute"
+        "route" => array(
+            "controller" => "pages",
+            "action" => "contribute"
+        )
     ),
     __('Members', true) => array(
-        "controller" => "users",
-        "action" => "all"
+        "route" => array(
+            "controller" => "users",
+            "action" => "all"
+        )
     ),
     __('Wall', true) => array(
-        "controller" => "wall",
-        "action" => "index"
+        "route" => array(
+            "controller" => "wall",
+            "action" => "index"
+        )
     ),
     __('What\'s new', true) => array(
-        "controller" => "pages",
-        "action" => "whats_new"
+        "route" => array(
+            "controller" => "pages",
+            "action" => "whats_new"
+        )
     )
 );
 
@@ -111,29 +129,51 @@ $menuElements = array(
         // current path controller
         $controller = $this->params['controller'];
         
-        foreach ($menuElements as $title => $route) {
+        foreach ($menuElements as $title => $data) {
             
-            if ($route['controller'] == 'pages' && $route['action'] == 'whats_new') {
-                $cssClass = 'whatsNewItem';
-            } else {
-                $cssClass = 'menuItem';
-            }
+            $route = $data['route'];
+            $cssClass = '';
             
             // General case
             if ($controller == $route['controller'] && $action == $route['action']) {
-                $cssClass .= ' show';
+                $cssClass .= 'show';
             }
             
             // Special case for homepage
             if ($controller == 'pages' && $action == 'index'
                 && $route['action'] == 'home') {
-                $cssClass .= ' show';
+                $cssClass .= 'show';
             }
             
             // displaying <li> element
-            echo "<li>";
-            echo $html->link($title, $route, array("class"=>$cssClass));
-            echo '</li>';
+            ?>
+            <li class='menuItem'>
+                <?php
+                if (!empty($data['sub-menu'])) {
+                    $title .= $html->image('arrow_down.png');
+                }
+                echo $html->link(
+                    $title, 
+                    $route, 
+                    array(
+                        "class" => $cssClass,
+                        "escape" => false
+                    )
+                );
+                
+                // Sub-menu
+                if (!empty($data['sub-menu'])) {
+                    echo "<ul class='sub-menu'>";
+                    foreach ($data['sub-menu'] as $title2 => $route2) {
+                        echo '<li>';
+                        echo $html->link($title2, $route2);
+                        echo '</li>';
+                    }
+                    echo "</ul>";
+                }
+                ?>
+            </li>
+            <?php
         }
         ?>
         </ul>

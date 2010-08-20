@@ -79,9 +79,8 @@ dt {
 }
 
 #top_menu {
-    width: 950px;
+    width: 960px;
     margin: auto;
-    padding: 4px;
 }
 
 #top_menu .whatsNewItem {
@@ -97,39 +96,101 @@ dt {
     color: #FB6B10;
 }
 
+#user_menu a {
+    line-height: 30px;
+}
+
 /*
  * Menu (Home, Browse, etc)
  */
-#navigation_menu {
-    max-width: 600px;
+#top_menu ul {
+    height: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
     font-size: 0.9em;
-    text-align: left;
-    margin: 0px;
+}
+
+#top_menu li {
+    float: left;
     padding: 0px;
-    line-height: 24px;
 }
 
-#navigation_menu li {
-    list-style-type: none;
-    display: inline;
-    margin-right: 10px;
+#top_menu li a {
+    display:block;
+    font-weight:normal;
+    line-height:30px;
+    margin:0px;
+    padding:0px 10px;
+    text-align:center;
+    text-decoration:none;
 }
 
-#navigation_menu .show {
-    font-weight: bold;
+#top_menu li a:hover, #top_menu ul li:hover a{
+    background: #86BF5E;
+    color:#FFFFFF;
+    text-decoration:none;
+}
+
+#top_menu li ul{
+    background:#414141;
+    display:none;
+    height:auto;
+    padding:0px;
+    margin:0px;
+    border:0px;
+    position:absolute;
+    width:225px;
+    z-index:200;
+}
+
+#top_menu li:hover ul{
+    display:block;
+}
+
+#top_menu li li {
+    border-top: 1px solid #555;
+    display:block;
+    float:none;
+    margin:0px;
+    padding:0px;
+    width:225px;
+}
+
+#top_menu li:hover li a {
+    background:none;
+}
+
+#top_menu li ul a {
+    display:block;
+    height:30px;
+    font-style:normal;
+    margin:0px;
+    padding:0px 10px 0px 15px;
+    text-align:left;
+}
+
+#top_menu li ul a:hover, #top_menu li ul li:hover a {
+    background:#86BF5E;
+    border:0px;
+    color:#ffffff;
+    text-decoration:none;
+}
+
+#top_menu .show {
     font-size: 1.2em;
+    font-weight: bold;
 }
 
-#navigation_menu li a:hover.whats_new {
-    color: #FB6B10;
+.menuItem img {
+    margin-left: 2px;
 }
-
 
 /* 
  * Interface Language Selector
  */
 #languageSelectionContainer {
-    line-height: 24px;
+    padding-top: 2px;
     float: right;
 }
 
