@@ -124,6 +124,15 @@ class Tag extends AppModel
                      // I'm making it return true for now.
     }
 
+    /**
+     * utility function to transform the human friendly tag
+     * into a url friendly representation, also needed to avoid as much
+     * as possible duplicate
+     * 
+     * @param string $tagName The human friendly tag name to convert
+     *
+     * @return string The url friendly string 
+     */
     private function _tag_to_internal_name($tagName)
     {
         $tagName = trim($tagName);
@@ -179,13 +188,18 @@ class Tag extends AppModel
 
     }
 
-
-    public function getAllTags(){
+    /**
+     * Give all tags ordered by number of sentences they tag
+     *
+     * @return array All the tags
+     */
+    public function getAllTagsOrdered(){
         return $this->find(
             'all',
             array(
                 'fields' => array('name', 'internal_name'),
-                'contain' => array()
+                'contain' => array(),
+                'order' => 'nbrOfSentences DESC',
             )
         );
     }

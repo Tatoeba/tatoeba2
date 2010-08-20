@@ -59,6 +59,8 @@ class TagsController extends AppController
             "show_sentences_with_tag",
             'view_all',
         );
+    
+        $this->Auth->allowedActions = array("*");
     } 
 
     /**
@@ -115,7 +117,7 @@ class TagsController extends AppController
         
         $this->helpers[] = 'Tags';
         
-        $allTags = $this->Tag->getAllTags();
+        $allTags = $this->Tag->getAllTagsOrdered();
         $this->set("allTags", $allTags);
     }
 
