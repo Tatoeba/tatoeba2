@@ -26,7 +26,17 @@
  */
 
 $this->pageTitle = __('Tatoeba: Collecting example sentences', true);
-
+$html->meta(
+    'description', 
+    __(
+        "Search example sentences translated into many languages. ".
+        "Add and translate your own sentences. ".
+        "It's collaborative, open, free, and even addictive.",
+        true
+    ), 
+    array(), 
+    false
+);
 
 $selectedLanguage = $session->read('random_lang_selected');
 ?>
