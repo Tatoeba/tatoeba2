@@ -39,32 +39,6 @@ class AttentionPleaseHelper extends AppHelper
 {
     public function tatoebaNeedsYou()
     {
-        // Note: I don't want to create a CSS for this, it's going to stay only
-        // a few days and it's very specific for Drumbeat.
-        ?>
-        <div class="module">
-            <h2><?php __('Tatoeba needs you!'); ?></h2>
-            <p>
-            If you like what we are doing, then please take 2 minutes.
-            </p>
-            <a 
-                href="https://www.drumbeat.org/project/tatoeba-project"
-                style="display:block; background:#C36931; padding: 5px; color:#FFF">
-            <img 
-                style="float: left; padding: 0px 10px;"
-                src="https://wiki.mozilla.org/images/7/7c/Drumbeat_logo_40x50.png" 
-                alt="Drumbeat" width="40" height="50"
-            /> 
-            <span style="font-size: 1.5em;">Vote for us, on Drumbeat!</span>
-            </a>
-            <p>
-            <strong>NOTE:</strong> You will need to 
-            <a href="http://www.drumbeat.org/user/register" 
-            style="font-weight: bold; color:#C36931;">register on Drumbeat</a> 
-            before you can vote.
-            </p>
-        </div>
-        <?php
     }
 }
 ?>
