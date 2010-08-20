@@ -34,6 +34,7 @@ if (isset($translation)) {
     echo $javascript->link(JS_PATH . 'sentences.change_language.js', true);
     
     $type = 'directTranslation';
+    $isEditable = true;
     
     $sentences->displayGenericSentence(
         $translation, 
@@ -41,7 +42,8 @@ if (isset($translation)) {
         $type, 
         $withAudio, 
         $parentId,
-        $parentOwnerName
+        $parentOwnerName,
+        $isEditable
     );
     
 }

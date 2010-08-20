@@ -149,7 +149,7 @@ class SentencesHelper extends AppHelper
     
     
     /**
-     * Displays group of sentencs with only text, flag and audio button.
+     * Displays group of sentences with only text, flag and audio button.
      *
      * @param array $sentence             Sentence to display.
      * @param array $translations         Translations of the sentence.
@@ -310,8 +310,15 @@ class SentencesHelper extends AppHelper
             $sentenceId, $ownerName, $chineseScript
         );
         
+        $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);
         $this->displayGenericSentence(
-            $sentence, $ownerName, 'mainSentence', $withAudio
+            $sentence, 
+            $ownerName, 
+            'mainSentence', 
+            $withAudio,
+            null,
+            null,
+            $isEditable
         );
     }
     
@@ -343,7 +350,8 @@ class SentencesHelper extends AppHelper
         $type, 
         $withAudio = true, 
         $parentId = null,
-        $parentOwnerName = null
+        $parentOwnerName = null,
+        $isEditable = false
     ) {
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
@@ -351,12 +359,6 @@ class SentencesHelper extends AppHelper
         if (isset($sentence['hasaudio'])) {
             $sentenceAudio = $sentence['hasaudio'];
         }
-        $isMainSentence = empty($parentId);
-        $isEditable = CurrentUser::canEditSentenceOfUser($ownerName)
-            && $isMainSentence; // Only main sentence can be edited. It's actually
-                                // dangerous to enable people to edit translations
-                                // as they cannot really see what is linked to the
-                                // translation.
         ?>
         
         <div class="sentence <?php echo $type; ?>">
