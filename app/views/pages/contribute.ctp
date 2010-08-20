@@ -120,6 +120,15 @@ echo $javascript->link(JS_PATH . 'sentences.show_another.js', false);
         );
         ?>
         </p>
+        
+        <p>
+        <?php
+        __(
+            'Please do not forget <strong>capital letters</strong> '.
+            'and <strong>punctuation</strong>! Thank you.'
+        );
+        ?>
+        </p>
     </div>
     
     <div class="module">

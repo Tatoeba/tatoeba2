@@ -263,6 +263,7 @@ class SentencesHelper extends AppHelper
             // Warning
             ?>
             <div class="important">
+            <p>
             <?php
             __(
                 'Important! You are about to add a translation to the sentence '
@@ -271,6 +272,16 @@ class SentencesHelper extends AppHelper
                 . 'the sentence that you understand and want to translate from.'
             );
             ?>
+            </p>
+            
+            <p>
+            <?php
+            __(
+                'Please do not forget <strong>capital letters</strong> '.
+                'and <strong>punctuation</strong>! Thank you.'
+            );
+            ?>
+            </p>
             </div>
         
         </div>
