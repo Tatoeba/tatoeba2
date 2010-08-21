@@ -63,6 +63,7 @@ function sendToAutocomplete() {
  */
 function suggestSelect(suggestionStr) {
     $("#TagTagName").attr("value", suggestionStr);
+    $("#TagTagName").focus();
     return false;
 }
 /**
@@ -104,10 +105,8 @@ $(document).ready(function()
 
     $("#TagTagName").keyup(function(e){
         var tag = $(this).val();
-        if(e.keyCode > 40 || e.keyCode == 8 || e.keyCode == 13){
-            count++;
-            setTimeout("sendToAutocomplete()",200);
-        }  
+        count++;
+        setTimeout("sendToAutocomplete()",200);
     });
     
 });
