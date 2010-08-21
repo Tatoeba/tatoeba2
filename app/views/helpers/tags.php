@@ -127,7 +127,24 @@ class TagsHelper extends AppHelper
         );
 
     }
-
+    
+    
+    /**
+     * Display tag with the number of sentences tagged.
+     *
+     * @param string $tagName         Name of the tag.
+     * @param string $tagInternalName Internal name of the tag, used in the URL.
+     * @param string $count           Number of sentences tagged.
+     *
+     * @return void
+     */
+    public function displayTagInCloud($tagName, $tagInternalName, $count) {
+        $this->displayTagLink($tagName, $tagInternalName);
+        ?>
+        <span class="numSentences"><?php echo '('.$count.')'; ?></span>
+        <?php
+    }
+    
     /**
      * Display a little form to add a tag
      *

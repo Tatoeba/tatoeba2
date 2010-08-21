@@ -197,7 +197,7 @@ class Tag extends AppModel
         return $this->find(
             'all',
             array(
-                'fields' => array('name', 'internal_name'),
+                'fields' => array('name', 'internal_name', 'nbrOfSentences'),
                 'contain' => array(),
                 'order' => 'nbrOfSentences DESC',
             )

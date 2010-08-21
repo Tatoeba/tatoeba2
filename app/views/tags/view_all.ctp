@@ -53,7 +53,8 @@ $this->pageTitle = 'Tatoeba - '. __('All existing tags', true);
                     <?php
                     $tagName =  $tag['Tag']['name'];
                     $tagInternalName =  $tag['Tag']['internal_name'];
-                    $tags->displayTagLink($tagName, $tagInternalName);
+                    $count = $tag['Tag']['nbrOfSentences'];
+                    $tags->displayTagInCloud($tagName, $tagInternalName, $count);
                     ?>
                 </span>
             <?php
