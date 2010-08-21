@@ -27,7 +27,7 @@
 
 // Detecting language for "browse by language"
 $currentLanguage = $session->read('random_lang_selected');
-if ($currentLanguage == 'und') {
+if (empty($currentLanguage) || $currentLanguage == 'und') {
     $currentLanguage = $this->params['lang'];
 }
 
