@@ -39,6 +39,7 @@ class TagsHelper extends AppHelper
     public $helpers = array(
         'Html', 
         'Form',
+        'Javascript',
         'Sentences',
     );
 
@@ -55,6 +56,7 @@ class TagsHelper extends AppHelper
     public function displayTagsModule($tagsArray, $sentenceId = null)
     {
         $currentUser =  CurrentUser::get('id');
+        echo $this->Javascript->link(JS_PATH . 'autocompletion.js', true);
         ?>
         
         <div class="module">
@@ -150,6 +152,9 @@ class TagsHelper extends AppHelper
                 "label" => ''
             )
         );
+        // TODO replace me I'm dirty
+        echo '<div id="autocompletionDiv">';
+        echo '</div>';
         
         echo '<div>';
         echo $this->Form->hidden(
