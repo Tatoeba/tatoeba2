@@ -40,16 +40,19 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
     <h2>FAQ</h2>
     
+    <a name="indirect-translations"></a>
     <h3>Why are some translations in grey?</h3>
     <p>Grey translations are <strong>indirect translations</strong>. In other words, they are translations of the translations, and not translations of the main sentence (the main sentence is the sentence in big letters).</p>
     <p>We display them because they can be useful, but you should be careful. Their meaning may differ a little from the main sentence.</p>
     
     
+    <a name="delete-sentence"></a>
     <h3>How do I delete a sentence?</h3>
     <p>At the moment, normal users cannot delete sentences, only moderators can. We will someday add the possibility for users to delete their own sentences, but in the meantime, if you want to have a sentence deleted, <strong>add a comment</strong> on the sentence asking for deletion and explain why you'd like to delete it.</p>
     <p>If you have added something by mistake, rather of asking for it to be deleted, try to <strong>replace it</strong> by a valid sentence.</p>
     
     
+    <a name="new-language"></a>
     <h3>I'd like to request a new language. What do I have to do?</h3>
     <p><strong>1)</strong> Send us an email (team@tatoeba.fr) and indicate in the title the language(s) that you would like us to add.</p>
     <p><strong>2)</strong> In your email, tell us what icon we can use for each requested language. It does not necessarily have to be the flag of a country. We just want a picture that people can easily associate to the language. Keep in mind that our icons are only 30x20 pixels.</p>
@@ -58,6 +61,7 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     <p><strong>IMPORTANT:</strong> We will only add your language(s) if you have done all of this.</p>
     
     
+    <a name="change-language"></a>
     <h3>How do change the language of a sentence?</h3>
     <p>Click on the flag; a list of languages will appear. Choose the correct language.</p> 
     <p>You can only change the language of sentences that <strong>belong to you</strong>.</p>
@@ -65,18 +69,22 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     <p>If your language is not in the list, you can request it to be added (cf. question above).</p>
     
     
+    <a name="add-tag"></a>
     <h3>How can I add tags to a sentence?</h3>
     <p>You have to be a trusted user (cf. below).</p>
     
     
-    <h3>How can I add link or unlink sentences?</h3>
+    <a name="link-unlink"></a>
+    <h3>How can I link or unlink sentences?</h3>
     <p>You have to be a trusted user (cf. below).</p>
     
     
+    <a name="trusted-user"></a>
     <h3>How can I become a trusted user?</h3>
     <p>You have to <?php echo $html->link('contact Trang', array('controller' => 'private_messages', 'action' => 'write', 'TRANG')); ?> and she will decide if you can be a trusted user or not. One thing she will ask you to do is to read and understand entirely the <a href="http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html">guide of the good contributor</a>, so take the time to read it.</p>
     
     
+    <a name="translate-interface"></a>
     <h3>Can I help translating the website into other languages?</h3>
     <p>Yes, thank you for asking! :D</p>
     <p>We currently use Launchpad to manage the translations of the website: <a href="http://translations.launchpad.net/tatoeba">http://translations.launchpad.net/tatoeba</a></p>
