@@ -28,7 +28,7 @@
 if (isset($sentence)) {
     $sentenceId = $sentence['Sentence']['id'];
     $sentenceLang = $sentence['Sentence']['lang'];
-    $sentenceText = $sentence['Sentence']['text'];
+    $sentenceText = Sanitize::html($sentence['Sentence']['text']);
     
     $languageName = $languages->codeToName($sentenceLang);
     $title = sprintf(__('%s example sentence: ', true), $languageName);
@@ -37,7 +37,11 @@ if (isset($sentence)) {
     $html->meta(
         'description', 
         sprintf(
-            __("Translations and information about the sentence: %s", true),
+            __(
+                "Browse translated example sentences. ".
+                "This page shows translations and information about the sentence: %s"
+                , true
+            ),
             $sentenceText
         ), 
         array(), 
