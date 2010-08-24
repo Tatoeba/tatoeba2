@@ -88,6 +88,9 @@ class Tag extends AppModel
      */ 
     public function addTag($tagName, $userId, $sentenceId = null)
     {
+        if (trim($tagName) == '') {
+            return false;
+        }
         $internalName = $this->_tag_to_internal_name($tagName);      
         
         $data = array(
@@ -101,6 +104,14 @@ class Tag extends AppModel
         // try to add it as a new tag 
         $this->save($data); 
         
+        //send a request to suggestd to update its internal
+        // table 
+        // TODO only do this if we add a new tag 
+        $dirty = fopen("http://127.0.0.1:8080/add?str=$tagName&value=1", 'r');
+        if ($dirty != null) {
+            fclose($dirty);
+        }
+
         if ($sentenceId != null) {
             $result = $this->find(
                 "first",
