@@ -60,6 +60,28 @@ echo $form->create(
     )
 );
 ?>
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#SentenceQuery").focus();
+});
+</script>
+
+<fieldset class="input text">
+    <label for="SentenceQuery">
+        <?php __('Example sentences with the words :'); ?>
+    </label>
+    <?php
+    echo $form->input(
+        'query',
+        array(
+            'id' => 'SentenceQuery',
+            'value' => $searchQuery,
+            'label' => ''
+        )
+    );
+    ?>
+</fieldset>
+
 <fieldset class="select">
     <label><?php __('From'); ?></label>
     <?php
@@ -87,16 +109,6 @@ echo $form->create(
         null, 
         false
     );
-    ?>
-</fieldset>
-
-<fieldset class="input text">
-    <label for="SentenceQuery">
-        <?php __('Example sentences with the words :'); ?>
-    </label>
-    <?php
-    $id = 'SentenceQuery';
-    echo '<input id="'.$id.'" type="text" value="'.$searchQuery.'" name="query"/>';
     ?>
 </fieldset>
 
