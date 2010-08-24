@@ -115,3 +115,12 @@
     display: inline;
     margin: 3px;
 }
+
+#TagTagName {
+    width: 150px;
+}
+
+#autocompletionDiv a{
+    width: 140px; /* This has to be 10px less than #TagTagName to compensate the
+                     text-indent and padding (in autocompletion.css) */
+}
