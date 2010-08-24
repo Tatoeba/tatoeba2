@@ -382,5 +382,36 @@ class LanguagesHelper extends AppHelper
         </li>
         <?php
     }
+    
+    
+    /**
+     * Convert language interface code into ISO code.
+     *
+     * @param string $code Interface language code.
+     *
+     * @return void
+     */
+    public function i18nCodeToISO ($code) {
+        $languages = array(
+            'bel' => 'bel',
+            'chi' => 'cmn',
+            'deu' => 'deu',
+            'eng' => 'eng',
+            'epo' => 'epo',
+            'fre' => 'fra',
+            'ita' => 'ita',
+            'jpn' => 'jpn',
+            'pol' => 'pol',
+            'pt_BR' => 'por',
+            'rus' => 'rus',
+            'spa' => 'spa'
+        );
+        
+        if (isset($languages["$code"])) {
+            return $languages["$code"];
+        } else {
+            return 'unknown';
+        }
+    }
 }
 ?>

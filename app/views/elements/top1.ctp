@@ -28,7 +28,7 @@
 // Detecting language for "browse by language"
 $currentLanguage = $session->read('random_lang_selected');
 if (empty($currentLanguage) || $currentLanguage == 'und') {
-    $currentLanguage = $this->params['lang'];
+    $currentLanguage = $languages->i18nCodeToISO($this->params['lang']);
 }
 
 // array containing the elements of the menu : $title => $route
