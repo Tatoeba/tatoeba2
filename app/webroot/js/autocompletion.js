@@ -106,12 +106,12 @@ function suggestShowResults(xmlDocResults) {
  *
  */
 function changeActiveSuggestion(offset) {
-    $("#suggestItem"+currentSuggestPosition % suggestLength).css("color", "#000000");
+    $("#suggestItem"+currentSuggestPosition % suggestLength).removeClass("selected");
     currentSuggestPosition += offset;
     if (currentSuggestPosition < 0) {
         currentSuggestPosition = suggestLength - 1;
     }
-    $("#suggestItem"+currentSuggestPosition % suggestLength).css("color", "#EAA315");
+    $("#suggestItem"+currentSuggestPosition % suggestLength).addClass("selected");
 } 
 
 /**

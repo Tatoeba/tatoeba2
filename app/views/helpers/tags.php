@@ -169,10 +169,6 @@ class TagsHelper extends AppHelper
                 "label" => ''
             )
         );
-        // TODO replace me I'm dirty
-        echo '<div id="autocompletionDiv">';
-        echo '</div>';
-        
         echo '<div>';
         echo $this->Form->hidden(
             'sentence_id',
@@ -180,7 +176,15 @@ class TagsHelper extends AppHelper
         );
         echo '</div>';
         
-        echo $this->Form->end('+');
+        echo $this->Form->submit('+');
+        
+        // TODO replace me I'm dirty
+        echo '<div id="autocompletionDiv">';
+        echo '</div>';
+        
+        echo $this->Form->end();
+        
+        
     }
 
     
