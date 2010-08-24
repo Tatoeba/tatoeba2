@@ -16,10 +16,19 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
+#autocompletionDiv {
+    position: absolute;
+    width: 100%;
+}
+
 #autocompletionDiv ul {
     border: 1px solid #CCC;
-    margin: 0px 3px;
+    margin: 0px;
     padding: 0px;
+    position: absolute;
+    top: 22px;
+    z-index: 999;
+    background: #FFF;
 }
 
 #autocompletionDiv .selected {
