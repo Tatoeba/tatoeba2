@@ -29,12 +29,15 @@
 //    1 send after each input (send too many request)
 //    2 send each X ms (send also too many request)
 
-var count = 0;
+var currentSuggestPosition = -1;
+var countBeforeRequest = 0;
+var suggestLength = 0;
 var previousText = '';
+var isSuggestListActive = false;
 
 function sendToAutocomplete() {
-    count--
-    if (count > 0) {
+    countBeforeRequest--
+    if (countBeforeRequest > 0) {
         return;   
     } 
 
@@ -70,16 +73,18 @@ function suggestSelect(suggestionStr) {
  * transform the xml result into html content
  */
 function suggestShowResults(xmlDocResults) {
-    $("#autocompletionDiv").empty();
+    // we remove the old one
+    removeSuggestList();
     suggestions = xmlDocResults.getElementsByTagName('item');
+
     if (suggestions.length == 0) {
-        //suggestVisible(false);
         return;
     }
+    suggestLength = suggestions.length;
 
     var ul = document.createElement("ul");
     $("#autocompletionDiv").append(ul);
-
+    isSuggestListActive = true;
     for (var i in suggestions) {
         // for some weird reason the last element in suggestion is the number
         // of element in the array Oo
@@ -89,24 +94,81 @@ function suggestShowResults(xmlDocResults) {
         }
         suggestion = suggestions[i].firstChild.data;
         var li = document.createElement("li");
-        li.innerHTML = "<a onclick='suggestSelect(this.innerHTML)'>" + suggestion + "</a>";
+        li.innerHTML = "<a id='suggestItem" + i + "'onclick='suggestSelect(this.innerHTML)' style='color:black;'>"+
+            suggestion +
+        "</a>";
         ul.appendChild(li);
     }
+    changeActiveSuggestion(1);
 }
 
+/**
+ *
+ */
+function changeActiveSuggestion(offset) {
+    $("#suggestItem"+currentSuggestPosition % suggestLength).css("color", "#000000");
+    currentSuggestPosition += offset;
+    if (currentSuggestPosition < 0) {
+        currentSuggestPosition = suggestLength - 1;
+    }
+    $("#suggestItem"+currentSuggestPosition % suggestLength).css("color", "#EAA315");
+} 
 
+/**
+ *
+ */
+function removeSuggestList() {
+    isSuggestListActive = false;
+    currentSuggestPosition = -1;
+    $("#autocompletionDiv").empty();
+}
+   
 
 $(document).ready(function()
 {
+
+
     // it desactivates browsers autocompletion
     // TODO: it's not something in the standard, so if you 
     // know a standard way to do this ...
     $("#TagTagName").attr("autocomplete","off");
 
-    $("#TagTagName").keyup(function(e){
-        var tag = $(this).val();
-        count++;
-        setTimeout("sendToAutocomplete()",200);
+    $("#TagTagName").blur(function() {
+        setTimeout(function() {
+        removeSuggestList()},
+        300
+        );
     });
-    
+ 
+    $("#TagTagName").keyup(function(e){
+        switch(e.keyCode) {
+            case 38: //up
+                changeActiveSuggestion(-1);
+                break;
+            case 40://down
+                changeActiveSuggestion(1);
+                break;
+            case 13: //enter
+                break;
+            case 27: //escape
+                removeSuggestList();
+                break;
+            default: 
+                var tag = $(this).val();
+                countBeforeRequest++;
+                setTimeout("sendToAutocomplete()",200);
+                break;
+        }
+ 
+    });
+
+    $("#TagAddTagForm").submit(function(){
+        if (isSuggestListActive) {
+            var text = $("#suggestItem"+currentSuggestPosition).html()
+            $("#TagTagName").val(text);
+            removeSuggestList(); 
+            return false;
+        }
+    });
+       
 });
