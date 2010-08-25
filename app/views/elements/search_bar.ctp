@@ -60,12 +60,6 @@ echo $form->create(
     )
 );
 ?>
-<script type="text/javascript">
-$(document).ready(function(){
-    $("#SentenceQuery").focus();
-});
-</script>
-
 <fieldset class="input text">
     <label for="SentenceQuery">
         <?php __('Example sentences with the words :'); ?>
@@ -76,7 +70,8 @@ $(document).ready(function(){
         array(
             'id' => 'SentenceQuery',
             'value' => $searchQuery,
-            'label' => ''
+            'label' => '',
+            'accesskey' => 4
         )
     );
     ?>
