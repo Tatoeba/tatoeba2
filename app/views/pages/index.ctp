@@ -67,7 +67,7 @@ $selectedLanguage = $session->read('random_lang_selected');
     ?>
     
     <div class="module">
-        <h2><?php __('Some numbers'); ?></h2>
+        <h2><?php __('Some stats'); ?></h2>
         <p>
             <?php
             echo sprintf(
@@ -84,15 +84,19 @@ $selectedLanguage = $session->read('random_lang_selected');
                 __('%s supported languages', true),
                 $languages->getNumberOfLanguages()
             );
-            echo "<br />";
+            ?>
+            
+            <p>
+            <?php
             echo $html->link(
-                __('View more', true),
+                __("See what's happening now", true),
                 array(
                     "controller" => "pages",
                     "action" => "home"
                 )
             );
             ?>
+            </p>
         </p>
     </div>
     
