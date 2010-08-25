@@ -85,18 +85,6 @@ $selectedLanguage = $session->read('random_lang_selected');
                 $languages->getNumberOfLanguages()
             );
             ?>
-            
-            <p>
-            <?php
-            echo $html->link(
-                __("See what's happening now", true),
-                array(
-                    "controller" => "pages",
-                    "action" => "home"
-                )
-            );
-            ?>
-            </p>
         </p>
     </div>
     
@@ -126,6 +114,14 @@ value="http://www.youtube.com/v/ac9SmJuwHqk&amp;hl=en_US&amp;fs=1&amp;" /></obje
             // TODO : write something in the "About
             // echo ' ' . $html->link(__('Learn more...',true), 
             //     array('controller' => 'pages', 'action' => 'about'));
+            echo ' ';
+            echo $html->link(
+                __("See what's happening now.", true),
+                array(
+                    "controller" => "pages",
+                    "action" => "home"
+                )
+            );
             ?>
         </p>
     </div>
