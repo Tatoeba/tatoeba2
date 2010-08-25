@@ -148,19 +148,31 @@ echo $javascript->link(JS_PATH . 'sentences.show_another.js', false);
         
         <?php
        
-        //TODO : it's a hack need to find a better way to produce
-        // a cakephp url with a normal form 
+        $numberOfSentencesWanted = array (5 => 5 , 10 => 10 , 15 => 15);
+        $selectedLanguage = $session->read('random_lang_selected');
         echo $form->create(
             'Sentence',
-            array("action" => "show_all_in/none/none/none/indifferent", "type" => "post")
+            array("action" => "several_random_sentences", "type" => "post")
         );
+
+        echo '<fieldset class="select">';
+        echo '<label>' . __('Quantity', true) . '</label>';
+        echo $form->select(
+            'numberWanted',
+            $numberOfSentencesWanted,
+            5,
+            null,
+            false
+        );
+        echo '</fieldset>';
+
 
         echo '<fieldset class="select">';
         echo '<label>' . __('Language', true) . '</label>';
         echo $form->select(
             'into',
-            $languages->languagesArrayWithNone(),
-            $preSelectedLang,
+            $languages->languagesArray(),
+            $selectedLanguage,
             null,
             false
         );
@@ -168,7 +180,7 @@ echo $javascript->link(JS_PATH . 'sentences.show_another.js', false);
 
         echo '<fieldset class="submit">';
         echo '<input type="submit" value="'.
-            __('show sentences', true).'"/>';
+            __('show random sentences', true).'"/>';
         echo '</fieldset>';
 
 
