@@ -121,7 +121,8 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
                 __(
                     'If you have no idea what to do now that you are registered, '.
                     'you can introduce yourself on the <a href="%s">Wall</a>, or '.
-                    'join us on <strong>IRC</strong>, we will give you a purpose :)'
+                    'join us on <strong>IRC</strong>, we will give you a purpose :)',
+                    true
                 ),
                 $html->url(array('controller' => 'wall'))
             );
