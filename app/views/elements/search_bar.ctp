@@ -41,8 +41,6 @@ $languages = $languages->getSearchableLanguagesArray();
 $selectedLanguageFrom = $session->read('search_from');
 $selectedLanguageTo = $session->read('search_to');
 $searchQuery = $session->read('search_query');
-Sanitize::html($searchQuery);
-$searchQuery = htmlentities($searchQuery, ENT_QUOTES, 'UTF-8');
 
 
 if ($selectedLanguageFrom == null) {
