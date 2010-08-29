@@ -150,11 +150,6 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function linkButton($sentenceId, $translationId)
     {
-        $confirmationMessage = __(
-            'Do you want to make this as a direct translation '.
-            'of the main sentence?',
-            true
-        );
         $image = $this->Html->image(
             IMG_PATH . 'link.png',
             array(
@@ -175,8 +170,7 @@ class SentenceButtonsHelper extends AppHelper
             array(
                 "escape" => false, 
                 "class" => "unlink button",
-            ),
-            $confirmationMessage
+            )
         );
     }
     
