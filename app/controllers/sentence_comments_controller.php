@@ -121,6 +121,7 @@ class SentenceCommentsController extends AppController
 
         $this->set('sentenceComments', $latestComments);
         $this->set('commentsPermissions', $permissions);
+        $this->set('langFilter', $langFilter);
 
     }
 

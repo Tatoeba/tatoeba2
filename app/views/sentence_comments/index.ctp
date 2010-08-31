@@ -36,10 +36,16 @@
  */
 
 $this->pageTitle = 'Tatoeba - ' . __('Comments on sentences', true);
+
+$paginator->options(
+    array(
+        'url' => $this->params['pass']
+    ) 
+);
 ?>
 
 <div id="annexe_content">
-    <?php $commonModules->createFilterByLangMod(); ?>
+    <?php $commonModules->createFilterByLangMod(0); ?>
 </div>
 
 <div id="main_content">
@@ -58,7 +64,8 @@ $this->pageTitle = 'Tatoeba - ' . __('Comments on sentences', true);
         </h2>
         
         <?php
-        $pagination->display();
+        $paginationUrl = array($langFilter);
+        $pagination->display($paginationUrl);
         ?>
         
         <ol class="comments">
