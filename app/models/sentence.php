@@ -636,11 +636,16 @@ class Sentence extends AppModel
 
     public function generateRomanization(&$sentenceArray)
     {
+
+        // TODO in a near future futur, we will use instead a 
+        // dedicated class for generating all these things
+
+        //$translitModel = ClassRegistry::init('Transliteration');
    
         // TODO : need to replace it by something more general
         // like $romanisableArray, that way we will not need to
         // change several time the same things
-        if (in_array($sentenceArray['lang'], array('wuu','cmn','jpn'))) {
+        if (in_array($sentenceArray['lang'], array('wuu','cmn','jpn','kat'))) {
             $sentenceArray['romanization'] = $this->getRomanization(
                 $sentenceArray['text'],
                 $sentenceArray['lang']
@@ -698,6 +703,9 @@ class Sentence extends AppModel
             $pinyin = substr($result, 14);
             $romanization = substr($pinyin, 0, -44);
             */
+
+        } elseif ($lang == "kat") {
+            $romanization = $this->getGeorgianRomanization($text);
 
         }
         return $romanization;
@@ -802,8 +810,6 @@ class Sentence extends AppModel
      */
     public function getJapaneseRomanization2($text, $type)
     {
-        //TODO type = 1 ???  can you replace it by much more
-        // evident constant
 
         // important to add this line before escaping a
         // utf8 string, workaround for an apache/php bug  
@@ -1068,7 +1074,47 @@ class Sentence extends AppModel
         return $ipaSentence;
 
     }
+ 
+    /**
+     * Return IPA of a Georgian text
+     *
+     * @param string $text text in Georgian
+     *
+     * @return string
+     */
+    private function getGeorgianRomanization($text) {
+        
+        //a - b - g - d - e - v - z - t - i - k - l - m - n -
+        // o - p - dj - r - s - t - u - p - q - gh - kh - sh -
+        //ch - ts - dz - ts - tch- x - j - h - 
+
+
+        $ipaArray = array(
+            'a', 'b', 'g', 'd', 'e',
+            'v', 'z', 'tʰ', 'i', 'k’',
+            'l', 'm', 'nɛ', 'o', 'p’',
+            'ž' , 'r', 's', 't’', 'u',
+            'pʰ', 'k', 'ɣ', 'q', 'ʃ',
+            'č', 'ʦʰ', 'ʒ', 'ts', 'č',
+            'xɛ', 'ʤɛ', 'hɛ',  
+        );
+
+        $alphabetArray = array(
+            'ა', 'ბ', 'გ', 'დ', 'ე',
+            'ვ', 'ზ', 'თ', 'ი', 'კ',
+            'ლ', 'მ', 'ნ', 'ო', 'პ',
+            'ჟ', 'რ', 'ს', 'ტ', 'უ',
+            'ფ', 'ქ', 'ღ', 'ყ', 'შ',
+            'ჩ', 'ც', 'ძ', 'წ', 'ჭ',
+            'ხ', 'ჯ', 'ჰ',
+        );
+
+        $ipaSentence = str_replace($alphabetArray, $ipaArray, $text);
+        return $ipaSentence;
+    }
+   
     
+
     /**
      * Return all tags on a given sentence
      *
