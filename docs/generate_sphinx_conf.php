@@ -104,8 +104,8 @@ source default
 {
     type                     = mysql
     sql_host                 = localhost
-    sql_user                 = root
-    sql_pass                 = elsa,;64
+    sql_user                 = prod_admin
+    sql_pass                 = ferhr4564frfrg_RTGGrt722
     sql_db                   = tatoeba5
     sql_sock                 = /tmp/mysql.sock
 
