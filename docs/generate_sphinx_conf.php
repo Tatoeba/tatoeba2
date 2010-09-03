@@ -2,14 +2,112 @@
 ## data source definition
 #############################################################################
 
+<?php
+$sourcePath = "/media/disk2/index_dev";
+
+$languages = array(
+    'ara' => 'Arabic',
+    'eng' => 'English',
+    'jpn' => 'Japanese',
+    'fra' => 'French',
+    'deu' => 'German',
+    'spa' => 'Spanish',
+    'ita' => 'Italian',
+    'vie' => 'Vietnamese',
+    'rus' => 'Russian',
+    'cmn' => 'Chinese',
+    'kor' => 'Korean',
+    'nld' => 'Dutch',
+    'heb' => 'Hebrew',
+    'ind' => 'Indonesian',
+    'por' => 'Portuguese',
+    'fin' => 'Finnish',
+    'bul' => 'Bulgarian',
+    'ukr' => 'Ukrainian',
+    'ces' => 'Czech',
+    'epo' => 'Esperanto',
+    'ell' => 'Modern Greek',
+    'tur' => 'Turkish',
+    'swe' => 'Swedish',
+    'nob' => 'Norwegian (Bokmål)',
+    'zsm' => 'Malay',
+    'est' => 'Estonian',
+    'kat' => 'Georgian',
+    'pol' => 'Polish', 
+    'swh' => 'Swahili', 
+    'lat' => 'Latin', 
+    'wuu' => 'Shanghainese',
+    'arz' => 'Egyptian Arabic',
+    'bel' => 'Belarusian',
+    'hun' => 'Hungarian',
+    'isl' => 'Icelandic',
+    'sqi' => 'Albanian',
+    'yue' => 'Cantonese',
+    'afr' => 'Afrikaans',
+    'fao' => 'Faroese',
+    'fry' => 'Frisian',
+    
+    'bre' => 'Breton',
+    'ron' => 'Romanian',
+    'uig' => 'Uyghur',
+    'uzb' => 'Uzbek',
+    'non' => 'Norwegian (Nynorsk)',
+    'srp' => 'Serbian',
+    'tat' => 'Tartar',
+    'yid' => 'Yiddish',
+    
+    'pes' => 'Persian',
+    'nan' => 'Teochew',
+    'eus' => 'Basque',
+    'slk' => 'Slovak',
+    'dan' => 'Danish',
+    'hye' => 'Armenian',
+    'acm' => 'Iraqi Arabic',
+    'san' => 'Sanskrit',
+    'urd' => 'Urdu',
+    'hin' => 'Hindi',
+    'ben' => 'Bengali',
+    'cycl' => 'CycL',
+//    'cat' => 'Catalan',
+//    'kaz' => 'Kazakh',
+//    'lvs' => 'Latvian',
+);
+
+$languageWithStemmer = array(
+    "deu"=>0,
+    "spa"=>0,
+    "fra"=>0,
+    "nld"=>0,
+    "por"=>0,
+    "rus"=>0,
+    "fin"=>0,
+    "ita"=>0,
+    "tur"=>0,
+    "swe"=>0,
+    "eng"=>0,
+); 
+
+    
+    
+    
+$cjkLanguages = array(
+    "kor" => 0,
+    "cmn" => 0,
+    "wuu" => 0,
+    "jpn" => 0,
+); 
+
+
+?>
+
 source default
 {
-    type                    = mysql
-    sql_host                = localhost
-    sql_user                = tatoeba_admin
-    sql_pass                = pouet
-    sql_db                  = tatoeba_6
-    sql_sock                = /var/run/mysqld/mysqld.sock
+    type                     = mysql
+    sql_host                 = localhost
+    sql_user                 = root
+    sql_pass                 = elsa,;64
+    sql_db                   = tatoeba5
+    sql_sock                 = /tmp/mysql.sock
 
     sql_query_pre            = SET NAMES utf8
     sql_query_pre            = SET SESSION query_cache_type=OFF
@@ -90,7 +188,8 @@ index common_index
                         U+10a0..U+10c5->U+2d00..U+2d25, U+10d0..U+10fa, U+10fc, U+2d00..U+2d25,\
                         U+C0..U+D6->U+E0..U+F6, U+D8..U+DE->U+F8..U+FE, U+178->U+FF, U+FF, U+100..U+177/2, U+179..U+17E/2,\
                         U+980..U+9FC,\
-                        U+900..U+97F, U+A8E0..U+A8FB
+                        U+900..U+97F, U+A8E0..U+A8FB,\
+                        U+531..U+58A, U+FB13..U+FB17
 
     docinfo                 = extern
     charset_type            = utf-8
@@ -111,212 +210,74 @@ index cjk_common_index
 
 #################################################
 
-
-
-
-<?php
-$sourcePath = "/home/allan/data";
-
-$languages = array(
-    'ara' => 'Arabic',
-    'eng' => 'English',
-    'jpn' => 'Japanese',
-    'fra' => 'French',
-    'deu' => 'German',
-    'spa' => 'Spanish',
-    'ita' => 'Italian',
-    'vie' => 'Vietnamese',
-    'rus' => 'Russian',
-    'cmn' => 'Chinese',
-    'kor' => 'Korean',
-    'nld' => 'Dutch',
-    'heb' => 'Hebrew',
-    'ind' => 'Indonesian',
-    'por' => 'Portuguese',
-    'fin' => 'Finnish',
-    'bul' => 'Bulgarian',
-    'ukr' => 'Ukrainian',
-    'ces' => 'Czech',
-    'epo' => 'Esperanto',
-    'ell' => 'Modern Greek',
-    'tur' => 'Turkish',
-    'swe' => 'Swedish',
-    'nob' => 'Norwegian (Bokmål)',
-    'zsm' => 'Malay',
-    'est' => 'Estonian',
-    'kat' => 'Georgian',
-    'pol' => 'Polish', 
-    'swh' => 'Swahili', 
-    'lat' => 'Latin', 
-    'wuu' => 'Shanghainese',
-    'arz' => 'Egyptian Arabic',
-    'bel' => 'Belarusian',
-    'hun' => 'Hungarian',
-    'isl' => 'Icelandic',
-    'sqi' => 'Albanian',
-    'yue' => 'Cantonese',
-    'afr' => 'Afrikaans',
-    'fao' => 'Faroese',
-    'fry' => 'Frisian',
-    
-    'bre' => 'Breton',
-    'ron' => 'Romanian',
-    'uig' => 'Uyghur',
-    'uzb' => 'Uzbek',
-    'non' => 'Norwegian (Nynorsk)',
-    'srp' => 'Serbian',
-    'tat' => 'Tartar',
-    'yid' => 'Yiddish',
-    
-    'pes' => 'Persian',
-    'nan' => 'Teochew',
-    'eus' => 'Basque',
-    'slk' => 'Slovak',
-    'dan' => 'Danish',
-    'hye' => 'Armenian',
-    'acm' => 'Iraqi Arabic',
-    'san' => 'Sanskrit',
-    'urd' => 'Urdu',
-    'hin' => 'Hindi',
-    'ben' => 'Bengali',
-    'cycl' => 'CycL',
-    'cat' => 'Catalan',
-    'kaz' => 'Kazakh',
-    'lvs' => 'Latvian',
-);
-
-$languageWithStemmer = array(
-    "deu"=>0,
-    "spa"=>0,
-    "fra"=>0,
-    "nld"=>0,
-    "por"=>0,
-    "rus"=>0,
-    "fin"=>0,
-    "ita"=>0,
-    "tur"=>0,
-    "swe"=>0,
-    "eng"=>0,
-); 
-
-    
-    
-    
-$cjkLanguages = array(
-    "kor" => 0,
-    "cmn" => 0,
-    "wuu" => 0,
-    "jpn" => 0,
-); 
+<?
 
 foreach ($languages as $lang=>$name){
     echo "
 
-#$name\n";
+    #$name\n
 
-    foreach ($languages as $trans=>$name) {
-        // generate source for this pair
-        echo 
-        "
+    source ".$lang."_src : default
+    {
 
-source ".$lang."_".$trans."_src : default
-{
-    sql_query = select distinct s.id, s.text \
-    from sentences s\
-    left join sentences_translations st on st.sentence_id = s.id\
-    left join sentences t on st.translation_id = t.id \
-    left join sentences_translations stt on stt.sentence_id = s.id \
-    left join sentences_translations stt2 on stt.translation_id = stt2.sentence_id\
-    left join sentences tt on stt2.translation_id = tt.id \
-    where s.lang = '".$lang."' \
-        and ( t.lang = '".$trans."'  or tt.lang = '".$trans."' )\
-        and s.id != tt.id 
-}
-        ";
-        // generate index for this pair
-        $parent = "common_index" ;
-        if (isset($cjkLanguages[$lang])) {
-            $parent = "cjk_common_index";
+
+
+
+        sql_query = select distinct * from (\
+        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id\
+            from sentences s\
+            left join sentences_translations st on st.sentence_id = s.id\
+            left join sentences t on st.translation_id = t.id\
+            where s.lang_id = (select id from langStats where lang = '$lang')\
+        union \
+        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id\
+            from sentences s\
+            left join sentences_translations st on st.sentence_id = s.id\
+            left join sentences_translations tt on tt.sentence_id = st.translation_id\
+            left join sentences t on tt.translation_id = t.id\
+            where s.lang_id =  (select id from langStats where lang = '$lang')\
+        ) t 
+        sql_attr_uint = id2
+        sql_attr_multi = uint trans_id from field; SELECT id FROM langStats ;
+    }
+            ";
+    // generate index for this pair
+    $parent = "common_index" ;
+    if (isset($cjkLanguages[$lang])) {
+        $parent = "cjk_common_index";
+    }
+    echo "
+    index ".$lang."_index : $parent
+    {
+        source = ".$lang."_src 
+        path = " . $sourcePath . DIRECTORY_SEPARATOR.$lang;
+
+        if (isset($languageWithStemmer[$lang])) {
+            echo "
+        morphology              = libstemmer_$lang
+        min_stemming_len        = 4
+    ";
         }
-echo "
-index ".$lang."_".$trans."_index : $parent
-{
-    source = ".$lang."_".$trans."_src 
-    path = " . $sourcePath . DIRECTORY_SEPARATOR.$lang. DIRECTORY_SEPARATOR .$lang."_".$trans;
-
-    if (isset($languageWithStemmer[$lang])) {
-        echo "
-    morphology              = libstemmer_$lang
-    min_stemming_len        = 4
-";
+    echo 
+    "
     }
-echo 
-"
-}
-";
-    }
-
-// now generate the this language to all index
-        echo 
-        "
-
-source ".$lang."_und_src : default
-{
-    sql_query = select distinct s.id, s.text \
-        from sentences s\
-        where s.lang = '".$lang."' 
-}
-
-
-index ".$lang."_und_index : $parent
-{
-    source = ".$lang."_und_src 
-    path = " . $sourcePath . DIRECTORY_SEPARATOR.$lang. DIRECTORY_SEPARATOR .$lang."_und";
-
-    if (isset($languageWithStemmer[$lang])) {
-        echo "
-    morphology              = libstemmer_$lang
-    min_stemming_len        = 4
-";
-    }
-echo 
-"
-
-}";
-
-
-
+    ";
 }// end of first foreach 
 
 
-foreach ($languages as $lang=>$name){
 
 
     echo "
-# all to $name
 
-index und_".$lang."_index : common_index
-{
-    type = distributed
-
-    ";
-    foreach ($languages as $trans=>$name) {
-       echo "    local           = $trans"."_$lang"."_index\n";
-    }
-    echo"
-}";
-}
-
-
-    echo "
-index und_und_index : common_index
+index und_index : common_index
 {
     type = distributed
 
     ";
     foreach ($languages as $lang=>$name) {
-        echo "    local           = $lang"."_und_index\n";
+        echo "    local           = $lang"."_index\n";
     }
+    
     echo"
 }
 ";
@@ -329,12 +290,12 @@ indexer
 
 searchd
 {
-    port                    = 9312
-    log                     = /var/log/searchd.log
-    query_log               = /var/log/query.log
+    port                    = 19312
+    log                     = /var/log/searchd_dev.log
+    query_log               = /var/log/query_dev.log
     read_timeout            = 5
     max_children            = 30
-    pid_file                = /var/log/searchd.pid
+    pid_file                = /var/log/searchd_dev.pid
     max_matches             = 1000
     seamless_rotate         = 1
     preopen_indexes         = 1

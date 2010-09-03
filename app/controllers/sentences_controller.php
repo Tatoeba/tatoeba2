@@ -506,12 +506,23 @@ class SentencesController extends AppController
             ' ',
             $query
         );
- 
+
         $sphinx = array(
-            'index' => array($from . "_" . $to . '_index'),
+            'index' => array($from . '_index'),
             'matchMode' => SPH_MATCH_EXTENDED2, 
-            'sortMode' => array(SPH_SORT_RELEVANCE => "")
+            'sortMode' => array(SPH_SORT_RELEVANCE => ""),
         );
+        // if we want to search only on sentences having translations
+        // in a specified language
+        if ($to !== 'und') {
+            $this->loadModel('Language');
+            $toId = $this->Language->getIdFromLang($to);
+            $sphinx['filter'][] = array('trans_id',$toId);
+        }  
+
+
+      
+      
        
         $model = 'Sentence'; 
         $pagination = array(
