@@ -221,59 +221,92 @@ class Sentence extends AppModel
      *
      * @return int A random id.
      */
-    public function getRandomId($lang = null)
+    public function getRandomId($lang = 'und')
     {
-        /*
-        ** this query take constant time, so do not touch this request
-        */
-
-       
-        $lang = Sanitize::paranoid($lang);
-          
-        $table = 'sentences'; 
-        $select = 'SELECT Sentence.id FROM ';
-        if ($lang != null && $lang != 'und') {
-           $select = 'SELECT Sentence.sentence_id as id FROM ';
-           $table  = 'random_sentence_id_' . $lang; 
+        $arrayIds = $this->getSeveralRandomIds($lang, 1);
+        if (empty($arrayIds) || empty($arrayIds[0])) {
+            return 1;
         }
 
-        $query = $select . $table .' AS Sentence
-            JOIN ( 
-                SELECT (
-                    RAND('.rand().') * (SELECT MAX(id) FROM '.$table.')
-                    ) AS id
-                ) AS r2
-            WHERE   Sentence.id >= r2.id
-            ORDER BY Sentence.id ASC LIMIT 1' ;
-
-        $results = $this->query($query);
-        
-        return $results[0]['Sentence']['id']; 
+        return  $arrayIds[0];//$results['Sentence']['id']; 
     }
     
     /**
      * Request for several random sentence id.
      *
-     * @param string $lang             Langguage of the sentences we want.
+     * @param string $lang             Language of the sentences we want.
      * @param int    $numberOfIdWanted Number of ids needed.
      *
      * @return array An array of ids.
      */
-    public function getSeveralRandomIds($lang = null,  $numberOfIdWanted = 10)
+    public function getSeveralRandomIds($lang = 'und',  $numberOfIdWanted = 10)
     {
-        $ids = array ();
+        $returnIds = array ();
         // exit if we don't have good params
         if (!is_numeric($numberOfIdWanted)) {
-            return $ids ;
+            return $returnIds ;
         }
-        
+     
+        $cacheKey = "rand_array_$lang";
 
-        // transform results in simple array of ids
+        
+        $arrayRandom = Cache::read($cacheKey);
+        if (!is_array($arrayRandom)) {
+            $arrayRandom = $this->_getRandomsToCached($lang, 3); 
+        } 
+        
         for ($i = 0; $i < $numberOfIdWanted; $i++) {
-            $ids[] = $this->getRandomId($lang); 
+            
+            $id = array_pop($arrayRandom);
+            // if we have take all the cached ids, then we request a new bunch
+            if ($id === NULL) {
+                $arrayRandom = $this->_getRandomsToCached($lang, 5); 
+                $id = array_pop($arrayRandom);
+            }
+            array_push(
+                $returnIds,
+                $id
+            );
+
         }
-         
-        return array_unique($ids) ; 
+        // we cache the random ids array less all the poped value, for latter use
+        Cache::write($cacheKey, $arrayRandom);
+
+
+        return $returnIds ; 
+
+    }
+
+
+    /**
+     * Get from the random id source an array of X elements that will
+     * cached after, this way we do not need to request the random id source
+     * each time we need a random id
+     *
+     * @param string $lang             In which language takes the ids, 'und' if from all
+     * @param int    $numberOfIdWanted Size of the array we will return
+     *
+     * @return array An array of int  
+     */
+    private function _getRandomsToCached($lang, $numberOfIdWanted) {
+        $sphinx = array(
+            'index' => array($lang . '_index'),
+            'sortMode' => array(SPH_SORT_EXTENDED => "@random")
+        );
+       
+
+        $results = $this->find(
+            'list',
+            array(
+                'fields' => array('id'),
+                'sphinx' => $sphinx,
+                'contain' => array(),
+                'search' => '',
+                'limit' => 100,
+            )
+        );
+
+        return array_keys($results);
 
     }
 
