@@ -87,7 +87,14 @@ class Sentence extends AppModel
         'SentenceAnnotation'
     );
     
-    public $belongsTo = array('User','TagsSentences');
+    public $belongsTo = array(
+        'User',
+        'TagsSentences',
+        'Language' => array(
+            'classname' => 'Language',
+            'foreignKey' => 'lang_id'
+        ),    
+    );
     
     public $hasAndBelongsToMany = array(
         'Translation' => array(
@@ -122,6 +129,15 @@ class Sentence extends AppModel
     {
         parent::__construct();
         $this->validate['lang']['rule'] = array('inList', $this->languages);
+    }
+
+
+    public function beforeSave() {
+        
+        $lang = $this->data['Sentence']['lang'];
+        $langId = $this->Language->getIdFromlang($lang);
+        $this->data['Sentence']['lang_id'] = $langId;
+        return true;
     }
 
     /**
@@ -241,6 +257,10 @@ class Sentence extends AppModel
      */
     public function getSeveralRandomIds($lang = 'und',  $numberOfIdWanted = 10)
     {
+        if(empty($lang)) {
+            $lang = 'und';
+        }
+
         $returnIds = array ();
         // exit if we don't have good params
         if (!is_numeric($numberOfIdWanted)) {
@@ -333,7 +353,7 @@ class Sentence extends AppModel
                         ),
                         'SentencesList'   => array(
                             'fields' => array('id')
-                        )
+                        ),
                     ),
                     'fields' => array(
                         'text',
