@@ -1145,11 +1145,11 @@ class Sentence extends AppModel
         $ipaArray = array(
             'a', 'b', 'g', 'd', 'e',
             'v', 'z', 'tʰ', 'i', 'k’',
-            'l', 'm', 'nɛ', 'o', 'p’',
+            'l', 'm', 'n', 'o', 'p’',
             'ž' , 'r', 's', 't’', 'u',
             'pʰ', 'k', 'ɣ', 'q', 'ʃ',
             'č', 'ʦʰ', 'ʒ', 'ts', 'č',
-            'xɛ', 'ʤɛ', 'hɛ',  
+            'x', 'ʤ', 'h',  
         );
 
         $alphabetArray = array(
