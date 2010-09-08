@@ -45,7 +45,7 @@ $paginator->options(
 ?>
 
 <div id="annexe_content">
-    <?php $commonModules->createFilterByLangMod(0); ?>
+    <?php $commonModules->createFilterByLangMod(); ?>
 </div>
 
 <div id="main_content">
