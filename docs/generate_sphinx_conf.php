@@ -95,6 +95,7 @@ $cjkLanguages = array(
     "cmn" => 0,
     "wuu" => 0,
     "jpn" => 0,
+    "yue" => 0,
 ); 
 
 
