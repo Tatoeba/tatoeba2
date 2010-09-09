@@ -42,7 +42,8 @@ $languages = array(
     'deu' => 'Deutsch', 
     'ita' => 'Italiano', 
     'pol' => 'Polski',
-    'pt_BR' => 'Português (BR)'
+    'pt_BR' => 'Português (BR)',
+    'epo' => 'Esperanto'
 );
 $path = $this->params['controller'].'/';
 if ($this->params['action'] != 'display') {
