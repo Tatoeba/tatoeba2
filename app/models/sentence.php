@@ -698,7 +698,7 @@ class Sentence extends AppModel
         // TODO : need to replace it by something more general
         // like $romanisableArray, that way we will not need to
         // change several time the same things
-        if (in_array($sentenceArray['lang'], array('wuu','cmn','jpn','kat'))) {
+        if (in_array($sentenceArray['lang'], array('wuu','cmn','jpn','kat','uzb'))) {
             $sentenceArray['romanization'] = $this->getRomanization(
                 $sentenceArray['text'],
                 $sentenceArray['lang']
