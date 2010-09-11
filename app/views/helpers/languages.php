@@ -355,6 +355,10 @@ class LanguagesHelper extends AppHelper
      */
     function stat($langCode, $numberOfSentences)
     {
+        if (empty($langCode)) {
+            $langCode = 'unknown';
+        }
+        
         $flagImage = $this->Html->image(
             IMG_PATH . 'flags/'.$langCode .'.png',
             array(
