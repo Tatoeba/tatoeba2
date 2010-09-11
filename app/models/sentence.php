@@ -1210,14 +1210,14 @@ class Sentence extends AppModel
             UZBEK_SCRIPT_LATIN
         );
 
-        if (empty($str || !in_array($script, $scriptArray) {
+        if (empty($str) || !in_array($script, $scriptArray)) {
             return FALSE;
         }
         
         $new_script = $script;
 
         if ($script == UZBEK_SCRIPT_SWITCH) {
-            $new_script = uzbek_script_get($str);
+            $new_script = $this->uzbek_script_get($str);
         }
 
         if ($new_script == UZBEK_SCRIPT_CYRYLLIC) {//change to Cyrillic
@@ -1307,7 +1307,7 @@ class Sentence extends AppModel
                 'Yu', 'yu', 'Ya', 'ya'
             );
         }
-        return str_replace($needles, $replacements, $str);
+        return str_replace($replacements, $needles, $str);
     }
 
 
