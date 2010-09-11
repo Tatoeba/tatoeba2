@@ -128,6 +128,7 @@ class GoogleLanguageApiComponent extends Object
             case 'pt' :     return 'por';
             case 'pt-BR' :  return 'por';
             case 'pt-PT' :  return 'por';
+            case 'qu' :     return 'que';
             case 'ro' :     return 'ron';
             case 'ru' :     return 'rus';
             case 'sk' :     return 'slk';

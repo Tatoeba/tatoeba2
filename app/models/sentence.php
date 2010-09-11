@@ -66,7 +66,7 @@ class Sentence extends AppModel
         'eus', 'slk', 'dan', 'hye', 'acm',
         'san', 'urd', 'hin', 'ben', 'cycl',
         'cat', 'kaz', 'lvs', 'hrv', 'bos',
-        'orv',
+        'orv', 'cha', 'tgl', 'que',
         null
         );    
     public $validate = array(
