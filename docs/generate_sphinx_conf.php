@@ -73,7 +73,10 @@ $languages = array(
     'lvs' => 'Latvian',
     'bos' => 'Bosnian',
     'hrv' => 'Croatian',
-    'orv' => 'Old East Slavic'
+    'orv' => 'Old East Slavic',
+    'cha' => 'Chamorro',
+    'tgl' => 'Tagalog',
+    'que' => 'Quechua'
 );
 
 $languageWithStemmer = array(
