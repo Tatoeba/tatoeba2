@@ -111,6 +111,9 @@ class LanguagesHelper extends AppHelper
             'cat' => __('Catalan', true),
             'kaz' => __('Kazakh', true),
             'lvs' => __('Latvian', true),
+            'bos' => __('Bosnian', true),
+            'hrv' => __('Croatian', true),
+            'orv' => __('Old East Slavic', true),
         );
         asort($languages);
         

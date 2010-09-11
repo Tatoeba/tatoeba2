@@ -71,6 +71,10 @@ $languages = array(
 //    'cat' => 'Catalan',
 //    'kaz' => 'Kazakh',
 //    'lvs' => 'Latvian',
+
+    'bos' => 'Bosnian',
+    'hrv' => 'Croatian',
+    'orv' => 'Old East Slavic'
 );
 
 $languageWithStemmer = array(

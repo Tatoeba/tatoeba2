@@ -93,6 +93,7 @@ class GoogleLanguageApiComponent extends Object
             case 'bg' :     return 'bul';
             case 'bn' :     return 'ben';
             case 'br' :     return 'bre';
+            case 'bs' :     return 'bos';
             case 'ca' :     return 'cat';
             case 'cs' :     return 'ces';
             case 'da' :     return 'dan';
@@ -109,6 +110,7 @@ class GoogleLanguageApiComponent extends Object
             case 'fo' :     return 'fao';
             case 'fy' :     return 'fry';
             case 'hi' :     return 'hin';
+            case 'hr' :     return 'hrv';
             case 'hu' :     return 'hun';
             case 'hy' :     return 'hye';
             case 'iw' :     return 'heb';
