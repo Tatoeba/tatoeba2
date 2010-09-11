@@ -68,10 +68,9 @@ $languages = array(
     'hin' => 'Hindi',
     'ben' => 'Bengali',
     'cycl' => 'CycL',
-//    'cat' => 'Catalan',
-//    'kaz' => 'Kazakh',
-//    'lvs' => 'Latvian',
-
+    'cat' => 'Catalan',
+    'kaz' => 'Kazakh',
+    'lvs' => 'Latvian',
     'bos' => 'Bosnian',
     'hrv' => 'Croatian',
     'orv' => 'Old East Slavic'
