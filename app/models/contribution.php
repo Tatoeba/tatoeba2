@@ -171,13 +171,12 @@ class Contribution extends AppModel
         $query.=" 
                 INNER JOIN `users` AS `User`
                     ON (`Contribution`.`user_id` = `User`.`id`)
-            WHERE ";
+                 ";
         if ($lang != 'und') {
-            $query .=  "`Contribution`.`sentence_lang` = '$lang' AND ";
+            $query .=  " WHERE `Contribution`.`sentence_lang` = '$lang' ";
         } 
 
         $query.="
-                `Contribution`.`type` = 'sentence'
             ORDER BY `Contribution`.`id` DESC 
             LIMIT $limit 
         "; 

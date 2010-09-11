@@ -77,6 +77,7 @@ class LanguagesHelper extends AppHelper
             'pol' => __('Polish', true), 
             'swh' => __('Swahili', true), 
             'lat' => __('Latin', true), 
+            // TODO to change when shanghainese will not be the only wu dialect
             'wuu' => __('Shanghainese', true),
             'arz' => __('Egyptian Arabic', true),
             'bel' => __('Belarusian', true),
@@ -110,7 +111,6 @@ class LanguagesHelper extends AppHelper
             'cat' => __('Catalan', true),
             'kaz' => __('Kazakh', true),
             'lvs' => __('Latvian', true),
-            // TODO to change when shanghainese will not be the only wu dialect
         );
         asort($languages);
         
