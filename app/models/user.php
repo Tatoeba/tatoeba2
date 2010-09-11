@@ -128,18 +128,6 @@ class User extends AppModel
      * @var array
      */
     public $hasAndBelongsToMany = array(
-        'Follower' => array(
-            'className' => 'Follower',
-            'joinTable' => 'followers_users',
-            'foreignKey' => 'user_id',
-            'associationForeignKey' => 'follower_id'
-        ),
-        'Following' => array(
-            'className' => 'Following',
-            'joinTable' => 'followers_users',
-            'foreignKey' => 'follower_id',
-            'associationForeignKey' => 'user_id'
-        ),
         'Favorite' => array(
             'className' => 'Favorite',
             'joinTable' => 'favorites_users',
@@ -500,8 +488,10 @@ class User extends AppModel
             'Padawan' => array(
                 array('BEN YAALA Salem', 'socom'),
                 array('DEPARIS Étienne', 'milouse'),
-                array('PARIS Robin', 'fendtwick'),
-                array('DUCATEL Baptiste', 'biptaste')
+                array('PARISI Robin', 'fendtwick'),
+                array('DUCATEL Baptiste', 'biptaste'),
+                array('LARIVIERE Julien', 'droide')
+                
             ),
             'Core' => array(
                 array('HO Ngoc Phuong Trang', 'trang'),
