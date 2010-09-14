@@ -26,7 +26,10 @@ function get_language_interface_from_url() {
 
 function get_tatoeba_root_url() {
     var hostname = self.location.hostname;
-    var port = self.location.port; 
+    var port = 80;
+    if ( self.location.port != '') {
+        port = self.location.port;
+    }
     var interfaceLang = get_language_interface_from_url();
     
     return "http://" + hostname + ":" + port + "/"+ interfaceLang;
