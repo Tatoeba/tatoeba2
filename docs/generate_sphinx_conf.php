@@ -3,6 +3,15 @@
 #############################################################################
 
 <?php
+/**
+ * Just run this script and redirect it into a sphinx.conf file
+ * php generate_sphinx_conf.php > sphinx.conf 
+ *
+ * Do not forget to change all the path, and to specify your database name
+ * user and paswword
+ */
+
+
 $sourcePath = "/media/disk2/index_dev";
 
 $languages = array(
@@ -111,9 +120,9 @@ source default
 {
     type                     = mysql
     sql_host                 = localhost
-    sql_user                 = prod_admin
-    sql_pass                 = ferhr4564frfrg_RTGGrt722
-    sql_db                   = tatoeba5
+    sql_user                 = USER
+    sql_pass                 = PASSWORD
+    sql_db                   = DATABASE
     sql_sock                 = /tmp/mysql.sock
 
     sql_query_pre            = SET NAMES utf8
