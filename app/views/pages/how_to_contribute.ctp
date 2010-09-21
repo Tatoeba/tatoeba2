@@ -104,7 +104,7 @@ $this->pageTitle = 'Tatoeba - ' . __('How to contribute', true);
     <?php
     __(
         "You can help us promote the project. <strong>Tell people around ".
-        "you</strong> that Tatoeba exits. This is a very ambitious project, so we ".
+        "you</strong> that Tatoeba exists. This is a very ambitious project, so we ".
         "will need as much help as possible."
     );
     ?>
