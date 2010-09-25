@@ -209,13 +209,6 @@ BEGIN
   CLOSE curseur_text ;
   -- delete loop back --
   DELETE FROM sentences_translations WHERE sentence_id = translation_id ;
-  -- reset sentence stats to comment if you don't have langStats table --
-  START TRANSACTION ;
-        TRUNCATE TABLE langStats;
-        INSERT INTO langStats 
-            SELECT lang , count(*) FROM sentences GROUP BY lang;
-        CALL create_nbr_sentences_of_list();
-  COMMIT ;
 END |
 
 Delimiter ;
