@@ -58,6 +58,34 @@ BEGIN
       set    sentence_id  = duplicate_text_id
       where  sentence_id  = temp_id;
 
+
+      IF done = 1 THEN
+        SET done = 0;
+      END IF;
+
+
+      update sentence_annotations
+      set    meaning_id  = duplicate_text_id
+      where  meaning_id  = temp_id;
+
+      IF done = 1 THEN
+        SET done = 0;
+      END IF;
+      
+      update sentence_annotations_old
+      set    sentence_id  = duplicate_text_id
+      where  sentence_id  = temp_id;
+
+      IF done = 1 THEN
+        SET done = 0;
+      END IF;
+      
+
+      update sentence_annotations_old
+      set    meaning_id  = duplicate_text_id
+      where  meaning_id  = temp_id;
+
+
       IF done = 1 THEN
         SET done = 0;
       END IF;
@@ -93,24 +121,17 @@ BEGIN
         SET done = 0;
       END IF;
 
-
-    -- mettre à jour sentence_annotations --
-     select 'update sentence_annotations' ;
-      update sentence_annotations 
-      set    sentence_id  = duplicate_text_id
-      where  sentence_id  = temp_id;
+     select 'update favorite' ;
+      update favorites_users
+      set    favorite_id  = duplicate_text_id
+      where  favorite_id  = temp_id;
 
       IF done = 1 THEN
         SET done = 0;
       END IF;
 
-      update sentence_annotations 
-      set    meaning_id  = duplicate_text_id
-      where  meaning_id  = temp_id;
 
-      IF done = 1 THEN
-        SET done = 0;
-      END IF;
+
     -- delete duplicates --
     select 'erase duplicates' ; 
         -- strange stuff as mysql doesn't like when you delete using a direct subquery using the same
