@@ -57,4 +57,23 @@
             </li>
         </ul>
     </div>
+    
+    <div class="module">
+    <h2><?php __('Question about Tatoeba?'); ?></h2>
+    <p>
+    <?php 
+    __(
+        'If you would like to ask a question about Tatoeba, please send '.
+        'an email at <strong>team@tatoeba.fr</strong> rather than a private '.
+        'message. '
+    ); 
+    ?>
+    </p>
+    <p>
+    <?php
+        __('Both sysko and Trang will receive it and you may have a reply faster.');
+    ?>
+    </p>
+    </div>
+    
 </div>
