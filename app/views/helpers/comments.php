@@ -94,7 +94,7 @@ class CommentsHelper extends AppHelper
                     )
                 ),
                 array(
-                    "controller" => "sentence_comments", 
+                    "controller" => "sentences", 
                     "action" => "show", 
                     $sentenceComment['sentence_id'].'#comments'
                 ),
