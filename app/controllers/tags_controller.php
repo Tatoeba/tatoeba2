@@ -60,7 +60,6 @@ class TagsController extends AppController
             'view_all',
         );
     
-        $this->Auth->allowedActions = array("*");
     } 
 
     /**
@@ -68,15 +67,31 @@ class TagsController extends AppController
      * 
      * @return void
      */
-    public function add_tag()
+
+    public function add_tag_post()
     {
         $tagName = $this->data['Tag']['tag_name'];
         $sentenceId = Sanitize::paranoid($this->data['Tag']['sentence_id']);
+        $this->add_tag($tagName, $sentenceId);
+
+    }
+ 
+    /**
+     * Add a tag to a Sentence
+     *
+     * @param string tagName    Name of the tag to add
+     * @param int    sentenceId Id of the sentence on which the tag will added
+     * 
+     * @return void
+     */
+       
+    public function add_tag($tagName, $sentenceId)
+    {
         $userId = CurrentUser::get("id"); 
 
         // if we try to access the page without POST info, we redirect to
         // the home page
-        if (empty($tagName) || empty($sentenceId)) {
+        if (empty($tagName) || empty($sentenceId) || !is_numeric($sentenceId) ) {
             $this->redirect(
                 array(
                     'controller' => 'pages',

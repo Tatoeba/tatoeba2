@@ -159,7 +159,7 @@ class TagsHelper extends AppHelper
         echo $this->Form->create(
             'Tag',
             array(
-                "action" => "add_tag",
+                "action" => "add_tag_post",
                 "type" => "post",
             )
         );

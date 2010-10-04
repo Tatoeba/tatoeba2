@@ -83,7 +83,8 @@ class UsersController extends AppController
             'resend_registration_mail',
             'captcha_image', 
             'check_username',
-            'check_email'
+            'check_email',
+            //'update_rights',
         );
         //$this->Auth->allowedActions = array('*');
     }
@@ -586,6 +587,7 @@ class UsersController extends AppController
         $this->Acl->deny($group, 'controllers/Sentences/import');
         
         $this->Acl->allow($group, 'controllers/Tags');
+        $this->Acl->deny($group, 'controllers/Tags/add_tag');
         
         $this->Acl->allow($group, 'controllers/Users');
         $this->Acl->deny($group, 'controllers/Users/index');
@@ -610,7 +612,7 @@ class UsersController extends AppController
         $this->Acl->deny($group, 'controllers/Sentences/import');
 
         
-        $this->Acl->allow($group, 'controllers/Tags');
+        $this->Acl->deny($group, 'controllers/Tags');
         
         $this->Acl->allow($group, 'controllers/Users');
         $this->Acl->deny($group, 'controllers/Users/index');
