@@ -155,6 +155,28 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
     
     
     <div class="module">
+        <h2><?php __('Important links'); ?></h2>
+        <ul>
+            <li>
+                <a href="http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html">
+                How to be a good contributor in Tatoeba</a>, by Trang
+            </li>
+            <li>
+                <a href="http://a4esl.com/temporary/tatoeba/info.html">Tatoeba.org: What You Can Do and How to Do It</a>, by CK
+            </li>
+            <li>
+                <a href="http://blog.tatoeba.org/2010/08/submission-policy-what-kind-of-content.html">Submission policies - What kind of content do we want?</a>, by Trang
+            </li>
+            <li>
+                <a href="http://blog.tatoeba.org/2010/05/moderators-in-tatoeba.html">Moderators in Tatoeba</a>, by Trang
+            </li>
+            <li>
+                <a rehf="http://blog.tatoeba.org/2010/09/warning-you-are-being-disrespectful.html">Warning: you are being disrespectful</a>, by Trang
+            </li>
+        </ul>
+    </div>
+        
+    <div class="module">    
         <h2><?php __('Adding new sentences'); ?></h2>
         <p>
         <?php __('There are two ways to add new sentences.'); ?>
