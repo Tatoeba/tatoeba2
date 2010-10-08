@@ -85,7 +85,9 @@ $languages = array(
     'orv' => 'Old East Slavic',
     'cha' => 'Chamorro',
     'tgl' => 'Tagalog',
-    'que' => 'Quechua'
+    'que' => 'Quechua',
+    'mon' => 'Mongolian',
+    'lit' => 'Lithuanian'
 );
 
 $languageWithStemmer = array(

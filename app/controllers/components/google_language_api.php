@@ -121,8 +121,10 @@ class GoogleLanguageApiComponent extends Object
             case 'ka' :     return 'kat';
             case 'kk' :     return 'kaz';
             case 'ko' :     return 'kor';
+            case 'lt' :     return 'lit';
             case 'lv' :     return 'lvs';
             case 'ms' :     return 'zsm';
+            case 'mn' :     return 'mon';
             case 'nl' :     return 'nld';
             case 'pl' :     return 'pol';
             case 'pt' :     return 'por';
