@@ -119,6 +119,9 @@ class LanguagesHelper extends AppHelper
             'que' => __('Quechua', true),
             'mon' => __('Mongolian', true),
             'lit' => __('Lithuanian', true),
+            'glg' => __('Galician', true),
+            'gle' => __('Irish', true),
+            'ina' => __('Interlingua', true),
         );
         asort($languages);
         
