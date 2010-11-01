@@ -62,7 +62,7 @@ $languages = array(
     'uzb' => 'Uzbek',
     'non' => 'Norwegian (Nynorsk)',
     'srp' => 'Serbian',
-    'tat' => 'Tartar',
+    'tat' => 'Tatar',
     'yid' => 'Yiddish',
     
     'pes' => 'Persian',
@@ -87,7 +87,10 @@ $languages = array(
     'tgl' => 'Tagalog',
     'que' => 'Quechua',
     'mon' => 'Mongolian',
-    'lit' => 'Lithuanian'
+    'lit' => 'Lithuanian',
+    'glg' => 'Galician',
+    'gle' => 'Irish',
+    'ina' => 'Interlingua'
 );
 
 $languageWithStemmer = array(
