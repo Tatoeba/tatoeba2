@@ -111,6 +111,8 @@ echo $form->input(
         "label" => __('What are the five first letters of your email?', true)
     )
 );
+
+__('For instance, if your email is me12345@example.com, the answer is "me123".');
 ?>
 </div>
 
