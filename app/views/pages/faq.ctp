@@ -33,6 +33,16 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     <h2>Something not clear?</h2>
     <p>If any of the answers here are not clear, let us know, we'll try to reformulate.</p>
     </div>
+    
+    <div class="module">
+    <h2>Some important links</h2>
+    You may find more information about Tatoeba in these links.    
+    <p><a href="http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html">How to be a good contributor in Tatoeba</a>, by Trang</p>
+    <p><a href="http://a4esl.com/temporary/tatoeba/info.html">Tatoeba.org: What You Can Do and How to Do It</a>, by CK</p>
+    <p><a href="http://blog.tatoeba.org/2010/08/submission-policy-what-kind-of-content.html">Submission policies - What kind of content do we want?</a>, by Trang</p>
+    <p><a href="http://blog.tatoeba.org/2010/05/moderators-in-tatoeba.html">Moderators in Tatoeba</a>, by Trang</p>
+    <p><a rehf="http://blog.tatoeba.org/2010/09/warning-you-are-being-disrespectful.html">Warning: you are being disrespectful</a>, by Trang</p>
+    </div>
 </div>
     
 <div id="main_content">
@@ -64,7 +74,7 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
     
     <a name="change-language"></a>
-    <h3><a href="#change-language">How do change the language of a sentence?</a></h3>
+    <h3><a href="#change-language">How do I change the language of a sentence?</a></h3>
     <p>Click on the flag; a list of languages will appear. Choose the correct language.</p> 
     <p>You can only change the language of sentences that <strong>belong to you</strong>.</p>
     <p>You also have to make sure the sentence which language you want to change is the <strong>main sentence</strong> (and not a translation). If it's a translation, then click on it. It will redirect to a page where the translation becomes the main sentence.</p>
