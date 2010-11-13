@@ -122,6 +122,8 @@ class LanguagesHelper extends AppHelper
             'glg' => __('Galician', true),
             'gle' => __('Irish', true),
             'ina' => __('Interlingua', true),
+            'jbo' => __('Lojban', true),
+            'toki' => __('Toki Pona', true)
         );
         asort($languages);
         

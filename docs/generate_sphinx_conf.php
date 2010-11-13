@@ -90,7 +90,9 @@ $languages = array(
     'lit' => 'Lithuanian',
     'glg' => 'Galician',
     'gle' => 'Irish',
-    'ina' => 'Interlingua'
+    'ina' => 'Interlingua',
+    'jbo' => 'Lojban',
+    'toki' => 'Toki Pona'
 );
 
 $languageWithStemmer = array(
