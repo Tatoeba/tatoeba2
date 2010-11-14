@@ -24,5 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+if(empty($lang)){
+    $lang = 'unknown';
+}
 echo $lang;
 ?>

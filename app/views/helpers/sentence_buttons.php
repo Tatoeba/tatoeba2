@@ -301,7 +301,7 @@ class SentenceButtonsHelper extends AppHelper
             $class = 'editableFlag';
             
             // language select
-            $langArray = $this->Languages->onlyLanguagesArray();
+            $langArray = $this->Languages->otherLanguagesArray();
             echo $this->Form->select(
                 'selectLang_'.$id,
                 $langArray,

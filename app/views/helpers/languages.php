@@ -162,6 +162,24 @@ class LanguagesHelper extends AppHelper
         
         return $languages;
     }
+    
+    
+    /** 
+     * Return array of languages in Tatoeba + 'other language'. 'other language' is
+     * used to set the language to null, in case there was a misdetection and the
+     * language in which the user is writing is not supported yet.
+     *
+     * @return array
+     */
+    public function otherLanguagesArray()
+    {
+        $languages = $this->onlyLanguagesArray();
+        
+        array_unshift($languages, array('' => __('other language', true)));
+        
+        return $languages;
+    }
+    
 
     /**
      * Return array of language + "auto"
