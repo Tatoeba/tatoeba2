@@ -100,12 +100,10 @@ class LogsHelper extends AppHelper
             if ($lang == '') {
                 echo '?';
             } else {
-                echo $this->Html->image(
-                    IMG_PATH . 'flags/'.$lang.".png", 
+                echo $this->Languages->icon(
+                    $lang, 
                     array(
-                        "alt" => $lang,
-                        "class" => "flag",
-                        "title" => $this->Languages->codeToName($lang)
+                        "class" => "flag"
                     )
                 );
             }

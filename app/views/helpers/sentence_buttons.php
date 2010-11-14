@@ -290,11 +290,7 @@ class SentenceButtonsHelper extends AppHelper
      * @return void
      */
     public function displayLanguageFlag($id, $lang, $editable = false)
-    {
-        if (empty($lang)) {
-            $lang = 'unknown';
-        }
-        
+    {        
         $class = '';
         if ($editable) {
             $this->Javascript->link('sentences.change_language.js', false);
@@ -322,12 +318,11 @@ class SentenceButtonsHelper extends AppHelper
             </script>";
         }
         
-        echo $this->Html->image(
-            IMG_PATH . 'flags/'.$lang.'.png',
+        echo $this->Languages->icon(
+            $lang,
             array(
                 "id" => "flag_".$id,
                 "class" => "languageFlag ".$class,
-                "title"=> $this->Languages->codeToName($lang),
                 "width" => 30,
                 "height" => 20
             )

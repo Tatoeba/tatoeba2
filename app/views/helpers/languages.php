@@ -395,12 +395,8 @@ class LanguagesHelper extends AppHelper
      */
     function stat($langCode, $numberOfSentences)
     {
-        if (empty($langCode)) {
-            $langCode = 'unknown';
-        }
-        
-        $flagImage = $this->Html->image(
-            IMG_PATH . 'flags/'.$langCode .'.png',
+        $flagImage = $this->icon(
+            $langCode,
             array(
                 'width' => 30,
                 'height' => 20
@@ -408,6 +404,9 @@ class LanguagesHelper extends AppHelper
         );
         $numberOfSentencesHtml = '<span class="total">'.$numberOfSentences.'</span>';
         
+        if (empty($langCode)) {
+            $langCode = 'unknown';
+        }
         $linkToAllSentences = $this->Html->link(
             $flagImage . $numberOfSentencesHtml,
             array(
@@ -459,6 +458,30 @@ class LanguagesHelper extends AppHelper
         } else {
             return 'unknown';
         }
+    }
+    
+    
+    /**
+     * Display language icon.
+     *
+     * @param string $lang    Language code.
+     * @param array  $options Options for Html::image().
+     *
+     * @return void
+     */
+    public function icon($lang, $options) 
+    {
+        if (empty($lang)) {
+            $lang = 'unknown';
+        }
+        
+        $options["title"] = $this->codeToName($lang);
+        $options["alt"] = $lang;
+        
+        return $this->Html->image(
+            IMG_PATH . 'flags/'.$lang.'.png',
+            $options
+        );
     }
 }
 ?>
