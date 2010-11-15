@@ -117,7 +117,8 @@ class TagsSentences extends AppModel
                     'Tag.internal_name',
                     'Tag.name',
                     'TagsSentences.user_id',
-                    'TagsSentences.tag_id'
+                    'TagsSentences.tag_id',
+                    'TagsSentences.added_time'
                 ),
                 'conditions' => array(
                     'TagsSentences.sentence_id' => $sentenceId

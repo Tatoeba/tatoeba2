@@ -80,8 +80,12 @@ class TagsHelper extends AppHelper
                     $tagInternalName =  $tagArray['Tag']['internal_name'];
                     $taggerId = $tagArray['TagsSentences']['user_id'];
                     $tagId = $tagArray['TagsSentences']['tag_id'];
+                    $date = $tagArray['TagsSentences']['added_time'];
                     
-                    $this->displayTagLink($tagName, $tagInternalName);
+                    $this->displayTagLink(
+                        $tagName, $tagInternalName, $taggerId, $date
+                    );
+                    
                     if (CurrentUser::canRemoveTagFromSentence($taggerId)) {
                         $this->_displayRemoveLink($tagId, $tagName, $sentenceId);
                     }
@@ -112,8 +116,15 @@ class TagsHelper extends AppHelper
      *
      *
      */
-    public function displayTagLink($tagName, $tagInternalName)
-    {
+    public function displayTagLink(
+        $tagName, $tagInternalName, $userId = null, $date = null
+    ) {
+        $options = array("class" => "tagName");
+        if ($userId != null) {
+            $options["title"] = sprintf(
+                __("user: %s, date: %s", true), $userId, $date
+            );
+        }
         echo $this->Html->link(
             $tagName,
             array(
@@ -121,9 +132,7 @@ class TagsHelper extends AppHelper
                 "action" => "show_sentences_with_tag",
                 $tagInternalName
             ),
-            array(
-                "class" => "tagName"
-            )
+            $options
         );
 
     }
