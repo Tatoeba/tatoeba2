@@ -132,6 +132,7 @@ class SentenceComment extends AppModel
                         )
                     ),
                     'Sentence' => array(
+                        'User' => array('username'),
                         'fields' => array('id', 'text', 'lang')
                     )
                 )
@@ -191,6 +192,5 @@ class SentenceComment extends AppModel
 
         return $result['SentenceComment']['user_id'];
     }
-
 }
 ?>

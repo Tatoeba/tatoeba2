@@ -25,12 +25,6 @@ $this->pageTitle = sprintf(
     __('Tatoeba user: %s', true),
     $userName
 );
-//$javascript->link('users.followers_and_following.js', false);
-
-$navigation->displayUsersNavigation(
-    $userId,
-    $userName
-);
 ?>
 <div id="annexe_content">
 
@@ -95,42 +89,6 @@ $navigation->displayUsersNavigation(
     </div>
 
     <?php
-    /* People that the user is following */
-
-    if (count($user['Following']) > 0) {
-        echo '<div class="module">';
-            echo '<h2>';
-            __('Following');
-            echo '</h2>';
-
-            echo '<div class="following">';
-            echo '<ul>';
-            foreach ($user['Following'] as $following) {
-                echo '<li>'.$following['username'].'</li>';
-            }
-            echo '<ul>';
-            echo '</div>';
-        echo '</div>';
-    }
-
-
-    /* People that are following the user */
-    if (count($user['Follower']) > 0) {
-        echo '<div class="module">';
-            echo '<h2>';
-            __('Followers');
-            echo '</h2>';
-
-            echo '<div class="followers">';
-            echo '<ul>';
-            foreach ($user['Follower'] as $follower) {
-                echo '<li>'.$follower['username'].'</li>';
-            }
-            echo '<ul>';
-            echo '</div>';
-        echo '</div>';
-    }
-
     /* Latest favorites from the user */
     if (count($user['Favorite']) > 0) {
         echo '<div class="module">';
@@ -220,8 +178,13 @@ $navigation->displayUsersNavigation(
 
             echo '<ol class="comments">';
             foreach ($user['SentenceComments'] as $comment) {
-                $comment['User'] = $user['User'];
-                $comments->displaySentenceComment($comment, true);
+                $sentenceInfo = array('id' => $comment['sentence_id']);
+                $comments->displaySentenceComment(
+                    $comment,
+                    $user['User'],
+                    $sentenceInfo,
+                    true
+                );
             }
             echo '</ol>';
         echo '</div>';

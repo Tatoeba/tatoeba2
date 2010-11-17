@@ -54,29 +54,6 @@ class SentenceCommentsController extends AppController
         'Pagination'
     );
     public $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
-    public $paginate = array(
-        'limit' => 100,
-        "order" => "SentenceComment.created DESC",
-        'fields' => array(
-            'id',
-            'user_id',
-            'text',
-            'created',
-            'sentence_id',
-        ),
-        "contain" => array(
-            'User' => array(
-                'fields' => array(
-                    'id',
-                    'username',
-                    'image',
-                )
-            ),
-            'Sentence' => array(
-                'fields' => "text"
-            )
-        )
-    );
     
     
     /**
@@ -104,6 +81,26 @@ class SentenceCommentsController extends AppController
     public function index($langFilter = 'und')
     {
         $permissions = array();
+        
+        $this->paginate = array(
+            "SentenceComment" => array(
+                'limit' => 50,
+                'order' => 'SentenceComment.created DESC',
+                "contain" => array(
+                    'User' => array(
+                        'fields' => array(
+                            'id',
+                            'username',
+                            'image'
+                        )
+                    ),
+                    'Sentence' => array(
+                        'User' => array('username'),
+                        'fields' => array('id', 'text', 'lang')
+                    )
+                )
+            )
+        );
         
         if ($langFilter != 'und') {
             $this->paginate['conditions'] = array(

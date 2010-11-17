@@ -42,110 +42,107 @@ class CommentsHelper extends AppHelper
     /**
      * Display a sentence comment block.
      *
-     * @param array $comment         Comment to display.
-     * @param bool  $displayAsThread If set to true it will display the "view" button
-     *                               and the sentence in relation to the comment.
-     * @param array $permissions     Array contaning what one can do with this
-     *                               comment.
+     * @param array $comment     Comment array.
+     * @param array $user        Author array.
+     * @param bool  $sentence    Related sentence array.
+     * @param array $permissions Permissions array.
      * 
      * @return void
      */
     public function displaySentenceComment(
-        $comment,
-        $displayAsThread = false,
-        $permissions = array()
+        $comment, $user, $sentence, $permissions = array()
     ) {
-        // TODO explode this functions in smaller one
-        // and make parameters more explicit 
-        // (we don't see with the protype that we need sentences inside comment 
-        // it should be a entire parameter, stop using universe-variable
-        $user = $comment['User'];
         $userName = $user["username"];
-
-        $sentenceComment = $comment;
-        if (isset($comment['SentenceComment'])) { 
-            $sentenceComment = $comment['SentenceComment'];
+        $userImage = $user['image'];
+        
+        $commentId = $comment['id'];
+        $commentText = $comment['text'];
+        
+        $date = $comment['created'];
+        ?>
+        <li>
+        <a name="comment-<?php echo $commentId; ?>" />
+        <?php
+        $this->_displayActions(
+            $permissions, $commentId,  $sentence['id']
+        );
+        $this->_displayMeta($userName, $userImage, $date);
+        $this->_displayBody($commentText, $sentence);
+        ?>
+        </li>
+        <?php
+    }
+    
+    
+    /**
+     * Display meta information.
+     *
+     * @param string $userName  Username of the author of the comment.
+     * @param string $userImage Profile picture of the author of the comment.
+     * @param string $date      Date of the comment.
+     * 
+     * @return void
+     */
+    private function _displayMeta($userName, $userImage, $date)
+    {
+        ?>
+        <div class="meta">
+        <?php
+        $this->_displayAuthorImage($userName, $userImage);
+        $this->_displayAuthor($userName);
+        $this->_displayDate($date);
+        ?>
+        </div>
+        <?php
+    }
+    
+    
+    /**
+     * Display profile picture of the author of the comment.
+     *
+     * @param $string $username  User name.
+     * @param $string $imageName Image name.
+     *
+     * @return void
+     */
+    public function _displayAuthorImage($userName, $imageName)
+    {
+        if (empty($imageName)) {
+            $imageName = 'unknown-avatar.png';
         }
-        
-        echo '<li>';
-        
-        echo '<ul class="meta">';
-        
-        // profile picture
-        $image = 'unknown-avatar.png';
-        if (!empty($user['image'])) {
-            $image = $user['image'];
-        }
-
-        
-        // view button
-        if ($displayAsThread) {
-            echo '<li class="action">';
-            echo $this->Html->link(
-                $this->Html->image(
-                    IMG_PATH . 'view.png',
-                    array(
-                        "title" => __(
-                            'View all comments on the related sentence',
-                            true
-                        ),
-                        "width" => 24,
-                        "height" => 24
-                    )
-                ),
-                array(
-                    "controller" => "sentences", 
-                    "action" => "show", 
-                    $sentenceComment['sentence_id'].'#comments'
-                ),
-                array("escape" => false)
-            );
-            echo '</li>';
-        }
-        
-        // delete button
-        if (isset($permissions['canDelete']) && $permissions['canDelete'] == true) {
-            echo '<li class="action">';
-            echo $this->Html->link(
-                $this->Html->image(
-                    IMG_PATH . 'delete_comment.png',
-                    array(
-                        "title" => __(
-                            'Delete this comment',
-                            true
-                        )
-                    )
-                ),
-                array(
-                    "controller" => "sentence_comments", 
-                    "action" => "delete_comment", 
-                    $sentenceComment['id']
-                ),
-                array("escape" => false),
-                __('Are you sure?', true)
-            );
-            echo '</li>';
-        }
-        /* * * * * * * * * * * * * * * * */
-        
-        // user avatar
-        echo '<li class="image">';
+        ?>
+        <div class="image">
+        <?php
         echo $this->Html->link(
             $this->Html->image(
-                IMG_PATH . 'profiles_36/'.$image, 
+                IMG_PATH . 'profiles_36/'.$imageName, 
                 array("title" => __('View this user\'s profile', true))
             ),
             array(
                 "controller" => "user",
                 "action" => "profile",
-                $user['username']
+                $userName
             ),
             array("escape" => false)
         );
-        echo '</li>';
-        
-        // author
-        echo '<li class="author">';
+        ?>
+        </div>
+        <?php
+    }
+    
+    
+    /**
+     * Display author's username.
+     *
+     * @param string $userName Author's username.
+     *
+     * @return void
+     */
+    private function _displayAuthor($userName)
+    {
+        ?>
+        <div class="author">
+        <?php
         echo $this->Html->link(
             $userName,
             array(
@@ -155,64 +152,241 @@ class CommentsHelper extends AppHelper
             ),
             array("title" => __('View this user\'s profile', true))
         );
-        echo '</li>';
+        ?>
+        </div>
+        <?php
+    }
+    
+    
+    /**
+     * Display date.
+     *
+     * @param string $date Date.
+     * 
+     * @return void
+     */
+    private function _displayDate($date)
+    {
+        ?>
+        <div class="date" title="<?php echo $date; ?>">
+        <?php echo $this->Date->ago($date); ?>
+        </div>
+        <?php
+    }
+    
+    
+    /**
+     * Display view and delete buttons.
+     *
+     * @param array $permissions    Permissions.
+     * @param int   $commentId      Id of the comment.
+     * @param int   $sentenceId     Id of the related sentence.
+     * @param bool $displayAsThread Cf. displaySentenceComment().
+     *
+     * @return void
+     */
+    private function _displayActions($permissions, $commentId, $sentenceId) {
+        ?>
+        <div class="actions">
+        <?php
+        $this->_displayViewButton($commentId, $sentenceId);
         
-        // date
-        echo '<li class="date">';
-        echo $this->Date->ago($sentenceComment['created']);
-        echo '</li>';
-        
-        echo '</ul>';
-
-        
-        echo '<div class="body">';
-        // sentence
-        if ($displayAsThread && isset($comment['Sentence'])) {
-
-            $sentence = $comment['Sentence'];
-            $sentenceText = $sentence['text'];
-            $sentenceId = $sentence['id'];
-            
-            $sentenceLang = null;
-            if (!empty($sentence['lang'])) {
-                $sentenceLang = $sentence['lang'];
-            }
-            $dir = $this->Languages->getLanguageDirection($sentenceLang);
-            
-            echo '<div class="sentence">';
-            if (isset($sentenceText)) {
-                echo $this->Html->link(
-                    $sentenceText,
-                    array(
-                        "controller"=>"sentences",
-                        "action"=>"show",
-                        $sentenceId.'#comments'
+        if (isset($permissions['canDelete']) && $permissions['canDelete'] == true) {
+            $this->_displayDeleteButton($commentId);
+        }
+        ?>
+        </div>
+        <?php
+    }
+    
+    
+    /**
+     * Display "view" button.
+     *
+     * @param int $commentId  Id of the comment.
+     * @param int $sentenceId Id of the sentence.
+     *
+     * @return void
+     */
+    private function _displayViewButton($commentId, $sentenceId)
+    {
+        ?>
+        <div class="action">
+        <?php
+        echo $this->Html->link(
+            $this->Html->image(
+                IMG_PATH . 'view.png',
+                array(
+                    "title" => __(
+                        'View comment',
+                        true
                     ),
-                    array(
-                        'dir' => $dir
+                    "width" => 24,
+                    "height" => 24
+                )
+            ),
+            array(
+                "controller" => "sentences", 
+                "action" => "show", 
+                $sentenceId,
+                "#" => "comment-".$commentId
+            ),
+            array(
+                "escape" => false
+            )
+        );
+        ?>
+        </div>
+        <?php
+    }
+    
+    
+    /**
+     * Delete button.
+     *
+     * @param int $commentId Id of the comment.
+     *
+     * @return void
+     */
+    private function _displayDeleteButton($commentId)
+    {
+        ?>
+        <div class="action">
+        <?php
+        echo $this->Html->link(
+            $this->Html->image(
+                IMG_PATH . 'delete_comment.png',
+                array(
+                    "title" => __(
+                        'Delete this comment',
+                        true
                     )
-                );
-            } else {
-                echo '<em>'.__('sentence deleted', true).'</em>';
-            }
-            echo '</div>';
+                )
+            ),
+            array(
+                "controller" => "sentence_comments", 
+                "action" => "delete_comment", 
+                $commentId
+            ),
+            array("escape" => false),
+            __('Are you sure?', true)
+        );
+        ?>
+        </div>
+        <?php
+    }
+    
+    
+    /**
+     * Display body.
+     *
+     * @param string $commentText     Text of the comment.
+     * @param array  $sentence        Related sentence.
+     * @param bool   $displayAsThread Cf. displaySentenceComment()
+     *
+     * @return void
+     */
+    private function _displayBody($commentText, $sentence)
+    {
+        ?>
+        <div class="body">
+        <?php
+        if (isset($sentence['text'])) {
+            $this->_displayRelatedSentence($sentence);
         }
         
-        // comment text
+        $this->_displayCommentText($commentText);
+        ?>
+        </div>
+        <?php
+    }
+    
+    
+    /**
+     * Display comment text.
+     *
+     * @param string $commentText Text of the comment.
+     *
+     * @return void
+     */
+    private function _displayCommentText($commentText)
+    {
+        ?>
+        <div class="commentText">
+        <?php
         $commentText = $this->ClickableLinks->clickableURL(
             htmlentities(
-                $sentenceComment['text'],
+                $commentText,
                 ENT_QUOTES,
                 'UTF-8'    
             )
         );
         echo nl2br($commentText);
-        echo '</div>';
-        
-        echo '</li>';
+        ?>
+        </div>
+        <?php
     }
     
-
+    
+    /**
+     * Display related sentence.
+     *
+     * @param array $sentence Sentence info.
+     *
+     * @return void
+     */
+    private function _displayRelatedSentence($sentence)
+    {
+        $sentenceText = $sentence['text'];
+        $sentenceId = $sentence['id'];
+        $ownerName = null;
+        if (isset($sentence['User']['username'])) {
+            $ownerName = $sentence['User']['username'];
+        }
+        
+        $sentenceLang = null;
+        if (!empty($sentence['lang'])) {
+            $sentenceLang = $sentence['lang'];
+        }
+        $dir = $this->Languages->getLanguageDirection($sentenceLang);
+        ?>
+        <div class="sentence">
+        <?php
+        if (isset($sentenceText)) {
+            echo $this->Html->link(
+                $sentenceText,
+                array(
+                    "controller"=>"sentences",
+                    "action"=>"show",
+                    $sentenceId.'#comments'
+                ),
+                array(
+                    'dir' => $dir,
+                    'class' => 'sentenceText'
+                )
+            );
+            
+            if (!empty($ownerName)) {
+                echo $this->Html->link(
+                    '['.$ownerName.']',
+                    array(
+                        "controller" => "user",
+                        "action" => "profile",
+                        $ownerName
+                    ),
+                    array(
+                        "class" => "ownerName"
+                    )
+                );
+            } 
+        } else {
+            echo '<em>'.__('sentence deleted', true).'</em>';
+        }
+        ?>
+        </div>
+        <?php
+    }
+    
     
     /**
      * Display form to post a comment.

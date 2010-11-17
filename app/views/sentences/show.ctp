@@ -149,13 +149,15 @@ $navigation->displaySentenceNavigation(
         echo '<h2>';
         __('Comments');
         echo '</h2>';
-
+        
         if (!empty($sentenceComments)) {
+            $sentenceInfo = array('id' => $sentenceId);
             echo '<ol class="comments">';
             foreach ($sentenceComments as $i=>$comment) {
                 $comments->displaySentenceComment(
-                    $comment,
-                    true,
+                    $comment['SentenceComment'],
+                    $comment['User'],
+                    $sentenceInfo,
                     $commentsPermissions[$i]
                 );
             }
