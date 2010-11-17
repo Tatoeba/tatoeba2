@@ -72,8 +72,9 @@ $paginator->options(
         <?php
         foreach ($sentenceComments as $i=>$comment) {
             $comments->displaySentenceComment(
-                $comment,
-                true,
+                $comment['SentenceComment'],
+                $comment['User'],
+                $comment['Sentence'],
                 $commentsPermissions[$i]
             );
         }

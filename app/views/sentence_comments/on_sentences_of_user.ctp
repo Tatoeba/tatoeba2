@@ -89,8 +89,9 @@ $this->pageTitle = 'Tatoeba - ' . sprintf(
         <?php
         foreach ($userComments as $i=>$comment) {
             $comments->displaySentenceComment(
-                $comment,
-                true,
+                $comment['SentenceComment'],
+                $comment['User'],
+                $comment['Sentence'],
                 $commentsPermissions[$i]
             );
         }

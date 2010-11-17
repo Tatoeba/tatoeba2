@@ -55,6 +55,32 @@ class SentenceCommentsController extends AppController
     );
     public $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
     
+    public $paginate = array(
+        'SentenceComment' => array(
+            'fields' => array(
+                'id',
+                'user_id',
+                'text',
+                'created',
+                'sentence_id',
+            ),
+            'contain' => array(
+                'User' => array(
+                    'fields' => array(
+                        'id',
+                        'username',
+                        'image',
+                    )
+                ),
+                'Sentence' => array(
+                    'User' => array('username'),
+                    'fields' => array('id','text', 'lang')
+                )
+            ),
+            'limit' => 50,
+            'order' => 'created DESC',
+        )
+    ); 
     
     /**
      * Before filter.
@@ -81,26 +107,6 @@ class SentenceCommentsController extends AppController
     public function index($langFilter = 'und')
     {
         $permissions = array();
-        
-        $this->paginate = array(
-            "SentenceComment" => array(
-                'limit' => 50,
-                'order' => 'SentenceComment.created DESC',
-                "contain" => array(
-                    'User' => array(
-                        'fields' => array(
-                            'id',
-                            'username',
-                            'image'
-                        )
-                    ),
-                    'Sentence' => array(
-                        'User' => array('username'),
-                        'fields' => array('id', 'text', 'lang')
-                    )
-                )
-            )
-        );
         
         if ($langFilter != 'und') {
             $this->paginate['conditions'] = array(
@@ -286,38 +292,14 @@ class SentenceCommentsController extends AppController
             $this->set("noComment", true);
             return; 
         }
-
-        $this->paginate = array(
-            'SentenceComment' => array(
-                'fields' => array(
-                    'id',
-                    'user_id',
-                    'text',
-                    'created',
-                    'sentence_id',
-                ),
-                'conditions' => array('SentenceComment.user_id' => $userId),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array(
-                            'id',
-                            'username',
-                            'image',
-                        )
-                    ),
-                    'Sentence' => array(
-                        'fields' => "text"
-                    )
-                ),
-                'limit' => 50,
-                'order' => 'created DESC',
-            )
-        ); 
+        
+        $this->paginate['SentenceComment']['conditions'] = array(
+            'SentenceComment.user_id' => $userId
+        );
         
         $userComments = $this->paginate(
             'SentenceComment'
         );
-
 
         $permissions = $this->Permissions->getCommentsOptions(
             $userComments,
@@ -344,34 +326,10 @@ class SentenceCommentsController extends AppController
     public function on_sentences_of_user($userName)
     {
         $userId = $this->User->getIdfromUsername($userName);
-        $this->paginate = array(
-            'SentenceComment' => array(
-                'fields' => array(
-                    'id',
-                    'user_id',
-                    'text',
-                    'created',
-                    'sentence_id',
-                ),
-                'conditions' => array(
-                    'Sentence.user_id' => $userId
-                ),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array(
-                            'id',
-                            'username',
-                            'image',
-                        )
-                    ),
-                    'Sentence' => array(
-                        'fields' => "text"
-                    )
-                ),
-                'limit' => 50,
-                'order' => 'created DESC',
-            )
-        ); 
+        
+        $this->paginate['SentenceComment']['conditions'] = array(
+            'Sentence.user_id' => $userId
+        );
         
         $userComments = $this->paginate(
             'SentenceComment'
