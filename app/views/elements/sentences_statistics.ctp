@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+echo $javascript->link(JS_PATH . 'sentences.statistics.js', false);
+
 $stats = ClassRegistry::init('Sentence')->getStatistics();
 if (isset($this->params['lang'])) {
     Configure::write('Config.language', $this->params['lang']);

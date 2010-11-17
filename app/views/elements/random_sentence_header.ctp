@@ -25,7 +25,6 @@
  * @link     http://tatoeba.org
  */
 
-echo $javascript->link(JS_PATH . 'sentences.statistics.js', false);
 echo $javascript->link(JS_PATH . 'sentences.show_another.js', false);
 
 $langArray = $languages->languagesArray();
