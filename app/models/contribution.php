@@ -58,42 +58,7 @@ class Contribution extends AppModel
             )
         );
     }
-
-    /**
-     * Get the top contributors (those who have the highest score when calculating
-     * number of sentences added + number of modifications).
-     *
-     * @param int $limit Number of top contributors.
-     *
-     * @return array
-     */
-    public function getTopContributors($limit)
-    {
-        $result = $this->find(
-            'all',
-            array(
-                'order' => 'total DESC',
-                'fields' => array(
-                    'COUNT(Contribution.id) AS total',
-                    'User.username',
-                    'User.group_id'
-                ),
-                'group' => 'Contribution.user_id',
-                'conditions' => array (
-                    'Contribution.user_id !=' => null,
-                    'Contribution.type' => 'sentence',
-                    'User.group_id <' => 5
-                ),
-                'limit' => $limit ,
-                'contain' => array (
-                    'User' => array (
-                        'fields' => array( 'User.username', 'User.group_id'),
-                    ),
-                ) 
-            )
-        );
-        return $result; 
-    }
+    
     
     /**
      * Return contributions related to specified sentence.

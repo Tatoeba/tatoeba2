@@ -33,39 +33,125 @@
  * Users
  */
 .users {
-    margin-bottom: 20px;
+    margin: 20px 0px;
+    overflow: hidden;
 }
 
-.users th {
-    border-bottom: #CCC 1px dotted;
-    padding: 3px 3px;
+.user {
+    border: 1px solid #CCC;
+    background: url(../../img/module_background.png) repeat-x bottom left;
+    padding: 7px;
+    float: left;
+    width: 240px;
+    margin: 10px;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
 }
 
-.users td {
-    text-align: center;
+.user .memberSince {
+    margin-top: 5px;
+}
+
+.memberSince .date {
+    color: #888;
+    font-style: italic;
+}
+
+.user .username {
+    font-size: 1.3em;
+    line-height: 36px;
+}
+
+.user .image {
+    float: left;
+    margin-right: 7px;
+}
+
+.user .status {
+    font-weight: bold;
+    color: #666;
+    margin-top: 5px;
+}
+
+.status1 .status{
+    color: red;
+}
+
+.status2 .status{
+    color: orange;
+}
+
+.status3 .status{
+    color: #00B712;
+}
+
+.status4 .status{
+    color: #42B0FF;
+}
+
+.status .power {
+    float: right;
+}
+
+.status img {
+    margin: 0px 2px;
+}
+
+/*
+ * Current contributors
+ */
+.currentContributor {
+    border: 1px solid #DDD;
+    margin: 5px;
     padding: 5px;
 }
 
-.users img {
-    height: 36px;
+.currentContributor .image {
+    float: left;
+    margin-right: 10px;
 }
 
-
-/*
- * Top members
- */
-#topMembers {
-    text-align: center;
+.currentContributor .username {
+    font-size: 1.2em;
 }
 
-#topMembers td {
-    padding: 5px 3px;
+.currentContributor .score {
+    color: #777;
+    font-size: 0.8em;
 }
 
-#topMembers th {
-    border-bottom: 1px #000 solid;
+.activityBar {
+    float: right;
+    border: 1px solid #CCC;
+    width: 10px;
+    margin: 2px 0px;
 }
 
-#topMembers tr.admin {
-    background-color: #FCC;
+.activityBar .box{
+    height: 5px;
+    margin: 1px;
+}
+
+.activityBar .level0 {
+}
+
+.activityBar .level1 {
+    background: #00CBE7;
+}
+
+.activityBar .level2 {
+    background: #00DA3C;
+}
+
+.activityBar .level3 {
+    background: #F4F328;
+}
+
+.activityBar .level4 {
+    background: #FD8603;
+}
+
+.activityBar .level5 {
+    background: #DF151A;
 }

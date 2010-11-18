@@ -50,7 +50,8 @@ class UsersController extends AppController
     public $components = array ('Mailer', 'Captcha', 'RememberMe');
     public $paginate = array(
         'limit' => 20,
-        'order' => array('last_time_active' => 'desc'),
+        'order' => 'group_id',
+        'fields' => array('username', 'since', 'image'),
         'contain' => array(
             "Group" => array(
                 "fields" => "Group.name"
@@ -434,6 +435,7 @@ class UsersController extends AppController
         $user = $this->User->getUserById($id);
 
         if ($user != null) {
+            $this->helpers[] = 'Wall';
             $this->set('user', $user);
         } else {
             $this->Session->write('last_user_id', $id);
@@ -448,22 +450,26 @@ class UsersController extends AppController
      */
     public function all()
     {
-        $topContributors = $this->Contribution->getTopContributors(20);
+        $this->helpers[] = 'Members';
+    
+        $this->loadModel('LastContribution');
+        $currentContributors = $this->LastContribution->getCurrentContributors();
         
         // present result in a nicer array
-        foreach ( $topContributors as $i=>$contributor) {
-            $topContributors[$i] = array (
+        $total = 0;
+        foreach ( $currentContributors as $i=>$contributor) {
+            $currentContributors[$i] = array (
                 'numberOfContributions' => $contributor[0]['total'],
                 'userName' => $contributor['User']['username'],
-                'group_id' => $contributor['User']['group_id']
+                'image' => $contributor['User']['image']
             );
+            $total += $contributor[0]['total'];
         }
-
         
-        $this->set('topContributors', $topContributors);
-
+        $this->set('currentContributors', $currentContributors);
+        $this->set('total', $total);
+        
         $users = $this->paginate(array('User.group_id < 5'));
-        
         $this->set('users', $users);
     }
 

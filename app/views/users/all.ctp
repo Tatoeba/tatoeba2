@@ -36,121 +36,120 @@
  */ 
 
 $this->pageTitle = 'Tatoeba - ' . __('Members', true);
-
-$id = ($session->read('last_user_id') > 0) ? $session->read('last_user_id') : 1;
-$navigation->displayUsersNavigation($id);
 ?>
 
 <div id="annexe_content">
-	<div class="module">
-	<h2><?php __('Top members') ?></h2>
-	<?php
-	
-    echo '<table id="topMembers">';
-	echo '<tr>';
-	echo '<th>' . __('rank', true) . '</th>';
-	echo '<th>' . __('username', true) . '</th>';
-	echo '<th>' . __('number of contributions', true) . '</th>';
-	echo '</tr>';
-
-	foreach($topContributors as $i=>$topContributor){
-		$css = 'class=';
-		if($topContributor['group_id'] == 1){
-			$css .= '"admin"';
-		} elseif ($topContributor['group_id'] == 4){
-			$css .= '"normal"';
-		}
-
-		echo '<tr '.$css.'><td>';
-		echo $i +1 ;
-		echo '</td><td>';
-		echo $html->link($topContributor['userName'],
-            array("controller"=>"user",
-                 "action"=>"profile",
-                  $topContributor['userName']
-            )
-        );
-		echo '</td><td>';
-		echo $topContributor['numberOfContributions'];
-		echo '</td></tr>';
-	}
-	echo '</table>';
-	?>
-	<p class="more_link">
-		<?php
-		echo $html->link(
-			__('Show entire list',true),
-			array(
-				"controller" => "contributions",
-				"action" => "statistics"
-			)
-		);
-		?>
-		</p>
-	</div>
+    <div class="module">
+    <h2><?php __('Search user') ?></h2>
+    <?php
+    echo $form->create('User', array("action" => "search"));
+    echo $form->input(
+        'username',
+        array(
+            "id" => "usernameInput",
+            "label" => "", 
+        )
+    );
+    echo $form->end(__('search', true));
+    ?>
+    </div>
+    
+    <div class="module">
+    <?php 
+    echo $this->element(
+        'currently_active_members', 
+        array(
+            'currentContributors' => $currentContributors
+        )
+    ); 
+    ?> 
+    </div>
 </div>
 
 <div id="main_content">
-	<div class="module">
-		<h2><?=$paginator->counter(array('format' => __('Members (total %count%)', true))); ?></h2>
-
-		<?php
-        $pagination->display();
+    <div class="module">
+        <h2>
+        <?php 
+        echo $paginator->counter(
+            array('format' => __('Members (total %count%)', true))
+        ); 
         ?>
-		<table class="users">
-		<tr>
-			<th></th>
-			<th><?php echo $paginator->sort(__('Username', true), 'username');?></th>
-			<th><?php echo $paginator->sort(__('Member since', true),'since');?></th>
-			<th><?php echo $paginator->sort(__('Last login', true),'last_time_active');?></th>
-			<th><?php echo $paginator->sort(__('Member status', true),'group_id');?></th>
-		</tr>
-		<?php
-		foreach ($users as $i=>$user):
-			$class = '';
-			if (($i % 2) == 0) {
-				$class = ' class="altrow"';
-			}
-		?>
-			<tr>
-				<td>
-					<?php 
-					$image = (empty($user['User']['image'])) ? 'unknown-avatar.png' : $user['User']['image'];
-					echo $html->link(
-						$html->image(
-							'profiles_36/'.$image,
-							array("alt"=>$user['User']['username'])
-						)
-						, array("controller"=>'user', "action"=>'profile', $user['User']['username'])
-						, array("escape"=>false)
-					); 
-					?>
-				</td>
-				<td>
-					<?php
-					echo $html->link(
-						$user['User']['username']
-						, array("controller"=>'user', "action"=>'profile', $user['User']['username'])
-					); 
-					?>
-				</td>
-				<td>
-					<?php echo $date->ago($user['User']['since']); ?>
-				</td>
-				<td>
-					<?php echo $date->ago($user['User']['last_time_active'], true); ?>
-				</td>
-				<td>
-					<?php echo $user['Group']['name']; ?>
-				</td>
-			</tr>
-		<?php endforeach; ?>
-		</table>
+        </h2>
+        
+        <strong><?php __('Sort by:'); ?></strong>
+        <?php
+        echo $paginator->sort(__('Username', true), 'username');
+        echo ' | ';
+        echo $paginator->sort(__('Member since', true),'since');
+        echo ' | ';
+        echo $paginator->sort(__('Member status', true),'group_id');
+        ?>
+        
+        
+        <?php $pagination->display(); ?>
+        
+        <div class="users">
+        <?php
+        foreach ($users as $i=>$user):
+        $groupId = $user['Group']['id'];
+        $status = "status".$groupId;
+        $username = $user['User']['username'];
+        $userImage = null;
+        if (isset($user['User']['image'])) {
+            $userImage = $user['User']['image'];
+        };
+        ?>
+        <div class="user <?php echo $status ?>">
+            <div class="image">
+                <?php echo $members->image($username, $userImage); ?>
+            </div>
+
+            
+            <div class="username">
+                <?php
+                echo $html->link(
+                    $user['User']['username'],
+                    array(
+                        "controller"=>'user', 
+                        "action"=>'profile', 
+                        $user['User']['username']
+                    )
+                ); 
+                ?>
+            </div>
+
+            
+            <div class="memberSince">
+                <?php __("Member since:") ?>
+                <span class="date">
+                <?php echo $date->ago($user['User']['since']); ?>
+                </span>
+            </div>
+
+            
+            <div class="status">
+                <div class="power">
+                <?php
+                for ($i = 4; $i > $groupId; $i--) {
+                    echo $html->image('crown.png');
+                }
+                ?>
+                </div>
+                
+                <div class="name">
+                <?php 
+                echo $user['Group']['name']; 
+                ?>
+                </div>
+            </div>
+        </div>
+        <?php endforeach; ?>
+        </div>
         
         <?php
         $pagination->display();
         ?>
-	</div>
+    </div>
 </div>
 
 
