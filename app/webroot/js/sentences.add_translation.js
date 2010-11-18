@@ -37,6 +37,8 @@ $(document).ready(function() {
                 unbind(); // very important
                 // This unbind() applies for the submit button and input field.
                 
+                sentenceText = normalized_sentence(sentenceText);
+                
                 $("#_" + sentenceId + "_translations").show();
                 $("#_" + sentenceId + "_loading").show();
                 $(".addTranslations").hide();

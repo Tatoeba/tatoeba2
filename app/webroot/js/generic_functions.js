@@ -30,3 +30,12 @@ function get_tatoeba_root_url() {
     
     return "http://" + host + "/"+ interfaceLang;
 }
+
+/**
+ * Returns string without the new lines and stuff.
+ */
+function normalized_sentence(sentenceText) {
+    var reg = new RegExp("[\\t\\n\\r ]+", "gi");
+    sentenceText = sentenceText.replace(reg, " ");
+    return sentenceText;
+}
