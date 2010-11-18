@@ -97,5 +97,28 @@ class MembersHelper extends AppHelper
         <?php
     }
     
+    
+    /**
+     *
+     */
+    public function image($username, $imageName = null)
+    {
+        if (empty($imageName)) {
+            $imageName = 'unknown-avatar.png';
+        }
+        echo $this->Html->link(
+            $this->Html->image(
+                IMG_PATH.'profiles_36/'.$imageName,
+                array("alt"=>$username)
+            ),
+            array(
+                "controller" => "user", 
+                "action" => "profile", 
+                $username
+            ),
+            array("escape" => false)
+        ); 
+    }
+    
 }
 ?>
