@@ -20,32 +20,38 @@
 /*
  * Pagination
  */
-.pagination, .paging {
-    margin-bottom: 20px;
+.paging {
+    margin: 20px 0px;
     text-align: center;
 }
 
-.pagination a, .paging a {
+.paging a {
     padding: 3px 5px;
-    margin: 3px;
+    margin: 2px;
     background: #D3F3B9;
-    border: 1px solid #75C34B;
     color: #257D0C;
 }
 
-.pagination strong, .paging .disabled {
+.paging a:hover {
+    background: #257D0C;
+    color: white;
+}
+
+.paging .disabled {
     display: inline;
     padding: 3px 5px;
     margin: 3px;
-    background: #F1F1F1;
-    border: 1px solid #D1D1D1;
+    background: #EEE;
 }
 
-.pagination span.selected, .paging .current {
-    border: 1px solid #75C34B;
+.paging .current {
     padding: 3px 5px;
     margin: 3px;
     background: #9FD374;
     color: white;
     font-weight: bold;
+}
+
+.paging .numbers {
+    padding: 0px 10px;
 }

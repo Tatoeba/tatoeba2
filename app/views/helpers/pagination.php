@@ -72,32 +72,37 @@ class PaginationHelper extends AppHelper
         $prevNextOptions = array();
         $numbersOptions = array(
             'separator' => '',
-            'modulus' => 4
+            'modulus' => 4,
+            'class' => 'pageNumber'
         );
         ?>
         <div class="paging">
             <?php
-            echo $this->Paginator->first(
-                __("first", true)
-            );
+            $first = $this->Paginator->first('<<');
+            if (empty($first)) {
+                $first = '<span class="disabled">&lt;&lt;</span>';
+            }
+            echo $first;
+            
             echo $this->Paginator->prev(
-                '<< '.__('previous', true), 
-                $prevNextOptions, 
-                null, 
-                array('class'=>'disabled')
+                '<', $prevNextOptions, null, array('class' => 'disabled')
             ); 
+            ?>
             
-            echo $this->Paginator->numbers($numbersOptions); 
+            <span class="numbers">
+            <?php echo $this->Paginator->numbers($numbersOptions);  ?>
+            </span>
             
+            <?php
             echo $this->Paginator->next(
-                __('next', true).' >>',
-                $prevNextOptions,
-                null, 
-                array('class'=>'disabled')
+                '>', $prevNextOptions, null, array('class' => 'disabled')
             ); 
-            echo $this->Paginator->last(
-                __("last", true)
-            );
+            
+            $last = $this->Paginator->last(">>");
+            if (empty($last)) {
+                $last = '<span class="disabled">&gt;&gt;</span>';
+            }
+            echo $last;
             ?>
         </div>
         <?php
