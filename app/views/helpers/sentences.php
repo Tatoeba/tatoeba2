@@ -102,7 +102,9 @@ class SentencesHelper extends AppHelper
             IMG_PATH . 'loading.gif',
             array(
                 "id" => "_".$id."_loading",
-                "class" => "loading"
+                "class" => "loading",
+                "width" => 31,
+                "height" => 31
             )
         );
         

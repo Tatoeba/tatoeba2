@@ -150,7 +150,13 @@ $menuElements = array(
             <li class='menuItem'>
                 <?php
                 if (!empty($data['sub-menu'])) {
-                    $title .= $html->image('arrow_down.png');
+                    $title .= $html->image(
+                        IMG_PATH . 'arrow_down.png',
+                        array(
+                            "height" => 12,
+                            "width" => 12
+                        )
+                    );
                 }
                 echo $html->link(
                     $title, 

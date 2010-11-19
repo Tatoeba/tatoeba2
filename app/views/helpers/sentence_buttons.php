@@ -90,7 +90,13 @@ class SentenceButtonsHelper extends AppHelper
     public function displayInfoButton($sentenceId)
     {
         echo $this->Html->link(
-            $this->Html->image(IMG_PATH . 'info.png'),
+            $this->Html->image(
+                IMG_PATH . 'info.png',
+                array(
+                    "width" => 16,
+                    "height" => 16
+                )
+            ),
             array(
                 "controller"=>"sentences"
                 , "action"=>"show"

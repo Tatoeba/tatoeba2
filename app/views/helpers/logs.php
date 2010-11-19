@@ -103,7 +103,9 @@ class LogsHelper extends AppHelper
                 echo $this->Languages->icon(
                     $lang, 
                     array(
-                        "class" => "flag"
+                        "class" => "flag",
+                        "width" => 30,
+                        "height" => 20
                     )
                 );
             }

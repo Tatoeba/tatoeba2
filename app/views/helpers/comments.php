@@ -116,7 +116,11 @@ class CommentsHelper extends AppHelper
         echo $this->Html->link(
             $this->Html->image(
                 IMG_PATH . 'profiles_36/'.$imageName, 
-                array("title" => __('View this user\'s profile', true))
+                array(
+                    "title" => __('View this user\'s profile', true),
+                    "width" => 36,
+                    "height" => 36
+                )
             ),
             array(
                 "controller" => "user",

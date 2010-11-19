@@ -59,7 +59,9 @@ class MenuHelper extends AppHelper
             IMG_PATH . 'translate.png', 
             array(
                 'alt'=>__('Translate', true), 
-                'title'=>__('Translate', true)
+                'title'=>__('Translate', true),
+                'width' => 33,
+                'height' => 16
             )
         );
         ?>
@@ -119,7 +121,9 @@ class MenuHelper extends AppHelper
             IMG_PATH . 'simplified_chinese.png', 
             array(
                 'alt'=>__('This sentence is in simplified Chinese.', true), 
-                'title'=>__('This sentence is in simplified Chinese.', true)
+                'title'=>__('This sentence is in simplified Chinese.', true),
+                'width' => 18,
+                'height' => 16
             )
         );
         ?>
@@ -142,7 +146,9 @@ class MenuHelper extends AppHelper
             IMG_PATH . 'traditional_chinese.png', 
             array(
                 'alt'=>__('This sentence is in traditional Chinese.', true), 
-                'title'=>__('This sentence is in traditional Chinese.', true)
+                'title'=>__('This sentence is in traditional Chinese.', true),
+                'width' => 18,
+                'height' => 16
             )
         );
         ?>
@@ -179,7 +185,9 @@ class MenuHelper extends AppHelper
             IMG_PATH . $image,
             array(
                 'alt'=> $tooltip, 
-                'title'=> $tooltip
+                'title'=> $tooltip,
+                'width' => 26,
+                'height' => 16
             )
         );
         ?>
@@ -248,7 +256,9 @@ class MenuHelper extends AppHelper
             IMG_PATH . $image,
             array(
                 'alt'=> $tooltip, 
-                'title'=> $tooltip
+                'title'=> $tooltip,
+                'width' => 16,
+                'height' => 16
             )
         );
         ?>
@@ -305,7 +315,9 @@ class MenuHelper extends AppHelper
             IMG_PATH . 'add_to_list.png',
             array(
                 'alt'=>__('Add to list', true), 
-                'title'=>__('Add to list', true)
+                'title'=>__('Add to list', true),
+                'width' => 20,
+                'height' => 16
             )
         );
         ?>
