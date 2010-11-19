@@ -81,7 +81,6 @@ $this->pageTitle = 'Tatoeba - Thread #' . $rootMessageId ;
                 $message['children']
             );
             ?>
-        </li>
         </ol>
     </div>
     
