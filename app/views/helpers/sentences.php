@@ -538,7 +538,6 @@ class SentencesHelper extends AppHelper
             $romanization = $sentence['romanization'];
             
             if ($sentence['lang'] == 'jpn') {
-                $this->Javascript->link(JS_PATH . 'furigana.js', false);
                 
                 $title = 'ROMAJI: '.$sentence['romaji']."\n\n ";
                 $title .= __(
@@ -548,7 +547,13 @@ class SentencesHelper extends AppHelper
                 ?>
                 
                 <div class="romanization furigana" title="<?php echo $title; ?>">
-                <?php echo $romanization; ?>
+                <?php 
+                echo preg_replace(
+                    "/(([^\[ ])*)\[(([^\]])*)\]/",
+                    "<ruby><rb>$1</rb><rp>(</rp><rt>$3</rt><rp>)</rp></ruby>",
+                    $romanization
+                ); 
+                ?>
                 </div>
                 
                 <?php
