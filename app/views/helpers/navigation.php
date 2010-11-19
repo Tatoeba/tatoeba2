@@ -171,9 +171,6 @@ class NavigationHelper extends AppHelper
                     "controller" => "sentences",
                     "action" => "show",
                     $selectedLanguage
-                ),
-                array(
-                    "lang" => $this->params['lang']
                 )
             );
             ?>
@@ -193,6 +190,8 @@ class NavigationHelper extends AppHelper
     /** 
      * Display navigation for users.
      *
+     * @todo Remove?
+     *
      * @param int $currentId Id of user currently displayed.
      * @param int $username  Id of username of user currently displayed.
      *
@@ -205,12 +204,15 @@ class NavigationHelper extends AppHelper
         if ($username == null) {
             $username = '';
         }
-        echo $this->Form->create('User', array("action" => "search"));
+        echo $this->Form->create(
+            'UserSearch', array("controller" => "users", "action" => "search")
+        );
         echo $this->Form->input(
             'username',
             array(
                 "label" => __('Enter a username : ', true), 
-                "value" => $username
+                "value" => $username,
+                "id" => null
             )
         );
         echo $this->Form->end(__('show user', true));

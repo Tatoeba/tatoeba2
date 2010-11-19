@@ -174,7 +174,6 @@ $navigation->displaySentenceNavigation(
     <?php
     if (isset($sentence)) {
         ?>
-        <a name="add_comment"></a>
         <div class="module">
         
         <h2><?php __('Add a comment'); ?></h2>

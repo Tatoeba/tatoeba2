@@ -33,12 +33,12 @@ $this->pageTitle = 'Tatoeba - ' . __('Terms of use', true);
         <ul>
             <li>
                 <?php
-                echo $html->link(__('English version', true), '#eng');
+                echo $html->link(__('English version', true), '#eng-version');
                 ?>
             </li>
             <li>
                 <?php
-                echo $html->link(__('Version française', true), '#fre');
+                echo $html->link(__('Version française', true), '#fre-version');
                 ?>
             </li>
         </ul>
@@ -47,8 +47,8 @@ $this->pageTitle = 'Tatoeba - ' . __('Terms of use', true);
 
 <div id="main_content">
 
-<a name="eng"></a>
-<div class="main_module">
+
+<div class="main_module" id="eng-version">
 <?php
 echo '<h2>' . __('Information for text contributors to Tatoeba project', true) .
     '</h2>';
@@ -172,8 +172,7 @@ echo '</p>';
 <hr/>
 
 
-<a name="fre"></a>
-<div class="main_module">
+<div class="main_module" id="fre-version">
     <h2>
         Information destinée aux contributeurs d'informations textuelles au 
         projet Tatoeba

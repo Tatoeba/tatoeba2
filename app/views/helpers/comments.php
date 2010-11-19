@@ -61,7 +61,7 @@ class CommentsHelper extends AppHelper
         $date = $comment['created'];
         ?>
         <li>
-        <a name="comment-<?php echo $commentId; ?>" />
+        <a id="comment-<?php echo $commentId; ?>" />
         <?php
         $this->_displayActions(
             $permissions, $commentId,  $sentence['id']

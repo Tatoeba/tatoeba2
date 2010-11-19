@@ -132,7 +132,7 @@ $menuElements = array(
         foreach ($menuElements as $title => $data) {
             
             $route = $data['route'];
-            $cssClass = '';
+            $cssClass = 'menuSection ';
             
             // General case
             if ($controller == $route['controller'] && $action == $route['action']) {
