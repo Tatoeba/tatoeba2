@@ -64,6 +64,22 @@ $this->pageTitle = 'Tatoeba - ' . __('Members', true);
     ); 
     ?> 
     </div>
+    
+    <div class="module">
+    <h2><?php __('Global ranking'); ?></h2>
+    <p>
+    =&gt; 
+    <?php
+    echo $html->link(
+        __('Show global users ranks',true),
+        array(
+            "controller" => "contributions",
+            "action" => "statistics"
+        )
+    );
+    ?>
+    </p>
+    </div>
 </div>
 
 <div id="main_content">

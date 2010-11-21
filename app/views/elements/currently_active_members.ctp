@@ -102,15 +102,3 @@ foreach($currentContributors as $i=>$currentContributor){
 }
 ?>
 </div>
-
-<p class="more_link">
-<?php
-echo $html->link(
-    __('Show global users rank',true),
-    array(
-        "controller" => "contributions",
-        "action" => "statistics"
-    )
-);
-?>
-</p>
