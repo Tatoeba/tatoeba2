@@ -171,7 +171,8 @@ class TagsSentences extends AppModel
                 'fields' => array('sentence_id'),
                 'conditions' => array(
                     'tag_id' => $tagId,
-                    'created <' => $date
+                    'created <' => $date,
+                    'text !=' => null
                 ),
                 'contain' => array(
                     'Sentence' => array(
