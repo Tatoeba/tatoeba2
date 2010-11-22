@@ -145,5 +145,43 @@ class TagsSentences extends AppModel
             // the relation to be broken
         );
     }
+    
+    
+    /**
+     * Get sentences with a certain tag that were tagged more than 2 weeks ago.
+     *
+     * @param int    $tagId Id of the tag.
+     * @param string $lang  Language of the sentences.
+     *
+     * @return array
+     */
+    public function getSentencesForModerators($tagId, $lang)
+    {
+        $date = date('Y-m-d', strtotime("-2 weeks"));
+        
+        $sentenceConditions = array();
+        
+        if (!empty($lang)) {
+            $sentenceConditions = array('lang' => $lang);
+        }
+        
+        return $this->find(
+            'all',
+            array(
+                'fields' => array('sentence_id'),
+                'conditions' => array(
+                    'tag_id' => $tagId,
+                    'created <' => $date
+                ),
+                'contain' => array(
+                    'Sentence' => array(
+                        'fields' => array('id', 'text', 'lang'),
+                        'conditions' => $sentenceConditions
+                    )
+                ),
+                'limit' => 100
+            )
+        );
+    }
 
 }

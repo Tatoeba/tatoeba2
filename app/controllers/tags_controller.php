@@ -58,6 +58,7 @@ class TagsController extends AppController
         $this->Auth->allowedActions = array(
             "show_sentences_with_tag",
             'view_all',
+            'for_moderators'
         );
     
     } 
@@ -221,6 +222,34 @@ class TagsController extends AppController
         $this->set('tagInternalName', $tagInternalName);
         $this->set('taggerIds', $taggerIds);
 
+    }
+    
+    
+    /**
+     * List sentences with a certain tag and that were tagged more than 2 weeks ago.
+     *
+     * @param string $tagInternalName Tag internal name.
+     * @param string $lang            Language of the sentences.
+     * 
+     * @return void
+     */
+    public function for_moderators($tagInternalName = null, $lang = null) {
+        if (empty($tagInternalName)) {
+            $this->redirect(array('action' => 'for_moderators', '@change'));
+        }
+        
+        $this->helpers[] = 'Pagination';
+        $this->helpers[] = 'CommonModules';
+        $this->helpers[] = 'Sentences';
+        
+        $tagId = $this->Tag->getIdFromInternalName($tagInternalName);
+        
+        $results = $this->Tag->TagsSentences->getSentencesForModerators(
+            $tagId, $lang
+        );
+        
+        $this->set('tagName', $tagInternalName);
+        $this->set('results', $results);
     }
 
 }
