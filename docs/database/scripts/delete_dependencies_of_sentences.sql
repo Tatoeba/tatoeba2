@@ -20,6 +20,14 @@ CREATE TRIGGER delete_dependencies_of_sentences AFTER DELETE ON sentences
     DELETE FROM `sentences_sentences_lists`
     WHERE `sentence_id` = OLD.`id`;
     
+    UPDATE `tags`
+    SET `nbrOfSentences` = `nbrOfSentences` - 1
+    WHERE id IN 
+    (
+      SELECT `tag_id` FROM `tags_sentences`
+      WHERE `sentence_id` = OLD.`id`
+    );
+ 
     -- delete associated to the sentences
     DELETE FROM `tags_sentences`
     WHERE `sentence_id` = OLD.`id`;
