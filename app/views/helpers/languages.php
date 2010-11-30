@@ -318,6 +318,11 @@ class LanguagesHelper extends AppHelper
             'que' => __('Quechua', true),
             'mon' => __('Mongolian', true),
             'lit' => __('Lithuanian', true),
+            'glg' => __('Galician', true),
+            'gle' => __('Irish', true),
+            'ina' => __('Interlingua', true),
+            'jbo' => __('Lojban', true),
+            'toki' => __('Toki Pona', true)
         );
         asort($languages);
         array_unshift($languages, array('und' => __('Any', true)));
