@@ -119,6 +119,7 @@ class User extends AppModel
         'Contributions',
         'Sentences',
         'SentencesLists',
+        'Wall' => array('foreignKey' => 'owner'),
         // , 'Mastering_lang'
         // , 'Learning_lang'
     );
@@ -336,14 +337,15 @@ class User extends AppModel
                             ),
                             'order' => 'created DESC'
                         ),
-                        'Following' => array(
+                        'Wall' => array(
                             'limit' => 10,
-                            'fields' => array('id')
-                        ),
-                        'Follower' => array(
-                            'limit' => 10,
-                            'fields' => array('id')
-                        ),
+                            'fields' => array(
+                                'id',
+                                'content',
+                                'date'
+                            ),
+                            'order' => 'date DESC'
+                        )
                     )
                 )
             );

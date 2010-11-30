@@ -74,9 +74,8 @@ class WallController extends Appcontroller
         // TODO set correct right
         $this->Auth->allowedActions = array(
             'index',
-            'delete_message',
             'show_message',
-            'generate_new_wall'
+            'messages_of_user'
         );
     }
 
@@ -347,7 +346,39 @@ class WallController extends Appcontroller
         $this->set("message", $thread[0]);
         $this->set("isAuthenticated", $this->Auth->user());
     }
-
+    
+    
+    /**
+     * Display messages of a user.
+     *
+     * @param string $username Username.
+     *
+     * @return void
+     */
+    public function messages_of_user($username)
+    {
+        $userId = $this->Wall->User->getIdFromUsername($username);
+        
+        $this->paginate = array(
+            "order" => "date DESC", 
+            "limit" => 20,
+            "fields" => array ("id", "date", "content"), 
+            "conditions" => array (
+                "owner" => $userId,
+            ),
+            "contain" => array (
+                "User" => array(
+                    'fields' => array("username", "image")
+                )
+            )
+        );
+        
+        $messages = $this->paginate();
+        
+        $this->set("messages", $messages);
+        $this->set("username", $username);
+    }
+    
 }
 
 

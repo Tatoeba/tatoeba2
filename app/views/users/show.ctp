@@ -189,6 +189,38 @@ $this->pageTitle = sprintf(
             echo '</ol>';
         echo '</div>';
     }
+    
+    
+    /* Latest messages on the Wall */
+    if (count($user['Wall']) > 0) {
+        echo '<div class="module">';
+            echo '<h2>';
+            __('Latest Wall messages');
+            echo ' (';
+            echo $html->link(
+                __('view all', true),
+                array(
+                    "controller" => "wall",
+                    "action" => "messages_of_user",
+                    $userName
+                )
+            );
+            echo ')';
+
+            echo '</h2>';
+
+            echo '<ol class="wall">';
+            foreach ($user['Wall'] as $comment) {
+                $wall->createThread(
+                    $comment,
+                    $user['User'],
+                    null,
+                    null
+                );
+            }
+            echo '</ol>';
+        echo '</div>';
+    }
     ?>
 
 </div>

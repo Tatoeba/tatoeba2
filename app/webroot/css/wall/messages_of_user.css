@@ -16,29 +16,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
-/*
- * Navigation
- */
-@import url(../elements/navigation.css);
-
-
-/*
- * Favorite sentences and latest sentences
- * TODO Don't use sentences_group.
- */
-@import url(../elements/sentences_group.css);
-
-
+ 
 /*
  * Latest comments
  */
-@import url(../elements/comment.css);
 @import url(../elements/wall_messages.css);
 
 
 /*
- * Latest contributions
+ * Pagination
  */
-@import url(../elements/logs_annexe.css);
-@import url(../elements/logs_colors.css);
+@import url(../elements/pagination.css);
