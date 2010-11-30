@@ -64,7 +64,7 @@ class CommentsHelper extends AppHelper
         <a id="comment-<?php echo $commentId; ?>" />
         <?php
         $this->_displayActions(
-            $permissions, $commentId,  $sentence['id']
+            $permissions, $commentId,  $comment['sentence_id']
         );
         $this->_displayMeta($userName, $userImage, $date);
         $this->_displayBody($commentText, $sentence);
