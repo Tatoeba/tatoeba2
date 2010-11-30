@@ -135,8 +135,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Members', true);
             </div>
 
             
-            <div class="memberSince">
-                <?php __("Member since:") ?>
+            <div class="memberSince" title="<?php __("Member since"); ?>">
                 <span class="date">
                 <?php echo $date->ago($user['User']['since']); ?>
                 </span>
