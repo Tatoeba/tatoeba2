@@ -22,9 +22,17 @@ $(document).ready(function() {
        var audioURL = $(this).attr('href');
        
        $('#audioPlayer').html(
-            '<object type="audio/mpeg" data="'+ audioURL +'" width="0" height="0">'
-            + '<param name="src" value="'+ audioURL +'" />'
-            + '</object>'
+            '<object data="'+ audioURL +'" type="audio/mpeg" data="'+ audioURL +'" width="0" height="0">'+
+                '<param name="src" value="'+ audioURL +'" />' +
+                '<object '+
+                    'type="application/x-shockwave-flash" '+
+                    'data="http://static.tatoeba.org/dewplayer-mini.swf?autostart=1&amp;mp3='+audioURL +'" '+
+                    'width="0" '+
+                    'height="0" '+
+                '>'+
+                    '<param name="movie" value="http://static.tatoeba.org/dewplayer-mini.swf?autostart=1&amp;mp3='+audioURL +'" />'+
+                '</object>'+
+            '</object>'
        );
     });
 });
