@@ -1,0 +1,76 @@
+<?php
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ * PHP version 5
+ *
+ * @category PHP
+ * @package  Tatoeba
+ * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * @license  Affero General Public License
+ * @link     http://tatoeba.org
+ */
+$stats = ClassRegistry::init('Sentence')->getStatistics();
+$totalSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
+$max = $stats[0]['langStats']['numberOfSentences'];
+?>
+<div id="main_content">
+<div class="module">
+    <h2>
+    <?php 
+    echo sprintf(__('%s sentences', true), $totalSentences);
+    ?>
+    </h2>
+    
+    <table id="sentencesStats">        
+        <?php 
+        $rank = 1;
+        foreach ($stats as $stat) { 
+        $langCode = $stat['langStats']['lang'];
+        $numberOfSentences = $stat['langStats']['numberOfSentences'];
+        $percent = ($numberOfSentences / $max) * 100;
+        ?>
+        <tr>
+            <td class="rank">
+            <strong><?php echo $rank; $rank++; ?></strong>
+            </td>
+            
+            <td class="icon">
+            <?php echo $languages->icon(
+                $langCode, array('width' => 30, 'height' => 20)
+            ); 
+            ?>
+            </td>
+            
+            <td class="languageName">
+            <?php echo $languages->codeToName($langCode); ?>
+            </td>
+            
+            <td class="numberOfSentences">
+            <?php echo $numberOfSentences; ?>
+            </td>
+            
+            <td class="chart">
+            <div class="bar" style="width: <?php echo $percent;?>%"></div>
+            </td>
+        <tr/>
+        <?php 
+        } 
+        ?>
+    </table>
+</div>
+</div>

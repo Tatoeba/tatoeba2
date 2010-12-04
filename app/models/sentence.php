@@ -494,12 +494,18 @@ class Sentence extends AppModel
      *
      * @return array [lang => number of sentences in this lang]
      */
-    public function getStatistics()
+    public function getStatistics($limit = null)
     {
+        $limitCondition = "";
+        if ($limit != null) {
+            $limitCondition = " LIMIT 0,$limit";
+        }
+        
         $query = "
             SELECT ifnull(lang, 'unknown') as lang,  numberOfSentences
                 FROM langStats 
-                ORDER BY numberOfSentences DESC ;
+                ORDER BY numberOfSentences DESC
+                $limitCondition;
         ";
 
         $results = $this->query($query);
@@ -860,7 +866,6 @@ class Sentence extends AppModel
      */
     public function getJapaneseRomanization2($text, $type)
     {
-
         // important to add this line before escaping a
         // utf8 string, workaround for an apache/php bug  
         setlocale(LC_CTYPE, "fr_FR.UTF-8");
@@ -1539,6 +1544,24 @@ class Sentence extends AppModel
         }
         
         return $prevLang;
+    }
+    
+    
+    /**
+     * Get total number of sentences.
+     *
+     * @return int
+     */
+    public function getTotalNumberOfSentences()
+    {
+        $numSentences = $this->find(
+            'count', 
+            array(
+                'contain' => array()
+            )
+        );
+        
+        return $numSentences;
     }
 }
 ?>

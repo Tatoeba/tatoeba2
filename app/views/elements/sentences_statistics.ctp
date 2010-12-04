@@ -24,43 +24,38 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-
-echo $javascript->link(JS_PATH . 'sentences.statistics.js', false);
-
-$stats = ClassRegistry::init('Sentence')->getStatistics();
-if (isset($this->params['lang'])) {
-    Configure::write('Config.language', $this->params['lang']);
-}
+$stats = ClassRegistry::init('Sentence')->getStatistics(5);
+$numSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
 ?>
 
-<div id="sentencesStats">
-    <ul>
-        <?php
-        for ($i = 0 ; $i < 5 ; $i++) {
-            $stat = $stats[$i];
-            $langCode = $stat['langStats']['lang'];
-            $numberOfSentences = $stat['langStats']['numberOfSentences'];
-            $languages->stat($langCode, $numberOfSentences);
-        }
-        ?>
-    </ul>
-
-    <?php /*TODO HACK SPOTTED  CSS in the code !*/ ?>
-    <ul class="minorityLanguages" style="display:none">
-        <?php
-        $size = count($stats);
-        for ($i = 5; $i < $size; $i++) {
-            $stat = $stats[$i];
-            $langCode = $stat['langStats']['lang'];
-            $numberOfSentences = $stat['langStats']['numberOfSentences'];
-            $languages->stat($langCode, $numberOfSentences);
-        }
-        ?>
-    </ul>
-
-    <a class="statsDisplay showStats">[+] <?php __('show all'); ?></a>
-    <?php /*TODO HACK SPOTTED  CSS in the code !*/ ?>
-    <a class="statsDisplay hideStats" style="display:none">
-        [-] <?php __('top 5 only'); ?>
-    </a>
+<div class="module">
+    <h2>
+    <?php 
+    echo sprintf(__('%s sentences', true), $numSentences);
+    ?>
+    </h2>
+    
+    <div id="sentencesStats">
+        <ul>
+            <?php
+            foreach ($stats as $stat) {
+                $langCode = $stat['langStats']['lang'];
+                $numberOfSentences = $stat['langStats']['numberOfSentences'];
+                $languages->stat($langCode, $numberOfSentences);
+            }
+            ?>
+            
+            <li>
+            <?php 
+            echo $html->link(
+                __('show all languages', true),
+                array(
+                    'controller' => 'stats',
+                    'action' => 'sentences_by_language'
+                )
+            );
+            ?>
+            </li>
+        </ul>    
+    </div>
 </div>

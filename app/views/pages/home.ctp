@@ -66,12 +66,10 @@ $selectedLanguage = $session->read('random_lang_selected');
     }
     ?>
     
-    <div class="module">
-        <h2><?php __('Number of sentences'); ?></h2>
-        <?php 
-        echo $this->element('sentences_statistics');
-        ?>
-    </div>
+    
+    <?php 
+    echo $this->element('sentences_statistics');
+    ?>
     
         
     <div class="module">
