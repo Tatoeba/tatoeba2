@@ -50,20 +50,17 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
     <h2>FAQ</h2>
     
-    <a id="indirect-translations"></a>
-    <h3><a href="#indirect-translations">Why are some translations in grey?</a></h3>
+    <h3 id="indirect-translations"><a href="#indirect-translations">Why are some translations in grey?</a></h3>
     <p>Grey translations are <strong>indirect translations</strong>. In other words, they are translations of the translations, and not translations of the main sentence (the main sentence is the sentence in big letters).</p>
     <p>We display them because they can be useful, but you should be careful. Their meaning may differ a little from the main sentence.</p>
     
     
-    <a id="delete-sentence"></a>
-    <h3><a href="#delete-sentence">How do I delete a sentence?</a></h3>
+    <h3 id="delete-sentence"><a href="#delete-sentence">How do I delete a sentence?</a></h3>
     <p>At the moment, normal users cannot delete sentences, only moderators can. We will someday add the possibility for users to delete their own sentences, but in the meantime, if you want to have a sentence deleted, <strong>add a comment</strong> on the sentence asking for deletion and explain why you'd like to delete it.</p>
     <p>If you have added something by mistake, rather of asking for it to be deleted, try to <strong>replace it</strong> by a valid sentence.</p>
     
     
-    <a id="new-language"></a>
-    <h3><a href="#new-language">I'd like to add a new language in Tatoeba, what do I have to do?</a></h3>
+    <h3 id="new-language"><a href="#new-language">I'd like to add a new language in Tatoeba, what do I have to do?</a></h3>
     <p><strong>1)</strong> Contact <a href="/user/profile/Pharamp">Pharamp</a> (by <a href="mailto:pharamp@hotmail.it">email</a> or <a href="/private_messages/write/Pharamp">private message</a>) and indicate in the title the language(s) that you would like us to add.</p>
     <p><strong>2)</strong> In your email, tell her what icon we can use for each requested language. It does not necessarily have to be the flag of a country. We just want a picture that people can easily associate to the language. Keep in mind that our icons are only 30x20 pixels.</p>
     <p>You do not have create the icon yourself. For graphical consistency, it's better that we do it. Simply send us (or link us) an image from which we will create the icon.</p>
@@ -73,34 +70,39 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     <p><strong>IMPORTANT:</strong> We will only add your language(s) if you have done all of this.</p>
     
     
-    <a id="change-language"></a>
-    <h3><a href="#change-language">How do I change the language of a sentence?</a></h3>
+    <h3 id="change-language"><a href="#change-language">How do I change the language of a sentence?</a></h3>
     <p>Click on the flag; a list of languages will appear. Choose the correct language.</p> 
     <p>You can only change the language of sentences that <strong>belong to you</strong>.</p>
     <p>You also have to make sure the sentence which language you want to change is the <strong>main sentence</strong> (and not a translation). If it's a translation, then click on it. It will redirect to a page where the translation becomes the main sentence.</p>
     <p>If your language is not in the list, you can request it to be added (cf. question above).</p>
     
     
-    <a id="add-tag"></a>
-    <h3><a href="#add-tag">How can I add tags to a sentence?</a></h3>
-    <p>You have to be a trusted user (cf. below).</p>
+    <h3 id="add-tag"><a href="#add-tag">How can I add tags to a sentence?</a></h3>
+    <p>You have to be a trusted user (cf. <a href="#trusted-user">below</a>).</p>
     
     
-    <a id="link-unlink"></a>
-    <h3><a href="#link-unlink">How can I link or unlink sentences?</a></h3>
-    <p>You have to be a trusted user (cf. below).</p>
+    <h3 id="link-unlink"><a href="#link-unlink">How can I link or unlink sentences?</a></h3>
+    <p>You have to be a trusted user (cf. <a href="#trusted-user">below</a>).</p>
     
     
-    <a id="trusted-user"></a>
-    <h3><a href="#trusted-user">How can I become a trusted user?</a></h3>
+    <h3 id="trusted-user"><a href="#trusted-user">How can I become a trusted user?</a></h3>
     <p>You have to <?php echo $html->link('contact Trang', array('controller' => 'private_messages', 'action' => 'write', 'TRANG')); ?> and she will decide if you can be a trusted user or not. One thing she will ask you to do is to read and understand entirely the <a href="http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html">guide of the good contributor</a>, so take the time to read it.</p>
     
     
-    <a id="translate-interface"></a>
-    <h3><a href="#translate-interface">Can I help translating the website into other languages?</a></h3>
+    <h3 id="translate-interface"><a href="#translate-interface">Can I help translating the website into other languages?</a></h3>
     <p>Yes, thank you for asking! :D</p>
     <p>We currently use Launchpad to manage the translations of the website: <a href="http://translations.launchpad.net/tatoeba">http://translations.launchpad.net/tatoeba</a></p>
     <p>NOTE: Tatoeba is updating frequently (pretty much every week), and some texts in there may be (or quickly become) outdated. Also, the texts in Launchpad and the texts in Tatoeba are not always synchronized. We synchronize them only when there has been significant modifications.</p>
     
+    <h3 id="submit-audio"><a href="#submit-audio">How do I contribute audio in Tatoeba?</a></h3>
+    <p><strong>1)</strong> You need have a good microphone because we care about sound quality.</p>
+    <p><strong>2)</strong> Download <a href="http://shtooka.net/soft/shtooka_recorder/en/">Shtooka Recorder</a> and get familiar with it. You will be using it to record the sentences, it's a very useful software. We don't have a video to show how to use it, so you'll have to try figuring out on your own. If there's something you really don't understand, don't hesitate to ask us.</p> 
+    <p><strong>REQUEST:</strong> If you want to make a little tutorial video for us, about how to use Shtooka Recorder, we'd appreciate very much!</p>
+    <p><strong>3)</strong> Pick a few random sentences (just 2 or 3), record them, and send us the samples at team@tatoeba.fr, with the title "Audio for Tatoeba in <em>&lt;language_name&gt;</em>". This way we can evaluate if the sound quality is good enough. If it is, we will send you back a list of sentences to record.</p>
+    <p><strong>4)</strong> Read the list we sent you and check that all the sentences sound natural to you. If a sentence doesn't sound natural, simply erase it from the list. It would be appreciated if you also went to the website to post a comment on that sentence, to indicate it doesn't sound natural and should be improved.</p>
+    <p><strong>5)</strong> In Shtooka Recorder, copy-paste the final list in the "Words to record", fill in the info in the "Speaker" tab, go back to the "Words" tab and click "Continue".
+    <p><strong>6)</strong> Press space to indicate you are ready and read the sentence that is highlighted in red. The software will detect when to start and stop recording, and will jump to the next sentence automatically. All you have to do is read what's highlighted in red. If you want to take a break, you can press space to pause, so that it doesn't record something unrelated. If you need to listen to a sentence's audio, simply select it and press "Enter" (you can navigate with the directional keys: up, down, left, right).</p>
+    <p><strong>7)</strong> Upload your files somewhere (like Megaupload or RapidShare) and give us the link. We will then include your audio in Tatoeba as soon as possible and will let you know when it is done. We understand it would be more practical if you could record/upload directly from Tatoeba, but we unfortunately don't have time to implement the features for this =/</p>
+    <p><strong>Related link:</strong> <a rehf="http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html">http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html</a></strong>
     </div>
 </div>
