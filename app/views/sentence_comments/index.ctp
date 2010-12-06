@@ -82,7 +82,7 @@ $paginator->options(
         </ol>
         
         <?php
-        $pagination->display();
+        $pagination->display($paginationUrl);
         ?>
         
     </div>
