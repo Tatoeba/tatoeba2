@@ -206,7 +206,7 @@ class SentenceComment extends AppModel
     function paginateCount($conditions = null, $recursive = 0, $extra = array()) {
         $contain = array();
         foreach ($conditions as $key => $value) {
-            if (!preg_match("/SentenceComment/", $key)) {
+            if (strpos($key, "SentenceComment") === false) {
                 $tmp = explode('.', $key);
                 $model = $tmp[0];
                 $contain[] = $model;
