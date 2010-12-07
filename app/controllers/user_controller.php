@@ -395,21 +395,10 @@ class UserController extends AppController
     public function save_contact()
     {
         if (!empty($this->data)) {
-            Sanitize::html($this->data['profile_contact']['description']);
-            Sanitize::html($this->data['profile_contact']['email']);
-
-            $aToSave = array(
-                'User' => array(
-                    'email' => $this->data['profile_contact']['email']
-                )
-            );
-
-            if (!empty($this->data['profile_contact']['url'])) {
-                $aToSave['User']['homepage'] = $this->data['profile_contact']['url'];
-            }
-
+            $userData['User'] = $this->data['profile_contact'];
             $this->User->id = $this->Auth->user('id');
-            if ($this->User->save($aToSave)) {
+            
+            if ($this->User->save($userData)) {
                 $flashMsg = __('Your contact information have been saved.', true);
             } else {
                 $flashMsg = __(
