@@ -80,6 +80,7 @@ $form->create('User'); // But we still need to call $form->create()
     echo $form->input('email');
     echo $form->input('lang');
     echo $form->input('group_id');
+    echo $form->input('send_notifications');
     ?>
     </fieldset>
 <?php echo $form->end('Submit'); ?>
