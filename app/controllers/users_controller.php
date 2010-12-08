@@ -97,6 +97,18 @@ class UsersController extends AppController
      */
     public function index()
     {
+        $this->paginate = array(
+            'limit' => 50,
+            'order' => 'group_id',
+            'fields' => array(
+                'id', 'email', 'username', 'since', 'lang', 'last_time_active'
+            ),
+            'contain' => array(
+                "Group" => array(
+                    "fields" => "Group.name"
+                )
+            )
+        );
         $this->set('users', $this->paginate());
 
     }
