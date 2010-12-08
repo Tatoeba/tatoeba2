@@ -19,6 +19,7 @@
 
 /*
  * Follow us
+ * Icons from: http://icondock.com/free/vector-social-media-icons
  */
 #whatsNew {
     font-size: 1.4em;
@@ -26,17 +27,24 @@
 
 .twitterLink {
     padding: 7px 0px 7px 40px;
-    margin: 0px 0px 10px 20px;
+    margin: 20px;
     background: transparent url(../../img/twitter_icon.png) no-repeat scroll left;
     display: block;
 }
 
 .bloggerLink {
     padding: 7px 0px 7px 40px;
-    margin: 0px 0px 0px 20px;
+    margin: 20px;
     background: transparent url(../../img/blogger_icon.png) no-repeat scroll left;
+    display: block;
 }
 
+.facebookLink {
+    padding: 7px 0px 7px 40px;
+    margin: 20px;
+    background: transparent url(../../img/facebook_icon.png) no-repeat scroll left;
+    display: block;
+}
 
 /*
  * What's new (tweets from Twitter)

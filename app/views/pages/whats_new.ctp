@@ -38,6 +38,7 @@ $this->pageTitle = 'Tatoeba - ' . __("What's new", true);
         <p id="whatsNew">
             <a class="twitterLink" href="http://twitter.com/tatoeba_project">Twitter</a>
             <a class="bloggerLink" href="http://blog.tatoeba.org">Tatoeba Blog</a>
+            <a class="facebookLink" href="http://www.facebook.com/group.php?gid=129340017083187">Facebook</a>
         </p>
     </div>
 </div>
