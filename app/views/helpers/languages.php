@@ -123,7 +123,11 @@ class LanguagesHelper extends AppHelper
             'gle' => __('Irish', true),
             'ina' => __('Interlingua', true),
             'jbo' => __('Lojban', true),
-            'toki' => __('Toki Pona', true)
+            'toki' => __('Toki Pona', true),
+            'ain' => __('Ainu', true),
+            'scn' => __('Sicilian', true),
+            'mal' => __('Malayalam', true),
+            'nds' => __('Low German', true)
         );
         asort($languages);
         

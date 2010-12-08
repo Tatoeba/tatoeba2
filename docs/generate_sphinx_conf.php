@@ -92,7 +92,11 @@ $languages = array(
     'gle' => 'Irish',
     'ina' => 'Interlingua',
     'jbo' => 'Lojban',
-    'toki' => 'Toki Pona'
+    'toki' => 'Toki Pona',
+    'ain' => 'Ainu',
+    'scn' => 'Sicilian',
+    'mal' => 'Malayalam',
+    'nds' => 'Low German'
 );
 
 $languageWithStemmer = array(
