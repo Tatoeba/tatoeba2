@@ -86,6 +86,7 @@ class ClickableLinksHelper extends AppHelper
                 // That's why we need to do replace only if there's a stop character.
                 $escapedUrl = quotemeta($url);  // meta characters
                 $escapedUrl = str_replace('/', '\/', $escapedUrl); // identifier
+                $escapedUrl = str_replace('|', '\|', $escapedUrl); // pipe
                 $pattern2 = '/('.$escapedUrl.'([\?!\.,\);:< \n]))|('.$escapedUrl.'$)/u';
                 $text = preg_replace(
                     $pattern2, 
