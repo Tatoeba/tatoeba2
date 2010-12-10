@@ -347,7 +347,7 @@ class LanguagesHelper extends AppHelper
         if (isset($languages["$code"])) {
             return $languages["$code"];
         } else {
-            return null;
+            return __('unknown', true);
         }
     }
     

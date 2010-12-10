@@ -57,7 +57,23 @@ $max = $stats[0]['langStats']['numberOfSentences'];
             </td>
             
             <td class="languageName">
-            <?php echo $languages->codeToName($langCode); ?>
+            <?php 
+            $langName = $languages->codeToName($langCode);
+            if (empty($langCode)) {
+                $langCode = 'unknown';
+            }
+            echo $html->link(
+                $langName,
+                array(
+                    "controller" => "sentences",
+                    "action" => "show_all_in",
+                    $langCode,
+                    'none',
+                    'none',
+                    'indifferent'
+                )
+            );
+            ?>
             </td>
             
             <td class="numberOfSentences">
