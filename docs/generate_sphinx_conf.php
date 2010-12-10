@@ -216,7 +216,8 @@ index common_index
                         U+C0..U+D6->U+E0..U+F6, U+D8..U+DE->U+F8..U+FE, U+178->U+FF, U+FF, U+100..U+177/2, U+179..U+17E/2,\
                         U+980..U+9FC,\
                         U+900..U+97F, U+A8E0..U+A8FB,\
-                        U+531..U+58A, U+FB13..U+FB17
+                        U+531..U+58A, U+FB13..U+FB17,\
+                        U+D00..U+D77
 
     docinfo                 = extern
     charset_type            = utf-8
