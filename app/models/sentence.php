@@ -374,13 +374,8 @@ class Sentence extends AppModel
         if ($result == null) {
             return;
         }
-        $result['Sentence'];
-        
-       
-        $this->generateRomanization($result['Sentence']);
-        $this->generateAlternateScript($result['Sentence']);
-        $this->generateScript($result['Sentence']);
-                
+        $this->generateMetas($result['Sentence']); 
+                      
         return $result;
     }
     
@@ -426,10 +421,7 @@ class Sentence extends AppModel
         $results = array();
         foreach ($sentences as $sentence) {
             // Romanization for original sentence
-            $this->generateRomanization($sentence['Sentence']);
-            // simplified/traditional
-            $this->generateAlternateScript($sentence['Sentence']);
-            $this->generateScript($sentence['Sentence']);
+            $this->generateMetas($sentence['Sentence']);
 
             // Romanization for translations
             $translations = array();
@@ -751,11 +743,14 @@ class Sentence extends AppModel
                 $text, Sentence::$romanji['mix']
             ); 
         } elseif ($lang == "cmn") {
-            // important to add this line before escaping a
-            // utf8 string, workaround for an apache/php bug  
-            setlocale(LC_CTYPE, "fr_FR.UTF-8");
-            $text = escapeshellarg($text); 
-            
+            $xml = simplexml_load_file( 
+                "http://127.0.0.1:8042/pinyin?str=".urlencode($text)
+                ,'SimpleXMLElement', LIBXML_NOCDATA
+            );
+            foreach($xml as $key=>$value) {
+                return $value;
+            }
+
             $romanization =  exec("adso -i $text -y");
 
         } elseif ($lang == "kat") {
@@ -811,6 +806,27 @@ class Sentence extends AppModel
         } else {
             return '';
         }
+    }
+
+
+    /**
+     *
+     */
+    public function generateMetas(&$sentenceArray) {
+
+        if ($sentenceArray['lang'] === 'cmn') {
+            // we call the wonderful homebrewadso
+            $xml = simplexml_load_file( 
+                "http://127.0.0.1:8042/all?str=".urlencode($sentenceArray['text'])
+                ,'SimpleXMLElement', LIBXML_NOCDATA
+            );
+            foreach($xml as $key=>$value) {
+                $sentenceArray[$key] = $value;
+            }
+        } else {
+            $this->generateRomanization($sentenceArray);
+        }
+
     }
 
     /**

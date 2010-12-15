@@ -508,9 +508,9 @@ class MenuHelper extends AppHelper
             $this->deleteButton($sentenceId);
         }
         
-        if ($chineseScript === 'simplified') {
+        if ($chineseScript == 'simplified') {
             $this->simplifiedButton(); 
-        } else if ($chineseScript === 'traditional') {
+        } else if ($chineseScript == 'traditional') {
             $this->traditionalButton(); 
         }
         ?>
