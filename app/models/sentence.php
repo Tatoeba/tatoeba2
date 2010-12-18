@@ -1579,5 +1579,30 @@ class Sentence extends AppModel
         
         return $numSentences;
     }
+    
+    
+    /**
+     * Return number of sentencse with audio.
+     *
+     * @return array
+     */
+    public function getTotalNumberOfSentencesWithAudio()
+    {
+        $results = $this->query(
+            "SELECT lang, COUNT(*) total FROM sentences AS `Sentence`
+              WHERE hasaudio IN ('shtooka', 'from_users') 
+              GROUP BY lang ORDER BY total DESC;"
+        );
+        
+        $stats = array();
+        foreach ($results as $result) {
+            $stats[] = array(
+                'lang' => $result['Sentence']['lang'],
+                'total' => $result[0]['total']
+            );
+        }
+        
+        return $stats;
+    }
 }
 ?>

@@ -92,6 +92,7 @@ class SentencesController extends AppController
             'sentences_group',
             'get_neighbors_for_ajax',
             'show_all_in',
+            'with_audio'
         );
     }
 
@@ -961,6 +962,45 @@ class SentencesController extends AppController
             );
            
         }
+    }
+    
+    
+    /**
+     * Sentences with audio.
+     *
+     * @param string $lang Language of the sentences.
+     *
+     * @return void
+     */
+    public function with_audio($lang = null)
+    {
+        $this->paginate = array(
+            'Sentence' => array(
+                'fields' => array(
+                    'id',
+                    'text',
+                    'lang',
+                    'hasaudio'
+                ),
+                'contain' => array(),
+                'limit' => 50,
+                'conditions' => array(
+                    'hasaudio' => array('shtooka', 'from_users')
+                )
+            )
+        );
+        
+        if ($lang != null) {
+            $this->paginate['Sentence']['conditions']['lang'] = $lang;
+        }
+        
+        $results = $this->paginate();
+        
+        $stats = $this->Sentence->getTotalNumberOfSentencesWithAudio();
+        
+        $this->set('results', $results);
+        $this->set('lang', $lang);
+        $this->set('stats', $stats);
     }
 }
 ?>

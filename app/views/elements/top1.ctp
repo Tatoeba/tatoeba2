@@ -58,6 +58,10 @@ $menuElements = array(
             __('Browse by tag', true) => array(
                 "controller" => "tags",
                 "action" => "view_all"
+            ),
+            __('Browse audio', true) => array(
+                "controller" => "sentences",
+                "action" => "with_audio"
             )
         )
     ),
