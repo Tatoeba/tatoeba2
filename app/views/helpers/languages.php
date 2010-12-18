@@ -403,7 +403,7 @@ class LanguagesHelper extends AppHelper
      *
      * @return void
      */
-    function stat($langCode, $numberOfSentences)
+    function stat($langCode, $numberOfSentences, $link)
     {
         $flagImage = $this->icon(
             $langCode,
@@ -419,14 +419,7 @@ class LanguagesHelper extends AppHelper
         }
         $linkToAllSentences = $this->Html->link(
             $flagImage . $numberOfSentencesHtml,
-            array(
-                "controller" => "sentences",
-                "action" => "show_all_in",
-                $langCode,
-                'none',
-                'none',
-                'indifferent',
-            ),
+            $link,
             array(),
             null,
             false

@@ -1,6 +1,5 @@
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009  Parisi Robin <parisi.robin@gmail.com>
  * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -14,20 +13,20 @@
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
- * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 
 /*
- * Random sentence
+ * Pagination
+ */
+@import url(../elements/pagination.css);
+
+
+/*
+ * Sentences
  */
 @import url(../elements/sentences_group.css);
-
-
-/*
- * Join the community
- */
-@import url(../elements/register_button.css);
 
 
 /*
@@ -37,36 +36,8 @@
 
 
 /*
- * What can I do in Tatoeba
+ * List of sentences
  */
-.keyIdea {
-    float: left;
-    margin: 0px 5px;
-    padding: 0px 5px;
-    max-width: 180px;
-}
-
-.keyIdea .keyword {
-    display: block;
-    text-align: center;
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.keyIdea .sub-keyword {
-    display: block;
-    text-align: center;
-    font-size: 1.2em;
-    font-style: italic;
-}
-
-.keyIdea ul {
-    list-style-type: none;
-    margin: 5px 0px;
-    padding: 5px;
-}
-
-.keyIdea li {
-    text-align: center;
-    margin: 3px 0px;
+.sentences_set {
+    margin: 60px 0px;
 }

@@ -41,7 +41,15 @@ $numSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
             foreach ($stats as $stat) {
                 $langCode = $stat['langStats']['lang'];
                 $numberOfSentences = $stat['langStats']['numberOfSentences'];
-                $languages->stat($langCode, $numberOfSentences);
+                $link = array(
+                    "controller" => "sentences",
+                    "action" => "show_all_in",
+                    $langCode,
+                    'none',
+                    'none',
+                    'indifferent',
+                );
+                $languages->stat($langCode, $numberOfSentences, $link);
             }
             ?>
             

@@ -43,36 +43,17 @@
 @import url(../elements/register_button.css);
 
 
+/*
+ * Sentences statistics
+ */
+@import url(../elements/sentences_stats.css);
+ 
 
 /* 
  * Random sentence 
  */
 #randomLangChoice {
     width: 110px;
-}
-
-
-/*
- * Sentences statistics
- */
-.stat {
-    overflow: auto;
-    margin: 5px 0px;
-}
-
-.stat .langCode {
-    display: none;
-}
-
-.stat .total {
-    line-height: 20px;
-    float: left;
-    display: block;
-    margin: 0px 5px;
-}
-
-.stat img {
-    float: left;
 }
 
 

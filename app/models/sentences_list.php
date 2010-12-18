@@ -96,12 +96,14 @@ class SentencesList extends AppModel
         
         $privateLists = array();
         $publicLists = array();
+        
+        $currentUserId = CurrentUser::get('id');
         foreach ($results as $result) {
             $listId = $result['SentencesList']['id'];
             $listName = $result['SentencesList']['name'];
             $userId = $result['SentencesList']['user_id'];
             
-            if (CurrentUser::get('id') == $userId) {
+            if ($currentUserId == $userId) {
                 $privateLists[$listId] = $listName;
             } else {
                 $publicLists[$listId] = $listName;
