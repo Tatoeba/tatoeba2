@@ -704,7 +704,7 @@ class Sentence extends AppModel
         // TODO : need to replace it by something more general
         // like $romanisableArray, that way we will not need to
         // change several time the same things
-        if (in_array($sentenceArray['lang'], array('wuu','cmn','jpn','kat','uzb'))) {
+        if (in_array($sentenceArray['lang'], array('wuu','cmn','jpn','kat','uzb','yue'))) {
             $sentenceArray['romanization'] = $this->getRomanization(
                 $sentenceArray['text'],
                 $sentenceArray['lang']
@@ -751,13 +751,22 @@ class Sentence extends AppModel
                 return $value;
             }
 
-            $romanization =  exec("adso -i $text -y");
 
         } elseif ($lang == "kat") {
             $romanization = $this->getGeorgianRomanization($text);
 
         } elseif ($lang === "uzb") {
             $romanization = $this->uzbek_script_change($text);
+        } elseif ($lang == "yue") {
+            $xml = simplexml_load_file( 
+                "http://127.0.0.1:8042/jyutping?str=".urlencode($text)
+                ,'SimpleXMLElement', LIBXML_NOCDATA
+            );
+            foreach($xml as $key=>$value) {
+                return $value;
+            }
+
+
         }
         return $romanization;
     }
@@ -820,6 +829,7 @@ class Sentence extends AppModel
                 "http://127.0.0.1:8042/all?str=".urlencode($sentenceArray['text'])
                 ,'SimpleXMLElement', LIBXML_NOCDATA
             );
+
             foreach($xml as $key=>$value) {
                 $sentenceArray[$key] = $value;
             }
