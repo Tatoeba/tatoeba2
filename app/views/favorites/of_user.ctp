@@ -25,17 +25,49 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = sprintf(__("%s's favorite sentences", true), $user['username']); 
- 
-$navigation->displayUsersNavigation($user['id'], $user['username']);
+$title = sprintf(__("%s's favorite sentences", true), $user['username']); 
+$this->pageTitle = $title;
+$numberOfSentences = count($favorites);
 ?>
+
+<div id="annexe_content">
+    <div class="module">
+    <h2><?php __('Navigation links'); ?></h2>
+    <p>
+    <?php
+    echo $html->link(
+        sprintf(__("%s's contributions page", true), $user['username']),
+        array(
+            'controller' => 'users',
+            'action' => 'show',
+            $user['id']
+        )
+    );
+    ?>
+    </p>
+    <p>
+    <?php
+    echo $html->link(
+        sprintf(__("%s's profile", true), $user['username']),
+        array(
+            'controller' => 'user',
+            'action' => 'profile',
+            $user['username']
+        )
+    );
+    ?>
+    </p>
+    </div>
+</div>
+
 <div id="main_content">
-	<div class="module">
+    <div class="module">
     
-    <h3><?php __('Favorite sentences'); ?></h3>
+    <h2><?php echo $title . ' ('. $numberOfSentences.')'; ?></h2>
     
     <?php
-    if (count($favorites) > 0) {
+    
+    if ($numberOfSentences > 0) {
         $type = 'mainSentence';
         $parentId = null;
         $withAudio = false;
