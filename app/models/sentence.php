@@ -1251,7 +1251,7 @@ class Sentence extends AppModel
         $new_script = $script;
 
         if ($script == UZBEK_SCRIPT_SWITCH) {
-            $new_script = (($this->uzbek_script_get($str) == UZBEK_SCRIPT_CYRYLLIC ) ? UZBEK_SCRIPT_LATIN : UZBEK_SCRIPT_CYRYLLIC;
+            $new_script = ($this->uzbek_script_get($str) == UZBEK_SCRIPT_CYRYLLIC ) ? UZBEK_SCRIPT_LATIN : UZBEK_SCRIPT_CYRYLLIC;
         }
 
         if ($new_script == UZBEK_SCRIPT_CYRYLLIC) {//change to Cyrillic
