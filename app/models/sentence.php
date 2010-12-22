@@ -1251,7 +1251,7 @@ class Sentence extends AppModel
         $new_script = $script;
 
         if ($script == UZBEK_SCRIPT_SWITCH) {
-            $new_script = $this->uzbek_script_get($str);
+            $new_script = (($this->uzbek_script_get($str) == UZBEK_SCRIPT_CYRYLLIC ) ? UZBEK_SCRIPT_LATIN : UZBEK_SCRIPT_CYRYLLIC;
         }
 
         if ($new_script == UZBEK_SCRIPT_CYRYLLIC) {//change to Cyrillic
@@ -1341,7 +1341,7 @@ class Sentence extends AppModel
                 'Yu', 'yu', 'Ya', 'ya'
             );
         }
-        return str_replace($replacements, $needles, $str);
+        return str_replace($needles, $replacements, $str);
     }
 
 
