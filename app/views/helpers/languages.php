@@ -128,7 +128,9 @@ class LanguagesHelper extends AppHelper
             'scn' => __('Sicilian', true),
             'mal' => __('Malayalam', true),
             'nds' => __('Low German', true),
-            'tlh' => __('Klingon', true)
+            'tlh' => __('Klingon', true),
+            'slv' => __('Slovenian', true),
+            'tha' => __('Thai', true)
         );
         asort($languages);
         

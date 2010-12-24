@@ -69,7 +69,7 @@ class Sentence extends AppModel
         'orv', 'cha', 'tgl', 'que', 'mon',
         'lit', 'glg', 'gle', 'ina', 'jbo',
         'toki', 'ain', 'scn', 'mal', 'nds',
-        'tlh', null
+        'tlh', 'slv', 'tha', null
         );    
     public $validate = array(
         'lang' => array(
@@ -265,6 +265,8 @@ class Sentence extends AppModel
      */
     public function getSeveralRandomIds($lang = 'und',  $numberOfIdWanted = 10)
     {
+        return array(rand(0, 300000));
+        
         if(empty($lang)) {
             $lang = 'und';
         }

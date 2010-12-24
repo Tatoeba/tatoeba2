@@ -97,7 +97,9 @@ $languages = array(
     'scn' => 'Sicilian',
     'mal' => 'Malayalam',
     'nds' => 'Low German',
-    'tlh' => 'Klingon'
+    'tlh' => 'Klingon',
+    'slv' => 'Slovenian',
+    'tha' => 'Thai'
 );
 
 $languageWithStemmer = array(
