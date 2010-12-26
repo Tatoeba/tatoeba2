@@ -79,8 +79,11 @@ dt {
 }
 
 #top_menu {
+    height: 30px;
     width: 960px;
     margin: auto;
+    font-size: 0.9em;
+    overflow: hidden;
 }
 
 #top_menu .whatsNewItem {
@@ -104,11 +107,9 @@ dt {
  * Menu (Home, Browse, etc)
  */
 #top_menu ul {
-    height: 30px;
     list-style: none;
     margin: 0;
     padding: 0;
-    font-size: 0.9em;
 }
 
 #top_menu li {
@@ -182,6 +183,7 @@ dt {
     margin-left: 2px;
 }
 
+
 /* 
  * Interface Language Selector
  */
@@ -191,9 +193,8 @@ dt {
 }
 
 #languageSelection {
-    font-size: 0.8em;
     margin-left: 10px;
-    margin-top: 1px;
+    margin-top: 2px;
     height: 20px; /* need to specify height otherwise in Firefox and Opera it's too big */
 }
 
@@ -205,7 +206,6 @@ dt {
     margin: 0;
     padding: 0px 3px;
     list-style-type: none;
-    font-size: 0.9em;
     line-height: 24px;
 }
 
