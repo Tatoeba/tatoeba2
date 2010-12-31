@@ -461,5 +461,28 @@ class SentencesList extends AppModel
             return null;
         }
     }
+    
+    
+    /**
+     * Get number of sentences in list.
+     *
+     * @param int $listId Id of the list.
+     *
+     * @return int
+     */
+    public function getNumberOfSentences($listId)
+    {
+        $count = $this->SentencesSentencesLists->find(
+            'count',
+            array(
+                'conditions' => array(
+                    'sentences_list_id' => $listId
+                ),
+                'contain' => array()
+            )
+        );
+        
+        return $count;
+    }
 }
 ?>

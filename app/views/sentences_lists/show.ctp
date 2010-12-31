@@ -61,7 +61,11 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     <div class="module">
     <h2><?php __('Download'); ?></h2>
     <?php
-    $lists->displayDownloadLink($listId);
+    if ($canDownload) {
+        $lists->displayDownloadLink($listId);
+    } else {
+        echo "The download feature has been disabled for this list because it has too many sentences.";
+    }
     ?>
     </div>
     

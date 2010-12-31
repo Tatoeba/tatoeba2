@@ -49,6 +49,9 @@ class SentencesListsController extends AppController
     );
     public $components = array('GoogleLanguageApi');
     
+    const MAX_COUNT_FOR_DOWNLOAD = 50;
+    
+    
     /**
      * Before filter.
      * 
@@ -166,9 +169,16 @@ class SentencesListsController extends AppController
         );
         $sentencesInList = $this->paginate('SentencesSentencesLists');
         
+        $count = $this->params['paging']['SentencesSentencesLists']['count'];
+        $canDownload = false;
+        if ($count <= self::MAX_COUNT_FOR_DOWNLOAD) {
+            $canDownload = true;
+        }
+        
         $this->set('translationsLang', $translationsLang);
         $this->set('list', $list);
         $this->set('sentencesInList', $sentencesInList);
+        $this->set('canDownload', $canDownload);
     }
 
 
@@ -372,6 +382,18 @@ class SentencesListsController extends AppController
         if (empty($listId)) {
             $this->redirect(array('action' => 'index'));
         }
+        
+        $count = $this->SentencesList->getNumberOfSentences($listId);
+        if ($count > self::MAX_COUNT_FOR_DOWNLOAD) {
+            $this->flash(
+                __(
+                    'The download feature has been disabled for this list because '.
+                    'it has too many sentences.', true
+                ),
+                '/sentences_lists/show/'.$listId
+            );
+        }
+        
         
         $listId = Sanitize::paranoid($listId);
         
