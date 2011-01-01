@@ -265,8 +265,6 @@ class Sentence extends AppModel
      */
     public function getSeveralRandomIds($lang = 'und',  $numberOfIdWanted = 10)
     {
-        return array(rand(0, 300000));
-        
         if(empty($lang)) {
             $lang = 'und';
         }
