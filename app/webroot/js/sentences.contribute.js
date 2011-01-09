@@ -29,11 +29,14 @@ $(document).ready(function() {
     })
     
     function save(){
-
-        var rootUrl = get_tatoeba_root_url();
+        $("#SentenceText").blur(); // Removing the focus from the input to prevent a
+                                   // sentence from being added several times when
+                                   // the user presses several times the "Enter" key.
         
+        var rootUrl = get_tatoeba_root_url();
         var sentenceText = $("#SentenceText").val();
         var selectedLang = $("#contributionLang").val();
+        
         if ($.trim(sentenceText) != '') {
             $(".sentencesAddedloading").show();
             
@@ -48,6 +51,7 @@ $(document).ready(function() {
                     $(".sentencesAddedloading").hide();
                     $("#sentencesAdded").prepend(data);
                     $("#SentenceText").val("");
+                    $("#SentenceText").focus(); // Adding back the focus.
                 },
                 "html"
             );
