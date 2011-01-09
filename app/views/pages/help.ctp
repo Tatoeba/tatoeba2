@@ -171,7 +171,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
                 <a href="http://blog.tatoeba.org/2010/05/moderators-in-tatoeba.html">Moderators in Tatoeba</a>, by Trang
             </li>
             <li>
-                <a rehf="http://blog.tatoeba.org/2010/09/warning-you-are-being-disrespectful.html">Warning: you are being disrespectful</a>, by Trang
+                <a rehf="http://blog.tatoeba.org/2010/09/warning-you-are-being-disrespectful.html">Warning: you are beeing disrespectful</a>, by Trang
             </li>
         </ul>
     </div>
