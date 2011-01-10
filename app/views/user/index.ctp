@@ -346,7 +346,7 @@ if (!$session->read('Auth.User.id')) {
         )
     );
     echo $form->input(
-        'url', array(
+        'homepage', array(
             'label' => 'Homepage',
             'value'
             => (empty($user['User']['homepage']) ?
