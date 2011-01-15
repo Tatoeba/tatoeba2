@@ -313,7 +313,9 @@ class AppController extends Controller
             'zh'    => 'chi',
             'it'    => 'ita',
             'pl'    => 'pol',
-            'pt-BR' => 'pt_BR'
+            'pt-BR' => 'pt_BR',
+            'ru'    => 'rus',
+            'tr'    => 'tur'
         );
         if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) { 
             
