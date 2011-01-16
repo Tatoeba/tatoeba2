@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 ?>
-<div class="module" id="sentencesStats">
+<div class="module" id="audioStats">
     <h2><?php __('Number of audio by language'); ?></h2>
     <ul>
     <?php
