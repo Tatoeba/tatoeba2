@@ -35,35 +35,7 @@ if (empty($lang)){
 ?>
 
 <div id="annexe_content">
-    <div class="module" id="sentencesStats">
-    <h2><?php __('Audio by language'); ?></h2>
-    <ul>
-    <?php
-    foreach ($stats as $stat) {
-        $langCode = $stat['lang'];
-        $numberOfSentences = $stat['total'];
-        $link = array(
-            "controller" => "sentences",
-            "action" => "with_audio",
-            $langCode
-        );
-        
-        $languages->stat($langCode, $numberOfSentences, $link);
-    }
-    ?>
-    <li>
-    <?php 
-    echo $html->link(
-        __('all languages', true),
-        array(
-            'controller' => 'sentences',
-            'action' => 'with_audio'
-        )
-    );
-    ?>
-    </li>
-    </ul>
-    </div>
+    <?php echo $this->element('audio_stats', array('stats' => $stats)); ?>
 </div>
 
 <div id="main_content">

@@ -25,9 +25,14 @@
  * @link     http://tatoeba.org
  */
 $stats = ClassRegistry::init('Sentence')->getStatistics();
+$audioStats = ClassRegistry::init('Sentence')->getTotalNumberOfSentencesWithAudio();
 $totalSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
 $max = $stats[0]['langStats']['numberOfSentences'];
 ?>
+<div id="annexe_content">
+    <?php echo $this->element('audio_stats', array('stats' => $audioStats)); ?>
+</div>
+
 <div id="main_content">
 <div class="module">
     <h2>
