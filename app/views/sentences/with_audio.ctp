@@ -58,7 +58,7 @@ if (empty($lang)){
         
         
         <?php
-        $pagination->display();
+        $pagination->display(array($lang));
         
         foreach ($results as $sentence) {
             $sentences->displayGenericSentence(
@@ -68,7 +68,7 @@ if (empty($lang)){
             );
         }
         
-        $pagination->display();
+        $pagination->display(array($lang));
     } 
     ?>
     </div>
