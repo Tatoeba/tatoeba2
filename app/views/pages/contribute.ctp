@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -25,37 +25,33 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = 'Tatoeba - ' . __('Contribute', true);
-
-echo $javascript->link(JS_PATH . 'sentences.show_another.js', false);
+$this->pageTitle = 'Tatoeba - ' . __('How to contribute', true);
 ?>
 
 
-<div id="annexe_content">    
+<div id="annexe_content">
+    <?php
+    if (!$session->read('Auth.User.id')) {
+        ?>
+        <div class="module">
+        <h2><?php __("Register"); ?></h2>
+        <?php    
+        __('If you are interested, please register.');
+        echo $html->link(
+            __('Register', true),
+            array("controller" => "users", "action" => "register"),
+            array("class"=>"registerButton")
+        );
+        ?>
+        </div>
+        <?php
+    }
+    ?>
+    
     <?php
     $attentionPlease->tatoebaNeedsYou();
-    ?>    
-    
-    <div class="module">
-    <h2><?php __('About translations'); ?></h2>
-    
-    <h4><?php __("Good translations"); ?></h4>
-    <p>
-    <?php __("We know it's difficult, but do NOT translate word for word!"); ?>
-    </p>
-    
-    
-    <h4><?php __("Multiple translations"); ?></h4>
-    <p>
-    <?php
-    __(
-        "If you feel there are several possible translations, note that for a ".
-        "same sentence, you can add several translations in the same language."
-    );
     ?>
-    </p>
-    </div>
-
+    
     <div class="module">
         <h2><?php __('Important to read'); ?></h2>
         <ol>
@@ -78,143 +74,58 @@ echo $javascript->link(JS_PATH . 'sentences.show_another.js', false);
             </li>
         </ol>
     </div>
-
 </div>
 
 <div id="main_content">    
-    
     <div class="module">
-        <h2><?php __('Add new sentences'); ?></h2>
-        <?php
-        echo $form->create(
-            'Sentence', array("action" => "add", "id" => "newSentence")
-        );
-        echo $form->input('text', array("label" => __('Sentence : ', true)));
-
-        // permit users to directly specify in which language they contribute
-        $langArray = $languages->translationsArray();
-        $preSelectedLang = $session->read('contribute_lang');
-
-        if (empty($preSelectedLang)) {
-            $preSelectedLang = 'auto';
-        }
-        
-        echo '<div class="languageSelection">';
-        echo $form->select(
-            'contributionLang',
-            $langArray,
-            $preSelectedLang,
-            array("class"=>"translationLang"),
-            false
-        );
-        echo '</div>';
-        
-        echo $form->end('OK');
-        ?>
-        
-        <p>
-        <?php
-        __(
-            "You can add sentences that you do not know how to translate. ".
-            "Perhaps someone else will know!"
-        );
-        ?>
-        </p>
-        
-        <p>
-        <?php
-        __(
-            'Please do not forget <strong>capital letters</strong> '.
-            'and <strong>punctuation</strong>! Thank you.'
-        );
-        ?>
-        </p>
+    <h2><?php __("How can you contribute?"); ?></h2>
+    <p>
+    <?php
+    __(
+        "Tatoeba is primarily about collecting sentences and translating them ".
+        "into many, many languages. So one obvious thing you can do to contribute ".
+        "is to <strong>translate sentences</strong>."
+    );
+    ?>
+    </p>
+    
+    <p>
+    <?php
+    __(
+        "But you don't have to be a polyglot in order to contribute! You can help ".
+        "us a lot simply by <strong>checking sentences</strong> and ".
+        "<strong>reporting mistakes</strong>. This is something everyone can do!"
+    );
+    ?>
+    </p>
+    
+    <p>
+    <?php
+    __(
+        "If you have a good microphone, you can also bring more audio to Tatoeba ".
+        "by <strong>recording sentences</strong>."
+    );
+    ?>
+    </p>
+    
+    <p>
+    <?php
+    __(
+        "You can help us promote the project. <strong>Tell people around ".
+        "you</strong> that Tatoeba exists. This is a very ambitious project, so we ".
+        "will need as much help as possible."
+    );
+    ?>
+    </p>
+    
+    <p>
+    <?php
+    __(
+        "And finally, you can <strong>join the team</strong>. You can help us ".
+        "code new features, improve the usability, debug, optimize, ensure ".
+        "there's no security flaw, etc."
+    );
+    ?>
+    </p>
     </div>
-    
-    <div class="module">
-        <h2><?php __('Translate sentences'); ?></h2>
-        <p>
-        <?php 
-        echo sprintf(
-            __(
-                'Below you can get several random sentences in a certain language. '.
-                'Once the sentences are displayed, click on %s to add '.
-                'a translation.', true
-            ),
-            $html->image('translate.png')
-        );
-        ?>
-        </p>
-        
-        <?php
-       
-        $numberOfSentencesWanted = array (5 => 5 , 10 => 10 , 15 => 15);
-        $selectedLanguage = $session->read('random_lang_selected');
-        echo $form->create(
-            'Sentence',
-            array("action" => "several_random_sentences", "type" => "post")
-        );
-
-        echo '<fieldset class="select">';
-        echo '<label>' . __('Quantity', true) . '</label>';
-        echo $form->select(
-            'numberWanted',
-            $numberOfSentencesWanted,
-            5,
-            null,
-            false
-        );
-        echo '</fieldset>';
-
-
-        echo '<fieldset class="select">';
-        echo '<label>' . __('Language', true) . '</label>';
-        echo $form->select(
-            'into',
-            $languages->languagesArray(),
-            $selectedLanguage,
-            null,
-            false
-        );
-        echo '</fieldset>';
-
-        echo '<fieldset class="submit">';
-        echo '<input type="submit" value="'.
-            __('show random sentences', true).'"/>';
-        echo '</fieldset>';
-
-
-        echo $form->end();
-        ?>
-    </div>
-    
-    
-    <div class="module">
-        <h2><?php __('Check and correct sentences'); ?></h2>
-        <p>
-        <?php
-        __(
-            'We want to check and correct in priority sentences that do not belong '.
-            'to anyone. Our current strategy is to use the "adoption" system. '.
-            'Adopting is a way to vote "this sentence is correct".'
-        );
-        ?>
-        </p>
-        
-        <p>
-        <?php
-        echo sprintf(
-            __(
-                'So if you want to help us check and correct sentences, then adopt '.
-                '(%s) any "orphan" sentence you see in your <strong>native '.
-                'language</strong>, and correct it if necessary. '.
-                'Read <a href="%s">this</a> for further explanations.', true
-            ),
-            $html->image('adopt.png'),
-            'http://blog.tatoeba.org/2010/04/reliability-of-sentences-how-will-we.html'
-        )
-        ?>
-        </p>
-    </div>
-    
 </div>

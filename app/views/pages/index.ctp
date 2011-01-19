@@ -104,6 +104,7 @@ $selectedLanguage = $session->read('random_lang_selected');
                 style="width:480px; height:385px;"
                 data="http://www.youtube.com/v/ac9SmJuwHqk&amp;hl=en_US&amp;fs=1&amp;"
             >
+                <param name="wmode" value="transparent" /> 
                 <param name="movie" value="http://www.youtube.com/v/ac9SmJuwHqk&amp;hl=en_US&amp;fs=1&amp;" />
                 <object 
                     data="http://www.tudou.com/v/FC72iaE81Rs/v.swf"

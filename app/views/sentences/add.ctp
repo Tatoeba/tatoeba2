@@ -34,12 +34,36 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
     <?php
     $attentionPlease->tatoebaNeedsYou();
     ?>
+    
+    <div class="module">
+    <h2><?php __('Important'); ?></h2>
+    <p>
+    <?php
+    __(
+        'Please do not forget <strong>capital letters</strong> '.
+        'and <strong>punctuation</strong>! Thank you.'
+    );
+    ?>
+    </p>
+    </div>
+    
+    <div class="module">
+    <h2><?php __('Tip'); ?></h2>
+    <p>
+    <?php
+    __(
+        "You can add sentences that you do not know how to translate. ".
+        "Perhaps someone else will know!"
+    );
+    ?>
+    </p>
+    </div>
 </div>
 
 <div id="main_content">
     
     <div class="module">
-        <h2><?php __('Add another sentence'); ?></h2>
+        <h2><?php __('Add new sentences'); ?></h2>
         <div class="sentences_set">
             <div class="new">
             <?php

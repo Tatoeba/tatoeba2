@@ -69,6 +69,32 @@ $menuElements = array(
         "route" => array(
             "controller" => "pages",
             "action" => "contribute"
+        ),
+        "sub-menu" => array(
+            __('Add sentences', true) => array(
+                "controller" => "sentences",
+                "action" => "add"
+            ),
+            __('Translate sentences', true) => array(
+                "controller" => "activities",
+                "action" => "translate_sentences"
+            ),
+            __('Adopt sentences', true) => array(
+                "controller" => "activities",
+                "action" => "adopt_sentences"
+            ),
+            __('Improve sentences', true) => array(
+                "controller" => "activities",
+                "action" => "improve_sentences"
+            ),
+            __('Link sentences', true) => array(
+                "controller" => "activities",
+                "action" => "link_sentences"
+            ),
+            __('Discuss sentences', true) => array(
+                "controller" => "sentence_comments",
+                "action" => "index"
+            )
         )
     ),
     __('Members', true) => array(
