@@ -39,6 +39,18 @@ class AttentionPleaseHelper extends AppHelper
 {
     public function tatoebaNeedsYou()
     {
+        ?>
+        <div class="module">
+        <h2>Tatoeba day #2</h2>
+        <div style="border: 1px solid #CCC; padding: 5px 10px; background: #F1F1F1">
+            <strong>Sunday, Jan 23rd</strong>. Don't forget :)<br/>
+            <ul>
+                <li>=&gt <a href="http://tatoeba.org/wall/show_message/4706#message_4706">Wall message</a></li>
+                <li>=&gt <a href="http://blog.tatoeba.org/2011/01/tatoeba-day-2-jan-23rd-2011.html">Blog post</a></li>
+            </ul>
+        </div>
+        </div>
+        <?php
     }
 }
 ?>
