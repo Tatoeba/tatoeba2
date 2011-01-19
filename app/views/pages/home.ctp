@@ -71,6 +71,9 @@ $selectedLanguage = $session->read('random_lang_selected');
     echo $this->element('sentences_statistics');
     ?>
     
+    <?php
+    $attentionPlease->tatoebaNeedsYou();
+    ?>
         
     <div class="module">
         <h2><?php __('Latest messages'); ?></h2>
