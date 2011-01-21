@@ -87,10 +87,10 @@ $menuElements = array(
                 "controller" => "activities",
                 "action" => "improve_sentences"
             ),
-            __('Link sentences', true) => array(
-                "controller" => "activities",
-                "action" => "link_sentences"
-            ),
+            // __('Link sentences', true) => array(
+                // "controller" => "activities",
+                // "action" => "link_sentences"
+            // ),
             __('Discuss sentences', true) => array(
                 "controller" => "sentence_comments",
                 "action" => "index"
