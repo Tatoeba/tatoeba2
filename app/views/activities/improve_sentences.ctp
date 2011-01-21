@@ -108,8 +108,9 @@ $okLink = $html->link(
         <li>Once the case of a problematic sentence has been solved, tag it
         <?php echo $okLink; ?>. More generally, you can browse and check other's 
         sentences, and tag them with <?php echo $okLink; ?> to indicate you consider 
-        they are correct. But do this only when you are 100% sure that the sentence
-        is correct.</li>
+        they are correct. But do this when you are 100% sure that the sentence
+        is correct, and don't use the tag on your own sentences because it's not
+        very useful.</li>
     </ol>
     </div>
 </div>
