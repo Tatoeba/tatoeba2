@@ -64,9 +64,28 @@ class ActivitiesController extends AppController
     
     /**
      * Adopt sentences.
+     *
+     * @return void
      */
-    public function adopt_sentences()
+    public function adopt_sentences($lang = null)
     {
+        $this->helpers[] = 'CommonModules';
+        $this->helpers[] = 'Pagination';
+        
+        $conditions = array('user_id' => null);
+        if(!empty($lang)) {
+            $conditions['lang'] = $lang;
+        }
+        
+        $this->loadModel('Sentence');
+        $this->paginate = array(
+            'limit' => 10,
+            'conditions' => $conditions,
+            'contain' => array()
+        );
+        $results = $this->paginate('Sentence');
+        $this->set('results', $results);
+        $this->set('lang', $lang);
     }
     
     
