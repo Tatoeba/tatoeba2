@@ -233,14 +233,6 @@ class PagesController extends AppController
      */
     public function contribute()
     {
-        if (!$this->Auth->user('id')) {
-            $this->redirect(
-                array(
-                    'controller' => 'pages',
-                    'action' => 'how_to_contribute'
-                )
-            );
-        }
     }
 
     /**
