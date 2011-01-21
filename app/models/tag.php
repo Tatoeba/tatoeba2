@@ -91,6 +91,14 @@ class Tag extends AppModel
         if (trim($tagName) == '') {
             return false;
         }
+        
+        if (trim($tagName) == 'OK') {
+            $ownerId = $this->Sentence->getOwnerIdOfSentence($sentenceId);
+            if ($userId == $ownerId) {
+                return false;
+            }
+        }
+        
         $internalName = $this->_tag_to_internal_name($tagName);      
         
         $data = array(
@@ -107,10 +115,10 @@ class Tag extends AppModel
         //send a request to suggestd to update its internal
         // table 
         // TODO only do this if we add a new tag 
-        $dirty = fopen("http://127.0.0.1:8080/add?str=".urlencode($tagName)."&value=1", 'r');
-        if ($dirty != null) {
-            fclose($dirty);
-        }
+        // $dirty = fopen("http://127.0.0.1:8080/add?str=".urlencode($tagName)."&value=1", 'r');
+        // if ($dirty != null) {
+            // fclose($dirty);
+        // }
 
         if ($sentenceId != null) {
             $result = $this->find(
