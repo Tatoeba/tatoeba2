@@ -75,7 +75,7 @@ $okLink = $html->link(
     <h2>Tags you should know about</h2>
     
     <p>The community came up with a few "utility tags" to improve the quality and
-    the reliability of the sentences.
+    the reliability of the sentences.</p>
     <ul>
         <li><?php echo $changeLink; ?> - The sentence needs to be changed.</li>
         <li><?php echo $checkLink; ?> - The sentence needs to be checked.</li>
@@ -84,7 +84,6 @@ $okLink = $html->link(
         <li><?php echo $okLink; ?> - The sentence is considered correct by at least
         one person.</li>
     </ul>
-    </p>
     </div>
     
     
