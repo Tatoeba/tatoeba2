@@ -74,6 +74,9 @@ $this->pageTitle = sprintf(
         ?>
         </li>
         <li>
+        <?php echo $user['Group']['name']; ?>
+        </li>
+        <li>
             <?php
             echo $html->link(
                 __("View this user's profile", true),

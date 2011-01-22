@@ -110,6 +110,8 @@ if (!empty($realName)) {
         <dl>
             <dt><?php __('Member since'); ?></dt>
             <dd><?php echo date('F j, Y', strtotime($userSince)); ?></dd>
+            <dt><?php __('Status'); ?></dt>
+            <dd><?php echo $userStatus; ?></dd>
             <dt><?php __('Last login'); ?></dt>
             <dd><?php echo date('F j, Y \\a\\t G:i', $lastTimeActive); ?></dd>
             <dt><?php __('Comments posted'); ?></dt>

@@ -240,7 +240,8 @@ class User extends AppModel
                     'User.is_public',
                 ),
                 'contain' => array(
-                    'Country' => array('fields' => array('name'))
+                    'Country' => array('fields' => array('name')),
+                    'Group' => array('fields' => array('name'))
                 )
             )
         );
@@ -345,6 +346,9 @@ class User extends AppModel
                                 'date'
                             ),
                             'order' => 'date DESC'
+                        ),
+                        'Group' => array(
+                            'fields' => array('name')
                         )
                     )
                 )

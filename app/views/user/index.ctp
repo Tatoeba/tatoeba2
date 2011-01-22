@@ -124,6 +124,8 @@ if (!$session->read('Auth.User.id')) {
             <dl>
                 <dt><?php __('Member since'); ?></dt>
                 <dd><?php echo date('F j, Y', strtotime($user['User']['since'])); ?></dd>
+                <dt><?php __('Status'); ?></dt>
+                <dd><?php echo $user['Group']['name']; ?></dd>
                 <dt><?php __('Last login'); ?></dt>
                 <dd><?php echo date('F j, Y \\a\\t G:i', $user['User']['last_time_active']); ?></dd>
                 <dt><?php __('Comments posted'); ?></dt>
