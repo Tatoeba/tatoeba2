@@ -43,22 +43,17 @@ if (!isset($lastText)) {
     ?>
     
     <div class="module">
-        <h2><?php __('Credits'); ?></h2>
+        <h2><?php __('The sofware'); ?></h2>
         <p>
             <?php
-            echo sprintf(
-                __(
-                    'This tool is powered by <a href="%s">Adso</a>',
-                    true
-                ),
-                'http://adsotrans.com/downloads/'
+            __(
+                'This tool is powered by our own homebrew software. '.
+                'The source code will be released as open source. '.
+                'Feel free to contact us if you would like to know more about it.'
             );
             ?>
         </p>
-    </div>
-    
-    <div class="module">
-        <h2><?php __('Improvements'); ?></h2>
+        
         <p>
             <?php
             __(
@@ -68,10 +63,11 @@ if (!isset($lastText)) {
             );
             ?>
         </p>
+        
         <p class="more_link">
             <?php
             echo $html->link(
-                __('Feedback', true),
+                __('Contact us', true),
                 array(
                     "controller"=>"pages",
                     "action"=>"contact"

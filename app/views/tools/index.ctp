@@ -121,8 +121,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
                 );
                 echo ': ';
                 __(
-                    "convert traditional chinese to simplified ".
-                    "and vice versa (powered by adso)"
+                    "convert traditional chinese to simplified and vice versa"
                 );
                 ?>
             </li>
