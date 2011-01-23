@@ -47,7 +47,21 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
 <div id="main_content">
     <div class="module">
+    <h2>Table of contents</h2>
+    <ul>
+        <li><a href="#indirect-translations">Why are some translations in grey?</a></li>
+        <li><a href="#delete-sentence">How do I delete a sentence?</a></li>
+        <li><a href="#new-language">I'd like to add a new language in Tatoeba, what do I have to do?</a></li>
+        <li><a href="#change-language">How do I change the language of a sentence?</a></li>
+        <li><a href="#add-tag">How can I add tags to a sentence?</a></li>
+        <li><a href="#link-unlink">How can I link or unlink sentences?</a></li>
+        <li><a href="#trusted-user">How can I become a trusted user?</a></li>
+        <li><a href="#translate-interface">Can I help translating the website into other languages?</a></li>
+        <li><a href="#submit-audio">How do I contribute audio in Tatoeba?</a></li>
+    </ul>
+    </div>
     
+    <div class="module">
     <h2>FAQ</h2>
     
     <h3 id="indirect-translations"><a href="#indirect-translations">Why are some translations in grey?</a></h3>
