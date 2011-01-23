@@ -39,17 +39,6 @@ class AttentionPleaseHelper extends AppHelper
 {
     public function tatoebaNeedsYou()
     {
-        ?>
-        <div class="module">
-        <h2>Tatoeba day #2</h2>
-        <div style="border: 1px solid #CCC; padding: 5px 10px; background: #F1F1F1">
-            <strong>It's right now!</strong> Join us on <a href="http://webchat.freenode.net/">IRC</a> :)<br/>
-            <ul>
-                <li>=&gt; channel #tatoeba</li>
-            </ul>
-        </div>
-        </div>
-        <?php
     }
 }
 ?>
