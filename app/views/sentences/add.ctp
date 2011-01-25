@@ -37,14 +37,28 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
     
     <div class="module">
     <h2><?php __('Important'); ?></h2>
-    <p>
+    <ol>
+    <li>
     <?php
     __(
         'Please do not forget <strong>capital letters</strong> '.
         'and <strong>punctuation</strong>! Thank you.'
     );
     ?>
-    </p>
+    </li>
+    <li>
+    <?php
+    echo sprintf(
+        __(
+            'Do not copy-paste sentences from elsewhere, '.
+            'except if the content is CC-BY compatible. '.
+            '<a href="%s">Learn more...</a>', true
+        ),
+        'http://blog.tatoeba.org/2011/01/legally-valid-content.html'
+    );
+    ?>
+    </li>
+    </ol>
     </div>
     
     <div class="module">
