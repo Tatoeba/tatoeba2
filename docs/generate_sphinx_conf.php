@@ -99,7 +99,11 @@ $languages = array(
     'nds' => 'Low German',
     'tlh' => 'Klingon',
     'slv' => 'Slovenian',
-    'tha' => 'Thai'
+    'tha' => 'Thai',
+    'lzh' => 'Literay Chinese',
+    'oss' => 'Ossetian',
+    'roh' => 'Romansh',
+    'vol' => 'Volapük'
 );
 
 $languageWithStemmer = array(

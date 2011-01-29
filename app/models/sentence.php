@@ -69,7 +69,8 @@ class Sentence extends AppModel
         'orv', 'cha', 'tgl', 'que', 'mon',
         'lit', 'glg', 'gle', 'ina', 'jbo',
         'toki', 'ain', 'scn', 'mal', 'nds',
-        'tlh', 'slv', 'tha', null
+        'tlh', 'slv', 'tha', 'lzh', 'oss',
+        'roh', 'vol', null
         );    
     public $validate = array(
         'lang' => array(

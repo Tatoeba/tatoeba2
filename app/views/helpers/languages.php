@@ -130,7 +130,11 @@ class LanguagesHelper extends AppHelper
             'nds' => __('Low German', true),
             'tlh' => __('Klingon', true),
             'slv' => __('Slovenian', true),
-            'tha' => __('Thai', true)
+            'tha' => __('Thai', true),
+            'lzh' => __('Literay Chinese', true),
+            'oss' => __('Ossetian', true),
+            'roh' => __('Romansh', true),
+            'vol' => __('Volapük', true)
         );
         asort($languages);
         
