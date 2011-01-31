@@ -81,7 +81,8 @@ $menuElements = array(
             ),
             __('Adopt sentences', true) => array(
                 "controller" => "activities",
-                "action" => "adopt_sentences"
+                "action" => "adopt_sentences",
+                $currentLanguage
             ),
             __('Improve sentences', true) => array(
                 "controller" => "activities",
