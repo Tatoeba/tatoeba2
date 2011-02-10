@@ -164,6 +164,18 @@ class PrivateMessagesController extends AppController
          * and change is read value automatically.
          */
         $message = $this->PrivateMessage->getMessageWithId($messageId);
+        $recipientId = $message['PrivateMessage']['recpt'];
+        $senderId = $message['PrivateMessage']['sender'];
+        $currentUserId = CurrentUser::get('id');
+        if ($recipientId != $currentUserId && $senderId != $currentUserId) {
+            $this->redirect(
+                array(
+                    'action' => 'folder',
+                    'Inbox'
+                )
+            );
+        }
+        
         if ($message['PrivateMessage']['isnonread'] == 1) {
             $message['PrivateMessage']['isnonread'] = 0;
             $this->PrivateMessage->save($message);
