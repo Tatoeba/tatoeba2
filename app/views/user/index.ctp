@@ -81,7 +81,7 @@ if (!$session->read('Auth.User.id')) {
                         array(
                             "controller" => "favorites",
                             "action" => "of_user",
-                            $currentUserId
+                            $userName
                         )
                     )
                 );

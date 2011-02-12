@@ -103,7 +103,7 @@ $this->pageTitle = sprintf(
                 array(
                     "controller" => "favorites",
                     "action" => "of_user",
-                    $user['User']['id']
+                    $user['User']['username']
                 )
             );
             echo ')';

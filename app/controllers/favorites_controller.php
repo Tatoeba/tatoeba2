@@ -66,13 +66,12 @@ class FavoritesController extends AppController
      * @return void
      */
 
-    public function of_user($userId)
+    public function of_user($username)
     {
-        $userId = Sanitize::paranoid($userId);
-        
+        $userId = $this->Favorite->User->getIdFromUsername($username);
         $favorites = $this->Favorite->getAllFavoritesOfUser($userId);
         $this->set('favorites', $favorites['Favorite']);
-        $this->set('user', $favorites['User']);
+        $this->set('username', $username);
     }
 
     /**
