@@ -25,39 +25,19 @@
  * @link     http://tatoeba.org
  */
 
-$title = sprintf(__("%s's favorite sentences", true), $user['username']); 
+$username = Sanitize::paranoid($username, array("_"));
+$title = sprintf(__("%s's favorite sentences", true), $username); 
 $this->pageTitle = $title;
 $numberOfSentences = count($favorites);
 ?>
 
 <div id="annexe_content">
-    <div class="module">
-    <h2><?php __('Navigation links'); ?></h2>
-    <p>
     <?php
-    echo $html->link(
-        sprintf(__("%s's contributions page", true), $user['username']),
-        array(
-            'controller' => 'users',
-            'action' => 'show',
-            $user['id']
-        )
+        echo $this->element(
+        'users_menu', 
+        array('username' => $username)
     );
     ?>
-    </p>
-    <p>
-    <?php
-    echo $html->link(
-        sprintf(__("%s's profile", true), $user['username']),
-        array(
-            'controller' => 'user',
-            'action' => 'profile',
-            $user['username']
-        )
-    );
-    ?>
-    </p>
-    </div>
 </div>
 
 <div id="main_content">
