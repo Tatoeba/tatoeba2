@@ -49,7 +49,10 @@ class PaginationHelper extends AppHelper
      */
     public function display($extramParams = array())
     {
-        if ($this->params['paging']['PrivateMessage']['pageCount'] < 2) {
+        $paging = $this->params['paging'];
+        $pagingInfo = array_pop($paging); // In the hope that there's only always
+                                          // one element in $paging.
+        if ($pagingInfo['pageCount'] < 2) {
             return;
         }
         
