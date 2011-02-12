@@ -169,7 +169,7 @@ class ActivitiesController extends AppController
                 ),
                 'conditions' => $conditions,
                 'contain' => array(),
-                'limit' => 20,
+                'limit' => 10,
             )
         );
         
