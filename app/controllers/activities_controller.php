@@ -38,6 +38,8 @@ class ActivitiesController extends AppController
 {   
     public $helpers = array('AttentionPlease');
     
+    public $components = array ('CommonSentence');
+    
     /**
      * Before filter.
      * 
@@ -102,6 +104,22 @@ class ActivitiesController extends AppController
      */
     public function link_sentences()
     {
+        $sentenceId = $this->data['Activities']['sentence_id'];
+        $translationId = $this->data['Activities']['translation_id'];
+        
+        $sentenceText = ClassRegistry::init('Sentence')->getSentenceTextForId(
+            $sentenceId
+        );
+        $translationText = ClassRegistry::init('Sentence')->getSentenceTextForId(
+            $translationId
+        );
+        $linked = false;
+        
+        $this->set('sentenceText', $sentenceText);
+        $this->set('sentenceId', $sentenceId);
+        $this->set('translationText', $translationText);
+        $this->set('translationId', $translationId);
+        $this->set('linked', $linked);
     }
     
     
@@ -110,6 +128,66 @@ class ActivitiesController extends AppController
      */
     public function translate_sentences()
     {
+    }
+    
+    
+    /**
+     * Translate sentences of a specific user.
+     *
+     * @param string $username        Username.
+     * @param string $lang            Language of the sentences.
+     * @param string $notTranslatedIn Language in which the sentences are not 
+     *                                translated.
+     */
+    public function translate_sentences_of($username, $lang = null) {
+        $this->helpers[] = 'Pagination';
+        $this->helpers[] = 'Languages';
+        $this->helpers[] = 'CommonModules';
+        
+        $this->set('username', $username);
+        
+        $userId = ClassRegistry::init('User')->getIdFromUsername($username);
+        
+        if (empty($userId)) {
+            $this->set('results', null);
+            return;
+        }
+        
+        $this->loadModel('Sentence');
+        
+        $conditions = array(
+            'user_id' => $userId
+        );
+        if (!empty($lang)) {
+            $conditions['lang'] = $lang;
+        }
+        
+        $this->paginate = array(
+            'Sentence' => array(
+                'fields' => array(
+                    'id',
+                ),
+                'conditions' => $conditions,
+                'order' => 'modified DESC',
+                'contain' => array(),
+                'limit' => 20,
+            )
+        );
+        
+        $paginationResults = $this->paginate('Sentence');
+        
+        $sentenceIds = array();
+
+        foreach ($paginationResults as $i=>$sentence) {
+            $sentenceIds[$i] = $sentence['Sentence']['id'];
+        }
+
+        $results = $this->CommonSentence->getAllNeededForSentences(
+            $sentenceIds
+        );
+        
+        $this->set('results', $results);
+        $this->set('lang', $lang);
     }
 }
 ?>
