@@ -117,6 +117,7 @@ class NavigationHelper extends AppHelper
             <?php
             $prevClass = "inactive";
             $prevLink = ""; 
+            $prevText = '« '.__('previous', true);
             
             if (!empty($prev)) {
                 $prevClass = "active";
@@ -131,15 +132,17 @@ class NavigationHelper extends AppHelper
             <li class="<?php echo $prevClass; ?>" id="prevSentence">
             <?php
             // previous
-            echo $this->Html->link(
-                '« '.__('previous', true),
-                $prevLink
-            );
+            if (empty($prev)) {
+                echo $prevText;
+            } else {
+                echo $this->Html->link($prevText, $prevLink);
+            }
             ?></li>
  
             <?php
             $nextClass = "inactive";
             $nextLink = ""; 
+            $nextText = __('next', true).' »';
             
             if (!empty($next)) {
                 $nextClass = "active";
@@ -155,10 +158,11 @@ class NavigationHelper extends AppHelper
             <li class="<?php echo $nextClass; ?>" id="nextSentence">
             <?php
             // next
-            echo $this->Html->link(
-                __('next', true).' »',
-                $nextLink
-            );
+            if (empty($next)) {
+                echo $nextText;
+            } else {
+                echo $this->Html->link($nextText, $nextLink);
+            }
             ?></li>
             
             
