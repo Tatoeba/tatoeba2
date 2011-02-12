@@ -48,6 +48,11 @@ $this->pageTitle = $title;
 
 <div id="annexe_content">    
     <?php     
+    echo $this->element(
+        'users_menu', 
+        array('username' => $username)
+    );
+    
     $commonModules->createFilterByLangMod(2); 
     ?> 
 </div>

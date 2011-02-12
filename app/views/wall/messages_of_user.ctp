@@ -24,9 +24,19 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-
+$username = Sanitize::paranoid($username, array("_"));
 $this->pageTitle = 'Tatoeba - ' . sprintf(__("%s's Wall messages", true), $username);
 ?>
+
+<div id="annexe_content">
+    <?php
+        echo $this->element(
+        'users_menu', 
+        array('username' => $username)
+    );
+    ?>
+</div>
+
 
 <div id="main_content">
 <div class="module">

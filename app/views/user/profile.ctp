@@ -61,7 +61,13 @@ if (!empty($realName)) {
 ?>
 
 <div id="annexe_content">
-
+    <?php
+        echo $this->element(
+        'users_menu', 
+        array('username' => $userName)
+    );
+    ?>
+    
     <div id="pcontact" class="module">
         <h2><?php __('Contact information'); ?></h2>
         <dl>

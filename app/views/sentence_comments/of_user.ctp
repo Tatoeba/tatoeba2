@@ -34,11 +34,19 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-
+$userName = Sanitize::paranoid($userName, array("_"));
 $this->pageTitle = 'Tatoeba - ' . sprintf(__("%s's comments", true), $userName);
 
 // create an helper a lot of the code is the same of "on_sentences_of_user"
 ?>
+<div id="annexe_content">
+    <?php
+        echo $this->element(
+        'users_menu', 
+        array('username' => $userName)
+    );
+    ?>
+</div>
 
 <div id="main_content">
     <div class="module">

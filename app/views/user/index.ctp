@@ -56,69 +56,13 @@ if (!$session->read('Auth.User.id')) {
     echo $javascript->link(JS_PATH . 'profile.edit.js', false);
     ?>
     <div id="annexe_content">
-        <div class="module">
-            <h2><?php __('Your links'); ?></h2>
-            <ul>
-                <li>
-                <?php
-                echo sprintf(
-                    __("<a href='%s'>View all my sentences</a>", true),
-                    $html->url(
-                        array(
-                            "controller" => "sentences",
-                            "action" => "of_user",
-                            $userName
-                        )
-                    )
-                );
-                ?>
-                </li>
-                <li>
-                <?php
-                echo sprintf(
-                    __("<a href='%s'>View my favorite sentences</a>", true),
-                    $html->url(
-                        array(
-                            "controller" => "favorites",
-                            "action" => "of_user",
-                            $userName
-                        )
-                    )
-                );
-                ?>
-                </li>
-
-                <li>
-                <?php
-                echo sprintf(
-                    "<a href='%s'>".__("View my comments", true)."</a>",
-                    $html->url(
-                        array(
-                            "controller" => "sentence_comments",
-                            "action" => "of_user",
-                            $userName
-                        )
-                    )
-                );
-                ?>
-                </li>
-
-                <li>
-                <?php
-                echo sprintf(
-                    "<a href='%s'>".__("View comments on my sentences", true)."</a>",
-                    $html->url(
-                        array(
-                            "controller" => "sentence_comments",
-                            "action" => "on_sentences_of_user",
-                            $userName
-                        )
-                    )
-                );
-                ?>
-                </li>
-            </ul>
-        </div>
+        <?php
+            echo $this->element(
+            'users_menu', 
+            array('username' => $userName)
+        );
+        ?>
+        
         <div class="module">
             <h2><?php __('Activity information'); ?></h2>
             <dl>

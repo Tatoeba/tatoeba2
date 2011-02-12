@@ -42,7 +42,30 @@ if ($userExists === true) {
 ?>
 
 <div id="annexe_content">
-    <?php $commonModules->createFilterByLangMod(2); ?> 
+    <?php
+    echo $this->element(
+        'users_menu', 
+        array('username' => $userName)
+    );
+    
+    $commonModules->createFilterByLangMod(2);
+    ?> 
+    
+    <div class="module">
+    <h2><?php __('Contribute'); ?></h2>
+    <p>
+    <?php
+    echo $html->link(
+        __('Translate these sentences', true),
+        array(
+            'controller' => 'activities',
+            'action' => 'translate_sentences_of',
+            $userName
+        )
+    );
+    ?>
+    </p>
+    </div>
 </div>
     
     
