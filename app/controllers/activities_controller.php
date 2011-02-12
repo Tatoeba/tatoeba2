@@ -168,7 +168,6 @@ class ActivitiesController extends AppController
                     'id',
                 ),
                 'conditions' => $conditions,
-                'order' => 'modified DESC',
                 'contain' => array(),
                 'limit' => 20,
             )
