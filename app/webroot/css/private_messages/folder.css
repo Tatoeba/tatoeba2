@@ -25,6 +25,12 @@
 
 
 /*
+ * Pagination
+ */
+@import url(../elements/pagination.css);
+
+
+/*
  * Folder content
  */
 .pm_module {
@@ -65,4 +71,8 @@
 .unread a {
     font-weight: bold; 
     color: #FF6A00;
+}
+
+.senderImage {
+    width: 50px;
 }

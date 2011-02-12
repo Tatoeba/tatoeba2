@@ -71,12 +71,46 @@ class PrivateMessagesController extends AppController
      */
     public function folder($folder = 'Inbox')
     {
+        $this->helpers[] = 'Pagination';
+        
         $folder = Sanitize::paranoid($folder);
         
-        $content = $this->PrivateMessage->getMessages(
-            $folder,
-            $this->Auth->user('id')
+        $currentUserId = $this->Auth->user('id');
+        
+        $conditions = array('folder' => $folder);
+        if ($folder == 'Inbox') {
+            $conditions['recpt'] = $currentUserId;
+        } else if ($folder == 'Sent') {
+            $conditions['sender'] = $currentUserId;
+        } else if ($folder == 'Trash') {
+            $conditions['user_id'] = $currentUserId;
+        }
+        
+        $this->paginate = array(
+            'PrivateMessage' => array(
+                'conditions' => $conditions,
+                'contain' => array(
+                    'Sender' => array(
+                        'fields' => array(
+                            'id',
+                            'username',
+                            'image',
+                        )
+                    ),
+                    'Recipient' => array(
+                        'fields' => array(
+                            'id',
+                            'username',
+                            'image',
+                        )
+                    )
+                ),
+                'order' => 'date DESC',
+                'limit' => 20
+            )
         );
+        
+        $content = $this->paginate();
         
         $this->set('folder', $folder);
         $this->set('content', $content);
@@ -197,10 +231,13 @@ class PrivateMessagesController extends AppController
     public function delete($folderId, $messageId)
     {
         $messageId = Sanitize::paranoid($messageId);
-        
         $message = $this->PrivateMessage->findById($messageId);
-        $message['PrivateMessage']['folder'] = 'Trash';
-        $this->PrivateMessage->save($message);
+        
+        if ($message['PrivateMessage']['user_id'] == CurrentUser::get('id')) {
+            $message['PrivateMessage']['folder'] = 'Trash';
+            $this->PrivateMessage->save($message);
+        }
+        
         $this->redirect(array('action' => 'folder', $folderId));
     }
 

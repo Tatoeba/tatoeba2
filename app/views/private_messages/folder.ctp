@@ -41,8 +41,20 @@ echo $this->element('pmmenu');
 <div id="main_content">
 	<div class="module pm_module">
         <h2>
-        <?php echo $folderName; ?>
-		</h2>
+            <?php 
+            echo $folderName;
+            echo ' ';
+            echo $paginator->counter(
+                array(
+                    'format' => __('(total %count%)', true)
+                )
+            ); 
+            ?>
+        </h2>
+        
+        <?php
+        $pagination->display();
+        ?>
         
 		<table class="pm_folder">
 		<?php
@@ -67,7 +79,7 @@ echo $this->element('pmmenu');
                 $userImage = $msg['Recipient']['image'];
                 $label = sprintf(__('to %s', true), $username);
             }
-            echo '<td>';
+            echo '<td class="senderImage">';
             $wall->displayMessagePosterImage($username, $userImage);
             echo '</td>';
 
@@ -124,5 +136,9 @@ echo $this->element('pmmenu');
         }
         ?>
 		</table>
+        
+        <?php
+        $pagination->display();
+        ?>
 	</div>
 </div>
