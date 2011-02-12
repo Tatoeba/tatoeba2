@@ -62,15 +62,27 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
     </div>
     
     <div class="module">
-    <h2><?php __('Tip'); ?></h2>
-    <p>
-    <?php
-    __(
-        "You can add sentences that you do not know how to translate. ".
-        "Perhaps someone else will know!"
-    );
-    ?>
-    </p>
+    <h2><?php __('Tips'); ?></h2>
+    <ol>
+        <li>
+        <?php
+        __(
+            "You can add sentences that you do not know how to translate. ".
+            "Perhaps someone else will know!"
+        );
+        ?>
+        </li>
+        <li>
+        <?php
+        echo sprintf(
+            __(
+                'Or create sentences with '.
+                '<a href="%s">words not yet in Tatoeba</a>.', true
+            ), 'http://a4esl.com/temporary/tatoeba/notyet/'
+        );
+        ?>
+        </li>
+    </ol>
     </div>
 </div>
 

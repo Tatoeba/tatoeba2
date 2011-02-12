@@ -58,7 +58,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Contact us', true);
     <div class="module">
         <h2><?php __('Contact us'); ?></h2>
         <?php
-        $email = 'team@tatoeba.fr';
+        $email = 'team@tatoeba.org';
         echo sprintf(
             __(
                 'If you have any question, suggestion, request (or if you would '.

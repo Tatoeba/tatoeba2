@@ -100,7 +100,9 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
     
     <h3 id="trusted-user"><a href="#trusted-user">How can I become a trusted user?</a></h3>
-    <p>You have to <?php echo $html->link('contact Trang', array('controller' => 'private_messages', 'action' => 'write', 'TRANG')); ?> and she will decide if you can be a trusted user or not. One thing she will ask you to do is to read and understand entirely the <a href="http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html">guide of the good contributor</a>, so take the time to read it.</p>
+    <p>You have to <?php echo $html->link('contact Trang', array('controller' => 'private_messages', 'action' => 'write', 'TRANG')); ?> and tell her that you want to be a candidate to become a trusted user.</p>
+    <p>Also, you MUST read and understand entirely the <a href="http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html">guide of the good contributor</a>.</p>
+    <p>Other than that, we're currently re-defining the procedure to become a trusted user. Nothing official yet but you can find further explanations <a href="http://tatoeba.org/wall/show_message/4890#message_4890">here</a>.</p>
     
     
     <h3 id="translate-interface"><a href="#translate-interface">Can I help translating the website into other languages?</a></h3>
@@ -112,7 +114,7 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     <p><strong>1)</strong> You need have a good microphone because we care about sound quality.</p>
     <p><strong>2)</strong> Download <a href="http://shtooka.net/soft/shtooka_recorder/en/">Shtooka Recorder</a> and get familiar with it. You will be using it to record the sentences, it's a very useful software.</p> 
     <p><strong>Tutorial:</strong> <a href="http://www.youtube.com/watch?v=AcJoLBjUOaY">http://www.youtube.com/watch?v=AcJoLBjUOaY</a> (made by <a href="/user/profile/AmberShadow">AmberShadow</a>).</p>
-    <p><strong>3)</strong> Pick a few random sentences (just 2 or 3), record them, and send us the samples at team@tatoeba.fr, with the title "Audio for Tatoeba in <em>&lt;language_name&gt;</em>". This way we can evaluate if the sound quality is good enough. If it is, we will send you back a list of sentences to record.</p>
+    <p><strong>3)</strong> Pick a few random sentences (just 2 or 3), record them, and send us the samples at team@tatoeba.org, with the title "Audio for Tatoeba in <em>&lt;language_name&gt;</em>". This way we can evaluate if the sound quality is good enough. If it is, we will send you back a list of sentences to record.</p>
     <p><strong>4)</strong> Read the list we sent you and check that all the sentences sound natural to you. If a sentence doesn't sound natural, simply erase it from the list. It would be appreciated if you also went to the website to post a comment on that sentence, to indicate it doesn't sound natural and should be improved.</p>
     <p><strong>5)</strong> In Shtooka Recorder, copy-paste the final list in the "Words to record", fill in the info in the "Speaker" tab, go back to the "Words" tab and click "Continue".
     <p><strong>6)</strong> Press space to indicate you are ready and read the sentence that is highlighted in red. The software will detect when to start and stop recording, and will jump to the next sentence automatically. All you have to do is read what's highlighted in red. If you want to take a break, you can press space to pause, so that it doesn't record something unrelated. If you need to listen to a sentence's audio, simply select it and press "Enter" (you can navigate with the directional keys: up, down, left, right).</p>
