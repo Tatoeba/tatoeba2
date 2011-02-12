@@ -49,6 +49,10 @@ class PaginationHelper extends AppHelper
      */
     public function display($extramParams = array())
     {
+        if ($this->params['paging']['PrivateMessage']['pageCount'] < 2) {
+            return;
+        }
+        
         // -----------------------------------------------------------
         // So that we can pass GET variables into the pagination links.
         // Took it from here:
