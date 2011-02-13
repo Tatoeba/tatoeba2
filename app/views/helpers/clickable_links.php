@@ -52,7 +52,7 @@ class ClickableLinksHelper extends AppHelper
         // get rid of \r
         $text = preg_replace('#\r#u', '', $text);
         
-        $pattern = '/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n\(\)"\'\,\!<]+)/siu';
+        $pattern = '/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n\(\)"\'\!<]+)/siu';
         $match = preg_match_all($pattern, $text, $urls);
         
         if ($match) {
