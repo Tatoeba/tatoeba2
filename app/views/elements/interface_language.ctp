@@ -27,11 +27,7 @@
 ?>
 
 <?php
-$lang = 'eng';
-if (isset($this->params['lang'])) {
-    Configure::write('Config.language', $this->params['lang']);
-    $lang = $this->params['lang'];
-}
+$lang = $this->params['lang'];
 
 $languages = array(
     'eng' => 'English', 
@@ -47,21 +43,13 @@ $languages = array(
     'rus' => 'русский',
     'tur' => 'Türkçe'
 );
-$path = $this->params['controller'].'/';
-if ($this->params['action'] != 'display') {
-    $path .= $this->params['action'].'/';
-}
-foreach ($this->params['pass'] as $extraParam) {
-    $path .= $extraParam.'/';
-}
 
 echo $form->select(
     'languageSelection',
     $languages,
     $lang,
     array(
-        "onchange"
-        => "$(location).attr('href', '/' + this.value+ '/' + '".$path."');"
+        "onchange" => "changeInterfaceLang(this.value)"
     ),
     false
 );

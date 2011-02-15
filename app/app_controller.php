@@ -86,69 +86,35 @@ class AppController extends Controller
         // So that we can access the current users info from models.
         App::import('Model', 'CurrentUser');
         CurrentUser::store($this->Auth->user());
-
-
-        // Language of interface
-        if (isset($this->params['lang']) && !empty($this->params['lang'])) {
-            
-            //echo "tata";
-            // NOTE 1: It is improtant to use isset() in the condition. Using 
-            //         !empty() will cause users/login.ctp NOT to work... Don't ask.
-            // NOTE 2: I had used !empty() because sometimes, data loaded from AJAX
-            //         calls would be in English instead of the language of the 
-            //         interface. There has been a lot of refactoring since then so
-            //         it is possible that this language issue is no more valid.
-            Configure::write(
-                'Config.language',
-                $this->params['lang']
-            );
         
-            $this->Cookie->write(
-                'interfaceLanguage',
-                $this->params['lang'],
-                false,
-                '+2 weeks'
-            );
-            return;
-
-            // cases where the interface language is not set in the url
-        } elseif ($this->Cookie->read('interfaceLanguage')) {
-            
-            $interfaceLanguage = $this->Cookie->read('interfaceLanguage');
-            Configure::write('Config.language', $interfaceLanguage);
-            $this->params['lang'] = $interfaceLanguage;
-        
-        } else {
-            
-            $lang = $this->getSupportedLanguage();
-            Configure::write('Config.language', $lang);
-            $this->Cookie->write('interfaceLanguage', $lang, false, '+2 weeks');
-            $this->params['lang'] = $lang;
+        // Language of interface:
+        // - By default we use the language set in the browser (or English, if the
+        //   language of the browser is not supported).
+        // - If the user has a cookie, we use the language set in the cookie.
+        // - If no cookie, we use the language set in the URL.
+        $lang = $this->getSupportedLanguage();
+        $langInCookie = $this->Cookie->read('interfaceLanguage');
+        $langInURL = $this->params['lang'];
+        if ($langInCookie) {
+            $lang = $langInCookie;
+        } else if (!empty($langInURL)) {
+            $lang = $langInURL;
+            $this->Cookie->write('interfaceLanguage', $lang, false, "+1 month");
         }
+        Configure::write('Config.language', $lang);
         
-        $redirectPage = "/".$this->params['lang']."/".$this->params['url']['url'];
-        
-        // incredible hack
-        // in fact it's to transfer GET parameters to redirecting url
-        // otherwise  tatoeba.org/sentences/search?query="toto"
-        // would be redirected to tatoeba.org/eng/sentences/search
-        // without the "?query etc."
-
-        // TODO find if cakephp doesn't provide a function for this
-        if (count($this->params['url']) > 1) {
-            $redirectPage .= "?";
-                
-            foreach ($this->params['url'] as $name => $value) {
-                if ($name == "url") {
-                    continue;
-                }
-                $redirectPage .= "&$name=$value";
-            }
+        // Forcing the URL to have the (correct) language in it.
+        $url = $this->params['url']['url'];
+        if (!empty($langInURL) && $langInCookie && $langInURL != $langInCookie) {
+            $url = str_replace($langInURL.'/', '', $url); 
+                                    // We're removing the language from the URL and
+            $langInURL = null;      // we set $langURL to null so that we get the
+                                    // the correct URL through redirection (below).
         }
-        
-        $this->redirect($redirectPage, 301);
-
-
+        if (empty($langInURL)) {
+            $redirectPage = "/".$lang."/".$url;
+            $this->redirect($redirectPage, 301);
+        }
     }
 
     /**

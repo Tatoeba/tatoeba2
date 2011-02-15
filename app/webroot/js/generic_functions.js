@@ -39,3 +39,22 @@ function normalized_sentence(sentenceText) {
     sentenceText = sentenceText.replace(reg, " ");
     return sentenceText;
 }
+
+/**
+ * Change the language of the interface.
+ */
+function changeInterfaceLang(newLang) {
+    // Saving the cookie
+    var date = new Date();
+    date.setMonth(date.getMonth()+1);
+    document.cookie = 'CakeCookie[interfaceLanguage]=' + newLang 
+        + '; path=/'
+        + '; expires=' + date;
+    
+    // Apply redirection. We intentionally remove the language from the URL, so that
+    // the PHP makes a redirect to the right URL.
+    var currentURL = window.location.toString();
+    var reg = new RegExp(self.location.host+"\\/[a-z]{3}\\/", "gi");
+    var newURL = currentURL.replace(reg, self.location.host+'/');
+    $(location).attr('href', newURL);
+}
