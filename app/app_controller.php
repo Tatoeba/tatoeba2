@@ -95,7 +95,7 @@ class AppController extends Controller
         $lang = $this->getSupportedLanguage();
         $langInCookie = $this->Cookie->read('interfaceLanguage');
         $langInURL = null;
-        if (isset($this->params['lang']) {
+        if (isset($this->params['lang'])) {
             $langInURL = $this->params['lang'];
         }
         if ($langInCookie) {
