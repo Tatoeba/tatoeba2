@@ -50,11 +50,5 @@ function changeInterfaceLang(newLang) {
     document.cookie = 'CakeCookie[interfaceLanguage]=' + newLang 
         + '; path=/'
         + '; expires=' + date;
-    
-    // Apply redirection. We intentionally remove the language from the URL, so that
-    // the PHP makes a redirect to the right URL.
-    var currentURL = window.location.toString();
-    var reg = new RegExp(self.location.host+"\\/[a-z]{3}\\/", "gi");
-    var newURL = currentURL.replace(reg, self.location.host+'/');
-    $(location).attr('href', newURL);
+    location.reload();
 }
