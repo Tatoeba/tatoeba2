@@ -112,7 +112,7 @@ class AppController extends Controller
             // We're are now going to remove the language from the URL and set 
             // $langURL to null so that we get the the correct URL through 
             // redirection (below).
-            $url = preg_replace("/^$langInURL\//", '', $url); 
+            $url = preg_replace("/^$langInURL(\/|$)/", '', $url); 
             $langInURL = null; 
         }
         if (empty($langInURL)) {
