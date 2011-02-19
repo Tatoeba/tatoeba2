@@ -114,10 +114,11 @@ class AppController extends Controller
             $toReplace = $langInURL.'/'.$controller.'/'.$action;
             $replaceBy = $controller.'/'.$action;
             
+            // We're are now going to remove the language from the URL and set 
+            // $langURL to null so that we get the the correct URL through 
+            // redirection (below).
             $url = str_replace($toReplace, $replaceBy, $url); 
-                                    // We're removing the language from the URL and
-            $langInURL = null;      // we set $langURL to null so that we get the
-                                    // the correct URL through redirection (below).
+            $langInURL = null; 
         }
         if (empty($langInURL)) {
             $redirectPage = "/".$lang."/".$url;
