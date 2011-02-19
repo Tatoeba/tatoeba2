@@ -41,7 +41,9 @@ $languages = array(
     'pt_BR' => 'Português (BR)',
     'epo' => 'Esperanto',
     'rus' => 'русский',
-    'tur' => 'Türkçe'
+    'tur' => 'Türkçe',
+    'eus' => 'Euskara',
+    'tgl' => 'Tagalog'
 );
 
 echo $form->select(
