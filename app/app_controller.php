@@ -109,15 +109,10 @@ class AppController extends Controller
         // Forcing the URL to have the (correct) language in it.
         $url = $this->params['url']['url'];
         if (!empty($langInURL) && $langInCookie && $langInURL != $langInCookie) {
-            $controller = $this->params['controller'];
-            $action = $this->params['action'];
-            $toReplace = $langInURL.'/'.$controller.'/'.$action;
-            $replaceBy = $controller.'/'.$action;
-            
             // We're are now going to remove the language from the URL and set 
             // $langURL to null so that we get the the correct URL through 
             // redirection (below).
-            $url = str_replace($toReplace, $replaceBy, $url); 
+            $url = preg_replace("/^$langInURL\//", '', $url); 
             $langInURL = null; 
         }
         if (empty($langInURL)) {
