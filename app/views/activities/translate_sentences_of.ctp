@@ -33,7 +33,7 @@ if ($results == null) {
     );
 } else if (!empty($lang)) {
     $title = sprintf(
-        __('Translate %s sentences that belong to %s', true),
+        __('Translate %1$s sentences that belong to %2$s', true),
         $languages->codeToName($lang),
         $username
     );

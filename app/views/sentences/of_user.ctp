@@ -79,7 +79,7 @@ if ($userExists === true) {
         echo '<h2>';
         if (!empty($lang)) {
             echo sprintf(
-                __("%s does not have any sentence in %s", true),
+                __('%1$s does not have any sentence in %2$s', true),
                 $userName,
                 $languages->codeToName($lang)
             );
