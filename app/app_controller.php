@@ -107,16 +107,16 @@ class AppController extends Controller
         Configure::write('Config.language', $lang);
         
         // Forcing the URL to have the (correct) language in it.
-        $url = $this->params['url']['url'];
+        $url = $_SERVER["REQUEST_URI"];
         if (!empty($langInURL) && $langInCookie && $langInURL != $langInCookie) {
             // We're are now going to remove the language from the URL and set 
             // $langURL to null so that we get the the correct URL through 
             // redirection (below).
-            $url = preg_replace("/^$langInURL(\/|$)/", '', $url); 
+            $url = preg_replace("/^\/$langInURL(\/|$)/", '/', $url); 
             $langInURL = null; 
         }
         if (empty($langInURL)) {
-            $redirectPage = "/".$lang."/".$url;
+            $redirectPage = "/".$lang.$url;
             $this->redirect($redirectPage, 301);
         }
     }
