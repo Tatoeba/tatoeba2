@@ -39,6 +39,14 @@ $this->pageTitle = 'Tatoeba - ' . sprintf(
     __("Comments on %s's sentences", true), $userName
 ); 
 ?>
+<div id="annexe_content">
+    <?php
+        echo $this->element(
+        'users_menu', 
+        array('username' => $userName)
+    );
+    ?>
+</div>
 
 <div id="main_content">
     <div class="module">
