@@ -75,13 +75,14 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
     
     <h3 id="new-language"><a href="#new-language">I'd like to add a new language in Tatoeba, what do I have to do?</a></h3>
-    <p><strong>1)</strong> Contact <a href="/user/profile/Pharamp">Pharamp</a> (by <a href="mailto:pharamp@hotmail.it">email</a> or <a href="/private_messages/write/Pharamp">private message</a>) and indicate in the title the language(s) that you would like us to add.</p>
-    <p><strong>2)</strong> In your email, tell her what icon we can use for each requested language. It does not necessarily have to be the flag of a country. We just want a picture that people can easily associate to the language. If you don't have any specific image, give Pharamp some ideas of what she could use to represent the language (a color, a symbol, an animal). Give all the ideas you have so that we can invent a nice icon for the language. Keep in mind that our icons are only 30x20 pixels.</p>
+    <p><strong>1)</strong> Contact <a href="/user/profile/Pharamp">Pharamp</a> (by <a href="mailto:pharamp@tatoeba.org">email</a> or <a href="/private_messages/write/Pharamp">private message</a>) and indicate in the title the language(s) that you would like us to add.</p>
+    <p><strong>IMPORTANT:</strong> We cannot add your language if it does not have an <a href="http://en.wikipedia.org/wiki/ISO_639-3">ISO 639-3</a> code. At this point we already have a lot of languages to deal with, and it's a bit too complicated to deal with languages that are not "officially" recognized.</p>
+    <p><strong>2)</strong> In your email, tell Pharamp what icon we can use for each requested language. It does not necessarily have to be the flag of a country. We just want a picture that people can easily associate to the language. If you don't have any specific image, give Pharamp some ideas of what she could use to represent the language (a color, a symbol, an animal). Give all the ideas you have so that we can invent a nice icon for the language. Keep in mind that our icons are only 30x20 pixels.</p>
     <p>You do not have create the icon yourself. For graphical consistency, it's better that we do it. Simply send us (or link us) an image from which we will create the icon.</p>
     <p><strong>3)</strong> Translate 5 sentences into your language(s). Don't worry if the language detection fails. For instance it's possible that the language is detected as Hungarian, but you are not adding a sentence in Hungarian. This is not a problem. If it happens, you can click on the language icon, and select "other language" in the list that appears (it's the first option). Then later, you will be able to set the correct language once it's added in Tatoeba.</p>
     <p><strong>4)</strong> Create a public list and name it with the name of your language. Add your 5 translations into that list. Feel free to translate more than 5 sentences, but always add them into the list, so that we can easily find them!</p>
     <p><strong>5)</strong> Don't hesitate to ask <a href="/user/profile/Pharamp">Pharamp</a> if you don't know how to do something!</p>
-    <p><strong>IMPORTANT:</strong> We will only add your language(s) if you have done all of this.</p>
+    <p><strong>IMPORTANT:</strong> We will only add your language(s) if you have done all of this. And please forgive us if we take forever despite your going through all these steps.</p>
     
     
     <h3 id="change-language"><a href="#change-language">How do I change the language of a sentence?</a></h3>
@@ -100,9 +101,9 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
     
     <h3 id="trusted-user"><a href="#trusted-user">How can I become a trusted user?</a></h3>
-    <p>You have to <?php echo $html->link('contact Trang', array('controller' => 'private_messages', 'action' => 'write', 'TRANG')); ?> and tell her that you want to be a candidate to become a trusted user.</p>
-    <p>Also, you MUST read and understand entirely the <a href="http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html">guide of the good contributor</a>.</p>
-    <p>Other than that, we're currently re-defining the procedure to become a trusted user. Nothing official yet but you can find further explanations <a href="http://tatoeba.org/wall/show_message/4890#message_4890">here</a>.</p>
+    <p>You have to <?php echo $html->link('contact Trang', array('controller' => 'private_messages', 'action' => 'write', 'TRANG')); ?> and tell her that you want to be a candidate to become a trusted user. Make sure you have read and understand ENTIRELY the <a href="http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html">guide of the good contributor</a>.</p>
+    <p>You should know that we are currently re-defining the procedure to become a trusted user. Nothing official yet but you can find further explanations <a href="http://tatoeba.org/wall/show_message/4890#message_4890">here</a>.</p>
+    <p>In case you wonder what being a trusted user is about: basically, as a trusted user, you can help Tatoeba with more "advanced" tasks that not everyone can do because they require a deeper understanding of the project. Being a trusted user also means that the community trusts you for contributing in a helpful way to this project, which is why you may not become a trusted user "right away", if you have registered too recently. But keep particpating, and you can be sure to become one :)</p>
     
     
     <h3 id="translate-interface"><a href="#translate-interface">Can I help translating the website into other languages?</a></h3>
