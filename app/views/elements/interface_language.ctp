@@ -43,7 +43,8 @@ $languages = array(
     'rus' => 'русский',
     'tur' => 'Türkçe',
     'eus' => 'Euskara',
-    'tgl' => 'Tagalog'
+    'tgl' => 'Tagalog',
+    'ara' => 'العربية'
 );
 
 echo $form->select(
