@@ -120,6 +120,6 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     <p><strong>5)</strong> In Shtooka Recorder, copy-paste the final list in the "Words to record", fill in the info in the "Speaker" tab, go back to the "Words" tab and click "Continue".</p>
     <p><strong>6)</strong> Press space to indicate you are ready and read the sentence that is highlighted in red. The software will detect when to start and stop recording, and will jump to the next sentence automatically. All you have to do is read what's highlighted in red. If you want to take a break, you can press space to pause, so that it doesn't record something unrelated. If you need to listen to a sentence's audio, simply select it and press "Enter" (you can navigate with the directional keys: up, down, left, right).</p>
     <p><strong>7)</strong> Upload your files somewhere (like Megaupload or RapidShare) and give us the link. We will then include your audio in Tatoeba as soon as possible and will let you know when it is done. We understand it would be more practical if you could record/upload directly from Tatoeba, but we unfortunately don't have time to implement the features for this =/</p>
-    <p><strong>Related link:</strong> <a href="http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html">http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html</a></strong>
+    <p><strong>Related link:</strong> <a href="http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html">http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html</a></p>
     </div>
 </div>
