@@ -29,7 +29,7 @@
 <div class="module">
     <h2><?php echo $username; ?></h2>
     
-    <ul>
+    <ul class="annexeMenu">
     <li>
     <?php
     echo $html->link(
@@ -76,6 +76,19 @@
         array(
             'controller' => 'sentence_comments',
             'action' => 'of_user',
+            $username
+        )
+    );
+    ?>
+    </li>
+    
+    <li>
+    <?php
+    echo $html->link(
+        sprintf(__("Comments on %s's sentences", true), $username),
+        array(
+            'controller' => 'sentence_comments',
+            'action' => 'on_sentences_of_user',
             $username
         )
     );

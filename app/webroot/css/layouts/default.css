@@ -591,3 +591,22 @@ dt {
     margin: 0;
     padding: 0;
 }
+
+
+/*
+ * Other
+ */
+.annexeMenu {
+    list-style: none;
+    margin-left: 0;
+    padding-left: 1em;
+    text-indent: -1em;
+}
+
+.annexeMenu li {
+    margin: 5px 0px;
+}
+
+.annexeMenu li:before {
+    content: "\00BB \0020";
+}
