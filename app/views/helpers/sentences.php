@@ -371,7 +371,7 @@ class SentencesHelper extends AppHelper
         }
         
         // Link/unlink button
-        if (CurrentUser::canLinkWithSentenceOfUser($parentOwnerName)) {
+        if (CurrentUser::isTrusted()) {
             $this->_displayLinkOrUnlinkButton($parentId, $sentenceId, $type);
         }
         
