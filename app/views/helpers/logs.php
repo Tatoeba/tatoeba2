@@ -130,7 +130,7 @@ class LogsHelper extends AppHelper
         
         // contributor
         echo '<td class="username">';
-        echo $this->_displayLinkToUserProfile($username, $userId);
+        echo $this->_displayLinkToUserContributions($username, $userId);
         echo '</td>';
         
         // date of contribution
@@ -192,7 +192,7 @@ class LogsHelper extends AppHelper
         
         echo '<div>';
         if (isset($username)) {
-            echo $this->_displayLinkToUserProfile($username, $userId);
+            echo $this->_displayLinkToUserContributions($username);
             echo ' - ';
         }
         echo $this->Date->ago($contributionDate);
@@ -230,7 +230,8 @@ class LogsHelper extends AppHelper
         
         echo '</div>';
     }
-
+    
+    
     /**
      * Create the html link to the profile of a given user
      * 
@@ -239,16 +240,147 @@ class LogsHelper extends AppHelper
      *
      * @return string The html link.
      */
-
-    private function _displayLinkToUserProfile($username, $userId) {
+    private function _displayLinkToUserProfile($username) 
+    {
         return $this->Html->link(
             $username, 
             array(
-                "controller" => "users",
-                "action" => "show",
-                $userId
+                "controller" => "user",
+                "action" => "profile",
+                $username
             )
         );
+    }
+    
+    
+    /**
+     *
+     */
+    private function _displayLinkToUserContributions($username) 
+    {
+        return $this->Html->link(
+            $username, 
+            array(
+                "controller" => "contributions",
+                "action" => "of_user",
+                $username
+            )
+        );
+    }
+    
+    
+    /**
+     *
+     */
+    public function displaySentenceEntry(
+        $sentenceId, $sentenceText, $sentenceLang, $username, $datetime, $action
+    ) {
+        $dir = $this->Languages->getLanguageDirection($sentenceLang);
+        ?>
+        <tr class="<?php echo $this->_getCssClassName('sentence', $action); ?>">
+            <td class="lang">
+            <?php 
+            echo $this->Languages->icon(
+                $sentenceLang, 
+                array(
+                    "class" => "flag",
+                    "width" => 30,
+                    "height" => 20
+                )
+            );
+            ?>
+            </td>
+            
+            <td class="text">
+            <?php
+            echo $this->Html->link(
+                $sentenceText,
+                array(
+                    "controller" => "sentences",
+                    "action" => "show",
+                    $sentenceId
+                ),
+                array(
+                    'dir' => $dir
+                )
+            );
+            ?>
+            </td>
+            
+            <td class="username">
+            <?php echo $this->_displayLinkToUserProfile($username); ?>
+            </td>
+            
+            <td class="date">
+            <?php echo $this->Date->ago($datetime); ?>
+            </td>  
+        </tr>
+        <?php
+    }
+    
+    
+    /**
+     *
+     */
+    public function displayLinkEntry(
+        $sentenceId, $translationId, $username, $datetime, $action
+    ) {
+        ?>
+        <tr class="<?php echo $this->_getCssClassName('link', $action); ?>">
+            <td></td>
+            
+            <td class="linkInfo">
+            <?php 
+            echo $this->Html->link(
+                $sentenceId,
+                array(
+                    "controller" => "sentences",
+                    "action" => "show",
+                    $sentenceId
+                )
+            );
+            echo ' « » ';
+            echo $this->Html->link(
+                $translationId,
+                array(
+                    "controller" => "sentences",
+                    "action" => "show",
+                    $translationId
+                )
+            );
+            ?>
+            </td>
+            
+            <td class="username">
+            <?php echo $this->_displayLinkToUserProfile($username); ?>
+            </td>
+            
+            <td class="date">
+            <?php echo $this->Date->ago($datetime); ?>
+            </td>        
+        </tr>
+        <?php
+    }
+    
+    
+    /**
+     *
+     */
+    private function _getCssClassName($type, $action)
+    {
+        switch ($action) {
+            case 'insert' :
+                $type .= 'Added';
+                break;
+            case 'update' :
+                $type .= 'Modified';
+                break;
+            case 'delete' :
+                $type .= 'Deleted';
+                break;
+        }
+        
+        return $type;
     }
 }
 ?>

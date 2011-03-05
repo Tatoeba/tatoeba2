@@ -107,5 +107,18 @@
     );
     ?>
     </li>
+    
+    <li>
+    <?php
+    echo $html->link(
+        __('Logs', true),
+        array(
+            'controller' => 'contributions',
+            'action' => 'of_user',
+            $username
+        )
+    );
+    ?>
+    </li>
     </ul>
 </div>

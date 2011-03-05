@@ -79,9 +79,10 @@ foreach($currentContributors as $i=>$currentContributor){
         <div class="username">
             <?php
             echo $html->link($currentContributor['userName'],
-                array("controller"=>"user",
-                     "action"=>"profile",
-                      $currentContributor['userName']
+                array(
+                    "controller" => "contributions",
+                    "action" => "of_user",
+                    $currentContributor['userName']
                 )
             );
         ?>

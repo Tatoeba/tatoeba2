@@ -109,5 +109,39 @@ class ContributionsController extends AppController
     {
         $this->set('stats', $this->Contribution->getActivityTimelineStatistics());
     }
+    
+    
+    /**
+     * Display logs for links.
+     *
+     * @return void
+     */
+    public function of_user($username)
+    {
+        $this->helpers[] = 'Pagination';
+        
+        $userId = $this->Contribution->User->getIdFromUsername($username);
+        
+        $this->paginate = array(
+            'Contribution' => array(
+                'conditions' => array(
+                    'user_id' => $userId
+                ),
+                'limit' => 200,
+                'order' => 'datetime DESC',
+                'contain' => array()
+            )
+        );
+        
+        $contributions = $this->paginate();
+        
+        $user = array(
+            'user_id' => $userId,
+            'username' => $username
+        );
+        
+        $this->set('contributions', $contributions);
+        $this->set('user', $user);
+    }
 }
 ?>
