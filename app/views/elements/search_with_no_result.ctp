@@ -52,7 +52,7 @@ $query = Sanitize::html($query);
                 'Feel free to <a href="%s">submit a sentence</a> '.
                 'with the words you were searching.', true
             ),
-            $html->url(array('controller' => 'pages', 'action' => 'contribute'))
+            $html->url(array('controller' => 'sentences', 'action' => 'add'))
         );
         ?>
         </p>
