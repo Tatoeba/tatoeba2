@@ -137,13 +137,8 @@ class ContributionsController extends AppController
         
         $contributions = $this->paginate();
         
-        $user = array(
-            'user_id' => $userId,
-            'username' => $username
-        );
-        
         $this->set('contributions', $contributions);
-        $this->set('user', $user);
+        $this->set('username', $username);
     }
 }
 ?>
