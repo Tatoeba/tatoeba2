@@ -361,9 +361,14 @@ class SentencesHelper extends AppHelper
         if (isset($sentence['hasaudio'])) {
             $sentenceAudio = $sentence['hasaudio'];
         }
+        $elementId = '';
+        if ($type != 'mainSentence') {
+            $elementId = 'translation_'.$sentenceId.'_'.$parentId;
+        }
         ?>
         
-        <div class="sentence <?php echo $type; ?>">
+        <div class="sentence <?php echo $type; ?>" 
+            id="<?php echo $elementId; ?>">
         <?php
         // Navigation button (info or arrow icon)
         if ($type != 'mainSentence' || $isEditable) {

@@ -1,7 +1,21 @@
 <?php
-if ($saved) {
-    echo 'GOOD';
+if (!$saved) {
+    $image = 'unlink.png';
+    $alt = __('Unlink', true);
+    $title = __('Unlink this translation.', true);
 } else {
-    echo 'DID NOT WORK';
+    $image = 'link.png';
+    $alt = __('Link', true);
+    $title = __('Make as direct translation.', true);
 }
+
+echo $html->image(
+    IMG_PATH . $image,
+    array(
+        "alt"=> $alt,
+        "title" => $title,
+        "width" => 16,
+        "height" => 16
+    )
+);
 ?>

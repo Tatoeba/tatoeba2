@@ -1,7 +1,7 @@
 <?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
- * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * Copyright (C) 2009-2011  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -37,6 +37,7 @@
  */
 class LinksController extends AppController
 {
+    
     /**
      * Link sentences.
      *
@@ -51,7 +52,11 @@ class LinksController extends AppController
         $translationId = Sanitize::paranoid($translationId);
         
         $saved = $this->Link->add($sentenceId, $translationId);
-        // $this->set('saved', $saved);
+        
+        if ($this->RequestHandler->isAjax()) {
+            $this->set('saved', $saved);
+            return;
+        }
         
         if ($saved) {
             $flashMessage = sprintf(
@@ -88,7 +93,11 @@ class LinksController extends AppController
         $translationId = Sanitize::paranoid($translationId);
         
         $saved = $this->Link->delete($sentenceId, $translationId);
-        // $this->set('saved', $saved);
+        
+        if ($this->RequestHandler->isAjax()) {
+            $this->set('saved', $saved);
+            return;
+        }
         
         if ($saved) {
             $flashMessage = sprintf(
