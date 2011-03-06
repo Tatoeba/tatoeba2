@@ -123,6 +123,12 @@ class ContributionsController extends AppController
         $this->helpers[] = 'Pagination';
         
         $userId = $this->Contribution->User->getIdFromUsername($username);
+        $this->set('username', $username);
+        
+        if (empty($userId)) {
+            $this->set('userExists', false);
+            return;
+        }
         
         $this->paginate = array(
             'Contribution' => array(
@@ -134,11 +140,9 @@ class ContributionsController extends AppController
                 'contain' => array()
             )
         );
-        
         $contributions = $this->paginate();
-        
         $this->set('contributions', $contributions);
-        $this->set('username', $username);
+        $this->set('userExists', true);
     }
 }
 ?>

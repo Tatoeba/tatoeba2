@@ -39,55 +39,61 @@ $this->pageTitle = "Tatoeba - " . $title;
 ?>
 <div id="annexe_content">
     <?php
+    if ($userExists) {
         echo $this->element(
-        'users_menu', 
-        array('username' => $username)
-    );
+            'users_menu', 
+            array('username' => $username)
+        );
+    }
     ?>
 </div>
 
-<div id="main_content">    
+<div id="main_content">
     <div class="module">
     <h2><?php echo $title; ?></h2>
+    
     <?php
-    $pagination->display(array($username));
-    ?>
-
-    <table id="logs">
-    <?php
-    foreach ($contributions as $contribution) {
-        $type = $contribution['Contribution']['type'];
-        $sentenceId = $contribution['Contribution']['sentence_id'];
-        $datetime = $contribution['Contribution']['datetime'];
-        $action = $contribution['Contribution']['action'];
+    if (isset($contributions)) {
         
-        if ($type == 'sentence') {
-            $text = $contribution['Contribution']['text'];
-            $lang = $contribution['Contribution']['sentence_lang'];
-            $logs->displaySentenceEntry(
-                $sentenceId,
-                $text, 
-                $lang, 
-                $username, 
-                $datetime, 
-                $action
-            );
-        } else if ($type == 'link') {
-            $translationId = $contribution['Contribution']['translation_id'];
-            $logs->displayLinkEntry(
-                $sentenceId, 
-                $translationId, 
-                $username, 
-                $datetime, 
-                $action
-            );
-        }
-    }
-    ?>
-    </table>
+        $pagination->display(array($username));
+        ?>
 
-    <?php
-    $pagination->display(array($username));
+        <table id="logs">
+        <?php
+        foreach ($contributions as $contribution) {
+            $type = $contribution['Contribution']['type'];
+            $sentenceId = $contribution['Contribution']['sentence_id'];
+            $datetime = $contribution['Contribution']['datetime'];
+            $action = $contribution['Contribution']['action'];
+            
+            if ($type == 'sentence') {
+                $text = $contribution['Contribution']['text'];
+                $lang = $contribution['Contribution']['sentence_lang'];
+                $logs->displaySentenceEntry(
+                    $sentenceId,
+                    $text, 
+                    $lang, 
+                    $username, 
+                    $datetime, 
+                    $action
+                );
+            } else if ($type == 'link') {
+                $translationId = $contribution['Contribution']['translation_id'];
+                $logs->displayLinkEntry(
+                    $sentenceId, 
+                    $translationId, 
+                    $username, 
+                    $datetime, 
+                    $action
+                );
+            }
+        }
+        ?>
+        </table>
+
+        <?php
+        $pagination->display(array($username));
+    }
     ?>
     </div>
 </div>
