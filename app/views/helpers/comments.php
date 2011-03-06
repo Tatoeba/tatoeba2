@@ -422,7 +422,7 @@ class CommentsHelper extends AppHelper
             )
         );
         
-        echo $this->Form->end('Submit comment');
+        echo $this->Form->end(__('Submit comment', true));
     }
 
 }
