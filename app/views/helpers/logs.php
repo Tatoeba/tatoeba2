@@ -236,7 +236,6 @@ class LogsHelper extends AppHelper
      * Create the html link to the profile of a given user
      * 
      * @param string $userName The user name
-     * @param int    $userId   The id of this user.
      *
      * @return string The html link.
      */
@@ -254,7 +253,11 @@ class LogsHelper extends AppHelper
     
     
     /**
+     * Create the html link to the profile of a given user.
      *
+     * @param string $userName Username.
+     *
+     * @return string
      */
     private function _displayLinkToUserContributions($username) 
     {
@@ -270,7 +273,16 @@ class LogsHelper extends AppHelper
     
     
     /**
+     * Display log entry of 'sentence' type.
      *
+     * @param int    $sentenceId   Id of the sentence.
+     * @param string $sentenceText Text of the sentence.
+     * @param string $sentenceLang Language of the sentence.
+     * @param string $username     Username of the contributor.
+     * @param string $datetime     Datetime, format YYYY-MM-DD HH:mm:ss.
+     * @param string $action       { 'insert', 'update', 'delete' }
+     *
+     * @return void
      */
     public function displaySentenceEntry(
         $sentenceId, $sentenceText, $sentenceLang, $username, $datetime, $action
@@ -320,7 +332,15 @@ class LogsHelper extends AppHelper
     
     
     /**
+     * Display log entry of 'link' type.
      *
+     * @param int    $sentenceId    Id of the sentence.
+     * @param int    $translationId Id of the translation.
+     * @param string $username      Username of the contributor.
+     * @param string $datetime      Datetime.
+     * @param string $action        { 'insert', 'delete' }
+     *
+     * @return void
      */
     public function displayLinkEntry(
         $sentenceId, $translationId, $username, $datetime, $action
@@ -364,7 +384,12 @@ class LogsHelper extends AppHelper
     
     
     /**
+     * Returns the CSS class for a log entry, given its type and action.
      *
+     * @param string $type   { 'link', 'sentence' }
+     * @param string $action { 'insert', 'update', 'delete' }
+     *
+     * @return string
      */
     private function _getCssClassName($type, $action)
     {

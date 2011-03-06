@@ -363,7 +363,10 @@ class SentenceButtonsHelper extends AppHelper
     
     
     /**
+     * Binds data to an element with jQuery's .data().
      *
+     * @param string $elementId Id of the HTML element.
+     * @param array  $data      Data to bind to the element.
      */
     private function _bindData($elementId, $data)
     {

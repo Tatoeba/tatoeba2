@@ -112,7 +112,9 @@ class ContributionsController extends AppController
     
     
     /**
-     * Display logs for links.
+     * Display logs of contributions of specified user.
+     *
+     * @param string $username Username.
      *
      * @return void
      */
