@@ -102,6 +102,17 @@ class Link extends AppModel
      */
     public function add($sentenceId, $translationId)
     {
+        // Check if the sentences exist.
+        $result = $this->query("
+            SELECT COUNT(*) as count FROM sentences 
+            WHERE id IN ($sentenceId, $translationId)
+        ");
+        
+        if ($result[0][0]['count'] < 2) {
+            return false;
+        }
+        
+        // Saving links if sentences exist.
         $data[0]['sentence_id'] = $sentenceId;
         $data[0]['translation_id'] = $translationId;
         $data[1]['sentence_id'] = $translationId;
