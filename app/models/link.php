@@ -102,6 +102,14 @@ class Link extends AppModel
      */
     public function add($sentenceId, $translationId)
     {
+        $sentenceId = intval($sentenceId);
+        $translationId = intval($translationId);
+        
+        // Check if we're linking the sentence to itself.
+        if ($sentenceId == $translationId) {
+            return false;
+        }
+        
         // Check if the sentences exist.
         $result = $this->query("
             SELECT COUNT(*) as count FROM sentences 
