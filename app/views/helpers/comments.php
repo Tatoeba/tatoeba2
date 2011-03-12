@@ -448,16 +448,6 @@ class CommentsHelper extends AppHelper
      */
     public function displayCommentForm($sentenceId, $sentenceText)
     {
-        ?>
-        <p class="warning">
-        <?php
-        __(
-            'REMEMBER PLEASE: no off-topic, no trolling, no personal attacks. '.
-            'You have private messages for that. Thank you.'
-        );
-        ?>
-        </p>
-        <?php
         echo $this->Form->create('SentenceComment', array("action"=>"save"));
         
         echo '<p>';
