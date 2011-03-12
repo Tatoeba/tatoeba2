@@ -64,7 +64,7 @@ class CommentsHelper extends AppHelper
         <a id="comment-<?php echo $commentId; ?>" />
         <?php
         $this->_displayActions(
-            $permissions, $commentId,  $comment['sentence_id']
+            $permissions, $commentId,  $comment['sentence_id'], $userName
         );
         $this->_displayMeta($userName, $userImage, $date);
         $this->_displayBody($commentText, $sentence);
@@ -189,15 +189,61 @@ class CommentsHelper extends AppHelper
      *
      * @return void
      */
-    private function _displayActions($permissions, $commentId, $sentenceId) {
+    private function _displayActions(
+        $permissions, $commentId, $sentenceId, $username        
+    ) {
         ?>
         <div class="actions">
         <?php
         $this->_displayViewButton($commentId, $sentenceId);
         
+        if (CurrentUser::isMember()) {
+            $this->_displayPmButton($username);
+        }
+        
         if (isset($permissions['canDelete']) && $permissions['canDelete'] == true) {
             $this->_displayDeleteButton($commentId);
         }
+        ?>
+        </div>
+        <?php
+    }
+    
+    
+    /**
+     * Display "private message" button, to write a private message to the author
+     * of the message.
+     *
+     * @param string $username Username.
+     *
+     * @return void
+     */
+    private function _displayPmButton($username)
+    {
+        ?>
+        <div class="action">
+        <?php
+        echo $this->Html->link(
+            $this->Html->image(
+                IMG_PATH . 'send_pm.png',
+                array(
+                    "title" => __(
+                        'Send private message',
+                        true
+                    ),
+                    "width" => 24,
+                    "height" => 24
+                )
+            ),
+            array(
+                "controller" => "private_messages", 
+                "action" => "write", 
+                $username,
+            ),
+            array(
+                "escape" => false
+            )
+        );
         ?>
         </div>
         <?php
@@ -402,6 +448,16 @@ class CommentsHelper extends AppHelper
      */
     public function displayCommentForm($sentenceId, $sentenceText)
     {
+        ?>
+        <p class="warning">
+        <?php
+        __(
+            'REMEMBER PLEASE: no off-topic, no trolling, no personal attacks. '.
+            'You have private messages for that. Thank you.'
+        );
+        ?>
+        </p>
+        <?php
         echo $this->Form->create('SentenceComment', array("action"=>"save"));
         
         echo '<p>';
