@@ -101,7 +101,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
     <?php 
     echo $html->link(
         __(
-            'You can write in any language you want. '.
+            'You may write in any language you want. '.
             'In Tatoeba, all languages are equal.', true
         ),
         array(
