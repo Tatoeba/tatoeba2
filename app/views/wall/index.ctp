@@ -96,6 +96,23 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
             ?>
         </ul>
     </div>
+        
+    <div class="wallBanner">
+    <?php 
+    echo $html->link(
+        __(
+            'You can write in any language you want. '.
+            'In Tatoeba, all languages are equal.', true
+        ),
+        array(
+            "controller" => "sentences",
+            "action" => "show",
+            785667
+        )
+    );
+    ?>
+    </div>
+
 </div>
 
 <div id="main_content">

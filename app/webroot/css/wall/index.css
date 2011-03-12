@@ -33,3 +33,17 @@
  * Reply
  */
 @import url(../elements/wall_reply_form.css);
+
+
+.wallBanner {
+    border: 5px solid #9EAF85;
+    margin: 5px;
+    background: #CAE2AA;
+    padding: 10px;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.wallBanner a {
+    color: #47704B;
+}
