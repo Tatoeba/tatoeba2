@@ -469,14 +469,26 @@ class CommentsHelper extends AppHelper
         
         ?>
         <p>
-        <?php
-        __(
-            'REMEMBER PLEASE: no off-topic, no trolling, no personal attacks. '.
-            'You have private messages for that. Thank you.'
-        );
-        ?>
-        </p>
-        
+        <h3><?php __('Good practices'); ?></h3>
+        <ul>
+            <li>
+            <?php
+            __(
+                'Say "welcome" to new users.'
+            );
+            ?>
+            </li>
+            
+            <li>
+            <?php
+            __(
+                'Use private messages to discuss '.
+                'about things unrelated to the sentence.'
+            );
+            ?>
+            </li>
+        </ul>
+        </p>        
         <?php
     }
 
