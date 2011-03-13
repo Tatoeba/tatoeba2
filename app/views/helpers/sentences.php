@@ -363,12 +363,11 @@ class SentencesHelper extends AppHelper
         }
         $elementId = '';
         if ($type != 'mainSentence') {
-            $elementId = 'translation_'.$sentenceId.'_'.$parentId;
+            $elementId = 'id="translation_'.$sentenceId.'_'.$parentId.'"';
         }
         ?>
         
-        <div class="sentence <?php echo $type; ?>" 
-            id="<?php echo $elementId; ?>">
+        <div class="sentence <?php echo $type; ?>" <?php echo $elementId; ?>>
         <?php
         // Navigation button (info or arrow icon)
         if ($type != 'mainSentence' || $isEditable) {
