@@ -450,15 +450,12 @@ class CommentsHelper extends AppHelper
     {
         echo $this->Form->create('SentenceComment', array("action"=>"save"));
         
-        echo '<p>';
+        echo '<div>';
         echo $this->Form->hidden('sentence_id', array("value"=>$sentenceId));
-        echo '</p>';
-        
         // Text of the sentence is used for notification email, to avoid doing
         // another query.
-        echo '<p>';
         echo $this->Form->hidden('sentence_text', array("value"=>$sentenceText));
-        echo '</p>';
+        echo '</div>';
         
         echo $this->Form->input(
             'text',
@@ -469,6 +466,18 @@ class CommentsHelper extends AppHelper
         );
         
         echo $this->Form->end(__('Submit comment', true));
+        
+        ?>
+        <p>
+        <?php
+        __(
+            'REMEMBER PLEASE: no off-topic, no trolling, no personal attacks. '.
+            'You have private messages for that. Thank you.'
+        );
+        ?>
+        </p>
+        
+        <?php
     }
 
 }

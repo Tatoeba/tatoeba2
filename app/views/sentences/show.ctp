@@ -103,18 +103,6 @@ $navigation->displaySentenceNavigation(
             ?>
         </p>
     </div>
-    
-    <div class="module">
-        <h2><?php __('Remember please'); ?> </h2>
-        <p>
-        <?php
-        __(
-            'No off-topic, no trolling, no personal attacks. '.
-            'You have private messages for that. Thank you.'
-        );
-        ?>
-        </p>
-    </div>
 </div>
 
 <div id="main_content">
