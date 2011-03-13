@@ -1559,11 +1559,20 @@ class Sentence extends AppModel
         
         if ($ownerId == $currentUserId || CurrentUser::isModerator()) {
             $this->id = $sentenceId;
-            $this->saveField('lang', $newLang);
-            $newLangId = $this->Language->getIdFromlang($lang);
-            $this->saveField('lang_id', $newLangId);
+            $newLangId = $this->Language->getIdFromlang($newLang);
             
-            $this->Contribution->updateLanguage($id, $newLang);        
+            // Making sure the language is not saved as an empty string but as NULL.
+            if (empty($newLang)) {
+                $newLang = null;
+            }
+            
+            $data['Sentence'] = array(
+                'lang' => $newLang,
+                'lang_id' => $newLangId
+            );
+            $this->save($data);
+            
+            $this->Contribution->updateLanguage($sentenceId, $newLang);        
             $this->incrementStatistics($newLang);
             $this->decrementStatistics($prevLang);
             
