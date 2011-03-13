@@ -482,8 +482,7 @@ class CommentsHelper extends AppHelper
             <li>
             <?php
             __(
-                'Use private messages to discuss '.
-                'about things unrelated to the sentence.'
+                'Use private messages to discuss things unrelated to the sentence.'
             );
             ?>
             </li>
