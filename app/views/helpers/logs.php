@@ -155,7 +155,7 @@ class LogsHelper extends AppHelper
         $status = '';
         
         if (isset($user)) {
-            $username = Sanitize::paranoid($user['username']);
+            $username = Sanitize::html($user['username']);
             $userId = Sanitize::paranoid($user['id']);
         }
         
