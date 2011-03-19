@@ -128,55 +128,46 @@ class UserController extends AppController
      */
     public function save_image()
     {
-
+        $image = null;
+        if (isset($this->data['profile_image']['image'])) {
+            $image = $this->data['profile_image']['image'];
+        }
+        $redirectURL = array('action' => 'profile', CurrentUser::get('username'));
+        
         // We first check if a file has been correctly uploaded
-        if (empty($this->data) || !isset($this->data['profile_image']['image'])) {
-            $this->redirect(array('action' => 'index'));
+        $redirect = (empty($this->data) || !empty($image));
+        $recirect = ($image['error'] != UPLOAD_ERR_OK);
+        $redirect = (!is_uploaded_file($image['tmp_name']));
+        if ($redirect) {
+            $this->redirect($redirectURL);
         }
-        $image = $this->data['profile_image']['image'];
-
-        if ($image['error'] != UPLOAD_ERR_OK) {
-            $this->redirect(array('action' => 'index'));
-        }
-
-        if (!is_uploaded_file($image['tmp_name'])) {
-            $this->redirect(array('action' => 'index'));
-        }
-
-        // The file size must be < 1mo        
-        $fileSize = (int) $image['size']/1024;
-
+        
+        // The file size must be < 1mo
+        $fileSize = (int) $image['size'] / 1024;
         if ($fileSize > 1024) {
             $this->Session->setFlash(
-                __(
-                    'Please choose an image that do not exceed 1 MB.',
-                    true
-                )
+                __('Please choose an image that do not exceed 1 MB.', true)
             );
-
-            $this->redirect(array('action' => 'index'));
+            $this->redirect($redirectURL);
         }
 
-        // we retrieve file extension
-        $fileExtension = pathinfo($image['name'], PATHINFO_EXTENSION);
         // Check file extension
+        $fileExtension = pathinfo($image['name'], PATHINFO_EXTENSION);
         $validExtensions = array('png', 'jpg', 'jpeg', 'gif');
         
         if (!in_array($fileExtension, $validExtensions)) {
             $this->Session->setFlash(
                 __('Please choose GIF, JPEG or PNG image format.', true)
             );
-
-            $this->redirect(array('action' => 'index'));
+            $this->redirect($redirectURL);
         }
         
-
-         // Generate name for picture
+        // Generate name for picture
         $email = $this->Auth->user('email');
-        $newFileName =  md5($email) . '.png' ;               
-
+        $newFileName =  md5($email) . '.png' ;
         $newFileFullPath128 = IMAGES . "profiles_128". DS . $newFileName;
         $newFileFullPath36 = IMAGES . "profiles_36". DS . $newFileName;
+        
         // Use _resize_image method here
         $save128Succed = $this->_resize_image(
             $image['tmp_name'],
@@ -188,7 +179,7 @@ class UserController extends AppController
             $newFileFullPath36,
             36
         );
-                                   
+        
         // if all resize has worked we can save it in user information
         if ($save36Succed && $save128Succed) {
             $this->User->id = $this->Auth->user('id');
@@ -206,12 +197,7 @@ class UserController extends AppController
             );
         }
 
-        $this->redirect(
-            array(
-                'action' => 'profile',
-                CurrentUser::get('username')
-            )
-        );
+        $this->redirect($redirectURL);
     }
     
     /**
