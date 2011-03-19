@@ -206,7 +206,12 @@ class UserController extends AppController
             );
         }
 
-        $this->redirect(array('action' => 'index'));
+        $this->redirect(
+            array(
+                'action' => 'profile',
+                CurrentUser::get('username')
+            )
+        );
     }
     
     /**
