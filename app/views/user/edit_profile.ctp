@@ -36,7 +36,7 @@
 
 <div id="main_content">
     <div class="module">
-    <h2><?php __('Profile - Picture'); ?></h2>
+    <h2><?php __('Picture'); ?></h2>
     <div class="currentPicture">
         <div class="title"><?php __('Current picture'); ?></div>
         <?php
@@ -71,7 +71,7 @@
     </div>
     
     <div class="module">
-    <h2><?php __('Profile - Personal information'); ?></h2>
+    <h2><?php __('Personal information'); ?></h2>
     <?php 
     $dateOptions = array(
         'minYear' => date('Y') - 100,
@@ -122,7 +122,7 @@
     
     
     <div id="description" class="module">
-    <h2><?php __('Profile - Description'); ?></h2>
+    <h2><?php __('Description'); ?></h2>
     <?php 
     echo $form->create(
         null, 
