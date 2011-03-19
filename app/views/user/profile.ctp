@@ -2,6 +2,7 @@
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
  * Copyright (C) 2009  BEN YAALA Salem <salem.benyaala@gmail.com>
+ * Copyright (C) 2011  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as published by
@@ -38,25 +39,23 @@
 $userId = $user['id'];
 
 $realName = Sanitize::html($user['name']);
-$userName = Sanitize::html($user['username']);
+$username = Sanitize::html($user['username']);
 $userDescription = Sanitize::html($user['description']);
-$homepage = $user['homepage']; // no need to sanitize, used in $html->link()
-
+$homepage = $user['homepage'];
 $birthday = $user['birthday'];
 $userSince = $user['since'];
-$lastTimeActive = $user['last_time_active'];
+$statusClass = 'status'.$groupId;
+$currentMember = CurrentUser::get('username');
 
-
-
-$userImage = 'tatoeba_user.png';
+$userImage = 'unknown-avatar.png';
 if (!empty($user['image'])) {
     $userImage = Sanitize::html($user['image']);
 }
 
 if (!empty($realName)) {
-    $this->pageTitle = "$realName ($userName) - Tatoeba";
+    $this->pageTitle = "$username ($realName) - Tatoeba";
 } else {
-    $this->pageTitle = "$userName - Tatoeba"; 
+    $this->pageTitle = "$username - Tatoeba"; 
 }
 ?>
 
@@ -64,145 +63,209 @@ if (!empty($realName)) {
     <?php
         echo $this->element(
         'users_menu', 
-        array('username' => $userName)
+        array('username' => $username)
     );
     ?>
-    
-    <div id="pcontact" class="module">
-        <h2><?php __('Contact information'); ?></h2>
-        <dl>
-            
-            <dt><?php __('Private message'); ?></dt>
-            <dd>
-                <?php
-                echo $html->link(
-                    sprintf(__('Contact %s', true), $userName),
-                    array(
-                        'controller' => 'private_messages',
-                        'action' => 'write',
-                        $userName
-                    )
-                );
-                ?>
-            </dd>
-
-            <dt><?php __('Others'); ?></dt>
-            <dd>
-                <?php
-                echo $html->link(
-                    sprintf(__("See this user's contributions", true)),
-                    array(
-                        'controller' => 'users',
-                        'action' => 'show',
-                        $userId
-                    )
-                );
-                ?>
-            </dd>
-
-            <?php
-            if (!empty($homepage)) {
-                ?>
-                <dt><?php __('Homepage'); ?></dt>
-                <dd><?php echo $html->link($homepage); ?></dd>
-            <?php
-            }
-            ?>
-        </dl>
-    </div>
 
     <div class="module">
-        <h2><?php __('Activity information'); ?></h2>
+        <h2><?php __('Stats'); ?></h2>
         <dl>
-            <dt><?php __('Member since'); ?></dt>
-            <dd><?php echo date('F j, Y', strtotime($userSince)); ?></dd>
-            <dt><?php __('Status'); ?></dt>
-            <dd><?php echo $userStatus; ?></dd>
-            <dt><?php __('Last login'); ?></dt>
-            <dd><?php echo date('F j, Y \\a\\t G:i', $lastTimeActive); ?></dd>
             <dt><?php __('Comments posted'); ?></dt>
             <dd><?php echo $userStats['numberOfComments']; ?></dd>
             <dt><?php __('Sentences owned'); ?></dt>
             <dd><?php echo $userStats['numberOfSentences']; ?></dd>
             <dt><?php __('Sentences favorited'); ?></dt>
             <dd><?php echo $userStats['numberOfFavorites']; ?></dd>
+            <dt><?php __('Contributions'); ?></dt>
+            <dd><?php echo $userStats['numberOfContributions']; ?></dd>
         </dl>
-    </div>
-</div>
-
-<!-- Main Content -->
-
-<div id="main_content">
-    <div class="module profile_master_content">
-        <h2>
-            <?php
-            if (!empty($realName)) {
-                echo $realName . ' aka. ' . $userName;
-            } else {
-                echo $userName;
-            }
-            ?>    
-        </h2>
-        <!-- self image -->
-        <div id="pimg">
-            <?php
-            echo $html->image(
-                'profiles_128/'.$userImage,
-                array(
-                    'alt' => $userName
-                )
-            );
-            ?>
+        
+        <div>
+        =>
+        <?php
+        echo $html->link(
+            sprintf(__("Show latest activity", true)),
+            array(
+                'controller' => 'users',
+                'action' => 'show',
+                $userId
+            )
+        );
+        ?>
         </div>
     </div>
     
-    <!-- self description  -->
-    
     <?php
-    if (!empty($userDescription)) {
+    if ($isDisplayed) {
         ?>
-        <div id="pdescription" class="module">
-            <h2><?php __('Something about you'); ?></h2>
-            <div id="profile_description">
-                <?php 
-                $userDescription = $clickableLinks->clickableURL($userDescription);
-                echo nl2br($userDescription); 
-                ?>
-            </div>
+        <div class="module">
+            <h2><?php __('Settings'); ?></h2>
+            <ul class="annexeMenu">
+                <li class="item">
+                    <?php
+                    if ($notificationsEnabled) {
+                        __('Email notifications are ENABLED.');
+                    } else {
+                        __('Email notifications are DISABLED.');
+                    }
+                    ?>
+                </li>
+                
+                <li class="item">
+                    <?php    
+                    if ($isPublic) {
+                        __(
+                            'Access to this profile is PUBLIC. '.
+                            'All the information can be seen by everyone.'
+                        );
+                    } else {
+                        __(
+                            'Access to this profile is RESTRICTED. '.
+                            'Only Tatoeba members can see the personal information '.
+                            'and the description.'
+                        );
+                    }
+                    ?>
+                </li>
+            </ul>
+            <p>
+            <?php
+            if ($username == $currentMember) {
+                $members->displayEditButton(
+                    array(
+                        'controller' => 'user',
+                        'action' => 'settings'
+                    )
+                ); 
+            }
+            ?>
+            </p>
         </div>
     <?php
     }
     ?>
+    
+</div>
 
-    <!-- self basic info -->
-    <div id="pbasic" class="module">
-        <h2><?php __('Basic Information'); ?></h2>
-        <dl>
+<div id="main_content">
+    <div class="module profileSummary">
+        <?php 
+        if ($username == $currentMember) {
+            $members->displayEditButton(
+                array(
+                    'controller' => 'user',
+                    'action' => 'edit_profile'
+                )
+            ); 
+        }
+        ?>
+        
+        <?php
+        echo $html->image(
+            IMG_PATH . 'profiles_128/'.$userImage,
+            array(
+                'alt' => $username
+            )
+        );
+        ?>
+            
+        <div class="info">
+            <div class="username"><?php echo $username; ?></div>
+            
             <?php
-            if (!empty($realName)) {
-                ?>
-                <dt><?php __('Name'); ?></dt>
-                <dd><?php echo $realName; ?></dd>
-            <?php
-            }
-
-
-            // TODO change this, no birthday should be stored as null value
-            if ($birthday !== "0000-00-00 00:00:00") {
-                $birthdayDate = new DateTime ($birthday);
-                ?>
-                <dt><?php __('Birthday'); ?></dt>
-                <dd><?php echo $birthdayDate->format('F j, Y'); ?></dd>
-            <?php
-            }
-
-            if (!empty($userCountry['name'])) {
-                ?>
-                <dt><?php __('Country'); ?></dt>
-                <dd><?php echo $userCountry['name']; ?></dd>
-            <?php
+            if ($isDisplayed) {
+                if (!empty($birthday)) {
+                    $birthday = date('F j, Y', strtotime($birthday));
+                }
+                if (!empty($homepage)) {
+                    $homepage = $clickableLinks->clickableURL($homepage);
+                }
+                $userSince = date('F j, Y', strtotime($userSince));
+                $fields = array(
+                    __('Name', true) => $realName,
+                    __('Country', true) => $countryName,
+                    __('Birthday', true) => $birthday,
+                    __('Homepage', true) => $homepage
+                );
+                
+                foreach ($fields as $fieldName => $value) {
+                    ?>
+                    <div>
+                        <span class="field <?php echo $statusClass ?>">
+                        <?php echo $fieldName; ?>
+                        </span>
+                        <span class="value">
+                        <?php 
+                        if (!empty($value)) {
+                            echo $value; 
+                        } else {
+                            echo ' - ';
+                        }
+                        ?>
+                        </span>
+                    </div>
+                    <?php
+                }
             }
             ?>
-        </dl>
+            
+            <div>
+                <span class="field <?php echo $statusClass ?>">
+                <?php echo __('Member since'); ?>
+                </span>
+                <span class="value"><?php echo $userSince; ?></span>
+            </div>
+        </div>
+        
+        <div class="status <?php echo $statusClass ?>">
+        <?php echo $userStatus; ?>
+        </div>
+
     </div>
+        
+    <?php
+    if (!empty($userDescription)) {
+        $descriptionContent = $clickableLinks->clickableURL($userDescription);
+        $descriptionContent = nl2br($descriptionContent); 
+    } else {
+        $descriptionContent = '<div class="tip">';
+        $descriptionContent.= __('No description.', true);
+        $descriptionContent.= '<br/><br/>';
+        if ($username == $currentMember) {
+            $descriptionContent.= __(
+                'TIP: We encourage you to indicate the languages you know.', true
+            );
+        } else {
+            $descriptionContent.= __(
+                'TIP: Encourage this user to indicate the languages he/she knows.',
+                true
+            );
+        }
+        $descriptionContent.= '</div>';
+    }
+    
+    if ($isDisplayed) {
+        ?>
+        <div class="module profileDescription">
+        <?php 
+        if ($username == $currentMember) {
+            $members->displayEditButton(
+                array(
+                    'controller' => 'user',
+                    'action' => 'edit_profile',
+                    '#' => 'description'
+                )
+            ); 
+        }
+        ?>
+        
+        <div class="content">
+        <?php
+        echo $descriptionContent;
+        ?>
+        </div>
+        </div>
+        <?php
+    }
+    ?>
 </div>

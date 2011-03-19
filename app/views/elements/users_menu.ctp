@@ -30,7 +30,7 @@
     <h2><?php echo $username; ?></h2>
     
     <ul class="annexeMenu">
-    <li>
+    <li class="item">
     <?php
     echo $html->link(
         __('Profile', true),
@@ -43,7 +43,7 @@
     ?>
     </li>
     
-    <li>
+    <li class="item">
     <?php
     echo $html->link(
         __('Sentences', true),
@@ -56,7 +56,7 @@
     ?>
     </li>
     
-    <li>
+    <li class="item">
     <?php
     echo $html->link(
         __('Favorites', true),
@@ -69,7 +69,7 @@
     ?>
     </li>
     
-    <li>
+    <li class="item">
     <?php
     echo $html->link(
         __('Comments', true),
@@ -82,7 +82,7 @@
     ?>
     </li>
     
-    <li>
+    <li class="item">
     <?php
     echo $html->link(
         sprintf(__("Comments on %s's sentences", true), $username),
@@ -95,7 +95,7 @@
     ?>
     </li>
     
-    <li>
+    <li class="item">
     <?php
     echo $html->link(
         __('Wall messages', true),
@@ -108,7 +108,7 @@
     ?>
     </li>
     
-    <li>
+    <li class="item">
     <?php
     echo $html->link(
         __('Logs', true),
@@ -121,4 +121,23 @@
     ?>
     </li>
     </ul>
+    
+    <?php
+    if ($username != CurrentUser::get('username')) {
+        ?>
+        <div class="contactLink">
+        <?php
+        echo $html->link(
+            sprintf(__('Contact %s', true), $username),
+            array(
+                'controller' => 'private_messages',
+                'action' => 'write',
+                $username
+            )
+        );
+        ?>
+        </div>
+    <?php
+    }
+    ?>
 </div>

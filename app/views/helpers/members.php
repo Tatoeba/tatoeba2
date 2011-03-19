@@ -120,5 +120,22 @@ class MembersHelper extends AppHelper
         ); 
     }
     
+    
+    /**
+     *
+     */
+    public function displayEditButton($linkPath)
+    {
+        ?>
+        <div class="editOption">
+        <?php
+        echo $this->Html->link(
+            __('Edit', true),
+            $linkPath
+        );
+        ?>
+        </div>
+        <?php
+    }
 }
 ?>

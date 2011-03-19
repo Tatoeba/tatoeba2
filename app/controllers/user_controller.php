@@ -75,36 +75,10 @@ class UserController extends AppController
         parent::beforeFilter();
 
         $this->Auth->allowedActions = array(
-            'profile'
+            'profile',
+            'edit_profile',
+            'settings'
         );
-    }
-
-    /**
-     * Display current user's profile.
-     *
-     * @return void
-     */
-    public function index()
-    {
-        $this->helpers[] = 'ClickableLinks';
-        
-        $userId = $this->Auth->user('id');
-        // redirect the page if a simple visitor try to access it
-   
-        $aUser = $this->User->getInformationOfCurrentUser($userId);
-        $userStats = $this->_stats($userId);
-
-        $this->loadModel('Country');
-        $aCountries = $this->Country->findAll();
-
-        foreach ($aCountries as $aCountry) {
-            $aCleanCountries[$aCountry['Country']['id']]
-                = $aCountry['Country']['name'];
-        }
-
-        $this->set('countries', $aCleanCountries);
-        $this->set('user', $aUser);
-        $this->set('userStats', $userStats);
     }
 
 
@@ -121,52 +95,30 @@ class UserController extends AppController
     public function profile($userName)
     {
         $this->helpers[] = 'ClickableLinks';
+        $this->helpers[] = 'Members';
         
         $userName = Sanitize::paranoid($userName, array('_'));
-        $currentUserId = Sanitize::paranoid($this->Auth->user('id'));
-
         $infoOfUser = $this->User->getInformationOfUser($userName);
-
-
-        if (empty($infoOfUser)) {
-            // TODO better to had message "user %s doesn't exist",
-            // but redirect is still better than a strange user's page
-            $this->flash(
-                sprintf(
-                    __('There is no user with this username : %s', true),
-                    $userName
-                ),
-                '/users/all'
-            );
-            return;
-        }
-
-
         $user = $infoOfUser['User'];
-        $isPublic = ($user['is_public'] == 1);
-
-        // Check if his/her profile is accessible
-        if (empty($currentUserId) && !$isPublic) {
-            $this->flash(
-                __('This profile is protected. You must login to see it.', true),
-                '/users/all' 
-            );
-            // NOTE: using an array here won't work...
-            // But the interface language is properly added in the link.
-            return;
-        }
-
-
-        $userCountry = $infoOfUser['Country'];
+        $countryName = $infoOfUser['Country']['name'];
         $userStatus = $infoOfUser['Group']['name'];
-        
+        $groupId = $infoOfUser['Group']['id'];
         $userId = $user['id']; 
         $userStats = $this->_stats($userId);
-
+        
+        $isPublic = ($user['is_public'] == 1);
+        $isDisplayed = ($isPublic || CurrentUser::isMember());
+        $notificationsEnabled = ($user['send_notifications'] == 1);
+        
         $this->set('userStats', $userStats);
         $this->set('user', $user);
-        $this->set('userCountry', $userCountry);
+        $this->set('countryName', $countryName);
         $this->set('userStatus', $userStatus);
+        $this->set('groupId', $groupId);
+        
+        $this->set('isPublic', $isPublic);
+        $this->set('isDisplayed', $isDisplayed);
+        $this->set('notificationsEnabled', $notificationsEnabled);
     }
 
     /**
@@ -314,38 +266,25 @@ class UserController extends AppController
      */
     public function save_description()
     {
+        $currentUserId = CurrentUser::get('id');
+        if (empty($currentUserId)) {
+            $this->redirect('/');
+        }
+        
         if (!empty($this->data)) {
-
-            $aToSave = array();
-
-            if (!empty($this->data['profile_description']['description'])) {
-                Sanitize::html($this->data['profile_description']['description']);
-                $aToSave += array(
-                    'description' =>
-                        $this->data['profile_description']['description']
-                );
-            }
-
-            if (!empty($aToSave)) {
-                $this->User->id = $this->Auth->user('id');
-
-                if ($this->User->save(array('User' => $aToSave))) {
-                    $this->Session->setFlash(
-                        __('Your information has been updated.', true)
-                    );
-                } else {
-                    $this->Session->setFlash(
-                        __(
-                            'An error occured while saving. Please try again or '.
-                            'contact us to report this.',
-                            true
-                        )
-                    );
-                }
-            }
+            $this->User->id = $currentUserId;
+            $this->User->saveField(
+                'description',
+                $this->data['User']['description']
+            );
         }
 
-        $this->redirect(array('action' => 'index'));
+        $this->redirect(
+            array(
+                'action' => 'profile',
+                CurrentUser::get('username')
+            )
+        );
     }
 
     /**
@@ -355,42 +294,31 @@ class UserController extends AppController
      */
     public function save_basic()
     {
-        if (!empty($this->data)) {
-            Sanitize::html($this->data['profile_basic']['name']);
-
-            $sBirthday  = $this->data['profile_basic']['birthday']['year'];
-            $sBirthday .= '-' . $this->data['profile_basic']['birthday']['month'];
-            $sBirthday .= '-' . $this->data['profile_basic']['birthday']['day'];
-
-            $aToSave = array(
-                'name' => $this->data['profile_basic']['name'],
-                'birthday' => $sBirthday,
-                'country_id' => $this->data['profile_basic']['country']
-            );
-
-            $this->User->id = $this->Auth->user('id');
-
-            if ($this->User->save(array('User' => $aToSave))) {
-                $this->Session->setFlash(
-                    __('Your basic information have been updated.', true)
-                );
-            } else {
-                $this->Session->setFlash(
-                    __(
-                        'An error occured while saving. Please try again or '.
-                        'contact us to report this.',
-                        true
-                    )
-                );
-            }
+        $currentUserId = CurrentUser::get('id');
+        if (empty($currentUserId)) {
+            $this->redirect('/');
         }
-
-        $this->redirect(array('action' => 'index'));
+        
+        $saved = false;
+        if (!empty($this->data)) {
+            $this->data['User']['id'] = $currentUserId;
+            $saved = $this->User->save($this->data);
+        }
+        
+        if ($saved) {
+            $this->redirect(
+                array(
+                    'action' => 'profile',
+                    CurrentUser::get('username')
+                )
+            );
+        }
     }
 
 
     /**
      * Save email and personal URL.
+     * TODO Delete me.
      *
      * @return void
      */
@@ -427,18 +355,14 @@ class UserController extends AppController
      */
     public function save_settings()
     {
+        $currentUserId = CurrentUser::get('id');
+        if (empty($currentUserId)) {
+            $this->redirect('/');
+        }
+        
         if (!empty($this->data)) {
-
-            $aToSave = array(
-                'User' => array(
-                    'send_notifications' =>
-                        $this->data['profile_setting']['send_notifications'],
-                    'is_public' => $this->data['profile_setting']['public_profile']
-                )
-            );
-
-            $this->User->id = $this->Auth->user('id');
-            if ($this->User->save($aToSave)) {
+            $this->data['User']['id'] = $currentUserId;
+            if ($this->User->save($this->data)) {
                 $flashMsg = __('Your settings have been saved.', true);
             } else {
                 $flashMsg = __(
@@ -451,7 +375,12 @@ class UserController extends AppController
             $this->Session->setFlash($flashMsg);
         }
 
-        $this->redirect(array('action' => 'index'));
+        $this->redirect(
+            array(
+                'action' => 'profile',
+                 CurrentUser::get('username')
+            )
+        );
     }
 
     /**
@@ -497,7 +426,7 @@ class UserController extends AppController
 
         $this->redirect(array('action' => 'index'));
     }
-
+    
     /**
      * Retrieve stats about the user.
      * This is displayed on homepage for now...
@@ -523,6 +452,52 @@ class UserController extends AppController
             'numberOfFavorites'     => $numberOfFavorites
         );
         return $userStats;
+    }
+    
+    
+    /**
+     * Edit personal information and description.
+     *
+     * @return void
+     */
+    public function edit_profile()
+    {
+        $currentUserId = CurrentUser::get('id');
+        if (empty($currentUserId)) {
+            $this->redirect('/');
+        }
+        
+        $user = $this->User->getInformationOfCurrentUser($currentUserId);
+        $this->data = $user;
+        // Hack. It seems that it screws up the "action" params in <form> 
+        // when the id is set. So we're setting it to null.
+        $this->data['User']['id'] = null; 
+        
+        $this->loadModel('Country');
+        $tmpCountries = $this->Country->findAll();
+        $countries = array();
+        foreach ($tmpCountries as $country) {
+            $countryId = $country['Country']['id'];
+            $countries[$countryId] = $country['Country']['name'];
+        }
+        $this->set('countries', $countries);
+    }
+    
+    
+    /**
+     * Edit personal information.
+     *
+     * @return void
+     */
+    public function settings()
+    {
+        $currentUserId = CurrentUser::get('id');
+        if (empty($currentUserId)) {
+            $this->redirect('/');
+        }
+        
+        $settings = $this->User->getSettings($currentUserId);
+        $this->set('settings', $settings['User']);
     }
 }
 ?>

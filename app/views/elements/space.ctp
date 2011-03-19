@@ -33,89 +33,117 @@ if (isset($this->params['lang'])) {
 ?>
 
 
-<span id="profile" title="<?php __('Profile'); ?>">
-<?php
-$profileIcon = $html->image(
-    IMG_PATH . 'profile.png',
-    array(
-        "alt" => __('Profile', true),
-        "width" => 14,
-        "height" => 14
-    )
-);
-echo $html->link(
-    $profileIcon . $session->read('Auth.User.username'),
-    array(
-        'controller' => 'user',
-        'action' => 'index'
-    ),
-    array(
-        'escape' => false
-    )
-);
-?>
-</span>
+<ul>
+    <li id="profile" class='menuItem'>
+    <?php
+    $username = $session->read('Auth.User.username');
+    $profileIcon = $html->image(
+        IMG_PATH . 'profile.png',
+        array(
+            "alt" => __('Profile', true),
+            "width" => 14,
+            "height" => 14
+        )
+    );
+    echo $html->link(
+        $profileIcon . $username,
+        array(
+            'controller' => 'user',
+            'action' => 'profile',
+            $username
+        ),
+        array(
+            'escape' => false
+        )
+    );
+    ?>
+    <ul class='sub-menu'>
+        <li>
+        <?php
+        echo $html->link(
+            __('Edit profile', true),
+            array(
+                'controller' => 'user',
+                'action' => 'edit_profile',
+            )
+        );
+        ?>
+        </li>
+        <li>
+        <?php
+        echo $html->link(
+            __('Settings', true),
+            array(
+                'controller' => 'user',
+                'action' => 'settings',
+            )
+        );
+        ?>
+        </li>
+    </ul>
+    </li>
 
 
-<?php
 
-$newMessages = ClassRegistry::init('PrivateMessage')->numberOfUnreadMessages(
-    CurrentUser::get('id')
-);
-$class = '';
-$imageName = 'no_mail.png';
-if ($newMessages > 0) {
-    $class = 'class="newMessage"';
-    $imageName = 'mail.png';
-}
-?>
-<span id="inbox" <?php echo $class; ?> title="<?php __('Inbox'); ?>">
-<?php
+    <?php
+    $newMessages = ClassRegistry::init('PrivateMessage')->numberOfUnreadMessages(
+        CurrentUser::get('id')
+    );
+    $class = '';
+    $imageName = 'no_mail.png';
+    if ($newMessages > 0) {
+        $class = 'class="newMessage"';
+        $imageName = 'mail.png';
+    }
+    ?>
+    <li id="inbox" <?php echo $class; ?> title="<?php __('Inbox'); ?>">
+    <?php
 
-$mailIcon = $html->image(
-    IMG_PATH . $imageName,
-    array(
-        "alt" => __('Inbox', true),
-        "width" => 16,
-        "height" => 16
-    )
-);
+    $mailIcon = $html->image(
+        IMG_PATH . $imageName,
+        array(
+            "alt" => __('Inbox', true),
+            "width" => 16,
+            "height" => 16
+        )
+    );
 
 
-echo $html->link(
-    $mailIcon .' '. $newMessages,
-    array(
-        'controller' => 'private_messages', 
-        'action' => 'folder', 
-        'Inbox'
-    ),
-    array(
-        'escape' => false
-    )
-);
-?>
-</span>
+    echo $html->link(
+        $mailIcon .' '. $newMessages,
+        array(
+            'controller' => 'private_messages', 
+            'action' => 'folder', 
+            'Inbox'
+        ),
+        array(
+            'escape' => false
+        )
+    );
+    ?>
+    </li>
 
-<span id="log_out">
-<?php
-$logOutIcon = $html->image(
-    IMG_PATH . 'log_out.png',
-    array(
-        "alt" => __('Log out', true),
-        "title" => __('Log out', true),
-        "width" => 14,
-        "height" => 14
-    )
-);
-echo $html->link(
-    $logOutIcon,
-    array(
-        'controller' => 'users', 
-        'action' => 'logout'
-    ),
-    array(
-        'escape' => false
-    )
-);
-?>
-</span>
+    <li id="log_out">
+    <?php
+    $logOutIcon = $html->image(
+        IMG_PATH . 'log_out.png',
+        array(
+            "alt" => __('Log out', true),
+            "title" => __('Log out', true),
+            "width" => 14,
+            "height" => 14
+        )
+    );
+    echo $html->link(
+        $logOutIcon,
+        array(
+            'controller' => 'users', 
+            'action' => 'logout'
+        ),
+        array(
+            'escape' => false
+        )
+    );
+    ?>
+    </li>
+</ul>

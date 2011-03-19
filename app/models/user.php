@@ -233,7 +233,7 @@ class User extends AppModel
                     'User.name',
                     'User.homepage',
                     'User.since',
-                    'User.last_time_active',
+                    'User.send_notifications',
                     'User.description',
                     'User.username',
                     'User.birthday',
@@ -246,6 +246,31 @@ class User extends AppModel
             )
         );
     }
+    
+    
+    /**
+     * Get options.
+     *
+     * @param int $userId Id of the user.
+     * 
+     * @return array
+     */
+    public function getSettings($userId)
+    {
+        return $this->find(
+            'first',
+            array(
+                'conditions' => array('id' => $userId),
+                'fields' => array(
+                    'is_public',
+                    'send_notifications',
+                    'email'
+                ),
+                'contain' => array()
+            )
+        );
+    }
+    
 
     /**
      * get all the information about a user needed by the Wall

@@ -19,28 +19,21 @@
 
 // TODO create an helper for this 
 
-$userName = $user['User']['username'];
+$username = $user['User']['username'];
 $userId =  $user['User']['id'];
 $this->pageTitle = sprintf(
     __('Tatoeba user: %s', true),
-    $userName
+    $username
 );
 ?>
 <div id="annexe_content">
 
-    <div class="module">
-    <h2><?php __('Contact'); ?></h2>
     <?php
-    echo $html->link(
-        __('Contact this user', true),
-        array(
-            'controller' => 'private_messages',
-            'action' => 'write',
-            $userName
-        )
+        echo $this->element(
+        'users_menu', 
+        array('username' => $username)
     );
     ?>
-    </div>
     
     <?php
     /* Latest contributions from the user */
@@ -62,36 +55,40 @@ $this->pageTitle = sprintf(
 </div>
 
 <div id="main_content">
-    <div class="module">
-    <h2><?php echo sprintf(__('About %s', true), $userName); ?></h2>
-    <ul>
-        <li>
-        <?php
-        echo sprintf(
-            __('Member since %s', true),
-            $date->ago($user['User']['since'])
-        );
-        ?>
-        </li>
-        <li>
-        <?php echo $user['Group']['name']; ?>
-        </li>
-        <li>
-            <?php
-            echo $html->link(
-                __("View this user's profile", true),
-                array(
-                    "controller" => "user",
-                    "action" => "profile",
-                    $user['User']['username']
-                )
-            );
-            ?>
-        </li>
-    </ul>
-    </div>
-
     <?php
+    /* Latest sentences, translations or adoptions from the user */
+    if (count($user['Sentences']) > 0) {
+        echo '<div class="module">';
+            echo '<h2>';
+                __('Latest sentences');
+                echo ' (';
+                echo $html->link(
+                    __('view all', true),
+                    array(
+                        "controller" => "sentences",
+                        "action" => "of_user",
+                        $username
+                    )
+                );
+                echo ')';
+            echo '</h2>';
+            
+            $type = 'mainSentence';
+            $parentId = null;
+            $withAudio = false;
+            $ownerName = $user['User']['username'];
+            foreach ($user['Sentences'] as $sentence) {
+                $sentences->displayGenericSentence(
+                    $sentence,
+                    $ownerName,
+                    $type,
+                    $parentId,
+                    $withAudio
+                );
+            }
+        echo '</div>';
+    }
+    
     /* Latest favorites from the user */
     if (count($user['Favorite']) > 0) {
         echo '<div class="module">';
@@ -128,39 +125,6 @@ $this->pageTitle = sprintf(
         echo '</div>';
     }
 
-    /* Latest sentences, translations or adoptions from the user */
-    if (count($user['Sentences']) > 0) {
-        echo '<div class="module">';
-            echo '<h2>';
-                __('Latest sentences');
-                echo ' (';
-                echo $html->link(
-                    __('view all', true),
-                    array(
-                        "controller" => "sentences",
-                        "action" => "of_user",
-                        $userName
-                    )
-                );
-                echo ')';
-            echo '</h2>';
-            
-            $type = 'mainSentence';
-            $parentId = null;
-            $withAudio = false;
-            $ownerName = $user['User']['username'];
-            foreach ($user['Sentences'] as $sentence) {
-                $sentences->displayGenericSentence(
-                    $sentence,
-                    $ownerName,
-                    $type,
-                    $parentId,
-                    $withAudio
-                );
-            }
-        echo '</div>';
-    }
-
     /* Latest comments from the user */
     if (count($user['SentenceComments']) > 0) {
         echo '<div class="module">';
@@ -172,7 +136,7 @@ $this->pageTitle = sprintf(
                 array(
                     "controller" => "sentence_comments",
                     "action" => "of_user",
-                    $userName
+                    $username
                 )
             );
             echo ')';
@@ -205,7 +169,7 @@ $this->pageTitle = sprintf(
                 array(
                     "controller" => "wall",
                     "action" => "messages_of_user",
-                    $userName
+                    $username
                 )
             );
             echo ')';
