@@ -237,8 +237,8 @@ if (!empty($realName)) {
             );
         } else {
             $descriptionContent.= __(
-                'TIP: Encourage this user to indicate the languages he/she knows.',
-                true
+                'TIP: Encourage this user to indicate the languages '.
+                'he or she knows.', true
             );
         }
         $descriptionContent.= '</div>';
