@@ -30,6 +30,12 @@
 
 
 /*
+ * Status colors
+ */
+@import url(../elements/status_colors.css);
+
+
+/*
  * Users
  */
 .users {
@@ -70,24 +76,7 @@
 
 .user .status {
     font-weight: bold;
-    color: #666;
     margin-top: 5px;
-}
-
-.status1 .status{
-    color: red;
-}
-
-.status2 .status{
-    color: orange;
-}
-
-.status3 .status{
-    color: #00B712;
-}
-
-.status4 .status{
-    color: #42B0FF;
 }
 
 .status .power {

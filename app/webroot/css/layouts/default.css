@@ -117,7 +117,7 @@ dt {
     padding: 0px;
 }
 
-#top_menu li a {
+#top_menu .menuSection {
     display:block;
     font-weight:normal;
     line-height:30px;
@@ -234,6 +234,7 @@ dt {
 }
 
 #inbox {
+    padding-left: 0px;
     margin-left: 10px;
 }
 
@@ -603,10 +604,21 @@ dt {
     text-indent: -1em;
 }
 
-.annexeMenu li {
+.annexeMenu .item {
     margin: 5px 0px;
 }
 
-.annexeMenu li:before {
+.annexeMenu .item:before {
     content: "\00BB \0020";
+}
+
+.contactLink {
+    margin-top: 20px;
+    background: url('../../img/send_pm.png') no-repeat;
+}
+
+.contactLink a{
+    display: block;
+    padding-left: 30px;
+    line-height: 24px;
 }

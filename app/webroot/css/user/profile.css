@@ -21,3 +21,88 @@
  * Profile pic
  */
 @import url(../elements/profile_pic.css);
+
+
+/*
+ * Status colors
+ */
+@import url(../elements/status_colors.css);
+
+
+.profileSummary, .profileDescription {
+    border: 1px solid #CCC;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    padding-bottom: 10px;
+}
+
+/*
+ * Summary
+ */
+.profileSummary {
+    position: relative;
+}
+
+.profileSummary img {
+    float: left;
+}
+
+.profileSummary .info {
+    margin-left: 140px;
+}
+
+.profileSummary .username {
+    font-size: 1.7em;
+    margin-bottom: 5px;
+}
+
+.profileSummary .field {
+    font-weight: bold;
+    padding-right: 5px;
+}
+
+.profileSummary .status {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 5px 10px;
+    font-size: 1.5em;
+}
+
+
+/*
+ * Description
+ */
+.profileDescription {
+    padding: 10px;
+}
+
+.profileDescription .content {
+    padding: 5px 10px;
+}
+
+.profileDescription .tip{
+    font-color: #555;
+    font-size: 1.2em;
+}
+
+/*
+ * Edit
+ */
+.editOption {
+    float: right;
+    padding-top: 3px;
+    margin-bottom: 10px;
+}
+
+.editOption a{
+    background: url(../../img/search_bar_body.png) repeat;
+    padding: 3px 10px;
+    color: #FFF;
+    border: 1px solid #6E994E;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    font-weight: bold;
+}
