@@ -37,30 +37,40 @@
 -->
 </script>
 
+<ul>
+    <li>
+    <?php
+    echo $html->link(
+        __('Register', true),
+        array(
+            'controller' => 'users',
+            'action' => 'register'
+        ),
+        array(
+            'class' => 'menuSection'
+        )
+    );
+    ?>
+    </li>
+    
+    <li>
+    <?php    
+    echo $html->link(
+        __('Log in', true),
+        array(
+            'controller' => 'users',
+            'action' => 'login'
+        ),
+        array(
+            'onclick' => 'javascript:openLoginForm(); return false;',
+            'class' => 'menuSection'
+        )
+    );
+    ?>
+    </li>
+</ul>
+
 <?php
-echo $html->link(
-    __('Register', true),
-    array(
-        'controller' => 'users',
-        'action' => 'register'
-    ),
-    array(
-        'class' => 'menuItem'
-    )
-);
-
-echo $html->link(
-    __('Log in', true),
-    array(
-        'controller' => 'users',
-        'action' => 'login'
-    ),
-    array(
-        'onclick' => 'javascript:openLoginForm(); return false;',
-        'class' => 'menuItem'
-    )
-);
-
 echo $form->create(
     'User', 
     array(

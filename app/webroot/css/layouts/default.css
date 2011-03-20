@@ -99,9 +99,6 @@ dt {
     color: #FB6B10;
 }
 
-#user_menu a {
-    line-height: 30px;
-}
 
 /*
  * Menu (Home, Browse, etc)
@@ -117,7 +114,7 @@ dt {
     padding: 0px;
 }
 
-#top_menu .menuSection, .sub-menu li a{
+#top_menu .menuSection{
     display:block;
     font-weight:normal;
     line-height:30px;
@@ -162,10 +159,9 @@ dt {
 
 #top_menu li ul a {
     display:block;
-    height:30px;
     font-style:normal;
     margin:0px;
-    padding:0px 10px 0px 15px;
+    padding:7px 10px;
     text-align:left;
 }
 
@@ -203,14 +199,6 @@ dt {
  */
 #user_menu {
     float: right;
-    margin: 0;
-    padding: 0px 3px;
-    list-style-type: none;
-    line-height: 24px;
-}
-
-#user_menu span {
-    padding: 0px;
 }
 
 #profile img {
@@ -224,26 +212,13 @@ dt {
     top: 2px;
 }
 
-#log_out {
-    margin-left: 10px;
-}
-
 #inbox img {
     position: relative;
     top: 3px;
 }
 
-#inbox {
-    padding-left: 0px;
-    margin-left: 10px;
-}
-
 .newMessage {
     font-weight: bold;
-}
-
-#user_menu .menuItem {
-    padding-left: 15px;
 }
 
 

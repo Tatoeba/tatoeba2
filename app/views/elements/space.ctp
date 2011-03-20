@@ -34,7 +34,7 @@ if (isset($this->params['lang'])) {
 
 
 <ul>
-    <li id="profile" class='menuItem'>
+    <li id="profile">
     <?php
     $username = $session->read('Auth.User.username');
     $profileIcon = $html->image(
@@ -53,7 +53,8 @@ if (isset($this->params['lang'])) {
             $username
         ),
         array(
-            'escape' => false
+            'escape' => false,
+            'class' => 'menuSection'
         )
     );
     ?>
@@ -117,7 +118,8 @@ if (isset($this->params['lang'])) {
             'Inbox'
         ),
         array(
-            'escape' => false
+            'escape' => false,
+            'class' => 'menuSection'
         )
     );
     ?>
@@ -141,7 +143,8 @@ if (isset($this->params['lang'])) {
             'action' => 'logout'
         ),
         array(
-            'escape' => false
+            'escape' => false,
+            'class' => 'menuSection'
         )
     );
     ?>
