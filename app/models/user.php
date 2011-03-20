@@ -401,7 +401,8 @@ class User extends AppModel
         );
         return $user['User']['id'];
     }
-
+    
+    
     /**
      * Return name of a user from the user's id.
      *
@@ -421,6 +422,36 @@ class User extends AppModel
         );
         return $user['User']['username'];
     }
+    
+    
+    /**
+     * Return array of (id => username).
+     *
+     * @param array $userIds Array of user ids.
+     *
+     * @return array
+     */
+    public function getUsernamesFromIds($usersIds)
+    {
+        $results = $this->find(
+            'all',
+            array(
+                'conditions' => array('id' => $usersIds),
+                'contain' => array(),
+                'fields' => array('id', 'username')
+            )
+        );
+        
+        $users = array();
+        foreach($results as $result) {
+            $id = $result['User']['id'];
+            $username = $result['User']['username'];
+            $users[$id] = $username;
+        }
+        
+        return $users;
+    }
+    
     /**
      * Return id of a user from the email.
      *

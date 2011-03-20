@@ -48,51 +48,34 @@ $this->pageTitle = "Tatoeba - " . __("Latest contributions", true);
         <li class="sentenceDeleted"><?php __('sentence deleted'); ?></li>
         </ul>
     </div>
+    
+    <div class="module">
+        <h2><?php __('View all'); ?></h2>
+        <p>
+        <?php 
+        echo $html->link(
+            __('Browse all contributions', true),
+            array(
+                'controller' => 'contributions',
+                'action' => 'index'
+            )
+        );
+        ?>
+        </p>
+    </div>
 </div>
 
 <div id="main_content">
     <div class="module">
-        <h2><?php __('Contributions'); ?></h2>
-        <table id="logs">
-        <?php
-        $pagination->display();
-        ?>
-
+        <h2><?php __('Latest contributions'); ?></h2>
         <table id="logs">
         <?php
         foreach ($contributions as $contribution) {
-            $type = $contribution['Contribution']['type'];
-            $sentenceId = $contribution['Contribution']['sentence_id'];
-            $datetime = $contribution['Contribution']['datetime'];
-            $action = $contribution['Contribution']['action'];
-            $userId = $contribution['Contribution']['user_id'];
-            if ($type == 'sentence') {
-                $text = $contribution['Contribution']['text'];
-                $lang = $contribution['Contribution']['sentence_lang'];
-                $logs->displaySentenceEntry(
-                    $sentenceId,
-                    $text, 
-                    $lang, 
-                    $users[$userId], 
-                    $datetime, 
-                    $action
-                );
-            } else if ($type == 'link') {
-                $translationId = $contribution['Contribution']['translation_id'];
-                $logs->displayLinkEntry(
-                    $sentenceId, 
-                    $translationId, 
-                    $users[$userId], 
-                    $datetime, 
-                    $action
-                );
-            }
+            $logs->entry(
+                $contribution['Contribution'],
+                $contribution['User']
+            );
         }
-        ?>
-        </table>
-
-        <?php
-        $pagination->display();
         ?>
         </table>
     </div>

@@ -65,7 +65,7 @@ class ContributionsController extends AppController
     }
     
     /**
-     * Display 200 last contributions in specified language (or all languages).
+     * Display all contributions in specified language (or all languages).
      * 
      * @param string $filter Language of the contributions.
      *
@@ -73,20 +73,49 @@ class ContributionsController extends AppController
      */
     public function index($filter = 'und')
     {
+        $this->helpers[] = 'Pagination';
+        
+        $conditions = array();
+        if ($filter != 'und') {
+            $conditions = array('sentence_lang' => $filter);
+        }
+        
+        $this->paginate = array(
+            'Contribution' => array(
+                'conditions' => $conditions,
+                'limit' => 200,
+                'order' => 'datetime DESC',
+                'contain' => array()
+            )
+        );
+        $contributions = $this->paginate();
+        
+        $usersIds = array();
+        foreach($contributions as $contribution) {
+            $userId = $contribution['Contribution']['user_id'];
+            if (!in_array($userId, $usersIds)) {
+                $usersIds[] = $userId;
+            }
+        }
+        $users = $this->Contribution->User->getUsernamesFromIds($usersIds);
+        
+        $this->set('contributions', $contributions);
+        $this->set('users', $users);
+    }
+    
+    
+    /**
+     * Display 200 last contributions in specified language (or all languages).
+     * 
+     * @param string $filter Language of the contributions.
+     *
+     * @return void
+     */
+    public function latest($filter = 'und')
+    {
         $this->set(
             'contributions', $this->Contribution->getLastContributions(200, $filter)
         );
-    }
-
-    /**
-     * Return 10 last contributions in all languages.
-     * Called with requestAction on homepage.
-     *
-     * @return array
-     */
-    public function latest()
-    {
-        return $this->Contribution->getLastContributions(10);
     }
     
     
