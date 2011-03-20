@@ -115,7 +115,7 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
         <li><strong>Translating.</strong> You’ll need to have a Launchpad account. Here’s where you can translate the strings of Tatoeba’s interface: https://translations.launchpad.net/tatoeba. Fell free to add a new language if you don’t see your desired language in the list! Once you chose a language, you can filter the page to display only strings that haven’t been translated yet.</li>
         <li><strong>Updating Tatoeba.</strong> Once in a while, the PO files are downloaded, converted into MO files. The MO files are binary files, and they are the ones that Tatoeba uses to get the translations of the interface. So it’s only when the MO files are uploaded that Tatoeba translations are actually updated.</li>
     </ol>
-    <p>You should know that the whole process is not automated yet.
+    <p>You should know that the whole process is not automated yet.</p>
     <ul>
         <li>Someone has to manually start the extraction of the strings from the code source.</li>
         <li>Someone has to manually send the POT file to Launchpad.</li>
