@@ -82,7 +82,7 @@
             array(
                 'url' => array(
                     'controller' => 'user',
-                    'action' => 'save_email'
+                    'action' => 'save_basic'
                 )
             )
         );
