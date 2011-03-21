@@ -78,7 +78,7 @@
     <div id="audioPlayer"></div>
     
 	<!--  TOP  -->
-	<?php echo $this->element('top1'); ?>
+	<?php echo $this->element('top_menu'); ?>
 
 
 	<div id="container1">
