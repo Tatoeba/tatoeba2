@@ -91,8 +91,7 @@ class User extends AppModel
         'status' => array('numeric'),
         'permissions' => array('numeric'),
         'level' => array('numeric'),
-        'group_id' => array('numeric'),
-        'homepage' => array('url'),
+        'group_id' => array('numeric')
     );
     
     /**
