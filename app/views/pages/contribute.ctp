@@ -76,7 +76,51 @@ $this->pageTitle = 'Tatoeba - ' . __('How to contribute', true);
     </div>
 </div>
 
-<div id="main_content">    
+<div id="main_content">  
+    <div class="module">
+        <h2><?php __("Contribute"); ?></h2>
+        <?php
+        // Detecting language for "browse by language"
+        $currentLanguage = $session->read('random_lang_selected');
+        if (empty($currentLanguage) || $currentLanguage == 'und') {
+            $currentLanguage = $languages->i18nCodeToISO($this->params['lang']);
+        }
+        $subMenu = array(
+            __('Add sentences', true) => array(
+                "controller" => "sentences",
+                "action" => "add"
+            ),
+            __('Translate sentences', true) => array(
+                "controller" => "activities",
+                "action" => "translate_sentences"
+            ),
+            __('Adopt sentences', true) => array(
+                "controller" => "activities",
+                "action" => "adopt_sentences",
+                $currentLanguage
+            ),
+            __('Improve sentences', true) => array(
+                "controller" => "activities",
+                "action" => "improve_sentences"
+            ),
+            __('Discuss sentences', true) => array(
+                "controller" => "sentence_comments",
+                "action" => "index"
+            )
+        );
+        ?>
+        <ul>
+        <?php
+        foreach ($subMenu as $title => $route) {
+            echo '<li>';
+            echo $html->link($title, $route);
+            echo '</li>';
+        }
+        ?>
+        </ul>
+    </div>
+    
+    
     <div class="module">
     <h2><?php __("How can you contribute?"); ?></h2>
     <p>
