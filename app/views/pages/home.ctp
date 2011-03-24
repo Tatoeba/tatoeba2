@@ -123,7 +123,10 @@ $selectedLanguage = $session->read('random_lang_selected');
                     <?php
                     echo $html->link(
                         __('show more...', true),
-                        array("controller"=>"contributions")
+                        array(
+                            'controller' => 'contributions',
+                            'action' => 'latest'
+                        )
                     ); 
                     ?>
                 ) (
