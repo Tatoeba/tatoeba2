@@ -136,7 +136,8 @@ class SentencesList extends AppModel
                     'User' => array(
                         'fields' => array('username')
                     )
-                )
+                ),
+                'order' => 'name'
             )
         );
     }
@@ -161,7 +162,8 @@ class SentencesList extends AppModel
                     'User' => array(
                         'fields' => array('username')
                     )
-                )
+                ),
+                'order' => 'name'
             )
         );
     }
@@ -342,7 +344,8 @@ class SentencesList extends AppModel
                     'User' => array(
                         'fields' => array('username')
                     )
-                )
+                ),
+                'order' => 'name'
             )
         );
 
