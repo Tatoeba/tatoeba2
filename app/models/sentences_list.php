@@ -104,6 +104,10 @@ class SentencesList extends AppModel
             $listName = $result['SentencesList']['name'];
             $userId = $result['SentencesList']['user_id'];
             
+            if (empty($listName)) {
+                $listName = __('unnamed list', true);
+            }
+            
             if ($currentUserId == $userId) {
                 $privateLists[$listId] = $listName;
             } else {
