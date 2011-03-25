@@ -90,7 +90,8 @@ class SentencesList extends AppModel
                     )
                 ),
                 'contain' => array(),
-                'fields' => array('id', 'name', 'user_id')
+                'fields' => array('id', 'name', 'user_id'),
+                'order' => 'name'
             )
         );
         
