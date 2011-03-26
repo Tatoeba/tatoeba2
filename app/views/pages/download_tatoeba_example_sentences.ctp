@@ -145,6 +145,33 @@ $this->pageTitle = 'Tatoeba - ' . __('Download sentences', true);
             </dd>
         </dl>
         
+        
+        <!-- Tags -->
+        <h3>Tags</h3>
+        <dl>
+            <dt>Download</dt>
+            <dd>
+                <a href="http://tatoeba.org/files/downloads/tags.csv">
+                http://tatoeba.org/files/downloads/tags.csv
+                </a>
+            </dd>
+            
+            <dt>Fields and structure</dt>
+            <dd>
+                <span class="param">sentence_id</span>
+                <span class="symbol">[tab]</span>
+                <span class="param">tag_name</span>
+            </dd>
+            
+            <dt>Description</dt>
+            <dd>
+                Contains the list of tags associated to each sentence. 
+                <span class="param">381279</span>
+                <span class="symbol">[tab]</span>
+                <span class="param">proverb</span> 
+                means that sentence nº381279 has been tagged with "proverb".
+            </dd>
+        </dl>
             
         <!-- Indices -->
         <h3>Japanese indices</h3>
