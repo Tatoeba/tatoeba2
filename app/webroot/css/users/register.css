@@ -29,7 +29,7 @@
 #UserRegisterForm {
     padding: 10px;
     padding-bottom: 20px;
-    margin: auto;
+    margin: 20px auto;
     width: 420px;
     border: 1px solid #B3C6A9;
     background: #DBEFCB;
@@ -59,6 +59,10 @@
     background: url(/img/loading-small.gif) no-repeat scroll right center;
 }
 
+#UserRegisterForm .submit {
+    text-align: center;
+}
+
 #userInformation {
     margin: 10px 0px;
 }
@@ -75,10 +79,6 @@
     text-align: center;
 }
 
-#quiz input {
-    margin: 5px auto;
-}
-
 #termsOfUse {
     border-bottom: 1px dotted #B3C6A9;
     padding: 10px;
@@ -87,7 +87,5 @@
 }
 
 #registerButton {
-    display: block;
-    margin: auto;
     font-size: 1.5em;
 }
