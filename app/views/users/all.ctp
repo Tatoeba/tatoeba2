@@ -107,7 +107,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Members', true);
         <div class="users">
         <?php
         foreach ($users as $i=>$user):
-        $groupId = $user['Group']['id'];
+        $groupId = $user['User']['group_id'];
         $status = "status".$groupId;
         $username = $user['User']['username'];
         $userImage = null;
@@ -153,7 +153,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Members', true);
                 
                 <div class="name">
                 <?php 
-                echo $user['Group']['name']; 
+                echo $members->groupName($groupId); 
                 ?>
                 </div>
             </div>

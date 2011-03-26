@@ -44,6 +44,7 @@ $userDescription = Sanitize::html($user['description']);
 $homepage = $user['homepage'];
 $birthday = $user['birthday'];
 $userSince = $user['since'];
+$userStatus = $members->groupName($groupId);
 $statusClass = 'status'.$groupId;
 $currentMember = CurrentUser::get('username');
 

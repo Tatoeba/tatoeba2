@@ -48,16 +48,6 @@ class UsersController extends AppController
         'Pagination'
     );
     public $components = array ('Mailer', 'Captcha', 'RememberMe');
-    public $paginate = array(
-        'limit' => 20,
-        'order' => 'group_id',
-        'fields' => array('username', 'since', 'image'),
-        'contain' => array(
-            "Group" => array(
-                "fields" => "Group.name"
-            )
-        )
-    );
 
     public $uses = array("User","Contribution");
     
@@ -480,6 +470,13 @@ class UsersController extends AppController
         
         $this->set('currentContributors', $currentContributors);
         $this->set('total', $total);
+        
+        $this->paginate = array(
+            'limit' => 20,
+            'order' => 'group_id',
+            'fields' => array('username', 'since', 'image', 'group_id'),
+            'contain' => array()
+        );
         
         $users = $this->paginate(array('User.group_id < 5'));
         $this->set('users', $users);

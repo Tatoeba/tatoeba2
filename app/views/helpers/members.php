@@ -122,7 +122,11 @@ class MembersHelper extends AppHelper
     
     
     /**
+     * Display "Edit" button in the profile.
      *
+     * @param array $linkPath Path to the edit page.
+     *
+     * @return void
      */
     public function displayEditButton($linkPath)
     {
@@ -136,6 +140,27 @@ class MembersHelper extends AppHelper
         ?>
         </div>
         <?php
+    }
+    
+    
+    /**
+     * Gives i18n for a group name.
+     *
+     * @param string groupDbName Name of the group in the database.
+     *
+     * @return string
+     */
+    public function groupName($groupId)
+    {
+        switch ($groupId) {
+            case 1  : return __('admin', true);
+            case 2  : return __('moderator', true);
+            case 3  : return __('trusted user', true);
+            case 4  : return __('user', true);
+            case 5  : return __('inactive', true);
+            case 6  : return __('spammer', true);
+            default : return null;
+        }
     }
 }
 ?>

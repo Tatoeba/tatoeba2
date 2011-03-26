@@ -101,8 +101,7 @@ class UserController extends AppController
         $infoOfUser = $this->User->getInformationOfUser($userName);
         $user = $infoOfUser['User'];
         $countryName = $infoOfUser['Country']['name'];
-        $userStatus = $infoOfUser['Group']['name'];
-        $groupId = $infoOfUser['Group']['id'];
+        $groupId = $user['group_id'];
         $userId = $user['id']; 
         $userStats = $this->_stats($userId);
         
@@ -113,7 +112,6 @@ class UserController extends AppController
         $this->set('userStats', $userStats);
         $this->set('user', $user);
         $this->set('countryName', $countryName);
-        $this->set('userStatus', $userStatus);
         $this->set('groupId', $groupId);
         
         $this->set('isPublic', $isPublic);

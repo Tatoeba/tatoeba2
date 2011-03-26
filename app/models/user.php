@@ -225,22 +225,22 @@ class User extends AppModel
         return $this->find(
             'first',
             array(
-                'conditions' => array('User.username' => $userName),
+                'conditions' => array('username' => $userName),
                 'fields' => array(
-                    'User.image',
-                    'User.id',
-                    'User.name',
-                    'User.homepage',
-                    'User.since',
-                    'User.send_notifications',
-                    'User.description',
-                    'User.username',
-                    'User.birthday',
-                    'User.is_public',
+                    'id',
+                    'name',
+                    'image',
+                    'homepage',
+                    'since',
+                    'send_notifications',
+                    'description',
+                    'username',
+                    'birthday',
+                    'is_public',
+                    'group_id'
                 ),
                 'contain' => array(
-                    'Country' => array('fields' => array('name')),
-                    'Group' => array('fields' => array('name'))
+                    'Country' => array('fields' => array('name'))
                 )
             )
         );
