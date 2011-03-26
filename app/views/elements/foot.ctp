@@ -49,7 +49,7 @@ if (isset($this->params['lang'])) {
     <li>
         <?php
         echo $html->link(
-            __('Feedback', true),
+            __('Contact us', true),
             array(
                 "controller" => 'pages',
                 "action" => 'contact'
