@@ -44,8 +44,11 @@ $languages = array(
     'tur' => 'Türkçe',
     'eus' => 'Euskara',
     'tgl' => 'Tagalog',
-    'ara' => 'العربية'
+    'ara' => 'العربية',
+    'hun' => 'Magyar'
 );
+
+asort($languages);
 
 echo $form->select(
     'languageSelection',
