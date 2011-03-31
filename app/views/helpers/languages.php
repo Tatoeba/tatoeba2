@@ -127,7 +127,7 @@ class LanguagesHelper extends AppHelper
             'ain' => __('Ainu', true),
             'scn' => __('Sicilian', true),
             'mal' => __('Malayalam', true),
-            'nds' => __('Low German', true),
+            'nds' => __('Low Saxon', true),
             'tlh' => __('Klingon', true),
             'slv' => __('Slovenian', true),
             'tha' => __('Thai', true),
