@@ -90,13 +90,23 @@ class TagsController extends AppController
     {
         $userId = CurrentUser::get("id"); 
 
-        // if we try to access the page without POST info, we redirect to
-        // the home page
-        if (empty($tagName) || empty($sentenceId) || !is_numeric($sentenceId) ) {
+        // If no sentence id, we redirect to homepage.
+        if (empty($sentenceId) || !is_numeric($sentenceId) ) {
             $this->redirect(
                 array(
                     'controller' => 'pages',
-                    'action' => 'home',
+                    'action' => 'home'
+                )
+            );
+        }
+        
+        // If empty tag, we redirect to sentence's page.
+        if (empty($tagName)) {
+            $this->redirect(
+                array(
+                    'controller' => 'sentences',
+                    'action' => 'show',
+                    $sentenceId
                 )
             );
         }
