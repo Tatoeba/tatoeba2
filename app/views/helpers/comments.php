@@ -403,6 +403,14 @@ class CommentsHelper extends AppHelper
         <div class="sentence">
         <?php
         if (isset($sentenceText)) {
+            echo $this->Languages->icon(
+                $sentenceLang, 
+                array(
+                    "class" => "langIcon",
+                    "width" => 20
+                )
+            );
+            
             echo $this->Html->link(
                 $sentenceText,
                 array(
