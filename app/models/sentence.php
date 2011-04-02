@@ -71,7 +71,7 @@ class Sentence extends AppModel
         'toki', 'ain', 'scn', 'mal', 'nds',
         'tlh', 'slv', 'tha', 'lzh', 'oss',
         'roh', 'vol', null
-        );    
+        );   
     public $validate = array(
         'lang' => array(
             'rule' => array()     
@@ -266,6 +266,10 @@ class Sentence extends AppModel
      */
     public function getSeveralRandomIds($lang = 'und',  $numberOfIdWanted = 10)
     {
+        if ($_SERVER['SERVER_ADDR'] == '127.0.0.1') {
+            return array(rand(0,300000));
+        }
+        
         if(empty($lang)) {
             $lang = 'und';
         }
@@ -582,26 +586,46 @@ class Sentence extends AppModel
      * Get translations of a given sentence and translations of translations.
      *
      * @param int    $id   Id of the sentence we want translations of.
-     * @param string $lang To filter translations only in some language
+     * @param string $lang To filter translations only in a language.
      *
      * @return array Array of translations (direct and indirect).
      */
     public function getTranslationsOf($id,$lang = null)
     {
-        
         $id = Sanitize::paranoid($id);
         $lang = Sanitize::paranoid($lang);
         if ( ! is_numeric($id) ) {
             return array();
         }
-
-        $optionalWhere = "";
+        
         if (!empty($lang) && $lang != "und") {
-            $optionalWhere = "AND p2.lang = '$lang'";    
+            $languages = array($lang);
+        } else {
+            $languages = CurrentUser::getLanguages();
         }
-
+        
+        return $this->_getTranslationsOf($id, $languages);
+    }
+    
+    
+    /**
+     * Get translations of a given sentence and translations of translations.
+     *
+     * @param int   $id    Id of the sentence we want translations of.
+     * @param array $langs To filter translations only in some languages.
+     *
+     * @return array Array of translations (direct and indirect).
+     */
+    public function _getTranslationsOf($id,$langs = null)
+    {
+        if (empty($langs)) {
+            $langConditions = "";
+        } else {
+            $langs = "'".implode("','",$langs)."'";
+            $langConditions = "AND p2.lang IN ($langs)";
+        }
+        
         // DA ultimate Query 
-
         $direcTranslationsQuery = "
             SELECT
               p2.text AS translation_text,
@@ -613,7 +637,7 @@ class Sentence extends AppModel
             FROM sentences_translations AS t 
               LEFT  JOIN sentences AS p2 ON t.translation_id = p2.id
             WHERE 
-                t.sentence_id IN ($id) $optionalWhere
+                t.sentence_id IN ($id) $langConditions
         ";
 
         // query use to retrieve sentence which are already direct
@@ -641,7 +665,8 @@ class Sentence extends AppModel
                 t.sentence_id != p2.id
                 AND p2.id NOT IN ( $subQuery )
                 AND t.sentence_id IN ( $id )
-                $optionalWhere
+                $langConditions
+            ORDER BY 4
         "; 
 
         $query = "
@@ -734,7 +759,10 @@ class Sentence extends AppModel
      */
     public function getRomanization($text,$lang)
     {
-
+        if ($_SERVER['SERVER_ADDR'] == '127.0.0.1') {
+            return "local romanization";
+        }
+        
         $romanization = '';
 
         if ($lang == "wuu") {
@@ -823,7 +851,11 @@ class Sentence extends AppModel
      *
      */
     public function generateMetas(&$sentenceArray) {
-
+        
+        if ($_SERVER['SERVER_ADDR'] == '127.0.0.1') {
+            return;
+        }
+        
         if ($sentenceArray['lang'] === 'cmn') {
             // we call the wonderful homebrewadso
             $xml = simplexml_load_file( 
@@ -1623,6 +1655,28 @@ class Sentence extends AppModel
         }
         
         return $stats;
+    }
+    
+    
+    /**
+     * Return text of a sentence for given id.
+     *
+     * @param int $sentenceId Id of the sentence
+     *
+     * @return void
+     */
+    public function getSentenceTextForId($sentenceId)
+    {
+        $result = $this->find(
+            'first', 
+            array(
+                'fields' => array('text'),
+                'conditions' => array('id' => $sentenceId),
+                'contain' => array()
+            )
+        );
+        
+        return $result['Sentence']['text'];
     }
 }
 ?>

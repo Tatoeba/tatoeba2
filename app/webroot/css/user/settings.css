@@ -16,13 +16,13 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-#UserAddForm label {
+.module label {
     font-weight: bold;
     width: 100px;
     padding-right: 10px;
 }
 
-#UserAddForm .input {
+.module .input {
     margin: 10px;
 }
 
@@ -30,4 +30,8 @@
     margin: 10px 0px;
     padding: 3px 10px;
     
+}
+
+#UserLang {
+    width: 300px;
 }

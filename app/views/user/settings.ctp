@@ -24,6 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+$this->pageTitle = __('Settings', true);
 ?>
 <div id="annexe_content">
     <?php
@@ -38,16 +39,7 @@
     <div class="module">
         <h2><?php __('Options'); ?></h2>
         
-        <?php
-        $notifChecked = array();
-        if ($settings['send_notifications']) {
-            $notifChecked = array('checked' => 'checked');
-        }
-        $isPublicChecked = array();
-        if ($settings['is_public']) {
-            $isPublicChecked = array('checked' => 'checked');
-        }
-        
+        <?php        
         echo $form->create(
             null, 
             array(
@@ -58,17 +50,35 @@
         ?>
         
         <div>
-            <?php echo $form->checkbox('send_notifications', $notifChecked); ?>
+            <?php echo $form->checkbox('send_notifications'); ?>
             <label for="SendNotifications">
                 <?php __('Email notifications'); ?>
             </label>
         </div>
         
         <div>
-            <?php echo $form->checkbox('is_public', $isPublicChecked); ?>
+            <?php echo $form->checkbox('is_public'); ?>
             <label for="PublicProfile">
                 <?php __('Set your profile public?'); ?>
             </label>
+        </div>
+        
+        <div>
+        <?php
+        $tip = __(
+            'Enter ISO 639-3 codes, separated with a coma (ex: jpn,epo,ara,deu). '.
+            'Tatoeba will then only display translations in the languages you '.
+            'indicated. It will also restrict the languages lists to your '.
+            'languages.', true
+        );
+        echo $form->input(
+            'lang', 
+            array(
+                'label' => __('Languages', true),
+                'after' => '<div>'.$tip.'</div>'
+            )
+        );
+        ?>
         </div>
         
         <?php echo $form->end(__('Save', true)); ?>
@@ -89,8 +99,7 @@
         echo $form->input(
             'email',
             array(
-                'label' => __('Email', true),
-                'value' => $settings['email']
+                'label' => __('Email', true)
             )
         );
         echo $form->end(__('Save', true));

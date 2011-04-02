@@ -86,7 +86,6 @@ class User extends AppModel
                 'message' => 'Email already used.'
             )
         ),
-        'lang' => array('alphanumeric'),
         'lastlogout' => array('numeric'),
         'status' => array('numeric'),
         'permissions' => array('numeric'),
@@ -237,7 +236,8 @@ class User extends AppModel
                     'username',
                     'birthday',
                     'is_public',
-                    'group_id'
+                    'group_id',
+                    'lang'
                 ),
                 'contain' => array(
                     'Country' => array('fields' => array('name'))
@@ -263,7 +263,8 @@ class User extends AppModel
                 'fields' => array(
                     'is_public',
                     'send_notifications',
-                    'email'
+                    'email',
+                    'lang'
                 ),
                 'contain' => array()
             )

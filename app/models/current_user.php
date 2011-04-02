@@ -235,10 +235,25 @@ class CurrentUser extends AppModel
         } else { 
             return getenv("REMOTE_ADDR"); 
         }
-    } 
-
-
-
+    }
+    
+    
+    /** 
+     * Get user's languages.
+     *
+     * @return array
+     */
+    public function getLanguages()
+    {
+        $lang = CurrentUser::get('lang');
+        
+        if (empty($lang)) {
+            return null;
+        }
+        
+        $langArray = explode(',', $lang);
+        return $langArray;
+    }
     
 }
 ?>

@@ -303,35 +303,7 @@ class UserController extends AppController
             );
         }
     }
-
-
-    /**
-     * Save email and personal URL.
-     * TODO Delete me.
-     *
-     * @return void
-     */
-    public function save_contact()
-    {
-        if (!empty($this->data)) {
-            $userData['User'] = $this->data['profile_contact'];
-            $this->User->id = $this->Auth->user('id');
-            
-            if ($this->User->save($userData)) {
-                $flashMsg = __('Your contact information have been saved.', true);
-            } else {
-                $flashMsg = __(
-                    'An error occured while saving. Please try again or contact '.
-                    'us to report this.',
-                    true
-                );
-            }
-
-            $this->Session->setFlash($flashMsg);
-        }
-
-        $this->redirect(array('action' => 'index'));
-    }
+    
 
     /**
      * Save option settings. Options are :
@@ -351,7 +323,14 @@ class UserController extends AppController
         
         if (!empty($this->data)) {
             $this->data['User']['id'] = $currentUserId;
-            if ($this->User->save($this->data)) {
+            $this->data['User']['lang'] = $this->_languageSettings(
+                $this->data['User']['lang']
+            );
+            if ($this->User->save($this->data)) {                
+                // Need, so that the information is updated for the Auth component.
+                $user = $this->User->read(null, $currentUserId);
+                $this->Session->write($this->Auth->sessionKey, $user['User']);
+                
                 $flashMsg = __('Your settings have been saved.', true);
             } else {
                 $flashMsg = __(
@@ -371,7 +350,38 @@ class UserController extends AppController
             )
         );
     }
-
+    
+    
+    /**
+     * Check languages settings eneterd by the user and returns corrected string
+     * (if correction is needed).
+     *
+     * A correct string should be composted of ISO codes that are present in the
+     * list of languages supported, separated by a comma.
+     * For instance: eng,deu,jpn,ita.
+     */
+    private function _languageSettings($userInput)
+    {
+        $userInput = str_replace(' ', '', $userInput);
+        $userLangs = explode(',', $userInput);
+        $supportedLangs = $this->Sentence->languages;
+        $tmpLanguagesArray = array();
+        foreach($userLangs as $lang) {
+            if (in_array($lang, $supportedLangs)) {
+                $tmpLanguagesArray[] = $lang;
+            }
+        }
+        
+        $languageSettings = implode(',', $tmpLanguagesArray);
+        
+        if (empty($languageSettings)) {
+            $languageSettings = null;
+        }
+        
+        return $languageSettings;
+    }
+    
+    
     /**
      * Change password.
      *
@@ -485,8 +495,7 @@ class UserController extends AppController
             $this->redirect('/');
         }
         
-        $settings = $this->User->getSettings($currentUserId);
-        $this->set('settings', $settings['User']);
+        $this->data = $this->User->getSettings($currentUserId);
     }
 }
 ?>

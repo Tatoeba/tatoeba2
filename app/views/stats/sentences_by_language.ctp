@@ -55,10 +55,15 @@ $max = $stats[0]['langStats']['numberOfSentences'];
             </td>
             
             <td class="icon">
-            <?php echo $languages->icon(
+            <?php 
+            echo $languages->icon(
                 $langCode, array('width' => 30, 'height' => 20)
-            ); 
+            );
             ?>
+            </td>
+            
+            <td>
+            <?php echo $langCode; ?>
             </td>
             
             <td class="languageName">

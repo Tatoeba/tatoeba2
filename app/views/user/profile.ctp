@@ -47,6 +47,7 @@ $userSince = $user['since'];
 $userStatus = $members->groupName($groupId);
 $statusClass = 'status'.$groupId;
 $currentMember = CurrentUser::get('username');
+$languagesSettings = $user['lang'];
 
 $userImage = 'unknown-avatar.png';
 if (!empty($user['image'])) {
@@ -128,6 +129,16 @@ if (!empty($realName)) {
                     }
                     ?>
                 </li>
+                
+                <?php
+                if (!empty($languagesSettings)) {
+                    ?> 
+                    <li class="item">
+                    <?php echo $languagesSettings; ?>
+                    </li>
+                    <?php
+                }
+                ?>
             </ul>
             <p>
             <?php
