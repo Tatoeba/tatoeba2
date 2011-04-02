@@ -136,6 +136,18 @@ class LanguagesHelper extends AppHelper
             'roh' => __('Romansh', true),
             'vol' => __('Volapük', true)
         );
+        
+        if (CurrentUser::isMember()) {
+            $userLangs = CurrentUser::getLanguages();
+            if (!empty($userLangs)) {
+                $filteredLangs = array();
+                foreach($userLangs as $langCode) {
+                    $filteredLangs[] = $languages[$langCode];
+                }
+                $languages = $filteredLangs;
+            }
+        }
+        
         asort($languages);
         
         return $languages;
