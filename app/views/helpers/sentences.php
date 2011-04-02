@@ -532,7 +532,9 @@ class SentencesHelper extends AppHelper
             // Display sentence as simple text if we're on the sentence's page.
             // Otherwise display as link.
             if ($link == $currentURL) {
+                echo '<div class="text">';
                 echo $sentenceText;
+                echo '</div>';
             } else {
                 echo $this->Html->link(
                     $sentenceText,
