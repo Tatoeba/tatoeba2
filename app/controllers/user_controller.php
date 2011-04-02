@@ -413,7 +413,7 @@ class UserController extends AppController
             $this->Session->setFlash($flashMsg);
         }
 
-        $this->redirect(array('action' => 'index'));
+        $this->redirect(array('action' => 'settings'));
     }
     
     /**
