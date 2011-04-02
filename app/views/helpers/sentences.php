@@ -509,23 +509,40 @@ class SentencesHelper extends AppHelper
             echo '<div dir="'.$dir.'" id="'.$sentenceLang.'_'.$sentenceId.'" class="text editableSentence">';
             echo Sanitize::html($sentenceText);
             echo '</div>';
-            // NOTE: I'm echo-ing this because we don't want to have extra spaces
-            // before or after the sentence text when editing in place.
             
         } else {
-        
-            echo $this->Html->link(
-                $sentenceText,
-                array(
-                    'controller' => 'sentences',
-                    'action' => 'show',
-                    $sentenceId
-                ),
-                array(
-                    'dir' => $dir,
-                    'class' => 'text'
-                )
+            
+            $link = array(
+                'controller' => 'sentences',
+                'action' => 'show',
+                $sentenceId
             );
+            
+            // To check if we're on the sentence's page or not
+            $currentSentenceId = null;
+            if (isset($this->params['pass'][0])) {
+                $currentSentenceId = $this->params['pass'][0];
+            }
+            $currentURL = array(
+                'controller' => $this->params['controller'],
+                'action' => $this->params['action'],
+                $currentSentenceId
+            );
+            
+            // Display sentence as simple text if we're on the sentence's page.
+            // Otherwise display as link.
+            if ($link == $currentURL) {
+                echo $sentenceText;
+            } else {
+                echo $this->Html->link(
+                    $sentenceText,
+                    $link,
+                    array(
+                        'dir' => $dir,
+                        'class' => 'text'
+                    )
+                );
+            }
             
         }
     }
