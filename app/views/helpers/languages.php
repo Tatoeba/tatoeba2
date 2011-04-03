@@ -137,6 +137,19 @@ class LanguagesHelper extends AppHelper
             'vol' => __('Volapük', true)
         );
         
+        asort($languages);
+        
+        return $languages;
+    }
+    
+    
+    /**
+     * Returns array of languages set in the user's options.
+     */
+    public function userLanguagesArray()
+    {
+        $languages = $this->onlyLanguagesArray();
+        
         if (CurrentUser::isMember()) {
             $userLangs = CurrentUser::getLanguages();
             if (!empty($userLangs)) {
@@ -148,10 +161,9 @@ class LanguagesHelper extends AppHelper
             }
         }
         
-        asort($languages);
-        
         return $languages;
     }
+    
 
     /** 
      * Return array of languages in Tatoeba. + all languages
@@ -214,7 +226,7 @@ class LanguagesHelper extends AppHelper
 
     public function translationsArray()
     {
-        $languages = $this->onlyLanguagesArray();
+        $languages = $this->userLanguagesArray();
         
         array_unshift($languages, array('auto' => __('Auto detect', true)));
         return $languages;
