@@ -155,7 +155,7 @@ class LanguagesHelper extends AppHelper
             if (!empty($userLangs)) {
                 $filteredLangs = array();
                 foreach($userLangs as $langCode) {
-                    $filteredLangs[] = $languages[$langCode];
+                    $filteredLangs[$langCode] = $languages[$langCode];
                 }
                 $languages = $filteredLangs;
             }
