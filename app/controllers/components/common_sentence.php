@@ -40,6 +40,7 @@ class CommonSentenceComponent extends Object
 
     public $components = array(
         'GoogleLanguageApi',
+        'Cookie'
     );
 
     /**
@@ -65,7 +66,7 @@ class CommonSentenceComponent extends Object
      * @return boolean
      *
      */
-    public function  wrapper_save_sentence(
+    public function wrapper_save_sentence(
         $lang,
         $text,
         $userId,
@@ -73,10 +74,10 @@ class CommonSentenceComponent extends Object
         $translatedSentenceId = null,
         $translatedSentenceLang = null
     ) {
-
+        $this->Cookie->write('contribute_lang', $lang, false, "+1 month");
+        
         if ($lang === 'auto') {
             $lang = $this->GoogleLanguageApi->detectLang($text);
-
         }
         if (empty($lang)) {
             $lang = null;
@@ -90,7 +91,7 @@ class CommonSentenceComponent extends Object
         $Sentence = ClassRegistry::init('Sentence');
 
         $isSaved = $Sentence->save($this->data);
-                
+        
         return $isSaved;
     }
        

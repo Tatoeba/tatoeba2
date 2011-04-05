@@ -42,7 +42,8 @@ class SentencesController extends AppController
         'GoogleLanguageApi',
         'CommonSentence',
         'Lucene',
-        'Permissions'
+        'Permissions',
+        'Cookie'
     );
     public $helpers = array(
         'Sentences',
@@ -239,12 +240,10 @@ class SentencesController extends AppController
         $sentenceText = $this->data['Sentence']['text'];
         $sentenceText = trim($sentenceText);
 
-        $this->Session->write('contribute_lang', $sentenceLang);
-
         if (empty($sentenceText) || empty($userId)) {
             return ;
         }
-
+        
         // saving
         $isSaved = $this->CommonSentence->wrapper_save_sentence(
             $sentenceLang,
@@ -306,8 +305,6 @@ class SentencesController extends AppController
             $sentenceText,
             $userId
         );
-        
-        $this->Session->write('contribute_lang', $sentenceLang);
         
         // saving
         if ($isSaved) {
@@ -424,7 +421,7 @@ class SentencesController extends AppController
         // we store the selected language to be reuse after
         // that way, as users are likely to contribute in the 
         // same language, they don't need to reselect each time
-        $this->Session->write('contribute_lang', $translationLang);
+        $this->Cookie->write('contribute_lang', $translationLang, false, "+1 month");
         
         if (isset($translationText)
             && trim($translationText) != '' 
