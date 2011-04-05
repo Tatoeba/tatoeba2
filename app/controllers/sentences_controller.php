@@ -235,7 +235,7 @@ class SentencesController extends AppController
     public function add()
     {
         $preSelectedLang = $this->Cookie->read('contribute_lang');
-        $this->set('preSelectedLang', $preSelectedlang);
+        $this->set('preSelectedLang', $preSelectedLang);
     }
     
     /**
