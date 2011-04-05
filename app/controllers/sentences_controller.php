@@ -234,27 +234,8 @@ class SentencesController extends AppController
 
     public function add()
     {
-        $userId = $this->Auth->user('id');
-        $sentenceLang = $this->data['Sentence']['contributionLang'];
-        $sentenceLang = Sanitize::paranoid($sentenceLang);
-        $sentenceText = $this->data['Sentence']['text'];
-        $sentenceText = trim($sentenceText);
-
-        if (empty($sentenceText) || empty($userId)) {
-            return ;
-        }
-        
-        // saving
-        $isSaved = $this->CommonSentence->wrapper_save_sentence(
-            $sentenceLang,
-            $sentenceText,
-            $userId
-        );
-
-        if ($isSaved) {
-            $sentence = $this->Sentence->getSentenceWithId($this->Sentence->id);
-            $this->set('sentence', $sentence);
-        }
+        $preSelectedLang = $this->Cookie->read('contribute_lang');
+        $this->set('preSelectedLang', $preSelectedlang);
     }
     
     /**

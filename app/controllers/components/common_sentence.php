@@ -97,7 +97,12 @@ class CommonSentenceComponent extends Object
        
     public function getAllNeededForSentences($sentenceIds, $lang = null)
     {
- 
+        // We're passing the value from the cookie to the session because it is
+        // needed for the translation form (in helpers/sentences.php), but we
+        // cannot access the Cookie component from a view.
+        $preSelectedLang = $this->Cookie->read('contribute_lang');
+        $this->Session->save('contribute_lang', $preSelectedLang);
+        
         $allSentences = array();
         
         $Sentence = ClassRegistry::init('Sentence');
