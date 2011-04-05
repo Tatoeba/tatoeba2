@@ -49,6 +49,6 @@ function changeInterfaceLang(newLang) {
     date.setMonth(date.getMonth()+1);
     document.cookie = 'CakeCookie[interfaceLanguage]=' + newLang 
         + '; path=/'
-        + '; expires=' + date;
+        + '; expires=' + date.toGMTString();
     location.reload();
 }
