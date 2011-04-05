@@ -87,6 +87,16 @@ class AppController extends Controller
         App::import('Model', 'CurrentUser');
         CurrentUser::store($this->Auth->user());
         
+        
+        // TODO
+        // We're passing the value from the cookie to the session because it is
+        // needed for the translation form (in helpers/sentences.php), but we
+        // cannot access the Cookie component from a view.
+        // This is not optimized, but I'm too lazy to do otherwise.
+        $preSelectedLang = $this->Cookie->read('contribute_lang');
+        $this->Session->write('contribute_lang', $preSelectedLang);
+        
+        
         // Language of interface:
         // - By default we use the language set in the browser (or English, if the
         //   language of the browser is not supported).

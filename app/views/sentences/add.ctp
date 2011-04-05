@@ -101,6 +101,7 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
                 )
             );
             $langArray = $languages->translationsArray();
+            $preSelectedLang = $session->read('contribute_lang');
 
             if (empty($preSelectedLang)) {
                 $preSelectedLang = 'auto';
