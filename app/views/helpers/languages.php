@@ -134,7 +134,9 @@ class LanguagesHelper extends AppHelper
             'lzh' => __('Literary Chinese', true),
             'oss' => __('Ossetian', true),
             'roh' => __('Romansh', true),
-            'vol' => __('Volapük', true)
+            'vol' => __('Volapük', true),
+            'gla' => __('Scottish Gaelic', true),
+            'ido' => __('Ido', true)
         );
         
         asort($languages);

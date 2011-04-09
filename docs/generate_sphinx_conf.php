@@ -103,7 +103,9 @@ $languages = array(
     'lzh' => 'Literary Chinese',
     'oss' => 'Ossetian',
     'roh' => 'Romansh',
-    'vol' => 'Volapük'
+    'vol' => 'Volapük',
+    'gla' => 'Scottish Gaelic',
+    'ido' => 'Ido'
 );
 
 $languageWithStemmer = array(

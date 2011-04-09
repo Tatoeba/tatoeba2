@@ -110,6 +110,7 @@ class GoogleLanguageApiComponent extends Object
             case 'fo' :     return 'fao';
             case 'fy' :     return 'fry';
             case 'ga' :     return 'gle';
+            case 'gd' :     return 'gla';
             case 'gl' :     return 'glg';
             case 'hi' :     return 'hin';
             case 'hr' :     return 'hrv';
