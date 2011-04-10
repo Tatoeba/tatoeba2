@@ -52,16 +52,6 @@ if ($session->read('Auth.User.id')) {
         ?>
         </div>
         
-        <div class="module">
-        <h2><?php __('Tips'); ?></h2>
-        <?php
-        __(
-            'Click on the name of your list if you would like to change the name. '.
-            'You will be able to edit it in place.'
-        );
-        ?>
-        </div>
-        
     <?php 
     }
     ?>
