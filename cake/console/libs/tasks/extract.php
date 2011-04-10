@@ -299,7 +299,7 @@ class ExtractTask extends Shell{
         while (($tokenCount - $count) > 2) {
             
             $token = $this->__tokens[$count];
-            $this->out($token);
+            
             if (is_array($token)) {
                 list($type, $string, $line) = $token;
                 
