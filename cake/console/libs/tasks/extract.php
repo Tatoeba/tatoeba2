@@ -296,10 +296,10 @@ class ExtractTask extends Shell{
         $i18nStringFound = false;
         $save = false;
         
-        while (($tokenCount - $count) > 3) {
+        while (($tokenCount - $count) > 2) {
             
             $token = $this->__tokens[$count];
-            
+            $this->out($token);
             if (is_array($token)) {
                 list($type, $string, $line) = $token;
                 
