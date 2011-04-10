@@ -66,7 +66,7 @@ $this->pageTitle = __('Settings', true);
         <div>
         <?php
         $tip = __(
-            'Enter ISO 639-3 codes, separated with a coma (ex: jpn,epo,ara,deu). '.
+            'Enter ISO 639-3 codes, separated with a comma (ex: jpn,epo,ara,deu). '.
             'Tatoeba will then only display translations in the languages you '.
             'indicated. You can leave this empty to display translations in all '.
             'the languages.', true
