@@ -62,29 +62,13 @@ class User extends AppModel
      */
     public $validate = array(
         'username' => array(
-            'alphanumeric' => array(
-                'rule' => '/^\\w*$/',
-                'message'
-                    => 'Username can only contain letters, numbers, or underscore'
-            ),
-            'isUnique' => array(
-                'rule' => 'isUnique',
-                'message' => 'Username already taken.'
-            ),
-            'min' => array(
-                'rule' => array('minLength', 2),
-                'message' => 'Username must be at least two letters'
-            )
+            'alphanumeric' => array('rule' => '/^\\w*$/'),
+            'isUnique' => array('rule' => 'isUnique'),
+            'min' => array('rule' => array('minLength', 2))
         ),
         'email' => array(
-            'email' => array(
-                'rule' => 'email',
-                'message' => 'Non valid email'
-            ),
-            'isUnique' => array(
-                'rule' => 'isUnique',
-                'message' => 'Email already used.'
-            )
+            'email' => array('rule' => 'email'),
+            'isUnique' => array('rule' => 'isUnique')
         ),
         'lastlogout' => array('numeric'),
         'status' => array('numeric'),

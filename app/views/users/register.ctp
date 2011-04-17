@@ -53,7 +53,21 @@ echo $form->create('User', array("action" => "register"));
             array(
                 "label" => "",
                 "id" => "registrationUsername",
-                "class" => "registrationField"
+                "class" => "registrationField",
+                'error' => array(
+                    'alphanumeric' => __(
+                        'Username can only contain letters, numbers, or underscore',
+                        true
+                    ),
+                    'isUnique' => __(
+                        'Username already taken.', 
+                        true
+                    ),
+                    'min' => __(
+                        'Username must be at least two letters',
+                        true
+                    )
+                )
             )
         );
         ?>
@@ -93,7 +107,17 @@ echo $form->create('User', array("action" => "register"));
             array(
                 "label" => "",
                 "id" => "registrationEmail",
-                "class" => "registrationField"
+                "class" => "registrationField",
+                'error' => array(
+                    'email' => __(
+                        'Non valid email', 
+                        true
+                    ),
+                    'isUnique' => __(
+                        'Email already used.', 
+                        true
+                    )
+                )
             )
         );
         ?>
