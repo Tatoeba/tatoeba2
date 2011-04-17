@@ -59,22 +59,12 @@ class PrivateMessagesHelper extends AppHelper
             )
         );
 
-        // for admin to send PM to everyone
-        if (CurrentUser::isAdmin()) {
-            echo $this->Form->checkbox(
-                "toEveryone",
-                array(
-                    'label' => __('Send to everyone', true),
-                )
-            );
-        }
-
-
         echo $this->Form->input(
             'title',
             array(
                 'default' => $title,
-                'type' => 'text'
+                'type' => 'text',
+                'label' => __('Title', true)
             )
         );
         
