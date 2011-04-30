@@ -395,17 +395,15 @@ class UsersController extends AppController
 
     /**
      * Search for user given a username.
-     * TODO HACKISH FUNCTION
      * 
      * @return void
      */
     public function search()
     {        
-        $user = $this->User->findByUsername($this->data['User']['username']);
+        $userId = $this->User->getIdFromUsername($this->data['User']['username']);
         
-        if ($user != null) {
-            $id = ($user['User']['id'] < 1) ? 1 : $user['User']['id'];
-            $this->redirect(array("action" => "show", $id));
+        if ($userId != null) {
+            $this->redirect(array("action" => "show", $userId));
         } else {
             $this->flash(
                 __(
