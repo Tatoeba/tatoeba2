@@ -1,0 +1,1 @@
+ALTER TABLE  `langstats` ADD UNIQUE (`lang`);
