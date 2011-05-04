@@ -1,1 +1,1 @@
-ALTER TABLE  `langstats` ADD UNIQUE (`lang`);
+ALTER TABLE  `langStats` ADD UNIQUE (`lang`);
