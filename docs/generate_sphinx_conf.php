@@ -105,7 +105,8 @@ $languages = array(
     'roh' => 'Romansh',
     'vol' => 'Volapük',
     'gla' => 'Scottish Gaelic',
-    'ido' => 'Ido'
+    'ido' => 'Ido',
+    'ast' => 'Asturian'
 );
 
 $languageWithStemmer = array(
