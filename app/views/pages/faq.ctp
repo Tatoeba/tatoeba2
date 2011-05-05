@@ -58,6 +58,7 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
         <li><a href="#trusted-user">How can I become a trusted user?</a></li>
         <li><a href="#translate-interface">Can I help translating the website into other languages?</a></li>
         <li><a href="#submit-audio">How do I contribute audio in Tatoeba?</a></li>
+        <li><a href="#delete-account">How do I delete my account?</a></li>
     </ul>
     </div>
     
@@ -112,14 +113,14 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     <ol>
         <li><strong>Extracting strings from code source.</strong> We extract from the code source the strings that need to be translated. These strings are saved into a POT file. It’s just a text file, with some special format (you can open it with a text editor like Notepad). The concept is that the POT file is the template. From this template will be created several PO files: each PO file will contain the translations into a specific language.</li>
         <li><strong>Sending POT file to Launchpad.</strong> We send the POT file to a platform called Launchpad. It provides a web interface to manage translations of the POT file and gives the possibility to translate collaboratively. Launchpad will process the POT file to update the existing PO files. It will scan for new strings in the POT file and add them to each PO file. It will detect strings that are no more present and delete them from each PO file.</li>
-        <li><strong>Translating.</strong> You’ll need to have a Launchpad account. Here’s where you can translate the strings of Tatoeba’s interface: https://translations.launchpad.net/tatoeba. Fell free to add a new language if you don’t see your desired language in the list! Once you chose a language, you can filter the page to display only strings that haven’t been translated yet.</li>
-        <li><strong>Updating Tatoeba.</strong> Once in a while, the PO files are downloaded, converted into MO files. The MO files are binary files, and they are the ones that Tatoeba uses to get the translations of the interface. So it’s only when the MO files are uploaded that Tatoeba translations are actually updated.</li>
+        <li><strong>Translating.</strong> You’ll need to have a Launchpad account. Here’s where you can translate the strings of Tatoeba’s interface: <a href="https://translations.launchpad.net/tatoeba">https://translations.launchpad.net/tatoeba</a>. Feel free to add a new language if you don’t see your desired language in the list! Once you chose a language, you can filter the page to display only strings that haven’t been translated yet.</li>
+        <li><strong>Updating Tatoeba.</strong> Every Monday at 6AM (France time), the PO files are downloaded and converted into MO files. The MO files are binary files, and they are the ones that Tatoeba uses to get the translations of the interface. So it’s only when the MO files are uploaded that Tatoeba translations are actually updated.</li>
     </ol>
     <p>You should know that the whole process is not automated yet.</p>
     <ul>
         <li>Someone has to manually start the extraction of the strings from the code source.</li>
         <li>Someone has to manually send the POT file to Launchpad.</li>
-        <li>Someone has to manually download the PO files from Launchpad and convert them into MO files (although this part is in process of being automated, thanks to Ppjet6).</li>
+        <li>However, thanks to Ppjet6, the part where we download the PO files from Launchpad and convert them into MO files is automated.</li>
     </ul>
     <p>You should also know that we sometimes update Tatoeba BEFORE we send the latest POT to Launchpad. As a result, you will not always see the latest strings in Launchpad. Conversely, we sometimes send translations to Launchpad BEFORE we update Tatoeba, so you may find strings on Launchpad that cannot be found anywhere on Launchpad yet. So don't be surprised if texts in Tatoeba and Launchpad are not always synchronized.</p>
     <p>Finally, there are some parts of Tatoeba that cannot be translated at all. The FAQ is one of them. The system we use to provide Tatoeba in several languages is good for translating small strings (like options in a menu, language names, etc), but it’s not adapted for whole articles. Ideally, we should use a wiki (or something like that) to store documentation about Tatoeba but we still don’t have that.</p>
@@ -135,5 +136,29 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     <p><strong>6)</strong> Press space to indicate you are ready and read the sentence that is highlighted in red. The software will detect when to start and stop recording, and will jump to the next sentence automatically. All you have to do is read what's highlighted in red. If you want to take a break, you can press space to pause, so that it doesn't record something unrelated. If you need to listen to a sentence's audio, simply select it and press "Enter" (you can navigate with the directional keys: up, down, left, right).</p>
     <p><strong>7)</strong> Upload your files somewhere (like Megaupload or RapidShare) and give us the link. We will then include your audio in Tatoeba as soon as possible and will let you know when it is done. We understand it would be more practical if you could record/upload directly from Tatoeba, but we unfortunately don't have time to implement the features for this =/</p>
     <p><strong>Related link:</strong> <a href="http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html">http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html</a></p>
+    
+    
+    <h3 id="delete-account"><a href="#delete-account">How do I delete my account?</a></h3>
+    <p>There is no button anywhere for you to delete your account. We have not implemented this feature yet because it is a bit tricky. However, you can get your account deleted the following way:</p>
+    <ol>
+        <li>Send an email to team@tatoeba.org with the title "Account deletion".</li>
+        <li>Tell us what is your username.</li>
+        <li>Optionally, tell us why you decided to delete your account.</li>
+        <li>Also send a <a href="http://tatoeba.org/private_messages/write/TRANG">private message to Trang</a> with the title "Account deletion", using of course the account you want to delete. It will serve as a confirmation that you are indeed the owner of the account you want to delete.</li>
+    </ol>
+
+    <p>By default, here is what we will do:</p>
+    <ul>
+        <li>We will delete all the the information you have added in your profile.</li> 
+        <li>The only information that will remain is the day you have registered and your username.</li>
+        <li>You email will be deleted from the database as well. You will not receive any notifications anymore.</li>
+        <li>We will change your username into something more generic (for instance "user002").</li>
+        <li>We will change your status into "inactive".</li>
+        <li>We will delete your private messages.</li>
+        <li>We will NOT delete your sentences. We will transfer them to another member of Tatoeba when we find a volunteer to adopt them. Until then, they will remain in your inactive account.</li>
+        <li>We will NOT delete your comments on sentences. You may delete them yourself, but take into consideration the fact that a deleting one of your comments can make a discussion confusing.</li>
+        <li>We will NOT delete your messages on the Wall.</li>
+    </ul>
+    <p>If there is something you do not want us to do (or want us to do), you will have to tell us in your email.</p>
     </div>
 </div>
