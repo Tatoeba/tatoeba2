@@ -195,7 +195,7 @@ class Contribution extends AppModel
                     'date_format(datetime,\'%b %D %Y\') as day',
                 ),
                 'conditions' => array(
-                    'Contribution.datetime > \'2008-01-01 00:00:00\'',
+                    'Contribution.datetime > \'2010-01-01 00:00:00\'',
                     'Contribution.translation_id' => null,
                     'Contribution.action' => 'insert',
                 ),
