@@ -45,7 +45,8 @@ $languages = array(
     'eus' => 'Euskara',
     'tgl' => 'Tagalog',
     'ara' => 'العربية',
-    'hun' => 'Magyar'
+    'hun' => 'Magyar',
+    'nds' => 'Plattdüütsch'
 );
 
 asort($languages);
