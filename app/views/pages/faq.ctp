@@ -104,13 +104,13 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
     <h3 id="trusted-user"><a href="#trusted-user">How can I become a trusted user?</a></h3>
     <p>The status of "trusted user" does not exist anymore. It has been renamed into "<a href="#advanced-contributor">advanced contributor</a>".</p>
-    <p>Related link: <a href="http://blog.tatoeba.org/2011/05/new-users-status.html">http://blog.tatoeba.org/2011/05/new-users-status.html</a><p>
+    <p>Related link: <a href="http://blog.tatoeba.org/2011/05/new-users-status.html">http://blog.tatoeba.org/2011/05/new-users-status.html</a></p>
     
     
     <h3 id="advanced-contributor"><a href="#advanced-contributor">How can I become an advanced contributor?</a></h3>
     <p>You have to <?php echo $html->link('contact Trang', array('controller' => 'private_messages', 'action' => 'write', 'TRANG')); ?> and tell her that you want to be a candidate to become advanced contributor. Make sure you have read and understand ENTIRELY the <a href="http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html">guide of the good contributor</a>.</p>
     <p>The exact conditions to become an advanced contributor will be published some time in June (hopefully).</p>
-    <p>Related link: <a href="http://blog.tatoeba.org/2011/05/new-users-status.html">http://blog.tatoeba.org/2011/05/new-users-status.html</a><p>
+    <p>Related link: <a href="http://blog.tatoeba.org/2011/05/new-users-status.html">http://blog.tatoeba.org/2011/05/new-users-status.html</a></p>
     
     
     <h3 id="translate-interface"><a href="#translate-interface">Can I help translating the website into other languages?</a></h3>
