@@ -56,6 +56,7 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
         <li><a href="#add-tag">How can I add tags to a sentence?</a></li>
         <li><a href="#link-unlink">How can I link or unlink sentences?</a></li>
         <li><a href="#trusted-user">How can I become a trusted user?</a></li>
+        <li><a href="#trusted-user">How can I become an advanced contributor?</a></li>
         <li><a href="#translate-interface">Can I help translating the website into other languages?</a></li>
         <li><a href="#submit-audio">How do I contribute audio in Tatoeba?</a></li>
         <li><a href="#delete-account">How do I delete my account?</a></li>
@@ -94,17 +95,22 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
     
     <h3 id="add-tag"><a href="#add-tag">How can I add tags to a sentence?</a></h3>
-    <p>You have to be a trusted user (cf. <a href="#trusted-user">below</a>).</p>
+    <p>You have to be an advanced contributor (cf. <a href="#advanced-contributor">below</a>).</p>
     
     
     <h3 id="link-unlink"><a href="#link-unlink">How can I link or unlink sentences?</a></h3>
-    <p>You have to be a trusted user (cf. <a href="#trusted-user">below</a>).</p>
+    <p>You have to be an advanced contributor (cf. <a href="#advanced-contributor">below</a>).</p>
     
     
     <h3 id="trusted-user"><a href="#trusted-user">How can I become a trusted user?</a></h3>
-    <p>You have to <?php echo $html->link('contact Trang', array('controller' => 'private_messages', 'action' => 'write', 'TRANG')); ?> and tell her that you want to be a candidate to become a trusted user. Make sure you have read and understand ENTIRELY the <a href="http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html">guide of the good contributor</a>.</p>
-    <p>You should know that we are currently re-defining the procedure to become a trusted user. Nothing official yet but you can find further explanations <a href="http://tatoeba.org/wall/show_message/4890#message_4890">here</a>.</p>
-    <p>In case you wonder what being a trusted user is about: basically, as a trusted user, you can help Tatoeba with more "advanced" tasks that not everyone can do because they require a deeper understanding of the project. Being a trusted user also means that the community trusts you for contributing in a helpful way to this project, which is why you may not become a trusted user "right away", if you have registered too recently. But keep participating, and you can be sure to become one :)</p>
+    <p>The status of "trusted user" does not exist anymore. It has been renamed into "<a href="#advanced-contributor">advanced contributor</a>".</p>
+    <p>Related link: <a href="http://blog.tatoeba.org/2011/05/new-users-status.html">http://blog.tatoeba.org/2011/05/new-users-status.html</a><p>
+    
+    
+    <h3 id="advanced-contributor"><a href="#advanced-contributor">How can I become an advanced contributor?</a></h3>
+    <p>You have to <?php echo $html->link('contact Trang', array('controller' => 'private_messages', 'action' => 'write', 'TRANG')); ?> and tell her that you want to be a candidate to become advanced contributor. Make sure you have read and understand ENTIRELY the <a href="http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html">guide of the good contributor</a>.</p>
+    <p>The exact conditions to become an advanced contributor will be published some time in June (hopefully).</p>
+    <p>Related link: <a href="http://blog.tatoeba.org/2011/05/new-users-status.html">http://blog.tatoeba.org/2011/05/new-users-status.html</a><p>
     
     
     <h3 id="translate-interface"><a href="#translate-interface">Can I help translating the website into other languages?</a></h3>

@@ -154,9 +154,9 @@ class MembersHelper extends AppHelper
     {
         switch ($groupId) {
             case 1  : return __('admin', true);
-            case 2  : return __('moderator', true);
-            case 3  : return __('trusted user', true);
-            case 4  : return __('user', true);
+            case 2  : return __('corpus maintainer', true);
+            case 3  : return __('advanced contributor', true);
+            case 4  : return __('contributor', true);
             case 5  : return __('inactive', true);
             case 6  : return __('spammer', true);
             default : return null;
