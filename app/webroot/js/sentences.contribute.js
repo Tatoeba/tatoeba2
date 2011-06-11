@@ -29,13 +29,15 @@ $(document).ready(function() {
     })
     
     function save(){
-        $("#SentenceText").blur(); // Removing the focus from the input to prevent a
-                                   // sentence from being added several times when
-                                   // the user presses several times the "Enter" key.
+        // Removing the focus from the input to prevent a sentence from being 
+        // added several times when the user presses several times the "Enter" key.
+        $("#SentenceText").blur(); 
         
         var rootUrl = get_tatoeba_root_url();
         var sentenceText = $("#SentenceText").val();
         var selectedLang = $("#contributionLang").val();
+        
+        sentenceText = normalized_sentence(sentenceText);
         
         if ($.trim(sentenceText) != '') {
             $(".sentencesAddedloading").show();
