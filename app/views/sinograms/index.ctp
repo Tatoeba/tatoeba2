@@ -165,7 +165,7 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
             <?php
             __(
                 'On the right you also have the most common radicals grouped by'.
-                ' strokes, in case you don\'t have any way to type hankis/kanjis.'
+                ' strokes, in case you don\'t have any way to type hanzis/kanjis.'
             );  
             ?>
         </p>
@@ -181,7 +181,7 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
                 );
                 echo $form->input(
                     "subglyphs",
-                    array("label" => __("Sublgyphs: ", true))
+                    array("label" => __("Subglyphs: ", true))
                 );
                 echo $form->end(
                     array( "label" => __("Search", true))
