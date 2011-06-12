@@ -145,7 +145,7 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
         <p class="introduction" >
             <?php
             __(
-                'If you don\'t know how to input sublyph either, but you know'.
+                'If you don\'t know how to input subglyph either, but you know'.
                 ' a character that also contains this subglyph, then you can'.
                 ' use the explode form.'
             );
