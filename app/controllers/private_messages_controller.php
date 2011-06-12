@@ -66,10 +66,11 @@ class PrivateMessagesController extends AppController
      * folder name in the database (SQL ENUM)
      *
      * @param string $folder The folder we want to display
+     * @param string $status 'all', 'read', 'unread'.
      *
      * @return void
      */
-    public function folder($folder = 'Inbox')
+    public function folder($folder = 'Inbox', $status = 'all')
     {
         $this->helpers[] = 'Pagination';
         
@@ -84,6 +85,12 @@ class PrivateMessagesController extends AppController
             $conditions['sender'] = $currentUserId;
         } else if ($folder == 'Trash') {
             $conditions['user_id'] = $currentUserId;
+        }
+        
+        if ($status == 'read') {
+            $conditions['isnonread'] = 0;
+        } else if ($status == 'unread') {
+            $conditions['isnonread'] = 1;
         }
         
         $this->paginate = array(

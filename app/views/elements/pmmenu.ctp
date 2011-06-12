@@ -30,20 +30,29 @@
     <div class="module">
         <h2><?php echo __('Private messages', true); ?></h2>
         <ul>
-            <li><?php
+            <li>
+                <?php
                 echo $html->link(
                     __('New message', true), array('action' => 'write')
                 ); 
                 ?>
             </li>
             <li>&nbsp;</li>
-            <li><?php
+            <li>
+                <?php
                 echo $html->link(
                     __('Inbox', true), array('action' => 'folder', 'Inbox')
                 ); 
                 ?>
-             </li>
-            <li><?php
+                >
+                <?php
+                echo $html->link(
+                    __('Unread', true), array('action' => 'folder', 'Inbox', 'unread')
+                ); 
+                ?>
+            </li>
+            <li>
+                <?php
                 echo $html->link(
                     __('Sent', true), array('action' => 'folder', 'Sent')
                 );
