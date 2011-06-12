@@ -220,9 +220,12 @@ class PagesController extends AppController
         $indirectTranslations = $alltranslations['IndirectTranslation'];
         
         $this->set('random', $randomSentence);
-        $this->set('sentenceScript', $randomSentence['Sentence']['script']);
         $this->set('translations', $translations);
         $this->set('indirectTranslations', $indirectTranslations);
+        
+        if (isset($randomSentence['Sentence']['script'])) {
+            $this->set('sentenceScript', $randomSentence['Sentence']['script']);
+        }
     }
     
     
