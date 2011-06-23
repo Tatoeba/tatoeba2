@@ -137,7 +137,8 @@ class LanguagesHelper extends AppHelper
             'vol' => __('Volapük', true),
             'gla' => __('Scottish Gaelic', true),
             'ido' => __('Ido', true),
-            'ast' => __('Asturian', true)
+            'ast' => __('Asturian', true),
+            'ile' => __('Interlingue', true)
         );
         
         asort($languages);

@@ -106,7 +106,8 @@ $languages = array(
     'vol' => 'Volapük',
     'gla' => 'Scottish Gaelic',
     'ido' => 'Ido',
-    'ast' => 'Asturian'
+    'ast' => 'Asturian',
+    'ile' => 'Interlingue'
 );
 
 $languageWithStemmer = array(
