@@ -59,6 +59,7 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
         <li><a href="#trusted-user">How can I become an advanced contributor?</a></li>
         <li><a href="#translate-interface">Can I help translating the website into other languages?</a></li>
         <li><a href="#submit-audio">How do I contribute audio in Tatoeba?</a></li>
+        <li><a href="#chinese-traditional-simplified">When contributing in Chinese, should I use simplified or traditional characters?</a></li>
         <li><a href="#delete-account">How do I delete my account?</a></li>
     </ul>
     </div>
@@ -142,6 +143,17 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     <p><strong>6)</strong> Press space to indicate you are ready and read the sentence that is highlighted in red. The software will detect when to start and stop recording, and will jump to the next sentence automatically. All you have to do is read what's highlighted in red. If you want to take a break, you can press space to pause, so that it doesn't record something unrelated. If you need to listen to a sentence's audio, simply select it and press "Enter" (you can navigate with the directional keys: up, down, left, right).</p>
     <p><strong>7)</strong> Upload your files somewhere (like Megaupload or RapidShare) and give us the link. We will then include your audio in Tatoeba as soon as possible and will let you know when it is done. We understand it would be more practical if you could record/upload directly from Tatoeba, but we unfortunately don't have time to implement the features for this =/</p>
     <p><strong>Related link:</strong> <a href="http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html">http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html</a></p>
+    
+    
+    <h3 id="chinese-traditional-simplified"><a href="#chinese-traditional-simplified">When contributing in Chinese, should I use simplified or traditional characters?</a></h3>
+    <p>You can use whichever you like. We have a tool that will automatically convert simplified into traditional, and traditional into simplified.</p>
+    <p>When browsing sentences, if you set the Chinese sentence as the main sentence, you will see an additional icon at the top of the sentence.</p>
+    <ul>
+        <li><img src="http://flags.tatoeba.org/img/traditional_chinese.png" alt="traditional"/> traditional</li>
+        <li><img src="http://flags.tatoeba.org/img/simplified_chinese.png" alt="simplified"/> simplified</li>
+    </ul>
+    <p>Below each Chinese sentence, you will also see the transcription in pinyin, and below the pinyin, the conversion into simplified or traditional.</p>
+    <p>You can <a href="sentences/show_all_in/cmn/none/none/indifferent">browse the Chinese sentences</a> to see what it looks like.</p>
     
     
     <h3 id="delete-account"><a href="#delete-account">How do I delete my account?</a></h3>
