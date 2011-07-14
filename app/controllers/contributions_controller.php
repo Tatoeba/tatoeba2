@@ -132,11 +132,40 @@ class ContributionsController extends AppController
     /**
      * Display number of contributions for each day.
      *
+     * @param string $month Example: '2010-02' (for February 2010). 
+     *
      * @return void
      */
-    public function activity_timeline()
+    public function activity_timeline($year = null, $month = null)
     {
-        $this->set('stats', $this->Contribution->getActivityTimelineStatistics());
+        $redirect = false;
+        if ($year == null || $year > date('Y') || $year < 2007) {
+            $year = date('Y');
+            $redirect = true;
+        }
+        if ($month == null || $month < 1 || $month > 12) {
+            $month = date('m');
+            $redirect = true;
+        }
+
+        if ($redirect) {
+        
+            $this->redirect(
+                array(
+                    'action' => 'activity_timeline',
+                    $year,
+                    $month
+                )
+            );
+
+        } else { 
+        
+            $stats = $this->Contribution->getActivityTimelineStatistics($year, $month);
+            $this->set('year', $year);
+            $this->set('month', $month);
+            $this->set('stats', $stats);
+        
+        }
     }
     
     

@@ -185,8 +185,22 @@ class Contribution extends AppModel
      *
      * @return array
      */
-    public function getActivityTimelineStatistics()
+    public function getActivityTimelineStatistics($year = null, $month = null) 
     {
+        if ($year == null || $month == null) {
+        
+            $startDate = date('Y-m');
+            $numDays = date('t');
+            
+        } else {
+        
+            $startTimestamp = mktime(0, 0, 0, intval($month), 1, intval($year));
+            $endTimestamp = mktime(0, 0, 0, intval($month)+1, 1, intval($year));
+            $startDate = date('Y-m', $startTimestamp);
+            $endDate = date('Y-m', $endTimestamp);
+            
+        }
+        
         return $this->find(
             'all', 
             array(
@@ -195,12 +209,13 @@ class Contribution extends AppModel
                     'date_format(datetime,\'%b %D %Y\') as day',
                 ),
                 'conditions' => array(
-                    'Contribution.datetime > \'2010-01-01 00:00:00\'',
-                    'Contribution.translation_id' => null,
+                    'Contribution.datetime > \''.$startDate.'\'',
+                    'Contribution.datetime < \''.$endDate.'\'',
+                    'Contribution.type' => 'sentence',
                     'Contribution.action' => 'insert',
                 ),
                 'group' => array('day'),
-                'order' => 'Contribution.datetime DESC',
+                'order' => 'Contribution.datetime',
                 'contain' => array()
             )
         );

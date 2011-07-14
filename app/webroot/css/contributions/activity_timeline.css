@@ -23,7 +23,6 @@
 #timeline {
     overflow: hidden;
     width: 100%;
-    font-size: 0.8em;
 }
 
 #timeline td {
@@ -96,4 +95,12 @@
 
 .color10 {
     background: #FF947F;
+}
+
+
+/*
+ * Calendar
+ */
+.selected a {
+    color: red;
 }

@@ -37,8 +37,10 @@
  */
 
 $this->pageTitle = "Tatoeba - " . __("Activity timeline", true); 
+
+$date = date('F Y', mktime(0, 0, 0, $month, 1, $year));
  
-$maxWidth = 600;
+$maxWidth = 400;
 $maxTotal = 0;
 
 foreach ($stats as $stat) {
@@ -46,33 +48,53 @@ foreach ($stats as $stat) {
         $maxTotal = $stat[0]['total'];
     }
 }
-
-echo '<table id="timeline">';
-foreach ($stats as $stat) {
-    $total = $stat[0]['total'];
-    $percent = $total / $maxTotal;
-    $width = intval($percent * $maxWidth);
-    
-    if ($total > 2000) {
-        $color = 10;
-    } else {
-        $color = intval($total/200);
-    }
-    
-    echo '<tr>';
-        echo '<td class="date">';
-        echo $stat[0]['day'];
-        echo '</td>';
-        
-        echo '<td class="number color'.$color.'">';
-        echo '<strong>'.$total.'</strong>';
-        echo '</td>';
-        
-        echo '<td class="line">';
-        echo '<div class="logs_stats color'.$color.'" style="width:'.$width.'px">';
-        echo '</div>';
-        echo '</td>';
-    echo '</tr>';
-}
-echo '</table>';
 ?>
+
+<div id="annexe_content">
+    <?php 
+    echo $this->element(
+        'calendar', 
+        array(
+            'currentYear' => $year,
+            'currentMonth' => $month
+        )
+    ); 
+    ?>
+</div>
+
+<div id="main_content">
+    <div class="module">
+    <h2><?php echo $date; ?></h2>
+
+    <?php
+    echo '<table id="timeline">';
+    foreach ($stats as $stat) {
+        $total = $stat[0]['total'];
+        $percent = $total / $maxTotal;
+        $width = intval($percent * $maxWidth);
+        
+        if ($total > 2000) {
+            $color = 10;
+        } else {
+            $color = intval($total/200);
+        }
+        
+        echo '<tr>';
+            echo '<td class="date">';
+            echo $stat[0]['day'];
+            echo '</td>';
+            
+            echo '<td class="number color'.$color.'">';
+            echo '<strong>'.$total.'</strong>';
+            echo '</td>';
+            
+            echo '<td class="line">';
+            echo '<div class="logs_stats color'.$color.'" style="width:'.$width.'px">';
+            echo '</div>';
+            echo '</td>';
+        echo '</tr>';
+    }
+    echo '</table>';
+    ?>
+    </div>
+</div>
