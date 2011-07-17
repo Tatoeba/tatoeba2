@@ -91,25 +91,48 @@ $this->pageTitle = 'Tatoeba - ' . __('Download sentences', true);
         <dl>
             <dt>Download</dt>
             <dd>
-                <a href="http://tatoeba.org/files/downloads/sentences.csv">
+                1. <a href="http://tatoeba.org/files/downloads/sentences.csv">
                 http://tatoeba.org/files/downloads/sentences.csv
                 </a>
             </dd>
-            
+            <dd>
+                2. <a href="http://tatoeba.org/files/downloads/sentences_detailed.csv">
+                http://tatoeba.org/files/downloads/sentences_detailed.csv
+                </a>
+            </dd>
             <dt>Fields and structure</dt>
             <dd>
-                <span class="param">id</span>
+                1. <span class="param">id</span>
                 <span class="symbol">[tab]</span>
                 <span class="param">lang</span>
                 <span class="symbol">[tab]</span>
                 <span class="param">text</span>
             </dd>
-            
+            <dd>
+                2. <span class="param">id</span>
+                <span class="symbol">[tab]</span>
+                <span class="param">lang</span>
+                <span class="symbol">[tab]</span>
+                <span class="param">text</span>
+                <span class="symbol">[tab]</span>
+                <span class="param">username</span>
+                <span class="symbol">[tab]</span>
+                <span class="param">date_added</span>
+                <span class="symbol">[tab]</span>
+                <span class="param">date_last_modified</span>                
+            </dd>
+
+
             <dt>Description</dt>
             <dd>
                 Contains all the sentences. Each sentence is associated to a
                 unique id and a language code 
                 (<a href="http://en.wikipedia.org/wiki/List_of_ISO_639-3_codes">ISO 639-3</a>).
+                <br/>
+                We provide two files. The first file (sentences.csv) only contains the minimum.
+                The second file (sentences_detailed.csv) contains more information, for those 
+                who would like to filter the sentences based, for instance, on the contributor 
+                who owns the sentence or on the date when it was added.
             </dd>
         </dl>
         
