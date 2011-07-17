@@ -70,6 +70,11 @@ $this->pageTitle = 'Tatoeba - ' . __('Contributors statistics', true);
     </p>
     <p><?php __('Users in red are admins (and there is only one so far).'); ?></p>
     </div>
+    
+    <div class="module">
+    <h2><?php __('Last updated'); ?></h2>
+    <p><?php echo date('r'); ?></p>
+    </div>
 </div>
 
 <div id="main_content">

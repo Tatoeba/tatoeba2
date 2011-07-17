@@ -215,7 +215,7 @@ class Contribution extends AppModel
                     'Contribution.action' => 'insert',
                 ),
                 'group' => array('day'),
-                'order' => 'Contribution.datetime',
+                'order' => 'Contribution.datetime DESC',
                 'contain' => array()
             )
         );
