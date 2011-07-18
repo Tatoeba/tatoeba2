@@ -24,10 +24,22 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+if ($session->read('Auth.User.id')) {
+    $path = array(
+        'controller' => 'pages',
+        'action' => 'home'
+    );
+} else {
+    $path = array(
+        'controller' => 'pages',
+        'action' => 'index'
+    );
+}
 ?>
 
 <div id="header">
-	<a href="<?php echo $html->url('/'.$this->params['lang']); ?>">
+	<a href="<?php echo $html->url($path); ?>">
 	<?php 
     echo $html->image(
         IMG_PATH . 'TatoebaProjectBeta.png',
