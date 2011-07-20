@@ -99,6 +99,12 @@ $selectedLanguage = $session->read('random_lang_selected');
     <div class="main_module">
         <h2><?php __('What is Tatoeba?'); ?></h2>
         <p>
+            <script type="text/javascript" src="http://s3.www.universalsubtitles.org/embed.js">
+            (
+              {"base_state": {}, "video_url": "http://www.youtube.com/watch?v=ac9SmJuwHqk"}
+            )
+            </script>
+            <!--
             <object 
                 type="application/x-shockwave-flash"
                 style="width:480px; height:385px;"
@@ -113,6 +119,7 @@ $selectedLanguage = $session->read('random_lang_selected');
                 >
                 </object>
             </object> 
+            -->
 
         </p>
         <p>
