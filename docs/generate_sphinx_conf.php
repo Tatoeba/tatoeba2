@@ -107,7 +107,8 @@ $languages = array(
     'gla' => 'Scottish Gaelic',
     'ido' => 'Ido',
     'ast' => 'Asturian',
-    'ile' => 'Interlingue'
+    'ile' => 'Interlingue',
+    'oci' => 'Occitan'
 );
 
 $languageWithStemmer = array(

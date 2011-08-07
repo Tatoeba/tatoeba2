@@ -71,7 +71,7 @@ class Sentence extends AppModel
         'toki', 'ain', 'scn', 'mal', 'nds',
         'tlh', 'slv', 'tha', 'lzh', 'oss',
         'roh', 'vol', 'gla', 'ido', 'ast',
-        'ile', null
+        'ile', 'oci', null
         );   
     public $validate = array(
         'lang' => array(

@@ -130,6 +130,7 @@ class GoogleLanguageApiComponent extends Object
             case 'ml' :     return 'mal';
             case 'mn' :     return 'mon';
             case 'nl' :     return 'nld';
+            case 'oc' :     return 'oci';
             case 'pl' :     return 'pol';
             case 'pt' :     return 'por';
             case 'pt-BR' :  return 'por';
