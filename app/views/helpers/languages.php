@@ -139,7 +139,8 @@ class LanguagesHelper extends AppHelper
             'ido' => __('Ido', true),
             'ast' => __('Asturian', true),
             'ile' => __('Interlingue', true),
-            'oci' => __('Occitan', true)
+            'oci' => __('Occitan', true),
+            'xal' => __('Kalmyk', true)
         );
         
         asort($languages);

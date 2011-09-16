@@ -108,7 +108,8 @@ $languages = array(
     'ido' => 'Ido',
     'ast' => 'Asturian',
     'ile' => 'Interlingue',
-    'oci' => 'Occitan'
+    'oci' => 'Occitan',
+    'xal' => 'Kalmyk'
 );
 
 $languageWithStemmer = array(
