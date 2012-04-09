@@ -110,6 +110,20 @@ $languages = array(
     'ile' => 'Interlingue',
     'oci' => 'Occitan',
     'xal' => 'Kalmyk'
+
+
+    'ang' => 'Old English',
+    'kur' => 'Kurdish',
+    'dsb' => 'Lower Sorbian',
+    'hsb' => 'Upper Sorbian',
+    'ksh' => 'Kölsch',
+    'cym' => 'Welsh',
+    'ewe' => 'Ewe',
+    'sjn' => 'Sindarin',
+    'tel' => 'Telegu',
+    'tpi' => 'Tok Pisin',
+    'qya' => 'Quenya',
+
 );
 
 $languageWithStemmer = array(
