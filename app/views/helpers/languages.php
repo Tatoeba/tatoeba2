@@ -140,7 +140,21 @@ class LanguagesHelper extends AppHelper
             'ast' => __('Asturian', true),
             'ile' => __('Interlingue', true),
             'oci' => __('Occitan', true),
-            'xal' => __('Kalmyk', true)
+            'xal' => __('Kalmyk', true),
+
+
+
+            'ang' => __('Old English', true),
+            'kur' => __('Kurdish', true),
+            'dsb' => __('Lower Sorbian', true),
+            'hsb' => __('Upper Sorbian', true),
+            'ksh' => __('Kölsch', true),
+            'cym' => __('Welsh', true),
+            'ewe' => __('Ewe', true),
+            'sjn' => __('Sindarin', true),
+            'tel' => __('Telegu', true),
+            'tpi' => __('Tok Pisin', true),
+            'qya' => __('Quenya', true),
         );
         
         asort($languages);
