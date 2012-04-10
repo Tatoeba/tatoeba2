@@ -155,6 +155,7 @@ class LanguagesHelper extends AppHelper
             'tel' => __('Telegu', true),
             'tpi' => __('Tok Pisin', true),
             'qya' => __('Quenya', true),
+            'nov' => __('Novian', true),
         );
         
         asort($languages);
@@ -248,7 +249,7 @@ class LanguagesHelper extends AppHelper
     {
         $languages = $this->userLanguagesArray();
         
-        array_unshift($languages, array('auto' => __('Auto detect', true)));
+        //array_unshift($languages, array('auto' => __('Auto detect', true)));
         return $languages;
     }
     
@@ -353,6 +354,7 @@ class LanguagesHelper extends AppHelper
         $rightToLeftLangs = array(
             "ara",
             "heb",
+            "arz",
             "uig",
             "pes",
             "acm",
