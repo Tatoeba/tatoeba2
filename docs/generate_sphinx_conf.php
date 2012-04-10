@@ -109,7 +109,7 @@ $languages = array(
     'ast' => 'Asturian',
     'ile' => 'Interlingue',
     'oci' => 'Occitan',
-    'xal' => 'Kalmyk'
+    'xal' => 'Kalmyk',
 
 
     'ang' => 'Old English',
