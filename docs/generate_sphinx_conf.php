@@ -123,7 +123,8 @@ $languages = array(
     'tel' => 'Telegu',
     'tpi' => 'Tok Pisin',
     'qya' => 'Quenya',
-    'nov' => 'Novial'
+    'nov' => 'Novial',
+    'mri' => 'Maori'
 
 );
 
