@@ -156,6 +156,7 @@ class LanguagesHelper extends AppHelper
             'tpi' => __('Tok Pisin', true),
             'qya' => __('Quenya', true),
             'nov' => __('Novial', true),
+            'mri' => __('Maori', true),
         );
         
         asort($languages);
