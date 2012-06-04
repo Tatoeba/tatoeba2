@@ -125,6 +125,8 @@ $languages = array(
     'qya' => 'Quenya',
     'nov' => 'Novial',
     'mri' => 'Maori'
+    'ber' => 'Berber',
+    'lld' => 'Ladin',
 
 );
 
