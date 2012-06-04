@@ -74,7 +74,7 @@ class Sentence extends AppModel
         'ile', 'oci', 'xal', 'ang', 'kur',
         'dsb', 'hsb', 'ksh', 'cym', 'ewe',
         'sjn', 'tel', 'nov', 'tpi', 'qya',
-        'mri',
+        'mri', 'lld', 'ber'
         null
         );   
     public $validate = array(

@@ -157,6 +157,8 @@ class LanguagesHelper extends AppHelper
             'qya' => __('Quenya', true),
             'nov' => __('Novial', true),
             'mri' => __('Maori', true),
+            'lld' => __('Ladin', true),
+            'ber' => __('Berber', true),
         );
         
         asort($languages);
