@@ -159,6 +159,13 @@ class LanguagesHelper extends AppHelper
             'mri' => __('Maori', true),
             'lld' => __('Ladin', true),
             'ber' => __('Berber', true),
+
+            'xho' => __('Xhosa', true),
+            'pnb' => __('Punjabi', true),
+            'mlg' => __('Malagasy', true),
+            'grn' => __('Guarani', true),
+            'lad' => __('Ladino', true),
+            'pms' => __('Piemontese', true),
         );
         
         asort($languages);
@@ -252,7 +259,7 @@ class LanguagesHelper extends AppHelper
     {
         $languages = $this->userLanguagesArray();
         
-        //array_unshift($languages, array('auto' => __('Auto detect', true)));
+        array_unshift($languages, array('auto' => __('Auto detect', true)));
         return $languages;
     }
     
@@ -363,6 +370,7 @@ class LanguagesHelper extends AppHelper
             "acm",
             "urd",
             "yid",
+            "pnb",
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
