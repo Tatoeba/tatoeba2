@@ -74,7 +74,8 @@ class Sentence extends AppModel
         'ile', 'oci', 'xal', 'ang', 'kur',
         'dsb', 'hsb', 'ksh', 'cym', 'ewe',
         'sjn', 'tel', 'nov', 'tpi', 'qya',
-        'mri', 'lld', 'ber'
+        'mri', 'lld', 'ber', 'xho', 'pnb',
+        'mgl', 'grn', 'lad', 'pms',
         null
         );   
     public $validate = array(
@@ -271,9 +272,6 @@ class Sentence extends AppModel
      */
     public function getSeveralRandomIds($lang = 'und',  $numberOfIdWanted = 10)
     {
-        if ($_SERVER['SERVER_ADDR'] == '127.0.0.1') {
-            return array(rand(0,300000));
-        }
         
         if(empty($lang)) {
             $lang = 'und';
@@ -764,9 +762,6 @@ class Sentence extends AppModel
      */
     public function getRomanization($text,$lang)
     {
-        if ($_SERVER['SERVER_ADDR'] == '127.0.0.1') {
-            return "local romanization";
-        }
         
         $romanization = '';
 
@@ -838,17 +833,7 @@ class Sentence extends AppModel
     public function detectScript($text)
     {
 
-        // important to add this line before escaping a
-        // utf8 string, workaround for an apache/php bug  
-        setlocale(LC_CTYPE, "fr_FR.UTF-8");
-        $text = escapeshellarg($text); 
-        $script =  exec("adso --rscript -i $text");
-        
-        if ($script == 'simplified' || $script == 'traditional') {
-            return $script;
-        } else {
             return '';
-        }
     }
 
 
@@ -857,9 +842,6 @@ class Sentence extends AppModel
      */
     public function generateMetas(&$sentenceArray) {
         
-        if ($_SERVER['SERVER_ADDR'] == '127.0.0.1') {
-            return;
-        }
         
         if ($sentenceArray['lang'] === 'cmn') {
             // we call the wonderful homebrewadso
@@ -912,10 +894,14 @@ class Sentence extends AppModel
 
         // important to add this line before escaping a
         // utf8 string, workaround for an apache/php bug  
-        setlocale(LC_CTYPE, "fr_FR.UTF-8");
-        $chineseText = escapeshellarg($chineseText);
-        $convertedText =  exec("adso --switch-script -cn -i $chineseText");
-        return $convertedText;
+            $xml = simplexml_load_file( 
+                "http://127.0.0.1:8042/change_script?str=".urlencode($chineseText)
+                ,'SimpleXMLElement', LIBXML_NOCDATA
+            );
+            foreach($xml as $key=>$value) {
+                return $value;
+            }
+        return "";
     }
     
     
@@ -1184,7 +1170,7 @@ class Sentence extends AppModel
             // there's some blank line in this file so mustn't
             // handle them
             if (count($arrayLine) > 1) {
-                array_push($ipaArray, str_replace("\n", ".", $arrayLine[1]));
+                array_push($ipaArray, str_replace("\n", ". ", $arrayLine[1]));
                 array_push($sinogramsArray, $arrayLine[0]);
             }
         }
@@ -1439,6 +1425,11 @@ class Sentence extends AppModel
      */
     public function saveNewSentence($text, $lang, $userId)
     {
+        if ($lang == "") {
+            $lang = null;
+        }
+
+        //if ($userId == 1314 || $userId == 6070) { return; }
         $data['Sentence']['id'] = null;
         $data['Sentence']['text'] = trim($text);
         $data['Sentence']['lang'] = $lang;
@@ -1596,13 +1587,13 @@ class Sentence extends AppModel
         
         if ($ownerId == $currentUserId || CurrentUser::isModerator()) {
             $this->id = $sentenceId;
-            $newLangId = $this->Language->getIdFromlang($newLang);
             
             // Making sure the language is not saved as an empty string but as NULL.
-            if (empty($newLang)) {
+            if ($newLang == "" ) {
                 $newLang = null;
             }
-            
+            $newLangId = $this->Language->getIdFromlang($newLang);
+
             $data['Sentence'] = array(
                 'lang' => $newLang,
                 'lang_id' => $newLangId

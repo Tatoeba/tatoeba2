@@ -124,10 +124,17 @@ $languages = array(
     'tpi' => 'Tok Pisin',
     'qya' => 'Quenya',
     'nov' => 'Novial',
-    'mri' => 'Maori'
+    'mri' => 'Maori',
     'ber' => 'Berber',
     'lld' => 'Ladin',
 
+
+    'xho' => 'Xhosa',
+    'pnb' => 'Punjabi',
+    'mlg' => 'Malagasy',
+    'grn' => 'Guarani',
+    'lad' => 'Ladino',
+    'pms' => 'Piemontese',
 );
 
 $languageWithStemmer = array(
