@@ -152,7 +152,7 @@
 				<li>You can take a look at our <a href="http://blog.tatoeba.org">blog</a> to learn more about the project.</li>
 				<li>You can follow us on <a href="http://twitter.com/tatoeba_project">Twitter</a>.</li>
 				<li>You can translate Tatoeba on <a href="https://translations.launchpad.net/tatoeba">Launchpad</a> so that more non-English speakers can use it.</li>
-                <li>You can write us fan letters : <a href="mailto:team@tatoeba.fr">team@tatoeba.fr</a>.</li>
+                <li>You can write us fan letters : <a href="mailto:team@tatoeba.org">team@tatoeba.org</a>.</li>
 				<li>Or you can refresh the page, maybe we're done!</li>
 			</ul>
 			<p>
