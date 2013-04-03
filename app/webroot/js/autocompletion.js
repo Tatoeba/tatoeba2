@@ -162,7 +162,7 @@ $(document).ready(function()
  
     });
 
-    $("#TagAddTagForm").submit(function(){
+    $("#TagAddTagPostForm").submit(function(){
         if (isSuggestListActive) {
             var text = $("#suggestItem"+currentSuggestPosition).html()
             $("#TagTagName").val(text);
