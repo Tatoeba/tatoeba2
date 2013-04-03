@@ -56,7 +56,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
         <h2><?php __('Contact us'); ?></h2>
         <dl>
             <dt><?php __('By email'); ?></dt>
-            <dd>team@tatoeba.fr</dd>
+            <dd>team@tatoeba.org</dd>
             <dt><?php __('From the Wall'); ?></dt>
             <dd>
             <?php

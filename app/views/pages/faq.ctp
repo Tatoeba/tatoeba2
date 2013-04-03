@@ -135,7 +135,7 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
     <h3 id="submit-audio"><a href="#submit-audio">How do I contribute audio in Tatoeba?</a></h3>
     <p><strong>1)</strong> You need have a good microphone because we care about sound quality.</p>
-    <p><strong>2)</strong> Download <a href="http://shtooka.net/soft/shtooka_recorder/en/">Shtooka Recorder</a> and get familiar with it. You will be using it to record the sentences, it's a very useful software.</p> 
+    <p><strong>2)</strong> Download <a href="http://downloads.tatoeba.org/kit_shtooka_Install_0.9.8.exe">Shtooka Recorder</a> and get familiar with it. You will be using it to record the sentences, it's a very useful software.</p> 
     <p><strong>Tutorial:</strong> <a href="http://www.youtube.com/watch?v=AcJoLBjUOaY">http://www.youtube.com/watch?v=AcJoLBjUOaY</a> (made by <a href="/user/profile/AmberShadow">AmberShadow</a>).</p>
     <p><strong>3)</strong> Pick a few random sentences (just 2 or 3), record them, and send us the samples at team@tatoeba.org, with the title "Audio for Tatoeba in <em>&lt;language_name&gt;</em>". This way we can evaluate if the sound quality is good enough. If it is, we will send you back a list of sentences to record. BUT contrary to what is shown in the YouTube tutorial, you should send us your file in FLAC, not OGG. FLAC is a lossless compression format and therefore will keep all the quality of the audio.</p>
     <p><strong>4)</strong> Read the list we sent you and check that all the sentences sound natural to you. If a sentence doesn't sound natural, simply erase it from the list. It would be appreciated if you also went to the website to post a comment on that sentence, to indicate it doesn't sound natural and should be improved.</p>

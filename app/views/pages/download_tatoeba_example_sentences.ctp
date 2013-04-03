@@ -195,6 +195,35 @@ $this->pageTitle = 'Tatoeba - ' . __('Download sentences', true);
                 means that sentence nº381279 has been tagged with "proverb".
             </dd>
         </dl>
+        
+        
+        <!-- Lists -->
+        <h3>Lists</h3>
+        <dl>
+            <dt>Download</dt>
+            <dd>
+                <a href="http://tatoeba.org/files/downloads/lists.csv">
+                http://tatoeba.org/files/downloads/lists.csv
+                </a>
+            </dd>
+            
+            <dt>Fields and structure</dt>
+            <dd>
+                <span class="param">sentence_id</span>
+                <span class="symbol">[tab]</span>
+                <span class="param">list_name</span>
+            </dd>
+            
+            <dt>Description</dt>
+            <dd>
+                Contains the list of sentence lists associated to each sentence. 
+                <span class="param">381279</span>
+                <span class="symbol">[tab]</span>
+                <span class="param">My own list</span> 
+                means that sentence nº381279 is part of "My own list".
+            </dd>
+        </dl>
+            
             
         <!-- Indices -->
         <h3>Japanese indices</h3>

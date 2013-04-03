@@ -57,8 +57,8 @@ echo '<p>' .__(
     'To grow the commons of free knowledge and free culture, all users '.
     'contributing to Tatoeba project are required to grant broad permissions to '.
     'the general public to re-distribute and re-use their contributions freely, '.
-    'as long as the use is attributed and the same freedom to re-use and '.
-    're-distribute applies to any derivative works. Therefore, for any text '.
+    'as long as the use is attributed.'.
+    'Therefore, for any text '.
     'you hold the copyright to, by submitting it, you agree to license it under '.
     'the Creative Commons Attribution License 2.0 (fr). Please note that this '.
     'licenses does allow commercial uses of your contributions, as long as such '.
@@ -95,11 +95,6 @@ echo '<p>' . __(
 
 echo '<h3>' . __('Information for re-users:', true) . '</h3>' ;
 
-echo '<p>' . __(
-    'You can re-use text content from Tatoeba project freely, with the exception '.
-    'of content that is used under "fair use" exemptions, or similar exemptions '.
-    'of copyright law. Please follow the guidelines below:', true
-) . '</p>';
 
 echo '<h4>' . __('Re-use of text:', true) . '</h4>' ;
 
@@ -182,10 +177,9 @@ echo '</p>';
     Pour élargir la base de connaissances de Tatoeba, tout utilisateur contribuant 
     à ce projet doit impérativement donner de vastes permissions au
     public pour qu'il puisse redistribuer et réutiliser son contenu librement, 
-    pourvu que la source de ce contenu soit clairement indiquée et que la
-    même liberté face à la redistribution et la réutilisation s'applique aux 
-    copies et produits dérivés. Ainsi, lorsque vous soumettez un texte dont
-    vous détenez les droits d'auteur, vous consentez à le soumettre sous le contrat
+    pourvu que la source de ce contenu soit clairement indiquée. Ainsi,
+    lorsque vous soumettez un texte dont vous détenez les droits d'auteur,
+    vous consentez à le soumettre sous le contrat
     de licence Creative Commons Paternité 2.0 (CC-BY 2.0). Veuillez noter que ce 
     contrat permet l'utilisation commerciale de vos contributions, tant que 
     les utilisations respectent les conditions de la licence.
@@ -227,10 +221,8 @@ echo '</p>';
     <h3>Information pour les ré-utilisateurs</h3>
 
     <p>
-    Vous pouvez réutiliser librement les contenus du projets Tatoeba, à 
-    l'exception du contenu qui est utilisé sous les conditions du fair use ou 
-    toute autre exemption au droit d'auteur similaire. Veuillez suivre 
-    les instructions suivantes :
+    Vous pouvez réutiliser librement les contenus du projets Tatoeba.
+    Veuillez suivre les instructions suivantes :
     </p>
 
     <h4>Ré-utilisation de texte :</h4>
