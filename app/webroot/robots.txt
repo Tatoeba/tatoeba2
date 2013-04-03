@@ -3,6 +3,7 @@ Disallow: */users/*
 
 Disallow: */sentences/show_all_in/*
 
+Disallow: *private_messages/*
 
 Disallow: /*/sentences/search*
 
@@ -11,12 +12,70 @@ Disallow: */contributions/statistics
 Disallow: /*.css$
 Disallow: /*.js$
 
+Disallow: *contributions/of_user*
+Disallow: /*contributions/index/*
+
 Disallow: */contributions/show/*
 Disallow: */sentences_comments/show/*
 Disallow: */sentences/get_translations/*
 
 Disallow: */sentences/with_audio*
 Disallow: */sentence_comments/on_sentences_of_user/*
+Disallow: */sentence_comments/of_user/*
 Disallow: */activities/*
 
 Disallow: */page:*
+
+User-Agent: AhrefsBot
+Crawl-Delay: 40 
+
+User-agent: 008
+Disallow: /    
+
+User-agent: Baiduspider
+
+Disallow: *contributions/of_user*
+Disallow: /fre*
+Disallow: /eng*
+Disallow: /ara*
+Disallow: /tur*
+Disallow: /eus*
+Disallow: /deu*
+Disallow: /ita*
+Disallow: /epo*
+Disallow: /spa*
+Disallow: /rus*
+Disallow: /pol*
+Disallow: /nds*
+Disallow: /pt_BR*
+Disallow: /jpn/sentences/show_all_in/*
+Disallow: /jpn/users/all/page*
+Disallow: /chi/users/all/page*
+Disallow: /chi/sentences/show_all_in/*
+Disallow: /jpn/wall/messages_of_user/*
+Disallow: /chi/wall/messages_of_user/*
+Disallow: /chi/users/login
+Disallow: /users/login
+Disallow: /jpn/users/login
+Disallow: /jpn/private_messages/write/*
+Disallow: /chi/private_messages/write/*
+Disallow: /jpn/sentence_comments/*
+Disallow: /chi/sentence_comments/*
+Disallow: /jpn/activities/translate_sentences_of/*
+Disallow: /chi/activities/translate_sentences_of/*
+Disallow: /jpn/sentence_comments/of_user/*
+Disallow: /chi/sentence_comments/of_user/*
+
+
+User-Agent: bingbot
+Crawl-delay: 2
+
+
+User-Agent: Yandex
+Crawl-delay: 3
+
+User-agent: VoilaBot BETA 1.2
+Crawl-delay: 8
+
+User-agent: coccoc
+Crawl-delay: 8
