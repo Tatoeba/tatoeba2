@@ -43,7 +43,7 @@
 
 // array which list all the languages in which tatoeba interface has been translated
 $interfaceLanguages = array(
-    'lang'=>'ara|bel|chi|deu|eng|epo|eus|fre|hin|hun|ita|jpn|nds|pol|pt_BR|rus|spa|tur|tgl'
+    'lang'=>'ara|bel|chi|deu|eng|epo|eus|fre|gre|hin|hun|ita|jpn|nds|pol|pt_BR|rus|spa|tur|tgl'
 );
 
 /**
