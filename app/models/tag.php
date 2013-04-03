@@ -155,7 +155,7 @@ class Tag extends AppModel
     private function _tag_to_internal_name($tagName)
     {
         $tagName = trim($tagName);
-        return preg_replace('/(\s{1,})|([\[\)\'"])/u','_', $tagName);
+        return preg_replace('/(\s{1,})|([\[\)\'":])/u','_', $tagName);
 
 
     }

@@ -175,7 +175,7 @@ class Contribution extends AppModel
                 )
             )
         );
-        return $this->find('all', $query);
+        return array();//$this->find('all', $query);
     }    
     
     
@@ -215,7 +215,7 @@ class Contribution extends AppModel
                     'Contribution.action' => 'insert',
                 ),
                 'group' => array('day'),
-                'order' => 'Contribution.datetime DESC',
+                'order' => 'Contribution.id DESC',
                 'contain' => array()
             )
         );
