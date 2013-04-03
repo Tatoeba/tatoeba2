@@ -67,8 +67,82 @@ class AppController extends Controller
     { 
         // When Tatoeba is being under maintenance, and website needs
         // to be blocked temporarily, uncomment the line below:
-        // $this->layout = 'maintenance';
-        
+        //$this->layout = 'maintenance';
+        //return;
+
+
+        $blockedIps = array (
+            "217.69.134.79", //bot russe
+            "42.62.37.", // not sure, seems chinese bot network
+            "176.33.123.90",
+            "176.33.103.239",
+            "176.31.106.45", //polish bot
+            "81.52.143", //orange (french ISP) bot,
+            "193.252.149.15",
+            "193.252.118.174",
+            "31.210.112",
+            "221.181.94",// Sogou Spider Ip
+            "78.171.7",
+            "78.172.159",
+            "78.178.80",
+            "86.18.125.14", // from UK
+            "85.100.19",//19X
+            "85.109.171",
+            "88.242.19",
+            "88.245.205",
+            "88.245.6",//.6X.
+            "88.245.7",
+            "88.245.8",
+            "176.33.210.205",
+            "176.33.110.66",
+            "176.43.86.18",
+            "88.245.9",
+            "88.246.109",
+            "88.246.19",
+            "88.246.20",
+            "88.246.21",
+            "88.246.22",
+            "88.247.191",
+            "88.253.24",
+            "92.45.236.126",
+            "92.45.232.203",
+            "95.8.241.251",
+            "95.8.224",
+            "95.8.20",
+            "95.8.241",
+            "95.8.136",
+            "95.8.166.16",
+            "95.8.151.113",
+            "95.8.130.170",
+            "95.8.163.122",
+            "212.252.251.255",
+            "212.253.241.133",
+            "212.253.241",
+            "188.57.123.141",
+            "217.171.129.72", // UK, used by bora, probably a proxy.
+            "58.215.180", //network from china
+            "10.156.24.29",
+            "10.156.24.29, 58.215.180",
+        );
+
+
+        App::import('Model', 'CurrentUser');
+//        if (in_array( CurrentUser::getIp(), $blockedIp )) {
+//          $this->redirect($redirectPage, 404);
+//       }
+        $ip = CurrentUser::getIp();
+        foreach( $blockedIps as $blockedIp) {
+            if (strpos($ip, $blockedIp, 0) ===0) {
+                sleep(60);
+                $this->redirect($redirectPage, 404);
+                return; 
+            }
+        }
+
+        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        #if(strpos($user_agent, ".NET CLR 3.5.30729") !== false) {
+        #    $this->redirect($redirectPage, 404);
+        #} 
         Security::setHash('md5');
         $this->Cookie->domain = TATOEBA_DOMAIN;
         // this line will call views/elements/session_expired.ctp
@@ -84,9 +158,8 @@ class AppController extends Controller
         $this->RememberMe->check();
         
         // So that we can access the current users info from models.
-        App::import('Model', 'CurrentUser');
         CurrentUser::store($this->Auth->user());
-        
+
         
         // TODO
         // We're passing the value from the cookie to the session because it is
@@ -295,7 +368,9 @@ class AppController extends Controller
             'pl'    => 'pol',
             'pt-BR' => 'pt_BR',
             'ru'    => 'rus',
-            'tr'    => 'tur'
+            'tr'    => 'tur',
+            'el'    => 'gre',
+
         );
         if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) { 
             
