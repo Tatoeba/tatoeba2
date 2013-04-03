@@ -21,3 +21,8 @@ INTO OUTFILE '/var/tmp/links.csv';
 SELECT ts.sentence_id, t.name FROM `tags` t JOIN `tags_sentences` ts
   ON t.id = ts.tag_id
 INTO OUTFILE '/var/tmp/tags.csv';
+
+-- Sentences lists
+SELECT ls.sentence_id, l.name FROM `sentences_lists` l JOIN `sentences_sentences_lists` ls
+  ON l.id = ls.sentences_list_id
+INTO OUTFILE '/var/tmp/lists.csv';

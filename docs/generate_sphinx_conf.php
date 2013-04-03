@@ -135,6 +135,12 @@ $languages = array(
     'grn' => 'Guarani',
     'lad' => 'Ladino',
     'pms' => 'Piemontese',
+
+    'avk' => '', 
+    'tpw' => '',
+    'tgk' => '',
+    'mar' => '',
+    "prg" => '' , "npi" => '' , "mlt" => '' , "ckt" => '' , //@lang
 );
 
 $languageWithStemmer = array(
@@ -172,9 +178,10 @@ source default
 {
     type                     = mysql
     sql_host                 = localhost
-    sql_user                 = USER
-    sql_pass                 = PASSWORD
-    sql_db                   = DATABASE
+
+    sql_user                 = prod_admin
+    sql_pass                 = ferhr4564frfrg_RTGGrt722
+    sql_db                   = tatoeba_prod
     sql_sock                 = /tmp/mysql.sock
 
     sql_query_pre            = SET NAMES utf8
@@ -259,7 +266,9 @@ index common_index
                         U+900..U+97F, U+A8E0..U+A8FB,\
                         U+531..U+58A, U+FB13..U+FB17,\
                         U+D00..U+D77,\
-                        U+E00..U+E5C
+                        U+E00..U+E5C,\
+                        U+492, U+493, U+4E2, U+4E3, U+49A, U+49B, U+4EE, U+4EF, U+4B2, U+4B3, U+4B6, U+4B7
+                        
 
     docinfo                 = extern
     charset_type            = utf-8
@@ -360,12 +369,12 @@ indexer
 
 searchd
 {
-    port                    = 19312
-    log                     = /var/log/searchd_dev.log
-    query_log               = /var/log/query_dev.log
+    port                    = 9312
+    log                     = /var/log/searchd.log
+    query_log               = /var/log/query.log
     read_timeout            = 5
     max_children            = 30
-    pid_file                = /var/log/searchd_dev.pid
+    pid_file                = /var/log/searchd.pid
     max_matches             = 1000
     seamless_rotate         = 1
     preopen_indexes         = 1
