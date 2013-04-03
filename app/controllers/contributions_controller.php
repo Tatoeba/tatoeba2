@@ -73,6 +73,12 @@ class ContributionsController extends AppController
      */
     public function index($filter = 'und')
     {
+
+        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        if(strpos($user_agent, "Baidu") !== false) {
+            $this->redirect($redirectPage, 404);
+        } 
+
         $this->helpers[] = 'Pagination';
         
         $conditions = array();
@@ -84,7 +90,7 @@ class ContributionsController extends AppController
             'Contribution' => array(
                 'conditions' => $conditions,
                 'limit' => 200,
-                'order' => 'datetime DESC',
+                'order' => 'id DESC',
                 'contain' => array()
             )
         );
@@ -196,7 +202,7 @@ class ContributionsController extends AppController
                     'user_id' => $userId
                 ),
                 'limit' => 200,
-                'order' => 'datetime DESC',
+                'order' => 'id DESC',
                 'contain' => array()
             )
         );

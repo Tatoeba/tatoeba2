@@ -51,30 +51,48 @@ class GoogleLanguageApiComponent extends Object
      *
      * @return string 
      */
-    public function detectLang($text)
+    public function detectLang($text, $user = "")
     {
+        //return null;
         $textToAnalyze = urlencode($text);
         
-        $langDetectUrl = "http://ajax.googleapis.com/ajax/services/language/detect?";
-        $version = "v=1.0";
-        $url = $langDetectUrl . $version . "&q=" . $textToAnalyze; 
+        //$langDetectUrl = "http://ajax.googleapis.com/ajax/services/language/detect?";
+        //$version = "v=1.0";
+        //$url = $langDetectUrl . $version . "&q=" . $textToAnalyze; 
+        $url = "http://en.tatodetect.sysko.fr/api/detects/simple?query=" . $textToAnalyze;
+
+        if ($user != "") {
+            $url .= ("&user=" . urlencode($user));
+        }
+         
         
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_REFERER, "http://tatoeba.fr");
+        curl_setopt($ch, CURLOPT_REFERER, "http://tatoeba.org");
+
         $body = curl_exec($ch);
-        curl_close($ch);
 
-        // now, process the JSON string
-        $json = json_decode($body, true);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 
-        if ($json['responseStatus'] != 200) {
-            // if something goes wrong
-            return 'und';
+        if ($httpCode != 200) {
+            return null;
         }
-        $googleLang = $json['responseData']['language']; 
-        return $this->google2TatoebaCode($googleLang);
+
+        //// now, process the JSON string
+        //$json = json_decode($body, true);
+
+        //if ($json['responseStatus'] != 200) {
+        //    // if something goes wrong
+        //    return null;
+        //}
+        //$googleLang = $json['responseData']['language']; 
+        //return $this->google2TatoebaCode($googleLang);
+        if ($body == "unknown") {
+            return null;
+        } else {
+            return $body;
+        }
     }
     
     /** 

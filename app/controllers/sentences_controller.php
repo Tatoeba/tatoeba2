@@ -68,6 +68,10 @@ class SentencesController extends AppController
         'Sentence','SentenceNotTranslatedIn'
     );
     
+    private $blocked_users = array (6070,6071,1314,
+    8238,
+    7990
+   );
     /**
      * Before filter.
      * 
@@ -275,6 +279,7 @@ class SentencesController extends AppController
             return;
         }
         $userId = $this->Auth->user('id');
+        $userName = $this->Auth->user('username');
 
         $sentenceLang = Sanitize::paranoid($_POST['selectedLang']);
         $sentenceText = $_POST['value'];
@@ -282,7 +287,11 @@ class SentencesController extends AppController
         $isSaved = $this->CommonSentence->wrapper_save_sentence(
             $sentenceLang,
             $sentenceText,
-            $userId
+            $userId,
+            null,
+            null,
+            null,
+            $userName
         );
         
         // saving
@@ -306,6 +315,11 @@ class SentencesController extends AppController
     public function edit_sentence()
     {
         $userId = $this->Auth->user('id');
+        /*
+        if (in_array($userId,$this->blocked_users)) {
+            return ;
+        }
+        */
         $sentenceText = '';
         $sentenceId = '';
         if (isset($_POST['value'])) {
@@ -355,6 +369,9 @@ class SentencesController extends AppController
     {
         $id = Sanitize::paranoid($id);
         $userId = $this->Auth->user('id');
+        if (in_array($userId,$this->blocked_users)) {
+            return ;
+        }
         
         $this->Sentence->setOwner($id, $userId);
         
@@ -395,6 +412,10 @@ class SentencesController extends AppController
         $parentOwnerName = $_POST['parentOwnerName'];
         
         $userId = $this->Auth->user('id');
+
+        if (in_array($userId,$this->blocked_users)) {
+            return ;
+        }
         $translationText = $_POST['value'];
         
         // we store the selected language to be reuse after
@@ -409,8 +430,11 @@ class SentencesController extends AppController
         ) {
             // Language detection
             if ($translationLang == 'auto') {
+
+                $ownerName = $this->Auth->user('username');
                 $translationLang = $this->GoogleLanguageApi->detectLang(
-                    $translationText
+                    $translationText,
+                    $ownerName
                 );
             }
             
@@ -643,12 +667,16 @@ class SentencesController extends AppController
  
         $this->paginate = $pagination;
         $results = $this->paginate($model);
+        if (!is_array($results)) {
+            $results = array();
+        }
 
         $sentenceIds = array();
 
         foreach ($results as $i=>$sentence) {
             $sentenceIds[$i] = $sentence['Sentence']['id'];
         }
+
         
         if ($translationLang == "und") {
             $translationLang = null ;

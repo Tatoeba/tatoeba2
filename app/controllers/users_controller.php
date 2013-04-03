@@ -75,7 +75,7 @@ class UsersController extends AppController
             'captcha_image', 
             'check_username',
             'check_email',
-            //'update_rights',
+            'update_rights',
         );
         //$this->Auth->allowedActions = array('*');
     }
@@ -115,6 +115,7 @@ class UsersController extends AppController
     {
         $id = Sanitize::paranoid($id);
         
+        var_dump($this->data);
         if (!$id && empty($this->data)) {
             $this->Session->setFlash('Invalid User');
             $this->redirect(array('action'=>'index'));
@@ -143,6 +144,7 @@ class UsersController extends AppController
             }
         }
         if (empty($this->data)) {
+
             $this->data = $this->User->getUserById($id);
         }
         $groups = $this->User->Group->find('list');
@@ -641,6 +643,12 @@ class UsersController extends AppController
         $this->Acl->allow($group, 'controllers/Wall');
         $this->Acl->allow($group, 'controllers/User'); 
         $this->Acl->allow($group, 'controllers/SentencesLists');
+
+        // for spammer
+        $group->id = 6;
+        $this->Acl->deny($group, 'controllers');
+        $this->Acl->allow($group, 'controllers/Sentences/show');
+        $this->Acl->allow($group, 'controllers/Wall/index');
     }
 }
 ?>

@@ -155,12 +155,32 @@ class WallController extends Appcontroller
 
             $this->data['Wall']['owner'] = $this->Auth->user('id');
             $this->data['Wall']['date'] = $now; 
-            // now save to database 
-            if ($this->Wall->save($this->data)) {
-                $this->update_thread_date(
-                    $this->Wall->id,
-                    $now
-                );
+
+            $lastMess = $this->Cookie->read('hash_last_wall');
+            $lastMess = $this->Session->read('hash_last_wall');
+            $thisMess =md5($this->data['Wall']['content']);
+            
+            $this->Session->write(
+                'hash_last_wall',
+                $thisMess
+            );
+            $this->Cookie->write(
+                'hash_last_wall',
+                $thisMess,
+                false,
+                "+1 month"
+            );
+            if ($lastMess !=$thisMess ) {
+                
+                    
+                // now save to database 
+                if ($this->Wall->save($this->data)) {
+                    $this->update_thread_date(
+                        $this->Wall->id,
+                        $now
+                    );
+                }
+
             }
         }
 

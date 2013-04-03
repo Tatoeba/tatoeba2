@@ -72,12 +72,16 @@ class CommonSentenceComponent extends Object
         $userId,
         $sentenceId = null,
         $translatedSentenceId = null,
-        $translatedSentenceLang = null
+        $translatedSentenceLang = null,
+        $userName = ""
     ) {
         $this->Cookie->write('contribute_lang', $lang, false, "+1 month");
         
         if ($lang === 'auto') {
-            $lang = $this->GoogleLanguageApi->detectLang($text);
+            $lang = $this->GoogleLanguageApi->detectLang(
+                $text,
+                $userName
+            );
         }
         if (empty($lang)) {
             $lang = null;

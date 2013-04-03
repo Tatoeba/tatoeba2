@@ -37,7 +37,7 @@
 class MailerComponent extends Object
 {
     public $from     = 'trang.dictionary.project@gmail.com';
-    public $fromName = 'TATOEBA';
+    public $fromName = 'Tatoeba (no-reply)';
     public $to       = null;
     public $toName   = null;
     public $subject  = null;
@@ -76,7 +76,7 @@ class MailerComponent extends Object
     private function _authgMail($from, $namefrom, $to, $nameto, $subject, $message)
     {
         if ($_SERVER['SERVER_NAME'] != 'tatoeba.org') {
-            return;
+            //return;
         }
         
         /*  your configuration here  */
@@ -84,8 +84,8 @@ class MailerComponent extends Object
         $smtpServer = "tls://smtp.gmail.com"; //does not accept STARTTLS
         $port = "465"; // try 587 if this fails
         $timeout = "45"; //typical timeout. try 45 for slow servers
-        $username = "tatoeba.tx03@gmail.com"; //your gmail account
-        $password = "toFGeF89"; //the pass for your gmail
+        $username = "trang.dictionary.project@gmail.com"; //your gmail account
+        $password = "t0k0r0d3"; //the pass for your gmail
         $localhost = $_SERVER['REMOTE_ADDR']; //requires a real ip
         $newLine = "\r\n"; //var just for newlines
          

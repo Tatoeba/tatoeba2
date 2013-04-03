@@ -337,8 +337,13 @@ class SentencesListsController extends AppController
         
         if (isset($_POST['listId']) && isset($_POST['sentenceText'])) {
             $listId = Sanitize::paranoid($_POST['listId']);
+
+            $userName = $this->Auth->user('username');
             $sentenceText = $_POST['sentenceText'];
-            $sentenceLang = $this->GoogleLanguageApi->detectLang($sentenceText);
+            $sentenceLang = $this->GoogleLanguageApi->detectLang(
+                $sentenceText,
+                $userName
+            );
             
             $tmp = $this->SentencesList->addNewSentenceToList(
                 $listId,

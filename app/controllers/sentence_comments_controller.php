@@ -161,11 +161,28 @@ class SentenceCommentsController extends AppController
         $userId = $this->Auth->user('id');
         $userName = $this->Auth->user('username');
         $userEmail = $this->Auth->user('email');
+    
+        $sentenceId = $this->data['SentenceComment']['sentence_id'];
+        $commentText = $this->data['SentenceComment']['text'];
 
-        if (empty($this->data['SentenceComment']['sentence_id'])) {
+        if (empty($sentenceId)) {
+            $this->redirect('/');
+        }
+
+        // to avoid spammer and repost
+        $lastCom = $this->Cookie->read('hash_last_com');
+        $thisCom = md5($commentText . $sentenceId);
+        if ($lastCom == $thisCom) {
             $this->redirect('/');
         }
         
+        $this->Cookie->write(
+            'hash_last_com',
+            $thisCom,
+            false,
+            "+1 month"
+        );
+
         if (empty($this->data['SentenceComment']['text'])) {
             $sentenceId = $this->data['SentenceComment']['sentence_id'];
             $this->redirect(
