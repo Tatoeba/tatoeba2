@@ -166,6 +166,12 @@ class LanguagesHelper extends AppHelper
             'grn' => __('Guarani', true),
             'lad' => __('Ladino', true),
             'pms' => __('Piemontese', true),
+
+            'avk' => __('Kotava', true),
+            'mar' => __('Marathi', true),
+            'tpw' => __('Old Tupi', true),
+            'tgk' => __('Tajik', true),
+            "prg" => __('Old Prussian',true), "npi" => __('Nepali',true), "mlt" => __('Maltese',true), "ckt" => __('Chukchi',true), //@lang 
         );
         
         asort($languages);
@@ -438,6 +444,7 @@ class LanguagesHelper extends AppHelper
             'jpn' => 'jpn',
             'pol' => 'pol',
             'pt_BR' => 'por',
+            'gre'  => 'ell',
             'rus' => 'rus',
             'spa' => 'spa'
         );

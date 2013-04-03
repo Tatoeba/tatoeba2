@@ -39,17 +39,15 @@ class AttentionPleaseHelper extends AppHelper
 {
     public function tatoebaNeedsYou()
     {
-        ?>
-        <div class="module">
-        <h2>Tatoeba day #3</h2>
-        <div style="border: 1px solid #CCC; padding: 5px 10px; background: #F1F1F1">
-            <strong>It's right now!</strong> Join us on <a href="http://webchat.freenode.net/">IRC</a> :)<br/>
-            <ul>
-                <li>=&gt; channel #tatoeba</li>
-            </ul>
-        </div>
-        </div>
-        <?php
+    // <div class="module">
+                // <h2>Tatoeba meeting</h2>
+                // <div style="border: 1px solid #CCC; padding: 5px 10px; background: #F1F1F1">
+                    // <strong>RMLL</strong>, July 9th-14th, in Strasbourg (France). <a href="http://tatoeba.org/wall/show_message/6613#message_6613">Let's meet!</a> :)<br/>
+                // </div>
+            // </div>
+           ?>
+            
+            <?php
     }
 }
 ?>
