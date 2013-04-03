@@ -70,7 +70,7 @@ class TagsHelper extends AppHelper
                     <p><?php __('No tag on this sentence yet.'); ?></p>
                     
                     <?php
-                }
+                } else {
 
                 foreach ($tagsArray as $tagArray) {
                     ?>
@@ -92,7 +92,8 @@ class TagsHelper extends AppHelper
                     ?>
                     </span>
                 <?php
-                }
+                } // end foreach
+                } // end else
                 ?>
             </div>
             <?php
