@@ -178,10 +178,9 @@ source default
 {
     type                     = mysql
     sql_host                 = localhost
-
-    sql_user                 = prod_admin
-    sql_pass                 = ferhr4564frfrg_RTGGrt722
-    sql_db                   = tatoeba_prod
+    sql_user                 = USER
+    sql_pass                 = PASSWORD
+    sql_db                   = DATABASE
     sql_sock                 = /tmp/mysql.sock
 
     sql_query_pre            = SET NAMES utf8
