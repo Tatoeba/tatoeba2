@@ -109,9 +109,7 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
     
     <h3 id="advanced-contributor"><a href="#advanced-contributor">How can I become an advanced contributor?</a></h3>
-    <p>You have to <?php echo $html->link('contact Trang', array('controller' => 'private_messages', 'action' => 'write', 'TRANG')); ?> and tell her that you want to be a candidate to become advanced contributor. Make sure you have read and understand ENTIRELY the <a href="http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html">guide of the good contributor</a>.</p>
-    <p>The exact conditions to become an advanced contributor will be published some time in June (hopefully).</p>
-    <p>Related link: <a href="http://blog.tatoeba.org/2011/05/new-users-status.html">http://blog.tatoeba.org/2011/05/new-users-status.html</a></p>
+    => <a href="http://en.wiki.tatoeba.org/articles/show/advanced-contributors">http://en.wiki.tatoeba.org/articles/show/advanced-contributors</a>
     
     
     <h3 id="translate-interface"><a href="#translate-interface">Can I help translating the website into other languages?</a></h3>
@@ -157,26 +155,8 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
     
     <h3 id="delete-account"><a href="#delete-account">How do I delete my account?</a></h3>
-    <p>There is no button anywhere for you to delete your account. We have not implemented this feature yet because it is a bit tricky. However, you can get your account deleted the following way:</p>
-    <ol>
-        <li>Send an email to team@tatoeba.org with the title "Account deletion".</li>
-        <li>Tell us what is your username.</li>
-        <li>Optionally, tell us why you decided to delete your account.</li>
-        <li>Also send a <a href="http://tatoeba.org/private_messages/write/TRANG">private message to Trang</a> with the title "Account deletion", using of course the account you want to delete. It will serve as a confirmation that you are indeed the owner of the account you want to delete.</li>
-    </ol>
-
-    <p>By default, here is what we will do:</p>
-    <ul>
-        <li>We will delete all the the information you have added in your profile.</li> 
-        <li>The only information that will remain is the day you have registered and your username.</li>
-        <li>You email will be deleted from the database as well. You will not receive any notifications anymore.</li>
-        <li>We will change your username into something more generic (for instance "user002").</li>
-        <li>We will change your status into "inactive".</li>
-        <li>We will delete your private messages.</li>
-        <li>We will NOT delete your sentences. We will transfer them to another member of Tatoeba when we find a volunteer to adopt them. Until then, they will remain in your inactive account.</li>
-        <li>We will NOT delete your comments on sentences. You may delete them yourself, but take into consideration the fact that a deleting one of your comments can make a discussion confusing.</li>
-        <li>We will NOT delete your messages on the Wall.</li>
-    </ul>
-    <p>If there is something you do not want us to do (or want us to do), you will have to tell us in your email.</p>
+    => <a href="http://en.wiki.tatoeba.org/articles/show/delete-account">http://en.wiki.tatoeba.org/articles/show/delete-account</a>
     </div>
+	
+	<div style="height:300px"/>
 </div>
