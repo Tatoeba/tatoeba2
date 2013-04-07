@@ -273,6 +273,8 @@ class Sentence extends AppModel
      */
     public function getSeveralRandomIds($lang = 'und',  $numberOfIdWanted = 10)
     {
+		// Uncomment the line below if you don't have sphinx installed.
+		// return array(1);
         
         if(empty($lang)) {
             $lang = 'und';
@@ -763,7 +765,8 @@ class Sentence extends AppModel
      */
     public function getRomanization($text,$lang)
     {
-        
+        return false;
+		
         $romanization = '';
 
         if ($lang == "wuu") {
@@ -841,8 +844,11 @@ class Sentence extends AppModel
     /**
      *
      */
-    public function generateMetas(&$sentenceArray) {
-        
+    public function generateMetas(&$sentenceArray) 
+	{
+		// Uncomment the line below you don't have the Chinese
+		// romanization tools installed.
+		// return false;
         
         if ($sentenceArray['lang'] === 'cmn') {
             // we call the wonderful homebrewadso
