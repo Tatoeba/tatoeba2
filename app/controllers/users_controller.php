@@ -115,7 +115,6 @@ class UsersController extends AppController
     {
         $id = Sanitize::paranoid($id);
         
-        var_dump($this->data);
         if (!$id && empty($this->data)) {
             $this->Session->setFlash('Invalid User');
             $this->redirect(array('action'=>'index'));
