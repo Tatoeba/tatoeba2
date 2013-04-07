@@ -364,7 +364,7 @@ class WallHelper extends AppHelper
                 <?php $this->displayLinkToUserProfile($userName); ?>
             </li>
             
-            <li class="date">
+            <li class="date" title="<?php echo $messageDate ?>">
                 <?php echo $this->Date->ago($messageDate); ?>
             </li>
         </ul>
