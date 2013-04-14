@@ -133,6 +133,10 @@ class Wall extends AppModel
 
     public function getMessagesThreaded($rootMessages)
     {
+        if (empty($rootMessages)) {
+            return array();
+        }
+        
         // generate the condition array as it's a bit complicated
         $orArray = array();
         foreach ($rootMessages as $rootMessage) {
