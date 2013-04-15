@@ -152,7 +152,7 @@ class LanguagesHelper extends AppHelper
             'cym' => __('Welsh', true),
             'ewe' => __('Ewe', true),
             'sjn' => __('Sindarin', true),
-            'tel' => __('Telegu', true),
+            'tel' => __('Telugu', true),
             'tpi' => __('Tok Pisin', true),
             'qya' => __('Quenya', true),
             'nov' => __('Novial', true),
