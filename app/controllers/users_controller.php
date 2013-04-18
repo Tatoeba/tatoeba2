@@ -199,14 +199,39 @@ class UsersController extends AppController
     {
         $this->Auth->login($this->data);
         
-        if ($this->Auth->user()) {
-            $redirectUrl = $this->Auth->redirect();
-            if (isset($this->data["User"]["redirectTo"])) {
-                $redirectUrl = $this->data["User"]["redirectTo"];
+        // group_id 5 => users is inactive
+        if ($this->Auth->user('group_id') == 5) {
+            $this->flash(
+                __(
+                    'This account has been set as inactive. '.
+                    'You cannot log in with it anymore. '.
+                    'Please contact an admin if this is a mistake.', true
+                ), 
+                '/users/logout/'
+            );
+        }
+        // group_id 5 => users is spammer
+        else if ($this->Auth->user('group_id') == 6) {
+            $this->flash(
+                __(
+                    'This account has been set as spammer. '.
+                    'You cannot log in with it anymore. '.
+                    'Please contact an admin if this is a mistake.', true
+                ), 
+                '/users/logout/'
+            );
+        }
+        else
+        {
+            if ($this->Auth->user()) {
+                $redirectUrl = $this->Auth->redirect();
+                if (isset($this->data["User"]["redirectTo"])) {
+                    $redirectUrl = $this->data["User"]["redirectTo"];
+                }
+                $this->_common_login($redirectUrl);
+            } else {
+                $this->redirect(array('action' => 'login'));
             }
-            $this->_common_login($redirectUrl);
-        } else {
-            $this->redirect(array('action' => 'login'));
         }
     }
 
@@ -220,26 +245,10 @@ class UsersController extends AppController
 
     private function _common_login($redirectUrl)
     {
-
-
         // update the last login time
         $data['User']['id'] = $this->Auth->user('id');
         $data['User']['last_time_active'] = time();
         $this->User->save($data);
-
-        // group_id 5 is the group of users who haven't valided their account
-        if ($this->Auth->user('group_id') == 5) {
-            $this->flash(
-                __(
-                    'Your account is not validated yet. You will not be able to '.
-                    'add sentences, translate or post comments. To validate it, '.
-                    'click on the link in the email that has been sent to you '.
-                    'during your registration. You can have this email resent to '.
-                    'you.', true
-                ), 
-                '/users/resend_registration_mail/'
-            );
-        }
 
         if (empty($this->data['User']['rememberMe'])) {
             $this->RememberMe->delete();
