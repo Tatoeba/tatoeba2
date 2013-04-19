@@ -24,6 +24,9 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+ 
+$this->pageTitle = 'Tatoeba - ' . __('Number of sentences per language', true);
+
 $stats = ClassRegistry::init('Sentence')->getStatistics();
 $audioStats = ClassRegistry::init('Sentence')->getTotalNumberOfSentencesWithAudio();
 $totalSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
