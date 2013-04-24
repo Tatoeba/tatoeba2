@@ -144,39 +144,47 @@ class SentenceNotTranslatedIn extends AppModel
             $filterAudio = "AND Sentence.hasaudio != 'no' ";
         }
        
+        // first calculate the number of sentences that do have a translation
+        // in the target language
         $sql
             = "
             SELECT count(DISTINCT Sentence.id) as Count FROM sentences as Sentence 
               JOIN sentences_translations st ON ( Sentence.id = st.sentence_id ) 
               JOIN sentences t on ( st.translation_id = t.id ) 
-            WHERE Sentence.lang = '$source' $filterAudio 
-              AND Sentence.id NOT IN 
-              ( 
-                SELECT DISTINCT s.id FROM sentences s 
-                  JOIN sentences_translations st ON ( s.id = st.sentence_id ) 
-                  JOIN sentences t on ( st.translation_id = t.id ) 
-                WHERE t.lang = '$target' AND s.lang = '$source'
-              ) 
+            WHERE Sentence.lang = '$source'
+            AND t.lang = '$target'
+            $filterAudio
             " ;
       
-        // if we want only orphan sentences 
+        // if we want only untranslated sentences
         if ($target == 'und') {
             $sql
                 = "
                 SELECT count(distinct Sentence.id) as Count FROM sentences as Sentence 
-                WHERE Sentence.lang = '$source' $filterAudio 
-                  AND Sentence.id NOT IN 
-                  ( 
-                    SELECT s.id FROM sentences s 
-                      JOIN sentences_translations st ON ( s.id = st.sentence_id ) 
-                    WHERE s.lang = '$source'
-                  ) 
+                  JOIN sentences_translations st ON ( Sentence.id = st.sentence_id ) 
+                WHERE Sentence.lang = '$source'
+                $filterAudio
                 "; 
         }
            
         $results = $this->query($sql);
-    
-        return $results[0][0]['Count']; 
+        $translations_count = $results[0][0]['Count'];
+
+        // then subsctract this result from the total number of sentences
+        // in the source language
+        if ($audioOnly == true) {
+            $sql = "SELECT count(Sentence.id) as Count FROM sentences as Sentence
+                    WHERE Sentence.lang = '$source' $filterAudio";
+            $results = $this->query($sql);
+            $total = $results[0][0]['Count'];
+        } else {
+            // We already have that total in the langStats table
+            $sql = "SELECT numberOfSentences as Count FROM langStats WHERE lang = '$source'";
+            $results = $this->query($sql);
+            $total = $results[0]['langStats']['Count'];
+        }
+
+        return $total - $translations_count;
     }
 }
 ?>
