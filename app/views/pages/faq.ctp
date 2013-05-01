@@ -43,6 +43,12 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     <p><a href="http://blog.tatoeba.org/2010/05/moderators-in-tatoeba.html">Moderators in Tatoeba</a>, by Trang</p>
     <p><a href="http://blog.tatoeba.org/2010/09/warning-you-are-being-disrespectful.html">Warning: you are being disrespectful</a>, by Trang</p>
     </div>
+    
+    <div class="module">
+    <h2>Wiki</h2>
+    <p><a href="http://wiki.tatoeba.org/">http://wiki.tatoeba.org/</a></p>
+    <p>The content of this page will be moved little by little to our wiki.</p>
+    </div>
 </div>
     
 <div id="main_content">
@@ -144,5 +150,5 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     => <a href="http://en.wiki.tatoeba.org/articles/show/delete-account">http://en.wiki.tatoeba.org/articles/show/delete-account</a>
     </div>
 	
-	<div style="height:300px"/>
+	<div style="height:300px"></div>
 </div>
