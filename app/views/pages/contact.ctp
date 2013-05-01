@@ -52,6 +52,15 @@ $this->pageTitle = 'Tatoeba - ' . __('Contact us', true);
     ?>
     </p>
     </div>
+    
+    <div class="module">
+        <h2><?php __('Follow us'); ?></h2>
+        <p id="socialMedia">
+            <a class="twitterLink" href="http://twitter.com/tatoeba_org">Twitter</a>
+            <a class="bloggerLink" href="http://blog.tatoeba.org">Tatoeba Blog</a>
+            <a class="facebookLink" href="http://www.facebook.com/group.php?gid=129340017083187">Facebook</a>
+        </p>
+    </div>
 </div>
     
 <div id="main_content">
