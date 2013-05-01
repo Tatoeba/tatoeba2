@@ -504,13 +504,15 @@ dt {
  */
 #UserLoginForm_FromBar {
     position: absolute;
-    right: 200px;
-    top: 27px;
+    top: 31px;
     z-index: 1000;
     min-width: 270px;
-    padding: 3px 3px 5px 5px;
+    padding: 5px 10px;
     background: #414141 url('../../img/alert-overlay.png') repeat-x;
     color: #FFF;
+    border-bottom: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
 }
 
 #UserLoginForm_FromBar fieldset {
