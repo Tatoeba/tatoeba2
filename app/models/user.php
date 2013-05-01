@@ -532,12 +532,6 @@ class User extends AppModel
 
         return array(
             'Padawan' => array(
-                array('BEN YAALA Salem', 'socom'),
-                array('DEPARIS Étienne', 'milouse'),
-                array('PARISI Robin', 'fendtwick'),
-                array('DUCATEL Baptiste', 'biptaste'),
-                array('LARIVIERE Julien', 'droide')
-                
             ),
             'Core' => array(
                 array('HO Ngoc Phuong Trang', 'trang'),
@@ -545,7 +539,12 @@ class User extends AppModel
             ),
             'Ex' => array(
                 array('TAN Kevin', 'keklesurvivant'),
-                array('9h0ost', '9h0ost')
+                array('9h0ost', '9h0ost'),
+                array('BEN YAALA Salem', 'socom'),
+                array('DEPARIS Étienne', 'milouse'),
+                array('PARISI Robin', 'fendtwick'),
+                array('DUCATEL Baptiste', 'biptaste'),
+                array('LARIVIERE Julien', 'droide')
             ),
             'Translator' => array(
                 array('FU Congcong 傅琮琮', 'fucongcong', __('Chinese', true)),

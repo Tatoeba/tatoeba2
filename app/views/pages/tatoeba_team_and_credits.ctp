@@ -46,10 +46,11 @@ $this->pageTitle = __('Tatoeba team and credits', true);
         </table>
         
         
+        <?php
+        /*
         <h3><?php __('Padawan members'); ?></h3>
         <table>
         <?php
-        
         foreach ($padawans as $people) {
             $realName = $people[0];
             $username = $people[1];
@@ -57,6 +58,8 @@ $this->pageTitle = __('Tatoeba team and credits', true);
         }
         ?>
         </table>
+        */
+        ?>
 
         <h3><?php __('Ex-members'); ?></h3>
         <table>
