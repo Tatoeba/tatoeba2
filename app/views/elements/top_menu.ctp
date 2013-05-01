@@ -109,12 +109,6 @@ $menuElements = array(
             "controller" => "wall",
             "action" => "index"
         )
-    ),
-    __('What\'s new', true) => array(
-        "route" => array(
-            "controller" => "pages",
-            "action" => "whats_new"
-        )
     )
 );
 
