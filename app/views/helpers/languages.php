@@ -171,7 +171,7 @@ class LanguagesHelper extends AppHelper
             'mar' => __('Marathi', true),
             'tpw' => __('Old Tupi', true),
             'tgk' => __('Tajik', true),
-            "prg" => __('Old Prussian',true), "npi" => __('Nepali',true), "mlt" => __('Maltese',true), "ckt" => __('Chukchi',true), //@lang 
+            "prg" => __('Old Prussian',true), "npi" => __('Nepali',true), "mlt" => __('Maltese',true), "ckt" => __('Chukchi',true), "cor" => __('Cornish',true), "aze" => __('Azerbaijani',true), "khm" => __('Khmer',true), "lao" => __('Lao',true), //@lang 
         );
         
         asort($languages);
