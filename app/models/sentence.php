@@ -765,7 +765,9 @@ class Sentence extends AppModel
      */
     public function getRomanization($text,$lang)
     {
-        return false;
+        // Uncomment the line below you don't have the
+		// romanization tools installed.
+        // return false;
 		
         $romanization = '';
 
