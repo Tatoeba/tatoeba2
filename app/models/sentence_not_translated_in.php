@@ -122,6 +122,9 @@ class SentenceNotTranslatedIn extends AppModel
     /**
      * Overriding the paginateCount function in order to use a "raw" SQL request
      *
+     * @author Allan Simon
+     * @author gillux (did some optimization)
+     *
      * @return int Number of sentences not translated in specified language
      */
 
