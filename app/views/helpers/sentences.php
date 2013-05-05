@@ -626,5 +626,73 @@ class SentencesHelper extends AppHelper
         echo $this->Javascript->link('furigana.js', true);
         echo $this->Javascript->link('links.add_and_delete.js', true);
     }
+    
+    
+    
+    /**
+     * Diplays a sentence and its translations for 'light' layout.
+     *
+     * @author CK
+     * @author HO Ngoc Phuong Trang <tranglich@gmail.com>
+     * 
+     * @param array $sentence     Sentence to display.
+     * @param array $translations Translations of the sentence.
+     *
+     * @return void
+     */
+    public function displaySGroup($sentence, $translations) 
+    {
+        $id = $sentence['id'];
+        ?>
+        
+        <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
+            
+            <?php $this->displayS($sentence, 'mainSentence'); ?>
+            
+            <div class="translations">
+                <?php
+                foreach ($translations as $translation) {
+                    $this->displayS($translation, 'directTranslation');
+                }     
+                ?>
+            </div>
+        
+        </div>
+        
+        <?php
+    }
+    
+    
+	/**
+     * Displays a sentence (either main sentence or direct translation) 
+     * and the language flag.
+     * 
+     * @author CK
+     * @author HO Ngoc Phuong Trang <tranglich@gmail.com>
+     *
+     * @param array  $sentence Sentence data.
+     * @param string $type     Type of sentence. Can be 'mainSentence', 
+     *                         or 'directTranslation'.
+     *
+     * @return void
+     */
+	public function displayS($sentence, $type) {
+        $sentenceId = $sentence['id'];
+        $sentenceLang = $sentence['lang'];
+        ?>
+        
+        <div class="sentence <?php echo $type; ?>">
+            <?php 
+            $this->SentenceButtons->displayLanguageFlag(
+                $sentenceId, $sentenceLang, false
+            );
+            
+            $this->displaySentenceContent($sentence, false); 
+            ?>
+        </div>
+        
+        <?php
+    }
+
 }
 ?>
