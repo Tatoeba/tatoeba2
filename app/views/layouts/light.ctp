@@ -25,7 +25,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-
+?>
 <!DOCTYPE html>
 <html lang="en">
 	<head>
