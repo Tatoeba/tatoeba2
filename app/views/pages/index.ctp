@@ -47,7 +47,7 @@ $selectedLanguage = $session->read('random_lang_selected');
         <?php
         __(
             "The more contributors there are, the more useful Tatoeba will ".
-            "become! Besides, by contributing, not only you will be helpful ".
+            "become! Besides, by contributing, not only will you be helpful ".
             "to the rest of the world, but you will also get to learn a lot."
         );
         ?>
