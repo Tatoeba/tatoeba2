@@ -62,6 +62,8 @@ $navigation->displaySentenceNavigation(
 ?>
 
 <div id="annexe_content">
+    <?php $attentionPlease->tatoebaNeedsYou(); ?>
+    
     <?php $tags->displayTagsModule($tagsArray, $sentenceId); ?>
     
     <div class="module">

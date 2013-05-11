@@ -39,15 +39,16 @@ class AttentionPleaseHelper extends AppHelper
 {
     public function tatoebaNeedsYou()
     {
-    // <div class="module">
-                // <h2>Tatoeba meeting</h2>
-                // <div style="border: 1px solid #CCC; padding: 5px 10px; background: #F1F1F1">
-                    // <strong>RMLL</strong>, July 9th-14th, in Strasbourg (France). <a href="http://tatoeba.org/wall/show_message/6613#message_6613">Let's meet!</a> :)<br/>
-                // </div>
-            // </div>
-           ?>
+        ?>
+        <div class="module">
+            <h2>Contributions disabled</h2>
+            <div style="border: 1px solid #CCC; padding: 5px 10px; background: #F1F1F1">
+                We seem to have a corrupt database and for this reason we're disabling new contributions for now since there is a possibility that anything you submit today will be lost.
+            </div>
             
-            <?php
+            <p><a href="http://tatoeba.org/eng/wall/show_message/2000#message_2000">>> More info about what happened</a>
+        </div>
+        <?php
     }
 }
 ?>

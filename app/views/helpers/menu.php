@@ -483,7 +483,7 @@ class MenuHelper extends AppHelper
         $isLogged = CurrentUser::isMember();
         
         // Translate
-        $this->translateButton($sentenceId, $ownerName, $isLogged);
+        // $this->translateButton($sentenceId, $ownerName, $isLogged);
         
         // Adopt
         $currentUserName = CurrentUser::get('username');
