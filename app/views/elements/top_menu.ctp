@@ -65,7 +65,7 @@ $menuElements = array(
             )
         )
     ),
-    /*__('Contribute', true) => array(
+    __('Contribute', true) => array(
         "route" => array(
             "controller" => "pages",
             "action" => "contribute"
@@ -97,7 +97,7 @@ $menuElements = array(
                 "action" => "index"
             )
         )
-    ),*/
+    ),
     __('Members', true) => array(
         "route" => array(
             "controller" => "users",

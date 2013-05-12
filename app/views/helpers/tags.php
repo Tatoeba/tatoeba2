@@ -1,4 +1,5 @@
 <?php
+include_once("models/current_user.php");
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
  * Copyright (C) 2009-2010  SIMON Allan <allan.simon@supinfo.com>

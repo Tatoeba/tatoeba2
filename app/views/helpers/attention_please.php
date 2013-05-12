@@ -39,7 +39,7 @@ class AttentionPleaseHelper extends AppHelper
 {
     public function tatoebaNeedsYou()
     {
-        ?>
+        /*?>
         <div class="module">
             <h2>Contributions disabled</h2>
             <div style="border: 1px solid #CCC; padding: 5px 10px; background: #F1F1F1">
@@ -48,7 +48,7 @@ class AttentionPleaseHelper extends AppHelper
             
             <p><a href="http://tatoeba.org/eng/wall/show_message/2000#message_2000">>> More info about what happened</a>
         </div>
-        <?php
+        <?php*/
     }
 }
 ?>
