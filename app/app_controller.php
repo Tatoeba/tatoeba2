@@ -64,13 +64,7 @@ class AppController extends Controller
      * @return void
      */
     public function beforeFilter() 
-    { 
-        // When Tatoeba is being under maintenance, and website needs
-        // to be blocked temporarily, uncomment the line below:
-        //$this->layout = 'maintenance';
-        //return;
-
-
+    {
         $blockedIps = array (
             "217.69.134.79", //bot russe
             "42.62.37.", // not sure, seems chinese bot network
