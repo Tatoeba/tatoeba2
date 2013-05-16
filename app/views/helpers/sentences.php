@@ -679,6 +679,7 @@ class SentencesHelper extends AppHelper
 	public function displayS($sentence, $type) {
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
+        $sentenceText = $sentence['text'];
         ?>
         
         <div class="sentence <?php echo $type; ?>">
@@ -687,7 +688,9 @@ class SentencesHelper extends AppHelper
                 $sentenceId, $sentenceLang, false
             );
             
-            $this->displaySentenceContent($sentence, false); 
+            $this->displaySentenceText(
+                $sentenceId, $sentenceText, false, $sentenceLang
+            );
             ?>
         </div>
         
