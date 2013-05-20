@@ -22,7 +22,56 @@ SELECT ts.sentence_id, t.name FROM `tags` t JOIN `tags_sentences` ts
   ON t.id = ts.tag_id
 INTO OUTFILE '/var/tmp/tags.csv';
 
--- Sentences lists
-SELECT ls.sentence_id, l.name FROM `sentences_lists` l JOIN `sentences_sentences_lists` ls
-  ON l.id = ls.sentences_list_id
-INTO OUTFILE '/var/tmp/lists.csv';
+-- Sentence lists
+SELECT sl.id, u.username, sl.created, sl.modified, sl.name
+FROM sentences_lists sl LEFT JOIN users u ON sl.user_id = u.id
+WHERE sl.is_public = 1
+ORDER BY sl.id ASC
+INTO OUTFILE '/var/tmp/user_lists.csv';
+
+-- Sentences in lists
+SELECT sl.id, s_sl.sentence_id
+FROM sentences_sentences_lists s_sl
+     JOIN sentences_lists sl ON s_sl.sentences_list_id = sl.id
+WHERE sl.is_public = 1
+ORDER BY sl.id ASC, s_sl.sentence_id
+INTO OUTFILE '/var/tmp/sentences_in_lists.csv';
+
+-- User profiles
+SELECT u.username, g.name, u.since, u.name, u.birthday, u.homepage,
+       u.description 
+FROM users u JOIN groups g ON u.group_id = g.id
+WHERE g.id BETWEEN 1 AND 5  -- no spamers, who have id = 6
+ORDER BY u.id ASC
+INTO OUTFILE '/var/tmp/users.csv';
+
+-- Tag metadata
+SELECT t.id, t.name, u.username, t.created
+FROM tags t LEFT JOIN users u ON t.user_id = u.id
+ORDER BY t.id
+INTO OUTFILE '/var/tmp/tag_metadata.csv';
+
+-- Tags (detailed)
+SELECT ts.tag_id, ts.sentence_id, u.username, ts.added_time
+FROM tags_sentences ts LEFT JOIN users u ON ts.user_id = u.id
+ORDER BY ts.added_time ASC
+INTO OUTFILE '/var/tmp/tags_detailed.csv';
+
+-- Contributions
+SELECT u.username, c.datetime, c.action, c.type, c.sentence_id,
+       c.sentence_lang, c.translation_id, c.text       
+FROM contributions c LEFT JOIN users u ON c.user_id = u.id
+ORDER BY c.datetime ASC
+INTO OUTFILE '/var/tmp/contributions.csv';
+
+-- Wall posts
+SELECT w.id, u.username, w.parent_id, w.date, w.content
+FROM wall w LEFT JOIN users u ON w.owner = u.id
+ORDER BY w.id asc
+INTO OUTFILE '/var/tmp/wall_posts.csv';
+
+-- Sentence comments
+SELECT sc.id, sc.sentence_id, u.username, sc.created, sc.text 
+FROM sentence_comments sc LEFT JOIN users u ON sc.user_id = u.id
+ORDER BY sc.created ASC
+INTO OUTFILE '/var/tmp/sentence_comments.csv';
