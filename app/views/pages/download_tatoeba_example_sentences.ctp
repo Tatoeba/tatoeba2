@@ -202,25 +202,53 @@ $this->pageTitle = 'Tatoeba - ' . __('Download sentences', true);
         <dl>
             <dt>Download</dt>
             <dd>
-                <a href="http://tatoeba.org/files/downloads/lists.csv">
-                http://tatoeba.org/files/downloads/lists.csv
+                <a href="http://tatoeba.org/files/downloads/user_lists.csv">
+                http://tatoeba.org/files/downloads/user_lists.csv
                 </a>
             </dd>
-            
             <dt>Fields and structure</dt>
             <dd>
-                <span class="param">sentence_id</span>
+                <span class="param">id</span>
+                <span class="symbol">[tab]</span>
+                <span class="param">username</span>
+                <span class="symbol">[tab]</span>
+                <span class="param">date_created</span>
+                <span class="symbol">[tab]</span>
+                <span class="param">date_modified</span>
                 <span class="symbol">[tab]</span>
                 <span class="param">list_name</span>
             </dd>
             
             <dt>Description</dt>
             <dd>
-                Contains the list of sentence lists associated to each sentence. 
-                <span class="param">381279</span>
+                Contains the list of <a href="http://tatoeba.org/sentences_lists/index">
+                public lists</a> created.
+            </dd>
+          </dl>
+          
+          <h3>Sentences in lists</h3>
+          <dl>       
+            <dt>Download</dt>   
+            <dd>
+                <a href="http://tatoeba.org/files/downloads/sentences_in_lists.csv">
+                http://tatoeba.org/files/downloads/sentences_in_lists.csv
+                </a>
+            </dd>
+            
+            <dt>Fields and structure</dt>
+            <dd>
+                <span class="param">list_id</span>
                 <span class="symbol">[tab]</span>
-                <span class="param">My own list</span> 
-                means that sentence nº381279 is part of "My own list".
+                <span class="param">sentence_id</span>
+            </dd>
+            
+            <dt>Description</dt>
+            <dd>
+                Indicates the sentences that are in each of the public lists. 
+                <span class="param">13</span>
+                <span class="symbol">[tab]</span>
+                <span class="param">381279</span> 
+                means that sentence nº381279 is part of the list of id 13.
             </dd>
         </dl>
             
