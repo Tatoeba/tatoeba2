@@ -1,4 +1,5 @@
 <?php
+include_once("models/current_user.php");
 /**
     Tatoeba Project, free collaborativ creation of languages corpuses project
     Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
@@ -76,7 +77,7 @@ class Sentence extends AppModel
         'sjn', 'tel', 'nov', 'tpi', 'qya',
         'mri', 'lld', 'ber', 'xho', 'pnb',
         'mgl', 'grn', 'lad', 'pms', 'avk',
-        'mar', 'tgk', 'tpw', "prg", "npi", "mlt", "ckt",  "cor", "aze", "khm", "lao", //@lang
+        'mar', 'tgk', 'tpw', "prg", "npi", "mlt", "ckt",  "cor", "aze", "khm", "lao", "bod", "hil", "arq", //@lang
         null
         );   
     public $validate = array(
@@ -605,6 +606,7 @@ class Sentence extends AppModel
         }
         
         if (!empty($lang) && $lang != "und") {
+
             $languages = array($lang);
         } else {
             $languages = CurrentUser::getLanguages();
