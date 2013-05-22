@@ -63,7 +63,7 @@ if (isset($this->params['lang'])) {
             __('Downloads', true),
             array(
                 "controller" => 'pages',
-                "action" => 'download_tatoeba_example_sentences'
+                "action" => 'downloads'
             )
         );
         ?>

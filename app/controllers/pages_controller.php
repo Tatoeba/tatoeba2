@@ -136,8 +136,8 @@ class PagesController extends AppController
                 break;
 
             case "download-tatoeba-example-sentences":
-                $action = "download_tatoeba_example_sentences";
-                break;
+                $action = "downloads";
+                break;            
 
             case "terms-of-use":
                 $action = "terms_of_use";
@@ -299,14 +299,31 @@ class PagesController extends AppController
         $this->set("translators", $peoples['Translator']);
         $this->set("specialThanks", $peoples['Special']);
     }
-
+    
+    
     /**
      *
      *
      */
     public function download_tatoeba_example_sentences()
     {
+        $this->redirect(
+            array(
+                "controller" => "pages",
+                "action" => "downloads"
+            ),
+            301
+        );
     }
+    
+    /**
+     *
+     *
+     */
+    public function downloads()
+    {
+    }
+    
 
     /**
      *
