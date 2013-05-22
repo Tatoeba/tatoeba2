@@ -319,7 +319,7 @@ class LanguagesHelper extends AppHelper
     public function getSearchableLanguagesArray()
     {
         $languages = $this->onlyLanguagesArray();
-        asort($languages);
+        natcasesort($languages);
         array_unshift($languages, array('und' => __('Any', true)));
 
         return $languages;
