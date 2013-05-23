@@ -84,9 +84,9 @@ class UserController extends AppController
 
     /**
      * Display profile of given user.
-     * If no username is specified, redirect to index
-     * (that is current user's profile).
-     * If wrong username is specified, redirect to list of members.
+     * If no username is given and no user is logged in, then redirect to home
+     * If no username is given (but a user is logged in), then redirect to current user's profile
+     * If username doesn't exist, then redirect to list of memembers (user logged in or not)
      *
      * @param string $userName User screen identifiant
      *
@@ -98,7 +98,16 @@ class UserController extends AppController
         $this->helpers[] = 'Members';
         
         $userName = Sanitize::paranoid($userName, array('_'));
-        $infoOfUser = $this->User->getInformationOfUser($userName);
+        
+        if(empty($userName) && !CurrentUser::isMember()){
+            $this->redirect(array('controller'=>'pages','action' => 'home'));
+        }elseif(empty($userName)){
+            $this->redirect(array('action' => 'profile', CurrentUser::get('username')));
+        }elseif(!( $infoOfUser = $this->User->getInformationOfUser($userName) )){
+            $this->Session->setFlash(__('No user with this username : ', true).$userName);
+            $this->redirect(array('controller'=>'users','action' => 'all'));
+        }
+        
         $user = $infoOfUser['User'];
         $countryName = $infoOfUser['Country']['name'];
         $groupId = $user['group_id'];
