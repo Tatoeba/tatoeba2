@@ -408,11 +408,10 @@ class WallController extends Appcontroller
      * Hides a given message on the Wall. The message is still going to be there
      * but only visible to the admins and the author of the message.
      *
-     * @param int $messageId Id of the message to delete
+     * @param int $messageId Id of the message to hide
      *
      * @return void
      */
-
     public function hide_message($messageId)
     {
         if (CurrentUser::isAdmin()) {
@@ -430,11 +429,10 @@ class WallController extends Appcontroller
     /**
      * Display back a given message on the Wall that was hidden.
      *
-     * @param int $messageId Id of the message to delete
+     * @param int $messageId Id of the message to display again
      *
      * @return void
      */
-
     public function unhide_message($messageId)
     {
         if (CurrentUser::isAdmin()) {
