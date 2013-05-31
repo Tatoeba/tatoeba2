@@ -45,14 +45,43 @@ class WallHelper extends AppHelper
      *
      * @param int   $messageId   the id of the replied message
      * @param array $permissions Permissions the current user as on this message
+     * @param bool  $hidden      'true' if the message is hidden, 'false' otherwise.
      * @param bool  $firstTime   to know if the first time we call it
      *                           to add add or not the JS
      *
      * @return void
      */
 
-    public function createLinks($messageId, $permissions, $firstTime = false)
-    {
+    public function createLinks(
+        $messageId, 
+        $permissions, 
+        $hidden,
+        $firstTime = false
+    ) {
+    
+        if (CurrentUser::isAdmin()) {
+            if ($hidden) {
+                $hiddenLinkText = __('unhide', true);
+                $hiddenLinkAction = 'unhide_message';
+            } else {
+                $hiddenLinkText = __('hide', true);
+                $hiddenLinkAction = 'hide_message';
+            }
+            
+            // hide/unhide link, for when people start acting like kids and stuff
+            echo $this->Html->link(
+                $hiddenLinkText,
+                array(
+                    "controller" => "wall", 
+                    "action" => $hiddenLinkAction,
+                    $messageId
+                )
+            );
+            echo ' - ';
+            
+            
+        }
+        
         if ($permissions['canDelete']) {
             // delete link
             echo $this->Html->link(
@@ -155,23 +184,49 @@ class WallHelper extends AppHelper
     /**
      * display content of a message
      *
-     * @param string $content Message to be rendered
+     * @param string  $content  Message to be rendered
+     * @param boolean $hiddden  Set to 'true' if the message was set as hidden
+     *                          because it was innapropriate, 'false' otherwise.
+     * @param int     $authorId Id of the author of the message.
      *
      * @return void
      */
 
-    public function displayContent($content)
+    public function displayContent($content, $hidden, $authorId)
     {
-        echo nl2br(
-            $this->ClickableLinks->clickableURL(
-                htmlentities(
-                    $content,
-                    ENT_QUOTES,
-                    'UTF-8'
+        if ($hidden) {
+            
+            echo "<div class='hidden'>";
+            echo sprintf(
+                __(
+                    'The content of this message goes against '.
+                    '<a href="%s">our rules</a> and was therefore hidden. '.
+                    'It is displayed only to admins '.
+                    'and to the author of the message.',
+                    true
+                ),
+                'http://en.wiki.tatoeba.org/articles/show/rules-against-bad-behavior'
+            );
+            echo "</div>";
+            
+        }
+        
+        $isDisplayedToCurrentUser = !$hidden 
+            || CurrentUser::isAdmin() 
+            || CurrentUser::get('id') == $authorId;
+            
+        if ($isDisplayedToCurrentUser)
+        {
+            echo nl2br(
+                $this->ClickableLinks->clickableURL(
+                    htmlentities(
+                        $content,
+                        ENT_QUOTES,
+                        'UTF-8'
+                    )
                 )
-            )
-        );
-
+            );
+        }
     }
 
 
@@ -264,7 +319,13 @@ class WallHelper extends AppHelper
             
             <!-- message content -->
             <div class="body" >
-               <?php $this->displayContent($message['content']); ?> 
+                <?php 
+                $this->displayContent(
+                    $message['content'], 
+                    $message['hidden'],
+                    $message['owner']
+                ); 
+                ?> 
             </div>
         </div>
     <?php
@@ -299,7 +360,13 @@ class WallHelper extends AppHelper
             ?>
             <!-- message content -->
             <div class="body">
-                <?php $this->displayContent($message['content']); ?>
+                <?php 
+                $this->displayContent(
+                    $message['content'], 
+                    $message['hidden'],
+                    $message['owner']
+                ); 
+                ?>
             </div>
         </div>
         
@@ -338,6 +405,7 @@ class WallHelper extends AppHelper
         $messageDate = $message['date'];
         $userName = $author['username'];
         $userImage = $author['image'];
+        $hidden = $message['hidden'];
         ?>
         <ul class="meta" >
             <!-- reply option -->
@@ -346,6 +414,7 @@ class WallHelper extends AppHelper
                 $this->createLinks(
                     $messageId,
                     $permissions,
+                    $hidden,
                     $firstTime
                 );
                 ?>

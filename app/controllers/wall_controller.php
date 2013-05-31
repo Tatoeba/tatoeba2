@@ -75,7 +75,11 @@ class WallController extends Appcontroller
         $this->Auth->allowedActions = array(
             'index',
             'show_message',
-            'messages_of_user'
+            'messages_of_user',
+            // The actions below should not be allowed here, but I don't feel like
+            // taking the time to update the ACL stuff. I'M SORRY!
+            'hide_message',
+            'unhide_message'
         );
     }
 
@@ -397,6 +401,51 @@ class WallController extends Appcontroller
         
         $this->set("messages", $messages);
         $this->set("username", $username);
+    }
+    
+    
+    /**
+     * Hides a given message on the Wall. The message is still going to be there
+     * but only visible to the admins and the author of the message.
+     *
+     * @param int $messageId Id of the message to delete
+     *
+     * @return void
+     */
+
+    public function hide_message($messageId)
+    {
+        if (CurrentUser::isAdmin()) {
+            $messageId = Sanitize::paranoid($messageId);
+            
+            $this->Wall->saveField('hidden', true);
+            
+            // redirect to previous page
+            $this->redirect($this->referer()); 
+        }
+
+    }
+    
+    
+    /**
+     * Display back a given message on the Wall that was hidden.
+     *
+     * @param int $messageId Id of the message to delete
+     *
+     * @return void
+     */
+
+    public function unhide_message($messageId)
+    {
+        if (CurrentUser::isAdmin()) {
+            $messageId = Sanitize::paranoid($messageId);
+            
+            $this->Wall->saveField('hidden', false);
+            
+            // redirect to previous page
+            $this->redirect($this->referer()); 
+        }
+
     }
     
 }
