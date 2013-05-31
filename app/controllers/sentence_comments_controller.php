@@ -63,6 +63,7 @@ class SentenceCommentsController extends AppController
                 'text',
                 'created',
                 'sentence_id',
+                'hidden'
             ),
             'contain' => array(
                 'User' => array(

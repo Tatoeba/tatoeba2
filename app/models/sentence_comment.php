@@ -123,6 +123,7 @@ class SentenceComment extends AppModel
             array(
                 'order' => 'SentenceComment.created DESC',
                 'limit' => $limit,
+                'conditions' => array('hidden' => 0),
                 'contain' => array(
                     'User' => array(
                         'fields' => array(
