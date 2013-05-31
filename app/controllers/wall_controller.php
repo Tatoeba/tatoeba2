@@ -417,6 +417,7 @@ class WallController extends Appcontroller
         if (CurrentUser::isAdmin()) {
             $messageId = Sanitize::paranoid($messageId);
             
+            $this->Wall->id = $messageId;
             $this->Wall->saveField('hidden', true);
             
             // redirect to previous page
@@ -438,6 +439,7 @@ class WallController extends Appcontroller
         if (CurrentUser::isAdmin()) {
             $messageId = Sanitize::paranoid($messageId);
             
+            $this->Wall->id = $messageId;
             $this->Wall->saveField('hidden', false);
             
             // redirect to previous page
