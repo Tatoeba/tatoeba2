@@ -90,6 +90,15 @@
     margin-bottom: -1px;
 }
 
+.comments .hidden {
+    border: 1px solid #CCC;
+    background: #F1F1F1;
+    padding: 5px;
+    font-style: italic;
+    color: #666;
+    margin: 10px 0px;
+}
+
 
 /*
  * Comment form

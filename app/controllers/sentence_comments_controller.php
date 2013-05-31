@@ -403,5 +403,48 @@ class SentenceCommentsController extends AppController
     }
 
 
+    /**
+     * Hides a given comment. The message is still going to be there
+     * but only visible to the admins and the author of the message.
+     *
+     * @param int $messageId Id of the comment to hide
+     *
+     * @return void
+     */
+    public function hide_message($messageId)
+    {
+        if (CurrentUser::isAdmin()) {
+            $messageId = Sanitize::paranoid($messageId);
+            
+            $this->SentenceComment->id = $messageId;            
+            $this->SentenceComment->saveField('hidden', true);
+            
+            // redirect to previous page
+            $this->redirect($this->referer()); 
+        }
+
+    }
+    
+    
+    /**
+     * Display back a given comment that was hidden.
+     *
+     * @param int $messageId Id of the message to display again
+     *
+     * @return void
+     */
+    public function unhide_message($messageId)
+    {
+        if (CurrentUser::isAdmin()) {
+            $messageId = Sanitize::paranoid($messageId);
+            
+            $this->SentenceComment->id = $messageId;
+            $this->SentenceComment->saveField('hidden', false);
+            
+            // redirect to previous page
+            $this->redirect($this->referer()); 
+        }
+
+    }
 }
 ?>

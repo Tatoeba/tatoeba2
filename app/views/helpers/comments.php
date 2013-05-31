@@ -59,15 +59,18 @@ class CommentsHelper extends AppHelper
         $commentText = $comment['text'];
         
         $date = $comment['created'];
+        
+        $hidden = $comment['hidden'];
+        $authorId = $comment['user_id'];
         ?>
         <li>
         <a id="comment-<?php echo $commentId; ?>" />
         <?php
         $this->_displayActions(
-            $permissions, $commentId,  $comment['sentence_id'], $userName
+            $permissions, $commentId, $comment['sentence_id'], $userName, $hidden
         );
         $this->_displayMeta($userName, $userImage, $date);
-        $this->_displayBody($commentText, $sentence);
+        $this->_displayBody($commentText, $sentence, $hidden, $authorId);
         ?>
         </li>
         <?php
@@ -182,19 +185,25 @@ class CommentsHelper extends AppHelper
     /**
      * Display view and delete buttons.
      *
-     * @param array $permissions    Permissions.
-     * @param int   $commentId      Id of the comment.
-     * @param int   $sentenceId     Id of the related sentence.
-     * @param bool $displayAsThread Cf. displaySentenceComment().
+     * @param array  $permissions Permissions.
+     * @param int    $commentId   Id of the comment.
+     * @param int    $sentenceId  Id of the related sentence.
+     * @param string $username    Username of the author of the comment.
+     * @param bool   $hidden      'true' if comment is hidden, 'false' otherwise.
      *
      * @return void
      */
     private function _displayActions(
-        $permissions, $commentId, $sentenceId, $username        
+        $permissions, $commentId, $sentenceId, $username, $hidden        
     ) {
         ?>
         <div class="actions">
         <?php
+        if (CurrentUser::isAdmin())
+        {
+            $this->_displayHideButton($commentId, $hidden);
+        }
+        
         $this->_displayViewButton($commentId, $sentenceId);
         
         if (CurrentUser::isMember()) {
@@ -328,25 +337,88 @@ class CommentsHelper extends AppHelper
     
     
     /**
-     * Display body.
+     * Hide button.
      *
-     * @param string $commentText     Text of the comment.
-     * @param array  $sentence        Related sentence.
-     * @param bool   $displayAsThread Cf. displaySentenceComment()
+     * @param int $commentId Id of the comment.
      *
      * @return void
      */
-    private function _displayBody($commentText, $sentence)
+    private function _displayHideButton($commentId, $hidden)
+    {
+        ?>
+        <div class="action">
+        <?php
+        if ($hidden) {
+            $hiddenLinkText = __('unhide', true);
+            $hiddenLinkAction = 'unhide_message';
+        } else {
+            $hiddenLinkText = __('hide', true);
+            $hiddenLinkAction = 'hide_message';
+        }
+        
+        // hide/unhide link, for when people start acting like kids and stuff
+        echo $this->Html->link(
+            $hiddenLinkText,
+            array(
+                "controller" => "sentence_comments", 
+                "action" => $hiddenLinkAction,
+                $commentId
+            )
+        );
+        ?>
+        </div>
+        <?php
+    }
+    
+    
+    /**
+     * Display body.
+     *
+     * @param string $commentText Text of the comment.
+     * @param array  $sentence    Related sentence.
+     * @param bool   $hidden      'true' if the comment is hidden because it is
+     *                            considered inappropriate. 'false' otherwise.
+     * @param int    $authorId    Id of the author of the comment.
+     *
+     * @return void
+     */
+    private function _displayBody($commentText, $sentence, $hidden, $authorId)
     {
         ?>
         <div class="body">
-        <?php
-        if (isset($sentence['text'])) {
-            $this->_displayRelatedSentence($sentence);
-        }
-        
-        $this->_displayCommentText($commentText);
-        ?>
+            <?php
+            if (isset($sentence['text'])) {
+                $this->_displayRelatedSentence($sentence);
+            }
+            ?>
+                
+            <div class="commentText">   
+            <?php
+            if ($hidden) {
+                echo "<div class='hidden'>";
+                echo sprintf(
+                    __(
+                        'The content of this message goes against '.
+                        '<a href="%s">our rules</a> and was therefore hidden. '.
+                        'It is displayed only to admins '.
+                        'and to the author of the message.',
+                        true
+                    ),
+                    'http://en.wiki.tatoeba.org/articles/show/rules-against-bad-behavior'
+                );
+                echo "</div>";
+            }
+            
+            $isDisplayedToCurrentUser = !$hidden 
+                || CurrentUser::isAdmin() 
+                || CurrentUser::get('id') == $authorId;
+                
+            if ($isDisplayedToCurrentUser)
+            {
+                $this->_displayCommentText($commentText);
+            }
+            ?>
+            </div>
         </div>
         <?php
     }
@@ -361,9 +433,6 @@ class CommentsHelper extends AppHelper
      */
     private function _displayCommentText($commentText)
     {
-        ?>
-        <div class="commentText">
-        <?php
         $commentText = $this->ClickableLinks->clickableURL(
             htmlentities(
                 $commentText,
@@ -372,9 +441,6 @@ class CommentsHelper extends AppHelper
             )
         );
         echo nl2br($commentText);
-        ?>
-        </div>
-        <?php
     }
     
     
