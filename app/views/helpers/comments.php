@@ -415,7 +415,17 @@ class CommentsHelper extends AppHelper
                 
             if ($isDisplayedToCurrentUser)
             {
+                // re #373 change the message style to be more clear to the reader of the message 
+                if($hidden){
+                    echo "<br />";
+                    echo "<div class='hiddenUserMessage'>\"";
+                }
+
                 $this->_displayCommentText($commentText);
+
+                if($hidden){
+                    echo "\"</div>";
+                }
             }
             ?>
             </div>

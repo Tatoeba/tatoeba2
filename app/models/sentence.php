@@ -275,7 +275,7 @@ class Sentence extends AppModel
     public function getSeveralRandomIds($lang = 'und',  $numberOfIdWanted = 10)
     {
 		// Uncomment the line below if you don't have sphinx installed.
-		// return array(1);
+		return array(1);
         
         if(empty($lang)) {
             $lang = 'und';

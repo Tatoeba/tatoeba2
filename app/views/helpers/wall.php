@@ -207,16 +207,20 @@ class WallHelper extends AppHelper
                 ),
                 'http://en.wiki.tatoeba.org/articles/show/rules-against-bad-behavior'
             );
-            echo "</div>";
-            
+            echo "</div>";            
         }
         
         $isDisplayedToCurrentUser = !$hidden 
             || CurrentUser::isAdmin() 
-            || CurrentUser::get('id') == $authorId;
-            
+            || CurrentUser::get('id') == $authorId;        
+
         if ($isDisplayedToCurrentUser)
-        {
+        {            
+            // re #373:change the message style to be more clear to the reader of the message
+            if($hidden){
+                echo "<br />";
+                echo "<div class='hiddenUserMessage'>\"";
+            }
             echo nl2br(
                 $this->ClickableLinks->clickableURL(
                     htmlentities(
@@ -226,6 +230,9 @@ class WallHelper extends AppHelper
                     )
                 )
             );
+            if($hidden){
+                echo "\"</div>";
+            }
         }
     }
 
