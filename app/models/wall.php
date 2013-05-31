@@ -188,6 +188,7 @@ class Wall extends AppModel
             array(
                 "order" => "Wall.date DESC",
                 "limit" => $numberOfLastMessages,  
+                "conditions" => array("hidden" => 0),
                 "contain"    => array (
                     "User" => array (
                         "fields" => array(
