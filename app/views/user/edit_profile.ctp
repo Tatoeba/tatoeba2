@@ -27,7 +27,7 @@
 ?>
 <div id="annexe_content">
     <?php
-        echo $this->element(
+    echo $this->element(
         'users_menu', 
         array('username' => CurrentUser::get('username'))
     );
@@ -42,7 +42,7 @@
         <?php
         $image = 'unknown-avatar.png';
         if (!empty($this->data['User']['image'])) {
-            $image = $this->data['User']['image'];
+            $image = Sanitize::html($this->data['User']['image']);
         }
         echo $html->image(
             IMG_PATH . 'profiles_128/'.$image
@@ -82,9 +82,9 @@
         'label' => __('Birthday', true)
     );
     $selectedCountryId = $this->data['Country']['id'];
-    
+
     echo $form->create(
-        null, 
+        false, 
         array(
             'controller' => 'user',
             'action' => 'save_basic'
@@ -92,28 +92,28 @@
     );
     
     echo $form->input(
-        'name', 
+        'User.name',
         array('label' => __('Name', true))
     );
     
     echo '<div class="input">';
     echo '<label for="UserCountryId">';
-    __('Country');
+     __('Country');
     echo '</label>';
     echo $form->select(
-        'country_id', 
+        'User.country_id', 
         $countries, 
         $selectedCountryId
     );
     echo '</div>';
     
     echo $form->input(
-        'birthday', 
+        'User.birthday', 
         $dateOptions
     );
     
     echo $form->input(
-        'homepage',
+        'User.homepage',
         array('label' => __('Homepage', true))
     );
     echo $form->end(__('Save personal information', true));
@@ -123,15 +123,15 @@
     
     <div id="description" class="module">
     <h2><?php __('Description'); ?></h2>
-    <?php 
+    <?php
     echo $form->create(
-        null, 
+        false, 
         array(
             'controller' => 'user',
             'action' => 'save_description'
         )
     );
-    echo $form->textarea('description');
+    echo $form->textarea('User.description');
     echo $form->end(__('Save description', true)); 
     ?>
     </div>

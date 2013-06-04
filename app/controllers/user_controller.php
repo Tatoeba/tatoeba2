@@ -84,9 +84,12 @@ class UserController extends AppController
 
     /**
      * Display profile of given user.
-     * If no username is given and no user is logged in, then redirect to home
-     * If no username is given (but a user is logged in), then redirect to current user's profile
-     * If username doesn't exist, then redirect to list of memembers (user logged in or not)
+     * If no username is given and no user is logged in, 
+     *     then redirect to home
+     * If no username is given (but a user is logged in), 
+     *     then redirect to current user's profile
+     * If username doesn't exist, 
+     *     then redirect to list of memembers (user logged in or not)
      *
      * @param string $userName User screen identifiant
      *
@@ -99,13 +102,21 @@ class UserController extends AppController
         
         $userName = Sanitize::paranoid($userName, array('_'));
         
-        if(empty($userName) && !CurrentUser::isMember()){
+        if (empty($userName) && !CurrentUser::isMember()) {
             $this->redirect(array('controller'=>'pages','action' => 'home'));
-        }elseif(empty($userName)){
-            $this->redirect(array('action' => 'profile', CurrentUser::get('username')));
-        }elseif(!( $infoOfUser = $this->User->getInformationOfUser($userName) )){
-            $this->Session->setFlash(__('No user with this username : ', true).$userName);
-            $this->redirect(array('controller'=>'users','action' => 'all'));
+        } elseif (empty($userName)) {
+            $this->redirect(
+                array('action' => 'profile',
+                  CurrentUser::get('username'))
+            );
+        } elseif (!( $infoOfUser = $this->User->getInformationOfUser($userName) )) {
+            $this->Session->setFlash(
+                __('No user with this username : ', true).$userName
+            );
+            $this->redirect(
+                array('controller'=>'users',
+                  'action' => 'all')
+            );
         }
         
         $user = $infoOfUser['User'];
@@ -135,25 +146,29 @@ class UserController extends AppController
      */
     public function save_image()
     {
+        $redirectURL = array('action' => 'profile', CurrentUser::get('username'));
+        
         $image = null;
         if (isset($this->data['profile_image']['image'])) {
             $image = $this->data['profile_image']['image'];
         }
-        $redirectURL = array('action' => 'profile', CurrentUser::get('username'));
         
         // We first check if a file has been correctly uploaded
-        $redirect = (empty($this->data) || !empty($image));
-        $recirect = ($image['error'] != UPLOAD_ERR_OK);
-        $redirect = (!is_uploaded_file($image['tmp_name']));
+        $redirect = (empty($this->data) || empty($image)) ||
+                    ($image['error'] != UPLOAD_ERR_OK) ||
+                    !is_uploaded_file($image['tmp_name']);
         if ($redirect) {
+            $this->Session->setFlash(
+                __('Failed to upload image', true)
+            );
             $this->redirect($redirectURL);
         }
         
-        // The file size must be < 1mo
+        // The file size must be < 1mb
         $fileSize = (int) $image['size'] / 1024;
         if ($fileSize > 1024) {
             $this->Session->setFlash(
-                __('Please choose an image that do not exceed 1 MB.', true)
+                __('Please choose an image that does not exceed 1 MB.', true)
             );
             $this->redirect($redirectURL);
         }
@@ -190,14 +205,7 @@ class UserController extends AppController
         // if all resize has worked we can save it in user information
         if ($save36Succed && $save128Succed) {
             $this->User->id = $this->Auth->user('id');
-            $this->User->save(
-                array(
-                    'User' => array(
-                        'image' => $newFileName
-                     )
-                )
-            );
-        
+            $this->User->saveField('image', $newFileName);
         } else {
             $this->Session->setFlash(
                 __("Error while saving.", true)
@@ -332,7 +340,7 @@ class UserController extends AppController
         
         if (!empty($this->data)) {
             $this->data['User']['id'] = $currentUserId;
-            $this->data['User']['lang'] = $this->_languageSettings(
+            $this->data['User']['lang'] = $this->_language_settings(
                 $this->data['User']['lang']
             );
             if ($this->User->save($this->data)) {                
@@ -368,14 +376,18 @@ class UserController extends AppController
      * A correct string should be composted of ISO codes that are present in the
      * list of languages supported, separated by a comma.
      * For instance: eng,deu,jpn,ita.
+     * 
+     * @param string $userInput desired language settings
+     * 
+     * @return array
      */
-    private function _languageSettings($userInput)
+    private function _language_settings($userInput)
     {
         $userInput = str_replace(' ', '', $userInput);
         $userLangs = explode(',', $userInput);
         $supportedLangs = $this->Sentence->languages;
         $tmpLanguagesArray = array();
-        foreach($userLangs as $lang) {
+        foreach ($userLangs as $lang) {
             if (in_array($lang, $supportedLangs)) {
                 $tmpLanguagesArray[] = $lang;
             }
@@ -475,11 +487,8 @@ class UserController extends AppController
             $this->redirect('/');
         }
         
-        $user = $this->User->getInformationOfCurrentUser($currentUserId);
-        $this->data = $user;
-        // Hack. It seems that it screws up the "action" params in <form> 
-        // when the id is set. So we're setting it to null.
-        $this->data['User']['id'] = null; 
+        $userInfo = $this->User->getInformationOfCurrentUser($currentUserId);
+        $this->data = $userInfo;
         
         $this->loadModel('Country');
         $tmpCountries = $this->Country->findAll();
