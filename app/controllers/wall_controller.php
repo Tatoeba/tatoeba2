@@ -386,7 +386,7 @@ class WallController extends Appcontroller
         $this->paginate = array(
             "order" => "date DESC", 
             "limit" => 20,
-            "fields" => array ("id", "date", "content"), 
+            "fields" => array ("id", "date", "content", "hidden", "owner"), 
             "conditions" => array (
                 "owner" => $userId,
             ),
