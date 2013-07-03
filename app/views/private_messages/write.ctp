@@ -32,8 +32,18 @@ echo $this->element('pmmenu');
         
         <h2><?php echo __('New message', true); ?></h2>
         
-        <?php
-        $privateMessages->displayForm($recipients);
-        ?>
+     <?php
+     if ($canSend) {
+         if ($isNewUser) {
+             echo "<p>";
+                 __(
+                     "To help keep tatoeba free of spam and other malicious messages
+                     new users can only send 5 messages per day."
+                 );
+             echo "</p>";
+         }
+         $privateMessages->displayForm($recipients);
+     }
+     ?>
     </div>
 </div>

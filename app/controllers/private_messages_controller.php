@@ -308,6 +308,47 @@ class PrivateMessagesController extends AppController
      */
     public function write($recipients = null)
     {
+        $userId = CurrentUser::get('id');
+        $isNewUser = CurrentUser::isNewUser();
+        
+        //For new users, check how many messages they have sent in the last 24hrs
+        $canSend = true;
+        if ($isNewUser) {
+            $yesterday = date_modify(new DateTime("now"), "-1 day");
+            $messagesToday = $this->PrivateMessage->find(
+                "count",
+                array(
+                        'conditions' => array(
+                            'sender' => $userId,
+                            'folder' => array('Sent', 'Trash'),
+                            'date >= ' => date_format($yesterday, "Y/m/d H:i:s")
+                        )
+                    )
+            );
+            
+            $message = __("New users can send only 5 messages per day. ", true);
+            if ($messagesToday >= 5) {
+                $message .=
+                        __(
+                            "Please wait until you can send more messages .".
+                            "If you have recieved this message wrongly, ".
+                            "please contact administrators at ".
+                            "team@tatoeba.org.", true
+                        );
+                $canSend = false;
+            } else {
+                $message .= sprintf(
+                    __(
+                        "You have sent %s messages today. ", true
+                    ), $messagesToday
+                );
+            }
+            
+            $this->Session->setFlash($message);
+        }
+        $this->set('canSend', $canSend);
+        $this->set("isNewUser", $isNewUser);
+        
         if ($recipients == null) {
             $recipients = '';
         }

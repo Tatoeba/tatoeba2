@@ -205,6 +205,26 @@ class CurrentUser extends AppModel
 
     }
     
+    /**
+     * A user is new if they registered within the last 14 days
+     * 
+     * @return boolean
+     */
+    public static function isNewUser()
+    {
+        $isNewUser = false;
+        $daysToWait = "14";
+        
+        $today = new DateTime("now");
+        $since = new DateTime(self::get('since'));
+        $userAge = $since->diff($today);
+        
+        if ($userAge->days <= $daysToWait) {
+            $isNewUser = true;
+        }
+        
+        return $isNewUser;
+    }
     
     /**
      * Indicates if sentence of given id has been favorited by current user.
