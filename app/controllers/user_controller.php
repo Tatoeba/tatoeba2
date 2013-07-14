@@ -305,6 +305,27 @@ class UserController extends AppController
             $this->redirect('/');
         }
         
+        $isEmailUnique = $this->User->find(
+            'first', 
+            array(
+                'conditions' => array(
+                    'email' => $this->data['User']['email'],
+                    'User.id !=' => $currentUserId
+                    )
+           )
+        );
+        if (!empty($isEmailUnique)) {
+            $this->Session->setFlash(
+                __("That email already exists, please try another.", true)
+            );
+            $this->redirect(
+                array(
+                        'controller' => 'user',
+                        'action' => 'settings'
+                    )
+            );
+        }
+        
         $saved = false;
         if (!empty($this->data)) {
             $this->data['User']['id'] = $currentUserId;
@@ -312,10 +333,26 @@ class UserController extends AppController
         }
         
         if ($saved) {
+            $this->Session->setFlash(
+                __("Email saved.", true)
+            );
             $this->redirect(
                 array(
                     'action' => 'profile',
                     CurrentUser::get('username')
+                )
+            );
+        } else {
+            $this->Session->setFlash(
+                __(
+                    "Failed to change email, please enter a proper email address.",
+                    true
+                )
+            );
+            $this->redirect(
+                array(
+                    'controller' => 'user',
+                    'action' => 'settings'
                 )
             );
         }
