@@ -33,15 +33,38 @@ echo $this->element('pmmenu');
         <h2><?php echo __('New message', true); ?></h2>
         
      <?php
-     if ($canSend) {
-         if ($isNewUser) {
-             echo "<p>";
-                 __(
-                     "To help keep tatoeba free of spam and other malicious messages
-                     new users can only send 5 messages per day."
-                 );
-             echo "</p>";
-         }
+     if ($isNewUser && $canSend) {
+         echo "<p>";
+             __(
+                 "To help keep tatoeba free of spam and other malicious messages
+                 new users can send only 5 messages per day."
+             );
+         echo "</p>";
+         echo "<p>";
+         echo sprintf(
+             __(
+                 "You have sent %s messages today. ", true
+             ), $messagesToday
+         );
+         echo "</p>";
+         echo "<br/>";
+         $privateMessages->displayForm($recipients);
+     } else if ($isNewUser) {
+         echo "<p>";
+             __(
+                 "To help keep tatoeba free of spam and other malicious messages
+                 new users can send only 5 messages per day."
+             );
+         echo "</p>";
+         echo "<p>";
+             __(
+                 "Please wait until you can send more messages. ".
+                 "If you have recieved this message wrongly, ".
+                 "please contact administrators at ".
+                 "team@tatoeba.org."
+             );
+         echo "</p>";
+     } else {
          $privateMessages->displayForm($recipients);
      }
      ?>

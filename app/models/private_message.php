@@ -128,7 +128,28 @@ class PrivateMessage extends AppModel
             )
         );
     }
-
-
+    
+    /**
+     * Returns count of messages sent by user in the last 24 hours
+     *
+     * @param int $userId The user id. 
+     *
+     * @return int
+     */
+    public function messagesTodayOfUser($userId)
+    {
+        $yesterday = date_modify(new DateTime("now"), "-1 day");
+        return $this->find(
+            "count",
+            array(
+                  'conditions' => array(
+                      'sender' => $userId,
+                      'folder' => array('Sent', 'Trash'),
+                      'date >= ' => date_format($yesterday, "Y/m/d H:i:s")
+                  )
+           )
+        );
+        
+    }
 }
 ?>
