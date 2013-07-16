@@ -305,16 +305,12 @@ class UserController extends AppController
             $this->redirect('/');
         }
         
-        $isEmailUnique = $this->User->find(
-            'first', 
-            array(
-                'conditions' => array(
-                    'email' => $this->data['User']['email'],
-                    'User.id !=' => $currentUserId
-                    )
-           )
-        );
-        if (!empty($isEmailUnique)) {
+        $isEmailUnique
+            = $this->User->isEmailUnique(
+                $this->data['User']['email'],
+                $currentUserId
+            );
+        if (!$isEmailUnique) {
             $this->Session->setFlash(
                 __("That email already exists, please try another.", true)
             );

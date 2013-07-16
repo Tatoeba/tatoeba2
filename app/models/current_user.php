@@ -208,7 +208,7 @@ class CurrentUser extends AppModel
     /**
      * A user is new if they registered within the last 14 days
      * 
-     * @return boolean
+     * @return bool
      */
     public static function isNewUser()
     {

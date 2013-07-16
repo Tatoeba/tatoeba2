@@ -192,7 +192,7 @@ class User extends AppModel
                 )
             )
         );
-
+        
         return $this->findById($userId);
     }
 
@@ -455,7 +455,7 @@ class User extends AppModel
         );
         return $user['User']['id'];
     }
-
+    
     /**
      * Return an email from a user id.
      *
@@ -474,6 +474,31 @@ class User extends AppModel
             )
         );
         return $user['User']['email'];
+    }
+    
+    /**
+     * Check if (new) email for user is unique
+     *
+     * @param string $email new email.
+     *
+     * @return bool
+     */
+    public function isEmailUnique($email, $userId)
+    {
+        $result =  $this->find(
+            'first', 
+            array(
+                'conditions' => array(
+                    'email' => $email,
+                    'User.id !=' => $userId
+                    )
+           )
+        );
+        if (empty($result)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
