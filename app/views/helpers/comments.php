@@ -432,8 +432,36 @@ class CommentsHelper extends AppHelper
         </div>
         <?php
     }
-    
-    
+
+
+    /**
+     * @param string $commentText     Text of the comment.
+     *
+     * @return string The comment body formatted for HTML display.
+     */
+    public function formatComment($commentText) {
+      $commentText = htmlentities($commentText, ENT_QUOTES, 'UTF-8');
+
+      // Convert sentence mentions to links
+      $self = $this;
+      $commentText = preg_replace_callback('/\[#(\d+)\]/', function ($m) use ($self) {
+          return $self->Html->link('#' . $m[1], array(
+            'controller' => 'sentences',
+            'action' => 'show',
+            $m[1]
+          ));
+        }, $commentText);
+
+      // Make URLs clickable
+      $commentText = $this->ClickableLinks->clickableURL($commentText);
+
+      // Convert linebreaks to <br/>
+      $commentText = nl2br($commentText);
+
+      return $commentText;
+    }
+
+
     /**
      * Display comment text.
      *
@@ -443,14 +471,7 @@ class CommentsHelper extends AppHelper
      */
     private function _displayCommentText($commentText)
     {
-        $commentText = $this->ClickableLinks->clickableURL(
-            htmlentities(
-                $commentText,
-                ENT_QUOTES,
-                'UTF-8'    
-            )
-        );
-        echo nl2br($commentText);
+        echo $this->formatComment($commentText);
     }
     
     
