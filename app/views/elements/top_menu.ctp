@@ -109,6 +109,48 @@ $menuElements = array(
             "controller" => "wall",
             "action" => "index"
         )
+    ),
+    __('More', true) => array(
+        "route" => array(
+            "controller" => "pages",
+            "action" => "help",
+        ),
+        "sub-menu" => array(
+            __('Quick Start Guide', true) =>
+                'http://en.wiki.tatoeba.org/articles/show/quick-start'
+            ,
+            __('The Tatoeba Wiki', true) =>
+                'http://en.wiki.tatoeba.org/articles/show/main'
+            ,
+            __('Terms of Use', true) => array(
+                "controller" => "pages",
+                "action" => "terms_of_use"
+            ),
+            __('Contact Us', true) => array(
+                "controller" => "pages",
+                "action" => "contact"
+            ),
+            __('Downloads', true) => array(
+                "controller" => "pages",
+                "action" => "downloads"
+            ),
+            __('Tools', true) => array(
+                "controller" => "tools",
+                "action" => "index"
+            ),
+            __('Team & Credits', true) => array(
+                "controller" => "pages",
+                "action" => "tatoeba_team_and_credits"
+            ),
+            __('FAQ', true) => array(
+                "controller" => "pages",
+                "action" => "faq"
+            ),
+            __('Help', true) => array(
+                "controller" => "pages",
+                "action" => "help"
+            )
+        )
     )
 );
 
