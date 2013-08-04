@@ -112,36 +112,16 @@ $menuElements = array(
     ),
     __('More', true) => array(
         "route" => array(
-            "controller" => "pages",
-            "action" => "help",
+            "controller" => null,
+            "action" => null,
         ),
         "sub-menu" => array(
             __('Quick Start Guide', true) =>
                 'http://en.wiki.tatoeba.org/articles/show/quick-start'
             ,
-            __('The Tatoeba Wiki', true) =>
+            __('Tatoeba Wiki', true) =>
                 'http://en.wiki.tatoeba.org/articles/show/main'
             ,
-            __('Terms of Use', true) => array(
-                "controller" => "pages",
-                "action" => "terms_of_use"
-            ),
-            __('Contact Us', true) => array(
-                "controller" => "pages",
-                "action" => "contact"
-            ),
-            __('Downloads', true) => array(
-                "controller" => "pages",
-                "action" => "downloads"
-            ),
-            __('Tools', true) => array(
-                "controller" => "tools",
-                "action" => "index"
-            ),
-            __('Team & Credits', true) => array(
-                "controller" => "pages",
-                "action" => "tatoeba_team_and_credits"
-            ),
             __('FAQ', true) => array(
                 "controller" => "pages",
                 "action" => "faq"
@@ -149,6 +129,14 @@ $menuElements = array(
             __('Help', true) => array(
                 "controller" => "pages",
                 "action" => "help"
+            ),                
+            __('Downloads', true) => array(
+                "controller" => "pages",
+                "action" => "downloads"
+            ),
+            __('Tools', true) => array(
+                "controller" => "tools",
+                "action" => "index"
             )
         )
     )
@@ -225,21 +213,34 @@ $menuElements = array(
                         )
                     );
                 }
-                echo $html->link(
-                    $title, 
-                    $route, 
-                    array(
-                        "class" => $cssClass,
-                        "escape" => false
-                    )
-                );
+                
+                if ($route['controller'] == null)
+                {
+                    echo '<a class="'.$cssClass.'">'.$title.'</a>';
+                }
+                else
+                {
+                    echo $html->link(
+                        $title, 
+                        $route, 
+                        array(
+                            "class" => $cssClass,
+                            "escape" => false
+                        )
+                    );
+                }
                 
                 // Sub-menu
                 if (!empty($data['sub-menu'])) {
                     echo "<ul class='sub-menu'>";
                     foreach ($data['sub-menu'] as $title2 => $route2) {
+                        $newTab = null;
+                        if (!is_array($route2))
+                        {
+                            $newTab = array('onclick' => "window.open(this.href,'_blank');return false;");
+                        }
                         echo '<li>';
-                        echo $html->link($title2, $route2);
+                        echo $html->link($title2, $route2, $newTab);
                         echo '</li>';
                     }
                     echo "</ul>";

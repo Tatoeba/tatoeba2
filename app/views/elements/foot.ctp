@@ -60,28 +60,6 @@ if (isset($this->params['lang'])) {
     <li>
         <?php
         echo $html->link(
-            __('Downloads', true),
-            array(
-                "controller" => 'pages',
-                "action" => 'downloads'
-            )
-        );
-        ?>
-    </li>
-    <li>
-        <?php
-        echo $html->link(
-            __('Tools', true),
-            array(
-                "controller" => 'tools',
-                "action"=>'index'
-            )
-        );
-        ?>
-    </li>
-    <li>
-        <?php
-        echo $html->link(
             __('Team & Credits', true),
             array(
                 "controller" => 'pages',
@@ -93,22 +71,27 @@ if (isset($this->params['lang'])) {
     <li>
         <?php
         echo $html->link(
-            __('FAQ', true),
-            array(
-                "controller" => 'pages',
-                "action" => 'faq'
-            )
+            __('Blog', true),
+            'http://blog.tatoeba.org/',
+            array('onclick' => "window.open(this.href,'_blank');return false;")
         );
         ?>
     </li>
     <li>
         <?php
         echo $html->link(
-            __('Help', true),
-            array(
-                "controller" => 'pages',
-                "action" => 'help'
-            )
+            __('Twitter', true),
+            'http://twitter.com/tatoeba_org',
+            array('onclick' => "window.open(this.href,'_blank');return false;")
+        );
+        ?>
+    </li>
+    <li>
+        <?php
+        echo $html->link(
+            __('Facebook', true),
+            'http://www.facebook.com/group.php?gid=129340017083187',
+            array('onclick' => "window.open(this.href,'_blank');return false;")
         );
         ?>
     </li>
