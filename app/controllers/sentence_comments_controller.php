@@ -50,8 +50,10 @@ class SentenceCommentsController extends AppController
         'Languages',
         'Navigation',
         'Html',
+        'Form',
         'CommonModules',
-        'Pagination'
+        'Pagination',
+        'Tags'
     );
     public $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
     
@@ -259,6 +261,105 @@ class SentenceCommentsController extends AppController
     }
     
     /**
+     * Edit comment
+     * 
+     * @param string $commentId The comment id.
+     * 
+     * @return void
+     */
+    public function edit($commentId)
+    {
+        $commentId = Sanitize::paranoid($commentId);
+        $this->SentenceComment->id = $commentId;
+        
+        if (empty($this->data)) {
+            $sentenceComment = $this->SentenceComment->read();
+            $this->data = $sentenceComment;
+            
+            $currentUserId = $this->Auth->user('id');
+            $ownerId = $this->SentenceComment->getOwnerIdOfComment($commentId);
+            $groupId = $this->Auth->user('group_id');
+            $commentPermissions = $this->Permissions->getCommentOptions(
+                $sentenceComment['SentenceComment'],
+                $ownerId,
+                $currentUserId,
+                $groupId
+            );
+            
+            $tags = $this->Sentence->getAllTagsOnSentence(
+                $sentenceComment['SentenceComment']['sentence_id']
+            );
+            $this->set('tagsArray', $tags); 
+            
+            $this->set('sentenceComment', $sentenceComment);
+            $this->set('commentPermissions', $commentPermissions);
+        } else {
+            $ownerId = $this->SentenceComment->getOwnerIdOfComment(
+                $this->data['SentenceComment']['id']
+            );
+            $sentenceId = $this->data['SentenceComment']['sentence_id'];
+            $commentId = $this->data['SentenceComment']['id'];
+            $permissions = $this->Permissions->getCommentOptions(
+                $this->data['SentenceComment'],
+                $ownerId,
+                CurrentUser::get('id'),
+                CurrentUser::get('group_id')
+            );
+            if ($permissions['canEdit'] == false) {
+                $wrongly = "If you have recieved this message wrongly, ".
+                            "please contact administrators at ".
+                            "team@tatoeba.org.";
+                $this->Session->setFlash(
+                    __(
+                        "You do not have permission to edit this comment. ".
+                        $wrongly, true
+                    )
+                );
+                $this->redirect('/');
+            }
+            
+            if (empty($this->data['SentenceComment']['text'])) {
+                $this->Session->setFlash(
+                    __("Comments must have at least some text.", true)
+                );
+                $this->redirect(
+                    array(
+                        'controller' => "sentence_comments",
+                        'action'=> 'edit',
+                        $commentId
+                    )
+                );
+            }
+            
+            if ($this->SentenceComment->save($this->data)) {
+                $this->Session->setFlash(
+                    __("Changes to your comment have been saved.", true)
+                );
+                $this->redirect(
+                    array(
+                        'controller' => "sentences",
+                        'action'=> 'show',
+                        $sentenceId,
+                        "#" => "comment-".$commentId
+                    )
+                );
+            } else {
+                $this->Session->setFlash(
+                    __("We could not save your changes.", true)
+                );
+                $this->redirect(
+                    array(
+                        'controller' => "sentences",
+                        'action'=> 'show',
+                        $sentenceId,
+                        "#" => "comment-".$commentId
+                    )
+                );
+            }
+        }
+    }
+    
+    /**
      * delete requested comment
      * NOTE: delete is a php5 keyword
      *
@@ -330,7 +431,7 @@ class SentenceCommentsController extends AppController
         $userComments = $this->paginate(
             'SentenceComment'
         );
-
+        
         $permissions = $this->Permissions->getCommentsOptions(
             $userComments,
             $this->Auth->user('id'),

@@ -172,7 +172,8 @@ class PermissionsComponent extends Object
         $currentUserGroup
     ) {
         $rightsOnComment = array(
-            "canDelete" => false
+            "canDelete" => false,
+            "canEdit" => false
         );
         if (empty($currentUserId) || empty($currentUserGroup)) {
             return $rightsOnComment;
@@ -182,6 +183,12 @@ class PermissionsComponent extends Object
             $rightsOnComment['canDelete'] = true; 
         } elseif ($currentUserGroup < 2) {
             $rightsOnComment['canDelete'] = true; 
+        }
+        
+        if ($rightsOnComment['canDelete']) {
+            $rightsOnComment['canEdit'] = true;
+        } elseif ($currentUserGroup < 2) {
+            $rightsOnComment['canEdit'] = true; 
         }
         
         return $rightsOnComment;

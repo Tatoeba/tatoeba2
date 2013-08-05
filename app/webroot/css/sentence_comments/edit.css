@@ -1,0 +1,126 @@
+/**
+ * Tatoeba Project, free collaborative creation of multilingual corpuses project
+ * Copyright (C) 2010  HO Ngoc Phuong Trang <tranglich@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
+
+/*
+ * Navigation
+ */
+@import url(../elements/navigation.css);
+
+
+/*
+ * Sentence and translations
+ */
+@import url(../elements/sentences_group.css);
+
+
+/*
+ * Comments
+ */
+@import url(../elements/comment.css);
+
+
+/*
+ * Logs
+ */
+@import url(../elements/logs_annexe.css);
+@import url(../elements/logs_colors.css);
+
+/*
+ * Tags
+ */
+@import url(../elements/autocompletion.css);
+
+
+/* 
+ * Navigation
+ */
+.languageSelect {
+    margin-bottom: 30px;
+}
+
+.languageSelect select {
+    width: 120px;
+}
+
+.smallTip {
+    font-size: 0.8em;
+    color: #888;
+}
+
+
+/* 
+ * Tags
+ * NOTE for the moment I've copied paste it in tags/view_all.css
+ */
+.tagsListOnSentence {
+    overflow: auto;
+}
+
+.tag {
+    display: block;
+    float: left;
+    border-bottom: 1px solid #DDD;
+    border-right: 1px solid #DDD;
+    background: #FFE684;
+    padding: 2px 8px;
+    margin: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.tagName {
+    color: #333;
+    font-size: 1.2em;
+}
+
+.tag a:hover {
+    color: #7F6A27;
+}
+
+.removeTagFromSentenceButton {
+    border-left: 1px dotted #CCC;
+    padding-left: 5px;
+    margin-left: 5px;
+    color: red;
+}
+
+
+/* 
+ * Tags form
+ */
+#TagAddTagForm {
+    margin-top: 10px;
+    border-top: 1px dotted #CCC;
+    padding: 10px 5px 5px 5px;
+}
+
+#TagAddTagForm div {
+    display: inline;
+    margin: 3px;
+}
+
+#TagTagName {
+    width: 150px;
+}
+
+#autocompletionDiv a{
+    width: 140px; /* This has to be 10px less than #TagTagName to compensate the
+                     text-indent and padding (in autocompletion.css) */
+}

@@ -76,6 +76,44 @@ class CommentsHelper extends AppHelper
         <?php
     }
     
+    /**
+     * Display a sentence comment block for editing
+     *
+     * @param array $comment     Comment array.
+     * @param array $user        Author array.
+     * @param bool  $sentence    Related sentence array.
+     * @param array $permissions Permissions array.
+     * 
+     * @return void
+     */
+    public function displaySentenceCommentEditForm(
+        $comment, $user, $sentence, $permissions = array()
+    ) {
+        $userName = $user["username"];
+        $userImage = $user['image'];
+        
+        $commentId = $comment['id'];
+        $commentText = $comment['text'];
+        
+        $date = $comment['created'];
+        
+        $hidden = $comment['hidden'];
+        $authorId = $comment['user_id'];
+        ?>
+        <li>
+        <a id="comment-<?php echo $commentId; ?>" />
+        <?php
+        $this->_displayActions(
+            $permissions, $commentId, $comment['sentence_id'], $userName, $hidden
+        );
+        $this->_displayMeta($userName, $userImage, $date);
+        
+        $this->_displayBodyForEdit($comment, $sentence, $hidden, $authorId);
+        ?>
+        </li>
+        <?php
+    }
+    
     
     /**
      * Display meta information.
@@ -206,6 +244,10 @@ class CommentsHelper extends AppHelper
         
         $this->_displayViewButton($commentId, $sentenceId);
         
+        if ($permissions['canEdit'] && $this->params['action'] != "edit") {
+            $this->_displayEditButton($commentId);
+        }
+        
         if (CurrentUser::isMember()) {
             $this->_displayPmButton($username);
         }
@@ -218,6 +260,47 @@ class CommentsHelper extends AppHelper
         <?php
     }
     
+    
+    /**
+     * Display edit button
+     * of the message.
+     *
+     * @param string $commentId Id of comment.
+     *
+     * @return void
+     */
+    private function _displayEditButton($commentId)
+    {
+        $tooltip
+            = (CurrentUser::isAdmin())? "Edit this comment" : "Edit your comment"
+        ?>
+        <div class="action">
+        <?php
+        echo $this->Html->link(
+            $this->Html->image(
+                IMG_PATH . 'edit.png',
+                array(
+                    "title" => __(
+                        $tooltip,
+                        true
+                    ),
+                    "width" => 24,
+                    "height" => 24
+               )
+            ),
+            array(
+                "controller" => "sentence_comments", 
+                "action" => "edit", 
+                $commentId
+            ),
+            array(
+                "escape" => false
+            )
+        );
+        ?>
+        </div>
+        <?php
+    }
     
     /**
      * Display "private message" button, to write a private message to the author
@@ -432,6 +515,30 @@ class CommentsHelper extends AppHelper
         </div>
         <?php
     }
+    
+    /**
+     * Display body as a forum to enable editing.
+     *
+     * @param string $comment  The comment to be edited.
+     * @param array  $sentence Related sentence.
+     * @param bool   $hidden   'true' if the comment is hidden because it is
+     *                         considered inappropriate. 'false' otherwise.
+     * @param int    $authorId Id of the author of the comment.
+     *
+     * @return void
+     */
+    private function _displayBodyForEdit($comment, $sentence, $hidden, $authorId)
+    {
+        ?>
+        <div class="body">
+            <div class="commentText">   
+            <?php
+            $this->_displayCommentEditForm($comment);
+            ?>
+            </div>
+        </div>
+        <?php
+    }
 
 
     /**
@@ -474,6 +581,44 @@ class CommentsHelper extends AppHelper
         echo $this->formatComment($commentText);
     }
     
+    /**
+     * Display comment text.
+     *
+     * @param string $comment The comment.
+     *
+     * @return void
+     */
+    private function _displayCommentEditForm($comment)
+    {
+        
+        // Hack. This was the only way I knew to get the proper
+        // action value for this form
+        // The form in users/edit also has the same problem
+        echo $this->Form->create(
+            false,
+            array(
+                "url" =>
+                   "/{$this->params['lang']}/sentence_comments/edit/{$comment['id']}"
+                //"action" => "edit",
+                //$comment['id']
+            )
+        );
+        
+        echo "<div>";
+        echo $this->Form->hidden('SentenceComment.id');
+        echo $this->Form->hidden('SentenceComment.sentence_id');
+        echo "</div>";
+        
+        echo $this->Form->input(
+            'SentenceComment.text',
+            array(
+                "label" => "",
+                "cols"=>"64", "rows"=>"6"
+            )
+        );
+        
+        echo $this->Form->end(__('Save changes', true));
+    }
     
     /**
      * Display related sentence.
@@ -571,7 +716,6 @@ class CommentsHelper extends AppHelper
         );
         
         echo $this->Form->end(__('Submit comment', true));
-        
         ?>
         <p>
         <h3><?php __('Good practices'); ?></h3>
