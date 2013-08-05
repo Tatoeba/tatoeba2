@@ -64,6 +64,7 @@ class SentenceCommentsController extends AppController
                 'user_id',
                 'text',
                 'created',
+                'modified',
                 'sentence_id',
                 'hidden'
             ),

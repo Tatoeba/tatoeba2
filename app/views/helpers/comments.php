@@ -59,6 +59,7 @@ class CommentsHelper extends AppHelper
         $commentText = $comment['text'];
         
         $date = $comment['created'];
+        $modified = $comment['modified'];
         
         $hidden = $comment['hidden'];
         $authorId = $comment['user_id'];
@@ -69,7 +70,7 @@ class CommentsHelper extends AppHelper
         $this->_displayActions(
             $permissions, $commentId, $comment['sentence_id'], $userName, $hidden
         );
-        $this->_displayMeta($userName, $userImage, $date);
+        $this->_displayMeta($userName, $userImage, $date, $modified);
         $this->_displayBody($commentText, $sentence, $hidden, $authorId);
         ?>
         </li>
@@ -96,6 +97,7 @@ class CommentsHelper extends AppHelper
         $commentText = $comment['text'];
         
         $date = $comment['created'];
+        $modified = $comment['modified'];
         
         $hidden = $comment['hidden'];
         $authorId = $comment['user_id'];
@@ -106,7 +108,7 @@ class CommentsHelper extends AppHelper
         $this->_displayActions(
             $permissions, $commentId, $comment['sentence_id'], $userName, $hidden
         );
-        $this->_displayMeta($userName, $userImage, $date);
+        $this->_displayMeta($userName, $userImage, $date, $modified);
         
         $this->_displayBodyForEdit($comment, $sentence, $hidden, $authorId);
         ?>
@@ -124,14 +126,14 @@ class CommentsHelper extends AppHelper
      * 
      * @return void
      */
-    private function _displayMeta($userName, $userImage, $date)
+    private function _displayMeta($userName, $userImage, $date, $modified)
     {
         ?>
         <div class="meta">
         <?php
         $this->_displayAuthorImage($userName, $userImage);
         $this->_displayAuthor($userName);
-        $this->_displayDate($date);
+        $this->_displayDate($date, $modified);
         ?>
         </div>
         <?php
@@ -210,11 +212,18 @@ class CommentsHelper extends AppHelper
      * 
      * @return void
      */
-    private function _displayDate($date)
+    private function _displayDate($date, $modified)
     {
         ?>
         <div class="date" title="<?php echo $date; ?>">
-        <?php echo $this->Date->ago($date); ?>
+        <?php
+        echo $this->Date->ago($date);
+        $date1 = new DateTime($date);
+        $date2 = new DateTime($modified);
+        if ($date1 != $date2) {
+        echo " - edited {$this->Date->ago($modified)}"; 
+        }
+        ?>
         </div>
         <?php
     }
