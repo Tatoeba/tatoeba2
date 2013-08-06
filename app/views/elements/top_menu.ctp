@@ -214,12 +214,9 @@ $menuElements = array(
                     );
                 }
                 
-                if ($route['controller'] == null)
-                {
+                if ($route['controller'] == null) {
                     echo '<a class="'.$cssClass.'">'.$title.'</a>';
-                }
-                else
-                {
+                } else {
                     echo $html->link(
                         $title, 
                         $route, 
@@ -235,8 +232,7 @@ $menuElements = array(
                     echo "<ul class='sub-menu'>";
                     foreach ($data['sub-menu'] as $title2 => $route2) {
                         $newTab = null;
-                        if (!is_array($route2))
-                        {
+                        if (!is_array($route2)) {
                             $newTab = array('onclick' => "window.open(this.href,'_blank');return false;");
                         }
                         echo '<li>';
