@@ -192,7 +192,7 @@ class WallHelper extends AppHelper
      * @return void
      */
 
-    public function displayContent($content, $hidden, $authorId)
+    public function displayContent($content, $hidden = false, $authorId = 0)
     {
         if ($hidden) {
             
@@ -214,10 +214,9 @@ class WallHelper extends AppHelper
             || CurrentUser::isAdmin() 
             || CurrentUser::get('id') == $authorId;        
 
-        if ($isDisplayedToCurrentUser)
-        {            
+        if ($isDisplayedToCurrentUser) {            
             // re #373:change the message style to be more clear to the reader of the message
-            if($hidden){
+            if ($hidden) {
                 echo "<br />";
                 echo "<div class='hiddenUserMessage'>\"";
             }
@@ -230,7 +229,7 @@ class WallHelper extends AppHelper
                     )
                 )
             );
-            if($hidden){
+            if ($hidden) {
                 echo "\"</div>";
             }
         }
