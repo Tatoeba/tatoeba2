@@ -37,7 +37,7 @@
 class CommentsHelper extends AppHelper
 {
 
-    public $helpers = array('Languages', 'Form', 'Date', 'Html', 'ClickableLinks');
+    public $helpers = array('Languages', 'Form', 'Date', 'Html', 'ClickableLinks', 'Sentences');
     
     /**
      * Display a sentence comment block.
@@ -549,6 +549,17 @@ class CommentsHelper extends AppHelper
         <?php
     }
 
+    /**
+     * Display sentence (for edit sentence_comment view)
+     * 
+     * @param array Sentence to display
+     * 
+     * @return void
+     */
+    public function displaySentence($sentence)
+    {
+        $this->Sentences->displaySimpleSentencesGroup($sentence, array());
+    }
 
     /**
      * @param string $commentText     Text of the comment.
@@ -625,8 +636,19 @@ class CommentsHelper extends AppHelper
                 "cols"=>"64", "rows"=>"6"
             )
         );
-        
+        echo $this->Html->link(
+            __('Cancel', true),
+            array(
+                "controller" => "sentences",
+                "action" => "show",
+                $comment['sentence_id']."#comment-".$comment['id']
+            ),
+            array(
+                "class" => "cancel_edit"
+            )
+        );
         echo $this->Form->end(__('Save changes', true));
+        
     }
     
     /**

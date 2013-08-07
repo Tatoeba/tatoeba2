@@ -124,3 +124,21 @@
     width: 140px; /* This has to be 10px less than #TagTagName to compensate the
                      text-indent and padding (in autocompletion.css) */
 }
+
+div.submit {
+    width: 24%;
+    display: inline;
+    float: left;
+}
+
+.cancel_edit {
+    display: inline-block;
+    margin-top: 4px;
+    font-size: 1.1em;
+}
+
+.sentenceSingle {
+    padding: 8px 0px;
+    border-top: 1px dotted #CCC;
+    border-bottom: 1px dotted #CCC;
+}

@@ -32,82 +32,34 @@ $this->pageTitle = 'Tatoeba - ' . __('Edit Comment', true);
 
 <div id="annexe_content">
     
-    <?php 
-    $tags->displayTagsModule(
-        $tagsArray,
-        $sentenceComment['SentenceComment']['sentence_id']
-    );
-    ?>
     
-    <div class="module">
-        <?php
-        echo '<h2>';
-        __('Logs');
-        echo '</h2>';
-        
-        //$contributions = $sentence['Contribution'];
-        if (!empty($contributions)) {
-            echo '<div id="logs">';
-            foreach ($contributions as $contribution) {
-                $logs->annexeEntry(
-                    $contribution['Contribution'], 
-                    $contribution['User']
-                );
-            }
-            echo '</div>';
-        } else {
-            echo '<em>'. __('There is no log for this sentence', true) .'</em>';
-        }
-        ?>
-    </div> 
-    
-    <div class="module">
-        <h2><?php __('Report mistakes'); ?> </h2>
-        <p>
-            <?php
-            __('Do not hesitate to post a comment if you see a mistake!');
-            ?>
-        </p>
-        <p>
-            <?php
-            __(
-                'NOTE : If the sentence does not belong to anyone and you know how '.
-                'to correct the mistake, feel free to correct it without posting '.
-                'any comment. You will have to adopt the sentence '.
-                'before you can edit it.'
-            );
-            ?>
-        </p>
-    </div>
+    <!-- <div class="module">
+    </div> -->
 </div>
 
 <div id="main_content">
     
 
-<div class="module"> 
-    <?php
-    echo "<h2>";
-    echo sprintf(__('Sentence nº%s', true), $sentenceComment['Sentence']['id']);
-    echo "</h2>";
-    ?>
-    <div class="sentences_set">
-    <?php
-    $sentences->displayMainSentence(
-        $sentenceComment['Sentence'],
-        $sentenceComment['Sentence']['user_id'],
-        "mainSentence"
-    );
-    ?>
-    </div>
-</div>
-    
 <div class="module">
     <?php
     echo '<h2>';
-    __('Edit Comment');
+    echo sprintf(
+        __('Edit Comment on Sentence nº%s', true),
+        $sentenceComment['SentenceComment']['sentence_id']
+    );
     echo '</h2>';
+    ?>
     
+    <div id="sentence<?php 
+        echo $sentenceComment['SentenceComment']['sentence_id'];
+        ?>" 
+        class="sentenceSingle">
+    <?php
+    $comments->displaySentence($sentenceComment['Sentence']);
+    ?>
+    </div>
     
+    <?php
     echo '<ol class="comments">';
     $comments->displaySentenceCommentEditForm(
         $sentenceComment['SentenceComment'],
