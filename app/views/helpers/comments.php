@@ -281,7 +281,7 @@ class CommentsHelper extends AppHelper
     private function _displayEditButton($commentId)
     {
         $tooltip
-            = (CurrentUser::isAdmin())? "Edit this comment" : "Edit your comment"
+            = (CurrentUser::isAdmin())? __("Edit this comment", true) : __("Edit your comment", true)
         ?>
         <div class="action">
         <?php
