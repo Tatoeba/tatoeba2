@@ -250,7 +250,7 @@ class JsonrpcComponent extends Object {
      * 
      * @return array 
      */
-    protected function callJSONAction($jsonRequest)
+    protected function callAction($jsonRequest)
     {
         if(empty($jsonRequest) || !is_object($jsonRequest)) {
             return $this->_createParseError();
@@ -266,7 +266,7 @@ class JsonrpcComponent extends Object {
         }
         
         try {
-            //Don't let the controller send any output
+            //Don't let the controller send any output to the browser
             ob_start();
             $results = call_user_func_array(
                 array($this->_controller, $jsonRequest->method),
