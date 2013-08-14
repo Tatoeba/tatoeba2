@@ -48,6 +48,7 @@ $languages = array(
     'hun' => 'Magyar',
     'nds' => 'Plattdüütsch',
     'gre' => 'Ελληνικά',
+    'fin' => 'Suomi'
 );
 
 asort($languages);
