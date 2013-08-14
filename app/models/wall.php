@@ -68,7 +68,6 @@ class Wall extends AppModel
     {
         if (isset($this->data['Wall']['content'])) {
             $data['newMessage']['owner'] = $this->data['Wall']['owner'] ;
-            $data['newMessage']['date'] = date("Y-m-d H:i:s");
         }
 
     }

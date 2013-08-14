@@ -82,6 +82,24 @@ class WallHelper extends AppHelper
             
         }
         
+        if ($permissions['canEdit']) {
+            $tooltip
+                = CurrentUser::isAdmin() ? 
+                    __("edit this message", true) : __("edit your message", true);
+            echo $this->Html->link(
+                __("edit - ", true),
+                array(
+                    'controller' => 'wall',
+                    'action' => 'edit',
+                    $messageId
+                ),
+                array(
+                    "title" => $tooltip
+                )
+            );
+        }
+        
+        
         if ($permissions['canDelete']) {
             // delete link
             echo $this->Html->link(
@@ -180,6 +198,49 @@ class WallHelper extends AppHelper
 
     }
 
+    
+    /**
+     * Create form for editing a wall message
+     * 
+     * @param string $message The message
+     * 
+     * @return void
+     */
+    public function displayEditMessageForm($message)
+    {
+        ?>
+        <div class="editWallMessage" >
+        <?php
+        echo $this->Form->create(
+            "Wall", 
+            array(
+                "url" =>
+                    "/{$this->params['lang']}/wall/edit/{$message['Wall']['id']}"
+            )
+        );
+        echo $this->Form->input(
+            "content",
+            array(
+                "label" => "",
+                "cols"=>"64", "rows"=>"6"
+            )
+        );
+        echo $this->Form->hidden('id');
+        echo $this->Html->link(
+            __("Cancel", true),
+            array(
+                "action" => "index",
+                "{$message['Wall']['id']}#message_{$message['Wall']['id']}"
+            ),
+            array(
+                "class" => "cancel_edit"
+            )
+        );
+        echo $this->Form->end(__("submit", true));
+        ?>
+        </div>    
+        <?php
+    }
 
     /**
      * display content of a message
@@ -439,8 +500,17 @@ class WallHelper extends AppHelper
                 <?php $this->displayLinkToUserProfile($userName); ?>
             </li>
             
-            <li class="date" title="<?php echo $messageDate ?>">
-                <?php echo $this->Date->ago($messageDate); ?>
+            <li class="date" title="<?php echo $messageDate; ?>">
+                <?php
+                echo $this->Date->ago($messageDate);
+                if ($message['modified']) {
+                    $date = new DateTime($messageDate);
+                    $modified = new DateTime($message['modified']);
+                    if ($date != $modified) {
+                       echo " - edited {$this->Date->ago($message['modified'])}"; 
+                    }
+                }
+                ?>
             </li>
         </ul>
     <?php

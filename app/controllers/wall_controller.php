@@ -79,7 +79,8 @@ class WallController extends Appcontroller
             // The actions below should not be allowed here, but I don't feel like
             // taking the time to update the ACL stuff. I'M SORRY!
             'hide_message',
-            'unhide_message'
+            'unhide_message',
+            'edit'
         );
     }
 
@@ -279,6 +280,107 @@ class WallController extends Appcontroller
         }
     }
 
+    /**
+     * Edit a wall post
+     * 
+     * @param int $messageId Id of the message to edit
+     * 
+     * @return void
+     */
+    public function edit($messageId)
+    {
+        $this->log(print_r($this->data, true), "DEBUG2");
+        $messageId = Sanitize::paranoid($messageId);
+        $this->Wall->id = $messageId;
+        
+        if (empty($this->data)) {
+            $message = $this->Wall->read();
+            $this->data = $message;
+            
+            $messageOwnerId = $this->Wall->getOwnerIdOfMessage($messageId);
+            $messagePermissions = $this->Permissions->getWallMessageOptions(
+                null,
+                $messageOwnerId,
+                CurrentUser::get('id'),
+                CurrentUser::get('group_id')
+            );
+            
+            if ($messagePermissions['canEdit'] == false) {
+                $this->Session->setFlash(
+                    __("You do not have permission to edit this message. ", true).
+                    __(
+                        "If you have recieved this message wrongly, ".
+                        "please contact administrators at ".
+                        "team@tatoeba.org. ", true
+                    )
+                );
+                $this->redirect(
+                    array(
+                        "action"=>"index",
+                    )
+                );
+            } else {
+                $this->set("message", $message);
+            }
+        } else {
+            //$this->data is not empty, so go save
+            $messageId = $this->data['Wall']['id'];
+            $this->Wall->id = $messageId;
+            
+            $messageOwnerId = $this->Wall->getOwnerIdOfMessage($messageId);
+            $messagePermissions = $this->Permissions->getWallMessageOptions(
+                null,
+                $messageOwnerId,
+                CurrentUser::get('id'),
+                CurrentUser::get('group_id')
+            );
+            if ($messagePermissions['canEdit'] == false) {
+                $this->Session->setFlash(
+                    __("You do not have permission to edit this message.", true).
+                    __(
+                        "If you have recieved this message wrongly, ".
+                        "please contact administrators at ".
+                        "team@tatoeba.org.", true
+                    )
+                );
+                $this->redirect(
+                    array(
+                        "action"=>"index",
+                    )
+                );
+            } else {
+                if ($this->Wall->save($this->data)) {
+                    $this->Session->setFlash(
+                        __(
+                            "Message saved.", true
+                        )
+                    );
+                    $this->redirect(
+                        array(
+                            "action"=>"index",
+                            "$messageId#message_$messageId"
+                        )
+                    );
+                } else {
+                    $this->Session->setFlash(
+                        __(
+                            "We apologize, but we could not save your data.
+                             Please try again", true
+                        )
+                    );
+                    $this->redirect(
+                        array(
+                            "action"=>"edit",
+                            $messageId
+                        )
+                    );
+                }
+            }
+        
+        }
+    
+    }
+    
     /**
      * use to delete a given message on the wall
      *

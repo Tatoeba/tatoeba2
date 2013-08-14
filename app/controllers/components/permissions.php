@@ -213,7 +213,8 @@ class PermissionsComponent extends Object
     ) {
         $rightsOnWallMessage = array(
             "canReply"  => false,
-            "canDelete" => false
+            "canDelete" => false,
+            "canEdit" => false
         );
         // TODO add functions to determine options
         if (empty($currentUserId) || empty($currentUserGroup)) {
@@ -228,6 +229,12 @@ class PermissionsComponent extends Object
             }
         }
 
+        if ($ownerId === $currentUserId) {
+            $rightsOnWallMessage['canEdit'] = true; 
+        } elseif ($currentUserGroup < 2) {
+            $rightsOnWallMessage['canEdit'] = true; 
+        }
+        
         $rightsOnWallMessage['canReply'] = true;
         
         return $rightsOnWallMessage;
