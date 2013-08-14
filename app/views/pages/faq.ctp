@@ -105,34 +105,11 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
     
     <h3 id="translate-interface"><a href="#translate-interface">Can I help translating the website into other languages?</a></h3>
-    <p>Yes, thank you for asking! :D</p>
-    <p>I will explain below all the steps we’re going through to provide Tatoeba in several languages. If you want to help us translate the interface, <strong>step 3</strong> contains the main information. However, it’s good to know about what happens before and after.</p> 
-    <ol>
-        <li><strong>Extracting strings from code source.</strong> We extract from the code source the strings that need to be translated. These strings are saved into a POT file. It’s just a text file, with some special format (you can open it with a text editor like Notepad). The concept is that the POT file is the template. From this template will be created several PO files: each PO file will contain the translations into a specific language.</li>
-        <li><strong>Sending POT file to Launchpad.</strong> We send the POT file to a platform called Launchpad. It provides a web interface to manage translations of the POT file and gives the possibility to translate collaboratively. Launchpad will process the POT file to update the existing PO files. It will scan for new strings in the POT file and add them to each PO file. It will detect strings that are no more present and delete them from each PO file.</li>
-        <li><strong>Translating.</strong> You’ll need to have a Launchpad account. Here’s where you can translate the strings of Tatoeba’s interface: <a href="https://translations.launchpad.net/tatoeba">https://translations.launchpad.net/tatoeba</a>. Feel free to add a new language if you don’t see your desired language in the list! Once you chose a language, you can filter the page to display only strings that haven’t been translated yet.</li>
-        <li><strong>Updating Tatoeba.</strong> Every Monday at 6AM (France time), the PO files are downloaded and converted into MO files. The MO files are binary files, and they are the ones that Tatoeba uses to get the translations of the interface. So it’s only when the MO files are uploaded that Tatoeba translations are actually updated.</li>
-    </ol>
-    <p>You should know that the whole process is not automated yet.</p>
-    <ul>
-        <li>Someone has to manually start the extraction of the strings from the code source.</li>
-        <li>Someone has to manually send the POT file to Launchpad.</li>
-        <li>However, thanks to Ppjet6, the part where we download the PO files from Launchpad and convert them into MO files is automated.</li>
-    </ul>
-    <p>You should also know that we sometimes update Tatoeba BEFORE we send the latest POT to Launchpad. As a result, you will not always see the latest strings in Launchpad. Conversely, we sometimes send translations to Launchpad BEFORE we update Tatoeba, so you may find strings on Launchpad that cannot be found anywhere on Launchpad yet. So don't be surprised if texts in Tatoeba and Launchpad are not always synchronized.</p>
-    <p>Finally, there are some parts of Tatoeba that cannot be translated at all. The FAQ is one of them. The system we use to provide Tatoeba in several languages is good for translating small strings (like options in a menu, language names, etc), but it’s not adapted for whole articles. Ideally, we should use a wiki (or something like that) to store documentation about Tatoeba but we still don’t have that.</p>
+    => <a href="http://en.wiki.tatoeba.org/articles/show/interface-translation">http://en.wiki.tatoeba.org/articles/show/interface-translation</a>
     
     
     <h3 id="submit-audio"><a href="#submit-audio">How do I contribute audio in Tatoeba?</a></h3>
-    <p><strong>1)</strong> You need have a good microphone because we care about sound quality.</p>
-    <p><strong>2)</strong> Download <a href="http://downloads.tatoeba.org/kit_shtooka_Install_0.9.8.exe">Shtooka Recorder</a> and get familiar with it. You will be using it to record the sentences, it's a very useful software.</p> 
-    <p><strong>Tutorial:</strong> <a href="http://www.youtube.com/watch?v=AcJoLBjUOaY">http://www.youtube.com/watch?v=AcJoLBjUOaY</a> (made by <a href="/user/profile/AmberShadow">AmberShadow</a>).</p>
-    <p><strong>3)</strong> Pick a few random sentences (just 2 or 3), record them, and send us the samples at team@tatoeba.org, with the title "Audio for Tatoeba in <em>&lt;language_name&gt;</em>". This way we can evaluate if the sound quality is good enough. If it is, we will send you back a list of sentences to record. BUT contrary to what is shown in the YouTube tutorial, you should send us your file in FLAC, not OGG. FLAC is a lossless compression format and therefore will keep all the quality of the audio.</p>
-    <p><strong>4)</strong> Read the list we sent you and check that all the sentences sound natural to you. If a sentence doesn't sound natural, simply erase it from the list. It would be appreciated if you also went to the website to post a comment on that sentence, to indicate it doesn't sound natural and should be improved.</p>
-    <p><strong>5)</strong> In Shtooka Recorder, copy-paste the final list in the "Words to record", fill in the info in the "Speaker" tab, go back to the "Words" tab and click "Continue".</p>
-    <p><strong>6)</strong> Press space to indicate you are ready and read the sentence that is highlighted in red. The software will detect when to start and stop recording, and will jump to the next sentence automatically. All you have to do is read what's highlighted in red. If you want to take a break, you can press space to pause, so that it doesn't record something unrelated. If you need to listen to a sentence's audio, simply select it and press "Enter" (you can navigate with the directional keys: up, down, left, right).</p>
-    <p><strong>7)</strong> Upload your files somewhere (like Megaupload or RapidShare) and give us the link. We will then include your audio in Tatoeba as soon as possible and will let you know when it is done. We understand it would be more practical if you could record/upload directly from Tatoeba, but we unfortunately don't have time to implement the features for this =/</p>
-    <p><strong>Related link:</strong> <a href="http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html">http://blog.tatoeba.org/2010/04/audio-for-tatoeba-sentences-in.html</a></p>
+    => <a href="http://en.wiki.tatoeba.org/articles/show/contribute-audio">http://en.wiki.tatoeba.org/articles/show/contribute-audio</a>
     
     
     <h3 id="chinese-traditional-simplified"><a href="#chinese-traditional-simplified">When contributing in Chinese, should I use simplified or traditional characters?</a></h3>
