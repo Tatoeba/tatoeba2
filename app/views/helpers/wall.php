@@ -229,7 +229,7 @@ class WallHelper extends AppHelper
         echo $this->Html->link(
             __("Cancel", true),
             array(
-                "action" => "index",
+                "action" => "show_message",
                 "{$message['Wall']['id']}#message_{$message['Wall']['id']}"
             ),
             array(

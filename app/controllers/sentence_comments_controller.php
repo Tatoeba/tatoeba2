@@ -273,91 +273,93 @@ class SentenceCommentsController extends AppController
         $commentId = Sanitize::paranoid($commentId);
         $this->SentenceComment->id = $commentId;
         
+        //get permissions
         if (empty($this->data)) {
             $sentenceComment = $this->SentenceComment->read();
-            $this->data = $sentenceComment;
-            
-            $currentUserId = $this->Auth->user('id');
-            $ownerId = $this->SentenceComment->getOwnerIdOfComment($commentId);
-            $groupId = $this->Auth->user('group_id');
-            $commentPermissions = $this->Permissions->getCommentOptions(
-                $sentenceComment['SentenceComment'],
-                $ownerId,
-                $currentUserId,
-                $groupId
-            );
-            
-            $tags = $this->Sentence->getAllTagsOnSentence(
-                $sentenceComment['SentenceComment']['sentence_id']
-            );
-            $this->set('tagsArray', $tags); 
-            
-            $this->set('sentenceComment', $sentenceComment);
-            $this->set('commentPermissions', $commentPermissions);
+            $ownerId = $sentenceComment['SentenceComment']['user_id'];
         } else {
+            $sentenceComment = $this->data['SentenceComment'];
             $ownerId = $this->SentenceComment->getOwnerIdOfComment(
                 $this->data['SentenceComment']['id']
             );
-            $sentenceId = $this->data['SentenceComment']['sentence_id'];
-            $commentId = $this->data['SentenceComment']['id'];
-            $permissions = $this->Permissions->getCommentOptions(
-                $this->data['SentenceComment'],
-                $ownerId,
-                CurrentUser::get('id'),
-                CurrentUser::get('group_id')
+        }
+        $permissions = $this->Permissions->getCommentOptions(
+            $sentenceComment,
+            $ownerId,
+            CurrentUser::get('id'),
+            CurrentUser::get('group_id')
+        );
+        
+        //check permissions now
+        if ($permissions['canEdit'] == false) {
+            $wrongly = "If you have recieved this message wrongly, ".
+                       "please contact administrators at ".
+                       "team@tatoeba.org.";
+            $this->Session->setFlash(
+                __(
+                    "You do not have permission to edit this comment. ".
+                    $wrongly, true
+                )
             );
-            if ($permissions['canEdit'] == false) {
-                $wrongly = "If you have recieved this message wrongly, ".
-                            "please contact administrators at ".
-                            "team@tatoeba.org.";
-                $this->Session->setFlash(
-                    __(
-                        "You do not have permission to edit this comment. ".
-                        $wrongly, true
-                    )
-                );
-                $this->redirect('/');
-            }
-            
-            if (empty($this->data['SentenceComment']['text'])) {
-                $this->Session->setFlash(
-                    __("Comments must have at least some text.", true)
-                );
-                $this->redirect(
-                    array(
-                        'controller' => "sentence_comments",
-                        'action'=> 'edit',
-                        $commentId
-                    )
-                );
-            }
-            
-            if ($this->SentenceComment->save($this->data)) {
-                $this->Session->setFlash(
-                    __("Changes to your comment have been saved.", true)
-                );
-                $this->redirect(
-                    array(
-                        'controller' => "sentences",
-                        'action'=> 'show',
-                        $sentenceId,
-                        "#" => "comment-".$commentId
-                    )
-                );
+            $this->redirect(
+                array(
+                    'controller' => "sentences",
+                    'action'=> 'show',
+                    $sentenceId,
+                    "#" => "comment-".$commentId
+                )
+            );
+        } else {
+            //user has permissions so either display form or save comment
+            if (empty($this->data)) {
+                $this->data = $sentenceComment;
+                $this->set('sentenceComment', $sentenceComment);
+                $this->set('commentPermissions', $permissions);
             } else {
-                $this->Session->setFlash(
-                    __("We could not save your changes.", true)
-                );
-                $this->redirect(
-                    array(
-                        'controller' => "sentences",
-                        'action'=> 'show',
-                        $sentenceId,
-                        "#" => "comment-".$commentId
-                    )
-                );
+                $sentenceId = $this->data['SentenceComment']['sentence_id'];
+                $commentId = $this->data['SentenceComment']['id'];
+                //check for empty text
+                if (empty($this->data['SentenceComment']['text'])) {
+                    $this->Session->setFlash(
+                        __("Comments must have at least some text.", true)
+                    );
+                    $this->redirect(
+                        array(
+                            'controller' => "sentence_comments",
+                            'action'=> 'edit',
+                            $commentId
+                        )
+                    );
+                }
+                //save comment
+                if ($this->SentenceComment->save($this->data)) {
+                    $this->Session->setFlash(
+                        __("Changes to your comment have been saved.", true)
+                    );
+                    $this->redirect(
+                        array(
+                            'controller' => "sentences",
+                            'action'=> 'show',
+                            $sentenceId,
+                            "#" => "comment-".$commentId
+                        )
+                    );
+                } else {
+                    $this->Session->setFlash(
+                        __("We could not save your changes.", true)
+                    );
+                    $this->redirect(
+                        array(
+                            'controller' => "sentences",
+                            'action'=> 'show',
+                            $sentenceId,
+                            "#" => "comment-".$commentId
+                        )
+                    );
+                }
             }
         }
+            
     }
     
     /**
