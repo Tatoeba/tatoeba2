@@ -26,13 +26,13 @@
  */
 
 /**
- * This is the API server component for Tatoeba
+ * This is the API server component for the Tatoeba Android app
  * These functions are only meant to process JSON-RPC data
  * To initialize this component in a controller do the following:
  * 
  * public $components = array(
- *     'Jsonrpc' = array(
- *         'listen' = array('some_action')
+ *     'Jsonrpc' => array(
+ *         'listen' => array('some_action')
  *     )
  * );
  *
@@ -42,7 +42,8 @@
  * @link     http://tatoeba.org
  */
 
-class JsonrpcComponent extends Object {
+class JsonrpcComponent extends Object
+{
     
     /**
      * The other components needed
@@ -77,42 +78,50 @@ class JsonrpcComponent extends Object {
     
     
     /**
-     * Aliases for param field names
-     * 
-     * @var array
-     */
-    private $_aliases =
-                array(
-                    "q" => "query",
-                    "f" => "from",
-                    "t" => "to",
-                    "i" => "item",
-                    "o" => "options",
-                    "v" => "version"
-                );
-    
-    
-    /**
      * Callback function called after Controller::beforeFilter() but
      * before the controller executes the action
+     * This basically intercepts the request for the controller action 
      * 
      * @param &$controller The controller
      */
     function startup(object& $controller)
     {
+        $request = getDecodedJSONRequest();
+        HttpResponse::setContentType('application/json');
+        $response = null;
+        
         $this->_controller = $controller;
-        if(empty($this->listen) || !$this->RequestHandler->isPost()) {
-            return;
+        if(!$this->RequestHandler->isPost()) {
+            //Method Not Allowed
+            HttpResponse::status(405);
+            $response = $this->_createRequestError();
             
-        } else if(!is_string($this->listen) && !is_array($this->listen)) {
-            return;
+        } else if(empty($this->listen) || !is_string($this->listen) && !is_array($this->listen)) {
+            //Internal Server Error
+            //If this component wasn't initialized properly in the controller
+            HttpResponse::status(500);
+            $response = $this->_createInternalError();
             
-        } else if ($this->listen !== $controller->action) {
-            return;
+        } else if (is_string($this->listen) && $this->listen !== $controller->action) {
+            //Resource Not Found
+            HttpResponse::status(404);
+            $response = $this->_createMethodError();
             
-        } else if (!in_array($controller->action, $this->listen)) {
-            return;
+        } else if (is_array($this->listen) && !in_array($controller->action, $this->listen)) {
+            //Resource Not Found
+            HttpResponse::status(404);
+            $response = $this->_createMethodError();
+            
+        } else if(!is_object($request)) {
+            //Unable to decode JSON request
+            HttpResponse::status(500);
+            $response = $this->_createInternalError();
+            
+        } else {
+            $response = callAction($request);
         }
+        
+        sendEncodedJSONResponse($response);
     }
     
     
@@ -161,8 +170,8 @@ class JsonrpcComponent extends Object {
     
     
     /**
-     * Creates a parsing error
-     * For bad requests
+     * Creates a method error
+     * For non-existant methods
      * 
      * @return object A JSON error
      */
@@ -174,6 +183,7 @@ class JsonrpcComponent extends Object {
     
     /**
      * Creates a parameter error
+     * Something invalid with the params
      * 
      * @return object A JSON error
      */
@@ -207,6 +217,7 @@ class JsonrpcComponent extends Object {
     
     /**
      * Creates a server error
+     * Generic error at the app level
      * 
      * @return object A JSON error
      */
@@ -232,6 +243,7 @@ class JsonrpcComponent extends Object {
     
     /**
      * Encodes and ships a JSON response
+     * Set the HTTP Status before calling this
      * 
      * @param object $jsonData JSON data
      * 
@@ -239,14 +251,18 @@ class JsonrpcComponent extends Object {
      */
     protected function sendEncodedJSONResponse($jsonData)
     {
-        
+        //Optional: Set the Status depending on what the request accomplished
+        HttpResponse::status(200);
+        HttpResponse::setData($jsonData);
+        HttpResponse::send();
+        $this->_log();
     }
     
     
     /**
      * Call the controller method and get the data
      * 
-     * @param object $jsonRequest Use result from getDecodedJSONRequest()
+     * @param object $jsonRequest The output from getDecodedJSONRequest()
      * 
      * @return array 
      */
@@ -279,7 +295,12 @@ class JsonrpcComponent extends Object {
         }
     }
     
-    
+    /**
+     * For logging records of API activity
+     */
+    protected function _log() {
+        
+    }
     
 }
 
