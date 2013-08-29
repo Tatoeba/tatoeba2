@@ -229,7 +229,7 @@ class JsonrpcComponent extends Object
     /**
      * Fetches, decodes and returns a JSON request
      * 
-     * @return object The results from PHP's built in JSON parser
+     * @return array The results from PHP's built in JSON parser
      */
     protected function getDecodedJSONRequest()
     {
@@ -237,7 +237,7 @@ class JsonrpcComponent extends Object
         $jsonData = str_replace("\'", "\"", $jsonData);
         $allowedChars = array(" " , "," , ":" , "[" , "]" , "{" , "}" , "\"" , "|");
         $jsonData = Sanatize::paranoid($jsonData, $allowedChars);
-        return json_decode($jsonData);
+        return json_decode($jsonData, true);
     }
     
     
@@ -245,17 +245,18 @@ class JsonrpcComponent extends Object
      * Encodes and ships a JSON response
      * Set the HTTP Status before calling this
      * 
-     * @param object $jsonData JSON data
+     * @param array $jsonData JSON data
      * 
-     * @return bool Exit status, success or failure
+     * @return void
      */
     protected function sendEncodedJSONResponse($jsonData)
     {
+        $jsonData = json_encode($jsonData);
         //Optional: Set the Status depending on what the request accomplished
         HttpResponse::status(200);
         HttpResponse::setData($jsonData);
         HttpResponse::send();
-        $this->_log();
+        //$this->_log();
     }
     
     
@@ -298,7 +299,8 @@ class JsonrpcComponent extends Object
     /**
      * For logging records of API activity
      */
-    protected function _log() {
+    protected function _log()
+    {
         
     }
     

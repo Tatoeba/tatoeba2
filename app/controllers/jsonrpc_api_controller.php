@@ -60,10 +60,12 @@ class JsonrpcApiController extends AppController
     public $components = array(
         'Jsonrpc' => array(
             'listen' => array(
-                'action1',
-                'action2',
-                'action3',
-                'etc...'
+                'search',
+                'getSentenceDetails',
+                'getCommentDetails',
+                'getUsers',
+                'getUserDetails',
+                'fetchWall'
             )
         )
     );
@@ -78,17 +80,53 @@ class JsonrpcApiController extends AppController
             'key' => 'value',
             'key' => 'value'
         ),
-        'action1' => array(
+        'search' => array(
             'key' => 'value',
-            'key' => 'value'
+            'key' => 'value',
+            'v1' => array(
+                'v1_key' => 'v1_value',
+                'v1_key' => 'v1_value'
+            )
         ),
-        'action2' => array(
+        'getSentenceDetails' => array(
             'key' => 'value',
-            'key' => 'value'
+            'key' => 'value',
+            'v1' => array(
+                'v1_key' => 'v1_value',
+                'v1_key' => 'v1_value'
+            )
         ),
-        'action3' => array(
+        'getCommentDetails' => array(
             'key' => 'value',
-            'key' => 'value'
+            'key' => 'value',
+            'v1' => array(
+                'v1_key' => 'v1_value',
+                'v1_key' => 'v1_value'
+            )
+        ),
+        'getUserDetails' => array(
+            'key' => 'value',
+            'key' => 'value',
+            'v1' => array(
+                'v1_key' => 'v1_value',
+                'v1_key' => 'v1_value'
+            )
+        ),
+        'getUsers' => array(
+            'key' => 'value',
+            'key' => 'value',
+            'v1' => array(
+                'v1_key' => 'v1_value',
+                'v1_key' => 'v1_value'
+            )
+        ),
+        'fetchWall' => array(
+            'key' => 'value',
+            'key' => 'value',
+            'v1' => array(
+                'v1_key' => 'v1_value',
+                'v1_key' => 'v1_value'
+            )
         ),
         'etc...'
     );
@@ -97,11 +135,11 @@ class JsonrpcApiController extends AppController
      * Minify function, compress data
      * 
      * @param string $context     The mapping context (the method name)
-     * @param object $jsonObject  The JSON data to compress
+     * @param array $jsonArray  The JSON data to compress
      * 
      * @return object compressed JSON data
      */
-    private function _minifyCompress($context, $jsonObject)
+    private function _minifyCompress($context, $jsonArray)
     {
         
     }
@@ -110,11 +148,11 @@ class JsonrpcApiController extends AppController
      * Minify function, expand data
      * 
      * @param string $context     The mapping context (the method name)
-     * @param object $jsonObject  The JSON data to expand
+     * @param array $jsonArray  The JSON data to expand
      * 
-     * @return expanded JSON data
+     * @return array expanded JSON data
      */
-    private function _minifyExpand($context, $jsonObject)
+    private function _minifyExpand($context, $jsonArray)
     {
         
     }
@@ -123,17 +161,167 @@ class JsonrpcApiController extends AppController
     /**
      * Search sentences optionally with translations and comments
      * 
-     * @param $jsonObject object JSON request
+     * @param $jsonArray array JSON request
      * 
-     * @return object Search results
+     * @return array Search results
      */
-    public function search($jsonObject)
+    public function search($jsonArray)
     {
-        $this->cacheAction = true;
-        $results = null;
+        $jsonObject = $this->_minifyExpand("",$jsonArray);
+    }
+    
+    /**
+     * Retrieve sentences for individual display
+     * 
+     * @param $jsonArray array JSON request
+     * 
+     * @return array Sentences
+     */
+    public function getSentenceDetails($jsonArray)
+    {
         $jsonObject = $this->_minifyExpand("",$jsonObject);
     }
     
+    
+    /**
+     * Retrieve comments for individual display
+     * 
+     * @param $jsonArray array JSON request
+     * 
+     * @return array A single comment
+     */
+    public function getCommentDetails($jsonArray)
+    {
+        $jsonObject = $this->_minifyExpand("",$jsonObject);
+    }
+    
+    
+    /**
+     * Retrieve user for individual display
+     * 
+     * @param $jsonArray array JSON request
+     * 
+     * @return array Details of a single user
+     */
+    public function getUserDetails($jsonArray)
+    {
+        $jsonObject = $this->_minifyExpand("",$jsonObject);
+    }
+    
+    
+    /**
+     * Retrieve list of users
+     * 
+     * @param $jsonArray array JSON request
+     * 
+     * @return array A List of users
+     */
+    public function getUsers($jsonArray)
+    {
+        $jsonObject = $this->_minifyExpand("",$jsonObject);
+    }
+    
+    /**
+     * Retrieve wall posts
+     * 
+     * @param $jsonArray array JSON request
+     * 
+     * @return array Wall messages with reply structure
+     */
+    public function fetchWall($jsonArray)
+    {
+        $jsonObject = $this->_minifyExpand("",$jsonObject);
+    }
+    
+    
+    /**
+     * Search sentences function
+     * 
+     * @param $jsonArray array JSON request
+     * @version 1
+     * 
+     * @return array
+     */
+    private function _search_v1($jsonArray)
+    {
+        $this->cacheAction = true;
+        $results = null;
+    }
+    
+    
+    /**
+     * Find sentence function
+     * 
+     * @param $jsonArray array JSON request
+     * @version 1
+     * 
+     * @return array
+     */
+    private function _getSentenceDetails_v1($jsonArray)
+    {
+        $this->cacheAction = true;
+        $results = null;
+    }
+    
+    
+    /**
+     * Find comment function
+     * 
+     * @param $jsonArray array JSON request
+     * @version 1
+     * 
+     * @return array
+     */
+    private function _getCommentDetails_v1($jsonArray)
+    {
+        $this->cacheAction = true;
+        $results = null;
+    }
+    
+    
+    /**
+     * Users list function
+     * 
+     * @param $jsonArray array JSON request
+     * @version 1
+     * 
+     * @return array
+     */
+    private function _getUsers_v1($jsonArray)
+    {
+        $this->cacheAction = true;
+        $results = null;
+    }
+    
+    
+    /**
+     * Find User function
+     * 
+     * @param $jsonArray array JSON request
+     * @version 1
+     * 
+     * @return array
+     */
+    private function _getUserDetails_v1($jsonArray)
+    {
+        $this->cacheAction = true;
+        $results = null;
+    }
+    
+    
+    /**
+     * Find wall messages function
+     * 
+     * @param $jsonArray array JSON request
+     * @version 1
+     * 
+     * @return array
+     */
+    private function _fetchWall_v1($jsonArray)
+    {
+        $this->cacheAction = true;
+        $results = null;
+    }
 }
 
 ?>
