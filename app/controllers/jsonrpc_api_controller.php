@@ -25,6 +25,10 @@
  * @link     http://tatoeba.org
  */
 
+/*
+ * Wiki for this API can be found here:
+ * https://github.com/trang/tatoeba-api/wiki/_pages
+ */
 class JsonrpcApiController extends AppController
 {
     
@@ -65,70 +69,176 @@ class JsonrpcApiController extends AppController
                 'getCommentDetails',
                 'getUsers',
                 'getUserDetails',
-                'fetchWall'
+                'fetchWall',
+                'fetchWallThread'
             )
         )
     );
     
     /**
-     * Scheme for minify operations
+     * Scheme for minifying request
      * 
      * @var array
      */
-    private $_minifyMappings = array(
+    private $_minifyRequestMap = array(
         'common' => array(
-            'key' => 'value',
-            'key' => 'value'
+            'version 1' => array(
+                'v' => 'version',
+                'i' => 'id',
+                'o' => 'options',
+                'p' => 'page',
+                'q' => 'query',
+            )
         ),
         'search' => array(
-            'key' => 'value',
-            'key' => 'value',
-            'v1' => array(
-                'v1_key' => 'v1_value',
-                'v1_key' => 'v1_value'
-            )
-        ),
-        'getSentenceDetails' => array(
-            'key' => 'value',
-            'key' => 'value',
-            'v1' => array(
-                'v1_key' => 'v1_value',
-                'v1_key' => 'v1_value'
-            )
-        ),
-        'getCommentDetails' => array(
-            'key' => 'value',
-            'key' => 'value',
-            'v1' => array(
-                'v1_key' => 'v1_value',
-                'v1_key' => 'v1_value'
-            )
-        ),
-        'getUserDetails' => array(
-            'key' => 'value',
-            'key' => 'value',
-            'v1' => array(
-                'v1_key' => 'v1_value',
-                'v1_key' => 'v1_value'
+            'version 1' => array(
+                't' => 'to',
+                'f' => 'from',
             )
         ),
         'getUsers' => array(
-            'key' => 'value',
-            'key' => 'value',
-            'v1' => array(
-                'v1_key' => 'v1_value',
-                'v1_key' => 'v1_value'
+            'version 1' => array(
+                't' => 'type',
+            )
+        )
+    );
+    
+    /**
+     * Scheme for minifying response
+     * 
+     * @var array
+     */
+    private $_minifyResponseMap = array(
+        'common' => array(
+            'version 1' => array(
+                'version' => 'v',
+            )
+        ),
+        'search' => array(
+            'version 1' => array(
+                'total' => 't',
+                'sentences' => 's',
+                'sentences' => array(
+                    'id' => 'i',
+                    'text' => 't',
+                    'lang' => 'l',
+                    'tags' => 'tg',
+                    'audio' => 'a',
+                    'user_id' => 'ui',
+                    'username' => 'un',
+                    'created' => 'c',
+                    'modified' => 'm',
+                    'comments' => 'c',
+                    'direct' => 'd',
+                    'indirect' => 'in'
+                )
+            )
+        ),
+        'getSentenceDetails' => array(
+            'version 1' => array(
+                'sentence' => 's',
+                'comments' => 'c',
+                'common' => array(
+                    'id' => 'i',
+                    'user_id' => 'ui',
+                    'username' => 'un',
+                    'created' => 'c',
+                    'modified' => 'm',
+                    'text' => 't'
+                ),
+                'sentence' => array(
+                    'audio' => 'a',
+                    'tags' => 'tg'
+                ),
+                'comments' => array(
+                    'sentence_id' => 'si'
+                )
+            )
+        ),
+        'getComments' => array(
+            'version 1' => array(
+                'comments' => array(
+                    'id' => 'i',
+                    'user_id' => 'ui',
+                    'username' => 'un',
+                    'created' => 'c',
+                    'modified' => 'm',
+                    'text' => 't',
+                    'lang' => 'l'
+                )
+            )
+        ),
+        'getCommentDetails' => array(
+            'version 1' => array(
+                'comments' => array(
+                    'id' => 'i',
+                    'user_id' => 'ui',
+                    'username' => 'un',
+                    'created' => 'c',
+                    'modified' => 'm',
+                    'text' => 't',
+                    'lang' => 'l'
+                )
+            )
+        ),
+        'getUsers' => array(
+            'version 1' => array(
+                "id" => "i",
+                "group_id" => "gi",
+                "username" => "un",
+                "since" => "s",
+                "img" => "im",
+            )
+        ),
+        'getUserDetails' => array(
+            'version 1' => array(
+                'user' => 'u',
+                'user' => array(
+                    "id" => "i",
+                    "group_id" => "gi",
+                    "username" => "un",
+                    "name" => "n",
+                    "lang" => "l",
+                    "country" => "c",
+                    "since" => "s",
+                    "last_active" => "la",
+                    "desc" => "d",
+                    "birthday" => "b",
+                    "homepage" => "h",
+                    "img" => "im",
+                    "send_notifications" => "sn",
+                    "level" => "lv"
+                )
             )
         ),
         'fetchWall' => array(
-            'key' => 'value',
-            'key' => 'value',
-            'v1' => array(
-                'v1_key' => 'v1_value',
-                'v1_key' => 'v1_value'
+            'version 1' => array(
+                "wallPosts" => "w",
+                "wallPosts" => array(
+                    "id" => "i",
+                    "user_id" => "ui",
+                    "username" => "un",
+                    "created" => "c",
+                    "modified" => "m",
+                    "text" => "t",
+                    "replies" => "r"
+                )
             )
         ),
-        'etc...'
+        'fetchWallThread' => array(
+            'version 1' => array(
+                "wallPosts" => "w",
+                "wallPosts" => array(
+                    "id" => "i",
+                    "user_id" => "ui",
+                    "username" => "un",
+                    "created" => "c",
+                    "modified" => "m",
+                    "text" => "t",
+                    "replies" => "r"
+                )
+            )
+        )
     );
     
     /**
@@ -167,7 +277,7 @@ class JsonrpcApiController extends AppController
      */
     public function search($jsonArray)
     {
-        $jsonObject = $this->_minifyExpand("",$jsonArray);
+        $jsonObject = $this->_minifyExpand("search",$jsonArray);
     }
     
     /**
@@ -221,6 +331,20 @@ class JsonrpcApiController extends AppController
         $jsonObject = $this->_minifyExpand("",$jsonObject);
     }
     
+    
+    /**
+     * Retrieve a wall post with all its replies
+     * 
+     * @param $jsonArray array JSON request
+     * 
+     * @return array Wall messages with reply structure
+     */
+    public function fetchWallThread($jsonArray)
+    {
+        $jsonObject = $this->_minifyExpand("",$jsonObject);
+    }
+    
+    
     /**
      * Retrieve wall posts
      * 
@@ -235,14 +359,18 @@ class JsonrpcApiController extends AppController
     
     
     /**
-     * Search sentences function
+     * Search sentences
      * 
-     * @param $jsonArray array JSON request
+     * @param  $query    string  The query string
+     * @param  $from     string  The source language
+     * @param  $to       string  The target language
+     * @param  $page     string  Pagination details
+     * @param  $options  array   Options for query
      * @version 1
      * 
      * @return array
      */
-    private function _search_v1($jsonArray)
+    private function _search_v1($query, $from, $to, $page, $options)
     {
         $this->cacheAction = true;
         $results = null;
@@ -250,14 +378,15 @@ class JsonrpcApiController extends AppController
     
     
     /**
-     * Find sentence function
+     * Find sentence
      * 
-     * @param $jsonArray array JSON request
+     * @param  $id       int    Id of sentence
+     * @param  $options  array  Options for query
      * @version 1
      * 
      * @return array
      */
-    private function _getSentenceDetails_v1($jsonArray)
+    private function _getSentenceDetails_v1($id, $options)
     {
         $this->cacheAction = true;
         $results = null;
@@ -265,14 +394,14 @@ class JsonrpcApiController extends AppController
     
     
     /**
-     * Find comment function
+     * Get list of comment
      * 
-     * @param $jsonArray array JSON request
+     * @param  $id  array Id's of comments
      * @version 1
      * 
      * @return array
      */
-    private function _getCommentDetails_v1($jsonArray)
+    private function _getComments_v1($ids)
     {
         $this->cacheAction = true;
         $results = null;
@@ -280,14 +409,14 @@ class JsonrpcApiController extends AppController
     
     
     /**
-     * Users list function
+     * Find comment
      * 
-     * @param $jsonArray array JSON request
+     * @param  $id  int Id of comment
      * @version 1
      * 
      * @return array
      */
-    private function _getUsers_v1($jsonArray)
+    private function _getCommentDetails_v1($id)
     {
         $this->cacheAction = true;
         $results = null;
@@ -295,14 +424,14 @@ class JsonrpcApiController extends AppController
     
     
     /**
-     * Find User function
+     * Get list of users or single user
      * 
-     * @param $jsonArray array JSON request
+     * @param  $query   mixed   Either a search string or array of id's
      * @version 1
      * 
      * @return array
      */
-    private function _getUserDetails_v1($jsonArray)
+    private function _getUsers_v1($query)
     {
         $this->cacheAction = true;
         $results = null;
@@ -310,14 +439,44 @@ class JsonrpcApiController extends AppController
     
     
     /**
-     * Find wall messages function
+     * Get a User's profile
      * 
-     * @param $jsonArray array JSON request
+     * @param   $query   mixed   Either a search string or array of id's
      * @version 1
      * 
      * @return array
      */
-    private function _fetchWall_v1($jsonArray)
+    private function _getUserDetails_v1($query)
+    {
+        $this->cacheAction = true;
+        $results = null;
+    }
+    
+    
+    /**
+     * Get wall messages
+     * 
+     * @param  $page     array  Pagination options
+     * @param  $options  array  Options for query 
+     * @version 1
+     * 
+     * @return array
+     */
+    private function _fetchWall_v1($page, $options)
+    {
+        $this->cacheAction = true;
+        $results = null;
+    }
+    
+    /**
+     * Get message and replies
+     * 
+     * @param   $id   Id of wall message
+     * @version 1
+     * 
+     * @return array
+     */
+    private function _fetchWallThread_v1($id)
     {
         $this->cacheAction = true;
         $results = null;
