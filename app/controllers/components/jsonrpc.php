@@ -94,28 +94,35 @@ class JsonrpcComponent extends Object
         if(!$this->RequestHandler->isPost()) {
             //Method Not Allowed
             HttpResponse::status(405);
-            $response = $this->_createRequestError();
+            $response = $this->_createRequestError("Request method must be HTTP POST");
+            
+        } else if(empty($request)) {
+            HttpResponse::status(405);
+            $response = $this->_createRequestError("No method requested.");
             
         } else if(empty($this->listen) || !is_string($this->listen) && !is_array($this->listen)) {
             //Internal Server Error
             //If this component wasn't initialized properly in the controller
             HttpResponse::status(500);
-            $response = $this->_createInternalError();
+            $response = $this->_createInternalError("Component not initialized properly. The listen variable
+                of the controller must be a non-empty string or array of strings.");
             
         } else if (is_string($this->listen) && $this->listen !== $controller->action) {
             //Resource Not Found
             HttpResponse::status(404);
-            $response = $this->_createMethodError();
+            $response = $this->_createMethodError("Requested action is not registered as an API method.
+                Include the method name in the listen variable to register it.");
             
         } else if (is_array($this->listen) && !in_array($controller->action, $this->listen)) {
             //Resource Not Found
             HttpResponse::status(404);
-            $response = $this->_createMethodError();
+            $response = $this->_createMethodError("Requested action is not registered as an API method.
+                Include the method name in the listen variable to register it.");
             
-        } else if(!is_object($request)) {
+        } else if(!is_array($request)) {
             //Unable to decode JSON request
             HttpResponse::status(500);
-            $response = $this->_createInternalError();
+            $response = $this->_createInternalError("Unable to decode JSON response.");
             
         } else {
             $response = callAction($request);
@@ -149,11 +156,13 @@ class JsonrpcComponent extends Object
     /**
      * Creates a parsing error
      * 
+     * @param $message  Error message
+     * 
      * @return object A JSON error
      */
-    private function _createParseError()
+    private function _createParseError($message='Error parsing')
     {
-        return $this->_createError(-32700, 'Error parsing', null);
+        return $this->_createError(-32700, $message, null);
     }
     
     
@@ -161,11 +170,13 @@ class JsonrpcComponent extends Object
      * Creates a parsing error
      * For bad requests
      * 
+     * @param $message  Error message
+     * 
      * @return object A JSON error
      */
-    private function _createRequestError()
+    private function _createRequestError($message='Bad request')
     {
-        return $this->_createJsonError(-32600, 'Bad request', null);
+        return $this->_createJsonError(-32600, $message, null);
     }
     
     
@@ -173,11 +184,13 @@ class JsonrpcComponent extends Object
      * Creates a method error
      * For non-existant methods
      * 
+     * @param $message  Error message
+     * 
      * @return object A JSON error
      */
-    private function _createMethodError()
+    private function _createMethodError($message='Method not found')
     {
-        return $this->_createJsonError(-32601, 'Method not found', null);
+        return $this->_createJsonError(-32601, $message, null);
     }
     
     
@@ -185,33 +198,39 @@ class JsonrpcComponent extends Object
      * Creates a parameter error
      * Something invalid with the params
      * 
+     * @param $message  Error message
+     * 
      * @return object A JSON error
      */
-    private function _createParamsError()
+    private function _createParamsError($message='Invalid params')
     {
-        return $this->_createError(-32602, 'Invalid params', null);
+        return $this->_createError(-32602, $message, null);
     }
     
     
     /**
      * Creates a internal error
      * 
+     * @param $message  Error message
+     * 
      * @return object A JSON error
      */
-    private function _createInternalError()
+    private function _createInternalError($message='Internal error')
     {
-        return $this->_createError(-32603, 'Internal error', null);
+        return $this->_createError(-32603, $message, null);
     }
     
     
     /**
      * Creates a server error
      * 
+     * @param $message  Error message
+     * 
      * @return object A JSON error
      */
-    private function _createServerError()
+    private function _createServerError($message='Server error')
     {
-        return $this->_createError(-32000, 'Server error', null);
+        return $this->_createError(-32000, $message, null);
     }
     
     
@@ -219,9 +238,11 @@ class JsonrpcComponent extends Object
      * Creates a server error
      * Generic error at the app level
      * 
+     * @param $message  Error message
+     * 
      * @return object A JSON error
      */
-    private function _createApplicationError($code, $message="Unknown Error", $id=null)
+    private function _createApplicationError($code, $message="Unknown Error")
     {
         return $this->_createError($code, $message, null);
     }
@@ -269,14 +290,13 @@ class JsonrpcComponent extends Object
      */
     protected function callAction($jsonRequest)
     {
-        if(empty($jsonRequest) || !is_object($jsonRequest)) {
-            return $this->_createParseError();
-            
-        } else if(!isset($jsonRequest->jsonrpc) || $jsonRequest->jsonrpc !== $this->_version) {
-            return $this->_createRequestError();
+        if(!isset($jsonRequest->jsonrpc) || $jsonRequest->jsonrpc !== $this->_version) {
+            return $this->_createRequestError("Requested JSONRPC version does not exist. Please 
+                use version {$this->_version}");
             
         } else if (!isset($jsonRequest->method) || !method_exists($this->_controller, $jsonRequest->method)) {
-            return $this->_createMethodtError();
+            return $this->_createMethodError("Requested method does not exist on controller. Please create 
+                {$jsonReqeust->method} for {$this->_controller}Controller");
             
         } else if(!isset($jsonRequest->params) || (!is_array($request->params) && !is_object($request->params))) {
             return $this->_createParamsError();
