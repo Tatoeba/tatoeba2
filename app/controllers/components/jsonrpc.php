@@ -128,7 +128,14 @@ class JsonrpcComponent extends Object
             $response = callAction($request);
         }
         
+        if (is_object($response) && !empty($response->error)) {
+            HttpResponse::status(500);
+        } else {
+            HttpResponse::status(200);
+        }
+        
         sendEncodedJSONResponse($response);
+        
     }
     
     
@@ -242,7 +249,7 @@ class JsonrpcComponent extends Object
      * 
      * @return object A JSON error
      */
-    private function _createApplicationError($code, $message="Unknown Error")
+    private function _createApplicationError($code=null, $message="Unknown Error")
     {
         return $this->_createError($code, $message, null);
     }
@@ -258,7 +265,18 @@ class JsonrpcComponent extends Object
         $jsonData = str_replace("\'", "\"", $jsonData);
         $allowedChars = array(" " , "," , ":" , "[" , "]" , "{" , "}" , "\"" , "|");
         $jsonData = Sanatize::paranoid($jsonData, $allowedChars);
-        return json_decode($jsonData, true);
+        $jsonData = json_decode($jsonData, true);
+        
+        $jsonData['jsonrpc'] = $jsonData['j'];
+        unset($jsonData['v']);
+        $jsonData['method'] = $jsonData['m'];
+        unset($jsonData['m']);
+        $jsonData['id'] = $jsonData['i'];
+        unset($jsonData['i']);
+        $jsonData['params'] = $jsonData['p'];
+        unset($jsonData['p']);
+        
+        return $jsonData;
     }
     
     
@@ -266,15 +284,13 @@ class JsonrpcComponent extends Object
      * Encodes and ships a JSON response
      * Set the HTTP Status before calling this
      * 
-     * @param array $jsonData JSON data
+     * @param mixed  $jsonData  JSON data, either an array or object.
      * 
      * @return void
      */
     protected function sendEncodedJSONResponse($jsonData)
     {
         $jsonData = json_encode($jsonData);
-        //Optional: Set the Status depending on what the request accomplished
-        HttpResponse::status(200);
         HttpResponse::setData($jsonData);
         HttpResponse::send();
         //$this->_log();
@@ -290,15 +306,28 @@ class JsonrpcComponent extends Object
      */
     protected function callAction($jsonRequest)
     {
-        if(!isset($jsonRequest->jsonrpc) || $jsonRequest->jsonrpc !== $this->_version) {
+        if(!isset($jsonRequest['jsonrpc'])) {
+            return $this->_createRequestError("Unspecified JSON-RPC version. Please specify a version.");
+                
+        } else if($jsonRequest['jsonrpc'] !== $this->_version) {
             return $this->_createRequestError("Requested JSONRPC version does not exist. Please 
                 use version {$this->_version}");
+                
+        } else if (false) {
+            // check for correct message id?
             
-        } else if (!isset($jsonRequest->method) || !method_exists($this->_controller, $jsonRequest->method)) {
+        } else if (!isset($jsonRequest['method'])) {
+            return $this->_createMethodError("No method specified");
+            
+        } else if (!method_exists($this->_controller, $jsonRequest['method'])) {
             return $this->_createMethodError("Requested method does not exist on controller. Please create 
                 {$jsonReqeust->method} for {$this->_controller}Controller");
             
-        } else if(!isset($jsonRequest->params) || (!is_array($request->params) && !is_object($request->params))) {
+        } else if(!isset($jsonRequest['params'])) {
+            return $this->_createParamsError("Params must not be empty.");
+        
+            
+        } else if ((!is_array($jsonRequest['params']) && !is_object($jsonRequest['params']))) {
             return $this->_createParamsError();
         }
         
@@ -306,8 +335,8 @@ class JsonrpcComponent extends Object
             //Don't let the controller send any output to the browser
             ob_start();
             $results = call_user_func_array(
-                array($this->_controller, $jsonRequest->method),
-                array($jsonRequest->params)
+                array($this->_controller, $jsonRequest['method']),
+                array($jsonRequest['params'])
             );
             ob_end_clean();
             return $results;
