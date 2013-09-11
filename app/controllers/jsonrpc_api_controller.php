@@ -74,173 +74,7 @@ class JsonrpcApiController extends AppController
             )
         )
     );
-    
-    /**
-     * Scheme for minifying request
-     * 
-     * @var array
-     */
-    private $_minifyRequestMap = array(
-        'common' => array(
-            'version 1' => array(
-                'v' => 'version',
-                'i' => 'id',
-                'o' => 'options',
-                'p' => 'page',
-                'q' => 'query',
-            )
-        ),
-        'search' => array(
-            'version 1' => array(
-                't' => 'to',
-                'f' => 'from',
-            )
-        ),
-        'getUsers' => array(
-            'version 1' => array(
-                't' => 'type',
-            )
-        )
-    );
-    
-    /**
-     * Scheme for minifying response
-     * 
-     * @var array
-     */
-    private $_minifyResponseMap = array(
-        'common' => array(
-            'version 1' => array(
-                'version' => 'v',
-            )
-        ),
-        'search' => array(
-            'version 1' => array(
-                'total' => 't',
-                'sentences' => 's',
-                'sentences' => array(
-                    'id' => 'i',
-                    'text' => 't',
-                    'lang' => 'l',
-                    'tags' => 'tg',
-                    'audio' => 'a',
-                    'user_id' => 'ui',
-                    'username' => 'un',
-                    'created' => 'c',
-                    'modified' => 'm',
-                    'comments' => 'c',
-                    'direct' => 'd',
-                    'indirect' => 'in'
-                )
-            )
-        ),
-        'getSentenceDetails' => array(
-            'version 1' => array(
-                'sentence' => 's',
-                'comments' => 'c',
-                'common' => array(
-                    'id' => 'i',
-                    'user_id' => 'ui',
-                    'username' => 'un',
-                    'created' => 'c',
-                    'modified' => 'm',
-                    'text' => 't'
-                ),
-                'sentence' => array(
-                    'audio' => 'a',
-                    'tags' => 'tg'
-                ),
-                'comments' => array(
-                    'sentence_id' => 'si'
-                )
-            )
-        ),
-        'getComments' => array(
-            'version 1' => array(
-                'comments' => array(
-                    'id' => 'i',
-                    'user_id' => 'ui',
-                    'username' => 'un',
-                    'created' => 'c',
-                    'modified' => 'm',
-                    'text' => 't',
-                    'lang' => 'l'
-                )
-            )
-        ),
-        'getCommentDetails' => array(
-            'version 1' => array(
-                'comments' => array(
-                    'id' => 'i',
-                    'user_id' => 'ui',
-                    'username' => 'un',
-                    'created' => 'c',
-                    'modified' => 'm',
-                    'text' => 't',
-                    'lang' => 'l'
-                )
-            )
-        ),
-        'getUsers' => array(
-            'version 1' => array(
-                "id" => "i",
-                "group_id" => "gi",
-                "username" => "un",
-                "since" => "s",
-                "img" => "im",
-            )
-        ),
-        'getUserDetails' => array(
-            'version 1' => array(
-                'user' => 'u',
-                'user' => array(
-                    "id" => "i",
-                    "group_id" => "gi",
-                    "username" => "un",
-                    "name" => "n",
-                    "lang" => "l",
-                    "country" => "c",
-                    "since" => "s",
-                    "last_active" => "la",
-                    "desc" => "d",
-                    "birthday" => "b",
-                    "homepage" => "h",
-                    "img" => "im",
-                    "send_notifications" => "sn",
-                    "level" => "lv"
-                )
-            )
-        ),
-        'fetchWall' => array(
-            'version 1' => array(
-                "wallPosts" => "w",
-                "wallPosts" => array(
-                    "id" => "i",
-                    "user_id" => "ui",
-                    "username" => "un",
-                    "created" => "c",
-                    "modified" => "m",
-                    "text" => "t",
-                    "replies" => "r"
-                )
-            )
-        ),
-        'fetchWallThread' => array(
-            'version 1' => array(
-                "wallPosts" => "w",
-                "wallPosts" => array(
-                    "id" => "i",
-                    "user_id" => "ui",
-                    "username" => "un",
-                    "created" => "c",
-                    "modified" => "m",
-                    "text" => "t",
-                    "replies" => "r"
-                )
-            )
-        )
-    );
-    
+
     /**
      * Minify function, compress data
      * 
@@ -257,31 +91,55 @@ class JsonrpcApiController extends AppController
     /**
      * Minify function, expand data
      * 
-     * @param string $context     The mapping context (the method name)
+     * @param array $contex     The mapping context (the method name)
      * @param array $jsonArray  The JSON data to expand
      * 
      * @return array expanded JSON data
      */
     private function _minifyExpand($context, $jsonArray)
     {
-        
+        foreach($jsonArray as $letter=>$value) {
+            if (array_key_exists($letter, $context)) {
+                $jsonArray[$context[$letter]] = $jsonArray[$letter];
+                unset($jsonArray[$letter]);
+            }
+        }
     }
     
     
     /**
-     * Search sentences optionally with translations and comments
+     * Parent function for seach method
      * 
-     * @param $jsonArray array JSON request
+     * @param $jsonArray array The JSON request
      * 
      * @return array Search results
      */
-    public function search($jsonArray)
+    public function search($jsonRequest)
     {
-        $jsonObject = $this->_minifyExpand("search",$jsonArray);
+        if (empty($jsonRequest['version'])) {
+            throw new Exception("Method version not specified.", 0);
+        } else if (!function_exists("_search_v{$jsonRequest['version']}")) {
+            throw new Exception("Method version does not exist.", 0);
+        }
+        $version = $jsonRequest['version'];
+        
+        $context = array(
+            'version_1' => array(
+                'q' => 'query',
+                't' => 'to',
+                'f' => 'from',
+                'p' => 'page',
+                'o' => 'options'
+            )
+        );
+        
+        $jsonRequest = $this->_minifyExpand($context["version_{$version}"], $jsonRequest);
+        
+        call_user_func_array("_search_v{$jsonRequest['version']}", $jsonRequest);
     }
     
     /**
-     * Retrieve sentences for individual display
+     * Parent function for sentence method
      * 
      * @param $jsonArray array JSON request
      * 
@@ -289,38 +147,38 @@ class JsonrpcApiController extends AppController
      */
     public function getSentenceDetails($jsonArray)
     {
-        $jsonObject = $this->_minifyExpand("",$jsonObject);
+        $jsonObject = $this->_minifyExpand("getSentenceDetails",$jsonObject);
     }
     
     
     /**
-     * Retrieve comments for individual display
+     * Parent function for comment method
      * 
      * @param $jsonArray array JSON request
      * 
      * @return array A single comment
      */
-    public function getCommentDetails($jsonArray)
+    public function getComments($jsonArray)
     {
-        $jsonObject = $this->_minifyExpand("",$jsonObject);
+        $jsonObject = $this->_minifyExpand("getComments",$jsonObject);
     }
     
     
     /**
-     * Retrieve user for individual display
+     * Parent function for user profile method
      * 
      * @param $jsonArray array JSON request
      * 
      * @return array Details of a single user
      */
-    public function getUserDetails($jsonArray)
+    public function getUserProfile($jsonArray)
     {
-        $jsonObject = $this->_minifyExpand("",$jsonObject);
+        $jsonObject = $this->_minifyExpand("getUserProfile",$jsonObject);
     }
     
     
     /**
-     * Retrieve list of users
+     * Parent function for users method
      * 
      * @param $jsonArray array JSON request
      * 
@@ -328,25 +186,25 @@ class JsonrpcApiController extends AppController
      */
     public function getUsers($jsonArray)
     {
-        $jsonObject = $this->_minifyExpand("",$jsonObject);
+        $jsonObject = $this->_minifyExpand("getUsers",$jsonObject);
     }
     
     
     /**
-     * Retrieve a wall post with all its replies
+     * Parent function for search users method
      * 
      * @param $jsonArray array JSON request
      * 
-     * @return array Wall messages with reply structure
+     * @return array A List of users
      */
-    public function fetchWallThread($jsonArray)
+    public function searchUsers($jsonArray)
     {
-        $jsonObject = $this->_minifyExpand("",$jsonObject);
+        $jsonObject = $this->_minifyExpand("searchUsers",$jsonObject);
     }
     
     
     /**
-     * Retrieve wall posts
+     * Parent function for fetch wall method
      * 
      * @param $jsonArray array JSON request
      * 
@@ -354,7 +212,33 @@ class JsonrpcApiController extends AppController
      */
     public function fetchWall($jsonArray)
     {
-        $jsonObject = $this->_minifyExpand("",$jsonObject);
+        $jsonObject = $this->_minifyExpand("fetchWall",$jsonObject);
+    }
+    
+    
+    /**
+     * Parent function for fetch wall thread method
+     * 
+     * @param $jsonArray array JSON request
+     * 
+     * @return array Wall messages with reply structure
+     */
+    public function fetchWallThread($jsonArray)
+    {
+        $jsonObject = $this->_minifyExpand("fetchWallThread",$jsonObject);
+    }
+    
+    
+    /**
+     * Parent function for fetch wall replies method
+     * 
+     * @param $jsonArray array JSON request
+     * 
+     * @return array Wall messages with reply structure
+     */
+    public function fetchWallReplies($jsonArray)
+    {
+        $jsonObject = $this->_minifyExpand("fetchWallReplies",$jsonObject);
     }
     
     
@@ -372,6 +256,7 @@ class JsonrpcApiController extends AppController
      */
     private function _search_v1($query, $from, $to, $page, $options)
     {
+        // throw an error if the correct arguments are not supplied
         $this->cacheAction = true;
         $results = null;
     }
