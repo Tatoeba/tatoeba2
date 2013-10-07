@@ -78,6 +78,14 @@ class JsonrpcComponent extends Object
     
     
     /**
+     * The http response (using the pecl_http extension)
+     * 
+     * @var HttpResponse
+     */
+    private $_httpResponse = null;
+    
+    
+    /**
      * Callback function called after Controller::beforeFilter() but
      * before the controller executes the action
      * This basically intercepts the request for the controller action 
@@ -86,42 +94,44 @@ class JsonrpcComponent extends Object
      */
     function startup(object& $controller)
     {
-        $request = getDecodedJSONRequest();
-        HttpResponse::setContentType('application/json');
+        $request = self::getDecodedJSONRequest();
+        $this->_httpResponse = new HttpResponse();
+        
+        /*
         $response = null;
         
         $this->_controller = $controller;
         if(!$this->RequestHandler->isPost()) {
             //Method Not Allowed
-            HttpResponse::status(405);
+            $httpResponse->status(405);
             $response = $this->_createRequestError("Request method must be HTTP POST");
             
         } else if(empty($request)) {
-            HttpResponse::status(405);
+            $httpResponse->status(405);
             $response = $this->_createRequestError("No method requested.");
             
         } else if(empty($this->listen) || !is_string($this->listen) && !is_array($this->listen)) {
             //Internal Server Error
             //If this component wasn't initialized properly in the controller
-            HttpResponse::status(500);
+            $httpResponse->status(500);
             $response = $this->_createInternalError("Component not initialized properly. The listen variable
                 of the controller must be a non-empty string or array of strings.");
             
         } else if (is_string($this->listen) && $this->listen !== $controller->action) {
             //Resource Not Found
-            HttpResponse::status(404);
+            $httpResponse->status(404);
             $response = $this->_createMethodError("Requested action is not registered as an API method.
                 Include the method name in the listen variable to register it.");
             
         } else if (is_array($this->listen) && !in_array($controller->action, $this->listen)) {
             //Resource Not Found
-            HttpResponse::status(404);
+            $httpResponse->status(404);
             $response = $this->_createMethodError("Requested action is not registered as an API method.
                 Include the method name in the listen variable to register it.");
             
         } else if(!is_array($request)) {
             //Unable to decode JSON request
-            HttpResponse::status(500);
+            $httpResponse->status(500);
             $response = $this->_createInternalError("Unable to decode JSON response.");
             
         } else {
@@ -129,12 +139,13 @@ class JsonrpcComponent extends Object
         }
         
         if (is_object($response) && !empty($response->error)) {
-            HttpResponse::status(500);
+            $httpResponse->status(500);
         } else {
-            HttpResponse::status(200);
+            $httpResponse->status(200);
         }
+        */
         
-        sendEncodedJSONResponse($response);
+        self::sendEncodedJSONResponse($request);
         
     }
     
@@ -264,17 +275,8 @@ class JsonrpcComponent extends Object
         $jsonData = trim(file_get_contents("php://input"));
         $jsonData = str_replace("\'", "\"", $jsonData);
         $allowedChars = array(" " , "," , ":" , "[" , "]" , "{" , "}" , "\"" , "|");
-        $jsonData = Sanatize::paranoid($jsonData, $allowedChars);
+        $jsonData = Sanitize::paranoid($jsonData, $allowedChars);
         $jsonData = json_decode($jsonData, true);
-        
-        $jsonData['jsonrpc'] = $jsonData['j'];
-        unset($jsonData['v']);
-        $jsonData['method'] = $jsonData['m'];
-        unset($jsonData['m']);
-        $jsonData['id'] = $jsonData['i'];
-        unset($jsonData['i']);
-        $jsonData['params'] = $jsonData['p'];
-        unset($jsonData['p']);
         
         return $jsonData;
     }
@@ -291,8 +293,10 @@ class JsonrpcComponent extends Object
     protected function sendEncodedJSONResponse($jsonData)
     {
         $jsonData = json_encode($jsonData);
-        HttpResponse::setData($jsonData);
-        HttpResponse::send();
+        $this->_httpResponse->setContentType('application/json');
+        $this->_httpResponse->setData(print_r($jsonData, true));
+        $this->_httpResponse->send();
+        unset($this->_httpResponse);
         //$this->_log();
     }
     
@@ -348,7 +352,7 @@ class JsonrpcComponent extends Object
     /**
      * For logging records of API activity
      */
-    protected function _log()
+    private function _log()
     {
         
     }

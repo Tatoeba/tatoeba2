@@ -74,6 +74,17 @@ class JsonrpcApiController extends AppController
             )
         )
     );
+    
+    /**
+     * CakePHP function
+     */
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+        $this->Auth->allowedActions = array("*");
+        //$this->log("controller: json_rpc; method: beforeFilter", "DEBUG");
+    }
+    
 
     /**
      * Minify function, compress data
@@ -116,6 +127,7 @@ class JsonrpcApiController extends AppController
      */
     public function search($jsonRequest)
     {
+        /*
         if (empty($jsonRequest['version'])) {
             throw new Exception("Method version not specified.", 0);
         } else if (!function_exists("_search_v{$jsonRequest['version']}")) {
@@ -136,6 +148,7 @@ class JsonrpcApiController extends AppController
         $jsonRequest = $this->_minifyExpand($context["version_{$version}"], $jsonRequest);
         
         call_user_func_array("_search_v{$jsonRequest['version']}", $jsonRequest);
+         */
     }
     
     /**

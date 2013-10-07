@@ -1,0 +1,58 @@
+form#SearchForm
+{
+    margin-left: 10px;
+    padding: 10px;
+}
+
+form#SearchForm label
+{
+    float: left;
+    width: 70px;
+}
+
+form#SearchForm fieldset#ParamsFieldset
+{
+    border: 1px solid silver;
+    display: inline;
+    float: left;
+    width: 40%;
+    margin: 0px;
+}
+
+form#SearchForm div#query_displays
+{
+    width: 54%;
+    display: inline;
+    float: right;
+    border: none;
+    clear: none;
+    font-size: 1.15em;
+    margin-bottom: 20px;
+    margin-top: 0px;
+}
+
+form#SearchForm textarea#query_display
+{
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form#SearchForm textarea#query_minified_display
+{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+form#SearchForm input#submit_button
+{
+    margin-top: 15px;
+    float: left;
+    clear: left;
+    display: block;
+}
+
+form#SearchForm fieldset#HeaderFieldset
+{
+    border: none;
+}
