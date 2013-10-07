@@ -10,10 +10,11 @@ $(document).ready(function() {
     });
     $("#submit_button").click(function(event){
         var message = $("textarea#query_minified_display").val();
-        $.post(
-            get_tatoeba_root_url()+"/jsonrpc_api/search",
-            message
-        );
+        $.ajax({
+            type: "POST",
+            url: get_tatoeba_root_url()+"/jsonrpc_api/search",
+            data: message
+        });
     });
     $(".search_query_display").bind("paste", function(event){
         $(".test_form").find("input").find("id!=submit_button").attr("disabled", true);

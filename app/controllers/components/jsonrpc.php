@@ -88,7 +88,8 @@ class JsonrpcComponent extends Object
     /**
      * Callback function called after Controller::beforeFilter() but
      * before the controller executes the action
-     * This basically intercepts the request for the controller action 
+     * This basically intercepts the request for the controller action
+     * and passes the request as an array
      * 
      * @param &$controller The controller
      */
@@ -97,55 +98,67 @@ class JsonrpcComponent extends Object
         $request = self::getDecodedJSONRequest();
         $this->_httpResponse = new HttpResponse();
         
-        /*
         $response = null;
         
         $this->_controller = $controller;
+        $this->log("controller: jrsonrpc; method startup", "DEBUG");
+        
         if(!$this->RequestHandler->isPost()) {
             //Method Not Allowed
-            $httpResponse->status(405);
+            $this->_httpResponse->status(405);
             $response = $this->_createRequestError("Request method must be HTTP POST");
+            //$this->log("Error: RequestHandler not POST", "DEBUG");
             
         } else if(empty($request)) {
-            $httpResponse->status(405);
+            $this->_httpResponse->status(405);
             $response = $this->_createRequestError("No method requested.");
+            //$this->log("Error: Empty request", "DEBUG");
             
         } else if(empty($this->listen) || !is_string($this->listen) && !is_array($this->listen)) {
             //Internal Server Error
             //If this component wasn't initialized properly in the controller
-            $httpResponse->status(500);
+            $this->_httpResponse->status(500);
             $response = $this->_createInternalError("Component not initialized properly. The listen variable
                 of the controller must be a non-empty string or array of strings.");
+            //$this->log("Error: Listen var is either empty, not a string, or not an array", "DEBUG");
             
         } else if (is_string($this->listen) && $this->listen !== $controller->action) {
             //Resource Not Found
-            $httpResponse->status(404);
+            $this->_httpResponse->status(404);
             $response = $this->_createMethodError("Requested action is not registered as an API method.
                 Include the method name in the listen variable to register it.");
+            //$this->log("Error: Listen var is not a string or not registered as an action", "DEBUG");
             
         } else if (is_array($this->listen) && !in_array($controller->action, $this->listen)) {
             //Resource Not Found
-            $httpResponse->status(404);
+            $this->_httpResponse->status(404);
             $response = $this->_createMethodError("Requested action is not registered as an API method.
                 Include the method name in the listen variable to register it.");
+            //$this->log("Error: Listen var is not an array not registered as an action", "DEBUG");
             
         } else if(!is_array($request)) {
             //Unable to decode JSON request
-            $httpResponse->status(500);
+            $this->_httpResponse->status(500);
             $response = $this->_createInternalError("Unable to decode JSON response.");
+            //$this->log("Error: Request could not be parsed into an array", "DEBUG");
             
         } else {
-            $response = callAction($request);
+            $response = self::callAction($request);
         }
         
+        /*
         if (is_object($response) && !empty($response->error)) {
-            $httpResponse->status(500);
+            $this->_httpResponse->status(500);
+            $this->log("Error: Could not make response object; has errors.", "DEBUG");
         } else {
-            $httpResponse->status(200);
+            $this->_httpResponse->status(200);
+            $this->log("Status OKAY", "DEBUG");
         }
         */
-        
-        self::sendEncodedJSONResponse($request);
+        //Need to terminate the usual controller execution here since we already called
+        //the controller's method 
+        $this->controller->_stop();
+        self::sendEncodedJSONResponse($response);
         
     }
     
@@ -310,6 +323,7 @@ class JsonrpcComponent extends Object
      */
     protected function callAction($jsonRequest)
     {
+        /*
         if(!isset($jsonRequest['jsonrpc'])) {
             return $this->_createRequestError("Unspecified JSON-RPC version. Please specify a version.");
                 
@@ -334,7 +348,7 @@ class JsonrpcComponent extends Object
         } else if ((!is_array($jsonRequest['params']) && !is_object($jsonRequest['params']))) {
             return $this->_createParamsError();
         }
-        
+        */
         try {
             //Don't let the controller send any output to the browser
             ob_start();

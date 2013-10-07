@@ -57,23 +57,12 @@ class JsonrpcApiController extends AppController
     
     
     /**
-     * Initialize the jsonrpc component here by listing all the api methods
+     * Components for this controller
      * 
      * @var array
      */
-    public $components = array(
-        'Jsonrpc' => array(
-            'listen' => array(
-                'search',
-                'getSentenceDetails',
-                'getCommentDetails',
-                'getUsers',
-                'getUserDetails',
-                'fetchWall',
-                'fetchWallThread'
-            )
-        )
-    );
+    public $components = array('Jsonrpc');
+    
     
     /**
      * CakePHP function
@@ -82,10 +71,12 @@ class JsonrpcApiController extends AppController
     {
         parent::beforeFilter();
         $this->Auth->allowedActions = array("*");
-        //$this->log("controller: json_rpc; method: beforeFilter", "DEBUG");
+        $this->Jsonrpc->listen = array(
+            'search'
+        );
     }
     
-
+    
     /**
      * Minify function, compress data
      * 
@@ -98,6 +89,7 @@ class JsonrpcApiController extends AppController
     {
         
     }
+    
     
     /**
      * Minify function, expand data
@@ -127,6 +119,7 @@ class JsonrpcApiController extends AppController
      */
     public function search($jsonRequest)
     {
+        return $jsonRequest;
         /*
         if (empty($jsonRequest['version'])) {
             throw new Exception("Method version not specified.", 0);
@@ -150,6 +143,7 @@ class JsonrpcApiController extends AppController
         call_user_func_array("_search_v{$jsonRequest['version']}", $jsonRequest);
          */
     }
+    
     
     /**
      * Parent function for sentence method
