@@ -101,8 +101,8 @@ class JsonrpcComponent extends Object
         $response = null;
         
         $this->_controller = $controller;
-        $this->log("controller: jrsonrpc; method startup", "DEBUG");
         
+        //Check for errors unrelated to the nature of the request
         if(!$this->RequestHandler->isPost()) {
             //Method Not Allowed
             $this->_httpResponse->status(405);
@@ -146,20 +146,17 @@ class JsonrpcComponent extends Object
             $response = self::callAction($request);
         }
         
-        /*
-        if (is_object($response) && !empty($response->error)) {
+        if (is_object($response)) {
+            //If $response is an object, then it is an error
             $this->_httpResponse->status(500);
             $this->log("Error: Could not make response object; has errors.", "DEBUG");
         } else {
             $this->_httpResponse->status(200);
             $this->log("Status OKAY", "DEBUG");
         }
-        */
-        //Need to terminate the usual controller execution here since we already called
-        //the controller's method 
-        $this->controller->_stop();
-        self::sendEncodedJSONResponse($response);
         
+        self::sendEncodedJSONResponse($response);
+        $this->_controller->_stop();
     }
     
     
@@ -287,7 +284,7 @@ class JsonrpcComponent extends Object
     {
         $jsonData = trim(file_get_contents("php://input"));
         $jsonData = str_replace("\'", "\"", $jsonData);
-        $allowedChars = array(" " , "," , ":" , "[" , "]" , "{" , "}" , "\"" , "|");
+        $allowedChars = array(" " , "," , ".", ":" , "[" , "]" , "{" , "}" , "\"" , "|");
         $jsonData = Sanitize::paranoid($jsonData, $allowedChars);
         $jsonData = json_decode($jsonData, true);
         
@@ -319,11 +316,12 @@ class JsonrpcComponent extends Object
      * 
      * @param object $jsonRequest The output from getDecodedJSONRequest()
      * 
-     * @return array 
+     * @return mixed  If the callback is successful an array should be returned, else
+     *                and error was thrown and an error object returned  
      */
     protected function callAction($jsonRequest)
     {
-        /*
+        
         if(!isset($jsonRequest['jsonrpc'])) {
             return $this->_createRequestError("Unspecified JSON-RPC version. Please specify a version.");
                 
@@ -348,7 +346,7 @@ class JsonrpcComponent extends Object
         } else if ((!is_array($jsonRequest['params']) && !is_object($jsonRequest['params']))) {
             return $this->_createParamsError();
         }
-        */
+        
         try {
             //Don't let the controller send any output to the browser
             ob_start();
@@ -357,7 +355,7 @@ class JsonrpcComponent extends Object
                 array($jsonRequest['params'])
             );
             ob_end_clean();
-            return $results;
+            return (array) $results;
         } catch (Exception $e) {
             return $this->_createApplicationError($e->getCode(), $e->getMessage(), null);
         }
