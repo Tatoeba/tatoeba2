@@ -86,6 +86,14 @@ class JsonrpcComponent extends Object
     
     
     /**
+     * For storing a copy of the request
+     * 
+     * @var array
+     */
+    private $_jsonData = null;
+            
+    
+    /**
      * Callback function called after Controller::beforeFilter() but
      * before the controller executes the action
      * This basically intercepts the request for the controller action
@@ -286,9 +294,9 @@ class JsonrpcComponent extends Object
         $jsonData = str_replace("\'", "\"", $jsonData);
         $allowedChars = array(" " , "," , ".", ":" , "[" , "]" , "{" , "}" , "\"" , "|");
         $jsonData = Sanitize::paranoid($jsonData, $allowedChars);
-        $jsonData = json_decode($jsonData, true);
+        $this->_jsonData = json_decode($jsonData, true);
         
-        return $jsonData;
+        return $this->_jsonData;
     }
     
     
@@ -296,17 +304,25 @@ class JsonrpcComponent extends Object
      * Encodes and ships a JSON response
      * Set the HTTP Status before calling this
      * 
-     * @param mixed  $jsonData  JSON data, either an array or object.
+     * @param array  $jsonData  JSON data
      * 
      * @return void
      */
     protected function sendEncodedJSONResponse($jsonData)
     {
+        $jsonData = array(
+            'jsonrpc' => $this->_jsonData['jsonrpc'],
+            'id' => 0, //temporary, set to $this->_jsonData['id']
+            'method' => $this->_jsonData['method'],
+            'params' => $jsonData
+        );
+        $this->log(print_r($jsonData, true), "DEBUG");
         $jsonData = json_encode($jsonData);
         $this->_httpResponse->setContentType('application/json');
         $this->_httpResponse->setData(print_r($jsonData, true));
         $this->_httpResponse->send();
         unset($this->_httpResponse);
+        unset($this->_jsonData);
         //$this->_log();
     }
     
