@@ -87,7 +87,7 @@ class JsonrpcApiController extends AppController
      */
     private function _minifyCompress($context, $jsonArray)
     {
-        
+        return $jsonArray;
     }
     
     
@@ -107,6 +107,8 @@ class JsonrpcApiController extends AppController
                 unset($jsonArray[$letter]);
             }
         }
+        
+        return $jsonArray;
     }
     
     
@@ -119,29 +121,39 @@ class JsonrpcApiController extends AppController
      */
     public function search($jsonRequest)
     {
-        return $jsonRequest;
-        /*
-        if (empty($jsonRequest['version'])) {
+        if (empty($jsonRequest['v'])) {
             throw new Exception("Method version not specified.", 0);
-        } else if (!function_exists("_search_v{$jsonRequest['version']}")) {
+        } else if (!method_exists(get_class($this), "_search_v{$jsonRequest['v']}")) {
             throw new Exception("Method version does not exist.", 0);
         }
-        $version = $jsonRequest['version'];
         
+        $version = $jsonRequest['v'];
+        unset($jsonRequest['v']);
+        $methName = "_search_v{$version}";
+        //versioning contexts
         $context = array(
-            'version_1' => array(
-                'q' => 'query',
-                't' => 'to',
-                'f' => 'from',
-                'p' => 'page',
-                'o' => 'options'
+            'request' => array(
+                '1' => array(
+                    'q' => 'query',
+                    't' => 'to',
+                    'f' => 'from',
+                    'p' => 'page',
+                    'o' => 'options'
+                )
+            ),
+            'response' => array(
+                '1' => array(
+                    
+                )
             )
         );
         
-        $jsonRequest = $this->_minifyExpand($context["version_{$version}"], $jsonRequest);
+        $jsonRequest = $this->_minifyExpand($context['request'][$version], $jsonRequest);
         
-        call_user_func_array("_search_v{$jsonRequest['version']}", $jsonRequest);
-         */
+        $result =  call_user_func_array(array($this, $methName), array($jsonRequest));
+        $result = $this->_minifyCompress($context['response'][$version], $result);
+        
+        return $result;
     }
     
     
@@ -250,7 +262,8 @@ class JsonrpcApiController extends AppController
     
     
     /**
-     * Search sentences
+     * Search sentences.
+     * Don't call this function directly. 
      * 
      * @param  $query    string  The query string
      * @param  $from     string  The source language
@@ -261,11 +274,16 @@ class JsonrpcApiController extends AppController
      * 
      * @return array
      */
-    private function _search_v1($query, $from, $to, $page, $options)
+    private function _search_v1()
     {
+        //The args should be exactly as given above
+        $args = func_get_args();
+        $args = $args[0];
         // throw an error if the correct arguments are not supplied
         $this->cacheAction = true;
         $results = null;
+        
+        return $args;
     }
     
     

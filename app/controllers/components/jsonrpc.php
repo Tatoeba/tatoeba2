@@ -177,7 +177,7 @@ class JsonrpcComponent extends Object
      * 
      * @return object A JSON error
      */
-    private function _createError($code, $message, $id=null)
+    private function _createError($code, $message, $id=0)
     {
         $object = new stdClass();
         $object->jsonrpc = $this->_version;
@@ -198,7 +198,7 @@ class JsonrpcComponent extends Object
      */
     private function _createParseError($message='Error parsing')
     {
-        return $this->_createError(-32700, $message, null);
+        return $this->_createError(-32700, $message, 0);
     }
     
     
@@ -212,7 +212,7 @@ class JsonrpcComponent extends Object
      */
     private function _createRequestError($message='Bad request')
     {
-        return $this->_createJsonError(-32600, $message, null);
+        return $this->_createJsonError(-32600, $message, 0);
     }
     
     
@@ -226,7 +226,7 @@ class JsonrpcComponent extends Object
      */
     private function _createMethodError($message='Method not found')
     {
-        return $this->_createJsonError(-32601, $message, null);
+        return $this->_createJsonError(-32601, $message, 0);
     }
     
     
@@ -240,7 +240,7 @@ class JsonrpcComponent extends Object
      */
     private function _createParamsError($message='Invalid params')
     {
-        return $this->_createError(-32602, $message, null);
+        return $this->_createError(-32602, $message, 0);
     }
     
     
@@ -253,7 +253,7 @@ class JsonrpcComponent extends Object
      */
     private function _createInternalError($message='Internal error')
     {
-        return $this->_createError(-32603, $message, null);
+        return $this->_createError(-32603, $message, 0);
     }
     
     
@@ -266,7 +266,7 @@ class JsonrpcComponent extends Object
      */
     private function _createServerError($message='Server error')
     {
-        return $this->_createError(-32000, $message, null);
+        return $this->_createError(-32000, $message, 0);
     }
     
     
@@ -280,7 +280,7 @@ class JsonrpcComponent extends Object
      */
     private function _createApplicationError($code=null, $message="Unknown Error")
     {
-        return $this->_createError($code, $message, null);
+        return $this->_createError($code, $message, 0);
     }
     
     /**
@@ -304,19 +304,20 @@ class JsonrpcComponent extends Object
      * Encodes and ships a JSON response
      * Set the HTTP Status before calling this
      * 
-     * @param array  $jsonData  JSON data
+     * @param mixed  $jsonData  Either a results array, or error object
      * 
      * @return void
      */
     protected function sendEncodedJSONResponse($jsonData)
     {
-        $jsonData = array(
-            'jsonrpc' => $this->_jsonData['jsonrpc'],
-            'id' => 0, //temporary, set to $this->_jsonData['id']
-            'method' => $this->_jsonData['method'],
-            'params' => $jsonData
-        );
-        $this->log(print_r($jsonData, true), "DEBUG");
+        if (is_array($jsonData)) {
+            $jsonData = array(
+                'jsonrpc' => $this->_jsonData['jsonrpc'],
+                'id' => 0, //temporary, set to $this->_jsonData['id']
+                'method' => $this->_jsonData['method'],
+                'params' => $jsonData
+            );
+        }
         $jsonData = json_encode($jsonData);
         $this->_httpResponse->setContentType('application/json');
         $this->_httpResponse->setData(print_r($jsonData, true));
