@@ -65,6 +65,14 @@ class JsonrpcApiController extends AppController
     
     
     /**
+     * Variable to store map for minification/deminification
+     * 
+     * @var array
+     */
+    private $_context = array();
+    
+    
+    /**
      * CakePHP function
      */
     public function beforeFilter()
@@ -72,7 +80,8 @@ class JsonrpcApiController extends AppController
         parent::beforeFilter();
         $this->Auth->allowedActions = array("*");
         $this->Jsonrpc->listen = array(
-            'search'
+            'search',
+            'getSentenceDetails'
         );
     }
     
@@ -113,25 +122,53 @@ class JsonrpcApiController extends AppController
     
     
     /**
-     * Parent function for seach method
+     * This function is a callback used by the component. It is supplied with an array whose 
+     * first index contains the method name and second index contains the arguments
      * 
-     * @param $jsonArray array The JSON request
+     * @return array  The return value of whichever method is invoked
+     */
+    public function invokeAPIMethod()
+    {
+        $jsonRequest = func_get_args();
+        $version = $verName = $methName = "";
+        $params = array();
+        
+        if (empty($jsonRequest[1]['v'])) {
+            throw new Exception("Method version not specified.", 0);
+        } else {
+            $version = $jsonRequest[1]['v'];
+        }
+        
+        if (!method_exists(get_class($this), "_{$jsonRequest[0]}_v{$version}")) {
+            throw new Exception("Method version does not exist.", 0);
+        } else {
+            unset($jsonRequest[1]['v']);
+            $methName = $jsonRequest[0];
+            $verName = "_{$jsonRequest[0]}_v{$version}";
+        }
+        
+        if (empty($jsonRequest[1])) {
+            throw new Exception("No params supplied to method.", 0);
+        } else {
+            $params = $jsonRequest[1];
+        }
+        
+        return  call_user_func_array(array($this, $methName), array($verName, $version, $params));
+    }
+    
+    
+    /**
+     * Parent function for seach method.
+     * 
+     * @param $verName  The versioned name of the method requested
+     * @param $version  The version number
+     * @param $params   The params supplied
      * 
      * @return array Search results
      */
-    public function search($jsonRequest)
+    public function search()
     {
-        if (empty($jsonRequest['v'])) {
-            throw new Exception("Method version not specified.", 0);
-        } else if (!method_exists(get_class($this), "_search_v{$jsonRequest['v']}")) {
-            throw new Exception("Method version does not exist.", 0);
-        }
-        
-        $version = $jsonRequest['v'];
-        unset($jsonRequest['v']);
-        $methName = "_search_v{$version}";
-        //versioning contexts
-        $context = array(
+        $this->_context = array(
             'request' => array(
                 '1' => array(
                     'q' => 'query',
@@ -148,12 +185,13 @@ class JsonrpcApiController extends AppController
             )
         );
         
-        $jsonRequest = $this->_minifyExpand($context['request'][$version], $jsonRequest);
+        $request = func_get_args();
+        $verName = $request[0];
+        $version = $request[1];
+        $params = $request[2];
+        $request = $this->_minifyExpand($this->_context['request'][$version], $params);
         
-        $result =  call_user_func_array(array($this, $methName), array($jsonRequest));
-        $result = $this->_minifyCompress($context['response'][$version], $result);
-        
-        return $result;
+        return call_user_func_array(array($this, $verName), array($request));
     }
     
     
@@ -166,35 +204,6 @@ class JsonrpcApiController extends AppController
      */
     public function getSentenceDetails($jsonArray)
     {
-        if (empty($jsonRequest['v'])) {
-            throw new Exception("Method version not specified.", 0);
-        } else if (!method_exists(get_class($this), "_search_v{$jsonRequest['v']}")) {
-            throw new Exception("Method version does not exist.", 0);
-        }
-        
-        $version = $jsonRequest['v'];
-        unset($jsonRequest['v']);
-        $methName = "_search_v{$version}";
-        //versioning contexts
-        $context = array(
-            'request' => array(
-                '1' => array(
-                    
-                )
-            ),
-            'response' => array(
-                '1' => array(
-                    
-                )
-            )
-        );
-        
-        $jsonRequest = $this->_minifyExpand($context['request'][$version], $jsonRequest);
-        
-        $result =  call_user_func_array(array($this, $methName), array($jsonRequest));
-        $result = $this->_minifyCompress($context['response'][$version], $result);
-        
-        return $result;
     }
     
     
@@ -207,35 +216,6 @@ class JsonrpcApiController extends AppController
      */
     public function getComments($jsonArray)
     {
-        if (empty($jsonRequest['v'])) {
-            throw new Exception("Method version not specified.", 0);
-        } else if (!method_exists(get_class($this), "_search_v{$jsonRequest['v']}")) {
-            throw new Exception("Method version does not exist.", 0);
-        }
-        
-        $version = $jsonRequest['v'];
-        unset($jsonRequest['v']);
-        $methName = "_search_v{$version}";
-        //versioning contexts
-        $context = array(
-            'request' => array(
-                '1' => array(
-                    
-                )
-            ),
-            'response' => array(
-                '1' => array(
-                    
-                )
-            )
-        );
-        
-        $jsonRequest = $this->_minifyExpand($context['request'][$version], $jsonRequest);
-        
-        $result =  call_user_func_array(array($this, $methName), array($jsonRequest));
-        $result = $this->_minifyCompress($context['response'][$version], $result);
-        
-        return $result;
     }
     
     
@@ -248,35 +228,6 @@ class JsonrpcApiController extends AppController
      */
     public function getUserProfile($jsonArray)
     {
-        if (empty($jsonRequest['v'])) {
-            throw new Exception("Method version not specified.", 0);
-        } else if (!method_exists(get_class($this), "_search_v{$jsonRequest['v']}")) {
-            throw new Exception("Method version does not exist.", 0);
-        }
-        
-        $version = $jsonRequest['v'];
-        unset($jsonRequest['v']);
-        $methName = "_search_v{$version}";
-        //versioning contexts
-        $context = array(
-            'request' => array(
-                '1' => array(
-                    
-                )
-            ),
-            'response' => array(
-                '1' => array(
-                    
-                )
-            )
-        );
-        
-        $jsonRequest = $this->_minifyExpand($context['request'][$version], $jsonRequest);
-        
-        $result =  call_user_func_array(array($this, $methName), array($jsonRequest));
-        $result = $this->_minifyCompress($context['response'][$version], $result);
-        
-        return $result;
     }
     
     
@@ -289,35 +240,6 @@ class JsonrpcApiController extends AppController
      */
     public function getUsers($jsonArray)
     {
-        if (empty($jsonRequest['v'])) {
-            throw new Exception("Method version not specified.", 0);
-        } else if (!method_exists(get_class($this), "_search_v{$jsonRequest['v']}")) {
-            throw new Exception("Method version does not exist.", 0);
-        }
-        
-        $version = $jsonRequest['v'];
-        unset($jsonRequest['v']);
-        $methName = "_search_v{$version}";
-        //versioning contexts
-        $context = array(
-            'request' => array(
-                '1' => array(
-                    
-                )
-            ),
-            'response' => array(
-                '1' => array(
-                    
-                )
-            )
-        );
-        
-        $jsonRequest = $this->_minifyExpand($context['request'][$version], $jsonRequest);
-        
-        $result =  call_user_func_array(array($this, $methName), array($jsonRequest));
-        $result = $this->_minifyCompress($context['response'][$version], $result);
-        
-        return $result;
     }
     
     
@@ -330,35 +252,6 @@ class JsonrpcApiController extends AppController
      */
     public function searchUsers($jsonArray)
     {
-        if (empty($jsonRequest['v'])) {
-            throw new Exception("Method version not specified.", 0);
-        } else if (!method_exists(get_class($this), "_search_v{$jsonRequest['v']}")) {
-            throw new Exception("Method version does not exist.", 0);
-        }
-        
-        $version = $jsonRequest['v'];
-        unset($jsonRequest['v']);
-        $methName = "_search_v{$version}";
-        //versioning contexts
-        $context = array(
-            'request' => array(
-                '1' => array(
-                    
-                )
-            ),
-            'response' => array(
-                '1' => array(
-                    
-                )
-            )
-        );
-        
-        $jsonRequest = $this->_minifyExpand($context['request'][$version], $jsonRequest);
-        
-        $result =  call_user_func_array(array($this, $methName), array($jsonRequest));
-        $result = $this->_minifyCompress($context['response'][$version], $result);
-        
-        return $result;
     }
     
     
@@ -371,35 +264,6 @@ class JsonrpcApiController extends AppController
      */
     public function fetchWall($jsonArray)
     {
-        if (empty($jsonRequest['v'])) {
-            throw new Exception("Method version not specified.", 0);
-        } else if (!method_exists(get_class($this), "_search_v{$jsonRequest['v']}")) {
-            throw new Exception("Method version does not exist.", 0);
-        }
-        
-        $version = $jsonRequest['v'];
-        unset($jsonRequest['v']);
-        $methName = "_search_v{$version}";
-        //versioning contexts
-        $context = array(
-            'request' => array(
-                '1' => array(
-                    
-                )
-            ),
-            'response' => array(
-                '1' => array(
-                    
-                )
-            )
-        );
-        
-        $jsonRequest = $this->_minifyExpand($context['request'][$version], $jsonRequest);
-        
-        $result =  call_user_func_array(array($this, $methName), array($jsonRequest));
-        $result = $this->_minifyCompress($context['response'][$version], $result);
-        
-        return $result;
     }
     
     
@@ -412,35 +276,6 @@ class JsonrpcApiController extends AppController
      */
     public function fetchWallThread($jsonArray)
     {
-        if (empty($jsonRequest['v'])) {
-            throw new Exception("Method version not specified.", 0);
-        } else if (!method_exists(get_class($this), "_search_v{$jsonRequest['v']}")) {
-            throw new Exception("Method version does not exist.", 0);
-        }
-        
-        $version = $jsonRequest['v'];
-        unset($jsonRequest['v']);
-        $methName = "_search_v{$version}";
-        //versioning contexts
-        $context = array(
-            'request' => array(
-                '1' => array(
-                    
-                )
-            ),
-            'response' => array(
-                '1' => array(
-                    
-                )
-            )
-        );
-        
-        $jsonRequest = $this->_minifyExpand($context['request'][$version], $jsonRequest);
-        
-        $result =  call_user_func_array(array($this, $methName), array($jsonRequest));
-        $result = $this->_minifyCompress($context['response'][$version], $result);
-        
-        return $result;
     }
     
     
@@ -453,35 +288,6 @@ class JsonrpcApiController extends AppController
      */
     public function fetchWallReplies($jsonArray)
     {
-        if (empty($jsonRequest['v'])) {
-            throw new Exception("Method version not specified.", 0);
-        } else if (!method_exists(get_class($this), "_search_v{$jsonRequest['v']}")) {
-            throw new Exception("Method version does not exist.", 0);
-        }
-        
-        $version = $jsonRequest['v'];
-        unset($jsonRequest['v']);
-        $methName = "_search_v{$version}";
-        //versioning contexts
-        $context = array(
-            'request' => array(
-                '1' => array(
-                    
-                )
-            ),
-            'response' => array(
-                '1' => array(
-                    
-                )
-            )
-        );
-        
-        $jsonRequest = $this->_minifyExpand($context['request'][$version], $jsonRequest);
-        
-        $result =  call_user_func_array(array($this, $methName), array($jsonRequest));
-        $result = $this->_minifyCompress($context['response'][$version], $result);
-        
-        return $result;
     }
     
     
@@ -500,14 +306,23 @@ class JsonrpcApiController extends AppController
      */
     private function _search_v1()
     {
-        //The args should be exactly as given above
+        $this->cacheAction = true;
         $args = func_get_args();
         $args = $args[0];
-        // throw an error if the correct arguments are not supplied
-        $this->cacheAction = true;
+        
+        //Check to make sure all the arguments are supplied
+        $requiredArgs = array('query', 'to', 'from', 'page', 'options');
+        foreach ($requiredArgs as $key) {
+            if (!array_key_exists($key, $args) || empty($args[$key])) {
+                throw new Exception("Failed to specify $key argument.", 0);
+            }
+        }
+        
+        $this->loadModel('Sentence');
         $results = null;
         
-        return $args;
+        
+        return $results;
     }
     
     

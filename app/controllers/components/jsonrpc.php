@@ -368,8 +368,8 @@ class JsonrpcComponent extends Object
             //Don't let the controller send any output to the browser
             ob_start();
             $results = call_user_func_array(
-                array($this->_controller, $jsonRequest['method']),
-                array($jsonRequest['params'])
+                array($this->_controller, "invokeAPIMethod"),
+                array($jsonRequest['method'], $jsonRequest['params'])
             );
             ob_end_clean();
             return (array) $results;
