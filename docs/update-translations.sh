@@ -50,16 +50,50 @@ LAUNCHPAD_REPO="https://code.launchpad.net/tatoeba"
 ASSEMBLA_REPO="http://subversion.assembla.com/svn/tatoeba2/trunk/app/locale"
 
 declare -A lng_tbl=(
-          ["ar"]="ara" ["be"]="bel"
-          ["de"]="deu" ["eo"]="epo"
-          ["en"]="eng" ["eu"]="eus"
-          ["es"]="spa" ["fr"]="fre"
-          ["hi"]="hin" ["hu"]="hun"
-          ["it"]="ita" ["ja"]="jpn"
-          ["jbo"]="jbo" ["la"]="lat"
-          ["nds"]="nds" ["pl"]="pol"
-          ["pt_BR"]="pt_BR" ["ru"]="rus"
-          ["tl"]="tgl" ["tr"]="tur" ["zh_CN"]="chi")
+          ["ar"]="ara"
+          ["az"]="aze"
+          ["be"]="bel"
+          ["ca"]="cat"
+          ["cs"]="ces"
+          ["da"]="dan"
+          ["de"]="deu"
+          ["el"]="ell"
+          ["en"]="eng"
+          ["en_GB"]="en_GB"
+          ["eo"]="epo"
+          ["es"]="spa"
+          ["et"]="est"
+          ["eu"]="eus"
+          ["fi"]="fin"
+          ["fr"]="fre"
+          ["gl"]="glg"
+          ["hi"]="hin"
+          ["hu"]="hun"
+          ["ia"]="ina"
+          ["it"]="ita"
+          ["ja"]="jpn"
+          ["jbo"]="jbo"
+          ["ka"]="kat"
+          ["ko"]="kor"
+          ["la"]="lat"
+          ["lt"]="lit"
+          ["mr"]="mar"
+          ["ms"]="msa"
+          ["nds"]="nds"
+          ["nl"]="nld"
+          ["oc"]="oci"
+          ["pl"]="pol"
+          ["pt_BR"]="pt_BR"
+          ["ru"]="rus"
+          ["ro"]="ron"
+          ["sv"]="swe"
+          ["tl"]="tgl"
+          ["tr"]="tur"
+          ["uk"]="ukr"
+          ["uz"]="uzb"
+          ["vi"]="vie"
+          ["xal"]="xal"
+          ["zh_CN"]="chi")
 
 function clean_tmp {
     echo "Cleaning tmp directory: $TMP_DIR"
@@ -86,7 +120,7 @@ if [ -d $LAUNCHPAD_LOCAL ]; then
         error_exit "bzr: error while pulling repository"
 else
     echo "Cloning tatoeba launchpad repository"
-    $BZR clone $LAUNCHPAD_REPO $LAUNCHPAD_LOCAL &>> $LOG ||
+    $BZR branch $LAUNCHPAD_REPO $LAUNCHPAD_LOCAL &>> $LOG ||
         error_exit "bzr: error while cloning repository"
 fi
 
@@ -134,5 +168,5 @@ else
     echo "Changes commited."
 fi
 
-clean_tmp
+# clean_tmp
 echo "Done."
