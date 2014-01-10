@@ -31,7 +31,7 @@ $title = sprintf(__('All sentences in %s', true), $languageName);
 if (!empty($notTranslatedIn) && $notTranslatedIn != 'none') {
     $notTranslatedInName = $languages->codeToName($notTranslatedIn);
     $title = sprintf(
-        __('Sentences in %1$s not translated in %2$s', true), 
+        __('Sentences in %1$s not translated into %2$s', true), 
         $languageName, $notTranslatedInName
     );
 }
