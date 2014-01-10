@@ -6,8 +6,10 @@
 # 
 
 function usage {
-    echo -ne "$0 [-h] [-i INPUT_REPOSITORY] [-o OUTPUT_REPOSITORY]\n"
+    echo -ne "$0 [-h] [-c] [-n] [-i INPUT_REPOSITORY] [-o OUTPUT_REPOSITORY]\n"
     echo -ne "Please indicate absolute paths.\n\n"
+    echo -ne "-c Commit changes."
+    echo -ne "-n Do not clean the temp directory."
     echo -ne "-i INPUT_REPOSITORY\tWhere to put the launchpad repository,
         \t\tor if a local copy already exists.\n"
     echo -ne "-o OUTPUT_REPOSITORY\tWhere to put the assembla repository,
@@ -28,11 +30,15 @@ SVN=svn
 LAUNCHPAD_LOCAL=$TMP_DIR/tatoeba-launchpad-bzr
 ASSEMBLA_LOCAL=$TMP_DIR/tatoeba-assembla-svn
 
-while getopts ":hi:o:" opt; do
+while getopts ":hcni:o:" opt; do
     case $opt in
         h)
             usage >&2
             exit 1;;
+        c)
+            COMMIT=yes;;
+        n)
+            DONTCLEAN=yes;;
         i)
             LAUNCHPAD_LOCAL=$OPTARG;;
         o)
@@ -45,6 +51,8 @@ while getopts ":hi:o:" opt; do
             exit 1;;
     esac
 done
+
+test -z "$COMMIT" && echo "Will not commit."
 
 LAUNCHPAD_REPO="https://code.launchpad.net/tatoeba"
 ASSEMBLA_REPO="http://subversion.assembla.com/svn/tatoeba2/trunk/app/locale"
@@ -163,10 +171,15 @@ cd $ASSEMBLA_LOCAL
 if [ -z "$($SVN st)" ]; then
     echo "svn status: nothing has changed. will not commit."
 else
-    $SVN ci -m "Translations update." &>> $LOG ||
-        error_exit "svn: error while commiting"
-    echo "Changes commited."
+    if [ -n "$COMMIT" ]; then
+        $SVN ci -m "Translations update." &>> $LOG ||
+          error_exit "svn: error while commiting"
+        echo "Changes commited."
+    else
+        echo "Changes haven't been commited."
+    fi
 fi
 
-# clean_tmp
+test -z "$DONTCLEAN" && clean_tmp
+
 echo "Done."
