@@ -218,6 +218,7 @@
 *    'password' => 'password', //plaintext password (xcache.admin.pass)
 *));
 */ 
+/*
   	 Cache::config('default', array(
  		'engine' => 'Xcache', //[required]
  		'duration'=> 3600, //[optional]
@@ -234,6 +235,7 @@
  		'user' => 'user', //user from xcache.admin.user settings
        'password' => 'password', //plaintext password (xcache.admin.pass)
  	));
+*/
 /* 
  * Memcache (http://www.danga.com/memcached/)
  *

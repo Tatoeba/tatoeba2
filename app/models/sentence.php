@@ -275,7 +275,7 @@ class Sentence extends AppModel
     public function getSeveralRandomIds($lang = 'und',  $numberOfIdWanted = 10)
     {
 		// Uncomment the line below if you don't have sphinx installed.
-		// return array(1);
+		return array(1);
         
         if(empty($lang)) {
             $lang = 'und';
@@ -769,7 +769,7 @@ class Sentence extends AppModel
     {
         // Uncomment the line below you don't have the
 		// romanization tools installed.
-        // return false;
+        return false;
 		
         $romanization = '';
 
@@ -852,7 +852,7 @@ class Sentence extends AppModel
 	{
 		// Uncomment the line below you don't have the Chinese
 		// romanization tools installed.
-		// return false;
+		return false;
         
         if ($sentenceArray['lang'] === 'cmn') {
             // we call the wonderful homebrewadso
