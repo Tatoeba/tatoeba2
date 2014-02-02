@@ -69,7 +69,7 @@ class LinksController extends AppController
             );
         } else {
             $flashMessage = __(
-                'An error occured while saving. '.
+                'An error occurred while saving. '.
                 'Please try again or contact us to report this.',
                 true
             );
@@ -102,7 +102,7 @@ class LinksController extends AppController
         if ($saved) {
             $flashMessage = sprintf(
                 __(
-                    'Sentences #%s and #%s are not anymore '.
+                    'Sentences #%s and #%s are no longer '.
                     'direct translations of each other.',
                     true
                 ),
@@ -110,7 +110,7 @@ class LinksController extends AppController
             );
         } else {
             $flashMessage = __(
-                'An error occured while saving. '.
+                'An error occurred while saving. '.
                 'Please try again or contact us to report this.',
                 true
             );
