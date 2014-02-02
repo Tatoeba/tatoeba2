@@ -184,8 +184,8 @@ class PrivateMessagesController extends AppController
                     $this->Session->setFlash(
                         sprintf(
                             __(
-                                'The user %s you to want to send this message '.
-                                'to does not exist. Please try with another '.
+                                'The user %s to whom you want to send this message '.
+                                'does not exist. Please try with another '.
                                 'username.',
                                 true
                             ),
