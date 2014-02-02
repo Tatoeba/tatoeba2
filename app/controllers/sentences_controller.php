@@ -788,7 +788,7 @@ class SentencesController extends AppController
             if ($this->Sentence->saveAll($sentences)) {
                 $flashMsg = __('The languages have been saved.', true);
             } else {
-                $flashMsg = __('A problem occured while trying to save.', true);
+                $flashMsg = __('A problem occurred while trying to save.', true);
             }
         } else {
             $flashMsg = __('There is nothing to save.', true);
