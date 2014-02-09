@@ -61,7 +61,7 @@ echo $this->element('pmmenu');
                  "Please wait until you can send more messages. "
              );
              __(
-                 "If you have recieved this message wrongly, ".
+                 "If you have received this message wrongly, ".
                  "please contact administrators at ".
                  "team@tatoeba.org."
              );

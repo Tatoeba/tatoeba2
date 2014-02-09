@@ -292,7 +292,7 @@ class SentenceCommentsController extends AppController
         
         //check permissions now
         if ($permissions['canEdit'] == false) {
-            $wrongly = "If you have recieved this message wrongly, ".
+            $wrongly = "If you have received this message wrongly, ".
                        "please contact administrators at ".
                        "team@tatoeba.org.";
             $this->Session->setFlash(

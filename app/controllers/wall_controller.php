@@ -309,7 +309,7 @@ class WallController extends Appcontroller
                 $this->Session->setFlash(
                     __("You do not have permission to edit this message. ", true).
                     __(
-                        "If you have recieved this message wrongly, ".
+                        "If you have received this message wrongly, ".
                         "please contact administrators at ".
                         "team@tatoeba.org. ", true
                     )
@@ -338,7 +338,7 @@ class WallController extends Appcontroller
                 $this->Session->setFlash(
                     __("You do not have permission to edit this message.", true).
                     __(
-                        "If you have recieved this message wrongly, ".
+                        "If you have received this message wrongly, ".
                         "please contact administrators at ".
                         "team@tatoeba.org.", true
                     )
