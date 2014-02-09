@@ -200,7 +200,7 @@ class ShowAllHelper extends AppHelper
             ?> 
             <p>
             <?php
-            __('NOTE: Sentences that have an indirect translation will show up.');
+            __('NOTE: Sentences that have an indirect translation will be displayed.');
             ?>
             </p>
         </div>
@@ -208,7 +208,7 @@ class ShowAllHelper extends AppHelper
     }
 
     /**
-     * Diplsay the module to filter (or not) only main sentences with audio
+     * Display the module to filter (or not) only main sentences with audio
      *
      * @param string $selectedOption The default selected option
      *
@@ -234,7 +234,7 @@ class ShowAllHelper extends AppHelper
             ?> 
             <p>
             <?php
-            __('NOTE: Only a few languages have audio at the moment.');
+            __('NOTE: Not all languages have audio at the moment.');
             ?>
             </p>
         </div>

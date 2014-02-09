@@ -267,7 +267,7 @@ class NavigationHelper extends AppHelper
             echo '<ul>';
             echo '<li class="option">';
             echo $this->Html->link(
-                __('all the lists', true),
+                __('all lists', true),
                 array(
                     "controller" => "sentences_lists",
                     "action" => "index"

@@ -49,11 +49,11 @@ if (!isset($lastText)) {
             <?php
             echo sprintf(
                 __(
-                    "We really want to thanks <a href='%s'>Kellen Parker</a> ".
-                    "who has provided us a much more complete data files, if ".
-                    "you're intereted in his works, you can check his project ".
-                    "page <a href='%s'>here</a>, without him the Shanghainese ".
-                    "sentences wouldn't have a so much complete IPA",
+                    "We really want to thank <a href='%s'>Kellen Parker</a> ".
+                    "who has provided us with much more complete data files. If ".
+                    "you're interested in his work, you can check his project ".
+                    "page <a href='%s'>here</a>. Without him, the Shanghainese ".
+                    "sentences wouldn't have such a complete IPA.",
                     true
                 ),
                 'http://www.sinoglot.com/wu',
@@ -70,7 +70,7 @@ if (!isset($lastText)) {
             <?php
             __(
                 "This tool is in a very early stage, and we're looking for ".
-                "people who can help us ameliorate the transcription ".
+                "people who can help us improve the transcription ".
                 "by providing IPA of non-converted characters or reporting ".
                 "mistakes."
             );

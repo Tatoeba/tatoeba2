@@ -57,7 +57,7 @@ $this->pageTitle = 'Tatoeba - ' . __('How to contribute', true);
         <ol>
             <li>
             <a href="http://blog.tatoeba.org/2010/02/how-to-be-good-contributor-in-tatoeba.html">
-            <?php __('Guide of the good contributor'); ?>
+            <?php __('Guide to being a good contributor'); ?>
             </a>
             </li>
             

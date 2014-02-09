@@ -62,7 +62,7 @@ if ($session->read('Auth.User.id')) {
             <?php
             __(
                 'This feature is still very basic. We will improve it as we '.
-                'get more time and some feedbacks from users.'
+                'get more time and some feedback from users.'
             );
             ?>
         </p>
@@ -84,7 +84,7 @@ if ($session->read('Auth.User.id')) {
             <p>
                 <?php
                 __(
-                    'Lists makes it possible to gather and organize '.
+                    'Lists make it possible to gather and organize '.
                     'sentences in Tatoeba.'
                 );
                 ?>

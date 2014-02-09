@@ -47,12 +47,12 @@ echo $form->create(
 
 echo $form->input(
     'username', array(
-        'label' => __('Username : ',true),
+        'label' => __('Username: ',true),
     )
 );
 echo $form->input(
     'password', array(
-        'label' => __('Password : ',true),
+        'label' => __('Password: ',true),
     )
 );
 ?>

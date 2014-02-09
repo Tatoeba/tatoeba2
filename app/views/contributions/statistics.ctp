@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = 'Tatoeba - ' . __('Contributors statistics', true);
+$this->pageTitle = 'Tatoeba - ' . __('Contributor statistics', true);
 ?>
 
 <div id="annexe_content">
@@ -55,7 +55,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Contributors statistics', true);
     <?php
     __(
         'In January 2009, a new version of Tatoeba was released and all the '.
-        'accounts have been disactivated. Users in grey are users who have not '.
+        'accounts were deactivated. Users in grey are users who have not '.
         'reactivated their account (yet?).'
     ); 
     ?>
@@ -68,7 +68,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Contributors statistics', true);
     );
     ?>
     </p>
-    <p><?php __('Users in red are admins (and there is only one so far).'); ?></p>
+    <p><?php __('Users in red are admins.'); ?></p>
     </div>
     
     <div class="module">
@@ -79,7 +79,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Contributors statistics', true);
 
 <div id="main_content">
     <div class="module">
-    <h2><?php __('Contributions statistics'); ?></h2>
+    <h2><?php __('Contribution statistics'); ?></h2>
     <?php
     echo '<table id="usersStatistics">';
         echo '<tr>';

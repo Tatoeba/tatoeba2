@@ -38,7 +38,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Examples of search', true);
     
 <div id="main_content">
     <div class="module">
-        <p><?php __('Please enter a non empty search'); ?></p>
+        <p><?php __('Please enter a nonempty search string'); ?></p>
     </div>
 </div>
 

@@ -203,7 +203,7 @@ class UsersController extends AppController
         if ($this->Auth->user('group_id') == 5) {
             $this->flash(
                 __(
-                    'This account has been set as inactive. '.
+                    'This account has been marked inactive. '.
                     'You cannot log in with it anymore. '.
                     'Please contact an admin if this is a mistake.', true
                 ), 
@@ -214,7 +214,7 @@ class UsersController extends AppController
         else if ($this->Auth->user('group_id') == 6) {
             $this->flash(
                 __(
-                    'This account has been set as spammer. '.
+                    'This account has been marked as a spammer. '.
                     'You cannot log in with it anymore. '.
                     'Please contact an admin if this is a mistake.', true
                 ), 
@@ -387,7 +387,7 @@ class UsersController extends AppController
 
                     $this->flash(
                         __(
-                            'Your new password has been sent at ', true
+                            'Your new password has been sent to ', true
                         ) . $this->data['User']['email'],
                         '/users/login'
                     );

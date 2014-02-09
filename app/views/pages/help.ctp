@@ -84,7 +84,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
         </p>
         <p>
         <?php
-        __('To join our channel, there are many ways but you can go to this website:');
+        __('There are many ways to join our channel. One is to go to this website:');
         ?>
         <a href="http://webchat.freenode.net/">http://webchat.freenode.net/</a>
         </p>
@@ -121,7 +121,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
                 __(
                     'If you have no idea what to do now that you are registered, '.
                     'you can introduce yourself on the <a href="%s">Wall</a>, or '.
-                    'join us on <strong>IRC</strong>, we will give you a purpose :)',
+                    'join us on <strong>IRC</strong>. We will give you a purpose. :)',
                     true
                 ),
                 $html->url(array('controller' => 'wall'))
@@ -199,7 +199,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
                 echo sprintf(
                     __(
                         'By creating a new <a href="%s">list</a>, and going to '.
-                        'edit page of that list.', true
+                        'the edit page for that list.', true
                     ),
                     $html->url(
                         array(
@@ -215,7 +215,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
         <p>
             <?php
             __(
-                'Even if there is a large amount of sentences in Tatoeba, there '.
+                'Even though there are many sentences in Tatoeba, there '.
                 'is still a lot of vocabulary that is not covered. This is why '.
                 'we encourage you to add new sentences with new vocabulary, even '.
                 'if you do not know how to translate it into any language.'
@@ -232,7 +232,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
             __(
                 'Translating is one of the most important tasks in Tatoeba, since '.
                 'the main goal of the project is to gather sentences translated '.
-                'into several languages.'
+                'into many languages.'
             );
             ?>
         </p>
@@ -267,15 +267,15 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
             <?php            
             __(
                 'You can only correct mistakes in sentences that belong to you. '.
-                'If you see a mistake in someone else\'s sentence, you have the '.
-                'possibility to post a comment to notify the mistake.'
+                'If you see a mistake in someone else\'s sentence, you can '.
+                'post a comment to notify him or her of the mistake.'
             );
             ?>
         </p>
         <p>
             <?php
             __(
-                'In certain cases, the sentence do not have an owner. Read the '.
+                'In certain cases, the sentence does not have an owner. Read the '.
                 'paragraph below (on adopting sentences) to learn more.'
             );
             ?>
@@ -289,8 +289,8 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
             <?php
             __(
                 'When you add a sentence, this sentence "belongs" to you - only '.
-                'you can edit it. However, most of the sentences in Tatoeba come '.
-                'from a Japanese-English corpus called Tanaka Corpus. '.
+                'you can edit it. However, many of the sentences in Tatoeba come '.
+                'from a Japanese-English corpus called the Tanaka Corpus. '.
                 'These sentences do not have any owner because they have been '.
                 'collected outside of Tatoeba.'
             );
@@ -301,7 +301,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
             echo sprintf(
                 __(
                     'If you see a mistake in an "orphan" sentence, you will '.
-                    'not be able correct it because you are not the owner. '.
+                    'not be able to correct it because you are not the owner. '.
                     'This is why there is an "adopt" option (%s). Once you '.
                     'adopt a sentence, you become its owner and therefore can '.
                     'edit it.', true
@@ -313,7 +313,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
         <p>
             <?php
             __(
-                'Adopting a sentence is also part the "quality process". '.
+                'Adopting a sentence is also part of the "quality process". '.
                 'You can find more information about it here:'
             );
             ?>
@@ -325,7 +325,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
     
     
     <div class="module">
-        <h2><?php __('Sentences lists'); ?></h2>
+        <h2><?php __('Sentence lists'); ?></h2>
         <p>
             <?php
             __(
@@ -339,7 +339,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
             <?php
             __(
                 'However it is also possible to let any member in Tatoeba add and '.
-                'remove sentences by setting a list as <strong>public</strong>.'
+                'remove sentences by setting a list <strong>public</strong>.'
             );
             ?>
         </p>
@@ -347,7 +347,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
             <?php
             __(
                 'Someday we will also introduce <strong>group</strong> lists, '.
-                'that only a restricted group of members can edit.'
+                'which only a restricted group of members can edit.'
             );
             ?>
         </p>

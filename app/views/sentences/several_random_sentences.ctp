@@ -41,7 +41,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Random sentences', true);
         echo '</p>';
         
         echo '<p>';
-        __("Just Keep in mind our server is not as fast as you ;-)");
+        __("Just keep in mind that our server is not as fast as you ;-)");
         echo '</p>';
 
         $numberOfSentencesWanted = array (5 => 5 , 10 => 10 , 15 => 15);

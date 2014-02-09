@@ -74,7 +74,7 @@ $okLink = $html->link(
     <div class="module">
     <h2>Tags you should know about</h2>
     
-    <p>The community came up with a few "utility tags" to improve the quality and
+    <p>The community has come up with a few "utility tags" to improve the quality and
     the reliability of the sentences.</p>
     <ul>
         <li><?php echo $changeLink; ?> - The sentence needs to be changed.</li>
@@ -90,7 +90,7 @@ $okLink = $html->link(
     <div class="module">
     <h2>How to help</h2>
     <ol>
-        <li>You need to be a <a href="/faq#trusted-user">trusted user</a> 
+        <li>You need to be a <a href="/faq#trusted-user">trusted user</a>; 
         otherwise you won't be able to tag sentences.</li>
         <li>Whenever you notice a sentence that is wrong or sounds really strange, 
         add the tag <?php echo $changeLink; ?> and post a comment to suggest a 

@@ -53,7 +53,7 @@ $this->pageTitle = 'Tatoeba - '. __(
         <p>
             <?php
             __(
-                'The result you will get will not always be perfect. However,'.
+                'The results you get will not always be perfect. However,'.
                 ' you can help us improve this by telling us the mistakes you saw.'.
                 ' We will try, if possible, to correct it.'
             );
@@ -122,7 +122,7 @@ $this->pageTitle = 'Tatoeba - '. __(
         </p>
         <p>
             <?php
-            __('Convert japanese text into : ');
+            __('Convert Japanese text into: ');
             echo $form->radio(
                 'type', 
                 array(

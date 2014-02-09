@@ -45,7 +45,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Contact us', true);
     $faqUrl = $html->url(array('action' => 'faq'));
     echo sprintf(
         __(
-            'Please, make sure to <a href="%s">read the FAQ</a> '.
+            'Please make sure to <a href="%s">read the FAQ</a> '.
             'before asking a question.', true
         ), $faqUrl
     );
@@ -70,8 +70,8 @@ $this->pageTitle = 'Tatoeba - ' . __('Contact us', true);
         $email = 'team@tatoeba.org';
         echo sprintf(
             __(
-                'If you have any question, suggestion, request (or if you would '.
-                'just like to say thank you) feel free to drop us an email at %s.',
+                'If you have any question, suggestion, or request (or if you would '.
+                'just like to say thank you), feel free to drop us an email at %s.',
                 true
             ), $email
         );
@@ -79,7 +79,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Contact us', true);
     </div>
     
     <div class="module">
-        <h2><?php __('Post on the wall'); ?></h2>
+        <h2><?php __('Post on the Wall'); ?></h2>
         <?php
         echo sprintf(
             __(

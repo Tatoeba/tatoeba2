@@ -78,7 +78,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
     
     <table>
         <tr>
-            <td><?php __('Insert id (optiontal)'); ?></td>
+            <td><?php __('Insert id (optional)'); ?></td>
             <td>
             <?php 
             echo $form->checkbox('insertId');
@@ -86,7 +86,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
             </td>
             <td>
             <?php 
-            __('Checking this box will add the id of the sentences in the file.'); 
+            __('Checking this box will add the ids of the sentences in the file.'); 
             ?>
             </td>
         </tr>

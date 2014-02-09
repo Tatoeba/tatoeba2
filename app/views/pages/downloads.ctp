@@ -62,7 +62,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Download sentences', true);
     
         <p>
             For those who wonder why we're not leaving the data in the public
-            domain, some explanations
+            domain, some explanation
             <a href="http://blog.tatoeba.org/2009/12/tatoeba-update-dec-12th-2009.html">
             here</a>.
         </p>
@@ -125,7 +125,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Download sentences', true);
 
             <dt>Description</dt>
             <dd>
-                Contains all the sentences. Each sentence is associated to a
+                Contains all the sentences. Each sentence is associated with a
                 unique id and a language code 
                 (<a href="http://en.wikipedia.org/wiki/List_of_ISO_639-3_codes">ISO 639-3</a>).
                 <br/>
@@ -188,7 +188,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Download sentences', true);
             
             <dt>Description</dt>
             <dd>
-                Contains the list of tags associated to each sentence. 
+                Contains the list of tags associated with each sentence. 
                 <span class="param">381279</span>
                 <span class="symbol">[tab]</span>
                 <span class="param">proverb</span> 
@@ -279,7 +279,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Download sentences', true);
                 Tanaka Corpus distributed by Jim Breen. See 
                 <a href="http://www.edrdg.org/wiki/index.php/Tanaka_Corpus#Current_Format_.28WWWJDIC.29">
                 this page</a> to learn the format. 
-                Each entry is associated to a pair of Japanese/English 
+                Each entry is associated with a pair of Japanese/English 
                 sentences. <span class="param">sentence_id</span> refers to the id 
                 of the Japanese sentence. <span class="param">meaning_id</span> 
                 refers to the id of the English sentence.

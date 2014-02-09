@@ -6,7 +6,7 @@ if (!$saved) {
 } else {
     $image = 'link.png';
     $alt = __('Link', true);
-    $title = __('Make as direct translation.', true);
+    $title = __('Make into direct translation.', true);
 }
 
 echo $html->image(

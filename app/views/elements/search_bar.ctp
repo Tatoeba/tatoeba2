@@ -60,7 +60,7 @@ echo $form->create(
 ?>
 <fieldset class="input text">
     <label for="SentenceQuery">
-        <?php __('Example sentences with the words :'); ?>
+        <?php __('Example sentences with the words:'); ?>
     </label>
     <?php
     echo $form->input(

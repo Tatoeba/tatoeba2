@@ -77,9 +77,9 @@
 	<p>To edit the indices of a sentence, you have to enter the id of that sentence 
     in the <strong>Go to...</strong> section. It will then display the sentence 
     and its indices.</p>
-	<p>You will actually be able to edit two fields : the <strong>index</strong> 
+	<p>You will actually be able to edit two fields: the <strong>index</strong> 
     and the id of the <strong>meaning</strong>. The reason why there's a 
-    <strong>Meaning</strong> field is because an index is associated to a pair of 
+    <strong>Meaning</strong> field is because an index is associated with a pair of 
     sentences. More specifically, the <strong>Meaning</strong> field refers to the 
     id of the <strong>English sentence</strong>. Normally, you don't need to edit 
     it.</p>

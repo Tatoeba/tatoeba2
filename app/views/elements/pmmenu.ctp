@@ -73,14 +73,14 @@
     <?php 
     __(
         'If you would like to ask a question about Tatoeba, please send '.
-        'an email at <strong>team@tatoeba.fr</strong> rather than a private '.
+        'an email to <strong>team@tatoeba.org</strong> rather than a private '.
         'message. '
     ); 
     ?>
     </p>
     <p>
     <?php
-        __('Both sysko and Trang will receive it and you may have a reply faster.');
+        __('All members of Team Tatoeba will receive it and you may get a reply faster.');
     ?>
     </p>
     </div>

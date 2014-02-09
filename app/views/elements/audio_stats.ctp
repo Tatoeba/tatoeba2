@@ -26,7 +26,7 @@
  */
 ?>
 <div class="module" id="audioStats">
-    <h2><?php __('Number of audio by language'); ?></h2>
+    <h2><?php __('Number of sentences with audio by language'); ?></h2>
     <ul>
     <?php
     foreach ($stats as $stat) {

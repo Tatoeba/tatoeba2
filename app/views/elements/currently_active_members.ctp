@@ -31,7 +31,7 @@
 <p>
 <?php 
 echo sprintf(
-    __('Users who participated to the last %s contributions.', true),
+    __('Users who participated in the last %s contributions.', true),
     $total
 );
 ?>

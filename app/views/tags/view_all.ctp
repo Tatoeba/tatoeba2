@@ -33,9 +33,9 @@ $this->pageTitle = 'Tatoeba - '. __('All existing tags', true);
     <div class="annexeMenu">
         <h2><?php __('Related links'); ?></h2>
         <ul>
-        <li class="item"><a href="http://blog.tatoeba.org/2010/11/tags-guidelines.html">Tags guidelines</a>, Trang</li>
+        <li class="item"><a href="http://blog.tatoeba.org/2010/11/tags-guidelines.html">Tag guidelines</a>, Trang</li>
         <li class="item"><a href="http://a4esl.com/temporary/tatoeba/#tags">Tags - Experimental, Example Layouts</a>, CK</li>
-        <li class="item"><a href="http://martin.swift.is/tatoeba/tags-cleanup.html">Tags cleanup</a>, Swift</li>
+        <li class="item"><a href="http://martin.swift.is/tatoeba/tags-cleanup.html">Tag cleanup</a>, Swift</li>
         </ul>
     </div>
 </div>

@@ -47,7 +47,7 @@ if (!isset($lastText)) {
         <p>
             <?php
             __(
-                'This tool is powered by our own homebrew software. '.
+                'This tool is powered by our own home-brewed software. '.
                 'The source code will be released as open source. '.
                 'Feel free to contact us if you would like to know more about it.'
             );
@@ -57,7 +57,7 @@ if (!isset($lastText)) {
         <p>
             <?php
             __(
-                'The result you will get will not always be perfect. However,'.
+                'The results you get will not always be perfect. However,'.
                 ' you can help us improve this by telling us the mistakes you saw.'.
                 ' We will try, if possible, to correct it.'
             );

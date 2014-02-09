@@ -38,7 +38,7 @@
     } else {
 
         echo '<div id="noGlyphFound" >' ;
-            __('No result found, try to search with less subglyphs.');
+            __('No result found. Try to search with fewer subglyphs.');
         echo "</div>\n";
 
     }

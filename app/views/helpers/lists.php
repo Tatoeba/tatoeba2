@@ -232,7 +232,7 @@ class ListsHelper extends AppHelper
         <li>
         <?php
         echo $this->Html->link(
-            __('Back to all the lists', true),
+            __('Back to all lists', true),
             array(
                 "controller"=>"sentences_lists", 
                 "action"=>"index"

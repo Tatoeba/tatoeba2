@@ -153,7 +153,7 @@ echo $this->element('pmmenu');
                 }
                 echo '</ul>';
             } else {
-                __('This list does not have any sentence');
+                __('This list does not contain any sentences');
             }
         }
         ?>

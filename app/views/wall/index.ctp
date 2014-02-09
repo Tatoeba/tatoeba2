@@ -102,7 +102,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
     echo $html->link(
         __(
             'You may write in any language you want. '.
-            'In Tatoeba, all languages are equal.', true
+            'At Tatoeba, all languages are equal.', true
         ),
         array(
             "controller" => "sentences",

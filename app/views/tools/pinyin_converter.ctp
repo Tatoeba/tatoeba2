@@ -72,7 +72,7 @@ if (!isset($lastText)) {
         </p>
         <p>
             <?php
-            __('Convert text from : ');
+            __('Convert text from: ');
             echo $form->radio(
                 'from', 
                 array(
@@ -88,7 +88,7 @@ if (!isset($lastText)) {
         </p>
         <p>
             <?php
-            __('Convert text to : ');
+            __('Convert text to: ');
             echo $form->radio(
                 'to', 
                 array(

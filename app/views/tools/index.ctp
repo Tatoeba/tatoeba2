@@ -39,7 +39,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
             <?php
             __(
                 "Well, Tatoeba's developers don't have time to think of every".
-                " possible useful tools for language learners."
+                " possible useful tool for language learners."
             );
             ?>
         </p>
@@ -48,11 +48,11 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
             <?php
             echo sprintf(
                 __(
-                    "So if there is a must-have tool which is missing,or if you".
+                    "So if there is a must-have tool which is missing, or if you".
                     " have yourself coded something you think can help others".
                     " (as long as you can provide it under a GPL compatible".
                     " licence) don't hesitate to talk about it <a href=\"%s\">".
-                    "here</a>, we're always looking for new stuff.",
+                    "here</a>. We're always looking for new stuff.",
                     true
                 ),
                 "/wall/index"
@@ -78,7 +78,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
                     )
                 );
                 echo ': ';
-                __("convert japanese to romaji or furigana.");
+                __("convert Japanese to romaji or furigana.");
                 ?>
             </li>
             <li>
@@ -91,7 +91,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
                     )
                 );
                 echo ': ';
-                __("search all Chinese characters / kanjis by all possible ways.");
+                __("search all Chinese characters / kanjis by all possible methods.");
                 ?>
             </li>
             <li>
@@ -105,8 +105,8 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
                 );
                 echo ': ';
                 __(
-                    "convert chinese to pinyin, numerical pinyin ".
-                    "to diacritical pinyin etc."
+                    "convert Chinese to pinyin, numerical pinyin ".
+                    "to diacritical pinyin, etc."
                 );
                 ?>
             </li>  
@@ -121,7 +121,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
                 );
                 echo ': ';
                 __(
-                    "convert traditional chinese to simplified and vice versa"
+                    "convert traditional Chinese to simplified and vice versa"
                 );
                 ?>
             </li>
@@ -136,7 +136,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
                 );
                 echo ': ';
                 __(
-                    "Convert a shanghainese text into its pronunciation ".
+                    "Convert a Shanghainese text into its pronunciation ".
                     "using the International Phonetic Alphabet"
                 );
                 ?>

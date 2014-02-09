@@ -129,7 +129,7 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
                 ' IMEs. '
             );
             __(
-                'The main way to use this is by submitting subglyph of the'.
+                'The main way to do this is by submitting subglyphs of the'.
                 ' character.'
             );
         ?>
@@ -137,7 +137,7 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
         <p class="introduction" >
             <?php
             __(
-                'For example for 蝴, you can enter 月虫 as subglyphs (you'.
+                'For example, for 蝴, you can enter 月虫 as subglyphs (you'.
                 ' don\'t need to know every subglyph).'
             );
            ?> 
@@ -145,7 +145,7 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
         <p class="introduction" >
             <?php
             __(
-                'If you don\'t know how to input subglyph either, but you know'.
+                'If you don\'t know how to input subglyphs either, but you know'.
                 ' a character that also contains this subglyph, then you can'.
                 ' use the explode form.'
             );
@@ -154,9 +154,9 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
         <p class="introduction" >
             <?php
             __(
-                'For example if you want to search 瞧, but you don\'t know how to'.
-                ' input 隹 in order to make the search more accurate, if you'.
-                ' know 推, you can just explode it, clicking on a subglyph will'.
+                'For example, say you want to search 瞧, but you don\'t know how to'.
+                ' input 隹 in order to make the search more accurate. If you'.
+                ' know 推, you can just explode it. Clicking on a subglyph will'.
                 ' add it to the search form.'
             );
            ?> 

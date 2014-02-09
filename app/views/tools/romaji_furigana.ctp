@@ -100,7 +100,7 @@ $this->pageTitle = 'Tatoeba - '. __(
         </p>
         <p>
             <?php
-            __('Convert japanese text into : ');
+            __('Convert Japanese text into: ');
             echo $form->radio(
                 'type', 
                 array(

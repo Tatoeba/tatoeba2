@@ -50,25 +50,25 @@ $this->pageTitle = 'Tatoeba - ' . __('Terms of use', true);
 
 <div class="main_module" id="eng-version">
 <?php
-echo '<h2>' . __('Information for text contributors to Tatoeba project', true) .
+echo '<h2>' . __('Information for contributors of text to the Tatoeba project', true) .
     '</h2>';
 
 echo '<p>' .__(
     'To grow the commons of free knowledge and free culture, all users '.
-    'contributing to Tatoeba project are required to grant broad permissions to '.
-    'the general public to re-distribute and re-use their contributions freely, '.
-    'as long as the use is attributed.'.
-    'Therefore, for any text '.
-    'you hold the copyright to, by submitting it, you agree to license it under '.
+    'contributing to the Tatoeba project are required to grant broad permissions '.
+    'to the general public to re-distribute and re-use their contributions freely, '.
+    'as long as the use is attributed. '.
+    'Therefore, for any text to which '.
+    'you hold the copyright, by submitting it, you agree to license it under '.
     'the Creative Commons Attribution License 2.0 (fr). Please note that this '.
-    'licenses does allow commercial uses of your contributions, as long as such '.
+    'license does allow commercial uses of your contributions, as long as such '.
     'uses are compliant with the terms. ', true
 ) . '</p>';
 
 echo '<p>' . __(
     'As an author, you agree to be attributed in any of the following fashions: '.
     'a) through a hyperlink (where possible) or URL to the sentence or sentences '.
-    'you contributed to, b) through a hyperlink (where possible) or URL to '.
+    'to which you contributed, b) through a hyperlink (where possible) or URL to '.
     'an alternative, stable online copy which is freely accessible, which conforms '.
     'with the license, and which provides credit to the authors in a manner '.
     'equivalent to the credit given on this website, or c) through a list of '.
@@ -87,8 +87,8 @@ echo '<p>' . __(
 echo '<p>' . __(
     'If you import text under a compatible license which requires attribution, '.
     'you must, in a reasonable fashion, credit the author(s). Where such credit '.
-    'is commonly given through sentence comments; it is sufficient to give '.
-    'attribution in the edit summary, which is recorded in the sentence history, '.
+    'is commonly given through sentence comments, it is sufficient to give '.
+    'attribution in the edit summary, which is recorded in the sentence history '.
     'when importing the text. Regardless of the license, the text you import may '.
     'be rejected if the required attribution is deemed too intrusive.', true
 ) . '</p>';

@@ -37,7 +37,7 @@ $query = Sanitize::html($query);
     <?php
     __(
         'There is no result for this search (yet) but you '.
-        'can help us feeding the corpus with new vocabulary!'
+        'can help us by feeding the corpus with new vocabulary!'
     );
     ?>
     </p>

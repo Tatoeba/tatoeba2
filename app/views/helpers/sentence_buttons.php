@@ -179,7 +179,7 @@ class SentenceButtonsHelper extends AppHelper
             IMG_PATH . 'link.png',
             array(
                 "alt"=>__('Link', true),
-                "title" => __('Make as direct translation.', true),
+                "title" => __('Make into direct translation.', true),
                 "width" => 16,
                 "height" => 16
             )

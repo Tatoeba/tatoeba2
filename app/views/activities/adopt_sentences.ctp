@@ -45,7 +45,7 @@ $this->pageTitle = $title;
         <?php
         __(
             'Adopting is a way to vote "this sentence is correct". It is also an '.
-            'occasion to check the sentence and correct it if there was a mistake.'
+            'occasion to check the sentence and correct it if there is a mistake.'
         );
         ?>
         </p>
@@ -57,7 +57,7 @@ $this->pageTitle = $title;
                 'So if you want to help us check and correct sentences, then adopt '.
                 '(%s) any "orphan" sentence you see in your <strong>native '.
                 'language</strong>, and correct it if necessary. '.
-                'Read <a href="%s">this</a> for further explanations.', true
+                'Read <a href="%s">this</a> for further explanation.', true
             ),
             $html->image('adopt.png'),
             'http://blog.tatoeba.org/2010/04/reliability-of-sentences-how-will-we.html'

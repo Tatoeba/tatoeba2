@@ -50,7 +50,7 @@
     </div>
 
     <div id="english" >
-        <?php __('english:'); ?>
+        <?php __('English:'); ?>
         <?php echo $sinogramInformations["english"]; ?>
     </div>
 

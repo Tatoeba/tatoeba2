@@ -97,7 +97,7 @@ $navigation->displaySentenceNavigation(
         <p>
             <?php
             __(
-                'NOTE : If the sentence does not belong to anyone and you know how '.
+                'NOTE: If the sentence does not belong to anyone and you know how '.
                 'to correct the mistake, feel free to correct it without posting '.
                 'any comment. You will have to adopt the sentence '.
                 'before you can edit it.'

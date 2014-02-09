@@ -47,7 +47,7 @@ if (!empty($results)) {
     <div class="module">
         <h2>
         <?php 
-        echo sprintf(__('Search : %s', true), $query);
+        echo sprintf(__('Search: %s', true), $query);
         echo ' ';
         echo $paginator->counter(
             array(

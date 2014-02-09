@@ -57,13 +57,13 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     <ul>
         <li><a href="#indirect-translations">Why are some translations in grey?</a></li>
         <li><a href="#delete-sentence">How do I delete a sentence?</a></li>
-        <li><a href="#new-language">I'd like to add a new language in Tatoeba, what do I have to do?</a></li>
+        <li><a href="#new-language">I'd like to add a new language in Tatoeba. What do I have to do?</a></li>
         <li><a href="#change-language">How do I change the language of a sentence?</a></li>
         <li><a href="#add-tag">How can I add tags to a sentence?</a></li>
         <li><a href="#link-unlink">How can I link or unlink sentences?</a></li>
         <li><a href="#trusted-user">How can I become a trusted user?</a></li>
         <li><a href="#trusted-user">How can I become an advanced contributor?</a></li>
-        <li><a href="#translate-interface">Can I help translating the website into other languages?</a></li>
+        <li><a href="#translate-interface">Can I help translate the website into other languages?</a></li>
         <li><a href="#submit-audio">How do I contribute audio in Tatoeba?</a></li>
         <li><a href="#chinese-traditional-simplified">When contributing in Chinese, should I use simplified or traditional characters?</a></li>
         <li><a href="#delete-account">How do I delete my account?</a></li>
@@ -79,11 +79,11 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
     
     <h3 id="delete-sentence"><a href="#delete-sentence">How do I delete a sentence?</a></h3>
-    <p>At the moment, normal users cannot delete sentences, only moderators can. We will someday add the possibility for users to delete their own sentences, but in the meantime, if you want to have a sentence deleted, <strong>add a comment</strong> on the sentence asking for deletion and explain why you'd like to delete it.</p>
+    <p>At the moment, ordinary contributors cannot delete sentences. Only advanced contributors can. We will someday add the possibility for users to delete their own sentences, but in the meantime, if you want to have a sentence deleted, <strong>add a comment</strong> on the sentence asking for deletion and explain why you'd like to delete it.</p>
     <p>If you have added something by mistake, rather of asking for it to be deleted, try to <strong>replace it</strong> by a valid sentence.</p>
     
     
-    <h3 id="new-language"><a href="#new-language">I'd like to add a new language in Tatoeba, what do I have to do?</a></h3>
+    <h3 id="new-language"><a href="#new-language">I'd like to add a new language in Tatoeba. What do I have to do?</a></h3>
     => <a href="http://en.wiki.tatoeba.org/articles/show/new-language-request">http://en.wiki.tatoeba.org/articles/show/new-language-request</a>
     
     
@@ -96,7 +96,7 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
     
     <h3 id="trusted-user"><a href="#trusted-user">How can I become a trusted user?</a></h3>
-    <p>The status of "trusted user" does not exist anymore. It has been renamed into "<a href="#advanced-contributor">advanced contributor</a>".</p>
+    <p>The status of "trusted user" does not exist anymore. It has been renamed "<a href="#advanced-contributor">advanced contributor</a>".</p>
     <p>Related link: <a href="http://blog.tatoeba.org/2011/05/new-users-status.html">http://blog.tatoeba.org/2011/05/new-users-status.html</a></p>
     
     
@@ -104,7 +104,7 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     => <a href="http://en.wiki.tatoeba.org/articles/show/advanced-contributors">http://en.wiki.tatoeba.org/articles/show/advanced-contributors</a>
     
     
-    <h3 id="translate-interface"><a href="#translate-interface">Can I help translating the website into other languages?</a></h3>
+    <h3 id="translate-interface"><a href="#translate-interface">Can I help translate the website into other languages?</a></h3>
     => <a href="http://en.wiki.tatoeba.org/articles/show/interface-translation">http://en.wiki.tatoeba.org/articles/show/interface-translation</a>
     
     
@@ -120,7 +120,7 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
         <li><img src="http://flags.tatoeba.org/img/simplified_chinese.png" alt="simplified"/> simplified</li>
     </ul>
     <p>Below each Chinese sentence, you will also see the transcription in pinyin, and below the pinyin, the conversion into simplified or traditional.</p>
-    <p>You can <a href="sentences/show_all_in/cmn/none/none/indifferent">browse the Chinese sentences</a> to see what it looks like.</p>
+    <p>You can <a href="sentences/show_all_in/cmn/none/none/indifferent">browse the Chinese sentences</a> to see what they look like.</p>
     
     
     <h3 id="delete-account"><a href="#delete-account">How do I delete my account?</a></h3>

@@ -60,7 +60,7 @@
     __(
         'You may not be able to find sentences that have been added recently '.
         'because they have not been indexed yet. Indexation of sentences is not '.
-        '(yet) executed on-the-fly, only every week.'
+        '(yet) executed on-the-fly, only periodically.'
     );
     ?>
     </p>

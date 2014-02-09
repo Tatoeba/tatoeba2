@@ -96,7 +96,7 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
             echo $form->input(
                 'text', 
                 array(
-                    "label" => __('Sentence : ', true),
+                    "label" => __('Sentence: ', true),
                     "id" => "SentenceText"
                 )
             );

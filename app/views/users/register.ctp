@@ -64,7 +64,7 @@ echo $form->create('User', array("action" => "register"));
                         true
                     ),
                     'min' => __(
-                        'Username must be at least two letters',
+                        'Username must be at least two letters long',
                         true
                     )
                 )
@@ -98,7 +98,7 @@ echo $form->create('User', array("action" => "register"));
 </tr>
 <tr>
     <td class="field">
-        <label for="registrationEmail"><?php __('Email:'); ?></label>
+        <label for="registrationEmail"><?php __('Email address:'); ?></label>
     </td>
     <td>
         <?php
@@ -110,11 +110,11 @@ echo $form->create('User', array("action" => "register"));
                 "class" => "registrationField",
                 'error' => array(
                     'email' => __(
-                        'Non valid email', 
+                        'Invalid email address', 
                         true
                     ),
                     'isUnique' => __(
-                        'Email already used.', 
+                        'Email address already used.', 
                         true
                     )
                 )
@@ -132,11 +132,11 @@ __('We need to make sure you are human.');
 echo $form->input(
     'quiz', 
     array(
-        "label" => __('What are the five first letters of your email?', true)
+        "label" => __('What are the five first letters of your email address?', true)
     )
 );
 
-__('For instance, if your email is me12345@example.com, the answer is "me123".');
+__('For instance, if your email address is me12345@example.com, the answer is "me123".');
 ?>
 </div>
 
