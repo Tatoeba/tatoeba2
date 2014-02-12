@@ -289,10 +289,7 @@ class CommentsHelper extends AppHelper
             $this->Html->image(
                 IMG_PATH . 'edit.png',
                 array(
-                    "title" => __(
-                        $tooltip,
-                        true
-                    ),
+                    "title" => $tooltip,
                     "width" => 24,
                     "height" => 24
                )

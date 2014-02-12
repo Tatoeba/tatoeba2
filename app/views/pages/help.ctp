@@ -245,7 +245,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
                 ),
                 $html->image(IMG_PATH . 'translate.png')
             );
-            __('');
+            '';
             ?>
         </p>
         <p>
