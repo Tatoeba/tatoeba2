@@ -111,7 +111,7 @@ function clean_tmp {
 function error_exit {
     error=$1
 
-    echo "An error occured: $error"
+    echo "An error occurred: $error"
     echo "Please verify $LOG"
     exit 1
 }
@@ -173,10 +173,10 @@ if [ -z "$($SVN st)" ]; then
 else
     if [ -n "$COMMIT" ]; then
         $SVN ci -m "Translations update." &>> $LOG ||
-          error_exit "svn: error while commiting"
-        echo "Changes commited."
+          error_exit "svn: error while committing"
+        echo "Changes committed."
     else
-        echo "Changes haven't been commited."
+        echo "Changes haven't been committed. Use -c to commit."
     fi
 fi
 
