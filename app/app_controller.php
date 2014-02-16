@@ -71,7 +71,7 @@ class AppController extends Controller
             "176.33.123.90",
             "176.33.103.239",
             "176.31.106.45", //polish bot
-            "81.52.143", //orange (french ISP) bot,
+            "81.52.143", //orange (french ISP) bot
             "193.252.149.15",
             "193.252.118.174",
             "31.210.112",
