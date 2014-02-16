@@ -172,7 +172,11 @@ if [ -z "$($SVN st)" ]; then
     echo "svn status: nothing has changed. will not commit."
 else
     if [ -n "$COMMIT" ]; then
-        $SVN ci -m "Translations update." &>> $LOG ||
+        echo Please enter your Assembla username:
+        read AUSER
+        echo Please enter your Assembla password:
+        read APASSWORD
+        $SVN ci --username $AUSER --password $APASSWORD -m "Translations updated via update-translations.sh." &>> $LOG ||
           error_exit "svn: error while committing"
         echo "Changes committed."
     else
