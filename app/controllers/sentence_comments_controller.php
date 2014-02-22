@@ -292,15 +292,12 @@ class SentenceCommentsController extends AppController
         
         //check permissions now
         if ($permissions['canEdit'] == false) {
-            $wrongly = "If you have received this message wrongly, ".
+            $no_permission = __("You do not have permission to edit this comment. ",
+                true);
+            $wrongly = __("If you have received this message wrongly, ".
                        "please contact administrators at ".
-                       "team@tatoeba.org.";
-            $this->Session->setFlash(
-                __(
-                    "You do not have permission to edit this comment. ".
-                    $wrongly, true
-                )
-            );
+                       "team@tatoeba.org.", true);
+            $this->Session->setFlash($no_permission.$wrongly);
             $this->redirect(
                 array(
                     'controller' => "sentences",

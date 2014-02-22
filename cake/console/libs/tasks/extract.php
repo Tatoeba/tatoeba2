@@ -327,11 +327,12 @@ class ExtractTask extends Shell{
             }
             
             if ($save) {
-                $svnPath = 'http://subversion.assembla.com/svn/tatoeba2/trunk/app/';
-                $file = preg_replace('#\\\#', '/', $this->__file); // because Trang is on Windows
+                $repositoryPath = 'https://github.com/Tatoeba/tatoeba2/tree/master/app/';
+                // convert Windows-style backslashes to forward slashes		
+                $file = preg_replace('#\\\#', '/', $this->__file);
                 $tmp = explode('/app/', $file);
                 $file = $tmp[1];
-                $path = $svnPath . $file;
+                $path = $repositoryPath . $file;
                 if ($this->__oneFile === true) {
                     $this->__strings[$currentContent][$path][] = $currentLine;
                 } else {
