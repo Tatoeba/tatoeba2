@@ -77,7 +77,10 @@ class Sentence extends AppModel
         'sjn', 'tel', 'nov', 'tpi', 'qya',
         'mri', 'lld', 'ber', 'xho', 'pnb',
         'mgl', 'grn', 'lad', 'pms', 'avk',
-        'mar', 'tgk', 'tpw', "prg", "npi", "mlt", "ckt",  "cor", "aze", "khm", "lao", "bod", "hil", "arq", "pcd", //@lang
+        'mar', 'tgk', 'tpw', 'prg', 'npi', 
+        'mlt', 'ckt', 'cor', 'aze', 'khm', 
+        'lao', 'bod', 'hil', 'arq', 'pcd', 
+        'grc', //@lang
         null
         );   
     public $validate = array(

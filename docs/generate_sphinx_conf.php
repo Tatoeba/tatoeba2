@@ -120,7 +120,7 @@ $languages = array(
     'cym' => 'Welsh',
     'ewe' => 'Ewe',
     'sjn' => 'Sindarin',
-    'tel' => 'Telegu',
+    'tel' => 'Telugu',
     'tpi' => 'Tok Pisin',
     'qya' => 'Quenya',
     'nov' => 'Novial',
@@ -136,11 +136,23 @@ $languages = array(
     'lad' => 'Ladino',
     'pms' => 'Piemontese',
 
-    'avk' => '', 
-    'tpw' => '',
-    'tgk' => '',
-    'mar' => '',
-    "prg" => '' , "npi" => '' , "mlt" => '' , "ckt" => '' , //@lang
+    'avk' => 'Kotava', 
+    'tpw' => 'Old Tupi',
+    'tgk' => 'Tajik',
+    'mar' => 'Marathi',
+    'prg' => 'Old Prussian' , 
+    'npi' => 'Nepali' , 
+    'mlt' => 'Maltese' , 
+    'ckt' => 'Chukchi' , 
+    'cor' => 'Cornish' , 
+    'aze' => 'Azerbaijani' , 
+    'khm' => 'Khmer' , 
+    'lao' => 'Lao' , 
+    'bod' => 'Standard Tibetan' , 
+    'hil' => 'Hiligaynon' , 
+    'arq' => 'Algerian Arabic' , 
+    'pcd' => 'Picard' , 
+    'grc' => 'Ancient Greek' , //@lang
 );
 
 $languageWithStemmer = array(
