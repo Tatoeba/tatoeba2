@@ -36,8 +36,8 @@ LISTNUM=$3
 #comment string "//@lang". It inserts a string like the following before the comment:
 #"nep" => ''
 #and then executes the script.
-QUOTE_LANG="\"$LANGCODE\""
-SEARCH_LANG="$QUOTE_LANG => '' "
+QUOTE_LANG="\'$LANGCODE\'"
+SEARCH_LANG="$QUOTE_LANG => \'$LANGNAME\' "
 sed -i  -e "s^//@lang^\n    $SEARCH_LANG, //@lang^" $PREFIX"docs/generate_sphinx_conf.php"
 
 # Do this early because there's a chance that this file 
@@ -58,7 +58,7 @@ fi
 #comment string "//@lang". It inserts the three-letter language code (e.g., "nep"), 
 #surrounded by quotes and followed by a quote, on a new line immediately before 
 #the comment string.
-sed -i  -e "s^//@lang^\n            $QUOTE_LANG, //@lang^"  $PREFIX"app/models/sentence.php"
+sed -i  -e "s^//@lang^\n        $QUOTE_LANG, //@lang^"  $PREFIX"app/models/sentence.php"
 
 #This line searches the file app/views/helpers/languages.php for the
 #comment string "//@lang". It inserts a string like the following on a new line 
