@@ -2,17 +2,17 @@
 #
 # Translations updating tool for tatoeba (tatoeba.org).
 # Provide an automated way to copy & compile po files from launchpad-bzr
-# repository to mo files and commit then to the assembla-svn repository.
-# 
+# repository to mo files and commit then to the main repository on github.
+
 
 function usage {
     echo -ne "$0 [-h] [-c] [-n] [-i INPUT_REPOSITORY] [-o OUTPUT_REPOSITORY]\n"
     echo -ne "Please indicate absolute paths.\n\n"
-    echo -ne "-c Commit changes."
-    echo -ne "-n Do not clean the temp directory."
+    echo -ne "-c Commit changes.\n"
+    echo -ne "-n Do not clean the temp directory.\n"
     echo -ne "-i INPUT_REPOSITORY\tWhere to put the launchpad repository,
         \t\tor if a local copy already exists.\n"
-    echo -ne "-o OUTPUT_REPOSITORY\tWhere to put the assembla repository,
+    echo -ne "-o OUTPUT_REPOSITORY\tWhere to put the main repository,
         \t\tor if a local copy already exists.
         \t\tPlease note that in this case, this path should
         \t\tindicate the 'app/locale' directory of the repository.\n"
@@ -23,12 +23,10 @@ LOG=$TMP_DIR/fetch.log
 
 BZR=bzr
 
-# If you want to make this an automated script, please fill this with
-# --username and --password.
-SVN=svn
+GIT=git
 
-LAUNCHPAD_LOCAL=$TMP_DIR/tatoeba-launchpad-bzr
-ASSEMBLA_LOCAL=$TMP_DIR/tatoeba-assembla-svn
+TRANSLATIONS_LOCAL=$TMP_DIR/tatoeba-launchpad-bzr
+MAIN_LOCAL=$TMP_DIR/tatoeba-github-git
 
 while getopts ":hcni:o:" opt; do
     case $opt in
@@ -40,9 +38,9 @@ while getopts ":hcni:o:" opt; do
         n)
             DONTCLEAN=yes;;
         i)
-            LAUNCHPAD_LOCAL=$OPTARG;;
+            TRANSLATIONS_LOCAL=$OPTARG;;
         o)
-            ASSEMBLA_LOCAL=$OPTARG;;
+            MAIN_LOCAL=$OPTARG;;
         \?)
             echo "$0: illegal option -- $OPTARG" >&2
             exit 1;;
@@ -54,8 +52,8 @@ done
 
 test -z "$COMMIT" && echo "Will not commit."
 
-LAUNCHPAD_REPO="https://code.launchpad.net/tatoeba"
-ASSEMBLA_REPO="http://subversion.assembla.com/svn/tatoeba2/trunk/app/locale"
+TRANSLATIONS_ORIGIN="https://code.launchpad.net/tatoeba"
+MAIN_ORIGIN="https://github.com/Tatoeba/tatoeba2.git"
 
 declare -A lng_tbl=(
           ["ar"]="ara"
@@ -112,7 +110,7 @@ function error_exit {
     error=$1
 
     echo "An error occurred: $error"
-    echo "Please verify $LOG"
+    echo "See $LOG"
     exit 1
 }
 
@@ -122,28 +120,30 @@ mkdir -p $TMP_DIR
 echo "Initiating translations fetch - $TMP_DIR" >> $LOG
 
 # Fetching changes from launchpad-bzr repository
-if [ -d $LAUNCHPAD_LOCAL ]; then
+if [ -d $TRANSLATIONS_LOCAL ]; then
     echo "Pulling from launchpad repository"
-    cd $LAUNCHPAD_LOCAL && $BZR pull $LAUNCHPAD_REPO &>> $LOG ||
+    cd $TRANSLATIONS_LOCAL && $BZR pull $TRANSLATIONS_ORIGIN &>> $LOG ||
         error_exit "bzr: error while pulling repository"
 else
     echo "Cloning tatoeba launchpad repository"
-    $BZR branch $LAUNCHPAD_REPO $LAUNCHPAD_LOCAL &>> $LOG ||
+    $BZR branch $TRANSLATIONS_ORIGIN $TRANSLATIONS_LOCAL &>> $LOG ||
         error_exit "bzr: error while cloning repository"
 fi
 
-# Fetching changes from assembla-svn repository
-if [ -d $ASSEMBLA_LOCAL ]; then
-    echo "Pulling from assembla repository"
-    cd $ASSEMBLA_LOCAL && $SVN update &>> $LOG
+# Fetching changes from the main git repository
+if [ -d $MAIN_LOCAL ]; then
+    echo "Pulling from the main git repository"
+    cd $MAIN_LOCAL && $GIT pull &>> $LOG ||
+      error_exit "git: error while pulling repository"
 else
-    echo "Checkout from assembla repository"
-    $SVN checkout $ASSEMBLA_REPO $ASSEMBLA_LOCAL &>> $LOG
+    echo "Checkout from the main git repository"
+    $GIT clone $MAIN_ORIGIN $MAIN_LOCAL &>> $LOG ||
+      error_exit "git: error while cloning repository"
 fi
 
-LOCAL_DIR=$LAUNCHPAD_LOCAL/default
+LOCAL_DIR=$TRANSLATIONS_LOCAL/default
 
-# Converting po files into mo and add them into the assembla-svn repository
+# Converting po files into mo and add them into the git repository
 for file in $(ls $LOCAL_DIR/*.po); do
     lng_in=$(basename $file .po)
     lng_to=${lng_tbl[$lng_in]}
@@ -151,7 +151,7 @@ for file in $(ls $LOCAL_DIR/*.po); do
     if [ -z $lng_to ]; then
         echo "$lng_in does not exists in the conversion table." &>> $LOG
     else
-        dir=$ASSEMBLA_LOCAL/$lng_to
+        dir=$MAIN_LOCAL/app/locale/$lng_to
         dest=$dir/LC_MESSAGES/default.mo
 
         echo -ne "lng_in: '$lng_in' - lng_to: '$lng_to'\n" >> $LOG
@@ -162,23 +162,22 @@ for file in $(ls $LOCAL_DIR/*.po); do
 
         echo "Converting ${lng_in}.po .."
         msgfmt -o $dest $file &>> $LOG
-        cd $ASSEMBLA_LOCAL && $SVN add $dir &>> $LOG
+        cd $MAIN_LOCAL && $GIT add $dir &>> $LOG
     fi
 done
 
-cd $ASSEMBLA_LOCAL
+cd $MAIN_LOCAL
 
-if [ -z "$($SVN st)" ]; then
-    echo "svn status: nothing has changed. will not commit."
+if [ -z "$($GIT status)" ]; then
+    echo "git status: nothing has changed. will not commit."
 else
     if [ -n "$COMMIT" ]; then
-        echo Please enter your Assembla username:
-        read AUSER
-        echo Please enter your Assembla password:
-        read APASSWORD
-        $SVN ci --username $AUSER --password $APASSWORD -m "Translations updated via update-translations.sh." &>> $LOG ||
-          error_exit "svn: error while committing"
-        echo "Changes committed."
+        $GIT commit -m "Translations updated via update-translations.sh." &>> $LOG ||
+          error_exit "git: error while committing"
+        echo "Changes have been committed."
+        $GIT push origin master &>> $LOG ||
+          error_exit "git: error while pushing"
+        echo "Changes have been pushed to master."
     else
         echo "Changes haven't been committed. Use -c to commit."
     fi
