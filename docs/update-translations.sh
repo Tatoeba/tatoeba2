@@ -1,21 +1,25 @@
 #!/bin/bash
 #
-# Translations updating tool for tatoeba (tatoeba.org).
-# Provide an automated way to copy & compile po files from launchpad-bzr
-# repository to mo files and commit then to the main repository on github.
+# Tool for updating UI translations for Tatoeba (tatoeba.org).
+# Provides an automated way to retrieve human-readable po files 
+# from the Bazaar repository at the Launchpad site, compile them 
+# into binary mo files, and commit them to the main Git repository 
+# on GitHub.
 
 
 function usage {
-    echo -ne "$0 [-h] [-c] [-n] [-i INPUT_REPOSITORY] [-o OUTPUT_REPOSITORY]\n"
+    echo -ne "$0 [-h] [-c] [-n] [-i INPUT_REPO] [-o OUTPUT_REPO]\n"
     echo -ne "Please indicate absolute paths.\n\n"
+    echo -ne "Script assumes you have established SSH key access with GitHub. See:
+        \thttps://help.github.com/articles/generating-ssh-keys\n\n"
     echo -ne "-c Commit changes.\n"
     echo -ne "-n Do not clean the temp directory.\n"
-    echo -ne "-i INPUT_REPOSITORY\tWhere to put the launchpad repository,
-        \t\tor if a local copy already exists.\n"
-    echo -ne "-o OUTPUT_REPOSITORY\tWhere to put the main repository,
-        \t\tor if a local copy already exists.
-        \t\tPlease note that in this case, this path should
-        \t\tindicate the 'app/locale' directory of the repository.\n"
+    echo -ne "-i INPUT_REPO\tWhere to create the launchpad repository,
+        \tor the location of a local copy, if one already exists.\n"
+    echo -ne "-o OUTPUT_REPO\tWhere to create the main repository,
+        \tor the location of a local copy, if one already exists.
+        \tPlease note that in this case, this path should
+        \tindicate the 'app/locale' directory of the repository.\n"
 }
 
 TMP_DIR=/tmp/.fetch-translations-$(date +%F-%T)
@@ -43,9 +47,11 @@ while getopts ":hcni:o:" opt; do
             MAIN_LOCAL=$OPTARG;;
         \?)
             echo "$0: illegal option -- $OPTARG" >&2
+            usage >&2
             exit 1;;
         :)
             echo "$0: option requires an argument -- $OPTARG" >&2
+            usage >&2
             exit 1;;
     esac
 done
@@ -55,7 +61,11 @@ test -z "$COMMIT" && echo "Will not commit."
 TRANSLATIONS_ORIGIN="https://code.launchpad.net/tatoeba"
 MAIN_ORIGIN="https://github.com/Tatoeba/tatoeba2.git"
 
+#After you have added a UI language at Launchpad, add it to the
+#table below. Languages that are not included in the table will
+#be ignored.
 declare -A lng_tbl=(
+#          ["ab"]="abk"
           ["ar"]="ara"
           ["az"]="aze"
           ["be"]="bel"
@@ -143,13 +153,13 @@ fi
 
 LOCAL_DIR=$TRANSLATIONS_LOCAL/default
 
-# Converting po files into mo and add them into the git repository
+# Converting po files into mo and adding them into the git repository
 for file in $(ls $LOCAL_DIR/*.po); do
     lng_in=$(basename $file .po)
     lng_to=${lng_tbl[$lng_in]}
 
     if [ -z $lng_to ]; then
-        echo "$lng_in does not exists in the conversion table." &>> $LOG
+        echo "$lng_in does not exist in the conversion table." &>> $LOG
     else
         dir=$MAIN_LOCAL/app/locale/$lng_to
         dest=$dir/LC_MESSAGES/default.mo
