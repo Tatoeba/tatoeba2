@@ -72,12 +72,15 @@ sed -i  -e "s^//@lang^\n            $HELPER_LANG, //@lang^" $PREFIX"app/views/he
 MUSER=$5
 MPASSWORD=$6
 MDB=$7
-MYSQL_CMD="mysql -u $MUSER -p $MPASSWORD $MDB "'-e '
+#Note the space between -u and the username, but not between -p and the password.
+MYSQL_CMD="mysql -u $MUSER -p$MPASSWORD $MDB "'-e '
 MYSQL_CMD=$MYSQL_CMD'"'
 MYSQL_CMD=$MYSQL_CMD"CALL add_new_language('$LANGCODE', $LISTNUM, 'blablablabla');"
 MYSQL_CMD=$MYSQL_CMD'"'
 $MYSQL_CMD
 if [ $? -ne 0 ]; then
-    echo "Command failed:  $MYSQL_CMD"
+    echo "Command failed:"
+else
+    echo "Command succeeded:"
 fi
-
+echo $MYSQL_CMD
