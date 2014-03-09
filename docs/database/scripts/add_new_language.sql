@@ -17,7 +17,17 @@ DELIMITER |
 DROP PROCEDURE IF EXISTS add_new_language |
 
 CREATE PROCEDURE add_new_language(IN lang_iso_code CHAR(4), IN list_id_for_lang INT, IN tag_name_for_lang CHAR(50))
-BEGIN
+ThisProc: BEGIN
+
+SELECT COUNT(*) INTO @sentences_in_list FROM sentences, sentences_sentences_lists 
+    WHERE sentences_list_id = list_id_for_lang AND id = sentence_id; 
+SELECT COUNT(*) INTO @sentences_in_tags FROM sentences, tags_sentences 
+    WHERE tag_id = (SELECT id FROM tags WHERE name = tag_name_for_lang) AND id = sentence_id;
+IF (@sentences_in_list = 0 AND @sentences_in_tags = 0) THEN
+    select CONCAT('There are no sentences in list ', list_id_for_lang, 
+              ', and no sentences with tag ', tag_name_for_lang, '.');
+    LEAVE ThisProc;
+END IF;
 
 INSERT INTO langStats (lang) VALUES (lang_iso_code); 
 UPDATE sentences, sentences_sentences_lists 
