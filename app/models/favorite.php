@@ -1,6 +1,6 @@
 <?php
 /**
- * Tatoeba Project, free collaborativ creation of languages corpuses project
+ * Tatoeba Project, free collaborative creation of languages corpuses project
  * Copyright (C) 2009 Allan SIMON <allan.simon@supinfo.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * PHP version 5 
+ * PHP version 5
  *
  * @category PHP
  * @package  Tatoeba
@@ -61,7 +61,7 @@ class Favorite extends AppModel
      * @return array
      */
     public function numberOfFavoritesOfUser($userId)
-    {  
+    {
         $result = $this->query(
             "
             SELECT count(user_id) AS numberOfFavorites FROM favorites_users
@@ -74,9 +74,9 @@ class Favorite extends AppModel
     /**
      * retrieve all favorites of a user
      *
-     * @param int $userId user to retrieve favorites 
-     * 
-     * @return array 
+     * @param int $userId user to retrieve favorites
+     *
+     * @return array
      */
 
     public function getAllFavoritesOfUser($userId)
@@ -100,7 +100,7 @@ class Favorite extends AppModel
                 )
             )
         );
-        
+
         return $favorites ;
     }
 
@@ -118,15 +118,15 @@ class Favorite extends AppModel
         // habtmAdd() was behaving strangely so we're doing it manually
         $this->query(
             "
-            INSERT INTO `favorites_users` (`favorite_id`,`user_id`) 
+            INSERT INTO `favorites_users` (`favorite_id`,`user_id`)
             VALUES ($sentenceId, $userId)
             "
         );
-        
+
         // TODO Find a way not to return always true.
         // $this->query() won't return anything if it's an "INSERT"
         return true;
-    } 
+    }
 
     /**
      * remove a sentence to current user's ones
@@ -142,14 +142,14 @@ class Favorite extends AppModel
         // habtmDelete() was behaving strangely so we're doing it manually
         $this->query(
             "
-            DELETE FROM `favorites_users` 
+            DELETE FROM `favorites_users`
             WHERE favorite_id = $sentenceId AND user_id = $userId
             "
         );
-        
+
         // TODO Find a way not to return always true.
         // $this->query() won't return anything if it's a "DELETE"
         return true;
-    } 
+    }
 }
 ?>

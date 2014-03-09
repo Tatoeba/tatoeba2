@@ -1,6 +1,6 @@
 <?php
 /**
-    Tatoeba Project, free collaborativ creation of languages corpuses project
+    Tatoeba Project, free collaborative creation of languages corpuses project
     Copyright (C) 2010  Allan SIMON (allan.simon@supinfo.com)
 
     This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * PHP version 5 
+ * PHP version 5
  *
  * @category PHP
  * @package  Tatoeba
@@ -62,61 +62,61 @@ class SentenceNotTranslatedIn extends AppModel
         $source = $conditions['source'] ;
         $target = $conditions['notTranslatedIn'] ;
         $audioOnly = $conditions['audioOnly'];
-        
-        $source = Sanitize::paranoid($source); 
-        $target = Sanitize::paranoid($target); 
-        $audioOnly = Sanitize::paranoid($audioOnly); 
-        
+
+        $source = Sanitize::paranoid($source);
+        $target = Sanitize::paranoid($target);
+        $audioOnly = Sanitize::paranoid($audioOnly);
+
         if ($page < 1) {
          $page = 1;
         }
-         
-        
+
+
         $limitHigh = $limit * $page;
-        $limitLow = $limitHigh - $limit; 
+        $limitLow = $limitHigh - $limit;
 
         // to add to the sql conditions, if we want only sentences with audio
         $filterAudio = '';
         if ($audioOnly == true) {
             $filterAudio = "AND Sentence.hasaudio != 'no' ";
         }
-        
+
         $sql
             = "
-            SELECT distinct Sentence.id FROM sentences as Sentence 
-            WHERE Sentence.lang = '$source' $filterAudio 
-              AND Sentence.id NOT IN 
-              ( 
-                SELECT DISTINCT s.id FROM sentences s 
-                  JOIN sentences_translations st ON ( s.id = st.sentence_id ) 
-                  JOIN sentences t on ( st.translation_id = t.id ) 
-                WHERE s.lang = '$source' AND t.lang = '$target' 
+            SELECT distinct Sentence.id FROM sentences as Sentence
+            WHERE Sentence.lang = '$source' $filterAudio
+              AND Sentence.id NOT IN
+              (
+                SELECT DISTINCT s.id FROM sentences s
+                  JOIN sentences_translations st ON ( s.id = st.sentence_id )
+                  JOIN sentences t on ( st.translation_id = t.id )
+                WHERE s.lang = '$source' AND t.lang = '$target'
               )
             ORDER BY Sentence.id DESC
             LIMIT $limitLow,$limit;
             ";
-      
-        // if we want only orphan sentences 
+
+        // if we want only orphan sentences
         if ($target == 'und') {
         $sql
             = "
-            SELECT distinct Sentence.id FROM sentences as Sentence 
+            SELECT distinct Sentence.id FROM sentences as Sentence
             WHERE Sentence.lang = '$source' $filterAudio
-              AND Sentence.id NOT IN 
-              ( 
-                SELECT s.id FROM sentences s 
-                  JOIN sentences_translations st ON ( s.id = st.sentence_id ) 
-                WHERE s.lang = '$source' 
-              ) 
+              AND Sentence.id NOT IN
+              (
+                SELECT s.id FROM sentences s
+                  JOIN sentences_translations st ON ( s.id = st.sentence_id )
+                WHERE s.lang = '$source'
+              )
             ORDER BY Sentence.id DESC
             LIMIT $limitLow,$limit;
             ";
- 
+
 
         }
-        
+
         $result = $this->query($sql);
-        return $result; 
+        return $result;
     }
 
     /**
@@ -136,40 +136,40 @@ class SentenceNotTranslatedIn extends AppModel
         $source = $conditions['source'] ;
         $target = $conditions['notTranslatedIn'] ;
         $audioOnly = $conditions['audioOnly'];
-        
-        $source = Sanitize::paranoid($source); 
-        $target = Sanitize::paranoid($target); 
-        $audioOnly = Sanitize::paranoid($audioOnly); 
- 
+
+        $source = Sanitize::paranoid($source);
+        $target = Sanitize::paranoid($target);
+        $audioOnly = Sanitize::paranoid($audioOnly);
+
         // to add to the sql conditions, if we want only sentences with audio
         $filterAudio = '';
         if ($audioOnly == true) {
             $filterAudio = "AND Sentence.hasaudio != 'no' ";
         }
-       
+
         // first calculate the number of sentences that do have a translation
         // in the target language
         $sql
             = "
-            SELECT count(DISTINCT Sentence.id) as Count FROM sentences as Sentence 
-              JOIN sentences_translations st ON ( Sentence.id = st.sentence_id ) 
-              JOIN sentences t on ( st.translation_id = t.id ) 
+            SELECT count(DISTINCT Sentence.id) as Count FROM sentences as Sentence
+              JOIN sentences_translations st ON ( Sentence.id = st.sentence_id )
+              JOIN sentences t on ( st.translation_id = t.id )
             WHERE Sentence.lang = '$source'
             AND t.lang = '$target'
             $filterAudio
             " ;
-      
+
         // if we want only untranslated sentences
         if ($target == 'und') {
             $sql
                 = "
-                SELECT count(distinct Sentence.id) as Count FROM sentences as Sentence 
-                  JOIN sentences_translations st ON ( Sentence.id = st.sentence_id ) 
+                SELECT count(distinct Sentence.id) as Count FROM sentences as Sentence
+                  JOIN sentences_translations st ON ( Sentence.id = st.sentence_id )
                 WHERE Sentence.lang = '$source'
                 $filterAudio
-                "; 
+                ";
         }
-           
+
         $results = $this->query($sql);
         $translations_count = $results[0][0]['Count'];
 

@@ -37,12 +37,12 @@
 class SentencesList extends AppModel
 {
     public $actsAs = array('ExtendAssociations', 'Containable');
-    
+
     public $belongsTo = array('User');
     public $hasMany = array('SentencesSentencesLists');
     public $hasAndBelongsToMany = array('Sentence');
-    
-    
+
+
     /**
      * Retrieves list.
      *
@@ -57,8 +57,8 @@ class SentencesList extends AppModel
             array(
                 'conditions' => array('SentencesList.id' => $id),
                 'fields' => array(
-                    'SentencesList.id', 
-                    'SentencesList.name', 
+                    'SentencesList.id',
+                    'SentencesList.name',
                     'SentencesList.user_id',
                     'SentencesList.is_public'
                 ),
@@ -70,7 +70,7 @@ class SentencesList extends AppModel
             )
         );
     }
-    
+
     /**
      * Returns the sentences lists that the given user can add sentences to.
      *
@@ -81,9 +81,9 @@ class SentencesList extends AppModel
     public function getUserChoices($userId)
     {
         $results = $this->find(
-            "all", 
+            "all",
             array(
-                "conditions" => 
+                "conditions" =>
                     array("OR" => array(
                         "SentencesList.user_id" => $userId,
                         "SentencesList.is_public" => 1
@@ -94,33 +94,33 @@ class SentencesList extends AppModel
                 'order' => 'name'
             )
         );
-        
+
         $privateLists = array();
         $publicLists = array();
-        
+
         $currentUserId = CurrentUser::get('id');
         foreach ($results as $result) {
             $listId = $result['SentencesList']['id'];
             $listName = $result['SentencesList']['name'];
             $userId = $result['SentencesList']['user_id'];
-            
+
             if (empty($listName)) {
                 $listName = __('unnamed list', true);
             }
-            
+
             if ($currentUserId == $userId) {
                 $privateLists[$listId] = $listName;
             } else {
                 $publicLists[$listId] = $listName;
             }
         }
-        
+
         $lists['Private'] = $privateLists;
         $lists['Public'] = $publicLists;
-        
+
         return $lists;
     }
-    
+
     /**
      * Returns public lists that do not belong to given user.
      *
@@ -131,7 +131,7 @@ class SentencesList extends AppModel
     public function getPublicListsNotFromUser($userId)
     {
         return $this->find(
-            "all", 
+            "all",
             array(
                 "conditions" => array(
                     "SentencesList.user_id !=" => $userId,
@@ -146,7 +146,7 @@ class SentencesList extends AppModel
             )
         );
     }
-    
+
     /**
      * Returns all the lists that given user cannot edit.
      *
@@ -186,32 +186,32 @@ class SentencesList extends AppModel
             SELECT Sentence.id, Sentence.text
             from sentences_sentences_lists as ssls
             left join sentences as Sentence on ssls.sentence_id = Sentence.id
-            where ssls.sentences_list_id = '.$listId 
-            ; 
+            where ssls.sentences_list_id = '.$listId
+            ;
         } else {
             $request = '
             select Sentence.id, Sentence.text, Translation.text
             from sentences_sentences_lists as ssls
             left join sentences as Sentence on ssls.sentence_id = Sentence.id
-            left join 
+            left join
             (select s.id as sentence_id , t.text as text
             from sentences_sentences_lists as ssls
                 left join sentences as s on ssls.sentence_id = s.id
                 left join sentences_translations as st on (s.id = st.sentence_id)
                 left join sentences as t on ( st.translation_id = t.id )
-            where ssls.sentences_list_id = '.$listId.' 
-                and t.lang  = "'.$translationLang.'" 
-            ) as Translation on Sentence.id = Translation.sentence_id 
-            where ssls.sentences_list_id = '.$listId 
-            ; 
+            where ssls.sentences_list_id = '.$listId.'
+                and t.lang  = "'.$translationLang.'"
+            ) as Translation on Sentence.id = Translation.sentence_id
+            where ssls.sentences_list_id = '.$listId
+            ;
         }
         $results = $this->query($request);
 
         //foreach($results as $result);
-        return $results; 
+        return $results;
     }
-    
-    
+
+
     /**
      * Returns value of $this->paginate, for paginating sentences of a list.
      *
@@ -225,13 +225,13 @@ class SentencesList extends AppModel
         $sentenceParams = array(
             'fields' => array('id', 'text', 'lang', 'hasaudio'),
         );
-        
+
         if ($isEditable) {
             $sentenceParams['User'] = array(
                 "fields" => array("id", "username")
             );
         }
-        
+
         if ($translationsLang != null) {
             // All
             $sentenceParams['Translation'] = array(
@@ -244,7 +244,7 @@ class SentencesList extends AppModel
                 );
             }
         }
-        
+
         $params = array(
             'SentencesSentencesLists' => array(
                 'limit' => $limit,
@@ -254,10 +254,10 @@ class SentencesList extends AppModel
                 )
             )
         );
-        
+
         return $params;
     }
-    
+
     /**
      * Check if list belongs to current user.
      *
@@ -296,7 +296,7 @@ class SentencesList extends AppModel
             return false;
         }
     }
-    
+
     /**
      * Add sentence to list.
      *
@@ -309,13 +309,13 @@ class SentencesList extends AppModel
     {
         Sanitize::paranoid($sentenceId);
         Sanitize::paranoid($listId);
-        
+
         $checkIfInList = $this->query("
             SELECT 1 FROM sentences_sentences_lists
             WHERE sentences_list_id = $listId
               AND sentence_id = $sentenceId
         ");
-        
+
         $saved = false;
         if (empty($checkIfInList)) {
             $this->query("
@@ -325,10 +325,10 @@ class SentencesList extends AppModel
             $this->_incrementNumberOfSentencesToList($listId);
             $saved = true;
         }
-            
+
         return $saved;
     }
-    
+
     /**
      * get all the list of a given user
      *
@@ -357,7 +357,7 @@ class SentencesList extends AppModel
         return $myLists;
 
     }
-    
+
     /**
      * Remove sentence from list.
      *
@@ -373,7 +373,7 @@ class SentencesList extends AppModel
         $this->_decrementNumberOfSentencesToList($listId);
         return $savedValue;
     }
-    
+
     /**
      * Increment number of sentence to list.
      *
@@ -408,8 +408,8 @@ class SentencesList extends AppModel
 
         return $success;
     }
-    
-    
+
+
     /**
      * Returns name of the list of given id.
      *
@@ -429,11 +429,11 @@ class SentencesList extends AppModel
                 'contain' => array()
             )
         );
-        
+
         return $result['SentencesList']['name'];
     }
-    
-    
+
+
     /**
      * Add new sentence to list.
      *
@@ -446,13 +446,13 @@ class SentencesList extends AppModel
     public function addNewSentenceToList($listId, $sentenceText, $sentenceLang)
     {
         $userId = CurrentUser::get('id');
-        
+
         // Checking if user can add to list.
         $canAdd = $this->belongsToCurrentUser($listId, $userId);
         if (!$canAdd) {
             return false;
         }
-        
+
         // Saving sentence
         $sentenceSaved = $this->Sentence->saveNewSentence(
             $sentenceText, $sentenceLang, $userId
@@ -460,7 +460,7 @@ class SentencesList extends AppModel
         if (!$sentenceSaved) {
             return false;
         }
-        
+
         // Adding to list
         $sentenceId = $this->Sentence->id;
         if ($this->addSentenceToList($sentenceId, $listId)) {
@@ -469,8 +469,8 @@ class SentencesList extends AppModel
             return null;
         }
     }
-    
-    
+
+
     /**
      * Get number of sentences in list.
      *
@@ -489,7 +489,7 @@ class SentencesList extends AppModel
                 'contain' => array()
             )
         );
-        
+
         return $count;
     }
 }
