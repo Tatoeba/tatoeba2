@@ -32,13 +32,32 @@ LANGCODE=$1
 LANGNAME=$2
 LISTNUM=$3
 
+ICONNAME=$PREFIX"app/webroot/img/flags/$1.png"
+
+if [ ! -e $ICONNAME ]; then
+    echo "Please add icon for language and commit it as $ICONNAME ."
+    echo "To create icon, follow instructions here:"
+    echo "http://en.wiki.tatoeba.org/articles/show/adding-lang-to-corpus"
+    exit 1
+fi
+
 #This line searches the file docs/generate_sphinx_conf.php for the
 #comment string "//@lang". It inserts a string like the following before the comment:
 #"nep" => ''
 #and then executes the script.
 QUOTE_LANG="\'$LANGCODE\'"
 SEARCH_LANG="$QUOTE_LANG => \'$LANGNAME\' "
-sed -i  -e "s^//@lang^\n    $SEARCH_LANG, //@lang^" $PREFIX"docs/generate_sphinx_conf.php"
+SPHINX_GEN=$PREFIX"docs/generate_sphinx_conf.php"
+SEARCH_LANG_RAW="'"$LANGCODE"'"" => ""'"$LANGNAME"'"
+
+#Check whether the string is already present. We could do this for each of the
+#files we're going to edit, but we do it just for the first.
+grep "$SEARCH_LANG_RAW" $SPHINX_GEN
+if [ $? -eq 0 ]; then
+    echo "String already found: $SEARCH_LANG"
+    exit 1;
+fi
+sed -i  -e "s^//@lang^\n    $SEARCH_LANG, //@lang^" $SPHINX_GEN
 
 # Do this early because there's a chance that this file 
 # can't be written, in which case we want to exit immediately.
