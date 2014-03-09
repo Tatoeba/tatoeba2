@@ -1,6 +1,6 @@
 <?php
 /**
- * Tatoeba Project, free collaborativ creation of languages corpuses project
+ * Tatoeba Project, free collaborative creation of languages corpuses project
  * Copyright (C) 2009 Allan SIMON <allan.simon@supinfo.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * PHP version 5 
+ * PHP version 5
  *
  * @category PHP
  * @package  Tatoeba
@@ -41,12 +41,12 @@ if ($sentenceFound == false) {
     ?>
     <div class="sentences_set searchResult">
         <?php
-        // TODO add a link to all result or a link to contribute 
+        // TODO add a link to all result or a link to contribute
         // sentence menu (translate, edit, comment, etc)
         // TODO set up a better mechanism
         $specialOptions['belongsTo'] = $sentenceOwner['username'];
-        $sentenceOwner['canEdit'] = $specialOptions['canEdit']; 
-        $sentenceOwner['canLinkAndUnlink'] = $specialOptions['canLinkAndUnlink'];  
+        $sentenceOwner['canEdit'] = $specialOptions['canEdit'];
+        $sentenceOwner['canLinkAndUnlink'] = $specialOptions['canLinkAndUnlink'];
 
         $sentences->displayMenu(
             $sentence['id'],
