@@ -1,6 +1,6 @@
 <?php
 /**
- * Tatoeba Project, free collaborativ creation of languages corpuses project
+ * Tatoeba Project, free collaborative creation of languages corpuses project
  * Copyright (C) 2009 Allan SIMON <allan.simon@supinfo.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * PHP version 5 
+ * PHP version 5
  *
  * @category PHP
  * @package  Tatoeba
@@ -31,7 +31,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
     <?php
     $attentionPlease->tatoebaNeedsYou();
     ?>
-    
+
     <div class="module" >
         <h2><?php __("Need a tool?"); ?></h2>
 
@@ -43,7 +43,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
             );
             ?>
         </p>
-        
+
         <p>
             <?php
             echo sprintf(
@@ -56,7 +56,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
                     true
                 ),
                 "/wall/index"
-            ); 
+            );
             ?>
         </p>
 
@@ -69,7 +69,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
 
         <ul>
             <li>
-                <?php 
+                <?php
                 echo $html->link(
                     __('Romaji/furigana conversion', true),
                     array(
@@ -109,7 +109,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
                     "to diacritical pinyin, etc."
                 );
                 ?>
-            </li>  
+            </li>
             <li>
                 <?php
                 echo $html->link(
@@ -140,7 +140,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Useful tools', true);
                     "using the International Phonetic Alphabet"
                 );
                 ?>
-            </li>  
+            </li>
         </ul>
     </div>
 </div>

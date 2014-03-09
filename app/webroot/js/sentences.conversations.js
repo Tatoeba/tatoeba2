@@ -1,5 +1,5 @@
 /*
-    Tatoeba Project, free collaborativ creation of languages corpuses project
+    Tatoeba Project, free collaborative creation of languages corpuses project
     Copyright (C) 2009  TATOEBA Project(should be changed)
 
     This program is free software: you can redistribute it and/or modify
@@ -24,15 +24,15 @@ $(document).ready(function() {$("#clictest").unbind("click");
 	$(".SpeakerInput").each(function() {
 		speakers.push($(this).attr("value"));
 	});
-	
+
 	$(".SpeakerInput").autocomplete(speakers);
-	
+
 	$("#AddDialogLanguageLink").unbind("click");
 	$("#AddDialogLanguageLink").click(function() {
 		$("#AddDialogLanguageLink").hide();
 		$("#AddDialogLanguageForm").show();
 	});
-	
+
 	$("#addNewReply").unbind("click");
 	$("#addNewReply").click(function() {
 		$('#ConversationNbReplies').attr('value', parseInt($('#ConversationNbReplies').attr('value')) + 1);
@@ -55,7 +55,7 @@ $(document).ready(function() {$("#clictest").unbind("click");
 			$("#DialogTranslationLanguage option[value='" + $('#DialogMainLanguage').attr('value') +"']").remove();
 		}
 	});
-	
+
 	$("#AddDialogLanguageForm").unbind("change");
 	$("#AddDialogLanguageForm").change(function() {
 		if ($("#DialogTranslationLanguage").attr('value') != "") {
@@ -81,11 +81,11 @@ $(document).ready(function() {$("#clictest").unbind("click");
 				dialogElement.html($("#DialogTranslationLanguage option[value='" + $('#DialogTranslationLanguage').attr('value') +"']").text());
 				dialogElement.append(new $('<a class="closebutton"></a>'));
 				$("#LanguagesList").append(dialogElement);
-				
-				
+
+
 				$("#DialogTranslationLanguage option[value='" + $('#DialogTranslationLanguage').attr('value') +"']").remove();
 			});
-			
+
 			var dialog_language_title = new $('<tr></tr>');
 			url = "http://" + self.location.hostname + ":" + self.location.port + "/conversations/new_dialog_language_title/" + $('#DialogTranslationLanguage').attr('value');
 			dialog_language_title.load(url, "", function() {
@@ -93,7 +93,7 @@ $(document).ready(function() {$("#clictest").unbind("click");
 			});
 		}
 	});
-	
+
 	$("#ConversationAddForm").unbind("submit");
 	$("#ConversationAddForm").submit(function() {
 		var languages = $('#ConversationLanguages').attr('value').split(";");

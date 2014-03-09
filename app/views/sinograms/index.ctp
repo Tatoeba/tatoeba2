@@ -1,6 +1,6 @@
 <?php
 /**
- * Tatoeba Project, free collaborativ creation of languages corpuses project
+ * Tatoeba Project, free collaborative creation of languages corpuses project
  * Copyright (C) 2009 Allan SIMON <allan.simon@supinfo.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * PHP version 5 
+ * PHP version 5
  *
  * @category PHP
  * @package  Tatoeba
@@ -34,11 +34,11 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
     <?php
     $attentionPlease->tatoebaNeedsYou();
     ?>
-    
+
     <div class="module"  >
         <h2><?php __('Browse radicals'); ?></h2>
         <div id="numberList" >
-        <?php 
+        <?php
         for ($i = 1 ; $i < 10 ; $i++) {
             echo '<a class="radicalStrokesNumber" >';
                 echo $i;
@@ -85,7 +85,7 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
         <div id="explosionResults">
         </div>
     </div>
-    
+
     <div class="module" >
         <h2><?php __("Still beta"); ?></h2>
 
@@ -102,7 +102,7 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
             );
             ?>
             </p>
-            
+
             <p>
             <?php
             __(
@@ -114,13 +114,13 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
             ?>
             </p>
         </div>
-    </div> 
+    </div>
 </div>
 
 <div id="main_content"  >
     <div id="introduction" class="module"  >
         <h2><?php __('Hanzis - Kanjis search'); ?></h2>
-        
+
         <p class="introduction" >
             <?php
             __(
@@ -140,7 +140,7 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
                 'For example, for 蝴, you can enter 月虫 as subglyphs (you'.
                 ' don\'t need to know every subglyph).'
             );
-           ?> 
+           ?>
         </p>
         <p class="introduction" >
             <?php
@@ -149,7 +149,7 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
                 ' a character that also contains this subglyph, then you can'.
                 ' use the explode form.'
             );
-            ?> 
+            ?>
         </p>
         <p class="introduction" >
             <?php
@@ -159,22 +159,22 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
                 ' know 推, you can just explode it. Clicking on a subglyph will'.
                 ' add it to the search form.'
             );
-           ?> 
+           ?>
         </p>
         <p class="introduction" >
             <?php
             __(
                 'On the right you also have the most common radicals grouped by'.
                 ' strokes, in case you don\'t have any way to type hanzis/kanjis.'
-            );  
+            );
             ?>
         </p>
-        
+
 
         <div id="search_part">
             <div id="search_form">
                 <?php
-                __("Search a character by describing it"); 
+                __("Search a character by describing it");
                 echo $form->create(
                     "Sinogram",
                     array("action" => "search")
@@ -187,7 +187,7 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
                     array( "label" => __("Search", true))
                 );
                 ?>
-            </div> 
+            </div>
         </div>
 
 
