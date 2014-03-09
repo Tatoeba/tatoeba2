@@ -1,6 +1,6 @@
 <?php
 /**
-    Tatoeba Project, free collaborativ creation of languages corpuses project
+    Tatoeba Project, free collaborative creation of languages corpuses project
     Copyright (C) 2009 Allan SIMON <allan.simon@supinfo.com>
 
     This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>
  *
- * PHP version 5 
+ * PHP version 5
  *
  * @category PHP
  * @package  Tatoeba
@@ -60,10 +60,10 @@ class Wall extends AppModel
      * used after a save is made in the database
      *
      * @param bool $created if succeed or not TODO: to check
-     * 
+     *
      * @return void
-     */ 
-     
+     */
+
     public function afterSave($created)
     {
         if (isset($this->data['Wall']['content'])) {
@@ -83,7 +83,7 @@ class Wall extends AppModel
         return  $this->find(
             'all',
             array(
-                "order" => "Wall.date DESC", 
+                "order" => "Wall.date DESC",
                 "conditions" => array ("Wall.parent_id" => 0),
                 "contain"    => array (
                     "User" => array (
@@ -91,9 +91,9 @@ class Wall extends AppModel
                             "User.image",
                             "User.username",
                             "User.id"
-                        ) 
+                        )
                     )
-                ) 
+                )
             )
         );
     }
@@ -109,12 +109,12 @@ class Wall extends AppModel
         return $this->find(
             'all',
             array(
-                "order" => "Wall.id", 
+                "order" => "Wall.id",
                 "contain"    => array (
                     "User" => array (
-                        "fields" => array("User.image","User.username", "User.id") 
+                        "fields" => array("User.image","User.username", "User.id")
                         )
-                    ) 
+                    )
             )
         );
     }
@@ -135,7 +135,7 @@ class Wall extends AppModel
         if (empty($rootMessages)) {
             return array();
         }
-        
+
         // generate the condition array as it's a bit complicated
         $orArray = array();
         foreach ($rootMessages as $rootMessage) {
@@ -150,9 +150,9 @@ class Wall extends AppModel
         $result = $this->find(
             'threaded',
             array(
-                "order" => "WallThread.last_message_date DESC", 
+                "order" => "WallThread.last_message_date DESC",
                 "conditions" => array(
-                    'OR' => $orArray 
+                    'OR' => $orArray
                 ),
                 "contain" => array (
                     "User" => array (
@@ -164,8 +164,8 @@ class Wall extends AppModel
                     ),
                     "WallThread" => array(
                         'fields' => "last_message_date"
-                    ) 
-                ) 
+                    )
+                )
             )
         );
 
@@ -186,16 +186,16 @@ class Wall extends AppModel
             'all',
             array(
                 "order" => "Wall.date DESC",
-                "limit" => $numberOfLastMessages,  
+                "limit" => $numberOfLastMessages,
                 "conditions" => array("hidden" => 0),
                 "contain"    => array (
                     "User" => array (
                         "fields" => array(
                             "User.username",
                             "User.id"
-                        ) 
+                        )
                     )
-                ) 
+                )
             )
         );
     }
@@ -203,7 +203,7 @@ class Wall extends AppModel
     /**
      * retrieve information of a parent message
      * needed to generate an email
-     * 
+     *
      * @param int $parentMessageId id of the parent message
      *
      * @return array
@@ -224,9 +224,9 @@ class Wall extends AppModel
                             "User.id",
                             "User.email",
                             "User.send_notifications",
-                        ) 
+                        )
                     )
-                ) 
+                )
             )
         );
     }
@@ -265,7 +265,7 @@ class Wall extends AppModel
     public function getRootMessageIdOfReply($replyId)
     {
 
-        
+
         $replyLftRght  = $this->_getLftRghtOfMessage($replyId);
 
         $replyLft = $replyLftRght['lft'];
@@ -281,7 +281,7 @@ class Wall extends AppModel
                 ),
                 'contain' => array()
             )
-        ); 
+        );
 
         return $result['Wall']['id'];
     }
@@ -311,7 +311,7 @@ class Wall extends AppModel
         $result = $this->find(
             'threaded',
             array(
-                "order" => "Wall.date ASC", 
+                "order" => "Wall.date ASC",
                 "conditions" => array(
                     'Wall.lft BETWEEN ? AND ?' => $lftRghtArray
                 ),
@@ -323,7 +323,7 @@ class Wall extends AppModel
                             "User.id"
                         )
                     )
-                ) 
+                )
             )
         );
 
@@ -348,7 +348,7 @@ class Wall extends AppModel
                 'conditions' => array('id' => $messageId),
                 'contain' => array()
             )
-        ); 
+        );
 
         return $replyLftRght['Wall'];
     }
@@ -358,7 +358,7 @@ class Wall extends AppModel
      *
      * @param int $messageId The message id.
      *
-     * @return bool True if the message has replies, False otherwise 
+     * @return bool True if the message has replies, False otherwise
      */
     public function hasMessageReplies($messageId)
     {
@@ -387,7 +387,7 @@ class Wall extends AppModel
     private function _getRootMessageIdLftRghtOfReply($replyId)
     {
 
-        
+
         $replyLftRght  = $this->_getLftRghtOfMessage($replyId);
 
         $replyLft = $replyLftRght['lft'];
@@ -403,7 +403,7 @@ class Wall extends AppModel
                 ),
                 'contain' => array()
             )
-        ); 
+        );
 
         return $result['Wall'];
     }
