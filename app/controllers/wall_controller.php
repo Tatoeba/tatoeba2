@@ -351,9 +351,7 @@ class WallController extends Appcontroller
             } else {
                 if ($this->Wall->save($this->data)) {
                     $this->Session->setFlash(
-                        __(
-                            "Message saved.", true
-                        )
+                        __("Message saved.", true)
                     );
                     $this->redirect(
                         array(
@@ -363,10 +361,7 @@ class WallController extends Appcontroller
                     );
                 } else {
                     $this->Session->setFlash(
-                        __(
-                            "We apologize, but we could not save your data.
-                             Please try again", true
-                        )
+                        __("We apologize, but we could not save your data. Please try again", true)
                     );
                     $this->redirect(
                         array(

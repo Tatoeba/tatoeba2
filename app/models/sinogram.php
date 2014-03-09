@@ -1,6 +1,6 @@
 <?php
 /**
- * Tatoeba Project, free collaborativ creation of languages corpuses project
+ * Tatoeba Project, free collaborative creation of languages corpuses project
  * Copyright (C) 2009 Allan SIMON <allan.simon@supinfo.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * PHP version 5 
+ * PHP version 5
  *
  * @category PHP
  * @package  Tatoeba
@@ -39,7 +39,7 @@ class Sinogram extends AppModel
 {
 
     public $name = "Sinogram";
-    public $hasMany = array ('SinogramSubglyph'); 
+    public $hasMany = array ('SinogramSubglyph');
     public $actsAs = array("Containable");
     /**
     * search a sinogram matching the input requirements
@@ -51,14 +51,14 @@ class Sinogram extends AppModel
     *
     * @return array of matching sinograms
     */
-    
+
     public function search($subGlyphArray , $minStrokes = -1 , $maxStrokes = -1 )
     {
-       
+
         // if there's only character in subglyph search then we should
-        // execute one more request to try to match itself 
+        // execute one more request to try to match itself
         // it's because the characters decomposition data are trees
-        // so you have'nt loopback  
+        // so you have'nt loopback
         $onlyOneCharacter = false ;
         if ( count($subGlyphArray) == 1 ) {
             $sinogram = $subGlyphArray[0];
@@ -73,17 +73,17 @@ class Sinogram extends AppModel
             $subGlyphArray[$i] = "'".$subGlyphArray[$i] ."'" ;
         }
         $subglyphsString= implode(",", $subGlyphArray);
-        
+
         $result = $this->query(
             "SELECT Sinogram.id , Sinogram.glyph
              FROM  sinogram_subglyphs , sinograms as Sinogram
              WHERE
                 Sinogram.`glyph` = sinogram_subglyphs.`glyph`
                 AND  subglyph IN ( ". $subglyphsString  ." )
-            GROUP BY glyph 
-                HAVING 
-                    count(DISTINCT sinogram_subglyphs.subglyph) 
-                    =". count($subGlyphArray) .";" 
+            GROUP BY glyph
+                HAVING
+                    count(DISTINCT sinogram_subglyphs.subglyph)
+                    =". count($subGlyphArray) .";"
         );
 
         // if there's only character, it should be logical that this character match
@@ -101,7 +101,7 @@ class Sinogram extends AppModel
 
         return $result ;
     }
-        
+
     /**
     * explode the input sinograms into their composants
     *
@@ -127,8 +127,8 @@ class Sinogram extends AppModel
         $results = $this->query(
             "SELECT glyph , subglyph
             FROM  sinogram_subglyphs
-            WHERE glyph IN (". $toExplodeString .") ;" 
-        ); 
+            WHERE glyph IN (". $toExplodeString .") ;"
+        );
         return $results;
     }
 

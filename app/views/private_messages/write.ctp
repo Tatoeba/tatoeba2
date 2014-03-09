@@ -1,6 +1,6 @@
 <?php
 /**
-    Tatoeba Project, free collaborativ creation of languages corpuses project
+    Tatoeba Project, free collaborative creation of languages corpuses project
     Copyright (C) 2009 Etienne Deparis <etienne.deparis@umaneti.net>
 
  * This program is free software: you can redistribute it and/or modify
@@ -29,16 +29,14 @@ echo $this->element('pmmenu');
 ?>
 <div id="main_content">
     <div class="module">
-        
+
         <h2><?php echo __('New message', true); ?></h2>
-        
+
      <?php
      if ($isNewUser && $canSend) {
          echo "<p>";
-             __(
-                 "To help keep tatoeba free of spam and other malicious messages
-                 new users can send only 5 messages per day."
-             );
+             __("To help keep tatoeba free of spam and other malicious messages new users can send only 5 messages per day."
+               );
          echo "</p>";
          echo "<p>";
          echo sprintf(
@@ -51,9 +49,7 @@ echo $this->element('pmmenu');
          $privateMessages->displayForm($recipients);
      } else if ($isNewUser) {
          echo "<p>";
-             __(
-                 "To help keep tatoeba free of spam and other malicious messages
-                 new users can send only 5 messages per day."
+             __("To help keep tatoeba free of spam and other malicious messages new users can send only 5 messages per day."
              );
          echo "</p>";
          echo "<p>";

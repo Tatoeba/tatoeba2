@@ -1,6 +1,6 @@
 <?php
 /**
- * Tatoeba Project, free collaborativ creation of languages corpuses project
+ * Tatoeba Project, free collaborative creation of languages corpuses project
  * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
  *
  * This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * PHP version 5 
+ * PHP version 5
  *
  * @category PHP
  * @package  Tatoeba
@@ -47,7 +47,7 @@ $this->pageTitle = 'Tatoeba - '. __(
             ?>
         </p>
     </div>
-    
+
     <div class="module">
         <h2><?php __('Improvements'); ?></h2>
         <p>
@@ -71,7 +71,7 @@ $this->pageTitle = 'Tatoeba - '. __(
             ?>
         </p>
     </div>
-    
+
     <div class="module">
     <h2><?php __('More information'); ?></h2>
     <ul>
@@ -95,11 +95,11 @@ $this->pageTitle = 'Tatoeba - '. __(
     <div class="module">
         <h2><?php __('Convert Japanese text into romaji or furigana'); ?></h2>
         <?php
-        
+
         echo '<div id="conversion">';
         echo $result;
         echo '</div>';
-        
+
         echo $form->create(
             'Tool',
             array(
@@ -124,11 +124,11 @@ $this->pageTitle = 'Tatoeba - '. __(
             <?php
             __('Convert Japanese text into: ');
             echo $form->radio(
-                'type', 
+                'type',
                 array(
-                    'romaji' => __('romaji', true), 
+                    'romaji' => __('romaji', true),
                     'furigana' => __('furigana', true)
-                ), 
+                ),
                 array(
                     'value' => $type,
                     'legend' => ''

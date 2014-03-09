@@ -67,7 +67,7 @@ class LanguagesHelper extends AppHelper
             'ukr' => __('Ukrainian', true),
             'ces' => __('Czech', true),
             'epo' => __('Esperanto', true),
-            'ell' => __('Modern Greek', true),
+            'ell' => __('Greek', true),
             'tur' => __('Turkish', true),
             'swe' => __('Swedish', true),
             'nob' => __('Norwegian (Bokmål)', true),
