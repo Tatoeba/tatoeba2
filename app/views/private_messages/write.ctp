@@ -1,6 +1,6 @@
 <?php
 /**
-    Tatoeba Project, free collaborativ creation of languages corpuses project
+    Tatoeba Project, free collaborative creation of languages corpuses project
     Copyright (C) 2009 Etienne Deparis <etienne.deparis@umaneti.net>
 
  * This program is free software: you can redistribute it and/or modify
@@ -29,9 +29,9 @@ echo $this->element('pmmenu');
 ?>
 <div id="main_content">
     <div class="module">
-        
+
         <h2><?php echo __('New message', true); ?></h2>
-        
+
      <?php
      if ($isNewUser && $canSend) {
          echo "<p>";
