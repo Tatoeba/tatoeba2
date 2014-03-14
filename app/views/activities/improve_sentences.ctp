@@ -65,7 +65,7 @@ $okLink = $html->link(
     <div class="module">
     <h2>Related links</h2>
     <ul>
-        <li><a href="http://blog.tatoeba.org/2010/11/tags-guidelines.html">Tags guidelines</a></li>
+        <li><a href="http://blog.tatoeba.org/2010/11/tags-guidelines.html">Tag guidelines</a></li>
     </ul>
     </div>
 </div>

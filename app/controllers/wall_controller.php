@@ -311,7 +311,7 @@ class WallController extends Appcontroller
                     __(
                         "If you have received this message wrongly, ".
                         "please contact administrators at ".
-                        "team@tatoeba.org. ", true
+                        "team@tatoeba.org.", true
                     )
                 );
                 $this->redirect(
