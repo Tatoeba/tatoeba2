@@ -114,7 +114,7 @@ $navigation->displaySentenceNavigation(
         ?>
             <h2>
             <?php 
-            echo sprintf(__('Sentence nº%s', true), $sentenceId); 
+            echo sprintf(__('Sentence #%s', true), $sentenceId); 
             ?>
             </h2>            
             
@@ -130,7 +130,7 @@ $navigation->displaySentenceNavigation(
         } else {
             
             echo '<h2>' .
-                sprintf(__('Sentence nº%s', true), $this->params['pass'][0]) .
+                sprintf(__('Sentence #%s', true), $this->params['pass'][0]) .
                 '</h2>';
 
             echo '<div class="error">';

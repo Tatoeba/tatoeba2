@@ -93,7 +93,7 @@ if ($session->read('Auth.User.id')) {
                 <?php
                 __(
                     'You can create all kinds of lists! "Preparation for summer '.
-                    'trip to Mexico", "English test nº4", "My favorite geek '.
+                    'trip to Mexico", "English test #4", "My favorite geek '.
                     'quotes"...'
                 );
                 ?>

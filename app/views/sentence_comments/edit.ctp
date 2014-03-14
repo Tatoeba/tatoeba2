@@ -44,7 +44,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Edit Comment', true);
     <?php
     echo '<h2>';
     echo sprintf(
-        __('Edit Comment on Sentence nº%s', true),
+        __('Edit Comment on Sentence #%s', true),
         $sentenceComment['SentenceComment']['sentence_id']
     );
     echo '</h2>';

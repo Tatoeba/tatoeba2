@@ -37,7 +37,7 @@
         ?>
         <h2>
         <?php
-        echo sprintf(__('Sentence nº%s', true) , $sentence['id']);
+        echo sprintf(__('Sentence #%s', true) , $sentence['id']);
         ?>
         </h2>
 		

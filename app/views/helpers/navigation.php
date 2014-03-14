@@ -72,7 +72,7 @@ class NavigationHelper extends AppHelper
             echo $this->Form->input(
                 'sentence_id', 
                 array(
-                    "label" => __('Show sentence nº : ', true), 
+                    "label" => __('Show sentence #: ', true), 
                     "value" => $input
                 )
             );

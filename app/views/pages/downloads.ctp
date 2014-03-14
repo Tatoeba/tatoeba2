@@ -159,7 +159,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Download sentences', true);
                 <span class="param">1</span>
                 <span class="symbol">[tab]</span>
                 <span class="param">77</span> 
-                means that sentence nº77 is the translation of sentence nº1. 
+                means that sentence #77 is the translation of sentence #1. 
                 The reciprocal link is also present. 
                 In other words, you will also have a line that says
                 <span class="param">77</span>
@@ -192,7 +192,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Download sentences', true);
                 <span class="param">381279</span>
                 <span class="symbol">[tab]</span>
                 <span class="param">proverb</span> 
-                means that sentence nº381279 has been tagged with "proverb".
+                means that sentence #381279 has been tagged with "proverb".
             </dd>
         </dl>
         
@@ -248,7 +248,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Download sentences', true);
                 <span class="param">13</span>
                 <span class="symbol">[tab]</span>
                 <span class="param">381279</span> 
-                means that sentence nº381279 is part of the list of id 13.
+                means that sentence #381279 is part of the list of id 13.
             </dd>
         </dl>
             
