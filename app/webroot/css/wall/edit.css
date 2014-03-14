@@ -17,113 +17,6 @@
  */
 
 
-/*
- * Navigation
- */
-@import url(../elements/navigation.css);
-
-
-/*
- * Sentence and translations
- */
-@import url(../elements/sentences_group.css);
-
-
-/*
- * Comments
- */
-@import url(../elements/comment.css);
-
-
-/*
- * Logs
- */
-@import url(../elements/logs_annexe.css);
-@import url(../elements/logs_colors.css);
-
-/*
- * Tags
- */
-@import url(../elements/autocompletion.css);
-
-
-/* 
- * Navigation
- */
-.languageSelect {
-    margin-bottom: 30px;
-}
-
-.languageSelect select {
-    width: 120px;
-}
-
-.smallTip {
-    font-size: 0.8em;
-    color: #888;
-}
-
-
-/* 
- * Tags
- * NOTE for the moment I've copied paste it in tags/view_all.css
- */
-.tagsListOnSentence {
-    overflow: auto;
-}
-
-.tag {
-    display: block;
-    float: left;
-    border-bottom: 1px solid #DDD;
-    border-right: 1px solid #DDD;
-    background: #FFE684;
-    padding: 2px 8px;
-    margin: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-}
-
-.tagName {
-    color: #333;
-    font-size: 1.2em;
-}
-
-.tag a:hover {
-    color: #7F6A27;
-}
-
-.removeTagFromSentenceButton {
-    border-left: 1px dotted #CCC;
-    padding-left: 5px;
-    margin-left: 5px;
-    color: red;
-}
-
-
-/* 
- * Tags form
- */
-#TagAddTagForm {
-    margin-top: 10px;
-    border-top: 1px dotted #CCC;
-    padding: 10px 5px 5px 5px;
-}
-
-#TagAddTagForm div {
-    display: inline;
-    margin: 3px;
-}
-
-#TagTagName {
-    width: 150px;
-}
-
-#autocompletionDiv a{
-    width: 140px; /* This has to be 10px less than #TagTagName to compensate the
-                     text-indent and padding (in autocompletion.css) */
-}
 
 div.submit {
     width: 20%;
@@ -141,7 +34,7 @@ div.submit {
     padding: 15px 15px 15px 15px;
     font-size: 13px;
     /*bg_comments.gif looks better than bg_wall_comments.gif */
-    background: url("../../img/bg_comments.gif") repeat-x scroll 0 0 #FFFFFF;
+    background: url("../../img/bg_comments.gif") repeat-x scroll 0 0;
 }
 
 .editWallMessage textarea {
