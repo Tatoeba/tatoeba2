@@ -87,7 +87,7 @@ class WallHelper extends AppHelper
                 = CurrentUser::isAdmin() ? 
                     __("edit this message", true) : __("edit your message", true);
             echo $this->Html->link(
-                __("edit", true),
+                __("edit - ", true),
                 array(
                     'controller' => 'wall',
                     'action' => 'edit',

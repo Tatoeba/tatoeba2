@@ -361,7 +361,10 @@ class WallController extends Appcontroller
                     );
                 } else {
                     $this->Session->setFlash(
-                        __("We apologize, but we could not save your data. Please try again", true)
+                        __(
+                            "We apologize, but we could not save your data.
+                             Please try again", true
+                        )
                     );
                     $this->redirect(
                         array(

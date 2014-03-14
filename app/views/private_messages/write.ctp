@@ -35,8 +35,10 @@ echo $this->element('pmmenu');
      <?php
      if ($isNewUser && $canSend) {
          echo "<p>";
-             __("To help keep tatoeba free of spam and other malicious messages new users can send only 5 messages per day."
-               );
+             __(
+                 "To help keep tatoeba free of spam and other malicious messages
+                 new users can send only 5 messages per day."
+             );
          echo "</p>";
          echo "<p>";
          echo sprintf(
