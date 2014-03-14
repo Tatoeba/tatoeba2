@@ -64,7 +64,7 @@ echo $form->create('User', array("action" => "register"));
                         true
                     ),
                     'min' => __(
-                        'Username must be at least two letters long',
+                        'Username must be at least two characters long',
                         true
                     )
                 )
@@ -132,11 +132,11 @@ __('We need to make sure you are human.');
 echo $form->input(
     'quiz', 
     array(
-        "label" => __('What are the five first letters of your email address?', true)
+        "label" => __('What are the first five characters of your email address?', true)
     )
 );
 
-__('For instance, if your email address is me12345@example.com, the answer is "me123".');
+__('For instance, if your email address is a.b.cd@example.com, type a.b.c into the box.');
 ?>
 </div>
 
