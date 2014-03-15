@@ -23,13 +23,18 @@ DROP TABLE IF EXISTS `langStats`;
 SET @saved_cs_client     = @@character_set_client;
 SET character_set_client = utf8;
 CREATE TABLE `langStats` (
-  `lang` varchar(4) collate utf8_unicode_ci default NULL,
-  `numberOfSentences` mediumint(8) unsigned NOT NULL default '0'
+  `lang` varchar(4) CHARACTER SET utf8 NOT NULL,
+  `numberOfSentences` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `lang` (`lang`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 SET character_set_client = @saved_cs_client;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-INSERT INTO langStats
+UPDATE sentences SET lang = NULL WHERE lang = '';
+
+INSERT INTO langStats (lang, numberOfSentences)
     SELECT lang , count(*) FROM sentences GROUP BY lang;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
