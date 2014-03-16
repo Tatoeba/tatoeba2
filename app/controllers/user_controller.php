@@ -312,7 +312,7 @@ class UserController extends AppController
             );
         if (!$isEmailUnique) {
             $this->Session->setFlash(
-                __("That email already exists, please try another.", true)
+                __("That email address already exists. Please try another.", true)
             );
             $this->redirect(
                 array(
@@ -341,7 +341,7 @@ class UserController extends AppController
         } else {
             $this->Session->setFlash(
                 __(
-                    "Failed to change email, please enter a proper email address.",
+                    "Failed to change email address. Please enter a proper email address.",
                     true
                 )
             );
