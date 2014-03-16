@@ -115,7 +115,7 @@ echo '</fieldset>';
 <p>
 <?php
 echo $html->link(
-    __('Password forgotten?', true),
+    __('Forgot your password?', true),
     array(
         "controller" => "users",
         "action" => "new_password"

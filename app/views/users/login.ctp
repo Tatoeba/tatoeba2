@@ -74,7 +74,7 @@ echo $form->end(__('Log in',true));
 <div id="PasswordForgotten">
 <?php
 echo $html->link(
-    __('Password forgotten?',true),
+    __('Forgot your password?',true),
     array(
         "controller" => "users",
         "action" => "new_password"
