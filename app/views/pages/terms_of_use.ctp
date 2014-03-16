@@ -157,7 +157,7 @@ echo '<h3>' . __('Precedence of French terms', true) . '</h3>';
 echo '<p>';
     echo __(
         'These site terms are not to be modified. If there is any inconsistency '.
-        'between the french terms and any translation into other languages, the '.
+        'between the French terms and any translation into other languages, the '.
         'French language version takes precedence.', true
     );
 echo '</p>';
