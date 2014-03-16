@@ -330,7 +330,7 @@ class UserController extends AppController
         
         if ($saved) {
             $this->Session->setFlash(
-                __("Email saved.", true)
+                __("Email address saved.", true)
             );
             $this->redirect(
                 array(
