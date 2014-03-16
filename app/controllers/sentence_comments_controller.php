@@ -318,7 +318,7 @@ class SentenceCommentsController extends AppController
                 //check for empty text
                 if (empty($this->data['SentenceComment']['text'])) {
                     $this->Session->setFlash(
-                        __("Comments must have at least some text.", true)
+                        __("Comments cannot be empty.", true)
                     );
                     $this->redirect(
                         array(
