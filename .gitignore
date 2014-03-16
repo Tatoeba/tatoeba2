@@ -1,3 +1,5 @@
 app/config/
 info.php
 
+# By default, "./cake/console/cake i18n extract" writes files here. Ignore them.
+app/locale/default*.pot

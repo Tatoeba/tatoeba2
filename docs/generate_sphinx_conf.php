@@ -4,15 +4,32 @@
 
 <?php
 /**
- * Just run this script and redirect it into a sphinx.conf file
- * php generate_sphinx_conf.php > sphinx.conf 
+ * After you have changed the values described below and created the
+ * necessary directories, run this script and redirect it into 
+ * a sphinx.conf file as follows:
+ *     php generate_sphinx_conf.php > sphinx.conf 
  *
- * Do not forget to change all the path, and to specify your database name
- * user and paswword
+ * The values should work by default on a development machine
+ * once /home/tatoeba/sphinx and /home/tatoeba/sphinx/log are created.
+ *
+ * On the server, you will want to change the values of these variables:
+ *   - sourcePath
+ *
+ * In the "source default" section:
+ *   - sql_user
+ *   - sql_pass
+ *   - sql_db
+ *   - sql_sock
+ *
+ * In the "searchd" section:
+ *   - listen (called "port" in older versions of Sphinx)
+ *   - log
+ *   - search_log
+ *   - pid_file
+ *   
  */
 
-
-$sourcePath = "/media/disk2/index_dev";
+$sourcePath = "/home/tatoeba/sphinx/indices";
 
 $languages = array(
     'ara' => 'Arabic',
@@ -190,10 +207,10 @@ source default
 {
     type                     = mysql
     sql_host                 = localhost
-    sql_user                 = USER
-    sql_pass                 = PASSWORD
-    sql_db                   = DATABASE
-    sql_sock                 = /tmp/mysql.sock
+    sql_user                 = root
+    sql_pass                 = tatoeba
+    sql_db                   = tatoeba
+    sql_sock                 = /var/run/mysqld/mysqld.sock
 
     sql_query_pre            = SET NAMES utf8
     sql_query_pre            = SET SESSION query_cache_type=OFF
@@ -380,12 +397,13 @@ indexer
 
 searchd
 {
-    port                    = 9312
-    log                     = /var/log/searchd.log
-    query_log               = /var/log/query.log
+    listen                  = 9312
+    log                     = /home/tatoeba/sphinx/log/searchd.log
+    search_log              = /home/tatoeba/sphinx/log/query.log
     read_timeout            = 5
     max_children            = 30
-    pid_file                = /var/log/searchd.pid
+
+    pid_file                = /home/tatoeba/sphinx/log/searchd.pid
     max_matches             = 1000
     seamless_rotate         = 1
     preopen_indexes         = 1
