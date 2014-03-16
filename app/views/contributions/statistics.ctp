@@ -63,7 +63,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Contributor statistics', true);
     <p>
     <?php
     __(
-        'They are however displayed here because they still deserve some '.
+        'They are still displayed here, however, because they deserve '.
         'acknowledgement for their dedication.'
     );
     ?>
