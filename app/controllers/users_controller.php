@@ -417,7 +417,7 @@ class UsersController extends AppController
         } else {
             $this->flash(
                 __(
-                    'No user with this username : ', true
+                    'No user with this username: ', true
                 ).$this->data['User']['username'], 
                 '/users/all/'
             );

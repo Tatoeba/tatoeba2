@@ -111,7 +111,7 @@ class UserController extends AppController
             );
         } elseif (!( $infoOfUser = $this->User->getInformationOfUser($userName) )) {
             $this->Session->setFlash(
-                __('No user with this username : ', true).$userName
+                __('No user with this username: ', true).$userName
             );
             $this->redirect(
                 array('controller'=>'users',
