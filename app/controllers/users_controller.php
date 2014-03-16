@@ -372,10 +372,10 @@ class UsersController extends AppController
                 if ($this->User->save($this->data)) { // if saved
                     // prepare message
                     $subject = __('Tatoeba, new password', true);
-                    $message = __('Your login : ', true)
+                    $message = __('Your login: ', true)
                         . $user['User']['username']
                         . "\n"
-                        . __('Your new password : ', true)
+                        . __('Your new password: ', true)
                         . $newPassword;
 
                     // send email with new password
@@ -395,7 +395,7 @@ class UsersController extends AppController
             } else {
                 $this->flash(
                     __(
-                        'There is no registered user with this email : ', true
+                        'There is no registered user with this email address: ', true
                     ) . $this->data['User']['email'],
                     '/users/new_password'
                 );
@@ -449,7 +449,7 @@ class UsersController extends AppController
             $this->set('user', $user);
         } else {
             $this->Session->write('last_user_id', $id);
-            $this->flash(__('No user with this id : ', true).$id, '/users/all/');
+            $this->flash(__('No user with this id: ', true).$id, '/users/all/');
         }
     }
 
