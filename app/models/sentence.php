@@ -76,7 +76,7 @@ class Sentence extends AppModel
         'dsb', 'hsb', 'ksh', 'cym', 'ewe',
         'sjn', 'tel', 'nov', 'tpi', 'qya',
         'mri', 'lld', 'ber', 'xho', 'pnb',
-        'mgl', 'grn', 'lad', 'pms', 'avk',
+        'mlg', 'grn', 'lad', 'pms', 'avk',
         'mar', 'tgk', 'tpw', 'prg', 'npi',
         'mlt', 'ckt', 'cor', 'aze', 'khm',
         'lao', 'bod', 'hil', 'arq', 'pcd',
