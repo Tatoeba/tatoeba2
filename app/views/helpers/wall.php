@@ -185,7 +185,7 @@ class WallHelper extends AppHelper
         /* we use models=>wall to force use wall, instead cakephp would have
            called "walls/save' which is not what we want
         */
-        __('Add a Message : ');
+        __('Add a Message: ');
         echo $this->Form->create('', array( "action" => "save"));
         echo "<fieldset>";
             echo $this->Form->textarea('content', array('label'=>""));

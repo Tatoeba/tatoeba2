@@ -214,7 +214,7 @@ class NavigationHelper extends AppHelper
         echo $this->Form->input(
             'username',
             array(
-                "label" => __('Enter a username : ', true), 
+                "label" => __('Enter a username: ', true), 
                 "value" => $username,
                 "id" => null
             )
