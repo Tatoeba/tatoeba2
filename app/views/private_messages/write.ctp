@@ -36,7 +36,7 @@ echo $this->element('pmmenu');
      if ($isNewUser && $canSend) {
          echo "<p>";
              __(
-                 "To help keep tatoeba free of spam and other malicious messages
+                 "To help keep Tatoeba free of spam and other malicious messages
                  new users can send only 5 messages per day."
              );
          echo "</p>";
@@ -51,7 +51,7 @@ echo $this->element('pmmenu');
          $privateMessages->displayForm($recipients);
      } else if ($isNewUser) {
          echo "<p>";
-             __("To help keep tatoeba free of spam and other malicious messages new users can send only 5 messages per day."
+             __("To help keep Tatoeba free of spam and other malicious messages new users can send only 5 messages per day."
              );
          echo "</p>";
          echo "<p>";
@@ -59,7 +59,7 @@ echo $this->element('pmmenu');
                  "Please wait until you can send more messages. "
              );
              __(
-                 "If you have received this message wrongly, ".
+                 "If you have received this message in error, ".
                  "please contact administrators at ".
                  "team@tatoeba.org."
              );

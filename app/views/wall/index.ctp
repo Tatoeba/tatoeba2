@@ -49,7 +49,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
         <?php
         __(
             'Here you can ask general questions like how to use Tatoeba, ' .
-            'report bugs or strange behaviors, or simply socialize with the'.
+            'report bugs or strange behavior, or simply socialize with the'.
             ' rest of the community.'
         );
         ?>

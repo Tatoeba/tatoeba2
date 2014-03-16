@@ -85,7 +85,7 @@ $this->pageTitle = __('Settings', true);
     </div>
     
     <div class="module">
-        <h2><?php __('Change email'); ?></h2>
+        <h2><?php __('Change email address'); ?></h2>
         <?php
         echo $form->create(
             'User',
@@ -99,7 +99,7 @@ $this->pageTitle = __('Settings', true);
         echo $form->input(
             'email',
             array(
-                'label' => __('Email', true)
+                'label' => __('Email address', true)
             )
         );
         echo $form->end(__('Save', true));

@@ -98,7 +98,7 @@ if (isset($corePath[0])) {
 require_once CAKE_TESTS_LIB . 'test_manager.php';
 
 if (Configure::read('debug') < 1) {
-	die(__('Debug setting does not allow access to this url.', true));
+	die(__('Debug setting does not allow access to this URL.', true));
 }
 
 if (!isset($_SERVER['SERVER_NAME'])) {

@@ -143,7 +143,7 @@ class PrivateMessagesController extends AppController
                     __(
                         "You have reached your message limit for today. ".
                         "Please wait until you can send more messages. ".
-                        "If you have received this message wrongly, ".
+                        "If you have received this message in error, ".
                         "please contact administrators at ".
                         "team@tatoeba.org.",
                         true
