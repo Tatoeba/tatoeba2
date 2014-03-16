@@ -166,8 +166,8 @@ $this->pageTitle = 'Tatoeba - ' . __('How to contribute', true);
     <?php
     __(
         "And finally, you can <strong>join the team</strong>. You can help us ".
-        "code new features, improve the usability, debug, optimize, ensure ".
-        "there's no security flaw, etc."
+        "code new features, improve usability, debug, optimize, keep ".
+        "the site secure, and more."
     );
     ?>
     </p>
