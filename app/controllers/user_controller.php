@@ -175,7 +175,7 @@ class UserController extends AppController
 
         // Check file extension
         $fileExtension = pathinfo($image['name'], PATHINFO_EXTENSION);
-        $validExtensions = array('png', 'jpg', 'jpeg', 'gif');
+        $validExtensions = array('png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF');
         
         if (!in_array($fileExtension, $validExtensions)) {
             $this->Session->setFlash(
