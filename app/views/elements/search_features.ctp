@@ -40,6 +40,18 @@
     <?php
     echo sprintf(
         __(
+            'You can find basic instructions for searching <a href="%s">here</a>.', 
+            true
+        ),
+        'http://en.wiki.tatoeba.org/articles/show/text-search'
+    );
+    ?>
+    </p>
+
+    <p>
+    <?php
+    echo sprintf(
+        __(
             'You can learn about advanced search features <a href="%s">here</a>.', 
             true
         ),
