@@ -48,7 +48,7 @@ if ($session->read('Auth.User.id')) {
                 'type' => 'text'
             )
         );
-        echo $form->end('create');
+        echo $form->end(__('create'));
         ?>
         </div>
         

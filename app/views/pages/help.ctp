@@ -248,16 +248,6 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
             '';
             ?>
         </p>
-        <p>
-            <?php 
-            __('Note that translations are limited to registered users.'); 
-            echo ' '; 
-            echo $html->link(
-                __('Click here to register.', true),
-                array("controller"=>"users", "action"=>"register")
-            ); 
-            ?>
-        </p>
     </div>
     
     
