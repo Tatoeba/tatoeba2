@@ -316,10 +316,22 @@ class UsersController extends AppController
             return;
         }
         
-        // Username or password does not fit requirements
-        if (!$this->User->validates()
-            || $this->data['User']['password'] == ''
+        // Username does not fit requirements
+        $emptyPasswordMd5 = md5(Configure::read('Security.salt'));
+        if (!$this->User->validates()) {
+            $this->data['User']['password'] = '';
+            $this->data['User']['quiz'] = '';
+            return;
+        }
+        
+        // Password is empty
+        $emptyPasswordMd5 = md5(Configure::read('Security.salt'));
+        if ($this->data['User']['password'] == ''
+            || $this->data['User']['password'] == $emptyPasswordMd5
         ) {
+            $this->Session->setFlash(
+                __('Password cannot be empty.', true)
+            );
             $this->data['User']['password'] = '';
             $this->data['User']['quiz'] = '';
             return;
