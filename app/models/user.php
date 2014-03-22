@@ -344,6 +344,8 @@ class User extends AppModel
                                 'text',
                                 'created',
                                 'sentence_id',
+                                'hidden',
+                                'modified'
                             ),
                             'order' => 'created DESC'
                         ),
@@ -352,7 +354,9 @@ class User extends AppModel
                             'fields' => array(
                                 'id',
                                 'content',
-                                'date'
+                                'date',
+                                'hidden',
+                                'modified'
                             ),
                             'order' => 'date DESC'
                         ),
