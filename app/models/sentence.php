@@ -154,9 +154,12 @@ class Sentence extends AppModel
 
     public function beforeSave() 
     {
-        $lang = $this->data['Sentence']['lang'];
-        $langId = $this->Language->getIdFromlang($lang);
-        $this->data['Sentence']['lang_id'] = $langId;
+        if (isset($this->data['Sentence']['lang']))
+        {
+            $lang = $this->data['Sentence']['lang'];
+            $langId = $this->Language->getIdFromlang($lang);
+            $this->data['Sentence']['lang_id'] = $langId;
+        }
         return true;
     }
 
