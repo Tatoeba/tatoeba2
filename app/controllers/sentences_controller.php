@@ -708,13 +708,17 @@ class SentencesController extends AppController
         $alltranslations = $this->Sentence->getTranslationsOf($randomId);
         $translations = $alltranslations['Translation'];
         $indirectTranslations = $alltranslations['IndirectTranslation'];
-       
+        
         $this->Session->write('random_lang_selected', $lang);
         
         $this->set('random', $randomSentence);
-        $this->set('sentenceScript', $randomSentence['Sentence']['script']);
         $this->set('translations', $translations);
         $this->set('indirectTranslations', $indirectTranslations);
+        
+        if (isset($randomSentence['Sentence']['script']))
+        {
+            $this->set('sentenceScript', $sentenceScript);
+        }
     }
     
     /**
