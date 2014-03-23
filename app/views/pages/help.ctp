@@ -108,15 +108,6 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
             
             <p>
             <?php
-            __(
-                'If you want to read this page later, just know that you can '.
-                'access it from the <strong>"Help"</strong> link at the very '.
-                '<strong>bottom</strong> of the website.'
-            );
-            ?>
-            </p>
-            <p>
-            <?php
             echo sprintf(
                 __(
                     'If you have no idea what to do now that you are registered, '.
