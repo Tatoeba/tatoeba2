@@ -508,7 +508,9 @@ class WallHelper extends AppHelper
                     $date = new DateTime($messageDate);
                     $modified = new DateTime($message['modified']);
                     if ($date != $modified) {
-                       echo " - edited {$this->Date->ago($message['modified'])}"; 
+                        echo " - ";
+                        echo __("edited", true);
+                        echo " {$this->Date->ago($message['modified'])}"; 
                     }
                 }
                 ?>
