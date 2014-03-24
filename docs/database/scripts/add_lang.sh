@@ -41,13 +41,13 @@ if [ ! -e $ICONNAME ]; then
     exit 1
 fi
 
-#This line searches the file docs/generate_sphinx_conf.php for the
+#This line searches the file docs/sphinx/generate_sphinx_conf.php for the
 #comment string "//@lang". It inserts a string like the following before the comment:
 #"nep" => ''
 #and then executes the script.
 QUOTE_LANG="\'$LANGCODE\'"
 SEARCH_LANG="$QUOTE_LANG => \'$LANGNAME\' "
-SPHINX_GEN=$PREFIX"docs/generate_sphinx_conf.php"
+SPHINX_GEN=$PREFIX"docs/sphinx/generate_sphinx_conf.php"
 SEARCH_LANG_RAW="'"$LANGCODE"'"" => ""'"$LANGNAME"'"
 
 #Check whether the string is already present. We could do this for each of the
@@ -63,7 +63,7 @@ sed -i  -e "s^//@lang^\n    $SEARCH_LANG, //@lang^" $SPHINX_GEN
 # can't be written, in which case we want to exit immediately.
 SPHINX_CONF="/usr/local/etc/sphinx.conf"
 if [ ! -e $SPHINX_CONF ] || [ -w $SPHINX_CONF ]; then
-    SPHINX_CMD="php $PREFIX""docs/generate_sphinx_conf.php"
+    SPHINX_CMD="php $SPHINX_GEN"
     $SPHINX_CMD > "$SPHINX_CONF"
     if [ $? -ne 0 ]; then
         echo "Command failed:  $SPHINX_CMD > $SPHINX_CONF"
