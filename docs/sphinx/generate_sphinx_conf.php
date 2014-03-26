@@ -4,15 +4,8 @@
 
 <?php
 /**
- * After you have changed the values described below and created the
- * necessary directories, run this script and redirect it into 
- * a sphinx.conf file as follows:
- *     php generate_sphinx_conf.php > sphinx.conf 
  *
- * The values should work by default on a development machine
- * once /home/tatoeba/sphinx and /home/tatoeba/sphinx/log are created.
- *
- * On the server, you will want to change the values of these variables:
+ * You will want to change the values of these variables or use the configure_sphinx.sh to change them:
  *   - sourcePath
  *
  * In the "source default" section:
@@ -24,12 +17,12 @@
  * In the "searchd" section:
  *   - listen (called "port" in older versions of Sphinx)
  *   - log
- *   - search_log
+ *   - query_log
  *   - pid_file
  *   
  */
 
-$sourcePath = "/home/tatoeba/sphinx/indices";
+$sourcePath = "INDEXDIR";
 
 $languages = array(
     'ara' => 'Arabic',
@@ -207,10 +200,10 @@ source default
 {
     type                     = mysql
     sql_host                 = localhost
-    sql_user                 = root
-    sql_pass                 = tatoeba
-    sql_db                   = tatoeba
-    sql_sock                 = /var/run/mysqld/mysqld.sock
+    sql_user                 = USER
+    sql_pass                 = PASSWORD
+    sql_db                   = DATABASE
+    sql_sock                 = SOCKET
 
     sql_query_pre            = SET NAMES utf8
     sql_query_pre            = SET SESSION query_cache_type=OFF
@@ -398,8 +391,8 @@ indexer
 searchd
 {
     listen                  = 9312
-    log                     = /home/tatoeba/sphinx/log/searchd.log
-    search_log              = /home/tatoeba/sphinx/log/query.log
+    log                     = LOGDIR/searchd.log
+    query_log              = LOGDIR/query.log
     read_timeout            = 5
     max_children            = 30
 
