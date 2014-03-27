@@ -62,12 +62,6 @@ $this->pageTitle = 'Tatoeba - ' . __('How to contribute', true);
             </li>
             
             <li>
-            <a href="http://blog.tatoeba.org/2010/05/moderators-in-tatoeba.html">
-            <?php __('Role of moderators'); ?>
-            </a>
-            </li>
-            
-            <li>
             <a href="http://blog.tatoeba.org/2010/04/reliability-of-sentences-how-will-we.html">
             <?php __('Reliability of the sentences'); ?>
             </a>

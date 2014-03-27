@@ -30,8 +30,10 @@
  * translations can serve as suggestions for new sentences that are similar. The sentences
  * in this file will not be displayed on Tatoeba.
  */
-__('This is a test sentence.', true);
-__('This is a somewhat longer test sentence.', true);
-__('This test sentence contains the digit 4.', true);
-__('This test sentence contains the digit 5.', true);
+__('This is a test sentence.');
+__('This is a somewhat longer test sentence.');
+__('This test sentence contains the digit 4.');
+__('This test sentence contains the digit 5.');
+__('No tag on this sentence yet.');
+__('Team & Credits');
 ?>

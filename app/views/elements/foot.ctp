@@ -60,17 +60,6 @@ if (isset($this->params['lang'])) {
     <li>
         <?php
         echo $html->link(
-            __('Team & Credits', true),
-            array(
-                "controller" => 'pages',
-                "action" => 'tatoeba_team_and_credits'
-            )
-        );
-        ?>
-    </li>
-    <li>
-        <?php
-        echo $html->link(
             __('Blog', true),
             'http://blog.tatoeba.org/',
             array('onclick' => "window.open(this.href,'_blank');return false;")
