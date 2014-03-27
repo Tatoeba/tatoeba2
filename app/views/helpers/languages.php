@@ -183,7 +183,8 @@ class LanguagesHelper extends AppHelper
             'hil' => __('Hiligaynon',true), 
             'arq' => __('Algerian Arabic',true), 
             'pcd' => __('Picard',true), 
-            'grc' => __('Ancient Greek',true), //@lang 
+            'grc' => __('Ancient Greek',true), 
+            'amh' => __('Amharic',true), //@lang 
         );
         
         asort($languages);

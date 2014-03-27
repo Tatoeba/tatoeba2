@@ -80,7 +80,8 @@ class Sentence extends AppModel
         'mar', 'tgk', 'tpw', 'prg', 'npi',
         'mlt', 'ckt', 'cor', 'aze', 'khm',
         'lao', 'bod', 'hil', 'arq', 'pcd',
-        'grc', //@lang
+        'grc', 
+        'amh', //@lang
         null
     );
     

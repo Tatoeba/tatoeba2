@@ -162,7 +162,8 @@ $languages = array(
     'hil' => 'Hiligaynon' , 
     'arq' => 'Algerian Arabic' , 
     'pcd' => 'Picard' , 
-    'grc' => 'Ancient Greek' , //@lang
+    'grc' => 'Ancient Greek' , 
+    'amh' => 'Amharic' , //@lang
 );
 
 $languageWithStemmer = array(
