@@ -96,7 +96,7 @@ MYSQL_CMD="mysql -u $MUSER -p$MPASSWORD $MDB "'-e '
 MYSQL_CMD=$MYSQL_CMD'"'
 MYSQL_CMD=$MYSQL_CMD"CALL add_new_language('$LANGCODE', $LISTNUM, 'blablablabla');"
 MYSQL_CMD=$MYSQL_CMD'"'
-$MYSQL_CMD
+eval $MYSQL_CMD
 if [ $? -ne 0 ]; then
     echo "Command failed:"
 else
