@@ -92,7 +92,7 @@ MUSER=$5
 MPASSWORD=$6
 MDB=$7
 #Note the space between -u and the username, but not between -p and the password.
-MYSQL_CMD="mysql -u $MUSER -p$MPASSWORD $MDB "'-e '
+MYSQL_CMD="mysql -u $MUSER -p$MPASSWORD $MDB -e "
 MYSQL_CMD=$MYSQL_CMD'"'
 MYSQL_CMD=$MYSQL_CMD"CALL add_new_language('$LANGCODE', $LISTNUM, 'blablablabla');"
 MYSQL_CMD=$MYSQL_CMD'"'
