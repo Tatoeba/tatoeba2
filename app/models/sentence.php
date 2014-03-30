@@ -81,7 +81,21 @@ class Sentence extends AppModel
         'mlt', 'ckt', 'cor', 'aze', 'khm',
         'lao', 'bod', 'hil', 'arq', 'pcd',
         'grc', 
-        'amh', //@lang
+        'amh', 
+        'awa', 
+        'bho', 
+        'cbk', 
+        'enm', 
+        'frm', 
+        'hat', 
+        'jdt', 
+        'kal', 
+        'mhr', 
+        'nah', 
+        'pdc', 
+        'sin', 
+        'tuk', 
+        'wln', //@lang
         null
     );
     

@@ -163,7 +163,21 @@ $languages = array(
     'arq' => 'Algerian Arabic' , 
     'pcd' => 'Picard' , 
     'grc' => 'Ancient Greek' , 
-    'amh' => 'Amharic' , //@lang
+    'amh' => 'Amharic' , 
+    'awa' => 'Awadhi' , 
+    'bho' => 'Bhojpuri' , 
+    'cbk' => 'Chavacano' , 
+    'enm' => 'Middle English' , 
+    'frm' => 'Middle French' , 
+    'hat' => 'Haitian Creole' , 
+    'jdt' => 'Juhuri (Judeo-Tat)' , 
+    'kal' => 'Greenlandic' , 
+    'mhr' => 'Meadow Mari' , 
+    'nah' => 'Nahuatl' , 
+    'pdc' => 'Pennsylvania German' , 
+    'sin' => 'Sinhala' , 
+    'tuk' => 'Turkmen' , 
+    'wln' => 'Wallon' , //@lang
 );
 
 $languageWithStemmer = array(

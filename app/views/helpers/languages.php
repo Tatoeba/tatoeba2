@@ -184,7 +184,21 @@ class LanguagesHelper extends AppHelper
             'arq' => __('Algerian Arabic',true), 
             'pcd' => __('Picard',true), 
             'grc' => __('Ancient Greek',true), 
-            'amh' => __('Amharic',true), //@lang 
+            'amh' => __('Amharic',true), 
+            'awa' => __('Awadhi',true), 
+            'bho' => __('Bhojpuri',true), 
+            'cbk' => __('Chavacano',true), 
+            'enm' => __('Middle English',true), 
+            'frm' => __('Middle French',true), 
+            'hat' => __('Haitian Creole',true), 
+            'jdt' => __('Juhuri (Judeo-Tat)',true), 
+            'kal' => __('Greenlandic',true), 
+            'mhr' => __('Meadow Mari',true), 
+            'nah' => __('Nahuatl',true), 
+            'pdc' => __('Pennsylvania German',true), 
+            'sin' => __('Sinhala',true), 
+            'tuk' => __('Turkmen',true), 
+            'wln' => __('Wallon',true), //@lang 
         );
         
         asort($languages);
