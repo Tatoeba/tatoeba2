@@ -789,7 +789,7 @@ class Sentence extends AppModel
     {
         // Uncomment the line below you don't have the
         // romanization tools installed.
-        return false;
+        // return false;
         
         $romanization = '';
 
@@ -798,13 +798,13 @@ class Sentence extends AppModel
         } elseif ($lang == "jpn") {
             $romanization = $this->getJapaneseTransliteration($text);
         } elseif ($lang == "cmn") {
-            //$xml = simplexml_load_file(
-            //    "http://127.0.0.1:8042/pinyin?str=".urlencode($text)
-            //    ,'SimpleXMLElement', LIBXML_NOCDATA
-            //);
-            //foreach($xml as $key=>$value) {
-            //    return $value;
-            //}
+            $xml = simplexml_load_file(
+                "http://127.0.0.1:8042/pinyin?str=".urlencode($text)
+                ,'SimpleXMLElement', LIBXML_NOCDATA
+            );
+            foreach($xml as $key=>$value) {
+                return $value;
+            }
 
 
         } elseif ($lang == "kat") {
@@ -813,13 +813,13 @@ class Sentence extends AppModel
         } elseif ($lang === "uzb") {
             $romanization = $this->uzbek_script_change($text);
         } elseif ($lang == "yue") {
-            //$xml = simplexml_load_file(
-            //    "http://127.0.0.1:8042/jyutping?str=".urlencode($text)
-            //    ,'SimpleXMLElement', LIBXML_NOCDATA
-            //);
-            //foreach($xml as $key=>$value) {
-            //    return $value;
-            //}
+            $xml = simplexml_load_file(
+                "http://127.0.0.1:8042/jyutping?str=".urlencode($text)
+                ,'SimpleXMLElement', LIBXML_NOCDATA
+            );
+            foreach($xml as $key=>$value) {
+                return $value;
+            }
 
 
         }
@@ -874,14 +874,14 @@ class Sentence extends AppModel
         
         if ($sentenceArray['lang'] === 'cmn') {
             // we call the wonderful homebrewadso
-            //$xml = simplexml_load_file(
-            //    "http://127.0.0.1:8042/all?str=".urlencode($sentenceArray['text'])
-            //    ,'SimpleXMLElement', LIBXML_NOCDATA
-            //);
+            $xml = simplexml_load_file(
+                "http://127.0.0.1:8042/all?str=".urlencode($sentenceArray['text'])
+                ,'SimpleXMLElement', LIBXML_NOCDATA
+            );
 
-            //foreach($xml as $key=>$value) {
-            //    $sentenceArray[$key] = $value;
-            //}
+            foreach($xml as $key=>$value) {
+                $sentenceArray[$key] = $value;
+            }
         } else {
             $this->generateRomanization($sentenceArray);
         }
@@ -923,13 +923,13 @@ class Sentence extends AppModel
 
         // important to add this line before escaping a
         // utf8 string, workaround for an apache/php bug
-        //    $xml = simplexml_load_file(
-        //        "http://127.0.0.1:8042/change_script?str=".urlencode($chineseText)
-        //        ,'SimpleXMLElement', LIBXML_NOCDATA
-        //    );
-        //    foreach($xml as $key=>$value) {
-        //        return $value;
-        //    }
+            $xml = simplexml_load_file(
+                "http://127.0.0.1:8042/change_script?str=".urlencode($chineseText)
+                ,'SimpleXMLElement', LIBXML_NOCDATA
+            );
+            foreach($xml as $key=>$value) {
+                return $value;
+            }
         return "";
     }
     
