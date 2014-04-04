@@ -177,7 +177,13 @@ $languages = array(
     'pdc' => 'Pennsylvania German' , 
     'sin' => 'Sinhala' , 
     'tuk' => 'Turkmen' , 
-    'wln' => 'Wallon' , //@lang
+    'wln' => 'Wallon' , 
+    'bak' => 'Bashkir' , 
+    'hau' => 'Hausa' , 
+    'ltz' => 'Luxembourgish' , 
+    'mgm' => 'Mambae' , 
+    'som' => 'Somali' , 
+    'zul' => 'Zulu' , //@lang
 );
 
 $languageWithStemmer = array(
@@ -411,7 +417,7 @@ searchd
     read_timeout            = 5
     max_children            = 30
 
-    pid_file                = /home/tatoeba/sphinx/log/searchd.pid
+    pid_file                = LOGDIR/searchd.pid
     max_matches             = 1000
     seamless_rotate         = 1
     preopen_indexes         = 1
