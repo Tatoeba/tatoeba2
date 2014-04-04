@@ -45,7 +45,7 @@ if ($session->read('Auth.User.id')) {
         IMG_PATH . 'TatoebaProjectBeta.png',
         array(
             'width' => 72,
-            'height' => 450
+            'height' => 430
         )
     );
     ?>
