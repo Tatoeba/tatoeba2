@@ -95,7 +95,13 @@ class Sentence extends AppModel
         'pdc', 
         'sin', 
         'tuk', 
-        'wln', //@lang
+        'wln', 
+        'bak', 
+        'hau', 
+        'ltz', 
+        'mgm', 
+        'som', 
+        'zul', //@lang
         null
     );
     

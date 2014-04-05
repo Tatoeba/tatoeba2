@@ -177,7 +177,13 @@ $languages = array(
     'pdc' => 'Pennsylvania German' , 
     'sin' => 'Sinhala' , 
     'tuk' => 'Turkmen' , 
-    'wln' => 'Wallon' , //@lang
+    'wln' => 'Wallon' , 
+    'bak' => 'Bashkir' , 
+    'hau' => 'Hausa' , 
+    'ltz' => 'Luxembourgish' , 
+    'mgm' => 'Mambae' , 
+    'som' => 'Somali' , 
+    'zul' => 'Zulu' , //@lang
 );
 
 $languageWithStemmer = array(

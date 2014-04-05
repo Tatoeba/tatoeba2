@@ -198,7 +198,13 @@ class LanguagesHelper extends AppHelper
             'pdc' => __('Pennsylvania German',true), 
             'sin' => __('Sinhala',true), 
             'tuk' => __('Turkmen',true), 
-            'wln' => __('Wallon',true), //@lang 
+            'wln' => __('Wallon',true), 
+            'bak' => __('Bashkir',true), 
+            'hau' => __('Hausa',true), 
+            'ltz' => __('Luxembourgish',true), 
+            'mgm' => __('Mambae',true), 
+            'som' => __('Somali',true), 
+            'zul' => __('Zulu',true), //@lang 
         );
         
         asort($languages);
