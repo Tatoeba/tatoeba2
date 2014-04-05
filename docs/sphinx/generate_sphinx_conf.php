@@ -417,7 +417,7 @@ searchd
     read_timeout            = 5
     max_children            = 30
 
-    pid_file                = /home/tatoeba/sphinx/log/searchd.pid
+    pid_file                = LOGDIR/searchd.pid
     max_matches             = 1000
     seamless_rotate         = 1
     preopen_indexes         = 1
