@@ -189,7 +189,9 @@ $languages = array(
     'mkd' => 'Macedonian' , 
     'mrj' => 'Hill Mari' , 
     'ppl' => 'Pipil' , 
-    'yor' => 'Yoruba' , //@lang
+    'yor' => 'Yoruba' , 
+    'kin' => 'Kinyarwanda' , 
+    'shs' => 'Shuswap' , //@lang
 );
 
 $languageWithStemmer = array(

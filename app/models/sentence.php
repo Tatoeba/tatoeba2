@@ -107,7 +107,9 @@ class Sentence extends AppModel
         'mkd', 
         'mrj', 
         'ppl', 
-        'yor', //@lang
+        'yor', 
+        'kin', 
+        'shs', //@lang
         null
     );
     
