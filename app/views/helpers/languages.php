@@ -204,7 +204,13 @@ class LanguagesHelper extends AppHelper
             'ltz' => __('Luxembourgish',true), 
             'mgm' => __('Mambae',true), 
             'som' => __('Somali',true), 
-            'zul' => __('Zulu',true), //@lang 
+            'zul' => __('Zulu',true), 
+            'haw' => __('Hawaiian',true), 
+            'kir' => __('Kyrgyz',true), 
+            'mkd' => __('Macedonian',true), 
+            'mrj' => __('Hill Mari',true), 
+            'ppl' => __('Pipil',true), 
+            'yor' => __('Yoruba',true), //@lang 
         );
         
         asort($languages);

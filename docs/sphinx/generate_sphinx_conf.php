@@ -183,7 +183,13 @@ $languages = array(
     'ltz' => 'Luxembourgish' , 
     'mgm' => 'Mambae' , 
     'som' => 'Somali' , 
-    'zul' => 'Zulu' , //@lang
+    'zul' => 'Zulu' , 
+    'haw' => 'Hawaiian' , 
+    'kir' => 'Kyrgyz' , 
+    'mkd' => 'Macedonian' , 
+    'mrj' => 'Hill Mari' , 
+    'ppl' => 'Pipil' , 
+    'yor' => 'Yoruba' , //@lang
 );
 
 $languageWithStemmer = array(

@@ -101,7 +101,13 @@ class Sentence extends AppModel
         'ltz', 
         'mgm', 
         'som', 
-        'zul', //@lang
+        'zul', 
+        'haw', 
+        'kir', 
+        'mkd', 
+        'mrj', 
+        'ppl', 
+        'yor', //@lang
         null
     );
     
