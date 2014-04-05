@@ -867,10 +867,10 @@ class Sentence extends AppModel
      *
      */
     public function generateMetas(&$sentenceArray)
-	{
-		// Uncomment the line below you don't have the Chinese
-		// romanization tools installed.
-        return false;
+    {
+        // Uncomment the line below you don't have the Chinese
+        // romanization tools installed.
+        // return false;
         
         if ($sentenceArray['lang'] === 'cmn') {
             // we call the wonderful homebrewadso
