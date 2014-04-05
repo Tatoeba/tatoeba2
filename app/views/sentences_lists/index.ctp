@@ -56,26 +56,6 @@ if ($session->read('Auth.User.id')) {
     }
     ?>
 
-        <div class="module">
-        <h2><?php __('Still beta'); ?></h2>
-        <p>
-            <?php
-            __(
-                'This feature is still very basic. We will improve it as we '.
-                'get more time and some feedback from users.'
-            );
-            ?>
-        </p>
-        <p class="more_link">
-            <?php
-            echo $html->link(
-                __('Feedback', true),
-                array("controller"=>"pages", "action"=>"contact")
-            );
-            ?>
-        </p>
-        </div>
-
 <?php
 } else {
     ?>
