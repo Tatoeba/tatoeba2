@@ -210,7 +210,9 @@ class LanguagesHelper extends AppHelper
             'mkd' => __('Macedonian',true), 
             'mrj' => __('Hill Mari',true), 
             'ppl' => __('Pipil',true), 
-            'yor' => __('Yoruba',true), //@lang 
+            'yor' => __('Yoruba',true), 
+            'kin' => __('Kinyarwanda',true), 
+            'shs' => __('Shuswap',true), //@lang 
         );
         
         asort($languages);
