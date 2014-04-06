@@ -109,7 +109,11 @@ class Sentence extends AppModel
         'ppl', 
         'yor', 
         'kin', 
-        'shs', //@lang
+        'shs', 
+        'chv', 
+        'lkt', 
+        'ota', 
+        'sna', //@lang
         null
     );
     

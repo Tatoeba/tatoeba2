@@ -212,7 +212,11 @@ class LanguagesHelper extends AppHelper
             'ppl' => __('Pipil',true), 
             'yor' => __('Yoruba',true), 
             'kin' => __('Kinyarwanda',true), 
-            'shs' => __('Shuswap',true), //@lang 
+            'shs' => __('Shuswap',true), 
+            'chv' => __('Chuvash',true), 
+            'lkt' => __('Lakota',true), 
+            'ota' => __('Ottoman Turkish',true), 
+            'sna' => __('Shona',true), //@lang 
         );
         
         asort($languages);

@@ -191,7 +191,11 @@ $languages = array(
     'ppl' => 'Pipil' , 
     'yor' => 'Yoruba' , 
     'kin' => 'Kinyarwanda' , 
-    'shs' => 'Shuswap' , //@lang
+    'shs' => 'Shuswap' , 
+    'chv' => 'Chuvash' , 
+    'lkt' => 'Lakota' , 
+    'ota' => 'Ottoman Turkish' , 
+    'sna' => 'Shona' , //@lang
 );
 
 $languageWithStemmer = array(
