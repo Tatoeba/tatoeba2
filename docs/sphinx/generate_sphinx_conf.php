@@ -195,7 +195,10 @@ $languages = array(
     'chv' => 'Chuvash' , 
     'lkt' => 'Lakota' , 
     'ota' => 'Ottoman Turkish' , 
-    'sna' => 'Shona' , //@lang
+    'sna' => 'Shona' , 
+    'mnw' => 'Mon' , 
+    'nog' => 'Nogai' , 
+    'sah' => 'Yakut' , //@lang
 );
 
 $languageWithStemmer = array(

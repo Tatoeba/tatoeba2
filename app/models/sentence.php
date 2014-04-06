@@ -113,7 +113,10 @@ class Sentence extends AppModel
         'chv', 
         'lkt', 
         'ota', 
-        'sna', //@lang
+        'sna', 
+        'mnw', 
+        'nog', 
+        'sah', //@lang
         null
     );
     
