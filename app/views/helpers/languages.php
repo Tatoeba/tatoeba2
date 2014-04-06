@@ -216,7 +216,10 @@ class LanguagesHelper extends AppHelper
             'chv' => __('Chuvash',true), 
             'lkt' => __('Lakota',true), 
             'ota' => __('Ottoman Turkish',true), 
-            'sna' => __('Shona',true), //@lang 
+            'sna' => __('Shona',true), 
+            'mnw' => __('Mon',true), 
+            'nog' => __('Nogai',true), 
+            'sah' => __('Yakut',true), //@lang 
         );
         
         asort($languages);
