@@ -1,21 +1,26 @@
 #!/bin/bash
 
-apt-get install -y git cmake g++ libevent-dev libexpat1-dev libgmm++-dev libmecab-dev mecab-naist-jdic
+#Install dependencies
+sudo apt-get install -y git cmake g++ libevent-dev libexpat1-dev libgmm++-dev libmecab-dev mecab-naist-jdic
 
+#Grab source
 git clone https://github.com/allan-simon/nihongoparserd.git
 
+#Generate makefile and compile
 cd nihongoparserd
 mkdir build
 cd build
 cmake ..
 make
-ln -s $(pwd)/nihongoparserd /usr/local/bin/nihongoparserd
 
-cp ../conf/nihongoparserd /etc/init.d/
-chmod +x /etc/init.d/nihongoparserd
+#Copy binary to system-wide location
+sudo cp nihongoparserd /usr/local/bin/nihongoparserd
 
-cp ../conf/default /etc/default/nihongoparserd
+#Copy init and default files to system-wide location
+sudo cp ../conf/nihongoparserd /etc/init.d/
+sudo chmod +x /etc/init.d/nihongoparserd
+sudo cp ../conf/default /etc/default/nihongoparserd
 
-useradd -r nihongoparserd
+sudo useradd -r nihongoparserd
 /etc/init.d/nihongoparserd start
-update-rc.d nihongoparserd defaults
+sudo update-rc.d nihongoparserd defaults
