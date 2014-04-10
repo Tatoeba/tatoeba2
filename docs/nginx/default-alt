@@ -26,9 +26,9 @@ server {
 	}
 
 	# Comment this out when the subdomain for static files is activated
-	#location ~ /(img|js|css)/ {
-	#	try_files /app/webroot/$uri =404;
-	#}
+	location ~ /(img|js|css)/ {
+		try_files /app/webroot/$uri =404;
+	}
 
 	location ~ /(\.ht|\.svn) {
 		deny all;
