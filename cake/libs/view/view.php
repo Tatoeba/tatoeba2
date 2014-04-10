@@ -5,15 +5,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.view
  * @since         CakePHP(tm) v 0.10.0.1076
@@ -387,8 +386,8 @@ class View extends Object {
 			if ($layout && $this->autoLayout) {
 				$out = $this->renderLayout($out, $layout);
 				$isCached = (
-					isset($this->loaded['cache']) &&
-					(($this->cacheAction != false)) && (Configure::read('Cache.check') === true)
+					isset($this->loaded['cache']) ||
+					Configure::read('Cache.check') === true
 				);
 
 				if ($isCached) {
@@ -688,7 +687,7 @@ class View extends Object {
 				$cache->controllerName = $this->name;
 				$cache->layout = $this->layout;
 				$cache->cacheAction = $this->cacheAction;
-				$cache->cache($___viewFn, $out, $cached);
+				$out = $cache->cache($___viewFn, $out, $cached);
 			}
 		}
 		return $out;

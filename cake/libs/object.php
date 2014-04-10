@@ -8,15 +8,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 0.2.9
@@ -248,7 +247,7 @@ class Object {
 		$file = 'persistent' . DS . strtolower($name) . '.php';
 		$objectArray = array(&$object);
 		$data = str_replace('\\', '\\\\', serialize($objectArray));
-		$data = '<?php $' . $name . ' = \'' . str_replace('\'', '\\\'', $data) . '\' ?>';
+		$data = '<?php $' . Inflector::slug($name) . ' = \'' . str_replace('\'', '\\\'', $data) . '\' ?>';
 		$duration = '+999 days';
 		if (Configure::read() >= 1) {
 			$duration = '+10 seconds';
@@ -288,7 +287,7 @@ class Object {
 				unset($vars);
 			break;
 			default:
-				$vars = unserialize(${$name});
+				$vars = unserialize(${Inflector::slug($name)});
 				$this->{$name} = $vars['0'];
 				unset($vars);
 			break;

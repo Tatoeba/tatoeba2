@@ -7,15 +7,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2006-2010, Cake Software Foundation, Inc.
+ * CakePHP :  Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc.
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2006-2010, Cake Software Foundation, Inc.
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc.
+ * @link          http://cakefoundation.org/projects/info/cakephp CakePHP Project
  * @package       cake
  * @subpackage    cake.tests.cases.console.libs.tasks
  * @since         CakePHP v 1.2.6
@@ -44,7 +43,7 @@ Mock::generatePartial(
 );
 Mock::generatePartial(
 	'ModelTask', 'MockModelTask',
-	array('in', 'out', 'createFile')
+	array('in', 'out', 'createFile', '_checkUnitTest')
 );
 /**
  * ModelTaskTest class
@@ -53,7 +52,7 @@ Mock::generatePartial(
  * @subpackage    cake.tests.cases.console.libs.tasks
  */
 class ModelTaskTest extends CakeTestCase {
-	var $fixtures = array('core.datatype', 'core.binary_test');
+	var $fixtures = array('core.datatype', 'core.binary_test', 'core.article');
 /**
  * setUp method
  *
@@ -87,6 +86,24 @@ class ModelTaskTest extends CakeTestCase {
 
 		$result = $this->Task->fixture('BinaryTest');
 		$this->assertPattern("/'data' => 'Lorem ipsum dolor sit amet'/", $result);
+	}
+/**
+ * test that execute passes runs bake depending with named model.
+ *
+ * @return void
+ * @access public
+ */
+	function testBakeModel() {
+		$this->Task->connection = 'test_suite';
+		$this->Task->path = '/my/path/';
+		$filename = '/my/path/article.php';
+		$this->Task->setReturnValue('_checkUnitTest', 1);
+		$this->Task->expectAt(0, 'createFile', array($filename, new PatternExpectation('/class Article extends AppModel/')));
+		$model =& new Model(array('name' => 'Article', 'table' => 'articles', 'ds' => 'test_suite'));
+		$this->Task->bake($model);
+
+		$this->assertEqual(count(ClassRegistry::keys()), 0);
+		$this->assertEqual(count(ClassRegistry::mapKeys()), 0);
 	}
 }
 ?>

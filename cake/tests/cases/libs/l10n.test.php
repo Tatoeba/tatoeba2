@@ -8,13 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
@@ -429,6 +428,10 @@ class L10nTest extends CakeTestCase {
 		$result = $l10n->map(array('xho', 'xh'));
 		$expected = array('xho' => 'xh', 'xh' => 'xho');
 		$this->assertEqual($result, $expected);
+	
+		$result = $l10n->map(array('cy', 'cym'));
+		$expected = array('cym' => 'cy', 'cy' => 'cym');
+		$this->assertEqual($result, $expected);
 
 		$result = $l10n->map(array('yid', 'yi'));
 		$expected = array('yid' => 'yi', 'yi' => 'yid');
@@ -822,7 +825,7 @@ class L10nTest extends CakeTestCase {
 		$result = $l10n->catalog(array('sv', 'sv-fi'));
 		$expected = array(
 			'sv' => array('language' => 'Swedish', 'locale' => 'swe', 'localeFallback' => 'swe', 'charset' => 'utf-8'),
-			'sv-fi' => array('language' => 'Swedish (Findland)', 'locale' => 'sv_fi', 'localeFallback' => 'swe', 'charset' => 'utf-8')
+			'sv-fi' => array('language' => 'Swedish (Finland)', 'locale' => 'sv_fi', 'localeFallback' => 'swe', 'charset' => 'utf-8')
 		);
 		$this->assertEqual($result, $expected);
 
@@ -883,6 +886,12 @@ class L10nTest extends CakeTestCase {
 		$result = $l10n->catalog(array('vi'));
 		$expected = array(
 			'vi' => array('language' => 'Vietnamese', 'locale' => 'vie', 'localeFallback' => 'vie', 'charset' => 'utf-8')
+		);
+		$this->assertEqual($result, $expected);
+
+		$result = $l10n->catalog(array('cy'));
+		$expected = array(
+			'cy' => array('language' => 'Welsh', 'locale' => 'cym', 'localeFallback' => 'cym', 'charset' => 'utf-8')
 		);
 		$this->assertEqual($result, $expected);
 

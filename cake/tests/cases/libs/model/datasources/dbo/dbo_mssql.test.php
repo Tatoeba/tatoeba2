@@ -5,15 +5,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 1.2.0
@@ -627,6 +626,31 @@ class DboMssqlTest extends CakeTestCase {
     		'INSERT INTO [mssql_test_models] ([name], [login]) VALUES (\'Renan\', \'renan.saddam\')'
 		);
 		$this->assertEqual($result, $expected);
+	}
+/**
+ * testLastError
+ *
+ * @return void
+ * @access public
+ */
+	function testLastError() {
+		$debug = Configure::read('debug');
+		Configure::write('debug', 0);
+
+		$this->db->simulate = false;
+		$query = 'SELECT [name] FROM [categories]';
+		$this->assertTrue($this->db->execute($query) !== false);
+		$this->assertNull($this->db->lastError());
+
+		$query = 'SELECT [inexistent_field] FROM [categories]';
+		$this->assertFalse($this->db->execute($query));
+		$this->assertNotNull($this->db->lastError());
+
+		$query = 'SELECT [name] FROM [categories]';
+		$this->assertTrue($this->db->execute($query) !== false);
+		$this->assertNull($this->db->lastError());
+
+		Configure::write('debug', $debug);
 	}
 }
 ?>

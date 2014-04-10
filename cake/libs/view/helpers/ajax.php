@@ -7,15 +7,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.view.helpers
  * @since         CakePHP(tm) v 0.10.0.1076
@@ -208,11 +207,12 @@ class AjaxHelper extends AppHelper {
 			$options['url'] = $href;
 		}
 
-		if (isset($confirm)) {
+		if (!empty($confirm)) {
 			$options['confirm'] = $confirm;
 			unset($confirm);
 		}
 		$htmlOptions = $this->__getHtmlOptions($options, array('url'));
+		$options += array('safe' => true);
 
 		if (empty($options['fallback']) || !isset($options['fallback'])) {
 			$options['fallback'] = $href;
@@ -258,7 +258,14 @@ class AjaxHelper extends AppHelper {
 			$func = "new Ajax.Request(";
 		}
 
-		$func .= "'" . $this->url(isset($options['url']) ? $options['url'] : "") . "'";
+		$url = isset($options['url']) ? $options['url'] : "";
+		if (empty($options['safe'])) {
+			$url = $this->url($url);
+		} else {
+			$url = Router::url($url);
+		}
+
+		$func .= "'" . $url . "'";
 		$func .= ", " . $this->__optionsForAjax($options) . ")";
 
 		if (isset($options['before'])) {
@@ -292,7 +299,7 @@ class AjaxHelper extends AppHelper {
 	function remoteTimer($options = null) {
 		$frequency = (isset($options['frequency'])) ? $options['frequency'] : 10;
 		$callback = $this->remoteFunction($options);
-		$code = "new PeriodicalExecuter(function() {{$callback}}, $frequency)";
+		$code = "new PeriodicalExecuter(function(pe) {{$callback}}, $frequency)";
 		return $this->Javascript->codeBlock($code);
 	}
 /**

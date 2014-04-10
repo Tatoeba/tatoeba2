@@ -8,15 +8,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright 2005-2010,	Cake Software Foundation, Inc.
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.console
  * @since         CakePHP(tm) v 1.2.0.5012
@@ -133,7 +132,7 @@ class ShellDispatcher {
 	function __initConstants() {
 		if (function_exists('ini_set')) {
 			ini_set('display_errors', '1');
-			ini_set('error_reporting', E_ALL & ~E_DEPRECATED);
+			ini_set('error_reporting', E_ALL & ~E_DEPRECATED & ~E_STRICT);
 			ini_set('html_errors', false);
 			ini_set('implicit_flush', true);
 			ini_set('max_execution_time', 0);
@@ -258,7 +257,6 @@ class ShellDispatcher {
 			Configure::buildPaths(array());
 		}
 
-		Configure::write('debug', 1);
 		return true;
 	}
 /**
@@ -393,7 +391,7 @@ class ShellDispatcher {
 			$printOptions = '(' . implode('/', $options) . ')';
 		}
 
-		if ($default == null) {
+		if ($default === null) {
 			$this->stdout($prompt . " $printOptions \n" . '> ', false);
 		} else {
 			$this->stdout($prompt . " $printOptions \n" . "[$default] > ", false);

@@ -8,13 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2006-2010, Cake Software Foundation, Inc.
+ * Copyright 2005-2012, Cake Software Foundation, Inc.
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2006-2010, Cake Software Foundation, Inc.
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc.
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
@@ -174,8 +173,8 @@ class JavascriptTest extends CakeTestCase {
 		$expected = '<script type="text/javascript" src="js/jquery-1.1.2.js"></script>';
 		$this->assertEqual($result, $expected);
 
-		$result = $this->Javascript->link('jquery-1.1.2');
-		$expected = '<script type="text/javascript" src="js/jquery-1.1.2.js"></script>';
+		$result = $this->Javascript->link('jquery-1.1.2.php');
+		$expected = '<script type="text/javascript" src="js/jquery-1.1.2.php"></script>';
 		$this->assertEqual($result, $expected);
 
 		$result = $this->Javascript->link('/plugin/js/jquery-1.1.2');
@@ -393,6 +392,13 @@ class JavascriptTest extends CakeTestCase {
 			$result = $this->Javascript->object($data);
 			$this->assertEqual($result, $expected);
 		}
+		
+		$object = array('title' => 'New thing', 'indexes' => array(5, 6, 7, 8), 'object' => array('inner' => array('value' => 1)));
+		$result = $this->Javascript->object($object, array('prefix' => 'PREFIX', 'postfix' => 'POSTFIX'));
+		$this->assertPattern('/^PREFIX/', $result);
+		$this->assertPattern('/POSTFIX$/', $result);
+		$this->assertNoPattern('/.PREFIX./', $result);
+		$this->assertNoPattern('/.POSTFIX./', $result);
 
 		if ($this->Javascript->useNative) {
 			$this->Javascript->useNative = false;

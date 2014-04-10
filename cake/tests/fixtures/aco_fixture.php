@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Short description for file.
  *
@@ -8,13 +7,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.fixtures
@@ -60,15 +58,18 @@ class AcoFixture extends CakeTestFixture {
  * @access public
  */
 	var $records = array(
-		array('parent_id' => null, 	'model' => null, 'foreign_key' => null, 'alias' => 'ROOT',			'lft' => 1,  'rght' => 18),
-		array('parent_id' => 1,		'model' => null, 'foreign_key' => null, 'alias' => 'Controller1',	'lft' => 2,  'rght' => 9),
-		array('parent_id' => 2,		'model' => null, 'foreign_key' => null, 'alias' => 'action1',		'lft' => 3,  'rght' => 6),
-		array('parent_id' => 3,		'model' => null, 'foreign_key' => null, 'alias' => 'record1',		'lft' => 4,  'rght' => 5),
-		array('parent_id' => 2,		'model' => null, 'foreign_key' => null, 'alias' => 'action2',		'lft' => 7,  'rght' => 8),
-		array('parent_id' => 1,		'model' => null, 'foreign_key' => null, 'alias' => 'Controller2',	'lft' => 10, 'rght' => 17),
-		array('parent_id' => 6,		'model' => null, 'foreign_key' => null, 'alias' => 'action1',		'lft' => 11, 'rght' => 14),
-		array('parent_id' => 7,		'model' => null, 'foreign_key' => null, 'alias' => 'record1',		'lft' => 12, 'rght' => 13),
-		array('parent_id' => 6,		'model' => null, 'foreign_key' => null, 'alias' => 'action2',		'lft' => 15, 'rght' => 16),
+		array('parent_id' => null, 'model' => null, 'foreign_key' => null, 'alias' => 'ROOT', 'lft' => 1,  'rght' => 24),
+		array('parent_id' => 1, 'model' => null, 'foreign_key' => null, 'alias' => 'Controller1', 'lft' => 2,  'rght' => 9),
+		array('parent_id' => 2, 'model' => null, 'foreign_key' => null, 'alias' => 'action1', 'lft' => 3,  'rght' => 6),
+		array('parent_id' => 3, 'model' => null, 'foreign_key' => null, 'alias' => 'record1', 'lft' => 4,  'rght' => 5),
+		array('parent_id' => 2, 'model' => null, 'foreign_key' => null, 'alias' => 'action2', 'lft' => 7,  'rght' => 8),
+		array('parent_id' => 1, 'model' => null, 'foreign_key' => null, 'alias' => 'Controller2','lft' => 10, 'rght' => 17),
+		array('parent_id' => 6, 'model' => null, 'foreign_key' => null, 'alias' => 'action1', 'lft' => 11, 'rght' => 14),
+		array('parent_id' => 7, 'model' => null, 'foreign_key' => null, 'alias' => 'record1', 'lft' => 12, 'rght' => 13),
+		array('parent_id' => 6, 'model' => null, 'foreign_key' => null, 'alias' => 'action2', 'lft' => 15, 'rght' => 16),
+		array('parent_id' => 1, 'model' => null, 'foreign_key' => null, 'alias' => 'Users', 'lft' => 18, 'rght' => 23),
+		array('parent_id' => 9, 'model' => null, 'foreign_key' => null, 'alias' => 'Users', 'lft' => 19, 'rght' => 22),
+		array('parent_id' => 10, 'model' => null, 'foreign_key' => null, 'alias' => 'view', 'lft' => 20, 'rght' => 21),
 	);
 }
 

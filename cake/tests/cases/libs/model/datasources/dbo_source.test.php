@@ -8,13 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *	Licensed under The Open Group Test Suite License
  *	Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model.datasources
@@ -1226,6 +1225,7 @@ class DboSourceTest extends CakeTestCase {
 	function endTest() {
 		unset($this->Model);
 		Configure::write('debug', $this->debug);
+		ClassRegistry::flush();
 		unset($this->debug);
 	}
 /**
@@ -3325,6 +3325,10 @@ class DboSourceTest extends CakeTestCase {
 		$result = $this->testDb->order(array('Property.sale_price IS NULL'));
 		$expected = ' ORDER BY `Property`.`sale_price` IS NULL ASC';
 		$this->assertEqual($result, $expected);
+
+		$result = $this->testDb->order(array('Export.column-name' => 'ASC'));
+		$expected = ' ORDER BY `Export`.`column-name`  ASC';
+		$this->assertEqual($result, $expected, 'Columns with -s are not working with order() %s');
 	}
 /**
  * testComplexSortExpression method
@@ -3883,6 +3887,36 @@ class DboSourceTest extends CakeTestCase {
 		$this->assertNoPattern('/Aff:/s', $contents);
 		$this->assertNoPattern('/Num:/s', $contents);
 		$this->assertNoPattern('/Took:/s', $contents);
+	}
+
+/**
+ * test the permutations of fullTableName()
+ *
+ * @return void
+ */
+	function testFullTablePermutations() {
+		$Article =& ClassRegistry::init('Article');
+		$result = $this->testDb->fullTableName($Article, false);
+		$this->assertEqual($result, 'articles');
+
+		$Article->tablePrefix = 'tbl_';
+		$result = $this->testDb->fullTableName($Article, false);
+		$this->assertEqual($result, 'tbl_articles');
+	}
+
+/**
+ * test that read() only calls queryAssociation on db objects when the method is defined.
+ *
+ * @return void
+ */
+	function testReadOnlyCallingQueryAssociationWhenDefined() {
+		ConnectionManager::create('test_no_queryAssociation', array(
+			'datasource' => 'data'
+		));
+		$Article =& ClassRegistry::init('Article');
+		$Article->Comment->useDbConfig = 'test_no_queryAssociation';
+		$result = $Article->find('all');
+		$this->assertTrue(is_array($result));
 	}
 }
 ?>

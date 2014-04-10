@@ -8,13 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
@@ -48,12 +47,12 @@ class PaginatorHelperTest extends CakeTestCase {
 				'nextPage' => true,
 				'pageCount' => 7,
 				'defaults' => array(
-					'order' => 'Article.date ASC',
+					'order' => array('Article.date' => 'asc'),
 					'limit' => 9,
 					'conditions' => array()
 				),
 				'options' => array(
-					'order' => 'Article.date ASC',
+					'order' => array('Article.date' => 'asc'),
 					'limit' => 9,
 					'page' => 1,
 					'conditions' => array()
@@ -132,7 +131,7 @@ class PaginatorHelperTest extends CakeTestCase {
 		Router::reload();
 		Router::parse('/');
 		Router::setRequestInfo(array(
-			array('plugin' => null, 'controller' => 'accounts', 'action' => 'index', 'pass' => array(), 'form' => array(), 'url' => array('url' => 'accounts/', 'mod_rewrite' => 'true'), 'bare' => 0),
+			array('plugin' => null, 'controller' => 'accounts', 'action' => 'index', 'pass' => array(), 'form' => array(), 'url' => array('url' => 'accounts/'), 'bare' => 0),
 			array('plugin' => null, 'controller' => null, 'action' => null, 'base' => '/officespace', 'here' => '/officespace/accounts/', 'webroot' => '/officespace/', 'passedArgs' => array())
 		));
 		$this->Paginator->options(array('url' => array('param')));
@@ -241,9 +240,15 @@ class PaginatorHelperTest extends CakeTestCase {
  */
 	function testSortKey() {
 		$result = $this->Paginator->sortKey(null, array(
-				'order' => array('Article.title' => 'desc'
+			'order' => array('Article.title' => 'desc'
 		)));
 		$this->assertEqual('Article.title', $result);
+
+		$result = $this->Paginator->sortKey('Article', array('sort' => 'Article.title'));
+		$this->assertEqual($result, 'Article.title');
+
+		$result = $this->Paginator->sortKey('Article', array('sort' => 'Article'));
+		$this->assertEqual($result, 'Article');
 	}
 /**
  * testSortDir method

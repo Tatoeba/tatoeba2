@@ -7,15 +7,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.view.helpers
  * @since         CakePHP(tm) v 1.1.7.3328
@@ -58,6 +57,8 @@ class SessionHelper extends CakeSession {
 	function __construct($base = null) {
 		if (Configure::read('Session.start') === true) {
 			parent::__construct($base, false);
+			$this->start();
+			$this->__active = true;
 		} else {
 			$this->__active = false;
 		}
@@ -176,25 +177,16 @@ class SessionHelper extends CakeSession {
 		trigger_error(__('You can not write to a Session from the view', true), E_USER_WARNING);
 	}
 /**
- * Session id
- *
- * @return string Session id
- * @access public
- */
-	function id() {
-		return parent::id();
-	}
-/**
  * Determine if Session has been started
  * and attempt to start it if not
  *
  * @return boolean true if Session is already started, false if
  * Session could not be started
- * @access public
+ * @access private
  */
 	function __start() {
-		if (!parent::started()) {
-			parent::start();
+		if (!$this->started()) {
+			return $this->start();
 		}
 		return true;
 	}

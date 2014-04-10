@@ -8,13 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model
@@ -259,6 +258,24 @@ class Article extends CakeTestModel {
 		return true;
 	}
 }
+/**
+ * Model stub for beforeDelete testing
+ *
+ * @see #250
+ * @package cake.tests
+ */
+class BeforeDeleteComment extends CakeTestModel {
+	var $name = 'BeforeDeleteComment';
+	
+	var $useTable = 'comments';
+
+	function beforeDelete($cascade = true) {
+		$db =& $this->getDataSource();
+		$db->delete($this, array($this->alias . '.' . $this->primaryKey => array(1, 3)));
+		return true;
+	}
+}
+
 /**
  * NumericArticle class
  *

@@ -8,13 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.controller
@@ -527,6 +526,14 @@ class ControllerTest extends CakeTestCase {
 		$this->assertIdentical($Controller->params['paging']['ControllerPost']['pageCount'], 3);
 		$this->assertIdentical($Controller->params['paging']['ControllerPost']['prevPage'], false);
 		$this->assertIdentical($Controller->params['paging']['ControllerPost']['nextPage'], true);
+
+		$Controller->passedArgs = array();
+		$Controller->paginate = array('limit' => '-1');
+		$Controller->paginate('ControllerPost');
+		$this->assertIdentical($Controller->params['paging']['ControllerPost']['page'], 1);
+		$this->assertIdentical($Controller->params['paging']['ControllerPost']['pageCount'], 3);
+		$this->assertIdentical($Controller->params['paging']['ControllerPost']['prevPage'], false);
+		$this->assertIdentical($Controller->params['paging']['ControllerPost']['nextPage'], true);
 	}
 /**
  * testPaginateExtraParams method
@@ -930,6 +937,10 @@ class ControllerTest extends CakeTestCase {
 		$this->assertEqual(count(array_diff($TestController->uses, $uses)), 0);
 		$this->assertEqual(count(array_diff_assoc(Set::normalize($TestController->components), Set::normalize($components))), 0);
 
+		$expected = array('ControllerComment', 'ControllerAlias', 'ControllerPost');
+		$this->assertEqual($expected, $TestController->uses, '$uses was merged incorrectly, AppController models should be last.');
+		
+
 		$TestController =& new AnotherTestController();
 		$TestController->constructClasses();
 
@@ -1069,13 +1080,30 @@ class ControllerTest extends CakeTestCase {
 
 		$TestController->ControllerComment->invalidate('some_field', 'error_message');
 		$TestController->ControllerComment->invalidate('some_field2', 'error_message2');
-		$comment = new ControllerComment;
+		$comment =& new ControllerComment();
 		$comment->set('someVar', 'data');
 		$result = $TestController->validateErrors($comment);
 		$expected = array('some_field' => 'error_message', 'some_field2' => 'error_message2');
 		$this->assertIdentical($result, $expected);
 		$this->assertEqual($TestController->validate($comment), 2);
 	}
+/**
+ * test that validateErrors works with any old model.
+ *
+ * @return void
+ */
+	function testValidateErrorsOnArbitraryModels() {
+		$TestController =& new TestController();
+
+		$Post = new ControllerPost();
+		$Post->validate = array('title' => 'notEmpty');
+		$Post->set('title', '');
+		$result = $TestController->validateErrors($Post);
+
+		$expected = array('title' => 'This field cannot be left blank');
+		$this->assertEqual($result, $expected);
+	}
+
 /**
  * testPostConditions method
  *
@@ -1160,5 +1188,23 @@ class ControllerTest extends CakeTestCase {
 		$this->assertEqual($Controller->RequestHandler->prefers(), 'rss');
 		unset($Controller);
 	}
+
+/**
+ * Tests that the correct alias is selected
+ *
+ * @return void
+ */
+	function testValidateSortAlias() {
+		$Controller =& new Controller();
+		$Controller->uses = array('ControllerPost', 'ControllerComment');
+		$Controller->passedArgs[] = '1';
+		$Controller->params['url'] = array();
+		$Controller->constructClasses();
+		$Controller->passedArgs = array('sort' => 'Derp.id', 'direction' => 'asc');
+		$results = Set::extract($Controller->paginate('ControllerPost'), '{n}.ControllerPost.id');
+		$this->assertEqual($Controller->params['paging']['ControllerPost']['page'], 1);
+		$this->assertEqual($results, array(1, 2, 3));
+	}
+
 }
 ?>

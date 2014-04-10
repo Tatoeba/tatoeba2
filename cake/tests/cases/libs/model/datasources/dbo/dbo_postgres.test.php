@@ -5,15 +5,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 1.2.0
@@ -158,7 +157,8 @@ class DboPostgresTest extends CakeTestCase {
  * @access public
  */
 	var $fixtures = array('core.user', 'core.binary_test', 'core.comment', 'core.article',
-		'core.tag', 'core.articles_tag', 'core.attachment', 'core.person', 'core.post', 'core.author');
+		'core.tag', 'core.articles_tag', 'core.attachment', 'core.person', 'core.post', 'core.author',
+	);
 /**
  * Actual DB connection used in testing
  *
@@ -472,22 +472,32 @@ class DboPostgresTest extends CakeTestCase {
 		$db1->query('CREATE TABLE ' .  $db1->fullTableName('datatypes') . ' (
 			id serial NOT NULL,
 			"varchar" character varying(40) NOT NULL,
+			"full_length" character varying NOT NULL,
 			"timestamp" timestamp without time zone,
 			date date,
 			CONSTRAINT test_suite_data_types_pkey PRIMARY KEY (id)
 		)');
-		$model =& ClassRegistry::init('datatypes');
+		$model = new Model(array('name' => 'Datatype', 'ds' => 'test_suite'));
 		$schema = new CakeSchema(array('connection' => 'test_suite'));
-		$result = $schema->read(array('connection' => 'test_suite'));
-		$schema->tables = $result['tables']['missing'];
+		$result = $schema->read(array(
+			'connection' => 'test_suite',
+			'models' => array('Datatype')
+		));
+		$schema->tables = array('datatypes' => $result['tables']['datatypes']);
 		$result = $db1->createSchema($schema, 'datatypes');
+
 		$this->assertNoPattern('/timestamp DEFAULT/', $result);
+		$this->assertPattern('/\"full_length\"\s*text\s.*,/', $result);
 		$this->assertPattern('/timestamp\s*,/', $result);
 
 		$db1->query('DROP TABLE ' . $db1->fullTableName('datatypes'));
+
 		$db1->query($result);
-		$result2 = $schema->read(array('connection' => 'test_suite'));
-		$schema->tables = $result2['tables']['missing'];
+		$result2 = $schema->read(array(
+			'connection' => 'test_suite',
+			'models' => array('Datatype')
+		));
+		$schema->tables = array('datatypes' => $result2['tables']['datatypes']);
 		$result2 = $db1->createSchema($schema, 'datatypes');
 		$this->assertEqual($result, $result2);
 
@@ -642,6 +652,23 @@ class DboPostgresTest extends CakeTestCase {
 		$this->assertEqual(array(), $indexes);
 
 		$this->db->query($this->db->dropSchema($schema1));
+	}
+
+/**
+ * test that saveAll works even with conditions that lack a model name.
+ *
+ * @return void
+ */
+	function testUpdateAllWithNonQualifiedConditions() {
+		$this->loadFixtures('Article');
+		$Article =& new Article();
+		$result = $Article->updateAll(array('title' => "'Awesome'"), array('title' => 'Third Article'));
+		$this->assertTrue($result);
+
+		$result = $Article->find('count', array(
+			'conditions' => array('Article.title' => 'Awesome')
+		));
+		$this->assertEqual($result, 1, 'Article count is wrong or fixture has changed.');
 	}
 }
 ?>
