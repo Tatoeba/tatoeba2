@@ -1,29 +1,24 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * XmlTest file
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
  * @since         CakePHP(tm) v 1.2.0.5432
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 App::import('Core', 'Xml');
+
 /**
  * XmlTest class
  *
@@ -31,6 +26,7 @@ App::import('Core', 'Xml');
  * @subpackage    cake.tests.cases.libs
  */
 class XmlTest extends CakeTestCase {
+
 /**
  * setUp method
  *
@@ -41,6 +37,7 @@ class XmlTest extends CakeTestCase {
 		$manager =& new XmlManager();
 		$manager->namespaces = array();
 	}
+
 /**
  * testRootTagParsing method
  *
@@ -58,6 +55,7 @@ class XmlTest extends CakeTestCase {
 		$this->assertEqual($xml->children[0]->children[0]->name, 'current');
 		$this->assertEqual($xml->toString(true), $input);
 	}
+
 /**
  * testSerialization method
  *
@@ -116,10 +114,28 @@ class XmlTest extends CakeTestCase {
 	}
 
 /**
+ * testSerializeCapsWithoutSlug method
+ *
+ * @access public
+ * @return void
+ */
+	function testSerializeCapsWithoutSlug() {
+		$data = array(
+			'USERS' => array(
+				array('USER' => array('ID' => 1)),
+				array('USER' => array('ID' => 2))
+			)
+		);
+		$result =& new Xml($data, array('format' => 'tags', 'slug' => false));
+		$expected = '<USERS><USER><ID>1</ID></USER><USER><ID>2</ID></USER></USERS>';
+		$this->assertIdentical($result->toString(), $expected);
+	}
+
+/**
  * test serialization of boolean and null values.  false = 0, true = 1, null = ''
  *
  * @return void
- **/
+ */
 	function testSerializationOfBooleanAndBooleanishValues() {
 		$xml =& new Xml(array('data' => array('example' => false)));
 		$result = $xml->toString(false);
@@ -146,6 +162,7 @@ class XmlTest extends CakeTestCase {
 		$expected = '<data example="1" />';
 		$this->assertEqual($result, $expected, 'Boolean-ish values incorrectly handled. %s');
 	}
+
 /**
  * testSimpleArray method
  *
@@ -159,6 +176,7 @@ class XmlTest extends CakeTestCase {
 		$expected = '<hello><![CDATA[world]]></hello>';
 		$this->assertEqual($expected, $result);
 	}
+
 /**
  * testSimpleObject method
  *
@@ -174,6 +192,7 @@ class XmlTest extends CakeTestCase {
 		$expected = '<hello><![CDATA[world]]></hello>';
 		$this->assertEqual($expected, $result);
 	}
+
 /**
  * testSimpleArrayWithZeroValues method
  *
@@ -218,6 +237,7 @@ class XmlTest extends CakeTestCase {
 		$expected = '<'.'?xml version="1.0" encoding="UTF-8" ?'.'>'."\n".'<hello><![CDATA[world]]></hello>';
 		$this->assertEqual($expected, $result);
 	}
+
 /**
  * testOwnerAssignment method
  *
@@ -234,6 +254,7 @@ class XmlTest extends CakeTestCase {
 		$childOwner =& $children[0]->document();
 		$this->assertTrue($xml === $childOwner);
 	}
+
 /**
  * testArraySingleSerialization method
  *
@@ -266,6 +287,7 @@ class XmlTest extends CakeTestCase {
 		$result = $xml->toString(false);
 		$this->assertEqual($expected, $result);
 	}
+
 /**
  * testArraySerialization method
  *
@@ -293,6 +315,7 @@ class XmlTest extends CakeTestCase {
 		$result = $xml->toString(array('header' => false, 'cdata' => false));
 		$this->assertEqual($expected, $result);
 	}
+
 /**
  * testNestedArraySerialization method
  *
@@ -334,6 +357,7 @@ class XmlTest extends CakeTestCase {
 		$result = $xml->toString(array('header' => false, 'cdata' => false));
 		$this->assertEqual($expected, $result);
 	}
+
 /**
  * Prove that serialization with a given root node works
  * as expected.
@@ -354,6 +378,7 @@ class XmlTest extends CakeTestCase {
 		$result = $Xml->toString(array('header' => false));
 		$this->assertEqual($expected, $result);
 	}
+
 /**
  * testCloneNode
  *
@@ -365,6 +390,7 @@ class XmlTest extends CakeTestCase {
 		$twin =& $node->cloneNode();
 		$this->assertEqual($node, $twin);
 	}
+
 /**
  * testNextSibling
  *
@@ -398,6 +424,7 @@ class XmlTest extends CakeTestCase {
 		$noFriends =& $xml->children[0]->children[12];
 		$this->assertNull($noFriends->nextSibling());
 	}
+
 /**
  * testPreviousSibling
  *
@@ -427,6 +454,7 @@ class XmlTest extends CakeTestCase {
 
 		$this->assertNull($prevSibling->previousSibling());
 	}
+
 /**
  * testAddAndRemoveAttributes
  *
@@ -624,6 +652,7 @@ class XmlTest extends CakeTestCase {
 	 	$result = $xml->toString(array('header' => false, 'cdata' => false));
 	 	$this->assertEqual($expected, $result);
 	} */
+
 /**
  * testAllCData method
  *
@@ -659,6 +688,7 @@ class XmlTest extends CakeTestCase {
 	 	$expected = '<project>&#233;c&#238;t</project>';
 	 	$this->assertEqual($result, $expected);
 	} */
+
 /**
  * testWhitespace method
  *
@@ -686,6 +716,7 @@ class XmlTest extends CakeTestCase {
 		$result = $xml->toString(array('header' => false, 'cdata' => false, 'whitespace' => true));
 		$this->assertEqual($expected, $result);
 	}
+
 /**
  * testSetSerialization method
  *
@@ -713,6 +744,7 @@ class XmlTest extends CakeTestCase {
 		$result = $xml->toString(array('header' => false, 'cdata' => false));
 		$this->assertEqual($expected, $result);
 	}
+
 /**
  * ensure that normalize does not add _name_ elements that come from Set::map sometimes.
  *
@@ -743,12 +775,13 @@ class XmlTest extends CakeTestCase {
 		$result = $xml->toString();
 		$this->assertEqual($source, $result);
 	}
+
 /**
  * test that elements with empty tag values do not collapse and corrupt data structures
  *
  * @access public
  * @return void
- **/
+ */
 	function testElementCollapsing() {
 		$xmlDataThatFails = '<resultpackage>
 		<result qid="46b1c46ed6208"><![CDATA[46b1c46ed3af9]]></result>
@@ -804,12 +837,13 @@ class XmlTest extends CakeTestCase {
 
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * test that empty values do not casefold collapse
  *
  * @see http://code.cakephp.org/tickets/view/8
  * @return void
- **/
+ */
 	function testCaseFoldingWithEmptyValues() {
 		$filledValue = '<method name="set_user_settings">
 			<title>update user information</title>
@@ -870,6 +904,7 @@ class XmlTest extends CakeTestCase {
 		$result = $xml->toString();
 		$this->assertEqual($source, $result);
 	}
+
 /**
  * testComplexParsing method
  *
@@ -882,6 +917,7 @@ class XmlTest extends CakeTestCase {
 		$result = $xml->toString(array('cdata' => false));
 		$this->assertEqual($source, $result);
 	}
+
 /**
  * testNamespaceParsing method
  *
@@ -901,6 +937,7 @@ class XmlTest extends CakeTestCase {
 		$children = $children[0]->children('rule');
 		$this->assertEqual($children[0]->namespace, 'b');
 	}
+
 /**
  * testNamespaces method
  *
@@ -913,11 +950,12 @@ class XmlTest extends CakeTestCase {
 
 		$expects = '<a:container xmlns:a="http://example.com/a" xmlns:b="http://example.com/b" xmlns:c="http://example.com/c" xmlns:d="http://example.com/d" xmlns:e="http://example.com/e" xmlns:f="http://example.com/f"><b:rule test=""><c:result>value</c:result></b:rule><d:rule test=""><e:result>value</e:result></d:rule></a:container>';
 
-		$_xml = XmlManager::getInstance();
+		$_xml =& XmlManager::getInstance();
 		$xml->addNamespace('f', 'http://example.com/f');
 		$result = $xml->toString(array('cdata' => false));
 		$this->assertEqual($expects, $result);
 	}
+
 /**
  * testEscapeCharSerialization method
  *
@@ -931,6 +969,7 @@ class XmlTest extends CakeTestCase {
 		$expected = '<std_class text="JavaScript &amp; DHTML" />';
 		$this->assertEqual($expected, $result);
 	}
+
 /**
  * testCompleteEscapeCharSerialization method
  *
@@ -944,6 +983,7 @@ class XmlTest extends CakeTestCase {
 		$expected = '<std_class text="&lt;&gt;&amp;&quot;&#039;" />';
 		$this->assertEqual($expected, $result);
 	}
+
 /**
  * testToArray method
  *
@@ -1282,6 +1322,7 @@ class XmlTest extends CakeTestCase {
 		);
 		$this->assertIdentical($result,$expected);
 	}
+
 /**
  * testAppend method
  *
@@ -1303,6 +1344,7 @@ class XmlTest extends CakeTestCase {
 		$this->expectError();
 		$parentNode->append($parentNode);
 	}
+
 /**
  * testNamespacing method
  *
@@ -1325,6 +1367,7 @@ class XmlTest extends CakeTestCase {
 		$node->addNamespace('cake', 'http://cakephp.org');
 		$this->assertEqual($node->toString(), '<xml xmlns:cake="http://cakephp.org" />');
 	}
+
 /**
  * testCamelize method
  *
@@ -1351,6 +1394,7 @@ class XmlTest extends CakeTestCase {
 						'Param' => array('Value' => array('i4' => 41)))));
 		$this->assertEqual($expected, $Xml->toArray());
 	}
+
 /**
  * testNumericDataHandling method
  *
@@ -1580,5 +1624,17 @@ class XmlTest extends CakeTestCase {
 		$this->assertIdentical($result, $expected);
 	}
 	
+
+	function testToStringSlugging() {
+		$array = array(
+			'Response' => array(
+				'OneKey' => 'foo',
+				'TwoKey' => array('bar', 'baz')
+			)
+		);
+		$xml = new Xml($array, array('format' => 'tags'));
+		$result = $xml->toString(array('cdata' => false));
+		$expected = '<response><one_key>foo</one_key><two_key>bar</two_key><two_key>baz</two_key></response>';
+		$this->assertEqual($result, $expected);
+	}
 }
-?>

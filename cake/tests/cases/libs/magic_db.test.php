@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * MagicDbTest file
  *
@@ -16,12 +15,11 @@
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 1.2.0
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-uses('magic_db', 'object');
+if (!class_exists('MagicDb')) {
+	require LIBS . 'magic_db.php';
+}
 /**
  * The test class for the MagicDb class
  *
@@ -177,7 +175,7 @@ class MagicDbTestData extends Object {
  *
  * @param string $key
  * @access public
- **/
+ */
 	function get($key) {
 /**
  * data property
@@ -203,4 +201,3 @@ class MagicDbTestData extends Object {
 		return $data[$key];
 	}
 }
-?>

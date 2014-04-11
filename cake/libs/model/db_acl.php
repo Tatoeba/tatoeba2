@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * This is core configuration file.
  *
@@ -18,25 +17,23 @@
  * @package       cake
  * @subpackage    cake.cake.libs.model
  * @since         CakePHP(tm) v 0.2.9
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 /**
  * Load Model and AppModel
  */
 App::import('Model', 'App');
+
 /**
- * Short description for file.
- *
- * Long description for file
+ * ACL Node
  *
  *
  * @package       cake
  * @subpackage    cake.cake.libs.model
  */
 class AclNode extends AppModel {
+
 /**
  * Explicitly disable in-memory query caching for ACL models
  *
@@ -44,6 +41,7 @@ class AclNode extends AppModel {
  * @access public
  */
 	var $cacheQueries = false;
+
 /**
  * ACL models use the Tree behavior
  *
@@ -51,6 +49,7 @@ class AclNode extends AppModel {
  * @access public
  */
 	var $actsAs = array('Tree' => 'nested');
+
 /**
  * Constructor
  *
@@ -62,6 +61,7 @@ class AclNode extends AppModel {
 		}
 		parent::__construct();
 	}
+
 /**
  * Retrieves the Aro/Aco node for this model
  *
@@ -93,7 +93,7 @@ class AclNode extends AppModel {
 					$db->name("{$type}.rght") . ' >= ' . $db->name("{$type}0.rght")),
 				'fields' => array('id', 'parent_id', 'model', 'foreign_key', 'alias'),
 				'joins' => array(array(
-					'table' => $db->fullTableName($this),
+					'table' => $table,
 					'alias' => "{$type}0",
 					'type' => 'LEFT',
 					'conditions' => array("{$type}0.alias" => $start)
@@ -105,7 +105,7 @@ class AclNode extends AppModel {
 				$j = $i - 1;
 
 				$queryData['joins'][] = array(
-					'table' => $db->fullTableName($this),
+					'table' => $table,
 					'alias' => "{$type}{$i}",
 					'type'  => 'LEFT',
 					'conditions' => array(
@@ -143,7 +143,7 @@ class AclNode extends AppModel {
 			}
 
 			if (empty($model)) {
-				trigger_error("Model class '$name' not found in AclNode::node() when trying to bind {$this->alias} object", E_USER_WARNING);
+				trigger_error(sprintf(__("Model class '%s' not found in AclNode::node() when trying to bind %s object", true), $type, $this->alias), E_USER_WARNING);
 				return null;
 			}
 
@@ -175,7 +175,7 @@ class AclNode extends AppModel {
 				'conditions' => $ref,
 				'fields' => array('id', 'parent_id', 'model', 'foreign_key', 'alias'),
 				'joins' => array(array(
-					'table' => $db->fullTableName($this),
+					'table' => $table,
 					'alias' => "{$type}0",
 					'type' => 'LEFT',
 					'conditions' => array(
@@ -188,12 +188,13 @@ class AclNode extends AppModel {
 			$result = $db->read($this, $queryData, -1);
 
 			if (!$result) {
-				trigger_error("AclNode::node() - Couldn't find {$type} node identified by \"" . print_r($ref, true) . "\"", E_USER_WARNING);
+				trigger_error(sprintf(__("AclNode::node() - Couldn't find %s node identified by \"%s\"", true), $type, print_r($ref, true)), E_USER_WARNING);
 			}
 		}
 		return $result;
 	}
 }
+
 /**
  * Access Control Object
  *
@@ -201,6 +202,7 @@ class AclNode extends AppModel {
  * @subpackage    cake.cake.libs.model
  */
 class Aco extends AclNode {
+
 /**
  * Model name
  *
@@ -208,6 +210,7 @@ class Aco extends AclNode {
  * @access public
  */
 	var $name = 'Aco';
+
 /**
  * Binds to ARO nodes through permissions settings
  *
@@ -216,6 +219,7 @@ class Aco extends AclNode {
  */
 	var $hasAndBelongsToMany = array('Aro' => array('with' => 'Permission'));
 }
+
 /**
  * Action for Access Control Object
  *
@@ -223,6 +227,7 @@ class Aco extends AclNode {
  * @subpackage    cake.cake.libs.model
  */
 class AcoAction extends AppModel {
+
 /**
  * Model name
  *
@@ -230,6 +235,7 @@ class AcoAction extends AppModel {
  * @access public
  */
 	var $name = 'AcoAction';
+
 /**
  * ACO Actions belong to ACOs
  *
@@ -238,6 +244,7 @@ class AcoAction extends AppModel {
  */
 	var $belongsTo = array('Aco');
 }
+
 /**
  * Access Request Object
  *
@@ -245,6 +252,7 @@ class AcoAction extends AppModel {
  * @subpackage    cake.cake.libs.model
  */
 class Aro extends AclNode {
+
 /**
  * Model name
  *
@@ -252,6 +260,7 @@ class Aro extends AclNode {
  * @access public
  */
 	var $name = 'Aro';
+
 /**
  * AROs are linked to ACOs by means of Permission
  *
@@ -260,6 +269,7 @@ class Aro extends AclNode {
  */
 	var $hasAndBelongsToMany = array('Aco' => array('with' => 'Permission'));
 }
+
 /**
  * Permissions linking AROs with ACOs
  *
@@ -267,6 +277,7 @@ class Aro extends AclNode {
  * @subpackage    cake.cake.libs.model
  */
 class Permission extends AppModel {
+
 /**
  * Model name
  *
@@ -274,6 +285,7 @@ class Permission extends AppModel {
  * @access public
  */
 	var $name = 'Permission';
+
 /**
  * Explicitly disable in-memory query caching
  *
@@ -281,6 +293,7 @@ class Permission extends AppModel {
  * @access public
  */
 	var $cacheQueries = false;
+
 /**
  * Override default table name
  *
@@ -288,6 +301,7 @@ class Permission extends AppModel {
  * @access public
  */
 	var $useTable = 'aros_acos';
+
 /**
  * Permissions link AROs with ACOs
  *
@@ -295,6 +309,7 @@ class Permission extends AppModel {
  * @access public
  */
 	var $belongsTo = array('Aro', 'Aco');
+
 /**
  * No behaviors for this model
  *
@@ -302,6 +317,7 @@ class Permission extends AppModel {
  * @access public
  */
 	var $actsAs = null;
+
 /**
  * Constructor, used to tell this model to use the
  * database configured for ACL
@@ -314,4 +330,3 @@ class Permission extends AppModel {
 		parent::__construct();
 	}
 }
-?>

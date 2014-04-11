@@ -1,29 +1,24 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * RssHelperTest file
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
  * @since         CakePHP(tm) v 1.2.0.4206
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 App::import('Helper', array('Rss', 'Time'));
+
 /**
  * RssHelperTest class
  *
@@ -31,6 +26,7 @@ App::import('Helper', array('Rss', 'Time'));
  * @subpackage    cake.tests.cases.libs.view.helpers
  */
 class RssHelperTest extends CakeTestCase {
+
 /**
  * setUp method
  *
@@ -45,6 +41,7 @@ class RssHelperTest extends CakeTestCase {
 		$manager =& XmlManager::getInstance();
 		$manager->namespaces = array();
 	}
+
 /**
  * tearDown method
  *
@@ -54,6 +51,7 @@ class RssHelperTest extends CakeTestCase {
 	function tearDown() {
 		unset($this->Rss);
 	}
+
 /**
  * testAddNamespace method
  *
@@ -81,6 +79,7 @@ class RssHelperTest extends CakeTestCase {
 
 		$this->Rss->removeNs('dummy');
 	}
+
 /**
  * testRemoveNamespace method
  *
@@ -142,6 +141,7 @@ class RssHelperTest extends CakeTestCase {
 		);
 		$this->assertTags($result, $expected);
 	}
+
 /**
  * testChannel method
  *
@@ -171,6 +171,7 @@ class RssHelperTest extends CakeTestCase {
 		);
 		$this->assertTags($result, $expected);
 	}
+
 /**
  * test correct creation of channel sub elements.
  *
@@ -260,6 +261,7 @@ class RssHelperTest extends CakeTestCase {
 		);
 		$this->assertTags($result, $expected);
 	}
+
 /**
  * testItems method
  *
@@ -300,6 +302,7 @@ class RssHelperTest extends CakeTestCase {
 		$expected = '';
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * testItem method
  *
@@ -549,6 +552,7 @@ class RssHelperTest extends CakeTestCase {
 		);
 		$this->assertTags($result, $expected);
 	}
+
 /**
  * testTime method
  *
@@ -557,6 +561,7 @@ class RssHelperTest extends CakeTestCase {
  */
 	function testTime() {
 	}
+
 /**
  * testElementAttrNotInParent method
  *
@@ -586,4 +591,3 @@ class RssHelperTest extends CakeTestCase {
 		$this->assertTags($result, $expected);
 	}
 }
-?>

@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  *
  * PHP versions 4 and 5
@@ -15,16 +14,13 @@
  * @package       cake
  * @subpackage    cake.cake.libs.view.templates.elements.email.html
  * @since         CakePHP(tm) v 0.10.0.1076
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
 <?php
 $content = explode("\n", $content);
 
 foreach ($content as $line):
-	echo '<p> ' . $line . '</p>';
+	echo '<p> ' . $line . "</p>\n";
 endforeach;
 ?>

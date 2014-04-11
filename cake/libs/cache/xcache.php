@@ -1,8 +1,6 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Xcache storage engine for cache.
- *
  *
  * PHP versions 4 and 5
  *
@@ -17,11 +15,9 @@
  * @package       cake
  * @subpackage    cake.cake.libs.cache
  * @since         CakePHP(tm) v 1.2.0.4947
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 /**
  * Xcache storage engine for cache
  *
@@ -30,15 +26,18 @@
  * @subpackage    cake.cake.libs.cache
  */
 class XcacheEngine extends CacheEngine {
+
 /**
- * settings
- * 		PHP_AUTH_USER = xcache.admin.user, default cake
- * 		PHP_AUTH_PW = xcache.admin.password, default cake
+ * Settings
+ *
+ *  - PHP_AUTH_USER = xcache.admin.user, default cake
+ *  - PHP_AUTH_PW = xcache.admin.password, default cake
  *
  * @var array
  * @access public
  */
 	var $settings = array();
+
 /**
  * Initialize the Cache Engine
  *
@@ -56,6 +55,7 @@ class XcacheEngine extends CacheEngine {
 		);
 		return function_exists('xcache_info');
 	}
+
 /**
  * Write data for key into cache
  *
@@ -67,9 +67,10 @@ class XcacheEngine extends CacheEngine {
  */
 	function write($key, &$value, $duration) {
 		$expires = time() + $duration;
-		xcache_set($key.'_expires', $expires, $duration);
+		xcache_set($key . '_expires', $expires, $duration);
 		return xcache_set($key, $value, $duration);
 	}
+
 /**
  * Read a key from the cache
  *
@@ -80,13 +81,41 @@ class XcacheEngine extends CacheEngine {
 	function read($key) {
 		if (xcache_isset($key)) {
 			$time = time();
-			$cachetime = intval(xcache_get($key.'_expires'));
+			$cachetime = intval(xcache_get($key . '_expires'));
 			if ($cachetime < $time || ($time + $this->settings['duration']) < $cachetime) {
 				return false;
 			}
 			return xcache_get($key);
 		}
 		return false;
+	}
+
+/**
+ * Increments the value of an integer cached key
+ * If the cache key is not an integer it will be treated as 0
+ *
+ * @param string $key Identifier for the data
+ * @param integer $offset How much to increment
+ * @param integer $duration How long to cache the data, in seconds
+ * @return New incremented value, false otherwise
+ * @access public
+ */
+	function increment($key, $offset = 1) {
+		return xcache_inc($key, $offset);
+	}
+
+/**
+ * Decrements the value of an integer cached key.
+ * If the cache key is not an integer it will be treated as 0
+ *
+ * @param string $key Identifier for the data
+ * @param integer $offset How much to substract
+ * @param integer $duration How long to cache the data, in seconds
+ * @return New decremented value, false otherwise
+ * @access public
+ */
+	function decrement($key, $offset = 1) {
+		return xcache_dec($key, $offset);
 	}
 /**
  * Delete a key from the cache
@@ -98,6 +127,7 @@ class XcacheEngine extends CacheEngine {
 	function delete($key) {
 		return xcache_unset($key);
 	}
+
 /**
  * Delete all keys from the cache
  *
@@ -113,6 +143,7 @@ class XcacheEngine extends CacheEngine {
 		$this->__auth(true);
 		return true;
 	}
+
 /**
  * Populates and reverses $_SERVER authentication values
  * Makes necessary changes (and reverting them back) in $_SERVER
@@ -150,4 +181,3 @@ class XcacheEngine extends CacheEngine {
 		}
 	}
 }
-?>

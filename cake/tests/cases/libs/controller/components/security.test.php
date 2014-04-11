@@ -1,29 +1,24 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * SecurityComponentTest file
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.controller.components
  * @since         CakePHP(tm) v 1.2.0.5435
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 App::import('Component', 'Security');
+
 /**
 * TestSecurityComponent
 *
@@ -31,6 +26,7 @@ App::import('Component', 'Security');
 * @subpackage    cake.tests.cases.libs.controller.components
 */
 class TestSecurityComponent extends SecurityComponent {
+
 /**
  * validatePost method
  *
@@ -41,6 +37,7 @@ class TestSecurityComponent extends SecurityComponent {
 		return $this->_validatePost($controller);
 	}
 }
+
 /**
 * SecurityTestController
 *
@@ -48,6 +45,7 @@ class TestSecurityComponent extends SecurityComponent {
 * @subpackage    cake.tests.cases.libs.controller.components
 */
 class SecurityTestController extends Controller {
+
 /**
  * name property
  *
@@ -55,13 +53,15 @@ class SecurityTestController extends Controller {
  * @access public
  */
 	var $name = 'SecurityTest';
+
 /**
  * components property
  *
  * @var array
  * @access public
  */
-	var $components = array('TestSecurity');
+	var $components = array('Session', 'TestSecurity');
+
 /**
  * failed property
  *
@@ -69,6 +69,7 @@ class SecurityTestController extends Controller {
  * @access public
  */
 	var $failed = false;
+
 /**
  * Used for keeping track of headers in test
  *
@@ -76,6 +77,7 @@ class SecurityTestController extends Controller {
  * @access public
  */
 	var $testHeaders = array();
+
 /**
  * fail method
  *
@@ -85,6 +87,7 @@ class SecurityTestController extends Controller {
 	function fail() {
 		$this->failed = true;
 	}
+
 /**
  * redirect method
  *
@@ -97,6 +100,7 @@ class SecurityTestController extends Controller {
 	function redirect($option, $code, $exit) {
 		return $code;
 	}
+
 /**
  * Conveinence method for header()
  *
@@ -108,6 +112,7 @@ class SecurityTestController extends Controller {
 		$this->testHeaders[] = $status;
 	}
 }
+
 /**
  * SecurityComponentTest class
  *
@@ -115,6 +120,7 @@ class SecurityTestController extends Controller {
  * @subpackage    cake.tests.cases.libs.controller.components
  */
 class SecurityComponentTest extends CakeTestCase {
+
 /**
  * Controller property
  *
@@ -122,6 +128,7 @@ class SecurityComponentTest extends CakeTestCase {
  * @access public
  */
 	var $Controller;
+
 /**
  * oldSalt property
  *
@@ -129,13 +136,14 @@ class SecurityComponentTest extends CakeTestCase {
  * @access public
  */
 	var $oldSalt;
+
 /**
  * setUp method
  *
  * @access public
  * @return void
  */
-	function setUp() {
+	function startTest() {
 		$this->Controller =& new SecurityTestController();
 		$this->Controller->Component->init($this->Controller);
 		$this->Controller->Security =& $this->Controller->TestSecurity;
@@ -143,19 +151,46 @@ class SecurityComponentTest extends CakeTestCase {
 		$this->oldSalt = Configure::read('Security.salt');
 		Configure::write('Security.salt', 'foo!');
 	}
+
 /**
  * Tear-down method. Resets environment state.
  *
  * @access public
  * @return void
  */
-	function tearDown() {
+	function endTest() {
 		Configure::write('Security.salt', $this->oldSalt);
-		$this->Controller->Session->del('_Token');
+		$this->Controller->Session->delete('_Token');
 		unset($this->Controller->Security);
 		unset($this->Controller->Component);
 		unset($this->Controller);
 	}
+
+/**
+ * test that initalize can set properties.
+ *
+ * @return void
+ */
+	function testInitialize() {
+		$settings = array(
+			'requirePost' => array('edit', 'update'),
+			'requireSecure' => array('update_account'),
+			'requireGet' => array('index'),
+			'validatePost' => false,
+			'loginUsers' => array(
+				'mark' => 'password'
+			),
+			'requireLogin' => array('login'),
+		);
+		$this->Controller->Security->initialize($this->Controller, $settings);
+		$this->assertEqual($this->Controller->Security->requirePost, $settings['requirePost']);
+		$this->assertEqual($this->Controller->Security->requireSecure, $settings['requireSecure']);
+		$this->assertEqual($this->Controller->Security->requireGet, $settings['requireGet']);
+		$this->assertEqual($this->Controller->Security->validatePost, $settings['validatePost']);
+		$this->assertEqual($this->Controller->Security->loginUsers, $settings['loginUsers']);
+		$this->assertEqual($this->Controller->Security->requireLogin, $settings['requireLogin']);
+	}
+
 /**
  * testStartup method
  *
@@ -168,6 +203,7 @@ class SecurityComponentTest extends CakeTestCase {
 		$this->assertNotNull($result);
 		$this->assertTrue($this->Controller->Session->check('_Token'));
 	}
+
 /**
  * testRequirePostFail method
  *
@@ -177,10 +213,11 @@ class SecurityComponentTest extends CakeTestCase {
 	function testRequirePostFail() {
 		$_SERVER['REQUEST_METHOD'] = 'GET';
 		$this->Controller->action = 'posted';
-		$this->Controller->Security->requirePost('posted');
+		$this->Controller->Security->requirePost(array('posted'));
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertTrue($this->Controller->failed);
 	}
+
 /**
  * testRequirePostSucceed method
  *
@@ -194,6 +231,7 @@ class SecurityComponentTest extends CakeTestCase {
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertFalse($this->Controller->failed);
 	}
+
 /**
  * testRequireSecureFail method
  *
@@ -204,10 +242,11 @@ class SecurityComponentTest extends CakeTestCase {
 		$_SERVER['HTTPS'] = 'off';
 		$_SERVER['REQUEST_METHOD'] = 'POST';
 		$this->Controller->action = 'posted';
-		$this->Controller->Security->requireSecure('posted');
+		$this->Controller->Security->requireSecure(array('posted'));
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertTrue($this->Controller->failed);
 	}
+
 /**
  * testRequireSecureSucceed method
  *
@@ -222,6 +261,7 @@ class SecurityComponentTest extends CakeTestCase {
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertFalse($this->Controller->failed);
 	}
+
 /**
  * testRequireAuthFail method
  *
@@ -232,7 +272,7 @@ class SecurityComponentTest extends CakeTestCase {
 		$_SERVER['REQUEST_METHOD'] = 'AUTH';
 		$this->Controller->action = 'posted';
 		$this->Controller->data = array('username' => 'willy', 'password' => 'somePass');
-		$this->Controller->Security->requireAuth('posted');
+		$this->Controller->Security->requireAuth(array('posted'));
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertTrue($this->Controller->failed);
 
@@ -252,6 +292,7 @@ class SecurityComponentTest extends CakeTestCase {
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertTrue($this->Controller->failed);
 	}
+
 /**
  * testRequireAuthSucceed method
  *
@@ -279,6 +320,7 @@ class SecurityComponentTest extends CakeTestCase {
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertFalse($this->Controller->failed);
 	}
+
 /**
  * testRequirePostSucceedWrongMethod method
  *
@@ -292,6 +334,7 @@ class SecurityComponentTest extends CakeTestCase {
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertFalse($this->Controller->failed);
 	}
+
 /**
  * testRequireGetFail method
  *
@@ -301,10 +344,11 @@ class SecurityComponentTest extends CakeTestCase {
 	function testRequireGetFail() {
 		$_SERVER['REQUEST_METHOD'] = 'POST';
 		$this->Controller->action = 'getted';
-		$this->Controller->Security->requireGet('getted');
+		$this->Controller->Security->requireGet(array('getted'));
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertTrue($this->Controller->failed);
 	}
+
 /**
  * testRequireGetSucceed method
  *
@@ -318,6 +362,7 @@ class SecurityComponentTest extends CakeTestCase {
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertFalse($this->Controller->failed);
 	}
+
 /**
  * testRequireLogin method
  *
@@ -338,7 +383,7 @@ class SecurityComponentTest extends CakeTestCase {
 
 		$this->Controller->action = 'posted';
 		$this->Controller->Security->requireLogin(
-			'posted',
+			array('posted'),
 			array('type' => 'basic', 'users' => array('admin' => 'password'))
 		);
 		$_SERVER['PHP_AUTH_USER'] = 'admin2';
@@ -356,6 +401,7 @@ class SecurityComponentTest extends CakeTestCase {
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertTrue($this->Controller->failed);
 	}
+
 /**
  * testDigestAuth method
  *
@@ -390,6 +436,7 @@ DIGEST;
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertFalse($this->Controller->failed);
 	}
+
 /**
  * testRequireGetSucceedWrongMethod method
  *
@@ -403,6 +450,7 @@ DIGEST;
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertFalse($this->Controller->failed);
 	}
+
 /**
  * testRequirePutFail method
  *
@@ -412,10 +460,11 @@ DIGEST;
 	function testRequirePutFail() {
 		$_SERVER['REQUEST_METHOD'] = 'POST';
 		$this->Controller->action = 'putted';
-		$this->Controller->Security->requirePut('putted');
+		$this->Controller->Security->requirePut(array('putted'));
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertTrue($this->Controller->failed);
 	}
+
 /**
  * testRequirePutSucceed method
  *
@@ -429,6 +478,7 @@ DIGEST;
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertFalse($this->Controller->failed);
 	}
+
 /**
  * testRequirePutSucceedWrongMethod method
  *
@@ -442,6 +492,7 @@ DIGEST;
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertFalse($this->Controller->failed);
 	}
+
 /**
  * testRequireDeleteFail method
  *
@@ -451,10 +502,11 @@ DIGEST;
 	function testRequireDeleteFail() {
 		$_SERVER['REQUEST_METHOD'] = 'POST';
 		$this->Controller->action = 'deleted';
-		$this->Controller->Security->requireDelete('deleted');
+		$this->Controller->Security->requireDelete(array('deleted', 'other_method'));
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertTrue($this->Controller->failed);
 	}
+
 /**
  * testRequireDeleteSucceed method
  *
@@ -468,6 +520,7 @@ DIGEST;
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertFalse($this->Controller->failed);
 	}
+
 /**
  * testRequireDeleteSucceedWrongMethod method
  *
@@ -481,6 +534,7 @@ DIGEST;
 		$this->Controller->Security->startup($this->Controller);
 		$this->assertFalse($this->Controller->failed);
 	}
+
 /**
  * testRequireLoginSettings method
  *
@@ -495,6 +549,7 @@ DIGEST;
 		$this->assertEqual($this->Controller->Security->requireLogin, array('add', 'edit'));
 		$this->assertEqual($this->Controller->Security->loginUsers, array('admin' => 'password'));
 	}
+
 /**
  * testRequireLoginAllActions method
  *
@@ -508,6 +563,7 @@ DIGEST;
 		$this->assertEqual($this->Controller->Security->requireLogin, array('*'));
 		$this->assertEqual($this->Controller->Security->loginUsers, array('admin' => 'password'));
 	}
+
 /**
  * Simple hash validation test
  *
@@ -525,6 +581,7 @@ DIGEST;
 		);
 		$this->assertTrue($this->Controller->Security->validatePost($this->Controller));
 	}
+
 /**
  * Test that validatePost fails if you are missing the session information.
  *
@@ -548,7 +605,7 @@ DIGEST;
  * test that validatePost fails if any of its required fields are missing.
  *
  * @return void
- **/
+ */
 	function testValidatePostFormHacking() {
 		$this->Controller->Security->startup($this->Controller);
 		$key = $this->Controller->params['_Token']['key'];
@@ -609,6 +666,7 @@ DIGEST;
 		);
 		$this->assertTrue($this->Controller->Security->validatePost($this->Controller));
 	}
+
 /**
  * testValidatePostNoModel method
  *
@@ -628,6 +686,7 @@ DIGEST;
 		$result = $this->Controller->Security->validatePost($this->Controller);
 		$this->assertTrue($result);
 	}
+
 /**
  * testValidatePostSimple method
  *
@@ -647,6 +706,7 @@ DIGEST;
 		$result = $this->Controller->Security->validatePost($this->Controller);
 		$this->assertTrue($result);
 	}
+
 /**
  * Tests hash validation for multiple records, including locked fields
  *
@@ -674,11 +734,12 @@ DIGEST;
 		$result = $this->Controller->Security->validatePost($this->Controller);
 		$this->assertTrue($result);
 	}
+
 /**
  * test ValidatePost with multiple select elements.
  *
  * @return void
- **/
+ */
 	function testValidatePostMultipleSelect() {
 		$this->Controller->Security->startup($this->Controller);
 		$key = $this->Controller->params['_Token']['key'];
@@ -713,6 +774,7 @@ DIGEST;
 		$result = $this->Controller->Security->validatePost($this->Controller);
 		$this->assertTrue($result);
 	}
+
 /**
  * testValidatePostCheckbox method
  *
@@ -758,6 +820,7 @@ DIGEST;
 		$result = $this->Controller->Security->validatePost($this->Controller);
 		$this->assertTrue($result);
 	}
+
 /**
  * testValidatePostHidden method
  *
@@ -780,6 +843,7 @@ DIGEST;
 		$result = $this->Controller->Security->validatePost($this->Controller);
 		$this->assertTrue($result);
 	}
+
 /**
  * testValidatePostWithDisabledFields method
  *
@@ -802,6 +866,7 @@ DIGEST;
 		$result = $this->Controller->Security->validatePost($this->Controller);
 		$this->assertTrue($result);
 	}
+
 /**
  * testValidateHiddenMultipleModel method
  *
@@ -822,6 +887,7 @@ DIGEST;
 		$result = $this->Controller->Security->validatePost($this->Controller);
 		$this->assertTrue($result);
 	}
+
 /**
  * testLoginValidation method
  *
@@ -831,6 +897,7 @@ DIGEST;
 	function testLoginValidation() {
 
 	}
+
 /**
  * testValidateHasManyModel method
  *
@@ -860,6 +927,7 @@ DIGEST;
 		$result = $this->Controller->Security->validatePost($this->Controller);
 		$this->assertTrue($result);
 	}
+
 /**
  * testValidateHasManyRecordsPass method
  *
@@ -901,6 +969,7 @@ DIGEST;
 		$result = $this->Controller->Security->validatePost($this->Controller);
 		$this->assertTrue($result);
 	}
+
 /**
  * testValidateHasManyRecords method
  *
@@ -944,6 +1013,7 @@ DIGEST;
 		$result = $this->Controller->Security->validatePost($this->Controller);
 		$this->assertFalse($result);
 	}
+
 /**
  * testLoginRequest method
  *
@@ -964,6 +1034,7 @@ DIGEST;
 		$this->assertPattern('/realm="'.$realm.'"/', $result);
 		$this->assertPattern('/qop="auth"/', $result);
 	}
+
 /**
  * testGenerateDigestResponseHash method
  *
@@ -996,6 +1067,7 @@ DIGEST;
 		);
 		$this->assertIdentical($result, $expected);
 	}
+
 /**
  * testLoginCredentials method
  *
@@ -1038,6 +1110,7 @@ DIGEST;
 			$this->assertIdentical($result, $expected);
 		}
 	}
+
 /**
  * testParseDigestAuthData method
  *
@@ -1074,6 +1147,7 @@ DIGEST;
 		$result = $this->Controller->Security->parseDigestAuthData('');
 		$this->assertNull($result);
 	}
+
 /**
  * test parsing digest information with email addresses
  *
@@ -1137,6 +1211,7 @@ DIGEST;
 		$result = $this->Controller->Security->validatePost($this->Controller);
 		$this->assertTrue($result);
 	}
+
 /**
  * testRadio method
  *
@@ -1175,6 +1250,7 @@ DIGEST;
 		$result = $this->Controller->Security->validatePost($this->Controller);
 		$this->assertTrue($result);
 	}
+
 /**
  * testInvalidAuthHeaders method
  *
@@ -1227,4 +1303,3 @@ DIGEST;
 		$this->assertTrue($this->Controller->Security->Session->check('_Token'), '_Token was deleted by blackHole %s');
 	}
 }
-?>

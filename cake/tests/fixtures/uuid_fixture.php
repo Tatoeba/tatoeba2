@@ -1,28 +1,23 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Short description for file.
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.fixtures
  * @since         CakePHP(tm) v 1.2.0.6700
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
+
 /**
  * Short description for class.
  *
@@ -30,6 +25,7 @@
  * @subpackage    cake.tests.fixtures
  */
 class UuidFixture extends CakeTestFixture {
+
 /**
  * name property
  *
@@ -37,6 +33,7 @@ class UuidFixture extends CakeTestFixture {
  * @access public
  */
 	var $name = 'Uuid';
+
 /**
  * fields property
  *
@@ -50,6 +47,7 @@ class UuidFixture extends CakeTestFixture {
 		'created' => 'datetime',
 		'updated' => 'datetime'
 	);
+
 /**
  * records property
  *
@@ -63,5 +61,3 @@ class UuidFixture extends CakeTestFixture {
 		array('id' => '47c36f9c-2578-4c2e-aeab-4e183ca6822b', 'title' => 'Unique record 4', 'count' => 3, 'created' => '2008-03-13 01:22:26', 'updated' => '2008-03-13 01:24:34'),
 	);
 }
-
-?>

@@ -1,31 +1,27 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * ComponentTest file
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.controller
  * @since         CakePHP(tm) v 1.2.0.5436
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
-App::import('Core', array('Component', 'Controller'));
+App::import('Controller', 'Controller', false);
+App::import('Controller', 'Component', false);
 
 if (!class_exists('AppController')) {
+
 /**
  * AppController class
  *
@@ -33,6 +29,7 @@ if (!class_exists('AppController')) {
  * @subpackage    cake.tests.cases.libs.controller
  */
 	class AppController extends Controller {
+
 /**
  * name property
  *
@@ -40,6 +37,7 @@ if (!class_exists('AppController')) {
  * @access public
  */
 		var $name = 'App';
+
 /**
  * uses property
  *
@@ -47,6 +45,7 @@ if (!class_exists('AppController')) {
  * @access public
  */
 		var $uses = array();
+
 /**
  * helpers property
  *
@@ -54,6 +53,7 @@ if (!class_exists('AppController')) {
  * @access public
  */
 		var $helpers = array();
+
 /**
  * components property
  *
@@ -65,6 +65,7 @@ if (!class_exists('AppController')) {
 } elseif (!defined('APP_CONTROLLER_EXISTS')){
 	define('APP_CONTROLLER_EXISTS', true);
 }
+
 /**
  * ParamTestComponent
  *
@@ -72,6 +73,7 @@ if (!class_exists('AppController')) {
  * @subpackage    cake.tests.cases.libs.controller
  */
 class ParamTestComponent extends Object {
+
 /**
  * name property
  *
@@ -79,6 +81,7 @@ class ParamTestComponent extends Object {
  * @access public
  */
 	var $name = 'ParamTest';
+
 /**
  * components property
  *
@@ -86,6 +89,7 @@ class ParamTestComponent extends Object {
  * @access public
  */
 	var $components = array('Banana' => array('config' => 'value'));
+
 /**
  * initialize method
  *
@@ -104,6 +108,7 @@ class ParamTestComponent extends Object {
 		}
 	}
 }
+
 /**
  * ComponentTestController class
  *
@@ -111,6 +116,7 @@ class ParamTestComponent extends Object {
  * @subpackage    cake.tests.cases.libs.controller
  */
 class ComponentTestController extends AppController {
+
 /**
  * name property
  *
@@ -118,6 +124,7 @@ class ComponentTestController extends AppController {
  * @access public
  */
 	var $name = 'ComponentTest';
+
 /**
  * uses property
  *
@@ -126,6 +133,7 @@ class ComponentTestController extends AppController {
  */
 	var $uses = array();
 }
+
 /**
  * AppleComponent class
  *
@@ -133,6 +141,7 @@ class ComponentTestController extends AppController {
  * @subpackage    cake.tests.cases.libs.controller
  */
 class AppleComponent extends Object {
+
 /**
  * components property
  *
@@ -140,6 +149,7 @@ class AppleComponent extends Object {
  * @access public
  */
 	var $components = array('Orange');
+
 /**
  * testName property
  *
@@ -147,6 +157,7 @@ class AppleComponent extends Object {
  * @access public
  */
 	var $testName = null;
+
 /**
  * startup method
  *
@@ -158,6 +169,7 @@ class AppleComponent extends Object {
 		$this->testName = $controller->name;
 	}
 }
+
 /**
  * OrangeComponent class
  *
@@ -165,6 +177,7 @@ class AppleComponent extends Object {
  * @subpackage    cake.tests.cases.libs.controller
  */
 class OrangeComponent extends Object {
+
 /**
  * components property
  *
@@ -172,6 +185,7 @@ class OrangeComponent extends Object {
  * @access public
  */
 	var $components = array('Banana');
+
 /**
  * initialize method
  *
@@ -184,6 +198,7 @@ class OrangeComponent extends Object {
 		$this->Banana->testField = 'OrangeField';
 		$this->settings = $settings;
 	}
+
 /**
  * startup method
  *
@@ -195,6 +210,7 @@ class OrangeComponent extends Object {
 		$controller->foo = 'pass';
 	}
 }
+
 /**
  * BananaComponent class
  *
@@ -202,6 +218,7 @@ class OrangeComponent extends Object {
  * @subpackage    cake.tests.cases.libs.controller
  */
 class BananaComponent extends Object {
+
 /**
  * testField property
  *
@@ -209,6 +226,15 @@ class BananaComponent extends Object {
  * @access public
  */
 	var $testField = 'BananaField';
+
+/**
+ * components property
+ *
+ * @var array
+ * @access public
+ */
+	var $components = array('Apple');
+
 /**
  * startup method
  *
@@ -220,6 +246,7 @@ class BananaComponent extends Object {
 		$controller->bar = 'fail';
 	}
 }
+
 /**
  * MutuallyReferencingOneComponent class
  *
@@ -227,6 +254,7 @@ class BananaComponent extends Object {
  * @subpackage    cake.tests.cases.libs.controller
  */
 class MutuallyReferencingOneComponent extends Object {
+
 /**
  * components property
  *
@@ -235,6 +263,7 @@ class MutuallyReferencingOneComponent extends Object {
  */
 	var $components = array('MutuallyReferencingTwo');
 }
+
 /**
  * MutuallyReferencingTwoComponent class
  *
@@ -242,6 +271,7 @@ class MutuallyReferencingOneComponent extends Object {
  * @subpackage    cake.tests.cases.libs.controller
  */
 class MutuallyReferencingTwoComponent extends Object {
+
 /**
  * components property
  *
@@ -250,6 +280,7 @@ class MutuallyReferencingTwoComponent extends Object {
  */
 	var $components = array('MutuallyReferencingOne');
 }
+
 /**
  * SomethingWithEmailComponent class
  *
@@ -257,6 +288,7 @@ class MutuallyReferencingTwoComponent extends Object {
  * @subpackage    cake.tests.cases.libs.controller
  */
 class SomethingWithEmailComponent extends Object {
+
 /**
  * components property
  *
@@ -265,6 +297,9 @@ class SomethingWithEmailComponent extends Object {
  */
 	var $components = array('Email');
 }
+
+Mock::generate('Object', 'ComponentMockComponent', array('startup', 'beforeFilter', 'beforeRender', 'other'));
+
 /**
  * ComponentTest class
  *
@@ -272,6 +307,7 @@ class SomethingWithEmailComponent extends Object {
  * @subpackage    cake.tests.cases.libs.controller
  */
 class ComponentTest extends CakeTestCase {
+
 /**
  * setUp method
  *
@@ -279,11 +315,12 @@ class ComponentTest extends CakeTestCase {
  * @return void
  */
 	function setUp() {
-		$this->_pluginPaths = Configure::read('pluginPaths');
-		Configure::write('pluginPaths', array(
-			TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'plugins' . DS
+		$this->_pluginPaths = App::path('plugins');
+		App::build(array(
+			'plugins' => array(TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'plugins' . DS)
 		));
 	}
+
 /**
  * tearDown method
  *
@@ -291,9 +328,10 @@ class ComponentTest extends CakeTestCase {
  * @return void
  */
 	function tearDown() {
-		Configure::write('pluginPaths', $this->_pluginPaths);
+		App::build();
 		ClassRegistry::flush();
 	}
+
 /**
  * testLoadComponents method
  *
@@ -344,6 +382,7 @@ class ComponentTest extends CakeTestCase {
 		$this->assertTrue(is_a($Controller->RequestHandler, 'RequestHandlerComponent'));
 		$this->assertTrue(is_a($Controller->Cookie, 'CookieComponent'));
 	}
+
 /**
  * test component loading
  *
@@ -363,6 +402,7 @@ class ComponentTest extends CakeTestCase {
 		$this->assertTrue(empty($Controller->Apple->Session));
 		$this->assertTrue(empty($Controller->Apple->Orange->Session));
 	}
+
 /**
  * Tests Component::startup() and only running callbacks for components directly attached to
  * the controller.
@@ -385,6 +425,26 @@ class ComponentTest extends CakeTestCase {
 		$this->assertEqual(isset($Controller->foo), $expected);
 		$this->assertFalse(isset($Controller->bar));
 	}
+
+/**
+ * test that triggerCallbacks fires methods on all the components, and can trigger any method.
+ *
+ * @return void
+ */
+	function testTriggerCallback() {
+		$Controller =& new ComponentTestController();
+		$Controller->components = array('ComponentMock');
+		$Controller->uses = null;
+		$Controller->constructClasses();
+
+		$Controller->ComponentMock->expectOnce('beforeRender');
+		$Controller->Component->triggerCallback('beforeRender', $Controller);
+
+		$Controller->ComponentMock->expectNever('beforeFilter');
+		$Controller->ComponentMock->enabled = false;
+		$Controller->Component->triggerCallback('beforeFilter', $Controller);
+	}
+
 /**
  * test a component being used more than once.
  *
@@ -400,6 +460,7 @@ class ComponentTest extends CakeTestCase {
 		$this->assertEqual($Controller->Banana->testField, 'OrangeField');
 		$this->assertEqual($Controller->Orange->Banana->testField, 'OrangeField');
 	}
+
 /**
  * Test Component declarations with Parameters
  * tests merging of component parameters and merging / construction of components.
@@ -420,7 +481,7 @@ class ComponentTest extends CakeTestCase {
 		$this->assertTrue(is_a($Controller->ParamTest, 'ParamTestComponent'));
 		$this->assertTrue(is_a($Controller->ParamTest->Banana, 'BananaComponent'));
 		$this->assertTrue(is_a($Controller->Orange, 'OrangeComponent'));
-		$this->assertTrue(is_a($Controller->Session, 'SessionComponent'));
+		$this->assertFalse(isset($Controller->Session));
 		$this->assertEqual($Controller->Orange->settings, array('colour' => 'blood orange'));
 		$this->assertEqual($Controller->ParamTest->test, 'value');
 		$this->assertEqual($Controller->ParamTest->flag, true);
@@ -443,7 +504,7 @@ class ComponentTest extends CakeTestCase {
  * Ensure that settings are not duplicated when passed into component initialize.
  *
  * @return void
- **/
+ */
 	function testComponentParamsNoDuplication() {
 		if ($this->skipIf(defined('APP_CONTROLLER_EXISTS'), '%s Need a non-existent AppController')) {
 			return;
@@ -457,6 +518,7 @@ class ComponentTest extends CakeTestCase {
 		$expected = array('setting' => array('itemx'), 'colour' => 'blood orange');
 		$this->assertEqual($Controller->Orange->settings, $expected, 'Params duplication has occured %s');
 	}
+
 /**
  * Test mutually referencing components.
  *
@@ -482,6 +544,7 @@ class ComponentTest extends CakeTestCase {
 			'MutuallyReferencingOneComponent'
 		));
 	}
+
 /**
  * Test mutually referencing components.
  *
@@ -509,6 +572,7 @@ class ComponentTest extends CakeTestCase {
 			'ComponentTestController'
 		));
 	}
+
 /**
  * Test that SessionComponent doesn't get added if its already in the components array.
  *
@@ -529,4 +593,3 @@ class ComponentTest extends CakeTestCase {
 	}
 
 }
-?>

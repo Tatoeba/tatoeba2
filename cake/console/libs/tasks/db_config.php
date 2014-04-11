@@ -1,9 +1,6 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * The DbConfig Task handles creating and updating the database.php
- *
- * Long description for file
  *
  * PHP versions 4 and 5
  *
@@ -18,14 +15,9 @@
  * @package       cake
  * @subpackage    cake.cake.console.libs.tasks
  * @since         CakePHP(tm) v 1.2
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-if (!class_exists('File')) {
-	uses('file');
-}
+
 /**
  * Task class for creating and updating the database configuration file.
  *
@@ -33,6 +25,7 @@ if (!class_exists('File')) {
  * @subpackage    cake.cake.console.libs.tasks
  */
 class DbConfigTask extends Shell {
+
 /**
  * path to CONFIG directory
  *
@@ -40,6 +33,7 @@ class DbConfigTask extends Shell {
  * @access public
  */
 	var $path = null;
+
 /**
  * Default configuration settings to use
  *
@@ -51,6 +45,15 @@ class DbConfigTask extends Shell {
 		'login'=> 'root', 'password'=> 'password', 'database'=> 'project_name',
 		'schema'=> null, 'prefix'=> null, 'encoding' => null, 'port' => null
 	);
+
+/**
+ * String name of the database config class name.
+ * Used for testing.
+ *
+ * @var string
+ */
+	var $databaseClassName = 'DATABASE_CONFIG';
+
 /**
  * initialization callback
  *
@@ -60,6 +63,7 @@ class DbConfigTask extends Shell {
 	function initialize() {
 		$this->path = $this->params['working'] . DS . 'config' . DS;
 	}
+
 /**
  * Execution method always used for tasks
  *
@@ -71,6 +75,7 @@ class DbConfigTask extends Shell {
 			$this->_stop();
 		}
 	}
+
 /**
  * Interactive interface
  *
@@ -91,35 +96,27 @@ class DbConfigTask extends Shell {
 				if (preg_match('/[^a-z0-9_]/i', $name)) {
 					$name = '';
 					$this->out('The name may only contain unaccented latin characters, numbers or underscores');
-				}
-				else if (preg_match('/^[^a-z_]/i', $name)) {
+				} else if (preg_match('/^[^a-z_]/i', $name)) {
 					$name = '';
 					$this->out('The name must start with an unaccented latin character or an underscore');
 				}
 			}
-			$driver = '';
 
-			while ($driver == '') {
-				$driver = $this->in('Driver:', array('db2', 'firebird', 'mssql', 'mysql', 'mysqli', 'odbc', 'oracle', 'postgres', 'sqlite', 'sybase'), 'mysql');
-			}
-			$persistent = '';
+			$driver = $this->in('Driver:', array('mssql', 'mysql', 'mysqli', 'oracle', 'postgres', 'sqlite'), 'mysql');
 
-			while ($persistent == '') {
-				$persistent = $this->in('Persistent Connection?', array('y', 'n'), 'n');
-			}
-
+			$persistent = $this->in('Persistent Connection?', array('y', 'n'), 'n');
 			if (strtolower($persistent) == 'n') {
 				$persistent = 'false';
 			} else {
 				$persistent = 'true';
 			}
-			$host = '';
 
+			$host = '';
 			while ($host == '') {
 				$host = $this->in('Database Host:', null, 'localhost');
 			}
-			$port = '';
 
+			$port = '';
 			while ($port == '') {
 				$port = $this->in('Port?', null, 'n');
 			}
@@ -127,8 +124,8 @@ class DbConfigTask extends Shell {
 			if (strtolower($port) == 'n') {
 				$port = null;
 			}
-			$login = '';
 
+			$login = '';
 			while ($login == '') {
 				$login = $this->in('User:', null, 'root');
 			}
@@ -140,43 +137,39 @@ class DbConfigTask extends Shell {
 
 				if ($password == '') {
 					$blank = $this->in('The password you supplied was empty. Use an empty password?', array('y', 'n'), 'n');
-					if ($blank == 'y')
-					{
+					if ($blank == 'y') {
 						$blankPassword = true;
 					}
 				}
 			}
-			$database = '';
 
+			$database = '';
 			while ($database == '') {
 				$database = $this->in('Database Name:', null, 'cake');
 			}
-			$prefix = '';
 
+			$prefix = '';
 			while ($prefix == '') {
 				$prefix = $this->in('Table Prefix?', null, 'n');
 			}
-
 			if (strtolower($prefix) == 'n') {
 				$prefix = null;
 			}
-			$encoding = '';
 
+			$encoding = '';
 			while ($encoding == '') {
 				$encoding = $this->in('Table encoding?', null, 'n');
 			}
-
 			if (strtolower($encoding) == 'n') {
 				$encoding = null;
 			}
-			$schema = '';
 
+			$schema = '';
 			if ($driver == 'postgres') {
 				while ($schema == '') {
 					$schema = $this->in('Table schema?', null, 'n');
 				}
 			}
-
 			if (strtolower($schema) == 'n') {
 				$schema = null;
 			}
@@ -198,6 +191,7 @@ class DbConfigTask extends Shell {
 		config('database');
 		return true;
 	}
+
 /**
  * Output verification message and bake if it looks good
  *
@@ -207,7 +201,7 @@ class DbConfigTask extends Shell {
 	function __verify($config) {
 		$config = array_merge($this->__defaultConfig, $config);
 		extract($config);
-		$this->out('');
+		$this->out();
 		$this->hr();
 		$this->out('The following database configuration will be created:');
 		$this->hr();
@@ -239,11 +233,12 @@ class DbConfigTask extends Shell {
 		$this->hr();
 		$looksGood = $this->in('Look okay?', array('y', 'n'), 'y');
 
-		if (strtolower($looksGood) == 'y' || strtolower($looksGood) == 'yes') {
+		if (strtolower($looksGood) == 'y') {
 			return $config;
 		}
 		return false;
 	}
+
 /**
  * Assembles and writes database.php
  *
@@ -261,7 +256,8 @@ class DbConfigTask extends Shell {
 		$oldConfigs = array();
 
 		if (file_exists($filename)) {
-			$db = new DATABASE_CONFIG;
+			config('database');
+			$db = new $this->databaseClassName;
 			$temp = get_class_vars(get_class($db));
 
 			foreach ($temp as $configName => $info) {
@@ -345,8 +341,28 @@ class DbConfigTask extends Shell {
 
 		$out .= "}\n";
 		$out .= "?>";
-		$filename = $this->path.'database.php';
+		$filename = $this->path . 'database.php';
 		return $this->createFile($filename, $out);
 	}
+
+/**
+ * Get a user specified Connection name
+ *
+ * @return void
+ */
+	function getConfig() {
+		App::import('Model', 'ConnectionManager', false);
+
+		$useDbConfig = 'default';
+		$configs = get_class_vars($this->databaseClassName);
+		if (!is_array($configs)) {
+			return $this->execute();
+		}
+
+		$connections = array_keys($configs);
+		if (count($connections) > 1) {
+			$useDbConfig = $this->in(__('Use Database Config', true) .':', $connections, 'default');
+		}
+		return $useDbConfig;
+	}
 }
-?>

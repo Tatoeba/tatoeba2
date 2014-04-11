@@ -1,28 +1,23 @@
 <?php
-/* SVN FILE: $Id: counter_cache_user_fixture.php 7848 2008-11-08 02:58:37Z nate $ */
 /**
  * Short description for file.
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.fixtures
  * @since         CakePHP(tm) v 1.2.0.4667
- * @version       $Revision: 7848 $
- * @modifiedby    $LastChangedBy: renan.saddam $
- * @lastmodified  $Date: 2008-11-07 21:58:37 -0500 (Fri, 07 Nov 2008) $
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
+
 /**
  * Short description for class.
  *
@@ -44,5 +39,3 @@ class CounterCacheUserNonstandardPrimaryKeyFixture extends CakeTestFixture {
 		array('uid' => 301, 'name' => 'Steven','post_count' => 1),
 	);
 }
-
-?>

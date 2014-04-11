@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * A class to manage all aspects for Code Coverage Analysis
  *
@@ -7,23 +6,21 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.cake.tests.lib
  * @since         CakePHP(tm) v 1.2.0.4433
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 App::import('Core', 'Folder');
+
 /**
  * Short description for class.
  *
@@ -31,18 +28,21 @@ App::import('Core', 'Folder');
  * @subpackage    cake.cake.tests.lib
  */
 class CodeCoverageManager {
+
 /**
  * Is this an app test case?
  *
  * @var string
  */
 	var $appTest = false;
+
 /**
  * Is this an app test case?
  *
  * @var string
  */
 	var $pluginTest = false;
+
 /**
  * Is this a grouptest?
  *
@@ -50,24 +50,28 @@ class CodeCoverageManager {
  * @access public
  */
 	var $groupTest = false;
+
 /**
  * The test case file to analyze
  *
  * @var string
  */
 	var $testCaseFile = '';
+
 /**
  * The currently used CakeTestReporter
  *
  * @var string
  */
 	var $reporter = '';
+
 /**
  * undocumented variable
  *
  * @var string
  */
 	var $numDiffContextLines = 7;
+
 /**
  * Returns a singleton instance
  *
@@ -81,67 +85,99 @@ class CodeCoverageManager {
 		}
 		return $instance[0];
 	}
+
 /**
- * Starts a new Coverage Analyzation for a given test case file
- * @TODO: Works with $_GET now within the function body, which will make it hard when we do code coverage reports for CLI
+ * Initializes a new Coverage Analyzation for a given test case file
  *
- * @param string $testCaseFile
- * @param string $reporter
+ * @param string $testCaseFile The test case file being covered.
+ * @param object $reporter Instance of the reporter running.
  * @return void
+ * @static
  */
-	function start($testCaseFile, &$reporter) {
+	function init($testCaseFile, &$reporter) {
 		$manager =& CodeCoverageManager::getInstance();
-		$manager->reporter = $reporter;
+		$manager->reporter =& $reporter;
 		$testCaseFile = str_replace(DS . DS, DS, $testCaseFile);
 		$thisFile = str_replace('.php', '.test.php', basename(__FILE__));
 
 		if (strpos($testCaseFile, $thisFile) !== false) {
-			trigger_error('Xdebug supports no parallel coverage analysis - so this is not possible.', E_USER_ERROR);
+			trigger_error(__('Xdebug supports no parallel coverage analysis - so this is not possible.', true), E_USER_ERROR);
 		}
-
-		if (isset($_GET['app'])) {
-			$manager->appTest = true;
-		}
-
-		if (isset($_GET['group'])) {
-			$manager->groupTest = true;
-		}
-
-		if (isset($_GET['plugin'])) {
-			$manager->pluginTest = Inflector::underscore($_GET['plugin']);
-		}
+		$manager->setParams($reporter);
 		$manager->testCaseFile = $testCaseFile;
-		xdebug_start_code_coverage(XDEBUG_CC_UNUSED | XDEBUG_CC_DEAD_CODE);
 	}
+
 /**
- * Stops the current code coverage analyzation and dumps a nice report depending on the reporter that was passed to start()
+ * Start/resume Code coverage collection.
  *
  * @return void
+ * @static
+ */
+	function start() {
+		xdebug_start_code_coverage(XDEBUG_CC_UNUSED | XDEBUG_CC_DEAD_CODE);
+	}
+
+/**
+ * Stops/pauses code coverage collection. Does not clean the
+ * code coverage memory. Use clean() to clear code coverage memory
+ *
+ * @return void
+ * @static
+ */
+	function stop() {
+		xdebug_stop_code_coverage(false);
+	}
+
+/**
+ * Clears the existing code coverage information.  Also stops any
+ * running collection.
+ *
+ * @return void
+ * @static
+ */
+	function clear() {
+		xdebug_stop_code_coverage();
+	}
+
+/**
+ * Set the parameters from a reporter to the CodeCoverageManager
+ *
+ * @return void
+ */
+	function setParams(&$reporter) {
+		if ($reporter->params['app']) {
+			$this->appTest = true;
+		}
+
+		if ($reporter->params['group']) {
+			$this->groupTest = true;
+		}
+
+		if ($reporter->params['plugin']) {
+			$this->pluginTest = Inflector::underscore($reporter->params['plugin']);
+		}
+	}
+
+/**
+ * Stops the current code coverage analyzation and dumps a nice report
+ * depending on the reporter that was passed to start()
+ *
+ * @return void
+ * @static
  */
 	function report($output = true) {
 		$manager =& CodeCoverageManager::getInstance();
 
+		CodeCoverageManager::stop();
+		CodeCoverageManager::clear();
+
+		list($coverageData, $testObjectFile) = $manager->_getCoverageData();
+
+		if (empty($coverageData) && $output) {
+			echo "The test object file is never loaded.\n";
+		}
+
 		if (!$manager->groupTest) {
-			$testObjectFile = $manager->__testObjectFileFromCaseFile($manager->testCaseFile, $manager->appTest);
-
-			if (!file_exists($testObjectFile)) {
-				trigger_error('This test object file is invalid: ' . $testObjectFile);
-				return ;
-			}
-			$dump = xdebug_get_code_coverage();
-			xdebug_stop_code_coverage();
-			$coverageData = array();
-
-			foreach ($dump as $file => $data) {
-				if ($file == $testObjectFile) {
-					$coverageData = $data;
-					break;
-				}
-			}
-
-			if (empty($coverageData) && $output) {
-				echo 'The test object file is never loaded.';
-			}
 			$execCodeLines = $manager->__getExecutableLines(file_get_contents($testObjectFile));
 			$result = '';
 
@@ -149,46 +185,22 @@ class CodeCoverageManager {
 				case 'CakeHtmlReporter':
 					$result = $manager->reportCaseHtmlDiff(@file($testObjectFile), $coverageData, $execCodeLines, $manager->numDiffContextLines);
 					break;
-				case 'CLIReporter':
-					$result = $manager->reportCaseCli(@file($testObjectFile), $coverageData, $execCodeLines, $manager->numDiffContextLines);
-					break;
+				case 'CakeCliReporter':
 				default:
-					trigger_error('Currently only HTML and CLI reporting is supported for code coverage analysis.');
+					$result = $manager->reportCaseCli(@file($testObjectFile), $coverageData, $execCodeLines, $manager->numDiffContextLines);
 					break;
 			}
 		} else {
-			$testObjectFiles = $manager->__testObjectFilesFromGroupFile($manager->testCaseFile, $manager->appTest);
-
-			foreach ($testObjectFiles as $file) {
-				if (!file_exists($file)) {
-					trigger_error('This test object file is invalid: ' . $file);
-					return ;
-				}
-			}
-			$dump = xdebug_get_code_coverage();
-			xdebug_stop_code_coverage();
-			$coverageData = array();
-			foreach ($dump as $file => $data) {
-				if (in_array($file, $testObjectFiles)) {
-					$coverageData[$file] = $data;
-				}
-			}
-
-			if (empty($coverageData) && $output) {
-				echo 'The test object files are never loaded.';
-			}
-			$execCodeLines = $manager->__getExecutableLines($testObjectFiles);
+			$execCodeLines = $manager->__getExecutableLines($testObjectFile);
 			$result = '';
 
 			switch (get_class($manager->reporter)) {
 				case 'CakeHtmlReporter':
-					$result = $manager->reportGroupHtml($testObjectFiles, $coverageData, $execCodeLines, $manager->numDiffContextLines);
+					$result = $manager->reportGroupHtml($testObjectFile, $coverageData, $execCodeLines, $manager->numDiffContextLines);
 					break;
-				case 'CLIReporter':
-					$result = $manager->reportGroupCli($testObjectFiles, $coverageData, $execCodeLines, $manager->numDiffContextLines);
-					break;
+				case 'CakeCliReporter':
 				default:
-					trigger_error('Currently only HTML and CLI reporting is supported for code coverage analysis.');
+					$result = $manager->reportGroupCli($testObjectFile, $coverageData, $execCodeLines, $manager->numDiffContextLines);
 					break;
 			}
 		}
@@ -197,41 +209,44 @@ class CodeCoverageManager {
 			echo $result;
 		}
 	}
+
 /**
- * Html reporting
+ * Gets the coverage data for the test case or group test that is being run.
  *
- * @param string $testObjectFile
- * @param string $coverageData
- * @param string $execCodeLines
- * @param string $output
  * @return void
  */
-	function reportCaseHtml($testObjectFile, $coverageData, $execCodeLines) {
-		$manager = CodeCoverageManager::getInstance();
-		$lineCount = $coveredCount = 0;
-		$report = '';
+	function _getCoverageData() {
+		$coverageData = array();
+		$dump = xdebug_get_code_coverage();
 
-		foreach ($testObjectFile as $num => $line) {
-			$num++;
-			$foundByManualFinder = isset($execCodeLines[$num]) && trim($execCodeLines[$num]) != '';
-			$foundByXdebug = isset($coverageData[$num]) && $coverageData[$num] !== -2;
-
-			// xdebug does not find all executable lines (zend engine fault)
-			if ($foundByManualFinder && $foundByXdebug) {
-				$class = 'uncovered';
-				$lineCount++;
-
-				if ($coverageData[$num] > 0) {
-					$class = 'covered';
-					$coveredCount++;
+		if ($this->groupTest) {
+			$testObjectFile = $this->__testObjectFilesFromGroupFile($this->testCaseFile, $this->appTest);
+			foreach ($testObjectFile as $file) {
+				if (!file_exists($file)) {
+					trigger_error(sprintf(__('This test object file is invalid: %s', true), $file));
+					return ;
 				}
-			} else {
-				$class = 'ignored';
 			}
-			$report .= $manager->__paintCodeline($class, $num, $line);;
+			foreach ($testObjectFile as $file) {
+				if (isset($dump[$file])) {
+					$coverageData[$file] = $dump[$file];
+				}
+			}
+		} else {
+			$testObjectFile = $this->__testObjectFileFromCaseFile($this->testCaseFile, $this->appTest);
+
+			if (!file_exists($testObjectFile)) {
+				trigger_error(sprintf(__('This test object file is invalid: %s', true), $testObjectFile));
+				return ;
+			}
+
+			if (isset($dump[$testObjectFile])) {
+				$coverageData = $dump[$testObjectFile];
+			}
 		}
-		return $manager->__paintHeader($lineCount, $coveredCount, $report);
+		return array($coverageData, $testObjectFile);
 	}
+
 /**
  * Diff reporting
  *
@@ -240,6 +255,7 @@ class CodeCoverageManager {
  * @param string $execCodeLines
  * @param string $output
  * @return void
+ * @static
  */
 	function reportCaseHtmlDiff($testObjectFile, $coverageData, $execCodeLines, $numContextLines) {
 		$manager = CodeCoverageManager::getInstance();
@@ -349,6 +365,7 @@ class CodeCoverageManager {
 		}
 		return $manager->__paintHeader($lineCount, $coveredCount, $report);
 	}
+
 /**
  * CLI reporting
  *
@@ -357,6 +374,7 @@ class CodeCoverageManager {
  * @param string $execCodeLines
  * @param string $output
  * @return void
+ * @static
  */
 	function reportCaseCli($testObjectFile, $coverageData, $execCodeLines) {
 		$manager = CodeCoverageManager::getInstance();
@@ -378,6 +396,7 @@ class CodeCoverageManager {
 		}
 		return $manager->__paintHeaderCli($lineCount, $coveredCount, $report);
 	}
+
 /**
  * Diff reporting
  *
@@ -386,6 +405,7 @@ class CodeCoverageManager {
  * @param string $execCodeLines
  * @param string $output
  * @return void
+ * @static
  */
 	function reportGroupHtml($testObjectFiles, $coverageData, $execCodeLines, $numContextLines) {
 		$manager = CodeCoverageManager::getInstance();
@@ -417,6 +437,7 @@ class CodeCoverageManager {
 		}
 		return $manager->__paintGroupResultHeader($report);
 	}
+
 /**
  * CLI reporting
  *
@@ -425,6 +446,7 @@ class CodeCoverageManager {
  * @param string $execCodeLines
  * @param string $output
  * @return void
+ * @static
  */
 	function reportGroupCli($testObjectFiles, $coverageData, $execCodeLines) {
 		$manager = CodeCoverageManager::getInstance();
@@ -452,6 +474,7 @@ class CodeCoverageManager {
 		}
 		return $report;
 	}
+
 /**
  * Returns the name of the test object file based on a given test case file name
  *
@@ -466,8 +489,7 @@ class CodeCoverageManager {
 		$folderPrefixMap = array(
 			'behaviors' => 'models',
 			'components' => 'controllers',
-			'helpers' => 'views',
-			'datasources' => 'models'
+			'helpers' => 'views'
 		);
 
 		foreach ($folderPrefixMap as $dir => $prefix) {
@@ -481,7 +503,7 @@ class CodeCoverageManager {
 
 		$folder =& new Folder();
 		$folder->cd(ROOT . DS . CAKE_TESTS_LIB);
-		$contents = $folder->ls();
+		$contents = $folder->read();
 
 		if (in_array(basename($testFile), $contents[1])) {
 			$testFile = basename($testFile);
@@ -495,6 +517,7 @@ class CodeCoverageManager {
 		}
 		return $path;
 	}
+
 /**
  * Returns an array of names of the test object files based on a given test group file name
  *
@@ -507,52 +530,54 @@ class CodeCoverageManager {
 		$manager = CodeCoverageManager::getInstance();
 		$testManager =& new TestManager();
 
-		$path = TESTS . 'groups';
-
+		$path = TESTS;
 		if (!$isApp) {
-			$path = ROOT . DS . 'cake' . DS . 'tests' . DS . 'groups';
+			$path = CAKE_CORE_INCLUDE_PATH . DS . 'cake' . DS . 'tests';
 		}
-
 		if (!!$manager->pluginTest) {
-			$path = APP . 'plugins' . DS . $manager->pluginTest . DS . 'tests' . DS . 'groups';
-
-			$pluginPaths = Configure::read('pluginPaths');
-			foreach ($pluginPaths as $pluginPath) {
-				$tmpPath = $pluginPath . $manager->pluginTest . DS . 'tests' . DS. 'groups';
-				if (file_exists($tmpPath)) {
-					$path = $tmpPath;
-					break;
-				}
-			}
-		}
-		$path .= DS . $groupFile . $testManager->_groupExtension;
-
-		if (!file_exists($path)) {
-			trigger_error('This group file does not exist!');
-			return array();
+			$path = App::pluginPath($manager->pluginTest) . DS . 'tests';
 		}
 
 		$result = array();
-		$groupContent = file_get_contents($path);
-		$ds = '\s*\.\s*DS\s*\.\s*';
-		$pluginTest = 'APP\.\'plugins\'' . $ds . '\'' . $manager->pluginTest . '\'' . $ds . '\'tests\'' . $ds . '\'cases\'';
-		$pattern = '/\s*TestManager::addTestFile\(\s*\$this,\s*(' . $pluginTest . '|APP_TEST_CASES|CORE_TEST_CASES)' . $ds . '(.*?)\)/i';
-		preg_match_all($pattern, $groupContent, $matches);
+		if ($groupFile == 'all') {
+			$files = array_keys($testManager->getTestCaseList());
+			foreach ($files as $file) {
+				$file = str_replace(DS . 'tests' . DS . 'cases' . DS, DS, $file);
+				$file = str_replace('.test.php', '.php', $file);
+				$file = str_replace(DS . DS, DS, $file);
+				$result[] = $file;
+			}
+		} else {
+			$path .= DS . 'groups' . DS . $groupFile . $testManager->_groupExtension;
+			if (!file_exists($path)) {
+				trigger_error(__('This group file does not exist!', true));
+				return array();
+			}
 
-		foreach ($matches[2] as $file) {
-			$patterns = array(
-				'/\s*\.\s*DS\s*\.\s*/',
-				'/\s*APP_TEST_CASES\s*/',
-				'/\s*CORE_TEST_CASES\s*/',
-			);
+			$result = array();
+			$groupContent = file_get_contents($path);
+			$ds = '\s*\.\s*DS\s*\.\s*';
+			$pluginTest = 'APP\.\'plugins\'' . $ds . '\'' . $manager->pluginTest . '\'' . $ds . '\'tests\'' . $ds . '\'cases\'';
+			$pluginTest .= '|App::pluginPath\(\'' . $manager->pluginTest . '\'\)' . $ds . '\'tests\'' . $ds . '\'cases\'';
+			$pattern = '/\s*TestManager::addTestFile\(\s*\$this,\s*(' . $pluginTest . '|APP_TEST_CASES|CORE_TEST_CASES)' . $ds . '(.*?)\)/i';
+			preg_match_all($pattern, $groupContent, $matches);
 
-			$replacements = array(DS, '', '');
-			$file = preg_replace($patterns, $replacements, $file);
-			$file = str_replace("'", '', $file);
-			$result[] = $manager->__testObjectFileFromCaseFile($file, $isApp) . '.php';
+			foreach ($matches[2] as $file) {
+				$patterns = array(
+					'/\s*\.\s*DS\s*\.\s*/',
+					'/\s*APP_TEST_CASES\s*/',
+					'/\s*CORE_TEST_CASES\s*/',
+				);
+
+				$replacements = array(DS, '', '');
+				$file = preg_replace($patterns, $replacements, $file);
+				$file = str_replace("'", '', $file);
+				$result[] = $manager->__testObjectFileFromCaseFile($file, $isApp) . '.php';
+			}
 		}
 		return $result;
 	}
+
 /**
  * Parses a given code string into an array of lines and replaces some non-executable code lines with the needed
  * amount of new lines in order for the code line numbers to stay in sync
@@ -563,7 +588,7 @@ class CodeCoverageManager {
  */
 	function __getExecutableLines($content) {
 		if (is_array($content)) {
-			$manager = CodeCoverageManager::getInstance();
+			$manager =& CodeCoverageManager::getInstance();
 			$result = array();
 			foreach ($content as $file) {
 				$result[$file] = $manager->__getExecutableLines(file_get_contents($file));
@@ -585,6 +610,7 @@ class CodeCoverageManager {
 		unset($result[0]);
 		return $result;
 	}
+
 /**
  * Replaces a given arg with the number of newlines in it
  *
@@ -596,6 +622,7 @@ class CodeCoverageManager {
 		$numLineBreaks = count(explode("\n", $args[0][0]));
 		return str_pad('', $numLineBreaks - 1, "\n");
 	}
+
 /**
  * Paints the headline for code coverage analysis
  *
@@ -610,6 +637,7 @@ class CodeCoverageManager {
 		return $report = '<h2>Code Coverage: ' . $codeCoverage . '%</h2>
 						<div class="code-coverage-results"><pre>' . $report . '</pre></div>';
 	}
+
 /**
  * Displays a notification concerning group test results
  *
@@ -619,6 +647,7 @@ class CodeCoverageManager {
 	function __paintGroupResultHeader($report) {
 		return '<div class="code-coverage-results"><p class="note">Please keep in mind that the coverage can vary a little bit depending on how much the different tests in the group interfere. If for example, TEST A calls a line from TEST OBJECT B, the coverage for TEST OBJECT B will be a little greater than if you were running the corresponding test case for TEST OBJECT B alone.</p><pre>' . $report . '</pre></div>';
 	}
+
 /**
  * Paints the headline for code coverage analysis
  *
@@ -640,6 +669,7 @@ class CodeCoverageManager {
 		}
 		return '<p>Code Coverage for ' . $file . ': <span class="' . $class . '">' . $codeCoverage . '%</span></p>';
 	}
+
 /**
  * Paints the headline for code coverage analysis
  *
@@ -652,7 +682,6 @@ class CodeCoverageManager {
 		$manager =& CodeCoverageManager::getInstance();
 		$codeCoverage = $manager->__calcCoverage($lineCount, $coveredCount);
 		$class = 'bad';
-
 		if ($codeCoverage > 50) {
 			$class = 'ok';
 		}
@@ -661,6 +690,7 @@ class CodeCoverageManager {
 		}
 		return "\n" . 'Code Coverage for ' . $file . ': ' . $codeCoverage . '% (' . $class . ')' . "\n";
 	}
+
 /**
  * Paints the headline for code coverage analysis in the CLI
  *
@@ -672,8 +702,16 @@ class CodeCoverageManager {
 	function __paintHeaderCli($lineCount, $coveredCount, $report) {
 		$manager =& CodeCoverageManager::getInstance();
 		$codeCoverage = $manager->__calcCoverage($lineCount, $coveredCount);
-		return $report = 'Code Coverage: ' . $codeCoverage . '%';
+		$class = 'bad';
+		if ($codeCoverage > 50) {
+			$class = 'ok';
+		}
+		if ($codeCoverage > 80) {
+			$class = 'good';
+		}
+		return $report = "Code Coverage: $codeCoverage% ($class)\n";
 	}
+
 /**
  * Paints a code line for html output
  *
@@ -688,6 +726,7 @@ class CodeCoverageManager {
 		}
 		return '<div class="code-line ' . trim($class) . '"><span class="line-num">' . $num . '</span><span class="content">' . $line . '</span></div>';
 	}
+
 /**
  * Calculates the coverage percentage based on a line count and a covered line count
  *
@@ -698,12 +737,13 @@ class CodeCoverageManager {
  */
 	function __calcCoverage($lineCount, $coveredCount) {
 		if ($coveredCount > $lineCount) {
-			trigger_error('Sorry, you cannot have more covered lines than total lines!');
+			trigger_error(__('Sorry, you cannot have more covered lines than total lines!', true));
 		}
 		return ($lineCount != 0)
 				? round(100 * $coveredCount / $lineCount, 2)
 				: '0.00';
 	}
+
 /**
  * Gets us the base path to look for the test files
  *
@@ -720,7 +760,7 @@ class CodeCoverageManager {
 		} elseif (!!$manager->pluginTest) {
 			$pluginPath = APP . 'plugins' . DS . $manager->pluginTest . DS;
 
-			$pluginPaths = Configure::read('pluginPaths');
+			$pluginPaths = App::path('plugins');
 			foreach ($pluginPaths as $tmpPath) {
 				$tmpPath = $tmpPath . $manager->pluginTest . DS;
 				if (file_exists($tmpPath)) {
@@ -736,6 +776,7 @@ class CodeCoverageManager {
 
 		return $path;
 	}
+
 /**
  * Finds the last element of an array that contains $needle in a strpos computation
  *
@@ -761,4 +802,3 @@ class CodeCoverageManager {
 		return false;
 	}
 }
-?>

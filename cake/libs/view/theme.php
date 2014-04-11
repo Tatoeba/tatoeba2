@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * A custom view class that is used for themeing
  *
@@ -16,79 +15,60 @@
  * @package       cake
  * @subpackage    cake.cake.libs.view
  * @since         CakePHP(tm) v 0.10.0.1076
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 /**
  * Theme view class
+ *
+ * Allows the creation of multiple themes to be used in an app. Theme views are regular view files
+ * that can provide unique HTML and static assets.  If theme views are not found for the current view
+ * the default app view files will be used. You can set `$this->theme` and `$this->view = 'Theme'` 
+ * in your Controller to use the ThemeView.
+ *
+ * Example of theme path with `$this->theme = 'super_hot';` Would be `app/views/themed/super_hot/posts`
  *
  * @package       cake
  * @subpackage    cake.cake.libs.view
  */
 class ThemeView extends View {
 /**
- * System path to themed element: themed . DS . theme . DS . elements . DS
+ * Constructor for ThemeView sets $this->theme.
  *
- * @var string
+ * @param Controller $controller Controller object to be rendered.
+ * @param boolean $register Should the view be registered in the registry.
  */
-	var $themeElement = null;
-/**
- * System path to themed layout: themed . DS . theme . DS . layouts . DS
- *
- * @var string
- */
-	var $themeLayout = null;
-/**
- * System path to themed: themed . DS . theme . DS
- *
- * @var string
- */
-	var $themePath = null;
-/**
- * Enter description here...
- *
- * @param unknown_type $controller
- */
-	function __construct (&$controller, $register = true) {
+	function __construct(&$controller, $register = true) {
 		parent::__construct($controller, $register);
 		$this->theme =& $controller->theme;
-
-		if (!empty($this->theme)) {
-			if (is_dir(WWW_ROOT . 'themed' . DS . $this->theme)) {
-				$this->themeWeb = 'themed/'. $this->theme .'/';
-			}
-			/* deprecated: as of 6128 the following properties are no longer needed */
-			$this->themeElement = 'themed'. DS . $this->theme . DS .'elements'. DS;
-			$this->themeLayout =  'themed'. DS . $this->theme . DS .'layouts'. DS;
-			$this->themePath = 'themed'. DS . $this->theme . DS;
-		}
 	}
 
 /**
  * Return all possible paths to find view files in order
  *
- * @param string $plugin
+ * @param string $plugin The name of the plugin views are being found for.
+ * @param boolean $cached Set to true to force dir scan.
  * @return array paths
- * @access private
+ * @access protected
+ * @todo Make theme path building respect $cached parameter.
  */
 	function _paths($plugin = null, $cached = true) {
 		$paths = parent::_paths($plugin, $cached);
+		$themePaths = array();
 
 		if (!empty($this->theme)) {
 			$count = count($paths);
 			for ($i = 0; $i < $count; $i++) {
-				$themePaths[] = $paths[$i] . 'themed'. DS . $this->theme . DS;
+				if (strpos($paths[$i], DS . 'plugins' . DS) === false
+					&& strpos($paths[$i], DS . 'libs' . DS . 'view') === false) {
+						if ($plugin) {
+							$themePaths[] = $paths[$i] . 'themed'. DS . $this->theme . DS . 'plugins' . DS . $plugin . DS;
+						}
+						$themePaths[] = $paths[$i] . 'themed'. DS . $this->theme . DS;
+					}
 			}
 			$paths = array_merge($themePaths, $paths);
 		}
-
-		if (empty($this->__paths)) {
-			$this->__paths = $paths;
-		}
-
 		return $paths;
 	}
 }
-?>

@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Overload abstraction interface.  Merges differences between PHP4 and 5.
  *
@@ -16,11 +15,9 @@
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 1.2
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 /**
  * Overloadable class selector
  *
@@ -37,4 +34,3 @@ if (!PHP5) {
 } else {
 	require(LIBS . 'overloadable_php5.php');
 }
-?>

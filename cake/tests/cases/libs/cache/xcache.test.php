@@ -1,31 +1,26 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * XcacheEngineTest file
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.cache
  * @since         CakePHP(tm) v 1.2.0.5434
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 if (!class_exists('Cache')) {
 	require LIBS . 'cache.php';
 }
+
 /**
  * XcacheEngineTest class
  *
@@ -33,6 +28,7 @@ if (!class_exists('Cache')) {
  * @subpackage    cake.tests.cases.libs.cache
  */
 class XcacheEngineTest extends UnitTestCase {
+
 /**
  * skip method
  *
@@ -41,11 +37,12 @@ class XcacheEngineTest extends UnitTestCase {
  */
 	function skip() {
 		$skip = true;
-		if ($result = Cache::engine('Xcache')) {
+		if (function_exists('xcache_set')) {
 			$skip = false;
 		}
 		$this->skipIf($skip, '%s Xcache is not installed or configured properly');
 	}
+
 /**
  * setUp method
  *
@@ -57,6 +54,7 @@ class XcacheEngineTest extends UnitTestCase {
 		Configure::write('Cache.disable', false);
 		Cache::config('xcache', array('engine' => 'Xcache', 'prefix' => 'cake_'));
 	}
+
 /**
  * tearDown method
  *
@@ -67,6 +65,7 @@ class XcacheEngineTest extends UnitTestCase {
 		Configure::write('Cache.disable', $this->_cacheDisable);
 		Cache::config('default');
 	}
+
 /**
  * testSettings method
  *
@@ -75,15 +74,19 @@ class XcacheEngineTest extends UnitTestCase {
  */
 	function testSettings() {
 		$settings = Cache::settings();
-		$expecting = array('prefix' => 'cake_',
-						'duration'=> 3600,
-						'probability' => 100,
-						'engine' => 'Xcache',
-						'PHP_AUTH_USER' => 'user',
-						'PHP_AUTH_PW' => 'password',
-						);
+		$expecting = array(
+			'prefix' => 'cake_',
+			'duration'=> 3600,
+			'probability' => 100,
+			'engine' => 'Xcache',
+		);
+		$this->assertTrue(isset($settings['PHP_AUTH_USER']));
+		$this->assertTrue(isset($settings['PHP_AUTH_PW']));
+
+		unset($settings['PHP_AUTH_USER'], $settings['PHP_AUTH_PW']);
 		$this->assertEqual($settings, $expecting);
 	}
+
 /**
  * testReadAndWriteCache method
  *
@@ -107,6 +110,7 @@ class XcacheEngineTest extends UnitTestCase {
 
 		Cache::delete('test');
 	}
+
 /**
  * testExpiry method
  *
@@ -136,6 +140,7 @@ class XcacheEngineTest extends UnitTestCase {
 		$result = Cache::read('other_test');
 		$this->assertFalse($result);
 	}
+
 /**
  * testDeleteCache method
  *
@@ -150,6 +155,7 @@ class XcacheEngineTest extends UnitTestCase {
 		$result = Cache::delete('delete_test');
 		$this->assertTrue($result);
 	}
+
 /**
  * testClearCache method
  *
@@ -167,5 +173,50 @@ class XcacheEngineTest extends UnitTestCase {
 		$result = Cache::clear();
 		$this->assertTrue($result);
 	}
+
+/**
+ * testDecrement method
+ *
+ * @access public
+ * @return void
+ */
+	function testDecrement() {
+		$result = Cache::write('test_decrement', 5);
+		$this->assertTrue($result);
+
+		$result = Cache::decrement('test_decrement');
+		$this->assertEqual(4, $result);
+
+		$result = Cache::read('test_decrement');
+		$this->assertEqual(4, $result);
+
+		$result = Cache::decrement('test_decrement', 2);
+		$this->assertEqual(2, $result);
+
+		$result = Cache::read('test_decrement');
+		$this->assertEqual(2, $result);
+	}
+
+/**
+ * testIncrement method
+ *
+ * @access public
+ * @return void
+ */
+	function testIncrement() {
+		$result = Cache::write('test_increment', 5);
+		$this->assertTrue($result);
+
+		$result = Cache::increment('test_increment');
+		$this->assertEqual(6, $result);
+
+		$result = Cache::read('test_increment');
+		$this->assertEqual(6, $result);
+
+		$result = Cache::increment('test_increment', 2);
+		$this->assertEqual(8, $result);
+
+		$result = Cache::read('test_increment');
+		$this->assertEqual(8, $result);
+	}
 }
-?>

@@ -1,30 +1,25 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * ContainableBehaviorTest file
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model.behaviors
  * @since         CakePHP(tm) v 1.2.0.5669
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 App::import('Core', array('AppModel', 'Model'));
 require_once(dirname(dirname(__FILE__)) . DS . 'models.php');
+
 /**
  * ContainableTest class
  *
@@ -32,6 +27,7 @@ require_once(dirname(dirname(__FILE__)) . DS . 'models.php');
  * @subpackage    cake.tests.cases.libs.model.behaviors
  */
 class ContainableBehaviorTest extends CakeTestCase {
+
 /**
  * Fixtures associated with this test case
  *
@@ -40,8 +36,9 @@ class ContainableBehaviorTest extends CakeTestCase {
  */
 	var $fixtures = array(
 		'core.article', 'core.article_featured', 'core.article_featureds_tags', 'core.articles_tag', 'core.attachment', 'core.category',
-		'core.comment', 'core.featured', 'core.tag', 'core.user'
+		'core.comment', 'core.featured', 'core.tag', 'core.user', 'core.join_a', 'core.join_b', 'core.join_c', 'core.join_a_c', 'core.join_a_b'
 	);
+
 /**
  * Method executed before each test
  *
@@ -52,22 +49,21 @@ class ContainableBehaviorTest extends CakeTestCase {
 		$this->Article =& ClassRegistry::init('Article');
 		$this->Tag =& ClassRegistry::init('Tag');
 
-		$this->User->bind(array(
-			'Article' => array('type' => 'hasMany'),
-			'ArticleFeatured' => array('type' => 'hasMany'),
-			'Comment' => array('type' => 'hasMany')
-		));
+		$this->User->bindModel(array(
+			'hasMany' => array('Article', 'ArticleFeatured', 'Comment')
+		), false);
 		$this->User->ArticleFeatured->unbindModel(array('belongsTo' => array('Category')), false);
 		$this->User->ArticleFeatured->hasMany['Comment']['foreignKey'] = 'article_id';
 
-		$this->Tag->bind(array(
-			'Article' => array('type' => 'hasAndBelongsToMany')
-		));
+		$this->Tag->bindModel(array(
+			'hasAndBelongsToMany' => array('Article')
+		), false);
 
 		$this->User->Behaviors->attach('Containable');
 		$this->Article->Behaviors->attach('Containable');
 		$this->Tag->Behaviors->attach('Containable');
 	}
+
 /**
  * Method executed after each test
  *
@@ -80,6 +76,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 
 		ClassRegistry::flush();
 	}
+
 /**
  * testContainments method
  *
@@ -141,6 +138,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		$this->assertTrue(Set::matches('/Article/keep/User', $r));
 		$this->assertTrue(Set::matches('/Tag/keep/Article', $r));
 	}
+
 /**
  * testInvalidContainments method
  *
@@ -154,6 +152,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		$this->Article->Behaviors->attach('Containable', array('notices' => false));
 		$r = $this->__containments($this->Article, array('Comment', 'InvalidBinding'));
 	}
+
 /**
  * testBeforeFind method
  *
@@ -228,6 +227,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		$this->expectError();
 		$r = $this->Article->find('all', array('contain' => array('Comment' => 'NonExistingBinding')));
 	}
+
 /**
  * testContain method
  *
@@ -243,6 +243,21 @@ class ContainableBehaviorTest extends CakeTestCase {
 		$r = $this->Article->find('all');
 		$this->assertFalse(Set::matches('/Comment/User', $r));
 	}
+
+/**
+ * Test that mixing contain() and the contain find option.
+ *
+ * @access public
+ * @return void
+ */
+	function testContainAndContainOption() {
+		$this->Article->contain();
+		$r = $this->Article->find('all', array(
+			'contain' => array('Comment')
+		));
+		$this->assertTrue(isset($r[0]['Comment']), 'No comment returned');
+	}
+
 /**
  * testFindEmbeddedNoBindings method
  *
@@ -267,6 +282,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		);
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * testFindFirstLevel method
  *
@@ -375,6 +391,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		);
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * testFindEmbeddedFirstLevel method
  *
@@ -481,6 +498,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		);
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * testFindSecondLevel method
  *
@@ -827,6 +845,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		);
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * testFindEmbeddedSecondLevel method
  *
@@ -1169,6 +1188,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		);
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * testFindThirdLevel method
  *
@@ -1489,6 +1509,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		);
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * testFindEmbeddedThirdLevel method
  *
@@ -1806,6 +1827,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		);
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * testSettingsThirdLevel method
  *
@@ -2052,6 +2074,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 			$this->assertEqual($result, $expected);
 		}
 	}
+
 /**
  * testFindThirdLevelNonReset method
  *
@@ -2376,6 +2399,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		);
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * testFindEmbeddedThirdLevelNonReset method
  *
@@ -2865,6 +2889,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		$this->__assertBindings($this->User->ArticleFeatured->Featured, array('belongsTo' => array('ArticleFeatured', 'Category')));
 		$this->__assertBindings($this->User->ArticleFeatured->Comment, array('belongsTo' => array('Article', 'User'), 'hasOne' => array('Attachment')));
 	}
+
 /**
  * testEmbeddedFindFields method
  *
@@ -2936,6 +2961,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		);
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * test that hasOne and belongsTo fields act the same in a contain array.
  *
@@ -3107,6 +3133,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		$this->assertTrue(Set::matches('/Article[id=1]/Tag[id=2]', $result));
 		$this->assertTrue(empty($this->User->Article->hasAndBelongsToMany['Tag']['order']));
 	}
+
 /**
  * testOtherFinds method
  *
@@ -3170,6 +3197,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		);
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * testPaginate method
  *
@@ -3274,6 +3302,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		$this->assertTrue(Set::matches('/Comment[article_id=1]', $r));
 		$this->assertTrue(Set::matches('/Comment[id=1]', $r));
 	}
+
 /**
  * testOriginalAssociations method
  *
@@ -3366,6 +3395,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		$this->assertTrue(Set::matches('/Comment[article_id=1]', $result));
 		$this->Article->resetBindings();
 	}
+
 /**
  * testResetAddedAssociation method
  *
@@ -3390,7 +3420,23 @@ class ContainableBehaviorTest extends CakeTestCase {
 		$this->assertEqual($expected, array_keys($result));
 
 		$this->assertTrue(empty($this->Article->hasMany['ArticlesTag']));
+		
+		$this->JoinA =& ClassRegistry::init('JoinA');
+		$this->JoinB =& ClassRegistry::init('JoinB');
+		$this->JoinC =& ClassRegistry::init('JoinC');
+		
+		$this->JoinA->Behaviors->attach('Containable');
+		$this->JoinB->Behaviors->attach('Containable');
+		$this->JoinC->Behaviors->attach('Containable');
+		
+		$this->JoinA->JoinB->find('all', array('contain' => array('JoinA')));
+		$this->JoinA->bindModel(array('hasOne' => array('JoinAsJoinC' => array('joinTable' => 'as_cs'))), false);
+		$result = $this->JoinA->hasOne;
+		$this->JoinA->find('all');
+		$resultAfter = $this->JoinA->hasOne;
+		$this->assertEqual($result, $resultAfter);
 	}
+
 /**
  * testResetAssociation method
  *
@@ -3422,6 +3468,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		$result = $this->Article->Comment->find('all', $initialOptions);
 		$this->assertEqual($result, $initialModels);
 	}
+
 /**
  * testResetDeeperHasOneAssociations method
  *
@@ -3482,6 +3529,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 		));
 		$this->assertEqual($expected, $this->Article->User->hasOne);
 	}
+
 /**
  * testResetMultipleHabtmAssociations method
  *
@@ -3573,6 +3621,42 @@ class ContainableBehaviorTest extends CakeTestCase {
 		$this->Article->find('all', array('contain' => array('ShortTag' => array('fields' => array('ShortTag.tag', 'ShortTag.created')))));
 		$this->assertEqual($expected, $this->Article->hasAndBelongsToMany);
 	}
+
+/**
+ * test that bindModel and unbindModel work with find() calls in between.
+ */
+	function testBindMultipleTimesWithFind() {
+		$binding = array(
+			'hasOne' => array(
+				'ArticlesTag' => array(
+					'foreignKey' => false,
+					'type' => 'INNER',
+					'conditions' => array(
+						'ArticlesTag.article_id = Article.id'
+					)
+				),
+				'Tag' => array(
+					'type' => 'INNER',
+					'foreignKey' => false,
+					'conditions' => array(
+						'ArticlesTag.tag_id = Tag.id'
+					)
+				)
+			)
+		);
+		$this->Article->unbindModel(array('hasAndBelongsToMany' => array('Tag')));
+		$this->Article->bindModel($binding);
+		$result = $this->Article->find('all', array('limit' => 1, 'contain' => array('ArticlesTag', 'Tag')));
+
+		$this->Article->unbindModel(array('hasAndBelongsToMany' => array('Tag')));
+		$this->Article->bindModel($binding);
+		$result = $this->Article->find('all', array('limit' => 1, 'contain' => array('ArticlesTag', 'Tag')));
+
+		$associated = $this->Article->getAssociated();
+		$this->assertEqual('hasAndBelongsToMany', $associated['Tag']);
+		$this->assertFalse(isset($associated['ArticleTag']));
+	}
+
 /**
  * test that autoFields doesn't splice in fields from other databases.
  *
@@ -3617,6 +3701,19 @@ class ContainableBehaviorTest extends CakeTestCase {
 		$this->assertNoErrors();
 		$this->assertEqual($result, 'First Article', 'Field is wrong');
 	}
+
+/**
+ * test that find(all) doesn't return incorrect values when mixed with containable.
+ *
+ * @return void
+ */
+	function testFindAllReturn() {
+		$result = $this->Article->find('all', array(
+			'conditions' => array('Article.id' => 999999999)
+		));
+		$this->assertEqual($result, array(), 'Should be empty.');
+	}
+
 /**
  * containments method
  *
@@ -3638,6 +3735,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 
 		return $result;
 	}
+
 /**
  * assertBindings method
  *
@@ -3653,6 +3751,7 @@ class ContainableBehaviorTest extends CakeTestCase {
 			$this->assertEqual(array_keys($Model->$binding), $expect);
 		}
 	}
+
 /**
  * bindings method
  *
@@ -3694,4 +3793,3 @@ class ContainableBehaviorTest extends CakeTestCase {
 		return $debug;
 	}
 }
-?>

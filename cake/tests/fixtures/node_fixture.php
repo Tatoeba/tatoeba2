@@ -1,9 +1,6 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Short description for file.
- *
- * Long description for file
  *
  * PHP versions 4 and 5
  *
@@ -18,21 +15,18 @@
  * @package       cake
  * @subpackage    cake.tests.fixtures
  * @since         CakePHP(tm) v 1.2.0.6879 //Correct version number as needed**
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 /**
  * Short description for file.
- *
- * Long description for file
  *
  * @package       cake
  * @subpackage    cake.tests.fixtures
  * @since         CakePHP(tm) v 1.2.0.6879 //Correct version number as needed**
  */
 class NodeFixture extends CakeTestFixture {
+
 /**
  * name property
  *
@@ -40,6 +34,7 @@ class NodeFixture extends CakeTestFixture {
  * @access public
  */
 	var $name = 'Node';
+
 /**
  * fields property
  *
@@ -51,6 +46,7 @@ class NodeFixture extends CakeTestFixture {
 		'name' => 'string',
 		'state' => 'integer'
 	);
+
 /**
  * records property
  *
@@ -62,5 +58,3 @@ class NodeFixture extends CakeTestFixture {
 		array('id' => 2, 'name' => 'Second', 'state' => 60),
 	);
 }
-
-?>
