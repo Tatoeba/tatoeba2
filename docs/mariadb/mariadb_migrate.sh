@@ -24,6 +24,7 @@ mv /etc/mysql/my.cnf /etc/mysql/my.cnf.bk
 apt-get install -y python-software-properties
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
 add-apt-repository 'deb http://mirror.stshosting.co.uk/mariadb/repo/10.0/debian wheezy main'
+apt-get update
 
 # Install mariadb
 apt-get install -y 'libmysqlclient18=10.0.10+maria-1~wheezy' 'mysql-common=10.0.10+maria-1~wheezy'
