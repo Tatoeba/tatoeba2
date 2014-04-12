@@ -18,7 +18,6 @@ mysql -u "$user" -p"$pass" < ToInnodb.sql
 
 # Remove and purge mysql packages and config files
 apt-get remove --purge -y mysql-server libmysqlclient18
-mv /etc/mysql/my.cnf /etc/mysql/my.cnf.bk
 
 # Add mariadb repos and keys
 apt-get install -y python-software-properties
