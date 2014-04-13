@@ -1,5 +1,7 @@
 #!/bin/bash
 
+service apache2 stop
+
 apt-get install -y nginx php5-fpm
 
 cp default /etc/nginx/sites-available/tatoeba
