@@ -4,9 +4,9 @@ service apache2 stop
 
 apt-get install -y nginx php5-fpm
 
-cp default /etc/nginx/sites-available/tatoeba
 rm -f /etc/nginx/sites-available/*
 rm -f /etc/nginx/sites-enabled/*
+cp default /etc/nginx/sites-available/tatoeba
 ln -s /etc/nginx/sites-available/tatoeba /etc/nginx/sites-enabled/tatoeba
 cp fpm /etc/php5/fpm/pool.d/tatoeba.conf
 
