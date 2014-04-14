@@ -110,6 +110,5 @@
 
 	<div id="footer_container">
 	</div>
-	<?php echo $cakeDebug ?>
 </body>
 </html>
