@@ -69,7 +69,7 @@ class EmailTestComponent extends EmailComponent {
 /**
  * Allows mocks to be used with tests.
  *
- * @param array $config 
+ * @param array $config
  * @return void
  */
 	function _getSocket($config) {
@@ -449,7 +449,7 @@ TEMPDOC;
 		$this->Controller->EmailTest->_debug = true;
 		$this->Controller->EmailTest->sendAs = 'text';
 		$this->Controller->EmailTest->delivery = 'smtp';
-		
+
 		$socket = new MockEmailSocket();
 		$socket->setReturnValue('connect', true);
 		$this->Controller->EmailTest->setConnectionSocket($socket);
@@ -461,7 +461,7 @@ TEMPDOC;
 		$this->assertPattern('/RCPT TO: <postmaster@localhost>\n/', $this->Controller->EmailTest->smtpSend);
 		$this->assertPattern('/RCPT TO: <root@localhost>\n/', $this->Controller->EmailTest->smtpSend);
 		$this->assertPattern(
-			'/To: postmaster@localhost, root@localhost[\n\r]/', 
+			'/To: postmaster@localhost, root@localhost[\n\r]/',
 			$this->Controller->EmailTest->smtpSend
 		);
 	}
@@ -692,7 +692,7 @@ HTMLBLOC;
 		$expect = str_replace('{CONTENTTYPE}', 'text/html; charset=UTF-8', $header) . $html;
 		$expect = '<pre>' . $expect . '</pre>';
 		$this->assertEqual($this->Controller->Session->read('Message.email.message'), $this->__osFix($expect));
-		
+
 		$result = ClassRegistry::getObject('view');
 		$this->assertFalse($result);
 	}
@@ -1292,7 +1292,7 @@ HTMLBLOC;
 
 		$result = $this->Controller->EmailTest->formatAddress('alias <email@example.com>');
 		$this->assertEqual($result, 'alias <email@example.com>');
-		
+
 		$result = $this->Controller->EmailTest->formatAddress('alias<email@example.com>');
 		$this->assertEqual($result, 'alias <email@example.com>');
 
@@ -1321,7 +1321,7 @@ HTMLBLOC;
 		$this->Controller->EmailTest->charset = 'UTF-8';
 		$result = $this->Controller->EmailTest->formatAddress('ÄÖÜTest <email@domain.de>');
 		$this->assertEqual($result, '=?UTF-8?B?w4TDlsOcVGVzdA==?= <email@domain.de>');
-		
+
 		$result = $this->Controller->EmailTest->formatAddress('ÄÖÜTest<email@domain.de>');
 		$this->assertEqual($result, '=?UTF-8?B?w4TDlsOcVGVzdA==?= <email@domain.de>');
 

@@ -36,7 +36,7 @@
  */
 class DateHelper extends AppHelper
 {
-    /** 
+    /**
      * Display how long ago compared to now.
      *
      * @param string $date        Format for the date is '%d/%m/%Y %H:%M:%S'.
@@ -54,17 +54,17 @@ class DateHelper extends AppHelper
             $day = substr($date, 8, 2);
             $hour = substr($date, 11, 2);
             $min = substr($date, 14, 2);
-            
+
             $pureNumberDate = $year.$month.$day.','.$hour.$min;
             $timestamp = strtotime($pureNumberDate);
         } else {
             $timestamp = $date;
         }
-        
+
         if ($timestamp == 0) {
             return __('date unknown', true);
         }
-        
+
         $now = time();
         $days = intval(($now-$timestamp)/(3600*24));
         $hours = intval(($now-$timestamp) / 3600);

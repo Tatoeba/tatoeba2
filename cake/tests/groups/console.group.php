@@ -51,7 +51,7 @@ class ConsoleGroupTest extends TestSuite {
 		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'console' . DS . 'libs' . DS . 'shell');
 
 		$path = CORE_TEST_CASES . DS . 'console' . DS . 'libs' . DS . 'tasks' . DS;
-		
+
 		TestManager::addTestFile($this, $path . 'controller');
 		TestManager::addTestFile($this, $path . 'db_config');
 		TestManager::addTestFile($this, $path . 'extract');

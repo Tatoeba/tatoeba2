@@ -41,7 +41,7 @@ class WallHelper extends AppHelper
     public $helpers = array('Html', 'Form' , 'Date', 'Javascript', 'ClickableLinks');
 
     /**
-     * create the reply link to a given message 
+     * create the reply link to a given message
      *
      * @param int   $messageId   the id of the replied message
      * @param array $permissions Permissions the current user as on this message
@@ -53,12 +53,12 @@ class WallHelper extends AppHelper
      */
 
     public function createLinks(
-        $messageId, 
-        $permissions, 
+        $messageId,
+        $permissions,
         $hidden,
         $firstTime = false
     ) {
-    
+
         if (CurrentUser::isAdmin()) {
             if ($hidden) {
                 $hiddenLinkText = __('unhide', true);
@@ -67,24 +67,24 @@ class WallHelper extends AppHelper
                 $hiddenLinkText = __('hide', true);
                 $hiddenLinkAction = 'hide_message';
             }
-            
+
             // hide/unhide link, for when people start acting like kids and stuff
             echo $this->Html->link(
                 $hiddenLinkText,
                 array(
-                    "controller" => "wall", 
+                    "controller" => "wall",
                     "action" => $hiddenLinkAction,
                     $messageId
                 )
             );
             echo ' - ';
-            
-            
+
+
         }
-        
+
         if ($permissions['canEdit']) {
             $tooltip
-                = CurrentUser::isAdmin() ? 
+                = CurrentUser::isAdmin() ?
                     __("edit this message", true) : __("edit your message", true);
             echo $this->Html->link(
                 __("edit", true),
@@ -99,14 +99,14 @@ class WallHelper extends AppHelper
             );
             echo ' - ';
         }
-        
-        
+
+
         if ($permissions['canDelete']) {
             // delete link
             echo $this->Html->link(
                 __('delete', true),
                 array(
-                    "controller"=>"wall", 
+                    "controller"=>"wall",
                     "action"=>"delete_message",
                     $messageId
                 ),
@@ -115,8 +115,8 @@ class WallHelper extends AppHelper
             );
             echo ' - ';
         }
-            
-        if ($permissions['canReply']) { 
+
+        if ($permissions['canReply']) {
             // reply link
             if ($firstTime === true) {
                 $this->Javascript->link('jquery.scrollTo-min.js', false);
@@ -129,7 +129,7 @@ class WallHelper extends AppHelper
             echo '</a>';
             echo ' - ';
         }
-        
+
         // message link
         echo $this->Html->link(
             '#',
@@ -143,20 +143,20 @@ class WallHelper extends AppHelper
     }
 
     /**
-     * display the avatar of the one who write current message 
+     * display the avatar of the one who write current message
      *
      * @param string $userName  name of the user
      * @param string $userImage filename of user's picture
      *
      * @return void
      */
-    
+
     public function displayMessagePosterImage($userName, $userImage)
     {
         if (empty($userImage)) {
             $userImage = 'unknown-avatar.png';
         }
-        
+
         echo $this->Html->link(
             $this->Html->image(
                 IMG_PATH . 'profiles_36/'. $userImage,
@@ -199,12 +199,12 @@ class WallHelper extends AppHelper
 
     }
 
-    
+
     /**
      * Create form for editing a wall message
-     * 
+     *
      * @param string $message The message
-     * 
+     *
      * @return void
      */
     public function displayEditMessageForm($message)
@@ -213,7 +213,7 @@ class WallHelper extends AppHelper
         <div class="editWallMessage" >
         <?php
         echo $this->Form->create(
-            "Wall", 
+            "Wall",
             array(
                 "url" =>
                     "/{$this->params['lang']}/wall/edit/{$message['Wall']['id']}"
@@ -239,7 +239,7 @@ class WallHelper extends AppHelper
         );
         echo $this->Form->end(__("submit", true));
         ?>
-        </div>    
+        </div>
         <?php
     }
 
@@ -257,7 +257,7 @@ class WallHelper extends AppHelper
     public function displayContent($content, $hidden = false, $authorId = 0)
     {
         if ($hidden) {
-            
+
             echo "<div class='hidden'>";
             echo sprintf(
                 __(
@@ -269,14 +269,14 @@ class WallHelper extends AppHelper
                 ),
                 'http://en.wiki.tatoeba.org/articles/show/rules-against-bad-behavior'
             );
-            echo "</div>";            
+            echo "</div>";
         }
-        
-        $isDisplayedToCurrentUser = !$hidden 
-            || CurrentUser::isAdmin() 
-            || CurrentUser::get('id') == $authorId;        
 
-        if ($isDisplayedToCurrentUser) {            
+        $isDisplayedToCurrentUser = !$hidden
+            || CurrentUser::isAdmin()
+            || CurrentUser::get('id') == $authorId;
+
+        if ($isDisplayedToCurrentUser) {
             // re #373:change the message style to be more clear to the reader of the message
             if ($hidden) {
                 echo "<br />";
@@ -351,7 +351,7 @@ class WallHelper extends AppHelper
              echo '</ul>' ;
         }
     }
-    
+
     /**
      * create the visual representation of the root message of a thread
      *
@@ -360,10 +360,10 @@ class WallHelper extends AppHelper
      * @param array $author      Same as $message but for the message's author
      * @param array $permissions Array of the permisions current user have on
      *                           This message
-     *  
+     *
      * @return void
      */
-    
+
     public function createRootDiv($message, $author, $permissions)
     {
         $writerImage = $author['image'];
@@ -374,7 +374,7 @@ class WallHelper extends AppHelper
         }
 
         $messageId = $message['id'];
-        ?> 
+        ?>
         <div class="message root">
             <?php
             $this->_displayMessageMeta(
@@ -384,16 +384,16 @@ class WallHelper extends AppHelper
                 true
             );
             ?>
-            
+
             <!-- message content -->
             <div class="body" >
-                <?php 
+                <?php
                 $this->displayContent(
-                    $message['content'], 
+                    $message['content'],
                     $message['hidden'],
                     $message['owner']
-                ); 
-                ?> 
+                );
+                ?>
             </div>
         </div>
     <?php
@@ -416,7 +416,7 @@ class WallHelper extends AppHelper
         $messageId = $message['id'];
         ?>
         <li class="thread" id="message_<?php echo $messageId; ?>">
-        
+
         <div class="message">
             <!-- message meta -->
             <?php
@@ -428,16 +428,16 @@ class WallHelper extends AppHelper
             ?>
             <!-- message content -->
             <div class="body">
-                <?php 
+                <?php
                 $this->displayContent(
-                    $message['content'], 
+                    $message['content'],
                     $message['hidden'],
                     $message['owner']
-                ); 
+                );
                 ?>
             </div>
         </div>
-        
+
         <div class="replies" id="messageBody_<?php echo $messageId; ?>" >
         <?php
         if (!empty($children)) {
@@ -447,7 +447,7 @@ class WallHelper extends AppHelper
         }
         ?>
         </div>
-            
+
         </li>
     <?php
     }
@@ -487,7 +487,7 @@ class WallHelper extends AppHelper
                 );
                 ?>
             </li>
-            
+
             <li class="image">
                 <?php
                 $this->displayMessagePosterImage(
@@ -496,11 +496,11 @@ class WallHelper extends AppHelper
                 )
                 ?>
             </li>
-            
+
             <li class="author">
                 <?php $this->displayLinkToUserProfile($userName); ?>
             </li>
-            
+
             <li class="date" title="<?php echo $messageDate; ?>">
                 <?php
                 echo $this->Date->ago($messageDate);
@@ -510,7 +510,7 @@ class WallHelper extends AppHelper
                     if ($date != $modified) {
                         echo " - ";
                         echo __("edited", true);
-                        echo " {$this->Date->ago($message['modified'])}"; 
+                        echo " {$this->Date->ago($message['modified'])}";
                     }
                 }
                 ?>
@@ -536,12 +536,12 @@ class WallHelper extends AppHelper
     {
 
         $messageId = $message['id'];
-        
+
         echo '<li id="message_'.$messageId.'" class="topThread" >'."\n";
         // Root message
         $this->createRootDiv(
-            $message, 
-            $author, 
+            $message,
+            $author,
             $permissions
         );
 
@@ -566,8 +566,8 @@ class WallHelper extends AppHelper
 
 
     }
-    
-    
+
+
     /**
      * Display wall message preview (on homepage).
      *
@@ -582,13 +582,13 @@ class WallHelper extends AppHelper
     {
         ?>
         <div class="lastWallMessages">
-        
+
         <div class="header">
         <?php
         echo $this->Date->ago($date);
         // Text of link
         $text = sprintf(
-            __('by %s', true), 
+            __('by %s', true),
             $author
         );
         // Path of link
@@ -601,7 +601,7 @@ class WallHelper extends AppHelper
         echo $this->Html->link(' '.$text, $pathToUserProfile);
         ?>
         </div>
-            
+
         <div class="body">
         <?php
         // Display only 200 first character of message
@@ -620,7 +620,7 @@ class WallHelper extends AppHelper
         }
         ?>
         </div>
-        
+
         <div class="link">
         <?php
         $pathToWallMessage = array(
@@ -630,7 +630,7 @@ class WallHelper extends AppHelper
         echo $this->Html->link('>>>', $pathToWallMessage);
         ?>
         </div>
-        
+
         </div>
         <?php
     }

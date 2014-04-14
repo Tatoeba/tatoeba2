@@ -166,10 +166,10 @@ class TestHelper extends Helper {
 /**
  * expose a method as public
  *
- * @param string $options 
- * @param string $exclude 
- * @param string $insertBefore 
- * @param string $insertAfter 
+ * @param string $options
+ * @param string $exclude
+ * @param string $insertBefore
+ * @param string $insertAfter
  * @return void
  */
 	function parseAttributes($options, $exclude = null, $insertBefore = ' ', $insertAfter = null) {
@@ -792,7 +792,7 @@ class HelperTest extends CakeTestCase {
 		$helper =& new TestHelper();
 		$compact = array('compact', 'checked', 'declare', 'readonly', 'disabled',
 			'selected', 'defer', 'ismap', 'nohref', 'noshade', 'nowrap', 'multiple', 'noresize');
-		
+
 		foreach ($compact as $attribute) {
 			foreach (array('true', true, 1, '1', $attribute) as $value) {
 				$attrs = array($attribute => $value);

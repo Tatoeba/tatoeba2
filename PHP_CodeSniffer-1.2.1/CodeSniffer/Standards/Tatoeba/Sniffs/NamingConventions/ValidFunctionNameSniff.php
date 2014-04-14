@@ -59,7 +59,7 @@ class Tatoeba_Sniffs_NamingConventions_ValidFunctionNameSniff extends PHP_CodeSn
 
     /**
      * A list of all CakePHP controller method that can't.
-     * be set as underscore format 
+     * be set as underscore format
      *
      * @var array
      */

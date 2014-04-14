@@ -194,7 +194,7 @@ class L10nTest extends CakeTestCase {
 		$result = $l10n->map(array('nld', 'nl'));
 		$expected = array('nld' => 'nl', 'nl' => 'dut');
 		$this->assertEqual($result, $expected);
-		
+
 		$result = $l10n->map(array('nld'));
 		$expected = array('nld' => 'nl');
 		$this->assertEqual($result, $expected);
@@ -430,7 +430,7 @@ class L10nTest extends CakeTestCase {
 		$result = $l10n->map(array('xho', 'xh'));
 		$expected = array('xho' => 'xh', 'xh' => 'xho');
 		$this->assertEqual($result, $expected);
-	
+
 		$result = $l10n->map(array('cy', 'cym'));
 		$expected = array('cym' => 'cy', 'cy' => 'cym');
 		$this->assertEqual($result, $expected);
@@ -943,7 +943,7 @@ class L10nTest extends CakeTestCase {
 			'pt-br' => array('language' => 'Portuguese (Brazil)', 'locale' => 'pt_br', 'localeFallback' => 'por', 'charset' => 'utf-8', 'direction' => 'ltr')
 		);
 		$this->assertEqual($result, $expected);
-		
+
 		$result = $l10n->catalog(array('eng', 'deu', 'zho', 'rum', 'zul', 'yid'));
 		$expected = array(
 			'eng' => array('language' => 'English', 'locale' => 'eng', 'localeFallback' => 'eng', 'charset' => 'utf-8', 'direction' => 'ltr'),

@@ -42,9 +42,9 @@ class MenuHelper extends AppHelper
         'Javascript',
         'Form'
     );
-    
-    
-    /** 
+
+
+    /**
      * Display button to add a translation.
      *
      * @param int    $sentenceId Id of the original sentence.
@@ -56,24 +56,24 @@ class MenuHelper extends AppHelper
     public function translateButton($sentenceId, $ownerName, $isLogged)
     {
         $translateButton = $this->Html->image(
-            IMG_PATH . 'translate.png', 
+            IMG_PATH . 'translate.png',
             array(
-                'alt'=>__('Translate', true), 
+                'alt'=>__('Translate', true),
                 'title'=>__('Translate', true),
                 'width' => 33,
                 'height' => 16
             )
         );
         ?>
-        
+
         <li class="option translateLink"
             id="translate_<?php echo $sentenceId; ?>">
-        
+
         <?php
         if ($isLogged) {
             $this->Javascript->link('sentences.add_translation.js', false);
             ?>
-            
+
             <script type='text/javascript'>
             $(document).ready(function() {
                 $('#translate_<?php echo $sentenceId; ?>').data(
@@ -87,7 +87,7 @@ class MenuHelper extends AppHelper
             });
             </script>
             <a><?php echo $translateButton;?></a>
-           <?php 
+           <?php
         } else {
             echo $this->Html->link(
                 $translateButton,
@@ -107,7 +107,7 @@ class MenuHelper extends AppHelper
     }
 
 
-    /** 
+    /**
      * Display button to notify the chinese sentence is in
      * simplified script
      *
@@ -119,9 +119,9 @@ class MenuHelper extends AppHelper
         <li class="option simplified">
         <?php
         echo $this->Html->image(
-            IMG_PATH . 'simplified_chinese.png', 
+            IMG_PATH . 'simplified_chinese.png',
             array(
-                'alt'=>__('This sentence is in simplified Chinese.', true), 
+                'alt'=>__('This sentence is in simplified Chinese.', true),
                 'title'=>__('This sentence is in simplified Chinese.', true),
                 'width' => 18,
                 'height' => 16
@@ -132,7 +132,7 @@ class MenuHelper extends AppHelper
     <?php
     }
 
-    /** 
+    /**
      * Display button to notify the chinese sentence is in
      * traditional script
      *
@@ -144,9 +144,9 @@ class MenuHelper extends AppHelper
         <li class="option traditional">
         <?php
         echo $this->Html->image(
-            IMG_PATH . 'traditional_chinese.png', 
+            IMG_PATH . 'traditional_chinese.png',
             array(
-                'alt'=>__('This sentence is in traditional Chinese.', true), 
+                'alt'=>__('This sentence is in traditional Chinese.', true),
                 'title'=>__('This sentence is in traditional Chinese.', true),
                 'width' => 18,
                 'height' => 16
@@ -159,7 +159,7 @@ class MenuHelper extends AppHelper
 
 
 
-    /** 
+    /**
      * Display button to adopt a sentence.
      *
      * @param int  $sentenceId Id of the sentence on which this button
@@ -181,26 +181,26 @@ class MenuHelper extends AppHelper
             $image = 'adopt.png';
             $tooltip = __('Adopt', true);
         }
-        
+
         $adoptImage = $this->Html->image(
             IMG_PATH . $image,
             array(
-                'alt'=> $tooltip, 
+                'alt'=> $tooltip,
                 'title'=> $tooltip,
                 'width' => 26,
                 'height' => 16
             )
         );
         ?>
-        
-        <li class="option adopt <?php echo $cssClass; ?>" 
+
+        <li class="option adopt <?php echo $cssClass; ?>"
             id="adopt_<?php echo $sentenceId; ?>">
-        
+
         <?php
         if ($isLogged) {
             $this->Javascript->link('sentences.adopt.js', false);
             ?>
-            
+
             <script type='text/javascript'>
             $(document).ready(function() {
                 $('#adopt_<?php echo $sentenceId; ?>').data(
@@ -209,7 +209,7 @@ class MenuHelper extends AppHelper
                 );
             });
             </script>
-            
+
             <a><?php echo $adoptImage; ?></a>
             <?php
         } else {
@@ -229,9 +229,9 @@ class MenuHelper extends AppHelper
         </li>
     <?php
     }
-    
-    
-    /** 
+
+
+    /**
      * Display button to add to favorites.
      *
      * @param int  $sentenceId  Id of the sentence on which this button
@@ -253,26 +253,26 @@ class MenuHelper extends AppHelper
             $image = 'favorite.png';
             $tooltip = __('Add to favorites', true);
         }
-        
+
         $favoriteImage = $this->Html->image(
             IMG_PATH . $image,
             array(
-                'alt'=> $tooltip, 
+                'alt'=> $tooltip,
                 'title'=> $tooltip,
                 'width' => 16,
                 'height' => 16
             )
         );
         ?>
-        
-        <li class="option favorite <?php echo $cssClass; ?>" 
+
+        <li class="option favorite <?php echo $cssClass; ?>"
             id="favorite_<?php echo $sentenceId; ?>">
-        
+
         <?php
         if ($isLogged) {
             $this->Javascript->link('favorites.add.js', false);
             ?>
-            
+
             <script type='text/javascript'>
             $(document).ready(function() {
                 $('#favorite_<?php echo $sentenceId; ?>').data(
@@ -281,7 +281,7 @@ class MenuHelper extends AppHelper
                 );
             });
             </script>
-        
+
             <a><?php echo $favoriteImage;?></a>
 
             <?php
@@ -302,9 +302,9 @@ class MenuHelper extends AppHelper
         </li>
     <?php
     }
-    
-    
-    /** 
+
+
+    /**
      * Display button to add a sentence to a list.
      *
      * @param int  $sentenceId Id of the sentence.
@@ -317,21 +317,21 @@ class MenuHelper extends AppHelper
         $addToListButton = $this->Html->Image(
             IMG_PATH . 'add_to_list.png',
             array(
-                'alt'=>__('Add to list', true), 
+                'alt'=>__('Add to list', true),
                 'title'=>__('Add to list', true),
                 'width' => 20,
                 'height' => 16
             )
         );
         ?>
-        
+
         <li class="option addToList"
             id="addToListButton<?php echo $sentenceId; ?>">
-        
+
         <?php
         if ($isLogged) {
             ?>
-            
+
             <script type='text/javascript'>
             $(document).ready(function() {
                 $('#addToListButton<?php echo $sentenceId; ?>').data(
@@ -340,7 +340,7 @@ class MenuHelper extends AppHelper
                 );
             });
             </script>
-            
+
             <a><?php echo $addToListButton; ?></a>
             <?php
         } else {
@@ -357,24 +357,24 @@ class MenuHelper extends AppHelper
             );
         }
         ?>
-        
+
         </li>
-        
+
         <?php
         $this->Javascript->link('sentences_lists.menu.js', false);
-        
+
         $lists = ClassRegistry::init('SentencesList')->getUserChoices(
             CurrentUser::get('id')
         );
-        
+
         $privateLists = __('Add to your lists', true);
         $publicLists = __('Add to public list', true);
         $selectItems[$privateLists] = $lists['Private'];
         $selectItems[$publicLists] = $lists['Public'];
         ?>
-        
+
         <li style="display:none" id="addToList<?php echo $sentenceId; ?>">
-        
+
         <?php
         echo $this->Form->select(
             'listSelection'.$sentenceId,
@@ -385,7 +385,7 @@ class MenuHelper extends AppHelper
                 "empty" => false
             )
         );
-        
+
         // ok button
         echo $this->Form->button(
             null,
@@ -399,8 +399,8 @@ class MenuHelper extends AppHelper
         </li>
     <?php
     }
-    
-    /** 
+
+    /**
      * Display button to delete.
      *
      * @param int $sentenceId Id of the sentence on which this button
@@ -417,7 +417,7 @@ class MenuHelper extends AppHelper
             $this->Html->image(
                 IMG_PATH . 'delete.png',
                 array(
-                    'alt'=>__('Delete', true), 
+                    'alt'=>__('Delete', true),
                     'title'=>__('Delete', true)
                 )
             ),
@@ -425,16 +425,16 @@ class MenuHelper extends AppHelper
                 "controller" => "sentences",
                 "action" => "delete",
                 $sentenceId
-            ), 
-            array("escape" => false), 
+            ),
+            array("escape" => false),
             'Are you sure?'
         );
         ?>
         </li>
     <?php
     }
-    
-    
+
+
     /**
      * Display a <li></li> with the current owner name
      * and a link to owner's profile
@@ -449,7 +449,7 @@ class MenuHelper extends AppHelper
         if (empty($ownerName)) {
             return;
         }
-        
+
         // the id is used by sentence.adopt.js
         echo '<li class="belongsTo" id="belongsTo_'.$sentenceId.'">';
         $userLink = $this->Html->link(
@@ -463,8 +463,8 @@ class MenuHelper extends AppHelper
         echo sprintf(__('belongs to %s', true), $userLink);
         echo '</li>';
     }
-    
-    
+
+
     /**
      * Display menu for the main sentence.
      *
@@ -479,61 +479,61 @@ class MenuHelper extends AppHelper
     ) {
         ?>
         <ul class="menu">
-        
+
         <?php
         // Username of the owner
         $this->belongsTo($sentenceId, $ownerName);
-        
+
         $isLogged = CurrentUser::isMember();
-        
+
         // Translate
         $this->translateButton($sentenceId, $ownerName, $isLogged);
-        
+
         // Adopt
         $currentUserName = CurrentUser::get('username');
-        $isAlreadyAdoptedBySomeoneElse = (!empty($ownerName) 
+        $isAlreadyAdoptedBySomeoneElse = (!empty($ownerName)
             && $ownerName != $currentUserName);
-        
+
         if (!$isAlreadyAdoptedBySomeoneElse) {
-            $isOwnedByCurrentUser = ($ownerName == $currentUserName 
+            $isOwnedByCurrentUser = ($ownerName == $currentUserName
                 && !empty($ownerName));
             $this->adoptButton($sentenceId, $isOwnedByCurrentUser, $isLogged);
         }
-        
+
         // Favorite
         $isFavorited = CurrentUser::hasFavorited($sentenceId);
         $this->favoriteButton($sentenceId, $isFavorited, $isLogged);
-        
+
         // Add to list
         $this->addToListButton($sentenceId, $isLogged);
-        
+
         if (CurrentUser::isModerator()) {
             // Delete
             $this->deleteButton($sentenceId);
         }
-        
+
         if ($chineseScript == 'simplified_script') {
-            $this->simplifiedButton(); 
+            $this->simplifiedButton();
         } else if ($chineseScript == 'traditional_script') {
-            $this->traditionalButton(); 
+            $this->traditionalButton();
         }
         ?>
-        
+
         <li>
         <?php
         echo $this->Html->image(
-            IMG_PATH . 'loading-small.gif', 
+            IMG_PATH . 'loading-small.gif',
             array(
-                "id"=>"_".$sentenceId."_in_process", 
+                "id"=>"_".$sentenceId."_in_process",
                 "style"=>"display:none",
                 "width" => 16,
                 "height" => 16
             )
         );
         echo $this->Html->image(
-            IMG_PATH . 'valid_16x16.png', 
+            IMG_PATH . 'valid_16x16.png',
             array(
-                "id" => "sentence".$sentenceId."_saved_in_list", 
+                "id" => "sentence".$sentenceId."_saved_in_list",
                 "style" =>"display:none",
                 "width" => 16,
                 "height" => 16
@@ -541,7 +541,7 @@ class MenuHelper extends AppHelper
         );
         ?>
         </li>
-        
+
         </ul>
     <?php
     }

@@ -37,7 +37,7 @@
 class SentenceAnnotationsHelper extends AppHelper
 {
     public $helpers = array('Form', 'Javascript', 'Html', 'Date');
-    
+
     /**
      * Displays the form that lets you search annotations of a specific sentence.
      *
@@ -51,7 +51,7 @@ class SentenceAnnotationsHelper extends AppHelper
         <?php
             echo $this->Form->create('SentenceAnnotation', array("action" => "show"));
             echo $this->Form->input(
-                'sentence_id', 
+                'sentence_id',
                 array("label" => "Sentence #")
             );
             echo $this->Form->end('OK');
@@ -59,8 +59,8 @@ class SentenceAnnotationsHelper extends AppHelper
         </div>
         <?php
     }
-    
-    
+
+
     /**
      * Displays the form that lets you search annotations containing a certain
      * string.
@@ -75,7 +75,7 @@ class SentenceAnnotationsHelper extends AppHelper
         <?php
             echo $this->Form->create('SentenceAnnotation', array("action" => "search"));
             echo $this->Form->input(
-                'text', 
+                'text',
                 array(
                     "label" => "",
                     "type" => "text"
@@ -86,8 +86,8 @@ class SentenceAnnotationsHelper extends AppHelper
         </div>
         <?php
     }
-    
-    
+
+
     /**
      * Displays the form that lets you add a new annotation to a sentence.
      *
@@ -108,9 +108,9 @@ class SentenceAnnotationsHelper extends AppHelper
             'SentenceAnnotation.sentence_id',
             array("value" => $sentenceId)
         );
-        echo $this->Form->input('meaning_id');			
+        echo $this->Form->input('meaning_id');
         echo $this->Form->textarea(
-            'text', 
+            'text',
             array(
                 "label" => null,
                 "cols" => 24,
@@ -122,8 +122,8 @@ class SentenceAnnotationsHelper extends AppHelper
         </div>
         <?php
     }
-    
-    
+
+
     /**
      * Display form to replace massively.
      *
@@ -137,14 +137,14 @@ class SentenceAnnotationsHelper extends AppHelper
         <div class="module">
         <?php
             echo '<h2>Replace</h2>';
-            
+
             echo $this->Javascript->link('sentence_annotations.preview.js', false);
             echo $this->Form->create(
                 'SentenceAnnotation', array("action" => "replace")
             );
             echo '<div>';
             echo $this->Form->hidden(
-                'SentenceAnnotation.textToReplace', 
+                'SentenceAnnotation.textToReplace',
                 array("value" => $stringToReplace)
             );
             echo '</div>';
@@ -159,11 +159,11 @@ class SentenceAnnotationsHelper extends AppHelper
             echo '</div>';
             echo $this->Form->end('Replace');
         ?>
-        </div>	
+        </div>
         <?php
     }
-    
-    
+
+
     /**
      * Display log entry.
      *
@@ -174,11 +174,11 @@ class SentenceAnnotationsHelper extends AppHelper
      *
      * @return void
      */
-    public function displayLogEntry($sentenceId, $text, $username, $date) 
+    public function displayLogEntry($sentenceId, $text, $username, $date)
     {
         ?>
         <tr>
-        
+
         <td class="sentenceId">
         <?php
         echo $this->Html->link(
@@ -191,19 +191,19 @@ class SentenceAnnotationsHelper extends AppHelper
         );
         ?>
         </td>
-        
+
         <td class="text">
         <?php echo Sanitize::html($text); ?>
         </td>
-        
+
         <td class="username">
         <?php echo $username; ?>
         </td>
-        
+
         <td class="date">
         <?php echo $this->Date->ago($date); ?>
         </td>
-        
+
         </tr>
         <?php
     }

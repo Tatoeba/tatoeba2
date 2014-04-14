@@ -1292,18 +1292,18 @@ class App extends Object {
 		}
 		return $items;
 	}
-	
+
 /**
  * Determines if $__maps, $__objects and $__paths cache should be reset.
  *
- * @param boolean $reset 
+ * @param boolean $reset
  * @return boolean
  * @access private
- */	
+ */
 	function __resetCache($reset = null) {
 		static $cache = array();
 		if (!$cache && $reset === true) {
-			$cache = true;	
+			$cache = true;
 		}
 		return $cache;
 	}

@@ -76,7 +76,7 @@ class CakeBaseReporter extends SimpleReporter {
  * - app - App test being run.
  * - case - The case being run
  * - codeCoverage - Whether the case/group being run is being code covered.
- * 
+ *
  * @param string $charset The character set to output with. Defaults to UTF-8
  * @param array $params Array of request parameters the reporter should use. See above.
  * @access public
@@ -95,7 +95,7 @@ class CakeBaseReporter extends SimpleReporter {
  * Starts the timer for the TestSuite execution time.
  *
  * @param string $test_name Name of the test that is being run.
- * @param integer $size 
+ * @param integer $size
  * @return void
  */
 	function paintGroupStart($test_name, $size) {
@@ -197,7 +197,7 @@ class CakeBaseReporter extends SimpleReporter {
  * @return void
  */
 	function paintDocumentEnd() {
-		
+
 	}
 
 /**
@@ -207,7 +207,7 @@ class CakeBaseReporter extends SimpleReporter {
  * @return void
  */
 	function paintTestMenu() {
-		
+
 	}
 
 /**

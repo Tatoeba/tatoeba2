@@ -120,7 +120,7 @@ class I18n extends Object {
  */
 	function translate($singular, $plural = null, $domain = null, $category = 6, $count = null) {
 		$_this =& I18n::getInstance();
-		
+
 		if (strpos($singular, "\r\n") !== false) {
 			$singular = str_replace("\r\n", "\n", $singular);
 		}
@@ -321,10 +321,10 @@ class I18n extends Object {
 			$this->__domains[$domain][$this->__lang][$this->category] = array();
 			return $domain;
 		}
-		
+
 		if (isset($this->__domains[$domain][$this->__lang][$this->category][""])) {
 			$head = $this->__domains[$domain][$this->__lang][$this->category][""];
-			
+
 			foreach (explode("\n", $head) as $line) {
 				$header = strtok($line,":");
 				$line = trim(strtok("\n"));

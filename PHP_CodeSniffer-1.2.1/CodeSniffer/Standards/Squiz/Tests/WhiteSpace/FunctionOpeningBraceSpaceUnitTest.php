@@ -67,7 +67,7 @@ class Squiz_Tests_WhiteSpace_FunctionOpeningBraceSpaceUnitTest extends AbstractS
             return array();
             break;
         }//end switch
-        
+
 
     }//end getErrorList()
 

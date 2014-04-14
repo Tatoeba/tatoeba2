@@ -392,7 +392,7 @@ class ScaffoldViewTest extends CakeTestCase {
 		$ScaffoldView =& new TestScaffoldView($this->Controller);
 
 		$result = $ScaffoldView->testGetFilename('index');
-		$expected = TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'views' . DS 
+		$expected = TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'views' . DS
 			. 'themed' . DS . 'test_theme' . DS . 'posts' . DS . 'scaffold.index.ctp';
 		$this->assertEqual($result, $expected);
 	}

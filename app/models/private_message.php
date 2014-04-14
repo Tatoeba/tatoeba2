@@ -82,7 +82,7 @@ class PrivateMessage extends AppModel
             )
         );
     }
-    
+
     /**
      * Return message corresponding to given id.
      *
@@ -108,7 +108,7 @@ class PrivateMessage extends AppModel
     /**
      * Count how many unread messages a specific user has
      *
-     * @param int $userId The user id. 
+     * @param int $userId The user id.
      *
      * @return int
      */
@@ -128,11 +128,11 @@ class PrivateMessage extends AppModel
             )
         );
     }
-    
+
     /**
      * Returns count of messages sent by user in the last 24 hours
      *
-     * @param int $userId The user id. 
+     * @param int $userId The user id.
      *
      * @return int
      */
@@ -149,7 +149,7 @@ class PrivateMessage extends AppModel
                   )
            )
         );
-        
+
     }
 }
 ?>

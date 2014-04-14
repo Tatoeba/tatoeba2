@@ -413,8 +413,8 @@ class TimeHelperTest extends CakeTestCase {
 				$yourTimezone = new DateTimeZone($timezone);
 				$yourTime = new DateTime('now', $yourTimezone);
 				$userOffset = $yourTimezone->getOffset($yourTime) / HOUR;
-				$this->assertEqual($yourTime->format('r'), $this->Time->toRss(time(), $userOffset));	
-			}	
+				$this->assertEqual($yourTime->format('r'), $this->Time->toRss(time(), $userOffset));
+			}
 		}
 	}
 

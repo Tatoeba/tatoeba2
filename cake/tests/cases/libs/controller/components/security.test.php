@@ -627,7 +627,7 @@ DIGEST;
 	}
 
 /**
- * Test that objects can't be passed into the serialized string. This was a vector for RFI and LFI 
+ * Test that objects can't be passed into the serialized string. This was a vector for RFI and LFI
  * attacks. Thanks to Felix Wilhelm
  *
  * @return void

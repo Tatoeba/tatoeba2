@@ -108,8 +108,8 @@ class DboSqlite extends DboSource {
 		'collate' => array(
 			'value' => 'COLLATE',
 			'quote' => false,
-			'join' => ' ', 
-			'column' => 'Collate', 
+			'join' => ' ',
+			'column' => 'Collate',
 			'position' => 'afterDefault',
 			'options' => array(
 				'BINARY', 'NOCASE', 'RTRIM'

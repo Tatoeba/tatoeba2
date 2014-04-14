@@ -19,7 +19,7 @@
  *   - log
  *   - query_log
  *   - pid_file
- *   
+ *
  */
 
 $sourcePath = "INDEXDIR";
@@ -52,9 +52,9 @@ $languages = array(
     'zsm' => 'Malay',
     'est' => 'Estonian',
     'kat' => 'Georgian',
-    'pol' => 'Polish', 
-    'swh' => 'Swahili', 
-    'lat' => 'Latin', 
+    'pol' => 'Polish',
+    'swh' => 'Swahili',
+    'lat' => 'Latin',
     'wuu' => 'Shanghainese',
     'arz' => 'Egyptian Arabic',
     'bel' => 'Belarusian',
@@ -65,7 +65,7 @@ $languages = array(
     'afr' => 'Afrikaans',
     'fao' => 'Faroese',
     'fry' => 'Frisian',
-    
+
     'bre' => 'Breton',
     'ron' => 'Romanian',
     'uig' => 'Uyghur',
@@ -74,7 +74,7 @@ $languages = array(
     'srp' => 'Serbian',
     'tat' => 'Tatar',
     'yid' => 'Yiddish',
-    
+
     'pes' => 'Persian',
     'nan' => 'Teochew',
     'eus' => 'Basque',
@@ -146,58 +146,58 @@ $languages = array(
     'lad' => 'Ladino',
     'pms' => 'Piemontese',
 
-    'avk' => 'Kotava', 
+    'avk' => 'Kotava',
     'tpw' => 'Old Tupi',
     'tgk' => 'Tajik',
     'mar' => 'Marathi',
-    'prg' => 'Old Prussian' , 
-    'npi' => 'Nepali' , 
-    'mlt' => 'Maltese' , 
-    'ckt' => 'Chukchi' , 
-    'cor' => 'Cornish' , 
-    'aze' => 'Azerbaijani' , 
-    'khm' => 'Khmer' , 
-    'lao' => 'Lao' , 
-    'bod' => 'Standard Tibetan' , 
-    'hil' => 'Hiligaynon' , 
-    'arq' => 'Algerian Arabic' , 
-    'pcd' => 'Picard' , 
-    'grc' => 'Ancient Greek' , 
-    'amh' => 'Amharic' , 
-    'awa' => 'Awadhi' , 
-    'bho' => 'Bhojpuri' , 
-    'cbk' => 'Chavacano' , 
-    'enm' => 'Middle English' , 
-    'frm' => 'Middle French' , 
-    'hat' => 'Haitian Creole' , 
-    'jdt' => 'Juhuri (Judeo-Tat)' , 
-    'kal' => 'Greenlandic' , 
-    'mhr' => 'Meadow Mari' , 
-    'nah' => 'Nahuatl' , 
-    'pdc' => 'Pennsylvania German' , 
-    'sin' => 'Sinhala' , 
-    'tuk' => 'Turkmen' , 
-    'wln' => 'Wallon' , 
-    'bak' => 'Bashkir' , 
-    'hau' => 'Hausa' , 
-    'ltz' => 'Luxembourgish' , 
-    'mgm' => 'Mambae' , 
-    'som' => 'Somali' , 
-    'zul' => 'Zulu' , 
-    'haw' => 'Hawaiian' , 
-    'kir' => 'Kyrgyz' , 
-    'mkd' => 'Macedonian' , 
-    'mrj' => 'Hill Mari' , 
-    'ppl' => 'Pipil' , 
-    'yor' => 'Yoruba' , 
-    'kin' => 'Kinyarwanda' , 
-    'shs' => 'Shuswap' , 
-    'chv' => 'Chuvash' , 
-    'lkt' => 'Lakota' , 
-    'ota' => 'Ottoman Turkish' , 
-    'sna' => 'Shona' , 
-    'mnw' => 'Mon' , 
-    'nog' => 'Nogai' , 
+    'prg' => 'Old Prussian' ,
+    'npi' => 'Nepali' ,
+    'mlt' => 'Maltese' ,
+    'ckt' => 'Chukchi' ,
+    'cor' => 'Cornish' ,
+    'aze' => 'Azerbaijani' ,
+    'khm' => 'Khmer' ,
+    'lao' => 'Lao' ,
+    'bod' => 'Standard Tibetan' ,
+    'hil' => 'Hiligaynon' ,
+    'arq' => 'Algerian Arabic' ,
+    'pcd' => 'Picard' ,
+    'grc' => 'Ancient Greek' ,
+    'amh' => 'Amharic' ,
+    'awa' => 'Awadhi' ,
+    'bho' => 'Bhojpuri' ,
+    'cbk' => 'Chavacano' ,
+    'enm' => 'Middle English' ,
+    'frm' => 'Middle French' ,
+    'hat' => 'Haitian Creole' ,
+    'jdt' => 'Juhuri (Judeo-Tat)' ,
+    'kal' => 'Greenlandic' ,
+    'mhr' => 'Meadow Mari' ,
+    'nah' => 'Nahuatl' ,
+    'pdc' => 'Pennsylvania German' ,
+    'sin' => 'Sinhala' ,
+    'tuk' => 'Turkmen' ,
+    'wln' => 'Wallon' ,
+    'bak' => 'Bashkir' ,
+    'hau' => 'Hausa' ,
+    'ltz' => 'Luxembourgish' ,
+    'mgm' => 'Mambae' ,
+    'som' => 'Somali' ,
+    'zul' => 'Zulu' ,
+    'haw' => 'Hawaiian' ,
+    'kir' => 'Kyrgyz' ,
+    'mkd' => 'Macedonian' ,
+    'mrj' => 'Hill Mari' ,
+    'ppl' => 'Pipil' ,
+    'yor' => 'Yoruba' ,
+    'kin' => 'Kinyarwanda' ,
+    'shs' => 'Shuswap' ,
+    'chv' => 'Chuvash' ,
+    'lkt' => 'Lakota' ,
+    'ota' => 'Ottoman Turkish' ,
+    'sna' => 'Shona' ,
+    'mnw' => 'Mon' ,
+    'nog' => 'Nogai' ,
     'sah' => 'Yakut' , //@lang
 );
 
@@ -213,11 +213,11 @@ $languageWithStemmer = array(
     "tur"=>0,
     "swe"=>0,
     "eng"=>0,
-); 
+);
 
-    
-    
-    
+
+
+
 $cjkLanguages = array(
     "kor" => 0,
     "cmn" => 0,
@@ -227,7 +227,7 @@ $cjkLanguages = array(
     'nan' => 0,
     'ain' => 0,
     'lzh' => 0
-); 
+);
 
 
 ?>
@@ -247,7 +247,7 @@ source default
 }
 
 
-index common_index 
+index common_index
 {
     index_exact_words       = 1
     charset_table           = 0..9, a..z, _, A..Z->a..z, U+00C0->a, U+00C1->a, U+00C2->a, U+00C3->a, U+00C4->a, \
@@ -325,14 +325,14 @@ index common_index
                         U+D00..U+D77,\
                         U+E00..U+E5C,\
                         U+492, U+493, U+4E2, U+4E3, U+49A, U+49B, U+4EE, U+4EF, U+4B2, U+4B3, U+4B6, U+4B7
-                        
+
 
     docinfo                 = extern
     charset_type            = utf-8
 
 }
 
-index cjk_common_index 
+index cjk_common_index
 {
 
     ngram_len               = 1
@@ -372,7 +372,7 @@ foreach ($languages as $lang=>$name){
             left join sentences_translations tt on tt.sentence_id = st.translation_id\
             left join sentences t on tt.translation_id = t.id\
             where s.lang_id =  (select id from langStats where lang = '$lang')\
-        ) t 
+        ) t
         sql_attr_uint = id2
         sql_attr_multi = uint trans_id from field; SELECT id FROM langStats ;
     }
@@ -385,7 +385,7 @@ foreach ($languages as $lang=>$name){
     echo "
     index ".$lang."_index : $parent
     {
-        source = ".$lang."_src 
+        source = ".$lang."_src
         path = " . $sourcePath . DIRECTORY_SEPARATOR.$lang;
 
         if (isset($languageWithStemmer[$lang])) {
@@ -394,11 +394,11 @@ foreach ($languages as $lang=>$name){
         min_stemming_len        = 4
     ";
         }
-    echo 
+    echo
     "
     }
     ";
-}// end of first foreach 
+}// end of first foreach
 
 
 
@@ -413,7 +413,7 @@ index und_index : common_index
     foreach ($languages as $lang=>$name) {
         echo "    local           = $lang"."_index\n";
     }
-    
+
     echo"
 }
 ";

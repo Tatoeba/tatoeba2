@@ -38,17 +38,17 @@ class StatsController extends AppController
 {
     /**
      * Before filter.
-     * 
+     *
      * @return void
      */
     public function beforeFilter()
     {
         parent::beforeFilter();
-        
+
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array("*");
     }
-    
+
     /**
      *
      */

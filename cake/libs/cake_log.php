@@ -199,7 +199,7 @@ class CakeLog {
  * ### Usage:
  *
  * Write a message to the 'warning' log:
- * 
+ *
  * `CakeLog::write('warning', 'Stuff is broken here');`
  *
  * @param string $type Type of message being written
@@ -241,7 +241,7 @@ class CakeLog {
 
 /**
  * An error_handler that will log errors to file using CakeLog::write();
- * You can control how verbose and what type of errors this error_handler will 
+ * You can control how verbose and what type of errors this error_handler will
  * catch using `Configure::write('log', $value)`.  See core.php for more information.
  *
  *

@@ -84,11 +84,11 @@ class UserController extends AppController
 
     /**
      * Display profile of given user.
-     * If no username is given and no user is logged in, 
+     * If no username is given and no user is logged in,
      *     then redirect to home
-     * If no username is given (but a user is logged in), 
+     * If no username is given (but a user is logged in),
      *     then redirect to current user's profile
-     * If username doesn't exist, 
+     * If username doesn't exist,
      *     then redirect to list of memembers (user logged in or not)
      *
      * @param string $userName User screen identifiant
@@ -99,9 +99,9 @@ class UserController extends AppController
     {
         $this->helpers[] = 'ClickableLinks';
         $this->helpers[] = 'Members';
-        
+
         $userName = Sanitize::paranoid($userName, array('_'));
-        
+
         if (empty($userName) && !CurrentUser::isMember()) {
             $this->redirect(array('controller'=>'pages','action' => 'home'));
         } elseif (empty($userName)) {
@@ -118,22 +118,22 @@ class UserController extends AppController
                   'action' => 'all')
             );
         }
-        
+
         $user = $infoOfUser['User'];
         $countryName = $infoOfUser['Country']['name'];
         $groupId = $user['group_id'];
-        $userId = $user['id']; 
+        $userId = $user['id'];
         $userStats = $this->_stats($userId);
-        
+
         $isPublic = ($user['is_public'] == 1);
         $isDisplayed = ($isPublic || CurrentUser::isMember());
         $notificationsEnabled = ($user['send_notifications'] == 1);
-        
+
         $this->set('userStats', $userStats);
         $this->set('user', $user);
         $this->set('countryName', $countryName);
         $this->set('groupId', $groupId);
-        
+
         $this->set('isPublic', $isPublic);
         $this->set('isDisplayed', $isDisplayed);
         $this->set('notificationsEnabled', $notificationsEnabled);
@@ -141,18 +141,18 @@ class UserController extends AppController
 
     /**
      * Save avatar image of current user.
-     * 
+     *
      * @return void
      */
     public function save_image()
     {
         $redirectURL = array('action' => 'profile', CurrentUser::get('username'));
-        
+
         $image = null;
         if (isset($this->data['profile_image']['image'])) {
             $image = $this->data['profile_image']['image'];
         }
-        
+
         // We first check if a file has been correctly uploaded
         $redirect = (empty($this->data) || empty($image)) ||
                     ($image['error'] != UPLOAD_ERR_OK) ||
@@ -163,7 +163,7 @@ class UserController extends AppController
             );
             $this->redirect($redirectURL);
         }
-        
+
         // The file size must be < 1mb
         $fileSize = (int) $image['size'] / 1024;
         if ($fileSize > 1024) {
@@ -176,20 +176,20 @@ class UserController extends AppController
         // Check file extension
         $fileExtension = pathinfo($image['name'], PATHINFO_EXTENSION);
         $validExtensions = array('png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF');
-        
+
         if (!in_array($fileExtension, $validExtensions)) {
             $this->Session->setFlash(
                 __('Please choose GIF, JPEG or PNG image format.', true)
             );
             $this->redirect($redirectURL);
         }
-        
+
         // Generate name for picture
         $email = $this->Auth->user('email');
         $newFileName =  md5($email) . '.png' ;
         $newFileFullPath128 = IMAGES . "profiles_128". DS . $newFileName;
         $newFileFullPath36 = IMAGES . "profiles_36". DS . $newFileName;
-        
+
         // Use _resize_image method here
         $save128Succed = $this->_resize_image(
             $image['tmp_name'],
@@ -201,7 +201,7 @@ class UserController extends AppController
             $newFileFullPath36,
             36
         );
-        
+
         // if all resize has worked we can save it in user information
         if ($save36Succed && $save128Succed) {
             $this->User->id = $this->Auth->user('id');
@@ -214,39 +214,39 @@ class UserController extends AppController
 
         $this->redirect($redirectURL);
     }
-    
+
     /**
      * Resize an image and save it
      *
      * @param string $oldFile   Full path to the old picture to resize
-     * @param string $newFile   Full path where the resized file will be saved 
+     * @param string $newFile   Full path where the resized file will be saved
      * @param int    $dimension Dimension of the new image, if the old picture
      *                          is not squarre the picture will be filled with
-     *                          Transparent background 
+     *                          Transparent background
      *
      * @return boolean If save has succeded
      */
-     
+
     private function _resize_image($oldFile, $newFile, $dimension)
     {
         $oldImage = new Imagick($oldFile);
-        $oldWidth = $oldImage->getImageWidth();  
+        $oldWidth = $oldImage->getImageWidth();
         $oldHeight = $oldImage->getImageHeight();
-        
+
         if ($oldWidth > $oldHeight) {
             $oldImage->thumbnailImage($dimension, null);
         } else {
             $oldImage->thumbnailImage(null, $dimension);
         }
-         
-        $newImage = new Imagick();     
+
+        $newImage = new Imagick();
         $newImage->newImage(
             $dimension,
             $dimension,
             new ImagickPixel("transparent")
         );
-        
-        
+
+
         $newImage->compositeImage(
             $oldImage,
             Imagick::COMPOSITE_OVER,
@@ -255,13 +255,13 @@ class UserController extends AppController
         );
         $newImage->setImageFormat("png32");
         $isSuccess = $newImage->writeImage($newFile);
-        
+
 
         $newImage->clear();
         $newImage->destroy();
         $oldImage->clear();
         $oldImage->destroy();
-        
+
         return $isSuccess;
     }
 
@@ -276,7 +276,7 @@ class UserController extends AppController
         if (empty($currentUserId)) {
             $this->redirect('/');
         }
-        
+
         if (!empty($this->data)) {
             $this->User->id = $currentUserId;
             $this->User->saveField(
@@ -304,7 +304,7 @@ class UserController extends AppController
         if (empty($currentUserId)) {
             $this->redirect('/');
         }
-        
+
         $isEmailUnique
             = $this->User->isEmailUnique(
                 $this->data['User']['email'],
@@ -321,13 +321,13 @@ class UserController extends AppController
                     )
             );
         }
-        
+
         $saved = false;
         if (!empty($this->data)) {
             $this->data['User']['id'] = $currentUserId;
             $saved = $this->User->save($this->data);
         }
-        
+
         if ($saved) {
             $this->Session->setFlash(
                 __("Email address saved.", true)
@@ -353,7 +353,7 @@ class UserController extends AppController
             );
         }
     }
-    
+
 
     /**
      * Save option settings. Options are :
@@ -370,17 +370,17 @@ class UserController extends AppController
         if (empty($currentUserId)) {
             $this->redirect('/');
         }
-        
+
         if (!empty($this->data)) {
             $this->data['User']['id'] = $currentUserId;
             $this->data['User']['lang'] = $this->_language_settings(
                 $this->data['User']['lang']
             );
-            if ($this->User->save($this->data)) {                
+            if ($this->User->save($this->data)) {
                 // Need, so that the information is updated for the Auth component.
                 $user = $this->User->read(null, $currentUserId);
                 $this->Session->write($this->Auth->sessionKey, $user['User']);
-                
+
                 $flashMsg = __('Your settings have been saved.', true);
             } else {
                 $flashMsg = __(
@@ -400,8 +400,8 @@ class UserController extends AppController
             )
         );
     }
-    
-    
+
+
     /**
      * Check languages settings eneterd by the user and returns corrected string
      * (if correction is needed).
@@ -409,9 +409,9 @@ class UserController extends AppController
      * A correct string should be composted of ISO codes that are present in the
      * list of languages supported, separated by a comma.
      * For instance: eng,deu,jpn,ita.
-     * 
+     *
      * @param string $userInput desired language settings
-     * 
+     *
      * @return array
      */
     private function _language_settings($userInput)
@@ -425,17 +425,17 @@ class UserController extends AppController
                 $tmpLanguagesArray[] = $lang;
             }
         }
-        
+
         $languageSettings = implode(',', $tmpLanguagesArray);
-        
+
         if (empty($languageSettings)) {
             $languageSettings = null;
         }
-        
+
         return $languageSettings;
     }
-    
-    
+
+
     /**
      * Change password.
      *
@@ -444,14 +444,14 @@ class UserController extends AppController
     public function save_password()
     {
         if (!empty($this->data)) {
-            
+
             $userId = $this->Auth->user('id');
-            
+
             $submittedPassword = $this->Auth->password(
                 $this->data['User']['old_password']
             );
             $actualPassword = $this->User->getPassword($userId);
-            
+
             $newPassword1 = $this->data['User']['new_password'];
             $newPassword2 = $this->data['User']['new_password2'];
 
@@ -460,7 +460,7 @@ class UserController extends AppController
             ) {
 
                 $newPassword1 = $this->Auth->password($newPassword1);
-                
+
                 $this->User->id = $userId;
                 if ($this->User->saveField('password', $newPassword1)) {
                     $flashMsg = __('New password has been saved.', true);
@@ -479,13 +479,13 @@ class UserController extends AppController
 
         $this->redirect(array('action' => 'settings'));
     }
-    
+
     /**
      * Retrieve stats about the user.
      * This is displayed on homepage for now...
      *
      * @param integer $userId User indentifiant
-     * 
+     *
      * @return array
      */
     private function _stats($userId)
@@ -506,8 +506,8 @@ class UserController extends AppController
         );
         return $userStats;
     }
-    
-    
+
+
     /**
      * Edit personal information and description.
      *
@@ -519,10 +519,10 @@ class UserController extends AppController
         if (empty($currentUserId)) {
             $this->redirect('/');
         }
-        
+
         $userInfo = $this->User->getInformationOfCurrentUser($currentUserId);
         $this->data = $userInfo;
-        
+
         $this->loadModel('Country');
         $tmpCountries = $this->Country->findAll();
         $countries = array();
@@ -532,8 +532,8 @@ class UserController extends AppController
         }
         $this->set('countries', $countries);
     }
-    
-    
+
+
     /**
      * Edit personal information.
      *
@@ -545,7 +545,7 @@ class UserController extends AppController
         if (empty($currentUserId)) {
             $this->redirect('/');
         }
-        
+
         $this->data = $this->User->getSettings($currentUserId);
     }
 }

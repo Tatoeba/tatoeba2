@@ -37,7 +37,7 @@
 class LanguagesHelper extends AppHelper
 {
     public $helpers = array('Html');
-    
+
     /**
      * Return array of languages in Tatoeba
      *
@@ -74,9 +74,9 @@ class LanguagesHelper extends AppHelper
             'zsm' => __('Malay', true),
             'est' => __('Estonian', true),
             'kat' => __('Georgian', true),
-            'pol' => __('Polish', true), 
-            'swh' => __('Swahili', true), 
-            'lat' => __('Latin', true), 
+            'pol' => __('Polish', true),
+            'swh' => __('Swahili', true),
+            'lat' => __('Latin', true),
             // TODO to change when shanghainese will not be the only wu dialect
             'wuu' => __('Shanghainese', true),
             'arz' => __('Egyptian Arabic', true),
@@ -171,70 +171,70 @@ class LanguagesHelper extends AppHelper
             'mar' => __('Marathi', true),
             'tpw' => __('Old Tupi', true),
             'tgk' => __('Tajik', true),
-            'prg' => __('Old Prussian',true), 
-            'npi' => __('Nepali',true), 
-            'mlt' => __('Maltese',true), 
-            'ckt' => __('Chukchi',true), 
-            'cor' => __('Cornish',true), 
-            'aze' => __('Azerbaijani',true), 
-            'khm' => __('Khmer',true), 
-            'lao' => __('Lao',true), 
-            'bod' => __('Standard Tibetan',true), 
-            'hil' => __('Hiligaynon',true), 
-            'arq' => __('Algerian Arabic',true), 
-            'pcd' => __('Picard',true), 
-            'grc' => __('Ancient Greek',true), 
-            'amh' => __('Amharic',true), 
-            'awa' => __('Awadhi',true), 
-            'bho' => __('Bhojpuri',true), 
-            'cbk' => __('Chavacano',true), 
-            'enm' => __('Middle English',true), 
-            'frm' => __('Middle French',true), 
-            'hat' => __('Haitian Creole',true), 
-            'jdt' => __('Juhuri (Judeo-Tat)',true), 
-            'kal' => __('Greenlandic',true), 
-            'mhr' => __('Meadow Mari',true), 
-            'nah' => __('Nahuatl',true), 
-            'pdc' => __('Pennsylvania German',true), 
-            'sin' => __('Sinhala',true), 
-            'tuk' => __('Turkmen',true), 
-            'wln' => __('Wallon',true), 
-            'bak' => __('Bashkir',true), 
-            'hau' => __('Hausa',true), 
-            'ltz' => __('Luxembourgish',true), 
-            'mgm' => __('Mambae',true), 
-            'som' => __('Somali',true), 
-            'zul' => __('Zulu',true), 
-            'haw' => __('Hawaiian',true), 
-            'kir' => __('Kyrgyz',true), 
-            'mkd' => __('Macedonian',true), 
-            'mrj' => __('Hill Mari',true), 
-            'ppl' => __('Pipil',true), 
-            'yor' => __('Yoruba',true), 
-            'kin' => __('Kinyarwanda',true), 
-            'shs' => __('Shuswap',true), 
-            'chv' => __('Chuvash',true), 
-            'lkt' => __('Lakota',true), 
-            'ota' => __('Ottoman Turkish',true), 
-            'sna' => __('Shona',true), 
-            'mnw' => __('Mon',true), 
-            'nog' => __('Nogai',true), 
-            'sah' => __('Yakut',true), //@lang 
+            'prg' => __('Old Prussian',true),
+            'npi' => __('Nepali',true),
+            'mlt' => __('Maltese',true),
+            'ckt' => __('Chukchi',true),
+            'cor' => __('Cornish',true),
+            'aze' => __('Azerbaijani',true),
+            'khm' => __('Khmer',true),
+            'lao' => __('Lao',true),
+            'bod' => __('Standard Tibetan',true),
+            'hil' => __('Hiligaynon',true),
+            'arq' => __('Algerian Arabic',true),
+            'pcd' => __('Picard',true),
+            'grc' => __('Ancient Greek',true),
+            'amh' => __('Amharic',true),
+            'awa' => __('Awadhi',true),
+            'bho' => __('Bhojpuri',true),
+            'cbk' => __('Chavacano',true),
+            'enm' => __('Middle English',true),
+            'frm' => __('Middle French',true),
+            'hat' => __('Haitian Creole',true),
+            'jdt' => __('Juhuri (Judeo-Tat)',true),
+            'kal' => __('Greenlandic',true),
+            'mhr' => __('Meadow Mari',true),
+            'nah' => __('Nahuatl',true),
+            'pdc' => __('Pennsylvania German',true),
+            'sin' => __('Sinhala',true),
+            'tuk' => __('Turkmen',true),
+            'wln' => __('Wallon',true),
+            'bak' => __('Bashkir',true),
+            'hau' => __('Hausa',true),
+            'ltz' => __('Luxembourgish',true),
+            'mgm' => __('Mambae',true),
+            'som' => __('Somali',true),
+            'zul' => __('Zulu',true),
+            'haw' => __('Hawaiian',true),
+            'kir' => __('Kyrgyz',true),
+            'mkd' => __('Macedonian',true),
+            'mrj' => __('Hill Mari',true),
+            'ppl' => __('Pipil',true),
+            'yor' => __('Yoruba',true),
+            'kin' => __('Kinyarwanda',true),
+            'shs' => __('Shuswap',true),
+            'chv' => __('Chuvash',true),
+            'lkt' => __('Lakota',true),
+            'ota' => __('Ottoman Turkish',true),
+            'sna' => __('Shona',true),
+            'mnw' => __('Mon',true),
+            'nog' => __('Nogai',true),
+            'sah' => __('Yakut',true), //@lang
         );
-        
+
         asort($languages);
-        
+
         return $languages;
     }
-    
-    
+
+
     /**
      * Returns array of languages set in the user's options.
      */
     public function userLanguagesArray()
     {
         $languages = $this->onlyLanguagesArray();
-        
+
         if (CurrentUser::isMember()) {
             $userLangs = CurrentUser::getLanguages();
             if (!empty($userLangs)) {
@@ -245,12 +245,12 @@ class LanguagesHelper extends AppHelper
                 $languages = $filteredLangs;
             }
         }
-        
+
         return $languages;
     }
-    
 
-    /** 
+
+    /**
      * Return array of languages in Tatoeba. + all languages
      *
      * @return array
@@ -258,15 +258,15 @@ class LanguagesHelper extends AppHelper
     public function languagesArray()
     {
         $languages = $this->onlyLanguagesArray();
-        
+
         // Can't use 'any' as it's the code for anyin language.
         // Only 'und' is used for "undefined".
         array_unshift($languages, array('und' => __('All languages', true)));
-        
+
         return $languages;
     }
 
-    /** 
+    /**
      * Return array of languages in Tatoeba. + 'unknown language'
      *
      * @return array
@@ -274,17 +274,17 @@ class LanguagesHelper extends AppHelper
     public function unknownLanguagesArray()
     {
         $languages = $this->onlyLanguagesArray();
-        
+
         // Can't use 'any' as it's the code for anyin language.
         // Only 'und' is used for "undefined".
         // TODO xxx to be remplace by the code for 'unknown'
         array_unshift($languages, array('unknown' => __('unknown language', true)));
-        
+
         return $languages;
     }
-    
-    
-    /** 
+
+
+    /**
      * Return array of languages in Tatoeba + 'other language'. 'other language' is
      * used to set the language to null, in case there was a misdetection and the
      * language in which the user is writing is not supported yet.
@@ -294,12 +294,12 @@ class LanguagesHelper extends AppHelper
     public function otherLanguagesArray()
     {
         $languages = $this->onlyLanguagesArray();
-        
+
         array_unshift($languages, array('' => __('other language', true)));
-        
+
         return $languages;
     }
-    
+
 
     /**
      * Return array of language + "auto"
@@ -312,12 +312,12 @@ class LanguagesHelper extends AppHelper
     public function translationsArray()
     {
         $languages = $this->userLanguagesArray();
-        
+
         array_unshift($languages, array('auto' => __('Auto detect', true)));
         return $languages;
     }
-    
-    
+
+
     /**
      * Return array of languages, with "None" and "All languages" options.
      *
@@ -326,19 +326,19 @@ class LanguagesHelper extends AppHelper
     public function languagesArrayForLists()
     {
         $languages = $this->onlyLanguagesArray();
-        
+
         array_unshift(
-            $languages, 
+            $languages,
             array(
                 'none' => __('None', true),
                 'und' => __('All languages', true)
             )
         );
-        
+
         return $languages;
     }
-    
-    
+
+
     /**
      * Return array of languages with, "None" option.
      *
@@ -347,19 +347,19 @@ class LanguagesHelper extends AppHelper
     public function languagesArrayWithNone()
     {
         $languages = $this->onlyLanguagesArray();
-        
+
         array_unshift(
-            $languages, 
+            $languages,
             array(
                 'none' => __('None', true)
             )
         );
-        
+
         return $languages;
     }
-    
-    
-    /** 
+
+
+    /**
      * Return array of languages in which you can search.
      *
      * @return array
@@ -372,8 +372,8 @@ class LanguagesHelper extends AppHelper
 
         return $languages;
     }
-    
-    /** 
+
+    /**
      * Return name of the language from the ISO code.
      *
      * @param string $code ISO-639-3 code.
@@ -389,13 +389,13 @@ class LanguagesHelper extends AppHelper
             return __('unknown', true);
         }
     }
-    
-    /** 
+
+    /**
      * Return number of languages
      *
      * @return int
      */
-     
+
     public function getNumberOfLanguages()
     {
         $languages = $this->onlyLanguagesArray();
@@ -433,8 +433,8 @@ class LanguagesHelper extends AppHelper
 
         return $direction;
     }
-    
-        
+
+
     /**
      * Display flag and number of sentences in the "sentences stats" block.
      *
@@ -453,7 +453,7 @@ class LanguagesHelper extends AppHelper
             )
         );
         $numberOfSentencesHtml = '<span class="total">'.$numberOfSentences.'</span>';
-        
+
         if (empty($langCode)) {
             $langCode = 'unknown';
         }
@@ -465,15 +465,15 @@ class LanguagesHelper extends AppHelper
             ),
             null
         );
-        
+
         ?>
         <li class="stat" title="<?php echo $this->codeToName($langCode); ?>">
         <?php echo $linkToAllSentences; ?>
         </li>
         <?php
     }
-    
-    
+
+
     /**
      * Convert language interface code into ISO code.
      *
@@ -497,15 +497,15 @@ class LanguagesHelper extends AppHelper
             'rus' => 'rus',
             'spa' => 'spa'
         );
-        
+
         if (isset($languages["$code"])) {
             return $languages["$code"];
         } else {
             return 'unknown';
         }
     }
-    
-    
+
+
     /**
      * Display language icon.
      *
@@ -514,15 +514,15 @@ class LanguagesHelper extends AppHelper
      *
      * @return void
      */
-    public function icon($lang, $options) 
+    public function icon($lang, $options)
     {
         if (empty($lang)) {
             $lang = 'unknown';
         }
-        
+
         $options["title"] = $this->codeToName($lang);
         $options["alt"] = $lang;
-        
+
         return $this->Html->image(
             IMG_PATH . 'flags/'.$lang.'.png',
             $options

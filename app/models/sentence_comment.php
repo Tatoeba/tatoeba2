@@ -81,7 +81,7 @@ class SentenceComment extends AppModel
         );
 
     }
-    
+
     /**
      * Return comments for given sentence.
      *
@@ -92,7 +92,7 @@ class SentenceComment extends AppModel
     public function getCommentsForSentence($sentenceId)
     {
         return $this->find(
-            'all', 
+            'all',
             array(
                 'conditions' => array('SentenceComment.sentence_id' => $sentenceId),
                 'order' => 'SentenceComment.created',
@@ -108,7 +108,7 @@ class SentenceComment extends AppModel
             )
         );
     }
-    
+
     /**
      * Return latest comments.
      *
@@ -140,7 +140,7 @@ class SentenceComment extends AppModel
             )
         );
     }
-    
+
     /**
      * Return emails of users who posted a comment on the sentence
      * and who didn't disable notification.
@@ -161,7 +161,7 @@ class SentenceComment extends AppModel
                     'User' => array(
                         'fields' => array('email'),
                         'conditions' => array('send_notifications' => 1)
-                    )    
+                    )
                 )
             )
         );
@@ -193,8 +193,8 @@ class SentenceComment extends AppModel
 
         return $result['SentenceComment']['user_id'];
     }
-    
-    
+
+
     /**
      * Overridden paginateCount method, for optimization purpose.
      *
@@ -213,7 +213,7 @@ class SentenceComment extends AppModel
                 $contain[] = $model;
             }
         }
-        
+
         $result = $this->find(
             'count',
             array(
@@ -221,7 +221,7 @@ class SentenceComment extends AppModel
                 'conditions' => $conditions
             )
         );
-        
+
         return $result;
     }
 }

@@ -26,7 +26,7 @@
  */
 
 /**
- * Model for inverse translations. 
+ * Model for inverse translations.
  * NOTE : This model will probably not be necessary anymore after cleaning up the
  * SentencesController.
  *

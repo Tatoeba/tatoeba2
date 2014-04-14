@@ -20,6 +20,6 @@
 class TestPluginLog {
 
 	function write($type, $message) {
-		
+
 	}
 }

@@ -752,7 +752,7 @@ class HttpSocket extends CakeSocket {
  * - ?key[subKey]=value
  * - ?key[]=value1&key[]=value2
  *
- * A leading '?' mark in $query is optional and does not effect the outcome of this function. 
+ * A leading '?' mark in $query is optional and does not effect the outcome of this function.
  * For the complete capabilities of this implementation take a look at HttpSocketTest::testparseQuery()
  *
  * @param mixed $query A query string to parse into an array or an array to return directly "as is"

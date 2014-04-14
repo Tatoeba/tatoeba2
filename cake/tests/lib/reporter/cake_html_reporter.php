@@ -30,8 +30,8 @@ class CakeHtmlReporter extends CakeBaseReporter {
 /**
  * Constructor
  *
- * @param string $charset 
- * @param string $params 
+ * @param string $charset
+ * @param string $params
  * @return void
  */
 	function CakeHtmlReporter($charset = 'utf-8', $params = array()) {
@@ -188,8 +188,8 @@ class CakeHtmlReporter extends CakeBaseReporter {
 		echo $this->_paintLinks();
 		echo '</div>';
 		if (
-			isset($this->params['codeCoverage']) && 
-			$this->params['codeCoverage'] && 
+			isset($this->params['codeCoverage']) &&
+			$this->params['codeCoverage'] &&
 			class_exists('CodeCoverageManager')
 		) {
 			CodeCoverageManager::report();

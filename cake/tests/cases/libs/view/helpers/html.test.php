@@ -643,7 +643,7 @@ class HtmlHelperTest extends CakeTestCase {
  */
 	function testScriptAssetFilter() {
 		Configure::write('Asset.filter.js', 'js.php');
-	
+
 		$result = $this->Html->script('jquery-1.3');
 		$expected = array(
 			'script' => array('type' => 'text/javascript', 'src' => 'cjs/jquery-1.3.js')

@@ -611,7 +611,7 @@ class ErrorHandlerTest extends CakeTestCase {
 	}
 
 /**
- * testing that having a code => 500 in the cakeError call makes an 
+ * testing that having a code => 500 in the cakeError call makes an
  * internal server error.
  *
  * @return void

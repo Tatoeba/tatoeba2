@@ -38,7 +38,7 @@ class FileLog {
 
 /**
  * Constructs a new File Logger.
- * 
+ *
  * Options
  *
  * - `path` the path to save logs on.

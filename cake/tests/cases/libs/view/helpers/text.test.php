@@ -285,12 +285,12 @@ class TextHelperTest extends CakeTestCase {
 		$expected = 'Text with a url <a href="http://www.cot.ag/cuIb2Q">www.cot.ag/cuIb2Q</a> and more';
 		$result = $this->Text->autoLinkUrls($text);
 		$this->assertEqual($expected, $result);
-		
+
 		$text = 'Text with a url http://www.does--not--work.com and more';
 		$expected = 'Text with a url <a href="http://www.does--not--work.com">http://www.does--not--work.com</a> and more';
 		$result = $this->Text->autoLinkUrls($text);
 		$this->assertEqual($expected, $result);
-		
+
 		$text = 'Text with a url http://www.not--work.com and more';
 		$expected = 'Text with a url <a href="http://www.not--work.com">http://www.not--work.com</a> and more';
 		$result = $this->Text->autoLinkUrls($text);
@@ -313,7 +313,7 @@ class TextHelperTest extends CakeTestCase {
 		$expected = 'Text with <a href="mailto:email@example.com"\s*>email@example.com</a> address';
 		$result = $this->Text->autoLinkEmails($text);
 		$this->assertPattern('#^' . $expected . '$#', $result);
-		
+
 		$text = "Text with o'hare._-bob@example.com address";
 		$expected = 'Text with <a href="mailto:o&#039;hare._-bob@example.com">o&#039;hare._-bob@example.com</a> address';
 		$result = $this->Text->autoLinkEmails($text);
@@ -386,7 +386,7 @@ class TextHelperTest extends CakeTestCase {
 		$expected = $text;
 		$result = $this->Text->excerpt($text, $phrase, 13, '...');
 		$this->assertEqual($expected, $result);
-		
+
 		$text = 'aaaaaaaaaaaaaaaaaaaaaaaabbbbbbbbaaaaaaaaaaaaaaaaaaaaaaaa';
 		$phrase = 'bbbbbbbb';
 		$result = $this->Text->excerpt($text, $phrase, 10);
@@ -439,7 +439,7 @@ class TextHelperTest extends CakeTestCase {
 
 		$result = $this->Text->toList(array( 'name1' => 'Dusty', 'name2' => 'Lucky'));
 		$this->assertEqual($result, 'Dusty and Lucky');
-		
+
 		$result = $this->Text->toList(array( 'test_0' => 'banana', 'test_1' => 'apple', 'test_2' => 'lemon'));
 		$this->assertEqual($result, 'banana, apple and lemon');
 	}

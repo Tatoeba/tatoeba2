@@ -121,7 +121,7 @@ class SchemaShellTest extends CakeTestCase {
  * @var array
  * @access public
  */
-	var $fixtures = array('core.article', 'core.user', 'core.post', 'core.auth_user', 'core.author', 
+	var $fixtures = array('core.article', 'core.user', 'core.post', 'core.auth_user', 'core.author',
 		'core.comment', 'core.test_plugin_comment'
 	);
 
@@ -471,7 +471,7 @@ class SchemaShellTest extends CakeTestCase {
 		$this->Shell->startup();
 		$expected = TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'plugins' . DS . 'test_plugin' . DS . 'config' . DS . 'schema';
 		$this->assertEqual($this->Shell->Schema->path, $expected);
-		
+
 		App::build();
 	}
 

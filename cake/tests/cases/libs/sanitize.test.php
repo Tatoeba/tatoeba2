@@ -234,16 +234,16 @@ class SanitizeTest extends CakeTestCase {
 		$expected = 'The &quot;lazy&quot; dog &#039;jumped&#039; &amp; flew over the moon. If (1+1) = 2 &lt;em&gt;is&lt;/em&gt; true, (2-1) = 1 is also true';
 		$result = Sanitize::html($string);
 		$this->assertEqual($result, $expected);
-		
+
 		$string = 'The "lazy" dog \'jumped\'';
 		$expected = 'The &quot;lazy&quot; dog \'jumped\'';
 		$result = Sanitize::html($string, array('quotes' => ENT_COMPAT));
 		$this->assertEqual($result, $expected);
-		
+
 		$string = 'The "lazy" dog \'jumped\'';
 		$result = Sanitize::html($string, array('quotes' => ENT_NOQUOTES));
 		$this->assertEqual($result, $string);
-		
+
 		$string = 'The "lazy" dog \'jumped\' & flew over the moon. If (1+1) = 2 <em>is</em> true, (2-1) = 1 is also true';
 		$expected = 'The &quot;lazy&quot; dog &#039;jumped&#039; &amp; flew over the moon. If (1+1) = 2 &lt;em&gt;is&lt;/em&gt; true, (2-1) = 1 is also true';
 		$result = Sanitize::html($string);
@@ -378,8 +378,8 @@ class SanitizeTest extends CakeTestCase {
 		$string = <<<HTML
 text
 <style type="text/css">
-<!-- 
-#content { display:none; } 
+<!--
+#content { display:none; }
 -->
 </style>
 text
@@ -391,7 +391,7 @@ HTML;
 		$string = <<<HTML
 text
 <script type="text/javascript">
-<!-- 
+<!--
 alert('wooo');
 -->
 </script>

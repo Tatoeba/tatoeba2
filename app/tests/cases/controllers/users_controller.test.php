@@ -1,4 +1,4 @@
-<?php 
+<?php
 /* SVN FILE: $Id$ */
 /* UsersController Test cases generated on: 2008-11-12 01:11:55 : 1226448115*/
 App::import('Controller', 'Users');

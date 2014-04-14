@@ -37,10 +37,10 @@
 class SentenceAnnotation extends AppModel
 {
     public $belongsTo = array('Sentence', 'User');
-    
+
     public $actsAs = array('Containable');
-    
-    
+
+
     /**
      * Get annotations for the sentence specified.
      *
@@ -61,8 +61,8 @@ class SentenceAnnotation extends AppModel
             )
         );
     }
-    
-    
+
+
     /**
      * Get latest annotations. NOTE: Annotations are not logged. Here, we simply
      * display the annotations order by last modified first.
@@ -75,7 +75,7 @@ class SentenceAnnotation extends AppModel
     {
         return $this->find(
             'all',
-            array( 
+            array(
                 'order' => 'modified DESC',
                 'limit' => $limit,
                 'contain' => array(
@@ -86,8 +86,8 @@ class SentenceAnnotation extends AppModel
             )
         );
     }
-    
-    
+
+
     /**
      * Get annotations for the sentence specified.
      *
@@ -107,7 +107,7 @@ class SentenceAnnotation extends AppModel
             )
         );
     }
-    
+
     /**
      * Replace text in results of a search by some other text.
      *
@@ -121,26 +121,26 @@ class SentenceAnnotation extends AppModel
         $textToReplace = preg_replace("/<space>/", " ", $textToReplace);
         $annotations = $this->search($textToReplace);
         $newAnnotations = array();
-        
+
         foreach ($annotations as $annotation) {
             $pattern = quotemeta($textToReplace);
-            $pattern = preg_replace("/\|/", "\\|", $pattern); 
+            $pattern = preg_replace("/\|/", "\\|", $pattern);
                 // because the character | is not taken into account in quotemeta()
-            
+
             $annotation['SentenceAnnotation']['text'] = preg_replace(
                 "/$pattern/",
                 $textReplacing,
                 $annotation['SentenceAnnotation']['text']
             );
-            
+
             $newAnnotations[] = $annotation;
-            
+
             $this->id = $annotation['SentenceAnnotation']['id'];
             $data['text'] = $annotation['SentenceAnnotation']['text'];
             $data['user_id'] = CurrentUser::get('id');
             $this->save($data);
         }
-        
+
         return $newAnnotations;
     }
 }

@@ -703,7 +703,7 @@ class ObjectTest extends CakeTestCase {
 		$result = $this->object->requestAction('/request_action/normal_request_action');
 		$expected = 'Hello World';
 		$this->assertEqual($result, $expected);
-		
+
 		App::build();
 	}
 
@@ -718,7 +718,7 @@ class ObjectTest extends CakeTestCase {
 		));
 		App::objects('plugin', null, false);
 		Router::reload();
-		
+
 		$result = $this->object->requestAction('/test_plugin/tests/index', array('return'));
 		$expected = 'test plugin index';
 		$this->assertEqual($result, $expected);
@@ -742,7 +742,7 @@ class ObjectTest extends CakeTestCase {
 		);
 		$expected = 25;
 		$this->assertEqual($result, $expected);
-		
+
 		App::build();
 		App::objects('plugin', null, false);
 	}
@@ -758,7 +758,7 @@ class ObjectTest extends CakeTestCase {
 			'views' => array(TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'views' . DS),
 			'controllers' => array(TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'controllers' . DS)
 		));
-	
+
 		$result = $this->object->requestAction(
 			array('controller' => 'request_action', 'action' => 'test_request_action')
 		);
@@ -766,7 +766,7 @@ class ObjectTest extends CakeTestCase {
 		$this->assertEqual($result, $expected);
 
 		$result = $this->object->requestAction(
-			array('controller' => 'request_action', 'action' => 'another_ra_test'), 
+			array('controller' => 'request_action', 'action' => 'another_ra_test'),
 			array('pass' => array('5', '7'))
 		);
 		$expected = 12;
@@ -822,7 +822,7 @@ class ObjectTest extends CakeTestCase {
 		$this->assertEqual($result['named'], $expected);
 
 		$result = $this->object->requestAction(
-			array('controller' => 'request_action', 'action' => 'params_pass'), 
+			array('controller' => 'request_action', 'action' => 'params_pass'),
 			array('named' => array('sort' => 'desc', 'limit' => 5))
 		);
 		$this->assertEqual($result['named'], $expected);

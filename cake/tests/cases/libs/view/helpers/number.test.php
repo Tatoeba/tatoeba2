@@ -349,7 +349,7 @@ class NumberHelperTest extends CakeTestCase {
 		$result = $this->Number->currency('0.35', 'GBP');
 		$expected = '35p';
 		$this->assertEqual($expected, $result);
-		
+
 		$result = $this->Number->currency('0.35', 'EUR');
 		$expected = '&#8364;0,35';
 		$this->assertEqual($expected, $result);

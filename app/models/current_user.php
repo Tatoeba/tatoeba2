@@ -24,12 +24,12 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
+
 /**
  * Static class that stores the Auth information of the user. This is the only
  * solution I found to be able to easily access the Auth::user() information from
- * everywhere. It also enables to retrieve the current user's permissions from 
- * everywhere. 
+ * everywhere. It also enables to retrieve the current user's permissions from
+ * everywhere.
  *
  * NOTE: Still not sure if it's the best idea, regarding the permissions part.
  *
@@ -42,14 +42,14 @@
 class CurrentUser extends AppModel
 {
     public $useTable = null;
-    
+
     private static $_auth;
-    
-    
+
+
     /**
-     * Store the Auth information of the user, i.e. the value is the one returned 
+     * Store the Auth information of the user, i.e. the value is the one returned
      * by Auth::user(). Used in app_controller.php, in beforeFilter().
-     * 
+     *
      * @param array $user Value returned by Auth::user()
      *
      * @return void
@@ -58,8 +58,8 @@ class CurrentUser extends AppModel
     {
         self::$_auth = $user;
     }
-    
-    
+
+
     /**
      * Returns value of the Auth::user() array. Slightly modified version of:
      *
@@ -81,7 +81,7 @@ class CurrentUser extends AppModel
         if (strpos($path, 'User') !== 0) {
             $path = sprintf('User/%s', $path);
         }
-        
+
         if (strpos($path, '/') !== 0) {
             $path = sprintf('/%s', $path);
         }
@@ -91,62 +91,62 @@ class CurrentUser extends AppModel
         if (!$value) {
             return false;
         }
-        
+
         return $value[0];
     }
-    
-    
+
+
     /**
      * Indicates if current user is admin or not.
-     * 
+     *
      * @return bool
      */
     public static function isAdmin()
     {
         return self::get('group_id') == 1;
     }
-    
-    
+
+
     /**
      * Indicates if current user is moderator or not.
-     * 
+     *
      * @return bool
      */
     public static function isModerator()
     {
         return self::get('group_id') && self::get('group_id') < 3;
     }
-    
-    
+
+
     /**
      * Indicates if current user is trusted or not.
-     * 
+     *
      * @return bool
      */
     public static function isTrusted()
     {
         return self::get('group_id') && self::get('group_id') < 4;
     }
-    
-    
+
+
     /**
      * Indicates if current user is a member or not, in other words: did he/she
      * validated his/her registration.
-     * 
+     *
      * @return bool
      */
     public static function isMember()
     {
         return self::get('group_id') && self::get('group_id') < 5;
     }
-    
-    
+
+
     /**
      * Indicates if current user can link/unlink translations to the sentence of
      * given id. TODO something is wrong here
      *
      * @param string $username Name of the sentence owner (?).
-     * 
+     *
      * @return bool
      */
     public static function canLinkWithSentenceOfUser($username)
@@ -154,21 +154,21 @@ class CurrentUser extends AppModel
         if (!self::isMember()) {
             return false;
         }
-        
+
         if (self::isModerator()) {
             return true;
         }
-        
+
         $belongsToCurrentUser = (self::get('username') == $username);
         return $belongsToCurrentUser && self::isTrusted();
     }
-    
-    
+
+
     /**
      * Indicates if current user can edit sentence of user with give username.
      *
      * @param string $username Username of owner of the sentence.
-     * 
+     *
      * @return bool
      */
     public static function canEditSentenceOfUser($username)
@@ -176,7 +176,7 @@ class CurrentUser extends AppModel
         if (!self::isMember()) {
             return false;
         }
-        
+
         $belongsToCurrentUser = (self::get('username') == $username);
         return $belongsToCurrentUser || self::isModerator();
     }
@@ -194,43 +194,43 @@ class CurrentUser extends AppModel
         if (!self::isMember()) {
             return false;
         }
-        
+
         if (self::isModerator()) {
             return true;
         }
-        
+
         $TagAddedByCurrentUser = (self::get('id') == $taggerId);
         return $TagAddedByCurrentUser;
 
 
     }
-    
+
     /**
      * A user is new if they registered within the last 14 days
-     * 
+     *
      * @return bool
      */
     public static function isNewUser()
     {
         $isNewUser = false;
         $daysToWait = "14";
-        
+
         $today = new DateTime("now");
         $since = new DateTime(self::get('since'));
         $userAge = $since->diff($today);
-        
+
         if ($userAge->days <= $daysToWait) {
             $isNewUser = true;
         }
-        
+
         return $isNewUser;
     }
-    
+
     /**
      * Indicates if sentence of given id has been favorited by current user.
      *
      * @param int $sentenceId Id of the sentence.
-     * 
+     *
      * @return bool
      */
     public static function hasFavorited($sentenceId)
@@ -249,16 +249,16 @@ class CurrentUser extends AppModel
     public function getIp()
     {
         if (getenv("HTTP_CLIENT_IP")) {
-            return getenv("HTTP_CLIENT_IP"); 
+            return getenv("HTTP_CLIENT_IP");
         } elseif (getenv("HTTP_X_FORWARDED_FOR")) {
-            return getenv("HTTP_X_FORWARDED_FOR"); 
-        } else { 
-            return getenv("REMOTE_ADDR"); 
+            return getenv("HTTP_X_FORWARDED_FOR");
+        } else {
+            return getenv("REMOTE_ADDR");
         }
     }
-    
-    
-    /** 
+
+
+    /**
      * Get user's languages.
      *
      * @return array
@@ -266,14 +266,14 @@ class CurrentUser extends AppModel
     public function getLanguages()
     {
         $lang = CurrentUser::get('lang');
-        
+
         if (empty($lang)) {
             return null;
         }
-        
+
         $langArray = explode(',', $lang);
         return $langArray;
     }
-    
+
 }
 ?>

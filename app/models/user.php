@@ -31,7 +31,7 @@
  * @category Users
  * @package  Models
  * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com> 
+ * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
@@ -76,7 +76,7 @@ class User extends AppModel
         'level' => array('numeric'),
         'group_id' => array('numeric')
     );
-    
+
     /**
      *
      * @var array
@@ -176,7 +176,7 @@ class User extends AppModel
      * get all the information needed to generate the user's profile
      *
      * @param integer $userId User Identifiant
-     * 
+     *
      * @return array
      */
     public function getInformationOfCurrentUser($userId)
@@ -192,7 +192,7 @@ class User extends AppModel
                 )
             )
         );
-        
+
         return $this->findById($userId);
     }
 
@@ -200,7 +200,7 @@ class User extends AppModel
      * get all the information needed to generate a user profile
      *
      * @param string $userName User's screen name
-     * 
+     *
      * @return array
      */
     public function getInformationOfUser($userName)
@@ -229,13 +229,13 @@ class User extends AppModel
             )
         );
     }
-    
-    
+
+
     /**
      * Get options.
      *
      * @param int $userId Id of the user.
-     * 
+     *
      * @return array
      */
     public function getSettings($userId)
@@ -254,13 +254,13 @@ class User extends AppModel
             )
         );
     }
-    
+
 
     /**
      * get all the information about a user needed by the Wall
      *
      * @param integer $userId User Indentifiant
-     * 
+     *
      * @return array
      */
     public function getInfoWallUser($userId)
@@ -276,11 +276,11 @@ class User extends AppModel
                 ),
                 'contain' => array()
             )
-        ); 
-        
-        return $result ; 
+        );
+
+        return $result ;
     }
-    
+
     /**
      * Get user by id.
      *
@@ -292,12 +292,12 @@ class User extends AppModel
     {
         //TODO: HACK SPOTTED user of order rand
         if ($id == null) {
-            // TODO add containable here 
+            // TODO add containable here
             $user = $this->find(
-                'first', 
+                'first',
                 array(
-                    'conditions' => 'User.group_id < 5', 
-                    'order' => 'RAND()', 
+                    'conditions' => 'User.group_id < 5',
+                    'order' => 'RAND()',
                     'limit' => 1,
                 )
             );
@@ -369,7 +369,7 @@ class User extends AppModel
         }
         return $user;
     }
-    
+
     /**
      * Return id of a user from the username.
      *
@@ -389,8 +389,8 @@ class User extends AppModel
         );
         return $user['User']['id'];
     }
-    
-    
+
+
     /**
      * Return name of a user from the user's id.
      *
@@ -410,8 +410,8 @@ class User extends AppModel
         );
         return $user['User']['username'];
     }
-    
-    
+
+
     /**
      * Return array of (id => username).
      *
@@ -429,17 +429,17 @@ class User extends AppModel
                 'fields' => array('id', 'username')
             )
         );
-        
+
         $users = array();
         foreach($results as $result) {
             $id = $result['User']['id'];
             $username = $result['User']['username'];
             $users[$id] = $username;
         }
-        
+
         return $users;
     }
-    
+
     /**
      * Return id of a user from the email.
      *
@@ -459,7 +459,7 @@ class User extends AppModel
         );
         return $user['User']['id'];
     }
-    
+
     /**
      * Return an email from a user id.
      *
@@ -479,7 +479,7 @@ class User extends AppModel
         );
         return $user['User']['email'];
     }
-    
+
     /**
      * Check if (new) email for user is unique
      *
@@ -490,7 +490,7 @@ class User extends AppModel
     public function isEmailUnique($email, $userId)
     {
         $result =  $this->find(
-            'first', 
+            'first',
             array(
                 'conditions' => array(
                     'email' => $email,
@@ -524,13 +524,13 @@ class User extends AppModel
         );
         return $user['User']['password'];
     }
-    
+
     /**
      * Return number of members who have validated their registration.
      *
      * @return int
      */
-     
+
     public function getNumberOfActiveMembers()
     {
         return $this->find(
@@ -540,15 +540,15 @@ class User extends AppModel
                     'group_id <' => 5
                 ),
                 'contain' => array()
-            ) 
+            )
         );
-    }  
+    }
 
     /**
      * Return all the informations needed for the Team and credits page
      *
      * @return array The big array of users and their informations
-     */ 
+     */
     public function getMembersForTeamAndCredits() {
 
         $launchpadUrl = 'https://launchpad.net/tatoeba/+topcontributors';

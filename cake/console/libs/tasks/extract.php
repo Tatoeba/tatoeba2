@@ -331,7 +331,7 @@ class ExtractTask extends Shell {
 		}
 		return $strings;
 	}
-	
+
 /**
  * Build the translate template file contents out of obtained strings
  *

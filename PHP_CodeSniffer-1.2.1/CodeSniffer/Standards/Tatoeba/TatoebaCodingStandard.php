@@ -60,4 +60,4 @@ class PHP_CodeSniffer_Standards_Tatoeba_TatoebaCodingStandard extends PHP_CodeSn
 
 
 }//end class
-?> 
+?>

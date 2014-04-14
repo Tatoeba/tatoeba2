@@ -161,8 +161,8 @@ class TestManager {
 
 		if (!file_exists($filePath) || strpos($filePath, '..')) {
 			trigger_error(sprintf(
-					__("Group test %s cannot be found at %s", true), 
-					htmlentities($groupTestName), 
+					__("Group test %s cannot be found at %s", true),
+					htmlentities($groupTestName),
 					htmlentities($filePath)
 				),
 				E_USER_ERROR

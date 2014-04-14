@@ -47,7 +47,7 @@ class TagsSentences extends AppModel
         'Tag',
         );
 
- 
+
     public function beforeSave()
     {
         $tagId = $this->data['TagsSentences']['tag_id'];
@@ -69,18 +69,18 @@ class TagsSentences extends AppModel
     public function beforeDelete() {
         $tagId = $this->data['TagsSentences']['tag_id'];
         $sentenceId = $this->data['TagsSentences']['sentence_id'];
-        
+
         $result = $this->find(
             'first',
             array(
                 'fields' => 'user_id',
                 'conditions' => array(
-                    'sentence_id' => $sentenceId, 
+                    'sentence_id' => $sentenceId,
                     'tag_id' => $tagId,
                 ),
-                'contain' => array() 
+                'contain' => array()
             )
-        ); 
+        );
         if (empty($result)) {
             return false;
         }
@@ -145,8 +145,8 @@ class TagsSentences extends AppModel
             // the relation to be broken
         );
     }
-    
-    
+
+
     /**
      * Get sentences with a certain tag that were tagged more than 2 weeks ago.
      *
@@ -158,13 +158,13 @@ class TagsSentences extends AppModel
     public function getSentencesForModerators($tagId, $lang)
     {
         $date = date('Y-m-d', strtotime("-2 weeks"));
-        
+
         $sentenceConditions = array();
-        
+
         if (!empty($lang)) {
             $sentenceConditions = array('lang' => $lang);
         }
-        
+
         return $this->find(
             'all',
             array(

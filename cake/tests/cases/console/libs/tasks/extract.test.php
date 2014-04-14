@@ -179,10 +179,10 @@ class ExtractTaskTest extends CakeTestCase {
 
 		$this->Task->interactive = false;
 
-		$this->Task->params['paths'] = 
+		$this->Task->params['paths'] =
 			TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'views' . DS . 'pages,' .
 			TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'views' . DS . 'posts';
-	
+
 		$this->Task->params['output'] = $path . DS;
 		$this->Task->Dispatch->expectNever('stderr');
 		$this->Task->Dispatch->expectNever('_stop');

@@ -4259,13 +4259,13 @@ class DboSourceTest extends CakeTestCase {
 	function testFetchAllCaching() {
 		$query = "SELECT NOW() as TIME";
 		$result = $this->db->fetchAll($query);
-		
+
 		$this->assertTrue(is_array($this->db->_queryCache[$query]));
 		$this->assertEqual($this->db->_queryCache[$query][0][0]['TIME'], $result[0][0]['TIME']);
 
 		$query = "DROP TABLE IF EXISTS select_test";
 		$result = $this->db->fetchAll($query);
-		
+
 		$this->assertTrue(!isset($this->db->_queryCache[$query]));
 	}
 

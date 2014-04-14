@@ -312,7 +312,7 @@ class TestSuiteShell extends Shell {
 			case 'all':
 				return true;
 			case 'group':
-				return $this->file . $ext; 
+				return $this->file . $ext;
 			case 'case':
 				if ($this->category == 'app' || $isPlugin) {
 					return $this->file . $ext;

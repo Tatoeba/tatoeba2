@@ -37,7 +37,7 @@ class Tatoeba_Sniffs_Cake_NoModelCodeInControllersSniff implements PHP_CodeSniff
         'unbindmodel',
         'habtmadd',
         'habtmdelete',
-    ); 
+    );
 
 
     /**
@@ -67,7 +67,7 @@ class Tatoeba_Sniffs_Cake_NoModelCodeInControllersSniff implements PHP_CodeSniff
 
         $prevToken = $phpcsFile->findPrevious(T_WHITESPACE, ($stackPtr - 1), null, true);
         $objectName = $phpcsFile->findPrevious(T_WHITESPACE, ($prevToken - 1), null, true);
-        
+
         $nextToken = $phpcsFile->findNext(T_WHITESPACE, ($stackPtr + 1), null, true);
 
 
@@ -105,7 +105,7 @@ class Tatoeba_Sniffs_Cake_NoModelCodeInControllersSniff implements PHP_CodeSniff
             }
         }
 
-        
+
         $error = "The use of " . $tokens[$objectName]['content'].  "::$content() in the controller is forbidden";
 
         $phpcsFile->addError($error, $stackPtr);

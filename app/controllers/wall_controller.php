@@ -37,14 +37,14 @@
 
 class WallController extends Appcontroller
 {
-    
+
     public $persistentModel = true;
 
     public $name = 'Wall' ;
     public $paginate = array(
-        "order" => "WallThread.last_message_date DESC", 
+        "order" => "WallThread.last_message_date DESC",
         "limit" => 10,
-        "fields" => array ("lft",'rght'), 
+        "fields" => array ("lft",'rght'),
         "conditions" => array (
             "Wall.parent_id" => null ,
         ),
@@ -92,7 +92,7 @@ class WallController extends Appcontroller
      */
     public function index()
     {
-        
+
         //$messages = $this->_organize_messages($messages);
         $tenLastMessages = $this->Wall->getLastMessages(10);
         //pr($messages);
@@ -104,25 +104,25 @@ class WallController extends Appcontroller
         foreach ($messagesIdDirty as $messageDirty) {
             array_push($messageLftRght, $messageDirty['Wall']);
         }
-        
+
         $messages = $this->Wall->getMessagesThreaded($messageLftRght);
 
-        
+
         $messages = $this->Permissions->getWallMessagesOptions(
             $messages,
             $userId,
             $groupId
         );
-         
+
         $isAuthenticated = !empty($userId);
 
         //pr($messagesPermissions);
-        $this->set('isAuthenticated', $isAuthenticated); 
-        //$this->set('messagesPermissions', $messagesPermissions); 
+        $this->set('isAuthenticated', $isAuthenticated);
+        //$this->set('messagesPermissions', $messagesPermissions);
         $this->set('allMessages', $messages);
         $this->set('tenLastMessages', $tenLastMessages);
         //$this->set('firstMessages', $firstMessages);
-        
+
 
     }
 
@@ -130,7 +130,7 @@ class WallController extends Appcontroller
      * use to organize the messages array the following way
      * message_id => message, we need it as deleted message
      * will shift the index
-     * 
+     *
      * @param array $messages The messages array to organize
      *
      * @return array
@@ -145,7 +145,7 @@ class WallController extends Appcontroller
 
         return $newMessages;
     }
-    
+
     /**
      * save a new first message
      *
@@ -156,15 +156,15 @@ class WallController extends Appcontroller
         if (!empty($this->data['Wall']['content'])
             && $this->Auth->user('id')
         ) {
-            $now = date("Y-m-d H:i:s");  
+            $now = date("Y-m-d H:i:s");
 
             $this->data['Wall']['owner'] = $this->Auth->user('id');
-            $this->data['Wall']['date'] = $now; 
+            $this->data['Wall']['date'] = $now;
 
             $lastMess = $this->Cookie->read('hash_last_wall');
             $lastMess = $this->Session->read('hash_last_wall');
             $thisMess =md5($this->data['Wall']['content']);
-            
+
             $this->Session->write(
                 'hash_last_wall',
                 $thisMess
@@ -176,9 +176,9 @@ class WallController extends Appcontroller
                 "+1 month"
             );
             if ($lastMess !=$thisMess ) {
-                
-                    
-                // now save to database 
+
+
+                // now save to database
                 if ($this->Wall->save($this->data)) {
                     $this->update_thread_date(
                         $this->Wall->id,
@@ -198,11 +198,11 @@ class WallController extends Appcontroller
      * save a new reply
      *
      * @return void
-     */ 
-   
+     */
+
     public function save_inside()
     {
-        
+
         $idTemp = $this->Auth->user('id');
         if (isset($_POST['content'])
             && trim($_POST['content']) != ''
@@ -212,30 +212,30 @@ class WallController extends Appcontroller
 
             $content = Sanitize::stripScripts($_POST['content']);
             $parentId = Sanitize::paranoid($_POST['replyTo']);
-            $now = date("Y-m-d H:i:s"); 
-            
-            $this->data['Wall']['content'] = $content ; 
+            $now = date("Y-m-d H:i:s");
+
+            $this->data['Wall']['content'] = $content ;
             $this->data['Wall']['owner'] = $idTemp ;
             $this->data['Wall']['parent_id'] = $parentId ;
             $this->data['Wall']['date'] = $now;
-            // now save to database 
+            // now save to database
             if ($this->Wall->save($this->data)) {
                 $newMessageId = $this->Wall->id ;
-                
+
                 $this->loadModel('User');
                 $user = $this->User->getInfoWallUser($idTemp);
-                $this->set("user", $user); 
-               
+                $this->set("user", $user);
+
                 $this->update_thread_date($newMessageId, $now);
-                
+
                 // we forge a message to be used in the view
-                
-                $message['Wall']['content'] = $content; 
+
+                $message['Wall']['content'] = $content;
                 $message['Wall']['owner'] = $idTemp;
                 $message['Wall']['parent_id'] = $parentId;
                 $message['Wall']['date'] = $now;
-                $message['Wall']['id'] = $newMessageId; 
-                 
+                $message['Wall']['id'] = $newMessageId;
+
                 $message['User']['image'] = $user['User']['image'];
                 if (empty($message['User']['image'])) {
                     $message['User']['image'] = 'unknown-avatar.png';
@@ -243,33 +243,33 @@ class WallController extends Appcontroller
 
                 $message['User']['username'] = $user['User']['username'];
 
-                $this->set("message", $message); 
-                
+                $this->set("message", $message);
+
                 // ------------------
                 // send notification
                 // ------------------
-                
+
                 // Retrieve parent message
                 $parentMessage = $this->Wall->getMessageForMail($parentId);
-                
+
                 // prepare email
                 // TODO : i18n mail + move this out of here.
                 if ($parentMessage['User']['send_notifications']
-                    && $parentMessage['User']['id'] != $idTemp 
+                    && $parentMessage['User']['id'] != $idTemp
                 ) {
                     $participant = $parentMessage['User']['email'];
                     $subject  = 'Tatoeba - ' .
                          $message['User']['username'] .
                          ' has replied to you on the Wall';
-                    
-                    $mailContent 
+
+                    $mailContent
                         = 'http://'.$_SERVER['HTTP_HOST'].'/wall/show_message/'
                         .$message['Wall']['id'].'#message_'.$message['Wall']['id']
                         ."\n\n";
                     $mailContent .= '- - - - - - - - - - - - - - - - -'."\n\n";
                     $mailContent .= $message['Wall']['content']."\n\n";
                     $mailContent .= '- - - - - - - - - - - - - - - - -'."\n\n";
-                    
+
                     $this->Mailer->to = $participant;
                     $this->Mailer->toName = '';
                     $this->Mailer->subject = $subject;
@@ -282,9 +282,9 @@ class WallController extends Appcontroller
 
     /**
      * Edit a wall post
-     * 
+     *
      * @param int $messageId Id of the message to edit
-     * 
+     *
      * @return void
      */
     public function edit($messageId)
@@ -292,11 +292,11 @@ class WallController extends Appcontroller
         $this->log(print_r($this->data, true), "DEBUG2");
         $messageId = Sanitize::paranoid($messageId);
         $this->Wall->id = $messageId;
-        
+
         if (empty($this->data)) {
             $message = $this->Wall->read();
             $this->data = $message;
-            
+
             $messageOwnerId = $this->Wall->getOwnerIdOfMessage($messageId);
             $messagePermissions = $this->Permissions->getWallMessageOptions(
                 null,
@@ -304,7 +304,7 @@ class WallController extends Appcontroller
                 CurrentUser::get('id'),
                 CurrentUser::get('group_id')
             );
-            
+
             if ($messagePermissions['canEdit'] == false) {
                 $this->Session->setFlash(
                     __("You do not have permission to edit this message. ", true).
@@ -326,7 +326,7 @@ class WallController extends Appcontroller
             //$this->data is not empty, so go save
             $messageId = $this->data['Wall']['id'];
             $this->Wall->id = $messageId;
-            
+
             $messageOwnerId = $this->Wall->getOwnerIdOfMessage($messageId);
             $messagePermissions = $this->Permissions->getWallMessageOptions(
                 null,
@@ -374,11 +374,11 @@ class WallController extends Appcontroller
                     );
                 }
             }
-        
+
         }
-    
+
     }
-    
+
     /**
      * use to delete a given message on the wall
      *
@@ -393,7 +393,7 @@ class WallController extends Appcontroller
         if ($this->Wall->hasMessageReplies($messageId)) {
             // if the message has replies then we can't delete it
             // redirect to previous page
-            $this->redirect($this->referer()); 
+            $this->redirect($this->referer());
         }
         $messageOwnerId = $this->Wall->getOwnerIdOfMessage($messageId);
         //we check a second time even if it has been checked while displaying
@@ -410,12 +410,12 @@ class WallController extends Appcontroller
             $this->Wall->delete($messageId, true);
         }
         // redirect to previous page
-        $this->redirect($this->referer()); 
+        $this->redirect($this->referer());
     }
 
     /**
      * update the WallThread table
-     * 
+     *
      * @param int  $messageId Message that have been add/updated
      * @param date $newDate   Date of the event.
      *
@@ -426,16 +426,16 @@ class WallController extends Appcontroller
     {
         $messageId = Sanitize::paranoid($messageId);
         // TODO Not sure what to do with $newDate...
-        
+
         $this->loadModel('WallThread');
 
         $rootId = $this->Wall->getRootMessageIdOfReply($messageId);
-        
+
         $newThreadData = array(
             'id' => $rootId,
             'last_message_date' => $newDate
         );
-        
+
         $this->WallThread->save($newThreadData);
     }
 
@@ -450,7 +450,7 @@ class WallController extends Appcontroller
     public function show_message($messageId)
     {
         $messageId = Sanitize::paranoid($messageId);
-        
+
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
 
@@ -470,8 +470,8 @@ class WallController extends Appcontroller
         $this->set("message", $thread[0]);
         $this->set("isAuthenticated", $this->Auth->user());
     }
-    
-    
+
+
     /**
      * Display messages of a user.
      *
@@ -482,11 +482,11 @@ class WallController extends Appcontroller
     public function messages_of_user($username)
     {
         $userId = $this->Wall->User->getIdFromUsername($username);
-        
+
         $this->paginate = array(
-            "order" => "date DESC", 
+            "order" => "date DESC",
             "limit" => 20,
-            "fields" => array ("id", "date", "content", "hidden", "owner"), 
+            "fields" => array ("id", "date", "content", "hidden", "owner"),
             "conditions" => array (
                 "owner" => $userId,
             ),
@@ -496,14 +496,14 @@ class WallController extends Appcontroller
                 )
             )
         );
-        
+
         $messages = $this->paginate();
-        
+
         $this->set("messages", $messages);
         $this->set("username", $username);
     }
-    
-    
+
+
     /**
      * Hides a given message on the Wall. The message is still going to be there
      * but only visible to the admins and the author of the message.
@@ -516,17 +516,17 @@ class WallController extends Appcontroller
     {
         if (CurrentUser::isAdmin()) {
             $messageId = Sanitize::paranoid($messageId);
-            
+
             $this->Wall->id = $messageId;
             $this->Wall->saveField('hidden', true);
-            
+
             // redirect to previous page
-            $this->redirect($this->referer()); 
+            $this->redirect($this->referer());
         }
 
     }
-    
-    
+
+
     /**
      * Display back a given message on the Wall that was hidden.
      *
@@ -538,16 +538,16 @@ class WallController extends Appcontroller
     {
         if (CurrentUser::isAdmin()) {
             $messageId = Sanitize::paranoid($messageId);
-            
+
             $this->Wall->id = $messageId;
             $this->Wall->saveField('hidden', false);
-            
+
             // redirect to previous page
-            $this->redirect($this->referer()); 
+            $this->redirect($this->referer());
         }
 
     }
-    
+
 }
 
 

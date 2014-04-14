@@ -807,7 +807,7 @@ class DboMysqlTest extends CakeTestCase {
 		$model->virtualFields = array(
 			'other__field' => 'SUM(id)'
 		);
-		
+
 		$this->db->virtualFieldSeparator = '_$_';
 		$result = $this->db->fields($model, null, array('data', 'other__field'));
 		$expected = array('`BinaryTest`.`data`', '(SUM(id)) AS  `BinaryTest_$_other__field`');

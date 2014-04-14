@@ -410,7 +410,7 @@ class ViewTask extends BakeTask {
 		}
 		if (!empty($this->template) && $action != $this->template) {
 			return $this->template;
-		} 
+		}
 		$template = $action;
 		$prefixes = Configure::read('Routing.prefixes');
 		foreach ((array)$prefixes as $prefix) {

@@ -323,7 +323,7 @@ class AclBehaviorTestCase extends CakeTestCase {
 		);
 		$this->Aro->create();
 		$this->Aro->save($aroData);
- 
+
 		$Person->read(null, 8);
 		$Person->set('mother_id', 1);
 		$Person->save();
@@ -332,7 +332,7 @@ class AclBehaviorTestCase extends CakeTestCase {
 		));
 		 $this->assertTrue(is_array($result));
 		 $this->assertEqual($result['Aro']['parent_id'], 7);
- 
+
 		$node = $Person->node(array('model' => 'AclPerson', 'foreign_key' => 8));
 		$this->assertEqual(sizeof($node), 2);
 		$this->assertEqual($node[0]['Aro']['parent_id'], 7);

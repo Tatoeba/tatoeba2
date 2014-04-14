@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
+
 /**
  * Component for Lucene.
  *
@@ -50,12 +50,12 @@ class LuceneComponent extends Object
     {
         $query = $this->_processQuery($query);
         $query = urlencode($query);
-        
+
         // URL of active search engine. Port is either 18080 or 28080.
         $luceneUrl = "http://88.191.96.22:28080/tatoeba/search.jsp?query=";
-        
+
         $url = $luceneUrl . $query;
-        
+
         if ($langSrc != null AND $langSrc != 'und') {
             $url .= "&lang_src=" . $langSrc;
         }
@@ -65,28 +65,28 @@ class LuceneComponent extends Object
         if ($page != null) {
             $url .= "&page=" . ($page-1); // because page 1 is at index 0
         }
-        
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_REFERER, "http://tatoeba.org");
         $body = curl_exec($ch);
         curl_close($ch);
-        
+
         // now, process the JSON string
         $json = json_decode($body, true);
-        
+
         if ($json['responseStatus'] != 200) {
             return false;
         }
-        
+
         $response = $json['responseData'];
-        
+
         return $response;
     }
-    
+
     /**
-     * Process the query into something that the search engine can handle. It 
+     * Process the query into something that the search engine can handle. It
      * should be done on the search engine side, but I don't know the code well
      * enough.
      *
@@ -100,22 +100,22 @@ class LuceneComponent extends Object
         $query = preg_replace("!\[!", "", $query);
         $query = preg_replace("!\]!", "", $query);
         if (!preg_match('!^"!', $query) AND !preg_match('!"$!', $query)) {
-            
+
             // deleting little words at the beginning
-            $query = preg_replace("!^[a-z]{1,3} !i", " ", $query); 
-            
+            $query = preg_replace("!^[a-z]{1,3} !i", " ", $query);
+
             // deleting little words at the end
-            $query = preg_replace("! [a-z]{1,3}\.?$!i", " ", $query); 
-            
+            $query = preg_replace("! [a-z]{1,3}\.?$!i", " ", $query);
+
             // deleting little words in the middle
             $query = preg_replace(
                 "! [a-z]{1,3} (([a-z]{1,3} )?){1,5}!i", " ", $query
-            ); 
-            
-            if (trim($query) == '') { 
+            );
+
+            if (trim($query) == '') {
                 $query = '"'.trim($query).'"';
             }
-            
+
         }
         return $query;
     }

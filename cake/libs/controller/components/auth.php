@@ -923,7 +923,7 @@ class AuthComponent extends Object {
 
 		if (is_array($data)) {
 			$model =& $this->getModel();
-			
+
 			if(isset($data[$model->alias])) {
 				if (isset($data[$model->alias][$this->fields['username']]) && isset($data[$model->alias][$this->fields['password']])) {
 					$data[$model->alias][$this->fields['password']] = $this->password($data[$model->alias][$this->fields['password']]);

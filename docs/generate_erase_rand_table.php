@@ -68,7 +68,7 @@ $languages = array(
 
 foreach($languages as $language) {
     echo "DROP TABLE random_sentence_id_$language ;\n";
-} 
+}
 echo "\n\n";
 echo "DROP TRIGGER update_in_random;\n";
 echo "DROP TRIGGER insert_in_random;\n";

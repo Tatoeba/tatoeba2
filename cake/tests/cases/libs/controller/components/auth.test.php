@@ -1463,7 +1463,7 @@ class AuthTest extends CakeTestCase {
 		$this->assertEqual($user, $expected);
 		$sessionKey = $this->Controller->Auth->sessionKey;
 		$this->assertEqual('Auth.TestPluginAuthUser', $sessionKey);
-		
+
 		$this->Controller->Auth->loginAction = null;
 		$this->Controller->Auth->__setDefaults();
 		$loginAction = $this->Controller->Auth->loginAction;

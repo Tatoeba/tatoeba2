@@ -310,7 +310,7 @@ class ShellDispatcher {
 			$this->help();
 			return true;
 		}
-		
+
 		list($plugin, $shell) = pluginSplit($arg);
 		$this->shell = $shell;
 		$this->shellName = Inflector::camelize($shell);

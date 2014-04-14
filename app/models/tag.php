@@ -37,13 +37,13 @@
 class Tag extends AppModel
 {
     public $name = 'Tag';
-    
+
     public $actsAs = array('Containable');
 
 
     public $belongsTo = array('User',);
-    public $hasMany = array('TagsSentences');       
- 
+    public $hasMany = array('TagsSentences');
+
     public $hasAndBelongsToMany = array(
         'Sentence' => array(
             'className' => 'Sentence',
@@ -58,7 +58,7 @@ class Tag extends AppModel
             'associationForeignKey' => 'tag_id'
         ),
     );
-  
+
     /**
      * Cakephp callback before each saving operations
      *
@@ -81,26 +81,26 @@ class Tag extends AppModel
 
         return empty($result);
     }
-  
+
     /**
      *
      *
-     */ 
+     */
     public function addTag($tagName, $userId, $sentenceId = null)
     {
         if (trim($tagName) == '') {
             return false;
         }
-        
+
         if (trim($tagName) == 'OK') {
             $ownerId = $this->Sentence->getOwnerIdOfSentence($sentenceId);
             if ($userId == $ownerId) {
                 return false;
             }
         }
-        
-        $internalName = $this->_tag_to_internal_name($tagName);      
-        
+
+        $internalName = $this->_tag_to_internal_name($tagName);
+
         $data = array(
             "Tag" => array(
                 "name" => $tagName,
@@ -109,12 +109,12 @@ class Tag extends AppModel
                 "created" => date("Y-m-d H:i:s")
             )
         );
-        // try to add it as a new tag 
-        $this->save($data); 
-        
+        // try to add it as a new tag
+        $this->save($data);
+
         //send a request to suggestd to update its internal
-        // table 
-        // TODO only do this if we add a new tag 
+        // table
+        // TODO only do this if we add a new tag
         // $dirty = fopen("http://127.0.0.1:8080/add?str=".urlencode($tagName)."&value=1", 'r');
         // if ($dirty != null) {
             // fclose($dirty);
@@ -130,14 +130,14 @@ class Tag extends AppModel
                 )
             );
             $tagId = $result['Tag']['id'];
-             
+
             $this->TagsSentences->tagSentence(
                 $sentenceId,
                 $tagId,
                 $userId
             );
         }
-        
+
         return true; // TODO This function was not returning anything but the
                      // return value is needed in TagsController::add_tag().
                      // I'm making it return true for now.
@@ -147,10 +147,10 @@ class Tag extends AppModel
      * utility function to transform the human friendly tag
      * into a url friendly representation, also needed to avoid as much
      * as possible duplicate
-     * 
+     *
      * @param string $tagName The human friendly tag name to convert
      *
-     * @return string The url friendly string 
+     * @return string The url friendly string
      */
     private function _tag_to_internal_name($tagName)
     {
@@ -192,17 +192,17 @@ class Tag extends AppModel
                     'fields' => array()
                 ),
             );
-     
+
         }
         $params = array(
             'TagsSentences' => array(
                 'limit' => $limit,
-                'fields' => array('user_id','sentence_id'), 
+                'fields' => array('user_id','sentence_id'),
                 'conditions' => $conditions,
                 'contain' => $contain
             )
         );
-        
+
         return $params;
 
     }
@@ -235,8 +235,8 @@ class Tag extends AppModel
         );
         return $result['Tag']['id'];
     }
-    
-    
+
+
     /**
      * Get id and name of tag, from given 'internal name'.
      *

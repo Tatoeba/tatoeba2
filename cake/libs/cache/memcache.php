@@ -20,7 +20,7 @@
  */
 
 /**
- * Memcache storage engine for cache.  Memcache has some limitations in the amount of 
+ * Memcache storage engine for cache.  Memcache has some limitations in the amount of
  * control you have over expire times far in the future.  See MemcacheEngine::write() for
  * more information.
  *
@@ -64,8 +64,8 @@ class MemcacheEngine extends CacheEngine {
 			return false;
 		}
 		parent::init(array_merge(array(
-			'engine'=> 'Memcache', 
-			'prefix' => Inflector::slug(APP_DIR) . '_', 
+			'engine'=> 'Memcache',
+			'prefix' => Inflector::slug(APP_DIR) . '_',
 			'servers' => array('127.0.0.1'),
 			'compress'=> false,
 			'persistent' => true
@@ -122,7 +122,7 @@ class MemcacheEngine extends CacheEngine {
 
 /**
  * Write data for key into cache.  When using memcache as your cache engine
- * remember that the Memcache pecl extension does not support cache expiry times greater 
+ * remember that the Memcache pecl extension does not support cache expiry times greater
  * than 30 days in the future. Any duration greater than 30 days will be treated as never expiring.
  *
  * @param string $key Identifier for the data

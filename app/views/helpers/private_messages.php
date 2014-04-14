@@ -37,7 +37,7 @@
 class PrivateMessagesHelper extends AppHelper
 {
     public $helpers = array('Form');
-     
+
     /**
      * Displays the form to write a private message.
      *
@@ -67,7 +67,7 @@ class PrivateMessagesHelper extends AppHelper
                 'label' => __('Title', true)
             )
         );
-        
+
         if ($content != null) {
             $content = $this->formatReplyMessage($content, $recipients);
         }
@@ -81,8 +81,8 @@ class PrivateMessagesHelper extends AppHelper
         );
         echo $this->Form->end(__('Send', true));
     }
-    
-    
+
+
     /**
      * function to format the text of the messages in case of answer
      *

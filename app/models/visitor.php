@@ -48,20 +48,20 @@ class Visitor extends AppModel
     {
         // TODO typically something than can be handle with caching
         // as we don't really need to "store" them
-        
+
         // delete users with timestamp higher than 5 minutes
         $timestamp_5min = time() - (60 * 5);
         $this->deleteAll(array('timestamp < ' . $timestamp_5min), false);
-        
+
         // adding visitor to the list
         $currentUserIp = CurrentUser::getIp();
-        
+
         $results = $this->find(
             'first',
             array(
                 'fields' => 'ip',
                 'conditions' => array(
-                    'ip' => $currentUserIp 
+                    'ip' => $currentUserIp
                 )
             )
         );
@@ -71,7 +71,7 @@ class Visitor extends AppModel
             $data['Visitor']['ip'] = $currentUserIp;
             $this->save($data);
         }
-    
+
         return $this->find('count');
     }
 

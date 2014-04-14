@@ -939,7 +939,7 @@ class ControllerTest extends CakeTestCase {
 		$Controller->set(array(1 => 'one', 2 => 'two'));
 		$expected = array(3 => 'three', 4 => 'four', 1 => 'one', 2 => 'two');
 		$this->assertEqual($Controller->viewVars, $expected);
-		
+
 	}
 
 /**
@@ -1185,7 +1185,7 @@ class ControllerTest extends CakeTestCase {
 
 		$expected = array('ControllerComment', 'ControllerAlias', 'ControllerPost');
 		$this->assertEqual($expected, $TestController->uses, '$uses was merged incorrectly, AppController models should be last.');
-		
+
 
 		$TestController =& new AnotherTestController();
 		$TestController->constructClasses();

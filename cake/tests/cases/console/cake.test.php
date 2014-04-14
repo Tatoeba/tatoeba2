@@ -451,7 +451,7 @@ class ShellDispatcherTest extends CakeTestCase {
 		$Dispatcher->params = $Dispatcher->args = array();
 		$Dispatcher->parseParams($params);
 		$this->assertEqual($expected, $Dispatcher->params);
-		
+
 		$params = array(
 			'cake.php',
 			'-working',

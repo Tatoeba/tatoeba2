@@ -51,8 +51,8 @@ class CakeCliReporter extends CakeBaseReporter {
 /**
  * Constructor
  *
- * @param string $separator 
- * @param array $params 
+ * @param string $separator
+ * @param array $params
  * @return void
  */
 	function CakeCLIReporter($charset = 'utf-8', $params = array()) {
@@ -154,8 +154,8 @@ class CakeCliReporter extends CakeBaseReporter {
 		}
 
 		if (
-			isset($this->params['codeCoverage']) && 
-			$this->params['codeCoverage'] && 
+			isset($this->params['codeCoverage']) &&
+			$this->params['codeCoverage'] &&
 			class_exists('CodeCoverageManager')
 		) {
 			CodeCoverageManager::report();

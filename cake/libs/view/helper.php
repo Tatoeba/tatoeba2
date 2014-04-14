@@ -443,8 +443,8 @@ class Helper extends Overloadable {
 			$ModelObj =& ClassRegistry::getObject($model);
 			for ($i = 0; $i < $count; $i++) {
 				if (
-					is_a($ModelObj, 'Model') && 
-					($ModelObj->hasField($parts[$i]) || 
+					is_a($ModelObj, 'Model') &&
+					($ModelObj->hasField($parts[$i]) ||
 					array_key_exists($parts[$i], $ModelObj->validate))
 				) {
 					$hasField = $i;

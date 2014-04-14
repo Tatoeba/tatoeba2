@@ -45,7 +45,7 @@ class AttentionPleaseHelper extends AppHelper
             <div style="border: 1px solid #CCC; padding: 5px 10px; background: #F1F1F1">
                 We seem to have a corrupt database and for this reason we're disabling new contributions for now since there is a possibility that anything you submit today will be lost.
             </div>
-            
+
             <p><a href="http://tatoeba.org/eng/wall/show_message/2000#message_2000">>> More info about what happened</a>
         </div>
         <?php*/

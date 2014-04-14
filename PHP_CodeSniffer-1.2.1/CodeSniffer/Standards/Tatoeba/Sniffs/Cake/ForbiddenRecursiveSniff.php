@@ -17,7 +17,7 @@
 /**
  * Tatoeba_Sniffs_PHP_ForbiddenRecursiveSniff.
  *
- * Forbid use of "MyModel->recursive" 
+ * Forbid use of "MyModel->recursive"
  *
  * @category  PHP
  * @package   PHP_CodeSniffer
@@ -72,7 +72,7 @@ class Tatoeba_Sniffs_Cake_ForbiddenRecursiveSniff implements PHP_CodeSniffer_Sni
         if (preg_match('|^findby|', $content) !== 0 ||  preg_match('|^findallby|', $content) !== 0) {
                 $error = "The use of findBy* or findAllBy* is forbidden";
                 $phpcsFile->addError($error, $stackPtr);
-                return; 
+                return;
         }
 
 
@@ -81,7 +81,7 @@ class Tatoeba_Sniffs_Cake_ForbiddenRecursiveSniff implements PHP_CodeSniffer_Sni
             return;
         }
 
-        
+
 
         $error = "The use of recursive is forbidden";
 

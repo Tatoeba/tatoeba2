@@ -19,7 +19,7 @@
  */
 class TestPluginController extends TestPluginAppController {
 	var $uses = array();
-	
+
 	function index() {
 		$this->autoRender = false;
 	}

@@ -38,7 +38,7 @@ class Contribution extends AppModel
 {
     public $actsAs = array("Containable");
     public $belongsTo = array('Sentence', 'User');
-    
+
     /**
      * Get number of contributions made by a given user
      *
@@ -58,8 +58,8 @@ class Contribution extends AppModel
             )
         );
     }
-    
-    
+
+
     /**
      * Return contributions related to specified sentence.
      *
@@ -83,7 +83,7 @@ class Contribution extends AppModel
                     'User.id'
                 ),
                 'conditions' => array(
-                    'Contribution.sentence_id' => $sentenceId     
+                    'Contribution.sentence_id' => $sentenceId
                 ),
                 'contain' => array(
                     'User'=> array(
@@ -94,7 +94,7 @@ class Contribution extends AppModel
         );
         return $result ;
     }
-    
+
     /**
      * Get last contributions in a specific language if language is specified.
      * 'und' will retrieve in all languages.
@@ -113,16 +113,16 @@ class Contribution extends AppModel
         if (strlen($lang) != 3 || !is_numeric($limit)) {
             return array();
         }
-        
+
         $conditions = array('Contribution.type' => 'sentence');
 
         $table = "contributions";
         if ($lang == 'und'|| empty($lang)) {
-            $table = "last_contributions"; 
+            $table = "last_contributions";
         }
 
         $query ="
-            SELECT 
+            SELECT
                 `Contribution`.`text`,
                 `Contribution`.`action`,
                 `Contribution`.`id`,
@@ -131,31 +131,31 @@ class Contribution extends AppModel
                 `Contribution`.`sentence_lang`,
                 `User`.`username`,
                 `User`.`id`
-            FROM `$table` AS `Contribution`  
+            FROM `$table` AS `Contribution`
         ";
-        $query.=" 
+        $query.="
                 INNER JOIN `users` AS `User`
                     ON (`Contribution`.`user_id` = `User`.`id`)
                  WHERE ";
         if ($lang != 'und') {
             $query .=  "`Contribution`.`sentence_lang` = '$lang' AND";
-        } 
+        }
 
         $query.="
                 `Contribution`.`type` = 'sentence'
-            ORDER BY `Contribution`.`id` DESC 
-            LIMIT $limit 
-        "; 
-        
+            ORDER BY `Contribution`.`id` DESC
+            LIMIT $limit
+        ";
+
         return  $this->query($query);
     }
-    
+
     /**
      * Returns number of contributions for each member, ordered from the highest
      * contributor to the lowest.
      *
      * @return array
-     */    
+     */
     public function getUsersStatistics()
     {
         $query = array(
@@ -176,33 +176,33 @@ class Contribution extends AppModel
             )
         );
         return array();//$this->find('all', $query);
-    }    
-    
-    
+    }
+
+
     /**
      * Returns number of contributions for each day. We only count the number of new
      * sentences, not the number of modifications.
      *
      * @return array
      */
-    public function getActivityTimelineStatistics($year = null, $month = null) 
+    public function getActivityTimelineStatistics($year = null, $month = null)
     {
         if ($year == null || $month == null) {
-        
+
             $startDate = date('Y-m');
             $numDays = date('t');
-            
+
         } else {
-        
+
             $startTimestamp = mktime(0, 0, 0, intval($month), 1, intval($year));
             $endTimestamp = mktime(0, 0, 0, intval($month)+1, 1, intval($year));
             $startDate = date('Y-m', $startTimestamp);
             $endDate = date('Y-m', $endTimestamp);
-            
+
         }
-        
+
         return $this->find(
-            'all', 
+            'all',
             array(
                 'fields' => array(
                     'COUNT(*) as total',
@@ -220,26 +220,26 @@ class Contribution extends AppModel
             )
         );
     }
-    
+
     /**
-    * Return number of contributions for current day since midnight.  
-    * 
+    * Return number of contributions for current day since midnight.
+    *
     * @return int
     */
-    
+
     public function getTodayContributions()
     {
         $currentDate = 'Contribution.datetime >'.'\''.date('Y-m-d').' 00:00:00\'';
         return $this->find(
             'count',
-            array(      
+            array(
                 'conditions' => array(
                     $currentDate,
                     'Contribution.translation_id' => null,
                     'Contribution.action' => 'insert'
                 ),
                 'contain' => array()
-            )        
+            )
         );
     }
 
@@ -266,8 +266,8 @@ class Contribution extends AppModel
         );
 
     }
-    
-    
+
+
     /**
      * Log contributions related to sentences.
      *
@@ -286,15 +286,15 @@ class Contribution extends AppModel
             'text' => $text,
             'user_id' => CurrentUser::get('id'),
             'datetime' => date("Y-m-d H:i:s"),
-            'ip' => CurrentUser::getIp(), 
+            'ip' => CurrentUser::getIp(),
             'type' => 'sentence',
             'action' => $action
         );
-        
+
         $this->save($data);
     }
-    
-    
+
+
     /**
      * Log contributions related to links.
      *

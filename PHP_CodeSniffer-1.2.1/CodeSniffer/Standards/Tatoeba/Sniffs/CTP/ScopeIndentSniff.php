@@ -56,7 +56,7 @@ class Tatoeba_Sniffs_CTP_ScopeIndentSniff extends Generic_Sniffs_WhiteSpace_Scop
     public function process(PHP_CodeSniffer_File $phpcsFile, $stackPtr)
     {
         $fileName = $phpcsFile->getFilename();
-        
+
         if (preg_match('|ctp$|', $fileName) === 0) {
             parent::process($phpcsFile, $stackPtr);
         } else {

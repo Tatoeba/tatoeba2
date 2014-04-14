@@ -27,13 +27,13 @@ class TestMemcacheEngine extends MemcacheEngine {
 /**
  * public accessor to _parseServerString
  *
- * @param string $server 
+ * @param string $server
  * @return array
  */
 	function parseServerString($server) {
 		return $this->_parseServerString($server);
 	}
-	
+
 	function setMemcache(&$memcache) {
 		$this->__Memcache = $memcache;
 	}

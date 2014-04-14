@@ -718,7 +718,7 @@ class XmlNode extends Object {
 			if (isset($out[$key])) {
 				if(!isset($out[$key][0]) || !is_array($out[$key]) || !is_int(key($out[$key]))) {
 					$out[$key] = array($out[$key]);
-				} 
+				}
 				$out[$key][] = $value;
 			} elseif (isset($out[$child->name])) {
 				$t = $out[$child->name];

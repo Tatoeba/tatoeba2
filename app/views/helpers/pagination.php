@@ -37,8 +37,8 @@
 class PaginationHelper extends AppHelper
 {
     public $helpers = array('Paginator');
-    
-    
+
+
     /**
      * Display pagination.
      *
@@ -55,7 +55,7 @@ class PaginationHelper extends AppHelper
         if ($pagingInfo['pageCount'] < 2) {
             return;
         }
-        
+
         // -----------------------------------------------------------
         // So that we can pass GET variables into the pagination links.
         // Took it from here:
@@ -67,15 +67,15 @@ class PaginationHelper extends AppHelper
                 continue; // we need to ignore the url field
             }
             // making the passing parameters
-            $getv .= urlencode($key)."=".urlencode($value)."&"; 
+            $getv .= urlencode($key)."=".urlencode($value)."&";
         }
         $getv = substr_replace($getv, "", -1); // remove the last char '&'
-        
+
         $extramParams['?'] = $getv;
         $this->Paginator->options(array('url' => $extramParams));
         // -----------------------------------------------------------
-        
-        
+
+
         $prevNextOptions = array();
         $numbersOptions = array(
             'separator' => '',
@@ -90,21 +90,21 @@ class PaginationHelper extends AppHelper
                 $first = '<span class="disabled">&lt;&lt;</span>';
             }
             echo $first;
-            
+
             echo $this->Paginator->prev(
                 '<', $prevNextOptions, null, array('class' => 'disabled')
-            ); 
+            );
             ?>
-            
+
             <span class="numbers">
             <?php echo $this->Paginator->numbers($numbersOptions);  ?>
             </span>
-            
+
             <?php
             echo $this->Paginator->next(
                 '>', $prevNextOptions, null, array('class' => 'disabled')
-            ); 
-            
+            );
+
             $last = $this->Paginator->last(">>");
             if (empty($last)) {
                 $last = '<span class="disabled">&gt;&gt;</span>';

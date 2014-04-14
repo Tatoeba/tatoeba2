@@ -101,7 +101,7 @@ class ApiShellTest extends CakeTestCase {
 				'15. render($action = null, $layout = null, $file = null)',
 				'16. set($one, $two = null)',
 				'17. setAction($action)',
-				'18. shutdownProcess()', 
+				'18. shutdownProcess()',
 				'19. startupProcess()',
 				'20. validate()',
 				'21. validateErrors()'

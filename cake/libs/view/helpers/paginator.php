@@ -305,7 +305,7 @@ class PaginatorHelper extends AppHelper {
 		$sortKey = $this->sortKey($options['model']);
 		$defaultModel = $this->defaultModel();
 		$isSorted = (
-			$sortKey === $key || 
+			$sortKey === $key ||
 			$sortKey === $defaultModel . '.' . $key ||
 			$key === $defaultModel . '.' . $sortKey
 		);

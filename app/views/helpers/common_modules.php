@@ -74,16 +74,16 @@ class CommonModulesHelper extends AppHelper
 
             $paramsWitoutLang = $numberOfParams;
             if ($numberOfParams === $maxNumberOfParams) {
-                $paramsWitoutLang--;            
+                $paramsWitoutLang--;
             }
 
             for ($i = 0; $i < $paramsWitoutLang; $i++) {
-                $path .= $params[$i] .'/'; 
-            } 
-            
+                $path .= $params[$i] .'/';
+            }
+
             $lang = 'und' ;
             if (isset($params[$maxNumberOfParams-1])) {
-                $lang  = $params[$maxNumberOfParams-1]; 
+                $lang  = $params[$maxNumberOfParams-1];
             }
 
             $langs = $this->Languages->languagesArray();
@@ -96,21 +96,21 @@ class CommonModulesHelper extends AppHelper
                     "onchange" => "
                         if (this.value == 'und') {
                             $(location).attr('href','$path');
-                        } else { 
+                        } else {
                             $(location).attr('href','$path' + this.value);
-                        }", 
+                        }",
                     // the if is to avoid a duplicate page (with and without "und")
                     "empty" => false
                 )
             );
-            ?> 
+            ?>
         </div>
-    <?php 
+    <?php
     }
-    
+
     /**
      * Display a module content which indicate the user does not exist
-     * 
+     *
      * @param string $userName The username which doesn't exist.
      * @param string $backLink The backlink.
      *
@@ -125,7 +125,7 @@ class CommonModulesHelper extends AppHelper
         );
         echo '</h2>';
 
-        echo $this->Html->link(__('Go back to previous page', true), $backLink);   
+        echo $this->Html->link(__('Go back to previous page', true), $backLink);
     }
 }
 ?>

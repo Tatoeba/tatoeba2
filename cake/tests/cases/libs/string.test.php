@@ -300,7 +300,7 @@ class StringTest extends CakeTestCase {
 		$expected = array('tagA', '"single tag"', 'tagB');
 		$this->assertEqual($expected, $result);
 	}
-	
+
 	function testReplaceWithQuestionMarkInString() {
 		$string = ':a, :b and :c?';
 		$expected = '2 and 3?';

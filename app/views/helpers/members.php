@@ -38,9 +38,9 @@
 class MembersHelper extends AppHelper
 {
     public $helpers = array('Html');
-    
+
     /**
-     * To display the names of the people listed in Team & Credits. 
+     * To display the names of the people listed in Team & Credits.
      *
      * @param string $username    Username of the member.
      * @param string $realName    Real name of the member.
@@ -58,11 +58,11 @@ class MembersHelper extends AppHelper
             echo $realName;
             ?>
             </div>
-            
+
             <div class="description">
             <?php echo $description; ?>
             </div>
-            
+
             <?php
             if (!empty($username)) {
                 ?>
@@ -92,12 +92,12 @@ class MembersHelper extends AppHelper
                 <?php
             }
             ?>
-        
+
         </div>
         <?php
     }
-    
-    
+
+
     /**
      *
      */
@@ -112,15 +112,15 @@ class MembersHelper extends AppHelper
                 array("alt"=>$username)
             ),
             array(
-                "controller" => "user", 
-                "action" => "profile", 
+                "controller" => "user",
+                "action" => "profile",
                 $username
             ),
             array("escape" => false)
-        ); 
+        );
     }
-    
-    
+
+
     /**
      * Display "Edit" button in the profile.
      *
@@ -141,8 +141,8 @@ class MembersHelper extends AppHelper
         </div>
         <?php
     }
-    
-    
+
+
     /**
      * Gives i18n for a group name.
      *

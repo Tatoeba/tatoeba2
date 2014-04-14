@@ -439,7 +439,7 @@ class DboMysqlBase extends DboSource {
 /**
  * Returns an detailed array of sources (tables) in the database.
  *
- * @param string $name Table name to get parameters 
+ * @param string $name Table name to get parameters
  * @return array Array of tablenames in the database
  */
 	function listDetailedSources($name = null) {

@@ -44,7 +44,7 @@ class Group extends AppModel
             'dependent' => false,
         )
     );
-    
+
     /**
      * Parent node. Potentially useful for ACL... but I'm not sure.
      *

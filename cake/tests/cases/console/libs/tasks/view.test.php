@@ -263,7 +263,7 @@ class ViewTaskTest extends CakeTestCase {
 		$this->Task->DbConfig =& new ViewTaskMockProjectTask();
 		$this->Task->path = TMP;
 		$this->Task->Template->params['theme'] = 'default';
-		
+
 		$this->_routing = Configure::read('Routing');
 	}
 
@@ -530,7 +530,7 @@ class ViewTaskTest extends CakeTestCase {
 		$this->Task->expectAt(0, 'createFile', array(TMP . 'view_task_comments' . DS . 'index.ctp', '*'));
 		$this->Task->expectAt(1, 'createFile', array(TMP . 'view_task_comments' . DS . 'add.ctp', '*'));
 		$this->Task->execute();
-		
+
 		$this->Task->args = array('ViewTaskComment');
 
 		$this->Task->expectAt(0, 'createFile', array(TMP . 'view_task_comments' . DS . 'index.ctp', '*'));

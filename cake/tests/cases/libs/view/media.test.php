@@ -54,7 +54,7 @@ class MediaController extends Controller {
 		$extension = 'css';
 		$this->set(compact('path', 'id', 'extension'));
 	}
-	
+
 	function downloadUpper() {
 		$path = TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'vendors' . DS .'img' . DS;
 		$id = 'test_2.JPG';
@@ -172,7 +172,7 @@ class MediaViewTest extends CakeTestCase {
 		$this->assertTrue($result !== false);
 		$this->assertEqual($output, 'this is the test asset css file');
 	}
-	
+
 	function testRenderUpperExtension() {
 		ob_start();
 		$this->MediaController->downloadUpper();
@@ -181,11 +181,11 @@ class MediaViewTest extends CakeTestCase {
 		$output = ob_get_clean();
 
 		$this->assertTrue($result !== false);
-		
+
 		$fileName = TEST_CAKE_CORE_INCLUDE_PATH . 'tests' . DS . 'test_app' . DS . 'vendors' . DS .'img' . DS . 'test_2.JPG';
 		$file = file_get_contents($fileName, 'r');
-		
-		$this->assertEqual(base64_encode($output), base64_encode($file));		
+
+		$this->assertEqual(base64_encode($output), base64_encode($file));
 	}
 
 /**

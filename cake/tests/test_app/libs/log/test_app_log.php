@@ -20,6 +20,6 @@
 class TestAppLog {
 
 	function write($type, $message) {
-		
+
 	}
 }

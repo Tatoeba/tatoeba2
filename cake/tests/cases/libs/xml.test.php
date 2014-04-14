@@ -1441,7 +1441,7 @@ class XmlTest extends CakeTestCase {
  * @return void
  */
 	function testToArrayAlternate() {
-		$sXml = 
+		$sXml =
 		'<t1>
 		 	<t2>A</t2>
       		<t2><t3>AAA</t3>B</t2>
@@ -1470,8 +1470,8 @@ class XmlTest extends CakeTestCase {
 			)
 		);
 		$this->assertIdentical($result, $expected);
-		
-		$sXml = 
+
+		$sXml =
 		'<t1>
 		 	<t2>A</t2>
 	  		<t2>B</t2>
@@ -1502,8 +1502,8 @@ class XmlTest extends CakeTestCase {
 			)
 		);
 		$this->assertIdentical($result, $expected);
-		
-		$sXml = 
+
+		$sXml =
 		'<t1>
 		 <t2>A</t2>
 		 <t2></t2>
@@ -1533,8 +1533,8 @@ class XmlTest extends CakeTestCase {
 			)
 		);
 		$this->assertIdentical($result, $expected);
-		
-		$sXml = 
+
+		$sXml =
 		'<stuff>
     <foo name="abc-16" profile-id="Default" />
     <foo name="abc-17" profile-id="Default" >
@@ -1555,12 +1555,12 @@ class XmlTest extends CakeTestCase {
 			'Stuff' => array(
 				'Foo' => array(
 					array('name' => 'abc-16', 'profile-id' => 'Default'),
-					array('name' => 'abc-17', 'profile-id' => 'Default', 
+					array('name' => 'abc-17', 'profile-id' => 'Default',
 						'Bar' => array('id' => 'HelloWorld')),
 					array('name' => 'abc-asdf', 'profile-id' => 'Default'),
-					array('name' => 'cba-1A', 'profile-id' => 'Default', 
+					array('name' => 'cba-1A', 'profile-id' => 'Default',
 						'Bar' => array('id' => 'Baz')),
-					array('name' => 'cba-2A', 'profile-id' => 'Default', 
+					array('name' => 'cba-2A', 'profile-id' => 'Default',
 						'Bar' => array('id' => 'Baz')),
 					array('name' => 'qa', 'profile-id' => 'Default'),
 				)
@@ -1572,21 +1572,21 @@ class XmlTest extends CakeTestCase {
 			'stuff' => array(
 				'foo' => array(
 					array('name' => 'abc-16', 'profile-id' => 'Default'),
-					array('name' => 'abc-17', 'profile-id' => 'Default', 
+					array('name' => 'abc-17', 'profile-id' => 'Default',
 						'bar' => array('id' => 'HelloWorld')),
 					array('name' => 'abc-asdf', 'profile-id' => 'Default'),
-					array('name' => 'cba-1A', 'profile-id' => 'Default', 
+					array('name' => 'cba-1A', 'profile-id' => 'Default',
 						'bar' => array('id' => 'Baz')),
-					array('name' => 'cba-2A', 'profile-id' => 'Default', 
+					array('name' => 'cba-2A', 'profile-id' => 'Default',
 						'bar' => array('id' => 'Baz')),
 					array('name' => 'qa', 'profile-id' => 'Default'),
 				)
 			)
 		);
 		$this->assertIdentical($result, $expected);
-		
-		
-		$sXml = 
+
+
+		$sXml =
 		'<root>
   <node name="first" />
   <node name="second"><subnode name="first sub" /><subnode name="second sub" /></node>
@@ -1598,24 +1598,24 @@ class XmlTest extends CakeTestCase {
 			'Root' => array(
 				'Node' => array(
 					array('name' => 'first'),
-					array('name' => 'second', 
+					array('name' => 'second',
 						'Subnode' => array(
-							array('name' => 'first sub'), 
+							array('name' => 'first sub'),
 							array('name' => 'second sub'))),
 					array('name' => 'third'),
 				)
 			)
 		);
 		$this->assertIdentical($result, $expected);
-		
+
 		$result = $xml->toArray(false);
 		$expected = array(
 			'root' => array(
 				'node' => array(
 					array('name' => 'first'),
-					array('name' => 'second', 
+					array('name' => 'second',
 						'subnode' => array(
-							array('name' => 'first sub'), 
+							array('name' => 'first sub'),
 							array('name' => 'second sub'))),
 					array('name' => 'third'),
 				)
@@ -1623,7 +1623,7 @@ class XmlTest extends CakeTestCase {
 		);
 		$this->assertIdentical($result, $expected);
 	}
-	
+
 
 	function testToStringSlugging() {
 		$array = array(

@@ -42,7 +42,7 @@
  * $controllerPaths = array('this path to controllers', 'second full path to controllers', 'etc...');
  *
  */
- 
+
 /**
  * Adding timestamp to CSS and javascript links, so that users don't have to do a
  * refresh with CTRL+F5.

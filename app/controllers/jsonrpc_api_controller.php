@@ -31,47 +31,47 @@
  */
 class JsonrpcApiController extends AppController
 {
-    
+
     /**
      * Name of this controller
-     * 
+     *
      * @var string
      */
     public $name = "JsonrpcApi";
-    
-    
+
+
     /**
      * Models will be loaded as needed by individial methods
-     * 
+     *
      * @var array
      */
     public $uses = array();
-    
-    
+
+
     /**
      * Add helpers here if needed
-     * 
+     *
      * @var array
      */
     public $helpers = array('Cache');
-    
-    
+
+
     /**
      * Components for this controller
-     * 
+     *
      * @var array
      */
     public $components = array('Jsonrpc');
-    
-    
+
+
     /**
      * Variable to store map for minification/deminification
-     * 
+     *
      * @var array
      */
     private $_context = array();
-    
-    
+
+
     /**
      * CakePHP function
      */
@@ -84,28 +84,28 @@ class JsonrpcApiController extends AppController
             'getSentenceDetails'
         );
     }
-    
-    
+
+
     /**
      * Minify function, compress data
-     * 
+     *
      * @param string $context     The mapping context (the method name)
      * @param array $jsonArray  The JSON data to compress
-     * 
+     *
      * @return object compressed JSON data
      */
     private function _minifyCompress($context, $jsonArray)
     {
         return $jsonArray;
     }
-    
-    
+
+
     /**
      * Minify function, expand data
-     * 
+     *
      * @param array $contex     The mapping context (the method name)
      * @param array $jsonArray  The JSON data to expand
-     * 
+     *
      * @return array expanded JSON data
      */
     private function _minifyExpand($context, $jsonArray)
@@ -116,15 +116,15 @@ class JsonrpcApiController extends AppController
                 unset($jsonArray[$letter]);
             }
         }
-        
+
         return $jsonArray;
     }
-    
-    
+
+
     /**
-     * This function is a callback used by the component. It is supplied with an array whose 
+     * This function is a callback used by the component. It is supplied with an array whose
      * first index contains the method name and second index contains the arguments
-     * 
+     *
      * @return array  The return value of whichever method is invoked
      */
     public function invokeAPIMethod()
@@ -132,13 +132,13 @@ class JsonrpcApiController extends AppController
         $jsonRequest = func_get_args();
         $version = $verName = $methName = "";
         $params = array();
-        
+
         if (empty($jsonRequest[1]['v'])) {
             throw new Exception("Method version not specified.", 0);
         } else {
             $version = $jsonRequest[1]['v'];
         }
-        
+
         if (!method_exists(get_class($this), "_{$jsonRequest[0]}_v{$version}")) {
             throw new Exception("Method version does not exist.", 0);
         } else {
@@ -146,24 +146,24 @@ class JsonrpcApiController extends AppController
             $methName = $jsonRequest[0];
             $verName = "_{$jsonRequest[0]}_v{$version}";
         }
-        
+
         if (empty($jsonRequest[1])) {
             throw new Exception("No params supplied to method.", 0);
         } else {
             $params = $jsonRequest[1];
         }
-        
+
         return  call_user_func_array(array($this, $methName), array($verName, $version, $params));
     }
-    
-    
+
+
     /**
      * Parent function for seach method.
-     * 
+     *
      * @param $verName  The versioned name of the method requested
      * @param $version  The version number
      * @param $params   The params supplied
-     * 
+     *
      * @return array Search results
      */
     public function search()
@@ -180,128 +180,128 @@ class JsonrpcApiController extends AppController
             ),
             'response' => array(
                 '1' => array(
-                    
+
                 )
             )
         );
-        
+
         $request = func_get_args();
         $verName = $request[0];
         $version = $request[1];
         $params = $request[2];
         $request = $this->_minifyExpand($this->_context['request'][$version], $params);
-        
+
         return call_user_func_array(array($this, $verName), array($request));
     }
-    
-    
+
+
     /**
      * Parent function for sentence method
-     * 
+     *
      * @param $jsonArray array JSON request
-     * 
+     *
      * @return array Sentences
      */
     public function getSentenceDetails($jsonArray)
     {
     }
-    
-    
+
+
     /**
      * Parent function for comment method
-     * 
+     *
      * @param $jsonArray array JSON request
-     * 
+     *
      * @return array A single comment
      */
     public function getComments($jsonArray)
     {
     }
-    
-    
+
+
     /**
      * Parent function for user profile method
-     * 
+     *
      * @param $jsonArray array JSON request
-     * 
+     *
      * @return array Details of a single user
      */
     public function getUserProfile($jsonArray)
     {
     }
-    
-    
+
+
     /**
      * Parent function for users method
-     * 
+     *
      * @param $jsonArray array JSON request
-     * 
+     *
      * @return array A List of users
      */
     public function getUsers($jsonArray)
     {
     }
-    
-    
+
+
     /**
      * Parent function for search users method
-     * 
+     *
      * @param $jsonArray array JSON request
-     * 
+     *
      * @return array A List of users
      */
     public function searchUsers($jsonArray)
     {
     }
-    
-    
+
+
     /**
      * Parent function for fetch wall method
-     * 
+     *
      * @param $jsonArray array JSON request
-     * 
+     *
      * @return array Wall messages with reply structure
      */
     public function fetchWall($jsonArray)
     {
     }
-    
-    
+
+
     /**
      * Parent function for fetch wall thread method
-     * 
+     *
      * @param $jsonArray array JSON request
-     * 
+     *
      * @return array Wall messages with reply structure
      */
     public function fetchWallThread($jsonArray)
     {
     }
-    
-    
+
+
     /**
      * Parent function for fetch wall replies method
-     * 
+     *
      * @param $jsonArray array JSON request
-     * 
+     *
      * @return array Wall messages with reply structure
      */
     public function fetchWallReplies($jsonArray)
     {
     }
-    
-    
+
+
     /**
      * Search sentences.
-     * Don't call this function directly. 
-     * 
+     * Don't call this function directly.
+     *
      * @param  $query    string  The query string
      * @param  $from     string  The source language
      * @param  $to       string  The target language
      * @param  $page     string  Pagination details
      * @param  $options  array   Options for query
      * @version 1
-     * 
+     *
      * @return array
      */
     private function _search_v1()
@@ -309,7 +309,7 @@ class JsonrpcApiController extends AppController
         $this->cacheAction = true;
         $args = func_get_args();
         $args = $args[0];
-        
+
         //Check to make sure all the arguments are supplied
         $requiredArgs = array('query', 'to', 'from', 'page', 'options');
         foreach ($requiredArgs as $key) {
@@ -317,23 +317,23 @@ class JsonrpcApiController extends AppController
                 throw new Exception("Failed to specify $key argument.", 0);
             }
         }
-        
+
         $this->loadModel('Sentence');
         $results = null;
-        
-        
+
+
         return $results;
     }
-    
-    
+
+
     /**
      * Find sentence
-     * Don't call this function directly. 
-     * 
+     * Don't call this function directly.
+     *
      * @param  $id       int    Id of sentence
      * @param  $options  array  Options for query
      * @version 1
-     * 
+     *
      * @return array
      */
     private function _getSentenceDetails_v1()
@@ -341,15 +341,15 @@ class JsonrpcApiController extends AppController
         $this->cacheAction = true;
         $results = null;
     }
-    
-    
+
+
     /**
      * Get list of comment
-     * Don't call this function directly. 
-     * 
+     * Don't call this function directly.
+     *
      * @param  $id  array Id's of comments
      * @version 1
-     * 
+     *
      * @return array
      */
     private function _getComments_v1()
@@ -357,15 +357,15 @@ class JsonrpcApiController extends AppController
         $this->cacheAction = true;
         $results = null;
     }
-    
-    
+
+
     /**
      * Find comment
-     * Don't call this function directly. 
-     * 
+     * Don't call this function directly.
+     *
      * @param  $id  int Id of comment
      * @version 1
-     * 
+     *
      * @return array
      */
     private function _getCommentDetails_v1()
@@ -373,15 +373,15 @@ class JsonrpcApiController extends AppController
         $this->cacheAction = true;
         $results = null;
     }
-    
-    
+
+
     /**
      * Get list of users or single user
-     * Don't call this function directly. 
-     * 
+     * Don't call this function directly.
+     *
      * @param  $query   mixed   Either a search string or array of id's
      * @version 1
-     * 
+     *
      * @return array
      */
     private function _getUsers_v1()
@@ -389,15 +389,15 @@ class JsonrpcApiController extends AppController
         $this->cacheAction = true;
         $results = null;
     }
-    
-    
+
+
     /**
      * Get a User's profile
-     * Don't call this function directly. 
-     * 
+     * Don't call this function directly.
+     *
      * @param   $query   mixed   Either a search string or array of id's
      * @version 1
-     * 
+     *
      * @return array
      */
     private function _getUserDetails_v1()
@@ -405,16 +405,16 @@ class JsonrpcApiController extends AppController
         $this->cacheAction = true;
         $results = null;
     }
-    
-    
+
+
     /**
      * Get wall messages
-     * Don't call this function directly. 
-     * 
+     * Don't call this function directly.
+     *
      * @param  $page     array  Pagination options
-     * @param  $options  array  Options for query 
+     * @param  $options  array  Options for query
      * @version 1
-     * 
+     *
      * @return array
      */
     private function _fetchWall_v1()
@@ -422,14 +422,14 @@ class JsonrpcApiController extends AppController
         $this->cacheAction = true;
         $results = null;
     }
-    
+
     /**
      * Get message and replies
-     * Don't call this function directly. 
-     * 
+     * Don't call this function directly.
+     *
      * @param   $id   Id of wall message
      * @version 1
-     * 
+     *
      * @return array
      */
     private function _fetchWallThread_v1()

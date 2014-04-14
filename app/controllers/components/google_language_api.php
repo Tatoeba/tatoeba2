@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
+
 /**
  * Component for Google language detection.
  *
@@ -40,32 +40,32 @@ class GoogleLanguageApiComponent extends Object
      * This function uses cURL : http://de.php.net/manual/en/curl.installation.php
      *
      * The language detection is done by Google's language detect API.
-     * Google documentation : 
+     * Google documentation :
      *   http://code.google.com/apis/ajaxlanguage/documentation/reference.html
      *
      * The function returns an associative array with the indices :
-     *   "language", "isReliable" and "confidence".     
+     *   "language", "isReliable" and "confidence".
      * which is after transform into a tatoeba language code
      *
      * @param string $text Sentence to detect.
      *
-     * @return string 
+     * @return string
      */
     public function detectLang($text, $user = "")
     {
         //return null;
         $textToAnalyze = urlencode($text);
-        
+
         //$langDetectUrl = "http://ajax.googleapis.com/ajax/services/language/detect?";
         //$version = "v=1.0";
-        //$url = $langDetectUrl . $version . "&q=" . $textToAnalyze; 
+        //$url = $langDetectUrl . $version . "&q=" . $textToAnalyze;
         $url = "http://en.tatodetect.sysko.fr/api/detects/simple?query=" . $textToAnalyze;
 
         if ($user != "") {
             $url .= ("&user=" . urlencode($user));
         }
-         
-        
+
+
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -86,7 +86,7 @@ class GoogleLanguageApiComponent extends Object
         //    // if something goes wrong
         //    return null;
         //}
-        //$googleLang = $json['responseData']['language']; 
+        //$googleLang = $json['responseData']['language'];
         //return $this->google2TatoebaCode($googleLang);
         if ($body == "unknown") {
             return null;
@@ -94,8 +94,8 @@ class GoogleLanguageApiComponent extends Object
             return $body;
         }
     }
-    
-    /** 
+
+    /**
      * Converts Google code into ISO-639-3 code.
      *
      * @param string $googleCode Language code used by Google.

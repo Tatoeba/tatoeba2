@@ -158,7 +158,7 @@ class SchemaShell extends Shell {
 
 		$content = $this->Schema->read($options);
 		$content['file'] = $this->params['file'];
-		
+
 		Configure::write('Cache.disable', $cacheDisable);
 
 		if ($snapshot === true) {
@@ -280,7 +280,7 @@ class SchemaShell extends Shell {
 		if (isset($this->params['plugin'])) {
 			$plugin = $this->params['plugin'];
 		}
-		
+
 		if (isset($this->params['dry'])) {
 			$this->__dry = true;
 			$this->out(__('Performing a dry run.', true));
@@ -495,13 +495,13 @@ Commands:
 
 	schema create <name> <table>
 		Drop and create tables based on schema file
-		optional <table> argument can be used to create only a single 
+		optional <table> argument can be used to create only a single
 		table in the schema. Pass the -s param with a number to use a snapshot.
 		Use the `-dry` param to preview the changes.
 
 	schema update <name> <table>
 		Alter the tables based on schema file. Optional <table>
-		parameter will only update one table. 
+		parameter will only update one table.
 		To use a snapshot pass the `-s` param with the snapshot number.
 		To preview the changes that will be done use `-dry`.
 		To force update of all tables into the schema, use the -f param.

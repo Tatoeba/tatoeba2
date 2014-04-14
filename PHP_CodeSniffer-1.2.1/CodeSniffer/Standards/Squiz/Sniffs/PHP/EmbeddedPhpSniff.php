@@ -133,7 +133,7 @@ class Squiz_Sniffs_PHP_EmbeddedPhpSniff implements PHP_CodeSniffer_Sniff
         // Check the indent of the first line.
         $startColumn   = $tokens[$stackPtr]['column'];
         $contentColumn = $tokens[$firstContent]['column'];
- 
+
         if ($contentColumn !== $startColumn) {
             $error = "First line of embedded PHP code must be indented $startColumn spaces; $contentColumn found";
             $phpcsFile->addError($error, $firstContent);

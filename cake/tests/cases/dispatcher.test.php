@@ -2423,14 +2423,14 @@ class DispatcherTest extends CakeTestCase {
 				),
 				'No rewrite with path' => array(
 					'SERVER' => array(
-						'HTTP_HOST' => 'localhost', 
+						'HTTP_HOST' => 'localhost',
 						'DOCUMENT_ROOT' => '/Library/WebServer/Documents/officespace/app/webroot',
 						'SCRIPT_FILENAME' => '/Library/WebServer/Documents/officespace/app/webroot/index.php',
 						'QUERY_STRING' => '',
 						'REQUEST_URI' => '/index.php/posts/add',
 						'SCRIPT_NAME' => '/index.php',
 						'PATH_INFO' => '/posts/add',
-						'PHP_SELF' => '/index.php/posts/add', 
+						'PHP_SELF' => '/index.php/posts/add',
 						'argv' => array(),
 						'argc' => 0),
 					'reload' => false,

@@ -311,7 +311,7 @@ class TextHelper extends AppHelper {
 
 		$excerpt = mb_substr($text, $startPos, $endPos - $startPos);
 		$excerpt = $prepend . $excerpt . $append;
-		
+
 		return $excerpt;
 	}
 

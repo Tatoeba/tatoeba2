@@ -29,7 +29,7 @@ class TranslateBehavior extends ModelBehavior {
 
 /**
  * Used for runtime configuration of model
- * 
+ *
  * @var array
  */
 	var $runtime = array();
@@ -585,7 +585,7 @@ class TranslateBehavior extends ModelBehavior {
  * fake field
  *
  * @param object $model instance of model
- * @param mixed $fields string with field, or array(field1, field2=>AssocName, field3), or null for 
+ * @param mixed $fields string with field, or array(field1, field2=>AssocName, field3), or null for
  *    unbind all original translations
  * @return bool
  */

@@ -182,7 +182,7 @@ class FixtureTaskTest extends CakeTestCase {
 		$this->Task->connection = 'test_suite';
 		$this->Task->path = '/my/path/';
 		$result = $this->Task->bake('Article', false, array(
-			'fromTable' => true, 
+			'fromTable' => true,
 			'schema' => 'Article',
 			'records' => false
 		));

@@ -38,7 +38,7 @@ class CommentsHelper extends AppHelper
 {
 
     public $helpers = array('Languages', 'Form', 'Date', 'Html', 'ClickableLinks', 'Sentences');
-    
+
     /**
      * Display a sentence comment block.
      *
@@ -46,7 +46,7 @@ class CommentsHelper extends AppHelper
      * @param array $user        Author array.
      * @param bool  $sentence    Related sentence array.
      * @param array $permissions Permissions array.
-     * 
+     *
      * @return void
      */
     public function displaySentenceComment(
@@ -54,13 +54,13 @@ class CommentsHelper extends AppHelper
     ) {
         $userName = $user["username"];
         $userImage = $user['image'];
-        
+
         $commentId = $comment['id'];
         $commentText = $comment['text'];
-        
+
         $date = $comment['created'];
         $modified = $comment['modified'];
-        
+
         $hidden = $comment['hidden'];
         $authorId = $comment['user_id'];
         ?>
@@ -76,7 +76,7 @@ class CommentsHelper extends AppHelper
         </li>
         <?php
     }
-    
+
     /**
      * Display a sentence comment block for editing
      *
@@ -84,7 +84,7 @@ class CommentsHelper extends AppHelper
      * @param array $user        Author array.
      * @param bool  $sentence    Related sentence array.
      * @param array $permissions Permissions array.
-     * 
+     *
      * @return void
      */
     public function displaySentenceCommentEditForm(
@@ -92,13 +92,13 @@ class CommentsHelper extends AppHelper
     ) {
         $userName = $user["username"];
         $userImage = $user['image'];
-        
+
         $commentId = $comment['id'];
         $commentText = $comment['text'];
-        
+
         $date = $comment['created'];
         $modified = $comment['modified'];
-        
+
         $hidden = $comment['hidden'];
         $authorId = $comment['user_id'];
         ?>
@@ -109,21 +109,21 @@ class CommentsHelper extends AppHelper
             $permissions, $commentId, $comment['sentence_id'], $userName, $hidden
         );
         $this->_displayMeta($userName, $userImage, $date, $modified);
-        
+
         $this->_displayBodyForEdit($comment, $sentence, $hidden, $authorId);
         ?>
         </li>
         <?php
     }
-    
-    
+
+
     /**
      * Display meta information.
      *
      * @param string $userName  Username of the author of the comment.
      * @param string $userImage Profile picture of the author of the comment.
      * @param string $date      Date of the comment.
-     * 
+     *
      * @return void
      */
     private function _displayMeta($userName, $userImage, $date, $modified)
@@ -138,8 +138,8 @@ class CommentsHelper extends AppHelper
         </div>
         <?php
     }
-    
-    
+
+
     /**
      * Display profile picture of the author of the comment.
      *
@@ -158,7 +158,7 @@ class CommentsHelper extends AppHelper
         <?php
         echo $this->Html->link(
             $this->Html->image(
-                IMG_PATH . 'profiles_36/'.$imageName, 
+                IMG_PATH . 'profiles_36/'.$imageName,
                 array(
                     "title" => __('View this user\'s profile', true),
                     "width" => 36,
@@ -176,8 +176,8 @@ class CommentsHelper extends AppHelper
         </div>
         <?php
     }
-    
-    
+
+
     /**
      * Display author's username.
      *
@@ -193,8 +193,8 @@ class CommentsHelper extends AppHelper
         echo $this->Html->link(
             $userName,
             array(
-                "controller" => "user", 
-                "action" => "profile", 
+                "controller" => "user",
+                "action" => "profile",
                 $userName
             ),
             array("title" => __('View this user\'s profile', true))
@@ -203,13 +203,13 @@ class CommentsHelper extends AppHelper
         </div>
         <?php
     }
-    
-    
+
+
     /**
      * Display date.
      *
      * @param string $date Date.
-     * 
+     *
      * @return void
      */
     private function _displayDate($date, $modified)
@@ -221,14 +221,14 @@ class CommentsHelper extends AppHelper
         $date1 = new DateTime($date);
         $date2 = new DateTime($modified);
         if ($date1 != $date2) {
-        echo " - edited {$this->Date->ago($modified)}"; 
+        echo " - edited {$this->Date->ago($modified)}";
         }
         ?>
         </div>
         <?php
     }
-    
-    
+
+
     /**
      * Display view and delete buttons.
      *
@@ -241,7 +241,7 @@ class CommentsHelper extends AppHelper
      * @return void
      */
     private function _displayActions(
-        $permissions, $commentId, $sentenceId, $username, $hidden        
+        $permissions, $commentId, $sentenceId, $username, $hidden
     ) {
         ?>
         <div class="actions">
@@ -250,17 +250,17 @@ class CommentsHelper extends AppHelper
         {
             $this->_displayHideButton($commentId, $hidden);
         }
-        
+
         $this->_displayViewButton($commentId, $sentenceId);
-        
+
         if ($permissions['canEdit'] && $this->params['action'] != "edit") {
             $this->_displayEditButton($commentId);
         }
-        
+
         if (CurrentUser::isMember()) {
             $this->_displayPmButton($username);
         }
-        
+
         if (isset($permissions['canDelete']) && $permissions['canDelete'] == true) {
             $this->_displayDeleteButton($commentId);
         }
@@ -268,8 +268,8 @@ class CommentsHelper extends AppHelper
         </div>
         <?php
     }
-    
-    
+
+
     /**
      * Display edit button
      * of the message.
@@ -295,8 +295,8 @@ class CommentsHelper extends AppHelper
                )
             ),
             array(
-                "controller" => "sentence_comments", 
-                "action" => "edit", 
+                "controller" => "sentence_comments",
+                "action" => "edit",
                 $commentId
             ),
             array(
@@ -307,7 +307,7 @@ class CommentsHelper extends AppHelper
         </div>
         <?php
     }
-    
+
     /**
      * Display "private message" button, to write a private message to the author
      * of the message.
@@ -334,8 +334,8 @@ class CommentsHelper extends AppHelper
                 )
             ),
             array(
-                "controller" => "private_messages", 
-                "action" => "write", 
+                "controller" => "private_messages",
+                "action" => "write",
                 $username,
             ),
             array(
@@ -346,8 +346,8 @@ class CommentsHelper extends AppHelper
         </div>
         <?php
     }
-    
-    
+
+
     /**
      * Display "view" button.
      *
@@ -374,8 +374,8 @@ class CommentsHelper extends AppHelper
                 )
             ),
             array(
-                "controller" => "sentences", 
-                "action" => "show", 
+                "controller" => "sentences",
+                "action" => "show",
                 $sentenceId,
                 "#" => "comment-".$commentId
             ),
@@ -387,8 +387,8 @@ class CommentsHelper extends AppHelper
         </div>
         <?php
     }
-    
-    
+
+
     /**
      * Delete button.
      *
@@ -412,8 +412,8 @@ class CommentsHelper extends AppHelper
                 )
             ),
             array(
-                "controller" => "sentence_comments", 
-                "action" => "delete_comment", 
+                "controller" => "sentence_comments",
+                "action" => "delete_comment",
                 $commentId
             ),
             array("escape" => false),
@@ -423,8 +423,8 @@ class CommentsHelper extends AppHelper
         </div>
         <?php
     }
-    
-    
+
+
     /**
      * Hide button.
      *
@@ -444,12 +444,12 @@ class CommentsHelper extends AppHelper
             $hiddenLinkText = __('hide', true);
             $hiddenLinkAction = 'hide_message';
         }
-        
+
         // hide/unhide link, for when people start acting like kids and stuff
         echo $this->Html->link(
             $hiddenLinkText,
             array(
-                "controller" => "sentence_comments", 
+                "controller" => "sentence_comments",
                 "action" => $hiddenLinkAction,
                 $commentId
             )
@@ -458,8 +458,8 @@ class CommentsHelper extends AppHelper
         </div>
         <?php
     }
-    
-    
+
+
     /**
      * Display body.
      *
@@ -480,8 +480,8 @@ class CommentsHelper extends AppHelper
                 $this->_displayRelatedSentence($sentence);
             }
             ?>
-                
-            <div class="commentText">   
+
+            <div class="commentText">
             <?php
             if ($hidden) {
                 echo "<div class='hidden'>";
@@ -497,14 +497,14 @@ class CommentsHelper extends AppHelper
                 );
                 echo "</div>";
             }
-            
-            $isDisplayedToCurrentUser = !$hidden 
-                || CurrentUser::isAdmin() 
+
+            $isDisplayedToCurrentUser = !$hidden
+                || CurrentUser::isAdmin()
                 || CurrentUser::get('id') == $authorId;
-                
+
             if ($isDisplayedToCurrentUser)
             {
-                // re #373 change the message style to be more clear to the reader of the message 
+                // re #373 change the message style to be more clear to the reader of the message
                 if($hidden){
                     echo "<br />";
                     echo "<div class='hiddenUserMessage'>\"";
@@ -521,7 +521,7 @@ class CommentsHelper extends AppHelper
         </div>
         <?php
     }
-    
+
     /**
      * Display body as a forum to enable editing.
      *
@@ -537,7 +537,7 @@ class CommentsHelper extends AppHelper
     {
         ?>
         <div class="body">
-            <div class="commentText">   
+            <div class="commentText">
             <?php
             $this->_displayCommentEditForm($comment);
             ?>
@@ -548,9 +548,9 @@ class CommentsHelper extends AppHelper
 
     /**
      * Display sentence (for edit sentence_comment view)
-     * 
+     *
      * @param array Sentence to display
-     * 
+     *
      * @return void
      */
     public function displaySentence($sentence)
@@ -597,7 +597,7 @@ class CommentsHelper extends AppHelper
     {
         echo $this->formatComment($commentText);
     }
-    
+
     /**
      * Display comment text.
      *
@@ -607,7 +607,7 @@ class CommentsHelper extends AppHelper
      */
     private function _displayCommentEditForm($comment)
     {
-        
+
         // Hack. This was the only way I knew to get the proper
         // action value for this form
         // The form in users/edit also has the same problem
@@ -620,12 +620,12 @@ class CommentsHelper extends AppHelper
                 //$comment['id']
             )
         );
-        
+
         echo "<div>";
         echo $this->Form->hidden('SentenceComment.id');
         echo $this->Form->hidden('SentenceComment.sentence_id');
         echo "</div>";
-        
+
         echo $this->Form->input(
             'SentenceComment.text',
             array(
@@ -645,9 +645,9 @@ class CommentsHelper extends AppHelper
             )
         );
         echo $this->Form->end(__('Save changes', true));
-        
+
     }
-    
+
     /**
      * Display related sentence.
      *
@@ -663,7 +663,7 @@ class CommentsHelper extends AppHelper
         if (isset($sentence['User']['username'])) {
             $ownerName = $sentence['User']['username'];
         }
-        
+
         $sentenceLang = null;
         if (!empty($sentence['lang'])) {
             $sentenceLang = $sentence['lang'];
@@ -674,13 +674,13 @@ class CommentsHelper extends AppHelper
         <?php
         if (isset($sentenceText)) {
             echo $this->Languages->icon(
-                $sentenceLang, 
+                $sentenceLang,
                 array(
                     "class" => "langIcon",
                     "width" => 20
                 )
             );
-            
+
             echo $this->Html->link(
                 $sentenceText,
                 array(
@@ -693,7 +693,7 @@ class CommentsHelper extends AppHelper
                     'class' => 'sentenceText'
                 )
             );
-            
+
             if (!empty($ownerName)) {
                 echo $this->Html->link(
                     '['.$ownerName.']',
@@ -706,7 +706,7 @@ class CommentsHelper extends AppHelper
                         "class" => "ownerName"
                     )
                 );
-            } 
+            }
         } else {
             echo '<em>'.__('sentence deleted', true).'</em>';
         }
@@ -714,27 +714,27 @@ class CommentsHelper extends AppHelper
         </div>
         <?php
     }
-    
-    
+
+
     /**
      * Display form to post a comment.
      *
      * @param int $sentenceId   Id of the sentence.
      * @param int $sentenceText Text of the sentence.
-     * 
+     *
      * @return void
      */
     public function displayCommentForm($sentenceId, $sentenceText)
     {
         echo $this->Form->create('SentenceComment', array("action"=>"save"));
-        
+
         echo '<div>';
         echo $this->Form->hidden('sentence_id', array("value"=>$sentenceId));
         // Text of the sentence is used for notification email, to avoid doing
         // another query.
         echo $this->Form->hidden('sentence_text', array("value"=>$sentenceText));
         echo '</div>';
-        
+
         echo $this->Form->input(
             'text',
             array(
@@ -742,7 +742,7 @@ class CommentsHelper extends AppHelper
                 "cols"=>"64", "rows"=>"6"
             )
         );
-        
+
         echo $this->Form->end(__('Submit comment', true));
         ?>
         <p>
@@ -755,7 +755,7 @@ class CommentsHelper extends AppHelper
             );
             ?>
             </li>
-            
+
             <li>
             <?php
             __(
@@ -764,7 +764,7 @@ class CommentsHelper extends AppHelper
             ?>
             </li>
         </ul>
-        </p>        
+        </p>
         <?php
     }
 

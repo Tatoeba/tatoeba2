@@ -28,17 +28,17 @@
  * @license      http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 
-/*  /!\ WARNING /!\ 
+/*  /!\ WARNING /!\
 **
 **  order of lines  is important here !
 **  router::connect works like this
 **  rules are ordered, the first is the first declared
-**  and we stop search once we have found a matching rule 
+**  and we stop search once we have found a matching rule
 */
 
 /**
  * TODO all rules are have a with and without :lang ,
- * maybe we can have a rule to handle both 
+ * maybe we can have a rule to handle both
  */
 
 // array which list all the languages in which tatoeba interface has been translated
@@ -49,7 +49,7 @@ $interfaceLanguages = array(
 /**
  * To route tools, in order to still have tools in the URL, which is
  * clearer for users IMHO
- * this rule appears first, that way /fre/tools/search_sinograms  is 
+ * this rule appears first, that way /fre/tools/search_sinograms  is
  * not catch by the general rule for controllers
  */
 
@@ -70,7 +70,7 @@ $interfaceLanguages = array(
             'action' =>'index'
         ),
         $interfaceLanguages
-    ); 
+    );
 
 /**
  * Here, we are connecting '/' (base path) to controller called 'Pages',
@@ -126,13 +126,13 @@ $interfaceLanguages = array(
 /**
  * La langue choisie sera maintenant disponible dans les contrôleurs
  * par la variable $this->params['lang'].
- */     
+ */
     Router::connect(
         '/:lang/:controller/:action/*',
         array(
             'lang'=>'eng'
         ),
         $interfaceLanguages
-    ); 
+    );
 
 ?>
