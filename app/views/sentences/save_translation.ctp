@@ -29,9 +29,9 @@
 <?php
 if (isset($translation)) {
 
-    echo $javascript->link(JS_PATH . 'jquery.jeditable.js', true);
-    echo $javascript->link(JS_PATH . 'sentences.edit_in_place.js', true);
-    echo $javascript->link(JS_PATH . 'sentences.change_language.js', true);
+    echo $html->script(JS_PATH . 'jquery.jeditable.js', true);
+    echo $html->script(JS_PATH . 'sentences.edit_in_place.js', true);
+    echo $html->script(JS_PATH . 'sentences.change_language.js', true);
     
     $type = 'directTranslation';
     $isEditable = true;

@@ -65,8 +65,8 @@
         // ---------------------- //
         //      Javascript        //
         // ---------------------- //
-		echo $javascript->link(JS_PATH . 'jquery-mini.js', true);
-		echo $javascript->link(JS_PATH . 'generic_functions.js?2', true);
+		echo $html->script(JS_PATH . 'jquery-mini.js', true);
+		echo $html->script(JS_PATH . 'generic_functions.js?2', true);
 		echo $scripts_for_layout;
         
 	?>
