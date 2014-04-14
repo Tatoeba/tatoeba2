@@ -93,11 +93,12 @@ class MenuHelper extends AppHelper
                 $translateButton,
                 array(
                     "controller" => "users",
-                    "action" => "login"
+                    "action" => "login",
                 ),
-                array(),
-                null,
-                false
+                array(
+                    "escape" => false
+                ),
+                null
             );
         }
         ?>
@@ -216,11 +217,12 @@ class MenuHelper extends AppHelper
                 $adoptImage,
                 array(
                     "controller" => "users",
-                    "action" => "login"
+                    "action" => "login",
                 ),
-                array(),
-                null,
-                false
+                array(
+                    "escape" => false
+                ),
+                null
             );
         }
         ?>
@@ -290,9 +292,10 @@ class MenuHelper extends AppHelper
                     "controller" => "users",
                     "action" => "login"
                 ),
-                array(),
-                null,
-                false
+                array(
+                    "escape" => false
+                ),
+                null
             );
         }
         ?>
@@ -347,9 +350,10 @@ class MenuHelper extends AppHelper
                     "controller" => "users",
                     "action" => "login"
                 ),
-                array(),
-                null,
-                false
+                array(
+                    "escape" => false
+                ),
+                null
             );
         }
         ?>
@@ -422,7 +426,7 @@ class MenuHelper extends AppHelper
                 "action" => "delete",
                 $sentenceId
             ), 
-            array('escape' => false), 
+            array("escape" => false), 
             'Are you sure?'
         );
         ?>

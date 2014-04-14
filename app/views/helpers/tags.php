@@ -266,10 +266,10 @@ class TagsHelper extends AppHelper
             array(
                 "class" => "removeTagFromSentenceButton",
                 "id" => 'deleteButton'.$tagId.$sentenceId,
-                "title" => $removeTagFromSentenceAlt
+                "title" => $removeTagFromSentenceAlt,
+                "escape" => false
             ),
-            null,
-            false
+            null
         );
     }
         

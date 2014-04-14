@@ -460,9 +460,10 @@ class LanguagesHelper extends AppHelper
         $linkToAllSentences = $this->Html->link(
             $flagImage . $numberOfSentencesHtml,
             $link,
-            array(),
-            null,
-            false
+            array(
+                "escape" => false
+            ),
+            null
         );
         
         ?>
