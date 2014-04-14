@@ -98,9 +98,10 @@ class NavigationHelper extends AppHelper
             echo $this->Form->select(
                 "randomLangChoiceInBrowse", 
                 $langArray, 
-                $selectedLanguage, 
-                null, 
-                false
+                $selectedLanguage,  
+                array(
+                    'empty' => false
+                )
             );
             ?>
             

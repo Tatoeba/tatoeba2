@@ -326,9 +326,9 @@ class ListsHelper extends AppHelper
             $this->Languages->languagesArrayForLists(),
             $translationsLang,
             array(
-                "onchange" => "$(location).attr('href', '".$path."' + this.value);"
-            ),
-            false
+                "onchange" => "$(location).attr('href', '".$path."' + this.value);",
+                "empty" => false
+            )
         );
         ?>
         </li>

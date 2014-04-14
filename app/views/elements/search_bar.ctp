@@ -82,8 +82,9 @@ echo $form->create(
         'from',
         $languages,
         $selectedLanguageFrom,
-        null,
-        false
+        array(
+            'empty'=>false
+        )
     );
     ?>
 </fieldset>
@@ -99,8 +100,9 @@ echo $form->create(
         'to',
         $languages,
         $selectedLanguageTo,
-        null, 
-        false
+        array(
+            'empty'=>false
+        )
     );
     ?>
 </fieldset>

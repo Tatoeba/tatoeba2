@@ -85,8 +85,9 @@ $this->pageTitle = 'Tatoeba - ' . __('Translate sentences', true);
             'numberWanted',
             $numberOfSentencesWanted,
             5,
-            null,
-            false
+            array(
+                'empty'=>false
+            )
         );
         echo '</fieldset>';
 
@@ -97,8 +98,9 @@ $this->pageTitle = 'Tatoeba - ' . __('Translate sentences', true);
             'into',
             $languages->languagesArray(),
             $selectedLanguage,
-            null,
-            false
+            array(
+                'empty'=>false
+            )
         );
         echo '</fieldset>';
 

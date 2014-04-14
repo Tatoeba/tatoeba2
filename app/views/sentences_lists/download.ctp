@@ -100,8 +100,9 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
                 'TranslationsLang',
                 $langArray,
                 null,
-                null,
-                false
+                array(
+                    'empty' => false
+                )
             );
             ?>
             </td>

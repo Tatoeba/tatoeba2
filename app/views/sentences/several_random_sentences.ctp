@@ -61,8 +61,9 @@ $this->pageTitle = 'Tatoeba - ' . __('Random sentences', true);
             'numberWanted', 
             $numberOfSentencesWanted, 
             $lastNumberChosen,
-            null,
-            false
+            array(
+                'empty'=>false
+            )
         );
         echo '</fieldset>';
 
@@ -73,8 +74,9 @@ $this->pageTitle = 'Tatoeba - ' . __('Random sentences', true);
             'into', 
             $languages->languagesArray(), 
             $selectedLanguage,
-            null,
-            false
+            array(
+                'empty'=>false
+            )
         );
         echo '</fieldset>';
 

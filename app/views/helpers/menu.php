@@ -377,9 +377,9 @@ class MenuHelper extends AppHelper
             $selectItems,
             null,
             array(
-                "class" => "listOfLists"
-            ),
-            false
+                "class" => "listOfLists",
+                "empty" => false
+            )
         );
         
         // ok button

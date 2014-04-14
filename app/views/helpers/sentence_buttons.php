@@ -335,9 +335,9 @@ class SentenceButtonsHelper extends AppHelper
                 $lang,
                 array(
                     "class"=>"selectLang", 
-                    "title"=> $this->Languages->codeToName($lang)
-                ),
-                false
+                    "title"=> $this->Languages->codeToName($lang),
+                    "empty"=> false
+                )
             );
             
             // setting data for sentences.change_language.js

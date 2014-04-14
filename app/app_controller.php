@@ -45,7 +45,8 @@ class AppController extends Controller
         'Permissions',
         'RememberMe',
         'Cookie',
-        'RequestHandler'
+        'RequestHandler',
+        'Session'
     );
 
     public $helpers = array(
@@ -56,7 +57,8 @@ class AppController extends Controller
         'Form',
         'Logs',
         'Javascript',
-        'Languages'
+        'Languages',
+        'Session'
     );
     /**
      * to know who can do what
