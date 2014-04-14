@@ -134,7 +134,7 @@ class User extends AppModel
         if (empty($this->data)) {
             $data = $this->read();
         }
-        if (!$data['User']['group_id']) {
+        if (empty($data['User']['group_id'])) {
             return null;
         } else {
             return array('Group' => array('id' => $data['User']['group_id']));
