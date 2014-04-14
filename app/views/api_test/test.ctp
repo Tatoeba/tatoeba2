@@ -1,5 +1,5 @@
 <?php
-   echo $html->script(JS_PATH . 'apitest.js', true);
+   echo $javascript->link(JS_PATH . 'apitest.js', true);
 ?>
 <h1>API test form</h1>
 

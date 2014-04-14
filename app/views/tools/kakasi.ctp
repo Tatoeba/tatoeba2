@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-$html->script(JS_PATH . 'furigana', false);
+$javascript->link(JS_PATH . 'furigana', false);
 $this->pageTitle = 'Tatoeba - '. __(
     'Convert Japanese text into romaji or furigana', true
 );
