@@ -45,7 +45,7 @@ class RememberMeComponent extends Object
      */
     private $_period = '+2 weeks';
     private $_cookieName = 'User';
-    
+
     /**
      * ?
      *
@@ -57,7 +57,7 @@ class RememberMeComponent extends Object
     {
         $this->controller = &$controller;
     }
-    
+
     /**
      * Remember user so (s)he doesn't have to log in again.
      *
@@ -73,7 +73,7 @@ class RememberMeComponent extends Object
         $cookie[$this->Auth->fields['password']] = $password;
         $this->Cookie->write($this->_cookieName, $cookie, false, $this->_period);
     }
-    
+
     /**
      * Check if user can be automatically logged in.
      *
@@ -101,8 +101,7 @@ class RememberMeComponent extends Object
      */
     public function delete()
     {
-        $this->Cookie->del($this->_cookieName);
+        $this->Cookie->delete($this->_cookieName);
     }
 }
-
 ?>
