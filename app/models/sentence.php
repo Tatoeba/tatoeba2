@@ -39,6 +39,8 @@ include_once("current_user.php");
  * @link     http://tatoeba.org
 */
 
+App::import('Sanitize');
+
 define('UZBEK_SCRIPT_SWITCH', 0);
 define('UZBEK_SCRIPT_CYRYLLIC', 1);
 define('UZBEK_SCRIPT_LATIN', 2);
