@@ -1,5 +1,5 @@
 <?php
-include_once("models/current_user.php");
+include_once("current_user.php");
 /**
     Tatoeba Project, free collaborative creation of languages corpuses project
     Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
