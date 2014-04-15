@@ -18,12 +18,12 @@ mysql -u "$user" -p"$pass" < ToInnodb.sql
 
 # Remove and purge mysql packages and config files
 apt-get remove --purge -y mysql-server libmysqlclient18
-mv /etc/mysql/my.cnf /etc/mysql/my.cnf.bk
 
 # Add mariadb repos and keys
 apt-get install -y python-software-properties
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
 add-apt-repository 'deb http://mirror.stshosting.co.uk/mariadb/repo/10.0/debian wheezy main'
+apt-get update
 
 # Install mariadb
 apt-get install -y 'libmysqlclient18=10.0.10+maria-1~wheezy' 'mysql-common=10.0.10+maria-1~wheezy'

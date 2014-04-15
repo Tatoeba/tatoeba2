@@ -1,81 +1,89 @@
 #!/bin/bash
 
-apt-get install -y git cmake g++ libevent-dev libexpat1-dev libgmm++-dev libglibmm-2.4-dev
+#Install dependencies
+sudo apt-get install -y git cmake g++ libevent-dev libexpat1-dev libgmm++-dev
 
+#Grab the source from the repo
 git clone https://github.com/allan-simon/sinoparserd.git
 
-sed -i 's/tree_str/TatoTreeStr/' sinoparserd/src/Index.h
-
+#Generate the makefile and build the source
 cd sinoparserd
 mkdir build
 cd build
 cmake ..
 make
-ln -s $(pwd)/sinoparserd /usr/local/bin/sinoparserd
-chmod +x sinoparserd
 
+#Copy the binary to a system-wide location
+sudo cp sinoparserd /usr/local/bin/sinoparserd
+
+#Prepeare the init script and copy it to system's init script location
 touch init.d
 echo -e '
-#! /bin/sh\n
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin\n
-DAEMON=/usr/local/bin/sinoparserd\n
-NAME=sinoparserd\n
-DESC=sinoparserd\n
-USER=sinoparserd\n
+#! /bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/bin/sinoparserd
+NAME=sinoparserd
+DESC=sinoparserd
+USER=sinoparserd
 
-test -x $DAEMON || exit 0\n
+test -x $DAEMON || exit 0
 
-if [ -f /etc/default/$NAME ] ; then\n
-    . /etc/default/$NAME\n
-fi\n
+if [ -f /etc/default/$NAME ] ; then
+    . /etc/default/$NAME
+fi
 
-set -e\n
-\n
-case "$1" in\n
-  start-fg)\n
-        $DAEMON $DAEMON_OPTS\n
-    ;;\n
-  start)\n
-    echo -n "Starting $DESC: "\n
-    start-stop-daemon --background --make-pidfile --start --quiet --pidfile /var/run/$NAME.pid -c $USER --exec $DAEMON -- $DAEMON_OPTS\n
-    echo "$NAME."\n
-    ;;\n
-  stop)\n
-    echo -n "Stopping $DESC: "\n
-        PID=`cat /var/run/$NAME.pid\n`
-    start-stop-daemon --stop --quiet --pidfile /var/run/$NAME.pid --exec $DAEMON\n
-    echo "$NAME."\n
-    ;;\n
-  restart)\n
-        echo -n "Restarting $DESC: "\n
-    $0 stop\n
-    sleep 1\n
-    $0 start\n
-    echo "$NAME."\n
-    ;;\n
-  *)\n
-    N=/etc/init.d/$NAME\n
-    echo "Usage: $N {start-fg|start|stop|restart}" >&2\n
-    exit 1\n
-    ;;\n
-esac\n
-\n
-exit 0\n
+set -e
+
+case "$1" in
+  start-fg)
+        $DAEMON $DAEMON_OPTS
+    ;;
+  start)
+    echo -n "Starting $DESC: "
+    start-stop-daemon --background --make-pidfile --start --quiet --pidfile /var/run/$NAME.pid -c $USER --exec $DAEMON -- $DAEMON_OPTS
+    echo "$NAME."
+    ;;
+  stop)
+    echo -n "Stopping $DESC: "
+        PID=`cat /var/run/$NAME.pid`
+    start-stop-daemon --stop --quiet --pidfile /var/run/$NAME.pid --exec $DAEMON
+    echo "$NAME."
+    ;;
+  restart)
+        echo -n "Restarting $DESC: "
+    $0 stop
+    sleep 1
+    $0 start
+    echo "$NAME."
+    ;;
+  *)
+    N=/etc/init.d/$NAME
+    echo "Usage: $N {start-fg|start|stop|restart}" >&2
+    exit 1
+    ;;
+esac
+
+exit 0
 ' > init.d
 
-cp init.d /etc/init.d/sinoparserd
-chmod +x /etc/init.d/sinoparserd
+sudo cp init.d /etc/init.d/sinoparserd
+sudo chmod +x /etc/init.d/sinoparserd
 
+#Prepare default options file and copy it to a system-wide location
 touch default
-echo "
-DAEMON_OPTS=\" -c /etc/cantonese.xml -m /etc/mandarin.xml -h 127.0.0.1 -p 8042\"
-" > default
-cp default /etc/default/sinoparserd
+echo '
+DAEMON_OPTS=" -c /etc/cantonese.xml -m /etc/mandarin.xml -h 127.0.0.1 -p 8042"
+' > default
+sudo cp default /etc/default/sinoparserd
 
+#Copy dictionary files to a system-wide location
 cd ..
-ln -s $(pwd)/doc/cantonese.xml /etc/cantonese.xml
-ln -s $(pwd)/doc/mandarin.xml /etc/mandarin.xml
+sudo cp doc/cantonese.xml /etc/cantonese.xml
+sudo cp doc/mandarin.xml /etc/mandarin.xml
 
-useradd -r sinoparserd
+#Add an unprivileged user
+sudo useradd -r sinoparserd
+#Start the daemon
 /etc/init.d/sinoparserd start
-update-rc.d sinoparserd defaults
+#Add the init script to system startup
+sudo update-rc.d sinoparserd defaults

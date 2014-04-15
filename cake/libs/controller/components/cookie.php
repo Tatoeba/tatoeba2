@@ -7,15 +7,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.controller.components
  * @since         CakePHP(tm) v 1.2.0.4213
@@ -175,7 +174,7 @@ class CookieComponent extends Object {
 /**
  * Write a value to the $_COOKIE[$key];
  *
- * Optional [Name.], reguired key, optional $value, optional $encrypt, optional $expires
+ * Optional [Name.], required key, optional $value, optional $encrypt, optional $expires
  * $this->Cookie->write('[Name.]key, $value);
  *
  * By default all values are encrypted.
@@ -226,7 +225,7 @@ class CookieComponent extends Object {
 /**
  * Read the value of the $_COOKIE[$key];
  *
- * Optional [Name.], reguired key
+ * Optional [Name.], required key
  * $this->Cookie->read(Name.key);
  *
  * @param mixed $key Key of the value to be obtained. If none specified, obtain map key => values
@@ -261,7 +260,7 @@ class CookieComponent extends Object {
 /**
  * Delete a cookie value
  *
- * Optional [Name.], reguired key
+ * Optional [Name.], required key
  * $this->Cookie->read('Name.key);
  *
  * You must use this method before any output is sent to the browser.
@@ -406,7 +405,7 @@ class CookieComponent extends Object {
 		$decrypted = array();
 		$type = $this->__type;
 
-		foreach ($values as $name => $value) {
+		foreach ((array)$values as $name => $value) {
 			if (is_array($value)) {
 				foreach ($value as $key => $val) {
 					$pos = strpos($val, 'Q2FrZQ==.');

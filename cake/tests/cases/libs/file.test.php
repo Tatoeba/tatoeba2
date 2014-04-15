@@ -8,13 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
@@ -381,7 +380,7 @@ class FileTest extends CakeTestCase {
 	function testDelete() {
 		if (!$tmpFile = $this->_getTmpFile()) {
 			return false;
-		};
+		}
 
 		if (!file_exists($tmpFile)) {
 			touch($tmpFile);
@@ -396,6 +395,25 @@ class FileTest extends CakeTestCase {
 		$result = $TmpFile->delete();
 		$this->assertFalse($result);
 	}
+
+/**
+ * Windows has issues unlinking files if there are
+ * active filehandles open.
+ *
+ * @return void
+ */
+	function testDeleteAfterRead() {
+		if (!$tmpFile = $this->_getTmpFile()) {
+			return false;
+		}
+		if (!file_exists($tmpFile)) {
+			touch($tmpFile);
+		}
+		$file =& new File($tmpFile);
+		$file->read();
+		$this->assertTrue($file->delete());
+	}
+
 /**
  * getTmpFile method
  *

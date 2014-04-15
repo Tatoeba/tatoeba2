@@ -8,13 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2006-2010, Cake Software Foundation, Inc.
+ * Copyright 2005-2012, Cake Software Foundation, Inc.
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2006-2010, Cake Software Foundation, Inc.
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc.
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
@@ -364,6 +363,10 @@ class HtmlHelperTest extends CakeTestCase {
 
 		$result = $this->Html->css('my.css.library');
 		$expected['link']['href'] = 'preg:/.*css\/my\.css\.library\.css/';
+		$this->assertTags($result, $expected);
+
+		$result = $this->Html->css('my.css.php');
+		$expected['link']['href'] = 'preg:/.*css\/my\.css\.php/';
 		$this->assertTags($result, $expected);
 
 		$result = $this->Html->css('screen.css?1234');
@@ -845,6 +848,8 @@ class HtmlHelperTest extends CakeTestCase {
 
 		$result = $this->Html->meta('keywords', 'these, are, some, meta, keywords');
 		$this->assertTags($result, array('meta' => array('name' => 'keywords', 'content' => 'these, are, some, meta, keywords')));
+		$this->assertPattern('/\s+\/>$/', $result);
+
 
 		$result = $this->Html->meta('description', 'this is the meta description');
 		$this->assertTags($result, array('meta' => array('name' => 'description', 'content' => 'this is the meta description')));

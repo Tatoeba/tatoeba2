@@ -8,13 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
@@ -82,6 +81,48 @@ class FolderTest extends CakeTestCase {
 
 		$result = $Folder->inPath(DS . 'non-existing' . $inside);
 		$this->assertFalse($result);
+	}
+
+/**
+ * test creation of single and mulitple paths.
+ *
+ * @return void
+ */
+	function testCreation() {
+		$folder =& new Folder(TMP . 'tests');
+		$result = $folder->create(TMP . 'tests' . DS . 'first' . DS . 'second' . DS . 'third');
+		$this->assertTrue($result);
+
+		rmdir(TMP . 'tests' . DS . 'first' . DS . 'second' . DS . 'third');
+		rmdir(TMP . 'tests' . DS . 'first' . DS . 'second');
+		rmdir(TMP . 'tests' . DS . 'first');
+
+		$folder =& new Folder(TMP . 'tests');
+		$result = $folder->create(TMP . 'tests' . DS . 'first');
+		$this->assertTrue($result);
+		rmdir(TMP . 'tests' . DS . 'first');
+	}
+/**
+ * test recurisve directory create failure.
+ *
+ * @return void
+ */
+	function testRecursiveCreateFailure() {
+		if ($this->skipIf(DS == '\\', 'Cant perform operations using permissions on windows. %s')) {
+			return;
+		}
+		$path = TMP . 'tests' . DS . 'one';
+		mkdir($path);
+		chmod($path, '0444');
+
+		$this->expectError();
+
+		$folder =& new Folder($path);
+		$result = $folder->create($path . DS . 'two' . DS . 'three');
+		$this->assertFalse($result);
+
+		chmod($path, '0777');
+		rmdir($path);
 	}
 /**
  * testOperations method
@@ -304,6 +345,7 @@ class FolderTest extends CakeTestCase {
 		$this->assertFalse(Folder::isWindowsPath('0:\\cake\\is\\awesome'));
 		$this->assertTrue(Folder::isWindowsPath('C:\\cake\\is\\awesome'));
 		$this->assertTrue(Folder::isWindowsPath('d:\\cake\\is\\awesome'));
+		$this->assertTrue(Folder::isWindowsPath('\\\\vmware-host\\Shared Folders\\file'));
 	}
 /**
  * testIsAbsolute method
@@ -324,6 +366,7 @@ class FolderTest extends CakeTestCase {
 		$this->assertTrue(Folder::isAbsolute('C:\\cake'));
 		$this->assertTrue(Folder::isAbsolute('C:\\path\\to\\file'));
 		$this->assertTrue(Folder::isAbsolute('d:\\path\\to\\file'));
+		$this->assertTrue(Folder::isAbsolute('\\\\vmware-host\\Shared Folders\\file'));
 	}
 /**
  * testIsSlashTerm method

@@ -7,15 +7,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.model.datasources
  * @since         CakePHP(tm) v 0.10.0.1076
@@ -106,7 +105,7 @@ class DboSource extends DataSource {
  * @param array $config An array defining the new configuration settings
  * @return boolean True on success, false on failure
  */
-	function reconnect($config = null) {
+	function reconnect($config = array()) {
 		$this->disconnect();
 		$this->setConfig($config);
 		$this->_sources = null;
@@ -381,11 +380,11 @@ class DboSource extends DataSource {
  * @return string SQL field
  */
 	function name($data) {
-		if ($data == '*') {
-			return '*';
-		}
 		if (is_object($data) && isset($data->type)) {
 			return $data->value;
+		}
+		if ($data == '*') {
+			return '*';
 		}
 		$array = is_array($data);
 		$data = (array)$data;
@@ -676,7 +675,7 @@ class DboSource extends DataSource {
 						$db =& $this;
 					}
 
-					if (isset($db)) {
+					if (isset($db) && method_exists($db, 'queryAssociation')) {
 						$stack = array($assoc);
 						$db->queryAssociation($model, $linkModel, $type, $assoc, $assocData, $array, true, $resultSet, $model->recursive - 1, $stack);
 						unset($db);
@@ -1478,6 +1477,24 @@ class DboSource extends DataSource {
 		} elseif ($conditions === null) {
 			$conditions = $this->conditions($this->defaultConditions($model, $conditions, false), true, true, $model);
 		} else {
+			$noJoin = true;
+			foreach ($conditions as $field => $value) {
+				$originalField = $field;
+				if (strpos($field, '.') !== false) {
+					list($alias, $field) = explode('.', $field);
+				}
+				if (!$model->hasField($field)) {
+					$noJoin = false;
+					break;
+				}
+				if ($field !== $originalField) {
+					$conditions[$field] = $value;
+					unset($conditions[$originalField]);
+				}
+			}
+			if ($noJoin === true) {
+				return $this->conditions($conditions);
+			}
 			$idList = $model->find('all', array(
 				'fields' => "{$model->alias}.{$model->primaryKey}",
 				'conditions' => $conditions
@@ -2091,7 +2108,7 @@ class DboSource extends DataSource {
 		$keys = preg_replace('/ORDER\\x20BY/i', '', $keys);
 
 		if (strpos($keys, '.')) {
-			preg_match_all('/([a-zA-Z0-9_]{1,})\\.([a-zA-Z0-9_]{1,})/', $keys, $result, PREG_PATTERN_ORDER);
+			preg_match_all('/([a-zA-Z0-9_-]{1,})\\.([a-zA-Z0-9_-]{1,})/', $keys, $result, PREG_PATTERN_ORDER);
 			$pregCount = count($result[0]);
 
 			for ($i = 0; $i < $pregCount; $i++) {

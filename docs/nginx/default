@@ -2,7 +2,7 @@ server {
 	listen	80;
 	server_name	tatoeba.org;
 
-	root	/var/http/tatoeba;
+	root	/var/www-prod/;
 	index	index.php index.html;
 	charset	utf-8;
 
@@ -10,9 +10,14 @@ server {
 	error_log 	/var/log/nginx/error.log;
 	rewrite_log	on;
 
-	location / {
-		try_files /index.php?url=$uri&$args;
-	}
+    #location ~ /$ {
+    #    return 301 /home;
+    #}
+
+    location / {
+        try_files $uri $uri/ /app/webroot/index.php?url=$uri&$args;
+    }
+
 
 	location ~ \.php {
 		try_files $uri =404;
@@ -24,29 +29,8 @@ server {
 	}
 
 	# Comment this out when the subdomain for static files is activated
-	#location ~ /(img|js|css)/ {
-	#	try_files /app/webroot/$uri =404;
-	#}
-
-	location ~ /(\.ht|\.svn) {
-		deny all;
-	}
-}
-
-server {
-	listen 		80;
-	server_name	static.tatoeba.org;
-
-	root		/var/http/tatoeba/app/webroot;
-	index		index.php index.html;
-	charset		utf-8;
-
-	access_log	/var/log/nginx/access.static.log;
-	error_log	/var/log/nginx/error.static.log;
-	rewrite_log	on;
-
-	location / {
-		try_files $uri $uri/ =404;
+	location ~ /(img|js|css)/ {
+		try_files /app/webroot/$uri =404;
 	}
 
 	location ~ /(\.ht|\.svn) {

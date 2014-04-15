@@ -8,13 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model
@@ -580,6 +579,104 @@ class ModelDeleteTest extends BaseModelTest {
 
 		$exists = $Model->findById(1);
 		$this->assertTrue(is_array($exists));
+	}
+/**
+ * test for a habtm deletion error that occurs in postgres but should not.
+ * And should not occur in any dbo.
+ *
+ * @return void
+ */
+	function testDeleteHabtmPostgresFailure() {
+		$this->loadFixtures('Article', 'Tag', 'ArticlesTag');
+
+		$Article =& ClassRegistry::init('Article');
+		$Article->hasAndBelongsToMany['Tag']['unique'] = true;
+
+		$Tag =& ClassRegistry::init('Tag');
+		$Tag->bindModel(array('hasAndBelongsToMany' => array(
+			'Article' => array(
+				'className' => 'Article',
+				'unique' => true
+			)
+		)), true);
+
+		// Article 1 should have Tag.1 and Tag.2
+	    $before = $Article->find("all", array(
+			"conditions" => array("Article.id" => 1),
+		));
+		$this->assertEqual(count($before[0]['Tag']), 2, 'Tag count for Article.id = 1 is incorrect, should be 2 %s');
+
+		// From now on, Tag #1 is only associated with Post #1
+		$submitted_data = array(
+			"Tag" => array("id" => 1, 'tag' => 'tag1'),
+			"Article" => array(
+				"Article" => array(1)
+			)
+		);
+		$Tag->save($submitted_data);
+
+	    // One more submission (The other way around) to make sure the reverse save looks good.
+	    $submitted_data = array(
+			"Article" => array("id" => 2, 'title' => 'second article'),
+			"Tag" => array(
+				"Tag" => array(2, 3)
+			)
+		);
+	    // ERROR:
+	    // Postgresql: DELETE FROM "articles_tags" WHERE tag_id IN ('1', '3')
+	    // MySQL: DELETE `ArticlesTag` FROM `articles_tags` AS `ArticlesTag` WHERE `ArticlesTag`.`article_id` = 2 AND `ArticlesTag`.`tag_id` IN (1, 3)
+	    $Article->save($submitted_data);
+
+		// Want to make sure Article #1 has Tag #1 and Tag #2 still.
+		$after = $Article->find("all", array(
+			"conditions" => array("Article.id" => 1),
+		));
+
+		// Removing Article #2 from Tag #1 is all that should have happened.
+		$this->assertEqual(count($before[0]["Tag"]), count($after[0]["Tag"]));
+	}
+
+/**
+ * test that deleting records inside the beforeDelete doesn't truncate the table.
+ *
+ * @return void
+ */
+	function testBeforeDeleteWipingTable() {
+		$this->loadFixtures('Comment');
+
+		$Comment =& new BeforeDeleteComment();
+		// Delete 3 records.
+		$Comment->delete(4);
+		$result = $Comment->find('count');
+
+		$this->assertTrue($result > 1, 'Comments are all gone.');
+		$Comment->create(array(
+			'article_id' => 1,
+			'user_id' => 2,
+			'comment' => 'new record',
+			'published' => 'Y'
+		));
+		$Comment->save();
+
+		$Comment->delete(5);
+		$result = $Comment->find('count');
+
+		$this->assertTrue($result > 1, 'Comments are all gone.');
+	}
+
+/**
+ * test that deleting the same record from the beforeDelete and the delete doesn't truncate the table.
+ *
+ * @return void
+ */
+	function testBeforeDeleteWipingTableWithDuplicateDelete() {
+		$this->loadFixtures('Comment');
+
+		$Comment =& new BeforeDeleteComment();
+		$Comment->delete(1);
+
+		$result = $Comment->find('count');
+		$this->assertTrue($result > 1, 'Comments are all gone.');
 	}
 }
 

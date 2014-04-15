@@ -7,15 +7,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
  * Copyright 2005-2010,	Cake Software Foundation, Inc.
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.console.libs.tasks
  * @since         CakePHP(tm) v 1.2
@@ -291,7 +290,7 @@ class ControllerTask extends Shell {
 		}
 		$actions .= "\t\t\t} else {\n";
 		if ($wannaUseSession) {
-			$actions .= "\t\t\t\t\$this->Session->setFlash(__('The {$singularHumanName} could not be saved. Please try again.', true));\n";
+			$actions .= "\t\t\t\t\$this->Session->setFlash(__('The {$singularHumanName} could not be saved. Please, try again.', true));\n";
 		}
 		$actions .= "\t\t\t}\n";
 		$actions .= "\t\t}\n";
@@ -339,7 +338,7 @@ class ControllerTask extends Shell {
 		}
 		$actions .= "\t\t\t} else {\n";
 		if ($wannaUseSession) {
-			$actions .= "\t\t\t\t\$this->Session->setFlash(__('The {$singularHumanName} could not be saved. Please try again.', true));\n";
+			$actions .= "\t\t\t\t\$this->Session->setFlash(__('The {$singularHumanName} could not be saved. Please, try again.', true));\n";
 		}
 		$actions .= "\t\t\t}\n";
 		$actions .= "\t\t}\n";
@@ -387,10 +386,10 @@ class ControllerTask extends Shell {
 		}
 		$actions .= "\t\t}\n";
 		if ($wannaUseSession) {
-			$actions .= "\t\t\$this->Session->setFlash(__('The {$singularHumanName} could not be deleted. Please try again.', true));\n";
+			$actions .= "\t\t\$this->Session->setFlash(__('The {$singularHumanName} could not be deleted. Please, try again.', true));\n";
 			$actions .= "\t\t\$this->redirect(array('action' => 'index'));\n";
 		} else {
-			$actions .= "\t\t\$this->flash(__('The {$singularHumanName} could not be deleted. Please try again.', true), array('action' => 'index'));\n";
+			$actions .= "\t\t\$this->flash(__('The {$singularHumanName} could not be deleted. Please, try again.', true), array('action' => 'index'));\n";
 		}
 		$actions .= "\t}\n";
 		$actions .= "\n";

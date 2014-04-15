@@ -5,15 +5,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 0.2.9
@@ -89,7 +88,7 @@ class File extends Object {
  * @param string $path Path to file
  * @param boolean $create Create file if it does not exist (if true)
  * @param integer $mode Mode to apply to the folder holding the file
- * @access private
+ * @access public
  */
 	function __construct($path, $create = false, $mode = 0755) {
 		parent::__construct();
@@ -98,21 +97,12 @@ class File extends Object {
 			$this->name = basename($path);
 		}
 		$this->pwd();
-
-		if (!$this->exists()) {
-			if ($create === true) {
-				if ($this->safe($path) && $this->create() === false) {
-					return false;
-				}
-			} else {
-				return false;
-			}
-		}
+		!$this->exists() && $create && $this->safe($path) && $this->create();
 	}
 /**
  * Closes the current file if it is opened
  *
- * @access private
+ * @access public
  */
 	function __destruct() {
 		$this->close();
@@ -288,6 +278,10 @@ class File extends Object {
  */
 	function delete() {
 		clearstatcache();
+		if (is_resource($this->handle)) {
+			fclose($this->handle);
+			$this->handle = null;
+		}
 		if ($this->exists()) {
 			return unlink($this->path);
 		}

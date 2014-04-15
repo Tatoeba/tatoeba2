@@ -8,13 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
@@ -155,7 +154,8 @@ class XmlHelperTest extends CakeTestCase {
 		$result .= $this->Xml->closeElem();
 		$this->assertEqual($result, $expected);
 	}
-	/**
+
+/**
  * testRenderElementWithComplexContent method
  *
  * @access public
@@ -269,6 +269,16 @@ class XmlHelperTest extends CakeTestCase {
 		$result = $this->Xml->header($attrib);
 		$expected = '<?xml encoding="UTF-8" someOther="value" ?>';
 		$this->assertIdentical($result, $expected);
+	}
+
+/**
+ * test that calling elem() and then header() doesn't break
+ *
+ * @return void
+ */
+	function testElemThenHeader() {
+		$this->Xml->elem('test', array(), 'foo', false);
+		$this->assertPattern('/<\?xml/', $this->Xml->header());
 	}
 }
 ?>

@@ -7,15 +7,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.view.helpers
  * @since         CakePHP(tm) v 0.10.0.1076
@@ -324,7 +323,7 @@ class FormHelper extends AppHelper {
 		$fields += $locked;
 
 		$fields = Security::hash(serialize($fields) . Configure::read('Security.salt'));
-		$locked = str_rot13(serialize(array_keys($locked)));
+		$locked = implode(array_keys($locked), '|');
 
 		$out .= $this->hidden('_Token.fields', array(
 			'value' => urlencode($fields . ':' . $locked),
@@ -860,7 +859,10 @@ class FormHelper extends AppHelper {
 
 		if (!isset($options['value']) || empty($options['value'])) {
 			$options['value'] = 1;
-		} elseif (!empty($value) && $value === $options['value']) {
+		} elseif (
+			(!isset($options['checked']) && !empty($value) && $value === $options['value']) ||
+			!empty($options['checked'])
+		) {
 			$options['checked'] = 'checked';
 		}
 		$hiddenOptions = array(
@@ -1098,11 +1100,17 @@ class FormHelper extends AppHelper {
 /**
  * Creates a submit button element.
  *
+ * ### Options
+ *
+ * - `div` - Include a wrapping div?  Defaults to true.  Accepts sub options similar to 
+ *   FormHelper::input().
+ * - Other attributes will be assigned to the input element.
+ *
  * @param string $caption The label appearing on the button OR if string contains :// or the
  *  extension .jpg, .jpe, .jpeg, .gif, .png use an image if the extension
  *  exists, AND the first character is /, image is relative to webroot,
  *  OR if the first character is not /, image is relative to webroot/img.
- * @param array $options 
+ * @param array $options Array of options.  See above.
  * @return string A HTML submit button
  */
 	function submit($caption = null, $options = array()) {
@@ -1547,6 +1555,8 @@ class FormHelper extends AppHelper {
 					if (($check > 115959) && $timeFormat == '12') {
 						$time[0] = $time[0] - 12;
 						$meridian = 'pm';
+					} elseif ($time[0] == '12' && $timeFormat == '12') {
+						$meridian = 'pm';
 					} elseif ($time[0] == '00' && $timeFormat == '12') {
 						$time[0] = 12;
 					} elseif ($time[0] > 12) {
@@ -1668,7 +1678,12 @@ class FormHelper extends AppHelper {
 			if (is_array($options) && isset($options[$key])) {
 				return $options;
 			}
-			$name = $this->field();
+
+			$view = ClassRegistry::getObject('view');
+			$name = $view->field;
+			if (!empty($view->fieldSuffix)) {
+				$name .= '[' . $view->fieldSuffix . ']';
+			}
 
 			if (is_array($options)) {
 				$options[$key] = $name;

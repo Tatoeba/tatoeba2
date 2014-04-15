@@ -7,15 +7,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP v .0.10.3.1400
@@ -661,11 +660,11 @@ class XmlNode extends Object {
  */
 	function toArray($camelize = true) {
 		$out = $this->attributes;
-		$multi = null;
 
 		foreach ($this->children as $child) {
 			$key = $camelize ? Inflector::camelize($child->name) : $child->name;
 
+			$leaf = false;
 			if (is_a($child, 'XmlTextNode')) {
 				$out['value'] = $child->value;
 				continue;
@@ -674,46 +673,33 @@ class XmlNode extends Object {
 				if ($child->attributes) {
 					$value = array_merge(array('value' => $value), $child->attributes);
 				}
-				if (isset($out[$child->name]) || isset($multi[$key])) {
-					if (!isset($multi[$key])) {
-						$multi[$key] = array($out[$child->name]);
-						unset($out[$child->name]);
-					}
-					$multi[$key][] = $value;
-				} else {
-					$out[$child->name] = $value;
+				if (count($child->children) == 1) {
+					$leaf = true;
 				}
-				continue;
 			} elseif (count($child->children) === 0 && $child->value == '') {
 				$value = $child->attributes;
-				if (isset($out[$key]) || isset($multi[$key])) {
-					if (!isset($multi[$key])) {
-						$multi[$key] = array($out[$key]);
-						unset($out[$key]);
-					}
-					$multi[$key][] = $value;
-				} elseif (!empty($value)) {
-					$out[$key] = $value;
-				} else {
-					$out[$child->name] = $value;
+				if (empty($value)) {
+					$leaf = true;
 				}
-				continue;
 			} else {
 				$value = $child->toArray($camelize);
 			}
 
-			if (!isset($out[$key])) {
-				$out[$key] = $value;
-			} else {
-				if (!is_array($out[$key]) || !isset($out[$key][0])) {
+			if (isset($out[$key])) {
+				if(!isset($out[$key][0]) || !is_array($out[$key]) || !is_int(key($out[$key]))) {
 					$out[$key] = array($out[$key]);
-				}
+				} 
 				$out[$key][] = $value;
+			} elseif (isset($out[$child->name])) {
+				$t = $out[$child->name];
+				unset($out[$child->name]);
+				$out[$key] = array($t);
+				$out[$key][] = $value;
+			} elseif ($leaf) {
+				$out[$child->name] = $value;
+			} else {
+				$out[$key] = $value;
 			}
-		}
-
-		if (isset($multi)) {
-			$out = array_merge($out, $multi);
 		}
 		return $out;
 	}
@@ -842,7 +828,7 @@ class Xml extends XmlNode {
 		parent::__construct('#document');
 
 		if ($options['root'] !== '#document') {
-			$Root = $this->createNode($options['root']);
+			$Root =& $this->createNode($options['root']);
 		} else {
 			$Root =& $this;
 		}
@@ -922,6 +908,8 @@ class Xml extends XmlNode {
 				break;
 			}
 		}
+		xml_parser_free($this->__parser);
+		$this->__parser = null;
 		return true;
 	}
 /**
@@ -1089,9 +1077,6 @@ class Xml extends XmlNode {
  * @access private
  */
 	function __destruct() {
-		if (is_resource($this->__parser)) {
-			xml_parser_free($this->__parser);
-		}
 		$this->_killParent(true);
 	}
 /**

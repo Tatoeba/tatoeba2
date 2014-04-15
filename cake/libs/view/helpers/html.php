@@ -5,15 +5,14 @@
  *
  * Simplifies the construction of HTML elements.
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.view.helpers
  * @since         CakePHP(tm) v 0.9.1
@@ -238,7 +237,7 @@ class HtmlHelper extends AppHelper {
 			}
 			$out .= sprintf($this->tags['metalink'], $attributes['link'], $this->_parseAttributes($attributes, array('link'), ' ', ' '));
 		} else {
-			$out = sprintf($this->tags['meta'], $this->_parseAttributes($attributes, array('type')));
+			$out = sprintf($this->tags['meta'], $this->_parseAttributes($attributes, array('type'), ' ', ' '));
 		}
 
 		if ($inline) {
@@ -344,7 +343,7 @@ class HtmlHelper extends AppHelper {
 			}
 
 			if (strpos($path, '?') === false) {
-				if (substr($path, -4) !== '.css') {
+				if (!preg_match('/.*\.(css|php)$/i', $path)) {
 					$path .= '.css';
 				}
 			}

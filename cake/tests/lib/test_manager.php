@@ -8,13 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.cake.tests.lib
@@ -51,7 +50,7 @@ class TestManager {
 			$this->appTest = true;
 		}
 		if (isset($_GET['plugin'])) {
-			$this->pluginTest = $_GET['plugin'];
+			$this->pluginTest = htmlentities($_GET['plugin']);
 		}
 	}
 /**
@@ -111,8 +110,11 @@ class TestManager {
 
 		$testCaseFileWithPath = $manager->_getTestsPath() . DS . $testCaseFile;
 
-		if (!file_exists($testCaseFileWithPath)) {
-			trigger_error("Test case {$testCaseFile} cannot be found", E_USER_ERROR);
+		if (!file_exists($testCaseFileWithPath) || strpos($testCaseFileWithPath, '..')) {
+			trigger_error(
+				sprintf("Test case %s cannot be found", htmlentities($testCaseFile)),
+				E_USER_ERROR
+			);
 			return false;
 		}
 
@@ -136,8 +138,11 @@ class TestManager {
 		$manager =& new TestManager();
 		$filePath = $manager->_getTestsPath('groups') . DS . strtolower($groupTestName) . $manager->_groupExtension;
 
-		if (!file_exists($filePath)) {
-			trigger_error("Group test {$groupTestName} cannot be found at {$filePath}", E_USER_ERROR);
+		if (!file_exists($filePath) || strpos($filePath, '..')) {
+			trigger_error(
+				sprintf("Group test %s cannot be found at %s", htmlentities($groupTestName), htmlentities($filePath)),
+				E_USER_ERROR
+			);
 		}
 
 		require_once $filePath;

@@ -7,15 +7,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.model.datasources
  * @since         CakePHP(tm) v 0.10.5.1790
@@ -438,6 +437,7 @@ class DataSource extends Object {
 
 		foreach ($keys as $key) {
 			$val = null;
+			$type = null;
 
 			if (strpos($query, $key) !== false) {
 				switch ($key) {
@@ -461,6 +461,7 @@ class DataSource extends Object {
 								$val = '';
 							}
 						}
+						$type = $model->getColumnType($model->primaryKey);
 					break;
 					case '{$__cakeForeignKey__$}':
 						foreach ($model->__associations as $id => $name) {
@@ -468,6 +469,8 @@ class DataSource extends Object {
 								if ($assocName === $association) {
 									if (isset($assoc['foreignKey'])) {
 										$foreignKey = $assoc['foreignKey'];
+										$assocModel = $model->$assocName;
+										$type = $assocModel->getColumnType($assocModel->primaryKey);
 
 										if (isset($data[$model->alias][$foreignKey])) {
 											$val = $data[$model->alias][$foreignKey];
@@ -496,7 +499,7 @@ class DataSource extends Object {
 				if (empty($val) && $val !== '0') {
 					return false;
 				}
-				$query = str_replace($key, $this->value($val, $model->getColumnType($model->primaryKey)), $query);
+				$query = str_replace($key, $this->value($val, $type), $query);
 			}
 		}
 		return $query;

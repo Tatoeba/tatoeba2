@@ -5,15 +5,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs.view
  * @since         CakePHP(tm) v 1.2.0.5714
@@ -149,7 +148,7 @@ class MediaView extends View {
 					$contentTypes[0] = 'application/octetstream';
 				} else if (preg_match('/MSIE ([0-9].[0-9]{1,2})/', $agent)) {
 					$contentTypes[0] = 'application/force-download';
-					array_push($contentTypes, array(
+					array_merge($contentTypes, array(
 						'application/octet-stream',
 						'application/download'
 					));

@@ -5,15 +5,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 1.2.0
@@ -172,7 +171,12 @@ class HttpSocket extends CakeSocket {
 		if (!isset($request['uri'])) {
 			$request['uri'] = null;
 		}
+
 		$uri = $this->parseUri($request['uri']);
+		$hadAuth = false;
+		if (is_array($uri) && array_key_exists('user', $uri)) {
+			$hadAuth = true;
+		}
 
 		if (!isset($uri['host'])) {
 			$host = $this->config['host'];
@@ -181,11 +185,14 @@ class HttpSocket extends CakeSocket {
 			$host = $request['host'];
 			unset($request['host']);
 		}
-
 		$request['uri'] = $this->url($request['uri']);
 		$request['uri'] = $this->parseUri($request['uri'], true);
 		$this->request = Set::merge($this->request, $this->config['request'], $request);
 
+		if (!$hadAuth && !empty($this->config['request']['auth']['user'])) {
+			$this->request['uri']['user'] = $this->config['request']['auth']['user'];
+			$this->request['uri']['pass'] = $this->config['request']['auth']['pass'];
+		}
 		$this->configUri($this->request['uri']);
 
 		if (isset($host)) {
@@ -198,7 +205,23 @@ class HttpSocket extends CakeSocket {
 			if (!empty($this->request['cookies'])) {
 				$cookies = $this->buildCookies($this->request['cookies']);
 			}
-			$this->request['header'] = array_merge(array('Host' => $this->request['uri']['host']), $this->request['header']);
+			$Host = $this->request['uri']['host'];
+			$schema = '';
+			$port = 0;
+			if (isset($this->request['uri']['schema'])) {
+				$schema = $this->request['uri']['schema'];
+			}
+			if (isset($this->request['uri']['port'])) {
+				$port = $this->request['uri']['port'];
+			}
+			if (
+				($schema === 'http' && $port != 80) ||
+				($schema === 'https' && $port != 443) ||
+				($port != 80 && $port != 443)
+			) {
+				$Host .= ':' . $port;
+			}
+			$this->request['header'] = array_merge(compact('Host'), $this->request['header']);
 		}
 
 		if (isset($this->request['auth']['user']) && isset($this->request['auth']['pass'])) {
@@ -530,7 +553,6 @@ class HttpSocket extends CakeSocket {
 		if (!isset($uri['host'])) {
 			return false;
 		}
-
 		$config = array(
 			'request' => array(
 				'uri' => array_intersect_key($uri, $this->config['request']['uri']),
@@ -891,7 +913,7 @@ class HttpSocket extends CakeSocket {
 		foreach ($cookies as $name => $cookie) {
 			$header[] = $name.'='.$this->escapeToken($cookie['value'], array(';'));
 		}
-		$header = $this->buildHeader(array('Cookie' => $header), 'pragmatic');
+		$header = $this->buildHeader(array('Cookie' => implode('; ', $header)), 'pragmatic');
 		return $header;
 	}
 /**
@@ -979,7 +1001,6 @@ class HttpSocket extends CakeSocket {
 		if (empty($initalState)) {
 			$initalState = get_class_vars(__CLASS__);
 		}
-
 		if ($full == false) {
 			$this->request = $initalState['request'];
 			$this->response = $initalState['response'];

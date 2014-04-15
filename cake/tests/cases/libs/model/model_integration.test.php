@@ -8,13 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model
@@ -25,6 +24,27 @@
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 require_once dirname(__FILE__) . DS . 'model.test.php';
+App::import('Core', 'DboSource');
+
+/**
+ * DboMock class
+ * A Dbo Source driver to mock a connection and a identity name() method
+ */
+class DboMock extends DboSource {
+
+/**
+* Returns the $field without modifications
+*/
+	function name($field) {
+		return $field;
+	}
+/**
+* Returns true to fake a database connection
+*/
+	function connect() {
+		return true;
+	}
+}
 
 /**
  * ModelIntegrationTest
@@ -1832,5 +1852,36 @@ class ModelIntegrationTest extends BaseModelTest {
 		$this->assertEqual($FeaturedModel->create($data), $expected);
 	}
 
+/**
+ * testEscapeField to prove it escapes the field well even when it has part of the alias on it
+ * @see ttp://cakephp.lighthouseapp.com/projects/42648-cakephp-1x/tickets/473-escapefield-doesnt-consistently-prepend-modelname
+ *
+ * @access public
+ * @return void
+ */
+	function testEscapeField() {
+		$TestModel =& new Test();
+		$db =& $TestModel->getDataSource();
+
+		$result = $TestModel->escapeField('test_field');
+		$expected = $db->name('Test.test_field');
+		$this->assertEqual($result, $expected);
+
+		$result = $TestModel->escapeField('TestField');
+		$expected = $db->name('Test.TestField');
+		$this->assertEqual($result, $expected);
+
+		$result = $TestModel->escapeField('DomainHandle', 'Domain');
+		$expected = $db->name('Domain.DomainHandle');
+		$this->assertEqual($result, $expected);
+
+		ConnectionManager::create('mock', array('driver' => 'mock'));
+		$TestModel->setDataSource('mock');
+		$db =& $TestModel->getDataSource();
+
+		$result = $TestModel->escapeField('DomainHandle', 'Domain');
+		$expected = $db->name('Domain.DomainHandle');
+		$this->assertEqual($result, $expected);
+	}
 }
 ?>

@@ -8,13 +8,12 @@
  * PHP versions 4 and 5
  *
  * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model
@@ -162,6 +161,29 @@ class ModelWriteTest extends BaseModelTest {
 		);
 		$this->assertEqual(strlen($result['Uuid']['id']), 36);
 	}
+/**
+ * Ensure that if the id key is null but present the save doesn't fail (with an
+ * x sql error: "Column id specified twice")
+ *
+ * @return void
+ * @access public
+ */
+	function testSaveUuidNull() {
+		// SQLite does not support non-integer primary keys
+		$this->skipIf($this->db->config['driver'] == 'sqlite');
+
+		$this->loadFixtures('Uuid');
+		$TestModel =& new Uuid();
+
+		$TestModel->save(array('title' => 'Test record', 'id' => null));
+		$result = $TestModel->findByTitle('Test record');
+		$this->assertEqual(
+			array_keys($result['Uuid']),
+			array('id', 'title', 'count', 'created', 'updated')
+		);
+		$this->assertEqual(strlen($result['Uuid']['id']), 36);
+	}
+
 /**
  * testZeroDefaultFieldValue method
  *
@@ -323,6 +345,7 @@ class ModelWriteTest extends BaseModelTest {
 
 		$data = array(
 			'OverallFavorite' => array(
+				'id' => 22,
 		 		'model_type' => '8-track',
 				'model_id' => '3',
 				'priority' => '1'
@@ -384,6 +407,7 @@ class ModelWriteTest extends BaseModelTest {
 		$User = new CounterCacheUser();
 		$Post = new CounterCachePost();
 		$data = array('Post' => array(
+			'id' => 22,
 			'title' => 'New Post',
 			'user_id' => 66
 		));
@@ -2008,7 +2032,7 @@ class ModelWriteTest extends BaseModelTest {
 				'DoomedSomethingElse' => array(
 					'className' => 'SomethingElse',
 					'joinTable' => 'join_things',
-					'conditions' => 'JoinThing.doomed = 1',
+					'conditions' => 'JoinThing.doomed = true',
 					'unique' => true
 				),
 				'NotDoomedSomethingElse' => array(

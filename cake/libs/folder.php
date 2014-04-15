@@ -5,15 +5,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) :  Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 0.2.9
@@ -236,10 +235,7 @@ class Folder extends Object {
  * @static
  */
 	function isWindowsPath($path) {
-		if (preg_match('/^[A-Z]:\\\\/i', $path)) {
-			return true;
-		}
-		return false;
+		return (preg_match('/^[A-Z]:\\\\/i', $path) || substr($path, 0, 2) == '\\\\');
 	}
 /**
  * Returns true if given $path is an absolute path.
@@ -250,8 +246,7 @@ class Folder extends Object {
  * @static
  */
 	function isAbsolute($path) {
-		$match = preg_match('/^\\//', $path) || preg_match('/^[A-Z]:\\\\/i', $path);
-		return $match;
+		return !empty($path) && ($path[0] === '/' || preg_match('/^[A-Z]:\\\\/i', $path) || substr($path, 0, 2) == '\\\\');
 	}
 /**
  * Returns a correct set of slashes for given $path. (\\ for Windows paths and / for other paths.)
@@ -474,7 +469,7 @@ class Folder extends Object {
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 /**
  * Returns the size in bytes of this Folder.

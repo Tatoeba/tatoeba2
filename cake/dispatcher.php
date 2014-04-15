@@ -8,15 +8,14 @@
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) : Rapid Development Framework (http://www.cakephp.org)
- * Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
+ * CakePHP(tm) : Rapid Development Framework (http://cakephp.org)
+ * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @filesource
- * @copyright     Copyright 2005-2010, Cake Software Foundation, Inc. (http://www.cakefoundation.org)
- * @link          http://www.cakefoundation.org/projects/info/cakephp CakePHP(tm) Project
+ * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
+ * @link          http://cakephp.org CakePHP(tm) Project
  * @package       cake
  * @subpackage    cake.cake
  * @since         CakePHP(tm) v 0.2.9
@@ -374,9 +373,13 @@ class Dispatcher extends Object {
 		if ($base === DS || $base === '.') {
 			$base = '';
 		}
-		$this->webroot = $base .'/';
+		$this->webroot = $base . '/';
 
-		if (!empty($base)) {
+		$docRoot = env('DOCUMENT_ROOT');
+		$script = realpath(env('SCRIPT_FILENAME'));
+		$docRootContainsWebroot = strpos($docRoot, $dir . '/' . $webroot);
+
+		if (!empty($base) || !$docRootContainsWebroot) {
 			if (strpos($this->webroot, $dir) === false) {
 				$this->webroot .= $dir . '/' ;
 			}
@@ -553,8 +556,8 @@ class Dispatcher extends Object {
 			if ($tmpUri === '/' || $tmpUri == $baseDir || $tmpUri == $base) {
 				$url = $_GET['url'] = '/';
 			} else {
-				if ($base && strpos($uri, $base) !== false) {
-					$elements = explode($base, $uri);
+				if ($base && strpos($uri, $base) === 0) {
+					$elements = explode($base, $uri, 2);
 				} elseif (preg_match('/^[\/\?\/|\/\?|\?\/]/', $uri)) {
 					$elements = array(1 => preg_replace('/^[\/\?\/|\/\?|\?\/]/', '', $uri));
 				} else {

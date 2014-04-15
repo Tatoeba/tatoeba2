@@ -1,79 +1,89 @@
 #!/bin/bash
 
+#Set mysql auth info
 mysql_user="root"
 mysql_passwd="tatoeba"
 mysql_db="tatoeba"
 
-apt-get install -y gcc automake make libevent-dev libsqlite3-dev pkg-config libexpat1-dev libmysqlclient-dev
+#Get dependencies
+sudo apt-get install -y gcc automake make libevent-dev libsqlite3-dev pkg-config libexpat1-dev libmysqlclient-dev
 
+#Grab the source from github
 git clone https://github.com/allan-simon/suggestd.git
 
 cd suggestd
 
+#Generate the makefiles and compile 
 aclocal
 autoconf
 automake --add-missing
 ./configure
 make
-make install
-touch suggestd
+
+#Install binary to a system-wide location
+sudo make install
+
+#Prepare init script and copy it to a system-wide location
+touch init.d
 echo -e '
-#! /bin/sh\n
-PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin\n
-DAEMON=/usr/local/bin/suggestd\n
-NAME=suggestd\n
-DESC=suggestd\n
-USER=suggestd\n
+#! /bin/sh
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+DAEMON=/usr/local/bin/suggestd
+NAME=suggestd
+DESC=suggestd
+USER=suggestd
 
-test -x $DAEMON || exit 0\n
+test -x $DAEMON || exit 0
 
-if [ -f /etc/default/$NAME ] ; then\n
-    . /etc/default/$NAME\n
-fi\n
+if [ -f /etc/default/$NAME ] ; then
+    . /etc/default/$NAME
+fi
 
-set -e\n
-\n
-case "$1" in\n
-  start-fg)\n
-        $DAEMON $DAEMON_OPTS\n
-    ;;\n
-  start)\n
-    echo -n "Starting $DESC: "\n
-    start-stop-daemon --background --make-pidfile --start --quiet --pidfile /var/run/$NAME.pid -c $USER --exec $DAEMON -- $DAEMON_OPTS\n
-    echo "$NAME."\n
-    ;;\n
-  stop)\n
-    echo -n "Stopping $DESC: "\n
-        PID=`cat /var/run/$NAME.pid\n`
-    start-stop-daemon --stop --quiet --pidfile /var/run/$NAME.pid --exec $DAEMON\n
-    echo "$NAME."\n
-    ;;\n
-  restart)\n
-        echo -n "Restarting $DESC: "\n
-    $0 stop\n
-    sleep 1\n
-    $0 start\n
-    echo "$NAME."\n
-    ;;\n
-  *)\n
-    N=/etc/init.d/$NAME\n
-    echo "Usage: $N {start-fg|start|stop|restart}" >&2\n
-    exit 1\n
-    ;;\n
-esac\n
-\n
-exit 0\n
-' > suggestd
+set -e
 
-cp suggestd /etc/init.d/
-chmod +x /etc/init.d/suggestd
+case "$1" in
+  start-fg)
+        $DAEMON $DAEMON_OPTS
+    ;;
+  start)
+    echo -n "Starting $DESC: "
+    start-stop-daemon --background --make-pidfile --start --quiet --pidfile /var/run/$NAME.pid -c $USER --exec $DAEMON -- $DAEMON_OPTS
+    echo "$NAME."
+    ;;
+  stop)
+    echo -n "Stopping $DESC: "
+        PID=`cat /var/run/$NAME.pid`
+    start-stop-daemon --stop --quiet --pidfile /var/run/$NAME.pid --exec $DAEMON
+    echo "$NAME."
+    ;;
+  restart)
+        echo -n "Restarting $DESC: "
+    $0 stop
+    sleep 1
+    $0 start
+    echo "$NAME."
+    ;;
+  *)
+    N=/etc/init.d/$NAME
+    echo "Usage: $N {start-fg|start|stop|restart}" >&2
+    exit 1
+    ;;
+esac
 
+exit 0
+' > init.d
+
+sudo cp init.d /etc/init.d/suggestd
+sudo chmod +x /etc/init.d/suggestd
+
+#Prepare options file and copy it to a system-wide location
 touch default
-echo "
-DAEMON_OPTS=\"  --conf /etc/suggestd.xml\"
-" > default
-cp default /etc/default/suggestd
+echo '
+DAEMON_OPTS=" --conf /etc/suggestd.xml"
+' > default
+sudo cp default /etc/default/suggestd
 
+#Prepare config file and copy it to a system-wide location
 touch suggestd.xml
 echo "
 <suggestd>
@@ -84,8 +94,11 @@ echo "
 </suggestd>
 
 " > suggestd.xml
-cp suggestd.xml /etc/
+sudo cp suggestd.xml /etc/
 
-useradd -r suggestd
+#Add an unprivileged user
+sudo useradd -r suggestd
+#Start the daemon
 /etc/init.d/suggestd start
-update-rc.d suggestd defaults
+#Add the init script to system startup
+sudo update-rc.d suggestd defaults
