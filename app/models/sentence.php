@@ -148,7 +148,6 @@ class Sentence extends AppModel
     
     public $belongsTo = array(
         'User',
-        'TagsSentences',
         'Language' => array(
             'classname' => 'Language',
             'foreignKey' => 'lang_id'
