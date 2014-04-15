@@ -182,9 +182,9 @@ class Sentence extends AppModel
      * 
      * @return void
      */
-    public function __construct()
+    public function __construct($id = false, $table = null, $ds = null)
     {
-        parent::__construct();
+        parent::__construct($id, $table, $ds);
         $this->validate['lang']['rule'] = array('inList', $this->languages);
     }
 
