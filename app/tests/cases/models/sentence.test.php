@@ -39,4 +39,16 @@ class SentenceTestCase extends CakeTestCase {
 
 		$this->assertEqual($sentencesAdded, 1);
 	}
+
+	function testSaveNewSentence_nullifiesEmptyLangs() {
+		$text = 'Hello world.';
+
+		$this->Sentence->saveNewSentence($text, '', 1);
+		$savedSentence = $this->Sentence->find(
+			'first',
+			array('conditions' => array('Sentence.text' => $text))
+		);
+
+		$this->assertNull($savedSentence['Sentence']['lang']);
+	}
 }
