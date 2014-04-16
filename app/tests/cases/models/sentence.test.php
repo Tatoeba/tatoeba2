@@ -51,4 +51,27 @@ class SentenceTestCase extends CakeTestCase {
 
 		$this->assertNull($savedSentence['Sentence']['lang']);
 	}
+
+	function testSaveNewSentence_returnsTrueWhenSaved() {
+		$returnValue = $this->Sentence->saveNewSentence('Hello world.', 'eng', 1);
+		$this->assertTrue($returnValue);
+	}
+
+	function testSaveTranslation_links() {
+		Mock::generate('Link');
+		$translationFromSentenceId = 1;
+		$newlyCreatedSentenceId = (string)($this->Sentence->find('count') + 1);
+		$this->Sentence->Link =& new MockLink();
+
+		$this->Sentence->Link->expectOnce(
+			'add',
+			array($translationFromSentenceId, $newlyCreatedSentenceId)
+		);
+
+		$this->Sentence->saveTranslation(
+			$translationFromSentenceId,
+			'This is the translation.',
+			'eng'
+		);
+	}
 }
