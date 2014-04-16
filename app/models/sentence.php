@@ -172,7 +172,8 @@ class Sentence extends AppModel
             'className' => 'Tag',
             'joinTable' => 'tags_sentences',
             'foreignKey' => 'sentence_id',
-            'associationForeignKey' => 'tag_id'
+            'associationForeignKey' => 'tag_id',
+            'with' => 'TagsSentences',
         ),
     );
     
