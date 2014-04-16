@@ -84,9 +84,9 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'root',
-		'password' => 'tatoeba',
-		'database' => 'tatoeba',
+		'login' => 'tatoeba',
+		'password' => 'letnBbeuA1MYpexv',
+		'database' => 'tatoeba_4',
 		'prefix' => '',
 		'encoding' => 'utf8'
 	);
@@ -95,9 +95,9 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'test_database_name',
+		'login' => 'tatoeba',
+		'password' => 'letnBbeuA1MYpexv',
+		'database' => 'tatoeba_4_test',
 		'prefix' => '',
 		'encoding' => 'utf8'
 	);
