@@ -15,7 +15,6 @@ class SentenceFixture extends CakeTestFixture {
 		'hasaudio' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 10, 'key' => 'index', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'lang_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 3),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'user_id' => array('column' => 'user_id', 'unique' => 0), 'dico_id' => array('column' => 'dico_id', 'unique' => 0), 'lang' => array('column' => 'lang', 'unique' => 0), 'hasaudio_idx' => array('column' => 'hasaudio', 'unique' => 0)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 
 	var $records = array(

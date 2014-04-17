@@ -9,7 +9,6 @@ class LanguageFixture extends CakeTestFixture {
 		'numberOfSentences' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 8),
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 3, 'key' => 'primary'),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'lang' => array('column' => 'lang', 'unique' => 1)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_unicode_ci', 'engine' => 'MyISAM')
 	);
 
 	var $records = array(

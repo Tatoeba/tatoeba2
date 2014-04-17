@@ -16,7 +16,6 @@ class WallFixture extends CakeTestFixture {
 		'hidden' => array('type' => 'boolean', 'null' => false, 'default' => '0'),
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 
 	var $records = array(

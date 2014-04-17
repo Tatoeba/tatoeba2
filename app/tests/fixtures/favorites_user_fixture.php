@@ -7,7 +7,6 @@ class FavoritesUserFixture extends CakeTestFixture {
 		'favorite_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
 		'user_id' => array('type' => 'integer', 'null' => false, 'default' => NULL),
 		'indexes' => array('favorite_id' => array('column' => array('favorite_id', 'user_id'), 'unique' => 1)),
-		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM')
 	);
 
 	var $records = array(

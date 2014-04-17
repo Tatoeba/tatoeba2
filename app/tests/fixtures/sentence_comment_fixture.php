@@ -13,7 +13,6 @@ class SentenceCommentFixture extends CakeTestFixture {
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 		'hidden' => array('type' => 'boolean', 'null' => false, 'default' => '0'),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'sentence_id_idx' => array('column' => 'sentence_id', 'unique' => 0)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 
 	var $records = array(

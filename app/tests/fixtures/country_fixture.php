@@ -9,7 +9,6 @@ class CountryFixture extends CakeTestFixture {
 		'numcode' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 6),
 		'name' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 80, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1)),
-		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM')
 	);
 
 	var $records = array(

@@ -12,7 +12,6 @@ class TagFixture extends CakeTestFixture {
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 		'nbrOfSentences' => array('type' => 'integer', 'null' => false, 'default' => '0', 'key' => 'index'),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'user_id' => array('column' => 'user_id', 'unique' => 0), 'nbr_sentences_idx' => array('column' => 'nbrOfSentences', 'unique' => 0)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 
 	var $records = array(

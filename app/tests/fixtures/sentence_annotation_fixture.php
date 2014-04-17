@@ -11,7 +11,6 @@ class SentenceAnnotationFixture extends CakeTestFixture {
 		'modified' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
 		'user_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'sentence_id' => array('column' => 'sentence_id', 'unique' => 0)),
-		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 
 	var $records = array(
