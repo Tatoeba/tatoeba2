@@ -133,7 +133,7 @@ class AppController extends Controller
             }
         }
 
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
+        #$user_agent = $_SERVER['HTTP_USER_AGENT'];
         #if(strpos($user_agent, ".NET CLR 3.5.30729") !== false) {
         #    $this->redirect($redirectPage, 404);
         #} 
@@ -184,7 +184,7 @@ class AppController extends Controller
         Configure::write('Config.language', $lang);
         
         // Forcing the URL to have the (correct) language in it.
-        $url = $_SERVER["REQUEST_URI"];
+        $url = $this->here;
         if (!empty($langInURL) && $langInCookie && $langInURL != $langInCookie) {
             // We're are now going to remove the language from the URL and set 
             // $langURL to null so that we get the the correct URL through 
