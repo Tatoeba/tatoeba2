@@ -266,16 +266,13 @@
     Configure::write('Mailer.password', 'some.password');
 
 /**
- * TODO: these aren't used yet. They should be used somewhere in
- * app/models/sentence.php
- *
  * Enable or disable external tools.
  * - Set Search.enabled to false if you don't have Sphinx installed.
  * - Set Transliterations.enabled to false if you don't have the
  *   romanization/transliteration tools installed.
  */
     Configure::write('Search.enabled', false);
-    Configure::write('Transliterations.enabled', true);
+    Configure::write('Transliterations.enabled', false);
     
 /**
  * Blocked IP addresses. Should be an array of strings containing the
