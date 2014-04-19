@@ -16,10 +16,19 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
+
+body, select, input, textarea {
+    font-family: "Oxygen", Trebuchet MS, sans-serif;
+}
+
+h2, h3, h4 {
+    font-family: "Amaranth", Georgia, serif;
+}
+
+ 
 body {
     padding: 0px;
     margin: 0px;
-    font-family: Trebuchet MS, sans;
     color: #222222;
     background: #e5e3da;
 }
@@ -37,12 +46,6 @@ a:hover {
     cursor: pointer;
     color: #EAA315;
 }
-
-
-h2, h3, h4 {
-    font-variant: small-caps;
-}
-
 
 h3 {
     border-bottom: 1px dotted;
@@ -265,7 +268,6 @@ dt {
 }
 
 .search_bar #into {
-    font-family: Arial, Sans-serif;
     font-size: 1.3em;
     margin-top: 20px;
     text-align: center;
@@ -332,12 +334,6 @@ dt {
     min-height: 550px;
 }
 
-/* Content : when a page is not split into 2 parts*/
-
-#content {
-    font-size: 0.8em;
-    /* border: 1px dotted #D1D1D1; */
-}
 
 /* Module : when a page is split into 2 main parts */
 
@@ -350,7 +346,7 @@ dt {
 #main_content {
     margin-left: 10px;
     margin-right: 260px;
-    font-size: 0.8em;
+    font-size: 14px;
 }
 
 .module {
@@ -457,7 +453,6 @@ dt {
  * ">>"
  */
 .ToLanguage {
-    font-family: Arial, Sans-serif;
     font-size: 1.3em;
     margin: 0 5px;
 }
@@ -526,19 +521,13 @@ dt {
 }
 
 #UserLoginForm_FromBar input[type='text'], #UserLoginForm_FromBar input[type='password'] {
-    height: 15px;
     width: 120px;
     background: #FFF url('../../img/alert-overlay.png') repeat-x;
     display: inline-block;
-    padding: 2px 0 0 3px;
+    padding: 3px 5px;
     color: #414141;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
     border: 0;
     border-bottom: 1px solid rgba(0,0,0,0.25);
-    font-size: 0.9em;
 }
 
 #UserLoginForm_FromBar input[type='submit'] {
@@ -547,12 +536,6 @@ dt {
     display: inline-block;
     padding: 4px 10px 5px;
     color: #FFF;
-    text-decoration: none;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
     border: 0;
     border-bottom: 1px solid rgba(0,0,0,0.25);
     position: relative;

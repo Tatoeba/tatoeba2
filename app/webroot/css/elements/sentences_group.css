@@ -56,8 +56,7 @@
  * Main sentences
  */
 .mainSentence {
-    font-family: georgia;
-    font-size: 1.7em;
+    font-size: 1.6em;
 }
 
 .mainSentence .languageFlag, .mainSentence .audioButton, .mainSentence select {
@@ -98,7 +97,7 @@
  * Translations
  */
 .directTranslation, .indirectTranslation {
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 .indirectTranslation a {
@@ -148,7 +147,6 @@ a.romanization {
 .editInPlaceForm input.text {
     width: 98%;
     display: inline;
-    font-family: verdana, sans-serif;
     font-size: 14px;
 }
 
@@ -182,7 +180,6 @@ a.romanization {
 
 .addTranslationsTextInput {
     width: 550px;
-    font-family: verdana, sans-serif;
     font-size: 14px;
 }
 

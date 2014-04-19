@@ -62,6 +62,7 @@
 .memberSince .date {
     color: #888;
     font-style: italic;
+    font-size: 0.9em;
 }
 
 .user .username {
@@ -77,6 +78,7 @@
 .user .status {
     font-weight: bold;
     margin-top: 5px;
+    font-size: 0.9em;
 }
 
 .status .power {
@@ -103,11 +105,13 @@
 
 .currentContributor .username {
     font-size: 1.2em;
+    line-height: 20px;
 }
 
 .currentContributor .score {
     color: #777;
     font-size: 0.8em;
+    line-height: 15px;
 }
 
 .activityBar {
