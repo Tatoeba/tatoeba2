@@ -282,39 +282,62 @@ class ExtractTask extends Shell{
 	}
 /**
  * Will parse  __(), __c() functions
+ * TATOEBA-SPECIFIC: Code is modified. Does not use the standard CakePHP 1.2.12 code
  *
  * @param string $functionName Function name that indicates translatable string (e.g: '__')
  * @access public
  */
-	function basic($functionName = '__') {
-		$count = 0;
-		$tokenCount = count($this->__tokens);
-
-		while (($tokenCount - $count) > 3) {
-			list($countToken, $parenthesis, $middle, $right) = array($this->__tokens[$count], $this->__tokens[$count + 1], $this->__tokens[$count + 2], $this->__tokens[$count + 3]);
-			if (!is_array($countToken)) {
-				$count++;
-				continue;
-			}
-
-			list($type, $string, $line) = $countToken;
-			if (($type == T_STRING) && ($string == $functionName) && ($parenthesis == '(')) {
-
-				if (in_array($right, array(')', ','))
-				&& (is_array($middle) && ($middle[0] == T_CONSTANT_ENCAPSED_STRING))) {
-
-					if ($this->__oneFile === true) {
-						$this->__strings[$this->__formatString($middle[1])][$this->__file][] = $line;
-					} else {
-						$this->__strings[$this->__file][$this->__formatString($middle[1])][] = $line;
-					}
-				} else {
-					$this->__markerError($this->__file, $line, $functionName, $count);
-				}
-			}
-			$count++;
-		}
-	}
+    function basic($functionName = '__') {
+        $count = 0;
+        $tokenCount = count($this->__tokens);
+        $currentContent = '';
+        $currentLine = 0;
+        $i18nStringFound = false;
+        $save = false;
+        while (($tokenCount - $count) > 2) {
+            $token = $this->__tokens[$count];
+            if (is_array($token)) {
+                list($type, $string, $line) = $token;
+                if ($string == $functionName) {
+                    // i18n has just been found, we can start saving afterwards
+                    $i18nStringFound = true;
+                    $currentLine = $line;
+                } elseif ($i18nStringFound) {
+                    // i18n has been found previously, filling the content...
+                    if ($type == T_CONSTANT_ENCAPSED_STRING) {
+                        $currentContent .= $this->__formatString($string);
+                    } else {
+                        $this->out(
+"\n\nWARNING!\n".
+$this->__file .", line $line: not a string!\n\n"
+                                   );
+                    }
+                }
+            } else {
+                // We find a parenthesis or a comma, it's the end
+                if($i18nStringFound && in_array($token, array(')', ','))){
+                    $save = true;
+                    $i18nStringFound = false;
+                }
+            }
+            if ($save) {
+                $repositoryPath = 'https://github.com/Tatoeba/tatoeba2/tree/master/app/';
+                // convert Windows-style backslashes to forward slashes
+                $file = preg_replace('#\\\#', '/', $this->__file);
+                $tmp = explode('/app/', $file);
+                $file = $tmp[1];
+                $path = $repositoryPath . $file;
+                if ($this->__oneFile === true) {
+                    $this->__strings[$currentContent][$path][] = $currentLine;
+                } else {
+                    $this->__strings[$path][$currentContent][] = $currentLine;
+                }
+                $save = false;
+                $currentContent = '';
+            }
+            $count++;
+        }
+    }
 /**
  * Will parse __d(), __dc(), __n(), __dn(), __dcn()
  *
