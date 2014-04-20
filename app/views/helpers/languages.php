@@ -97,7 +97,7 @@ class LanguagesHelper extends AppHelper
             'tat' => __('Tatar', true),
             'yid' => __('Yiddish', true),
             'pes' => __('Persian', true),
-            'nan' => __('Teochew', true),
+            'nan' => __('Min Nan Chinese', true),
             'eus' => __('Basque', true),
             'slk' => __('Slovak', true),
             'dan' => __('Danish', true),
@@ -165,7 +165,7 @@ class LanguagesHelper extends AppHelper
             'mlg' => __('Malagasy', true),
             'grn' => __('Guarani', true),
             'lad' => __('Ladino', true),
-            'pms' => __('Piemontese', true),
+            'pms' => __('Piedmontese', true),
 
             'avk' => __('Kotava', true),
             'mar' => __('Marathi', true),
@@ -179,7 +179,7 @@ class LanguagesHelper extends AppHelper
             'aze' => __('Azerbaijani',true), 
             'khm' => __('Khmer',true), 
             'lao' => __('Lao',true), 
-            'bod' => __('Standard Tibetan',true), 
+            'bod' => __('Tibetan',true), 
             'hil' => __('Hiligaynon',true), 
             'arq' => __('Algerian Arabic',true), 
             'pcd' => __('Picard',true), 
@@ -198,7 +198,7 @@ class LanguagesHelper extends AppHelper
             'pdc' => __('Pennsylvania German',true), 
             'sin' => __('Sinhala',true), 
             'tuk' => __('Turkmen',true), 
-            'wln' => __('Wallon',true), 
+            'wln' => __('Walloon',true), 
             'bak' => __('Bashkir',true), 
             'hau' => __('Hausa',true), 
             'ltz' => __('Luxembourgish',true), 
@@ -219,7 +219,10 @@ class LanguagesHelper extends AppHelper
             'sna' => __('Shona',true), 
             'mnw' => __('Mon',true), 
             'nog' => __('Nogai',true), 
-            'sah' => __('Yakut',true), //@lang 
+            'sah' => __('Yakut',true), 
+            'abk' => __('Abkhaz',true), 
+            'tet' => __('Tetun',true), 
+            'tam' => __('Tamil',true), //@lang 
         );
         
         asort($languages);

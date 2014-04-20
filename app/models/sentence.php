@@ -116,7 +116,10 @@ class Sentence extends AppModel
         'sna', 
         'mnw', 
         'nog', 
-        'sah', //@lang
+        'sah', 
+        'abk', 
+        'tet', 
+        'tam', //@lang
         null
     );
     
