@@ -288,16 +288,13 @@ class PagesController extends AppController
      */
     public function tatoeba_team_and_credits()
     {
-        $this->helpers[] = 'Members';
-
-        $this->loadModel('User');
-        $peoples = $this->User->getMembersForTeamAndCredits();
-
-        $this->set("padawans", $peoples['Padawan']);
-        $this->set("cores", $peoples['Core']);
-        $this->set("exmembers", $peoples['Ex']);
-        $this->set("translators", $peoples['Translator']);
-        $this->set("specialThanks", $peoples['Special']);
+        $this->redirect(
+            array(
+                "controller" => "pages",
+                "action" => "home"
+            ),
+            301
+        );
     }
     
     
