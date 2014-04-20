@@ -2,27 +2,19 @@
 ## data source definition
 #############################################################################
 
+## Note that we read in some values from app/config/database.php.
+## That file, which is not under source control, is copied from 
+## app/config/database.php.template (which IS under source control)
+## and then manually edited.
+ 
 <?php
-/**
- *
- * You will want to change the values of these variables or use the configure_sphinx.sh to change them:
- *   - sourcePath
- *
- * In the "source default" section:
- *   - sql_user
- *   - sql_pass
- *   - sql_db
- *   - sql_sock
- *
- * In the "searchd" section:
- *   - listen (called "port" in older versions of Sphinx)
- *   - log
- *   - query_log
- *   - pid_file
- *   
- */
+define('__TAT_ROOT__', dirname(dirname(dirname(__FILE__))));
+require_once(__TAT_ROOT__.'/app/config/database.php');
 
-$sourcePath = "INDEXDIR";
+
+$configs = get_class_vars('DATABASE_CONFIG');
+$sourcePath = $configs['sphinx']['indexdir'];
+$sphinxLogDir = $configs['sphinx']['logdir'];
 
 $languages = array(
     'ara' => 'Arabic',
@@ -246,11 +238,10 @@ source default
 {
     type                     = mysql
     sql_host                 = localhost
-    sql_user                 = USER
-    sql_pass                 = PASSWORD
-    sql_db                   = DATABASE
-    sql_sock                 = SOCKET
-
+    sql_user                 = <?php echo $configs['default']['login']; echo "\n"; ?>
+    sql_pass                 = <?php echo $configs['default']['password']; echo "\n"; ?>
+    sql_db                   = <?php echo $configs['default']['database']; echo "\n"; ?>
+    sql_sock                 = <?php echo $configs['sphinx']['socket']; echo "\n"; ?>
     sql_query_pre            = SET NAMES utf8
     sql_query_pre            = SET SESSION query_cache_type=OFF
 
@@ -437,12 +428,12 @@ indexer
 searchd
 {
     listen                  = 9312
-    log                     = LOGDIR/searchd.log
-    query_log              = LOGDIR/query.log
+    log                     = <?php echo $sphinxLogDir . DIRECTORY_SEPARATOR . "searchd.log\n"; ?>
+    query_log               = <?php echo $sphinxLogDir . DIRECTORY_SEPARATOR . "query.log\n"; ?>
     read_timeout            = 5
     max_children            = 30
 
-    pid_file                = LOGDIR/searchd.pid
+    pid_file                = <?php echo $sphinxLogDir . DIRECTORY_SEPARATOR . "searchd.pid\n"; ?>
     max_matches             = 1000
     seamless_rotate         = 1
     preopen_indexes         = 1

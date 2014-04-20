@@ -101,5 +101,11 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		'encoding' => 'utf8'
 	);
+
+    var $sphinx = array(
+        'indexdir' => '/home/tatoeba/sphinx/indices',
+        'socket' => '/run/mysqld/mysqld.sock',
+        'logdir' => '/home/tatoeba/sphinx/log'
+    );
 }
 ?>
