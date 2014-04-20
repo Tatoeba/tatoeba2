@@ -61,7 +61,7 @@ echo $html->link(
 
 <?php 
 // HACK / quick fix
-echo '<form id="UserEditForm" method="post" action="/eng/users/edit/'.$userId.'">';
+echo '<form id="UserEditForm" method="post" action="/'.$this->params['lang'].'/users/edit/'.$userId.'">';
 // Because...
 //   echo $form->create('User'); 
 // will echo this:
