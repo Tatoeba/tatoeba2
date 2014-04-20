@@ -221,7 +221,9 @@ class CommentsHelper extends AppHelper
         $date1 = new DateTime($date);
         $date2 = new DateTime($modified);
         if ($date1 != $date2) {
-        echo " - edited {$this->Date->ago($modified)}"; 
+            echo " - ";
+            __("edited");
+            echo " {$this->Date->ago($modified)}"; 
         }
         ?>
         </div>
