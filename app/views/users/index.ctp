@@ -65,11 +65,9 @@ echo $paginator->next(
 
 <table class="users">
 <tr>
-    <th class="num"></th>
     <th><?php echo $paginator->sort('id'); ?></th>
     <th><?php echo $paginator->sort('username'); ?></th>
     <th><?php echo $paginator->sort('email'); ?></th>
-    <th><?php echo $paginator->sort('lang'); ?></th>
     <th><?php echo $paginator->sort('since'); ?></th>
     <th><?php echo $paginator->sort('last_time_active'); ?></th>
     <th><?php echo $paginator->sort('group_id'); ?></th>
@@ -85,20 +83,22 @@ foreach ($users as $user) {
     }
     ?>
     <tr<?php echo $class; ?>>
-        <td class="num">
-            <?php echo $i; ?>
-        </td>
         <td>
             <?php echo $user['User']['id']; ?>
         </td>
         <td>
-            <?php echo $user['User']['username']; ?>
+            <?php 
+            echo $html->link(
+                $user['User']['username'], 
+                array(
+                    'action'=>'edit', 
+                    $user['User']['id']
+                )
+            ); 
+            ?>
         </td>
         <td>
             <?php echo $user['User']['email']; ?>
-        </td>
-        <td>
-            <?php echo $user['User']['lang']; ?>
         </td>
         <td>
             <?php echo $date->ago($user['User']['since']); ?>
@@ -108,17 +108,6 @@ foreach ($users as $user) {
         </td>
         <td>
             <?php echo $user['Group']['name']; ?>
-        </td>
-        <td class="actions">
-    <?php echo $html->link('Edit', array('action'=>'edit', $user['User']['id'])); ?>
-    <?php
-    echo $html->link(
-        'Delete',
-        array('action' => 'delete', $user['User']['id']),
-        null,
-        sprintf('Are you sure you want to delete # %s?', $user['User']['id'])
-    );
-    ?>
         </td>
     </tr>
     <?php

@@ -40,21 +40,21 @@ $userId = $form->value('User.id');
 <div class="editUser">
 <div class="actions">
     <ul>
-        <li>
-<?php
-echo $html->link(
-    'Delete',
-    array(
-        'action' => 'delete',
-        $userId
-    ),
-    null,
-    sprintf('Are you sure you want to delete # %s?', $userId)
-);
-?>
+        <li class="delete">
+        <?php
+        echo $html->link(
+            'Delete',
+            array(
+                'action' => 'delete',
+                $userId
+            ),
+            null,
+            sprintf('Are you sure you want to delete # %s?', $userId)
+        );
+        ?>
         </li>
         <li>
-<?php echo $html->link('List Users', array('action' => 'index')); ?>
+        <?php echo $html->link('List Users', array('action' => 'index')); ?>
         </li>
     </ul>
 </div>
