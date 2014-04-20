@@ -65,11 +65,9 @@ echo $paginator->next(
 <!-- In CakePHP 1.2, the fields are in the order "title, key". In 2.x, they're in the opposite order. -->
 <table class="users">
 <tr>
-    <th class="num"></th>
     <th><?php echo $paginator->sort(__('ID',true),'id'); ?></th>
     <th><?php echo $paginator->sort(__('Username',true),'username'); ?></th>
     <th><?php echo $paginator->sort(__('Email',true),'email'); ?></th>
-    <th><?php echo $paginator->sort(__('Lang',true),'lang'); ?></th>
     <th><?php echo $paginator->sort(__('Since',true),'since'); ?></th>
     <th><?php echo $paginator->sort(__('Last Time Active',true),'last_name_active'); ?></th>
     <th><?php echo $paginator->sort(__('Group',true),'group'); ?></th>
@@ -110,17 +108,6 @@ foreach ($users as $user) {
         </td>
         <td>
             <?php echo $user['Group']['name']; ?>
-        </td>
-        <td class="actions">
-    <?php echo $html->link(__('Edit',true), array('action'=>'edit', $user['User']['id'])); ?>
-    <?php
-    echo $html->link(
-        __('Delete',true),
-        array('action' => 'delete', $user['User']['id']),
-        null,
-        sprintf(__('Are you sure you want to delete user #%s?',true), $user['User']['id'])
-    );
-    ?>
         </td>
     </tr>
     <?php
