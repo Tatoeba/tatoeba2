@@ -43,18 +43,18 @@ $userId = $form->value('User.id');
         <li>
 <?php
 echo $html->link(
-    'Delete',
+    __('Delete',true),
     array(
         'action' => 'delete',
         $userId
     ),
     null,
-    sprintf('Are you sure you want to delete # %s?', $userId)
+    sprintf(__('Are you sure you want to delete user #%s?',true), $userId)
 );
 ?>
         </li>
         <li>
-<?php echo $html->link('List Users', array('action' => 'index')); ?>
+<?php echo $html->link(__('List Users',true), array('action' => 'index')); ?>
         </li>
     </ul>
 </div>
@@ -73,7 +73,7 @@ $form->create('User'); // But we still need to call $form->create()
                        // to retrieve the user data...
 ?>
     <fieldset>
-    <legend><?php echo 'Edit User'; ?></legend>
+    <legend><?php __('Edit User'); ?></legend>
     <?php
     echo $form->input('id');
     echo $form->input('username');
