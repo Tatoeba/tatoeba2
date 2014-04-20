@@ -85,20 +85,22 @@ foreach ($users as $user) {
     }
     ?>
     <tr<?php echo $class; ?>>
-        <td class="num">
-            <?php echo $i; ?>
-        </td>
         <td>
             <?php echo $user['User']['id']; ?>
         </td>
         <td>
-            <?php echo $user['User']['username']; ?>
+            <?php 
+            echo $html->link(
+                $user['User']['username'], 
+                array(
+                    'action'=>'edit', 
+                    $user['User']['id']
+                )
+            ); 
+            ?>
         </td>
         <td>
             <?php echo $user['User']['email']; ?>
-        </td>
-        <td>
-            <?php echo $user['User']['lang']; ?>
         </td>
         <td>
             <?php echo $date->ago($user['User']['since']); ?>

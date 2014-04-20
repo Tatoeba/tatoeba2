@@ -41,7 +41,6 @@ class SentencesController extends AppController
     public $components = array (
         'GoogleLanguageApi',
         'CommonSentence',
-        'Lucene',
         'Permissions',
         'Cookie'
     );
