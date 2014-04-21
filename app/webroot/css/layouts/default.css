@@ -18,13 +18,8 @@
 
 
 body, select, input, textarea {
-    font-family: "Oxygen", Trebuchet MS, sans-serif;
+    font-family: Trebuchet MS, sans-serif;
 }
-
-h2, h3, h4 {
-    font-family: "Amaranth", Georgia, serif;
-}
-
  
 body {
     padding: 0px;
@@ -47,11 +42,24 @@ a:hover {
     color: #EAA315;
 }
 
+h2 {
+    background: url(../../img/title.png) no-repeat top left;
+    padding-left: 28px;
+    margin: 0 0 15px -8px;
+    font-size: 1.5em;
+    color: #000;
+}
+
+h2 .annexe {
+    font-weight: normal;
+    font-size: 15px;
+}
+
 h3 {
     border-bottom: 1px dotted;
     color: #555;
     padding-left: 10px;
-    font-size: 1.3em;
+    font-size: 1.2em;
     margin-top: 30px;
 }
 
@@ -74,6 +82,10 @@ dt {
     font-weight: bold;
 }
 
+textarea {
+    font-size: 13px;
+}
+
 /* User Menu : Main Menu */
 
 #top_menu_container {
@@ -85,7 +97,7 @@ dt {
     height: 30px;
     width: 960px;
     margin: auto;
-    font-size: 0.9em;
+    font-size: 14px;
     overflow: hidden;
 }
 
@@ -340,13 +352,11 @@ dt {
 #annexe_content {
     float: right;
     width: 250px;
-    font-size: 0.8em;
 }
 
 #main_content {
     margin-left: 10px;
     margin-right: 260px;
-    font-size: 14px;
 }
 
 .module {
@@ -354,40 +364,11 @@ dt {
     margin: 0px 0px 20px 0px;
     background: url(../../img/module_background.png) repeat-x bottom left;
     overflow: hidden;
+    font-size: 13px;
 }
 #annexe_content .module {
     margin-left: 5px;
 }
-
-.module h2 {
-    background: url(../../img/title.png) no-repeat top left;
-    padding-left: 28px;
-    margin: 0 0 15px -8px;
-    font-size: 1.5em;
-    color: #000;
-}
-
-.module h2 .annexe {
-    font-variant: normal;
-    font-weight: normal;
-    font-size: 0.8em;
-}
-
-.main_module {
-    font-size: 1.25em;
-    padding: 10px 10px 5px 10px;
-    background: url(../../img/module_background.png) repeat-x bottom left;
-    margin-bottom: 20px;
-}
-
-.main_module h2 {
-    background: url(../../img/title_main.png) no-repeat top left;
-    padding-left: 32px;
-    font-size: 1.5em;
-    border-bottom: none;
-    margin: 0 0 0 -8px;
-}
-
 
 #annexe_content ul {
     margin: 5px 0px;

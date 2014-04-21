@@ -102,7 +102,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
     <?php
     if ($session->read('Auth.User.id')) {
         ?>
-        <div class="main_module">
+        <div class="module">
             <h2><?php __('Getting started'); ?></h2>
             
             

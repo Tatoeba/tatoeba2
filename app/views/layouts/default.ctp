@@ -72,7 +72,6 @@
 	?>
     
     <link rel="search" type="application/opensearchdescription+xml" href="http://tatoeba.org/opensearch.xml" title="Tatoeba project" />
-    <link href='http://fonts.googleapis.com/css?family=Amaranth:700|Oxygen:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<?php echo $this->element('google_analytics'); ?>
