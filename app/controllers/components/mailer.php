@@ -75,9 +75,8 @@ class MailerComponent extends Object
      */
     private function _authgMail($from, $namefrom, $to, $nameto, $subject, $message)
     {
-        return;
-        if ($_SERVER['SERVER_NAME'] != 'tatoeba.org') {
-            //return;
+        if (Configure::read('Mailer.enabled') == false) {
+            return;
         }
         
         /*  your configuration here  */

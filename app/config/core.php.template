@@ -262,6 +262,7 @@
  * For email notifications.
  * Cf. app/controllers/components/mailer.php
  */
+    Configure::write('Mailer.enabled', false);
     Configure::write('Mailer.username', 'some.random.gmail.address@gmail.com');
     Configure::write('Mailer.password', 'some.password');
 
