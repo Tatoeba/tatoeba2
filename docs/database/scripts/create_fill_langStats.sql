@@ -7,7 +7,7 @@
 -- Deleting and creating the table again.
 DROP TABLE IF EXISTS `langStats`;
 CREATE TABLE `langStats` (
-  `lang` varchar(4) CHARACTER SET utf8 NOT NULL,
+  `lang` varchar(4) CHARACTER SET utf8,
   `numberOfSentences` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`),

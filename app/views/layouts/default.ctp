@@ -74,7 +74,7 @@
     <link rel="search" type="application/opensearchdescription+xml" href="http://tatoeba.org/opensearch.xml" title="Tatoeba project" />
 </head>
 <body>
-	<?php echo $this->element('google_analytics'); ?>
+	<?php echo $this->element('google_analytics', array('cache' => true)); ?>
     <div id="audioPlayer"></div>
     
 	<!--  TOP  -->
@@ -89,7 +89,21 @@
 		<div id="container">
 
 			<!--  SEARCH BAR  -->
-			<?php echo $this->element('search_bar'); ?>
+			<?php
+                        echo $this->element('search_bar', array(
+                            'selectedLanguageFrom' => $session->read('search_from'),
+                            'selectedLanguageTo' => $session->read('search_to'),
+                            'searchQuery' => $session->read('search_query'),
+                            'cache' => array(
+                                // Only use cache when search fields are not prefilled
+                                'time' => is_null($session->read('search_from'))
+                                          && is_null($session->read('search_to'))
+                                          && is_null($session->read('search_query'))
+                                          ? '+1 day' : false,
+                                'key' => Configure::read('Config.language')
+                            )
+                        )); ?>
+
 
 			<!--  CONTENT -->
 			<?php

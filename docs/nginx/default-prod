@@ -76,3 +76,24 @@ server {
 		autoindex on;
 	}
 }
+
+server {
+	listen 		80;
+	server_name	static.tatoeba.org;
+
+	root		/var/media/www-static;
+	index		index.php index.html;
+	charset		utf-8;
+
+	access_log	/var/log/nginx/access.static.log;
+	error_log	/var/log/nginx/error.static.log;
+	rewrite_log	on;
+
+	location / {
+		try_files $uri $uri/ =404;
+	}
+
+	location ~ /(\.ht|\.svn) {
+		deny all;
+	}
+}

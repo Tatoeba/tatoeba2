@@ -158,7 +158,12 @@ $menuElements = array(
             && ($this->params['action'] == 'login');
             
             if (!$isOnLoginPage) {
-                echo $this->element('login');
+                echo $this->element('login', array(
+                    'cache' => array(
+                        'time' => '+1 day',
+                        'key' => Configure::read('Config.language')
+                    )
+                ));
             }
         } else {
             echo $this->element('space');
