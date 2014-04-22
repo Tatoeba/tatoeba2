@@ -199,6 +199,7 @@
  * 		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional]  prefix every cache file with this string
  *	));
  *
+ *
  * Xcache (http://xcache.lighttpd.net/)
  *
  * Cache::config('default', array(
@@ -208,35 +209,17 @@
  *    'prefix' => Inflector::slug(APP_DIR) . '_', //[optional] prefix every cache file with this string
  *    'user' => 'user', //user from xcache.admin.user settings
  *    'password' => 'password', //plaintext password (xcache.admin.pass)
- *));
-*Cache::config('_cake_core_', array(
-*    'engine' => 'Xcache', //[required]
-*    'duration'=> 3600, //[optional]
-*    'probability'=> 100, //[optional]
-*    'prefix' => Inflector::slug(APP_DIR) . '_', //[optional] prefix every cache file with this string
-*    'user' => 'user', //user from xcache.admin.user settings
-*    'password' => 'password', //plaintext password (xcache.admin.pass)
-*));
-*/ 
-/*
-  	 Cache::config('default', array(
- 		'engine' => 'Xcache', //[required]
- 		'duration'=> 3600, //[optional]
- 		'probability'=> 100, //[optional]
-  		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional] prefix every cache file with this string
- 		'user' => 'user', //user from xcache.admin.user settings
-       'password' => 'password', //plaintext password (xcache.admin.pass)
- 	));
-   	 Cache::config('_cake_core_', array(
- 		'engine' => 'Xcache', //[required]
- 		'duration'=> 3600, //[optional]
- 		'probability'=> 100, //[optional]
-  		'prefix' => Inflector::slug(APP_DIR) . '_', //[optional] prefix every cache file with this string
- 		'user' => 'user', //user from xcache.admin.user settings
-       'password' => 'password', //plaintext password (xcache.admin.pass)
- 	));
-*/
-/* 
+ * ));
+ * Cache::config('_cake_core_', array(
+ *    'engine' => 'Xcache', //[required]
+ *    'duration'=> 3600, //[optional]
+ *    'probability'=> 100, //[optional]
+ *    'prefix' => Inflector::slug(APP_DIR) . '_', //[optional] prefix every cache file with this string
+ *    'user' => 'user', //user from xcache.admin.user settings
+ *    'password' => 'password', //plaintext password (xcache.admin.pass)
+ * ));
+ *
+ * 
  * Memcache (http://www.danga.com/memcached/)
  *
  * 	 Cache::config('default', array(
@@ -251,17 +234,59 @@
  *	));
  *
  */
-	Cache::config('default', array('engine' => 'File'));
+    Cache::config('default', array('engine' => 'File'));
 
-    define("TATOEBA_DOMAIN", "tatoeba.org");
-    //define("CSS_PATH", "http://css.tatoeba.org/css/");
-    //define("JS_PATH", "http://js.tatoeba.org/js/");
-    //define("IMG_PATH", "http://flags.tatoeba.org/img/");
-    # FOR LOCAL DEVELOPPEMENT
+    
+    
+/* *************************************************** */
+/*                                                     */
+/*   From here, the config more specific to Tatoeba.   */
+/*                                                     */
+/* *************************************************** */ 
 
-    //define("TATOEBA_DOMAIN", "127.0.0.3");
+/**
+ * Defining some paths. IF you want your dev version to use the
+ * CSS, JAvascript or images from Tatoeba rather than from your
+ * machine, then use the following:
+ * 
+ * define("CSS_PATH", "http://css.tatoeba.org/css/");
+ * define("JS_PATH", "http://js.tatoeba.org/js/");
+ * define("IMG_PATH", "http://flags.tatoeba.org/img/");
+ */
+    define("TATOEBA_DOMAIN", "tatoeba.org"); //TODO I have no idea if that's really used.
     define("CSS_PATH", "");
     define("JS_PATH", "");
     define("IMG_PATH", "");
+    
+/**
+ * For email notifications.
+ * Cf. app/controllers/components/mailer.php
+ */
+    Configure::write('Mailer.enabled', false);
+    Configure::write('Mailer.username', 'some.random.gmail.address@gmail.com');
+    Configure::write('Mailer.password', 'some.password');
+
+/**
+ * Enable or disable external tools.
+ * - Set Search.enabled to false if you don't have Sphinx installed.
+ * - Set Transliterations.enabled to false if you don't have the
+ *   romanization/transliteration tools installed.
+ */
+    Configure::write('Search.enabled', false);
+    Configure::write('Transliterations.enabled', false);
+    
+/**
+ * Blocked IP addresses. Should be an array of strings containing the
+ * IP's you want to block. For instance:
+ *
+ *    array (
+ *      "1.2.3.4",
+ *      "5.6.7.8",
+ *      "9.10.11.12"
+ *    )
+ *
+ * Cf. app/app_controller.php
+ */
+    Configure::write('Tatoeba.blockedIP', array());
 
 ?>

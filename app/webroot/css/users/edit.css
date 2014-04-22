@@ -28,7 +28,7 @@
 
 #UserEditForm fieldset {
     background: #DEF0C9;
-    border: 2px solid;
+    border: 2px solid #AFBC9E;
     color: #444;
 }
 
@@ -37,17 +37,23 @@
     display: block;
     float: left;
     text-align: right;
-    padding: 0px 10px;
+    padding: 5px 10px;
 }
 
 #UserEditForm div.input {
     padding: 3px;
 }
 
-#UserEditForm div.input input {
+#UserEditForm div.input input, #UserEditForm div.input select {
     font-size: 18px;
     width: 300px;
     border: 1px solid #989898;
+    padding: 2px 4px;
+}
+
+#UserEditForm div.checkbox input {
+    height: 25px;
+    width: 25px;
 }
 
 #UserEditForm div.submit {
@@ -57,6 +63,7 @@
 
 #UserEditForm div.submit input {
     font-size: 18px;
+    padding: 8px 20px;
 }
 
 .editUser .actions {
@@ -64,13 +71,22 @@
     float: right;
 }
 
+.editUser .actions ul {
+    list-style-type: none;
+    padding: 0px;
+}
+
 .editUser .actions li {
     font-size: 20px;
     border: 1px solid #555;
     margin: 10px;
-    padding: 5px;
+    padding: 5px 20px;
     background: #6CBC70;
     text-align: center;
+}
+
+.editUser .actions .delete {
+    background: #CE0000;
 }
 
 .editUser .actions a {

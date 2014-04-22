@@ -26,15 +26,11 @@
     list-style: none;
 }
 
-.wall li {
-    font-size: 13px;
-}
-
 .meta li {
     margin: 0;
-    font-size: 13px;
     color: #777;
     position: static;
+    font-size: 1em;
 }    
 
 .meta .image {
@@ -61,6 +57,7 @@
     float: right;
     margin-top: 10px;
     margin-right: 10px;
+    font-size: 13px;
 }
 
 .wall .body {

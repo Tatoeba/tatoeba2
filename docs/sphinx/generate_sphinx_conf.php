@@ -76,7 +76,7 @@ $languages = array(
     'yid' => 'Yiddish',
     
     'pes' => 'Persian',
-    'nan' => 'Teochew',
+    'nan' => 'Min Nan Chinese',
     'eus' => 'Basque',
     'slk' => 'Slovak',
     'dan' => 'Danish',
@@ -144,7 +144,7 @@ $languages = array(
     'mlg' => 'Malagasy',
     'grn' => 'Guarani',
     'lad' => 'Ladino',
-    'pms' => 'Piemontese',
+    'pms' => 'Piedmontese',
 
     'avk' => 'Kotava', 
     'tpw' => 'Old Tupi',
@@ -158,7 +158,7 @@ $languages = array(
     'aze' => 'Azerbaijani' , 
     'khm' => 'Khmer' , 
     'lao' => 'Lao' , 
-    'bod' => 'Standard Tibetan' , 
+    'bod' => 'Tibetan' , 
     'hil' => 'Hiligaynon' , 
     'arq' => 'Algerian Arabic' , 
     'pcd' => 'Picard' , 
@@ -177,7 +177,7 @@ $languages = array(
     'pdc' => 'Pennsylvania German' , 
     'sin' => 'Sinhala' , 
     'tuk' => 'Turkmen' , 
-    'wln' => 'Wallon' , 
+    'wln' => 'Walloon' , 
     'bak' => 'Bashkir' , 
     'hau' => 'Hausa' , 
     'ltz' => 'Luxembourgish' , 
@@ -198,7 +198,10 @@ $languages = array(
     'sna' => 'Shona' , 
     'mnw' => 'Mon' , 
     'nog' => 'Nogai' , 
-    'sah' => 'Yakut' , //@lang
+    'sah' => 'Yakut' , 
+    'abk' => 'Abkhaz' , 
+    'tet' => 'Tetun' , 
+    'tam' => 'Tamil' , //@lang
 );
 
 $languageWithStemmer = array(

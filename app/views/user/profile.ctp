@@ -176,6 +176,8 @@ if (!empty($realName)) {
         echo $html->image(
             IMG_PATH . 'profiles_128/'.$userImage,
             array(
+                'width' => 128,
+                'height' => 128,
                 'alt' => $username
             )
         );

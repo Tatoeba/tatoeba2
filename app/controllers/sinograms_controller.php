@@ -42,7 +42,7 @@ class SinogramsController extends AppController
 {
 
     public $name = 'Sinograms';
-    public $components = array('Lucene','Permissions');
+    public $components = array('Permissions');
     public $helpers = array('Form','Javascript','Html','AttentionPlease');
     public $uses = array('Sinogram','Sentence');
 
