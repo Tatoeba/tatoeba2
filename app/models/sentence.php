@@ -999,8 +999,10 @@ class Sentence extends AppModel
         setlocale(LC_CTYPE, "fr_FR.UTF-8");
         $text = escapeshellarg($text);
         
-        $text = nl2br($text);
-        
+        // remove line returns so that they don't mess up
+        // with mecab tokenization
+        $text = str_replace(array("\r\n", "\r", "\n"), "", $text);
+
         $Owakati = exec(
             "export LC_ALL=fr_FR.UTF-8 ; ".
             "echo $text | ".
@@ -1045,17 +1047,37 @@ class Sentence extends AppModel
         );
         
         $kata = array(
+        "ッキャ","ッキュ","ッキョ","ッギャ","ッギュ","ッギョ","ッシャ",
+        "ッシュ","ッショ","ッジャ","ッジュ","ッジョ","ッチャ","ッチュ",
+        "ッチョ","ッニャ","ッニュ","ッニョ","ッヒャ","ッヒュ","ッヒョ",
+        "ッビャ","ッビュ","ッビョ","ッピャ","ッピュ","ッピョ","ッミャ",
+        "ッミュ","ッミョ","ッリャ","ッリュ","ッリョ",
+
         "キャ","キュ","キョ","ギャ","ギュ","ギョ","シャ",
         "シュ","ショ","ジャ","ジュ","ジョ","チャ","チュ",
         "チョ","ニャ","ニュ","ニョ","ヒャ","ヒュ","ヒョ",
         "ビャ","ビュ","ビョ","ピャ","ピュ","ピョ","ミャ",
         "ミュ","ミョ","リャ","リュ","リョ",
         
+        "ッウィ","ッウェ","ッウォ","ッヴァ","ッヴィ","ッヴ","ッヴェ",
+        "ッヴォ","ッシェ","ッジェ","ッチェ","ッツァ","ッツィ","ッツェ",
+        "ッツォ","ッデュ","ッティ","ットゥ","ッテュ","ッディ","ッドゥ",
+        "ッファ","ッフィ","ッフェ","ッフォ","ッフュ",
+        
         "ウィ","ウェ","ウォ","ヴァ","ヴィ","ヴ","ヴェ",
         "ヴォ","シェ","ジェ","チェ","ツァ","ツィ","ツェ",
         "ツォ","デュ","ティ","トゥ","テュ","ディ","ドゥ",
         "ファ","フィ","フェ","フォ","フュ",
         
+        "ッカ","ッガ","ッキ","ッギ","ック","ッグ","ッケ","ッゲ","ッコ","ッゴ",
+        "ッサ","ッザ","ッシ","ッジ","ッス","ッズ","ッセ","ッゼ","ッソ","ッゾ",
+        "ッタ","ッダ","ッチ","ッヂ","ッッ","ッツ","ッヅ","ッテ","ッデ","ット",
+        "ッド","ッナ","ッニ","ッヌ","ッネ","ッノ","ッハ","ッバ","ッパ","ッヒ",
+        "ッビ","ッピ","ッフ","ッブ","ップ","ッヘ","ッベ","ッペ","ッホ","ッボ",
+        "ッポ","ッマ","ッミ","ッム","ッメ","ッモ","ッャ","ッヤ","ッュ","ッユ",
+        "ッョ","ッヨ","ッラ","ッリ","ッル","ッレ","ッロ","ッヮ","ッワ","ッヲ",
+        "ッン",
+
         "ァ","ア","ィ","イ","ゥ","ウ","ェ","エ","ォ","オ",
         "カ","ガ","キ","ギ","ク","グ","ケ","ゲ","コ","ゴ",
         "サ","ザ","シ","ジ","ス","ズ","セ","ゼ","ソ","ゾ",
@@ -1070,15 +1092,33 @@ class Sentence extends AppModel
         );
         
         $romanji = array(
+        "kya","kkyu","kkyo","ggya","ggyu","ggyo","ssha","sshu","ssho",
+        "jja","jju","jjo","ccha","cchu","ccho","nnya","nnyu","nnyo",
+        "hhya","hhyu","hhyo","bbya","bbyu","bbyo","ppya","ppyu","ppyo",
+        "mmya","mmyu","mmyo","rrya","rryu","rryo",
+        
         "kya","kyu","kyo","gya","gyu","gyo","sha","shu","sho",
         "ja","ju","jo","cha","chu","cho","nya","nyu","nyo",
         "hya","hyu","hyo","bya","byu","byo","pya","pyu","pyo",
         "mya","myu","myo","rya","ryu","ryo",
         
+        "wwi","wwe","wwo","vva","vvi","vvu","vvr","vvo","sshe","jje",
+        "che","ttsa","ttsi","ttse","ttso","ddyu","tti","ttu","ttyu","ddi",
+        "ddu","ffa","ffi","ffe","ffo","ffyu",
+        
         "wi","we","wo","va","vi","vu","vr","vo","she","je",
         "che","tsa","tsi","tse","tso","dyu","ti","tu","tyu","di",
         "du","fa","fi","fe","fo","fyu",
         
+        "kka","gga","kki","ggi","kku","ggu","kke","gge","kko","ggo",
+        "ssa","zza","sshi","jji","ssu","zzu","sse","zze","sso","zzo",
+        "tta","dda","cchi","jji","","tsu","zzu","tte","dde","tto",
+        "ddo","nna","nni","nnu","nne","nno","hha","bba","ppa","hhi",
+        "bbi","ppi","ffu","bbu","ppu","hhe","bbe","ppe","hho","bbo",
+        "ppo","mma","mmi","mmu","mme","mmo","yya","yya","yyu","yyu",
+        "yyo","yyo","rra","rri","rru","rre","rro","wwa","wwa","wwo",
+        "nn",
+
         "a","a","i","i","u","u","e","e","o","o",
         "ka","ga","ki","gi","ku","gu","ke","ge","ko","go",
         "sa","za","shi","ji","su","zu","se","ze","so","zo",
@@ -1127,11 +1167,24 @@ class Sentence extends AppModel
             }
         } elseif ($type == Sentence::$romanji['romanji']) {
             $kata = str_replace($katakana, $hiragana, $kata); // Temporary fix to make jumandic-based mecab work.
+            $prev_word = null;
             foreach ($Owakati as $i=>$word) {
+                // Ensure we only have katanakas.
+                $Oyomi[$i] = str_replace($hiragana, $katakana, $Oyomi[$i]);
+                // Little tsus are part of the previous word (やった splits into やっ た)
+                // so we need to get tsus back first. This code merge multiple tsus into
+                // one (やっっっった becomes "yatta"), but it removes ending tsus
+                // (やったっ！ becomes "yatta!").
+                if (!is_null($prev_word)) {
+                    $prev_word_last_chr = mb_substr($prev_word, -1, 1, "UTF-8");
+                    if ($prev_word_last_chr == "ッ")
+                        $Oyomi[$i] = $prev_word_last_chr.$Oyomi[$i];
+                }
                 array_push(
                     $romanization,
                     str_replace($kata, $romanji, $Oyomi[$i])
                 );
+                $prev_word = $Oyomi[$i];
             }
         } else {
             $romanization = array();
