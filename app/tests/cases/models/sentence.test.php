@@ -74,4 +74,23 @@ class SentenceTestCase extends CakeTestCase {
 			'eng'
 		);
 	}
+
+	function _assertJapaneseReading($type, $japanese, $reading) {
+		$result = $this->Sentence->getJapaneseRomanization2($japanese, Sentence::$romanji[$type]);
+		$this->assertEqual($reading, $result, "$type of '$japanese' should read '$reading', not '$result'");
+	}
+
+	function testGetJapaneseRomanization2_furigana() {
+		$this->_assertJapaneseReading('furigana', '例えば', 'たとえば');
+	}
+
+	function testGetJapaneseRomanization2_mix() {
+		$this->_assertJapaneseReading('mix', '例えば', '例えば[たとえば]');
+	}
+
+	function testGetJapaneseRomanization2_romaji() {
+		$this->_assertJapaneseReading('romanji', '例えば', 'tatoeba');
+		$this->_assertJapaneseReading('romanji', 'やった', 'ya tta');
+		$this->_assertJapaneseReading('romanji', 'それはとってもいい話だ', 'sore ha tottemo ii hanashi da');
+	}
 }
