@@ -94,6 +94,13 @@
                             'selectedLanguageFrom' => $session->read('search_from'),
                             'selectedLanguageTo' => $session->read('search_to'),
                             'searchQuery' => $session->read('search_query'),
+                            'cache' => array(
+                                'time' => is_null($session->read('search_from'))
+                                          && is_null($session->read('search_to'))
+                                          && is_null($session->read('search_query'))
+                                          ? '+1 day' : false,
+                                'key' => Configure::read('Config.language')
+                            )
                         )); ?>
 
 
