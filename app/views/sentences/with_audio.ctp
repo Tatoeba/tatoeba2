@@ -35,7 +35,13 @@ if (empty($lang)){
 ?>
 
 <div id="annexe_content">
-    <?php echo $this->element('audio_stats', array('stats' => $stats)); ?>
+    <?php echo $this->element('audio_stats', array(
+        'stats' => $stats,
+        'cache' => array(
+            'time'=> '+6 hours',
+            'key'=> Configure::read('Config.language')
+        )
+    )); ?>
 </div>
 
 <div id="main_content">
