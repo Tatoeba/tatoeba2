@@ -89,7 +89,13 @@
 		<div id="container">
 
 			<!--  SEARCH BAR  -->
-			<?php echo $this->element('search_bar'); ?>
+			<?php
+                        echo $this->element('search_bar', array(
+                            'selectedLanguageFrom' => $session->read('search_from'),
+                            'selectedLanguageTo' => $session->read('search_to'),
+                            'searchQuery' => $session->read('search_query'),
+                        )); ?>
+
 
 			<!--  CONTENT -->
 			<?php
