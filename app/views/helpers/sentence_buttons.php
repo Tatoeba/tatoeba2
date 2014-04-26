@@ -226,7 +226,7 @@ class SentenceButtonsHelper extends AppHelper
             // from shtooka or tatoeba audio (ie really good quality audio):
             case 'shtooka' : 
                 $onClick = 'return false';
-                $path = 'http://static.tatoeba.org/audio/sentences/'
+                $path = Configure::read('Path.audio')
                     .$sentenceLang.'/'.$sentenceId.'.mp3'; 
                 $css = 'audioAvailable';
                 $title = __('Play audio', true);           
