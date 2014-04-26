@@ -201,7 +201,14 @@ $languages = array(
     'sah' => 'Yakut' , 
     'abk' => 'Abkhaz' , 
     'tet' => 'Tetun' , 
-    'tam' => 'Tamil' , //@lang
+    'tam' => 'Tamil' , 
+    'udm' => 'Udmurt' , 
+    'kum' => 'Kumyk' , 
+    'crh' => 'Crimean Tatar' , 
+    'nya' => 'Chinyanja' , 
+    'liv' => 'Livonian' , 
+    'nav' => 'Navajo' , 
+    'chr' => 'Cherokee' , //@lang
 );
 
 $languageWithStemmer = array(

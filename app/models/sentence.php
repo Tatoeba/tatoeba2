@@ -119,7 +119,14 @@ class Sentence extends AppModel
         'sah', 
         'abk', 
         'tet', 
-        'tam', //@lang
+        'tam', 
+        'udm', 
+        'kum', 
+        'crh', 
+        'nya', 
+        'liv', 
+        'nav', 
+        'chr', //@lang
         null
     );
     

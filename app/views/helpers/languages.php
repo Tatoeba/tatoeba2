@@ -226,7 +226,14 @@ class LanguagesHelper extends AppHelper
                 'sah' => __('Yakut',true), 
                 'abk' => __('Abkhaz',true), 
                 'tet' => __('Tetun',true), 
-                'tam' => __('Tamil',true), //@lang 
+                'tam' => __('Tamil',true), 
+            'udm' => __('Udmurt',true), 
+            'kum' => __('Kumyk',true), 
+            'crh' => __('Crimean Tatar',true), 
+            'nya' => __('Chinyanja',true), 
+            'liv' => __('Livonian',true), 
+            'nav' => __('Navajo',true), 
+            'chr' => __('Cherokee',true), //@lang 
             );
             
             asort($this->__languages);
