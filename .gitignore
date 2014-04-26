@@ -1,6 +1,19 @@
+info.php
+
+
+# config
 app/config/core.php
 app/config/database.php
-info.php
+
+# audio files
+app/webroot/files/audio
+
+# cache
+app/tmp/cache
+app/tmp/cache/models
+app/tmp/cache/persistent
+app/tmp/cache/views
+
 
 # By default, "./cake/console/cake i18n extract" writes files here. Ignore them.
 app/locale/default*.pot
