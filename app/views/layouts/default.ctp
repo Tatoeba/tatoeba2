@@ -95,6 +95,7 @@
                             'selectedLanguageTo' => $session->read('search_to'),
                             'searchQuery' => $session->read('search_query'),
                             'cache' => array(
+                                // Only use cache when search fields are not prefilled
                                 'time' => is_null($session->read('search_from'))
                                           && is_null($session->read('search_to'))
                                           && is_null($session->read('search_query'))
