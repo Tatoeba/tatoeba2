@@ -38,11 +38,6 @@ if (isset($this->params['lang'])) {
 <?php
 $languages = $languages->getSearchableLanguagesArray();
 
-$selectedLanguageFrom = $session->read('search_from');
-$selectedLanguageTo = $session->read('search_to');
-$searchQuery = $session->read('search_query');
-
-
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';
 }

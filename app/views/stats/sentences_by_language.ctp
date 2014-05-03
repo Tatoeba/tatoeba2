@@ -33,7 +33,13 @@ $totalSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
 $max = $stats[0]['langStats']['numberOfSentences'];
 ?>
 <div id="annexe_content">
-    <?php echo $this->element('audio_stats', array('stats' => $audioStats)); ?>
+    <?php echo $this->element('audio_stats', array(
+        'stats' => $audioStats,
+        'cache' => array(
+            'time'=> '+6 hours',
+            'key'=> Configure::read('Config.language')
+        )
+    )); ?>
 </div>
 
 <div id="main_content">
