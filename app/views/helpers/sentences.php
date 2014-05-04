@@ -358,6 +358,7 @@ class SentencesHelper extends AppHelper
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
         $sentenceAudio = 'no';
+        $correctnessLabel = $this->getCorrectnessLabel($sentence['correctness']);
         if (isset($sentence['hasaudio'])) {
             $sentenceAudio = $sentence['hasaudio'];
         }
@@ -365,9 +366,10 @@ class SentencesHelper extends AppHelper
         if ($type != 'mainSentence') {
             $elementId = 'id="translation_'.$sentenceId.'_'.$parentId.'"';
         }
+        $class = 'sentence '.$type.' correctness'.$correctnessLabel;
         ?>
         
-        <div class="sentence <?php echo $type; ?>" <?php echo $elementId; ?>>
+        <div class="<?php echo $class; ?>" <?php echo $elementId; ?>>
         <?php
         // Navigation button (info or arrow icon)
         if ($type != 'mainSentence' || $isEditable) {
@@ -399,6 +401,27 @@ class SentencesHelper extends AppHelper
         <?php
     }
     
+    
+    /**
+     * Returns the label for the correctness of a sentence.
+     * 
+     * @param int $correctness Correctness of the sentence.
+     *
+     * @return String
+     */
+    private function getCorrectnessLabel($correctness)
+    {
+        switch ($correctness) {
+            case -1:
+                return 'Low';
+            case 1:
+                return 'High';
+            default:
+                return 'Medium';
+        }
+    }
+
+     
     /**
      * Display the link or unlink button.
      *

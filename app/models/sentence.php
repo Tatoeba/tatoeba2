@@ -475,7 +475,8 @@ class Sentence extends AppModel
                             "id",
                             "lang",
                             "text",
-                            "hasaudio"
+                            "hasaudio",
+                            "correctness"
                         ),
                         "conditions" => $translationsConditions
                     )
@@ -694,6 +695,7 @@ class Sentence extends AppModel
               p2.id   AS translation_id,
               p2.lang AS translation_lang,
               p2.user_id AS translation_user_id,
+              p2.correctness AS correctness,
               'Translation' as distance
             FROM sentences_translations AS t
               LEFT  JOIN sentences AS p2 ON t.translation_id = p2.id
@@ -716,6 +718,7 @@ class Sentence extends AppModel
               p2.id   AS translation_id,
               p2.lang AS translation_lang,
               p2.user_id AS translation_user_id,
+              p2.correctness AS correctness,
               'IndirectTranslation'  as distance
             FROM sentences_translations AS t
                 LEFT JOIN sentences_translations AS t2
@@ -754,6 +757,7 @@ class Sentence extends AppModel
                     'user_id' => $result['translation_user_id'],
                     'lang' => $result['translation_lang'],
                     'hasaudio' => $result['hasaudio'],
+                    'correctness' => $result['correctness']
                 );
 
                 $this->generateRomanization($translation);

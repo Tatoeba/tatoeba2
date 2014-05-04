@@ -35,6 +35,8 @@ $this->pageTitle = sprintf(__('Sentences with: %s', true), $query);
     $attentionPlease->tatoebaNeedsYou();
     
     echo $this->element('search_features');
+    
+    echo $this->element('sentences/correctness_info');
     ?>
 </div>
 

@@ -224,3 +224,11 @@ a.romanization {
 .loading {
     display: none;
 }
+
+
+/*
+ * Sentence correctness
+ */
+.correctnessLow, .correctnessLow a {
+    color: #F00000;
+}
