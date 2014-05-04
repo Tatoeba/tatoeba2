@@ -200,7 +200,8 @@ $languages = array(
     'nya' => 'Chinyanja' , 
     'liv' => 'Livonian' , 
     'nav' => 'Navajo' , 
-    'chr' => 'Cherokee' , //@lang
+    'chr' => 'Cherokee' , 
+    'guj' => 'Gujarati' , //@lang
 );
 
 $languageWithStemmer = array(
