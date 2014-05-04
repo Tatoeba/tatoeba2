@@ -29,6 +29,7 @@ if (isset($sentence)) {
     $sentenceId = $sentence['Sentence']['id'];
     $sentenceLang = $sentence['Sentence']['lang'];
     $sentenceText = Sanitize::html($sentence['Sentence']['text']);
+    $sentenceCorrectness = $sentence['Sentence']['correctness'];
     
     $languageName = $languages->codeToName($sentenceLang);
     $title = sprintf(__('%s example sentence: ', true), $languageName);
@@ -66,6 +67,22 @@ $navigation->displaySentenceNavigation(
     
     <?php $tags->displayTagsModule($tagsArray, $sentenceId); ?>
     
+    <?php 
+    if (CurrentUser::isModerator()) {
+        echo $this->element(
+            'sentences/correctness',
+            array(
+                'sentenceId' => $sentenceId,
+                'sentenceCorrectness' => $sentenceCorrectness
+            )
+        ); 
+    }
+    ?>
+    
+    <?php 
+    echo $this->element('sentences/correctness_info');
+    ?>
+    
     <div class="module">
         <?php
         echo '<h2>';
@@ -86,7 +103,8 @@ $navigation->displaySentenceNavigation(
             echo '<em>'. __('There is no log for this sentence', true) .'</em>';
         }
         ?>
-    </div>    
+    </div>  
+    
     <div class="module">
         <h2><?php __('Report mistakes'); ?> </h2>
         <p>

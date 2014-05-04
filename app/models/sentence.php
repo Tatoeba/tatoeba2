@@ -432,6 +432,7 @@ class Sentence extends AppModel
                         'lang',
                         'user_id',
                         'hasaudio',
+                        'correctness'
                     )
             )
         );
@@ -1753,6 +1754,28 @@ class Sentence extends AppModel
         );
         
         return $result['Sentence']['text'];
+    }
+    
+    
+    /**
+     * Save the correctness of a sentence. Only corpus
+     * maintainers or admins can change this value.
+     * 
+     * @param int $sentenceId  Id of the sentence.
+     * @param int $correctness Correctness of the sentence.
+     * 
+     * @return bool
+     */
+    public function editCorrectness($sentenceId, $correctness)
+    {
+        $this->id = $sentenceId;
+        $canEditCorrectness = CurrentUser::isModerator();
+        
+        if ($canEditCorrectness) {
+            return $this->saveField('correctness', $correctness);
+        }
+        
+        return false;
     }
 }
 ?>
