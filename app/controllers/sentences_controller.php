@@ -283,6 +283,7 @@ class SentencesController extends AppController
 
         $sentenceLang = Sanitize::paranoid($_POST['selectedLang']);
         $sentenceText = $_POST['value'];
+        $sentenceCorrectness = $this->Sentence->User->getLevelOfUser($userId);
 
         $isSaved = $this->CommonSentence->wrapper_save_sentence(
             $sentenceLang,
@@ -291,7 +292,8 @@ class SentencesController extends AppController
             null,
             null,
             null,
-            $userName
+            $userName,
+            $sentenceCorrectness
         );
         
         // saving
@@ -439,10 +441,12 @@ class SentencesController extends AppController
             }
             
             // Saving...
+            $translationCorrectness = $this->Sentence->User->getLevelOfUser($userId);
             $isSaved = $this->Sentence->saveTranslation(
                 $sentenceId,
                 $translationText,
-                $translationLang
+                $translationLang,
+                $translationCorrectness
             );
             
             if ($isSaved) {
@@ -450,6 +454,7 @@ class SentencesController extends AppController
                 $translation['id'] = $this->Sentence->id;
                 $translation['lang'] = $translationLang;
                 $translation['text'] = $translationText;
+                $translation['correctness'] = $translationCorrectness;
                 
                 $ownerName = $this->Auth->user('username');
                 

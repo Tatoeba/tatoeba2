@@ -1482,13 +1482,17 @@ class Sentence extends AppModel
      *
      * @return boolean
      */
-    public function saveTranslation($sentenceId, $translationText, $translationLang)
-    {
+    public function saveTranslation(
+        $sentenceId, $translationText, $translationLang, $translationCorrectness
+    ) {
+        $userId = CurrentUser::get('id');
+        
         // saving translation
         $sentenceSaved = $this->saveNewSentence(
             $translationText,
             $translationLang,
-            CurrentUser::get('id')
+            $userId,
+            $translationCorrectness
         );
         
         // saving links
@@ -1504,13 +1508,14 @@ class Sentence extends AppModel
     /**
      * Add a new sentence in the database
      * 
-     * @param string $text   The text of the sentence
-     * @param string $lang   The lang of the sentence
-     * @param int    $userId The id of the user who added this sentence
+     * @param string $text        The text of the sentence
+     * @param string $lang        The lang of the sentence
+     * @param int    $userId      The id of the user who added this sentence
+     * @param int    $correctness Correctness of the sentence
      *
      * @return bool
      */
-    public function saveNewSentence($text, $lang, $userId)
+    public function saveNewSentence($text, $lang, $userId, $correctness = 0)
     {
         if ($lang == "") {
             $lang = null;
@@ -1521,6 +1526,7 @@ class Sentence extends AppModel
         $data['Sentence']['text'] = trim($text);
         $data['Sentence']['lang'] = $lang;
         $data['Sentence']['user_id'] = $userId;
+        $data['Sentence']['correctness'] = $correctness;
         $sentenceSaved = $this->save($data);
         
         return $sentenceSaved;
@@ -1545,18 +1551,22 @@ class Sentence extends AppModel
         $translationLang,
         $userId
     ) {
+        $correctness = $this->User->getLevelOfUser($userId);
+        
         // saving sentence
         $sentenceSaved = $this->saveNewSentence(
             $sentenceText,
             $sentenceLang,
-            $userId
+            $userId,
+            $correctness
         );
         $sentenceId = $this->id;
         // saving translation
         $translationSaved = $this->saveNewSentence(
             $translationText,
             $translationLang,
-            $userId
+            $userId,
+            $correctness
         );
         
         $translationId = $this->id;

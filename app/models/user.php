@@ -543,9 +543,29 @@ class User extends AppModel
             ) 
         );
     }  
+    
+    
+    /**
+     * Return the level of the user of given id.
+     *
+     * @param int $userId Id of the user.
+     *
+     * @return int
+     */
+    public function getLevelOfUser($userId)
+    {
+        $result = $this->find(
+            'first',
+            array(
+                'conditions' => array('User.id' => $userId),
+                'contain' => array(),
+                'fields' => 'User.level'
+            )
+        );
+        return $result['User']['level'];
+    }
 
 }
-
 
 
 ?>

@@ -454,8 +454,9 @@ class SentencesList extends AppModel
         }
 
         // Saving sentence
+        $sentenceCorrectness = $this->User->getLevelOfUser($userId);
         $sentenceSaved = $this->Sentence->saveNewSentence(
-            $sentenceText, $sentenceLang, $userId
+            $sentenceText, $sentenceLang, $userId, $sentenceCorrectness
         );
         if (!$sentenceSaved) {
             return false;

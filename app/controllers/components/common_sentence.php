@@ -73,7 +73,8 @@ class CommonSentenceComponent extends Object
         $sentenceId = null,
         $translatedSentenceId = null,
         $translatedSentenceLang = null,
-        $userName = ""
+        $userName = "",
+        $correctness = 0
     ) {
         $this->Cookie->write('contribute_lang', $lang, false, "+1 month");
         
@@ -91,6 +92,7 @@ class CommonSentenceComponent extends Object
         $this->data['Sentence']['lang'] = $lang;
         $this->data['Sentence']['user_id'] = $userId;
         $this->data['Sentence']['text'] = $text;
+        $this->data['Sentence']['correctness'] = $correctness;
 
         $Sentence = ClassRegistry::init('Sentence');
 
