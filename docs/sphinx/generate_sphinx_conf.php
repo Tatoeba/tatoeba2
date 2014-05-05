@@ -428,7 +428,7 @@ indexer
 
 searchd
 {
-    listen                  = 9312
+    port                    = 9312
     log                     = <?php echo $sphinxLogDir . DIRECTORY_SEPARATOR . "searchd.log\n"; ?>
     query_log               = <?php echo $sphinxLogDir . DIRECTORY_SEPARATOR . "query.log\n"; ?>
     read_timeout            = 5
