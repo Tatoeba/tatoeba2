@@ -233,7 +233,8 @@ class LanguagesHelper extends AppHelper
             'nya' => __('Chinyanja',true), 
             'liv' => __('Livonian',true), 
             'nav' => __('Navajo',true), 
-            'chr' => __('Cherokee',true), //@lang 
+            'chr' => __('Cherokee',true), 
+            'guj' => __('Gujarati',true), //@lang 
             );
             
             asort($this->__languages);
