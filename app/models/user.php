@@ -221,7 +221,8 @@ class User extends AppModel
                     'birthday',
                     'is_public',
                     'group_id',
-                    'lang'
+                    'lang',
+                    'level'
                 ),
                 'contain' => array(
                     'Country' => array('fields' => array('name'))
