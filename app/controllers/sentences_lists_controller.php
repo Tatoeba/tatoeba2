@@ -48,9 +48,9 @@ class SentencesListsController extends AppController
         'AttentionPlease'
     );
     public $components = array('GoogleLanguageApi');
-    
-    const MAX_COUNT_FOR_DOWNLOAD = 50;
-    
+    // We want to make sure that people don't download long lists, which can slow down the server.
+    // This is an arbitrary but easy to remember value, and most lists are shorter than this.    
+    const MAX_COUNT_FOR_DOWNLOAD = 100;
     
     /**
      * Before filter.
@@ -150,6 +150,28 @@ class SentencesListsController extends AppController
     }
     
     /**
+     * Returns empty string if list can be downloaded, a message otherwise.
+     * 
+     * @param int $count length of list
+     *
+     * @return string
+     */
+    protected function _get_download_message($count)
+    {
+        $txt = "";
+        if ($count > self::MAX_COUNT_FOR_DOWNLOAD) 
+            {
+                $txt = sprintf(__(
+                                  'The download feature has been disabled for this list because '.
+                                  'it contains %d sentences. Only lists containing %d or fewer '.
+                                  'sentences can be printed. If you can edit the list, you may '.
+                                  'want to split it into multiple lists.', true), 
+                               $count, self::MAX_COUNT_FOR_DOWNLOAD);
+            }
+        return $txt;
+    }
+
+    /**
      * Retrieve sentences for a list. Used in show() and edit().
      * 
      * @param int    $id               Id of the list.
@@ -169,16 +191,15 @@ class SentencesListsController extends AppController
         );
         $sentencesInList = $this->paginate('SentencesSentencesLists');
         
-        $count = $this->params['paging']['SentencesSentencesLists']['count'];
-        $canDownload = false;
-        if ($count <= self::MAX_COUNT_FOR_DOWNLOAD) {
-            $canDownload = true;
-        }
+        $thisListCount = $this->params['paging']['SentencesSentencesLists']['count'];
+        $downloadMessage = $this->_get_download_message($thisListCount);
+        $canDownload = empty($downloadMessage);
         
         $this->set('translationsLang', $translationsLang);
         $this->set('list', $list);
         $this->set('sentencesInList', $sentencesInList);
         $this->set('canDownload', $canDownload);
+        $this->set('downloadMessage', $downloadMessage);
     }
 
 
@@ -374,7 +395,6 @@ class SentencesListsController extends AppController
         $this->SentencesList->saveField('is_public', $isPublic);
     }
     
-    
     /**
      * Page to export a list.
      * 
@@ -389,17 +409,14 @@ class SentencesListsController extends AppController
         }
         
         $count = $this->SentencesList->getNumberOfSentences($listId);
-        if ($count > self::MAX_COUNT_FOR_DOWNLOAD) {
-            $this->flash(
-                __(
-                    'The download feature has been disabled for this list because '.
-                    'it has too many sentences.', true
-                ),
+        $txt = $this->_get_download_message($count);
+        if (!empty($txt))
+        {
+            $this->flash($txt,
                 '/sentences_lists/show/'.$listId
             );
         }
-        
-        
+                
         $listId = Sanitize::paranoid($listId);
         
         $listName = $this->SentencesList->getNameForListWithId($listId);
@@ -432,7 +449,7 @@ class SentencesListsController extends AppController
         $withTranslation = ($translationsLang !== null);
         
         // as the view is a file to be downloaded we need to say
-        // to cakephp that he must not add the layout
+        // to cakephp that it must not add the layout
         $this->layout = null;
         $this->autoLayout = false;
         // to prevent cakephp from adding debug output
@@ -442,8 +459,8 @@ class SentencesListsController extends AppController
             $listId, $translationsLang 
         );
   
-        // we specify which field will be present in the csv
-        // order is important 
+        // We specify which fields will be present in the csv.
+        // Order is important. 
         $fieldsList = array(); 
         if ($exportId === true) {
             array_push($fieldsList, "Sentence.id");

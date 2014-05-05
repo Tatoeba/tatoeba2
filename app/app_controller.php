@@ -87,10 +87,10 @@ class AppController extends Controller
         #} 
         Security::setHash('md5');
         $this->Cookie->domain = TATOEBA_DOMAIN;
-        // this line will call views/elements/session_expired.ctp
-        // when one try to do an ajax action after is session expired
+        // This line will call views/elements/session_expired.ctp.
+        // When one tries to do an AJAX action after the session is expired,
         // the action will return the content of this file instead of
-        // the whole pages
+        // the whole page.
         $this->Auth->ajaxLogin = 'session_expired'; 
         $this->Auth->allow('display');
         $this->Auth->authorize = 'actions';
@@ -174,7 +174,7 @@ class AppController extends Controller
     }
 
     /**
-     * Redirect to a given url, and precise the interface language
+     * Redirect to a given url, and specify the interface language
      *
      * @param mixed $url    The url to go to, can be a raw url (string)
      *                      or a cakephp array
@@ -186,8 +186,8 @@ class AppController extends Controller
 
     public function redirect($url = null, $status = null, $exit = true)
     {
-        // if the developper has used "redirect" method without
-        // precising the lang params, then we add it
+        // if the developer has used "redirect" method without
+        // specifying the lang param, then we add it
         if (isset($this->params['lang']) && is_array($url)) {
             $url['lang'] = $this->params['lang'];
         }
