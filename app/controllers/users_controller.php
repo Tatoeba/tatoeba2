@@ -230,7 +230,12 @@ class UsersController extends AppController
                 }
                 $this->_common_login($redirectUrl);
             } else {
-                $this->redirect(array('action' => 'login'));
+                $this->flash(
+                             __(
+                                'Login failed.', true
+                                ), 
+                             '/users/login/'
+                             );
             }
         }
     }
