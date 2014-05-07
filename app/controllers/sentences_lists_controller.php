@@ -164,7 +164,7 @@ class SentencesListsController extends AppController
                 $txt = sprintf(__(
                                   'The download feature has been disabled for this list because '.
                                   'it contains %d sentences. Only lists containing %d or fewer '.
-                                  'sentences can be printed. If you can edit the list, you may '.
+                                  'sentences can be downloaded. If you can edit the list, you may '.
                                   'want to split it into multiple lists.', true), 
                                $count, self::MAX_COUNT_FOR_DOWNLOAD);
             }

@@ -229,10 +229,20 @@ class UsersController extends AppController
                     $redirectUrl = $this->data["User"]["redirectTo"];
                 }
                 $this->_common_login($redirectUrl);
+            } elseif (empty($this->data["User"]['username'])) {
+                $this->flash(
+                             __(
+                                'You must fill in your '.
+                                'username and password.', true
+                                ), 
+                             '/users/login/'
+                             );
             } else {
                 $this->flash(
                              __(
-                                'Login failed.', true
+                                'Login failed. Make sure that your Caps Lock '.
+                                'and Num Lock are not unintentionally turned on. '.
+                                'Your password is case-sensitive.', true
                                 ), 
                              '/users/login/'
                              );
