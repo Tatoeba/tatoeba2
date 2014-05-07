@@ -79,7 +79,14 @@ class PaginationHelper extends AppHelper
         $prevNextOptions = array();
         $numbersOptions = array(
             'separator' => '',
-            'modulus' => 4,
+            // Print up to 14/2 = 7 numbered links on each side
+            // of the central numbered link, in addition to the
+            // first and prev links on the far left, and the next
+            // and last links on the far right. We should 
+            // use a smaller value for this parameter on mobile
+            // devices if we ever customize the interface to
+            // behave differently based on the display size. 
+            'modulus' => 14,
             'class' => 'pageNumber'
         );
         ?>
