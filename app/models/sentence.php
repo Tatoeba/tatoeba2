@@ -50,8 +50,10 @@ class Sentence extends AppModel
     public $actsAs = array("Containable", "Sphinx");
     public static $romanji = array('furigana' => 1, 'mix' => 2, 'romanji' => 3);
 
-    // This is not much in use. Should probably remove it someday
-    const MAX_CORRECTNESS = 6;
+    // If you change these values, revisit getCorrectnessLabel in
+    // app/views/helpers/sentences.php. 
+    const MIN_CORRECTNESS = -1;
+    const MAX_CORRECTNESS = 1;
     
     public $languages = array(
         'ara', 'bul', 'deu', 'ell', 'eng',
@@ -1786,7 +1788,10 @@ class Sentence extends AppModel
         $canEditCorrectness = CurrentUser::isModerator();
         
         if ($canEditCorrectness) {
-            return $this->saveField('correctness', $correctness);
+            $data = array('id' => $this->id, 'correctness' => $correctness);
+            return $this->Sentence->save($data);
+            //Trang's code
+            //return $this->saveField('correctness', $correctness);
         }
         
         return false;

@@ -80,7 +80,9 @@ $form->create('User'); // But we still need to call $form->create()
     echo $form->input('email');
     echo $form->input('lang');
     echo $form->input('group_id');
-	echo $form->input('level');
+    echo $form->input('level', 
+                      array('type' => 'radio', 
+                            'options' => range(User::MIN_LEVEL, User::MAX_LEVEL)));
     echo $form->input('send_notifications');
     ?>
     </fieldset>
