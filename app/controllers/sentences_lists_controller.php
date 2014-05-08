@@ -424,8 +424,8 @@ class SentencesListsController extends AppController
             {    
                 // Do not internationalize this message.
                 $message = 'This list is too long to be downloaded.';
-                $this->flash($message, '/sentences_lists/show/'.$listId);
             }
+            $this->flash($message, '/sentences_lists/show/'.$listId);
         }
                 
         $listId = Sanitize::paranoid($listId);
