@@ -22,8 +22,10 @@ else
             OUTPUT_FILE=${DIR_TO_CONTAIN_MP3}/${BASENAME}.mp3
             echo "Converting $DIR_W_FLAC/${FLAC} to $OUTPUT_FILE"
             TITLE=`metaflac --show-tag=TITLE ${FLAC} | sed 's/^TITLE=//'`
+            SWAC_SPEAK_NAME=`metaflac --show-tag=SWAC_SPEAK_NAME ${FLAC} | sed 's/^SWAC_SPEAK_NAME=//'`
             echo "TITLE: $TITLE"
-            flac -sdc ${FLAC} | lame --tt "$TITLE" - $OUTPUT_FILE
+            echo "SWAC_SPEAK_NAME: $SWAC_SPEAK_NAME"
+            flac -sdc ${FLAC} | lame --tt "$TITLE" --ta "$SWAC_SPEAK_NAME" - $OUTPUT_FILE
         done;
     fi;
 fi;
