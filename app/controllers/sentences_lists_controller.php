@@ -150,25 +150,33 @@ class SentencesListsController extends AppController
     }
     
     /**
-     * Returns empty string if list can be downloaded, a message otherwise.
+     * Returns array of two elements: a bool (index = 'can_download') indicating 
+     * whether list can be downloaded, and a string (index = 'message') containing 
+     * an empty string (if the bool is true) or a message with details (if the 
+     * bool is false).
      * 
      * @param int $count length of list
      *
      * @return string
      */
-    protected function _get_download_message($count)
+    protected function _get_downloadability_info($count)
     {
-        $txt = "";
-        if ($count > self::MAX_COUNT_FOR_DOWNLOAD) 
-            {
-                $txt = sprintf(__(
-                                  'The download feature has been disabled for this list because '.
-                                  'it contains %d sentences. Only lists containing %d or fewer '.
-                                  'sentences can be downloaded. If you can edit the list, you may '.
-                                  'want to split it into multiple lists.', true), 
-                               $count, self::MAX_COUNT_FOR_DOWNLOAD);
-            }
-        return $txt;
+        if ($count <= self::MAX_COUNT_FOR_DOWNLOAD) 
+        {
+            $ret['can_download'] = true;
+            $ret['message'] = "";
+        }
+        else
+        {
+            $ret['can_download'] = false;
+            $ret['message'] = sprintf(__(
+                          'The download feature has been disabled for this list because '.
+                          'it contains %d sentences. Only lists containing %d or fewer '.
+                          'sentences can be downloaded. If you can edit the list, you may '.
+                          'want to split it into multiple lists.', true), 
+                           $count, self::MAX_COUNT_FOR_DOWNLOAD);
+        } 
+        return $ret;
     }
 
     /**
@@ -192,14 +200,13 @@ class SentencesListsController extends AppController
         $sentencesInList = $this->paginate('SentencesSentencesLists');
         
         $thisListCount = $this->params['paging']['SentencesSentencesLists']['count'];
-        $downloadMessage = $this->_get_download_message($thisListCount);
-        $canDownload = empty($downloadMessage);
+        $downloadability_info = $this->_get_downloadability_info($thisListCount);
         
         $this->set('translationsLang', $translationsLang);
         $this->set('list', $list);
         $this->set('sentencesInList', $sentencesInList);
-        $this->set('canDownload', $canDownload);
-        $this->set('downloadMessage', $downloadMessage);
+        $this->set('canDownload', $downloadability_info['can_download']);
+        $this->set('downloadMessage', $downloadability_info['message']);
     }
 
 
@@ -409,12 +416,16 @@ class SentencesListsController extends AppController
         }
         
         $count = $this->SentencesList->getNumberOfSentences($listId);
-        $txt = $this->_get_download_message($count);
-        if (!empty($txt))
+        $downloadability_info = $this->_get_downloadability_info($count);
+        if (!$downloadability_info['can_download'])
         {
-            $this->flash($txt,
-                '/sentences_lists/show/'.$listId
-            );
+            $message = $downloadability_info['message'];
+            if (empty($message))  // because translator perversely chose to translate message as empty string
+            {    
+                // Do not internationalize this message.
+                $message = 'This list is too long to be downloaded.';
+                $this->flash($message, '/sentences_lists/show/'.$listId);
+            }
         }
                 
         $listId = Sanitize::paranoid($listId);
