@@ -86,7 +86,7 @@ class PaginationHelper extends AppHelper
             // use a smaller value for this parameter on mobile
             // devices if we ever customize the interface to
             // behave differently based on the display size. 
-            'modulus' => 14,
+            'modulus' => 6,
             'class' => 'pageNumber'
         );
         ?>
