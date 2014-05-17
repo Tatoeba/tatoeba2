@@ -43,6 +43,7 @@
     echo $form->input(
         "correctness", 
         array(
+            "legend" => false,
             "type" => "radio",
             "options" => array(
                 Sentence::MIN_CORRECTNESS => "-1", 

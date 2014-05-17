@@ -124,3 +124,11 @@
     width: 140px; /* This has to be 10px less than #TagTagName to compensate the
                      text-indent and padding (in autocompletion.css) */
 }
+
+
+/*
+ * Sentence correctness form
+ */
+#SentenceEditCorrectnessForm .radio label {
+    margin-right: 20px;
+}
