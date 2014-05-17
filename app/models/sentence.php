@@ -1784,7 +1784,9 @@ class Sentence extends AppModel
      */
     public function editCorrectness($sentenceId, $correctness)
     {
-        $canEditCorrectness = CurrentUser::isModerator();
+        $canEditCorrectness = CurrentUser::isAdmin(); 
+        // TODO For the beginning we'll restrict this to admins.
+        // Later we'll want CurrentUser::isModerator();
         
         if ($canEditCorrectness) {
             $this->id = $sentenceId;

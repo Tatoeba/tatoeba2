@@ -68,7 +68,9 @@ $navigation->displaySentenceNavigation(
     <?php $tags->displayTagsModule($tagsArray, $sentenceId); ?>
     
     <?php 
-    if (CurrentUser::isModerator()) {
+    // TODO For the beginning we'll restrict this to admins.
+    // Later we'll want CurrentUser::isModerator();
+    if (CurrentUser::isAdmin()) {
         echo $this->element(
             'sentences/correctness',
             array(
