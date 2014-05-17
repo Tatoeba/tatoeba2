@@ -134,11 +134,11 @@ class UsersController extends AppController
                 $data['Aro']['parent_id'] = $this->data['User']['group_id'];
                 $this->Acl->Aro->save($data);
 
-                $this->Session->setFlash('The User has been saved');
+                $this->Session->setFlash('The user information has been saved.');
                 $this->redirect(array('action'=>'index'));
             } else {
                 $this->Session->setFlash(
-                    'The User could not be saved. Please try again.'
+                    'The user information could not be saved. Please try again.'
                 );
             }
         }
