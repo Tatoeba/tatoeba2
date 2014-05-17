@@ -43,7 +43,11 @@
     echo $form->input(
         "correctness", 
         array(
-            "label" => __("Correctness:", true), 
+            "type" => "radio",
+            "options" => array(
+                Sentence::MIN_CORRECTNESS => "-1", 
+                Sentence::MAX_CORRECTNESS => "0"
+            ),
             "value" => $sentenceCorrectness
         )
     );

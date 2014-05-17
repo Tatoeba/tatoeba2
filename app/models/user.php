@@ -54,7 +54,12 @@ class User extends AppModel
         'Containable'
     );
 
+    // contributor vs. advanced contributor vs. corpus maintainer vs. admin
     const LOWEST_TRUST_GROUP_ID = 4;
+
+    // trustworthy vs. untrustworthy 
+    const MIN_LEVEL = -1; // trustworthy
+    const MAX_LEVEL = 0; // untrustworthy (submits bad or copyrighted sentences)
 
     /**
      *

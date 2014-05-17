@@ -32,7 +32,7 @@
     color: #444;
 }
 
-#UserEditForm label {
+#UserEditForm label:first-child {
     width: 180px;
     display: block;
     float: left;
@@ -44,11 +44,15 @@
     padding: 3px;
 }
 
-#UserEditForm div.input input, #UserEditForm div.input select {
+#UserEditForm .text input, #UserEditForm .select select {
     font-size: 18px;
     width: 300px;
     border: 1px solid #989898;
     padding: 2px 4px;
+}
+
+#UserEditForm .radio label {
+    margin-right: 20px;
 }
 
 #UserEditForm div.checkbox input {

@@ -358,6 +358,8 @@ class SentencesHelper extends AppHelper
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
         $sentenceAudio = 'no';
+        //AJF
+        $sentenceCorrectness = $sentence['correctness'];
         $correctnessLabel = $this->getCorrectnessLabel($sentence['correctness']);
         if (isset($sentence['hasaudio'])) {
             $sentenceAudio = $sentence['hasaudio'];
@@ -411,10 +413,14 @@ class SentencesHelper extends AppHelper
      */
     private function getCorrectnessLabel($correctness)
     {
+        // Revisit these values if Sentence::MIN_CORRECTNESS 
+        // or Sentence::MAX_CORRECTNESS is adjusted.
+
+        // Do not internationalize these strings.
         switch ($correctness) {
-            case -1:
+            case Sentence::MIN_CORRECTNESS:
                 return 'Low';
-            case 1:
+            case Sentence::MAX_CORRECTNESS:
                 return 'High';
             default:
                 return 'Medium';
