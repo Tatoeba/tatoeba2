@@ -54,7 +54,12 @@ class User extends AppModel
         'Containable'
     );
 
+    // contributor vs. advanced contributor vs. corpus maintainer vs. admin
     const LOWEST_TRUST_GROUP_ID = 4;
+
+    // trustworthy vs. untrustworthy 
+    const MIN_LEVEL = -1; // trustworthy
+    const MAX_LEVEL = 0; // untrustworthy (submits bad or copyrighted sentences)
 
     /**
      *
@@ -221,7 +226,8 @@ class User extends AppModel
                     'birthday',
                     'is_public',
                     'group_id',
-                    'lang'
+                    'lang',
+                    'level'
                 ),
                 'contain' => array(
                     'Country' => array('fields' => array('name'))
@@ -543,9 +549,29 @@ class User extends AppModel
             ) 
         );
     }  
+    
+    
+    /**
+     * Return the level of the user of given id.
+     *
+     * @param int $userId Id of the user.
+     *
+     * @return int
+     */
+    public function getLevelOfUser($userId)
+    {
+        $result = $this->find(
+            'first',
+            array(
+                'conditions' => array('User.id' => $userId),
+                'contain' => array(),
+                'fields' => 'User.level'
+            )
+        );
+        return $result['User']['level'];
+    }
 
 }
-
 
 
 ?>

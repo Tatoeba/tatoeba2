@@ -223,7 +223,7 @@ class SentencesList extends AppModel
     public function paramsForPaginate($id, $translationsLang, $isEditable, $limit)
     {
         $sentenceParams = array(
-            'fields' => array('id', 'text', 'lang', 'hasaudio'),
+            'fields' => array('id', 'text', 'lang', 'hasaudio', 'correctness'),
         );
 
         if ($isEditable) {
@@ -454,8 +454,9 @@ class SentencesList extends AppModel
         }
 
         // Saving sentence
+        $sentenceCorrectness = $this->User->getLevelOfUser($userId);
         $sentenceSaved = $this->Sentence->saveNewSentence(
-            $sentenceText, $sentenceLang, $userId
+            $sentenceText, $sentenceLang, $userId, $sentenceCorrectness
         );
         if (!$sentenceSaved) {
             return false;

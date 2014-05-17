@@ -69,7 +69,7 @@ echo $paginator->next(
     <th><?php echo $paginator->sort(__('Username',true),'username'); ?></th>
     <th><?php echo $paginator->sort(__('Email',true),'email'); ?></th>
     <th><?php echo $paginator->sort(__('Since',true),'since'); ?></th>
-    <th><?php echo $paginator->sort(__('Last Time Active',true),'last_name_active'); ?></th>
+    <th><?php echo $paginator->sort(__('Level',true),'level'); ?></th>
     <th><?php echo $paginator->sort(__('Group',true),'group'); ?></th>
     <th class="actions"></th>
 </tr>
@@ -104,7 +104,7 @@ foreach ($users as $user) {
             <?php echo $date->ago($user['User']['since']); ?>
         </td>
         <td>
-            <?php echo $date->ago($user['User']['last_time_active'], true); ?>
+            <?php echo $user['User']['level']; ?>
         </td>
         <td>
             <?php echo $user['Group']['name']; ?>
