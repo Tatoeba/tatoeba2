@@ -96,7 +96,8 @@ class SentencesController extends AppController
             'sentences_group',
             'get_neighbors_for_ajax',
             'show_all_in',
-            'with_audio'
+            'with_audio',
+            'edit_correctness'
         );
     }
 
@@ -282,6 +283,7 @@ class SentencesController extends AppController
 
         $sentenceLang = Sanitize::paranoid($_POST['selectedLang']);
         $sentenceText = $_POST['value'];
+        $sentenceCorrectness = $this->Sentence->User->getLevelOfUser($userId);
 
         $isSaved = $this->CommonSentence->wrapper_save_sentence(
             $sentenceLang,
@@ -290,7 +292,8 @@ class SentencesController extends AppController
             null,
             null,
             null,
-            $userName
+            $userName,
+            $sentenceCorrectness
         );
         
         // saving
@@ -438,10 +441,12 @@ class SentencesController extends AppController
             }
             
             // Saving...
+            $translationCorrectness = $this->Sentence->User->getLevelOfUser($userId);
             $isSaved = $this->Sentence->saveTranslation(
                 $sentenceId,
                 $translationText,
-                $translationLang
+                $translationLang,
+                $translationCorrectness
             );
             
             if ($isSaved) {
@@ -449,6 +454,7 @@ class SentencesController extends AppController
                 $translation['id'] = $this->Sentence->id;
                 $translation['lang'] = $translationLang;
                 $translation['text'] = $translationText;
+                $translation['correctness'] = $translationCorrectness;
                 
                 $ownerName = $this->Auth->user('username');
                 
@@ -1009,5 +1015,36 @@ class SentencesController extends AppController
         $this->set('lang', $lang);
         $this->set('stats', $stats);
     }
+	
+	/**
+     * Sentences with audio.
+     *
+     * @param string $lang Language of the sentences.
+     *
+     * @return void
+     */
+	public function edit_correctness()
+	{
+		$sentenceId = $this->data['Sentence']['id'];
+		$correctness = $this->data['Sentence']['correctness'];
+		
+		if (CurrentUser::isModerator()) {
+			$this->Sentence->editCorrectness($sentenceId, $correctness);
+			$this->redirect(
+                array(
+                    "controller" => "sentences", 
+                    "action" => "show", 
+					$sentenceId
+                )
+            );
+		} else {
+			$this->redirect(
+                array(
+                    "controller" => "pages", 
+                    "action" => "home", 
+                )
+            );
+		}
+	}
 }
 ?>

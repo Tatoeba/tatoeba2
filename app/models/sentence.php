@@ -50,8 +50,10 @@ class Sentence extends AppModel
     public $actsAs = array("Containable", "Sphinx");
     public static $romanji = array('furigana' => 1, 'mix' => 2, 'romanji' => 3);
 
-    // This is not much in use. Should probably remove it someday
-    const MAX_CORRECTNESS = 6;
+    // If you change these values, revisit getCorrectnessLabel in
+    // app/views/helpers/sentences.php. 
+    const MIN_CORRECTNESS = -1;
+    const MAX_CORRECTNESS = 0;
     
     public $languages = array(
         'ara', 'bul', 'deu', 'ell', 'eng',
@@ -433,6 +435,7 @@ class Sentence extends AppModel
                         'lang',
                         'user_id',
                         'hasaudio',
+                        'correctness'
                     )
             )
         );
@@ -475,7 +478,8 @@ class Sentence extends AppModel
                             "id",
                             "lang",
                             "text",
-                            "hasaudio"
+                            "hasaudio",
+                            "correctness"
                         ),
                         "conditions" => $translationsConditions
                     )
@@ -694,6 +698,7 @@ class Sentence extends AppModel
               p2.id   AS translation_id,
               p2.lang AS translation_lang,
               p2.user_id AS translation_user_id,
+              p2.correctness AS correctness,
               'Translation' as distance
             FROM sentences_translations AS t
               LEFT  JOIN sentences AS p2 ON t.translation_id = p2.id
@@ -716,6 +721,7 @@ class Sentence extends AppModel
               p2.id   AS translation_id,
               p2.lang AS translation_lang,
               p2.user_id AS translation_user_id,
+              p2.correctness AS correctness,
               'IndirectTranslation'  as distance
             FROM sentences_translations AS t
                 LEFT JOIN sentences_translations AS t2
@@ -754,6 +760,7 @@ class Sentence extends AppModel
                     'user_id' => $result['translation_user_id'],
                     'lang' => $result['translation_lang'],
                     'hasaudio' => $result['hasaudio'],
+                    'correctness' => $result['correctness']
                 );
 
                 $this->generateRomanization($translation);
@@ -1478,13 +1485,17 @@ class Sentence extends AppModel
      *
      * @return boolean
      */
-    public function saveTranslation($sentenceId, $translationText, $translationLang)
-    {
+    public function saveTranslation(
+        $sentenceId, $translationText, $translationLang, $translationCorrectness
+    ) {
+        $userId = CurrentUser::get('id');
+        
         // saving translation
         $sentenceSaved = $this->saveNewSentence(
             $translationText,
             $translationLang,
-            CurrentUser::get('id')
+            $userId,
+            $translationCorrectness
         );
         
         // saving links
@@ -1500,13 +1511,14 @@ class Sentence extends AppModel
     /**
      * Add a new sentence in the database
      * 
-     * @param string $text   The text of the sentence
-     * @param string $lang   The lang of the sentence
-     * @param int    $userId The id of the user who added this sentence
+     * @param string $text        The text of the sentence
+     * @param string $lang        The lang of the sentence
+     * @param int    $userId      The id of the user who added this sentence
+     * @param int    $correctness Correctness of the sentence
      *
      * @return bool
      */
-    public function saveNewSentence($text, $lang, $userId)
+    public function saveNewSentence($text, $lang, $userId, $correctness = 0)
     {
         if ($lang == "") {
             $lang = null;
@@ -1517,6 +1529,7 @@ class Sentence extends AppModel
         $data['Sentence']['text'] = trim($text);
         $data['Sentence']['lang'] = $lang;
         $data['Sentence']['user_id'] = $userId;
+        $data['Sentence']['correctness'] = $correctness;
         $sentenceSaved = $this->save($data);
         
         return $sentenceSaved;
@@ -1541,18 +1554,22 @@ class Sentence extends AppModel
         $translationLang,
         $userId
     ) {
+        $correctness = $this->User->getLevelOfUser($userId);
+        
         // saving sentence
         $sentenceSaved = $this->saveNewSentence(
             $sentenceText,
             $sentenceLang,
-            $userId
+            $userId,
+            $correctness
         );
         $sentenceId = $this->id;
         // saving translation
         $translationSaved = $this->saveNewSentence(
             $translationText,
             $translationLang,
-            $userId
+            $userId,
+            $correctness
         );
         
         $translationId = $this->id;
@@ -1754,6 +1771,30 @@ class Sentence extends AppModel
         );
         
         return $result['Sentence']['text'];
+    }
+    
+    
+    /**
+     * Save the correctness of a sentence. Only corpus
+     * maintainers or admins can change this value.
+     * 
+     * @param int $sentenceId  Id of the sentence.
+     * @param int $correctness Correctness of the sentence.
+     * 
+     * @return bool
+     */
+    public function editCorrectness($sentenceId, $correctness)
+    {
+        $canEditCorrectness = CurrentUser::isAdmin(); 
+        // TODO For the beginning we'll restrict this to admins.
+        // Later we'll want CurrentUser::isModerator();
+        
+        if ($canEditCorrectness) {
+            $this->id = $sentenceId;
+            return $this->saveField('correctness', $correctness);
+        }
+        
+        return false;
     }
 }
 ?>

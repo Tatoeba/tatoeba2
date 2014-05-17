@@ -48,6 +48,7 @@ $userStatus = $members->groupName($groupId);
 $statusClass = 'status'.$groupId;
 $currentMember = CurrentUser::get('username');
 $languagesSettings = $user['lang'];
+$level = $user['level'];
 
 $userImage = 'unknown-avatar.png';
 if (!empty($user['image'])) {
@@ -157,6 +158,21 @@ if (!empty($realName)) {
     }
     ?>
     
+    <?php
+    if ($level == -1) {
+    ?>
+        <div class="module">
+            <h2><?php __('Not approved'); ?></h2>
+            <?php
+            __(
+                'Sentences from this user are currently added as '.
+                '"not approved".'
+            );
+            ?>
+        </div>
+    <?php
+    }
+    ?>
 </div>
 
 <div id="main_content">
