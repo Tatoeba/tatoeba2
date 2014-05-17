@@ -59,7 +59,7 @@ class User extends AppModel
 
     // trustworthy vs. untrustworthy 
     const MIN_LEVEL = -1; // trustworthy
-    const MAX_LEVEL = 1; // untrustworthy (submits bad or copyrighted sentences)
+    const MAX_LEVEL = 0; // untrustworthy (submits bad or copyrighted sentences)
 
     /**
      *

@@ -53,7 +53,7 @@ class Sentence extends AppModel
     // If you change these values, revisit getCorrectnessLabel in
     // app/views/helpers/sentences.php. 
     const MIN_CORRECTNESS = -1;
-    const MAX_CORRECTNESS = 1;
+    const MAX_CORRECTNESS = 0;
     
     public $languages = array(
         'ara', 'bul', 'deu', 'ell', 'eng',
@@ -1784,14 +1784,11 @@ class Sentence extends AppModel
      */
     public function editCorrectness($sentenceId, $correctness)
     {
-        $this->id = $sentenceId;
         $canEditCorrectness = CurrentUser::isModerator();
         
         if ($canEditCorrectness) {
-            $data = array('id' => $this->id, 'correctness' => $correctness);
-            return $this->Sentence->save($data);
-            //Trang's code
-            //return $this->saveField('correctness', $correctness);
+            $this->id = $sentenceId;
+            return $this->saveField('correctness', $correctness);
         }
         
         return false;

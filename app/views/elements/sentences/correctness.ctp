@@ -42,10 +42,14 @@
     );
     echo $form->input(
         "correctness", 
-        array("legend" => false,
-              "type" => "radio",
-              "options" => range(Sentence::MIN_CORRECTNESS, Sentence::MAX_CORRECTNESS)),
-        array("value" => $sentenceCorrectness)
+        array(
+            "type" => "radio",
+            "options" => array(
+                Sentence::MIN_CORRECTNESS => "-1", 
+                Sentence::MAX_CORRECTNESS => "0"
+            ),
+            "value" => $sentenceCorrectness
+        )
     );
     echo $form->end(__('Submit', true));
     ?>
