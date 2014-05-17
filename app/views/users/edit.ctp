@@ -36,6 +36,7 @@
  */
 
 $userId = $form->value('User.id');
+$username = $form->value('User.username');
 ?>
 <div class="editUser">
 <div class="actions">
@@ -55,6 +56,16 @@ $userId = $form->value('User.id');
         </li>
         <li>
         <?php echo $html->link(__('List Users',true), array('action' => 'index')); ?>
+        </li>
+        <li>
+        <?php echo $html->link(
+            __('Profile',true), 
+            array(
+                'controller' => 'user', 
+                'action' => 'profile',
+                $username
+            )
+        ); ?>
         </li>
     </ul>
 </div>

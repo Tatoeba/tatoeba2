@@ -185,6 +185,14 @@ if (!empty($realName)) {
                     'action' => 'edit_profile'
                 )
             ); 
+        } else if (CurrentUser::isAdmin()) {
+            $members->displayEditButton(
+                array(
+                    'controller' => 'users',
+                    'action' => 'edit',
+                    $userId
+                )
+            ); 
         }
         ?>
         
