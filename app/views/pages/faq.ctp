@@ -55,16 +55,18 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     <div class="module">
     <h2>Table of contents</h2>
     <ul>
+        <li><a href="#search">How do I search for text? Why might the results differ from what I expect?</a></li>
         <li><a href="#indirect-translations">Why are some translations in grey?</a></li>
+        <li><a href="#unseen-translations">Why don't I see all the translations I expect to see?</a></li>
+        <li><a href="#unapproved-sentences">Why are some sentences in red?</a></li>
         <li><a href="#delete-sentence">How do I delete a sentence?</a></li>
-        <li><a href="#new-language">I'd like to add a new language in Tatoeba. What do I have to do?</a></li>
-        <li><a href="#change-language">How do I change the language of a sentence?</a></li>
+        <li><a href="#change-language">A sentence is not marked with the right language. How do I fix it?</a></li>
         <li><a href="#add-tag">How can I add tags to a sentence?</a></li>
         <li><a href="#link-unlink">How can I link or unlink sentences?</a></li>
-        <li><a href="#trusted-user">How can I become a trusted user?</a></li>
-        <li><a href="#trusted-user">How can I become an advanced contributor?</a></li>
-        <li><a href="#translate-interface">Can I help translate the website into other languages?</a></li>
-        <li><a href="#submit-audio">How do I contribute audio in Tatoeba?</a></li>
+        <li><a href="#advanced-contributor">How can I become an advanced contributor?</a></li>
+        <li><a href="#translate-interface">How can I help translate the website?</a></li>
+        <li><a href="#new-language">I'd like to add a new language. What do I have to do?</a></li>
+        <li><a href="#submit-audio">How do I contribute audio to Tatoeba?</a></li>
         <li><a href="#chinese-traditional-simplified">When contributing in Chinese, should I use simplified or traditional characters?</a></li>
         <li><a href="#delete-account">How do I delete my account?</a></li>
     </ul>
@@ -73,47 +75,59 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     <div class="module">
     <h2>FAQ</h2>
     
+    <h3 id="search"><a href="#search">How do I search for text? Why might the results differ from what I expect?</a></h3>
+    => <a href="http://en.wiki.tatoeba.org/articles/show/text-search">http://en.wiki.tatoeba.org/articles/show/text-search</a>
+    
+    
     <h3 id="indirect-translations"><a href="#indirect-translations">Why are some translations in grey?</a></h3>
     <p>Grey translations are <strong>indirect translations</strong>. In other words, they are translations of the translations, and not translations of the main sentence (the main sentence is the sentence in big letters).</p>
     <p>We display them because they can be useful, but you should be careful. Their meaning may differ a little from the main sentence.</p>
     
     
+    <h3 id="unseen-translations"><a href="#unseen-translations">Why don't I see all the translations I expect to see?</a></h3>
+    <p>If you have listed a series of language codes in your settings, Tatoeba will only display translations in the languages you indicated. Leave the field empty to display translations in all languages.</p>
+    
+    
+    <h3 id="unapproved-sentences"><a href="#unapproved-sentences">Why are some sentences in red?</a></h3>
+    <p>Red sentences are <strong>not approved</strong>. They raise copyright issues or are otherwise problematic.</p>
+    <p>You should not translate them.</p>
+    
+    
     <h3 id="delete-sentence"><a href="#delete-sentence">How do I delete a sentence?</a></h3>
-    <p>At the moment, ordinary contributors cannot delete sentences. Only advanced contributors can. We will someday add the possibility for users to delete their own sentences, but in the meantime, if you want to have a sentence deleted, <strong>add a comment</strong> on the sentence asking for deletion and explain why you'd like to delete it.</p>
-    <p>If you have added something by mistake, rather of asking for it to be deleted, try to <strong>replace it</strong> by a valid sentence.</p>
+    <p>Only advanced contributors can delete sentences. We may someday add the possibility for users to delete their own sentences, but in the meantime, if you want to have a sentence deleted, <strong>add a comment</strong> on the sentence asking for deletion and explain why you'd like to delete it.</p>
+    <p>If you have added something by mistake, rather than asking for it to be deleted, try to <strong>replace it</strong> by a valid sentence.</p>
     
     
-    <h3 id="new-language"><a href="#new-language">I'd like to add a new language in Tatoeba. What do I have to do?</a></h3>
-    => <a href="http://en.wiki.tatoeba.org/articles/show/new-language-request">http://en.wiki.tatoeba.org/articles/show/new-language-request</a>
+    <h3 id="change-language"><a href="#change-language">A sentence is not marked with the right language. How do I fix it?</a></h3>
+    <p>Click on the language icon to the right of the sentence and select the correct language from the list.</p>    
     
     
     <h3 id="add-tag"><a href="#add-tag">How can I add tags to a sentence?</a></h3>
-    <p>You have to be an advanced contributor (cf. <a href="#advanced-contributor">below</a>).</p>
+    <p>To add tags, you must be an advanced contributor (see <a href="#advanced-contributor">below</a>).</p>
     
     
     <h3 id="link-unlink"><a href="#link-unlink">How can I link or unlink sentences?</a></h3>
-    <p>You have to be an advanced contributor (cf. <a href="#advanced-contributor">below</a>).</p>
-    
-    
-    <h3 id="trusted-user"><a href="#trusted-user">How can I become a trusted user?</a></h3>
-    <p>The status of "trusted user" does not exist anymore. It has been renamed "<a href="#advanced-contributor">advanced contributor</a>".</p>
-    <p>Related link: <a href="http://blog.tatoeba.org/2011/05/new-users-status.html">http://blog.tatoeba.org/2011/05/new-users-status.html</a></p>
+    <p>To link or unlink sentences, you must be an advanced contributor (see <a href="#advanced-contributor">below</a>).</p>
     
     
     <h3 id="advanced-contributor"><a href="#advanced-contributor">How can I become an advanced contributor?</a></h3>
     => <a href="http://en.wiki.tatoeba.org/articles/show/advanced-contributors">http://en.wiki.tatoeba.org/articles/show/advanced-contributors</a>
     
     
-    <h3 id="translate-interface"><a href="#translate-interface">Can I help translate the website into other languages?</a></h3>
+    <h3 id="translate-interface"><a href="#translate-interface">How can I help translate the website?</a></h3>
     => <a href="http://en.wiki.tatoeba.org/articles/show/interface-translation">http://en.wiki.tatoeba.org/articles/show/interface-translation</a>
     
     
-    <h3 id="submit-audio"><a href="#submit-audio">How do I contribute audio in Tatoeba?</a></h3>
+    <h3 id="new-language"><a href="#new-language">I'd like to add a new language. What do I have to do?</a></h3>
+    => <a href="http://en.wiki.tatoeba.org/articles/show/new-language-request">http://en.wiki.tatoeba.org/articles/show/new-language-request</a>
+    
+    
+    <h3 id="submit-audio"><a href="#submit-audio">How do I contribute audio to Tatoeba?</a></h3>
     => <a href="http://en.wiki.tatoeba.org/articles/show/contribute-audio">http://en.wiki.tatoeba.org/articles/show/contribute-audio</a>
     
     
     <h3 id="chinese-traditional-simplified"><a href="#chinese-traditional-simplified">When contributing in Chinese, should I use simplified or traditional characters?</a></h3>
-    <p>You can use whichever you like. We have a tool that will automatically convert simplified into traditional, and traditional into simplified.</p>
+    <p>You can use whichever you like. We have a <a href="http://www.tatoeba.org/eng/tools/conversion_simplified_traditional_chinese">tool</a> that will automatically convert simplified into traditional, and traditional into simplified.</p>
     <p>When browsing sentences, if you set the Chinese sentence as the main sentence, you will see an additional icon at the top of the sentence.</p>
     <ul>
         <li><img src="http://flags.tatoeba.org/img/traditional_chinese.png" alt="traditional"/> traditional</li>
