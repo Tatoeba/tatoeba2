@@ -27,15 +27,14 @@
 ?>
  
 <div class="module">
-    <h2><?php __('Not approved') ?></h2>
+    <h2><?php __('About unapproved sentences') ?></h2>
     <p>
     <?php 
     __(
-        "You may see some sentences in red. Those sentences are ".
-        "not approved by Tatoeba's community. They are either ".
-        "bad for learning purposes or have copyright issues, or both. ".
-        "If you are a contributor, please avoid translating those ".
-        "sentences."
+        "You may see some sentences in red. Such sentences are ".
+        "not approved by Tatoeba's community. They raise copyright issues ".
+        "or are otherwise problematic. ".
+        "If you are a contributor, please avoid translating them."
     );
     ?>
     </p>

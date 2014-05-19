@@ -420,11 +420,6 @@ class SentencesListsController extends AppController
         if (!$downloadability_info['can_download'])
         {
             $message = $downloadability_info['message'];
-            if (empty($message))  // because translator perversely chose to translate message as empty string
-            {    
-                // Do not internationalize this message.
-                $message = 'This list is too long to be downloaded.';
-            }
             $this->flash($message, '/sentences_lists/show/'.$listId);
         }
                 
