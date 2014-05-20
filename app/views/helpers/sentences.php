@@ -368,7 +368,7 @@ class SentencesHelper extends AppHelper
         if ($type != 'mainSentence') {
             $elementId = 'id="translation_'.$sentenceId.'_'.$parentId.'"';
         }
-        $class = 'sentence '.$type.' correctness'.$correctnessLabel;
+        $class = 'sentence '.$type.' '.$correctnessLabel;
         ?>
         
         <div class="<?php echo $class; ?>" <?php echo $elementId; ?>>
@@ -413,18 +413,17 @@ class SentencesHelper extends AppHelper
      */
     private function getCorrectnessLabel($correctness)
     {
-        // Revisit these values if Sentence::MIN_CORRECTNESS 
-        // or Sentence::MAX_CORRECTNESS is adjusted.
-
-        // Do not internationalize these strings.
-        switch ($correctness) {
-            case Sentence::MIN_CORRECTNESS:
-                return 'Low';
-            case Sentence::MAX_CORRECTNESS:
-                return 'High';
-            default:
-                return 'Medium';
+        $result = 'correctness';
+        
+        if ($correctness < 0) {
+            $result .= 'Negative'.abs($correctness);
+        } else if ($correctness == 0) {
+            $result .= 'Zero';
+        } else {
+            $result .= 'Positive'.$correctness;
         }
+        
+        return $result;
     }
 
      

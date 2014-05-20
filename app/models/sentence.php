@@ -49,9 +49,7 @@ class Sentence extends AppModel
     public $name = 'Sentence';
     public $actsAs = array("Containable", "Sphinx");
     public static $romanji = array('furigana' => 1, 'mix' => 2, 'romanji' => 3);
-
-    // If you change these values, revisit getCorrectnessLabel in
-    // app/views/helpers/sentences.php. 
+    
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
     
