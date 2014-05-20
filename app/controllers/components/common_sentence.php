@@ -39,7 +39,7 @@ class CommonSentenceComponent extends Object
 {
 
     public $components = array(
-        'GoogleLanguageApi',
+        'LanguageDetection',
         'Cookie'
     );
 
@@ -79,7 +79,7 @@ class CommonSentenceComponent extends Object
         $this->Cookie->write('contribute_lang', $lang, false, "+1 month");
         
         if ($lang === 'auto') {
-            $lang = $this->GoogleLanguageApi->detectLang(
+            $lang = $this->LanguageDetection->detectLang(
                 $text,
                 $userName
             );

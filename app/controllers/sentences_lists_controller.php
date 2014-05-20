@@ -47,7 +47,7 @@ class SentencesListsController extends AppController
         'Pagination',
         'AttentionPlease'
     );
-    public $components = array('GoogleLanguageApi');
+    public $components = array('LanguageDetection');
     // We want to make sure that people don't download long lists, which can slow down the server.
     // This is an arbitrary but easy to remember value, and most lists are shorter than this.    
     const MAX_COUNT_FOR_DOWNLOAD = 100;
@@ -368,7 +368,7 @@ class SentencesListsController extends AppController
 
             $userName = $this->Auth->user('username');
             $sentenceText = $_POST['sentenceText'];
-            $sentenceLang = $this->GoogleLanguageApi->detectLang(
+            $sentenceLang = $this->LanguageDetection->detectLang(
                 $sentenceText,
                 $userName
             );

@@ -55,7 +55,7 @@ class SentenceCommentsController extends AppController
         'Pagination',
         'Tags'
     );
-    public $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
+    public $components = array ('LanguageDetection', 'Permissions', 'Mailer');
     
     public $paginate = array(
         'SentenceComment' => array(

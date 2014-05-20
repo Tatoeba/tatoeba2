@@ -39,7 +39,7 @@ class SentencesController extends AppController
     public $persistentModel = true;
     public $name = 'Sentences';
     public $components = array (
-        'GoogleLanguageApi',
+        'LanguageDetection',
         'CommonSentence',
         'Permissions',
         'Cookie'
@@ -434,7 +434,7 @@ class SentencesController extends AppController
             if ($translationLang == 'auto') {
 
                 $ownerName = $this->Auth->user('username');
-                $translationLang = $this->GoogleLanguageApi->detectLang(
+                $translationLang = $this->LanguageDetection->detectLang(
                     $translationText,
                     $ownerName
                 );
