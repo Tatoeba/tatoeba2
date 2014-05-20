@@ -26,6 +26,21 @@
  */
 
 $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
+
+$chineseToolUrl = $html->url(
+    array(
+        'controller' => 'tools', 
+        'action' => 'conversion_simplified_traditional_chinese'
+    )
+);
+$traditionalChineseImg = $html->image(
+    IMG_PATH . 'traditional_chinese.png',
+    array('alt' => 'traditional')
+);
+$simplifiedChineseImg = $html->image(
+    IMG_PATH . 'simplified_chinese.png',
+    array('alt' => 'simplified')
+);
 ?>
 
 <div id="annexe_content">
@@ -127,11 +142,11 @@ $this->pageTitle = 'Tatoeba - ' . __('FAQ', true);
     
     
     <h3 id="chinese-traditional-simplified"><a href="#chinese-traditional-simplified">When contributing in Chinese, should I use simplified or traditional characters?</a></h3>
-    <p>You can use whichever you like. We have a <a href="http://www.tatoeba.org/eng/tools/conversion_simplified_traditional_chinese">tool</a> that will automatically convert simplified into traditional, and traditional into simplified.</p>
+    <p>You can use whichever you like. We have a <a href="<?php echo $chineseToolUrl; ?>">tool</a> that will automatically convert simplified into traditional, and traditional into simplified.</p>
     <p>When browsing sentences, if you set the Chinese sentence as the main sentence, you will see an additional icon at the top of the sentence.</p>
     <ul>
-        <li><img src="http://flags.tatoeba.org/img/traditional_chinese.png" alt="traditional"/> traditional</li>
-        <li><img src="http://flags.tatoeba.org/img/simplified_chinese.png" alt="simplified"/> simplified</li>
+        <li><?php echo $traditionalChineseImg; ?> traditional</li>
+        <li><?php echo $simplifiedChineseImg; ?> simplified</li>
     </ul>
     <p>Below each Chinese sentence, you will also see the transcription in pinyin, and below the pinyin, the conversion into simplified or traditional.</p>
     <p>You can <a href="sentences/show_all_in/cmn/none/none/indifferent">browse the Chinese sentences</a> to see what they look like.</p>
