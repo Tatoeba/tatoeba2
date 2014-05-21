@@ -59,7 +59,6 @@ class ShowAllHelper extends AppHelper
         $path .= $this->params['lang'] .'/';
         $path .= $this->params['controller'].'/';
         $path .= $this->params['action'];
-
         return $path;
     }
 
@@ -168,7 +167,7 @@ class ShowAllHelper extends AppHelper
             ?> 
             <p>
             <?php
-            __('NOTE: It will show both direct and indirect translations.');
+            __('NOTE: Both direct and indirect translations will be shown.');
             ?>
             </p>
         </div>

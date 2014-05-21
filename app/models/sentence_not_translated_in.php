@@ -71,7 +71,6 @@ class SentenceNotTranslatedIn extends AppModel
          $page = 1;
         }
 
-
         $limitHigh = $limit * $page;
         $limitLow = $limitHigh - $limit;
 
@@ -81,8 +80,24 @@ class SentenceNotTranslatedIn extends AppModel
             $filterAudio = "AND Sentence.hasaudio != 'no' ";
         }
 
-        $sql
-            = "
+        if ($target == 'und') {
+            // we want only untranslated sentences
+            $sql
+                = "
+            SELECT distinct Sentence.id FROM sentences as Sentence
+            WHERE Sentence.lang = '$source' $filterAudio
+              AND Sentence.id NOT IN
+              (
+                SELECT s.id FROM sentences s
+                  JOIN sentences_translations st ON ( s.id = st.sentence_id )
+                WHERE s.lang = '$source'
+              )
+            ORDER BY Sentence.id DESC
+            LIMIT $limitLow,$limit;
+            ";
+        } else {
+            $sql
+                = "
             SELECT distinct Sentence.id FROM sentences as Sentence
             WHERE Sentence.lang = '$source' $filterAudio
               AND Sentence.id NOT IN
@@ -95,24 +110,6 @@ class SentenceNotTranslatedIn extends AppModel
             ORDER BY Sentence.id DESC
             LIMIT $limitLow,$limit;
             ";
-
-        // if we want only orphan sentences
-        if ($target == 'und') {
-        $sql
-            = "
-            SELECT distinct Sentence.id FROM sentences as Sentence
-            WHERE Sentence.lang = '$source' $filterAudio
-              AND Sentence.id NOT IN
-              (
-                SELECT s.id FROM sentences s
-                  JOIN sentences_translations st ON ( s.id = st.sentence_id )
-                WHERE s.lang = '$source'
-              )
-            ORDER BY Sentence.id DESC
-            LIMIT $limitLow,$limit;
-            ";
-
-
         }
 
         $result = $this->query($sql);
@@ -147,20 +144,9 @@ class SentenceNotTranslatedIn extends AppModel
             $filterAudio = "AND Sentence.hasaudio != 'no' ";
         }
 
-        // first calculate the number of sentences that do have a translation
-        // in the target language
-        $sql
-            = "
-            SELECT count(DISTINCT Sentence.id) as Count FROM sentences as Sentence
-              JOIN sentences_translations st ON ( Sentence.id = st.sentence_id )
-              JOIN sentences t on ( st.translation_id = t.id )
-            WHERE Sentence.lang = '$source'
-            AND t.lang = '$target'
-            $filterAudio
-            " ;
-
-        // if we want only untranslated sentences
-        if ($target == 'und') {
+        // First, calculate the number of sentences.
+        if ($target == 'und') { 
+            // we want only untranslated sentences
             $sql
                 = "
                 SELECT count(distinct Sentence.id) as Count FROM sentences as Sentence
@@ -168,12 +154,22 @@ class SentenceNotTranslatedIn extends AppModel
                 WHERE Sentence.lang = '$source'
                 $filterAudio
                 ";
+        } else {
+            $sql
+                = "
+            SELECT count(DISTINCT Sentence.id) as Count FROM sentences as Sentence
+              JOIN sentences_translations st ON ( Sentence.id = st.sentence_id )
+              JOIN sentences t on ( st.translation_id = t.id )
+            WHERE Sentence.lang = '$source'
+            AND t.lang = '$target'
+            $filterAudio
+            " ;
         }
 
         $results = $this->query($sql);
         $translations_count = $results[0][0]['Count'];
 
-        // then subsctract this result from the total number of sentences
+        // Then subtract this result from the total number of sentences
         // in the source language
         if ($audioOnly == true) {
             $sql = "SELECT count(Sentence.id) as Count FROM sentences as Sentence

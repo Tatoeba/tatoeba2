@@ -31,9 +31,10 @@
     <p>
     <?php 
     __(
-        "You may see some sentences in red. Such sentences are ".
+        "You may see some sentences in red. These sentences are ".
         "not approved by Tatoeba's community. They raise copyright issues ".
-        "or are otherwise problematic. ".
+        "or are otherwise problematic, or they were added by a contributor ".
+        "with a history of adding such sentences. ".
         "If you are a contributor, please avoid translating them."
     );
     ?>
