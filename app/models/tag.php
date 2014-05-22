@@ -114,6 +114,8 @@ class Tag extends AppModel
         if ($added) {
             $tagId = $this->id;
         } else {
+            // This is mildly inefficient because the query within getIdFormName() has already
+            // been performed in beforeSave().
             $tagId = $this->getIdFromName($tagName);
         }
         // Send a request to suggestd (the auto-suggest daemon) to update its internal

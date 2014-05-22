@@ -31,7 +31,7 @@ $changeLink = $html->link(
     array(
         'controller' => 'tags',
         'action' => 'show_sentences_with_tag',
-        '@change'
+        '561' // == '@change'; TODO: avoid hardcoding this
     )
 );
 $checkLink = $html->link(
@@ -39,15 +39,15 @@ $checkLink = $html->link(
     array(
         'controller' => 'tags',
         'action' => 'show_sentences_with_tag',
-        '@check'
+        '841' // == '@check'; TODO: avoid hardcoding this
     )
 );
 $nncLink = $html->link(
-    '@Needs Native Check', 
+    '@needs native check', 
     array(
         'controller' => 'tags',
         'action' => 'show_sentences_with_tag',
-        '@Needs_Native_Check'
+        '1207' // == '@needs_native_check'; TODO: avoid hardcoding this
     )
 );
 $okLink = $html->link(
@@ -55,7 +55,7 @@ $okLink = $html->link(
     array(
         'controller' => 'tags',
         'action' => 'show_sentences_with_tag',
-        'OK'
+        '7' // == 'OK'; TODO: avoid hardcoding this
     )
 );
 ?>

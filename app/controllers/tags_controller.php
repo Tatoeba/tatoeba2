@@ -244,23 +244,23 @@ class TagsController extends AppController
      * 
      * @return void
      */
-    public function for_moderators($tagName = null, $lang = null) {
+    public function for_moderators($tagId = null, $lang = null) {
         // If no tag name was specified, assume that the name "@change" (the most 
         // generic tag indicating attention from moderators) was intended.
-        if (empty($tagName)) {
-            $tagName = '@change';
+        if (empty($tagId)) {
+            $tagId = $this->Tag->getIdFromName('@change');
         }
         
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Sentences';
         
-        $tagId = $this->Tag->getIdFromName($tagName);
         // Get sentences that have been tagged longer ago than the grace period.
         $results = $this->Tag->TagsSentences->getSentencesWithNonNewTag(
             $tagId, $lang
         );
-        
+
+        $tagName = $this->Tag->getNameFromId($tagId);    
         $this->set('tagId', $tagId);
         $this->set('tagName', $tagName);
         $this->set('results', $results);
