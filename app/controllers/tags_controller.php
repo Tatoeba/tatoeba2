@@ -64,7 +64,7 @@ class TagsController extends AppController
     } 
 
     /**
-     * Add a tag to a Sentence
+     * Add a tag to a sentence
      * 
      * @return void
      */
@@ -151,9 +151,9 @@ class TagsController extends AppController
     }
 
     /**
-     * Remove a tag from a sentence when on this sentence page
+     * Remove a tag from a sentence when on the sentence page
      *
-     * @param int $tagId      Id of the tag to remove from the this sentence
+     * @param int $tagId      Id of the tag to remove from the sentence
      * @param int $sentenceId Id of the sentence to remove the tag from
      *
      * @return void
@@ -197,23 +197,21 @@ class TagsController extends AppController
     /**
      * Display a list of all sentences with a given tag
      *
-     * @param string $tagInternalName Internal name of the tag
+     * @param string $tagId           Id of the tag
      * @param string $lang            Filter only sentences in this language.
      *
      * @return void
      */
-    public function show_sentences_with_tag($tagInternalName, $lang = null) 
+    public function show_sentences_with_tag($tagId, $lang = null) 
     {
 
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Tags';
 
-        $tag = $this->Tag->getInfoFromInternalName($tagInternalName); 
-        $tagId = $tag['Tag']['id'];
-        $tagName = $tag['Tag']['name'];
+        $tagName = $this->Tag->getNameFromId($tagId); 
         
-        $this->paginate = $this->Tag->paramsForPaginate($tagInternalName, 10, $lang);
+        $this->paginate = $this->Tag->paramsForPaginate($tagId, 10, $lang);
 
         $sentencesIdsTaggerIds = $this->paginate('TagsSentences');
         
@@ -232,36 +230,39 @@ class TagsController extends AppController
         $this->set('tagId', $tagId);
         $this->set('allSentences', $allSentences);
         $this->set('tagName', $tagName);
-        $this->set('tagInternalName', $tagInternalName);
         $this->set('taggerIds', $taggerIds);
-
     }
     
     
     /**
-     * List sentences with a certain tag and that were tagged more than 2 weeks ago.
+     * List sentences with a certain id that were tagged logger ago than
+     * the grace (warning) period within which sentence owners are supposed to respond to comments.
+     * A "moderator" is known on the site as a "corpus maintainer".
      *
-     * @param string $tagInternalName Tag internal name.
+     * @param string $tagName         Tag name.
      * @param string $lang            Language of the sentences.
      * 
      * @return void
      */
-    public function for_moderators($tagInternalName = null, $lang = null) {
-        if (empty($tagInternalName)) {
-            $this->redirect(array('action' => 'for_moderators', '@change'));
+    public function for_moderators($tagName = null, $lang = null) {
+        // If no tag name was specified, assume that the name "@change" (the most 
+        // generic tag indicating attention from moderators) was intended.
+        if (empty($tagName)) {
+            $tagName = '@change';
         }
         
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Sentences';
         
-        $tagId = $this->Tag->getIdFromInternalName($tagInternalName);
-        
-        $results = $this->Tag->TagsSentences->getSentencesForModerators(
+        $tagId = $this->Tag->getIdFromName($tagName);
+        // Get sentences that have been tagged longer ago than the grace period.
+        $results = $this->Tag->TagsSentences->getSentencesWithNonNewTag(
             $tagId, $lang
         );
         
-        $this->set('tagName', $tagInternalName);
+        $this->set('tagId', $tagId);
+        $this->set('tagName', $tagName);
         $this->set('results', $results);
     }
 

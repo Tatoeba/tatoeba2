@@ -78,13 +78,12 @@ class TagsHelper extends AppHelper
                     <span class="tag">
                     <?php
                     $tagName =  $tagArray['Tag']['name'];
-                    $tagInternalName =  $tagArray['Tag']['internal_name'];
                     $taggerId = $tagArray['TagsSentences']['user_id'];
                     $tagId = $tagArray['TagsSentences']['tag_id'];
                     $date = $tagArray['TagsSentences']['added_time'];
                     
                     $this->displayTagLink(
-                        $tagName, $tagInternalName, $taggerId, $date
+                        $tagName, $tagId, $taggerId, $date
                     );
                     
                     if (CurrentUser::canRemoveTagFromSentence($taggerId)) {
@@ -119,7 +118,7 @@ class TagsHelper extends AppHelper
      *
      */
     public function displayTagLink(
-        $tagName, $tagInternalName, $userId = null, $date = null
+        $tagName, $tagId, $userId = null, $date = null
     ) {
         $options = array("class" => "tagName");
         if ($userId != null) {
@@ -132,7 +131,7 @@ class TagsHelper extends AppHelper
             array(
                 "controller" => "tags",
                 "action" => "show_sentences_with_tag",
-                $tagInternalName
+                $tagId
             ),
             $options
         );
@@ -144,13 +143,13 @@ class TagsHelper extends AppHelper
      * Display tag with the number of sentences tagged.
      *
      * @param string $tagName         Name of the tag.
-     * @param string $tagInternalName Internal name of the tag, used in the URL.
+     * @param string $tagId           Id of the tag, used in the URL.
      * @param string $count           Number of sentences tagged.
      *
      * @return void
      */
-    public function displayTagInCloud($tagName, $tagInternalName, $count) {
-        $this->displayTagLink($tagName, $tagInternalName);
+    public function displayTagInCloud($tagName, $tagId, $count) {
+        $this->displayTagLink($tagName, $tagId);
         ?>
         <span class="numSentences"><?php echo '('.$count.')'; ?></span>
         <?php
@@ -159,8 +158,8 @@ class TagsHelper extends AppHelper
     /**
      * Display a little form to add a tag
      *
-     * @param int $sentenceId If precise will add the tag only
-     *                        To this sentence.
+     * @param int $sentenceId If specified, will add the tag only
+     *                        to this sentence.
      *
      * @return void
      */
@@ -176,6 +175,8 @@ class TagsHelper extends AppHelper
         );
         
         // TODO replace me I'm dirty
+        // The idea is to mark a "dirty" tag (one not updated yet), 
+        // but this has not been implemented. See models/tag.php.
         echo '<div id="autocompletionDiv">';
         echo '</div>';
         
@@ -274,7 +275,7 @@ class TagsHelper extends AppHelper
     }
         
     /**
-     * Display a [X] button to remove the tag from the sentence.
+     * Display an [X] button to remove the tag from the sentence.
      *
      * @param int $sentenceId Id of the sentence to remove the tag from.
      * @param int $tagId      Id of the tag to remove from the sentence.

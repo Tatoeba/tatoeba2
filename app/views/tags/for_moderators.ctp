@@ -60,15 +60,16 @@
     
     <div class="module">
         <h2>Guidelines</h2>
-        <p>@moderators, this page was made for your convenience and shows sentences 
-        that were tagged more than two weeks ago for a certain tag. You can use it
+        <p>Corpus maintainers, this page was made for your convenience. It shows sentences 
+        with a certain tag that were tagged more than two weeks ago. You can use it
         to find out quickly which sentences you can safely
         <?php
         echo $html->link(
-            'change', 
+            'change',
             array(
                 'action' => 'for_moderators',
-                '@change'
+                // TODO: Call getIdFromName('@change') rather than hard-coding.
+                '561'
             )
         );
         ?>
@@ -78,15 +79,16 @@
             'delete', 
             array(
                 'action' => 'for_moderators',
-                '@delete'
+                // TODO: Call getIdFromName('@delete') rather than hard-coding.
+                '370' 
             )
         );
         ?>.
         </p>
-        <p>Aside of special situations where your common sense will tell you it's 
+        <p>Aside from special situations where your common sense will tell you it's 
         better to react as soon as possible, my recommendation is that you use your 
-        moderators powers <strong>ONLY</strong> on sentences that appear in 
-        here.</p>
+        corpus maintainer powers <strong>ONLY</strong> on sentences that appear 
+        in this list, in which the owners have had enough time to respond to comments.</p>
         
         <p>NOTE: The maximum number of sentences displayed at a time is limited 
         to 100.</p>
