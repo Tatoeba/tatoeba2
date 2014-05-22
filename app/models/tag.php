@@ -110,9 +110,12 @@ class Tag extends AppModel
             )
         );
         // try to add it as a new tag 
-        $this->save($data); 
-        $tagId = $this->id;
-        
+        $added = $this->save($data);
+        if ($added) {
+            $tagId = $this->id;
+        } else {
+            $tagId = $this->getIdFromName($tagName);
+        }
         // Send a request to suggestd (the auto-suggest daemon) to update its internal
         // table. 
         // TODO only do this if we add a new ("dirty") tag.

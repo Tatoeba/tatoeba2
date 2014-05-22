@@ -358,7 +358,6 @@ class SentencesHelper extends AppHelper
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
         $sentenceAudio = 'no';
-        //AJF
         $sentenceCorrectness = $sentence['correctness'];
         $correctnessLabel = $this->getCorrectnessLabel($sentence['correctness']);
         if (isset($sentence['hasaudio'])) {
