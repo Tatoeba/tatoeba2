@@ -292,4 +292,13 @@
  */
     Configure::write('Tatoeba.blockedIP', array());
 
+/**
+ * Google Analytics.
+ * - Leave GoogleAnalytics.enabled to false if you don't want to
+ *   include the Google Analytics code.
+ * - If you do set GoogleAnalytics.enabled to true, then enter
+ *   the id for your Google Analytics account.
+ */
+    Configure::write('GoogleAnalytics.enabled', false);
+    Configure::write('GoogleAnalytics.id', '');
 ?>

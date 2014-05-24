@@ -27,7 +27,7 @@
 ?>
 <script type="text/javascript">
   var _gaq = _gaq || []; 
-  _gaq.push(['_setAccount', 'UA-2905820-1']); 
+  _gaq.push(['_setAccount', <?php echo Configure::read('GoogleAnalytics.id'); ?>]);
   _gaq.push(['_trackPageview']); 
  
   (function() { 
