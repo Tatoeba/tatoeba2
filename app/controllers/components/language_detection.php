@@ -48,7 +48,7 @@ class LanguageDetectionComponent extends Object
     public function detectLang($text, $user = "")
     {
         $textToAnalyze = urlencode($text);
-        $url = "http://en.tatodetect.sysko.fr/api/detects/simple?query=" . $textToAnalyze;
+        $url = "http://127.0.0.1:4242/api/detects/simple?query=" . $textToAnalyze;
 
         if ($user != "") {
             $url .= ("&user=" . urlencode($user));
