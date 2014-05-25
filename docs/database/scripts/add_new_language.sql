@@ -1,7 +1,7 @@
 -- Procedure to add a new language in the database.
--- 1) Add it in langStats.
+-- 1) Add it in 'languages' table.
 -- 2) Update the 'lang' field of the sentences involved.
--- 3) Update the count in the langStats.
+-- 3) Update the count in the 'languages' table.
 --
 -- Example:
 -- CALL add_new_language('gla', 412, 'Scottish Gaelic');
@@ -29,16 +29,16 @@ IF (@sentences_in_list = 0 AND @sentences_in_tags = 0) THEN
     LEAVE ThisProc;
 END IF;
 
-INSERT INTO langStats (lang) VALUES (lang_iso_code); 
+INSERT INTO languages (code) VALUES (lang_iso_code);
 UPDATE sentences, sentences_sentences_lists 
     SET lang = lang_iso_code, lang_id = LAST_INSERT_ID()
     WHERE sentences_list_id = list_id_for_lang AND id = sentence_id;
 UPDATE sentences, tags_sentences 
     SET lang = lang_iso_code, lang_id = LAST_INSERT_ID() 
     WHERE tag_id = (SELECT id FROM tags WHERE name = tag_name_for_lang) AND id = sentence_id;
-UPDATE langStats 
+UPDATE languages
     SET numberOfSentences = (SELECT count(*) FROM sentences WHERE lang = lang_iso_code) 
-    WHERE lang = lang_iso_code;
+    WHERE code = lang_iso_code;
 
 END |
 

@@ -366,17 +366,17 @@ foreach ($languages as $lang=>$name){
             from sentences s\
             left join sentences_translations st on st.sentence_id = s.id\
             left join sentences t on st.translation_id = t.id\
-            where s.lang_id = (select id from langStats where lang = '$lang')\
+            where s.lang_id = (select id from languages where lang = '$lang')\
         union \
         select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id\
             from sentences s\
             left join sentences_translations st on st.sentence_id = s.id\
             left join sentences_translations tt on tt.sentence_id = st.translation_id\
             left join sentences t on tt.translation_id = t.id\
-            where s.lang_id =  (select id from langStats where lang = '$lang')\
+            where s.lang_id =  (select id from languages where lang = '$lang')\
         ) t 
         sql_attr_uint = id2
-        sql_attr_multi = uint trans_id from field; SELECT id FROM langStats ;
+        sql_attr_multi = uint trans_id from field; SELECT id FROM languages ;
     }
             ";
     // generate index for this pair

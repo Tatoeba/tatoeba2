@@ -4,27 +4,27 @@
 --   update_number_of_sentences.sql
 -- 
 -- 
--- This script will create the table langStats, which contains
+-- This script will create the table 'languages', which contains
 -- the list of supported languages in Tatoeba as well as the
 -- number of sentence in each language.
 --
 
 -- Deleting and creating the table again.
-DROP TABLE IF EXISTS `langStats`;
-CREATE TABLE `langStats` (
-  `lang` varchar(4) CHARACTER SET utf8,
-  `numberOfSentences` mediumint(8) unsigned NOT NULL DEFAULT '0',
+DROP TABLE IF EXISTS `languages`;
+CREATE TABLE `languages` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `code` varchar(4) CHARACTER SET utf8,
+  `numberOfSentences` mediumint(8) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `lang` (`lang`)
+  UNIQUE KEY `lang` (`code`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Making sure that there's no entry in the "sentences" table
 -- that has lang as an empty string.
 UPDATE sentences SET lang = NULL WHERE lang = '';
 
--- Inserting the stats into langStats
-INSERT INTO langStats (lang, numberOfSentences)
+-- Inserting the stats into 'languages'
+INSERT INTO languages (code, numberOfSentences)
     SELECT lang , count(*) FROM sentences GROUP BY lang;
     
 -- We need to Update the sentences.lang_id, because re-creating the table will 
@@ -35,4 +35,4 @@ INSERT INTO langStats (lang, numberOfSentences)
 --
 -- NOTE: It seems that this doesn't update properly the count for lang = NULL
 -- I don't have time to debug that.
-UPDATE sentences s JOIN langStats ls ON s.lang = ls.lang SET s.lang_id = ls.id;
+UPDATE sentences s JOIN languages ls ON s.lang = ls.lang SET s.lang_id = ls.id;

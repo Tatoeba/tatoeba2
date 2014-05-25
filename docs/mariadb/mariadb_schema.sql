@@ -220,18 +220,18 @@ CREATE TABLE `groups` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Table structure for table `langStats`
+-- Table structure for table `languages`
 --
 
-DROP TABLE IF EXISTS `langStats`;
+DROP TABLE IF EXISTS `languages`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `langStats` (
-  `lang` varchar(4) CHARACTER SET utf8 NOT NULL,
-  `numberOfSentences` mediumint(8) unsigned NOT NULL DEFAULT '0',
+CREATE TABLE `languages` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
+  `code` varchar(4) CHARACTER SET utf8 NOT NULL,
+  `numberOfSentences` mediumint(8) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `lang` (`lang`)
+  UNIQUE KEY `code` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
