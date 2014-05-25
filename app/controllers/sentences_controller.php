@@ -993,7 +993,8 @@ class SentencesController extends AppController
                     'id',
                     'text',
                     'lang',
-                    'hasaudio'
+                    'hasaudio',
+                    'correctness'
                 ),
                 'contain' => array(),
                 'limit' => 50,
