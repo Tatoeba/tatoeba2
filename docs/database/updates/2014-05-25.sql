@@ -1,5 +1,5 @@
 RENAME TABLE langStats TO languages;
-ALTER TABLE languages MODIFY COLUMN id TINYINT(3) FIRST;
+ALTER TABLE languages MODIFY COLUMN id SMALLINT(3) FIRST;
 ALTER TABLE languages CHANGE lang code VARCHAR(4);
 
 --
