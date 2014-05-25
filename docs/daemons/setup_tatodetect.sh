@@ -155,6 +155,6 @@ sudo cp default /etc/default/tatodetect
 #sudo useradd -r tatodetect
 
 #Start the daemon
-/etc/init.d/tatodetect start
+sudo /etc/init.d/tatodetect start
 #Add the init script to system startup
 sudo update-rc.d tatodetect defaults

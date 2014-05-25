@@ -84,6 +84,6 @@ sudo cp doc/mandarin.xml /etc/mandarin.xml
 #Add an unprivileged user
 sudo useradd -r sinoparserd
 #Start the daemon
-/etc/init.d/sinoparserd start
+sudo /etc/init.d/sinoparserd start
 #Add the init script to system startup
 sudo update-rc.d sinoparserd defaults
