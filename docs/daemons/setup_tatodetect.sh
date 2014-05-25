@@ -51,11 +51,10 @@ touch init.d
 echo -e '
 #! /bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 DAEMON=/usr/local/bin/tatodetect
 NAME=tatodetect
 DESC=tatodetect
-USER=tatodetect
 
 test -x $DAEMON || exit 0
 
@@ -71,7 +70,7 @@ $DAEMON $DAEMON_OPTS
 ;;
 start)
 echo -n "Starting $DESC: "
-start-stop-daemon --background --make-pidfile --start --quiet --pidfile /var/run/$NAME.pid -c $USER --exec $DAEMON -- $DAEMON_OPTS
+start-stop-daemon --background --make-pidfile --start --quiet --pidfile /var/run/$NAME.pid --exec $DAEMON -- $DAEMON_OPTS
 echo "$NAME."
 ;;
 stop)
@@ -106,7 +105,7 @@ echo '
 {
 "service" : {
 "api" : "http",
-"port" : 8080
+"port" : 4242
 },
 
     "cache" : {
@@ -153,7 +152,8 @@ DAEMON_OPTS=" -c /etc/tatodetect.js"
 sudo cp default /etc/default/tatodetect
 
 #Add an unprivileged user
-sudo useradd -r tatodetect
+#sudo useradd -r tatodetect
+
 #Start the daemon
 /etc/init.d/tatodetect start
 #Add the init script to system startup
