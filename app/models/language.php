@@ -92,7 +92,7 @@ class Language extends AppModel
         $endOfQuery = "code = '$langCode'";
 
         if ($langCode == '' or $langCode == null) {
-            $endOfQuery = 'lang is null';
+            $endOfQuery = 'code is null';
         }
 
         $query = "
@@ -116,7 +116,7 @@ class Language extends AppModel
         $endOfQuery = "code = '$langCode'";
 
         if ($langCode == '' or $langCode == null) {
-            $endOfQuery = 'lang is null';
+            $endOfQuery = 'code is null';
         }
 
         $query = "
