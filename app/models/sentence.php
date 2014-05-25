@@ -80,57 +80,57 @@ class Sentence extends AppModel
         'mar', 'tgk', 'tpw', 'prg', 'npi',
         'mlt', 'ckt', 'cor', 'aze', 'khm',
         'lao', 'bod', 'hil', 'arq', 'pcd',
-        'grc', 
-        'amh', 
-        'awa', 
-        'bho', 
-        'cbk', 
-        'enm', 
-        'frm', 
-        'hat', 
-        'jdt', 
-        'kal', 
-        'mhr', 
-        'nah', 
-        'pdc', 
-        'sin', 
-        'tuk', 
-        'wln', 
-        'bak', 
-        'hau', 
-        'ltz', 
-        'mgm', 
-        'som', 
-        'zul', 
-        'haw', 
-        'kir', 
-        'mkd', 
-        'mrj', 
-        'ppl', 
-        'yor', 
-        'kin', 
-        'shs', 
-        'chv', 
-        'lkt', 
-        'ota', 
-        'sna', 
-        'mnw', 
-        'nog', 
-        'sah', 
-        'abk', 
-        'tet', 
-        'tam', 
-        'udm', 
-        'kum', 
-        'crh', 
-        'nya', 
-        'liv', 
-        'nav', 
-        'chr', 
+        'grc',
+        'amh',
+        'awa',
+        'bho',
+        'cbk',
+        'enm',
+        'frm',
+        'hat',
+        'jdt',
+        'kal',
+        'mhr',
+        'nah',
+        'pdc',
+        'sin',
+        'tuk',
+        'wln',
+        'bak',
+        'hau',
+        'ltz',
+        'mgm',
+        'som',
+        'zul',
+        'haw',
+        'kir',
+        'mkd',
+        'mrj',
+        'ppl',
+        'yor',
+        'kin',
+        'shs',
+        'chv',
+        'lkt',
+        'ota',
+        'sna',
+        'mnw',
+        'nog',
+        'sah',
+        'abk',
+        'tet',
+        'tam',
+        'udm',
+        'kum',
+        'crh',
+        'nya',
+        'liv',
+        'nav',
+        'chr',
         'guj', //@lang
         null
     );
-    
+
     public $validate = array(
         'lang' => array(
             'rule' => array()
@@ -185,11 +185,11 @@ class Sentence extends AppModel
             'associationForeignKey' => 'tag_id'
         ),
     );
-    
-    
+
+
     /**
      * The constructor is here only to set the rule for languages.
-     * 
+     *
      * @return void
      */
     public function __construct()
@@ -199,7 +199,7 @@ class Sentence extends AppModel
     }
 
 
-    public function beforeSave() 
+    public function beforeSave()
     {
         if (isset($this->data['Sentence']['lang']))
         {
@@ -227,7 +227,7 @@ class Sentence extends AppModel
             $sentenceText = $this->data['Sentence']['text'];
             if ($created) {
                 $sentenceAction = 'insert';
-                $this->incrementStatistics($sentenceLang);
+                $this->Language->incrementCountForLanguage($sentenceLang);
             }
             
             $this->Contribution->saveSentenceContribution(
@@ -264,7 +264,7 @@ class Sentence extends AppModel
         }
         
         // Decrement statistics
-        $this->decrementStatistics($sentenceLang);
+        $this->decrementCountForLanguage($sentenceLang);
     }
 
     /**
@@ -548,81 +548,6 @@ class Sentence extends AppModel
 
     }
 
-    /**
-     * Count number of sentences in each language.
-     *
-     * @return array [lang => number of sentences in this lang]
-     */
-    public function getStatistics($limit = null)
-    {
-        $limitCondition = "";
-        if ($limit != null) {
-            $limitCondition = " LIMIT 0,$limit";
-        }
-        
-        $query = "
-            SELECT ifnull(lang, 'unknown') as lang,  numberOfSentences
-                FROM langStats
-                ORDER BY numberOfSentences DESC
-                $limitCondition;
-        ";
-
-        $results = $this->query($query);
-
-        // cakephp doesn't like use of AS
-        foreach ($results as $i=>$result) {
-            $results[$i]['langStats']['lang'] = $result[0]['lang'];
-        }
-        return $results ;
-    }
-
-
-    /**
-     * Add one in stats of a given language.
-     *
-     * @param string $lang Language to be incremented.
-     * 
-     * @return void
-     */
-    public function incrementStatistics($lang)
-    {
-        $lang = Sanitize::paranoid($lang);
-        $endOfQuery = "lang = '$lang'";
-
-        if ($lang == '' or $lang == null) {
-            $endOfQuery = 'lang is null';
-        }
-
-        $query = "
-            UPDATE langStats SET numberOfSentences = numberOfSentences + 1
-                WHERE $endOfQuery ;
-        ";
-        $this->query($query);
-    }
-
-    /**
-     * Decrement stats of a given language.
-     *
-     * @param string $lang Language to be decremented.
-     *
-     * @return void
-     */
-    public function decrementStatistics($lang)
-    {
-
-        $lang = Sanitize::paranoid($lang);
-        $endOfQuery = "lang = '$lang'";
-
-        if ($lang == '' or $lang == null) {
-            $endOfQuery = 'lang is null';
-        }
-
-        $query = "
-            UPDATE langStats SET numberOfSentences = numberOfSentences - 1
-                WHERE $endOfQuery ;
-        ";
-        $this->query($query);
-    }
 
     /**
      * Get number of sentences owned by a given user.
@@ -1697,8 +1622,8 @@ class Sentence extends AppModel
             $this->save($data);
             
             $this->Contribution->updateLanguage($sentenceId, $newLang);
-            $this->incrementStatistics($newLang);
-            $this->decrementStatistics($prevLang);
+            $this->Language->incrementCountForLanguage($newLang);
+            $this->Language->decrementCountForLanguage($prevLang);
             
             return $newLang;
         }

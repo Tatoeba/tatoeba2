@@ -27,10 +27,10 @@
  
 $this->pageTitle = 'Tatoeba - ' . __('Number of sentences per language', true);
 
-$stats = ClassRegistry::init('Sentence')->getStatistics();
+$stats = ClassRegistry::init('Language')->getStatistics();
 $audioStats = ClassRegistry::init('Sentence')->getTotalNumberOfSentencesWithAudio();
 $totalSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
-$max = $stats[0]['langStats']['numberOfSentences'];
+$max = $stats[0]['Language']['numberOfSentences'];
 ?>
 <div id="annexe_content">
     <?php echo $this->element('audio_stats', array(
@@ -54,8 +54,8 @@ $max = $stats[0]['langStats']['numberOfSentences'];
         <?php 
         $rank = 1;
         foreach ($stats as $stat) { 
-        $langCode = $stat['langStats']['lang'];
-        $numberOfSentences = $stat['langStats']['numberOfSentences'];
+        $langCode = $stat['Language']['code'];
+        $numberOfSentences = $stat['Language']['numberOfSentences'];
         $percent = ($numberOfSentences / $max) * 100;
         ?>
         <tr>
