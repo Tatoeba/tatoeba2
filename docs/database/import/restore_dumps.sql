@@ -73,7 +73,7 @@ INSERT INTO languages (code, numberOfSentences)
 -- Updating the table sentences to have same lang_id for each
 -- language as in languages table
 UPDATE sentences s, languages l SET s.lang_id = l.id
-	WHERE s.lang = l.lang;
+	WHERE s.lang = l.code;
 
 SET @@global.general_log = @_general_log;
 SET @@global.general_log_file = @_general_log_file;
