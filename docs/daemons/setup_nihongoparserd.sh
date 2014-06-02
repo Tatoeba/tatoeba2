@@ -22,5 +22,5 @@ sudo chmod +x /etc/init.d/nihongoparserd
 sudo cp ../conf/default /etc/default/nihongoparserd
 
 sudo useradd -r nihongoparserd
-/etc/init.d/nihongoparserd start
+sudo /etc/init.d/nihongoparserd start
 sudo update-rc.d nihongoparserd defaults
