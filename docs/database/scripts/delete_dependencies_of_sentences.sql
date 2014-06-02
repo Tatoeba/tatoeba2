@@ -6,8 +6,8 @@ Delimiter |
 CREATE TRIGGER delete_dependencies_of_sentences AFTER DELETE ON sentences
   FOR EACH ROW BEGIN
     
-    -- decreament the number of sentence for all list
-    -- which contain the sentence to delete
+    -- Decrement the sentence count for all lists
+    -- that contain the sentence to delete.
     UPDATE `sentences_lists`
     SET `numberOfSentences` = `numberOfSentences` - 1
     WHERE id IN 
@@ -16,19 +16,12 @@ CREATE TRIGGER delete_dependencies_of_sentences AFTER DELETE ON sentences
       WHERE `sentence_id` = OLD.`id`
     );
     
-    -- delete the sentence of the list
+    -- Delete the sentence from the list.
     DELETE FROM `sentences_sentences_lists`
     WHERE `sentence_id` = OLD.`id`;
-    
-    UPDATE `tags`
-    SET `nbrOfSentences` = `nbrOfSentences` - 1
-    WHERE id IN 
-    (
-      SELECT `tag_id` FROM `tags_sentences`
-      WHERE `sentence_id` = OLD.`id`
-    );
- 
-    -- delete associated to the sentences
+
+    -- This will also invoke a trigger in
+    -- maintain_tags_number_of_sentences.sql.
     DELETE FROM `tags_sentences`
     WHERE `sentence_id` = OLD.`id`;
     
