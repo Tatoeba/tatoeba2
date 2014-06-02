@@ -69,15 +69,7 @@ class Tag extends AppModel
     public function beforeSave()
     {
         $tagName = $this->data['Tag']['name'];
-        $result = $this->find(
-            'first',
-            array(
-                'fields' => 'Tag.id',
-                'conditions' => array("Tag.name" => $tagName),
-                'contain' => array()
-            )
-        );
-
+        $result = $this->getIdFromName($tagName);
         return empty($result);
     }
   
@@ -102,9 +94,6 @@ class Tag extends AppModel
         $data = array(
             "Tag" => array(
                 "name" => $tagName,
-                // Until we get rid of the internal_name field altogether, at least make sure 
-                // that it's empty. TODO: Remove the field entirely.
-                "internal_name" => '', 
                 "user_id" => $userId,
                 "created" => date("Y-m-d H:i:s")
             )
@@ -114,9 +103,12 @@ class Tag extends AppModel
         if ($added) {
             $tagId = $this->id;
         } else {
-            // This is mildly inefficient because the query within getIdFormName() has already
+            // This is mildly inefficient because the query has already
             // been performed in beforeSave().
             $tagId = $this->getIdFromName($tagName);
+            if ($tagId == null) {
+                return false;
+            }
         }
         // Send a request to suggestd (the auto-suggest daemon) to update its internal
         // table. 
@@ -128,16 +120,15 @@ class Tag extends AppModel
         // }
 
         if ($sentenceId != null) {
-            $this->TagsSentences->tagSentence(
+            $ret = $this->TagsSentences->tagSentence(
                 $sentenceId,
                 $tagId,
                 $userId
             );
+            return $ret;
         }
         
-        return true; // TODO This function was not returning anything but the
-                     // return value is needed in TagsController::add_tag().
-                     // I'm making it return true for now.
+        return true;
     }
 
     public function removeTagFromSentence($tagId, $sentenceId) {

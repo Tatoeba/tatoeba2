@@ -103,7 +103,7 @@ class TagsSentences extends AppModel
             )
         );
 
-        $this->save($data);
+        return $this->save($data);
 
     }
 
