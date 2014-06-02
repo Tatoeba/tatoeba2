@@ -48,7 +48,7 @@ $this->pageTitle = 'Tatoeba - '.sprintf(__('Sentences with tag %s', true), $tagN
     <div class="module">
     <h2><?php echo $tagName; ?></h2>
     <?php
-    $url = array($tagInternalName, $langFilter);
+    $url = array($tagId, $langFilter);
     $pagination->display($url);
     ?>
         

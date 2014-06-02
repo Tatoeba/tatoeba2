@@ -103,7 +103,7 @@ class TagsSentences extends AppModel
             )
         );
 
-        $this->save($data);
+        return $this->save($data);
 
     }
 
@@ -114,7 +114,6 @@ class TagsSentences extends AppModel
             'all',
             array(
                 'fields' => array(
-                    'Tag.internal_name',
                     'Tag.name',
                     'TagsSentences.user_id',
                     'TagsSentences.tag_id',
@@ -141,21 +140,22 @@ class TagsSentences extends AppModel
                 'tag_id' => $tagId,
                 'sentence_id' => $sentenceId
             ),
-            false // we don't want record to be delete in cascade as we only want
+            // we don't want record to be deleted in cascade, as we only want
             // the relation to be broken
+            false 
         );
     }
     
     
     /**
-     * Get sentences with a certain tag that were tagged more than 2 weeks ago.
+     * Get sentences with tag that were tagged more than 2 weeks ago.
      *
      * @param int    $tagId Id of the tag.
      * @param string $lang  Language of the sentences.
      *
      * @return array
      */
-    public function getSentencesForModerators($tagId, $lang)
+    public function getSentencesWithNonNewTag($tagId, $lang)
     {
         $date = date('Y-m-d', strtotime("-2 weeks"));
         
