@@ -92,10 +92,33 @@ class ActivitiesController extends AppController
     
     
     /**
-     * Imptove sentences.
+     * Improve sentences.
      */
     public function improve_sentences()
     {
+        $tagChangeName = ClassRegistry::init('Tag')->getChangeTagName();
+        $tagCheckName = ClassRegistry::init('Tag')->getCheckTagName();
+        $tagDeleteName = ClassRegistry::init('Tag')->getDeleteTagName();
+        $tagNeedsNativeCheckName = ClassRegistry::init('Tag')->getNeedsNativeCheckTagName();
+        $tagOKName = ClassRegistry::init('Tag')->getOKTagName();
+
+        $tagChangeId = ClassRegistry::init('Tag')->getIdFromName($tagChangeName);
+        $tagCheckId = ClassRegistry::init('Tag')->getIdFromName($tagCheckName);
+        $tagDeleteId = ClassRegistry::init('Tag')->getIdFromName($tagDeleteName);
+        $tagNeedsNativeCheckId = ClassRegistry::init('Tag')->getIdFromName($tagNeedsNativeCheckName);
+        $tagOKId = ClassRegistry::init('Tag')->getIdFromName($tagOKName);
+
+        $this->set('tagChangeName', $tagChangeName);
+        $this->set('tagCheckName', $tagCheckName);
+        $this->set('tagDeleteName', $tagDeleteName);
+        $this->set('tagNeedsNativeCheckName', $tagNeedsNativeCheckName);
+        $this->set('tagOKName', $tagOKName);
+      
+        $this->set('tagChangeId', $tagChangeId);
+        $this->set('tagCheckId', $tagCheckId);
+        $this->set('tagDeleteId', $tagDeleteId);
+        $this->set('tagNeedsNativeCheckId', $tagNeedsNativeCheckId);
+        $this->set('tagOKId', $tagOKId);
     }
     
     

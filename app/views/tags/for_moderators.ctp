@@ -61,26 +61,23 @@
     <div class="module">
         <h2>Guidelines</h2>
         <p>Corpus maintainers, this page was made for your convenience. It shows sentences 
-        with a certain tag that were tagged more than two weeks ago. You can use it
-        to find out quickly which sentences you can safely
+        that were tagged more than two weeks ago as 
         <?php
         echo $html->link(
-            'change',
+            $tagChangeName,
             array(
                 'action' => 'for_moderators',
-                // TODO: Call getIdFromName('@change') rather than hard-coding.
-                '561'
+                $tagChangeId
             )
         );
         ?>
         or
         <?php
         echo $html->link(
-            'delete', 
+            $tagDeleteName,
             array(
                 'action' => 'for_moderators',
-                // TODO: Call getIdFromName('@delete') rather than hard-coding.
-                '370' 
+                $tagDeleteId
             )
         );
         ?>.

@@ -59,6 +59,26 @@ class Tag extends AppModel
         ),
     );
   
+    public function getChangeTagName()
+    {
+        return '@change';
+    }
+    public function getCheckTagName()
+    {
+        return '@check';
+    }
+    public function getDeleteTagName()
+    {
+        return '@delete';
+    }
+    public function getNeedsNativeCheckTagName()
+    {
+        return '@needs native check';
+    }
+    public function getOKTagName()
+    {
+        return 'OK';
+    }
     /**
      * Cakephp callback before each saving operation
      *

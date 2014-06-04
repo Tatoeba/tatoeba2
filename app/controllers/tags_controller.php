@@ -45,7 +45,7 @@ class TagsController extends AppController
      */
     public $name = 'Tags';
     public $persistentModel = true;   
-    public $components = array('CommonSentence'); 
+    public $components = array('CommonSentence');
     /**
      * Before filter.
      * 
@@ -226,27 +226,35 @@ class TagsController extends AppController
             $sentenceIds
         );
 
-        $tagChangeName = '@change';
-        $tagCheckName = '@check';
-        $tagNeedsNativeCheckName = '@needs native check';
-        $tagOkName = 'OK';
-        $tagChangeId = $this->Tag->getIdFromName($tagChangeName);
-        $tagCheckId = $this->Tag->getIdFromName($tagCheckName);
-        $tagNeedsNativeCheckId = $this->Tag->getIdFromName($tagNeedsNativeCheckName);
-        $tagOkId = $this->Tag->getIdFromName($tagOkName);
+        // If we display common tags in the right sidebar, we should uncomment this code
+        // because we'll be using the values in the view.
+        /* $tagChangeName = $this->Tag->getChangeTagName(); */
+        /* $tagCheckName = $this->Tag->getCheckTagName(); */
+        /* $tagDeleteName = $this->Tag->getDeleteTagName(); */
+        /* $tagNeedsNativeCheckName = $this->Tag->getNeedsNativeCheckTagName(); */
+        /* $tagOKName = $this->Tag->getOKTagName(); */
+        /* $tagChangeId = $this->Tag->getIdFromName($tagChangeName); */
+        /* $tagCheckId = $this->Tag->getIdFromName($tagCheckName); */
+        /* $tagDeleteId = $this->Tag->getIdFromName($tagDeleteName); */
+        /* $tagNeedsNativeCheckId = $this->Tag->getIdFromName($tagNeedsNativeCheckName); */
+        /* $tagOKId = $this->Tag->getIdFromName($tagOKName); */
+
         $this->set('langFilter', $lang);
         $this->set('tagId', $tagId);
         $this->set('allSentences', $allSentences);
         $this->set('tagName', $tagName);
         $this->set('taggerIds', $taggerIds);
-        $this->set('tagChangeName', $tagChangeName);
-        $this->set('tagCheckName', $tagCheckName);
-        $this->set('tagNeedsNativeCheckName', $tagNeedsNativeCheckName);
-        $this->set('tagOkName', $tagOkName);
-        $this->set('tagChangeId', $tagChangeId);
-        $this->set('tagCheckId', $tagCheckId);
-        $this->set('tagNeedsNativeCheckId', $tagNeedsNativeCheckId);
-        $this->set('tagOkId', $tagOkId);
+
+        // If we display common tags in the right sidebar, we should uncomment this code
+        // because we'll be using the values in the view.
+        /* $this->set('tagChangeName', $tagChangeName); */
+        /* $this->set('tagCheckName', $tagCheckName); */
+        /* $this->set('tagNeedsNativeCheckName', $tagNeedsNativeCheckName); */
+        /* $this->set('tagOKName', $tagOKName); */
+        /* $this->set('tagChangeId', $tagChangeId); */
+        /* $this->set('tagCheckId', $tagCheckId); */
+        /* $this->set('tagNeedsNativeCheckId', $tagNeedsNativeCheckId); */
+        /* $this->set('tagOKId', $tagOKId); */
     }
     
     
@@ -263,14 +271,16 @@ class TagsController extends AppController
     public function for_moderators($tagId = null, $lang = null) {
         // If no tag name was specified, assume that the name "@change" (the most 
         // generic tag indicating attention from moderators) was intended.
-        $tagChangeName = '@change';
-        $tagCheckName = '@check';
-        $tagNeedsNativeCheckName = '@needs native check';
-        $tagOkName = 'OK';
+        $tagChangeName = $this->Tag->getChangeTagName();
+        $tagCheckName = $this->Tag->getCheckTagName();
+        $tagDeleteName = $this->Tag->getDeleteTagName();
+        $tagNeedsNativeCheckName = $this->Tag->getNeedsNativeCheckTagName();
+        $tagOKName = $this->Tag->getOKTagName();
         $tagChangeId = $this->Tag->getIdFromName($tagChangeName);
         $tagCheckId = $this->Tag->getIdFromName($tagCheckName);
+        $tagDeleteId = $this->Tag->getIdFromName($tagDeleteName);
         $tagNeedsNativeCheckId = $this->Tag->getIdFromName($tagNeedsNativeCheckName);
-        $tagOkId = $this->Tag->getIdFromName($tagOkName);
+        $tagOKId = $this->Tag->getIdFromName($tagOKName);
         if (empty($tagId)) {
             $tagId = $tagChangeId;
         }
@@ -290,12 +300,14 @@ class TagsController extends AppController
         $this->set('results', $results);
         $this->set('tagChangeName', $tagChangeName);
         $this->set('tagCheckName', $tagCheckName);
+        $this->set('tagDeleteName', $tagDeleteName);
         $this->set('tagNeedsNativeCheckName', $tagNeedsNativeCheckName);
-        $this->set('tagOkName', $tagOkName);
+        $this->set('tagOKName', $tagOKName);
         $this->set('tagChangeId', $tagChangeId);
         $this->set('tagCheckId', $tagCheckId);
+        $this->set('tagDeleteId', $tagDeleteId);
         $this->set('tagNeedsNativeCheckId', $tagNeedsNativeCheckId);
-        $this->set('tagOkId', $tagOkId);
+        $this->set('tagOKId', $tagOKId);
     }
 }
 ?>

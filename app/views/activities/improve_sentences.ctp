@@ -27,35 +27,35 @@
  
 $this->pageTitle = __('Improve sentences', true);
 $changeLink = $html->link(
-    '@change', 
+    $tagChangeName, 
     array(
         'controller' => 'tags',
         'action' => 'show_sentences_with_tag',
-        '561' // == '@change'; TODO: avoid hardcoding this
+        $tagChangeId,
     )
 );
 $checkLink = $html->link(
-    '@check', 
+    $tagCheckName,
     array(
         'controller' => 'tags',
         'action' => 'show_sentences_with_tag',
-        '841' // == '@check'; TODO: avoid hardcoding this
+        $tagCheckId
     )
 );
 $nncLink = $html->link(
-    '@needs native check', 
+    $tagNeedsNativeCheckName,
     array(
         'controller' => 'tags',
         'action' => 'show_sentences_with_tag',
-        '1207' // == '@needs_native_check'; TODO: avoid hardcoding this
+        $tagNeedsNativeCheckId
     )
 );
 $okLink = $html->link(
-    'OK', 
+    $tagOKName, 
     array(
         'controller' => 'tags',
         'action' => 'show_sentences_with_tag',
-        '7' // == 'OK'; TODO: avoid hardcoding this
+        $tagOKId
     )
 );
 ?>
