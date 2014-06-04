@@ -226,11 +226,27 @@ class TagsController extends AppController
             $sentenceIds
         );
 
+        $tagChangeName = '@change';
+        $tagCheckName = '@check';
+        $tagNeedsNativeCheckName = '@needs native check';
+        $tagOkName = 'OK';
+        $tagChangeId = $this->Tag->getIdFromName($tagChangeName);
+        $tagCheckId = $this->Tag->getIdFromName($tagCheckName);
+        $tagNeedsNativeCheckId = $this->Tag->getIdFromName($tagNeedsNativeCheckName);
+        $tagOkId = $this->Tag->getIdFromName($tagOkName);
         $this->set('langFilter', $lang);
         $this->set('tagId', $tagId);
         $this->set('allSentences', $allSentences);
         $this->set('tagName', $tagName);
         $this->set('taggerIds', $taggerIds);
+        $this->set('tagChangeName', $tagChangeName);
+        $this->set('tagCheckName', $tagCheckName);
+        $this->set('tagNeedsNativeCheckName', $tagNeedsNativeCheckName);
+        $this->set('tagOkName', $tagOkName);
+        $this->set('tagChangeId', $tagChangeId);
+        $this->set('tagCheckId', $tagCheckId);
+        $this->set('tagNeedsNativeCheckId', $tagNeedsNativeCheckId);
+        $this->set('tagOkId', $tagOkId);
     }
     
     
@@ -247,8 +263,16 @@ class TagsController extends AppController
     public function for_moderators($tagId = null, $lang = null) {
         // If no tag name was specified, assume that the name "@change" (the most 
         // generic tag indicating attention from moderators) was intended.
+        $tagChangeName = '@change';
+        $tagCheckName = '@check';
+        $tagNeedsNativeCheckName = '@needs native check';
+        $tagOkName = 'OK';
+        $tagChangeId = $this->Tag->getIdFromName($tagChangeName);
+        $tagCheckId = $this->Tag->getIdFromName($tagCheckName);
+        $tagNeedsNativeCheckId = $this->Tag->getIdFromName($tagNeedsNativeCheckName);
+        $tagOkId = $this->Tag->getIdFromName($tagOkName);
         if (empty($tagId)) {
-            $tagId = $this->Tag->getIdFromName('@change');
+            $tagId = $tagChangeId;
         }
         
         $this->helpers[] = 'Pagination';
@@ -264,7 +288,14 @@ class TagsController extends AppController
         $this->set('tagId', $tagId);
         $this->set('tagName', $tagName);
         $this->set('results', $results);
+        $this->set('tagChangeName', $tagChangeName);
+        $this->set('tagCheckName', $tagCheckName);
+        $this->set('tagNeedsNativeCheckName', $tagNeedsNativeCheckName);
+        $this->set('tagOkName', $tagOkName);
+        $this->set('tagChangeId', $tagChangeId);
+        $this->set('tagCheckId', $tagCheckId);
+        $this->set('tagNeedsNativeCheckId', $tagNeedsNativeCheckId);
+        $this->set('tagOkId', $tagOkId);
     }
-
 }
 ?>
