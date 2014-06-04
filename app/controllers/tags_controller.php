@@ -179,7 +179,7 @@ class TagsController extends AppController
      * Remove a tag from a sentence when on the "show all sentences with
      * this tag" page
      *
-     * @param int $tagId      Id of the tag to remove from the this sentence
+     * @param int $tagId      Id of the tag to remove from this sentence
      * @param int $sentenceId Id of the sentence to remove the tag from
      *
      * @return void
@@ -189,8 +189,19 @@ class TagsController extends AppController
         if (!empty($tagId) && !empty($sentenceId)) {
             $this->Tag->removeTagFromSentence($tagId, $sentenceId);
         }
-        $this->redirect($_SERVER['HTTP_REFERER']);
-    
+        if ($this->Tag->tagExists($tagId)) {
+            $this->redirect($_SERVER['HTTP_REFERER']);
+        } else {
+            // That was the last sentence that had the tag, so we've deleted
+            // the tag (via a trigger). We might as well go to the sentence page.
+            $this->redirect(
+               array(
+                    'controller' => 'sentences',
+                    'action' => 'show',
+                    $sentenceId
+               )
+            );
+        }
     }
 
 

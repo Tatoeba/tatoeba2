@@ -226,6 +226,18 @@ class Tag extends AppModel
         return $result['Tag']['id'];
     }
 
+    public function tagExists($tagId) {
+        $result = $this->find(
+        'first',
+            array(
+                'conditions' => array('Tag.id'=>$tagId),
+                'contain' => array(),
+                'fields' => 'name'
+            )
+        );
+        return empty($result) ? false : true;
+    }
+
     public function getNameFromId($tagId) {
         $result = $this->find(
             'first',
