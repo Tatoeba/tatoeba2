@@ -5,6 +5,7 @@ sudo apt-get install -y git cmake g++ libevent-dev libexpat1-dev libgmm++-dev
 
 #Grab the source from the repo
 git clone https://github.com/allan-simon/sinoparserd.git
+sed -i 's/tree_str/TatoTreeStr/' sinoparserd/src/Index.h
 
 #Generate the makefile and build the source
 cd sinoparserd
