@@ -189,19 +189,7 @@ class TagsController extends AppController
         if (!empty($tagId) && !empty($sentenceId)) {
             $this->Tag->removeTagFromSentence($tagId, $sentenceId);
         }
-        if ($this->Tag->tagExists($tagId)) {
-            $this->redirect($_SERVER['HTTP_REFERER']);
-        } else {
-            // That was the last sentence that had the tag, so we've deleted
-            // the tag (via a trigger). We might as well go to the sentence page.
-            $this->redirect(
-               array(
-                    'controller' => 'sentences',
-                    'action' => 'show',
-                    $sentenceId
-               )
-            );
-        }
+        $this->redirect($_SERVER['HTTP_REFERER']);
     }
 
 
@@ -213,59 +201,45 @@ class TagsController extends AppController
      *
      * @return void
      */
-    public function show_sentences_with_tag($tagId, $lang = null) 
+    public function show_sentences_with_tag($tagId, $lang = null)
     {
-
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Tags';
 
-        $tagName = $this->Tag->getNameFromId($tagId); 
-        
-        $this->paginate = $this->Tag->paramsForPaginate($tagId, 10, $lang);
+        $tagName = $this->Tag->getNameFromId($tagId);
+        $tagExists = !empty($tagName);
+        $this->set('tagExists', $tagExists);
 
-        $sentencesIdsTaggerIds = $this->paginate('TagsSentences');
-        
-        $taggerIds = array();
-        $sentenceIds = array();
+        if ($tagExists) {
+            $this->paginate = $this->Tag->paramsForPaginate($tagId, 10, $lang);
 
-        foreach ($sentencesIdsTaggerIds as $sentenceIdTaggerId) {
-            $taggerIds[] = $sentenceIdTaggerId['TagsSentences']['user_id'];    
-            $sentenceIds[] = $sentenceIdTaggerId['TagsSentences']['sentence_id'];   
-        } 
-        $allSentences = $this->CommonSentence->getAllNeededForSentences(
-            $sentenceIds
-        );
+            $sentencesIdsTaggerIds = $this->paginate('TagsSentences');
 
-        // If we display common tags in the right sidebar, we should uncomment this code
-        // because we'll be using the values in the view.
-        /* $tagChangeName = $this->Tag->getChangeTagName(); */
-        /* $tagCheckName = $this->Tag->getCheckTagName(); */
-        /* $tagDeleteName = $this->Tag->getDeleteTagName(); */
-        /* $tagNeedsNativeCheckName = $this->Tag->getNeedsNativeCheckTagName(); */
-        /* $tagOKName = $this->Tag->getOKTagName(); */
-        /* $tagChangeId = $this->Tag->getIdFromName($tagChangeName); */
-        /* $tagCheckId = $this->Tag->getIdFromName($tagCheckName); */
-        /* $tagDeleteId = $this->Tag->getIdFromName($tagDeleteName); */
-        /* $tagNeedsNativeCheckId = $this->Tag->getIdFromName($tagNeedsNativeCheckName); */
-        /* $tagOKId = $this->Tag->getIdFromName($tagOKName); */
+            $taggerIds = array();
+            $sentenceIds = array();
 
-        $this->set('langFilter', $lang);
-        $this->set('tagId', $tagId);
-        $this->set('allSentences', $allSentences);
-        $this->set('tagName', $tagName);
-        $this->set('taggerIds', $taggerIds);
+            foreach ($sentencesIdsTaggerIds as $sentenceIdTaggerId) {
+                $taggerIds[] = $sentenceIdTaggerId['TagsSentences']['user_id'];
+                $sentenceIds[] = $sentenceIdTaggerId['TagsSentences']['sentence_id'];
+            }
+            $allSentences = $this->CommonSentence->getAllNeededForSentences(
+                $sentenceIds
+            );
 
-        // If we display common tags in the right sidebar, we should uncomment this code
-        // because we'll be using the values in the view.
-        /* $this->set('tagChangeName', $tagChangeName); */
-        /* $this->set('tagCheckName', $tagCheckName); */
-        /* $this->set('tagNeedsNativeCheckName', $tagNeedsNativeCheckName); */
-        /* $this->set('tagOKName', $tagOKName); */
-        /* $this->set('tagChangeId', $tagChangeId); */
-        /* $this->set('tagCheckId', $tagCheckId); */
-        /* $this->set('tagNeedsNativeCheckId', $tagNeedsNativeCheckId); */
-        /* $this->set('tagOKId', $tagOKId); */
+            $this->set('langFilter', $lang);
+            $this->set('tagId', $tagId);
+            $this->set('allSentences', $allSentences);
+            $this->set('tagName', $tagName);
+            $this->set('taggerIds', $taggerIds);
+        } else {
+            $this->Session->setFlash(
+                __(
+                    'There is no sentences for this tag. The tag you are looking '.
+                    'for has been deleted or does not exist.', true
+                )
+            );
+        }
     }
     
     
