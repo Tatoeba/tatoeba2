@@ -299,6 +299,8 @@ class AppController extends Controller
      */
     public function getSupportedLanguage()
     {
+        // NOTE: If you update this list, update views/elements/interface_language.ctp
+        // and config/routes.php as well.
         $supportedLanguages = array(
             'en'    => 'eng',
             'ja'    => 'jpn',
@@ -312,7 +314,14 @@ class AppController extends Controller
             'ru'    => 'rus',
             'tr'    => 'tur',
             'el'    => 'gre',
-
+            'ar'    => 'ara',
+            'eu'    => 'eus',
+            'eo'    => 'epo',
+            'fi'    => 'fin',
+            'hu'    => 'hun',
+            'tl'    => 'tgl',
+            'mr'    => 'mar',
+            // TODO: Handle 'nds' (Low German), which does not have a two-letter code.
         );
         if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) { 
             

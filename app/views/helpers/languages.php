@@ -510,7 +510,13 @@ class LanguagesHelper extends AppHelper
             'pt_BR' => 'por',
             'gre'  => 'ell',
             'rus' => 'rus',
-            'spa' => 'spa'
+            'spa' => 'spa',
+            'ara' => 'ara',
+            'eus' => 'eus',
+            'fin' => 'fin',
+            'hun' => 'hun',
+            'tgl' => 'tgl',
+            'mar' => 'mar'
         );
         
         if (isset($languages["$code"])) {

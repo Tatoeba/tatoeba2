@@ -41,9 +41,10 @@
  * maybe we can have a rule to handle both 
  */
 
-// array which list all the languages in which tatoeba interface has been translated
+// Array that lists all the languages into which the Tatoeba interface has been translated
+// Keep this in sync with app_controller.php and views/elements/interface_language.ctp.
 $interfaceLanguages = array(
-    'lang'=>'ara|bel|chi|deu|eng|epo|eus|fre|gre|hin|hun|ita|jpn|nds|pol|pt_BR|rus|spa|tur|tgl|fin'
+    'lang'=>'ara|bel|chi|deu|eng|epo|eus|fre|gre|hin|hun|ita|jpn|mar|nds|pol|pt_BR|rus|spa|tur|tgl|fin'
 );
 
 /**
