@@ -10,7 +10,7 @@ git clone https://github.com/allan-simon/nihongoparserd.git
 cd nihongoparserd
 mkdir build
 cd build
-cmake ..
+cmake .. && cmake ..
 make
 
 #Copy binary to system-wide location
