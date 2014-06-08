@@ -29,8 +29,7 @@ $this->pageTitle = 'Tatoeba - '. __('All existing tags', true);
 ?>
 
 <div id="annexe_content">
-    
-    <div class="annexeMenu">
+    <div class="module">
         <h2><?php __('Related links'); ?></h2>
         <ul>
         <li class="item"><a href="http://en.wiki.tatoeba.org/articles/show/tags">Tags</a></li>
