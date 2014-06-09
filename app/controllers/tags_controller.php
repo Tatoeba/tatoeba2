@@ -235,7 +235,7 @@ class TagsController extends AppController
         } else {
             $this->Session->setFlash(
                 __(
-                    'There is no sentences for this tag. The tag you are looking '.
+                    'There are no sentences for this tag. The tag you are looking '.
                     'for has been deleted or does not exist.', true
                 )
             );
