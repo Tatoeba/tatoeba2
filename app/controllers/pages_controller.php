@@ -347,6 +347,10 @@ class PagesController extends AppController
      */
     public function faq()
     {
+        $this->redirect(
+            "http://wiki.tatoeba.org/articles/show/faq",
+            301
+        );
     }
 	
 	

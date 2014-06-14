@@ -117,15 +117,14 @@ $menuElements = array(
         ),
         "sub-menu" => array(
             __('Quick Start Guide', true) =>
-                'http://en.wiki.tatoeba.org/articles/show/quick-start'
+                'http://wiki.tatoeba.org/articles/show/quick-start'
             ,
             __('Tatoeba Wiki', true) =>
-                'http://en.wiki.tatoeba.org/articles/show/main'
+                'http://wiki.tatoeba.org/articles/show/main'
             ,
-            __('FAQ', true) => array(
-                "controller" => "pages",
-                "action" => "faq"
-            ),
+            __('FAQ', true) =>
+                'http://wiki.tatoeba.org/articles/show/faq'
+            ,
             __('Help', true) => array(
                 "controller" => "pages",
                 "action" => "help"
