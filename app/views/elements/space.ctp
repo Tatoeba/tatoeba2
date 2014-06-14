@@ -127,7 +127,7 @@ if (isset($this->params['lang'])) {
         <li class="item">
             <?php
             echo $html->link(
-                __('My sentences logs', true),
+                __('My sentence logs', true),
                 array(
                     'controller' => 'contributions',
                     'action' => 'of_user',
