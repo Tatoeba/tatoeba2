@@ -59,27 +59,106 @@ if (isset($this->params['lang'])) {
     );
     ?>
     <ul class='sub-menu'>
-        <li>
-        <?php
-        echo $html->link(
-            __('Edit profile', true),
-            array(
-                'controller' => 'user',
-                'action' => 'edit_profile',
-            )
-        );
-        ?>
+        <li class="item">
+            <?php
+            echo $html->link(
+                __('My sentences', true),
+                array(
+                    'controller' => 'sentences',
+                    'action' => 'of_user',
+                    $username
+                )
+            );
+            ?>
         </li>
-        <li>
-        <?php
-        echo $html->link(
-            __('Settings', true),
-            array(
-                'controller' => 'user',
-                'action' => 'settings',
-            )
-        );
-        ?>
+
+        <li class="item">
+            <?php
+            echo $html->link(
+                __('My favorites', true),
+                array(
+                    'controller' => 'favorites',
+                    'action' => 'of_user',
+                    $username
+                )
+            );
+            ?>
+        </li>
+
+        <li class="item">
+            <?php
+            echo $html->link(
+                __('My comments', true),
+                array(
+                    'controller' => 'sentence_comments',
+                    'action' => 'of_user',
+                    $username
+                )
+            );
+            ?>
+        </li>
+
+        <li class="item">
+            <?php
+            echo $html->link(
+                __("Comments on my sentences", true),
+                array(
+                    'controller' => 'sentence_comments',
+                    'action' => 'on_sentences_of_user',
+                    $username
+                )
+            );
+            ?>
+        </li>
+
+        <li class="item">
+            <?php
+            echo $html->link(
+                __('My Wall messages', true),
+                array(
+                    'controller' => 'wall',
+                    'action' => 'messages_of_user',
+                    $username
+                )
+            );
+            ?>
+        </li>
+
+        <li class="item">
+            <?php
+            echo $html->link(
+                __('My sentences logs', true),
+                array(
+                    'controller' => 'contributions',
+                    'action' => 'of_user',
+                    $username
+                )
+            );
+            ?>
+        </li>
+
+        <li class="settings">
+            <?php
+            echo $html->link(
+                __('Edit profile', true),
+                array(
+                    'controller' => 'user',
+                    'action' => 'edit_profile',
+                )
+            );
+            ?>
+        </li>
+
+        <li class="settings">
+            <?php
+            echo $html->link(
+                __('Settings', true),
+                array(
+                    'controller' => 'user',
+                    'action' => 'settings',
+                )
+            );
+            ?>
         </li>
     </ul>
     </li>
