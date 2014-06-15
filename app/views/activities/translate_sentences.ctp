@@ -121,7 +121,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Translate sentences', true);
         </div>
 
 
-        <h3><?php __('Dispaly random sentences'); ?></h3>
+        <h3><?php __('Display random sentences'); ?></h3>
         <?php
         $numberOfSentencesWanted = array (5 => 5 , 10 => 10 , 15 => 15);
         $selectedLanguage = $session->read('random_lang_selected');

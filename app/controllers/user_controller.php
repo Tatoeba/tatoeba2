@@ -330,7 +330,7 @@ class UserController extends AppController
         
         if ($saved) {
             $this->Session->setFlash(
-                __("Email address saved.", true)
+                __("Profile saved.", true)
             );
             $this->redirect(
                 array(
@@ -377,7 +377,7 @@ class UserController extends AppController
                 $this->data['User']['lang']
             );
             if ($this->User->save($this->data)) {                
-                // Need, so that the information is updated for the Auth component.
+                // Needed so that the information is updated for the Auth component.
                 $user = $this->User->read(null, $currentUserId);
                 $this->Session->write($this->Auth->sessionKey, $user['User']);
                 
@@ -403,11 +403,11 @@ class UserController extends AppController
     
     
     /**
-     * Check languages settings eneterd by the user and returns corrected string
+     * Check languages settings entered by the user and return corrected string
      * (if correction is needed).
      *
-     * A correct string should be composted of ISO codes that are present in the
-     * list of languages supported, separated by a comma.
+     * A correct string should be composed of ISO codes that are present in the
+     * list of supported languages, separated by commas.
      * For instance: eng,deu,jpn,ita.
      * 
      * @param string $userInput desired language settings
