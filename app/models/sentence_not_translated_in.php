@@ -166,8 +166,11 @@ class SentenceNotTranslatedIn extends AppModel
             " ;
         }
 
+        $total = 0;
         $results = $this->query($sql);
-        $translations_count = $results[0][0]['Count'];
+        if (isset($results[0])) {
+            $translations_count = $results[0][0]['Count'];
+        }
 
         // Then subtract this result from the total number of sentences
         // in the source language
@@ -175,12 +178,17 @@ class SentenceNotTranslatedIn extends AppModel
             $sql = "SELECT count(Sentence.id) as Count FROM sentences as Sentence
                     WHERE Sentence.lang = '$source' $filterAudio";
             $results = $this->query($sql);
-            $total = $results[0][0]['Count'];
+            if (isset($results[0])) {
+                $total = $results[0][0]['Count'];
+            }
         } else {
             // We already have that total in the languages table
             $sql = "SELECT numberOfSentences as Count FROM languages WHERE code = '$source'";
             $results = $this->query($sql);
-            $total = $results[0]['languages']['Count'];
+            if (isset($results[0])) {
+                $total = $results[0]['languages']['Count'];
+            }
+
         }
 
         return $total - $translations_count;
