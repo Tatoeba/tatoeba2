@@ -136,7 +136,7 @@ class Sentence extends AppModel
             'rule' => array()
             // The rule will be defined in the constructor.
             // I would have declared a const LANGUAGES array
-            // to use it here, but apprently you can't declare
+            // to use it here, but apparently you can't declare
             // const arrays in PHP.
         ),
         'text' => array(
@@ -198,6 +198,14 @@ class Sentence extends AppModel
         $this->validate['lang']['rule'] = array('inList', $this->languages);
     }
 
+    public function beforeValidate()
+    {
+        if (isset($this->data['Sentence']['text']))
+        {
+            $text = $this->data['Sentence']['text'];
+            $this->data['Sentence']['text'] = trim($text);
+        }
+    }
 
     public function beforeSave()
     {

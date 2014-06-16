@@ -9,3 +9,6 @@ DELETE FROM sentences_translations WHERE sentence_id NOT IN (
 -- From clean_sentences_unknown_lang.sql:
 UPDATE sentences SET lang = NULL where lang_id = 1;
 UPDATE sentences SET lang = NULL, lang_id = 1 where lang = "";
+
+-- Remove leading and trailing whitespace from sentences
+UPDATE sentences SET text = TRIM(text) WHERE text LIKE ' %' OR text LIKE '% ';
