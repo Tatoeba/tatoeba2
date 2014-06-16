@@ -110,7 +110,7 @@ class LinksController extends AppController
             );
         } else {
             $flashMessage = __(
-                'An error occurred while saving. '.
+                'An error occurred while unlinking. '.
                 'Please try again or contact us to report this.',
                 true
             );

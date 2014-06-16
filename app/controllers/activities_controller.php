@@ -151,6 +151,21 @@ class ActivitiesController extends AppController
      */
     public function translate_sentences()
     {
+        $this->helpers[] = 'Languages';
+
+        if (isset($_GET['langFrom']) && isset($_GET['langTo']))
+        {
+            $langFrom = Sanitize::paranoid($_GET['langFrom']);
+            $langTo = Sanitize::paranoid($_GET['langTo']);
+
+            $this->redirect(
+                array(
+                    "controller" => "sentences",
+                    "action" => "show_all_in",
+                    $langFrom, 'none', $langTo
+                )
+            );
+        }
     }
     
     
