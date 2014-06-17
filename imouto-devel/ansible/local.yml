@@ -1,0 +1,20 @@
+---
+# Playbook to set-up and configure local server
+
+#Keep the role "configure_sphinx" commented unless you want to
+#create indexes and start the search daemon (indexing takes 6-8 hours)
+
+- hosts: all
+  sudo: yes
+  gather_facts: yes
+  roles:
+  - common
+  - lemp
+  - codebase
+#  - install_sphinx
+  - configure_sphinx 
+  - setup_nihongoparserd
+  - setup_sinoparserd
+  - setup_suggestd
+  - setup_tatodetect
+  - setup_imagick  
