@@ -1,0 +1,44 @@
+---
+#Tasks for setting up nginx, php5 and mysql
+- name: Stop apache2 service if running
+  service: name=apache2 state=stopped enabled=no pattern=apache2
+  ignore_errors: yes
+
+- name: Install nginx
+  apt: name=nginx update_cache=yes cache_valid_time=36000 state=present
+- name: Install php5
+  apt: name={{ item }} update_cache=yes cache_valid_time=36000 state=present
+  with_items:
+  - php5-fpm
+  - php5-cli
+  - php5-mysql
+
+- name: Install mysql-server
+  apt: name=mysql-server update_cache=yes cache_valid_time=36000 state=present
+- name: Set password for mysql user
+  command: mysqladmin -u {{mysql_user}} password {{mysql_password}}
+  ignore_errors: yes
+
+- name: Remove default nginx configurations
+  command: rm -rf /etc/nginx/sites-available /etc/nginx/sites-enabled
+- name: Create configuration directories
+  shell: mkdir -p /etc/nginx/sites-enabled; mkdir -p /etc/nginx/sites-available
+- name: Copy nginx configuration files - sites-available
+  copy: src=default dest=/etc/nginx/sites-available/tatoeba owner=root group=root mode=644 backup=yes
+- name: Copy nginx configuration files - sites-enabled
+  file: state=link force=yes src=/etc/nginx/sites-available/tatoeba dest=/etc/nginx/sites-enabled/tatoeba
+
+- name: Copy php configuration files
+  copy: src=php.conf dest=/etc/php5/fpm/pool.d/tatoeba.conf
+
+- name: Restart nginx
+  service: name=nginx state=restarted enabled=yes
+- name: Restart php5-fpm
+  service: name=php5-fpm state=restarted enabled=yes
+
+- name: Remove apache2 from init list
+  command: update-rc.d -f apache2 remove
+- name: Set defaults in init script for nginx
+  command: update-rc.d nginx defaults
+
+#Todo: Take password for mysql root from user prompt (with idempotency)
