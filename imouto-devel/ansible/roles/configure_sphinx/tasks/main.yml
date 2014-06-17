@@ -1,0 +1,19 @@
+---
+# Playbook to setup sphinx server, index sentences and start the search daemon
+- name: Create directories for sphinx indices and logs
+  file: path={{item}} state=directory recurse=yes mode=777
+  with_items:
+  - "{{sphinx_index_dir}}"
+  - "{{sphinx_log_dir}}"
+- name: Copy generate_sphinx_conf.php on the server
+  copy: src=generate_sphinx_conf.php dest={{code_dir}}/common/config/
+- name: Generate sphinx.conf
+  shell: php generate_sphinx_conf.php > sphinx.conf chdir={{code_dir}}/common/config
+- name: Create a link to the sphinx config
+  command: ln -sf {{code_dir}}/common/config/sphinx.conf {{sphinx_config_dir}}/sphinx.conf
+- name: Remove generate_sphinx_conf.php
+  command: rm -rf generate_sphinx_conf.php chdir={{code_dir}}/common/config
+- name: Create indexes
+  command: indexer --config {{sphinx_config_dir}}/sphinx.conf --all
+- name: Start the search daemon
+  command: searchd --config {{sphinx_config_dir}}/sphinx.conf
