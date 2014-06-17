@@ -1,0 +1,18 @@
+---
+# Tasks specyfing commom tasks for all servers
+
+#- name: Copy sources list for apt
+#  copy: src=sources.list dest=/etc/apt/sources.list owner=root group=root mode=644 backup=yes
+- name: Update apt repositories cache
+  apt: update_cache=yes cache_valid_time=36000
+
+- name: Ensure git is installed
+  apt: name=git state=present
+- name: Ensure vim is installed
+  apt: name=vim state=present
+
+#- name: Install pip on remote machine
+#  apt: name=python-pip state=present
+#- name: Install some basic python modules
+#  pip: name={{item}} state=present
+#  with_items: python_modules
