@@ -1,0 +1,32 @@
+---
+
+#ansible_ssh_user: tatoroot
+mysql_user: root
+mysql_password: tatoeba
+mysql_db_name: tatoeba
+
+#Set this to yes if you want to fetch the csv's from http://tatoeba.org/files/downloads/
+#Set this to no if the csv's are present in roles/codebase/files (sentences.csv, links.csv, tags_metadata.csv and tags_detailed.csv)
+download_csv: yes
+
+#List of python modules to be installed (please only add extra modules and do not remove any existing ones)
+python_modules:
+
+#Default directory for keeping all the back-up revisions of code
+code_dir: /home/{{ansible_ssh_user}}/Tatoeba
+#Number of old revisions to keep as backup
+revision_limit: 3
+
+#Sphinx version. Look for correct version name at: http://sphinxsearch.com/downloads/release/
+sphinx_version: sphinxsearch_2.1.8-release-1~wheezy_amd64.deb
+
+#Variables for test server (leave unchanged if you don't need them)
+mysql_test_user: user
+mysql_test_password: password
+mysql_test_db_name: test_database
+
+#Variables for sphinx search
+sphinx_index_dir: /var/sphinx/indices
+sphinx_log_dir: /var/sphinx/log
+sphinx_sql_socket: /run/mysqld/mysqld.sock
+sphinx_config_dir: /etc/sphinxsearch
