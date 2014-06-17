@@ -1,0 +1,58 @@
+---
+# Playbook to install and setup suggestd
+- name: Install dependencies for cppms
+  apt: name={{item}} state=present
+  with_items:
+  - make
+  - cmake 
+  - g++ 
+  - libpcre3-dev
+  - zlib1g-dev
+  - libgcrypt11-dev
+  - libicu-dev
+- name: Fetch cppms source
+  get_url: url=http://cznic.dl.sourceforge.net/project/cppcms/cppcms/1.0.4/cppcms-1.0.4.tar.bz2 dest=/tmp/
+- name: Extract source from the archive
+  command: tar -jxvf cppcms-1.0.4.tar.bz2 chdir=/tmp/
+- name: Generate makefile
+  command: cmake . chdir=/tmp/cppcms-1.0.4
+- name: Compile
+  command: make chdir=/tmp/cppcms-1.0.4
+- name: Install
+  command: make install chdir=/tmp/cppcms-1.0.4
+- name: Fetch cppdb source
+  get_url: url=http://kaz.dl.sourceforge.net/project/cppcms/cppdb/0.3.1/cppdb-0.3.1.tar.bz2 dest=/tmp/
+- name: Extract source files
+  command: tar -jxvf cppdb-0.3.1.tar.bz2 chdir=/tmp/
+- name: Generate makefile
+  command: cmake . chdir=/tmp/cppdb-0.3.1
+- name: Compile
+  command: make chdir=/tmp/cppdb-0.3.1
+- name: Install
+  command: make install chdir=/tmp/cppdb-0.3.1
+- name: Install dependencies for tatodetect
+  apt: name=libsqlite3-dev state=present
+- name: Fetch tatodetect source
+  git: repo=https://github.com/allan-simon/Tatodetect.git dest=/tmp/tatodetect
+- name: Generate makefile
+  command: cmake . chdir=/tmp/tatodetect
+- name: Compile
+  command: make chdir=/tmp/tatodetect
+- name: Copy the binary to system-wide location
+  command: cp tatodetect /usr/local/bin/tatodetect chdir=/tmp/tatodetect
+- name: Copy init file to system-wide location
+  copy: src=init.d dest=/etc/init.d/tatodetect mode=555
+- name: Copy config file to system-wide location
+  copy: src=tatodetect.js dest=/etc/tatodetect.js mode=555
+- name: Copy default options file to system-wide location
+  copy: src=default dest=/etc/default/tatodetect mode=555
+- name: Start the daemon
+  command: /etc/init.d/tatodetect start
+- name: Add startup entry
+  command: update-rc.d tatodetect defaults
+- name: Remove temporary files - 1
+  command: rm -rf /tmp/tatodetect
+- name: Remove temporary files - 2
+  command: rm -rf /tmp/cppms*
+- name: Remove temporary files - 3
+  command: rm -rf /tmp/cppdb*
