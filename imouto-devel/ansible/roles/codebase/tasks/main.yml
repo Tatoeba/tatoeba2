@@ -1,0 +1,59 @@
+---
+# Tasks to fetch tatoeba-php code and make the site up and running
+
+- name: Create the code directory if it doesn't already exists
+  shell: mkdir -p {{code_dir}}/versions ; mkdir -p {{code_dir}}/common/config/
+- name: Clean-up old versions of code from the code directory
+  script: remove_old_dirs.sh {{code_dir}} {{revision_limit}}
+- name: Fetch the code from github repository
+  git: repo=https://github.com/Tatoeba/tatoeba2.git dest={{code_dir}}/versions/current
+- name: Create symbolic link for the current code directory as /var/www-prod
+  file: state=link src={{code_dir}}/versions/current dest=/var/www-prod force=yes
+
+- name: Copy CakePHP config files
+  template: src={{item}}.j2 dest={{code_dir}}/common/config/{{item}} 
+  with_items:
+  - database.php
+  - core.php
+- name: Create links for CakePHP config files
+  file: state=link src={{code_dir}}/common/config/{{item}} dest=/var/www-prod/app/config/{{item}}
+  with_items:
+  - database.php
+  - core.php
+- name: Give read permissions to the code directory
+  file: path=/var/www-prod state=directory recurse=yes mode=555
+- name: Create cache directory
+  file: path=/var/www-prod/app/tmp/cache state=directory recurse=yes mode=777
+
+- name: Create a new mysql database {{mysql_db_name}}
+  shell: echo "CREATE DATABASE {{mysql_db_name}}" | mysql -u {{mysql_user}} -p{{mysql_password}}
+  ignore_errors: true
+- name: Initialize {{mysql_db_name}} with empty tables
+  shell: mysql -u {{mysql_user}} -p{{mysql_password}} {{mysql_db_name}} < /var/www-prod/docs/database/{{item}}
+  with_items:
+  - database_20130406.sql
+  - import/groups.sql
+  - import/users.sql
+  - import/acos.sql
+  - import/aros.sql
+  - import/aros_acos.sql
+  - import/countries.sql
+  - updates/2014-05-25.sql
+- name: Copy csv's to /tmp folder
+  copy: src={{item}} dest=/tmp/{{item}} mode=777 owner=mysql group=mysql
+  with_items:
+  - sentences.csv
+  - links.csv
+  - tag_metadata.csv
+  - tags_detailed.csv
+  when: download_csv == false
+- name: Download csv's from http://tatoeba.org/files/downloads/
+  get_url: url=http://tatoeba.org/files/downloads/{{item}} dest=/tmp/{{item}} mode=777 owner=mysql group=mysql
+  with_items:
+  - sentences.csv
+  - links.csv
+  - tag_metadata.csv
+  - tags_detailed.csv
+  when: download_csv == true
+- name: Import sentences in the tatoeba database
+  shell: mysql -u {{mysql_user}} -p{{mysql_password}} {{mysql_db_name}} < /var/www-prod/docs/database/import/restore_dumps.sql
