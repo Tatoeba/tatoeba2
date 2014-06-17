@@ -1,0 +1,12 @@
+---
+# Tasks to install and set up imagick
+- name: Install imagemagick
+  apt: name=imagemagick state=present
+- name: Install imagick
+  apt: name=php5-imagick state=present
+- name: Restart php5-fpm
+  service: name=php5-fpm state=restarted enabled=yes
+- name: Give write permissions to save location
+  file: path={{code_dir}}/versions/current/app/webroot/img state=directory recurse=yes owner=www-data group=www-data mode=777
+
+#Figure out a way to give write permissions to imagick without doing chmod 777 to the img directory
