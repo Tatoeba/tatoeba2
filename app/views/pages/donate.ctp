@@ -34,8 +34,8 @@
         __(
             "If you have any question regarding donations or if you would ".
             "like to donate in any other way than the ones mentioned ".
-            "here, you may <a href='mailto:team@tatoeba.org'>contact us</a>, ".
-            "or contact <a href='mailto:trang@tatoeba.org'>Trang</a> directly."
+            "here, you may contact either <a href='mailto:trang@tatoeba.org'>Trang</a> ".
+            "or the entire <a href='mailto:team@tatoeba.org'>team</a>."
         );
         ?>
         </p>
@@ -53,7 +53,7 @@
     </div>
 
     <div class="module">
-        <h2><?php __("Top donators of all times"); ?></h2>
+        <h2><?php __("Top donators of all time"); ?></h2>
         <p>
         <ol>
             <li>-</li>
@@ -70,13 +70,13 @@
 <div id="main_content">
     <div class="module">
         <h2><?php __("How to donate"); ?></h2>
-        <p><?php __("You have 2 possibilities to make a donation:"); ?></p>
+        <p><?php __("You have two possible ways to make a donation:"); ?></p>
         <ul>
             <li>
             <?php
             __(
                 "<b>IBAN transfer.</b> This is probably the cheapest way to donate. ".
-                "Tatoeba's bank is based in France so if you are from an EU ".
+                "Tatoeba's bank is based in France, so if you are from an EU ".
                 "country, it is likely that the transfer will be free of charge."
             );
             ?>
@@ -84,10 +84,9 @@
             <li>
             <?php
             __(
-                "<b>Paypal.</b> If you can't, or have no idea how to transfer ".
-                "money with IBAN, then you can donate with Paypal. You should ".
-                "know that Paypal takes a certain percentage of the donation ".
-                "(3.4% + 0.25€)."
+                "<b>PayPal.</b> If you can't transfer money with IBAN, ".
+                "then you can donate with PayPal. You should ".
+                "know that PayPal takes a certain percentage of the donation."
             )
             ?>
             </li>
