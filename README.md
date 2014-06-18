@@ -29,11 +29,13 @@ $ cd admin/imouto-devel
 $ sudo sh install_vagrant-1.6.3_x64.sh
 ```
 4. Install ansible 1.4 or later. You can follow the instructions [here](http://docs.ansible.com/intro_installation.html#getting-ansible) or simply use one of the following methods:
-   Method 1 (for Fedora, CentOS and RHEL users):
+
+    Method 1 (for Fedora, CentOS and RHEL users):
 ```
 $ #install the epel-release RPM if needed on CentOS, RHEL, or Scientific Linux
 $ sudo yum install ansible
 ```
+
     Method 2 (for Ubuntu/Debian users):
 ```
 $ sudo apt-add-repository ppa:rquillo/ansible
