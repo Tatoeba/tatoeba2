@@ -33,12 +33,14 @@ Method 1 (for Fedora, CentOS and RHEL users):
 ```bash
 $ #install the epel-release RPM if needed on CentOS, RHEL, or Scientific Linux
 $ sudo yum install ansible
-```Method 2 (for Ubuntu/Debian users):
+```
+Method 2 (for Ubuntu/Debian users):
 ```bash
 $ sudo apt-add-repository ppa:rquillo/ansible
 $ sudo apt-get update
 $ sudo apt-get install ansible
-```	Method 3 (via python-pip):
+```
+Method 3 (via python-pip):
 ```bash
 $ sudo easy_install pip
 $ sudo pip install ansible
