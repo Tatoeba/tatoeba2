@@ -18,39 +18,39 @@ Usage Instructions
 -----------
 
 ###imouto-devel:
-1. Install `git` if not already present.
-2. Clone the github repo on your machine:
+- Install `git` if not already present.
+- Clone the github repo on your machine:
 ```bash
 $ git clone https://github.com/Tatoeba/admin.git
 ```
-3. Install vagrant 1.5 or later. You can download the package [here](https://www.vagrantup.com/downloads) or if you are on a debian based 64-bit machine, just run the following commands:
+- Install vagrant 1.5 or later. You can download the package [here](https://www.vagrantup.com/downloads) or if you are on a debian based 64-bit machine, just run the following commands:
 ```bash
 $ cd admin/imouto-devel
 $ sudo sh install_vagrant-1.6.3_x64.sh
 ```
-4. Install ansible 1.4 or later. You can follow the instructions [here](http://docs.ansible.com/intro_installation.html#getting-ansible) or simply use one of the following methods:
-Method 1 (for Fedora, CentOS and RHEL users):
+- Install ansible 1.4 or later. You can follow the instructions [here](http://docs.ansible.com/intro_installation.html#getting-ansible) or simply use one of the following methods:
+	- Method 1 (for Fedora, CentOS and RHEL users):
 ```bash
 $ #install the epel-release RPM if needed on CentOS, RHEL, or Scientific Linux
 $ sudo yum install ansible
 ```
-Method 2 (for Ubuntu/Debian users):
+	- Method 2 (for Ubuntu/Debian users):
 ```bash
 $ sudo apt-add-repository ppa:rquillo/ansible
 $ sudo apt-get update
 $ sudo apt-get install ansible
 ```
-Method 3 (via python-pip):
+	- Method 3 (via python-pip):
 ```bash
 $ sudo easy_install pip
 $ sudo pip install ansible
 ```
-5. Use vagrant to first download the box and then provision it using ansible.
+- Use vagrant to first download the box and then provision it using ansible.
 ```bash
 $ cd admin/imouto-devel #ignore if already in the admin/imouto-devel directory
 $ vagrant up
 ```
-6. Run `vagrant ssh` to ssh to the machine.
+- Run `vagrant ssh` to ssh to the machine.
 
 
 
