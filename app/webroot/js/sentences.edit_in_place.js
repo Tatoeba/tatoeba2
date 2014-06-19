@@ -29,6 +29,7 @@ $(document).ready(function() {
         },
         indicator : '<img src="/img/loading.gif">',
         tooltip   : 'Click to edit...',
-        cssclass  : 'editInPlaceForm'
+        cssclass  : 'editInPlaceForm',
+        onblur    : 'ignore'
     });
 });
