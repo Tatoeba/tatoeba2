@@ -21,7 +21,7 @@ $(document).ready(function() {
     var rootUrl = get_tatoeba_root_url();
     
     $('.editableSentence').editable(rootUrl + '/sentences/edit_sentence', { 
-        type      : 'text',
+        type      : 'textarea',
         cancel    : 'Cancel',
         submit    : 'OK',
         data : function(value, settings) {
@@ -31,5 +31,10 @@ $(document).ready(function() {
         tooltip   : 'Click to edit...',
         cssclass  : 'editInPlaceForm',
         onblur    : 'ignore'
+    }).click(function(e) {
+        $(this).find('textarea').keydown(function(event) {
+            if (event.which == 13)
+                $(this).closest('form').submit();
+        });
     });
 });
