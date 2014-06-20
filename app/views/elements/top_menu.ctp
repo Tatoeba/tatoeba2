@@ -136,6 +136,10 @@ $menuElements = array(
             __('Tools', true) => array(
                 "controller" => "tools",
                 "action" => "index"
+            ),
+            __('Donate', true) => array(
+                "controller" => "pages",
+                "action" => "donate"
             )
         )
     )
