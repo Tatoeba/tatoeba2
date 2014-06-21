@@ -62,7 +62,7 @@ REPEAT
         temp_sent_id, temp_user_id, temp_added_time;
 
     IF NOT done THEN
-        SELECT CONCAT('sentence: ', temp_sent_id, '; user: ', temp_user_id);
+        -- SELECT CONCAT('sentence: ', temp_sent_id, '; user: ', temp_user_id);
         INSERT INTO tags_sentences (tag_id, user_id, sentence_id, added_time)
                VALUES (new_tag_id, temp_user_id, temp_sent_id, temp_added_time);
         DELETE FROM tags_sentences WHERE tag_id = old_tag_id AND sentence_id = temp_sent_id;

@@ -99,12 +99,17 @@ class Tag extends AppModel
      */ 
     public function addTag($tagName, $userId, $sentenceId = null)
     {
-        if (trim($tagName) == '') {
+        $tagName = trim($tagName);
+        if ($tagName == '') {
             return false;
         }
+        // Truncate to a maximum byte length of 50. If a multibyte
+        // character would be split, the entire character will be
+        // truncated.
+        $tagName = mb_strcut($tagName, 0, 50, "UTF-8");
         
         // Special case: don't allow the owner of a sentence to give it an OK tag.
-        if (trim($tagName) == 'OK') {
+        if ($tagName == 'OK') {
             $ownerId = $this->Sentence->getOwnerIdOfSentence($sentenceId);
             if ($userId == $ownerId) {
                 return false;
