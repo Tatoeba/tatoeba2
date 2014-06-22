@@ -32,7 +32,13 @@ REPEAT
 
     IF NOT done THEN
         SELECT COUNT(*) INTO new_nbr_of_sentences FROM tags_sentences WHERE tag_id = temp_id;
-        IF new_nbr_of_sentences = 0 THEN
+        -- Tags whose names begin with "@" are "attention" tags and should not be
+        -- deleted automatically when they are no longer attached to any sentences.
+        -- The idea is that we might temporarily bring the number of sentences marked,
+        -- for example, '@check' down to zero, but it's still a useful tag that we will
+        -- want to use in the future. Such tags can always be deleted via manually executed
+        -- SQL statements. 
+        IF new_nbr_of_sentences = 0 AND NOT temp_name LIKE '@%' THEN
             SELECT CONCAT('Deleting ', '"', temp_name, '"');
             DELETE FROM tags where id = temp_id;
         ELSE
