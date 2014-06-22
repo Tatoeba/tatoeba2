@@ -32,10 +32,7 @@ $this->pageTitle = 'Tatoeba - '. __('All existing tags', true);
     <div class="module">
         <h2><?php __('Related links'); ?></h2>
         <ul>
-        <li class="item"><a href="http://en.wiki.tatoeba.org/articles/show/tags">Tags</a></li>
-        <li class="item"><a href="http://blog.tatoeba.org/2010/11/tags-guidelines.html">Tag guidelines</a></li>
-        <li class="item"><a href="http://a4esl.com/temporary/tatoeba/#tags">Experimental, Sample Layouts</a></li>
-        <li class="item"><a href="http://martin.swift.is/tatoeba/tags-cleanup.html">Tag cleanup</a></li>
+        <li class="item"><a href="http://en.wiki.tatoeba.org/articles/show/tags"><?php __('Tags'); ?></a></li>
         </ul>
     </div>
 </div>
