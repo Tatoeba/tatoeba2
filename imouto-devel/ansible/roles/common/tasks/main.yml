@@ -1,8 +1,8 @@
 ---
 # Tasks specyfing commom tasks for all servers
 
-#- name: Copy sources list for apt
-#  copy: src=sources.list dest=/etc/apt/sources.list owner=root group=root mode=644 backup=yes
+- name: Copy sources list for apt
+  copy: src=sources.list dest=/etc/apt/sources.list owner=root group=root mode=644 backup=yes
 - name: Update apt repositories cache
   apt: update_cache=yes cache_valid_time=36000
 
