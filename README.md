@@ -23,6 +23,7 @@ Usage Instructions
 ```bash
 $ git clone https://github.com/Tatoeba/admin.git
 ```
+- Install VirtualBox. You can download the appropriate package from [here](https://www.virtualbox.org/wiki/Linux_Downloads)
 - Install vagrant 1.5 or later. You can download the package [here](https://www.vagrantup.com/downloads) or if you are on a debian based 64-bit machine, just run the following commands:
 ```bash
 $ cd admin/imouto-devel
