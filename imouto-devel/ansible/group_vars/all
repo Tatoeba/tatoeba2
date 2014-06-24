@@ -18,7 +18,9 @@ code_dir: /home/{{ansible_ssh_user}}/Tatoeba
 revision_limit: 3
 
 #Sphinx version. Look for correct version name at: http://sphinxsearch.com/downloads/release/
-sphinx_version: sphinxsearch_2.1.8-release-1~wheezy_amd64.deb
+sphinx_version: sphinxsearch_2.1.8-release-1~wheezy_i386.deb
+#Uncomment following line for 64-bit debian wheezy machine
+#sphinx_version: sphinxsearch_2.1.8-release-1~wheezy_amd64.deb
 
 #Variables for test server (leave unchanged if you don't need them)
 mysql_test_user: user
