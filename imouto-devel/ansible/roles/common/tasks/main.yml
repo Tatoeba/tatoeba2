@@ -4,7 +4,19 @@
 - name: Copy sources list for apt
   copy: src=sources.list dest=/etc/apt/sources.list owner=root group=root mode=644 backup=yes
 - name: Update apt repositories cache
-  apt: update_cache=yes cache_valid_time=36000
+  apt: update_cache=yes
+- name: Clear up home directory
+  command: rm -rf {{item}} removes=/home/{{ansible_ssh_user}}/{{item}}
+  with_items:
+  - base.sh
+  - chef.sh
+  - cleanup.sh
+  - puppetlabs-release-wheezy.deb
+  - puppet.sh
+  - ruby.sh
+  - vagrant.sh
+  - virtualbox.sh
+  - zerodisk.sh
 
 - name: Ensure git is installed
   apt: name=git state=present
