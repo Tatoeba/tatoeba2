@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS languages;
 RENAME TABLE langStats TO languages;
 ALTER TABLE languages MODIFY COLUMN id SMALLINT(3) FIRST;
 ALTER TABLE languages CHANGE lang code VARCHAR(4) COLLATE utf8_general_ci;
