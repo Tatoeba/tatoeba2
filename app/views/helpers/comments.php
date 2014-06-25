@@ -65,7 +65,7 @@ class CommentsHelper extends AppHelper
         $authorId = $comment['user_id'];
         ?>
         <li>
-        <a id="comment-<?php echo $commentId; ?>" />
+        <a id="comment-<?php echo $commentId; ?>"></a>
         <?php
         $this->_displayActions(
             $permissions, $commentId, $comment['sentence_id'], $userName, $hidden
@@ -103,7 +103,6 @@ class CommentsHelper extends AppHelper
         $authorId = $comment['user_id'];
         ?>
         <li>
-        <a id="comment-<?php echo $commentId; ?>" />
         <?php
         $this->_displayActions(
             $permissions, $commentId, $comment['sentence_id'], $userName, $hidden
@@ -747,7 +746,6 @@ class CommentsHelper extends AppHelper
         
         echo $this->Form->end(__('Submit comment', true));
         ?>
-        <p>
         <h3><?php __('Good practices'); ?></h3>
         <ul>
             <li>
@@ -766,7 +764,6 @@ class CommentsHelper extends AppHelper
             ?>
             </li>
         </ul>
-        </p>        
         <?php
     }
 

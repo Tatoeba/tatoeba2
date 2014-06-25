@@ -102,7 +102,7 @@ $max = $stats[0]['Language']['numberOfSentences'];
             <td class="chart">
             <div class="bar" style="width: <?php echo $percent;?>%"></div>
             </td>
-        <tr/>
+        </tr>
         <?php 
         } 
         ?>

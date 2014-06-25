@@ -169,8 +169,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
         
     <div class="module">    
         <h2><?php __('Adding new sentences'); ?></h2>
-        <p>
-        <?php __('There are two ways to add new sentences.'); ?>
+        <p><?php __('There are two ways to add new sentences.'); ?></p>
         <ul>
             <li>
                 <?php 
@@ -202,7 +201,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
                 ?>
             </li>
         </ul>
-        </p>
+		
         <p>
             <?php
             __(

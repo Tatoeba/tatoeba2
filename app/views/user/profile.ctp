@@ -141,7 +141,7 @@ if (!empty($realName)) {
                 }
                 ?>
             </ul>
-            <p>
+            
             <?php
             if ($username == $currentMember) {
                 $members->displayEditButton(
@@ -152,7 +152,6 @@ if (!empty($realName)) {
                 ); 
             }
             ?>
-            </p>
         </div>
     <?php
     }

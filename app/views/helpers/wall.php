@@ -188,7 +188,7 @@ class WallHelper extends AppHelper
         __('Add a message: ');
         echo $this->Form->create('', array( "action" => "save"));
         echo "<fieldset>";
-            echo $this->Form->textarea('content', array('label'=>""));
+            echo $this->Form->textarea('content');
             echo $this->Form->hidden('replyTo', array('value'=>"" ));
         echo "</fieldset>";
         echo $this->Form->submit(__('Send', true));
