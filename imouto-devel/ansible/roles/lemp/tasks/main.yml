@@ -12,6 +12,7 @@
   - php5-fpm
   - php5-cli
   - php5-mysql
+  - php5-intl
 
 - name: Install mysql-server
   apt: name=mysql-server update_cache=yes cache_valid_time=36000 state=present
