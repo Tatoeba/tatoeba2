@@ -53,6 +53,8 @@ class ListsHelper extends AppHelper
      * @param boolean $isPublic        If the list is public or not.
      * @param int     $count           Number of sentences in the list.
      *
+	 * @todo delete, not used anywhere
+	 * 
      * @return void
      */
     public function displayItem(
@@ -359,7 +361,7 @@ class ListsHelper extends AppHelper
                 );
             });
         </script>
-        <label for="isPublicCheckbox"><?php __('Set list as public'); ?></label>
+        <label for="isPublicCheckbox"><?php __('Set list as collaborative'); ?></label>
         <?php
         $this->Javascript->link('sentences_lists.set_as_public.js', false);
         if ($isListPublic) {
@@ -384,7 +386,7 @@ class ListsHelper extends AppHelper
             '[?]',
             array(
                 "controller"=>"pages", 
-                "action"=>"help#sentences_lists"
+                "action"=>"help#sentences_lists_help"
             )
         );
         ?>

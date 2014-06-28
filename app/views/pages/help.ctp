@@ -304,14 +304,14 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
     </div>
     
     
-    <div class="module">
+    <div id="sentences_lists_help" class="module">
         <h2><?php __('Sentence lists'); ?></h2>
         <p>
             <?php
             __(
                 'You can create lists of sentences in Tatoeba. By default the list '.
-                'is <strong>private</strong>, which means it can only be edited by '.
-                'the person who created it.'
+                'is <strong>personal</strong>, which means it can only be edited by '.
+                'the person who created it (but it is still visible to everyone).'
             );
             ?>
         </p>
@@ -319,18 +319,9 @@ $this->pageTitle = 'Tatoeba - ' . __('Help', true);
             <?php
             __(
                 'However it is also possible to let any member in Tatoeba add and '.
-                'remove sentences by setting a list <strong>public</strong>.'
-            );
-            ?>
-        </p>
-        <p>
-            <?php
-            __(
-                'Someday we will also introduce <strong>group</strong> lists, '.
-                'which only a restricted group of members can edit.'
+                'remove sentences by setting a list as <strong>collaborative</strong>.'
             );
             ?>
         </p>
     </div>
 </div>
-
