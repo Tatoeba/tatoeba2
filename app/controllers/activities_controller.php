@@ -162,6 +162,7 @@ class ActivitiesController extends AppController
                 array(
                     "controller" => "sentences",
                     "action" => "show_all_in",
+                    /* REVISIT!!! */
                     $langFrom, 'none', $langTo
                 )
             );
@@ -172,10 +173,8 @@ class ActivitiesController extends AppController
     /**
      * Translate sentences of a specific user.
      *
-     * @param string $username        Username.
-     * @param string $lang            Language of the sentences.
-     * @param string $notTranslatedIn Language in which the sentences are not 
-     *                                translated.
+     * @param string $username          Username.
+     * @param string $lang              Language of the sentences.
      */
     public function translate_sentences_of($username, $lang = null) {
         $this->helpers[] = 'Pagination';

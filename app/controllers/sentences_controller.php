@@ -64,7 +64,7 @@ class SentencesController extends AppController
     );
 
     public $uses = array(
-        'Sentence','SentenceNotTranslatedIn'
+        'Sentence','SentenceNotTranslatedInto'
     );
     
     private $blocked_users = array (6070,6071,1314,
@@ -420,9 +420,9 @@ class SentencesController extends AppController
         }
         $translationText = $_POST['value'];
         
-        // we store the selected language to be reuse after
-        // that way, as users are likely to contribute in the 
-        // same language, they don't need to reselect each time
+        // we store the selected language to be reused
+        // since users are likely to contribute in the 
+        // same language; they don't need to reselect each time
         $this->Cookie->write('contribute_lang', $translationLang, false, "+1 month");
         
         if (isset($translationText)
@@ -556,24 +556,22 @@ class SentencesController extends AppController
     /**
      * Show all sentences in a specific language
      *
-     * @param string $lang            Show all sentences in this language.
-     * @param string $translationLang Show only translation in this lang.
-     * @param string $notTranslatedIn Show only sentences which have no direct
-     *                                translation in this language
-     * @param string $filterAudioOnly Show only sentences which have a mp3
+     * @param string $lang              Show all sentences in this language.
+     * @param string $translationLang   Show only translations into this lang.
+     * @param string $notTranslatedInto Show only sentences which have no direct
+     *                                  translation into this language.
+     * @param string $filterAudioOnly   Show only sentences that have an mp3
      *
      * @return void
      */
     public function show_all_in(
         $lang,
         $translationLang,
-        $notTranslatedIn,
+        $notTranslatedInto,
         $filterAudioOnly = "indifferent"
     ) {
-
-
-        // TODO it's a hack need to find  in contribute.ctp how to make
-        // a form who directly forge a cakephp-compliant url
+        // TODO This is a hack. We need to find out how to make
+        // a form in contribute.ctp that directly forges a CakePHP-compliant URL
         if (isset($_POST['data']['Sentence']['into'])) {
             $this->redirect(
                 array(
@@ -617,18 +615,18 @@ class SentencesController extends AppController
         }
 
 
-        if (!empty($notTranslatedIn) && $notTranslatedIn != 'none') {
+        if (!empty($notTranslatedInto) && $notTranslatedInto != 'none') {
 
-            $model = 'SentenceNotTranslatedIn';
+            $model = 'SentenceNotTranslatedInto';
             $pagination = array(
-                'SentenceNotTranslatedIn' => array(
+                'SentenceNotTranslatedInto' => array(
                     'fields' => array(
                         'id',
                     ),
                     'conditions' => array(
                         'source' => $lang,
-                        'translatedIn' => $translationLang,
-                        'notTranslatedIn' => $notTranslatedIn,
+                        'translatedInto' => $translationLang,
+                        'notTranslatedInto' => $notTranslatedInto,
                         'audioOnly' => $audioOnly,
                     ),
                     'contain' => array(),
@@ -648,13 +646,18 @@ class SentencesController extends AppController
         }
         
         $this->set('lang', $lang);
-        $this->set('filterAudioOnly', $filterAudioOnly);
-        $this->set('notTranslatedIn', $notTranslatedIn);
         $this->set('translationLang', $translationLang);
+        $this->set('notTranslatedInto', $notTranslatedInto);
+        $this->set('filterAudioOnly', $filterAudioOnly);
         $this->set('results', $allSentences);
+
+        $this->Cookie->write('browse_sentences_in_lang', $lang, false, "+1 month");
+        $this->Cookie->write('show_translations_into_lang', $translationLang, false, "+1 month");
+        $this->Cookie->write('not_translated_into_lang', $notTranslatedInto, false, "+1 month");
+        $this->Cookie->write('filter_audio_only', $filterAudioOnly, false, "+1 month");
     }
     /**
-     * Return all informations needed to display a paginate
+     * Return all information needed to display a paginated
      * list of sentences
      *
      * @param array  $pagination      The pagination request.

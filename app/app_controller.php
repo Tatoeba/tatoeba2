@@ -103,21 +103,14 @@ class AppController extends Controller
         CurrentUser::store($this->Auth->user());
 
         
-        // TODO
-        // We're passing the value from the cookie to the session because it is
-        // needed for the translation form (in helpers/sentences.php), but we
-        // cannot access the Cookie component from a view.
-        // This is not optimized, but I'm too lazy to do otherwise.
-        $preSelectedLang = $this->Cookie->read('contribute_lang');
-        $this->Session->write('contribute_lang', $preSelectedLang);
-        
-        
         // Language of interface:
         // - By default we use the language set in the browser (or English, if the
         //   language of the browser is not supported).
         // - If the user has a cookie, we use the language set in the cookie.
         // - If no cookie, we use the language set in the URL.
-        $lang = $this->getSupportedLanguage();
+        if (empty($lang)) {
+            $lang = $this->getSupportedLanguage();
+        }
         $langInCookie = $this->Cookie->read('interfaceLanguage');
         $langInURL = null;
         if (isset($this->params['lang'])) {
@@ -158,6 +151,27 @@ class AppController extends Controller
         if ($this->RequestHandler->isAjax()) {
             $this->layout = null;
         }
+		
+        // TODO
+        // We're passing the value from the cookie to the session because it is
+        // needed for the translation form (in helpers/sentences.php), but we
+        // cannot access the Cookie component from a view.
+        // This is not optimized, but I'm too lazy to do otherwise.
+        $preSelectedLang = $this->Cookie->read('contribute_lang');
+        $this->Session->write('contribute_lang', $preSelectedLang);
+		
+		// Same for these cookies, used in show_all_in.
+        $lang = $this->Cookie->read('browse_sentences_in_lang');
+        $this->Session->write('browse_sentences_in_lang', $lang);
+		
+        $translationLang = $this->Cookie->read('show_translations_into_lang');
+        $this->Session->write('show_translations_into_lang', $translationLang);
+		
+        $notTranslatedInto = $this->Cookie->read('not_translated_into_lang');
+        $this->Session->write('not_translated_into_lang', $notTranslatedInto);
+		
+        $filterAudioOnly = $this->Cookie->read('filter_audio_only');
+        $this->Session->write('filter_audio_only', $filterAudioOnly);
     }
 
     /**

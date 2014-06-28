@@ -184,7 +184,7 @@ class ShowAllHelper extends AppHelper
      * @return void
      */
 
-    public function displayShowNotTranslatedIn($selectedLanguage = 'none')
+    public function displayShowNotTranslatedInto($selectedLanguage = 'none')
     {
         ?>
         <div class="module">

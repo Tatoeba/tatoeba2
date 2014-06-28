@@ -254,7 +254,7 @@
  * define("IMG_PATH", "http://flags.tatoeba.org/img/");
  * Configure::write('Path.audio', 'http://audio.tatoeba.org/sentences/');
  */
-    define("TATOEBA_DOMAIN", "tatoeba.org"); //TODO I have no idea if that's really used.
+    define("TATOEBA_DOMAIN", "localhost"); // used for cookie domain
     define("CSS_PATH", "");
     define("JS_PATH", "");
     define("IMG_PATH", "");
