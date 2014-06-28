@@ -28,11 +28,11 @@
 $languageName = $languages->codeToName($lang);
 
 $title = sprintf(__('All sentences in %s', true), $languageName);
-if (!empty($notTranslatedIn) && $notTranslatedIn != 'none') {
-    $notTranslatedInName = $languages->codeToName($notTranslatedIn);
+if (!empty($notTranslatedInto) && $notTranslatedInto != 'none') {
+    $notTranslatedIntoName = $languages->codeToName($notTranslatedInto);
     $title = sprintf(
         __('Sentences in %1$s not translated into %2$s', true), 
-        $languageName, $notTranslatedInName
+        $languageName, $notTranslatedIntoName
     );
 }
 
@@ -45,7 +45,7 @@ $this->pageTitle = $title;
 
     $showAll->displayShowAllInSelect($lang);
     $showAll->displayShowOnlyTranslationInSelect($translationLang);
-    $showAll->displayShowNotTranslatedIn($notTranslatedIn);
+    $showAll->displayShowNotTranslatedInto($notTranslatedInto);
     $showAll->displayFilterOrNotAudioOnly($filterAudioOnly);
     ?>
 
@@ -74,7 +74,7 @@ $this->pageTitle = $title;
         $paginationUrl = array(
             $lang,
             $translationLang,
-            $notTranslatedIn,
+            $notTranslatedInto,
             $filterAudioOnly,
         );
         $pagination->display($paginationUrl);

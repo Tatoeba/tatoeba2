@@ -26,7 +26,14 @@
  */
 
 // Detecting language for "browse by language"
-$currentLanguage = $session->read('random_lang_selected');
+$currentLanguage = $session->read('browse_sentences_in_lang');
+$showTranslationsInto = $session->read('show_translations_into_lang');
+$notTranslatedInto = $session->read('not_translated_into_lang');
+$filterAudioOnly = $session->read('filter_audio_only');
+
+if (empty($currentLanguage)) {
+    $currentLanguage = $session->read('random_lang_selected');
+}
 if (empty($currentLanguage) || $currentLanguage == 'und') {
     $currentLanguage = $languages->i18nCodeToISO($this->params['lang']);
 }
@@ -49,7 +56,9 @@ $menuElements = array(
             __('Browse by language', true) => array(
                 "controller" => "sentences",
                 "action" => "show_all_in",
-                $currentLanguage, "none", "none"
+                /* $currentLanguage, "none", "none" */
+                $currentLanguage, $showTranslationsInto, $notTranslatedInto,
+                $filterAudioOnly
             ),
             __('Browse by list', true) => array(
                 "controller" => "sentences_lists",

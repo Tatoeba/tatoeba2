@@ -36,10 +36,10 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
 */
-class SentenceNotTranslatedIn extends AppModel
+class SentenceNotTranslatedInto extends AppModel
 {
 
-    public $name = 'SentenceNotTranslatedIn';
+    public $name = 'SentenceNotTranslatedInto';
     public $actsAs = array("Containable");
     public $useTable = false;
 
@@ -60,7 +60,7 @@ class SentenceNotTranslatedIn extends AppModel
     ) {
         $recursive = -1;
         $source = $conditions['source'] ;
-        $target = $conditions['notTranslatedIn'] ;
+        $target = $conditions['notTranslatedInto'] ;
         $audioOnly = $conditions['audioOnly'];
 
         $source = Sanitize::paranoid($source);
@@ -122,7 +122,7 @@ class SentenceNotTranslatedIn extends AppModel
      * @author Allan Simon
      * @author gillux (did some optimization)
      *
-     * @return int Number of sentences not translated in specified language
+     * @return int Number of sentences not translated into specified language
      */
 
     public function paginateCount(
@@ -131,7 +131,7 @@ class SentenceNotTranslatedIn extends AppModel
         $extra = array()
     ) {
         $source = $conditions['source'] ;
-        $target = $conditions['notTranslatedIn'] ;
+        $target = $conditions['notTranslatedInto'] ;
         $audioOnly = $conditions['audioOnly'];
 
         $source = Sanitize::paranoid($source);
