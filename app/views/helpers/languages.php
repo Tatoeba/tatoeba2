@@ -237,7 +237,13 @@ class LanguagesHelper extends AppHelper
             'guj' => __('Gujarati',true), //@lang 
             );
             
-            asort($this->__languages);
+            if (class_exists('Collator')) {
+                $i18nLang = Configure::read('Config.language');
+                $coll = new Collator($this->i18nCodeToISO($i18nLang));
+                $coll->asort($this->__languages);
+            } else {
+                asort($this->__languages);
+            }
         }
         
         return $this->__languages;
@@ -383,7 +389,6 @@ class LanguagesHelper extends AppHelper
     public function getSearchableLanguagesArray()
     {
         $languages = $this->onlyLanguagesArray();
-        natcasesort($languages);
         array_unshift($languages, array('und' => __('Any', true)));
 
         return $languages;
