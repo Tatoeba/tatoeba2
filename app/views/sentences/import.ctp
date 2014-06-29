@@ -54,9 +54,12 @@ $langArray = $languages->onlyLanguagesArray();
         <div>
         File: <?php echo $form->file('file'); ?>
         </div>
-        
-        <?php echo $form->input('user_id'); ?>
-        
+ 
+        <div>  
+        <?php echo $form->input('user_id',
+           array('label' => 'Numeric user id: ')); ?>
+        </div>
+
         <?php echo $form->end('import'); ?>
     </div>
     
@@ -90,8 +93,11 @@ $langArray = $languages->onlyLanguagesArray();
         <div>
         File: <?php echo $form->file('file'); ?>
         </div>
-        
-        <?php echo $form->input('user_id'); ?>
+
+        <div>
+        <?php echo $form->input('user_id',
+           array('label' => 'Numeric user id: ')); ?>
+        </div>
         
         <?php echo $form->end('import'); ?>
     </div>
