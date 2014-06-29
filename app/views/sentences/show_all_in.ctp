@@ -29,7 +29,11 @@ $languageName = $languages->codeToName($lang);
 
 $title = sprintf(__('All sentences in %s', true), $languageName);
 if (!empty($notTranslatedInto) && $notTranslatedInto != 'none') {
-    $notTranslatedIntoName = $languages->codeToName($notTranslatedInto);
+	if ($notTranslatedInto == 'und') {
+		$notTranslatedIntoName = __('any language', true);
+	} else {
+		$notTranslatedIntoName = $languages->codeToName($notTranslatedInto);
+	}
     $title = sprintf(
         __('Sentences in %1$s not translated into %2$s', true), 
         $languageName, $notTranslatedIntoName
