@@ -158,7 +158,7 @@ class ShowAllHelper extends AppHelper
         <div class="module">
             <h2><?php __('Show translations in:'); ?></h2>
             <?php
-            $langs = $this->Languages->languagesArrayForLists();
+            $langs = $this->Languages->languagesArrayForPositiveLists();
            
             echo $this->_generateSelect(
                 $selectedLanguage,
@@ -190,7 +190,7 @@ class ShowAllHelper extends AppHelper
         <div class="module">
             <h2><?php __('Not directly translated into:'); ?></h2>
             <?php
-            $langs = $this->Languages->LanguagesArrayForLists();
+            $langs = $this->Languages->languagesArrayForNegativeLists();
            
             echo $this->_generateSelect(
                 $selectedLanguage,

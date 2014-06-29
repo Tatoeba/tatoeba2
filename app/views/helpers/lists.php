@@ -322,10 +322,10 @@ class ListsHelper extends AppHelper
         }
         $path .= 'sentences_lists/'.$action.'/'. $listId.'/';
         
-        // TODO onChange should be define in a separate js file
+        // TODO onChange should be defined in a separate js file
         echo $this->Form->select(
             "translationLangChoice",
-            $this->Languages->languagesArrayForLists(),
+            $this->Languages->languagesArrayForPositiveLists(),
             $translationsLang,
             array(
                 "onchange" => "$(location).attr('href', '".$path."' + this.value);"

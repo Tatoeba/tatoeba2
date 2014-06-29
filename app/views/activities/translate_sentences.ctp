@@ -91,7 +91,7 @@ if (empty($notTranslatedInto)) {
             );
 
             $langsFrom = $languages->onlyLanguagesArray();
-			$langsTo = $languages->LanguagesArrayForLists();
+			$langsTo = $languages->LanguagesArrayForNegativeLists();
 
             ?>
             <fieldset class="select">

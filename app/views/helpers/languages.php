@@ -342,10 +342,11 @@ class LanguagesHelper extends AppHelper
     
     /**
      * Return array of languages, with "None" and "All languages" options.
+     * Applies to a positive phrase (for example, "Show translations in"). 
      *
      * @return array
      */
-    public function languagesArrayForLists()
+    public function languagesArrayForPositiveLists()
     {
         $languages = $this->onlyLanguagesArray();
         
@@ -354,6 +355,28 @@ class LanguagesHelper extends AppHelper
             array(
                 'none' => __('None', true),
                 'und' => __('All languages', true)
+            )
+        );
+        
+        return $languages;
+    }
+    
+    
+    /**
+    * Return array of languages, with "--" and "Any languages" options.
+    * Applies to a negative phrase (for example, "Not directly translated into"). 
+    *
+    * @return array
+    */
+    public function languagesArrayForNegativeLists()
+    {
+        $languages = $this->onlyLanguagesArray();
+        
+        array_unshift(
+            $languages, 
+            array(
+                'none' => '—',
+                'und' => __('Any language', true)
             )
         );
         
