@@ -441,9 +441,11 @@ class SentencesController extends AppController
             }
             
             // Saving...
+            $sentenceLang = $this->Sentence->getLanguageCodeFromSentenceId($sentenceId);
             $translationCorrectness = $this->Sentence->User->getLevelOfUser($userId);
             $isSaved = $this->Sentence->saveTranslation(
                 $sentenceId,
+                $sentenceLang,
                 $translationText,
                 $translationLang,
                 $translationCorrectness

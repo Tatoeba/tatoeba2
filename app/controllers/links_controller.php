@@ -46,12 +46,14 @@ class LinksController extends AppController
      *
      * @return void
      */
-    public function add($sentenceId, $translationId) 
+    public function add($sentenceId, $translationId, $sentenceLang, $translationLang) 
     {
         $sentenceId = Sanitize::paranoid($sentenceId);
         $translationId = Sanitize::paranoid($translationId);
+        $sentenceLang = Sanitize::paranoid($sentenceLang);
+        $translationLang = Sanitize::paranoid($translationLang);
         
-        $saved = $this->Link->add($sentenceId, $translationId);
+        $saved = $this->Link->add($sentenceId, $translationId, $sentenceLang, $translationLang);
         
         if ($this->RequestHandler->isAjax()) {
             $this->set('saved', $saved);

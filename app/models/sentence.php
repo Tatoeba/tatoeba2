@@ -1417,6 +1417,7 @@ class Sentence extends AppModel
      * a new sentence, and two links.
      *
      * @param int    $sentenceId
+     * @param int    $sentenceLang
      * @param string $translationText
      * @param string $translationLang
      * @TODO finish the doc plz
@@ -1424,7 +1425,7 @@ class Sentence extends AppModel
      * @return boolean
      */
     public function saveTranslation(
-        $sentenceId, $translationText, $translationLang, $translationCorrectness
+        $sentenceId, $sentenceLang, $translationText, $translationLang, $translationCorrectness
     ) {
         $userId = CurrentUser::get('id');
         
@@ -1435,14 +1436,13 @@ class Sentence extends AppModel
             $userId,
             $translationCorrectness
         );
-        
         // saving links
         if ($sentenceSaved) {
-            $this->Link->add($sentenceId, $this->id);
+            $this->Link->add($sentenceId, $this->id, $sentenceLang, $translationLang);
         }
         
         return $sentenceSaved; // The most important is that the sentence is saved.
-                               // Never mind for the links.
+                               // Never mind the links.
     }
 
 
@@ -1513,7 +1513,8 @@ class Sentence extends AppModel
         $translationId = $this->id;
         // saving links
         if ($sentenceSaved && $translationSaved) {
-            $this->Link->add($sentenceId, $translationId);
+            $this->Link->add($sentenceId, $translationId, 
+                             $sentenceLang, $translationLang);
         }
     }
 
@@ -1709,6 +1710,27 @@ class Sentence extends AppModel
         );
         
         return $result['Sentence']['text'];
+    }
+    
+    /**
+    * Return language code for sentence with given id.
+    *
+    * @param int $sentenceId Id of the sentence
+    *
+    * @return void
+    */
+    public function getLanguageCodeFromSentenceId($sentenceId)
+    {
+        $result = $this->find(
+            'first',
+            array(
+                'fields' => array('lang'),
+                'conditions' => array('id' => $sentenceId),
+                'contain' => array()
+            )
+        );
+        
+        return $result['Sentence']['lang'];
     }
     
     
