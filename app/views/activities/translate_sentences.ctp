@@ -31,8 +31,8 @@ $notTranslatedInto = $session->read('not_translated_into_lang');
 if (empty($currentLanguage)) {
     $currentLanguage = $session->read('random_lang_selected');
 }
-if (empty($notTranslatedInto) || $notTranslatedInto == 'none') {
-	$notTranslatedInto = $this->params['lang'];
+if (empty($notTranslatedInto)) {
+	$notTranslatedInto = 'none';
 }
 ?>
 
@@ -90,7 +90,8 @@ if (empty($notTranslatedInto) || $notTranslatedInto == 'none') {
                 array("action" => "translate_sentences", "type" => "get")
             );
 
-            $langs = $languages->onlyLanguagesArray();
+            $langsFrom = $languages->onlyLanguagesArray();
+			$langsTo = $languages->LanguagesArrayForLists();
 
             ?>
             <fieldset class="select">
@@ -100,7 +101,7 @@ if (empty($notTranslatedInto) || $notTranslatedInto == 'none') {
                 <?php
                 echo $form->select(
                     'langFrom',
-                    $langs,
+                    $langsFrom,
                     $currentLanguage,
                     null,
                     false
@@ -115,7 +116,7 @@ if (empty($notTranslatedInto) || $notTranslatedInto == 'none') {
                 <?php
                 echo $form->select(
                     'langTo',
-                    $langs,
+                    $langsTo,
                     $notTranslatedInto,
                     null,
                     false
