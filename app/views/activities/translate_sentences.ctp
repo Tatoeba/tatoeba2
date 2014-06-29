@@ -25,6 +25,15 @@
  * @link     http://tatoeba.org
  */
 $this->pageTitle = 'Tatoeba - ' . __('Translate sentences', true);
+
+$currentLanguage = $session->read('browse_sentences_in_lang');
+$notTranslatedInto = $session->read('not_translated_into_lang');
+if (empty($currentLanguage)) {
+    $currentLanguage = $session->read('random_lang_selected');
+}
+if (empty($notTranslatedInto) || $notTranslatedInto == 'none') {
+	$notTranslatedInto = $this->params['lang'];
+}
 ?>
 
 <div id="annexe_content">    
@@ -92,7 +101,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Translate sentences', true);
                 echo $form->select(
                     'langFrom',
                     $langs,
-                    null,
+                    $currentLanguage,
                     null,
                     false
                 );
@@ -107,7 +116,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Translate sentences', true);
                 echo $form->select(
                     'langTo',
                     $langs,
-                    null,
+                    $notTranslatedInto,
                     null,
                     false
                 );
