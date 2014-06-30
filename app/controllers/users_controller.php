@@ -469,7 +469,7 @@ class UsersController extends AppController
             $id = null;
         }
         
-        $user = $this->User->getUserById($id);
+        $user = $this->User->getUserByIdWithExtraInfo($id);
 
         if ($user != null) {
             $this->helpers[] = 'Wall';

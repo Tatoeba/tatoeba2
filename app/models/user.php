@@ -288,13 +288,13 @@ class User extends AppModel
     }
     
     /**
-     * Get user by id.
+     * Get user data + sentences, contributions, favorites, etc.
      *
      * @param int|null $id Id of the user. If null we take a random one.
      *
      * @return void
      */
-    public function getUserById($id = null)
+    public function getUserByIdWithExtraInfo($id = null)
     {
         //TODO: HACK SPOTTED user of order rand
         if ($id == null) {
@@ -375,6 +375,28 @@ class User extends AppModel
         }
         return $user;
     }
+	
+	
+	/**
+	 * Retrieves only the fields from users table, no joins.
+	 *
+	 * @param int $id Id of the user.
+	 *
+	 * @return array User data.
+	 */
+	public function getUserById($id)
+    {
+		$user = $this->find(
+			'first',
+			array(
+				'conditions' => array('User.id' => $id),
+				'contain' => array()
+			)
+		);
+		
+		return $user;
+	}
+	
     
     /**
      * Return id of a user from the username.
