@@ -147,7 +147,7 @@ class AppController extends Controller
      */
     public function beforeRender()
     {
-        // without this 3 lines, html send by ajax will have the whole layout
+        // without these 3 lines, html sent by AJAX will have the whole layout
         if ($this->RequestHandler->isAjax()) {
             $this->layout = null;
         }
@@ -172,6 +172,11 @@ class AppController extends Controller
 		
         $filterAudioOnly = $this->Cookie->read('filter_audio_only');
         $this->Session->write('filter_audio_only', $filterAudioOnly);
+
+        // TODO: Use this when displaying the list to which a sentence should be assigned.
+        // See views/helpers/menu.php.
+        //$mostRecentList = $this->Cookie->read('most_recent_list');
+        //$this->Session->write('most_recent_list', $mostRecentList);
     }
 
     /**
