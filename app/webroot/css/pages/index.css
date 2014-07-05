@@ -34,39 +34,3 @@
  * Sentences statistics
  */
 @import url(../elements/sentences_stats.css);
-
-
-/*
- * What can I do in Tatoeba
- */
-.keyIdea {
-    float: left;
-    margin: 0px 5px;
-    padding: 0px 5px;
-    max-width: 180px;
-}
-
-.keyIdea .keyword {
-    display: block;
-    text-align: center;
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.keyIdea .sub-keyword {
-    display: block;
-    text-align: center;
-    font-size: 1.2em;
-    font-style: italic;
-}
-
-.keyIdea ul {
-    list-style-type: none;
-    margin: 5px 0px;
-    padding: 5px;
-}
-
-.keyIdea li {
-    text-align: center;
-    margin: 3px 0px;
-}
