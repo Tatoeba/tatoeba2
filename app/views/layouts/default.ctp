@@ -123,9 +123,6 @@
 		echo $this->element('foot');
 		?>
 	</div>
-
-	<div id="footer_container">
-	</div>
 	<?php echo $cakeDebug ?>
 </body>
 </html>
