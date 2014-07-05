@@ -338,8 +338,8 @@ textarea {
 	margin-bottom: 100px;
     background-color: #fff;
 	-webkit-box-shadow: 0px 0px 5px 5px rgba(50, 50, 50, 0.3);
-	-moz-box-shadow:    0px 0px 5px 5px rgba(50, 50, 50, 0.3);
-	box-shadow:         0px 0px 5px 5px rgba(50, 50, 50, 0.3);
+	-moz-box-shadow: 0px 0px 5px 5px rgba(50, 50, 50, 0.3);
+	box-shadow: 0px 0px 5px 5px rgba(50, 50, 50, 0.3);
 }
 
 #container {
@@ -365,9 +365,12 @@ textarea {
 .module {
     padding: 10px 10px 5px 10px;
     margin: 0px 0px 20px 0px;
-    background: url(../../img/module_background.png) repeat-x bottom left;
     overflow: hidden;
     font-size: 13px;
+	border-bottom: 1px solid #ededed;
+	-webkit-box-shadow: inset 0px -50px 30px -10px rgba(245, 245, 245, 1);
+	-moz-box-shadow: inset 0px -50px 30px -10px rgba(245, 245, 245, 1);
+	box-shadow: inset 0px -50px 30px -10px rgba(245, 245, 245, 1);
 }
 #annexe_content .module {
     margin-left: 5px;
