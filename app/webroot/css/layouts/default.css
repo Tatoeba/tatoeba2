@@ -473,15 +473,14 @@ textarea {
  */
 #UserLoginForm_FromBar {
     position: absolute;
-    top: 31px;
+    top: 30px;
     z-index: 1000;
     min-width: 270px;
     padding: 5px 10px;
-    background: #414141 url('../../img/alert-overlay.png') repeat-x;
+    background: #414141;
     color: #FFF;
-    border-bottom: 1px solid #000000;
-    border-left: 1px solid #000000;
-    border-right: 1px solid #000000;
+    border: 1px solid #000000;
+	border-top: none;
 }
 
 #UserLoginForm_FromBar fieldset {
@@ -496,7 +495,6 @@ textarea {
 
 #UserLoginForm_FromBar input[type='text'], #UserLoginForm_FromBar input[type='password'] {
     width: 120px;
-    background: #FFF url('../../img/alert-overlay.png') repeat-x;
     display: inline-block;
     padding: 3px 5px;
     color: #414141;
@@ -506,7 +504,7 @@ textarea {
 
 #UserLoginForm_FromBar input[type='submit'] {
     width: 120px;
-    background: #222 url('../../img/alert-overlay.png') repeat-x;
+    background: #222;
     display: inline-block;
     padding: 4px 10px 5px;
     color: #FFF;
