@@ -390,7 +390,7 @@ class MenuHelper extends AppHelper
             array(
                 'type' => 'button',
                 'class' => 'validateButton',
-                'value' => 'ok'
+                'value' => __('OK', true)
             )
         );
         ?>

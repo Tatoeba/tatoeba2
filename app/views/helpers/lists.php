@@ -542,7 +542,7 @@ class ListsHelper extends AppHelper
             )
         );
         echo $this->Form->button(
-            'OK', array(
+            __('OK', true), array(
                 "id" => "submitNewSentenceToList"
             )
         );
