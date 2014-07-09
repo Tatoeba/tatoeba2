@@ -89,7 +89,6 @@ class SentencesController extends AppController
             'random',
             'go_to_sentence',
             'statistics',
-            'count_unknown_language',
             'get_translations',
             'change_language',
             'several_random_sentences',
@@ -775,45 +774,7 @@ class SentencesController extends AppController
         $this->set("allSentences", $allSentences);
         $this->set('lastNumberChosen', $number);
     }
-    
-    
-    /**
-     * Save languages for unknown language page.
-     *
-     * @return void
-     */
-    public function set_languages()
-    {
 
-        if (!empty($this->data)) {
-
-            $sentences = $this->data['Sentence'];
-
-            // if the language is still unknow
-            // we unset the lang field to save it as NULL
-            foreach ($sentences as $i=>$sentence) {
-                if ($sentence['lang'] === 'unknown') {
-                    unset($sentences[$i]['lang']);
-                }
-            }
-
-            // TODO don't forget to update language stats count 
-
-            if ($this->Sentence->saveAll($sentences)) {
-                $flashMsg = __('The languages have been saved.', true);
-            } else {
-                $flashMsg = __('A problem occurred while trying to save.', true);
-            }
-        } else {
-            $flashMsg = __('There is nothing to save.', true);
-        }
-        
-        $this->flash(
-            $flashMsg,
-            '/sentences/unknown_language/'
-        );
-        
-    }
    
     /**
      * Show all the sentences of a given user
