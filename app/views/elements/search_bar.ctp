@@ -32,7 +32,7 @@ if (isset($this->params['lang'])) {
     Configure::write('Config.language', $this->params['lang']);
 }
 ?>
-<div class="search_bar_container">
+
 <div class="search_bar">
 
 <?php
@@ -107,8 +107,7 @@ echo $form->create(
 <?php
 echo $form->end();
 ?>
-</div>
 
-<div class="search_bar_left"></div>
-<div class="search_bar_right"></div>
+
+<div id="tatoeba"><a href="/">TATOEBA.org</a></div>
 </div>

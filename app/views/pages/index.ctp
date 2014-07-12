@@ -90,7 +90,7 @@ $selectedLanguage = $session->read('random_lang_selected');
 </div>
 
 <div id="main_content">
-    <div class="main_module">
+    <div class="module">
         <h2><?php __('What is Tatoeba?'); ?></h2>
         <p>
             <script type="text/javascript" src="http://s3.www.universalsubtitles.org/embed.js">
