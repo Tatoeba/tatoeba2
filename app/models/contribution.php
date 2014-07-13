@@ -112,42 +112,41 @@ class Contribution extends AppModel
 
         if (strlen($lang) != 3 || !is_numeric($limit)) {
             return array();
-        }
-        
-        $conditions = array('Contribution.type' => 'sentence');
-
-        $table = "contributions";
+        }        
+		
+		$conditions = array('type' => 'sentence');
+		$contain = array(
+			'User' => array(
+				'fields' => array(
+					'id', 
+					'username'
+				)
+			)
+		);
         if ($lang == 'und'|| empty($lang)) {
-            $table = "last_contributions"; 
-        }
+			$this->setSource('last_contributions');
+        } else {
+			$conditions['sentence_lang'] = $lang;
+		}
 
-        $query ="
-            SELECT 
-                `Contribution`.`text`,
-                `Contribution`.`action`,
-                `Contribution`.`id`,
-                `Contribution`.`sentence_id`,
-                `Contribution`.`datetime`,
-                `Contribution`.`sentence_lang`,
-                `User`.`username`,
-                `User`.`id`
-            FROM `$table` AS `Contribution`  
-        ";
-        $query.=" 
-                INNER JOIN `users` AS `User`
-                    ON (`Contribution`.`user_id` = `User`.`id`)
-                 WHERE ";
-        if ($lang != 'und') {
-            $query .=  "`Contribution`.`sentence_lang` = '$lang' AND";
-        } 
-
-        $query.="
-                `Contribution`.`type` = 'sentence'
-            ORDER BY `Contribution`.`id` DESC 
-            LIMIT $limit 
-        "; 
+		$results = $this->find(
+			'all', 
+            array(
+                'fields' => array(
+					'sentence_id', 
+					'sentence_lang',
+					'text',
+					'datetime',
+					'action'
+				),
+				'conditions' => $conditions,
+				'order' => 'datetime DESC',
+				'limit' => $limit,
+				'contain' => $contain
+			)
+		);
         
-        return  $this->query($query);
+        return $results;
     }
     
     /**
