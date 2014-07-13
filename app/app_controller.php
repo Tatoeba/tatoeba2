@@ -58,20 +58,21 @@ class AppController extends Controller
         'Javascript',
         'Languages'
     );
+	
+	
     /**
-     * to know who can do what
+     * 
      *
      * @return void
      */
     public function beforeFilter() 
     {
-        $blockedIps = Configure::read('Tatoeba.blockedIP');
-
-
         App::import('Model', 'CurrentUser');
-//        if (in_array( CurrentUser::getIp(), $blockedIp )) {
-//          $this->redirect($redirectPage, 404);
-//       }
+		// So that we can access the current users info from models.
+        CurrentUser::store($this->Auth->user());
+		
+		// blocked IP's
+		$blockedIps = Configure::read('Tatoeba.blockedIP');
         $ip = CurrentUser::getIp();
         foreach( $blockedIps as $blockedIp) {
             if (strpos($ip, $blockedIp, 0) ===0) {
@@ -80,11 +81,7 @@ class AppController extends Controller
                 return; 
             }
         }
-
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
-        #if(strpos($user_agent, ".NET CLR 3.5.30729") !== false) {
-        #    $this->redirect($redirectPage, 404);
-        #} 
+		
         Security::setHash('md5');
         $this->Cookie->domain = TATOEBA_DOMAIN;
         // This line will call views/elements/session_expired.ctp.
@@ -98,9 +95,6 @@ class AppController extends Controller
         // very important for the "remember me" to work
         $this->Auth->autoRedirect = false; 
         $this->RememberMe->check();
-        
-        // So that we can access the current users info from models.
-        CurrentUser::store($this->Auth->user());
 
         
         // Language of interface:
@@ -178,19 +172,20 @@ class AppController extends Controller
         //$mostRecentList = $this->Cookie->read('most_recent_list');
         //$this->Session->write('most_recent_list', $mostRecentList);
     }
+	
 
     /**
      * TODO This method smells
      *
      * @return void
      */
-
     public function flash($msg,$to)
     {
         $this->Session->setFlash($msg);
         $this->redirect('/'.$this->params['lang'].$to);
         exit;
     }
+	
 
     /**
      * Redirect to a given url, and specify the interface language
@@ -202,7 +197,6 @@ class AppController extends Controller
      *
      * @return mixed 
      */
-
     public function redirect($url = null, $status = null, $exit = true)
     {
         // if the developer has used "redirect" method without
@@ -212,103 +206,7 @@ class AppController extends Controller
         }
         return parent::redirect($url, $status, $exit);
     }
-
-    /**
-     * Rebuild the Acl based on the current controllers in the application
-     * To be removed in production mode.
-     *
-     * @return void
-     */
-    protected function _buildAcl()
-    {
-        $log = array();
-
-        $aco =& $this->Acl->Aco;
-        $root = $aco->node('controllers');
-        if (!$root) {
-
-            $aco->create(
-                array(
-                    'parent_id' => null,
-                    'model' => null,
-                    'alias' => 'controllers'
-                )
-            );
-            $root = $aco->save();
-            $root['Aco']['id'] = $aco->id;
-            $log[] = 'Created Aco node for controllers';
-            
-        } else {
-
-            $root = $root[0];
-        }
-
-        App::import('Core', 'File');
-        $Controllers = Configure::listObjects('controller');
-        $appIndex = array_search('App', $Controllers);
-        if ($appIndex !== false ) {
-            unset($Controllers[$appIndex]);
-        }
-        $baseMethods = get_class_methods('Controller');
-        $baseMethods[] = '_buildAcl';
-
-        // look at each controller in app/controllers
-        foreach ($Controllers as $ctrlName) {
-            App::import('Controller', $ctrlName);
-            $ctrlclass = $ctrlName . 'Controller';
-            $methods = get_class_methods($ctrlclass);
-
-            // find / make controller node
-            $controllerNode = $aco->node('controllers/'.$ctrlName);
-
-            if (!$controllerNode) {
-
-                $aco->create(
-                    array(
-                        'parent_id' => $root['Aco']['id'],
-                        'model' => null,
-                        'alias' => $ctrlName
-                    )
-                );
-                $controllerNode = $aco->save();
-                $controllerNode['Aco']['id'] = $aco->id;
-                $log[] = 'Created Aco node for '.$ctrlName;
-
-            } else {
-
-                $controllerNode = $controllerNode[0];
-
-            }
-
-            //clean the methods. to remove those in Controller and private actions.
-            foreach ($methods as $k => $method) {
-                if (strpos($method, '_', 0) === 0) {
-                    unset($methods[$k]);
-                    continue;
-                }
-                if (in_array($method, $baseMethods)) {
-                    unset($methods[$k]);
-                    continue;
-                }
-                $methodNode = $aco->node('controllers/'.$ctrlName.'/'.$method);
-                
-                if (!$methodNode) {
-
-                    $aco->create(
-                        array(
-                            'parent_id' => $controllerNode['Aco']['id'],
-                            'model' => null,
-                            'alias' => $method
-                        )
-                    );
-                    $methodNode = $aco->save();
-                    $log[] = 'Created Aco node for '. $method;
-
-                }
-            }
-        }
-        debug($log);
-    }
+	
 
     /**
      * Returns the ISO code of the language in which we should set the interface, 
