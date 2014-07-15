@@ -24,8 +24,6 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-
-App::import('Core', 'Sanitize');
  
 /**
  * Controller for contributions.
@@ -36,6 +34,9 @@ App::import('Core', 'Sanitize');
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+App::import('Core', 'Sanitize');
+App::import('Model', 'CurrentUser');
 
 class AppController extends Controller
 {
@@ -67,7 +68,6 @@ class AppController extends Controller
      */
     public function beforeFilter() 
     {
-        App::import('Model', 'CurrentUser');
 		// So that we can access the current users info from models.
         CurrentUser::store($this->Auth->user());
 		

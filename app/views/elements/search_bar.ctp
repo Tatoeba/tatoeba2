@@ -25,9 +25,6 @@
  * @link     http://tatoeba.org
  */
 
-
-App::import('Core', 'Sanitize');
-
 if (isset($this->params['lang'])) {
     Configure::write('Config.language', $this->params['lang']);
 }
