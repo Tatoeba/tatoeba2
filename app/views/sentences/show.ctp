@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+$javascript->link('sentences.logs.js', false);
+
 if (isset($sentence)) {
     $sentenceId = $sentence['Sentence']['id'];
     $sentenceLang = $sentence['Sentence']['lang'];
