@@ -26,9 +26,11 @@ $(document).ready(function(){
             historyRecord.hover(
                 function() {
                     sentence.addClass("highlighted");
+					historyRecord.addClass("historyHighlighted");
                 },
                 function() {
                     sentence.removeClass("highlighted");
+                    historyRecord.removeClass("historyHighlighted");
                 }
             );
         });
