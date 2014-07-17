@@ -23,16 +23,18 @@ $(document).ready(function(){
         historyRecord.find('a').each(function(){
             var historyRecordSentenceLink = $(this).attr('href');
             var sentence = $(".sentenceContent > a[href='" + historyRecordSentenceLink + "']").parent();
-            var updateHighlight = function() {
-                $(".sentenceContent.highlighted").removeClass("highlighted");
-                $(".annexeLogEntry.historyHighlighted").removeClass("historyHighlighted");
-                sentence.addClass("highlighted");
-                historyRecord.addClass("historyHighlighted");
-            };
+            if (sentence.length) { // we have this sentence displayed on the page
+                var updateHighlight = function() {
+                    $(".sentenceContent.highlighted").removeClass("highlighted");
+                    $(".annexeLogEntry.historyHighlighted").removeClass("historyHighlighted");
+                    sentence.addClass("highlighted");
+                    historyRecord.addClass("historyHighlighted");
+                };
 
-            historyRecord.hover(updateHighlight, null);
-            // Touchscreens cannot (or simulate) hovering, so let them use simple click instead
-            historyRecord.click(function() { updateHighlight() });
+                historyRecord.hover(updateHighlight, null);
+                // Touchscreens cannot (or simulate) hovering, so let them use simple click instead
+                historyRecord.click(function() { updateHighlight() });
+            }
         });
     });
 });
