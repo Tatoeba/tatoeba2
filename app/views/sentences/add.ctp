@@ -114,7 +114,7 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
                 'contributionLang',
                 $langArray,
                 $preSelectedLang,
-                array("class"=>"translationLang"),
+                array("class"=>"language-selector"),
                 false
             );
             ?>

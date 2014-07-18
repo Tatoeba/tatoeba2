@@ -99,7 +99,7 @@ class NavigationHelper extends AppHelper
                 "randomLangChoiceInBrowse", 
                 $langArray, 
                 $selectedLanguage, 
-                null, 
+                array('class' => 'language-selector'),
                 false
             );
             ?>

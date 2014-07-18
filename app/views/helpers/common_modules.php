@@ -98,8 +98,9 @@ class CommonModulesHelper extends AppHelper
                             $(location).attr('href','$path');
                         } else { 
                             $(location).attr('href','$path' + this.value);
-                        }" 
+                        }", 
                     // the if is to avoid a duplicate page (with and without "und")
+                    "class" => "language-selector"
                 ),
                 false
             );

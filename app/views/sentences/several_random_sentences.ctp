@@ -73,7 +73,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Random sentences', true);
             'into', 
             $languages->languagesArray(), 
             $selectedLanguage,
-            null,
+            array('class' => 'language-selector'),
             false
         );
         echo '</fieldset>';
