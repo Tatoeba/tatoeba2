@@ -29,10 +29,14 @@ $(document).ready(function(){
                     $(".annexeLogEntry.historyHighlighted").removeClass("historyHighlighted");
                     sentence.addClass("highlighted");
                     historyRecord.addClass("historyHighlighted");
+                    $.scrollTo(sentence, 500, {offset: -100});
                 };
+				var updateHover = function() {
+                    $(".annexeLogEntry.hovered").removeClass("hovered");
+                    historyRecord.addClass("hovered");
+				};
 
-                historyRecord.hover(updateHighlight, null);
-                // Touchscreens cannot (or simulate) hovering, so let them use simple click instead
+                historyRecord.hover(updateHover, null);
                 historyRecord.click(function() { updateHighlight() });
             }
         });
