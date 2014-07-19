@@ -31,12 +31,14 @@ $(document).ready(function(){
                     historyRecord.addClass("historyHighlighted");
                     $.scrollTo(sentence, 500, {offset: -100});
                 };
-				var updateHover = function() {
-                    $(".annexeLogEntry.hovered").removeClass("hovered");
+				var addHover = function() {
                     historyRecord.addClass("hovered");
 				};
+                var removeHover = function() {
+                    $(".annexeLogEntry.hovered").removeClass("hovered");
+                }
 
-                historyRecord.hover(updateHover, null);
+                historyRecord.hover(addHover, removeHover);
                 historyRecord.click(function() { updateHighlight() });
             }
         });
