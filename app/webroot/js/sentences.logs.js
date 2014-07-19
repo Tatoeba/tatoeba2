@@ -31,9 +31,9 @@ $(document).ready(function(){
                     historyRecord.addClass("historyHighlighted");
                     $.scrollTo(sentence, 500, {offset: -100});
                 };
-				var addHover = function() {
+                var addHover = function() {
                     historyRecord.addClass("hovered");
-				};
+                };
                 var removeHover = function() {
                     $(".annexeLogEntry.hovered").removeClass("hovered");
                 }
