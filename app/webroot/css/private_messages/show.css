@@ -79,6 +79,9 @@
 
 .privateMessage .body {
     padding: 15px;
-    background: #FFF url(../../img/bg_wall_comments.gif) repeat-x;
     clear: both;
+    border-top: 3px solid #CAE2AA;
+    -webkit-box-shadow: inset 0px 40px 30px -10px rgba(245, 245, 245, 1);
+    -moz-box-shadow: inset 0px 40px 30px -10px rgba(245, 245, 245, 1);
+    box-shadow: inset 0px 40px 30px -10px rgba(245, 245, 245, 1);
 }
