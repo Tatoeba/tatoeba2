@@ -70,17 +70,13 @@
     padding: 8px 20px;
 }
 
-.editUser .actions {
-    margin: 10px;
-    float: right;
-}
-
-.editUser .actions ul {
+.actions {
     list-style-type: none;
     padding: 0px;
+    margin: 30px 0px !important;
 }
 
-.editUser .actions li {
+.actions li {
     font-size: 20px;
     border: 1px solid #555;
     margin: 10px;
@@ -89,10 +85,10 @@
     text-align: center;
 }
 
-.editUser .actions .delete {
+.actions .delete {
     background: #CE0000;
 }
 
-.editUser .actions a {
+.actions a {
     color: white;
 }

@@ -38,9 +38,8 @@
 $userId = $form->value('User.id');
 $username = $form->value('User.username');
 ?>
-<div class="editUser">
-<div class="actions">
-    <ul>
+<div id="annexe_content">
+    <ul class="actions">
         <li class="delete">
         <?php
         echo $html->link(
@@ -70,6 +69,7 @@ $username = $form->value('User.username');
     </ul>
 </div>
 
+<div id="main_content">
 <?php 
 // HACK / quick fix
 echo '<form id="UserEditForm" method="post" action="/'.$this->params['lang'].'/users/edit/'.$userId.'">';
