@@ -43,14 +43,14 @@
         // the name of the controller.
         
         // Generic
-        echo $html->css(CSS_PATH . 'layouts/default.css');
+        echo $html->css(CSS_PATH . 'layouts/default.css?1');
         
         // Specific
         $controller = $this->params["controller"];
         $action = $this->params["action"];
         
         
-        echo $html->css(CSS_PATH . $controller."/".$action .".css"); 
+        echo $html->css(CSS_PATH . $controller."/".$action .".css?1"); 
         
         
         // Special case for Chrome and furigana.
