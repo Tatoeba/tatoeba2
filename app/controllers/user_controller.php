@@ -524,7 +524,7 @@ class UserController extends AppController
         $this->data = $userInfo;
 
         $this->loadModel('Country');
-        $tmpCountries = $this->Country->findAll();
+        $tmpCountries = $this->Country->find('all');
         $countries = array();
         foreach ($tmpCountries as $country) {
             $countryId = $country['Country']['id'];
