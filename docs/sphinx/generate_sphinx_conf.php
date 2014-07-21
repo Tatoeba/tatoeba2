@@ -2,27 +2,19 @@
 ## data source definition
 #############################################################################
 
+## Note that we read in some values from app/config/database.php.
+## That file, which is not under source control, is copied from 
+## app/config/database.php.template (which IS under source control)
+## and then manually edited.
+ 
 <?php
-/**
- *
- * You will want to change the values of these variables or use the configure_sphinx.sh to change them:
- *   - sourcePath
- *
- * In the "source default" section:
- *   - sql_user
- *   - sql_pass
- *   - sql_db
- *   - sql_sock
- *
- * In the "searchd" section:
- *   - listen (called "port" in older versions of Sphinx)
- *   - log
- *   - query_log
- *   - pid_file
- *
- */
+define('__TAT_ROOT__', dirname(dirname(dirname(__FILE__))));
+require_once(__TAT_ROOT__.'/app/config/database.php');
 
-$sourcePath = "INDEXDIR";
+
+$configs = get_class_vars('DATABASE_CONFIG');
+$sourcePath = $configs['sphinx']['indexdir'];
+$sphinxLogDir = $configs['sphinx']['logdir'];
 
 $languages = array(
     'ara' => 'Arabic',
@@ -76,7 +68,7 @@ $languages = array(
     'yid' => 'Yiddish',
 
     'pes' => 'Persian',
-    'nan' => 'Teochew',
+    'nan' => 'Min Nan Chinese',
     'eus' => 'Basque',
     'slk' => 'Slovak',
     'dan' => 'Danish',
@@ -144,61 +136,72 @@ $languages = array(
     'mlg' => 'Malagasy',
     'grn' => 'Guarani',
     'lad' => 'Ladino',
-    'pms' => 'Piemontese',
+    'pms' => 'Piedmontese',
 
     'avk' => 'Kotava',
     'tpw' => 'Old Tupi',
     'tgk' => 'Tajik',
     'mar' => 'Marathi',
-    'prg' => 'Old Prussian' ,
-    'npi' => 'Nepali' ,
-    'mlt' => 'Maltese' ,
-    'ckt' => 'Chukchi' ,
-    'cor' => 'Cornish' ,
-    'aze' => 'Azerbaijani' ,
-    'khm' => 'Khmer' ,
-    'lao' => 'Lao' ,
-    'bod' => 'Standard Tibetan' ,
-    'hil' => 'Hiligaynon' ,
-    'arq' => 'Algerian Arabic' ,
-    'pcd' => 'Picard' ,
-    'grc' => 'Ancient Greek' ,
-    'amh' => 'Amharic' ,
-    'awa' => 'Awadhi' ,
-    'bho' => 'Bhojpuri' ,
-    'cbk' => 'Chavacano' ,
-    'enm' => 'Middle English' ,
-    'frm' => 'Middle French' ,
-    'hat' => 'Haitian Creole' ,
-    'jdt' => 'Juhuri (Judeo-Tat)' ,
-    'kal' => 'Greenlandic' ,
-    'mhr' => 'Meadow Mari' ,
-    'nah' => 'Nahuatl' ,
-    'pdc' => 'Pennsylvania German' ,
-    'sin' => 'Sinhala' ,
-    'tuk' => 'Turkmen' ,
-    'wln' => 'Wallon' ,
-    'bak' => 'Bashkir' ,
-    'hau' => 'Hausa' ,
-    'ltz' => 'Luxembourgish' ,
-    'mgm' => 'Mambae' ,
-    'som' => 'Somali' ,
-    'zul' => 'Zulu' ,
-    'haw' => 'Hawaiian' ,
-    'kir' => 'Kyrgyz' ,
-    'mkd' => 'Macedonian' ,
-    'mrj' => 'Hill Mari' ,
-    'ppl' => 'Pipil' ,
-    'yor' => 'Yoruba' ,
-    'kin' => 'Kinyarwanda' ,
-    'shs' => 'Shuswap' ,
-    'chv' => 'Chuvash' ,
-    'lkt' => 'Lakota' ,
-    'ota' => 'Ottoman Turkish' ,
-    'sna' => 'Shona' ,
-    'mnw' => 'Mon' ,
-    'nog' => 'Nogai' ,
-    'sah' => 'Yakut' , //@lang
+    'prg' => 'Old Prussian' , 
+    'npi' => 'Nepali' , 
+    'mlt' => 'Maltese' , 
+    'ckt' => 'Chukchi' , 
+    'cor' => 'Cornish' , 
+    'aze' => 'Azerbaijani' , 
+    'khm' => 'Khmer' , 
+    'lao' => 'Lao' , 
+    'bod' => 'Tibetan' , 
+    'hil' => 'Hiligaynon' , 
+    'arq' => 'Algerian Arabic' , 
+    'pcd' => 'Picard' , 
+    'grc' => 'Ancient Greek' , 
+    'amh' => 'Amharic' , 
+    'awa' => 'Awadhi' , 
+    'bho' => 'Bhojpuri' , 
+    'cbk' => 'Chavacano' , 
+    'enm' => 'Middle English' , 
+    'frm' => 'Middle French' , 
+    'hat' => 'Haitian Creole' , 
+    'jdt' => 'Juhuri (Judeo-Tat)' , 
+    'kal' => 'Greenlandic' , 
+    'mhr' => 'Meadow Mari' , 
+    'nah' => 'Nahuatl' , 
+    'pdc' => 'Pennsylvania German' , 
+    'sin' => 'Sinhala' , 
+    'tuk' => 'Turkmen' , 
+    'wln' => 'Walloon' , 
+    'bak' => 'Bashkir' , 
+    'hau' => 'Hausa' , 
+    'ltz' => 'Luxembourgish' , 
+    'mgm' => 'Mambae' , 
+    'som' => 'Somali' , 
+    'zul' => 'Zulu' , 
+    'haw' => 'Hawaiian' , 
+    'kir' => 'Kyrgyz' , 
+    'mkd' => 'Macedonian' , 
+    'mrj' => 'Hill Mari' , 
+    'ppl' => 'Pipil' , 
+    'yor' => 'Yoruba' , 
+    'kin' => 'Kinyarwanda' , 
+    'shs' => 'Shuswap' , 
+    'chv' => 'Chuvash' , 
+    'lkt' => 'Lakota' , 
+    'ota' => 'Ottoman Turkish' , 
+    'sna' => 'Shona' , 
+    'mnw' => 'Mon' , 
+    'nog' => 'Nogai' , 
+    'sah' => 'Yakut' , 
+    'abk' => 'Abkhaz' , 
+    'tet' => 'Tetun' , 
+    'tam' => 'Tamil' , 
+    'udm' => 'Udmurt' , 
+    'kum' => 'Kumyk' , 
+    'crh' => 'Crimean Tatar' , 
+    'nya' => 'Chinyanja' , 
+    'liv' => 'Livonian' , 
+    'nav' => 'Navajo' , 
+    'chr' => 'Cherokee' , 
+    'guj' => 'Gujarati' , //@lang
 );
 
 $languageWithStemmer = array(
@@ -236,11 +239,10 @@ source default
 {
     type                     = mysql
     sql_host                 = localhost
-    sql_user                 = USER
-    sql_pass                 = PASSWORD
-    sql_db                   = DATABASE
-    sql_sock                 = SOCKET
-
+    sql_user                 = <?php echo $configs['default']['login']; echo "\n"; ?>
+    sql_pass                 = <?php echo $configs['default']['password']; echo "\n"; ?>
+    sql_db                   = <?php echo $configs['default']['database']; echo "\n"; ?>
+    sql_sock                 = <?php echo $configs['sphinx']['socket']; echo "\n"; ?>
     sql_query_pre            = SET NAMES utf8
     sql_query_pre            = SET SESSION query_cache_type=OFF
 
@@ -364,17 +366,17 @@ foreach ($languages as $lang=>$name){
             from sentences s\
             left join sentences_translations st on st.sentence_id = s.id\
             left join sentences t on st.translation_id = t.id\
-            where s.lang_id = (select id from langStats where lang = '$lang')\
+            where s.lang_id = (select id from languages where code = '$lang')\
         union \
         select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id\
             from sentences s\
             left join sentences_translations st on st.sentence_id = s.id\
             left join sentences_translations tt on tt.sentence_id = st.translation_id\
             left join sentences t on tt.translation_id = t.id\
-            where s.lang_id =  (select id from langStats where lang = '$lang')\
-        ) t
+            where s.lang_id =  (select id from languages where code = '$lang')\
+        ) t 
         sql_attr_uint = id2
-        sql_attr_multi = uint trans_id from field; SELECT id FROM langStats ;
+        sql_attr_multi = uint trans_id from field; SELECT id FROM languages ;
     }
             ";
     // generate index for this pair
@@ -426,13 +428,13 @@ indexer
 
 searchd
 {
-    listen                  = 9312
-    log                     = LOGDIR/searchd.log
-    query_log              = LOGDIR/query.log
+    port                    = 9312
+    log                     = <?php echo $sphinxLogDir . DIRECTORY_SEPARATOR . "searchd.log\n"; ?>
+    query_log               = <?php echo $sphinxLogDir . DIRECTORY_SEPARATOR . "query.log\n"; ?>
     read_timeout            = 5
     max_children            = 30
 
-    pid_file                = LOGDIR/searchd.pid
+    pid_file                = <?php echo $sphinxLogDir . DIRECTORY_SEPARATOR . "searchd.pid\n"; ?>
     max_matches             = 1000
     seamless_rotate         = 1
     preopen_indexes         = 1

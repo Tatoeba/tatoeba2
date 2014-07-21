@@ -53,6 +53,8 @@ class ListsHelper extends AppHelper
      * @param boolean $isPublic        If the list is public or not.
      * @param int     $count           Number of sentences in the list.
      *
+	 * @todo delete, not used anywhere
+	 * 
      * @return void
      */
     public function displayItem(
@@ -319,11 +321,11 @@ class ListsHelper extends AppHelper
             $path .= $this->params['lang'] . '/';
         }
         $path .= 'sentences_lists/'.$action.'/'. $listId.'/';
-
-        // TODO onChange should be define in a separate js file
+        
+        // TODO onChange should be defined in a separate js file
         echo $this->Form->select(
             "translationLangChoice",
-            $this->Languages->languagesArrayForLists(),
+            $this->Languages->languagesArrayForPositiveLists(),
             $translationsLang,
             array(
                 "onchange" => "$(location).attr('href', '".$path."' + this.value);",
@@ -359,7 +361,7 @@ class ListsHelper extends AppHelper
                 );
             });
         </script>
-        <label for="isPublicCheckbox"><?php __('Set list as public'); ?></label>
+        <label for="isPublicCheckbox"><?php __('Set list as collaborative'); ?></label>
         <?php
         $this->Javascript->link('sentences_lists.set_as_public.js', false);
         if ($isListPublic) {
@@ -383,8 +385,13 @@ class ListsHelper extends AppHelper
         echo $this->Html->link(
             '[?]',
             array(
+<<<<<<< HEAD
                 "controller"=>"pages",
                 "action"=>"help#sentences_lists"
+=======
+                "controller"=>"pages", 
+                "action"=>"help#sentences_lists_help"
+>>>>>>> master
             )
         );
         ?>
@@ -540,7 +547,7 @@ class ListsHelper extends AppHelper
             )
         );
         echo $this->Form->button(
-            'OK', array(
+            __('OK', true), array(
                 "id" => "submitNewSentenceToList"
             )
         );

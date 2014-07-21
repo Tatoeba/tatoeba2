@@ -43,7 +43,7 @@ if (!isset($lastText)) {
     ?>
 
     <div class="module">
-        <h2><?php __('The sofware'); ?></h2>
+        <h2><?php __('The software'); ?></h2>
         <p>
             <?php
             __(

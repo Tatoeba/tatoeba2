@@ -28,7 +28,7 @@ $username = Sanitize::paranoid($username, array("_"));
 
 if ($results == null) {
     $title = sprintf(
-        __("This user does doesn't exist: %s", true),
+        __("This user doesn't exist: %s", true),
         $username
     );
 } else if (!empty($lang)) {

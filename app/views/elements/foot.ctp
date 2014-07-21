@@ -57,6 +57,17 @@ if (isset($this->params['lang'])) {
         );
         ?>
     </li>
+	<li>
+        <?php
+        echo $html->link(
+            __('Donate', true),
+            array(
+                "controller" => 'pages',
+                "action" => 'donate'
+            )
+        );
+        ?>
+    </li>
     <li>
         <?php
         echo $html->link(

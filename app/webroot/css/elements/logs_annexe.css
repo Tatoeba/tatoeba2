@@ -25,6 +25,16 @@
     padding: 3px;
 }
 
-#logs .annexeLogEntry .text {
-    font-family: georgia, serif;
+.sentences_set .highlighted {
+    background-color: #f7d6b2;
 }
+
+#logs .linkAdded.hovered {
+	cursor: pointer;
+	border-right: 5px solid #ccc;
+}
+
+#logs .linkAdded.historyHighlighted {
+	border-right: 5px solid #999;
+}
+

@@ -40,7 +40,7 @@ $this->pageTitle = 'Tatoeba - Thread #' . $rootMessageId ;
 ?>
 <div id="annexe_content">
     <div class="module">
-        <h2>Menu</h2>
+    <h2><?php __('Menu'); ?></h2>
         <p>
             <?php
             echo $html->link(

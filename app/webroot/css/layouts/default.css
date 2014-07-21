@@ -16,10 +16,14 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
+
+body, select, input, textarea {
+    font-family: Trebuchet MS, sans-serif;
+}
+ 
 body {
     padding: 0px;
     margin: 0px;
-    font-family: Trebuchet MS, sans;
     color: #222222;
     background: #e5e3da;
 }
@@ -38,17 +42,24 @@ a:hover {
     color: #EAA315;
 }
 
-
-h2, h3, h4 {
-    font-variant: small-caps;
+h2 {
+    background: url(../../img/title.png) no-repeat top left;
+    padding-left: 28px;
+    margin: 0 0 15px 0;
+    font-size: 1.5em;
+    color: #000;
 }
 
+h2 .annexe {
+    font-weight: normal;
+    font-size: 15px;
+}
 
 h3 {
     border-bottom: 1px dotted;
     color: #555;
     padding-left: 10px;
-    font-size: 1.3em;
+    font-size: 1.2em;
     margin-top: 30px;
 }
 
@@ -71,6 +82,10 @@ dt {
     font-weight: bold;
 }
 
+textarea {
+    font-size: 13px;
+}
+
 /* User Menu : Main Menu */
 
 #top_menu_container {
@@ -82,7 +97,7 @@ dt {
     height: 30px;
     width: 960px;
     margin: auto;
-    font-size: 0.9em;
+    font-size: 14px;
     overflow: hidden;
 }
 
@@ -221,51 +236,41 @@ dt {
 
 
 /*
- * Search bar 
+ * Container
  */
-.search_bar_container {
-    position: relative;
-    margin-right: 30px;
+
+#container {
+    width: 960px;
+    margin: auto;
+	margin-bottom: 100px;
+    background-color: #fff;
+	-webkit-box-shadow: 0px 0px 5px 5px rgba(50, 50, 50, 0.3);
+	-moz-box-shadow: 0px 0px 5px 5px rgba(50, 50, 50, 0.3);
+	box-shadow: 0px 0px 5px 5px rgba(50, 50, 50, 0.3);
 }
 
-.search_bar_left, .search_bar_right {
-    position: absolute;
-    top: 0px;
-    height: 50px;
-    width: 40px;
-}
 
-.search_bar_left {
-    left: 0px;
-    background: url(../../img/search_bar_left.png) no-repeat left;
-}
-
-.search_bar_right {
-    right: 0px;
-    background: url(../../img/search_bar_right.png) no-repeat right;
-}
+/*
+ * Header, search bar
+ */
 
 .search_bar {
-    height: 50px;
-    background: url(../../img/search_bar_body.png) repeat;
+    background-color: #94CE6C;
     position: relative;
     color: #FFFFFF;
-    margin: 0px 40px 20px 40px;
+    margin-bottom: 20px;
+	-webkit-box-shadow: inset 0px -50px 30px -10px rgba(100,155,61,1);
+	-moz-box-shadow: inset 0px -50px 30px -10px rgba(100,155,61,1);
+	box-shadow: inset 0px -50px 30px -10px rgba(100,155,61,1);
 }
 
-.search_bar a {
-    font-size: 0.9em;
-    color: #FFFFFF;
-    display: block;
-    margin-bottom: 3px;
-}
-
-.search_bar a:hover {
-    color: #FFFFFF;
+.search_bar form {
+	margin-left: 100px;
+	margin-right: 100px;
+	padding: 5px;
 }
 
 .search_bar #into {
-    font-family: Arial, Sans-serif;
     font-size: 1.3em;
     margin-top: 20px;
     text-align: center;
@@ -305,93 +310,70 @@ dt {
     width: 110px;
 }
 
-
-
-/* HEADER */
-
-#header {
-    text-align: right;
-    float: left;
-    padding: 10px;
+#logo {
+	position: absolute;
+	padding: 4px 12px;
+	z-index: 1;
+	-webkit-border-top-right-radius: 40px;
+	-webkit-border-bottom-right-radius: 32px;
+	-moz-border-radius-topright: 40px;
+	-moz-border-radius-bottomright: 32px;
+	border-top-right-radius: 40px;
+	border-bottom-right-radius: 32px;
+	background: #fff;
 }
 
-
-/* Container */
-
-#container1 {
-    width: 960px;
-    margin: auto;
-    padding: 0px 10px;
-    background: url(../../img/bg_main.png) repeat-y;
+#tatoeba {
+	position: absolute;
+	right: 0px;
+	bottom: 0px;
+	opacity: 0.7;
+    filter: alpha(opacity=70);
+	display: inline-block;
+	padding: 5px 8px 5px 13px;
+	background: #fff;
+	color: #649B3D;
+	font-size: 12px;
+	-webkit-border-top-left-radius: 20px;
+	-moz-border-radius-topleft: 20px;
+	border-top-left-radius: 20px;
+	font-weight: bold;
 }
 
-#container {
-    width: 850px;
-    margin-left: 100px;
+/*
+ * Content 
+ */
+
+#content {
+    width: 100%;
     background: #FFFFFF;
     min-height: 550px;
 }
 
-/* Content : when a page is not split into 2 parts*/
-
-#content {
-    font-size: 0.8em;
-    /* border: 1px dotted #D1D1D1; */
-}
-
-/* Module : when a page is split into 2 main parts */
-
 #annexe_content {
     float: right;
-    width: 250px;
-    font-size: 0.8em;
+    width: 270px;
+	padding: 10px 20px 20px 20px;
 }
 
 #main_content {
-    margin-left: 10px;
-    margin-right: 260px;
-    font-size: 0.8em;
+    margin-right: 290px;
+	padding: 10px 20px 20px 20px;
 }
 
 .module {
     padding: 10px 10px 5px 10px;
     margin: 0px 0px 20px 0px;
-    background: url(../../img/module_background.png) repeat-x bottom left;
     overflow: hidden;
+    font-size: 13px;
+	border-bottom: 1px solid #ededed;
+	-webkit-box-shadow: inset 0px -50px 30px -10px rgba(245, 245, 245, 1);
+	-moz-box-shadow: inset 0px -50px 30px -10px rgba(245, 245, 245, 1);
+	box-shadow: inset 0px -50px 30px -10px rgba(245, 245, 245, 1);
 }
 #annexe_content .module {
     margin-left: 5px;
 }
-
-.module h2 {
-    background: url(../../img/title.png) no-repeat top left;
-    padding-left: 28px;
-    margin: 0 0 15px -8px;
-    font-size: 1.5em;
-    color: #000;
-}
-
-.module h2 .annexe {
-    font-variant: normal;
-    font-weight: normal;
-    font-size: 0.8em;
-}
-
-.main_module {
-    font-size: 1.25em;
-    padding: 10px 10px 5px 10px;
-    background: url(../../img/module_background.png) repeat-x bottom left;
-    margin-bottom: 20px;
-}
-
-.main_module h2 {
-    background: url(../../img/title_main.png) no-repeat top left;
-    padding-left: 32px;
-    font-size: 1.5em;
-    border-bottom: none;
-    margin: 0 0 0 -8px;
-}
-
 
 #annexe_content ul {
     margin: 5px 0px;
@@ -408,16 +390,6 @@ dt {
  */
 #footer {
     background: #e3e0d6;
-    height: 18px;
-    clear: both;
-}
-
-#footer_container {
-    background: url(../../img/bg_footer.png) bottom left;
-    width: 960px;
-    height: 24px;
-    margin: auto;
-    padding: 0px 10px;
 }
 
 #footer a {
@@ -427,18 +399,15 @@ dt {
 }
 
 #footer ul {
-    margin: 0;
     display: block;
-    float: right;
     font-size: 80%;
+	text-align: right;
 }
 
 #footer li {
-    display: block;
-    height: 30px;
+    display: inline;
     line-height: 30px;
     text-align: center;
-    float: left;
     list-style: none;
     padding-left: 10px;
     padding-right: 10px;
@@ -457,7 +426,6 @@ dt {
  * ">>"
  */
 .ToLanguage {
-    font-family: Arial, Sans-serif;
     font-size: 1.3em;
     margin: 0 5px;
 }
@@ -466,7 +434,7 @@ dt {
  * Flash message
  */
 #flashMessage, #authMessage {
-    margin: 20px 10px;
+    margin: 25px;
     padding: 10px;
     color: #E05900;
     background: #EDE0B8;
@@ -504,15 +472,14 @@ dt {
  */
 #UserLoginForm_FromBar {
     position: absolute;
-    top: 31px;
+    top: 30px;
     z-index: 1000;
     min-width: 270px;
     padding: 5px 10px;
-    background: #414141 url('../../img/alert-overlay.png') repeat-x;
+    background: #414141;
     color: #FFF;
-    border-bottom: 1px solid #000000;
-    border-left: 1px solid #000000;
-    border-right: 1px solid #000000;
+    border: 1px solid #000000;
+	border-top: none;
 }
 
 #UserLoginForm_FromBar fieldset {
@@ -526,33 +493,20 @@ dt {
 }
 
 #UserLoginForm_FromBar input[type='text'], #UserLoginForm_FromBar input[type='password'] {
-    height: 15px;
     width: 120px;
-    background: #FFF url('../../img/alert-overlay.png') repeat-x;
     display: inline-block;
-    padding: 2px 0 0 3px;
+    padding: 3px 5px;
     color: #414141;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
     border: 0;
     border-bottom: 1px solid rgba(0,0,0,0.25);
-    font-size: 0.9em;
 }
 
 #UserLoginForm_FromBar input[type='submit'] {
     width: 120px;
-    background: #222 url('../../img/alert-overlay.png') repeat-x;
+    background: #222;
     display: inline-block;
     padding: 4px 10px 5px;
     color: #FFF;
-    text-decoration: none;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    -moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    -webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-    text-shadow: 0 -1px 1px rgba(0,0,0,0.25);
     border: 0;
     border-bottom: 1px solid rgba(0,0,0,0.25);
     position: relative;

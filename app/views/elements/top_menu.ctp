@@ -26,9 +26,22 @@
  */
 
 // Detecting language for "browse by language"
-$currentLanguage = $session->read('random_lang_selected');
+$currentLanguage = $session->read('browse_sentences_in_lang');
+$showTranslationsInto = $session->read('show_translations_into_lang');
+$notTranslatedInto = $session->read('not_translated_into_lang');
+$filterAudioOnly = $session->read('filter_audio_only');
+
+if (empty($currentLanguage)) {
+    $currentLanguage = $session->read('random_lang_selected');
+}
 if (empty($currentLanguage) || $currentLanguage == 'und') {
     $currentLanguage = $languages->i18nCodeToISO($this->params['lang']);
+}
+if (empty($showTranslationsInto)) {
+	$showTranslationsInto = 'none';
+}
+if (empty($notTranslatedInto)) {
+	$notTranslatedInto = 'none';
 }
 
 // array containing the elements of the menu : $title => $route
@@ -49,7 +62,9 @@ $menuElements = array(
             __('Browse by language', true) => array(
                 "controller" => "sentences",
                 "action" => "show_all_in",
-                $currentLanguage, "none", "none"
+                /* $currentLanguage, "none", "none" */
+                $currentLanguage, $showTranslationsInto, $notTranslatedInto,
+                $filterAudioOnly
             ),
             __('Browse by list', true) => array(
                 "controller" => "sentences_lists",
@@ -117,15 +132,14 @@ $menuElements = array(
         ),
         "sub-menu" => array(
             __('Quick Start Guide', true) =>
-                'http://en.wiki.tatoeba.org/articles/show/quick-start'
+                'http://wiki.tatoeba.org/articles/show/quick-start'
             ,
             __('Tatoeba Wiki', true) =>
-                'http://en.wiki.tatoeba.org/articles/show/main'
+                'http://wiki.tatoeba.org/articles/show/main'
             ,
-            __('FAQ', true) => array(
-                "controller" => "pages",
-                "action" => "faq"
-            ),
+            __('FAQ', true) =>
+                'http://wiki.tatoeba.org/articles/show/faq'
+            ,
             __('Help', true) => array(
                 "controller" => "pages",
                 "action" => "help"
@@ -137,6 +151,10 @@ $menuElements = array(
             __('Tools', true) => array(
                 "controller" => "tools",
                 "action" => "index"
+            ),
+            __('Donate', true) => array(
+                "controller" => "pages",
+                "action" => "donate"
             )
         )
     )
@@ -158,7 +176,12 @@ $menuElements = array(
             && ($this->params['action'] == 'login');
             
             if (!$isOnLoginPage) {
-                echo $this->element('login');
+                echo $this->element('login', array(
+                    'cache' => array(
+                        'time' => '+1 day',
+                        'key' => Configure::read('Config.language')
+                    )
+                ));
             }
         } else {
             echo $this->element('space');

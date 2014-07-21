@@ -59,7 +59,6 @@ class ShowAllHelper extends AppHelper
         $path .= $this->params['lang'] .'/';
         $path .= $this->params['controller'].'/';
         $path .= $this->params['action'];
-
         return $path;
     }
 
@@ -110,9 +109,10 @@ class ShowAllHelper extends AppHelper
             $langs,
             $selectedLanguage,
             array(
-                "onchange" => "$(location).attr('href', $javascriptUrl);",
-                "empty" => false
-            )
+				"id" => null,
+                "onchange" => "$(location).attr('href', $javascriptUrl);"
+            ),
+            false
         );
 
     }
@@ -158,8 +158,8 @@ class ShowAllHelper extends AppHelper
         <div class="module">
             <h2><?php __('Show translations in:'); ?></h2>
             <?php
-            $langs = $this->Languages->languagesArrayForLists();
-
+            $langs = $this->Languages->languagesArrayForPositiveLists();
+           
             echo $this->_generateSelect(
                 $selectedLanguage,
                 $langs,
@@ -168,7 +168,7 @@ class ShowAllHelper extends AppHelper
             ?>
             <p>
             <?php
-            __('NOTE: It will show both direct and indirect translations.');
+            __('NOTE: Both direct and indirect translations will be shown.');
             ?>
             </p>
         </div>
@@ -184,14 +184,14 @@ class ShowAllHelper extends AppHelper
      * @return void
      */
 
-    public function displayShowNotTranslatedIn($selectedLanguage = 'none')
+    public function displayShowNotTranslatedInto($selectedLanguage = 'none')
     {
         ?>
         <div class="module">
             <h2><?php __('Not directly translated into:'); ?></h2>
             <?php
-            $langs = $this->Languages->LanguagesArrayForLists();
-
+            $langs = $this->Languages->languagesArrayForNegativeLists();
+           
             echo $this->_generateSelect(
                 $selectedLanguage,
                 $langs,

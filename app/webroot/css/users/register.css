@@ -39,12 +39,13 @@
 }
 
 #UserRegisterForm input {
-    font-family: verdana, sans-serif;
+    font-size: 1em;
 }
 
 #UserRegisterForm .field {
+    padding-top: 15px;        
     text-align: right;
-}
+}    
 
 #UserRegisterForm .valid {
     background: url(/img/valid_16x16.png) no-repeat scroll right center;
@@ -84,8 +85,4 @@
     padding: 10px;
     margin-bottom: 20px;
     text-align: center;
-}
-
-#registerButton {
-    font-size: 1.5em;
 }

@@ -1,7 +1,19 @@
-app/config/database.php
-app/app_controller.php
-app/controllers/components/mailer.php
 info.php
+
+
+# config
+app/config/core.php
+app/config/database.php
+
+# audio files
+app/webroot/files/audio
+
+# cache
+app/tmp/cache
+app/tmp/cache/models
+app/tmp/cache/persistent
+app/tmp/cache/views
+
 
 # By default, "./cake/console/cake i18n extract" writes files here. Ignore them.
 app/locale/default*.pot

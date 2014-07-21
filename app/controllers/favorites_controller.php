@@ -25,8 +25,6 @@
  * @link     http://tatoeba.org
  */
 
-App::import('Core', 'Sanitize');
-
 /**
  * Controller for favorite.
  *

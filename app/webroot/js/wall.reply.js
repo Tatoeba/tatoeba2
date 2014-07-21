@@ -118,7 +118,7 @@ $(document).ready(function(){
                  "<div id=\"replyFormDiv_"+currentMessageId+"\" class=\"replyFormDiv\" >"
                 + sendMessageForm.html()
                 +"</div>" );
-            $.scrollTo('#replyFormDiv_' + currentMessageId,800 ); 
+            $.scrollTo('#replyFormDiv_' + currentMessageId, 800, {offset: -50}); 
             previousReplyFormInMessageID = currentMessageId ; 
             
             // focus on textarea

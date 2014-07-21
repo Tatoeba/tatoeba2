@@ -25,12 +25,36 @@
  * @link     http://tatoeba.org
  */
 $this->pageTitle = 'Tatoeba - ' . __('Translate sentences', true);
+
+$currentLanguage = $session->read('browse_sentences_in_lang');
+$notTranslatedInto = $session->read('not_translated_into_lang');
+if (empty($currentLanguage)) {
+    $currentLanguage = $session->read('random_lang_selected');
+}
+if (empty($notTranslatedInto)) {
+	$notTranslatedInto = 'none';
+}
 ?>
 
 <div id="annexe_content">    
     <?php
     $attentionPlease->tatoebaNeedsYou();
-    ?>    
+    ?>
+
+    <div class="module">
+        <h2><?php __("How to add a translation"); ?></h2>
+        <p>
+            <?php
+            echo sprintf(
+                __(
+                    'Once the sentences are displayed, click on %s to add '.
+                    'a translation.', true
+                ),
+                $html->image('translate.png')
+            );
+            ?>
+        </p>
+    </div>
     
     <div class="module">
     <h2><?php __('About translations'); ?></h2>
@@ -53,34 +77,73 @@ $this->pageTitle = 'Tatoeba - ' . __('Translate sentences', true);
     </div>
 </div>
 
-<div id="main_content">    
-    
+<div id="main_content">
+
     <div class="module">
-    <h2><?php __('Translate sentences'); ?></h2>
-        <p>
-        <?php 
-        echo sprintf(
-            __(
-                'Below you can get several random sentences in a certain language. '.
-                'Once the sentences are displayed, click on %s to add '.
-                'a translation.', true
-            ),
-            $html->image('translate.png')
-        );
-        ?>
-        </p>
-        
+        <h2><?php __('Translate sentences'); ?></h2>
+
+        <h3><?php __('Search for untranslated sentences'); ?></h3>
+        <div>
+            <?php
+            echo $form->create(
+                'Activity',
+                array("action" => "translate_sentences", "type" => "get")
+            );
+
+            $langsFrom = $languages->onlyLanguagesArray();
+			$langsTo = $languages->LanguagesArrayForNegativeLists();
+
+            ?>
+            <fieldset class="select">
+                <label for="ActivityLangFrom">
+                    <?php __('Sentences in:'); ?>
+                </label>
+                <?php
+                echo $form->select(
+                    'langFrom',
+                    $langsFrom,
+                    $currentLanguage,
+                    null,
+                    false
+                );
+                ?>
+            </fieldset>
+
+            <fieldset class="select">
+                <label for="ActivityLangTo">
+                    <?php __('Not directly translated into:'); ?>
+                </label>
+                <?php
+                echo $form->select(
+                    'langTo',
+                    $langsTo,
+                    $notTranslatedInto,
+                    null,
+                    false
+                );
+                ?>
+            </fieldset>
+
+            <fieldset class="submit">
+            <input type="submit" value="<?php __('show sentences'); ?>"/>
+            </fieldset>
+            <?php echo $form->end(); ?>
+        </div>
+
+
+        <h3><?php __('Display random sentences'); ?></h3>
         <?php
-       
         $numberOfSentencesWanted = array (5 => 5 , 10 => 10 , 15 => 15);
         $selectedLanguage = $session->read('random_lang_selected');
         echo $form->create(
             'Sentence',
             array("action" => "several_random_sentences", "type" => "post")
         );
+        ?>
 
-        echo '<fieldset class="select">';
-        echo '<label>' . __('Quantity', true) . '</label>';
+        <fieldset class="select">
+        <label><?php __('Quantity'); ?></label>
+        <?php
         echo $form->select(
             'numberWanted',
             $numberOfSentencesWanted,
@@ -89,11 +152,12 @@ $this->pageTitle = 'Tatoeba - ' . __('Translate sentences', true);
                 'empty'=>false
             )
         );
-        echo '</fieldset>';
+        ?>
+        </fieldset>
 
-
-        echo '<fieldset class="select">';
-        echo '<label>' . __('Language', true) . '</label>';
+        <fieldset class="select">
+        <label><?php __('Language'); ?></label>
+        <?php
         echo $form->select(
             'into',
             $languages->languagesArray(),
@@ -102,15 +166,13 @@ $this->pageTitle = 'Tatoeba - ' . __('Translate sentences', true);
                 'empty'=>false
             )
         );
-        echo '</fieldset>';
-
-        echo '<fieldset class="submit">';
-        echo '<input type="submit" value="'.
-            __('show random sentences', true).'"/>';
-        echo '</fieldset>';
-
-
-        echo $form->end();
         ?>
+        </fieldset>
+
+        <fieldset class="submit">
+        <input type="submit" value="<?php __('show random sentences'); ?>"/>
+        </fieldset>
+
+        <?php echo $form->end();?>
     </div>
 </div>

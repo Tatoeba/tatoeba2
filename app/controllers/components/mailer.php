@@ -75,9 +75,8 @@ class MailerComponent extends Object
      */
     private function _authgMail($from, $namefrom, $to, $nameto, $subject, $message)
     {
-        return;
-        if ($_SERVER['SERVER_NAME'] != 'tatoeba.org') {
-            //return;
+        if (Configure::read('Mailer.enabled') == false) {
+            return;
         }
 
         /*  your configuration here  */
@@ -85,8 +84,8 @@ class MailerComponent extends Object
         $smtpServer = "tls://smtp.gmail.com"; //does not accept STARTTLS
         $port = "465"; // try 587 if this fails
         $timeout = "45"; //typical timeout. try 45 for slow servers
-        $username = "trang.dictionary.project@gmail.com"; //your gmail account
-        $password = "t0k0r0d3"; //the pass for your gmail
+        $username = Configure::read('Mailer.username'); //your gmail account
+        $password = Configure::read('Mailer.password'); //the pass for your gmail
         $localhost = $_SERVER['REMOTE_ADDR']; //requires a real ip
         $newLine = "\r\n"; //var just for newlines
 

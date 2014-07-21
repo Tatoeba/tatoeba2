@@ -25,23 +25,15 @@
  * @link     http://tatoeba.org
  */
 
-
-App::import('Core', 'Sanitize');
-
 if (isset($this->params['lang'])) {
     Configure::write('Config.language', $this->params['lang']);
 }
 ?>
-<div class="search_bar_container">
+
 <div class="search_bar">
 
 <?php
 $languages = $languages->getSearchableLanguagesArray();
-
-$selectedLanguageFrom = $session->read('search_from');
-$selectedLanguageTo = $session->read('search_to');
-$searchQuery = $session->read('search_query');
-
 
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';
@@ -114,8 +106,7 @@ echo $form->create(
 <?php
 echo $form->end();
 ?>
-</div>
 
-<div class="search_bar_left"></div>
-<div class="search_bar_right"></div>
+
+<div id="tatoeba"><a href="/">TATOEBA.org</a></div>
 </div>

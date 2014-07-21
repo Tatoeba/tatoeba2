@@ -54,7 +54,12 @@ class User extends AppModel
         'Containable'
     );
 
+    // contributor vs. advanced contributor vs. corpus maintainer vs. admin
     const LOWEST_TRUST_GROUP_ID = 4;
+
+    // trustworthy vs. untrustworthy 
+    const MIN_LEVEL = -1; // trustworthy
+    const MAX_LEVEL = 0; // untrustworthy (submits bad or copyrighted sentences)
 
     /**
      *
@@ -221,7 +226,8 @@ class User extends AppModel
                     'birthday',
                     'is_public',
                     'group_id',
-                    'lang'
+                    'lang',
+                    'level'
                 ),
                 'contain' => array(
                     'Country' => array('fields' => array('name'))
@@ -282,13 +288,13 @@ class User extends AppModel
     }
 
     /**
-     * Get user by id.
+     * Get user data + sentences, contributions, favorites, etc.
      *
      * @param int|null $id Id of the user. If null we take a random one.
      *
      * @return void
      */
-    public function getUserById($id = null)
+    public function getUserByIdWithExtraInfo($id = null)
     {
         //TODO: HACK SPOTTED user of order rand
         if ($id == null) {
@@ -369,7 +375,29 @@ class User extends AppModel
         }
         return $user;
     }
-
+	
+	
+	/**
+	 * Retrieves only the fields from users table, no joins.
+	 *
+	 * @param int $id Id of the user.
+	 *
+	 * @return array User data.
+	 */
+	public function getUserById($id)
+    {
+		$user = $this->find(
+			'first',
+			array(
+				'conditions' => array('User.id' => $id),
+				'contain' => array()
+			)
+		);
+		
+		return $user;
+	}
+	
+    
     /**
      * Return id of a user from the username.
      *
@@ -542,61 +570,30 @@ class User extends AppModel
                 'contain' => array()
             )
         );
-    }
-
+    }  
+    
+    
     /**
-     * Return all the informations needed for the Team and credits page
+     * Return the level of the user of given id.
      *
-     * @return array The big array of users and their informations
+     * @param int $userId Id of the user.
+     *
+     * @return int
      */
-    public function getMembersForTeamAndCredits() {
-
-        $launchpadUrl = 'https://launchpad.net/tatoeba/+topcontributors';
-        $launchpadDescription = sprintf(
-            __(
-                'Thank you to everyone who translated on '.
-                '<a href="%s">Launchpad</a>.', true
-            ), $launchpadUrl
+    public function getLevelOfUser($userId)
+    {
+        $result = $this->find(
+            'first',
+            array(
+                'conditions' => array('User.id' => $userId),
+                'contain' => array(),
+                'fields' => 'User.level'
+            )
         );
-
-        return array(
-            'Padawan' => array(
-            ),
-            'Core' => array(
-                array('HO Ngoc Phuong Trang', 'trang'),
-                array('SIMON Allan', 'sysko')
-            ),
-            'Ex' => array(
-                array('TAN Kevin', 'keklesurvivant'),
-                array('9h0ost', '9h0ost'),
-                array('BEN YAALA Salem', 'socom'),
-                array('DEPARIS Étienne', 'milouse'),
-                array('PARISI Robin', 'fendtwick'),
-                array('DUCATEL Baptiste', 'biptaste'),
-                array('LARIVIERE Julien', 'droide')
-            ),
-            'Translator' => array(
-                array('FU Congcong 傅琮琮', 'fucongcong', __('Chinese', true)),
-                array('JIMÉNEZ Gabriel', 'kylecito',__('Spanish', true)),
-                array('sirgazil', 'sirgazil',__('Spanish', true)),
-                array('Pharamp', 'pharamp',__('Italian', true)),
-                array('brauliobezerra', 'brauliobezerra',__('Portuguese', true)),
-                array('BLAY Paul', 'blay_paul',__('Japanese', true)),
-                array('zipangu', 'zipangu',__('Polish', true)),
-                array('Launchpad translators', null,$launchpadDescription),
-            ),
-            'Special' => array(
-                array('BOUCHER François', 'kentril', 'Coded former search engine.'),
-                array('Masa', 'masa','Hosted Tatoeba for a few years.'),
-                array('FSF (France)', null,'Free Software Foundation. Currently hosting Tatoeba.'),
-                array('Shtooka', null, 'Helping us bringing audio to Tatoeba. http://shtooka.net/')
-            ),
-        );
-
-
+        return $result['User']['level'];
     }
-}
 
+}
 
 
 ?>

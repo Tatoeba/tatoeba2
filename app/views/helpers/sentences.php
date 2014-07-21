@@ -360,6 +360,8 @@ class SentencesHelper extends AppHelper
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
         $sentenceAudio = 'no';
+        $sentenceCorrectness = $sentence['correctness'];
+        $correctnessLabel = $this->getCorrectnessLabel($sentence['correctness']);
         if (isset($sentence['hasaudio'])) {
             $sentenceAudio = $sentence['hasaudio'];
         }
@@ -367,9 +369,10 @@ class SentencesHelper extends AppHelper
         if ($type != 'mainSentence') {
             $elementId = 'id="translation_'.$sentenceId.'_'.$parentId.'"';
         }
+        $class = 'sentence '.$type.' '.$correctnessLabel;
         ?>
-
-        <div class="sentence <?php echo $type; ?>" <?php echo $elementId; ?>>
+        
+        <div class="<?php echo $class; ?>" <?php echo $elementId; ?>>
         <?php
         // Navigation button (info or arrow icon)
         if ($type != 'mainSentence' || $isEditable) {
@@ -400,7 +403,31 @@ class SentencesHelper extends AppHelper
 
         <?php
     }
+    
+    
+    /**
+     * Returns the label for the correctness of a sentence.
+     * 
+     * @param int $correctness Correctness of the sentence.
+     *
+     * @return String
+     */
+    private function getCorrectnessLabel($correctness)
+    {
+        $result = 'correctness';
+        
+        if ($correctness < 0) {
+            $result .= 'Negative'.abs($correctness);
+        } else if ($correctness == 0) {
+            $result .= 'Zero';
+        } else {
+            $result .= 'Positive'.$correctness;
+        }
+        
+        return $result;
+    }
 
+     
     /**
      * Display the link or unlink button.
      *

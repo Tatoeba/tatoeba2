@@ -60,8 +60,8 @@ class DateHelper extends AppHelper
         } else {
             $timestamp = $date;
         }
-
-        if ($timestamp == 0) {
+        
+        if (empty($date) || $date == '0000-00-00 00:00:00' || $timestamp == 0) {
             return __('date unknown', true);
         }
 

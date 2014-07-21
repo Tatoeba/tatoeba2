@@ -31,7 +31,7 @@ $langArray = $languages->onlyLanguagesArray();
 <div id="main_content">
 
     <div class="module">
-        <h2>Single sentences</h2>
+        <h2><?php __('Single sentences'); ?></h2>
         
         <?php 
         echo $form->create(
@@ -47,23 +47,27 @@ $langArray = $languages->onlyLanguagesArray();
         ?>
         
         <div>
-        Language of the sentences: 
-        <?php echo $form->select('sentences_lang', $langArray); ?>
+        <?php __('Language of the sentences:');
+          echo $form->select('sentences_lang', $langArray); ?>
         </div>
         
         <div>
-        File: <?php echo $form->file('file'); ?>
+        <?php __('File:'); echo $form->file('file'); ?>
         </div>
-        
-        <?php echo $form->input('user_id'); ?>
-        
-        <?php echo $form->end('import'); ?>
+ 
+        <div>  
+        <?php echo $form->input('user_id',
+           array('label' => __('Numeric user id: ', true))); ?>
+        </div>
+
+        <?php echo $form->end('import',
+           array('label' => __('import', true))); ?>
     </div>
     
     
     
     <div class="module">
-        <h2>Sentences and translations</h2>
+        <h2><?php __('Sentences and translations'); ?></h2>
         <?php 
         echo $form->create(
             null,    
@@ -78,22 +82,26 @@ $langArray = $languages->onlyLanguagesArray();
         ?>
         
         <div>
-        Language of the sentences:
-        <?php echo $form->select('sentences_lang', $langArray); ?>
+        <?php __('Language of the sentences:');
+        echo $form->select('sentences_lang', $langArray); ?>
         </div>
         
         <div>
-        Language of the translations:
-        <?php echo $form->select('translations_lang', $langArray); ?>
+        <?php __('Language of the translations:');
+        echo $form->select('translations_lang', $langArray); ?>
         </div>
         
         <div>
-        File: <?php echo $form->file('file'); ?>
+        <?php __('File:'); echo $form->file('file'); ?>
+        </div>
+
+        <div>
+        <?php echo $form->input('user_id',
+           array('label' => __('Numeric user id: ', true))); ?>
         </div>
         
-        <?php echo $form->input('user_id'); ?>
-        
-        <?php echo $form->end('import'); ?>
+        <?php echo $form->end('import',
+        array('label' => __('import', true))); ?>
     </div>
     
     

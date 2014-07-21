@@ -24,9 +24,6 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-
-App::import('Core', 'Sanitize');
-
 /**
  * Controller for contributions.
  *
@@ -36,6 +33,9 @@ App::import('Core', 'Sanitize');
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+App::import('Core', 'Sanitize');
+App::import('Model', 'CurrentUser');
 
 class AppController extends Controller
 {
@@ -60,72 +60,20 @@ class AppController extends Controller
         'Languages',
         'Session'
     );
+	
+	
     /**
-     * to know who can do what
+     * 
      *
      * @return void
      */
     public function beforeFilter()
     {
-        $blockedIps = array (
-            "217.69.134.79", //bot russe
-            "42.62.37.", // not sure, seems chinese bot network
-            "176.33.123.90",
-            "176.33.103.239",
-            "176.31.106.45", //polish bot
-            "81.52.143", //orange (french ISP) bot
-            "193.252.149.15",
-            "193.252.118.174",
-            "31.210.112",
-            "221.181.94",// Sogou Spider Ip
-            "78.171.7",
-            "78.172.159",
-            "78.178.80",
-            "86.18.125.14", // from UK
-            "85.100.19",//19X
-            "85.109.171",
-            "88.242.19",
-            "88.245.205",
-            "88.245.6",//.6X.
-            "88.245.7",
-            "88.245.8",
-            "176.33.210.205",
-            "176.33.110.66",
-            "176.43.86.18",
-            "88.245.9",
-            "88.246.109",
-            "88.246.19",
-            "88.246.20",
-            "88.246.21",
-            "88.246.22",
-            "88.247.191",
-            "88.253.24",
-            "92.45.236.126",
-            "92.45.232.203",
-            "95.8.241.251",
-            "95.8.224",
-            "95.8.20",
-            "95.8.241",
-            "95.8.136",
-            "95.8.166.16",
-            "95.8.151.113",
-            "95.8.130.170",
-            "95.8.163.122",
-            "212.252.251.255",
-            "212.253.241.133",
-            "212.253.241",
-            "188.57.123.141",
-            "217.171.129.72", // UK, used by bora, probably a proxy.
-            "58.215.180", //network from china
-            "10.156.24.29",
-            "10.156.24.29, 58.215.180",
-        );
-
-
-        App::import('Model', 'CurrentUser');
-//        if (in_array( CurrentUser::getIp(), $blockedIp )) {
-//          $this->redirect($redirectPage, 404);
-//       }
+		// So that we can access the current users info from models.
+        CurrentUser::store($this->Auth->user());
+		
+		// blocked IP's
+		$blockedIps = Configure::read('Tatoeba.blockedIP');
         $ip = CurrentUser::getIp();
         foreach( $blockedIps as $blockedIp) {
             if (strpos($ip, $blockedIp, 0) ===0) {
@@ -134,44 +82,28 @@ class AppController extends Controller
                 return;
             }
         }
-
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
-        #if(strpos($user_agent, ".NET CLR 3.5.30729") !== false) {
-        #    $this->redirect($redirectPage, 404);
-        #}
         Security::setHash('md5');
         $this->Cookie->domain = TATOEBA_DOMAIN;
-        // this line will call views/elements/session_expired.ctp
-        // when one try to do an ajax action after is session expired
+        // This line will call views/elements/session_expired.ctp.
+        // When one tries to do an AJAX action after the session is expired,
         // the action will return the content of this file instead of
-        // the whole pages
-        $this->Auth->ajaxLogin = 'session_expired';
+        // the whole page.
+        $this->Auth->ajaxLogin = 'session_expired'; 
         $this->Auth->allow('display');
         $this->Auth->authorize = 'actions';
         $this->Auth->authError = __('You need to be logged in.', true);
         // very important for the "remember me" to work
         $this->Auth->autoRedirect = false;
         $this->RememberMe->check();
-
-        // So that we can access the current users info from models.
-        CurrentUser::store($this->Auth->user());
-
-
-        // TODO
-        // We're passing the value from the cookie to the session because it is
-        // needed for the translation form (in helpers/sentences.php), but we
-        // cannot access the Cookie component from a view.
-        // This is not optimized, but I'm too lazy to do otherwise.
-        $preSelectedLang = $this->Cookie->read('contribute_lang');
-        $this->Session->write('contribute_lang', $preSelectedLang);
-
-
+        
         // Language of interface:
         // - By default we use the language set in the browser (or English, if the
         //   language of the browser is not supported).
         // - If the user has a cookie, we use the language set in the cookie.
         // - If no cookie, we use the language set in the URL.
-        $lang = $this->getSupportedLanguage();
+        if (empty($lang)) {
+            $lang = $this->getSupportedLanguage();
+        }
         $langInCookie = $this->Cookie->read('interfaceLanguage');
         $langInURL = null;
         if (isset($this->params['lang'])) {
@@ -208,27 +140,54 @@ class AppController extends Controller
      */
     public function beforeRender()
     {
-        // without this 3 lines, html send by ajax will have the whole layout
+        // without these 3 lines, html sent by AJAX will have the whole layout
         if ($this->RequestHandler->isAjax()) {
             $this->layout = null;
         }
+		
+        // TODO
+        // We're passing the value from the cookie to the session because it is
+        // needed for the translation form (in helpers/sentences.php), but we
+        // cannot access the Cookie component from a view.
+        // This is not optimized, but I'm too lazy to do otherwise.
+        $preSelectedLang = $this->Cookie->read('contribute_lang');
+        $this->Session->write('contribute_lang', $preSelectedLang);
+		
+		// Same for these cookies, used in show_all_in.
+        $lang = $this->Cookie->read('browse_sentences_in_lang');
+        $this->Session->write('browse_sentences_in_lang', $lang);
+		
+        $translationLang = $this->Cookie->read('show_translations_into_lang');
+        $this->Session->write('show_translations_into_lang', $translationLang);
+		
+        $notTranslatedInto = $this->Cookie->read('not_translated_into_lang');
+        $this->Session->write('not_translated_into_lang', $notTranslatedInto);
+		
+        $filterAudioOnly = $this->Cookie->read('filter_audio_only');
+        $this->Session->write('filter_audio_only', $filterAudioOnly);
+
+        // TODO: Use this when displaying the list to which a sentence should be assigned.
+        // See views/helpers/menu.php.
+        //$mostRecentList = $this->Cookie->read('most_recent_list');
+        //$this->Session->write('most_recent_list', $mostRecentList);
     }
+	
 
     /**
      * TODO This method smells
      *
      * @return void
      */
-
     public function flash($msg,$to)
     {
         $this->Session->setFlash($msg);
         $this->redirect('/'.$this->params['lang'].$to);
         exit;
     }
+	
 
     /**
-     * Redirect to a given url, and precise the interface language
+     * Redirect to a given url, and specify the interface language
      *
      * @param mixed $url    The url to go to, can be a raw url (string)
      *                      or a cakephp array
@@ -237,113 +196,16 @@ class AppController extends Controller
      *
      * @return mixed
      */
-
     public function redirect($url = null, $status = null, $exit = true)
     {
-        // if the developper has used "redirect" method without
-        // precising the lang params, then we add it
+        // if the developer has used "redirect" method without
+        // specifying the lang param, then we add it
         if (isset($this->params['lang']) && is_array($url)) {
             $url['lang'] = $this->params['lang'];
         }
         return parent::redirect($url, $status, $exit);
     }
-
-    /**
-     * Rebuild the Acl based on the current controllers in the application
-     * To be removed in production mode.
-     *
-     * @return void
-     */
-    protected function _buildAcl()
-    {
-        $log = array();
-
-        $aco =& $this->Acl->Aco;
-        $root = $aco->node('controllers');
-        if (!$root) {
-
-            $aco->create(
-                array(
-                    'parent_id' => null,
-                    'model' => null,
-                    'alias' => 'controllers'
-                )
-            );
-            $root = $aco->save();
-            $root['Aco']['id'] = $aco->id;
-            $log[] = 'Created Aco node for controllers';
-
-        } else {
-
-            $root = $root[0];
-        }
-
-        App::import('Core', 'File');
-        $Controllers = Configure::listObjects('controller');
-        $appIndex = array_search('App', $Controllers);
-        if ($appIndex !== false ) {
-            unset($Controllers[$appIndex]);
-        }
-        $baseMethods = get_class_methods('Controller');
-        $baseMethods[] = '_buildAcl';
-
-        // look at each controller in app/controllers
-        foreach ($Controllers as $ctrlName) {
-            App::import('Controller', $ctrlName);
-            $ctrlclass = $ctrlName . 'Controller';
-            $methods = get_class_methods($ctrlclass);
-
-            // find / make controller node
-            $controllerNode = $aco->node('controllers/'.$ctrlName);
-
-            if (!$controllerNode) {
-
-                $aco->create(
-                    array(
-                        'parent_id' => $root['Aco']['id'],
-                        'model' => null,
-                        'alias' => $ctrlName
-                    )
-                );
-                $controllerNode = $aco->save();
-                $controllerNode['Aco']['id'] = $aco->id;
-                $log[] = 'Created Aco node for '.$ctrlName;
-
-            } else {
-
-                $controllerNode = $controllerNode[0];
-
-            }
-
-            //clean the methods. to remove those in Controller and private actions.
-            foreach ($methods as $k => $method) {
-                if (strpos($method, '_', 0) === 0) {
-                    unset($methods[$k]);
-                    continue;
-                }
-                if (in_array($method, $baseMethods)) {
-                    unset($methods[$k]);
-                    continue;
-                }
-                $methodNode = $aco->node('controllers/'.$ctrlName.'/'.$method);
-
-                if (!$methodNode) {
-
-                    $aco->create(
-                        array(
-                            'parent_id' => $controllerNode['Aco']['id'],
-                            'model' => null,
-                            'alias' => $method
-                        )
-                    );
-                    $methodNode = $aco->save();
-                    $log[] = 'Created Aco node for '. $method;
-
-                }
-            }
-        }
-        debug($log);
-    }
+	
 
     /**
      * Returns the ISO code of the language in which we should set the interface,
@@ -353,6 +215,8 @@ class AppController extends Controller
      */
     public function getSupportedLanguage()
     {
+        // NOTE: If you update this list, update views/elements/interface_language.ctp
+        // and config/routes.php as well.
         $supportedLanguages = array(
             'en'    => 'eng',
             'ja'    => 'jpn',
@@ -366,7 +230,14 @@ class AppController extends Controller
             'ru'    => 'rus',
             'tr'    => 'tur',
             'el'    => 'gre',
-
+            'ar'    => 'ara',
+            'eu'    => 'eus',
+            'eo'    => 'epo',
+            'fi'    => 'fin',
+            'hu'    => 'hun',
+            'tl'    => 'tgl',
+            'mr'    => 'mar',
+            // TODO: Handle 'nds' (Low German), which does not have a two-letter code.
         );
         if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
 

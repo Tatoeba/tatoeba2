@@ -11,7 +11,6 @@
 .comments li {
     margin: 1.5em 0;
     position: relative;
-    font-size: 13px;
 }
 
 .comments a {
@@ -63,13 +62,15 @@
  * Body
  */
 .comments .body {
-    background: url(../../img/bg_comments.gif) repeat-x;
+	border-top: 3px solid #CAE2AA;
+    -webkit-box-shadow: inset 0px 40px 30px -10px rgba(245, 245, 245, 1);
+	-moz-box-shadow: inset 0px 40px 30px -10px rgba(245, 245, 245, 1);
+	box-shadow: inset 0px 40px 30px -10px rgba(245, 245, 245, 1);
 }
 
 .comments .sentence {
     padding: 15px 15px 10px 15px;
     border-bottom: 1px dashed #CCC;
-    font-family: Georgia, serif;
 }
 
 .comments .sentenceText {

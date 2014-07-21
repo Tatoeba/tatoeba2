@@ -38,14 +38,14 @@ if ($session->read('Auth.User.id')) {
 }
 ?>
 
-<div id="header">
+<div id="logo">
 	<a href="<?php echo $html->url($path); ?>">
 	<?php 
     echo $html->image(
-        IMG_PATH . 'TatoebaProjectBeta.png',
+        IMG_PATH . 'tatoeba.png',
         array(
-            'width' => 72,
-            'height' => 430
+            'width' => 64,
+            'height' => 64
         )
     );
     ?>

@@ -29,6 +29,7 @@
 <?php
 $lang = $this->params['lang'];
 
+// Keep this array in sync with the ones in app/app_controller.php and config/routes.php.
 $languages = array(
     'eng' => 'English', 
     'fre' => 'Français', 
@@ -48,7 +49,8 @@ $languages = array(
     'hun' => 'Magyar',
     'nds' => 'Plattdüütsch',
     'gre' => 'Ελληνικά',
-    'fin' => 'Suomi'
+    'fin' => 'Suomi',
+    'mar' => 'मराठी',
 );
 
 asort($languages);

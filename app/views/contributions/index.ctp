@@ -53,7 +53,6 @@ $this->pageTitle = "Tatoeba - " . __("Latest contributions", true);
 <div id="main_content">
     <div class="module">
         <h2><?php __('Contributions'); ?></h2>
-        <table id="logs">
         <?php
         $pagination->display();
         ?>
@@ -94,6 +93,5 @@ $this->pageTitle = "Tatoeba - " . __("Latest contributions", true);
         <?php
         $pagination->display();
         ?>
-        </table>
     </div>
 </div>

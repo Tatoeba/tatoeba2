@@ -48,6 +48,7 @@ $userStatus = $members->groupName($groupId);
 $statusClass = 'status'.$groupId;
 $currentMember = CurrentUser::get('username');
 $languagesSettings = $user['lang'];
+$level = $user['level'];
 
 $userImage = 'unknown-avatar.png';
 if (!empty($user['image'])) {
@@ -140,7 +141,7 @@ if (!empty($realName)) {
                 }
                 ?>
             </ul>
-            <p>
+            
             <?php
             if ($username == $currentMember) {
                 $members->displayEditButton(
@@ -151,12 +152,26 @@ if (!empty($realName)) {
                 ); 
             }
             ?>
-            </p>
         </div>
     <?php
     }
     ?>
     
+    <?php
+    if ($level == -1) {
+    ?>
+        <div class="module">
+            <h2><?php __('Not approved'); ?></h2>
+            <?php
+            __(
+                'Sentences from this user are currently added as '.
+                '"not approved".'
+            );
+            ?>
+        </div>
+    <?php
+    }
+    ?>
 </div>
 
 <div id="main_content">
@@ -169,6 +184,14 @@ if (!empty($realName)) {
                     'action' => 'edit_profile'
                 )
             ); 
+        } else if (CurrentUser::isAdmin()) {
+            $members->displayEditButton(
+                array(
+                    'controller' => 'users',
+                    'action' => 'edit',
+                    $userId
+                )
+            ); 
         }
         ?>
         
@@ -176,6 +199,8 @@ if (!empty($realName)) {
         echo $html->image(
             IMG_PATH . 'profiles_128/'.$userImage,
             array(
+                'width' => 128,
+                'height' => 128,
                 'alt' => $username
             )
         );

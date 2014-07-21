@@ -1,5 +1,4 @@
 <?php
-include_once("models/current_user.php");
 /**
     Tatoeba Project, free collaborative creation of languages corpuses project
     Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
@@ -49,10 +48,10 @@ class Sentence extends AppModel
     public $name = 'Sentence';
     public $actsAs = array("Containable", "Sphinx");
     public static $romanji = array('furigana' => 1, 'mix' => 2, 'romanji' => 3);
-
-    // This is not much in use. Should probably remove it someday
-    const MAX_CORRECTNESS = 6;
-
+    
+    const MIN_CORRECTNESS = -1;
+    const MAX_CORRECTNESS = 0;
+    
     public $languages = array(
         'ara', 'bul', 'deu', 'ell', 'eng',
         'epo', 'spa', 'fra', 'heb', 'ind',
@@ -116,7 +115,18 @@ class Sentence extends AppModel
         'sna',
         'mnw',
         'nog',
-        'sah', //@lang
+        'sah',
+        'abk',
+        'tet',
+        'tam',
+        'udm',
+        'kum',
+        'crh',
+        'nya',
+        'liv',
+        'nav',
+        'chr',
+        'guj', //@lang
         null
     );
 
@@ -125,7 +135,7 @@ class Sentence extends AppModel
             'rule' => array()
             // The rule will be defined in the constructor.
             // I would have declared a const LANGUAGES array
-            // to use it here, but apprently you can't declare
+            // to use it here, but apparently you can't declare
             // const arrays in PHP.
         ),
         'text' => array(
@@ -187,6 +197,21 @@ class Sentence extends AppModel
         $this->validate['lang']['rule'] = array('inList', $this->languages);
     }
 
+    public function beforeValidate()
+    {
+        if (isset($this->data['Sentence']['text']))
+        {
+            $text = $this->data['Sentence']['text'];
+            $text = trim($text);
+            // MySQL will truncate to a byte length of 1500, which may split
+            // a multibyte character. To avoid this, we preemptively 
+            // truncate to a maximum byte length of 1500. If a multibyte
+            // character would be split, the entire character will be
+            // truncated.
+            $text = mb_strcut($text, 0, 1500, "UTF-8");
+            $this->data['Sentence']['text'] = trim($text);
+        }
+    }
 
     public function beforeSave()
     {
@@ -216,7 +241,7 @@ class Sentence extends AppModel
             $sentenceText = $this->data['Sentence']['text'];
             if ($created) {
                 $sentenceAction = 'insert';
-                $this->incrementStatistics($sentenceLang);
+                $this->Language->incrementCountForLanguage($sentenceLang);
             }
 
             $this->Contribution->saveSentenceContribution(
@@ -253,7 +278,7 @@ class Sentence extends AppModel
         }
 
         // Decrement statistics
-        $this->decrementStatistics($sentenceLang);
+        $this->decrementCountForLanguage($sentenceLang);
     }
 
     /**
@@ -316,9 +341,10 @@ class Sentence extends AppModel
      */
     public function getSeveralRandomIds($lang = 'und',  $numberOfIdWanted = 10)
     {
-        // Uncomment the line below if you don't have sphinx installed.
-        //return array(1);
-
+        if(Configure::read('Search.enabled') == false) {
+            return array(1);
+        }
+        
         if(empty($lang)) {
             $lang = 'und';
         }
@@ -421,6 +447,7 @@ class Sentence extends AppModel
                         'lang',
                         'user_id',
                         'hasaudio',
+                        'correctness'
                     )
             )
         );
@@ -463,7 +490,8 @@ class Sentence extends AppModel
                             "id",
                             "lang",
                             "text",
-                            "hasaudio"
+                            "hasaudio",
+                            "correctness"
                         ),
                         "conditions" => $translationsConditions
                     )
@@ -534,81 +562,6 @@ class Sentence extends AppModel
 
     }
 
-    /**
-     * Count number of sentences in each language.
-     *
-     * @return array [lang => number of sentences in this lang]
-     */
-    public function getStatistics($limit = null)
-    {
-        $limitCondition = "";
-        if ($limit != null) {
-            $limitCondition = " LIMIT 0,$limit";
-        }
-
-        $query = "
-            SELECT ifnull(lang, 'unknown') as lang,  numberOfSentences
-                FROM langStats
-                ORDER BY numberOfSentences DESC
-                $limitCondition;
-        ";
-
-        $results = $this->query($query);
-
-        // cakephp doesn't like use of AS
-        foreach ($results as $i=>$result) {
-            $results[$i]['langStats']['lang'] = $result[0]['lang'];
-        }
-        return $results ;
-    }
-
-
-    /**
-     * Add one in stats of a given language.
-     *
-     * @param string $lang Language to be incremented.
-     *
-     * @return void
-     */
-    public function incrementStatistics($lang)
-    {
-        $lang = Sanitize::paranoid($lang);
-        $endOfQuery = "lang = '$lang'";
-
-        if ($lang == '' or $lang == null) {
-            $endOfQuery = 'lang is null';
-        }
-
-        $query = "
-            UPDATE langStats SET numberOfSentences = numberOfSentences + 1
-                WHERE $endOfQuery ;
-        ";
-        $this->query($query);
-    }
-
-    /**
-     * Decrement stats of a given language.
-     *
-     * @param string $lang Language to be decremented.
-     *
-     * @return void
-     */
-    public function decrementStatistics($lang)
-    {
-
-        $lang = Sanitize::paranoid($lang);
-        $endOfQuery = "lang = '$lang'";
-
-        if ($lang == '' or $lang == null) {
-            $endOfQuery = 'lang is null';
-        }
-
-        $query = "
-            UPDATE langStats SET numberOfSentences = numberOfSentences - 1
-                WHERE $endOfQuery ;
-        ";
-        $this->query($query);
-    }
 
     /**
      * Get number of sentences owned by a given user.
@@ -682,6 +635,7 @@ class Sentence extends AppModel
               p2.id   AS translation_id,
               p2.lang AS translation_lang,
               p2.user_id AS translation_user_id,
+              p2.correctness AS correctness,
               'Translation' as distance
             FROM sentences_translations AS t
               LEFT  JOIN sentences AS p2 ON t.translation_id = p2.id
@@ -704,6 +658,7 @@ class Sentence extends AppModel
               p2.id   AS translation_id,
               p2.lang AS translation_lang,
               p2.user_id AS translation_user_id,
+              p2.correctness AS correctness,
               'IndirectTranslation'  as distance
             FROM sentences_translations AS t
                 LEFT JOIN sentences_translations AS t2
@@ -742,6 +697,7 @@ class Sentence extends AppModel
                     'user_id' => $result['translation_user_id'],
                     'lang' => $result['translation_lang'],
                     'hasaudio' => $result['hasaudio'],
+                    'correctness' => $result['correctness']
                 );
 
                 $this->generateRomanization($translation);
@@ -808,10 +764,12 @@ class Sentence extends AppModel
      */
     public function getRomanization($text,$lang)
     {
-        // Uncomment the line below you don't have the
-        // romanization tools installed.
-        // return false;
-
+        if (Configure::read('Transliterations.enabled') == false)
+        {
+            return false;
+        }
+        
+        
         $romanization = '';
 
         if ($lang == "wuu") {
@@ -889,10 +847,11 @@ class Sentence extends AppModel
      */
     public function generateMetas(&$sentenceArray)
     {
-        // Uncomment the line below you don't have the Chinese
-        // romanization tools installed.
-        // return false;
-
+        if (Configure::read('Transliterations.enabled') == false)
+        {
+            return false;
+        }
+        
         if ($sentenceArray['lang'] === 'cmn') {
             // we call the wonderful homebrewadso
             $xml = simplexml_load_file(
@@ -1457,28 +1416,32 @@ class Sentence extends AppModel
      * a new sentence, and two links.
      *
      * @param int    $sentenceId
+     * @param int    $sentenceLang
      * @param string $translationText
      * @param string $translationLang
      * @TODO finish the doc plz
      *
      * @return boolean
      */
-    public function saveTranslation($sentenceId, $translationText, $translationLang)
-    {
+    public function saveTranslation(
+        $sentenceId, $sentenceLang, $translationText, $translationLang, $translationCorrectness
+    ) {
+        $userId = CurrentUser::get('id');
+        
         // saving translation
         $sentenceSaved = $this->saveNewSentence(
             $translationText,
             $translationLang,
-            CurrentUser::get('id')
+            $userId,
+            $translationCorrectness
         );
-
         // saving links
         if ($sentenceSaved) {
-            $this->Link->add($sentenceId, $this->id);
+            $this->Link->add($sentenceId, $this->id, $sentenceLang, $translationLang);
         }
 
         return $sentenceSaved; // The most important is that the sentence is saved.
-                               // Never mind for the links.
+                               // Never mind the links.
     }
 
 
@@ -1491,7 +1454,7 @@ class Sentence extends AppModel
      *
      * @return bool
      */
-    public function saveNewSentence($text, $lang, $userId)
+    public function saveNewSentence($text, $lang, $userId, $correctness = 0)
     {
         if ($lang == "") {
             $lang = null;
@@ -1502,6 +1465,7 @@ class Sentence extends AppModel
         $data['Sentence']['text'] = trim($text);
         $data['Sentence']['lang'] = $lang;
         $data['Sentence']['user_id'] = $userId;
+        $data['Sentence']['correctness'] = $correctness;
         $sentenceSaved = $this->save($data);
 
         return $sentenceSaved;
@@ -1526,24 +1490,29 @@ class Sentence extends AppModel
         $translationLang,
         $userId
     ) {
+        $correctness = $this->User->getLevelOfUser($userId);
+        
         // saving sentence
         $sentenceSaved = $this->saveNewSentence(
             $sentenceText,
             $sentenceLang,
-            $userId
+            $userId,
+            $correctness
         );
         $sentenceId = $this->id;
         // saving translation
         $translationSaved = $this->saveNewSentence(
             $translationText,
             $translationLang,
-            $userId
+            $userId,
+            $correctness
         );
 
         $translationId = $this->id;
         // saving links
         if ($sentenceSaved && $translationSaved) {
-            $this->Link->add($sentenceId, $translationId);
+            $this->Link->add($sentenceId, $translationId, 
+                             $sentenceLang, $translationLang);
         }
     }
 
@@ -1667,9 +1636,9 @@ class Sentence extends AppModel
             $this->save($data);
 
             $this->Contribution->updateLanguage($sentenceId, $newLang);
-            $this->incrementStatistics($newLang);
-            $this->decrementStatistics($prevLang);
-
+            $this->Language->incrementCountForLanguage($newLang);
+            $this->Language->decrementCountForLanguage($prevLang);
+            
             return $newLang;
         }
 
@@ -1739,6 +1708,51 @@ class Sentence extends AppModel
         );
 
         return $result['Sentence']['text'];
+    }
+    
+    /**
+    * Return language code for sentence with given id.
+    *
+    * @param int $sentenceId Id of the sentence
+    *
+    * @return void
+    */
+    public function getLanguageCodeFromSentenceId($sentenceId)
+    {
+        $result = $this->find(
+            'first',
+            array(
+                'fields' => array('lang'),
+                'conditions' => array('id' => $sentenceId),
+                'contain' => array()
+            )
+        );
+        
+        return $result['Sentence']['lang'];
+    }
+    
+    
+    /**
+     * Save the correctness of a sentence. Only corpus
+     * maintainers or admins can change this value.
+     * 
+     * @param int $sentenceId  Id of the sentence.
+     * @param int $correctness Correctness of the sentence.
+     * 
+     * @return bool
+     */
+    public function editCorrectness($sentenceId, $correctness)
+    {
+        $canEditCorrectness = CurrentUser::isAdmin(); 
+        // TODO For the beginning we'll restrict this to admins.
+        // Later we'll want CurrentUser::isModerator();
+        
+        if ($canEditCorrectness) {
+            $this->id = $sentenceId;
+            return $this->saveField('correctness', $correctness);
+        }
+        
+        return false;
     }
 }
 ?>

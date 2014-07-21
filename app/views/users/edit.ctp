@@ -36,32 +36,43 @@
  */
 
 $userId = $form->value('User.id');
+$username = $form->value('User.username');
 ?>
-<div class="editUser">
-<div class="actions">
-    <ul>
-        <li>
-<?php
-echo $html->link(
-    'Delete',
-    array(
-        'action' => 'delete',
-        $userId
-    ),
-    null,
-    sprintf('Are you sure you want to delete # %s?', $userId)
-);
-?>
+<div id="annexe_content">
+    <ul class="actions">
+        <li class="delete">
+        <?php
+        echo $html->link(
+        __('Delete',true),
+        array(
+            'action' => 'delete',
+            $userId
+        ),
+        null,
+        sprintf(__('Are you sure you want to delete user #%s?',true), $userId)
+        );
+        ?>
         </li>
         <li>
-<?php echo $html->link('List Users', array('action' => 'index')); ?>
+        <?php echo $html->link(__('List Users',true), array('action' => 'index')); ?>
+        </li>
+        <li>
+        <?php echo $html->link(
+            __('Profile',true), 
+            array(
+                'controller' => 'user', 
+                'action' => 'profile',
+                $username
+            )
+        ); ?>
         </li>
     </ul>
 </div>
 
+<div id="main_content">
 <?php 
 // HACK / quick fix
-echo '<form id="UserEditForm" method="post" action="/eng/users/edit/'.$userId.'">';
+echo '<form id="UserEditForm" method="post" action="/'.$this->params['lang'].'/users/edit/'.$userId.'">';
 // Because...
 //   echo $form->create('User'); 
 // will echo this:
@@ -73,13 +84,23 @@ $form->create('User'); // But we still need to call $form->create()
                        // to retrieve the user data...
 ?>
     <fieldset>
-    <legend><?php echo 'Edit User'; ?></legend>
+    <legend><?php __('Edit User'); ?></legend>
     <?php
     echo $form->input('id');
     echo $form->input('username');
     echo $form->input('email');
     echo $form->input('lang');
     echo $form->input('group_id');
+    echo $form->input(
+        'level', 
+        array(
+            'type' => 'radio',
+            'options' => array(
+                User::MIN_LEVEL => "-1", 
+                User::MAX_LEVEL => "0"
+            )
+        )
+    );
     echo $form->input('send_notifications');
     ?>
     </fieldset>

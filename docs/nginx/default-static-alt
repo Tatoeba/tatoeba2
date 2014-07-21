@@ -11,7 +11,7 @@ server {
 	rewrite_log	on;
 
     location / {
-        rewrite /$ /app/webroot/index.php?url=/home;
+        #rewrite /$ /app/webroot/index.php?url=/home;
         rewrite /(.+) /app/webroot/index.php?url=$1;
     }
 

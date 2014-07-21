@@ -47,11 +47,11 @@ class SentencesListsController extends AppController
         'Pagination',
         'AttentionPlease'
     );
-    public $components = array('GoogleLanguageApi');
-
-    const MAX_COUNT_FOR_DOWNLOAD = 50;
-
-
+    public $components = array('LanguageDetection');
+    // We want to make sure that people don't download long lists, which can slow down the server.
+    // This is an arbitrary but easy to remember value, and most lists are shorter than this.    
+    const MAX_COUNT_FOR_DOWNLOAD = 100;
+    
     /**
      * Before filter.
      *
@@ -150,6 +150,36 @@ class SentencesListsController extends AppController
     }
 
     /**
+     * Returns array of two elements: a bool (index = 'can_download') indicating 
+     * whether list can be downloaded, and a string (index = 'message') containing 
+     * an empty string (if the bool is true) or a message with details (if the 
+     * bool is false).
+     * 
+     * @param int $count length of list
+     *
+     * @return string
+     */
+    protected function _get_downloadability_info($count)
+    {
+        if ($count <= self::MAX_COUNT_FOR_DOWNLOAD) 
+        {
+            $ret['can_download'] = true;
+            $ret['message'] = "";
+        }
+        else
+        {
+            $ret['can_download'] = false;
+            $ret['message'] = sprintf(__(
+                          'The download feature has been disabled for this list because '.
+                          'it contains %d sentences. Only lists containing %d or fewer '.
+                          'sentences can be downloaded. If you can edit the list, you may '.
+                          'want to split it into multiple lists.', true), 
+                           $count, self::MAX_COUNT_FOR_DOWNLOAD);
+        } 
+        return $ret;
+    }
+
+    /**
      * Retrieve sentences for a list. Used in show() and edit().
      *
      * @param int    $id               Id of the list.
@@ -168,17 +198,15 @@ class SentencesListsController extends AppController
             $id, $translationsLang, $isEditable, $limit
         );
         $sentencesInList = $this->paginate('SentencesSentencesLists');
-
-        $count = $this->params['paging']['SentencesSentencesLists']['count'];
-        $canDownload = false;
-        if ($count <= self::MAX_COUNT_FOR_DOWNLOAD) {
-            $canDownload = true;
-        }
-
+        
+        $thisListCount = $this->params['paging']['SentencesSentencesLists']['count'];
+        $downloadability_info = $this->_get_downloadability_info($thisListCount);
+        
         $this->set('translationsLang', $translationsLang);
         $this->set('list', $list);
         $this->set('sentencesInList', $sentencesInList);
-        $this->set('canDownload', $canDownload);
+        $this->set('canDownload', $downloadability_info['can_download']);
+        $this->set('downloadMessage', $downloadability_info['message']);
     }
 
 
@@ -340,7 +368,7 @@ class SentencesListsController extends AppController
 
             $userName = $this->Auth->user('username');
             $sentenceText = $_POST['sentenceText'];
-            $sentenceLang = $this->GoogleLanguageApi->detectLang(
+            $sentenceLang = $this->LanguageDetection->detectLang(
                 $sentenceText,
                 $userName
             );
@@ -373,8 +401,7 @@ class SentencesListsController extends AppController
         $this->SentencesList->id = $listId;
         $this->SentencesList->saveField('is_public', $isPublic);
     }
-
-
+    
     /**
      * Page to export a list.
      *
@@ -389,17 +416,13 @@ class SentencesListsController extends AppController
         }
 
         $count = $this->SentencesList->getNumberOfSentences($listId);
-        if ($count > self::MAX_COUNT_FOR_DOWNLOAD) {
-            $this->flash(
-                __(
-                    'The download feature has been disabled for this list because '.
-                    'it has too many sentences.', true
-                ),
-                '/sentences_lists/show/'.$listId
-            );
+        $downloadability_info = $this->_get_downloadability_info($count);
+        if (!$downloadability_info['can_download'])
+        {
+            $message = $downloadability_info['message'];
+            $this->flash($message, '/sentences_lists/show/'.$listId);
         }
-
-
+                
         $listId = Sanitize::paranoid($listId);
 
         $listName = $this->SentencesList->getNameForListWithId($listId);
@@ -432,7 +455,7 @@ class SentencesListsController extends AppController
         $withTranslation = ($translationsLang !== null);
 
         // as the view is a file to be downloaded we need to say
-        // to cakephp that he must not add the layout
+        // to cakephp that it must not add the layout
         $this->layout = null;
         $this->autoLayout = false;
         // to prevent cakephp from adding debug output
@@ -441,10 +464,10 @@ class SentencesListsController extends AppController
         $results = $this->SentencesList->getSentencesAndTranslationsOnly(
             $listId, $translationsLang
         );
-
-        // we specify which field will be present in the csv
-        // order is important
-        $fieldsList = array();
+  
+        // We specify which fields will be present in the csv.
+        // Order is important. 
+        $fieldsList = array(); 
         if ($exportId === true) {
             array_push($fieldsList, "Sentence.id");
         }

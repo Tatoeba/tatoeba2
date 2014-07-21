@@ -131,32 +131,6 @@ echo $this->element('pmmenu');
         );
         ?>
         </div>
-        
-        <?php
-        foreach ($sentencesLists as $list) {
-            echo '<h3>'.$list['SentencesList']['name'].'</h3>';
-            
-            if (count($list['Sentence']) > 0) {
-                echo '<ul id="'.$list['SentencesList']['id'].'" class="sentencesList">';
-                foreach ($list['Sentence'] as $sentence) {
-                    echo '<li id="sentence'.$sentence['id'].'">';
-                    // display sentence
-                    if (isset($translationsLang)) {
-                        $sentences->displaySentenceInList(
-                            $sentence,
-                            $translationsLang
-                        );
-                    } else {
-                        $sentences->displaySentenceInList($sentence);
-                    }
-                    echo '</li>';
-                }
-                echo '</ul>';
-            } else {
-                __('This list does not contain any sentences');
-            }
-        }
-        ?>
     </div>
     
     <a name="reply"></a>

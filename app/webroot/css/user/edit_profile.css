@@ -43,13 +43,13 @@
 /*
  * Personal information
  */
-#UserSaveBasicForm label {
+#SaveBasicForm label {
     font-weight: bold;
     width: 100px;
     padding-right: 10px;
 }
 
-#UserSaveBasicForm .input {
+#SaveBasicForm .input {
     margin: 10px;
 }
 
@@ -70,5 +70,4 @@
 textarea {
     width: 99%;
     height: 350px;
-    font-family: trebuchet ms, sans;
 }

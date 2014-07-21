@@ -27,16 +27,18 @@ div.submit {
 .cancel_edit {
     display: inline-block;
     margin-top: 4px;
-    font-size: 1.1em;
 }
 
 .editWallMessage {
     padding: 15px 15px 15px 15px;
-    font-size: 13px;
-    /*bg_comments.gif looks better than bg_wall_comments.gif */
-    background: url("../../img/bg_comments.gif") repeat-x scroll 0 0;
+	border-top: 3px solid #CAE2AA;
+	-webkit-box-shadow: inset 0px 40px 30px -10px rgba(245, 245, 245, 1);
+	-moz-box-shadow: inset 0px 40px 30px -10px rgba(245, 245, 245, 1);
+	box-shadow: inset 0px 40px 30px -10px rgba(245, 245, 245, 1);
 }
 
 .editWallMessage textarea {
     margin-bottom: 10px;
+    font-size: 1em;
+    width: 100%;
 }

@@ -109,7 +109,11 @@ class MembersHelper extends AppHelper
         echo $this->Html->link(
             $this->Html->image(
                 IMG_PATH.'profiles_36/'.$imageName,
-                array("alt"=>$username)
+                array(
+                    'width' => 36,
+                    'height' => 36,
+                    'alt' => $username
+                )
             ),
             array(
                 "controller" => "user",

@@ -125,7 +125,7 @@ if (isset($myLists)) {
             echo '<h2>';
             __('Create a new list');
             echo '</h2>';
-            echo $form->create('SentencesList');            
+            echo $form->create('SentencesList');
             echo $form->input(
                 'name',
                 array(
@@ -141,7 +141,7 @@ if (isset($myLists)) {
 if (count($publicLists) > 0) {
     echo '<div class="module">';
         echo '<h2>';
-        echo __('Public lists');
+        echo __('Collaborative lists');
         echo '</h2>';
         
         $lists->displayListTable($publicLists);
@@ -153,7 +153,7 @@ if (count($publicLists) > 0) {
 if (count($otherLists) > 0) {
     echo '<div class="module">';
         echo '<h2>';
-        echo __('All the other lists');
+        echo __('Other personal lists');
         echo '</h2>';
             
         $lists->displayListTable($otherLists);

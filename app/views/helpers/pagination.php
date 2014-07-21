@@ -79,7 +79,21 @@ class PaginationHelper extends AppHelper
         $prevNextOptions = array();
         $numbersOptions = array(
             'separator' => '',
-            'modulus' => 4,
+            // Print up to 6/2 = 3 numbered links in rectangles on each side
+            // of the central numbered link, in addition to the
+            // first and prev links on the far left, and the next
+            // and last links on the far right. We should 
+            // use a smaller value for this parameter on mobile
+            // devices if we ever customize the interface to
+            // behave differently based on the display size.
+            // Note that the size of the links depends on the number of
+            // digits in the number. Unless we can adapt the modulus
+            // dynamically based on the number of digits per link, we
+            // need to choose the number conservatively so that it will
+            // fit the screen "real estate" that we have available for
+            // the largest numbers (for example, when we're near the
+            // end of the list of English sentences).
+            'modulus' => 6,
             'class' => 'pageNumber'
         );
         ?>

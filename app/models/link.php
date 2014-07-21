@@ -100,7 +100,7 @@ class Link extends AppModel
      *
      * @return bool
      */
-    public function add($sentenceId, $translationId)
+    public function add($sentenceId, $translationId, $sentenceLang, $translationLang)
     {
         $sentenceId = intval($sentenceId);
         $translationId = intval($translationId);
@@ -109,8 +109,8 @@ class Link extends AppModel
         if ($sentenceId == $translationId) {
             return false;
         }
-
-        // Check if the sentences exist.
+        
+        // Check whether the sentences exist.
         $result = $this->query("
             SELECT COUNT(*) as count FROM sentences
             WHERE id IN ($sentenceId, $translationId)
@@ -123,8 +123,12 @@ class Link extends AppModel
         // Saving links if sentences exist.
         $data[0]['sentence_id'] = $sentenceId;
         $data[0]['translation_id'] = $translationId;
+        $data[0]['sentence_lang'] = $sentenceLang;
+        $data[0]['translation_lang'] = $translationLang;
         $data[1]['sentence_id'] = $translationId;
         $data[1]['translation_id'] = $sentenceId;
+        $data[1]['sentence_lang'] = $translationLang;
+        $data[1]['translation_lang'] = $sentenceLang;
         return $this->saveAll($data);
     }
 

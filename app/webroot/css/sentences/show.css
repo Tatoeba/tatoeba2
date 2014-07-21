@@ -38,7 +38,7 @@
 /*
  * Logs
  */
-@import url(../elements/logs_annexe.css);
+@import url(../elements/logs_annexe.css?1);
 @import url(../elements/logs_colors.css);
 
 /*
@@ -51,7 +51,7 @@
  * Navigation
  */
 .languageSelect {
-    margin-bottom: 30px;
+    margin-bottom: 15px;
 }
 
 .languageSelect select {
@@ -123,4 +123,12 @@
 #autocompletionDiv a{
     width: 140px; /* This has to be 10px less than #TagTagName to compensate the
                      text-indent and padding (in autocompletion.css) */
+}
+
+
+/*
+ * Sentence correctness form
+ */
+#SentenceEditCorrectnessForm .radio label {
+    margin-right: 20px;
 }

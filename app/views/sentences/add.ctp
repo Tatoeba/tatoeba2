@@ -123,7 +123,7 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
             </div>
             
             <?php
-            echo $form->button('OK', array("id" => "submitNewSentence"));
+            echo $form->button(__('OK', true), array("id" => "submitNewSentence"));
             ?>
             </div>
         </div>

@@ -366,15 +366,17 @@ class MenuHelper extends AppHelper
         $lists = ClassRegistry::init('SentencesList')->getUserChoices(
             CurrentUser::get('id')
         );
-
-        $privateLists = __('Add to your lists', true);
-        $publicLists = __('Add to public list', true);
+        
+        $privateLists = __('Add to one of your lists', true);
+        $publicLists = __('Add to a collaborative list', true);
         $selectItems[$privateLists] = $lists['Private'];
         $selectItems[$publicLists] = $lists['Public'];
         ?>
 
         <li style="display:none" id="addToList<?php echo $sentenceId; ?>">
-
+        
+        <!-- TODO: Change null to the id of the most recently chosen list 
+             (retrieved from a cookie), if any. -->        
         <?php
         echo $this->Form->select(
             'listSelection'.$sentenceId,
@@ -392,7 +394,7 @@ class MenuHelper extends AppHelper
             array(
                 'type' => 'button',
                 'class' => 'validateButton',
-                'value' => 'ok'
+                'value' => __('OK', true)
             )
         );
         ?>

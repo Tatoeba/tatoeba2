@@ -91,7 +91,7 @@ class UsersController extends AppController
             'limit' => 50,
             'order' => 'group_id',
             'fields' => array(
-                'id', 'email', 'username', 'since', 'lang', 'last_time_active'
+                'id', 'email', 'username', 'since', 'lang', 'level'
             ),
             'contain' => array(
                 "Group" => array(
@@ -134,11 +134,11 @@ class UsersController extends AppController
                 $data['Aro']['parent_id'] = $this->data['User']['group_id'];
                 $this->Acl->Aro->save($data);
 
-                $this->Session->setFlash('The User has been saved');
+                $this->Session->setFlash('The user information has been saved.');
                 $this->redirect(array('action'=>'index'));
             } else {
                 $this->Session->setFlash(
-                    'The User could not be saved. Please try again.'
+                    'The user information could not be saved. Please try again.'
                 );
             }
         }
@@ -229,8 +229,23 @@ class UsersController extends AppController
                     $redirectUrl = $this->data["User"]["redirectTo"];
                 }
                 $this->_common_login($redirectUrl);
+            } elseif (empty($this->data["User"]['username'])) {
+                $this->flash(
+                             __(
+                                'You must fill in your '.
+                                'username and password.', true
+                                ), 
+                             '/users/login/'
+                             );
             } else {
-                $this->redirect(array('action' => 'login'));
+                $this->flash(
+                             __(
+                                'Login failed. Make sure that your Caps Lock '.
+                                'and Num Lock are not unintentionally turned on. '.
+                                'Your password is case-sensitive.', true
+                                ), 
+                             '/users/login/'
+                             );
             }
         }
     }
@@ -453,8 +468,8 @@ class UsersController extends AppController
         if ($id == 'random') {
             $id = null;
         }
-
-        $user = $this->User->getUserById($id);
+        
+        $user = $this->User->getUserByIdWithExtraInfo($id);
 
         if ($user != null) {
             $this->helpers[] = 'Wall';
@@ -554,121 +569,6 @@ class UsersController extends AppController
         } else {
             $this->set('data', false);
         }
-    }
-
-
-    /**
-     * special function to update rights
-     * go on this page when you add new action
-     *
-     * @return void
-     */
-    public function update_rights()
-    {
-        $this->_buildAcl();
-        $this->_init_db();
-        die; //TODO it's a hack
-
-    }
-
-
-
-
-    /**
-     * Temporary public function to grant/deny access.
-     *
-     * @return void
-     */
-    private function _init_db()
-    {
-        $group =& $this->User->Group;
-
-        //Allow admins to everything
-        $group->id = 1;
-        $this->Acl->allow($group, 'controllers');
-
-        //Permissions for moderators
-        $group->id = 2;
-        $this->Acl->deny($group, 'controllers');
-
-        $this->Acl->allow($group, 'controllers/Imports');
-
-        $this->Acl->allow($group, 'controllers/Tags');
-
-        $this->Acl->allow($group, 'controllers/SentenceComments');
-        $this->Acl->allow($group, 'controllers/Sentences');
-
-        $this->Acl->allow($group, 'controllers/Users');
-        $this->Acl->deny($group, 'controllers/Users/index');
-        $this->Acl->deny($group, 'controllers/Users/edit');
-        $this->Acl->deny($group, 'controllers/Users/delete');
-        $this->Acl->deny($group, 'controllers/Users/update_rights');
-
-        $this->Acl->allow($group, 'controllers/Favorites');
-        $this->Acl->allow($group, 'controllers/PrivateMessages');
-        $this->Acl->allow($group, 'controllers/SentenceAnnotations');
-        $this->Acl->allow($group, 'controllers/Wall');
-        $this->Acl->allow($group, 'controllers/Links');
-        $this->Acl->allow($group, 'controllers/User');
-        $this->Acl->allow($group, 'controllers/SentencesLists');
-
-        //Permissions for trusted_users
-        // TODO it's really dangerous to have "allow" by default
-        $group->id = 3;
-        $this->Acl->deny($group, 'controllers');
-
-        $this->Acl->allow($group, 'controllers/Sentences');
-        $this->Acl->deny($group, 'controllers/Sentences/delete');
-        $this->Acl->deny($group, 'controllers/Sentences/import');
-
-        $this->Acl->allow($group, 'controllers/Tags');
-        $this->Acl->deny($group, 'controllers/Tags/add_tag');
-
-        $this->Acl->allow($group, 'controllers/Users');
-        $this->Acl->deny($group, 'controllers/Users/index');
-        $this->Acl->deny($group, 'controllers/Users/edit');
-        $this->Acl->deny($group, 'controllers/Users/delete');
-        $this->Acl->deny($group, 'controllers/Users/update_rights');
-
-        $this->Acl->allow($group, 'controllers/Favorites');
-        $this->Acl->allow($group, 'controllers/PrivateMessages');
-        $this->Acl->allow($group, 'controllers/SentenceAnnotations');
-        $this->Acl->allow($group, 'controllers/SentenceComments');
-        $this->Acl->allow($group, 'controllers/Wall');
-        $this->Acl->allow($group, 'controllers/Links');
-        $this->Acl->allow($group, 'controllers/User');
-        $this->Acl->allow($group, 'controllers/SentencesLists');
-
-        //Permissions for users
-        $group->id = 4;
-        $this->Acl->deny($group, 'controllers');
-        $this->Acl->allow($group, 'controllers/Sentences');
-        $this->Acl->deny($group, 'controllers/Sentences/delete');
-        $this->Acl->deny($group, 'controllers/Sentences/import');
-
-
-        $this->Acl->deny($group, 'controllers/Tags');
-
-        $this->Acl->allow($group, 'controllers/Users');
-        $this->Acl->deny($group, 'controllers/Users/index');
-        $this->Acl->deny($group, 'controllers/Users/edit');
-        $this->Acl->deny($group, 'controllers/Users/delete');
-        $this->Acl->deny($group, 'controllers/Users/update_rights');
-
-        $this->Acl->allow($group, 'controllers/Favorites');
-
-        $this->Acl->allow($group, 'controllers/PrivateMessages');
-        $this->Acl->allow($group, 'controllers/SentenceAnnotations');
-        $this->Acl->allow($group, 'controllers/SentenceComments');
-        $this->Acl->allow($group, 'controllers/Wall');
-        $this->Acl->allow($group, 'controllers/User');
-        $this->Acl->allow($group, 'controllers/SentencesLists');
-
-        // for spammer
-        $group->id = 6;
-        $this->Acl->deny($group, 'controllers');
-        $this->Acl->allow($group, 'controllers/Sentences/show');
-        $this->Acl->allow($group, 'controllers/Wall/index');
     }
 }
 ?>
