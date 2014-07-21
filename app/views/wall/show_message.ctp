@@ -36,7 +36,7 @@
  */
 $rootMessageId = $message['Wall']['id'];
 
-$this->pageTitle = 'Tatoeba - Thread #' . $rootMessageId ; 
+$this->set('title_for_layout', 'Tatoeba - Thread #' . $rootMessageId ); 
 ?>
 <div id="annexe_content">
     <div class="module">

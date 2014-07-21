@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */ 
 
-$this->pageTitle = 'Tatoeba - ' . __('Members', true);
+$this->set('title_for_layout', 'Tatoeba - ' . __('Members', true));
 ?>
 
 <div id="annexe_content">

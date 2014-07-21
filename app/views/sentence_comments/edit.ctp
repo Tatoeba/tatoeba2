@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = 'Tatoeba - ' . __('Edit Comment', true);
+$this->set('title_for_layout', 'Tatoeba - ' . __('Edit Comment', true));
 
 
 ?>

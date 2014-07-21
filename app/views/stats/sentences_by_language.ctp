@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
  
-$this->pageTitle = 'Tatoeba - ' . __('Number of sentences per language', true);
+$this->set('title_for_layout', 'Tatoeba - ' . __('Number of sentences per language', true));
 
 $stats = ClassRegistry::init('Language')->getStatistics();
 $audioStats = ClassRegistry::init('Sentence')->getTotalNumberOfSentencesWithAudio();

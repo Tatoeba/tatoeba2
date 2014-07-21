@@ -34,7 +34,7 @@ if ($folder == 'Inbox') {
     $folderName = __('Trash', true);
 }
 
-$this->pageTitle = __('Private messages', true) . ' - ' . $folderName;
+$this->set('title_for_layout', __('Private messages', true) . ' - ' . $folderName);
 
 echo $this->element('pmmenu');
 ?>

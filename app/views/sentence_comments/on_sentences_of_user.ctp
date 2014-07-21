@@ -35,9 +35,9 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = 'Tatoeba - ' . sprintf(
+$this->set('title_for_layout', 'Tatoeba - ' . sprintf(
     __("Comments on %s's sentences", true), $userName
-); 
+)); 
 ?>
 <div id="annexe_content">
     <?php

@@ -56,9 +56,9 @@ if (!empty($user['image'])) {
 }
 
 if (!empty($realName)) {
-    $this->pageTitle = "$username ($realName) - Tatoeba";
+    $this->set('title_for_layout', "$username ($realName) - Tatoeba");
 } else {
-    $this->pageTitle = "$username - Tatoeba"; 
+    $this->set('title_for_layout', "$username - Tatoeba"); 
 }
 ?>
 

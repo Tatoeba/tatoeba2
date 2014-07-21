@@ -21,10 +21,10 @@
 
 $username = $user['User']['username'];
 $userId =  $user['User']['id'];
-$this->pageTitle = sprintf(
+$this->set('title_for_layout', sprintf(
     __('Tatoeba user: %s', true),
     $username
-);
+));
 ?>
 <div id="annexe_content">
 

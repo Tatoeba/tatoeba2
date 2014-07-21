@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = __('Tatoeba: Collecting example sentences', true);
+$this->set('title_for_layout', __('Tatoeba: Collecting example sentences', true));
 $html->meta(
     'description', 
     __(
