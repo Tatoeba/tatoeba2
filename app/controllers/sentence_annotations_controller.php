@@ -141,7 +141,7 @@ class SentenceAnnotationsController extends AppController
         $id = Sanitize::paranoid($id);
         $sentenceId = Sanitize::paranoid($sentenceId);
 
-        if ($this->SentenceAnnotation->del($id)) {
+        if ($this->SentenceAnnotation->delete($id)) {
             $this->redirect(array("action" => "show", $sentenceId));
         }
     }

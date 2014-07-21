@@ -166,7 +166,7 @@ class UsersController extends AppController
             $this->Session->setFlash('Invalid id for User');
             $this->redirect(array('action'=>'index'));
         }
-        if ($this->User->del($id)) {
+        if ($this->User->delete($id)) {
             $this->Session->setFlash('User deleted');
             $this->redirect(array('action'=>'index'));
         }

@@ -548,7 +548,7 @@ class Sentence extends AppModel
 
         $this->data['User']['id'] = $userId;
 
-        //$this->Sentence->del($id, true);
+        //$this->Sentence->delete($id, true);
         // TODO : Deleting with del does not delete the right entries in
         // sentences_translations.
         // But I didn't figure out how to solve that =_=;
