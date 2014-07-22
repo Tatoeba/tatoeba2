@@ -49,7 +49,7 @@ class User extends AppModel
      * @var array
      */
     public $actsAs = array(
-        'Acl' => array('requester'),
+        'Acl' => array('type' => 'requester'),
         'ExtendAssociations',
         'Containable'
     );
@@ -131,18 +131,18 @@ class User extends AppModel
      */
     public function parentNode()
     {
-
         if (!$this->id && empty($this->data)) {
             return null;
         }
-        $data = $this->data;
-        if (empty($this->data)) {
-            $data = $this->read();
+        if (isset($this->data['User']['group_id'])) {
+            $groupId = $this->data['User']['group_id'];
+        } else {
+            $groupId = $this->field('group_id');
         }
-        if (empty($data['User']['group_id'])) {
+        if (!$groupId) {
             return null;
         } else {
-            return array('Group' => array('id' => $data['User']['group_id']));
+            return array('Group' => array('id' => $groupId));
         }
     }
 
