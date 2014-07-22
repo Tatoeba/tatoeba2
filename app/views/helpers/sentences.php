@@ -248,19 +248,18 @@ class SentencesHelper extends AppHelper
 
             // OK
             echo $this->Form->button(
-                'translation',
+                __('Submit translation', true),
                 array(
-                    'value' => __('Submit translation', true),
                     'id' => '_'.$id.'_submit'
                 )
             );
 
             // Cancel
             echo $this->Form->button(
-                'translation',
+                __('Cancel', true),
                 array(
-                    'value' => __('Cancel', true),
-                    'id' => '_'.$id.'_cancel'
+                    'id' => '_'.$id.'_cancel',
+                    'type' => 'reset',
                 )
             );
 
