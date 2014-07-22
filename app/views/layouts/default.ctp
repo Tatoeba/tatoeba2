@@ -126,6 +126,6 @@
         echo $this->element('foot');
         ?>
     </div>
-    <?php echo $cakeDebug ?>
+    <?php echo $this->element('sql_dump'); ?>
 </body>
 </html>
