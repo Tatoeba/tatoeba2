@@ -1,0 +1,1 @@
+ALTER TABLE sentences_translations ADD id int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY FIRST;
