@@ -39,6 +39,8 @@ class Visitor extends AppModel
 
     public $actsAs = array('Containable');
 
+    public $primaryKey = 'ip';
+
     /**
      * Returns number of online visitors.
      *
