@@ -385,13 +385,8 @@ class ListsHelper extends AppHelper
         echo $this->Html->link(
             '[?]',
             array(
-<<<<<<< HEAD
-                "controller"=>"pages",
-                "action"=>"help#sentences_lists"
-=======
                 "controller"=>"pages", 
                 "action"=>"help#sentences_lists_help"
->>>>>>> master
             )
         );
         ?>
