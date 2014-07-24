@@ -29,11 +29,11 @@ class WhitespaceCleaner:
     def disconnect(self):
         self.cnx.close()
 
-    def read_csv(self, filename, execute=True):
+    def read_csv(self, filename):
         """Read a CSV file (id tab text) produced by an earlier step and execute an SQL query to update text."""
         print "\n\nfilename: {0}".format(filename)
-        if not execute:
-            print "NOT executing these lines"
+        if self.parsed.dry_run:
+            print "---NOT executing these lines---"
         in_f = codecs.open(filename, "r", "utf-8")
         cursor = self.cnx.cursor()
         for line in in_f:
@@ -41,7 +41,7 @@ class WhitespaceCleaner:
             id, sep, text = line_en.partition('\t')
             query = "UPDATE sentences SET text = '{0}' WHERE id = {1};".format(text.rstrip(), id)
             print query
-            if execute:
+            if not self.parsed.dry_run:
                 cursor.execute(query)
         cursor.close()
         in_f.close()
@@ -84,6 +84,7 @@ if __name__ == "__main__":
     parser.add_argument('--pwd', default='tatoeba', help='MySQL password')
     parser.add_argument('--host', default='127.0.0.1', help='host (e.g., 127.0.0.1)')
     parser.add_argument('--db', default='tatoeba', help='MySQL database')
+    parser.add_argument('--dry_run', default=False, action='store_true', help='Use this to prevent execution')
     parsed = parser.parse_args()
 
     # script_dir = os.path.dirname(os.path.realpath(__file__))
@@ -93,19 +94,19 @@ if __name__ == "__main__":
 
     filename = "stripped.csv"
     cleaner.write_csv_for_stripping_sents(filename)
-    cleaner.read_csv(filename, execute=False)
+    cleaner.read_csv(filename)
 
     # This block must be run before the blocks that follow it.
     filename = "space_seq.csv"
     cleaner.write_csv_from_sents_w_regex(filename, "[[:space:]]{2,}", r"\s{2,}", " ")
-    cleaner.read_csv(filename, execute=False)
+    cleaner.read_csv(filename)
 
     filename = "tab.csv"
     cleaner.write_csv_from_sents_w_regex(filename, "[[.tab.]]", r"\t", " ")
-    cleaner.read_csv(filename, execute=False)
+    cleaner.read_csv(filename)
 
     filename = "newline.csv"
     cleaner.write_csv_from_sents_w_regex(filename, "[[.newline.]]", r"\n", " ")
-    cleaner.read_csv(filename, execute=False)
+    cleaner.read_csv(filename)
 
     cleaner.disconnect()
