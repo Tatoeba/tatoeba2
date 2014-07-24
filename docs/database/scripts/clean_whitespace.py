@@ -1,4 +1,10 @@
+#Script for removing unwanted ASCII whitespace from sentences:
+#  - leading/trailing whitespace
+#  - internal sequences of more than one whitespace character
+#  - internal tabs and newlines
 
+# By default, uses the MySQL credentials (username, password, db name) and hostname of the VM.
+# To run on the server, you must specify --username, --pwd, --db, --host.
 
 #Note that you must download mysql.connector, since it doesn't come with the default distribution.
 #Use: sudo apt-get update && sudo apt-get install python-mysql.connector
@@ -8,7 +14,7 @@ import os
 import argparse
 import re
 
-class TextUpdater:
+class WhitespaceCleaner:
     """Class for removing extra whitespace from text."""
     def __init__(self, parsed):
         self.parsed = parsed
@@ -24,6 +30,7 @@ class TextUpdater:
         self.cnx.close()
 
     def read_csv(self, filename, execute=True):
+        """Read a CSV file (id tab text) produced by an earlier step and execute an SQL query to update text."""
         print "\n\nfilename: {0}".format(filename)
         if not execute:
             print "NOT executing these lines"
@@ -41,6 +48,7 @@ class TextUpdater:
         print "--------------------------------"
     
     def write_csv_for_stripping_sents(self, filename):
+        """Write a CSV file (id tab text) containing IDs of sentences to be stripped of surrounding whitespace plus their new text."""
         cursor = self.cnx.cursor()
         cursor.execute("SELECT id, text FROM sentences WHERE text regexp '^[[:space:]]' OR text regexp '[[:space:]]$';")
         out_f = codecs.open(filename, "w", "utf-8")
@@ -53,6 +61,7 @@ class TextUpdater:
         out_f.close()
 
     def write_csv_from_sents_w_regex(self, filename, mysql_regex, py_regex, substitution_str):
+        """Write a CSV file (id tab text) containing IDs of sentences to be updated plus their new text."""
         cursor = self.cnx.cursor()
         query = "SELECT id, text FROM sentences WHERE text regexp '{0}';".format(mysql_regex)
         cursor.execute(query)
@@ -79,24 +88,24 @@ if __name__ == "__main__":
 
     # script_dir = os.path.dirname(os.path.realpath(__file__))
 
-    updater = TextUpdater(parsed)
-    updater.connect()
+    cleaner = WhitespaceCleaner(parsed)
+    cleaner.connect()
 
     filename = "stripped.csv"
-    updater.write_csv_for_stripping_sents(filename)
-    updater.read_csv(filename, execute=False)
+    cleaner.write_csv_for_stripping_sents(filename)
+    cleaner.read_csv(filename, execute=False)
 
     # This block must be run before the blocks that follow it.
     filename = "space_seq.csv"
-    updater.write_csv_from_sents_w_regex(filename, "[[:space:]]{2,}", r"\s{2,}", " ")
-    updater.read_csv(filename, execute=False)
+    cleaner.write_csv_from_sents_w_regex(filename, "[[:space:]]{2,}", r"\s{2,}", " ")
+    cleaner.read_csv(filename, execute=False)
 
     filename = "tab.csv"
-    updater.write_csv_from_sents_w_regex(filename, "[[.tab.]]", r"\t", " ")
-    updater.read_csv(filename, execute=False)
+    cleaner.write_csv_from_sents_w_regex(filename, "[[.tab.]]", r"\t", " ")
+    cleaner.read_csv(filename, execute=False)
 
     filename = "newline.csv"
-    updater.write_csv_from_sents_w_regex(filename, "[[.newline.]]", r"\n", " ")
-    updater.read_csv(filename, execute=False)
+    cleaner.write_csv_from_sents_w_regex(filename, "[[.newline.]]", r"\n", " ")
+    cleaner.read_csv(filename, execute=False)
 
-    updater.disconnect()
+    cleaner.disconnect()
