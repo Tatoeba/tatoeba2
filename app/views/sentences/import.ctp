@@ -57,7 +57,11 @@ $langArray = $languages->onlyLanguagesArray();
  
         <div>  
         <?php echo $form->input('user_id',
-           array('label' => __('Numeric user id: ', true))); ?>
+           array(
+               'type' => 'text',
+               'label' => __('Numeric user id: ', true)
+           )
+        ); ?>
         </div>
 
         <?php echo $form->end('import',
@@ -97,7 +101,11 @@ $langArray = $languages->onlyLanguagesArray();
 
         <div>
         <?php echo $form->input('user_id',
-           array('label' => __('Numeric user id: ', true))); ?>
+           array(
+               'type' => 'text',
+               'label' => __('Numeric user id: ', true)
+           )
+        ); ?>
         </div>
         
         <?php echo $form->end('import',

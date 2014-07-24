@@ -52,7 +52,10 @@ class SentenceAnnotationsHelper extends AppHelper
             echo $this->Form->create('SentenceAnnotation', array("action" => "show"));
             echo $this->Form->input(
                 'sentence_id',
-                array("label" => "Sentence #")
+                array(
+                    "type" => "text",
+                    "label" => "Sentence #"
+                )
             );
             echo $this->Form->end('OK');
         ?>
