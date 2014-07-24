@@ -26,7 +26,6 @@ $(document).ready(function() {
         submit    : 'OK',
         data : function(value, settings) {
             return $('<div>').html(value).text() // added to correct problem with html entities
-//            return $('<div>').html(value).text() // added to correct problem with html entities
         },
         indicator : '<img src="/img/loading.gif">',
         tooltip   : 'Click to edit...',

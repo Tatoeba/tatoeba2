@@ -61,12 +61,6 @@ class SentencesHelper extends AppHelper
     );
 
 
-    private function cleanSentence($text)
-    {
-        return "HEY!!!";
-    }    
-
-
     /**
      * Diplays a sentence and its translations.
      *
