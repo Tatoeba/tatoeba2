@@ -390,11 +390,10 @@ class MenuHelper extends AppHelper
 
         // ok button
         echo $this->Form->button(
-            null,
+            __('OK', true),
             array(
                 'type' => 'button',
                 'class' => 'validateButton',
-                'value' => __('OK', true)
             )
         );
         ?>
