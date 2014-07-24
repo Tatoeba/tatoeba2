@@ -59,8 +59,14 @@ class SentencesHelper extends AppHelper
         'Pinyin',
         'Menu'
     );
-    
-    
+
+
+    private function cleanSentence($text)
+    {
+        return "HEY!!!";
+    }    
+
+
     /**
      * Diplays a sentence and its translations.
      *
