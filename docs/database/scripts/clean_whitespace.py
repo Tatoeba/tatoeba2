@@ -19,6 +19,8 @@ class WhitespaceCleaner:
     def __init__(self, parsed):
         self.parsed = parsed
         self.cnx = None
+        self.log_filename = "log.txt"
+        self.log_f = None
 
     def connect(self):
         self.cnx = mysql.connector.connect(user=self.parsed.user, 
@@ -29,26 +31,34 @@ class WhitespaceCleaner:
     def disconnect(self):
         self.cnx.close()
 
+    def set_log_file(self, filename):
+        self.log_filename = filename
+        self.log_f = open(filename, "w") 
+
+    def print_output(self, str):
+        print str
+        print >>self.log_f, str
+
     def read_csv(self, filename):
-        """Read a CSV file (id tab text) produced by an earlier step and execute an SQL query to update text."""
-        print "\n\nfilename: {0}".format(filename)
+        """Read a CSV file (id<TAB>text) produced by an earlier step and execute an SQL query to update text."""
+        self.print_output("\n\nfilename: {0}".format(filename))
         if self.parsed.dry_run:
-            print "---NOT executing these lines---"
+            self.print_output("---NOT executing these lines---")
         in_f = codecs.open(filename, "r", "utf-8")
         cursor = self.cnx.cursor()
         for line in in_f:
             line_en = line.encode('utf-8')
             id, sep, text = line_en.partition('\t')
             query = "UPDATE sentences SET text = '{0}' WHERE id = {1};".format(text.rstrip(), id)
-            print query
+            self.print_output(query)
             if not self.parsed.dry_run:
                 cursor.execute(query)
         cursor.close()
         in_f.close()
-        print "--------------------------------"
+        self.print_output("--------------------------------")
     
     def write_csv_for_stripping_sents(self, filename):
-        """Write a CSV file (id tab text) containing IDs of sentences to be stripped of surrounding whitespace plus their new text."""
+        """Write a CSV file (id<TAB>text) containing IDs of sentences to be stripped of surrounding whitespace plus their new text."""
         cursor = self.cnx.cursor()
         cursor.execute("SELECT id, text FROM sentences WHERE text regexp '^[[:space:]]' OR text regexp '[[:space:]]$';")
         out_f = codecs.open(filename, "w", "utf-8")
@@ -62,7 +72,7 @@ class WhitespaceCleaner:
         out_f.close()
 
     def write_csv_from_sents_w_regex(self, filename, mysql_regex, py_regex, substitution_str):
-        """Write a CSV file (id tab text) containing IDs of sentences to be updated plus their new text."""
+        """Write a CSV file (id<TAB>text) containing IDs of sentences to be updated plus their new text."""
         cursor = self.cnx.cursor()
         query = "SELECT id, text FROM sentences WHERE text regexp '{0}';".format(mysql_regex)
         cursor.execute(query)
@@ -86,6 +96,7 @@ if __name__ == "__main__":
     parser.add_argument('--host', default='127.0.0.1', help='host (e.g., 127.0.0.1)')
     parser.add_argument('--db', default='tatoeba', help='MySQL database')
     parser.add_argument('--dry_run', default=False, action='store_true', help='Use this to prevent execution')
+    parser.add_argument('--csv_dir', default='', help='subdirectory to which csv files should be written') 
     parsed = parser.parse_args()
 
     # script_dir = os.path.dirname(os.path.realpath(__file__))
@@ -93,21 +104,38 @@ if __name__ == "__main__":
     cleaner = WhitespaceCleaner(parsed)
     cleaner.connect()
 
-    filename = "stripped.csv"
-    cleaner.write_csv_for_stripping_sents(filename)
-    cleaner.read_csv(filename)
+    log_filename = "log.txt"
+    stripped_filename = "stripped.csv"
+    space_seq_filename = "space_seq.csv"
+    tab_filename = "tab.csv"
+    newline_filename = "newline.csv"
 
+    if parsed.csv_dir:
+        if not os.path.exists(parsed.csv_dir):
+            os.makedirs(parsed.csv_dir)
+        log_filename = os.path.join(parsed.csv_dir, log_filename)
+        stripped_filename = os.path.join(parsed.csv_dir, stripped_filename)
+        space_seq_filename = os.path.join(parsed.csv_dir, space_seq_filename)
+        tab_filename = os.path.join(parsed.csv_dir, tab_filename)
+        newline_filename = os.path.join(parsed.csv_dir, newline_filename)
+
+    cleaner.set_log_file(log_filename)
+    
+    # Strip leading/trailing whitespace.
+    cleaner.write_csv_for_stripping_sents(stripped_filename)
+    cleaner.read_csv(stripped_filename)
+
+    # Use regex to find each sequence of ASCII whitespace and collapse it into an ordinary space. 
     # This block must be run before the blocks that follow it.
-    filename = "space_seq.csv"
-    cleaner.write_csv_from_sents_w_regex(filename, "[[:space:]]{2,}", r"\s{2,}", " ")
-    cleaner.read_csv(filename)
+    cleaner.write_csv_from_sents_w_regex(space_seq_filename, "[[:space:]]{2,}", r"\s{2,}", " ")
+    cleaner.read_csv(space_seq_filename)
 
-    filename = "tab.csv"
-    cleaner.write_csv_from_sents_w_regex(filename, "[[.tab.]]", r"\t", " ")
-    cleaner.read_csv(filename)
+    # Use regex to find each (remaining) ASCII tab and convert it into an ordinary space. 
+    cleaner.write_csv_from_sents_w_regex(tab_filename, "[[.tab.]]", r"\t", " ")
+    cleaner.read_csv(tab_filename)
 
-    filename = "newline.csv"
-    cleaner.write_csv_from_sents_w_regex(filename, "[[.newline.]]", r"\n", " ")
-    cleaner.read_csv(filename)
+    # Use regex to find each (remaining) ASCII newline and convert it into an ordinary space. 
+    cleaner.write_csv_from_sents_w_regex(newline_filename, "[[.newline.]]", r"\n", " ")
+    cleaner.read_csv(newline_filename)
 
     cleaner.disconnect()
