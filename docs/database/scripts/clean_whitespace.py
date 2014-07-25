@@ -1,3 +1,5 @@
+#clean_whitespace.py
+
 #Script for removing unwanted ASCII whitespace from sentences:
 #  - leading/trailing whitespace
 #  - internal sequences of more than one whitespace character
