@@ -56,19 +56,33 @@ $interfaceLanguages = array(
 
 
     Router::connect(
-        '/tools/search_hanzi_kanji/:action',
+        '/tools/search_hanzi_kanji',
         array(
             'controller' => 'sinograms',
             'action' =>'index'
         )
     );
+    Router::connect(
+        '/tools/search_hanzi_kanji/:action',
+        array(
+            'controller' => 'sinograms',
+        )
+    );
 
     Router::connect(
-        '/:lang/tools/search_hanzi_kanji/:action ',
+        '/:lang/tools/search_hanzi_kanji',
         array(
             'lang'=>'eng',
             'controller' => 'sinograms',
             'action' =>'index'
+        ),
+        $interfaceLanguages
+    );
+    Router::connect(
+        '/:lang/tools/search_hanzi_kanji/:action',
+        array(
+            'lang'=>'eng',
+            'controller' => 'sinograms',
         ),
         $interfaceLanguages
     );
