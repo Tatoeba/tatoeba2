@@ -54,6 +54,7 @@ class WhitespaceCleaner:
         out_f = codecs.open(filename, "w", "utf-8")
         for (id, text) in cursor:
             new_text = text.strip()
+            new_text = new_text.replace("'", r"\'")
             line = "{0}\t{1}\n".format(id, new_text)
             line_de = line.decode('utf-8')
             out_f.write(line_de)
