@@ -35,4 +35,4 @@ fi
 dir_name=$(date +%F--%H-%M-%S)
 mkdir -p "$repo_dir""/versions/""$dir_name"
 rm -rf "$repo_dir""/versions/current"
-ln -sf "$repo_dir""/versions/""$dir_name" "$repo_dir""/versions/current"
+ln -sf "$dir_name" "$repo_dir""/versions/current"
