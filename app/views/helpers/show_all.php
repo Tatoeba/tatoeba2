@@ -109,8 +109,9 @@ class ShowAllHelper extends AppHelper
             $langs,
             $selectedLanguage,
             array(
-				"id" => null,
-                "onchange" => "$(location).attr('href', $javascriptUrl);"
+                "id" => null,
+                "onchange" => "$(location).attr('href', $javascriptUrl);",
+                "empty" => false
             ),
             false
         );
