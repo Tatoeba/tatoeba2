@@ -10,11 +10,13 @@
   roles:
   - common
   - lemp
-  - codebase
+  - update_code
+  - setup_cakephp
+  - setup_database
   - install_sphinx
 #  - configure_sphinx 
   - setup_nihongoparserd
   - setup_sinoparserd
   - setup_suggestd
   - setup_tatodetect
-  - setup_imagick  
+  - setup_imagick

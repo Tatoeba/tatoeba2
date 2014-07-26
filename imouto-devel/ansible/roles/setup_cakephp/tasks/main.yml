@@ -1,0 +1,17 @@
+---
+# Tasks to setup cakephp by copying the correct configs
+
+- name: Copy CakePHP config files
+  template: src={{item}}.j2 dest={{code_dir}}/common/config/{{item}} 
+  with_items:
+  - database.php
+  - core.php
+- name: Create links for CakePHP config files
+  file: state=link src={{code_dir}}/common/config/{{item}} dest=/var/www-prod/app/config/{{item}}
+  with_items:
+  - database.php
+  - core.php
+- name: Give read permissions to the code directory
+  file: path=/var/www-prod state=directory recurse=yes mode=555
+- name: Create cache directory
+  file: path=/var/www-prod/app/tmp/cache state=directory recurse=yes mode=777

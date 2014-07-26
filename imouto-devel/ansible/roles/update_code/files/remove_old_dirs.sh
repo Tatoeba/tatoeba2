@@ -26,7 +26,7 @@ if [ "$dir_count" -ge "$revision_limit" ] ; then #If number of revisions exceed 
 	for var in "${array[@]}"
 	do
   		echo "Removing ${var}"
-  		rm -rf "$repo_dir""/versions/""$var"
+  		sudo rm -rf "$repo_dir""/versions/""$var"
 	done
 	
 fi

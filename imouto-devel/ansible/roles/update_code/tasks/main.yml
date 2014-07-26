@@ -1,0 +1,11 @@
+---
+# Tasks to fetch latest tatoeba-php code
+
+- name: Create the code directory if it doesn't already exists
+  shell: mkdir -p {{code_dir}}/versions ; mkdir -p {{code_dir}}/common/config/
+- name: Clean-up old versions of code from the code directory
+  script: remove_old_dirs.sh {{code_dir}} {{revision_limit}}
+- name: Fetch the code from github repository
+  git: repo=https://github.com/Tatoeba/tatoeba2.git dest={{code_dir}}/versions/current
+- name: Create symbolic link for the current code directory as /var/www-prod
+  file: state=link src={{code_dir}}/versions/current dest=/var/www-prod force=yes

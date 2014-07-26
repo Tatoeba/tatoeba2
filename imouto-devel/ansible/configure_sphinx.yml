@@ -1,0 +1,11 @@
+---
+#Playbook to configure sphinx and create inde
+
+- hosts: all
+  sudo: yes
+  gather_facts: yes
+  pre_tasks:
+  - name: Clean the index directory
+    command: rm -rf {{sphinx_index_dir}}
+  roles:
+  - configure_sphinx

@@ -1,0 +1,8 @@
+---
+#Playbook to update the code from github
+- hosts: all
+  sudo: yes
+  gather_facts: yes
+  roles:
+  - update_code
+  - setup_cakephp

@@ -17,3 +17,4 @@
   command: indexer --config {{sphinx_config_dir}}/sphinx.conf --all
 - name: Start the search daemon
   command: searchd --config {{sphinx_config_dir}}/sphinx.conf
+  ignore_errors: yes
