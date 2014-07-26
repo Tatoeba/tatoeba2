@@ -47,7 +47,10 @@ class SentencesListsController extends AppController
         'Pagination',
         'AttentionPlease'
     );
-    public $components = array('LanguageDetection');
+    public $components = array(
+        'LanguageDetection', 
+        'Cookie'
+    );
     // We want to make sure that people don't download long lists, which can slow down the server.
     // This is an arbitrary but easy to remember value, and most lists are shorter than this.    
     const MAX_COUNT_FOR_DOWNLOAD = 100;
@@ -73,7 +76,7 @@ class SentencesListsController extends AppController
 
     /**
      * Displays all the lists. If user is logged in, it will also display a form to
-     * add a new list and the lists that belongs to that user.
+     * add a new list and the lists that belong to that user.
      * 
      * @return void
      */
@@ -125,7 +128,7 @@ class SentencesListsController extends AppController
     
     
     /**
-     * Displays a list for editing purpose.
+     * Displays a list for editing purposes.
      *
      * @param int    $id               Id of list.
      * @param string $translationsLang Language of translations.
@@ -272,6 +275,8 @@ class SentencesListsController extends AppController
         
         if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
             $this->SentencesList->delete($listId);
+            // TODO: Retrieve the 'most_recent_list' cookie, and if it matches
+            // $listId, erase it?
         }
         $this->redirect(array("action" => "index"));
     }
@@ -280,7 +285,7 @@ class SentencesListsController extends AppController
      * Add sentence to a list.
      *
      * @param int $sentenceId Id of sentence to add.
-     * @param int $listId     Id of list in which to add the sentence.
+     * @param int $listId     Id of list to which to add the sentence.
      *
      * @return void
      */
@@ -302,6 +307,7 @@ class SentencesListsController extends AppController
         
         if ($this->SentencesList->addSentenceToList($sentenceId, $listId)) {
             $this->set('result', $listId);
+            $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
         }
     }
 
@@ -310,7 +316,7 @@ class SentencesListsController extends AppController
      * Remove sentence from a list.
      *
      * @param int $sentenceId Id of sentence to be removed from list.
-     * @param int $listId     Id of list in which the sentence is.
+     * @param int $listId     Id of list that contains the sentence.
      *
      * @return void
      */
@@ -353,9 +359,9 @@ class SentencesListsController extends AppController
      * add it to the list.
      * Used in AJAX request in sentences_lists.add_new_sentence_to_list.js.
      *
-     * TODO refactor this, we should call the saving part of sentence controller
-     *  and the adding part should be factorized with the adding part of other
-     *  method of this controller
+     * TODO refactor this; we should call the saving part of sentence controller
+     *  and the adding part should be factorized with the adding part of
+     *  add_sentence_to_list(), also in this controller
      *
      * @return void
      */
@@ -380,6 +386,8 @@ class SentencesListsController extends AppController
             );
             $sentence = $tmp['Sentence'];
             $sentence['User'] = $tmp['User'];
+
+            $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
         }
         
         $this->set('sentence', $sentence);
