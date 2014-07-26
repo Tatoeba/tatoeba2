@@ -40,7 +40,8 @@ class MenuHelper extends AppHelper
     public $helpers = array(
         'Html',
         'Javascript',
-        'Form'
+        'Form',
+        'Session'
     );
     
     
@@ -311,7 +312,7 @@ class MenuHelper extends AppHelper
      */
     public function addToListButton($sentenceId, $isLogged)
     {
-        $mostRecentList = $session->read('most_recent_list');
+        $mostRecentList = $this->Session->read('most_recent_list');
         $addToListButton = $this->Html->Image(
             IMG_PATH . 'add_to_list.png',
             array(
