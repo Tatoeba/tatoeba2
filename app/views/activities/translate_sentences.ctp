@@ -103,7 +103,7 @@ if (empty($notTranslatedInto)) {
                     'langFrom',
                     $langsFrom,
                     $currentLanguage,
-                    null,
+                    array(),
                     false
                 );
                 ?>
@@ -118,7 +118,7 @@ if (empty($notTranslatedInto)) {
                     'langTo',
                     $langsTo,
                     $notTranslatedInto,
-                    null,
+                    array(),
                     false
                 );
                 ?>
