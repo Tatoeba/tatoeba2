@@ -13,7 +13,7 @@ download_csv: yes
 python_modules:
 
 #Default directory for keeping all the back-up revisions of code
-code_dir: /home/{{ansible_ssh_user}}/Tatoeba
+code_dir: /vagrant/Tatoeba
 #Number of old revisions to keep as backup
 revision_limit: 3
 
