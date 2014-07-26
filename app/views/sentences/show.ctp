@@ -48,8 +48,7 @@ if (isset($sentence)) {
             ),
             $sentenceText
         ), 
-        array(), 
-        false
+        array('inline' => false)
     );
 } else {
     // Case where the sentence has been deleted

@@ -34,8 +34,7 @@ $html->meta(
         "It's collaborative, open, free, and even addictive.",
         true
     ), 
-    array(), 
-    false
+    array('inline' => false)
 );
 
 $selectedLanguage = $session->read('random_lang_selected');
