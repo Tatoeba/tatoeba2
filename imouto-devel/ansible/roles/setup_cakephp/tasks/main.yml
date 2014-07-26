@@ -7,7 +7,7 @@
   - database.php
   - core.php
 - name: Create links for CakePHP config files
-  file: state=link src={{code_dir}}/common/config/{{item}} dest=/var/www-prod/app/config/{{item}}
+  file: state=link src=../../../../common/config/{{item}} dest={{code_dir}}/versions/current/app/config/{{item}} force=yes
   with_items:
   - database.php
   - core.php
