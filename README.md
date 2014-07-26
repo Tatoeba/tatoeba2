@@ -52,7 +52,7 @@ $ cd admin/imouto-devel #ignore if already in the admin/imouto-devel directory
 $ vagrant up
 ```
 - Run `vagrant ssh` to ssh to the machine.
-- If you wish to update the website code or configure sphinx later (once the vagrant up command has finished) you can do so using the following commands:
+- If you wish to update the website code or configure sphinx later (once the `vagrant up` command has finished) you can do so using the following commands:
 ```bash
 $ cd ansible
 $ ansible-playbook -i ../.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant -U root update_code.yml
@@ -63,6 +63,8 @@ $ cd ansible
 $ ansible-playbook -i ../.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant -U root configure_sphinx.yml
 ```
 You can copy `vagrant_ansible_inventory` and `insecure_private_key` to the ansible directory in order to avoid typing the full paths every time you run the above commands. Presently only these two roles are supported for individual provisioning. More roles will be added later.
+
+
 
 
 Note:
