@@ -134,7 +134,7 @@ class AppController extends Controller
     }
 
     /**
-     * Called after the controller action is run, i
+     * Called after the controller action is run,
      * but before the view is rendered.
      *
      * @return void
@@ -167,10 +167,10 @@ class AppController extends Controller
         $filterAudioOnly = $this->Cookie->read('filter_audio_only');
         $this->Session->write('filter_audio_only', $filterAudioOnly);
 
-        // TODO: Use this when displaying the list to which a sentence should be assigned.
-        // See views/helpers/menu.php.
-        //$mostRecentList = $this->Cookie->read('most_recent_list');
-        //$this->Session->write('most_recent_list', $mostRecentList);
+        // Use this when displaying the list to which a sentence should be assigned.
+        // See views/helpers/menu.php, controllers/sentences_list_controller.php.
+        $mostRecentList = $this->Cookie->read('most_recent_list');
+        $this->Session->write('most_recent_list', $mostRecentList);
     }
 	
 

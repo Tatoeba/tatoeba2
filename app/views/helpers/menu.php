@@ -40,7 +40,8 @@ class MenuHelper extends AppHelper
     public $helpers = array(
         'Html',
         'Javascript',
-        'Form'
+        'Form',
+        'Session'
     );
     
     
@@ -132,7 +133,7 @@ class MenuHelper extends AppHelper
     }
 
     /** 
-     * Display button to notify the chinese sentence is in
+     * Display button to indicate that the Chinese sentence is in
      * traditional script
      *
      * @return void
@@ -311,6 +312,7 @@ class MenuHelper extends AppHelper
      */
     public function addToListButton($sentenceId, $isLogged)
     {
+        $mostRecentList = $this->Session->read('most_recent_list');
         $addToListButton = $this->Html->Image(
             IMG_PATH . 'add_to_list.png',
             array(
@@ -371,13 +373,12 @@ class MenuHelper extends AppHelper
         
         <li style="display:none" id="addToList<?php echo $sentenceId; ?>">
         
-        <!-- TODO: Change null to the id of the most recently chosen list 
-             (retrieved from a cookie), if any. -->        
+         
         <?php
         echo $this->Form->select(
             'listSelection'.$sentenceId,
             $selectItems,
-            null,
+            $mostRecentList,
             array(
                 "class" => "listOfLists"
             ),
