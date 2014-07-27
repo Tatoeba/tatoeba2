@@ -7,7 +7,7 @@ mysql_db_name: tatoeba
 
 #Set this to yes if you want to fetch the csv's from http://tatoeba.org/files/downloads/
 #Set this to no if the csv's are present in roles/codebase/files (sentences.csv, links.csv, tags_metadata.csv and tags_detailed.csv)
-download_csv: yes
+download_csv: no
 
 #List of python modules to be installed (please only add extra modules and do not remove any existing ones)
 python_modules:
@@ -32,3 +32,22 @@ sphinx_index_dir: /var/sphinx/indices
 sphinx_log_dir: /var/sphinx/log
 sphinx_sql_socket: /run/mysqld/mysqld.sock
 sphinx_config_dir: /etc/sphinxsearch
+
+#Variables for backup tasks
+backup_dir: /home/{{ansible_ssh_user}}/.backup
+#Absolute paths of files/directories that are to be backup-ed along with the database and configs
+#Uncomment the below line and write the list of files/directories to be backuped
+#backup_items:
+#- path/to/directory1
+#- path/to/directory2
+#- path/to/file/1
+#- path/to/file/2
+#Prefix for the backup file name
+backup_prefix: tatoeba
+#Destination on the host to copy backup to; append "/" if it's a directory
+backup_dest: ./
+
+#Variables for restore tasks
+restore_dir: /home/{{ansible_ssh_user}}/.restore
+#Local path to the tar.gz backup file
+restore_src: LOL.tar.gz
