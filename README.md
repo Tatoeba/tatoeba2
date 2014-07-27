@@ -69,19 +69,24 @@ Now you can simply use the following command to run a playbook (inside the `ansi
 $ imoutu-devel playbook-name.yml
 ```
 
-There are only 4 independent playbooks that are included with imoutu currently:
+There are only 5 independent playbooks that are included with imoutu currently:
 - `update_code.yml`: To fetch the latest code from Tatoeba's github repository and update it on VM.
 - `configure_sphinx.yml`: To configure sphinx search, create indexes and start the search daemon.
 - `backup.yml`: To create a backup of the database, configurations and other static files of the VM on your machine.
 - `restore.yml`: To restore the backup created using `backup.yml`.
+- `restore_version.yml`: To restore to a particular revision of code that is available in `versions/` directory
 
+#####Usage
 The `restore.yml` playbook needs the name of the backup file to be restored, which can be specified in the group_vars/all file or through command line argument like this:
 ```bash
 $ imoutu-devel -e restore_src=path/to/backup/file.tar.gz restore.yml
 ```
+The `restore_version` playbook needs the version number of the version to restore to. The versions are numbered from 1 to N where 1 is the latest version and N is oldest. The maximum value of N depends on the variable `revision_limit` that can be set in `group_vars/all`. If you enter an invalid value for `version`, the playbook will throw an error and tell you the possible valid values for it. The playbook can be run as follows:
+```bash
+$ imoutu-devel -e version=3 restore_version.yml
+```
 
-
-Note:
+#####Note:
 - It takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible. Please be patient and let it finish before running `vagrant ssh`.
 - The current directory i.e. `admin/imouto-devel` on the host machine is synchronized with `/vagrant/` directory on the guest machine. So the code that is running the website can be directly accessed in `admin/imouto-devel/Tatoeba`. You can edit anything inside this directory and the changes will be automatically synced to the VM by vagrant.
 - This project is still in its development stage, so there are high chances of bugs. Please report them through github's bug tracker.
