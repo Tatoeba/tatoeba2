@@ -7,7 +7,7 @@ mysql_db_name: tatoeba
 
 #Set this to yes if you want to fetch the csv's from http://tatoeba.org/files/downloads/
 #Set this to no if the csv's are present in roles/codebase/files (sentences.csv, links.csv, tags_metadata.csv and tags_detailed.csv)
-download_csv: no
+download_csv: yes
 
 #List of python modules to be installed (please only add extra modules and do not remove any existing ones)
 python_modules:
