@@ -75,7 +75,7 @@ There are only 4 independent playbooks that are included with imoutu currently:
 - `backup.yml`: To create a backup of the database, configurations and other static files of the VM on your machine.
 - `restore.yml`: To restore the backup created using `backup.yml`.
 
-The `restore.yml` playbook needs the name of the backup file to be resored, which can be specified in the group_vars/all file or through command line argument like this:
+The `restore.yml` playbook needs the name of the backup file to be restored, which can be specified in the group_vars/all file or through command line argument like this:
 ```bash
 $ imoutu-devel -e restore_src=path/to/backup/file.tar.gz restore.yml
 ```
