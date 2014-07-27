@@ -10,18 +10,26 @@ fi
 
 if [ "$#" -ge 2 ] ; then
 	if [ "$2" -ge 1 ]; then
-		revision_limit=$2
+		revision_limit="$2"
 	fi
 fi
 
-repo_dir=$1 #Path to directory where all old revisions will be stored
+function get_dir_count {
+	ls -1 -p "$1"/versions | grep / | wc -l
+}
 
-dir_count=$(ls -1 -p $1/versions | grep / | wc -l) #Number of revisions present currently
+function get_all_versions {
+	ls -1 -p "$1"/versions/ | grep / | head -n -"$2"
+}
+
+repo_dir="$1" #Path to directory where all old revisions will be stored
+
+dir_count=(`get_dir_count "$1"`) #Number of revisions present currently
 
 if [ "$dir_count" -ge "$revision_limit" ] ; then #If number of revisions exceed the limit, remove the old ones
 	
 	count=$((revision_limit - 1))
-	array=(`ls -1 -p $repo_dir/versions/ | grep / | head -n -$count`)
+	array=(`get_all_versions "$repo_dir" "$count"`)
 	
 	for var in "${array[@]}"
 	do
@@ -35,4 +43,4 @@ fi
 dir_name=$(date +%F--%H-%M-%S)
 mkdir -p "$repo_dir""/versions/""$dir_name"
 rm -rf "$repo_dir""/versions/current"
-ln -sf "$dir_name" "$repo_dir""/versions/current"
+ln -sf "$dir_name""/" "$repo_dir""/versions/current"
