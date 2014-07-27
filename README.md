@@ -11,7 +11,7 @@ IMOUTO is a collection of easy-to-use production and development server automati
 Version
 ----
 
-1.0
+1.1
 
 
 Usage Instructions
@@ -52,19 +52,32 @@ $ cd admin/imouto-devel #ignore if already in the admin/imouto-devel directory
 $ vagrant up
 ```
 - Run `vagrant ssh` to ssh to the machine.
-- If you wish to update the website code or configure sphinx later (once the `vagrant up` command has finished) you can do so using the following commands:
+
+####Post-provisioning tasks:
+Once `vagrant up` has successfully finished, you will be able to SSH to the machine and check out the website at `localhost:8080` on the host. But you may also want to perform certain tasks independently without having to re-provision the whole machine again. To do that you can use the following command:
 ```bash
 $ cd ansible
-$ ansible-playbook -i ../.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant -U root update_code.yml
+$ ansible-playbook -i ../.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant -U root playbook-name.yml
 ```
-OR
+where `playbook-name.yml` is the name of the playbook that you want to run on the VM. Since the command is too long and very difficult to remember, you can use the following commands to create an alias:
 ```bash
-$ cd ansible
-$ ansible-playbook -i ../.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant -U root configure_sphinx.yml
+$ echo "alias imoutu-devel='ansible-playbook -i ../.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant -U root'" >> ~/.bashrc 
+$ source ~/.bashrc
 ```
-You can copy `vagrant_ansible_inventory` and `insecure_private_key` to the ansible directory in order to avoid typing the full paths every time you run the above commands. Presently only these two roles are supported for individual provisioning. More roles will be added later.
+Now you can simply use the following command to run a playbook (inside the `ansible` directory):
+```bash
+$ imoutu-devel playbook-name.yml
+```
 
-
+There are only 4 independent playbooks that are included with imoutu currently:
+- `update_code.yml`: To fetch the latest code from Tatoeba's github repository and update it on VM
+- `configure_sphinx.yml`: To configure sphinx search, create indexes and start the search daemon
+- `backup.yml`: To create a backup of the database, configurations and other static files of the VM on your machine
+- `restore.yml`: To restore the backup created using `backup.yml`
+The `restore.yml` playbook needs the name of the backup file to be resored, which can be specified in the group_vars/all file or through command line argument like this:
+```bash
+$ imoutu-devel -e restore_src=path/to/backup/file.tar.gz restore.yml
+```
 
 
 Note:
