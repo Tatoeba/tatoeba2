@@ -316,7 +316,7 @@ class TagsHelper extends AppHelper
                 $tagId,
                 $sentenceId
             ),
-            array(),
+            array("escape" => false),
             null,
             false
         );
