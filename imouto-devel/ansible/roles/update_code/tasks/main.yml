@@ -9,3 +9,5 @@
   git: repo=https://github.com/Tatoeba/tatoeba2.git dest={{code_dir}}/versions/current
 - name: Create symbolic link for the current code directory as /var/www-prod
   file: state=link src={{code_dir}}/versions/current dest=/var/www-prod force=yes
+- name: Create symbolic link for the code directory in home directory
+  file: state=link src={{code_dir}} dest=/home/{{ansible_ssh_user}}/Tatoeba force=yes

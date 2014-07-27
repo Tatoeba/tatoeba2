@@ -52,13 +52,25 @@ $ cd admin/imouto-devel #ignore if already in the admin/imouto-devel directory
 $ vagrant up
 ```
 - Run `vagrant ssh` to ssh to the machine.
+- If you wish to update the website code or configure sphinx later (once the `vagrant up` command has finished) you can do so using the following commands:
+```bash
+$ cd ansible
+$ ansible-playbook -i ../.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant -U root update_code.yml
+```
+OR
+```bash
+$ cd ansible
+$ ansible-playbook -i ../.vagrant/provisioners/ansible/inventory/vagrant_ansible_inventory --private-key=~/.vagrant.d/insecure_private_key -u vagrant -U root configure_sphinx.yml
+```
+You can copy `vagrant_ansible_inventory` and `insecure_private_key` to the ansible directory in order to avoid typing the full paths every time you run the above commands. Presently only these two roles are supported for individual provisioning. More roles will be added later.
+
 
 
 
 Note:
 - It takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible. Please be patient and let it finish before running `vagrant ssh`.
-- The current directory i.e. `admin/imouto-devel` on the host machine is synchronized with `/vagrant/` directory on the guest machine. You can use this for doing development on your favourite IDE.
+- The current directory i.e. `admin/imouto-devel` on the host machine is synchronized with `/vagrant/` directory on the guest machine. So the code that is running the website can be directly accessed in `admin/imouto-devel/Tatoeba`. You can edit anything inside this directory and the changes will be automatically synced to the VM by vagrant.
 - This project is still in its development stage, so there are high chances of bugs. Please report them through github's bug tracker.
-- Currently the host port 8080 is forwarded to guest port 8000. So you can check the website running on your guest browser at "localhost:8080" once vagrant finishes provisioning the VM (i.e. after `vagrant up` finishes).
+- Currently the host port 8080 is forwarded to guest port 80. So you can check the website running on your host browser at "localhost:8080" once vagrant finishes provisioning the VM (i.e. after `vagrant up` finishes).
 - This is only an initial set-up guide, I will write down a detailed usage guide at some point of time.
 
