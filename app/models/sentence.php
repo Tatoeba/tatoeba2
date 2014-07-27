@@ -197,19 +197,27 @@ class Sentence extends AppModel
         $this->validate['lang']['rule'] = array('inList', $this->languages);
     }
 
+    private function clean($text)
+    {
+        $text = trim($text);
+        // This line replaces any series of spaces, newlines, tabs, or other 
+        // ASCII whitespace characters with a single space. 
+        $text = preg_replace('/\s+/', ' ', $text);
+        // MySQL will truncate to a byte length of 1500, which may split
+        // a multibyte character. To avoid this, we preemptively
+        // truncate to a maximum byte length of 1500. If a multibyte
+        // character would be split, the entire character will be
+        // truncated.
+        $text = mb_strcut($text, 0, 1500, "UTF-8");
+        return $text;
+    }
+
     public function beforeValidate()
     {
         if (isset($this->data['Sentence']['text']))
         {
             $text = $this->data['Sentence']['text'];
-            $text = trim($text);
-            // MySQL will truncate to a byte length of 1500, which may split
-            // a multibyte character. To avoid this, we preemptively 
-            // truncate to a maximum byte length of 1500. If a multibyte
-            // character would be split, the entire character will be
-            // truncated.
-            $text = mb_strcut($text, 0, 1500, "UTF-8");
-            $this->data['Sentence']['text'] = trim($text);
+            $this->data['Sentence']['text'] = $this->clean($text);
         }
     }
 
@@ -600,7 +608,6 @@ class Sentence extends AppModel
         }
 
         if (!empty($lang) && $lang != "und") {
-
             $languages = array($lang);
         } else {
             $languages = CurrentUser::getLanguages();
