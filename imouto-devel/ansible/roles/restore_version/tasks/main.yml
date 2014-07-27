@@ -1,0 +1,11 @@
+---
+# Tasks to backup the database, configs and other important directories
+
+- fail: msg=Value for variable 'version' required
+  when: version is not defined
+- name: Run script to set the correct revision
+  script: change_version.sh {{code_dir}} {{version}}
+  register: result
+  ignore_errors: yes
+- debug: msg="{{result.stdout}}"
+  when: result|success

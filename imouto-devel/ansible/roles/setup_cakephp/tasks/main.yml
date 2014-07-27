@@ -12,6 +12,6 @@
   - database.php
   - core.php
 - name: Give read permissions to the code directory
-  file: path=/var/www-prod state=directory recurse=yes mode=555
+  file: path=/var/www-prod state=directory recurse=yes mode=777
 - name: Create cache directory
   file: path=/var/www-prod/app/tmp/cache state=directory recurse=yes mode=777
