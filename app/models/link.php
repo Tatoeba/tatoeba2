@@ -95,13 +95,19 @@ class Link extends AppModel
      * Add link.
      * NOTE: This will add 2 entries. One for A->B and one for B->A.
      *
-     * @param int $sentenceId    Id of the sentence.
-     * @param int $translationId Id of the translation.
+     * @param int    $sentenceId      Id of the sentence.
+     * @param int    $translationId   Id of the translation.
+     * @param string $sentenceLang    Language of the sentence.
+     * @param string $translationLang Language of the translation.
      *
      * @return bool
      */
-    public function add($sentenceId, $translationId, $sentenceLang, $translationLang)
-    {
+    public function add(
+        $sentenceId, 
+        $translationId, 
+        $sentenceLang = null, 
+        $translationLang = null
+    ) {
         $sentenceId = intval($sentenceId);
         $translationId = intval($translationId);
         
@@ -110,15 +116,39 @@ class Link extends AppModel
             return false;
         }
         
-        // Check whether the sentences exist.
-        $result = $this->query("
-            SELECT COUNT(*) as count FROM sentences 
-            WHERE id IN ($sentenceId, $translationId)
-        ");
         
-        if ($result[0][0]['count'] < 2) {
-            return false;
+        if ($sentenceLang != null && $translationLang != null) {
+            // Check whether the sentences exist.
+            $result = $this->query("
+                SELECT COUNT(*) as count FROM sentences 
+                WHERE id IN ($sentenceId, $translationId)
+            ");
+                    
+            if ($result[0][0]['count'] < 2) {
+                return false;
+            }
+        } else {
+            // Check whether the sentences exist and retrieve
+            // the language code for each sentence
+            $result = $this->query("
+                SELECT Sentence.id, Sentence.lang FROM sentences as Sentence
+                WHERE id IN ($sentenceId, $translationId)
+            ");
+
+            if (count($result) != 2) {
+                return false;
+            }
+
+            foreach ($result as $sentence) {
+                if ($sentence['Sentence']['id'] == $sentenceId) {
+                    $sentenceLang = $sentence['Sentence']['lang'];
+                }
+                if ($sentence['Sentence']['id'] == $translationId) {
+                    $translationLang = $sentence['Sentence']['lang'];
+                }
+            }
         }
+        
         
         // Saving links if sentences exist.
         $data[0]['sentence_id'] = $sentenceId;
