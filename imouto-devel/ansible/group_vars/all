@@ -33,6 +33,16 @@ sphinx_log_dir: /var/sphinx/log
 sphinx_sql_socket: /run/mysqld/mysqld.sock
 sphinx_config_dir: /etc/sphinxsearch
 
+#Variables for tatodetect
+#How do you want ngrams.db file be created? Options: [generate, download, skip]
+ngrams_create_mode: generate
+ngrams_db_download_url: http://www.aloneonmars.info/public/lool0/ngrams.db
+csv_download_url: http://tatoeba.org/files/downloads/
+csv_file_name: sentences_detailed.csv
+ngrams_db_dir: /etc/
+ngrams_db_file: ngrams.db
+
+
 #Variables for backup tasks
 backup_dir: /home/{{ansible_ssh_user}}/.backup
 #Absolute paths of files/directories that are to be backup-ed along with the database and configs

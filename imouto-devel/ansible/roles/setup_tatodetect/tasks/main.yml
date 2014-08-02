@@ -43,9 +43,23 @@
 - name: Copy init file to system-wide location
   copy: src=init.d dest=/etc/init.d/tatodetect mode=555
 - name: Copy config file to system-wide location
-  copy: src=tatodetect.js dest=/etc/tatodetect.js mode=555
+  template: src=tatodetect.js.j2 dest=/etc/tatodetect.js mode=555
 - name: Copy default options file to system-wide location
   copy: src=default dest=/etc/default/tatodetect mode=555
+
+- name: Download ngrams.db file
+  get_url: url={{ngrams_db_download_url}} dest={{ngrams_db_dir}}/{{ngrams_db_file}} mode=777
+  when: ngrams_create_mode == download
+- name: Ensure python3 is installed
+  apt: name=python3 state=present
+  when: ngrams_create_mode == generate
+- name: Copy ngrams.db generation script
+  template: src=generate.py.j2 dest=/tmp/generate.py
+  when: ngrams_create_mode == generate
+- name: Run the ngrams.db generation script
+  command: python3 generate.py chdir=/tmp/
+  when: ngrams_create_mode == generate
+
 - name: Start the daemon
   command: /etc/init.d/tatodetect start
 - name: Add startup entry
