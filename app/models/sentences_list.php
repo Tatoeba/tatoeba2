@@ -235,7 +235,7 @@ class SentencesList extends AppModel
         if ($translationsLang != null) {
             // All
             $sentenceParams['Translation'] = array(
-                "fields" => array("id", "lang", "text"),
+                "fields" => array("id", "lang", "text", "correctness"),
             );
             // Specific language
             if ($translationsLang != 'und') {
