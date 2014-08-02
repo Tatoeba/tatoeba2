@@ -94,9 +94,9 @@ $ imouto-devel -e version=3 restore_version.yml
 The same set of scripts of imouto (with a few changes) can be used for setting up production servers as well. You need to follow these steps:
 - Install `git` if not already present.
 - Clone the github repo on your machine (this should be different from the repo cloned for development server):
-  ```bash
-  $ git clone https://github.com/Tatoeba/admin.git
-  ```
+```bash
+$ git clone https://github.com/Tatoeba/admin.git
+```
 - Install ansible 1.4 or later (see the **imouto for development** section for instructions).
 - Edit `imouto/ansible/ansible.cfg`:
     * Uncomment the line `#ask_sudo_pass = True` if you want to enter sudo password through prompt
@@ -106,8 +106,8 @@ The same set of scripts of imouto (with a few changes) can be used for setting u
     * Uncomment `ansible_ssh_port: 3022` and set the correct port number if you want to use a port other than `22` for ssh
 - Edit `imouto/ansible/production-server` and replace `127.0.0.1` with the address of the server.
 - Run ansible-playbook command to provision a playbook:
-  ```bash
-  $ cd admin/imouto/ansible
-  $ ansible-playbook -i production-server playbook.yml
-  ```
+```bash
+$ cd admin/imouto/ansible
+$ ansible-playbook -i production-server playbook.yml
+```
   To provision the whole server you can use `production.yml` playbook or to perform individual tasks you can use the other playbooks provided with imouto.
