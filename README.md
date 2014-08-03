@@ -74,11 +74,11 @@ There are only 5 independent playbooks that are included with imouto currently:
 - `restore_version.yml`: To restore to a particular revision of code that is available in `versions/` directory
 
 #####Usage
-The `restore.yml` playbook needs the name of the backup file to be restored, which can be specified in the group_vars/all file or through command line argument like this:
+The `restore.yml` playbook needs the name of the backup file to be restored, which can be specified in the `host_vars/default` file or through command line argument like this:
 ```bash
 $ imouto-devel -e restore_src=path/to/backup/file.tar.gz restore.yml
 ```
-The `restore_version` playbook needs the version number of the version to restore to. The versions are numbered from 1 to N where 1 is the latest version and N is oldest. The maximum value of N depends on the variable `revision_limit` that can be set in `group_vars/all`. If you enter an invalid value for `version`, the playbook will throw an error and tell you the possible valid values for it. The playbook can be run as follows:
+The `restore_version` playbook needs the version number of the version to restore to. The versions are numbered from 1 to N where 1 is the latest version and N is oldest. The maximum value of N depends on the variable `revision_limit` that can be set in `host_vars/default`. If you enter an invalid value for `version`, the playbook will throw an error and tell you the possible valid values for it. The playbook can be run as follows:
 ```bash
 $ imouto-devel -e version=3 restore_version.yml
 ```
@@ -99,15 +99,15 @@ $ git clone https://github.com/Tatoeba/admin.git
 ```
 - Install ansible 1.4 or later (see the **imouto for development** section for instructions).
 - Edit `imouto/ansible/ansible.cfg`:
-    * Uncomment the line `#ask_sudo_pass = True` if you want to enter sudo password through prompt
-    * Uncomment the line `#ask_pass      = True` if you want to enter ssh password through prompt
-- Edit `imouto/ansible/group_vars/all`:
-    * Uncomment `ansible_ssh_user: tatoroot` and replace `tatoroot` with ssh username
-    * Uncomment `ansible_ssh_port: 3022` and set the correct port number if you want to use a port other than `22` for ssh
+    * Uncomment the line `#ask_sudo_pass = True` if you want to enter sudo password through prompt. Alternatively, you can also specify `-K` flag with the `ansible-playbook` command given below to do so.
+    * Uncomment the line `#ask_pass = True` if you want to enter ssh password through prompt. Alternatively, you can also specify `-k` flag with the `ansible-playbook` command given below to do so. If you want to avoid typing ssh password repeatedly, you can set up passwordless ssh using the method described [here](http://www.linuxproblem.org/art_9.html).
+- Edit `imouto/ansible/host_vars/tatoeba`:
+    * Set value of `ansible_ssh_user` to ssh user (the user with which you want to ssh).
+    * Uncomment `ansible_ssh_port: 3022` and set the correct port number if you want to use a port other than `22` for ssh.
 - Edit `imouto/ansible/production-server` and replace `127.0.0.1` with the address of the server.
-- Run ansible-playbook command to provision a playbook:
+- Run ansible-playbook command to run a playbook:
 ```bash
 $ cd admin/imouto/ansible
 $ ansible-playbook -i production-server playbook.yml
 ```
-  To provision the whole server you can use `production.yml` playbook or to perform individual tasks you can use the other playbooks provided with imouto.
+  To set up the whole server you can use `production.yml` playbook or to perform individual tasks you can use the other playbooks provided with imouto.
