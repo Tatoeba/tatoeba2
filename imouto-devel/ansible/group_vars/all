@@ -1,6 +1,8 @@
 ---
 
 #ansible_ssh_user: tatoroot
+#ansible_ssh_port: 3022
+
 mysql_user: root
 mysql_password: tatoeba
 mysql_db_name: tatoeba
