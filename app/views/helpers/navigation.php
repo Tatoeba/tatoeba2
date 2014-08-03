@@ -112,7 +112,7 @@ class NavigationHelper extends AppHelper
             </span>
             </div>
             
-            <ul>
+            <ul class="options">
 
             <?php
             $prevClass = "inactive";
