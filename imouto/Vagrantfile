@@ -122,5 +122,6 @@ Vagrant.configure("2") do |config|
 	config.vm.provision "ansible" do |ansible|
 		ansible.playbook = "ansible/local.yml"
   #	ansible.verbose = "vvvv"
+		ansible.extra_vars = "ansible/host_vars/default"
 	end
 end

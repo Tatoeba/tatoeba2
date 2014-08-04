@@ -1,0 +1,65 @@
+---
+
+ansible_ssh_user: vagrant
+ansible_ssh_port: 2222
+
+mysql_user: root
+mysql_password: tatoeba
+mysql_db_name: tatoeba
+
+#Set this to yes if you want to fetch the csv's from http://tatoeba.org/files/downloads/
+#Set this to no if the csv's are present in roles/codebase/files (sentences.csv, links.csv, tags_metadata.csv and tags_detailed.csv)
+download_csv: yes
+
+#List of python modules to be installed (please only add extra modules and do not remove any existing ones)
+python_modules:
+
+#Default directory for keeping all the back-up revisions of code
+code_dir: /vagrant/Tatoeba
+#Number of old revisions to keep as backup
+revision_limit: 3
+
+#Sphinx version. Look for correct version name at: http://sphinxsearch.com/downloads/release/
+sphinx_version: sphinxsearch_2.1.8-release-1~wheezy_i386.deb
+#Uncomment following line for 64-bit debian wheezy machine
+#sphinx_version: sphinxsearch_2.1.8-release-1~wheezy_amd64.deb
+
+#Variables for test server (leave unchanged if you don't need them)
+mysql_test_user: user
+mysql_test_password: password
+mysql_test_db_name: test_database
+
+#Variables for sphinx search
+sphinx_index_dir: /var/sphinx/indices
+sphinx_log_dir: /var/sphinx/log
+sphinx_sql_socket: /run/mysqld/mysqld.sock
+sphinx_config_dir: /etc/sphinxsearch
+
+#Variables for tatodetect
+#How do you want ngrams.db file be created? Options: [generate, download, skip]
+ngrams_create_mode: generate
+ngrams_db_download_url: http://www.aloneonmars.info/public/lool0/ngrams.db
+csv_download_url: http://tatoeba.org/files/downloads/
+csv_file_name: sentences_detailed.csv
+ngrams_db_dir: /etc/
+ngrams_db_file: ngrams.db
+
+
+#Variables for backup tasks
+backup_dir: /home/{{ansible_ssh_user}}/.backup
+#Absolute paths of files/directories that are to be backup-ed along with the database and configs
+#Uncomment the below line and write the list of files/directories to be backuped
+#backup_items:
+#- path/to/directory1
+#- path/to/directory2
+#- path/to/file/1
+#- path/to/file/2
+#Prefix for the backup file name
+backup_prefix: tatoeba
+#Destination on the host to copy backup to; append "/" if it's a directory
+backup_dest: ./
+
+#Variables for restore tasks
+restore_dir: /home/{{ansible_ssh_user}}/.restore
+#Local path to the tar.gz backup file
+restore_src: LOL.tar.gz
