@@ -35,8 +35,8 @@ $numSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
     ?>
     </h2>
     
-    <div id="sentencesStats">
-        <ul>
+    <div>
+        <ul class="sentencesStats">
             <?php
             foreach ($stats as $stat) {
                 $langCode = $stat['Language']['code'];

@@ -99,7 +99,7 @@ class NavigationHelper extends AppHelper
                 "randomLangChoiceInBrowse", 
                 $langArray, 
                 $selectedLanguage, 
-                null, 
+                array('class' => 'language-selector'),
                 false
             );
             ?>
@@ -112,7 +112,7 @@ class NavigationHelper extends AppHelper
             </span>
             </div>
             
-            <ul>
+            <ul class="options">
 
             <?php
             $prevClass = "inactive";

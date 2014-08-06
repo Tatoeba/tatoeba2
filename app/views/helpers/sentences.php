@@ -240,7 +240,7 @@ class SentencesHelper extends AppHelper
                 'translationLang_'.$id,
                 $langArray,
                 $preSelectedLang,
-                array("class"=>"translationLang"),
+                array("class"=>"translationLang language-selector"),
                 false
             );
             

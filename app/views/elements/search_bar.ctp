@@ -74,7 +74,7 @@ echo $form->create(
         'from',
         $languages,
         $selectedLanguageFrom,
-        null,
+        array('class' => 'language-selector'),
         false
     );
     ?>
@@ -91,7 +91,7 @@ echo $form->create(
         'to',
         $languages,
         $selectedLanguageTo,
-        null, 
+        array('class' => 'language-selector'),
         false
     );
     ?>
