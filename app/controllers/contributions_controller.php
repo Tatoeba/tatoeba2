@@ -71,6 +71,7 @@ class ContributionsController extends AppController
      */
     public function index($filter = 'und')
     {
+        $filter = Sanitize::paranoid($filter);
 
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
         if(strpos($user_agent, "Baidu") !== false) {
@@ -105,6 +106,7 @@ class ContributionsController extends AppController
         
         $this->set('contributions', $contributions);
         $this->set('users', $users);
+        $this->set('langFilter', $filter);
     }
     
     
