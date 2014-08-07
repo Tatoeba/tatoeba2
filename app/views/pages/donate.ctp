@@ -44,9 +44,9 @@
     <div class="module">
         <h2><?php __("Top donators this month"); ?></h2>
         <ol>
-            <li>-</li>
-            <li>-</li>
-            <li>-</li>
+            <li>William Hoggarth, 40€</li>
+            <li>Gary Blackburn, 40€</li>
+            <li>Shayne Power, 20€</li>
             <li>-</li>
             <li>-</li>
         </ol>
@@ -55,10 +55,10 @@
     <div class="module">
         <h2><?php __("Top donators of all time"); ?></h2>
         <ol>
-            <li>-</li>
-            <li>-</li>
-            <li>-</li>
-            <li>-</li>
+            <li>William Hoggarth, 40€</li>
+            <li>Gary Blackburn, 40€</li>
+            <li>Shayne Power, 20€</li>
+            <li>Jaroslaw Juda, 5€</li>
             <li>-</li>
         </ol>
     </div>
