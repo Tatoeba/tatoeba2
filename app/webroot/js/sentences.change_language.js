@@ -33,7 +33,7 @@ $(document).ready(function() {
         var sentenceId = $(this).data('sentenceId');
         var prevLang = $(this).data('currentLang');
         
-        $("#selectLang_" + sentenceId).toggle();
+        $("#selectLangContainer_" + sentenceId).toggle();
         
         $("#selectLang_" + sentenceId).change(function(){
         
@@ -41,7 +41,7 @@ $(document).ready(function() {
             var rootUrl = get_tatoeba_root_url();
             
             flagImage.attr('src', '/img/loading-small.gif');
-            $("#selectLang_" + sentenceId).hide();
+            $("#selectLangContainer_" + sentenceId).hide();
             
             $.post(
                 rootUrl + "/sentences/change_language/",

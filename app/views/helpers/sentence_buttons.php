@@ -329,17 +329,24 @@ class SentenceButtonsHelper extends AppHelper
             
             // language select
             $langArray = $this->Languages->otherLanguagesArray();
+            ?>
+
+            <span id="<?php echo 'selectLangContainer_'.$id; ?>" class="selectLang">
+            <?php
             echo $this->Form->select(
                 'selectLang_'.$id,
                 $langArray,
                 $lang,
                 array(
-                    "class"=>"selectLang", 
+                    "class"=>"language-selector", 
                     "title"=> $this->Languages->codeToName($lang)
                 ),
                 false
             );
-            
+            ?>
+            </span>
+
+            <?php
             // setting data for sentences.change_language.js
             echo "<script type='text/javascript'>
             $(document).ready(function() {
