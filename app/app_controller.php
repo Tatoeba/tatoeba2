@@ -68,9 +68,6 @@ class AppController extends Controller
      */
     public function beforeFilter() 
     {
-		// So that we can access the current users info from models.
-        CurrentUser::store($this->Auth->user());
-		
 		// blocked IP's
 		$blockedIps = Configure::read('Tatoeba.blockedIP');
         $ip = CurrentUser::getIp();
@@ -96,6 +93,9 @@ class AppController extends Controller
         $this->Auth->autoRedirect = false; 
         $this->RememberMe->check();
 
+        // So that we can access the current users info from models.
+        // Important: needs to be done after RememberMe->check().
+        CurrentUser::store($this->Auth->user());
         
         // Language of interface:
         // - By default we use the language set in the browser (or English, if the
