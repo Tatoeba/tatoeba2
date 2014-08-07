@@ -66,9 +66,9 @@ $this->pageTitle = __('Settings', true);
             <?php echo $form->checkbox('jquery_chosen'); ?>
             <label for="UserJqueryChosen">
                 <?php __(
-                    'Advanced language selector (note: this option is saved '.
-                    'in your cookies so it will only apply for your current '.
-                    'browser).'
+                    'Advanced language selector (experimental). Note: this '.
+                    'option is saved in your cookies so it will only apply '.
+                    'for your current browser.'
                 ); ?>
             </label>
         </div>
