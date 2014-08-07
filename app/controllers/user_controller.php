@@ -369,6 +369,9 @@ class UserController extends AppController
         }
         
         if (!empty($this->data)) {
+            $jqueryChosen = $this->data['User']['jquery_chosen'];
+            $this->Cookie->write('jquery_chosen', $jqueryChosen, false, "+1 month");;
+
             $this->data['User']['id'] = $currentUserId;
             $this->data['User']['lang'] = $this->_language_settings(
                 $this->data['User']['lang']
@@ -390,12 +393,7 @@ class UserController extends AppController
             $this->Session->setFlash($flashMsg);
         }
 
-        $this->redirect(
-            array(
-                'action' => 'profile',
-                 CurrentUser::get('username')
-            )
-        );
+        $this->redirect(array('action' => 'settings'));
     }
     
     
@@ -547,6 +545,8 @@ class UserController extends AppController
         }
         
         $this->data = $this->User->getSettings($currentUserId);
+        $this->data['User']['jquery_chosen'] 
+          = $this->Cookie->read('jquery_chosen');
     }
 }
 ?>
