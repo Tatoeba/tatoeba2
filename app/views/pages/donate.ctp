@@ -44,22 +44,22 @@
     <div class="module">
         <h2><?php __("Top donators this month"); ?></h2>
         <ol>
+            <li>John Storr, 100€</li>
             <li>William Hoggarth, 40€</li>
             <li>Gary Blackburn, 40€</li>
+            <li>Kevin Tan, 30€</li>
             <li>Shayne Power, 20€</li>
-            <li>-</li>
-            <li>-</li>
         </ol>
     </div>
 
     <div class="module">
         <h2><?php __("Top donators of all time"); ?></h2>
         <ol>
+            <li>John Storr, 100€</li>
             <li>William Hoggarth, 40€</li>
             <li>Gary Blackburn, 40€</li>
+            <li>Kevin Tan, 30€</li>
             <li>Shayne Power, 20€</li>
-            <li>Jaroslaw Juda, 5€</li>
-            <li>-</li>
         </ol>
     </div>
 </div>
