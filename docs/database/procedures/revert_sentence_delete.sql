@@ -6,8 +6,8 @@ CREATE PROCEDURE revert_sentence_delete(IN deleted_sentence_id INT, IN user_who_
 
 BEGIN
 
-INSERT INTO sentences (id, text, user_id, created)
-  SELECT c.sentence_id, c.text, c.user_id, c.datetime 
+INSERT INTO sentences (id, lang, text, user_id, created)
+  SELECT c.sentence_id, c.sentence_lang, c.text, c.user_id, c.datetime 
   FROM contributions AS c
   WHERE sentence_id = deleted_sentence_id 
     AND action = 'insert' 
