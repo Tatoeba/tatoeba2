@@ -84,9 +84,9 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'root',
-		'password' => 'tatoeba',
-		'database' => 'tatoeba',
+		'login' => '{{mysql_user}}',
+		'password' => '{{mysql_password}}',
+		'database' => '{{mysql_db_name}}',
 		'prefix' => '',
 		'encoding' => 'utf8'
 	);
@@ -95,17 +95,17 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'user',
-		'password' => 'password',
-		'database' => 'test_database_name',
+		'login' => '{{mysql_test_user}}',
+		'password' => '{{mysql_test_password}}',
+		'database' => '{{mysql_test_db_name}}',
 		'prefix' => '',
 		'encoding' => 'utf8'
 	);
 
     var $sphinx = array(
-        'indexdir' => '/home/tatoeba/sphinx/indices',
-        'socket' => '/run/mysqld/mysqld.sock',
-        'logdir' => '/home/tatoeba/sphinx/log'
+        'indexdir' => '{{sphinx_index_dir}}',
+        'socket' => '{{sphinx_sql_socket}}',
+        'logdir' => '{{sphinx_log_dir}}'
     );
 }
 ?>
