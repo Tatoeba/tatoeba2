@@ -28,6 +28,7 @@ class WhitespaceCleaner:
         self.cnx = mysql.connector.connect(user=self.parsed.user, 
                                       password=self.parsed.pwd, 
                                       host=self.parsed.host,
+                                      port=self.parsed.port,
                                       database=self.parsed.db)
 
     def disconnect(self):
@@ -96,6 +97,7 @@ if __name__ == "__main__":
     parser.add_argument('--user', default='root', help='MySQL username')
     parser.add_argument('--pwd', default='tatoeba', help='MySQL password')
     parser.add_argument('--host', default='127.0.0.1', help='host (e.g., 127.0.0.1)')
+    parser.add_argument('--port', default='3306', type=int, help='port (e.g., 3306)')
     parser.add_argument('--db', default='tatoeba', help='MySQL database')
     parser.add_argument('--dry_run', default=False, action='store_true', help='Use this to prevent execution')
     parser.add_argument('--csv_dir', default='', help='subdirectory to which csv files should be written') 
