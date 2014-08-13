@@ -85,6 +85,7 @@
 
         echo $scripts_for_layout;
         
+        echo $this->element('seo_international_targeting');
     ?>
     
     <link rel="search" type="application/opensearchdescription+xml" href="http://tatoeba.org/opensearch.xml" title="Tatoeba project" />
