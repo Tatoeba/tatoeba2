@@ -47,8 +47,8 @@
             <li>John Storr, 100€</li>
             <li>William Hoggarth, 40€</li>
             <li>Gary Blackburn, 40€</li>
+            <li>Kiselev Dmitriy, 40€</li>
             <li>Kevin Tan, 30€</li>
-            <li>Shayne Power, 20€</li>
         </ol>
     </div>
 
@@ -58,8 +58,8 @@
             <li>John Storr, 100€</li>
             <li>William Hoggarth, 40€</li>
             <li>Gary Blackburn, 40€</li>
+            <li>Kiselev Dmitriy, 40€</li>
             <li>Kevin Tan, 30€</li>
-            <li>Shayne Power, 20€</li>
         </ol>
     </div>
 </div>
