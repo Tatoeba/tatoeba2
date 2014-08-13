@@ -59,8 +59,8 @@ class AppController extends Controller
         'Javascript',
         'Languages'
     );
-	
-	
+    
+    
     /**
      * 
      *
@@ -68,8 +68,8 @@ class AppController extends Controller
      */
     public function beforeFilter() 
     {
-		// blocked IP's
-		$blockedIps = Configure::read('Tatoeba.blockedIP');
+        // blocked IP's
+        $blockedIps = Configure::read('Tatoeba.blockedIP');
         $ip = CurrentUser::getIp();
         foreach( $blockedIps as $blockedIp) {
             if (strpos($ip, $blockedIp, 0) ===0) {
@@ -78,7 +78,7 @@ class AppController extends Controller
                 return; 
             }
         }
-		
+        
         Security::setHash('md5');
         $this->Cookie->domain = TATOEBA_DOMAIN;
         // This line will call views/elements/session_expired.ctp.
@@ -145,7 +145,7 @@ class AppController extends Controller
         if ($this->RequestHandler->isAjax()) {
             $this->layout = null;
         }
-		
+        
         // TODO
         // We're passing the value from the cookie to the session because it is
         // needed for the translation form (in helpers/sentences.php), but we
@@ -153,17 +153,17 @@ class AppController extends Controller
         // This is not optimized, but I'm too lazy to do otherwise.
         $preSelectedLang = $this->Cookie->read('contribute_lang');
         $this->Session->write('contribute_lang', $preSelectedLang);
-		
-		// Same for these cookies, used in show_all_in.
+        
+        // Same for these cookies, used in show_all_in.
         $lang = $this->Cookie->read('browse_sentences_in_lang');
         $this->Session->write('browse_sentences_in_lang', $lang);
-		
+        
         $translationLang = $this->Cookie->read('show_translations_into_lang');
         $this->Session->write('show_translations_into_lang', $translationLang);
-		
+        
         $notTranslatedInto = $this->Cookie->read('not_translated_into_lang');
         $this->Session->write('not_translated_into_lang', $notTranslatedInto);
-		
+        
         $filterAudioOnly = $this->Cookie->read('filter_audio_only');
         $this->Session->write('filter_audio_only', $filterAudioOnly);
 
@@ -175,7 +175,7 @@ class AppController extends Controller
         $jqueryChosen = $this->Cookie->read('jquery_chosen');
         $this->Session->write('jquery_chosen', $jqueryChosen);
     }
-	
+    
 
     /**
      * TODO This method smells
@@ -188,7 +188,7 @@ class AppController extends Controller
         $this->redirect('/'.$this->params['lang'].$to);
         exit;
     }
-	
+    
 
     /**
      * Redirect to a given url, and specify the interface language
@@ -209,7 +209,7 @@ class AppController extends Controller
         }
         return parent::redirect($url, $status, $exit);
     }
-	
+    
 
     /**
      * Returns the ISO code of the language in which we should set the interface, 
@@ -219,30 +219,14 @@ class AppController extends Controller
      */
     public function getSupportedLanguage()
     {
-        // NOTE: If you update this list, update views/elements/interface_language.ctp
-        // and config/routes.php as well.
-        $supportedLanguages = array(
-            'en'    => 'eng',
-            'ja'    => 'jpn',
-            'fr'    => 'fre',
-            'es'    => 'spa',
-            'de'    => 'deu',
-            'zh'    => 'chi',
-            'it'    => 'ita',
-            'pl'    => 'pol',
-            'pt-BR' => 'pt_BR',
-            'ru'    => 'rus',
-            'tr'    => 'tur',
-            'el'    => 'gre',
-            'ar'    => 'ara',
-            'eu'    => 'eus',
-            'eo'    => 'epo',
-            'fi'    => 'fin',
-            'hu'    => 'hun',
-            'tl'    => 'tgl',
-            'mr'    => 'mar',
-            // TODO: Handle 'nds' (Low German), which does not have a two-letter code.
-        );
+        $configUiLanguages = Configure::read('UI.languages');
+        $supportedLanguages = array();
+        foreach ($configUiLanguages as $langs) {
+            if ($langs[1] != null) {
+                $supportedLanguages[$langs[1]] = $langs[0];
+            }
+        }
+
         if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) { 
             
             $browserLanguages = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
@@ -250,7 +234,6 @@ class AppController extends Controller
             foreach ($browserLanguages as $browserLang) {
                 $browserLangArray = explode(';', $browserLang);
                 $lang = $browserLangArray[0];
-                
                 if (isset($supportedLanguages[$lang])) {
                     return $supportedLanguages[$lang];
                 } 
