@@ -7,15 +7,18 @@
   apt: name=python-mysqldb state=present
 - name: Copy and extract the backup file contents
   unarchive: src={{restore_src}} dest={{restore_dir}}
-- name: Create the tatoeba schema if it doesn't already exists
+- name: Drop the tatoeba schema if it already exists
+  shell: echo "DROP DATABASE IF EXISTS {{mysql_db_name}}" | mysql -u {{mysql_user}} -p{{mysql_password}}
+- name: Create the tatoeba schema
   shell: echo "CREATE DATABASE IF NOT EXISTS {{mysql_db_name}}" | mysql -u {{mysql_user}} -p{{mysql_password}}
 - name: Restore mysql database
-  mysql_db: name={{mysql_db_name}} login_user={{mysql_user}} login_password={{mysql_password}} state=import target={{restore_dir}}/{{mysql_db_name}}.sql
-- name: Restore configurations
+# The following command requires root privileges for importing the database (dump contains trigger statements)
+  mysql_db: name={{mysql_db_name}} login_user=root login_password={{mysql_root_password}} state=import target={{restore_dir}}/{{mysql_db_name}}.sql
+- name: Restore common directory
   command: cp -rf {{restore_dir}}/common {{code_dir}}
 - name: Restore other important files/directories
-  command: cp -rf {{restore_dir}}/other/{{item}} {{item}}
-  with_items: backup_items
-  when: backup_items is defined
+  command: cp -rf {{restore_dir}}/other/{{item}} {{item}} removes={{restore_dir}}/other/{{item}}
+  with_items: restore_items
+  when: restore_items is defined
 - name: Remove the restore directory from the server
   command: rm -rf {{restore_dir}}
