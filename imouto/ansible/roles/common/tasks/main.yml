@@ -3,10 +3,10 @@
 
 - name: Copy sources list for apt
   copy: src=sources.list dest=/etc/apt/sources.list owner=root group=root mode=644 backup=yes
-- name: Update apt repositories cache
-  apt: update_cache=yes
+- name: Update apt cache
+  apt: update_cache=yes cache_valid_time=36000
 - name: Clear up home directory
-  command: rm -rf {{item}} removes=/home/{{ansible_ssh_user}}/{{item}}
+  command: rm -rf {{item}} removes=/home/{{ansible_ssh_user}}/{{item}} chdir=/home/{{ansible_ssh_user}}/
   with_items:
   - base.sh
   - chef.sh
@@ -22,9 +22,11 @@
   apt: name=git state=present
 - name: Ensure vim is installed
   apt: name=vim state=present
-
-#- name: Install pip on remote machine
-#  apt: name=python-pip state=present
-#- name: Install some basic python modules
-#  pip: name={{item}} state=present
-#  with_items: python_modules
+- name: Install pip on remote machine
+  apt: name=python-pip state=present force=yes
+- name: Ensure python MySQLdb module is present
+  apt: name=python-mysqldb state=present
+- name: Install some basic python modules
+  pip: name={{item}} state=present
+  with_items: python_modules
+  when: python_modules is defined
