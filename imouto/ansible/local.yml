@@ -9,14 +9,15 @@
   gather_facts: yes
   roles:
   - common
-  - lemp
-  - update_code
-  - setup_cakephp
-  - setup_database
+  - setup_nginx
+  - setup_php
+  - setup_mysql
+  - { role: update_code, update_cakephp_config: yes }
+  - { role: setup_database, reimport_db: yes }
   - install_sphinx
-#  - configure_sphinx 
-  - setup_nihongoparserd
-  - setup_sinoparserd
-  - setup_suggestd
-  - setup_tatodetect
+  - { role: configure_sphinx, sphinx_create_indexes: no }
+  - { role: setup_nihongoparserd, force_install: no }
+  - { role: setup_sinoparserd, force_install: no }
+  - { role: setup_suggestd, force_install: no }
+  - { role: setup_tatodetect, force_install: no }
   - setup_imagick

@@ -1,8 +1,9 @@
 ---
-#Playbook to update the code from github
+# Playbook to update the code from github
+
 - hosts: all
   sudo: yes
   gather_facts: yes
   roles:
-  - update_code
-  - setup_cakephp
+  - { role: update_code, update_cakephp_config: false }
+  - { role: setup_database, reimport_db: false }

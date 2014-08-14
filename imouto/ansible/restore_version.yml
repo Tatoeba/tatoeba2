@@ -1,8 +1,8 @@
 ---
-#Playbook to restore to Nth revision of the code
+# Playbook to restore to Nth revision of the code
+
 - hosts: all
   sudo: yes
   gather_facts: no
   roles:
   - restore_version
-  - setup_cakephp

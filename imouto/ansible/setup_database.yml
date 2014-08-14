@@ -1,0 +1,8 @@
+---
+# Playbook to set up the tatoeba database
+
+- hosts: all
+  sudo: yes
+  gather_facts: yes
+  roles:
+  - { role: setup_database, reimport_db: no }

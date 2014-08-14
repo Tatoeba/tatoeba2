@@ -1,5 +1,6 @@
 ---
-#Playbook to backup the database, configs and other static files
+# Playbook to backup the database, configs and other static files
+
 - hosts: all
   sudo: yes
   gather_facts: yes

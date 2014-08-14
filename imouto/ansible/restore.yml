@@ -1,5 +1,6 @@
 ---
-#Playbook to restore previously backed up data
+# Playbook to restore previously backed up data
+
 - hosts: all
   sudo: yes
   gather_facts: yes

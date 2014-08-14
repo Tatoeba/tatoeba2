@@ -1,5 +1,5 @@
 ---
-#Playbook to configure sphinx and create inde
+#Playbook to configure sphinx and create indexes
 
 - hosts: all
   sudo: yes
@@ -8,4 +8,4 @@
   - name: Clean the index directory
     command: rm -rf {{sphinx_index_dir}}
   roles:
-  - configure_sphinx
+  - { role: configure_sphinx, sphinx_create_indexes: true }
