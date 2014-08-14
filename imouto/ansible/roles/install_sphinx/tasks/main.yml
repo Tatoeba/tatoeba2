@@ -1,14 +1,8 @@
 ---
-# Playbook to install sphinx server
-- name: Install dependencies for Sphinx search
-  apt: name={{item}} state=present
-  with_items:
-  - mysql-client
-  - unixodbc
-  - libpq5
-- name: Fetch sphinx search installation package
-  get_url: url=http://sphinxsearch.com/files/{{sphinx_version}} dest=/tmp/{{sphinx_version}}
+# Playbook to install sphinx search
 - name: Install sphinx search
-  apt: deb=/tmp/{{sphinx_version}} state=installed
-- name: Remove the package file
-  command: rm -rf /tmp/{{sphinx_version}}
+  apt: name=sphinxsearch state=present force=yes
+- name: Remove cron job for daily indexing from /etc/cron.d
+  cron: cron_file=sphinxsearch state=absent
+- name: Copy init.d script to system-wide location
+  template: src=sphinxsearch dest=/etc/init.d/sphinxsearch mode=755
