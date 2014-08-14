@@ -1,20 +1,30 @@
 ---
 # Playbook to setup sphinx server, index sentences and start the search daemon
+
+- name: Check whether common directory is present or not
+  shell: ls {{code_dir}}/common/config | wc -l
+  register: code_status
+- name: Database import/update fail message
+  fail: msg="The config directory is not present in {{code_dir}}/common. Please run update_code.yml first to create these directories. Also, you need to have the tatoeba database setup. Use setup_database.yml for that."
+  when: code_status.stdout|int == 0
+
 - name: Create directories for sphinx indices and logs
-  file: path={{item}} state=directory recurse=yes mode=777
+  file: path={{item}} state=directory recurse=yes mode=744 owner=sphinxsearch group=sphinxsearch
   with_items:
   - "{{sphinx_index_dir}}"
   - "{{sphinx_log_dir}}"
 - name: Copy generate_sphinx_conf.php on the server
   copy: src=generate_sphinx_conf.php dest={{code_dir}}/common/config/
 - name: Generate sphinx.conf
-  shell: php generate_sphinx_conf.php > sphinx.conf chdir={{code_dir}}/common/config
+  shell: php generate_sphinx_conf.php > sphinx.conf chdir={{code_dir}}/common/config owner=sphinxsearch group=sphinxsearch
 - name: Create a link to the sphinx config
   command: ln -sf {{code_dir}}/common/config/sphinx.conf {{sphinx_config_dir}}/sphinx.conf
 - name: Remove generate_sphinx_conf.php
   command: rm -rf generate_sphinx_conf.php chdir={{code_dir}}/common/config
 - name: Create indexes
   command: indexer --config {{sphinx_config_dir}}/sphinx.conf --all
+  when: sphinx_create_indexes == true
+- name: Set sphinxsearch to start with system startup
+  command: sed -i 's/START=no/START=yes/' /etc/default/sphinxsearch
 - name: Start the search daemon
-  command: searchd --config {{sphinx_config_dir}}/sphinx.conf
-  ignore_errors: yes
+  service: name=sphinxsearch state=started enabled=yes
