@@ -49,17 +49,4 @@ if [ $new_version -lt 1 ] || [ $new_version -gt $version_count ] ; then
 	exit 1
 fi
 
-counter="$version_count"
-
-for dir in "${versions[@]}"
-do
-	if [ "$counter" -eq "$new_version" ] ; then
-		rm -rf "$repo_dir""/versions/current"
-		ln -sf "$dir" "$repo_dir""/versions/current"
-		break
-	fi
-	counter=(`expr $counter - 1`)
-done
-
-echo "Revision successfully changed to "$new_version""
 exit 0
