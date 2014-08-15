@@ -1,0 +1,16 @@
+---
+# Tasks for setting up mysql
+
+- name: Install mysql-server
+  apt: name=mysql-server update_cache=yes cache_valid_time=36000 state=present
+- name: Set password for root
+  command: mysqladmin -u root password {{mysql_root_password}}
+  ignore_errors: yes
+- name: Create the tatoeba database
+  mysql_db: name={{mysql_db_name}} login_user=root login_password={{mysql_root_password}} state=present
+- name: Create and give privileges to mysql_user to the tatoeba database
+  mysql_user: login_user=root login_password={{mysql_root_password}} name={{mysql_user}} password={{mysql_password}} priv={{mysql_db_name}}.*:ALL,GRANT state=present
+  when: mysql_user != "root"
+- name: Give FILE privileges to the mysql_user
+  mysql_user: login_user=root login_password={{mysql_root_password}} name={{mysql_user}} password={{mysql_password}} priv=*.*:FILE state=present append_privs=yes
+  when: mysql_user != "root"
