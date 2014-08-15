@@ -1,5 +1,20 @@
 ---
 # Playbook to setup and install sinoparserd
+
+- name: Check if sinoparserd is already present
+  shell: ls /usr/local/bin/sinoparserd | wc -l
+  register: install_state
+- name: Installation skip message
+  debug: msg="sinoparserd already installed and force_install == false; skipping installation"
+  when: install_state.stdout|int == 1 and force_install == false
+- name: Force install message
+  debug: msg="sinoparserd already installed; reinstalling it (force_intall == true)"
+  when: install_state.stdout|int == 1 and force_install == true
+
+- name: Stop nihongoparserd daemon if started
+  command: service sinoparserd stop
+  when: install_state.stdout|int == 1 and force_install == true
+  ignore_errors: yes
 - name: Install dependencies for sinoparserd
   apt: name={{item}} state=present
   with_items:
@@ -9,30 +24,44 @@
   - libevent-dev 
   - libexpat1-dev
   - libgmm++-dev
+  when: install_state.stdout|int == 0 or force_install == true
 - name: Fetch sinoparserd source
   git: repo=https://github.com/allan-simon/sinoparserd.git dest=/tmp/sinoparserd
+  when: install_state.stdout|int == 0 or force_install == true
 - name: Fix to import the correct file in Index.h
   command: sed -i 's/tree_str/TatoTreeStr/' src/Index.h chdir=/tmp/sinoparserd
   ignore_errors: yes
+  when: install_state.stdout|int == 0 or force_install == true
 - name: Generate Makefile
   command: cmake . chdir=/tmp/sinoparserd
+  when: install_state.stdout|int == 0 or force_install == true
 - name: Compile
   command: make chdir=/tmp/sinoparserd
+  when: install_state.stdout|int == 0 or force_install == true
 - name: Copy Binaries
   command: cp sinoparserd /usr/local/bin/sinoparserd chdir=/tmp/sinoparserd
+  when: install_state.stdout|int == 0 or force_install == true
 - name: Copy init file to system-wide location
   copy: src=init.d dest=/etc/init.d/sinoparserd mode=555
+  when: install_state.stdout|int == 0 or force_install == true
 - name: Copy default file to system-wide location
   copy: src=default dest=/etc/default/sinoparserd mode=555
+  when: install_state.stdout|int == 0 or force_install == true
 - name: Copy dictionary files to a system wide location - 1
   command: cp doc/cantonese.xml /etc/cantonese.xml chdir=/tmp/sinoparserd
+  when: install_state.stdout|int == 0 or force_install == true
 - name: Copy dictionary files to a system wide location - 2
   command: cp doc/mandarin.xml /etc/mandarin.xml chdir=/tmp/sinoparserd
+  when: install_state.stdout|int == 0 or force_install == true
 - name: Create unprivileged user sinoparserd
   user: name=sinoparserd system=yes
+  when: install_state.stdout|int == 0 or force_install == true
 - name: Start the daemon
   command: /etc/init.d/sinoparserd start
+  when: install_state.stdout|int == 0 or force_install == true
 - name: Add startup entry
   command: update-rc.d sinoparserd defaults
+  when: install_state.stdout|int == 0 or force_install == true
 - name: Remove temporary files
   command: rm -rf /tmp/sinoparserd
+  when: install_state.stdout|int == 0 or force_install == true
