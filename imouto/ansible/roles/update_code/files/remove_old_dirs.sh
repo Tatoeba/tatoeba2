@@ -23,6 +23,7 @@ function get_all_versions {
 }
 
 repo_dir="$1" #Path to directory where all old revisions will be stored
+temp_dir="$3" #Name of the temporary repo directory that is to be renamed
 
 dir_count=(`get_dir_count "$1"`) #Number of revisions present currently
 
@@ -41,6 +42,6 @@ fi
 
 #Create new directory for new revision
 dir_name=$(date +%F--%H-%M-%S)
-mkdir -p "$repo_dir""/versions/""$dir_name"
+mv "$repo_dir""/versions/""$temp_dir" "$repo_dir""/versions/""$dir_name"
 rm -rf "$repo_dir""/versions/current"
 ln -sf "$dir_name""/" "$repo_dir""/versions/current"
