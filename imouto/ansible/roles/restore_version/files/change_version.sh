@@ -12,7 +12,7 @@ function get_all_versions {
 }
 
 function get_all_versions_count {
-	ls -1 -p "$1"/versions | grep / | wc -l
+	get_all_versions | wc -l
 }
 
 function get_current_version {
