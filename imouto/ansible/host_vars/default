@@ -102,3 +102,15 @@ restore_dir: /home/{{ansible_ssh_user}}/.restore
 # Local path to the tar.gz backup file
 restore_src: LOL.tar.gz
 restore_items: "{{backup_items|default([])}}"
+
+
+# Variables for New Relic
+# -----------------------
+newrelic_loglevel: info
+newrelic_logfile: /var/log/newrelic/nrsysmond.log
+newrelic_ssl: "false"
+newrelic_pidfile: /var/run/newrelic/nrsysmond.pid
+newrelic_collector_host: collector.newrelic.com
+newrelic_timeout: 30
+
+newrelic_php_app_name: TatoebaCakePHP

@@ -2,8 +2,8 @@
 
 # Variables for ssh
 # -----------------
-ansible_ssh_user: ssh-user
-ansible_ssh_port: ssh-port
+ansible_ssh_user: tatoroot
+ansible_ssh_port: 3022
 
 
 # Variables for common role
@@ -71,7 +71,7 @@ sphinx_config_dir: /etc/sphinxsearch
 
 # Variables for tatodetect
 # ------------------------
-#How do you want ngrams.db file be created? Options: [generate, download, skip]
+# How do you want ngrams.db file be created? Options: [generate, download, skip]
 ngrams_create_mode: download
 ngrams_db_download_url: http://www.aloneonmars.info/public/lool0/ngrams.db
 csv_download_url: http://tatoeba.org/files/downloads/
@@ -83,12 +83,12 @@ ngrams_db_file: ngrams.db
 # Variables for backup tasks
 # --------------------------
 backup_dir: /home/{{ansible_ssh_user}}/.backup
-#Absolute paths of files/directories that are to be backup-ed along with the database and configs
+# Absolute paths of files/directories that are to be backup-ed along with the database and configs
 backup_items:
 - "{{audio_server_root}}"
 - "{{static_server_root}}"
 - "{{xcache_server_root}}"
-#- "{{downloads_server_root}}"
+# - "{{downloads_server_root}}"
 - "/etc/nginx/sites-available"
 #Prefix for the backup file name
 backup_prefix: tatoeba
@@ -99,6 +99,18 @@ backup_dest: ./
 # Variables for restore tasks
 # ---------------------------
 restore_dir: /home/{{ansible_ssh_user}}/.restore
-#Local path to the tar.gz backup file
+# Local path to the tar.gz backup file
 restore_src: LOL.tar.gz
 restore_items: "{{backup_items|default([])}}"
+
+
+# Variables for New Relic
+# -----------------------
+newrelic_loglevel: info
+newrelic_logfile: /var/log/newrelic/nrsysmond.log
+newrelic_ssl: "false"
+newrelic_pidfile: /var/run/newrelic/nrsysmond.pid
+newrelic_collector_host: collector.newrelic.com
+newrelic_timeout: 30
+
+newrelic_php_app_name: TatoebaCakePHP
