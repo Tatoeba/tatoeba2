@@ -114,3 +114,5 @@ newrelic_collector_host: collector.newrelic.com
 newrelic_timeout: 30
 
 newrelic_php_app_name: TatoebaCakePHP
+newrelic_nginx_monitor_name: Tatoeba-nginx
+newrelic_php-fpm_monitor_name: Tatoeba-php-fpm

@@ -37,6 +37,25 @@ server {
 	location ~ /(\.ht|\.svn) {
 		deny all;
 	}
+
+	{% if enable_status_pages|default(false) != false %}
+
+	location ~ ^/(status|ping)$ {
+		access_log off;
+		allow 127.0.0.1;
+		deny all;
+		include /etc/nginx/fastcgi_params;
+		fastcgi_pass unix:/var/run/php5-fpm.sock;
+	}
+
+	location ~ /nginx_status {
+		stub_status on;
+		access_log off;
+		allow 127.0.0.1;
+		deny all;
+	}
+	
+	{% endif %}
 }
 
 server {

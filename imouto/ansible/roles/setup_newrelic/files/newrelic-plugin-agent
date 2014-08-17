@@ -1,0 +1,106 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:          newrelic-plugin-agent
+# Required-Start:    $network $local_fs $remote_fs
+# Required-Stop:     $remote_fs
+# Should-Start:      $named
+# Should-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: The New Relic Plugin Agent
+# Description:       The New Relic Plugin Agent
+### END INIT INFO
+
+NAME=newrelic-plugin-agent
+CONFIG=/etc/newrelic/newrelic-plugin-agent.cfg
+DAEMON=/usr/local/bin/newrelic-plugin-agent
+DAEMON_OPTS="-c $CONFIG"
+DESC="New Relic Plugin Agent"
+TIMEOUT=5
+PIDDIR_MODE=755
+PIDDIR_OWNER=
+PIDDIR_OWNER_FALLBACK="root"
+
+# Include newrelic plugin agent defaults if available
+if [ -f /etc/default/$NAME ] ; then
+    . /etc/default/$NAME
+fi
+
+# define LSB log_* functions.
+. /lib/lsb/init-functions
+
+check_daemon() {
+  if [ ! -x $DAEMON ]; then
+    log_action_msg "$DAEMON not found" || true
+    log_end_msg 1 || false
+    exit 1
+  fi
+}
+
+check_config() {
+  if [ ! -e $CONFIG ]; then
+    log_action_msg "Configuration file $CONFIG not found" || true
+    log_end_msg 1 || false
+    exit 1
+  fi
+}
+
+check_pid() {
+  PIDDIR=$(dirname $PIDFILE)
+  if [ ! id -u $PIDDIR_OWNER > /dev/null 2>&1 ]; then
+    PIDDIR_OWNER=$PIDDIR_OWNER_FALLBACK
+  fi
+  if [ ! -d $PIDDIR ]; then
+    install -m $PIDDIR_MODE -o $PIDDIR_OWNER -g $PIDDIR_OWNER -d $PIDDIR
+    log_action_msg "PID directory was not found and created" || true
+  fi;
+}
+
+PIDFILE=`sed -n -e 's/^[ ]*pidfile[ ]*:[ ]*//p' -e 's/[ ]*$//' $CONFIG`
+
+export PATH="${PATH}:/usr/sbin:/sbin/:usr/local/sbin:/usr/local/bin"
+
+case "$1" in
+  start)
+    check_daemon
+    check_config
+    check_pid
+
+    log_daemon_msg "Starting $DESC" "$NAME" || true
+    if [ -s $PIDFILE ] && kill -0 `cat $PIDFILE` > /dev/null 2>&1; then
+      log_action_msg "apparently already running" || true
+      log_end_msg 0 || true
+      exit 0
+    fi
+
+    if start-stop-daemon --oknodo --start --pidfile $PIDFILE --exec $DAEMON -- $DAEMON_OPTS; then
+      log_end_msg 0 || true
+    else
+      log_end_msg 1 || false
+    fi
+  ;;
+  stop)
+    log_daemon_msg "Stopping $DESC" "$NAME" || true
+    check_daemon
+
+    if start-stop-daemon --oknodo --stop --retry $TIMEOUT --pidfile $PIDFILE; then
+      log_end_msg 0 || true
+    else
+      log_end_msg 1 || false
+    fi
+  ;;
+  status)
+    status_of_proc -p $PIDFILE $DAEMON $NAME && exit 0 || exit $?
+  ;;
+  restart|force-reload)
+    $0 stop
+    $0 start
+  ;;
+  *)
+    echo "Usage: /etc/init.d/$NAME {start|stop|restart|force-reload}" >&2
+    exit 1
+  ;;
+esac
+
+exit 0
