@@ -16,10 +16,10 @@ function get_all_versions_count {
 }
 
 function get_current_version {
-	array=(`get_all_versions "$1"`)
+	all_versions=(`get_all_versions "$1"`)
 	count="$2"
 	current=(`readlink "$1""/versions/current"`)
-	for dir in "${array[@]}"
+	for dir in "${all_versions[@]}"
 	do
 		if [ "$dir" = "$current" ] ; then
 			break
