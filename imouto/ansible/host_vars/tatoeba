@@ -65,6 +65,7 @@ mysql_test_db_name: test_database
 sphinx_index_dir: /var/sphinx/indices
 sphinx_log_dir: /var/sphinx/log
 sphinx_sql_socket: /run/mysqld/mysqld.sock
+sphinx_pid_file: /var/run/sphinxsearch/searchd.pid
 # Changing the config dir will require you to also change sphinx's init.d script in /etc/init.d/sphinxsearch
 sphinx_config_dir: /etc/sphinxsearch
 
