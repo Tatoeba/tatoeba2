@@ -106,7 +106,7 @@ class DATABASE_CONFIG {
         'indexdir' => '{{sphinx_index_dir}}',
         'socket' => '{{sphinx_sql_socket}}',
         'logdir' => '{{sphinx_log_dir}}',
-        'pidfile' => '{{sphinx_pd_file}}'
+        'pidfile' => '{{sphinx_pid_file}}'
     );
 }
 ?>
