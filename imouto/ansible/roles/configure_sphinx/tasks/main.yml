@@ -2,11 +2,12 @@
 # Playbook to setup sphinx server, index sentences and start the search daemon
 
 - name: Check whether common directory is present or not
-  shell: ls {{code_dir}}/common/config | wc -l
+  shell: ' [ -d  {{code_dir}}/common/config ] '
   register: code_status
+  ignore_errors: yes
 - name: Database import/update fail message
   fail: msg="The config directory is not present in {{code_dir}}/common. Please run update_code.yml first to create these directories. Also, you need to have the tatoeba database setup. Use setup_database.yml for that."
-  when: code_status.stdout|int == 0
+  when: code_status.stderr
 
 - name: Create directories for sphinx indices and logs
   file: path={{item}} state=directory recurse=yes mode=744 owner=sphinxsearch group=sphinxsearch
