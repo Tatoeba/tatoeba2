@@ -38,7 +38,7 @@ elif [ "$#" -eq 3 ] ; then
 	else
 		HOST_DIR="$2"
 		GUEST_DIR="$3"
-		sshfs -p "$PORT" "$USER"@"$HOST":"$GUEST_DIR" "$HOST_DIR"
+		sshfs -o ssh_command="ssh -p $PORT -i $HOME/.vagrant.d/insecure_private_key" "$USER"@"$HOST":"$GUEST_DIR" "$HOST_DIR"
 		echo "Successfully mounted $HOST:$PORT's $GUEST_DIR at $HOST_DIR"
 		exit 0
 	fi
