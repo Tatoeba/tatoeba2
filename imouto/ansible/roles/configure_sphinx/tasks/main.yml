@@ -7,7 +7,7 @@
   ignore_errors: yes
 - name: Database import/update fail message
   fail: msg="The config directory is not present in {{code_dir}}/common. Please run update_code.yml first to create these directories. Also, you need to have the tatoeba database setup. Use setup_database.yml for that."
-  when: code_status.stderr
+  when: code_status|failed
 
 - name: Create directories for sphinx indices and logs
   file: path={{item}} state=directory recurse=yes mode=744 owner=sphinxsearch group=sphinxsearch

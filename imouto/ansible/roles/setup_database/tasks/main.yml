@@ -2,11 +2,12 @@
 # Tasks to create the database, install updates and import sentences in it
 
 - name: Check whether tatoeba's code is present or not
-  shell: ls {{code_dir}}/versions/current | wc -l
+  shell: ' [ -d  {{code_dir}}/versions/current ] '
   register: code_status
+  ignore_errors: yes
 - name: Database import/update fail message
   fail: msg="Tatoeba's code is not present in {{code_dir}}/versions or the current link is missing. Please fetch the code first using update_code.yml playbook."
-  when: code_status.stdout|int == 0
+  when: code_status|failed
 
 - name: Delete old database with same name if it exists
   shell: echo "DROP DATABASE IF EXISTS {{mysql_db_name}}" | mysql -u {{mysql_user}} -p{{mysql_password}}
