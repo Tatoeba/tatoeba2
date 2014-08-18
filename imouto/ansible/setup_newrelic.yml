@@ -1,0 +1,8 @@
+---
+# Playbook to set up New Relic monitoring daemons
+
+- hosts: all
+  sudo: yes
+  gather_facts: yes
+  roles:
+  - setup_newrelic
