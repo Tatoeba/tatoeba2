@@ -8,7 +8,7 @@ IMOUTO is a collection of easy-to-use automation scripts for [tatoeba](http://ta
 Version
 ----
 
-1.2
+1.3
 
 
 Usage Instructions
@@ -34,7 +34,7 @@ $ sudo sh install_vagrant-1.6.3_x64.sh
 	```
 	- Method 2 (for Ubuntu/Debian users):
 	```bash
-	$ sudo apt-add-repository ppa:rquillo/ansible
+	$ sudo apt-add-repository ppa:ansible/ansible
 	$ sudo apt-get update
 	$ sudo apt-get install ansible
 	```
@@ -66,9 +66,14 @@ Now you can simply use the following command to run a playbook (inside the `ansi
 $ imouto-devel playbook-name.yml
 ```
 
-There are only 5 independent playbooks that are included with imouto currently:
+The following playbooks are included with imouto currently:
+- `local.yml`: To provision the whole machine (development) by calling each of the roles. Note that this can also be achieved by running `vagrant provision` command in the `imouto` directory.
+- `setup_lemp.yml`: To install and set up nginx, mysql and php5-fpm.
 - `update_code.yml`: To fetch the latest code from Tatoeba's github repository and update it on VM.
+- `setup_database.yml`: To install latest database updates and/or to re-initialize the whole Tatoeba database.
+- `setup_external_tools.yml`: To install and set up the external tools used by the website including sphinx and imagick.
 - `configure_sphinx.yml`: To configure sphinx search, create indexes and start the search daemon.
+- `setup_newrelic.yml`: To install and setup New Relic monitoring daemons.
 - `backup.yml`: To create a backup of the database, configurations and other static files of the VM on your machine.
 - `restore.yml`: To restore the backup created using `backup.yml`.
 - `restore_version.yml`: To restore to a particular revision of code that is available in `versions/` directory
@@ -85,10 +90,11 @@ $ imouto-devel -e version=3 restore_version.yml
 
 #####Note:
 - It takes a while for vagrant to download the ~300MB box on your machine and then to provision it using ansible. Please be patient and let it finish before running `vagrant ssh`.
-- The current directory i.e. `admin/imouto` on the host machine is synchronized with `/vagrant/` directory on the guest machine. So the code that is running the website can be directly accessed in `admin/imouto/Tatoeba`. You can edit anything inside this directory and the changes will be automatically synced to the VM by vagrant.
+- You can use the script `mount.sh` (run it to get usage instructions) to mount any of the VM's directory on your host machine in order to modify files without ssh-ing to the VM.
 - This project is still in its development stage, so there are high chances of bugs. Please report them through github's bug tracker.
 - Currently the host port 8080 is forwarded to guest port 80. So you can check the website running on your host browser at "localhost:8080" once vagrant finishes provisioning the VM (i.e. after `vagrant up` finishes).
 - This is only an initial set-up guide, I will write down a detailed usage guide at some point of time.
+- There are a lot of variables defined in `ansible/host_vars/default` that allow specifying further parameters related to various tools. Though the default values just work, it is recommended to change these values according to your need.
 
 ###imouto for production:
 The same set of scripts of imouto (with a few changes) can be used for setting up production servers as well. You need to follow these steps:
