@@ -433,7 +433,7 @@ searchd
     read_timeout            = 5
     max_children            = 30
 
-    pid_file                = <?php echo $sphinxLogDir . DIRECTORY_SEPARATOR . "searchd.pid\n"; ?>
+    pid_file                = <?php echo $configs['sphinx']['pidfile']; echo "\n"; ?>
     max_matches             = 1000
     seamless_rotate         = 1
     preopen_indexes         = 1
