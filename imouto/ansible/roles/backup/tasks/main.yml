@@ -16,6 +16,6 @@
 - name: Archive and compress the backup files
   shell: tar -czf {{backup_prefix}}-{{timestamp}}.tar.gz * chdir={{backup_dir}}
 - name: Copy backup to the host's system
-  fetch: src={{backup_dir}}/{{backup_prefix}}-{{timestamp}}.tar.gz dest={{backup_dest}} validate_md5=no flat=yes
+  fetch: src={{backup_dir}}/{{backup_prefix}}-{{timestamp}}.tar.gz dest={{backup_dest}} validate_md5=yes flat=yes
 - name: Remove the backup directory from the server
   command: rm -rf "{{backup_dir}}"
