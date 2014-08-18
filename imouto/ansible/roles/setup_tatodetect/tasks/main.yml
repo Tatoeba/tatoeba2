@@ -2,110 +2,15 @@
 # Playbook to install and setup tatodetect
 
 - name: Check if tatodetect is already present
-  shell: ls /usr/local/bin/tatodetect | wc -l
+  shell: which tatodetect
   register: install_state
+  ignore_errors: yes
 - name: Installation skip message
   debug: msg="tatodetect already installed and force_install == false; skipping installation"
-  when: install_state.stdout|int == 1 and force_install == false
+  when: install_state|success and force_install == false
 - name: Force install message
   debug: msg="tatodetect already installed; reinstalling it (force_intall == true)"
-  when: install_state.stdout|int == 1 and force_install == true
+  when: install_state|success and force_install == true
 
-- name: Stop tatodetect daemon if started
-  command: service tatodetect stop
-  when: install_state.stdout|int == 1 and force_install == true
-  ignore_errors: yes
-- name: Install dependencies for cppms
-  apt: name={{item}} state=present
-  with_items:
-  - make
-  - cmake 
-  - g++ 
-  - libpcre3-dev
-  - zlib1g-dev
-  - libgcrypt11-dev
-  - libicu-dev
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Fetch cppms source
-  get_url: url=http://cznic.dl.sourceforge.net/project/cppcms/cppcms/1.0.4/cppcms-1.0.4.tar.bz2 dest=/tmp/
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Extract source from the archive
-  command: tar -jxvf cppcms-1.0.4.tar.bz2 chdir=/tmp/
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Generate makefile
-  command: cmake . chdir=/tmp/cppcms-1.0.4
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Compile
-  command: make chdir=/tmp/cppcms-1.0.4
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Install
-  command: make install chdir=/tmp/cppcms-1.0.4
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Fetch cppdb source
-  get_url: url=http://kaz.dl.sourceforge.net/project/cppcms/cppdb/0.3.1/cppdb-0.3.1.tar.bz2 dest=/tmp/
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Extract source files
-  command: tar -jxvf cppdb-0.3.1.tar.bz2 chdir=/tmp/
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Generate makefile
-  command: cmake . chdir=/tmp/cppdb-0.3.1
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Compile
-  command: make chdir=/tmp/cppdb-0.3.1
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Install
-  command: make install chdir=/tmp/cppdb-0.3.1
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Install dependencies for tatodetect
-  apt: name=libsqlite3-dev state=present
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Fetch tatodetect source
-  git: repo=https://github.com/allan-simon/Tatodetect.git dest=/tmp/tatodetect
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Generate makefile
-  command: cmake . chdir=/tmp/tatodetect
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Compile
-  command: make chdir=/tmp/tatodetect
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Copy the binary to system-wide location
-  command: cp tatodetect /usr/local/bin/tatodetect chdir=/tmp/tatodetect
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Copy init file to system-wide location
-  copy: src=init.d dest=/etc/init.d/tatodetect mode=555
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Copy config file to system-wide location
-  template: src=tatodetect.js.j2 dest=/etc/tatodetect.js mode=555
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Copy default options file to system-wide location
-  copy: src=default dest=/etc/default/tatodetect mode=555
-  when: install_state.stdout|int == 0 or force_install == true
-
-- name: Download ngrams.db file
-  get_url: url={{ngrams_db_download_url}} dest={{ngrams_db_dir}}/{{ngrams_db_file}} mode=777
-  when: ngrams_create_mode == "download" and install_state.stdout|int == 0 or force_install == true
-- name: Ensure python3 is installed
-  apt: name=python3 state=present
-  when: ngrams_create_mode == "generate" and install_state.stdout|int == 0 or force_install == true
-- name: Copy ngrams.db generation script
-  template: src=generate.py.j2 dest=/tmp/generate.py
-  when: ngrams_create_mode == "generate" and install_state.stdout|int == 0 or force_install == true
-- name: Run the ngrams.db generation script
-  command: python3 generate.py chdir=/tmp/
-  when: ngrams_create_mode == "generate" and install_state.stdout|int == 0 or force_install == true
-
-- name: Start the daemon
-  command: /etc/init.d/tatodetect start
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Add startup entry
-  command: update-rc.d tatodetect defaults
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Remove temporary files - 1
-  command: rm -rf /tmp/tatodetect
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Remove temporary files - 2
-  command: rm -rf /tmp/cppms*
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Remove temporary files - 3
-  command: rm -rf /tmp/cppdb*
-  when: install_state.stdout|int == 0 or force_install == true
+- include: install_tatodetect.yml
+  when: install_state|failed or force_install == true

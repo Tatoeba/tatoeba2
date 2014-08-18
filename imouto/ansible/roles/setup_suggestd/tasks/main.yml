@@ -2,70 +2,15 @@
 # Playbook to install and setup suggestd
 
 - name: Check if suggestd is already present
-  shell: ls /usr/local/bin/suggestd | wc -l
+  shell: which suggestd
   register: install_state
+  ignore_errors: yes
 - name: Installation skip message
   debug: msg="suggestd already installed and force_install == false; skipping installation"
-  when: install_state.stdout|int == 1 and force_install == false
+  when: install_state|success and force_install == false
 - name: Force install message
   debug: msg="suggestd already installed; reinstalling it (force_intall == true)"
-  when: install_state.stdout|int == 1 and force_install == true
+  when: install_state|success and force_install == true
 
-- name: Stop suggestd daemon if started
-  command: service suggestd stop
-  when: install_state.stdout|int == 1 and force_install == true
-  ignore_errors: yes
-- name: Install dependencies for suggestd
-  apt: name={{item}} state=present
-  with_items:
-  - gcc
-  - automake 
-  - make
-  - libevent-dev 
-  - libsqlite3-dev
-  - libexpat1-dev
-  - pkg-config
-  - libmysqlclient-dev
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Fetch suggestd source
-  git: repo=https://github.com/allan-simon/suggestd.git dest=/tmp/suggestd
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Generate makefiles and compile - 1
-  command: aclocal chdir=/tmp/suggestd
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Generate makefiles and compile - 2
-  command: autoconf chdir=/tmp/suggestd
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Generate makefiles and compile - 3
-  command: automake --add-missing chdir=/tmp/suggestd
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Generate makefiles and compile - 4
-  command: ./configure chdir=/tmp/suggestd
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Generate makefiles and compile - 5
-  command: make chdir=/tmp/suggestd
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Copy binaries
-  command: make install chdir=/tmp/suggestd
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Copy init file to system-wide location
-  copy: src=init.d dest=/etc/init.d/suggestd mode=555
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Copy default options file to system-wide location
-  copy: src=default dest=/etc/default/suggestd mode=555
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Copy config file to system-wide location
-  template: src=suggestd.xml.j2 dest=/etc/suggestd.xml mode=555
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Create user suggestd
-  user: name=suggestd system=yes
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Start the daemon
-  command: /etc/init.d/suggestd start
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Add startup entry
-  command: update-rc.d suggestd defaults
-  when: install_state.stdout|int == 0 or force_install == true
-- name: Remove temporary files
-  command: rm -rf /tmp/suggestd
-  when: install_state.stdout|int == 0 or force_install == true
+- include: install_suggestd.yml
+  when: install_state|failed or force_install == true

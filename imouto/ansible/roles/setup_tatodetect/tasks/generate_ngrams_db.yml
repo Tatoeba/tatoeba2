@@ -1,0 +1,8 @@
+---
+
+- name: Ensure python3 is installed
+  apt: name=python3 state=present
+- name: Copy ngrams.db generation script
+  template: src=generate.py.j2 dest=/tmp/generate.py
+- name: Run the ngrams.db generation script
+  command: python3 generate.py chdir=/tmp/

@@ -1,0 +1,42 @@
+---
+
+- name: Stop nihongoparserd daemon if started
+  command: service sinoparserd stop
+  when: install_state|success and force_install == true
+  ignore_errors: yes
+- name: Install dependencies for sinoparserd
+  apt: name={{item}} state=present
+  with_items:
+  - make
+  - cmake 
+  - g++ 
+  - libevent-dev 
+  - libexpat1-dev
+  - libgmm++-dev
+- name: Fetch sinoparserd source
+  git: repo=https://github.com/allan-simon/sinoparserd.git dest=/tmp/sinoparserd
+- name: Fix to import the correct file in Index.h
+  command: sed -i 's/tree_str/TatoTreeStr/' src/Index.h chdir=/tmp/sinoparserd
+  ignore_errors: yes
+- name: Generate Makefile
+  command: cmake . chdir=/tmp/sinoparserd
+- name: Compile
+  command: make chdir=/tmp/sinoparserd
+- name: Copy Binaries
+  command: cp sinoparserd /usr/local/bin/sinoparserd chdir=/tmp/sinoparserd
+- name: Copy init file to system-wide location
+  copy: src=init.d dest=/etc/init.d/sinoparserd mode=555
+- name: Copy default file to system-wide location
+  copy: src=default dest=/etc/default/sinoparserd mode=555
+- name: Copy dictionary files to a system wide location - 1
+  command: cp doc/cantonese.xml /etc/cantonese.xml chdir=/tmp/sinoparserd
+- name: Copy dictionary files to a system wide location - 2
+  command: cp doc/mandarin.xml /etc/mandarin.xml chdir=/tmp/sinoparserd
+- name: Create unprivileged user sinoparserd
+  user: name=sinoparserd system=yes
+- name: Start the daemon
+  command: /etc/init.d/sinoparserd start
+- name: Add startup entry
+  command: update-rc.d sinoparserd defaults
+- name: Remove temporary files
+  command: rm -rf /tmp/sinoparserd
