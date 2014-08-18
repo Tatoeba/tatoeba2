@@ -13,6 +13,12 @@ function usage_instructions {
 	echo "Note: For mounting both <HOST-DIR-PATH> and <GUEST-DIR-PATH> must exist and <HOST-DIR-PATH> should be empty"
 }
 
+function check_sshfs {
+	command -v sshfs >/dev/null 2>&1 || { echo >&2 "'sshfs' not found! Please install it first!"; exit 1; }
+}
+
+check_sshfs
+
 if [ "$#" -eq 2 ] ; then
 	if [ "$1" != "-U" ] && [ "$1" != "-u" ] ; then
 		echo "Invalid arguments!"
