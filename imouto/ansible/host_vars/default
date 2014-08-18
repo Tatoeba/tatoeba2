@@ -8,7 +8,7 @@ ansible_ssh_port: 2222
 
 # Variables for common role
 # -------------------------
-# List of python modules to be installed (please only add extra modules and do not remove any existing ones)
+# List of python modules to be installed (Add the modules as list items; check backup_items defined below to see how lists are declared)
 # python_modules:
 
 
@@ -30,13 +30,13 @@ xcache_server_root: /var/www-xcache/
 # Variables for mysql database
 # ----------------------------
 mysql_root_password: tatoeba
-mysql_user: user
+mysql_user: tatouser
 mysql_password: tatoeba
 mysql_db_name: tatoeba
 
 # Set this to yes if you want to fetch the csv's from http://tatoeba.org/files/downloads/
 # Set this to no if the csv's are present in roles/codebase/files (sentences.csv, links.csv, tags_metadata.csv and tags_detailed.csv)
-download_csv: no
+download_csv: yes
 # Set this to true/yes if you want to drop the current database and reimport everything
 reimport_db: true
 
