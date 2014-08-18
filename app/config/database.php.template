@@ -105,7 +105,8 @@ class DATABASE_CONFIG {
     var $sphinx = array(
         'indexdir' => '{{sphinx_index_dir}}',
         'socket' => '{{sphinx_sql_socket}}',
-        'logdir' => '{{sphinx_log_dir}}'
+        'logdir' => '{{sphinx_log_dir}}',
+        'pidfile' => '{{sphinx_pd_file}}'
     );
 }
 ?>
