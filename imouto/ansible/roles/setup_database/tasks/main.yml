@@ -9,43 +9,11 @@
   fail: msg="Tatoeba's code is not present in {{code_dir}}/versions or the current link is missing. Please fetch the code first using update_code.yml playbook."
   when: code_status|failed
 
-- name: Delete old database with same name if it exists
-  shell: echo "DROP DATABASE IF EXISTS {{mysql_db_name}}" | mysql -u {{mysql_user}} -p{{mysql_password}}
+- include: create_db.yml
   when: reimport_db == true
-- name: Create a new mysql database
-  shell: echo "CREATE DATABASE {{mysql_db_name}}" | mysql -u {{mysql_user}} -p{{mysql_password}}
-  when: reimport_db == true
-- name: Initialize  database with empty tables 
-# This task requires mysql root for creating triggers
-  shell: mysql -u root -p{{mysql_root_password}} {{mysql_db_name}} < /var/www-prod/docs/database/{{item}}
-  with_items:
-  - database_20130406.sql
-  - import/groups.sql
-  - import/users.sql
-  - import/acos.sql
-  - import/aros.sql
-  - import/aros_acos.sql
-  - import/countries.sql
-  when: reimport_db == true
+
 - name: Install new updates (if any)
   script: install_updates.sh {{mysql_user}} {{mysql_password}} {{mysql_db_name}} {{code_dir}}/versions/current/docs/database/updates/ {{code_dir}}/common
-- name: Copy csv's to /tmp folder
-  copy: src={{item}} dest=/tmp/{{item}} mode=777 owner=mysql group=mysql
-  with_items:
-  - sentences.csv
-  - links.csv
-  - tag_metadata.csv
-  - tags_detailed.csv
-  when: download_csv == false and reimport_db == true
-- name: Download csv's from http://tatoeba.org/files/downloads/
-  get_url: url=http://tatoeba.org/files/downloads/{{item}} dest=/tmp/{{item}} mode=777 owner=mysql group=mysql
-  with_items:
-  - sentences.csv
-  - links.csv
-  - tag_metadata.csv
-  - tags_detailed.csv
-  when: download_csv == true and reimport_db == true
-- name: Import sentences in the tatoeba database 
-# This task requires mysql root because restore_dumps.sql sets soem global variables 
-  shell: mysql -u root -p{{mysql_root_password}} {{mysql_db_name}} < /var/www-prod/docs/database/import/restore_dumps.sql
+
+- include: import_csv.yml
   when: reimport_db == true

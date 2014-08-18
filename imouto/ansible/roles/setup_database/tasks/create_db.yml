@@ -1,0 +1,17 @@
+---
+
+- name: Delete old database with same name if it exists
+  shell: echo "DROP DATABASE IF EXISTS {{mysql_db_name}}" | mysql -u {{mysql_user}} -p{{mysql_password}}
+- name: Create a new mysql database
+  shell: echo "CREATE DATABASE {{mysql_db_name}}" | mysql -u {{mysql_user}} -p{{mysql_password}}
+- name: Initialize  database with empty tables 
+# This task requires mysql root for creating triggers
+  shell: mysql -u root -p{{mysql_root_password}} {{mysql_db_name}} < /var/www-prod/docs/database/{{item}}
+  with_items:
+  - database_20130406.sql
+  - import/groups.sql
+  - import/users.sql
+  - import/acos.sql
+  - import/aros.sql
+  - import/aros_acos.sql
+  - import/countries.sql
