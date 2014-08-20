@@ -42,10 +42,15 @@
  */
 
 // Array that lists all the languages into which the Tatoeba interface has been translated
-// Keep this in sync with app_controller.php and views/elements/interface_language.ctp.
+$configUiLanguages = Configure::read('UI.languages');
+$iso3LangArray = array();
+foreach ($configUiLanguages as $lang) {
+    $iso3LangArray[] = $lang[0];
+}
 $interfaceLanguages = array(
-    'lang'=>'ara|bel|chi|deu|eng|epo|eus|fre|gre|hin|hun|ita|jpn|mar|nds|pol|pt_BR|rus|spa|tur|tgl|fin'
+    'lang' => join('|', $iso3LangArray)
 );
+
 
 /**
  * To route tools, in order to still have tools in the URL, which is

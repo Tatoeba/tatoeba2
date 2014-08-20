@@ -85,19 +85,25 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Download sentences', true));
     
     <div class="module">
         <h2>Downloads</h2>
+
+        <p>
+            <strong>Attention (update 2014-08-16)</strong>: the URL to download the 
+            latest files has changed and the new files are also compressed. The old 
+            URL is still available, but will not contain the latest data.
+        </p>
         
         <!-- Sentences -->
         <h3>Sentences</h3>
         <dl>
             <dt>Download</dt>
             <dd>
-                1. <a href="http://tatoeba.org/files/downloads/sentences.csv">
-                http://tatoeba.org/files/downloads/sentences.csv
+                1. <a href="http://downloads.tatoeba.org/exports/sentences.tar.bz2">
+                http://downloads.tatoeba.org/exports/sentences.tar.bz2
                 </a>
             </dd>
             <dd>
-                2. <a href="http://tatoeba.org/files/downloads/sentences_detailed.csv">
-                http://tatoeba.org/files/downloads/sentences_detailed.csv
+                2. <a href="http://downloads.tatoeba.org/exports/sentences_detailed.tar.bz2">
+                http://downloads.tatoeba.org/exports/sentences_detailed.tar.bz2
                 </a>
             </dd>
             <dt>Fields and structure</dt>
@@ -119,7 +125,7 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Download sentences', true));
                 <span class="symbol">[tab]</span>
                 <span class="param">date_added</span>
                 <span class="symbol">[tab]</span>
-                <span class="param">date_last_modified</span>                
+                <span class="param">date_last_modified</span>
             </dd>
 
 
@@ -129,8 +135,8 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Download sentences', true));
                 unique id and a language code 
                 (<a href="http://en.wikipedia.org/wiki/List_of_ISO_639-3_codes">ISO 639-3</a>).
                 <br/>
-                We provide two files. The first file (sentences.csv) only contains the minimum.
-                The second file (sentences_detailed.csv) contains more information, for those 
+                We provide two files. The first file (sentences.tar.bz2) only contains the minimum.
+                The second file (sentences_detailed.tar.bz2) contains more information, for those 
                 who would like to filter the sentences based, for instance, on the contributor 
                 who owns the sentence or on the date when it was added.
             </dd>
@@ -141,8 +147,8 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Download sentences', true));
         <dl>
             <dt>Download</dt>
             <dd>
-                <a href="http://tatoeba.org/files/downloads/links.csv">
-                http://tatoeba.org/files/downloads/links.csv
+                <a href="http://downloads.tatoeba.org/exports/links.tar.bz2">
+                http://downloads.tatoeba.org/exports/links.tar.bz2
                 </a>
             </dd>
             
@@ -174,8 +180,8 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Download sentences', true));
         <dl>
             <dt>Download</dt>
             <dd>
-                <a href="http://tatoeba.org/files/downloads/tags.csv">
-                http://tatoeba.org/files/downloads/tags.csv
+                <a href="http://downloads.tatoeba.org/exports/tags.tar.bz2">
+                http://downloads.tatoeba.org/exports/tags.tar.bz2
                 </a>
             </dd>
             
@@ -202,8 +208,8 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Download sentences', true));
         <dl>
             <dt>Download</dt>
             <dd>
-                <a href="http://tatoeba.org/files/downloads/user_lists.csv">
-                http://tatoeba.org/files/downloads/user_lists.csv
+                <a href="http://downloads.tatoeba.org/exports/user_lists.tar.bz2">
+                http://downloads.tatoeba.org/exports/user_lists.tar.bz2
                 </a>
             </dd>
             <dt>Fields and structure</dt>
@@ -230,8 +236,8 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Download sentences', true));
           <dl>       
             <dt>Download</dt>   
             <dd>
-                <a href="http://tatoeba.org/files/downloads/sentences_in_lists.csv">
-                http://tatoeba.org/files/downloads/sentences_in_lists.csv
+                <a href="http://downloads.tatoeba.org/exports/sentences_in_lists.tar.bz2">
+                http://downloads.tatoeba.org/exports/sentences_in_lists.tar.bz2
                 </a>
             </dd>
             
@@ -258,8 +264,8 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Download sentences', true));
         <dl>
             <dt>Download</dt>
             <dd>
-                <a href="http://tatoeba.org/files/downloads/jpn_indices.csv">
-                http://tatoeba.org/files/downloads/jpn_indices.csv
+                <a href="http://downloads.tatoeba.org/exports/jpn_indices.tar.bz2">
+                http://downloads.tatoeba.org/exports/jpn_indices.tar.bz2
                 </a>
             </dd>
             

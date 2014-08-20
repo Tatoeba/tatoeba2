@@ -96,18 +96,19 @@ class CommonModulesHelper extends AppHelper
                     "onchange" => "
                         if (this.value == 'und') {
                             $(location).attr('href','$path');
-                        } else {
+                        } else { 
                             $(location).attr('href','$path' + this.value);
-                        }",
+                        }", 
                     // the if is to avoid a duplicate page (with and without "und")
-                    "empty" => false
-                )
+                    "class" => "language-selector"
+                ),
+                false
             );
-            ?>
+            ?> 
         </div>
-    <?php
+    <?php 
     }
-
+    
     /**
      * Display a module content which indicate the user does not exist
      *

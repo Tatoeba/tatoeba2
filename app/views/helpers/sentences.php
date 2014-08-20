@@ -240,12 +240,10 @@ class SentencesHelper extends AppHelper
                 'translationLang_'.$id,
                 $langArray,
                 $preSelectedLang,
-                array(
-                    "class" => "translationLang",
-                    "empty" => false
-                )
+                array("class"=>"translationLang language-selector"),
+                false
             );
-
+            
             // OK
             echo $this->Form->button(
                 __('Submit translation', true),

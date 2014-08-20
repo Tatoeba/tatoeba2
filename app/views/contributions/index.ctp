@@ -54,7 +54,7 @@ $this->set('title_for_layout', "Tatoeba - " . __("Latest contributions", true));
     <div class="module">
         <h2><?php __('Contributions'); ?></h2>
         <?php
-        $pagination->display();
+        $pagination->display(array($langFilter));
         ?>
 
         <table id="logs">
@@ -91,7 +91,7 @@ $this->set('title_for_layout', "Tatoeba - " . __("Latest contributions", true));
         </table>
 
         <?php
-        $pagination->display();
+        $pagination->display(array($langFilter));
         ?>
     </div>
 </div>

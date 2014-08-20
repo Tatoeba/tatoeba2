@@ -35,4 +35,4 @@ INSERT INTO languages (code, numberOfSentences)
 --
 -- NOTE: It seems that this doesn't update properly the count for lang = NULL
 -- I don't have time to debug that.
-UPDATE sentences s JOIN languages ls ON s.lang = ls.lang SET s.lang_id = ls.id;
+UPDATE sentences s JOIN languages ls ON s.lang = ls.code SET s.lang_id = ls.id;

@@ -369,4 +369,37 @@
  */
     Configure::write('GoogleAnalytics.enabled', false);
     Configure::write('GoogleAnalytics.id', '');
+
+/**
+ * Languages of the interface.
+ *
+ * Each item in the UI.languages is an array of 3 items:
+ *   [0] The URL language code. It should match a 'locale' folder.
+ *   [1] Mapping between the URL language code and the ISO-1 language code.
+ *   [2] This is the name of the language. The name must be in the
+ *       language itself, so that people who speak that language can
+ *       recognize it.
+ */
+    Configure::write('UI.languages', array(
+        array('ara', 'ar', 'العربية'),
+        array('chi', 'zh', '中文'), 
+        array('deu', 'de', 'Deutsch'), 
+        array('eng', 'en', 'English'), 
+        array('epo', 'eo', 'Esperanto'),
+        array('eus', 'eu', 'Euskara'),
+        array('fin', 'fi', 'Suomi'),
+        array('fre', 'fr', 'Français'), 
+        array('gre', 'el', 'Ελληνικά'),
+        array('hun', 'hu', 'Magyar'),
+        array('ita', 'it', 'Italiano'), 
+        array('jpn', 'jp', '日本語'), 
+        array('mar', 'mr', 'मराठी'),
+        array('nds', null, 'Plattdüütsch'),
+        array('pol', 'pl', 'Polski'),
+        array('pt_BR', 'pt-BR', 'Português (BR)'),
+        array('rus', 'ru', 'русский'),
+        array('spa', 'es', 'Español'), 
+        array('tgl', 'tl', 'Tagalog'),
+        array('tur', 'tr', 'Türkçe'),
+    ));
 ?>

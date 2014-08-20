@@ -103,7 +103,7 @@ if (empty($notTranslatedInto)) {
                     'langFrom',
                     $langsFrom,
                     $currentLanguage,
-                    array('empty' => false),
+                    array('class' => 'language-selector'),
                     false
                 );
                 ?>
@@ -118,7 +118,7 @@ if (empty($notTranslatedInto)) {
                     'langTo',
                     $langsTo,
                     $notTranslatedInto,
-                    array('empty' => false),
+                    array('class' => 'language-selector'),
                     false
                 );
                 ?>
@@ -162,9 +162,8 @@ if (empty($notTranslatedInto)) {
             'into',
             $languages->languagesArray(),
             $selectedLanguage,
-            array(
-                'empty'=>false
-            )
+            array('class' => 'language-selector'),
+            false
         );
         ?>
         </fieldset>

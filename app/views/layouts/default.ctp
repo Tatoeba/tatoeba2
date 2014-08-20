@@ -63,10 +63,29 @@
         // ---------------------- //
         //      Javascript        //
         // ---------------------- //
-        echo $javascript->link(JS_PATH . 'jquery-mini.js', true);
+        echo $javascript->link(JS_PATH . 'jquery-1.4.min.js', true);
         echo $javascript->link(JS_PATH . 'generic_functions.js?2', true);
+
+        // Enhanced dropdown for language selection
+        // It's needed on every page since it's used on the search bar
+        $isChosenSelectEnabled = $session->read('jquery_chosen');
+        if (CurrentUser::isMember() && $isChosenSelectEnabled)
+        {
+	        echo $javascript->link(JS_PATH . 'chosen.jquery.min.js', true);
+	        echo $javascript->codeBlock(
+	            '$(document).ready(function(){'.
+	                '$(".language-selector").chosen({'.
+	                    'inherit_select_classes: true,'.
+	                    'search_contains: true,'. /* helps languages without spaces */
+	                    'no_results_text: ' . json_encode(__('No language matches', true)).
+	                '});'.
+	            '});',
+            	array('allowCache' => false));	
+        }
+
         echo $scripts_for_layout;
         
+        echo $this->element('seo_international_targeting');
     ?>
     
     <link rel="search" type="application/opensearchdescription+xml" href="http://tatoeba.org/opensearch.xml" title="Tatoeba project" />

@@ -40,7 +40,11 @@ if ($selectedLanguage == null) {
     <span class="annexe">
         (<?php
         echo $form->select(
-             "randomLangChoice", $langArray, $selectedLanguage, array('empty' => false)
+             "randomLangChoice",
+             $langArray,
+             $selectedLanguage,
+             array('class' => 'language-selector'),
+             false
         );
         echo ' ';
         echo $html->link(

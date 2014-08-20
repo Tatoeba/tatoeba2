@@ -49,7 +49,8 @@ if (!empty($results)) {
     <div class="module">
         <h2>
         <?php 
-        echo sprintf(__('Search: %s', true), $query);
+        echo __('Search:', true);
+        echo sprintf(' <span style="unicode-bidi: embed">%s</span>', $query);
         echo ' ';
         echo $paginator->counter(
             array(

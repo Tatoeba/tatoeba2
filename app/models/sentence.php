@@ -953,19 +953,19 @@ class Sentence extends AppModel
     {
         // important to add this line before escaping a
         // utf8 string, workaround for an apache/php bug
-        setlocale(LC_CTYPE, "fr_FR.UTF-8");
+        setlocale(LC_CTYPE, "en_US.UTF-8");
         $text = escapeshellarg($text);
 
         $text = nl2br($text);
 
         $Owakati = exec(
-            "export LC_ALL=fr_FR.UTF-8 ; ".
+            "export LC_ALL=en_US.UTF-8 ; ".
             "echo $text | ".
             "mecab -Owakati"
         );
 
         $Oyomi = exec(
-            "export LC_ALL=fr_FR.UTF-8 ; ".
+            "export LC_ALL=en_US.UTF-8 ; ".
             "echo $text | ".
             "mecab -Owakati | ".
             "mecab -Oyomi"

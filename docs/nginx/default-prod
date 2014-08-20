@@ -1,4 +1,19 @@
 server {
+	server_name www.tatoeba.org;
+	return 301 $scheme://tatoeba.org$request_uri;
+}
+
+server {
+        server_name www.tatoeba.fr;
+        return 301 $scheme://tatoeba.org$request_uri;
+}
+
+server {
+        server_name tatoeba.fr;
+        return 301 $scheme://tatoeba.org$request_uri;
+}
+
+server {
 	listen	80;
 	server_name	tatoeba.org;
 
@@ -7,7 +22,7 @@ server {
 	charset	utf-8;
 
 	access_log	/var/log/nginx/access.log;
-	error_log 	/var/log/nginx/error.log;
+	error_log 	/var/log/nginx/error.log error;
 	rewrite_log	on;
 
     #location ~ /$ {
@@ -18,19 +33,30 @@ server {
         try_files $uri $uri/ /app/webroot/index.php?url=$uri&$args;
     }
 
+    location ~ /files/downloads/ {
+        root /var/www-prod/app/webroot/;
+        autoindex on;
+    }
 
 	location ~ \.php {
 		try_files $uri =404;
 		include /etc/nginx/fastcgi_params;
 		fastcgi_split_path_info ^(.+\.php)(/.+)$;
-		fastcgi_pass unix:/var/run/php5-fpm.sock;
+		fastcgi_pass 127.0.0.1:9000;
 		fastcgi_intercept_errors on;
 		fastcgi_index index.php;
 		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        # wait a bit more, to have a higher chance to get a page under heavy load
+        fastcgi_read_timeout 180;
 	}
 
 	# Comment this out when the subdomain for static files is activated
-	location ~ /(img|js|css|files)/ {
+	location ~ /(img|js|css)/ {
+		try_files /app/webroot/$uri =404;
+		expires max;
+	}
+
+	location ~ ^/(robots\.txt|sitemap\.txt|opensearch.xml|favicon\.ico)$ {
 		try_files /app/webroot/$uri =404;
 	}
 
@@ -67,7 +93,6 @@ server {
 	root		/var/www-downloads;
 	index		index.php index.html;
 	charset		utf-8;
-
 	access_log	/var/log/nginx/access.static.log;
 	error_log	/var/log/nginx/error.static.log;
 	rewrite_log	on;
@@ -81,7 +106,7 @@ server {
 	listen 		80;
 	server_name	static.tatoeba.org;
 
-	root		/var/media/www-static;
+	root		/var/www-static;
 	index		index.php index.html;
 	charset		utf-8;
 
@@ -109,12 +134,12 @@ server {
 	access_log	/var/log/nginx/access.static.log;
 	error_log	/var/log/nginx/error.static.log;
 	rewrite_log	on;
-
+	
 	location ~ \.php$ {
 		try_files $uri =404;
 		include /etc/nginx/fastcgi_params;
 		fastcgi_split_path_info ^(.+\.php)(/.+)$;
-		fastcgi_pass unix:/var/run/php5-fpm.sock;
+		fastcgi_pass 127.0.0.1:9000;
 		fastcgi_intercept_errors on;
 		fastcgi_index index.php;
 		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
