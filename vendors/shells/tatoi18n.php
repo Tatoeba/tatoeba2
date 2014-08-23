@@ -24,7 +24,7 @@
  * @package       cake
  * @subpackage    cake.cake.console.libs
  */
-class I18nShell extends Shell {
+class Tatoi18nShell extends Shell {
 
 /**
  * Contains database source to use
@@ -40,7 +40,7 @@ class I18nShell extends Shell {
  * @var array
  * @access public
  */
-	var $tasks = array('DbConfig', 'Extract');
+	var $tasks = array('DbConfig', 'Tatoextract');
 
 /**
  * Override startup of the Shell
@@ -67,7 +67,7 @@ class I18nShell extends Shell {
  * @access public
  */
 	function main() {
-		$this->out(__('I18n Shell', true));
+		$this->out(__('TATOEBA I18n Shell', true));
 		$this->hr();
 		$this->out(__('[E]xtract POT file from sources', true));
 		$this->out(__('[I]nitialize i18n database table', true));
@@ -77,7 +77,7 @@ class I18nShell extends Shell {
 		$choice = strtolower($this->in(__('What would you like to do?', true), array('E', 'I', 'H', 'Q')));
 		switch ($choice) {
 			case 'e':
-				$this->Extract->execute();
+				$this->Tatoextract->execute();
 			break;
 			case 'i':
 				$this->initdb();

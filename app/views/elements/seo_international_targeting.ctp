@@ -42,6 +42,9 @@ foreach ($uiLanguages as $langs) {
                 strlen($currentLang)
             );
         }
+        if ($newUrl[0] == '/') {
+            $newUrl = substr($newUrl, 1);
+        }
         $alternateURL = "http://".TATOEBA_DOMAIN.'/'.$newUrl;
         ?>
         <link rel="alternate" 
