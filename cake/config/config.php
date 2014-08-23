@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Core Configurations.
  *
@@ -16,10 +15,7 @@
  * @package       cake
  * @subpackage    cake.app.config
  * @since         CakePHP(tm) v 1.1.11.4062
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-return $config['Cake.version'] = '1.2.12';
-?>
+$config['Cake.version'] = '1.3.17';
+return $config;

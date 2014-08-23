@@ -1,9 +1,8 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Basic Cake functionality.
  *
- * Core functions for including other source files, loading models and so forth.
+ * Handles loading of core files needed on every request
  *
  * PHP versions 4 and 5
  *
@@ -18,10 +17,7 @@
  * @package       cake
  * @subpackage    cake.cake
  * @since         CakePHP(tm) v 0.2.9
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 if (!defined('PHP5')) {
 	define('PHP5', (PHP_VERSION >= 5));
@@ -29,26 +25,15 @@ if (!defined('PHP5')) {
 if (!defined('E_DEPRECATED')) {
 	define('E_DEPRECATED', 8192);
 }
-if (!defined('E_STRICT')) {
-	define('E_STRICT', 2048);
-}
 error_reporting(E_ALL & ~E_DEPRECATED & ~E_STRICT);
-/**
- * Configuration, directory layout and standard libraries
- */
-	if (!isset($bootstrap)) {
-		require CORE_PATH . 'cake' . DS . 'basics.php';
-		$TIME_START = getMicrotime();
-		require CORE_PATH . 'cake' . DS . 'config' . DS . 'paths.php';
-		require LIBS . 'object.php';
-		require LIBS . 'inflector.php';
-		require LIBS . 'configure.php';
-	}
-	require LIBS . 'cache.php';
 
-	Configure::getInstance();
-
-	$url = null;
-
-	require CAKE . 'dispatcher.php';
-?>
+require CORE_PATH . 'cake' . DS . 'basics.php';
+$TIME_START = getMicrotime();
+require CORE_PATH . 'cake' . DS . 'config' . DS . 'paths.php';
+require LIBS . 'object.php';
+require LIBS . 'inflector.php';
+require LIBS . 'configure.php';
+require LIBS . 'set.php';
+require LIBS . 'cache.php';
+Configure::getInstance();
+require CAKE . 'dispatcher.php';

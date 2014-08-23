@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = 'Tatoeba - ' . __('List of sentences', true);
+$this->set('title_for_layout', 'Tatoeba - ' . __('List of sentences', true));
 ?>
 
 <div id="annexe_content" >

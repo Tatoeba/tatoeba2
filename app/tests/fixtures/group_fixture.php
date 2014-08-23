@@ -1,4 +1,4 @@
-<?php 
+<?php
 /* SVN FILE: $Id$ */
 /* Group Fixture generated on: 2008-11-12 01:11:43 : 1226448403*/
 

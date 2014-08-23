@@ -37,13 +37,13 @@
 class Tag extends AppModel
 {
     public $name = 'Tag';
-    
+
     public $actsAs = array('Containable');
 
 
     public $belongsTo = array('User',);
-    public $hasMany = array('TagsSentences');       
- 
+    public $hasMany = array('TagsSentences');
+
     public $hasAndBelongsToMany = array(
         'Sentence' => array(
             'className' => 'Sentence',
@@ -92,11 +92,11 @@ class Tag extends AppModel
         $result = $this->getIdFromName($tagName);
         return empty($result);
     }
-  
+
     /**
      *
      *
-     */ 
+     */
     public function addTag($tagName, $userId, $sentenceId = null)
     {
         $tagName = trim($tagName);
@@ -188,17 +188,17 @@ class Tag extends AppModel
                     'fields' => array()
                 ),
             );
-     
+
         }
         $params = array(
             'TagsSentences' => array(
                 'limit' => $limit,
-                'fields' => array('user_id','sentence_id'), 
+                'fields' => array('user_id','sentence_id'),
                 'conditions' => $conditions,
                 'contain' => $contain
             )
         );
-        
+
         return $params;
 
     }

@@ -1,29 +1,24 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * ClassRegistryTest file
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
  * @since         CakePHP(tm) v 1.2.0.5432
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 App::import('Core', 'ClassRegistry');
+
 /**
  * ClassRegisterModel class
  *
@@ -31,6 +26,7 @@ App::import('Core', 'ClassRegistry');
  * @subpackage    cake.tests.cases.libs
  */
 class ClassRegisterModel extends CakeTestModel {
+
 /**
  * useTable property
  *
@@ -39,6 +35,7 @@ class ClassRegisterModel extends CakeTestModel {
  */
 	var $useTable = false;
 }
+
 /**
  * RegisterArticle class
  *
@@ -46,6 +43,7 @@ class ClassRegisterModel extends CakeTestModel {
  * @subpackage    cake.tests.cases.libs
  */
 class RegisterArticle extends ClassRegisterModel {
+
 /**
  * name property
  *
@@ -54,6 +52,7 @@ class RegisterArticle extends ClassRegisterModel {
  */
 	var $name = 'RegisterArticle';
 }
+
 /**
  * RegisterArticleFeatured class
  *
@@ -61,6 +60,7 @@ class RegisterArticle extends ClassRegisterModel {
  * @subpackage    cake.tests.cases.libs
  */
 class RegisterArticleFeatured extends ClassRegisterModel {
+
 /**
  * name property
  *
@@ -69,6 +69,7 @@ class RegisterArticleFeatured extends ClassRegisterModel {
  */
 	var $name = 'RegisterArticleFeatured';
 }
+
 /**
  * RegisterArticleTag class
  *
@@ -76,6 +77,7 @@ class RegisterArticleFeatured extends ClassRegisterModel {
  * @subpackage    cake.tests.cases.libs
  */
 class RegisterArticleTag extends ClassRegisterModel {
+
 /**
  * name property
  *
@@ -84,6 +86,7 @@ class RegisterArticleTag extends ClassRegisterModel {
  */
 	var $name = 'RegisterArticleTag';
 }
+
 /**
  * RegistryPluginAppModel class
  *
@@ -91,6 +94,7 @@ class RegisterArticleTag extends ClassRegisterModel {
  * @subpackage    cake.tests.cases.libs
  */
 class RegistryPluginAppModel extends ClassRegisterModel {
+
 /**
  * tablePrefix property
  *
@@ -99,6 +103,7 @@ class RegistryPluginAppModel extends ClassRegisterModel {
  */
 	var $tablePrefix = 'something_';
 }
+
 /**
  * TestRegistryPluginModel class
  *
@@ -106,6 +111,7 @@ class RegistryPluginAppModel extends ClassRegisterModel {
  * @subpackage    cake.tests.cases.libs
  */
 class TestRegistryPluginModel extends RegistryPluginAppModel {
+
 /**
  * name property
  *
@@ -114,6 +120,7 @@ class TestRegistryPluginModel extends RegistryPluginAppModel {
  */
 	var $name = 'TestRegistryPluginModel';
 }
+
 /**
  * RegisterCategory class
  *
@@ -121,6 +128,7 @@ class TestRegistryPluginModel extends RegistryPluginAppModel {
  * @subpackage    cake.tests.cases.libs
  */
 class RegisterCategory extends ClassRegisterModel {
+
 /**
  * name property
  *
@@ -129,6 +137,7 @@ class RegisterCategory extends ClassRegisterModel {
  */
 	var $name = 'RegisterCategory';
 }
+
 /**
  * ClassRegistryTest class
  *
@@ -136,6 +145,7 @@ class RegisterCategory extends ClassRegisterModel {
  * @subpackage    cake.tests.cases.libs
  */
 class ClassRegistryTest extends CakeTestCase {
+
 /**
  * testAddModel method
  *
@@ -223,6 +233,7 @@ class ClassRegistryTest extends CakeTestCase {
 		$this->assertEqual('RegisterCategory', $Category->alias);
 		$this->assertEqual('ParentCategory', $ParentCategory->alias);
 	}
+
 /**
  * testClassRegistryFlush method
  *
@@ -238,6 +249,7 @@ class ClassRegistryTest extends CakeTestCase {
 		$this->assertFalse($NoArticleTag);
 		$this->assertTrue(is_a($ArticleTag, 'RegisterArticleTag'));
 	}
+
 /**
  * testAddMultipleModels method
  *
@@ -279,6 +291,7 @@ class ClassRegistryTest extends CakeTestCase {
 		$Tag = ClassRegistry::getObject('Tag');
 		$this->assertTrue(is_a($Tag, 'RegisterArticleTag'));
 	}
+
 /**
  * testPluginAppModel method
  *
@@ -310,4 +323,3 @@ class ClassRegistryTest extends CakeTestCase {
 		$this->assertIdentical($PluginUser, $PluginUserCopy);
 	}
 }
-?>

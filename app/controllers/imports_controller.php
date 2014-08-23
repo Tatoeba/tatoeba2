@@ -39,20 +39,20 @@ class ImportsController extends AppController
     public $name = "Imports";
     public $uses = "Sentence";
 
-    
+
     /**
      * Before filter.
-     * 
+     *
      * @return void
      */
     public function beforeFilter()
     {
-        parent::beforeFilter(); 
-        
+        parent::beforeFilter();
+
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array();
     }
-    
+
 
     /**
      * Used to treat data send from import form
@@ -71,23 +71,23 @@ class ImportsController extends AppController
                     'controller' => 'sentences',
                     'action' => 'import'
                 )
-            ); 
+            );
         };
-        
+
         // TODO improve this, as this can lead to several hundreds of addition
         // maybe we can do this in only one or two insert, and in one update
-        // of the langStat table instead of doing this for each sentences       
+        // of the langStat table instead of doing this for each sentences
         $lines = file($sentencesListFile['tmp_name'], FILE_IGNORE_NEW_LINES);
         foreach ($lines as $sentence) {
             $this->Sentence->saveNewSentence($sentence, $sentenceLang, $userId);
         }
-        
+
         $this->redirect(
             array(
                 'controller' => 'sentences',
                 'action' => 'import'
             )
-        );        
+        );
 
     }
 
@@ -103,17 +103,17 @@ class ImportsController extends AppController
         $translationLang = $this->data['Sentence']['translations_lang'];
         $userId = $this->data['Sentence']['user_id'];
         $sentencesListFile = $this->data['Sentence']['file'];
-        
+
         if ( !$this->_common_upload_check($sentencesListFile)) {
             $this->redirect(
                 array(
                     'controller' => 'sentences',
                     'action' => 'import'
                 )
-            );        
+            );
         };
-        
-        // TODO improve this 
+
+        // TODO improve this
         $lines = file($sentencesListFile['tmp_name'], FILE_IGNORE_NEW_LINES);
         foreach ($lines as $line) {
             $sentences = explode("\t", $line, 2);
@@ -125,27 +125,27 @@ class ImportsController extends AppController
                 $userId
             );
         }
-        
+
         $this->redirect(
             array(
                 'controller' => 'sentences',
                 'action' => 'import'
             )
-        );        
+        );
     }
 
     /**
      * Do some basic check to see if there's no problem with the uploaded file
-     * 
+     *
      * @param array $file The file structure
-     * 
+     *
      * @TODO add more checks (MIME type etc.)
      * @TODO move this in something more general
      *
      * @return bool
      */
     private function _common_upload_check ($file)
-    { 
+    {
 
         if ($file['error'] != UPLOAD_ERR_OK) {
             return false;

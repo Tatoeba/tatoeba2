@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  *
  * PHP versions 4 and 5
@@ -15,22 +14,19 @@
  * @package       cake
  * @subpackage    cake.cake.libs.view.templates.errors
  * @since         CakePHP(tm) v 0.10.0.1076
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
 <h2><?php __('Missing Database Connection'); ?></h2>
 <p class="error">
 	<strong><?php __('Error'); ?>: </strong>
-	<?php echo sprintf(__('%s requires a database connection', true), $model);?>
+	<?php printf(__('%s requires a database connection', true), $model); ?>
 </p>
 <p class="error">
 	<strong><?php __('Error'); ?>: </strong>
-	<?php echo sprintf(__('Confirm you have created the file : %s.', true), APP_DIR.DS.'config'.DS.'database.php');?>
+	<?php printf(__('Confirm you have created the file : %s.', true), APP_DIR . DS . 'config' . DS . 'database.php'); ?>
 </p>
 <p class="notice">
 	<strong><?php __('Notice'); ?>: </strong>
-	<?php echo sprintf(__('If you want to customize this error message, create %s.', true), APP_DIR.DS.'views'.DS.'errors'.DS.basename(__FILE__));?>
+	<?php printf(__('If you want to customize this error message, create %s.', true), APP_DIR . DS . 'views' . DS . 'errors' . DS . basename(__FILE__)); ?>
 </p>

@@ -37,8 +37,8 @@
 class NavigationHelper extends AppHelper
 {
     public $helpers = array('Html', 'Form', 'Languages', 'Javascript', 'Session');
-    
-    /** 
+
+    /**
      * Display navigation links for sentences.
      *
      * @param int $currentId Id of sentence currently displayed.
@@ -70,15 +70,16 @@ class NavigationHelper extends AppHelper
                 )
             );
             echo $this->Form->input(
-                'sentence_id', 
+                'sentence_id',
                 array(
-                    "label" => __('Show sentence #: ', true), 
+                    "type" => "text",
+                    "label" => __('Show sentence #: ', true),
                     "value" => $input
                 )
             );
             echo $this->Form->end(__('OK', true));
             ?>
-            
+
             <div class="languageSelect">
             <script type='text/javascript'>
             $(document).ready(function() {
@@ -87,11 +88,11 @@ class NavigationHelper extends AppHelper
             );
             });
             </script>
-           
+
             <?php
             $this->Javascript->link('sentences.random.js', false);
-            
-            
+
+
             $langArray = $this->Languages->languagesArray();
             $selectedLanguage = $this->Session->read('random_lang_selected');
             
@@ -99,11 +100,14 @@ class NavigationHelper extends AppHelper
                 "randomLangChoiceInBrowse", 
                 $langArray, 
                 $selectedLanguage, 
-                array('class' => 'language-selector'),
+                array(
+                    'class' => 'language-selector',
+                    "empty" => false
+                ),
                 false
             );
             ?>
-            
+
             <span class="smallTip">
             &lt;=
             <?php
@@ -116,9 +120,9 @@ class NavigationHelper extends AppHelper
 
             <?php
             $prevClass = "inactive";
-            $prevLink = ""; 
+            $prevLink = "";
             $prevText = '« '.__('previous', true);
-            
+
             if (!empty($prev)) {
                 $prevClass = "active";
                 $prevLink = array(
@@ -126,7 +130,7 @@ class NavigationHelper extends AppHelper
                     "action" => $action,
                     $prev
                 );
-            } 
+            }
 
             ?>
             <li class="<?php echo $prevClass; ?>" id="prevSentence">
@@ -138,12 +142,12 @@ class NavigationHelper extends AppHelper
                 echo $this->Html->link($prevText, $prevLink);
             }
             ?></li>
- 
+
             <?php
             $nextClass = "inactive";
-            $nextLink = ""; 
+            $nextLink = "";
             $nextText = __('next', true).' »';
-            
+
             if (!empty($next)) {
                 $nextClass = "active";
                 $nextLink = array(
@@ -151,10 +155,10 @@ class NavigationHelper extends AppHelper
                     "action" => $action,
                     $next
                 );
-            } 
+            }
 
             ?>
-           
+
             <li class="<?php echo $nextClass; ?>" id="nextSentence">
             <?php
             // next
@@ -164,8 +168,8 @@ class NavigationHelper extends AppHelper
                 echo $this->Html->link($nextText, $nextLink);
             }
             ?></li>
-            
-            
+
+
             <li class="active" id="randomLink">
             <?php
             // random
@@ -179,19 +183,19 @@ class NavigationHelper extends AppHelper
             );
             ?>
             </li>
-            
+
             <li id="loadingAnimationForNavigation" style="display:none">
             <?php
             echo $this->Html->image(IMG_PATH . 'loading-small.gif');
             ?>
             </li>
-            
+
             </ul>
         </div>
         <?php
     }
-    
-    /** 
+
+    /**
      * Display navigation for users.
      *
      * @todo Remove?
@@ -204,7 +208,7 @@ class NavigationHelper extends AppHelper
     public function displayUsersNavigation($currentId, $username = null)
     {
         echo '<div class="navigation">';
-        
+
         if ($username == null) {
             $username = '';
         }
@@ -214,7 +218,7 @@ class NavigationHelper extends AppHelper
         echo $this->Form->input(
             'username',
             array(
-                "label" => __('Enter a username: ', true), 
+                "label" => __('Enter a username: ', true),
                 "value" => $username,
                 "id" => null
             )
@@ -235,7 +239,7 @@ class NavigationHelper extends AppHelper
         echo '</li>';
 
         // back to whole profile
-        if ($this->params['controller'] != 'users' 
+        if ($this->params['controller'] != 'users'
             AND $this->params['action'] != 'show'
         ) {
             echo '<li class="option">';
@@ -256,7 +260,7 @@ class NavigationHelper extends AppHelper
         echo '</div>';
     }
 
-    /** 
+    /**
      * Display navigation for sentences lists.
      *
      * @return void

@@ -27,7 +27,7 @@
 
 if ($tagExists) {
     $tagName = Sanitize::html($tagName);
-    $this->pageTitle = 'Tatoeba - '.sprintf(__('Sentences with tag %s', true), $tagName);
+    $this->set('title_for_layout', 'Tatoeba - '.sprintf(__('Sentences with tag %s', true), $tagName));
     ?>
 
     <div id="annexe_content">

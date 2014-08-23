@@ -38,7 +38,7 @@ class Translation extends AppModel
 {
     public $actsAs = array('Containable');
     public $useTable = 'sentences';
-    
+
     public $hasAndBelongsToMany = array(
         'IndirectTranslation' => array(
             'className' => 'IndirectTranslation',

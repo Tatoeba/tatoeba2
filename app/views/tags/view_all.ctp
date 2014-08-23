@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = 'Tatoeba - '. __('All existing tags', true);
+$this->set('title_for_layout', 'Tatoeba - '. __('All existing tags', true));
 ?>
 
 <div id="annexe_content">

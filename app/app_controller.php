@@ -24,7 +24,6 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
 /**
  * Controller for contributions.
  *
@@ -46,7 +45,8 @@ class AppController extends Controller
         'Permissions',
         'RememberMe',
         'Cookie',
-        'RequestHandler'
+        'RequestHandler',
+        'Session'
     );
 
     public $helpers = array(
@@ -57,10 +57,11 @@ class AppController extends Controller
         'Form',
         'Logs',
         'Javascript',
-        'Languages'
+        'Languages',
+        'Session'
     );
-    
-    
+	
+	
     /**
      * 
      *
@@ -117,15 +118,15 @@ class AppController extends Controller
             $this->Cookie->write('interfaceLanguage', $lang, false, "+1 month");
         }
         Configure::write('Config.language', $lang);
-        
+
         // Forcing the URL to have the (correct) language in it.
         $url = $_SERVER["REQUEST_URI"];
         if (!empty($langInURL) && $langInCookie && $langInURL != $langInCookie) {
-            // We're are now going to remove the language from the URL and set 
-            // $langURL to null so that we get the the correct URL through 
+            // We're are now going to remove the language from the URL and set
+            // $langURL to null so that we get the the correct URL through
             // redirection (below).
-            $url = preg_replace("/^\/$langInURL(\/|$)/", '/', $url); 
-            $langInURL = null; 
+            $url = preg_replace("/^\/$langInURL(\/|$)/", '/', $url);
+            $langInURL = null;
         }
         if (empty($langInURL)) {
             $redirectPage = "/".$lang.$url;
@@ -145,7 +146,7 @@ class AppController extends Controller
         if ($this->RequestHandler->isAjax()) {
             $this->layout = null;
         }
-        
+		
         // TODO
         // We're passing the value from the cookie to the session because it is
         // needed for the translation form (in helpers/sentences.php), but we
@@ -198,7 +199,7 @@ class AppController extends Controller
      * @param int   $status HTTP status code to send
      * @param bool  $exit   If true, exit() will be called after the redirect
      *
-     * @return mixed 
+     * @return mixed
      */
     public function redirect($url = null, $status = null, $exit = true)
     {
@@ -212,7 +213,7 @@ class AppController extends Controller
     
 
     /**
-     * Returns the ISO code of the language in which we should set the interface, 
+     * Returns the ISO code of the language in which we should set the interface,
      * considering the languages of the user's browser.
      *
      * @return string

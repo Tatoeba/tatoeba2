@@ -20,14 +20,14 @@
 class SentencesHelper extends AppHelper {
 
 	var $helpers = array('Html', 'Form', 'Javascript');
-	
+
 	/**
 	 * Display a single sentence.
 	 */
 	function displayNewReplyForm($order) {
 
 	}
-	
+
 
 }
 ?>

@@ -39,18 +39,18 @@ class PinyinComponent extends Object
 {
 
     private $_constTone2ToneConsti_search = array(
-        'n1', 
+        'n1',
         'n2',
-        'n3', 
+        'n3',
         'n4',
         'ng1',
         'ng2',
         'ng3',
         'ng4',
-        'r1', 
-        'r2', 
-        'r3', 
-        'r4' 
+        'r1',
+        'r2',
+        'r3',
+        'r4'
     );
 
     private $_constTone2ToneConsti_replace = array(
@@ -65,7 +65,7 @@ class PinyinComponent extends Object
         '1r',
         '2r',
         '3r',
-        '4r' 
+        '4r'
     );
 
 
@@ -104,7 +104,7 @@ class PinyinComponent extends Object
         'o1u',
         'o2u',
         'o3u',
-        'o4u' 
+        'o4u'
     );
 
     private $_vowelTone2Unicode_search = array(
@@ -209,20 +209,20 @@ class PinyinComponent extends Object
             $this->_vowelVowelTone2VowelToneVowel_search,
             $this->_vowelVowelTone2VowelToneVowel_replace,
             $text
-        ); 
+        );
 
         $text = str_replace(
             $this->_vowelTone2Unicode_search,
             $this->_vowelTone2Unicode_replace,
             $text
-        ); 
+        );
 
 
         $text = str_replace(
             $this->_remove5thToneNumber_search,
             $this->_remove5thToneNumber_replace,
             $text
-        ); 
+        );
 
         return $text;
     }

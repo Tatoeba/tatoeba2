@@ -16,7 +16,7 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * PHP version 5 
+ * PHP version 5
  *
  * @category PHP
  * @package  Tatoeba
@@ -75,15 +75,15 @@ class SinogramsController extends AppController
      */
 
     public function search()
-    { 
-        
+    {
+
         $inputSubglyphs = $_POST["data"]["Sinogram"]["subglyphs"] ;
         /*use preg_match instead of str_split as we're working with utf8 characters*/
         preg_match_all('/./u', $inputSubglyphs, $array);
 
         /*launching the request*/
         $results = $this->Sinogram->search($array[0]);
-        
+
         /*keep sinogram only*/
         $glyphs = array();
         $numberOfResults = count($results);
@@ -92,7 +92,7 @@ class SinogramsController extends AppController
         }
         /*send them to the view*/
 
-        $this->set("glyphs", $glyphs); 
+        $this->set("glyphs", $glyphs);
         //pr ($glyphs) ;
     }
 
@@ -112,11 +112,11 @@ class SinogramsController extends AppController
 
         $results = $this->Sinogram->explode($array[0]);
         $numberOfResults = count($results);
-        
+
         /*
             regroup the result in this way
-            [sinogram] => array(subglyph ); 
-        
+            [sinogram] => array(subglyph );
+
         */
         $explodedSinogramsArray = array();
 
@@ -138,7 +138,7 @@ class SinogramsController extends AppController
 
     }
 
-    
+
     /**
      * load the informations we know about a sinograms
      *
@@ -149,13 +149,13 @@ class SinogramsController extends AppController
     {
         $sinogram = "噥";
         if (strlen(utf8_decode($_POST["sinogram"])) == 1) {
-            $sinogram = $_POST["sinogram"]; 
+            $sinogram = $_POST["sinogram"];
         }
         $sinogramInformations = $this->Sinogram->informations($sinogram);
 
-    
 
-               
+
+
         $this->set("sinogramInformations", $sinogramInformations["Sinogram"]);
     }
 
@@ -169,25 +169,25 @@ class SinogramsController extends AppController
     {
         $sinogram = "噥";
         if (strlen(utf8_decode($_POST["sinogram"]))== 1) {
-            $sinogram = $_POST["sinogram"]; 
+            $sinogram = $_POST["sinogram"];
         }
-        $sentenceId  
+        $sentenceId
             = $this->Sentence->searchOneExampleSentenceWithSinogram($sinogram);
         $sentenceWhichUseThisSinogram = null ;
 
         if ($sentenceId != null ) {
 
-            $sentenceWhichUseThisSinogram 
+            $sentenceWhichUseThisSinogram
                 = $this->Sentence->getSentenceWithId($sentenceId);
-            $specialOptions 
+            $specialOptions
                 = $this->Permissions->getSentencesOptions(
                     $sentenceWhichUseThisSinogram, $this->Auth->user('id')
                 );
 
             $alltranslations = $this->Sentence->getTranslationsOf($sentenceId);
             $translations = $alltranslations['Translation'];
-            $indirectTranslations = $alltranslations['IndirectTranslation'];    
-            
+            $indirectTranslations = $alltranslations['IndirectTranslation'];
+
             $this->set('specialOptions', $specialOptions);
             $this->set("sentenceFound", true);
         } else {
@@ -200,8 +200,8 @@ class SinogramsController extends AppController
         $this->set('translations', $translations);
 
     }
-    
-    
+
+
     /**
      * used to display the radicals list on the right panel
      *
@@ -210,7 +210,7 @@ class SinogramsController extends AppController
     public function load_radicals()
     {
         $numberOfStrokes = $_POST["number"];
-        
+
         $radicalsArray = array();
         //TODO should include this array in the model to be more MVC compliant
         $radicalsArray["1"] = array (
@@ -258,7 +258,7 @@ class SinogramsController extends AppController
         );
         $radicalsArray["9"] = array (
             '面','革','韋','韭','音','頁','风','飛','食','首'
-            ,'香' 
+            ,'香'
         );
         $radicalsArray["10+"] = array (
             '馬','骨','高','髟','鬥','鬯','鬲','鬼','魚','鳥'

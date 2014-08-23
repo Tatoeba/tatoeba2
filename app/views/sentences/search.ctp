@@ -27,7 +27,7 @@
 
 $query = Sanitize::html($query);
 
-$this->pageTitle = sprintf(__('Sentences with: %s', true), $query);
+$this->set('title_for_layout', sprintf(__('Sentences with: %s', true), $query));
 ?>
 
 <div id="annexe_content">

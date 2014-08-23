@@ -1,29 +1,24 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * FolderTest file
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
  * @since         CakePHP(tm) v 1.2.0.4206
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 App::import('Core', 'File');
+
 /**
  * FolderTest class
  *
@@ -31,6 +26,7 @@ App::import('Core', 'File');
  * @subpackage    cake.tests.cases.libs
  */
 class FolderTest extends CakeTestCase {
+
 /**
  * testBasic method
  *
@@ -55,6 +51,7 @@ class FolderTest extends CakeTestCase {
 		$result = $Folder->cd(ROOT . DS . 'non-existent');
 		$this->assertFalse($result);
 	}
+
 /**
  * testInPath method
  *
@@ -102,6 +99,24 @@ class FolderTest extends CakeTestCase {
 		$this->assertTrue($result);
 		rmdir(TMP . 'tests' . DS . 'first');
 	}
+
+/**
+ * test that creation of folders with trailing ds works
+ *
+ * @return void
+ */
+	function testCreateWithTrailingDs() {
+		$folder =& new Folder(TMP);
+		$path = TMP . 'tests' . DS . 'trailing' . DS . 'dir' . DS;
+		$result = $folder->create($path);
+		$this->assertTrue($result);
+
+		$this->assertTrue(is_dir($path), 'Folder was not made');
+
+		$folder =& new Folder(TMP . 'tests' . DS . 'trailing');
+		$this->assertTrue($folder->delete());
+	}
+
 /**
  * test recurisve directory create failure.
  *
@@ -131,7 +146,7 @@ class FolderTest extends CakeTestCase {
  * @return void
  */
 	function testOperations() {
-		$path = TEST_CAKE_CORE_INCLUDE_PATH . 'console' . DS . 'libs' . DS . 'templates' . DS . 'skel';
+		$path = TEST_CAKE_CORE_INCLUDE_PATH . 'console' . DS . 'templates' . DS . 'skel';
 		$Folder =& new Folder($path);
 
 		$result = is_dir($Folder->pwd());
@@ -146,7 +161,7 @@ class FolderTest extends CakeTestCase {
 		$this->assertTrue($result);
 
 		$copy = TMP . 'test_folder_copy';
-		$result = $Folder->cp($copy);
+		$result = $Folder->copy($copy);
 		$this->assertTrue($result);
 
 		$copy = TMP . 'test_folder_copy';
@@ -161,7 +176,7 @@ class FolderTest extends CakeTestCase {
 		$this->assertTrue($result);
 
 		$mv = TMP . 'test_folder_mv_2';
-		$result = $Folder->mv($mv);
+		$result = $Folder->move($mv);
 		$this->assertTrue($result);
 
 		$result = $Folder->delete($new);
@@ -170,7 +185,7 @@ class FolderTest extends CakeTestCase {
 		$result = $Folder->delete($mv);
 		$this->assertTrue($result);
 
-		$result = $Folder->rm($mv);
+		$result = $Folder->delete($mv);
 		$this->assertTrue($result);
 
 		$new = APP . 'index.php';
@@ -195,6 +210,7 @@ class FolderTest extends CakeTestCase {
 		$result = $Folder->pwd();
 		$this->assertNull($result);
 	}
+
 /**
  * testChmod method
  *
@@ -204,7 +220,7 @@ class FolderTest extends CakeTestCase {
 	function testChmod() {
 		$this->skipIf(DIRECTORY_SEPARATOR === '\\', '%s Folder permissions tests not supported on Windows');
 
-		$path = TEST_CAKE_CORE_INCLUDE_PATH . 'console' . DS . 'libs' . DS . 'templates' . DS . 'skel';
+		$path = TEST_CAKE_CORE_INCLUDE_PATH . 'console' . DS . 'templates' . DS . 'skel';
 		$Folder =& new Folder($path);
 
 		$subdir = 'test_folder_new';
@@ -224,6 +240,7 @@ class FolderTest extends CakeTestCase {
 
 		$Folder->delete($new);
 	}
+
 /**
  * testRealPathForWebroot method
  *
@@ -234,6 +251,7 @@ class FolderTest extends CakeTestCase {
 		$Folder = new Folder('files/');
 		$this->assertEqual(realpath('files/'), $Folder->path);
 	}
+
 /**
  * testZeroAsDirectory method
  *
@@ -256,11 +274,12 @@ class FolderTest extends CakeTestCase {
 		$result = $Folder->delete($new);
 		$this->assertTrue($result);
 	}
+
 /**
  * test Adding path elements to a path
  *
  * @return void
- **/
+ */
 	function testAddPathElement() {
 		$result = Folder::addPathElement(DS . 'some' . DS . 'dir', 'another_path');
 		$this->assertEqual($result, DS . 'some' . DS . 'dir' . DS . 'another_path');
@@ -286,6 +305,7 @@ class FolderTest extends CakeTestCase {
 		$result = $Folder->read(true, true);
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * testFolderTree method
  *
@@ -335,6 +355,7 @@ class FolderTest extends CakeTestCase {
 		$this->assertIdentical(array_diff($expected[1], $result), array());
 		$this->assertIdentical(array_diff($result, $expected[1]), array());
 	}
+
 /**
  * testWindowsPath method
  *
@@ -347,6 +368,7 @@ class FolderTest extends CakeTestCase {
 		$this->assertTrue(Folder::isWindowsPath('d:\\cake\\is\\awesome'));
 		$this->assertTrue(Folder::isWindowsPath('\\\\vmware-host\\Shared Folders\\file'));
 	}
+
 /**
  * testIsAbsolute method
  *
@@ -368,6 +390,7 @@ class FolderTest extends CakeTestCase {
 		$this->assertTrue(Folder::isAbsolute('d:\\path\\to\\file'));
 		$this->assertTrue(Folder::isAbsolute('\\\\vmware-host\\Shared Folders\\file'));
 	}
+
 /**
  * testIsSlashTerm method
  *
@@ -380,6 +403,7 @@ class FolderTest extends CakeTestCase {
 		$this->assertTrue(Folder::isSlashTerm('C:\\cake\\'));
 		$this->assertTrue(Folder::isSlashTerm('/usr/local/'));
 	}
+
 /**
  * testStatic method
  *
@@ -390,6 +414,7 @@ class FolderTest extends CakeTestCase {
 		$result = Folder::slashTerm('/path/to/file');
 		$this->assertEqual($result, '/path/to/file/');
 	}
+
 /**
  * testNormalizePath method
  *
@@ -409,6 +434,7 @@ class FolderTest extends CakeTestCase {
 		$result = Folder::normalizePath($path);
 		$this->assertEqual($result, '\\');
 	}
+
 /**
  * correctSlashFor method
  *
@@ -428,6 +454,7 @@ class FolderTest extends CakeTestCase {
 		$result = Folder::correctSlashFor($path);
 		$this->assertEqual($result, '\\');
 	}
+
 /**
  * testInCakePath method
  *
@@ -452,6 +479,7 @@ class FolderTest extends CakeTestCase {
 		$result = $Folder->inCakePath($path);
 		$this->assertTrue($result);
 	}
+
 /**
  * testFind method
  *
@@ -489,7 +517,7 @@ class FolderTest extends CakeTestCase {
 
 		$Folder->cd(TMP);
 		$file = new File($Folder->pwd() . DS . 'paths.php', true);
-		$Folder->mkdir($Folder->pwd() . DS . 'testme');
+		$Folder->create($Folder->pwd() . DS . 'testme');
 		$Folder->cd('testme');
 		$result = $Folder->find('paths\.php');
 		$expected = array();
@@ -504,6 +532,7 @@ class FolderTest extends CakeTestCase {
 		$Folder->delete($Folder->pwd() . DS . 'testme');
 		$file->delete();
 	}
+
 /**
  * testFindRecursive method
  *
@@ -529,7 +558,7 @@ class FolderTest extends CakeTestCase {
 		$this->assertIdentical($result, $expected);
 
 		$Folder->cd(TMP);
-		$Folder->mkdir($Folder->pwd() . DS . 'testme');
+		$Folder->create($Folder->pwd() . DS . 'testme');
 		$Folder->cd('testme');
 		$File =& new File($Folder->pwd() . DS . 'paths.php');
 		$File->create();
@@ -563,6 +592,7 @@ class FolderTest extends CakeTestCase {
 		$Folder->delete($Folder->pwd() . DS . 'testme');
 		$File->delete();
 	}
+
 /**
  * testConstructWithNonExistantPath method
  *
@@ -575,6 +605,7 @@ class FolderTest extends CakeTestCase {
 		$Folder->cd(TMP);
 		$Folder->delete($Folder->pwd() . 'config_non_existant');
 	}
+
 /**
  * testDirSize method
  *
@@ -594,6 +625,7 @@ class FolderTest extends CakeTestCase {
 		$Folder->cd(TMP);
 		$Folder->delete($Folder->pwd() . 'config_non_existant');
 	}
+
 /**
  * testDelete method
  *
@@ -621,6 +653,7 @@ class FolderTest extends CakeTestCase {
 		);
 		$this->assertEqual($expected, $messages);
 	}
+
 /**
  * testCopy method
  *
@@ -679,6 +712,7 @@ class FolderTest extends CakeTestCase {
 		$Folder =& new Folder($path);
 		$Folder->delete();
 	}
+
 /**
  * testMove method
  *
@@ -758,4 +792,3 @@ class FolderTest extends CakeTestCase {
 		$Folder->delete();
 	}
 }
-?>

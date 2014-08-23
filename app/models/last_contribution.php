@@ -64,10 +64,10 @@ class LastContribution extends AppModel
                             'username', 'group_id', 'image'
                         ),
                     ),
-                ) 
+                )
             )
         );
-        return $result; 
+        return $result;
     }
 
 }

@@ -26,10 +26,10 @@
  */
 
 /**
- * Helper to display sentences. 
- * 
+ * Helper to display sentences.
+ *
  * Sentences must follow a strict pattern in order to maintain consistency throughout
- * the whole application. If you have to display sentences somewhere, you have the 
+ * the whole application. If you have to display sentences somewhere, you have the
  * choice among one of these:
  *  - SentencesGroup
  *  - MainSentence
@@ -83,20 +83,20 @@ class SentencesHelper extends AppHelper
         $withDivWrapper = true
     ) {
         $id = $sentence['id'];
-        
+
         if ($withDivWrapper) {
             ?>
             <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
         <?php
         }
-         
+
         $ownerName = null;
         if (isset($user['username'])) {
             $ownerName = $user['username'];
         }
         $this->displayMainSentence($sentence, $ownerName, $withAudio);
-        
-        
+
+
         // Loading gif
         echo $this->Html->image(
             IMG_PATH . 'loading.gif',
@@ -107,7 +107,7 @@ class SentencesHelper extends AppHelper
                 "height" => 31
             )
         );
-        
+
         // Form to add a new translation
         $this->_displayNewTranslationForm($id, $withAudio);
         ?>
@@ -117,30 +117,30 @@ class SentencesHelper extends AppHelper
             // direct translations
             foreach ($translations as $translation) {
                 $this->displayGenericSentence(
-                    $translation, 
-                    null, 
-                    'directTranslation', 
+                    $translation,
+                    null,
+                    'directTranslation',
                     $withAudio,
                     $id,
                     $ownerName
                 );
             }
-            
+
             // indirect translations
             foreach ($indirectTranslations as $translation) {
                 $this->displayGenericSentence(
-                    $translation, 
-                    null, 
-                    'indirectTranslation', 
+                    $translation,
+                    null,
+                    'indirectTranslation',
                     $withAudio,
                     $id,
                     $ownerName
                 );
             }
-        
+
             ?>
         </div>
-        
+
         <?php
         if ($withDivWrapper) {
         ?>
@@ -148,8 +148,8 @@ class SentencesHelper extends AppHelper
         <?php
         }
     }
-    
-    
+
+
     /**
      * Displays group of sentences with only text, flag and audio button.
      *
@@ -164,34 +164,34 @@ class SentencesHelper extends AppHelper
         $id = $sentence['id'];
         ?>
         <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
-        
+
         <?php
         $this->displayGenericSentence(
-            $sentence, 
-            null, 
-            'mainSentence', 
+            $sentence,
+            null,
+            'mainSentence',
             $withAudio
         );
         ?>
-        
+
         <div id="_<?php echo $id; ?>_translations" class="translations">
         <?php
         // direct translations
         foreach ($translations as $translation) {
             $this->displayGenericSentence(
-                $translation, 
-                null, 
-                'directTranslation', 
+                $translation,
+                null,
+                'directTranslation',
                 $withAudio
             );
         }
         ?>
         </div>
-        
+
         </div>
         <?php
     }
-    
+
 
     /**
      * Displays the form to translate a sentence. Appears when clicking on the
@@ -222,7 +222,7 @@ class SentencesHelper extends AppHelper
         });
         </script>
         <div id="translation_for_<?php echo $id; ?>" class="addTranslations">
-        
+
             <?php
             // Input field
             echo $this->Form->textarea(
@@ -234,34 +234,36 @@ class SentencesHelper extends AppHelper
                     'cols' => 90,
                 )
             );
-            
+
             // language select
             echo $this->Form->select(
                 'translationLang_'.$id,
                 $langArray,
                 $preSelectedLang,
-                array("class"=>"translationLang language-selector"),
+                array(
+                    "class" => "translationLang language-selector",
+                    "empty" => false
+                ),
                 false
             );
             
             // OK
             echo $this->Form->button(
-                'translation',
+                __('Submit translation', true),
                 array(
-                    'value' => __('Submit translation', true),
                     'id' => '_'.$id.'_submit'
                 )
             );
-            
+
             // Cancel
             echo $this->Form->button(
-                'translation',
+                __('Cancel', true),
                 array(
-                    'value' => __('Cancel', true),
-                    'id' => '_'.$id.'_cancel'
+                    'id' => '_'.$id.'_cancel',
+                    'type' => 'reset',
                 )
             );
-            
+
             // Warning
             ?>
             <div class="important">
@@ -275,7 +277,7 @@ class SentencesHelper extends AppHelper
             );
             ?>
             </p>
-            
+
             <p>
             <?php
             __(
@@ -285,15 +287,15 @@ class SentencesHelper extends AppHelper
             ?>
             </p>
             </div>
-        
+
         </div>
         <?php
     }
-    
+
 
     /**
-     * Displays the main sentence. The main sentence is composed of a sentence and a 
-     * menu of action that can be applied on this sentence. This is the sentence at 
+     * Displays the main sentence. The main sentence is composed of a sentence and a
+     * menu of action that can be applied on this sentence. This is the sentence at
      * the top.
      *
      * @param array  $sentence  Sentence data.
@@ -307,24 +309,24 @@ class SentencesHelper extends AppHelper
         if (isset($sentence['script'])) {
             $chineseScript = $sentence['script'];
         }
-        
+
         $this->Menu->displayMenu(
             $sentenceId, $ownerName, $chineseScript
         );
-        
+
         $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);
         $this->displayGenericSentence(
-            $sentence, 
-            $ownerName, 
-            'mainSentence', 
+            $sentence,
+            $ownerName,
+            'mainSentence',
             $withAudio,
             null,
             null,
             $isEditable
         );
     }
-    
-    
+
+
     /**
      * Displays the generic version of a sentence. This is used to display the
      * the main sentence as well as direct and indirect translations.
@@ -338,19 +340,19 @@ class SentencesHelper extends AppHelper
      *
      * @param array  $sentence        Sentence data.
      * @param string $ownerName       Name of the owner of sentence.
-     * @param string $type            Type of sentence. Can be 'mainSentence', 
+     * @param string $type            Type of sentence. Can be 'mainSentence',
      *                                'directTranslation' or 'indirectTranslation'.
-     * @param bool   $withAudio       Set to 'true' if audio icon is displayed.     
+     * @param bool   $withAudio       Set to 'true' if audio icon is displayed.
      * @param int    $parentId        Id of the parent sentence (i.e. main sentence).
      * @param string $parentOwnerName Name of the owner of the *main* sentence.
      *
      * @return void
      */
     public function displayGenericSentence(
-        $sentence, 
-        $ownerName, 
-        $type, 
-        $withAudio = true, 
+        $sentence,
+        $ownerName,
+        $type,
+        $withAudio = true,
         $parentId = null,
         $parentOwnerName = null,
         $isEditable = false
@@ -376,29 +378,29 @@ class SentencesHelper extends AppHelper
         if ($type != 'mainSentence' || $isEditable) {
             $this->_displayNavigation($sentenceId, $type);
         }
-        
+
         // Link/unlink button
         if (CurrentUser::isTrusted()) {
             $this->_displayLinkOrUnlinkButton($parentId, $sentenceId, $type);
         }
-        
+
         // audio
         if ($withAudio) {
             $this->SentenceButtons->audioButton($sentenceId, $sentenceLang, $sentenceAudio);
         }
-        
+
         // language flag
-        // TODO For Chinese sentences, it is better to display the 
+        // TODO For Chinese sentences, it is better to display the
         // traditional/simplified icon here, instead of in the menu.
         $this->SentenceButtons->displayLanguageFlag(
             $sentenceId, $sentenceLang, $isEditable
         );
-        
+
         // Sentence and romanization
         $this->displaySentenceContent($sentence, $isEditable);
         ?>
         </div>
-        
+
         <?php
     }
     
@@ -431,7 +433,7 @@ class SentencesHelper extends AppHelper
      *
      * @param array  $parentId    Id of the parent (or grand-parent) sentence.
      * @param string $sentenceId  Name of the owner of the sentence.
-     * @param string $type        Type of sentence. Can be 'directTranslation' or 
+     * @param string $type        Type of sentence. Can be 'directTranslation' or
      *                            'indirectTranslation'.
      *
      * @return void
@@ -443,20 +445,20 @@ class SentencesHelper extends AppHelper
                 $parentId, $sentenceId
             );
         }
-        
+
         if ($type == 'indirectTranslation') {
             $this->SentenceButtons->linkButton(
                 $parentId, $sentenceId
             );
         }
     }
-    
-    
+
+
     /**
      * Displays the navigation button (either info or arrow icon).
      *
      * @param string $sentenceId Name of the owner of the sentence.
-     * @param string $type       Type of sentence. Can be 'mainSentence', 
+     * @param string $type       Type of sentence. Can be 'mainSentence',
      *                           'directTranslation' or 'indirectTranslation'.
      *
      * @return void
@@ -465,17 +467,17 @@ class SentencesHelper extends AppHelper
     {
         if ($type == 'mainSentence') {
             $this->SentenceButtons->displayInfoButton($sentenceId);
-            
+
         } else if ($type == 'directTranslation') {
             $this->SentenceButtons->translationShowButton($sentenceId, 'direct');
-            
+
         } else if ($type == 'indirectTranslation') {
             $this->SentenceButtons->translationShowButton($sentenceId, 'indirect');
-            
+
         }
     }
-    
-    
+
+
     /**
      * Displays the text and, if they exists, the romanization and alternate Chinese
      * script of a sentence.
@@ -490,26 +492,26 @@ class SentencesHelper extends AppHelper
         $sentenceLang = $sentence['lang'];
         $sentenceText = $sentence['text'];
         ?>
-        
+
         <div class="sentenceContent">
         <?php
         // text
         $this->displaySentenceText(
             $sentenceId, $sentenceText, $isEditable, $sentenceLang
         );
-        
+
         // romanization
         $this->_displayRomanization($sentence);
-        
+
         // traditional or simplified Chinese
         $this->_displayAlternateScript($sentence);
         ?>
         </div>
-        
+
         <?php
     }
-    
-    
+
+
     /**
      * Displays the text of a sentence. This text can be editable or not.
      *
@@ -526,25 +528,25 @@ class SentencesHelper extends AppHelper
         $dir = $this->Languages->getLanguageDirection($sentenceLang);
 
         if ($isEditable) {
-            
+
             $this->Javascript->link('jquery.jeditable.js', false);
             $this->Javascript->link('sentences.edit_in_place.js', false);
-            
+
             // TODO: HACK SPOTTED id is used in edit_in_place
             // NOTE: I didn't find an easy way to pass the sentenceId to jEditable
             // using jQuery.data...
             echo '<div dir="'.$dir.'" id="'.$sentenceLang.'_'.$sentenceId.'" class="text editableSentence">';
             echo Sanitize::html($sentenceText);
             echo '</div>';
-            
+
         } else {
-            
+
             $link = array(
                 'controller' => 'sentences',
                 'action' => 'show',
                 $sentenceId
             );
-            
+
             // To check if we're on the sentence's page or not
             $currentSentenceId = null;
             if (isset($this->params['pass'][0])) {
@@ -555,7 +557,7 @@ class SentencesHelper extends AppHelper
                 'action' => $this->params['action'],
                 $currentSentenceId
             );
-            
+
             // Display sentence as simple text if we're on the sentence's page.
             // Otherwise display as link.
             if ($link == $currentURL) {
@@ -572,11 +574,11 @@ class SentencesHelper extends AppHelper
                     )
                 );
             }
-            
+
         }
     }
-    
-        
+
+
     /**
      * Display romanization.
      *
@@ -588,39 +590,39 @@ class SentencesHelper extends AppHelper
     {
         if (isset($sentence['romanization'])) {
             $romanization = $sentence['romanization'];
-            
+
             if ($sentence['lang'] == 'jpn') {
                 $this->Javascript->link(JS_PATH.'furigana.js', false);
                 $title = 'ROMAJI: '.$sentence['romaji'];
                 ?>
-                
+
                 <div class="romanization furigana" title="<?php echo $title; ?>">
                 <?php echo $romanization; ?>
                 </div>
-                
+
                 <?php
             } else {
-            
+
                 echo '<div class="romanization">';
                 if ($sentence['lang'] === 'cmn') {
                     echo $this->Pinyin->numeric2diacritic(
-                        $romanization             
+                        $romanization
                     );
                 } else {
                     echo $romanization;
                 }
                 echo '</div>';
-                
+
             }
         }
     }
-    
+
 
     /**
      * display alternate script (traditional / simplfied)
      * for chinese sentence
      *
-     * @param array $sentence Sentence for which to display alternate script 
+     * @param array $sentence Sentence for which to display alternate script
      *
      * @return void
      */
@@ -634,8 +636,8 @@ class SentencesHelper extends AppHelper
         <?php
         }
     }
-    
-    
+
+
     /**
      * Inline Javascript for AJAX loaded sentences group.
      *
@@ -653,52 +655,52 @@ class SentencesHelper extends AppHelper
         echo $this->Javascript->link('furigana.js', true);
         echo $this->Javascript->link('links.add_and_delete.js', true);
     }
-    
-    
-    
+
+
+
     /**
      * Diplays a sentence and its translations for 'light' layout.
      *
      * @author CK
      * @author HO Ngoc Phuong Trang <tranglich@gmail.com>
-     * 
+     *
      * @param array $sentence     Sentence to display.
      * @param array $translations Translations of the sentence.
      *
      * @return void
      */
-    public function displaySGroup($sentence, $translations) 
+    public function displaySGroup($sentence, $translations)
     {
         $id = $sentence['id'];
         ?>
-        
+
         <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
-            
+
             <?php $this->displayS($sentence, 'mainSentence'); ?>
-            
+
             <div class="translations">
                 <?php
                 foreach ($translations as $translation) {
                     $this->displayS($translation, 'directTranslation');
-                }     
+                }
                 ?>
             </div>
-        
+
         </div>
-        
+
         <?php
     }
-    
-    
+
+
 	/**
-     * Displays a sentence (either main sentence or direct translation) 
+     * Displays a sentence (either main sentence or direct translation)
      * and the language flag.
-     * 
+     *
      * @author CK
      * @author HO Ngoc Phuong Trang <tranglich@gmail.com>
      *
      * @param array  $sentence Sentence data.
-     * @param string $type     Type of sentence. Can be 'mainSentence', 
+     * @param string $type     Type of sentence. Can be 'mainSentence',
      *                         or 'directTranslation'.
      *
      * @return void
@@ -708,19 +710,19 @@ class SentencesHelper extends AppHelper
         $sentenceLang = $sentence['lang'];
         $sentenceText = $sentence['text'];
         ?>
-        
+
         <div class="sentence <?php echo $type; ?>">
-            <?php 
+            <?php
             $this->SentenceButtons->displayLanguageFlag(
                 $sentenceId, $sentenceLang, false
             );
-            
+
             $this->displaySentenceText(
                 $sentenceId, $sentenceText, false, $sentenceLang
             );
             ?>
         </div>
-        
+
         <?php
     }
 

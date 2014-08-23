@@ -248,15 +248,15 @@ class LanguagesHelper extends AppHelper
         
         return $this->__languages;
     }
-    
-    
+
+
     /**
      * Returns array of languages set in the user's options.
      */
     public function userLanguagesArray()
     {
         $languages = $this->onlyLanguagesArray();
-        
+
         if (CurrentUser::isMember()) {
             $userLangs = CurrentUser::getLanguages();
             if (!empty($userLangs)) {
@@ -267,12 +267,12 @@ class LanguagesHelper extends AppHelper
                 $languages = $filteredLangs;
             }
         }
-        
+
         return $languages;
     }
-    
 
-    /** 
+
+    /**
      * Return array of languages in Tatoeba. + all languages
      *
      * @return array
@@ -280,15 +280,15 @@ class LanguagesHelper extends AppHelper
     public function languagesArray()
     {
         $languages = $this->onlyLanguagesArray();
-        
+
         // Can't use 'any' as it's the code for anyin language.
         // Only 'und' is used for "undefined".
         array_unshift($languages, array('und' => __('All languages', true)));
-        
+
         return $languages;
     }
 
-    /** 
+    /**
      * Return array of languages in Tatoeba. + 'unknown language'
      *
      * @return array
@@ -296,17 +296,17 @@ class LanguagesHelper extends AppHelper
     public function unknownLanguagesArray()
     {
         $languages = $this->onlyLanguagesArray();
-        
+
         // Can't use 'any' as it's the code for anyin language.
         // Only 'und' is used for "undefined".
         // TODO xxx to be remplace by the code for 'unknown'
         array_unshift($languages, array('unknown' => __('unknown language', true)));
-        
+
         return $languages;
     }
-    
-    
-    /** 
+
+
+    /**
      * Return array of languages in Tatoeba + 'other language'. 'other language' is
      * used to set the language to null, in case there was a misdetection and the
      * language in which the user is writing is not supported yet.
@@ -316,12 +316,12 @@ class LanguagesHelper extends AppHelper
     public function otherLanguagesArray()
     {
         $languages = $this->onlyLanguagesArray();
-        
+
         array_unshift($languages, array('' => __('other language', true)));
-        
+
         return $languages;
     }
-    
+
 
     /**
      * Return array of language + "auto"
@@ -334,12 +334,12 @@ class LanguagesHelper extends AppHelper
     public function translationsArray()
     {
         $languages = $this->userLanguagesArray();
-        
+
         array_unshift($languages, array('auto' => __('Auto detect', true)));
         return $languages;
     }
-    
-    
+
+
     /**
      * Return array of languages, with "None" and "All languages" options.
      * Applies to a positive phrase (for example, "Show translations in"). 
@@ -349,19 +349,19 @@ class LanguagesHelper extends AppHelper
     public function languagesArrayForPositiveLists()
     {
         $languages = $this->onlyLanguagesArray();
-        
+
         array_unshift(
-            $languages, 
+            $languages,
             array(
                 'none' => __('None', true),
                 'und' => __('All languages', true)
             )
         );
-        
+
         return $languages;
     }
-    
-    
+
+
     /**
     * Return array of languages, with "--" and "Any languages" options.
     * Applies to a negative phrase (for example, "Not directly translated into"). 
@@ -392,19 +392,19 @@ class LanguagesHelper extends AppHelper
     public function languagesArrayWithNone()
     {
         $languages = $this->onlyLanguagesArray();
-        
+
         array_unshift(
-            $languages, 
+            $languages,
             array(
                 'none' => __('None', true)
             )
         );
-        
+
         return $languages;
     }
-    
-    
-    /** 
+
+
+    /**
      * Return array of languages in which you can search.
      *
      * @return array
@@ -416,8 +416,8 @@ class LanguagesHelper extends AppHelper
 
         return $languages;
     }
-    
-    /** 
+
+    /**
      * Return name of the language from the ISO code.
      *
      * @param string $code ISO-639-3 code.
@@ -433,13 +433,13 @@ class LanguagesHelper extends AppHelper
             return __('unknown', true);
         }
     }
-    
-    /** 
+
+    /**
      * Return number of languages
      *
      * @return int
      */
-     
+
     public function getNumberOfLanguages()
     {
         $languages = $this->onlyLanguagesArray();
@@ -477,8 +477,8 @@ class LanguagesHelper extends AppHelper
 
         return $direction;
     }
-    
-        
+
+
     /**
      * Display flag and number of sentences in the "sentences stats" block.
      *
@@ -497,26 +497,27 @@ class LanguagesHelper extends AppHelper
             )
         );
         $numberOfSentencesHtml = '<span class="total">'.$numberOfSentences.'</span>';
-        
+
         if (empty($langCode)) {
             $langCode = 'unknown';
         }
         $linkToAllSentences = $this->Html->link(
             $flagImage . $numberOfSentencesHtml,
             $link,
-            array(),
-            null,
-            false
+            array(
+                "escape" => false
+            ),
+            null
         );
-        
+
         ?>
         <li class="stat" title="<?php echo $this->codeToName($langCode); ?>">
         <?php echo $linkToAllSentences; ?>
         </li>
         <?php
     }
-    
-    
+
+
     /**
      * Convert language interface code into ISO code.
      *
@@ -546,15 +547,15 @@ class LanguagesHelper extends AppHelper
             'tgl' => 'tgl',
             'mar' => 'mar'
         );
-        
+
         if (isset($languages["$code"])) {
             return $languages["$code"];
         } else {
             return 'unknown';
         }
     }
-    
-    
+
+
     /**
      * Display language icon.
      *
@@ -563,15 +564,15 @@ class LanguagesHelper extends AppHelper
      *
      * @return void
      */
-    public function icon($lang, $options) 
+    public function icon($lang, $options)
     {
         if (empty($lang)) {
             $lang = 'unknown';
         }
-        
+
         $options["title"] = $this->codeToName($lang);
         $options["alt"] = $lang;
-        
+
         return $this->Html->image(
             IMG_PATH . 'flags/'.$lang.'.png',
             $options

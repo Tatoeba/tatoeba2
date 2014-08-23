@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */ 
 
-$this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
+$this->set('title_for_layout', 'Tatoeba - ' . __('Download list: ', true) . $listName);
 ?>
 <div id="annexe_content">
     <div class="module">
@@ -100,7 +100,10 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
                 'TranslationsLang',
                 $langArray,
                 null,
-                array('class' => 'language-selector'),
+                array(
+                    'class' => 'language-selector',
+                    "empty" => false
+                ),
                 false
             );
             ?>

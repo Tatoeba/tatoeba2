@@ -42,8 +42,8 @@ echo $form->select(
     $languages,
     $lang,
     array(
-        "onchange" => "changeInterfaceLang(this.value)"
-    ),
-    false
+        "onchange" => "changeInterfaceLang(this.value)",
+        "empty" => false
+    )
 );
 ?>

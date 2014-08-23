@@ -1,28 +1,23 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Short description for file.
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.fixtures
  * @since         CakePHP(tm) v 1.2.0.4667
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
+
 /**
  * Short description for class.
  *
@@ -30,6 +25,7 @@
  * @subpackage    cake.tests.fixtures
  */
 class UuiditemsUuidportfolioFixture extends CakeTestFixture {
+
 /**
  * name property
  *
@@ -37,6 +33,7 @@ class UuiditemsUuidportfolioFixture extends CakeTestFixture {
  * @access public
  */
 	var $name = 'UuiditemsUuidportfolio';
+
 /**
  * fields property
  *
@@ -48,6 +45,7 @@ class UuiditemsUuidportfolioFixture extends CakeTestFixture {
 		'uuiditem_id' => array('type' => 'string', 'length' => 36, 'null' => false),
 		'uuidportfolio_id' => array('type' => 'string', 'length' => 36, 'null' => false)
 	);
+
 /**
  * records property
  *
@@ -61,4 +59,3 @@ class UuiditemsUuidportfolioFixture extends CakeTestFixture {
 		array('id' => '4851b94c-9790-42dc-b760-4f9240cf8569', 'uuiditem_id' => '482cfd4b-0e7c-4ea3-9582-4cec40cf8569', 'uuidportfolio_id' => '4806e091-6940-4d2b-b227-303740cf8569')
 	);
 }
-?>

@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  *
  * PHP versions 4 and 5
@@ -15,16 +14,13 @@
  * @package       cake
  * @subpackage    cake.cake.libs.view.templates.layouts
  * @since         CakePHP(tm) v 0.10.0.1076
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<?php echo $html->charset(); ?>
+<?php echo $this->Html->charset(); ?>
 <title><?php echo $page_title; ?></title>
 
 <?php if (Configure::read() == 0) { ?>

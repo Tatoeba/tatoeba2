@@ -37,29 +37,29 @@
 class VisitorsController extends AppController
 {
     public $name = 'Visitors';
-    
+
     /**
      * Before filter.
-     * 
+     *
      * @return void
      */
     public function beforeFilter()
     {
-        parent::beforeFilter(); 
-        
+        parent::beforeFilter();
+
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array('*');
     }
-    
+
     /**
      * Number of online visitors.
-     * 
+     *
      * @return int
      */
     public function online()
     {
         return $this->Visitor->numberOfOnlineVisitors();
     }
-    
-}    
+
+}
 ?>

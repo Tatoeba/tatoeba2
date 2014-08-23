@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-$this->pageTitle = 'Tatoeba - ' . __('Translate sentences', true);
+$this->set('title_for_layout', 'Tatoeba - ' . __('Translate sentences', true));
 
 $currentLanguage = $session->read('browse_sentences_in_lang');
 $notTranslatedInto = $session->read('not_translated_into_lang');
@@ -103,7 +103,10 @@ if (empty($notTranslatedInto)) {
                     'langFrom',
                     $langsFrom,
                     $currentLanguage,
-                    array('class' => 'language-selector'),
+                    array(
+                        'class' => 'language-selector',
+                        "empty" => false
+                    ),
                     false
                 );
                 ?>
@@ -118,7 +121,10 @@ if (empty($notTranslatedInto)) {
                     'langTo',
                     $langsTo,
                     $notTranslatedInto,
-                    array('class' => 'language-selector'),
+                    array(
+                        'class' => 'language-selector',
+                        "empty" => false
+                    ),
                     false
                 );
                 ?>
@@ -148,8 +154,9 @@ if (empty($notTranslatedInto)) {
             'numberWanted',
             $numberOfSentencesWanted,
             5,
-            null,
-            false
+            array(
+                'empty' => false
+            )
         );
         ?>
         </fieldset>
@@ -161,7 +168,10 @@ if (empty($notTranslatedInto)) {
             'into',
             $languages->languagesArray(),
             $selectedLanguage,
-            array('class' => 'language-selector'),
+            array(
+                'class' => 'language-selector',
+                "empty" => false
+            ),
             false
         );
         ?>

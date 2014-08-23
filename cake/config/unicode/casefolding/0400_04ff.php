@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Case Folding Properties.
  *
@@ -22,11 +21,9 @@
  * @package       cake
  * @subpackage    cake.cake.config.unicode.casefolding
  * @since         CakePHP(tm) v 1.2.0.5691
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 /**
  * The upper field is the decimal value of the upper case character
  *
@@ -166,4 +163,3 @@ $config['0400_04ff'][] = array('upper' => 1272, 'status' => 'C', 'lower' => arra
 $config['0400_04ff'][] = array('upper' => 1274, 'status' => 'C', 'lower' => array(1275)); /* CYRILLIC CAPITAL LETTER GHE WITH STROKE AND HOOK */
 $config['0400_04ff'][] = array('upper' => 1276, 'status' => 'C', 'lower' => array(1277)); /* CYRILLIC CAPITAL LETTER HA WITH HOOK */
 $config['0400_04ff'][] = array('upper' => 1278, 'status' => 'C', 'lower' => array(1279)); /* CYRILLIC CAPITAL LETTER HA WITH STROKE */
-?>

@@ -50,10 +50,10 @@ class UsersController extends AppController
     public $components = array ('Mailer', 'Captcha', 'RememberMe');
 
     public $uses = array("User","Contribution");
-    
+
     /**
      * Before filter.
-     * 
+     *
      * @return void
      */
     public function beforeFilter()
@@ -69,10 +69,10 @@ class UsersController extends AppController
             'check_login',
             'logout',
             'register',
-            'new_password', 
+            'new_password',
             'confirm_registration',
             'resend_registration_mail',
-            'captcha_image', 
+            'captcha_image',
             'check_username',
             'check_email',
             'update_rights',
@@ -82,7 +82,7 @@ class UsersController extends AppController
 
     /**
      * Index of users. For admin only.
-     * 
+     *
      * @return void
      */
     public function index()
@@ -108,13 +108,13 @@ class UsersController extends AppController
      * Edit user. Only for admin.
      *
      * @param int $id Id of user.
-     * 
+     *
      * @return void
      */
     public function edit($id = null)
     {
         $id = Sanitize::paranoid($id);
-        
+
         if (!$id && empty($this->data)) {
             $this->Session->setFlash('Invalid User');
             $this->redirect(array('action'=>'index'));
@@ -126,7 +126,7 @@ class UsersController extends AppController
                 $data = $aro->find(
                     "first", array(
                         "conditions" => array(
-                            "foreign_key" => $this->data['User']['id'], 
+                            "foreign_key" => $this->data['User']['id'],
                             "model" => "User"
                         )
                     )
@@ -155,18 +155,18 @@ class UsersController extends AppController
      * Delete user. Only for admin.
      *
      * @param int $id Id of user.
-     * 
+     *
      * @return void
      */
     public function delete($id = null)
     {
         $id = Sanitize::paranoid($id);
-        
+
         if (!$id) {
             $this->Session->setFlash('Invalid id for User');
             $this->redirect(array('action'=>'index'));
         }
-        if ($this->User->del($id)) {
+        if ($this->User->delete($id)) {
             $this->Session->setFlash('User deleted');
             $this->redirect(array('action'=>'index'));
         }
@@ -175,7 +175,7 @@ class UsersController extends AppController
 
     /**
      * Login.
-     * 
+     *
      * @return void
      */
     public function login()
@@ -198,7 +198,7 @@ class UsersController extends AppController
     public function check_login()
     {
         $this->Auth->login($this->data);
-        
+
         // group_id 5 => users is inactive
         if ($this->Auth->user('group_id') == 5) {
             $this->flash(
@@ -206,7 +206,7 @@ class UsersController extends AppController
                     'This account has been marked inactive. '.
                     'You cannot log in with it anymore. '.
                     'Please contact an admin if this is a mistake.', true
-                ), 
+                ),
                 '/users/logout/'
             );
         }
@@ -217,7 +217,7 @@ class UsersController extends AppController
                     'This account has been marked as a spammer. '.
                     'You cannot log in with it anymore. '.
                     'Please contact an admin if this is a mistake.', true
-                ), 
+                ),
                 '/users/logout/'
             );
         }
@@ -272,14 +272,14 @@ class UsersController extends AppController
                 $this->data['User']['username'], $this->data['User']['password']
             );
         }
-        
+
         $this->redirect($redirectUrl);
     }
 
 
     /**
      * Logout.
-     * 
+     *
      * @return void
      */
     public function logout()
@@ -291,25 +291,25 @@ class UsersController extends AppController
 
     /**
      * Register.
-     * 
+     *
      * @return void
      */
     public function register()
     {
         // --------------------------------------------------
-        //   Cases where registration shouldn't work. 
+        //   Cases where registration shouldn't work.
         // --------------------------------------------------
-        
+
         // Already logged in
         if ($this->Auth->User('id')) {
             $this->redirect('/');
         }
-        
+
         // No data
         if (empty($this->data)) {
             return;
         }
-        
+
         // Did not accept terms of use
         if (!$this->data['User']['acceptation_terms_of_use']) {
             $this->Session->setFlash(
@@ -319,7 +319,7 @@ class UsersController extends AppController
             $this->data['User']['quiz'] = '';
             return;
         }
-        
+
         // Did not answer the quiz properly
         $correctAnswer = mb_substr($this->data['User']['email'], 0, 5, 'UTF-8');
         if ($this->data['User']['quiz'] != $correctAnswer) {
@@ -330,7 +330,7 @@ class UsersController extends AppController
             $this->data['User']['quiz'] = '';
             return;
         }
-        
+
         // Username does not fit requirements
         $emptyPasswordMd5 = md5(Configure::read('Security.salt'));
         if (!$this->User->validates()) {
@@ -338,7 +338,7 @@ class UsersController extends AppController
             $this->data['User']['quiz'] = '';
             return;
         }
-        
+
         // Password is empty
         $emptyPasswordMd5 = md5(Configure::read('Security.salt'));
         if ($this->data['User']['password'] == ''
@@ -351,16 +351,16 @@ class UsersController extends AppController
             $this->data['User']['quiz'] = '';
             return;
         }
-        
+
         // --------------------------------------------------
-        
-        
+
+
         // At this point, we're fine, so we can create the user
         $this->User->create();
         $this->data['User']['since'] = date("Y-m-d H:i:s");
         $this->data['User']['group_id'] = 4;
         $this->User->set($this->data);
-        
+
         // And we save
         if ($this->User->save($this->data)) {
             $this->Auth->login($this->data);
@@ -378,7 +378,7 @@ class UsersController extends AppController
     /**
      * Get new password, for those who have forgotten their password.
      * TODO HACKISH FUNCTION
-     * 
+     *
      * @return void
      */
     public function new_password()
@@ -432,20 +432,20 @@ class UsersController extends AppController
 
     /**
      * Search for user given a username.
-     * 
+     *
      * @return void
      */
     public function search()
-    {        
+    {
         $userId = $this->User->getIdFromUsername($this->data['User']['username']);
-        
+
         if ($userId != null) {
             $this->redirect(array("action" => "show", $userId));
         } else {
             $this->flash(
                 __(
                     'No user with this username: ', true
-                ).$this->data['User']['username'], 
+                ).$this->data['User']['username'],
                 '/users/all/'
             );
         }
@@ -456,7 +456,7 @@ class UsersController extends AppController
      * Display information about a user.
      * NOTE : This should not be used anymore in the future.
      * We'll use user/profile/$username instead.
-     * 
+     *
      * @param int|string $id Id of user. For random user, parameter is 'random'.
      *
      * @return void
@@ -464,7 +464,7 @@ class UsersController extends AppController
     public function show($id)
     {
         $id = Sanitize::paranoid($id);
-        
+
         if ($id == 'random') {
             $id = null;
         }
@@ -482,16 +482,16 @@ class UsersController extends AppController
 
     /**
      * Display list of all members.
-     * 
+     *
      * @return void
      */
     public function all()
     {
         $this->helpers[] = 'Members';
-    
+
         $this->loadModel('LastContribution');
         $currentContributors = $this->LastContribution->getCurrentContributors();
-        
+
         // present result in a nicer array
         $total = 0;
         foreach ( $currentContributors as $i=>$contributor) {
@@ -502,24 +502,24 @@ class UsersController extends AppController
             );
             $total += $contributor[0]['total'];
         }
-        
+
         $this->set('currentContributors', $currentContributors);
         $this->set('total', $total);
-        
+
         $this->paginate = array(
             'limit' => 20,
             'order' => 'group_id',
             'fields' => array('username', 'since', 'image', 'group_id'),
             'contain' => array()
         );
-        
+
         $users = $this->paginate(array('User.group_id < 5'));
         $this->set('users', $users);
     }
 
     /**
      * CAPTCHA image for registration.
-     * 
+     *
      * @return void
      */
     public function captcha_image()
@@ -535,7 +535,7 @@ class UsersController extends AppController
      * Check if the username already exist or not.
      *
      * @param string $username Username to check.
-     * 
+     *
      * @return void
      */
     public function check_username($username)
@@ -553,7 +553,7 @@ class UsersController extends AppController
 
     /**
      * Check if the email already exist or not.
-     * 
+     *
      * @param string $email Email to check.
      *
      * @return void
@@ -561,9 +561,9 @@ class UsersController extends AppController
     public function check_email($email)
     {
         $this->layout = null;
-        $userId = $this->User->getIdFromEmail($email); // TODO move to model 
+        $userId = $this->User->getIdFromEmail($email); // TODO move to model
                                                   // and use contain
-        
+
         if ($userId) {
             $this->set('data', true);
         } else {

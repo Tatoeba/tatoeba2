@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  *
  * PHP versions 4 and 5
@@ -15,10 +14,7 @@
  * @package       cake
  * @subpackage    cake.cake.libs.view.templates.pages
  * @since         CakePHP(tm) v 0.10.0.1076
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 ?>
 <p>
@@ -80,7 +76,9 @@
 </p>
 <?php
 if (!empty($filePresent)):
- 	uses('model' . DS . 'connection_manager');
+	if (!class_exists('ConnectionManager')) {
+		require LIBS . 'model' . DS . 'connection_manager.php';
+	}
 	$db = ConnectionManager::getInstance();
  	$connected = $db->getDataSource('default');
 ?>
@@ -98,7 +96,7 @@ if (!empty($filePresent)):
 	</span>
 </p>
 <?php endif; ?>
-<h2><?php echo sprintf(__('Release Notes for CakePHP %s.', true), Configure::version()); ?></h2>
+<h2><?php printf(__('Release Notes for CakePHP %s.', true), Configure::version()); ?></h2>
 <a href="https://trac.cakephp.org/wiki/notes/1.2.x.x"><?php __('Read the release notes and get the latest version'); ?> </a>
 <h2><?php __('Editing this Page'); ?></h2>
 <p>

@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = 'Tatoeba - ' . __('Add sentences', true);
+$this->set('title_for_layout', 'Tatoeba - ' . __('Add sentences', true));
 
 echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
 ?>
@@ -114,7 +114,10 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
                 'contributionLang',
                 $langArray,
                 $preSelectedLang,
-                array("class"=>"language-selector"),
+                array(
+                    "class" => "language-selector",
+                    "empty" => false
+                ),
                 false
             );
             ?>

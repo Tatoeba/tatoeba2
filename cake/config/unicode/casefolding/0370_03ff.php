@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Case Folding Properties.
  *
@@ -22,11 +21,9 @@
  * @package       cake
  * @subpackage    cake.cake.config.unicode.casefolding
  * @since         CakePHP(tm) v 1.2.0.5691
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 /**
  * The upper field is the decimal value of the upper case character
  *
@@ -104,4 +101,3 @@ $config['0370_03ff'][] = array('upper' => 1018, 'status' => 'C', 'lower' => arra
 $config['0370_03ff'][] = array('upper' => 1021, 'status' => 'C', 'lower' => array(891)); /* GREEK CAPITAL REVERSED LUNATE SIGMA SYMBOL */
 $config['0370_03ff'][] = array('upper' => 1022, 'status' => 'C', 'lower' => array(892)); /* GREEK CAPITAL DOTTED LUNATE SIGMA SYMBOL */
 $config['0370_03ff'][] = array('upper' => 1023, 'status' => 'C', 'lower' => array(893)); /* GREEK CAPITAL REVERSED DOTTED LUNATE SIGMA SYMBOL */
-?>

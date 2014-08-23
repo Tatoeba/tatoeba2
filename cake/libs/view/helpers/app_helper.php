@@ -1,7 +1,6 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
- * Short description for file.
+ * Application level View Helper
  *
  * This file is application-wide helper file. You can put all
  * application-wide helper-related methods here.
@@ -19,12 +18,10 @@
  * @package       cake
  * @subpackage    cake.cake
  * @since         CakePHP(tm) v 0.2.9
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
-App::import('Core', 'Helper');
+App::import('View', 'Helper', false);
+
 /**
  * This is a placeholder class.
  * Create the same file in app/app_helper.php
@@ -37,4 +34,3 @@ App::import('Core', 'Helper');
  */
 class AppHelper extends Helper {
 }
-?>

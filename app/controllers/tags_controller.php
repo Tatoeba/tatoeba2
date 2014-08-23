@@ -44,11 +44,11 @@ class TagsController extends AppController
      * @access public
      */
     public $name = 'Tags';
-    public $persistentModel = true;   
+    public $persistentModel = true;
     public $components = array('CommonSentence');
     /**
      * Before filter.
-     * 
+     *
      * @return void
      */
     public function beforeFilter()
@@ -60,8 +60,8 @@ class TagsController extends AppController
             'view_all',
             'for_moderators'
         );
-    
-    } 
+
+    }
 
     /**
      * Add a tag to a sentence
@@ -76,19 +76,19 @@ class TagsController extends AppController
         $this->add_tag($tagName, $sentenceId);
 
     }
- 
+
     /**
      * Add a tag to a Sentence
      *
      * @param string tagName    Name of the tag to add
      * @param int    sentenceId Id of the sentence on which the tag will added
-     * 
+     *
      * @return void
      */
-       
+
     public function add_tag($tagName, $sentenceId)
     {
-        $userId = CurrentUser::get("id"); 
+        $userId = CurrentUser::get("id");
 
         // If no sentence id, we redirect to homepage.
         if (empty($sentenceId) || !is_numeric($sentenceId) ) {
@@ -99,7 +99,7 @@ class TagsController extends AppController
                 )
             );
         }
-        
+
         // If empty tag, we redirect to sentence's page.
         if (empty($tagName)) {
             $this->redirect(
@@ -115,7 +115,7 @@ class TagsController extends AppController
         if (!$this->Tag->addTag($tagName, $userId, $sentenceId)) {
             $infoMessage = sprintf(
                 __(
-                    "Tag '%s' already exists for sentence #%s, or cannot be added", 
+                    "Tag '%s' already exists for sentence #%s, or cannot be added",
                     true
                 ),
                 $tagName,
@@ -123,15 +123,15 @@ class TagsController extends AppController
             );
             $this->Session->setFlash($infoMessage);
         }
-        
+
         $this->redirect(
             array(
                 'controller' => 'sentences',
                 'action' => 'show',
                 $sentenceId
-            ) 
+            )
         );
-    
+
     }
 
     /**
@@ -143,9 +143,9 @@ class TagsController extends AppController
      */
     public function view_all()
     {
-        
+
         $this->helpers[] = 'Tags';
-        
+
         $allTags = $this->Tag->getAllTagsOrdered();
         $this->set("allTags", $allTags);
     }
@@ -169,9 +169,9 @@ class TagsController extends AppController
                 'controller' => 'sentences',
                 'action' => 'show',
                 $sentenceId
-            ) 
+            )
         );
-    
+
     }
 
 
@@ -256,8 +256,8 @@ class TagsController extends AppController
             );
         }
     }
-    
-    
+
+
     /**
      * List sentences with a certain id that were tagged logger ago than
      * the grace (warning) period within which sentence owners are supposed to respond to comments.
@@ -265,7 +265,7 @@ class TagsController extends AppController
      *
      * @param string $tagName         Tag name.
      * @param string $lang            Language of the sentences.
-     * 
+     *
      * @return void
      */
     public function for_moderators($tagId = null, $lang = null) {
@@ -284,7 +284,7 @@ class TagsController extends AppController
         if (empty($tagId)) {
             $tagId = $tagChangeId;
         }
-        
+
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Sentences';

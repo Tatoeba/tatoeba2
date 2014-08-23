@@ -32,11 +32,12 @@ if ($message['PrivateMessage']['title'] == '') {
 } else {
     $messageTitle = $message['PrivateMessage']['title'];
 }
-$this->pageTitle = __('Private messages', true) 
-.' - ' 
-. sprintf(
-    __('%s from %s', true),
-    $messageTitle, $message['Sender']['username']
+$this->set('title_for_layout', __('Private messages', true) 
+    .' - ' 
+    . sprintf(
+        __('%s from %s', true),
+        $messageTitle, $message['Sender']['username']
+    )
 );
 
 echo $this->element('pmmenu');

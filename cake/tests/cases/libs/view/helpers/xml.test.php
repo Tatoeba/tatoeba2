@@ -1,32 +1,27 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * XmlHelperTest file
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.view.helpers
  * @since         CakePHP(tm) v 1.2.0.4206
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 if (!defined('CAKEPHP_UNIT_TEST_EXECUTION')) {
 	define('CAKEPHP_UNIT_TEST_EXECUTION', 1);
 }
 App::import('Helper', 'Xml');
+
 /**
  * TestXml class
  *
@@ -34,6 +29,7 @@ App::import('Helper', 'Xml');
  * @subpackage    cake.tests.cases.libs.view.helpers
  */
 class TestXml extends Object {
+
 /**
  * content property
  *
@@ -41,6 +37,7 @@ class TestXml extends Object {
  * @access public
  */
 	var $content = '';
+
 /**
  * construct method
  *
@@ -51,6 +48,7 @@ class TestXml extends Object {
 	function __construct($content) {
 		$this->content = $content;
 	}
+
 /**
  * toString method
  *
@@ -61,6 +59,7 @@ class TestXml extends Object {
 		return $this->content;
 	}
 }
+
 /**
  * XmlHelperTest class
  *
@@ -68,6 +67,7 @@ class TestXml extends Object {
  * @subpackage    cake.tests.cases.libs.view.helpers
  */
 class XmlHelperTest extends CakeTestCase {
+
 /**
  * setUp method
  *
@@ -80,6 +80,7 @@ class XmlHelperTest extends CakeTestCase {
 		$manager =& XmlManager::getInstance();
 		$manager->namespaces = array();
 	}
+
 /**
  * tearDown method
  *
@@ -89,6 +90,7 @@ class XmlHelperTest extends CakeTestCase {
 	function tearDown() {
 		unset($this->Xml);
 	}
+
 /**
  * testAddNamespace method
  *
@@ -102,6 +104,7 @@ class XmlHelperTest extends CakeTestCase {
 		$expected = array('custom' => 'http://example.com/dtd.xml');
 		$this->assertEqual($manager->namespaces, $expected);
 	}
+
 /**
  * testRemoveNamespace method
  *
@@ -120,6 +123,7 @@ class XmlHelperTest extends CakeTestCase {
 		$expected = array('custom2' => 'http://example.com/dtd2.xml');
 		$this->assertEqual($manager->namespaces, $expected);
 	}
+
 /**
  * testRenderZeroElement method
  *
@@ -135,6 +139,7 @@ class XmlHelperTest extends CakeTestCase {
 		$expected = '<count />';
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * testRenderElementWithNamespace method
  *
@@ -170,6 +175,7 @@ class XmlHelperTest extends CakeTestCase {
 		$expected = '<myNameSpace:count><![CDATA[content]]></myNameSpace:count>';
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * testSerialize method
  *
@@ -206,14 +212,22 @@ class XmlHelperTest extends CakeTestCase {
 		$result = $this->Xml->serialize($data, array('format' => 'tags'));
 		$expected = '<service_day><service_time><service_time_price><dollar>1</dollar><cents>2</cents></service_time_price></service_time></service_day>';
 		$this->assertIdentical($result, $expected);
-		
+
 		$data = array(
 			'Pages' => array('id' => 2, 'url' => 'http://www.url.com/rb/153/?id=bbbb&t=access')
 		);
 		$result = $this->Xml->serialize($data);
 		$expected = '<pages id="2" url="http://www.url.com/rb/153/?id=bbbb&amp;t=access" />';
 		$this->assertIdentical($result, $expected);
+
+		$test = array(
+			'Test' => array('test' => true)
+		);
+		$expected = '<test test="1" />';
+		$result = $this->Xml->serialize($test);
+		$this->assertidentical($expected, $result);
 	}
+
 /**
  * testSerializeOnMultiDimensionalArray method
  *
@@ -232,6 +246,7 @@ class XmlHelperTest extends CakeTestCase {
 		$this->assertIdentical($result, $expected);
 
 	}
+
 /**
  * testHeader method
  *
@@ -281,4 +296,3 @@ class XmlHelperTest extends CakeTestCase {
 		$this->assertPattern('/<\?xml/', $this->Xml->header());
 	}
 }
-?>

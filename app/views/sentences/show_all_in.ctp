@@ -40,7 +40,7 @@ if (!empty($notTranslatedInto) && $notTranslatedInto != 'none') {
     );
 }
 
-$this->pageTitle = $title;
+$this->set('title_for_layout', $title);
 ?>
 
 <div id="annexe_content">

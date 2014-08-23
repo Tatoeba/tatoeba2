@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 $username = Sanitize::paranoid($username, array("_"));
-$this->pageTitle = 'Tatoeba - ' . sprintf(__("%s's Wall messages", true), $username);
+$this->set('title_for_layout', 'Tatoeba - ' . sprintf(__("%s's Wall messages", true), $username));
 ?>
 
 <div id="annexe_content">

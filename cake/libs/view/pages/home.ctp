@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  *
  * PHP versions 4 and 5
@@ -15,22 +14,37 @@
  * @package       cake
  * @subpackage    cake.cake.libs.view.templates.pages
  * @since         CakePHP(tm) v 0.10.0.1076
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 if (Configure::read() == 0):
 	$this->cakeError('error404');
 endif;
 ?>
+<iframe src="http://cakephp.org/bake-banner" width="830" height="160" style="overflow:hidden; border:none;">
+	<p>For updates and important announcements, visit http://cakefest.org</p>
+</iframe>
 <h2><?php echo sprintf(__('Release Notes for CakePHP %s.', true), Configure::version()); ?></h2>
-<a href="http://cakephp.org/changelogs/1.2.12"><?php __('Read the changelog'); ?> </a>
+<a href="http://cakephp.org/changelogs/1.3.17"><?php __('Read the changelog'); ?> </a>
 <?php
 if (Configure::read() > 0):
-	Debugger::checkSessionKey();
+	Debugger::checkSecurityKeys();
 endif;
 ?>
+<div id="url-rewriting-warning" style="background-color:#e32; color:#fff; padding:3px; margin: 20px 0">
+	<?php __('URL rewriting is not properly configured on your server. '); ?>
+	<ol style="padding-left:20px">
+		<li>
+			<a target="_blank" href="http://book.cakephp.org/view/917/Apache-and-mod_rewrite-and-htaccess" style="color:#fff;">
+				<?php __('Help me configure it')?>
+			</a>
+		</li>
+		<li>
+			<a target="_blank" href="http://book.cakephp.org/view/931/CakePHP-Core-Configuration-Variables" style="color:#fff;">
+				<?php __('I don\'t / can\'t use URL rewriting')?>
+			</a>
+		</li>
+	</ol>
+</div>
 <p>
 	<?php
 		if (is_writable(TMP)):
@@ -49,7 +63,7 @@ endif;
 		$settings = Cache::settings();
 		if (!empty($settings)):
 			echo '<span class="notice success">';
-					echo sprintf(__('The %s is being used for caching. To change the config edit APP/config/core.php ', true), '<em>'. $settings['engine'] . 'Engine</em>');
+					printf(__('The %s is being used for caching. To change the config edit APP/config/core.php ', true), '<em>'. $settings['engine'] . 'Engine</em>');
 			echo '</span>';
 		else:
 			echo '<span class="notice">';
@@ -76,8 +90,20 @@ endif;
 	?>
 </p>
 <?php
+	App::import('Core', 'Validation');
+	if (!Validation::alphaNumeric('cakephp')) {
+		echo '<p><span class="notice">';
+		__('PCRE has not been compiled with Unicode support.');
+		echo '<br/>';
+		__('Recompile PCRE with Unicode support by adding <code>--enable-unicode-properties</code> when configuring');
+		echo '</span></p>';
+	}
+?>
+<?php
 if (isset($filePresent)):
-	uses('model' . DS . 'connection_manager');
+	if (!class_exists('ConnectionManager')) {
+		require LIBS . 'model' . DS . 'connection_manager.php';
+	}
 	$db = ConnectionManager::getInstance();
 	@$connected = $db->getDataSource('default');
 ?>
@@ -103,13 +129,27 @@ To change its layout, create: APP/views/layouts/default.ctp.<br />
 You can also add some CSS styles for your pages at: APP/webroot/css.');
 ?>
 </p>
+
 <h3><?php __('Getting Started'); ?></h3>
 <p>
-	<a href="http://book.cakephp.org"><strong>new</strong> CakePHP 1.2 Docs</a>
+	<?php
+		echo $this->Html->link(
+			sprintf('<strong>%s</strong> %s', __('New', true), __('CakePHP 1.3 Docs', true)),
+			'http://book.cakephp.org/view/875/x1-3-Collection',
+			array('target' => '_blank', 'escape' => false)
+		);
+	?>
 </p>
 <p>
-	<a href="http://book.cakephp.org/view/219/the-cakephp-blog-tutorial"><?php __('The 15 min Blog Tutorial'); ?></a><br />
+	<?php
+		echo $this->Html->link(
+			__('The 15 min Blog Tutorial', true),
+			'http://book.cakephp.org/view/1528/Blog',
+			array('target' => '_blank', 'escape' => false)
+		);
+	?>
 </p>
+
 <h3><?php __('More about Cake'); ?></h3>
 <p>
 <?php __('CakePHP is a rapid development framework for PHP which uses commonly known design patterns like Active Record, Association Data Mapping, Front Controller and MVC.'); ?>
@@ -117,7 +157,7 @@ You can also add some CSS styles for your pages at: APP/webroot/css.');
 <p>
 <?php __('Our primary goal is to provide a structured framework that enables PHP users at all levels to rapidly develop robust web applications, without any loss to flexibility.'); ?>
 </p>
-<br />
+
 <ul>
 	<li><a href="http://cakefoundation.org/"><?php __('Cake Software Foundation'); ?> </a>
 	<ul><li><?php __('Promoting development related to CakePHP'); ?></li></ul></li>

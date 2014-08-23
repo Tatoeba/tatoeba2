@@ -43,7 +43,7 @@ if ($results == null) {
         $username
     );
 }
-$this->pageTitle = $title;
+$this->set('title_for_layout', $title);
 ?>
 
 <div id="annexe_content">    

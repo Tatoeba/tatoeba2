@@ -1,31 +1,25 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * CodeCoverageManagerTest file
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs
  * @since         CakePHP(tm) v 1.2.0.4206
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
-App::import('Core', 'CodeCoverageManager');
-require_once CAKE . 'tests' . DS . 'lib' . DS . 'cli_reporter.php';
-require_once CAKE . 'tests' . DS . 'lib' . DS . 'cake_reporter.php';
+require_once CAKE . 'tests' . DS . 'lib' . DS . 'code_coverage_manager.php';
+require_once CAKE . 'tests' . DS . 'lib' . DS . 'reporter' . DS . 'cake_cli_reporter.php';
+
 /**
  * CodeCoverageManagerTest class
  *
@@ -33,6 +27,7 @@ require_once CAKE . 'tests' . DS . 'lib' . DS . 'cake_reporter.php';
  * @subpackage    cake.tests.cases.libs
  */
 class CodeCoverageManagerTest extends CakeTestCase {
+
 /**
  * Skip if XDebug not installed
  *
@@ -41,23 +36,26 @@ class CodeCoverageManagerTest extends CakeTestCase {
 	function skip() {
 		$this->skipIf(!extension_loaded('xdebug'), '%s XDebug not installed');
 	}
+
 /**
  * startTest Method
  * Store reference of $_GET to restore later.
  *
  * @return void
- **/
+ */
 	function startCase() {
 		$this->_get = $_GET;
 	}
+
 /**
  * End Case - restore GET vars.
  *
  * @return void
- **/
+ */
 	function endCase() {
 		$_GET = $this->_get;
 	}
+
 /**
  * testNoTestCaseSupplied method
  *
@@ -65,43 +63,57 @@ class CodeCoverageManagerTest extends CakeTestCase {
  * @return void
  */
 	function testNoTestCaseSupplied() {
-		if (PHP_SAPI != 'cli') {
-			unset($_GET['group']);
-			CodeCoverageManager::start(substr(md5(microtime()), 0, 5), new CakeHtmlReporter());
-			CodeCoverageManager::report(false);
-			$this->assertError();
+		if ($this->skipIf(PHP_SAPI == 'cli', 'Is cli, cannot run this test %s')) {
+			return;
+		}
+		$reporter =& new CakeHtmlReporter(null, array('group' => false, 'app' => false, 'plugin' => false));
 
-			CodeCoverageManager::start('libs/'.basename(__FILE__), new CakeHtmlReporter());
-			CodeCoverageManager::report(false);
-			$this->assertError();
+		CodeCoverageManager::init(substr(md5(microtime()), 0, 5), $reporter);
+		CodeCoverageManager::report(false);
+		$this->assertError();
 
-			$path = LIBS;
-			if (strpos(LIBS, ROOT) === false) {
-				$path = ROOT.DS.LIBS;
-			}
-			App::import('Core', 'Folder');
-			$folder = new Folder();
-			$folder->cd($path);
-			$contents = $folder->ls();
+		CodeCoverageManager::init('tests' . DS . 'lib' . DS . basename(__FILE__), $reporter);
+		CodeCoverageManager::report(false);
+		$this->assertError();
+	}
+
 /**
- * remove method
+ * Test that test cases don't cause errors
  *
- * @param mixed $var
- * @access public
  * @return void
  */
-			function remove($var) {
-				return ($var != basename(__FILE__));
-			}
-			$contents[1] = array_filter($contents[1], "remove");
+	function testNoTestCaseSuppliedNoErrors() {
+		if ($this->skipIf(PHP_SAPI == 'cli', 'Is cli, cannot run this test %s')) {
+			return;
+		}
+		$reporter =& new CakeHtmlReporter(null, array('group' => false, 'app' => false, 'plugin' => false));
+		$path = LIBS;
+		if (strpos(LIBS, ROOT) === false) {
+			$path = ROOT.DS.LIBS;
+		}
+		App::import('Core', 'Folder');
+		$folder = new Folder();
+		$folder->cd($path);
+		$contents = $folder->read();
 
-			foreach ($contents[1] as $file) {
-				CodeCoverageManager::start('libs'.DS.$file, new CakeHtmlReporter());
-				CodeCoverageManager::report(false);
-				$this->assertNoErrors('libs'.DS.$file);
-			}
+		$contents[1] = array_filter($contents[1], array(&$this, '_basenameFilter'));
+
+		foreach ($contents[1] as $file) {
+			CodeCoverageManager::init('libs' . DS . $file, $reporter);
+			CodeCoverageManager::report(false);
+			$this->assertNoErrors('libs' . DS . $file);
 		}
 	}
+
+/**
+ * Remove file names that don't share a basename with the current file.
+ *
+ * @return void
+ */
+	function _basenameFilter($var) {
+		return ($var != basename(__FILE__));
+	}
+
 /**
  * testGetTestObjectFileNameFromTestCaseFile method
  *
@@ -115,7 +127,7 @@ class CodeCoverageManagerTest extends CakeTestCase {
 		$expected = $manager->__testObjectFileFromCaseFile('models/some_file.test.php', true);
 		$this->assertIdentical(APP.'models'.DS.'some_file.php', $expected);
 
-		$expected = $manager->__testObjectFileFromCaseFile('datasources/some_file.test.php', true);
+		$expected = $manager->__testObjectFileFromCaseFile('models/datasources/some_file.test.php', true);
 		$this->assertIdentical(APP.'models'.DS.'datasources'.DS.'some_file.php', $expected);
 
 		$expected = $manager->__testObjectFileFromCaseFile('controllers/some_file.test.php', true);
@@ -138,167 +150,11 @@ class CodeCoverageManagerTest extends CakeTestCase {
 		$this->assertIdentical(APP.'plugins'.DS.'bugs'.DS.'models'.DS.'some_file.php', $expected);
 
 		$manager->pluginTest = false;
-		$manager->reporter = new CLIReporter;
+		$manager->reporter = new CakeCliReporter;
 		$expected = $manager->__testObjectFileFromCaseFile('libs/set.test.php', false);
 		$this->assertIdentical(ROOT.DS.'cake'.DS.'libs'.DS.'set.php', $expected);
 	}
-/**
- * testOfHtmlReport method
- *
- * @access public
- * @return void
- */
-	function testOfHtmlReport() {
-		$manager =& CodeCoverageManager::getInstance();
-		$code = <<<PHP
-/**
- * Set class
- *
- * @package       cake
- * @subpackage    cake.tests.cases.libs
- */
-		class Set extends Object {
-/**
-		 * Value of the Set object.
-		 *
-		 * @var array
-		 * @access public
-		 */
-			var \$value = array();
-/**
-		 * Constructor. Defaults to an empty array.
-		 *
-		 * @access public
-		 */
-			function __construct() {
-				if (func_num_args() == 1 && is_array(func_get_arg(0))) {
-					\$this->value = func_get_arg(0);
-				} else {
-					\$this->value = func_get_args();
-				}
-			}
-/**
-		 * Returns the contents of the Set object
-		 *
-		 * @return array
-		 * @access public
-		 */
-			function &get() {
-				return \$this->value;
-			}
-/**
-		 * This function can be thought of as a hybrid between PHP's array_merge and array_merge_recursive. The difference
-		 * to the two is that if an array key contains another array then the function behaves recursive (unlike array_merge)
-		 * but does not do if for keys containing strings (unlike array_merge_recursive). See the unit test for more information.
-		 *
-		 * Note: This function will work with an unlimited amount of arguments and typecasts non-array parameters into arrays.
-		 *
-		 * @param array \$arr1 Array to be merged
-		 * @param array \$arr2 Array to merge with
-		 * @return array Merged array
-		 * @access public
-		 */
-			function merge(\$arr1, \$arr2 = null) {
-				\$args = func_get_args();
 
-				if (isset(\$this) && is_a(\$this, 'set')) {
-					\$backtrace = debug_backtrace();
-					\$previousCall = strtolower(\$backtrace[1]['class'].'::'.\$backtrace[1]['function']);
-					if (\$previousCall != 'set::merge') {
-						\$r =& \$this->value;
-						array_unshift(\$args, null);
-					}
-				}
-				if (!isset(\$r)) {
-					\$r = (array)current(\$args);
-				}
-
-				while ((\$arg = next(\$args)) !== false) {
-					if (is_a(\$arg, 'set')) {
-						\$arg = \$arg->get();
-					}
-
-					foreach ((array)\$arg as \$key => \$val)	 {
-						if (is_array(\$val) && isset(\$r[\$key]) && is_array(\$r[\$key])) {
-							\$r[\$key] = Set::merge(\$r[\$key], \$val);
-						} elseif (is_int(\$key)) {
-
-						} else {
-							\$r[\$key] = \$val;
-						}
-					}
-				}
-				return \$r;
-			}
-PHP;
-
-		$testObjectFile = explode("\n", $code);
-		$coverageData = array(
-			0 => 1,
-			1 => 1,
-			2 => -2,
-			3 => -2,
-			4 => -2,
-			5 => -2,
-			6 => -2,
-			7 => -2,
-			8 => -1,
-			9 => -2,
-			10 => -2,
-			11 => -2,
-			12 => -2,
-			13 => -2,
-			14 => 1,
-			15 => 1,
-			16 => -1,
-			17 => 1,
-			18 => 1,
-			19 => -1,
-			20 => 1,
-			21 => -2,
-			22 => -2,
-			23 => -2,
-			24 => -2,
-			25 => -2,
-			26 => -2,
-			27 => 1,
-			28 => -1,
-			29 => 1,
-			30 => 1,
-			31 => -2,
-			32 => -2,
-			33 => -2,
-			34 => -2,
-			35 => -2,
-			36 => -2,
-			37 => -2,
-			38 => -2,
-			39 => -2,
-			40 => -2,
-			41 => -2,
-			42 => -2,
-			43 => -1,
-		);
-		$execCodeLines = range(0, 72);
-		$result = explode("</div>", $report = $manager->reportCaseHtml($testObjectFile, $coverageData, $execCodeLines));
-
-		foreach ($result as $num => $line) {
-			$num++;
-			if (array_key_exists($num, $coverageData)) {
-				if ($coverageData[$num] == 1) {
-					$this->assertTrue(strpos($line, 'covered') !== false, $num.': '.$line." fails");
-				}
-
-				if (!array_key_exists($num, $execCodeLines) || $coverageData[$num] == -2) {
-					$this->assertTrue(strpos($line, 'ignored') !== false, $num.': '.$line." fails");
-				}
-
-				if ($coverageData[$num] == -1) {
-					$this->assertTrue(strpos($line, 'uncovered') !== false, $num.': '.$line." fails");
-				}
-			}
-		}
-	}
 /**
  * testOfHtmlDiffReport method
  *
@@ -315,6 +171,7 @@ PHP;
  * @subpackage    cake.tests.cases.libs
  */
 		class Set extends Object {
+
 /**
 		 * Value of the Set object.
 		 *
@@ -322,6 +179,7 @@ PHP;
 		 * @access public
 		 */
 			var \$value = array();
+
 /**
 		 * Constructor. Defaults to an empty array.
 		 *
@@ -334,6 +192,7 @@ PHP;
 					\$this->value = func_get_args();
 				}
 			}
+
 /**
 		 * Returns the contents of the Set object
 		 *
@@ -343,6 +202,7 @@ PHP;
 			function &get() {
 				return \$this->value;
 			}
+
 /**
 		 * This function can be thought of as a hybrid between PHP's array_merge and array_merge_recursive. The difference
 		 * to the two is that if an array key contains another array then the function behaves recursive (unlike array_merge)
@@ -559,6 +419,7 @@ PHP;
 			$this->assertPattern($pattern, $line, $num.': '.$line." fails");
 		}
 	}
+
 /**
  * testArrayStrrpos method
  *
@@ -591,6 +452,7 @@ PHP;
 		$this->assertEqual(1, $manager->__array_strpos($a, 'orange'));
 		$this->assertEqual(2, $manager->__array_strpos($a, 'orange', true));
 	}
+
 /**
  * testGetExecutableLines method
  *
@@ -628,6 +490,7 @@ HTML;
 			$this->assertIdentical(trim($line), '');
 		}
 	}
+
 /**
  * testCalculateCodeCoverage method
  *
@@ -651,4 +514,3 @@ HTML;
 		$this->assertError();
 	}
 }
-?>

@@ -44,12 +44,12 @@ class ShowAllHelper extends AppHelper
         'Form',
         'Html',
     );
-   
+
     /**
      * Generate the base url (entire url except arguments)
      *
      * @return string
-     */ 
+     */
     private function _generateBaseUrl()
     {
         /*to stay on the same page except language filter option*/
@@ -76,8 +76,8 @@ class ShowAllHelper extends AppHelper
     {
         $baseUrl = $this->_generateBaseUrl();
         $params[$position] = 'this.value' ;
-       
-        $paramString = ''; 
+
+        $paramString = '';
         foreach ($params as $param) {
             if ($param == 'this.value') {
                 $paramString .= "+'/'+ this.value";
@@ -89,29 +89,30 @@ class ShowAllHelper extends AppHelper
     }
 
     /**
-     * Generate the html select 
+     * Generate the html select
      *
      * @param string $selectedLanguage The default selected item
      * @param array  $langs            The list of items
      * @param int    $position         Position of the params the select
-     *                                 will change       
+     *                                 will change
      *
-     * @return string The generated html 
+     * @return string The generated html
      */
     private function _generateSelect($selectedLanguage, $langs, $position)
     {
 
         $params = $this->params['pass'];
-        $javascriptUrl = $this->_generateJavascriptUrl($params, $position); 
+        $javascriptUrl = $this->_generateJavascriptUrl($params, $position);
 
         return $this->Form->select(
             'filterLanguageSelect',
             $langs,
             $selectedLanguage,
             array(
-				"id" => null,
+                "id" => null,
                 "onchange" => "$(location).attr('href', $javascriptUrl);",
-                "class" => count($langs) > 2 ? 'language-selector' : null
+                "class" => count($langs) > 2 ? 'language-selector' : null,
+                "empty" => false
             ),
             false
         );
@@ -134,15 +135,15 @@ class ShowAllHelper extends AppHelper
             <h2><?php __('Sentences in:'); ?></h2>
             <?php
             $langs = $this->Languages->unknownLanguagesArray();
-           
+
             echo $this->_generateSelect(
                 $selectedLanguage,
                 $langs,
                 0
             );
-            ?> 
+            ?>
         </div>
-    <?php 
+    <?php
     }
 
     /**
@@ -166,14 +167,14 @@ class ShowAllHelper extends AppHelper
                 $langs,
                 1
             );
-            ?> 
+            ?>
             <p>
             <?php
             __('NOTE: Both direct and indirect translations will be shown.');
             ?>
             </p>
         </div>
-    <?php 
+    <?php
     }
 
     /**
@@ -198,14 +199,14 @@ class ShowAllHelper extends AppHelper
                 $langs,
                 2
             );
-            ?> 
+            ?>
             <p>
             <?php
             __('NOTE: Sentences that have an indirect translation will be displayed.');
             ?>
             </p>
         </div>
-    <?php 
+    <?php
     }
 
     /**
@@ -226,20 +227,20 @@ class ShowAllHelper extends AppHelper
                 'indifferent' => __('no', true),
                 'only-with-audio' =>  __('yes', true),
             );
-             
+
             echo $this->_generateSelect(
                 $selectedOption,
                 $options,
                 3
             );
-            ?> 
+            ?>
             <p>
             <?php
             __('NOTE: Not all languages have audio at the moment.');
             ?>
             </p>
         </div>
-    <?php 
+    <?php
     }
 
 

@@ -6,12 +6,12 @@
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * NeutrinoCMS is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public License
  * along with NeutrinoCMS.  If not, see <http://www.gnu.org/licenses/>.
  *
@@ -21,7 +21,7 @@
  * @package  Tatoeba
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
- * @link     http://tatoeba.org 
+ * @link     http://tatoeba.org
  */
 
 /**
@@ -45,7 +45,7 @@ class RememberMeComponent extends Object
      */
     private $_period = '+2 weeks';
     private $_cookieName = 'User';
-    
+
     /**
      * ?
      *
@@ -57,7 +57,7 @@ class RememberMeComponent extends Object
     {
         $this->controller = &$controller;
     }
-    
+
     /**
      * Remember user so (s)he doesn't have to log in again.
      *
@@ -73,7 +73,7 @@ class RememberMeComponent extends Object
         $cookie[$this->Auth->fields['password']] = $password;
         $this->Cookie->write($this->_cookieName, $cookie, false, $this->_period);
     }
-    
+
     /**
      * Check if user can be automatically logged in.
      *
@@ -93,7 +93,7 @@ class RememberMeComponent extends Object
             $this->delete();
         }
     }
-    
+
     /**
      * Delete cookie.
      *
@@ -101,8 +101,7 @@ class RememberMeComponent extends Object
      */
     public function delete()
     {
-        $this->Cookie->del($this->_cookieName);
+        $this->Cookie->delete($this->_cookieName);
     }
 }
-
 ?>

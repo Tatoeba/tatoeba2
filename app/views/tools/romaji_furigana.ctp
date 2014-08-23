@@ -27,9 +27,9 @@
 
 $javascript->link(JS_PATH . 'furigana.js', false);
 
-$this->pageTitle = 'Tatoeba - '. __(
+$this->set('title_for_layout', 'Tatoeba - '. __(
     'Convert Japanese text into romaji or furigana', true
-);
+));
 
 ?>
 

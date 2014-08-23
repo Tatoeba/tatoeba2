@@ -27,9 +27,9 @@
 
 //TODO to factorize with pinyin converter in a tool helper
 
-$this->pageTitle = 'Tatoeba - ' . __(
+$this->set('title_for_layout', 'Tatoeba - ' . __(
     'Chinese traditional/simplified conversion', true
-);
+));
 
 // if it's the first time we call this tool
 if (!isset($lastText)) {

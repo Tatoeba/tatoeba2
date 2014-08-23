@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * PHP version 5 
+ * PHP version 5
  *
  * @category PHP
  * @package  Tatoeba
@@ -37,14 +37,14 @@
 class Link extends AppModel
 {
     public $useTable = 'sentences_translations';
-    
-    
+
+
     /**
      * Called after a link is saved.
-     * 
+     *
      * @param bool $created true if a new line has been created.
      *                      false if a line has been updated.
-     * 
+     *
      * @return void
      */
     public function afterSave($created)
@@ -54,18 +54,18 @@ class Link extends AppModel
         $this->bindModel(
             array('hasOne' => array('Contribution'))
         );
-        
+
         $this->Contribution->saveLinkContribution(
             $this->data['Link']['sentence_id'],
             $this->data['Link']['translation_id'],
             'insert'
         );
     }
-    
-    
+
+
     /**
      * Called after a link is deleted.
-     * 
+     *
      * @return void
      */
     public function afterDelete()
@@ -75,13 +75,13 @@ class Link extends AppModel
         $this->bindModel(
             array('hasOne' => array('Contribution'))
         );
-        
+
         $this->Contribution->saveLinkContribution(
             $this->data['Link']['sentence_id'],
             $this->data['Link']['translation_id'],
             'delete'
         );
-        
+
         // We need to add manually the reciprochal link deletion because the
         // callback is called manually.
         $this->Contribution->saveLinkContribution(
@@ -90,7 +90,7 @@ class Link extends AppModel
             'delete'
         );
     }
-    
+
     /**
      * Add link.
      * NOTE: This will add 2 entries. One for A->B and one for B->A.
@@ -110,7 +110,7 @@ class Link extends AppModel
     ) {
         $sentenceId = intval($sentenceId);
         $translationId = intval($translationId);
-        
+
         // Check if we're linking the sentence to itself.
         if ($sentenceId == $translationId) {
             return false;
@@ -161,7 +161,7 @@ class Link extends AppModel
         $data[1]['translation_lang'] = $sentenceLang;
         return $this->saveAll($data);
     }
-    
+
     /**
      * Delete link.
      * NOTE: This will remove 2 entries. One for A->B and one for B->A.
@@ -175,15 +175,15 @@ class Link extends AppModel
     {
         // custom query to avoid having to create an 'id' field.
         $this->query("
-            DELETE FROM sentences_translations 
+            DELETE FROM sentences_translations
             WHERE (sentence_id = $sentenceId AND translation_id = $translationId)
-               OR (sentence_id = $translationId AND translation_id = $sentenceId) 
+               OR (sentence_id = $translationId AND translation_id = $sentenceId)
         ");
-        
+
         $this->data['Link']['sentence_id'] = $sentenceId;
         $this->data['Link']['translation_id'] = $translationId;
         $this->afterDelete(); // calling callback manually...
-                
+
         return true; // yes, it's useless, never mind...
     }
 }

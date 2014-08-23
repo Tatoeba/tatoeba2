@@ -33,7 +33,7 @@ $isListPublic = ($list['SentencesList']['is_public'] == 1);
 $belongsToUser = $session->read('Auth.User.id') == $listOwnerId;
 
  
-$this->pageTitle = 'Tatoeba - ' . $listName;
+$this->set('title_for_layout', 'Tatoeba - ' . $listName);
 ?>
 
 <div id="annexe_content">

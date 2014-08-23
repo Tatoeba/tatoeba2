@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = 'Tatoeba - ' . __('Terms of use', true);
+$this->set('title_for_layout', 'Tatoeba - ' . __('Terms of use', true));
 ?>
 <div id="annexe_content">
     <div class="module">

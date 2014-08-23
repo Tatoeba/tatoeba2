@@ -1,28 +1,23 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * ConsoleGroupTest file
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.groups
  * @since         CakePHP(tm) v 1.2.0.4206
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
+
 /**
  * ConsoleGroupTest class
  *
@@ -31,7 +26,8 @@
  * @package       cake
  * @subpackage    cake.tests.groups
  */
-class ConsoleGroupTest extends GroupTest {
+class ConsoleGroupTest extends TestSuite {
+
 /**
  * label property
  *
@@ -39,6 +35,7 @@ class ConsoleGroupTest extends GroupTest {
  * @access public
  */
 	var $label = 'ShellDispatcher, Shell and all Tasks';
+
 /**
  * ConsoleGroupTest method
  *
@@ -46,7 +43,23 @@ class ConsoleGroupTest extends GroupTest {
  * @return void
  */
 	function ConsoleGroupTest() {
-		TestManager::addTestCasesFromDirectory($this, CORE_TEST_CASES . DS . 'console');
+		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'console' . DS . 'cake');
+		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'console' . DS . 'libs' . DS . 'acl');
+		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'console' . DS . 'libs' . DS . 'api');
+		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'console' . DS . 'libs' . DS . 'bake');
+		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'console' . DS . 'libs' . DS . 'schema');
+		TestManager::addTestFile($this, CORE_TEST_CASES . DS . 'console' . DS . 'libs' . DS . 'shell');
+
+		$path = CORE_TEST_CASES . DS . 'console' . DS . 'libs' . DS . 'tasks' . DS;
+
+		TestManager::addTestFile($this, $path . 'controller');
+		TestManager::addTestFile($this, $path . 'db_config');
+		TestManager::addTestFile($this, $path . 'extract');
+		TestManager::addTestFile($this, $path . 'fixture');
+		TestManager::addTestFile($this, $path . 'model');
+		TestManager::addTestFile($this, $path . 'plugin');
+		TestManager::addTestFile($this, $path . 'project');
+		TestManager::addTestFile($this, $path . 'test');
+		TestManager::addTestFile($this, $path . 'view');
 	}
 }
-?>

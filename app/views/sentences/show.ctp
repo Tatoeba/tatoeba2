@@ -36,7 +36,7 @@ if (isset($sentence)) {
     
     $languageName = $languages->codeToName($sentenceLang);
     $title = sprintf(__('%s example sentence: ', true), $languageName);
-    $this->pageTitle = $title . $sentenceText;
+    $this->set('title_for_layout', $title . $sentenceText);
 
     $html->meta(
         'description', 
@@ -48,12 +48,11 @@ if (isset($sentence)) {
             ),
             $sentenceText
         ), 
-        array(), 
-        false
+        array('inline' => false)
     );
 } else {
     // Case where the sentence has been deleted
-    $this->pageTitle = __('Sentence does not exist: ', true).$this->params['pass'][0];
+    $this->set('title_for_layout', __('Sentence does not exist: ', true).$this->params['pass'][0]);
 }
 
 

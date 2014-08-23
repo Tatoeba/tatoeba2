@@ -126,7 +126,7 @@
         <div id="content">
             <?php
             if($session->check('Message.flash')){
-                $session->flash();
+                echo $session->flash();
             }
 
             echo $content_for_layout;
@@ -145,6 +145,6 @@
         echo $this->element('foot');
         ?>
     </div>
-    <?php echo $cakeDebug ?>
+    <?php echo $this->element('sql_dump'); ?>
 </body>
 </html>

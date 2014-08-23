@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
  
-$this->pageTitle = __('Improve sentences', true);
+$this->set('title_for_layout', __('Improve sentences', true));
 $changeLink = $html->link(
     $tagChangeName, 
     array(

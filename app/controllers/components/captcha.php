@@ -1,11 +1,11 @@
-<?php 
-/** 
+<?php
+/**
  * Securimage-Driven Captcha Component.
  *
  * PHP version 5
  *
  * @category PHP
- * @package  Tatoeba 
+ * @package  Tatoeba
  * @author   debuggeddesigns <unknown@debuggeddesigns.com>
  * @license  MIT license
  * @link     http://tatoeba.org
@@ -17,14 +17,14 @@
  *
  * @category Default
  * @package  Components
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com> 
+ * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  MIT license
  * @link     http://tatoeba.org
  */
 class CaptchaComponent extends Object
 {
     public $controller;
-    
+
     /**
      * ?
      *
@@ -36,7 +36,7 @@ class CaptchaComponent extends Object
     {
         $this->controller = &$controller;
     }
-    
+
     /**
      * Generate image CAPTCHA.
      *
@@ -48,19 +48,19 @@ class CaptchaComponent extends Object
             'Vendor', 'PhpCaptcha', array('file'=>'phpcaptcha/php-captcha.inc.php')
         );
         $imagesPath = APP . 'vendors'. DS .'phpcaptcha' . DS . 'fonts' . DS;
-        
+
         $aFonts = array(
             $imagesPath.'VeraBd.ttf',
             $imagesPath.'VeraIt.ttf',
             $imagesPath.'Vera.ttf'
         );
-        
+
         $oVisualCaptcha = new PhpCaptcha($aFonts, 200, 60);
-        
+
         $oVisualCaptcha->SetNumChars(6);
         $oVisualCaptcha->Create();
     }
-    
+
     /**
      * Check of user input matches CAPTCHA code.
      *
@@ -77,8 +77,8 @@ class CaptchaComponent extends Object
         if ($caseInsensitive) {
             $userCode = strtoupper($userCode);
         }
-        
-        if (!empty($_SESSION[CAPTCHA_SESSION_ID]) 
+
+        if (!empty($_SESSION[CAPTCHA_SESSION_ID])
             && $userCode == $_SESSION[CAPTCHA_SESSION_ID]
         ) {
             // clear to prevent re-use

@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * ACL behavior class.
  *
@@ -14,24 +13,22 @@
  * Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc.
- * @link          http://cakefoundation.org/projects/info/cakephp CakePHP Project
+ * @link          http://cakephp.org CakePHP Project
  * @package       cake
  * @subpackage    cake.cake.libs.model.behaviors
  * @since         CakePHP v 1.2.0.4487
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 /**
- * Short description for file
- *
- * Long description for file
+ * ACL behavior
  *
  * @package       cake
  * @subpackage    cake.cake.libs.model.behaviors
+ * @link http://book.cakephp.org/view/1320/ACL
  */
 class AclBehavior extends ModelBehavior {
+
 /**
  * Maps ACL type options to ACL models
  *
@@ -39,6 +36,7 @@ class AclBehavior extends ModelBehavior {
  * @access protected
  */
 	var $__typeMaps = array('requester' => 'Aro', 'controlled' => 'Aco');
+
 /**
  * Sets up the configuation for the model, and loads ACL models if they haven't been already
  *
@@ -51,30 +49,38 @@ class AclBehavior extends ModelBehavior {
 			$config = array('type' => $config);
 		}
 		$this->settings[$model->name] = array_merge(array('type' => 'requester'), (array)$config);
+		$this->settings[$model->name]['type'] = strtolower($this->settings[$model->name]['type']);
 
 		$type = $this->__typeMaps[$this->settings[$model->name]['type']];
 		if (!class_exists('AclNode')) {
-			uses('model' . DS . 'db_acl');
+			require LIBS . 'model' . DS . 'db_acl.php';
 		}
-		$model->{$type} =& ClassRegistry::init($type);
+		if (PHP5) {
+			$model->{$type} = ClassRegistry::init($type);
+		} else {
+			$model->{$type} =& ClassRegistry::init($type);
+		}
 		if (!method_exists($model, 'parentNode')) {
-			trigger_error("Callback parentNode() not defined in {$model->alias}", E_USER_WARNING);
+			trigger_error(sprintf(__('Callback parentNode() not defined in %s', true), $model->alias), E_USER_WARNING);
 		}
 	}
+
 /**
  * Retrieves the Aro/Aco node for this model
  *
  * @param mixed $ref
  * @return array
  * @access public
+ * @link http://book.cakephp.org/view/1322/node
  */
 	function node(&$model, $ref = null) {
-		$type = $this->__typeMaps[strtolower($this->settings[$model->name]['type'])];
+		$type = $this->__typeMaps[$this->settings[$model->name]['type']];
 		if (empty($ref)) {
 			$ref = array('model' => $model->name, 'foreign_key' => $model->id);
 		}
 		return $model->{$type}->node($ref);
 	}
+
 /**
  * Creates a new ARO/ACO node bound to this record
  *
@@ -83,23 +89,24 @@ class AclBehavior extends ModelBehavior {
  * @access public
  */
 	function afterSave(&$model, $created) {
-		if ($created) {
-			$type = $this->__typeMaps[strtolower($this->settings[$model->name]['type'])];
-			$parent = $model->parentNode();
-			if (!empty($parent)) {
-				$parent = $this->node($model, $parent);
-			} else {
-				$parent = null;
-			}
-
-			$model->{$type}->create();
-			$model->{$type}->save(array(
-				'parent_id'		=> Set::extract($parent, "0.{$type}.id"),
-				'model'			=> $model->name,
-				'foreign_key'	=> $model->id
-			));
+		$type = $this->__typeMaps[$this->settings[$model->name]['type']];
+		$parent = $model->parentNode();
+		if (!empty($parent)) {
+			$parent = $this->node($model, $parent);
 		}
+		$data = array(
+			'parent_id' => isset($parent[0][$type]['id']) ? $parent[0][$type]['id'] : null,
+			'model' => $model->name,
+			'foreign_key' => $model->id
+		);
+		if (!$created) {
+			$node = $this->node($model);
+			$data['id'] = isset($node[0][$type]['id']) ? $node[0][$type]['id'] : null;
+		}
+		$model->{$type}->create();
+		$model->{$type}->save($data);
 	}
+
 /**
  * Destroys the ARO/ACO node bound to the deleted record
  *
@@ -107,12 +114,10 @@ class AclBehavior extends ModelBehavior {
  * @access public
  */
 	function afterDelete(&$model) {
-		$type = $this->__typeMaps[strtolower($this->settings[$model->name]['type'])];
+		$type = $this->__typeMaps[$this->settings[$model->name]['type']];
 		$node = Set::extract($this->node($model), "0.{$type}.id");
 		if (!empty($node)) {
 			$model->{$type}->delete($node);
 		}
 	}
 }
-
-?>

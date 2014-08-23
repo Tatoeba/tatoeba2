@@ -37,14 +37,14 @@
 class ListsHelper extends AppHelper
 {
     public $helpers = array(
-        'Html', 
-        'Javascript', 
-        'Form', 
+        'Html',
+        'Javascript',
+        'Form',
         'Languages',
         'Sentences'
     );
-    
-    /** 
+
+    /**
      * Display item of a list of lists.
      *
      * @param int     $listId          Id of the list to display.
@@ -96,8 +96,8 @@ class ListsHelper extends AppHelper
         echo '</span>';
         echo '</li>';
     }
-    
-    
+
+
     /**
      * display an array of lists in an HTML table
      *
@@ -125,7 +125,7 @@ class ListsHelper extends AppHelper
     }
 
 
-    /** 
+    /**
      * Display row of a list of lists.
      *
      * @param int     $listId          Id of the list to display.
@@ -151,7 +151,7 @@ class ListsHelper extends AppHelper
         }
         ?>
         <tr class="listSummary">
-        
+
         <td class="nameAndCreator">
             <div class="name">
             <?php
@@ -159,7 +159,7 @@ class ListsHelper extends AppHelper
             if (trim($listName) != '') {
                 $name = $listName;
             }
-            
+
             echo $this->Html->link(
                 $name,
                 array(
@@ -170,7 +170,7 @@ class ListsHelper extends AppHelper
             );
             ?>
             </div>
-            
+
             <div class="creator">
             <?php
             $link = $this->Html->link(
@@ -185,13 +185,13 @@ class ListsHelper extends AppHelper
             ?>
             </div>
         </td>
-        
+
         <td>
             <div class="count" title="<?php __('Number of sentences') ?>">
                 <?php echo $count; ?>
             </div>
         </td>
-        
+
         <td class="options">
             <span class="optionsContainer">
             <?php
@@ -203,7 +203,7 @@ class ListsHelper extends AppHelper
                     $listId
                 )
             );
-            
+
             if ($canEdit) {
                 echo $this->Html->link(
                     __('Edit', true),
@@ -216,13 +216,13 @@ class ListsHelper extends AppHelper
             }
             ?>
             </span>
-        </td>    
-        
+        </td>
+
         </tr>
         <?php
     }
-    
-    
+
+
     /**
      * Display 'back to index' link.
      *
@@ -236,7 +236,7 @@ class ListsHelper extends AppHelper
         echo $this->Html->link(
             __('Back to all lists', true),
             array(
-                "controller"=>"sentences_lists", 
+                "controller"=>"sentences_lists",
                 "action"=>"index"
             )
         );
@@ -244,8 +244,8 @@ class ListsHelper extends AppHelper
         </li>
         <?php
     }
-    
-    
+
+
     /**
      * Display 'back to this list' link.
      *
@@ -259,7 +259,7 @@ class ListsHelper extends AppHelper
         echo $this->Html->link(
             __('Back to this list', true),
             array(
-                "controller"=>"sentences_lists", 
+                "controller"=>"sentences_lists",
                 "action"=>"show",
                 $listId
             )
@@ -268,8 +268,8 @@ class ListsHelper extends AppHelper
         </li>
         <?php
     }
-    
-    
+
+
     /**
      * Display 'download' link.
      *
@@ -283,7 +283,7 @@ class ListsHelper extends AppHelper
         echo $this->Html->link(
             __('Download this list', true),
             array(
-                "controller"=>"sentences_lists", 
+                "controller"=>"sentences_lists",
                 "action"=>"download",
                 $listId
             )
@@ -292,9 +292,9 @@ class ListsHelper extends AppHelper
         </div>
         <?php
     }
-    
-    
-    /** 
+
+
+    /**
      * Display actions that can be done by everyone.
      *
      * @param int    $listId           Id of the list.
@@ -307,14 +307,14 @@ class ListsHelper extends AppHelper
     public function displayPublicActions(
         $listId, $translationsLang = null, $action = null
     ) {
-        
+
         $this->displayBackToIndexLink();
         ?>
 
         <li>
         <?php
         __('Show translations :'); echo ' ';
-        
+
         // TODO User $html->url()
         $path = '/';
         if (!empty($this->params['lang'])) {
@@ -329,7 +329,8 @@ class ListsHelper extends AppHelper
             $translationsLang,
             array(
                 "onchange" => "$(location).attr('href', '".$path."' + this.value);",
-                "class" => "language-selector"
+                "class" => "language-selector",
+                "empty" => false
             ),
             false
         );
@@ -337,8 +338,8 @@ class ListsHelper extends AppHelper
         </li>
         <?php
     }
-    
-    /** 
+
+    /**
      * Display actions that are restricted to the creator of the list.
      *
      * @param int $listId       Id of the list.
@@ -370,12 +371,12 @@ class ListsHelper extends AppHelper
         } else {
             $checkboxValue = '';
         }
-        
+
         echo $this->Form->checkbox(
             'isPublic',
             array(
                 "id" => "isPublicCheckbox",
-                "name" => "isPublic", 
+                "name" => "isPublic",
                 "checked" => $checkboxValue,
             )
         );
@@ -405,7 +406,7 @@ class ListsHelper extends AppHelper
         echo $this->Html->link(
             $otherActionText,
             array(
-                "controller"=>"sentences_lists", 
+                "controller"=>"sentences_lists",
                 "action"=>$otherAction,
                 $listId
             )
@@ -430,8 +431,8 @@ class ListsHelper extends AppHelper
         </li>
         <?php
     }
-    
-    
+
+
     /**
      * Display sentence.
      *
@@ -453,37 +454,37 @@ class ListsHelper extends AppHelper
             return;
         }
         ?>
-        <div id="sentence<?php echo $sentence['id']; ?>" class="sentenceInList">        
-        
+        <div id="sentence<?php echo $sentence['id']; ?>" class="sentenceInList">
+
             <?php
             if ($canCurrentUserEdit) {
                 // Remove from list button
                 $this->_displayRemoveButton($sentence['id']);
-                
+
                 // Sentences group
                 $user = $sentence['User'];
                 $withAudio = false;
                 $indirectTranslations = array();
                 $this->Sentences->displaySentencesGroup(
                     $sentence,
-                    $translations, 
-                    $user, 
+                    $translations,
+                    $user,
                     $indirectTranslations,
                     $withAudio
                 );
             } else {
                 $this->Sentences->displaySimpleSentencesGroup(
-                    $sentence, 
+                    $sentence,
                     $translations
                 );
             }
             ?>
-            
+
         </div>
         <?php
     }
-    
-    
+
+
     private function _displayRemoveButton($sentenceId) {
         ?>
         <span class="removeFromList">
@@ -495,7 +496,7 @@ class ListsHelper extends AppHelper
             );
         });
         </script>
-        
+
         <?php
         $removeFromListAlt = sprintf(
             __("remove sentence % from list", true),
@@ -507,14 +508,14 @@ class ListsHelper extends AppHelper
             array(
                 "class" => "removeFromListButton",
                 "id" => 'deleteButton'.$sentenceId,
-                "alt" => $removeFromListAlt 
+                "alt" => $removeFromListAlt
             )
         );
         ?>
         </span>
         <?php
     }
-    
+
     /**
      * Form to add a new sentence to a list.
      *
@@ -533,7 +534,7 @@ class ListsHelper extends AppHelper
             );
         });
         </script>
-        
+
         <div id="newSentenceInList">
         <?php
         echo $this->Form->input(
@@ -548,7 +549,7 @@ class ListsHelper extends AppHelper
             )
         );
         ?>
-        
+
         <p>
         <?php
         echo sprintf(
@@ -562,7 +563,7 @@ class ListsHelper extends AppHelper
         ?>
         </p>
         </div>
-        
+
         <div class="sentencesListLoading" style="display:none">
         <?php echo $this->Html->image(IMG_PATH . 'loading.gif'); ?>
         </div>

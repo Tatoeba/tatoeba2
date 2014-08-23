@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
+
 /**
  * Controller for contributions.
  *
@@ -41,8 +41,8 @@ class SentenceAnnotationsController extends AppController
         'SentenceAnnotations',
         'Pagination'
     );
-    
-    
+
+
     /**
      * Before filter.
      *
@@ -56,8 +56,8 @@ class SentenceAnnotationsController extends AppController
             'last_modified'
         );
     }
-    
-    
+
+
     /**
      * Index page. Doesn't do anything, just displays text to explain how it works.
      *
@@ -68,7 +68,7 @@ class SentenceAnnotationsController extends AppController
         $annotations = $this->SentenceAnnotation->getLatestAnnotations(20);
         $this->set('annotations', $annotations);
     }
-    
+
     /**
      * Display annotations for given sentence.
      *
@@ -81,7 +81,7 @@ class SentenceAnnotationsController extends AppController
         if ($sentenceId == null) {
             $this->redirect(
                 array(
-                    "action" => "show", 
+                    "action" => "show",
                     $this->data['SentenceAnnotation']['sentence_id']
                 )
             );
@@ -90,12 +90,12 @@ class SentenceAnnotationsController extends AppController
             $result = $this->SentenceAnnotation->getAnnotationsForSentenceId(
                 $sentenceId
             );
-            
+
             $this->set('sentence', $result['Sentence']);
             $this->set('annotations', $result['SentenceAnnotation']);
         }
     }
-    
+
     /**
      * Save annotation.
      *
@@ -106,20 +106,20 @@ class SentenceAnnotationsController extends AppController
         if (empty($this->data)) {
             return;
         }
-        
+
         if (!isset($this->data['SentenceAnnotation']['id'])) {
             $this->SentenceAnnotation->create();
         }
-        
+
         $sentenceId = Sanitize::paranoid(
             $this->data['SentenceAnnotation']['sentence_id']
         );
-        
+
         $this->data['SentenceAnnotation']['user_id'] = CurrentUser::get('id');
-        
+
         $this->data['SentenceAnnotation']['text']
             = trim($this->data['SentenceAnnotation']['text']);
-        
+
         if ($this->SentenceAnnotation->save($this->data)) {
             $this->flash(
                 'Index saved.',
@@ -127,7 +127,7 @@ class SentenceAnnotationsController extends AppController
             );
         }
     }
-    
+
     /**
      * Delete annotation from sentence.
      *
@@ -140,12 +140,12 @@ class SentenceAnnotationsController extends AppController
     {
         $id = Sanitize::paranoid($id);
         $sentenceId = Sanitize::paranoid($sentenceId);
-        
-        if ($this->SentenceAnnotation->del($id)) {
+
+        if ($this->SentenceAnnotation->delete($id)) {
             $this->redirect(array("action" => "show", $sentenceId));
         }
     }
-    
+
     /**
      * Search annotations.
      *
@@ -156,25 +156,25 @@ class SentenceAnnotationsController extends AppController
     public function search($query = null)
     {
         if ($query == null) {
-            
+
             $this->redirect(
                 array('action'=>'search', $this->data['SentenceAnnotation']['text'])
             );
-            
+
         } else {
-        
+
             $query = Sanitize::stripScripts($query);
-            
+
             $annotations = null;
             if (trim($query) != '') {
                 $annotations = $this->SentenceAnnotation->search($query);
             }
             $this->set('query', $query);
             $this->set('annotations', $annotations);
-            
+
         }
     }
-    
+
     /**
      * Replace text in annotations by some other text.
      * TODO The replacement process needs optimization...
@@ -192,7 +192,7 @@ class SentenceAnnotationsController extends AppController
         $this->set('textReplacing', $textReplacing);
         $this->set('annotations', $newAnnotations);
     }
-    
+
     /**
      * Latest modifications.
      *
@@ -220,7 +220,7 @@ class SentenceAnnotationsController extends AppController
 
         $this->paginate = $pagination;
         $results = $this->paginate();
-        
+
         //$annotations = $this->SentenceAnnotation->getLatestAnnotations(500);
         $this->set('annotations', $results);
     }

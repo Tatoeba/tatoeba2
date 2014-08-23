@@ -44,9 +44,9 @@ $languages = array(
     'zsm' => 'Malay',
     'est' => 'Estonian',
     'kat' => 'Georgian',
-    'pol' => 'Polish', 
-    'swh' => 'Swahili', 
-    'lat' => 'Latin', 
+    'pol' => 'Polish',
+    'swh' => 'Swahili',
+    'lat' => 'Latin',
     'wuu' => 'Shanghainese',
     'arz' => 'Egyptian Arabic',
     'bel' => 'Belarusian',
@@ -57,7 +57,7 @@ $languages = array(
     'afr' => 'Afrikaans',
     'fao' => 'Faroese',
     'fry' => 'Frisian',
-    
+
     'bre' => 'Breton',
     'ron' => 'Romanian',
     'uig' => 'Uyghur',
@@ -66,7 +66,7 @@ $languages = array(
     'srp' => 'Serbian',
     'tat' => 'Tatar',
     'yid' => 'Yiddish',
-    
+
     'pes' => 'Persian',
     'nan' => 'Min Nan Chinese',
     'eus' => 'Basque',
@@ -138,7 +138,7 @@ $languages = array(
     'lad' => 'Ladino',
     'pms' => 'Piedmontese',
 
-    'avk' => 'Kotava', 
+    'avk' => 'Kotava',
     'tpw' => 'Old Tupi',
     'tgk' => 'Tajik',
     'mar' => 'Marathi',
@@ -216,11 +216,11 @@ $languageWithStemmer = array(
     "tur"=>0,
     "swe"=>0,
     "eng"=>0,
-); 
+);
 
-    
-    
-    
+
+
+
 $cjkLanguages = array(
     "kor" => 0,
     "cmn" => 0,
@@ -230,7 +230,7 @@ $cjkLanguages = array(
     'nan' => 0,
     'ain' => 0,
     'lzh' => 0
-); 
+);
 
 
 ?>
@@ -249,7 +249,7 @@ source default
 }
 
 
-index common_index 
+index common_index
 {
     index_exact_words       = 1
     charset_table           = 0..9, a..z, _, A..Z->a..z, U+00C0->a, U+00C1->a, U+00C2->a, U+00C3->a, U+00C4->a, \
@@ -327,14 +327,14 @@ index common_index
                         U+D00..U+D77,\
                         U+E00..U+E5C,\
                         U+492, U+493, U+4E2, U+4E3, U+49A, U+49B, U+4EE, U+4EF, U+4B2, U+4B3, U+4B6, U+4B7
-                        
+
 
     docinfo                 = extern
     charset_type            = utf-8
 
 }
 
-index cjk_common_index 
+index cjk_common_index
 {
 
     ngram_len               = 1
@@ -387,7 +387,7 @@ foreach ($languages as $lang=>$name){
     echo "
     index ".$lang."_index : $parent
     {
-        source = ".$lang."_src 
+        source = ".$lang."_src
         path = " . $sourcePath . DIRECTORY_SEPARATOR.$lang;
 
         if (isset($languageWithStemmer[$lang])) {
@@ -396,11 +396,11 @@ foreach ($languages as $lang=>$name){
         min_stemming_len        = 4
     ";
         }
-    echo 
+    echo
     "
     }
     ";
-}// end of first foreach 
+}// end of first foreach
 
 
 
@@ -415,7 +415,7 @@ index und_index : common_index
     foreach ($languages as $lang=>$name) {
         echo "    local           = $lang"."_index\n";
     }
-    
+
     echo"
 }
 ";
