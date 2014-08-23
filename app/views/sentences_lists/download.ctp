@@ -100,7 +100,10 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Download list: ', true) . $lis
                 'TranslationsLang',
                 $langArray,
                 null,
-                array('class' => 'language-selector'),
+                array(
+                    'class' => 'language-selector',
+                    "empty" => false
+                ),
                 false
             );
             ?>

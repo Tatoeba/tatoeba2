@@ -103,7 +103,10 @@ if (empty($notTranslatedInto)) {
                     'langFrom',
                     $langsFrom,
                     $currentLanguage,
-                    array('class' => 'language-selector'),
+                    array(
+                        'class' => 'language-selector',
+                        "empty" => false
+                    ),
                     false
                 );
                 ?>
@@ -118,7 +121,10 @@ if (empty($notTranslatedInto)) {
                     'langTo',
                     $langsTo,
                     $notTranslatedInto,
-                    array('class' => 'language-selector'),
+                    array(
+                        'class' => 'language-selector',
+                        "empty" => false
+                    ),
                     false
                 );
                 ?>
@@ -149,7 +155,7 @@ if (empty($notTranslatedInto)) {
             $numberOfSentencesWanted,
             5,
             array(
-                'empty'=>false
+                'empty' => false
             )
         );
         ?>
@@ -162,7 +168,10 @@ if (empty($notTranslatedInto)) {
             'into',
             $languages->languagesArray(),
             $selectedLanguage,
-            array('class' => 'language-selector'),
+            array(
+                'class' => 'language-selector',
+                "empty" => false
+            ),
             false
         );
         ?>

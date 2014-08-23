@@ -74,7 +74,10 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Random sentences', true));
             'into', 
             $languages->languagesArray(), 
             $selectedLanguage,
-            array('class' => 'language-selector'),
+            array(
+                'class' => 'language-selector',
+                "empty" => false
+            ),
             false
         );
         echo '</fieldset>';
