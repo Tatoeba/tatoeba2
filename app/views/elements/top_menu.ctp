@@ -132,13 +132,13 @@ $menuElements = array(
         ),
         "sub-menu" => array(
             __('Quick Start Guide', true) =>
-                'http://wiki.tatoeba.org/articles/show/quick-start'
+                'http://en.wiki.tatoeba.org/articles/show/quick-start'
             ,
             __('Tatoeba Wiki', true) =>
-                'http://wiki.tatoeba.org/articles/show/main'
+                'http://en.wiki.tatoeba.org/articles/show/main'
             ,
             __('FAQ', true) =>
-                'http://wiki.tatoeba.org/articles/show/faq'
+                'http://en.wiki.tatoeba.org/articles/show/faq'
             ,
             __('Help', true) => array(
                 "controller" => "pages",
