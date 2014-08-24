@@ -102,7 +102,19 @@ if (!empty($realName)) {
     if ($isDisplayed) {
         ?>
         <div class="module">
+            <?php
+            if ($username == $currentMember) {
+                $members->displayEditButton(
+                    array(
+                        'controller' => 'user',
+                        'action' => 'settings'
+                    )
+                ); 
+            }
+            ?>
+
             <h2><?php __('Settings'); ?></h2>
+
             <ul class="annexeMenu">
                 <li class="item">
                     <?php
@@ -135,23 +147,13 @@ if (!empty($realName)) {
                 if (!empty($languagesSettings)) {
                     ?> 
                     <li class="item">
-                    <?php echo $languagesSettings; ?>
+                    <?php echo str_replace(',', ', ', $languagesSettings); ?>
                     </li>
                     <?php
                 }
                 ?>
             </ul>
             
-            <?php
-            if ($username == $currentMember) {
-                $members->displayEditButton(
-                    array(
-                        'controller' => 'user',
-                        'action' => 'settings'
-                    )
-                ); 
-            }
-            ?>
         </div>
     <?php
     }
