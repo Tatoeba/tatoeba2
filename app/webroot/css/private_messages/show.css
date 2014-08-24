@@ -61,6 +61,7 @@
     color: #999;
     font-style: italic;
     font-size: 11px;
+    padding: 5px 0px;
 }
 
 .meta .action {
@@ -79,7 +80,6 @@
 
 .privateMessage .body {
     padding: 15px;
-    clear: both;
     border-top: 3px solid #CAE2AA;
     -webkit-box-shadow: inset 0px 40px 30px -10px rgba(245, 245, 245, 1);
     -moz-box-shadow: inset 0px 40px 30px -10px rgba(245, 245, 245, 1);
