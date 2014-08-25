@@ -67,24 +67,24 @@ $navigation->displaySentenceNavigation(
 <div id="annexe_content">
     <?php $attentionPlease->tatoebaNeedsYou(); ?>
     
-    <?php $tags->displayTagsModule($tagsArray, $sentenceId); ?>
-    
     <?php 
-    // TODO For the beginning we'll restrict this to admins.
-    // Later we'll want CurrentUser::isModerator();
-    if (CurrentUser::isAdmin()) {
-        echo $this->element(
-            'sentences/correctness',
-            array(
-                'sentenceId' => $sentenceId,
-                'sentenceCorrectness' => $sentenceCorrectness
-            )
-        ); 
+    if (isset($sentence)){
+        $tags->displayTagsModule($tagsArray, $sentenceId);
+
+        // TODO For the beginning we'll restrict this to admins.
+        // Later we'll want CurrentUser::isModerator();
+        if (CurrentUser::isAdmin()) {
+            echo $this->element(
+                'sentences/correctness',
+                array(
+                    'sentenceId' => $sentenceId,
+                    'sentenceCorrectness' => $sentenceCorrectness
+                )
+            ); 
+        }
+
+        echo $this->element('sentences/correctness_info');
     }
-    ?>
-    
-    <?php 
-    echo $this->element('sentences/correctness_info');
     ?>
     
     <div class="module">
