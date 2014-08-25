@@ -22,7 +22,7 @@ $(document).ready(function() {
     var textToReplace = $("#SentenceAnnotationTextToReplace").val();
     var textReplacing = '';
     
-    textToReplace = textToReplace.replace("<space>", " ");
+    textToReplace = textToReplace.replace(/<space>/g, " ");
     
     $("#previewButton").click( function() {
         

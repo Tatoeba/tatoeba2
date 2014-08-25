@@ -158,7 +158,13 @@ class SentenceAnnotationsHelper extends AppHelper
                 )
             );
             echo '<div>';
-            echo $this->Form->button('Preview', array("id"=>"previewButton"));
+            echo $this->Form->button(
+                'Preview', 
+                array(
+                    "id" => "previewButton",
+                    "type" => "button"
+                )
+            );
             echo '</div>';
             echo $this->Form->end('Replace');
         ?>
