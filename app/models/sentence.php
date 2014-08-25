@@ -286,7 +286,7 @@ class Sentence extends AppModel
         }
 
         // Decrement statistics
-        $this->decrementCountForLanguage($sentenceLang);
+        $this->Language->decrementCountForLanguage($sentenceLang);
     }
 
     /**
@@ -542,25 +542,18 @@ class Sentence extends AppModel
      */
     public function delete($id, $userId)
     {
-        //TODO  why ?
-        $this->id = $id;
         $id = Sanitize::paranoid($id);
         // for the logs
         $this->data = $this->find(
             'first',
             array(
-                'condition' => array('Sentence.id' => $id)
-               ,  'contain' => array ('Translation', 'User')
+                'conditions' => array('Sentence.id' => $id),  
+                'contain' => array ('Translation', 'User')
             )
         );
-
+        
         $this->data['User']['id'] = $userId;
-
-        //$this->Sentence->delete($id, true);
-        // TODO : Deleting with del does not delete the right entries in
-        // sentences_translations.
-        // But I didn't figure out how to solve that =_=;
-        // So I'm just going to do something not pretty but whatever, I'm tired!!!
+        
         $this->query('DELETE FROM sentences WHERE id='.$id);
         $this->query('DELETE FROM sentences_translations WHERE sentence_id='.$id);
         $this->query('DELETE FROM sentences_translations WHERE translation_id='.$id);
