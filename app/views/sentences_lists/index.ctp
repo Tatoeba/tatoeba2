@@ -41,7 +41,13 @@ if ($session->read('Auth.User.id')) {
         <div class="module">
         <h2><?php __('Create a new list'); ?></h2>
         <?php
-        echo $form->create('SentencesList');
+        echo $form->create(
+            'SentencesList',
+            array(
+                "action" => "add",
+                "type" => "post",
+            )
+        );
         echo $form->input(
             'name',
             array(
