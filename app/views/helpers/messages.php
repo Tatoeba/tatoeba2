@@ -38,7 +38,7 @@
 
 class MessagesHelper extends AppHelper
 {
-    public $helpers = array('Date', 'Html', 'ClickableLinks');
+    public $helpers = array('Date', 'Html', 'ClickableLinks', 'Languages');
 
     /**
      *
@@ -55,13 +55,20 @@ class MessagesHelper extends AppHelper
         $hidden = false;
         if (isset($message['hidden'])) {
             $hidden = $message['hidden'];
+            
+        }
+        $hiddenClass = "";
+        $authorId = null;
+        if ($hidden) {
+            $hiddenClass = " inappropriate";
+            $authorId = $author['id'];
         }
         $content = $message['text'];
 
-        ?><div class="message"><?php
-            $this->_displayHeader($author, $created, $modified, $menu);
-            $this->_displayBody($content, $sentence, $hidden);
-        ?></div><?php
+        echo "<div class='message ${hiddenClass}'>";
+        $this->_displayHeader($author, $created, $modified, $menu);
+        $this->_displayBody($content, $sentence, $hidden, $authorId);
+        echo "</div>";
     }
 
 
@@ -127,8 +134,8 @@ class MessagesHelper extends AppHelper
     {
         $image = $author['image'];
         $username = $author['username'];
-        if (empty($imageName)) {
-            $imageName = 'unknown-avatar.png';
+        if (empty($image)) {
+            $image = 'unknown-avatar.png';
         }
 
         ?><div class="avatar"><?php
@@ -173,7 +180,7 @@ class MessagesHelper extends AppHelper
      * 
      *
      */
-    private function _displayBody($content, $sentence, $hidden)
+    private function _displayBody($content, $sentence, $hidden, $authorId)
     {
         ?><div class="body"><?php
         if (!empty($sentence)) {
@@ -184,7 +191,17 @@ class MessagesHelper extends AppHelper
             $this->_displayWarning();
         }
 
-        echo $this->_formatedContent($content);
+        $canViewContent = CurrentUser::isAdmin()
+            || CurrentUser::get('id') == $authorId;
+        if ($canViewContent) {
+            ?><div class="separator"></div><?php
+        }
+
+        if (!$hidden || $canViewContent) {
+            ?><div class="content"><?php
+            echo $this->_formatedContent($content);
+            ?></div><?php   
+        }
 
         ?></div><?php
     }
@@ -197,6 +214,62 @@ class MessagesHelper extends AppHelper
      */
     private function _displaySentence($sentence)
     {
+        $sentenceText = $sentence['text'];
+        $sentenceId = $sentence['id'];
+        $ownerName = null;
+        if (isset($sentence['User']['username'])) {
+            $ownerName = $sentence['User']['username'];
+        }
+
+        $sentenceLang = null;
+        if (!empty($sentence['lang'])) {
+            $sentenceLang = $sentence['lang'];
+        }
+        $dir = $this->Languages->getLanguageDirection($sentenceLang);
+        ?>
+        <div class="sentence">
+        <?php
+        if (isset($sentenceText)) {
+            echo $this->Languages->icon(
+                $sentenceLang,
+                array(
+                    "class" => "langIcon",
+                    "width" => 20
+                )
+            );
+
+            echo $this->Html->link(
+                $sentenceText,
+                array(
+                    "controller"=>"sentences",
+                    "action"=>"show",
+                    $sentenceId.'#comments'
+                ),
+                array(
+                    'dir' => $dir,
+                    'class' => 'sentenceText'
+                )
+            );
+
+            if (!empty($ownerName)) {
+                echo $this->Html->link(
+                    '['.$ownerName.']',
+                    array(
+                        "controller" => "user",
+                        "action" => "profile",
+                        $ownerName
+                    ),
+                    array(
+                        "class" => "ownerName"
+                    )
+                );
+            }
+        } else {
+            echo '<em>'.__('sentence deleted', true).'</em>';
+        }
+        ?>
+        </div>
+        <?php
     }
 
 
@@ -206,7 +279,7 @@ class MessagesHelper extends AppHelper
      */
     private function _displayWarning()
     {
-        ?><div class='warning'><?php
+        ?><div class='warningInfo'><?php
         echo sprintf(
             __(
                 'The content of this message goes against '.
