@@ -40,10 +40,8 @@ class PrivateMessagesController extends AppController
     public $name = 'PrivateMessages';
 
     public $helpers = array(
-        'Comments',
         'Html',
         'Date',
-        'PrivateMessages',
         'Wall' // TODO Move the displayMessagePosterImage() method of
                // WallHelper into a more general helper
     );
@@ -216,16 +214,18 @@ class PrivateMessagesController extends AppController
      */
     public function show($messageId)
     {
+        $this->helpers[] = 'Messages';
+        $this->helpers[] = 'PrivateMessages';
 
         $messageId = Sanitize::paranoid($messageId);
-        /**
-         * The following lines of code check if a message is read, or not
-         * and change is read value automatically.
-         */
-        $message = $this->PrivateMessage->getMessageWithId($messageId);
-        $recipientId = $message['PrivateMessage']['recpt'];
-        $senderId = $message['PrivateMessage']['sender'];
+        $pm = $this->PrivateMessage->getMessageWithId($messageId);
+
+        // Redirection to Inbox if the user tries to view a messages that
+        // is not theirs.
+        $recipientId = $pm['PrivateMessage']['recpt'];
+        $senderId = $pm['PrivateMessage']['sender'];
         $currentUserId = CurrentUser::get('id');
+
         if ($recipientId != $currentUserId && $senderId != $currentUserId) {
             $this->redirect(
                 array(
@@ -235,13 +235,83 @@ class PrivateMessagesController extends AppController
             );
         }
 
-        if ($message['PrivateMessage']['isnonread'] == 1) {
-            $message['PrivateMessage']['isnonread'] = 0;
-            $this->PrivateMessage->save($message);
+        // Setting message as read
+        if ($pm['PrivateMessage']['isnonread'] == 1) {
+            $pm['PrivateMessage']['isnonread'] = 0;
+            $this->PrivateMessage->save($pm);
         }
 
-        $this->set('message', $message);
 
+        $folder =  $pm['PrivateMessage']['folder'];
+        $title = $pm['PrivateMessage']['title'];
+        $message = $this->_getMessageFromPm($pm['PrivateMessage']);
+        $author = $pm['Sender'];
+        $messageMenu = $this->_getMenu($folder, $messageId);
+
+        $this->set('messageMenu', $messageMenu);
+        $this->set('title', $title);
+        $this->set('author', $author);
+        $this->set('message', $message);
+        $this->set('folder', $folder);
+    }
+
+
+    /**
+     *
+     */
+    private function _getMessageFromPm($privateMessage)
+    {
+        $message['created'] = $privateMessage['date'];
+        $message['text'] = $privateMessage['content'];
+
+        return $message;
+    }
+
+
+    /**
+     *
+     *
+     */
+    private function _getMenu($folder, $messageId)
+    {
+        $menu = array();
+
+        if ($folder == 'Trash') {
+            $menu[] = array(
+                'text' => __('restore', true),
+                'url' => array(
+                    'action' => 'restore',
+                    $messageId
+                )
+            );
+        } else {
+            $menu[] = array(
+                'text' => __('delete', true), 
+                'url' => array(
+                    'action' => 'delete', 
+                    $folder, 
+                    $messageId
+                )
+            );
+        }
+        
+        if ($folder == 'Inbox') {
+            $menu[] = array(
+                'text' => __('mark as unread', true), 
+                'url' => array(
+                    'action' => 'mark',
+                    'Inbox',
+                    $messageId
+                )
+            );
+                        
+            $menu[] = array(
+                'text' => __('reply', true), 
+                'url' => '#reply'
+            );
+        }
+
+        return $menu;
     }
 
     /**
