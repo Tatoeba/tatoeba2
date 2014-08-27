@@ -78,7 +78,7 @@ class SentenceCommentsController extends AppController
                 ),
                 'Sentence' => array(
                     'User' => array('username'),
-                    'fields' => array('id','text', 'lang')
+                    'fields' => array('id', 'text', 'lang', 'correctness')
                 )
             ),
             'limit' => 50,
@@ -110,7 +110,7 @@ class SentenceCommentsController extends AppController
      */
     public function index($langFilter = 'und')
     {
-        $permissions = array();
+        $this->helpers[] = 'Messages';
 
         if ($langFilter != 'und') {
             $this->paginate['SentenceComment']['conditions'] = array(
@@ -120,17 +120,14 @@ class SentenceCommentsController extends AppController
 
         $latestComments = $this->paginate();
 
-        $permissions = $this->Permissions->getCommentsOptions(
-            $latestComments,
-            $this->Auth->user('id'),
-            $this->Auth->user('group_id')
-        );
+        $commentsMenus = $this->Permissions->getMenusForComments($latestComments);
 
         $this->set('sentenceComments', $latestComments);
-        $this->set('commentsPermissions', $permissions);
+        $this->set('commentsMenus', $commentsMenus);
         $this->set('langFilter', $langFilter);
 
     }
+    
 
     /**
      * Display comments for given sentence.

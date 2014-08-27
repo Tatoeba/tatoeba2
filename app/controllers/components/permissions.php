@@ -276,5 +276,93 @@ class PermissionsComponent extends Object
         //pr($messages);
         return $messages;
     }
+
+
+
+    public function getMenusForComments($comments)
+    {
+        foreach ($comments as $comment) {
+            $menus[] = $this->getMenuForComment($comment);
+        }
+
+        return $menus;
+    }
+
+    public function getMenuForComment($comment)
+    {
+        $menu = array();
+
+        // PM
+        if (CurrentUser::isMember()) {
+            $username = $comment['User']['username'];
+            $menu[] = array(
+                'text' => __('PM', true),
+                'url' => array(
+                    "controller" => "private_messages",
+                    "action" => "write",
+                    $username
+                )
+            );
+        }
+        
+        // hide
+        if (CurrentUser::isAdmin()) {
+            $hidden = $comment['SentenceComment']['hidden'];
+            $commentId = $comment['SentenceComment']['id'];
+
+            if ($hidden) {
+                $hiddenLinkText = __('unhide', true);
+                $hiddenLinkAction = 'unhide_message';
+            } else {
+                $hiddenLinkText = __('hide', true);
+                $hiddenLinkAction = 'hide_message';
+            }
+
+            $menu[] = array(
+                'text' => __('hide', true),
+                'url' => array(
+                    "controller" => "sentence_comments",
+                    "action" => $hiddenLinkAction,
+                    $commentId
+                )
+            );
+        }
+
+        $authorId = $comment['User']['id'];
+        if ($authorId === CurrentUser::get('id') || CurrentUser::isAdmin()) {
+            // delete
+            $menu[] = array(
+                'text' => __('delete', true),
+                'url' => array(
+                    "controller" => "sentence_comments",
+                    "action" => "delete_comment",
+                    $commentId
+                )
+            );
+
+            // edit
+            $menu[] = array(
+                'text' => __('edit', true),
+                'url' => array(
+                    "controller" => "sentence_comments",
+                    "action" => "edit",
+                    $commentId
+                )
+            );
+        }
+
+        // view
+        $sentenceId =  $comment['Sentence']['id'];
+        $menu[] = array(
+            'text' => '#',
+            'url' => array(
+                "controller" => "sentences",
+                "action" => "show",
+                $sentenceId
+            )
+        );
+
+        return $menu;
+    }
 }
 ?>
