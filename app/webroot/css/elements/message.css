@@ -51,7 +51,7 @@
 }
 
 .message .header a {
-    background-color: #EDFFE5;
+    background-color: #EAF2E6;
     border: 1px solid #D9EAAB;
 }
 
@@ -183,4 +183,37 @@
     position: absolute;
     margin-right: 5px;
     top: 6px;
+}
+
+
+/*
+ * Inappropriate messages
+ */
+
+.inappropriate .body {
+    color: #CC2828;
+}
+
+.inappropriate .warning {
+    color: #999;
+    padding-left: 40px;
+    background: url(warning.svg) no-repeat left center;
+}
+
+.inappropriate .separator {
+    border-top: 1px dotted #ccc;
+    margin: 10px 0px;
+}
+
+.inappropriate .header a {
+    color: #bbb;
+    text-decoration: none;
+}
+.inappropriate .username a, .inappropriate .menu a {
+    background-color: #f7f7f7;
+    border: 1px solid #ddd;
+}
+
+.inappropriate .username a {
+    border-left: none;
 }

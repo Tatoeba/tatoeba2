@@ -184,9 +184,7 @@ class MessagesHelper extends AppHelper
             $this->_displayWarning();
         }
 
-        echo $this->ClickableLinks->clickableURL(
-            nl2br(Sanitize::html($content))
-        );
+        echo $this->_formatedContent($content);
 
         ?></div><?php
     }
@@ -201,6 +199,11 @@ class MessagesHelper extends AppHelper
     {
     }
 
+
+    /**
+     *
+     *
+     */
     private function _displayWarning()
     {
         ?><div class='warning'><?php
@@ -215,5 +218,33 @@ class MessagesHelper extends AppHelper
             'http://en.wiki.tatoeba.org/articles/show/rules-against-bad-behavior'
         );
         ?></div><?php
+    }
+
+
+    /**
+     * @param string $content     Text of the comment.
+     *
+     * @return string The comment body formatted for HTML display.
+     */
+    private function _formatedContent($content) {
+        $content = htmlentities($content, ENT_QUOTES, 'UTF-8');
+
+        // Convert sentence mentions to links
+        $self = $this;
+        $content = preg_replace_callback('/\[#(\d+)\]/', function ($m) use ($self) {
+            return $self->Html->link('#' . $m[1], array(
+                'controller' => 'sentences',
+                'action' => 'show',
+                $m[1]
+            ));
+        }, $content);
+
+        // Make URLs clickable
+        $content = $this->ClickableLinks->clickableURL($content);
+
+        // Convert linebreaks to <br/>
+        $content = nl2br($content);
+
+        return $content;
     }
 }
