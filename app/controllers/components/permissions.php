@@ -352,13 +352,14 @@ class PermissionsComponent extends Object
         }
 
         // view
-        $sentenceId =  $comment['Sentence']['id'];
+        $sentenceId = $comment['SentenceComment']['sentence_id'];
         $menu[] = array(
             'text' => '#',
             'url' => array(
                 "controller" => "sentences",
                 "action" => "show",
-                $sentenceId
+                $sentenceId,
+                "#" => "comment-".$commentId
             )
         );
 

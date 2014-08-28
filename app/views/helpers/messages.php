@@ -214,7 +214,6 @@ class MessagesHelper extends AppHelper
      */
     private function _displaySentence($sentence)
     {
-        $sentenceText = $sentence['text'];
         $sentenceId = $sentence['id'];
         $ownerName = null;
         if (isset($sentence['User']['username'])) {
@@ -229,7 +228,8 @@ class MessagesHelper extends AppHelper
         ?>
         <div class="sentence">
         <?php
-        if (isset($sentenceText)) {
+        if (isset($sentence['text'])) {
+            $sentenceText = $sentence['text'];
             echo $this->Languages->icon(
                 $sentenceLang,
                 array(
