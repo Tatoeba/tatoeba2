@@ -38,7 +38,7 @@
 
 class MessagesHelper extends AppHelper
 {
-    public $helpers = array('Date', 'Html', 'ClickableLinks', 'Languages');
+    public $helpers = array('Date', 'Html', 'ClickableLinks', 'Languages', 'Form');
 
     /**
      *
@@ -72,6 +72,23 @@ class MessagesHelper extends AppHelper
     }
 
 
+    public function displayMessageEditForm($message, $author) {
+        $created = $message['created'];
+        $modified = null;
+        if (isset($message['modified'])) {
+            $modified = $message['modified'];
+        }
+        
+        $content = $message['text'];
+        $authorId = $author['id'];
+
+        ?><div class='message'><?php
+        $this->_displayHeader($author, $created, $modified, null);
+        $this->_displayMessageEditForm($message);
+        ?></div><?php
+    }
+
+
     /**
      *
      * 
@@ -83,7 +100,10 @@ class MessagesHelper extends AppHelper
         <div class="header">
         <?php
             $this->_displayInfo($author, $created, $modified);
-            $this->_displayMenu($menu);
+
+            if (!empty($menu)) {
+                $this->_displayMenu($menu);    
+            }
         ?>
         </div>
         <?php
@@ -95,7 +115,7 @@ class MessagesHelper extends AppHelper
      * 
      *
      */
-    private function _displayInfo($author, $date)
+    private function _displayInfo($author, $created, $modified)
     {
         ?>
         <div class="info">
@@ -116,7 +136,16 @@ class MessagesHelper extends AppHelper
                 </div>
 
                 <div class="date">
-                <?php echo $this->Date->ago($date); ?>
+                <?php
+                echo $this->Date->ago($created);
+                $date1 = new DateTime($created);
+                $date2 = new DateTime($modified);
+                if ($date1 != $date2) {
+                    echo " - ";
+                    __("edited");
+                    echo " {$this->Date->ago($modified)}"; 
+                }
+                ?>
                 </div>
 
             </div>
@@ -319,5 +348,52 @@ class MessagesHelper extends AppHelper
         $content = nl2br($content);
 
         return $content;
+    }
+
+
+
+    private function _displayMessageEditForm($comment)
+    {
+        ?><div class="body"><div class="content"><?php
+
+        // Hack. This was the only way I knew to get the proper
+        // action value for this form
+        // The form in users/edit also has the same problem
+        echo $this->Form->create(
+            false,
+            array(
+                "url" =>
+                   "/{$this->params['lang']}/sentence_comments/edit/{$comment['id']}"
+                //"action" => "edit",
+                //$comment['id']
+            )
+        );
+
+        echo "<div>";
+        echo $this->Form->hidden('SentenceComment.id');
+        echo $this->Form->hidden('SentenceComment.sentence_id');
+        echo "</div>";
+
+        echo $this->Form->input(
+            'SentenceComment.text',
+            array(
+                "label" => "",
+                "cols"=>"64", "rows"=>"6"
+            )
+        );
+        echo $this->Html->link(
+            __('Cancel', true),
+            array(
+                "controller" => "sentences",
+                "action" => "show",
+                $comment['sentence_id']."#comment-".$comment['id']
+            ),
+            array(
+                "class" => "cancel_edit"
+            )
+        );
+        echo $this->Form->end(__('Save changes', true));
+
+        ?></div></div><?php
     }
 }

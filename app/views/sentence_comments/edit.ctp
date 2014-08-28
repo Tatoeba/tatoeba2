@@ -60,14 +60,10 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Edit Comment', true));
     </div>
     
     <?php
-    echo '<ol class="comments">';
-    $comments->displaySentenceCommentEditForm(
+    $messages->displayMessageEditForm(
         $sentenceComment['SentenceComment'],
-        $sentenceComment['User'],
-        $sentenceComment['Sentence'],
-        $commentPermissions
+        $sentenceComment['User']
     );
-    echo '</ol>';
     ?>
 </div>
     

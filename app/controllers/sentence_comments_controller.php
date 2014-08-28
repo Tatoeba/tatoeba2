@@ -273,22 +273,17 @@ class SentenceCommentsController extends AppController
         //get permissions
         if (empty($this->data)) {
             $sentenceComment = $this->SentenceComment->read();
-            $ownerId = $sentenceComment['SentenceComment']['user_id'];
+            $authorId = $sentenceComment['SentenceComment']['user_id'];
         } else {
             $sentenceComment = $this->data['SentenceComment'];
-            $ownerId = $this->SentenceComment->getOwnerIdOfComment(
+            $authorId = $this->SentenceComment->getOwnerIdOfComment(
                 $this->data['SentenceComment']['id']
             );
         }
-        $permissions = $this->Permissions->getCommentOptions(
-            $sentenceComment,
-            $ownerId,
-            CurrentUser::get('id'),
-            CurrentUser::get('group_id')
-        );
 
         //check permissions now
-        if ($permissions['canEdit'] == false) {
+        $canEdit = $authorId === CurrentUser::get('id') || CurrentUser::isAdmin();
+        if (!$canEdit) {
             $no_permission = __("You do not have permission to edit this comment. ",
                 true);
             $wrongly = __("If you have received this message in error, ".
@@ -306,9 +301,9 @@ class SentenceCommentsController extends AppController
         } else {
             //user has permissions so either display form or save comment
             if (empty($this->data)) {
+                $this->helpers[] = "Messages";
                 $this->data = $sentenceComment;
                 $this->set('sentenceComment', $sentenceComment);
-                $this->set('commentPermissions', $permissions);
             } else {
                 $sentenceId = $this->data['SentenceComment']['sentence_id'];
                 $commentId = $this->data['SentenceComment']['id'];
@@ -489,7 +484,7 @@ class SentenceCommentsController extends AppController
         $this->helpers[] = "Messages";
 
         $commentsMenus = $this->Permissions->getMenusForComments($userComments);
-        
+
         $this->set('userExists', true);
         $this->set('noComment', false);
         $this->set('userComments', $userComments);
