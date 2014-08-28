@@ -167,6 +167,7 @@ class PagesController extends AppController
     {
         $this->helpers[] = 'Wall';
         $this->helpers[] = 'Sentences';
+        $this->helpers[] = 'Messages';
 
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
@@ -176,7 +177,7 @@ class PagesController extends AppController
         $latestComments = $this->SentenceComment->getLatestComments(5);
 
 
-        $commentsPermissions = $this->Permissions->getCommentsOptions(
+        $commentsMenus = $this->Permissions->getMenusForComments(
             $latestComments,
             $userId,
             $groupId
@@ -184,13 +185,14 @@ class PagesController extends AppController
 
 
         $this->set('sentenceComments', $latestComments);
-        $this->set('commentsPermissions', $commentsPermissions);
+        $this->set('commentsMenus', $commentsMenus);
 
 
         /*latest messages part */
         $this->loadModel('Wall');
         $latestMessages = $this->Wall->getLastMessages(5);
 
+        $this->set('commentsMenu', $commentsMenus);
         $this->set('isLogged', $isLogged);
         $this->set('latestMessages', $latestMessages);
 
