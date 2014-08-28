@@ -303,19 +303,6 @@ class PermissionsComponent extends Object
     {
         $menu = array(); 
         $commentId = $comment['id'];
-
-        // PM
-        if (CurrentUser::isMember()) {
-            $username = $user['username'];
-            $menu[] = array(
-                'text' => __('PM', true),
-                'url' => array(
-                    "controller" => "private_messages",
-                    "action" => "write",
-                    $username
-                )
-            );
-        }
         
         // hide
         if (CurrentUser::isAdmin()) {
@@ -358,6 +345,19 @@ class PermissionsComponent extends Object
                     "controller" => "sentence_comments",
                     "action" => "edit",
                     $commentId
+                )
+            );
+        }
+
+        // PM
+        if (CurrentUser::isMember()) {
+            $username = $user['username'];
+            $menu[] = array(
+                'text' => __('PM', true),
+                'url' => array(
+                    "controller" => "private_messages",
+                    "action" => "write",
+                    $username
                 )
             );
         }
