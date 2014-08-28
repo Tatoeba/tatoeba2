@@ -396,6 +396,8 @@ class PrivateMessagesController extends AppController
      */
     public function write($recipients = null)
     {
+        $this->helpers[] = "PrivateMessages";
+        
         $userId = CurrentUser::get('id');
         $isNewUser = CurrentUser::isNewUser();
 
