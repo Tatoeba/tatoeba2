@@ -350,7 +350,7 @@ class PermissionsComponent extends Object
         }
 
         // PM
-        if (CurrentUser::isMember()) {
+        if (CurrentUser::isMember() && $authorId != CurrentUser::get('id')) {
             $username = $user['username'];
             $menu[] = array(
                 'text' => __('PM', true),
