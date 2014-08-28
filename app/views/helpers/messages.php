@@ -241,9 +241,9 @@ class MessagesHelper extends AppHelper
             echo $this->Html->link(
                 $sentenceText,
                 array(
-                    "controller"=>"sentences",
-                    "action"=>"show",
-                    $sentenceId.'#comments'
+                    "controller" => "sentences",
+                    "action" => "show",
+                    $sentenceId
                 ),
                 array(
                     'dir' => $dir,

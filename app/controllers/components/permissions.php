@@ -282,19 +282,31 @@ class PermissionsComponent extends Object
     public function getMenusForComments($comments)
     {
         foreach ($comments as $comment) {
-            $menus[] = $this->getMenuForComment($comment);
+            $menus[] = $this->getMenuForComment(
+                $comment['SentenceComment'], $comment['User']
+            );
         }
 
         return $menus;
     }
 
-    public function getMenuForComment($comment)
+    public function getMenusForCommentsOfUser($comments, $user)
     {
-        $menu = array();
+        foreach ($comments as $comment) {
+            $menus[] = $this->getMenuForComment($comment, $user);
+        }
+
+        return $menus;
+    }
+
+    public function getMenuForComment($comment, $user)
+    {
+        $menu = array(); 
+        $commentId = $comment['id'];
 
         // PM
         if (CurrentUser::isMember()) {
-            $username = $comment['User']['username'];
+            $username = $user['username'];
             $menu[] = array(
                 'text' => __('PM', true),
                 'url' => array(
@@ -307,8 +319,7 @@ class PermissionsComponent extends Object
         
         // hide
         if (CurrentUser::isAdmin()) {
-            $hidden = $comment['SentenceComment']['hidden'];
-            $commentId = $comment['SentenceComment']['id'];
+            $hidden = $comment['hidden'];
 
             if ($hidden) {
                 $hiddenLinkText = __('unhide', true);
@@ -328,7 +339,7 @@ class PermissionsComponent extends Object
             );
         }
 
-        $authorId = $comment['User']['id'];
+        $authorId = $user['id'];
         if ($authorId === CurrentUser::get('id') || CurrentUser::isAdmin()) {
             // delete
             $menu[] = array(
@@ -352,14 +363,13 @@ class PermissionsComponent extends Object
         }
 
         // view
-        $sentenceId = $comment['SentenceComment']['sentence_id'];
+        $sentenceId = $comment['sentence_id'];
         $menu[] = array(
             'text' => '#',
             'url' => array(
                 "controller" => "sentences",
                 "action" => "show",
-                $sentenceId,
-                "#" => "comment-".$commentId
+                $sentenceId
             )
         );
 

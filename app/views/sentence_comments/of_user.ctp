@@ -84,18 +84,18 @@ $this->set('title_for_layout', 'Tatoeba - ' . sprintf(__("%s's comments", true),
         $pagination->display($paginatorUrl);
         ?>
         
-        <ol class="comments">
+        <div class="comments">
         <?php
-        foreach ($userComments as $i=>$comment) {
-            $comments->displaySentenceComment(
+        foreach ($userComments as $i => $comment) {
+            $messages->displayMessage(
                 $comment['SentenceComment'],
                 $comment['User'],
                 $comment['Sentence'],
-                $commentsPermissions[$i]
+                $commentsMenus[$i]
             );
         }
         ?>
-        </ol>
+        </div>
         
        <?php
         $pagination->display($paginatorUrl);

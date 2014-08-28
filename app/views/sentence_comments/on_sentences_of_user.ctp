@@ -93,18 +93,18 @@ $this->set('title_for_layout', 'Tatoeba - ' . sprintf(
         ?>
         
         
-        <ol class="comments">
+        <div class="comments">
         <?php
         foreach ($userComments as $i=>$comment) {
-            $comments->displaySentenceComment(
+            $messages->displayMessage(
                 $comment['SentenceComment'],
                 $comment['User'],
                 $comment['Sentence'],
-                $commentsPermissions[$i]
+                $commentsMenus[$i]
             );
         }
         ?>
-        </ol>
+        </div>
         
         
         <?php

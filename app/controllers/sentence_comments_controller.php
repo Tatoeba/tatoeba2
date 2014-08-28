@@ -409,6 +409,8 @@ class SentenceCommentsController extends AppController
             return;
         }
 
+        $this->helpers[] = "Messages";
+
         // in the same idea, we do not need to do extra request if the user
         // has no comment
         $numberOfComments = $this->SentenceComment->numberOfCommentsOwnedBy($userId);
@@ -429,15 +431,11 @@ class SentenceCommentsController extends AppController
             'SentenceComment'
         );
 
-        $permissions = $this->Permissions->getCommentsOptions(
-            $userComments,
-            $this->Auth->user('id'),
-            $this->Auth->user('group_id')
-        );
+        $commentsMenus = $this->Permissions->getMenusForComments($userComments);
 
         $this->set('userComments', $userComments);
         $this->set('userName', $userName);
-        $this->set('commentsPermissions', $permissions);
+        $this->set('commentsMenus', $commentsMenus);
         $this->set("noComment", false);
         $this->set("userExists", true);
     }
@@ -488,17 +486,15 @@ class SentenceCommentsController extends AppController
             return;
         }
 
+        $this->helpers[] = "Messages";
 
-        $permissions = $this->Permissions->getCommentsOptions(
-            $userComments,
-            $this->Auth->user('id'),
-            $this->Auth->user('group_id')
-        );
+        $commentsMenus = $this->Permissions->getMenusForComments($userComments);
+        
         $this->set('userExists', true);
         $this->set('noComment', false);
         $this->set('userComments', $userComments);
         $this->set('userName', $userName);
-        $this->set('commentsPermissions', $permissions);
+        $this->set('commentsMenus', $commentsMenus);
     }
 
 
