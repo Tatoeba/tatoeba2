@@ -143,17 +143,16 @@ $this->set('title_for_layout', sprintf(
 
             echo '</h2>';
 
-            echo '<ol class="comments">';
-            foreach ($user['SentenceComments'] as $comment) {
-                $sentenceInfo = array('id' => $comment['sentence_id']);
-                $comments->displaySentenceComment(
+            echo '<div class="comments">';
+            foreach ($user['SentenceComments'] as $i => $comment) {
+                $messages->displayMessage(
                     $comment,
                     $user['User'],
-                    $sentenceInfo,
-                    true
+                    null,
+                    $commentsMenus[$i]
                 );
             }
-            echo '</ol>';
+            echo '</div>';
         echo '</div>';
     }
     

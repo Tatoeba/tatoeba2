@@ -468,12 +468,19 @@ class UsersController extends AppController
         if ($id == 'random') {
             $id = null;
         }
-        
+
         $user = $this->User->getUserByIdWithExtraInfo($id);
 
         if ($user != null) {
             $this->helpers[] = 'Wall';
+            $this->helpers[] = 'Messages';
+
+            $commentsMenus = $this->Permissions->getMenusForCommentsOfUser(
+                $user['SentenceComments'], $user['User']
+            );
+
             $this->set('user', $user);
+            $this->set('commentsMenus', $commentsMenus);
         } else {
             $this->Session->write('last_user_id', $id);
             $this->flash(__('No user with this id: ', true).$id, '/users/all/');
