@@ -27,51 +27,23 @@
  */
 
 
-if (isset($user)) {
+if (isset($message)) {
 
-    // TODO the code can still be refactor a bit with wall helper
-    
-    // NOTE I took out the "reply" option here because :
-    // 1) User is not supposed to want to reply to himself right after
-    //    posting his reply... Instead he should post another reply
-    //    to the message he's replied to.
-    // 2) We should actually try to limit the the "deepness" of a thread.
-    //    Three levels of reply should be the maximum, I think.
     $messageId = $message["Wall"]["id"];
     $userName = $message['User']['username'];
     $userImage = $message['User']['image'];
     $messageContent =  $message['Wall']['content'];
 
-    echo '<li class="new thread" id="message_' . $messageId . '">'."\n";
+    echo '<div class="new thread" id="message_' . $messageId . '">'."\n";
 
-    '<div class="message">';
-    echo "<ul class=\"meta\" >\n"; 
-    // image
-    echo '<li class="image">';
-    $wall->displayMessagePosterImage(
-        $userName,
-        $userImage
+    $messages->displayMessage(
+        $message['Wall'],
+        $message['User'],
+        null,
+        null // TODO add menu
     );
-    echo '</li>';
-                
-    // username
-    echo '<li class="author">';
-    $wall->displayLinkToUserProfile($userName);
-    echo '</li>';
-                
-    // date
-    echo '<li class="date">';
-    echo $date->ago($message["Wall"]["date"]);
-    echo '</li>';
-    echo '</ul>';
-    
-    // message content
-    echo '<div class="body">';
-    $wall->displayContent($messageContent);
-    echo '</div>';                
+
     echo '</div>';
-    
-    echo '</li>';
 
 }
 
