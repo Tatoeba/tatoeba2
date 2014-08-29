@@ -92,10 +92,8 @@ class WallController extends Appcontroller
      */
     public function index()
     {
-
-        //$messages = $this->_organize_messages($messages);
         $tenLastMessages = $this->Wall->getLastMessages(10);
-        //pr($messages);
+        
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
 
@@ -116,14 +114,9 @@ class WallController extends Appcontroller
 
         $isAuthenticated = !empty($userId);
 
-        //pr($messagesPermissions);
         $this->set('isAuthenticated', $isAuthenticated);
-        //$this->set('messagesPermissions', $messagesPermissions);
         $this->set('allMessages', $messages);
         $this->set('tenLastMessages', $tenLastMessages);
-        //$this->set('firstMessages', $firstMessages);
-
-
     }
 
     /**

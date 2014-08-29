@@ -18,6 +18,8 @@
 
 
 .message {
+    border-left: 9px solid #cae2aa;
+    border-bottom: 1px solid #ddd;
     margin: 40px 0px;
 }
 
@@ -161,6 +163,7 @@
 
 .message .body {
     border-top: 1px solid #ddd;
+    border-right: 1px solid #ddd;
     line-height: 18px;
 }
 
@@ -190,8 +193,8 @@
 
 .inappropriate .warningInfo {
     color: #999;
-    padding: 10px 10px 10px 40px;
-    background: url(../../img/warning.svg) no-repeat left center;
+    padding: 10px 10px 10px 47px;
+    background: url(../../img/warning.svg) no-repeat 7px center;
 }
 
 .inappropriate .separator {

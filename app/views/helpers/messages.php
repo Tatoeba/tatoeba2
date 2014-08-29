@@ -46,7 +46,13 @@ class MessagesHelper extends AppHelper
      *
      */
     public function displayMessage($message, $author, $sentence, $menu) {
-        $created = $message['created'];
+        $created = null;
+        if (isset($message['created'])) {
+            $created = $message['created'];    
+        } else if (isset($message['date'])) {
+            $created = $message['date'];
+        }
+        
         $modified = null;
         if (isset($message['modified'])) {
             $modified = $message['modified'];
@@ -54,16 +60,22 @@ class MessagesHelper extends AppHelper
 
         $hidden = false;
         if (isset($message['hidden'])) {
-            $hidden = $message['hidden'];
-            
+            $hidden = $message['hidden'];   
         }
+
         $hiddenClass = "";
         $authorId = null;
         if ($hidden) {
             $hiddenClass = " inappropriate";
             $authorId = $author['id'];
         }
-        $content = $message['text'];
+        
+        $content = null;
+        if (isset($message['text'])) {
+            $content = $message['text'];
+        } else if (isset($message['content'])) {
+            $content = $message['content'];
+        }
 
         echo "<div class='message ${hiddenClass}'>";
         $this->_displayHeader($author, $created, $modified, $menu);
@@ -138,12 +150,15 @@ class MessagesHelper extends AppHelper
                 <div class="date">
                 <?php
                 echo $this->Date->ago($created);
-                $date1 = new DateTime($created);
-                $date2 = new DateTime($modified);
-                if ($date1 != $date2) {
-                    echo " - ";
-                    __("edited");
-                    echo " {$this->Date->ago($modified)}"; 
+
+                if (!empty($modified)) {
+                    $date1 = new DateTime($created);
+                    $date2 = new DateTime($modified);
+                    if ($date1 != $date2) {
+                        echo " - ";
+                        __("edited");
+                        echo " {$this->Date->ago($modified)}"; 
+                    }
                 }
                 ?>
                 </div>
@@ -193,7 +208,37 @@ class MessagesHelper extends AppHelper
             ?>
             <li>
             <?php
-            echo $this->Html->link($item['text'], $item['url']);
+            $url = null;
+            if (!empty($item['url'])) {
+                $url = $item['url'];
+            }
+            $options = array();
+            if (!empty($item['id'])) {
+                $options['id'] = $item['id'];
+            }
+            if (!empty($item['class'])) {
+                $options['class'] = $item['class'];
+            }
+            $confirm = null;
+            if (!empty($item['confirm'])) {
+                $confirm = $item['confirm'];
+            }
+
+            if (empty($url)) {
+                // Custom HTML in case url is null.
+                // If we use html helper it won't remove the href.
+                echo '<a id="'.$options['id'].'" class="'.$options['class'].'">'.
+                     $item['text'].
+                     '</a>';
+            } else {
+                echo $this->Html->link(
+                    $item['text'], 
+                    $url,
+                    $options,
+                    $confirm
+                );    
+            }
+            
             ?>
             </li>
             <?php
