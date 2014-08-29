@@ -175,7 +175,7 @@ $this->set('title_for_layout', sprintf(
 
             echo '</h2>';
 
-            echo '<ol class="wall">';
+            echo '<div class="wall">';
             foreach ($user['Wall'] as $comment) {
                 $wall->createThread(
                     $comment,
@@ -184,7 +184,7 @@ $this->set('title_for_layout', sprintf(
                     null
                 );
             }
-            echo '</ol>';
+            echo '</div>';
         echo '</div>';
     }
     ?>
