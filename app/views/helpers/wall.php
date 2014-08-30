@@ -41,7 +41,7 @@ class WallHelper extends AppHelper
     public $helpers = array(
         'Html', 'Form' , 'Date', 'Javascript', 'ClickableLinks', 'Messages'
     );
-    
+
 
     /**
      * display the avatar of the one who write current message
@@ -144,60 +144,6 @@ class WallHelper extends AppHelper
         <?php
     }
 
-    /**
-     * display content of a message
-     *
-     * @param string  $content  Message to be rendered
-     * @param boolean $hiddden  Set to 'true' if the message was set as hidden
-     *                          because it was innapropriate, 'false' otherwise.
-     * @param int     $authorId Id of the author of the message.
-     *
-     * @return void
-     */
-
-    public function displayContent($content, $hidden = false, $authorId = 0)
-    {
-        if ($hidden) {
-
-            echo "<div class='hidden'>";
-            echo sprintf(
-                __(
-                    'The content of this message goes against '.
-                    '<a href="%s">our rules</a> and was therefore hidden. '.
-                    'It is displayed only to admins '.
-                    'and to the author of the message.',
-                    true
-                ),
-                'http://en.wiki.tatoeba.org/articles/show/rules-against-bad-behavior'
-            );
-            echo "</div>";
-        }
-
-        $isDisplayedToCurrentUser = !$hidden
-            || CurrentUser::isAdmin()
-            || CurrentUser::get('id') == $authorId;
-
-        if ($isDisplayedToCurrentUser) {
-            // re #373:change the message style to be more clear to the reader of the message
-            if ($hidden) {
-                echo "<br />";
-                echo "<div class='hiddenUserMessage'>\"";
-            }
-            echo nl2br(
-                $this->ClickableLinks->clickableURL(
-                    htmlentities(
-                        $content,
-                        ENT_QUOTES,
-                        'UTF-8'
-                    )
-                )
-            );
-            if ($hidden) {
-                echo "\"</div>";
-            }
-        }
-    }
-
 
 
     /**
@@ -273,7 +219,7 @@ class WallHelper extends AppHelper
         }
 
         $messageId = $message['id'];
-        $menu = $this->_getMenuFromPermissions($message['id'], $permissions);
+        $menu = $this->_getMenuFromPermissions($message, $permissions);
         ?>
         <div class="root">
             <?php
@@ -307,7 +253,7 @@ class WallHelper extends AppHelper
         <div class="thread" id="message_<?php echo $messageId; ?>">
 
         <?php
-        $menu = $this->_getMenuFromPermissions($message['id'], $permissions);
+        $menu = $this->_getMenuFromPermissions($message, $permissions);
         $this->Messages->displayMessage(
             $message,
             $owner,
@@ -444,9 +390,11 @@ class WallHelper extends AppHelper
     }
 
 
-    private function _getMenuFromPermissions($messageId, $permissions)
+    private function _getMenuFromPermissions($message, $permissions)
     {
         $menu = array();
+        $messageId = $message['id'];
+        $hidden = $message['hidden'];
 
         if (CurrentUser::isAdmin()) {
             if ($hidden) {

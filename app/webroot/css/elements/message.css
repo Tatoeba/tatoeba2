@@ -73,6 +73,8 @@
 
 .message .other {
     display: inline-block;
+    vertical-align: bottom;
+    padding-bottom: 2px;
 }
 
 .message .avatar {
@@ -118,6 +120,8 @@
 .message .date {
     padding: 0px 10px;
     color: #999;
+    bottom: 0px;
+    font-size: 12px;
 }
 
 
