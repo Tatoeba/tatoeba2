@@ -281,6 +281,8 @@ class PermissionsComponent extends Object
 
     public function getMenusForComments($comments)
     {
+        $menus = array();
+        
         foreach ($comments as $comment) {
             $menus[] = $this->getMenuForComment(
                 $comment['SentenceComment'], $comment['User']
