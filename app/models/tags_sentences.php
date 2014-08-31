@@ -48,24 +48,6 @@ class TagsSentences extends AppModel
         );
 
 
-    public function beforeSave()
-    {
-        $tagId = $this->data['TagsSentences']['tag_id'];
-        $sentenceId = $this->data['TagsSentences']['sentence_id'];
-
-        $result = $this->find(
-            'first',
-            array(
-                'fields' => 'tag_id',
-                'conditions' => array(
-                    "tag_id" => $tagId,
-                    "sentence_id" => $sentenceId),
-                'contain' => array()
-            )
-        );
-        return empty($result);
-    }
-
     public function beforeDelete() {
         $tagId = $this->data['TagsSentences']['tag_id'];
         $sentenceId = $this->data['TagsSentences']['sentence_id'];
@@ -94,17 +76,24 @@ class TagsSentences extends AppModel
 
     public function tagSentence($sentenceId, $tagId, $userId)
     {
-        $data = array(
-            "TagsSentences" => array(
-                "user_id" => $userId,
-                "tag_id" => $tagId,
-                "sentence_id" => $sentenceId,
-                "added_time" => date("Y-m-d H:i:s")
-            )
-        );
+        $isTagged = $this->isSentenceTagged($sentenceId, $tagId);
 
-        return $this->save($data);
+        if (!$isTagged) {
+            $data = array(
+                "TagsSentences" => array(
+                    "user_id" => $userId,
+                    "tag_id" => $tagId,
+                    "sentence_id" => $sentenceId,
+                    "added_time" => date("Y-m-d H:i:s")
+                )
+            );
 
+            $this->save($data);
+
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -187,4 +176,28 @@ class TagsSentences extends AppModel
         );
     }
 
+
+    /**
+     * Returns true if a sentence is tagged with given tagId
+     *
+     * @param int $sentenceId Id of the sentence.
+     * @param int $tagId      Id of the tag.
+     *
+     * @return boolean
+     */
+    public function isSentenceTagged($sentenceId, $tagId)
+    {
+        $result = $this->find(
+            'first',
+            array(
+                'fields' => 'tag_id',
+                'conditions' => array(
+                    "tag_id" => $tagId,
+                    "sentence_id" => $sentenceId),
+                'contain' => array()
+            )
+        );
+
+        return !empty($result);
+    }
 }
