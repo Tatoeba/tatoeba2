@@ -39,12 +39,7 @@ class PrivateMessagesController extends AppController
 {
     public $name = 'PrivateMessages';
 
-    public $helpers = array(
-        'Html',
-        'Date',
-        'Wall' // TODO Move the displayMessagePosterImage() method of
-               // WallHelper into a more general helper
-    );
+    public $helpers = array('Html', 'Date');
 
 
     /**
@@ -71,6 +66,7 @@ class PrivateMessagesController extends AppController
     public function folder($folder = 'Inbox', $status = 'all')
     {
         $this->helpers[] = 'Pagination';
+        $this->helpers[] = 'Messages';
 
         $folder = Sanitize::paranoid($folder);
 

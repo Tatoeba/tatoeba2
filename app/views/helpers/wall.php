@@ -41,39 +41,7 @@ class WallHelper extends AppHelper
     public $helpers = array(
         'Html', 'Form' , 'Date', 'Javascript', 'ClickableLinks', 'Messages'
     );
-
-
-    /**
-     * display the avatar of the one who write current message
-     *
-     * @param string $userName  name of the user
-     * @param string $userImage filename of user's picture
-     *
-     * @return void
-     */
-
-    public function displayMessagePosterImage($userName, $userImage)
-    {
-        if (empty($userImage)) {
-            $userImage = 'unknown-avatar.png';
-        }
-
-        echo $this->Html->link(
-            $this->Html->image(
-                IMG_PATH . 'profiles_36/'. $userImage,
-                array(
-                    "alt" => $userName,
-                    "title" => __("View this user's profile", true)
-                )
-            ),
-            array(
-                "controller"=>"user",
-                "action"=>"profile",
-                $userName
-            ),
-            array("escape"=>false)
-        );
-    }
+    
 
     /**
      * create the form to add a new message

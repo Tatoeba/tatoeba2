@@ -71,16 +71,14 @@ echo $this->element('pmmenu');
 			 * NOTA: the caps to the word 'Sent' is IMPORTANT.
 			 */
             if ($folder != 'Sent') {
-                $username = $msg['Sender']['username'];
-                $userImage = $msg['Sender']['image'];
-                $label = sprintf(__('from %s', true), $username);
+                $user = $msg['Sender'];
+                $label = sprintf(__('from %s', true), $user['username']);
             } else {
-                $username = $msg['Recipient']['username'];
-                $userImage = $msg['Recipient']['image'];
-                $label = sprintf(__('to %s', true), $username);
+                $user = $msg['Recipient'];
+                $label = sprintf(__('to %s', true), $user['username']);
             }
             echo '<td class="senderImage">';
-            $wall->displayMessagePosterImage($username, $userImage);
+            $messages->displayAvatar($user);
             echo '</td>';
 
             if ($msg['PrivateMessage']['title'] == '') {

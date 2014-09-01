@@ -114,7 +114,7 @@ class MessagesHelper extends AppHelper
     {
         ?>
         <div class="info">
-            <?php $this->_displayAvatar($author); ?><!--
+            <?php $this->displayAvatar($author); ?><!--
             --><div class="other">
 
                 <div class="username">
@@ -157,7 +157,7 @@ class MessagesHelper extends AppHelper
      * 
      *
      */
-    private function _displayAvatar($author)
+    public function displayAvatar($author)
     {
         $image = $author['image'];
         $username = $author['username'];
@@ -166,13 +166,22 @@ class MessagesHelper extends AppHelper
         }
 
         ?><div class="avatar"><?php
-        echo $this->Html->image(
-            IMG_PATH . 'profiles_36/'.$image,
+        echo $this->Html->link(
+            $this->Html->image(
+                IMG_PATH . 'profiles_36/'. $image,
+                array(
+                    "alt" => $username,
+                    "title" => __("View this user's profile", true),
+                    "width" => 36,
+                    "height" => 36
+                )
+            ),
             array(
-                "title" => __("View this user's profile", true),
-                "width" => 36,
-                "height" => 36
-            )
+                "controller"=>"user",
+                "action"=>"profile",
+                $username
+            ),
+            array("escape"=>false)
         );
         ?></div><?php
     }

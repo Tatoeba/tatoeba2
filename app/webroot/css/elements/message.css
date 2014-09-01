@@ -94,6 +94,16 @@
     display: inline-block;
 }
 
+.message .avatar a, .message .avatar a:hover {
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+    display: block;
+    width: 36px;
+    height: 36px;
+}
+
 .message .username {
     margin-bottom: 2px;
 }
