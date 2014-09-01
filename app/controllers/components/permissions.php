@@ -135,18 +135,12 @@ class PermissionsComponent extends Object
      * @return array
      */
 
-    public function  getCommentsOptions(
-        $comments,
-        $currentUserId,
-        $currentUserGroup
-    ) {
+    public function getCommentsOptions($comments) {
         $commentsPermissions = array();
         foreach ($comments as $comment) {
             $commentPermissions = $this->getCommentOptions(
                 $comment,
-                $comment['User']['id'],
-                $currentUserId,
-                $currentUserGroup
+                $comment['User']['id']
             );
             array_push($commentsPermissions, $commentPermissions);
         }
@@ -160,35 +154,34 @@ class PermissionsComponent extends Object
      * @param array $comment          Comment.
      * @param int   $ownerId          Id of the comment owner.
      * @param int   $currentUserId    Id of currently logged in user.
-     * @param int   $currentUserGroup Id of the user's group.
      *
      * @return array
      */
 
-    public function getCommentOptions(
-        $comment,
-        $ownerId,
-        $currentUserId,
-        $currentUserGroup
-    ) {
+    public function getCommentOptions($comment, $ownerId) {
         $rightsOnComment = array(
             "canDelete" => false,
-            "canEdit" => false
+            "canEdit" => false,
+            "canHide" => false,
+            "canPM" => false
         );
-        if (empty($currentUserId) || empty($currentUserGroup)) {
+        if (!CurrentUser::isMember()) {
             return $rightsOnComment;
         }
 
-        if ($ownerId === $currentUserId) {
+        if (CurrentUser::isAdmin()) {
             $rightsOnComment['canDelete'] = true;
-        } elseif ($currentUserGroup < 2) {
+            $rightsOnComment['canEdit'] = true;
+            $rightsOnComment['canHide'] = true;
+        }
+        
+        if ($ownerId === CurrentUser::get('id')) {
             $rightsOnComment['canDelete'] = true;
+            $rightsOnComment['canEdit'] = true;
         }
 
-        if ($rightsOnComment['canDelete']) {
-            $rightsOnComment['canEdit'] = true;
-        } elseif ($currentUserGroup < 2) {
-            $rightsOnComment['canEdit'] = true;
+        if (CurrentUser::get('id') != $ownerId) {
+            $rightsOnComment['canPM'] = true;
         }
 
         return $rightsOnComment;
@@ -275,107 +268,6 @@ class PermissionsComponent extends Object
         }
         //pr($messages);
         return $messages;
-    }
-
-
-
-    public function getMenusForComments($comments)
-    {
-        $menus = array();
-        
-        foreach ($comments as $comment) {
-            $menus[] = $this->getMenuForComment(
-                $comment['SentenceComment'], $comment['User']
-            );
-        }
-
-        return $menus;
-    }
-
-    public function getMenusForCommentsOfUser($comments, $user)
-    {
-        foreach ($comments as $comment) {
-            $menus[] = $this->getMenuForComment($comment, $user);
-        }
-
-        return $menus;
-    }
-
-    public function getMenuForComment($comment, $user)
-    {
-        $menu = array(); 
-        $commentId = $comment['id'];
-        
-        // hide
-        if (CurrentUser::isAdmin()) {
-            $hidden = $comment['hidden'];
-
-            if ($hidden) {
-                $hiddenLinkText = __('unhide', true);
-                $hiddenLinkAction = 'unhide_message';
-            } else {
-                $hiddenLinkText = __('hide', true);
-                $hiddenLinkAction = 'hide_message';
-            }
-
-            $menu[] = array(
-                'text' => __('hide', true),
-                'url' => array(
-                    "controller" => "sentence_comments",
-                    "action" => $hiddenLinkAction,
-                    $commentId
-                )
-            );
-        }
-
-        $authorId = $user['id'];
-        if ($authorId === CurrentUser::get('id') || CurrentUser::isAdmin()) {
-            // delete
-            $menu[] = array(
-                'text' => __('delete', true),
-                'url' => array(
-                    "controller" => "sentence_comments",
-                    "action" => "delete_comment",
-                    $commentId
-                )
-            );
-
-            // edit
-            $menu[] = array(
-                'text' => __('edit', true),
-                'url' => array(
-                    "controller" => "sentence_comments",
-                    "action" => "edit",
-                    $commentId
-                )
-            );
-        }
-
-        // PM
-        if (CurrentUser::isMember() && $authorId != CurrentUser::get('id')) {
-            $username = $user['username'];
-            $menu[] = array(
-                'text' => __('PM', true),
-                'url' => array(
-                    "controller" => "private_messages",
-                    "action" => "write",
-                    $username
-                )
-            );
-        }
-
-        // view
-        $sentenceId = $comment['sentence_id'];
-        $menu[] = array(
-            'text' => '#',
-            'url' => array(
-                "controller" => "sentences",
-                "action" => "show",
-                $sentenceId
-            )
-        );
-
-        return $menu;
     }
 }
 ?>

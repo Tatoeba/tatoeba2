@@ -178,13 +178,19 @@ $navigation->displaySentenceNavigation(
             echo '<div class="comments">';
             foreach ($sentenceComments as $i=>$comment) {
                 $commentId = $comment['SentenceComment']['id'];
+                $menu = $comments->getMenuForComment(
+                    $comment['SentenceComment'],
+                    $comment['User'],
+                    $commentsPermissions[$i]
+                );
+                
                 echo '<a id="comment-'.$commentId.'"></a>';
                 
                 $messages->displayMessage(
                     $comment['SentenceComment'],
                     $comment['User'],
                     null,
-                    $commentsMenus[$i]
+                    $menu
                 );
             }
             echo '</div>';

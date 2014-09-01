@@ -172,27 +172,22 @@ class PagesController extends AppController
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
         $isLogged = !empty($userId);
+
         /*latest comments part */
         $this->loadModel('SentenceComment');
         $latestComments = $this->SentenceComment->getLatestComments(5);
-
-
-        $commentsMenus = $this->Permissions->getMenusForComments(
-            $latestComments,
-            $userId,
-            $groupId
+        $commentsPermissions = $this->Permissions->getCommentsOptions(
+            $latestComments
         );
 
-
         $this->set('sentenceComments', $latestComments);
-        $this->set('commentsMenus', $commentsMenus);
+        $this->set('commentsPermissions', $commentsPermissions);
 
 
         /*latest messages part */
         $this->loadModel('Wall');
         $latestMessages = $this->Wall->getLastMessages(5);
-
-        $this->set('commentsMenu', $commentsMenus);
+        
         $this->set('isLogged', $isLogged);
         $this->set('latestMessages', $latestMessages);
 

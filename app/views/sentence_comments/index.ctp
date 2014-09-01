@@ -68,11 +68,17 @@ $paginator->options(
         $pagination->display($paginationUrl);
 
         foreach ($sentenceComments as $i=>$comment) {
+            $menu = $comments->getMenuForComment(
+                $comment['SentenceComment'],
+                $comment['User'],
+                $commentsPermissions[$i]
+            );
+            
             $messages->displayMessage(
                 $comment['SentenceComment'],
                 $comment['User'],
                 $comment['Sentence'],
-                $commentsMenus[$i]
+                $menu
             );
         }
         

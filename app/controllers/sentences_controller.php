@@ -156,10 +156,10 @@ class SentencesController extends AppController
             );
 
             $comments = $this->Sentence->getCommentsForSentence($id);
-            $commentsMenus = $this->Permissions->getMenusForComments($comments);
+            $commentsPermissions = $this->Permissions->getCommentsOptions($comments);
 
             $this->set('sentenceComments', $comments);
-            $this->set('commentsMenus', $commentsMenus);
+            $this->set('commentsPermissions', $commentsPermissions);
             $this->set('contributions', $contributions);
 
 

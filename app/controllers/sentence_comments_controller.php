@@ -120,10 +120,10 @@ class SentenceCommentsController extends AppController
 
         $latestComments = $this->paginate();
 
-        $commentsMenus = $this->Permissions->getMenusForComments($latestComments);
+        $commentsPermissions = $this->Permissions->getCommentsOptions($latestComments);
 
         $this->set('sentenceComments', $latestComments);
-        $this->set('commentsMenus', $commentsMenus);
+        $this->set('commentsPermissions', $commentsPermissions);
         $this->set('langFilter', $langFilter);
 
     }
@@ -426,11 +426,11 @@ class SentenceCommentsController extends AppController
             'SentenceComment'
         );
 
-        $commentsMenus = $this->Permissions->getMenusForComments($userComments);
+        $commentsPermissions = $this->Permissions->getCommentsOptions($userComments);
 
         $this->set('userComments', $userComments);
         $this->set('userName', $userName);
-        $this->set('commentsMenus', $commentsMenus);
+        $this->set('commentsPermissions', $commentsPermissions);
         $this->set("noComment", false);
         $this->set("userExists", true);
     }
@@ -483,13 +483,13 @@ class SentenceCommentsController extends AppController
 
         $this->helpers[] = "Messages";
 
-        $commentsMenus = $this->Permissions->getMenusForComments($userComments);
+        $commentsPermissions = $this->Permissions->getCommentsOptions($userComments);
 
         $this->set('userExists', true);
         $this->set('noComment', false);
         $this->set('userComments', $userComments);
         $this->set('userName', $userName);
-        $this->set('commentsMenus', $commentsMenus);
+        $this->set('commentsPermissions', $commentsPermissions);
     }
 
 

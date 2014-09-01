@@ -30,12 +30,18 @@ if (isset($this->params['lang'])) {
 ?>
 
 <?php
-foreach ($sentenceComments as $i=>$comment) {    
+foreach ($sentenceComments as $i=>$comment) {
+    $menu = $comments->getMenuForComment(
+        $comment['SentenceComment'],
+        $comment['User'],
+        $commentsPermissions[$i]
+    );
+
     $messages->displayMessage(
         $comment['SentenceComment'],
         $comment['User'],
         $comment['Sentence'],
-        $commentsMenus[$i]
+        $menu
     );
 }
 ?>

@@ -153,7 +153,7 @@ $selectedLanguage = $session->read('random_lang_selected');
             'latest_sentence_comments',
             array(
                 'sentenceComments' => $sentenceComments,
-                'commentsMenus' => $commentsMenus
+                'commentsPermissions' => $commentsPermissions
             )
         ); 
         ?>
