@@ -186,16 +186,21 @@
     border-bottom: 1px dotted #ddd;
     padding: 10px;
 }
+
 .message .body .sentenceText {
     color: #666;
-    margin: 7px;
+    margin: 0px 5px 0px 7px;
 }
+
 .message .body .langIcon {
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .message .body .content {
     padding: 20px;
 }
+
 
 /*
  * Inappropriate messages
