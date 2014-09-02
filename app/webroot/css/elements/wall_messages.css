@@ -16,126 +16,39 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-
-/*
- * Wall
- */
-.wall, .wall ul {
-    margin: 5px 0px;
-    padding: 0;
-    list-style: none;
+.wall .message {
+    border-left: none;
+    border-bottom: none;
 }
 
-.meta li {
-    margin: 0;
-    color: #777;
-    position: static;
-    font-size: 1em;
-}    
-
-.meta .image {
-    float: left;
-    margin-right: 10px;
-	margin-left: 5px;
+.wall .message .body {
+    border-right: none;
 }
 
-.meta img {
-    height: 36px;
-}    
-
-.meta .author {
-    font-weight: bold;
-    padding-left: 10px;
+.root .message .header {
+    border-right: 1px solid #fff;
+    margin-right: -1px;
 }
 
-.meta .date {
-    color: #999;
-    font-style: italic;
-    font-size: 11px;
-    margin: 3px 0px;
+.root .message, .replies .message {
+    margin: 10px 0px 0px 0px;
+    padding-bottom: 15px;
 }
-
-.meta .action {
-    float: right;
-    margin-top: 10px;
-    margin-right: 10px;
-    font-size: 13px;
-}
-
-/* **************************** */
 
 .topThread {
-    margin-bottom: 50px;
-}
-
-.meta a {
-    font-weight: bold;
-}
-
-.root .body {
-    padding: 15px;
-    border-top: 3px solid #CAE2AA;
-	-webkit-box-shadow: inset 0px 40px 30px -10px rgba(245, 245, 245, 1);
-	-moz-box-shadow: inset 0px 40px 30px -10px rgba(245, 245, 245, 1);
-	box-shadow: inset 0px 40px 30px -10px rgba(245, 245, 245, 1);
-}
-
-.root a {
-    color: #89C140;
-    text-decoration: none;
-}
-
-.root a:hover {
-    color: #555;
+    border-left: 9px solid #cae2aa;
+    border-bottom: 1px solid #ddd;
+    margin: 40px 0px;
+    border-right: 1px solid #ddd;
 }
 
 .thread {
-    margin-top: 10px;
+    border-left: 7px solid #eaf2e6;
+    margin-left: 2px;
+    padding-top: 1px;
 }
 
-.message {
-    padding: 5px 0px;
-}
-
-.replies {
-    margin-top: 10px;
-    margin-bottom: 10px;
-    padding-left: 15px;
-    border-left: 1px solid #CCC;
-}
-
-.replies .body {
-    border-top: 1px solid #DDD;
-    padding: 10px;
-}
-
-.replies a {
-    color: #AF924D;
-    text-decoration: none;
-}
-
-.replies a:hover {
-    color: #555;
-}
-
-.new {
-    border: 1px solid #CEEA9A;
+.new.thread {
+    border-left: 7px solid #D3F2A9;
     background: #E8FFCC;
-    padding: 5px;
 }
-
-.hidden {
-    border: 1px solid #CCC;
-    background: #F1F1F1;
-    padding: 5px;
-    font-style: italic;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-.hiddenUserMessage {
-    color:#7F0000;
-    font-style: italic;
-    margin-bottom: 0px;
-}
-

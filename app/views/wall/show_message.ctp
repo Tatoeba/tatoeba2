@@ -37,6 +37,9 @@
 $rootMessageId = $message['Wall']['id'];
 
 $this->set('title_for_layout', 'Tatoeba - Thread #' . $rootMessageId ); 
+
+$javascript->link('jquery.scrollTo-min.js', false);
+$javascript->link('wall.reply.js', false);
 ?>
 <div id="annexe_content">
     <div class="module">
@@ -72,7 +75,7 @@ $this->set('title_for_layout', 'Tatoeba - Thread #' . $rootMessageId );
     </div>
     
     <div class="module">    
-        <ol class="wall">
+        <div class="wall">
             <?php
             $wall->createThread(
                 $message['Wall'],
@@ -81,7 +84,7 @@ $this->set('title_for_layout', 'Tatoeba - Thread #' . $rootMessageId );
                 $message['children']
             );
             ?>
-        </ol>
+        </div>
     </div>
     
 </div>

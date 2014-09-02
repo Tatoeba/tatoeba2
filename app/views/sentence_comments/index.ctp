@@ -66,22 +66,22 @@ $paginator->options(
         <?php
         $paginationUrl = array($langFilter);
         $pagination->display($paginationUrl);
-        ?>
-        
-        <ol class="comments">
-        <?php
+
         foreach ($sentenceComments as $i=>$comment) {
-            $comments->displaySentenceComment(
+            $menu = $comments->getMenuForComment(
+                $comment['SentenceComment'],
+                $comment['User'],
+                $commentsPermissions[$i]
+            );
+            
+            $messages->displayMessage(
                 $comment['SentenceComment'],
                 $comment['User'],
                 $comment['Sentence'],
-                $commentsPermissions[$i]
+                $menu
             );
         }
-        ?>
-        </ol>
         
-        <?php
         $pagination->display($paginationUrl);
         ?>
         

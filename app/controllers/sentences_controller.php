@@ -125,6 +125,7 @@ class SentencesController extends AppController
     public function show($id = null)
     {
         $this->helpers[] = 'Tags';
+        $this->helpers[] = 'Messages';
 
         $id = Sanitize::paranoid($id);
 
@@ -155,11 +156,7 @@ class SentencesController extends AppController
             );
 
             $comments = $this->Sentence->getCommentsForSentence($id);
-            $commentsPermissions = $this->Permissions->getCommentsOptions(
-                $comments,
-                $userId,
-                $groupId
-            );
+            $commentsPermissions = $this->Permissions->getCommentsOptions($comments);
 
             $this->set('sentenceComments', $comments);
             $this->set('commentsPermissions', $commentsPermissions);

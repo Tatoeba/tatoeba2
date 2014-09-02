@@ -38,141 +38,10 @@
 class WallHelper extends AppHelper
 {
 
-    public $helpers = array('Html', 'Form' , 'Date', 'Javascript', 'ClickableLinks');
-
-    /**
-     * create the reply link to a given message
-     *
-     * @param int   $messageId   the id of the replied message
-     * @param array $permissions Permissions the current user as on this message
-     * @param bool  $hidden      'true' if the message is hidden, 'false' otherwise.
-     * @param bool  $firstTime   to know if the first time we call it
-     *                           to add add or not the JS
-     *
-     * @return void
-     */
-
-    public function createLinks(
-        $messageId,
-        $permissions,
-        $hidden,
-        $firstTime = false
-    ) {
-
-        if (CurrentUser::isAdmin()) {
-            if ($hidden) {
-                $hiddenLinkText = __('unhide', true);
-                $hiddenLinkAction = 'unhide_message';
-            } else {
-                $hiddenLinkText = __('hide', true);
-                $hiddenLinkAction = 'hide_message';
-            }
-
-            // hide/unhide link, for when people start acting like kids and stuff
-            echo $this->Html->link(
-                $hiddenLinkText,
-                array(
-                    "controller" => "wall",
-                    "action" => $hiddenLinkAction,
-                    $messageId
-                )
-            );
-            echo ' - ';
-
-
-        }
-
-        if ($permissions['canEdit']) {
-            $tooltip
-                = CurrentUser::isAdmin() ?
-                    __("edit this message", true) : __("edit your message", true);
-            echo $this->Html->link(
-                __("edit", true),
-                array(
-                    'controller' => 'wall',
-                    'action' => 'edit',
-                    $messageId
-                ),
-                array(
-                    "title" => $tooltip
-                )
-            );
-            echo ' - ';
-        }
-
-
-        if ($permissions['canDelete']) {
-            // delete link
-            echo $this->Html->link(
-                __('delete', true),
-                array(
-                    "controller"=>"wall",
-                    "action"=>"delete_message",
-                    $messageId
-                ),
-                null,
-                __('Are you sure?', true)
-            );
-            echo ' - ';
-        }
-
-        if ($permissions['canReply']) {
-            // reply link
-            if ($firstTime === true) {
-                $this->Javascript->link('jquery.scrollTo-min.js', false);
-                $this->Javascript->link('wall.reply.js', false);
-            }
-            $replyLinkId = 'reply_' . $messageId;
-            $replyClasses = 'replyLink ' . $messageId;
-            echo '<a class="'.$replyClasses.'" id="'.$replyLinkId.'" >';
-             __("reply");
-            echo '</a>';
-            echo ' - ';
-        }
-
-        // message link
-        echo $this->Html->link(
-            '#',
-            array(
-                'controller' => 'wall',
-                'action' => 'show_message',
-                '#' => "message_" .$messageId,
-                $messageId
-            )
-        );
-    }
-
-    /**
-     * display the avatar of the one who write current message
-     *
-     * @param string $userName  name of the user
-     * @param string $userImage filename of user's picture
-     *
-     * @return void
-     */
-
-    public function displayMessagePosterImage($userName, $userImage)
-    {
-        if (empty($userImage)) {
-            $userImage = 'unknown-avatar.png';
-        }
-
-        echo $this->Html->link(
-            $this->Html->image(
-                IMG_PATH . 'profiles_36/'. $userImage,
-                array(
-                    "alt" => $userName,
-                    "title" => __("View this user's profile", true)
-                )
-            ),
-            array(
-                "controller"=>"user",
-                "action"=>"profile",
-                $userName
-            ),
-            array("escape"=>false)
-        );
-    }
+    public $helpers = array(
+        'Html', 'Form' , 'Date', 'ClickableLinks', 'Messages'
+    );
+    
 
     /**
      * create the form to add a new message
@@ -243,60 +112,6 @@ class WallHelper extends AppHelper
         <?php
     }
 
-    /**
-     * display content of a message
-     *
-     * @param string  $content  Message to be rendered
-     * @param boolean $hiddden  Set to 'true' if the message was set as hidden
-     *                          because it was innapropriate, 'false' otherwise.
-     * @param int     $authorId Id of the author of the message.
-     *
-     * @return void
-     */
-
-    public function displayContent($content, $hidden = false, $authorId = 0)
-    {
-        if ($hidden) {
-
-            echo "<div class='hidden'>";
-            echo sprintf(
-                __(
-                    'The content of this message goes against '.
-                    '<a href="%s">our rules</a> and was therefore hidden. '.
-                    'It is displayed only to admins '.
-                    'and to the author of the message.',
-                    true
-                ),
-                'http://en.wiki.tatoeba.org/articles/show/rules-against-bad-behavior'
-            );
-            echo "</div>";
-        }
-
-        $isDisplayedToCurrentUser = !$hidden
-            || CurrentUser::isAdmin()
-            || CurrentUser::get('id') == $authorId;
-
-        if ($isDisplayedToCurrentUser) {
-            // re #373:change the message style to be more clear to the reader of the message
-            if ($hidden) {
-                echo "<br />";
-                echo "<div class='hiddenUserMessage'>\"";
-            }
-            echo nl2br(
-                $this->ClickableLinks->clickableURL(
-                    htmlentities(
-                        $content,
-                        ENT_QUOTES,
-                        'UTF-8'
-                    )
-                )
-            );
-            if ($hidden) {
-                echo "\"</div>";
-            }
-        }
-    }
-
 
 
     /**
@@ -337,7 +152,6 @@ class WallHelper extends AppHelper
     private function _displayAllReplies($children)
     {
         if (!empty($children)) {
-            echo '<ul class="toto" >'; // TODO why toto ?
             foreach ($children as $child) {
                 $this->createReplyDiv(
                     // this is because the allMessages array
@@ -348,7 +162,6 @@ class WallHelper extends AppHelper
                     $child['Permissions']
                 );
             }
-             echo '</ul>' ;
         }
     }
 
@@ -374,27 +187,17 @@ class WallHelper extends AppHelper
         }
 
         $messageId = $message['id'];
+        $menu = $this->_getMenuFromPermissions($message, $permissions);
         ?>
-        <div class="message root">
+        <div class="root">
             <?php
-            $this->_displayMessageMeta(
+            $this->Messages->displayMessage(
                 $message,
                 $author,
-                $permissions,
-                true
+                null,
+                $menu
             );
             ?>
-
-            <!-- message content -->
-            <div class="body" >
-                <?php
-                $this->displayContent(
-                    $message['content'],
-                    $message['hidden'],
-                    $message['owner']
-                );
-                ?>
-            </div>
         </div>
     <?php
     }
@@ -406,116 +209,37 @@ class WallHelper extends AppHelper
      * @param array $message           the reply to be displayed
      * @param array $owner             Information about the message's author
      * @param array $children          Replies for this message
-     * @param array $messagePermission permisions the current user have
+     * @param array $permissions permisions the current user have
      *                                 on this message
      *
      * @return void
      */
-    public function createReplyDiv($message,$owner,$children,$messagePermission)
+    public function createReplyDiv($message, $owner, $children, $permissions)
     {
         $messageId = $message['id'];
         ?>
-        <li class="thread" id="message_<?php echo $messageId; ?>">
+        <div class="thread" id="message_<?php echo $messageId; ?>">
 
-        <div class="message">
-            <!-- message meta -->
-            <?php
-            $this->_displayMessageMeta(
-                $message,
-                $owner,
-                $messagePermission
-            );
-            ?>
-            <!-- message content -->
-            <div class="body">
-                <?php
-                $this->displayContent(
-                    $message['content'],
-                    $message['hidden'],
-                    $message['owner']
-                );
-                ?>
-            </div>
-        </div>
-
-        <div class="replies" id="messageBody_<?php echo $messageId; ?>" >
         <?php
+        $menu = $this->_getMenuFromPermissions($message, $permissions);
+        $this->Messages->displayMessage(
+            $message,
+            $owner,
+            null,
+            $menu
+        );
+        ?>
+
+        <?php ?><div class="replies" id="messageBody_<?php echo $messageId; ?>"><?php
         if (!empty($children)) {
+            
             $this->_displayAllReplies(
                 $children
             );
         }
-        ?>
+        ?></div><?php ?>
+
         </div>
-
-        </li>
-    <?php
-    }
-
-    /**
-     * Display the informations and menu on top of each wall messages
-     *
-     * @param array $message     Message to displayed informations of.
-     * @param array $author      Author of the message.
-     * @param array $permissions Permissions current user have on this message.
-     * @param bool  $firstTime   To know if the js need to be linked.
-     *
-     * @return void
-     */
-
-    private function _displayMessageMeta(
-        $message,
-        $author,
-        $permissions,
-        $firstTime = false
-    ) {
-        $messageId = $message['id'];
-        $messageDate = $message['date'];
-        $userName = $author['username'];
-        $userImage = $author['image'];
-        $hidden = $message['hidden'];
-        ?>
-        <ul class="meta" >
-            <!-- reply option -->
-            <li class="action">
-                <?php
-                $this->createLinks(
-                    $messageId,
-                    $permissions,
-                    $hidden,
-                    $firstTime
-                );
-                ?>
-            </li>
-
-            <li class="image">
-                <?php
-                $this->displayMessagePosterImage(
-                    $userName,
-                    $userImage
-                )
-                ?>
-            </li>
-
-            <li class="author">
-                <?php $this->displayLinkToUserProfile($userName); ?>
-            </li>
-
-            <li class="date" title="<?php echo $messageDate; ?>">
-                <?php
-                echo $this->Date->ago($messageDate);
-                if ($message['modified']) {
-                    $date = new DateTime($messageDate);
-                    $modified = new DateTime($message['modified']);
-                    if ($date != $modified) {
-                        echo " - ";
-                        echo __("edited", true);
-                        echo " {$this->Date->ago($message['modified'])}";
-                    }
-                }
-                ?>
-            </li>
-        </ul>
     <?php
     }
 
@@ -537,7 +261,7 @@ class WallHelper extends AppHelper
 
         $messageId = $message['id'];
 
-        echo '<li id="message_'.$messageId.'" class="topThread" >'."\n";
+        echo '<div id="message_'.$messageId.'" class="topThread" >'."\n";
         // Root message
         $this->createRootDiv(
             $message,
@@ -548,7 +272,6 @@ class WallHelper extends AppHelper
         // replies
         echo '<div class="replies" id="messageBody_'.$messageId .'" >';
         if (!empty($children)) {
-            echo '<ul>';
             foreach ($children as $child ) {
                 $this->createReplyDiv(
                     // this is because the allMessages array
@@ -559,10 +282,9 @@ class WallHelper extends AppHelper
                     $child['Permissions']
                 );
             }
-            echo '</ul>';
         }
         echo '</div>';
-        echo '</li>';
+        echo '</div>';
 
 
     }
@@ -633,6 +355,83 @@ class WallHelper extends AppHelper
 
         </div>
         <?php
+    }
+
+
+    private function _getMenuFromPermissions($message, $permissions)
+    {
+        $menu = array();
+        $messageId = $message['id'];
+        $hidden = $message['hidden'];
+
+        if (CurrentUser::isAdmin()) {
+            if ($hidden) {
+                $hiddenLinkText = __('unhide', true);
+                $hiddenLinkAction = 'unhide_message';
+            } else {
+                $hiddenLinkText = __('hide', true);
+                $hiddenLinkAction = 'hide_message';
+            }
+
+            // hide/unhide link, for when people start acting like kids and stuff
+            $menu[] = array(
+                'text' => $hiddenLinkText,
+                'url' => array(
+                    "controller" => "wall",
+                    "action" => $hiddenLinkAction,
+                    $messageId
+                )
+            );
+        }
+
+        if ($permissions['canEdit']) {
+            $menu[] = array(
+                'text' => __("edit", true),
+                'url' => array(
+                    'controller' => 'wall',
+                    'action' => 'edit',
+                    $messageId
+                )
+            );
+        }
+
+
+        if ($permissions['canDelete']) {
+            // delete link
+            $menu[] = array(
+                'text' => __('delete', true),
+                'url' => array(
+                    "controller"=>"wall",
+                    "action"=>"delete_message",
+                    $messageId
+                ),
+                'confirm' => __('Are you sure?', true)
+            );
+        }
+
+        if ($permissions['canReply']) {
+            $replyLinkId = 'reply_' . $messageId;
+            $replyClasses = 'replyLink ' . $messageId;
+            $menu[] = array(
+                'text' => __("reply", true),
+                'url' => null,
+                'class' => $replyClasses,
+                'id' => $replyLinkId
+            );
+        }
+
+        // message link
+        $menu[] = array(
+            'text' => '#',
+            'url' => array(
+                'controller' => 'wall',
+                'action' => 'show_message',
+                $messageId,
+                '#' => "message_" .$messageId
+            )
+        );
+
+        return $menu;
     }
 
 }

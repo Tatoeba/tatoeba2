@@ -135,18 +135,12 @@ class PermissionsComponent extends Object
      * @return array
      */
 
-    public function  getCommentsOptions(
-        $comments,
-        $currentUserId,
-        $currentUserGroup
-    ) {
+    public function getCommentsOptions($comments) {
         $commentsPermissions = array();
         foreach ($comments as $comment) {
             $commentPermissions = $this->getCommentOptions(
                 $comment,
-                $comment['User']['id'],
-                $currentUserId,
-                $currentUserGroup
+                $comment['User']['id']
             );
             array_push($commentsPermissions, $commentPermissions);
         }
@@ -160,35 +154,34 @@ class PermissionsComponent extends Object
      * @param array $comment          Comment.
      * @param int   $ownerId          Id of the comment owner.
      * @param int   $currentUserId    Id of currently logged in user.
-     * @param int   $currentUserGroup Id of the user's group.
      *
      * @return array
      */
 
-    public function getCommentOptions(
-        $comment,
-        $ownerId,
-        $currentUserId,
-        $currentUserGroup
-    ) {
+    public function getCommentOptions($comment, $ownerId) {
         $rightsOnComment = array(
             "canDelete" => false,
-            "canEdit" => false
+            "canEdit" => false,
+            "canHide" => false,
+            "canPM" => false
         );
-        if (empty($currentUserId) || empty($currentUserGroup)) {
+        if (!CurrentUser::isMember()) {
             return $rightsOnComment;
         }
 
-        if ($ownerId === $currentUserId) {
+        if (CurrentUser::isAdmin()) {
             $rightsOnComment['canDelete'] = true;
-        } elseif ($currentUserGroup < 2) {
+            $rightsOnComment['canEdit'] = true;
+            $rightsOnComment['canHide'] = true;
+        }
+        
+        if ($ownerId === CurrentUser::get('id')) {
             $rightsOnComment['canDelete'] = true;
+            $rightsOnComment['canEdit'] = true;
         }
 
-        if ($rightsOnComment['canDelete']) {
-            $rightsOnComment['canEdit'] = true;
-        } elseif ($currentUserGroup < 2) {
-            $rightsOnComment['canEdit'] = true;
+        if (CurrentUser::get('id') != $ownerId) {
+            $rightsOnComment['canPM'] = true;
         }
 
         return $rightsOnComment;

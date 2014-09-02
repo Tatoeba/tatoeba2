@@ -30,14 +30,18 @@ if (isset($this->params['lang'])) {
 ?>
 
 <?php
-echo '<ol class="comments">';
-foreach ($sentenceComments as $i=>$comment) {    
-    $comments->displaySentenceComment(
+foreach ($sentenceComments as $i=>$comment) {
+    $menu = $comments->getMenuForComment(
+        $comment['SentenceComment'],
+        $comment['User'],
+        $commentsPermissions[$i]
+    );
+
+    $messages->displayMessage(
         $comment['SentenceComment'],
         $comment['User'],
         $comment['Sentence'],
-        $commentsPermissions[$i]
+        $menu
     );
 }
-echo '</ol>';
 ?>

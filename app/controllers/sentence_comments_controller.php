@@ -78,7 +78,7 @@ class SentenceCommentsController extends AppController
                 ),
                 'Sentence' => array(
                     'User' => array('username'),
-                    'fields' => array('id','text', 'lang')
+                    'fields' => array('id', 'text', 'lang', 'correctness')
                 )
             ),
             'limit' => 50,
@@ -110,7 +110,7 @@ class SentenceCommentsController extends AppController
      */
     public function index($langFilter = 'und')
     {
-        $permissions = array();
+        $this->helpers[] = 'Messages';
 
         if ($langFilter != 'und') {
             $this->paginate['SentenceComment']['conditions'] = array(
@@ -120,17 +120,14 @@ class SentenceCommentsController extends AppController
 
         $latestComments = $this->paginate();
 
-        $permissions = $this->Permissions->getCommentsOptions(
-            $latestComments,
-            $this->Auth->user('id'),
-            $this->Auth->user('group_id')
-        );
+        $commentsPermissions = $this->Permissions->getCommentsOptions($latestComments);
 
         $this->set('sentenceComments', $latestComments);
-        $this->set('commentsPermissions', $permissions);
+        $this->set('commentsPermissions', $commentsPermissions);
         $this->set('langFilter', $langFilter);
 
     }
+    
 
     /**
      * Display comments for given sentence.
@@ -276,22 +273,17 @@ class SentenceCommentsController extends AppController
         //get permissions
         if (empty($this->data)) {
             $sentenceComment = $this->SentenceComment->read();
-            $ownerId = $sentenceComment['SentenceComment']['user_id'];
+            $authorId = $sentenceComment['SentenceComment']['user_id'];
         } else {
             $sentenceComment = $this->data['SentenceComment'];
-            $ownerId = $this->SentenceComment->getOwnerIdOfComment(
+            $authorId = $this->SentenceComment->getOwnerIdOfComment(
                 $this->data['SentenceComment']['id']
             );
         }
-        $permissions = $this->Permissions->getCommentOptions(
-            $sentenceComment,
-            $ownerId,
-            CurrentUser::get('id'),
-            CurrentUser::get('group_id')
-        );
 
         //check permissions now
-        if ($permissions['canEdit'] == false) {
+        $canEdit = $authorId === CurrentUser::get('id') || CurrentUser::isAdmin();
+        if (!$canEdit) {
             $no_permission = __("You do not have permission to edit this comment. ",
                 true);
             $wrongly = __("If you have received this message in error, ".
@@ -309,9 +301,9 @@ class SentenceCommentsController extends AppController
         } else {
             //user has permissions so either display form or save comment
             if (empty($this->data)) {
+                $this->helpers[] = "Messages";
                 $this->data = $sentenceComment;
                 $this->set('sentenceComment', $sentenceComment);
-                $this->set('commentPermissions', $permissions);
             } else {
                 $sentenceId = $this->data['SentenceComment']['sentence_id'];
                 $commentId = $this->data['SentenceComment']['id'];
@@ -412,6 +404,8 @@ class SentenceCommentsController extends AppController
             return;
         }
 
+        $this->helpers[] = "Messages";
+
         // in the same idea, we do not need to do extra request if the user
         // has no comment
         $numberOfComments = $this->SentenceComment->numberOfCommentsOwnedBy($userId);
@@ -432,15 +426,11 @@ class SentenceCommentsController extends AppController
             'SentenceComment'
         );
 
-        $permissions = $this->Permissions->getCommentsOptions(
-            $userComments,
-            $this->Auth->user('id'),
-            $this->Auth->user('group_id')
-        );
+        $commentsPermissions = $this->Permissions->getCommentsOptions($userComments);
 
         $this->set('userComments', $userComments);
         $this->set('userName', $userName);
-        $this->set('commentsPermissions', $permissions);
+        $this->set('commentsPermissions', $commentsPermissions);
         $this->set("noComment", false);
         $this->set("userExists", true);
     }
@@ -491,17 +481,15 @@ class SentenceCommentsController extends AppController
             return;
         }
 
+        $this->helpers[] = "Messages";
 
-        $permissions = $this->Permissions->getCommentsOptions(
-            $userComments,
-            $this->Auth->user('id'),
-            $this->Auth->user('group_id')
-        );
+        $commentsPermissions = $this->Permissions->getCommentsOptions($userComments);
+
         $this->set('userExists', true);
         $this->set('noComment', false);
         $this->set('userComments', $userComments);
         $this->set('userName', $userName);
-        $this->set('commentsPermissions', $permissions);
+        $this->set('commentsPermissions', $commentsPermissions);
     }
 
 

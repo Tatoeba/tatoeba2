@@ -175,17 +175,25 @@ $navigation->displaySentenceNavigation(
         echo '</h2>';
         
         if (!empty($sentenceComments)) {
-            $sentenceInfo = array('id' => $sentenceId);
-            echo '<ol class="comments">';
+            echo '<div class="comments">';
             foreach ($sentenceComments as $i=>$comment) {
-                $comments->displaySentenceComment(
+                $commentId = $comment['SentenceComment']['id'];
+                $menu = $comments->getMenuForComment(
                     $comment['SentenceComment'],
                     $comment['User'],
-                    $sentenceInfo,
                     $commentsPermissions[$i]
                 );
+                
+                echo '<a id="comment-'.$commentId.'"></a>';
+                
+                $messages->displayMessage(
+                    $comment['SentenceComment'],
+                    $comment['User'],
+                    null,
+                    $menu
+                );
             }
-            echo '</ol>';
+            echo '</div>';
         
         } else {
             echo '<em>' . __('There are no comments for now.', true) .'</em>';

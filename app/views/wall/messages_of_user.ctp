@@ -59,7 +59,7 @@ $this->set('title_for_layout', 'Tatoeba - ' . sprintf(__("%s's Wall messages", t
     $pagination->display($paginatorUrl);
     ?>
     
-    <ol class="wall">
+    <div class="wall">
     <?php
     foreach ($messages as $message) {
         $wall->createThread(
@@ -70,7 +70,7 @@ $this->set('title_for_layout', 'Tatoeba - ' . sprintf(__("%s's Wall messages", t
         );
     }
     ?>
-    </ol>
+    </div>
     
     <?php
     $paginatorUrl = array($username);
