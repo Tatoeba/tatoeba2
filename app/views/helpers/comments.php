@@ -232,20 +232,7 @@ class CommentsHelper extends AppHelper
                 )
             );
         }
-
-        // PM
-        if ($permissions['canPM']) {
-            $username = $user['username'];
-            $menu[] = array(
-                'text' => __('PM', true),
-                'url' => array(
-                    "controller" => "private_messages",
-                    "action" => "write",
-                    $username
-                )
-            );
-        }
-
+        
         // view
         $sentenceId = $comment['sentence_id'];
         $menu[] = array(

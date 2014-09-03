@@ -590,7 +590,11 @@ textarea {
 
 .contactLink {
     margin-top: 20px;
-    background: url('../../img/send_pm.png') no-repeat;
+    background: url('../../img/pm.svg') no-repeat;
+}
+
+.contactLink:hover {
+    background: url('../../img/pm-hover.svg') no-repeat;
 }
 
 .contactLink a{

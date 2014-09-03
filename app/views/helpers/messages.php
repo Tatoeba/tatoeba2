@@ -130,6 +130,27 @@ class MessagesHelper extends AppHelper
                 ?>
                 </div>
 
+                <?php
+                $displayPM = CurrentUser::isMember() 
+                    && CurrentUser::get('username') != $author['username'];
+                if ($displayPM) {
+                    ?><div class="pm"><?php
+                    echo $this->Html->link(
+                        '',
+                        array(
+                            "controller" => "private_messages",
+                            "action" => "write",
+                            $author['username']
+                        ),
+                        array(
+                            "escape" => false,
+                            'title' => __("Send private message", true)
+                        )
+                    );
+                    ?></div><?php
+                }
+                ?>
+
                 <div class="date">
                 <?php
                 echo $this->Date->ago($created);
