@@ -140,7 +140,7 @@ class PermissionsComponent extends Object
         foreach ($comments as $comment) {
             $commentPermissions = $this->getCommentOptions(
                 $comment,
-                $comment['User']['id']
+                $comment['user_id']
             );
             array_push($commentsPermissions, $commentPermissions);
         }
