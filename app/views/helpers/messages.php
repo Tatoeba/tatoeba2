@@ -395,7 +395,7 @@ class MessagesHelper extends AppHelper
             return $m[1] . $self->Html->link($m[2], array(
                 'controller' => 'sentences',
                 'action' => 'show',
-                $m[2]
+                $m[3]
             ));
         }, $content);
 
