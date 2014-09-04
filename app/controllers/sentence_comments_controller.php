@@ -120,7 +120,9 @@ class SentenceCommentsController extends AppController
 
         $latestComments = $this->paginate();
 
-        $commentsPermissions = $this->Permissions->getCommentsOptions($latestComments);
+        $commentsPermissions = $this->Permissions->getCommentsOptions(
+            $latestComments['SentenceComments']
+        );
 
         $this->set('sentenceComments', $latestComments);
         $this->set('commentsPermissions', $commentsPermissions);

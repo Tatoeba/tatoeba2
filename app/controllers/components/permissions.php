@@ -138,6 +138,10 @@ class PermissionsComponent extends Object
     public function getCommentsOptions($comments) {
         $commentsPermissions = array();
         foreach ($comments as $comment) {
+            if (isset($comment['SentenceComment'])) {
+                $comment = $comment['SentenceComment'];
+            }
+
             $commentPermissions = $this->getCommentOptions(
                 $comment,
                 $comment['user_id']
