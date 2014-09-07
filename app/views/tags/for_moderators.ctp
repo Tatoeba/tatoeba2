@@ -59,36 +59,27 @@
     ?>
     
     <div class="module">
-        <h2>Guidelines</h2>
-        <p>Corpus maintainers, this page was made for your convenience. It shows sentences 
-        that were tagged more than two weeks ago as 
-        <?php
-        echo $html->link(
-            $tagChangeName,
-            array(
-                'action' => 'for_moderators',
-                $tagChangeId
-            )
-        );
+        <h2><?php __('Guidelines'); ?></h2>
+        <p><?php 
+        $tagChangeURL = $html->url(array(
+                              'action' => 'for_moderators',
+                              $tagChangeId));
+        $tagDeleteURL = $html->url(array(
+                              'action' => 'for_moderators',
+                              $tagDeleteId));
+
+        echo sprintf(__('Corpus maintainers, this page was made for your convenience. It shows sentences '. 
+                        'that were tagged more than two weeks ago as <a href="%s">%s</a> or <a href="%s">%s</a>.', true),
+                     $tagChangeURL, $tagChangeName, $tagDeleteURL, $tagDeleteName);
         ?>
-        or
-        <?php
-        echo $html->link(
-            $tagDeleteName,
-            array(
-                'action' => 'for_moderators',
-                $tagDeleteId
-            )
-        );
-        ?>.
         </p>
-        <p>Aside from special situations where your common sense will tell you it's 
-        better to react as soon as possible, my recommendation is that you use your 
-        corpus maintainer powers <strong>ONLY</strong> on sentences that appear 
-        in this list, in which the owners have had enough time to respond to comments.</p>
+        <p><?php __('Aside from special situations where your common sense will tell you that it is '. 
+        'better to react as soon as possible, it is best to use your '.
+        'corpus maintainer powers <strong>ONLY</strong> on sentences that appear '.
+        'in this list, since the owners have had enough time to respond to comments.'); 
+         ?></p>
         
-        <p>NOTE: The maximum number of sentences displayed at a time is limited 
-        to 100.</p>
+        <p><?php __('NOTE: The maximum number of sentences displayed at a time is limited to 100.'); ?></p>
     </div>
 </div>
 
@@ -96,7 +87,7 @@
 <div class="module">
 <h2>
 <?php 
-echo 'Tagged '.$tagName.' more than 2 weeks ago'; 
+            echo sprintf(__('Tagged \'%s\' more than 2 weeks ago', true), $tagName); 
 ?>
 </h2>
 <?php 
