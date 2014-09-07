@@ -41,7 +41,7 @@ INTO OUTFILE '/var/tmp/sentences_in_lists.csv';
 SELECT u.username, g.name, u.since, u.name, u.birthday, u.homepage,
        u.description 
 FROM users u JOIN groups g ON u.group_id = g.id
-WHERE g.id BETWEEN 1 AND 5  -- no spamers, who have id = 6
+WHERE g.id BETWEEN 1 AND 5  -- no spammers, who have id = 6
 ORDER BY u.id ASC
 INTO OUTFILE '/var/tmp/users.csv';
 
@@ -67,7 +67,7 @@ INTO OUTFILE '/var/tmp/contributions.csv';
 -- Wall posts
 SELECT w.id, u.username, w.parent_id, w.date, w.content
 FROM wall w LEFT JOIN users u ON w.owner = u.id
-ORDER BY w.id asc
+ORDER BY w.id ASC
 INTO OUTFILE '/var/tmp/wall_posts.csv';
 
 -- Sentence comments
@@ -75,3 +75,9 @@ SELECT sc.id, sc.sentence_id, u.username, sc.created, sc.text
 FROM sentence_comments sc LEFT JOIN users u ON sc.user_id = u.id
 ORDER BY sc.created ASC
 INTO OUTFILE '/var/tmp/sentence_comments.csv';
+
+-- Sentences with audio
+SELECT id FROM `sentences`
+WHERE hasaudio = 'shtooka'
+ORDER BY id ASC
+INTO OUTFILE '/var/tmp/sentences_with_audio.csv';
