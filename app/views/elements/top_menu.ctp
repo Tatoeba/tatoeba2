@@ -38,10 +38,10 @@ if (empty($currentLanguage) || $currentLanguage == 'und') {
     $currentLanguage = $languages->i18nCodeToISO($this->params['lang']);
 }
 if (empty($showTranslationsInto)) {
-	$showTranslationsInto = 'none';
+    $showTranslationsInto = 'none';
 }
 if (empty($notTranslatedInto)) {
-	$notTranslatedInto = 'none';
+    $notTranslatedInto = 'none';
 }
 
 // array containing the elements of the menu : $title => $route

@@ -39,8 +39,8 @@ if ($session->read('Auth.User.id')) {
 ?>
 
 <div id="logo">
-	<a href="<?php echo $html->url($path); ?>">
-	<?php 
+    <a href="<?php echo $html->url($path); ?>">
+    <?php 
     echo $html->image(
         IMG_PATH . 'tatoeba.png',
         array(
@@ -49,5 +49,5 @@ if ($session->read('Auth.User.id')) {
         )
     );
     ?>
-	</a>
+    </a>
 </div>

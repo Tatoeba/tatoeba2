@@ -28,34 +28,34 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<?php echo $html->charset(); ?>
-		<title>Part of a Frame</title>
+    <head>
+        <?php echo $html->charset(); ?>
+        <title>Part of a Frame</title>
         <meta name="robots" content="noindex">
-		
-		<style>
-		.mainSentence .languageFlag{float:left;margin:5px 10px}
+        
+        <style>
+        .mainSentence .languageFlag{float:left;margin:5px 10px}
         .directTranslation .languageFlag{float:left;margin:0px 10px}
-		.mainSentence{font-size:1.5em;}
-		.sentence{padding:2px;}
-		.sentence a{color:navy;text-decoration: none;}
-		.sentence a:hover{color:blue;text-decoration: underline;}
-		.translations{font-size: 1.2em;}
-		.translations a{color: navy;}
-		i{color:#aaa}
-		</style>
-	</head>
-	
-	<body>
-		<div id="container">
-		<?php
-		if($session->check('Message.flash')){
-			$session->flash();
-		}
-		echo $content_for_layout;
-		?>
-		</div>
-		
-		<?php echo $cakeDebug ?>
-	</body>
+        .mainSentence{font-size:1.5em;}
+        .sentence{padding:2px;}
+        .sentence a{color:navy;text-decoration: none;}
+        .sentence a:hover{color:blue;text-decoration: underline;}
+        .translations{font-size: 1.2em;}
+        .translations a{color: navy;}
+        i{color:#aaa}
+        </style>
+    </head>
+    
+    <body>
+        <div id="container">
+        <?php
+        if($session->check('Message.flash')){
+            $session->flash();
+        }
+        echo $content_for_layout;
+        ?>
+        </div>
+        
+        <?php echo $cakeDebug ?>
+    </body>
 </html>

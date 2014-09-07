@@ -87,12 +87,12 @@ echo $html->link(
 <div id="ClickHereToRegister">
 <?php
 echo $html->link(
-	__('Register',true),
-	array(
-		"controller" => "users",
-		"action" => "register"
-	),
-	array("class"=>"registerButton")
-	);
+    __('Register',true),
+    array(
+        "controller" => "users",
+        "action" => "register"
+    ),
+    array("class"=>"registerButton")
+    );
 ?>
 </div>

@@ -57,7 +57,7 @@ if (isset($this->params['lang'])) {
         );
         ?>
     </li>
-	<li>
+    <li>
         <?php
         echo $html->link(
             __('Donate', true),

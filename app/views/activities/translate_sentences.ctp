@@ -32,7 +32,7 @@ if (empty($currentLanguage)) {
     $currentLanguage = $session->read('random_lang_selected');
 }
 if (empty($notTranslatedInto)) {
-	$notTranslatedInto = 'none';
+    $notTranslatedInto = 'none';
 }
 ?>
 
@@ -91,7 +91,7 @@ if (empty($notTranslatedInto)) {
             );
 
             $langsFrom = $languages->onlyLanguagesArray();
-			$langsTo = $languages->LanguagesArrayForNegativeLists();
+            $langsTo = $languages->LanguagesArrayForNegativeLists();
 
             ?>
             <fieldset class="select">

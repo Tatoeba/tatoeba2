@@ -100,7 +100,7 @@ $this->set('title_for_layout', __('Settings', true));
         echo $form->create(
             null,
             array(
-				'action' => 'save_basic'
+                'action' => 'save_basic'
             )
         );
         echo $form->input(

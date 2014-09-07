@@ -71,16 +71,16 @@
         $isChosenSelectEnabled = $session->read('jquery_chosen');
         if (CurrentUser::isMember() && $isChosenSelectEnabled)
         {
-	        echo $javascript->link(JS_PATH . 'chosen.jquery.min.js', true);
-	        echo $javascript->codeBlock(
-	            '$(document).ready(function(){'.
-	                '$(".language-selector").chosen({'.
-	                    'inherit_select_classes: true,'.
-	                    'search_contains: true,'. /* helps languages without spaces */
-	                    'no_results_text: ' . json_encode(__('No language matches', true)).
-	                '});'.
-	            '});',
-            	array('allowCache' => false));	
+            echo $javascript->link(JS_PATH . 'chosen.jquery.min.js', true);
+            echo $javascript->codeBlock(
+                '$(document).ready(function(){'.
+                    '$(".language-selector").chosen({'.
+                        'inherit_select_classes: true,'.
+                        'search_contains: true,'. /* helps languages without spaces */
+                        'no_results_text: ' . json_encode(__('No language matches', true)).
+                    '});'.
+                '});',
+                array('allowCache' => false));  
         }
 
         echo $scripts_for_layout;
@@ -105,24 +105,24 @@
     <div id="container">
         <!--  Logo  -->
         <?php echo $this->element('header'); ?>
-		
-		<!--  SEARCH BAR  -->
-		<?php
-		echo $this->element('search_bar', array(
-			'selectedLanguageFrom' => $session->read('search_from'),
-			'selectedLanguageTo' => $session->read('search_to'),
-			'searchQuery' => $session->read('search_query'),
-			'cache' => array(
-				// Only use cache when search fields are not prefilled
-				'time' => is_null($session->read('search_from'))
-						  && is_null($session->read('search_to'))
-						  && is_null($session->read('search_query'))
-						  ? '+1 day' : false,
-				'key' => Configure::read('Config.language')
-			)
-		)); ?>
-			
-		<!--  CONTENT -->
+        
+        <!--  SEARCH BAR  -->
+        <?php
+        echo $this->element('search_bar', array(
+            'selectedLanguageFrom' => $session->read('search_from'),
+            'selectedLanguageTo' => $session->read('search_to'),
+            'searchQuery' => $session->read('search_query'),
+            'cache' => array(
+                // Only use cache when search fields are not prefilled
+                'time' => is_null($session->read('search_from'))
+                          && is_null($session->read('search_to'))
+                          && is_null($session->read('search_query'))
+                          ? '+1 day' : false,
+                'key' => Configure::read('Config.language')
+            )
+        )); ?>
+            
+        <!--  CONTENT -->
         <div id="content">
             <?php
             if($session->check('Message.flash')){
@@ -131,12 +131,12 @@
 
             echo $content_for_layout;
             ?>
-			
-			<!-- 
-				Quick fix to readjust the size of the container when
-				the main content is smaller than the annexe content.
-			-->
-			<div style="clear:both"></div>
+            
+            <!-- 
+                Quick fix to readjust the size of the container when
+                the main content is smaller than the annexe content.
+            -->
+            <div style="clear:both"></div>
         </div>
 
 

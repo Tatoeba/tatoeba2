@@ -201,7 +201,7 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Help', true));
                 ?>
             </li>
         </ul>
-		
+        
         <p>
             <?php
             __(
