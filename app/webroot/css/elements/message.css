@@ -105,14 +105,14 @@
 }
 
 .message .username {
-    margin-bottom: 2px;
+    display: inline-block;
 }
 
 .message .username a {
     display: inline-block;
     border-left: none;
     text-align: center;
-    padding: 1px 10px;
+    padding: 0px 10px;
     min-width: 120px;
     -webkit-border-top-right-radius: 15px;
     -webkit-border-bottom-right-radius: 15px;
@@ -127,8 +127,30 @@
     border-left: none;
 }
 
+.message .pm {
+    display: inline-block;
+    margin-left: 2px;
+    vertical-align: middle;
+}
+
+.message .pm a {
+    border: none;
+    display: inline-block;
+    background: url('../../img/pm.svg') center;
+    background-size: cover;
+    width: 18px;
+    height: 18px;
+}
+
+.message .pm a:hover {
+    border: none;
+    background: url('../../img/pm-hover.svg') center;
+    background-size: cover;
+}
+
 .message .date {
     padding: 0px 10px;
+    margin-top: 2px;
     color: #999;
     bottom: 0px;
     font-size: 12px;

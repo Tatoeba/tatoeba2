@@ -44,12 +44,11 @@
     <div class="module">
         <h2><?php __("Top donators this month"); ?></h2>
         <ol>
-            <li><em>anonymous</em>, 1939€</li>
-            <li>John Storr, 100€</li>
-            <li>Ray Price, 100€</li>
-            <li>William Hoggarth, 40€</li>
-            <li>Gary Blackburn, 40€</li>
-            <li>Kiselev Dmitriy, 40€</li>
+            <li>Sascha Tesic, 50€</li>
+            <li>-</li>
+            <li>-</li>
+            <li>-</li>
+            <li>-</li>
         </ol>
     </div>
 
@@ -59,6 +58,7 @@
             <li><em>anonymous</em>, 1939€</li>
             <li>John Storr, 100€</li>
             <li>Ray Price, 100€</li>
+            <li>Sascha Tesic, 50€</li>
             <li>William Hoggarth, 40€</li>
             <li>Gary Blackburn, 40€</li>
             <li>Kiselev Dmitriy, 40€</li>

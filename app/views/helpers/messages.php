@@ -130,6 +130,27 @@ class MessagesHelper extends AppHelper
                 ?>
                 </div>
 
+                <?php
+                $displayPM = CurrentUser::isMember() 
+                    && CurrentUser::get('username') != $author['username'];
+                if ($displayPM) {
+                    ?><div class="pm"><?php
+                    echo $this->Html->link(
+                        '',
+                        array(
+                            "controller" => "private_messages",
+                            "action" => "write",
+                            $author['username']
+                        ),
+                        array(
+                            "escape" => false,
+                            'title' => __("Send private message", true)
+                        )
+                    );
+                    ?></div><?php
+                }
+                ?>
+
                 <div class="date">
                 <?php
                 echo $this->Date->ago($created);
@@ -370,13 +391,15 @@ class MessagesHelper extends AppHelper
 
         // Convert sentence mentions to links
         $self = $this;
-        $content = preg_replace_callback('/#(\d+)/', function ($m) use ($self) {
-            return $self->Html->link('#' . $m[1], array(
+        $content = preg_replace_callback('/([^\\\&])(#(\d+))/', function ($m) use ($self) {
+            return $m[1] . $self->Html->link($m[2], array(
                 'controller' => 'sentences',
                 'action' => 'show',
-                $m[1]
+                $m[3]
             ));
         }, $content);
+
+        $content = str_replace('\\#', '#', $content);
 
         // Make URLs clickable
         $content = $this->ClickableLinks->clickableURL($content);

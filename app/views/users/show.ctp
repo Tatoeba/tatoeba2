@@ -145,11 +145,17 @@ $this->set('title_for_layout', sprintf(
 
             echo '<div class="comments">';
             foreach ($user['SentenceComments'] as $i => $comment) {
+                $menu = $comments->getMenuForComment(
+                    $comment,
+                    $user['User'],
+                    $commentsPermissions[$i]
+                );
+
                 $messages->displayMessage(
                     $comment,
                     $user['User'],
                     null,
-                    $commentsMenus[$i]
+                    $menu
                 );
             }
             echo '</div>';

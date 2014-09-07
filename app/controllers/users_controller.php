@@ -475,12 +475,12 @@ class UsersController extends AppController
             $this->helpers[] = 'Wall';
             $this->helpers[] = 'Messages';
 
-            $commentsMenus = $this->Permissions->getMenusForCommentsOfUser(
-                $user['SentenceComments'], $user['User']
+            $commentsPermissions = $this->Permissions->getCommentsOptions(
+                $user['SentenceComments']
             );
 
             $this->set('user', $user);
-            $this->set('commentsMenus', $commentsMenus);
+            $this->set('commentsPermissions', $commentsPermissions);
         } else {
             $this->Session->write('last_user_id', $id);
             $this->flash(__('No user with this id: ', true).$id, '/users/all/');
