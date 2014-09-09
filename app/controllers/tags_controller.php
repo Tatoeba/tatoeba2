@@ -203,25 +203,25 @@ class TagsController extends AppController
      */
     public function show_sentences_with_tag($tagId, $lang = null)
     {
-		// In case the $tagId is not an int we assume that the user
-		// comes from an old URL with the internal name, so we
-		// redirect them to the right URL.
-		if ($tagId != '0' && intval($tagId) == 0) {
-			$actualTagId = $this->Tag->getIdFromInternalName($tagId);
-			$this->redirect(
-				array(
-					"controller" => "tags",
-					"action" => "show_sentences_with_tag",
-					$actualTagId, $lang
-				),
-				301
-			);
-		}
-			
+        // In case the $tagId is not an int we assume that the user
+        // comes from an old URL with the internal name, so we
+        // redirect them to the right URL.
+        if ($tagId != '0' && intval($tagId) == 0) {
+            $actualTagId = $this->Tag->getIdFromInternalName($tagId);
+            $this->redirect(
+                array(
+                    "controller" => "tags",
+                    "action" => "show_sentences_with_tag",
+                    $actualTagId, $lang
+                ),
+                301
+            );
+        }
+            
         $this->helpers[] = 'Pagination';
         $this->helpers[] = 'CommonModules';
         $this->helpers[] = 'Tags';
-		
+        
         $tagName = $this->Tag->getNameFromId($tagId);
         $tagExists = !empty($tagName);
         $this->set('tagExists', $tagExists);

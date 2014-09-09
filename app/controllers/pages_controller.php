@@ -349,8 +349,8 @@ class PagesController extends AppController
             301
         );
     }
-	
-	
+    
+    
     /**
      *
      *

@@ -692,7 +692,7 @@ class SentencesHelper extends AppHelper
     }
 
 
-	/**
+    /**
      * Displays a sentence (either main sentence or direct translation)
      * and the language flag.
      *
@@ -705,7 +705,7 @@ class SentencesHelper extends AppHelper
      *
      * @return void
      */
-	public function displayS($sentence, $type) {
+    public function displayS($sentence, $type) {
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
         $sentenceText = $sentence['text'];

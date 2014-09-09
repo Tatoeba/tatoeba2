@@ -113,38 +113,38 @@ class Contribution extends AppModel
         if (strlen($lang) != 3 || !is_numeric($limit)) {
             return array();
         }        
-		
-		$conditions = array('type' => 'sentence');
-		$contain = array(
-			'User' => array(
-				'fields' => array(
-					'id', 
-					'username'
-				)
-			)
-		);
+        
+        $conditions = array('type' => 'sentence');
+        $contain = array(
+            'User' => array(
+                'fields' => array(
+                    'id', 
+                    'username'
+                )
+            )
+        );
         if ($lang == 'und'|| empty($lang)) {
-			$this->setSource('last_contributions');
+            $this->setSource('last_contributions');
         } else {
-			$conditions['sentence_lang'] = $lang;
-		}
+            $conditions['sentence_lang'] = $lang;
+        }
 
-		$results = $this->find(
-			'all', 
+        $results = $this->find(
+            'all', 
             array(
                 'fields' => array(
-					'sentence_id', 
-					'sentence_lang',
-					'text',
-					'datetime',
-					'action'
-				),
-				'conditions' => $conditions,
-				'order' => 'datetime DESC',
-				'limit' => $limit,
-				'contain' => $contain
-			)
-		);
+                    'sentence_id', 
+                    'sentence_lang',
+                    'text',
+                    'datetime',
+                    'action'
+                ),
+                'conditions' => $conditions,
+                'order' => 'datetime DESC',
+                'limit' => $limit,
+                'contain' => $contain
+            )
+        );
         
         return $results;
     }

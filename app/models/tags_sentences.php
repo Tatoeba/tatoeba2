@@ -166,8 +166,8 @@ class TagsSentences extends AppModel
                 'contain' => array(
                     'Sentence' => array(
                         'fields' => array(
-							'id', 'text', 'lang', 'correctness'
-						),
+                            'id', 'text', 'lang', 'correctness'
+                        ),
                         'conditions' => $sentenceConditions
                     )
                 ),

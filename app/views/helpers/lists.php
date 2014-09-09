@@ -53,8 +53,8 @@ class ListsHelper extends AppHelper
      * @param boolean $isPublic        If the list is public or not.
      * @param int     $count           Number of sentences in the list.
      *
-	 * @todo delete, not used anywhere
-	 * 
+     * @todo delete, not used anywhere
+     * 
      * @return void
      */
     public function displayItem(

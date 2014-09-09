@@ -480,8 +480,8 @@ class WallController extends Appcontroller
             "order" => "date DESC",
             "limit" => 20,
             "fields" => array (
-				"id", "date", "content", "hidden", "owner", "modified"
-			), 
+                "id", "date", "content", "hidden", "owner", "modified"
+            ), 
             "conditions" => array (
                 "owner" => $userId,
             ),

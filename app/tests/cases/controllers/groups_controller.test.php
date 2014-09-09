@@ -4,22 +4,22 @@
 App::import('Controller', 'Groups');
 
 class TestGroups extends GroupsController {
-	var $autoRender = false;
+    var $autoRender = false;
 }
 
 class GroupsControllerTest extends CakeTestCase {
-	var $Groups = null;
+    var $Groups = null;
 
-	function setUp() {
-		$this->Groups = new TestGroups();
-	}
+    function setUp() {
+        $this->Groups = new TestGroups();
+    }
 
-	function testGroupsControllerInstance() {
-		$this->assertTrue(is_a($this->Groups, 'GroupsController'));
-	}
+    function testGroupsControllerInstance() {
+        $this->assertTrue(is_a($this->Groups, 'GroupsController'));
+    }
 
-	function tearDown() {
-		unset($this->Groups);
-	}
+    function tearDown() {
+        unset($this->Groups);
+    }
 }
 ?>

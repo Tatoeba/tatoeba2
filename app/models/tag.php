@@ -218,16 +218,16 @@ class Tag extends AppModel
             )
         );
     }
-	
-	
-	/**
-	 * Get tag id from tag internal name.
-	 * 
-	 * @param string $tagInternalName Internal name of the tag.
-	 * 
-	 * @return int Id of the tag
-	 */
-	public function getIdFromInternalName($tagInternalName) {
+    
+    
+    /**
+     * Get tag id from tag internal name.
+     * 
+     * @param string $tagInternalName Internal name of the tag.
+     * 
+     * @return int Id of the tag
+     */
+    public function getIdFromInternalName($tagInternalName) {
         $result = $this->find(
             'first',
             array(
@@ -238,13 +238,13 @@ class Tag extends AppModel
         );
         return $result['Tag']['id'];
     }
-	
-	
-	/**
-	 *
-	 * TODO
-	 *
-	 */
+    
+    
+    /**
+     *
+     * TODO
+     *
+     */
     public function getIdFromName($tagName) {
         $result = $this->find(
             'first',
@@ -256,13 +256,13 @@ class Tag extends AppModel
         );
         return $result['Tag']['id'];
     }
-	
+    
 
-	/**
-	 *
-	 * TODO
-	 *
-	 */
+    /**
+     *
+     * TODO
+     *
+     */
     public function tagExists($tagId) {
         $result = $this->find(
         'first',
@@ -274,13 +274,13 @@ class Tag extends AppModel
         );
         return empty($result) ? false : true;
     }
-	
+    
 
-	/**
-	 *
-	 * TODO
-	 *
-	 */
+    /**
+     *
+     * TODO
+     *
+     */
     public function getNameFromId($tagId) {
         $result = $this->find(
             'first',

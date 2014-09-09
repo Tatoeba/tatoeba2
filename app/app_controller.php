@@ -60,8 +60,8 @@ class AppController extends Controller
         'Languages',
         'Session'
     );
-	
-	
+    
+    
     /**
      * 
      *
@@ -146,7 +146,7 @@ class AppController extends Controller
         if ($this->RequestHandler->isAjax()) {
             $this->layout = null;
         }
-		
+        
         // TODO
         // We're passing the value from the cookie to the session because it is
         // needed for the translation form (in helpers/sentences.php), but we

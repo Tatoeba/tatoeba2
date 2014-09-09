@@ -52,7 +52,7 @@ class SphinxBehavior extends ModelBehavior
         {
             $model->recursive = -1;
             $query['limit'] = 1;
-			$query['page'] = 1;
+            $query['page'] = 1;
         }
         else if (empty($query['limit']))
         {
@@ -65,30 +65,30 @@ class SphinxBehavior extends ModelBehavior
 
             switch ($key)
             {
-            	case 'filter':
-            	    foreach ($setting as $arg)
-            	    {
-            	        $arg[2] = empty($arg[2]) ? false : $arg[2];
-            	    	$this->runtime[$model->alias]['sphinx']->SetFilter($arg[0], (array)$arg[1], $arg[2]);
-            	    }
-            	   break;
-            	case 'filterRange':
-            	case 'filterFloatRange':
-            	    $method = 'Set' . $key;
-            	    foreach ($setting as $arg)
-            	    {
-            	        $arg[3] = empty($arg[3]) ? false : $arg[3];
-            	    	$this->runtime[$model->alias]['sphinx']->{$method}($arg[0], (array)$arg[1], $arg[2], $arg[3]);
-            	    }
-            	   break;
-            	case 'matchMode':
-            	   $this->runtime[$model->alias]['sphinx']->SetMatchMode($setting);
-            	   break;
+                case 'filter':
+                    foreach ($setting as $arg)
+                    {
+                        $arg[2] = empty($arg[2]) ? false : $arg[2];
+                        $this->runtime[$model->alias]['sphinx']->SetFilter($arg[0], (array)$arg[1], $arg[2]);
+                    }
+                   break;
+                case 'filterRange':
+                case 'filterFloatRange':
+                    $method = 'Set' . $key;
+                    foreach ($setting as $arg)
+                    {
+                        $arg[3] = empty($arg[3]) ? false : $arg[3];
+                        $this->runtime[$model->alias]['sphinx']->{$method}($arg[0], (array)$arg[1], $arg[2], $arg[3]);
+                    }
+                   break;
+                case 'matchMode':
+                   $this->runtime[$model->alias]['sphinx']->SetMatchMode($setting);
+                   break;
                 case 'sortMode':
                     $this->runtime[$model->alias]['sphinx']->SetSortMode(key($setting), reset($setting));
                     break;
-            	default:
-                	break;
+                default:
+                    break;
             }
         }
         $this->runtime[$model->alias]['sphinx']->SetLimits(($query['page'] - 1) * $query['limit'],

@@ -375,28 +375,28 @@ class User extends AppModel
         }
         return $user;
     }
-	
-	
-	/**
-	 * Retrieves only the fields from users table, no joins.
-	 *
-	 * @param int $id Id of the user.
-	 *
-	 * @return array User data.
-	 */
-	public function getUserById($id)
+    
+    
+    /**
+     * Retrieves only the fields from users table, no joins.
+     *
+     * @param int $id Id of the user.
+     *
+     * @return array User data.
+     */
+    public function getUserById($id)
     {
-		$user = $this->find(
-			'first',
-			array(
-				'conditions' => array('User.id' => $id),
-				'contain' => array()
-			)
-		);
-		
-		return $user;
-	}
-	
+        $user = $this->find(
+            'first',
+            array(
+                'conditions' => array('User.id' => $id),
+                'contain' => array()
+            )
+        );
+        
+        return $user;
+    }
+    
     
     /**
      * Return id of a user from the username.

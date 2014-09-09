@@ -250,11 +250,11 @@ textarea {
 #container {
     width: 960px;
     margin: auto;
-	margin-bottom: 100px;
+    margin-bottom: 100px;
     background-color: #fff;
-	-webkit-box-shadow: 0px 0px 5px 5px rgba(50, 50, 50, 0.3);
-	-moz-box-shadow: 0px 0px 5px 5px rgba(50, 50, 50, 0.3);
-	box-shadow: 0px 0px 5px 5px rgba(50, 50, 50, 0.3);
+    -webkit-box-shadow: 0px 0px 5px 5px rgba(50, 50, 50, 0.3);
+    -moz-box-shadow: 0px 0px 5px 5px rgba(50, 50, 50, 0.3);
+    box-shadow: 0px 0px 5px 5px rgba(50, 50, 50, 0.3);
 }
 
 
@@ -267,9 +267,9 @@ textarea {
     position: relative;
     color: #FFFFFF;
     margin-bottom: 20px;
-	-webkit-box-shadow: inset 0px -50px 30px -10px rgba(100,155,61,1);
-	-moz-box-shadow: inset 0px -50px 30px -10px rgba(100,155,61,1);
-	box-shadow: inset 0px -50px 30px -10px rgba(100,155,61,1);
+    -webkit-box-shadow: inset 0px -50px 30px -10px rgba(100,155,61,1);
+    -moz-box-shadow: inset 0px -50px 30px -10px rgba(100,155,61,1);
+    box-shadow: inset 0px -50px 30px -10px rgba(100,155,61,1);
 }
 
 /*
@@ -316,9 +316,9 @@ textarea {
 }
 
 .search_bar form {
-	margin-left: 100px;
-	margin-right: 100px;
-	padding: 5px;
+    margin-left: 100px;
+    margin-right: 100px;
+    padding: 5px;
 }
 
 .search_bar #into {
@@ -362,33 +362,33 @@ textarea {
 }
 
 #logo {
-	position: absolute;
-	padding: 4px 12px;
-	z-index: 1;
-	-webkit-border-top-right-radius: 40px;
-	-webkit-border-bottom-right-radius: 32px;
-	-moz-border-radius-topright: 40px;
-	-moz-border-radius-bottomright: 32px;
-	border-top-right-radius: 40px;
-	border-bottom-right-radius: 32px;
-	background: #fff;
+    position: absolute;
+    padding: 4px 12px;
+    z-index: 1;
+    -webkit-border-top-right-radius: 40px;
+    -webkit-border-bottom-right-radius: 32px;
+    -moz-border-radius-topright: 40px;
+    -moz-border-radius-bottomright: 32px;
+    border-top-right-radius: 40px;
+    border-bottom-right-radius: 32px;
+    background: #fff;
 }
 
 #tatoeba {
-	position: absolute;
-	right: 0px;
-	bottom: 0px;
-	opacity: 0.7;
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    opacity: 0.7;
     filter: alpha(opacity=70);
-	display: inline-block;
-	padding: 5px 8px 5px 13px;
-	background: #fff;
-	color: #649B3D;
-	font-size: 12px;
-	-webkit-border-top-left-radius: 20px;
-	-moz-border-radius-topleft: 20px;
-	border-top-left-radius: 20px;
-	font-weight: bold;
+    display: inline-block;
+    padding: 5px 8px 5px 13px;
+    background: #fff;
+    color: #649B3D;
+    font-size: 12px;
+    -webkit-border-top-left-radius: 20px;
+    -moz-border-radius-topleft: 20px;
+    border-top-left-radius: 20px;
+    font-weight: bold;
 }
 
 /*
@@ -404,22 +404,22 @@ textarea {
 #annexe_content {
     float: right;
     width: 270px;
-	padding: 10px 20px 20px 20px;
+    padding: 10px 20px 20px 20px;
 }
 
 #main_content {
     margin-right: 290px;
-	padding: 10px 20px 20px 20px;
+    padding: 10px 20px 20px 20px;
 }
 
 .module {
     padding: 10px 10px 5px 10px;
     margin: 0px 0px 20px 0px;
     font-size: 13px;
-	border-bottom: 1px solid #ededed;
-	-webkit-box-shadow: inset 0px -50px 30px -10px rgba(245, 245, 245, 1);
-	-moz-box-shadow: inset 0px -50px 30px -10px rgba(245, 245, 245, 1);
-	box-shadow: inset 0px -50px 30px -10px rgba(245, 245, 245, 1);
+    border-bottom: 1px solid #ededed;
+    -webkit-box-shadow: inset 0px -50px 30px -10px rgba(245, 245, 245, 1);
+    -moz-box-shadow: inset 0px -50px 30px -10px rgba(245, 245, 245, 1);
+    box-shadow: inset 0px -50px 30px -10px rgba(245, 245, 245, 1);
 }
 #annexe_content .module {
     margin-left: 5px;
@@ -451,7 +451,7 @@ textarea {
 #footer ul {
     display: block;
     font-size: 80%;
-	text-align: right;
+    text-align: right;
 }
 
 #footer li {
@@ -529,7 +529,7 @@ textarea {
     background: #414141;
     color: #FFF;
     border: 1px solid #000000;
-	border-top: none;
+    border-top: none;
 }
 
 #UserLoginForm_FromBar fieldset {

@@ -979,36 +979,36 @@ class SentencesController extends AppController
         $this->set('lang', $lang);
         $this->set('stats', $stats);
     }
-	
-	/**
+    
+    /**
      * Sentences with audio.
      *
      * @param string $lang Language of the sentences.
      *
      * @return void
      */
-	public function edit_correctness()
-	{
-		$sentenceId = $this->data['Sentence']['id'];
-		$correctness = $this->data['Sentence']['correctness'];
-		
-		if (CurrentUser::isModerator()) {
-			$this->Sentence->editCorrectness($sentenceId, $correctness);
-			$this->redirect(
+    public function edit_correctness()
+    {
+        $sentenceId = $this->data['Sentence']['id'];
+        $correctness = $this->data['Sentence']['correctness'];
+        
+        if (CurrentUser::isModerator()) {
+            $this->Sentence->editCorrectness($sentenceId, $correctness);
+            $this->redirect(
                 array(
                     "controller" => "sentences", 
                     "action" => "show", 
-					$sentenceId
+                    $sentenceId
                 )
             );
-		} else {
-			$this->redirect(
+        } else {
+            $this->redirect(
                 array(
                     "controller" => "pages", 
                     "action" => "home", 
                 )
             );
-		}
-	}
+        }
+    }
 }
 ?>
