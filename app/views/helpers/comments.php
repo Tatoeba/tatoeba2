@@ -240,7 +240,7 @@ class CommentsHelper extends AppHelper
             'url' => array(
                 "controller" => "sentences",
                 "action" => "show",
-                $sentenceId
+                $sentenceId."#comment-".$commentId
             )
         );
 
