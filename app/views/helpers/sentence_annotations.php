@@ -111,7 +111,7 @@ class SentenceAnnotationsHelper extends AppHelper
             'SentenceAnnotation.sentence_id',
             array("value" => $sentenceId)
         );
-        echo $this->Form->input('meaning_id');
+        echo $this->Form->input('meaning_id', array('type' => 'text'));
         echo $this->Form->textarea(
             'text',
             array(

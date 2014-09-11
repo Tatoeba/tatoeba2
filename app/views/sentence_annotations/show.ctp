@@ -71,9 +71,13 @@
             echo '</div>';
             
             // id of the "meaning" (i.e. English sentence for Tanaka sentences annotations)
-            echo $form->input('meaning_id', array(
-                "value" => $annotation['meaning_id']
-            ));         
+            echo $form->input(
+                'meaning_id', 
+                array(
+                    "type" => "text",
+                    "value" => $annotation['meaning_id']
+                )
+            );
             
             // annotations text
             echo $form->textarea('text', array(
