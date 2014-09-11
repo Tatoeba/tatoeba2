@@ -217,7 +217,8 @@ class CommentsHelper extends AppHelper
                     "controller" => "sentence_comments",
                     "action" => "delete_comment",
                     $commentId
-                )
+                ),
+                'confirm' => __('Are you sure?', true)
             );
         }
 
