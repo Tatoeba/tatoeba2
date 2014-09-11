@@ -131,12 +131,13 @@
 .message .pm {
     display: inline-block;
     margin-left: 2px;
-    vertical-align: middle;
+    margin-bottom: 2px;
+    vertical-align: bottom;
 }
 
 .message .pm a {
     border: none;
-    display: inline-block;
+    display: block;
     background: url('../../img/pm.svg') center;
     background-size: cover;
     width: 18px;
@@ -268,7 +269,8 @@
     display: inline-block;
     vertical-align: bottom;
     font-size: 16px;
-    margin: 15px;
+    margin: 10px;
+    font-weight: bold;
 }
 
 .message.form textarea {
