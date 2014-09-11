@@ -50,25 +50,54 @@ class CommentsHelper extends AppHelper
      */
     public function displayCommentForm($sentenceId, $sentenceText)
     {
-        echo $this->Form->create('SentenceComment', array("action"=>"save"));
-
-        echo '<div>';
-        echo $this->Form->hidden('sentence_id', array("value"=>$sentenceId));
-        // Text of the sentence is used for notification email, to avoid doing
-        // another query.
-        echo $this->Form->hidden('sentence_text', array("value"=>$sentenceText));
-        echo '</div>';
-
-        echo $this->Form->input(
-            'text',
+        echo $this->Form->create(
+            'SentenceComment', 
             array(
-                "label"=> "",
-                "cols"=>"64", "rows"=>"6"
+                "action" => "save",
+                "class" => "message form"
             )
         );
 
-        echo $this->Form->end(__('Submit comment', true));
+        echo $this->Form->hidden('sentence_id', array("value"=>$sentenceId));
+
+        // Text of the sentence is used for notification email, to avoid doing
+        // another query.
+        echo $this->Form->hidden('sentence_text', array("value"=>$sentenceText));
         ?>
+
+        <div class="header">
+            <div class="info">
+            <?php
+            $user = CurrentUser::get('User');
+            $this->Messages->displayAvatar($user['User']);
+            ?>
+            </div>
+            <div class="title">
+            <?php __('Add a comment'); ?>
+            </div>
+        </div>
+
+        <div class="body">
+            <div class="content">
+            <?php
+            echo $this->Form->textarea(
+                'text',
+                array(
+                    "label"=> ""
+                )
+            );
+            ?>
+            </div>
+
+            <?php
+            echo $this->Form->submit(__('Submit comment', true));
+            ?>
+        </div>
+        <?php
+        echo $this->Form->end();
+        ?>
+
+
         <h3><?php __('Good practices'); ?></h3>
         <ul>
             <li>

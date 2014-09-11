@@ -194,44 +194,28 @@ $navigation->displaySentenceNavigation(
                 );
             }
             echo '</div>';
-        
         } else {
             echo '<em>' . __('There are no comments for now.', true) .'</em>';
         }
-        ?>
-        
-        
-    </div>
-    
-    <?php
-    if (isset($sentence)) {
-        ?>
-        <div class="module">
-        
-        <h2><?php __('Add a comment'); ?></h2>
-        
-        <?php
+
         if ($session->read('Auth.User.id')) {
-            $comments->displayCommentForm(
-                $sentence['Sentence']['id'], 
-                $sentence['Sentence']['text']
-            );
-        } else {
-            echo '<p>';
-            echo sprintf(
-                __(
-                    'You need to be logged in to add a comment. If you are '.
-                    'not registered, you can <a href="%s">register here</a>.', 
-                    true
-                ),
-                $html->url(array("controller"=>"users", "action"=>"register"))
-            );
-            echo '</p>';
-        }
-        ?>
-        </div>
-        <?php
-    }
-    ?>
+                $comments->displayCommentForm(
+                    $sentence['Sentence']['id'], 
+                    $sentence['Sentence']['text']
+                );
+            } else {
+                echo '<p>';
+                echo sprintf(
+                    __(
+                        'You need to be logged in to add a comment. If you are '.
+                        'not registered, you can <a href="%s">register here</a>.', 
+                        true
+                    ),
+                    $html->url(array("controller"=>"users", "action"=>"register"))
+                );
+                echo '</p>';
+            }
+        ?>        
+    </div>
 </div>
 
