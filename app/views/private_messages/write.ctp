@@ -29,9 +29,6 @@ echo $this->element('pmmenu');
 ?>
 <div id="main_content">
     <div class="module">
-
-        <h2><?php echo __('New message', true); ?></h2>
-
      <?php
      if ($isNewUser && $canSend) {
          echo "<p>";

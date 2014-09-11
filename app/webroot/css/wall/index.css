@@ -30,6 +30,10 @@
 @import url(../elements/wall_messages.css);
 
 
+#WallSaveForm {
+    margin-top: 10px;
+}
+
 #WallSaveForm .cancelFormLink {
     display: none;
 }

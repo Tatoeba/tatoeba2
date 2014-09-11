@@ -54,7 +54,6 @@ echo $this->element('pmmenu');
     ?>
     
     <a name="reply"></a>
-    <h2><?php __('Reply'); ?></h2>
     <?php
     if ($folder == 'Inbox') {
         $privateMessages->displayForm(

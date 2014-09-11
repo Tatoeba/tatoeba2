@@ -17,9 +17,14 @@
  */
 
 
-/*
- * Header
- */
+#PrivateMessageSendForm {
+    margin-top: 0px;
+}
+
+#PrivateMessageSendForm .pmFields {
+    margin: 20px 20px -10px 20px;
+}
+
 #PrivateMessageSendForm label {
     width: 100px;
     display: block;
@@ -31,14 +36,6 @@
 }
 
 #PrivateMessageSendForm .input input {
-    width: 400px;
+    width: 450px;
 }
 
-
-/*
- * Textarea
- */
-#PrivateMessageContent {
-    width: 500px;
-    height: 200px;
-}
