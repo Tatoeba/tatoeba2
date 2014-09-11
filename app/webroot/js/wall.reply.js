@@ -109,13 +109,13 @@ $(document).ready(function(){
             sendMessageForm.attr("id" , "replyForm_" + currentMessageId  ); 
             sendMessageForm.attr("method","");
             sendMessageForm.attr("action","");
-            sendMessageForm.find('.submit').attr("class" , "ajaxSubmit"); 
+            sendMessageForm.find('.submit').attr("class" , "submit ajaxSubmit"); 
             
             // note to myself
             // use append instead of  .html(previous + "") because the previous code will be unbound by jquery
             // as it will be considered as new code 
             currentMessageBody.append( 
-                 "<div id=\"replyFormDiv_"+currentMessageId+"\" class=\"replyFormDiv\" >"
+                 "<div id=\"replyFormDiv_"+currentMessageId+"\" class=\"message form\" >"
                 + sendMessageForm.html()
                 +"</div>" );
             $.scrollTo('#replyFormDiv_' + currentMessageId, 800, {offset: -50}); 

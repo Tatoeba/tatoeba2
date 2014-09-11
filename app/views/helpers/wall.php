@@ -54,16 +54,46 @@ class WallHelper extends AppHelper
         /* we use models=>wall to force use wall, instead cakephp would have
            called "walls/save' which is not what we want
         */
-        __('Add a message: ');
-        echo $this->Form->create('', array( "action" => "save"));
-        echo "<fieldset>";
+        echo $this->Form->create(
+            '', 
+            array(
+                "action" => "save",
+                "class" => "message form"
+            )
+        );
+        ?>
+        
+        <div class="header">
+            <div class="info">
+            <?php
+            $user = CurrentUser::get('User');
+            $this->Messages->displayAvatar($user['User']);
+            ?>
+            </div>
+            <div class="title">
+            <?php __('Add a message: '); ?>
+            </div>
+        </div>
+
+        <div class="body">
+            <div class="content">
+            <?php
             echo $this->Form->textarea('content');
             echo $this->Form->hidden('replyTo', array('value'=>"" ));
-        echo "</fieldset>";
-        echo $this->Form->submit(__('Send', true));
-        echo '<div class="divCancelFormLink" >';
-            echo '<a class="cancelFormLink" >' . __("cancel", true) . '</a>';
-        echo '</div>';
+            ?>
+            </div>
+
+            <?php
+            echo $this->Form->submit(
+                __('Send', true),
+                array(
+                    "before" => '<a class="cancelFormLink" >' . __("cancel", true) . '</a>'
+                )
+            );
+            ?>
+        </div>
+        
+        <?php
         echo $this->Form->end();
 
     }

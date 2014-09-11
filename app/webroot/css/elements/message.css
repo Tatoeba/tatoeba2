@@ -45,7 +45,6 @@
     margin: 0;
     padding: 0;
     list-style: none;
-    display: inline-block;
 }
 
 .message .header li {
@@ -69,25 +68,26 @@
 
 .message .info {
     display: inline-block;
+    bottom: 0px;
 }
 
 .message .other {
     display: inline-block;
-    vertical-align: bottom;
-    padding-bottom: 2px;
+    padding-top: 5px;
 }
 
 .message .avatar {
     border: 1px solid #ccc;
     border-bottom: none;
     border-left: none;
-    padding: 8px;
+    padding: 10px 10px 1px 10px;
     background-color: #fff;
     margin-bottom: -1px;
     -webkit-border-top-right-radius: 4px;
     -moz-border-radius-topright: 4px;
     border-top-right-radius: 4px;
     display: inline-block;
+    vertical-align: top;
 }
 
 .message .avatar img {
@@ -149,11 +149,14 @@
 }
 
 .message .date {
-    padding: 0px 10px;
+    margin-left: 10px;
+    padding-right: 30px;
     margin-top: 2px;
     color: #999;
     bottom: 0px;
     font-size: 12px;
+    min-width: 120px;
+    text-align: center;
 }
 
 
@@ -165,6 +168,7 @@
     position: absolute;
     right: 5px;
     bottom: 0px;
+    display: inline-block;
 }
 
 .message .menu li {
@@ -253,4 +257,52 @@
 
 .inappropriate .username a {
     border-left: none;
+}
+
+
+/*
+ * Form
+ */
+.message.form .title {
+    display: inline-block;
+    vertical-align: bottom;
+    font-size: 16px;
+    margin: 15px;
+}
+
+.message.form textarea {
+    width: 100%;
+    height: 200px;
+    -webkit-box-sizing : border-box;‌​
+    -moz-box-sizing : border-box;
+    box-sizing : border-box;
+    border: 1px solid #ddd;
+}
+
+.message.form .body, .message.form .avatar {
+    background-color: #f1f1f1;
+}
+
+.message.form .submit {
+    margin-top: -10px;
+    padding: 0px 20px 10px 20px;
+    text-align: right;
+}
+
+.message.form .submit input {
+    padding: 1px 20px;
+    min-width: 120px;
+    background-color: #66AA00;
+    border: 1px solid #339900;
+    cursor: pointer;
+    color: #fff;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.message.form .submit a {
+    margin-right: 30px;
+    font-size: 16px;
 }

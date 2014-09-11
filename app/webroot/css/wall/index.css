@@ -30,11 +30,9 @@
 @import url(../elements/wall_messages.css);
 
 
-/*
- * Reply
- */
-@import url(../elements/wall_reply_form.css);
-
+#WallSaveForm .cancelFormLink {
+    display: none;
+}
 
 .wallBanner {
     border: 5px solid #9EAF85;
