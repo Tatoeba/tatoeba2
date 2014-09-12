@@ -148,61 +148,56 @@ class CommentsHelper extends AppHelper
         $content = $message['text'];
         $authorId = $author['id'];
 
-        ?><div class='message'><?php
-        $this->Messages->displayHeader($author, $created, $modified, null);
-        $this->_displayCommentEditFormBody($message);
-        ?></div><?php
-    }
-
-
-    /**
-     *
-     *
-     *
-     */
-    private function _displayCommentEditFormBody($comment)
-    {
-        ?><div class="body"><div class="content"><?php
-
         // Hack. This was the only way I knew to get the proper
         // action value for this form
         // The form in users/edit also has the same problem
         echo $this->Form->create(
             false,
             array(
-                "url" =>
-                   "/{$this->params['lang']}/sentence_comments/edit/{$comment['id']}"
-                //"action" => "edit",
-                //$comment['id']
+                "url" => array(
+                    "controller" => "sentence_comments",
+                    "action" => "edit",
+                    $message['id']
+                ),
+                "class" => "message form"
             )
         );
 
-        echo "<div>";
         echo $this->Form->hidden('SentenceComment.id');
         echo $this->Form->hidden('SentenceComment.sentence_id');
-        echo "</div>";
 
-        echo $this->Form->input(
-            'SentenceComment.text',
-            array(
-                "label" => "",
-                "cols"=>"64", "rows"=>"6"
-            )
-        );
-        echo $this->Html->link(
-            __('Cancel', true),
-            array(
-                "controller" => "sentences",
-                "action" => "show",
-                $comment['sentence_id']."#comment-".$comment['id']
-            ),
-            array(
-                "class" => "cancel_edit"
-            )
-        );
-        echo $this->Form->end(__('Save changes', true));
+        $this->Messages->displayHeader($author, $created, $modified, null);
+        ?>
 
-        ?></div></div><?php
+        <div class="body">
+            <div class="content">
+            <?php
+            echo $this->Form->textarea('SentenceComment.text');
+            ?>
+            </div>
+
+            <?php
+            $cancelLink = $this->Html->link(
+                __('Cancel', true),
+                array(
+                    "controller" => "sentences",
+                    "action" => "show",
+                    $message['sentence_id']."#comment-".$message['id']
+                ),
+                array(
+                    "class" => "cancel_edit"
+                )
+            );
+            echo $this->Form->submit(
+                __('Save changes', true),
+                array(
+                    "before" => $cancelLink
+                )
+            );
+            ?>
+        </div>
+        <?php
+        echo $this->Form->end();
     }
 
 
