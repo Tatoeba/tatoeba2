@@ -105,6 +105,30 @@ class MessagesHelper extends AppHelper
     }
 
 
+
+    /**
+     *
+     * 
+     *
+     */
+    public function displayFormHeader($title)
+    {
+        ?>
+        <div class="header">
+            <div class="info">
+            <?php
+            $user = CurrentUser::get('User');
+            $this->displayAvatar($user['User']);
+            ?>
+            </div>
+            <div class="title">
+            <?php echo $title ?>
+            </div>
+        </div>
+        <?php
+    }
+
+
     /**
      * Author name, author avatar and date of the message.
      * 

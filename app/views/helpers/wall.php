@@ -108,35 +108,54 @@ class WallHelper extends AppHelper
      */
     public function displayEditMessageForm($message)
     {
+        $messageId = $message['Wall']['id'];
         ?>
         <div class="editWallMessage" >
         <?php
         echo $this->Form->create(
             "Wall",
             array(
-                "url" =>
-                    "/{$this->params['lang']}/wall/edit/{$message['Wall']['id']}"
+                "url" => array(
+                    "controller" => "wall",
+                    "action" => "edit",
+                    $messageId
+                ),
+                "class" => "message form"
             )
         );
-        echo $this->Form->input(
-            "content",
-            array(
-                "label" => "",
-                "cols"=>"64", "rows"=>"6"
-            )
-        );
+        
         echo $this->Form->hidden('id');
-        echo $this->Html->link(
-            __("Cancel", true),
-            array(
-                "action" => "show_message",
-                "{$message['Wall']['id']}#message_{$message['Wall']['id']}"
-            ),
-            array(
-                "class" => "cancel_edit"
-            )
-        );
-        echo $this->Form->end(__("submit", true));
+
+        $this->Messages->displayFormHeader(__("Edit Wall Message", true));
+        ?>
+
+        <div class="body">
+            <div class="content">
+            <?php echo $this->Form->textarea('content'); ?>
+            </div>
+
+            <?php
+            $cancelLink = $this->Html->link(
+                __("Cancel", true),
+                array(
+                    "action" => "show_message",
+                    "{$message['Wall']['id']}#message_{$message['Wall']['id']}"
+                ),
+                array(
+                    "class" => "cancel_edit"
+                )
+            );
+            echo $this->Form->submit(
+                __("submit", true),
+                array(
+                    "before" => $cancelLink
+                )
+            );
+            ?>
+        </div>
+        
+        <?php
+        echo $this->Form->end();
         ?>
         </div>
         <?php
