@@ -91,11 +91,6 @@
     <link rel="search" type="application/opensearchdescription+xml" href="http://tatoeba.org/opensearch.xml" title="Tatoeba project" />
 </head>
 <body>
-    <?php
-    if (Configure::read('GoogleAnalytics.enabled')) {
-        echo $this->element('google_analytics', array('cache' => true));
-    }
-    ?>
     <div id="audioPlayer"></div>
     
     <!--  TOP  -->
@@ -146,5 +141,11 @@
         ?>
     </div>
     <?php echo $this->element('sql_dump'); ?>
+
+    <?php
+    if (Configure::read('GoogleAnalytics.enabled')) {
+        echo $this->element('google_analytics', array('cache' => true));
+    }
+    ?>
 </body>
 </html>
