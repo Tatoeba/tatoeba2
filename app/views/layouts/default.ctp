@@ -43,14 +43,14 @@
         // the name of the controller.
         
         // Generic
-        echo $html->css(CSS_PATH . 'layouts/default.css?1');
+        echo $html->css(CSS_PATH . 'layouts/default.css');
         
         // Specific
         $controller = $this->params["controller"];
         $action = $this->params["action"];
         
         
-        echo $html->css(CSS_PATH . $controller."/".$action .".css?1"); 
+        echo $html->css(CSS_PATH . $controller."/".$action .".css"); 
         
         
         // Special case for Chrome and furigana.
@@ -64,7 +64,7 @@
         //      Javascript        //
         // ---------------------- //
         echo $javascript->link(JS_PATH . 'jquery-1.4.min.js', true);
-        echo $javascript->link(JS_PATH . 'generic_functions.js?2', true);
+        echo $javascript->link(JS_PATH . 'generic_functions.js', true);
 
         // Enhanced dropdown for language selection
         // It's needed on every page since it's used on the search bar
