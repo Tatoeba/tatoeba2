@@ -1119,7 +1119,6 @@ class Sentence extends AppModel
                 }
             }
         } elseif ($type == Sentence::$romanji['romanji']) {
-            $kata = str_replace($katakana, $hiragana, $kata); // Temporary fix to make jumandic-based mecab work.
             $prev_word = null;
             foreach ($Owakati as $i=>$word) {
                 // Ensure we only have katanakas.

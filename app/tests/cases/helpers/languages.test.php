@@ -83,13 +83,13 @@ class LanguagesHelperTestCase extends CakeTestCase {
 	}
 
 	function testLanguagesArrayForLists_returnsUnlocalizedLangagesNames() {
-		$result = $this->Languages->languagesArrayForLists();
+		$result = $this->Languages->languagesArrayForPositiveLists();
 		$this->assertEqual('Japanese', $result['jpn']);
 	}
 
 	function testLanguagesArrayForLists_returnsLocalizedLangagesNames() {
 		Configure::write('Config.language', 'jpn');
-		$result = $this->Languages->languagesArrayForLists();
+		$result = $this->Languages->languagesArrayForPositiveLists();
 		$this->assertEqual('日本語', $result['jpn']);
 	}
 

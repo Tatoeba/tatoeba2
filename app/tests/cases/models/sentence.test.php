@@ -65,13 +65,15 @@ class SentenceTestCase extends CakeTestCase {
 
 		$this->Sentence->Link->expectOnce(
 			'add',
-			array($translationFromSentenceId, $newlyCreatedSentenceId)
+			array($translationFromSentenceId, $newlyCreatedSentenceId, 'eng', 'eng')
 		);
 
 		$this->Sentence->saveTranslation(
 			$translationFromSentenceId,
+			'eng',
 			'This is the translation.',
-			'eng'
+			'eng',
+			Sentence::MAX_CORRECTNESS
 		);
 	}
 
