@@ -5,7 +5,7 @@
  *
  * @copyright 2008, Vilen Tambovtsev
  * @author  Vilen Tambovtsev
- * @license      http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 
 
@@ -16,6 +16,8 @@ class SphinxBehavior extends ModelBehavior
      */
     var $runtime = array();
     var $_defaults = array('server' => 'localhost', 'port' => 9312);
+
+    var $_cached_result = null;
 
     /**
      * Spinx client object
@@ -45,7 +47,7 @@ class SphinxBehavior extends ModelBehavior
      */
     function beforeFind(&$model, $query)
     {
-        if (empty($query['sphinx']))
+        if (empty($query['sphinx']) || empty($query['search']))
             return true;
 
         if ($model->findQueryType == 'count')
@@ -87,12 +89,17 @@ class SphinxBehavior extends ModelBehavior
                 case 'sortMode':
                     $this->runtime[$model->alias]['sphinx']->SetSortMode(key($setting), reset($setting));
                     break;
+                case 'fieldWeights':
+                    $this->runtime[$model->alias]['sphinx']->SetFieldWeights($setting);
+                    break;
+                case 'rankingMode': 
+                    $this->runtime[$model->alias]['sphinx']->SetRankingMode($setting);
+                    break;
                 default:
                     break;
             }
         }
-        $this->runtime[$model->alias]['sphinx']->SetLimits(($query['page'] - 1) * $query['limit'],
-                                                           $query['limit']);
+        $this->runtime[$model->alias]['sphinx']->SetLimits(($query['page'] - 1) * $query['limit'], $query['limit']);
 
         $indexes = !empty($query['sphinx']['index']) ? implode(',' , $query['sphinx']['index']) : '*';
 
@@ -123,6 +130,8 @@ class SphinxBehavior extends ModelBehavior
         }
         else
         {
+            $this->_cached_result = $result;
+    
             if (isset($result['matches']))
                 $ids = array_keys($result['matches']);
             else
@@ -134,5 +143,19 @@ class SphinxBehavior extends ModelBehavior
 
         return $query;
     }
+
+
+    public function afterFind(&$model, $results, $primary) {
+        
+        if(!is_null($this->_cached_result)) {
+            foreach($results as &$result) {
+                $result[$model->name]['_weight'] = $this->_cached_result['matches'][$result[$model->name]['id']]['weight'];
+                $result[$model->name]['_total_found'] = $this->_cached_result['total_found'];
+            }
+            $this->_cached_result = null;
+        }
+        return $results;
+        
+    }
+
 }
-?>
