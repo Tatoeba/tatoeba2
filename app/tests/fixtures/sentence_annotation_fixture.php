@@ -1,5 +1,5 @@
 <?php
-/* SentenceAnnotation Fixture generated on: 2014-04-15 22:06:55 : 1397592415 */
+/* SentenceAnnotation Fixture generated on: 2014-09-14 16:11:53 : 1410711113 */
 class SentenceAnnotationFixture extends CakeTestFixture {
 	var $name = 'SentenceAnnotation';
 
@@ -11,6 +11,7 @@ class SentenceAnnotationFixture extends CakeTestFixture {
 		'modified' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
 		'user_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 10),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'sentence_id' => array('column' => 'sentence_id', 'unique' => 0)),
+		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 
 	var $records = array(

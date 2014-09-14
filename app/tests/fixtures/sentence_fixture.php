@@ -1,5 +1,5 @@
 <?php
-/* Sentence Fixture generated on: 2014-04-15 00:58:55 : 1397516335 */
+/* Sentence Fixture generated on: 2014-09-14 16:11:56 : 1410711116 */
 class SentenceFixture extends CakeTestFixture {
 	var $name = 'Sentence';
 
@@ -7,7 +7,7 @@ class SentenceFixture extends CakeTestFixture {
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 		'lang' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 4, 'key' => 'index', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'text' => array('type' => 'text', 'null' => false, 'default' => NULL, 'length' => 1500),
-		'correctness' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 2),
+		'correctness' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 2),
 		'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'key' => 'index'),
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
@@ -15,6 +15,7 @@ class SentenceFixture extends CakeTestFixture {
 		'hasaudio' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 10, 'key' => 'index', 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'lang_id' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 3),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'user_id' => array('column' => 'user_id', 'unique' => 0), 'dico_id' => array('column' => 'dico_id', 'unique' => 0), 'lang' => array('column' => 'lang', 'unique' => 0), 'hasaudio_idx' => array('column' => 'hasaudio', 'unique' => 0)),
+		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 
 	var $records = array(

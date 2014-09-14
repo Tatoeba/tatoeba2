@@ -1,5 +1,5 @@
 <?php
-/* User Fixture generated on: 2014-04-15 01:45:47 : 1397519147 */
+/* User Fixture generated on: 2014-09-14 16:12:01 : 1410711121 */
 class UserFixture extends CakeTestFixture {
 	var $name = 'User';
 
@@ -11,7 +11,7 @@ class UserFixture extends CakeTestFixture {
 		'lang' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 100, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'since' => array('type' => 'datetime', 'null' => false, 'default' => '0000-00-00 00:00:00'),
 		'last_time_active' => array('type' => 'integer', 'null' => false, 'default' => '0'),
-		'level' => array('type' => 'integer', 'null' => false, 'default' => '1', 'length' => 4),
+		'level' => array('type' => 'integer', 'null' => false, 'default' => '0', 'length' => 2),
 		'group_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'length' => 4),
 		'send_notifications' => array('type' => 'boolean', 'null' => false, 'default' => '1'),
 		'name' => array('type' => 'string', 'null' => false, 'collate' => 'utf8_unicode_ci', 'charset' => 'utf8'),
@@ -22,6 +22,7 @@ class UserFixture extends CakeTestFixture {
 		'country_id' => array('type' => 'string', 'null' => true, 'default' => NULL, 'length' => 2, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'is_public' => array('type' => 'boolean', 'null' => false, 'default' => '0'),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'login' => array('column' => 'username', 'unique' => 1), 'email' => array('column' => 'email', 'unique' => 1)),
+		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 
 	var $records = array(

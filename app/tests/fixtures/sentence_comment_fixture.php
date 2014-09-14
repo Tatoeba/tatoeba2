@@ -1,5 +1,5 @@
 <?php
-/* SentenceComment Fixture generated on: 2014-04-15 02:07:36 : 1397520456 */
+/* SentenceComment Fixture generated on: 2014-09-14 16:11:54 : 1410711114 */
 class SentenceCommentFixture extends CakeTestFixture {
 	var $name = 'SentenceComment';
 
@@ -13,6 +13,7 @@ class SentenceCommentFixture extends CakeTestFixture {
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 		'hidden' => array('type' => 'boolean', 'null' => false, 'default' => '0'),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'sentence_id_idx' => array('column' => 'sentence_id', 'unique' => 0)),
+		'tableParameters' => array('charset' => 'utf8', 'collate' => 'utf8_general_ci', 'engine' => 'MyISAM')
 	);
 
 	var $records = array(

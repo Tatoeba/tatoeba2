@@ -1,5 +1,5 @@
 <?php
-/* Contribution Fixture generated on: 2014-04-15 02:09:29 : 1397520569 */
+/* Contribution Fixture generated on: 2014-09-14 16:11:46 : 1410711106 */
 class ContributionFixture extends CakeTestFixture {
 	var $name = 'Contribution';
 

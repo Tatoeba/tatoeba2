@@ -1,5 +1,5 @@
 <?php
-/* Group Fixture generated on: 2014-04-15 22:03:33 : 1397592213 */
+/* Group Fixture generated on: 2014-09-14 16:11:50 : 1410711110 */
 class GroupFixture extends CakeTestFixture {
 	var $name = 'Group';
 
@@ -9,6 +9,7 @@ class GroupFixture extends CakeTestFixture {
 		'created' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 		'modified' => array('type' => 'datetime', 'null' => true, 'default' => NULL),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1)),
+		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM')
 	);
 
 	var $records = array(

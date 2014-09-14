@@ -1,5 +1,5 @@
 <?php
-/* Country Fixture generated on: 2014-04-15 02:05:51 : 1397520351 */
+/* Country Fixture generated on: 2014-09-14 16:11:47 : 1410711107 */
 class CountryFixture extends CakeTestFixture {
 	var $name = 'Country';
 
@@ -9,6 +9,7 @@ class CountryFixture extends CakeTestFixture {
 		'numcode' => array('type' => 'integer', 'null' => true, 'default' => NULL, 'length' => 6),
 		'name' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 80, 'collate' => 'latin1_swedish_ci', 'charset' => 'latin1'),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1)),
+		'tableParameters' => array('charset' => 'latin1', 'collate' => 'latin1_swedish_ci', 'engine' => 'MyISAM')
 	);
 
 	var $records = array(
