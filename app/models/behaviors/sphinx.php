@@ -93,7 +93,11 @@ class SphinxBehavior extends ModelBehavior
                     $this->runtime[$model->alias]['sphinx']->SetFieldWeights($setting);
                     break;
                 case 'rankingMode': 
-                    $this->runtime[$model->alias]['sphinx']->SetRankingMode($setting);
+                    if (is_array($setting)) {
+                        $this->runtime[$model->alias]['sphinx']->SetRankingMode(key($setting), reset($setting));
+                    } else {
+                        $this->runtime[$model->alias]['sphinx']->SetRankingMode($setting);
+                    }
                     break;
                 default:
                     break;
