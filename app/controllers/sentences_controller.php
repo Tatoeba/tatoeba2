@@ -516,7 +516,7 @@ class SentencesController extends AppController
             'index' => array($from . '_index'),
             'matchMode' => SPH_MATCH_EXTENDED2,
             'sortMode' => array(SPH_SORT_RELEVANCE => ""),
-            'rankingMode' => array(SPH_RANK_EXPR => "(user_id<>0)*100000 + $default_sphinx_ranking_formula"),
+            'rankingMode' => array(SPH_RANK_EXPR => "(ucorrectness=127)*-1000000 + (user_id<>0)*100000 + $default_sphinx_ranking_formula"),
         );
         // if we want to search only on sentences having translations
         // in a specified language

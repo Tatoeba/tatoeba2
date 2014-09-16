@@ -362,13 +362,13 @@ foreach ($languages as $lang=>$name){
 
 
         sql_query = select distinct * from (\
-        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, s.created as created, s.user_id as user_id\
+        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, s.created as created, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
             from sentences s\
             left join sentences_translations st on st.sentence_id = s.id\
             left join sentences t on st.translation_id = t.id\
             where s.lang_id = (select id from languages where code = '$lang')\
         union \
-        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, s.created as created, s.user_id as user_id\
+        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, s.created as created, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
             from sentences s\
             left join sentences_translations st on st.sentence_id = s.id\
             left join sentences_translations tt on tt.sentence_id = st.translation_id\
@@ -376,7 +376,14 @@ foreach ($languages as $lang=>$name){
             where s.lang_id =  (select id from languages where code = '$lang')\
         ) t 
         sql_attr_timestamp = created
-        sql_attr_uint = user_id
+        sql_attr_uint = user_id".
+    /* "correctness" is an 8-bit signed integer whereas Sphinx only allows
+     * unsigned intgerers (actually it allows 64-bit signed integers "bigint"s
+     * but it’s a waste of space). So we add 128 an treat it as unsigned,
+     * and that’s why the attribute is called "ucorrectness".
+     */
+"
+        sql_attr_uint = ucorrectness
         sql_attr_uint = id2
         sql_attr_multi = uint trans_id from field; SELECT id FROM languages ;
     }
