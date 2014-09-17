@@ -117,7 +117,7 @@ class SentencesHelper extends AppHelper
             // direct translations
             foreach ($translations as $translation) {
                 $this->displayGenericSentence(
-                    $translation,
+                    $translation['Translation'],
                     null,
                     'directTranslation',
                     $withAudio,
@@ -129,7 +129,7 @@ class SentencesHelper extends AppHelper
             // indirect translations
             foreach ($indirectTranslations as $translation) {
                 $this->displayGenericSentence(
-                    $translation,
+                    $translation['Translation'],
                     null,
                     'indirectTranslation',
                     $withAudio,
