@@ -76,13 +76,13 @@ class TranscriptableBehavior extends ModelBehavior
             $lang = $sentence['lang'];
             if (in_array($lang, $this->availableLanguages)) {
                 $text = $sentence['text'];
-                $result['Transcription'] = $this->_getTranscriptions(
+                $result[$model->alias]['transcriptions'] = $this->_getTranscriptions(
                     $text, $lang
                 );
             }
             
         }
-
+        
         return $results;
     }
 
