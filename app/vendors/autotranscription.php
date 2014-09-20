@@ -28,6 +28,9 @@
 /**
  * Transcription/transliteration tools.
  *
+ * To install these tools: https://github.com/Tatoeba/admin
+ * Some script can also be found in /docs/daemons.
+ *
  * @category PHP
  * @package  Tatoeba
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
@@ -61,11 +64,9 @@ class Autotranscription
     {
         switch ($type) {
             case CMN_OTHER_SCRIPT:
-                return 'CMN_OTHER_SCRIPT';
                 return $this->_getChineseOtherScriptVersion($text);
 
             default:
-                return 'CMN_PINYIN';
                 return $this->_getPinyin($text);
                 
         }
@@ -75,36 +76,30 @@ class Autotranscription
     {
         switch ($type) {
             case JPN_FURIGANA:
-                return 'JPN_FURIGANA';
                 return $this->_getFurigana($text);
                 
             default:
-                return 'JPN_ROMAJI';
                 return $this->_getJapaneseRomanization($text, 'romaji');
         }
     }
 
     public function kat($text)
     {
-        return 'KAT';
         return $this->_getGeorgianRomanization($text);
     }
 
     public function uzb($text)
     {
-        return 'UZB';
         return $this->_uzbekScriptChange($text);
     }
 
     public function wuu($text)
     {
-        return 'WUU';
         return $this->_getShanghaineseRomanization($text);
     }
 
     public function yue($text)
     {
-        return 'YUE';
         return $this->_getJyutping($text);
     }
 

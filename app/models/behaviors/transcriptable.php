@@ -49,6 +49,10 @@ class TranscriptableBehavior extends ModelBehavior
 
     function setup(&$model, $config = array())
     {
+        if (Configure::read('Transcriptions.enabled') == false) {
+            return;
+        }
+
         if (!isset($this->autotranscription)) {
             App::import('Vendor', 'autotranscription');
             $this->autotranscription = new Autotranscription();
@@ -61,6 +65,10 @@ class TranscriptableBehavior extends ModelBehavior
      */
     function afterFind(&$model, $results, $primary = false)
     {
+        if (Configure::read('Transcriptions.enabled') == false) {
+            return;
+        }
+        
         foreach ($results as $key => $row) {
             
             $result = &$results[$key];
