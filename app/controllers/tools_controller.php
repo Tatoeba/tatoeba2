@@ -34,6 +34,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+App::import('Vendor', 'autotranscription');
+
 class ToolsController extends AppController
 {
     public $name = 'Tools';
@@ -89,7 +91,8 @@ class ToolsController extends AppController
     {
         $query = '';
         $type = 'romaji';
-
+        $result = '';
+        
         if (isset($_GET['query'])) {
             $query = $_GET['query'];
         }
@@ -97,15 +100,16 @@ class ToolsController extends AppController
             $type = Sanitize::paranoid($_GET['type']);
         }
 
-        $option = 3;
+        $option = JPN_ROMAJI;
         if ($type == 'furigana') {
-            $option = 2;
+            $option = JPN_FURIGANA;
         }
 
-        $this->loadModel('Sentence');
-        $result = $this->Sentence->getJapaneseRomanization2(
-            $query, $option
-        );
+        if (!empty($query)) {
+            $autotranscription = new Autotranscription();
+            $result = $autotranscription->jpn($query, $option);
+        }
+        
 
         $this->set('query', $query);
         $this->set('type', $type);
@@ -125,8 +129,8 @@ class ToolsController extends AppController
         $convertedText = '';
         
         if (!empty($text)) {
-            $this->loadModel('Sentence');
-            $convertedText = $this->Sentence->getOtherScriptVersion($text);
+            $autotranscription = new Autotranscription();
+            $convertedText = $autotranscription->cmn($text, CMN_OTHER_SCRIPT);
         }
 
         $this->set('convertedText', $convertedText);
@@ -156,9 +160,8 @@ class ToolsController extends AppController
 
 
             if ($from === 'chinese') {
-                // then we need to call the adso function
-                $this->loadModel('Sentence');
-                $pinyin = $this->Sentence->getRomanization($text, 'cmn');
+                $autotranscription = new Autotranscription();
+                $pinyin = $autotranscription->cmn($text, CMN_PINYIN);
 
                 if ($to === 'diacPinyin') {
                     $pinyin = $this->Pinyin->numeric2diacritic($pinyin);
@@ -194,8 +197,8 @@ class ToolsController extends AppController
         }
 
         if (!empty($text)) {
-            $this->loadModel('Sentence');
-            $ipa = $this->Sentence->getShanghaineseRomanization($text);
+            $autotranscription = new Autotranscription();
+            $ipa = $autotranscription->wuu($text);
 
             $this->set('convertedText', $ipa);
             $this->set('lastText', $text);
