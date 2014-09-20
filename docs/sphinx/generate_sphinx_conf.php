@@ -252,13 +252,16 @@ source default
 index common_index
 {
     index_exact_words       = 1
-    charset_table           = 0..9, a..z, _, A..Z->a..z, U+00C0->a, U+00C1->a, U+00C2->a, U+00C3->a, U+00C4->a, \
+    charset_table           = 0..9, a..z, _, A..Z->a..z, \
+<?# Latin-1 Supplement: discard diacritics #?>
+                        U+00C0->a, U+00C1->a, U+00C2->a, U+00C3->a, U+00C4->a, \
                         U+00C5->a, U+00C7->c, U+00C8->e, U+00C9->e, U+00CA->e, U+00CB->e, U+00CC->i, U+00CD->i, \
                         U+00CE->i, U+00CF->i, U+00D1->n, U+00D2->o, U+00D3->o, U+00D4->o, U+00D5->o, U+00D6->o, \
                         U+00D9->u, U+00DA->u, U+00DB->u, U+00DC->u, U+00DD->y, U+00E0->a, U+00E1->a, U+00E2->a, \
                         U+00E3->a, U+00E4->a, U+00E5->a, U+00E7->c, U+00E8->e, U+00E9->e, U+00EA->e, U+00EB->e, \
                         U+00EC->i, U+00ED->i, U+00EE->i, U+00EF->i, U+00F1->n, U+00F2->o, U+00F3->o, U+00F4->o, \
                         U+00F5->o, U+00F6->o, U+00F9->u, U+00FA->u, U+00FB->u, U+00FC->u, U+00FD->y, U+00FF->y, \
+<?# Latin extended-A: discard diacritics #?>
                         U+0100->a, U+0101->a, U+0102->a, U+0103->a, U+0104->a, U+0105->a, U+0106->c, U+0107->c, \
                         U+0108->c, U+0109->c, U+010A->c, U+010B->c, U+010C->c, U+010D->c, U+010E->d, U+010F->d, \
                         U+0112->e, U+0113->e, U+0114->e, U+0115->e, U+0116->e, U+0117->e, U+0118->e, U+0119->e, \
@@ -272,7 +275,9 @@ index common_index
                         U+0160->s, U+0161->s, U+0162->t, U+0163->t, U+0164->t, U+0165->t, U+0168->u, U+0169->u, \
                         U+016A->u, U+016B->u, U+016C->u, U+016D->u, U+016E->u, U+016F->u, U+0170->u, U+0171->u, \
                         U+0172->u, U+0173->u, U+0174->w, U+0175->w, U+0176->y, U+0177->y, U+0178->y, U+0179->z, \
-                        U+017A->z, U+017B->z, U+017C->z, U+017D->z, U+017E->z, U+01A0->o, U+01A1->o, U+01AF->u, \
+                        U+017A->z, U+017B->z, U+017C->z, U+017D->z, U+017E->z,
+<?# Latin extended-B: discard diacritics #?>
+                        U+01A0->o, U+01A1->o, U+01AF->u, \
                         U+01B0->u, U+01CD->a, U+01CE->a, U+01CF->i, U+01D0->i, U+01D1->o, U+01D2->o, U+01D3->u, \
                         U+01D4->u, U+01D5->u, U+01D6->u, U+01D7->u, U+01D8->u, U+01D9->u, U+01DA->u, U+01DB->u, \
                         U+01DC->u, U+01DE->a, U+01DF->a, U+01E0->a, U+01E1->a, U+01E6->g, U+01E7->g, U+01E8->k, \
@@ -283,6 +288,7 @@ index common_index
                         U+0214->u, U+0215->u, U+0216->u, U+0217->u, U+0218->s, U+0219->s, U+021A->t, U+021B->t, \
                         U+021E->h, U+021F->h, U+0226->a, U+0227->a, U+0228->e, U+0229->e, U+022A->o, U+022B->o, \
                         U+022C->o, U+022D->o, U+022E->o, U+022F->o, U+0230->o, U+0231->o, U+0232->y, U+0233->y, \
+<?# Latin Extended Additional: discard diacritics #?>
                         U+1E00->a, U+1E01->a, U+1E02->b, U+1E03->b, U+1E04->b, U+1E05->b, U+1E06->b, U+1E07->b, \
                         U+1E08->c, U+1E09->c, U+1E0A->d, U+1E0B->d, U+1E0C->d, U+1E0D->d, U+1E0E->d, U+1E0F->d, \
                         U+1E10->d, U+1E11->d, U+1E12->d, U+1E13->d, U+1E14->e, U+1E15->e, U+1E16->e, U+1E17->e, \
@@ -312,20 +318,33 @@ index common_index
                         U+1EDC->o, U+1EDD->o, U+1EDE->o, U+1EDF->o, U+1EE0->o, U+1EE1->o, U+1EE2->o, U+1EE3->o, \
                         U+1EE4->u, U+1EE5->u, U+1EE6->u, U+1EE7->u, U+1EE8->u, U+1EE9->u, U+1EEA->u, U+1EEB->u, \
                         U+1EEC->u, U+1EED->u, U+1EEE->u, U+1EEF->u, U+1EF0->u, U+1EF1->u, U+1EF2->y, U+1EF3->y, \
-                        U+1EF4->y, U+1EF5->y, U+1EF6->y, U+1EF7->y, U+1EF8->y, U+1EF9->y, U+621..U+63a, U+640..U+64a, \
+                        U+1EF4->y, U+1EF5->y, U+1EF6->y, U+1EF7->y, U+1EF8->y, U+1EF9->y,
+<?# Arabic #?>
+                        U+621..U+63a, U+640..U+64a, \
                         U+66e..U+66f, U+671..U+6d3, U+6d5, U+6e5..U+6e6, U+6ee..U+6ef, U+6fa..U+6fc, U+6ff, \
+<?# Greek and Coptic #?>
                         U+37a, U+386..U+389->U+3ac..U+3af, U+38c..U+38e->U+3cc..U+3ce, U+390, U+391..U+3a1->U+3b1..U+3c1,\
                         U+3a3..U+3ab->U+3c3..U+3cb, U+3ac..U+3ce, U+3d0..U+3d7, U+3d8..U+3ef/2, U+3f0..U+3f3, U+3f4->U+3b8,\
                         U+3f5, U+3f7..U+3f8/2, U+3f9->U+3f2, U+3fa..U+3fb/2, U+3fc..U+3ff,\
+<?# Hebrew #?>
                         U+5d0..U+5ea, U+5f0..U+5f2,\
+<?# Cyrillic #?>
                         U+410..U+42F->U+430..U+44F, U+430..U+44F,\
+<?# Georgian #?>
                         U+10a0..U+10c5->U+2d00..U+2d25, U+10d0..U+10fa, U+10fc, U+2d00..U+2d25,\
+<?# Upper case to letter case rules for latin diacritics #?>
                         U+C0..U+D6->U+E0..U+F6, U+D8..U+DE->U+F8..U+FE, U+178->U+FF, U+FF, U+100..U+177/2, U+179..U+17E/2,\
+<?# Bengali #?>
                         U+980..U+9FC,\
+<?# Devanagari + Devanagari Extended #?>
                         U+900..U+97F, U+A8E0..U+A8FB,\
+<?# Armenian + Alphabetic Presentation Forms (Armenian Small Ligatures) #?>
                         U+531..U+58A, U+FB13..U+FB17,\
+<?# Malayalam #?>
                         U+D00..U+D77,\
+<?# Thai #?>
                         U+E00..U+E5C,\
+<?# Various Cyrillic letters; I don't get the logic #?>
                         U+492, U+493, U+4E2, U+4E3, U+49A, U+49B, U+4EE, U+4EF, U+4B2, U+4B3, U+4B6, U+4B7
 
 
