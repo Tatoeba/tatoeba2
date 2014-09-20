@@ -345,7 +345,9 @@ index common_index
 <?# Thai #?>
                         U+E00..U+E5C,\
 <?# Various Cyrillic letters; I don't get the logic #?>
-                        U+492, U+493, U+4E2, U+4E3, U+49A, U+49B, U+4EE, U+4EF, U+4B2, U+4B3, U+4B6, U+4B7
+                        U+492, U+493, U+4E2, U+4E3, U+49A, U+49B, U+4EE, U+4EF, U+4B2, U+4B3, U+4B6, U+4B7,\
+<?# Ethiopic #?>
+                        U+1200..U+135F, U+1369..U+137C, U+1380..U+1399, U+2D80..U+2DDE, U+AB01..U+AB2E
 
 
     docinfo                 = extern
