@@ -232,6 +232,15 @@ $cjkLanguages = array(
     'lzh' => 0
 );
 
+$languagesWithoutWordBoundaries = array(
+    # Lao
+    'lao' => 'U+0E81, U+0E82, U+0E84, U+0E87, U+0E88, U+0E8A, U+0E8D, U+0E94..U+0E97, U+0E99..U+0E9F, '
+            .'U+0EA1..U+0EA3, U+0EA5, U+0EA7, U+0EAA, U+0EAB, U+0EAD, U+0EAE, U+0EB0..U+0EB9, U+0EBB, '
+            .'U+0EC0..U+0EC4, U+0EC8..U+0ECD, U+0ED0..U+0ED9, U+0EDC..U+0EDF',
+    # Tibetan (not sure about marks and signs)
+    'bod' => 'U+0F00, U+0F20..U+0F33, U+0F40..U+0F47, U+0F49..U+0F6C, U+0F71..U+0F87, U+0F90..U+0F97, '
+            .'U+0F99..U+0FBC, U+0FD0..U+0FD2',
+);
 
 ?>
 
@@ -303,11 +312,6 @@ index common_index
                         U+1200..U+135F, U+1369..U+137C, U+1380..U+1399, U+2D80..U+2DDE, U+AB01..U+AB2E,\
 <?# Cherokee #?>
                         U+13A0..U+13F4,\
-<?# Lao #?>
-<?# TODO: use ngram_len = 1 to allow proper searching #?>
-                        U+0E81, U+0E82, U+0E84, U+0E87, U+0E88, U+0E8A, U+0E8D, U+0E94..U+0E97, U+0E99..U+0E9F,\
-                        U+0EA1..U+0EA3, U+0EA5, U+0EA7, U+0EAA, U+0EAB, U+0EAD, U+0EAE, U+0EB0..U+0EB9, U+0EBB,\
-                        U+0EC0..U+0EC4, U+0EC8..U+0ECD, U+0ED0..U+0ED9, U+0EDC..U+0EDF,\
 <?# Mon (called Myanmar by Unicode) #?>
                         U+1000..U+1049, U+104C..U+109F, U+AA60..U+AA7F, U+A9E0..U+A9FE,\
 <?# Shinhala #?>
@@ -322,9 +326,11 @@ index common_index
                         U+0C00..U+0C03, U+0C05..U+0C0C, U+0C0E..U+0C10, U+0C12..U+0C28, U+0C2A..U+0C39, U+0C3D..U+0C44,\
                         U+0C46..U+0C48, U+0C4A..U+0C4D, U+0C55, U+0C56, U+0C58, U+0C59, U+0C60..U+0C63, U+0C66..U+0C6F,\
                         U+0C78..U+0C7F,\
-<?# Tibetan (not sure about marks and signs) #?>
-                        U+0F00, U+0F20..U+0F33, U+0F40..U+0F47, U+0F49..U+0F6C, U+0F71..U+0F87, U+0F90..U+0F97,\
-                        U+0F99..U+0FBC, U+0FD0..U+0FD2
+                        <?php
+    echo implode(",\\\n                        ",
+                 array_values($languagesWithoutWordBoundaries));
+?>
+
 
 
     docinfo                 = extern
@@ -401,6 +407,12 @@ foreach ($languages as $lang=>$name){
             echo "
         morphology              = libstemmer_$lang
         min_stemming_len        = 4
+    ";
+        }
+        if (isset($languagesWithoutWordBoundaries[$lang])) {
+            echo "
+        ngram_len = 1
+        ngram_chars = ".$languagesWithoutWordBoundaries[$lang]."
     ";
         }
     echo
