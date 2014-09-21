@@ -308,8 +308,6 @@ index common_index
                         U+531..U+58A, U+FB13..U+FB17,\
 <?# Malayalam #?>
                         U+D00..U+D77,\
-<?# Thai #?>
-                        U+E00..U+E5C,\
 <?# Various Cyrillic letters; I don't get the logic #?>
                         U+492, U+493, U+4E2, U+4E3, U+49A, U+49B, U+4EE, U+4EF, U+4B2, U+4B3, U+4B6, U+4B7,\
 <?# Ethiopic #?>
