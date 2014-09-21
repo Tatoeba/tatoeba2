@@ -47,7 +47,7 @@ class SphinxBehavior extends ModelBehavior
      */
     function beforeFind(&$model, $query)
     {
-        if (empty($query['sphinx']) || empty($query['search']))
+        if (empty($query['sphinx']))
             return true;
 
         if ($model->findQueryType == 'count')
