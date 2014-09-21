@@ -240,6 +240,8 @@ $languagesWithoutWordBoundaries = array(
     # Tibetan (not sure about marks and signs)
     'bod' => 'U+0F00, U+0F20..U+0F33, U+0F40..U+0F47, U+0F49..U+0F6C, U+0F71..U+0F87, U+0F90..U+0F97, '
             .'U+0F99..U+0FBC, U+0FD0..U+0FD2',
+    # Khmer
+    'khm' => 'U+1780..U+17D2, U+17E0..U+17E9, U+17F0..U+17F9, U+19E0..U+19FF',
 );
 
 ?>
