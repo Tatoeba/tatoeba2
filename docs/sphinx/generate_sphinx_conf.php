@@ -330,6 +330,10 @@ index common_index
                         U+0C00..U+0C03, U+0C05..U+0C0C, U+0C0E..U+0C10, U+0C12..U+0C28, U+0C2A..U+0C39, U+0C3D..U+0C44,\
                         U+0C46..U+0C48, U+0C4A..U+0C4D, U+0C55, U+0C56, U+0C58, U+0C59, U+0C60..U+0C63, U+0C66..U+0C6F,\
                         U+0C78..U+0C7F,\
+<?# Gurmukhi (one of the writings of Punjabi) #?>
+                        U+0A01..U+0A03, U+0A05..U+0A0A, U+0A0F, U+0A10, U+0A13..U+0A19, U+0A1A..U+0A28, U+0A2A..U+0A30,\
+                        U+0A32, U+0A33, U+0A35, U+0A36, U+0A38, U+0A39, U+0A3C, U+0A3E..U+0A42, U+0A47, U+0A48,\
+                        U+0A4B..U+0A4D, U+0A51, U+0A59..U+0A5C, U+0A5E, U+0A66..U+0A75,\
                         <?php
     echo implode(",\\\n                        ",
                  array_values($languagesWithoutWordBoundaries));
