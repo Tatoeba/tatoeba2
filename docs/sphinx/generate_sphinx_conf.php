@@ -300,7 +300,31 @@ index common_index
 <?# Various Cyrillic letters; I don't get the logic #?>
                         U+492, U+493, U+4E2, U+4E3, U+49A, U+49B, U+4EE, U+4EF, U+4B2, U+4B3, U+4B6, U+4B7,\
 <?# Ethiopic #?>
-                        U+1200..U+135F, U+1369..U+137C, U+1380..U+1399, U+2D80..U+2DDE, U+AB01..U+AB2E
+                        U+1200..U+135F, U+1369..U+137C, U+1380..U+1399, U+2D80..U+2DDE, U+AB01..U+AB2E,\
+<?# Cherokee #?>
+                        U+13A0..U+13F4,\
+<?# Lao #?>
+<?# TODO: use ngram_len = 1 to allow proper searching #?>
+                        U+0E81, U+0E82, U+0E84, U+0E87, U+0E88, U+0E8A, U+0E8D, U+0E94..U+0E97, U+0E99..U+0E9F,\
+                        U+0EA1..U+0EA3, U+0EA5, U+0EA7, U+0EAA, U+0EAB, U+0EAD, U+0EAE, U+0EB0..U+0EB9, U+0EBB,\
+                        U+0EC0..U+0EC4, U+0EC8..U+0ECD, U+0ED0..U+0ED9, U+0EDC..U+0EDF,\
+<?# Mon (called Myanmar by Unicode) #?>
+                        U+1000..U+1049, U+104C..U+109F, U+AA60..U+AA7F, U+A9E0..U+A9FE,\
+<?# Shinhala #?>
+                        U+0D82, U+0D83, U+0D85..U+0D96, U+0D9A..U+0DB1, U+0DB3..U+0DBB, U+0DBD, U+0DC0..U+0DC6,\
+                        U+0DCA, U+0DCF..U+0DD4, U+0DD6, U+0DD8..U+0DDF, U+0DE6..U+0DEF, U+0DF2, U+0DF3,\
+                        U+111E1..U+111E9, U+111EA..U+111F4,\
+<?# Tamil #?>
+                        U+0B82, U+0B83, U+0B85..U+0B8A, U+0B8E..U+0B90, U+0B92..U+0B95, U+0B99, U+0B9A, U+0B9C,\
+                        U+0B9E, U+0B9F, U+0BA3, U+0BA4, U+0BA8..U+0BAA, U+0BAE..U+0BB9, U+0BBE..U+0BC2, U+0BC6..U+0BC8,\
+                        U+0BCA..U+0BCD, U+0BD0, U+0BD7, U+0BE6..U+0BFA,\
+<?# Telugu #?>
+                        U+0C00..U+0C03, U+0C05..U+0C0C, U+0C0E..U+0C10, U+0C12..U+0C28, U+0C2A..U+0C39, U+0C3D..U+0C44,\
+                        U+0C46..U+0C48, U+0C4A..U+0C4D, U+0C55, U+0C56, U+0C58, U+0C59, U+0C60..U+0C63, U+0C66..U+0C6F,\
+                        U+0C78..U+0C7F,\
+<?# Tibetan (not sure about marks and signs) #?>
+                        U+0F00, U+0F20..U+0F33, U+0F40..U+0F47, U+0F49..U+0F6C, U+0F71..U+0F87, U+0F90..U+0F97,\
+                        U+0F99..U+0FBC, U+0FD0..U+0FD2
 
 
     docinfo                 = extern
