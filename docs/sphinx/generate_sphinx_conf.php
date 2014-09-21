@@ -242,6 +242,8 @@ $languagesWithoutWordBoundaries = array(
             .'U+0F99..U+0FBC, U+0FD0..U+0FD2',
     # Khmer
     'khm' => 'U+1780..U+17D2, U+17E0..U+17E9, U+17F0..U+17F9, U+19E0..U+19FF',
+    # Thai
+    'tha' => 'U+0E01..U+0E2E, U+0E30..U+0E3A, U+0E40..U+0E4E, U+0E50..U+0E59',
 );
 
 ?>
