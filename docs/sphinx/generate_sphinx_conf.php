@@ -334,6 +334,9 @@ index common_index
                         U+0A01..U+0A03, U+0A05..U+0A0A, U+0A0F, U+0A10, U+0A13..U+0A19, U+0A1A..U+0A28, U+0A2A..U+0A30,\
                         U+0A32, U+0A33, U+0A35, U+0A36, U+0A38, U+0A39, U+0A3C, U+0A3E..U+0A42, U+0A47, U+0A48,\
                         U+0A4B..U+0A4D, U+0A51, U+0A59..U+0A5C, U+0A5E, U+0A66..U+0A75,\
+<?# Gujarati #?>
+                        U+0A81..U+0A83, U+0A85..U+0A8D, U+0A8F..U+0A91, U+0A93..U+0AA8, U+0AAA..U+0AB0, U+0AB2, U+0AB3,\
+                        U+0AB5..U+0AB9, U+0ABC..U+0AC5, U+0AC7..U+0AC9, U+0ACB..U+0ACD, U+0AD0, U+0AE0..U+0AE3, U+0AE6..U+0AEF,\
                         <?php
     echo implode(",\\\n                        ",
                  array_values($languagesWithoutWordBoundaries));
