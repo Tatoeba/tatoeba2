@@ -313,7 +313,12 @@ index common_index
 <?# Various Cyrillic letters; I don't get the logic #?>
                         U+492, U+493, U+4E2, U+4E3, U+49A, U+49B, U+4EE, U+4EF, U+4B2, U+4B3, U+4B6, U+4B7,\
 <?# Ethiopic #?>
-                        U+1200..U+135F, U+1369..U+137C, U+1380..U+1399, U+2D80..U+2DDE, U+AB01..U+AB2E,\
+                        U+1200..U+1248, U+124A..U+124D, U+1250..U+1256, U+1258, U+125A..U+125D, U+1260..U+1288,\
+                        U+128A..U+128D, U+1290..U+12B0, U+12B2..U+12B5, U+12B8..U+12BE, U+12C0, U+12C2..U+12C5,\
+                        U+12C8..U+12D6, U+12D8..U+1310, U+1312..U+1315, U+1318..U+135A, U+135D..U+135F, U+1369..U+137C,\
+                        U+1380..U+1399, U+2D80..U+2DA6, U+2DA8..U+2DAE, U+2DB0..U+2DB6, U+2DB8..U+2DBE, U+2DC0..U+2DC6,\
+                        U+2DC8..U+2DCE, U+2DD0..U+2DD6, U+2DD8..U+2DDE, U+AB01..U+AB06, U+AB09..U+AB0E, U+AB11..U+AB16,\
+                        U+AB20..U+AB26, U+AB28..U+AB2E,\
 <?# Cherokee #?>
                         U+13A0..U+13F4,\
 <?# Mon (called Myanmar by Unicode) #?>
