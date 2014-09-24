@@ -156,7 +156,6 @@ class Sentence extends AppModel
 
     public $belongsTo = array(
         'User',
-        'TagsSentences',
         'Language' => array(
             'classname' => 'Language',
             'foreignKey' => 'lang_id'
@@ -181,7 +180,8 @@ class Sentence extends AppModel
             'className' => 'Tag',
             'joinTable' => 'tags_sentences',
             'foreignKey' => 'sentence_id',
-            'associationForeignKey' => 'tag_id'
+            'associationForeignKey' => 'tag_id',
+            'with' => 'TagsSentences',
         ),
     );
 
