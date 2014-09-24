@@ -46,6 +46,19 @@ class SphinxIndexesShell extends Shell {
            ."Updates all the indexes of the given type.\n");
     }
 
+    private function get_max_indexed_timestamp($index) {
+        $Sphinx = new SphinxClient();
+        $Sentence = ClassRegistry::init('Sentence');
+        $Sphinx->SetServer($Sentence->Behaviors->Sphinx->_defaults['server'],
+                           $Sentence->Behaviors->Sphinx->_defaults['port']);
+        $Sphinx->SetLimits(0, 1);
+        $Sphinx->SetSortMode(SPH_SORT_ATTR_DESC, 'modified');
+
+        $result = $Sphinx->Query('', $index);
+        $most_recent = array_pop($result['matches']);
+        return $most_recent ? $most_recent["attrs"]["modified"] : $false;
+    }
+
     private function merge_index($lang) {
         echo "Merging indexes of $lang... ";
         system("indexer --quiet --rotate "
@@ -55,25 +68,18 @@ class SphinxIndexesShell extends Shell {
             echo "failed.\n";
             return;
         }
+
         # Update the delta discriminant so that future indexing of
         # the delta index will properly complete the newly merged index
         $Sentence = ClassRegistry::init('Sentence');
-        $Sentence->recursive = -1; 
-        $most_recent = $Sentence->find('first', array(
-            'sphinx' => array(
-                'index' => array("${lang}_delta_index"),
-                'sortMode' => array(SPH_SORT_ATTR_DESC => 'modified'),
-            ),
-            'search' => '',
-        ));
-        $max_indexed_date = $most_recent["Sentence"]["modified"];
-        if (!$max_indexed_date) {
+        $timestamp = $this->get_max_indexed_timestamp("${lang}_delta_index");
+        if (!$timestamp) {
             echo "no new sentences found\n";
             return;
         }
         $Sentence->query("
             REPLACE INTO sphinx_delta
-                SELECT languages.id, '$max_indexed_date'
+                SELECT languages.id, FROM_UNIXTIME($timestamp)
                 FROM languages, sentences
                 WHERE languages.code = '$lang'
                 AND sentences.lang = languages.code");
