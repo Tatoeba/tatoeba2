@@ -417,6 +417,7 @@ foreach ($languages as $lang=>$name){
             )\
         ) t 
         sql_attr_timestamp = created
+        sql_attr_timestamp = modified
         sql_attr_uint = user_id".
     /* "correctness" is an 8-bit signed integer whereas Sphinx only allows
      * unsigned intgerers (actually it allows 64-bit signed integers "bigint"s
