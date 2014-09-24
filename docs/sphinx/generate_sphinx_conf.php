@@ -395,7 +395,7 @@ foreach ($languages as $lang=>$name){
         $delta_condition = ($type == 'main') ? '<=' : '>';
         echo "
         sql_query = select distinct * from (\
-        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, s.created as created, s.modified as modified, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
+        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, UNIX_TIMESTAMP(s.created) as created, UNIX_TIMESTAMP(s.modified) as modified, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
             from sentences s\
             left join sentences_translations st on st.sentence_id = s.id\
             left join sentences t on st.translation_id = t.id\
@@ -405,7 +405,7 @@ foreach ($languages as $lang=>$name){
                 where sphinx_delta.lang_id = (select id from languages where code = '$lang')\
             )\
         union \
-        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, s.created as created, s.modified as modified, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
+        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, UNIX_TIMESTAMP(s.created) as created, UNIX_TIMESTAMP(s.modified) as modified, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
             from sentences s\
             left join sentences_translations st on st.sentence_id = s.id\
             left join sentences_translations tt on tt.sentence_id = st.translation_id\
