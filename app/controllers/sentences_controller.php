@@ -512,8 +512,11 @@ class SentencesController extends AppController
         );
 
         $default_sphinx_ranking_formula = '(sum(lcs*user_weight)*1000+bm25)';
+        $index = $from == 'und' ?
+                 array('und_index') :
+                 array($from . '_main_index', $from . '_delta_index');
         $sphinx = array(
-            'index' => array($from . '_index'),
+            'index' => $index,
             'matchMode' => SPH_MATCH_EXTENDED2,
             'sortMode' => array(SPH_SORT_RELEVANCE => ""),
             'rankingMode' => array(SPH_RANK_EXPR => "(ucorrectness=127)*-1000000 + (user_id<>0)*100000 + $default_sphinx_ranking_formula"),

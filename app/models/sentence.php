@@ -405,8 +405,11 @@ class Sentence extends AppModel
      * @return array An array of int
      */
     private function _getRandomsToCached($lang, $numberOfIdWanted) {
+        $index = $lang == 'und' ?
+                 array('und_index') :
+                 array($lang . '_main_index', $lang . '_delta_index');
         $sphinx = array(
-            'index' => array($lang . '_index'),
+            'index' => $index,
             'sortMode' => array(SPH_SORT_EXTENDED => "@random")
         );
 
