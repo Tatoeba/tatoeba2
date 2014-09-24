@@ -369,29 +369,52 @@ index cjk_common_index
 <?
 
 foreach ($languages as $lang=>$name){
-    echo "
 
-    #$name\n
-
-    source ".$lang."_src : default
+    foreach (array('main', 'delta') as $type) {
+        $parent = array(
+            "${lang}_main_src" => 'default',
+            "${lang}_delta_src" => "${lang}_main_src"
+        );
+        $source = ($type == 'main') ? "${lang}_main_src" : "${lang}_delta_src";
+        echo "
+    # $name ($type)
+    source $source : $parent[$source]
     {
+        sql_query_pre = SET NAMES utf8
+        sql_query_pre = SET SESSION query_cache_type=OFF";
 
+        if ($type == 'main') {
+            echo "
+        sql_query_pre = REPLACE INTO sphinx_delta\
+                            SELECT languages.id, MAX(sentences.modified)\
+                            FROM languages, sentences\
+                            WHERE languages.code = '$lang'\
+                            AND sentences.lang = languages.code";
+        }
 
-
-
+        $delta_condition = ($type == 'main') ? '<=' : '>';
+        echo "
         sql_query = select distinct * from (\
-        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, s.created as created, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
+        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, s.created as created, s.modified as modified, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
             from sentences s\
             left join sentences_translations st on st.sentence_id = s.id\
             left join sentences t on st.translation_id = t.id\
             where s.lang_id = (select id from languages where code = '$lang')\
+            and s.modified $delta_condition (\
+                select index_start_date from sphinx_delta\
+                where sphinx_delta.lang_id = (select id from languages where code = '$lang')\
+            )\
         union \
-        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, s.created as created, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
+        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, s.created as created, s.modified as modified, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
             from sentences s\
             left join sentences_translations st on st.sentence_id = s.id\
             left join sentences_translations tt on tt.sentence_id = st.translation_id\
             left join sentences t on tt.translation_id = t.id\
             where s.lang_id =  (select id from languages where code = '$lang')\
+            and s.modified $delta_condition (\
+                select index_start_date from sphinx_delta\
+                where sphinx_delta.lang_id = (select id from languages where code = '$lang')\
+            )\
         ) t 
         sql_attr_timestamp = created
         sql_attr_uint = user_id".
@@ -405,34 +428,38 @@ foreach ($languages as $lang=>$name){
         sql_attr_uint = id2
         sql_attr_multi = uint trans_id from field; SELECT id FROM languages ;
     }
-            ";
-    // generate index for this pair
-    $parent = "common_index" ;
-    if (isset($cjkLanguages[$lang])) {
-        $parent = "cjk_common_index";
-    }
-    echo "
-    index ".$lang."_index : $parent
-    {
-        source = ".$lang."_src
-        path = " . $sourcePath . DIRECTORY_SEPARATOR.$lang;
+";
+        // generate index for this pair
+        $parent = "common_index" ;
+        if (isset($cjkLanguages[$lang])) {
+            $parent = "cjk_common_index";
+        }
 
-        if (isset($languageWithStemmer[$lang])) {
-            echo "
+        $index = ($type == 'main') ?
+            "${lang}_main_index : $parent" :
+            "${lang}_delta_index : ${lang}_main_index";
+        echo "
+    index $index
+    {
+        source = $source
+        path = " . $sourcePath . DIRECTORY_SEPARATOR . $lang . '_' . $type;
+
+        if ($type == 'main') {
+            if (isset($languageWithStemmer[$lang])) {
+                echo "
         morphology              = libstemmer_$lang
-        min_stemming_len        = 4
-    ";
-        }
-        if (isset($languagesWithoutWordBoundaries[$lang])) {
-            echo "
+        min_stemming_len        = 4";
+            }
+            if (isset($languagesWithoutWordBoundaries[$lang])) {
+                echo "
         ngram_len = 1
-        ngram_chars = ".$languagesWithoutWordBoundaries[$lang]."
-    ";
+        ngram_chars = ".$languagesWithoutWordBoundaries[$lang];
+            }
         }
-    echo
-    "
+        echo "
     }
-    ";
+";
+    }
 }// end of first foreach
 
 
@@ -446,7 +473,8 @@ index und_index : common_index
 
     ";
     foreach ($languages as $lang=>$name) {
-        echo "    local           = $lang"."_index\n";
+        echo "    local           = ${lang}_main_index\n";
+        echo "    local           = ${lang}_delta_index\n";
     }
 
     echo"
