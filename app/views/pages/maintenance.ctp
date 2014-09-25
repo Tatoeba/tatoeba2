@@ -1,9 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>Updating Tatoeba...</title>
+    <title>Updating Tatoeba...</title>
     
-	<style type="text/css">
+    <style type="text/css">
     /* Reset */
     html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, blockquote, pre,
     p, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li,
@@ -110,36 +110,36 @@
     body {font-size:13px;background:#E5E3DA;}
     #main {margin: 32px auto;}
     #TatoebaLogo {float:left; margin: 0px 15px;}
-	</style>
+    </style>
 </head>
 <body>
     
-	<div id="main" class="container">
+    <div id="main" class="container">
         
         <img id="TatoebaLogo" alt="Tatoeba Project" src="/img/TatoebaProjectBeta.png" />
         
         <div class="span-12 notice">
-			<h3>
-			Because we love you, we are updating <span class="caps">Tatoeba</span> 
+            <h3>
+            Because we love you, we are updating <span class="caps">Tatoeba</span> 
             to bring you a better user experience. See? We love you huh?
-			</h3>
-		</div>
+            </h3>
+        </div>
         
-		<div class="span-12 information">
-			<h1 class="alt">In the meantime...</h1>
-			<ul>
-				<li>You can take a look at our <a href="http://blog.tatoeba.org">blog</a> to learn more about the project.</li>
-				<li>You can follow us on <a href="http://twitter.com/tatoeba_project">Twitter</a>.</li>
-				<li>You can translate Tatoeba on <a href="https://translations.launchpad.net/tatoeba">Launchpad</a> so that more non-English speakers can use it.</li>
+        <div class="span-12 information">
+            <h1 class="alt">In the meantime...</h1>
+            <ul>
+                <li>You can take a look at our <a href="http://blog.tatoeba.org">blog</a> to learn more about the project.</li>
+                <li>You can follow us on <a href="http://twitter.com/tatoeba_project">Twitter</a>.</li>
+                <li>You can translate Tatoeba on <a href="https://translations.launchpad.net/tatoeba">Launchpad</a> so that more non-English speakers can use it.</li>
                 <li>You can write us fan letters : <a href="mailto:team@tatoeba.org">team@tatoeba.org</a>.</li>
-				<li>Or you can refresh the page, maybe we're done!</li>
-			</ul>
-			<p>
-				Anyway, sorry for the inconvenience. Please come back a bit later and then, let's spread the love in as many languages as we can! ;)
-			</p>
-		</div>
+                <li>Or you can refresh the page, maybe we're done!</li>
+            </ul>
+            <p>
+                Anyway, sorry for the inconvenience. Please come back a bit later and then, let's spread the love in as many languages as we can! ;)
+            </p>
+        </div>
         
-	</div>
+    </div>
     
 </body>
 </html>

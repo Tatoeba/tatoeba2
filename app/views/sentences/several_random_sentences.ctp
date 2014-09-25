@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = 'Tatoeba - ' . __('Random sentences', true);
+$this->set('title_for_layout', 'Tatoeba - ' . __('Random sentences', true));
 
 ?>
 <div id="annexe_content">
@@ -61,8 +61,9 @@ $this->pageTitle = 'Tatoeba - ' . __('Random sentences', true);
             'numberWanted', 
             $numberOfSentencesWanted, 
             $lastNumberChosen,
-            null,
-            false
+            array(
+                'empty'=>false
+            )
         );
         echo '</fieldset>';
 
@@ -73,7 +74,10 @@ $this->pageTitle = 'Tatoeba - ' . __('Random sentences', true);
             'into', 
             $languages->languagesArray(), 
             $selectedLanguage,
-            null,
+            array(
+                'class' => 'language-selector',
+                "empty" => false
+            ),
             false
         );
         echo '</fieldset>';

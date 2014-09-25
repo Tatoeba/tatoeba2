@@ -27,7 +27,7 @@
 
 $query = Sanitize::html($query);
 
-$this->pageTitle = sprintf(__('Sentences with: %s', true), $query);
+$this->set('title_for_layout', sprintf(__('Sentences with: %s', true), $query));
 ?>
 
 <div id="annexe_content">
@@ -35,6 +35,8 @@ $this->pageTitle = sprintf(__('Sentences with: %s', true), $query);
     $attentionPlease->tatoebaNeedsYou();
     
     echo $this->element('search_features');
+    
+    echo $this->element('sentences/correctness_info');
     ?>
 </div>
 
@@ -47,7 +49,8 @@ if (!empty($results)) {
     <div class="module">
         <h2>
         <?php 
-        echo sprintf(__('Search: %s', true), $query);
+        echo __('Search:', true);
+        echo sprintf(' <span style="unicode-bidi: embed">%s</span>', $query);
         echo ' ';
         echo $paginator->counter(
             array(

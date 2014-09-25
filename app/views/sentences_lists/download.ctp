@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */ 
 
-$this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
+$this->set('title_for_layout', 'Tatoeba - ' . __('Download list: ', true) . $listName);
 ?>
 <div id="annexe_content">
     <div class="module">
@@ -78,7 +78,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
     
     <table>
         <tr>
-            <td><?php __('Insert id (optional)'); ?></td>
+            <td><?php __('Id (optional)'); ?></td>
             <td>
             <?php 
             echo $form->checkbox('insertId');
@@ -86,13 +86,13 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
             </td>
             <td>
             <?php 
-            __('Checking this box will add the ids of the sentences in the file.'); 
+            __('If you check this box, the id of each sentence will be written to the output.'); 
             ?>
             </td>
         </tr>
     
         <tr>
-            <td><?php __('Translations (optional)'); ?></td>
+            <td><?php __('Translation (optional)'); ?></td>
             <td>
             <?php
             $langArray = $languages->languagesArrayWithNone();
@@ -100,7 +100,10 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
                 'TranslationsLang',
                 $langArray,
                 null,
-                null,
+                array(
+                    'class' => 'language-selector',
+                    "empty" => false
+                ),
                 false
             );
             ?>
@@ -123,8 +126,9 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
             );
             echo sprintf(
                 __(
-                    'You can also have translations in a specific language '.
-                    '(if they exist). You can then use the file in %s.', true
+                    'If you select a language, the translation of each sentence into that language '.
+                    '(if it exists) will be written to your output. '.
+                    'You can then import the file to produce a deck of flash cards, using the %s program.', true
                 ), 
                 $link
             );
@@ -142,12 +146,6 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
             </td>
             
             <td>
-            <?php 
-                __(
-                    'You can simply click "Download" if you only want the '.
-                    'sentences, and nothing else.'
-                );
-            ?>
             </td>
         </tr>
     </table>
@@ -161,21 +159,20 @@ $this->pageTitle = 'Tatoeba - ' . __('Download list: ', true) . $listName;
     <p>
     <?php
         __(
-            'If you choose all options (id + translations), the structure will '.
-            'be the following:'
+            'Fields will be written out in the following sequence:'
         );
     ?>
     </p>
     <p>
-    <span class="param">sentence_id</span>
-    <span class="symbol">[tab]</span>
+    <span class="param"><em>sentence_id</em></span>
+    <span class="symbol"><em>[tab]</em></span>
     <span class="param">sentence_text</span>
-    <span class="symbol">[tab]</span>
-    <span class="param">translation_text</span>
+    <span class="symbol"><em>[tab]</em></span>
+    <span class="param"><em>translation_text</em></span>
     </p>
     
     <p>
-    <?php __("And if you omit an option, the corresponding field won't appear."); ?>
+    <?php __("Optional fields that are not selected above will not be written to the output."); ?>
     </p>
 
     </div>

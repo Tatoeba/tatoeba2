@@ -65,10 +65,10 @@ class PagesController extends AppController
 
     public $components = array('Permissions');
 
-    
+
     /**
      * Before filter.
-     * 
+     *
      * @return void
      */
     public function beforeFilter()
@@ -91,39 +91,39 @@ class PagesController extends AppController
         if ($this->Auth->user()) {
             $this->redirect(array('action' => 'home'));
         }
-        
+
         /*Some numbers part*/
-        $this->loadModel('Contribution'); 
-        $nbrContributions = $this->Contribution->getTodayContributions(); 
-       
-        
+        $this->loadModel('Contribution');
+        $nbrContributions = $this->Contribution->getTodayContributions();
+
+
         $this->loadModel('User');
         $nbrActiveMembers = $this->User->getNumberOfActiveMembers();
-       
-        $this->set('nbrActiveMembers', $nbrActiveMembers); 
+
+        $this->set('nbrActiveMembers', $nbrActiveMembers);
         $this->set('nbrContributions', $nbrContributions);
-        
+
         // Random sentence part
         $this->_random_sentence();
     }
- 
+
     /**
      * Hackish function create because I haven't succed to create
      * rewriterule with mod_rewrite, in order to redirect for old
-     * /pages/xxxx to new url 
+     * /pages/xxxx to new url
      *
      * @return void
      */
-    
+
     private function _redirect_for_old_url()
     {
-    
+
         // TODO it's an hack
         $urlArray = explode("/", $this->params['url']['url']);
         if (empty($urlArray[1]) || $urlArray[1] != "pages") {
             return;
         }
-        
+
         $action = $urlArray[2];
 
         switch ($action) {
@@ -137,7 +137,7 @@ class PagesController extends AppController
 
             case "download-tatoeba-example-sentences":
                 $action = "downloads";
-                break;            
+                break;
 
             case "terms-of-use":
                 $action = "terms_of_use";
@@ -147,7 +147,7 @@ class PagesController extends AppController
                 $action = "whats_new";
                 break;
         }
-         
+
         $this->redirect(
             array(
                 "controller" => "pages",
@@ -162,43 +162,40 @@ class PagesController extends AppController
      * logged user
      *
      * @return void
-     */ 
+     */
     public function home()
     {
         $this->helpers[] = 'Wall';
         $this->helpers[] = 'Sentences';
-        
+        $this->helpers[] = 'Messages';
+
         $userId = $this->Auth->user('id');
         $groupId = $this->Auth->user('group_id');
         $isLogged = !empty($userId);
+
         /*latest comments part */
         $this->loadModel('SentenceComment');
         $latestComments = $this->SentenceComment->getLatestComments(5);
-
-
         $commentsPermissions = $this->Permissions->getCommentsOptions(
-            $latestComments,
-            $userId,
-            $groupId
+            $latestComments
         );
 
-
         $this->set('sentenceComments', $latestComments);
-        $this->set('commentsPermissions', $commentsPermissions);  
-        
-        
+        $this->set('commentsPermissions', $commentsPermissions);
+
+
         /*latest messages part */
         $this->loadModel('Wall');
         $latestMessages = $this->Wall->getLastMessages(5);
-
-        $this->set('isLogged', $isLogged); 
-        $this->set('latestMessages', $latestMessages); 
         
+        $this->set('isLogged', $isLogged);
+        $this->set('latestMessages', $latestMessages);
+
         // Random sentence part
         $this->_random_sentence();
     }
-    
-    
+
+
     /**
      * Random sentence on homepage.
      *
@@ -218,17 +215,17 @@ class PagesController extends AppController
         $alltranslations = $this->Sentence->getTranslationsOf($randomId);
         $translations = $alltranslations['Translation'];
         $indirectTranslations = $alltranslations['IndirectTranslation'];
-        
+
         $this->set('random', $randomSentence);
         $this->set('translations', $translations);
         $this->set('indirectTranslations', $indirectTranslations);
-        
+
         if (isset($randomSentence['Sentence']['script'])) {
             $this->set('sentenceScript', $randomSentence['Sentence']['script']);
         }
     }
-    
-    
+
+
     /**
      * Contribute page. Non registered users are redirected to "How to contribute".
      *
@@ -250,7 +247,7 @@ class PagesController extends AppController
      *
      *
      */
-   
+
     public function search()
     {
         //TODO should be moved in "search" controller
@@ -273,7 +270,7 @@ class PagesController extends AppController
     public function help()
     {
     }
-    
+
     /**
      *
      *
@@ -296,8 +293,8 @@ class PagesController extends AppController
             301
         );
     }
-    
-    
+
+
     /**
      *
      *
@@ -312,7 +309,7 @@ class PagesController extends AppController
             301
         );
     }
-    
+
     /**
      *
      *
@@ -320,7 +317,7 @@ class PagesController extends AppController
     public function downloads()
     {
     }
-    
+
 
     /**
      *
@@ -331,7 +328,7 @@ class PagesController extends AppController
 
     }
 
-   
+
     /**
      *
      *
@@ -339,17 +336,30 @@ class PagesController extends AppController
     public function whats_new()
     {
     }
-    
-    
+
+
     /**
      *
      *
      */
     public function faq()
     {
+        $this->redirect(
+            "http://wiki.tatoeba.org/articles/show/faq",
+            301
+        );
     }
     
     
+    /**
+     *
+     *
+     */
+    public function donate()
+    {
+    }
+
+
     /**
      *
      *

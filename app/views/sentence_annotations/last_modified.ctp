@@ -39,14 +39,14 @@
 <div id="annexe_content">    
     <?php
     $sentenceAnnotations->displayGoToBox();
-	
+    
     $sentenceAnnotations->displaySearchBox();
     ?>
 </div>
 
 <div id="main_content">
     
-	<div class="module">
+    <div class="module">
     <h2>
     <?php 
     echo $paginator->counter(

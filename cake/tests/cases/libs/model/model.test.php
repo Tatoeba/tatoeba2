@@ -1,39 +1,35 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
- * BaseModelTest file
- *
- * Long description for file
+ * ModelTest file
  *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model
  * @since         CakePHP(tm) v 1.2.0.4206
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 App::import('Core', array('AppModel', 'Model'));
 require_once dirname(__FILE__) . DS . 'models.php';
 
 SimpleTest::ignore('BaseModelTest');
+
 /**
- * BaseModelTest
+ * ModelBaseTest
  *
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model
  */
 class BaseModelTest extends CakeTestCase {
+
 /**
  * autoFixtures property
  *
@@ -41,6 +37,7 @@ class BaseModelTest extends CakeTestCase {
  * @access public
  */
 	var $autoFixtures = false;
+
 /**
  * fixtures property
  *
@@ -68,8 +65,10 @@ class BaseModelTest extends CakeTestCase {
 		'core.counter_cache_user_nonstandard_primary_key',
 		'core.counter_cache_post_nonstandard_primary_key', 'core.uuidportfolio',
 		'core.uuiditems_uuidportfolio', 'core.uuiditems_uuidportfolio_numericid', 'core.fruit',
-		'core.fruits_uuid_tag', 'core.uuid_tag', 'core.product_update_all', 'core.group_update_all'
+		'core.fruits_uuid_tag', 'core.uuid_tag', 'core.product_update_all', 'core.group_update_all',
+		'core.bidding', 'core.bidding_message'
 	);
+
 /**
  * start method
  *
@@ -81,6 +80,7 @@ class BaseModelTest extends CakeTestCase {
 		$this->debug = Configure::read('debug');
 		Configure::write('debug', 2);
 	}
+
 /**
  * end method
  *
@@ -91,6 +91,7 @@ class BaseModelTest extends CakeTestCase {
 		parent::end();
 		Configure::write('debug', $this->debug);
 	}
+
 /**
  * endTest method
  *
@@ -101,4 +102,3 @@ class BaseModelTest extends CakeTestCase {
 		ClassRegistry::flush();
 	}
 }
-?>

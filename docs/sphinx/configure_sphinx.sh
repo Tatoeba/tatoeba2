@@ -28,16 +28,6 @@ script=$( find /var -name 'generate_sphinx_conf.php')
 #Copy and edit configuration options, in preparation for run
 cp $script 'tmp_generate_sphinx_conf.php'
 script=$(pwd)"/tmp_generate_sphinx_conf.php"
-escaped_index_dir=$(echo "$index_dir" | sed -e 's/\//\\\//g')
-escaped_mysql_sock=$(echo "$mysql_sock" | sed -e 's/\//\\\//g')
-escaped_log_dir=$(echo "$log_dir" | sed -e 's/\//\\\//g')
-sed -i "s/INDEXDIR/$escaped_index_dir/g" $script
-sed -i "s/USER/$mysql_user/g" $script
-sed -i "s/PASSWORD/$mysql_pass/g" $script
-sed -i "s/DATABASE/$mysql_db/g" $script
-sed -i "s/SOCKET/$escaped_mysql_sock/g" $script
-sed -i "s/LOGDIR/$escaped_log_dir/g" $script
-
 
 #generate the sphinx.conf file
 php "$script" > "$config_dir""sphinx.conf"

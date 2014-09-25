@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-$this->pageTitle = __('Settings', true);
+$this->set('title_for_layout', __('Settings', true));
 ?>
 <div id="annexe_content">
     <?php
@@ -43,7 +43,6 @@ $this->pageTitle = __('Settings', true);
         echo $form->create(
             null, 
             array(
-                'controller' => 'user',
                 'action' => 'save_settings'
             )
         );
@@ -51,15 +50,26 @@ $this->pageTitle = __('Settings', true);
         
         <div>
             <?php echo $form->checkbox('send_notifications'); ?>
-            <label for="SendNotifications">
+            <label for="UserSendNotifications">
                 <?php __('Email notifications'); ?>
             </label>
         </div>
         
         <div>
             <?php echo $form->checkbox('is_public'); ?>
-            <label for="PublicProfile">
+            <label for="UserIsPublic">
                 <?php __('Set your profile public?'); ?>
+            </label>
+        </div>
+
+        <div>
+            <?php echo $form->checkbox('jquery_chosen'); ?>
+            <label for="UserJqueryChosen">
+                <?php __(
+                    'Advanced language selector (experimental). Note: this '.
+                    'option is saved in your cookies so it will only apply '.
+                    'for your current browser.'
+                ); ?>
             </label>
         </div>
         
@@ -88,16 +98,13 @@ $this->pageTitle = __('Settings', true);
         <h2><?php __('Change email address'); ?></h2>
         <?php
         echo $form->create(
-            'User',
+            null,
             array(
-                'url' => array(
-                    'controller' => 'user',
-                    'action' => 'save_basic'
-                )
+                'action' => 'save_basic'
             )
         );
         echo $form->input(
-            'email',
+            'User.email',
             array(
                 'label' => __('Email address', true)
             )

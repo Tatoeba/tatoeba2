@@ -47,40 +47,22 @@ class TagsSentences extends AppModel
         'Tag',
         );
 
- 
-    public function beforeSave()
-    {
-        $tagId = $this->data['TagsSentences']['tag_id'];
-        $sentenceId = $this->data['TagsSentences']['sentence_id'];
-
-        $result = $this->find(
-            'first',
-            array(
-                'fields' => 'tag_id',
-                'conditions' => array(
-                    "tag_id" => $tagId,
-                    "sentence_id" => $sentenceId),
-                'contain' => array()
-            )
-        );
-        return empty($result);
-    }
 
     public function beforeDelete() {
         $tagId = $this->data['TagsSentences']['tag_id'];
         $sentenceId = $this->data['TagsSentences']['sentence_id'];
-        
+
         $result = $this->find(
             'first',
             array(
                 'fields' => 'user_id',
                 'conditions' => array(
-                    'sentence_id' => $sentenceId, 
+                    'sentence_id' => $sentenceId,
                     'tag_id' => $tagId,
                 ),
-                'contain' => array() 
+                'contain' => array()
             )
-        ); 
+        );
         if (empty($result)) {
             return false;
         }
@@ -94,17 +76,24 @@ class TagsSentences extends AppModel
 
     public function tagSentence($sentenceId, $tagId, $userId)
     {
-        $data = array(
-            "TagsSentences" => array(
-                "user_id" => $userId,
-                "tag_id" => $tagId,
-                "sentence_id" => $sentenceId,
-                "added_time" => date("Y-m-d H:i:s")
-            )
-        );
+        $isTagged = $this->isSentenceTagged($sentenceId, $tagId);
 
-        $this->save($data);
+        if (!$isTagged) {
+            $data = array(
+                "TagsSentences" => array(
+                    "user_id" => $userId,
+                    "tag_id" => $tagId,
+                    "sentence_id" => $sentenceId,
+                    "added_time" => date("Y-m-d H:i:s")
+                )
+            );
 
+            $this->save($data);
+
+            return true;
+        }
+
+        return false;
     }
 
 
@@ -114,7 +103,6 @@ class TagsSentences extends AppModel
             'all',
             array(
                 'fields' => array(
-                    'Tag.internal_name',
                     'Tag.name',
                     'TagsSentences.user_id',
                     'TagsSentences.tag_id',
@@ -141,30 +129,31 @@ class TagsSentences extends AppModel
                 'tag_id' => $tagId,
                 'sentence_id' => $sentenceId
             ),
-            false // we don't want record to be delete in cascade as we only want
+            // we don't want record to be deleted in cascade, as we only want
             // the relation to be broken
+            false 
         );
     }
-    
-    
+
+
     /**
-     * Get sentences with a certain tag that were tagged more than 2 weeks ago.
+     * Get sentences with tag that were tagged more than 2 weeks ago.
      *
      * @param int    $tagId Id of the tag.
      * @param string $lang  Language of the sentences.
      *
      * @return array
      */
-    public function getSentencesForModerators($tagId, $lang)
+    public function getSentencesWithNonNewTag($tagId, $lang)
     {
         $date = date('Y-m-d', strtotime("-2 weeks"));
-        
+
         $sentenceConditions = array();
-        
+
         if (!empty($lang)) {
             $sentenceConditions = array('lang' => $lang);
         }
-        
+
         return $this->find(
             'all',
             array(
@@ -176,7 +165,9 @@ class TagsSentences extends AppModel
                 ),
                 'contain' => array(
                     'Sentence' => array(
-                        'fields' => array('id', 'text', 'lang'),
+                        'fields' => array(
+                            'id', 'text', 'lang', 'correctness'
+                        ),
                         'conditions' => $sentenceConditions
                     )
                 ),
@@ -185,4 +176,28 @@ class TagsSentences extends AppModel
         );
     }
 
+
+    /**
+     * Returns true if a sentence is tagged with given tagId
+     *
+     * @param int $sentenceId Id of the sentence.
+     * @param int $tagId      Id of the tag.
+     *
+     * @return boolean
+     */
+    public function isSentenceTagged($sentenceId, $tagId)
+    {
+        $result = $this->find(
+            'first',
+            array(
+                'fields' => 'tag_id',
+                'conditions' => array(
+                    "tag_id" => $tagId,
+                    "sentence_id" => $sentenceId),
+                'contain' => array()
+            )
+        );
+
+        return !empty($result);
+    }
 }

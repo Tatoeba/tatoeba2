@@ -39,7 +39,7 @@ class SController extends AppController
 {
     public $persistentModel = true;
     public $name = 'S';
-    
+
     public $helpers = array(
         'Sentences',
         'Html',
@@ -48,21 +48,21 @@ class SController extends AppController
     );
 
     public $uses = array('Sentence');
-    
+
     /**
      * Before filter.
-     * 
+     *
      * @return void
      */
     public function beforeFilter()
     {
         parent::beforeFilter();
-        
+
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array('s');
     }
 
-    
+
     /**
      * Show sentence of specified id (or a random one if no id specified).
      *
@@ -73,9 +73,9 @@ class SController extends AppController
     public function s($id = null)
     {
         $id = Sanitize::paranoid($id);
-        
+
         if (is_numeric($id)) {
-        
+
             // And now we retrieve the sentence
             $sentence = $this->Sentence->getSentenceWithId($id);
 
@@ -86,31 +86,31 @@ class SController extends AppController
                 return;
             }
 
-            
+
             $this->set('sentence', $sentence);
-            
+
             // we get translations and split them
             $alltranslations = $this->Sentence->getTranslationsOf($id);
             $translations = $alltranslations['Translation'];
-            
+
             $this->set('translations', $translations);
-            
-            
+
+
         } else {
-            
+
             $max = $this->Sentence->getMaxId();
             $randId = rand(1, $max);
-            
+
             $this->redirect(
                 array(
                     "action"=>"s",
                     $randId
                 )
             );
-            
+
         }
     }
-    
-    
+
+
 }
 ?>

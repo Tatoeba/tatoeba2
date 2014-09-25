@@ -27,7 +27,7 @@
 
 $messageId = $message['Wall']['id'];
 
-$this->pageTitle = sprintf(__("Edit message %s", true), $messageId) ; 
+$this->set('title_for_layout', sprintf(__("Edit message %s", true), $messageId) ); 
 ?>
 <div id="annexe_content">
     <div class="module">
@@ -48,29 +48,8 @@ $this->pageTitle = sprintf(__("Edit message %s", true), $messageId) ;
 </div>
 
 <div id="main_content">
-    
-    <!-- <div class="module" style="display:none"> -->
-        <?php
-        /*
-        // Users are not suppoed to the able to post new message from here,
-        // but we need the form so that the Javascript works properly.
-        // TODO display:none is hackish for accessibility reason 
-        // but i agree it's my own :(
-        if ($isAuthenticated) {
-            echo '<div id="sendMessageForm">'."\n";
-            echo $wall->displayAddMessageToWallForm();
-            echo '</div>'."\n";
-        }
-         * */
-        ?>
-    <!-- </div> -->
-    
-    
     <div class="module" >
-        <h2><?php __("Edit Wall Message"); ?></h2>
-    <?php
-        $wall->displayEditMessageForm($message);
-    ?>
+    <?php $wall->displayEditMessageForm($message); ?>
     </div>
     
 </div>

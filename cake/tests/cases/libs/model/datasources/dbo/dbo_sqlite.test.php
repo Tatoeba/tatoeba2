@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * DboSqliteTest file
  *
@@ -16,12 +15,10 @@
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 1.2.0
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
 App::import('Core', array('Model', 'DataSource', 'DboSource', 'DboSqlite'));
+
 /**
  * DboSqliteTestDb class
  *
@@ -29,6 +26,7 @@ App::import('Core', array('Model', 'DataSource', 'DboSource', 'DboSqlite'));
  * @subpackage    cake.tests.cases.libs.model.datasources
  */
 class DboSqliteTestDb extends DboSqlite {
+
 /**
  * simulated property
  *
@@ -36,6 +34,7 @@ class DboSqliteTestDb extends DboSqlite {
  * @access public
  */
 	var $simulated = array();
+
 /**
  * execute method
  *
@@ -47,6 +46,7 @@ class DboSqliteTestDb extends DboSqlite {
 		$this->simulated[] = $sql;
 		return null;
 	}
+
 /**
  * getLastQuery method
  *
@@ -57,6 +57,7 @@ class DboSqliteTestDb extends DboSqlite {
 		return $this->simulated[count($this->simulated) - 1];
 	}
 }
+
 /**
  * DboSqliteTest class
  *
@@ -64,6 +65,7 @@ class DboSqliteTestDb extends DboSqlite {
  * @subpackage    cake.tests.cases.libs.model.datasources.dbo
  */
 class DboSqliteTest extends CakeTestCase {
+
 /**
  * Do not automatically load fixtures for each test, they will be loaded manually using CakeTestCase::loadFixtures
  *
@@ -71,6 +73,7 @@ class DboSqliteTest extends CakeTestCase {
  * @access public
  */
 	var $autoFixtures = false;
+
 /**
  * Fixtures
  *
@@ -78,6 +81,7 @@ class DboSqliteTest extends CakeTestCase {
  * @access public
  */
 	var $fixtures = array('core.user');
+
 /**
  * Actual DB connection used in testing
  *
@@ -85,6 +89,7 @@ class DboSqliteTest extends CakeTestCase {
  * @access public
  */
 	var $db = null;
+
 /**
  * Simulated DB connection used in testing
  *
@@ -92,6 +97,7 @@ class DboSqliteTest extends CakeTestCase {
  * @access public
  */
 	var $db2 = null;
+
 /**
  * Skip if cannot connect to SQLite
  *
@@ -101,6 +107,7 @@ class DboSqliteTest extends CakeTestCase {
 		$this->_initDb();
 		$this->skipUnless($this->db->config['driver'] == 'sqlite', '%s SQLite connection not available');
 	}
+
 /**
  * Set up test suite database connection
  *
@@ -109,6 +116,7 @@ class DboSqliteTest extends CakeTestCase {
 	function startTest() {
 		$this->_initDb();
 	}
+
 /**
  * Sets up a Dbo class instance for testing
  *
@@ -120,6 +128,7 @@ class DboSqliteTest extends CakeTestCase {
 		$this->db =& ConnectionManager::getDataSource('test_suite');
 		$this->db2 = new DboSqliteTestDb($this->db->config, false);
 	}
+
 /**
  * Sets up a Dbo class instance for testing
  *
@@ -129,6 +138,7 @@ class DboSqliteTest extends CakeTestCase {
 		Configure::write('Cache.disable', false);
 		unset($this->db2);
 	}
+
 /**
  * Tests that SELECT queries from DboSqlite::listSources() are not cached
  *
@@ -143,6 +153,7 @@ class DboSqliteTest extends CakeTestCase {
 		$this->db->query('DROP TABLE foo_test;');
 		$this->assertFalse(in_array('foo_test', $this->db->listSources()));
 	}
+
 /**
  * test Index introspection.
  *
@@ -174,6 +185,7 @@ class DboSqliteTest extends CakeTestCase {
 		$this->assertEqual($expected, $result);
 		$this->db->query('DROP TABLE ' . $name);
 	}
+
 /**
  * Tests that cached table descriptions are saved under the sanitized key name
  *
@@ -203,11 +215,84 @@ class DboSqliteTest extends CakeTestCase {
 		Cache::delete($fileName, '_cake_model_');
 		Configure::write('Cache.disable', true);
 	}
+
+/**
+ * test building columns with SQLite
+ *
+ * @return void
+ */
+	function testBuildColumn() {
+		$data = array(
+			'name' => 'int_field',
+			'type' => 'integer',
+			'null' => false,
+		);
+		$result = $this->db->buildColumn($data);
+		$expected = '"int_field" integer(11) NOT NULL';
+		$this->assertEqual($result, $expected);
+
+		$data = array(
+			'name' => 'name',
+			'type' => 'string',
+			'length' => 20,
+			'null' => false,
+		);
+		$result = $this->db->buildColumn($data);
+		$expected = '"name" varchar(20) NOT NULL';
+		$this->assertEqual($result, $expected);
+
+		$data = array(
+			'name' => 'testName',
+			'type' => 'string',
+			'length' => 20,
+			'default' => null,
+			'null' => true,
+			'collate' => 'NOCASE'
+		);
+		$result = $this->db->buildColumn($data);
+		$expected = '"testName" varchar(20) DEFAULT NULL COLLATE NOCASE';
+		$this->assertEqual($result, $expected);
+
+		$data = array(
+			'name' => 'testName',
+			'type' => 'string',
+			'length' => 20,
+			'default' => 'test-value',
+			'null' => false,
+		);
+		$result = $this->db->buildColumn($data);
+		$expected = '"testName" varchar(20) DEFAULT \'test-value\' NOT NULL';
+		$this->assertEqual($result, $expected);
+
+		$data = array(
+			'name' => 'testName',
+			'type' => 'integer',
+			'length' => 10,
+			'default' => 10,
+			'null' => false,
+		);
+		$result = $this->db->buildColumn($data);
+		$expected = '"testName" integer(10) DEFAULT \'10\' NOT NULL';
+		$this->assertEqual($result, $expected);
+
+		$data = array(
+			'name' => 'testName',
+			'type' => 'integer',
+			'length' => 10,
+			'default' => 10,
+			'null' => false,
+			'collate' => 'BADVALUE'
+		);
+		$result = $this->db->buildColumn($data);
+		$expected = '"testName" integer(10) DEFAULT \'10\' NOT NULL';
+		$this->assertEqual($result, $expected);
+	}
+
 /**
  * test describe() and normal results.
  *
  * @return void
- **/
+ */
 	function testDescribe() {
 		$Model =& new Model(array('name' => 'User', 'ds' => 'test_suite', 'table' => 'users'));
 		$result = $this->db->describe($Model);
@@ -251,7 +336,7 @@ class DboSqliteTest extends CakeTestCase {
  * test that describe does not corrupt UUID primary keys
  *
  * @return void
- **/
+ */
 	function testDescribeWithUuidPrimaryKey() {
 		$tableName = 'uuid_tests';
 		$this->db->query("CREATE TABLE {$tableName} (id VARCHAR(36) PRIMARY KEY, name VARCHAR, created DATETIME, modified DATETIME)");
@@ -268,4 +353,3 @@ class DboSqliteTest extends CakeTestCase {
 		$this->db->query('DROP TABLE ' . $tableName);
 	}
 }
-?>

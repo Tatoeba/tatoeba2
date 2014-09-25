@@ -36,10 +36,10 @@
  */
 
 $userId = $form->value('User.id');
+$username = $form->value('User.username');
 ?>
-<div class="editUser">
-<div class="actions">
-    <ul>
+<div id="annexe_content">
+    <ul class="actions">
         <li class="delete">
         <?php
         echo $html->link(
@@ -56,9 +56,20 @@ $userId = $form->value('User.id');
         <li>
         <?php echo $html->link(__('List Users',true), array('action' => 'index')); ?>
         </li>
+        <li>
+        <?php echo $html->link(
+            __('Profile',true), 
+            array(
+                'controller' => 'user', 
+                'action' => 'profile',
+                $username
+            )
+        ); ?>
+        </li>
     </ul>
 </div>
 
+<div id="main_content">
 <?php 
 // HACK / quick fix
 echo '<form id="UserEditForm" method="post" action="/'.$this->params['lang'].'/users/edit/'.$userId.'">';
@@ -80,6 +91,16 @@ $form->create('User'); // But we still need to call $form->create()
     echo $form->input('email');
     echo $form->input('lang');
     echo $form->input('group_id');
+    echo $form->input(
+        'level', 
+        array(
+            'type' => 'radio',
+            'options' => array(
+                User::MIN_LEVEL => "-1", 
+                User::MAX_LEVEL => "0"
+            )
+        )
+    );
     echo $form->input('send_notifications');
     ?>
     </fieldset>

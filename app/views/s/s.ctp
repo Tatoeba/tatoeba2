@@ -38,7 +38,11 @@ if (isset($sentence)) {
         $translations
     );
     
-    echo '<p><i>Click a sentence to go to tatoeba.org to edit it or leave a comment.</i></p>';
+    ?>
+    <p><i>
+    <?php __('Click a sentence to go to tatoeba.org to translate it or leave a comment.'); ?>
+    </i></p>
+    <?php
     
 } else {
     

@@ -5,6 +5,7 @@ sudo apt-get install -y git cmake g++ libevent-dev libexpat1-dev libgmm++-dev
 
 #Grab the source from the repo
 git clone https://github.com/allan-simon/sinoparserd.git
+sed -i 's/tree_str/TatoTreeStr/' sinoparserd/src/Index.h
 
 #Generate the makefile and build the source
 cd sinoparserd
@@ -84,6 +85,6 @@ sudo cp doc/mandarin.xml /etc/mandarin.xml
 #Add an unprivileged user
 sudo useradd -r sinoparserd
 #Start the daemon
-/etc/init.d/sinoparserd start
+sudo /etc/init.d/sinoparserd start
 #Add the init script to system startup
 sudo update-rc.d sinoparserd defaults

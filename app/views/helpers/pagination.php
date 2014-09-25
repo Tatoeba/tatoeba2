@@ -37,8 +37,8 @@
 class PaginationHelper extends AppHelper
 {
     public $helpers = array('Paginator');
-    
-    
+
+
     /**
      * Display pagination.
      *
@@ -55,7 +55,7 @@ class PaginationHelper extends AppHelper
         if ($pagingInfo['pageCount'] < 2) {
             return;
         }
-        
+
         // -----------------------------------------------------------
         // So that we can pass GET variables into the pagination links.
         // Took it from here:
@@ -67,19 +67,33 @@ class PaginationHelper extends AppHelper
                 continue; // we need to ignore the url field
             }
             // making the passing parameters
-            $getv .= urlencode($key)."=".urlencode($value)."&"; 
+            $getv .= urlencode($key)."=".urlencode($value)."&";
         }
         $getv = substr_replace($getv, "", -1); // remove the last char '&'
-        
+
         $extramParams['?'] = $getv;
         $this->Paginator->options(array('url' => $extramParams));
         // -----------------------------------------------------------
-        
-        
+
+
         $prevNextOptions = array();
         $numbersOptions = array(
             'separator' => '',
-            'modulus' => 4,
+            // Print up to 6/2 = 3 numbered links in rectangles on each side
+            // of the central numbered link, in addition to the
+            // first and prev links on the far left, and the next
+            // and last links on the far right. We should 
+            // use a smaller value for this parameter on mobile
+            // devices if we ever customize the interface to
+            // behave differently based on the display size.
+            // Note that the size of the links depends on the number of
+            // digits in the number. Unless we can adapt the modulus
+            // dynamically based on the number of digits per link, we
+            // need to choose the number conservatively so that it will
+            // fit the screen "real estate" that we have available for
+            // the largest numbers (for example, when we're near the
+            // end of the list of English sentences).
+            'modulus' => 6,
             'class' => 'pageNumber'
         );
         ?>
@@ -90,21 +104,21 @@ class PaginationHelper extends AppHelper
                 $first = '<span class="disabled">&lt;&lt;</span>';
             }
             echo $first;
-            
+
             echo $this->Paginator->prev(
                 '<', $prevNextOptions, null, array('class' => 'disabled')
-            ); 
+            );
             ?>
-            
+
             <span class="numbers">
             <?php echo $this->Paginator->numbers($numbersOptions);  ?>
             </span>
-            
+
             <?php
             echo $this->Paginator->next(
                 '>', $prevNextOptions, null, array('class' => 'disabled')
-            ); 
-            
+            );
+
             $last = $this->Paginator->last(">>");
             if (empty($last)) {
                 $last = '<span class="disabled">&gt;&gt;</span>';

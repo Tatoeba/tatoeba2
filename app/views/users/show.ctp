@@ -21,10 +21,10 @@
 
 $username = $user['User']['username'];
 $userId =  $user['User']['id'];
-$this->pageTitle = sprintf(
+$this->set('title_for_layout', sprintf(
     __('Tatoeba user: %s', true),
     $username
-);
+));
 ?>
 <div id="annexe_content">
 
@@ -143,17 +143,22 @@ $this->pageTitle = sprintf(
 
             echo '</h2>';
 
-            echo '<ol class="comments">';
-            foreach ($user['SentenceComments'] as $comment) {
-                $sentenceInfo = array('id' => $comment['sentence_id']);
-                $comments->displaySentenceComment(
+            echo '<div class="comments">';
+            foreach ($user['SentenceComments'] as $i => $comment) {
+                $menu = $comments->getMenuForComment(
                     $comment,
                     $user['User'],
-                    $sentenceInfo,
-                    true
+                    $commentsPermissions[$i]
+                );
+
+                $messages->displayMessage(
+                    $comment,
+                    $user['User'],
+                    null,
+                    $menu
                 );
             }
-            echo '</ol>';
+            echo '</div>';
         echo '</div>';
     }
     
@@ -176,7 +181,7 @@ $this->pageTitle = sprintf(
 
             echo '</h2>';
 
-            echo '<ol class="wall">';
+            echo '<div class="wall">';
             foreach ($user['Wall'] as $comment) {
                 $wall->createThread(
                     $comment,
@@ -185,7 +190,7 @@ $this->pageTitle = sprintf(
                     null
                 );
             }
-            echo '</ol>';
+            echo '</div>';
         echo '</div>';
     }
     ?>

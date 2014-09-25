@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Short description for campaign_fixture.php
  *
@@ -17,11 +16,9 @@
  * @package       cake
  * @subpackage    cake.tests.fixtures
  * @since         1.2
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 /**
  * CampaignFixture class
  *
@@ -29,6 +26,7 @@
  * @subpackage    cake.tests.fixtures
  */
 class CampaignFixture extends CakeTestFixture {
+
 /**
  * name property
  *
@@ -36,6 +34,7 @@ class CampaignFixture extends CakeTestFixture {
  * @access public
  */
 	var $name = 'Campaign';
+
 /**
  * fields property
  *
@@ -46,6 +45,7 @@ class CampaignFixture extends CakeTestFixture {
 		'id' => array('type' => 'integer', 'key' => 'primary'),
 		'name' => array('type' => 'string', 'length' => 255, 'null' => false),
 	);
+
 /**
  * records property
  *
@@ -58,5 +58,3 @@ class CampaignFixture extends CakeTestFixture {
 		array('name' => 'Queen of Scandinavia')
 	);
 }
-
-?>

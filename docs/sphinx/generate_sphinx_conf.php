@@ -2,27 +2,19 @@
 ## data source definition
 #############################################################################
 
+## Note that we read in some values from app/config/database.php.
+## That file, which is not under source control, is copied from 
+## app/config/database.php.template (which IS under source control)
+## and then manually edited.
+ 
 <?php
-/**
- *
- * You will want to change the values of these variables or use the configure_sphinx.sh to change them:
- *   - sourcePath
- *
- * In the "source default" section:
- *   - sql_user
- *   - sql_pass
- *   - sql_db
- *   - sql_sock
- *
- * In the "searchd" section:
- *   - listen (called "port" in older versions of Sphinx)
- *   - log
- *   - query_log
- *   - pid_file
- *   
- */
+define('__TAT_ROOT__', dirname(dirname(dirname(__FILE__))));
+require_once(__TAT_ROOT__.'/app/config/database.php');
 
-$sourcePath = "INDEXDIR";
+
+$configs = get_class_vars('DATABASE_CONFIG');
+$sourcePath = $configs['sphinx']['indexdir'];
+$sphinxLogDir = $configs['sphinx']['logdir'];
 
 $languages = array(
     'ara' => 'Arabic',
@@ -52,9 +44,9 @@ $languages = array(
     'zsm' => 'Malay',
     'est' => 'Estonian',
     'kat' => 'Georgian',
-    'pol' => 'Polish', 
-    'swh' => 'Swahili', 
-    'lat' => 'Latin', 
+    'pol' => 'Polish',
+    'swh' => 'Swahili',
+    'lat' => 'Latin',
     'wuu' => 'Shanghainese',
     'arz' => 'Egyptian Arabic',
     'bel' => 'Belarusian',
@@ -65,7 +57,7 @@ $languages = array(
     'afr' => 'Afrikaans',
     'fao' => 'Faroese',
     'fry' => 'Frisian',
-    
+
     'bre' => 'Breton',
     'ron' => 'Romanian',
     'uig' => 'Uyghur',
@@ -74,7 +66,7 @@ $languages = array(
     'srp' => 'Serbian',
     'tat' => 'Tatar',
     'yid' => 'Yiddish',
-    
+
     'pes' => 'Persian',
     'nan' => 'Min Nan Chinese',
     'eus' => 'Basque',
@@ -146,7 +138,7 @@ $languages = array(
     'lad' => 'Ladino',
     'pms' => 'Piedmontese',
 
-    'avk' => 'Kotava', 
+    'avk' => 'Kotava',
     'tpw' => 'Old Tupi',
     'tgk' => 'Tajik',
     'mar' => 'Marathi',
@@ -201,7 +193,15 @@ $languages = array(
     'sah' => 'Yakut' , 
     'abk' => 'Abkhaz' , 
     'tet' => 'Tetun' , 
-    'tam' => 'Tamil' , //@lang
+    'tam' => 'Tamil' , 
+    'udm' => 'Udmurt' , 
+    'kum' => 'Kumyk' , 
+    'crh' => 'Crimean Tatar' , 
+    'nya' => 'Chinyanja' , 
+    'liv' => 'Livonian' , 
+    'nav' => 'Navajo' , 
+    'chr' => 'Cherokee' , 
+    'guj' => 'Gujarati' , //@lang
 );
 
 $languageWithStemmer = array(
@@ -216,11 +216,11 @@ $languageWithStemmer = array(
     "tur"=>0,
     "swe"=>0,
     "eng"=>0,
-); 
+);
 
-    
-    
-    
+
+
+
 $cjkLanguages = array(
     "kor" => 0,
     "cmn" => 0,
@@ -230,7 +230,7 @@ $cjkLanguages = array(
     'nan' => 0,
     'ain' => 0,
     'lzh' => 0
-); 
+);
 
 
 ?>
@@ -239,18 +239,17 @@ source default
 {
     type                     = mysql
     sql_host                 = localhost
-    sql_user                 = USER
-    sql_pass                 = PASSWORD
-    sql_db                   = DATABASE
-    sql_sock                 = SOCKET
-
+    sql_user                 = <?php echo $configs['default']['login']; echo "\n"; ?>
+    sql_pass                 = <?php echo $configs['default']['password']; echo "\n"; ?>
+    sql_db                   = <?php echo $configs['default']['database']; echo "\n"; ?>
+    sql_sock                 = <?php echo $configs['sphinx']['socket']; echo "\n"; ?>
     sql_query_pre            = SET NAMES utf8
     sql_query_pre            = SET SESSION query_cache_type=OFF
 
 }
 
 
-index common_index 
+index common_index
 {
     index_exact_words       = 1
     charset_table           = 0..9, a..z, _, A..Z->a..z, U+00C0->a, U+00C1->a, U+00C2->a, U+00C3->a, U+00C4->a, \
@@ -328,14 +327,14 @@ index common_index
                         U+D00..U+D77,\
                         U+E00..U+E5C,\
                         U+492, U+493, U+4E2, U+4E3, U+49A, U+49B, U+4EE, U+4EF, U+4B2, U+4B3, U+4B6, U+4B7
-                        
+
 
     docinfo                 = extern
     charset_type            = utf-8
 
 }
 
-index cjk_common_index 
+index cjk_common_index
 {
 
     ngram_len               = 1
@@ -367,17 +366,17 @@ foreach ($languages as $lang=>$name){
             from sentences s\
             left join sentences_translations st on st.sentence_id = s.id\
             left join sentences t on st.translation_id = t.id\
-            where s.lang_id = (select id from langStats where lang = '$lang')\
+            where s.lang_id = (select id from languages where code = '$lang')\
         union \
         select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id\
             from sentences s\
             left join sentences_translations st on st.sentence_id = s.id\
             left join sentences_translations tt on tt.sentence_id = st.translation_id\
             left join sentences t on tt.translation_id = t.id\
-            where s.lang_id =  (select id from langStats where lang = '$lang')\
+            where s.lang_id =  (select id from languages where code = '$lang')\
         ) t 
         sql_attr_uint = id2
-        sql_attr_multi = uint trans_id from field; SELECT id FROM langStats ;
+        sql_attr_multi = uint trans_id from field; SELECT id FROM languages ;
     }
             ";
     // generate index for this pair
@@ -388,7 +387,7 @@ foreach ($languages as $lang=>$name){
     echo "
     index ".$lang."_index : $parent
     {
-        source = ".$lang."_src 
+        source = ".$lang."_src
         path = " . $sourcePath . DIRECTORY_SEPARATOR.$lang;
 
         if (isset($languageWithStemmer[$lang])) {
@@ -397,11 +396,11 @@ foreach ($languages as $lang=>$name){
         min_stemming_len        = 4
     ";
         }
-    echo 
+    echo
     "
     }
     ";
-}// end of first foreach 
+}// end of first foreach
 
 
 
@@ -416,7 +415,7 @@ index und_index : common_index
     foreach ($languages as $lang=>$name) {
         echo "    local           = $lang"."_index\n";
     }
-    
+
     echo"
 }
 ";
@@ -429,13 +428,13 @@ indexer
 
 searchd
 {
-    listen                  = 9312
-    log                     = LOGDIR/searchd.log
-    query_log              = LOGDIR/query.log
+    port                    = 9312
+    log                     = <?php echo $sphinxLogDir . DIRECTORY_SEPARATOR . "searchd.log\n"; ?>
+    query_log               = <?php echo $sphinxLogDir . DIRECTORY_SEPARATOR . "query.log\n"; ?>
     read_timeout            = 5
     max_children            = 30
 
-    pid_file                = LOGDIR/searchd.pid
+    pid_file                = <?php echo $configs['sphinx']['pidfile'] . "\n"; ?>
     max_matches             = 1000
     seamless_rotate         = 1
     preopen_indexes         = 1

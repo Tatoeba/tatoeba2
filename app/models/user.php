@@ -31,7 +31,7 @@
  * @category Users
  * @package  Models
  * @author   BEN YAALA Salem <salem.benyaala@gmail.com>
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com> 
+ * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
@@ -49,12 +49,17 @@ class User extends AppModel
      * @var array
      */
     public $actsAs = array(
-        'Acl' => array('requester'),
+        'Acl' => array('type' => 'requester'),
         'ExtendAssociations',
         'Containable'
     );
 
+    // contributor vs. advanced contributor vs. corpus maintainer vs. admin
     const LOWEST_TRUST_GROUP_ID = 4;
+
+    // trustworthy vs. untrustworthy 
+    const MIN_LEVEL = -1; // trustworthy
+    const MAX_LEVEL = 0; // untrustworthy (submits bad or copyrighted sentences)
 
     /**
      *
@@ -76,7 +81,7 @@ class User extends AppModel
         'level' => array('numeric'),
         'group_id' => array('numeric')
     );
-    
+
     /**
      *
      * @var array
@@ -126,18 +131,18 @@ class User extends AppModel
      */
     public function parentNode()
     {
-
         if (!$this->id && empty($this->data)) {
             return null;
         }
-        $data = $this->data;
-        if (empty($this->data)) {
-            $data = $this->read();
+        if (isset($this->data['User']['group_id'])) {
+            $groupId = $this->data['User']['group_id'];
+        } else {
+            $groupId = $this->field('group_id');
         }
-        if (!$data['User']['group_id']) {
+        if (!$groupId) {
             return null;
         } else {
-            return array('Group' => array('id' => $data['User']['group_id']));
+            return array('Group' => array('id' => $groupId));
         }
     }
 
@@ -176,7 +181,7 @@ class User extends AppModel
      * get all the information needed to generate the user's profile
      *
      * @param integer $userId User Identifiant
-     * 
+     *
      * @return array
      */
     public function getInformationOfCurrentUser($userId)
@@ -192,7 +197,7 @@ class User extends AppModel
                 )
             )
         );
-        
+
         return $this->findById($userId);
     }
 
@@ -200,7 +205,7 @@ class User extends AppModel
      * get all the information needed to generate a user profile
      *
      * @param string $userName User's screen name
-     * 
+     *
      * @return array
      */
     public function getInformationOfUser($userName)
@@ -221,7 +226,8 @@ class User extends AppModel
                     'birthday',
                     'is_public',
                     'group_id',
-                    'lang'
+                    'lang',
+                    'level'
                 ),
                 'contain' => array(
                     'Country' => array('fields' => array('name'))
@@ -229,13 +235,13 @@ class User extends AppModel
             )
         );
     }
-    
-    
+
+
     /**
      * Get options.
      *
      * @param int $userId Id of the user.
-     * 
+     *
      * @return array
      */
     public function getSettings($userId)
@@ -254,13 +260,13 @@ class User extends AppModel
             )
         );
     }
-    
+
 
     /**
      * get all the information about a user needed by the Wall
      *
      * @param integer $userId User Indentifiant
-     * 
+     *
      * @return array
      */
     public function getInfoWallUser($userId)
@@ -276,28 +282,28 @@ class User extends AppModel
                 ),
                 'contain' => array()
             )
-        ); 
-        
-        return $result ; 
+        );
+
+        return $result ;
     }
-    
+
     /**
-     * Get user by id.
+     * Get user data + sentences, contributions, favorites, etc.
      *
      * @param int|null $id Id of the user. If null we take a random one.
      *
      * @return void
      */
-    public function getUserById($id = null)
+    public function getUserByIdWithExtraInfo($id = null)
     {
         //TODO: HACK SPOTTED user of order rand
         if ($id == null) {
-            // TODO add containable here 
+            // TODO add containable here
             $user = $this->find(
-                'first', 
+                'first',
                 array(
-                    'conditions' => 'User.group_id < 5', 
-                    'order' => 'RAND()', 
+                    'conditions' => 'User.group_id < 5',
+                    'order' => 'RAND()',
                     'limit' => 1,
                 )
             );
@@ -370,6 +376,28 @@ class User extends AppModel
         return $user;
     }
     
+    
+    /**
+     * Retrieves only the fields from users table, no joins.
+     *
+     * @param int $id Id of the user.
+     *
+     * @return array User data.
+     */
+    public function getUserById($id)
+    {
+        $user = $this->find(
+            'first',
+            array(
+                'conditions' => array('User.id' => $id),
+                'contain' => array()
+            )
+        );
+        
+        return $user;
+    }
+    
+    
     /**
      * Return id of a user from the username.
      *
@@ -389,8 +417,8 @@ class User extends AppModel
         );
         return $user['User']['id'];
     }
-    
-    
+
+
     /**
      * Return name of a user from the user's id.
      *
@@ -410,8 +438,8 @@ class User extends AppModel
         );
         return $user['User']['username'];
     }
-    
-    
+
+
     /**
      * Return array of (id => username).
      *
@@ -429,17 +457,17 @@ class User extends AppModel
                 'fields' => array('id', 'username')
             )
         );
-        
+
         $users = array();
         foreach($results as $result) {
             $id = $result['User']['id'];
             $username = $result['User']['username'];
             $users[$id] = $username;
         }
-        
+
         return $users;
     }
-    
+
     /**
      * Return id of a user from the email.
      *
@@ -459,7 +487,7 @@ class User extends AppModel
         );
         return $user['User']['id'];
     }
-    
+
     /**
      * Return an email from a user id.
      *
@@ -479,7 +507,7 @@ class User extends AppModel
         );
         return $user['User']['email'];
     }
-    
+
     /**
      * Check if (new) email for user is unique
      *
@@ -490,7 +518,7 @@ class User extends AppModel
     public function isEmailUnique($email, $userId)
     {
         $result =  $this->find(
-            'first', 
+            'first',
             array(
                 'conditions' => array(
                     'email' => $email,
@@ -524,13 +552,13 @@ class User extends AppModel
         );
         return $user['User']['password'];
     }
-    
+
     /**
      * Return number of members who have validated their registration.
      *
      * @return int
      */
-     
+
     public function getNumberOfActiveMembers()
     {
         return $this->find(
@@ -540,12 +568,32 @@ class User extends AppModel
                     'group_id <' => 5
                 ),
                 'contain' => array()
-            ) 
+            )
         );
     }  
+    
+    
+    /**
+     * Return the level of the user of given id.
+     *
+     * @param int $userId Id of the user.
+     *
+     * @return int
+     */
+    public function getLevelOfUser($userId)
+    {
+        $result = $this->find(
+            'first',
+            array(
+                'conditions' => array('User.id' => $userId),
+                'contain' => array(),
+                'fields' => 'User.level'
+            )
+        );
+        return $result['User']['level'];
+    }
 
 }
-
 
 
 ?>

@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */
  
-$this->pageTitle = "Tatoeba - " . __("Latest contributions", true); 
+$this->set('title_for_layout', "Tatoeba - " . __("Latest contributions", true)); 
 ?>
 
 <div id="annexe_content">
@@ -53,9 +53,8 @@ $this->pageTitle = "Tatoeba - " . __("Latest contributions", true);
 <div id="main_content">
     <div class="module">
         <h2><?php __('Contributions'); ?></h2>
-        <table id="logs">
         <?php
-        $pagination->display();
+        $pagination->display(array($langFilter));
         ?>
 
         <table id="logs">
@@ -92,8 +91,7 @@ $this->pageTitle = "Tatoeba - " . __("Latest contributions", true);
         </table>
 
         <?php
-        $pagination->display();
+        $pagination->display(array($langFilter));
         ?>
-        </table>
     </div>
 </div>

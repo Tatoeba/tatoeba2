@@ -39,15 +39,8 @@ class PrivateMessagesController extends AppController
 {
     public $name = 'PrivateMessages';
 
-    public $helpers = array(
-        'Comments',
-        'Html', 
-        'Date',
-        'PrivateMessages',
-        'Wall' // TODO Move the displayMessagePosterImage() method of
-               // WallHelper into a more general helper
-    );
-    
+    public $helpers = array('Html', 'Date');
+
 
     /**
      * We don't use index at all : by default, we just display the
@@ -73,11 +66,12 @@ class PrivateMessagesController extends AppController
     public function folder($folder = 'Inbox', $status = 'all')
     {
         $this->helpers[] = 'Pagination';
-        
+        $this->helpers[] = 'Messages';
+
         $folder = Sanitize::paranoid($folder);
-        
+
         $currentUserId = $this->Auth->user('id');
-        
+
         $conditions = array('folder' => $folder);
         if ($folder == 'Inbox') {
             $conditions['recpt'] = $currentUserId;
@@ -86,13 +80,13 @@ class PrivateMessagesController extends AppController
         } else if ($folder == 'Trash') {
             $conditions['user_id'] = $currentUserId;
         }
-        
+
         if ($status == 'read') {
             $conditions['isnonread'] = 0;
         } else if ($status == 'unread') {
             $conditions['isnonread'] = 1;
         }
-        
+
         $this->paginate = array(
             'PrivateMessage' => array(
                 'conditions' => $conditions,
@@ -116,9 +110,9 @@ class PrivateMessagesController extends AppController
                 'limit' => 20
             )
         );
-        
+
         $content = $this->paginate();
-        
+
         $this->set('folder', $folder);
         $this->set('content', $content);
     }
@@ -134,9 +128,9 @@ class PrivateMessagesController extends AppController
             && !empty($this->data['PrivateMessage']['content'])
         ) {
             $currentUserId = $this->Auth->user('id');
-            
+
             //Remember new users are not allowed to send more than 5 messages per day
-            $messagesTodayOfUser 
+            $messagesTodayOfUser
                 = $this->PrivateMessage->messagesTodayOfUser($currentUserId);
             if (CurrentUser::isNewUser() && $messagesTodayOfUser >= 5) {
                 $this->Session->setFlash(
@@ -151,14 +145,14 @@ class PrivateMessagesController extends AppController
                 );
                 $this->redirect(array('action' => 'folder', 'Sent'));
             }
-            
+
             $this->data['PrivateMessage']['sender'] = $currentUserId;
-            
+
             $recptArray = explode(',', $this->data['PrivateMessage']['recpt']);
-            
+
             // loop to send msg to different dest.
             foreach ($recptArray as $recpt) {
-            
+
                 $recpt = trim($recpt);
                 $recptId = $this->PrivateMessage->User->getIdFromUsername($recpt);
 
@@ -216,16 +210,18 @@ class PrivateMessagesController extends AppController
      */
     public function show($messageId)
     {
+        $this->helpers[] = 'Messages';
+        $this->helpers[] = 'PrivateMessages';
 
         $messageId = Sanitize::paranoid($messageId);
-        /**
-         * The following lines of code check if a message is read, or not
-         * and change is read value automatically.
-         */
-        $message = $this->PrivateMessage->getMessageWithId($messageId);
-        $recipientId = $message['PrivateMessage']['recpt'];
-        $senderId = $message['PrivateMessage']['sender'];
+        $pm = $this->PrivateMessage->getMessageWithId($messageId);
+
+        // Redirection to Inbox if the user tries to view a messages that
+        // is not theirs.
+        $recipientId = $pm['PrivateMessage']['recpt'];
+        $senderId = $pm['PrivateMessage']['sender'];
         $currentUserId = CurrentUser::get('id');
+
         if ($recipientId != $currentUserId && $senderId != $currentUserId) {
             $this->redirect(
                 array(
@@ -234,14 +230,84 @@ class PrivateMessagesController extends AppController
                 )
             );
         }
-        
-        if ($message['PrivateMessage']['isnonread'] == 1) {
-            $message['PrivateMessage']['isnonread'] = 0;
-            $this->PrivateMessage->save($message);
+
+        // Setting message as read
+        if ($pm['PrivateMessage']['isnonread'] == 1) {
+            $pm['PrivateMessage']['isnonread'] = 0;
+            $this->PrivateMessage->save($pm);
         }
 
-        $this->set('message', $message);
 
+        $folder =  $pm['PrivateMessage']['folder'];
+        $title = $pm['PrivateMessage']['title'];
+        $message = $this->_getMessageFromPm($pm['PrivateMessage']);
+        $author = $pm['Sender'];
+        $messageMenu = $this->_getMenu($folder, $messageId);
+
+        $this->set('messageMenu', $messageMenu);
+        $this->set('title', $title);
+        $this->set('author', $author);
+        $this->set('message', $message);
+        $this->set('folder', $folder);
+    }
+
+
+    /**
+     *
+     */
+    private function _getMessageFromPm($privateMessage)
+    {
+        $message['created'] = $privateMessage['date'];
+        $message['text'] = $privateMessage['content'];
+
+        return $message;
+    }
+
+
+    /**
+     *
+     *
+     */
+    private function _getMenu($folder, $messageId)
+    {
+        $menu = array();
+
+        if ($folder == 'Trash') {
+            $menu[] = array(
+                'text' => __('restore', true),
+                'url' => array(
+                    'action' => 'restore',
+                    $messageId
+                )
+            );
+        } else {
+            $menu[] = array(
+                'text' => __('delete', true), 
+                'url' => array(
+                    'action' => 'delete', 
+                    $folder, 
+                    $messageId
+                )
+            );
+        }
+        
+        if ($folder == 'Inbox') {
+            $menu[] = array(
+                'text' => __('mark as unread', true), 
+                'url' => array(
+                    'action' => 'mark',
+                    'Inbox',
+                    $messageId
+                )
+            );
+                        
+            $menu[] = array(
+                'text' => __('reply', true), 
+                'url' => '#reply'
+            );
+        }
+
+        return $menu;
     }
 
     /**
@@ -257,12 +323,12 @@ class PrivateMessagesController extends AppController
     {
         $messageId = Sanitize::paranoid($messageId);
         $message = $this->PrivateMessage->findById($messageId);
-        
+
         if ($message['PrivateMessage']['user_id'] == CurrentUser::get('id')) {
             $message['PrivateMessage']['folder'] = 'Trash';
             $this->PrivateMessage->save($message);
         }
-        
+
         $this->redirect(array('action' => 'folder', $folderId));
     }
 
@@ -277,7 +343,7 @@ class PrivateMessagesController extends AppController
     {
 
         $messageId = Sanitize::paranoid($messageId);
-        
+
         $message = $this->PrivateMessage->findById($messageId);
 
         if ($message['PrivateMessage']['recpt'] == $this->Auth->user('id')) {
@@ -303,7 +369,7 @@ class PrivateMessagesController extends AppController
     public function mark($folderId, $messageId)
     {
         $messageId = Sanitize:: paranoid($messageId);
-        
+
         $message = $this->PrivateMessage->findById($messageId);
         switch ($message['PrivateMessage']['isnonread']) {
             case 1 : $message['PrivateMessage']['isnonread'] = 0;
@@ -319,16 +385,18 @@ class PrivateMessagesController extends AppController
      * Create a new message
      *
      * @param string $recipients The login, or the string containing various login
-     *                           separated by a comma, to which we have to send the 
+     *                           separated by a comma, to which we have to send the
      *                           message.
      *
      * @return void
      */
     public function write($recipients = null)
     {
+        $this->helpers[] = "PrivateMessages";
+        
         $userId = CurrentUser::get('id');
         $isNewUser = CurrentUser::isNewUser();
-        
+
         //For new users, check how many messages they have sent in the last 24hrs
         $canSend = true;
         $messagesToday = 0;
@@ -337,13 +405,13 @@ class PrivateMessagesController extends AppController
             $canSend = $messagesToday < 5;
         }
         $this->set('messagesToday', $messagesToday);
-        $this->set('canSend', $canSend); 
+        $this->set('canSend', $canSend);
         $this->set('isNewUser', $isNewUser);
-        
+
         if ($recipients == null) {
             $recipients = '';
         }
-        
+
         $this->set('recipients', $recipients);
     }
 

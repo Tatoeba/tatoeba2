@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */ 
 
-$this->pageTitle = 'Tatoeba - ' . __('Register', true);
+$this->set('title_for_layout', 'Tatoeba - ' . __('Register', true));
 
 echo $javascript->link(JS_PATH . 'users.check_registration.js', false);
 

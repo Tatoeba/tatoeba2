@@ -20,22 +20,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<?php echo $html->charset(); ?>
-	<title>
-		<?php echo $title_for_layout; ?>
-	</title>
-	<?php
-		echo $html->meta('icon');
-		echo $html->css('tatoeba.newui');
-		echo $html->css('layouts/lists');
-		echo $scripts_for_layout;
-	?>
+    <?php echo $html->charset(); ?>
+    <title>
+        <?php echo $title_for_layout; ?>
+    </title>
+    <?php
+        echo $html->meta('icon');
+        echo $html->css('tatoeba.newui');
+        echo $html->css('layouts/lists');
+        echo $scripts_for_layout;
+    ?>
 </head>
 <body>
-	<?php echo $this->element('google_analytics'); ?>
+    <?php echo $this->element('google_analytics', array('cache' => true)); ?>
     <div id="sentencesListContainer">
-	<?php echo $content_for_layout; ?>
-	<?php echo $cakeDebug ?>
-	</div>
+    <?php echo $content_for_layout; ?>
+    <?php echo $cakeDebug ?>
+    </div>
 </body>
 </html>

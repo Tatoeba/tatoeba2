@@ -34,7 +34,7 @@ $belongsToUser = $session->read('Auth.User.id') == $listOwnerId;
 $canUserEdit = $isAuthenticated && ($isListPublic || $belongsToUser);
 
  
-$this->pageTitle = 'Tatoeba - ' . $listName;
+$this->set('title_for_layout', 'Tatoeba - ' . $listName);
 ?>
 
 <div id="annexe_content">
@@ -64,7 +64,7 @@ $this->pageTitle = 'Tatoeba - ' . $listName;
     if ($canDownload) {
         $lists->displayDownloadLink($listId);
     } else {
-        __("The download feature has been disabled for this list because it has too many sentences.");
+        echo $downloadMessage;
     }
     ?>
     </div>

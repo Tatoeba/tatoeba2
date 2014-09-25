@@ -1,37 +1,46 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * MemcacheEngineTest file
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.cache
  * @since         CakePHP(tm) v 1.2.0.5434
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 if (!class_exists('Cache')) {
 	require LIBS . 'cache.php';
 }
+App::import('Core', 'cache/Memcache');
+
+
+class TestMemcacheEngine extends MemcacheEngine {
 /**
- * MemcacheEngineTest class
+ * public accessor to _parseServerString
  *
- * @package       cake
- * @subpackage    cake.tests.cases.libs.cache
+ * @param string $server
+ * @return array
  */
+	function parseServerString($server) {
+		return $this->_parseServerString($server);
+	}
+
+	function setMemcache(&$memcache) {
+		$this->__Memcache = $memcache;
+	}
+}
+
+Mock::generate('Memcache', 'MemcacheMockMemcache');
+
 /**
  * MemcacheEngineTest class
  *
@@ -39,6 +48,7 @@ if (!class_exists('Cache')) {
  * @subpackage    cake.tests.cases.libs.cache
  */
 class MemcacheEngineTest extends CakeTestCase {
+
 /**
  * skip method
  *
@@ -47,11 +57,12 @@ class MemcacheEngineTest extends CakeTestCase {
  */
 	function skip() {
 		$skip = true;
-		if (Cache::engine('Memcache')) {
+		if (class_exists('Memcache')) {
 			$skip = false;
 		}
-		$this->skipIf($skip, '%s Memcache is not installed or configured properly');
+		$this->skipIf($skip, '%s Memcache is not installed or configured properly.');
 	}
+
 /**
  * setUp method
  *
@@ -67,6 +78,7 @@ class MemcacheEngineTest extends CakeTestCase {
 			'duration' => 3600
 		));
 	}
+
 /**
  * tearDown method
  *
@@ -75,8 +87,10 @@ class MemcacheEngineTest extends CakeTestCase {
  */
 	function tearDown() {
 		Configure::write('Cache.disable', $this->_cacheDisable);
+		Cache::drop('memcache');
 		Cache::config('default');
 	}
+
 /**
  * testSettings method
  *
@@ -92,10 +106,12 @@ class MemcacheEngineTest extends CakeTestCase {
 			'probability' => 100,
 			'servers' => array('127.0.0.1'),
 			'compress' => false,
-			'engine' => 'Memcache'
+			'engine' => 'Memcache',
+			'persistent' => true,
 		);
 		$this->assertEqual($settings, $expecting);
 	}
+
 /**
  * testSettings method
  *
@@ -104,14 +120,12 @@ class MemcacheEngineTest extends CakeTestCase {
  */
 	function testMultipleServers() {
 		$servers = array('127.0.0.1:11211', '127.0.0.1:11222');
-
-		$Cache =& Cache::getInstance();
-		$MemCache =& $Cache->_Engine['Memcache'];
-
 		$available = true;
+		$Memcache =& new Memcache();
+
 		foreach($servers as $server) {
 			list($host, $port) = explode(':', $server);
-			if (!@$MemCache->__Memcache->connect($host, $port)) {
+			if (!@$Memcache->connect($host, $port)) {
 				$available = false;
 			}
 		}
@@ -119,14 +133,15 @@ class MemcacheEngineTest extends CakeTestCase {
 		if ($this->skipIf(!$available, '%s Need memcache servers at ' . implode(', ', $servers) . ' to run this test')) {
 			return;
 		}
+		$Memcache =& new MemcacheEngine();
+		$Memcache->init(array('engine' => 'Memcache', 'servers' => $servers));
 
-		unset($MemCache->__Memcache);
-		$MemCache->init(array('engine' => 'Memcache', 'servers' => $servers));
-
-		$servers = array_keys($MemCache->__Memcache->getExtendedStats());
-		$settings = Cache::settings();
+		$servers = array_keys($Memcache->__Memcache->getExtendedStats());
+		$settings = $Memcache->settings();
 		$this->assertEqual($servers, $settings['servers']);
+		Cache::drop('dual_server');
 	}
+
 /**
  * testConnect method
  *
@@ -134,10 +149,55 @@ class MemcacheEngineTest extends CakeTestCase {
  * @return void
  */
 	function testConnect() {
-		$Cache =& Cache::getInstance();
-		$result = $Cache->_Engine['Memcache']->connect('127.0.0.1');
+		$Memcache =& new MemcacheEngine();
+		$Memcache->init(Cache::settings('memcache'));
+		$result = $Memcache->connect('127.0.0.1');
 		$this->assertTrue($result);
 	}
+
+/**
+ * test connecting to an ipv6 server.
+ *
+ * @return void
+ */
+	function testConnectIpv6() {
+		$Memcache =& new MemcacheEngine();
+		$result = $Memcache->init(array(
+			'prefix' => 'cake_',
+			'duration' => 200,
+			'engine' => 'Memcache',
+			'servers' => array(
+				'[::1]:11211'
+			)
+		));
+		$this->assertTrue($result);
+	}
+
+/**
+ * test non latin domains.
+ *
+ * @return void
+ */
+	function testParseServerStringNonLatin() {
+		$Memcache =& new TestMemcacheEngine();
+		$result = $Memcache->parseServerString('schülervz.net:13211');
+		$this->assertEqual($result, array('schülervz.net', '13211'));
+
+		$result = $Memcache->parseServerString('sülül:1111');
+		$this->assertEqual($result, array('sülül', '1111'));
+	}
+
+/**
+ * test unix sockets.
+ *
+ * @return void
+ */
+    function testParseServerStringUnix() {
+        $Memcache =& new TestMemcacheEngine();
+        $result = $Memcache->parseServerString('unix:///path/to/memcached.sock');
+        $this->assertEqual($result, array('unix:///path/to/memcached.sock', 0));
+    }
+
 /**
  * testReadAndWriteCache method
  *
@@ -161,6 +221,7 @@ class MemcacheEngineTest extends CakeTestCase {
 
 		Cache::delete('test');
 	}
+
 /**
  * testExpiry method
  *
@@ -191,13 +252,13 @@ class MemcacheEngineTest extends CakeTestCase {
 		$result = Cache::read('other_test');
 		$this->assertFalse($result);
 
-		Cache::engine('Memcache', array('duration' => '+1 second'));
+		Cache::config('memcache', array('duration' => '+1 second'));
 		sleep(2);
 
 		$result = Cache::read('other_test');
 		$this->assertFalse($result);
 
-		Cache::engine('Memcache', array('duration' => '+31 day'));
+		Cache::config('memcache', array('duration' => '+29 days'));
 		$data = 'this is a test of the emergency broadcasting system';
 		$result = Cache::write('long_expiry_test', $data);
 		$this->assertTrue($result);
@@ -207,11 +268,9 @@ class MemcacheEngineTest extends CakeTestCase {
 		$expecting = $data;
 		$this->assertEqual($result, $expecting);
 
-		$result = Cache::read('long_expiry_test');
-		$this->assertTrue($result);
-
-		Cache::engine('Memcache', array('duration' => 3600));
+		Cache::config('memcache', array('duration' => 3600));
 	}
+
 /**
  * testDeleteCache method
  *
@@ -225,6 +284,52 @@ class MemcacheEngineTest extends CakeTestCase {
 
 		$result = Cache::delete('delete_test');
 		$this->assertTrue($result);
+	}
+
+/**
+ * testDecrement method
+ *
+ * @access public
+ * @return void
+ */
+	function testDecrement() {
+		$result = Cache::write('test_decrement', 5);
+		$this->assertTrue($result);
+
+		$result = Cache::decrement('test_decrement');
+		$this->assertEqual(4, $result);
+
+		$result = Cache::read('test_decrement');
+		$this->assertEqual(4, $result);
+
+		$result = Cache::decrement('test_decrement', 2);
+		$this->assertEqual(2, $result);
+
+		$result = Cache::read('test_decrement');
+		$this->assertEqual(2, $result);
+	}
+
+/**
+ * testIncrement method
+ *
+ * @access public
+ * @return void
+ */
+	function testIncrement() {
+		$result = Cache::write('test_increment', 5);
+		$this->assertTrue($result);
+
+		$result = Cache::increment('test_increment');
+		$this->assertEqual(6, $result);
+
+		$result = Cache::read('test_increment');
+		$this->assertEqual(6, $result);
+
+		$result = Cache::increment('test_increment', 2);
+		$this->assertEqual(8, $result);
+
+		$result = Cache::read('test_increment');
+		$this->assertEqual(8, $result);
 	}
 
 /**
@@ -262,5 +367,35 @@ class MemcacheEngineTest extends CakeTestCase {
 		Cache::delete('short_duration_test', 'short_memcache');
 	}
 
+/**
+ * test that a 0 duration can succesfully write.
+ *
+ * @return void
+ */
+	function testZeroDuration() {
+		Cache::config('memcache', array('duration' => 0));
+		$result = Cache::write('test_key', 'written!', 'memcache');
+
+		$this->assertTrue($result, 'Could not write with duration 0');
+		$result = Cache::read('test_key', 'memcache');
+		$this->assertEqual($result, 'written!');
+	}
+
+/**
+ * test that durations greater than 30 days never expire
+ *
+ * @return void
+ */
+	function testLongDurationEqualToZero() {
+		$memcache =& new TestMemcacheEngine();
+		$memcache->settings['compress'] = false;
+
+		$mock = new MemcacheMockMemcache();
+		$memcache->setMemcache($mock);
+		$mock->expectAt(0, 'set', array('key', 'value', false, 0));
+
+		$value = 'value';
+		$memcache->write('key', $value, 50 * DAY);
+	}
+
 }
-?>

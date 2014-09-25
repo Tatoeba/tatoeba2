@@ -30,8 +30,6 @@ view to add a new message on the wall
 */
 
 echo '<div>';
-
-echo "prouttttt"; 
 echo '</div>';
 
 ?>

@@ -28,7 +28,7 @@ $username = Sanitize::paranoid($username, array("_"));
 
 if ($results == null) {
     $title = sprintf(
-        __("This user does doesn't exist: %s", true),
+        __("This user doesn't exist: %s", true),
         $username
     );
 } else if (!empty($lang)) {
@@ -43,7 +43,7 @@ if ($results == null) {
         $username
     );
 }
-$this->pageTitle = $title;
+$this->set('title_for_layout', $title);
 ?>
 
 <div id="annexe_content">    

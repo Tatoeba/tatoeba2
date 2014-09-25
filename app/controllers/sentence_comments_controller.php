@@ -43,7 +43,7 @@ class SentenceCommentsController extends AppController
         "SentenceComment",
         "Sentence",
         "User"
-    );    
+    );
     public $helpers = array(
         'Comments',
         'Sentences',
@@ -55,7 +55,7 @@ class SentenceCommentsController extends AppController
         'Pagination',
         'Tags'
     );
-    public $components = array ('GoogleLanguageApi', 'Permissions', 'Mailer');
+    public $components = array ('LanguageDetection', 'Permissions', 'Mailer');
     
     public $paginate = array(
         'SentenceComment' => array(
@@ -78,65 +78,62 @@ class SentenceCommentsController extends AppController
                 ),
                 'Sentence' => array(
                     'User' => array('username'),
-                    'fields' => array('id','text', 'lang')
+                    'fields' => array('id', 'text', 'lang', 'correctness')
                 )
             ),
             'limit' => 50,
             'order' => 'created DESC',
         )
-    ); 
-    
+    );
+
     /**
      * Before filter.
-     * 
+     *
      * @return void
      */
     public function beforeFilter()
     {
-        parent::beforeFilter(); 
-        
+        parent::beforeFilter();
+
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array(
             "*"
         );
     }
-    
+
     /**
      * Display latest comments. Can be filtered by the language of sentences.
-     * 
+     *
      * @param string $langFilter To filter comments by the language of sentences
-     * 
+     *
      * @return void
      */
     public function index($langFilter = 'und')
     {
-        $permissions = array();
-        
+        $this->helpers[] = 'Messages';
+
         if ($langFilter != 'und') {
             $this->paginate['SentenceComment']['conditions'] = array(
                 "Sentence.lang" => $langFilter
             );
         }
-        
+
         $latestComments = $this->paginate();
 
-        $permissions = $this->Permissions->getCommentsOptions(
-            $latestComments,
-            $this->Auth->user('id'),
-            $this->Auth->user('group_id')
-        );
+        $commentsPermissions = $this->Permissions->getCommentsOptions($latestComments);
 
         $this->set('sentenceComments', $latestComments);
-        $this->set('commentsPermissions', $permissions);
+        $this->set('commentsPermissions', $commentsPermissions);
         $this->set('langFilter', $langFilter);
 
     }
+    
 
     /**
      * Display comments for given sentence.
      *
      * @param int $sentenceId Id of sentence.
-     * 
+     *
      * @return void
      */
     public function show($sentenceId)
@@ -148,16 +145,16 @@ class SentenceCommentsController extends AppController
         $this->redirect(
             array(
                 "controller" => "sentences",
-                "action" => "show", 
+                "action" => "show",
                 $sentenceId
             ),
             301
         );
     }
-    
+
     /**
      * Save new comment.
-     * 
+     *
      * @return void
      */
     public function save()
@@ -165,7 +162,7 @@ class SentenceCommentsController extends AppController
         $userId = $this->Auth->user('id');
         $userName = $this->Auth->user('username');
         $userEmail = $this->Auth->user('email');
-    
+
         $sentenceId = $this->data['SentenceComment']['sentence_id'];
         $commentText = $this->data['SentenceComment']['text'];
 
@@ -179,7 +176,7 @@ class SentenceCommentsController extends AppController
         if ($lastCom == $thisCom) {
             $this->redirect('/');
         }
-        
+
         $this->Cookie->write(
             'hash_last_com',
             $thisCom,
@@ -197,10 +194,10 @@ class SentenceCommentsController extends AppController
                 )
             );
         }
-        
-            
+
+
         $this->data['SentenceComment']['user_id'] = $userId;
-        
+
         if ($this->SentenceComment->save($this->data)) {
             $sentenceId = $this->data['SentenceComment']['sentence_id'];
             $participants = $this->SentenceComment->getEmailsFromComments(
@@ -209,22 +206,22 @@ class SentenceCommentsController extends AppController
             $sentenceOwner = $this->Sentence->getEmailFromSentence(
                 $sentenceId
             );
-            
-            if ($sentenceOwner != null 
+
+            if ($sentenceOwner != null
                 && !in_array($sentenceOwner, $participants)
             ) {
                 $participants[] = $sentenceOwner;
             }
-            
+
             // send message to the other participants of the thread
             foreach ($participants as $participant) {
                 if ($participant != $userEmail) {
                     // prepare message
-                    $subject = 'Tatoeba - Comment on sentence : ' 
+                    $subject = 'Tatoeba - Comment on sentence : '
                         . $this->data['SentenceComment']['sentence_text'];
                     if ($participant == $sentenceOwner) {
                         $msgStart = sprintf(
-                            '%s has posted a comment on one of your sentences.', 
+                            '%s has posted a comment on one of your sentences.',
                             $userName
                         );
                     } else {
@@ -236,14 +233,14 @@ class SentenceCommentsController extends AppController
                     }
                     $message = $msgStart
                         . "\n"
-                        . 'http://'.$_SERVER['HTTP_HOST'] 
+                        . 'http://'.$_SERVER['HTTP_HOST']
                         . '/sentence_comments/show/'
                         . $this->data['SentenceComment']['sentence_id']
                         .'#comments'
-                        . "\n\n- - - - - - - - - - - - - - - - -\n\n" 
+                        . "\n\n- - - - - - - - - - - - - - - - -\n\n"
                         . $this->data['SentenceComment']['text']
                         . "\n\n- - - - - - - - - - - - - - - - -\n\n";
-                        
+
                     // send notification
                     $this->Mailer->to = $participant;
                     $this->Mailer->toName = '';
@@ -252,46 +249,41 @@ class SentenceCommentsController extends AppController
                     $this->Mailer->send();
                 }
             }
-            
+
             $this->flash(
-                __('Your comment has been saved.', true), 
+                __('Your comment has been saved.', true),
                 '/sentence_comments/show/'
                 .$this->data['SentenceComment']['sentence_id']
             );
         }
     }
-    
+
     /**
      * Edit comment
-     * 
+     *
      * @param string $commentId The comment id.
-     * 
+     *
      * @return void
      */
     public function edit($commentId)
     {
         $commentId = Sanitize::paranoid($commentId);
         $this->SentenceComment->id = $commentId;
-        
+
         //get permissions
         if (empty($this->data)) {
             $sentenceComment = $this->SentenceComment->read();
-            $ownerId = $sentenceComment['SentenceComment']['user_id'];
+            $authorId = $sentenceComment['SentenceComment']['user_id'];
         } else {
             $sentenceComment = $this->data['SentenceComment'];
-            $ownerId = $this->SentenceComment->getOwnerIdOfComment(
+            $authorId = $this->SentenceComment->getOwnerIdOfComment(
                 $this->data['SentenceComment']['id']
             );
         }
-        $permissions = $this->Permissions->getCommentOptions(
-            $sentenceComment,
-            $ownerId,
-            CurrentUser::get('id'),
-            CurrentUser::get('group_id')
-        );
-        
+
         //check permissions now
-        if ($permissions['canEdit'] == false) {
+        $canEdit = $authorId === CurrentUser::get('id') || CurrentUser::isAdmin();
+        if (!$canEdit) {
             $no_permission = __("You do not have permission to edit this comment. ",
                 true);
             $wrongly = __("If you have received this message in error, ".
@@ -309,9 +301,9 @@ class SentenceCommentsController extends AppController
         } else {
             //user has permissions so either display form or save comment
             if (empty($this->data)) {
+                $this->helpers[] = "Messages";
                 $this->data = $sentenceComment;
                 $this->set('sentenceComment', $sentenceComment);
-                $this->set('commentPermissions', $permissions);
             } else {
                 $sentenceId = $this->data['SentenceComment']['sentence_id'];
                 $commentId = $this->data['SentenceComment']['id'];
@@ -356,24 +348,24 @@ class SentenceCommentsController extends AppController
                 }
             }
         }
-            
+
     }
-    
+
     /**
      * delete requested comment
      * NOTE: delete is a php5 keyword
      *
-     * @param int $commentId id of the comment 
+     * @param int $commentId id of the comment
      *
-     * @return void 
+     * @return void
      */
 
     public function delete_comment($commentId)
     {
         $commentId = Sanitize::paranoid($commentId);
-        
+
         $commentOwnerId = $this->SentenceComment->getOwnerIdOfComment($commentId);
-        
+
         //we check a second time even if it has been checked while displaying
         // or not the delete icon, but one can try to directly call delete_comment
         // so we need to recheck
@@ -387,7 +379,7 @@ class SentenceCommentsController extends AppController
             $this->SentenceComment->delete($commentId);
         }
         // redirect to previous page
-        $this->redirect($this->referer()); 
+        $this->redirect($this->referer());
     }
 
     /**
@@ -409,8 +401,10 @@ class SentenceCommentsController extends AppController
             $this->set('userName', $userName);
             $this->set("userExists", false);
             $this->set("noComment", true);
-            return; 
+            return;
         }
+
+        $this->helpers[] = "Messages";
 
         // in the same idea, we do not need to do extra request if the user
         // has no comment
@@ -421,26 +415,22 @@ class SentenceCommentsController extends AppController
             $this->set('userName', $userName);
             $this->set("userExists", true);
             $this->set("noComment", true);
-            return; 
+            return;
         }
-        
+
         $this->paginate['SentenceComment']['conditions'] = array(
             'SentenceComment.user_id' => $userId
         );
-        
+
         $userComments = $this->paginate(
             'SentenceComment'
         );
-        
-        $permissions = $this->Permissions->getCommentsOptions(
-            $userComments,
-            $this->Auth->user('id'),
-            $this->Auth->user('group_id')
-        );
+
+        $commentsPermissions = $this->Permissions->getCommentsOptions($userComments);
 
         $this->set('userComments', $userComments);
         $this->set('userName', $userName);
-        $this->set('commentsPermissions', $permissions);
+        $this->set('commentsPermissions', $commentsPermissions);
         $this->set("noComment", false);
         $this->set("userExists", true);
     }
@@ -457,11 +447,11 @@ class SentenceCommentsController extends AppController
     public function on_sentences_of_user($userName)
     {
         $userId = $this->User->getIdfromUsername($userName);
-        
+
         $this->paginate['SentenceComment']['conditions'] = array(
             'Sentence.user_id' => $userId
         );
-        
+
         $userComments = $this->paginate(
             'SentenceComment'
         );
@@ -475,7 +465,7 @@ class SentenceCommentsController extends AppController
             $this->set('userName', $userName);
             $this->set("userExists", false);
             $this->set("noComment", false);
-            return; 
+            return;
         }
 
         // in the same idea, we do not need to do extra request if the user
@@ -488,20 +478,18 @@ class SentenceCommentsController extends AppController
             $this->set('userName', $userName);
             $this->set("userExists", true);
             $this->set("noComment", true);
-            return; 
+            return;
         }
 
+        $this->helpers[] = "Messages";
 
-        $permissions = $this->Permissions->getCommentsOptions(
-            $userComments,
-            $this->Auth->user('id'),
-            $this->Auth->user('group_id')
-        );
+        $commentsPermissions = $this->Permissions->getCommentsOptions($userComments);
+
         $this->set('userExists', true);
         $this->set('noComment', false);
         $this->set('userComments', $userComments);
         $this->set('userName', $userName);
-        $this->set('commentsPermissions', $permissions);
+        $this->set('commentsPermissions', $commentsPermissions);
     }
 
 
@@ -517,17 +505,17 @@ class SentenceCommentsController extends AppController
     {
         if (CurrentUser::isAdmin()) {
             $messageId = Sanitize::paranoid($messageId);
-            
-            $this->SentenceComment->id = $messageId;            
+
+            $this->SentenceComment->id = $messageId;
             $this->SentenceComment->saveField('hidden', true);
-            
+
             // redirect to previous page
-            $this->redirect($this->referer()); 
+            $this->redirect($this->referer());
         }
 
     }
-    
-    
+
+
     /**
      * Display back a given comment that was hidden.
      *
@@ -539,12 +527,12 @@ class SentenceCommentsController extends AppController
     {
         if (CurrentUser::isAdmin()) {
             $messageId = Sanitize::paranoid($messageId);
-            
+
             $this->SentenceComment->id = $messageId;
             $this->SentenceComment->saveField('hidden', false);
-            
+
             // redirect to previous page
-            $this->redirect($this->referer()); 
+            $this->redirect($this->referer());
         }
 
     }

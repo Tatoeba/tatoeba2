@@ -21,17 +21,15 @@
  * Picture
  */
 .currentPicture {
-    float:left;
+    display: inline-block;
     margin-right: 20px;
     padding-right: 20px;
     border-right: 1px solid #DDD;
 }
 
-.currentPicture img {
-}
-
 .newPicture {
-    float: left;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .title {
@@ -43,13 +41,13 @@
 /*
  * Personal information
  */
-#UserSaveBasicForm label {
+#save_basicForm label {
     font-weight: bold;
     width: 100px;
     padding-right: 10px;
 }
 
-#UserSaveBasicForm .input {
+#save_basicForm .input {
     margin: 10px;
 }
 

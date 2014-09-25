@@ -86,7 +86,6 @@
     echo $form->create(
         false, 
         array(
-            'controller' => 'user',
             'action' => 'save_basic'
         )
     );
@@ -127,7 +126,6 @@
     echo $form->create(
         false, 
         array(
-            'controller' => 'user',
             'action' => 'save_description'
         )
     );

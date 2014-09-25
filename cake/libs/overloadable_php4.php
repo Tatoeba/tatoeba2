@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Overload abstraction interface.  Merges differences between PHP4 and 5.
  *
@@ -16,11 +15,9 @@
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 1.2
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 /**
  * Overloadable class selector
  *
@@ -30,6 +27,7 @@
  * @subpackage    cake.cake.libs
  */
 class Overloadable extends Object {
+
 /**
  * Constructor.
  *
@@ -39,6 +37,7 @@ class Overloadable extends Object {
 		$this->overload();
 		parent::__construct();
 	}
+
 /**
  * Overload implementation.
  *
@@ -88,6 +87,7 @@ Overloadable::overload('Overloadable');
  * @subpackage    cake.cake.libs
  */
 class Overloadable2 extends Object {
+
 /**
  * Constructor
  *
@@ -97,6 +97,7 @@ class Overloadable2 extends Object {
 		$this->overload();
 		parent::__construct();
 	}
+
 /**
  * Overload implementation.
  *
@@ -117,6 +118,7 @@ class Overloadable2 extends Object {
 			}
 		}
 	}
+
 /**
  * Magic method handler.
  *
@@ -133,6 +135,7 @@ class Overloadable2 extends Object {
 		$return = $this->call__($method, $params);
 		return true;
 	}
+
 /**
  * Getter.
  *
@@ -145,6 +148,7 @@ class Overloadable2 extends Object {
 		$value = $this->get__($name);
 		return true;
 	}
+
 /**
  * Setter.
  *
@@ -159,5 +163,3 @@ class Overloadable2 extends Object {
 	}
 }
 Overloadable::overload('Overloadable2');
-
-?>

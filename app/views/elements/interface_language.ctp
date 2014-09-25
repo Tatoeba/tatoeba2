@@ -28,28 +28,12 @@
 
 <?php
 $lang = $this->params['lang'];
+$configUiLanguages = Configure::read('UI.languages');
+$languages = array();
 
-$languages = array(
-    'eng' => 'English', 
-    'fre' => 'Français', 
-    'chi' => '中文', 
-    'spa' => 'Español', 
-    'jpn' => '日本語', 
-    'deu' => 'Deutsch', 
-    'ita' => 'Italiano', 
-    'pol' => 'Polski',
-    'pt_BR' => 'Português (BR)',
-    'epo' => 'Esperanto',
-    'rus' => 'русский',
-    'tur' => 'Türkçe',
-    'eus' => 'Euskara',
-    'tgl' => 'Tagalog',
-    'ara' => 'العربية',
-    'hun' => 'Magyar',
-    'nds' => 'Plattdüütsch',
-    'gre' => 'Ελληνικά',
-    'fin' => 'Suomi'
-);
+foreach ($configUiLanguages as $langs) {
+    $languages[$langs[0]] = $langs[2];
+}
 
 asort($languages);
 
@@ -58,8 +42,8 @@ echo $form->select(
     $languages,
     $lang,
     array(
-        "onchange" => "changeInterfaceLang(this.value)"
-    ),
-    false
+        "onchange" => "changeInterfaceLang(this.value)",
+        "empty" => false
+    )
 );
 ?>

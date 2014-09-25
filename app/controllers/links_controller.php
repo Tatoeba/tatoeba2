@@ -26,7 +26,7 @@
  */
 
 /**
- * Controller for links between sentences. Links specify which sentences are 
+ * Controller for links between sentences. Links specify which sentences are
  * translations of which other sentences.
  *
  * @category Links
@@ -37,7 +37,7 @@
  */
 class LinksController extends AppController
 {
-    
+
     /**
      * Link sentences.
      *
@@ -57,7 +57,7 @@ class LinksController extends AppController
             $this->set('saved', $saved);
             return;
         }
-        
+
         if ($saved) {
             $flashMessage = sprintf(
                 __(
@@ -74,11 +74,11 @@ class LinksController extends AppController
                 true
             );
         }
-        
+
         $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
     }
-    
-    
+
+
     /**
      * Unlink sentences.
      *
@@ -87,18 +87,18 @@ class LinksController extends AppController
      *
      * @return void
      */
-    public function delete($sentenceId, $translationId) 
+    public function delete($sentenceId, $translationId)
     {
         $sentenceId = Sanitize::paranoid($sentenceId);
         $translationId = Sanitize::paranoid($translationId);
-        
+
         $saved = $this->Link->delete($sentenceId, $translationId);
-        
+
         if ($this->RequestHandler->isAjax()) {
             $this->set('saved', $saved);
             return;
         }
-        
+
         if ($saved) {
             $flashMessage = sprintf(
                 __(
@@ -110,14 +110,14 @@ class LinksController extends AppController
             );
         } else {
             $flashMessage = __(
-                'An error occurred while saving. '.
+                'An error occurred while unlinking. '.
                 'Please try again or contact us to report this.',
                 true
             );
         }
-        
+
         $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
     }
-    
+
 }
 ?>

@@ -38,8 +38,8 @@ class LogsHelper extends AppHelper
 {
 
     public $helpers = array('Date', 'Html', 'Languages');
-    
-    /** 
+
+    /**
      * Display a contribution.
      *
      * @param array $contribution Contribution to display.
@@ -51,47 +51,47 @@ class LogsHelper extends AppHelper
     {
         $type = 'link';
         $status = '';
-        
+
         if (isset($user)) {
             $username = Sanitize::html($user['username']);
             $userId = Sanitize::paranoid($user['id']);
         }
-        
+
         $contributionText = $contribution['text']; // No sanitize here, we use
             // the value in Html::link() which already already sanitizes.
         $contributionId = Sanitize::paranoid($contribution['sentence_id']);
         if (isset($contribution['translation_id'])) {
-            $translationId = Sanitize::paranoid($contribution['translation_id']); 
+            $translationId = Sanitize::paranoid($contribution['translation_id']);
         }
         $action = Sanitize::paranoid($contribution['action']);
         $contributionDate = $contribution['datetime'];
         $lang = Sanitize::paranoid($contribution['sentence_lang']);
-        
+
         if (empty($translationId)) {
             $type = 'sentence';
         }
-        
+
         switch ($action) {
-            case 'suggest' : 
+            case 'suggest' :
                 $type = 'correction';
-                $status = 'Suggested'; 
+                $status = 'Suggested';
                 break;
-            
+
             case 'insert' :
                 $status = 'Added';
                 break;
-            
+
             case 'update' :
                 $status = 'Modified';
                 break;
-            
+
             case 'delete' :
                 $status = 'Deleted';
                 break;
         }
-        
+
         echo '<tr class="'.$type.$status.'">';
-        
+
         // language flag
         echo '<td class="lang">';
         if ($type == 'link') {
@@ -101,7 +101,7 @@ class LogsHelper extends AppHelper
                 echo '?';
             } else {
                 echo $this->Languages->icon(
-                    $lang, 
+                    $lang,
                     array(
                         "class" => "flag",
                         "width" => 30,
@@ -111,7 +111,7 @@ class LogsHelper extends AppHelper
             }
         }
         echo '</td>';
-        
+
         $dir = $this->Languages->getLanguageDirection($lang);
         // sentence text
         echo '<td class="text">';
@@ -127,21 +127,21 @@ class LogsHelper extends AppHelper
             )
         );
         echo '</td>';
-        
+
         // contributor
         echo '<td class="username">';
         echo $this->_displayLinkToUserContributions($username, $userId);
         echo '</td>';
-        
+
         // date of contribution
         echo '<td class="date">';
         echo $this->Date->ago($contributionDate);
         echo '</td>';
-        
+
         echo '</tr>';
     }
-    
-    /** 
+
+    /**
      * Display a contribution in annexe module.
      *
      * @param array $contribution Contribution to display.
@@ -153,29 +153,29 @@ class LogsHelper extends AppHelper
     {
         $type = 'link';
         $status = '';
-        
+
         if (isset($user)) {
             $username = Sanitize::html($user['username']);
             $userId = Sanitize::paranoid($user['id']);
         }
-        
+
         $contributionText = Sanitize::html($contribution['text']);
         $lang = null;
         if (!empty($contribution['sentence_lang'])) {
             $lang = Sanitize::paranoid($contribution['sentence_lang']);
         }
-        $translationId = Sanitize::paranoid($contribution['translation_id']); 
+        $translationId = Sanitize::paranoid($contribution['translation_id']);
         $action = Sanitize::paranoid($contribution['action']);
         $contributionDate = $contribution['datetime'];
 
         if (empty($translationId)) {
             $type = 'sentence';
-        } 
-        
+        }
+
         switch ($action) {
-            case 'suggest' : 
+            case 'suggest' :
                 $type = 'correction';
-                $status = 'Suggested'; 
+                $status = 'Suggested';
                 break;
             case 'insert' :
                 $status = 'Added';
@@ -187,9 +187,9 @@ class LogsHelper extends AppHelper
                 $status = 'Deleted';
                 break;
         }
-        
+
         echo '<div class="annexeLogEntry '.$type.$status.'">';
-        
+
         echo '<div>';
         if (isset($username)) {
             echo $this->_displayLinkToUserContributions($username);
@@ -197,10 +197,10 @@ class LogsHelper extends AppHelper
         }
         echo $this->Date->ago($contributionDate);
         echo '</div>';
-        
+
         echo '<div>';
         if ($type === 'link') {
-            
+
             $linkToTranslation = $this->Html->link(
                 $translationId,
                 array(
@@ -209,7 +209,7 @@ class LogsHelper extends AppHelper
                     $translationId
                 )
             );
-            
+
             if ($action == 'insert') {
                 echo sprintf(
                     __('linked to %s', true), $linkToTranslation
@@ -219,7 +219,7 @@ class LogsHelper extends AppHelper
                     __('unlinked from %s', true), $linkToTranslation
                 );
             }
-            
+
         } else {
             $dir = $this->Languages->getLanguageDirection($lang);
             echo ' <span class="text" dir="'.$dir.'" >';
@@ -227,22 +227,22 @@ class LogsHelper extends AppHelper
             echo '</span>';
         }
         echo '</div>';
-        
+
         echo '</div>';
     }
-    
-    
+
+
     /**
      * Create the html link to the profile of a given user
-     * 
+     *
      * @param string $userName The user name
      *
      * @return string The html link.
      */
-    private function _displayLinkToUserProfile($username) 
+    private function _displayLinkToUserProfile($username)
     {
         return $this->Html->link(
-            $username, 
+            $username,
             array(
                 "controller" => "user",
                 "action" => "profile",
@@ -250,8 +250,8 @@ class LogsHelper extends AppHelper
             )
         );
     }
-    
-    
+
+
     /**
      * Create the html link to the profile of a given user.
      *
@@ -259,10 +259,10 @@ class LogsHelper extends AppHelper
      *
      * @return string
      */
-    private function _displayLinkToUserContributions($username) 
+    private function _displayLinkToUserContributions($username)
     {
         return $this->Html->link(
-            $username, 
+            $username,
             array(
                 "controller" => "contributions",
                 "action" => "of_user",
@@ -270,8 +270,8 @@ class LogsHelper extends AppHelper
             )
         );
     }
-    
-    
+
+
     /**
      * Display log entry of 'sentence' type.
      *
@@ -291,9 +291,9 @@ class LogsHelper extends AppHelper
         ?>
         <tr class="<?php echo $this->_getCssClassName('sentence', $action); ?>">
             <td class="lang">
-            <?php 
+            <?php
             echo $this->Languages->icon(
-                $sentenceLang, 
+                $sentenceLang,
                 array(
                     "class" => "flag",
                     "width" => 30,
@@ -302,7 +302,7 @@ class LogsHelper extends AppHelper
             );
             ?>
             </td>
-            
+
             <td class="text">
             <?php
             echo $this->Html->link(
@@ -318,19 +318,19 @@ class LogsHelper extends AppHelper
             );
             ?>
             </td>
-            
+
             <td class="username">
             <?php echo $this->_displayLinkToUserProfile($username); ?>
             </td>
-            
+
             <td class="date">
             <?php echo $this->Date->ago($datetime); ?>
-            </td>  
+            </td>
         </tr>
         <?php
     }
-    
-    
+
+
     /**
      * Display log entry of 'link' type.
      *
@@ -348,9 +348,9 @@ class LogsHelper extends AppHelper
         ?>
         <tr class="<?php echo $this->_getCssClassName('link', $action); ?>">
             <td></td>
-            
+
             <td class="linkInfo">
-            <?php 
+            <?php
             echo $this->Html->link(
                 $sentenceId,
                 array(
@@ -370,19 +370,19 @@ class LogsHelper extends AppHelper
             );
             ?>
             </td>
-            
+
             <td class="username">
             <?php echo $this->_displayLinkToUserProfile($username); ?>
             </td>
-            
+
             <td class="date">
             <?php echo $this->Date->ago($datetime); ?>
-            </td>        
+            </td>
         </tr>
         <?php
     }
-    
-    
+
+
     /**
      * Returns the CSS class for a log entry, given its type and action.
      *
@@ -404,7 +404,7 @@ class LogsHelper extends AppHelper
                 $type .= 'Deleted';
                 break;
         }
-        
+
         return $type;
     }
 }

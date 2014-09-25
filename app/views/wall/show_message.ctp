@@ -36,11 +36,14 @@
  */
 $rootMessageId = $message['Wall']['id'];
 
-$this->pageTitle = 'Tatoeba - Thread #' . $rootMessageId ; 
+$this->set('title_for_layout', 'Tatoeba - Thread #' . $rootMessageId ); 
+
+$javascript->link('jquery.scrollTo-min.js', false);
+$javascript->link('wall.reply.js', false);
 ?>
 <div id="annexe_content">
     <div class="module">
-        <h2>Menu</h2>
+    <h2><?php __('Menu'); ?></h2>
         <p>
             <?php
             echo $html->link(
@@ -72,7 +75,7 @@ $this->pageTitle = 'Tatoeba - Thread #' . $rootMessageId ;
     </div>
     
     <div class="module">    
-        <ol class="wall">
+        <div class="wall">
             <?php
             $wall->createThread(
                 $message['Wall'],
@@ -81,7 +84,7 @@ $this->pageTitle = 'Tatoeba - Thread #' . $rootMessageId ;
                 $message['children']
             );
             ?>
-        </ol>
+        </div>
     </div>
     
 </div>

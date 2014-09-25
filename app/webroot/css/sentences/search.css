@@ -47,30 +47,3 @@
 .sentences_set {
     margin: 40px 0px;
 }
-
-.score {
-    display: block;
-    margin-right: 10px;
-    float: right;
-    color: #666;
-    width: 30px;
-    text-align: right;
-}
-
-
-/* 
- * Most frequent words 
- */
-#mostFrequentWords {
-    font-size: 200%;
-    text-align: center;
-}
-
-#mostFrequentWords span {
-    padding-right: 20px;
-    color: #69C;
-}
-
-#mostFrequentWords div {
-    font-size: 55%;
-}

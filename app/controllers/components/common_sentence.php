@@ -39,7 +39,7 @@ class CommonSentenceComponent extends Object
 {
 
     public $components = array(
-        'GoogleLanguageApi',
+        'LanguageDetection',
         'Cookie'
     );
 
@@ -73,12 +73,13 @@ class CommonSentenceComponent extends Object
         $sentenceId = null,
         $translatedSentenceId = null,
         $translatedSentenceLang = null,
-        $userName = ""
+        $userName = "",
+        $correctness = 0
     ) {
         $this->Cookie->write('contribute_lang', $lang, false, "+1 month");
-        
+
         if ($lang === 'auto') {
-            $lang = $this->GoogleLanguageApi->detectLang(
+            $lang = $this->LanguageDetection->detectLang(
                 $text,
                 $userName
             );
@@ -87,27 +88,28 @@ class CommonSentenceComponent extends Object
             $lang = null;
         }
 
-        $this->data['Sentence']['id'] = $sentenceId; 
+        $this->data['Sentence']['id'] = $sentenceId;
         $this->data['Sentence']['lang'] = $lang;
         $this->data['Sentence']['user_id'] = $userId;
         $this->data['Sentence']['text'] = $text;
+        $this->data['Sentence']['correctness'] = $correctness;
 
         $Sentence = ClassRegistry::init('Sentence');
 
         $isSaved = $Sentence->save($this->data);
-        
+
         return $isSaved;
     }
-       
+
     public function getAllNeededForSentences($sentenceIds, $lang = null)
     {
         $allSentences = array();
-        
+
         $Sentence = ClassRegistry::init('Sentence');
         foreach ($sentenceIds as $i=>$sentenceId) {
 
             $sentence = $Sentence->getSentenceWithId($sentenceId);
-            
+
 
             $alltranslations = $Sentence->getTranslationsOf(
                 $sentenceId,

@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = 'Tatoeba - ' . __('Edit Comment', true);
+$this->set('title_for_layout', 'Tatoeba - ' . __('Edit Comment', true));
 
 
 ?>
@@ -60,14 +60,10 @@ $this->pageTitle = 'Tatoeba - ' . __('Edit Comment', true);
     </div>
     
     <?php
-    echo '<ol class="comments">';
-    $comments->displaySentenceCommentEditForm(
+    $comments->displayCommentEditForm(
         $sentenceComment['SentenceComment'],
-        $sentenceComment['User'],
-        $sentenceComment['Sentence'],
-        $commentPermissions
+        $sentenceComment['User']
     );
-    echo '</ol>';
     ?>
 </div>
     

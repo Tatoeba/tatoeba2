@@ -35,7 +35,10 @@
  * @link     http://tatoeba.org
  */ 
 
-$this->pageTitle = 'Tatoeba - ' . __('Wall', true);
+$this->set('title_for_layout', 'Tatoeba - ' . __('Wall', true));
+
+$javascript->link('jquery.scrollTo-min.js', false);
+$javascript->link('wall.reply.js', false);
 
 ?>
 <div id="annexe_content" >
@@ -144,7 +147,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
         $pagination->display();
         ?>
         
-        <ol class="wall">
+        <div class="wall">
         <?php
         // display comment part
         foreach ($allMessages as $message) {
@@ -156,7 +159,7 @@ $this->pageTitle = 'Tatoeba - ' . __('Wall', true);
             );
         }
         ?>
-        </ol>
+        </div>
         
         <?php
         $pagination->display();

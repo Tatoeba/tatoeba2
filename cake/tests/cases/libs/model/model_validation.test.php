@@ -1,26 +1,22 @@
 <?php
 /* SVN FILE: $Id: model.test.php 8225 2009-07-08 03:25:30Z mark_story $ */
+
 /**
  * ModelValidationTest file
  *
- * Long description for file
- *
  * PHP versions 4 and 5
  *
- * CakePHP(tm) Tests <https://trac.cakephp.org/wiki/Developement/TestSuite>
+ * CakePHP(tm) Tests <http://book.cakephp.org/view/1196/Testing>
  * Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
  *
  *  Licensed under The Open Group Test Suite License
  *  Redistributions of files must retain the above copyright notice.
  *
  * @copyright     Copyright 2005-2012, Cake Software Foundation, Inc. (http://cakefoundation.org)
- * @link          https://trac.cakephp.org/wiki/Developement/TestSuite CakePHP(tm) Tests
+ * @link          http://book.cakephp.org/view/1196/Testing CakePHP(tm) Tests
  * @package       cake
  * @subpackage    cake.tests.cases.libs.model
  * @since         CakePHP(tm) v 1.2.0.4206
- * @version       $Revision: 8225 $
- * @modifiedby    $LastChangedBy: mark_story $
- * @lastmodified  $Date: 2009-07-07 23:25:30 -0400 (Tue, 07 Jul 2009) $
  * @license       http://www.opensource.org/licenses/opengroup.php The Open Group Test Suite License
  */
 require_once dirname(__FILE__) . DS . 'model.test.php';
@@ -32,6 +28,7 @@ require_once dirname(__FILE__) . DS . 'model.test.php';
  * @subpackage    cake.tests.cases.libs.model.operations
  */
 class ModelValidationTest extends BaseModelTest {
+
 /**
  * Tests validation parameter order in custom validation methods
  *
@@ -123,6 +120,7 @@ class ModelValidationTest extends BaseModelTest {
 		);
 		$this->assertEqual($TestModel->validatorParams, $expected);
 	}
+
 /**
  * Tests validation parameter fieldList in invalidFields
  *
@@ -133,13 +131,14 @@ class ModelValidationTest extends BaseModelTest {
 		$TestModel =& new ValidationTest1();
 		$TestModel->validate = $validate = array(
 			'title' => array(
-				'rule' => 'customValidator',
+				'rule' => 'alphaNumeric',
 				'required' => true
 			),
 			'name' => array(
-				'rule' => 'allowEmpty',
+				'rule' => 'alphaNumeric',
 				'required' => true
 		));
+		$TestModel->set(array('title' => '$$', 'name' => '##'));
 		$TestModel->invalidFields(array('fieldList' => array('title')));
 		$expected = array(
 			'title' => 'This field cannot be left blank'
@@ -177,9 +176,9 @@ class ModelValidationTest extends BaseModelTest {
  */
 	function testInvalidFieldsWhitelist() {
 		$TestModel =& new ValidationTest1();
-		$TestModel->validate = $validate = array(
+		$TestModel->validate = array(
 			'title' => array(
-				'rule' => 'customValidator',
+				'rule' => 'alphaNumeric',
 				'required' => true
 			),
 			'name' => array(
@@ -188,7 +187,7 @@ class ModelValidationTest extends BaseModelTest {
 		));
 
 		$TestModel->whitelist = array('name');
-		$TestModel->save(array('name' => '#$$#'));
+		$TestModel->save(array('name' => '#$$#', 'title' => '$$$$'));
 
 		$expected = array('name' => 'This field cannot be left blank');
 		$this->assertEqual($TestModel->validationErrors, $expected);
@@ -546,6 +545,7 @@ class ModelValidationTest extends BaseModelTest {
 		);
 		$this->assertEqual($result, $expected);
 	}
+
 /**
  * test that validates() checks all the 'with' associations as well for validation
  * as this can cause partial/wrong data insertion.
@@ -600,6 +600,7 @@ class ModelValidationTest extends BaseModelTest {
 		));
 		$this->assertEqual($joinRecords, 0, 'Records were saved on the join table. %s');
 	}
+
 /**
  * test that saveAll and with models with validation interact well
  *
@@ -641,5 +642,141 @@ class ModelValidationTest extends BaseModelTest {
 		));
 		$this->assertEqual($joinRecords, 0, 'Records were saved on the join table. %s');
 	}
+
+/**
+ * test that saveAll and with models at initial insert (no id has set yet)
+ * with validation interact well
+ *
+ * @return void
+ */
+	function testValidatesWithModelsAndSaveAllWithoutId() {
+		$data = array(
+			'Article' => array(
+				'title' => 'Extra Fields',
+				'body' => 'Extra Fields Body',
+				'published' => '1'
+			),
+			'Comment' => array(
+				array('word' => 'Hello'),
+				array('word' => 'World'),
+			)
+		);
+		$Article =& new Article();
+		$Comment =& $Article->Comment;
+
+		$Comment->validate = array('article_id' => array('rule' => 'numeric'));
+
+		$Article->create();
+		$result = $Article->saveAll($data, array('validate' => 'only'));
+		$this->assertTrue($result);
+
+		$Article->create();
+		$result = $Article->saveAll($data, array('validate' => 'first'));
+		$this->assertTrue($result);
+		$this->assertFalse(is_null($Article->id));
+
+		$id = $Article->id;
+		$count = $Article->find('count', array('conditions' => array('Article.id' => $id)));
+		$this->assertIdentical($count, 1);
+
+		$count = $Comment->find('count', array(
+			'conditions' => array('Comment.article_id' => $id)
+		));
+		$this->assertEqual($count, count($data['Comment']));
+	}
+
+/**
+ * Test that missing validation methods trigger errors in development mode.
+ * Helps to make developement easier.
+ *
+ * @return void
+ */
+	function testMissingValidationErrorTriggering() {
+		$restore = Configure::read('debug');
+		Configure::write('debug', 2);
+
+		$TestModel =& new ValidationTest1();
+		$TestModel->create(array('title' => 'foo'));
+		$TestModel->validate = array(
+			'title' => array(
+				'rule' => array('thisOneBringsThePain'),
+				'required' => true
+			)
+		);
+		$this->expectError(new PatternExpectation('/thisOneBringsThePain for title/i'));
+		$TestModel->invalidFields(array('fieldList' => array('title')));
+
+		Configure::write('debug', 0);
+		$this->assertNoErrors();
+		$TestModel->invalidFields(array('fieldList' => array('title')));
+		Configure::write('debug', $restore);
+	}
+
+/**
+ * Test for 'on' => [create|update] in validation rules.
+ *
+ * @return void
+ */
+	function testStateValidation() {
+		$Article =& new Article();
+
+		$data = array(
+			'Article' => array(
+				'title' => '',
+				'body' => 'Extra Fields Body',
+				'published' => '1'
+			)
+		);
+
+		$Article->validate = array(
+			'title' => array(
+				'notempty' => array(
+					'rule' => 'notEmpty',
+					'on' => 'create'
+				)
+			),
+			'published' => array(
+				'notempty' => array(
+					'rule' => 'notEmpty',
+				)
+			)
+		);
+
+		$Article->create($data);
+		$this->assertFalse($Article->validates());
+
+		$Article->save(null, array('validate' => false));
+		$data['Article']['id'] = $Article->id;
+		$Article->set($data);
+		$this->assertTrue($Article->validates());
+
+		$Article->data['Article']['published'] = null;
+		$this->assertFalse($Article->validates());
+
+		unset($data['Article']['id']);
+		$Article->data['Article']['published'] = '1';
+		$Article->validate = array(
+			'title' => array(
+				'notempty' => array(
+					'rule' => 'notEmpty',
+					'on' => 'update'
+				)
+			),
+			'published' => array(
+				'notempty' => array(
+					'rule' => 'notEmpty',
+				)
+			)
+		);
+
+		$Article->create($data);
+		$this->assertTrue($Article->validates());
+
+		$Article->save(null, array('validate' => false));
+		$data['Article']['id'] = $Article->id;
+		$Article->set($data);
+		$this->assertFalse($Article->validates());
+
+	}
+
 }
-?>

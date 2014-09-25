@@ -48,6 +48,7 @@ $userStatus = $members->groupName($groupId);
 $statusClass = 'status'.$groupId;
 $currentMember = CurrentUser::get('username');
 $languagesSettings = $user['lang'];
+$level = $user['level'];
 
 $userImage = 'unknown-avatar.png';
 if (!empty($user['image'])) {
@@ -55,9 +56,9 @@ if (!empty($user['image'])) {
 }
 
 if (!empty($realName)) {
-    $this->pageTitle = "$username ($realName) - Tatoeba";
+    $this->set('title_for_layout', "$username ($realName) - Tatoeba");
 } else {
-    $this->pageTitle = "$username - Tatoeba"; 
+    $this->set('title_for_layout', "$username - Tatoeba"); 
 }
 ?>
 
@@ -101,7 +102,19 @@ if (!empty($realName)) {
     if ($isDisplayed) {
         ?>
         <div class="module">
+            <?php
+            if ($username == $currentMember) {
+                $members->displayEditButton(
+                    array(
+                        'controller' => 'user',
+                        'action' => 'settings'
+                    )
+                ); 
+            }
+            ?>
+
             <h2><?php __('Settings'); ?></h2>
+
             <ul class="annexeMenu">
                 <li class="item">
                     <?php
@@ -134,29 +147,33 @@ if (!empty($realName)) {
                 if (!empty($languagesSettings)) {
                     ?> 
                     <li class="item">
-                    <?php echo $languagesSettings; ?>
+                    <?php echo str_replace(',', ', ', $languagesSettings); ?>
                     </li>
                     <?php
                 }
                 ?>
             </ul>
-            <p>
-            <?php
-            if ($username == $currentMember) {
-                $members->displayEditButton(
-                    array(
-                        'controller' => 'user',
-                        'action' => 'settings'
-                    )
-                ); 
-            }
-            ?>
-            </p>
+            
         </div>
     <?php
     }
     ?>
     
+    <?php
+    if ($level == -1) {
+    ?>
+        <div class="module">
+            <h2><?php __('Not approved'); ?></h2>
+            <?php
+            __(
+                'Sentences from this user are currently added as '.
+                '"not approved".'
+            );
+            ?>
+        </div>
+    <?php
+    }
+    ?>
 </div>
 
 <div id="main_content">
@@ -167,6 +184,14 @@ if (!empty($realName)) {
                 array(
                     'controller' => 'user',
                     'action' => 'edit_profile'
+                )
+            ); 
+        } else if (CurrentUser::isAdmin()) {
+            $members->displayEditButton(
+                array(
+                    'controller' => 'users',
+                    'action' => 'edit',
+                    $userId
                 )
             ); 
         }

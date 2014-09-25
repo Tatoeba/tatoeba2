@@ -37,30 +37,92 @@
 class Language extends AppModel
 {
     public $name = 'Language';
-    public $useTable = 'langStats';
-    public $actsAs = array("Containable");
-    public $hasMany = array(
-        'Sentence' => array(
-            'className'  => 'Sentence',
-            'foreignKey' => 'lang_id'
-        )
-    );
 
     /**
      * Return the id associated to the given lang string
      *
+     * @param $langCode ISO code of the language for which we want to get the id.
+     *
+     * @return int Id of the language
      */
-    public function getIdFromLang($lang) {
+    public function getIdFromLang($langCode)
+    {
         $result = $this->find(
             'first',
             array(
                 'fields' => array('id'),
                 'contain' => array(),
-                'conditions' => array ('lang' => $lang),
+                'conditions' => array ('code' => $langCode),
             )
         );
         return $result['Language']['id'];
     }
 
 
+    /**
+     * Return stats for number of sentences per language.
+     *
+     * @param $limit Specifying a limit will only take the top languages
+     *               with the most sentences.
+     */
+    public function getStatistics($limit = null)
+    {
+        $results = $this->find(
+            'all',
+            array(
+                'order' => array('numberOfSentences DESC'),
+                'limit' => $limit
+            )
+        );
+
+        return $results ;
+    }
+
+
+    /**
+     * Increment stats for specified language.
+     *
+     * @param $langCode Code of the language which should be incremented.
+     *
+     * @return void
+     */
+    public function incrementCountForLanguage($langCode)
+    {
+        $langCode = Sanitize::paranoid($langCode);
+        $endOfQuery = "code = '$langCode'";
+
+        if ($langCode == '' or $langCode == null) {
+            $endOfQuery = 'code is null';
+        }
+
+        $query = "
+            UPDATE languages SET numberOfSentences = numberOfSentences + 1
+                WHERE $endOfQuery ;
+        ";
+        $this->query($query);
+    }
+
+
+    /**
+     * Decrement stats for specified language.
+     *
+     * @param $langCode Code of the language which should be incremented.
+     *
+     * @return void
+     */
+    public function decrementCountForLanguage($langCode)
+    {
+        $langCode = Sanitize::paranoid($langCode);
+        $endOfQuery = "code = '$langCode'";
+
+        if ($langCode == '' or $langCode == null) {
+            $endOfQuery = 'code is null';
+        }
+
+        $query = "
+            UPDATE languages SET numberOfSentences = numberOfSentences - 1
+                WHERE $endOfQuery ;
+        ";
+        $this->query($query);
+    }
 }

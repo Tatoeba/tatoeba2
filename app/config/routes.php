@@ -28,49 +28,69 @@
  * @license      http://www.opensource.org/licenses/mit-license.php The MIT License
  */
 
-/*  /!\ WARNING /!\ 
+/*  /!\ WARNING /!\
 **
 **  order of lines  is important here !
 **  router::connect works like this
 **  rules are ordered, the first is the first declared
-**  and we stop search once we have found a matching rule 
+**  and we stop search once we have found a matching rule
 */
 
 /**
  * TODO all rules are have a with and without :lang ,
- * maybe we can have a rule to handle both 
+ * maybe we can have a rule to handle both
  */
 
-// array which list all the languages in which tatoeba interface has been translated
+// Array that lists all the languages into which the Tatoeba interface has been translated
+$configUiLanguages = Configure::read('UI.languages');
+$iso3LangArray = array();
+foreach ($configUiLanguages as $lang) {
+    $iso3LangArray[] = $lang[0];
+}
 $interfaceLanguages = array(
-    'lang'=>'ara|bel|chi|deu|eng|epo|eus|fre|gre|hin|hun|ita|jpn|nds|pol|pt_BR|rus|spa|tur|tgl|fin'
+    'lang' => join('|', $iso3LangArray)
 );
+
 
 /**
  * To route tools, in order to still have tools in the URL, which is
  * clearer for users IMHO
- * this rule appears first, that way /fre/tools/search_sinograms  is 
+ * this rule appears first, that way /fre/tools/search_sinograms  is
  * not catch by the general rule for controllers
  */
 
 
     Router::connect(
-        '/tools/search_hanzi_kanji/:action',
+        '/tools/search_hanzi_kanji',
         array(
             'controller' => 'sinograms',
             'action' =>'index'
         )
     );
+    Router::connect(
+        '/tools/search_hanzi_kanji/:action',
+        array(
+            'controller' => 'sinograms',
+        )
+    );
 
     Router::connect(
-        '/:lang/tools/search_hanzi_kanji/:action ',
+        '/:lang/tools/search_hanzi_kanji',
         array(
             'lang'=>'eng',
             'controller' => 'sinograms',
             'action' =>'index'
         ),
         $interfaceLanguages
-    ); 
+    );
+    Router::connect(
+        '/:lang/tools/search_hanzi_kanji/:action',
+        array(
+            'lang'=>'eng',
+            'controller' => 'sinograms',
+        ),
+        $interfaceLanguages
+    );
 
 /**
  * Here, we are connecting '/' (base path) to controller called 'Pages',
@@ -126,13 +146,13 @@ $interfaceLanguages = array(
 /**
  * La langue choisie sera maintenant disponible dans les contrôleurs
  * par la variable $this->params['lang'].
- */     
+ */
     Router::connect(
         '/:lang/:controller/:action/*',
         array(
             'lang'=>'eng'
         ),
         $interfaceLanguages
-    ); 
+    );
 
 ?>

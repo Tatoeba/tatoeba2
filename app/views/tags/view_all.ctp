@@ -25,17 +25,14 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = 'Tatoeba - '. __('All existing tags', true);
+$this->set('title_for_layout', 'Tatoeba - '. __('All existing tags', true));
 ?>
 
 <div id="annexe_content">
-    
-    <div class="annexeMenu">
+    <div class="module">
         <h2><?php __('Related links'); ?></h2>
         <ul>
-        <li class="item"><a href="http://blog.tatoeba.org/2010/11/tags-guidelines.html">Tag guidelines</a>, Trang</li>
-        <li class="item"><a href="http://a4esl.com/temporary/tatoeba/#tags">Tags - Experimental, Example Layouts</a>, CK</li>
-        <li class="item"><a href="http://martin.swift.is/tatoeba/tags-cleanup.html">Tag cleanup</a>, Swift</li>
+        <li class="item"><a href="http://en.wiki.tatoeba.org/articles/show/tags"><?php __('Tags'); ?></a></li>
         </ul>
     </div>
 </div>
@@ -52,9 +49,9 @@ $this->pageTitle = 'Tatoeba - '. __('All existing tags', true);
                 <span class="tag">
                     <?php
                     $tagName =  $tag['Tag']['name'];
-                    $tagInternalName =  $tag['Tag']['internal_name'];
+                    $tagId =  $tag['Tag']['id'];
                     $count = $tag['Tag']['nbrOfSentences'];
-                    $tags->displayTagInCloud($tagName, $tagInternalName, $count);
+                    $tags->displayTagInCloud($tagName, $tagId, $count);
                     ?>
                 </span>
             <?php

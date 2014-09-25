@@ -25,8 +25,9 @@
  * @link     http://tatoeba.org
  */
 ?>
-<div class="module" id="audioStats">
+<div class="module">
     <h2><?php __('Number of sentences with audio by language'); ?></h2>
+    <div class="sentencesStats">
     <ul>
     <?php
     foreach ($stats as $stat) {
@@ -53,4 +54,5 @@
     ?>
     </li>
     </ul>
+    </div>
 </div>

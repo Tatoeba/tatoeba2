@@ -34,7 +34,7 @@
 /*
  * Latest comments
  */
-@import url(../elements/comment.css?1);
+@import url(../elements/message.css);
 
 
 /*
@@ -78,10 +78,8 @@
 
 .lastWallMessages .body {
     padding: 5px 5px 0px 5px;
-    text-indent: 20px;
     border-top: 1px solid #D1D1D1;
     color: #656565;
-    text-align: justify;
 }
 
 .lastWallMessages .link {

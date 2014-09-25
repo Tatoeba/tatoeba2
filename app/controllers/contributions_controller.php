@@ -25,8 +25,6 @@
  * @link     http://tatoeba.org
  */
 
-App::import('Core', 'Sanitize');
-
 /**
  * Controller for contributions.
  *
@@ -51,41 +49,42 @@ class ContributionsController extends AppController
         'CommonModules'
     );
     public $components = array('Permissions');
-    
+
     /**
      * Before filter.
-     * 
+     *
      * @return void
      */
     public function beforeFilter()
     {
-        parent::beforeFilter(); 
-        
+        parent::beforeFilter();
+
         $this->Auth->allowedActions = array('*');
     }
-    
+
     /**
      * Display all contributions in specified language (or all languages).
-     * 
+     *
      * @param string $filter Language of the contributions.
      *
      * @return void
      */
     public function index($filter = 'und')
     {
+        $filter = Sanitize::paranoid($filter);
 
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
         if(strpos($user_agent, "Baidu") !== false) {
             $this->redirect($redirectPage, 404);
-        } 
+        }
 
         $this->helpers[] = 'Pagination';
-        
+
         $conditions = array();
         if ($filter != 'und') {
             $conditions = array('sentence_lang' => $filter);
         }
-        
+
         $this->paginate = array(
             'Contribution' => array(
                 'conditions' => $conditions,
@@ -95,7 +94,7 @@ class ContributionsController extends AppController
             )
         );
         $contributions = $this->paginate();
-        
+
         $usersIds = array();
         foreach($contributions as $contribution) {
             $userId = $contribution['Contribution']['user_id'];
@@ -104,15 +103,16 @@ class ContributionsController extends AppController
             }
         }
         $users = $this->Contribution->User->getUsernamesFromIds($usersIds);
-        
+
         $this->set('contributions', $contributions);
         $this->set('users', $users);
+        $this->set('langFilter', $filter);
     }
-    
-    
+
+
     /**
      * Display 200 last contributions in specified language (or all languages).
-     * 
+     *
      * @param string $filter Language of the contributions.
      *
      * @return void
@@ -123,8 +123,8 @@ class ContributionsController extends AppController
             'contributions', $this->Contribution->getLastContributions(200, $filter)
         );
     }
-    
-    
+
+
     /**
      * Display number of contributions for each member.
      *
@@ -136,11 +136,11 @@ class ContributionsController extends AppController
         $this->cacheAction = '1 day';
         $this->set('stats', $this->Contribution->getUsersStatistics());
     }
-    
+
     /**
      * Display number of contributions for each day.
      *
-     * @param string $month Example: '2010-02' (for February 2010). 
+     * @param string $month Example: '2010-02' (for February 2010).
      *
      * @return void
      */
@@ -157,7 +157,7 @@ class ContributionsController extends AppController
         }
 
         if ($redirect) {
-        
+
             $this->redirect(
                 array(
                     'action' => 'activity_timeline',
@@ -166,17 +166,17 @@ class ContributionsController extends AppController
                 )
             );
 
-        } else { 
-        
+        } else {
+
             $stats = $this->Contribution->getActivityTimelineStatistics($year, $month);
             $this->set('year', $year);
             $this->set('month', $month);
             $this->set('stats', $stats);
-        
+
         }
     }
-    
-    
+
+
     /**
      * Display logs of contributions of specified user.
      *
@@ -187,15 +187,15 @@ class ContributionsController extends AppController
     public function of_user($username)
     {
         $this->helpers[] = 'Pagination';
-        
+
         $userId = $this->Contribution->User->getIdFromUsername($username);
         $this->set('username', $username);
-        
+
         if (empty($userId)) {
             $this->set('userExists', false);
             return;
         }
-        
+
         $this->paginate = array(
             'Contribution' => array(
                 'conditions' => array(

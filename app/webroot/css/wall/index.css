@@ -26,14 +26,17 @@
 /*
  * Wall
  */
+@import url(../elements/message.css);
 @import url(../elements/wall_messages.css);
 
 
-/*
- * Reply
- */
-@import url(../elements/wall_reply_form.css);
+#WallSaveForm {
+    margin-top: 10px;
+}
 
+#WallSaveForm .cancelFormLink {
+    display: none;
+}
 
 .wallBanner {
     border: 5px solid #9EAF85;

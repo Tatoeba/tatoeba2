@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Tatoeba Project, free collaborative creation of multilingual corpuses project
  * Copyright (C) 2009  HO Ngoc Phuong Trang <tranglich@gmail.com>
@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
+
 /**
  * Component for mails.
  *
@@ -42,7 +42,7 @@ class MailerComponent extends Object
     public $toName   = null;
     public $subject  = null;
     public $message  = null;
-    
+
     /**
      * Send email.
      *
@@ -52,15 +52,15 @@ class MailerComponent extends Object
     {
         /* email notification */
         $this->_authgMail(
-            $this->from, 
-            $this->fromName, 
-            $this->to, 
-            $this->toName, 
-            $this->subject, 
+            $this->from,
+            $this->fromName,
+            $this->to,
+            $this->toName,
+            $this->subject,
             $this->message
         );
     }
-    
+
     /**
      * Send via Gmail.
      *
@@ -78,7 +78,7 @@ class MailerComponent extends Object
         if (Configure::read('Mailer.enabled') == false) {
             return;
         }
-        
+
         /*  your configuration here  */
 
         $smtpServer = "tls://smtp.gmail.com"; //does not accept STARTTLS
@@ -88,7 +88,7 @@ class MailerComponent extends Object
         $password = Configure::read('Mailer.password'); //the pass for your gmail
         $localhost = $_SERVER['REMOTE_ADDR']; //requires a real ip
         $newLine = "\r\n"; //var just for newlines
-         
+
         /*  you shouldn't need to mod anything else */
 
         //connect to the host and port
@@ -108,7 +108,7 @@ class MailerComponent extends Object
         fputs($smtpConnect, "HELO $localhost". $newLine);
         $smtpResponse = fgets($smtpConnect, 4096);
         $logArray['heloresponse2'] = "$smtpResponse";
-          
+
         //request for auth login
         fputs($smtpConnect, "AUTH LOGIN" . $newLine);
         $smtpResponse = fgets($smtpConnect, 4096);

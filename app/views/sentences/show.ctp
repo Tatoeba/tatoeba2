@@ -25,14 +25,18 @@
  * @link     http://tatoeba.org
  */
 
+$javascript->link('jquery.scrollTo-min.js', false);
+$javascript->link('sentences.logs.js', false);
+
 if (isset($sentence)) {
     $sentenceId = $sentence['Sentence']['id'];
     $sentenceLang = $sentence['Sentence']['lang'];
     $sentenceText = Sanitize::html($sentence['Sentence']['text']);
+    $sentenceCorrectness = $sentence['Sentence']['correctness'];
     
     $languageName = $languages->codeToName($sentenceLang);
     $title = sprintf(__('%s example sentence: ', true), $languageName);
-    $this->pageTitle = $title . $sentenceText;
+    $this->set('title_for_layout', $title . $sentenceText);
 
     $html->meta(
         'description', 
@@ -44,12 +48,11 @@ if (isset($sentence)) {
             ),
             $sentenceText
         ), 
-        array(), 
-        false
+        array('inline' => false)
     );
 } else {
     // Case where the sentence has been deleted
-    $this->pageTitle = __('Sentence does not exist: ', true).$this->params['pass'][0];
+    $this->set('title_for_layout', __('Sentence does not exist: ', true).$this->params['pass'][0]);
 }
 
 
@@ -64,7 +67,25 @@ $navigation->displaySentenceNavigation(
 <div id="annexe_content">
     <?php $attentionPlease->tatoebaNeedsYou(); ?>
     
-    <?php $tags->displayTagsModule($tagsArray, $sentenceId); ?>
+    <?php 
+    if (isset($sentence)){
+        $tags->displayTagsModule($tagsArray, $sentenceId);
+
+        // TODO For the beginning we'll restrict this to admins.
+        // Later we'll want CurrentUser::isModerator();
+        if (CurrentUser::isAdmin()) {
+            echo $this->element(
+                'sentences/correctness',
+                array(
+                    'sentenceId' => $sentenceId,
+                    'sentenceCorrectness' => $sentenceCorrectness
+                )
+            ); 
+        }
+
+        echo $this->element('sentences/correctness_info');
+    }
+    ?>
     
     <div class="module">
         <?php
@@ -86,7 +107,8 @@ $navigation->displaySentenceNavigation(
             echo '<em>'. __('There is no log for this sentence', true) .'</em>';
         }
         ?>
-    </div>    
+    </div>  
+    
     <div class="module">
         <h2><?php __('Report mistakes'); ?> </h2>
         <p>
@@ -153,55 +175,47 @@ $navigation->displaySentenceNavigation(
         echo '</h2>';
         
         if (!empty($sentenceComments)) {
-            $sentenceInfo = array('id' => $sentenceId);
-            echo '<ol class="comments">';
+            echo '<div class="comments">';
             foreach ($sentenceComments as $i=>$comment) {
-                $comments->displaySentenceComment(
+                $commentId = $comment['SentenceComment']['id'];
+                $menu = $comments->getMenuForComment(
                     $comment['SentenceComment'],
                     $comment['User'],
-                    $sentenceInfo,
                     $commentsPermissions[$i]
                 );
+                
+                echo '<a id="comment-'.$commentId.'"></a>';
+                
+                $messages->displayMessage(
+                    $comment['SentenceComment'],
+                    $comment['User'],
+                    null,
+                    $menu
+                );
             }
-            echo '</ol>';
-        
+            echo '</div>';
         } else {
             echo '<em>' . __('There are no comments for now.', true) .'</em>';
         }
-        ?>
-        
-        
-    </div>
-    
-    <?php
-    if (isset($sentence)) {
-        ?>
-        <div class="module">
-        
-        <h2><?php __('Add a comment'); ?></h2>
-        
-        <?php
+
         if ($session->read('Auth.User.id')) {
-            $comments->displayCommentForm(
-                $sentence['Sentence']['id'], 
-                $sentence['Sentence']['text']
-            );
-        } else {
-            echo '<p>';
-            echo sprintf(
-                __(
-                    'You need to be logged in to add a comment. If you are '.
-                    'not registered, you can <a href="%s">register here</a>.', 
-                    true
-                ),
-                $html->url(array("controller"=>"users", "action"=>"register"))
-            );
-            echo '</p>';
-        }
-        ?>
-        </div>
-        <?php
-    }
-    ?>
+                $comments->displayCommentForm(
+                    $sentence['Sentence']['id'], 
+                    $sentence['Sentence']['text']
+                );
+            } else {
+                echo '<p>';
+                echo sprintf(
+                    __(
+                        'You need to be logged in to add a comment. If you are '.
+                        'not registered, you can <a href="%s">register here</a>.', 
+                        true
+                    ),
+                    $html->url(array("controller"=>"users", "action"=>"register"))
+                );
+                echo '</p>';
+            }
+        ?>        
+    </div>
 </div>
 

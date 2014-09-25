@@ -1,7 +1,6 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
- * Short description for file.
+ * Application level Controller
  *
  * This file is application-wide controller file. You can put all
  * application-wide controller-related methods here.
@@ -19,11 +18,9 @@
  * @package       cake
  * @subpackage    cake.cake.libs.controller
  * @since         CakePHP(tm) v 0.2.9
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 /**
  * This is a placeholder class.
  * Create the same file in app/app_controller.php
@@ -33,7 +30,7 @@
  *
  * @package       cake
  * @subpackage    cake.cake.libs.controller
+ * @link http://book.cakephp.org/view/957/The-App-Controller
  */
 class AppController extends Controller {
 }
-?>

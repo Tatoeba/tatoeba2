@@ -19,12 +19,6 @@
 
 
 /*
- * Private message menu (new message, reply...)
- */
-@import url(../elements/private_messages_menu.css);
-
-
-/*
  * Pagination
  */
 @import url(../elements/pagination.css);
@@ -62,10 +56,6 @@
 .linkToMessage:hover {
     color: #555;
     background: #E4FFD1;
-}
-
-.messageHeader img {
-    height: 40px;
 }
 
 .unread a {

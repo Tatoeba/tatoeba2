@@ -34,12 +34,12 @@ if ($folder == 'Inbox') {
     $folderName = __('Trash', true);
 }
 
-$this->pageTitle = __('Private messages', true) . ' - ' . $folderName;
+$this->set('title_for_layout', __('Private messages', true) . ' - ' . $folderName);
 
 echo $this->element('pmmenu');
 ?>
 <div id="main_content">
-	<div class="module pm_module">
+    <div class="module pm_module">
         <h2>
             <?php 
             echo $folderName;
@@ -56,8 +56,8 @@ echo $this->element('pmmenu');
         $pagination->display(array($folder));
         ?>
         
-		<table class="pm_folder">
-		<?php
+        <table class="pm_folder">
+        <?php
 
         foreach ($content as $msg) {
             if ($msg['PrivateMessage']['isnonread'] == 1) {
@@ -68,19 +68,17 @@ echo $this->element('pmmenu');
 
             /* Used to display properly the name of the sender, or receiver
              * while we are in Sent or other folder.
-			 * NOTA: the caps to the word 'Sent' is IMPORTANT.
-			 */
+             * NOTA: the caps to the word 'Sent' is IMPORTANT.
+             */
             if ($folder != 'Sent') {
-                $username = $msg['Sender']['username'];
-                $userImage = $msg['Sender']['image'];
-                $label = sprintf(__('from %s', true), $username);
+                $user = $msg['Sender'];
+                $label = sprintf(__('from %s', true), $user['username']);
             } else {
-                $username = $msg['Recipient']['username'];
-                $userImage = $msg['Recipient']['image'];
-                $label = sprintf(__('to %s', true), $username);
+                $user = $msg['Recipient'];
+                $label = sprintf(__('to %s', true), $user['username']);
             }
             echo '<td class="senderImage">';
-            $wall->displayMessagePosterImage($username, $userImage);
+            $messages->displayAvatar($user);
             echo '</td>';
 
             if ($msg['PrivateMessage']['title'] == '') {
@@ -135,10 +133,10 @@ echo $this->element('pmmenu');
            echo '</tr>';
         }
         ?>
-		</table>
+        </table>
         
         <?php
         $pagination->display(array($folder));
         ?>
-	</div>
+    </div>
 </div>

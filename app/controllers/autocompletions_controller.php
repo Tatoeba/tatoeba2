@@ -37,16 +37,16 @@
 class AutocompletionsController extends AppController
 {
     public $name = 'Autocompletions';
-    public $uses = '';      
+    public $uses = '';
     /**
      * Before filter.
-     * 
+     *
      * @return void
      */
     public function beforeFilter()
     {
-        parent::beforeFilter(); 
-        
+        parent::beforeFilter();
+
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array('*');
     }
@@ -57,5 +57,5 @@ class AutocompletionsController extends AppController
     public function request($searchString) {
         $this->layout = '';
         $this->set("searchString", $searchString);
-    } 
+    }
 }

@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = __('Tatoeba: Collecting example sentences', true);
+$this->set('title_for_layout', __('Tatoeba: Collecting example sentences', true));
 $html->meta(
     'description', 
     __(
@@ -34,8 +34,7 @@ $html->meta(
         "It's collaborative, open, free, and even addictive.",
         true
     ), 
-    array(), 
-    false
+    array('inline' => false)
 );
 
 $selectedLanguage = $session->read('random_lang_selected');
@@ -43,32 +42,23 @@ $selectedLanguage = $session->read('random_lang_selected');
 <div id="annexe_content">    
     <?php
     if (!$isLogged) {
-        ?>
-        <div class="module">
-            <h2><?php __('Join the community!'); ?></h2>
-            <?php
-            __(
-                "The more contributors there are, the more useful Tatoeba will ".
-                "become! Besides, by contributing, not only will you be helpful ".
-                "to the rest of the world, but you will also get to learn a lot."
-            );
-            ?>
-            <p>
-                <?php
-                echo $html->link(
-                    __('Register', true),
-                    array("controller" => "users", "action" => "register"),
-                    array("class" => "registerButton")
-                );
-            ?></p>
-        </div>
-    <?php
+        echo $this->element('join_us', array(
+            'cache' => array(
+                'time' => '+1 day',
+                'key' => Configure::read('Config.language')
+            )
+        ));
     }
     ?>
     
     
     <?php 
-    echo $this->element('sentences_statistics');
+    echo $this->element('sentences_statistics', array(
+        'cache' => array(
+            'time' => '+15 minutes',
+            'key' => Configure::read('Config.language')
+        )
+    ));
     ?>
     
     <?php

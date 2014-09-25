@@ -18,25 +18,9 @@
 
 
 
-div.submit {
-    width: 20%;
-    display: inline;
-    float: left;
-}
+@import url(../elements/message.css);
 
-.cancel_edit {
-    display: inline-block;
-    margin-top: 4px;
-}
 
-.editWallMessage {
-    padding: 15px 15px 15px 15px;
-    /*bg_comments.gif looks better than bg_wall_comments.gif */
-    background: url("../../img/bg_comments.gif") repeat-x scroll 0 0;
-}
-
-.editWallMessage textarea {
-    margin-bottom: 10px;
-    font-size: 1em;
-    width: 100%;
+#WallEditForm {
+    margin-top: 0px;
 }

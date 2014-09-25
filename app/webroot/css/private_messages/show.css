@@ -24,61 +24,6 @@
 
 
 /*
- * Message
+ * Private message menu (new message, reply...)
  */
-.privateMessage {
-    margin-bottom: 40px;
-}
-
-.privateMessage ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-.privateMessage li {
-    margin: 0;
-    font-size: 13px;
-    color: #777;
-    position: static;
-}    
-
-.meta .image {
-    float: left;
-    margin-right: 10px;
-}
-
-.meta img {
-    height: 36px;
-}    
-
-.meta .author {
-    font-weight: bold;
-    padding-left: 10px;
-}
-
-.meta .date {
-    color: #999;
-    font-style: italic;
-    font-size: 11px;
-}
-
-.meta .action {
-    float: right;
-    margin-top: 10px;
-    margin-right: 10px;
-}
-
-.meta a { 
-    color: #89C140; 
-}
-
-.meta a:hover { 
-    color: #555; 
-}
-
-.privateMessage .body {
-    padding: 15px;
-    background: #FFF url(../../img/bg_wall_comments.gif) repeat-x;
-    clear: both;
-}
+@import url(../elements/message.css);

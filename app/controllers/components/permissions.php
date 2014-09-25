@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
+
 /**
  * Component for permissions.
  *
@@ -37,7 +37,7 @@
 class PermissionsComponent extends Object
 {
     public $components = array('Auth', 'Acl');
-    
+
     /**
      * Check which options user can access to and returns
      * data that is needed for the sentences menu.
@@ -50,28 +50,28 @@ class PermissionsComponent extends Object
     public function getSentencesOptions($sentence, $currentUserId)
     {
         $sentenceOwnerId = $sentence['Sentence']['user_id'];
-        
+
         $specialOptions = array(
             'canComment' => false,
             'canEdit' => false,
             'canLinkAndUnlink' => false,
             'canDelete' => false,
             'canAdopt' => false,
-            'canLetGo' => false, 
+            'canLetGo' => false,
             'canTranslate' => false,
             'canFavorite' => false,
             'canUnFavorite' => false,
             'canAddToList' => false,
             'belongsToLists' => array()
         );
-        
+
         if ($this->Auth->user('id')) {
             // -- comment --
             $specialOptions['canComment'] = true;
-            
+
             // -- translate --
-            $specialOptions['canTranslate'] = true;    
-            
+            $specialOptions['canTranslate'] = true;
+
             // -- favorite --
             $specialOptions['canFavorite'] = true;
             // if we have already favorite it then we just can unfavorite it
@@ -84,28 +84,28 @@ class PermissionsComponent extends Object
                     }
                 }
             }
-            
+
             // -- edit --
             if ($this->Auth->user('group_id') < 3) {
                 $specialOptions['canEdit'] = true;
             }
-            
+
             // -- edit and adopt --
             if ($sentenceOwnerId == $currentUserId) {
                 $specialOptions['canEdit'] = true;
                 $specialOptions['canLetGo'] = true;
             }
-            
+
             // -- link/unlink --
             // It's important to set this permission after canEdit has been set.
             if ($this->Auth->user('group_id') < 4 && $specialOptions['canEdit']) {
                 $specialOptions['canLinkAndUnlink'] = true;
             }
-            
+
             // -- delete --
             $specialOptions['canDelete'] = ($this->Auth->user('group_id') < 2);
-            
-            
+
+
             // -- add to list --
             $specialOptions['canAddToList'] = true;
             if (isset($sentence['SentencesList'])) {
@@ -113,15 +113,15 @@ class PermissionsComponent extends Object
                     array_push($specialOptions['belongsToLists'], $list['id']);
                 }
             }
-            
+
             // -- adopt --
             if ($sentenceOwnerId == null OR $sentenceOwnerId == 0) {
-                
+
                 $specialOptions['canAdopt'] = true;
-                
+
             }
         }
-        
+
         return $specialOptions;
     }
 
@@ -135,18 +135,16 @@ class PermissionsComponent extends Object
      * @return array
      */
 
-    public function  getCommentsOptions(
-        $comments,
-        $currentUserId,
-        $currentUserGroup
-    ) {
+    public function getCommentsOptions($comments) {
         $commentsPermissions = array();
         foreach ($comments as $comment) {
+            if (isset($comment['SentenceComment'])) {
+                $comment = $comment['SentenceComment'];
+            }
+
             $commentPermissions = $this->getCommentOptions(
                 $comment,
-                $comment['User']['id'],
-                $currentUserId,
-                $currentUserGroup
+                $comment['user_id']
             );
             array_push($commentsPermissions, $commentPermissions);
         }
@@ -160,37 +158,36 @@ class PermissionsComponent extends Object
      * @param array $comment          Comment.
      * @param int   $ownerId          Id of the comment owner.
      * @param int   $currentUserId    Id of currently logged in user.
-     * @param int   $currentUserGroup Id of the user's group.
      *
      * @return array
      */
 
-    public function getCommentOptions(
-        $comment,
-        $ownerId,
-        $currentUserId,
-        $currentUserGroup
-    ) {
+    public function getCommentOptions($comment, $ownerId) {
         $rightsOnComment = array(
             "canDelete" => false,
-            "canEdit" => false
+            "canEdit" => false,
+            "canHide" => false,
+            "canPM" => false
         );
-        if (empty($currentUserId) || empty($currentUserGroup)) {
+        if (!CurrentUser::isMember()) {
             return $rightsOnComment;
         }
 
-        if ($ownerId === $currentUserId) {
-            $rightsOnComment['canDelete'] = true; 
-        } elseif ($currentUserGroup < 2) {
-            $rightsOnComment['canDelete'] = true; 
-        }
-        
-        if ($rightsOnComment['canDelete']) {
+        if (CurrentUser::isAdmin()) {
+            $rightsOnComment['canDelete'] = true;
             $rightsOnComment['canEdit'] = true;
-        } elseif ($currentUserGroup < 2) {
-            $rightsOnComment['canEdit'] = true; 
+            $rightsOnComment['canHide'] = true;
         }
         
+        if ($ownerId === CurrentUser::get('id')) {
+            $rightsOnComment['canDelete'] = true;
+            $rightsOnComment['canEdit'] = true;
+        }
+
+        if (CurrentUser::get('id') != $ownerId) {
+            $rightsOnComment['canPM'] = true;
+        }
+
         return $rightsOnComment;
     }
 
@@ -223,20 +220,20 @@ class PermissionsComponent extends Object
 
         if (empty($message['children'])) {
             if ($ownerId === $currentUserId) {
-                $rightsOnWallMessage['canDelete'] = true; 
+                $rightsOnWallMessage['canDelete'] = true;
             } elseif ($currentUserGroup < 2) {
-                $rightsOnWallMessage['canDelete'] = true; 
+                $rightsOnWallMessage['canDelete'] = true;
             }
         }
 
         if ($ownerId === $currentUserId) {
-            $rightsOnWallMessage['canEdit'] = true; 
+            $rightsOnWallMessage['canEdit'] = true;
         } elseif ($currentUserGroup < 2) {
-            $rightsOnWallMessage['canEdit'] = true; 
+            $rightsOnWallMessage['canEdit'] = true;
         }
-        
+
         $rightsOnWallMessage['canReply'] = true;
-        
+
         return $rightsOnWallMessage;
     }
 
@@ -255,7 +252,7 @@ class PermissionsComponent extends Object
         $currentUserId,
         $currentUserGroup
     ) {
-        
+
         foreach ($messages as $i=>$message) {
             $messages[$i]['Permissions'] = $this->getWallMessageOptions(
                 $message,
@@ -268,7 +265,7 @@ class PermissionsComponent extends Object
                 $messages[$i]['children'] = $this->getWallMessagesOptions(
                     $message['children'],
                     $currentUserId,
-                    $currentUserGroup              
+                    $currentUserGroup
                 );
             }
 

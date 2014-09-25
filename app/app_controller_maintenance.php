@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
- 
+
 /**
  * AppController for maintenance mode.
  *

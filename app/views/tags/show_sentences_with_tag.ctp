@@ -25,13 +25,64 @@
  * @link     http://tatoeba.org
  */
 
-$tagName = Sanitize::html($tagName);
-$this->pageTitle = 'Tatoeba - '.sprintf(__('Sentences with tag %s', true), $tagName);
-?> 
+if ($tagExists) {
+    $tagName = Sanitize::html($tagName);
+    $this->set('title_for_layout', 'Tatoeba - '.sprintf(__('Sentences with tag %s', true), $tagName));
+    ?>
 
-<div id="annexe_content">
-    <?php $commonModules->createFilterByLangMod(2); ?> 
-    <div class="module">
+    <div id="annexe_content">
+        <?php $commonModules->createFilterByLangMod(2); ?>
+        <div class="module">
+            <?php
+            echo $html->link(
+                __('View all tags', true),
+                array(
+                    "controller" => "tags",
+                    "action" => "view_all",
+                )
+            );
+            ?>
+        </div>
+    </div>
+
+    <div id="main_content">
+        <div class="module">
+            <h2><?php echo $tagName; ?></h2>
+            <?php
+            $url = array($tagId, $langFilter);
+            $pagination->display($url);
+            ?>
+
+            <div class="sentencesList" id="sentencesList">
+                <?php
+                foreach ($allSentences as $i=>$sentence) {
+                    // this should be done in the controller but this way
+                    // we avoid another full loop on the sentence Array
+                    $canUserRemove = CurrentUser::canRemoveTagFromSentence(
+                        $taggerIds[$i]
+                    );
+                    $tags->displaySentence(
+                        $sentence['Sentence'],
+                        $sentence['User'],
+                        $sentence['Translations'],
+                        $sentence['IndirectTranslations'],
+                        $canUserRemove,
+                        $tagId
+                    );
+                }
+                ?>
+            </div>
+
+            <?php
+            $pagination->display($url);
+            ?>
+
+        </div>
+    </div>
+    <?php
+} else {
+    ?>
+    <div id="main_content">
         <?php
         echo $html->link(
             __('View all tags', true),
@@ -42,39 +93,6 @@ $this->pageTitle = 'Tatoeba - '.sprintf(__('Sentences with tag %s', true), $tagN
         );
         ?>
     </div>
-</div>
-
-<div id="main_content">
-    <div class="module">
-    <h2><?php echo $tagName; ?></h2>
     <?php
-    $url = array($tagInternalName, $langFilter);
-    $pagination->display($url);
-    ?>
-        
-        <div class="sentencesList" id="sentencesList">
-        <?php
-        foreach ($allSentences as $i=>$sentence) {
-            // this should be done in the controller but this way
-            // we avoid another full loop on the sentence Array
-            $canUserRemove = CurrentUser::canRemoveTagFromSentence(
-                $taggerIds[$i]
-            );
-            $tags->displaySentence(
-                $sentence['Sentence'],
-                $sentence['User'],
-                $sentence['Translations'],
-                $sentence['IndirectTranslations'],
-                $canUserRemove,
-                $tagId
-            );
-        }
-        ?>
-        </div>
-    
-    <?php
-    $pagination->display($url);
-    ?>
-    
-    </div>
-</div>
+}
+?>

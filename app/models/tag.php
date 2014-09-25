@@ -37,13 +37,13 @@
 class Tag extends AppModel
 {
     public $name = 'Tag';
-    
+
     public $actsAs = array('Containable');
 
 
     public $belongsTo = array('User',);
-    public $hasMany = array('TagsSentences');       
- 
+    public $hasMany = array('TagsSentences');
+
     public $hasAndBelongsToMany = array(
         'Sentence' => array(
             'className' => 'Sentence',
@@ -59,8 +59,28 @@ class Tag extends AppModel
         ),
     );
   
+    public function getChangeTagName()
+    {
+        return '@change';
+    }
+    public function getCheckTagName()
+    {
+        return '@check';
+    }
+    public function getDeleteTagName()
+    {
+        return '@delete';
+    }
+    public function getNeedsNativeCheckTagName()
+    {
+        return '@needs native check';
+    }
+    public function getOKTagName()
+    {
+        return 'OK';
+    }
     /**
-     * Cakephp callback before each saving operations
+     * Cakephp callback before each saving operation
      *
      * @return bool True if the saving operation can continue
      *              False if we have to abort it
@@ -68,96 +88,72 @@ class Tag extends AppModel
 
     public function beforeSave()
     {
-
-        $internalName = $this->data['Tag']['internal_name'];
-        $result = $this->find(
-            'first',
-            array(
-                'fields' => 'Tag.id',
-                'conditions' => array("Tag.internal_name" => $internalName),
-                'contain' => array()
-            )
-        );
-
+        $tagName = $this->data['Tag']['name'];
+        $result = $this->getIdFromName($tagName);
         return empty($result);
     }
-  
+
     /**
      *
      *
-     */ 
+     */
     public function addTag($tagName, $userId, $sentenceId = null)
     {
-        if (trim($tagName) == '') {
+        $tagName = trim($tagName);
+        if ($tagName == '') {
             return false;
         }
+        // Truncate to a maximum byte length of 50. If a multibyte
+        // character would be split, the entire character will be
+        // truncated.
+        $tagName = mb_strcut($tagName, 0, 50, "UTF-8");
         
-        if (trim($tagName) == 'OK') {
+        // Special case: don't allow the owner of a sentence to give it an OK tag.
+        if ($tagName == 'OK') {
             $ownerId = $this->Sentence->getOwnerIdOfSentence($sentenceId);
             if ($userId == $ownerId) {
                 return false;
             }
         }
         
-        $internalName = $this->_tag_to_internal_name($tagName);      
-        
         $data = array(
             "Tag" => array(
                 "name" => $tagName,
-                "internal_name" => $internalName,
                 "user_id" => $userId,
                 "created" => date("Y-m-d H:i:s")
             )
         );
         // try to add it as a new tag 
-        $this->save($data); 
-        
-        //send a request to suggestd to update its internal
-        // table 
-        // TODO only do this if we add a new tag 
+        $added = $this->save($data);
+        if ($added) {
+            $tagId = $this->id;
+        } else {
+            // This is mildly inefficient because the query has already
+            // been performed in beforeSave().
+            $tagId = $this->getIdFromName($tagName);
+            if ($tagId == null) {
+                return false;
+            }
+        }
+        // Send a request to suggestd (the auto-suggest daemon) to update its internal
+        // table. 
+        // TODO only do this if we add a new ("dirty") tag.
+        // See views/helpers/tags.php.
         // $dirty = fopen("http://127.0.0.1:8080/add?str=".urlencode($tagName)."&value=1", 'r');
         // if ($dirty != null) {
             // fclose($dirty);
         // }
 
         if ($sentenceId != null) {
-            $result = $this->find(
-                "first",
-                array(
-                    'fields' => 'Tag.id',
-                    'conditions' => array("Tag.internal_name" => $internalName),
-                    'contain' => array()
-                )
-            );
-            $tagId = $result['Tag']['id'];
-             
-            $this->TagsSentences->tagSentence(
+            $ret = $this->TagsSentences->tagSentence(
                 $sentenceId,
                 $tagId,
                 $userId
             );
+            return $ret;
         }
         
-        return true; // TODO This function was not returning anything but the
-                     // return value is needed in TagsController::add_tag().
-                     // I'm making it return true for now.
-    }
-
-    /**
-     * utility function to transform the human friendly tag
-     * into a url friendly representation, also needed to avoid as much
-     * as possible duplicate
-     * 
-     * @param string $tagName The human friendly tag name to convert
-     *
-     * @return string The url friendly string 
-     */
-    private function _tag_to_internal_name($tagName)
-    {
-        $tagName = trim($tagName);
-        return preg_replace('/(\s{1,})|([\[\)\'":])/u','_', $tagName);
-
-
+        return true;
     }
 
     public function removeTagFromSentence($tagId, $sentenceId) {
@@ -167,9 +163,9 @@ class Tag extends AppModel
         );
     }
 
-    public function paramsForPaginate($tagInternalName, $limit, $lang = null)
+    public function paramsForPaginate($tagId, $limit, $lang = null)
     {
-        $conditions = array('Tag.internal_name' => $tagInternalName);
+        $conditions = array('Tag.id' => $tagId);
         $contain =  array(
             'Tag' => array(
                 'fields' => array()
@@ -179,7 +175,7 @@ class Tag extends AppModel
         if (!empty($lang) && $lang != 'und') {
              $conditions = array(
                 "AND" => array(
-                    'Tag.internal_name' => $tagInternalName,
+                    'Tag.id' => $tagId,
                     'Sentence.lang' => $lang
                 )
             );
@@ -192,17 +188,17 @@ class Tag extends AppModel
                     'fields' => array()
                 ),
             );
-     
+
         }
         $params = array(
             'TagsSentences' => array(
                 'limit' => $limit,
-                'fields' => array('user_id','sentence_id'), 
+                'fields' => array('user_id','sentence_id'),
                 'conditions' => $conditions,
                 'contain' => $contain
             )
         );
-        
+
         return $params;
 
     }
@@ -216,19 +212,26 @@ class Tag extends AppModel
         return $this->find(
             'all',
             array(
-                'fields' => array('name', 'internal_name', 'nbrOfSentences'),
+                'fields' => array('name', 'id', 'nbrOfSentences'),
                 'contain' => array(),
                 'order' => 'nbrOfSentences DESC',
             )
         );
     }
-
+    
+    
+    /**
+     * Get tag id from tag internal name.
+     * 
+     * @param string $tagInternalName Internal name of the tag.
+     * 
+     * @return int Id of the tag
+     */
     public function getIdFromInternalName($tagInternalName) {
-
         $result = $this->find(
             'first',
             array(
-                'conditions' => array('Tag.internal_name'=>$tagInternalName),
+                'conditions' => array('Tag.internal_name' => $tagInternalName),
                 'contain' => array(),
                 'fields' => 'id'
             )
@@ -238,22 +241,55 @@ class Tag extends AppModel
     
     
     /**
-     * Get id and name of tag, from given 'internal name'.
      *
-     * @param string $tagInternalName Internal name of the tag.
+     * TODO
      *
-     * @return array
      */
-    public function getInfoFromInternalName($tagInternalName) {
-
+    public function getIdFromName($tagName) {
         $result = $this->find(
             'first',
             array(
-                'conditions' => array('Tag.internal_name'=>$tagInternalName),
+                'conditions' => array('Tag.name'=>$tagName),
                 'contain' => array(),
-                'fields' => array('id', 'name')
+                'fields' => 'id'
             )
         );
-        return $result;
+        return $result['Tag']['id'];
+    }
+    
+
+    /**
+     *
+     * TODO
+     *
+     */
+    public function tagExists($tagId) {
+        $result = $this->find(
+        'first',
+            array(
+                'conditions' => array('Tag.id'=>$tagId),
+                'contain' => array(),
+                'fields' => 'name'
+            )
+        );
+        return empty($result) ? false : true;
+    }
+    
+
+    /**
+     *
+     * TODO
+     *
+     */
+    public function getNameFromId($tagId) {
+        $result = $this->find(
+            'first',
+            array(
+                'conditions' => array('Tag.id'=>$tagId),
+                'contain' => array(),
+                'fields' => 'name'
+            )
+        );
+        return $result['Tag']['name'];
     }
 }

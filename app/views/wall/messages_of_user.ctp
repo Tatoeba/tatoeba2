@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 $username = Sanitize::paranoid($username, array("_"));
-$this->pageTitle = 'Tatoeba - ' . sprintf(__("%s's Wall messages", true), $username);
+$this->set('title_for_layout', 'Tatoeba - ' . sprintf(__("%s's Wall messages", true), $username));
 ?>
 
 <div id="annexe_content">
@@ -59,7 +59,7 @@ $this->pageTitle = 'Tatoeba - ' . sprintf(__("%s's Wall messages", true), $usern
     $pagination->display($paginatorUrl);
     ?>
     
-    <ol class="wall">
+    <div class="wall">
     <?php
     foreach ($messages as $message) {
         $wall->createThread(
@@ -70,7 +70,7 @@ $this->pageTitle = 'Tatoeba - ' . sprintf(__("%s's Wall messages", true), $usern
         );
     }
     ?>
-    </ol>
+    </div>
     
     <?php
     $paginatorUrl = array($username);

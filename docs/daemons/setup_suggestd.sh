@@ -99,6 +99,6 @@ sudo cp suggestd.xml /etc/
 #Add an unprivileged user
 sudo useradd -r suggestd
 #Start the daemon
-/etc/init.d/suggestd start
+sudo /etc/init.d/suggestd start
 #Add the init script to system startup
 sudo update-rc.d suggestd defaults

@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
+
 /**
  * Controller for contributions.
  *
@@ -42,14 +42,14 @@ class AppHelper extends Helper
      */
 
     public function url($url = null, $full = false)
-    { 
-        if (isset($this->params['lang']) && is_array($url)) { 
+    {
+        if (isset($this->params['lang']) && is_array($url)) {
 
-            $url['lang'] = $this->params['lang']; 
+            $url['lang'] = $this->params['lang'];
 
         }
 
-        return parent::url($url, $full); 
-    } 
-} 
+        return parent::url($url, $full);
+    }
+}
 ?>

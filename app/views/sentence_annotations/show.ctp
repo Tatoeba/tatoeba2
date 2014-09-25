@@ -21,85 +21,89 @@
 <div id="annexe_content">
     <?php
     $sentenceAnnotations->displayGoToBox();
-	
+    
     $sentenceAnnotations->displaySearchBox();
     
     if(isset($sentence)){
         $sentenceAnnotations->displayNewIndexBox($sentence['id']);
     }
-	?>
+    ?>
 </div>
 
 <div id="main_content">
-	<div class="module">
-	<?php
-	if(isset($sentence)){
+    <div class="module">
+    <?php
+    if(isset($sentence)){
         ?>
         <h2>
         <?php
         echo sprintf(__('Sentence #%s', true) , $sentence['id']);
         ?>
         </h2>
-		
-		<p class="original">
+        
+        <p class="original">
         <?php echo $sentence['text']; ?>
         </p>
-		
+        
         <?php
         
-		foreach($annotations as $annotation){
+        foreach($annotations as $annotation){
             ?>
             <hr/>
-			
+            
             <p>
             <?php echo Sanitize::html($annotation['text']); ?>
             </p>
             
-			<?php
-			echo $form->create('SentenceAnnotation', array("action" => "save"));
-			
-			// hidden ids necessary for saving
-            echo '<div>';
-			echo $form->hidden(
-				'SentenceAnnotation.id'
-				, array("value" => $annotation['id'])
-			);
-			echo $form->hidden(
-				'SentenceAnnotation.sentence_id'
-				, array("value" => $annotation['sentence_id'])
-			);
-			echo '</div>';
+            <?php
+            echo $form->create('SentenceAnnotation', array("action" => "save"));
             
-			// id of the "meaning" (i.e. English sentence for Tanaka sentences annotations)
-			echo $form->input('meaning_id', array(
-				"value" => $annotation['meaning_id']
-			));			
-			
-			// annotations text
-			echo $form->textarea('text', array(
-				"label" => null
-				, "value" => $annotation['text']
-				, "cols" => 60
-				, "rows" => 3
-			));
-			
-			// delete link
-			echo $html->link(
-				'delete'
-				, array(
-					"controller" => "sentence_annotations"
-					, "action" => "delete"
-					, $annotation['id']
-					, $annotation['sentence_id']
-				)
-				, array("style"=>"float:right")
-				, 'Are you sure?'
-			);			
-			
-			// save button
-			echo $form->end('save');
-		}
-	}
-	?>
-	</div>
+            // hidden ids necessary for saving
+            echo '<div>';
+            echo $form->hidden(
+                'SentenceAnnotation.id'
+                , array("value" => $annotation['id'])
+            );
+            echo $form->hidden(
+                'SentenceAnnotation.sentence_id'
+                , array("value" => $annotation['sentence_id'])
+            );
+            echo '</div>';
+            
+            // id of the "meaning" (i.e. English sentence for Tanaka sentences annotations)
+            echo $form->input(
+                'meaning_id', 
+                array(
+                    "type" => "text",
+                    "value" => $annotation['meaning_id']
+                )
+            );
+            
+            // annotations text
+            echo $form->textarea('text', array(
+                "label" => null
+                , "value" => $annotation['text']
+                , "cols" => 60
+                , "rows" => 3
+            ));
+            
+            // delete link
+            echo $html->link(
+                'delete'
+                , array(
+                    "controller" => "sentence_annotations"
+                    , "action" => "delete"
+                    , $annotation['id']
+                    , $annotation['sentence_id']
+                )
+                , array("style"=>"float:right")
+                , 'Are you sure?'
+            );          
+            
+            // save button
+            echo $form->end('save');
+        }
+    }
+    ?>
+    </div>
 </div>

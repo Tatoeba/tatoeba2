@@ -36,8 +36,8 @@
  */
 class PrivateMessagesHelper extends AppHelper
 {
-    public $helpers = array('Form');
-     
+    public $helpers = array('Form', 'Messages');
+
     /**
      * Displays the form to write a private message.
      *
@@ -48,41 +48,84 @@ class PrivateMessagesHelper extends AppHelper
     public function displayForm(
         $recipients = null, $title = null, $content = null
     ) {
-        echo $this->Form->create('PrivateMessage', array('action' => 'send'));
-        echo $this->Form->input(
-            'recpt',
-            array(
-                'label' => __('to', true),
-                'default' => $recipients,
-                'type' => 'text',
-                'maxlength' => 250
-            )
-        );
-
-        echo $this->Form->input(
-            'title',
-            array(
-                'default' => $title,
-                'type' => 'text',
-                'label' => __('Title', true)
-            )
-        );
-        
         if ($content != null) {
-            $content = $this->formatReplyMessage($content, $recipients);
+            $headerTitle = __('Reply', true);
+        } else {
+            $headerTitle = __('New message', true);
         }
-        echo $this->Form->input(
-            'content',
+
+        echo $this->Form->create(
+            'PrivateMessage', 
             array(
-                'label' => '',
-                'default' => $content,
-                'type' => 'textarea'
+                'action' => 'send',
+                'class' => 'message form'
             )
         );
-        echo $this->Form->end(__('Send', true));
+        ?>
+
+        <div class="header">
+            <div class="info">
+            <?php
+            $user = CurrentUser::get('User');
+            $this->Messages->displayAvatar($user['User']);
+            ?>
+            </div>
+            
+            <div class="title">
+            <?php echo $headerTitle ?>
+            </div>
+        </div>
+
+        <div class="body">
+            <div class="pmFields">
+            <?php
+            echo $this->Form->input(
+                'recpt',
+                array(
+                    'label' => __('to', true),
+                    'default' => $recipients,
+                    'type' => 'text',
+                    'maxlength' => 250,
+                    'class' => 'pmTo'
+                )
+            );
+
+            echo $this->Form->input(
+                'title',
+                array(
+                    'default' => $title,
+                    'type' => 'text',
+                    'label' => __('Title', true),
+                    'class' => 'pmTitle'
+                )
+            );
+            ?>
+            </div>
+
+            <div class="content">
+            <?php
+            if ($content != null) {
+                $content = $this->formatReplyMessage($content, $recipients);
+            }
+            echo $this->Form->input(
+                'content',
+                array(
+                    'label' => '',
+                    'default' => $content,
+                    'type' => 'textarea'
+                )
+            );
+            ?>
+            </div>
+
+            <?php echo $this->Form->submit(__('Send', true)); ?>
+        </div>
+
+        <?php
+        echo $this->Form->end();
     }
-    
-    
+
+
     /**
      * function to format the text of the messages in case of answer
      *

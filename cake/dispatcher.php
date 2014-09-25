@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Dispatcher takes the URL information, parses it for paramters and
  * tells the involved controllers what to do.
@@ -19,15 +18,15 @@
  * @package       cake
  * @subpackage    cake.cake
  * @since         CakePHP(tm) v 0.2.9
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 /**
  * List of helpers to include
  */
-App::import('Core', array('Router', 'Controller'));
+App::import('Core', 'Router');
+App::import('Controller', 'Controller', false);
+
 /**
  * Dispatcher translates URLs to controller-action-paramter triads.
  *
@@ -37,6 +36,7 @@ App::import('Core', array('Router', 'Controller'));
  * @subpackage    cake.cake
  */
 class Dispatcher extends Object {
+
 /**
  * Base URL
  *
@@ -44,6 +44,7 @@ class Dispatcher extends Object {
  * @access public
  */
 	var $base = false;
+
 /**
  * webroot path
  *
@@ -51,6 +52,7 @@ class Dispatcher extends Object {
  * @access public
  */
 	var $webroot = '/';
+
 /**
  * Current URL
  *
@@ -58,20 +60,7 @@ class Dispatcher extends Object {
  * @access public
  */
 	var $here = false;
-/**
- * Admin route (if on it)
- *
- * @var string
- * @access public
- */
-	var $admin = false;
-/**
- * Plugin being served (if any)
- *
- * @var string
- * @access public
- */
-	var $plugin = null;
+
 /**
  * the params for this request
  *
@@ -79,6 +68,7 @@ class Dispatcher extends Object {
  * @access public
  */
 	var $params = null;
+
 /**
  * Constructor.
  */
@@ -90,8 +80,10 @@ class Dispatcher extends Object {
 			return $this->dispatch($url);
 		}
 	}
+
 /**
- * Dispatches and invokes given URL, handing over control to the involved controllers, and then renders the results (if autoRender is set).
+ * Dispatches and invokes given URL, handing over control to the involved controllers, and then renders the
+ * results (if autoRender is set).
  *
  * If no controller of given name can be found, invoke() shows error messages in
  * the form of Missing Controllers information. It does the same with Actions (methods of Controllers are called
@@ -116,13 +108,11 @@ class Dispatcher extends Object {
 			$url = $this->getUrl();
 			$this->params = array_merge($this->parseParams($url), $additionalParams);
 		}
-
 		$this->here = $this->base . '/' . $url;
 
-		if ($this->cached($url)) {
-			$this->_stop();
+		if ($this->asset($url) || $this->cached($url)) {
+			return;
 		}
-
 		$controller =& $this->__getController();
 
 		if (!is_object($controller)) {
@@ -134,7 +124,6 @@ class Dispatcher extends Object {
 				'base' => $this->base
 			)));
 		}
-
 		$privateAction = $this->params['action'][0] === '_';
 		$prefixes = Router::prefixes();
 
@@ -160,11 +149,10 @@ class Dispatcher extends Object {
 				'base' => $this->base
 			)));
 		}
-
 		$controller->base = $this->base;
 		$controller->here = $this->here;
 		$controller->webroot = $this->webroot;
-		$controller->plugin = $this->plugin;
+		$controller->plugin = isset($this->params['plugin']) ? $this->params['plugin'] : null;
 		$controller->params =& $this->params;
 		$controller->action =& $this->params['action'];
 		$controller->passedArgs = array_merge($this->params['pass'], $this->params['named']);
@@ -174,27 +162,19 @@ class Dispatcher extends Object {
 		} else {
 			$controller->data = null;
 		}
-		if (array_key_exists('return', $this->params) && $this->params['return'] == 1) {
+		if (isset($this->params['return']) && $this->params['return'] == 1) {
 			$controller->autoRender = false;
 		}
 		if (!empty($this->params['bare'])) {
 			$controller->autoLayout = false;
 		}
-		if (array_key_exists('layout', $this->params)) {
-			if (empty($this->params['layout'])) {
-				$controller->autoLayout = false;
-			} else {
-				$controller->layout = $this->params['layout'];
-			}
-		}
-		if (isset($this->params['viewPath'])) {
-			$controller->viewPath = $this->params['viewPath'];
-		}
 		return $this->_invoke($controller, $this->params);
 	}
+
 /**
- * Invokes given controller's render action if autoRender option is set. Otherwise the
- * contents of the operation are returned as a string.
+ * Initializes the components and models a controller will be using.
+ * Triggers the controller action, and invokes the rendering if Controller::$autoRender is true and echo's the output.
+ * Otherwise the return value of the controller action are returned.
  *
  * @param object $controller Controller to invoke
  * @param array $params Parameters with at least the 'action' to invoke
@@ -204,15 +184,13 @@ class Dispatcher extends Object {
  */
 	function _invoke(&$controller, $params) {
 		$controller->constructClasses();
-		$controller->Component->initialize($controller);
-		$controller->beforeFilter();
-		$controller->Component->startup($controller);
+		$controller->startupProcess();
 
 		$methods = array_flip($controller->methods);
 
 		if (!isset($methods[strtolower($params['action'])])) {
 			if ($controller->scaffold !== false) {
-				App::import('Core', 'Scaffold');
+				App::import('Controller', 'Scaffold', false);
 				return new Scaffold($controller, $params);
 			}
 			return $this->cakeError('missingAction', array(array(
@@ -223,34 +201,39 @@ class Dispatcher extends Object {
 				'base' => $this->base
 			)));
 		}
-		$output = $controller->dispatchMethod($params['action'], $params['pass']);
+		$output = call_user_func_array(array(&$controller, $params['action']), $params['pass']);
 
 		if ($controller->autoRender) {
 			$controller->output = $controller->render();
 		} elseif (empty($controller->output)) {
 			$controller->output = $output;
 		}
-		$controller->Component->shutdown($controller);
-		$controller->afterFilter();
+		$controller->shutdownProcess();
 
 		if (isset($params['return'])) {
 			return $controller->output;
 		}
 		echo($controller->output);
 	}
+
 /**
  * Sets the params when $url is passed as an array to Object::requestAction();
+ * Merges the $url and $additionalParams and creates a string url.
  *
- * @param array $url
- * @param array $additionalParams
- * @return string $url
+ * @param array $url Array or request parameters
+ * @param array $additionalParams Array of additional parameters.
+ * @return string $url The generated url string.
  * @access private
  */
 	function __extractParams($url, $additionalParams = array()) {
 		$defaults = array('pass' => array(), 'named' => array(), 'form' => array());
-		$this->params = array_merge($defaults, $url, $additionalParams);
-		return Router::url($url);
+		$params = array_merge($defaults, $url, $additionalParams);
+		$this->params = $params;
+
+		$params += array('base' => false, 'url' => array());
+		return ltrim(Router::reverse($params), '/');
 	}
+
 /**
  * Returns array of GET and POST parameters. GET parameters are taken from given URL.
  *
@@ -281,13 +264,13 @@ class Dispatcher extends Object {
 		$namedExpressions = Router::getNamedExpressions();
 		extract($namedExpressions);
 		include CONFIGS . 'routes.php';
-		$params = array_merge(Router::parse($fromUrl), $params);
+		$params = array_merge(array('controller' => '', 'action' => ''), Router::parse($fromUrl), $params);
 
-		if (strlen($params['action']) === 0) {
+		if (empty($params['action'])) {
 			$params['action'] = 'index';
 		}
 		if (isset($params['form']['data'])) {
-			$params['data'] = Router::stripEscape($params['form']['data']);
+			$params['data'] = $params['form']['data'];
 			unset($params['form']['data']);
 		}
 		if (isset($_GET)) {
@@ -330,6 +313,7 @@ class Dispatcher extends Object {
 		}
 		return $params;
 	}
+
 /**
  * Returns a base URL and sets the proper webroot
  *
@@ -375,50 +359,20 @@ class Dispatcher extends Object {
 		}
 		$this->webroot = $base . '/';
 
-		$docRoot = env('DOCUMENT_ROOT');
-		$script = realpath(env('SCRIPT_FILENAME'));
+		$docRoot = realpath(env('DOCUMENT_ROOT'));
 		$docRootContainsWebroot = strpos($docRoot, $dir . '/' . $webroot);
 
 		if (!empty($base) || !$docRootContainsWebroot) {
-			if (strpos($this->webroot, $dir) === false) {
+			if (strpos($this->webroot, '/' . $dir . '/') === false) {
 				$this->webroot .= $dir . '/' ;
 			}
-			if (strpos($this->webroot, $webroot) === false) {
+			if (strpos($this->webroot, '/' . $webroot . '/') === false) {
 				$this->webroot .= $webroot . '/';
 			}
 		}
 		return $base . $file;
 	}
-/**
- * Restructure params in case we're serving a plugin.
- *
- * @param array $params Array on where to re-set 'controller', 'action', and 'pass' indexes
- * @param boolean $reverse
- * @return array Restructured array
- * @access protected
- */
-	function _restructureParams($params, $reverse = false) {
-		if ($reverse === true) {
-			extract(Router::getArgs($params['action']));
-			$params = array_merge($params, array(
-				'controller'=> $params['plugin'],
-				'action'=> $params['controller'],
-				'pass' => array_merge($pass, $params['pass']),
-				'named' => array_merge($named, $params['named'])
-			));
-			$this->plugin = $params['plugin'];
-		} else {
-			$params['plugin'] = $params['controller'];
-			$params['controller'] = $params['action'];
-			if (isset($params['pass'][0])) {
-				$params['action'] = $params['pass'][0];
-				array_shift($params['pass']);
-			} else {
-				$params['action'] = null;
-			}
-		}
-		return $params;
-	}
+
 /**
  * Get controller to use, either plugin controller or application controller
  *
@@ -426,43 +380,21 @@ class Dispatcher extends Object {
  * @return mixed name of controller if not loaded, or object if loaded
  * @access private
  */
-	function &__getController($params = null) {
-		if (!is_array($params)) {
-			$original = $params = $this->params;
-		}
+	function &__getController() {
 		$controller = false;
-		$ctrlClass = $this->__loadController($params);
+		$ctrlClass = $this->__loadController($this->params);
 		if (!$ctrlClass) {
-			if (!isset($params['plugin'])) {
-				$params = $this->_restructureParams($params);
-			} else {
-				if (empty($original['pass']) && $original['action'] == 'index') {
-					$params['action'] = null;
-				}
-				$params = $this->_restructureParams($params, true);
-			}
-			$ctrlClass = $this->__loadController($params);
-			if (!$ctrlClass) {
-				$this->params = $original;
-				return $controller;
-			}
-		} else {
-			$params = $this->params;
+			return $controller;
 		}
-		$name = $ctrlClass;
-		$ctrlClass = $ctrlClass . 'Controller';
+		$ctrlClass .= 'Controller';
 		if (class_exists($ctrlClass)) {
-			if (strtolower(get_parent_class($ctrlClass)) === strtolower($name . 'AppController') && empty($params['plugin'])) {
-				$params = $this->_restructureParams($params);
-				$params = $this->_restructureParams($params, true);
-			}
-			$this->params = $params;
 			$controller =& new $ctrlClass();
 		}
 		return $controller;
 	}
+
 /**
- * Load controller and return controller class
+ * Load controller and return controller classname
  *
  * @param array $params Array of parameters
  * @return string|bool Name of controller class name
@@ -471,14 +403,10 @@ class Dispatcher extends Object {
 	function __loadController($params) {
 		$pluginName = $pluginPath = $controller = null;
 		if (!empty($params['plugin'])) {
-			$this->plugin = $params['plugin'];
-			$pluginName = Inflector::camelize($params['plugin']);
+			$pluginName = $controller = Inflector::camelize($params['plugin']);
 			$pluginPath = $pluginName . '.';
-			$this->params['controller'] = $this->plugin;
-			$controller = $pluginName;
 		}
 		if (!empty($params['controller'])) {
-			$this->params['controller'] = $params['controller'];
 			$controller = Inflector::camelize($params['controller']);
 		}
 		if ($pluginPath . $controller) {
@@ -488,6 +416,7 @@ class Dispatcher extends Object {
 		}
 		return false;
 	}
+
 /**
  * Returns the REQUEST_URI from the server environment, or, failing that,
  * constructs a new one, using the PHP_SELF constant and other variables.
@@ -533,6 +462,7 @@ class Dispatcher extends Object {
 		}
 		return str_replace('//', '/', '/' . $uri);
 	}
+
 /**
  * Returns and sets the $_GET[url] derived from the REQUEST_URI
  *
@@ -583,89 +513,14 @@ class Dispatcher extends Object {
 		}
 		return $url;
 	}
+
 /**
- * Outputs cached dispatch for js, css, img, view cache
+ * Outputs cached dispatch view cache
  *
  * @param string $url Requested URL
  * @access public
  */
 	function cached($url) {
-		if (strpos($url, 'css/') !== false || strpos($url, 'js/') !== false || strpos($url, 'img/') !== false) {
-			if (strpos($url, 'ccss/') === 0) {
-				include WWW_ROOT . DS . Configure::read('Asset.filter.css');
-				$this->_stop();
-			} elseif (strpos($url, 'cjs/') === 0) {
-				include WWW_ROOT . DS . Configure::read('Asset.filter.js');
-				$this->_stop();
-			}
-			$isAsset = false;
-			$assets = array(
-				'js' => 'text/javascript', 'css' => 'text/css',
-				'gif' => 'image/gif', 'jpg' => 'image/jpeg', 'png' => 'image/png'
-			);
-			$ext = array_pop(explode('.', $url));
-
-			foreach ($assets as $type => $contentType) {
-				if ($type === $ext) {
-					$parts = explode('/', $url);
-					if ($parts[0] === 'css' || $parts[0] === 'js' || $parts[0] === 'img') {
-						$pos = 0;
-					} else {
-						$pos = strlen($parts[0]);
-					}
-					$isAsset = true;
-					break;
-				}
-			}
-
-			if ($isAsset === true) {
-				$ob = @ini_get("zlib.output_compression") !== '1' && extension_loaded("zlib") && (strpos(env('HTTP_ACCEPT_ENCODING'), 'gzip') !== false);
-
-				if ($ob && Configure::read('Asset.compress')) {
-					ob_start();
-					ob_start('ob_gzhandler');
-				}
-				$assetFile = null;
-				$paths = array();
-
-				if ($pos > 0) {
-					$plugin = substr($url, 0, $pos);
-					$url = preg_replace('/^' . preg_quote($plugin, '/') . '\//i', '', $url);
-					$pluginPaths = Configure::read('pluginPaths');
-					$count = count($pluginPaths);
-					for ($i = 0; $i < $count; $i++) {
-						$paths[] = $pluginPaths[$i] . $plugin . DS . 'vendors' . DS;
-					}
-				}
-				$paths = array_merge($paths, Configure::read('vendorPaths'));
-				foreach ($paths as $path) {
-					if (is_file($path . $url) && file_exists($path . $url)) {
-						$assetFile = $path . $url;
-						break;
-					}
-				}
-
-				if ($assetFile !== null) {
-					$fileModified = filemtime($assetFile);
-					header("Date: " . date("D, j M Y G:i:s ", $fileModified) . 'GMT');
-					header('Content-type: ' . $assets[$type]);
-					header("Expires: " . gmdate("D, j M Y H:i:s", time() + DAY) . " GMT");
-					header("Cache-Control: cache");
-					header("Pragma: cache");
-					if ($type === 'css' || $type === 'js') {
-						include($assetFile);
-					} else {
-						readfile($assetFile);
-					}
-
-					if (Configure::read('Asset.compress')) {
-						ob_end_flush();
-					}
-					return true;
-				}
-			}
-		}
-
 		if (Configure::read('Cache.check') === true) {
 			$path = $this->here;
 			if ($this->here == '/') {
@@ -681,7 +536,7 @@ class Dispatcher extends Object {
 
 			if (file_exists($filename)) {
 				if (!class_exists('View')) {
-					App::import('Core', 'View');
+					App::import('View', 'View', false);
 				}
 				$controller = null;
 				$view =& new View($controller);
@@ -694,5 +549,114 @@ class Dispatcher extends Object {
 		}
 		return false;
 	}
+
+/**
+ * Checks if a requested asset exists and sends it to the browser
+ *
+ * @param $url string $url Requested URL
+ * @return boolean True on success if the asset file was found and sent
+ * @access public
+ */
+	function asset($url) {
+		if (strpos($url, '..') !== false || strpos($url, '.') === false) {
+			return false;
+		}
+		$filters = Configure::read('Asset.filter');
+		$isCss = (
+			strpos($url, 'ccss/') === 0 ||
+			preg_match('#^(theme/([^/]+)/ccss/)|(([^/]+)(?<!css)/ccss)/#i', $url)
+		);
+		$isJs = (
+			strpos($url, 'cjs/') === 0 ||
+			preg_match('#^/((theme/[^/]+)/cjs/)|(([^/]+)(?<!js)/cjs)/#i', $url)
+		);
+
+		if (($isCss && empty($filters['css'])) || ($isJs && empty($filters['js']))) {
+			header('HTTP/1.1 404 Not Found');
+			return $this->_stop();
+		} elseif ($isCss) {
+			include WWW_ROOT . DS . $filters['css'];
+			$this->_stop();
+		} elseif ($isJs) {
+			include WWW_ROOT . DS . $filters['js'];
+			$this->_stop();
+		}
+		$controller = null;
+		$ext = array_pop(explode('.', $url));
+		$parts = explode('/', $url);
+		$assetFile = null;
+
+		if ($parts[0] === 'theme') {
+			$themeName = $parts[1];
+			unset($parts[0], $parts[1]);
+			$fileFragment = implode(DS, $parts);
+			$path = App::themePath($themeName) . 'webroot' . DS;
+			if (file_exists($path . $fileFragment)) {
+				$assetFile = $path . $fileFragment;
+			}
+		} else {
+			$plugin = $parts[0];
+			unset($parts[0]);
+			$fileFragment = implode(DS, $parts);
+			$pluginWebroot = App::pluginPath($plugin) . 'webroot' . DS;
+			if (file_exists($pluginWebroot . $fileFragment)) {
+				$assetFile = $pluginWebroot . $fileFragment;
+			}
+		}
+
+		if ($assetFile !== null) {
+			$this->_deliverAsset($assetFile, $ext);
+			return true;
+		}
+		return false;
+	}
+
+/**
+ * Sends an asset file to the client
+ *
+ * @param string $assetFile Path to the asset file in the file system
+ * @param string $ext The extension of the file to determine its mime type
+ * @return void
+ * @access protected
+ */
+	function _deliverAsset($assetFile, $ext) {
+		$ob = @ini_get("zlib.output_compression") !== '1' && extension_loaded("zlib") && (strpos(env('HTTP_ACCEPT_ENCODING'), 'gzip') !== false);
+		$compressionEnabled = $ob && Configure::read('Asset.compress');
+		if ($compressionEnabled) {
+			ob_start();
+			ob_start('ob_gzhandler');
+		}
+
+		App::import('View', 'Media');
+		$controller = null;
+		$Media = new MediaView($controller);
+		if (isset($Media->mimeType[$ext])) {
+			$contentType = $Media->mimeType[$ext];
+		} else {
+			$contentType = 'application/octet-stream';
+			$agent = env('HTTP_USER_AGENT');
+			if (preg_match('%Opera(/| )([0-9].[0-9]{1,2})%', $agent) || preg_match('/MSIE ([0-9].[0-9]{1,2})/', $agent)) {
+				$contentType = 'application/octetstream';
+			}
+		}
+
+		header("Date: " . date("D, j M Y G:i:s ", filemtime($assetFile)) . 'GMT');
+		header('Content-type: ' . $contentType);
+		header("Expires: " . gmdate("D, j M Y H:i:s", time() + DAY) . " GMT");
+		header("Cache-Control: cache");
+		header("Pragma: cache");
+
+		if ($ext === 'css' || $ext === 'js') {
+			include($assetFile);
+		} else {
+			if ($compressionEnabled) {
+				ob_clean();
+			}
+			readfile($assetFile);
+		}
+
+		if ($compressionEnabled) {
+			ob_end_flush();
+		}
+	}
 }
-?>

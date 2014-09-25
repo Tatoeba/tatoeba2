@@ -24,15 +24,15 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
+
 /**
  * Routes for maintenance mode
  */
 Router::connect(
-    '*', 
+    '*',
     array(
         'controller' => 'pages',
         'action' =>'maintenance'
-    )    
+    )
 );
 ?>

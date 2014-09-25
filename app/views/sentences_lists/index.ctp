@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = 'Tatoeba - ' . __('List of sentences', true);
+$this->set('title_for_layout', 'Tatoeba - ' . __('List of sentences', true));
 ?>
 
 <div id="annexe_content" >
@@ -36,27 +36,29 @@ $attentionPlease->tatoebaNeedsYou();
 
 <?php
 if ($session->read('Auth.User.id')) {
-    if (isset($myLists) && count($myLists) > 0) {
-        ?>
-        <div class="module">
-        <h2><?php __('Create a new list'); ?></h2>
-        <?php
-        echo $form->create('SentencesList');
-        echo $form->input(
-            'name',
-            array(
-                'type' => 'text'
-            )
-        );
-        echo $form->end(__('create', true));
-        ?>
-        </div>
-        
-    <?php 
-    }
+    
     ?>
+    <div class="module">
+    <h2><?php __('Create a new list'); ?></h2>
+    <?php
+    echo $form->create(
+        'SentencesList',
+        array(
+            "action" => "add",
+            "type" => "post",
+        )
+    );
+    echo $form->input(
+        'name',
+        array(
+            'type' => 'text'
+        )
+    );
+    echo $form->end(__('create', true));
+    ?>
+    </div>
+    <?php
 
-<?php
 } else {
     ?>
         <div class="module">
@@ -106,42 +108,27 @@ if ($session->read('Auth.User.id')) {
 <div id="main_content">
 
 <?php
-if (isset($myLists)) {
+if (isset($myLists) && count($myLists) > 0) {
 
     // Lists of the user
     echo '<div class="module">';
+        echo '<h2>';
+        echo __('My lists');
+        echo '</h2>';
 
-        if (count($myLists) > 0) {
-            echo '<h2>';
-            echo __('My lists');
-            echo '</h2>';
+        $javascript->link(JS_PATH . 'sentences_lists.edit_name.js', false);
+        $javascript->link(JS_PATH . 'jquery.jeditable.js', false);
 
-            $javascript->link(JS_PATH . 'sentences_lists.edit_name.js', false);
-            $javascript->link(JS_PATH . 'jquery.jeditable.js', false);
-
-            $lists->displayListTable($myLists);
-
-        } else {
-            echo '<h2>';
-            __('Create a new list');
-            echo '</h2>';
-            echo $form->create('SentencesList');            
-            echo $form->input(
-                'name',
-                array(
-                    'type' => 'text'
-                )
-            );
-            echo $form->end('Create');
-        }
+        $lists->displayListTable($myLists);
     echo '</div>';
+    
 }
 
 // The public lists
 if (count($publicLists) > 0) {
     echo '<div class="module">';
         echo '<h2>';
-        echo __('Public lists');
+        echo __('Collaborative lists');
         echo '</h2>';
         
         $lists->displayListTable($publicLists);
@@ -153,7 +140,7 @@ if (count($publicLists) > 0) {
 if (count($otherLists) > 0) {
     echo '<div class="module">';
         echo '<h2>';
-        echo __('All the other lists');
+        echo __('Other personal lists');
         echo '</h2>';
             
         $lists->displayListTable($otherLists);

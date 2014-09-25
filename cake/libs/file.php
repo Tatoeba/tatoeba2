@@ -1,5 +1,4 @@
 <?php
-/* SVN FILE: $Id$ */
 /**
  * Convenience class for reading, writing and appending to files.
  *
@@ -16,21 +15,20 @@
  * @package       cake
  * @subpackage    cake.cake.libs
  * @since         CakePHP(tm) v 0.2.9
- * @version       $Revision$
- * @modifiedby    $LastChangedBy$
- * @lastmodified  $Date$
- * @license       http://www.opensource.org/licenses/mit-license.php The MIT License
+ * @license       MIT License (http://www.opensource.org/licenses/mit-license.php)
  */
+
 /**
  * Included libraries.
  *
  */
 if (!class_exists('Object')) {
-	uses('object');
+	require LIBS . 'object.php';
 }
 if (!class_exists('Folder')) {
 	require LIBS . 'folder.php';
 }
+
 /**
  * Convenience class for reading, writing and appending to files.
  *
@@ -38,6 +36,7 @@ if (!class_exists('Folder')) {
  * @subpackage    cake.cake.libs
  */
 class File extends Object {
+
 /**
  * Folder object of the File
  *
@@ -45,6 +44,7 @@ class File extends Object {
  * @access public
  */
 	var $Folder = null;
+
 /**
  * Filename
  *
@@ -52,6 +52,7 @@ class File extends Object {
  * @access public
  */
 	var $name = null;
+
 /**
  * file info
  *
@@ -59,6 +60,7 @@ class File extends Object {
  * @access public
  */
 	var $info = array();
+
 /**
  * Holds the file handler resource if the file is opened
  *
@@ -66,6 +68,7 @@ class File extends Object {
  * @access public
  */
 	var $handle = null;
+
 /**
  * enable locking for file reading and writing
  *
@@ -73,6 +76,7 @@ class File extends Object {
  * @access public
  */
 	var $lock = null;
+
 /**
  * path property
  *
@@ -82,13 +86,13 @@ class File extends Object {
  * @access public
  */
 	var $path = null;
+
 /**
  * Constructor
  *
  * @param string $path Path to file
  * @param boolean $create Create file if it does not exist (if true)
  * @param integer $mode Mode to apply to the folder holding the file
- * @access public
  */
 	function __construct($path, $create = false, $mode = 0755) {
 		parent::__construct();
@@ -97,16 +101,17 @@ class File extends Object {
 			$this->name = basename($path);
 		}
 		$this->pwd();
-		!$this->exists() && $create && $this->safe($path) && $this->create();
+		$create && !$this->exists() && $this->safe($path) && $this->create();
 	}
+
 /**
  * Closes the current file if it is opened
  *
- * @access public
  */
 	function __destruct() {
 		$this->close();
 	}
+
 /**
  * Creates the File.
  *
@@ -124,6 +129,7 @@ class File extends Object {
 		}
 		return false;
 	}
+
 /**
  * Opens the current file with a given $mode
  *
@@ -149,11 +155,12 @@ class File extends Object {
 		}
 		return false;
 	}
+
 /**
  * Return the contents of this File as a string.
  *
  * @param string $bytes where to start
- * @param string $mode
+ * @param string $mode A `fread` compatible mode.
  * @param boolean $force If true then the file will be re-opened even if its already opened, otherwise it won't
  * @return mixed string on success, false on failure
  * @access public
@@ -176,7 +183,6 @@ class File extends Object {
 		while (!feof($this->handle)) {
 			$data .= fgets($this->handle, 4096);
 		}
-		$data = trim($data);
 
 		if ($this->lock !== null) {
 			flock($this->handle, LOCK_UN);
@@ -184,8 +190,9 @@ class File extends Object {
 		if ($bytes === false) {
 			$this->close();
 		}
-		return $data;
+		return trim($data);
 	}
+
 /**
  * Sets or gets the offset for the currently opened file.
  *
@@ -204,12 +211,14 @@ class File extends Object {
 		}
 		return false;
 	}
+
 /**
- * Prepares a ascii string for writing
- * fixes line endings
+ * Prepares a ascii string for writing.  Converts line endings to the
+ * correct terminator for the current platform.  If windows "\r\n" will be used
+ * all other platforms will use "\n"
  *
  * @param string $data Data to prepare for writing.
- * @return string
+ * @return string The with converted line endings.
  * @access public
  */
 	function prepare($data, $forceWindows = false) {
@@ -223,9 +232,9 @@ class File extends Object {
 /**
  * Write given data to this File.
  *
- * @param string $data	Data to write to this File.
- * @param string $mode	Mode of writing. {@link http://php.net/fwrite See fwrite()}.
- * @param string $force	force the file to open
+ * @param string $data Data to write to this File.
+ * @param string $mode Mode of writing. {@link http://php.net/fwrite See fwrite()}.
+ * @param string $force force the file to open
  * @return boolean Success
  * @access public
  */
@@ -247,17 +256,19 @@ class File extends Object {
 		}
 		return $success;
 	}
+
 /**
  * Append given data string to this File.
  *
  * @param string $data Data to write
- * @param string $force	force the file to open
+ * @param string $force force the file to open
  * @return boolean Success
  * @access public
  */
 	function append($data, $force = false) {
 		return $this->write($data, 'a', $force);
 	}
+
 /**
  * Closes the current file if it is opened.
  *
@@ -270,6 +281,7 @@ class File extends Object {
 		}
 		return fclose($this->handle);
 	}
+
 /**
  * Deletes the File.
  *
@@ -287,8 +299,9 @@ class File extends Object {
 		}
 		return false;
 	}
+
 /**
- * Returns the File extension.
+ * Returns the File info.
  *
  * @return string The File extension
  * @access public
@@ -302,6 +315,7 @@ class File extends Object {
 		}
 		return $this->info;
 	}
+
 /**
  * Returns the File extension.
  *
@@ -317,6 +331,7 @@ class File extends Object {
 		}
 		return false;
 	}
+
 /**
  * Returns the File name without extension.
  *
@@ -334,10 +349,12 @@ class File extends Object {
 		}
 		return false;
 	}
+
 /**
  * makes filename safe for saving
  *
- * @param string $name the name of the file to make safe if different from $this->name
+ * @param string $name The name of the file to make safe if different from $this->name
+ * @param strin $ext The name of the extension to make safe if different from $this->ext
  * @return string $ext the extension of the file
  * @access public
  */
@@ -350,6 +367,7 @@ class File extends Object {
 		}
 		return preg_replace( "/(?:[^\w\.-]+)/", "_", basename($name, $ext));
 	}
+
 /**
  * Get md5 Checksum of file with previous check of Filesize
  *
@@ -369,6 +387,7 @@ class File extends Object {
 
 		return false;
 	}
+
 /**
  * Returns the full path of the File.
  *
@@ -381,6 +400,7 @@ class File extends Object {
 		}
 		return $this->path;
 	}
+
 /**
  * Returns true if the File exists.
  *
@@ -390,6 +410,7 @@ class File extends Object {
 	function exists() {
 		return (file_exists($this->path) && is_file($this->path));
 	}
+
 /**
  * Returns the "chmod" (permissions) of the File.
  *
@@ -402,6 +423,7 @@ class File extends Object {
 		}
 		return false;
 	}
+
 /**
  * Returns the Filesize
  *
@@ -414,6 +436,7 @@ class File extends Object {
 		}
 		return false;
 	}
+
 /**
  * Returns true if the File is writable.
  *
@@ -423,6 +446,7 @@ class File extends Object {
 	function writable() {
 		return is_writable($this->path);
 	}
+
 /**
  * Returns true if the File is executable.
  *
@@ -432,6 +456,7 @@ class File extends Object {
 	function executable() {
 		return is_executable($this->path);
 	}
+
 /**
  * Returns true if the File is readable.
  *
@@ -441,6 +466,7 @@ class File extends Object {
 	function readable() {
 		return is_readable($this->path);
 	}
+
 /**
  * Returns the File's owner.
  *
@@ -453,8 +479,9 @@ class File extends Object {
 		}
 		return false;
 	}
+
 /**
- * Returns the File group.
+ * Returns the File's group.
  *
  * @return integer the Filegroup
  * @access public
@@ -465,6 +492,7 @@ class File extends Object {
 		}
 		return false;
 	}
+
 /**
  * Returns last access time.
  *
@@ -477,6 +505,7 @@ class File extends Object {
 		}
 		return false;
 	}
+
 /**
  * Returns last modified time.
  *
@@ -489,6 +518,7 @@ class File extends Object {
 		}
 		return false;
 	}
+
 /**
  * Returns the current folder.
  *
@@ -498,5 +528,19 @@ class File extends Object {
 	function &Folder() {
 		return $this->Folder;
 	}
+
+/**
+ * Copy the File to $dest
+ *
+ * @param string $dest destination for the copy
+ * @param boolean $overwrite Overwrite $dest if exists
+ * @return boolean Succes
+ * @access public
+ */
+	function copy($dest, $overwrite = true) {
+		if (!$this->exists() || is_file($dest) && !$overwrite) {
+			return false;
+		}
+		return copy($this->path, $dest);
+	}
 }
-?>

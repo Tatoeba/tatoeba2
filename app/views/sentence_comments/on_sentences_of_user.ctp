@@ -35,9 +35,9 @@
  * @link     http://tatoeba.org
  */
 
-$this->pageTitle = 'Tatoeba - ' . sprintf(
+$this->set('title_for_layout', 'Tatoeba - ' . sprintf(
     __("Comments on %s's sentences", true), $userName
-); 
+)); 
 ?>
 <div id="annexe_content">
     <?php
@@ -93,18 +93,24 @@ $this->pageTitle = 'Tatoeba - ' . sprintf(
         ?>
         
         
-        <ol class="comments">
+        <div class="comments">
         <?php
         foreach ($userComments as $i=>$comment) {
-            $comments->displaySentenceComment(
+            $menu = $comments->getMenuForComment(
+                $comment['SentenceComment'],
+                $comment['User'],
+                $commentsPermissions[$i]
+            );
+
+            $messages->displayMessage(
                 $comment['SentenceComment'],
                 $comment['User'],
                 $comment['Sentence'],
-                $commentsPermissions[$i]
+                $menu
             );
         }
         ?>
-        </ol>
+        </div>
         
         
         <?php

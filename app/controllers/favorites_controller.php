@@ -25,12 +25,10 @@
  * @link     http://tatoeba.org
  */
 
-App::import('Core', 'Sanitize');
-
 /**
  * Controller for favorite.
  *
- * @category TODEFINE 
+ * @category TODEFINE
  * @package  Controllers
  * @author   Allan SIMON <allan.simon@supinfo.com>
  * @license  Affero General Public License
@@ -41,7 +39,7 @@ class FavoritesController extends AppController
 {
 
     public $name = 'Favorites' ;
-    public $paginate = array('limit' => 50); 
+    public $paginate = array('limit' => 50);
     public $helpers = array('Navigation', 'Html');
 
     /**
@@ -53,15 +51,15 @@ class FavoritesController extends AppController
     public function beforeFilter()
     {
         parent::beforeFilter();
-        
+
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array('of_user');
     }
-    
+
     /**
      * view all favorites sentences of a given user
      *
-     * @param int $userId user to retrieve favorites 
+     * @param int $userId user to retrieve favorites
      *
      * @return void
      */
@@ -84,10 +82,10 @@ class FavoritesController extends AppController
 
     public function add_favorite($sentenceId)
     {
-        $sentenceId = Sanitize::paranoid($sentenceId); 
-        
+        $sentenceId = Sanitize::paranoid($sentenceId);
+
         $userId =$this->Auth->user('id');
-        
+
         if ($userId != null) {
             if ($this->Favorite->addFavorite($sentenceId, $userId)) {
                 $this->set('saved', true);
@@ -106,11 +104,11 @@ class FavoritesController extends AppController
     public function remove_favorite ($sentenceId)
     {
         $sentenceId = Sanitize::paranoid($sentenceId);
-         
+
         $userId =$this->Auth->user('id');
-        
+
         if ($userId != null) {
-            
+
             if ($this->Favorite->removeFavorite($sentenceId, $userId)) {
                 $this->set('saved', true);
             }

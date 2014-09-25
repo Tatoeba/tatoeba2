@@ -45,11 +45,13 @@
 }
 
 .profileSummary img {
-    float: left;
+    display: inline-block;
+    margin-right: 10px;
 }
 
 .profileSummary .info {
-    margin-left: 140px;
+    display: inline-block;
+    vertical-align: top;
 }
 
 .profileSummary .username {

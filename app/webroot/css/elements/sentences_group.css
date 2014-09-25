@@ -28,7 +28,7 @@
     padding: 0px;
 }
 
-.menu li {
+.sentences_set .menu li {
     display: inline;
     font-size: 13px;
     padding: 2px 10px;
@@ -55,7 +55,7 @@
 /* 
  * Main sentences
  */
-.mainSentence {
+.mainSentence, .mainSentence textarea {
     font-size: 24px;
 }
 
@@ -163,7 +163,6 @@ a.romanization {
 .selectLang {
     display: none;
     float: right;
-    margin-top: 5px;
 }
 
 
@@ -223,4 +222,12 @@ a.romanization {
 
 .loading {
     display: none;
+}
+
+
+/*
+ * Sentence correctness
+ */
+.correctnessNegative1, .correctnessNegative1 a {
+    color: #F00000;
 }
