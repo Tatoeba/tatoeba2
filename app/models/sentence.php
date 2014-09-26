@@ -1,5 +1,4 @@
 <?php
-include_once("current_user.php");
 /**
     Tatoeba Project, free collaborative creation of languages corpuses project
     Copyright (C) 2009  HO Ngoc Phuong Trang (tranglich@gmail.com)
@@ -39,6 +38,7 @@ include_once("current_user.php");
  * @link     http://tatoeba.org
 */
 
+App::import('Model', 'CurrentUser');
 App::import('Sanitize');
 
 define('UZBEK_SCRIPT_SWITCH', 0);
