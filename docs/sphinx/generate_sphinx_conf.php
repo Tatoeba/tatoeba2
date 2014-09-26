@@ -232,6 +232,19 @@ $cjkLanguages = array(
     'lzh' => 0
 );
 
+$languagesWithoutWordBoundaries = array(
+    # Lao
+    'lao' => 'U+0E81, U+0E82, U+0E84, U+0E87, U+0E88, U+0E8A, U+0E8D, U+0E94..U+0E97, U+0E99..U+0E9F, '
+            .'U+0EA1..U+0EA3, U+0EA5, U+0EA7, U+0EAA, U+0EAB, U+0EAD, U+0EAE, U+0EB0..U+0EB9, U+0EBB, '
+            .'U+0EC0..U+0EC4, U+0EC8..U+0ECD, U+0ED0..U+0ED9, U+0EDC..U+0EDF',
+    # Tibetan (not sure about marks and signs)
+    'bod' => 'U+0F00, U+0F20..U+0F33, U+0F40..U+0F47, U+0F49..U+0F6C, U+0F71..U+0F87, U+0F90..U+0F97, '
+            .'U+0F99..U+0FBC, U+0FD0..U+0FD2',
+    # Khmer
+    'khm' => 'U+1780..U+17D2, U+17E0..U+17E9, U+17F0..U+17F9, U+19E0..U+19FF',
+    # Thai
+    'tha' => 'U+0E01..U+0E2E, U+0E30..U+0E3A, U+0E40..U+0E4E, U+0E50..U+0E59',
+);
 
 ?>
 
@@ -252,81 +265,86 @@ source default
 index common_index
 {
     index_exact_words       = 1
-    charset_table           = 0..9, a..z, _, A..Z->a..z, U+00C0->a, U+00C1->a, U+00C2->a, U+00C3->a, U+00C4->a, \
-                        U+00C5->a, U+00C7->c, U+00C8->e, U+00C9->e, U+00CA->e, U+00CB->e, U+00CC->i, U+00CD->i, \
-                        U+00CE->i, U+00CF->i, U+00D1->n, U+00D2->o, U+00D3->o, U+00D4->o, U+00D5->o, U+00D6->o, \
-                        U+00D9->u, U+00DA->u, U+00DB->u, U+00DC->u, U+00DD->y, U+00E0->a, U+00E1->a, U+00E2->a, \
-                        U+00E3->a, U+00E4->a, U+00E5->a, U+00E7->c, U+00E8->e, U+00E9->e, U+00EA->e, U+00EB->e, \
-                        U+00EC->i, U+00ED->i, U+00EE->i, U+00EF->i, U+00F1->n, U+00F2->o, U+00F3->o, U+00F4->o, \
-                        U+00F5->o, U+00F6->o, U+00F9->u, U+00FA->u, U+00FB->u, U+00FC->u, U+00FD->y, U+00FF->y, \
-                        U+0100->a, U+0101->a, U+0102->a, U+0103->a, U+0104->a, U+0105->a, U+0106->c, U+0107->c, \
-                        U+0108->c, U+0109->c, U+010A->c, U+010B->c, U+010C->c, U+010D->c, U+010E->d, U+010F->d, \
-                        U+0112->e, U+0113->e, U+0114->e, U+0115->e, U+0116->e, U+0117->e, U+0118->e, U+0119->e, \
-                        U+011A->e, U+011B->e, U+011C->g, U+011D->g, U+011E->g, U+011F->g, U+0120->g, U+0121->g, \
-                        U+0122->g, U+0123->g, U+0124->h, U+0125->h, U+0128->i, U+0129->i, U+012A->i, U+012B->i, \
-                        U+012C->i, U+012D->i, U+012E->i, U+012F->i, U+0130->i, U+0134->j, U+0135->j, U+0136->k, \
-                        U+0137->k, U+0139->l, U+013A->l, U+013B->l, U+013C->l, U+013D->l, U+013E->l, U+0142->l, \
-                        U+0143->n, U+0144->n, U+0145->n, U+0146->n, U+0147->n, U+0148->n, U+014C->o, U+014D->o, \
-                        U+014E->o, U+014F->o, U+0150->o, U+0151->o, U+0154->r, U+0155->r, U+0156->r, U+0157->r, \
-                        U+0158->r, U+0159->r, U+015A->s, U+015B->s, U+015C->s, U+015D->s, U+015E->s, U+015F->s, \
-                        U+0160->s, U+0161->s, U+0162->t, U+0163->t, U+0164->t, U+0165->t, U+0168->u, U+0169->u, \
-                        U+016A->u, U+016B->u, U+016C->u, U+016D->u, U+016E->u, U+016F->u, U+0170->u, U+0171->u, \
-                        U+0172->u, U+0173->u, U+0174->w, U+0175->w, U+0176->y, U+0177->y, U+0178->y, U+0179->z, \
-                        U+017A->z, U+017B->z, U+017C->z, U+017D->z, U+017E->z, U+01A0->o, U+01A1->o, U+01AF->u, \
-                        U+01B0->u, U+01CD->a, U+01CE->a, U+01CF->i, U+01D0->i, U+01D1->o, U+01D2->o, U+01D3->u, \
-                        U+01D4->u, U+01D5->u, U+01D6->u, U+01D7->u, U+01D8->u, U+01D9->u, U+01DA->u, U+01DB->u, \
-                        U+01DC->u, U+01DE->a, U+01DF->a, U+01E0->a, U+01E1->a, U+01E6->g, U+01E7->g, U+01E8->k, \
-                        U+01E9->k, U+01EA->o, U+01EB->o, U+01EC->o, U+01ED->o, U+01F0->j, U+01F4->g, U+01F5->g, \
-                        U+01F8->n, U+01F9->n, U+01FA->a, U+01FB->a, U+0200->a, U+0201->a, U+0202->a, U+0203->a, \
-                        U+0204->e, U+0205->e, U+0206->e, U+0207->e, U+0208->i, U+0209->i, U+020A->i, U+020B->i, \
-                        U+020C->o, U+020D->o, U+020E->o, U+020F->o, U+0210->r, U+0211->r, U+0212->r, U+0213->r, \
-                        U+0214->u, U+0215->u, U+0216->u, U+0217->u, U+0218->s, U+0219->s, U+021A->t, U+021B->t, \
-                        U+021E->h, U+021F->h, U+0226->a, U+0227->a, U+0228->e, U+0229->e, U+022A->o, U+022B->o, \
-                        U+022C->o, U+022D->o, U+022E->o, U+022F->o, U+0230->o, U+0231->o, U+0232->y, U+0233->y, \
-                        U+1E00->a, U+1E01->a, U+1E02->b, U+1E03->b, U+1E04->b, U+1E05->b, U+1E06->b, U+1E07->b, \
-                        U+1E08->c, U+1E09->c, U+1E0A->d, U+1E0B->d, U+1E0C->d, U+1E0D->d, U+1E0E->d, U+1E0F->d, \
-                        U+1E10->d, U+1E11->d, U+1E12->d, U+1E13->d, U+1E14->e, U+1E15->e, U+1E16->e, U+1E17->e, \
-                        U+1E18->e, U+1E19->e, U+1E1A->e, U+1E1B->e, U+1E1C->e, U+1E1D->e, U+1E1E->f, U+1E1F->f, \
-                        U+1E20->g, U+1E21->g, U+1E22->h, U+1E23->h, U+1E24->h, U+1E25->h, U+1E26->h, U+1E27->h, \
-                        U+1E28->h, U+1E29->h, U+1E2A->h, U+1E2B->h, U+1E2C->i, U+1E2D->i, U+1E2E->i, U+1E2F->i, \
-                        U+1E30->k, U+1E31->k, U+1E32->k, U+1E33->k, U+1E34->k, U+1E35->k, U+1E36->l, U+1E37->l, \
-                        U+1E38->l, U+1E39->l, U+1E3A->l, U+1E3B->l, U+1E3C->l, U+1E3D->l, U+1E3E->m, U+1E3F->m, \
-                        U+1E40->m, U+1E41->m, U+1E42->m, U+1E43->m, U+1E44->n, U+1E45->n, U+1E46->n, U+1E47->n, \
-                        U+1E48->n, U+1E49->n, U+1E4A->n, U+1E4B->n, U+1E4C->o, U+1E4D->o, U+1E4E->o, U+1E4F->o, \
-                        U+1E50->o, U+1E51->o, U+1E52->o, U+1E53->o, U+1E54->p, U+1E55->p, U+1E56->p, U+1E57->p, \
-                        U+1E58->r, U+1E59->r, U+1E5A->r, U+1E5B->r, U+1E5C->r, U+1E5D->r, U+1E5E->r, U+1E5F->r, \
-                        U+1E60->s, U+1E61->s, U+1E62->s, U+1E63->s, U+1E64->s, U+1E65->s, U+1E66->s, U+1E67->s, \
-                        U+1E68->s, U+1E69->s, U+1E6A->t, U+1E6B->t, U+1E6C->t, U+1E6D->t, U+1E6E->t, U+1E6F->t, \
-                        U+1E70->t, U+1E71->t, U+1E72->u, U+1E73->u, U+1E74->u, U+1E75->u, U+1E76->u, U+1E77->u, \
-                        U+1E78->u, U+1E79->u, U+1E7A->u, U+1E7B->u, U+1E7C->v, U+1E7D->v, U+1E7E->v, U+1E7F->v, \
-                        U+1E80->w, U+1E81->w, U+1E82->w, U+1E83->w, U+1E84->w, U+1E85->w, U+1E86->w, U+1E87->w, \
-                        U+1E88->w, U+1E89->w, U+1E8A->x, U+1E8B->x, U+1E8C->x, U+1E8D->x, U+1E8E->y, U+1E8F->y, \
-                        U+1E96->h, U+1E97->t, U+1E98->w, U+1E99->y, U+1EA0->a, U+1EA1->a, U+1EA2->a, U+1EA3->a, \
-                        U+1EA4->a, U+1EA5->a, U+1EA6->a, U+1EA7->a, U+1EA8->a, U+1EA9->a, U+1EAA->a, U+1EAB->a, \
-                        U+1EAC->a, U+1EAD->a, U+1EAE->a, U+1EAF->a, U+1EB0->a, U+1EB1->a, U+1EB2->a, U+1EB3->a, \
-                        U+1EB4->a, U+1EB5->a, U+1EB6->a, U+1EB7->a, U+1EB8->e, U+1EB9->e, U+1EBA->e, U+1EBB->e, \
-                        U+1EBC->e, U+1EBD->e, U+1EBE->e, U+1EBF->e, U+1EC0->e, U+1EC1->e, U+1EC2->e, U+1EC3->e, \
-                        U+1EC4->e, U+1EC5->e, U+1EC6->e, U+1EC7->e, U+1EC8->i, U+1EC9->i, U+1ECA->i, U+1ECB->i, \
-                        U+1ECC->o, U+1ECD->o, U+1ECE->o, U+1ECF->o, U+1ED0->o, U+1ED1->o, U+1ED2->o, U+1ED3->o, \
-                        U+1ED4->o, U+1ED5->o, U+1ED6->o, U+1ED7->o, U+1ED8->o, U+1ED9->o, U+1EDA->o, U+1EDB->o, \
-                        U+1EDC->o, U+1EDD->o, U+1EDE->o, U+1EDF->o, U+1EE0->o, U+1EE1->o, U+1EE2->o, U+1EE3->o, \
-                        U+1EE4->u, U+1EE5->u, U+1EE6->u, U+1EE7->u, U+1EE8->u, U+1EE9->u, U+1EEA->u, U+1EEB->u, \
-                        U+1EEC->u, U+1EED->u, U+1EEE->u, U+1EEF->u, U+1EF0->u, U+1EF1->u, U+1EF2->y, U+1EF3->y, \
-                        U+1EF4->y, U+1EF5->y, U+1EF6->y, U+1EF7->y, U+1EF8->y, U+1EF9->y, U+621..U+63a, U+640..U+64a, \
+    charset_table           = 0..9, a..z, _, A..Z->a..z, \
+<?# Latin-1 Supplement, with case folding (0080-00FF) #?>
+                        U+C0..U+D6->U+E0..U+F6, U+D8..U+DE->U+F8..U+FE, U+E0..U+F6, U+F8..U+FF, \
+<?# Latin extended-A, with case folding (0100-017F) #?>
+                        U+100..U+177/2, U+178->U+FF, U+179..U+17E/2, U+017F, \
+<?# Latin extended-B, with case folding (0180-024F) #?>
+                        U+0180, U+0181->U+0253, U+0182..U+0185/2, U+0186->U+0254, U+0187->U+0188, U+0188, \
+                        U+0189->U+0256, U+018A->U+0257, U+018B->U+018C, U+018C, U+018D, U+018E->U+01DD, U+018F->U+0259, \
+                        U+0190->U+025B, U+0191->U+0192, U+0192, U+0193->U+0260, U+0194->U+0263, U+0195, U+0196->U+0269, U+0197->U+0268, U+0198->U+0199, \
+                        U+0199..U+019B, U+019C->U+026F, U+019D->U+0272, U+019E, U+019F->U+0275, \
+                        U+01A0..U+01A5/2, U+01A6->U+0280, U+01A7->U+01A8, U+01A8, \
+                        U+01A9->U+0283, U+01AA, U+01AB, U+01AC->U+01AD, U+01AD, U+01AE->U+0288, U+01AF->U+01B0, \
+                        U+01B0, U+01B1->U+028A, U+01B2->U+028B, U+01B3..U+01B6/2, U+01B7->U+0292, U+01B8->U+01B9, \
+                        U+01BA, U+01BB, U+01BC->U+01BD, U+01BD..U+01BF, \
+                        U+01C0..U+01C3, U+01C4->U+01C6, U+01C5, U+01C6, U+01C7->U+01C9, U+01C8, \
+                        U+01C9..U+01CC, U+01CD..U+01DC/2, U+01DE..U+01EF/2, \
+                        U+01F0, U+01F1->U+01F3, U+01F2, U+01F3, U+01F4->U+01F5, U+01F5, U+01F6->U+0195, U+01F7->U+01BF, U+01F8..U+021F/2, \
+                        U+0220->U+019E, U+0221, U+0222..U+0233/2, U+0234..U+0238, \
+                        U+0239, U+023A->U+2C65, U+023B->U+023C, U+023C, U+023D->U+019A, U+023E->U+2C66, U+023F, \
+                        U+0240, U+0241->U+0242, U+0242, U+0243->U+0180, U+0244->U+0289, U+0245->U+028C, U+0246..U+024F/2, \
+<?# Latin Extended Additional, with case folding (1E00-1EFF) #?>
+                        U+1E00..U+1E95/2, U+1E96..U+1E9F, U+1EA0..U+1EFF/2, \
+<?# Arabic #?>
+                        U+621..U+63a, U+640..U+64a, \
                         U+66e..U+66f, U+671..U+6d3, U+6d5, U+6e5..U+6e6, U+6ee..U+6ef, U+6fa..U+6fc, U+6ff, \
+<?# Greek and Coptic #?>
                         U+37a, U+386..U+389->U+3ac..U+3af, U+38c..U+38e->U+3cc..U+3ce, U+390, U+391..U+3a1->U+3b1..U+3c1,\
                         U+3a3..U+3ab->U+3c3..U+3cb, U+3ac..U+3ce, U+3d0..U+3d7, U+3d8..U+3ef/2, U+3f0..U+3f3, U+3f4->U+3b8,\
                         U+3f5, U+3f7..U+3f8/2, U+3f9->U+3f2, U+3fa..U+3fb/2, U+3fc..U+3ff,\
+<?# Hebrew #?>
                         U+5d0..U+5ea, U+5f0..U+5f2,\
+<?# Cyrillic #?>
                         U+410..U+42F->U+430..U+44F, U+430..U+44F,\
+<?# Georgian #?>
                         U+10a0..U+10c5->U+2d00..U+2d25, U+10d0..U+10fa, U+10fc, U+2d00..U+2d25,\
-                        U+C0..U+D6->U+E0..U+F6, U+D8..U+DE->U+F8..U+FE, U+178->U+FF, U+FF, U+100..U+177/2, U+179..U+17E/2,\
+<?# Bengali #?>
                         U+980..U+9FC,\
+<?# Devanagari + Devanagari Extended #?>
                         U+900..U+97F, U+A8E0..U+A8FB,\
+<?# Armenian + Alphabetic Presentation Forms (Armenian Small Ligatures) #?>
                         U+531..U+58A, U+FB13..U+FB17,\
+<?# Malayalam #?>
                         U+D00..U+D77,\
-                        U+E00..U+E5C,\
-                        U+492, U+493, U+4E2, U+4E3, U+49A, U+49B, U+4EE, U+4EF, U+4B2, U+4B3, U+4B6, U+4B7
+<?# Various Cyrillic letters; I don't get the logic #?>
+                        U+492, U+493, U+4E2, U+4E3, U+49A, U+49B, U+4EE, U+4EF, U+4B2, U+4B3, U+4B6, U+4B7,\
+<?# Ethiopic #?>
+                        U+1200..U+1248, U+124A..U+124D, U+1250..U+1256, U+1258, U+125A..U+125D, U+1260..U+1288,\
+                        U+128A..U+128D, U+1290..U+12B0, U+12B2..U+12B5, U+12B8..U+12BE, U+12C0, U+12C2..U+12C5,\
+                        U+12C8..U+12D6, U+12D8..U+1310, U+1312..U+1315, U+1318..U+135A, U+135D..U+135F, U+1369..U+137C,\
+                        U+1380..U+1399, U+2D80..U+2DA6, U+2DA8..U+2DAE, U+2DB0..U+2DB6, U+2DB8..U+2DBE, U+2DC0..U+2DC6,\
+                        U+2DC8..U+2DCE, U+2DD0..U+2DD6, U+2DD8..U+2DDE, U+AB01..U+AB06, U+AB09..U+AB0E, U+AB11..U+AB16,\
+                        U+AB20..U+AB26, U+AB28..U+AB2E,\
+<?# Cherokee #?>
+                        U+13A0..U+13F4,\
+<?# Mon (called Myanmar by Unicode) #?>
+                        U+1000..U+1049, U+104C..U+109F, U+AA60..U+AA7F, U+A9E0..U+A9FE,\
+<?# Shinhala #?>
+                        U+0D82, U+0D83, U+0D85..U+0D96, U+0D9A..U+0DB1, U+0DB3..U+0DBB, U+0DBD, U+0DC0..U+0DC6,\
+                        U+0DCA, U+0DCF..U+0DD4, U+0DD6, U+0DD8..U+0DDF, U+0DE6..U+0DEF, U+0DF2, U+0DF3,\
+                        U+111E1..U+111E9, U+111EA..U+111F4,\
+<?# Tamil #?>
+                        U+0B82, U+0B83, U+0B85..U+0B8A, U+0B8E..U+0B90, U+0B92..U+0B95, U+0B99, U+0B9A, U+0B9C,\
+                        U+0B9E, U+0B9F, U+0BA3, U+0BA4, U+0BA8..U+0BAA, U+0BAE..U+0BB9, U+0BBE..U+0BC2, U+0BC6..U+0BC8,\
+                        U+0BCA..U+0BCD, U+0BD0, U+0BD7, U+0BE6..U+0BFA,\
+<?# Telugu #?>
+                        U+0C00..U+0C03, U+0C05..U+0C0C, U+0C0E..U+0C10, U+0C12..U+0C28, U+0C2A..U+0C39, U+0C3D..U+0C44,\
+                        U+0C46..U+0C48, U+0C4A..U+0C4D, U+0C55, U+0C56, U+0C58, U+0C59, U+0C60..U+0C63, U+0C66..U+0C6F,\
+                        U+0C78..U+0C7F,\
+<?# Gurmukhi (one of the writings of Punjabi) #?>
+                        U+0A01..U+0A03, U+0A05..U+0A0A, U+0A0F, U+0A10, U+0A13..U+0A19, U+0A1A..U+0A28, U+0A2A..U+0A30,\
+                        U+0A32, U+0A33, U+0A35, U+0A36, U+0A38, U+0A39, U+0A3C, U+0A3E..U+0A42, U+0A47, U+0A48,\
+                        U+0A4B..U+0A4D, U+0A51, U+0A59..U+0A5C, U+0A5E, U+0A66..U+0A75,\
+<?# Gujarati #?>
+                        U+0A81..U+0A83, U+0A85..U+0A8D, U+0A8F..U+0A91, U+0A93..U+0AA8, U+0AAA..U+0AB0, U+0AB2, U+0AB3,\
+                        U+0AB5..U+0AB9, U+0ABC..U+0AC5, U+0AC7..U+0AC9, U+0ACB..U+0ACD, U+0AD0, U+0AE0..U+0AE3, U+0AE6..U+0AEF,\
+                        <?php
+    echo implode(",\\\n                        ",
+                 array_values($languagesWithoutWordBoundaries));
+?>
+
 
 
     docinfo                 = extern
@@ -362,19 +380,28 @@ foreach ($languages as $lang=>$name){
 
 
         sql_query = select distinct * from (\
-        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id\
+        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, s.created as created, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
             from sentences s\
             left join sentences_translations st on st.sentence_id = s.id\
             left join sentences t on st.translation_id = t.id\
             where s.lang_id = (select id from languages where code = '$lang')\
         union \
-        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id\
+        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, s.created as created, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
             from sentences s\
             left join sentences_translations st on st.sentence_id = s.id\
             left join sentences_translations tt on tt.sentence_id = st.translation_id\
             left join sentences t on tt.translation_id = t.id\
             where s.lang_id =  (select id from languages where code = '$lang')\
         ) t 
+        sql_attr_timestamp = created
+        sql_attr_uint = user_id".
+    /* "correctness" is an 8-bit signed integer whereas Sphinx only allows
+     * unsigned intgerers (actually it allows 64-bit signed integers "bigint"s
+     * but it’s a waste of space). So we add 128 an treat it as unsigned,
+     * and that’s why the attribute is called "ucorrectness".
+     */
+"
+        sql_attr_uint = ucorrectness
         sql_attr_uint = id2
         sql_attr_multi = uint trans_id from field; SELECT id FROM languages ;
     }
@@ -394,6 +421,12 @@ foreach ($languages as $lang=>$name){
             echo "
         morphology              = libstemmer_$lang
         min_stemming_len        = 4
+    ";
+        }
+        if (isset($languagesWithoutWordBoundaries[$lang])) {
+            echo "
+        ngram_len = 1
+        ngram_chars = ".$languagesWithoutWordBoundaries[$lang]."
     ";
         }
     echo
