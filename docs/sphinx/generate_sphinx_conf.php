@@ -386,13 +386,15 @@ foreach ($languages as $lang=>$name){
         if ($type == 'main') {
             echo "
         sql_query_pre = REPLACE INTO sphinx_delta\
-                            SELECT languages.id, MAX(sentences.modified)\
+                            SELECT languages.id, COALESCE(MAX(sentences.modified), 0)\
                             FROM languages, sentences\
                             WHERE languages.code = '$lang'\
                             AND sentences.lang = languages.code";
         }
 
-        $delta_condition = ($type == 'main') ? '<=' : '>';
+        $delta_condition = ($type == 'main') ?
+            's.modified is null or s.modified <=' :
+            's.modified >';
         echo "
         sql_query = select distinct * from (\
         select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, UNIX_TIMESTAMP(s.created) as created, UNIX_TIMESTAMP(s.modified) as modified, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
@@ -400,10 +402,10 @@ foreach ($languages as $lang=>$name){
             left join sentences_translations st on st.sentence_id = s.id\
             left join sentences t on st.translation_id = t.id\
             where s.lang_id = (select id from languages where code = '$lang')\
-            and s.modified $delta_condition (\
+            and ($delta_condition (\
                 select index_start_date from sphinx_delta\
                 where sphinx_delta.lang_id = (select id from languages where code = '$lang')\
-            )\
+            ))\
         union \
         select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, UNIX_TIMESTAMP(s.created) as created, UNIX_TIMESTAMP(s.modified) as modified, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
             from sentences s\
@@ -411,10 +413,10 @@ foreach ($languages as $lang=>$name){
             left join sentences_translations tt on tt.sentence_id = st.translation_id\
             left join sentences t on tt.translation_id = t.id\
             where s.lang_id =  (select id from languages where code = '$lang')\
-            and s.modified $delta_condition (\
+            and ($delta_condition (\
                 select index_start_date from sphinx_delta\
                 where sphinx_delta.lang_id = (select id from languages where code = '$lang')\
-            )\
+            ))\
         ) t 
         sql_attr_timestamp = created
         sql_attr_timestamp = modified
