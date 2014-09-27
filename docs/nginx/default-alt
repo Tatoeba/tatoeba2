@@ -2,7 +2,7 @@ server {
 	listen	80;
 	server_name	tatoeba.org;
 
-	root	/var/www-prod/;
+	root	/var/www-prod/app/webroot/;
 	index	index.php index.html;
 	charset	utf-8;
 
@@ -11,8 +11,8 @@ server {
 	rewrite_log	on;
 
     location / {
-        #rewrite /$ /app/webroot/index.php?url=/home;
-        rewrite /(.+) /app/webroot/index.php?url=$1;
+        #rewrite /$ /index.php?url=/home;
+        rewrite /(.+) /index.php?url=$1;
     }
 
 
@@ -27,7 +27,7 @@ server {
 
 	# Comment this out when the subdomain for static files is activated
 	location ~ /(img|js|css)/ {
-		try_files /app/webroot/$uri =404;
+		try_files /$uri =404;
 	}
 
 	location ~ /(\.ht|\.svn) {

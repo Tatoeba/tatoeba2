@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+App::import('Model', 'CurrentUser');
+
 /**
  * Helper for languages
  *

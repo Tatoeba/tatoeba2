@@ -49,13 +49,7 @@ class Link extends AppModel
      */
     public function afterSave($created)
     {
-        // Can't set 'Contribution' as a real association, otherwise other methods
-        // will make an unnecessary "join".
-        $this->bindModel(
-            array('hasOne' => array('Contribution'))
-        );
-
-        $this->Contribution->saveLinkContribution(
+        ClassRegistry::init('Contribution')->saveLinkContribution(
             $this->data['Link']['sentence_id'],
             $this->data['Link']['translation_id'],
             'insert'
@@ -70,13 +64,9 @@ class Link extends AppModel
      */
     public function afterDelete()
     {
-        // Can't set 'Contribution' as a real association, otherwise other methods
-        // will make an unnecessary "join".
-        $this->bindModel(
-            array('hasOne' => array('Contribution'))
-        );
+        $Contribution = ClassRegistry::init('Contribution');
 
-        $this->Contribution->saveLinkContribution(
+	$Contribution->saveLinkContribution(
             $this->data['Link']['sentence_id'],
             $this->data['Link']['translation_id'],
             'delete'
@@ -84,7 +74,7 @@ class Link extends AppModel
 
         // We need to add manually the reciprochal link deletion because the
         // callback is called manually.
-        $this->Contribution->saveLinkContribution(
+        $Contribution->saveLinkContribution(
             $this->data['Link']['translation_id'],
             $this->data['Link']['sentence_id'],
             'delete'
