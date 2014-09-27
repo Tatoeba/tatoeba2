@@ -74,6 +74,16 @@ $this->set('title_for_layout', __('Settings', true));
         </div>
         
         <div>
+            <?php echo $form->checkbox('use_most_recent_list'); ?>
+            <label for="UseMostRecentList">
+                <?php __(
+                    'Remember the last list to which you assigned a '.
+                    'sentence, and select it by default.'
+                ); ?>
+            </label>
+        </div>
+        
+        <div>
         <?php
         $tip = __(
             'Enter ISO 639-3 codes, separated with a comma (e.g.: jpn,epo,ara,deu). '.

@@ -335,7 +335,15 @@ class MenuHelper extends AppHelper
      */
     public function addToListButton($sentenceId, $isLogged)
     {
-        $mostRecentList = $this->Session->read('most_recent_list');
+        $useMostRecentList = $this->Session->read('use_most_recent_list');
+        if ($useMostRecentList != null && $useMostRecentList)
+        {
+            $mostRecentList = $this->Session->read('most_recent_list');
+        }
+        else
+        {
+            $mostRecentList = null;
+        }
         $addToListButton = $this->Html->Image(
             IMG_PATH . 'add_to_list.png',
             array(
