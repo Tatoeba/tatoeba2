@@ -51,10 +51,12 @@ class MenuHelper extends AppHelper
      * @param int    $sentenceId Id of the original sentence.
      * @param string $ownerName  Username of the owner of the main sentence.
      * @param bool   $isLogged   True if user is logged in, false otherwise.
+     * @param bool   $enabled    True if sentence can be translated .Only sentences
+     *                           that are not "unapproved" can be translated.
      *
      * @return void
      */
-    public function translateButton($sentenceId, $ownerName, $isLogged)
+    public function translateButton($sentenceId, $ownerName, $isLogged, $enabled)
     {
         $translateButton = $this->Html->image(
             IMG_PATH . 'translate.png',
@@ -71,7 +73,25 @@ class MenuHelper extends AppHelper
             id="translate_<?php echo $sentenceId; ?>">
 
         <?php
-        if ($isLogged) {
+        if (!$enabled) {
+            
+            echo '<a>';
+            echo $this->Html->image(
+                IMG_PATH . 'translate-disabled.png',
+                array(
+                    'alt'=>__('Translate', true),
+                    'title'=>__(
+                        'This sentence is currently marked as unapproved. '.
+                        'Unapproved sentences cannot be translated.', 
+                        true
+                    ),
+                    'width' => 33,
+                    'height' => 16
+                )
+            );
+            echo '</a>';
+
+        } else if ($isLogged) {
             $this->Javascript->link('sentences.add_translation.js', false);
             ?>
 
@@ -473,11 +493,13 @@ class MenuHelper extends AppHelper
      * @param int    $sentenceId    Id of the sentence.
      * @param int    $ownerName     Username of the owner of the sentence.
      * @param string $chineseScript For chinese only, 'traditional' or 'simplified'
-     *
+     * @param array  $canTranslate  True if user can translate the sentence.
+     *                              False otherwise.
+     * 
      * @return void
      */
     public function displayMenu(
-        $sentenceId, $ownerName = null, $chineseScript = null
+        $sentenceId, $ownerName = null, $chineseScript = null, $canTranslate
     ) {
         ?>
         <ul class="menu">
@@ -489,7 +511,7 @@ class MenuHelper extends AppHelper
         $isLogged = CurrentUser::isMember();
 
         // Translate
-        $this->translateButton($sentenceId, $ownerName, $isLogged);
+        $this->translateButton($sentenceId, $ownerName, $isLogged, $canTranslate);
 
         // Adopt
         $currentUserName = CurrentUser::get('username');
