@@ -310,8 +310,9 @@ class SentencesHelper extends AppHelper
             $chineseScript = $sentence['script'];
         }
 
+        $canTranslate = $sentence['correctness'] >= 0;
         $this->Menu->displayMenu(
-            $sentenceId, $ownerName, $chineseScript
+            $sentenceId, $ownerName, $chineseScript, $canTranslate
         );
 
         $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);

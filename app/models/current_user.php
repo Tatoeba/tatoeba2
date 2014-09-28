@@ -41,8 +41,8 @@
  */
 class CurrentUser extends AppModel
 {
-    public $useTable = null;
-
+    public $useTable = false;
+    
     private static $_auth;
 
 

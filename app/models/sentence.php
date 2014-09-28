@@ -38,6 +38,9 @@
  * @link     http://tatoeba.org
 */
 
+App::import('Model', 'CurrentUser');
+App::import('Sanitize');
+
 define('UZBEK_SCRIPT_SWITCH', 0);
 define('UZBEK_SCRIPT_CYRYLLIC', 1);
 define('UZBEK_SCRIPT_LATIN', 2);
@@ -156,7 +159,6 @@ class Sentence extends AppModel
 
     public $belongsTo = array(
         'User',
-        'TagsSentences',
         'Language' => array(
             'classname' => 'Language',
             'foreignKey' => 'lang_id'
@@ -181,7 +183,8 @@ class Sentence extends AppModel
             'className' => 'Tag',
             'joinTable' => 'tags_sentences',
             'foreignKey' => 'sentence_id',
-            'associationForeignKey' => 'tag_id'
+            'associationForeignKey' => 'tag_id',
+            'with' => 'TagsSentences',
         ),
     );
 
@@ -191,9 +194,9 @@ class Sentence extends AppModel
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($id = false, $table = null, $ds = null)
     {
-        parent::__construct();
+        parent::__construct($id, $table, $ds);
         $this->validate['lang']['rule'] = array('inList', $this->languages);
     }
 

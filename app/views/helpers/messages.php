@@ -415,7 +415,7 @@ class MessagesHelper extends AppHelper
 
         // Convert sentence mentions to links
         $self = $this;
-        $content = preg_replace_callback('/([^\\\&])(#(\d+))/', function ($m) use ($self) {
+        $content = preg_replace_callback('/([^\\\&]|^)(#(\d+))/', function ($m) use ($self) {
             return $m[1] . $self->Html->link($m[2], array(
                 'controller' => 'sentences',
                 'action' => 'show',

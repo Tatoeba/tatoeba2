@@ -275,8 +275,14 @@ class SentencesListsController extends AppController
 
         if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
             $this->SentencesList->delete($listId);
-            // TODO: Retrieve the 'most_recent_list' cookie, and if it matches
-            // $listId, erase it?
+            // Retrieve the 'most_recent_list' cookie, and if it matches
+            // $listId, erase it. Do this even if the 'remember_list' has
+            // not been set, or has been set to false.
+            $mostRecentList = $this->Session->read('most_recent_list');
+            if ($mostRecentList == $listId)
+            {
+                $mostRecentList = null;
+            }
         }
         $this->redirect(array("action" => "index"));
     }

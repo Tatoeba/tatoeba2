@@ -89,7 +89,8 @@ class Contribution extends AppModel
                     'User'=> array(
                         'fields' => array('User.username','User.id')
                     ),
-                )
+                ),
+                'order' => array('Contribution.datetime')
             )
         );
         return $result ;
