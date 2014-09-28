@@ -344,7 +344,7 @@
  *   romanization/transliteration tools installed.
  */
     Configure::write('Search.enabled', false);
-    Configure::write('Transcriptions.enabled', true);
+    Configure::write('AutoTranscriptions.enabled', true);
     
 /**
  * Blocked IP addresses. Should be an array of strings containing the

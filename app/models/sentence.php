@@ -49,7 +49,7 @@ class Sentence extends AppModel
 {
 
     public $name = 'Sentence';
-    public $actsAs = array("Containable", "Sphinx", "Transcriptable");
+    public $actsAs = array("Containable", "Sphinx", "Autotranscriptable");
     public static $romanji = array('furigana' => 1, 'mix' => 2, 'romanji' => 3);
     
     const MIN_CORRECTNESS = -1;

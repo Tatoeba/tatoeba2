@@ -36,7 +36,7 @@
  */
 class Translation extends AppModel
 {
-    public $actsAs = array('Containable', 'Transcriptable');
+    public $actsAs = array('Containable', 'Autotranscriptable');
     public $useTable = 'sentences';
 
     public $hasAndBelongsToMany = array(

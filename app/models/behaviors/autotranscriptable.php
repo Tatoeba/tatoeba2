@@ -35,7 +35,7 @@
  * @link *   http://tatoeba.org
  */
 
-class TranscriptableBehavior extends ModelBehavior
+class AutotranscriptableBehavior extends ModelBehavior
 {
     /**
      * Autotranscription class
@@ -49,7 +49,7 @@ class TranscriptableBehavior extends ModelBehavior
 
     function setup(&$model, $config = array())
     {
-        if (Configure::read('Transcriptions.enabled') == false) {
+        if (Configure::read('AutoTranscriptions.enabled') == false) {
             return;
         }
 
@@ -65,7 +65,7 @@ class TranscriptableBehavior extends ModelBehavior
      */
     function afterFind(&$model, $results, $primary = false)
     {
-        if (Configure::read('Transcriptions.enabled') == false) {
+        if (Configure::read('AutoTranscriptions.enabled') == false) {
             return;
         }
         
