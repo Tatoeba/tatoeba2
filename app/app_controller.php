@@ -173,6 +173,11 @@ class AppController extends Controller
         $mostRecentList = $this->Cookie->read('most_recent_list');
         $this->Session->write('most_recent_list', $mostRecentList);
 
+        // This controls whether to use the most_recent_list cookie, or simply
+        // to choose the first list in alphabetical order.
+        $useMostRecentList = $this->Cookie->read('use_most_recent_list');
+        $this->Session->write('use_most_recent_list', $useMostRecentList);
+
         $jqueryChosen = $this->Cookie->read('jquery_chosen');
         $this->Session->write('jquery_chosen', $jqueryChosen);
     }

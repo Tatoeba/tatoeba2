@@ -55,7 +55,8 @@ class UserController extends AppController
         'Contribution',
         'Sentence',
         'SentenceComment',
-        'Favorite'
+        'Favorite',
+        'SentencesList'
     );
 
     public $helpers = array('Html', 'Date');
@@ -354,6 +355,7 @@ class UserController extends AppController
 
     /**
      * Save option settings. Options are :
+     *  - use advanced selectors for language selection
      *  - send notification emails
      *  - set profile as public
      *
@@ -369,8 +371,14 @@ class UserController extends AppController
         }
 
         if (!empty($this->data)) {
+            // Use advanced selectors for language selection
             $jqueryChosen = $this->data['User']['jquery_chosen'];
             $this->Cookie->write('jquery_chosen', $jqueryChosen, false, "+1 month");;
+
+            // Remember the last sentence list to which user assigned a sentence
+            // and bring it up as the default.
+            $useMostRecentList = $this->data['User']['use_most_recent_list'];
+            $this->Cookie->write('use_most_recent_list', $useMostRecentList, false, "+1 month");
 
             $this->data['User']['id'] = $currentUserId;
             $this->data['User']['lang'] = $this->_language_settings(
@@ -398,7 +406,7 @@ class UserController extends AppController
 
 
     /**
-     * Check languages settings entered by the user and return corrected string
+     * Check language settings entered by the user and return corrected string
      * (if correction is needed).
      *
      * A correct string should be composed of ISO codes that are present in the
@@ -545,8 +553,12 @@ class UserController extends AppController
         }
 
         $this->data = $this->User->getSettings($currentUserId);
+        // Whether to use advanced selectors for language selection
         $this->data['User']['jquery_chosen'] 
           = $this->Cookie->read('jquery_chosen');
+        // Whether to select by default the last list to which user assigned a sentence
+        $this->data['User']['use_most_recent_list']
+          = $this->Cookie->read('use_most_recent_list');
     }
 }
 ?>
