@@ -150,7 +150,10 @@ class Wall extends AppModel
         $result = $this->find(
             'threaded',
             array(
-                "order" => "WallThread.last_message_date DESC",
+                "order" => array(
+                    "WallThread.last_message_date DESC",
+                    "Wall.date ASC"
+                ),
                 "conditions" => array(
                     'OR' => $orArray
                 ),
