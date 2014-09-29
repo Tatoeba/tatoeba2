@@ -562,7 +562,7 @@ class Autotranscription
         $Oyomi = explode(' ', $Oyomi);
         $romanization = array();
 
-        if ($type == Sentence::$romanji['furigana']) {
+        if ($type == 'furigana') {
             foreach ($Owakati as $i=>$word) {
                 preg_match_all('/./u', $word, $char);
                 if (in_array($char[0][0], $katakana)) {
@@ -574,7 +574,7 @@ class Autotranscription
                     );
                 }
             }
-        } elseif ($type == Sentence::$romanji['mix']) {
+        } elseif ($type == 'mix') {
             foreach ($Owakati as $i=>$word) {
                 preg_match_all('/./u', $word, $chars);
                 $char = $chars[0][0];
@@ -591,7 +591,7 @@ class Autotranscription
                     );
                 }
             }
-        } elseif ($type == Sentence::$romanji['romanji']) {
+        } elseif ($type == 'romaji') {
             $prev_word = null;
             foreach ($Owakati as $i=>$word) {
                 // Ensure we only have katanakas.
