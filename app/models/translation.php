@@ -65,7 +65,7 @@ class Translation extends AppModel
         $results['IndirectTranslation'] = $this->Behaviors->trigger(
             $this,
             'afterFind',
-            array($translations['Translation'], false),
+            array($translations['IndirectTranslation'], false),
             array('modParams' => true)
         );
 
