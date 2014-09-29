@@ -1,35 +1,50 @@
-Tatoeba
-#######
+TATOEBA
+=======
 
-Tatoeba is a libre/free database of example sentences translated into many 
-languages. Our goal is to create a resource for people studying 
-languages—either to learn or research. The database is currently used:
-
-As a source of example sentences by free dictionaries and language 
-learning websites (like Jim Breen’s WWWJDIC; Jim Breen is actually a 
-member too):
-
-- There's a list of free dictionary and language learning websites using
-  Tatoeba's corpus maintained by our member CK:
-  http://a4esl.com/temporary/tatoeba/links.html
-
-- As a rich resource for language learners: They can find out how to use words
-  or how to translate grammatical constructs and idioms.
-
-- For research: example papers include:
-
-    * Research on treebanking Japanese (Francis Bond, 栗林 孝行 [Takayuki
-      Kuribayashi], 橋本 力 [Hashimoto Chikara] (2008)
-      HPSGに基づくフリーな日本語ツリー バンクの構築 [A free Japanese Treebank
-      based on HPSG]. In 14th Annual Meeting of The Association for Natural
-      Language Processing, Tokyo),
-
-    * Statistical machine translation (Eric Nichols, Francis Bond, Darren Scott
-      Appling and Yuji Matsumoto (2010) Paraphrasing Training Data for
-      Statistical Machine Translation. Journal of Natural Language Processing,
-      17(3), pages 101-122)
+This repository contains the source code of Tatoeba's website (http://tatoeba.org). 
+If you are interested in contributing to this project as a developer, keep reading.
 
 
-The main site currently has about 1 million page views and 250 thousands unique
-visitors monthly, as reported by Google Analytics, and the corpus is growing
-steadily by 3% or more every month.
+About Tatoeba
+-------------
+
+Tatoeba is a platform that aims to build a large database of sentences translated 
+into as many languages as possible. The initial idea was to have a tool in which you 
+could search certain words, and it would return example sentences containing these 
+words with their translations in the desired languages. The name Tatoeba resulted 
+from this concept, because *tatoeba* means *for example* in Japanese.
+
+If you are looking for more general information about Tatoeba, you can browse the
+[blog](http://blog.tatoeba.org) or the [wiki](http://en.wiki.tatoeba.org).
+
+
+
+Installing Tatoeba
+------------------
+To install Tatoeba on your machine, we recommend that you use 
+[IMOUTO](https://github.com/Tatoeba/admin). Simply follow the instructions in 
+[imouto for development](https://github.com/Tatoeba/admin/blob/master/README.md#imouto-for-development) 
+in the README. This will not work for Windows users though.
+
+If you are a Windows user, you can maybe try to figure out something that works
+for you from the following articles in the Wiki.
+
+- http://en.wiki.tatoeba.org/articles/show/install-tatoeba-on-vm
+- http://en.wiki.tatoeba.org/articles/show/install-tatoeba-php
+
+
+
+Need help?
+----------
+If you are stuck somewhere and can't figure out how to fix the problem(s) so that you can
+run Tatoeba properly on your machine, don't hesitate to post a message in our 
+[Google group](http://groups.google.com/group/tatoebaproject).
+
+You can post a message in there by sending an email to tatoebaproject@googlegroups.com.
+
+
+Note
+----
+This readme is still in progress. Feel free to add any information that you find would be useful. 
+The final goal is to gather here all the information needed for people to get involved in Tatoeba's 
+code as smoothly as possible.
