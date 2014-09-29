@@ -41,10 +41,6 @@
 App::import('Model', 'CurrentUser');
 App::import('Sanitize');
 
-define('UZBEK_SCRIPT_SWITCH', 0);
-define('UZBEK_SCRIPT_CYRYLLIC', 1);
-define('UZBEK_SCRIPT_LATIN', 2);
-
 class Sentence extends AppModel
 {
 
