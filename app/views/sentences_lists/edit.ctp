@@ -130,7 +130,9 @@ $this->set('title_for_layout', 'Tatoeba - ' . $listName);
         $sentence = $item['Sentence'];
         $translations = array();
         if (!empty($sentence['Translation'])) {
-            $translations = $sentence['Translation'];
+            foreach ($sentence['Translation'] as $value) {
+                $translations[] = array('Translation' => $value);
+            }
         }
         $lists->displaySentence($sentence, $translations, true);
     }
