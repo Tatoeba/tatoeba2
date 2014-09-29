@@ -340,11 +340,12 @@
 /**
  * Enable or disable external tools.
  * - Set Search.enabled to false if you don't have Sphinx installed.
- * - Set Transliterations.enabled to false if you don't have the
- *   romanization/transliteration tools installed.
+ * - Set AutoTranscriptions.enabled to false if you don't have the
+ *   various transcription tools installed, or if you simply don't
+ *   want to have the transcriptions displayed.
  */
     Configure::write('Search.enabled', false);
-    Configure::write('Transliterations.enabled', false);
+    Configure::write('AutoTranscriptions.enabled', true);
     
 /**
  * Blocked IP addresses. Should be an array of strings containing the

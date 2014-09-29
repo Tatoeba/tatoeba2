@@ -117,7 +117,7 @@ class SentencesHelper extends AppHelper
             // direct translations
             foreach ($translations as $translation) {
                 $this->displayGenericSentence(
-                    $translation,
+                    $translation['Translation'],
                     null,
                     'directTranslation',
                     $withAudio,
@@ -129,7 +129,7 @@ class SentencesHelper extends AppHelper
             // indirect translations
             foreach ($indirectTranslations as $translation) {
                 $this->displayGenericSentence(
-                    $translation,
+                    $translation['Translation'],
                     null,
                     'indirectTranslation',
                     $withAudio,
@@ -502,10 +502,11 @@ class SentencesHelper extends AppHelper
         );
 
         // romanization
-        $this->_displayRomanization($sentence);
-
-        // traditional or simplified Chinese
-        $this->_displayAlternateScript($sentence);
+        if (isset($sentence['transcriptions'])) {
+            $this->_displayTranscriptions(
+                $sentence['transcriptions'], $sentence['lang']
+            );
+        }
         ?>
         </div>
 
@@ -581,60 +582,46 @@ class SentencesHelper extends AppHelper
 
 
     /**
-     * Display romanization.
+     * Display transcriptions.
      *
-     * @param array $sentence Sentence for which to display romanization.
+     * @todo Rename CSS class: 'romanization' -> 'transcription'.
+     *
+     * @param array  $transcriptions List of transcriptions.
+     * @param string $lang           Language of the sentence transcripted.
      *
      * @return void
      */
-    private function _displayRomanization($sentence)
+    private function _displayTranscriptions($transcriptions, $lang)
     {
-        if (isset($sentence['romanization'])) {
-            $romanization = $sentence['romanization'];
+        if ($lang == 'jpn') {
 
-            if ($sentence['lang'] == 'jpn') {
-                $this->Javascript->link(JS_PATH.'furigana.js', false);
-                $title = 'ROMAJI: '.$sentence['romaji'];
-                ?>
+            $this->Javascript->link(JS_PATH.'furigana.js', false);
+            $furigana = $transcriptions[0];
+            $romaji = $transcriptions[1];
+            echo '<div class="romanization furigana" title="'.$romaji.'">';
+            echo $furigana;
+            echo '</div>';
 
-                <div class="romanization furigana" title="<?php echo $title; ?>">
-                <?php echo $romanization; ?>
-                </div>
+        } else if ($lang === 'cmn') {
 
-                <?php
-            } else {
+            $otherScript = $transcriptions[1];
+            echo '<div class="romanization">';
+            echo $otherScript;
+            echo '</div>';
 
+            $pinyin = $this->Pinyin->numeric2diacritic($transcriptions[0]);
+            echo '<div class="romanization">';
+            echo $pinyin;
+            echo '</div>';
+
+        } else {
+
+            foreach ($transcriptions as $transcription) {
                 echo '<div class="romanization">';
-                if ($sentence['lang'] === 'cmn') {
-                    echo $this->Pinyin->numeric2diacritic(
-                        $romanization
-                    );
-                } else {
-                    echo $romanization;
-                }
+                echo $transcription;
                 echo '</div>';
-
             }
-        }
-    }
 
-
-    /**
-     * display alternate script (traditional / simplfied)
-     * for chinese sentence
-     *
-     * @param array $sentence Sentence for which to display alternate script
-     *
-     * @return void
-     */
-    private function _displayAlternateScript($sentence)
-    {
-        if (isset($sentence['alternateScript'])) {
-            ?>
-            <div class="romanization">
-            <?php echo $sentence['alternateScript']; ?>
-            </div>
-        <?php
         }
     }
 
