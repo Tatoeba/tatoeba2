@@ -81,7 +81,7 @@ class Translation extends AppModel
      *
      * @return array Array of translations (direct and indirect).
      */
-    private function _getTranslationsOf($id, $lang)
+    private function _getTranslationsOf($id, $langs)
     {
         if (empty($langs)) {
             $langConditions = "";
