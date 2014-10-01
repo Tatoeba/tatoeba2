@@ -55,7 +55,5 @@
         echo $content_for_layout;
         ?>
         </div>
-        
-        <?php echo $cakeDebug ?>
     </body>
 </html>
