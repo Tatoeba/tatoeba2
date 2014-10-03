@@ -86,6 +86,7 @@ class SentencesController extends AppController
             'show',
             'search',
             'add_comment',
+            'of_user',
             'random',
             'go_to_sentence',
             'statistics',
