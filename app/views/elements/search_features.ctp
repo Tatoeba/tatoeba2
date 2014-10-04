@@ -60,20 +60,3 @@
     ?>
     </p>
 </div>
-
-
-<div class="module">
-    <h2>
-    <?php __('About recently added sentences'); ?>
-    </h2>
-    
-    <p>
-    <?php
-    __(
-        'You may not be able to find sentences that have been added recently '.
-        'because they have not been indexed yet. Indexation of sentences is not '.
-        '(yet) executed on-the-fly, only periodically.'
-    );
-    ?>
-    </p>
-</div>
