@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, Users
+from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, Users, TagsSentences
 from collections import defaultdict
 from datetime import datetime
 from itertools import chain
@@ -67,6 +67,11 @@ class Dedup(object):
     def merge_comments(main_id, ids):
         SentenceComments.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
 
+    @staticmethod
+    @transaction.atomic
+    def merge_tags(main_id, ids):
+        TagsSentences.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
+
     @classmethod
     def log_link(cls, sent_id, tran_id, action):
         return Contributions(
@@ -77,8 +82,7 @@ class Dedup(object):
                     datetime=datetime.now(),
                     user_id=cls.bot.id,
                )
-
-    
+   
     @classmethod
     @transaction.atomic
     def merge_links(cls, main_id, ids):
@@ -125,6 +129,7 @@ class Dedup(object):
     def deduplicate(cls, main_sent, ids):
         # merge
         cls.merge_comments(main_sent.id, ids)
+        cls.merge_tags(main_sent.id, ids)
         cls.merge_links(main_sent.id, ids)
         
         # delete and log duplicates

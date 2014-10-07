@@ -1,5 +1,5 @@
 from tatoeba2.management.commands.deduplicate import Dedup, Command
-from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions
+from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences
 from django.db import transaction
 import pytest
 
@@ -72,6 +72,12 @@ class TestDedup():
         assert SentenceComments.objects.filter(sentence_id=8).count() == 3
         for i in xrange(6, 8+1):
             assert SentenceComments.objects.get(text='Comment on '+str(i)).sentence_id == 8
+
+    def test_merge_tags(db, sents):
+        assert TagsSentences.objects.filter(sentence_id=8).count() == 1
+        Dedup.merge_tags(8, [6, 7])
+        assert TagsSentences.objects.filter(sentence_id=8).count() == 3
+        for tag in TagsSentences.objects.all(): assert tag.sentence_id == 8
 
     def test_merge_links(db, sents, bot):
         Dedup.bot = bot

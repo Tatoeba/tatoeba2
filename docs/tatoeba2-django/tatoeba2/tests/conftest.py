@@ -1,4 +1,4 @@
-from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Users
+from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Users, TagsSentences
 from datetime import datetime
 import pytest
 
@@ -38,6 +38,10 @@ def sents(db):
     SentencesTranslations(sentence_id=9, translation_id=6, distance=1).save()
     SentencesTranslations(sentence_id=7, translation_id=10, distance=1).save()
     SentencesTranslations(sentence_id=10, translation_id=7, distance=1).save()
+    
+    TagsSentences(tag_id=1, sentence_id=6, user_id=1, added_time=datetime.now()).save()
+    TagsSentences(tag_id=2, sentence_id=7, user_id=1, added_time=datetime.now()).save()
+    TagsSentences(tag_id=3, sentence_id=8, user_id=1, added_time=datetime.now()).save()
 
 @pytest.fixture()
 def bot(db):
