@@ -512,7 +512,7 @@ class SentencesController extends AppController
             $query
         );
 
-        $ranking_formula = '(ucorrectness=127)*-1000000 + (user_id<>0)*100000 + (10000/text_len)';
+        $ranking_formula = '(ucorrectness=127)*-1000000 + (user_id<>0)*100000 + (10000/(text_len+1))';
         $index = $from == 'und' ?
                  array('und_index') :
                  array($from . '_main_index', $from . '_delta_index');
