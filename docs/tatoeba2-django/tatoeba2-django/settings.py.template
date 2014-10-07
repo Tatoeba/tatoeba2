@@ -60,6 +60,7 @@ DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.mysql',
          'NAME': os.path.join(BASE_DIR, 'tatoeba.db'),
+         'HOST': 'localhost',
          'DATABASE': 'tatoeba',
          'USER': 'tatoeba',
          'PASSWORD': 'tatoeba'
