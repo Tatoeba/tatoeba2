@@ -265,6 +265,7 @@ source default
 index common_index
 {
     index_exact_words       = 1
+    index_field_lengths     = 1
     charset_table           = 0..9, a..z, _, A..Z->a..z, \
 <?# Latin-1 Supplement, with case folding (0080-00FF) #?>
                         U+C0..U+D6->U+E0..U+F6, U+D8..U+DE->U+F8..U+FE, U+E0..U+F6, U+F8..U+FF, \

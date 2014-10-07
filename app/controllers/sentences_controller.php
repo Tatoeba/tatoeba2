@@ -512,7 +512,7 @@ class SentencesController extends AppController
             $query
         );
 
-        $default_sphinx_ranking_formula = '(sum(lcs*user_weight)*1000+bm25)';
+        $ranking_formula = '(ucorrectness=127)*-1000000 + (user_id<>0)*100000 + (10000/text_len)';
         $index = $from == 'und' ?
                  array('und_index') :
                  array($from . '_main_index', $from . '_delta_index');
@@ -520,7 +520,7 @@ class SentencesController extends AppController
             'index' => $index,
             'matchMode' => SPH_MATCH_EXTENDED2,
             'sortMode' => array(SPH_SORT_RELEVANCE => ""),
-            'rankingMode' => array(SPH_RANK_EXPR => "(ucorrectness=127)*-1000000 + (user_id<>0)*100000 + $default_sphinx_ranking_formula"),
+            'rankingMode' => array(SPH_RANK_EXPR => $ranking_formula),
         );
         // if we want to search only on sentences having translations
         // in a specified language
