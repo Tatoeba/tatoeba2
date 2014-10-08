@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Help', true));
+$this->set('title_for_layout', __('Help', true) . __(' - Tatoeba', true));
 ?>
 
 <div id="annexe_content">

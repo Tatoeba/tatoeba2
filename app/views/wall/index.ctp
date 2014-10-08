@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */ 
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Wall', true));
+$this->set('title_for_layout', __('Wall', true) . __(' - Tatoeba', true));
 
 $javascript->link('jquery.scrollTo-min.js', false);
 $javascript->link('wall.reply.js', false);

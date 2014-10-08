@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Examples of search', true));
+$this->set('title_for_layout', __('Examples of search', true) . __(' - Tatoeba', true));
 ?>
 
 <div id="annexe_content">

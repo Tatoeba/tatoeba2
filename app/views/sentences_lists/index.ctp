@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('List of sentences', true));
+$this->set('title_for_layout', __('List of sentences', true) . __(' - Tatoeba', true));
 ?>
 
 <div id="annexe_content" >

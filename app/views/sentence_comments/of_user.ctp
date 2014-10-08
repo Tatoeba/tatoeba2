@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */
 $userName = Sanitize::paranoid($userName, array("_"));
-$this->set('title_for_layout', 'Tatoeba - ' . sprintf(__("%s's comments", true), $userName));
+$this->set('title_for_layout', sprintf(__("%s's comments", true), $userName) . __(' - Tatoeba', true));
 
 // create an helper a lot of the code is the same of "on_sentences_of_user"
 ?>

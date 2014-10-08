@@ -36,7 +36,10 @@
  */
 $rootMessageId = $message['Wall']['id'];
 
-$this->set('title_for_layout', 'Tatoeba - Thread #' . $rootMessageId ); 
+$this->set('title_for_layout',
+    sprintf(__('Thread #%s', true), $rootMessageId)
+    . __(' - Tatoeba', true)
+);
 
 $javascript->link('jquery.scrollTo-min.js', false);
 $javascript->link('wall.reply.js', false);

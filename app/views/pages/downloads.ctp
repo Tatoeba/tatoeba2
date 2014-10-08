@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Download sentences', true));
+$this->set('title_for_layout', __('Download sentences', true) . __(' - Tatoeba', true));
 ?>
 
 <div id="annexe_content">

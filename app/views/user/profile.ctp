@@ -55,11 +55,8 @@ if (!empty($user['image'])) {
     $userImage = Sanitize::html($user['image']);
 }
 
-if (!empty($realName)) {
-    $this->set('title_for_layout', "$username ($realName) - Tatoeba");
-} else {
-    $this->set('title_for_layout', "$username - Tatoeba"); 
-}
+$title = empty($realName) ? $username : "$username ($realName)";
+$this->set('title_for_layout', $title . __(' - Tatoeba', true));
 ?>
 
 <div id="annexe_content">

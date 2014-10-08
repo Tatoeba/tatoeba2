@@ -34,7 +34,7 @@ $belongsToUser = $session->read('Auth.User.id') == $listOwnerId;
 $canUserEdit = $isAuthenticated && ($isListPublic || $belongsToUser);
 
  
-$this->set('title_for_layout', 'Tatoeba - ' . $listName);
+$this->set('title_for_layout', $listName . __(' - Tatoeba', true));
 ?>
 
 <div id="annexe_content">
