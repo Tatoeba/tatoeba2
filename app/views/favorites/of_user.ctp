@@ -27,7 +27,7 @@
 
 $username = Sanitize::paranoid($username, array("_"));
 $title = sprintf(__("%s's favorite sentences", true), $username); 
-$this->set('title_for_layout', $title);
+$this->set('title_for_layout', $title . __(' - Tatoeba', true));
 $numberOfSentences = count($favorites);
 ?>
 

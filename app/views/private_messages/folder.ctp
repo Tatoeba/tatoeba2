@@ -34,7 +34,11 @@ if ($folder == 'Inbox') {
     $folderName = __('Trash', true);
 }
 
-$this->set('title_for_layout', __('Private messages', true) . ' - ' . $folderName);
+$this->set('title_for_layout',
+    __('Private messages', true)
+    . ' - ' . $folderName
+    . __(' - Tatoeba', true)
+);
 
 echo $this->element('pmmenu');
 ?>

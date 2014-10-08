@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
  
+$this->set('title_for_layout', __('Import sentences', true) . __(' - Tatoeba', true));
+
 $langArray = $languages->onlyLanguagesArray();
 ?>
 

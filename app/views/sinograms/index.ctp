@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', __('Search sinograms', true));
+$this->set('title_for_layout', __('Search sinograms', true) . __(' - Tatoeba', true));
 $javascript->link(JS_PATH . "sinograms.search.js", false);
 
 ?>

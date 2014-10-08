@@ -25,6 +25,9 @@
  * @link     http://tatoeba.org
  */
 
+$this->set('title_for_layout', __('New message', true) . __(' - Tatoeba', true)
+);
+
 echo $this->element('pmmenu');
 ?>
 <div id="main_content">

@@ -38,7 +38,17 @@ if ($userExists === true) {
         ) 
     );
 
+    if (empty($lang)) {
+        $title = sprintf(__("%s's sentences", true), $userName);
+    } else {
+        $languageName = $languages->codeToName($lang);
+        $title = sprintf(__('%1$s\'s sentences in %2$s', true), $userName, $languageName);
+    }
+} else {
+    $title = sprintf(__("There's no user called %s", true), $userName);
 }
+
+$this->set('title_for_layout', $title . __(' - Tatoeba', true));
 ?>
 
 <div id="annexe_content">
@@ -100,8 +110,7 @@ if ($userExists === true) {
             <?php 
             echo $paginator->counter(
                 array(
-                    'format' => sprintf(__("%s's sentences", true), $userName) 
-                        . ' ' . __("(total %count%)", true)
+                    'format' => $title . ' ' . __("(total %count%)", true)
                 )
             ); 
             ?>

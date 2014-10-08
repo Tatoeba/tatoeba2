@@ -27,7 +27,7 @@
 
 if ($tagExists) {
     $tagName = Sanitize::html($tagName);
-    $this->set('title_for_layout', sprintf(__('Sentences with tag %s', true), $tagName) . __(' - Tatoeba', true));
+    $title = sprintf(__('Sentences with tag %s', true), $tagName);
     ?>
 
     <div id="annexe_content">
@@ -81,6 +81,7 @@ if ($tagExists) {
     </div>
     <?php
 } else {
+    $title = sprintf(__('No tag with id %s', true), $tagId);
     ?>
     <div id="main_content">
         <?php
@@ -95,4 +96,5 @@ if ($tagExists) {
     </div>
     <?php
 }
+$this->set('title_for_layout', $title . __(' - Tatoeba', true));
 ?>

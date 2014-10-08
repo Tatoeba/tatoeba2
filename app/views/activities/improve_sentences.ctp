@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
  
-$this->set('title_for_layout', __('Improve sentences', true));
+$this->set('title_for_layout', __('Improve sentences', true) . __(' - Tatoeba', true));
 $changeURL = $html->url(
                        array(
                              'controller' => 'tags',
