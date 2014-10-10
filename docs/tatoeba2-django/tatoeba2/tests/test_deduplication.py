@@ -70,8 +70,13 @@ class TestDedup():
         assert SentenceComments.objects.filter(sentence_id=8).count() == 1
         Dedup.merge_comments(8, [6, 7])
         assert SentenceComments.objects.filter(sentence_id=8).count() == 3
-        for i in xrange(6, 8+1):
-            assert SentenceComments.objects.get(text='Comment on '+str(i)).sentence_id == 8
+        
+        for i in xrange(6, 7+1):
+            assert SentenceComments.objects.filter(sentence_id=i).count() == 1
+            comments = list(SentenceComments.objects.filter(text='Comment on '+str(i)).order_by('sentence_id'))
+            assert len(comments) == 2
+            assert comments[0].sentence_id == i
+            assert comments[1].sentence_id == 8
 
     def test_merge_tags(db, sents):
         assert TagsSentences.objects.filter(sentence_id=8).count() == 1

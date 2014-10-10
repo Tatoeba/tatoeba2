@@ -65,7 +65,11 @@ class Dedup(object):
     @staticmethod
     @transaction.atomic
     def merge_comments(main_id, ids):
-        SentenceComments.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
+        comments = list(SentenceComments.objects.filter(sentence_id__in=ids))
+        for comment in comments:
+            comment.id = None
+            comment.sentence_id = main_id
+        SentenceComments.objects.bulk_create(comments)
 
     @staticmethod
     @transaction.atomic
