@@ -1,4 +1,4 @@
-from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Users, TagsSentences
+from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Users, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations
 from datetime import datetime
 import pytest
 
@@ -42,6 +42,18 @@ def sents(db):
     TagsSentences(tag_id=1, sentence_id=6, user_id=1, added_time=datetime.now()).save()
     TagsSentences(tag_id=2, sentence_id=7, user_id=1, added_time=datetime.now()).save()
     TagsSentences(tag_id=3, sentence_id=8, user_id=1, added_time=datetime.now()).save()
+    
+    SentencesSentencesLists(sentences_list_id=1, sentence_id=6).save()
+    SentencesSentencesLists(sentences_list_id=2, sentence_id=7).save()
+    SentencesSentencesLists(sentences_list_id=3, sentence_id=8).save()
+    
+    FavoritesUsers(user_id=1, favorite_id=6).save()
+    FavoritesUsers(user_id=2, favorite_id=7).save()
+    FavoritesUsers(user_id=3, favorite_id=8).save()
+    
+    SentenceAnnotations(meaning_id=1, text='', modified=datetime.now(), user_id=1, sentence_id=6).save()
+    SentenceAnnotations(meaning_id=2, text='', modified=datetime.now(), user_id=1, sentence_id=7).save()
+    SentenceAnnotations(meaning_id=3, text='', modified=datetime.now(), user_id=1, sentence_id=8).save()
 
 @pytest.fixture()
 def bot(db):

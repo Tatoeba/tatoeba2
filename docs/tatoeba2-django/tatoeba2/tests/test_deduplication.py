@@ -1,5 +1,5 @@
 from tatoeba2.management.commands.deduplicate import Dedup, Command
-from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences
+from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations
 from django.db import transaction
 import pytest
 
@@ -78,6 +78,24 @@ class TestDedup():
         Dedup.merge_tags(8, [6, 7])
         assert TagsSentences.objects.filter(sentence_id=8).count() == 3
         for tag in TagsSentences.objects.all(): assert tag.sentence_id == 8
+
+    def test_merge_lists(db, sents):
+        assert SentencesSentencesLists.objects.filter(sentence_id=8).count() == 1
+        Dedup.merge_lists(8, [6, 7])
+        assert SentencesSentencesLists.objects.filter(sentence_id=8).count() == 3
+        for sent_lst in SentencesSentencesLists.objects.all(): assert sent_lst.sentence_id == 8
+
+    def test_merge_favorites(db, sents):
+        assert FavoritesUsers.objects.filter(favorite_id=8).count() == 1
+        Dedup.merge_favorites(8, [6, 7])
+        assert FavoritesUsers.objects.filter(favorite_id=8).count() == 3
+        for fav in FavoritesUsers.objects.all(): assert fav.favorite_id == 8
+
+    def test_merge_annotations(db, sents):
+        assert SentenceAnnotations.objects.filter(sentence_id=8).count() == 1
+        Dedup.merge_annotations(8, [6, 7])
+        assert SentenceAnnotations.objects.filter(sentence_id=8).count() == 3
+        for ann in SentenceAnnotations.objects.all(): assert ann.sentence_id == 8
 
     def test_merge_links(db, sents, bot):
         Dedup.bot = bot

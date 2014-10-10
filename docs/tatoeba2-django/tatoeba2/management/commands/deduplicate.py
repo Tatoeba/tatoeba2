@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, Users, TagsSentences
+from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, Users, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations
 from collections import defaultdict
 from datetime import datetime
 from itertools import chain
@@ -71,6 +71,21 @@ class Dedup(object):
     @transaction.atomic
     def merge_tags(main_id, ids):
         TagsSentences.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
+
+    @staticmethod
+    @transaction.atomic
+    def merge_lists(main_id, ids):
+        SentencesSentencesLists.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
+
+    @staticmethod
+    @transaction.atomic
+    def merge_favorites(main_id, ids):
+        FavoritesUsers.objects.filter(favorite_id__in=ids).update(favorite_id=main_id)
+
+    @staticmethod
+    @transaction.atomic
+    def merge_annotations(main_id, ids):
+        SentenceAnnotations.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
 
     @classmethod
     def log_link(cls, sent_id, tran_id, action):
