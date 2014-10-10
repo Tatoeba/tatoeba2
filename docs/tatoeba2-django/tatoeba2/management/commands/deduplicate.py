@@ -159,6 +159,10 @@ class Dedup(object):
         cls.merge_comments(main_sent.id, ids)
         cls.merge_tags(main_sent.id, ids)
         cls.merge_links(main_sent.id, ids)
+        cls.merge_lists(main_sent.id, ids)
+        cls.merge_logs(main_sent.id, ids)
+        cls.merge_favorites(main_sent.id, ids)
+        cls.merge_annotations(main_sent.id, ids)
         
         # delete and log duplicates
         cls.delete_and_log(ids)
