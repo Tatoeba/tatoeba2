@@ -32,7 +32,7 @@ def sents(db):
     Sentences(text='Has owner, Has audio, Correctness -1 duplicated.', lang='eng', hasaudio='shtooka', created=datetime(2014, 1, 5)).save()
     Sentences(text='Has owner, Has audio, Correctness -1 duplicated.', lang='eng', correctness=-1, created=datetime(2014, 1, 5)).save()
     
-    for i in xrange(1, 21+1): SentenceComments(sentence_id=i, text='Comment on '+str(i), user_id=1, created=datetime.now(), hidden=0).save()
+    for i in xrange(6, 8+1): SentenceComments(sentence_id=i, text='Comment on '+str(i), user_id=1, created=datetime.now(), hidden=0).save()
     
     SentencesTranslations(sentence_id=6, translation_id=9, distance=1).save()
     SentencesTranslations(sentence_id=9, translation_id=6, distance=1).save()

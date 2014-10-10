@@ -68,8 +68,10 @@ class TestDedup():
    
     def test_merge_comments(db, sents):
         assert SentenceComments.objects.filter(sentence_id=8).count() == 1
+        assert SentenceComments.objects.all().count() == 3
         Dedup.merge_comments(8, [6, 7])
         assert SentenceComments.objects.filter(sentence_id=8).count() == 3
+        assert SentenceComments.objects.all().count() == 5
         
         for i in xrange(6, 7+1):
             assert SentenceComments.objects.filter(sentence_id=i).count() == 1
