@@ -73,6 +73,15 @@ class Dedup(object):
 
     @staticmethod
     @transaction.atomic
+    def merge_logs(main_id, ids):
+        logs = list(Contributions.objects.filter(sentence_id__in=ids))
+        for entry in logs:
+            entry.id = None
+            entry.sentence_id = main_id
+        Contributions.objects.bulk_create(logs)
+
+    @staticmethod
+    @transaction.atomic
     def merge_tags(main_id, ids):
         TagsSentences.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
 
