@@ -2,6 +2,8 @@ from tatoeba2.management.commands.deduplicate import Dedup, Command
 from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions
 from django.db import transaction
 import pytest
+import os
+import logging
 
 
 @pytest.mark.django_db
@@ -10,6 +12,31 @@ class TestDedup():
     def test_baseline(db, sents):
         s = Sentences.objects.get(id=1)
         assert s.text == 'Normal, not duplicated.'
+
+    def test_logger(db, sents, capsys):
+        Dedup.time_init()
+        Dedup.logger_init()
+
+        Dedup.out_log.debug('test')
+        Dedup.out_log.info('test')
+        out, _ = capsys.readouterr()
+        assert out == 'test\n'
+
+        Dedup.out_log.setLevel(logging.DEBUG)
+        Dedup.out_log.debug('test')
+        Dedup.out_log.info('test')
+        out, _ = capsys.readouterr()
+        assert out == 'test\ntest\n'
+        
+
+        Dedup.file_log.info('test')
+        with open(Dedup.log_file_path) as f:
+            assert f.read() == 'test\n'
+        
+        os.remove(Dedup.log_file_path)
+
+        Dedup.str_log.info('test')
+        assert Dedup.report.getvalue() == 'test\n'
 
     def test_chunked_ranges(db):
         assert \
@@ -119,7 +146,10 @@ class TestDedup():
         for ann in SentenceAnnotations.objects.all(): assert ann.sentence_id == 8
 
     def test_merge_links(db, sents, bot):
+        Dedup.time_init()
+        Dedup.logger_init()
         Dedup.bot = bot
+
         assert SentencesTranslations.objects.filter(sentence_id=8).count() == 0
         Dedup.merge_links(8, [6, 7])
 
@@ -127,31 +157,11 @@ class TestDedup():
         assert lnks_fd.count() == 2
         assert lnks_fd[0].sentence_id == 8 and lnks_fd[0].translation_id == 9
         assert lnks_fd[1].sentence_id == 8 and lnks_fd[1].translation_id == 10
-        
-        unlnks_fd = Contributions.objects.filter(sentence_id__in=[6, 7], type='link', action='delete').order_by('sentence_id')
-        assert unlnks_fd.count() == 2
-        assert unlnks_fd[0].sentence_id == 6 and unlnks_fd[0].translation_id == 9
-        assert unlnks_fd[1].sentence_id == 7 and unlnks_fd[1].translation_id == 10
-        
-        relnks_fd = Contributions.objects.filter(sentence_id=8, type='link', action='insert').order_by('translation_id')
-        assert relnks_fd.count() == 2
-        assert relnks_fd[0].sentence_id == 8 and relnks_fd[0].translation_id == 9
-        assert relnks_fd[1].sentence_id == 8 and relnks_fd[1].translation_id == 10
 
         lnks_bd = SentencesTranslations.objects.filter(translation_id=8).order_by('sentence_id')
         assert lnks_bd.count() == 2
         assert lnks_bd[0].sentence_id == 9 and lnks_bd[0].translation_id == 8
         assert lnks_bd[1].sentence_id == 10 and lnks_bd[1].translation_id == 8
-        
-        unlnks_bd = Contributions.objects.filter(translation_id__in=[6, 7], type='link', action='delete').order_by('translation_id')
-        assert unlnks_bd.count() == 2
-        assert unlnks_bd[0].sentence_id == 9 and unlnks_bd[0].translation_id == 6
-        assert unlnks_bd[1].sentence_id == 10 and unlnks_bd[1].translation_id == 7
-        
-        relnks_bd = Contributions.objects.filter(translation_id=8, type='link', action='insert').order_by('sentence_id')
-        assert relnks_bd.count() == 2
-        assert relnks_bd[0].sentence_id == 9 and relnks_bd[0].translation_id == 8
-        assert relnks_bd[1].sentence_id == 10 and relnks_bd[1].translation_id == 8
 
     def test_delete_and_log(db, sents, bot):
         Dedup.bot = bot

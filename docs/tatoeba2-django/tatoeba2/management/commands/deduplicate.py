@@ -1,14 +1,47 @@
 from django.core.management.base import BaseCommand
+from django.conf import settings
 from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, Users, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations
 from collections import defaultdict
 from datetime import datetime
 from itertools import chain
 from optparse import make_option
 from django.db import transaction
+from StringIO import StringIO
+from os import path
+from django.core import serializers
 import time
+import logging
+import sys
+import json
 
 
 class Dedup(object):
+
+    @classmethod
+    def time_init(cls):
+        cls.started_on = datetime.now()
+
+    @classmethod
+    def logger_init(cls):
+
+        cls.out_log = logging.getLogger('stdout_logger')
+        cls.out_log.setLevel(logging.INFO)
+        stdout = logging.StreamHandler(sys.stdout)
+        cls.out_log.addHandler(stdout)
+
+        cls.str_log = logging.getLogger('string_logger')
+        cls.str_log.setLevel(logging.INFO)
+        cls.report = StringIO()
+        string = logging.StreamHandler(cls.report)
+        cls.str_log.addHandler(string)
+
+        root_path = settings.BASE_DIR
+        file_name = 'dedup-'+ cls.started_on.strftime('%Y-%m-%d') + '.log'
+        cls.file_log = logging.getLogger('file_logger')
+        cls.file_log.setLevel(logging.DEBUG)
+        cls.log_file_path = path.join(root_path, file_name)
+        file_log = logging.FileHandler(cls.log_file_path)
+        cls.file_log.addHandler(file_log)
 
     @staticmethod
     def tally(sents):
@@ -101,36 +134,33 @@ class Dedup(object):
         SentenceAnnotations.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
 
     @classmethod
-    def log_link(cls, sent_id, tran_id, action):
-        return Contributions(
-                    sentence_id=sent_id,
-                    translation_id=tran_id,
-                    action=action,
-                    type='link',
-                    datetime=datetime.now(),
-                    user_id=cls.bot.id,
-               )
+    def log_link_merge(cls, main_id, ids, replace='sent'):
+        entry = {}
+        entry['timestamp'] = datetime.utcnow().strftime('%Y-%m-%d %I:%M %p UTC')
+        entry['operation'] = 'merge_links'
+        entry['query'] = 'update'
+        entry['main_id'] = main_id
+        entry['duplicate_ids'] = list(ids)
+
+        if replace == 'sent':
+            sents = list(SentencesTranslations.objects.filter(sentence_id__in=ids))
+            entry['field_replaced'] = 'sentence_id'
+        elif replace == 'tran':
+            sents = list(SentencesTranslations.objects.filter(translation_id__in=ids))
+            entry['field_replaced'] = 'translation_id'
+        
+        entry['rows_affected'] = serializers.serialize('json', sents)
+
+        cls.file_log.info(json.dumps(entry))
    
     @classmethod
     @transaction.atomic
     def merge_links(cls, main_id, ids):
-        cls.lnks_fd = SentencesTranslations.objects.filter(sentence_id__in=ids)
-        cls.lnks_bd = SentencesTranslations.objects.filter(translation_id__in=ids)
-
-        # slight code duplication to account for future changes in link symmetry
-        logs = []
-
-        for lnk in list(cls.lnks_fd):
-            logs.append(cls.log_link(lnk.sentence_id, lnk.translation_id, 'delete'))
-            logs.append(cls.log_link(main_id, lnk.translation_id, 'insert'))
-
-        for lnk in list(cls.lnks_bd):
-            logs.append(cls.log_link(lnk.sentence_id, lnk.translation_id, 'delete'))
-            logs.append(cls.log_link(lnk.sentence_id, main_id, 'insert'))
-
-        cls.lnks_fd.update(sentence_id=main_id)
-        cls.lnks_bd.update(translation_id=main_id)
-        Contributions.objects.bulk_create(logs)
+        cls.log_link_merge(main_id, ids, 'sent')
+        SentencesTranslations.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
+        
+        cls.log_link_merge(main_id, ids, 'tran')
+        SentencesTranslations.objects.filter(translation_id__in=ids).update(translation_id=main_id)
 
     @classmethod
     @transaction.atomic
