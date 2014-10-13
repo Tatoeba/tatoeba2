@@ -9,6 +9,7 @@ from django.db import transaction
 from StringIO import StringIO
 from os import path
 from django.core import serializers
+from django.db.models.loading import get_model
 import time
 import logging
 import sys
@@ -95,77 +96,122 @@ class Dedup(object):
 
         return main_sent
 
-    @staticmethod
+    @classmethod
+    def log_comments_merge(cls, main_id, ids, comments):
+        entry = cls.json_entry(main_id, ids, 'merge_comments', 'insert', 'sentence_id', comments)
+        cls.file_log.info(entry)
+
+    @classmethod
     @transaction.atomic
-    def merge_comments(main_id, ids):
+    def merge_comments(cls, main_id, ids):
         comments = list(SentenceComments.objects.filter(sentence_id__in=ids))
         for comment in comments:
             comment.id = None
             comment.sentence_id = main_id
-        SentenceComments.objects.bulk_create(comments)
+        comments = SentenceComments.objects.bulk_create(comments)
+        cls.log_comments_merge(main_id, ids, comments)
 
-    @staticmethod
+    @classmethod
+    def log_logs_merge(cls, main_id, ids, logs):
+        entry = cls.json_entry(main_id, ids, 'merge_logs', 'insert', 'sentence_id', logs)
+        cls.file_log.info(entry)
+
+    @classmethod
     @transaction.atomic
-    def merge_logs(main_id, ids):
+    def merge_logs(cls, main_id, ids):
         logs = list(Contributions.objects.filter(sentence_id__in=ids))
         for entry in logs:
             entry.id = None
             entry.sentence_id = main_id
-        Contributions.objects.bulk_create(logs)
-
-    @staticmethod
-    @transaction.atomic
-    def merge_tags(main_id, ids):
-        TagsSentences.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
-
-    @staticmethod
-    @transaction.atomic
-    def merge_lists(main_id, ids):
-        SentencesSentencesLists.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
-
-    @staticmethod
-    @transaction.atomic
-    def merge_favorites(main_id, ids):
-        FavoritesUsers.objects.filter(favorite_id__in=ids).update(favorite_id=main_id)
-
-    @staticmethod
-    @transaction.atomic
-    def merge_annotations(main_id, ids):
-        SentenceAnnotations.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
+        logs = Contributions.objects.bulk_create(logs)
+        cls.log_logs_merge(main_id, ids, logs)
 
     @classmethod
-    def log_link_merge(cls, main_id, ids, replace='sent'):
+    def log_tags_merge(cls, main_id, ids):
+        tags = list(TagsSentences.objects.filter(sentence_id__in=ids))
+        entry = cls.json_entry(main_id, ids, 'merge_tags', 'update', 'sentence_id', tags)
+        cls.file_log.info(entry)
+    
+    @classmethod
+    @transaction.atomic
+    def merge_tags(cls, main_id, ids):
+        cls.log_tags_merge(main_id, ids)
+        TagsSentences.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
+
+    @classmethod
+    def log_lists_merge(cls, main_id, ids):
+        links = list(SentencesSentencesLists.objects.filter(sentence_id__in=ids))
+        entry = cls.json_entry(main_id, ids, 'merge_lists', 'update', 'sentence_id', links)
+        cls.file_log.info(entry)
+
+    @classmethod
+    @transaction.atomic
+    def merge_lists(cls, main_id, ids):
+        cls.log_lists_merge(main_id, ids)
+        SentencesSentencesLists.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
+
+    @classmethod
+    def log_favorites_merge(cls, main_id, ids):
+        favs = list(FavoritesUsers.objects.filter(favorite_id__in=ids))
+        entry = cls.json_entry(main_id, ids, 'merge_favorites', 'update', 'sentence_id', favs)
+        cls.file_log.info(entry)
+
+    @classmethod
+    @transaction.atomic
+    def merge_favorites(cls, main_id, ids):
+        cls.log_favorites_merge(main_id, ids)
+        FavoritesUsers.objects.filter(favorite_id__in=ids).update(favorite_id=main_id)
+
+    @classmethod
+    def log_annotations_merge(cls, main_id, ids):
+        anns = list(SentenceAnnotations.objects.filter(sentence_id__in=ids))
+        entry = cls.json_entry(main_id, ids, 'merge_annotations', 'update', 'sentence_id', anns)
+        cls.file_log.info(entry)
+
+    @classmethod
+    @transaction.atomic
+    def merge_annotations(cls, main_id, ids):
+        cls.log_annotations_merge(main_id, ids)
+        SentenceAnnotations.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
+
+    @staticmethod
+    def json_entry(main_id, ids, op, q, fld, objs):
         entry = {}
         entry['timestamp'] = datetime.utcnow().strftime('%Y-%m-%d %I:%M %p UTC')
-        entry['operation'] = 'merge_links'
-        entry['query'] = 'update'
+        entry['operation'] = op
+        entry['query'] = q
         entry['main_id'] = main_id
         entry['duplicate_ids'] = list(ids)
+        entry['field_replaced'] = fld
+        entry['rows_affected'] = serializers.serialize('json', objs)
+        
+        return json.dumps(entry)
+
+    @classmethod
+    def log_links_merge(cls, main_id, ids, replace='sent'):
 
         if replace == 'sent':
             sents = list(SentencesTranslations.objects.filter(sentence_id__in=ids))
-            entry['field_replaced'] = 'sentence_id'
+            field = 'sentence_id'
         elif replace == 'tran':
             sents = list(SentencesTranslations.objects.filter(translation_id__in=ids))
-            entry['field_replaced'] = 'translation_id'
-        
-        entry['rows_affected'] = serializers.serialize('json', sents)
+            field = 'translation_id'
 
-        cls.file_log.info(json.dumps(entry))
+        entry = cls.json_entry(main_id, ids, 'merge_links', 'update', field, sents)
+        cls.file_log.info(entry)
    
     @classmethod
     @transaction.atomic
     def merge_links(cls, main_id, ids):
-        cls.log_link_merge(main_id, ids, 'sent')
+        cls.log_links_merge(main_id, ids, 'sent')
         SentencesTranslations.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
         
-        cls.log_link_merge(main_id, ids, 'tran')
+        cls.log_links_merge(main_id, ids, 'tran')
         SentencesTranslations.objects.filter(translation_id__in=ids).update(translation_id=main_id)
 
     @classmethod
-    @transaction.atomic
-    def delete_and_log(cls, ids):
-        sents = Sentences.objects.filter(id__in=ids)
+    def log_sents_del(cls, main_id, ids, sents):
+        sents = list(sents)
         logs = []
 
         for sent in sents:
@@ -178,9 +224,18 @@ class Dedup(object):
                 type='sentence',
                 user_id=cls.bot.id,
                 ))
-
-        sents.delete()
+        
         Contributions.objects.bulk_create(logs)
+
+        entry = cls.json_entry(main_id, ids, 'delete Sentences', 'delete', 'sentence_id', sents)
+        cls.file_log.info(entry)
+    
+    @classmethod
+    @transaction.atomic
+    def delete_sents(cls, main_id, ids):
+        sents = Sentences.objects.filter(id__in=ids)
+        cls.log_sents_del(main_id, ids, sents)
+        sents.delete()
 
     @classmethod
     @transaction.atomic
@@ -195,7 +250,7 @@ class Dedup(object):
         cls.merge_annotations(main_sent.id, ids)
         
         # delete and log duplicates
-        cls.delete_and_log(ids)
+        cls.delete_sents(main_sent.id, ids)
         
         # fix correctness if needed
         if cls.not_approved:

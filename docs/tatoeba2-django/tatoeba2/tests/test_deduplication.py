@@ -162,12 +162,14 @@ class TestDedup():
         assert lnks_bd.count() == 2
         assert lnks_bd[0].sentence_id == 9 and lnks_bd[0].translation_id == 8
         assert lnks_bd[1].sentence_id == 10 and lnks_bd[1].translation_id == 8
+        
+        os.remove(Dedup.log_file_path)
 
-    def test_delete_and_log(db, sents, bot):
+    def test_delete_sents(db, sents, bot):
         Dedup.bot = bot
         assert Sentences.objects.filter(id__in=[6,7]).count() == 2
         assert Contributions.objects.filter(sentence_id__in=[6, 7], type='sentence', action='delete').count() == 0
-        Dedup.delete_and_log([6, 7])
+        Dedup.delete_sents(8, [6, 7])
         assert Sentences.objects.filter(id__in=[6,7]).count() == 0
         assert Contributions.objects.filter(sentence_id__in=[6, 7], type='sentence', action='delete').count() == 2
 
