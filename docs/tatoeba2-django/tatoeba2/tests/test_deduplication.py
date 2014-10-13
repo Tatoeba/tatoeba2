@@ -96,7 +96,7 @@ class TestDedup():
     def test_merge_comments(db, sents):
         assert SentenceComments.objects.filter(sentence_id=8).count() == 1
         assert SentenceComments.objects.all().count() == 3
-        Dedup.merge_comments(8, [6, 7])
+        Dedup.insert_merge('SentenceComments', 8, [6, 7])
         assert SentenceComments.objects.filter(sentence_id=8).count() == 3
         assert SentenceComments.objects.all().count() == 5
         
@@ -110,7 +110,7 @@ class TestDedup():
     def test_merge_logs(db, sents):
         assert Contributions.objects.filter(sentence_id=8).count() == 1
         assert Contributions.objects.all().count() == 3
-        Dedup.merge_logs(8, [6, 7])
+        Dedup.insert_merge('Contributions', 8, [6, 7])
         assert Contributions.objects.filter(sentence_id=8).count() == 3
         assert Contributions.objects.all().count() == 5
         
@@ -123,25 +123,25 @@ class TestDedup():
 
     def test_merge_tags(db, sents):
         assert TagsSentences.objects.filter(sentence_id=8).count() == 1
-        Dedup.merge_tags(8, [6, 7])
+        Dedup.update_merge('TagsSentences', 8, [6, 7])
         assert TagsSentences.objects.filter(sentence_id=8).count() == 3
         for tag in TagsSentences.objects.all(): assert tag.sentence_id == 8
 
     def test_merge_lists(db, sents):
         assert SentencesSentencesLists.objects.filter(sentence_id=8).count() == 1
-        Dedup.merge_lists(8, [6, 7])
+        Dedup.update_merge('SentencesSentencesLists', 8, [6, 7])
         assert SentencesSentencesLists.objects.filter(sentence_id=8).count() == 3
         for sent_lst in SentencesSentencesLists.objects.all(): assert sent_lst.sentence_id == 8
 
     def test_merge_favorites(db, sents):
         assert FavoritesUsers.objects.filter(favorite_id=8).count() == 1
-        Dedup.merge_favorites(8, [6, 7])
+        Dedup.update_merge('FavoritesUsers', 8, [6, 7], 'favorite_id')
         assert FavoritesUsers.objects.filter(favorite_id=8).count() == 3
         for fav in FavoritesUsers.objects.all(): assert fav.favorite_id == 8
 
     def test_merge_annotations(db, sents):
         assert SentenceAnnotations.objects.filter(sentence_id=8).count() == 1
-        Dedup.merge_annotations(8, [6, 7])
+        Dedup.update_merge('SentenceAnnotations', 8, [6, 7])
         assert SentenceAnnotations.objects.filter(sentence_id=8).count() == 3
         for ann in SentenceAnnotations.objects.all(): assert ann.sentence_id == 8
 
@@ -151,7 +151,8 @@ class TestDedup():
         Dedup.bot = bot
 
         assert SentencesTranslations.objects.filter(sentence_id=8).count() == 0
-        Dedup.merge_links(8, [6, 7])
+        Dedup.update_merge('SentencesTranslations', 8, [6, 7])
+        Dedup.update_merge('SentencesTranslations', 8, [6, 7], 'translation_id')
 
         lnks_fd = SentencesTranslations.objects.filter(sentence_id=8).order_by('translation_id')
         assert lnks_fd.count() == 2

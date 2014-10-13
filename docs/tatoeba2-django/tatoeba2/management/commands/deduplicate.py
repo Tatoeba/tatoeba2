@@ -96,84 +96,6 @@ class Dedup(object):
 
         return main_sent
 
-    @classmethod
-    def log_comments_merge(cls, main_id, ids, comments):
-        entry = cls.json_entry(main_id, ids, 'merge_comments', 'insert', 'sentence_id', comments)
-        cls.file_log.info(entry)
-
-    @classmethod
-    @transaction.atomic
-    def merge_comments(cls, main_id, ids):
-        comments = list(SentenceComments.objects.filter(sentence_id__in=ids))
-        for comment in comments:
-            comment.id = None
-            comment.sentence_id = main_id
-        comments = SentenceComments.objects.bulk_create(comments)
-        cls.log_comments_merge(main_id, ids, comments)
-
-    @classmethod
-    def log_logs_merge(cls, main_id, ids, logs):
-        entry = cls.json_entry(main_id, ids, 'merge_logs', 'insert', 'sentence_id', logs)
-        cls.file_log.info(entry)
-
-    @classmethod
-    @transaction.atomic
-    def merge_logs(cls, main_id, ids):
-        logs = list(Contributions.objects.filter(sentence_id__in=ids))
-        for entry in logs:
-            entry.id = None
-            entry.sentence_id = main_id
-        logs = Contributions.objects.bulk_create(logs)
-        cls.log_logs_merge(main_id, ids, logs)
-
-    @classmethod
-    def log_tags_merge(cls, main_id, ids):
-        tags = list(TagsSentences.objects.filter(sentence_id__in=ids))
-        entry = cls.json_entry(main_id, ids, 'merge_tags', 'update', 'sentence_id', tags)
-        cls.file_log.info(entry)
-    
-    @classmethod
-    @transaction.atomic
-    def merge_tags(cls, main_id, ids):
-        cls.log_tags_merge(main_id, ids)
-        TagsSentences.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
-
-    @classmethod
-    def log_lists_merge(cls, main_id, ids):
-        links = list(SentencesSentencesLists.objects.filter(sentence_id__in=ids))
-        entry = cls.json_entry(main_id, ids, 'merge_lists', 'update', 'sentence_id', links)
-        cls.file_log.info(entry)
-
-    @classmethod
-    @transaction.atomic
-    def merge_lists(cls, main_id, ids):
-        cls.log_lists_merge(main_id, ids)
-        SentencesSentencesLists.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
-
-    @classmethod
-    def log_favorites_merge(cls, main_id, ids):
-        favs = list(FavoritesUsers.objects.filter(favorite_id__in=ids))
-        entry = cls.json_entry(main_id, ids, 'merge_favorites', 'update', 'sentence_id', favs)
-        cls.file_log.info(entry)
-
-    @classmethod
-    @transaction.atomic
-    def merge_favorites(cls, main_id, ids):
-        cls.log_favorites_merge(main_id, ids)
-        FavoritesUsers.objects.filter(favorite_id__in=ids).update(favorite_id=main_id)
-
-    @classmethod
-    def log_annotations_merge(cls, main_id, ids):
-        anns = list(SentenceAnnotations.objects.filter(sentence_id__in=ids))
-        entry = cls.json_entry(main_id, ids, 'merge_annotations', 'update', 'sentence_id', anns)
-        cls.file_log.info(entry)
-
-    @classmethod
-    @transaction.atomic
-    def merge_annotations(cls, main_id, ids):
-        cls.log_annotations_merge(main_id, ids)
-        SentenceAnnotations.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
-
     @staticmethod
     def json_entry(main_id, ids, op, q, fld, objs):
         entry = {}
@@ -186,28 +108,6 @@ class Dedup(object):
         entry['rows_affected'] = serializers.serialize('json', objs)
         
         return json.dumps(entry)
-
-    @classmethod
-    def log_links_merge(cls, main_id, ids, replace='sent'):
-
-        if replace == 'sent':
-            sents = list(SentencesTranslations.objects.filter(sentence_id__in=ids))
-            field = 'sentence_id'
-        elif replace == 'tran':
-            sents = list(SentencesTranslations.objects.filter(translation_id__in=ids))
-            field = 'translation_id'
-
-        entry = cls.json_entry(main_id, ids, 'merge_links', 'update', field, sents)
-        cls.file_log.info(entry)
-   
-    @classmethod
-    @transaction.atomic
-    def merge_links(cls, main_id, ids):
-        cls.log_links_merge(main_id, ids, 'sent')
-        SentencesTranslations.objects.filter(sentence_id__in=ids).update(sentence_id=main_id)
-        
-        cls.log_links_merge(main_id, ids, 'tran')
-        SentencesTranslations.objects.filter(translation_id__in=ids).update(translation_id=main_id)
 
     @classmethod
     def log_sents_del(cls, main_id, ids, sents):
@@ -238,16 +138,47 @@ class Dedup(object):
         sents.delete()
 
     @classmethod
+    def log_update_merge(cls, model, main_id, ids, fld='sentence_id'):
+        updates = list(get_model('tatoeba2.'+model).objects.filter(**{fld+'__in': ids}))
+        entry = cls.json_entry(main_id, ids, 'merge '+model, 'update', fld, updates)
+
+    @classmethod
+    @transaction.atomic
+    def update_merge(cls, model, main_id, ids, fld='sentence_id'):
+        cls.log_update_merge(model, main_id, ids, fld)
+        get_model('tatoeba2.'+model).objects.filter(**{fld+'__in': ids}).update(**{fld:main_id})
+
+    @classmethod
+    def log_insert_merge(cls, model, main_id, ids, fld, inserts):
+        entry = cls.json_entry(main_id, ids, 'merge '+model, 'insert', fld, inserts)
+        cls.file_log.info(entry)
+
+    @classmethod
+    @transaction.atomic
+    def insert_merge(cls, model, main_id, ids, fld='sentence_id'):
+        Model = get_model('tatoeba2.'+model)
+        inserts = list(Model.objects.filter(**{fld+'__in': ids}))
+        
+        for ins in inserts:
+            ins.id = None
+            setattr(ins, fld, main_id)
+        
+        inserts = Model.objects.bulk_create(inserts)
+        cls.log_insert_merge(model, main_id, ids, fld, inserts)
+
+    @classmethod
     @transaction.atomic
     def deduplicate(cls, main_sent, ids):
         # merge
-        cls.merge_comments(main_sent.id, ids)
-        cls.merge_tags(main_sent.id, ids)
-        cls.merge_links(main_sent.id, ids)
-        cls.merge_lists(main_sent.id, ids)
-        cls.merge_logs(main_sent.id, ids)
-        cls.merge_favorites(main_sent.id, ids)
-        cls.merge_annotations(main_sent.id, ids)
+        cls.insert_merge('SentenceComments', main_sent.id, ids)
+        cls.update_merge('TagsSentences', main_sent.id, ids)
+        cls.update_merge('SentencesTranslations', main_sent.id, ids)
+        cls.update_merge('SentencesTranslations', main_sent.id, ids, 'translation_id')
+        cls.update_merge('SentencesSentencesLists', main_sent.id, ids)
+        cls.insert_merge('Contributions', main_sent.id, ids)
+        cls.update_merge('FavoritesUsers', main_sent.id, ids, 'favorite_id')
+        cls.update_merge('SentenceAnnotations', main_sent.id, ids)
+        
         
         # delete and log duplicates
         cls.delete_sents(main_sent.id, ids)
