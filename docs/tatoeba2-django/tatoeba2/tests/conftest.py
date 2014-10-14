@@ -1,6 +1,8 @@
 from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Users, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions
 from datetime import datetime
+from tatoeba2.management.commands.deduplicate import Dedup
 import pytest
+import os
 
 
 @pytest.fixture(scope='session')
@@ -66,3 +68,14 @@ def bot(db):
                 since=datetime.now(), last_time_active=datetime.now().strftime('%Y%m%d'),
                 level=1, is_public=1, send_notifications=0, group_id=1
                 )
+
+@pytest.fixture(scope='module')
+def dedup(request):
+    Dedup.time_init()
+    Dedup.logger_init()
+    
+    def fin():
+        os.remove(Dedup.log_file_path)
+    request.addfinalizer(fin)
+    
+    return Dedup
