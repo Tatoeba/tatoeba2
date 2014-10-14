@@ -196,7 +196,8 @@ class SentencesLists(models.Model):
 
 class SentencesSentencesLists(models.Model):
     sentences_list_id = models.IntegerField()
-    sentence_id = models.IntegerField()
+    # we're lying to django, this would break horribly if managed was set to True
+    sentence_id = models.IntegerField(primary_key=True)
     class Meta:
         managed = False
         db_table = 'sentences_sentences_lists'

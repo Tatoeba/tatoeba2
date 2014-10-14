@@ -59,7 +59,7 @@ WSGI_APPLICATION = 'tatoeba2-django.wsgi.application'
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.mysql',
-         'NAME': os.path.join(BASE_DIR, 'tatoeba.db'),
+         'NAME': 'tatoeba',
          'HOST': 'localhost',
          'DATABASE': 'tatoeba',
          'USER': 'tatoeba',

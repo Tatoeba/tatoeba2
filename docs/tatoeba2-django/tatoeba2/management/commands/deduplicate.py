@@ -298,9 +298,9 @@ class Command(Dedup, BaseCommand):
 
         bot_name = options.get('bot_name') or 'deduplication_bot'
         try:
-            self.bot = Users.objects.get(username=bot_name)
+            Dedup.bot = Users.objects.get(username=bot_name)
         except Users.DoesNotExist:
-            self.bot = Users.objects.create(
+            Dedup.bot = Users.objects.create(
                 username=bot_name, password='', email='bot@bots.com',
                 since=datetime.now(), last_time_active=datetime.now().strftime('%Y%m%d'),
                 level=1, is_public=1, send_notifications=0, group_id=1
