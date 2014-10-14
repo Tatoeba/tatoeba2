@@ -47,8 +47,8 @@ class Dedup(object):
         cls.file_log.addHandler(file_log)
 
     @staticmethod
-    def tally(sents):
-        tally = defaultdict(set)
+    def tally(sents, old_tally=None):
+        tally = defaultdict(set) if not old_tally else old_tally
         for sent in sents:
                 tally[(sent.text, sent.lang)].add(sent.id)
 
@@ -263,7 +263,7 @@ class Command(Dedup, BaseCommand):
             help='username used to log deduplication operations in the contribution table and on the wall'
             ),
         make_option(
-            '-v', '--verbose-stdout', action='store_true', dest='verbose_out',
+            '-s', '--verbose-stdout', action='store_true', dest='verbose_out',
             help='every single merging operation is dumped to stdout'
             ),
         make_option(
@@ -361,15 +361,15 @@ class Command(Dedup, BaseCommand):
             # pull in sentences from db in chunks
             self.log_report('Running full table scan in '+str(chunks)+' queries')
             total = Sentences.objects.order_by('-id')[0].id
-            sents = []
+            sent_tally = defaultdict(set)
             for rng in self.chunked_ranges(chunks, total):
-                sents += list(Sentences.objects.filter(id__range=rng)) # force the orm to evaluate
-            self.log_report('OK')
+                sents = list(Sentences.objects.filter(id__range=rng))
+                self.log_report('Running duplicate filtering on sentence range: '+ str(rng))
+                sent_tally = self.tally(sents, sent_tally)
+                self.log_report('OK')
+                del sents
 
-            self.log_report('Running duplicate filtering on sentences scanned')
-            sent_tally = self.tally(sents)
-            del sents
-            self.log_report('OK '+str(len(sent_tally))+' duplicate sets found')
+            self.log_report('OK full table scan and filtering done '+str(len(sent_tally))+' duplicate sets found')
 
             self.log_report('Running deduplication step')
             # deduplicate
@@ -421,7 +421,7 @@ class Command(Dedup, BaseCommand):
         msg = 'YES' if self.ver_links else 'NO'
         self.log_report(msg)
         
-        self.log_report('Deduplication ran successfully, see full log at:')
+        self.log_report('Deduplication finished running successfully at '+datetime.utcnow().strftime('%Y-%m-%d %I:%M %p UTC')+', see full log at:')
         self.log_report(url + path.split(self.log_file_path)[-1].replace(' ', '%20'))
         
         # post a wall report if needed
