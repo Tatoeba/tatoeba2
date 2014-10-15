@@ -10,6 +10,7 @@ from StringIO import StringIO
 from os import path
 from django.core import serializers
 from django.db.models.loading import get_model
+from django.db.models import Q
 from termcolor import colored
 import time
 import logging
@@ -167,14 +168,16 @@ class Dedup(object):
                 sentence_lang=sent.lang,
                 text=sent.text,
                 action='delete',
-                datetime=datetime.now(),
+                datetime=datetime.utcnow(),
                 type='sentence',
                 user_id=cls.bot.id,
                 ))
-        
-        Contributions.objects.bulk_create(logs)
+
+        if not cls.dry:
+            Contributions.objects.bulk_create(logs)
 
         cls.log_entry(main_id, ids, 'delete Sentences', 'delete', 'sentence_id', sents)
+        cls.log_entry(main_id, ids, 'log_deletion Contributions', 'insert', 'sentence_id', logs)
     
     @classmethod
     @transaction.atomic
@@ -202,9 +205,9 @@ class Dedup(object):
 
     @classmethod
     @transaction.atomic
-    def insert_merge(cls, model, main_id, ids, fld='sentence_id'):
+    def insert_merge(cls, model, main_id, ids, fld='sentence_id', q_filters=Q()):
         Model = get_model('tatoeba2.'+model)
-        inserts = list(Model.objects.filter(**{fld+'__in': ids}))
+        inserts = list(Model.objects.filter(**{fld+'__in': ids}).filter(q_filters))
         
         for ins in inserts:
             ins.id = None
@@ -226,7 +229,7 @@ class Dedup(object):
         cls.update_merge('SentencesTranslations', main_sent.id, ids)
         cls.update_merge('SentencesTranslations', main_sent.id, ids, 'translation_id')
         cls.update_merge('SentencesSentencesLists', main_sent.id, ids)
-        cls.insert_merge('Contributions', main_sent.id, ids)
+        cls.insert_merge('Contributions', main_sent.id, ids, q_filters=Q(type='sentence', action='update') | Q(type='link'))
         cls.update_merge('FavoritesUsers', main_sent.id, ids, 'favorite_id')
         cls.update_merge('SentenceAnnotations', main_sent.id, ids)
         
@@ -247,7 +250,7 @@ class Dedup(object):
                 sentence_id=main_sent.id,
                 text='This sentence has been merged with '+' '.join(['#'+str(id) for id in ids]),
                 user_id=cls.bot.id,
-                created=datetime.now(),
+                created=datetime.utcnow(),
                 hidden=0,
                 ).save()
 
@@ -313,7 +316,7 @@ class Command(Dedup, BaseCommand):
         except Users.DoesNotExist:
             Dedup.bot = Users.objects.create(
                 username=bot_name, password='', email='bot@bots.com',
-                since=datetime.now(), last_time_active=datetime.now().strftime('%Y%m%d'),
+                since=datetime.utcnow(), last_time_active=datetime.utcnow().strftime('%Y%m%d'),
                 level=1, is_public=1, send_notifications=0, group_id=1
                 )
 
@@ -334,7 +337,7 @@ class Command(Dedup, BaseCommand):
             since = datetime(*[int(s) for s in since.split('-')])
             # pull in rows from time range
             self.log_report('Running filter on sentences added since '+since.strftime('%Y-%m-%d %I:%M %p'))
-            sents = list(Sentences.objects.filter(created__range=[since, datetime.now()]))
+            sents = list(Sentences.objects.filter(created__range=[since, datetime.utcnow()]))
             self.log_report('OK filtered '+str(len(sents))+' sentences')
             
             # tally to eliminate premature duplicates
@@ -441,5 +444,5 @@ class Command(Dedup, BaseCommand):
             Wall(
                 owner=self.bot.id,
                 content=self.report.getvalue(),
-                date=datetime.now(), title='', hidden=0
+                date=datetime.utcnow(), title='', hidden=0
                 ).save()

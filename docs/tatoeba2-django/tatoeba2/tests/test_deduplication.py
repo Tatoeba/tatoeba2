@@ -1,6 +1,7 @@
 from tatoeba2.management.commands.deduplicate import Command, Dedup
 from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Wall
 from django.db import transaction
+from django.db.models import Q
 import pytest
 import os
 import logging
@@ -108,17 +109,18 @@ class TestDedup():
 
     def test_merge_logs(db, sents, dedup):
         assert Contributions.objects.filter(sentence_id=8).count() == 1
-        assert Contributions.objects.all().count() == 3
-        dedup.insert_merge('Contributions', 8, [6, 7])
+        assert Contributions.objects.all().count() == 4
+        dedup.insert_merge('Contributions', 8, [6, 7], q_filters=Q(type='sentence', action='update') | Q(type='link'))
         assert Contributions.objects.filter(sentence_id=8).count() == 3
-        assert Contributions.objects.all().count() == 5
+        assert Contributions.objects.all().count() == 6
         
-        for i in xrange(6, 7+1):
-            assert Contributions.objects.filter(sentence_id=i).count() == 1
-            logs = list(Contributions.objects.filter(text='Logs for '+str(i)).order_by('sentence_id'))
-            assert len(logs) == 2
-            assert logs[0].sentence_id == i
-            assert logs[1].sentence_id == 8
+        assert Contributions.objects.filter(sentence_id=6).count() == 2
+        logs = list(Contributions.objects.filter(text='Logs for 6').order_by('sentence_id'))
+        assert len(logs) == 4
+        assert logs[0].sentence_id == 6 and logs[0].type == 'sentence' and logs[0].action == 'update'
+        assert logs[1].sentence_id == 6 and logs[1].type == 'link' and logs[1].action == 'insert' and logs[1].translation_id == 9
+        assert logs[2].sentence_id == 8 and logs[0].type == 'sentence' and logs[0].action == 'update'
+        assert logs[3].sentence_id == 8 and logs[1].type == 'link' and logs[1].action == 'insert' and logs[1].translation_id == 9
 
     def test_merge_tags(db, sents, dedup):
         assert TagsSentences.objects.filter(sentence_id=8).count() == 1
@@ -205,3 +207,5 @@ class TestDedup():
         cmd = Command()
         cmd.handle(dry=True)
         assert Sentences.objects.all().count() == 21
+        assert Contributions.objects.all().count() == 4
+        assert SentenceComments.objects.all().count() == 3
