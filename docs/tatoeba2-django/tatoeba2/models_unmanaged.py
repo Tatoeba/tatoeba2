@@ -73,7 +73,8 @@ class Countries(models.Model):
         db_table = 'countries'
 
 class FavoritesUsers(models.Model):
-    favorite_id = models.IntegerField()
+    # we're lying to django, this would break horribly if managed was set to True
+    favorite_id = models.IntegerField(primary_key=True)
     user_id = models.IntegerField()
     class Meta:
         managed = False
