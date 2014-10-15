@@ -181,7 +181,8 @@ class Dedup(object):
     def delete_sents(cls, main_id, ids):
         sents = Sentences.objects.filter(id__in=ids)
         cls.log_sents_del(main_id, ids, sents)
-        sents.delete()
+        if not cls.dry:
+            sents.delete()
 
     @classmethod
     def log_update_merge(cls, model, main_id, ids, fld='sentence_id'):
@@ -192,7 +193,8 @@ class Dedup(object):
     @transaction.atomic
     def update_merge(cls, model, main_id, ids, fld='sentence_id'):
         cls.log_update_merge(model, main_id, ids, fld)
-        get_model('tatoeba2.'+model).objects.filter(**{fld+'__in': ids}).update(**{fld:main_id})
+        if not cls.dry:
+            get_model('tatoeba2.'+model).objects.filter(**{fld+'__in': ids}).update(**{fld:main_id})
 
     @classmethod
     def log_insert_merge(cls, model, main_id, ids, fld, inserts):
@@ -207,13 +209,17 @@ class Dedup(object):
         for ins in inserts:
             ins.id = None
             setattr(ins, fld, main_id)
-        
-        inserts = Model.objects.bulk_create(inserts)
+
+        if not cls.dry:            
+            inserts = Model.objects.bulk_create(inserts)
+
         cls.log_insert_merge(model, main_id, ids, fld, inserts)
 
     @classmethod
     @transaction.atomic
-    def deduplicate(cls, main_sent, ids, post_cmnt=False):
+    def deduplicate(cls, main_sent, ids, post_cmnt=False, dry=False):
+        cls.dry = dry
+
         # merge
         cls.insert_merge('SentenceComments', main_sent.id, ids)
         cls.update_merge('TagsSentences', main_sent.id, ids)
@@ -230,8 +236,9 @@ class Dedup(object):
         
         # fix correctness if needed
         if cls.not_approved:
-            main_sent.correctness = -1
-            main_sent.save()
+            if not cls.dry:
+                main_sent.correctness = -1
+                main_sent.save()
             cls.log_entry(main_sent.id, [], 'update Sentences', 'update', 'correctness', [main_sent])
         
         # post comment on merged sentence if needed
@@ -279,6 +286,10 @@ class Command(Dedup, BaseCommand):
             help='post a comment on each merged sentence'
             ),
         make_option(
+            '-d', '--dry-run', action='store_true', dest='dry',
+            help='logs operations without actually issuing any queries'
+            ),
+        make_option(
             '-u', '--url', action='store', type='string', dest='url',
             help='url root path pointing to log directory. used in the wall post'),
         )
@@ -307,7 +318,8 @@ class Command(Dedup, BaseCommand):
                 )
 
         pause_for = options.get('pause_for') or 0
-        post_cmnt = True if options.get('cmnt') else False
+        post_cmnt = bool(options.get('cmnt'))
+        dry = bool(options.get('dry'))
         url = options.get('url') or 'http://downloads.tatoeba.org/'
         if url[-1] != '/': url += '/'
 
@@ -351,7 +363,7 @@ class Command(Dedup, BaseCommand):
                 ids = [sent.id for sent in sents]
                 self.all_dups.extend(ids)
                 # run a deduplication transaction
-                self.deduplicate(main_sent, ids, post_cmnt)
+                self.deduplicate(main_sent, ids, post_cmnt, dry)
                 # handle rate limiting
                 if pause_for: time.sleep(pause_for)
             self.log_report('OK '+str(len(self.all_dups))+' sentences merged into '+str(len(self.all_mains))+' sentences')
@@ -388,7 +400,7 @@ class Command(Dedup, BaseCommand):
                     self.all_dups.extend(ids)
                     
                     # run a deduplication transaction
-                    self.deduplicate(main_sent, ids, post_cmnt)
+                    self.deduplicate(main_sent, ids, post_cmnt, dry)
 
                     # handle rate limit
                     if pause_for: time.sleep(pause_for)

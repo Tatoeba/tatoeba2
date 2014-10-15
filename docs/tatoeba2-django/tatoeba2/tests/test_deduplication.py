@@ -200,3 +200,8 @@ class TestDedup():
         cmd = Command()
         cmd.handle(cmnt=True)
         assert SentenceComments.objects.filter(text__contains='has been merged with').count() == 5
+
+    def test_dry_run(db, sents):
+        cmd = Command()
+        cmd.handle(dry=True)
+        assert Sentences.objects.all().count() == 21

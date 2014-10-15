@@ -73,6 +73,7 @@ def bot(db):
 def dedup(request):
     Dedup.time_init()
     Dedup.logger_init()
+    Dedup.dry = False
     
     def fin():
         os.remove(Dedup.log_file_path)
