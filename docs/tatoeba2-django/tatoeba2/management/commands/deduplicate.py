@@ -441,8 +441,11 @@ class Command(Dedup, BaseCommand):
         
         # post a wall report if needed
         if options.get('wall'):
+            lft = Wall.objects.all().order_by('-rght')[0].rght + 1
+            rght = lft + 1
             Wall(
                 owner=self.bot.id,
                 content=self.report.getvalue(),
-                date=datetime.utcnow(), title='', hidden=0
+                date=datetime.utcnow(), title='', hidden=0,
+                lft=lft, rght=rght
                 ).save()

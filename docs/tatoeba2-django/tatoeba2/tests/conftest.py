@@ -1,4 +1,4 @@
-from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Users, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions
+from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Users, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Wall
 from datetime import datetime
 from tatoeba2.management.commands.deduplicate import Dedup
 import pytest
@@ -61,6 +61,8 @@ def sents(db):
     Contributions(text='Logs for 6', action='insert', user_id=1, datetime=datetime.now(), type='link', sentence_id=6, translation_id=9).save()
     Contributions(text='Logs for 7', action='insert', user_id=1, datetime=datetime.now(), type='sentence', sentence_id=7).save()
     Contributions(text='', action='insert', user_id=1, datetime=datetime.now(), type='sentence', sentence_id=8).save()
+
+    Wall(owner=1, content='test post', date=datetime.utcnow(), title='', hidden=0, lft=1, rght=2).save()
 
 @pytest.fixture()
 def bot(db):

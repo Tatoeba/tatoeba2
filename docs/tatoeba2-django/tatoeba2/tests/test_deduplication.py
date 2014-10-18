@@ -196,7 +196,10 @@ class TestDedup():
     def test_wall_post(db, sents):
         cmd = Command()
         cmd.handle(wall=True)
-        assert Wall.objects.all().count() == 1
+        assert Wall.objects.all().count() == 2
+        w = Wall.objects.all().order_by('-lft')
+        assert w[0].lft == 3 and w[0].rght == 4
+        assert w[1].lft == 1 and w[1].rght == 2
 
     def test_comment_post(db, sents):
         cmd = Command()
