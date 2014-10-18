@@ -375,10 +375,42 @@ class WallHelper extends AppHelper
 
         <div class="body">
         <?php
-        // Display only 200 first character of message
-        $contentFirst200 = mb_strcut($content, 0, 200);
-        echo $this->Messages->formatedContent($contentFirst200);
-        if (strlen($content) > 200) {
+        $contentBefore = mb_substr($content, 0, 200);
+        $contentAfter = mb_substr($content, 200);
+
+        $spaceAfter = mb_strpos($contentAfter, " ");
+        if ($spaceAfter) {
+            $spaceAfter = mb_strpos($contentAfter, "\n");
+        }
+        $previewHasAscii = preg_match("/[a-zA-Z0-9]/", $contentBefore);
+        $displayElipsis = true;
+
+        if ($spaceAfter) {
+            
+            // We want to display 200 + a few more charafters. The few more characters
+            // are the ones that are before the 1st "space" that we find after the
+            // 200 characters.
+            $previewContent = mb_substr($content, 0, 200 + $spaceAfter);
+
+        } else if ($previewHasAscii) {
+
+            // If the truncated text doesn't have any space after the 200 characters,
+            // but it does have some ASCII characters before, then we display the
+            // full text.
+            $previewContent = $content;
+            $displayElipsis = false;
+
+        } else {
+
+            // If the truncated text doesn't have any space before or after, and
+            // does not have any ASCII characters before, then we're in the case
+            // of a full Japanese text for instance, so we truncate.
+            $previewContent = mb_substr($content, 0, 200);
+
+        }
+
+        echo $this->Messages->formatedContent($previewContent);
+        if ($displayElipsis) {
             echo ' [...]';
         }
         ?>
