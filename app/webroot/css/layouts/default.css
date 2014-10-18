@@ -28,7 +28,11 @@
 body, select, input, textarea {
     font-family: Trebuchet MS, sans-serif;
 }
- 
+
+div, p {
+    word-wrap: break-word;
+}
+
 body {
     padding: 0px;
     margin: 0px;
