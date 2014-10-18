@@ -376,16 +376,8 @@ class WallHelper extends AppHelper
         <div class="body">
         <?php
         // Display only 200 first character of message
-        $contentFirst200 = substr($content, 0, 200);
-        echo nl2br(
-            $this->ClickableLinks->clickableURL(
-                htmlentities(
-                    $contentFirst200,
-                    ENT_QUOTES,
-                    'UTF-8'
-                )
-            )
-        );
+        $contentFirst200 = mb_strcut($content, 0, 200);
+        echo $this->Messages->formatedContent($contentFirst200);
         if (strlen($content) > 200) {
             echo ' [...]';
         }

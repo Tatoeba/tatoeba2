@@ -310,7 +310,7 @@ class MessagesHelper extends AppHelper
 
         if (!$hidden || $canViewContent) {
             ?><div class="content"><?php
-            echo $this->_formatedContent($content);
+            echo $this->formatedContent($content);
             ?></div><?php   
         }
 
@@ -410,7 +410,7 @@ class MessagesHelper extends AppHelper
      *
      * @return string The comment body formatted for HTML display.
      */
-    private function _formatedContent($content) {
+    public function formatedContent($content) {
         $content = htmlentities($content, ENT_QUOTES, 'UTF-8');
 
         // Convert sentence mentions to links
