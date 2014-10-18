@@ -37,6 +37,7 @@
 
 class ClickableLinksHelper extends AppHelper
 {
+    public $helpers = array('Html');
 
     /**
      * Replace URLs by clickable URLs.
@@ -97,6 +98,33 @@ class ClickableLinksHelper extends AppHelper
         }
 
         return $text;
+    }
+
+
+    /**
+     * Converts sentence ids (ex: #123) into link.
+     * 
+     * @param  String $text Text of the comment
+     * 
+     * @return String       Text of the comment with sentences id converted to links.
+     */
+    public function clickableSentence($text)
+    {
+        $self = $this;
+        $content = preg_replace_callback(
+            '/(\s|^)(#(\d+))/', 
+            function ($m) use ($self) {
+                return $m[1] . $self->Html->link($m[2], array(
+                    'controller' => 'sentences',
+                    'action' => 'show',
+                    $m[3]
+                )
+            );
+        }, $text);
+
+        $content = str_replace('\\#', '#', $content);
+
+        return $content;
     }
 
 }
