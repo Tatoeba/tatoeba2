@@ -3,21 +3,40 @@ tatoeba2-django
 
 This is a bridge project between the current website's schema and python/django.
 
-- configuration:
+- Memory:
+  - Make sure that you have more than 1.2 GB of memory to run the script.
+  - If you encounter the message "Killed" before the script finishes, you need to add more.
 
-  - change the database connection details in settings.py.template and rename it to settings.py
-  - also rename either models\_managed.py or models\_unmanaged.py to models.py (the managed file allow django to drop and create tables so be careful, necessary for running tests however) 
-
-- dependencies:
-  make sure you have python 2.7, python-pip, and mysql/mysql headers then:
+- Dependencies:
+  - Make sure you have the python2.7, python-dev, and python-pip packages.
+  - You should also have the mysql/mysql headers, but if you have Tatoeba set up, you probably do.
+  If you need any of the packages, use a sequence of commands like this to retrieve them:
+  ```sh
+  apt-get update
+  apt-get install python-dev
+  apt-get install python-pip
+  etc.
+  ```
+  - Execute:
   ```sh
   pip install -r requirements.txt
   ```
 
-- running it:
-  running commands is usually done using:
-  ```python manage.py command```
+- Configuration:
+  - Copy settings.py.template to settings.py in the same directory.
+  - Change settings in settings.py if necessary.
+  - If you will be running the script without the test suite: 
+     - Copy models\_unmanaged.py to models\models.py. 
+  - If you need to run the test suite:
+     - Copy models\_managed.py to models\models.py. WARNING: Don't do this on a production server.
 
-- running tests:
-  you can run accompanying tests using:
+- Running the script:
+  - Use:
+  ```python manage.py script_name_without_extension [args]```
+  - For example:
+  ```python manage.py deduplicate --dry-run --log-dir /var/tmp ```
+ 
+- Running the test suite:
+  - You can run the accompanying test suite using:
   ```py.test```
+  - Remember that the test suite requires the managed models.py file. See "Configuration" above.
