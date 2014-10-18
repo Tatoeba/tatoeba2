@@ -150,7 +150,8 @@ class Sentence extends AppModel
             'classname'  => 'favorites',
             'foreignKey' => 'favorite_id'
         ),
-        'SentenceAnnotation'
+        'SentenceAnnotation',
+        'Transcription',
     );
 
     public $belongsTo = array(

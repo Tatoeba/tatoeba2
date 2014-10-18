@@ -20,6 +20,7 @@ class SentenceTestCase extends CakeTestCase {
 		'app.language',
 		'app.link',
 		'app.sentence_annotation',
+		'app.transcription',
 	);
 
 	function startTest() {
