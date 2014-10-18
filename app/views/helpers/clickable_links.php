@@ -37,6 +37,7 @@
 
 class ClickableLinksHelper extends AppHelper
 {
+    public $helpers = array('Html');
 
     /**
      * Replace URLs by clickable URLs.
@@ -62,20 +63,20 @@ class ClickableLinksHelper extends AppHelper
 
 
             foreach (array_unique($urls[1]) as $url) {
-                if (strlen($url) > $maxUrlLength) {
-                    $urlText = substr($url, 0, $offset1)
+                if (mb_strlen($url) > $maxUrlLength) {
+                    $urlText = mb_substr($url, 0, $offset1)
                         . '...'
-                        . substr($url, -$offset2);
+                        . mb_substr($url, -$offset2);
                 } else {
                     $urlText = $url;
                 }
 
                 // Checking last character and taking it out if it's a puncturation
                 $unwantedLastCharacters = array('?', '!', '.', ',', ')', ';', ':');
-                $lastCharacter = substr($url, -1, 1);
+                $lastCharacter = mb_substr($url, -1, 1);
                 if (in_array($lastCharacter, $unwantedLastCharacters)) {
-                    $url = substr($url, 0, -1);
-                    $urlText = substr($urlText, 0, -1);
+                    $url = mb_substr($url, 0, -1);
+                    $urlText = mb_substr($urlText, 0, -1);
                 }
 
                 // There was a problem when one URL is be included in another one.
@@ -97,6 +98,33 @@ class ClickableLinksHelper extends AppHelper
         }
 
         return $text;
+    }
+
+
+    /**
+     * Converts sentence ids (ex: #123) into link.
+     * 
+     * @param  String $text Text of the comment
+     * 
+     * @return String       Text of the comment with sentences id converted to links.
+     */
+    public function clickableSentence($text)
+    {
+        $self = $this;
+        $content = preg_replace_callback(
+            '/(\s|^)(#(\d+))/', 
+            function ($m) use ($self) {
+                return $m[1] . $self->Html->link($m[2], array(
+                    'controller' => 'sentences',
+                    'action' => 'show',
+                    $m[3]
+                )
+            );
+        }, $text);
+
+        $content = str_replace('\\#', '#', $content);
+
+        return $content;
     }
 
 }

@@ -163,6 +163,8 @@ class SentencesController extends AppController
             $this->set('commentsPermissions', $commentsPermissions);
             $this->set('contributions', $contributions);
 
+            $canComment = CurrentUser::isMember() && !empty($contributions);
+            $this->set('canComment', $canComment);
 
             // And now we retrieve the sentence
             $sentence = $this->Sentence->getSentenceWithId($id);
@@ -512,7 +514,7 @@ class SentencesController extends AppController
             $query
         );
 
-        $default_sphinx_ranking_formula = '(sum(lcs*user_weight)*1000+bm25)';
+        $ranking_formula = '(ucorrectness=127)*-1000000 + (user_id<>0)*100000 + (10000/(text_len+1))';
         $index = $from == 'und' ?
                  array('und_index') :
                  array($from . '_main_index', $from . '_delta_index');
@@ -520,7 +522,7 @@ class SentencesController extends AppController
             'index' => $index,
             'matchMode' => SPH_MATCH_EXTENDED2,
             'sortMode' => array(SPH_SORT_RELEVANCE => ""),
-            'rankingMode' => array(SPH_RANK_EXPR => "(ucorrectness=127)*-1000000 + (user_id<>0)*100000 + $default_sphinx_ranking_formula"),
+            'rankingMode' => array(SPH_RANK_EXPR => $ranking_formula),
         );
         // if we want to search only on sentences having translations
         // in a specified language
@@ -862,26 +864,7 @@ class SentencesController extends AppController
 
         $this->set('user_sentences', $sentences);
     }
-
-    /**
-     * Display how the sentences are clustered according to their language.
-     *
-     * @param int $page Page of the map.
-     *
-     * @return void
-     */
-    public function map($page = 1)
-    {
-        $page = Sanitize::paranoid($page);
-
-        $total = 10000;
-        $start = ($page-1) * $total;
-        $end = $start + $total;
-
-        $sentences = $this->Sentence->getSentencesForMap($start, $end);
-        $this->set('page', $page);
-        $this->set('all_sentences', $sentences);
-    }
+    
 
     /**
      * Change language of a sentence.

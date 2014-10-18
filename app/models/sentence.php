@@ -591,29 +591,6 @@ class Sentence extends AppModel
 
 
     /**
-     * Get sentences to display in map.
-     *
-     * @param int $start Id from where to start.
-     * @param int $end   Id from where to end.
-     *
-     * @return array
-     */
-    public function getSentencesForMap($start, $end)
-    {
-        return $this->find(
-            'all',
-            array(
-                'fields' => array('Sentence.id', 'Sentence.lang'),
-                'order' => 'Sentence.id',
-                'conditions' => array(
-                    'Sentence.id >' => $start, 'Sentence.id <=' => $end
-                ),
-                'contain' => array()
-            )
-        );
-    }
-
-    /**
      * Return previous and following sentence id
      *
      * @param int    $sourceId The sentence id to take as starting point
