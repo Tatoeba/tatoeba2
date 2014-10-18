@@ -864,26 +864,7 @@ class SentencesController extends AppController
 
         $this->set('user_sentences', $sentences);
     }
-
-    /**
-     * Display how the sentences are clustered according to their language.
-     *
-     * @param int $page Page of the map.
-     *
-     * @return void
-     */
-    public function map($page = 1)
-    {
-        $page = Sanitize::paranoid($page);
-
-        $total = 10000;
-        $start = ($page-1) * $total;
-        $end = $start + $total;
-
-        $sentences = $this->Sentence->getSentencesForMap($start, $end);
-        $this->set('page', $page);
-        $this->set('all_sentences', $sentences);
-    }
+    
 
     /**
      * Change language of a sentence.
