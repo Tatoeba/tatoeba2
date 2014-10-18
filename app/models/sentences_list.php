@@ -259,20 +259,20 @@ class SentencesList extends AppModel
     }
 
     /**
-     * Check if list belongs to current user.
+     * Returns true if list belongs to current user OR is collaborative.
      *
      * @param int $listId Id of list.
      * @param int $userId Id of user.
      *
      * @return bool
      */
-    public function belongsToCurrentUser($listId, $userId)
+    public function isEditableByCurrentUser($listId, $userId)
     {
 
-        // TODO it would be simpler to all do in the request
-        // if no result = don't belong to
-        // if result = belong to
-        // it will make the request lighter
+        // TODO It would be simpler to do everything in the request.
+        // If no result = doesn't belong to
+        // If result = belongs to
+        // This would make the request lighter.
 
         $list = $this->find(
             'first',
@@ -448,7 +448,7 @@ class SentencesList extends AppModel
         $userId = CurrentUser::get('id');
 
         // Checking if user can add to list.
-        $canAdd = $this->belongsToCurrentUser($listId, $userId);
+        $canAdd = $this->isEditableByCurrentUser($listId, $userId);
         if (!$canAdd) {
             return false;
         }
