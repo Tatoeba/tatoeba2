@@ -4,13 +4,13 @@ tatoeba2-django
 This is a bridge project between the current website's schema and python/django.
 
 - Memory:
-  - Make sure that you have more than 1.2 GB of memory to run the script.
+  - Make sure that you have at least 1.2 GB of memory to run the script.
   - If you encounter the message "Killed" before the script finishes, you need to add more.
 
 - Dependencies:
   - Make sure you have the python2.7, python-dev, and python-pip packages.
   - You should also have the mysql/mysql headers, but if you have Tatoeba set up, you probably do.
-  If you need any of the packages, use a sequence of commands like this to retrieve them:
+  - If you need any of the packages, use a sequence of commands like this to retrieve them:
   ```sh
   apt-get update
   apt-get install python-dev
@@ -32,11 +32,17 @@ This is a bridge project between the current website's schema and python/django.
 
 - Running the script:
   - Use:
-  ```python manage.py script_name_without_extension [args]```
+  ```sh
+  python manage.py script_name_without_extension [args]
+  ```
   - For example:
-  ```python manage.py deduplicate --dry-run --log-dir /var/tmp ```
+  ```sh
+  python manage.py deduplicate --dry-run --log-dir /var/tmp 
+  ```
  
 - Running the test suite:
   - You can run the accompanying test suite using:
-  ```py.test```
+  ```sh
+  py.test
+  ```
   - Remember that the test suite requires the managed models.py file. See "Configuration" above.
