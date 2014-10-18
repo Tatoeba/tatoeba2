@@ -163,6 +163,8 @@ class SentencesController extends AppController
             $this->set('commentsPermissions', $commentsPermissions);
             $this->set('contributions', $contributions);
 
+            $canComment = CurrentUser::isMember() && !empty($contributions);
+            $this->set('canComment', $canComment);
 
             // And now we retrieve the sentence
             $sentence = $this->Sentence->getSentenceWithId($id);
