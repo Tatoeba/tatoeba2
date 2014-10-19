@@ -504,7 +504,7 @@ class SentencesHelper extends AppHelper
         // romanization
         if (isset($sentence['transcriptions'])) {
             $this->_displayTranscriptions(
-                $sentence['transcriptions'], $sentence['lang']
+                $sentence['transcriptions'], $isEditable
             );
         }
         ?>
@@ -600,9 +600,10 @@ class SentencesHelper extends AppHelper
      *
      * @return void
      */
-    private function _displayTranscriptions($transcriptions, $lang)
+    private function _displayTranscriptions($transcriptions, $showDirty)
     {
-        if (isset($transcriptions['Latn'])) {
+        if (isset($transcriptions['Latn']) &&
+            (!$transcriptions['Latn']['dirty'] || $showDirty)) {
             $title = ' title="'.$transcriptions['Latn']['text'].'"';
             unset($transcriptions['Latn']);
         } else {
@@ -610,6 +611,9 @@ class SentencesHelper extends AppHelper
         }
 
         foreach ($transcriptions as $script => $transcr) {
+            if ($transcr['dirty'] && !$showDirty)
+                continue;
+
             $text = $transcr['text'];
             if ($script == 'Hrkt')
                 $text = $this->_rubify($text);

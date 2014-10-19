@@ -452,9 +452,7 @@ class Sentence extends AppModel
                         'SentencesList'   => array(
                             'fields' => array('id')
                         ),
-                        'Transcription' => array(
-                            'conditions' => array('dirty' => false),
-                        ),
+                        'Transcription',
                     ),
                     'fields' => array(
                         'text',
