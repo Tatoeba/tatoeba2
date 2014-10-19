@@ -85,7 +85,7 @@ $this->set('title_for_layout', 'Tatoeba - ' . $listName);
     
     <p>
     <?php
-    __('You can remove a sentence from the list by clicking on the X icon.'); 
+    __('You can remove a sentence from the list by clicking on the X icon to its right.'); 
     ?>
     </p>
     
