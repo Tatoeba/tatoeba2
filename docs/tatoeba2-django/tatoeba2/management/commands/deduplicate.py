@@ -5,13 +5,14 @@ from collections import defaultdict
 from datetime import datetime
 from itertools import chain
 from optparse import make_option
-from django.db import transaction
+from django.db import transaction, IntegrityError
 from StringIO import StringIO
 from os import path
 from django.core import serializers
 from django.db.models.loading import get_model
 from django.db.models import Q
 from termcolor import colored
+from hashlib import sha1
 import time
 import logging
 import sys
@@ -51,7 +52,7 @@ class Dedup(object):
     def tally(sents, old_tally=None):
         tally = defaultdict(set) if not old_tally else old_tally
         for sent in sents:
-                tally[(sent.text, sent.lang)].add(sent.id)
+                tally[(sent[0], sent[1])].add(sent[2])
 
         return tally
         
@@ -226,8 +227,13 @@ class Dedup(object):
         # merge
         cls.insert_merge('SentenceComments', main_sent.id, ids)
         cls.update_merge('TagsSentences', main_sent.id, ids)
-        cls.update_merge('SentencesTranslations', main_sent.id, ids)
-        cls.update_merge('SentencesTranslations', main_sent.id, ids, 'translation_id')
+        # handle a tricky bug where two duplicates have a non-duplicate node
+        try:
+            cls.update_merge('SentencesTranslations', main_sent.id, ids)
+            cls.update_merge('SentencesTranslations', main_sent.id, ids, 'translation_id')
+        except IntegrityError:
+            pass
+
         cls.update_merge('SentencesSentencesLists', main_sent.id, ids)
         cls.insert_merge('Contributions', main_sent.id, ids, q_filters=Q(type='sentence', action='update') | Q(type='link'))
         cls.update_merge('FavoritesUsers', main_sent.id, ids, 'favorite_id')
@@ -338,6 +344,7 @@ class Command(Dedup, BaseCommand):
             # pull in rows from time range
             self.log_report('Running filter on sentences added since '+since.strftime('%Y-%m-%d %I:%M %p'))
             sents = list(Sentences.objects.filter(created__range=[since, datetime.utcnow()]))
+            sents = [(int(sha1(sent.text).hexdigest(), 16), sent.lang, sent.id) for sent in sents]
             self.log_report('OK filtered '+str(len(sents))+' sentences')
             
             # tally to eliminate premature duplicates
@@ -347,11 +354,13 @@ class Command(Dedup, BaseCommand):
             # filter out duplicates (could probably be done in 1 raw query...)
             self.log_report('Running filter on sentences to find duplicates')
             dup_set = []            
-            for text, lang in sent_tally.iterkeys():
-                sents = list(Sentences.objects.filter(text=text, lang=lang))            
+            for ids in sent_tally.itervalues():
+                ids = list(ids)
+                sents = list(Sentences.objects.filter(id__in=ids))            
                 if len(sents) > 1:
                     dup_set.append(sents)
             self.log_report('OK '+str(len(dup_set))+' duplicate sets found')
+            del sent_tally
 
             self.log_report('Running deduplication transactions on duplicate sets')
             # deduplicate
@@ -379,6 +388,7 @@ class Command(Dedup, BaseCommand):
             sent_tally = defaultdict(set)
             for rng in self.chunked_ranges(chunks, total):
                 sents = list(Sentences.objects.filter(id__range=rng))
+                sents = [(int(sha1(sent.text).hexdigest(), 16), sent.lang, sent.id) for sent in sents]
                 self.log_report('Running duplicate filtering on sentence range: '+ str(rng))
                 sent_tally = self.tally(sents, sent_tally)
                 self.log_report('OK')

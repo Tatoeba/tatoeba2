@@ -83,3 +83,8 @@ def dedup(request):
     request.addfinalizer(fin)
     
     return Dedup
+
+@pytest.fixture(scope='module')
+def linked_dups():
+    SentencesTranslations(sentence_id=2, translation_id=1, distance=1).save()
+    SentencesTranslations(sentence_id=3, translation_id=1, distance=1).save()

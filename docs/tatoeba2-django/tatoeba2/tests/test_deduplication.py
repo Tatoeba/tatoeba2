@@ -1,7 +1,10 @@
 from tatoeba2.management.commands.deduplicate import Command, Dedup
 from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Wall
 from django.db import transaction
+from django.db import IntegrityError
 from django.db.models import Q
+from hashlib import sha1
+from pytest import raises
 import pytest
 import os
 import logging
@@ -52,7 +55,9 @@ class TestDedup():
         [[1, 3], [4, 6], [7, 9], [10, 12]]
 
     def test_tally(db, sents, dedup):
-        sent_tally = dedup.tally(Sentences.objects.all())
+        sents = list(Sentences.objects.all())
+        sents = sents = [(int(sha1(sent.text).hexdigest(), 16), sent.lang, sent.id) for sent in sents]
+        sent_tally = dedup.tally(sents)
  
         k_cnt = 0
         for k, v in sent_tally.iteritems():
@@ -212,3 +217,6 @@ class TestDedup():
         assert Sentences.objects.all().count() == 21
         assert Contributions.objects.all().count() == 4
         assert SentenceComments.objects.all().count() == 3
+
+    def test_linked_dups_merge(db, sents, linked_dups):
+        cmd = Command()

@@ -212,6 +212,7 @@ class SentencesTranslations(models.Model):
     class Meta:
         managed = False
         db_table = 'sentences_translations'
+        unique_together = ('sentence_id', 'translation_id')
 
 class SinogramSubglyphs(models.Model):
     sinogram_id = models.IntegerField()
