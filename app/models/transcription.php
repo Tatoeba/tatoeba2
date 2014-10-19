@@ -20,7 +20,36 @@
 class Transcription extends AppModel
 {
     public $availableScripts = array( /* ISO 15924 */
-        'Latn', 'Hrkt', 
+        'Cyrl', 'Hrkt', 'Jpan', 'Latn',
+    );
+    private $scriptsByLang = array(
+        'jpn' => array('Jpan'),
+        'uzb' => array('Cyrl', 'Latn'),
+    );
+    private $availableTranscriptions = array(
+        'jpn-Jpan' => array(
+            'Hrkt' => array(
+                'generator' => null /* TODO */
+            ),
+            'Latn' => array(
+                'chain' => array('jpn-Hrkt'),
+            ),
+        ),
+        'jpn-Hrkt' => array(
+            'Latn' => array(
+                'generator' => null /* TODO */
+            ),
+        ),
+        'uzb-Latn' => array(
+            'Cyrl' => array(
+                'generator' => null /* TODO */
+            ),
+        ),
+        'uzb-Cyrl' => array(
+            'Latn' => array(
+                'generator' => null /* TODO */
+            ),
+        ),
     );
 
     public $actsAs = array();
@@ -71,6 +100,43 @@ class Transcription extends AppModel
     {
         parent::__construct($id, $table, $ds);
         $this->validate['script']['rule'] = array('inList', $this->availableScripts);
+    }
+
+    private function getSourceScript($sourceLang, $sourceText = null) {
+        if (isset($this->scriptsByLang[$sourceLang])) {
+            if (count($this->scriptsByLang[$sourceLang]) == 1) {
+                return $this->scriptsByLang[$sourceLang][0];
+            } else {
+                // TODO: need to do some further research based on $souceText
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    public function transcriptableToWhat($sourceLang, $sourceText = null) {
+        $sourceScript = $this->getSourceScript($sourceLang, $sourceText);
+        if (!$sourceScript)
+            return array();
+
+        $sourceScript = $sourceLang . '-' . $sourceScript;
+        if (!isset($this->availableTranscriptions[$sourceScript]))
+            return array();
+
+        $targetScripts = array_keys($this->availableTranscriptions[$sourceScript]);
+        $targetScripts = array_flip($targetScripts);
+        return $targetScripts;
+    }
+
+    public function saveTranscription($sentenceId, $script, $isDirty, $text) {
+        $transcription = array(
+            'sentence_id' => $sentenceId,
+            'script' => $script,
+            'dirty' => $isDirty,
+            'text' => $text,
+        );
+        return (bool)$this->save($transcription);
     }
 }
 ?>

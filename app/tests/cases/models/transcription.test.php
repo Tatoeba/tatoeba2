@@ -116,4 +116,20 @@ class TranscriptionTestCase extends CakeTestCase {
 
         $this->assertFalse($result);
     }
+
+    function testSaveTranscription_savesOneTranscription() {
+        $before = $this->Transcription->find('count');
+        $this->Transcription->saveTranscription(8, 'Latn', true, 'Vive l’anarchie !');
+        $after = $this->Transcription->find('count');
+        $this->assertEqual($after - $before, 1);
+    }
+
+    function testJapaneseCanBeTranscriptedToKanas() {
+        $result = $this->Transcription->transcriptableToWhat('jpn');
+        $this->assertTrue(array_key_exists('Hrkt', $result));
+    }
+    function testJapaneseCanBeTranscriptedToRomaji() {
+        $result = $this->Transcription->transcriptableToWhat('jpn');
+        $this->assertTrue(array_key_exists('Latn', $result));
+    }
 }
