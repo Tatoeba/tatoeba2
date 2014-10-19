@@ -107,4 +107,13 @@ class TranscriptionTestCase extends CakeTestCase {
     function testModifiedRequired() {
         $this->_assertInvalidRecordWithout(0, array('modified'));
     }
+
+    function testTranscriptionMustBeUniqueForASentenceAndAScript() {
+        $data = $this->_getRecord(0);
+        unset($data['id']);
+
+        $result = (bool)$this->Transcription->save($data);
+
+        $this->assertFalse($result);
+    }
 }

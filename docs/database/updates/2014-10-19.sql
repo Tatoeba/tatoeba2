@@ -10,5 +10,6 @@ CREATE TABLE `transcriptions` (
   `dirty` BOOLEAN NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
+  CONSTRAINT `unique_transcriptions` UNIQUE (`sentence_id`,`script`),
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

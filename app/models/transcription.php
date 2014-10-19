@@ -27,8 +27,13 @@ class Transcription extends AppModel
 
     public $validate = array(
         'sentence_id' => array(
-            'rule' => 'numeric',
-            'required' => true,
+            'validateType' => array(
+                'rule' => 'numeric',
+                'required' => true,
+            ),
+            'validateUnicity' => array(
+                'rule' => array('isUnique', array('sentence_id', 'script')),
+            ),
         ),
         'parent_id' => array(
             'rule' => 'numeric',
