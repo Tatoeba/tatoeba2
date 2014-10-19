@@ -605,6 +605,8 @@ class SentencesHelper extends AppHelper
         if (isset($transcriptions['Latn'])) {
             $title = ' title="'.$transcriptions['Latn']['text'].'"';
             unset($transcriptions['Latn']);
+        } else {
+            $title = '';
         }
 
         foreach ($transcriptions as $script => $transcr) {
