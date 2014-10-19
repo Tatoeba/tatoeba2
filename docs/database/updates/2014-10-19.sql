@@ -1,6 +1,6 @@
 CREATE TABLE `transcriptions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `sentence_id` int(11) DEFAULT NULL,
+  `sentence_id` int(11) NOT NULL,
   `parent_id` int(11) DEFAULT NULL,
   `script` varchar(4) NOT NULL, /* ISO 15924 code */
   /* Transcriptions for japanese tend to take 300 to 400% the size of the

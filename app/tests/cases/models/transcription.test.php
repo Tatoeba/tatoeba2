@@ -23,6 +23,7 @@ class TranscriptionTestCase extends CakeTestCase {
 
     function _saveRecordWith($record, $changedFields) {
         $data = $this->_getRecord($record);
+        $this->Transcription->deleteAll(array('1=1'));
         unset($data['id']);
         $data = array_merge($data, $changedFields);
         return (bool)$this->Transcription->save($data);
@@ -30,6 +31,7 @@ class TranscriptionTestCase extends CakeTestCase {
 
     function _saveRecordWithout($record, $missingFields) {
         $data = $this->_getRecord($record);
+        $this->Transcription->deleteAll(array('1=1'));
         unset($data['id']);
         foreach ($missingFields as $field) {
             unset($data[$field]);
@@ -53,6 +55,9 @@ class TranscriptionTestCase extends CakeTestCase {
     function testValidateFirstRecord() {
         $this->_assertValidRecordWith(0, array());
     }
+    function testValidateSecondRecord() {
+        $this->_assertValidRecordWith(1, array());
+    }
 
     function testScriptMustBeValid() {
         $this->_assertInvalidRecordWith(0, array('script' => 'ABCD'));
@@ -68,17 +73,18 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->_assertInvalidRecordWithout(0, array('text'));
     }
 
-    function testSentenceCanBeNullIfParentSet() {
-        $this->_assertValidRecordWith(1, array('sentence_id' => null));
+    function testSentenceIdCantBeEmpty() {
+        $this->_assertInvalidRecordWith(0, array('sentence_id' => null));
     }
-    function testParentCanBeNullIfSentenceSet() {
-        $this->_assertValidRecordWith(0, array('parent_id' => null));
+    function testSentenceIdRequired() {
+        $this->_assertInvalidRecordWithout(0, array('sentence_id'));
     }
-    function testSentenceOrParentRequired() {
-        $this->_assertInvalidRecordWithout(0, array('parent_id', 'sentence_id'));
+
+    function testParentIdMustBeNumeric() {
+        $this->_assertInvalidRecordWith(0, array('parent_id' => 'melon'));
     }
-    function testSentenceXorParentRequired() {
-        $this->_assertInvalidRecordWith(0, array('parent_id' => 42));
+    function testParentIdNotRequired() {
+        $this->_assertValidRecordWithout(0, array('parent_id'));
     }
 
     function testDirtyMustBeBoolean() {

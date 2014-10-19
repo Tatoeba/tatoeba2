@@ -19,13 +19,21 @@
 
 class Transcription extends AppModel
 {
-    public $availableScripts = array(
-        'Latn', 'Hrkt'
+    public $availableScripts = array( /* ISO 15924 */
+        'Latn', 'Hrkt', 
     );
 
     public $actsAs = array();
 
     public $validate = array(
+        'sentence_id' => array(
+            'rule' => 'numeric',
+            'required' => true,
+        ),
+        'parent_id' => array(
+            'rule' => 'numeric',
+            'allowEmpty' => true,
+        ),
         'text' => array(
             'rule' => 'notEmpty',
             'required' => true,
@@ -49,13 +57,10 @@ class Transcription extends AppModel
     );
 
     public $belongsTo = array(
-        'SourceSentence' => array(
-            'className' => 'Sentence',
-            'conditions' => array('sentence_id' => 'NOT NULL'),
-        ),
+        'Sentence',
         'SourceTranscription' => array(
             'className' => 'Transcription',
-            'conditions' => array('parent_id' => 'NOT NULL'),
+            'foreignKey' => 'parent_id',
         ),
     );
 
@@ -63,17 +68,6 @@ class Transcription extends AppModel
     {
         parent::__construct($id, $table, $ds);
         $this->validate['script']['rule'] = array('inList', $this->availableScripts);
-    }
-
-    private function isSetAndNumeric($field) {
-        $data = $this->data[$this->alias];
-        return isset($data[$field]) && is_numeric($data[$field]);
-    }
-
-    public function beforeValidate() {
-        $hasSource = ($this->isSetAndNumeric('parent_id') xor
-                      $this->isSetAndNumeric('sentence_id'));
-        return $hasSource;
     }
 }
 ?>

@@ -5,7 +5,7 @@ class TranscriptionFixture extends CakeTestFixture {
 
 	var $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
-		'sentence_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
+		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
 		'parent_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 		'script' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'text' => array('type' => 'text', 'null' => false, 'default' => NULL, 'length' => 10000),
@@ -29,7 +29,7 @@ class TranscriptionFixture extends CakeTestFixture {
 		),
 		array(
 			'id' => 2,
-			'sentence_id' => '',
+			'sentence_id' => 6,
 			'parent_id' => 1,
 			'script' => 'Latn',
 			'text' => 'sono mondai no konpon gen\'in wa, gendai no sekai nioite, kenmei na hitobito ga saigishin ni michiteiru ippō de, oroka na hitobito ga jishin kajō de aru toiu koto de aru.',
