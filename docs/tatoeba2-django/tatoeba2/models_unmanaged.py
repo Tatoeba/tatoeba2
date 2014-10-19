@@ -204,7 +204,8 @@ class SentencesSentencesLists(models.Model):
         db_table = 'sentences_sentences_lists'
 
 class SentencesTranslations(models.Model):
-    sentence_id = models.IntegerField()
+    # more lying to django
+    sentence_id = models.IntegerField(primary_key=True)
     translation_id = models.IntegerField()
     sentence_lang = models.CharField(max_length=4, blank=True)
     translation_lang = models.CharField(max_length=4, blank=True)
@@ -254,7 +255,8 @@ class Tags(models.Model):
         db_table = 'tags'
 
 class TagsSentences(models.Model):
-    tag_id = models.IntegerField()
+    # more lying to django
+    tag_id = models.IntegerField(primary_key=True)
     user_id = models.IntegerField(blank=True, null=True)
     sentence_id = models.IntegerField(blank=True, null=True)
     added_time = models.DateTimeField(blank=True, null=True)

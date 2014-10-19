@@ -1,10 +1,8 @@
 from tatoeba2.management.commands.deduplicate import Command, Dedup
 from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Wall
-from django.db import transaction
-from django.db import IntegrityError
+from django.db import transaction, IntegrityError
 from django.db.models import Q
 from hashlib import sha1
-from pytest import raises
 import pytest
 import os
 import logging
@@ -219,4 +217,7 @@ class TestDedup():
         assert SentenceComments.objects.all().count() == 3
 
     def test_linked_dups_merge(db, sents, linked_dups):
-        cmd = Command()
+        try:
+            Dedup.update_merge('SentencesTranslations', 2, [3])
+        except IntegrityError as e:
+            assert e.args is False

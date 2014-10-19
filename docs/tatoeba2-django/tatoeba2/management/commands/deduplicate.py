@@ -6,7 +6,6 @@ from django.conf import settings
 from tatoeba2.models import Sentences, SentencesTranslations, Contributions, Users, Wall, SentenceComments
 from collections import defaultdict
 from datetime import datetime
-from itertools import chain
 from optparse import make_option
 from django.db import transaction, IntegrityError
 from StringIO import StringIO
@@ -135,6 +134,7 @@ class Dedup(object):
             'delete': colored('DELETE', 'yellow', attrs=['bold']),
             'into': colored('INTO', 'yellow', attrs=['bold']),
             'update': colored('UPDATE', 'yellow', attrs=['bold']),
+            'log_deletion': colored('LOG DELETION', 'yellow', attrs=['bold']),                    
         }
         entry = cls.multi_replace(entry, pat)
         
@@ -200,8 +200,16 @@ class Dedup(object):
     @transaction.atomic
     def update_merge(cls, model, main_id, ids, fld='sentence_id'):
         cls.log_update_merge(model, main_id, ids, fld)
+
         if not cls.dry:
-            get_model('tatoeba2.'+model).objects.filter(**{fld+'__in': ids}).update(**{fld:main_id})
+            # handle duplicate row bug as tightly as possible, truly awful code ahead
+            try:
+                get_model('tatoeba2.'+model).objects.filter(**{fld+'__in': ids}).update(**{fld:main_id})
+            except IntegrityError as e:
+                if len(re.findall(r'(Duplicate entry)|(UNIQUE constraint failed)', e.args[0])) or len(re.findall(r'(Duplicate entry)|(UNIQUE constraint failed)', e.args[-1])):
+                    pass
+                else:
+                    raise IntegrityError
 
     @classmethod
     def log_insert_merge(cls, model, main_id, ids, fld, inserts):
@@ -230,12 +238,8 @@ class Dedup(object):
         # merge
         cls.insert_merge('SentenceComments', main_sent.id, ids)
         cls.update_merge('TagsSentences', main_sent.id, ids)
-        # handle a tricky bug where two duplicates have a non-duplicate node
-        try:
-            cls.update_merge('SentencesTranslations', main_sent.id, ids)
-            cls.update_merge('SentencesTranslations', main_sent.id, ids, 'translation_id')
-        except IntegrityError:
-            pass
+        cls.update_merge('SentencesTranslations', main_sent.id, ids)
+        cls.update_merge('SentencesTranslations', main_sent.id, ids, 'translation_id')
 
         cls.update_merge('SentencesSentencesLists', main_sent.id, ids)
         cls.insert_merge('Contributions', main_sent.id, ids, q_filters=Q(type='sentence', action='update') | Q(type='link'))
