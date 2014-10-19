@@ -25,8 +25,6 @@
  * @link     http://tatoeba.org
  */
 
-$javascript->link(JS_PATH . 'furigana.js', false);
-
 $this->set('title_for_layout', 'Tatoeba - '. __(
     'Convert Japanese text into romaji or furigana', true
 ));
@@ -74,7 +72,7 @@ $this->set('title_for_layout', 'Tatoeba - '. __(
         <h2><?php __('Convert Japanese text into romaji or furigana'); ?></h2>
         <?php
 
-        echo '<div id="conversion" class="furigana">';
+        echo '<div id="conversion">';
         echo $result;
         echo '</div>';
 

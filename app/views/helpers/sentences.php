@@ -580,6 +580,15 @@ class SentencesHelper extends AppHelper
         }
     }
 
+    /**
+     * Transforms "[kanji|reading]" to HTML <ruby> tags
+     */
+    private function _rubify($formatted) {
+        return preg_replace(
+            '/\[([^|]*)\|([^\]]*)\]/',
+            '<ruby>$1<rp>(</rp><rt>$2</rt><rp>)</rp></ruby>',
+            $formatted);
+    }
 
     /**
      * Display transcriptions.
@@ -594,11 +603,9 @@ class SentencesHelper extends AppHelper
     private function _displayTranscriptions($transcriptions, $lang)
     {
         if ($lang == 'jpn') {
-
-            $this->Javascript->link(JS_PATH.'furigana.js', false);
-            $furigana = $transcriptions[0];
+            $furigana = $this->_rubify($transcriptions[0]);
             $romaji = $transcriptions[1];
-            echo '<div class="romanization furigana" title="'.$romaji.'">';
+            echo '<div class="romanization" title="'.$romaji.'">';
             echo $furigana;
             echo '</div>';
 

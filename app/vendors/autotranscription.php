@@ -402,7 +402,7 @@ class Autotranscription
             ,'SimpleXMLElement', LIBXML_NOCDATA
         );
         foreach($xml->{'parse'}->{'furigana'} as $key=>$furigana) {
-            $romanization .= $furigana->{'token'}."[".trim($furigana->{"kana"})."] ";
+            $romanization .= '['.$furigana->{'token'}.'|'.trim($furigana->{"kana"})."] ";
         }
 
         return trim($romanization);
