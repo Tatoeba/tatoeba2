@@ -145,7 +145,7 @@ class SentencesListsController extends AppController
         }
 
         $userId = $this->Auth->user('id');
-        if (!$this->SentencesList->belongsToCurrentUser($id, $userId)) {
+        if (!$this->SentencesList->isEditableByCurrentUser($id, $userId)) {
             $this->redirect(array("action"=>"show", $id));
         }
 
@@ -245,7 +245,7 @@ class SentencesListsController extends AppController
 
         $listId = Sanitize::paranoid($listId);
 
-        if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
+        if ($this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
 
             $this->SentencesList->id = $listId;
             if ($this->SentencesList->saveField('name', $listName)) {
@@ -273,7 +273,7 @@ class SentencesListsController extends AppController
 
         $userId = $this->Auth->user('id');
 
-        if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
+        if ($this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
             $this->SentencesList->delete($listId);
             // Retrieve the 'most_recent_list' cookie, and if it matches
             // $listId, erase it. Do this even if the 'remember_list' has
@@ -307,7 +307,7 @@ class SentencesListsController extends AppController
 
         $this->set('result', 'error');
 
-        if (!$this->SentencesList->belongsToCurrentUser($listId, $userId)) {
+        if (!$this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
             return;
         }
 
@@ -333,7 +333,7 @@ class SentencesListsController extends AppController
 
         $userId = $this->Auth->user('id');
 
-        if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
+        if ($this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
             $isRemoved = $this->SentencesList->removeSentenceFromList(
                 $sentenceId, $listId
             );

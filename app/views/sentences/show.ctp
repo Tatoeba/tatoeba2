@@ -169,7 +169,7 @@ $navigation->displaySentenceNavigation(
     </div>
 
     <?php 
-    if ($canComment) { 
+    if ($canComment || !empty($sentenceComments)) { 
         echo '<div class="module">';
 
         echo '<h2>';

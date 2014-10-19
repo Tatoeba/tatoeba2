@@ -225,7 +225,7 @@ class Sentence extends AppModel
         if (isset($this->data['Sentence']['lang']))
         {
             $lang = $this->data['Sentence']['lang'];
-            $langId = $this->Language->getIdFromlang($lang);
+            $langId = $this->Language->getIdFromLang($lang);
             $this->data['Sentence']['lang_id'] = $langId;
         }
         return true;
@@ -880,7 +880,7 @@ class Sentence extends AppModel
             if ($newLang == "" ) {
                 $newLang = null;
             }
-            $newLangId = $this->Language->getIdFromlang($newLang);
+            $newLangId = $this->Language->getIdFromLang($newLang);
 
             $data['Sentence'] = array(
                 'lang' => $newLang,

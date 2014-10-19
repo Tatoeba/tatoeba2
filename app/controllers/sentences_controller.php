@@ -532,10 +532,6 @@ class SentencesController extends AppController
             $sphinx['filter'][] = array('trans_id',$toId);
         }
 
-
-
-
-
         $model = 'Sentence';
         $pagination = array(
             'Sentence' => array(

@@ -1,3 +1,6 @@
+# Merges duplicate sentences in a database.
+# See README.md for instructions on setting up the dependencies for this script and running it.
+
 from django.core.management.base import BaseCommand
 from django.conf import settings
 from tatoeba2.models import Sentences, SentencesTranslations, Contributions, Users, Wall, SentenceComments
@@ -41,7 +44,7 @@ class Dedup(object):
         cls.str_log.addHandler(string)
 
         root_path = root_path or settings.BASE_DIR
-        file_name = 'dedup-'+ cls.started_on.strftime('%Y-%m-%d %I:%M %p') + '.log'
+        file_name = 'dedup-'+ cls.started_on.strftime('%Y-%m-%dT%H:%M') + '.log'
         cls.file_log = logging.getLogger('file_logger')
         cls.file_log.setLevel(logging.DEBUG)
         cls.log_file_path = path.join(root_path, file_name)
