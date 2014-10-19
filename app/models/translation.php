@@ -36,7 +36,7 @@
  */
 class Translation extends AppModel
 {
-    public $actsAs = array('Containable', 'Autotranscriptable');
+    public $actsAs = array('Containable');
     public $useTable = 'sentences';
 
     public $hasAndBelongsToMany = array(
@@ -52,24 +52,7 @@ class Translation extends AppModel
 
     public function find($sentenceId, $languages)
     {
-        $translations = $this->_getTranslationsOf($sentenceId, $languages);
-
-        // Calling manually the trigger for afterFind of Transcriptable behavior
-        // because the query to retrieve the translations is a custom query
-        $results['Translation'] = $this->Behaviors->trigger(
-            $this,
-            'afterFind',
-            array($translations['Translation'], false), 
-            array('modParams' => true)
-        );
-        $results['IndirectTranslation'] = $this->Behaviors->trigger(
-            $this,
-            'afterFind',
-            array($translations['IndirectTranslation'], false),
-            array('modParams' => true)
-        );
-
-        return $results;
+        return $this->_getTranslationsOf($sentenceId, $languages);
     }
 
 

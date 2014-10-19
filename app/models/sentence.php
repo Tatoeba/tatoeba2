@@ -45,7 +45,7 @@ class Sentence extends AppModel
 {
 
     public $name = 'Sentence';
-    public $actsAs = array("Containable", "Sphinx", "Autotranscriptable");
+    public $actsAs = array("Containable", "Sphinx");
     public static $romanji = array('furigana' => 1, 'mix' => 2, 'romanji' => 3);
     
     const MIN_CORRECTNESS = -1;
@@ -452,6 +452,9 @@ class Sentence extends AppModel
                         'SentencesList'   => array(
                             'fields' => array('id')
                         ),
+                        'Transcription' => array(
+                            'conditions' => array('dirty' => false),
+                        ),
                     ),
                     'fields' => array(
                         'text',
@@ -466,6 +469,9 @@ class Sentence extends AppModel
         if ($result == null) {
             return;
         }
+        $transcriptions = Set::combine($result['Transcription'], '{n}.script', '{n}');
+        unset($result['Transcription']);
+        $result['Sentence']['transcriptions'] = $transcriptions;
 
         return $result;
     }

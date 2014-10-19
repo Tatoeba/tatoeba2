@@ -602,33 +602,17 @@ class SentencesHelper extends AppHelper
      */
     private function _displayTranscriptions($transcriptions, $lang)
     {
-        if ($lang == 'jpn') {
-            $furigana = $this->_rubify($transcriptions[0]);
-            $romaji = $transcriptions[1];
-            echo '<div class="romanization" title="'.$romaji.'">';
-            echo $furigana;
-            echo '</div>';
+        if (isset($transcriptions['Latn'])) {
+            $title = ' title="'.$transcriptions['Latn']['text'].'"';
+            unset($transcriptions['Latn']);
+        }
 
-        } else if ($lang === 'cmn') {
+        foreach ($transcriptions as $script => $transcr) {
+            $text = $transcr['text'];
+            if ($script == 'Hrkt')
+                $text = $this->_rubify($text);
 
-            $otherScript = $transcriptions[1];
-            echo '<div class="romanization">';
-            echo $otherScript;
-            echo '</div>';
-
-            $pinyin = $this->Pinyin->numeric2diacritic($transcriptions[0]);
-            echo '<div class="romanization">';
-            echo $pinyin;
-            echo '</div>';
-
-        } else {
-
-            foreach ($transcriptions as $transcription) {
-                echo '<div class="romanization">';
-                echo $transcription;
-                echo '</div>';
-            }
-
+            echo "<div class=\"romanization\"$title>$text</div>";
         }
     }
 
