@@ -53,11 +53,9 @@ class Transcription extends AppModel
         ),
         'created' => array(
             'rule' => 'notEmpty',
-            'required' => true,
         ),
         'modified' => array(
             'rule' => 'notEmpty',
-            'required' => true,
         ),
     );
 

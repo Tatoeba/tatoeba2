@@ -97,15 +97,15 @@ class TranscriptionTestCase extends CakeTestCase {
     function testCreatedCantBeEmpty() {
         $this->_assertInvalidRecordWith(0, array('created' => ''));
     }
-    function testCreatedRequired() {
-        $this->_assertInvalidRecordWithout(0, array('created'));
+    function testCreatedIsAutomaticallySet() {
+        $this->_assertValidRecordWithout(0, array('created'));
     }
 
     function testModifiedCantBeEmpty() {
         $this->_assertInvalidRecordWith(0, array('modified' => ''));
     }
-    function testModifiedRequired() {
-        $this->_assertInvalidRecordWithout(0, array('modified'));
+    function testModifiedIsAutomaticallySet() {
+        $this->_assertValidRecordWithout(0, array('created'));
     }
 
     function testTranscriptionMustBeUniqueForASentenceAndAScript() {
