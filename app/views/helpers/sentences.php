@@ -586,7 +586,7 @@ class SentencesHelper extends AppHelper
     private function _rubify($formatted) {
         return preg_replace(
             '/\[([^|]*)\|([^\]]*)\]/',
-            '<ruby>$1<rp>(</rp><rt>$2</rt><rp>)</rp></ruby>',
+            '<ruby><rp>[</rp>$1<rp>|</rp><rt>$2</rt><rp>]</rp></ruby>',
             $formatted);
     }
 
@@ -614,11 +614,17 @@ class SentencesHelper extends AppHelper
             if ($transcr['dirty'] && !$showDirty)
                 continue;
 
+            $this->Javascript->link('jquery.jeditable.js', false);
+            $this->Javascript->link('transcriptions.edit_in_place.js', false);
+
             $text = $transcr['text'];
             if ($script == 'Hrkt')
                 $text = $this->_rubify($text);
 
-            echo "<div class=\"romanization\"$title>$text</div>";
+            $class = "romanization";
+            if ($showDirty)
+                $class .= " editableTranscription";
+            echo "<div id=\"$transcr[id]\" class=\"$class\"$title>$text</div>";
         }
     }
 
