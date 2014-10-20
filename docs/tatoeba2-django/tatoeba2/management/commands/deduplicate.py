@@ -15,6 +15,7 @@ from django.db.models.loading import get_model
 from django.db.models import Q
 from termcolor import colored
 from hashlib import sha1
+from pytz import UTC as utc
 import time
 import logging
 import sys
@@ -22,11 +23,15 @@ import json
 import re
 
 
+def now():
+    return datetime.utcnow().replace(tzinfo=utc)
+
+
 class Dedup(object):
 
     @classmethod
     def time_init(cls):
-        cls.started_on = datetime.utcnow()
+        cls.started_on = now()
 
     @classmethod
     def logger_init(cls, root_path=''):
@@ -110,7 +115,7 @@ class Dedup(object):
     @classmethod
     def json_entry(cls, main_id, ids, op, q, fld, objs):
         entry = {}
-        entry['timestamp'] = datetime.utcnow().strftime('%Y-%m-%d %I:%M %p UTC')
+        entry['timestamp'] = now().strftime('%Y-%m-%d %I:%M %p UTC')
         entry['operation'] = op
         entry['query'] = q
         entry['main_id'] = main_id
@@ -172,7 +177,7 @@ class Dedup(object):
                 sentence_lang=sent.lang,
                 text=sent.text,
                 action='delete',
-                datetime=datetime.utcnow(),
+                datetime=now(),
                 type='sentence',
                 user_id=cls.bot.id,
                 ))
@@ -206,7 +211,7 @@ class Dedup(object):
             try:
                 get_model('tatoeba2.'+model).objects.filter(**{fld+'__in': ids}).update(**{fld:main_id})
             except IntegrityError as e:
-                if len(re.findall(r'(Duplicate entry)|(UNIQUE constraint failed)', e.args[0])) or len(re.findall(r'(Duplicate entry)|(UNIQUE constraint failed)', e.args[-1])):
+                if len(re.findall(r'(Duplicate entry)|(UNIQUE constraint failed)', str(e.args[0]))) or len(re.findall(r'(Duplicate entry)|(UNIQUE constraint failed)', str(e.args[-1]))):
                     pass
                 else:
                     raise IntegrityError
@@ -263,7 +268,7 @@ class Dedup(object):
                 sentence_id=main_sent.id,
                 text='This sentence has been merged with '+' '.join(['#'+str(id) for id in ids]),
                 user_id=cls.bot.id,
-                created=datetime.utcnow(),
+                created=now(),
                 hidden=0,
                 ).save()
 
@@ -329,7 +334,7 @@ class Command(Dedup, BaseCommand):
         except Users.DoesNotExist:
             Dedup.bot = Users.objects.create(
                 username=bot_name, password='', email='bot@bots.com',
-                since=datetime.utcnow(), last_time_active=datetime.utcnow().strftime('%Y%m%d'),
+                since=now(), last_time_active=now().strftime('%Y%m%d'),
                 level=1, is_public=1, send_notifications=0, group_id=1
                 )
 
@@ -347,10 +352,10 @@ class Command(Dedup, BaseCommand):
         if since:
             self.log_report('Running incremental scan at '+self.started_on.strftime('%Y-%m-%d %I:%M %p UTC'))
             # parse date
-            since = datetime(*[int(s) for s in since.split('-')])
+            since = datetime(*[int(s) for s in since.split('-')]).replace(tzinfo=utc)
             # pull in rows from time range
             self.log_report('Running filter on sentences added since '+since.strftime('%Y-%m-%d %I:%M %p'))
-            sents = list(Sentences.objects.filter(created__range=[since, datetime.utcnow()]))
+            sents = list(Sentences.objects.filter(created__range=[since, now()]))
             sents = [(int(sha1(sent.text).hexdigest(), 16), sent.lang, sent.id) for sent in sents]
             self.log_report('OK filtered '+str(len(sents))+' sentences')
             
@@ -385,7 +390,6 @@ class Command(Dedup, BaseCommand):
                 self.deduplicate(main_sent, ids, post_cmnt, dry)
                 # handle rate limiting
                 if pause_for: time.sleep(pause_for)
-            self.log_report('OK '+str(len(self.all_dups))+' sentences merged into '+str(len(self.all_mains))+' sentences')
 
         else:
             self.log_report('Running full scan at '+self.started_on.strftime('%Y-%m-%d %I:%M %p UTC'))
@@ -424,6 +428,7 @@ class Command(Dedup, BaseCommand):
 
                     # handle rate limit
                     if pause_for: time.sleep(pause_for)
+
         self.log_report('OK '+str(len(self.all_dups))+' sentences merged into '+str(len(self.all_mains))+' sentences')
         
         # verification step
@@ -453,7 +458,7 @@ class Command(Dedup, BaseCommand):
         msg = 'YES' if self.ver_links else 'NO'
         self.log_report(msg)
         
-        self.log_report('Deduplication finished running successfully at '+datetime.utcnow().strftime('%Y-%m-%d %I:%M %p UTC')+', see full log at:')
+        self.log_report('Deduplication finished running successfully at '+now().strftime('%Y-%m-%d %I:%M %p UTC')+', see full log at:')
         self.log_report(url + path.split(self.log_file_path)[-1].replace(' ', '%20'))
         
         # post a wall report if needed
@@ -463,6 +468,7 @@ class Command(Dedup, BaseCommand):
             Wall(
                 owner=self.bot.id,
                 content=self.report.getvalue(),
-                date=datetime.utcnow(), title='', hidden=0,
+                date=now(), modified=now(),
+                title='', hidden=0,
                 lft=lft, rght=rght
                 ).save()
