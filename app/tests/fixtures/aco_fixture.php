@@ -1,5 +1,5 @@
 <?php
-/* Aco Fixture generated on: 2014-09-14 16:11:43 : 1410711103 */
+/* Aco Fixture generated on: 2014-10-20 07:39:12 : 1413790752 */
 class AcoFixture extends CakeTestFixture {
 	var $name = 'Aco';
 
@@ -23,7 +23,7 @@ class AcoFixture extends CakeTestFixture {
 			'foreign_key' => NULL,
 			'alias' => 'controllers',
 			'lft' => '1',
-			'rght' => '370'
+			'rght' => '374'
 		),
 		array(
 			'id' => '315',
@@ -1680,6 +1680,24 @@ class AcoFixture extends CakeTestFixture {
 			'alias' => 'update_rights',
 			'lft' => '323',
 			'rght' => '324'
+		),
+		array(
+			'id' => '499',
+			'parent_id' => '314',
+			'model' => NULL,
+			'foreign_key' => NULL,
+			'alias' => 'Transcriptions',
+			'lft' => '370',
+			'rght' => '373'
+		),
+		array(
+			'id' => '500',
+			'parent_id' => '499',
+			'model' => NULL,
+			'foreign_key' => NULL,
+			'alias' => 'edit',
+			'lft' => '371',
+			'rght' => '372'
 		),
 	);
 }

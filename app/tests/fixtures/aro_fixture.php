@@ -1,5 +1,5 @@
 <?php
-/* Aro Fixture generated on: 2014-09-14 16:11:44 : 1410711104 */
+/* Aro Fixture generated on: 2014-10-20 07:39:28 : 1413790768 */
 class AroFixture extends CakeTestFixture {
 	var $name = 'Aro';
 

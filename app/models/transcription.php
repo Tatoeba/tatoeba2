@@ -52,7 +52,8 @@ class Transcription extends AppModel
         ),
     );
 
-    public $actsAs = array();
+    public $actsAs = array('Containable');
+    public $recursive = -1;
 
     public $validate = array(
         'sentence_id' => array(
@@ -155,6 +156,20 @@ class Transcription extends AppModel
             'text' => $text,
         );
         return (bool)$this->save($transcription);
+    }
+
+    public function getTranscriptionOwner($transcriptionId) {
+        $transc = $this->find('first', array(
+            'conditions' => array(
+                $this->alias.'.'.$this->primaryKey => $transcriptionId,
+            ),
+            'contain' => array('Sentence')
+        ));
+
+        if ($transc)
+            return $transc['Sentence']['user_id'];
+        else
+            return false;
     }
 }
 ?>

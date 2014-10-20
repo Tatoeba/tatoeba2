@@ -36,14 +36,24 @@ class TranscriptionsController extends AppController
         $transcriptionId   = $this->params['form']['id'];
         $transcriptionText = $this->params['form']['value'];
 
-        $saved = $this->Transcription->save(array(
-            'id' => $transcriptionId,
-            'text' => $transcriptionText,
-            'dirty' => false,
-        ));
-        if ($saved)
-            $saved = $this->Transcription->findById($transcriptionId);
+        $ownerId = $this->Transcription->getTranscriptionOwner($transcriptionId);
+        $userId = CurrentUser::get('id');
+        $canEdit = ($ownerId == $userId || CurrentUser::isModerator());
 
+        $saved = null;
+        if ($canEdit) {
+            $saved = $this->Transcription->save(array(
+                'id' => $transcriptionId,
+                'text' => $transcriptionText,
+                'dirty' => false,
+            ));
+            if ($saved)
+                $saved = $this->Transcription->findById($transcriptionId);
+        }
+
+        if (isset($this->params['requested'])) {
+            return $canEdit && $saved;
+        }
         $this->set('transcr', $saved);
         $this->layout = null;
     }
