@@ -59,6 +59,7 @@ class Transcription extends AppModel
             'validateType' => array(
                 'rule' => 'numeric',
                 'required' => true,
+                'on' => 'create',
             ),
             'validateUnicity' => array(
                 'rule' => array('isUnique', array('sentence_id', 'script')),
@@ -69,16 +70,31 @@ class Transcription extends AppModel
             'allowEmpty' => true,
         ),
         'text' => array(
-            'rule' => 'notEmpty',
-            'required' => true,
+            'onCreation' => array(
+                'rule' => 'notEmpty',
+                'required' => true,
+                'on' => 'create',
+            ),
+            'onUpdate' => array(
+                'rule' => 'notEmpty',
+                'on' => 'update',
+            ),
         ),
         'script' => array(
-         /* 'rule' =>  see __construct() */
-            'required' => true,
+            'onCreation' => array(
+             /* 'rule' =>  see __construct() */
+                'required' => true,
+                'on' => 'create',
+            ),
+            'onUpdate' => array(
+             /* 'rule' =>  see __construct() */
+                'on' => 'update',
+            ),
         ),
         'dirty' => array(
             'rule' => 'boolean',
             'required' => true,
+            'on' => 'create',
         ),
         'created' => array(
             'rule' => 'notEmpty',
@@ -99,7 +115,9 @@ class Transcription extends AppModel
     public function __construct($id = false, $table = null, $ds = null)
     {
         parent::__construct($id, $table, $ds);
-        $this->validate['script']['rule'] = array('inList', $this->availableScripts);
+        $this->validate['script']['onUpdate']['rule']
+            = $this->validate['script']['onCreation']['rule']
+            = array('inList', $this->availableScripts);
     }
 
     private function getSourceScript($sourceLang, $sourceText = null) {

@@ -3,9 +3,17 @@ App::import('Model', 'Transcription');
 
 class TranscriptionTestCase extends CakeTestCase {
     var $fixtures = array(
-        'app.transcription',
-        'app.sentence',
+        'app.favorites_user',
         'app.language',
+        'app.link',
+        'app.sentence',
+        'app.sentence_annotation',
+        'app.sentences_sentences_list',
+        'app.tag',
+        'app.tags_sentence',
+        'app.transcription',
+        'app.wall',
+        'app.wall_thread',
     );
 
     function startTest() {
@@ -131,5 +139,31 @@ class TranscriptionTestCase extends CakeTestCase {
     function testJapaneseCanBeTranscriptedToRomaji() {
         $result = $this->Transcription->transcriptableToWhat('jpn');
         $this->assertTrue(array_key_exists('Latn', $result));
+    }
+
+    function testEditTrancriptionText() {
+        $result = $this->Transcription->save(array(
+            'id' => 2, 'text' => 'we change this'
+        ));
+        $this->assertTrue($result);
+    }
+    function testEditTrancriptionTextCantBeEmpty() {
+        $result = $this->Transcription->save(array(
+            'id' => 2, 'text' => ''
+        ));
+        $this->assertFalse($result);
+    }
+
+    function testEditScript() {
+        $result = $this->Transcription->save(array(
+            'id' => 2, 'script' => 'Cyrl'
+        ));
+        $this->assertTrue($result);
+    }
+    function testEditScriptMustStillBeAScript() {
+        $result = $this->Transcription->save(array(
+            'id' => 2, 'script' => 'that’s not an script'
+        ));
+        $this->assertFalse($result);
     }
 }
