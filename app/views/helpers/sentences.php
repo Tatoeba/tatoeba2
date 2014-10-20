@@ -600,34 +600,29 @@ class SentencesHelper extends AppHelper
      *
      * @return void
      */
-    private function _displayTranscriptions($transcriptions, $showDirty)
+    private function _displayTranscriptions($transcriptions, $isEditable)
     {
-        if (isset($transcriptions['Latn']) &&
-            (!$transcriptions['Latn']['dirty'] || $showDirty)) {
-            $title = ' title="'.$transcriptions['Latn']['text'].'"';
-            unset($transcriptions['Latn']);
-        } else {
-            $title = '';
-        }
-
         foreach ($transcriptions as $script => $transcr) {
-            if ($transcr['dirty'] && !$showDirty)
+            if ($transcr['dirty'] && !$isEditable)
                 continue;
 
             $this->Javascript->link('jquery.jeditable.js', false);
             $this->Javascript->link('transcriptions.edit_in_place.js', false);
 
-            $text = $transcr['text'];
-            if ($script == 'Hrkt')
-                $text = $this->_rubify($text);
-
-            $class = "romanization";
-            if ($showDirty)
-                $class .= " editableTranscription";
-            echo "<div id=\"$transcr[id]\" class=\"$class\"$title>$text</div>";
+            $this->displayTranscription($transcr, $isEditable);
         }
     }
 
+    public function displayTranscription($transcr, $isEditable) {
+        $text = $transcr['text'];
+        if ($transcr['script'] == 'Hrkt')
+            $text = $this->_rubify($text);
+
+        $class = "romanization";
+        if ($isEditable)
+            $class .= " editableTranscription";
+        echo "<div id=\"$transcr[id]\" class=\"$class\">$text</div>";
+    }
 
     /**
      * Inline Javascript for AJAX loaded sentences group.
