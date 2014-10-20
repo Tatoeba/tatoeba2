@@ -309,7 +309,7 @@ class Wall(models.Model):
         db_table = 'wall'
 
 class WallThreadsLastMessage(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     last_message_date = models.DateTimeField()
     class Meta:
         managed = False

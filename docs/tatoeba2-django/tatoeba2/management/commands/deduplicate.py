@@ -3,7 +3,7 @@
 
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from tatoeba2.models import Sentences, SentencesTranslations, Contributions, Users, Wall, SentenceComments
+from tatoeba2.models import Sentences, SentencesTranslations, Contributions, Users, Wall, SentenceComments, WallThreadsLastMessage
 from collections import defaultdict
 from datetime import datetime
 from optparse import make_option
@@ -454,7 +454,7 @@ class Command(Dedup, BaseCommand):
 
         # no links should refer to dups
         self.log_report('No links refer to deleted duplicates? ')
-        self.ver_links = SentencesTranslations.objects.filter(sentence_id__in=self.all_dups).count() == 0 and SentencesTranslations.objects.filter(translation_id__in=self.all_dups).count()
+        self.ver_links = SentencesTranslations.objects.filter(sentence_id__in=self.all_dups).count() == 0 and SentencesTranslations.objects.filter(translation_id__in=self.all_dups).count() == 0
         msg = 'YES' if self.ver_links else 'NO'
         self.log_report(msg)
         
@@ -465,10 +465,12 @@ class Command(Dedup, BaseCommand):
         if options.get('wall'):
             lft = Wall.objects.all().order_by('-rght')[0].rght + 1
             rght = lft + 1
-            Wall(
+            w = Wall(
                 owner=self.bot.id,
                 content=self.report.getvalue(),
                 date=now(), modified=now(),
                 title='', hidden=0,
                 lft=lft, rght=rght
-                ).save()
+                )
+            w.save()
+            WallThreadsLastMessage(id=w.id, last_message_date=w.modified).save()
