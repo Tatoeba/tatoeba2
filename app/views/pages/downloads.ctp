@@ -91,20 +91,20 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Download sentences', true));
         $downloads_str =  __('Downloads', true);
         $field_struct_str = __('Fields and structure', true);
         $file_desc_str = __('File description', true);
-        $sent_id_str = __('sentence_id', true);
-        $id_str = __('id', true);
-        $text_str = __('text', true);
-        $lang_str = __('lang', true);
-        $username_str = __('username', true);
-        $date_added_str = __('date_added', true);
-        $date_created_str = __('date_created', true);
-        $date_last_mod_str = __('date_last_modified', true);
-        $trans_id_str = __('translation_id', true);
-        $tag_name_str = __('tag_name', true);
-        $list_id_str = __('list_id', true);
-        $list_name_str = __('list_name', true);
-        $meaning_id_str = __('meaning_id', true);
-        $tab_str = __('tab', true);
+        $sent_id_str = 'sentence_id';
+        $id_str = 'id';
+        $text_str = 'text';
+        $lang_str = 'lang';
+        $username_str = 'username';
+        $date_added_str = 'date_added';
+        $date_created_str = 'date_created';
+        $date_last_mod_str = 'date_last_modified';
+        $trans_id_str = 'translation_id';
+        $tag_name_str = 'tag_name';
+        $list_id_str = 'list_id';
+        $list_name_str = 'list_name';
+        $meaning_id_str = 'meaning_id';
+        $tab_str = 'tab';
     ?>
     <div class="module">
         <h2><?php echo $downloads_str; ?></h2>
