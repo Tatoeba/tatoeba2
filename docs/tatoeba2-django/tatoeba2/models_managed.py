@@ -44,6 +44,19 @@ class ArosAcos(models.Model):
     class Meta:
         db_table = 'aros_acos'
 
+# Datetime conversion back and forth from MySQL to Python fails when datetime
+# is zero. MySQL allows datetime to be zero, while Python doesn't. When Python
+# is unable to interpret a datetime, it replaces it by None (see MySQLdb.times,
+# def DateTime_or_None), which stands for NULL to MySQL, whereas the column
+# can't be NULL, so MySQL complains.
+class ZeroedDateTimeField(models.DateTimeField):
+    def get_db_prep_value(self, value, connection, prepared=False):
+        value = super(ZeroedDateTimeField, self).get_db_prep_value(value, connection, prepared)
+        if value is None:
+            return '0000-00-00 00:00:00'
+        else:
+            return value
+
 class Contributions(models.Model):
     sentence_id = models.IntegerField()
     sentence_lang = models.CharField(max_length=4, blank=True)
@@ -52,7 +65,7 @@ class Contributions(models.Model):
     text = models.CharField(max_length=1500)
     action = models.CharField(max_length=6)
     user_id = models.IntegerField(blank=True, null=True)
-    datetime = models.DateTimeField()
+    datetime = ZeroedDateTimeField()
     ip = models.CharField(max_length=15, blank=True)
     type = models.CharField(max_length=8)
     id = models.AutoField(primary_key=True, unique=True)

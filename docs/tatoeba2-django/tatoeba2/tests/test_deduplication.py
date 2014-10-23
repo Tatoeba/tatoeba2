@@ -111,11 +111,11 @@ class TestDedup():
             assert comments[1].sentence_id == 8
 
     def test_merge_logs(db, sents, dedup):
-        assert Contributions.objects.filter(sentence_id=8).count() == 1
-        assert Contributions.objects.all().count() == 4
+        assert Contributions.objects.filter(sentence_id=8).count() == 2
+        assert Contributions.objects.all().count() == 5
         dedup.insert_merge('Contributions', 8, [6, 7], q_filters=Q(type='sentence', action='update') | Q(type='link'))
-        assert Contributions.objects.filter(sentence_id=8).count() == 3
-        assert Contributions.objects.all().count() == 6
+        assert Contributions.objects.filter(sentence_id=8).count() == 4
+        assert Contributions.objects.all().count() == 7
         
         assert Contributions.objects.filter(sentence_id=6).count() == 2
         logs = list(Contributions.objects.filter(text='Logs for 6').order_by('sentence_id'))
@@ -213,7 +213,7 @@ class TestDedup():
         cmd = Command()
         cmd.handle(dry=True)
         assert Sentences.objects.all().count() == 21
-        assert Contributions.objects.all().count() == 4
+        assert Contributions.objects.all().count() == 5
         assert SentenceComments.objects.all().count() == 3
 
     def test_linked_dups_merge(db, sents, linked_dups):
