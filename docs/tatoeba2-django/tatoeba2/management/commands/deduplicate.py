@@ -90,7 +90,7 @@ class Dedup(object):
                 cls.has_owner.add(sent)
 
             # filter unapproved sents
-            if sent.correctness is -1:
+            if sent.correctness == -1:
                 cls.not_approved = True
 
         # has_audio, lowest id

@@ -149,8 +149,7 @@ class TestDedup():
         assert SentenceAnnotations.objects.filter(sentence_id=8).count() == 3
         for ann in SentenceAnnotations.objects.all(): assert ann.sentence_id == 8
 
-    def test_merge_links(db, sents, bot, dedup):
-        dedup.bot = bot
+    def test_merge_links(db, sents, dedup):
 
         assert SentencesTranslations.objects.filter(sentence_id=8).count() == 0
         dedup.update_merge('SentencesTranslations', 8, [6, 7])
@@ -166,8 +165,7 @@ class TestDedup():
         assert lnks_bd[0].sentence_id == 9 and lnks_bd[0].translation_id == 8
         assert lnks_bd[1].sentence_id == 10 and lnks_bd[1].translation_id == 8
 
-    def test_delete_sents(db, sents, bot, dedup):
-        dedup.bot = bot
+    def test_delete_sents(db, sents, dedup):
         assert Sentences.objects.filter(id__in=[6,7]).count() == 2
         assert Contributions.objects.filter(sentence_id__in=[6, 7], type='sentence', action='delete').count() == 0
         dedup.delete_sents(8, [6, 7])

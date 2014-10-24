@@ -1,12 +1,21 @@
 from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Users, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Wall
 from datetime import datetime
 from tatoeba2.management.commands.deduplicate import Dedup
+from django.db import connections
+from django.db.models.loading import get_model
 import pytest
 import os
 
 
-@pytest.fixture(scope='session')
-def sents(db):
+def pytest_addoption(parser):
+    parser.addoption(
+    '--mysql', action='store_true',
+    help='handles mysql-specific resets that even transactions can\'t roll back...(gg mysql, gg)'
+    )
+
+
+@pytest.fixture
+def sents(db, request):
 
     # no owner, no audio, no correctness 1-4
     Sentences(text='Normal, not duplicated.', lang='eng', created=datetime(2014, 1, 1)).save()
@@ -65,7 +74,30 @@ def sents(db):
 
     Wall(owner=1, content='test post', date=datetime.utcnow(), title='', hidden=0, lft=1, rght=2).save()
 
-@pytest.fixture()
+    if request.config.option.mysql:
+        def fin():
+            conn = connections['default']
+
+            def clean_up(model):
+                Model = get_model('tatoeba2.'+model)
+                Model.objects.all().delete()
+                conn.cursor().execute('TRUNCATE TABLE '+Model._meta.db_table+';')
+                conn.cursor().execute('ALTER TABLE '+Model._meta.db_table+' AUTO_INCREMENT = 1;')
+
+            clean_up('Sentences')
+            clean_up('SentencesTranslations')
+            clean_up('SentenceComments')
+            clean_up('TagsSentences')
+            clean_up('SentencesSentencesLists')
+            clean_up('FavoritesUsers')
+            clean_up('Contributions')
+            clean_up('Users')
+            clean_up('Wall')
+            clean_up('SentenceAnnotations')
+
+        request.addfinalizer(fin)
+
+@pytest.fixture
 def bot(db):
     return Users.objects.create(
                 username='deduplication_bot', password='', email='bot@bots.com',
@@ -73,11 +105,12 @@ def bot(db):
                 level=1, is_public=1, send_notifications=0, group_id=1
                 )
 
-@pytest.fixture(scope='module')
-def dedup(request):
+@pytest.fixture
+def dedup(request, bot):
     Dedup.time_init()
     Dedup.logger_init()
     Dedup.dry = False
+    Dedup.bot = bot
     
     def fin():
         os.remove(Dedup.log_file_path)
@@ -85,7 +118,7 @@ def dedup(request):
     
     return Dedup
 
-@pytest.fixture(scope='module')
+@pytest.fixture
 def linked_dups():
     SentencesTranslations(sentence_id=2, translation_id=1, distance=1).save()
     SentencesTranslations(sentence_id=3, translation_id=1, distance=1).save()
