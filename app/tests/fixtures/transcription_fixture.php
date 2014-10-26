@@ -40,5 +40,16 @@ class TranscriptionFixture extends CakeTestFixture {
 			'created' => '2014-10-18 17:43:32',
 			'modified' => '2014-10-18 17:43:32'
 		),
+		array(
+			'id' => 3,
+			'sentence_id' => 10,
+			'parent_id' => '',
+			'script' => 'Hrkt',
+			'text' => 'ちょっと [待|ま]って 。',
+			'dirty' => 0,
+			'user_modified' => 0,
+			'created' => '2014-10-18 17:43:32',
+			'modified' => '2014-10-18 17:43:32'
+		),
 	);
 }

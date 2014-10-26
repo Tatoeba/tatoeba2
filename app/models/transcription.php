@@ -69,9 +69,6 @@ class Transcription extends AppModel
                 'required' => true,
                 'on' => 'create',
             ),
-            'validateUnicity' => array(
-                'rule' => array('isUnique', array('sentence_id', 'script')),
-            ),
         ),
         'parent_id' => array(
             'rule' => 'numeric',
@@ -136,10 +133,29 @@ class Transcription extends AppModel
         $this->setAutotranscription(new Autotranscription());
     }
 
+    public function _isUnique() {
+        $script = $this->_getFieldFromDataOrDatabase('script');
+        if (!$script)
+            return false;
+        $sentenceId = $this->_getFieldFromDataOrDatabase('sentence_id');
+        if (!$sentenceId)
+            return false;
+
+        $conditions = array(
+            'script' => $script,
+            'sentence_id' => $sentenceId,
+        );
+        if (!empty($this->id)) {
+            $conditions['id !='] = $this->id;
+        }
+
+        return ($this->find('count', array('conditions' => $conditions)) == 0);
+    }
+
     public function beforeSave() {
         if (   isset($this->data[$this->alias]['sentence_id'])
             || isset($this->data[$this->alias]['script']))
-            return $this->_isTranscriptionAllowed();
+            return $this->_isUnique() && $this->_isTranscriptionAllowed();
         return true;
     }
 

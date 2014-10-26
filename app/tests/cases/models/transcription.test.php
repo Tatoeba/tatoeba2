@@ -128,9 +128,25 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->_assertValidRecordWithout(0, array('created'));
     }
 
-    function testTranscriptionMustBeUniqueForASentenceAndAScript() {
+    function testTranscriptionMustBeUniqueForASentenceAndAScriptOnCreate() {
         $data = $this->_getRecord(0);
         unset($data['id']);
+
+        $result = (bool)$this->Transcription->save($data);
+
+        $this->assertFalse($result);
+    }
+    function testTranscriptionMustBeUniqueForASentenceAndAScriptOnUpdateScript() {
+        $data = $this->_getRecord(1);
+        $data['script'] = 'Hrkt';
+
+        $result = (bool)$this->Transcription->save($data);
+
+        $this->assertFalse($result);
+    }
+    function testTranscriptionMustBeUniqueForASentenceAndAScriptOnUpdateSentenceId() {
+        $data = $this->_getRecord(2);
+        $data['sentence_id'] = 6;
 
         $result = (bool)$this->Transcription->save($data);
 

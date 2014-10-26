@@ -136,5 +136,18 @@ class SentenceFixture extends CakeTestFixture {
 			'lang_id' => NULL,
 			'script' => null
 		),
+		array(
+			'id' => '10',
+			'lang' => 'jpn',
+			'text' => 'ちょっと待って。',
+			'correctness' => NULL,
+			'user_id' => '7',
+			'created' => '2014-04-15 21:13:23',
+			'modified' => '2014-04-15 21:13:36',
+			'dico_id' => NULL,
+			'hasaudio' => 'no',
+			'lang_id' => NULL,
+			'script' => null
+		),
 	);
 }
