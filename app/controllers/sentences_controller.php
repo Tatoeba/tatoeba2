@@ -163,6 +163,8 @@ class SentencesController extends AppController
             $this->set('commentsPermissions', $commentsPermissions);
             $this->set('contributions', $contributions);
 
+            $canComment = CurrentUser::isMember() && !empty($contributions);
+            $this->set('canComment', $canComment);
 
             // And now we retrieve the sentence
             $sentence = $this->Sentence->getSentenceWithId($id);
@@ -530,10 +532,6 @@ class SentencesController extends AppController
             $sphinx['filter'][] = array('trans_id',$toId);
         }
 
-
-
-
-
         $model = 'Sentence';
         $pagination = array(
             'Sentence' => array(
@@ -862,26 +860,7 @@ class SentencesController extends AppController
 
         $this->set('user_sentences', $sentences);
     }
-
-    /**
-     * Display how the sentences are clustered according to their language.
-     *
-     * @param int $page Page of the map.
-     *
-     * @return void
-     */
-    public function map($page = 1)
-    {
-        $page = Sanitize::paranoid($page);
-
-        $total = 10000;
-        $start = ($page-1) * $total;
-        $end = $start + $total;
-
-        $sentences = $this->Sentence->getSentencesForMap($start, $end);
-        $this->set('page', $page);
-        $this->set('all_sentences', $sentences);
-    }
+    
 
     /**
      * Change language of a sentence.

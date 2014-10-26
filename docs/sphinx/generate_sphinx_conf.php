@@ -356,6 +356,7 @@ index common_index
 index cjk_common_index
 {
 
+    index_field_lengths     = 1
     ngram_len               = 1
     ngram_chars             = U+3000..U+2FA1F
     charset_table           = U+3000..U+2FA1F

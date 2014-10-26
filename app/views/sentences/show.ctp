@@ -168,8 +168,10 @@ $navigation->displaySentenceNavigation(
         ?>
     </div>
 
-    <div class="module">
-        <?php
+    <?php 
+    if ($canComment || !empty($sentenceComments)) { 
+        echo '<div class="module">';
+
         echo '<h2>';
         __('Comments');
         echo '</h2>';
@@ -199,23 +201,29 @@ $navigation->displaySentenceNavigation(
         }
 
         if ($session->read('Auth.User.id')) {
-                $comments->displayCommentForm(
-                    $sentence['Sentence']['id'], 
-                    $sentence['Sentence']['text']
-                );
-            } else {
-                echo '<p>';
-                echo sprintf(
-                    __(
-                        'You need to be logged in to add a comment. If you are '.
-                        'not registered, you can <a href="%s">register here</a>.', 
-                        true
-                    ),
-                    $html->url(array("controller"=>"users", "action"=>"register"))
-                );
-                echo '</p>';
+            $sentenceText = __('Sentence deleted', true);
+            if(isset($sentence['Sentence'])) {
+                $sentenceText = $sentence['Sentence']['text'];
             }
-        ?>        
-    </div>
+            $comments->displayCommentForm(
+                $sentenceId, 
+                $sentenceText
+            );
+        } else {
+            echo '<p>';
+            echo sprintf(
+                __(
+                    'You need to be logged in to add a comment. If you are '.
+                    'not registered, you can <a href="%s">register here</a>.', 
+                    true
+                ),
+                $html->url(array("controller"=>"users", "action"=>"register"))
+            );
+            echo '</p>';
+        }
+        
+        echo '</div>';
+    } 
+    ?>
 </div>
 

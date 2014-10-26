@@ -225,7 +225,7 @@ class Sentence extends AppModel
         if (isset($this->data['Sentence']['lang']))
         {
             $lang = $this->data['Sentence']['lang'];
-            $langId = $this->Language->getIdFromlang($lang);
+            $langId = $this->Language->getIdFromLang($lang);
             $this->data['Sentence']['lang_id'] = $langId;
         }
         return true;
@@ -591,29 +591,6 @@ class Sentence extends AppModel
 
 
     /**
-     * Get sentences to display in map.
-     *
-     * @param int $start Id from where to start.
-     * @param int $end   Id from where to end.
-     *
-     * @return array
-     */
-    public function getSentencesForMap($start, $end)
-    {
-        return $this->find(
-            'all',
-            array(
-                'fields' => array('Sentence.id', 'Sentence.lang'),
-                'order' => 'Sentence.id',
-                'conditions' => array(
-                    'Sentence.id >' => $start, 'Sentence.id <=' => $end
-                ),
-                'contain' => array()
-            )
-        );
-    }
-
-    /**
      * Return previous and following sentence id
      *
      * @param int    $sourceId The sentence id to take as starting point
@@ -903,7 +880,7 @@ class Sentence extends AppModel
             if ($newLang == "" ) {
                 $newLang = null;
             }
-            $newLangId = $this->Language->getIdFromlang($newLang);
+            $newLangId = $this->Language->getIdFromLang($newLang);
 
             $data['Sentence'] = array(
                 'lang' => $newLang,

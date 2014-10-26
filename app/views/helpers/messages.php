@@ -310,7 +310,7 @@ class MessagesHelper extends AppHelper
 
         if (!$hidden || $canViewContent) {
             ?><div class="content"><?php
-            echo $this->_formatedContent($content);
+            echo $this->formatedContent($content);
             ?></div><?php   
         }
 
@@ -410,20 +410,11 @@ class MessagesHelper extends AppHelper
      *
      * @return string The comment body formatted for HTML display.
      */
-    private function _formatedContent($content) {
+    public function formatedContent($content) {
         $content = htmlentities($content, ENT_QUOTES, 'UTF-8');
 
         // Convert sentence mentions to links
-        $self = $this;
-        $content = preg_replace_callback('/([^\\\&]|^)(#(\d+))/', function ($m) use ($self) {
-            return $m[1] . $self->Html->link($m[2], array(
-                'controller' => 'sentences',
-                'action' => 'show',
-                $m[3]
-            ));
-        }, $content);
-
-        $content = str_replace('\\#', '#', $content);
+        $content = $this->ClickableLinks->clickableSentence($content);
 
         // Make URLs clickable
         $content = $this->ClickableLinks->clickableURL($content);
@@ -432,6 +423,75 @@ class MessagesHelper extends AppHelper
         $content = nl2br($content);
 
         return $content;
+    }
+
+
+    /**
+     * Displays the preview (first X characters) of a message. 
+     * If possible, it will not cut the message in the middle of a word or a link.
+     * 
+     * @param  String  $content     The whole content.
+     * @param  integer $length      Number of characters of the preview.
+     * @param  integer $extraLength Tells how far we should search for a "space"
+     *                              character, when trying to not cut the text
+     *                              in the middle of a word/link.
+     * 
+     * @return String               Preview text
+     */
+    public function preview($content, $length = 200, $extraLength = 100)
+    {
+        $contentBefore = mb_substr($content, 0, $length);
+        $contentAfter = mb_substr($content, $length);
+
+        $spaceAfter = mb_strpos($contentAfter, " ");
+        $newLineAfter = mb_strpos($contentAfter, PHP_EOL);
+        if (!$spaceAfter || $newLineAfter < $spaceAfter) {
+            $spaceAfter = $newLineAfter;
+        }
+
+        $hasLink = $this->ClickableLinks->hasClickableLink($content);
+
+        $formatContent = true;
+
+        if ($spaceAfter && $spaceAfter < $extraLength) {
+            
+            // We want to display 200 + a few more charafters. The few more
+            // characters are the ones that are before the 1st "space" that we find
+            // after the 200 characters.
+            $lengthToCut = $length + $spaceAfter;
+            $previewContent = mb_substr($content, 0, $lengthToCut);
+            $displayElipsis = mb_strlen($content) > $lengthToCut;
+
+        } else if ($hasLink && mb_strlen($content) <= $length + $extraLength) {
+
+            // Normally, if fall in this case, then we're either trying to cut
+            // a text in a language that has no space, or we're cutting the text
+            // in a middle of an URL. In this case, if the message is not too long
+            // we display it entirely.
+            $previewContent = $content;
+            $displayElipsis = false;
+
+        } else {
+
+            // If we can't do a "soft" truncation, then we just hard truncate.
+            // In case of hard truncation, we don't format the text.
+            $previewContent = mb_substr($content, 0, $length);
+            $displayElipsis = mb_strlen($content) > $length;
+            $formatContent = false;
+
+        }
+
+        if ($formatContent) {
+            $previewContent = $this->formatedContent($previewContent);
+        } else {
+            $previewContent = nl2br($previewContent);
+        }
+
+        if ($displayElipsis) {
+            $previewContent .= ' [...]';
+        }
+
+        return $previewContent;
     }
 
 }

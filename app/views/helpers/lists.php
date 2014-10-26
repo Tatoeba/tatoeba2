@@ -499,7 +499,7 @@ class ListsHelper extends AppHelper
 
         <?php
         $removeFromListAlt = sprintf(
-            __("remove sentence % from list", true),
+            __("Remove sentence %d from list", true),
             $sentenceId
         );
 
@@ -508,7 +508,8 @@ class ListsHelper extends AppHelper
             array(
                 "class" => "removeFromListButton",
                 "id" => 'deleteButton'.$sentenceId,
-                "alt" => $removeFromListAlt
+                "alt" => $removeFromListAlt,
+                "title" => __("Remove from list", true)
             )
         );
         ?>
