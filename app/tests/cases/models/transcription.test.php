@@ -3,15 +3,20 @@ App::import('Model', 'Transcription');
 
 class TranscriptionTestCase extends CakeTestCase {
     var $fixtures = array(
+        'app.contribution',
+        'app.country',
         'app.favorites_user',
+        'app.group',
         'app.language',
         'app.link',
         'app.sentence',
         'app.sentence_annotation',
-        'app.sentences_sentences_list',
+        'app.sentence_comment',
+        'app.sentences_list',
         'app.tag',
         'app.tags_sentence',
         'app.transcription',
+        'app.user',
         'app.wall',
         'app.wall_thread',
     );
@@ -203,5 +208,20 @@ class TranscriptionTestCase extends CakeTestCase {
             'text' => 'Transcript of Japanese into Japanese??',
         ));
         $this->assertFalse($result);
+    }
+
+    function testGenerateTranscriptionCallsGenerator() {
+        $jpnSentence = $this->Transcription->Sentence->find('first', array(
+            'conditions' => array('Sentence.lang' => 'jpn')
+        ));
+        Mock::generate('Autotranscription');
+        $autotranscription =& new MockAutotranscription;
+        $autotranscription->expectOnce(
+            '_getFurigana',
+            array($jpnSentence['Sentence']['text'])
+        );
+        $this->Transcription->setAutotranscription($autotranscription);
+
+        $this->Transcription->generateTranscription($jpnSentence, 'Hrkt');
     }
 }

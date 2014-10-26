@@ -393,7 +393,7 @@ class Autotranscription
     /**
      * Convert Japanese text into furigana.
      */
-    private function _getFurigana($text)
+    public function _getFurigana($text)
     {
         $romanization = "";
 

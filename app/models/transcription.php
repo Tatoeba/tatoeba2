@@ -17,8 +17,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+App::import('Vendor', 'autotranscription');
+
 class Transcription extends AppModel
 {
+    /**
+     * Autotranscription class
+     */
+    private $autotranscription;
+
     public $availableScripts = array( /* ISO 15924 */
         'Cyrl', 'Hrkt', 'Jpan', 'Latn',
     );
@@ -29,7 +36,7 @@ class Transcription extends AppModel
     private $availableTranscriptions = array(
         'jpn-Jpan' => array(
             'Hrkt' => array(
-                'generator' => null /* TODO */
+                'generator' => '_getFurigana',
             ),
             'Latn' => array(
                 'chain' => array('jpn-Hrkt'),
@@ -116,12 +123,17 @@ class Transcription extends AppModel
         ),
     );
 
+    public function setAutotranscription($object) {
+        $this->autotranscription = $object;
+    }
+
     public function __construct($id = false, $table = null, $ds = null)
     {
         parent::__construct($id, $table, $ds);
         $this->validate['script']['onUpdate']['rule']
             = $this->validate['script']['onCreation']['rule']
             = array('inList', $this->availableScripts);
+        $this->setAutotranscription(new Autotranscription());
     }
 
     public function beforeSave() {
@@ -163,6 +175,17 @@ class Transcription extends AppModel
         return ($targetScript && isset($transcriptions[$targetScript]));
     }
 
+    private function getSourceLangScript($sourceSentence) {
+        $sourceLang = $sourceSentence['lang'];
+        $sourceScript = $sourceSentence['script'];
+        if (!$sourceScript)
+            $sourceScript = $this->getSourceScript($sourceLang);
+        if (!$sourceScript)
+            return false;
+
+        return $sourceLang . '-' . $sourceScript;
+    }
+
     private function getSourceScript($sourceLang) {
         if (isset($this->scriptsByLang[$sourceLang])) {
             if (count($this->scriptsByLang[$sourceLang]) == 1) {
@@ -176,19 +199,14 @@ class Transcription extends AppModel
         if (isset($sourceSentence['Sentence']))
             $sourceSentence = $sourceSentence['Sentence'];
 
-        $sourceLang = $sourceSentence['lang'];
-
-        $sourceScript = $sourceSentence['script'];
-        if (!$sourceScript)
-            $sourceScript = $this->getSourceScript($sourceLang);
-        if (!$sourceScript)
+        $langScript = $this->getSourceLangScript($sourceSentence);
+        if (!$langScript)
             return array();
 
-        $sourceScript = $sourceLang . '-' . $sourceScript;
-        if (!isset($this->availableTranscriptions[$sourceScript]))
+        if (!isset($this->availableTranscriptions[$langScript]))
             return array();
 
-        $targetScripts = array_keys($this->availableTranscriptions[$sourceScript]);
+        $targetScripts = array_keys($this->availableTranscriptions[$langScript]);
         $targetScripts = array_flip($targetScripts);
         return $targetScripts;
     }
@@ -201,6 +219,20 @@ class Transcription extends AppModel
             'text' => $text,
         );
         return (bool)$this->save($transcription);
+    }
+
+    public function generateTranscription($sentence, $targetScript) {
+        if (isset($sentence['Sentence']))
+            $sentence = $sentence['Sentence'];
+
+        $langScript = $this->getSourceLangScript($sentence);
+        if (!isset($this->availableTranscriptions[$langScript][$targetScript]))
+            return false;
+
+        $process = $this->availableTranscriptions[$langScript][$targetScript];
+        if (isset($process['generator']))
+            return $this->autotranscription->{$process['generator']}($sentence['text']);
+        return false;
     }
 
     public function getTranscriptionOwner($transcriptionId) {
