@@ -8,6 +8,7 @@ CREATE TABLE `transcriptions` (
      So that’s about 5000, and I double it because I suck at estimating. */
   `text` varbinary(10000) NOT NULL,
   `dirty` BOOLEAN NOT NULL,
+  `user_modified` BOOLEAN DEFAULT FALSE NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   CONSTRAINT `unique_transcriptions` UNIQUE (`sentence_id`,`script`),

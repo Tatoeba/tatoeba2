@@ -1,5 +1,5 @@
 <?php
-/* Transcription Fixture generated on: 2014-10-18 17:43:32 : 1413654212 */
+/* Transcription Fixture generated on: 2014-10-26 15:19:49 : 1414336789 */
 class TranscriptionFixture extends CakeTestFixture {
 	var $name = 'Transcription';
 
@@ -10,6 +10,7 @@ class TranscriptionFixture extends CakeTestFixture {
 		'script' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'text' => array('type' => 'text', 'null' => false, 'default' => NULL, 'length' => 10000),
 		'dirty' => array('type' => 'boolean', 'null' => false, 'default' => NULL),
+		'user_modified' => array('type' => 'boolean', 'null' => false, 'default' => '0'),
 		'created' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
 		'modified' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
 		'indexes' => array('PRIMARY' => array('column' => 'id', 'unique' => 1), 'unique_transcriptions' => array('column' => array('sentence_id', 'script'), 'unique' => 1)),
@@ -24,6 +25,7 @@ class TranscriptionFixture extends CakeTestFixture {
 			'script' => 'Hrkt',
 			'text' => 'その [問題|もんだい] の [根本|こんぽん] [原因|げんいん] は 、 [現代|げんだい] の [世界|せかい] において 、 [賢明|けんめい] な [人々|ひとびと] が [猜疑心|さいぎしん] に [満|み]ちている [一方|いっぽう] で、[愚|おろ]か な [人々|ひとびと] が [自信|じしん] [過剰|かじょう] で ある という こと で ある 。',
 			'dirty' => 0,
+			'user_modified' => 0,
 			'created' => '2014-10-18 17:43:32',
 			'modified' => '2014-10-18 17:43:32'
 		),
@@ -34,6 +36,7 @@ class TranscriptionFixture extends CakeTestFixture {
 			'script' => 'Latn',
 			'text' => 'sono mondai no konpon gen\'in wa, gendai no sekai nioite, kenmei na hitobito ga saigishin ni michiteiru ippō de, oroka na hitobito ga jishin kajō de aru toiu koto de aru.',
 			'dirty' => 0,
+			'user_modified' => 0,
 			'created' => '2014-10-18 17:43:32',
 			'modified' => '2014-10-18 17:43:32'
 		),
