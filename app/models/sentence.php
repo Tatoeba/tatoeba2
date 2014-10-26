@@ -256,6 +256,13 @@ class Sentence extends AppModel
                 $this->id, $sentenceLang, $sentenceText, $sentenceAction
             );
         }
+
+        if ($created) {
+            $sentence = $this->data[$this->alias];
+            if (!isset($sentence['id']))
+                $sentence['id'] = $this->getLastInsertID();
+            $this->Transcription->generateAndSaveAllTranscriptionsFor($sentence);
+        }
     }
 
     /**

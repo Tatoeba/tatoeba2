@@ -193,7 +193,9 @@ class Transcription extends AppModel
 
     private function getSourceLangScript($sourceSentence) {
         $sourceLang = $sourceSentence['lang'];
-        $sourceScript = $sourceSentence['script'];
+        $sourceScript = false;
+        if (isset($sourceSentence['script']))
+            $sourceScript = $sourceSentence['script'];
         if (!$sourceScript)
             $sourceScript = $this->getSourceScript($sourceLang);
         if (!$sourceScript)
