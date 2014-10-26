@@ -132,13 +132,6 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->assertFalse($result);
     }
 
-    function testSaveTranscription_savesOneTranscription() {
-        $before = $this->Transcription->find('count');
-        $this->Transcription->saveTranscription(8, 'Latn', true, 'Vive l’anarchie !');
-        $after = $this->Transcription->find('count');
-        $this->assertEqual($after - $before, 1);
-    }
-
     function testJapaneseCanBeTranscriptedToKanas() {
         $jpnSentence = $this->Transcription->Sentence->find('first', array(
             'conditions' => array('Sentence.lang' => 'jpn')
@@ -168,14 +161,46 @@ class TranscriptionTestCase extends CakeTestCase {
     }
 
     function testEditScript() {
+        $this->Transcription->delete(2); // to avoid uniqness error
         $result = $this->Transcription->save(array(
-            'id' => 2, 'script' => 'Cyrl'
+            'id' => 1, 'script' => 'Latn'
         ));
         $this->assertTrue($result);
     }
     function testEditScriptMustStillBeAScript() {
         $result = $this->Transcription->save(array(
             'id' => 2, 'script' => 'that’s not an script'
+        ));
+        $this->assertFalse($result);
+    }
+
+    function testCantSaveTranscriptionWithoutInvalidParent() {
+        $nonexistantSentenceId = 52715278;
+        $result = $this->Transcription->save(array(
+            'sentence_id' => $nonexistantSentenceId,
+            'script' => 'Latn',
+            'text' => 'Transcription with invalid parent.',
+            'dirty' => 0,
+        ));
+        $this->assertFalse($result);
+    }
+
+    function testCantSaveNotAllowedTranscriptionOnInsert() {
+        $englishSentenceId = 1;
+        $result = $this->Transcription->save(array(
+            'sentence_id' => $englishSentenceId,
+            'script' => 'Latn',
+            'text' => 'Transcript of English into Latin script??',
+            'dirty' => 0,
+        ));
+        $this->assertFalse($result);
+    }
+
+    function testCantSaveNotAllowedTranscriptionOnUpdate() {
+        $result = $this->Transcription->save(array(
+            'id' => 1,
+            'script' => 'Jpan',
+            'text' => 'Transcript of Japanese into Japanese??',
         ));
         $this->assertFalse($result);
     }

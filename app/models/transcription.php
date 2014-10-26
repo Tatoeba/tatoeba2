@@ -124,6 +124,45 @@ class Transcription extends AppModel
             = array('inList', $this->availableScripts);
     }
 
+    public function beforeSave() {
+        if (   isset($this->data[$this->alias]['sentence_id'])
+            || isset($this->data[$this->alias]['script']))
+            return $this->_isTranscriptionAllowed();
+        return true;
+    }
+
+    private function _getFieldFromDataOrDatabase($fieldName) {
+        $data = $this->data[$this->alias];
+        $fieldValue = false;
+        if (isset($data[$fieldName])) {
+            $fieldValue = $data[$fieldName];
+        } elseif (isset($data['id'])) {
+            $fieldValue = $this->field($fieldName,
+                array('id' => $data['id'])
+            );
+        }
+        return $fieldValue;
+    }
+
+    private function _isTranscriptionAllowed() {
+        $targetScript = $this->_getFieldFromDataOrDatabase('script');
+        if (!$targetScript)
+            return false;
+
+        $parentSentenceId = $this->_getFieldFromDataOrDatabase('sentence_id');
+        if (!$parentSentenceId)
+            return false;
+        $parentSentence = $this->Sentence->find('first', array(
+            'conditions' => array('Sentence.id' => $parentSentenceId)
+        ));
+        if (!$parentSentence)
+            return false;
+
+        $transcriptions = $this->transcriptableToWhat($parentSentence);
+
+        return ($targetScript && isset($transcriptions[$targetScript]));
+    }
+
     private function getSourceScript($sourceLang) {
         if (isset($this->scriptsByLang[$sourceLang])) {
             if (count($this->scriptsByLang[$sourceLang]) == 1) {
