@@ -39,6 +39,36 @@ class LogsHelper extends AppHelper
 
     public $helpers = array('Date', 'Html', 'Languages');
 
+    private function _findLatestContributionDates($contributions) {
+        $latestContribs = array();
+        foreach ($contributions as $contribution) {
+            $sentenceId = $contribution['Contribution']['sentence_id'];
+            $contribTime = strtotime($contribution['Contribution']['datetime']);
+            if (!isset($latestContribs[$sentenceId]) ||
+                (isset($latestContribs[$sentenceId]) && $latestContribs[$sentenceId] < $contribTime)) {
+                $latestContribs[$sentenceId] = $contribTime;
+            }
+        }
+        return $latestContribs;
+    }
+
+    /**
+     * Mark contributions that are not the latest contributions of a given set
+     * as obsolete, and the others as non obsolete.
+     *
+     * @param array $contributions Set of contributions which is
+     *                             to be displayed together.
+     * @return void
+     */
+    public function obsoletize(&$contributions) {
+        $latestContribs = $this->_findLatestContributionDates($contributions);
+        foreach ($contributions as &$contribution) {
+            $sentenceId = $contribution['Contribution']['sentence_id'];
+            $contribTime = strtotime($contribution['Contribution']['datetime']);
+            $contribution['Contribution']['obsolete'] = ($contribTime < $latestContribs[$sentenceId]);
+        }
+    }
+
     /**
      * Display a contribution.
      *
@@ -114,6 +144,7 @@ class LogsHelper extends AppHelper
 
         $dir = $this->Languages->getLanguageDirection($lang);
         // sentence text
+        $textClass = (isset($contribution['obsolete']) && $contribution['obsolete']) ? 'obsolete' : null;
         echo '<td class="text">';
         echo $this->Html->link(
             $contributionText,
@@ -123,7 +154,8 @@ class LogsHelper extends AppHelper
                 $contributionId
             ),
             array(
-                'dir' => $dir
+                'dir' => $dir,
+                'class' => $textClass
             )
         );
         echo '</td>';

@@ -70,6 +70,7 @@ $this->set('title_for_layout', "Tatoeba - " . __("Latest contributions", true));
         <h2><?php __('Latest contributions'); ?></h2>
         <table id="logs">
         <?php
+        $logs->obsoletize($contributions);
         foreach ($contributions as $contribution) {
             $logs->entry(
                 $contribution['Contribution'],
