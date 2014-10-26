@@ -237,6 +237,35 @@ class Transcription extends AppModel
         return (bool)$this->save($transcription);
     }
 
+    public function generateAndSaveAllTranscriptionsFor($sentence) {
+        if (isset($sentence['Sentence']))
+            $sentence = $sentence['Sentence'];
+
+        $langScript = $this->getSourceLangScript($sentence);
+        if (!isset($this->availableTranscriptions[$langScript]))
+            return;
+
+        $transcriptions = array();
+        foreach ($this->availableTranscriptions[$langScript] as $targetScript => $process) {
+            if (!isset($process['chain'])) {
+                $transcription = $this->generateTranscription($sentence, $targetScript);
+                if ($transcription)
+                    $transcriptions[] = $transcription;
+            }
+        }
+        $this->saveAll($transcriptions, array('validate' => true));
+
+        $transcriptions = array();
+        foreach ($this->availableTranscriptions[$langScript] as $targetScript => $process) {
+            if (isset($process['chain'])) {
+                $transcription = $this->generateTranscription($sentence, $targetScript);
+                if ($transcription)
+                    $transcriptions[] = $transcription;
+            }
+        }
+        $this->saveAll($transcriptions, array('validate' => true));
+    }
+
     public function generateTranscription($sentence, $targetScript) {
         if (isset($sentence['Sentence']))
             $sentence = $sentence['Sentence'];
@@ -253,7 +282,8 @@ class Transcription extends AppModel
             'sentence_id' => $sentence['id'],
             'parent_id' => $parentId,
             'script' => $targetScript,
-            'text' => $text
+            'text' => $text,
+            'dirty' => false
         );
     }
 

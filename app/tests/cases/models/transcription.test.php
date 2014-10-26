@@ -226,17 +226,21 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->assertFalse($result);
     }
 
+    function _installAutotranscriptionMock() {
+        Mock::generate('Autotranscription');
+        $autotranscription =& new MockAutotranscription;
+        $this->Transcription->setAutotranscription($autotranscription);
+        return $autotranscription;
+    }
+
     function testGenerateTranscriptionCallsGenerator() {
         $jpnSentence = $this->Transcription->Sentence->find('first', array(
             'conditions' => array('Sentence.lang' => 'jpn')
         ));
-        Mock::generate('Autotranscription');
-        $autotranscription =& new MockAutotranscription;
-        $autotranscription->expectOnce(
+        $this->_installAutotranscriptionMock()->expectOnce(
             '_getFurigana',
             array($jpnSentence['Sentence']['text'])
         );
-        $this->Transcription->setAutotranscription($autotranscription);
 
         $this->Transcription->generateTranscription($jpnSentence, 'Hrkt');
     }
@@ -246,23 +250,17 @@ class TranscriptionTestCase extends CakeTestCase {
             'conditions' => array('Transcription.id' => 1),
             'contain' => array('Sentence')
         ));
-        Mock::generate('Autotranscription');
-        $autotranscription =& new MockAutotranscription;
-        $autotranscription->expectOnce(
+        $this->_installAutotranscriptionMock()->expectOnce(
             'jpn',
             array($transcript['Transcription']['text'])
         );
-        $this->Transcription->setAutotranscription($autotranscription);
 
         $this->Transcription->generateTranscription($transcript['Sentence'], 'Latn');
     }
 
     function testGenerateTranscriptionReturnsTranscription() {
         $jpnSentence = $this->Transcription->Sentence->findById(6);
-        Mock::generate('Autotranscription');
-        $autotranscription =& new MockAutotranscription;
-        $autotranscription->setReturnValue('_getFurigana', 'stuff');
-        $this->Transcription->setAutotranscription($autotranscription);
+        $this->_installAutotranscriptionMock()->setReturnValue('_getFurigana', 'stuff');
 
         $result = $this->Transcription->generateTranscription($jpnSentence, 'Hrkt');
 
@@ -270,17 +268,15 @@ class TranscriptionTestCase extends CakeTestCase {
             'sentence_id' => 6,
             'parent_id' => null,
             'script' => 'Hrkt',
-            'text' => 'stuff'
+            'text' => 'stuff',
+            'dirty' => false,
         );
         $this->assertEqual($expected, $result);
     }
 
     function testGenerateTranscriptionReturnsTranscriptionWithParent() {
         $jpnSentence = $this->Transcription->Sentence->findById(6);
-        Mock::generate('Autotranscription');
-        $autotranscription =& new MockAutotranscription;
-        $autotranscription->setReturnValue('jpn', 'stuff in Latin');
-        $this->Transcription->setAutotranscription($autotranscription);
+        $this->_installAutotranscriptionMock()->setReturnValue('jpn', 'stuff in Latin');
 
         $result = $this->Transcription->generateTranscription($jpnSentence, 'Latn');
 
@@ -288,8 +284,24 @@ class TranscriptionTestCase extends CakeTestCase {
             'sentence_id' => 6,
             'parent_id' => 1,
             'script' => 'Latn',
-            'text' => 'stuff in Latin'
+            'text' => 'stuff in Latin',
+            'dirty' => false,
         );
         $this->assertEqual($expected, $result);
+    }
+
+    function testGenerateAndSaveAllTranscriptionsFor() {
+        $this->Transcription->deleteAll('1=1');
+        $jpnSentence = $this->Transcription->Sentence->findById(6);
+        $autotranscription = $this->_installAutotranscriptionMock();
+        $autotranscription->setReturnValue('jpn', 'stuff in Latin');
+        $autotranscription->setReturnValue('_getFurigana', 'stuff in kana');
+
+        $this->Transcription->generateAndSaveAllTranscriptionsFor($jpnSentence);
+
+        $created = $this->Transcription->find('count', array(
+            'conditions' => array('sentence_id' => 6)
+        ));
+        $this->assertEqual(2, $created);
     }
 }
