@@ -224,4 +224,56 @@ class TranscriptionTestCase extends CakeTestCase {
 
         $this->Transcription->generateTranscription($jpnSentence, 'Hrkt');
     }
+
+    function testGenerateTranscriptionChains() {
+        $transcript = $this->Transcription->find('first', array(
+            'conditions' => array('Transcription.id' => 1),
+            'contain' => array('Sentence')
+        ));
+        Mock::generate('Autotranscription');
+        $autotranscription =& new MockAutotranscription;
+        $autotranscription->expectOnce(
+            'jpn',
+            array($transcript['Transcription']['text'])
+        );
+        $this->Transcription->setAutotranscription($autotranscription);
+
+        $this->Transcription->generateTranscription($transcript['Sentence'], 'Latn');
+    }
+
+    function testGenerateTranscriptionReturnsTranscription() {
+        $jpnSentence = $this->Transcription->Sentence->findById(6);
+        Mock::generate('Autotranscription');
+        $autotranscription =& new MockAutotranscription;
+        $autotranscription->setReturnValue('_getFurigana', 'stuff');
+        $this->Transcription->setAutotranscription($autotranscription);
+
+        $result = $this->Transcription->generateTranscription($jpnSentence, 'Hrkt');
+
+        $expected = array(
+            'sentence_id' => 6,
+            'parent_id' => null,
+            'script' => 'Hrkt',
+            'text' => 'stuff'
+        );
+        $this->assertEqual($expected, $result);
+    }
+
+    function testGenerateTranscriptionReturnsTranscriptionWithParent() {
+        $jpnSentence = $this->Transcription->Sentence->findById(6);
+        Mock::generate('Autotranscription');
+        $autotranscription =& new MockAutotranscription;
+        $autotranscription->setReturnValue('jpn', 'stuff in Latin');
+        $this->Transcription->setAutotranscription($autotranscription);
+
+        $result = $this->Transcription->generateTranscription($jpnSentence, 'Latn');
+
+        $expected = array(
+            'sentence_id' => 6,
+            'parent_id' => 1,
+            'script' => 'Latn',
+            'text' => 'stuff in Latin'
+        );
+        $this->assertEqual($expected, $result);
+    }
 }

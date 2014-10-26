@@ -44,7 +44,7 @@ class Transcription extends AppModel
         ),
         'jpn-Hrkt' => array(
             'Latn' => array(
-                'generator' => null /* TODO */
+                'generator' => 'jpn'
             ),
         ),
         'uzb-Latn' => array(
@@ -229,9 +229,45 @@ class Transcription extends AppModel
         if (!isset($this->availableTranscriptions[$langScript][$targetScript]))
             return false;
 
+        $text = $this->_generateTranscription($sentence['id'], $sentence['text'], $langScript, $targetScript, $parentId);
+        if (!$text)
+            return false;
+
+        return array(
+            'sentence_id' => $sentence['id'],
+            'parent_id' => $parentId,
+            'script' => $targetScript,
+            'text' => $text
+        );
+    }
+
+    private function _generateTranscription($sentenceId, $text, $langScript, $targetScript, &$parent = null) {
         $process = $this->availableTranscriptions[$langScript][$targetScript];
+
         if (isset($process['generator']))
-            return $this->autotranscription->{$process['generator']}($sentence['text']);
+            return $this->autotranscription->{$process['generator']}($text);
+
+        if (isset($process['chain'])) {
+            $interLangScript = $process['chain'][0];
+            $interScript = substr($interLangScript, strpos($interLangScript, '-') + 1);
+            $intermediate = $this->find('first', array(
+                'conditions' => array(
+                    'sentence_id' => $sentenceId,
+                    'script' => $interScript
+                )
+            ));
+            if (!$intermediate)
+                return false;
+            $parent = $intermediate['Transcription']['id'];
+            return $this->_generateTranscription(
+                $sentenceId,
+                $intermediate['Transcription']['text'],
+                $interLangScript,
+                $targetScript,
+                $parent
+            );
+        }
+
         return false;
     }
 
