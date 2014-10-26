@@ -124,21 +124,24 @@ class Transcription extends AppModel
             = array('inList', $this->availableScripts);
     }
 
-    private function getSourceScript($sourceLang, $sourceText = null) {
+    private function getSourceScript($sourceLang) {
         if (isset($this->scriptsByLang[$sourceLang])) {
             if (count($this->scriptsByLang[$sourceLang]) == 1) {
                 return $this->scriptsByLang[$sourceLang][0];
-            } else {
-                // TODO: need to do some further research based on $souceText
-                return false;
             }
-        } else {
-            return false;
         }
+        return false;
     }
 
-    public function transcriptableToWhat($sourceLang, $sourceText = null) {
-        $sourceScript = $this->getSourceScript($sourceLang, $sourceText);
+    public function transcriptableToWhat($sourceSentence) {
+        if (isset($sourceSentence['Sentence']))
+            $sourceSentence = $sourceSentence['Sentence'];
+
+        $sourceLang = $sourceSentence['lang'];
+
+        $sourceScript = $sourceSentence['script'];
+        if (!$sourceScript)
+            $sourceScript = $this->getSourceScript($sourceLang);
         if (!$sourceScript)
             return array();
 

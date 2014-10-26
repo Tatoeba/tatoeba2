@@ -140,11 +140,17 @@ class TranscriptionTestCase extends CakeTestCase {
     }
 
     function testJapaneseCanBeTranscriptedToKanas() {
-        $result = $this->Transcription->transcriptableToWhat('jpn');
+        $jpnSentence = $this->Transcription->Sentence->find('first', array(
+            'conditions' => array('Sentence.lang' => 'jpn')
+        ));
+        $result = $this->Transcription->transcriptableToWhat($jpnSentence);
         $this->assertTrue(array_key_exists('Hrkt', $result));
     }
     function testJapaneseCanBeTranscriptedToRomaji() {
-        $result = $this->Transcription->transcriptableToWhat('jpn');
+        $jpnSentence = $this->Transcription->Sentence->find('first', array(
+            'conditions' => array('Sentence.lang' => 'jpn')
+        ));
+        $result = $this->Transcription->transcriptableToWhat($jpnSentence);
         $this->assertTrue(array_key_exists('Latn', $result));
     }
 

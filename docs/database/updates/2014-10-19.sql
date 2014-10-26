@@ -14,3 +14,5 @@ CREATE TABLE `transcriptions` (
   CONSTRAINT `unique_transcriptions` UNIQUE (`sentence_id`,`script`),
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+ALTER TABLE sentences ADD script varchar(4);
