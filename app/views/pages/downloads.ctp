@@ -91,19 +91,18 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Download sentences', true));
         $downloads_str =  __('Downloads', true);
         $field_struct_str = __('Fields and structure', true);
         $file_desc_str = __('File description', true);
-        $sent_id_str = __('sentence_id', true);
-        $id_str = __('id', true);
-        $text_str = __('text', true);
-        $lang_str = __('lang', true);
-        $username_str = __('username', true);
-        $date_added_str = __('date_added', true);
-        $date_created_str = __('date_created', true);
-        $date_last_mod_str = __('date_last_modified', true);
-        $trans_id_str = __('translation_id', true);
-        $tag_name_str = __('tag_name', true);
-        $list_id_str = __('list_id', true);
-        $list_name_str = __('list_name', true);
-        $meaning_id_str = __('meaning_id', true);
+        $sent_id_str = __('Sentence id', true);
+        $text_str = __('Text', true);
+        $lang_str = __('Language', true);
+        $username_str = __('Username', true);
+        $date_added_str = __('Added date', true);
+        $date_created_str = __('Created date', true);
+        $date_last_mod_str = __('Last modification date', true);
+        $trans_id_str = __('Translation id', true);
+        $tag_name_str = __('Tag name', true);
+        $list_id_str = __('List id', true);
+        $list_name_str = __('List name', true);
+        $meaning_id_str = __('Meaning id', true);
         $tab_str = __('tab', true);
     ?>
     <div class="module">
@@ -131,14 +130,14 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Download sentences', true));
             </dd>
             <dt><?php echo $field_struct_str; ?></dt>
             <dd>
-                1. <span class="param"><?php echo $id_str; ?></span>
+                1. <span class="param"><?php echo $sent_id_str; ?></span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
                 <span class="param"><?php echo $lang_str; ?></span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
                 <span class="param"><?php echo $text_str; ?></span>
             </dd>
             <dd>
-                2. <span class="param"><?php echo $id_str; ?></span>
+                2. <span class="param"><?php echo $sent_id_str; ?></span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
                 <span class="param"><?php echo $lang_str; ?></span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
@@ -244,7 +243,7 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Download sentences', true));
             </dd>
             <dt><?php echo $field_struct_str; ?></dt>
             <dd>
-                <span class="param"><?php echo $id_str; ?></span>
+                <span class="param"><?php echo $list_id_str; ?></span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
                 <span class="param"><?php echo $username_str; ?></span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
