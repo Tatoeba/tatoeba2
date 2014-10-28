@@ -324,6 +324,42 @@ class MenuHelper extends AppHelper
     <?php
     }
 
+    public function linkToSentenceButton($sentenceId) {
+        $linkToSentenceButton = $this->Html->Image(
+            IMG_PATH . 'link.png',
+            array(
+                'alt'=>__('Link to another sentence', true),
+                'title'=>__('Link to another sentence', true),
+                'width' => 16,
+                'height' => 16,
+                'onClick' => "linkToSentence($sentenceId)",
+            )
+        );
+        ?>
+        <li class="linkTo"><a><?php echo $linkToSentenceButton; ?></a></li>
+
+        <li style="display:none" id="linkTo<?php echo $sentenceId; ?>">
+        <?php
+        echo $this->Form->input('linkToSentence'.$sentenceId, array(
+            'label' => false,
+            'placeholder' => __('Sentence number', true),
+            'class' => 'sentenceId'
+        ));
+
+        echo $this->Form->button(
+            __('Link', true),
+            array(
+                'type' => 'button',
+                'id' => 'linkToSubmitButton'.$sentenceId,
+                'class' => 'validateButton',
+            )
+        );
+
+        ?>
+        </li>
+        <?php
+        $this->Javascript->link('sentences.link.js', false);
+    }
 
     /**
      * Display button to add a sentence to a list.
@@ -538,6 +574,10 @@ class MenuHelper extends AppHelper
 
         // Add to list
         $this->addToListButton($sentenceId, $isLogged);
+
+        if (CurrentUser::isTrusted()) {
+            $this->linkToSentenceButton($sentenceId);
+        }
 
         if (CurrentUser::isModerator()) {
             // Delete

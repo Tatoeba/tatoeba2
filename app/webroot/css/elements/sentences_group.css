@@ -150,6 +150,13 @@ a.romanization {
     font-size: 14px;
 }
 
+/*
+ * Link to a sentence number
+ */
+input.sentenceId {
+    width: 120px;
+    text-align: right;
+}
 
 /*
  * Flag

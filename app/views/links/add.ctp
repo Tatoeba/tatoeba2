@@ -1,21 +1,34 @@
 <?php
-if ($saved) {
-    $image = 'unlink.png';
-    $alt = __('Unlink', true);
-    $title = __('Unlink this translation.', true);
-} else {
-    $image = 'link.png';
-    $alt = __('Link', true);
-    $title = __('Make into direct translation.', true);
-}
 
-echo $html->image(
-    IMG_PATH . $image,
-    array(
-        "alt"=> $alt,
-        "title" => $title,
-        "width" => 16,
-        "height" => 16
-    )
-);
+if ($showTranslations) { // linked using the link ajax form
+    $sentences->javascriptForAJAXTranslationsGroup();
+
+    $sentences->displayTranslations(
+        $sentenceId,
+        $translations,
+        $indirectTranslations
+    );
+}
+else // clicked on a link/unlink button
+{
+    if ($saved) {
+        $image = 'unlink.png';
+        $alt = __('Unlink', true);
+        $title = __('Unlink this translation.', true);
+    } else {
+        $image = 'link.png';
+        $alt = __('Link', true);
+        $title = __('Make into direct translation.', true);
+    }
+    
+    echo $html->image(
+        IMG_PATH . $image,
+        array(
+            "alt"=> $alt,
+            "title" => $title,
+            "width" => 16,
+            "height" => 16
+        )
+    );
+}
 ?>
