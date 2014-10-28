@@ -27,10 +27,9 @@
 
 $query = Sanitize::html($query);
 
-$this->set('title_for_layout',
+$this->set('title_for_layout', $pages->formatTitle(
     sprintf(__('Sentences with: %s', true), $query)
-    . __(' - Tatoeba', true)
-);
+));
 ?>
 
 <div id="annexe_content">

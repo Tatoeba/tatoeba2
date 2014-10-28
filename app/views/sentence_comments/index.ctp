@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', __('Comments on sentences', true) . __(' - Tatoeba', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Comments on sentences', true)));
 
 $paginator->options(
     array(

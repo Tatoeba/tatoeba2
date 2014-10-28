@@ -35,7 +35,7 @@
 
 $username = Sanitize::paranoid($username, array("_"));
 $title = sprintf(__("Logs of %s's contributions", true), $username); 
-$this->set('title_for_layout', $title . __(' - Tatoeba', true));
+$this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 <div id="annexe_content">
     <?php

@@ -48,7 +48,7 @@ if ($userExists === true) {
     $title = sprintf(__("There's no user called %s", true), $userName);
 }
 
-$this->set('title_for_layout', $title . __(' - Tatoeba', true));
+$this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">

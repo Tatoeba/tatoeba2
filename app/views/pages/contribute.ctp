@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', __('How to contribute', true) . __(' - Tatoeba', true));
+$this->set('title_for_layout', $pages->formatTitle(__('How to contribute', true)));
 ?>
 
 

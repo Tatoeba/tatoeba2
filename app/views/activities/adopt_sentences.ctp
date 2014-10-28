@@ -33,7 +33,7 @@ if (empty($lang)){
         $languages->codeToName($lang)
     );
 }
-$this->set('title_for_layout', $title . __(' - Tatoeba', true));
+$this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 <div id="annexe_content">
     

@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', __('Useful tools', true) . __(' - Tatoeba', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Useful tools', true)));
 ?>
 <div id="annexe_content" >
     <?php

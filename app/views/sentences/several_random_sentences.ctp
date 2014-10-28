@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', __('Random sentences', true) . __(' - Tatoeba', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Random sentences', true)));
 
 ?>
 <div id="annexe_content">

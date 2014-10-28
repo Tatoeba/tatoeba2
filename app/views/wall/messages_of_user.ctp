@@ -25,10 +25,9 @@
  * @link     http://tatoeba.org
  */
 $username = Sanitize::paranoid($username, array("_"));
-$this->set('title_for_layout',
+$this->set('title_for_layout', $pages->formatTitle(
     sprintf(__("%s's Wall messages", true), $username)
-    . __(' - Tatoeba', true)
-);
+));
 ?>
 
 <div id="annexe_content">

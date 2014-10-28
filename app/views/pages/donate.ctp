@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', __('Donate', true) . __(' - Tatoeba', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Donate', true)));
 ?>
 
 <div id="annexe_content">

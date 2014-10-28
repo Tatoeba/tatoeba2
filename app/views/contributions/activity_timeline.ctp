@@ -36,7 +36,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', __("Activity timeline", true) . __(' - Tatoeba', true));
+$this->set('title_for_layout', $pages->formatTitle(__("Activity timeline", true)));
 
 $date = date('F Y', mktime(0, 0, 0, $month, 1, $year));
  

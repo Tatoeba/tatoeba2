@@ -56,7 +56,7 @@ if (!empty($user['image'])) {
 }
 
 $title = empty($realName) ? $username : "$username ($realName)";
-$this->set('title_for_layout', $title . __(' - Tatoeba', true));
+$this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">

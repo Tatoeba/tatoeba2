@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */ 
 
-$this->set('title_for_layout', __('Download list: ', true) . $listName . __(' - Tatoeba', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Download list: ', true) . $listName));
 ?>
 <div id="annexe_content">
     <div class="module">

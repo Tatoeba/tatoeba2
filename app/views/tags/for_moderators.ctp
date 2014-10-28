@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', __('Tags for moderators', true) . __(' - Tatoeba', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Tags for moderators', true)));
 ?>
 
 <div id="annexe_content">

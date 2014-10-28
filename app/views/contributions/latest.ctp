@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */
  
-$this->set('title_for_layout', __("Latest contributions", true) . __(' - Tatoeba', true));
+$this->set('title_for_layout', $pages->formatTitle(__("Latest contributions", true)));
 ?>
 
 <div id="annexe_content">

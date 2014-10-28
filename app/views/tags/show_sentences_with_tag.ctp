@@ -96,5 +96,5 @@ if ($tagExists) {
     </div>
     <?php
 }
-$this->set('title_for_layout', $title . __(' - Tatoeba', true));
+$this->set('title_for_layout', $pages->formatTitle($title));
 ?>
