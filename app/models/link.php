@@ -66,14 +66,15 @@ class Link extends AppModel
     }
 
     private function _updateSphinxLangIdAttrs($sentenceId, &$attributes, &$values) {
-        $translations = $this->findDirectAndIndirectTranslations($sentenceId);
-        foreach ($translations as $translation) {
-            if (isset($values[$translation]))
+        $impactedSentences = $this->findDirectAndIndirectTranslations($sentenceId);
+        $impactedSentences[] = $sentenceId;
+        foreach ($impactedSentences as $sentence) {
+            if (isset($values[$sentence]))
                 continue;
 
-            $trans_of_trans = $this->findDirectAndIndirectTranslations($translation);
+            $trans_of_trans = $this->findDirectAndIndirectTranslations($sentence);
             $langIds = ClassRegistry::init('Sentence')->getSentencesLang($trans_of_trans, true);
-            $values[$translation] = array(array_unique(array_values($langIds)));
+            $values[$sentence] = array(array_unique(array_values($langIds)));
         }
     }
 
