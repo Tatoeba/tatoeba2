@@ -58,4 +58,46 @@ class LinkTestCase extends CakeTestCase {
 		);
 		$this->assertTrue($newLink);
 	}
+
+	function testDeletePairRemovesBothWays() {
+		$sentenceId = 4;
+		$translationId = 6;
+		$this->Link->deletePair($sentenceId, $translationId);
+		$result = $this->Link->find('count', array('conditions' => array(
+			'or' => array(
+				array('and' => array(
+					'Link.sentence_id'    => $translationId,
+					'Link.translation_id' => $sentenceId,
+				)),
+				array('and' => array(
+					'Link.sentence_id'    => $sentenceId,
+					'Link.translation_id' => $translationId,
+				)),
+			)
+		)));
+		$this->assertEqual($result, 0);
+	}
+
+	function testDeletePairLogsDeletion() {
+		$sentenceId = 4;
+		$translationId = 6;
+		$this->Link->deletePair($sentenceId, $translationId);
+
+		$nbLogs = ClassRegistry::init('Contribution')
+			->find('count', array('conditions' => array(
+				'or' => array(
+					array('and' => array(
+						'Contribution.sentence_id'    => $translationId,
+						'Contribution.translation_id' => $sentenceId,
+						'Contribution.action'         => 'delete',
+					)),
+					array('and' => array(
+						'Contribution.sentence_id'    => $sentenceId,
+						'Contribution.translation_id' => $translationId,
+						'Contribution.action'         => 'delete',
+					)),
+				)
+			)));
+		$this->assertEqual($nbLogs, 2);
+    }
 }

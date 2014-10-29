@@ -92,7 +92,7 @@ class LinksController extends AppController
         $sentenceId = Sanitize::paranoid($sentenceId);
         $translationId = Sanitize::paranoid($translationId);
 
-        $saved = $this->Link->delete($sentenceId, $translationId);
+        $saved = $this->Link->deletePair($sentenceId, $translationId);
 
         if ($this->RequestHandler->isAjax()) {
             $this->set('saved', $saved);

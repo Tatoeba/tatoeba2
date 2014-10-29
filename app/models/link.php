@@ -78,27 +78,22 @@ class Link extends AppModel
     }
 
     /**
-     * Called after a link is deleted.
+     * Called before a link is deleted.
      *
      * @return void
      */
-    public function afterDelete()
+    public function beforeDelete($cascade = true)
     {
+        $aboutToDelete = $this->findById($this->id);
         $Contribution = ClassRegistry::init('Contribution');
-
-	$Contribution->saveLinkContribution(
-            $this->data['Link']['sentence_id'],
-            $this->data['Link']['translation_id'],
-            'delete'
-        );
-
-        // We need to add manually the reciprochal link deletion because the
-        // callback is called manually.
-        $Contribution->saveLinkContribution(
-            $this->data['Link']['translation_id'],
-            $this->data['Link']['sentence_id'],
-            'delete'
-        );
+        if (isset($aboutToDelete['Link'])) {
+            $Contribution->saveLinkContribution(
+                $aboutToDelete['Link']['sentence_id'],
+                $aboutToDelete['Link']['translation_id'],
+                'delete'
+            );
+        }
+        return true;
     }
 
     /**
@@ -181,18 +176,28 @@ class Link extends AppModel
      *
      * @return bool
      */
-    public function delete($sentenceId, $translationId)
+    public function deletePair($sentenceId, $translationId)
     {
-        // custom query to avoid having to create an 'id' field.
-        $this->query("
-            DELETE FROM sentences_translations
-            WHERE (sentence_id = $sentenceId AND translation_id = $translationId)
-               OR (sentence_id = $translationId AND translation_id = $sentenceId)
-        ");
-
-        $this->data['Link']['sentence_id'] = $sentenceId;
-        $this->data['Link']['translation_id'] = $translationId;
-        $this->afterDelete(); // calling callback manually...
+        $toRemove = $this->find('all', array(
+            'conditions' => array(
+                'or' => array(
+                    array('and' => array(
+                        'Link.sentence_id'    => $translationId,
+                        'Link.translation_id' => $sentenceId,
+                    )),
+                    array('and' => array(
+                        'Link.sentence_id'    => $sentenceId,
+                        'Link.translation_id' => $translationId,
+                    ))
+                )
+            ),
+            'fields' => array('id'),
+            'limit' => 2,
+        ));
+        $toRemove = Set::extract($toRemove, '{n}.Link.id');
+        if ($toRemove) {
+            $this->deleteAll(array('id' => $toRemove), false, true);
+        }
 
         return true; // yes, it's useless, never mind...
     }
