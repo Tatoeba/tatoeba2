@@ -38,6 +38,7 @@ class Link extends AppModel
 {
     public $useTable = 'sentences_translations';
 
+    public $actsAs = array('Sphinx');
 
     /**
      * Called after a link is saved.
@@ -56,6 +57,25 @@ class Link extends AppModel
         );
     }
 
+    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
+        $isMVA = true;
+        $link = $this->data['Link'];
+        $attributes[] = 'trans_id';
+        $this->_updateSphinxLangIdAttrs($link['sentence_id'],    $attributes, $values);
+        $this->_updateSphinxLangIdAttrs($link['translation_id'], $attributes, $values);
+    }
+
+    private function _updateSphinxLangIdAttrs($sentenceId, &$attributes, &$values) {
+        $translations = $this->findDirectAndIndirectTranslations($sentenceId);
+        foreach ($translations as $translation) {
+            if (isset($values[$translation]))
+                continue;
+
+            $trans_of_trans = $this->findDirectAndIndirectTranslations($translation);
+            $langIds = ClassRegistry::init('Sentence')->getSentencesLang($trans_of_trans, true);
+            $values[$translation] = array(array_unique(array_values($langIds)));
+        }
+    }
 
     /**
      * Called after a link is deleted.
@@ -175,6 +195,29 @@ class Link extends AppModel
         $this->afterDelete(); // calling callback manually...
 
         return true; // yes, it's useless, never mind...
+    }
+
+    public function findDirectAndIndirectTranslations($sentenceId) {
+        $links = $this->find('all', array(
+            'joins' => array(
+                array(
+                    'table' => $this->useTable,
+                    'alias' => 'Translation',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'Link.translation_id = Translation.sentence_id'
+                    )
+                )
+            ),
+            'conditions' => array(
+                'Link.sentence_id' => $sentenceId,
+            ),
+            'fields' => array(
+                'Link.sentence_id',
+                'IF(Link.sentence_id = Translation.translation_id, Translation.sentence_id, Translation.translation_id) as translation_id'
+            )
+        ));
+        return Set::classicExtract($links, '{n}.0.translation_id');
     }
 }
 ?>

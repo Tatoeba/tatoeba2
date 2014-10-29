@@ -162,4 +162,34 @@ class SphinxBehavior extends ModelBehavior
         
     }
 
+    public function afterSave(&$model, $created) {
+        if ($model->alias != 'Link')
+            return;
+
+        $attributes = $values = array();
+        $isMVA = false;
+        $model->sphinxAttributesChanged($attributes, $values, $isMVA);
+        $langs = ClassRegistry::init('Sentence')->getSentencesLang(array_keys($values));
+
+        $batchedByLang = array();
+        foreach ($values as $sentenceId => $value) {
+            $lang = $langs[$sentenceId];
+            if (!isset($batchedByLang[$lang]))
+                $batchedByLang[$lang] = array();
+            $batchedByLang[$lang][$sentenceId] = $value;
+        }
+
+        foreach ($batchedByLang as $lang => $values) {
+            foreach (array('delta', 'main') as $type) {
+                $res = $this->runtime[$model->alias]['sphinx']->UpdateAttributes(
+                    "${lang}_${type}_index",
+                    $attributes,
+                    $values,
+                    $isMVA
+                );
+                if ($res < 0)
+                    trigger_error('Unable to update Sphinx attributes: ' . implode(', ', $attributes));
+            }
+        }
+    }
 }

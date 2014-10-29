@@ -1007,5 +1007,18 @@ class Sentence extends AppModel
         
         return false;
     }
+
+    public function getSentencesLang($sentencesIds, $langId = false) {
+        $field = $langId ? 'lang_id' : 'lang';
+        $result = $this->find('all', array(
+            'fields' => array($field, 'id'),
+            'conditions' => array('Sentence.id' => $sentencesIds),
+            'recursive' => -1
+        ));
+        $result = Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.'.$field);
+        if ($langId)
+            $result = array_map('intval', $result);
+        return $result;
+    }
 }
 ?>
