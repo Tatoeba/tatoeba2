@@ -30,6 +30,7 @@ if (isset($this->params['lang'])) {
 }
 
 echo '<div id="logs">';
+$logs->obsoletize($contributions);
 foreach ($contributions as $contribution) {
     $logs->entry(
         $contribution['Contribution'],
