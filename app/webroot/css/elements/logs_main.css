@@ -20,37 +20,72 @@
 /*
  * Logs main
  */
-#logs td {
-    padding: 3px;
+
+#logs a {
+    color: #6A0;
+}
+
+#logs a:hover {
+    color: #DD8800;
+}
+
+#logs ul.info {
+    margin: 0px;
+    padding: 0px;
+    padding-left: 12px;
+}
+
+#logs .info li {
+    padding: 0px 3px;
+    display: inline-block;
+}
+
+#logs .date::before {
+    content: "- ";
 }
 
 #logs .date {
-    width: 100px;
-}
-
-#logs .username {
-    width: 100px;
-    padding: 0px 10px;
-    text-align: center;
-}
-
-#logs .lang {
-    width: 30px;
-    padding: 0px 5px;
-    text-align: center;
+    color: #999;
 }
 
 #logs img.flag {
-    width: 20px;
-    height: 14px;
-    margin-top: 4px;
+    vertical-align: middle;
+    padding-right: 7px;
+    margin-top: -1px;
 }
 
-#logs .text{
-    max-width: 200px;
-    overflow: hidden;
+#logs .contribution{
+    max-width: 580px;
+    margin-bottom: 5px;
 }
 
-#logs .obsolete{
-    text-decoration: line-through;
+#main_content #logs .contribution {
+    padding: 15px;
+}
+
+#main_content #logs .sentenceLog .contribution {
+    font-size: 20px;
+}
+
+#annexe_content #logs .contribution {
+    padding: 5px 10px;
+}
+
+
+/*
+ * Logs hovering feature
+ */
+.sentences_set .highlighted {
+    background-color: #f7d6b2;
+}
+
+#logs .linkLog.added.hovered {
+    cursor: pointer;
+    border-right: 5px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+#logs .linkLog.added.historyHighlighted {
+    border-right: 5px solid #999;
+    background-color: #f1f1f1;
 }

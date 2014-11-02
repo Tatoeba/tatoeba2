@@ -335,7 +335,8 @@ class User extends AppModel
                         'Contributions' => array(
                             'limit' => 10,
                             'fields' => array(
-                                'id',
+                                'sentence_id',
+                                'sentence_lang',
                                 'translation_id',
                                 'action',
                                 'datetime',

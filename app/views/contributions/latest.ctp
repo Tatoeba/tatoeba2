@@ -40,14 +40,6 @@ $this->set('title_for_layout', "Tatoeba - " . __("Latest contributions", true));
 
 <div id="annexe_content">
     <?php $commonModules->createFilterByLangMod(); ?> 
-    <div class="module">
-        <h2><?php __('Meaning of the colors'); ?></h2>
-        <ul id="logsLegend">
-        <li class="sentenceAdded"><?php __('sentence added'); ?></li>
-        <li class="sentenceModified"><?php __('sentence modified'); ?></li>
-        <li class="sentenceDeleted"><?php __('sentence deleted'); ?></li>
-        </ul>
-    </div>
     
     <div class="module">
         <h2><?php __('View all'); ?></h2>
@@ -68,7 +60,7 @@ $this->set('title_for_layout', "Tatoeba - " . __("Latest contributions", true));
 <div id="main_content">
     <div class="module">
         <h2><?php __('Latest contributions'); ?></h2>
-        <table id="logs">
+        <div id="logs">
         <?php
         $logs->obsoletize($contributions);
         foreach ($contributions as $contribution) {
@@ -78,6 +70,6 @@ $this->set('title_for_layout', "Tatoeba - " . __("Latest contributions", true));
             );
         }
         ?>
-        </table>
+        </div>
     </div>
 </div>

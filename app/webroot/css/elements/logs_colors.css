@@ -18,24 +18,81 @@
 
 
 /*
- * Logs colors
+ * Sentence added
  */
-.sentenceAdded {
-    background: #DFEFD0;
+
+#logs .sentenceLog.added {
+    background: url('../../img/logs-sentence-added.svg') no-repeat;
+    padding-left: 8px;
 }
 
-.sentenceDeleted {
-    background: #FFE5E0;
+#logs .sentenceLog.added .contribution {
+    border-left: 4px solid #04B404;
 }
 
-.sentenceModified {
-    background: #FBFFC9;
+
+/*
+ * Sentence deleted
+ */
+
+#logs .sentenceLog.deleted {
+    background: url('../../img/logs-sentence-deleted.svg') no-repeat;
+    padding-left: 8px;
 }
 
-.linkAdded {
-    background: #E6EFE8;
+#logs .sentenceLog.deleted .contribution {
+    border-left: 4px solid #B40404;
 }
 
-.linkDeleted {
-    background: #FFE5E0;
+
+/*
+ * Sentence edited
+ */
+
+#logs .sentenceLog.edited {
+    background: url('../../img/logs-sentence-edited.svg') no-repeat;
+    padding-left: 8px;
+}
+
+#logs .sentenceLog.edited .contribution {
+    border-left: 4px solid #F7D358;
+}
+
+
+/*
+ * Link added
+ */
+
+#logs .linkLog.added {
+    background: url('../../img/logs-link-added.svg') no-repeat;
+    padding-left: 8px;
+}
+
+#logs .linkLog.added .contribution {
+    border-left: 4px solid #00BFFF;
+}
+
+
+/*
+ * Sentence deleted
+ */
+
+#logs .linkLog.deleted {
+    background: url('../../img/logs-link-deleted.svg') no-repeat;
+    padding-left: 8px;
+}
+
+#logs .linkLog.deleted .contribution {
+    border-left: 4px solid #FF8000;
+}
+
+
+/*
+ * Obsolete
+ */
+
+#logs .sentenceLog.obsolete .contribution {
+    border-left-style: dotted;
+    border-left-color: #bbb;
+    opacity: 0.5;
 }

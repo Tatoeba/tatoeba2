@@ -29,12 +29,12 @@ if (isset($this->params['lang'])) {
     Configure::write('Config.language', $this->params['lang']); 
 }
 
-echo '<table id="logs">';
+echo '<div id="logs">';
 foreach ($contributions as $contribution) {
     $logs->entry(
         $contribution['Contribution'],
         $contribution['User']
     );
 }
-echo '</table>';
+echo '</div>';
 ?>
