@@ -205,6 +205,8 @@ class SphinxBehavior extends ModelBehavior
         $langs = ClassRegistry::init('Sentence')->getSentencesLang(array_keys($values));
         $batchedByLang = array();
         foreach ($values as $sentenceId => $value) {
+            if (is_null($langs[$sentenceId]))
+                continue;
             $lang = $langs[$sentenceId];
             if (!isset($batchedByLang[$lang]))
                 $batchedByLang[$lang] = array();

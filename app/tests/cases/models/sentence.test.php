@@ -90,4 +90,10 @@ class SentenceTestCase extends CakeTestCase {
 		$expectedLangs = array(3 => $spaId, 4 => $fraId, 8 => $fraId);
 		$this->assertEqual($expectedLangs, $result);
 	}
+
+	function testGetSentencesLang_returnsNullForFlaglessSentences() {
+		$result = $this->Sentence->getSentencesLang(array(9));
+		$expectedLangs = array(9 => null);
+		$this->assertEqual($expectedLangs, $result);
+	}
 }
