@@ -138,4 +138,54 @@ class LinkTestCase extends CakeTestCase {
 
 		$this->assertEqual($result, $expectedLinkedSentences);
 	}
+
+	function testFindDirectTranslations_worksWithLonelySentences() {
+		$lonelySentenceId = 7;
+		$expectedLinkedSentences = array();
+
+		$result = $this->Link->findDirectTranslations($lonelySentenceId);
+
+		$this->assertEqual($result, $expectedLinkedSentences);
+	}
+
+	function testFindDirectTranslations_doesNotReturnDuplicates() {
+		$sentenceId = 2;
+
+		$result = $this->Link->findDirectTranslations($sentenceId);
+		$filteredResult = array_unique($result);
+
+		$this->assertEqual($result, $filteredResult);
+	}
+
+	function testFindDirectTranslations_walksGraph() {
+		$sentenceId = 2;
+		$expectedLinkedSentences = array(1, 4, 5);
+
+		$result = $this->Link->findDirectTranslations($sentenceId);
+		sort($result);
+
+		$this->assertEqual($result, $expectedLinkedSentences);
+	}
+
+	function testAdd_updatesSphinxAttributes() {
+		$engId = 1; $cmnId = 2; $spaId = 3;
+		$fraId = 4; $deuId = 5; $jpnId = 6;
+		$expectedAttributes = array('trans_id');
+		$expectedValues = array(
+			/* #8 is empty since we simulate the link creation */
+			8 => array(array()),
+			2 => array(array($engId, $spaId, $fraId, $deuId, $jpnId)),
+			5 => array(array($engId, $cmnId, $fraId)),
+		);
+
+		$this->Link->data['Link'] = array(
+			'sentence_id' => 8,
+			'translation_id' => 5
+		);
+		$this->Link->sphinxAttributesChanged($attributes, $values, $isMVA);
+
+		$this->assertTrue($isMVA);
+		$this->assertEqual($expectedAttributes, $attributes);
+		$this->assertEqual($expectedValues, $values);
+	}
 }

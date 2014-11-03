@@ -66,7 +66,7 @@ class Link extends AppModel
     }
 
     private function _updateSphinxLangIdAttrs($sentenceId, &$attributes, &$values) {
-        $impactedSentences = $this->findDirectAndIndirectTranslations($sentenceId);
+        $impactedSentences = $this->findDirectTranslations($sentenceId);
         $impactedSentences[] = $sentenceId;
         foreach ($impactedSentences as $sentence) {
             if (isset($values[$sentence]))
@@ -201,6 +201,14 @@ class Link extends AppModel
         }
 
         return true; // yes, it's useless, never mind...
+    }
+
+    public function findDirectTranslations($sentenceId) {
+        $links = $this->find('all', array(
+            'conditions' => array('sentence_id' => $sentenceId),
+            'fields' => array('translation_id'),
+        ));
+        return Set::classicExtract($links, '{n}.Link.translation_id');
     }
 
     public function findDirectAndIndirectTranslations($sentenceId) {
