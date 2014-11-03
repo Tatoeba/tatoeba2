@@ -1019,12 +1019,20 @@ class Sentence extends AppModel
     }
 
     public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
+        $sentenceId = $this->id;
+        $values[$sentenceId] = array();
         if (array_key_exists('user_id', $this->data['Sentence'])) {
-            $attributes = array('user_id');
-            $sentenceId = $this->id;
-            $sentenceOwner = intval($this->data['Sentence']['user_id']);
-            $values = array($sentenceId => array($sentenceOwner));
+            $attributes[] = 'user_id';
+            $sentenceOwner = $this->data['Sentence']['user_id'];
+            $values[$sentenceId][] = $sentenceOwner;
         }
+        if (array_key_exists('correctness', $this->data['Sentence'])) {
+            $attributes[] = 'ucorrectness';
+            $sentenceUCorrectness = $this->data['Sentence']['correctness'] + 128;
+            $values[$sentenceId][] = $sentenceUCorrectness;
+        }
+        if (count($values[$sentenceId]) == 0)
+            unset($values[$sentenceId]);
     }
 }
 ?>

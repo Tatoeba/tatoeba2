@@ -137,4 +137,24 @@ class SentenceTestCase extends CakeTestCase {
 		$this->assertEqual($expectedAttributes, $attributes);
 		$this->assertEqual($expectedValues, $values);
 	}
+
+	function testSphinxAttributesChanged_correctness() {
+		$sentenceId = 1;
+		$correctness = -1;
+		$expectedAttributes = array('ucorrectness');
+		$expectedValues = array(
+			$sentenceId => array($correctness + 128),
+		);
+
+		$this->Sentence->id = $sentenceId;
+		$this->Sentence->data['Sentence'] = array(
+			'id' => $sentenceId,
+			'correctness' => $correctness,
+		);
+		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA);
+
+		$this->assertFalse($isMVA);
+		$this->assertEqual($expectedAttributes, $attributes);
+		$this->assertEqual($expectedValues, $values);
+	}
 }
