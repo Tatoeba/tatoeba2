@@ -1015,10 +1015,7 @@ class Sentence extends AppModel
             'conditions' => array('Sentence.id' => $sentencesIds),
             'recursive' => -1
         ));
-        $result = Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.'.$field);
-        if ($langId)
-            $result = array_map('intval', $result);
-        return $result;
+        return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.'.$field);
     }
 }
 ?>

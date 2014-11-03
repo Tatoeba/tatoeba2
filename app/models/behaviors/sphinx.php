@@ -191,8 +191,18 @@ class SphinxBehavior extends ModelBehavior
         $attributes = $values = array();
         $isMVA = false;
         $model->sphinxAttributesChanged($attributes, $values, $isMVA);
-        $langs = ClassRegistry::init('Sentence')->getSentencesLang(array_keys($values));
 
+        foreach ($values as $sentenceId => &$value) {
+            if ($isMVA) {
+                foreach ($value as &$v) {
+                    $v = array_map('intval', $v);
+                }
+            } else {
+                $value = array_map('intval', $value);
+            }
+        }
+
+        $langs = ClassRegistry::init('Sentence')->getSentencesLang(array_keys($values));
         $batchedByLang = array();
         foreach ($values as $sentenceId => $value) {
             $lang = $langs[$sentenceId];
