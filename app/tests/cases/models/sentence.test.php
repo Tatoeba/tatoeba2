@@ -24,6 +24,8 @@ class SentenceTestCase extends CakeTestCase {
 
 	function startTest() {
 		$this->Sentence =& ClassRegistry::init('Sentence');
+		Mock::generate('SphinxBehavior');
+		$this->Sentence->Behaviors->Sphinx =& new MockSphinxBehavior();
 	}
 
 	function endTest() {
