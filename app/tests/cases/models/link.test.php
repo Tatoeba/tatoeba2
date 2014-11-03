@@ -99,5 +99,43 @@ class LinkTestCase extends CakeTestCase {
 				)
 			)));
 		$this->assertEqual($nbLogs, 2);
-    }
+	}
+
+	function testFindDirectAndIndirectTranslations_worksWithLonelySentences() {
+		$lonelySentenceId = 7;
+		$expectedLinkedSentences = array();
+
+		$result = $this->Link->findDirectAndIndirectTranslations($lonelySentenceId);
+
+		$this->assertEqual($result, $expectedLinkedSentences);
+	}
+
+	function testFindDirectAndIndirectTranslations_doesNotReturnDuplicates() {
+		$sentenceId = 2;
+
+		$result = $this->Link->findDirectAndIndirectTranslations($sentenceId);
+		$filteredResult = array_unique($result);
+
+		$this->assertEqual($result, $filteredResult);
+	}
+
+	function testFindDirectAndIndirectTranslations_walksWholeGraph() {
+		$sentenceId = 2;
+		$expectedLinkedSentences = array(1, 3, 4, 5, 6);
+
+		$result = $this->Link->findDirectAndIndirectTranslations($sentenceId);
+		sort($result);
+
+		$this->assertEqual($result, $expectedLinkedSentences);
+	}
+
+	function testFindDirectAndIndirectTranslations_walksPartsOfGraph() {
+		$sentenceId = 5;
+		$expectedLinkedSentences = array(1, 2, 4);
+
+		$result = $this->Link->findDirectAndIndirectTranslations($sentenceId);
+		sort($result);
+
+		$this->assertEqual($result, $expectedLinkedSentences);
+	}
 }

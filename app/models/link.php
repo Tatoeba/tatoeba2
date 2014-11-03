@@ -219,7 +219,7 @@ class Link extends AppModel
                 'Link.sentence_id' => $sentenceId,
             ),
             'fields' => array(
-                'Link.sentence_id',
+                'DISTINCT Link.sentence_id',
                 'IF(Link.sentence_id = Translation.translation_id, Translation.sentence_id, Translation.translation_id) as translation_id'
             )
         ));
