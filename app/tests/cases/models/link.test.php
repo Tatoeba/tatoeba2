@@ -101,67 +101,67 @@ class LinkTestCase extends CakeTestCase {
 		$this->assertEqual($nbLogs, 2);
 	}
 
-	function testFindDirectAndIndirectTranslations_worksWithLonelySentences() {
+	function testFindDirectAndIndirectTranslationsIds_worksWithLonelySentences() {
 		$lonelySentenceId = 7;
 		$expectedLinkedSentences = array();
 
-		$result = $this->Link->findDirectAndIndirectTranslations($lonelySentenceId);
+		$result = $this->Link->findDirectAndIndirectTranslationsIds($lonelySentenceId);
 
 		$this->assertEqual($result, $expectedLinkedSentences);
 	}
 
-	function testFindDirectAndIndirectTranslations_doesNotReturnDuplicates() {
+	function testFindDirectAndIndirectTranslationsIds_doesNotReturnDuplicates() {
 		$sentenceId = 2;
 
-		$result = $this->Link->findDirectAndIndirectTranslations($sentenceId);
+		$result = $this->Link->findDirectAndIndirectTranslationsIds($sentenceId);
 		$filteredResult = array_unique($result);
 
 		$this->assertEqual($result, $filteredResult);
 	}
 
-	function testFindDirectAndIndirectTranslations_walksWholeGraph() {
+	function testFindDirectAndIndirectTranslationsIds_walksWholeGraph() {
 		$sentenceId = 2;
 		$expectedLinkedSentences = array(1, 3, 4, 5, 6);
 
-		$result = $this->Link->findDirectAndIndirectTranslations($sentenceId);
+		$result = $this->Link->findDirectAndIndirectTranslationsIds($sentenceId);
 		sort($result);
 
 		$this->assertEqual($result, $expectedLinkedSentences);
 	}
 
-	function testFindDirectAndIndirectTranslations_walksPartsOfGraph() {
+	function testFindDirectAndIndirectTranslationsIds_walksPartsOfGraph() {
 		$sentenceId = 5;
 		$expectedLinkedSentences = array(1, 2, 4);
 
-		$result = $this->Link->findDirectAndIndirectTranslations($sentenceId);
+		$result = $this->Link->findDirectAndIndirectTranslationsIds($sentenceId);
 		sort($result);
 
 		$this->assertEqual($result, $expectedLinkedSentences);
 	}
 
-	function testFindDirectTranslations_worksWithLonelySentences() {
+	function testFindDirectTranslationsIds_worksWithLonelySentences() {
 		$lonelySentenceId = 7;
 		$expectedLinkedSentences = array();
 
-		$result = $this->Link->findDirectTranslations($lonelySentenceId);
+		$result = $this->Link->findDirectTranslationsIds($lonelySentenceId);
 
 		$this->assertEqual($result, $expectedLinkedSentences);
 	}
 
-	function testFindDirectTranslations_doesNotReturnDuplicates() {
+	function testFindDirectTranslationsIds_doesNotReturnDuplicates() {
 		$sentenceId = 2;
 
-		$result = $this->Link->findDirectTranslations($sentenceId);
+		$result = $this->Link->findDirectTranslationsIds($sentenceId);
 		$filteredResult = array_unique($result);
 
 		$this->assertEqual($result, $filteredResult);
 	}
 
-	function testFindDirectTranslations_walksGraph() {
+	function testFindDirectTranslationsIds_walksGraph() {
 		$sentenceId = 2;
 		$expectedLinkedSentences = array(1, 4, 5);
 
-		$result = $this->Link->findDirectTranslations($sentenceId);
+		$result = $this->Link->findDirectTranslationsIds($sentenceId);
 		sort($result);
 
 		$this->assertEqual($result, $expectedLinkedSentences);
