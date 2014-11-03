@@ -202,17 +202,15 @@ class SphinxBehavior extends ModelBehavior
         }
 
         foreach ($batchedByLang as $lang => $values) {
-            foreach (array('delta', 'main') as $type) {
-                $res = $this->runtime[$model->alias]['sphinx']->UpdateAttributes(
-                    "${lang}_${type}_index",
-                    $attributes,
-                    $values,
-                    $isMVA
-                );
-                if ($res < 0) {
-                    $error = $this->runtime[$model->alias]['sphinx']->GetLastError();
-                    trigger_error('Unable to update Sphinx attribute(s) (' . implode(', ', $attributes).'): '.$error);
-                }
+            $res = $this->runtime[$model->alias]['sphinx']->UpdateAttributes(
+                "${lang}_delta_index,${lang}_main_index",
+                $attributes,
+                $values,
+                $isMVA
+            );
+            if ($res < 0) {
+                $error = $this->runtime[$model->alias]['sphinx']->GetLastError();
+                trigger_error('Unable to update Sphinx attribute(s) (' . implode(', ', $attributes).'): '.$error);
             }
         }
     }
