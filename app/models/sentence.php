@@ -1017,5 +1017,14 @@ class Sentence extends AppModel
         ));
         return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.'.$field);
     }
+
+    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
+        if (array_key_exists('user_id', $this->data['Sentence'])) {
+            $attributes = array('user_id');
+            $sentenceId = $this->id;
+            $sentenceOwner = intval($this->data['Sentence']['user_id']);
+            $values = array($sentenceId => array($sentenceOwner));
+        }
+    }
 }
 ?>

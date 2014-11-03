@@ -185,7 +185,7 @@ class SphinxBehavior extends ModelBehavior
     }
 
     private function _refreshSphinxAttributes(&$model) {
-        if ($model->alias != 'Link')
+        if (!method_exists($model, 'sphinxAttributesChanged'))
             return;
 
         $attributes = $values = array();

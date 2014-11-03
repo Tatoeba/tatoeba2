@@ -98,4 +98,43 @@ class SentenceTestCase extends CakeTestCase {
 		$expectedLangs = array(9 => null);
 		$this->assertEqual($expectedLangs, $result);
 	}
+
+	function testSphinxAttributesChanged_onLetGo() {
+		$sentenceId = 1;
+		$expectedAttributes = array('user_id');
+		$expectedValues = array(
+			$sentenceId => array(0),
+		);
+
+		$this->Sentence->id = $sentenceId;
+		$this->Sentence->data['Sentence'] = array(
+			'id' => $sentenceId,
+			'user_id' => null,
+		);
+		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA);
+
+		$this->assertFalse($isMVA);
+		$this->assertEqual($expectedAttributes, $attributes);
+		$this->assertEqual($expectedValues, $values);
+	}
+
+	function testSphinxAttributesChanged_onOwn() {
+		$sentenceId = 1;
+		$ownerId = 42;
+		$expectedAttributes = array('user_id');
+		$expectedValues = array(
+			$sentenceId => array($ownerId),
+		);
+
+		$this->Sentence->id = $sentenceId;
+		$this->Sentence->data['Sentence'] = array(
+			'id' => $sentenceId,
+			'user_id' => $ownerId,
+		);
+		$this->Sentence->sphinxAttributesChanged($attributes, $values, $isMVA);
+
+		$this->assertFalse($isMVA);
+		$this->assertEqual($expectedAttributes, $attributes);
+		$this->assertEqual($expectedValues, $values);
+	}
 }
