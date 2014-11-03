@@ -77,22 +77,17 @@ class SentenceTestCase extends CakeTestCase {
 		);
 	}
 
-	function _assertJapaneseReading($type, $japanese, $reading) {
-		$result = $this->Sentence->getJapaneseRomanization2($japanese, Sentence::$romanji[$type]);
-		$this->assertEqual($reading, $result, "$type of '$japanese' should read '$reading', not '$result'");
+	function testGetSentencesLang_returnsLang() {
+		$result = $this->Sentence->getSentencesLang(array(3, 4, 8));
+		$expectedLangs = array(3 => 'spa', 4 => 'fra', 8 => 'fra');
+		$this->assertEqual($expectedLangs, $result);
 	}
 
-	function testGetJapaneseRomanization2_furigana() {
-		$this->_assertJapaneseReading('furigana', '例えば', 'たとえば');
-	}
-
-	function testGetJapaneseRomanization2_mix() {
-		$this->_assertJapaneseReading('mix', '例えば', '例えば[たとえば]');
-	}
-
-	function testGetJapaneseRomanization2_romaji() {
-		$this->_assertJapaneseReading('romanji', '例えば', 'tatoeba');
-		$this->_assertJapaneseReading('romanji', 'やった', 'ya tta');
-		$this->_assertJapaneseReading('romanji', 'それはとってもいい話だ', 'sore ha tottemo ii hanashi da');
+	function testGetSentencesLang_returnsLangId() {
+		$spaId = 3;
+		$fraId = 4;
+		$result = $this->Sentence->getSentencesLang(array(3, 4, 8), true);
+		$expectedLangs = array(3 => $spaId, 4 => $fraId, 8 => $fraId);
+		$this->assertEqual($expectedLangs, $result);
 	}
 }
