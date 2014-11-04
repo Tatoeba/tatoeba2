@@ -79,7 +79,7 @@ class Autotranscription
                 return $this->_getFurigana($text);
                 
             default:
-                return $this->_getJapaneseRomanization($text, 'romaji');
+                return $this->tokenizedJapaneseWithReadingsToRomaji($text);
         }
     }
 
@@ -416,212 +416,201 @@ class Autotranscription
 
 
     /**
-     * get "romanisation" of the $text sentences in japanese
-     * into romaji or furigana depending of $type value
+     * Transforms Japanese text with readings into romaji.
+     * Readings must be formatted like [kanji|reading].
+     * $text should already be tokenized with spaces.
      *
      * @param string $text text to romanized
-     * @param string $type type of romanization to apply
      *
      * @return string romanized japanese text
      */
-    private function _getJapaneseRomanization($text, $type)
+    public function tokenizedJapaneseWithReadingsToRomaji($text)
     {
-        // important to add this line before escaping a
-        // utf8 string, workaround for an apache/php bug
-        setlocale(LC_CTYPE, "en_US.UTF-8");
-        $text = escapeshellarg($text);
-        
-        // remove line returns so that they don't mess up
-        // with mecab tokenization
-        $text = str_replace(array("\r\n", "\r", "\n"), "", $text);
-
-        $Owakati = exec(
-            "export LC_ALL=en_US.UTF-8 ; ".
-            "echo $text | ".
-            "mecab -Owakati"
+        $particles = array(
+            'は' => 'wa',
+            'へ' => 'e',
         );
 
-        $Oyomi = exec(
-            "export LC_ALL=en_US.UTF-8 ; ".
-            "echo $text | ".
-            "mecab -Owakati | ".
-            "mecab -Oyomi"
-        );
+        $mb_regex_encoding = mb_regex_encoding();
+        mb_regex_encoding('UTF-8');
 
-        if (empty($Oyomi)) {
-            return '';
+        $text = mb_ereg_replace(' ([？！。…・＝」、ー〜])', '\\1', $text);
+        $text = mb_ereg_replace('([「・＝〜]) ', '\\1', $text);
+        $text = mb_ereg_replace('(。)(…)', '\\1 \\2', $text);
+        $text = preg_replace('/\[[^|]*\|([^\]]*)\]/', '|$1|', $text);
+
+        $romajized = array();
+        $words = explode(' ', $text);
+        foreach ($words as $word) {
+            if (isset($particles[$word])) {
+                $romajiWord = $particles[$word];
+            } else {
+                $readings = explode('|', $word);
+                $readings = array_map(array($this, '_toRomaji'), $readings);
+                $romajiWord = implode('', $readings);
+            }
+            array_push($romajized, $romajiWord);
         }
+        $romaji = implode(' ', $romajized);
 
+        $longVowelMark = array(
+            'aー' => 'ā', 'iー' => 'ī', 'uー' => 'ū',
+            'eー' => 'ē', 'oー' => 'ō'
+        );
+        $romaji = str_replace(array_keys($longVowelMark), array_values($longVowelMark), $romaji);
+
+        $tsu = 'っ';
+        $romaji = mb_ereg_replace("$tsu+ch", 'tch', $romaji);
+        $romaji = mb_ereg_replace("$tsu+([a-z])", '\\1\\1', $romaji);
+        $romaji = mb_ereg_replace("$tsu,", ',', $romaji);
+        $romaji = mb_ereg_replace($tsu, '…', $romaji);
+
+        mb_regex_encoding($mb_regex_encoding);
+        return $romaji;
+    }
+
+    private function _toRomaji($word) {
         $katakana = array(
-        "ァ","ア","ィ","イ","ゥ","ウ","ェ","エ","ォ","オ",
-        "カ","ガ","キ","ギ","ク","グ","ケ","ゲ","コ","ゴ",
-        "サ","ザ","シ","ジ","ス","ズ","セ","ゼ","ソ","ゾ",
-        "タ","ダ","チ","ヂ","ッ","ツ","ヅ","テ","デ","ト",
-        "ド","ナ","ニ","ヌ","ネ","ノ","ハ","バ","パ","ヒ",
-        "ビ","ピ","フ","ブ","プ","ヘ","ベ","ペ","ホ","ボ",
-        "ポ","マ","ミ","ム","メ","モ","ャ","ヤ","ュ","ユ",
-        "ョ","ヨ","ラ","リ","ル","レ","ロ","ヮ","ワ","ヲ",
-        "ン","ヴ","ヵ","ヶ",
-        "。","、","？","！","「","」","・"
+            'ァ','ア','ィ','イ','ゥ','ウ','ェ','エ','ォ','オ',
+            'カ','ガ','キ','ギ','ク','グ','ケ','ゲ','コ','ゴ',
+            'サ','ザ','シ','ジ','ス','ズ','セ','ゼ','ソ','ゾ',
+            'タ','ダ','チ','ヂ','ッ','ツ','ヅ','テ','デ','ト',
+            'ド','ナ','ニ','ヌ','ネ','ノ','ハ','バ','パ','ヒ',
+            'ビ','ピ','フ','ブ','プ','ヘ','ベ','ペ','ホ','ボ',
+            'ポ','マ','ミ','ム','メ','モ','ャ','ヤ','ュ','ユ',
+            'ョ','ヨ','ラ','リ','ル','レ','ロ','ヮ','ワ','ヲ',
+            'ン','ヴ','ヵ','ヶ',
         );
 
         $hiragana = array(
-        "ぁ","あ","ぃ","い","ぅ","う","ぇ","え","ぉ","お",
-        "か","が","き","ぎ","く","ぐ","け","げ","こ","ご",
-        "さ","ざ","し","じ","す","ず","せ","ぜ","そ","ぞ",
-        "た","だ","ち","ぢ","っ","つ","づ","て","で","と",
-        "ど","な","に","ぬ","ね","の","は","ば","ぱ","ひ",
-        "び","ぴ","ふ","ぶ","ぷ","へ","べ","ぺ","ほ","ぼ",
-        "ぽ","ま","み","む","め","も","ゃ","や","ゅ","ゆ",
-        "ょ","よ","ら","り","る","れ","ろ","ゎ","わ","を",
-        "ん","ゔ","ゕ","ゖ",
-        "。","、","？","！","「","」","・"
+            'ぁ','あ','ぃ','い','ぅ','う','ぇ','え','ぉ','お',
+            'か','が','き','ぎ','く','ぐ','け','げ','こ','ご',
+            'さ','ざ','し','じ','す','ず','せ','ぜ','そ','ぞ',
+            'た','だ','ち','ぢ','っ','つ','づ','て','で','と',
+            'ど','な','に','ぬ','ね','の','は','ば','ぱ','ひ',
+            'び','ぴ','ふ','ぶ','ぷ','へ','べ','ぺ','ほ','ぼ',
+            'ぽ','ま','み','む','め','も','ゃ','や','ゅ','ゆ',
+            'ょ','よ','ら','り','る','れ','ろ','ゎ','わ','を',
+            'ん','ゔ','ゕ','ゖ',
         );
 
-        $kata = array(
-        "ッキャ","ッキュ","ッキョ","ッギャ","ッギュ","ッギョ","ッシャ",
-        "ッシュ","ッショ","ッジャ","ッジュ","ッジョ","ッチャ","ッチュ",
-        "ッチョ","ッニャ","ッニュ","ッニョ","ッヒャ","ッヒュ","ッヒョ",
-        "ッビャ","ッビュ","ッビョ","ッピャ","ッピュ","ッピョ","ッミャ",
-        "ッミュ","ッミョ","ッリャ","ッリュ","ッリョ",
-
-        "キャ","キュ","キョ","ギャ","ギュ","ギョ","シャ",
-        "シュ","ショ","ジャ","ジュ","ジョ","チャ","チュ",
-        "チョ","ニャ","ニュ","ニョ","ヒャ","ヒュ","ヒョ",
-        "ビャ","ビュ","ビョ","ピャ","ピュ","ピョ","ミャ",
-        "ミュ","ミョ","リャ","リュ","リョ",
+        $kana2romaji = array(
+            'きゃ' => 'kya', 'きゅ' => 'kyu', 'きょ' => 'kyo',
+            'ぎゃ' => 'gya', 'ぎゅ' => 'gyu', 'ぎょ' => 'gyo',    
+            'しゃ' => 'sha', 'しゅ' => 'shu', 'しょ' => 'sho',
         
-        "ッウィ","ッウェ","ッウォ","ッヴァ","ッヴィ","ッヴ","ッヴェ",
-        "ッヴォ","ッシェ","ッジェ","ッチェ","ッツァ","ッツィ","ッツェ",
-        "ッツォ","ッデュ","ッティ","ットゥ","ッテュ","ッディ","ッドゥ",
-        "ッファ","ッフィ","ッフェ","ッフォ","ッフュ",
+            'じゃ' => 'ja',  'じゅ' => 'ju',  'じょ' => 'jo',
+            'ちゃ' => 'cha', 'ちゅ' => 'chu', 'ちょ' => 'cho',
+            'にゃ' => 'nya', 'にゅ' => 'nyu', 'にょ' => 'nyo',
+            'ひゃ' => 'hya', 'ひゅ' => 'hyu', 'ひょ' => 'hyo',
+            'びゃ' => 'bya', 'びゅ' => 'byu', 'びょ' => 'byo',
+            'ぴゃ' => 'pya', 'ぴゅ' => 'pyu', 'ぴょ' => 'pyo',
+            'みゃ' => 'mya', 'みゅ' => 'myu', 'みょ' => 'myo',
+            'りゃ' => 'rya', 'りゅ' => 'ryu', 'りょ' => 'ryo',
+            'うぃ' => 'wi',  'うぇ' => 'we',  'うぉ' => 'wo',
+            'ゔぁ' => 'va',  'ゔぃ' => 'vi',  'ゔ' => '',
+            'ゔぇ' => 'vr',  'ゔぉ' => 'vo',
+            'しぇ' => 'she', 'じぇ' => 'je',  'ちぇ' => 'che',
+            'つぁ' => 'tsa', 'つぃ' => 'tsi', 'つぇ' => 'tse',
+            'つぉ' => 'tso', 'てぃ' => 'ti',  'でゅ' => 'dyu',
+            'とぅ' => 'tu',  'てゅ' => 'tyu', 'でぃ' => 'di',
+            'どぅ' => 'du',  'ふぁ' => 'fa',  'ふぃ' => 'fi',
+            'ふぇ' => 'fe',  'ふぉ' => 'fo',  'ふゅ' => 'fyu',
         
-        "ウィ","ウェ","ウォ","ヴァ","ヴィ","ヴ","ヴェ",
-        "ヴォ","シェ","ジェ","チェ","ツァ","ツィ","ツェ",
-        "ツォ","デュ","ティ","トゥ","テュ","ディ","ドゥ",
-        "ファ","フィ","フェ","フォ","フュ",
+            'ぁ' => 'a',  'あ' => 'a',  'ぃ' => 'i',  'い' => 'i',  'ぅ' => 'u',
+            'う' => 'u',  'ぇ' => 'e',  'え' => 'e',  'ぉ' => 'o',  'お' => 'o',
+            'か' => 'ka', 'が' => 'ga', 'き' => 'ki', 'ぎ' => 'gi', 'く' => 'ku', 
+            'ぐ' => 'gu', 'け' => 'ke', 'げ' => 'ge', 'こ' => 'ko', 'ご' => 'go',
+            'さ' => 'sa', 'ざ' => 'za', 'し' => 'shi', 'じ' => 'ji', 'す' => 'su',
+            'ず' => 'zu', 'せ' => 'se', 'ぜ' => 'ze', 'そ' => 'so', 'ぞ' => 'zo',
+            'た' => 'ta', 'だ' => 'da', 'ち' => 'chi', 'ぢ' => 'ji', 'つ' => 'tsu',
+            'づ' => 'zu', 'て' => 'te', 'で' => 'de', 'と' => 'to', 'ど' => 'do',
+            'な' => 'na', 'に' => 'ni', 'ぬ' => 'nu', 'ね' => 'ne', 'の' => 'no',
+            'は' => 'ha', 'ば' => 'ba', 'ぱ' => 'pa', 'ひ' => 'hi', 'び' => 'bi',
+            'ぴ' => 'pi', 'ふ' => 'fu', 'ぶ' => 'bu', 'ぷ' => 'pu', 'へ' => 'he',
+            'べ' => 'be', 'ぺ' => 'pe', 'ほ' => 'ho', 'ぼ' => 'bo', 'ぽ' => 'po',
+            'ま' => 'ma', 'み' => 'mi', 'む' => 'mu', 'め' => 'me', 'も' => 'mo',
+            'ゃ' => 'ya', 'や' => 'ya', 'ゅ' => 'yu',
+            'ゆ' => 'yu', 'ょ' => 'yo', 'よ' => 'yo',
+            'ら' => 'ra', 'り' => 'ri', 'る' => 'ru', 'れ' => 're', 'ろ' => 'ro',
+            'ゎ' => 'wa', 'わ' => 'wa', 'を' => 'o',  'ん' => 'n',
         
-        "ッカ","ッガ","ッキ","ッギ","ック","ッグ","ッケ","ッゲ","ッコ","ッゴ",
-        "ッサ","ッザ","ッシ","ッジ","ッス","ッズ","ッセ","ッゼ","ッソ","ッゾ",
-        "ッタ","ッダ","ッチ","ッヂ","ッッ","ッツ","ッヅ","ッテ","ッデ","ット",
-        "ッド","ッナ","ッニ","ッヌ","ッネ","ッノ","ッハ","ッバ","ッパ","ッヒ",
-        "ッビ","ッピ","ッフ","ッブ","ップ","ッヘ","ッベ","ッペ","ッホ","ッボ",
-        "ッポ","ッマ","ッミ","ッム","ッメ","ッモ","ッャ","ッヤ","ッュ","ッユ",
-        "ッョ","ッヨ","ッラ","ッリ","ッル","ッレ","ッロ","ッヮ","ッワ","ッヲ",
-        "ッン",
-
-        "ァ","ア","ィ","イ","ゥ","ウ","ェ","エ","ォ","オ",
-        "カ","ガ","キ","ギ","ク","グ","ケ","ゲ","コ","ゴ",
-        "サ","ザ","シ","ジ","ス","ズ","セ","ゼ","ソ","ゾ",
-        "タ","ダ","チ","ヂ","ッ","ツ","ヅ","テ","デ","ト",
-        "ド","ナ","ニ","ヌ","ネ","ノ","ハ","バ","パ","ヒ",
-        "ビ","ピ","フ","ブ","プ","ヘ","ベ","ペ","ホ","ボ",
-        "ポ","マ","ミ","ム","メ","モ","ャ","ヤ","ュ","ユ",
-        "ョ","ヨ","ラ","リ","ル","レ","ロ","ヮ","ワ","ヲ",
-        "ン","ヴ","ヵ","ヶ",
-
-        "。","、","？","！","「","」","・"
+            'ゕ' => '', 'ゖ' => '',
+            '。' => '.', '、' => ',', '？' => '?', '！' => '!', '「' => '"',
+            '」' => '"', '・' => ' ', '＝' => '-', '〜' => '~'
         );
 
-        $romanji = array(
-        "kya","kkyu","kkyo","ggya","ggyu","ggyo","ssha","sshu","ssho",
-        "jja","jju","jjo","ccha","cchu","ccho","nnya","nnyu","nnyo",
-        "hhya","hhyu","hhyo","bbya","bbyu","bbyo","ppya","ppyu","ppyo",
-        "mmya","mmyu","mmyo","rrya","rryu","rryo",
-        
-        "kya","kyu","kyo","gya","gyu","gyo","sha","shu","sho",
-        "ja","ju","jo","cha","chu","cho","nya","nyu","nyo",
-        "hya","hyu","hyo","bya","byu","byo","pya","pyu","pyo",
-        "mya","myu","myo","rya","ryu","ryo",
-        
-        "wwi","wwe","wwo","vva","vvi","vvu","vvr","vvo","sshe","jje",
-        "che","ttsa","ttsi","ttse","ttso","ddyu","tti","ttu","ttyu","ddi",
-        "ddu","ffa","ffi","ffe","ffo","ffyu",
-        
-        "wi","we","wo","va","vi","vu","vr","vo","she","je",
-        "che","tsa","tsi","tse","tso","dyu","ti","tu","tyu","di",
-        "du","fa","fi","fe","fo","fyu",
-        
-        "kka","gga","kki","ggi","kku","ggu","kke","gge","kko","ggo",
-        "ssa","zza","sshi","jji","ssu","zzu","sse","zze","sso","zzo",
-        "tta","dda","cchi","jji","","tsu","zzu","tte","dde","tto",
-        "ddo","nna","nni","nnu","nne","nno","hha","bba","ppa","hhi",
-        "bbi","ppi","ffu","bbu","ppu","hhe","bbe","ppe","hho","bbo",
-        "ppo","mma","mmi","mmu","mme","mmo","yya","yya","yyu","yyu",
-        "yyo","yyo","rra","rri","rru","rre","rro","wwa","wwa","wwo",
-        "nn",
+        $longVowels = array(
+            'おお'   => 'ō',   'おう'   => 'ō',
 
-        "a","a","i","i","u","u","e","e","o","o",
-        "ka","ga","ki","gi","ku","gu","ke","ge","ko","go",
-        "sa","za","shi","ji","su","zu","se","ze","so","zo",
-        "ta","da","chi","ji","","tsu","zu","te","de","to",
-        "do","na","ni","nu","ne","no","ha","ba","pa","hi",
-        "bi","pi","fu","bu","pu","he","be","pe","ho","bo",
-        "po","ma","mi","mu","me","mo","ya","ya","yu","yu",
-        "yo","yo","ra","ri","ru","re","ro","wa","wa","wo",
-        "n","","","",
+            'きゅう' => 'kyū', 'ぎゅう' => 'gyū',
+            'きょう' => 'kyō', 'ぎょう' => 'gyō',
+            'かあ'   => 'kā',
+            'くう'   => 'kū',  'ぐう'   => 'gū',
+            'こお'   => 'kō',
+            'こう'   => 'kō',  'ごう'   => 'gō',
 
-        ".",", ","?","!","\"","\"","."
+            'しゅう' => 'shū', 'じゅう' => 'jū',
+            'しょう' => 'shō', 'じょう' => 'jō',
+            'すう'   => 'sū',  'ずう'   => 'zū',
+            'そう'   => 'sō',  'ぞう'   => 'zō',
+
+            'ちゅう' => 'chū', 'ぢゅう' => 'jū',
+            'ちょう' => 'chō', 'ぢょう' => 'jō',
+            'とお'   => 'tō',  'どお'   => 'dō',
+            'とう'   => 'tō',  'どう'   => 'dō',
+
+            'にゅう' => 'nyū',
+            'にょう' => 'nyō',
+            'ねえ'   => 'nē',
+            'のう'   => 'nō',
+            'のお'   => 'nō',
+
+            'ひゅう' => 'hyū', 'びゅう' => 'byū', 'ぴゅう' => 'pyū',
+            'ひょう' => 'hyō', 'びょう' => 'byō', 'ぴょう' => 'pyō',
+                               'ばあ'   => 'bā',
+            'ほう'   => 'hō',  'ぼう'   => 'bō',  'ぽう'   => 'pō',
+            'ほお'   => 'hō',
+
+            'みゅう' => 'myū',
+            'みょう' => 'myō',
+            'まあ'   => 'mā',
+            'もう'   => 'mō',
+
+            'ゆう'   => 'yū',
+            'よう'   => 'yō',
+
+            'りゅう' => 'ryū',
+            'りょう' => 'ryō',
+            'ろう'   => 'rō',
         );
 
-        $Owakati = explode(' ', $Owakati);
-        $Oyomi = explode(' ', $Oyomi);
-        $romanization = array();
+        $specials = array(
+            'みずうみ' => 'mizuumi',
+        );
 
-        if ($type == 'furigana') {
-            foreach ($Owakati as $i=>$word) {
-                preg_match_all('/./u', $word, $char);
-                if (in_array($char[0][0], $katakana)) {
-                    array_push($romanization, $word);
-                } else {
-                    array_push(
-                        $romanization,
-                        str_replace($katakana, $hiragana, $Oyomi[$i])
-                    );
-                }
-            }
-        } elseif ($type == 'mix') {
-            foreach ($Owakati as $i=>$word) {
-                preg_match_all('/./u', $word, $chars);
-                $char = $chars[0][0];
-                if (in_array($char, $katakana) || in_array($char, $hiragana)) {
-                    array_push(
-                        $romanization,
-                        $word
-                    );
-                } else {
-                    $translatedWord = str_replace($katakana, $hiragana, $Oyomi[$i]);
-                    array_push(
-                        $romanization,
-                        $word."[$translatedWord]"
-                    );
-                }
-            }
-        } elseif ($type == 'romaji') {
-            $prev_word = null;
-            foreach ($Owakati as $i=>$word) {
-                // Ensure we only have katanakas.
-                $Oyomi[$i] = str_replace($hiragana, $katakana, $Oyomi[$i]);
-                // Little tsus are part of the previous word (やった splits into やっ た)
-                // so we need to get tsus back first. This code merge multiple tsus into
-                // one (やっっっった becomes "yatta"), but it removes ending tsus
-                // (やったっ！ becomes "yatta!").
-                if (!is_null($prev_word)) {
-                    $prev_word_last_chr = mb_substr($prev_word, -1, 1, "UTF-8");
-                    if ($prev_word_last_chr == "ッ")
-                        $Oyomi[$i] = $prev_word_last_chr.$Oyomi[$i];
-                }
-                array_push(
-                    $romanization,
-                    str_replace($kata, $romanji, $Oyomi[$i])
-                );
-                $prev_word = $Oyomi[$i];
-            }
+        if (isset($specials[$word])) {
+            $word = $specials[$word];
         } else {
-            $romanization = array();
+            $word = mb_ereg_replace_callback(
+                '([よねぞなぜえおオ])(ー+)',
+                function ($matches) use ($kana2romaji, $katakana, $hiragana) {
+                    $kana = str_replace($katakana, $hiragana, $matches[1]);
+                    $syl = str_replace(array_keys($kana2romaji), array_values($kana2romaji), $kana);
+                    $intonations = mb_strlen($matches[2]);
+                    $vowel = substr($syl, -1);
+                    while ($intonations--)
+                        $syl = $syl.$vowel;
+                    return $syl;
+                },
+                $word
+            );
+
+            $word = str_replace($katakana, $hiragana, $word);
+            $word = mb_ereg_replace('ん([あいうえおやゆよ])', 'n\'\\1', $word);
+            $word = str_replace(array_keys($longVowels), array_values($longVowels), $word);
+            $word = str_replace(array_keys($kana2romaji), array_values($kana2romaji), $word);
         }
-
-        return implode(" ", $romanization);
+        return $word;
     }
-
 }

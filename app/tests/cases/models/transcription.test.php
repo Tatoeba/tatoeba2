@@ -13,6 +13,7 @@ class TranscriptionTestCase extends CakeTestCase {
         'app.sentence_annotation',
         'app.sentence_comment',
         'app.sentences_list',
+        'app.sentences_sentences_list',
         'app.tag',
         'app.tags_sentence',
         'app.transcription',
@@ -251,7 +252,7 @@ class TranscriptionTestCase extends CakeTestCase {
             'contain' => array('Sentence')
         ));
         $this->_installAutotranscriptionMock()->expectOnce(
-            'jpn',
+            'tokenizedJapaneseWithReadingsToRomaji',
             array($transcript['Transcription']['text'])
         );
 
@@ -276,7 +277,9 @@ class TranscriptionTestCase extends CakeTestCase {
 
     function testGenerateTranscriptionReturnsTranscriptionWithParent() {
         $jpnSentence = $this->Transcription->Sentence->findById(6);
-        $this->_installAutotranscriptionMock()->setReturnValue('jpn', 'stuff in Latin');
+        $this->_installAutotranscriptionMock()
+             ->setReturnValue('tokenizedJapaneseWithReadingsToRomaji',
+                              'stuff in Latin');
 
         $result = $this->Transcription->generateTranscription($jpnSentence, 'Latn');
 
@@ -294,7 +297,7 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->Transcription->deleteAll('1=1');
         $jpnSentence = $this->Transcription->Sentence->findById(6);
         $autotranscription = $this->_installAutotranscriptionMock();
-        $autotranscription->setReturnValue('jpn', 'stuff in Latin');
+        $autotranscription->setReturnValue('tokenizedJapaneseWithReadingsToRomaji', 'stuff in Latin');
         $autotranscription->setReturnValue('_getFurigana', 'stuff in kana');
 
         $this->Transcription->generateAndSaveAllTranscriptionsFor($jpnSentence);

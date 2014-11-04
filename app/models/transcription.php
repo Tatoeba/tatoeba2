@@ -44,7 +44,7 @@ class Transcription extends AppModel
         ),
         'jpn-Hrkt' => array(
             'Latn' => array(
-                'generator' => 'jpn'
+                'generator' => 'tokenizedJapaneseWithReadingsToRomaji'
             ),
         ),
         'uzb-Latn' => array(
