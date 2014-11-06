@@ -18,16 +18,125 @@
 
 
 /*
+ * Logs main
+ */
+
+#logs a {
+    color: #6A0;
+}
+
+#logs a:hover {
+    color: #DD8800;
+}
+
+#logs ul.info {
+    margin: 0px;
+    padding: 0px;
+}
+
+#logs .info li {
+    padding: 0px 3px;
+    display: inline-block;
+}
+
+#logs .date {
+    color: #999;
+}
+
+#logs img.flag {
+    vertical-align: middle;
+    padding-right: 7px;
+    margin-top: -1px;
+}
+
+#logs .contribution{
+    max-width: 500px;
+}
+
+#logs .sentenceLog, #logs .linkLog {
+    padding-left: 8px;
+}
+
+
+/*
+ * Main content
+ */
+
+#main_content #logs .contribution {
+    padding: 0px 10px 20px 10px;
+    margin-left: 100px;
+}
+
+#main_content #logs .sentenceLog .contribution {
+    font-size: 20px;
+}
+
+#main_content #logs .sentenceId {
+    margin-left: 20px;
+}
+
+#main_content #logs .date {
+    float: left;
+    width: 85px;
+    text-align: right;
+}
+
+#main_content #logs .sentenceLog, #main_content #logs .linkLog {
+    background-position: 100px 0px;
+}
+
+/*
+ * Annexe
+ */
+
+#annexe_content #logs .contribution {
+    padding: 0px 10px 10px 10px;
+}
+
+#annexe_content #logs ul.info {
+    padding-left: 12px;
+}
+
+#annexe_content #logs .date::before {
+    content: "- ";
+}
+
+/*
+ * Logs hovering feature
+ */
+
+.sentences_set .highlighted {
+    background-color: #f7d6b2;
+}
+
+#logs .linkLog.added.hovered {
+    cursor: pointer;
+    border-right: 5px solid #ccc;
+    background-color: #f1f1f1;
+}
+
+#logs .linkLog.added.historyHighlighted {
+    border-right: 5px solid #999;
+    background-color: #f1f1f1;
+}
+
+
+/* *************************
+ *
+ *   Colors
+ * 
+ * ************************* */
+
+/*
  * Sentence added
  */
 
 #logs .sentenceLog.added {
     background: url('../../img/logs-sentence-added.svg') no-repeat;
-    padding-left: 8px;
 }
 
 #logs .sentenceLog.added .contribution {
-    border-left: 4px solid #04B404;
+    border-left: 4px solid #9CC659;
 }
 
 
@@ -37,11 +146,10 @@
 
 #logs .sentenceLog.deleted {
     background: url('../../img/logs-sentence-deleted.svg') no-repeat;
-    padding-left: 8px;
 }
 
 #logs .sentenceLog.deleted .contribution {
-    border-left: 4px solid #B40404;
+    border-left: 4px solid #E27C7C;
 }
 
 
@@ -51,11 +159,10 @@
 
 #logs .sentenceLog.edited {
     background: url('../../img/logs-sentence-edited.svg') no-repeat;
-    padding-left: 8px;
 }
 
 #logs .sentenceLog.edited .contribution {
-    border-left: 4px solid #F7D358;
+    border-left: 4px solid #E2DA81;
 }
 
 
@@ -65,11 +172,10 @@
 
 #logs .linkLog.added {
     background: url('../../img/logs-link-added.svg') no-repeat;
-    padding-left: 8px;
 }
 
 #logs .linkLog.added .contribution {
-    border-left: 4px solid #00BFFF;
+    border-left: 4px solid #77CCC9;
 }
 
 
@@ -79,11 +185,10 @@
 
 #logs .linkLog.deleted {
     background: url('../../img/logs-link-deleted.svg') no-repeat;
-    padding-left: 8px;
 }
 
 #logs .linkLog.deleted .contribution {
-    border-left: 4px solid #FF8000;
+    border-left: 4px solid #F4AA64;
 }
 
 

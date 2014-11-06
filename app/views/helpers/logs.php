@@ -372,9 +372,6 @@ class LogsHelper extends AppHelper
                     'controller' => 'sentences',
                     'action' => 'show',
                     $sentenceId
-                ),
-                array(
-                    'class' => 'sentenceId'
                 )
             );
             echo sprintf(__('Sentence %s', true), $sentenceLink);

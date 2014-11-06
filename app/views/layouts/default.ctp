@@ -50,7 +50,7 @@
         $action = $this->params["action"];
         
         
-        echo $html->css(CSS_PATH . $controller."/".$action .".css"); 
+        echo $html->css(CSS_PATH . $controller."/".$action .".css?1"); 
         
         
         // Special case for Chrome and furigana.
