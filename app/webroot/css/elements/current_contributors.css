@@ -17,12 +17,59 @@
  */
 
 
-/*
- * Latest contributions
- */
-@import url(../elements/logs.css);
+.currentContributor {
+    border: 1px solid #DDD;
+    margin: 5px;
+    padding: 5px;
+}
 
-/*
- * Current contributors
- */
-@import url(../elements/current_contributors.css);
+.currentContributor .image {
+    float: left;
+    margin-right: 10px;
+}
+
+.currentContributor .username {
+    font-size: 1.2em;
+    line-height: 20px;
+}
+
+.currentContributor .score {
+    color: #777;
+    font-size: 0.8em;
+    line-height: 15px;
+}
+
+.activityBar {
+    float: right;
+    border: 1px solid #CCC;
+    width: 10px;
+    margin: 2px 0px;
+}
+
+.activityBar .box{
+    height: 5px;
+    margin: 1px;
+}
+
+.activityBar .level0 {
+}
+
+.activityBar .level1 {
+    background: #00CBE7;
+}
+
+.activityBar .level2 {
+    background: #00DA3C;
+}
+
+.activityBar .level3 {
+    background: #F4F328;
+}
+
+.activityBar .level4 {
+    background: #FD8603;
+}
+
+.activityBar .level5 {
+    background: #DF151A;
+}

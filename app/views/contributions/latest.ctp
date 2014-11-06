@@ -55,6 +55,17 @@ $this->set('title_for_layout', "Tatoeba - " . __("Latest contributions", true));
         ?>
         </p>
     </div>
+
+    <div class="module">
+    <?php 
+    echo $this->element(
+        'currently_active_members', 
+        array(
+            'currentContributors' => $currentContributors
+        )
+    ); 
+    ?> 
+    </div>
 </div>
 
 <div id="main_content">
