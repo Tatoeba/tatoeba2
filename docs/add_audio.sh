@@ -2,6 +2,8 @@
 # usage: ./add_audio.sh  DIRECTORY_CONTAINING_MP3s LANGUAGE_ISO_CODE MYSQL_USERNAME MYSQL_PASSWORD MYSQL_DB DEST_BASE
 # See syntax message for an example.
 
+shopt -s nullglob
+
 if [ $# -ne 6 ]; then
     echo "Usage: add_audio.sh  DIR_W_MP3s LANG_CODE MYSQL_USER MYSQL_PWD MYSQL_DB DEST_BASE"
     echo "Example: add_audio.sh my_eng_sentences eng root tatoeba tatoeba /var/audio/sentences"
@@ -10,12 +12,26 @@ else
     MYSQL_PASSWORD=$4
     MYSQL_DB=$5
     MP3DIR="$6/$2"
-    if [ ! -d  "$MP3DIR" ];then
-        mkdir "$MP3DIR"
+    if [ ! -d  "$MP3DIR" ]; then
+        echo "Directory '$MP3DIR' must exist before running the script; execute 'mkdir $MP3DIR' if necessary."
+        exit 1
     fi
     cd $1
     re='^[1-9][0-9]*$'
     rm -f update_hasaudio.sql
+    for MP3 in *.MP3
+        do
+        SENTENCE_ID="${MP3%.MP3}"
+        SRC_FILE="$SENTENCE_ID.MP3"
+        DEST_FILE="$SENTENCE_ID.mp3"
+        mv "$SRC_FILE" "$DEST_FILE"
+        if [ "$?" -eq "0" ]; then
+            echo "Moved '$SRC_FILE' to '$DEST_FILE'"
+        else
+            echo "Could not move '$SRC_FILE' to '$DEST_FILE'; script will terminate."
+            exit 1
+        fi
+    done;
     for MP3 in *.mp3
         do
         SENTENCE_ID="${MP3%.mp3}";
@@ -39,6 +55,7 @@ else
             fi
         else
             echo "Could not copy $SENTENCE_ID.mp3 to $MP3DIR; script will terminate."
+            echo "You may need to run as root."
             exit 1
         fi
     done;
