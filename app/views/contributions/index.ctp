@@ -40,14 +40,6 @@ $this->set('title_for_layout', "Tatoeba - " . __("Latest contributions", true));
 
 <div id="annexe_content">
     <?php $commonModules->createFilterByLangMod(); ?> 
-    <div class="module">
-        <h2><?php __('Meaning of the colors'); ?></h2>
-        <ul id="logsLegend">
-        <li class="sentenceAdded"><?php __('sentence added'); ?></li>
-        <li class="sentenceModified"><?php __('sentence modified'); ?></li>
-        <li class="sentenceDeleted"><?php __('sentence deleted'); ?></li>
-        </ul>
-    </div>
 </div>
 
 <div id="main_content">
@@ -57,38 +49,21 @@ $this->set('title_for_layout', "Tatoeba - " . __("Latest contributions", true));
         $pagination->display(array($langFilter));
         ?>
 
-        <table id="logs">
+        <div id="logs">
         <?php
         foreach ($contributions as $contribution) {
-            $type = $contribution['Contribution']['type'];
-            $sentenceId = $contribution['Contribution']['sentence_id'];
-            $datetime = $contribution['Contribution']['datetime'];
-            $action = $contribution['Contribution']['action'];
             $userId = $contribution['Contribution']['user_id'];
-            if ($type == 'sentence') {
-                $text = $contribution['Contribution']['text'];
-                $lang = $contribution['Contribution']['sentence_lang'];
-                $logs->displaySentenceEntry(
-                    $sentenceId,
-                    $text, 
-                    $lang, 
-                    $users[$userId], 
-                    $datetime, 
-                    $action
-                );
-            } else if ($type == 'link') {
-                $translationId = $contribution['Contribution']['translation_id'];
-                $logs->displayLinkEntry(
-                    $sentenceId, 
-                    $translationId, 
-                    $users[$userId], 
-                    $datetime, 
-                    $action
-                );
-            }
+            $contribution['User'] = array(
+                'id' => $userId,
+                'username' => $users[$userId] 
+            );
+            $logs->entry(
+                $contribution['Contribution'],
+                $contribution['User']
+            );
         }
         ?>
-        </table>
+        </div>
 
         <?php
         $pagination->display(array($langFilter));

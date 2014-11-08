@@ -58,38 +58,19 @@ $this->set('title_for_layout', "Tatoeba - " . $title);
         $pagination->display(array($username));
         ?>
 
-        <table id="logs">
+        <div id="logs">
         <?php
+        $user = array(
+            'username' => $username
+        );
         foreach ($contributions as $contribution) {
-            $type = $contribution['Contribution']['type'];
-            $sentenceId = $contribution['Contribution']['sentence_id'];
-            $datetime = $contribution['Contribution']['datetime'];
-            $action = $contribution['Contribution']['action'];
-            
-            if ($type == 'sentence') {
-                $text = $contribution['Contribution']['text'];
-                $lang = $contribution['Contribution']['sentence_lang'];
-                $logs->displaySentenceEntry(
-                    $sentenceId,
-                    $text, 
-                    $lang, 
-                    $username, 
-                    $datetime, 
-                    $action
-                );
-            } else if ($type == 'link') {
-                $translationId = $contribution['Contribution']['translation_id'];
-                $logs->displayLinkEntry(
-                    $sentenceId, 
-                    $translationId, 
-                    $username, 
-                    $datetime, 
-                    $action
-                );
-            }
+            $logs->entry(
+                $contribution['Contribution'],
+                $user
+            );
         }
         ?>
-        </table>
+        </div>
 
         <?php
         $pagination->display(array($username));

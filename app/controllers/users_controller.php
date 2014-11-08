@@ -498,17 +498,7 @@ class UsersController extends AppController
 
         $this->loadModel('LastContribution');
         $currentContributors = $this->LastContribution->getCurrentContributors();
-
-        // present result in a nicer array
-        $total = 0;
-        foreach ( $currentContributors as $i=>$contributor) {
-            $currentContributors[$i] = array (
-                'numberOfContributions' => $contributor[0]['total'],
-                'userName' => $contributor['User']['username'],
-                'image' => $contributor['User']['image']
-            );
-            $total += $contributor[0]['total'];
-        }
+        $total = $this->LastContribution->getTotal($currentContributors);
 
         $this->set('currentContributors', $currentContributors);
         $this->set('total', $total);
