@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Pinyin converter', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Pinyin converter', true)));
 
 // if it's the first time we call this tool
 if (!isset($lastText)) {

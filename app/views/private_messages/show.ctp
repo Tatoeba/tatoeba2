@@ -30,13 +30,14 @@ if (empty($title)) {
 } else {
     $messageTitle = $title;
 }
-$this->set('title_for_layout', __('Private messages', true) 
+$this->set('title_for_layout', $pages->formatTitle(
+    __('Private messages', true) 
     .' - ' 
     . sprintf(
         __('%s from %s', true),
         $messageTitle, $author['username']
     )
-);
+));
 
 echo $this->element('pmmenu');
 ?>

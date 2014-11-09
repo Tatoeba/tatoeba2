@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-$this->set('title_for_layout', 'Tatoeba - ' . __('Translate sentences', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Translate sentences', true)));
 
 $currentLanguage = $session->read('browse_sentences_in_lang');
 $notTranslatedInto = $session->read('not_translated_into_lang');

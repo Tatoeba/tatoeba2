@@ -28,8 +28,8 @@
 
 //TODO to factorize with pinyin converter in a tool helper
 
-$this->set('title_for_layout', 'Tatoeba - ' . __(
-    'Convert Shanghainese into IPA', true
+$this->set('title_for_layout', $pages->formatTitle(
+    __('Convert Shanghainese into IPA', true)
 ));
 
 // if it's the first time we call this tool

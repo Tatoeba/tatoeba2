@@ -58,6 +58,7 @@ class AppController extends Controller
         'Logs',
         'Javascript',
         'Languages',
+        'Pages',
         'Session'
     );
     

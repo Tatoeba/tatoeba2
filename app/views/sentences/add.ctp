@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Add sentences', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Add sentences', true)));
 
 echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
 ?>

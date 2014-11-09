@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */ 
  
-$this->set('title_for_layout', 'Tatoeba - ' . __('Contact us', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Contact us', true)));
 ?>
 <div id="annexe_content">
     <div class="module">

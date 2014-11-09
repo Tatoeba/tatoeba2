@@ -225,6 +225,7 @@ class TagsController extends AppController
         $tagName = $this->Tag->getNameFromId($tagId);
         $tagExists = !empty($tagName);
         $this->set('tagExists', $tagExists);
+        $this->set('tagId', $tagId);
 
         if ($tagExists) {
             $this->paginate = $this->Tag->paramsForPaginate($tagId, 10, $lang);
@@ -243,7 +244,6 @@ class TagsController extends AppController
             );
 
             $this->set('langFilter', $lang);
-            $this->set('tagId', $tagId);
             $this->set('allSentences', $allSentences);
             $this->set('tagName', $tagName);
             $this->set('taggerIds', $taggerIds);
