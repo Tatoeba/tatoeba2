@@ -321,7 +321,7 @@ $this->__file .", line $line: not a string!\n\n"
 				}
 			}
 			if ($save) {
-				$repositoryPath = 'https://github.com/Tatoeba/tatoeba2/tree/master/app/';
+				$repositoryPath = 'github.com/Tatoeba/tatoeba2/tree/master/app/';
 				// convert Windows-style backslashes to forward slashes
 				$file = preg_replace('#\\\#', '/', $this->__file);
 				$tmp = explode('/app/', $file);
