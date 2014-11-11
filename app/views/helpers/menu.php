@@ -332,11 +332,13 @@ class MenuHelper extends AppHelper
                 'title'=>__('Link to another sentence', true),
                 'width' => 16,
                 'height' => 16,
+                'class' => 'linkTo',
                 'onClick' => "linkToSentence($sentenceId)",
+                'onDrop' => "linkToSentenceByDrop(event, $sentenceId)",
             )
         );
         ?>
-        <li class="linkTo"><a><?php echo $linkToSentenceButton; ?></a></li>
+        <li><a><?php echo $linkToSentenceButton; ?></a></li>
 
         <li style="display:none" id="linkTo<?php echo $sentenceId; ?>">
         <?php

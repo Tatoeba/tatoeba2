@@ -16,6 +16,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+$(document).ready(function() {
+    $('.linkTo')
+        .bind('dragover', function (event) {
+            event.preventDefault();
+            $(event.target).addClass('draggableLink');
+        })
+        .bind('dragleave', function (event) {
+            event.preventDefault();
+            $(event.target).removeClass('draggableLink');
+        })
+    ;
+});
+
+function URLToSentenceId(url) {
+    var URLParse = url.match(/\/(\d+)$/);
+    return URLParse ? URLParse[1] : url;
+}
+
+function linkToSentenceByDrop(event, sentenceId) {
+    event.preventDefault();
+    $(event.target).removeClass('draggableLink');
+
+    var dropped = event.dataTransfer.getData("text/plain");
+    targetSentenceId = URLToSentenceId(dropped);
+
+    // simulate form submission
+    linkToSentence(sentenceId);
+    $("#linkTo" + sentenceId).hide();
+    $("#linkToSentence" + sentenceId).val(targetSentenceId);
+    $("#linkToSubmitButton" + sentenceId).trigger("click");
+}
+
 function linkToSentence(sentenceId) {
     var linkTo = function(){
         var rootUrl = get_tatoeba_root_url();
@@ -23,10 +55,7 @@ function linkToSentence(sentenceId) {
 
         // if the field appears to contain a link to another sentence,
         // extract the sentence number from it
-        var linkParse = linkToSentenceId.match(/\/(\d+)$/);
-        if (linkParse) {
-            linkToSentenceId = linkParse[1];
-        }
+        linkToSentenceId = URLToSentenceId(linkToSentenceId);
 
         // ensure the form contains a number
         if (linkToSentenceId != parseInt(linkToSentenceId)) {
