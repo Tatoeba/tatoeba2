@@ -36,7 +36,7 @@ function linkToSentence(sentenceId) {
                 'returnTranslations': true
             },
             function(data){
-                $("#_" + sentenceId + "_translations").empty().append(data).show();
+                $("#_" + sentenceId + "_translations").replaceWith(data).show();
                 $("#linkTo" + sentenceId).hide();
                 $(this).click(linkTo);
             },
