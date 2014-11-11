@@ -21,6 +21,13 @@ function linkToSentence(sentenceId) {
         var rootUrl = get_tatoeba_root_url();
         var linkToSentenceId = $("#linkToSentence" + sentenceId).val();
 
+        // if the field appears to contain a link to another sentence,
+        // extract the sentence number from it
+        var linkParse = linkToSentenceId.match(/\/(\d+)$/);
+        if (linkParse) {
+            linkToSentenceId = linkParse[1];
+        }
+
         // ensure the form contains a number
         if (linkToSentenceId != parseInt(linkToSentenceId)) {
             return;
