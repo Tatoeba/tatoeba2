@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 # Tool for updating UI translations for Tatoeba (tatoeba.org).
 # Provides an automated way to retrieve human-readable po files 
 # from the transifex site, compile them into binary mo files,
@@ -9,6 +8,7 @@
 section='https://www.transifex.com'
 URL='https://www.transifex.com/api/2'
 
+#Note that the "requests" module must be imported with "sudo pip-3.2 install requests".
 import os, requests, logging, datetime, subprocess, argparse, configparser
 from getpass import getpass
 
@@ -21,11 +21,11 @@ config.read(configFilePath)
 if not config.has_section(section):
     config.add_section(section)
 if not config.has_option(section, 'username'):
-    username=input('Enter you Transifex\'s username: ')
+    username=input('Enter your Transifex username: ')
     if username: config.set(section, 'username', username)
     else: quit()
 if not config.has_option(section, 'password'):
-    password=getpass('Enter you Transifex\'s password: ')
+    password=getpass('Enter your Transifex password: ')
     if password: config.set(section, 'password', password)
     else: quit()
 
@@ -80,7 +80,7 @@ def main():
                         required=False, action='store_true')
     parser.add_argument('-n','--dontclean', help='Do not clean the temp directory.',
                         required=False, action='store_true')
-    parser.add_argument('-i','--input', help='''Where to create the launchpad repository,
+    parser.add_argument('-i','--input', help='''Where to create the Transifex repository,
                         or the location of a local copy, if one already exists.''', required=False)
     parser.add_argument('-o','--output', help='''Where to create the main repository,
                         or the location of a local copy, if one already exists.
@@ -103,14 +103,16 @@ def main():
     printAndLog('Initiating translations fetch - %s'%(TMP_DIR))
     if not os.path.exists(TRANSLATIONS_LOCAL):
         os.makedirs(TRANSLATIONS_LOCAL)
-    printAndLog('Getting from Transifex')
+    printAndLog('Retrieving from Transifex')
     
     for language in languagesTable:
         if language[0]=='en': continue
-        r=requests.get('%s/project/tatoeba_website/resource/tatoebaResource/translation/%s/?mode=default&file'%(URL,language[0]), auth=myAuthentication)
+        r=requests.get(
+            '%s/project/tatoeba_website/resource/tatoebaResource/translation/%s/?mode=default&file'%(
+                URL,language[0]), auth=myAuthentication)
         if r.status_code != requests.codes.ok:
             if r.status_code==401:
-                printAndLog('Please check your Transifex\'s user information in ~/.transifexrc.')
+                printAndLog('Please check your Transifex user information in ~/.transifexrc.')
                 quit()
             printAndLog('Problem with %s'%language)
             continue
@@ -142,7 +144,8 @@ def main():
         print('git status: nothing has changed. will not commit.')
     else:
         if COMMIT:
-            printAndLog(executeCommand('cd %s && git commit -m "Translations updated via update-translations.py."'%MAIN_LOCAL,True))
+            printAndLog(executeCommand(
+                'cd %s && git commit -m "Translations updated via update-translations.py."'%MAIN_LOCAL,True))
             print('Changes have been committed.')
             printAndLog(executeCommand('cd %s && git push origin master'%MAIN_LOCAL,True))
             print('Changes have been pushed to master.')
