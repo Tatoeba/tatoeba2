@@ -76,6 +76,8 @@ def main():
     parser = argparse.ArgumentParser(description='''Script for updating UI translations for Tatoeba.
                                      Script assumes you have established SSH key access with GitHub. See:
                                      https://help.github.com/articles/generating-ssh-keys''')
+    parser.add_argument('-b','--branch', help='Branch to which changes should be pushed.',
+                        default='transifex')
     parser.add_argument('-c','--commit', help='Commit changes to GitHub repository.',
                         required=False, action='store_true')
     parser.add_argument('-n','--dontclean', help='Do not clean the temp directory.',
@@ -87,6 +89,8 @@ def main():
                         Please note that in this case, this path should
                         indicate the 'app/locale' directory of the repository''', required=False)
     args = parser.parse_args()
+    if args.branch:
+        BRANCH = args.branch
     if args.commit:
         COMMIT=True
     if args.dontclean:
@@ -103,7 +107,7 @@ def main():
     printAndLog('Initiating translations fetch - %s'%(TMP_DIR))
     if not os.path.exists(TRANSLATIONS_LOCAL):
         os.makedirs(TRANSLATIONS_LOCAL)
-    printAndLog('Retrieving from Transifex')
+    printAndLog('Fetching from Transifex')
     
     for language in languagesTable:
         if language[0]=='en': continue
@@ -147,8 +151,8 @@ def main():
             printAndLog(executeCommand(
                 'cd %s && git commit -m "Translations updated via update-translations.py."'%MAIN_LOCAL,True))
             print('Changes have been committed.')
-            printAndLog(executeCommand('cd %s && git push origin master'%MAIN_LOCAL,True))
-            print('Changes have been pushed to master.')
+            printAndLog(executeCommand('cd %s && git push origin %s'%(MAIN_LOCAL,BRANCH),True))
+            print('Changes have been pushed to %s.'%BRANCH)
         else:
             print('Changes haven\'t been committed. Use -c to commit.')
     
