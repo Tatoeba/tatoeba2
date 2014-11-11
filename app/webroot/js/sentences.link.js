@@ -34,8 +34,8 @@ function linkToSentence(sentenceId) {
         }
 
         $("#_" + sentenceId + "_translations").hide();
-        $("#linkToSentence" + sentenceId).val("");
         $("#_" + sentenceId + "_message").remove();
+        $("#_" + sentenceId + "_loading").show();
 
         $(this).unbind('click', linkTo); // to prevent double submission
         $.post(
@@ -44,8 +44,10 @@ function linkToSentence(sentenceId) {
                 'returnTranslations': true
             },
             function(data){
+                $("#_" + sentenceId + "_loading").hide();
                 $("#_" + sentenceId + "_translations").replaceWith(data).show();
                 $("#linkTo" + sentenceId).hide();
+                $("#linkToSentence" + sentenceId).val("");
                 $(this).click(linkTo);
             },
             'html'
