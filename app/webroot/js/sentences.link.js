@@ -49,6 +49,12 @@ function linkToSentenceByDrop(event, sentenceId) {
 }
 
 function linkToSentence(sentenceId) {
+    var keyPressed = function(event) {
+        if(event.keyCode == 13) { // allow submitting with enter key
+            $("#linkToSubmitButton" + sentenceId).trigger("click");
+        }
+    };
+
     var linkTo = function(){
         var rootUrl = get_tatoeba_root_url();
         var linkToSentenceId = $("#linkToSentence" + sentenceId).val();
@@ -84,5 +90,6 @@ function linkToSentence(sentenceId) {
     };
 
     $("#linkToSubmitButton" + sentenceId).unbind('click').click(linkTo);
+    $("#linkToSentence" + sentenceId).unbind('keypress').keypress(keyPressed);
     $("#linkTo" + sentenceId).toggle();
 }
