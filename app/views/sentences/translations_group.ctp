@@ -19,6 +19,12 @@
 
 $sentences->javascriptForAJAXTranslationsGroup();
 
+if (!$saved) {
+?>
+<div id="_<?php echo $sentenceId ?>_message" class="error"><?php echo htmlentities($message) ?></div>
+<?
+}
+
 $sentences->displayTranslations(
     $sentenceId,
     $translations,

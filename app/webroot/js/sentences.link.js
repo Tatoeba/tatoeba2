@@ -28,6 +28,7 @@ function linkToSentence(sentenceId) {
 
         $("#_" + sentenceId + "_translations").hide();
         $("#linkToSentence" + sentenceId).val("");
+        $("#_" + sentenceId + "_message").remove();
 
         $(this).unbind('click', linkTo); // to prevent double submission
         $.post(

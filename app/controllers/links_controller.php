@@ -38,7 +38,7 @@
 class LinksController extends AppController
 {
 
-    private function _renderTranslationsOf($sentenceId)
+    private function _renderTranslationsOf($sentenceId, $message)
     {
         $this->loadModel('Sentence');
         $alltranslations = $this->Sentence->getTranslationsOf($sentenceId);
@@ -48,6 +48,7 @@ class LinksController extends AppController
         $this->set('sentenceId', $sentenceId);
         $this->set('translations', $translations);
         $this->set('indirectTranslations', $indirectTranslations);
+        $this->set('message', $message);
         $this->render('/sentences/translations_group');
     }
 
@@ -66,14 +67,6 @@ class LinksController extends AppController
         
         $saved = $this->Link->add($sentenceId, $translationId);
         
-        if ($this->RequestHandler->isAjax()) {
-            $this->set('saved', $saved);
-            if (isset($this->params['form']['returnTranslations'])
-                && (bool)$this->params['form']['returnTranslations'])
-                $this->_renderTranslationsOf($sentenceId);
-            return;
-        }
-
         if ($saved) {
             $flashMessage = sprintf(
                 __(
@@ -91,7 +84,15 @@ class LinksController extends AppController
             );
         }
 
-        $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
+        $this->set('saved', $saved);
+
+        if ($this->RequestHandler->isAjax()) {
+            if (isset($this->params['form']['returnTranslations'])
+                && (bool)$this->params['form']['returnTranslations'])
+                $this->_renderTranslationsOf($sentenceId, $flashMessage);
+        } else {
+            $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
+        }
     }
 
 

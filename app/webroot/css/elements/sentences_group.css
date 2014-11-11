@@ -238,3 +238,16 @@ input.sentenceId {
 .correctnessNegative1, .correctnessNegative1 a {
     color: #F00000;
 }
+
+
+/*
+ * Ajax messages
+ */
+
+.sentences_set .error {
+    padding: 8px 8px 8px 32px;
+    border: #E1E1E1 1px solid;
+    background: url(/img/error_16x16.png) 8px center no-repeat;
+    background-color: #F1F1F1;
+}
+
