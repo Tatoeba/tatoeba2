@@ -1,4 +1,5 @@
 <?php
+
 if ($saved) {
     $image = 'unlink.png';
     $alt = __('Unlink', true);
