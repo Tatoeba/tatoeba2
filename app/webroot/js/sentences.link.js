@@ -67,10 +67,9 @@ function linkToSentence(sentenceId) {
         if (linkToSentenceId != parseInt(linkToSentenceId)) {
             return;
         }
-
-        $("#_" + sentenceId + "_translations").hide();
+        
         $("#_" + sentenceId + "_message").remove();
-        $("#_" + sentenceId + "_loading").show();
+        $("#_" + sentenceId +"_in_process").show();
 
         $(this).unbind('click', linkTo); // to prevent double submission
         $.post(
@@ -79,7 +78,7 @@ function linkToSentence(sentenceId) {
                 'returnTranslations': true
             },
             function(data){
-                $("#_" + sentenceId + "_loading").hide();
+                $("#_" + sentenceId +"_in_process").hide();
                 $("#_" + sentenceId + "_translations").replaceWith(data).show();
                 $("#linkTo" + sentenceId).hide();
                 $("#linkToSentence" + sentenceId).val("");
