@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
-"POT-Creation-Date: 2014-11-09 17:44+0100\n"
-"PO-Revision-Date: 2014-11-09 16:43+0000\n"
+"POT-Creation-Date: 2014-11-13 05:49+0100\n"
+"PO-Revision-Date: 2014-11-13 04:52+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/tatoeba_website/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -15,22 +15,22 @@ msgstr ""
 msgid "You need to be logged in."
 msgstr "Χρειάζεται να κάνετε είσοδο"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L63
+#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L72
 msgid "Sentences #%s and #%s are now direct translations of each other."
 msgstr "Οι φράσεις  #%s και  #%s είναι τώρα απευθείας μεταφράσεις η μια της άλλης."
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L71
+#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L80
 #: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/user_controller.php#L394
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
 msgstr "Ένα σφάλμα προέκυψε κατά την αποθήκευση. Παρακαλούμε προσπαθήστε πάλι ή επικοινωνήστε για να αναφέρετε το πρόβλημα."
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L104
+#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L116
 msgid "Sentences #%s and #%s are no longer direct translations of each other."
 msgstr "Φράσεις #%s και  #%s δεν είναι πια άμεσες μεταφράσεις η μια της άλλης."
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L112
+#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L124
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
@@ -322,7 +322,7 @@ msgstr "Αν δείτε ένα άλλο όνομα χρήστη αφού υιο�
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences/show_all_in.ctp#L70
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences/with_audio.ctp#L61
 msgid "(%count% results)"
-msgstr "(%μέτρηση% αποτελέσματων)"
+msgstr "(%count% αποτελέσματων)"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/elements/top_menu.ctp#L102
@@ -1050,7 +1050,7 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Χρησιμοποιήστε ιδιωτικά μηνύματα για να συζητήσετε πράγματα που δεν σχετίζονται με τη φράση."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/comments.php#L181
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L260
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L263
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/wall.php#L139
 msgid "Cancel"
 msgstr "Ακύρωση"
@@ -1929,7 +1929,7 @@ msgid "Add a sentence to this list : "
 msgstr "Προσθήκη μιας φράσης σε αυτόν τον κατάλογο: "
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/lists.php#L548
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L422
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L460
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/navigation.php#L80
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences/add.ctp#L127
 msgid "OK"
@@ -2024,25 +2024,40 @@ msgstr "Ας ξεκινήσουμε"
 msgid "Adopt"
 msgstr "Υιοθεσία"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L350;351
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L331;332
+msgid "Link to another sentence"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L347
+msgid "Sentence number"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L352
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentence_buttons.php#L181
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L9
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/delete.ctp#L8
+msgid "Link"
+msgstr "Σύνδεσμος"
+
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L388;389
 msgid "Add to list"
 msgstr "Προσθήκη στη λίστα"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L400
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L438
 msgid "Add to one of your lists"
 msgstr "Προσθήκη σε μια από τις λίστες σου"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L401
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L439
 msgid "Add to a collaborative list"
 msgstr "Προσθήκη στη συνεργατική λίστα"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L450;451
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L488;489
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/private_messages/folder.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/users/edit.ctp#L46
 msgid "Delete"
 msgstr "Διαγραφή"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L493
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L531
 msgid "belongs to %s"
 msgstr "ανήκει στο %s"
 
@@ -2144,25 +2159,19 @@ msgid "Do you want to unlink this translation from the main sentence?"
 msgstr "Θέλετε να αποσυνδέσετε αυτή τη μετάφραση από την κύρια φράση;"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentence_buttons.php#L135
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L4
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L5
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/delete.ctp#L4
 msgid "Unlink"
 msgstr "Αποσύνδεση"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentence_buttons.php#L136
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L5
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L6
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/delete.ctp#L5
 msgid "Unlink this translation."
 msgstr "Αποσύνδεση αυτής της μετάφρασης"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentence_buttons.php#L181
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L8
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/delete.ctp#L8
-msgid "Link"
-msgstr "Σύνδεσμος"
-
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentence_buttons.php#L182
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L9
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L10
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/delete.ctp#L9
 msgid "Make into direct translation."
 msgstr "Κάντε μια άμεση μετάφραση."
@@ -2175,11 +2184,11 @@ msgstr "Αναπαραγωγή ήχου"
 msgid "Audio unavailable. Click to learn more."
 msgstr "Ήχος μη διαθέσιμος. Κάντε κλικ για να μάθετε περισσότερα."
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L252
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L255
 msgid "Submit translation"
 msgstr "Υποβολή μετάφρασης"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L272
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L275
 msgid ""
 "Important! You are about to add a translation to the sentence above. If you "
 "do not understand this sentence, click on \"Cancel\" to display everything "
@@ -2187,7 +2196,7 @@ msgid ""
 "translate from."
 msgstr "Σημαντικό! Πρόκειται να προσθέστε μια φράση παραπάνω. Αν δεν καταλαβαίνετε αυτή τη φράση,  κάντε κλικ στο  \"Ακύρωση\" για να εμφανιστούν όλα απ' την αρχή, και μετά κάντε κλικ στη φράση  που καταλαβαίνετε και θέλετε να μεταφράσετε."
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L283
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L286
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences/add.ctp#L43
 msgid ""
 "Please do not forget <strong>capital letters</strong> and "

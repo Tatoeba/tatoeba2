@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
-"POT-Creation-Date: 2014-11-09 17:44+0100\n"
-"PO-Revision-Date: 2014-11-09 16:43+0000\n"
+"POT-Creation-Date: 2014-11-13 05:49+0100\n"
+"PO-Revision-Date: 2014-11-13 04:52+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/tatoeba_website/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -15,22 +15,22 @@ msgstr ""
 msgid "You need to be logged in."
 msgstr "Musisz być zalogowany."
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L63
+#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L72
 msgid "Sentences #%s and #%s are now direct translations of each other."
 msgstr "Zdania #%s oraz #%s są teraz swoimi dokładnymi tłumaczeniami."
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L71
+#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L80
 #: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/user_controller.php#L394
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
 msgstr "Podczas zapisywania wystąpił błąd. Proszę spróbować ponownie lub  zgłosić to nam."
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L104
+#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L116
 msgid "Sentences #%s and #%s are no longer direct translations of each other."
 msgstr "Zdania #%s oraz #%s nie są już swoimi dokładnymi tłumaczeniami."
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L112
+#: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/links_controller.php#L124
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
@@ -109,13 +109,13 @@ msgstr "Tej listy nie można pobrać, ponieważ zawiera ona %d zdań. Możliwe j
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/tags_controller.php#L117
 msgid "Tag '%s' already exists for sentence #%s, or cannot be added"
-msgstr "Znacznik '%s' już został użyty do oznaczenia zdania #%s albo nie można go dodać"
+msgstr "Tag '%s' już został dodany do zdania #%s albo nie można go dodać"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/tags_controller.php#L252
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
-msgstr "Nie ma zdań z takim znacznikiem. Poszukiwany znacznik został skasowany albo nie istnieje."
+msgstr "Nie ma zdań z takim tagiem. Poszukiwany tag został skasowany albo nie istnieje."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/user_controller.php#L112
 #: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/users_controller.php#L446
@@ -264,7 +264,7 @@ msgstr "To zdanie testowe zawiera cyfrę 5."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/locale/translation_archive.php#L37
 msgid "No tag on this sentence yet."
-msgstr "Brak jeszcze znacznika przy tym zdaniu."
+msgstr "To zdanie jeszcze nie ma tagów."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/locale/translation_archive.php#L38
 msgid "Team & Credits"
@@ -890,7 +890,7 @@ msgstr "Przeglądaj po liście"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/elements/top_menu.ctp#L73
 msgid "Browse by tag"
-msgstr "Przeglądaj po znaczniku"
+msgstr "Przeglądaj po tagu"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/elements/top_menu.ctp#L77
 msgid "Browse audio"
@@ -977,7 +977,7 @@ msgstr "Komentarze"
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/elements/users_menu.ctp#L88
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentence_comments/on_sentences_of_user.ctp#L39
 msgid "Comments on %s's sentences"
-msgstr "Komentarze przy zdaniach użytkownika %s"
+msgstr "Komentarze do zdań użytkownika %s"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/elements/users_menu.ctp#L101
 msgid "Wall messages"
@@ -1050,7 +1050,7 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Do rozmów na tematy niezwiązane z tym zdaniem służą wiadomości prywatne."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/comments.php#L181
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L260
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L263
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/wall.php#L139
 msgid "Cancel"
 msgstr "Anuluj"
@@ -1868,7 +1868,7 @@ msgstr "(lista publiczna)"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/lists.php#L184
 msgid "created by %s"
-msgstr "stworzony przez %s"
+msgstr "stworzona przez %s"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/lists.php#L190
 msgid "Number of sentences"
@@ -1929,7 +1929,7 @@ msgid "Add a sentence to this list : "
 msgstr "Dodaj zdanie do tej listy: "
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/lists.php#L548
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L422
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L460
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/navigation.php#L80
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences/add.ctp#L127
 msgid "OK"
@@ -1944,7 +1944,7 @@ msgstr "UWAGA: możesz również dodawać istniejące zdania tą ikoną %s (np. 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L377
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/s/s.ctp#L50
 msgid "Sentence %s"
-msgstr "%s zdań."
+msgstr "Zdanie %s"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L441
 msgid "linked to %s"
@@ -1956,7 +1956,7 @@ msgstr "odłączone od %s"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L498
 msgid "added by %s"
-msgstr ""
+msgstr "dodane przez %s"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L500
 msgid "linked by %s"
@@ -2024,25 +2024,40 @@ msgstr "Oddaj"
 msgid "Adopt"
 msgstr "Przejmij"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L350;351
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L331;332
+msgid "Link to another sentence"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L347
+msgid "Sentence number"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L352
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentence_buttons.php#L181
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L9
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/delete.ctp#L8
+msgid "Link"
+msgstr "Łącze"
+
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L388;389
 msgid "Add to list"
 msgstr "Dodaj do listy"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L400
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L438
 msgid "Add to one of your lists"
 msgstr "Dodaj do jednej ze swoich list"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L401
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L439
 msgid "Add to a collaborative list"
 msgstr "Dodaj do listy kolaboratywnej"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L450;451
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L488;489
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/private_messages/folder.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/users/edit.ctp#L46
 msgid "Delete"
 msgstr "Usuń"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L493
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L531
 msgid "belongs to %s"
 msgstr "należy do %s"
 
@@ -2144,25 +2159,19 @@ msgid "Do you want to unlink this translation from the main sentence?"
 msgstr "Czy chcesz odłączyć to tłumaczenie od zdania głównego?"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentence_buttons.php#L135
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L4
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L5
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/delete.ctp#L4
 msgid "Unlink"
 msgstr "Odłącz"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentence_buttons.php#L136
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L5
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L6
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/delete.ctp#L5
 msgid "Unlink this translation."
 msgstr "Odłącz to tłumaczenie"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentence_buttons.php#L181
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L8
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/delete.ctp#L8
-msgid "Link"
-msgstr "Łącze"
-
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentence_buttons.php#L182
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L9
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/add.ctp#L10
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/links/delete.ctp#L9
 msgid "Make into direct translation."
 msgstr "To jest dokładne tłumaczenie."
@@ -2175,11 +2184,11 @@ msgstr "Odtwórz dźwięk"
 msgid "Audio unavailable. Click to learn more."
 msgstr "Brak nagrania dźwiękowego. Szczegóły po kliknięciu."
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L252
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L255
 msgid "Submit translation"
 msgstr "Dodaj tłumaczenie"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L272
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L275
 msgid ""
 "Important! You are about to add a translation to the sentence above. If you "
 "do not understand this sentence, click on \"Cancel\" to display everything "
@@ -2187,7 +2196,7 @@ msgid ""
 "translate from."
 msgstr "Uwaga! Dodajesz tłumaczenie powyższego zdania. Jeśli go nie rozumiesz, kliknij \"Anuluj\", by ponownie pokazać wszystkie zdania, po czym kliknij na to zdanie, które rozumiesz i które możesz przetłumaczyć."
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L283
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentences.php#L286
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences/add.ctp#L43
 msgid ""
 "Please do not forget <strong>capital letters</strong> and "
@@ -2226,16 +2235,16 @@ msgstr "UWAGA! Na razie tylko nieliczne języki mają wersję dźwiękową"
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L204
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/tags/view_all.ctp#L35
 msgid "Tags"
-msgstr "Znaczniki"
+msgstr "Tagi"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/tags.php#L70
 msgid "No tag on this sentence."
-msgstr "Brak znacznika przy tym zdaniu."
+msgstr "To zdanie nie ma znaczników."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/tags.php#L103
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/tags/show_sentences_with_tag.ctp#L38;89
 msgid "View all tags"
-msgstr "Zobacz wszystkie znaczniki"
+msgstr "Zobacz wszystkie tagi"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/tags.php#L125
 msgid "user: %s, date: %s"
@@ -2243,11 +2252,11 @@ msgstr "użytkownik: %s, data: %s"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/tags.php#L254
 msgid "remove tag '%s' from this sentence."
-msgstr "usuń znacznik '%s' z tego zdania."
+msgstr "usuń tag '%s' z tego zdania."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/tags.php#L299
 msgid "remove tag from sentence"
-msgstr "usuń znacznik ze zdania"
+msgstr "usuń tag ze zdania"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/wall.php#L74
 msgid "Add a message: "
@@ -2489,19 +2498,19 @@ msgstr "Pola i struktura"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L93
 msgid "File description"
-msgstr ""
+msgstr "Opis pliku"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L94
 msgid "Sentence id"
-msgstr ""
+msgstr "ID zdania"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L95
 msgid "Text"
-msgstr ""
+msgstr "Tekst"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L96
 msgid "Lang"
-msgstr ""
+msgstr "Kod języka"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/users/all.ctp#L81
@@ -2511,31 +2520,31 @@ msgstr "Nazwa użytkownika"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L98
 msgid "Date added"
-msgstr ""
+msgstr "Data dodania"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L99
 msgid "Date created"
-msgstr ""
+msgstr "Data utworzenia"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L100
 msgid "Date last modified"
-msgstr ""
+msgstr "Data ostatniej modyfikacji"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L101
 msgid "Translation id"
-msgstr ""
+msgstr "ID tłumaczenia"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L102
 msgid "Tag name"
-msgstr ""
+msgstr "Nazwa taga"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L103
 msgid "List id"
-msgstr ""
+msgstr "ID listy"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L104
 msgid "List name"
-msgstr ""
+msgstr "Nazwa listy"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L105
 msgid "Meaning id"
@@ -2594,7 +2603,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L236
 msgid "Lists"
-msgstr ""
+msgstr "Listy"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L260
 msgid "Contains the list of <a href=\"%s\">sentence lists</a>."
@@ -3088,11 +3097,11 @@ msgstr "Edytuj komentarz do zdania #%s"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentence_comments/index.ctp#L38
 msgid "Comments on sentences"
-msgstr "Komentarze przy zdaniach"
+msgstr "Komentarze do zdań"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentence_comments/index.ctp#L57
 msgid "Comments on sentences (total %count%)"
-msgstr "KOmentarze przy zdaniach (łącznie %count%)"
+msgstr "Komentarze do zdań (łącznie %count%)"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentence_comments/of_user.ctp#L39
 msgid "%s's comments"
@@ -3112,7 +3121,7 @@ msgstr "%s nie zamieścił komentarzy przy tym zdaniu"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentence_comments/on_sentences_of_user.ctp#L80
 msgid "Comments on %s's sentences (total %s)"
-msgstr "Komentarze przy zdaniach użytkownika %s (łącznie %s)"
+msgstr "Komentarze do zdań użytkownika %s (łącznie %s)"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences/add.ctp#L39
 msgid "Important"
@@ -3341,7 +3350,7 @@ msgstr "Możesz zmienić nazwę na liście klikając na nią."
 msgid ""
 "You can remove a sentence from the list by clicking on the X icon to its "
 "right."
-msgstr ""
+msgstr "Możesz usunąć zdanie z listy, klikając ikonę X po jego prawej stronie."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences_lists/edit.ctp#L94
 msgid ""
@@ -3590,7 +3599,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/tags/show_sentences_with_tag.ctp#L30
 msgid "Sentences with tag %s"
-msgstr "Zdania ze znacznikiem %s"
+msgstr "Zdania z tagiem %s"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/tags/show_sentences_with_tag.ctp#L84
 msgid "No tag with id %s"
@@ -3598,11 +3607,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/tags/view_all.ctp#L28
 msgid "All existing tags"
-msgstr "Wszystkie istniejące znaczniki"
+msgstr "Wszystkie istniejące tagi"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/tags/view_all.ctp#L44
 msgid "All Tags"
-msgstr "Wszystkie znaczniki"
+msgstr "Wszystkie tagi"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/tools/conversion_simplified_traditional_chinese.ctp#L31;85
 msgid "Chinese traditional/simplified conversion"
