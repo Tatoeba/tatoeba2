@@ -281,11 +281,16 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
-                <?php __('Indicates the sentences that are contained by any lists. '.
-                '<span class="param">13</span>'.
-                '<span class="symbol"> ['. $tab_str. '] </span>'.
-                '<span class="param">381279</span> '.
-                'means that sentence #381279 is contained by the list that has an id of 13.'); 
+                <?php
+                    $sample_line = sprintf(
+                        '<span class="param">13</span>'.
+                        '<span class="symbol"> [%s] </span>'.
+                        '<span class="param">381279</span> ',
+                        $tab_str
+                    );
+                    printf(__('Indicates the sentences that are contained by '.
+                        'any lists. %s means that sentence #381279 is contained '.
+                        'by the list that has an id of 13.', true), $sample_line);
                 ?>
             </dd>
         </dl>
@@ -315,14 +320,16 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             <dd>
                 <?php 
                 $tanaka_url = "http://www.edrdg.org/wiki/index.php/Tanaka_Corpus#Current_Format_.28WWWJDIC.29"; 
-                echo sprintf(
+                printf(
                 __('Contains the equivalent of the "B lines" in the Tanaka Corpus file '. 
                 'distributed by Jim Breen. See '.
                 '<a href="%s">this page</a> for the format. '.
                 'Each entry is associated with a pair of Japanese/English '.
-                'sentences. <span class="param">' . $sent_id_str . '</span> refers to the id '.
-                'of the Japanese sentence. <span class="param">' . $meaning_id_str . '</span> '.
-                'refers to the id of the English sentence.', true), $tanaka_url); 
+                'sentences. %s refers to the id of the Japanese sentence. '.
+                '%s refers to the id of the English sentence.', true),
+                $tanaka_url,
+                '<span class="param">'.$sent_id_str.'</span>',
+                '<span class="param">'.$meaning_id_str.'</span>');
                 ?>
             </dd>
         </dl>
