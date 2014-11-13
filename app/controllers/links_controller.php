@@ -111,11 +111,6 @@ class LinksController extends AppController
 
         $saved = $this->Link->delete($sentenceId, $translationId);
 
-        if ($this->RequestHandler->isAjax()) {
-            $this->set('saved', $saved);
-            return;
-        }
-
         if ($saved) {
             $flashMessage = sprintf(
                 __(
@@ -133,7 +128,15 @@ class LinksController extends AppController
             );
         }
 
-        $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
+        $this->set('saved', $saved);
+
+        if ($this->RequestHandler->isAjax()) {
+            if (isset($this->params['form']['returnTranslations'])
+                && (bool)$this->params['form']['returnTranslations'])
+                $this->_renderTranslationsOf($sentenceId, $flashMessage);
+        } else {
+            $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
+        }
     }
 
 }

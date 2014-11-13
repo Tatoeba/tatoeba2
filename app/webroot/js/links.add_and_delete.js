@@ -44,25 +44,17 @@ $(document).ready(function(){
             $(this).html(
                 "<img src='/img/loading-small.gif' alt='loading'>"
             );
-            
-            // Send request...
-            $.get(
-                rootUrl + "/links/"+action+"/"+sentenceId+"/"+translationId,
-                function(data) {
-                    var elementId = "#translation_"+translationId+"_"+sentenceId;
-                    
-                    // Update the link or unlink image
-                    image.html(data);
-                    image.removeClass(action);
-                    image.addClass(newAction);
-                    
-                    // update the class of the sentence and the arrow
-                    $(elementId).removeClass(removeClass);
-                    $(elementId).addClass(addClass);
-                    $(elementId+" .show img").attr(
-                        'src', '/img/'+newType+'_translation.png'
-                    );
-                }
+
+            $.post(
+                rootUrl + "/links/" + action +"/" + sentenceId + "/" + translationId,
+                {
+                    'returnTranslations': true
+                },
+                function(data){
+                    $("#_" + sentenceId + "_loading").hide();
+                    $("#_" + sentenceId + "_translations").replaceWith(data).show();
+                },
+                'html'
             );
         }
         
