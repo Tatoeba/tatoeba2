@@ -395,31 +395,40 @@ foreach ($languages as $lang=>$name){
         }
 
         $delta_condition = ($type == 'main') ?
-            's.modified is null or s.modified <=' :
-            's.modified >';
+            'sent_start.modified is null or sent_start.modified <=' :
+            'sent_start.modified >';
         echo "
-        sql_query = select distinct * from (\
-        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, UNIX_TIMESTAMP(s.created) as created, UNIX_TIMESTAMP(s.modified) as modified, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
-            from sentences s\
-            left join sentences_translations st on st.sentence_id = s.id\
-            left join sentences t on st.translation_id = t.id\
-            where s.lang_id = (select id from languages where code = '$lang')\
-            and ($delta_condition (\
-                select index_start_date from sphinx_delta\
-                where sphinx_delta.lang_id = (select id from languages where code = '$lang')\
-            ))\
-        union \
-        select distinct s.id as id , s.text as text , s.id as id2 , t.lang_id as trans_id, UNIX_TIMESTAMP(s.created) as created, UNIX_TIMESTAMP(s.modified) as modified, s.user_id as user_id, (s.correctness + 128) as ucorrectness\
-            from sentences s\
-            left join sentences_translations st on st.sentence_id = s.id\
-            left join sentences_translations tt on tt.sentence_id = st.translation_id\
-            left join sentences t on tt.translation_id = t.id\
-            where s.lang_id =  (select id from languages where code = '$lang')\
-            and ($delta_condition (\
-                select index_start_date from sphinx_delta\
-                where sphinx_delta.lang_id = (select id from languages where code = '$lang')\
-            ))\
-        ) t 
+        sql_query = \
+            select distinct \
+                sent_start.id as id, \
+                sent_start.text as text, \
+                sent_start.id as id2, \
+                sent_end.lang_id as trans_id, \
+                UNIX_TIMESTAMP(sent_start.created) as created, \
+                UNIX_TIMESTAMP(sent_start.modified) as modified, \
+                sent_start.user_id as user_id, \
+                (sent_start.correctness + 128) as ucorrectness \
+            from \
+                sentences sent_start \
+            left join \
+                sentences_translations as trans \
+                on trans.sentence_id = sent_start.id \
+            left join \
+                sentences_translations as transtrans \
+                on trans.translation_id = transtrans.sentence_id \
+            left join \
+                sentences sent_end ON sent_end.id = \
+                IF(trans.sentence_id = transtrans.translation_id, \
+                   trans.translation_id, \
+                   transtrans.translation_id) \
+            where \
+                sent_start.lang_id = (select id from languages where code = '$lang') \
+            and \
+                ($delta_condition ( \
+                    select index_start_date from sphinx_delta \
+                    where sphinx_delta.lang_id = (select id from languages where code = '$lang') \
+                ))
+
         sql_attr_timestamp = created
         sql_attr_timestamp = modified
         sql_attr_uint = user_id".
