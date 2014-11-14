@@ -129,9 +129,17 @@ class AppController extends Controller
             $url = preg_replace("/^\/$langInURL(\/|$)/", '/', $url);
             $langInURL = null;
         }
-        if (empty($langInURL)) {
+        if (empty($langInURL)
+            && !$this->RequestHandler->isPost()   // Avoid throwing away POST or
+            && !$this->RequestHandler->isPut()) { // PUT data by redirecting
             $redirectPage = "/".$lang.$url;
-            $this->redirect($redirectPage, 301);
+            // Redirection of Ajax requests will be handled internally and all in
+            // one request thanks to RequestHandlerComponent::beforeRedirect().
+            // However, this function sets the HTTP return code and we don't want
+            // that. Instead, we want to hide the fact a redirection happened and
+            // let the sub-request return its own return code.
+            $redirectCode = $this->RequestHandler->isAjax() ? null : 301;
+            $this->redirect($redirectPage, $redirectCode);
         }
     }
 
