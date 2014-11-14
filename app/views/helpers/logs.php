@@ -257,13 +257,13 @@ class LogsHelper extends AppHelper
 
     private function _displaySentenceInAnnexe($sentenceLang, $sentenceText)
     {
-        echo '<div class="contribution">';
+        echo '<div class="contribution"><div class="content">';
             // sentence text
             $dir = $this->Languages->getLanguageDirection($sentenceLang);
             echo '<span dir="'.$dir.'">';
             echo $sentenceText;
             echo '</span>';
-        echo '</div>';
+        echo '</div></div>';
     }
 
 
@@ -384,7 +384,14 @@ class LogsHelper extends AppHelper
 
             // date of contribution
             echo '<li class="date">';
-            echo $this->Date->ago($datetime);
+            echo $this->Html->link(
+                $this->Date->ago($datetime),
+                array(
+                    'controller' => 'sentences',
+                    'action' => 'show',
+                    $sentenceId
+                )
+            );
             echo '</li>';
 
         echo '</ul>';
@@ -401,7 +408,7 @@ class LogsHelper extends AppHelper
      */
     private function _displaySentence($sentenceLang, $sentenceText)
     {
-        echo '<div class="contribution">';
+        echo '<div class="contribution"><div class="content">';
             // language flag
             echo '<span class="lang">';
             echo $this->Languages->icon(
@@ -419,7 +426,7 @@ class LogsHelper extends AppHelper
             echo '<span dir="'.$dir.'">';
             echo $sentenceText;
             echo '</span>';
-        echo '</div>';
+        echo '</div></div>';
     }
 
 
@@ -434,7 +441,7 @@ class LogsHelper extends AppHelper
             )
         );
         ?>
-        <div class="contribution">
+        <div class="contribution"><div class="content">
             <?php
             if ($action == 'insert') {
                 echo sprintf(
@@ -446,7 +453,7 @@ class LogsHelper extends AppHelper
                 );
             }
             ?>
-            </div>
+            </div></div>
         <?
     }
 
