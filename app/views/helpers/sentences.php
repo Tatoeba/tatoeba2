@@ -379,9 +379,8 @@ class SentencesHelper extends AppHelper
         <div class="<?php echo $class; ?>" <?php echo $elementId; ?>>
         <?php
         // Navigation button (info or arrow icon)
-        if ($type != 'mainSentence' || $isEditable) {
-            $this->_displayNavigation($sentenceId, $type);
-        }
+        $this->_displayNavigation($sentenceId, $type);
+        
 
         // Link/unlink button
         if (CurrentUser::isTrusted()) {
@@ -546,12 +545,6 @@ class SentencesHelper extends AppHelper
 
         } else {
 
-            $link = array(
-                'controller' => 'sentences',
-                'action' => 'show',
-                $sentenceId
-            );
-
             // To check if we're on the sentence's page or not
             $currentSentenceId = null;
             if (isset($this->params['pass'][0])) {
@@ -563,22 +556,10 @@ class SentencesHelper extends AppHelper
                 $currentSentenceId
             );
 
-            // Display sentence as simple text if we're on the sentence's page.
-            // Otherwise display as link.
-            if ($link == $currentURL) {
-                echo '<div class="text">';
-                echo $sentenceText;
-                echo '</div>';
-            } else {
-                echo $this->Html->link(
-                    $sentenceText,
-                    $link,
-                    array(
-                        'dir' => $dir,
-                        'class' => 'text'
-                    )
-                );
-            }
+            echo '<div class="text">';
+            echo $sentenceText;
+            echo '</div>';
+            
 
         }
     }

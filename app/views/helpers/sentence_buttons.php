@@ -56,17 +56,9 @@ class SentenceButtonsHelper extends AppHelper
         if (!in_array($type, array('direct', 'indirect'))) {
             $type = 'direct';
         }
-        $image = $this->Html->image(
-            IMG_PATH . $type.'_translation.png',
-            array(
-                "alt" => __('Show', true),
-                "title" => __('Show', true),
-                "width" => 18,
-                "height" => 16
-            )
-        );
+
         echo $this->Html->link(
-            $image,
+            '<div></div>',
             array(
                 "controller" => "sentences",
                 "action" => "show",
@@ -74,7 +66,7 @@ class SentenceButtonsHelper extends AppHelper
             ),
             array(
                 "escape" => false,
-                "class" => "show button",
+                "class" => "translationIcon " . $type,
                 "title" => __('Show', true),
             )
         );
@@ -90,13 +82,7 @@ class SentenceButtonsHelper extends AppHelper
     public function displayInfoButton($sentenceId)
     {
         echo $this->Html->link(
-            $this->Html->image(
-                IMG_PATH . 'info.png',
-                array(
-                    "width" => 16,
-                    "height" => 16
-                )
-            ),
+            '<div></div>',
             array(
                 "controller"=>"sentences"
                 , "action"=>"show"

@@ -66,13 +66,47 @@
     margin-top: 10px;
 }
 
+.mainSentence .infoIcon {
+    float: left;
+    margin: 10px 10px 0px 2px;
+}
+
+.mainSentence .infoIcon div {
+    width:  25px;
+    text-align: center;
+    font-size: 18px;
+    background:#EAF2E6;
+    color: #98CB4A;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    /*border: 1px solid #D9EAAB;*/
+    font-weight: bold;
+}
+
+.mainSentence .infoIcon div:before {
+    content: "#";
+}
+
+.mainSentence:hover .infoIcon div {
+    background: #98CB4A;
+    color: #EAF2E6;
+}
+
+.mainSentence:hover,
+.directTranslation:hover,
+.indirectTranslation:hover {
+    background: #f1f1f1;
+}
+
+
 
 /* 
  * Sentence
  */
 .sentenceContent .text {
     display: block;
-    padding: 5px;
+    padding: 5px 0px;
 }
 
 .sentence {
@@ -91,8 +125,7 @@
 .sentence .button {
     float: left;
     margin-top: 6px;
-    margin-right: 8px;
-    margin-left: 5px;
+    margin-right: 6px;
 }
 
 
@@ -103,8 +136,50 @@
     font-size: 15px;
 }
 
-.indirectTranslation a {
+.indirectTranslation {
     color: #998778;
+}
+
+.directTranslation .translationIcon div {
+    background: url('../../img/translation-direct.svg') no-repeat center;
+}
+
+.directTranslation:hover .translationIcon div {
+    background: url('../../img/translation-direct-hovered.svg') no-repeat center;
+}
+
+.indirectTranslation .translationIcon div {
+    background: url('../../img/translation-indirect.svg') no-repeat center;
+}
+
+.indirectTranslation:hover .translationIcon div {
+    background: url('../../img/translation-indirect-hovered.svg') no-repeat center;
+}
+
+.directTranslation:hover .translationIcon {
+    background: #77CCC9;
+}
+
+.indirectTranslation:hover .translationIcon {
+    background: #998778;
+}
+
+.directTranslation .translationIcon,
+.indirectTranslation .translationIcon {
+    display: block;
+    float: left;
+    margin-right: 6px;
+    margin-top: 3px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.directTranslation .translationIcon div,
+.indirectTranslation .translationIcon div {
+    width: 30px;
+    height: 22px;
 }
 
 
@@ -229,10 +304,6 @@ input.sentenceId {
 /* 
  * My sentences 
  */
-.infoIcon {
-    float: left;
-    margin: 6px 10px 2px 5px;
-}
 
 .loading {
     display: none;
