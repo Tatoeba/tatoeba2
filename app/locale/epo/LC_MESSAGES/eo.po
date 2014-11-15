@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
-"POT-Creation-Date: 2014-11-13 05:49+0100\n"
-"PO-Revision-Date: 2014-11-13 04:52+0000\n"
-"Last-Translator: Trang Ho\n"
+"POT-Creation-Date: 2014-11-14 12:42+0100\n"
+"PO-Revision-Date: 2014-11-14 18:05+0000\n"
+"Last-Translator: Paul Peeraerts <paul2711@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/projects/p/tatoeba_website/language/eo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1946,31 +1946,31 @@ msgstr "RIMARKO: Vi povas aldoni ankaŭ ekzistantajn frazojn per tiu bildsimbolo
 msgid "Sentence %s"
 msgstr "Frazo %s"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L441
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L448
 msgid "linked to %s"
 msgstr "ligita al %s"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L445
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L452
 msgid "unlinked from %s"
 msgstr "malligita disde %s"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L498
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L505
 msgid "added by %s"
 msgstr "aldonita de %s"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L500
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L507
 msgid "linked by %s"
 msgstr "ligita de %s"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L504
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L511
 msgid "edited by %s"
 msgstr "modifita de %s"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L508
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L515
 msgid "deleted by %s"
 msgstr "forigita de %s"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L510
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L517
 msgid "unlinked by %s"
 msgstr "malligita de %s"
 
@@ -2026,11 +2026,11 @@ msgstr "Adopti"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L331;332
 msgid "Link to another sentence"
-msgstr ""
+msgstr "Ligi al alia frazo"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L347
 msgid "Sentence number"
-msgstr ""
+msgstr "Frazo numero"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L352
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentence_buttons.php#L181
@@ -2613,49 +2613,47 @@ msgstr "Enhavas la liston de <a href=\"%s\">frazolistoj</a>."
 msgid "Sentences in lists"
 msgstr "Frazoj en listoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L284
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L291
 msgid ""
-"Indicates the sentences that are contained by any lists. <span "
-"class=\"param\">13</span><span class=\"symbol\"> [] </span><span "
-"class=\"param\">381279</span> means that sentence #381279 is contained by "
-"the list that has an id of 13."
-msgstr "Indikas la frazojn, kiuj troviĝas en iuj listoj. <span class=\"param\">13</span><span class=\"symbol\"> [] </span><span class=\"param\">381279</span> signifas, ke frazo n-ro 381279 troviĝas en la listo kun identigilo 13."
+"Indicates the sentences that are contained by any lists. %s means that "
+"sentence #381279 is contained by the list that has an id of 13."
+msgstr "Indikas la frazojn, kiuj estas en iuj listoj. %s signifas, ke frazo n-ro 381279 troviĝas en listo, kiu havas la identigilon 13. "
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L295
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L300
 msgid "Japanese indices"
 msgstr "Japanaj indicoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L319
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L324
 msgid ""
 "Contains the equivalent of the \"B lines\" in the Tanaka Corpus file "
 "distributed by Jim Breen. See <a href=\"%s\">this page</a> for the format. "
-"Each entry is associated with a pair of Japanese/English sentences. <span "
-"class=\"param\"></span> refers to the id of the Japanese sentence. <span "
-"class=\"param\"></span> refers to the id of the English sentence."
-msgstr "Enhavas la ekvivalenton de la \"B lines\" en la \"Tanaka Corpus\" distribuita de Jim Breen. Vidu <a href=\"%s\">tiun ĉi pagon</a> por la formo. Ĉiu enigaĵo estas asociita kun paro de japanaj/anglaj frazoj. <span class=\"param\"></span> rilatas al la identigilo de la japana frazo. <span class=\"param\"></span> rilatas al la identigilo de la angla frazo."
+"Each entry is associated with a pair of Japanese/English sentences. %s "
+"refers to the id of the Japanese sentence. %s refers to the id of the "
+"English sentence."
+msgstr "Enhavas la ekvivalenton de la \"B-frazoj\" en la Tanaka Korpuso distribuita de Jim Breen. Vidu <a href=\"%s\">tiun ĉi paĝon</a> por la formo. Ĉiu ero estas asociita kun paro de japanaj/anglaj frazoj. %s referencas al la identigilo de la japanaj frazoj. %s  referencas al la identigilo de la anglaj frazoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L331
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L338
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences/with_audio.ctp#L28
 msgid "Sentences with audio"
 msgstr "Frazoj kun sonregistraĵo"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L348
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L355
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available."
 msgstr "Enhavas la identigilojn de la frazoj, en ĉiuj lingvoj, por kiu ekzistas aŭd-dosieroj."
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L354
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L361
 msgid "General information about the files"
 msgstr "Ĝeneralaj informoj pri la dosieroj"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L356
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L363
 msgid ""
 "The files provided here are updated every <strong>Saturday at 9 "
 "a.m.</strong>, France time."
 msgstr "La liveritaj dosieroj estas ĝisdatigitaj ĉiun <strong>sabaton je la 9a matene.</strong>, tempozono de Francujo."
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L363
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L370
 msgid ""
 "Many of the Japanese and English sentences are from the <a "
 "href=\"%s\">Tanaka Corpus</a>, which belongs to the public domain."

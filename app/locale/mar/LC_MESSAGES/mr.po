@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
-"POT-Creation-Date: 2014-11-13 05:49+0100\n"
-"PO-Revision-Date: 2014-11-13 04:52+0000\n"
+"POT-Creation-Date: 2014-11-14 12:42+0100\n"
+"PO-Revision-Date: 2014-11-14 11:47+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Marathi (http://www.transifex.com/projects/p/tatoeba_website/language/mr/)\n"
 "MIME-Version: 1.0\n"
@@ -1946,31 +1946,31 @@ msgstr "टिपण: नवीन वाक्ये जोडण्यास �
 msgid "Sentence %s"
 msgstr "वाक्य %s"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L441
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L448
 msgid "linked to %s"
 msgstr "%s ला लिंक केले"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L445
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L452
 msgid "unlinked from %s"
 msgstr "%s पासून अनलिंक केले"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L498
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L505
 msgid "added by %s"
 msgstr "%s ने जोडले"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L500
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L507
 msgid "linked by %s"
 msgstr "%s ने लिंक केले"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L504
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L511
 msgid "edited by %s"
 msgstr "%s ने संपादित केले"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L508
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L515
 msgid "deleted by %s"
 msgstr "%s ने हटवले"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L510
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L517
 msgid "unlinked by %s"
 msgstr "%s ने अनलिंक केले"
 
@@ -2026,11 +2026,11 @@ msgstr "दत्तक घ्या"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L331;332
 msgid "Link to another sentence"
-msgstr ""
+msgstr "दुसर्‍या वाक्याशी लिंक करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L347
 msgid "Sentence number"
-msgstr ""
+msgstr "वाक्य क्रमांक"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L352
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/sentence_buttons.php#L181
@@ -2613,49 +2613,47 @@ msgstr "यात <a href=\"%s\">वाक्यांच्या यादी�
 msgid "Sentences in lists"
 msgstr "याद्यांमध्ये वाक्ये"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L284
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L291
 msgid ""
-"Indicates the sentences that are contained by any lists. <span "
-"class=\"param\">13</span><span class=\"symbol\"> [] </span><span "
-"class=\"param\">381279</span> means that sentence #381279 is contained by "
-"the list that has an id of 13."
-msgstr "कोणत्याही यादीत असणारे वाक्य निर्देशित करतं. <span class=\"param\">13</span><span class=\"symbol\"> [] </span><span class=\"param\">381279</span> म्हणजे वाक्य #381279 हा 13 या आय.डी.च्या यादीत समाविष्ट आहे."
+"Indicates the sentences that are contained by any lists. %s means that "
+"sentence #381279 is contained by the list that has an id of 13."
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L295
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L300
 msgid "Japanese indices"
 msgstr "जपानी निर्देशांक"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L319
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L324
 msgid ""
 "Contains the equivalent of the \"B lines\" in the Tanaka Corpus file "
 "distributed by Jim Breen. See <a href=\"%s\">this page</a> for the format. "
-"Each entry is associated with a pair of Japanese/English sentences. <span "
-"class=\"param\"></span> refers to the id of the Japanese sentence. <span "
-"class=\"param\"></span> refers to the id of the English sentence."
-msgstr "जिम ब्रीन यांनी वितरित केलेल्या तानाका कॉर्पसच्या फाईलमधले \"ब-लाईन\" च्या समान असलेले वाक्यसुद्धा समाविष्ट आहेत. स्वरूप पाहण्यासाठी <a href=\"%s\">हे पान</a> पाहा. प्रत्येक नोंद एका जपानी/इंग्रजी वाक्यांच्या जोडीशी संबंधित आहे. <span class=\"param\"></span> हा जपानी वाक्याची आय.डी. दर्शवतो. <span class=\"param\"></span> हा इंग्रजी वाक्याची आय.डी. दर्शवतो."
+"Each entry is associated with a pair of Japanese/English sentences. %s "
+"refers to the id of the Japanese sentence. %s refers to the id of the "
+"English sentence."
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L331
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L338
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences/with_audio.ctp#L28
 msgid "Sentences with audio"
 msgstr "ऑडिओसहित वाक्ये"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L348
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L355
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available."
 msgstr "सर्व भाषांमध्ये ज्या वाक्यांसाठी ऑडियो उपलब्ध आहे, त्या सर्व वाक्यांचे आय.डी. यात समाविष्ट आहेत."
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L354
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L361
 msgid "General information about the files"
 msgstr "फायलींबद्दल साधारण माहिती"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L356
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L363
 msgid ""
 "The files provided here are updated every <strong>Saturday at 9 "
 "a.m.</strong>, France time."
 msgstr "येथे पुरवलेल्या फायली दर <strong>शनिवारी सकाळच्या ९ वाजता</strong> (फ्रांस वेळ विभाग) अद्ययावत केल्या जातात."
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L363
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L370
 msgid ""
 "Many of the Japanese and English sentences are from the <a "
 "href=\"%s\">Tanaka Corpus</a>, which belongs to the public domain."

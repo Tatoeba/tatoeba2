@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
-"POT-Creation-Date: 2014-11-13 05:49+0100\n"
-"PO-Revision-Date: 2014-11-13 04:52+0000\n"
-"Last-Translator: Trang Ho\n"
+"POT-Creation-Date: 2014-11-14 12:42+0100\n"
+"PO-Revision-Date: 2014-11-14 22:15+0000\n"
+"Last-Translator: Piotr Ćwiek <peterche@wp.pl>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/tatoeba_website/language/pl/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -515,7 +515,7 @@ msgstr "Ostatnio dodane"
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/contributions/index.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/user/profile.ctp#L79
 msgid "Contributions"
-msgstr "Zdania"
+msgstr "Edycje"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/contributions/latest.ctp#L45
 msgid "View all"
@@ -1946,31 +1946,31 @@ msgstr "UWAGA: możesz również dodawać istniejące zdania tą ikoną %s (np. 
 msgid "Sentence %s"
 msgstr "Zdanie %s"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L441
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L448
 msgid "linked to %s"
 msgstr "złączony z %s"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L445
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L452
 msgid "unlinked from %s"
 msgstr "odłączone od %s"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L498
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L505
 msgid "added by %s"
 msgstr "dodane przez %s"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L500
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L507
 msgid "linked by %s"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L504
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L511
 msgid "edited by %s"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L508
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L515
 msgid "deleted by %s"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L510
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L517
 msgid "unlinked by %s"
 msgstr ""
 
@@ -2472,7 +2472,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L73
 msgid "Questions?"
-msgstr ""
+msgstr "Pytania?"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L77
 msgid ""
@@ -2563,13 +2563,13 @@ msgid ""
 "As of 2014-08-16, the URL to download the latest files has changed and the "
 "new export files are provided in a compressed format. The old URL is still "
 "available, but will not contain the latest data."
-msgstr ""
+msgstr "Na dzień 2014-08-16 URL do pobrania najnowszych plików zmienił się, a nowe pliki eksportu są dostarczane w postaci skompresowanej. Stary URL jest wciąż dostępny, ale nie będzie prowadzić do najnowszych danych."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L159
 msgid ""
 "Contains all the sentences. Each sentence is associated with a unique id and"
 " an <a href=%s>ISO 639-3</a> language code. "
-msgstr ""
+msgstr "Zawiera wszystkie zdania. Każde zdanie jest powiązane z unikalnym ID i z kodem języka w formacie <a href=%s>ISO 639-3</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L162
 msgid ""
@@ -2577,7 +2577,7 @@ msgid ""
 "second file (sentences_detailed.tar.bz2) contains additional fields for "
 "those who would like to filter the sentences based on the contributor who "
 "owns the sentence, or the date when it was added or last modified."
-msgstr ""
+msgstr "Pierwszy plik (sentences.tar.bz2) zawiera tylko te informacje. Drugi plik (sentences_detailed.tar.bz2) zawiera dodatkowe pola dla tych, którzy chcieliby filtrować zdania według właściciela zdania lub według daty, kiedy zdanie zostało dodane lub zmienione."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L171
 msgid "Links"
@@ -2613,49 +2613,47 @@ msgstr ""
 msgid "Sentences in lists"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L284
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L291
 msgid ""
-"Indicates the sentences that are contained by any lists. <span "
-"class=\"param\">13</span><span class=\"symbol\"> [] </span><span "
-"class=\"param\">381279</span> means that sentence #381279 is contained by "
-"the list that has an id of 13."
+"Indicates the sentences that are contained by any lists. %s means that "
+"sentence #381279 is contained by the list that has an id of 13."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L295
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L300
 msgid "Japanese indices"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L319
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L324
 msgid ""
 "Contains the equivalent of the \"B lines\" in the Tanaka Corpus file "
 "distributed by Jim Breen. See <a href=\"%s\">this page</a> for the format. "
-"Each entry is associated with a pair of Japanese/English sentences. <span "
-"class=\"param\"></span> refers to the id of the Japanese sentence. <span "
-"class=\"param\"></span> refers to the id of the English sentence."
+"Each entry is associated with a pair of Japanese/English sentences. %s "
+"refers to the id of the Japanese sentence. %s refers to the id of the "
+"English sentence."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L331
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L338
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences/with_audio.ctp#L28
 msgid "Sentences with audio"
 msgstr "Zdania z wersją audio"
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L348
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L355
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L354
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L361
 msgid "General information about the files"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L356
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L363
 msgid ""
 "The files provided here are updated every <strong>Saturday at 9 "
 "a.m.</strong>, France time."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L363
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L370
 msgid ""
 "Many of the Japanese and English sentences are from the <a "
 "href=\"%s\">Tanaka Corpus</a>, which belongs to the public domain."

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
-"POT-Creation-Date: 2014-11-13 05:49+0100\n"
-"PO-Revision-Date: 2014-11-13 04:52+0000\n"
+"POT-Creation-Date: 2014-11-14 12:42+0100\n"
+"PO-Revision-Date: 2014-11-14 11:47+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Lojban (http://www.transifex.com/projects/p/tatoeba_website/language/jbo/)\n"
 "MIME-Version: 1.0\n"
@@ -34,14 +34,14 @@ msgstr "lo jufra poi du lo %s moi ce lo %s moi ba'o simxu lo ka traduki ce'u ce'
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr ""
+msgstr "da se srera fau lo nu jau gau co'u jorne i e'o do za'ure'u troci gi'a jungau mi'a la'edi'u"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/private_messages_controller.php#L137
 msgid ""
 "You have reached your message limit for today. Please wait until you can "
 "send more messages. If you have received this message in error, please "
 "contact administrators at team@tatoeba.org."
-msgstr ""
+msgstr "do mo'u benji lo klani be lo jimte pe lo cabdei i e'o do denpa lo nu do di'a ka'e mo'u benji i fau lo nu do mo'u se srera te benji lo dei notci vau do e'o jai gau sanij lo admine fau lo ka mrilu fi zoi net team@tatoeba.org net"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/private_messages_controller.php#L180
 msgid ""
@@ -144,7 +144,7 @@ msgstr "lo di'u mrilu judri cu se pilno lo drata i e'u do pilno lo drata"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/user_controller.php#L331
 msgid "Profile saved."
-msgstr ""
+msgstr "lo jaspu mo'u se vreji"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/user_controller.php#L341
 msgid "Failed to change email address. Please enter a proper email address."
@@ -164,7 +164,7 @@ msgstr ".i lo cnino ckiku mo'u se vreji"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/user_controller.php#L474
 msgid "An error occurred while saving."
-msgstr "srera fau lo nu jai gau stodi"
+msgstr "da se srera fau lo nu jai gau zbasu lo vreji"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/user_controller.php#L479
 msgid "Password error. Please try again."
@@ -202,7 +202,7 @@ msgstr "lo se spusku na drani"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/users_controller.php#L348
 msgid "Password cannot be empty."
-msgstr ""
+msgstr "e'anai lo ckiku cu se pagbu no lerfu"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/controllers/users_controller.php#L401
 msgid "Tatoeba, new password"
@@ -1946,31 +1946,31 @@ msgstr ""
 msgid "Sentence %s"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L441
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L448
 msgid "linked to %s"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L445
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L452
 msgid "unlinked from %s"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L498
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L505
 msgid "added by %s"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L500
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L507
 msgid "linked by %s"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L504
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L511
 msgid "edited by %s"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L508
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L515
 msgid "deleted by %s"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L510
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/logs.php#L517
 msgid "unlinked by %s"
 msgstr ""
 
@@ -2613,49 +2613,47 @@ msgstr ""
 msgid "Sentences in lists"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L284
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L291
 msgid ""
-"Indicates the sentences that are contained by any lists. <span "
-"class=\"param\">13</span><span class=\"symbol\"> [] </span><span "
-"class=\"param\">381279</span> means that sentence #381279 is contained by "
-"the list that has an id of 13."
+"Indicates the sentences that are contained by any lists. %s means that "
+"sentence #381279 is contained by the list that has an id of 13."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L295
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L300
 msgid "Japanese indices"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L319
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L324
 msgid ""
 "Contains the equivalent of the \"B lines\" in the Tanaka Corpus file "
 "distributed by Jim Breen. See <a href=\"%s\">this page</a> for the format. "
-"Each entry is associated with a pair of Japanese/English sentences. <span "
-"class=\"param\"></span> refers to the id of the Japanese sentence. <span "
-"class=\"param\"></span> refers to the id of the English sentence."
+"Each entry is associated with a pair of Japanese/English sentences. %s "
+"refers to the id of the Japanese sentence. %s refers to the id of the "
+"English sentence."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L331
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L338
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences/with_audio.ctp#L28
 msgid "Sentences with audio"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L348
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L355
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L354
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L361
 msgid "General information about the files"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L356
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L363
 msgid ""
 "The files provided here are updated every <strong>Saturday at 9 "
 "a.m.</strong>, France time."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L363
+#: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L370
 msgid ""
 "Many of the Japanese and English sentences are from the <a "
 "href=\"%s\">Tanaka Corpus</a>, which belongs to the public domain."
