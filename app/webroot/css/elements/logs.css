@@ -96,8 +96,12 @@
     color: #999;
 }
 
-#main_content #logs .sentenceLog:hover .date a,
-#main_content #logs .sentenceLog:hover .sentenceId a {
+#main_content #logs .sentenceLog:hover .date a {
+    color: #6A0;
+    text-decoration: underline;
+}
+
+#main_content #logs .sentenceLog:hover .date a:hover {
     color: #DD8800;
 }
 
