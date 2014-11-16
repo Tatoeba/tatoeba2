@@ -90,5 +90,11 @@ function linkToSentence(sentenceId) {
 
     $("#linkToSubmitButton" + sentenceId).unbind('click').click(linkTo);
     $("#linkToSentence" + sentenceId).unbind('keypress').keypress(keyPressed);
-    $("#linkTo" + sentenceId).toggle();
+    linkTo = $("#linkTo" + sentenceId);
+    if (linkTo.is(":visible")) {
+        linkTo.hide();
+    } else {
+        linkTo.show();
+        $("#linkToSentence" + sentenceId).focus();
+    }
 }
