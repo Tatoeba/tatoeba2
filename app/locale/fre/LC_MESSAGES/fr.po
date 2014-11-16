@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "POT-Creation-Date: 2014-11-14 12:42+0100\n"
-"PO-Revision-Date: 2014-11-14 12:01+0000\n"
-"Last-Translator: Sacred Celtic <sacredceltic@gmail.com>\n"
+"PO-Revision-Date: 2014-11-15 20:28+0000\n"
+"Last-Translator: gillux\n"
 "Language-Team: French (http://www.transifex.com/projects/p/tatoeba_website/language/fr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -943,7 +943,7 @@ msgstr "Wiki de Tatoeba"
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/elements/top_menu.ctp#L140
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/contact.ctp#L42
 msgid "FAQ"
-msgstr "Foire Aux Questions"
+msgstr "Foire aux questions"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/elements/top_menu.ctp#L143
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/help.ctp#L28
@@ -2006,7 +2006,7 @@ msgstr "Traduire"
 msgid ""
 "This sentence is currently marked as unapproved. Unapproved sentences cannot"
 " be translated."
-msgstr "Cette phrase est à l'heure actuelle signalée comme non-approuvée. Les phrases non-approuvées ne peuvent être traduites."
+msgstr "Cette phrase est à l'heure actuelle signalée comme non approuvée. Les phrases non approuvées ne peuvent être traduites."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/menu.php#L145;146
 msgid "This sentence is in simplified Chinese."
@@ -2130,7 +2130,7 @@ msgstr "Toutes les listes"
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/pages.php#L23
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/private_messages/write.ctp#L28
 msgid " - Tatoeba"
-msgstr ""
+msgstr "— Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/helpers/private_messages.php#L52
 msgid "Reply"
@@ -2305,7 +2305,7 @@ msgstr "Si vous avez des questions, des suggestions ou des demandes (ou si vous 
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/contact.ctp#L82
 msgid "Post on the Wall"
-msgstr "Poster dans le Wall"
+msgstr "Placarder sur le Mur"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/contact.ctp#L85
 msgid ""
@@ -2577,7 +2577,7 @@ msgid ""
 "second file (sentences_detailed.tar.bz2) contains additional fields for "
 "those who would like to filter the sentences based on the contributor who "
 "owns the sentence, or the date when it was added or last modified."
-msgstr ""
+msgstr "Le premier fichier (sentences.tar.bz2) contient cette information seule. Le deuxième fichier (sentences_detailed.tar.bz2) contient des champs supplémentaires pour qui souhaiterait filtrer les phrases en fonction du contributeur qui la possède, ou de la date à laquelle elle a été ajoutée ou modifiée en dernier."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L171
 msgid "Links"
@@ -2599,7 +2599,7 @@ msgid ""
 "<span class=\"param\">381279</span><span class=\"symbol\"> [tab] "
 "</span><span class=\"param\">proverb</span> means that sentence #381279 has "
 "been assigned the \"proverb\" tag."
-msgstr ""
+msgstr "Contient la liste des <a href=\"%s\">étiquettes</a> apposées sur chaque phrase. <span class=\"param\">381279</span><span class=\"symbol\"> [tabulation] </span><span class=\"param\">proverb</span> signifie que l'étiquette « proverb » a été apposée sur la phrase #381279."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L236
 msgid "Lists"
@@ -2617,11 +2617,11 @@ msgstr "Phrases dans des listes"
 msgid ""
 "Indicates the sentences that are contained by any lists. %s means that "
 "sentence #381279 is contained by the list that has an id of 13."
-msgstr ""
+msgstr "Indique les phrases qui sont présentes dans chaque liste. %s signifie que la liste qui a l'identifiant 13 comprend la phrase #381279."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L300
 msgid "Japanese indices"
-msgstr ""
+msgstr "Repères pour le japonais"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L324
 msgid ""
@@ -2630,7 +2630,7 @@ msgid ""
 "Each entry is associated with a pair of Japanese/English sentences. %s "
 "refers to the id of the Japanese sentence. %s refers to the id of the "
 "English sentence."
-msgstr ""
+msgstr "Contient l'équivalent des « B lines » dans le fichier du corpus de Tanaka distribué par Jim Breen. Consultez <a href=\"%s\">cette page</a> pour le format. Chaque entrée est associée avec une phrase anglaise et une phrase japonaise. %s se rapporte à l'identifiant de la phrase japonaise. %s se rapporte à l'identifiant de la phrase anglaise."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L338
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences/with_audio.ctp#L28
@@ -2641,7 +2641,7 @@ msgstr "Phrases avec enregistrement audio"
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available."
-msgstr ""
+msgstr "Contient les identifiants des phrases, dans toutes les langues, pour lesquelles un enregistrement audio est disponible."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L361
 msgid "General information about the files"
@@ -2651,13 +2651,13 @@ msgstr "Information générale à propos des fichiers"
 msgid ""
 "The files provided here are updated every <strong>Saturday at 9 "
 "a.m.</strong>, France time."
-msgstr ""
+msgstr "Les fichiers fournis ici sont mis à jour tous les <strong>samedis à 9 heures du matin</strong>, heure française."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/downloads.ctp#L370
 msgid ""
 "Many of the Japanese and English sentences are from the <a "
 "href=\"%s\">Tanaka Corpus</a>, which belongs to the public domain."
-msgstr ""
+msgstr "Bon nombre des phrases japonaises et anglaises sont issues du <a href=\"%s\">corpus de Takana</a>, qui appartient au domaine public."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/help.ctp#L37
 msgid "Need more help?"
@@ -2830,13 +2830,13 @@ msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
-msgstr ""
+msgstr "Vous pouvez créer des listes de phrases sur Tatoeba. Par défaut, une liste est <strong>personnelle</strong>, ce qui signifie qu’elle ne peut être éditée que par la personne qui l'a crée (mais elle reste visible de tous)."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/help.ctp#L320
 msgid ""
 "However it is also possible to let any member in Tatoeba add and remove "
 "sentences by setting a list as <strong>collaborative</strong>."
-msgstr ""
+msgstr "Toutefois, il est aussi possible de permettre à n’importe quel membre de Tatoeba d'y ajouter ou d'y retirer des phrases, en passant la liste en <strong>collaborative</strong>."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/home.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/pages/index.ctp#L28
@@ -3050,7 +3050,7 @@ msgstr "%s de %s"
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages\n"
 "                 new users can send only 5 messages per day."
-msgstr ""
+msgstr "Afin de préserver Tatoeba des spams et autres messages malveillants, les nouveaux utilisateurs ne peuvent envoyer que 5 messages par jour."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/private_messages/write.ctp#L44
 msgid "You have sent %s messages today. "
@@ -3107,7 +3107,7 @@ msgstr "Commentaires de %s"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentence_comments/of_user.ctp#L61
 msgid "%s has posted no comment"
-msgstr "%s n'a posté aucun commentaire"
+msgstr "%s n'a publié aucun commentaire"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentence_comments/of_user.ctp#L75
 msgid "%s's comments (total %s)"
@@ -3328,7 +3328,7 @@ msgid ""
 "If you select a language, the translation of each sentence into that "
 "language (if it exists) will be written to your output. You can then import "
 "the file to produce a deck of flash cards, using the %s program."
-msgstr ""
+msgstr "Si vous sélectionnez une langue, la traduction de chaque phrase dans cette langue (si elle existe) sera écrite dans le fichier en sortie. Vous pourrez alors importer ce fichier pour confectionner un jeu de cartes mémoire, à l'aide du logiciel %s."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences_lists/download.ctp#L161
 msgid "Fields will be written out in the following sequence:"
@@ -3338,7 +3338,7 @@ msgstr "Les champs seront extraits selon l'ordre suivant :"
 msgid ""
 "Optional fields that are not selected above will not be written to the "
 "output."
-msgstr ""
+msgstr "Les champs facultatifs qui ne sont pas sélectionnés ci-dessus ne seront pas écrits dans le fichier de sortie."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences_lists/edit.ctp#L80
 msgid "You can change the name of the list by clicking on it."
@@ -3348,7 +3348,7 @@ msgstr "Vous pouvez changer le nom de la liste en cliquant dessus."
 msgid ""
 "You can remove a sentence from the list by clicking on the X icon to its "
 "right."
-msgstr ""
+msgstr "Vous pouvez retirer une phrase d'une liste en cliquant sur l'icône X à sa droite."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/sentences_lists/edit.ctp#L94
 msgid ""
@@ -3576,7 +3576,7 @@ msgid ""
 "Corpus maintainers, this page was made for your convenience. It shows "
 "sentences that were tagged more than two weeks ago as <a href=\"%s\">%s</a> "
 "or <a href=\"%s\">%s</a>."
-msgstr ""
+msgstr "Cette page a été faite pour faciliter la vie des personnes en charge de la maintenance du corpus. Elle montre les phrases qui ont été étiquetées il y a plus de deux semaines, par exemple avec <a href=\"%s\">%s</a> ou <a href=\"%s\">%s</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/tags/for_moderators.ctp#L78
 msgid ""
@@ -3584,7 +3584,7 @@ msgid ""
 "is better to react as soon as possible, it is best to use your corpus "
 "maintainer powers <strong>ONLY</strong> on sentences that appear in this "
 "list, since the owners have had enough time to respond to comments."
-msgstr ""
+msgstr "En dehors des situations spécifiques pour lesquelles votre sens commun vous dira s'il vaut mieux réagir dès que possible, le mieux reste d'employer les pouvoirs que la maintenance du corpus vous confère <strong>SEULEMENT</strong> sur les phrases qui apparaissent dans cette liste, vu que les propriétaires ont eu assez de temps pour répondre aux commentaires."
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/tags/for_moderators.ctp#L84
 msgid ""
@@ -3852,7 +3852,7 @@ msgstr "Statistiques"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/user/profile.ctp#L73
 msgid "Comments posted"
-msgstr "Commentaires postés"
+msgstr "Commentaires publiés"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/user/profile.ctp#L75
 msgid "Sentences owned"
@@ -4008,11 +4008,11 @@ msgstr "Utilisateurs"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/users/index.ctp#L41
 msgid "total"
-msgstr ""
+msgstr "total"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/users/index.ctp#L68
 msgid "ID"
-msgstr ""
+msgstr "Identifiant"
 
 #: github.com/Tatoeba/tatoeba2/tree/master/app/views/users/index.ctp#L70
 msgid "Email"
