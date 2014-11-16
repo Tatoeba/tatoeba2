@@ -21,10 +21,8 @@
  * Sentence menu 
  */
 .sentences_set .menu {
-    vertical-align: text-bottom;
-    overflow: hidden;
-    border-bottom: 1px dashed #CCC;
-    margin: 2px 0px;
+    border-bottom: 1px dotted #CCC;
+    margin: 2px;
     padding: 0px;
 }
 
@@ -33,18 +31,38 @@
     font-size: 13px;
     padding: 2px 8px;
     line-height: 20px;
-    cursor: pointer;
+}
+
+.sentences_set .menu img {
+    opacity: 0.5;
+}
+
+.sentences_set .menu img:hover {
+    opacity: 1;
 }
 
 .belongsTo {
+    margin-top: -1px;
+    margin-right: 2px;
+}
+
+.belongsTo, .adopt {
     float: right;
     color: #75C34B;
     font-weight: bold;
-    margin-top: -2px;
+    padding: 2px 0px !important;
 }
 
 .belongsTo a {
-    padding: 0px 0px 0px 5px;
+    color: #6A0;
+}
+
+.belongsTo a:hover {
+    color: #DD8800;
+}
+
+.adopt.uneditable img, .adopt.uneditable img:hover {
+    opacity: 0.2;
 }
 
 .listOfLists {
@@ -69,28 +87,24 @@
 .mainSentence .infoIcon {
     float: left;
     margin: 10px 10px 0px 2px;
-}
-
-.mainSentence .infoIcon div {
-    width:  25px;
-    text-align: center;
-    font-size: 18px;
-    background:#EAF2E6;
-    color: #98CB4A;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
-    /*border: 1px solid #D9EAAB;*/
-    font-weight: bold;
+    background: #EAF2E6;
 }
 
-.mainSentence .infoIcon div:before {
-    content: "#";
+.mainSentence .infoIcon div {
+    background: url('../../img/sentence-number.svg') no-repeat 2px;
+    width: 25px;
+    height: 25px;
+}
+
+.mainSentence:hover .infoIcon {
+    background: #98CB4A;
 }
 
 .mainSentence:hover .infoIcon div {
-    background: #98CB4A;
-    color: #EAF2E6;
+    background: url('../../img/sentence-number-hovered.svg') no-repeat 2px;
 }
 
 .mainSentence:hover,
