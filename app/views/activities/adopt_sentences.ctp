@@ -60,7 +60,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                 'Read <a href="{url}">this</a> for further explanation.', true
             ),
             array(
-                'adoptButton' => $html->image('adopt.png'),
+                'adoptButton' => $html->image('unlocked.svg', array('height' => 16)),
                 'url' => 'http://blog.tatoeba.org/2010/04/reliability-of-sentences-how-will-we.html'
             )
         )

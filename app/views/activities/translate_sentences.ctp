@@ -50,7 +50,7 @@ if (empty($notTranslatedInto)) {
                     'Once the sentences are displayed, click on {translateButton} to add '.
                     'a translation.', true
                 ),
-                array('translateButton' => $html->image('translate.png'))
+                array('translateButton' => $html->image('translate.svg', array('height' => 16)))
             );
             ?>
         </p>

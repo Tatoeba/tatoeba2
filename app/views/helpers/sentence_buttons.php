@@ -107,7 +107,7 @@ class SentenceButtonsHelper extends AppHelper
         $elementId = 'link_'.$sentenceId.'_'.$translationId;
 
         $image = $this->Html->image(
-            IMG_PATH . 'unlink.png',
+            IMG_PATH . 'unlink.svg',
             array(
                 "alt"=>__('Unlink', true),
                 "title" => __('Unlink this translation.', true),
@@ -148,7 +148,7 @@ class SentenceButtonsHelper extends AppHelper
         $elementId = 'link_'.$sentenceId.'_'.$translationId;
 
         $image = $this->Html->image(
-            IMG_PATH . 'link.png',
+            IMG_PATH . 'link.svg',
             array(
                 "alt"=>__('Link', true),
                 "title" => __('Make into direct translation.', true),

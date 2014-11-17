@@ -33,12 +33,19 @@
     line-height: 20px;
 }
 
-.sentences_set .menu img {
+.sentences_set .menu img,
+.sentences_set .link.button img {
     opacity: 0.5;
 }
 
-.sentences_set .menu img:hover {
+.sentences_set .menu img:hover,
+.sentences_set .link.button img:hover {
     opacity: 1;
+}
+
+.sentences_set .menu .disabled img,
+.sentences_set .menu .disabled img:hover {
+    opacity: 0.3;
 }
 
 .belongsTo {
@@ -86,11 +93,11 @@
 
 .mainSentence .infoIcon {
     float: left;
-    margin: 10px 10px 0px 2px;
+    margin: 8px 6px 0px 2px;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
-    background: #EAF2E6;
+    /*background: #EAF2E6;*/
 }
 
 .mainSentence .infoIcon div {
@@ -139,7 +146,8 @@
 .sentence .button {
     float: left;
     margin-top: 6px;
-    margin-right: 6px;
+    margin-left: 2px;
+    margin-right: 10px;
 }
 
 
@@ -178,22 +186,28 @@
     background: #998778;
 }
 
+.translationIcon div {
+    margin-bottom: 1px;
+    margin-left: 3px;
+}
+
 .directTranslation .translationIcon,
 .indirectTranslation .translationIcon {
     display: block;
     float: left;
+    margin-left: 2px;
     margin-right: 6px;
-    margin-top: 3px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px;
+    margin-top: 1px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
     overflow: hidden;
 }
 
 .directTranslation .translationIcon div,
 .indirectTranslation .translationIcon div {
-    width: 30px;
-    height: 22px;
+    width: 22px;
+    height: 24px;
 }
 
 
@@ -295,18 +309,19 @@ input.sentenceId {
  * Audio 
  */
 .audioButton {
-    margin: 6px;
+    margin: 4px 6px;
     float: right;
     width: 20px;
-    height: 16px;
+    height: 20px;
 }
 
 .audioAvailable {
-    background: url(../../img/audio.png);
+    background: url(../../img/audio.svg);
 }
 
 .audioUnavailable {
-    background: url(../../img/audio_unavailable.png);
+    background: url(../../img/audio-unavailable.svg);
+    opacity: 0.3;
 }
 
 #audioPlayer {

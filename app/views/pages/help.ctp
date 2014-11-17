@@ -233,7 +233,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Help', true)));
                     'You can translate a sentence from pretty much everywhere. '.
                     'Just click on this icon {translateButton} whenever you see it.', true
                 ),
-                array('translateButton' => $html->image(IMG_PATH . 'translate.png'))
+                array('translateButton' => $html->image(IMG_PATH . 'translate.svg', array('height' => 16)))
             );
             '';
             ?>
@@ -286,7 +286,12 @@ $this->set('title_for_layout', $pages->formatTitle(__('Help', true)));
                     'adopt a sentence, you become its owner and therefore can '.
                     'edit it.', true
                 ),
-                array('adoptButton' => $html->image(IMG_PATH . 'adopt.png'))
+                array('adoptButton' => $html->image(
+                    IMG_PATH . 'unlocked.svg',
+                    array(
+                        'height' => 16
+                    )
+                ))
             );
             ?>
         </p>

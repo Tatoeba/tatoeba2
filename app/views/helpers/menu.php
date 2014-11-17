@@ -75,9 +75,9 @@ class MenuHelper extends AppHelper
         <?php
         if (!$enabled) {
             
-            echo '<a>';
+            echo '<a class="disabled">';
             echo $this->Html->image(
-                IMG_PATH . 'translate-disabled.png',
+                IMG_PATH . 'translate.svg',
                 array(
                     'alt'=>__('Translate', true),
                     'title'=>__(
@@ -559,7 +559,12 @@ class MenuHelper extends AppHelper
         }
 
         // the id is used by sentence.adopt.js
-        echo '<li class="belongsTo" id="belongsTo_'.$sentenceId.'">';
+        $belongsToTitle = format(
+            __('belongs to {user}', true), 
+            array('user' => $ownerName)
+        );
+        echo '<li class="belongsTo" id="belongsTo_'.$sentenceId.'" 
+              title="'.$belongsToTitle.'">';
         $userLink = $this->Html->link(
             $ownerName,
             array(
@@ -568,7 +573,7 @@ class MenuHelper extends AppHelper
                 $ownerName
             )
         );
-        echo format(__('belongs to {user}', true), array('user' => $userLink));
+        echo $userLink;
         echo '</li>';
     }
 

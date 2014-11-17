@@ -508,7 +508,7 @@ class ListsHelper extends AppHelper
                 '(while <a href="{url}">browsing</a> for instance).', true
             ),
             array(
-                'addToListButton' => $this->Html->image(IMG_PATH . 'add_to_list.png'),
+                'addToListButton' => $this->Html->image(IMG_PATH . 'list.svg', array('height' => 16)),
                 'url' => $this->Html->url(array(
                     'controller' => 'sentences',
                     'action' => 'show',
