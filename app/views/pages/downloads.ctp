@@ -186,13 +186,23 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
-                <?php __('Contains the links between the sentences. '); ?>
-                <span class="param">1</span>
-                <span class="symbol">[<?php echo $tab_str; ?>]</span>
-                <span class="param">77</span> 
-                <?php __('means that sentence #77 is the translation of sentence #1. '. 
-                'The reciprocal link is also present, '.
-                'so the file will also contain a line that says '); ?>
+                <?php 
+                __('Contains the links between the sentences. '); 
+
+                $sample_line = sprintf(
+                    '<span class="param">1</span>'.
+                    '<span class="symbol"> [%s] </span>'.
+                    '<span class="param">77</span> ',
+                    $tab_str
+                );
+
+                echo sprintf(
+                    __('%s means that sentence #77 is the translation of '. 
+                    'sentence #1. The reciprocal link is also present, '.
+                    'so the file will also contain a line that says ', true), 
+                    $sample_line
+                );
+                ?>
                 <span class="param">77</span>
                 <span class="symbol">[<?php echo $tab_str; ?>]</span>
                 <span class="param">1</span>.
