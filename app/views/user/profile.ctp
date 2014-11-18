@@ -218,7 +218,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                 }
                 $userSince = date('F j, Y', strtotime($userSince));
                 $fields = array(
-                    __('Name', true) => $realName,
+                    __p('user', 'Name', true) => $realName,
                     __('Country', true) => $countryName,
                     __('Birthday', true) => $birthday,
                     __('Homepage', true) => $homepage

@@ -42,5 +42,20 @@
  * $controllerPaths = array('this path to controllers', 'second full path to controllers', 'etc...');
  *
  */
-//EOF
+
+/* Support gettext contexts
+ * Inspired by http://php.net/manual/en/book.gettext.php#89975
+ */
+if (!function_exists('__p')) {
+    function __p($context, $msgid, $return = false) {
+         $contextMsgid = "{$context}\004{$msgid}";
+         $translation = __($contextMsgid, true);
+         $result = ($translation == $contextMsgid) ? $msgid : $translation;
+         if ($return)
+             return $result;
+         else
+             echo $result;
+    } 
+}
+
 ?>

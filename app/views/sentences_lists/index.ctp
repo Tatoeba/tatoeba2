@@ -51,7 +51,8 @@ if ($session->read('Auth.User.id')) {
     echo $form->input(
         'name',
         array(
-            'type' => 'text'
+            'type' => 'text',
+            'label' => __p('list', 'Name', true)
         )
     );
     echo $form->end(__('create', true));

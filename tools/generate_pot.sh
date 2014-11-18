@@ -11,7 +11,7 @@ throw_to_gettext() {
     xargs xgettext \
         --language=php --from-code=UTF-8 \
         --output=- --color=no --no-wrap \
-        --keyword=__
+        --keyword=__ --keyword=__p:1c,2
 }
 
 adjust_file_refs() {
