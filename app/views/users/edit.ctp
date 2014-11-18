@@ -86,23 +86,26 @@ $form->create('User'); // But we still need to call $form->create()
     <fieldset>
     <legend><?php __('Edit User'); ?></legend>
     <?php
-    echo $form->input('id');
-    echo $form->input('username');
-    echo $form->input('email');
-    echo $form->input('lang');
-    echo $form->input('group_id');
+    echo $form->input('id',       array('label' => __('Id', true)));
+    echo $form->input('username', array('label' => __('Username', true)));
+    echo $form->input('email',    array('label' => __('Email', true)));
+    echo $form->input('lang',     array('label' => __('Lang', true)));
+    echo $form->input('group_id', array('label' => __('Group', true)));
     echo $form->input(
         'level', 
         array(
             'type' => 'radio',
+            'label' => __('Level', true),
             'options' => array(
                 User::MIN_LEVEL => "-1", 
                 User::MAX_LEVEL => "0"
             )
         )
     );
-    echo $form->input('send_notifications');
+    echo $form->input('send_notifications', array(
+        'label' => __('Send notifications', true)
+    ));
     ?>
     </fieldset>
-<?php echo $form->end('Submit'); ?>
+<?php echo $form->end(array('label' => __('Submit', true))); ?>
 </div>
