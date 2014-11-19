@@ -38,7 +38,7 @@ function linkToSentenceByDrop(event, sentenceId) {
     event.preventDefault();
     $(event.target).removeClass('draggableLink');
 
-    var dropped = event.dataTransfer.getData("text/plain");
+    var dropped = event.dataTransfer.getData("URL");
     targetSentenceId = URLToSentenceId(dropped);
 
     // simulate form submission
