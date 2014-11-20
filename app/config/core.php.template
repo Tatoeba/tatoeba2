@@ -348,6 +348,11 @@
     Configure::write('AutoTranscriptions.enabled', true);
     
 /**
+ * Stylesheet for development website
+ */
+    Configure::write('Tatoeba.devStylesheet', false);
+
+/**
  * Blocked IP addresses. Should be an array of strings containing the
  * IP's you want to block. For instance:
  *
