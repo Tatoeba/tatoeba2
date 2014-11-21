@@ -29,7 +29,15 @@ server {
     #    return 301 /home;
     #}
 
+    error_page 502 503 504 /50x.html;
+    location = /50x.html {
+        try_files $uri $uri/ /50x.html;
+    }
+
     location / {
+        if (-f $document_root/../../maintenance.mode) {
+            return 503;
+        }
         try_files $uri $uri/ /index.php?url=$uri&$args;
     }
 
@@ -76,7 +84,15 @@ server {
 	error_log 	/var/log/nginx/error.dev.log error;
 	rewrite_log	on;
 
+        error_page 502 503 504 /50x.html;
+        location = /50x.html {
+            try_files $uri $uri/ /50x.html;
+        }
+
         location / {
+            if (-f $document_root/../../maintenance.mode) {
+                return 503;
+            }
             try_files $uri $uri/ /index.php?url=$uri&$args;
         }
     
