@@ -65,6 +65,46 @@ server {
 }
 
 server {
+	listen	80;
+	server_name	dev.tatoeba.org;
+
+	root	/var/www-dev/app/webroot/;
+	index	index.php index.html;
+	charset	utf-8;
+
+	access_log	/var/log/nginx/access.dev.log;
+	error_log 	/var/log/nginx/error.dev.log error;
+	rewrite_log	on;
+
+        location / {
+            try_files $uri $uri/ /index.php?url=$uri&$args;
+        }
+    
+	location ~ \.php {
+		try_files $uri =404;
+		include /etc/nginx/fastcgi_params;
+		fastcgi_split_path_info ^(.+\.php)(/.+)$;
+		fastcgi_pass 127.0.0.1:9000;
+		fastcgi_intercept_errors on;
+		fastcgi_index index.php;
+		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+	}
+
+	# Comment this out when the subdomain for static files is activated
+	location ~ /(img|js|css)/ {
+		try_files /$uri =404;
+	}
+
+	location ~ ^/(robots\.txt|sitemap\.txt|opensearch.xml|favicon\.ico)$ {
+		try_files /$uri =404;
+	}
+
+	location ~ /(\.ht|\.svn) {
+		deny all;
+	}
+}
+
+server {
 	listen 		80;
 	server_name	audio.tatoeba.org;
 
