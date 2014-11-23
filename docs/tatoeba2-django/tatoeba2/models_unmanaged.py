@@ -92,6 +92,7 @@ class FavoritesUsers(models.Model):
     class Meta:
         managed = False
         db_table = 'favorites_users'
+        unique_together = ('favorite_id', 'user_id')
 
 class FollowersUsers(models.Model):
     follower_id = models.IntegerField()
@@ -215,6 +216,7 @@ class SentencesSentencesLists(models.Model):
     class Meta:
         managed = False
         db_table = 'sentences_sentences_lists'
+        unique_together = ('sentences_list_id', 'sentence_id')
 
 class SentencesTranslations(models.Model):
     # more lying to django

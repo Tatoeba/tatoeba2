@@ -85,6 +85,7 @@ class FavoritesUsers(models.Model):
     user_id = models.IntegerField()
     class Meta:
         db_table = 'favorites_users'
+        unique_together = ('favorite_id', 'user_id')
 
 class FollowersUsers(models.Model):
     follower_id = models.IntegerField()
@@ -196,6 +197,7 @@ class SentencesSentencesLists(models.Model):
     sentence_id = models.IntegerField()
     class Meta:
         db_table = 'sentences_sentences_lists'
+        unique_together = ('sentences_list_id', 'sentence_id')
 
 class SentencesTranslations(models.Model):
     sentence_id = models.IntegerField()
