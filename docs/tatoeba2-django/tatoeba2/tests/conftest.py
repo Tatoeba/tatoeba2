@@ -45,8 +45,6 @@ def sents(db, request):
     
     for i in xrange(6, 8+1): SentenceComments(sentence_id=i, text='Comment on '+str(i), user_id=1, created=datetime.now(), hidden=0).save()
     
-    SentencesTranslations(sentence_id=6, translation_id=10, distance=1).save()
-    SentencesTranslations(sentence_id=10, translation_id=6, distance=1).save()
     SentencesTranslations(sentence_id=6, translation_id=9, distance=1).save()
     SentencesTranslations(sentence_id=9, translation_id=6, distance=1).save()
     SentencesTranslations(sentence_id=7, translation_id=10, distance=1).save()
