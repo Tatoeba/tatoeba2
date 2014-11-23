@@ -209,11 +209,14 @@ class Dedup(object):
 
     @classmethod
     @transaction.atomic
-    def update_merge(cls, model, main_id, ids, fld='sentence_id', unique_flds=[], all_unique=False):
+    def update_merge(cls, model, main_id, ids, fld='sentence_id', all_unique=False):
 
+        unique_together = get_model('tatoeba2.'+model)._meta.unique_together
         if not cls.dry:
             # handle unique fields
-            if unique_flds:
+            if unique_together:
+                unique_flds = list(unique_together[0])
+                unique_flds.remove(fld)
                 # filter out current rows into sets
                 flds = [fld] + unique_flds
                 dups = list(get_model('tatoeba2.'+model).objects.filter(**{fld+'__in': ids}))
@@ -280,12 +283,12 @@ class Dedup(object):
         # merge
         cls.insert_merge('SentenceComments', main_sent.id, ids)
         cls.update_merge('TagsSentences', main_sent.id, ids)
-        cls.update_merge('SentencesTranslations', main_sent.id, ids, unique_flds=['translation_id'], all_unique=True)
-        cls.update_merge('SentencesTranslations', main_sent.id, ids, 'translation_id', unique_flds=['sentence_id'], all_unique=True)
+        cls.update_merge('SentencesTranslations', main_sent.id, ids, all_unique=True)
+        cls.update_merge('SentencesTranslations', main_sent.id, ids, 'translation_id', all_unique=True)
 
-        cls.update_merge('SentencesSentencesLists', main_sent.id, ids, unique_flds=['sentences_list_id'])
+        cls.update_merge('SentencesSentencesLists', main_sent.id, ids)
         cls.insert_merge('Contributions', main_sent.id, ids, q_filters=Q(type='sentence', action='update') | Q(type='link'))
-        cls.update_merge('FavoritesUsers', main_sent.id, ids, 'favorite_id', unique_flds=['user_id'])
+        cls.update_merge('FavoritesUsers', main_sent.id, ids, 'favorite_id')
         cls.update_merge('SentenceAnnotations', main_sent.id, ids)
                
         # delete and log duplicates

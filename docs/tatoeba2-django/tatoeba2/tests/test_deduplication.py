@@ -142,13 +142,13 @@ class TestDedup():
 
     def test_merge_lists(db, sents, dedup):
         assert SentencesSentencesLists.objects.filter(sentence_id=8).count() == 1
-        dedup.update_merge('SentencesSentencesLists', 8, [6, 7], unique_flds=['sentences_list_id'])
+        dedup.update_merge('SentencesSentencesLists', 8, [6, 7])
         assert SentencesSentencesLists.objects.filter(sentence_id=8).count() == 3
         for sent_lst in SentencesSentencesLists.objects.all(): assert sent_lst.sentence_id == 8
 
     def test_merge_favorites(db, sents, dedup):
         assert FavoritesUsers.objects.filter(favorite_id=8).count() == 1
-        dedup.update_merge('FavoritesUsers', 8, [6, 7], 'favorite_id', unique_flds=['user_id'])
+        dedup.update_merge('FavoritesUsers', 8, [6, 7], 'favorite_id')
         assert FavoritesUsers.objects.filter(favorite_id=8).count() == 3
         for fav in FavoritesUsers.objects.all(): assert fav.favorite_id == 8
 
@@ -161,8 +161,8 @@ class TestDedup():
     def test_merge_links(db, sents, dedup):
 
         assert SentencesTranslations.objects.filter(sentence_id=8).count() == 0
-        dedup.update_merge('SentencesTranslations', 8, [6, 7], unique_flds=['translation_id'], all_unique=True)
-        dedup.update_merge('SentencesTranslations', 8, [6, 7], 'translation_id', unique_flds=['sentence_id'], all_unique=True)
+        dedup.update_merge('SentencesTranslations', 8, [6, 7], all_unique=True)
+        dedup.update_merge('SentencesTranslations', 8, [6, 7], 'translation_id', all_unique=True)
 
         lnks_fd = SentencesTranslations.objects.filter(sentence_id=8).order_by('translation_id')
         assert lnks_fd.count() == 2
@@ -226,7 +226,7 @@ class TestDedup():
     def test_linked_dups_merge(db, sents, linked_dups):
         assert not raises(
             Dedup.update_merge, IntegrityError,
-            'SentencesTranslations', 2, [3], unique_flds=['translation_id'], all_unique=True
+            'SentencesTranslations', 2, [3], all_unique=True
             )
         lnks = list(SentencesTranslations.objects.filter(sentence_id=2))
         assert len(lnks) == 1
@@ -235,7 +235,7 @@ class TestDedup():
     def test_dups_in_list(db, sents, dups_in_list):
         assert not raises(
             Dedup.update_merge, IntegrityError,
-            'SentencesSentencesLists', 2, [3], unique_flds=['sentences_list_id']
+            'SentencesSentencesLists', 2, [3]
             )
         lst = list(SentencesSentencesLists.objects.filter(sentence_id=2))
         assert len(lst) == 1
@@ -244,7 +244,7 @@ class TestDedup():
     def test_dups_in_fav(db, sents, dups_in_fav):
         assert not raises(
             Dedup.update_merge, IntegrityError,
-            'FavoritesUsers', 2, [3], 'favorite_id', unique_flds=['user_id']
+            'FavoritesUsers', 2, [3], 'favorite_id'
             )
         fav = list(FavoritesUsers.objects.filter(favorite_id=2))
         assert len(fav) == 1
