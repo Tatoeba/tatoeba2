@@ -301,15 +301,16 @@ class Dedup(object):
                 main_sent.save()
             cls.log_entry(main_sent.id, [], 'update Sentences', 'update', 'correctness', [main_sent])
         
-        # post comment on merged sentence if needed
+        # post comment on duplicate sentences if needed
         if post_cmnt:
-            SentenceComments(
-                sentence_id=main_sent.id,
-                text='This sentence has been merged with '+' '.join(['#'+str(id) for id in ids]),
-                user_id=cls.bot.id,
-                created=now(),
-                hidden=0,
-                ).save()
+            for id in ids:
+                SentenceComments(
+                    sentence_id=id,
+                    text='This sentence has been merged with #{0} because it was a duplicate of it. If there were any linked translations, tags or comments here, they have been moved to #{0}.'.format(main_sent.id),
+                    user_id=cls.bot.id,
+                    created=now(),
+                    hidden=0,
+                    ).save()
 
 class Command(Dedup, BaseCommand):
     option_list = BaseCommand.option_list + (

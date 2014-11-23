@@ -214,7 +214,7 @@ class TestDedup():
     def test_comment_post(db, sents):
         cmd = Command()
         cmd.handle(cmnt=True)
-        assert SentenceComments.objects.filter(text__contains='has been merged with').count() == 5
+        assert SentenceComments.objects.filter(text__contains='has been merged with').count() == 11
 
     def test_dry_run(db, sents):
         cmd = Command()
