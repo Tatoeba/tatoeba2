@@ -1,5 +1,5 @@
 from tatoeba2.management.commands.deduplicate import Command, Dedup
-from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Wall
+from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Users, Wall
 from django.db import transaction, IntegrityError
 from django.db.models import Q
 from hashlib import sha1
@@ -218,10 +218,12 @@ class TestDedup():
 
     def test_dry_run(db, sents):
         cmd = Command()
-        cmd.handle(dry=True)
+        cmd.handle(dry=True, cmnt=True, wall=True)
         assert Sentences.objects.all().count() == 21
         assert Contributions.objects.all().count() == 5
         assert SentenceComments.objects.all().count() == 3
+        assert Users.objects.all().count() == 0
+        assert Wall.objects.all().count() == 1
 
     def test_linked_dups_merge(db, sents, linked_dups):
         assert not raises(

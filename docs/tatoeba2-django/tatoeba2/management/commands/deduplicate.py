@@ -179,7 +179,7 @@ class Dedup(object):
                 action='delete',
                 datetime=now(),
                 type='sentence',
-                user_id=cls.bot.id,
+                user_id=cls.bot.id if hasattr(cls, 'bot') else 0,
                 ))
 
         if not cls.dry:
@@ -302,7 +302,7 @@ class Dedup(object):
             cls.log_entry(main_sent.id, [], 'update Sentences', 'update', 'correctness', [main_sent])
         
         # post comment on duplicate sentences if needed
-        if post_cmnt:
+        if post_cmnt and not dry:
             comments = []
             for id in ids:
                 comments.append(
@@ -372,19 +372,20 @@ class Command(Dedup, BaseCommand):
         chunks = options.get('chunks') or 10
         since = options.get('since')
 
+        dry = bool(options.get('dry'))
         bot_name = options.get('bot_name') or 'deduplication_bot'
         try:
             Dedup.bot = Users.objects.get(username=bot_name)
         except Users.DoesNotExist:
-            Dedup.bot = Users.objects.create(
-                username=bot_name, password='', email='bot@bots.com',
-                since=now(), last_time_active=now().strftime('%Y%m%d'),
-                level=1, is_public=1, send_notifications=0, group_id=1
-                )
+            if not dry:
+                Dedup.bot = Users.objects.create(
+                    username=bot_name, password='', email='bot@example.com',
+                    since=now(), last_time_active=now().strftime('%Y%m%d'),
+                    level=1, is_public=1, send_notifications=0, group_id=1
+                    )
 
         pause_for = options.get('pause_for') or 0
         post_cmnt = bool(options.get('cmnt'))
-        dry = bool(options.get('dry'))
         url = options.get('url') or 'http://downloads.tatoeba.org/'
         if url[-1] != '/': url += '/'
 
@@ -506,7 +507,7 @@ class Command(Dedup, BaseCommand):
         self.log_report(url + path.split(self.log_file_path)[-1].replace(' ', '%20'))
         
         # post a wall report if needed
-        if options.get('wall'):
+        if options.get('wall') and not dry:
             lft = Wall.objects.all().order_by('-rght')[0].rght + 1
             rght = lft + 1
             w = Wall(
