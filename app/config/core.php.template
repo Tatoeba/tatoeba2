@@ -216,7 +216,7 @@
  * Set to `true` to apply timestamps when debug > 0. Set to 'force' to always enable
  * timestamping regardless of debug value.
  */
-	//Configure::write('Asset.timestamp', true);
+	Configure::write('Asset.timestamp', 'force');
 /**
  * Compress CSS output by removing comments, whitespace, repeating tags, etc.
  * This requires a/var/cache directory to be writable by the web server for caching.
@@ -233,7 +233,7 @@
  * To use, prefix your JavaScript link URLs with '/cjs/' instead of '/js/' or use JavaScriptHelper::link().
  */
 	//Configure::write('Asset.filter.js', 'custom_javascript_output_filter.php');
-
+    
 /**
  * The classname and database used in CakePHP's
  * access control lists.
