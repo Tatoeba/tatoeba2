@@ -209,18 +209,18 @@ class Dedup(object):
 
     @classmethod
     @transaction.atomic
-    def update_merge(cls, model, main_id, ids, fld='sentence_id', all_unique=False):
+    def update_merge(cls, model, main_id, ids, update_fld='sentence_id', all_unique=False):
 
         unique_together = get_model('tatoeba2.'+model)._meta.unique_together
         if not cls.dry:
             # handle unique fields
             if unique_together:
                 unique_flds = list(unique_together[0])
-                unique_flds.remove(fld)
+                unique_flds.remove(update_fld)
                 # filter out current rows into sets
-                flds = [fld] + unique_flds
-                dups = list(get_model('tatoeba2.'+model).objects.filter(**{fld+'__in': ids}))
-                main = list(get_model('tatoeba2.'+model).objects.filter(**{fld: main_id}))
+                flds = [update_fld] + unique_flds
+                dups = list(get_model('tatoeba2.'+model).objects.filter(**{update_fld+'__in': ids}))
+                main = list(get_model('tatoeba2.'+model).objects.filter(**{update_fld: main_id}))
                 dups = set(tuple(getattr(obj, fld) for fld in flds) for obj in dups)
                 main = set(tuple(getattr(obj, fld) for fld in flds) for obj in main)
 
@@ -249,12 +249,12 @@ class Dedup(object):
                     for idx, fld in enumerate(flds):
                         filters[fld] = collision[idx]
                     query = query | get_model('tatoeba2.'+model).objects.filter(**filters)
-                cls.log_collision_del(model, main_id, ids, fld, query)
+                cls.log_collision_del(model, main_id, ids, update_fld, query)
                 query.delete()
 
             # issue update
-            cls.log_update_merge(model, main_id, ids, fld)    
-            get_model('tatoeba2.'+model).objects.filter(**{fld+'__in': ids}).update(**{fld:main_id})
+            cls.log_update_merge(model, main_id, ids, update_fld)    
+            get_model('tatoeba2.'+model).objects.filter(**{update_fld+'__in': ids}).update(**{update_fld:main_id})
 
     @classmethod
     def log_insert_merge(cls, model, main_id, ids, fld, inserts):
