@@ -233,12 +233,13 @@ class Dedup(object):
                         collisions.add(obj)
 
                 # handle the need for having all the ids not match
-                # (think self-linked sentences), checks for existing
-                # main_id, dup_id pairs in the main row set
+                # (think self-linked sentences), delete any existing
+                # dup_id, main_id pairs in the main row set so that
+                # the update will not generate main_id, main_id pairs
                 if all_unique:
                     for id in ids:
-                        repeated_dups = (main_id,) + tuple(id for fld in unique_flds)
-                        if repeated_dups in main: collisions.add(repeated_dups)
+                        repeated_dups = tuple(id for fld in unique_flds) + (main_id,)
+                        collisions.add(repeated_dups)
 
                 # delete collisions before update runs, field names and tuple
                 # contents are matched back to build an orm filter, the query

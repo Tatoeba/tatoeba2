@@ -118,12 +118,17 @@ def dedup(request, bot):
     
     return Dedup
 
+def bidirect_link(a, b):
+    SentencesTranslations(sentence_id=a, translation_id=b, distance=1).save()
+    SentencesTranslations(sentence_id=b, translation_id=a, distance=1).save()
+
 @pytest.fixture
 def linked_dups():
-    SentencesTranslations(sentence_id=2, translation_id=1, distance=1).save()
-    SentencesTranslations(sentence_id=3, translation_id=1, distance=1).save()
-    SentencesTranslations(sentence_id=3, translation_id=2, distance=1).save()
-    SentencesTranslations(sentence_id=2, translation_id=3, distance=1).save()
+    bidirect_link(1, 2)
+    bidirect_link(1, 3)
+    bidirect_link(2, 3)
+    bidirect_link(2, 5)
+    bidirect_link(3, 6)
 
 @pytest.fixture
 def dups_in_list():

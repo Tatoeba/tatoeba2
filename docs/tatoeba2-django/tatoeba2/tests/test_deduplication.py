@@ -230,9 +230,20 @@ class TestDedup():
             Dedup.update_merge, IntegrityError,
             'SentencesTranslations', 2, [3], all_unique=True
             )
-        lnks = list(SentencesTranslations.objects.filter(sentence_id=2))
-        assert len(lnks) == 1
+        assert not raises(
+            Dedup.update_merge, IntegrityError,
+            'SentencesTranslations', 2, [3], 'translation_id', all_unique=True
+            )
+        lnks = list(SentencesTranslations.objects.filter(sentence_id=2).order_by('translation_id'))
+        assert len(lnks) == 3
         assert lnks[0].sentence_id == 2 and lnks[0].translation_id == 1
+        assert lnks[1].sentence_id == 2 and lnks[1].translation_id == 5
+        assert lnks[2].sentence_id == 2 and lnks[2].translation_id == 6
+        lnks = list(SentencesTranslations.objects.filter(translation_id=2).order_by('sentence_id'))
+        assert len(lnks) == 3
+        assert lnks[0].sentence_id == 1 and lnks[0].translation_id == 2
+        assert lnks[1].sentence_id == 5 and lnks[1].translation_id == 2
+        assert lnks[2].sentence_id == 6 and lnks[2].translation_id == 2
 
     def test_dups_in_list(db, sents, dups_in_list):
         assert not raises(
