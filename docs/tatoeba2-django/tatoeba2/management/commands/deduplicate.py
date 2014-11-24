@@ -372,6 +372,15 @@ class Command(Dedup, BaseCommand):
             help='url root path pointing to log directory. used in the wall post'),
         )
 
+    def update_dedup_progress(self):
+        percent_done = (self.proceeded_sets)*100/self.total_sets
+        if percent_done - self.prev_progress > 2 or percent_done == 100:
+            sys.stdout.write('\rDeduplication: '+str(percent_done)+'% done')
+            sys.stdout.flush()
+            self.prev_progress = percent_done
+        if percent_done == 100:
+            print('') # for the return carriage
+
     def handle(self, *args, **options):
 
         if options.get('chunks') and options.get('since'):
@@ -406,6 +415,9 @@ class Command(Dedup, BaseCommand):
         self.all_mains = []
         self.all_audio = []
 
+        self.proceeded_sets = 0
+        self.prev_progress = -100
+
         # incremental vs full scan routes
         if since:
             self.log_report('Running incremental scan at '+self.started_on.strftime('%Y-%m-%d %I:%M %p UTC'))
@@ -429,7 +441,8 @@ class Command(Dedup, BaseCommand):
                 sents = list(Sentences.objects.filter(id__in=ids))            
                 if len(sents) > 1:
                     dup_set.append(sents)
-            self.log_report('OK '+str(len(dup_set))+' duplicate sets found')
+            self.total_sets = len(dup_set)
+            self.log_report('OK '+str(self.total_sets)+' duplicate sets found')
             del sent_tally
 
             self.log_report('Running deduplication transactions on duplicate sets')
@@ -446,6 +459,9 @@ class Command(Dedup, BaseCommand):
                 self.all_dups.extend(ids)
                 # run a deduplication transaction
                 self.deduplicate(main_sent, ids, post_cmnt, dry)
+                # display percentage progress
+                self.proceeded_sets += 1
+                self.update_dedup_progress()
                 # handle rate limiting
                 if pause_for: time.sleep(pause_for)
 
@@ -463,12 +479,14 @@ class Command(Dedup, BaseCommand):
                 self.log_report('OK')
                 del sents
 
-            self.log_report('OK full table scan and filtering done '+str(len(sent_tally))+' duplicate sets found')
+            self.total_sets = len(sent_tally)
+            self.log_report('OK full table scan and filtering done '+str(self.total_sets)+' duplicate sets found')
 
             self.log_report('Running deduplication step')
             # deduplicate
             for ids in sent_tally.itervalues():
-                if len(ids) > 1:
+                process = len(ids) > 1
+                if process:
                     # pull in needed rows
                     sents = list(Sentences.objects.filter(id__in=ids))
                     
@@ -484,6 +502,11 @@ class Command(Dedup, BaseCommand):
                     # run a deduplication transaction
                     self.deduplicate(main_sent, ids, post_cmnt, dry)
 
+                self.proceeded_sets += 1
+                # display percentage progress
+                self.update_dedup_progress()
+
+                if process:
                     # handle rate limit
                     if pause_for: time.sleep(pause_for)
 
