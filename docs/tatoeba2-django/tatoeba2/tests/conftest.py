@@ -129,6 +129,7 @@ def linked_dups():
     bidirect_link(2, 3)
     bidirect_link(2, 5)
     bidirect_link(3, 6)
+    bidirect_link(4, 6)
 
 @pytest.fixture
 def dups_in_list():

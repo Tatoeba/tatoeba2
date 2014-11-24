@@ -227,10 +227,22 @@ class Dedup(object):
                 # simulate the update on the dups row set and check if
                 # there's collisions in the main row set
                 collisions = set()
+                remaining_dups = {}
                 for obj in dups:
                     updated_obj = (main_id,) + tuple(obj[1:])
                     if updated_obj in main:
                         collisions.add(obj)
+                    else:
+                        remaining_dups.setdefault(updated_obj, []).append(obj)
+
+                # handle duplicates inside duplicates, for instance
+                # 1-5 and 2-5 updated into 3-5 and 3-5 because of
+                # merging sentences 1 and 2 into 3
+                for dup_dups in remaining_dups.itervalues():
+                    if (len(dup_dups) > 1):
+                        dup_dups.pop(0)
+                        for dup in dup_dups:
+                            collisions.add(dup)
 
                 # handle the need for having all the ids not match
                 # (think self-linked sentences), delete any existing

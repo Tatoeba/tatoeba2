@@ -228,11 +228,11 @@ class TestDedup():
     def test_linked_dups_merge(db, sents, linked_dups):
         assert not raises(
             Dedup.update_merge, IntegrityError,
-            'SentencesTranslations', 2, [3], all_unique=True
+            'SentencesTranslations', 2, [3,4], all_unique=True
             )
         assert not raises(
             Dedup.update_merge, IntegrityError,
-            'SentencesTranslations', 2, [3], 'translation_id', all_unique=True
+            'SentencesTranslations', 2, [3,4], 'translation_id', all_unique=True
             )
         lnks = list(SentencesTranslations.objects.filter(sentence_id=2).order_by('translation_id'))
         assert len(lnks) == 3
