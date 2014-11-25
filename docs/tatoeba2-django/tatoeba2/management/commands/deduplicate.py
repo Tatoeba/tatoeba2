@@ -534,9 +534,9 @@ class Command(Dedup, BaseCommand):
         self.log_report(msg)        
 
         # no links should refer to dups
-        self.log_report('No links refer to deleted duplicates? ')
+        self.log_report('Sentences are free from links refering to deleted duplicates? ')
         self.ver_links = SentencesTranslations.objects.filter(sentence_id__in=self.all_dups).count() == 0 and SentencesTranslations.objects.filter(translation_id__in=self.all_dups).count() == 0
-        msg = 'YES' if self.ver_links else 'NO'
+        msg = 'NO' if self.ver_links else 'YES'
         self.log_report(msg)
         
         self.log_report('Deduplication finished running successfully at '+now().strftime('%Y-%m-%d %I:%M %p UTC')+', see full log at:')
