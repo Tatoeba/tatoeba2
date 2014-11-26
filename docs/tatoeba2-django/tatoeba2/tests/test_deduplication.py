@@ -1,5 +1,5 @@
 from tatoeba2.management.commands.deduplicate import Command, Dedup
-from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Users, Wall
+from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Users, Wall, Languages
 from django.db import transaction, IntegrityError
 from django.db.models import Q
 from hashlib import sha1
@@ -281,3 +281,9 @@ class TestDedup():
     def test_linked_dups_in_logs(db, sents, duplnks_in_logs, dedup):
         dedup.merge_logs(2, [3])
         assert Contributions.objects.filter(sentence_id=2, translation_id=2, type='link').count() == 0
+
+    def test_refresh_lang_stats(db, sents, lang_stats):
+        assert Languages.objects.filter(lang='eng')[0].numberofsentences == 0
+        cmd = Command()
+        cmd.handle()
+        assert Languages.objects.filter(lang='eng')[0].numberofsentences == 10

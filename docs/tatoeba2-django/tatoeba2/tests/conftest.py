@@ -1,4 +1,4 @@
-from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Users, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Wall
+from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Users, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Wall, Languages
 from datetime import datetime
 from tatoeba2.management.commands.deduplicate import Dedup
 from django.db import connections
@@ -144,3 +144,7 @@ def dups_in_fav():
 @pytest.fixture
 def duplnks_in_logs():
     Contributions(action='insert', user_id=1, datetime=datetime.now(), type='link', sentence_id=3, translation_id=2).save()
+
+@pytest.fixture
+def lang_stats():
+    Languages(lang='eng', numberofsentences=0).save()

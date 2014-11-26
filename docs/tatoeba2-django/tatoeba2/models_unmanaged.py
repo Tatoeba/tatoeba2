@@ -110,13 +110,13 @@ class Groups(models.Model):
         managed = False
         db_table = 'groups'
 
-class Langstats(models.Model):
+class Languages(models.Model):
     lang = models.CharField(unique=True, max_length=4)
     numberofsentences = models.IntegerField(db_column='numberOfSentences') # Field name made lowercase.
     id = models.AutoField(primary_key=True)
     class Meta:
         managed = False
-        db_table = 'langStats'
+        db_table = 'languages'
 
 class LastContributions(models.Model):
     sentence_id = models.IntegerField()

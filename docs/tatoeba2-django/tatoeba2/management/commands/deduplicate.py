@@ -3,7 +3,7 @@
 
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from tatoeba2.models import Sentences, SentencesTranslations, Contributions, Users, Wall, SentenceComments, WallThreadsLastMessage
+from tatoeba2.models import Sentences, SentencesTranslations, Contributions, Users, Wall, SentenceComments, WallThreadsLastMessage, Languages
 from collections import defaultdict
 from datetime import datetime
 from optparse import make_option
@@ -255,7 +255,7 @@ class Dedup(object):
 
     @classmethod
     @transaction.atomic
-    def update_merge(cls, model, main_id, ids, update_fld='sentence_id', all_unique=False):
+    def update_merge(cls, model, main_id, ids, update_fld='sentence_id'):
         # handle unique collisions
         unique, unique_flds, collisions, remaining = cls.unique_collisions(model, main_id, ids, update_fld)
         if unique:
@@ -391,6 +391,16 @@ class Dedup(object):
                     )
             SentenceComments.objects.bulk_create(comments)
 
+    @classmethod
+    @transaction.atomic
+    def refresh_lang_stats(cls):
+        if not cls.dry:
+            langs = list(Languages.objects.all())
+            for l in langs:
+                Languages.objects\
+                .filter(lang=l.lang)\
+                .update(numberofsentences=Sentences.objects.filter(lang=l.lang).count())
+        
 class Command(Dedup, BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option(
@@ -600,6 +610,10 @@ class Command(Dedup, BaseCommand):
         self.ver_links = SentencesTranslations.objects.filter(sentence_id__in=self.all_dups).count() == 0 and SentencesTranslations.objects.filter(translation_id__in=self.all_dups).count() == 0
         msg = 'YES' if self.ver_links else 'NO'
         self.log_report(msg)
+
+        # refresh sentence numbers for languages
+        self.log_report('Refreshing language statistics')
+        self.refresh_lang_stats()
         
         self.log_report('Deduplication finished running successfully at '+now().strftime('%Y-%m-%d %I:%M %p UTC')+', see full log at:')
         self.log_report(url + path.split(self.log_file_path)[-1].replace(' ', '%20'))
