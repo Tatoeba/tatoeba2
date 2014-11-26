@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
  
-$this->set('title_for_layout', $pages->formatTitle(__('Import sentences', true)));
+$this->set('title_for_layout', $pages->formatTitle(__d('admin', 'Import sentences', true)));
 
 $langArray = $languages->onlyLanguagesArray();
 ?>
@@ -33,7 +33,7 @@ $langArray = $languages->onlyLanguagesArray();
 <div id="main_content">
 
     <div class="module">
-        <h2><?php __('Single sentences'); ?></h2>
+        <h2><?php __d('admin', 'Single sentences'); ?></h2>
         
         <?php 
         echo $form->create(
@@ -49,31 +49,31 @@ $langArray = $languages->onlyLanguagesArray();
         ?>
         
         <div>
-        <?php __('Language of the sentences:');
+        <?php __d('admin', 'Language of the sentences:');
           echo $form->select('sentences_lang', $langArray); ?>
         </div>
         
         <div>
-        <?php __('File:'); echo $form->file('file'); ?>
+        <?php __d('admin', 'File:'); echo $form->file('file'); ?>
         </div>
  
         <div>  
         <?php echo $form->input('user_id',
            array(
                'type' => 'text',
-               'label' => __('Numeric user id: ', true)
+               'label' => __d('admin', 'Numeric user id: ', true)
            )
         ); ?>
         </div>
 
         <?php echo $form->end('import',
-           array('label' => __('import', true))); ?>
+           array('label' => __d('admin', 'import', true))); ?>
     </div>
     
     
     
     <div class="module">
-        <h2><?php __('Sentences and translations'); ?></h2>
+        <h2><?php __d('admin', 'Sentences and translations'); ?></h2>
         <?php 
         echo $form->create(
             null,    
@@ -88,30 +88,30 @@ $langArray = $languages->onlyLanguagesArray();
         ?>
         
         <div>
-        <?php __('Language of the sentences:');
+        <?php __d('admin', 'Language of the sentences:');
         echo $form->select('sentences_lang', $langArray); ?>
         </div>
         
         <div>
-        <?php __('Language of the translations:');
+        <?php __d('admin', 'Language of the translations:');
         echo $form->select('translations_lang', $langArray); ?>
         </div>
         
         <div>
-        <?php __('File:'); echo $form->file('file'); ?>
+        <?php __d('admin', 'File:'); echo $form->file('file'); ?>
         </div>
 
         <div>
         <?php echo $form->input('user_id',
            array(
                'type' => 'text',
-               'label' => __('Numeric user id: ', true)
+               'label' => __d('admin', 'Numeric user id: ', true)
            )
         ); ?>
         </div>
         
         <?php echo $form->end('import',
-        array('label' => __('import', true))); ?>
+        array('label' => __d('admin', 'import', true))); ?>
     </div>
     
     
