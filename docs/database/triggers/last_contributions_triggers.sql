@@ -1,7 +1,11 @@
 -- create and fill last_contributions table
+DROP TABLE IF EXISTS last_contributions;
 CREATE TABLE last_contributions LIKE contributions ;
 INSERT INTO last_contributions
-    SELECT * FROM contributions ORDER BY id DESC LIMIT 200 ;
+    SELECT * FROM contributions 
+        WHERE type = 'sentence' # AND user_id != <bod_id>
+        ORDER BY id DESC 
+        LIMIT 200 ;
 
 -- create the trigger
 DROP TRIGGER insert_in_last_contributions ;
@@ -9,7 +13,7 @@ delimiter |
 CREATE TRIGGER insert_in_last_contributions AFTER INSERT ON contributions
   FOR EACH ROW BEGIN
     IF NEW.type = "sentence" THEN
-
+    # IF NEW.type = "sentence" AND NEW.user_id != <bot_id> THEN
 
         INSERT INTO last_contributions (
             id,

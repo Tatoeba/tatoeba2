@@ -408,4 +408,10 @@
         array('tgl', 'tl', 'Tagalog'),
         array('tur', 'tr', 'Türkçe'),
     ));
+
+/**
+ * Ids of users (bots) whose comments are hidden from homepage and index page
+ * to prevent spam.
+ */
+    Configure::write('Bots.userIds', array());
 ?>

@@ -84,6 +84,7 @@ class ContributionsController extends AppController
         if ($filter != 'und') {
             $conditions = array('sentence_lang' => $filter);
         }
+        $conditions = $this->Contribution->getQueryConditionsWithExcludedUsers($conditions);
 
         $this->paginate = array(
             'Contribution' => array(

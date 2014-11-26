@@ -105,7 +105,7 @@ class Contribution extends AppModel
      *
      * @return array
      */
-    public function getLastContributions($limit,$lang = 'und')
+    public function getLastContributions($limit, $lang = 'und')
     {
         // we sanitize, really important here as we forge our own query
         $limit = Sanitize::paranoid($limit);
@@ -113,9 +113,18 @@ class Contribution extends AppModel
 
         if (strlen($lang) != 3 || !is_numeric($limit)) {
             return array();
-        }        
+        }
         
         $conditions = array('type' => 'sentence');
+
+        if ($lang == 'und'|| empty($lang)) {
+            $this->setSource('last_contributions');
+        } else {
+            $conditions['sentence_lang'] = $lang;
+        }
+
+        $conditions = $this->getQueryConditionsWithExcludedUsers($conditions);
+
         $contain = array(
             'User' => array(
                 'fields' => array(
@@ -124,11 +133,6 @@ class Contribution extends AppModel
                 )
             )
         );
-        if ($lang == 'und'|| empty($lang)) {
-            $this->setSource('last_contributions');
-        } else {
-            $conditions['sentence_lang'] = $lang;
-        }
 
         $results = $this->find(
             'all', 
@@ -319,5 +323,27 @@ class Contribution extends AppModel
         $this->save($data);
     }
 
+
+    /**
+     *
+     * 
+     */
+    public function getQueryConditionsWithExcludedUsers($conditions)
+    {
+        $botsIds = Configure::read('Bots.userIds');
+
+        if (!isset($conditions)) {
+            $conditions = array();
+        }
+        if (!empty($botsIds)) {
+            if (count($botsIds) > 1) {
+                $conditions["user_id NOT"] = $botsIds;
+            } else {
+                $conditions["user_id !="] = $botsIds[0];
+            }
+        }
+
+        return $conditions;
+    }
 }
 ?>
