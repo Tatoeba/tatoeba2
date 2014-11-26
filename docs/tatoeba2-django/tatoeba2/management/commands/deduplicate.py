@@ -195,12 +195,6 @@ class Dedup(object):
         cls.log_sents_del(main_id, ids, sents)
         if not cls.dry:
             sents.delete()
-
-    @classmethod
-    def log_collision_del(cls, model, main_id, ids, fld, query):
-        query = query.all() # calls clone() on the queryset, to get around python references
-        deletes = list(query)
-        cls.log_entry(main_id, ids, 'delete update collisions '+model, 'delete', fld, deletes)
     
     @classmethod
     def log_update_merge(cls, model, main_id, ids, fld='sentence_id'):
@@ -208,66 +202,72 @@ class Dedup(object):
         cls.log_entry(main_id, ids, 'merge '+model, 'update', fld, updates)
 
     @classmethod
+    def unique_collisions(cls, model, main_id, ids, update_fld='sentence_id'):
+        unique_together = get_model('tatoeba2.'+model)._meta.unique_together
+        collisions = set()
+        remaining = defaultdict(list)
+
+        if unique_together:
+            unique_flds = list(unique_together[0])
+            unique_flds.remove(update_fld)
+            # filter out current rows into sets
+            flds = [update_fld] + unique_flds
+            dups = list(get_model('tatoeba2.'+model).objects.filter(**{update_fld+'__in': ids}))
+            main = list(get_model('tatoeba2.'+model).objects.filter(**{update_fld: main_id}))
+            dups = set(tuple(getattr(obj, fld) for fld in flds) for obj in dups)
+            main = set(tuple(getattr(obj, fld) for fld in flds) for obj in main)
+
+            # simulate the update on the dups row set and check if
+            # there's collisions in the main row set, keep track of
+            # collisions and non-collisions remaining
+            for obj in dups:
+                updated_obj = (main_id,) + tuple(obj[1:])
+                if updated_obj in main:
+                    collisions.add(obj)
+                else:
+                    remaining[updated_obj].append(obj)
+
+            return bool(unique_together), unique_flds, collisions, remaining
+        else:
+            return bool(unique_together), None, None, None
+
+    @classmethod
+    def log_rows_tuples_del(cls, model, main_id, ids, query, msg):
+        query = query.all() # calls clone() on the queryset, to get around python references
+        deletes = list(query)
+        cls.log_entry(main_id, ids, msg+' '+model, 'delete', 'sentence_id', deletes)
+
+    @classmethod
+    @transaction.atomic
+    def delete_rows_tuples(cls, model, main_id, ids, flds, tuples, log_msg):
+        # given tuples containing some values and a model with a list of field names
+        # contents are matched back to build an orm filter, the query
+        # is then built by chaining all the built filters and rows are deleted
+        query = get_model('tatoeba2.'+model).objects.none() 
+        for tpl in tuples:
+            filters = {}
+            for idx, fld in enumerate(flds):
+                filters[fld] = tpl[idx]
+            query = query | get_model('tatoeba2.'+model).objects.filter(**filters)
+        cls.log_rows_tuples_del(model, main_id, ids, query, log_msg)
+        if not cls.dry:
+            query.delete()      
+
+    @classmethod
     @transaction.atomic
     def update_merge(cls, model, main_id, ids, update_fld='sentence_id', all_unique=False):
+        # handle unique collisions
+        unique, unique_flds, collisions, remaining = cls.unique_collisions(model, main_id, ids, update_fld)
+        if unique:
+            flds = [update_fld] + unique_flds
 
-        unique_together = get_model('tatoeba2.'+model)._meta.unique_together
+            # delete collisions before update runs
+            cls.delete_rows_tuples(model, main_id, ids, flds, collisions, 'delete update collisions')
+
+        # issue update
+        cls.log_update_merge(model, main_id, ids, update_fld)
         if not cls.dry:
-            # handle unique fields
-            if unique_together:
-                unique_flds = list(unique_together[0])
-                unique_flds.remove(update_fld)
-                # filter out current rows into sets
-                flds = [update_fld] + unique_flds
-                dups = list(get_model('tatoeba2.'+model).objects.filter(**{update_fld+'__in': ids}))
-                main = list(get_model('tatoeba2.'+model).objects.filter(**{update_fld: main_id}))
-                dups = set(tuple(getattr(obj, fld) for fld in flds) for obj in dups)
-                main = set(tuple(getattr(obj, fld) for fld in flds) for obj in main)
-
-                # simulate the update on the dups row set and check if
-                # there's collisions in the main row set
-                collisions = set()
-                remaining_dups = {}
-                for obj in dups:
-                    updated_obj = (main_id,) + tuple(obj[1:])
-                    if updated_obj in main:
-                        collisions.add(obj)
-                    else:
-                        remaining_dups.setdefault(updated_obj, []).append(obj)
-
-                # handle duplicates inside duplicates, for instance
-                # 1-5 and 2-5 updated into 3-5 and 3-5 because of
-                # merging sentences 1 and 2 into 3
-                for dup_dups in remaining_dups.itervalues():
-                    if (len(dup_dups) > 1):
-                        dup_dups.pop(0)
-                        for dup in dup_dups:
-                            collisions.add(dup)
-
-                # handle the need for having all the ids not match
-                # (think self-linked sentences), delete any existing
-                # dup_id, main_id pairs in the main row set so that
-                # the update will not generate main_id, main_id pairs
-                if all_unique:
-                    for id in ids:
-                        repeated_dups = tuple(id for fld in unique_flds) + (main_id,)
-                        collisions.add(repeated_dups)
-
-                # delete collisions before update runs, field names and tuple
-                # contents are matched back to build an orm filter, the query
-                # is then built by chaining all the built filters
-                query = get_model('tatoeba2.'+model).objects.none() 
-                for collision in collisions:
-                    filters = {}
-                    for idx, fld in enumerate(flds):
-                        filters[fld] = collision[idx]
-                    query = query | get_model('tatoeba2.'+model).objects.filter(**filters)
-                cls.log_collision_del(model, main_id, ids, update_fld, query)
-                query.delete()
-
-            # issue update
-            cls.log_update_merge(model, main_id, ids, update_fld)    
-            get_model('tatoeba2.'+model).objects.filter(**{update_fld+'__in': ids}).update(**{update_fld:main_id})
+            get_model('tatoeba2.'+model).objects.filter(**{update_fld+'__in': ids}).update(**{update_fld: main_id})
 
     @classmethod
     def log_insert_merge(cls, model, main_id, ids, fld, inserts):
@@ -290,17 +290,79 @@ class Dedup(object):
 
     @classmethod
     @transaction.atomic
+    def merge_links(cls, main_id, ids):
+        def remove_collisions(update_fld):
+            # find and delete unique collisions
+            unique, unique_flds, collisions, remaining = cls.unique_collisions('SentencesTranslations', main_id, ids, update_fld)
+            if unique:
+                flds = [update_fld] + unique_flds
+                # handle duplicates inside duplicates, for instance
+                # 1-5 and 2-5 updated into 3-5 and 3-5 because of
+                # merging sentences 1 and 2 into 3
+                for dup_dups in remaining.itervalues():
+                    if (len(dup_dups) > 1):
+                        dup_dups.pop(0)
+                        for dup in dup_dups:
+                            collisions.add(dup)
+
+                # handle the need for having all the ids not match
+                # (think self-linked sentences), delete any existing
+                # dup_id, main_id pairs in the main row set so that
+                # the update will not generate main_id, main_id pairs
+                for id in ids:
+                    collisions.add((id, main_id))
+
+                # delete collisions before update runs
+                cls.delete_rows_tuples('SentencesTranslations', main_id, ids, flds, collisions, 'delete update collisions')
+
+        def contrib_log(sent_id, tran_id, action):
+            return Contributions(
+                       sentence_id=sent_id,
+                       translation_id=tran_id,
+                       action=action,
+                       type='link',
+                       datetime=now(),
+                       user_id=cls.bot.id
+                   )
+
+        remove_collisions('sentence_id')
+        remove_collisions('translation_id')
+
+        logs = []
+
+        lnks_fd = SentencesTranslations.objects.filter(sentence_id__in=ids)
+        lnks_bd = SentencesTranslations.objects.filter(translation_id__in=ids)
+
+        for lnk in list(lnks_fd):
+            logs.append(contrib_log(lnk.sentence_id, lnk.translation_id, 'delete'))
+            logs.append(contrib_log(main_id, lnk.translation_id, 'insert'))
+
+        for lnk in list(lnks_bd):
+            logs.append(contrib_log(lnk.sentence_id, lnk.translation_id, 'delete'))
+            logs.append(contrib_log(lnk.sentence_id, main_id, 'insert'))
+
+        if not cls.dry:
+            Contributions.objects.bulk_create(logs)
+
+            lnks_fd.update(sentence_id=main_id)
+            lnks_bd.update(translation_id=main_id)
+
+    @classmethod
+    def merge_logs(cls, main_id, ids):
+        cls.insert_merge('Contributions', main_id, ids, q_filters=Q(type='sentence', action='update') | (Q(type='link') & ~Q(translation_id=main_id)))
+
+    @classmethod
+    @transaction.atomic
     def deduplicate(cls, main_sent, ids, post_cmnt=False, dry=False):
         cls.dry = dry
 
         # merge
         cls.insert_merge('SentenceComments', main_sent.id, ids)
         cls.update_merge('TagsSentences', main_sent.id, ids)
-        cls.update_merge('SentencesTranslations', main_sent.id, ids, all_unique=True)
-        cls.update_merge('SentencesTranslations', main_sent.id, ids, 'translation_id', all_unique=True)
+        cls.merge_links(main_sent.id, ids)
 
         cls.update_merge('SentencesSentencesLists', main_sent.id, ids)
-        cls.insert_merge('Contributions', main_sent.id, ids, q_filters=Q(type='sentence', action='update') | Q(type='link'))
+        cls.merge_logs(main_sent.id, ids)
         cls.update_merge('FavoritesUsers', main_sent.id, ids, 'favorite_id')
         cls.update_merge('SentenceAnnotations', main_sent.id, ids)
                

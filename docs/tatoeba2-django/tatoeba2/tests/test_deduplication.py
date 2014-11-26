@@ -122,7 +122,7 @@ class TestDedup():
     def test_merge_logs(db, sents, dedup):
         assert Contributions.objects.filter(sentence_id=8).count() == 2
         assert Contributions.objects.all().count() == 5
-        dedup.insert_merge('Contributions', 8, [6, 7], q_filters=Q(type='sentence', action='update') | Q(type='link'))
+        dedup.merge_logs(8, [6, 7])
         assert Contributions.objects.filter(sentence_id=8).count() == 4
         assert Contributions.objects.all().count() == 7
         
@@ -161,18 +161,37 @@ class TestDedup():
     def test_merge_links(db, sents, dedup):
 
         assert SentencesTranslations.objects.filter(sentence_id=8).count() == 0
-        dedup.update_merge('SentencesTranslations', 8, [6, 7], all_unique=True)
-        dedup.update_merge('SentencesTranslations', 8, [6, 7], 'translation_id', all_unique=True)
+        dedup.merge_links(8, [6, 7])
 
         lnks_fd = SentencesTranslations.objects.filter(sentence_id=8).order_by('translation_id')
         assert lnks_fd.count() == 2
         assert lnks_fd[0].sentence_id == 8 and lnks_fd[0].translation_id == 9
         assert lnks_fd[1].sentence_id == 8 and lnks_fd[1].translation_id == 10
 
+        contrib_fd_del = Contributions.objects.filter(sentence_id__in=[6,7], type='link', action='delete').order_by('translation_id')
+        assert contrib_fd_del.count() == 2
+        assert contrib_fd_del[0].sentence_id == 6 and contrib_fd_del[0].translation_id == 9
+        assert contrib_fd_del[1].sentence_id == 7 and contrib_fd_del[1].translation_id == 10
+
+        contrib_fd_ins = Contributions.objects.filter(sentence_id=8, type='link', action='insert').order_by('translation_id')
+        assert contrib_fd_ins.count() == 2
+        assert contrib_fd_ins[0].sentence_id == 8 and contrib_fd_ins[0].translation_id == 9
+        assert contrib_fd_ins[1].sentence_id == 8 and contrib_fd_ins[1].translation_id == 10
+
         lnks_bd = SentencesTranslations.objects.filter(translation_id=8).order_by('sentence_id')
         assert lnks_bd.count() == 2
         assert lnks_bd[0].sentence_id == 9 and lnks_bd[0].translation_id == 8
         assert lnks_bd[1].sentence_id == 10 and lnks_bd[1].translation_id == 8
+
+        contrib_bd_del = Contributions.objects.filter(translation_id__in=[6,7], type='link', action='delete').order_by('sentence_id')
+        assert contrib_bd_del.count() == 2
+        assert contrib_bd_del[0].sentence_id == 9 and contrib_bd_del[0].translation_id == 6
+        assert contrib_bd_del[1].sentence_id == 10 and contrib_bd_del[1].translation_id == 7
+
+        contrib_bd_ins = Contributions.objects.filter(translation_id=8, type='link', action='insert').order_by('sentence_id')
+        assert contrib_bd_ins.count() == 2
+        assert contrib_bd_ins[0].sentence_id == 9 and contrib_bd_ins[0].translation_id == 8
+        assert contrib_bd_ins[1].sentence_id == 10 and contrib_bd_ins[1].translation_id == 8
 
     def test_delete_sents(db, sents, dedup):
         assert Sentences.objects.filter(id__in=[6,7]).count() == 2
@@ -225,14 +244,10 @@ class TestDedup():
         assert Users.objects.all().count() == 0
         assert Wall.objects.all().count() == 1
 
-    def test_linked_dups_merge(db, sents, linked_dups):
+    def test_linked_dups_merge(db, sents, linked_dups, dedup):
         assert not raises(
-            Dedup.update_merge, IntegrityError,
-            'SentencesTranslations', 2, [3,4], all_unique=True
-            )
-        assert not raises(
-            Dedup.update_merge, IntegrityError,
-            'SentencesTranslations', 2, [3,4], 'translation_id', all_unique=True
+            dedup.merge_links, IntegrityError,
+            2, [3, 4]
             )
         lnks = list(SentencesTranslations.objects.filter(sentence_id=2).order_by('translation_id'))
         assert len(lnks) == 3
@@ -245,20 +260,24 @@ class TestDedup():
         assert lnks[1].sentence_id == 5 and lnks[1].translation_id == 2
         assert lnks[2].sentence_id == 6 and lnks[2].translation_id == 2
 
-    def test_dups_in_list(db, sents, dups_in_list):
+    def test_dups_in_list(db, sents, dups_in_list, dedup):
         assert not raises(
-            Dedup.update_merge, IntegrityError,
+            dedup.update_merge, IntegrityError,
             'SentencesSentencesLists', 2, [3]
             )
         lst = list(SentencesSentencesLists.objects.filter(sentence_id=2))
         assert len(lst) == 1
         assert lst[0].sentence_id == 2 and lst[0].sentences_list_id == 4
 
-    def test_dups_in_fav(db, sents, dups_in_fav):
+    def test_dups_in_fav(db, sents, dups_in_fav, dedup):
         assert not raises(
-            Dedup.update_merge, IntegrityError,
+            dedup.update_merge, IntegrityError,
             'FavoritesUsers', 2, [3], 'favorite_id'
             )
         fav = list(FavoritesUsers.objects.filter(favorite_id=2))
         assert len(fav) == 1
         assert fav[0].favorite_id == 2 and fav[0].user_id == 1
+
+    def test_linked_dups_in_logs(db, sents, duplnks_in_logs, dedup):
+        dedup.merge_logs(2, [3])
+        assert Contributions.objects.filter(sentence_id=2, translation_id=2, type='link').count() == 0

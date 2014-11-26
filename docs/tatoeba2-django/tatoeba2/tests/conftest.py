@@ -140,3 +140,7 @@ def dups_in_list():
 def dups_in_fav():
     FavoritesUsers(user_id=1, favorite_id=2).save()
     FavoritesUsers(user_id=1, favorite_id=3).save()
+
+@pytest.fixture
+def duplnks_in_logs():
+    Contributions(action='insert', user_id=1, datetime=datetime.now(), type='link', sentence_id=3, translation_id=2).save()
