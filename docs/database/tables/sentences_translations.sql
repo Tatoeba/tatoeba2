@@ -14,17 +14,15 @@
 --                    compared to the other ones.
 --
 
-CREATE TABLE IF NOT EXISTS `sentences_translations` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+DROP TABLE IF EXISTS `sentences_translations`;
+CREATE TABLE `sentences_translations` (
   `sentence_id` int(11) NOT NULL,
   `translation_id` int(11) NOT NULL,
-  `sentence_lang` varchar(4) default NULL,
-  `translation_lang` varchar(4) default NULL,
-  `distance` smallint(2) NOT NULL default '1',
-  PRIMARY KEY (`id`),
+  `sentence_lang` varchar(4) DEFAULT NULL,
+  `translation_lang` varchar(4) DEFAULT NULL,
+  `distance` smallint(2) NOT NULL DEFAULT '1',
   UNIQUE KEY `sentence_id` (`sentence_id`,`translation_id`),
-  KEY `sentence_id_2` (`sentence_id`),
   KEY `translation_id` (`translation_id`),
   KEY `sentence_lang` (`sentence_lang`),
   KEY `translation_lang` (`translation_lang`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
