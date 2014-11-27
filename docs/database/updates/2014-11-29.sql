@@ -32,3 +32,4 @@ ALTER TABLE users ENGINE=InnoDB;
 ALTER TABLE visitors ENGINE=InnoDB;
 ALTER TABLE wall ENGINE=InnoDB;
 ALTER TABLE wall_threads_last_message ENGINE=InnoDB;
+SET SQL_LOG_BIN = 1;
