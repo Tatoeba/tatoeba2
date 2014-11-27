@@ -45,7 +45,7 @@ class Sentence extends AppModel
 {
 
     public $name = 'Sentence';
-    public $actsAs = array("Containable", "Sphinx", "Autotranscriptable");
+    public $actsAs = array("Containable", "Autotranscriptable");
     public static $romanji = array('furigana' => 1, 'mix' => 2, 'romanji' => 3);
     
     const MIN_CORRECTNESS = -1;
@@ -194,6 +194,9 @@ class Sentence extends AppModel
     {
         parent::__construct($id, $table, $ds);
         $this->validate['lang']['rule'] = array('inList', $this->languages);
+        if (Configure::read('Search.enabled')) {
+            $this->Behaviors->attach('Sphinx');
+        }
     }
 
     private function clean($text)

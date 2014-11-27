@@ -38,7 +38,13 @@ class Link extends AppModel
 {
     public $useTable = 'sentences_translations';
 
-    public $actsAs = array('Sphinx');
+    public function __construct($id = false, $table = null, $ds = null)
+    {
+        parent::__construct($id, $table, $ds);
+        if (Configure::read('Search.enabled')) {
+            $this->Behaviors->attach('Sphinx');
+        }
+    }
 
     /**
      * Called after a link is saved.
