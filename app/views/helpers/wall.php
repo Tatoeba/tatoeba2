@@ -402,10 +402,10 @@ class WallHelper extends AppHelper
 
         if (CurrentUser::isAdmin()) {
             if ($hidden) {
-                $hiddenLinkText = __('unhide', true);
+                $hiddenLinkText = __d('admin', 'unhide', true);
                 $hiddenLinkAction = 'unhide_message';
             } else {
-                $hiddenLinkText = __('hide', true);
+                $hiddenLinkText = __d('admin', 'hide', true);
                 $hiddenLinkAction = 'hide_message';
             }
 
