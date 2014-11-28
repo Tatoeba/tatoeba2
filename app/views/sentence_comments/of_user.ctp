@@ -72,7 +72,7 @@ $this->set('title_for_layout', $pages->formatTitle(
             echo $paginator->counter(
                 array(
                     'format' => sprintf(
-                        __("%s's comments (total %s)", true),
+                        __('%1$s\'s comments (total %2$d)', true),
                         $userName,
                         '%count%'
                     )

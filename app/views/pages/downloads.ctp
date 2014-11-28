@@ -333,10 +333,10 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
                 printf(
                 __('Contains the equivalent of the "B lines" in the Tanaka Corpus file '. 
                 'distributed by Jim Breen. See '.
-                '<a href="%s">this page</a> for the format. '.
+                '<a href="%1$s">this page</a> for the format. '.
                 'Each entry is associated with a pair of Japanese/English '.
-                'sentences. %s refers to the id of the Japanese sentence. '.
-                '%s refers to the id of the English sentence.', true),
+                'sentences. %2$s refers to the id of the Japanese sentence. '.
+                '%3$s refers to the id of the English sentence.', true),
                 $tanaka_url,
                 '<span class="param">'.$sent_id_str.'</span>',
                 '<span class="param">'.$meaning_id_str.'</span>');

@@ -115,7 +115,7 @@ class TagsController extends AppController
         if (!$this->Tag->addTag($tagName, $userId, $sentenceId)) {
             $infoMessage = sprintf(
                 __(
-                    "Tag '%s' already exists for sentence #%s, or cannot be added",
+                    "Tag '%1\$s' already exists for sentence #%2\$s, or cannot be added",
                     true
                 ),
                 $tagName,

@@ -70,7 +70,7 @@ class LinksController extends AppController
         if ($saved) {
             $flashMessage = sprintf(
                 __(
-                    'Sentences #%s and #%s are now '.
+                    'Sentences #%1$d and #%2$d are now '.
                     'direct translations of each other.',
                     true
                 ),
@@ -114,7 +114,7 @@ class LinksController extends AppController
         if ($saved) {
             $flashMessage = sprintf(
                 __(
-                    'Sentences #%s and #%s are no longer '.
+                    'Sentences #%1$s and #%2$s are no longer '.
                     'direct translations of each other.',
                     true
                 ),
