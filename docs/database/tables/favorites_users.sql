@@ -7,8 +7,9 @@
 -- user_id     Id of the user.
 --
 
-CREATE TABLE IF NOT EXISTS `favorites_users` (
+DROP TABLE IF EXISTS `favorites_users`;
+CREATE TABLE `favorites_users` (
   `favorite_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   UNIQUE KEY `favorite_id` (`favorite_id`,`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

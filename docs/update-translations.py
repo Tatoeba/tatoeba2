@@ -124,8 +124,9 @@ def main():
             handle.write(r.text.encode("iso8859-1").decode('utf8'))
     
     if os.path.exists(MAIN_LOCAL):
-        print('Pulling from the main git repository')
-        logging.info(executeCommand('cd %s && git pull'%(MAIN_LOCAL)),True)
+        if COMMIT:
+            print('Pulling from the main git repository')
+            logging.info(executeCommand('cd %s && git pull'%(MAIN_LOCAL),True))
     else:
         os.makedirs(MAIN_LOCAL)
         print('Checkout from the main git repository')

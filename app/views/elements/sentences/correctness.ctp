@@ -27,7 +27,7 @@
 ?>
  
 <div class="module">
-    <h2><?php __('Correctness') ?></h2>
+    <h2><?php __d('admin', 'Correctness') ?></h2>
     <?php
     echo $form->create(
         "Sentence",
@@ -52,6 +52,6 @@
             "value" => $sentenceCorrectness
         )
     );
-    echo $form->end(__('Submit', true));
+    echo $form->end(__d('admin', 'Submit', true));
     ?>
 </div>

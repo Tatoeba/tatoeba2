@@ -12,12 +12,14 @@
 --             status of the list has changed.
 --
 
-CREATE TABLE IF NOT EXISTS `sentences_lists` (
-  `id` int(11) NOT NULL auto_increment,
-  `is_public` tinyint(1) NOT NULL default '0',
-  `name` varchar(150) character set utf8 collate utf8_unicode_ci NOT NULL,
-  `user_id` int(11) default NULL,
-  `created` datetime default NULL,
-  `modified` datetime default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=29 ;
+DROP TABLE IF EXISTS `sentences_lists`;
+CREATE TABLE `sentences_lists` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `is_public` tinyint(1) NOT NULL DEFAULT '0',
+  `name` varbinary(450) NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `numberOfSentences` mediumint(8) unsigned NOT NULL DEFAULT '0',
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3961 DEFAULT CHARSET=latin1;

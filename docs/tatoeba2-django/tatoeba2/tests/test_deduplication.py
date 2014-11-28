@@ -1,5 +1,5 @@
 from tatoeba2.management.commands.deduplicate import Command, Dedup
-from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Wall
+from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Users, Wall, Languages
 from django.db import transaction, IntegrityError
 from django.db.models import Q
 from hashlib import sha1
@@ -7,6 +7,15 @@ import pytest
 import os
 import logging
 
+def raises(func, exception=Exception, *args, **kwargs):
+    raised = False
+
+    try:
+        func(*args, **kwargs)
+    except exception:
+        raised = True
+
+    return raised
 
 @pytest.mark.django_db
 class TestDedup():
@@ -113,7 +122,7 @@ class TestDedup():
     def test_merge_logs(db, sents, dedup):
         assert Contributions.objects.filter(sentence_id=8).count() == 2
         assert Contributions.objects.all().count() == 5
-        dedup.insert_merge('Contributions', 8, [6, 7], q_filters=Q(type='sentence', action='update') | Q(type='link'))
+        dedup.merge_logs(8, [6, 7])
         assert Contributions.objects.filter(sentence_id=8).count() == 4
         assert Contributions.objects.all().count() == 7
         
@@ -152,18 +161,37 @@ class TestDedup():
     def test_merge_links(db, sents, dedup):
 
         assert SentencesTranslations.objects.filter(sentence_id=8).count() == 0
-        dedup.update_merge('SentencesTranslations', 8, [6, 7])
-        dedup.update_merge('SentencesTranslations', 8, [6, 7], 'translation_id')
+        dedup.merge_links(8, [6, 7])
 
         lnks_fd = SentencesTranslations.objects.filter(sentence_id=8).order_by('translation_id')
         assert lnks_fd.count() == 2
         assert lnks_fd[0].sentence_id == 8 and lnks_fd[0].translation_id == 9
         assert lnks_fd[1].sentence_id == 8 and lnks_fd[1].translation_id == 10
 
+        contrib_fd_del = Contributions.objects.filter(sentence_id__in=[6,7], type='link', action='delete').order_by('translation_id')
+        assert contrib_fd_del.count() == 2
+        assert contrib_fd_del[0].sentence_id == 6 and contrib_fd_del[0].translation_id == 9
+        assert contrib_fd_del[1].sentence_id == 7 and contrib_fd_del[1].translation_id == 10
+
+        contrib_fd_ins = Contributions.objects.filter(sentence_id=8, type='link', action='insert').order_by('translation_id')
+        assert contrib_fd_ins.count() == 2
+        assert contrib_fd_ins[0].sentence_id == 8 and contrib_fd_ins[0].translation_id == 9
+        assert contrib_fd_ins[1].sentence_id == 8 and contrib_fd_ins[1].translation_id == 10
+
         lnks_bd = SentencesTranslations.objects.filter(translation_id=8).order_by('sentence_id')
         assert lnks_bd.count() == 2
         assert lnks_bd[0].sentence_id == 9 and lnks_bd[0].translation_id == 8
         assert lnks_bd[1].sentence_id == 10 and lnks_bd[1].translation_id == 8
+
+        contrib_bd_del = Contributions.objects.filter(translation_id__in=[6,7], type='link', action='delete').order_by('sentence_id')
+        assert contrib_bd_del.count() == 2
+        assert contrib_bd_del[0].sentence_id == 9 and contrib_bd_del[0].translation_id == 6
+        assert contrib_bd_del[1].sentence_id == 10 and contrib_bd_del[1].translation_id == 7
+
+        contrib_bd_ins = Contributions.objects.filter(translation_id=8, type='link', action='insert').order_by('sentence_id')
+        assert contrib_bd_ins.count() == 2
+        assert contrib_bd_ins[0].sentence_id == 9 and contrib_bd_ins[0].translation_id == 8
+        assert contrib_bd_ins[1].sentence_id == 10 and contrib_bd_ins[1].translation_id == 8
 
     def test_delete_sents(db, sents, dedup):
         assert Sentences.objects.filter(id__in=[6,7]).count() == 2
@@ -205,17 +233,57 @@ class TestDedup():
     def test_comment_post(db, sents):
         cmd = Command()
         cmd.handle(cmnt=True)
-        assert SentenceComments.objects.filter(text__contains='has been merged with').count() == 5
+        assert SentenceComments.objects.filter(text__contains='has been merged with').count() == 11
 
     def test_dry_run(db, sents):
         cmd = Command()
-        cmd.handle(dry=True)
+        cmd.handle(dry=True, cmnt=True, wall=True)
         assert Sentences.objects.all().count() == 21
         assert Contributions.objects.all().count() == 5
         assert SentenceComments.objects.all().count() == 3
+        assert Users.objects.all().count() == 0
+        assert Wall.objects.all().count() == 1
 
-    def test_linked_dups_merge(db, sents, linked_dups):
-        try:
-            Dedup.update_merge('SentencesTranslations', 2, [3])
-        except IntegrityError as e:
-            assert e.args is False
+    def test_linked_dups_merge(db, sents, linked_dups, dedup):
+        assert not raises(
+            dedup.merge_links, IntegrityError,
+            2, [3, 4]
+            )
+        lnks = list(SentencesTranslations.objects.filter(sentence_id=2).order_by('translation_id'))
+        assert len(lnks) == 3
+        assert lnks[0].sentence_id == 2 and lnks[0].translation_id == 1
+        assert lnks[1].sentence_id == 2 and lnks[1].translation_id == 5
+        assert lnks[2].sentence_id == 2 and lnks[2].translation_id == 6
+        lnks = list(SentencesTranslations.objects.filter(translation_id=2).order_by('sentence_id'))
+        assert len(lnks) == 3
+        assert lnks[0].sentence_id == 1 and lnks[0].translation_id == 2
+        assert lnks[1].sentence_id == 5 and lnks[1].translation_id == 2
+        assert lnks[2].sentence_id == 6 and lnks[2].translation_id == 2
+
+    def test_dups_in_list(db, sents, dups_in_list, dedup):
+        assert not raises(
+            dedup.update_merge, IntegrityError,
+            'SentencesSentencesLists', 2, [3]
+            )
+        lst = list(SentencesSentencesLists.objects.filter(sentence_id=2))
+        assert len(lst) == 1
+        assert lst[0].sentence_id == 2 and lst[0].sentences_list_id == 4
+
+    def test_dups_in_fav(db, sents, dups_in_fav, dedup):
+        assert not raises(
+            dedup.update_merge, IntegrityError,
+            'FavoritesUsers', 2, [3], 'favorite_id'
+            )
+        fav = list(FavoritesUsers.objects.filter(favorite_id=2))
+        assert len(fav) == 1
+        assert fav[0].favorite_id == 2 and fav[0].user_id == 1
+
+    def test_linked_dups_in_logs(db, sents, duplnks_in_logs, dedup):
+        dedup.merge_logs(2, [3])
+        assert Contributions.objects.filter(sentence_id=2, translation_id=2, type='link').count() == 0
+
+    def test_refresh_lang_stats(db, sents, lang_stats):
+        assert Languages.objects.filter(lang='eng')[0].numberofsentences == 0
+        cmd = Command()
+        cmd.handle()
+        assert Languages.objects.filter(lang='eng')[0].numberofsentences == 10

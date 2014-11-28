@@ -29,25 +29,26 @@
 --                     members of Tatoeba.
 --
 
-CREATE TABLE IF NOT EXISTS `users` (
-  `id` int(11) NOT NULL auto_increment,
-  `username` varchar(20) character set utf8 collate utf8_unicode_ci NOT NULL,
-  `password` varchar(50) character set utf8 collate utf8_unicode_ci NOT NULL default '',
-  `email` varchar(100) character set utf8 collate utf8_unicode_ci NOT NULL default '',
-  `lang` varchar(4) default NULL,
-  `since` datetime NOT NULL default '0000-00-00 00:00:00',
-  `last_time_active` int(11) NOT NULL default '0',
-  `level` tinyint(4) NOT NULL default '1',
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `username` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `password` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `email` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `lang` varchar(100) DEFAULT NULL,
+  `since` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `last_time_active` int(11) NOT NULL DEFAULT '0',
+  `level` tinyint(2) NOT NULL DEFAULT '0',
   `group_id` tinyint(4) NOT NULL,
-  `send_notifications` tinyint(1) NOT NULL default '1',
-  `name` varchar(255) character set utf8 collate utf8_unicode_ci NOT NULL default '',
-  `birthday` timestamp NOT NULL default '0000-00-00 00:00:00',
+  `send_notifications` tinyint(1) NOT NULL DEFAULT '1',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `birthday` datetime DEFAULT NULL,
   `description` blob NOT NULL,
-  `homepage` varchar(255) character set utf8 collate utf8_unicode_ci NOT NULL default '',
-  `image` varchar(255) character set utf8 collate utf8_unicode_ci NOT NULL default '',
-  `country_id` char(2) character set utf8 collate utf8_unicode_ci NOT NULL default '0',
-  `is_public` tinyint(1) NOT NULL default '0',
-  PRIMARY KEY  (`id`),
+  `homepage` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `image` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
+  `country_id` varchar(2) DEFAULT NULL,
+  `is_public` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
   UNIQUE KEY `login` (`username`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1357 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

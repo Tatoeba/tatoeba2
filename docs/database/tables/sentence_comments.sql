@@ -14,15 +14,19 @@
 -- user_id     Id of the user who posted the comment.
 -- created     Date and time when the comment was posted.
 -- modified    Date and time when the comment was last modified.
+-- hidden      A comment is hidden when it is inappropriate.
 --
 
-CREATE TABLE IF NOT EXISTS `sentence_comments` (
-  `id` int(11) NOT NULL auto_increment,
+DROP TABLE IF EXISTS `sentence_comments`;
+CREATE TABLE `sentence_comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `sentence_id` int(11) NOT NULL,
-  `lang` varchar(4) default NULL,
+  `lang` varchar(4) DEFAULT NULL,
   `text` blob NOT NULL,
   `user_id` int(11) NOT NULL,
   `created` datetime NOT NULL,
-  `modified` datetime default NULL,
-  PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2511 ;
+  `modified` datetime DEFAULT NULL,
+  `hidden` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `sentence_id_idx` (`sentence_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

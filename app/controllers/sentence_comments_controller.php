@@ -112,11 +112,12 @@ class SentenceCommentsController extends AppController
     {
         $this->helpers[] = 'Messages';
 
+        $conditions = $this->SentenceComment->getQueryConditionWithExcludedUsers();
         if ($langFilter != 'und') {
-            $this->paginate['SentenceComment']['conditions'] = array(
-                "Sentence.lang" => $langFilter
-            );
+            $conditions["Sentence.lang"] = $langFilter;
         }
+
+        $this->paginate['SentenceComment']['conditions'] = $conditions;
 
         $latestComments = $this->paginate();
 
