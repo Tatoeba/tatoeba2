@@ -63,10 +63,8 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         
         <h2>
         <?php 
-        echo $title;
-        echo ' ';
         $resultsCount = $paginator->counter(array('format' => '%count%'));
-        printf(__n('(one result)', '(%s results)', $resultsCount, true), $resultsCount);
+        printf(__n('%1$s (one result)', '%1$s (%2$s&nbsp;results)', $resultsCount, true), $title, $resultsCount);
         ?>
         </h2>
         

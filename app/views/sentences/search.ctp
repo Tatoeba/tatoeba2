@@ -51,11 +51,13 @@ if (!empty($results)) {
     <div class="module">
         <h2>
         <?php 
-        echo __('Search:', true);
-        echo sprintf(' <span style="unicode-bidi: embed">%s</span>', $query);
-        echo ' ';
+        $title = sprintf(
+            /* @translators: title on the top of a search result page */
+            __('Search: %s', true),
+            sprintf('<span style="unicode-bidi: embed">%s</span>', $query)
+        );
         $resultsCount = $paginator->counter(array('format' => '%count%'));
-        printf(__n('(one result)', '(%s results)', $resultsCount, true), $resultsCount);
+        printf(__n('%1$s (one result)', '%1$s (%2$s&nbsp;results)', $resultsCount, true), $title, $resultsCount);
         ?>
         </h2>
         
