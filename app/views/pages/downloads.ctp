@@ -67,7 +67,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
         $explanation = "http://blog.tatoeba.org/2009/12/tatoeba-update-dec-12th-2009.html";
         echo sprintf( __('For those who wonder why we\'re not leaving the data in the public '.
               'domain, some explanation '.
-              '<a href=%s>here</a>.',
+              '<a href="%s">here</a>.',
               true), $explanation); 
     ?>
     <h2><?php __('Questions?'); ?></h2>
@@ -157,7 +157,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
                 $iso_code_list = "http://en.wikipedia.org/wiki/List_of_ISO_639-3_codes";
                 echo sprintf(
                     __('Contains all the sentences. Each sentence is associated with a '.
-                       'unique id and an <a href=%s>ISO 639-3</a> language code. ',
+                       'unique id and an <a href="%s">ISO 639-3</a> language code. ',
                        true), $iso_code_list); 
                 __('The first file (sentences.tar.bz2) contains this information alone. '.
                 'The second file (sentences_detailed.tar.bz2) contains additional fields '.
@@ -187,25 +187,27 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
                 <?php 
-                __('Contains the links between the sentences. '); 
-
                 $sample_line = sprintf(
                     '<span class="param">1</span>'.
                     '<span class="symbol"> [%s] </span>'.
                     '<span class="param">77</span> ',
                     $tab_str
                 );
+                $sample_line_rev = sprintf(
+                    '<span class="param">77</span>'.
+                    '<span class="symbol"> [%s] </span>'.
+                    '<span class="param">1</span> ',
+                    $tab_str
+                );
 
                 echo sprintf(
-                    __('%s means that sentence #77 is the translation of '. 
+                    __('Contains the links between the sentences. '.
+                    '%1$s means that sentence #77 is the translation of '. 
                     'sentence #1. The reciprocal link is also present, '.
-                    'so the file will also contain a line that says ', true), 
-                    $sample_line
+                    'so the file will also contain a line that says %2$s.', true), 
+                    $sample_line, $sample_line_rev
                 );
                 ?>
-                <span class="param">77</span>
-                <span class="symbol">[<?php echo $tab_str; ?>]</span>
-                <span class="param">1</span>.
             </dd>
         </dl>
         
@@ -230,13 +232,20 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
                 <?php
-                $tag_url = "http://tatoeba.org/tags/view_all";
+                $tag_url = $this->Html->url(array(
+                    'controller' => 'tags',
+                    'action' => 'view_all'
+                ));
+                $sample_line = sprintf(
+                    '<span class="param">381279</span>'.
+                    '<span class="symbol"> [%s] </span>'.
+                    '<span class="param">proverb</span>',
+                    $tab_str
+                );
                 echo sprintf( 
-                __('Contains the list of <a href="%s">tags</a> associated with each sentence. '.
-                '<span class="param">381279</span>'.
-                '<span class="symbol"> [tab] </span>'.
-                '<span class="param">proverb</span>'. 
-                ' means that sentence #381279 has been assigned the "proverb" tag.', true), $tag_url); 
+                __('Contains the list of <a href="%1$s">tags</a> associated with each sentence. '.
+                   '%2$s means that sentence #381279 has been assigned the "proverb" tag.', true),
+                   $tag_url, $sample_line);
                 ?>
             </dd>
         </dl>
@@ -266,7 +275,11 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
-                <?php $list_url = "http://tatoeba.org/sentences_lists/index";
+                <?php
+                $list_url = $this->Html->url(array(
+                    'controller' => 'sentences_lists',
+                    'action' => 'index'
+                ));
                 echo sprintf(__('Contains the list of <a href="%s">sentence lists</a>.', true), 
                                     $list_url); 
                 ?>

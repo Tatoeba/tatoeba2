@@ -63,16 +63,16 @@ $this->set('title_for_layout', $pages->formatTitle(__('Tags for moderators', tru
     <div class="module">
         <h2><?php __('Guidelines'); ?></h2>
         <p><?php 
-        $tagChangeURL = $html->url(array(
+        $tagChangeLink = $html->link($tagChangeName, array(
                               'action' => 'for_moderators',
                               $tagChangeId));
-        $tagDeleteURL = $html->url(array(
+        $tagDeleteLink = $html->link($tagDeleteName, array(
                               'action' => 'for_moderators',
                               $tagDeleteId));
 
         echo sprintf(__('Corpus maintainers, this page was made for your convenience. It shows sentences '. 
-                        'that were tagged more than two weeks ago as <a href="%s">%s</a> or <a href="%s">%s</a>.', true),
-                     $tagChangeURL, $tagChangeName, $tagDeleteURL, $tagDeleteName);
+                        'that were tagged more than two weeks ago as %1$s or %2$s.', true),
+                     $tagChangeLink, $tagDeleteLink);
         ?>
         </p>
         <p><?php __('Aside from special situations where your common sense will tell you that it is '. 

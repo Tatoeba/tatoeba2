@@ -73,10 +73,22 @@ $okURL = $html->url(
     'reliability of sentences.'); ?></p>
     <ul>
     <?php 
-    echo sprintf(__('<li><a href="%s">%s</a> - The sentence needs to be changed.</li>', true), $changeURL, $tagChangeName);
-    echo sprintf(__('<li><a href="%s">%s</a> - The sentence needs to be checked.</li>', true), $checkURL, $tagCheckName);
-    echo sprintf(__('<li><a href="%s">%s</a> - The sentence needs to be checked by a native speaker.</li>', true), $nncURL, $tagNeedsNativeCheckName);
-    echo sprintf(__('<li><a href="%s">%s</a> - The sentence is considered correct by at least one person.</li>', true), $okURL, $tagOKName);
+    $tagChangeLink = sprintf('<a href="%s">%s</a>', $changeURL, $tagChangeName);
+    $tagCheckLink  = sprintf('<a href="%s">%s</a>', $checkURL, $tagCheckName);
+    $tagNNCLink    = sprintf('<a href="%s">%s</a>', $nncURL, $tagNeedsNativeCheckName);
+    $tagOKLink     = sprintf('<a href="%s">%s</a>', $okURL, $tagOKName);
+
+    $str = sprintf(__('%s: the sentence needs to be changed.', true), $tagChangeLink);
+    printf('<li>%s</li>', $str);
+
+    $str = sprintf(__('%s: the sentence needs to be checked.', true), $tagCheckLink);
+    printf('<li>%s</li>', $str);
+
+    $str = sprintf(__('%s: the sentence needs to be checked by a native speaker.', true), $tagNNCLink);
+    printf('<li>%s</li>', $str);
+
+    $str = sprintf(__('%s: the sentence is considered correct by at least one person.', true), $tagOKLink);
+    printf('<li>%s</li>', $str);
     ?>
     </ul>
     </div>
@@ -85,26 +97,38 @@ $okURL = $html->url(
     <div class="module">
         <h2><?php __('How to help'); ?></h2>
     <ol><?php
-        echo sprintf(__('<li>You need to be an <a href="%s">advanced contributor</a>; '.
-                        'otherwise you will not be able to tag sentences.</li>', true), 
-                        "http://wiki.tatoeba.org/articles/show/faq");
-        echo sprintf(__('<li>Whenever you notice a sentence that is wrong or sounds strange, '.
-                        'add the tag <a href="%s">%s</a> and post a comment to suggest a '.
-                        'correction or better phrasing.</li>', true), $changeURL, $tagChangeName);
-        echo sprintf(__('<li>Whenever you notice a possible mistake, add the tag '.
-                        '<a href="%s">%s</a> and post a comment explaining what you think the '.
-                        'mistake may be.</li>', true), $checkURL, $tagCheckName);
-        echo sprintf(__('<li>Whenever you add a sentence in a foreign language and are not completely '.
-                        'sure that it is correct, add the tag <a href="%s">%s</a>.</li>', true), $nncURL, $tagNeedsNativeCheckName);
-        echo sprintf(__('<li>Whenever you can, browse through sentences that are tagged '.
-                        '<a href="%s">%s</a>, <a href="%s">%s</a>, and <a href="%s">%s</a> '.
-                        'to discuss the sentences with other '.
-                        'members and help decide what to do with these sentences.</li>', true), 
-                        $changeURL, $tagChangeName, $checkURL, $tagCheckName, $nncURL, $tagNeedsNativeCheckName);
-        echo sprintf(__('<li>Once a problematic sentence has been addressed, tag it '.
-                        '<a href="%s">%s</a>. More generally, you can browse and check others\' sentences '.
-                        'and tag them with <a href="%s">%s</a>. But do this only when you are completely sure that they '.
-                        'are correct, and do not use the tag on your own sentences.</li>', true), $okURL, $tagOKName, $okURL, $tagOKName);
+        $str = sprintf(__('You need to be an <a href="%s">advanced contributor</a>; '.
+                          'otherwise you will not be able to tag sentences.', true),
+                       "http://wiki.tatoeba.org/articles/show/faq");
+        printf('<li>%s</li>', $str);
+
+        $str = sprintf(__('Whenever you notice a sentence that is wrong or sounds strange, '.
+                          'add the tag %s and post a comment to suggest a '.
+                          'correction or better phrasing.', true), $tagChangeLink);
+        printf('<li>%s</li>', $str);
+
+        $str = sprintf(__('Whenever you notice a possible mistake, add the tag %s '.
+                          'and post a comment explaining what you think the '.
+                          'mistake may be.', true), $tagCheckLink);
+        printf('<li>%s</li>', $str);
+
+        $str = sprintf(__('Whenever you add a sentence in a foreign language and are not '.
+                          'completely sure that it is correct, add the tag %s.', true),
+                       $tagNNCLink);
+        printf('<li>%s</li>', $str);
+
+        $str = sprintf(__('Whenever you can, browse through sentences that are tagged '.
+                          '%1$s, %2$s, and %3$s to discuss the sentences with other '.
+                          'members and help decide what to do with these sentences.', true),
+                       $tagChangeLink, $tagCheckLink, $tagNNCLink);
+        printf('<li>%s</li>', $str);
+
+        $str = sprintf(__('Once a problematic sentence has been addressed, tag it %1$s. '.
+                          'More generally, you can browse and check others\' sentences '.
+                          'and tag them with %1$s. But do this only when you are completely '.
+                          'sure that they are correct, and do not use the tag on your own '.
+                          'sentences.', true), $tagOKLink);
+        printf('<li>%s</li>', $str);
        ?>
     </ol>
     </div>

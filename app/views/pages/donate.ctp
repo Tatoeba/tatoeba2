@@ -33,12 +33,12 @@ $this->set('title_for_layout', $pages->formatTitle(__('Donate', true)));
         <h2><?php __("Any question?"); ?></h2>
         <p>
         <?php
-        __(
+        printf(__(
             "If you have any question regarding donations or if you would ".
             "like to donate in any other way than the ones mentioned ".
-            "here, you may contact either <a href='mailto:trang@tatoeba.org'>Trang</a> ".
-            "or the entire <a href='mailto:team@tatoeba.org'>team</a>."
-        );
+            'here, you may contact either <a href="%1$s">Trang</a> '.
+            'or the entire <a href="%2$s">team</a>.', true
+            ), 'mailto:trang@tatoeba.org', 'mailto:team@tatoeba.org');
         ?>
         </p>
     </div>
