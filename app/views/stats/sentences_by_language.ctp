@@ -46,7 +46,7 @@ $max = $stats[0]['Language']['numberOfSentences'];
 <div class="module">
     <h2>
     <?php 
-    echo sprintf(__('%s sentences', true), $totalSentences);
+    echo sprintf(__n("One sentence","%s sentences", $totalSentences, true), $totalSentences);
     ?>
     </h2>
     

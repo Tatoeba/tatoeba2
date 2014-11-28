@@ -54,11 +54,8 @@ if (!empty($results)) {
         echo __('Search:', true);
         echo sprintf(' <span style="unicode-bidi: embed">%s</span>', $query);
         echo ' ';
-        echo $paginator->counter(
-            array(
-                'format' => __('(%count% results)', true)
-            )
-        ); 
+        $resultsCount = $paginator->counter(array('format' => '%count%'));
+        printf(__n('(one result)', '(%s results)', $resultsCount, true), $resultsCount);
         ?>
         </h2>
         

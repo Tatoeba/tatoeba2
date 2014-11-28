@@ -31,7 +31,7 @@
 <p>
 <?php 
 echo sprintf(
-    __('Users who participated in the last %s contributions.', true),
+    __n('User who did the last contribution.','Users who participated in the last %s contributions.', $total, true),
     $total
 );
 ?>
@@ -93,7 +93,7 @@ foreach($currentContributors as $i=>$currentContributor){
             <?php
             echo ' #'. ($i + 1);
             echo ' - ';
-            echo sprintf(__("%s sentences", true), $numberOfContributions);
+            echo sprintf(__n("One sentence","%s sentences", $numberOfContributions, true), $numberOfContributions);
             echo ' - ';
             echo $percentage.'%';
             ?>
