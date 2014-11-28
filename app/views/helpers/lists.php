@@ -155,7 +155,9 @@ class ListsHelper extends AppHelper
         <td class="nameAndCreator">
             <div class="name">
             <?php
-            $name = '('.__('unnamed list', true).')';
+            /* @translators: string used as a placeholder for
+               the name of a list when it happed be empty */
+            $name = __('(unnamed list)', true);
             if (trim($listName) != '') {
                 $name = $listName;
             }
@@ -181,6 +183,7 @@ class ListsHelper extends AppHelper
                     $listCreatorName
                 )
             );
+            /* @translators: shows who created a list */
             echo sprintf(__('created by %s', true), $link);
             ?>
             </div>

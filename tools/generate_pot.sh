@@ -15,6 +15,7 @@ throw_to_gettext() {
     xargs xgettext \
         --language=php --from-code=UTF-8 \
         --output=- --color=no --no-wrap \
+        --add-comment=@translators \
         "$@"
 }
 

@@ -186,7 +186,9 @@ class SentencesListsController extends AppController
                                      'to split it into multiple lists.',self::MAX_COUNT_FOR_DOWNLOAD,true);
             $messageFirstPart = sprintf($messageFirstPart, $count);
             $messageSecondPart = sprintf($messageSecondPart, self::MAX_COUNT_FOR_DOWNLOAD);
-            // TODO: Add some context for the translator
+            /* @translators: this string is used to concatenate two sentences.
+               You typically want to change this to %s%s if your language don't
+               use space as a word separator. */
             $ret['message'] = sprintf(__('%s %s',true),$messageFirstPart,$messageSecondPart);
         } 
         return $ret;
