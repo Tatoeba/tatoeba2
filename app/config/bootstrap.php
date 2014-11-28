@@ -58,4 +58,21 @@ if (!function_exists('__p')) {
     } 
 }
 
+if (!function_exists('__np')) {
+    function __np($context, $singular, $plural, $count, $return = false) {
+         $contextSingular = "{$context}\004{$singular}";
+         $contextPlural = "{$context}\004{$plural}";
+         $translation = __n($contextSingular, $contextPlural, $count, true);
+         if ($translation == $contextSingular)
+             $result = $singular;
+         elseif ($translation == $contextPlural)
+             $result = $plural;
+         else
+             $result = $translation;
+         if ($return)
+             return $result;
+         else
+             echo $result;
+    } 
+}
 ?>
