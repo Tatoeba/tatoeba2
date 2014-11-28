@@ -86,16 +86,16 @@ $form->create('User'); // But we still need to call $form->create()
     <fieldset>
     <legend><?php __d('admin', 'Edit User'); ?></legend>
     <?php
-    echo $form->input('id',       array('label' => __('Id', true)));
-    echo $form->input('username', array('label' => __('Username', true)));
-    echo $form->input('email',    array('label' => __('Email', true)));
-    echo $form->input('lang',     array('label' => __('Lang', true)));
-    echo $form->input('group_id', array('label' => __('Group', true)));
+    echo $form->input('id',       array('label' => __d('admin', 'Id', true)));
+    echo $form->input('username', array('label' => __d('admin', 'Username', true)));
+    echo $form->input('email',    array('label' => __d('admin', 'Email', true)));
+    echo $form->input('lang',     array('label' => __d('admin', 'Lang', true)));
+    echo $form->input('group_id', array('label' => __d('admin', 'Group', true)));
     echo $form->input(
         'level', 
         array(
             'type' => 'radio',
-            'label' => __('Level', true),
+            'label' => __d('admin', 'Level', true),
             'options' => array(
                 User::MIN_LEVEL => "-1", 
                 User::MAX_LEVEL => "0"
@@ -103,9 +103,9 @@ $form->create('User'); // But we still need to call $form->create()
         )
     );
     echo $form->input('send_notifications', array(
-        'label' => __('Send notifications', true)
+        'label' => __d('admin', 'Send notifications', true)
     ));
     ?>
     </fieldset>
-<?php echo $form->end(array('label' => __('Submit', true))); ?>
+<?php echo $form->end(array('label' => __d('admin', 'Submit', true))); ?>
 </div>
