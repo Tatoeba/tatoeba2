@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
-"POT-Creation-Date: 2014-11-27 15:07+0100\n"
+"POT-Creation-Date: 2014-11-28 09:53+0100\n"
 "PO-Revision-Date: YYYY-mm-DD HH:MM+ZZZZ\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <EMAIL@ADDRESS>\n"
@@ -223,30 +223,6 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L357
 msgid "We apologize, but we could not save your data.\n                             Please try again"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/locale/translation_archive.php#L33
-msgid "This is a test sentence."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/locale/translation_archive.php#L34
-msgid "This is a somewhat longer test sentence."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/locale/translation_archive.php#L35
-msgid "This test sentence contains the digit 4."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/locale/translation_archive.php#L36
-msgid "This test sentence contains the digit 5."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/locale/translation_archive.php#L37
-msgid "No tag on this sentence yet."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/locale/translation_archive.php#L38
-msgid "Team & Credits"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/models/sentences_list.php#L108
@@ -761,7 +737,6 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/edit.ctp#L61
 msgid "Profile"
 msgstr ""
 
@@ -924,14 +899,6 @@ msgstr ""
 msgid "Contact %s"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences/correctness.ctp#L30
-msgid "Correctness"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences/correctness.ctp#L55
-msgid "Submit"
-msgstr ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences/correctness_info.ctp#L30
 msgid "About unapproved sentences"
 msgstr ""
@@ -989,12 +956,10 @@ msgid "Save changes"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L219
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L405
 msgid "unhide"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php:222;227
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L408
 msgid "hide"
 msgstr ""
 
@@ -1978,7 +1943,6 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php:488;489
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L127
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/edit.ctp#L46
 msgid "Delete"
 msgstr ""
 
@@ -2016,12 +1980,10 @@ msgid "Language for previous, next or random sentence"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L124
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/index.ctp:48;122
 msgid "previous"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L149
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/index.ctp:57;131
 msgid "next"
 msgstr ""
 
@@ -2389,7 +2351,6 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L81
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/index.ctp#L69
 msgid "Username"
 msgstr ""
 
@@ -3617,46 +3578,6 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L85
 msgid "Member status"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/edit.ctp#L52
-msgid "Are you sure you want to delete user #%s?"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/edit.ctp#L57
-msgid "List Users"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/edit.ctp#L87
-msgid "Edit User"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/index.ctp#L41
-msgid "Users"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/index.ctp#L41
-msgid "total"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/index.ctp#L68
-msgid "ID"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/index.ctp#L70
-msgid "Email"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/index.ctp#L71
-msgid "Since"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/index.ctp#L72
-msgid "Level"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/index.ctp#L73
-msgid "Group"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp:38;41
