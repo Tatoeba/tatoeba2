@@ -20,7 +20,7 @@ throw_to_gettext() {
 
 adjust_file_refs() {
     sed 's/#: \([^ ]\+\) \([^ ]\+\)/#: \1\n#: \2/g' | \
-    sed 's/^#: \([^:]\+\):\([0-9]\+\)/#: github.com\/Tatoeba\/tatoeba2\/tree\/master\/\1#L\2/'
+    sed 's/^#: \([^:]\+\):\([0-9]\+\)/#: github.com\/Tatoeba\/tatoeba2\/tree\/dev\/\1#L\2/'
 }
 
 get_all_contexts_from() {
