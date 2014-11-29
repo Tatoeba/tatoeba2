@@ -25,18 +25,19 @@
  * @link     http://tatoeba.org
  */
 
-$languageName = $languages->codeToName($lang);
+$languageName = $languages->codeToNameToFormat($lang);
 
-$title = sprintf(__('All sentences in %s', true), $languageName);
+$title = format(__('All sentences in {language}', true),
+                array('language' => $languageName));
 if (!empty($notTranslatedInto) && $notTranslatedInto != 'none') {
     if ($notTranslatedInto == 'und') {
         $notTranslatedIntoName = __('any language', true);
     } else {
-        $notTranslatedIntoName = $languages->codeToName($notTranslatedInto);
+        $notTranslatedIntoName = $languages->codeToNameToFormat($notTranslatedInto);
     }
-    $title = sprintf(
-        __('Sentences in %1$s not translated into %2$s', true), 
-        $languageName, $notTranslatedIntoName
+    $title = format(
+        __('Sentences in {sent_language} not translated into {targ_language}', true),
+        array('sent_language' => $languageName, 'targ_language' => $notTranslatedIntoName)
     );
 }
 

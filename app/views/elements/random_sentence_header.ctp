@@ -27,7 +27,7 @@
 
 echo $javascript->link(JS_PATH . 'sentences.show_another.js', false);
 
-$langArray = $languages->languagesArray();
+$langArray = $languages->languagesArrayAlone();
 $selectedLanguage = $session->read('random_lang_selected');
 
 if ($selectedLanguage == null) {

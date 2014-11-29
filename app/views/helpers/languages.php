@@ -41,18 +41,31 @@ class LanguagesHelper extends AppHelper
     public $helpers = array('Html');
     
     /* Memoization of languages code and their localized names */
-    private $__languages;
+    private $__languages_to_format;
+    private $__languages_alone;
+
+    private function langAsAlone($name)
+    {
+        return format(
+        /* @translators: this special string allows you to tweak how language
+           names are displayed when they are not used inside another string.
+           For instance, in language lists, on flag mouseover or on the stats
+           page. You may translate this string using a declension modifier,
+           for instance {language.alone} */
+            __('{language}', true),
+            array('language' => $name)
+        );
+    }
 
     /**
      * Return array of languages in Tatoeba
      *
      * @return array
      */
-
-    public function onlyLanguagesArray()
+    private function _onlyLanguagesArray()
     {
-        if (!$this->__languages) {
-            $this->__languages = array(
+        if (!$this->__languages_to_format) {
+            $this->__languages_to_format = array(
                 'ara' => __('Arabic', true),
                 'eng' => __('English', true),
                 'jpn' => __('Japanese', true),
@@ -238,17 +251,26 @@ class LanguagesHelper extends AppHelper
             'chr' => __('Cherokee',true), 
             'guj' => __('Gujarati',true), //@lang 
             );
-            
+        }
+        return $this->__languages_to_format;
+    }
+
+    public function onlyLanguagesArray()
+    {
+        if (!$this->__languages_alone) {
+            $this->__languages_alone = array_map(
+                array($this, 'langAsAlone'),
+                $this->_onlyLanguagesArray()
+            );
             if (class_exists('Collator')) {
                 $i18nLang = Configure::read('Config.language');
                 $coll = new Collator($this->i18nCodeToISO($i18nLang));
-                $coll->asort($this->__languages);
+                $coll->asort($this->__languages_alone);
             } else {
-                asort($this->__languages);
+                asort($this->__languages_alone);
             }
         }
-        
-        return $this->__languages;
+        return $this->__languages_alone;
     }
 
 
@@ -273,15 +295,32 @@ class LanguagesHelper extends AppHelper
         return $languages;
     }
 
-
     /**
-     * Return array of languages in Tatoeba. + all languages
+     * Return array of languages in Tatoeba + all languages, formatted
+     * like it's displayed when alone on the UI (on lists or flags).
      *
      * @return array
      */
-    public function languagesArray()
+    public function languagesArrayAlone()
     {
         $languages = $this->onlyLanguagesArray();
+        array_unshift($languages, array(
+            'und' => $this->langAsAlone(__('All languages', true))
+        ));
+        return $languages;
+    }
+
+    /**
+     * Return array of languages in Tatoeba + all languages, ready
+     * to be used inside a format() call. You MUST use the return
+     * value as a variable inside a format() call. If not,
+     * use languagesArrayAlone() instead.
+     * 
+     * @return array
+     */
+    public function languagesArrayToFormat()
+    {
+        $languages = $this->_onlyLanguagesArray();
 
         // Can't use 'any' as it's the code for anyin language.
         // Only 'und' is used for "undefined".
@@ -420,15 +459,30 @@ class LanguagesHelper extends AppHelper
     }
 
     /**
-     * Return name of the language from the ISO code.
+     * Return name of the language from the ISO code, formatted
+     * like it's displayed when alone on the UI (on lists or flags).
      *
      * @param string $code ISO-639-3 code.
      *
      * @return string
      */
-    public function codeToName($code)
+    public function codeToNameAlone($code) {
+        return $this->langAsAlone($this->codeToNameToFormat($code));
+    }
+
+    /**
+     * Return name of the language from the ISO code, ready to
+     * be used inside a format() call. You MUST use the return
+     * value as a variable inside a format() call. If not,
+     * use codeToNameAlone() instead.
+     *
+     * @param string $code ISO-639-3 code.
+     *
+     * @return string
+     */
+    public function codeToNameToFormat($code)
     {
-        $languages = $this->languagesArray();
+        $languages = $this->languagesArrayToFormat();
         if (isset($languages["$code"])) {
             return $languages["$code"];
         } else {
@@ -513,7 +567,7 @@ class LanguagesHelper extends AppHelper
         );
 
         ?>
-        <li class="stat" title="<?php echo $this->codeToName($langCode); ?>">
+        <li class="stat" title="<?php echo $this->codeToNameAlone($langCode); ?>">
         <?php echo $linkToAllSentences; ?>
         </li>
         <?php
@@ -572,7 +626,7 @@ class LanguagesHelper extends AppHelper
             $lang = 'unknown';
         }
 
-        $options["title"] = $this->codeToName($lang);
+        $options["title"] = $this->codeToNameAlone($lang);
         $options["alt"] = $lang;
 
         return $this->Html->image(

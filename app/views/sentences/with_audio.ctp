@@ -27,9 +27,9 @@
 if (empty($lang)){
     $title = __('Sentences with audio', true);
 } else {
-    $title = sprintf(
-        __('Sentences in %s with audio', true), 
-        $languages->codeToName($lang)
+    $title = format(
+        __('Sentences in {language} with audio', true), 
+        array('language' => $languages->codeToNameToFormat($lang))
     );
 }
 

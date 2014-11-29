@@ -28,9 +28,9 @@
 if (empty($lang)){
     $title = __('Orphan sentences', true);
 } else {
-    $title = sprintf(
-        __('Orphan sentences in %s', true), 
-        $languages->codeToName($lang)
+    $title = format(
+        __('Orphan sentences in {language}', true), 
+        array('language' => $languages->codeToNameToFormat($lang))
     );
 }
 $this->set('title_for_layout', $pages->formatTitle($title));

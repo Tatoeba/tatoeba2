@@ -32,10 +32,10 @@ if ($results == null) {
         $username
     );
 } else if (!empty($lang)) {
-    $title = sprintf(
-        __('Translate %1$s sentences that belong to %2$s', true),
-        $languages->codeToName($lang),
-        $username
+    $title = format(
+        __('Translate {language} sentences that belong to {user}', true),
+        array('language' => $languages->codeToNameToFormat($lang),
+              'user'     => $username)
     );
 } else {
     $title = sprintf(

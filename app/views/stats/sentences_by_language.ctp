@@ -77,7 +77,7 @@ $max = $stats[0]['Language']['numberOfSentences'];
             
             <td class="languageName">
             <?php 
-            $langName = $languages->codeToName($langCode);
+            $langName = $languages->codeToNameAlone($langCode);
             if (empty($langCode)) {
                 $langCode = 'unknown';
             }
