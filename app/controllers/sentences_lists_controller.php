@@ -173,23 +173,28 @@ class SentencesListsController extends AppController
         {
             $ret['can_download'] = false;
             
-            $messageFirstPart = __n('The download feature has been disabled for '.
-                                    'this list because it contains a sentence.',
-                                    'The download feature has been disabled for '.
-                                    'this list because it contains %d sentences.',$count,true);
+            $firstSentence = __n('The download feature has been disabled for '.
+                                 'this list because it contains a sentence.',
+                                 'The download feature has been disabled for '.
+                                 'this list because it contains {n}&nbsp;sentences.',
+                                 $count, true);
             
-            $messageSecondPart = __n('Only lists containing one sentence or fewer can be '.
-                                     'downloaded. If you can edit the list, you may want '.
-                                     'to split it into multiple lists.',
-                                     'Only lists containing %d or fewer sentences can be '.
-                                     'downloaded. If you can edit the list, you may want '.
-                                     'to split it into multiple lists.',self::MAX_COUNT_FOR_DOWNLOAD,true);
-            $messageFirstPart = sprintf($messageFirstPart, $count);
-            $messageSecondPart = sprintf($messageSecondPart, self::MAX_COUNT_FOR_DOWNLOAD);
+            $sencondSentence = __n('Only lists containing one sentence or fewer can be '.
+                                   'downloaded. If you can edit the list, you may want '.
+                                   'to split it into multiple lists.',
+                                   'Only lists containing {max} or fewer sentences can be '.
+                                   'downloaded. If you can edit the list, you may want '.
+                                   'to split it into multiple lists.',
+                                   self::MAX_COUNT_FOR_DOWNLOAD, true);
+            $firstSentence = format($firstSentence, array('n' => $count));
+            $sencondSentence = format($sencondSentence, array('max' => self::MAX_COUNT_FOR_DOWNLOAD));
             /* @translators: this string is used to concatenate two sentences.
-               You typically want to change this to %s%s if your language don't
-               use space as a word separator. */
-            $ret['message'] = sprintf(__('%s %s',true),$messageFirstPart,$messageSecondPart);
+               You typically want to change this to {firstSentence}{sencondSentence}
+               if your language don't use space as a word separator. */
+            $ret['message'] = format(
+                __('{firstSentence} {sencondSentence}', true),
+                compact('firstSentence', 'sencondSentence')
+            );
         } 
         return $ret;
     }

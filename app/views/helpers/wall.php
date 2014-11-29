@@ -358,9 +358,9 @@ class WallHelper extends AppHelper
         <?php
         echo $this->Date->ago($date);
         // Text of link
-        $text = sprintf(
-            __('by %s', true),
-            $author
+        $text = format(
+            __('by {messageAuthor}', true),
+            array('messageAuthor' => $author)
         );
         // Path of link
         $pathToUserProfile = array(
