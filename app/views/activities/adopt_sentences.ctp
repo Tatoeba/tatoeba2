@@ -84,18 +84,9 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 
 <div id="main_content">
     <div class="module">
-    <h2>
     <?php 
-    $resultsCount = $paginator->counter(array('format' => '%count%'));
-    /* @translators: this formats the title at the top of every page
-       that shows a list of sentence (search, browse by language,
-       adopt sentences…) by appending the number of results. Note
-       the use of &nbsp; which is a non-breaking space. */
-    printf(__n('%1$s (one result)', '%1$s (%2$s&nbsp;results)', $resultsCount, true), $title, $resultsCount);
-    ?>
-    </h2>
-    
-    <?php
+    echo $this->Pages->formatTitleWithResultCount($paginator, $title);
+
     $pagination->display(array($lang));
     
     foreach ($results as $sentence) {

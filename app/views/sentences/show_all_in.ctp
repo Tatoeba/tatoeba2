@@ -36,8 +36,8 @@ if (!empty($notTranslatedInto) && $notTranslatedInto != 'none') {
         $notTranslatedIntoName = $languages->codeToNameToFormat($notTranslatedInto);
     }
     $title = format(
-        __('Sentences in {sent_language} not translated into {targ_language}', true),
-        array('sent_language' => $languageName, 'targ_language' => $notTranslatedIntoName)
+        __('Sentences in {sentLanguage} not translated into {targLanguage}', true),
+        array('sentLanguage' => $languageName, 'targLanguage' => $notTranslatedIntoName)
     );
 }
 
@@ -60,17 +60,9 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <div class="module">
     <?php
     if (!empty($results)) {
-        ?>
-        
-        <h2>
-        <?php 
-        $resultsCount = $paginator->counter(array('format' => '%count%'));
-        printf(__n('%1$s (one result)', '%1$s (%2$s&nbsp;results)', $resultsCount, true), $title, $resultsCount);
-        ?>
-        </h2>
-        
-        
-        <?php
+
+        echo $this->Pages->formatTitleWithResultCount($paginator, $title);
+
         $paginationUrl = array(
             $lang,
             $translationLang,

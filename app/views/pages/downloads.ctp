@@ -200,12 +200,15 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
                     $tab_str
                 );
 
-                echo sprintf(
-                    __('Contains the links between the sentences. '.
-                    '%1$s means that sentence #77 is the translation of '. 
-                    'sentence #1. The reciprocal link is also present, '.
-                    'so the file will also contain a line that says %2$s.', true), 
-                    $sample_line, $sample_line_rev
+                echo format(
+                    __('Contains the links between the sentences. {sampleLinkLine} '.
+                    'means that sentence #77 is the translation of sentence #1. '. 
+                    'The reciprocal link is also present, so the file will '.
+                    'also contain a line that says {sampleLinkLineReversed}.', true), 
+                    array(
+                        'sampleLinkLine' => $sample_line,
+                        'sampleLinkLineReversed' => $sample_line_rev
+                    )
                 );
                 ?>
             </dd>
@@ -242,10 +245,12 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
                     '<span class="param">proverb</span>',
                     $tab_str
                 );
-                echo sprintf( 
-                __('Contains the list of <a href="%1$s">tags</a> associated with each sentence. '.
-                   '%2$s means that sentence #381279 has been assigned the "proverb" tag.', true),
-                   $tag_url, $sample_line);
+                echo format( 
+                    __('Contains the list of <a href="{url}">tags</a> associated with '.
+                       'each sentence. {sampleTagLine} means that sentence #381279 has '.
+                       'been assigned the "proverb" tag.', true),
+                    array('url' => $tag_url, 'sampleTagLine' => $sample_line)
+                );
                 ?>
             </dd>
         </dl>
@@ -343,16 +348,18 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             <dd>
                 <?php 
                 $tanaka_url = "http://www.edrdg.org/wiki/index.php/Tanaka_Corpus#Current_Format_.28WWWJDIC.29"; 
-                printf(
-                __('Contains the equivalent of the "B lines" in the Tanaka Corpus file '. 
-                'distributed by Jim Breen. See '.
-                '<a href="%1$s">this page</a> for the format. '.
-                'Each entry is associated with a pair of Japanese/English '.
-                'sentences. %2$s refers to the id of the Japanese sentence. '.
-                '%3$s refers to the id of the English sentence.', true),
-                $tanaka_url,
-                '<span class="param">'.$sent_id_str.'</span>',
-                '<span class="param">'.$meaning_id_str.'</span>');
+                echo format(
+                    __('Contains the equivalent of the "B lines" in the Tanaka Corpus '. 
+                       'file distributed by Jim Breen. See <a href="{url}">this page</a> '.
+                       'for the format. Each entry is associated with a pair of '.
+                       'Japanese/English sentences. {sentenceId} refers to the id of the '.
+                       'Japanese sentence. {meaningId} refers to the id of the English '.
+                       'sentence.', true),
+                    array(
+                        'url' => $tanaka_url,
+                        'sentenceId' => '<span class="param">'.$sent_id_str.'</span>',
+                        'meaningId'  => '<span class="param">'.$meaning_id_str.'</span>')
+                );
                 ?>
             </dd>
         </dl>

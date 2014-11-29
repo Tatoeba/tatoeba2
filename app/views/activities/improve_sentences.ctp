@@ -117,17 +117,20 @@ $okURL = $html->url(
                        $tagNNCLink);
         printf('<li>%s</li>', $str);
 
-        $str = sprintf(__('Whenever you can, browse through sentences that are tagged '.
-                          '%1$s, %2$s, and %3$s to discuss the sentences with other '.
-                          'members and help decide what to do with these sentences.', true),
-                       $tagChangeLink, $tagCheckLink, $tagNNCLink);
+        $str = format(__('Whenever you can, browse through sentences that are tagged '.
+                         '{tagChange}, {tagCheck}, and {tagNNC} to discuss the '.
+                         'sentences with other members and help decide what to do with '.
+                         'these sentences.', true),
+                      array('tagChange' => $tagChangeLink,
+                            'tagCheck'  => $tagCheckLink,
+                            'tagNNC'    => $tagNNCLink));
         printf('<li>%s</li>', $str);
 
-        $str = sprintf(__('Once a problematic sentence has been addressed, tag it %1$s. '.
-                          'More generally, you can browse and check others\' sentences '.
-                          'and tag them with %1$s. But do this only when you are completely '.
-                          'sure that they are correct, and do not use the tag on your own '.
-                          'sentences.', true), $tagOKLink);
+        $str = format(__('Once a problematic sentence has been addressed, tag it {tagOK}. '.
+                         'More generally, you can browse and check others\' sentences '.
+                         'and tag them with {tagOK}. But do this only when you are completely '.
+                         'sure that they are correct, and do not use the tag on your own '.
+                         'sentences.', true), array('tagOK' => $tagOKLink));
         printf('<li>%s</li>', $str);
        ?>
     </ol>

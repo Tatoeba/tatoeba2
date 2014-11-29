@@ -46,10 +46,9 @@ $this->set('title_for_layout', $pages->formatTitle(
     <?php 
     echo $paginator->counter(
         array(
-            'format' => sprintf(
-                __('%1$s\'s messages on the Wall (total %2$s)', true),
-                $username,
-                '%count%'
+            'format' => format(
+                __('{user}\'s messages on the Wall (total&nbsp;{n})', true),
+                array('user' => $username, 'n' => '%count%')
             )
         )
     );

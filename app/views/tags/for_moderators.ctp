@@ -70,9 +70,9 @@ $this->set('title_for_layout', $pages->formatTitle(__('Tags for moderators', tru
                               'action' => 'for_moderators',
                               $tagDeleteId));
 
-        echo sprintf(__('Corpus maintainers, this page was made for your convenience. It shows sentences '. 
-                        'that were tagged more than two weeks ago as %1$s or %2$s.', true),
-                     $tagChangeLink, $tagDeleteLink);
+        echo format(__('Corpus maintainers, this page was made for your convenience. It shows sentences '. 
+                       'that were tagged more than two weeks ago as {changeTag} or {deleteTag}.', true),
+                    array('changeTag' => $tagChangeLink, 'deleteTag' => $tagDeleteLink));
         ?>
         </p>
         <p><?php __('Aside from special situations where your common sense will tell you that it is '. 

@@ -50,19 +50,11 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <div class="module">
     <?php
     if (!empty($results)) {
-        ?>
         
-        <h2>
-        <?php 
-        $resultsCount = $paginator->counter(array('format' => '%count%'));
-        printf(__n('%1$s (one result)', '%1$s (%2$s&nbsp;results)', $resultsCount, true), $title, $resultsCount);
-        ?>
-        </h2>
-        
-        
-        <?php
+        $this->Pages->formatTitleWithResultCount($paginator, $title);
+
         $pagination->display(array($lang));
-        
+
         foreach ($results as $sentence) {
             $sentences->displayGenericSentence(
                 $sentence['Sentence'], 

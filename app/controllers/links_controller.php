@@ -68,9 +68,9 @@ class LinksController extends AppController
         $saved = $this->Link->add($sentenceId, $translationId);
         
         if ($saved) {
-            $flashMessage = sprintf(
+            $flashMessage = format(
                 __(
-                    'Sentences #%1$d and #%2$d are now '.
+                    'Sentences #{0} and #{1} are now '.
                     'direct translations of each other.',
                     true
                 ),
@@ -112,9 +112,9 @@ class LinksController extends AppController
         $saved = $this->Link->delete($sentenceId, $translationId);
 
         if ($saved) {
-            $flashMessage = sprintf(
+            $flashMessage = format(
                 __(
-                    'Sentences #%1$s and #%2$s are no longer '.
+                    'Sentences #{0} and #{1} are no longer '.
                     'direct translations of each other.',
                     true
                 ),

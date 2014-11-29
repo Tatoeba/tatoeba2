@@ -91,14 +91,16 @@ foreach($currentContributors as $i=>$currentContributor){
         
         <div class="score">
             <?php
-            printf(
+            echo format(
                 __n(
-                    '#%1$d - 1 sentence - %2$d%%',
-                    '#%1$d - %3$d sentences - %2$d%%',
+                    '#{rank} - {n} sentence - {percentage}%',
+                    '#{rank} - {n} sentences - {percentage}%',
                     $numberOfContributions, true),
-                $i + 1,
-                $percentage,
-                $numberOfContributions
+                array(
+                    'rank' => $i + 1,
+                    'n' => $numberOfContributions,
+                    'percentage' => $percentage
+                )
             );
             ?>
         </div>

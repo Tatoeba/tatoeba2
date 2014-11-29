@@ -76,10 +76,9 @@ $this->set('title_for_layout', $pages->formatTitle(
             <?php 
             echo $paginator->counter(
                 array(
-                    'format' => sprintf(
-                        __('Comments on %1$s\'s sentences (total %2$s)', true),
-                        $userName,
-                        '%count%'
+                    'format' => format(
+                        __('Comments on {user}\'s sentences (total&nbsp;{n})', true),
+                        array('user' => $userName, 'n' => '%count%')
                     )
                 )
             ); 

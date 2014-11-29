@@ -60,14 +60,9 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 <div id="main_content">    
     
     <div class="module">
-    <h2>
     <?php 
-    $resultsCount = $paginator->counter(array('format' => '%count%'));
-    printf(__n('%1$s (one result)', '%1$s (%2$s&nbsp;results)', $resultsCount, true), $title, $resultsCount);
-    ?>
-    </h2>
-    
-    <?php
+    echo $this->Pages->formatTitleWithResultCount($paginator, $title);
+
     if ($results != null) {
         $paginationUrl = array(
             $username,
