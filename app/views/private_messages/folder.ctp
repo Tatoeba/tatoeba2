@@ -35,7 +35,7 @@ if ($folder == 'Inbox') {
 }
 
 $this->set('title_for_layout', $pages->formatTitle(
-    /* @translators: this is used as title. The folderName can be
+    /* @translators: this is used as a title. The folderName can be
        whatever you translated "Inbox", "Sent" or "Trash" as. */
     format(__('Private messages - {folderName}', true), $folderName)
 ));

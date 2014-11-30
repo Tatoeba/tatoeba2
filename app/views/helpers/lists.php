@@ -102,7 +102,7 @@ class ListsHelper extends AppHelper
             <div class="name">
             <?php
             /* @translators: string used as a placeholder for
-               the name of a list when it happed be empty */
+               the name of a list when it happens to be empty */
             $name = __('(unnamed list)', true);
             if (trim($listName) != '') {
                 $name = $listName;

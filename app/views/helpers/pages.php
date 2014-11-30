@@ -26,7 +26,7 @@ class PagesHelper extends AppHelper
     public function formatTitleWithResultCount($paginator, $title) {
         $n = $paginator->counter(array('format' => '%count%'));
         /* @translators: this formats the title at the top of every page
-           that shows a list of sentence (search, browse by language,
+           that shows a list of sentences (search, browse by language,
            adopt sentences…) by appending the number of results. Note
            the use of &nbsp; which is a non-breaking space. */
         $title = format(__n('{title} ({n}&nbsp;result)',
