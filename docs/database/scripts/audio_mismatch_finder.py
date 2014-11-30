@@ -74,8 +74,10 @@ class AudioMismatchFinder(PythonMySQLConnector):
                 length = len([item[0] for item in cursor])
                 if (length > 0):
                     existing_sentences.add(missing_id)
-            if (len(existing_sentences) > 0):
-                print("Of those, the following sentences still exist:\n{0}".format(sorted(list(existing_sentences))))
+            num_existing_sentences = len(existing_sentences)
+            if (num_existing_sentences > 0):
+                print("Of those, the following {0} sentences still exist:\n{1}".format(
+                        num_existing_sentences, sorted(list(existing_sentences))))
                 
         cursor.close() 
         print("{0}SUMMARY{0}".format(stars))
