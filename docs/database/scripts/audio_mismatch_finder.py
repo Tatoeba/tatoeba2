@@ -67,6 +67,16 @@ class AudioMismatchFinder(PythonMySQLConnector):
                 total_missing_ids += num_missing_ids
                 print("These {0} sentences have audio files, but are not marked as having audio:\n{1}".format(
                         num_missing_ids, missing_ids))
+            existing_sentences = set([])
+            for missing_id in missing_ids:
+                stmt = "SELECT id FROM sentences WHERE id='{0}';".format(missing_id)
+                cursor.execute(stmt)
+                length = len([item[0] for item in cursor])
+                if (length > 0):
+                    existing_sentences.add(missing_id)
+            if (len(existing_sentences) > 0):
+                print("Of those, the following sentences still exist:\n{0}".format(sorted(list(existing_sentences))))
+                
         cursor.close() 
         print("{0}SUMMARY{0}".format(stars))
         print("Total sentences missing audio files: {0}".format(total_missing_files))
