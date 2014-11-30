@@ -37,6 +37,8 @@ class AudioMismatchFinder(PythonMySQLConnector):
         PythonMySQLConnector.process_args(self, argv)
 
     def process(self):
+        total_missing_files = 0
+        total_missing_ids = 0
         stars = '*' * 35
         print("self.parsed.base_mp3_dir: " + "{0}".format(self.parsed.base_mp3_dir))
         lang_dirs = os.listdir(self.parsed.base_mp3_dir)
@@ -55,10 +57,21 @@ class AudioMismatchFinder(PythonMySQLConnector):
             sent_ids = frozenset([item[0] for item in cursor])
             missing_files = sorted(list(sent_ids - basenames))
             missing_ids = sorted(list(basenames - sent_ids))
-            print("These sentences are marked as having audio, but do not have audio files:\n{0}".format(missing_files))
-            print("These sentences have audio files, but are not marked as having audio:\n{0}".format(missing_ids))
-        cursor.close()        
-
+            num_missing_files = len(missing_files)
+            num_missing_ids = len(missing_ids)
+            if (num_missing_files > 0):
+                total_missing_files += num_missing_files
+                print("These {0} sentences are marked as having audio, but do not have audio files:\n{1}".format(
+                        num_missing_files, missing_files))
+            if (num_missing_ids > 0):
+                total_missing_ids += num_missing_ids
+                print("These {0} sentences have audio files, but are not marked as having audio:\n{1}".format(
+                        num_missing_ids, missing_ids))
+        cursor.close() 
+        print("{0}SUMMARY{0}".format(stars))
+        print("Total sentences missing audio files: {0}".format(total_missing_files))
+        print("Total sentences with audio files but not marked as having audio: {0}".format(total_missing_ids))
+              
 if __name__ == "__main__":
     user = 'root'
 
