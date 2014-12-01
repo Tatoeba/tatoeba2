@@ -65,12 +65,20 @@ class AudioMismatchFinder(PythonMySQLConnector):
                 length = len([item[0] for item in cursor])
                 if (length > 0):
                     existing_sentences.add(missing_id)
-                    stmt = "UPDATE sentences SET hasaudio = 'shtooka' WHERE id='{0}';".format(
+                    stmt = "SELECT lang FROM sentences WHERE id='{0}';".format(
                         missing_id)
-                    if self.parsed.dry_run:
-                        print("Statement would be: {0}".format(stmt))
+                    cursor.execute(stmt)
+                    sent_lang = cursor[0][0]
+                    if (sent_lang != lang_dir):
+                        print("WARNING: skipping sentence {0}; lang ({1}) does not match dir ({2})".format(
+                                missing_id, sent_lang, lang_dir))
                     else:
-                        cursor.execute(stmt)
+                        stmt = "UPDATE sentences SET hasaudio = 'shtooka' WHERE id='{0}';".format(
+                            missing_id)
+                        if self.parsed.dry_run:
+                            print("Statement would be: {0}".format(stmt))
+                        else:
+                            cursor.execute(stmt)
             num_existing_sentences = len(existing_sentences)
             if (num_existing_sentences > 0):
                 str = ''
