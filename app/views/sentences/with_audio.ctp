@@ -27,9 +27,9 @@
 if (empty($lang)){
     $title = __('Sentences with audio', true);
 } else {
-    $title = sprintf(
-        __('Sentences in %s with audio', true), 
-        $languages->codeToName($lang)
+    $title = format(
+        __('Sentences in {language} with audio', true), 
+        array('language' => $languages->codeToNameToFormat($lang))
     );
 }
 
@@ -50,24 +50,11 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <div class="module">
     <?php
     if (!empty($results)) {
-        ?>
         
-        <h2>
-        <?php 
-        echo $title;
-        echo ' ';
-        echo $paginator->counter(
-            array(
-                'format' => __('(%count% results)', true)
-            )
-        ); 
-        ?>
-        </h2>
-        
-        
-        <?php
+        $this->Pages->formatTitleWithResultCount($paginator, $title);
+
         $pagination->display(array($lang));
-        
+
         foreach ($results as $sentence) {
             $sentences->displayGenericSentence(
                 $sentence['Sentence'], 

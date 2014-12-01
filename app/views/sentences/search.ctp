@@ -49,18 +49,14 @@ if (!empty($results)) {
     
     ?>
     <div class="module">
-        <h2>
         <?php 
-        echo __('Search:', true);
-        echo sprintf(' <span style="unicode-bidi: embed">%s</span>', $query);
-        echo ' ';
-        echo $paginator->counter(
-            array(
-                'format' => __('(%count% results)', true)
-            )
-        ); 
+        $title = sprintf(
+            /* @translators: title on the top of a search result page */
+            __('Search: %s', true),
+            sprintf('<span style="unicode-bidi: embed">%s</span>', $query)
+        );
+        echo $this->Pages->formatTitleWithResultCount($paginator, $title);
         ?>
-        </h2>
         
         <?php
         $pagination->display();

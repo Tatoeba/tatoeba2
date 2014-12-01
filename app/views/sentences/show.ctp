@@ -34,8 +34,9 @@ if (isset($sentence)) {
     $sentenceText = Sanitize::html($sentence['Sentence']['text']);
     $sentenceCorrectness = $sentence['Sentence']['correctness'];
     
-    $languageName = $languages->codeToName($sentenceLang);
-    $title = sprintf(__('%s example sentence: ', true), $languageName);
+    $languageName = $languages->codeToNameToFormat($sentenceLang);
+    $title = format(__('{language} example sentence: ', true),
+                    array('language' => $languageName));
     $this->set('title_for_layout', $pages->formatTitle($title . $sentenceText));
 
     $html->meta(

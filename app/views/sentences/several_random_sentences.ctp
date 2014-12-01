@@ -72,7 +72,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Random sentences', true))
         echo '<label>' . __('Language', true) . '</label> ';
         echo $form->select(
             'into', 
-            $languages->languagesArray(), 
+            $languages->languagesArrayAlone(), 
             $selectedLanguage,
             array(
                 'class' => 'language-selector',

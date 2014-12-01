@@ -22,5 +22,20 @@ class PagesHelper extends AppHelper
     public function formatTitle($pageTitle) {
         return $pageTitle . __(' - Tatoeba', true);
     }
+
+    public function formatTitleWithResultCount($paginator, $title) {
+        $n = $paginator->counter(array('format' => '%count%'));
+        /* @translators: this formats the title at the top of every page
+           that shows a list of sentences (search, browse by language,
+           adopt sentences…) by appending the number of results. Note
+           the use of &nbsp; which is a non-breaking space. */
+        $title = format(__n('{title} ({n}&nbsp;result)',
+                            '{title} ({n}&nbsp;results)',
+                            $n, true),
+                        compact('title', 'n')
+        );
+        $title = sprintf('<h2>%s</h2>', $title);
+        return $title;
+    }
 }
 ?>

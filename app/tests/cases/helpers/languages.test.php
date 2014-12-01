@@ -50,13 +50,13 @@ class LanguagesHelperTestCase extends CakeTestCase {
 	}
 
 	function testLanguagesArray_returnsUnlocalizedLangagesNames() {
-		$result = $this->Languages->languagesArray();
+		$result = $this->Languages->languagesArrayAlone();
 		$this->assertEqual('Japanese', $result['jpn']);
 	}
 
 	function testLanguagesArray_returnsLocalizedLangagesNames() {
 		Configure::write('Config.language', 'jpn');
-		$result = $this->Languages->languagesArray();
+		$result = $this->Languages->languagesArrayAlone();
 		$this->assertEqual('日本語', $result['jpn']);
 	}
 
@@ -116,18 +116,18 @@ class LanguagesHelperTestCase extends CakeTestCase {
 	}
 
 	function testCodeToName_returnsUnlocalizedName() {
-		$result = $this->Languages->codeToName('jpn');
+		$result = $this->Languages->codeToNameAlone('jpn');
 		$this->assertEqual('Japanese', $result);
 	}
 
 	function testCodeToName_returnsLocalizedName() {
 		Configure::write('Config.language', 'jpn');
-		$result = $this->Languages->codeToName('jpn');
+		$result = $this->Languages->codeToNameAlone('jpn');
 		$this->assertEqual('日本語', $result);
 	}
 
 	function testCodeToName_returnsUnknownForUndefinedLanguage() {
-		$result = $this->Languages->codeToName('und');
+		$result = $this->Languages->codeToNameAlone('und');
 		$this->assertEqual('unknown', $result);
 	}
 }

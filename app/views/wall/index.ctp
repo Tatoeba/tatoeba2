@@ -122,15 +122,8 @@ $javascript->link('wall.reply.js', false);
     <div class="module">
         <h2>
             <?php
-            // TODO extract this 
-            echo $paginator->counter(
-                array(
-                    'format' => __(
-                        'Wall (%count% threads)',
-                        true
-                    )
-                )
-            );
+            $threadsCount = $paginator->counter(array('format' => '%count%'));
+            printf(__n('Wall (one thread)', 'Wall (%s threads)', $threadsCount, true), $threadsCount);
             ?>
         </h2>
         

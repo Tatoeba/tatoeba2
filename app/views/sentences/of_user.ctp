@@ -41,8 +41,9 @@ if ($userExists === true) {
     if (empty($lang)) {
         $title = sprintf(__("%s's sentences", true), $userName);
     } else {
-        $languageName = $languages->codeToName($lang);
-        $title = sprintf(__('%1$s\'s sentences in %2$s', true), $userName, $languageName);
+        $languageName = $languages->codeToNameToFormat($lang);
+        $title = format(__('{user}\'s sentences in {language}', true),
+                        array('user' => $userName, 'language' => $languageName));
     }
 } else {
     $title = sprintf(__("There's no user called %s", true), $userName);
@@ -88,10 +89,10 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     } elseif ($numberOfSentences === 0) {
         echo '<h2>';
         if (!empty($lang)) {
-            echo sprintf(
-                __('%1$s does not have any sentence in %2$s', true),
-                $userName,
-                $languages->codeToName($lang)
+            $langName = $languages->codeToNameToFormat($lang);
+            echo format(
+                __('{user} does not have any sentence in {language}', true),
+                array('user' => $userName, 'language' => $langName)
             );
         } else {
             echo sprintf(

@@ -50,7 +50,7 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
         ?>
         </div>
         <div id="radicalsList" >
-            <h3><?php __('1 stroke'); ?></h3>
+            <h3><?php __n('1 stroke', '%s strokes', 1); ?></h3>
             <a class="radical">一</a>
             <a class="radical">丨</a>
             <a class="radical">丶</a>

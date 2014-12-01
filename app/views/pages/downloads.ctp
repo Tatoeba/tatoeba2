@@ -67,7 +67,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
         $explanation = "http://blog.tatoeba.org/2009/12/tatoeba-update-dec-12th-2009.html";
         echo sprintf( __('For those who wonder why we\'re not leaving the data in the public '.
               'domain, some explanation '.
-              '<a href=%s>here</a>.',
+              '<a href="%s">here</a>.',
               true), $explanation); 
     ?>
     <h2><?php __('Questions?'); ?></h2>
@@ -157,7 +157,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
                 $iso_code_list = "http://en.wikipedia.org/wiki/List_of_ISO_639-3_codes";
                 echo sprintf(
                     __('Contains all the sentences. Each sentence is associated with a '.
-                       'unique id and an <a href=%s>ISO 639-3</a> language code. ',
+                       'unique id and an <a href="%s">ISO 639-3</a> language code. ',
                        true), $iso_code_list); 
                 __('The first file (sentences.tar.bz2) contains this information alone. '.
                 'The second file (sentences_detailed.tar.bz2) contains additional fields '.
@@ -187,25 +187,30 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
                 <?php 
-                __('Contains the links between the sentences. '); 
-
                 $sample_line = sprintf(
                     '<span class="param">1</span>'.
                     '<span class="symbol"> [%s] </span>'.
                     '<span class="param">77</span> ',
                     $tab_str
                 );
+                $sample_line_rev = sprintf(
+                    '<span class="param">77</span>'.
+                    '<span class="symbol"> [%s] </span>'.
+                    '<span class="param">1</span> ',
+                    $tab_str
+                );
 
-                echo sprintf(
-                    __('%s means that sentence #77 is the translation of '. 
-                    'sentence #1. The reciprocal link is also present, '.
-                    'so the file will also contain a line that says ', true), 
-                    $sample_line
+                echo format(
+                    __('Contains the links between the sentences. {sampleLinkLine} '.
+                    'means that sentence #77 is the translation of sentence #1. '. 
+                    'The reciprocal link is also present, so the file will '.
+                    'also contain a line that says {sampleLinkLineReversed}.', true), 
+                    array(
+                        'sampleLinkLine' => $sample_line,
+                        'sampleLinkLineReversed' => $sample_line_rev
+                    )
                 );
                 ?>
-                <span class="param">77</span>
-                <span class="symbol">[<?php echo $tab_str; ?>]</span>
-                <span class="param">1</span>.
             </dd>
         </dl>
         
@@ -230,13 +235,22 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
                 <?php
-                $tag_url = "http://tatoeba.org/tags/view_all";
-                echo sprintf( 
-                __('Contains the list of <a href="%s">tags</a> associated with each sentence. '.
-                '<span class="param">381279</span>'.
-                '<span class="symbol"> [tab] </span>'.
-                '<span class="param">proverb</span>'. 
-                ' means that sentence #381279 has been assigned the "proverb" tag.', true), $tag_url); 
+                $tag_url = $this->Html->url(array(
+                    'controller' => 'tags',
+                    'action' => 'view_all'
+                ));
+                $sample_line = sprintf(
+                    '<span class="param">381279</span>'.
+                    '<span class="symbol"> [%s] </span>'.
+                    '<span class="param">proverb</span>',
+                    $tab_str
+                );
+                echo format( 
+                    __('Contains the list of <a href="{url}">tags</a> associated with '.
+                       'each sentence. {sampleTagLine} means that sentence #381279 has '.
+                       'been assigned the "proverb" tag.', true),
+                    array('url' => $tag_url, 'sampleTagLine' => $sample_line)
+                );
                 ?>
             </dd>
         </dl>
@@ -266,7 +280,11 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             
             <dt><?php echo $file_desc_str; ?></dt>
             <dd>
-                <?php $list_url = "http://tatoeba.org/sentences_lists/index";
+                <?php
+                $list_url = $this->Html->url(array(
+                    'controller' => 'sentences_lists',
+                    'action' => 'index'
+                ));
                 echo sprintf(__('Contains the list of <a href="%s">sentence lists</a>.', true), 
                                     $list_url); 
                 ?>
@@ -330,16 +348,18 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             <dd>
                 <?php 
                 $tanaka_url = "http://www.edrdg.org/wiki/index.php/Tanaka_Corpus#Current_Format_.28WWWJDIC.29"; 
-                printf(
-                __('Contains the equivalent of the "B lines" in the Tanaka Corpus file '. 
-                'distributed by Jim Breen. See '.
-                '<a href="%s">this page</a> for the format. '.
-                'Each entry is associated with a pair of Japanese/English '.
-                'sentences. %s refers to the id of the Japanese sentence. '.
-                '%s refers to the id of the English sentence.', true),
-                $tanaka_url,
-                '<span class="param">'.$sent_id_str.'</span>',
-                '<span class="param">'.$meaning_id_str.'</span>');
+                echo format(
+                    __('Contains the equivalent of the "B lines" in the Tanaka Corpus '. 
+                       'file distributed by Jim Breen. See <a href="{url}">this page</a> '.
+                       'for the format. Each entry is associated with a pair of '.
+                       'Japanese/English sentences. {sentenceId} refers to the id of the '.
+                       'Japanese sentence. {meaningId} refers to the id of the English '.
+                       'sentence.', true),
+                    array(
+                        'url' => $tanaka_url,
+                        'sentenceId' => '<span class="param">'.$sent_id_str.'</span>',
+                        'meaningId'  => '<span class="param">'.$meaning_id_str.'</span>')
+                );
                 ?>
             </dd>
         </dl>

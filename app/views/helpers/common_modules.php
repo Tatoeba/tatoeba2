@@ -86,7 +86,7 @@ class CommonModulesHelper extends AppHelper
                 $lang  = $params[$maxNumberOfParams-1];
             }
 
-            $langs = $this->Languages->languagesArray();
+            $langs = $this->Languages->languagesArrayAlone();
 
             echo $this->Form->select(
                 'filterLanguageSelect',
