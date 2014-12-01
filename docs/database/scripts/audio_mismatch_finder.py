@@ -25,6 +25,8 @@ from python_mysql_connector import PythonMySQLConnector
 
 class AudioMismatchFinder(PythonMySQLConnector):
     """Class for finding audio mismatches."""
+    stars = '*' * 35
+
     def __init__(self):
         PythonMySQLConnector.__init__(self)
 
@@ -36,37 +38,26 @@ class AudioMismatchFinder(PythonMySQLConnector):
     def process_args(self, argv):
         PythonMySQLConnector.process_args(self, argv)
 
-    def process(self):
-        total_missing_files = 0
-        total_missing_ids = 0
-        stars = '*' * 35
-        print("self.parsed.base_mp3_dir: " + "{0}".format(self.parsed.base_mp3_dir))
-        lang_dirs = os.listdir(self.parsed.base_mp3_dir)
-        for lang_dir in lang_dirs:
-            if not os.path.isdir(os.path.join(self.parsed.base_mp3_dir, lang_dir)):
-                print('not a dir: {0}'.format(lang_dir))
-                continue
-            print("{0}{1}{0}".format(stars, lang_dir))
-            full_path = os.path.join(self.parsed.base_mp3_dir, lang_dir)
-            files = glob.glob(os.path.join(full_path, '*.mp3'))
-            basenames = frozenset([int(os.path.splitext(os.path.basename(file))[0]) for file in files])
-            cursor = self.cnx.cursor()
-            stmt = "SELECT id FROM sentences WHERE lang='{0}' and hasaudio='shtooka';".format(
-                lang_dir)
-            cursor.execute(stmt)
-            sent_ids = frozenset([item[0] for item in cursor])
-            missing_files = sorted(list(sent_ids - basenames))
-            missing_ids = sorted(list(basenames - sent_ids))
-            num_missing_files = len(missing_files)
-            num_missing_ids = len(missing_ids)
-            if (num_missing_files > 0):
-                total_missing_files += num_missing_files
-                print("These {0} sentences are marked as having audio, but do not have audio files:\n{1}".format(
-                        num_missing_files, missing_files))
-            if (num_missing_ids > 0):
-                total_missing_ids += num_missing_ids
-                print("These {0} sentences have audio files, but are not marked as having audio:\n{1}".format(
-                        num_missing_ids, missing_ids))
+    def process_lang(self, lang_dir):
+        print("{0}{1}{0}".format(AudioMismatchFinder.stars, lang_dir))
+        full_path = os.path.join(self.parsed.base_mp3_dir, lang_dir)
+        files = glob.glob(os.path.join(full_path, '*.mp3'))
+        basenames = frozenset([int(os.path.splitext(os.path.basename(file))[0]) for file in files])
+        cursor = self.cnx.cursor()
+        stmt = "SELECT id FROM sentences WHERE lang='{0}' and hasaudio='shtooka';".format(
+            lang_dir)
+        cursor.execute(stmt)
+        sent_ids = frozenset([item[0] for item in cursor])
+        missing_files = sorted(list(sent_ids - basenames))
+        missing_ids = sorted(list(basenames - sent_ids))
+        num_missing_files = len(missing_files)
+        num_missing_ids = len(missing_ids)
+        if (num_missing_files > 0):
+            print("These {0} sentences are marked as having audio, but do not have audio files:\n{1}".format(
+                    num_missing_files, missing_files))
+        if (num_missing_ids > 0):
+            print("These {0} sentences have audio files, but are not marked as having audio:\n{1}".format(
+                    num_missing_ids, missing_ids))
             existing_sentences = set([])
             for missing_id in missing_ids:
                 stmt = "SELECT id FROM sentences WHERE id='{0}';".format(missing_id)
@@ -74,13 +65,36 @@ class AudioMismatchFinder(PythonMySQLConnector):
                 length = len([item[0] for item in cursor])
                 if (length > 0):
                     existing_sentences.add(missing_id)
+                    stmt = "UPDATE sentences SET hasaudio = 'shtooka' WHERE id='{0}';".format(
+                        missing_id)
+                    if self.parsed.dry_run:
+                        print("Statement would be: {0}".format(stmt))
+                    else:
+                        cursor.execute(stmt)
             num_existing_sentences = len(existing_sentences)
             if (num_existing_sentences > 0):
-                print("Of those, the following {0} sentences still exist:\n{1}".format(
-                        num_existing_sentences, sorted(list(existing_sentences))))
-                
-        cursor.close() 
-        print("{0}SUMMARY{0}".format(stars))
+                str = ''
+                if not (self.parsed.dry_run):
+                    str = ' and were updated'
+                print("Of those, the following {0} sentences still exist{1}:\n{2}".format(
+                        num_existing_sentences, str, sorted(list(existing_sentences))))
+        cursor.close()
+        return (num_missing_files, num_missing_ids)
+ 
+    def process(self):
+        total_missing_files = 0
+        total_missing_ids = 0
+        print("self.parsed.base_mp3_dir: " + "{0}".format(self.parsed.base_mp3_dir))
+        lang_dirs = os.listdir(self.parsed.base_mp3_dir)
+        for lang_dir in lang_dirs:
+            if os.path.isdir(os.path.join(self.parsed.base_mp3_dir, lang_dir)):
+                (num_missing_files, num_missing_ids) = self.process_lang(lang_dir)
+                total_missing_files += num_missing_files
+                total_missing_ids += num_missing_ids
+            else:
+                print('not a dir: {0}'.format(lang_dir))
+                continue
+        print("{0}SUMMARY{0}".format(AudioMismatchFinder.stars))
         print("Total sentences missing audio files: {0}".format(total_missing_files))
         print("Total sentences with audio files but not marked as having audio: {0}".format(total_missing_ids))
               
