@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "POT-Creation-Date: 2014-11-28 09:53+0100\n"
-"PO-Revision-Date: 2014-11-28 08:20+0000\n"
-"Last-Translator: Trang Ho\n"
+"PO-Revision-Date: 2014-11-29 07:47+0000\n"
+"Last-Translator: Darcy Shen <sadhen1992@gmail.com>\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/tatoeba_website/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -333,11 +333,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L76
 msgid "<li><a href=\"%s\">%s</a> - The sentence needs to be changed.</li>"
-msgstr ""
+msgstr "<li><a href=\"%s\">%s</a> - 这个句子需要修改。</li>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L77
 msgid "<li><a href=\"%s\">%s</a> - The sentence needs to be checked.</li>"
-msgstr ""
+msgstr "<li><a href=\"%s\">%s</a> - 这个句子需要检查。</li>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L78
 msgid ""
@@ -353,13 +353,13 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L86
 msgid "How to help"
-msgstr ""
+msgstr "如何帮助"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L88
 msgid ""
 "<li>You need to be an <a href=\"%s\">advanced contributor</a>; otherwise you"
 " will not be able to tag sentences.</li>"
-msgstr ""
+msgstr "<li>你需要成为<a href=\"%s\">高级贡献者</a>，否则你无法给句子打标签</li>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L91
 msgid ""
@@ -2098,7 +2098,7 @@ msgstr "所有列表"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L23
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L28
 msgid " - Tatoeba"
-msgstr ""
+msgstr "- Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L52
 msgid "Reply"
@@ -2251,7 +2251,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L94
 msgid "No language matches"
-msgstr ""
+msgstr "没有匹配的语言"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L47
 msgid ""
@@ -2468,19 +2468,19 @@ msgstr "选项与结构"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L93
 msgid "File description"
-msgstr ""
+msgstr "文件描述"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L94
 msgid "Sentence id"
-msgstr ""
+msgstr "句子编号"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L95
 msgid "Text"
-msgstr ""
+msgstr "文本"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L96
 msgid "Lang"
-msgstr ""
+msgstr "语言"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L81

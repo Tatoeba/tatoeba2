@@ -52,6 +52,8 @@ class AudioMismatchFinder(PythonMySQLConnector):
         missing_ids = sorted(list(basenames - sent_ids))
         num_missing_files = len(missing_files)
         num_missing_ids = len(missing_ids)
+        num_existing_sentences = 0
+        num_skipped_sentences = 0
         if (num_missing_files > 0):
             print("These {0} sentences are marked as having audio, but do not have audio files:\n{1}".format(
                     num_missing_files, missing_files))
@@ -59,52 +61,65 @@ class AudioMismatchFinder(PythonMySQLConnector):
             print("These {0} sentences have audio files, but are not marked as having audio:\n{1}".format(
                     num_missing_ids, missing_ids))
             existing_sentences = set([])
+            skipped_sentences = set([])
             for missing_id in missing_ids:
                 stmt = "SELECT id FROM sentences WHERE id='{0}';".format(missing_id)
                 cursor.execute(stmt)
                 length = len([item[0] for item in cursor])
                 if (length > 0):
-                    existing_sentences.add(missing_id)
                     stmt = "SELECT lang FROM sentences WHERE id='{0}';".format(
                         missing_id)
                     cursor.execute(stmt)
-                    sent_lang = cursor[0][0]
+                    sent_lang = cursor.next()[0]
                     if (sent_lang != lang_dir):
+                        skipped_sentences.add(missing_id)
                         print("WARNING: skipping sentence {0}; lang ({1}) does not match dir ({2})".format(
                                 missing_id, sent_lang, lang_dir))
                     else:
+                        existing_sentences.add(missing_id)
                         stmt = "UPDATE sentences SET hasaudio = 'shtooka' WHERE id='{0}';".format(
                             missing_id)
                         if self.parsed.dry_run:
                             print("Statement would be: {0}".format(stmt))
                         else:
+                            #print("Executing statement: {0}".format(stmt))
                             cursor.execute(stmt)
             num_existing_sentences = len(existing_sentences)
+            num_skipped_sentences = len(skipped_sentences)
             if (num_existing_sentences > 0):
                 str = ''
                 if not (self.parsed.dry_run):
                     str = ' and were updated'
                 print("Of those, the following {0} sentences still exist{1}:\n{2}".format(
                         num_existing_sentences, str, sorted(list(existing_sentences))))
+            if (num_skipped_sentences > 0):
+                print("The following {0} sentences were skipped:\n{1}".format(
+                        num_skipped_sentences, sorted(list(skipped_sentences))))
+        self.cnx.commit()        
         cursor.close()
-        return (num_missing_files, num_missing_ids)
+        return (num_missing_files, num_missing_ids, num_existing_sentences, num_skipped_sentences)
  
     def process(self):
         total_missing_files = 0
         total_missing_ids = 0
+        total_existing_sentences = 0
+        total_skipped_sentences = 0
         print("self.parsed.base_mp3_dir: " + "{0}".format(self.parsed.base_mp3_dir))
         lang_dirs = os.listdir(self.parsed.base_mp3_dir)
         for lang_dir in lang_dirs:
             if os.path.isdir(os.path.join(self.parsed.base_mp3_dir, lang_dir)):
-                (num_missing_files, num_missing_ids) = self.process_lang(lang_dir)
+                (num_missing_files, num_missing_ids, num_existing_sentences, num_skipped_sentences) = self.process_lang(lang_dir)
                 total_missing_files += num_missing_files
                 total_missing_ids += num_missing_ids
+                total_existing_sentences += num_existing_sentences
+                total_skipped_sentences += num_skipped_sentences
             else:
                 print('not a dir: {0}'.format(lang_dir))
                 continue
         print("{0}SUMMARY{0}".format(AudioMismatchFinder.stars))
         print("Total sentences missing audio files: {0}".format(total_missing_files))
         print("Total sentences with audio files but not marked as having audio: {0}".format(total_missing_ids))
+        print("Total sentences skipped due to language mismatch: {0}".format(total_skipped_sentences))
               
 if __name__ == "__main__":
     user = 'root'
