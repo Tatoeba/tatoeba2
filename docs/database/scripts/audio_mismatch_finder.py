@@ -39,6 +39,7 @@ class AudioMismatchFinder(PythonMySQLConnector):
             help='3-letter code of language to check (default: check all languages)')
         self.parser.add_argument('--exclude_langs', default='',
             help='comma-separated string of 3-letter codes of languages to exclude (default: none)')
+        self.parser.add_argument('--count', default=False, action='store_true', help='Use this to count sentences processed (for debugging)')
 
     def process_args(self, argv):
         PythonMySQLConnector.process_args(self, argv)
@@ -55,13 +56,14 @@ class AudioMismatchFinder(PythonMySQLConnector):
         cursor.execute(stmt)
         sent_id_list = []
         count = 1
-        # TODO: Once we've figured out why the script is dying in deu, fra, and spa,
-        # remove this block and uncomment the line after it.
-        for item in cursor:
-            print('item: {0}; count: {1}'.format(item[0], count))
-            sent_id_list.append(item[0])
-            count += 1
-        #sent_id_list = [item[0] for item in cursor]
+        if self.parsed.count:
+            # List the sentences processed so far. Useful for debugging.
+            for item in cursor:
+                print('item: {0}; count: {1}'.format(item[0], count))
+                sent_id_list.append(item[0])
+                count += 1
+        else:
+            sent_id_list = [item[0] for item in cursor]
         sent_ids = frozenset(sent_id_list)
         missing_files = sorted(list(sent_ids - basenames))
         missing_ids = sorted(list(basenames - sent_ids))
