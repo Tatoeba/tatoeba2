@@ -31,7 +31,7 @@
 <p>
 <?php 
 echo sprintf(
-    __('Users who participated in the last %s contributions.', true),
+    __n('User who did the last contribution.','Users who participated in the last %s contributions.', $total, true),
     $total
 );
 ?>
@@ -91,11 +91,17 @@ foreach($currentContributors as $i=>$currentContributor){
         
         <div class="score">
             <?php
-            echo ' #'. ($i + 1);
-            echo ' - ';
-            echo sprintf(__("%s sentences", true), $numberOfContributions);
-            echo ' - ';
-            echo $percentage.'%';
+            echo format(
+                __n(
+                    '#{rank} - {n} sentence - {percentage}%',
+                    '#{rank} - {n} sentences - {percentage}%',
+                    $numberOfContributions, true),
+                array(
+                    'rank' => $i + 1,
+                    'n' => $numberOfContributions,
+                    'percentage' => $percentage
+                )
+            );
             ?>
         </div>
     </div>

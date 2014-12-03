@@ -32,10 +32,10 @@ if ($results == null) {
         $username
     );
 } else if (!empty($lang)) {
-    $title = sprintf(
-        __('Translate %1$s sentences that belong to %2$s', true),
-        $languages->codeToName($lang),
-        $username
+    $title = format(
+        __('Translate {language} sentences that belong to {user}', true),
+        array('language' => $languages->codeToNameToFormat($lang),
+              'user'     => $username)
     );
 } else {
     $title = sprintf(
@@ -60,19 +60,9 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 <div id="main_content">    
     
     <div class="module">
-    <h2>
     <?php 
-    echo $title; 
-    echo ' ';
-    echo $paginator->counter(
-        array(
-            'format' => __('(%count% results)', true)
-        )
-    ); 
-    ?>
-    </h2>
-    
-    <?php
+    echo $this->Pages->formatTitleWithResultCount($paginator, $title);
+
     if ($results != null) {
         $paginationUrl = array(
             $username,

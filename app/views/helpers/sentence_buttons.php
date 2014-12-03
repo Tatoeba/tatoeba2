@@ -325,7 +325,7 @@ class SentenceButtonsHelper extends AppHelper
                 $lang,
                 array(
                     "class"=>"language-selector", 
-                    "title"=> $this->Languages->codeToName($lang),
+                    "title"=> $this->Languages->codeToNameAlone($lang),
                     "empty" => false
                 ),
                 false

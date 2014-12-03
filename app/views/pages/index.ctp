@@ -59,18 +59,19 @@ $selectedLanguage = $session->read('random_lang_selected');
         <p>
             <?php
             echo sprintf(
-                __('%s contributions today', true),
+                __n('One contribution today', '%s contributions today', $nbrContributions, true),
                 $nbrContributions
             );
             echo "<br />";
             echo sprintf(
-                __('%s members so far', true),
+                __n('One member so far', '%s members so far', $nbrActiveMembers, true),
                 $nbrActiveMembers
             );
             echo "<br />";
+            $nbrLanguages = $languages->getNumberOfLanguages();
             echo sprintf(
-                __('%s supported languages', true),
-                $languages->getNumberOfLanguages()
+                __n('One supported language', '%s supported languages', $nbrLanguages, true),
+                $nbrLanguages
             );
             ?>
         </p>

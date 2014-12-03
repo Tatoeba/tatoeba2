@@ -45,60 +45,6 @@ class ListsHelper extends AppHelper
     );
 
     /**
-     * Display item of a list of lists.
-     *
-     * @param int     $listId          Id of the list to display.
-     * @param string  $listName        Name of the list.
-     * @param string  $listCreatorName Name of the list's creator.
-     * @param boolean $isPublic        If the list is public or not.
-     * @param int     $count           Number of sentences in the list.
-     *
-     * @todo delete, not used anywhere
-     * 
-     * @return void
-     */
-    public function displayItem(
-        $listId,
-        $listName,
-        $listCreatorName,
-        $isPublic,
-        $count = 0
-    ) {
-        echo '<li>';
-        echo '<span id="_'.$listId.'" class="listName">';
-        $name = '('.__('unnamed list', true).')';
-        if (trim($listName) != '') {
-            $name = $listName;
-        }
-        echo $this->Html->link(
-            $name,
-            array(
-                "controller" => "sentences_lists",
-                "action" => "edit",
-                $listId
-            )
-        );
-        echo '</span><span class="listInfo"> - ';
-        echo sprintf(
-            __('created by <a href="%s">%s</a>', true),
-            $this->Html->url(
-                array(
-                    "controller"=>"user",
-                    "action"=>"profile",
-                    $listCreatorName
-                )
-            ),
-            $listCreatorName
-        );
-        if ($isPublic) {
-            echo ' <span class="publicList">'.__('(public list)', true) .'</span>';
-        }
-        echo '</span>';
-        echo '</li>';
-    }
-
-
-    /**
      * display an array of lists in an HTML table
      *
      * @param array $arrayOfLists Terrible array of lists with array of array in it
@@ -155,7 +101,9 @@ class ListsHelper extends AppHelper
         <td class="nameAndCreator">
             <div class="name">
             <?php
-            $name = '('.__('unnamed list', true).')';
+            /* @translators: string used as a placeholder for
+               the name of a list when it happens to be empty */
+            $name = __('(unnamed list)', true);
             if (trim($listName) != '') {
                 $name = $listName;
             }
@@ -181,6 +129,7 @@ class ListsHelper extends AppHelper
                     $listCreatorName
                 )
             );
+            /* @translators: shows who created a list */
             echo sprintf(__('created by %s', true), $link);
             ?>
             </div>

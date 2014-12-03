@@ -35,8 +35,9 @@ if ($folder == 'Inbox') {
 }
 
 $this->set('title_for_layout', $pages->formatTitle(
-    __('Private messages', true)
-    . ' - ' . $folderName
+    /* @translators: this is used as a title. The folderName can be
+       whatever you translated "Inbox", "Sent" or "Trash" as. */
+    format(__('Private messages - {folderName}', true), $folderName)
 ));
 
 echo $this->element('pmmenu');
@@ -45,13 +46,11 @@ echo $this->element('pmmenu');
     <div class="module pm_module">
         <h2>
             <?php 
-            echo $folderName;
-            echo ' ';
-            echo $paginator->counter(
-                array(
-                    'format' => __('(total %count%)', true)
-                )
-            ); 
+            $n = $paginator->counter(array('format' => '%count%'));
+            echo format(__n('{folderName} ({n}&nbsp;message)',
+                            '{folderName} ({n}&nbsp;messages)',
+                            $n, true),
+                        compact('folderName', 'n'));
             ?>
         </h2>
         
