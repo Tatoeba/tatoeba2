@@ -164,11 +164,11 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download list: ', true) .
     ?>
     </p>
     <p>
-    <span class="param"><em>sentence_id</em></span>
-    <span class="symbol"><em>[tab]</em></span>
-    <span class="param">sentence_text</span>
-    <span class="symbol"><em>[tab]</em></span>
-    <span class="param"><em>translation_text</em></span>
+    <span class="param"><em><?php __('Sentence id'); ?></em></span>
+    <span class="symbol"><em>[<?php __('tab'); ?>]</em></span>
+    <span class="param"><?php __('Text'); ?></span>
+    <span class="symbol"><em>[<?php __('tab'); ?>]</em></span>
+    <span class="param"><em><?php __('Translation'); ?></em></span>
     </p>
     
     <p>
