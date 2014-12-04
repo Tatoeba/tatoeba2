@@ -21,6 +21,7 @@ import mysql.connector
 import glob
 import os
 import sys
+import time # for sleep
 from python_mysql_connector import PythonMySQLConnector
 
 class AudioMismatchFinder(PythonMySQLConnector):
@@ -39,8 +40,10 @@ class AudioMismatchFinder(PythonMySQLConnector):
             help='3-letter code of language to check (default: check all languages)')
         self.parser.add_argument('--exclude_langs', default='',
             help='comma-separated string of 3-letter codes of languages to exclude (default: none)')
-        self.parser.add_argument('--count', default=False, action='store_true', help='Use this to count sentences processed (for debugging)')
-
+        self.parser.add_argument('--sleep', default=False, action='store_true', help='sleep between row fetches (prevents interface errors)')
+        self.parser.add_argument('--archive_mp3_dir', default='./archived',
+            help='base directory where (possibly bad) mp3 files are archived (e.g., "/home/tatoeba/audio/archived")')
+        
     def process_args(self, argv):
         PythonMySQLConnector.process_args(self, argv)
         self.excluded_lang_set = set(self.parsed.exclude_langs.split(','))
@@ -54,19 +57,24 @@ class AudioMismatchFinder(PythonMySQLConnector):
         stmt = "SELECT id FROM sentences WHERE lang='{0}' and hasaudio='shtooka';".format(
             lang_dir)
         cursor.execute(stmt)
-        sent_id_list = []
+        sent_w_audio_id_list = []
         count = 1
-        if self.parsed.count:
+        if self.parsed.sleep:
             # List the sentences processed so far. Useful for debugging.
             for item in cursor:
-                print('item: {0}; count: {1}'.format(item[0], count))
-                sent_id_list.append(item[0])
+                # print('item: {0}; count: {1}'.format(item[0], count))
+                sent_w_audio_id_list.append(item[0])
                 count += 1
+                # The sleep() call is required to prevent this error from occurring 
+                #     for some langs:
+                # mysql.connector.errors.InterfaceError: 2013: Lost connection 
+                #     to MySQL server during query
+                time.sleep(0.000001) 
         else:
-            sent_id_list = [item[0] for item in cursor]
-        sent_ids = frozenset(sent_id_list)
-        missing_files = sorted(list(sent_ids - basenames))
-        missing_ids = sorted(list(basenames - sent_ids))
+            sent_w_audio_id_list = [item[0] for item in cursor]
+        sent_w_audio_ids = frozenset(sent_w_audio_id_list)
+        missing_files = sorted(list(sent_w_audio_ids - basenames))
+        missing_ids = sorted(list(basenames - sent_w_audio_ids))
         num_missing_files = len(missing_files)
         num_missing_ids = len(missing_ids)
         num_existing_sentences = 0
@@ -120,15 +128,34 @@ class AudioMismatchFinder(PythonMySQLConnector):
                 print("The following {0} sentences were skipped:\n{1}".format(
                         num_skipped_sentences, skipped_sentence_ids))
                 print("Consider issuing these commands:")
+                archive_dir = os.path.join(self.parsed.archive_mp3_dir, lang_dir)
+                if not os.path.isdir(archive_dir):
+                    os.makedirs(archive_dir)
                 for sent_id in skipped_sentence_ids:
-                    line = 'mv {0} {1}'.format(
-                                        os.path.join(self.parsed.base_mp3_dir,
+                    src_file = os.path.join(self.parsed.base_mp3_dir,
                                                      lang_dir,
-                                                     '{0}.mp3'.format(sent_id)),
-                                        os.path.join(self.parsed.base_mp3_dir,
+                                                     '{0}.mp3'.format(sent_id))
+                    tgt_file = os.path.join(self.parsed.base_mp3_dir,
                                                      skipped_sentences[sent_id],
-                                                     '{0}.mp3'.format(sent_id)))
-                    print(line)
+                                                     '{0}.mp3'.format(sent_id))
+                    archive_file = os.path.join(archive_dir,
+                                                     '{0}.mp3'.format(sent_id))
+                    if os.path.isfile(tgt_file):
+                        src_size = os.path.getsize(src_file)
+                        tgt_size = os.path.getsize(tgt_file)
+                        if (src_size == tgt_size):
+                            # Assume these are identical copies and remove the
+                            # one that's in the wrong directory.
+                            line = 'rm {0}'.format(src_file)
+                            print(line)
+                        else:
+                            # Get rid of the one in the wrong directory (move it
+                            # to the archive).
+                            line = 'mv {0} {1}'.format(src_file, archive_file)
+                            print(line)
+                    else:
+                        line = 'mv {0} {1}'.format(src_file, tgt_file)
+                        print(line)
         self.cnx.commit()        
         cursor.close()
         return (num_missing_files, num_missing_ids, num_existing_sentences, num_skipped_sentences)
@@ -138,7 +165,6 @@ class AudioMismatchFinder(PythonMySQLConnector):
         total_missing_ids = 0
         total_existing_sentences = 0
         total_skipped_sentences = 0
-        print("self.parsed.base_mp3_dir: " + "{0}".format(self.parsed.base_mp3_dir))
         if (self.parsed.lang == ""):
             lang_dirs = os.listdir(self.parsed.base_mp3_dir)
         else:
