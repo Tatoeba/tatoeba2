@@ -115,10 +115,10 @@ class TagsController extends AppController
         if (!$this->Tag->addTag($tagName, $userId, $sentenceId)) {
             $infoMessage = format(
                 __(
-                    "Tag '{tagName}' already exists for sentence #{sentenceId}, or cannot be added",
+                    "Tag '{tagName}' already exists for sentence #{number}, or cannot be added",
                     true
                 ),
-                compact('tagName', 'sentenceId')
+                array('tagName' => $tagName, 'number' => $sentenceId)
             );
             $this->Session->setFlash($infoMessage);
         }

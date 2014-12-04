@@ -52,15 +52,17 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         
         <p>
         <?php
-        echo sprintf(
+        echo format(
             __(
                 'So if you want to help us check and correct sentences, then adopt '.
-                '(%s) any "orphan" sentence you see in your <strong>native '.
+                '({adoptButton}) any "orphan" sentence you see in your <strong>native '.
                 'language</strong>, and correct it if necessary. '.
-                'Read <a href="%s">this</a> for further explanation.', true
+                'Read <a href="{url}">this</a> for further explanation.', true
             ),
-            $html->image('adopt.png'),
-            'http://blog.tatoeba.org/2010/04/reliability-of-sentences-how-will-we.html'
+            array(
+                'adoptButton' => $html->image('adopt.png'),
+                'url' => 'http://blog.tatoeba.org/2010/04/reliability-of-sentences-how-will-we.html'
+            )
         )
         ?>
         </p>

@@ -47,12 +47,12 @@ if (!isset($lastText)) {
         <h2><?php __('Credits'); ?></h2>
         <p>
             <?php
-            echo sprintf(
+            echo format(
                 __(
-                    "We really want to thank <a href='%s'>Kellen Parker</a> ".
+                    "We really want to thank <a href='{0}'>Kellen Parker</a> ".
                     "who has provided us with much more complete data files. If ".
                     "you're interested in his work, you can check his project ".
-                    "page <a href='%s'>here</a>. Without him, the Shanghainese ".
+                    "page <a href='{1}'>here</a>. Without him, the Shanghainese ".
                     "sentences wouldn't have such a complete IPA.",
                     true
                 ),

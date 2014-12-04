@@ -33,7 +33,8 @@ if (isset($this->params['lang'])) {
 <div id="footer">
 <ul>
     <li>
-        <?php printf(__n('One visitor online', '%d visitors online', $onlineVisitors, true), $onlineVisitors); ?>
+        <?php echo format(__n('One visitor online', '{n}&nbsp;visitors online', $onlineVisitors, true),
+                          array('n' => $onlineVisitors)); ?>
     </li>
     <li>
         <?php

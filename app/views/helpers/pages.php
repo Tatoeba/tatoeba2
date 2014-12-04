@@ -29,7 +29,7 @@ class PagesHelper extends AppHelper
            that shows a list of sentences (search, browse by language,
            adopt sentences…) by appending the number of results. Note
            the use of &nbsp; which is a non-breaking space. */
-        $title = format(__n('{title} ({n}&nbsp;result)',
+        $title = format(__n('{title} (one result)',
                             '{title} ({n}&nbsp;results)',
                             $n, true),
                         compact('title', 'n')

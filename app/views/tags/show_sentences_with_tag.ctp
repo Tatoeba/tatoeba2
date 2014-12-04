@@ -27,7 +27,7 @@
 
 if ($tagExists) {
     $tagName = Sanitize::html($tagName);
-    $title = sprintf(__('Sentences with tag %s', true), $tagName);
+    $title = format(__('Sentences with tag {tagName}', true), compact('tagName'));
     ?>
 
     <div id="annexe_content">
@@ -81,7 +81,7 @@ if ($tagExists) {
     </div>
     <?php
 } else {
-    $title = sprintf(__('No tag with id %s', true), $tagId);
+    $title = format(__('No tag with id {tagId}', true), compact('tagId'));
     ?>
     <div id="main_content">
         <?php

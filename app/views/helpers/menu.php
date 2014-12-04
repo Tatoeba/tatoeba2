@@ -528,7 +528,7 @@ class MenuHelper extends AppHelper
                 $ownerName
             )
         );
-        echo sprintf(__('belongs to %s', true), $userLink);
+        echo format(__('belongs to {user}', true), array('user' => $userLink));
         echo '</li>';
     }
 

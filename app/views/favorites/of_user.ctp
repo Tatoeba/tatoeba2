@@ -26,7 +26,7 @@
  */
 
 $username = Sanitize::paranoid($username, array("_"));
-$title = sprintf(__("%s's favorite sentences", true), $username); 
+$title = format(__("{user}'s favorite sentences", true), array('user' => $username));
 $this->set('title_for_layout', $pages->formatTitle($title));
 $numberOfSentences = count($favorites);
 ?>

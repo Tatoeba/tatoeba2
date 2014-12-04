@@ -36,7 +36,7 @@
  */
 $userName = Sanitize::paranoid($userName, array("_"));
 $this->set('title_for_layout', $pages->formatTitle(
-    sprintf(__("%s's comments", true), $userName)
+    format(__("{user}'s comments", true), array('user' => $userName))
 ));
 
 // create an helper a lot of the code is the same of "on_sentences_of_user"
@@ -57,9 +57,9 @@ $this->set('title_for_layout', $pages->formatTitle(
         $commonModules->displayNoSuchUser($userName, $backLink);
     } elseif ($noComment === true) {
         echo '<h2>';
-        echo sprintf(
-            __("%s has posted no comment", true),
-            $userName
+        echo format(
+            __("{user} has posted no comment", true),
+            array('user' => $userName)
         );
         echo '</h2>';
 

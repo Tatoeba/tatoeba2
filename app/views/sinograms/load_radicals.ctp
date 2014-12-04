@@ -30,7 +30,8 @@ $titles = array();
 if ($numberOfStrokes == "10+") {
     $title = __('10 or more strokes', true);
 } else {
-    $title = sprintf(__n('1 stroke','%s strokes', $numberOfStrokes, true), $numberOfStrokes);
+    $title = format(__n('1 stroke', '{n}&nbsp;strokes', $numberOfStrokes, true),
+                    array('n' => $numberOfStrokes));
 }
 
 echo '<h3>'.$title.'</h3>'."\n"  ;

@@ -70,11 +70,11 @@ class LinksController extends AppController
         if ($saved) {
             $flashMessage = format(
                 __(
-                    'Sentences #{0} and #{1} are now '.
+                    'Sentences #{firstNumber} and #{secondNumber} are now '.
                     'direct translations of each other.',
                     true
                 ),
-                $sentenceId, $translationId
+                array('firstNumber' => $sentenceId, 'secondNumber' => $translationId)
             );
         } else {
             $flashMessage = __(
@@ -114,11 +114,11 @@ class LinksController extends AppController
         if ($saved) {
             $flashMessage = format(
                 __(
-                    'Sentences #{0} and #{1} are no longer '.
+                    'Sentences #{firstNumber} and #{secondNumber} are no longer '.
                     'direct translations of each other.',
                     true
                 ),
-                $sentenceId, $translationId
+                array('firstNumber' => $sentenceId, 'secondNumber' => $translationId)
             );
         } else {
             $flashMessage = __(

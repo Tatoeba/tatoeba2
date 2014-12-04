@@ -28,10 +28,10 @@
 <?php
 if ($sentenceFound == false) {
     echo '<div id="noExampleFound" >' ;
-    echo sprintf(
+    echo format(
         __(
             'No sentence using this character has been found,'.
-            ' you can add one <a href="%s">here</a>.',
+            ' you can add one <a href="{}">here</a>.',
             true
         ),
         "/pages/contribute"
@@ -66,9 +66,9 @@ if ($sentenceFound == false) {
     </div>
     <p>
         <?php
-        echo sprintf(
+        echo format(
             __(
-                'View all sentences using this character <a href="%s">here</a>',
+                'View all sentences using this character <a href="{}">here</a>',
                 true
             ),
             "/sentences/search?query=".$sinogram

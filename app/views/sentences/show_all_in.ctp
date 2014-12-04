@@ -36,8 +36,8 @@ if (!empty($notTranslatedInto) && $notTranslatedInto != 'none') {
         $notTranslatedIntoName = $languages->codeToNameToFormat($notTranslatedInto);
     }
     $title = format(
-        __('Sentences in {sentLanguage} not translated into {targLanguage}', true),
-        array('sentLanguage' => $languageName, 'targLanguage' => $notTranslatedIntoName)
+        __('Sentences in {language} not translated into {translationLanguage}', true),
+        array('language' => $languageName, 'translationLanguage' => $notTranslatedIntoName)
     );
 }
 

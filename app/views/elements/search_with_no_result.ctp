@@ -30,7 +30,7 @@ $query = Sanitize::html($query);
 
 <div class="module">
     <h2>
-    <?php echo sprintf(__('Add a sentence containing %s', true), $query); ?>
+    <?php echo format(__('Add a sentence containing {keywords}', true), array('keywords' => $query)); ?>
     </h2>
 
     <p>
@@ -47,9 +47,9 @@ $query = Sanitize::html($query);
         ?>
         <p>
         <?php
-        echo sprintf(
+        echo format(
             __(
-                'Feel free to <a href="%s">submit a sentence</a> '.
+                'Feel free to <a href="{}">submit a sentence</a> '.
                 'with the words you were searching.', true
             ),
             $html->url(array('controller' => 'sentences', 'action' => 'add'))

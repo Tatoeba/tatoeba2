@@ -30,8 +30,8 @@
 <?php 
 __('Your session has expired.');
 echo ' ';
-echo sprintf(
-    __('Please <a href="%s">click here</a> to log in again.', true),
+echo format(
+    __('Please <a href="{}">click here</a> to log in again.', true),
     $html->url(array('controller' => 'users', 'action' => 'login'))
 );
 ?>

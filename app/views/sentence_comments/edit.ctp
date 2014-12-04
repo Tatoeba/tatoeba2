@@ -43,9 +43,9 @@ $this->set('title_for_layout', $pages->formatTitle(__('Edit Comment', true)));
 <div class="module">
     <?php
     echo '<h2>';
-    echo sprintf(
-        __('Edit Comment on Sentence #%s', true),
-        $sentenceComment['SentenceComment']['sentence_id']
+    echo format(
+        __('Edit Comment on Sentence #{number}', true),
+        array('number' => $sentenceComment['SentenceComment']['sentence_id'])
     );
     echo '</h2>';
     ?>

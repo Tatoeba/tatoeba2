@@ -37,7 +37,7 @@
 $rootMessageId = $message['Wall']['id'];
 
 $this->set('title_for_layout', $pages->formatTitle(
-    sprintf(__('Thread #%s', true), $rootMessageId)
+    format(__('Thread #{number}', true), array('number' => $rootMessageId))
 ));
 
 $javascript->link('jquery.scrollTo-min.js', false);

@@ -244,7 +244,7 @@ class NavigationHelper extends AppHelper
         ) {
             echo '<li class="option">';
             echo $this->Html->link(
-                sprintf(__('Profile of %s', true), $username),
+                format(__('Profile of {user}', true), array('user' => $username)),
                 array(
                     'controller' => 'user',
                     'action' => 'profile',

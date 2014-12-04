@@ -60,10 +60,10 @@ $javascript->link('wall.reply.js', false);
         
         <p>
         <?php
-        echo sprintf(
+        echo format(
             __(
                 'Before asking a question, '.
-                'make sure to read the <a href="%s">FAQ</a>.', true
+                'make sure to read the <a href="{}">FAQ</a>.', true
             ),
             $html->url(array('controller' => 'pages', 'action' => 'faq'))
         );
@@ -81,19 +81,18 @@ $javascript->link('wall.reply.js', false);
                 $currentMessage = $tenLastMessages[$i] ;
                 echo '<li>';
                 // text of the link
-                $author = sprintf(
-                    __('by %s', true), $currentMessage['User']['username']
-                );
-                $text = $date->ago($currentMessage['Wall']['date'])
-                        . ", "
-                        . $author;
+                $text = format(__('{date}, by {author}', true),
+                               array(
+                                   'date' => $date->ago($currentMessage['Wall']['date']),
+                                   'author' => $currentMessage['User']['username']
+                               ));
                 
                 $path = array(
                     'controller' => 'wall',
                     'action' => 'index#message_'.$currentMessage['Wall']['id']
                     );
                 // link
-                echo $html->link($text, $path);
+                echo $html->link($text, $path, array('escape' => false));
                 echo '</li>';
             };
             ?>
@@ -123,7 +122,8 @@ $javascript->link('wall.reply.js', false);
         <h2>
             <?php
             $threadsCount = $paginator->counter(array('format' => '%count%'));
-            printf(__n('Wall (one thread)', 'Wall (%s threads)', $threadsCount, true), $threadsCount);
+            echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount, true),
+                        array('n' => $threadsCount));
             ?>
         </h2>
         

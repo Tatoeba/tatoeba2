@@ -39,14 +39,14 @@ if ($userExists === true) {
     );
 
     if (empty($lang)) {
-        $title = sprintf(__("%s's sentences", true), $userName);
+        $title = format(__("{user}'s sentences", true), array('user' => $userName));
     } else {
         $languageName = $languages->codeToNameToFormat($lang);
         $title = format(__('{user}\'s sentences in {language}', true),
                         array('user' => $userName, 'language' => $languageName));
     }
 } else {
-    $title = sprintf(__("There's no user called %s", true), $userName);
+    $title = format(__("There's no user called {username}", true), array('username' => $userName));
 }
 
 $this->set('title_for_layout', $pages->formatTitle($title));
@@ -95,9 +95,9 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                 array('user' => $userName, 'language' => $langName)
             );
         } else {
-            echo sprintf(
-                __("%s does not have any sentence", true),
-                $userName
+            echo format(
+                __("{user} does not have any sentence", true),
+                array('user' => $userName)
             );
         }
         echo '</h2>';

@@ -85,7 +85,7 @@
     <li class="item">
     <?php
     echo $html->link(
-        sprintf(__("Comments on %s's sentences", true), $username),
+        format(__("Comments on {user}'s sentences", true), array('user' => $username)),
         array(
             'controller' => 'sentence_comments',
             'action' => 'on_sentences_of_user',
@@ -128,7 +128,7 @@
         <div class="contactLink">
         <?php
         echo $html->link(
-            sprintf(__('Contact %s', true), $username),
+            format(__('Contact {user}', true), array('user' => $username)),
             array(
                 'controller' => 'private_messages',
                 'action' => 'write',

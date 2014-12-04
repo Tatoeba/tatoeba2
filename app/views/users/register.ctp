@@ -144,8 +144,8 @@ __('For instance, if your email address is a.b.cd@example.com, type a.b.c into t
 <?php
 $lang = $this->params['lang'];
 echo $form->checkbox('acceptation_terms_of_use'); echo ' ';
-echo sprintf(
-    __('I accept the <a href="%s">terms of use</a>',true), 
+echo format(
+    __('I accept the <a href="{}">terms of use</a>',true), 
     $html->url(array("controller"=>"pages", "action"=>"terms_of_use#$lang"))
 );
 ?>

@@ -27,9 +27,9 @@
 $username = Sanitize::paranoid($username, array("_"));
 
 if ($results == null) {
-    $title = sprintf(
-        __("This user doesn't exist: %s", true),
-        $username
+    $title = format(
+        __("This user doesn't exist: {username}", true),
+        array('username' => $username)
     );
 } else if (!empty($lang)) {
     $title = format(
@@ -38,9 +38,9 @@ if ($results == null) {
               'user'     => $username)
     );
 } else {
-    $title = sprintf(
-        __('Translate sentences that belong to %s', true),
-        $username
+    $title = format(
+        __('Translate sentences that belong to {user}', true),
+        array('user' => $username)
     );
 }
 $this->set('title_for_layout', $pages->formatTitle($title));

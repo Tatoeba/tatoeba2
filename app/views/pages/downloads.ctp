@@ -44,9 +44,9 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
     </p>
     <p>
     <?php 
-        echo sprintf(__(
+        echo format(__(
                     'If you simply want sentences that you can use to learn a language, '.
-                    'check out the <a href="%s">sentence lists</a>. '.
+                    'check out the <a href="{}">sentence lists</a>. '.
                     'You can build your own, or view the ones that others have created. '. 
                     'The lists can be downloaded and printed.', true), 
                     $html->url(array("controller"=>"sentences_lists"))
@@ -65,21 +65,23 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
     <p>
     <?php 
         $explanation = "http://blog.tatoeba.org/2009/12/tatoeba-update-dec-12th-2009.html";
-        echo sprintf( __('For those who wonder why we\'re not leaving the data in the public '.
+        echo format(__('For those who wonder why we\'re not leaving the data in the public '.
               'domain, some explanation '.
-              '<a href="%s">here</a>.',
+              '<a href="{}">here</a>.',
               true), $explanation); 
     ?>
     <h2><?php __('Questions?'); ?></h2>
     <p>
     <?php
-        echo sprintf(
+        $firstSentence = format(
             __(
                'If you have questions or requests, feel free to '.
-               '<a href="%s">contact us</a>. ' , true),
+               '<a href="{}">contact us</a>.' , true),
                    $html->url(array("controller"=>"pages", "action"=>"contact"))
         );
-        __('In general, we answer quickly.'); 
+        $secondSentence = __('In general, we answer quickly.', true);
+        echo format(__('{firstSentence} {secondSentence}', true),
+                    compact('firstSentence', 'secondSentence'));
     ?>
     </p>
     </div>
@@ -155,9 +157,9 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
             <dd>
             <?php 
                 $iso_code_list = "http://en.wikipedia.org/wiki/List_of_ISO_639-3_codes";
-                echo sprintf(
+                echo format(
                     __('Contains all the sentences. Each sentence is associated with a '.
-                       'unique id and an <a href="%s">ISO 639-3</a> language code. ',
+                       'unique id and an <a href="{}">ISO 639-3</a> language code. ',
                        true), $iso_code_list); 
                 __('The first file (sentences.tar.bz2) contains this information alone. '.
                 'The second file (sentences_detailed.tar.bz2) contains additional fields '.
@@ -285,8 +287,8 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
                     'controller' => 'sentences_lists',
                     'action' => 'index'
                 ));
-                echo sprintf(__('Contains the list of <a href="%s">sentence lists</a>.', true), 
-                                    $list_url); 
+                echo format(__('Contains the list of <a href="{}">sentence lists</a>.', true), 
+                            $list_url);
                 ?>
             </dd>
         </dl>
@@ -316,9 +318,10 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
                         '<span class="param">381279</span> ',
                         $tab_str
                     );
-                    printf(__('Indicates the sentences that are contained by '.
-                        'any lists. %s means that sentence #381279 is contained '.
-                        'by the list that has an id of 13.', true), $sample_line);
+                    echo format(__('Indicates the sentences that are contained by '.
+                                   'any lists. {sampleListLine} means that sentence #381279 is contained '.
+                                   'by the list that has an id of 13.', true),
+                                array('sampleListLine' => $sample_line));
                 ?>
             </dd>
         </dl>
@@ -397,8 +400,8 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
         
         <p>
         <?php $tanaka_url2 = "http://www.edrdg.org/wiki/index.php/Tanaka_Corpus"; 
-        echo sprintf( __('Many of the Japanese and English sentences are from the '.
-                         '<a href="%s">Tanaka Corpus</a>, which belongs to the public domain.', true), $tanaka_url2); 
+        echo format( __('Many of the Japanese and English sentences are from the '.
+                        '<a href="{}">Tanaka Corpus</a>, which belongs to the public domain.', true), $tanaka_url2); 
         ?>
         </p>
     </div>

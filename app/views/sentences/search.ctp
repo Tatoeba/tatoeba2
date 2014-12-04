@@ -28,7 +28,7 @@
 $query = Sanitize::html($query);
 
 $this->set('title_for_layout', $pages->formatTitle(
-    sprintf(__('Sentences with: %s', true), $query)
+    format(__('Sentences with: {keywords}', true), array('keywords' => $query))
 ));
 ?>
 
@@ -50,10 +50,10 @@ if (!empty($results)) {
     ?>
     <div class="module">
         <?php 
-        $title = sprintf(
+        $title = format(
             /* @translators: title on the top of a search result page */
-            __('Search: %s', true),
-            sprintf('<span style="unicode-bidi: embed">%s</span>', $query)
+            __('Search: {keywords}', true),
+            array('keywords' => sprintf('<span style="unicode-bidi: embed">%s</span>', $query))
         );
         echo $this->Pages->formatTitleWithResultCount($paginator, $title);
         ?>

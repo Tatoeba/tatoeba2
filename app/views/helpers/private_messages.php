@@ -140,7 +140,7 @@ class PrivateMessagesHelper extends AppHelper
             "#\r?\n#iU", "\n> ",
             wordwrap($content, 60)
         );
-        return "\n" . sprintf(__('%s wrote:', true), $sender) . "\n> "
+        return "\n" . format(__('{sender} wrote:', true), compact('sender')) . "\n> "
             . $messNextRegExp;
     }
 }

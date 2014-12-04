@@ -26,7 +26,7 @@
  */
 $username = Sanitize::paranoid($username, array("_"));
 $this->set('title_for_layout', $pages->formatTitle(
-    sprintf(__("%s's Wall messages", true), $username)
+    format(__("{user}'s Wall messages", true), array('user' => $username))
 ));
 ?>
 

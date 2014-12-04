@@ -129,8 +129,8 @@ class ListsHelper extends AppHelper
                     $listCreatorName
                 )
             );
-            /* @translators: shows who created a list */
-            echo sprintf(__('created by %s', true), $link);
+            echo format(__('created by {listAuthor}', true),
+                        array('listAuthor' => $link));
             ?>
             </div>
         </td>
@@ -447,9 +447,9 @@ class ListsHelper extends AppHelper
         </script>
 
         <?php
-        $removeFromListAlt = sprintf(
-            __("Remove sentence %d from list", true),
-            $sentenceId
+        $removeFromListAlt = format(
+            __("Remove sentence {number} from list", true),
+            array('number' => $sentenceId)
         );
 
         echo $this->Html->image(
@@ -502,13 +502,19 @@ class ListsHelper extends AppHelper
 
         <p>
         <?php
-        echo sprintf(
+        echo format(
             __(
-                'NOTE : You can also add existing sentences with this icon %s '.
-                '(while <a href="%s">browsing</a> for instance).', true
+                'NOTE : You can also add existing sentences with this icon {addToListButton} '.
+                '(while <a href="{url}">browsing</a> for instance).', true
             ),
-            $this->Html->image(IMG_PATH . 'add_to_list.png'),
-            $this->Html->url(array("controller"=>"sentences", "action"=>"show", "random"))
+            array(
+                'addToListButton' => $this->Html->image(IMG_PATH . 'add_to_list.png'),
+                'url' => $this->Html->url(array(
+                    'controller' => 'sentences',
+                    'action' => 'show',
+                    'random'
+                ))
+            )
         );
         ?>
         </p>

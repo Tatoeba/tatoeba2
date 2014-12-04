@@ -74,10 +74,10 @@ echo $this->element('pmmenu');
              */
             if ($folder != 'Sent') {
                 $user = $msg['Sender'];
-                $label = sprintf(__('from %s', true), $user['username']);
+                $label = format(__('from {sender}', true), array('sender' => $user['username']));
             } else {
                 $user = $msg['Recipient'];
-                $label = sprintf(__('to %s', true), $user['username']);
+                $label = format(__('to {recipient}', true), array('recipient' => $user['username']));
             }
             echo '<td class="senderImage">';
             $messages->displayAvatar($user);

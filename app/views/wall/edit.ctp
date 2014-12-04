@@ -28,7 +28,7 @@
 $messageId = $message['Wall']['id'];
 
 $this->set('title_for_layout', $pages->formatTitle(
-    sprintf(__("Edit message %s", true), $messageId)
+    format(__("Edit message {number}", true), array('number' => $messageId))
 ));
 ?>
 <div id="annexe_content">

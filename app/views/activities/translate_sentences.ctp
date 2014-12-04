@@ -45,12 +45,12 @@ if (empty($notTranslatedInto)) {
         <h2><?php __("How to add a translation"); ?></h2>
         <p>
             <?php
-            echo sprintf(
+            echo format(
                 __(
-                    'Once the sentences are displayed, click on %s to add '.
+                    'Once the sentences are displayed, click on {translateButton} to add '.
                     'a translation.', true
                 ),
-                $html->image('translate.png')
+                array('translateButton' => $html->image('translate.png'))
             );
             ?>
         </p>

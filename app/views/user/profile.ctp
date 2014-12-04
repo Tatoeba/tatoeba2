@@ -84,7 +84,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         =>
         <?php
         echo $html->link(
-            sprintf(__("Show latest activity", true)),
+            __("Show latest activity", true),
             array(
                 'controller' => 'users',
                 'action' => 'show',

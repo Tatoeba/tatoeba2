@@ -188,10 +188,10 @@ class SentencesListsController extends AppController
                                   self::MAX_COUNT_FOR_DOWNLOAD, true);
             $firstSentence = format($firstSentence, array('n' => $count));
             $secondSentence = format($secondSentence, array('max' => self::MAX_COUNT_FOR_DOWNLOAD));
+            $ret['message'] = format(
             /* @translators: this string is used to concatenate two sentences.
                You typically want to change this to {firstSentence}{secondSentence}
                if your language don't use space as a word separator. */
-            $ret['message'] = format(
                 __('{firstSentence} {secondSentence}', true),
                 compact('firstSentence', 'secondSentence')
             );

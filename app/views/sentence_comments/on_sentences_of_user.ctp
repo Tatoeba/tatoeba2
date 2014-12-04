@@ -36,7 +36,7 @@
  */
 
 $this->set('title_for_layout', $pages->formatTitle(
-    sprintf(__("Comments on %s's sentences", true), $userName)
+    format(__("Comments on {user}'s sentences", true), array('user' => $userName))
 ));
 ?>
 <div id="annexe_content">
@@ -53,18 +53,18 @@ $this->set('title_for_layout', $pages->formatTitle(
     <?php
     if ($userExists === false) {
         echo '<h2>';
-        echo sprintf(
-            __("There's no user called %s", true),
-            $userName
+        echo format(
+            __("There's no user called {username}", true),
+            array('username' => $userName)
         );
         echo '</h2>';
 
         echo $html->link(__('Go back to previous page', true), $backLink);
     } elseif ($noComment === true) {
         echo '<h2>';
-        echo sprintf(
-            __("%s has no comment posted on his/her sentences", true),
-            $userName
+        echo format(
+            __("{user} has no comment posted on his/her sentences", true),
+            array('user' => $userName)
         );
         echo '</h2>';
 

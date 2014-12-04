@@ -124,13 +124,13 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download list: ', true) .
                     "escape" => false
                 )
             );
-            echo sprintf(
+            echo format(
                 __(
                     'If you select a language, the translation of each sentence into that language '.
                     '(if it exists) will be written to your output. '.
-                    'You can then import the file to produce a deck of flash cards, using the %s program.', true
-                ), 
-                $link
+                    'You can then import the file to produce a deck of flash cards, using the {Anki} program.', true
+                ),
+                array('Anki' => $link)
             );
             ?>
             </td>

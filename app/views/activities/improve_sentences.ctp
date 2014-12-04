@@ -78,16 +78,20 @@ $okURL = $html->url(
     $tagNNCLink    = sprintf('<a href="%s">%s</a>', $nncURL, $tagNeedsNativeCheckName);
     $tagOKLink     = sprintf('<a href="%s">%s</a>', $okURL, $tagOKName);
 
-    $str = sprintf(__('%s: the sentence needs to be changed.', true), $tagChangeLink);
+    $str = format(__('{tagChange}: the sentence needs to be changed.', true),
+                  array('tagChange' => $tagChangeLink));
     printf('<li>%s</li>', $str);
 
-    $str = sprintf(__('%s: the sentence needs to be checked.', true), $tagCheckLink);
+    $str = format(__('{tagCheck}: the sentence needs to be checked.', true),
+                  array('tagCheck' => $tagCheckLink));
     printf('<li>%s</li>', $str);
 
-    $str = sprintf(__('%s: the sentence needs to be checked by a native speaker.', true), $tagNNCLink);
+    $str = format(__('{tagNNC}: the sentence needs to be checked by a native speaker.', true),
+                  array('tagNNC' => $tagNNCLink));
     printf('<li>%s</li>', $str);
 
-    $str = sprintf(__('%s: the sentence is considered correct by at least one person.', true), $tagOKLink);
+    $str = format(__('{tagOK}: the sentence is considered correct by at least one person.', true),
+                  array('tagOK' => $tagOKLink));
     printf('<li>%s</li>', $str);
     ?>
     </ul>
@@ -97,24 +101,26 @@ $okURL = $html->url(
     <div class="module">
         <h2><?php __('How to help'); ?></h2>
     <ol><?php
-        $str = sprintf(__('You need to be an <a href="%s">advanced contributor</a>; '.
-                          'otherwise you will not be able to tag sentences.', true),
-                       "http://wiki.tatoeba.org/articles/show/faq");
+        $str = format(__('You need to be an <a href="{}">advanced contributor</a>; '.
+                         'otherwise you will not be able to tag sentences.', true),
+                      "http://wiki.tatoeba.org/articles/show/faq");
         printf('<li>%s</li>', $str);
 
-        $str = sprintf(__('Whenever you notice a sentence that is wrong or sounds strange, '.
-                          'add the tag %s and post a comment to suggest a '.
-                          'correction or better phrasing.', true), $tagChangeLink);
+        $str = format(__('Whenever you notice a sentence that is wrong or sounds strange, '.
+                         'add the tag {tagChange} and post a comment to suggest a '.
+                         'correction or better phrasing.', true),
+                      array('tagChange' => $tagChangeLink));
         printf('<li>%s</li>', $str);
 
-        $str = sprintf(__('Whenever you notice a possible mistake, add the tag %s '.
-                          'and post a comment explaining what you think the '.
-                          'mistake may be.', true), $tagCheckLink);
+        $str = format(__('Whenever you notice a possible mistake, add the tag {tagCheck} '.
+                         'and post a comment explaining what you think the '.
+                         'mistake may be.', true),
+                      array('tagCheck', $tagCheckLink));
         printf('<li>%s</li>', $str);
 
-        $str = sprintf(__('Whenever you add a sentence in a foreign language and are not '.
-                          'completely sure that it is correct, add the tag %s.', true),
-                       $tagNNCLink);
+        $str = format(__('Whenever you add a sentence in a foreign language and are not '.
+                         'completely sure that it is correct, add the tag {tagNNC}.', true),
+                      array('tagNNC', $tagNNCLink));
         printf('<li>%s</li>', $str);
 
         $str = format(__('Whenever you can, browse through sentences that are tagged '.

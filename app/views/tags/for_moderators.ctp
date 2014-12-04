@@ -89,7 +89,8 @@ $this->set('title_for_layout', $pages->formatTitle(__('Tags for moderators', tru
 <div class="module">
 <h2>
 <?php 
-            echo sprintf(__('Tagged \'%s\' more than 2 weeks ago', true), $tagName); 
+            echo format(__('Tagged \'{tagName}\' more than 2 weeks ago', true),
+                        compact('tagName'));
 ?>
 </h2>
 <?php 

@@ -367,14 +367,14 @@ class LogsHelper extends AppHelper
             // sentence id
             echo '<li class="sentenceId">';
             $sentenceLink = $this->Html->link(
-                '#'.$sentenceId,
+                $sentenceId,
                 array(
                     'controller' => 'sentences',
                     'action' => 'show',
                     $sentenceId
                 )
             );
-            echo sprintf(__('Sentence %s', true), $sentenceLink);
+            echo format(__('Sentence #{number}', true), array('number' => $sentenceLink));
             echo '</li>';
 
             // contributor
@@ -390,7 +390,8 @@ class LogsHelper extends AppHelper
                     'controller' => 'sentences',
                     'action' => 'show',
                     $sentenceId
-                )
+                ),
+                array('escape' => false)
             );
             echo '</li>';
 
@@ -433,7 +434,7 @@ class LogsHelper extends AppHelper
     private function _displayLink($action, $sentenceId, $translationId)
     {
         $linkToTranslation = $this->Html->link(
-            '#'.$translationId,
+            $translationId,
             array(
                 "controller" => "sentences",
                 "action" => "show",
@@ -444,12 +445,14 @@ class LogsHelper extends AppHelper
         <div class="contribution"><div class="content">
             <?php
             if ($action == 'insert') {
-                echo sprintf(
-                    __('linked to %s', true), $linkToTranslation
+                echo format(
+                    __('linked to #{sentenceNumber}', true),
+                    array('sentenceNumber' => $linkToTranslation)
                 );
             } else {
-                echo sprintf(
-                    __('unlinked from %s', true), $linkToTranslation
+                echo format(
+                    __('unlinked from #{sentenceNumber}', true),
+                    array('sentenceNumber' => $linkToTranslation)
                 );
             }
             ?>
@@ -502,19 +505,19 @@ class LogsHelper extends AppHelper
         switch ($action) {
             case 'insert' :
                 if ($type == 'sentence') {
-                    $label = sprintf(__('added by %s', true), $userProfileLink);
+                    $label = format(__('added by {user}', true), array('user' => $userProfileLink));
                 } else if ($type == 'link') {
-                    $label = sprintf(__('linked by %s', true), $userProfileLink);
+                    $label = format(__('linked by {user}', true), array('user' => $userProfileLink));
                 }
                 break;
             case 'update' :
-                $label = sprintf(__('edited by %s', true), $userProfileLink);
+                $label = format(__('edited by {user}', true), array('user' => $userProfileLink));
                 break;
             case 'delete' :
                 if ($type == 'sentence') {
-                    $label = sprintf(__('deleted by %s', true), $userProfileLink);
+                    $label = format(__('deleted by {user}', true), array('user' => $userProfileLink));
                 } else if ($type == 'link') {
-                    $label = sprintf(__('unlinked by %s', true), $userProfileLink);
+                    $label = format(__('unlinked by {user}', true), array('user' => $userProfileLink));
                 }
                 
                 break;

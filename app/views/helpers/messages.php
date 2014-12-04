@@ -391,10 +391,10 @@ class MessagesHelper extends AppHelper
     private function _displayWarning()
     {
         ?><div class='warningInfo'><?php
-        echo sprintf(
+        echo format(
             __(
                 'The content of this message goes against '.
-                '<a href="%s">our rules</a> and was therefore hidden. '.
+                '<a href="{}">our rules</a> and was therefore hidden. '.
                 'It is displayed only to admins '.
                 'and to the author of the message.',
                 true

@@ -49,7 +49,8 @@ $username = $form->value('User.username');
             $userId
         ),
         null,
-        sprintf(__d('admin', 'Are you sure you want to delete user #%s?',true), $userId)
+        format(__d('admin', 'Are you sure you want to delete user #{number}?', true),
+               array('number' => $userId))
         );
         ?>
         </li>

@@ -118,12 +118,12 @@ class CommonModulesHelper extends AppHelper
      *
      * @return void
      */
-    public function displayNoSuchUser($userName, $backLink)
+    public function displayNoSuchUser($username, $backLink)
     {
         echo '<h2>';
-        echo sprintf(
-            __("There's no user called %s", true),
-            $userName
+        echo format(
+            __("There's no user called {username}", true),
+            compact('username')
         );
         echo '</h2>';
 

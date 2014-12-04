@@ -21,9 +21,9 @@
 
 $username = $user['User']['username'];
 $userId =  $user['User']['id'];
-$this->set('title_for_layout', $pages->formatTitle(sprintf(
-    __('Tatoeba user: %s', true),
-    $username
+$this->set('title_for_layout', $pages->formatTitle(format(
+    __('Tatoeba user: {username}', true),
+    compact('username')
 )));
 ?>
 <div id="annexe_content">
@@ -61,7 +61,7 @@ $this->set('title_for_layout', $pages->formatTitle(sprintf(
         echo '<div class="module">';
             echo '<h2>';
             echo format(
-                __('Latest sentences (<a href="{0}">view all</a>)', true),
+                __('Latest sentences (<a href="{}">view all</a>)', true),
                 $html->url(array(
                     "controller" => "sentences",
                     "action" => "of_user",
@@ -91,7 +91,7 @@ $this->set('title_for_layout', $pages->formatTitle(sprintf(
         echo '<div class="module">';
             echo '<h2>';
             echo format(
-                __('Favorite sentences (<a href="{0}">view all</a>)', true),
+                __('Favorite sentences (<a href="{}">view all</a>)', true),
                 $html->url(array(
                     "controller" => "favorites",
                     "action" => "of_user",
@@ -124,7 +124,7 @@ $this->set('title_for_layout', $pages->formatTitle(sprintf(
         echo '<div class="module">';
             echo '<h2>';
             echo format(
-                __('Latest comments (<a href="{0}">view all</a>)', true),
+                __('Latest comments (<a href="{}">view all</a>)', true),
                 $html->url(array(
                     "controller" => "sentence_comments",
                     "action" => "of_user",
@@ -158,7 +158,7 @@ $this->set('title_for_layout', $pages->formatTitle(sprintf(
         echo '<div class="module">';
             echo '<h2>';
             echo format(
-                __('Latest Wall messages (<a href="{0}">view all</a>)', true),
+                __('Latest Wall messages (<a href="{}">view all</a>)', true),
                 $html->url(array(
                     "controller" => "wall",
                     "action" => "messages_of_user",

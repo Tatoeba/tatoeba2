@@ -30,9 +30,9 @@
 
 <p>
 <?php 
-echo sprintf(
-    __n('User who did the last contribution.','Users who participated in the last %s contributions.', $total, true),
-    $total
+echo format(
+    __n('User who did the last contribution.','Users who participated in the last {n}&nbsp;contributions.', $total, true),
+    array('n' => $total)
 );
 ?>
 </p>
@@ -93,8 +93,8 @@ foreach($currentContributors as $i=>$currentContributor){
             <?php
             echo format(
                 __n(
-                    '#{rank} - {n} sentence - {percentage}%',
-                    '#{rank} - {n} sentences - {percentage}%',
+                    '#{rank} - {n}&nbsp;sentence - {percentage}%',
+                    '#{rank} - {n}&nbsp;sentences - {percentage}%',
                     $numberOfContributions, true),
                 array(
                     'rank' => $i + 1,

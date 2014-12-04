@@ -31,7 +31,8 @@ $numSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
 <div class="module">
     <h2>
     <?php 
-    echo sprintf(__n("One sentence","%s sentences", $numSentences, true), $numSentences);
+    echo format(__n('One sentence','{n}&nbsp;sentences', $numSentences, true),
+                array('n' => $numSentences));
     ?>
     </h2>
     
