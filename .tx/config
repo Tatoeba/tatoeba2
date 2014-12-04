@@ -1,0 +1,10 @@
+[main]
+host = https://www.transifex.com
+
+[tatoeba_website.tatoebaResource]
+lang_map = ar:ara, az:aze, be:bel, de:deu, el:ell, eo:epo, es:spa, et:est, eu:eus, fi:fin, fr:fre, gl:glg, hi:hin, hu:hun, it:ita, ja:jpn, ka:kat, ko:kor, la:lat, lt:lit, mr:mar, ms:msa, nl:nld, oc:oci, pl:pol, ru:rus, ro:ron, tl:tgl, tr:tur, uk:ukr, vi:vie, zh_CN:chi
+source_file = app/locale/default.pot
+source_lang = en
+type = PO
+file_filter = app/locale/<lang>/LC_MESSAGES/<lang>.po
+
