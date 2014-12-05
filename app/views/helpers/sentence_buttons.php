@@ -118,17 +118,8 @@ class SentenceButtonsHelper extends AppHelper
     {
         echo $this->Javascript->link('links.add_and_delete.js', false);
 
-        $elementId = 'unlink_'.$sentenceId.'_'.$translationId;
-        $data = array(
-            'sentenceId' => $sentenceId,
-            'translationId' => $translationId
-        );
-        $this->_bindData($elementId, $data);
+        $elementId = 'link_'.$sentenceId.'_'.$translationId;
 
-        $confirmationMessage = __(
-            'Do you want to unlink this translation from the main sentence?',
-            true
-        );
         $image = $this->Html->image(
             IMG_PATH . 'unlink.png',
             array(
@@ -148,9 +139,9 @@ class SentenceButtonsHelper extends AppHelper
             ),
             array(
                 "escape" => false,
-                "class" => "delete link button",
+                "class" => "link button",
                 "id" => $elementId,
-                "onclick" => "return false"
+                "onclick" => "translationLink('delete', $sentenceId, $translationId); return false"
             )
         );
     }
@@ -169,11 +160,6 @@ class SentenceButtonsHelper extends AppHelper
         echo $this->Javascript->link('links.add_and_delete.js', false);
 
         $elementId = 'link_'.$sentenceId.'_'.$translationId;
-        $data = array(
-            'sentenceId' => $sentenceId,
-            'translationId' => $translationId
-        );
-        $this->_bindData($elementId, $data);
 
         $image = $this->Html->image(
             IMG_PATH . 'link.png',
@@ -194,9 +180,9 @@ class SentenceButtonsHelper extends AppHelper
             ),
             array(
                 "escape" => false,
-                "class" => "add link button",
+                "class" => "link button",
                 "id" => $elementId,
-                "onclick" => "return false"
+                "onclick" => "translationLink('add', $sentenceId, $translationId); return false"
             )
         );
     }
@@ -339,7 +325,7 @@ class SentenceButtonsHelper extends AppHelper
                 $lang,
                 array(
                     "class"=>"language-selector", 
-                    "title"=> $this->Languages->codeToName($lang),
+                    "title"=> $this->Languages->codeToNameAlone($lang),
                     "empty" => false
                 ),
                 false
@@ -367,28 +353,6 @@ class SentenceButtonsHelper extends AppHelper
             )
         );
 
-    }
-
-
-    /**
-     * Binds data to an element with jQuery's .data().
-     *
-     * @param string $elementId Id of the HTML element.
-     * @param array  $data      Data to bind to the element.
-     */
-    private function _bindData($elementId, $data)
-    {
-        ?>
-        <script type='text/javascript'>
-        $(document).ready(function() {
-            <?php
-            foreach($data as $key => $value) {
-                echo "$('#$elementId').data('$key', $value);\n";
-            }
-            ?>
-        });
-        </script>
-        <?php
     }
 }
 ?>

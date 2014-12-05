@@ -172,12 +172,29 @@ class SentencesListsController extends AppController
         else
         {
             $ret['can_download'] = false;
-            $ret['message'] = sprintf(__(
-                          'The download feature has been disabled for this list because '.
-                          'it contains %d sentences. Only lists containing %d or fewer '.
-                          'sentences can be downloaded. If you can edit the list, you may '.
-                          'want to split it into multiple lists.', true), 
-                           $count, self::MAX_COUNT_FOR_DOWNLOAD);
+            
+            $firstSentence = __n('The download feature has been disabled for '.
+                                 'this list because it contains a sentence.',
+                                 'The download feature has been disabled for '.
+                                 'this list because it contains {n}&nbsp;sentences.',
+                                 $count, true);
+            
+            $secondSentence = __n('Only lists containing one sentence or fewer can be '.
+                                  'downloaded. If you can edit the list, you may want '.
+                                  'to split it into multiple lists.',
+                                  'Only lists containing {max} or fewer sentences can be '.
+                                  'downloaded. If you can edit the list, you may want '.
+                                  'to split it into multiple lists.',
+                                  self::MAX_COUNT_FOR_DOWNLOAD, true);
+            $firstSentence = format($firstSentence, array('n' => $count));
+            $secondSentence = format($secondSentence, array('max' => self::MAX_COUNT_FOR_DOWNLOAD));
+            $ret['message'] = format(
+            /* @translators: this string is used to concatenate two sentences.
+               You typically want to change this to {firstSentence}{secondSentence}
+               if your language don't use space as a word separator. */
+                __('{firstSentence} {secondSentence}', true),
+                compact('firstSentence', 'secondSentence')
+            );
         } 
         return $ret;
     }

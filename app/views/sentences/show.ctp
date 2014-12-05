@@ -34,25 +34,28 @@ if (isset($sentence)) {
     $sentenceText = Sanitize::html($sentence['Sentence']['text']);
     $sentenceCorrectness = $sentence['Sentence']['correctness'];
     
-    $languageName = $languages->codeToName($sentenceLang);
-    $title = sprintf(__('%s example sentence: ', true), $languageName);
-    $this->set('title_for_layout', $title . $sentenceText);
+    $languageName = $languages->codeToNameToFormat($sentenceLang);
+    $title = format(__('{language} example sentence: ', true),
+                    array('language' => $languageName));
+    $this->set('title_for_layout', $pages->formatTitle($title . $sentenceText));
 
     $html->meta(
         'description', 
-        sprintf(
+        format(
             __(
                 "Browse translated example sentences. ".
-                "This page shows translations and information about the sentence: %s"
+                "This page shows translations and information about the sentence: {sentenceText}"
                 , true
             ),
-            $sentenceText
+            compact('sentenceText')
         ), 
         array('inline' => false)
     );
 } else {
     // Case where the sentence has been deleted
-    $this->set('title_for_layout', __('Sentence does not exist: ', true).$this->params['pass'][0]);
+    $this->set('title_for_layout', $pages->formatTitle(
+        __('Sentence does not exist: ', true) . $this->params['pass'][0]
+    ));
 }
 
 
@@ -136,7 +139,7 @@ $navigation->displaySentenceNavigation(
         ?>
             <h2>
             <?php 
-            echo sprintf(__('Sentence #%s', true), $sentenceId); 
+            echo format(__('Sentence #{number}', true), array('number' => $sentenceId));
             ?>
             </h2>            
             
@@ -152,16 +155,17 @@ $navigation->displaySentenceNavigation(
         } else {
             
             echo '<h2>' .
-                sprintf(__('Sentence #%s', true), $this->params['pass'][0]) .
+                format(__('Sentence #{number}', true),
+                       array('number' => $this->params['pass'][0])) .
                 '</h2>';
 
             echo '<div class="error">';
-                echo sprintf(
+                echo format(
                     __(
-                        'There is no sentence with id %s', 
+                        'There is no sentence with id {number}',
                         true
                     ), 
-                    $this->params['pass'][0]
+                    array('number' => $this->params['pass'][0])
                 );
             echo '</div>';
         }
@@ -211,10 +215,10 @@ $navigation->displaySentenceNavigation(
             );
         } else {
             echo '<p>';
-            echo sprintf(
+            echo format(
                 __(
                     'You need to be logged in to add a comment. If you are '.
-                    'not registered, you can <a href="%s">register here</a>.', 
+                    'not registered, you can <a href="{}">register here</a>.', 
                     true
                 ),
                 $html->url(array("controller"=>"users", "action"=>"register"))

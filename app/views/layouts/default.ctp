@@ -60,6 +60,20 @@
             echo $html->css(CSS_PATH . "elements/furigana.css"); 
         }
         
+        // Develop site override
+        if (Configure::read('Tatoeba.devStylesheet')) { ?>
+            <style>
+                #top_menu_container { background-color: #cf0000; }
+                div.search_bar:after {
+                    content: "<?php __("Warning: this website is for testing purposes. Everything you submit will be definitely lost.")?>";
+                    position: absolute;
+                    color: #cf0000;
+                    margin-left: 92px;
+                    font-size: 15px;
+                }
+            </style>
+<?      }
+
         // ---------------------- //
         //      Javascript        //
         // ---------------------- //

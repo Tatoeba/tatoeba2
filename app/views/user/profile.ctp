@@ -55,11 +55,8 @@ if (!empty($user['image'])) {
     $userImage = Sanitize::html($user['image']);
 }
 
-if (!empty($realName)) {
-    $this->set('title_for_layout', "$username ($realName) - Tatoeba");
-} else {
-    $this->set('title_for_layout', "$username - Tatoeba"); 
-}
+$title = empty($realName) ? $username : "$username ($realName)";
+$this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">
@@ -87,7 +84,7 @@ if (!empty($realName)) {
         =>
         <?php
         echo $html->link(
-            sprintf(__("Show latest activity", true)),
+            __("Show latest activity", true),
             array(
                 'controller' => 'users',
                 'action' => 'show',
@@ -221,7 +218,7 @@ if (!empty($realName)) {
                 }
                 $userSince = date('F j, Y', strtotime($userSince));
                 $fields = array(
-                    __('Name', true) => $realName,
+                    __p('user', 'Name', true) => $realName,
                     __('Country', true) => $countryName,
                     __('Birthday', true) => $birthday,
                     __('Homepage', true) => $homepage

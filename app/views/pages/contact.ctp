@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */ 
  
-$this->set('title_for_layout', 'Tatoeba - ' . __('Contact us', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Contact us', true)));
 ?>
 <div id="annexe_content">
     <div class="module">
@@ -43,9 +43,9 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Contact us', true));
     <p>
     <?php
     $faqUrl = $html->url(array('action' => 'faq'));
-    echo sprintf(
+    echo format(
         __(
-            'Please make sure to <a href="%s">read the FAQ</a> '.
+            'Please make sure to <a href="{}">read the FAQ</a> '.
             'before asking a question.', true
         ), $faqUrl
     );
@@ -68,12 +68,12 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Contact us', true));
         <h2><?php __('Contact us'); ?></h2>
         <?php
         $email = 'team@tatoeba.org';
-        echo sprintf(
+        echo format(
             __(
                 'If you have any question, suggestion, or request (or if you would '.
-                'just like to say thank you), feel free to drop us an email at %s.',
+                'just like to say thank you), feel free to drop us an email at {emailAddress}.',
                 true
-            ), $email
+            ), array('emailAddress' => $email)
         );
         ?>
     </div>
@@ -81,10 +81,10 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Contact us', true));
     <div class="module">
         <h2><?php __('Post on the Wall'); ?></h2>
         <?php
-        echo sprintf(
+        echo format(
             __(
                 'You can also tell us what you think by posting on the '.
-                '<a href="%s">Wall</a>.', true
+                '<a href="{}">Wall</a>.', true
             ),
             $html->url(array("controller"=>"wall"))
         );
@@ -95,10 +95,10 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Contact us', true));
     <div class="module">
         <h2><?php __('Join us on IRC'); ?></h2>
         <?php
-        echo sprintf(
+        echo format(
             __(
                 'We also have an IRC channel on freenode, #tatoeba. If you are not '.
-                'familiar with IRC, you can read the <a href="%s">Help</a>.', true
+                'familiar with IRC, you can read the <a href="{}">Help</a>.', true
             ),
             $html->url(
                 array(

@@ -113,13 +113,12 @@ class TagsController extends AppController
 
         // save and check if the tag has been added
         if (!$this->Tag->addTag($tagName, $userId, $sentenceId)) {
-            $infoMessage = sprintf(
+            $infoMessage = format(
                 __(
-                    "Tag '%s' already exists for sentence #%s, or cannot be added",
+                    "Tag '{tagName}' already exists for sentence #{number}, or cannot be added",
                     true
                 ),
-                $tagName,
-                $sentenceId
+                array('tagName' => $tagName, 'number' => $sentenceId)
             );
             $this->Session->setFlash($infoMessage);
         }
@@ -225,6 +224,7 @@ class TagsController extends AppController
         $tagName = $this->Tag->getNameFromId($tagId);
         $tagExists = !empty($tagName);
         $this->set('tagExists', $tagExists);
+        $this->set('tagId', $tagId);
 
         if ($tagExists) {
             $this->paginate = $this->Tag->paramsForPaginate($tagId, 10, $lang);
@@ -243,7 +243,6 @@ class TagsController extends AppController
             );
 
             $this->set('langFilter', $lang);
-            $this->set('tagId', $tagId);
             $this->set('allSentences', $allSentences);
             $this->set('tagName', $tagName);
             $this->set('taggerIds', $taggerIds);

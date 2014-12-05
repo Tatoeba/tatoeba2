@@ -38,14 +38,14 @@
 ?>
 <h2>
 <?php
-echo $paginator->counter(array('format' => __('Users',true). ' (' . __('total',true). ': %count%)'));
+echo $paginator->counter(array('format' => __d('admin', 'Users',true). ' (' . __d('admin', 'total',true). ': %count%)'));
 ?>
 </h2>
 
 <div class="paging">
 <?php
 echo $paginator->prev(
-    '<< ' . __('previous', true),
+    '<< ' . __d('admin', 'previous', true),
     array(),
     null,
     array('class' => 'disabled')
@@ -54,7 +54,7 @@ echo $paginator->prev(
 <?php echo $paginator->numbers(array('separator' => '')); ?>
 <?php
 echo $paginator->next(
-    __('next', true) . ' >>',
+    __d('admin', 'next', true) . ' >>',
     array(),
     null,
     array('class' => 'disabled')
@@ -65,12 +65,12 @@ echo $paginator->next(
 <!-- In CakePHP 1.2, the fields are in the order "title, key". In 2.x, they're in the opposite order. -->
 <table class="users">
 <tr>
-    <th><?php echo $paginator->sort(__('ID',true),'id'); ?></th>
-    <th><?php echo $paginator->sort(__('Username',true),'username'); ?></th>
-    <th><?php echo $paginator->sort(__('Email',true),'email'); ?></th>
-    <th><?php echo $paginator->sort(__('Since',true),'since'); ?></th>
-    <th><?php echo $paginator->sort(__('Level',true),'level'); ?></th>
-    <th><?php echo $paginator->sort(__('Group',true),'group'); ?></th>
+    <th><?php echo $paginator->sort(__d('admin', 'ID',true),'id'); ?></th>
+    <th><?php echo $paginator->sort(__d('admin', 'Username',true),'username'); ?></th>
+    <th><?php echo $paginator->sort(__d('admin', 'Email',true),'email'); ?></th>
+    <th><?php echo $paginator->sort(__d('admin', 'Since',true),'since'); ?></th>
+    <th><?php echo $paginator->sort(__d('admin', 'Level',true),'level'); ?></th>
+    <th><?php echo $paginator->sort(__d('admin', 'Group',true),'group'); ?></th>
     <th class="actions"></th>
 </tr>
 <?php
@@ -119,7 +119,7 @@ foreach ($users as $user) {
 <div class="paging">
 <?php
 echo $paginator->prev(
-    '<< ' . __('previous', true),
+    '<< ' . __d('admin', 'previous', true),
     array(),
     null,
     array('class' => 'disabled')
@@ -128,7 +128,7 @@ echo $paginator->prev(
 <?php echo $paginator->numbers(array('separator' => '')); ?>
 <?php
 echo $paginator->next(
-    __('next', true) . ' >>',
+    __d('admin', 'next', true) . ' >>',
     array(),
     null,
     array('class' => 'disabled')

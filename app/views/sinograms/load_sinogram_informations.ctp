@@ -27,9 +27,9 @@
 ?>
 <h3>
     <?php
-    echo sprintf(
-        __('Information about %s', true),
-        $sinogramInformations["glyph"]
+    echo format(
+        __('Information about {sinograph}', true),
+        array('sinograph' => $sinogramInformations["glyph"])
     );
     ?>
 </h3>

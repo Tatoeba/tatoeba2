@@ -12,19 +12,31 @@
 -- modified    Date and time when the sentence was modified.
 -- dico_id     Id of the sentence in the previous version of Tatoeba (v1). It was
 --               kept here due to some dependancy with the Tanaka Corpus but it will
---               soon not be needed anymore.               
+--               soon not be needed anymore.
+-- hasaudio    'no' when there's no audio. 'shtooka' when there's an audio.
+--               'from_users' is not used. The value was intended to distinguish
+--               between good quality audio recorded in partnership with shtooka, 
+--               and lesser good quality ones provided by lamba users.
+--
 
-CREATE TABLE IF NOT EXISTS `sentences` (
-  `id` int(11) NOT NULL auto_increment,
-  `lang` varchar(4) default NULL,
+DROP TABLE IF EXISTS `sentences`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sentences` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lang` varchar(4) DEFAULT NULL,
   `text` varbinary(1500) NOT NULL,
-  `correctness` smallint(2) default NULL,
-  `user_id` int(11) default NULL,
-  `created` datetime default NULL,
-  `modified` datetime default NULL,
-  `dico_id` int(11) default NULL,
-  PRIMARY KEY  (`id`),
+  `correctness` tinyint(2) NOT NULL DEFAULT '0',
+  `user_id` int(11) DEFAULT NULL,
+  `created` datetime DEFAULT NULL,
+  `modified` datetime DEFAULT NULL,
+  `dico_id` int(11) DEFAULT NULL,
+  `hasaudio` enum('no','from_users','shtooka') NOT NULL DEFAULT 'no',
+  `lang_id` tinyint(3) unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `dico_id` (`dico_id`),
-  KEY `lang` (`lang`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=377096 ;
+  KEY `lang` (`lang`),
+  KEY `hasaudio_idx` (`hasaudio`),
+  KEY `modified_idx` (`modified`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

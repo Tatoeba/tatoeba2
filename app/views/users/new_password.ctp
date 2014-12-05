@@ -35,13 +35,16 @@
  * @link     http://tatoeba.org
  */ 
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Send new password', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Send new password', true)));
 
 echo '<h2>';
 __('Send new password');
 echo '</h2>';
 
 echo $form->create('User', array("action" => "new_password"));
-echo $form->input('email');
+echo $form->input(
+    'email',
+    array('label' => __('Email', true))
+);
 echo $form->end(__('Send',true));
 ?>

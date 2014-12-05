@@ -176,14 +176,14 @@ class PrivateMessagesController extends AppController
                     $this->PrivateMessage->id = null;
                 } else {
                     $this->Session->setFlash(
-                        sprintf(
+                        format(
                             __(
-                                'The user %s to whom you want to send this message '.
+                                'The user {username} to whom you want to send this message '.
                                 'does not exist. Please try with another '.
                                 'username.',
                                 true
                             ),
-                            $recpt
+                            array('username' => $recpt)
                         )
                     );
                     $this->redirect(array('action' => 'write'));

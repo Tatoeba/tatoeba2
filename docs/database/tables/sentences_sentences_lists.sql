@@ -7,8 +7,9 @@
 -- sentence_id       Id of the sentence in that list.
 --
 
-CREATE TABLE IF NOT EXISTS `sentences_sentences_lists` (
+DROP TABLE IF EXISTS `sentences_sentences_lists`;
+CREATE TABLE `sentences_sentences_lists` (
   `sentences_list_id` int(11) NOT NULL,
   `sentence_id` int(11) NOT NULL,
   UNIQUE KEY `list_id` (`sentences_list_id`,`sentence_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;

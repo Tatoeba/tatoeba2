@@ -25,7 +25,9 @@
  * @link     http://tatoeba.org
  */
 $username = Sanitize::paranoid($username, array("_"));
-$this->set('title_for_layout', 'Tatoeba - ' . sprintf(__("%s's Wall messages", true), $username));
+$this->set('title_for_layout', $pages->formatTitle(
+    format(__("{user}'s Wall messages", true), array('user' => $username))
+));
 ?>
 
 <div id="annexe_content">
@@ -44,10 +46,9 @@ $this->set('title_for_layout', 'Tatoeba - ' . sprintf(__("%s's Wall messages", t
     <?php 
     echo $paginator->counter(
         array(
-            'format' => sprintf(
-                __("%s's messages on the Wall (total %s)", true),
-                $username,
-                '%count%'
+            'format' => format(
+                __('{user}\'s messages on the Wall (total&nbsp;{n})', true),
+                array('user' => $username, 'n' => '%count%')
             )
         )
     );

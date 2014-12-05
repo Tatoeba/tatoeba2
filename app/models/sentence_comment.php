@@ -118,12 +118,16 @@ class SentenceComment extends AppModel
      */
     public function getLatestComments($limit)
     {
+        $conditions = array();
+        $conditions['hidden'] = 0;
+        $conditions = $this->getQueryConditionWithExcludedUsers($conditions);
+
         return $this->find(
             'all',
             array(
                 'order' => 'SentenceComment.created DESC',
                 'limit' => $limit,
-                'conditions' => array('hidden' => 0),
+                'conditions' => $conditions,
                 'contain' => array(
                     'User' => array(
                         'fields' => array(
@@ -223,6 +227,28 @@ class SentenceComment extends AppModel
         );
 
         return $result;
+    }
+
+    /**
+     * 
+     */
+    function getQueryConditionWithExcludedUsers($conditions = null)
+    {
+        $botsIds = Configure::read('Bots.userIds');
+
+        if (!isset($conditions)) {
+            $conditions = array();
+        }
+        if (!empty($botsIds)) {
+            if (count($botsIds) > 1) {
+                $conditions["SentenceComment.user_id NOT"] = $botsIds;
+            } else {
+                $conditions["SentenceComment.user_id !="] = $botsIds[0];
+            }
+            
+        }
+
+        return $conditions;
     }
 }
 ?>

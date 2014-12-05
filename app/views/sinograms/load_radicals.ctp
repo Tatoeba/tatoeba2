@@ -27,15 +27,14 @@
 
 $titles = array();
 
-$titles[1] = __('1 stroke', true);
-
-for ($i = 2; $i < 10; $i++) {
-    $titles[$i] = sprintf(__('%s strokes', true), $i);
+if ($numberOfStrokes == "10+") {
+    $title = __('10 or more strokes', true);
+} else {
+    $title = format(__n('1 stroke', '{n}&nbsp;strokes', $numberOfStrokes, true),
+                    array('n' => $numberOfStrokes));
 }
-$titles["10+"]= __('10 strokes and more', true);
 
-
-echo '<h3>'.$titles[$numberOfStrokes] . '</h3>'."\n"  ;
+echo '<h3>'.$title.'</h3>'."\n"  ;
 
 
 foreach ($radicals as $radical) {

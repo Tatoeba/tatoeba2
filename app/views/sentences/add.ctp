@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Add sentences', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Add sentences', true)));
 
 echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
 ?>
@@ -48,11 +48,11 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
     </li>
     <li>
     <?php
-    echo sprintf(
+    echo format(
         __(
             'Do not copy-paste sentences from elsewhere, '.
             'except if the content is CC-BY compatible. '.
-            '<a href="%s">Learn more...</a>', true
+            '<a href="{}">Learn more...</a>', true
         ),
         'http://blog.tatoeba.org/2011/01/legally-valid-content.html'
     );
@@ -74,10 +74,10 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
         </li>
         <li>
         <?php
-        echo sprintf(
+        echo format(
             __(
                 'Or create sentences with '.
-                '<a href="%s">words not yet in Tatoeba</a>.', true
+                '<a href="{}">words not yet in Tatoeba</a>.', true
             ), 'http://a4esl.com/temporary/tatoeba/notyet/'
         );
         ?>

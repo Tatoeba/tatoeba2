@@ -9,6 +9,7 @@
 
 #Note that you must download mysql.connector, since it doesn't come with the default distribution.
 #Use: sudo apt-get update && sudo apt-get install python-mysql.connector
+from __future__ import print_function
 import mysql.connector
 import codecs
 import os
@@ -55,8 +56,8 @@ class PythonMySQLConnector:
         self.log_f = open(log_filename, "w") 
 
     def print_output(self, str):
-        print str
-        print >>self.log_f, str
+        print(str)
+        print(str, file=self.log_f)
 
 if __name__ == "__main__":
     user = 'root'

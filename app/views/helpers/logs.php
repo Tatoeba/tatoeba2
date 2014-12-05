@@ -39,6 +39,36 @@ class LogsHelper extends AppHelper
 
     public $helpers = array('Date', 'Html', 'Languages');
 
+    private function _findLatestContributionDates($contributions) {
+        $latestContribs = array();
+        foreach ($contributions as $contribution) {
+            $sentenceId = $contribution['Contribution']['sentence_id'];
+            $contribTime = strtotime($contribution['Contribution']['datetime']);
+            if (!isset($latestContribs[$sentenceId]) ||
+                (isset($latestContribs[$sentenceId]) && $latestContribs[$sentenceId] < $contribTime)) {
+                $latestContribs[$sentenceId] = $contribTime;
+            }
+        }
+        return $latestContribs;
+    }
+
+    /**
+     * Mark contributions that are not the latest contributions of a given set
+     * as obsolete, and the others as non obsolete.
+     *
+     * @param array $contributions Set of contributions which is
+     *                             to be displayed together.
+     * @return void
+     */
+    public function obsoletize(&$contributions) {
+        $latestContribs = $this->_findLatestContributionDates($contributions);
+        foreach ($contributions as &$contribution) {
+            $sentenceId = $contribution['Contribution']['sentence_id'];
+            $contribTime = strtotime($contribution['Contribution']['datetime']);
+            $contribution['Contribution']['obsolete'] = ($contribTime < $latestContribs[$sentenceId]);
+        }
+    }
+
     /**
      * Display a contribution.
      *
@@ -49,96 +79,49 @@ class LogsHelper extends AppHelper
      */
     public function entry($contribution, $user = null)
     {
-        $type = 'link';
-        $status = '';
+        $sentenceId = $contribution['sentence_id'];
+        $sentenceLang = $contribution['sentence_lang'];
 
         if (isset($user)) {
-            $username = Sanitize::html($user['username']);
-            $userId = Sanitize::paranoid($user['id']);
+            $username = $user['username'];
         }
 
-        $contributionText = $contribution['text']; // No sanitize here, we use
-            // the value in Html::link() which already already sanitizes.
-        $contributionId = Sanitize::paranoid($contribution['sentence_id']);
-        if (isset($contribution['translation_id'])) {
-            $translationId = Sanitize::paranoid($contribution['translation_id']);
-        }
-        $action = Sanitize::paranoid($contribution['action']);
-        $contributionDate = $contribution['datetime'];
-        $lang = Sanitize::paranoid($contribution['sentence_lang']);
+        $action = $contribution['action'];
+        $datetime = $contribution['datetime'];
 
-        if (empty($translationId)) {
-            $type = 'sentence';
+        $isObsolete = false;
+        if (isset($contribution['obsolete']) && $contribution['obsolete']) {
+            $isObsolete = true;
         }
 
-        switch ($action) {
-            case 'suggest' :
-                $type = 'correction';
-                $status = 'Suggested';
-                break;
-
-            case 'insert' :
-                $status = 'Added';
-                break;
-
-            case 'update' :
-                $status = 'Modified';
-                break;
-
-            case 'delete' :
-                $status = 'Deleted';
-                break;
+        $type = 'sentence';
+        if (isset($contribution['type'])) {
+            $type = $contribution['type'];
         }
 
-        echo '<tr class="'.$type.$status.'">';
+        if ($type == 'sentence') {
+            $sentenceText = $contribution['text'];
+            
+            $this->_sentenceEntry(
+                $sentenceId, 
+                $sentenceText, 
+                $sentenceLang, 
+                $username, 
+                $datetime, 
+                $action, 
+                $isObsolete
+            );
+        } else if ($type == 'link') {
+            $translationId = $contribution['translation_id'];
 
-        // language flag
-        echo '<td class="lang">';
-        if ($type == 'link') {
-            echo '&raquo;';
-        } else {
-            if ($lang == '') {
-                echo '?';
-            } else {
-                echo $this->Languages->icon(
-                    $lang,
-                    array(
-                        "class" => "flag",
-                        "width" => 30,
-                        "height" => 20
-                    )
-                );
-            }
+            $this->_linkEntry(
+                $sentenceId, 
+                $translationId, 
+                $username, 
+                $datetime, 
+                $action
+            );
         }
-        echo '</td>';
-
-        $dir = $this->Languages->getLanguageDirection($lang);
-        // sentence text
-        echo '<td class="text">';
-        echo $this->Html->link(
-            $contributionText,
-            array(
-                "controller" => "sentences",
-                "action" => "show",
-                $contributionId
-            ),
-            array(
-                'dir' => $dir
-            )
-        );
-        echo '</td>';
-
-        // contributor
-        echo '<td class="username">';
-        echo $this->_displayLinkToUserContributions($username, $userId);
-        echo '</td>';
-
-        // date of contribution
-        echo '<td class="date">';
-        echo $this->Date->ago($contributionDate);
-        echo '</td>';
-
-        echo '</tr>';
     }
 
     /**
@@ -151,84 +134,136 @@ class LogsHelper extends AppHelper
      */
     public function annexeEntry($contribution, $user = null)
     {
-        $type = 'link';
-        $status = '';
+        $sentenceId = null;
+        if (isset($contribution['sentence_id'])) {
+            $sentenceId = $contribution['sentence_id'];
+        }
+        $sentenceLang = $contribution['sentence_lang'];
 
+        $username = null;
         if (isset($user)) {
-            $username = Sanitize::html($user['username']);
-            $userId = Sanitize::paranoid($user['id']);
+            $username = $user['username'];
         }
 
-        $contributionText = Sanitize::html($contribution['text']);
-        $lang = null;
-        if (!empty($contribution['sentence_lang'])) {
-            $lang = Sanitize::paranoid($contribution['sentence_lang']);
-        }
-        $translationId = Sanitize::paranoid($contribution['translation_id']);
-        $action = Sanitize::paranoid($contribution['action']);
-        $contributionDate = $contribution['datetime'];
+        $action = $contribution['action'];
+        $datetime = $contribution['datetime'];
 
-        if (empty($translationId)) {
-            $type = 'sentence';
+        $isObsolete = false;
+        if (isset($contribution['obsolete']) && $contribution['obsolete']) {
+            $isObsolete = true;
         }
 
-        switch ($action) {
-            case 'suggest' :
-                $type = 'correction';
-                $status = 'Suggested';
-                break;
-            case 'insert' :
-                $status = 'Added';
-                break;
-            case 'update' :
-                $status = 'Modified';
-                break;
-            case 'delete' :
-                $status = 'Deleted';
-                break;
+        $type = 'sentence';
+        if (!empty($contribution['translation_id'])) {
+            $type = 'link';
         }
 
-        echo '<div class="annexeLogEntry '.$type.$status.'">';
-
-        echo '<div>';
-        if (isset($username)) {
-            echo $this->_displayLinkToUserContributions($username);
-            echo ' - ';
-        }
-        echo $this->Date->ago($contributionDate);
-        echo '</div>';
-
-        echo '<div>';
-        if ($type === 'link') {
-
-            $linkToTranslation = $this->Html->link(
-                $translationId,
-                array(
-                    "controller" => "sentences",
-                    "action" => "show",
-                    $translationId
-                )
+        if ($type == 'sentence') {
+            $sentenceText = $contribution['text'];
+            
+            $this->_annexeSentenceEntry(
+                $sentenceId,
+                $sentenceText, 
+                $sentenceLang, 
+                $username, 
+                $datetime, 
+                $action, 
+                $isObsolete
             );
+        } else if ($type == 'link') {
+            $translationId = $contribution['translation_id'];
 
-            if ($action == 'insert') {
-                echo sprintf(
-                    __('linked to %s', true), $linkToTranslation
+            $this->_annexeLinkEntry(
+                $sentenceId,
+                $translationId, 
+                $username, 
+                $datetime, 
+                $action
+            );
+        }
+    }
+
+
+    private function _displayInfosInAnnexe($sentenceId, $username, $datetime)
+    {
+        echo '<ul class="info">';
+            if (!empty($sentenceId)) {
+                echo '<li class="sentenceId">';
+                echo $this->Html->link(
+                    '#'.$sentenceId,
+                    array(
+                        'controller' => 'sentences',
+                        'action' => 'show',
+                        $sentenceId
+                    ),
+                    array(
+                        'class' => 'sentenceId'
+                    )
                 );
-            } else {
-                echo sprintf(
-                    __('unlinked from %s', true), $linkToTranslation
-                );
+                echo '</li>';
             }
 
-        } else {
-            $dir = $this->Languages->getLanguageDirection($lang);
-            echo ' <span class="text" dir="'.$dir.'" >';
-            echo $contributionText;
-            echo '</span>';
-        }
-        echo '</div>';
+            if (!empty($username)) {
+                // contributor
+                echo '<li class="user">';
+                echo $this->_linkToUserProfile($username);
+                echo '</li>';
+            }
 
+            // date of contribution
+            echo '<li class="date">';
+            echo $this->Date->ago($datetime);
+            echo '</li>';
+
+        echo '</ul>';
+    }
+
+
+    private function _annexeSentenceEntry(
+        $sentenceId,
+        $sentenceText, 
+        $sentenceLang, 
+        $username, 
+        $datetime, 
+        $action,
+        $isObsolete
+    ) {
+        $type = 'sentence';
+        $css = $this->_getLogCss($type, $action, $isObsolete);
+
+        echo '<div class="'.$css.'">';
+        $this->_displayInfosInAnnexe($sentenceId, $username, $datetime);
+        $this->_displaySentenceInAnnexe($sentenceLang, $sentenceText);
         echo '</div>';
+    }
+
+
+    private function _annexeLinkEntry(
+        $sentenceId,
+        $translationId, 
+        $username, 
+        $datetime, 
+        $action
+    ) {
+        $type = 'link';
+        $css = $this->_getLogCss($type, $action);
+
+        echo '<div class="'.$css.'">';
+        $this->_displayInfosInAnnexe($sentenceId, $username, $datetime);
+        $this->_displayLink($action, $sentenceId, $translationId);
+        echo '</div>';
+    }
+
+
+    private function _displaySentenceInAnnexe($sentenceLang, $sentenceText)
+    {
+        echo '<div class="contribution"><div class="content">';
+            // sentence text
+            $dir = $this->Languages->getLanguageDirection($sentenceLang);
+            echo '<span dir="'.$dir.'">';
+            echo $sentenceText;
+            echo '</span>';
+        echo '</div></div>';
     }
 
 
@@ -239,33 +274,13 @@ class LogsHelper extends AppHelper
      *
      * @return string The html link.
      */
-    private function _displayLinkToUserProfile($username)
+    private function _linkToUserProfile($username)
     {
         return $this->Html->link(
             $username,
             array(
                 "controller" => "user",
                 "action" => "profile",
-                $username
-            )
-        );
-    }
-
-
-    /**
-     * Create the html link to the profile of a given user.
-     *
-     * @param string $userName Username.
-     *
-     * @return string
-     */
-    private function _displayLinkToUserContributions($username)
-    {
-        return $this->Html->link(
-            $username,
-            array(
-                "controller" => "contributions",
-                "action" => "of_user",
                 $username
             )
         );
@@ -281,53 +296,27 @@ class LogsHelper extends AppHelper
      * @param string $username     Username of the contributor.
      * @param string $datetime     Datetime, format YYYY-MM-DD HH:mm:ss.
      * @param string $action       { 'insert', 'update', 'delete' }
+     * @param bool   $isObsolete   Entry is obsolete if sentence has been modified
+     *                             or deleted later on.
      *
      * @return void
      */
-    public function displaySentenceEntry(
-        $sentenceId, $sentenceText, $sentenceLang, $username, $datetime, $action
+    private function _sentenceEntry(
+        $sentenceId, 
+        $sentenceText, 
+        $sentenceLang, 
+        $username, 
+        $datetime, 
+        $action,
+        $isObsolete
     ) {
-        $dir = $this->Languages->getLanguageDirection($sentenceLang);
-        ?>
-        <tr class="<?php echo $this->_getCssClassName('sentence', $action); ?>">
-            <td class="lang">
-            <?php
-            echo $this->Languages->icon(
-                $sentenceLang,
-                array(
-                    "class" => "flag",
-                    "width" => 30,
-                    "height" => 20
-                )
-            );
-            ?>
-            </td>
+        $type = 'sentence';
+        $css = $this->_getLogCss($type, $action, $isObsolete);
 
-            <td class="text">
-            <?php
-            echo $this->Html->link(
-                $sentenceText,
-                array(
-                    "controller" => "sentences",
-                    "action" => "show",
-                    $sentenceId
-                ),
-                array(
-                    'dir' => $dir
-                )
-            );
-            ?>
-            </td>
-
-            <td class="username">
-            <?php echo $this->_displayLinkToUserProfile($username); ?>
-            </td>
-
-            <td class="date">
-            <?php echo $this->Date->ago($datetime); ?>
-            </td>
-        </tr>
-        <?php
+        echo '<div class="'.$css.'">';
+        $this->_displayInfos($type, $action, $sentenceId, $username, $datetime);
+        $this->_displaySentence($sentenceLang, $sentenceText);
+        echo '</div>';
     }
 
 
@@ -342,70 +331,203 @@ class LogsHelper extends AppHelper
      *
      * @return void
      */
-    public function displayLinkEntry(
+    private function _linkEntry(
         $sentenceId, $translationId, $username, $datetime, $action
     ) {
-        ?>
-        <tr class="<?php echo $this->_getCssClassName('link', $action); ?>">
-            <td></td>
+        $type = 'link';
+        $css = $this->_getLogCss($type, $action);
 
-            <td class="linkInfo">
-            <?php
-            echo $this->Html->link(
+        echo '<div class="'.$css.'">';
+        $this->_displayInfos($type, $action, $sentenceId, $username, $datetime);
+        $this->_displayLink($action, $sentenceId, $translationId);
+        echo '</div>';
+    }
+
+
+    /**
+     * Display log entry infos.
+     *
+     * @param  string   $type       [description]
+     * @param  string   $action     [description]
+     * @param  int      $sentenceId [description]
+     * @param  string   $username   [description]
+     * @param  datetime $datetime   [description]
+     * 
+     * @return
+     */
+    private function _displayInfos(
+        $type,
+        $action,
+        $sentenceId, 
+        $username, 
+        $datetime
+    ) {
+        echo '<ul class="info">';
+
+            // sentence id
+            echo '<li class="sentenceId">';
+            $sentenceLink = $this->Html->link(
                 $sentenceId,
                 array(
-                    "controller" => "sentences",
-                    "action" => "show",
+                    'controller' => 'sentences',
+                    'action' => 'show',
                     $sentenceId
                 )
             );
-            echo ' « » ';
+            echo format(__('Sentence #{number}', true), array('number' => $sentenceLink));
+            echo '</li>';
+
+            // contributor
+            echo '<li class="user">';
+            echo $this->_getActionLabel($type, $action, $username);
+            echo '</li>';
+
+            // date of contribution
+            echo '<li class="date">';
             echo $this->Html->link(
-                $translationId,
+                $this->Date->ago($datetime),
                 array(
-                    "controller" => "sentences",
-                    "action" => "show",
-                    $translationId
+                    'controller' => 'sentences',
+                    'action' => 'show',
+                    $sentenceId
+                ),
+                array('escape' => false)
+            );
+            echo '</li>';
+
+        echo '</ul>';
+    }
+
+
+    /**
+     * [_displayLogEntrySentence description]
+     * 
+     * @param  [type] $sentenceLang [description]
+     * @param  [type] $sentenceText [description]
+     * 
+     * @return
+     */
+    private function _displaySentence($sentenceLang, $sentenceText)
+    {
+        echo '<div class="contribution"><div class="content">';
+            // language flag
+            echo '<span class="lang">';
+            echo $this->Languages->icon(
+                $sentenceLang,
+                array(
+                    "class" => "flag",
+                    "width" => 30,
+                    "height" => 20
                 )
             );
+            echo '</span>';
+
+            // sentence text
+            $dir = $this->Languages->getLanguageDirection($sentenceLang);
+            echo '<span dir="'.$dir.'">';
+            echo $sentenceText;
+            echo '</span>';
+        echo '</div></div>';
+    }
+
+
+    private function _displayLink($action, $sentenceId, $translationId)
+    {
+        $linkToTranslation = $this->Html->link(
+            $translationId,
+            array(
+                "controller" => "sentences",
+                "action" => "show",
+                $translationId
+            )
+        );
+        ?>
+        <div class="contribution"><div class="content">
+            <?php
+            if ($action == 'insert') {
+                echo format(
+                    __('linked to #{sentenceNumber}', true),
+                    array('sentenceNumber' => $linkToTranslation)
+                );
+            } else {
+                echo format(
+                    __('unlinked from #{sentenceNumber}', true),
+                    array('sentenceNumber' => $linkToTranslation)
+                );
+            }
             ?>
-            </td>
-
-            <td class="username">
-            <?php echo $this->_displayLinkToUserProfile($username); ?>
-            </td>
-
-            <td class="date">
-            <?php echo $this->Date->ago($datetime); ?>
-            </td>
-        </tr>
-        <?php
+            </div></div>
+        <?
     }
 
 
     /**
      * Returns the CSS class for a log entry, given its type and action.
      *
-     * @param string $type   { 'link', 'sentence' }
-     * @param string $action { 'insert', 'update', 'delete' }
+     * @param string $type       { 'link', 'sentence' }
+     * @param string $action     { 'insert', 'update', 'delete' }
+     * @param bool   $isObsolete Entry is obsolete if sentence has been modified
+     *                           or deleted later on.
      *
      * @return string
      */
-    private function _getCssClassName($type, $action)
+    private function _getLogCss($type, $action, $isObsolete = false)
     {
+        $obsolete = null;
+        if ($isObsolete) {
+            $obsolete = 'obsolete';
+        }
+
         switch ($action) {
             case 'insert' :
-                $type .= 'Added';
+                $status = 'added';
                 break;
             case 'update' :
-                $type .= 'Modified';
+                $status = 'edited';
                 break;
             case 'delete' :
-                $type .= 'Deleted';
+                $status = 'deleted';
+                break;
+            default:
+                $status = null;
                 break;
         }
 
-        return $type;
+        $css = join(' ', array($type.'Log', $status, $obsolete));
+
+        return $css;
     }
+
+
+    private function _getActionLabel($type, $action, $username) {
+        $userProfileLink = $this->_linkToUserProfile($username);
+
+        switch ($action) {
+            case 'insert' :
+                if ($type == 'sentence') {
+                    $label = format(__('added by {user}', true), array('user' => $userProfileLink));
+                } else if ($type == 'link') {
+                    $label = format(__('linked by {user}', true), array('user' => $userProfileLink));
+                }
+                break;
+            case 'update' :
+                $label = format(__('edited by {user}', true), array('user' => $userProfileLink));
+                break;
+            case 'delete' :
+                if ($type == 'sentence') {
+                    $label = format(__('deleted by {user}', true), array('user' => $userProfileLink));
+                } else if ($type == 'link') {
+                    $label = format(__('unlinked by {user}', true), array('user' => $userProfileLink));
+                }
+                
+                break;
+            default:
+                $status = null;
+                break;
+        }
+
+        return $label;
+    }
+
 }
 ?>

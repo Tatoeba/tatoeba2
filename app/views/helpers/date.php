@@ -72,11 +72,11 @@ class DateHelper extends AppHelper
         if ($days > 30) {
             return date("M jS Y", $timestamp).', '.date("H:i", $timestamp);
         } elseif ($days > 0) {
-            return sprintf(__('%s day(s) ago', true), $days);
+            return format(__n('yesterday', '{n}&nbsp;days ago', $days, true), array('n' => $days));
         } elseif ($hours > 0) {
-            return sprintf(__('%s hour(s) ago', true), $hours);
+            return format(__n('an hour ago', '{n}&nbsp;hours ago', $hours, true), array('n' => $hours));
         } else {
-            return sprintf(__('%s min(s) ago', true), $minutes);
+            return format(__n('a minute ago', '{n}&nbsp;minutes ago', $minutes, true), array('n' => $minutes));
         }
     }
 }

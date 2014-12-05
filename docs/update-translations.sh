@@ -185,6 +185,9 @@ else
         $GIT commit -m "Translations updated via update-translations.sh." &>> $LOG ||
           error_exit "git: error while committing"
         echo "Changes have been committed."
+        echo "Pulling repository to make sure no change happened." >> $LOG
+        $GIT pull &>> $LOG ||
+          error_exit "git: error while pulling repository"
         $GIT push origin master &>> $LOG ||
           error_exit "git: error while pushing"
         echo "Changes have been pushed to master."

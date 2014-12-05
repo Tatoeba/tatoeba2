@@ -358,9 +358,9 @@ class WallHelper extends AppHelper
         <?php
         echo $this->Date->ago($date);
         // Text of link
-        $text = sprintf(
-            __('by %s', true),
-            $author
+        $text = format(
+            __('by {messageAuthor}', true),
+            array('messageAuthor' => $author)
         );
         // Path of link
         $pathToUserProfile = array(
@@ -402,10 +402,10 @@ class WallHelper extends AppHelper
 
         if (CurrentUser::isAdmin()) {
             if ($hidden) {
-                $hiddenLinkText = __('unhide', true);
+                $hiddenLinkText = __d('admin', 'unhide', true);
                 $hiddenLinkAction = 'unhide_message';
             } else {
-                $hiddenLinkText = __('hide', true);
+                $hiddenLinkText = __d('admin', 'hide', true);
                 $hiddenLinkAction = 'hide_message';
             }
 

@@ -121,8 +121,9 @@ class TagsHelper extends AppHelper
     ) {
         $options = array("class" => "tagName");
         if ($userId != null) {
-            $options["title"] = sprintf(
-                __("user: %s, date: %s", true), $userId, $date
+            $options["title"] = format(
+                __("user: {userId}, date: {date}", true),
+                compact('userId', 'date')
             );
         }
         echo $this->Html->link(
@@ -250,9 +251,9 @@ class TagsHelper extends AppHelper
 
     private function _displayRemoveLink($tagId, $tagName, $sentenceId)
     {
-        $removeTagFromSentenceAlt = sprintf(
-            __("remove tag '%s' from this sentence.", true),
-            $tagName
+        $removeTagFromSentenceAlt = format(
+            __("remove tag '{tagName}' from this sentence.", true),
+            compact('tagName')
         );
         // X link to remove tag from sentence
         echo $this->Html->link(
@@ -295,10 +296,7 @@ class TagsHelper extends AppHelper
         </script>
 
         <?php
-        $removeFromListAlt = sprintf(
-            __("remove tag from sentence", true)
-        );
-
+        $removeFromListAlt = __("remove tag from sentence", true);
         $removeTagFromSentenceImg =  $this->Html->image(
             IMG_PATH . 'close.png',
             array(

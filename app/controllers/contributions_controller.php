@@ -84,6 +84,7 @@ class ContributionsController extends AppController
         if ($filter != 'und') {
             $conditions = array('sentence_lang' => $filter);
         }
+        $conditions = $this->Contribution->getQueryConditionsWithExcludedUsers($conditions);
 
         $this->paginate = array(
             'Contribution' => array(
@@ -119,6 +120,14 @@ class ContributionsController extends AppController
      */
     public function latest($filter = 'und')
     {
+        $this->helpers[] = 'Members';
+
+        $this->loadModel('LastContribution');
+        $currentContributors = $this->LastContribution->getCurrentContributors();
+        $total = $this->LastContribution->getTotal($currentContributors);
+
+        $this->set('currentContributors', $currentContributors);
+        $this->set('total', $total);
         $this->set(
             'contributions', $this->Contribution->getLastContributions(200, $filter)
         );

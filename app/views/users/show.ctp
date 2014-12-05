@@ -21,10 +21,10 @@
 
 $username = $user['User']['username'];
 $userId =  $user['User']['id'];
-$this->set('title_for_layout', sprintf(
-    __('Tatoeba user: %s', true),
-    $username
-));
+$this->set('title_for_layout', $pages->formatTitle(format(
+    __('Tatoeba user: {username}', true),
+    compact('username')
+)));
 ?>
 <div id="annexe_content">
 
@@ -60,17 +60,14 @@ $this->set('title_for_layout', sprintf(
     if (count($user['Sentences']) > 0) {
         echo '<div class="module">';
             echo '<h2>';
-                __('Latest sentences');
-                echo ' (';
-                echo $html->link(
-                    __('view all', true),
-                    array(
-                        "controller" => "sentences",
-                        "action" => "of_user",
-                        $username
-                    )
-                );
-                echo ')';
+            echo format(
+                __('Latest sentences (<a href="{}">view all</a>)', true),
+                $html->url(array(
+                    "controller" => "sentences",
+                    "action" => "of_user",
+                    $username
+                ))
+            );
             echo '</h2>';
             
             $type = 'mainSentence';
@@ -93,17 +90,14 @@ $this->set('title_for_layout', sprintf(
     if (count($user['Favorite']) > 0) {
         echo '<div class="module">';
             echo '<h2>';
-            __('Favorite sentences');
-            echo ' (';
-            echo $html->link(
-                __('view all', true),
-                array(
+            echo format(
+                __('Favorite sentences (<a href="{}">view all</a>)', true),
+                $html->url(array(
                     "controller" => "favorites",
                     "action" => "of_user",
                     $user['User']['username']
-                )
+                ))
             );
-            echo ')';
             echo '</h2>';
 
             
@@ -129,18 +123,14 @@ $this->set('title_for_layout', sprintf(
     if (count($user['SentenceComments']) > 0) {
         echo '<div class="module">';
             echo '<h2>';
-            __('Latest comments');
-            echo ' (';
-            echo $html->link(
-                __('view all', true),
-                array(
+            echo format(
+                __('Latest comments (<a href="{}">view all</a>)', true),
+                $html->url(array(
                     "controller" => "sentence_comments",
                     "action" => "of_user",
                     $username
-                )
+                ))
             );
-            echo ')';
-
             echo '</h2>';
 
             echo '<div class="comments">';
@@ -167,18 +157,14 @@ $this->set('title_for_layout', sprintf(
     if (count($user['Wall']) > 0) {
         echo '<div class="module">';
             echo '<h2>';
-            __('Latest Wall messages');
-            echo ' (';
-            echo $html->link(
-                __('view all', true),
-                array(
+            echo format(
+                __('Latest Wall messages (<a href="{}">view all</a>)', true),
+                $html->url(array(
                     "controller" => "wall",
                     "action" => "messages_of_user",
                     $username
-                )
+                ))
             );
-            echo ')';
-
             echo '</h2>';
 
             echo '<div class="wall">';

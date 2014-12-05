@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Useful tools', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Useful tools', true)));
 ?>
 <div id="annexe_content" >
     <?php
@@ -46,12 +46,12 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Useful tools', true));
 
         <p>
             <?php
-            echo sprintf(
+            echo format(
                 __(
                     "So if there is a must-have tool which is missing, or if you".
                     " have yourself coded something you think can help others".
                     " (as long as you can provide it under a GPL compatible".
-                    " licence) don't hesitate to talk about it <a href=\"%s\">".
+                    " licence) don't hesitate to talk about it <a href=\"{}\">".
                     "here</a>. We're always looking for new stuff.",
                     true
                 ),

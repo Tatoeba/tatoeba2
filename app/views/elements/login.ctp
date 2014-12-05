@@ -85,16 +85,14 @@ echo '<fieldset>';
 echo $form->input(
     'username',
     array(
-        'label' => __('Username: ', true),
-        'value' => '',
+        'label' => __('Username: ', true)
     )
 );
 // Password
 echo $form->input(
     'password', 
     array(
-        'label' => __('Password: ', true),
-        'value' => '',
+        'label' => __('Password: ', true)
     )
 );
 // Checkbox

@@ -27,8 +27,8 @@
 
 $javascript->link(JS_PATH . 'furigana.js', false);
 
-$this->set('title_for_layout', 'Tatoeba - '. __(
-    'Convert Japanese text into romaji or furigana', true
+$this->set('title_for_layout', $pages->formatTitle(
+    __('Convert Japanese text into romaji or furigana', true)
 ));
 
 ?>
@@ -42,8 +42,8 @@ $this->set('title_for_layout', 'Tatoeba - '. __(
         <h2><?php __('Credits'); ?></h2>
         <p>
             <?php
-            echo sprintf(
-                __('This tool is powered by <a href="%s">MeCab</a>.',true),
+            echo format(
+                __('This tool is powered by <a href="{}">MeCab</a>.',true),
                 'http://mecab.sourceforge.net/feature.html'
             );
 

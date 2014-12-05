@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */ 
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Download list: ', true) . $listName);
+$this->set('title_for_layout', $pages->formatTitle(__('Download list: ', true) . $listName));
 ?>
 <div id="annexe_content">
     <div class="module">
@@ -124,13 +124,13 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Download list: ', true) . $lis
                     "escape" => false
                 )
             );
-            echo sprintf(
+            echo format(
                 __(
                     'If you select a language, the translation of each sentence into that language '.
                     '(if it exists) will be written to your output. '.
-                    'You can then import the file to produce a deck of flash cards, using the %s program.', true
-                ), 
-                $link
+                    'You can then import the file to produce a deck of flash cards, using the {Anki} program.', true
+                ),
+                array('Anki' => $link)
             );
             ?>
             </td>
@@ -164,11 +164,11 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Download list: ', true) . $lis
     ?>
     </p>
     <p>
-    <span class="param"><em>sentence_id</em></span>
-    <span class="symbol"><em>[tab]</em></span>
-    <span class="param">sentence_text</span>
-    <span class="symbol"><em>[tab]</em></span>
-    <span class="param"><em>translation_text</em></span>
+    <span class="param"><em><?php __('Sentence id'); ?></em></span>
+    <span class="symbol"><em>[<?php __('tab'); ?>]</em></span>
+    <span class="param"><?php __('Text'); ?></span>
+    <span class="symbol"><em>[<?php __('tab'); ?>]</em></span>
+    <span class="param"><em><?php __('Translation'); ?></em></span>
     </p>
     
     <p>

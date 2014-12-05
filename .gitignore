@@ -8,15 +8,14 @@ app/config/database.php
 # audio files
 app/webroot/files/audio
 
+# robot.txt
+app/webroot/robots.txt
+
 # cache
 app/tmp/cache
 app/tmp/cache/models
 app/tmp/cache/persistent
 app/tmp/cache/views
-
-
-# By default, "./cake/console/cake i18n extract" writes files here. Ignore them.
-app/locale/default*.pot
 
 # unit test
 app/vendors/simpletest
@@ -72,7 +71,6 @@ coverage.xml
 
 # Django stuff:
 *.log
-*.pot
 *.db
 
 # Sphinx documentation

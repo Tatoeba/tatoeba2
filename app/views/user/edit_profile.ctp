@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+$this->set('title_for_layout', $pages->formatTitle(__('Edit profile', true)));
 ?>
 <div id="annexe_content">
     <?php
@@ -92,7 +94,7 @@
     
     echo $form->input(
         'User.name',
-        array('label' => __('Name', true))
+        array('label' => __p('user', 'Name', true))
     );
     
     echo '<div class="input">';

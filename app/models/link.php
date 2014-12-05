@@ -46,6 +46,19 @@ class Link extends AppModel
         }
     }
 
+    public function beforeSave() {
+        if (   isset($this->data[$this->alias]['sentence_id'])
+            && isset($this->data[$this->alias]['translation_id'])) {
+            $duplicate = $this->find('first', array('conditions' => array(
+                'sentence_id' => $this->data[$this->alias]['sentence_id'],
+                'translation_id' => $this->data[$this->alias]['translation_id']
+            )));
+            if ($duplicate)
+                return false;
+        }
+        return true;
+    }
+
     /**
      * Called after a link is saved.
      *

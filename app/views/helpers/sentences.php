@@ -110,6 +110,17 @@ class SentencesHelper extends AppHelper
 
         // Form to add a new translation
         $this->_displayNewTranslationForm($id, $withAudio);
+
+        $this->displayTranslations($id, $translations, $indirectTranslations, $withAudio);
+
+        if ($withDivWrapper) {
+        ?>
+        </div>
+        <?php
+        }
+    }
+
+    public function displayTranslations($id, $translations, $indirectTranslations, $withAudio = true) {
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
             <div></div>
@@ -121,8 +132,7 @@ class SentencesHelper extends AppHelper
                     null,
                     'directTranslation',
                     $withAudio,
-                    $id,
-                    $ownerName
+                    $id
                 );
             }
 
@@ -133,20 +143,13 @@ class SentencesHelper extends AppHelper
                     null,
                     'indirectTranslation',
                     $withAudio,
-                    $id,
-                    $ownerName
+                    $id
                 );
             }
 
             ?>
         </div>
-
         <?php
-        if ($withDivWrapper) {
-        ?>
-        </div>
-        <?php
-        }
     }
 
 
@@ -638,12 +641,17 @@ class SentencesHelper extends AppHelper
         echo $this->Javascript->link('sentences.adopt.js', true);
         echo $this->Javascript->link('jquery.jeditable.js', true);
         echo $this->Javascript->link('sentences.edit_in_place.js', true);
-        echo $this->Javascript->link('sentences.play_audio.js', true);
         echo $this->Javascript->link('sentences.change_language.js', true);
-        echo $this->Javascript->link('furigana.js', true);
-        echo $this->Javascript->link('links.add_and_delete.js', true);
+        echo $this->Javascript->link('sentences.link.js', true);
+        $this->javascriptForAJAXTranslationsGroup();
     }
 
+    public function javascriptForAJAXTranslationsGroup() {
+        echo $this->Javascript->link('sentences.play_audio.js', true);
+        echo $this->Javascript->link('links.add_and_delete.js', true);
+        echo $this->Javascript->link('furigana.js', true);
+        echo $this->Javascript->link('sentences.logs.js', true);
+    }
 
 
     /**

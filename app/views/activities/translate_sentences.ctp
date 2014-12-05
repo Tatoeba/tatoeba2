@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-$this->set('title_for_layout', 'Tatoeba - ' . __('Translate sentences', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Translate sentences', true)));
 
 $currentLanguage = $session->read('browse_sentences_in_lang');
 $notTranslatedInto = $session->read('not_translated_into_lang');
@@ -45,12 +45,12 @@ if (empty($notTranslatedInto)) {
         <h2><?php __("How to add a translation"); ?></h2>
         <p>
             <?php
-            echo sprintf(
+            echo format(
                 __(
-                    'Once the sentences are displayed, click on %s to add '.
+                    'Once the sentences are displayed, click on {translateButton} to add '.
                     'a translation.', true
                 ),
-                $html->image('translate.png')
+                array('translateButton' => $html->image('translate.png'))
             );
             ?>
         </p>

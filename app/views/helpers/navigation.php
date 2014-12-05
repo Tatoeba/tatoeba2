@@ -93,7 +93,7 @@ class NavigationHelper extends AppHelper
             $this->Javascript->link('sentences.random.js', false);
 
 
-            $langArray = $this->Languages->languagesArray();
+            $langArray = $this->Languages->languagesArrayAlone();
             $selectedLanguage = $this->Session->read('random_lang_selected');
             
             echo $this->Form->select(
@@ -244,7 +244,7 @@ class NavigationHelper extends AppHelper
         ) {
             echo '<li class="option">';
             echo $this->Html->link(
-                sprintf(__('Profile of %s', true), $username),
+                format(__('Profile of {user}', true), array('user' => $username)),
                 array(
                     'controller' => 'user',
                     'action' => 'profile',

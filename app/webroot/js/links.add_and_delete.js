@@ -16,56 +16,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
  
-$(document).ready(function(){
+function translationLink(action, sentenceId, translationId)
+{
+    var rootUrl = get_tatoeba_root_url();
 
-    $(".link").click(function(){
-        var sentenceId = $(this).data("sentenceId");
-        var translationId = $(this).data("translationId");
-        var rootUrl = get_tatoeba_root_url();
-        var image = $(this);
-        var action = null;
-        
-        if ($(this).hasClass("add")){
-            var action = 'add';
-            var newAction = 'delete';
-            var removeClass = "indirectTranslation";
-            var addClass = "directTranslation";
-            var newType = "direct";
-        } else if ($(this).hasClass("delete")){
-            var action = 'delete';
-            var newAction = 'add';
-            var removeClass = "directTranslation";
-            var addClass = "indirectTranslation";
-            var newType = "indirect";
-        }
-        
-        if (action != null) {
-            // Show the loading gif...
-            $(this).html(
-                "<img src='/img/loading-small.gif' alt='loading'>"
-            );
-            
-            // Send request...
-            $.get(
-                rootUrl + "/links/"+action+"/"+sentenceId+"/"+translationId,
-                function(data) {
-                    var elementId = "#translation_"+translationId+"_"+sentenceId;
-                    
-                    // Update the link or unlink image
-                    image.html(data);
-                    image.removeClass(action);
-                    image.addClass(newAction);
-                    
-                    // update the class of the sentence and the arrow
-                    $(elementId).removeClass(removeClass);
-                    $(elementId).addClass(addClass);
-                    $(elementId+" .show img").attr(
-                        'src', '/img/'+newType+'_translation.png'
-                    );
-                }
-            );
-        }
-        
-    });
-    
-});
+    // Show the loading gif...
+    $('#link_' + sentenceId + '_' + translationId).html(
+        "<img src='/img/loading-small.gif' alt='loading'>"
+    );
+    $("#_" + sentenceId + "_message").remove();
+
+    $.post(
+        rootUrl + "/links/" + action + "/" + sentenceId + "/" + translationId,
+        {
+            'returnTranslations': true
+        },
+        function(data){
+            $("#_" + sentenceId + "_translations").replaceWith(data).show();
+        },
+        'html'
+    );
+}

@@ -37,7 +37,7 @@
         ?>
         <h2>
         <?php
-        echo sprintf(__('Sentence #%s', true) , $sentence['id']);
+        echo format(__('Sentence #{number}', true) , array('number' => $sentence['id']));
         ?>
         </h2>
         

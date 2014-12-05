@@ -1,0 +1,4051 @@
+# LANGUAGE translation of CakePHP Application
+# Copyright YEAR NAME <EMAIL@ADDRESS>
+# 
+# Translators:
+# Darcy Shen <sadhen1992@gmail.com>, 2014
+# صفا الفليج <safaalfulaij@hotmail.com>, 2014
+msgid ""
+msgstr ""
+"Project-Id-Version: Tatoeba Website\n"
+"POT-Creation-Date: 2014-11-28 09:53+0100\n"
+"PO-Revision-Date: 2014-11-29 07:47+0000\n"
+"Last-Translator: Darcy Shen <sadhen1992@gmail.com>\n"
+"Language-Team: Chinese (China) (http://www.transifex.com/projects/p/tatoeba_website/language/zh_CN/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/app_controller.php#L93
+msgid "You need to be logged in."
+msgstr "请先登录"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L72
+msgid "Sentences #%s and #%s are now direct translations of each other."
+msgstr "句子　#%s　和　#%s　现已成为相对应的直接翻译。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L394
+msgid ""
+"An error occurred while saving. Please try again or contact us to report "
+"this."
+msgstr "保存时出现错误。请重试或联系我们以提交错误报告。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L116
+msgid "Sentences #%s and #%s are no longer direct translations of each other."
+msgstr "句子　#%s　和　#%s　不再是相对应的直接翻译了。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L124
+msgid ""
+"An error occurred while unlinking. Please try again or contact us to report "
+"this."
+msgstr "取消链接时发生错误。请重试或者联系我们报告错误。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L137
+msgid ""
+"You have reached your message limit for today. Please wait until you can "
+"send more messages. If you have received this message in error, please "
+"contact administrators at team@tatoeba.org."
+msgstr "您今日可发消息的数量已达上限。请明天再发。如果该消息并非是您想收到的，请发邮件联系管理员：team@tatoeba.org。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L180
+msgid ""
+"The user %s to whom you want to send this message does not exist. Please try"
+" with another username."
+msgstr "您想联系的用户%s不存在。请尝试使用其他用户名。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L195
+msgid "You must fill at least the \"To\" field and the content field."
+msgstr "收件人栏及内容栏不得为空。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L277
+msgid "restore"
+msgstr "还原"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L285
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L239
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L438
+msgid "delete"
+msgstr "删除"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L296
+msgid "mark as unread"
+msgstr "标记为未读"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L305
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L452
+msgid "reply"
+msgstr "回复"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L255
+msgid "Your comment has been saved."
+msgstr "您的评论已保存。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L288
+msgid "You do not have permission to edit this comment. "
+msgstr "您没有权限编辑这条评论。 "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L290
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php304;333
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L60
+msgid ""
+"If you have received this message in error, please contact administrators at"
+" team@tatoeba.org."
+msgstr "如果该消息并非是您想收到的，请发邮件联系管理员：team@tatoeba.org。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L314
+msgid "Comments cannot be empty."
+msgstr "评论不能为空。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L327
+msgid "Changes to your comment have been saved."
+msgstr "评论已更新。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L339
+msgid "We could not save your changes."
+msgstr "无法保存更新内容。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L175
+msgid ""
+"The download feature has been disabled for this list because it contains %d "
+"sentences. Only lists containing %d or fewer sentences can be downloaded. If"
+" you can edit the list, you may want to split it into multiple lists."
+msgstr "因为此列表包含%d句句子，所以无法下载。只有包含%d句句子或更少的列表才能下载。如果您有该列表的编辑权，不妨将其分割成多个列表。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L117
+msgid "Tag '%s' already exists for sentence #%s, or cannot be added"
+msgstr "#%s句子已有'%s'标签，或该标签无法被添加"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L252
+msgid ""
+"There are no sentences for this tag. The tag you are looking for has been "
+"deleted or does not exist."
+msgstr "此标签下没有句子。您所查找的标签已经被删除或不存在。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L446
+msgid "No user with this username: "
+msgstr "该用户名不存在： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L160
+msgid "Failed to upload image"
+msgstr "图片上传失败"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L169
+msgid "Please choose an image that does not exceed 1 MB."
+msgstr "图片大小不得超过1MB。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L180
+msgid "Please choose GIF, JPEG or PNG image format."
+msgstr "请选择GIF，JPEG或PNG图片格式。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L209
+msgid "Error while saving."
+msgstr "保存时出错"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L313
+msgid "That email address already exists. Please try another."
+msgstr "该邮箱地址已存在。请尝试其他邮箱地址。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L331
+msgid "Profile saved."
+msgstr "个人资料保存完毕。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L341
+msgid "Failed to change email address. Please enter a proper email address."
+msgstr "无法更改邮箱地址。请核实输入是否正确。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L392
+msgid "Your settings have been saved."
+msgstr "您的设置已保存."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L462
+msgid "New password cannot be empty."
+msgstr "新密码不能是空的。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L472
+msgid "New password has been saved."
+msgstr "新密码已保存。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L474
+msgid "An error occurred while saving."
+msgstr "保存时出现错误。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L479
+msgid "Password error. Please try again."
+msgstr "密码错误，请重试。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L205
+msgid ""
+"This account has been marked inactive. You cannot log in with it anymore. "
+"Please contact an admin if this is a mistake."
+msgstr "该账户已被关闭。您无法再用其登陆。如果是误操作，请联系管理员。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L216
+msgid ""
+"This account has been marked as a spammer. You cannot log in with it "
+"anymore. Please contact an admin if this is a mistake."
+msgstr "该账户已被识别为垃圾邮件发送者。您无法再用其登陆。如果是误操作，请联系管理员。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L234
+msgid "You must fill in your username and password."
+msgstr "您必须填入用户名和密码。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L242
+msgid ""
+"Login failed. Make sure that your Caps Lock and Num Lock are not "
+"unintentionally turned on. Your password is case-sensitive."
+msgstr "登录失败。请确认您的大写锁定和数字锁定是否按下。密码是大小写敏感的。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L316
+msgid "You did not accept the terms of use."
+msgstr "您还未接受使用条款。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L327
+msgid "Wrong answer to the question."
+msgstr "问题答案不正确。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L348
+msgid "Password cannot be empty."
+msgstr "密码不能为空。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L401
+msgid "Tatoeba, new password"
+msgstr "Tatoeba 新密码"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L402
+msgid "Your login: "
+msgstr "您的账户： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L405
+msgid "Your new password: "
+msgstr "您的新密码： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L416
+msgid "Your new password has been sent to "
+msgstr "您的新密码已经发送到 "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L424
+msgid "There is no registered user with this email address: "
+msgstr "该邮件地址不存在： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L486
+msgid "No user with this id: "
+msgstr "该用户号不存在： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L303
+msgid "You do not have permission to edit this message. "
+msgstr "您没有权限编辑这条信息。 "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L332
+msgid "You do not have permission to edit this message."
+msgstr "您没有权限编辑这条信息。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L347
+msgid "Message saved."
+msgstr "信息已保存。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L357
+msgid ""
+"We apologize, but we could not save your data.\n"
+"                             Please try again"
+msgstr "很抱歉，我们无法保存您的信息。\n请稍后重试。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/models/sentences_list.php#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php69;158
+msgid "unnamed list"
+msgstr "未命名列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L29
+msgid "Orphan sentences"
+msgstr "没有作者的句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L32
+msgid "Orphan sentences in %s"
+msgstr "没有作者的%s句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L43
+msgid "About adoption"
+msgstr "接管须知"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L46
+msgid ""
+"Adopting is a way to vote \"this sentence is correct\". It is also an "
+"occasion to check the sentence and correct it if there is a mistake."
+msgstr "接管是一种方式用来表明“这句句子是正确的”。这也是一个检查并纠正潜在错误的机会。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L56
+msgid ""
+"So if you want to help us check and correct sentences, then adopt (%s) any "
+"\"orphan\" sentence you see in your <strong>native language</strong>, and "
+"correct it if necessary. Read <a href=\"%s\">this</a> for further "
+"explanation."
+msgstr "所以如果您想帮助我们检查和纠正句子，那您可以接管(%s)任何使用您的<strong>母语</strong>却没有作者的句子，如果需要的话，也可以进行修正。点击<a href=\"%s\">此处</a>查看进一步的说明。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L50
+msgid "Tips"
+msgstr "小贴士"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L73
+msgid ""
+"If you see another username appear after adopting a sentence, it means that "
+"someone else adopted the sentence very shortly before you did. In such "
+"cases, you can try adopting sentences that are several pages away from your "
+"current page to reduce the chances of that happening again."
+msgstr "如果您看见接管之后出现了另一个用户名，这表示其他人先您一步接管了句子。在这种情况下，您可以尝试接管与您当前页相隔好几个页面上的句子，以减少再次发生类似事件的可能性。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences_of.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/with_audio.ctp#L61
+msgid "(%count% results)"
+msgstr "（%count%条结果）"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L96
+msgid "Improve sentences"
+msgstr "改进句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L33
+msgid "Related links"
+msgstr "相关链接"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L63
+msgid "Tag guidelines"
+msgstr "标签指南"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L70
+msgid "Tags you should know about"
+msgstr "你应该了解的那些标签"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L72
+msgid ""
+"The community has come up with several \"utility tags\" to improve the "
+"quality and reliability of sentences."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L76
+msgid "<li><a href=\"%s\">%s</a> - The sentence needs to be changed.</li>"
+msgstr "<li><a href=\"%s\">%s</a> - 这个句子需要修改。</li>"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L77
+msgid "<li><a href=\"%s\">%s</a> - The sentence needs to be checked.</li>"
+msgstr "<li><a href=\"%s\">%s</a> - 这个句子需要检查。</li>"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L78
+msgid ""
+"<li><a href=\"%s\">%s</a> - The sentence needs to be checked by a native "
+"speaker.</li>"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L79
+msgid ""
+"<li><a href=\"%s\">%s</a> - The sentence is considered correct by at least "
+"one person.</li>"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L86
+msgid "How to help"
+msgstr "如何帮助"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L88
+msgid ""
+"<li>You need to be an <a href=\"%s\">advanced contributor</a>; otherwise you"
+" will not be able to tag sentences.</li>"
+msgstr "<li>你需要成为<a href=\"%s\">高级贡献者</a>，否则你无法给句子打标签</li>"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L91
+msgid ""
+"<li>Whenever you notice a sentence that is wrong or sounds strange, add the "
+"tag <a href=\"%s\">%s</a> and post a comment to suggest a correction or "
+"better phrasing.</li>"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L94
+msgid ""
+"<li>Whenever you notice a possible mistake, add the tag <a "
+"href=\"%s\">%s</a> and post a comment explaining what you think the mistake "
+"may be.</li>"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L97
+msgid ""
+"<li>Whenever you add a sentence in a foreign language and are not completely"
+" sure that it is correct, add the tag <a href=\"%s\">%s</a>.</li>"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L99
+msgid ""
+"<li>Whenever you can, browse through sentences that are tagged <a "
+"href=\"%s\">%s</a>, <a href=\"%s\">%s</a>, and <a href=\"%s\">%s</a> to "
+"discuss the sentences with other members and help decide what to do with "
+"these sentences.</li>"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L104
+msgid ""
+"<li>Once a problematic sentence has been addressed, tag it <a "
+"href=\"%s\">%s</a>. More generally, you can browse and check others' "
+"sentences and tag them with <a href=\"%s\">%s</a>. But do this only when you"
+" are completely sure that they are correct, and do not use the tag on your "
+"own sentences.</li>"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp27;83
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L87
+msgid "Translate sentences"
+msgstr "翻译句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L45
+msgid "How to add a translation"
+msgstr "如何添加一句翻译"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L49
+msgid "Once the sentences are displayed, click on %s to add a translation."
+msgstr "句子一旦显示，点击%s添加一句翻译。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L60
+msgid "About translations"
+msgstr "关于翻译"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L62
+msgid "Good translations"
+msgstr "翻译建议"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L64
+msgid "We know it's difficult, but do NOT translate word for word!"
+msgstr "我们知道这的确有难度，但是请您尽量不要逐字硬译。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L68
+msgid "Multiple translations"
+msgstr "多种可能性翻译"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L71
+msgid ""
+"If you feel there are several possible translations, you can add several "
+"translations in the same language. "
+msgstr "如果您觉得有好几种可能的翻译，您可以用同一种语言添加好几句翻译。 "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L85
+msgid "Search for untranslated sentences"
+msgstr "搜索没有翻译的句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L135
+msgid "Sentences in:"
+msgstr "使用以下语言的句子："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L193
+msgid "Not directly translated into:"
+msgstr "未被直接翻译成以下语言的句子："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L134
+msgid "show sentences"
+msgstr "显示句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L140
+msgid "Display random sentences"
+msgstr "随机显示句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L59
+msgid "Quantity"
+msgstr "数量"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L72
+msgid "Language"
+msgstr "语言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L181
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L86
+msgid "show random sentences"
+msgstr "随机显示"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences_of.ctp#L31
+msgid "This user doesn't exist: %s"
+msgstr "该用户不存在: %s"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences_of.ctp#L36
+msgid "Translate %1$s sentences that belong to %2$s"
+msgstr "翻译属于%2$s的%1$s句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences_of.ctp#L42
+msgid "Translate sentences that belong to %s"
+msgstr "翻译属于%s的句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/activity_timeline.ctp#L39
+msgid "Activity timeline"
+msgstr "查看动态"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp38;73
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L43
+msgid "Latest contributions"
+msgstr "最新动态"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L79
+msgid "Contributions"
+msgstr "动态"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L45
+msgid "View all"
+msgstr "查看全部"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L49
+msgid "Browse all contributions"
+msgstr "查看所有动态"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/of_user.ctp#L37
+msgid "Logs of %s's contributions"
+msgstr "%s的动态记录"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/audio_stats.ctp#L29
+msgid "Number of sentences with audio by language"
+msgstr "各语言的音频数量"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/audio_stats.ctp#L48
+msgid "Browse audio for all languages"
+msgstr "查看所有语言的音频"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L41
+msgid "January"
+msgstr "一月"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L42
+msgid "February"
+msgstr "二月"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L43
+msgid "March"
+msgstr "三月"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L44
+msgid "April"
+msgstr "四月"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L45
+msgid "May"
+msgstr "五月"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L46
+msgid "June"
+msgstr "六月"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L47
+msgid "July"
+msgstr "七月"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L48
+msgid "August"
+msgstr "八月"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L49
+msgid "September"
+msgstr "九月"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L50
+msgid "October"
+msgstr "十月"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L51
+msgid "November"
+msgstr "十一月"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L52
+msgid "December"
+msgstr "十二月"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L57
+msgid "Month"
+msgstr "月"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L83
+msgid "Year"
+msgstr "年"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L29
+msgid "Currently contributing"
+msgstr "最近动态"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L34
+msgid "Users who participated in the last %s contributions."
+msgstr "参与最近%s条更新的用户"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences_statistics.ctp#L34
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L49
+msgid "%s sentences"
+msgstr "%s句句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L36
+msgid "Online visitor(s): "
+msgstr "在线用户数： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L41
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L28
+msgid "Terms of use"
+msgstr "使用条款"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp38;68
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L70
+msgid "Contact us"
+msgstr "联系我们"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L28
+msgid "Donate"
+msgstr "捐助"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L74
+msgid "Blog"
+msgstr "博客"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L59
+msgid "Twitter"
+msgstr "推特"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L61
+msgid "Facebook"
+msgstr "脸书"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/join_us.ctp#L30
+msgid "Join the community!"
+msgstr "加入社区"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/join_us.ctp#L32
+msgid ""
+"The more contributors there are, the more useful Tatoeba will become! "
+"Besides, by contributing, not only will you be helpful to the rest of the "
+"world, but you will also get to learn a lot."
+msgstr "参与者越多，Tatoeba将变得更有用！此外，您的参与不仅对世界上其他国家的人有用，您自己也会学到很多东西。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/join_us.ctp#L41
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp37;41
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp38;155
+msgid "Register"
+msgstr "注册"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp59;111
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L70
+msgid "Log in"
+msgstr "登录"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L50
+msgid "Username: "
+msgstr "用户名： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L55
+msgid "Password: "
+msgstr "密码： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L65
+msgid "Remember me"
+msgstr "记住登录状态"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L77
+msgid "Forgot your password?"
+msgstr "忘记密码？"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L125
+msgid "Close"
+msgstr "关闭"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/show.ctp#L34
+msgid "Private messages"
+msgstr "消息"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L36
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L54
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L28
+msgid "New message"
+msgstr "新消息"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L41
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp179;185
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L30
+msgid "Inbox"
+msgstr "收件箱"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L50
+msgid "Unread"
+msgstr "未读"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L32
+msgid "Sent"
+msgstr "已发送邮件"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L53
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L34
+msgid "Trash"
+msgstr "回收站"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L71
+msgid "Question about Tatoeba?"
+msgstr "关于 Tatoeba 有何疑问？"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L74
+msgid ""
+"If you would like to ask a question about Tatoeba, please send an email to "
+"<strong>team@tatoeba.org</strong> rather than a private message. "
+msgstr "如果您有关于Tatoeba的问题，请不要发送私人信息，您可以直接发送邮件至<strong>team@tatoeba.org</strong>。 "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L83
+msgid ""
+"All members of Team Tatoeba will receive it and you may get a reply faster."
+msgstr "Sysko和Trang都会收到并很快给您回复。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L35
+msgid "Folders"
+msgstr "分类"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L39
+msgid "Random sentence"
+msgstr "随机句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L54
+msgid "show another "
+msgstr "换一句 "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp115;144
+msgid "show more..."
+msgstr "更多..."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L55
+msgid "Example sentences with the words:"
+msgstr "输入词汇找例句"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L71
+msgid "From"
+msgstr "源语言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L91
+msgid "To"
+msgstr "目标语言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L53
+msgid "search"
+msgstr "搜索"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_features.ctp#L29
+msgid "Search features"
+msgstr "搜索特点"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_features.ctp#L33
+msgid "The search is powered by <a href=\"%s\">Sphinx</a>."
+msgstr "搜索由<a href=\"%s\">Sphinx</a>支持。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_features.ctp#L42
+msgid "You can find basic instructions for searching <a href=\"%s\">here</a>."
+msgstr "您可以在<a href=\"%s\">这里</a>找到搜索的基本指示。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_features.ctp#L54
+msgid "You can learn about advanced search features <a href=\"%s\">here</a>."
+msgstr "点击<a href=\"%s\">这里</a>了解更多有关高级搜索的信息。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L33
+msgid "Add a sentence containing %s"
+msgstr "添加一句含有%s的句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L38
+msgid ""
+"There is no result for this search (yet) but you can help us by feeding the "
+"corpus with new vocabulary!"
+msgstr "没有搜索到相应的结果，但您可以添加新的词汇来丰富我们的语料库。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L51
+msgid ""
+"Feel free to <a href=\"%s\">submit a sentence</a> with the words you were "
+"searching."
+msgstr "随时<a href=\"%s\">提交</a>一句带有您正在找的词的句子。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L39
+msgid "If you are interested, please register."
+msgstr "如果您感兴趣，快点注册吧。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences_statistics.ctp#L59
+msgid "show all languages"
+msgstr "查看所有语言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/session_expired.ctp#L31
+msgid "Your session has expired."
+msgstr "你的会话已过期"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/session_expired.ctp#L34
+msgid "Please <a href=\"%s\">click here</a> to log in again."
+msgstr "请点击<a href=\"%s\">这里</a>再次登陆。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L43
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L36
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L74
+msgid "Profile"
+msgstr "个人资料"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L65
+msgid "My sentences"
+msgstr "我的句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L78
+msgid "My favorites"
+msgstr "我的收藏"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L91
+msgid "My comments"
+msgstr "我的评论"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L104
+msgid "Comments on my sentences"
+msgstr "我句子上的评论"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L117
+msgid "My Wall messages"
+msgstr "我的留言板信息"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L130
+msgid "My sentence logs"
+msgstr "我的句子记录"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L28
+msgid "Edit profile"
+msgstr "编辑个人资料"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L27
+msgid "Settings"
+msgstr "设置"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp212;213
+msgid "Log out"
+msgstr "退出"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L49
+msgid "Home"
+msgstr "首页"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L55
+msgid "Browse"
+msgstr "浏览"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L62
+msgid "Browse by language"
+msgstr "选择语言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L69
+msgid "Browse by list"
+msgstr "选择列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L73
+msgid "Browse by tag"
+msgstr "选择标签"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L77
+msgid "Browse audio"
+msgstr "选择音频"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L65
+msgid "Contribute"
+msgstr "我要出力"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L28
+msgid "Add sentences"
+msgstr "添加句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L91
+msgid "Adopt sentences"
+msgstr "接管句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L100
+msgid "Discuss sentences"
+msgstr "讨论句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L38
+msgid "Members"
+msgstr "用户"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L38
+msgid "Wall"
+msgstr "留言板"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L128
+msgid "More"
+msgstr "更多"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L134
+msgid "Quick Start Guide"
+msgstr "快速入门指南"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L137
+msgid "Tatoeba Wiki"
+msgstr "Tatoeba维基"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L140
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L42
+msgid "FAQ"
+msgstr "常见问题解答"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L28
+msgid "Help"
+msgstr "帮助中心"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L91
+msgid "Downloads"
+msgstr "下载"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L68
+msgid "Tools"
+msgstr "工具"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L49
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L118
+msgid "Sentences"
+msgstr "句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L62
+msgid "Favorites"
+msgstr "收藏"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L178
+msgid "Comments"
+msgstr "评论"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L39
+msgid "Comments on %s's sentences"
+msgstr "%s句子上的评论"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L101
+msgid "Wall messages"
+msgstr "留言板信息"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L95
+msgid "Logs"
+msgstr "历史记录"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L131
+msgid "Contact %s"
+msgstr "发短消息给%s"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences/correctness_info.ctp#L30
+msgid "About unapproved sentences"
+msgstr "关于未经批准的句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences/correctness_info.ctp#L33
+msgid ""
+"You may see some sentences in red. These sentences are not approved by "
+"Tatoeba's community. They raise copyright issues or are otherwise "
+"problematic. If you are a contributor, please avoid translating them."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/add_favorite.ctp33;34
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L271
+msgid "Remove from favorites"
+msgstr "从收藏夹中移除"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L29
+msgid "%s's favorite sentences"
+msgstr "%s最喜欢的句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L65
+msgid "This user does not have any favorites."
+msgstr "该用户没有收藏夹是空的。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/remove_favorite.ctp32;33
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L275
+msgid "Add to favorites"
+msgstr "加入收藏夹"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L76
+msgid "Add a comment"
+msgstr "添加评论"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L93
+msgid "Submit comment"
+msgstr "提交"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L101
+msgid "Good practices"
+msgstr "好习惯"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L105
+msgid "Say \"welcome\" to new users."
+msgstr "对新用户说“欢迎”。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L113
+msgid "Use private messages to discuss things unrelated to the sentence."
+msgstr "使用悄悄话来讨论与句子无关的事。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L181
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L263
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
+msgid "Cancel"
+msgstr "取消"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L192
+msgid "Save changes"
+msgstr "保存更改"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L219
+msgid "unhide"
+msgstr "取消隐藏"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php222;227
+msgid "hide"
+msgstr "隐藏"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L428
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L444
+msgid "Are you sure?"
+msgstr "确定？"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L252
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L425
+msgid "edit"
+msgstr "编辑"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/common_modules.php#L61
+msgid "Filter by language"
+msgstr "仅显示"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/common_modules.php#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L48
+msgid "There's no user called %s"
+msgstr "名为%s的用户不存在"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/common_modules.php#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/of_user.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp62;71
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L104
+msgid "Go back to previous page"
+msgstr "返回上一页"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L65
+msgid "date unknown"
+msgstr "未知日期"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L75
+msgid "%s day(s) ago"
+msgstr "%s天前"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L77
+msgid "%s hour(s) ago"
+msgstr "%s小时前"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L79
+msgid "%s min(s) ago"
+msgstr "%s分钟前"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L56
+msgid "Arabic"
+msgstr "阿拉伯语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L57
+msgid "English"
+msgstr "英语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L58
+msgid "Japanese"
+msgstr "日语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L59
+msgid "French"
+msgstr "法语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L60
+msgid "German"
+msgstr "德语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L61
+msgid "Spanish"
+msgstr "西班牙语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L62
+msgid "Italian"
+msgstr "意大利语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L63
+msgid "Vietnamese"
+msgstr "越南语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L64
+msgid "Russian"
+msgstr "俄语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L79
+msgid "Chinese"
+msgstr "中文"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L66
+msgid "Korean"
+msgstr "韩语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L67
+msgid "Dutch"
+msgstr "荷兰语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L68
+msgid "Hebrew"
+msgstr "希伯来语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L69
+msgid "Indonesian"
+msgstr "印尼语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L70
+msgid "Portuguese"
+msgstr "葡萄牙语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L71
+msgid "Finnish"
+msgstr "芬兰语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L72
+msgid "Bulgarian"
+msgstr "保加利亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L73
+msgid "Ukrainian"
+msgstr "乌克兰语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L74
+msgid "Czech"
+msgstr "捷克语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L75
+msgid "Esperanto"
+msgstr "世界语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L76
+msgid "Greek"
+msgstr "现代希腊语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L77
+msgid "Turkish"
+msgstr "土耳其语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L78
+msgid "Swedish"
+msgstr "瑞典语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L79
+msgid "Norwegian (Bokmål)"
+msgstr "挪威语（博克马尔语）"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L80
+msgid "Malay"
+msgstr "马来语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L81
+msgid "Estonian"
+msgstr "爱沙尼亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L82
+msgid "Georgian"
+msgstr "格鲁吉亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L83
+msgid "Polish"
+msgstr "波兰语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L84
+msgid "Swahili"
+msgstr "斯瓦希里语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L85
+msgid "Latin"
+msgstr "拉丁语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L87
+msgid "Shanghainese"
+msgstr "上海话"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L88
+msgid "Egyptian Arabic"
+msgstr "埃及阿拉伯语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L89
+msgid "Belarusian"
+msgstr "白俄罗斯语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L90
+msgid "Hungarian"
+msgstr "匈牙利语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L91
+msgid "Icelandic"
+msgstr "冰岛语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L92
+msgid "Albanian"
+msgstr "阿尔巴尼亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L93
+msgid "Cantonese"
+msgstr "粤语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L94
+msgid "Afrikaans"
+msgstr "南非荷兰语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L95
+msgid "Faroese"
+msgstr "法罗语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L96
+msgid "Frisian"
+msgstr "弗里斯兰语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L97
+msgid "Breton"
+msgstr "布列塔尼语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L98
+msgid "Romanian"
+msgstr "罗马尼亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L99
+msgid "Uyghur"
+msgstr "维吾尔语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L100
+msgid "Uzbek"
+msgstr "乌兹别克语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L101
+msgid "Norwegian (Nynorsk)"
+msgstr "挪威语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L102
+msgid "Serbian"
+msgstr "塞尔维亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L103
+msgid "Tatar"
+msgstr "鞑靼语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L104
+msgid "Yiddish"
+msgstr "意第绪语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L105
+msgid "Persian"
+msgstr "波斯语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L106
+msgid "Min Nan Chinese"
+msgstr "闽南语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L107
+msgid "Basque"
+msgstr "巴斯克语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L108
+msgid "Slovak"
+msgstr "斯洛伐克语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L109
+msgid "Danish"
+msgstr "丹麦语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L110
+msgid "Armenian"
+msgstr "亚美尼亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L111
+msgid "Iraqi Arabic"
+msgstr "伊拉克阿拉伯语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L112
+msgid "Sanskrit"
+msgstr "梵语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L113
+msgid "Urdu"
+msgstr "乌尔都语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L114
+msgid "Hindi"
+msgstr "印地语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L115
+msgid "Bengali"
+msgstr "孟加拉语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L116
+msgid "CycL"
+msgstr "Cyc项目专用语言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L117
+msgid "Catalan"
+msgstr "加泰罗尼亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L118
+msgid "Kazakh"
+msgstr "哈萨克语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L119
+msgid "Latvian"
+msgstr "拉脱维亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L120
+msgid "Bosnian"
+msgstr "波斯尼亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L121
+msgid "Croatian"
+msgstr "克罗地亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L122
+msgid "Old East Slavic"
+msgstr "古东斯拉夫语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L123
+msgid "Chamorro"
+msgstr "查莫罗语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L124
+msgid "Tagalog"
+msgstr "塔加路语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L125
+msgid "Quechua"
+msgstr "盖丘亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L126
+msgid "Mongolian"
+msgstr "蒙古语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L127
+msgid "Lithuanian"
+msgstr "立陶宛语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L128
+msgid "Galician"
+msgstr "加利西亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L129
+msgid "Irish"
+msgstr "爱尔兰语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L130
+msgid "Interlingua"
+msgstr "拉丁国际语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L131
+msgid "Lojban"
+msgstr "逻辑语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L132
+msgid "Toki Pona"
+msgstr "道本语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L133
+msgid "Ainu"
+msgstr "阿依努语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L134
+msgid "Sicilian"
+msgstr "西西里语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L135
+msgid "Malayalam"
+msgstr "马拉雅拉姆语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L136
+msgid "Low Saxon"
+msgstr "低地撒克逊语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L137
+msgid "Klingon"
+msgstr "克林贡语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L138
+msgid "Slovenian"
+msgstr "斯洛文尼亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L139
+msgid "Thai"
+msgstr "泰语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L140
+msgid "Literary Chinese"
+msgstr "文言文"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L141
+msgid "Ossetian"
+msgstr "奥塞梯语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L142
+msgid "Romansh"
+msgstr "罗曼斯语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L143
+msgid "Volapük"
+msgstr "沃拉普克语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L144
+msgid "Scottish Gaelic"
+msgstr "苏格兰盖尔语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L145
+msgid "Ido"
+msgstr "伊多语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L146
+msgid "Asturian"
+msgstr "阿斯图里亚斯语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L147
+msgid "Interlingue"
+msgstr "国际语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L148
+msgid "Occitan"
+msgstr "欧西坦语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L149
+msgid "Kalmyk"
+msgstr "卡尔梅克语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L153
+msgid "Old English"
+msgstr "古英语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L154
+msgid "Kurdish"
+msgstr "库尔德语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L155
+msgid "Lower Sorbian"
+msgstr "下索布语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L156
+msgid "Upper Sorbian"
+msgstr "上索布语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L157
+msgid "Kölsch"
+msgstr "科隆方言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L158
+msgid "Welsh"
+msgstr "威尔士语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L159
+msgid "Ewe"
+msgstr "埃维语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L160
+msgid "Sindarin"
+msgstr "辛达尔语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L161
+msgid "Telugu"
+msgstr "泰卢固语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L162
+msgid "Tok Pisin"
+msgstr "托克皮辛语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L163
+msgid "Quenya"
+msgstr "昆雅语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L164
+msgid "Novial"
+msgstr "诺维亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L165
+msgid "Maori"
+msgstr "毛利语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L166
+msgid "Ladin"
+msgstr "拉汀语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L167
+msgid "Berber"
+msgstr "柏柏尔语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L169
+msgid "Xhosa"
+msgstr "科萨语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L170
+msgid "Punjabi"
+msgstr "旁遮普语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L171
+msgid "Malagasy"
+msgstr "马尔加什语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L172
+msgid "Guarani"
+msgstr "瓜拉尼语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L173
+msgid "Ladino"
+msgstr "拉迪诺语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L174
+msgid "Piedmontese"
+msgstr "皮埃蒙特语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L176
+msgid "Kotava"
+msgstr "国际语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L177
+msgid "Marathi"
+msgstr "马拉地语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L178
+msgid "Old Tupi"
+msgstr "老图皮语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L179
+msgid "Tajik"
+msgstr "塔吉克语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L180
+msgid "Old Prussian"
+msgstr "古普鲁士语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L181
+msgid "Nepali"
+msgstr "尼泊尔语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L182
+msgid "Maltese"
+msgstr "马耳他语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L183
+msgid "Chukchi"
+msgstr "楚克其语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L184
+msgid "Cornish"
+msgstr "康沃尔语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L185
+msgid "Azerbaijani"
+msgstr "阿塞拜疆语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L186
+msgid "Khmer"
+msgstr "高棉语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L187
+msgid "Lao"
+msgstr "老挝语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L188
+msgid "Tibetan"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L189
+msgid "Hiligaynon"
+msgstr "希利盖农语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L190
+msgid "Algerian Arabic"
+msgstr "阿尔及利亚阿拉伯语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L191
+msgid "Picard"
+msgstr "庇卡底语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L192
+msgid "Ancient Greek"
+msgstr "古希腊语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L193
+msgid "Amharic"
+msgstr "阿姆哈拉语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L194
+msgid "Awadhi"
+msgstr "阿瓦乔语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L195
+msgid "Bhojpuri"
+msgstr "博杰普尔语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L196
+msgid "Chavacano"
+msgstr "查瓦卡诺语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L197
+msgid "Middle English"
+msgstr "中世纪英语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L198
+msgid "Middle French"
+msgstr "中世纪法语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L199
+msgid "Haitian Creole"
+msgstr "海地克里奥尔语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L200
+msgid "Juhuri (Judeo-Tat)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L201
+msgid "Greenlandic"
+msgstr "格陵兰语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L202
+msgid "Meadow Mari"
+msgstr "平地马里语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L203
+msgid "Nahuatl"
+msgstr "那瓦特语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L204
+msgid "Pennsylvania German"
+msgstr "宾夕法尼亚德语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L205
+msgid "Sinhala"
+msgstr "僧伽罗语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L206
+msgid "Turkmen"
+msgstr "土库曼语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L207
+msgid "Walloon"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L208
+msgid "Bashkir"
+msgstr "巴什基尔语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L209
+msgid "Hausa"
+msgstr "豪撒语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L210
+msgid "Luxembourgish"
+msgstr "卢森堡语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L211
+msgid "Mambae"
+msgstr "曼巴语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L212
+msgid "Somali"
+msgstr "索马里语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L213
+msgid "Zulu"
+msgstr "祖鲁语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L214
+msgid "Hawaiian"
+msgstr "夏威夷语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L215
+msgid "Kyrgyz"
+msgstr "吉尔吉斯坦语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L216
+msgid "Macedonian"
+msgstr "马其顿语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L217
+msgid "Hill Mari"
+msgstr "山地马里语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L218
+msgid "Pipil"
+msgstr "匹普语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L219
+msgid "Yoruba"
+msgstr "约鲁巴语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L220
+msgid "Kinyarwanda"
+msgstr "基尼亚卢旺达语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L221
+msgid "Shuswap"
+msgstr "舒斯瓦普语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L222
+msgid "Chuvash"
+msgstr "楚瓦什语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L223
+msgid "Lakota"
+msgstr "拉科塔语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L224
+msgid "Ottoman Turkish"
+msgstr "奥斯曼土耳其语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L225
+msgid "Shona"
+msgstr "修纳语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L226
+msgid "Mon"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L227
+msgid "Nogai"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L228
+msgid "Yakut"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L229
+msgid "Abkhaz"
+msgstr "阿布哈兹语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L230
+msgid "Tetun"
+msgstr "德顿语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L231
+msgid "Tamil"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L232
+msgid "Udmurt"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L233
+msgid "Kumyk"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L234
+msgid "Crimean Tatar"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L235
+msgid "Chinyanja"
+msgstr "齐切瓦语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L236
+msgid "Livonian"
+msgstr "立沃尼亚语"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L237
+msgid "Navajo"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L238
+msgid "Cherokee"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L239
+msgid "Gujarati"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php288;359
+msgid "All languages"
+msgstr "所有语言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L305
+msgid "unknown language"
+msgstr "未知语言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L322
+msgid "other language"
+msgstr "其他语言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L340
+msgid "Auto detect"
+msgstr "自动检测"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php358;401
+msgid "None"
+msgstr "无"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L381
+msgid "Any language"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L417
+msgid "Any"
+msgstr "所有"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L435
+msgid "unknown"
+msgstr "未知"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L83
+msgid "created by <a href=\"%s\">%s</a>"
+msgstr "由<a href=\"%s\">%s</a>创建"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L94
+msgid "(public list)"
+msgstr "（共享列表）"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L184
+msgid "created by %s"
+msgstr "由%s创建"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L190
+msgid "Number of sentences"
+msgstr "排名"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L199
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php62;63;78
+msgid "Show"
+msgstr "显示"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L209
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L141
+msgid "Edit"
+msgstr "编辑"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L237
+msgid "Back to all lists"
+msgstr "查看所有列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L260
+msgid "Back to this list"
+msgstr "返回该列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L284
+msgid "Download this list"
+msgstr "下载该列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L316
+msgid "Show translations :"
+msgstr "查看翻译"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L366
+msgid "Set list as collaborative"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L401
+msgid "Edit this list"
+msgstr "编辑该列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L404
+msgid "View this list"
+msgstr "查看该列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L421
+msgid "Delete this list"
+msgstr "删除此列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L502
+msgid "Remove sentence %d from list"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L512
+msgid "Remove from list"
+msgstr "从列表中移除"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L544
+msgid "Add a sentence to this list : "
+msgstr "添加句子到列表 "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L548
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L460
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L127
+msgid "OK"
+msgstr "确认"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L557
+msgid ""
+"NOTE : You can also add existing sentences with this icon %s (while <a "
+"href=\"%s\">browsing</a> for instance)."
+msgstr "注：您也可以通过%s图标添加现存的句子（例如<a href=\"%s\">浏览</a>时）。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L377
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L50
+msgid "Sentence %s"
+msgstr "句子 %s"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L448
+msgid "linked to %s"
+msgstr "与%s挂钩"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L452
+msgid "unlinked from %s"
+msgstr "撤消与%s的链接"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L505
+msgid "added by %s"
+msgstr "由 %s 添加"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L507
+msgid "linked by %s"
+msgstr "由 %s 链接"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L511
+msgid "edited by %s"
+msgstr "由 %s 编辑"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L515
+msgid "deleted by %s"
+msgstr "由 %s 删除"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L517
+msgid "unlinked by %s"
+msgstr "由 %s 取消链接"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L160
+msgid "admin"
+msgstr "管理员"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L161
+msgid "corpus maintainer"
+msgstr "语料管理专员"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L162
+msgid "advanced contributor"
+msgstr "高级编辑者"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L163
+msgid "contributor"
+msgstr "编辑者"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L164
+msgid "inactive"
+msgstr "未激活用户"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L165
+msgid "spammer"
+msgstr "垃圾邮件发送者"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php64;65;82
+msgid "Translate"
+msgstr "翻译"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L83
+msgid ""
+"This sentence is currently marked as unapproved. Unapproved sentences cannot"
+" be translated."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php145;146
+msgid "This sentence is in simplified Chinese."
+msgstr "该句用的是简体中文。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php170;171
+msgid "This sentence is in traditional Chinese."
+msgstr "该句用的是繁体中文。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L199
+msgid "Let go"
+msgstr "放弃接管"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L203
+msgid "Adopt"
+msgstr "接管"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php331;332
+msgid "Link to another sentence"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L347
+msgid "Sentence number"
+msgstr "句子编号"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L352
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L9
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L8
+msgid "Link"
+msgstr "关联"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php388;389
+msgid "Add to list"
+msgstr "添加到列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L438
+msgid "Add to one of your lists"
+msgstr "加入你的列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L439
+msgid "Add to a collaborative list"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php488;489
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L127
+msgid "Delete"
+msgstr "删除"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L531
+msgid "belongs to %s"
+msgstr "属于%s"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L171
+msgid "Send private message"
+msgstr "发悄悄话"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L187
+msgid "edited"
+msgstr "已编辑"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L219
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L184
+msgid "View this user's profile"
+msgstr "查看该用户的个人资料"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L379
+msgid "sentence deleted"
+msgstr "删除的句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L395
+msgid ""
+"The content of this message goes against <a href=\"%s\">our rules</a> and "
+"was therefore hidden. It is displayed only to admins and to the author of "
+"the message."
+msgstr "该消息的内容违反了<a href=\"%s\">我们的规定</a> ，因此它是隐藏的。它只对管理员和消息的发布者显示可见。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L76
+msgid "Show sentence #: "
+msgstr "要查看的句子号码： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L114
+msgid "Language for previous, next or random sentence"
+msgstr "上一句，下一句和随机句子的语言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L124
+msgid "previous"
+msgstr "上一句"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L149
+msgid "next"
+msgstr "下一句"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L177
+msgid "random"
+msgstr "随机"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L221
+msgid "Enter a username: "
+msgstr "输入用户名： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L226
+msgid "show user"
+msgstr "显示该用户动态"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L233
+msgid "all"
+msgstr "所有用户"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L247
+msgid "Profile of %s"
+msgstr "%s的个人资料"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L274
+msgid "all lists"
+msgstr "所有列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L23
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L28
+msgid " - Tatoeba"
+msgstr "- Tatoeba"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L52
+msgid "Reply"
+msgstr "回复"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L85
+msgid "to"
+msgstr "收件人"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L98
+msgid "Title"
+msgstr "主题"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L46
+msgid "Send"
+msgstr "发送"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L143
+msgid "%s wrote:"
+msgstr "%s 说："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L5
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L4
+msgid "Unlink"
+msgstr "撤消关联"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L6
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L5
+msgid "Unlink this translation."
+msgstr "撤消与主句的关联。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L10
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L9
+msgid "Make into direct translation."
+msgstr "将其作为直接翻译。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L218
+msgid "Play audio"
+msgstr "播放音频"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L232
+msgid "Audio unavailable. Click to learn more."
+msgstr "音频无法使用。点击了解更多。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L255
+msgid "Submit translation"
+msgstr "提交翻译"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L275
+msgid ""
+"Important! You are about to add a translation to the sentence above. If you "
+"do not understand this sentence, click on \"Cancel\" to display everything "
+"again, and then click on the sentence that you understand and want to "
+"translate from."
+msgstr "注意！您正要为上面的句子添加一句翻译。如果你不懂这句句子，点击“取消”查看所有句子，并点击您看得懂且想翻译的句子。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L286
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L43
+msgid ""
+"Please do not forget <strong>capital letters</strong> and "
+"<strong>punctuation</strong>! Thank you."
+msgstr "请不要忘记<strong>大写字母</strong>和<strong>标点符号</strong>！谢谢。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L161
+msgid "Show translations in:"
+msgstr "显示用以下语言翻译的句子："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L173
+msgid "NOTE: Both direct and indirect translations will be shown."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L205
+msgid "NOTE: Sentences that have an indirect translation will be displayed."
+msgstr "有间接翻译的句子也将被显示。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L224
+msgid "Only sentences with audio:"
+msgstr "仅显示有音频的句子："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L227
+msgid "no"
+msgstr "否"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L228
+msgid "yes"
+msgstr "是"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L239
+msgid "NOTE: Not all languages have audio at the moment."
+msgstr "注意：目前只有少数语言有音频。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L214
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L35
+msgid "Tags"
+msgstr "标签"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L70
+msgid "No tag on this sentence."
+msgstr "该句子没有标签。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp38;89
+msgid "View all tags"
+msgstr "查看所有标签"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L125
+msgid "user: %s, date: %s"
+msgstr "用户：%s，日期：%s"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L254
+msgid "remove tag '%s' from this sentence."
+msgstr "删除'%s'标签"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L299
+msgid "remove tag from sentence"
+msgstr "删除标签"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L74
+msgid "Add a message: "
+msgstr "留言 "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L90
+msgid "cancel"
+msgstr "取消"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L129
+msgid "Edit Wall Message"
+msgstr "编辑留言板消息"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L149
+msgid "submit"
+msgstr "提交"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L362
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L85
+msgid "by %s"
+msgstr "由%s发表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L68
+msgid ""
+"Warning: this website is for testing purposes. Everything you submit will be"
+" definitely lost."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L94
+msgid "No language matches"
+msgstr "没有匹配的语言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L47
+msgid ""
+"Please make sure to <a href=\"%s\">read the FAQ</a> before asking a "
+"question."
+msgstr "请在提问之前先确定已经阅读了<a href=\"%s\">常见问题解答</a>。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L57
+msgid "Follow us"
+msgstr "订阅"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L60
+msgid "Tatoeba Blog"
+msgstr "Tatoeba博客"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L72
+msgid ""
+"If you have any question, suggestion, or request (or if you would just like "
+"to say thank you), feel free to drop us an email at %s."
+msgstr "如果您有任何问题、建议、要求（又或者您只是想说谢谢），您随时可以给我们发邮件%s。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L82
+msgid "Post on the Wall"
+msgstr "发表留言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L85
+msgid ""
+"You can also tell us what you think by posting on the <a "
+"href=\"%s\">Wall</a>."
+msgstr "您也可以通过<a href=\"%s\">留言</a>告诉我们您的想法。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L96
+msgid "Join us on IRC"
+msgstr "加入我们的在线聊天室 (IRC)"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L99
+msgid ""
+"We also have an IRC channel on freenode, #tatoeba. If you are not familiar "
+"with IRC, you can read the <a href=\"%s\">Help</a>."
+msgstr "我们也有freenode IRC频道，＃tatoeba。如果您不熟悉IRC在线聊天系统，您可以阅读<a href=\"%s\">帮助</a>。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L28
+msgid "How to contribute"
+msgstr "如何参与"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L56
+msgid "Important to read"
+msgstr "用户指南"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L60
+msgid "Guide to being a good contributor"
+msgstr "好用户指南"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L66
+msgid "Reliability of the sentences"
+msgstr "句子的可靠性"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L119
+msgid "How can you contribute?"
+msgstr "您如何参与？"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L122
+msgid ""
+"Tatoeba is primarily about collecting sentences and translating them into "
+"many, many languages. So one obvious thing you can do to contribute is to "
+"<strong>translate sentences</strong>."
+msgstr "Tatoeba主要是针对收集句子并将它们翻译成许多许多语言。因此，有一件事您可以做的就是<strong>翻译句子</strong>。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L132
+msgid ""
+"But you don't have to be a polyglot in order to contribute! You can help us "
+"a lot simply by <strong>checking sentences</strong> and <strong>reporting "
+"mistakes</strong>. This is something everyone can do!"
+msgstr "不过您不需要通晓多国语言才能出力！您只是<strong>检查句子</strong>和<strong>报告错误</strong>就能帮我们很多了。这是每个人都会做的！"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L142
+msgid ""
+"If you have a good microphone, you can also bring more audio to Tatoeba by "
+"<strong>recording sentences</strong>."
+msgstr "如果您有一个好话筒，您也可以通过<strong>录制句子</strong>来为Tatoeba提供更多音频。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L151
+msgid ""
+"You can help us promote the project. <strong>Tell people around you</strong>"
+" that Tatoeba exists. This is a very ambitious project, so we will need as "
+"much help as possible."
+msgstr "您可以帮助我们做项目推广。<strong>告诉您身边的人</strong>Tatoeba的存在。这是一个雄心勃勃的项目，所以我们需要尽可能多的帮助。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L161
+msgid ""
+"And finally, you can <strong>join the team</strong>. You can help us code "
+"new features, improve usability, debug, optimize, keep the site secure, and "
+"more."
+msgstr "最后，您可以<strong>加入团队</strong>。您可以帮助我们编辑新功能，提高可用性，除错，优化，确保没有安全漏洞，等等。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L33
+msgid "Any question?"
+msgstr "有无疑问？"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L36
+msgid ""
+"If you have any question regarding donations or if you would like to donate "
+"in any other way than the ones mentioned here, you may contact either <a "
+"href='mailto:trang@tatoeba.org'>Trang</a> or the entire <a "
+"href='mailto:team@tatoeba.org'>team</a>."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L47
+msgid "Top donators this month"
+msgstr "本月最高捐赠者"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L58
+msgid "Top donators of all time"
+msgstr "累计最高捐赠者"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L74
+msgid "How to donate"
+msgstr "如何捐赠"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L75
+msgid "You have two possible ways to make a donation:"
+msgstr "您有两种捐赠的方法："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L79
+msgid ""
+"<b>IBAN transfer.</b> This is probably the cheapest way to donate. Tatoeba's"
+" bank is based in France, so if you are from an EU country, it is likely "
+"that the transfer will be free of charge."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L88
+msgid ""
+"<b>PayPal.</b> If you can't transfer money with IBAN, then you can donate "
+"with PayPal. You should know that PayPal takes a certain percentage of the "
+"donation."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L99
+msgid "IBAN transfer"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L100
+msgid "Titular:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L101
+msgid "IBAN:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L102
+msgid "BIC/SWIFT:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L28
+msgid "Download sentences"
+msgstr "下载句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L37
+msgid "Warning"
+msgstr "警告"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L39
+msgid ""
+"The data you will find here will NOT be useful unless you are coding a "
+"language tool or processing data."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L47
+msgid ""
+"If you simply want sentences that you can use to learn a language, check out"
+" the <a href=\"%s\">sentence lists</a>. You can build your own, or view the "
+"ones that others have created. The lists can be downloaded and printed."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L59
+msgid "Creative commons"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L60
+msgid "These files are released under CC-BY."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L68
+msgid ""
+"For those who wonder why we're not leaving the data in the public domain, "
+"some explanation <a href=%s>here</a>."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L73
+msgid "Questions?"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L77
+msgid ""
+"If you have questions or requests, feel free to <a href=\"%s\">contact "
+"us</a>. "
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L82
+msgid "In general, we answer quickly."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp58;144
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L62
+msgid "Download"
+msgstr "下载"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L158
+msgid "Fields and structure"
+msgstr "选项与结构"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L93
+msgid "File description"
+msgstr "文件描述"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L94
+msgid "Sentence id"
+msgstr "句子编号"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L95
+msgid "Text"
+msgstr "文本"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L96
+msgid "Lang"
+msgstr "语言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L81
+msgid "Username"
+msgstr "用户名"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L98
+msgid "Date added"
+msgstr "添加日期"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L99
+msgid "Date created"
+msgstr "创建日期"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L100
+msgid "Date last modified"
+msgstr "最后修改"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L101
+msgid "Translation id"
+msgstr "翻译 ID"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L102
+msgid "Tag name"
+msgstr "标签名称"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L103
+msgid "List id"
+msgstr "列表编号"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L104
+msgid "List name"
+msgstr "列表名称"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L105
+msgid "Meaning id"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L106
+msgid "tab"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L110
+msgid "Attention: "
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L111
+msgid ""
+"As of 2014-08-16, the URL to download the latest files has changed and the "
+"new export files are provided in a compressed format. The old URL is still "
+"available, but will not contain the latest data."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L159
+msgid ""
+"Contains all the sentences. Each sentence is associated with a unique id and"
+" an <a href=%s>ISO 639-3</a> language code. "
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L162
+msgid ""
+"The first file (sentences.tar.bz2) contains this information alone. The "
+"second file (sentences_detailed.tar.bz2) contains additional fields for "
+"those who would like to filter the sentences based on the contributor who "
+"owns the sentence, or the date when it was added or last modified."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L171
+msgid "Links"
+msgstr "链接"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L190
+msgid "Contains the links between the sentences. "
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L200
+msgid ""
+"%s means that sentence #77 is the translation of sentence #1. The reciprocal"
+" link is also present, so the file will also contain a line that says "
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L235
+msgid ""
+"Contains the list of <a href=\"%s\">tags</a> associated with each sentence. "
+"<span class=\"param\">381279</span><span class=\"symbol\"> [tab] "
+"</span><span class=\"param\">proverb</span> means that sentence #381279 has "
+"been assigned the \"proverb\" tag."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L246
+msgid "Lists"
+msgstr "列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L270
+msgid "Contains the list of <a href=\"%s\">sentence lists</a>."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L276
+msgid "Sentences in lists"
+msgstr "列表中的句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L301
+msgid ""
+"Indicates the sentences that are contained by any lists. %s means that "
+"sentence #381279 is contained by the list that has an id of 13."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L310
+msgid "Japanese indices"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L334
+msgid ""
+"Contains the equivalent of the \"B lines\" in the Tanaka Corpus file "
+"distributed by Jim Breen. See <a href=\"%s\">this page</a> for the format. "
+"Each entry is associated with a pair of Japanese/English sentences. %s "
+"refers to the id of the Japanese sentence. %s refers to the id of the "
+"English sentence."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L348
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/with_audio.ctp#L28
+msgid "Sentences with audio"
+msgstr "带音频的句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L365
+msgid ""
+"Contains the ids of the sentences, in all languages, for which audio is "
+"available."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L371
+msgid "General information about the files"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L373
+msgid ""
+"The files provided here are updated every <strong>Saturday at 9 "
+"a.m.</strong>, France time."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L380
+msgid ""
+"Many of the Japanese and English sentences are from the <a "
+"href=\"%s\">Tanaka Corpus</a>, which belongs to the public domain."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L37
+msgid "Need more help?"
+msgstr "需要更多帮助？"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L41
+msgid "You can check out the <a href=\"%s\">FAQ</a>."
+msgstr "您可以查看<a href=\"%s\">常见问题解答</a>。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L47
+msgid ""
+"If you cannot find the answer to your question, do not hesitate to contact "
+"us."
+msgstr "如果您找不到您想要的答案，请联系我们。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L58
+msgid "By email"
+msgstr "通过邮件"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L60
+msgid "From the Wall"
+msgstr "通过留言板"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L64
+msgid "Click here to go to the Wall."
+msgstr "点击这里转到留言板"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L69
+msgid "On IRC"
+msgstr "通过线聊天室"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L75
+msgid "How to use IRC"
+msgstr "如何使用在线聊天室"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L78
+msgid ""
+"For those who are not familiar with IRC, it is pretty much like an instant "
+"messenger. You will be able to talk to us in real time, if we are there."
+msgstr "对于那些不熟悉IRC的人来说，这就相当于是一款在线即时聊天工具。如果我们在线的话，您就可以与我们进行即时交谈。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L87
+msgid "There are many ways to join our channel. One is to go to this website:"
+msgstr "要加入我们的频道，有很多方式，但您可以去这个网站："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L92
+msgid ""
+"Enter a nickname, enter \"#tatoeba\" for the channel, and click on "
+"\"connect\". That's it!"
+msgstr "输入昵称（Nickname），在频道（Channel）处输入“＃tatoeba”，并点击“connect”。就行了！"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L106
+msgid "Getting started"
+msgstr "快速入门"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L112
+msgid ""
+"If you have no idea what to do now that you are registered, you can "
+"introduce yourself on the <a href=\"%s\">Wall</a>, or join us on "
+"<strong>IRC</strong>. We will give you a purpose. :)"
+msgstr "如果您刚注册，而您不知道现在该做什么，您可以在<a href=\"%s\">留言板</a>上介绍您自己，或是在<strong>在线聊天室</strong>上加入我们，我们会给您点建议 :)"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L124
+msgid ""
+"If you think this project is awesome and would like to help actively, here "
+"is a link you <strong>MUST</strong> read:"
+msgstr "如果您认为这个项目很棒，愿意积极帮助的话，这里有一个链接是您<strong>必须</strong>阅读的："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L136
+msgid ""
+"That being said, welcome to Tatoeba! We hope you'll enjoy being part of this"
+" project :)"
+msgstr "不管怎么样，欢迎来到Tatoeba！我们希望您会喜欢成为该项目的一部分 :)"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L149
+msgid "Important links"
+msgstr "有用的链接"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L171
+msgid "Adding new sentences"
+msgstr "添加句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L172
+msgid "There are two ways to add new sentences."
+msgstr "有两种方式添加新句子。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L177
+msgid "From the <a href=\"%s\">Contribute</a> section"
+msgstr "通过<a href=\"%s\">我要出力</a>选项"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L190
+msgid ""
+"By creating a new <a href=\"%s\">list</a>, and going to the edit page for "
+"that list."
+msgstr "通过添加新<a href=\"%s\">列表</a>，并编辑该列表。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L207
+msgid ""
+"Even though there are many sentences in Tatoeba, there is still a lot of "
+"vocabulary that is not covered. This is why we encourage you to add new "
+"sentences with new vocabulary, even if you do not know how to translate it "
+"into any language."
+msgstr "尽管Tatoeba上有大量的句子，但还是有很多词汇没有被覆盖到。这就是为何我们鼓励您用新词汇添加新句子，即便您不知道如何把它翻译成其它语言。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L219
+msgid "Translating sentences"
+msgstr "翻译句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L222
+msgid ""
+"Translating is one of the most important tasks in Tatoeba, since the main "
+"goal of the project is to gather sentences translated into many languages."
+msgstr "翻译是Tatoeba最重要的任务之一，因为该项目的主要目的在于搜集翻译成好几种语言的句子。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L232
+msgid ""
+"You can translate a sentence from pretty much everywhere. Just click on this"
+" icon %s whenever you see it."
+msgstr "只要您看见%s图标，您就可以点击它进行翻译。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L245
+msgid "Correcting mistakes"
+msgstr "纠正错误"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L248
+msgid ""
+"You can only correct mistakes in sentences that belong to you. If you see a "
+"mistake in someone else's sentence, you can post a comment to notify him or "
+"her of the mistake."
+msgstr "您只能纠正属于您的句子中的错误。如果您看见别人的句子中有错误，您可以发表评论报告错误。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L257
+msgid ""
+"In certain cases, the sentence does not have an owner. Read the paragraph "
+"below (on adopting sentences) to learn more."
+msgstr "有时候，句子没有所有者。请看下一部分（接管句子）以了解更多。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L267
+msgid "Adopting sentences"
+msgstr "接管句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L270
+msgid ""
+"When you add a sentence, this sentence \"belongs\" to you - only you can "
+"edit it. However, many of the sentences in Tatoeba come from a Japanese-"
+"English corpus called the Tanaka Corpus. These sentences do not have any "
+"owner because they have been collected outside of Tatoeba."
+msgstr "当您添加句子时，这句句子是属于您的，也就是说只有您可以对它进行编辑。然而，Tatoeba上的大部分句子是来自于一个名为Tanaka的日英语料库。这些句子是从Tatoeba以外的途径收集到的，因此也就没有所有者。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L282
+msgid ""
+"If you see a mistake in an \"orphan\" sentence, you will not be able to "
+"correct it because you are not the owner. This is why there is an \"adopt\" "
+"option (%s). Once you adopt a sentence, you become its owner and therefore "
+"can edit it."
+msgstr "如果您在某个没有作者的句子中发现一个错误，您无法对其进行修改，因为您不是该句的所有者。这就是为什么 有“接管”(%s)这一选项的原因了。一旦您接管了一句句子，您就成为了所有者并可以对其进行编辑。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L295
+msgid ""
+"Adopting a sentence is also part of the \"quality process\". You can find "
+"more information about it here:"
+msgstr "接管一句句子也是“质量监管”的一部分。您可以点击此处以了解更多："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L308
+msgid "Sentence lists"
+msgstr "句子列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L311
+msgid ""
+"You can create lists of sentences in Tatoeba. By default the list is "
+"<strong>personal</strong>, which means it can only be edited by the person "
+"who created it (but it is still visible to everyone)."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L320
+msgid ""
+"However it is also possible to let any member in Tatoeba add and remove "
+"sentences by setting a list as <strong>collaborative</strong>."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L28
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L28
+msgid "Tatoeba: Collecting example sentences"
+msgstr "Tatoeba: 收集例句"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L31
+msgid ""
+"Search example sentences translated into many languages. Add and translate "
+"your own sentences. It's collaborative, open, free, and even addictive."
+msgstr "搜索翻译成多种语言的例句。添加并翻译属于您自己的句子。这是一个开源自由的合作项目，甚至能让人上瘾呢。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L75
+msgid "Latest messages"
+msgstr "最新留言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L125
+msgid "show activity timeline"
+msgstr "查看动态"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L132
+msgid "Latest comments"
+msgstr "最新评论"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L58
+msgid "Some stats"
+msgstr "一些统计数据"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L62
+msgid "%s contributions today"
+msgstr "%s的今日动态"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L67
+msgid "%s members so far"
+msgstr "至今有%s个成员"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L72
+msgid "%s supported languages"
+msgstr "%s被支持的语言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L93
+msgid "What is Tatoeba?"
+msgstr "Tatoeba是什么？"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L120
+msgid ""
+"At its core, Tatoeba is a large database of <strong>example "
+"sentences</strong> translated into several languages. But as a whole, it is "
+"much more than that."
+msgstr "Tatoeba就其核心来说，是将<strong>例句</strong>翻译成好几种语言的强大数据库。但从整体上来说，并非仅此而已。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L130
+msgid "See what's happening now."
+msgstr "现在看看有什么变化吧。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/search.ctp#L28
+msgid "Examples of search"
+msgstr "搜索演示"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/search.ctp#L41
+msgid "Please enter a nonempty search string"
+msgstr "搜索的内容不能为空"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L32
+msgid "Table of contents"
+msgstr "目录"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L36
+msgid "English version"
+msgstr "英文版本"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L41
+msgid "Version française"
+msgstr "法文版本"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L53
+msgid "Information for contributors of text to the Tatoeba project"
+msgstr "Tatoeba项目用户须知"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L56
+msgid ""
+"To grow the commons of free knowledge and free culture, all users "
+"contributing to the Tatoeba project are required to grant broad permissions "
+"to the general public to re-distribute and re-use their contributions "
+"freely, as long as the use is attributed. Therefore, for any text to which "
+"you hold the copyright, by submitting it, you agree to license it under the "
+"Creative Commons Attribution License 2.0 (fr). Please note that this license"
+" does allow commercial uses of your contributions, as long as such uses are "
+"compliant with the terms. "
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L68
+msgid ""
+"As an author, you agree to be attributed in any of the following fashions: "
+"a) through a hyperlink (where possible) or URL to the sentence or sentences "
+"to which you contributed, b) through a hyperlink (where possible) or URL to "
+"an alternative, stable online copy which is freely accessible, which "
+"conforms with the license, and which provides credit to the authors in a "
+"manner equivalent to the credit given on this website, or c) through a list "
+"of all authors. (Any list of authors may be filtered to exclude very small "
+"or irrelevant contributions.)"
+msgstr "作为作者，您需同意以以下任意一种方式进行署名：a)通过指向您所贡献的句子的超链接（如果有的话）或URL；b)通过指向文章的另一个稳定的，可自由进入且符合许可证，并以与本网站相同方式对作者进行了署名的联机副本超链接（如果有的话）或者URL；c) 通过所有作者名单。（任何作者名单可通过筛排除非常小的或不相关的贡献者。）"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L79
+msgid "Importing text:"
+msgstr "导入文本："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L81
+msgid ""
+"If you want to import text that you have found elsewhere or that you have "
+"co-authored with others, you can only do so if it is available under terms "
+"that are compatible with the CC-BY license."
+msgstr "如果您想导入您在其他地方找到或是您与他人共创的文本，只有在和CC-BY署名许可证兼容的情况下才可以这么做。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L87
+msgid ""
+"If you import text under a compatible license which requires attribution, "
+"you must, in a reasonable fashion, credit the author(s). Where such credit "
+"is commonly given through sentence comments, it is sufficient to give "
+"attribution in the edit summary, which is recorded in the sentence history "
+"when importing the text. Regardless of the license, the text you import may "
+"be rejected if the required attribution is deemed too intrusive."
+msgstr "如果您要导入一个符合兼容许可证的需署名的文本，您必须以合理的方式，对作者进行署名。只需将署名添加在对文本的评论中，这些将会储存在文本的历史记录中。不管是什么许可证，如果署名没有达到合理的要求，您导入的文本将会被删除。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L96
+msgid "Information for re-users:"
+msgstr "重新使用文本须知："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L99
+msgid "Re-use of text:"
+msgstr "文本的再次使用："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L104
+msgid ""
+"Attribution: To re-distribute a text page in any form, provide credit to the"
+" authors either by including a) a hyperlink (where possible) or URL to the "
+"page or pages you are re-using, b) a hyperlink (where possible) or URL to an"
+" alternative, stable online copy which is freely accessible, which conforms "
+"with the license, and which provides credit to the authors in a manner "
+"equivalent to the credit given on this website, or c) a list of all authors."
+" (Any list of authors may be filtered to exclude very small or irrelevant "
+"contributions.) This applies to text developed by the Tatoeba project "
+"community. Text from external sources may attach additional attribution "
+"requirements to the work, which we will strive to indicate clearly to you."
+msgstr "署名：要重新发布任何形式的文字网页，就需对作者进行署名，包括 a)指向您正在重新使用的网页的超链接（如果有的话）或URL；b)另一个稳定的，可自由进入且符合许可证，并以与本网站相同方式对作者进行了署名的联机副本超链接（如果有的话）或URL；c)所有作者名单。（任何作者名单可通过筛排除非常小的或不相关的贡献者。）这适用于由Tatoeba项目社区开发的文本。从外部来源的文本可能会涉及到对工作的额外附加要求，我们将尽量清楚地向您说明。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L123
+msgid ""
+"Indicate changes: If you make modifications or additions, you must indicate "
+"in a reasonable fashion that the original work has been modified. If you are"
+" re-using the sentence in a wiki, for example, indicating this in the page "
+"history is sufficient."
+msgstr "说明更改：如果您进行修改或补充，您必须以合理的方式说明原来的文本已被修改。如果您是重新使用一个维基的句子，那在历史记录中说明一下就足够了。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L135
+msgid ""
+"  Licensing notice: Each copy or modified version that you distribute must "
+"include a licensing notice stating that the work is released under CC-BY and"
+" either a) a hyperlink or URL to the text of the license or b) a copy of the"
+" license. For this purpose, a suitable URL is: "
+"http://creativecommons.org/licenses/by/2.0/fr/"
+msgstr "  授权公告：您提供的每个抄录副本或是修改版必须包含一个许可公告，说明这项工作是在具有署名许可证（CC-BY）的情况下发布的，并提供 a) 有关许可证文本的超链接或网址（URL） 或者 b) 许可证的副本。为此，一个合适的网址是：http://creativecommons.org/licenses/by/2.0/fr/"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L147
+msgid ""
+"For further information, please refer to the legal code of the CC-BY "
+"License."
+msgstr "如需进一步信息，请参阅署名许可证（CC-BY）的法律条款。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L155
+msgid "Precedence of French terms"
+msgstr "法国方面优先级"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L158
+msgid ""
+"These site terms are not to be modified. If there is any inconsistency "
+"between the French terms and any translation into other languages, the "
+"French language version takes precedence."
+msgstr "这些网站条款不可修改。如法语条款和其他语言的翻译版本有任何出入，以法语版本为准。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L113
+msgid "(total %count%)"
+msgstr "（共计%count%句）"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L78
+msgid "from %s"
+msgstr "来自%s"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L81
+msgid "to %s"
+msgstr "致%s"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/show.ctp#L29
+msgid "[no subject]"
+msgstr "[无主题]"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L119
+msgid "Restore"
+msgstr "还原"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/show.ctp#L37
+msgid "%s from %s"
+msgstr "%s 来自 %s"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L37
+msgid ""
+"To help keep Tatoeba free of spam and other malicious messages\n"
+"                 new users can send only 5 messages per day."
+msgstr "为使Tatoeba免于接受垃圾邮件和其他恶意信息\n                 新用户每天仅可发送5条消息。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L44
+msgid "You have sent %s messages today. "
+msgstr "今天您发了%s条消息。 "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L53
+msgid ""
+"To help keep Tatoeba free of spam and other malicious messages new users can"
+" send only 5 messages per day."
+msgstr "为使Tatoeba免于接受垃圾邮件和其他恶意信息，新用户每天仅可发送5条消息。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L57
+msgid "Please wait until you can send more messages. "
+msgstr "请等待，知道您可以发送更多消息。 "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L43
+msgid ""
+"Click a sentence to go to tatoeba.org to translate it or leave a comment."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L53
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L162
+msgid "There is no sentence with id %s"
+msgstr "没有找到与%s号句子想对应的结果。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_annotations/last_modified.ctp#L54
+msgid "Browse by last modified (total %count%)"
+msgstr "查看最后修改过的句子（共计%count%句）"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_annotations/show.ctp#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp141;157
+msgid "Sentence #%s"
+msgstr "%s号句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/edit.ctp#L28
+msgid "Edit Comment"
+msgstr "编辑评论"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/edit.ctp#L47
+msgid "Edit Comment on Sentence #%s"
+msgstr "编辑以下句子上的评论"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/index.ctp#L38
+msgid "Comments on sentences"
+msgstr "语句评论"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/index.ctp#L57
+msgid "Comments on sentences (total %count%)"
+msgstr "句子评论（共计%count%条）"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/of_user.ctp#L39
+msgid "%s's comments"
+msgstr "%s发表的评论"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/of_user.ctp#L61
+msgid "%s has posted no comment"
+msgstr "%s没有发表过评论"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/of_user.ctp#L75
+msgid "%s's comments (total %s)"
+msgstr "%s的评论（共计%s条）"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L66
+msgid "%s has no comment posted on his/her sentences"
+msgstr "%s没有在他/她的句子上发表评论"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L80
+msgid "Comments on %s's sentences (total %s)"
+msgstr "对%s句子的评论（共计%s条）"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L39
+msgid "Important"
+msgstr "注意"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L52
+msgid ""
+"Do not copy-paste sentences from elsewhere, except if the content is CC-BY "
+"compatible. <a href=\"%s\">Learn more...</a>"
+msgstr "不要从其他地方复制粘贴句子，除非其内容符合知识共享署名许可（CC-BY）。<a href=\"%s\">了解更多...</a>"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L69
+msgid ""
+"You can add sentences that you do not know how to translate. Perhaps someone"
+" else will know!"
+msgstr "您可以添加您不知道怎么翻译的句子，也许其他人能帮您！"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L78
+msgid "Or create sentences with <a href=\"%s\">words not yet in Tatoeba</a>."
+msgstr "或是用<a href=\"%s\">Tatoeba里还没有的词</a>创建句子。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L92
+msgid "Add new sentences"
+msgstr "添加句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L99
+msgid "Sentence: "
+msgstr "句子： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L134
+msgid "Sentences added"
+msgstr "添加的句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L42
+msgid "%s's sentences"
+msgstr "%s的句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L45
+msgid "%1$s's sentences in %2$s"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L69
+msgid "Translate these sentences"
+msgstr "翻译这些句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L92
+msgid "%1$s does not have any sentence in %2$s"
+msgstr "%1$s没有任何%2$s句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L98
+msgid "%s does not have any sentence"
+msgstr "%s没有任何句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L31
+msgid "Sentences with: %s"
+msgstr "含%s的句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L54
+msgid "Search:"
+msgstr "查找："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp28;96
+msgid "Random sentences"
+msgstr "随机句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L33
+msgid "For serial translators"
+msgstr "多句翻译"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L36
+msgid ""
+"Translating sentences one by one is too slow for you? You want to increase "
+"your rank in Tatoeba, or the rank of your language, at the speed of light? "
+"So this is for you!"
+msgstr "一句句地翻译对您来说太慢了？您想要迅速提高您在Tatoeba的排名或是您语言的排名吗？那您找对地方了！"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L44
+msgid "Just keep in mind that our server is not as fast as you ;-)"
+msgstr "不过请记住我们的服务器没您的脑子转得那么快;-)"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L38
+msgid "%s example sentence: "
+msgstr "%s例句： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L44
+msgid ""
+"Browse translated example sentences. This page shows translations and "
+"information about the sentence: %s"
+msgstr "查看翻译好的例句。该页面显示的是有关以下句子的翻译和信息：%s"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L56
+msgid "Sentence does not exist: "
+msgstr "没有找到相应结果： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L109
+msgid "There is no log for this sentence"
+msgstr "没有关于该句的历史记录。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L115
+msgid "Report mistakes"
+msgstr "报告错误"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L118
+msgid "Do not hesitate to post a comment if you see a mistake!"
+msgstr "如果您发现有错误，请尽管发表评论！"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L123
+msgid ""
+"NOTE: If the sentence does not belong to anyone and you know how to correct "
+"the mistake, feel free to correct it without posting any comment. You will "
+"have to adopt the sentence before you can edit it."
+msgstr "注：如果有一句句子不属于任何人，而您又知道怎么纠正句中的错误，您不用发表任何评论就可以随时纠正它。但您必须接管句子，然后才可以进行编辑。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L202
+msgid "There are no comments for now."
+msgstr "目前没有评论。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L206
+msgid "Sentence deleted"
+msgstr "句子已删除"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L217
+msgid ""
+"You need to be logged in to add a comment. If you are not registered, you "
+"can <a href=\"%s\">register here</a>."
+msgstr "您必须登录以添加评论。如果您尚未加入，请点击<a href=\"%s\">这里</a>注册。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L30
+msgid "All sentences in %s"
+msgstr "所有%s句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L33
+msgid "any language"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L38
+msgid "Sentences in %1$s not translated into %2$s"
+msgstr "没有被翻译成%2$s的%1$s句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/with_audio.ctp#L31
+msgid "Sentences in %s with audio"
+msgstr "带音频的%s句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/add_new_sentence_to_list.ctp#L50
+msgid "Problem while saving"
+msgstr "保存时出错"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L38
+msgid "Download list: "
+msgstr "下载列表: "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L41
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L42
+msgid "Actions"
+msgstr "操作"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L81
+msgid "Id (optional)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L89
+msgid ""
+"If you check this box, the id of each sentence will be written to the "
+"output."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L95
+msgid "Translation (optional)"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L128
+msgid ""
+"If you select a language, the translation of each sentence into that "
+"language (if it exists) will be written to your output. You can then import "
+"the file to produce a deck of flash cards, using the %s program."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L161
+msgid "Fields will be written out in the following sequence:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L175
+msgid ""
+"Optional fields that are not selected above will not be written to the "
+"output."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L80
+msgid "You can change the name of the list by clicking on it."
+msgstr "您可以点击列表名称来重命名。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L88
+msgid ""
+"You can remove a sentence from the list by clicking on the X icon to its "
+"right."
+msgstr "你可以通过点击右边的X图标从列表中移除句子。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L94
+msgid ""
+"Removing a sentence will not delete it. The sentence will just not be part "
+"of the list anymore."
+msgstr "移除句子并不会将它删除。这句句子只不过不再属于列表了。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L28
+msgid "Lists of sentences"
+msgstr "句子列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L42
+msgid "Create a new list"
+msgstr "创建新列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L57
+msgid "create"
+msgstr "创建"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L65
+msgid "About the lists"
+msgstr "关于列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L68
+msgid "Lists make it possible to gather and organize sentences in Tatoeba."
+msgstr "通过列表，您可以在Tatoeba上收集和组织语句。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L76
+msgid ""
+"You can create all kinds of lists! \"Preparation for summer trip to "
+"Mexico\", \"English test #4\", \"My favorite geek quotes\"..."
+msgstr "您可以创建任何列表！“暑假去旅游的准备”，“大学英语4级”，“我最喜欢的名人名言”..."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L86
+msgid "Registration needed"
+msgstr "使用条件"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L87
+msgid "You can create lists only if you are registered."
+msgstr "只有在注册后，您才能创建列表。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L99
+msgid "If you are already registered, please log in."
+msgstr "如果您已经注册了，那么请登录。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L116
+msgid "My lists"
+msgstr "我的列表"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L131
+msgid "Collaborative lists"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L143
+msgid "Other personal lists"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/remove_sentence_from_list.ctp#L33
+msgid "Sentence successfully removed."
+msgstr "句子已被移除。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/explode.ctp#L27
+msgid "Result"
+msgstr "结果"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L28
+msgid "Search sinograms"
+msgstr "查找汉字"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L39
+msgid "Browse radicals"
+msgstr "查看部首"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L53
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_radicals.ctp#L30
+msgid "1 stroke"
+msgstr "1画"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L71
+msgid "Explode a character"
+msgstr "分解汉字"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L80
+msgid "characters to explode"
+msgstr "输入您想分解的汉字"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L82
+msgid "Explode"
+msgstr "分解"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L90
+msgid "Still beta"
+msgstr "试用版"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L96
+msgid "This work is based on <a href=\"%s\">this project</a>."
+msgstr "该工具是以<a href=\"%s\">汉字分解</a>为基础发展而来的。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L108
+msgid ""
+"Please note that this tool is still not complete yet and may contain errors "
+"(although it will be accurate for most searches), so don't hesitate to "
+"report missing characters or any suggestion of improvement."
+msgstr "请注意，这个工具还没有完成，而且可能含有错误（虽然大部分搜索能够保证准确），所以有关缺少的字符或任何改善建议，请不要犹豫向我们反馈。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L122
+msgid "Hanzis - Kanjis search"
+msgstr "汉字或日本汉字搜索"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L126
+msgid ""
+"This tool allows you to find information about kanjis/hanzis, especially "
+"when you don't know how to input them directly with IMEs. "
+msgstr "此工具可帮您查找汉字/日本汉字的信息，尤其是当您不知道如何直接使用输入法来输入它们。 "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L131
+msgid "The main way to do this is by submitting subglyphs of the character."
+msgstr "其主要的使用方法是提交字符的偏旁部首。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L139
+msgid ""
+"For example, for 蝴, you can enter 月虫 as subglyphs (you don't need to know "
+"every subglyph)."
+msgstr "例如，对“蝴”来说，您可以输入“月”和“虫”作为偏旁部首（您不必知道每个偏旁部首）。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L147
+msgid ""
+"If you don't know how to input subglyphs either, but you know a character "
+"that also contains this subglyph, then you can use the explode form."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L156
+msgid ""
+"For example, say you want to search 瞧, but you don't know how to input 隹 in "
+"order to make the search more accurate. If you know 推, you can just explode "
+"it. Clicking on a subglyph will add it to the search form."
+msgstr "例如，您想要搜索“瞧”，但您不知道如何输入“隹”以便进行更精确的搜索，如果您知道“推”，只需要将它分解，点击一个偏旁部首就会将它添加到搜索栏中。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L166
+msgid ""
+"On the right you also have the most common radicals grouped by strokes, in "
+"case you don't have any way to type hanzis/kanjis."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L177
+msgid "Search a character by describing it"
+msgstr "请描述您要找的汉字"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L184
+msgid "Subglyphs: "
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L187
+msgid "Search"
+msgstr "查找"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_example_sentence.ctp#L32
+msgid ""
+"No sentence using this character has been found, you can add one <a "
+"href=\"%s\">here</a>."
+msgstr "没找到使用这个字的句子，您可以在<a href=\"%s\">此处</a>添加一句。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_example_sentence.ctp#L70
+msgid "View all sentences using this character <a href=\"%s\">here</a>"
+msgstr "在<a href=\"%s\">这里</a>查看所有使用这个字的句子。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_radicals.ctp#L33
+msgid "%s strokes"
+msgstr "%s画"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_radicals.ctp#L35
+msgid "10 strokes and more"
+msgstr "10画或以上"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L31
+msgid "Information about %s"
+msgstr "关于 %s 的信息"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L43
+msgid "number of strokes:"
+msgstr "笔画数："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L48
+msgid "pinyin:"
+msgstr "拼音："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L53
+msgid "English:"
+msgstr "英语："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L58
+msgid "Japanese On:"
+msgstr "中文念法："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L63
+msgid "Japanese Kun:"
+msgstr "日文念法："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L68
+msgid "Example of use"
+msgstr "例句"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/search.ctp#L29
+msgid "Results"
+msgstr "结果"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/search.ctp#L41
+msgid "No result found. Try to search with fewer subglyphs."
+msgstr "没有找到相应的结果，请尝试减少一些偏旁部首。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L28
+msgid "Number of sentences per language"
+msgstr "每种语言的句子数量"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L28
+msgid "Tags for moderators"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L64
+msgid "Guidelines"
+msgstr "指南"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L73
+msgid ""
+"Corpus maintainers, this page was made for your convenience. It shows "
+"sentences that were tagged more than two weeks ago as <a href=\"%s\">%s</a> "
+"or <a href=\"%s\">%s</a>."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L78
+msgid ""
+"Aside from special situations where your common sense will tell you that it "
+"is better to react as soon as possible, it is best to use your corpus "
+"maintainer powers <strong>ONLY</strong> on sentences that appear in this "
+"list, since the owners have had enough time to respond to comments."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L84
+msgid ""
+"NOTE: The maximum number of sentences displayed at a time is limited to 100."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L92
+msgid "Tagged '%s' more than 2 weeks ago"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L30
+msgid "Sentences with tag %s"
+msgstr "有%s标签的句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L84
+msgid "No tag with id %s"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L28
+msgid "All existing tags"
+msgstr "所有现存标签"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L44
+msgid "All Tags"
+msgstr "所有标签"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp31;85
+msgid "Chinese traditional/simplified conversion"
+msgstr "中文繁/简体转换"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L46
+msgid "The software"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L49
+msgid ""
+"This tool is powered by our own home-brewed software. The source code will "
+"be released as open source. Feel free to contact us if you would like to "
+"know more about it."
+msgstr "该工具是我们自制的软件。其源代码将作为开放资源发布。如想了解详细情况，欢迎联系我们。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L59
+msgid ""
+"The results you get will not always be perfect. However, you can help us "
+"improve this by telling us the mistakes you saw. We will try, if possible, "
+"to correct it."
+msgstr "十全十美的是不可能的，但您可以告诉我们您发现的错误，以便帮助我们进一步完善，我们会尽全力及时纠正。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L106
+msgid "Enter either traditional or simplified Chinese"
+msgstr "输入繁体或简体中文"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L134
+msgid "Convert"
+msgstr "转换"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L28
+msgid "Useful tools"
+msgstr "有用的工具"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L36
+msgid "Need a tool?"
+msgstr "需要工具？"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L40
+msgid ""
+"Well, Tatoeba's developers don't have time to think of every possible useful"
+" tool for language learners."
+msgstr "当然，Tatoeba的开发人员没有时间为语言学习者对每一个可能有用的工具都设想周到。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L50
+msgid ""
+"So if there is a must-have tool which is missing, or if you have yourself "
+"coded something you think can help others (as long as you can provide it "
+"under a GPL compatible licence) don't hesitate to talk about it <a "
+"href=\"%s\">here</a>. We're always looking for new stuff."
+msgstr "因此，如果您认为缺少一个必备的工具或是您自己编译的东西能帮助到别人（只要有GPL兼容许可证），请随时来<a href=\"%s\">这里</a>交流一下，我们一直在寻找新的东西。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L74
+msgid "Romaji/furigana conversion"
+msgstr "罗马字/振假名转换"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L81
+msgid "convert Japanese to romaji or furigana."
+msgstr "将日语转换成罗马字或振假名。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L87
+msgid "Sinogram search"
+msgstr "汉字搜索"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L94
+msgid "search all Chinese characters / kanjis by all possible methods."
+msgstr "通过所有可能的方式查找汉字或日本汉字。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp28;45
+msgid "Pinyin converter"
+msgstr "拼音转换器"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L107
+msgid ""
+"convert Chinese to pinyin, numerical pinyin to diacritical pinyin, etc."
+msgstr "将中文转换成拼音，将数字拼音转换成注音拼音，等等。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L116
+msgid "Chinese simplified/traditional conversion"
+msgstr "中文简/繁体转换"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L123
+msgid "convert traditional Chinese to simplified and vice versa"
+msgstr "将繁体中文转换成简体，反之亦然"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L131
+msgid "Shanghainese to IPA"
+msgstr "上海话转换到国际音标"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L138
+msgid ""
+"Convert a Shanghainese text into its pronunciation using the International "
+"Phonetic Alphabet"
+msgstr "将上海话文字转换成使用国际音标的相对发音"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L75
+msgid "Convert text from: "
+msgstr "待转换内容： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp80;95
+msgid "numerical pinyin"
+msgstr "数字拼音"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L91
+msgid "Convert text to: "
+msgstr "转换到： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L96
+msgid "diacritical pinyin"
+msgstr "注音拼音"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp31;74
+msgid "Convert Japanese text into romaji or furigana"
+msgstr "将日语转换成罗马字或振假名"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L47
+msgid "Credits"
+msgstr "致谢"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L46
+msgid "This tool is powered by <a href=\"%s\">MeCab</a>."
+msgstr "该工具由<a href=\"%s\">MeCab</a>支持。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L55
+msgid "More information"
+msgstr "更多信息"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L59
+msgid "Japanese romanization in Tatoeba, now using MeCab"
+msgstr "Tatoeba上的日本罗马字现使用MeCab"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L65
+msgid "Tools for Japanese romanization"
+msgstr "日语罗马字工具"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L103
+msgid "Convert Japanese text into: "
+msgstr "将日语转换成： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L107
+msgid "romaji"
+msgstr "罗马字"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L108
+msgid "furigana"
+msgstr "振假名"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp32;99
+msgid "Convert Shanghainese into IPA"
+msgstr "将上海话转换成国际音标"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L51
+msgid ""
+"We really want to thank <a href='%s'>Kellen Parker</a> who has provided us "
+"with much more complete data files. If you're interested in his work, you "
+"can check his project page <a href='%s'>here</a>. Without him, the "
+"Shanghainese sentences wouldn't have such a complete IPA."
+msgstr "我们衷心感谢<a href='%s'>Kellen Parker</a>为我们提供了更为完整的数据文件，如果您对他的工作感兴趣，不妨去看看<a href='%s'>他的项目网站</a>。没有他的帮助，上海话就不可能会有这么多完整的国际音标。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L68
+msgid "Note"
+msgstr "备注"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L71
+msgid ""
+"This tool is in a very early stage, and we're looking for people who can "
+"help us improve the transcription by providing IPA of non-converted "
+"characters or reporting mistakes."
+msgstr "该工具还在开发阶段，我们正在寻找可以通过提供非转换字符的国际音标或者通过报告错误来帮助我们改善音标的人。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L83
+msgid "Feedback"
+msgstr "意见反馈"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L120
+msgid "Enter a text in shanghainese dialect"
+msgstr "输入一句上海话"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L41
+msgid "Picture"
+msgstr "头像"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L43
+msgid "Current picture"
+msgstr "最近头像"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L56
+msgid "New picture"
+msgstr "新头像"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L69
+msgid "Upload"
+msgstr "上传"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L76
+msgid "Personal information"
+msgstr "个人信息"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L223
+msgid "Birthday"
+msgstr "生日"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L221
+msgid "Name"
+msgstr "姓名"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L222
+msgid "Country"
+msgstr "国家/地区"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L224
+msgid "Homepage"
+msgstr "网站"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L120
+msgid "Save personal information"
+msgstr "保存个人信息"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L126
+msgid "Description"
+msgstr "描述"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L135
+msgid "Save description"
+msgstr "保存"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L71
+msgid "Stats"
+msgstr "统计"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L73
+msgid "Comments posted"
+msgstr "评论数"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L75
+msgid "Sentences owned"
+msgstr "句子总数"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L77
+msgid "Sentences favorited"
+msgstr "收藏的句子总数"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L87
+msgid "Show latest activity"
+msgstr "显示最近动态"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L119
+msgid "Email notifications are ENABLED."
+msgstr "邮件通知已启用。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L121
+msgid "Email notifications are DISABLED."
+msgstr "邮件通知已禁用。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L129
+msgid ""
+"Access to this profile is PUBLIC. All the information can be seen by "
+"everyone."
+msgstr "该用户信息设置为公开。所有信息均可见。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L134
+msgid ""
+"Access to this profile is RESTRICTED. Only Tatoeba members can see the "
+"personal information and the description."
+msgstr "该用户信息访问受限。只有Tatoeba的用户才可以查看其个人信息及描述。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L163
+msgid "Not approved"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L165
+msgid "Sentences from this user are currently added as \"not approved\"."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L250
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp83;122
+msgid "Member since"
+msgstr "注册日期"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L268
+msgid "No description."
+msgstr "没有描述。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L271
+msgid "TIP: We encourage you to indicate the languages you know."
+msgstr "提示：我们建议您标明您懂的语言。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L275
+msgid "TIP: Encourage this user to indicate the languages he or she knows."
+msgstr "提示：建议该用户标明他/她懂的语言。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L40
+msgid "Options"
+msgstr "选项"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L54
+msgid "Email notifications"
+msgstr "电子邮件通知"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L61
+msgid "Set your profile public?"
+msgstr "公开您的个人资料？"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L68
+msgid ""
+"Advanced language selector (experimental). Note: this option is saved in "
+"your cookies so it will only apply for your current browser."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L79
+msgid ""
+"Remember the last list to which you assigned a sentence, and select it by "
+"default."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L88
+msgid ""
+"Enter ISO 639-3 codes, separated with a comma (e.g.: jpn,epo,ara,deu). "
+"Tatoeba will then only display translations in the languages you indicated. "
+"You can leave this empty to display translations in all languages."
+msgstr "输入ISO 639-3代码，以逗号分隔（例如：jpn,epo,ara,deu）。 Tatoeba将只显示您指定语言的翻译。您可以保留这项不填以显示所有语言的翻译。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L97
+msgid "Languages"
+msgstr "语言"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp104;122;159
+msgid "Save"
+msgstr "保存"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L108
+msgid "Change email address"
+msgstr "修改邮件地址"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L119
+msgid "Email address"
+msgstr "电子邮件"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L127
+msgid "Change password"
+msgstr "更改密码"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L141
+msgid "Old password"
+msgstr "旧密码"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L148
+msgid "New password"
+msgstr "新密码"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L155
+msgid "New password again"
+msgstr "再次输入新密码"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L43
+msgid "Search user"
+msgstr "搜索用户"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L74
+msgid "Members (total %count%)"
+msgstr "用户（共计%count%）"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L79
+msgid "Sort by:"
+msgstr "排序方式："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L85
+msgid "Member status"
+msgstr "级别"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp38;41
+msgid "Send new password"
+msgstr "发送新密码"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L47
+msgid "Username:"
+msgstr "用户名："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L58
+msgid "Username can only contain letters, numbers, or underscore"
+msgstr "用户名只能包含字母、数字或下划线"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L62
+msgid "Username already taken."
+msgstr "用户名已被使用。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L66
+msgid "Username must be at least two characters long"
+msgstr "用户名至少须有两个字母"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L78
+msgid "Password:"
+msgstr "密码："
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L95
+msgid "unmask password"
+msgstr "显示密码"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L101
+msgid "Email address:"
+msgstr "Email:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L112
+msgid "Invalid email address"
+msgstr "无效电子邮件地址"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L116
+msgid "Email address already used."
+msgstr "电子邮件地址已被使用。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L130
+msgid "We need to make sure you are human."
+msgstr "我们需要确认您不是网络机器人。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L135
+msgid "What are the first five characters of your email address?"
+msgstr "您电子邮件的前五位是什么？"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L139
+msgid ""
+"For instance, if your email address is a.b.cd@example.com, type a.b.c into "
+"the box."
+msgstr "例如，如果您的电子邮件是a.b.cd@example.com，那么答案就是“a.b.c“。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L148
+msgid "I accept the <a href=\"%s\">terms of use</a>"
+msgstr "我接受<a href=\"%s\">使用条款</a>"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L25
+msgid "Tatoeba user: %s"
+msgstr "Tatoeba用户：%s"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L63
+msgid "Latest sentences"
+msgstr "最新动态"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp66;99;135;173
+msgid "view all"
+msgstr "查看所有"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L96
+msgid "Favorite sentences"
+msgstr "收藏的句子"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L170
+msgid "Latest Wall messages"
+msgstr "留言板最新信息"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L31
+msgid "Edit message %s"
+msgstr "编辑消息 %s"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L36
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L48
+msgid "Menu"
+msgstr "菜单"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L52
+msgid "Back to Wall"
+msgstr "返回留言板"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L53
+msgid ""
+"Here you can ask general questions like how to use Tatoeba, report bugs or "
+"strange behavior, or simply socialize with the rest of the community."
+msgstr "在这里，您可以问一些一般性的问题，如怎样使用Tatoeba，报告错误或奇怪的行为，或只是与其他成员进行交流。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L64
+msgid "Before asking a question, make sure to read the <a href=\"%s\">FAQ</a>."
+msgstr "提问之前先确定已经阅读了<a href=\"%s\">常见问题解答</a>。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L106
+msgid ""
+"You may write in any language you want. At Tatoeba, all languages are equal."
+msgstr "您可以用任何您想要用的语言写。在Tatoeba，所有语言都是平等的。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L128
+msgid "Wall (%count% threads)"
+msgstr "留言板（%count%个话题）"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/messages_of_user.ctp#L29
+msgid "%s's Wall messages"
+msgstr "%s的留言板信息"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/messages_of_user.ctp#L50
+msgid "%s's messages on the Wall (total %s)"
+msgstr "%s的留言板信息（共计%s条）"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L40
+msgid "Thread #%s"
+msgstr ""

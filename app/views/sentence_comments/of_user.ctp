@@ -35,7 +35,9 @@
  * @link     http://tatoeba.org
  */
 $userName = Sanitize::paranoid($userName, array("_"));
-$this->set('title_for_layout', 'Tatoeba - ' . sprintf(__("%s's comments", true), $userName));
+$this->set('title_for_layout', $pages->formatTitle(
+    format(__("{user}'s comments", true), array('user' => $userName))
+));
 
 // create an helper a lot of the code is the same of "on_sentences_of_user"
 ?>
@@ -55,9 +57,9 @@ $this->set('title_for_layout', 'Tatoeba - ' . sprintf(__("%s's comments", true),
         $commonModules->displayNoSuchUser($userName, $backLink);
     } elseif ($noComment === true) {
         echo '<h2>';
-        echo sprintf(
-            __("%s has posted no comment", true),
-            $userName
+        echo format(
+            __("{user} has posted no comment", true),
+            array('user' => $userName)
         );
         echo '</h2>';
 
@@ -69,10 +71,9 @@ $this->set('title_for_layout', 'Tatoeba - ' . sprintf(__("%s's comments", true),
             <?php 
             echo $paginator->counter(
                 array(
-                    'format' => sprintf(
-                        __("%s's comments (total %s)", true),
-                        $userName,
-                        '%count%'
+                    'format' => format(
+                        __('{user}\'s comments (total&nbsp;{n})', true),
+                        array('user' => $userName, 'n' => '%count%')
                     )
                 )
             ); 

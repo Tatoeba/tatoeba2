@@ -92,6 +92,7 @@ class FavoritesUsers(models.Model):
     class Meta:
         managed = False
         db_table = 'favorites_users'
+        unique_together = ('favorite_id', 'user_id')
 
 class FollowersUsers(models.Model):
     follower_id = models.IntegerField()
@@ -109,13 +110,13 @@ class Groups(models.Model):
         managed = False
         db_table = 'groups'
 
-class Langstats(models.Model):
+class Languages(models.Model):
     lang = models.CharField(unique=True, max_length=4)
     numberofsentences = models.IntegerField(db_column='numberOfSentences') # Field name made lowercase.
     id = models.AutoField(primary_key=True)
     class Meta:
         managed = False
-        db_table = 'langStats'
+        db_table = 'languages'
 
 class LastContributions(models.Model):
     sentence_id = models.IntegerField()
@@ -215,6 +216,7 @@ class SentencesSentencesLists(models.Model):
     class Meta:
         managed = False
         db_table = 'sentences_sentences_lists'
+        unique_together = ('sentences_list_id', 'sentence_id')
 
 class SentencesTranslations(models.Model):
     # more lying to django
