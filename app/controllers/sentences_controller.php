@@ -914,14 +914,13 @@ class SentencesController extends AppController
      */
     public function import()
     {
-        if (! CurrentUser::isModerator()) {
+        if (!CurrentUser::isAdmin()) {
             $this->redirect(
                 array(
                     "controller" => "pages",
                     "action" => "home",
                 )
             );
-
         }
     }
 
