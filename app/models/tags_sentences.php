@@ -113,7 +113,8 @@ class TagsSentences extends AppModel
                 ),
                 'contain' => array(
                     'Tag'
-                )
+                ),
+                'group' => 'TagsSentences.tag_id'
             )
         );
     }
