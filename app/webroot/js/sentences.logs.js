@@ -22,10 +22,10 @@ $(document).ready(function(){
 
         historyRecord.find('a').each(function(){
             var historyRecordSentenceLink = $(this).attr('href');
-            var sentence = $(".sentenceContent > a[href='" + historyRecordSentenceLink + "']").parent();
+            var sentence = $(".directTranslation > a[href='" + historyRecordSentenceLink + "']").parent();
             if (sentence.length) { // we have this sentence displayed on the page
                 var updateHighlight = function() {
-                    $(".sentenceContent.highlighted").removeClass("highlighted");
+                    $(".directTranslation.highlighted").removeClass("highlighted");
                     $(".linkLog.historyHighlighted").removeClass("historyHighlighted");
                     sentence.addClass("highlighted");
                     historyRecord.addClass("historyHighlighted");
