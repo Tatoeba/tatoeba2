@@ -530,6 +530,7 @@ class SentencesHelper extends AppHelper
         $sentenceId, $sentenceText, $isEditable = false, $sentenceLang = ''
     ) {
         $dir = $this->Languages->getLanguageDirection($sentenceLang);
+        $sentenceText = Sanitize::html($sentenceText);
 
         if ($isEditable) {
 
@@ -540,7 +541,7 @@ class SentencesHelper extends AppHelper
             // NOTE: I didn't find an easy way to pass the sentenceId to jEditable
             // using jQuery.data...
             echo '<div dir="'.$dir.'" id="'.$sentenceLang.'_'.$sentenceId.'" class="text editableSentence">';
-            echo Sanitize::html($sentenceText);
+            echo $sentenceText;
             echo '</div>';
 
         } else {

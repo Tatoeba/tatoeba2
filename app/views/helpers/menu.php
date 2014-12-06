@@ -202,13 +202,13 @@ class MenuHelper extends AppHelper
             $cssClass = 'remove';
             $image = 'locked.svg';
             if ($isLogged && $isOwnedByCurrentUser) {
-                $tooltip = __('Click to unlock', true);
+                $tooltip = __('Click to unadopt', true);
             }
         } else {
             $cssClass = 'add';
             $image = 'unlocked.svg';
             if ($isLogged) {
-                $tooltip = __('Click to lock', true);
+                $tooltip = __('Click to adopt', true);
             }
         }
 
@@ -608,7 +608,8 @@ class MenuHelper extends AppHelper
         $this->translateButton($sentenceId, $ownerName, $isLogged, $canTranslate);
 
         // Edit
-        $this->editButton($sentenceId);
+        // TODO
+        // $this->editButton($sentenceId);
 
         // Favorite
         $isFavorited = CurrentUser::hasFavorited($sentenceId);
