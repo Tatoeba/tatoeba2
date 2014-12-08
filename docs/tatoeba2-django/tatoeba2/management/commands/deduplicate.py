@@ -365,6 +365,7 @@ class Dedup(object):
         cls.merge_logs(main_sent.id, ids)
         cls.update_merge('FavoritesUsers', main_sent.id, ids, 'favorite_id')
         cls.update_merge('SentenceAnnotations', main_sent.id, ids)
+        cls.update_merge('SentenceAnnotations', main_sent.id, ids, 'meaning_id')
                
         # delete and log duplicates
         cls.delete_sents(main_sent.id, ids)

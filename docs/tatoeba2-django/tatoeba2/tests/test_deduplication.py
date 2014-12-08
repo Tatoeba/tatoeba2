@@ -155,8 +155,9 @@ class TestDedup():
     def test_merge_annotations(db, sents, dedup):
         assert SentenceAnnotations.objects.filter(sentence_id=8).count() == 1
         dedup.update_merge('SentenceAnnotations', 8, [6, 7])
+        dedup.update_merge('SentenceAnnotations', 10, [11, 12], 'meaning_id')
         assert SentenceAnnotations.objects.filter(sentence_id=8).count() == 3
-        for ann in SentenceAnnotations.objects.all(): assert ann.sentence_id == 8
+        assert SentenceAnnotations.objects.filter(meaning_id=10).count() == 3
 
     def test_merge_links(db, sents, dedup):
 

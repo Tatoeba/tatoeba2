@@ -65,6 +65,10 @@ def sents(db, request):
     SentenceAnnotations(meaning_id=1, text='', modified=datetime.now(), user_id=1, sentence_id=6).save()
     SentenceAnnotations(meaning_id=2, text='', modified=datetime.now(), user_id=1, sentence_id=7).save()
     SentenceAnnotations(meaning_id=3, text='', modified=datetime.now(), user_id=1, sentence_id=8).save()
+
+    SentenceAnnotations(meaning_id=10, text='', modified=datetime.now(), user_id=1, sentence_id=13).save()
+    SentenceAnnotations(meaning_id=11, text='', modified=datetime.now(), user_id=1, sentence_id=14).save()
+    SentenceAnnotations(meaning_id=12, text='', modified=datetime.now(), user_id=1, sentence_id=15).save()
     
     Contributions(text='Logs for 6', action='update', user_id=1, datetime=datetime.now(), type='sentence', sentence_id=6).save()
     Contributions(text='Logs for 6', action='insert', user_id=1, datetime=datetime.now(), type='link', sentence_id=6, translation_id=9).save()
