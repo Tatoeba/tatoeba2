@@ -9,7 +9,7 @@ section='https://www.transifex.com'
 URL='https://www.transifex.com/api/2'
 
 #Note that the "requests" module must be imported with "sudo pip-3.2 install requests".
-import os, requests, logging, datetime, subprocess, argparse, configparser
+import os, requests, logging, datetime, subprocess, argparse, configparser, shutil
 from getpass import getpass
 
 config = configparser.ConfigParser()
@@ -157,9 +157,9 @@ def main():
         else:
             print('Changes haven\'t been committed. Use -c to commit.')
     
-    if DONTCLEAN:
+    if not DONTCLEAN:
         print('Cleaning tmp directory: %s'%TMP_DIR)
-        os.remove(TMP_DIR)
+        shutil.rmtree(TMP_DIR)
     print('Done.')
 
 if __name__ == "__main__":
