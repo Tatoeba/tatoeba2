@@ -166,7 +166,7 @@ if (empty($notTranslatedInto)) {
         <?php
         echo $form->select(
             'into',
-            $languages->languagesArray(),
+            $languages->languagesArrayAlone(),
             $selectedLanguage,
             array(
                 'class' => 'language-selector',
