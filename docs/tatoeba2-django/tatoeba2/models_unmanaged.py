@@ -111,7 +111,7 @@ class Groups(models.Model):
         db_table = 'groups'
 
 class Languages(models.Model):
-    lang = models.CharField(unique=True, max_length=4)
+    code = models.CharField(unique=True, max_length=4)
     numberofsentences = models.IntegerField(db_column='numberOfSentences') # Field name made lowercase.
     id = models.AutoField(primary_key=True)
     class Meta:

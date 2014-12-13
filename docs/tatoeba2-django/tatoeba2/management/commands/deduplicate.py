@@ -394,13 +394,13 @@ class Dedup(object):
 
     @classmethod
     @transaction.atomic
-    def refresh_lang_stats(cls):
-        if not cls.dry:
+    def refresh_lang_stats(dry):
+        if not dry:
             langs = list(Languages.objects.all())
             for l in langs:
                 Languages.objects\
-                .filter(lang=l.lang)\
-                .update(numberofsentences=Sentences.objects.filter(lang=l.lang).count())
+                .filter(code=l.code)\
+                .update(numberofsentences=Sentences.objects.filter(lang=l.code).count())
         
 class Command(Dedup, BaseCommand):
     option_list = BaseCommand.option_list + (
@@ -614,7 +614,7 @@ class Command(Dedup, BaseCommand):
 
         # refresh sentence numbers for languages
         self.log_report('Refreshing language statistics')
-        self.refresh_lang_stats()
+        self.refresh_lang_stats(dry)
         
         self.log_report('Deduplication finished running successfully at '+now().strftime('%Y-%m-%d %I:%M %p UTC')+', see full log at:')
         self.log_report(url + path.split(self.log_file_path)[-1].replace(' ', '%20'))
