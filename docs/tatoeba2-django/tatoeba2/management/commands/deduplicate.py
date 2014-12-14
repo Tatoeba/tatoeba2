@@ -16,6 +16,7 @@ from django.db.models import Q
 from termcolor import colored
 from hashlib import sha1
 from pytz import UTC as utc
+from itertools import permutations
 import time
 import logging
 import sys
@@ -235,6 +236,10 @@ class Dedup(object):
                     dup_dups.pop(0)
                     for dup in dup_dups:
                         collisions.add(dup)
+
+            # handle deeply linked duplicates
+            for pair in permutations([main_id]+list(ids), 2):
+                collisions.add(pair)
 
             return bool(unique_together), unique_flds, collisions
         else:
