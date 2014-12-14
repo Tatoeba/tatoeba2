@@ -45,7 +45,7 @@ class TestDedup():
 
         Dedup.str_log.info('test')
         assert Dedup.report.getvalue() == 'test\n'
-        
+
         os.remove(Dedup.log_file_path)
 
     def test_chunked_ranges(db, dedup):
@@ -284,7 +284,7 @@ class TestDedup():
         assert Contributions.objects.filter(sentence_id=2, translation_id=2, type='link').count() == 0
 
     def test_refresh_lang_stats(db, sents, lang_stats):
-        assert Languages.objects.filter(lang='eng')[0].numberofsentences == 0
+        assert Languages.objects.filter(code='eng')[0].numberofsentences == 0
         cmd = Command()
         cmd.handle()
-        assert Languages.objects.filter(lang='eng')[0].numberofsentences == 10
+        assert Languages.objects.filter(code='eng')[0].numberofsentences == 10

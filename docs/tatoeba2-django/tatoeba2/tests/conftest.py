@@ -151,4 +151,4 @@ def duplnks_in_logs():
 
 @pytest.fixture
 def lang_stats():
-    Languages(lang='eng', numberofsentences=0).save()
+    Languages(code='eng', numberofsentences=0).save()

@@ -392,9 +392,9 @@ class Dedup(object):
                     )
             SentenceComments.objects.bulk_create(comments)
 
-    @classmethod
+    @staticmethod
     @transaction.atomic
-    def refresh_lang_stats(dry):
+    def refresh_lang_stats(dry=False):
         if not dry:
             langs = list(Languages.objects.all())
             for l in langs:
