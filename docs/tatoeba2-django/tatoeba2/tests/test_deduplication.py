@@ -264,7 +264,7 @@ class TestDedup():
     def test_dups_in_list(db, sents, dups_in_list, dedup):
         assert not raises(
             dedup.update_merge, IntegrityError,
-            'SentencesSentencesLists', 2, [3]
+            'SentencesSentencesLists', 2, [3, 4]
             )
         lst = list(SentencesSentencesLists.objects.filter(sentence_id=2))
         assert len(lst) == 1
@@ -273,7 +273,7 @@ class TestDedup():
     def test_dups_in_fav(db, sents, dups_in_fav, dedup):
         assert not raises(
             dedup.update_merge, IntegrityError,
-            'FavoritesUsers', 2, [3], 'favorite_id'
+            'FavoritesUsers', 2, [3, 4], 'favorite_id'
             )
         fav = list(FavoritesUsers.objects.filter(favorite_id=2))
         assert len(fav) == 1

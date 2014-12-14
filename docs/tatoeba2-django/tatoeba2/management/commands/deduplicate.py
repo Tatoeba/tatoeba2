@@ -227,9 +227,18 @@ class Dedup(object):
                 else:
                     remaining[updated_obj].append(obj)
 
-            return bool(unique_together), unique_flds, collisions, remaining
+            # handle duplicates inside duplicates, for instance
+            # 1-5 and 2-5 updated into 3-5 and 3-5 because of
+            # merging sentences 1 and 2 into 3
+            for dup_dups in remaining.itervalues():
+                if (len(dup_dups) > 1):
+                    dup_dups.pop(0)
+                    for dup in dup_dups:
+                        collisions.add(dup)
+
+            return bool(unique_together), unique_flds, collisions
         else:
-            return bool(unique_together), None, None, None
+            return bool(unique_together), None, None
 
     @classmethod
     def log_rows_tuples_del(cls, model, main_id, ids, query, msg):
@@ -251,13 +260,13 @@ class Dedup(object):
             query = query | get_model('tatoeba2.'+model).objects.filter(**filters)
         cls.log_rows_tuples_del(model, main_id, ids, query, log_msg)
         if not cls.dry:
-            query.delete()      
+            query.delete()
 
     @classmethod
     @transaction.atomic
     def update_merge(cls, model, main_id, ids, update_fld='sentence_id'):
         # handle unique collisions
-        unique, unique_flds, collisions, remaining = cls.unique_collisions(model, main_id, ids, update_fld)
+        unique, unique_flds, collisions = cls.unique_collisions(model, main_id, ids, update_fld)
         if unique:
             flds = [update_fld] + unique_flds
 
@@ -293,17 +302,9 @@ class Dedup(object):
     def merge_links(cls, main_id, ids):
         def remove_collisions(update_fld):
             # find and delete unique collisions
-            unique, unique_flds, collisions, remaining = cls.unique_collisions('SentencesTranslations', main_id, ids, update_fld)
+            unique, unique_flds, collisions = cls.unique_collisions('SentencesTranslations', main_id, ids, update_fld)
             if unique:
                 flds = [update_fld] + unique_flds
-                # handle duplicates inside duplicates, for instance
-                # 1-5 and 2-5 updated into 3-5 and 3-5 because of
-                # merging sentences 1 and 2 into 3
-                for dup_dups in remaining.itervalues():
-                    if (len(dup_dups) > 1):
-                        dup_dups.pop(0)
-                        for dup in dup_dups:
-                            collisions.add(dup)
 
                 # handle the need for having all the ids not match
                 # (think self-linked sentences), delete any existing

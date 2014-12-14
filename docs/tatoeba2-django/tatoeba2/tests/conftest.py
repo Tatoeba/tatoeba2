@@ -137,13 +137,13 @@ def linked_dups():
 
 @pytest.fixture
 def dups_in_list():
-    SentencesSentencesLists(sentences_list_id=4, sentence_id=2).save()
     SentencesSentencesLists(sentences_list_id=4, sentence_id=3).save()
+    SentencesSentencesLists(sentences_list_id=4, sentence_id=4).save()
 
 @pytest.fixture
 def dups_in_fav():
-    FavoritesUsers(user_id=1, favorite_id=2).save()
     FavoritesUsers(user_id=1, favorite_id=3).save()
+    FavoritesUsers(user_id=1, favorite_id=4).save()
 
 @pytest.fixture
 def duplnks_in_logs():
