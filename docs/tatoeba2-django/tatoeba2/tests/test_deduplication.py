@@ -261,6 +261,12 @@ class TestDedup():
         assert lnks[1].sentence_id == 5 and lnks[1].translation_id == 2
         assert lnks[2].sentence_id == 6 and lnks[2].translation_id == 2
 
+    def test_linked_dups_depth(db, sents, linked_dups_depth, dedup):
+        assert not raises(
+            dedup.merge_links, IntegrityError,
+            10, [11, 12, 13, 14]
+        )
+
     def test_dups_in_list(db, sents, dups_in_list, dedup):
         assert not raises(
             dedup.update_merge, IntegrityError,

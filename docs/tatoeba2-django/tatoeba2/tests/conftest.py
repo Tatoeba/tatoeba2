@@ -152,3 +152,12 @@ def duplnks_in_logs():
 @pytest.fixture
 def lang_stats():
     Languages(code='eng', numberofsentences=0).save()
+
+@pytest.fixture
+def linked_dups_depth():
+    Sentences(text='Has audio, duplicated.', lang='eng', created=datetime(2014, 1, 3)).save()
+    Sentences(text='Has audio, duplicated.', lang='eng', created=datetime(2014, 1, 3)).save()
+    bidirect_link(10, 11)
+    bidirect_link(11, 12)
+    bidirect_link(12, 13)
+    bidirect_link(13, 14)
