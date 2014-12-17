@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-04 02:11+0000\n"
-"PO-Revision-Date: 2014-12-04 02:33+0000\n"
-"Last-Translator: gillux\n"
+"PO-Revision-Date: 2014-12-17 09:03+0000\n"
+"Last-Translator: Silja Ijas\n"
 "Language-Team: Finnish (http://www.transifex.com/projects/p/tatoeba_website/language/fi/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -121,8 +121,8 @@ msgid ""
 msgid_plural ""
 "The download feature has been disabled for this list because it contains "
 "{n}&nbsp;sentences."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Tämän listan latausominaisuus on poistettu käytöstä, koska se sisältää lauseen."
+msgstr[1] "Tämän listan latausominaisuus on poistettu käytöstä, koska se sisältää {n}&nbsp;lausetta."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L182
 msgid ""
@@ -131,8 +131,8 @@ msgid ""
 msgid_plural ""
 "Only lists containing {max} or fewer sentences can be downloaded. If you can"
 " edit the list, you may want to split it into multiple lists."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ainoastaan listat, jotka sisältävät enintään yhden lauseen, voidaan ladata. Jos voit muokata tätä listaa, saatat haluta jakaa sen useammiksi listoiksi."
+msgstr[1] "Ainoastaan listat, jotka sisältävät enintään {max}&nbsp;lausetta, voidaan ladata. Jos voit muokata tätä listaa, saatat haluta jakaa sen useammiksi listoiksi."
 
 #. @translators: this string is used to concatenate two sentences.
 #. You typically want to change this to {firstSentence}{secondSentence}
@@ -140,7 +140,7 @@ msgstr[1] ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L195
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L83
 msgid "{firstSentence} {secondSentence}"
-msgstr ""
+msgstr "{firstSentence} {secondSentence}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L118
 msgid ""
@@ -354,19 +354,19 @@ msgstr "Yhteisö on kehittänyt useita ”yleistunnisteita”, joiden avulla par
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L81
 msgid "{tagChange}: the sentence needs to be changed."
-msgstr ""
+msgstr "{tagChange}: lausetta täytyy muuttaa."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L85
 msgid "{tagCheck}: the sentence needs to be checked."
-msgstr ""
+msgstr "{tagCheck}: lause täytyy tarkistaa."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L89
 msgid "{tagNNC}: the sentence needs to be checked by a native speaker."
-msgstr ""
+msgstr "{tagNNC}: kieltä äidinkielenään puhuvan henkilön täytyy tarkistaa lause."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L93
 msgid "{tagOK}: the sentence is considered correct by at least one person."
-msgstr ""
+msgstr "{tagOK}: tämä lause on oikein ainakin yhden henkilön mielestä."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L102
 msgid "How to help"
@@ -599,20 +599,20 @@ msgstr "Tällä hetkellä aktiiviset jäsenet"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L34
 msgid "User who did the last contribution."
 msgid_plural "Users who participated in the last {n}&nbsp;contributions."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Käyttäjä, joka lisäsi viimeisimmän työpanoksen."
+msgstr[1] "Viimeisten {n}&nbsp;työpanoksen lisäämiseen osallistuneet käyttäjät."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L96
 msgid "#{rank} - {n}&nbsp;sentence - {percentage}%"
 msgid_plural "#{rank} - {n}&nbsp;sentences - {percentage}%"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Nro {rank} – {n}&nbsp;lause – {percentage}&nbsp;%"
+msgstr[1] "Nro {rank} – {n}&nbsp;lausetta – {percentage}&nbsp;%"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L36
 msgid "One visitor online"
 msgid_plural "{n}&nbsp;visitors online"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Yksi käyttäjä paikalla"
+msgstr[1] "{n}&nbsp;käyttäjää paikalla"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L28
@@ -837,8 +837,8 @@ msgstr "Saatat nähdä joitakin lauseita kirjoitettuna punaisella. Tatoeban yhte
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L49
 msgid "One sentence"
 msgid_plural "{n}&nbsp;sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{n}&nbsp;lause"
+msgstr[1] "{n}&nbsp;lausetta"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences_statistics.ctp#L60
 msgid "show all languages"
@@ -1113,20 +1113,20 @@ msgstr "päivämäärä tuntematon"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L75
 msgid "yesterday"
 msgid_plural "{n}&nbsp;days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "eilen"
+msgstr[1] "{n}&nbsp;päivää sitten"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L77
 msgid "an hour ago"
 msgid_plural "{n}&nbsp;hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "tunti sitten"
+msgstr[1] "{n}&nbsp;tuntia sitten"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L79
 msgid "a minute ago"
 msgid_plural "{n}&nbsp;minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "minuutti sitten"
+msgstr[1] "{n}&nbsp;minuuttia sitten"
 
 #. @translators: this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
@@ -1135,7 +1135,7 @@ msgstr[1] ""
 #. for instance {language.alone}
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L55
 msgid "{language}"
-msgstr ""
+msgstr "{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L69
 msgid "Arabic"
@@ -1889,7 +1889,7 @@ msgstr "tuntematon"
 #. the name of a list when it happens to be empty
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L106
 msgid "(unnamed list)"
-msgstr ""
+msgstr "(nimetön lista)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L132
 msgid "created by {listAuthor}"
@@ -2173,8 +2173,8 @@ msgstr " - Tatoeba"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L32
 msgid "{title} (one result)"
 msgid_plural "{title} ({n}&nbsp;results)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{title} (yksi hakutulos)"
+msgstr[1] "{title} ({n}&nbsp;hakutulosta)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L52
 msgid "Reply"
@@ -2635,7 +2635,7 @@ msgid ""
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
 "present, so the file will also contain a line that says "
 "{sampleLinkLineReversed}."
-msgstr ""
+msgstr "Sisältää lauseiden väliset linkit. {sampleLinkLine} tarkoittaa, että lause numero 77 on lauseen numero 1 käännös. Myös lauseiden keskinäinen linkki on annettu, joten tiedosto sisältää myös rivin, jolla sanotaan {sampleLinkLineReversed}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L251
 msgid ""
@@ -2913,20 +2913,20 @@ msgstr "Joitakin tilastoja"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L62
 msgid "One contribution today"
 msgid_plural "{n}&nbsp;contributions today"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Yksi työpanos tänään"
+msgstr[1] "{n}&nbsp;työpanosta tänään"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L67
 msgid "One member so far"
 msgid_plural "{n}&nbsp;members so far"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Yksi jäsen tähän mennessä"
+msgstr[1] "{n}&nbsp;jäsentä tähän mennessä"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L73
 msgid "One supported language"
 msgid_plural "{n}&nbsp;supported languages"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Yksi tuettu kieli"
+msgstr[1] "{n}&nbsp;tuettua kieltä"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L94
 msgid "What is Tatoeba?"
@@ -3072,13 +3072,13 @@ msgstr "Tämän sivuston ehtoja ei saa muokata. Jos ranskankielisten ehtojen ja 
 #. whatever you translated "Inbox", "Sent" or "Trash" as.
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L40
 msgid "Private messages - {folderName}"
-msgstr ""
+msgstr "Yksityisviestit – {folderName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L50
 msgid "{folderName} ({n}&nbsp;message)"
 msgid_plural "{folderName} ({n}&nbsp;messages)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{folderName} ({n}&nbsp;viesti)"
+msgstr[1] "{folderName} ({n}&nbsp;viestiä)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L77
 msgid "from {sender}"
@@ -3106,8 +3106,8 @@ msgstr "Jotta Tatoeba pysyy roskapostista ja muista pahantahtoisista viesteistä
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L45
 msgid "You have sent one message today."
 msgid_plural "You have sent {n}&nbsp;messages today."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Olet lähettänyt yhden viestin tänään. "
+msgstr[1] "Olet lähettänyt {n}&nbsp;viestiä tänään. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L56
 msgid ""
@@ -3389,7 +3389,7 @@ msgstr "Luo uusi lista"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L55
 msgctxt "list"
 msgid "Name"
-msgstr ""
+msgstr "Nimi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L58
 msgid "create"
@@ -3453,8 +3453,8 @@ msgstr "Selaa radikaaleja"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_radicals.ctp#L33
 msgid "1 stroke"
 msgid_plural "{n}&nbsp;strokes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 veto"
+msgstr[1] "{n}&nbsp;vetoa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L71
 msgid "Explode a character"
@@ -3546,7 +3546,7 @@ msgstr "Katso kaikki lauseet, joissa tätä merkkiä käytetään <a href=\"{}\"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_radicals.ctp#L31
 msgid "10 or more strokes"
-msgstr ""
+msgstr "10 tai useampia vetoja"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L31
 msgid "Information about {sinograph}"
@@ -3853,7 +3853,7 @@ msgstr "Syntymäpäivä"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L221
 msgctxt "user"
 msgid "Name"
-msgstr ""
+msgstr "Nimi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L102
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L222
@@ -4031,7 +4031,7 @@ msgstr "Lähetä uusi salasana"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L47
 msgid "Email"
-msgstr ""
+msgstr "Sähköpostiosoite"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L47
 msgid "Username:"
@@ -4093,19 +4093,19 @@ msgstr "Tatoeba-käyttäjä: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L64
 msgid "Latest sentences (<a href=\"{}\">view all</a>)"
-msgstr ""
+msgstr "Viimeisimmät lauseet (<a href=\"{}\">näytä kaikki</a>)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L94
 msgid "Favorite sentences (<a href=\"{}\">view all</a>)"
-msgstr ""
+msgstr "Suosikkilauseet (<a href=\"{}\">näytä kaikki</a>)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L127
 msgid "Latest comments (<a href=\"{}\">view all</a>)"
-msgstr ""
+msgstr "Viimeisimmät kommentit (<a href=\"{}\">näytä kaikki</a>)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L161
 msgid "Latest Wall messages (<a href=\"{}\">view all</a>)"
-msgstr ""
+msgstr "Viimeisimmät seinäviestit (<a href=\"{}\">näytä kaikki</a>)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L31
 msgid "Edit message {number}"
@@ -4133,7 +4133,7 @@ msgstr "Ennen kun esität kysymyksen, varmista, että olet lukenut <a href=\"{}\
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L84
 msgid "{date}, by {author}"
-msgstr ""
+msgstr "{date}, käyttäjältä {author}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L106
 msgid ""
@@ -4143,8 +4143,8 @@ msgstr "Voit kirjoittaa millä tahansa haluamallasi kielellä. Tatoebassa kaikki
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L125
 msgid "Wall (one thread)"
 msgid_plural "Wall ({n}&nbsp;threads)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Seinä (yksi viestiketju)"
+msgstr[1] "Seinä ({n}&nbsp;viestiketjua)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"

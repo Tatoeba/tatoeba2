@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-04 02:11+0000\n"
-"PO-Revision-Date: 2014-12-04 07:53+0000\n"
+"PO-Revision-Date: 2014-12-12 22:38+0000\n"
 "Last-Translator: Guybrush88 <erpizzo@alice.it>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/tatoeba_website/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -598,8 +598,8 @@ msgstr "Membri che stanno attualmente contribuendo"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L34
 msgid "User who did the last contribution."
 msgid_plural "Users who participated in the last {n}&nbsp;contributions."
-msgstr[0] "Utente che ha effettuato l'ultimo contributo."
-msgstr[1] "Utenti che hanno partecipato agli ultimi {n}&nbsp;contributi."
+msgstr[0] "Membro che ha effettuato l'ultimo contributo."
+msgstr[1] "Membri che hanno partecipato agli ultimi {n}&nbsp;contributi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L96
 msgid "#{rank} - {n}&nbsp;sentence - {percentage}%"
@@ -808,7 +808,7 @@ msgstr "Aggiungi una frase che contenga \"{keywords}\""
 msgid ""
 "There is no result for this search (yet) but you can help us by feeding the "
 "corpus with new vocabulary!"
-msgstr "Non c'è alcun risultato per questa ricerca (per ora) ma puoi aiutarci a migliorare il corpus con delle parole nuove!"
+msgstr "Non c'è alcun risultato per questa ricerca (per ora), ma puoi aiutarci a migliorare il corpus con delle parole nuove!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L52
 msgid ""
@@ -1051,7 +1051,7 @@ msgstr "Buone abitudini"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L106
 msgid "Say \"welcome\" to new users."
-msgstr "Dai il benvenuto ai nuovi utenti."
+msgstr "Dai il benvenuto ai nuovi membri."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L114
 msgid "Use private messages to discuss things unrelated to the sentence."
@@ -1095,7 +1095,7 @@ msgstr "Filtra per lingua"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L49
 msgid "There's no user called {username}"
-msgstr "Non ci sono utenti chiamati {username}"
+msgstr "Non ci sono membri chiamati {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/common_modules.php#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/of_user.ctp#L66
@@ -1259,7 +1259,7 @@ msgstr "latino"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L100
 msgid "Shanghainese"
-msgstr "shanghaiese"
+msgstr "shanghainese"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L101
 msgid "Egyptian Arabic"
@@ -1423,7 +1423,7 @@ msgstr "lituano"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L141
 msgid "Galician"
-msgstr "galiziano"
+msgstr "gallego"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L142
 msgid "Irish"
@@ -1507,7 +1507,7 @@ msgstr "occitano"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L162
 msgid "Kalmyk"
-msgstr "kalmyk"
+msgstr "calmucco"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L166
 msgid "Old English"
@@ -1623,7 +1623,7 @@ msgstr "maltese"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L196
 msgid "Chukchi"
-msgstr "chiukchio"
+msgstr "ciukcio"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L197
 msgid "Cornish"
@@ -1751,7 +1751,7 @@ msgstr "hawaiano"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L228
 msgid "Kyrgyz"
-msgstr "kirghizo"
+msgstr "kirghiso"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L229
 msgid "Macedonian"
@@ -1811,7 +1811,7 @@ msgstr "abcaso"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L243
 msgid "Tetun"
-msgstr "tetun"
+msgstr "tetum"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L244
 msgid "Tamil"
@@ -2455,7 +2455,7 @@ msgid ""
 "<b>IBAN transfer.</b> This is probably the cheapest way to donate. Tatoeba's"
 " bank is based in France, so if you are from an EU country, it is likely "
 "that the transfer will be free of charge."
-msgstr "<b>Trasferimento IBAN.</b> Questo è probabilmente il modo più economico per donare. La banca di Tatoeba ha sede in Francia, quindi se abiti in un paese dell'Unione Europea è probabile che il trasferimento non avrà costi aggiuntivi."
+msgstr "<b>Trasferimento IBAN.</b> Questo probabilmente è il modo più economico per donare. La banca di Tatoeba ha sede in Francia, per cui se abiti in un paese membro dell'Unione Europea è probabile che il trasferimento non avrà costi aggiuntivi."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L92
 msgid ""
@@ -3100,7 +3100,7 @@ msgstr "Ripristina"
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages\n"
 "                 new users can send only 5 messages per day."
-msgstr "Per mantenere Tatoeba al riparo dallo spam e da altri messaggi dannosi,\n                    i nuovi utenti possono inviare soltanto cinque messaggi al giorno."
+msgstr "Per mantenere Tatoeba al riparo dallo spam e da altri messaggi dannosi,\n                    i nuovi membri possono inviare soltanto 5 messaggi al giorno."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L45
 msgid "You have sent one message today."
@@ -3112,7 +3112,7 @@ msgstr[1] "Hai inviato {n}&nbsp;messaggi oggi."
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages new users can"
 " send only 5 messages per day."
-msgstr "Per mantenere Tatoeba al riparo dallo spam e da altri messaggi dannosi, i nuovi utenti possono inviare soltanto cinque messaggi al giorno."
+msgstr "Per mantenere Tatoeba al riparo dallo spam e da altri messaggi dannosi, i nuovi membri possono inviare soltanto 5 messaggi al giorno."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L61
 msgid "Please wait until you can send more messages. "

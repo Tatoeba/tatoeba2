@@ -5,6 +5,7 @@
 # Translators:
 # Christian <kubi@online.ms>, 2014
 # Lisa <pfirsichbaeumchen@tatoeba.org>, 2014
+# Tommy, 2014
 # Trang Ho, 2014
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
@@ -12,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-04 02:11+0000\n"
-"PO-Revision-Date: 2014-12-05 10:37+0000\n"
-"Last-Translator: Christian <kubi@online.ms>\n"
+"PO-Revision-Date: 2014-12-08 04:27+0000\n"
+"Last-Translator: Lisa <pfirsichbaeumchen@tatoeba.org>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/tatoeba_website/language/de/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -132,8 +133,8 @@ msgid ""
 msgid_plural ""
 "Only lists containing {max} or fewer sentences can be downloaded. If you can"
 " edit the list, you may want to split it into multiple lists."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Es können nur Listen mit einem Satz heruntergeladen werden. Du hast die Möglichkeit, Listen, die du bearbeiten kannst, in mehrere kürzere Listen aufzuteilen."
+msgstr[1] "Es können nur Listen mit {max} oder weniger Sätzen heruntergeladen werden. Du hast die Möglichkeit, Listen, die du bearbeiten kannst, in mehrere kürzere Listen aufzuteilen."
 
 #. @translators: this string is used to concatenate two sentences.
 #. You typically want to change this to {firstSentence}{secondSentence}
@@ -141,7 +142,7 @@ msgstr[1] ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L195
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L83
 msgid "{firstSentence} {secondSentence}"
-msgstr ""
+msgstr "{firstSentence} {secondSentence}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L118
 msgid ""
@@ -355,19 +356,19 @@ msgstr "Es gibt einige Etiketten, die bei der Satzverbesserung helfen sollen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L81
 msgid "{tagChange}: the sentence needs to be changed."
-msgstr ""
+msgstr "{tagChange}: dieser Satz muss geändert werden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L85
 msgid "{tagCheck}: the sentence needs to be checked."
-msgstr ""
+msgstr "{tagCheck}: dieser Satz muss überprüft werden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L89
 msgid "{tagNNC}: the sentence needs to be checked by a native speaker."
-msgstr ""
+msgstr "{tagNNC}: dieser Satz muss von einem Muttersprachler überprüft werden."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L93
 msgid "{tagOK}: the sentence is considered correct by at least one person."
-msgstr ""
+msgstr "{tagOK}: dieser Satz wird von wenigstens einer Person als richtig erachtet."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L102
 msgid "How to help"
@@ -600,20 +601,20 @@ msgstr "Gerade aktiv"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L34
 msgid "User who did the last contribution."
 msgid_plural "Users who participated in the last {n}&nbsp;contributions."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Der Mitarbeiter, von dem der letzte Beitrag stammt."
+msgstr[1] "Mitarbeiter, die an den letzten {n}&nbsp;Beiträgen beteiligt waren."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L96
 msgid "#{rank} - {n}&nbsp;sentence - {percentage}%"
 msgid_plural "#{rank} - {n}&nbsp;sentences - {percentage}%"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Nr.&nbsp;{rank} ({n}&nbsp;Satz, {percentage}&nbsp;%)"
+msgstr[1] "Nr.&nbsp;{rank} ({n}&nbsp;Sätze, {percentage}&nbsp;%)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L36
 msgid "One visitor online"
 msgid_plural "{n}&nbsp;visitors online"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 Besucher"
+msgstr[1] "{n}&nbsp;Besucher"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L28
@@ -838,8 +839,8 @@ msgstr "Einige Sätze werden in Rot angezeigt. Das bedeutet, dass diese aus urhe
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L49
 msgid "One sentence"
 msgid_plural "{n}&nbsp;sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 Satz"
+msgstr[1] "{n}&nbsp;Sätze"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences_statistics.ctp#L60
 msgid "show all languages"
@@ -1114,20 +1115,20 @@ msgstr "Datum unbekannt"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L75
 msgid "yesterday"
 msgid_plural "{n}&nbsp;days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "gestern"
+msgstr[1] "vor {n}&nbsp;Tagen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L77
 msgid "an hour ago"
 msgid_plural "{n}&nbsp;hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "vor 1&nbsp;Stunde"
+msgstr[1] "vor {n}&nbsp;Stunden"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L79
 msgid "a minute ago"
 msgid_plural "{n}&nbsp;minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "vor 1&nbsp;Minute"
+msgstr[1] "vor {n}&nbsp;Minuten"
 
 #. @translators: this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
@@ -1136,7 +1137,7 @@ msgstr[1] ""
 #. for instance {language.alone}
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L55
 msgid "{language}"
-msgstr ""
+msgstr "{language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L69
 msgid "Arabic"
@@ -1148,7 +1149,7 @@ msgstr "Englisch"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L71
 msgid "Japanese"
-msgstr "Japanisch"
+msgstr "; sub: Japanisch; piyo: Hiyokogo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L72
 msgid "French"
@@ -1677,7 +1678,7 @@ msgstr "Bhojpuri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L209
 msgid "Chavacano"
-msgstr "Chabacano"
+msgstr "Chavacano"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L210
 msgid "Middle English"
@@ -1890,7 +1891,7 @@ msgstr "unbekannt"
 #. the name of a list when it happens to be empty
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L106
 msgid "(unnamed list)"
-msgstr ""
+msgstr "(unbenannte Liste)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L132
 msgid "created by {listAuthor}"
@@ -1979,7 +1980,7 @@ msgstr "Satz Nr. {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L449
 msgid "linked to #{sentenceNumber}"
-msgstr "verknüpft mit #{sentenceNumber}"
+msgstr "verknüpft mit Satz Nr.&nbsp;{sentenceNumber}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L454
 msgid "unlinked from #{sentenceNumber}"
@@ -2174,8 +2175,8 @@ msgstr "- Tatoeba"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L32
 msgid "{title} (one result)"
 msgid_plural "{title} ({n}&nbsp;results)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{title} (ein Ergebnis)"
+msgstr[1] "{title} ({n}&nbsp;Ergebnisse)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L52
 msgid "Reply"
@@ -2636,7 +2637,7 @@ msgid ""
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
 "present, so the file will also contain a line that says "
 "{sampleLinkLineReversed}."
-msgstr ""
+msgstr "Beinhaltet die Satzverknüpfungen. {sampleLinkLine} bedeutet, dass Satz Nr.&nbsp;77 Übersetzung des Satzes Nr.&nbsp;1 ist. Die umgekehrte Verknüpfung ist ebenfalls vorhanden. Die Datei enthält also auch den Eintrag {sampleLinkLineReversed}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L251
 msgid ""
@@ -2914,20 +2915,20 @@ msgstr "Ein paar Statistiken"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L62
 msgid "One contribution today"
 msgid_plural "{n}&nbsp;contributions today"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Heute einen Beitrag"
+msgstr[1] "Heute {n}&nbsp;Beiträge"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L67
 msgid "One member so far"
 msgid_plural "{n}&nbsp;members so far"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Bislang ein Mitglied"
+msgstr[1] "Bislang {n}&nbsp;Mitglieder"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L73
 msgid "One supported language"
 msgid_plural "{n}&nbsp;supported languages"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Eine unterstützte Sprache"
+msgstr[1] "{n}&nbsp;unterstützte Sprachen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L94
 msgid "What is Tatoeba?"
@@ -3073,13 +3074,13 @@ msgstr "Diese Nutzungsbedingungen dürfen nicht verändert werden. Bei Unstimmig
 #. whatever you translated "Inbox", "Sent" or "Trash" as.
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L40
 msgid "Private messages - {folderName}"
-msgstr ""
+msgstr "Private Nachrichten&nbsp;– {folderName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L50
 msgid "{folderName} ({n}&nbsp;message)"
 msgid_plural "{folderName} ({n}&nbsp;messages)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{folderName} ({n}&nbsp;Nachricht)"
+msgstr[1] "{folderName} ({n}&nbsp;Nachrichten)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L77
 msgid "from {sender}"
@@ -3107,8 +3108,8 @@ msgstr "Damit Tatoeba möglichst frei von unerwünschten und schädlichen Nachri
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L45
 msgid "You have sent one message today."
 msgid_plural "You have sent {n}&nbsp;messages today."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Du hast heute eine Nachricht verschickt."
+msgstr[1] "Du hast heute {n}&nbsp;Nachrichten verschickt. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L56
 msgid ""
@@ -3286,7 +3287,7 @@ msgid ""
 "NOTE: If the sentence does not belong to anyone and you know how to correct "
 "the mistake, feel free to correct it without posting any comment. You will "
 "have to adopt the sentence before you can edit it."
-msgstr "HINWEIS: Wenn ein Satz keinen Besitzer hat, korrigiere ihn einfach ohne vorherigen Kommentar. Du musst den Satz adoptieren, bevor du ihn bearbeiten kannst."
+msgstr "Hinweis: Wenn ein Satz keinen Besitzer hat, korrigiere ihn einfach ohne vorherigen Kommentar. Du musst den Satz adoptieren, bevor du ihn bearbeiten kannst."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L204
 msgid "There are no comments for now."
@@ -3390,7 +3391,7 @@ msgstr "Eine neue Liste erstellen"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L55
 msgctxt "list"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L58
 msgid "create"
@@ -3454,8 +3455,8 @@ msgstr "Radikale durchsuchen"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_radicals.ctp#L33
 msgid "1 stroke"
 msgid_plural "{n}&nbsp;strokes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 Strich"
+msgstr[1] "{n}&nbsp;Striche"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L71
 msgid "Explode a character"
@@ -3547,7 +3548,7 @@ msgstr "<a href=\"{}\">Alle Sätze mit diesem Zeichen ansehen</ a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_radicals.ctp#L31
 msgid "10 or more strokes"
-msgstr ""
+msgstr "10 Striche oder mehr"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L31
 msgid "Information about {sinograph}"
@@ -3854,7 +3855,7 @@ msgstr "Geburtstag"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L221
 msgctxt "user"
 msgid "Name"
-msgstr ""
+msgstr "Name"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L102
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L222
@@ -4032,7 +4033,7 @@ msgstr "Neues Passwort abschicken"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L47
 msgid "Email"
-msgstr ""
+msgstr "E-Mail"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L47
 msgid "Username:"
@@ -4094,19 +4095,19 @@ msgstr "Tatoeba-Benutzer: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L64
 msgid "Latest sentences (<a href=\"{}\">view all</a>)"
-msgstr ""
+msgstr "Letzte Sätze (<a href=\"{}\">alle anzeigen</a>)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L94
 msgid "Favorite sentences (<a href=\"{}\">view all</a>)"
-msgstr ""
+msgstr "Lieblingssätze (<a href=\"{}\">alle anzeigen</a>)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L127
 msgid "Latest comments (<a href=\"{}\">view all</a>)"
-msgstr ""
+msgstr "Letzte Kommentare (<a href=\"{}\">alle anzeigen</a>)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L161
 msgid "Latest Wall messages (<a href=\"{}\">view all</a>)"
-msgstr ""
+msgstr "Letzte Pinnwandbeiträge (<a href=\"{}\">alle anzeigen</a>) "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L31
 msgid "Edit message {number}"
@@ -4134,7 +4135,7 @@ msgstr "Antworten auf einige häufig gestellte Fragen findest du <a href=\"{}\">
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L84
 msgid "{date}, by {author}"
-msgstr ""
+msgstr "{date}, von {author}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L106
 msgid ""
@@ -4144,8 +4145,8 @@ msgstr "Du darfst hier in jeder beliebigen Sprache schreiben. Auf Tatoeba sind a
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L125
 msgid "Wall (one thread)"
 msgid_plural "Wall ({n}&nbsp;threads)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pinnwand (eine Diskussion)"
+msgstr[1] "Pinnwand ({n}&nbsp;Diskussionen)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"
