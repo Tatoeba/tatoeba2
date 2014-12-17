@@ -29,7 +29,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:32:08',
 			'dico_id' => NULL,
 			'hasaudio' => 'no',
-			'lang_id' => '2'
+			'lang_id' => '1'
 		),
 		array(
 			'id' => '2',
@@ -41,7 +41,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:32:43',
 			'dico_id' => NULL,
 			'hasaudio' => 'no',
-			'lang_id' => '3'
+			'lang_id' => '2'
 		),
 		array(
 			'id' => '3',
@@ -53,7 +53,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:33:18',
 			'dico_id' => NULL,
 			'hasaudio' => 'no',
-			'lang_id' => NULL
+			'lang_id' => '3'
 		),
 		array(
 			'id' => '4',
@@ -65,7 +65,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:34:28',
 			'dico_id' => NULL,
 			'hasaudio' => 'no',
-			'lang_id' => '1'
+			'lang_id' => '4'
 		),
 		array(
 			'id' => '5',
@@ -77,7 +77,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:35:03',
 			'dico_id' => NULL,
 			'hasaudio' => 'no',
-			'lang_id' => NULL
+			'lang_id' => '5'
 		),
 		array(
 			'id' => '6',
@@ -89,7 +89,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:39:36',
 			'dico_id' => NULL,
 			'hasaudio' => 'no',
-			'lang_id' => NULL
+			'lang_id' => '6'
 		),
 		array(
 			'id' => '7',
@@ -101,7 +101,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:49:21',
 			'dico_id' => NULL,
 			'hasaudio' => 'no',
-			'lang_id' => NULL
+			'lang_id' => '1'
 		),
 		array(
 			'id' => '8',
@@ -113,7 +113,7 @@ class SentenceFixture extends CakeTestFixture {
 			'modified' => '2014-04-15 00:52:01',
 			'dico_id' => NULL,
 			'hasaudio' => 'no',
-			'lang_id' => NULL
+			'lang_id' => '4'
 		),
 		array(
 			'id' => '9',

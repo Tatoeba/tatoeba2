@@ -45,7 +45,7 @@ class Sentence extends AppModel
 {
 
     public $name = 'Sentence';
-    public $actsAs = array("Containable", "Sphinx", "Autotranscriptable");
+    public $actsAs = array("Containable", "Autotranscriptable");
     public static $romanji = array('furigana' => 1, 'mix' => 2, 'romanji' => 3);
     
     const MIN_CORRECTNESS = -1;
@@ -194,6 +194,9 @@ class Sentence extends AppModel
     {
         parent::__construct($id, $table, $ds);
         $this->validate['lang']['rule'] = array('inList', $this->languages);
+        if (Configure::read('Search.enabled')) {
+            $this->Behaviors->attach('Sphinx');
+        }
     }
 
     private function clean($text)
@@ -1006,6 +1009,33 @@ class Sentence extends AppModel
         }
         
         return false;
+    }
+
+    public function getSentencesLang($sentencesIds, $langId = false) {
+        $field = $langId ? 'lang_id' : 'lang';
+        $result = $this->find('all', array(
+            'fields' => array($field, 'id'),
+            'conditions' => array('Sentence.id' => $sentencesIds),
+            'recursive' => -1
+        ));
+        return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.'.$field);
+    }
+
+    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
+        $sentenceId = $this->id;
+        $values[$sentenceId] = array();
+        if (array_key_exists('user_id', $this->data['Sentence'])) {
+            $attributes[] = 'user_id';
+            $sentenceOwner = $this->data['Sentence']['user_id'];
+            $values[$sentenceId][] = $sentenceOwner;
+        }
+        if (array_key_exists('correctness', $this->data['Sentence'])) {
+            $attributes[] = 'ucorrectness';
+            $sentenceUCorrectness = $this->data['Sentence']['correctness'] + 128;
+            $values[$sentenceId][] = $sentenceUCorrectness;
+        }
+        if (count($values[$sentenceId]) == 0)
+            unset($values[$sentenceId]);
     }
 }
 ?>

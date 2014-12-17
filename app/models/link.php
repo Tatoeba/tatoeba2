@@ -38,6 +38,14 @@ class Link extends AppModel
 {
     public $useTable = 'sentences_translations';
 
+    public function __construct($id = false, $table = null, $ds = null)
+    {
+        parent::__construct($id, $table, $ds);
+        if (Configure::read('Search.enabled')) {
+            $this->Behaviors->attach('Sphinx');
+        }
+    }
+
     public function beforeSave() {
         if (   isset($this->data[$this->alias]['sentence_id'])
             && isset($this->data[$this->alias]['translation_id'])) {
@@ -68,29 +76,44 @@ class Link extends AppModel
         );
     }
 
+    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
+        $isMVA = true;
+        $link = $this->data['Link'];
+        $attributes[] = 'trans_id';
+        $this->_updateSphinxLangIdAttrs($link['sentence_id'],    $attributes, $values);
+        $this->_updateSphinxLangIdAttrs($link['translation_id'], $attributes, $values);
+    }
+
+    private function _updateSphinxLangIdAttrs($sentenceId, &$attributes, &$values) {
+        $impactedSentences = $this->findDirectTranslationsIds($sentenceId);
+        $impactedSentences[] = $sentenceId;
+        foreach ($impactedSentences as $sentence) {
+            if (isset($values[$sentence]))
+                continue;
+
+            $trans_of_trans = $this->findDirectAndIndirectTranslationsIds($sentence);
+            $langIds = ClassRegistry::init('Sentence')->getSentencesLang($trans_of_trans, true);
+            $values[$sentence] = array(array_unique(array_values($langIds)));
+        }
+    }
 
     /**
-     * Called after a link is deleted.
+     * Called before a link is deleted.
      *
      * @return void
      */
-    public function afterDelete()
+    public function beforeDelete($cascade = true)
     {
+        $aboutToDelete = $this->findById($this->id);
         $Contribution = ClassRegistry::init('Contribution');
-
-	$Contribution->saveLinkContribution(
-            $this->data['Link']['sentence_id'],
-            $this->data['Link']['translation_id'],
-            'delete'
-        );
-
-        // We need to add manually the reciprochal link deletion because the
-        // callback is called manually.
-        $Contribution->saveLinkContribution(
-            $this->data['Link']['translation_id'],
-            $this->data['Link']['sentence_id'],
-            'delete'
-        );
+        if (isset($aboutToDelete['Link'])) {
+            $Contribution->saveLinkContribution(
+                $aboutToDelete['Link']['sentence_id'],
+                $aboutToDelete['Link']['translation_id'],
+                'delete'
+            );
+        }
+        return true;
     }
 
     /**
@@ -173,20 +196,61 @@ class Link extends AppModel
      *
      * @return bool
      */
-    public function delete($sentenceId, $translationId)
+    public function deletePair($sentenceId, $translationId)
     {
-        // custom query to avoid having to create an 'id' field.
-        $this->query("
-            DELETE FROM sentences_translations
-            WHERE (sentence_id = $sentenceId AND translation_id = $translationId)
-               OR (sentence_id = $translationId AND translation_id = $sentenceId)
-        ");
-
-        $this->data['Link']['sentence_id'] = $sentenceId;
-        $this->data['Link']['translation_id'] = $translationId;
-        $this->afterDelete(); // calling callback manually...
+        $toRemove = $this->find('all', array(
+            'conditions' => array(
+                'or' => array(
+                    array('and' => array(
+                        'Link.sentence_id'    => $translationId,
+                        'Link.translation_id' => $sentenceId,
+                    )),
+                    array('and' => array(
+                        'Link.sentence_id'    => $sentenceId,
+                        'Link.translation_id' => $translationId,
+                    ))
+                )
+            ),
+            'fields' => array('id'),
+            'limit' => 2,
+        ));
+        $toRemove = Set::extract($toRemove, '{n}.Link.id');
+        if ($toRemove) {
+            $this->deleteAll(array('id' => $toRemove), false, true);
+        }
 
         return true; // yes, it's useless, never mind...
+    }
+
+    public function findDirectTranslationsIds($sentenceId) {
+        $links = $this->find('all', array(
+            'conditions' => array('sentence_id' => $sentenceId),
+            'fields' => array('translation_id'),
+        ));
+        return Set::classicExtract($links, '{n}.Link.translation_id');
+    }
+
+    public function findDirectAndIndirectTranslationsIds($sentenceId) {
+        $links = $this->find('all', array(
+            'joins' => array(
+                array(
+                    'table' => $this->useTable,
+                    'alias' => 'Translation',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'Link.translation_id = Translation.sentence_id'
+                    )
+                )
+            ),
+            'conditions' => array(
+                'Link.sentence_id' => $sentenceId,
+            ),
+            'fields' => array(
+                'DISTINCT Link.sentence_id',
+                'IF(Link.sentence_id = Translation.translation_id, Translation.sentence_id, Translation.translation_id) as translation_id'
+            )
+        ));
+        return Set::classicExtract($links, '{n}.0.translation_id');
     }
 }
 ?>

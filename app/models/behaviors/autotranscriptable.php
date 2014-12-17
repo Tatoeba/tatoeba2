@@ -77,7 +77,7 @@ class AutotranscriptableBehavior extends ModelBehavior
             }
 
             $sentence = $result[$model->alias];
-            if (!isset($sentence['lang'])) {
+            if (!isset($sentence['lang']) || !isset($sentence['text'])) {
                 break;
             }
 
