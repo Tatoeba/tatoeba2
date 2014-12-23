@@ -41,7 +41,8 @@ class LinksController extends AppController
     private function _renderTranslationsOf($sentenceId, $message)
     {
         $this->loadModel('Sentence');
-        $alltranslations = $this->Sentence->getTranslationsOf($sentenceId);
+        $showTranslationsInto = $this->Session->read('show_translations_into_lang');
+        $alltranslations = $this->Sentence->getTranslationsOf($sentenceId, $showTranslationsInto);
         $translations = $alltranslations['Translation'];
         $indirectTranslations = $alltranslations['IndirectTranslation'];
 
