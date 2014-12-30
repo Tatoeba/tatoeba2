@@ -41,7 +41,7 @@ myAuthentication=(myTransifexUserName,myTransifexPassword)
 languagesTable=[
           #['ab','abk'],          ['ca','cat'],          ['cs','ces'],          ['da','dan'],          ['ia','ina'],
           #['sv','swe'],          ['uz','uzb'],          ['xal','xal'],
-          ['ar','ara'],          ['az','aze'],          ['be','bel'],
+          ['ar','ara'],          ['az','aze'],          ['be','bel'],          ['bn', 'ben'],
           ['cy','cym'],          ['de','deu'],          ['el','ell'],
           ['en','eng'],          ['en_GB','en_GB'],     ['eo','epo'],          ['es','spa'],          ['et','est'],
           ['eu','eus'],          ['fi','fin'],          ['fr','fre'],          ['gl','glg'],          ['hi','hin'],
