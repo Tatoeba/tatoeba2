@@ -31,7 +31,7 @@ so that it gets overriden with the actual Transifex file.
 
 #### Step 3
 
-Update the script `app/docs/update-translations.py`.
+Update the script `docs/update-translations.py`.
 In the `languagesTable`, you need to add the array for the
 new language. Otheriwse the translation for that language will
 not be downloaded from Transifex. The array has 2 values:
@@ -43,15 +43,29 @@ the language code used by Tatoeba (usually 3 letters).
 
 #### Step 4
 
-Update the `./tx/config`. In the `lang_map`, you need to
-add again the Transifex code and the Tatoeba code.
+Update the `.tx/config`. In the `lang_map`, you need to
+add again the Transifex code and the Tatoeba code. This
+allows to use the transifex command line tool `tx`.
 
 > For instance for Italian, you would add `it:ita`.
 
 
-### Note
+#### Step 5
 
-Maybe step 4 is necessary...
+Make the language available in the drop-down box
+by adding it to the `UI.languages` list in the file
+`app/config/core.php.template`. Read the comments in
+that file for more information.
 
-Please update this README if it is not complete or contains wrong
-information.
+> For instance for Italian, you would add `array('ita', 'it', 'Italiano'),`
+
+#### Step 6
+
+Make the language available on http://dev.tatoeba.org/
+by asking an administrator (or do it yourself if you’re an administrator)
+so that the result of the translation is directly viewable by translators.
+
+* commit the above changes
+* run `git pull` on the repository of http://dev.tatoeba.org/
+* add the language in the `core.php` file of http://dev.tatoeba.org/
+
