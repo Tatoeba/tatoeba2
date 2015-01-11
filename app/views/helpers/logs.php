@@ -261,7 +261,7 @@ class LogsHelper extends AppHelper
             // sentence text
             $dir = $this->Languages->getLanguageDirection($sentenceLang);
             echo '<span dir="'.$dir.'">';
-            echo $sentenceText;
+            echo Sanitize::html($sentenceText);
             echo '</span>';
         echo '</div></div>';
     }
@@ -425,7 +425,7 @@ class LogsHelper extends AppHelper
             // sentence text
             $dir = $this->Languages->getLanguageDirection($sentenceLang);
             echo '<span dir="'.$dir.'">';
-            echo $sentenceText;
+            echo Sanitize::html($sentenceText);
             echo '</span>';
         echo '</div></div>';
     }
