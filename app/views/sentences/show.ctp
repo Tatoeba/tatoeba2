@@ -31,7 +31,7 @@ $javascript->link('sentences.logs.js', false);
 if (isset($sentence)) {
     $sentenceId = $sentence['Sentence']['id'];
     $sentenceLang = $sentence['Sentence']['lang'];
-    $sentenceText = Sanitize::html($sentence['Sentence']['text']);
+    $sentenceText = $sentence['Sentence']['text'];
     $sentenceCorrectness = $sentence['Sentence']['correctness'];
     
     $languageName = $languages->codeToNameToFormat($sentenceLang);
@@ -205,9 +205,8 @@ $navigation->displaySentenceNavigation(
         }
 
         if ($session->read('Auth.User.id')) {
-            $sentenceText = __('Sentence deleted', true);
-            if(isset($sentence['Sentence'])) {
-                $sentenceText = $sentence['Sentence']['text'];
+            if(!isset($sentence['Sentence'])) {
+                $sentenceText = __('Sentence deleted', true);
             }
             $comments->displayCommentForm(
                 $sentenceId, 
