@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-04 02:11+0000\n"
-"PO-Revision-Date: 2014-12-16 16:41+0000\n"
+"PO-Revision-Date: 2014-12-21 18:56+0000\n"
 "Last-Translator: ciaran\n"
 "Language-Team: Welsh (http://www.transifex.com/projects/p/tatoeba_website/language/cy/)\n"
 "MIME-Version: 1.0\n"
@@ -378,7 +378,7 @@ msgstr "Sut i helpu"
 msgid ""
 "You need to be an <a href=\"{}\">advanced contributor</a>; otherwise you "
 "will not be able to tag sentences."
-msgstr ""
+msgstr "Rhaid i chi fod yn <a href=\"{}\">gyfrannwr uwch</a>; fel arall ni allwch chi dagio brawddegau."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L109
 msgid ""
@@ -428,7 +428,7 @@ msgstr "Sut i ychwanegu cyfieithiad"
 msgid ""
 "Once the sentences are displayed, click on {translateButton} to add a "
 "translation."
-msgstr ""
+msgstr "Pan ddangosir y brawddegau, cliciwch ar {translateButton} i ychwanegu cyfieithiad."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L60
 msgid "About translations"
@@ -464,7 +464,7 @@ msgstr "Brawddegau:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L117
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L193
 msgid "Not directly translated into:"
-msgstr ""
+msgstr "Heb ei chyfieithu'n uniongyrchol i:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L134
 msgid "show sentences"
@@ -839,7 +839,7 @@ msgid ""
 "You may see some sentences in red. These sentences are not approved by "
 "Tatoeba's community. They raise copyright issues or are otherwise "
 "problematic. If you are a contributor, please avoid translating them."
-msgstr ""
+msgstr "Efallai y gwelwch chi frawddegau mewn coch. Nid yw'r brawddegau hyn wedi cael eu cymeradwyo gan gymuned Tatoeba. Mae ganddyn nhw broblemau hawlfraint neu maen nhw'n broblemus mewn ffordd arall. Os ydych chi'n gyfrannwr, osgowch gyfieithu nhw."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences_statistics.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L49
@@ -1072,7 +1072,7 @@ msgstr "Defnyddiwch negeseuon preifat i drafod pethau amherthnasol i'r frawddeg.
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L263
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
 msgid "Cancel"
-msgstr ""
+msgstr "Diddymu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L192
 msgid "Save changes"
@@ -2068,7 +2068,7 @@ msgstr "Mae'r frawddeg hon yn Tsieinëeg traddodiadol."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L199
 msgid "Let go"
-msgstr ""
+msgstr "Gwahanu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L203
 msgid "Adopt"
@@ -2077,7 +2077,7 @@ msgstr "Mabwysiadu"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L331
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L332
 msgid "Link to another sentence"
-msgstr ""
+msgstr "Cysylltu â brawddeg arall"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L347
 msgid "Sentence number"
@@ -2163,7 +2163,7 @@ msgstr "Rhowch enw defnyddiwr:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L226
 msgid "show user"
-msgstr ""
+msgstr "dangos y defnyddiwr"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L233
 msgid "all"
@@ -2220,7 +2220,7 @@ msgstr "Ysgrifennodd {sender}:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L5
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L4
 msgid "Unlink"
-msgstr ""
+msgstr "Datgysylltu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L6
@@ -2252,7 +2252,7 @@ msgid ""
 "do not understand this sentence, click on \"Cancel\" to display everything "
 "again, and then click on the sentence that you understand and want to "
 "translate from."
-msgstr ""
+msgstr "Pwysig! Rydych ar fin ychwanegu cyfieithiad i'r frawddeg uchod. Os nad ydych chi'n deall y frawddeg hon, cliciwch ar \"Diddymu\" i fynd yn ôl i ddangos popeth, ac yna glicio ar y frawddeg rydych chi'n ei deall ac eisiau ei chyfieithu."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L287
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L44
@@ -2263,7 +2263,7 @@ msgstr "Peidiwch ag anghofio <strong>priflythrennau</strong> ac <strong>atalnodi
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L161
 msgid "Show translations in:"
-msgstr ""
+msgstr "Dangos cyfieithiadau:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L173
 msgid "NOTE: Both direct and indirect translations will be shown."
@@ -2279,11 +2279,11 @@ msgstr "Brawddegau â sain yn unig:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L227
 msgid "no"
-msgstr ""
+msgstr "na"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L228
 msgid "yes"
-msgstr ""
+msgstr "ie"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L239
 msgid "NOTE: Not all languages have audio at the moment."
@@ -2307,7 +2307,7 @@ msgstr "Gweld pob tag"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L125
 msgid "user: {userId}, date: {date}"
-msgstr ""
+msgstr "defnyddiwr: {userId}, dyddiad: {date}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L255
 msgid "remove tag '{tagName}' from this sentence."
@@ -2323,7 +2323,7 @@ msgstr "Ychwanegu neges:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L90
 msgid "cancel"
-msgstr ""
+msgstr "diddymu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L129
 msgid "Edit Wall Message"
@@ -2397,7 +2397,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L60
 msgid "Guide to being a good contributor"
-msgstr ""
+msgstr "Canllaw cyfrannu'n dda"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L66
 msgid "Reliability of the sentences"
@@ -2432,7 +2432,7 @@ msgid ""
 "You can help us promote the project. <strong>Tell people around you</strong>"
 " that Tatoeba exists. This is a very ambitious project, so we will need as "
 "much help as possible."
-msgstr ""
+msgstr "Gallwch helpu ni i hyrwyddo'r prosiect. <strong>Dywedwch wrth y bobl o'ch cwmpas</strong> bod Tatoeba yn bodoli. Prosiect uchelgeisiol yw hwn, felly bydd angen cymaint o gymorth â phosib arnom ni."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L162
 msgid ""
@@ -2451,15 +2451,15 @@ msgid ""
 "in any other way than the ones mentioned here, you may contact either <a "
 "href=\"{trangEmail}\">Trang</a> or the entire <a "
 "href=\"{teamEmail}\">team</a>."
-msgstr ""
+msgstr "Os oes gennych chi unrhyw gwestiynau ynglŷn â gwneud rhodd neu os hoffech chi wneud rhodd mewn ffordd wahanol i'r rhai y sonnir amdanynt yma, gallwch naill ai gysylltu â <a href=\"{trangEmail}\">Trang</a> neu'r holl <a href=\"{teamEmail}\">dîm</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L50
 msgid "Top donators this month"
-msgstr ""
+msgstr "Prif roddwyr y mis hwn"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L61
 msgid "Top donators of all time"
-msgstr ""
+msgstr "Prif roddwyr erioed"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L77
 msgid "How to donate"
@@ -2489,7 +2489,7 @@ msgstr "Trosglwyddiad IBAN"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L103
 msgid "Titular:"
-msgstr ""
+msgstr "Enw:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L104
 msgid "IBAN:"
@@ -2518,11 +2518,11 @@ msgid ""
 "If you simply want sentences that you can use to learn a language, check out"
 " the <a href=\"{}\">sentence lists</a>. You can build your own, or view the "
 "ones that others have created. The lists can be downloaded and printed."
-msgstr ""
+msgstr "Os hoffech chi weld brawddegau er mwyn dysgu iaith, cymerwch olwg ar y <a href=\"{}\">rhestri o frawddegau</a>. Gallwch greu un eich hunain neu weld un a grëwyd gan eraill. Gallwch hefyd lawrlwytho ac argraffu'r rhestri."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L59
 msgid "Creative commons"
-msgstr ""
+msgstr "Creative commons"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L60
 msgid "These files are released under CC-BY."
@@ -2712,7 +2712,7 @@ msgstr "Gwybodaeth gyffredinol am y ffeiliau"
 msgid ""
 "The files provided here are updated every <strong>Saturday at 9 "
 "a.m.</strong>, France time."
-msgstr ""
+msgstr "Diweddarir y ffeiliau hyn bob <strong>dydd Sadwrn am 9yb</strong>, amser Ffrainc."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L403
 msgid ""
@@ -2762,7 +2762,7 @@ msgstr "I'r rhai sydd ddim yn gyfarwydd ag IRC, mae'n debyg iawn i negeseua gwib
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L87
 msgid "There are many ways to join our channel. One is to go to this website:"
-msgstr ""
+msgstr "Mae yna sawl ffordd i ymuno â'n sianel. Un ffordd yw mynd i'r wefan hon:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L93
 msgid ""
@@ -2785,13 +2785,13 @@ msgstr "Os nad ydych chi'n gwybod beth i'w wneud nawr eich bod chi wedi cofrestr
 msgid ""
 "If you think this project is awesome and would like to help actively, here "
 "is a link you <strong>MUST</strong> read:"
-msgstr ""
+msgstr "Os ydych chi'n credu bod y prosiect hwn yn wych ac eisiau cyfrannu, dyma ddolen mae'n <strong>RHAID</strong> i chi ddarllen:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L137
 msgid ""
 "That being said, welcome to Tatoeba! We hope you'll enjoy being part of this"
 " project :)"
-msgstr ""
+msgstr "Wedi dweud hynny, croeso i Tatoeba! Gobeithiwn y byddwch yn mwynhau bod yn rhan o'r prosiect hwn :)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L149
 msgid "Important links"
@@ -2897,7 +2897,7 @@ msgstr ""
 msgid ""
 "However it is also possible to let any member in Tatoeba add and remove "
 "sentences by setting a list as <strong>collaborative</strong>."
-msgstr ""
+msgstr "Fodd bynnag mae'n bosib caniatáu i unrhyw ddefnyddiwr ar Tatoeba ychwanegu neu dynnu brawddegau drwy wneud rhestr yn <strong>gydweithredol</strong>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L28
@@ -3145,7 +3145,7 @@ msgstr "I gadw Tatoeba yn rhydd o sothach a negeseuon maleisus eraill, gall defn
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L61
 msgid "Please wait until you can send more messages. "
-msgstr ""
+msgstr "Arhoswch hyd nes y gallwch anfon mwy o negeseuon."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L43
 msgid ""
@@ -3159,15 +3159,15 @@ msgstr "Does dim brawddeg gyda'r id {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_annotations/last_modified.ctp#L55
 msgid "Browse by last modified (total %count%)"
-msgstr ""
+msgstr "Pori yn ôl y brawddegau a olygwyd diwethaf (cyfanswm o %count%)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/edit.ctp#L28
 msgid "Edit Comment"
-msgstr ""
+msgstr "Golygu sylw"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/edit.ctp#L47
 msgid "Edit Comment on Sentence #{number}"
-msgstr ""
+msgstr "Golygu sylw ar frawddeg #{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/index.ctp#L38
 msgid "Comments on sentences"
@@ -3175,7 +3175,7 @@ msgstr "Sylwadau ar frawddegau"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/index.ctp#L58
 msgid "Comments on sentences (total %count%)"
-msgstr ""
+msgstr "Sylwadau ar frawddegau (cyfanswm o %count%)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/of_user.ctp#L39
 msgid "{user}'s comments"
@@ -3219,7 +3219,7 @@ msgstr "Neu crëwch frawddegau gyda <a href=\"{}\">geiriau sydd ddim eto ar Tato
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L92
 msgid "Add new sentences"
-msgstr ""
+msgstr "Ychwanegu brawddegau newydd"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L99
 msgid "Sentence: "
@@ -3251,7 +3251,7 @@ msgstr "Does gan {user} ddim brawddegau"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L114
 msgid "(total %count%)"
-msgstr ""
+msgstr "(cyfanswm o %count%)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L31
 msgid "Sentences with: {keywords}"
@@ -3435,7 +3435,7 @@ msgstr "Mae rhestri'n ei gwneud hi'n bosib i gasglu a threfnu brawddegau ar Tato
 msgid ""
 "You can create all kinds of lists! \"Preparation for summer trip to "
 "Mexico\", \"English test #4\", \"My favorite geek quotes\"..."
-msgstr ""
+msgstr "Gallwch greu pob math o restri! \"Paratoi ar gyfer y daith i Batagonia\", \"Prawf Ffrangeg #4\", \"Fy hoff ddyfyniadau\"..."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L87
 msgid "Registration needed"
@@ -3443,7 +3443,7 @@ msgstr "Rhaid cofrestru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L88
 msgid "You can create lists only if you are registered."
-msgstr ""
+msgstr "Rhaid i chi gofrestru er mwyn creu rhestri."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L100
 msgid "If you are already registered, please log in."
@@ -3572,11 +3572,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_example_sentence.ctp#L71
 msgid "View all sentences using this character <a href=\"{}\">here</a>"
-msgstr ""
+msgstr "Gwelwch yr holl frawddegau sy'n defnyddio'r nod hwn <a href=\"{}\">yma</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_radicals.ctp#L31
 msgid "10 or more strokes"
-msgstr ""
+msgstr "10 strôc neu fwy"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L31
 msgid "Information about {sinograph}"
@@ -3648,7 +3648,7 @@ msgstr "NODER: Dangosir uchafswm o 100 o frawddegau ar yr un adeg."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L92
 msgid "Tagged '{tagName}' more than 2 weeks ago"
-msgstr ""
+msgstr "Tagiwyd â '{tagName}' fwy na 2 wythnos yn ôl"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L30
 msgid "Sentences with tag {tagName}"
@@ -4119,7 +4119,7 @@ msgstr "Rwy'n derbyn y <a href=\"{}\">telerau defnydd</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L25
 msgid "Tatoeba user: {username}"
-msgstr ""
+msgstr "Defnyddiwr Tatoeba: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L64
 msgid "Latest sentences (<a href=\"{}\">view all</a>)"
@@ -4139,7 +4139,7 @@ msgstr "Negeseuon diweddaraf i'r mur (<a href=\"{}\">gweld y cwbl</a>)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L31
 msgid "Edit message {number}"
-msgstr ""
+msgstr "Golygu neges {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L48

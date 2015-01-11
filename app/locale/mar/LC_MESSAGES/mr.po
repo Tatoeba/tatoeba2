@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-04 02:11+0000\n"
-"PO-Revision-Date: 2014-12-06 08:09+0000\n"
+"PO-Revision-Date: 2014-12-27 16:05+0000\n"
 "Last-Translator: sabretou <sabretou@gmail.com>\n"
 "Language-Team: Marathi (http://www.transifex.com/projects/p/tatoeba_website/language/mr/)\n"
 "MIME-Version: 1.0\n"
@@ -358,15 +358,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L85
 msgid "{tagCheck}: the sentence needs to be checked."
-msgstr ""
+msgstr "{tagCheck}: या वाक्याला तपासण्याची गरज आहे."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L89
 msgid "{tagNNC}: the sentence needs to be checked by a native speaker."
-msgstr ""
+msgstr "{tagNNC}: या वाक्याला एका जन्मभाषकाने तपासण्याची गरज आहे."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L93
 msgid "{tagOK}: the sentence is considered correct by at least one person."
-msgstr ""
+msgstr "{tagOK}: किमान एक व्यक्ती या वाक्याला अचूक समजते."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L102
 msgid "How to help"
@@ -599,20 +599,20 @@ msgstr "यावेळी योगदान करणारे"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L34
 msgid "User who did the last contribution."
 msgid_plural "Users who participated in the last {n}&nbsp;contributions."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "सर्वात नवीन योगदान करणारे प्रयोक्ता."
+msgstr[1] "गेले {n}&nbsp;योगदान करण्यात भाग घेणारे प्रयोक्ता."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L96
 msgid "#{rank} - {n}&nbsp;sentence - {percentage}%"
 msgid_plural "#{rank} - {n}&nbsp;sentences - {percentage}%"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "#{rank} - {n}&nbsp;वाक्य - {percentage}%"
+msgstr[1] "#{rank} - {n}&nbsp;वाक्ये - {percentage}%"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L36
 msgid "One visitor online"
 msgid_plural "{n}&nbsp;visitors online"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "एक अभ्यागत ऑनलाइन"
+msgstr[1] "{n}&nbsp;अभ्यागत ऑनलाइन आहेत"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L28
@@ -1456,7 +1456,7 @@ msgstr "मल्याळम"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L149
 msgid "Low Saxon"
-msgstr "पूर्व सॅक्सन"
+msgstr "खाल्ल्यांगी सॅक्सन"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L150
 msgid "Klingon"
@@ -1520,11 +1520,11 @@ msgstr "कुर्दिश"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L168
 msgid "Lower Sorbian"
-msgstr "पूर्व सॉर्बियन"
+msgstr "खाल्ल्यांगी सॉर्बियन"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L169
 msgid "Upper Sorbian"
-msgstr "उत्तर सॉर्बियन"
+msgstr "वरल्यांगी सॉर्बियन"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L170
 msgid "Kölsch"

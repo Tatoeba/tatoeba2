@@ -3,14 +3,14 @@
 # This file is distributed under the same license as the PACKAGE package.
 # 
 # Translators:
-# Guybrush88 <erpizzo@alice.it>, 2014
+# Guybrush88 <erpizzo@alice.it>, 2014-2015
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-04 02:11+0000\n"
-"PO-Revision-Date: 2014-12-12 22:38+0000\n"
+"PO-Revision-Date: 2015-01-08 15:20+0000\n"
 "Last-Translator: Guybrush88 <erpizzo@alice.it>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/tatoeba_website/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -309,7 +309,7 @@ msgid ""
 "({adoptButton}) any \"orphan\" sentence you see in your <strong>native "
 "language</strong>, and correct it if necessary. Read <a "
 "href=\"{url}\">this</a> for further explanation."
-msgstr "Per cui, se vuoi aiutarci nel controllare e correggere delle frasi, adotta ({adoptButton}) qualsiasi frase \"orfana\" che vedi nella tua <strong>lingua madre</strong> e correggila se necessario. Consulta <a href=\"{url}\">questo articolo</a> per ulteriori spiegazioni."
+msgstr "Per cui, se vuoi aiutarci nel controllare e correggere delle frasi, adotta ({adoptButton}) qualunque frase \"orfana\" che vedi nella tua <strong>lingua madre</strong> e correggila se necessario. Consulta <a href=\"{url}\">questo articolo</a> per ulteriori spiegazioni."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L72
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L65
@@ -1977,11 +1977,11 @@ msgstr "Frase n° {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L449
 msgid "linked to #{sentenceNumber}"
-msgstr "collegata a #{sentenceNumber}"
+msgstr "collegata alla frase n° {sentenceNumber}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L454
 msgid "unlinked from #{sentenceNumber}"
-msgstr "separata da #{sentenceNumber}"
+msgstr "separata dalla frase n° {sentenceNumber}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L508
 msgid "added by {user}"
@@ -2278,7 +2278,7 @@ msgstr "Etichette"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L70
 msgid "No tag on this sentence."
-msgstr "Nessuna etichetta per questa frase"
+msgstr "Nessuna etichetta relativa a questa frase"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L103
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L38
@@ -4137,7 +4137,7 @@ msgstr "{date}, di {author}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L106
 msgid ""
 "You may write in any language you want. At Tatoeba, all languages are equal."
-msgstr "Puoi scrivere in qualsiasi lingua tu voglia. Su Tatoeba tutte le lingue sono uguali."
+msgstr "Puoi scrivere in qualunque lingua tu voglia. Su Tatoeba tutte le lingue sono uguali."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L125
 msgid "Wall (one thread)"

@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-04 02:11+0000\n"
-"PO-Revision-Date: 2014-12-16 11:54+0000\n"
+"PO-Revision-Date: 2014-12-30 10:21+0000\n"
 "Last-Translator: gleki <gleki.is.my.name@gmail.com>\n"
 "Language-Team: Lojban (http://www.transifex.com/projects/p/tatoeba_website/language/jbo/)\n"
 "MIME-Version: 1.0\n"
@@ -131,8 +131,8 @@ msgid ""
 msgid_plural ""
 "Only lists containing {max} or fewer sentences can be downloaded. If you can"
 " edit the list, you may want to split it into multiple lists."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "fa po'o lo liste be su'e 1 jufra ka'e se cpacu i fau lo nu do se krali lo ka cnegau lo liste vau do ka'e katna ly so'i liste"
+msgstr[1] "fa po'o lo liste be su'e {max} jufra ka'e se cpacu i fau lo nu do se krali lo ka cnegau lo liste vau do ka'e katna ly so'i liste"
 
 #. @translators: this string is used to concatenate two sentences.
 #. You typically want to change this to {firstSentence}{secondSentence}
@@ -151,7 +151,7 @@ msgstr "zoi zoi {tagName} zoi ca ca'o tcita lo {number} moi jufra iseki'ubo na c
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
-msgstr ""
+msgstr " no jufra cu se tcita ti i lo tcita poi do mitysisku mo'u se vimcu gi'a na zasti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L112
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L447
@@ -184,7 +184,7 @@ msgstr "lo jaspu mo'u se vreji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L342
 msgid "Failed to change email address. Please enter a proper email address."
-msgstr ""
+msgstr "fliba lo ka cnegau lo mrilu judri i e'o ciska lo drani ke mrilu judri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L392
 msgid "Your settings have been saved."
@@ -210,7 +210,7 @@ msgstr "ckiku se srera i e'o do za'ure'u troci"
 msgid ""
 "This account has been marked inactive. You cannot log in with it anymore. "
 "Please contact an admin if this is a mistake."
-msgstr ""
+msgstr "lo dei jaspu cu se barna lo ka na akti i do ba'o ka'e se jaspu le jaspu i e'o jikca lo admine fau lo nu la'edi'u cu se srera"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L217
 msgid ""
@@ -354,19 +354,19 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L81
 msgid "{tagChange}: the sentence needs to be changed."
-msgstr ""
+msgstr "{tagChange} zo'u: le jufra cu sarcu fai lo ka se cnegau"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L85
 msgid "{tagCheck}: the sentence needs to be checked."
-msgstr ""
+msgstr "{tagCheck} zo'u: le jufra jai sarcu fai lo ka se inspekte"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L89
 msgid "{tagNNC}: the sentence needs to be checked by a native speaker."
-msgstr ""
+msgstr "{tagNNC} zo'u: le jufra cu sarcu fai lo ka se inspekte lo rarna se bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L93
 msgid "{tagOK}: the sentence is considered correct by at least one person."
-msgstr ""
+msgstr "{tagOK}: le jufra cu jai se jinvi fai lo ka drani vau su'e pilno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L102
 msgid "How to help"
@@ -702,14 +702,14 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/show.ctp#L36
 msgid "Private messages"
-msgstr ""
+msgstr "loi sivni se benji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L54
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L28
 msgid "New message"
-msgstr ""
+msgstr "pa cnino se benji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L41
@@ -717,23 +717,23 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L185
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L30
 msgid "Inbox"
-msgstr ""
+msgstr "se benji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L50
 msgid "Unread"
-msgstr ""
+msgstr "na se tcidu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L32
 msgid "Sent"
-msgstr ""
+msgstr "mo'e se benji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L53
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L34
 msgid "Trash"
-msgstr ""
+msgstr "loi se vimcu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L71
 msgid "Question about Tatoeba?"
@@ -756,29 +756,29 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L39
 msgid "Random sentence"
-msgstr ""
+msgstr "lo pa cunso jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L54
 msgid "show another "
-msgstr ""
+msgstr "zgana lo drata"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L115
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L144
 msgid "show more..."
-msgstr ""
+msgstr "zgana lo zmadu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L55
 msgid "Example sentences with the words:"
-msgstr ""
+msgstr "loi mupli jufra poi vasru lo di'u valsi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L71
 msgid "From"
-msgstr ""
+msgstr "be'i"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L91
 msgid "To"
-msgstr ""
+msgstr "te be'i"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L107
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L53
@@ -900,49 +900,49 @@ msgstr "ko de'a pilno lo jaspu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L49
 msgid "Home"
-msgstr ""
+msgstr "lo pamoi papri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L55
 msgid "Browse"
-msgstr ""
+msgstr "zgana lo vrici"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L62
 msgid "Browse by language"
-msgstr ""
+msgstr "zgana lo vrici po pa bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L69
 msgid "Browse by list"
-msgstr ""
+msgstr "zgana lo vrici po pa liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L73
 msgid "Browse by tag"
-msgstr ""
+msgstr "zgana lo vrici po pa tcita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L77
 msgid "Browse audio"
-msgstr ""
+msgstr "zgan lo vrici poi se bacru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L75
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L66
 msgid "Contribute"
-msgstr ""
+msgstr "jmina lo me vo'a moi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L89
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L28
 msgid "Add sentences"
-msgstr ""
+msgstr "jmina lo jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L91
 msgid "Adopt sentences"
-msgstr ""
+msgstr "jai zu'e ponse fai lo jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L110
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L100
 msgid "Discuss sentences"
-msgstr ""
+msgstr "casnu lo jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L116
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L38
@@ -952,11 +952,11 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L122
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L38
 msgid "Wall"
-msgstr ""
+msgstr "lo bitmu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L128
 msgid "More"
-msgstr ""
+msgstr "zmadu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L134
 msgid "Quick Start Guide"
@@ -969,17 +969,17 @@ msgstr "lo uitki pe la tatoebas"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L140
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L42
 msgid "FAQ"
-msgstr ""
+msgstr "lo cafne se retsku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L143
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L28
 msgid "Help"
-msgstr ""
+msgstr "sidju"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L147
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L93
 msgid "Downloads"
-msgstr ""
+msgstr "loi vreji poi gau diklo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L151
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L68
@@ -989,7 +989,7 @@ msgstr "loi tutci"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L120
 msgid "Sentences"
-msgstr ""
+msgstr "loi jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L62
 msgid "Favorites"
@@ -1036,7 +1036,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/remove_favorite.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L275
 msgid "Add to favorites"
-msgstr ""
+msgstr "jmina fi lo se nelci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L76
 msgid "Add a comment"
@@ -1044,7 +1044,7 @@ msgstr "jmina lo se piksku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L93
 msgid "Submit comment"
-msgstr ""
+msgstr "benji lo se piksku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L101
 msgid "Good practices"
@@ -1075,7 +1075,7 @@ msgstr "co'u se mipri"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L222
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L227
 msgid "hide"
-msgstr ""
+msgstr "gau de'a zgana"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L245
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L377
@@ -1392,47 +1392,47 @@ msgstr "banlu'avu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L133
 msgid "Bosnian"
-msgstr ""
+msgstr "banbu'osu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L134
 msgid "Croatian"
-msgstr ""
+msgstr "banxeruvu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L135
 msgid "Old East Slavic"
-msgstr ""
+msgstr "bangoruvu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L136
 msgid "Chamorro"
-msgstr ""
+msgstr "bancuxe'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L137
 msgid "Tagalog"
-msgstr ""
+msgstr "bantugulu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L138
 msgid "Quechua"
-msgstr ""
+msgstr "banke'u'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L139
 msgid "Mongolian"
-msgstr ""
+msgstr "banmu'onu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L140
 msgid "Lithuanian"
-msgstr ""
+msgstr "banlu'itu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L141
 msgid "Galician"
-msgstr ""
+msgstr "baurgulugu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L142
 msgid "Irish"
-msgstr ""
+msgstr "baurgulu'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L143
 msgid "Interlingua"
-msgstr ""
+msgstr "banginu'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L144
 msgid "Lojban"
@@ -1444,155 +1444,155 @@ msgstr "lo tokpona"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L146
 msgid "Ainu"
-msgstr ""
+msgstr "banga'inu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L147
 msgid "Sicilian"
-msgstr ""
+msgstr "bansucunu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L148
 msgid "Malayalam"
-msgstr ""
+msgstr "banmu'alu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L149
 msgid "Low Saxon"
-msgstr ""
+msgstr "baurnudusu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L150
 msgid "Klingon"
-msgstr ""
+msgstr "bantuluxe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L151
 msgid "Slovenian"
-msgstr ""
+msgstr "bansuluvu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L152
 msgid "Thai"
-msgstr ""
+msgstr "bantuxe'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L153
 msgid "Literary Chinese"
-msgstr ""
+msgstr "banluzuxe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L154
 msgid "Ossetian"
-msgstr ""
+msgstr "bangosusu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L155
 msgid "Romansh"
-msgstr ""
+msgstr "banru'oxe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L156
 msgid "Volapük"
-msgstr ""
+msgstr "banvu'olu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L157
 msgid "Scottish Gaelic"
-msgstr ""
+msgstr "baurgulu'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L158
 msgid "Ido"
-msgstr ""
+msgstr "bangidu'o"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L159
 msgid "Asturian"
-msgstr ""
+msgstr "bangasutu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L160
 msgid "Interlingue"
-msgstr ""
+msgstr "bangilu'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L161
 msgid "Occitan"
-msgstr ""
+msgstr "bangocu'i"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L162
 msgid "Kalmyk"
-msgstr ""
+msgstr "banxu'alu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L166
 msgid "Old English"
-msgstr ""
+msgstr "banganugu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L167
 msgid "Kurdish"
-msgstr ""
+msgstr "banku'uru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L168
 msgid "Lower Sorbian"
-msgstr ""
+msgstr "bandusubu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L169
 msgid "Upper Sorbian"
-msgstr ""
+msgstr "banxesubu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L170
 msgid "Kölsch"
-msgstr ""
+msgstr "bankusuxe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L171
 msgid "Welsh"
-msgstr ""
+msgstr "bancujemu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L172
 msgid "Ewe"
-msgstr ""
+msgstr "bangeve'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L173
 msgid "Sindarin"
-msgstr ""
+msgstr "bansujunu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L174
 msgid "Telugu"
-msgstr ""
+msgstr "bantu'elu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L175
 msgid "Tok Pisin"
-msgstr ""
+msgstr "bantupu'i"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L176
 msgid "Quenya"
-msgstr ""
+msgstr "bankeje'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L177
 msgid "Novial"
-msgstr ""
+msgstr "baurnu'ovu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L178
 msgid "Maori"
-msgstr ""
+msgstr "banmuru'i"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L179
 msgid "Ladin"
-msgstr ""
+msgstr "banluludu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L180
 msgid "Berber"
-msgstr ""
+msgstr "banjubu'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L182
 msgid "Xhosa"
-msgstr ""
+msgstr "banxuxe'o"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L183
 msgid "Punjabi"
-msgstr ""
+msgstr "banpu'anu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L184
 msgid "Malagasy"
-msgstr ""
+msgstr "banmulugu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L185
 msgid "Guarani"
-msgstr ""
+msgstr "baurgurunu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L186
 msgid "Ladino"
-msgstr ""
+msgstr "banlu'adu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L187
 msgid "Piedmontese"
-msgstr ""
+msgstr "banpumusu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L189
 msgid "Kotava"
@@ -1600,255 +1600,255 @@ msgstr "bangavuku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L190
 msgid "Marathi"
-msgstr ""
+msgstr "banmu'aru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L191
 msgid "Old Tupi"
-msgstr ""
+msgstr "bantupuve"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L192
 msgid "Tajik"
-msgstr ""
+msgstr "bantuguku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L193
 msgid "Old Prussian"
-msgstr ""
+msgstr "banpurugu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L194
 msgid "Nepali"
-msgstr ""
+msgstr "baurnu'epu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L195
 msgid "Maltese"
-msgstr ""
+msgstr "banmulutu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L196
 msgid "Chukchi"
-msgstr ""
+msgstr "bancukutu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L197
 msgid "Cornish"
-msgstr ""
+msgstr "bancu'oru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L198
 msgid "Azerbaijani"
-msgstr ""
+msgstr "bangazu'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L199
 msgid "Khmer"
-msgstr ""
+msgstr "bankuxemu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L200
 msgid "Lao"
-msgstr ""
+msgstr "banlu'a'o"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L201
 msgid "Tibetan"
-msgstr ""
+msgstr "banbu'odu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L202
 msgid "Hiligaynon"
-msgstr ""
+msgstr "banxe'ilu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L203
 msgid "Algerian Arabic"
-msgstr ""
+msgstr "bangaruke"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L204
 msgid "Picard"
-msgstr ""
+msgstr "banpucudu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L205
 msgid "Ancient Greek"
-msgstr ""
+msgstr "baurgurucu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L206
 msgid "Amharic"
-msgstr ""
+msgstr "bangamuxe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L207
 msgid "Awadhi"
-msgstr ""
+msgstr "bangave'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L208
 msgid "Bhojpuri"
-msgstr ""
+msgstr "banbuxe'o"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L209
 msgid "Chavacano"
-msgstr ""
+msgstr "bancubuku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L210
 msgid "Middle English"
-msgstr ""
+msgstr "bangenumu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L211
 msgid "Middle French"
-msgstr ""
+msgstr "banfurumu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L212
 msgid "Haitian Creole"
-msgstr ""
+msgstr "banxe'atu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L213
 msgid "Juhuri (Judeo-Tat)"
-msgstr ""
+msgstr "banjudutu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L214
 msgid "Greenlandic"
-msgstr ""
+msgstr "banku'alu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L215
 msgid "Meadow Mari"
-msgstr ""
+msgstr "banmuxeru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L216
 msgid "Nahuatl"
-msgstr ""
+msgstr "baurnucu'i"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L217
 msgid "Pennsylvania German"
-msgstr ""
+msgstr "banpuducu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L218
 msgid "Sinhala"
-msgstr ""
+msgstr "bansu'inu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L219
 msgid "Turkmen"
-msgstr ""
+msgstr "bantu'uku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L220
 msgid "Walloon"
-msgstr ""
+msgstr "banvelunu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L221
 msgid "Bashkir"
-msgstr ""
+msgstr "banbu'aku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L222
 msgid "Hausa"
-msgstr ""
+msgstr "banxe'a'u"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L223
 msgid "Luxembourgish"
-msgstr ""
+msgstr "banlutuzu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L224
 msgid "Mambae"
-msgstr ""
+msgstr "banmugumu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L225
 msgid "Somali"
-msgstr ""
+msgstr "bansu'omu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L226
 msgid "Zulu"
-msgstr ""
+msgstr "banzu'ulu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L227
 msgid "Hawaiian"
-msgstr ""
+msgstr "banxe'ave"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L228
 msgid "Kyrgyz"
-msgstr ""
+msgstr "banku'iru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L229
 msgid "Macedonian"
-msgstr ""
+msgstr "banmukudu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L230
 msgid "Hill Mari"
-msgstr ""
+msgstr "banmuruju"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L231
 msgid "Pipil"
-msgstr ""
+msgstr "banpupulu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L232
 msgid "Yoruba"
-msgstr ""
+msgstr "banje'oru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L233
 msgid "Kinyarwanda"
-msgstr ""
+msgstr "banku'inu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L234
 msgid "Shuswap"
-msgstr ""
+msgstr "bansuxesu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L235
 msgid "Chuvash"
-msgstr ""
+msgstr "bancuxevu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L236
 msgid "Lakota"
-msgstr ""
+msgstr "banlukutu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L237
 msgid "Ottoman Turkish"
-msgstr ""
+msgstr "bangotu'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L238
 msgid "Shona"
-msgstr ""
+msgstr "bansunu'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L239
 msgid "Mon"
-msgstr ""
+msgstr "banmunuve"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L240
 msgid "Nogai"
-msgstr ""
+msgstr "baurnu'ogu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L241
 msgid "Yakut"
-msgstr ""
+msgstr "bansu'axe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L242
 msgid "Abkhaz"
-msgstr ""
+msgstr "bangabuku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L243
 msgid "Tetun"
-msgstr ""
+msgstr "bantu'etu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L244
 msgid "Tamil"
-msgstr ""
+msgstr "bantu'amu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L245
 msgid "Udmurt"
-msgstr ""
+msgstr "bangudumu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L246
 msgid "Kumyk"
-msgstr ""
+msgstr "banku'umu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L247
 msgid "Crimean Tatar"
-msgstr ""
+msgstr "bancuruxe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L248
 msgid "Chinyanja"
-msgstr ""
+msgstr "baurnuje'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L249
 msgid "Livonian"
-msgstr ""
+msgstr "banlu'ivu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L250
 msgid "Navajo"
-msgstr ""
+msgstr "baurnu'avu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L251
 msgid "Cherokee"
-msgstr ""
+msgstr "bancuxeru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L252
 msgid "Gujarati"
-msgstr ""
+msgstr "baurgu'uju"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L308
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L327
@@ -1858,7 +1858,7 @@ msgstr "ro bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L344
 msgid "unknown language"
-msgstr ""
+msgstr "na se slabu bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L361
 msgid "other language"
@@ -1866,12 +1866,12 @@ msgstr "lo drata bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L379
 msgid "Auto detect"
-msgstr ""
+msgstr "zmiku smadi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L397
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L440
 msgid "None"
-msgstr ""
+msgstr "no da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L420
 msgid "Any language"
@@ -1879,11 +1879,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L456
 msgid "Any"
-msgstr ""
+msgstr "da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L489
 msgid "unknown"
-msgstr ""
+msgstr "na se slabu"
 
 #. @translators: string used as a placeholder for
 #. the name of a list when it happens to be empty
@@ -1893,23 +1893,23 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L132
 msgid "created by {listAuthor}"
-msgstr ""
+msgstr "se finti la'oi {listAuthor}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L139
 msgid "Number of sentences"
-msgstr ""
+msgstr "lo se klani be lo jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L148
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L62
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L78
 msgid "Show"
-msgstr ""
+msgstr "zgana"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L158
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L141
 msgid "Edit"
-msgstr ""
+msgstr "stika"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L186
 msgid "Back to all lists"
@@ -1960,7 +1960,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L127
 msgid "OK"
-msgstr ""
+msgstr "i'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L507
 msgid ""
@@ -2006,7 +2006,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L160
 msgid "admin"
-msgstr ""
+msgstr "lo admine"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L161
 msgid "corpus maintainer"
@@ -2022,7 +2022,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L164
 msgid "inactive"
-msgstr ""
+msgstr "na akti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L165
 msgid "spammer"
@@ -2032,7 +2032,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L65
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L82
 msgid "Translate"
-msgstr ""
+msgstr "traduki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L84
 msgid ""
@@ -2091,7 +2091,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L489
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L126
 msgid "Delete"
-msgstr ""
+msgstr "vimcu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L531
 msgid "belongs to {user}"
@@ -2099,11 +2099,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L171
 msgid "Send private message"
-msgstr ""
+msgstr "benji lo sivni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L187
 msgid "edited"
-msgstr ""
+msgstr "mo'u se cnegau"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L219
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L184
@@ -2131,15 +2131,15 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L124
 msgid "previous"
-msgstr ""
+msgstr "lo lidne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L149
 msgid "next"
-msgstr ""
+msgstr "lo se lidne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L177
 msgid "random"
-msgstr ""
+msgstr "lo cunso"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L221
 msgid "Enter a username: "
@@ -2147,11 +2147,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L226
 msgid "show user"
-msgstr ""
+msgstr "zgana lo info be lo pilno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L233
 msgid "all"
-msgstr ""
+msgstr "ro da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L247
 msgid "Profile of {user}"
@@ -2159,7 +2159,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L274
 msgid "all lists"
-msgstr ""
+msgstr "ro liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L23
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L28
@@ -2178,11 +2178,11 @@ msgstr[1] ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L52
 msgid "Reply"
-msgstr ""
+msgstr "spusku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L85
 msgid "to"
-msgstr ""
+msgstr "tebe'i"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L98
 msgid "Title"
@@ -2192,7 +2192,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L49
 msgid "Send"
-msgstr ""
+msgstr "benji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L143
 msgid "{sender} wrote:"
@@ -2218,7 +2218,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L218
 msgid "Play audio"
-msgstr ""
+msgstr "bacru lo se vreji sance"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L232
 msgid "Audio unavailable. Click to learn more."
@@ -2261,11 +2261,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L227
 msgid "no"
-msgstr ""
+msgstr "je'unai"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L228
 msgid "yes"
-msgstr ""
+msgstr "je'u"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L239
 msgid "NOTE: Not all languages have audio at the moment."
@@ -2275,7 +2275,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L221
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L35
 msgid "Tags"
-msgstr ""
+msgstr "loi tcita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L70
 msgid "No tag on this sentence."
@@ -2285,7 +2285,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L89
 msgid "View all tags"
-msgstr ""
+msgstr "zgana ro tcita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L125
 msgid "user: {userId}, date: {date}"
@@ -2297,11 +2297,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L299
 msgid "remove tag from sentence"
-msgstr ""
+msgstr "vimcu lo tcita lo jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L74
 msgid "Add a message: "
-msgstr ""
+msgstr "jmina lo se benji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L90
 msgid "cancel"
@@ -2313,7 +2313,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L149
 msgid "submit"
-msgstr ""
+msgstr "benji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L362
 msgid "by {messageAuthor}"
@@ -3976,13 +3976,13 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L97
 msgid "Languages"
-msgstr ""
+msgstr "loi bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L104
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L122
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L159
 msgid "Save"
-msgstr ""
+msgstr "jai gau vreji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L108
 msgid "Change email address"
@@ -3990,23 +3990,23 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L119
 msgid "Email address"
-msgstr ""
+msgstr "lo kibro mrilu judri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L127
 msgid "Change password"
-msgstr ""
+msgstr "cnegau lo ckiku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L141
 msgid "Old password"
-msgstr ""
+msgstr "lo cabna ckiku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L148
 msgid "New password"
-msgstr ""
+msgstr "lo balvi ckiku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L155
 msgid "New password again"
-msgstr ""
+msgstr "za'ure'u ku lo balvi ckiku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L43
 msgid "Search user"
@@ -4027,15 +4027,15 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L41
 msgid "Send new password"
-msgstr ""
+msgstr "benji lo balvi ckiku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L47
 msgid "Email"
-msgstr ""
+msgstr "lo kibro mrilu judri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L47
 msgid "Username:"
-msgstr ""
+msgstr "lo cmene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L59
 msgid "Username can only contain letters, numbers, or underscore"
@@ -4051,7 +4051,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L78
 msgid "Password:"
-msgstr ""
+msgstr "lo ckiku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L95
 msgid "unmask password"
@@ -4089,7 +4089,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L25
 msgid "Tatoeba user: {username}"
-msgstr ""
+msgstr "pilno la'oi Tatoeba fa la'oi {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L64
 msgid "Latest sentences (<a href=\"{}\">view all</a>)"
@@ -4119,7 +4119,7 @@ msgstr "lo te cuxna"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L40
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L52
 msgid "Back to Wall"
-msgstr ""
+msgstr "volve le bitmu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L54
 msgid ""
