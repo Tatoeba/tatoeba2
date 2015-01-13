@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # Merges duplicate sentences in a database.
 # See README.md for instructions on setting up the dependencies for this script and running it.
 
@@ -408,6 +409,16 @@ class Dedup(object):
                         hidden=0,
                         )
                     )
+            comments.append(
+                SentenceComments(
+                    sentence_id=main_sent.id,
+                    text='Duplicates of this sentence have been deleted:\n' + \
+                    '\n'.join(['✘ #%s' % (id) for id in ids]),
+                    user_id=cls.bot.id,
+                    created=now(),
+                    hidden=0
+                    )
+                )
             SentenceComments.objects.bulk_create(comments)
 
     @staticmethod

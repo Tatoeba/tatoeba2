@@ -231,6 +231,7 @@ class TestDedup():
         cmd = Command()
         cmd.handle(cmnt=True)
         assert SentenceComments.objects.filter(text__contains='has been merged with').count() == 11
+        assert SentenceComments.objects.filter(text__contains='Duplicates of this sentence have been deleted:').count() == 5
 
     def test_dry_run(db, sents):
         cmd = Command()
