@@ -108,16 +108,12 @@ class TestDedup():
     def test_merge_comments(db, sents, dedup):
         assert SentenceComments.objects.filter(sentence_id=8).count() == 1
         assert SentenceComments.objects.all().count() == 3
-        dedup.insert_merge('SentenceComments', 8, [6, 7])
-        assert SentenceComments.objects.filter(sentence_id=8).count() == 3
+        dedup.merge_comments(8, [6, 7])
         assert SentenceComments.objects.all().count() == 5
-        
-        for i in xrange(6, 7+1):
-            assert SentenceComments.objects.filter(sentence_id=i).count() == 1
-            comments = list(SentenceComments.objects.filter(text='Comment on '+str(i)).order_by('sentence_id'))
-            assert len(comments) == 2
-            assert comments[0].sentence_id == i
-            assert comments[1].sentence_id == 8
+        cmnts = list(SentenceComments.objects.filter(text__contains='Comment copied from').order_by('id'))
+        assert len(cmnts) == 2
+        assert cmnts[0].sentence_id == 8 and 'Comment copied from #6' in cmnts[0].text
+        assert cmnts[1].sentence_id == 8 and 'Comment copied from #7' in cmnts[1].text
 
     def test_merge_logs(db, sents, dedup):
         assert Contributions.objects.filter(sentence_id=8).count() == 2

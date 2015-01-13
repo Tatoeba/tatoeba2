@@ -358,12 +358,24 @@ class Dedup(object):
         cls.insert_merge('Contributions', main_id, ids, q_filters=Q(type='sentence', action='update') | (Q(type='link') & ~Q(translation_id=main_id)))
 
     @classmethod
+    def merge_comments(cls, main_id, ids):
+        cmnts = SentenceComments.objects.filter(sentence_id__in=ids)
+
+        for cmnt in cmnts:
+            cmnt.id = None
+            cmnt.text += '\n----------\nComment copied from #%s because of duplicate merge.' % (cmnt.sentence_id)
+            cmnt.sentence_id = main_id
+
+        if not cls.dry:
+            SentenceComments.objects.bulk_create(cmnts)
+
+    @classmethod
     @transaction.atomic
     def deduplicate(cls, main_sent, ids, post_cmnt=False, dry=False):
         cls.dry = dry
 
         # merge
-        cls.insert_merge('SentenceComments', main_sent.id, ids)
+        cls.merge_comments(main_sent.id, ids)
         cls.update_merge('TagsSentences', main_sent.id, ids)
         cls.merge_links(main_sent.id, ids)
 
