@@ -285,7 +285,7 @@ class Dedup(object):
 
     @classmethod
     def log_merge_links_contrib(cls, main_id, ids, contrib_logs):
-        cls.log_entry(main_id, ids, 'insert link logs', 'insert', 'sentence_id', contrib_logs)
+        cls.log_entry(main_id, ids, 'merge insert link logs', 'insert', 'sentence_id', contrib_logs)
 
     @classmethod
     @transaction.atomic
@@ -340,6 +340,10 @@ class Dedup(object):
             lnks_bd.update(translation_id=main_id)
 
     @classmethod
+    def log_merge_comments(cls, main_id, ids, cmnts):
+        cls.log_entry(main_id, ids, 'merge insert comments', 'insert', 'sentence_id', cmnts)
+
+    @classmethod
     def merge_comments(cls, main_id, ids):
         cmnts = SentenceComments.objects.filter(sentence_id__in=ids)
 
@@ -348,6 +352,7 @@ class Dedup(object):
             cmnt.text += '\n----------\nComment copied from #%s because of duplicate merge.' % (cmnt.sentence_id)
             cmnt.sentence_id = main_id
 
+        cls.log_merge_comments(main_id, ids, cmnts)
         if not cls.dry:
             SentenceComments.objects.bulk_create(cmnts)
 
