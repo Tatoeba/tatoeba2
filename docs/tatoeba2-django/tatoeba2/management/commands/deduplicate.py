@@ -285,6 +285,10 @@ class Dedup(object):
             get_model('tatoeba2.'+model).objects.filter(**{update_fld+'__in': ids}).update(**{update_fld: main_id})
 
     @classmethod
+    def log_merge_links_contrib(cls, main_id, ids, contrib_logs):
+        cls.log_entry(main_id, ids, 'insert link logs', 'insert', 'sentence_id', contrib_logs)
+
+    @classmethod
     @transaction.atomic
     def merge_links(cls, main_id, ids):
         def remove_collisions(update_fld):
@@ -329,6 +333,7 @@ class Dedup(object):
             logs.append(contrib_log(lnk.sentence_id, lnk.translation_id, 'delete'))
             logs.append(contrib_log(lnk.sentence_id, main_id, 'insert'))
 
+        cls.log_merge_links_contrib(main_id, ids, logs)
         if not cls.dry:
             Contributions.objects.bulk_create(logs)
 
