@@ -190,7 +190,6 @@ class Dedup(object):
         cls.log_entry(main_id, ids, 'log_deletion Contributions', 'insert', 'sentence_id', logs)
     
     @classmethod
-    @transaction.atomic
     def delete_sents(cls, main_id, ids):
         sents = Sentences.objects.filter(id__in=ids)
         cls.log_sents_del(main_id, ids, sents)
@@ -252,7 +251,6 @@ class Dedup(object):
         cls.log_entry(main_id, ids, msg+' '+model, 'delete', 'sentence_id', deletes)
 
     @classmethod
-    @transaction.atomic
     def delete_rows_tuples(cls, model, main_id, ids, flds, tuples, log_msg):
         # given tuples containing some values and a model with a list of field names
         # contents are matched back to build an orm filter, the query
@@ -268,7 +266,6 @@ class Dedup(object):
             query.delete()
 
     @classmethod
-    @transaction.atomic
     def update_merge(cls, model, main_id, ids, update_fld='sentence_id'):
         # handle unique collisions
         unique, unique_flds, collisions = cls.unique_collisions(model, main_id, ids, update_fld)
@@ -288,7 +285,6 @@ class Dedup(object):
         cls.log_entry(main_id, ids, 'merge insert link logs', 'insert', 'sentence_id', contrib_logs)
 
     @classmethod
-    @transaction.atomic
     def merge_links(cls, main_id, ids):
         def remove_collisions(update_fld):
             # find and delete unique collisions
