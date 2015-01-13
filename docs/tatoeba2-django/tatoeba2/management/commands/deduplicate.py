@@ -285,25 +285,6 @@ class Dedup(object):
             get_model('tatoeba2.'+model).objects.filter(**{update_fld+'__in': ids}).update(**{update_fld: main_id})
 
     @classmethod
-    def log_insert_merge(cls, model, main_id, ids, fld, inserts):
-        cls.log_entry(main_id, ids, 'merge '+model, 'insert', fld, inserts)
-
-    @classmethod
-    @transaction.atomic
-    def insert_merge(cls, model, main_id, ids, fld='sentence_id', q_filters=Q()):
-        Model = get_model('tatoeba2.'+model)
-        inserts = list(Model.objects.filter(**{fld+'__in': ids}).filter(q_filters))
-        
-        for ins in inserts:
-            ins.id = None
-            setattr(ins, fld, main_id)
-
-        if not cls.dry:            
-            inserts = Model.objects.bulk_create(inserts)
-
-        cls.log_insert_merge(model, main_id, ids, fld, inserts)
-
-    @classmethod
     @transaction.atomic
     def merge_links(cls, main_id, ids):
         def remove_collisions(update_fld):
@@ -355,10 +336,6 @@ class Dedup(object):
             lnks_bd.update(translation_id=main_id)
 
     @classmethod
-    def merge_logs(cls, main_id, ids):
-        cls.insert_merge('Contributions', main_id, ids, q_filters=Q(type='sentence', action='update') | (Q(type='link') & ~Q(translation_id=main_id)))
-
-    @classmethod
     def merge_comments(cls, main_id, ids):
         cmnts = SentenceComments.objects.filter(sentence_id__in=ids)
 
@@ -379,9 +356,7 @@ class Dedup(object):
         cls.merge_comments(main_sent.id, ids)
         cls.update_merge('TagsSentences', main_sent.id, ids)
         cls.merge_links(main_sent.id, ids)
-
         cls.update_merge('SentencesSentencesLists', main_sent.id, ids)
-        cls.merge_logs(main_sent.id, ids)
         cls.update_merge('FavoritesUsers', main_sent.id, ids, 'favorite_id')
         cls.update_merge('SentenceAnnotations', main_sent.id, ids)
         cls.update_merge('SentenceAnnotations', main_sent.id, ids, 'meaning_id')

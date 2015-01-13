@@ -146,10 +146,6 @@ def dups_in_fav():
     FavoritesUsers(user_id=1, favorite_id=4).save()
 
 @pytest.fixture
-def duplnks_in_logs():
-    Contributions(action='insert', user_id=1, datetime=datetime.now(), type='link', sentence_id=3, translation_id=2).save()
-
-@pytest.fixture
 def lang_stats():
     Languages(code='eng', numberofsentences=0).save()
 

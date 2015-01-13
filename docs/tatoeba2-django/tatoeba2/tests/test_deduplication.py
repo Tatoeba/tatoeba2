@@ -115,21 +115,6 @@ class TestDedup():
         assert cmnts[0].sentence_id == 8 and 'Comment copied from #6' in cmnts[0].text
         assert cmnts[1].sentence_id == 8 and 'Comment copied from #7' in cmnts[1].text
 
-    def test_merge_logs(db, sents, dedup):
-        assert Contributions.objects.filter(sentence_id=8).count() == 2
-        assert Contributions.objects.all().count() == 5
-        dedup.merge_logs(8, [6, 7])
-        assert Contributions.objects.filter(sentence_id=8).count() == 4
-        assert Contributions.objects.all().count() == 7
-        
-        assert Contributions.objects.filter(sentence_id=6).count() == 2
-        logs = list(Contributions.objects.filter(text='Logs for 6').order_by('sentence_id'))
-        assert len(logs) == 4
-        assert logs[0].sentence_id == 6 and logs[0].type == 'sentence' and logs[0].action == 'update'
-        assert logs[1].sentence_id == 6 and logs[1].type == 'link' and logs[1].action == 'insert' and logs[1].translation_id == 9
-        assert logs[2].sentence_id == 8 and logs[0].type == 'sentence' and logs[0].action == 'update'
-        assert logs[3].sentence_id == 8 and logs[1].type == 'link' and logs[1].action == 'insert' and logs[1].translation_id == 9
-
     def test_merge_tags(db, sents, dedup):
         assert TagsSentences.objects.filter(sentence_id=8).count() == 1
         dedup.update_merge('TagsSentences', 8, [6, 7])
@@ -281,10 +266,6 @@ class TestDedup():
         fav = list(FavoritesUsers.objects.filter(favorite_id=2))
         assert len(fav) == 1
         assert fav[0].favorite_id == 2 and fav[0].user_id == 1
-
-    def test_linked_dups_in_logs(db, sents, duplnks_in_logs, dedup):
-        dedup.merge_logs(2, [3])
-        assert Contributions.objects.filter(sentence_id=2, translation_id=2, type='link').count() == 0
 
     def test_refresh_lang_stats(db, sents, lang_stats):
         assert Languages.objects.filter(code='eng')[0].numberofsentences == 0
