@@ -41,8 +41,17 @@ class LinksController extends AppController
     private function _renderTranslationsOf($sentenceId, $message)
     {
         $this->loadModel('Sentence');
-        $showTranslationsInto = $this->Session->read('show_translations_into_lang');
-        $alltranslations = $this->Sentence->getTranslationsOf($sentenceId, $showTranslationsInto);
+        // TODO: Fix issue #510 permanently by revisiting the next three lines.
+        // Currently, linking a sentence causes translations in all languages
+        // to be displayed. But commenting out the next sentence and uncommenting
+        // the next two causes the "show_translations_into_lang" cookie to
+        // determine the translations in which they're displayed, even when this
+        // is not appropriate. Probably, this function needs another parameter
+        // and the caller needs to set this after deciding whether or not to check the
+        // cookie.
+        $alltranslations = $this->Sentence->getTranslationsOf($sentenceId);
+        //  $showTranslationsInto = $this->Session->read('show_translations_into_lang');
+        //$alltranslations = $this->Sentence->getTranslationsOf($sentenceId, $showTranslationsInto);
         $translations = $alltranslations['Translation'];
         $indirectTranslations = $alltranslations['IndirectTranslation'];
 
