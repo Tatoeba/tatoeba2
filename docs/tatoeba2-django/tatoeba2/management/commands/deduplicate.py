@@ -450,7 +450,12 @@ class Command(Dedup, BaseCommand):
             ),
         make_option(
             '-u', '--url', action='store', type='string', dest='url',
-            help='url root path pointing to log directory. used in the wall post'),
+            help='url root path pointing to log directory. used in the wall post'
+            ),
+        make_option(
+            '-r', '--refresh-stats', action='store_true', dest='refresh',
+            help='runs queries to repopulate langstats table'
+            ),
         )
 
     def update_dedup_progress(self):
@@ -476,6 +481,7 @@ class Command(Dedup, BaseCommand):
         since = options.get('since')
 
         dry = bool(options.get('dry'))
+        refresh = bool(options.get('refresh'))
         bot_name = options.get('bot_name') or 'deduplication_bot'
         try:
             Dedup.bot = Users.objects.get(username=bot_name)
@@ -621,8 +627,9 @@ class Command(Dedup, BaseCommand):
         self.log_report(msg)
 
         # refresh sentence numbers for languages
-        self.log_report('Refreshing language statistics')
-        self.refresh_lang_stats(dry)
+        if refresh:
+            self.log_report('Refreshing language statistics')
+            self.refresh_lang_stats(dry)
         
         self.log_report('Deduplication finished running successfully at '+now().strftime('%Y-%m-%d %I:%M %p UTC')+', see full log at:')
         self.log_report(url + path.split(self.log_file_path)[-1].replace(' ', '%20'))

@@ -270,5 +270,5 @@ class TestDedup():
     def test_refresh_lang_stats(db, sents, lang_stats):
         assert Languages.objects.filter(code='eng')[0].numberofsentences == 0
         cmd = Command()
-        cmd.handle()
+        cmd.handle(refresh=True)
         assert Languages.objects.filter(code='eng')[0].numberofsentences == 10
