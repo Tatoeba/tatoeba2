@@ -210,11 +210,7 @@ class SentenceButtonsHelper extends AppHelper
             default:
                 $onClick = 'return false';
                 $css = 'audioUnavailable';
-                $path = array(
-                    'controller' => 'pages',
-                    'action' => 'faq',
-                    '#' => 'submit-audio'
-                );
+                $path = 'http://en.wiki.tatoeba.org/articles/show/contribute-audio';
                 $title = __('Audio unavailable. Click to learn more.', true);
                 $onClick = 'window.open(this.href); return false;';
                 break;
