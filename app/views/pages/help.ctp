@@ -287,7 +287,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Help', true)));
                     'edit it.', true
                 ),
                 array('adoptButton' => $html->image(
-                    IMG_PATH . 'unlocked.svg',
+                    IMG_PATH . 'unadopted.svg',
                     array(
                         'height' => 16
                     )

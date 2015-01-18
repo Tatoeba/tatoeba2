@@ -200,13 +200,13 @@ class MenuHelper extends AppHelper
         $tooltip = null;
         if ($isAdopted) {
             $cssClass = 'remove';
-            $image = 'locked.svg';
+            $image = 'adopted.svg';
             if ($isLogged && $isOwnedByCurrentUser) {
                 $tooltip = __('Click to unadopt', true);
             }
         } else {
             $cssClass = 'add';
-            $image = 'unlocked.svg';
+            $image = 'unadopted.svg';
             if ($isLogged) {
                 $tooltip = __('Click to adopt', true);
             }
