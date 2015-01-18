@@ -557,7 +557,7 @@ class SentencesHelper extends AppHelper
                 $currentSentenceId
             );
 
-            echo '<div class="text">';
+            echo '<div class="text" dir="'.$dir.'">';
             echo $sentenceText;
             echo '</div>';
             
