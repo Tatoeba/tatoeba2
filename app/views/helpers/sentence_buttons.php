@@ -97,10 +97,11 @@ class SentenceButtonsHelper extends AppHelper
      *
      * @param int $sentenceId    Id of the main sentence.
      * @param int $translationId Id of the translation.
+     * @param int $langFilter    The language sentences should be filtered in when redisplaying the list.
      *
      * @return void
      */
-    public function unlinkButton($sentenceId, $translationId)
+    public function unlinkButton($sentenceId, $translationId, $langFilter = 'und')
     {
         echo $this->Javascript->link('links.add_and_delete.js', false);
 
@@ -115,6 +116,7 @@ class SentenceButtonsHelper extends AppHelper
                 "height" => 16
             )
         );
+        $langFilter = h(json_encode($langFilter));
         echo $this->Html->link(
             $image,
             array(
@@ -127,7 +129,7 @@ class SentenceButtonsHelper extends AppHelper
                 "escape" => false,
                 "class" => "link button",
                 "id" => $elementId,
-                "onclick" => "translationLink('delete', $sentenceId, $translationId); return false"
+                "onclick" => "translationLink('delete', $sentenceId, $translationId, $langFilter); return false"
             )
         );
     }
@@ -138,10 +140,11 @@ class SentenceButtonsHelper extends AppHelper
      *
      * @param int $sentenceId    Id of the main sentence.
      * @param int $translationId Id of the translation.
+     * @param int $langFilter    The language sentences should be filtered in when redisplaying the list.
      *
      * @return void
      */
-    public function linkButton($sentenceId, $translationId)
+    public function linkButton($sentenceId, $translationId, $langFilter = 'und')
     {
         echo $this->Javascript->link('links.add_and_delete.js', false);
 
@@ -156,6 +159,7 @@ class SentenceButtonsHelper extends AppHelper
                 "height" => 16
             )
         );
+        $langFilter = h(json_encode($langFilter));
         echo $this->Html->link(
             $image,
             array(
@@ -168,7 +172,7 @@ class SentenceButtonsHelper extends AppHelper
                 "escape" => false,
                 "class" => "link button",
                 "id" => $elementId,
-                "onclick" => "translationLink('add', $sentenceId, $translationId); return false"
+                "onclick" => "translationLink('add', $sentenceId, $translationId, $langFilter); return false"
             )
         );
     }

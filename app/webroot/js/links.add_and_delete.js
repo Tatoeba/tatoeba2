@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
  
-function translationLink(action, sentenceId, translationId)
+function translationLink(action, sentenceId, translationId, langFilter)
 {
     var rootUrl = get_tatoeba_root_url();
 
@@ -29,7 +29,8 @@ function translationLink(action, sentenceId, translationId)
     $.post(
         rootUrl + "/links/" + action + "/" + sentenceId + "/" + translationId,
         {
-            'returnTranslations': true
+            'returnTranslations': true,
+            'langFilter' : langFilter
         },
         function(data){
             $("#_" + sentenceId + "_translations").replaceWith(data).show();

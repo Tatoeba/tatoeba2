@@ -328,7 +328,8 @@ class MenuHelper extends AppHelper
     <?php
     }
 
-    public function linkToSentenceButton($sentenceId) {
+    public function linkToSentenceButton($sentenceId, $langFilter = 'und') {
+        $langFilter = json_encode($langFilter);
         $linkToSentenceButton = $this->Html->Image(
             IMG_PATH . 'link.svg',
             array(
@@ -337,8 +338,8 @@ class MenuHelper extends AppHelper
                 'width' => 16,
                 'height' => 16,
                 'class' => 'linkTo',
-                'onClick' => "linkToSentence($sentenceId)",
-                'onDrop' => "linkToSentenceByDrop(event, $sentenceId)",
+                'onClick' => "linkToSentence($sentenceId, $langFilter)",
+                'onDrop' => "linkToSentenceByDrop(event, $sentenceId, $langFilter)",
             )
         );
         ?>
@@ -586,11 +587,12 @@ class MenuHelper extends AppHelper
      * @param string $chineseScript For chinese only, 'traditional' or 'simplified'
      * @param array  $canTranslate  True if user can translate the sentence.
      *                              False otherwise.
+     * @param array  $langFilter    Language filter of translations.
      * 
      * @return void
      */
     public function displayMenu(
-        $sentenceId, $ownerName = null, $chineseScript = null, $canTranslate
+        $sentenceId, $ownerName = null, $chineseScript = null, $canTranslate, $langFilter = 'und'
     ) {
         ?>
         <ul class="menu">
@@ -619,7 +621,7 @@ class MenuHelper extends AppHelper
         $this->addToListButton($sentenceId, $isLogged);
 
         if (CurrentUser::isTrusted()) {
-            $this->linkToSentenceButton($sentenceId);
+            $this->linkToSentenceButton($sentenceId, $langFilter);
         }
 
         if (CurrentUser::isModerator()) {

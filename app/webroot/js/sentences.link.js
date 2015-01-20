@@ -34,7 +34,7 @@ function URLToSentenceId(url) {
     return URLParse ? URLParse[1] : url;
 }
 
-function linkToSentenceByDrop(event, sentenceId) {
+function linkToSentenceByDrop(event, sentenceId, langFilter) {
     event.preventDefault();
     $(event.target).removeClass('draggableLink');
 
@@ -42,13 +42,13 @@ function linkToSentenceByDrop(event, sentenceId) {
     targetSentenceId = URLToSentenceId(dropped);
 
     // simulate form submission
-    linkToSentence(sentenceId);
+    linkToSentence(sentenceId, langFilter);
     $("#linkTo" + sentenceId).hide();
     $("#linkToSentence" + sentenceId).val(targetSentenceId);
     $("#linkToSubmitButton" + sentenceId).trigger("click");
 }
 
-function linkToSentence(sentenceId) {
+function linkToSentence(sentenceId, langFilter) {
     var keyPressed = function(event) {
         if(event.keyCode == 13) { // allow submitting with enter key
             $("#linkToSubmitButton" + sentenceId).trigger("click");
@@ -75,7 +75,8 @@ function linkToSentence(sentenceId) {
         $.post(
             rootUrl + "/links/add/" + sentenceId + "/" + linkToSentenceId,
             {
-                'returnTranslations': true
+                'returnTranslations': true,
+                'langFilter': langFilter
             },
             function(data){
                 $("#_" + sentenceId +"_in_process").hide();
