@@ -69,8 +69,6 @@ class SentencesHelper extends AppHelper
      * @param array $user                 Owner of the sentence.
      * @param array $indirectTranslations Indirect translations of the sentence.
      * @param bool  $withAudio            Set to 'true' if audio icon is displayed.
-     * @param bool  $withDivWrapper       Set to 'true' to display the div wrapper
-     *                                    (id=sentences_group_$id).
      *
      * @return void
      */
@@ -79,16 +77,13 @@ class SentencesHelper extends AppHelper
         $translations,
         $user = null,
         $indirectTranslations = array(),
-        $withAudio = true,
-        $withDivWrapper = true
+        $withAudio = true
     ) {
         $id = $sentence['id'];
 
-        if ($withDivWrapper) {
-            ?>
-            <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
+        ?>
+        <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
         <?php
-        }
 
         $ownerName = null;
         if (isset($user['username'])) {
@@ -113,11 +108,9 @@ class SentencesHelper extends AppHelper
 
         $this->displayTranslations($id, $translations, $indirectTranslations, $withAudio);
 
-        if ($withDivWrapper) {
         ?>
         </div>
         <?php
-        }
     }
 
     public function displayTranslations($id, $translations, $indirectTranslations, $withAudio = true) {
