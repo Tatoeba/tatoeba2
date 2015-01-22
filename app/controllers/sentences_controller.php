@@ -253,13 +253,34 @@ class SentencesController extends AppController
             return;
         }
 
-        $this->Sentence->delete(
+        if (!CurrentUser::isModerator()) {
+            $this->flash(
+                __('You cannot delete sentences.', true),
+                '/sentences/show/'.$id
+            );
+        }
+
+        $isDeleted = $this->Sentence->delete(
             $id,
             true
         );
-        $this->flash(
-            'The sentence #'.$id.' has been deleted.', '/sentences/show/'.$id
-        );
+        if ($isDeleted) {
+            $this->flash(
+                format(
+                    __('The sentence #{id} has been deleted.', true),
+                    array("id" => $id)
+                ),
+                '/sentences/show/'.$id
+            );
+        } else {
+            $this->flash(
+                format(
+                    __('Error: the sentence #{id} could not be deleted.', true),
+                    array("id" => $id)
+                ),
+                '/sentences/show/'.$id
+            );
+        }
     }
 
     /**

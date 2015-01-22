@@ -316,8 +316,9 @@ class SentencesHelper extends AppHelper
         }
 
         $canTranslate = $sentence['correctness'] >= 0;
+        $hasAudio = $sentence['hasaudio'] == 'shtooka';
         $this->Menu->displayMenu(
-            $sentenceId, $ownerName, $chineseScript, $canTranslate, $langFilter
+            $sentenceId, $ownerName, $chineseScript, $canTranslate, $langFilter, $hasAudio
         );
 
         $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);

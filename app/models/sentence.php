@@ -530,20 +530,27 @@ class Sentence extends AppModel
         $this->data = $this->find(
             'first',
             array(
-                'conditions' => array('Sentence.id' => $id),  
+                'conditions' => array('Sentence.id' => $id),
                 'contain' => array ('Translation', 'User')
             )
         );
         
         $this->data['User']['id'] = $userId;
+
+        $isDeleted = false;
         
-        $this->query('DELETE FROM sentences WHERE id='.$id);
-        $this->query('DELETE FROM sentences_translations WHERE sentence_id='.$id);
-        $this->query('DELETE FROM sentences_translations WHERE translation_id='.$id);
+        if ($this->data['Sentence']['hasaudio'] == 'no')
+        {
+            $this->query('DELETE FROM sentences WHERE id='.$id);
+            $this->query('DELETE FROM sentences_translations WHERE sentence_id='.$id);
+            $this->query('DELETE FROM sentences_translations WHERE translation_id='.$id);
+            $isDeleted = true;
+        }
 
         // need to call afterDelete() manually for the logs
         $this->afterDelete();
 
+        return $isDeleted;
     }
 
 
