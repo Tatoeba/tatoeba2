@@ -500,7 +500,7 @@ class MenuHelper extends AppHelper
 
         echo '<li class="option delete">';
 
-        if (!$hasAudio) {
+        if ($hasAudio) {
             
             echo '<a class="disabled">';
             echo $deleteImage;
