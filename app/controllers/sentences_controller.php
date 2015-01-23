@@ -97,7 +97,8 @@ class SentencesController extends AppController
             'get_neighbors_for_ajax',
             'show_all_in',
             'with_audio',
-            'edit_correctness'
+            'edit_correctness',
+            'edit_audio'
         );
     }
 
@@ -986,9 +987,7 @@ class SentencesController extends AppController
     }
     
     /**
-     * Sentences with audio.
-     *
-     * @param string $lang Language of the sentences.
+     * Edit correctness of a sentence.
      *
      * @return void
      */
@@ -999,6 +998,31 @@ class SentencesController extends AppController
         
         if (CurrentUser::isModerator()) {
             $this->Sentence->editCorrectness($sentenceId, $correctness);
+            $this->redirect(
+                array(
+                    "controller" => "sentences", 
+                    "action" => "show", 
+                    $sentenceId
+                )
+            );
+        } else {
+            $this->redirect(
+                array(
+                    "controller" => "pages", 
+                    "action" => "home", 
+                )
+            );
+        }
+    }
+
+
+    public function edit_audio()
+    {
+        $sentenceId = $this->data['Sentence']['id'];
+        $hasaudio = $this->data['Sentence']['hasaudio'];
+        
+        if (CurrentUser::isAdmin()) {
+            $this->Sentence->editAudio($sentenceId, $hasaudio);
             $this->redirect(
                 array(
                     "controller" => "sentences", 

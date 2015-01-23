@@ -1044,5 +1044,18 @@ class Sentence extends AppModel
         if (count($values[$sentenceId]) == 0)
             unset($values[$sentenceId]);
     }
+
+
+    public function editAudio($sentenceId, $hasaudio)
+    {
+        $canEditAudio = CurrentUser::isAdmin();
+
+        if ($canEditAudio) {
+            $this->id = $sentenceId;
+            return $this->saveField('hasaudio', $hasaudio);
+        }
+
+        return false;
+    }
 }
 ?>
