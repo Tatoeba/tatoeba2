@@ -1006,16 +1006,8 @@ class Sentence extends AppModel
      */
     public function editCorrectness($sentenceId, $correctness)
     {
-        $canEditCorrectness = CurrentUser::isAdmin(); 
-        // TODO For the beginning we'll restrict this to admins.
-        // Later we'll want CurrentUser::isModerator();
-        
-        if ($canEditCorrectness) {
-            $this->id = $sentenceId;
-            return $this->saveField('correctness', $correctness);
-        }
-        
-        return false;
+        $this->id = $sentenceId;
+        return $this->saveField('correctness', $correctness);
     }
 
     public function getSentencesLang($sentencesIds, $langId = false) {
@@ -1045,17 +1037,10 @@ class Sentence extends AppModel
             unset($values[$sentenceId]);
     }
 
-
     public function editAudio($sentenceId, $hasaudio)
     {
-        $canEditAudio = CurrentUser::isAdmin();
-
-        if ($canEditAudio) {
-            $this->id = $sentenceId;
-            return $this->saveField('hasaudio', $hasaudio);
-        }
-
-        return false;
+        $this->id = $sentenceId;
+        return $this->saveField('hasaudio', $hasaudio);
     }
 }
 ?>
