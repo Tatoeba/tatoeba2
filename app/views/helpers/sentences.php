@@ -405,7 +405,8 @@ class SentencesHelper extends AppHelper
         );
 
         // Sentence and romanization
-        $this->displaySentenceContent($sentence, $isEditable);
+        $canEdit = $isEditable && $sentenceAudio == 'no';
+        $this->displaySentenceContent($sentence, $canEdit);
         ?>
         </div>
 
