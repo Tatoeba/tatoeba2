@@ -384,14 +384,13 @@ class SentencesHelper extends AppHelper
         
         <div class="<?php echo $class; ?>" <?php echo $elementId; ?>>
         <?php
-        // Navigation button (info or arrow icon)
-        $this->_displayNavigation($sentenceId, $type);
-        
-
         // Link/unlink button
         if (CurrentUser::isTrusted()) {
             $this->_displayLinkOrUnlinkButton($parentId, $sentenceId, $type, $langFilter);
         }
+
+        // Navigation button (info or arrow icon)
+        $this->_displayNavigation($sentenceId, $type);
 
         // audio
         if ($withAudio) {
