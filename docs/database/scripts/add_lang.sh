@@ -87,7 +87,7 @@ GREP_RESULT=$?
 if [ $UPDATE_FILES -eq 1 ]; then 
     if [ $GREP_RESULT -eq 0 ]; then
         # We were told to update the files, but the specified lang is already present.
-        echo -e "Terminating procedure, since string already exists in $SPHINX_GEN:\n$SEARCH_LANG"
+        echo -e "Terminating, since string already exists in $SPHINX_GEN:\n$SEARCH_LANG"
         exit 1;
     fi
     # Add a line to the file.
@@ -100,7 +100,7 @@ else
     fi
 fi
 
-if [ $RUN_FILES eq 1 ]; then
+if [ $RUN_FILES -eq 1 ]; then
     SPHINX_CMD="php $SPHINX_GEN"
     $SPHINX_CMD > "$SPHINX_CONF"
     if [ $? -ne 0 ]; then
