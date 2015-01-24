@@ -11,9 +11,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-04 02:11+0000\n"
-"PO-Revision-Date: 2014-12-07 22:23+0000\n"
-"Last-Translator: Tommy\n"
+"POT-Creation-Date: 2015-01-23 01:47+0000\n"
+"PO-Revision-Date: 2015-01-23 01:52+0000\n"
+"Last-Translator: Trang Ho\n"
 "Language-Team: Japanese (http://www.transifex.com/projects/p/tatoeba_website/language/ja/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,26 +25,26 @@ msgstr ""
 msgid "You need to be logged in."
 msgstr "ログインしてください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L75
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
 "each other."
 msgstr "#{firstNumber} と #{secondNumber} がリンクされました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L395
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
 msgstr "保存中にエラーが発生しました。もう一度やり直すか、エラーを報告してください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L119
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
 msgstr "#{firstNumber} と #{secondNumber} のリンクが解除されました。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L127
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
@@ -114,6 +114,18 @@ msgstr "コメントを変更しました。"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L339
 msgid "We could not save your changes."
 msgstr "コメントの編集に失敗しました。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L259
+msgid "You cannot delete sentences."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L271
+msgid "The sentence #{id} has been deleted."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L279
+msgid "Error: the sentence #{id} could not be deleted."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L176
 msgid ""
@@ -991,7 +1003,7 @@ msgid "Favorites"
 msgstr "お気に入り"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L75
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L180
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L189
 msgid "Comments"
 msgstr "コメント"
 
@@ -1005,7 +1017,7 @@ msgid "Wall messages"
 msgstr "掲示板への書き込み"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L105
 msgid "Logs"
 msgstr "更新履歴"
 
@@ -1015,7 +1027,7 @@ msgstr "{user}さんにメッセージを送る"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/add_favorite.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/add_favorite.ctp#L34
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L271
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L275
 msgid "Remove from favorites"
 msgstr "お気に入りから外す"
 
@@ -1029,7 +1041,7 @@ msgstr "このユーザーにはお気に入りがありません。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/remove_favorite.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/remove_favorite.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L275
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L279
 msgid "Add to favorites"
 msgstr "お気に入りに追加"
 
@@ -1054,7 +1066,7 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "例文に関係のない話題にはプライベートメッセージを利用しましょう。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L181
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L263
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L264
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
 msgid "Cancel"
 msgstr "キャンセル"
@@ -1166,7 +1178,6 @@ msgid "Russian"
 msgstr "ロシア語"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L79
 msgid "Chinese"
 msgstr "中国語"
 
@@ -1892,14 +1903,14 @@ msgid "Number of sentences"
 msgstr "例文の数"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L148
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L62
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L63
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L70
 msgid "Show"
 msgstr "表示"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L158
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L545
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L546
 msgid "Edit"
 msgstr "編集"
 
@@ -1948,7 +1959,7 @@ msgid "Add a sentence to this list : "
 msgstr "新しい例文をこのリストに追加する： "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L497
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L460
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L465
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L127
 msgid "OK"
@@ -1963,8 +1974,8 @@ msgstr "※リストに文を追加するには、{addToListButton}ボタンを�
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L377
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L50
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_annotations/show.ctp#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L142
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L167
 msgid "Sentence #{number}"
 msgstr "No.{number}"
 
@@ -2042,50 +2053,54 @@ msgstr "この例文は簡体字です。"
 msgid "This sentence is in traditional Chinese."
 msgstr "この例文は繁体字です。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L199
-msgid "Let go"
-msgstr "手放す"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L205
+msgid "Click to unadopt"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L203
-msgid "Adopt"
-msgstr "アドプトする"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L211
+msgid "Click to adopt"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L331
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L332
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L336
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L337
 msgid "Link to another sentence"
 msgstr "リンクを追加する"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L347
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L352
 msgid "Sentence number"
 msgstr "例文番号"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L352
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L357
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L8
 msgid "Link"
 msgstr "リンク"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L388
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L389
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L393
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L394
 msgid "Add to list"
 msgstr "リストに追加する"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L443
 msgid "Add to one of your lists"
 msgstr "自分のリスト"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L439
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L444
 msgid "Add to a collaborative list"
 msgstr "共有リスト"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L488
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L489
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L486
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L494
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L126
 msgid "Delete"
 msgstr "削除"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L531
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L488
+msgid "You cannot delete this sentence because it has audio."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L579
 msgid "belongs to {user}"
 msgstr "所有者：{user}"
 
@@ -2189,37 +2204,37 @@ msgstr "送信"
 msgid "{sender} wrote:"
 msgstr "{sender}さんのメッセージ:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L5
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L4
 msgid "Unlink"
 msgstr "リンク解除"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L6
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L5
 msgid "Unlink this translation."
 msgstr "リンクを解除する"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L157
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L10
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L9
 msgid "Make into direct translation."
 msgstr "リンクする"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L208
 msgid "Play audio"
 msgstr "音声を再生する"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L232
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L218
 msgid "Audio unavailable. Click to learn more."
 msgstr "音声がありません。詳しくはこちらをクリックしてください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L255
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L256
 msgid "Submit translation"
 msgstr "投稿"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L276
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L277
 msgid ""
 "Important! You are about to add a translation to the sentence above. If you "
 "do not understand this sentence, click on \"Cancel\" to display everything "
@@ -2227,7 +2242,7 @@ msgid ""
 "translate from."
 msgstr "※注意 「投稿」をクリックすると、この文は↑の文の翻訳として追加されます。この言語・この文が分からないという場合は、一旦キャンセルし、あなたの分かる文をクリックした上で、その文の翻訳として投稿してください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L288
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L44
 msgid ""
 "Please do not forget <strong>capital letters</strong> and "
@@ -2310,13 +2325,13 @@ msgstr "OK"
 msgid "by {messageAuthor}"
 msgstr "{messageAuthor}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L71
 msgid ""
 "Warning: this website is for testing purposes. Everything you submit will be"
 " definitely lost."
 msgstr "※ここは開発者のテスト用のページです。ここに投稿された内容は失われますのでご注意ください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L97
 msgid "No language matches"
 msgstr "該当言語なし"
 
@@ -2539,10 +2554,12 @@ msgid "File description"
 msgstr "説明"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L167
 msgid "Sentence id"
 msgstr "例文番号"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L169
 msgid "Text"
 msgstr "例文"
 
@@ -2588,6 +2605,8 @@ msgid "Meaning id"
 msgstr "英訳の例文番号"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L170
 msgid "tab"
 msgstr "tab"
 
@@ -2849,24 +2868,24 @@ msgid ""
 "therefore can edit it."
 msgstr "所有者のいない“野良文”は、あなたの文ではないのでそのままでは変更できません。野良文に間違いを見つけた場合は、文を“アドプト”（{adoptButton}）して、所有者になってから訂正してください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L296
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L301
 msgid ""
 "Adopting a sentence is also part of the \"quality process\". You can find "
 "more information about it here:"
 msgstr "また、アドプトの作業はコーパスの“品質管理”の一環でもあります。これについて詳しくはこちらをご覧ください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L308
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L313
 msgid "Sentence lists"
 msgstr "リスト"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L312
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L317
 msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
 msgstr "Tatoebaの例文はリストにまとめることができます。デフォルトでは<strong>個人用リスト</strong>に設定されています。リストを見ることは誰でもできますが、編集できるのはリスト作成者本人に限られます。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L321
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L326
 msgid ""
 "However it is also possible to let any member in Tatoeba add and remove "
 "sentences by setting a list as <strong>collaborative</strong>."
@@ -3111,7 +3130,7 @@ msgid ""
 msgstr "例文をクリックすれば、tatoeba.orgのサイト上で訳やコメントを投稿することができます。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L53
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L174
 msgid "There is no sentence with id {number}"
 msgstr "No.{number} の例文はありません。"
 
@@ -3240,48 +3259,48 @@ msgstr "一文一文ページを辿って訳すのは面倒くさい、自分の
 msgid "Just keep in mind that our server is not as fast as you ;-)"
 msgstr "ただし、サーバーの処理はあなたの頭の回転ほど速くはありませんのでご了承くださいm(_ _)m"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L39
 msgid "{language} example sentence: "
 msgstr "{language}の例文： "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L47
 msgid ""
 "Browse translated example sentences. This page shows translations and "
 "information about the sentence: {sentenceText}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L58
 msgid "Sentence does not exist: "
 msgstr "例文が存在しません： "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L119
 msgid "There is no log for this sentence"
 msgstr "この例文の更新履歴はありません。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L125
 msgid "Report mistakes"
 msgstr "間違いを報告しましょう"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L128
 msgid "Do not hesitate to post a comment if you see a mistake!"
 msgstr "文に間違いがあれば、ぜひコメントを投稿してください。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L134
 msgid ""
 "NOTE: If the sentence does not belong to anyone and you know how to correct "
 "the mistake, feel free to correct it without posting any comment. You will "
 "have to adopt the sentence before you can edit it."
 msgstr "※所有者のいない文の間違いは、コメントなしに訂正して構いません。文をアドプトすれば編集できるようになります。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L204
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L213
 msgid "There are no comments for now."
 msgstr "コメントはありません。"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L208
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L218
 msgid "Sentence deleted"
 msgstr "削除されました"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L220
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L228
 msgid ""
 "You need to be logged in to add a comment. If you are not registered, you "
 "can <a href=\"{}\">register here</a>."
@@ -3341,6 +3360,10 @@ msgstr "このボックスにチェックを入れて言語を指定すると、
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L162
 msgid "Fields will be written out in the following sequence:"
 msgstr "ダウンロードされるファイルは以下の形式になります。"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L171
+msgid "Translation"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L175
 msgid ""
@@ -3725,6 +3748,10 @@ msgstr "上海語を発音記号に変換します。"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L75
 msgid "Convert text from: "
 msgstr "テキストの交換元： "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L79
+msgid "Chinese characters"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L95

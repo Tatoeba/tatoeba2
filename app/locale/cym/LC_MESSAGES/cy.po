@@ -8,9 +8,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-04 02:11+0000\n"
-"PO-Revision-Date: 2014-12-21 18:56+0000\n"
-"Last-Translator: ciaran\n"
+"POT-Creation-Date: 2015-01-23 01:47+0000\n"
+"PO-Revision-Date: 2015-01-23 01:52+0000\n"
+"Last-Translator: Trang Ho\n"
 "Language-Team: Welsh (http://www.transifex.com/projects/p/tatoeba_website/language/cy/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,26 +22,26 @@ msgstr ""
 msgid "You need to be logged in."
 msgstr "Rhaid i chi fewngofnodi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L75
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
 "each other."
 msgstr "Mae brawddegau #{firstNumber} a #{secondNumber} bellach yn gyfieithiadau uniongyrchol o'i gilydd."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L395
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
 msgstr "Bu gwall wrth geisio cadw. Rhowch gynnig arall arni neu cysylltwch â ni."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L119
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
 msgstr "Nid yw brawddegau #{firstNumber} a #{secondNumber} bellach yn gyfieithiadau uniongyrchol o'i gilydd."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L127
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
@@ -111,6 +111,18 @@ msgstr "Cadwyd y newidiadau i'ch sylw."
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L339
 msgid "We could not save your changes."
 msgstr "Nid oedd yn bosib cadw eich newidiadau."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L259
+msgid "You cannot delete sentences."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L271
+msgid "The sentence #{id} has been deleted."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L279
+msgid "Error: the sentence #{id} could not be deleted."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L176
 msgid ""
@@ -1006,7 +1018,7 @@ msgid "Favorites"
 msgstr "Ffefrynnau"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L75
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L180
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L189
 msgid "Comments"
 msgstr "Sylwadau"
 
@@ -1020,7 +1032,7 @@ msgid "Wall messages"
 msgstr "Negeseuon mur"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L105
 msgid "Logs"
 msgstr "Cofnodion"
 
@@ -1030,7 +1042,7 @@ msgstr "Cysylltu â {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/add_favorite.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/add_favorite.ctp#L34
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L271
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L275
 msgid "Remove from favorites"
 msgstr "Tynnu o'm ffefrynnau"
 
@@ -1044,7 +1056,7 @@ msgstr "Nid oes gan y defnyddiwr hwn unrhyw ffefrynnau."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/remove_favorite.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/remove_favorite.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L275
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L279
 msgid "Add to favorites"
 msgstr "Ychwanegu i'm ffefrynnau"
 
@@ -1069,7 +1081,7 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Defnyddiwch negeseuon preifat i drafod pethau amherthnasol i'r frawddeg."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L181
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L263
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L264
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
 msgid "Cancel"
 msgstr "Diddymu"
@@ -1190,7 +1202,6 @@ msgid "Russian"
 msgstr "Rwsieg"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L78
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L79
 msgid "Chinese"
 msgstr "Tsieinëeg"
 
@@ -1916,14 +1927,14 @@ msgid "Number of sentences"
 msgstr "Nifer o frawddegau"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L148
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L62
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L63
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L70
 msgid "Show"
 msgstr "Dangos"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L158
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L545
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L546
 msgid "Edit"
 msgstr "Golygu"
 
@@ -1972,7 +1983,7 @@ msgid "Add a sentence to this list : "
 msgstr "Ychwanegu brawddeg i'r rhestr hon:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L497
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L460
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L465
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L127
 msgid "OK"
@@ -1987,8 +1998,8 @@ msgstr "NODER: Gallwch hefyd ychwanegu brawddegau sydd eisoes yn bodoli drwy'r b
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L377
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L50
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_annotations/show.ctp#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L142
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L167
 msgid "Sentence #{number}"
 msgstr "Brawddeg #{number}"
 
@@ -2066,50 +2077,54 @@ msgstr "Mae'r frawddeg hon yn Tsieinëeg wedi'i symleiddio."
 msgid "This sentence is in traditional Chinese."
 msgstr "Mae'r frawddeg hon yn Tsieinëeg traddodiadol."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L199
-msgid "Let go"
-msgstr "Gwahanu"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L205
+msgid "Click to unadopt"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L203
-msgid "Adopt"
-msgstr "Mabwysiadu"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L211
+msgid "Click to adopt"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L331
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L332
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L336
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L337
 msgid "Link to another sentence"
 msgstr "Cysylltu â brawddeg arall"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L347
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L352
 msgid "Sentence number"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L352
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L357
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L8
 msgid "Link"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L388
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L389
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L393
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L394
 msgid "Add to list"
 msgstr "Ychwanegu at restr"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L443
 msgid "Add to one of your lists"
 msgstr "Ychwanegu at un o'ch rhestri chi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L439
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L444
 msgid "Add to a collaborative list"
 msgstr "Ychwanegu at restr gydweithredol"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L488
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L489
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L486
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L494
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L126
 msgid "Delete"
 msgstr "Dileu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L531
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L488
+msgid "You cannot delete this sentence because it has audio."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L579
 msgid "belongs to {user}"
 msgstr "yn perthyn i {user}"
 
@@ -2216,37 +2231,37 @@ msgstr "Anfon"
 msgid "{sender} wrote:"
 msgstr "Ysgrifennodd {sender}:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L5
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L4
 msgid "Unlink"
 msgstr "Datgysylltu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L6
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L5
 msgid "Unlink this translation."
 msgstr "Datgysylltu'r cyfieithiad hwn."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L157
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L10
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L9
 msgid "Make into direct translation."
 msgstr "Troi'n gyfieithiad uniongyrchol."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L208
 msgid "Play audio"
 msgstr "Chwarae'r sain"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L232
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L218
 msgid "Audio unavailable. Click to learn more."
 msgstr "Nid yw'r sain ar gael. Cliciwch i ddysgu mwy."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L255
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L256
 msgid "Submit translation"
 msgstr "Cyflwyno'r cyfieithiad"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L276
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L277
 msgid ""
 "Important! You are about to add a translation to the sentence above. If you "
 "do not understand this sentence, click on \"Cancel\" to display everything "
@@ -2254,7 +2269,7 @@ msgid ""
 "translate from."
 msgstr "Pwysig! Rydych ar fin ychwanegu cyfieithiad i'r frawddeg uchod. Os nad ydych chi'n deall y frawddeg hon, cliciwch ar \"Diddymu\" i fynd yn ôl i ddangos popeth, ac yna glicio ar y frawddeg rydych chi'n ei deall ac eisiau ei chyfieithu."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L288
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L44
 msgid ""
 "Please do not forget <strong>capital letters</strong> and "
@@ -2337,13 +2352,13 @@ msgstr "cyflwyno"
 msgid "by {messageAuthor}"
 msgstr "gan {messageAuthor}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L71
 msgid ""
 "Warning: this website is for testing purposes. Everything you submit will be"
 " definitely lost."
 msgstr "Rhybudd: defnyddir y wefan hon at ddibenion profi yn unig. Bydd popeth rydych chi'n ei gyflwyno yn cael ei golli."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L97
 msgid "No language matches"
 msgstr ""
 
@@ -2566,10 +2581,12 @@ msgid "File description"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L167
 msgid "Sentence id"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L169
 msgid "Text"
 msgstr "Testun"
 
@@ -2615,6 +2632,8 @@ msgid "Meaning id"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L170
 msgid "tab"
 msgstr ""
 
@@ -2876,24 +2895,24 @@ msgid ""
 "therefore can edit it."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L296
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L301
 msgid ""
 "Adopting a sentence is also part of the \"quality process\". You can find "
 "more information about it here:"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L308
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L313
 msgid "Sentence lists"
 msgstr "Rhestri o frawddegau"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L312
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L317
 msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L321
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L326
 msgid ""
 "However it is also possible to let any member in Tatoeba add and remove "
 "sentences by setting a list as <strong>collaborative</strong>."
@@ -3153,7 +3172,7 @@ msgid ""
 msgstr "Cliciwch ar frawddeg i fynd i tatoeba.org i'w chyfieithu neu i wneud sylw."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L53
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L174
 msgid "There is no sentence with id {number}"
 msgstr "Does dim brawddeg gyda'r id {number}"
 
@@ -3282,48 +3301,48 @@ msgstr "Ydy cyfieithu brawddegau un ar y tro yn rhy araf i chi? Hoffech chi well
 msgid "Just keep in mind that our server is not as fast as you ;-)"
 msgstr "Cofiwch nad yw'n gweinydd mor gyflym â chi ;-)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L39
 msgid "{language} example sentence: "
 msgstr "Brawddeg enghreifftiol yn {language}:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L47
 msgid ""
 "Browse translated example sentences. This page shows translations and "
 "information about the sentence: {sentenceText}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L57
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L58
 msgid "Sentence does not exist: "
 msgstr "Nid yw'r frawddeg yn bodoli:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L119
 msgid "There is no log for this sentence"
 msgstr "Nid oes unrhyw gofnod o'r frawddeg hon"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L125
 msgid "Report mistakes"
 msgstr "Adrodd camgymeriadau"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L128
 msgid "Do not hesitate to post a comment if you see a mistake!"
 msgstr "Mae croeso i chi adael sylw os byddwch chi'n gweld camgymeriad!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L134
 msgid ""
 "NOTE: If the sentence does not belong to anyone and you know how to correct "
 "the mistake, feel free to correct it without posting any comment. You will "
 "have to adopt the sentence before you can edit it."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L204
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L213
 msgid "There are no comments for now."
 msgstr "Nid oes unrhyw sylwadau ar hyn o bryd."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L208
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L218
 msgid "Sentence deleted"
 msgstr "Dilëwyd y frawddeg"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L220
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L228
 msgid ""
 "You need to be logged in to add a comment. If you are not registered, you "
 "can <a href=\"{}\">register here</a>."
@@ -3382,6 +3401,10 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L162
 msgid "Fields will be written out in the following sequence:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L171
+msgid "Translation"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L175
@@ -3770,6 +3793,10 @@ msgstr "Trosi testun Tsieinëeg Shanghai i'w ynganiad gan ddefnyddio'r Wyddor Se
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L75
 msgid "Convert text from: "
 msgstr "Trosi'r testun o:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L79
+msgid "Chinese characters"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L95
