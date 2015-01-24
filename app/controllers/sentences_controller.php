@@ -333,6 +333,9 @@ class SentencesController extends AppController
      * Edit sentence.
      * Used in AJAX request, in sentences.edit_in_place.js.
      *
+     * @todo Need to have an editSentence() in the model, that will check if sentence 
+     * has audio, in which case it cannot be edited.
+     *
      * @return void
      */
     public function edit_sentence()

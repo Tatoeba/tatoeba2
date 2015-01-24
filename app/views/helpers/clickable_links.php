@@ -40,7 +40,7 @@ class ClickableLinksHelper extends AppHelper
     public $helpers = array('Html');
 
     const URL_PATTERN = '/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n\(\)"\'\!<]+)/siu';
-    const SENTENCE_ID_PATTERN = '/([\p{P}：\s]|^)(#([1-9]\d*))/';
+    const SENTENCE_ID_PATTERN = '/([\p{Ps}：\s]|^)(#([1-9]\d*))/';
 
     /**
      * Replace URLs by clickable URLs.
