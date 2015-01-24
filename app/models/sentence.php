@@ -125,7 +125,8 @@ class Sentence extends AppModel
         'liv',
         'nav',
         'chr',
-        'guj', //@lang
+        'guj', 
+        'pan', //@lang
         null
     );
 
