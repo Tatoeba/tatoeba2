@@ -4,14 +4,18 @@
   shell: echo "DROP DATABASE IF EXISTS {{mysql_db_name}}" | mysql -u {{mysql_user}} -p{{mysql_password}}
 - name: Create a new mysql database
   shell: echo "CREATE DATABASE {{mysql_db_name}}" | mysql -u {{mysql_user}} -p{{mysql_password}}
-- name: Initialize  database with empty tables 
-# This task requires mysql root for creating triggers
-  shell: mysql -u root -p{{mysql_root_password}} {{mysql_db_name}} < /var/www-prod/docs/database/{{item}}
+- name: Initialize database schema
+  shell: find /var/www-prod/docs/database/tables -type f -exec cat {} \; | mysql -u {{mysql_user}} -p{{mysql_password}} {{mysql_db_name}}
+- name: Fill database with initial values
+  shell: mysql -u {{mysql_user}} -p{{mysql_root_password}} {{mysql_db_name}} < /var/www-prod/docs/database/{{item}}
   with_items:
-  - database_20130406.sql
-  - import/groups.sql
   - import/users.sql
   - import/acos.sql
-  - import/aros.sql
   - import/aros_acos.sql
+  - import/aros.sql
   - import/countries.sql
+  - import/groups.sql
+  - import/sinograms.sql
+- name: Install database triggers
+# This task requires mysql root for creating triggers
+  shell: find /var/www-prod/docs/database/triggers -type f -exec cat {} \; | mysql -u root -p{{mysql_root_password}} {{mysql_db_name}}

@@ -12,8 +12,5 @@
 - include: create_db.yml
   when: reimport_db == true
 
-- name: Install new updates (if any)
-  script: install_updates.sh {{mysql_user}} {{mysql_password}} {{mysql_db_name}} {{code_dir}}/versions/current/docs/database/updates/ {{code_dir}}/common
-
 - include: import_csv.yml
   when: reimport_db == true
