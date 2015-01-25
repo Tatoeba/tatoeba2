@@ -27,5 +27,7 @@
   when: sphinx_create_indexes == true
 - name: Set sphinxsearch to start with system startup
   command: sed -i 's/START=no/START=yes/' /etc/default/sphinxsearch
+- name: Increase the number of allowed opened files for the Sphinx deamon
+  command: sed -i '/start-stop-daemon --start/i ulimit -n 2048' /etc/init.d/sphinxsearch
 - name: Start the search daemon
   service: name=sphinxsearch state=started enabled=yes
