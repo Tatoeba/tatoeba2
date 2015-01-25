@@ -215,7 +215,7 @@ class SentenceButtonsHelper extends AppHelper
                 $onClick = 'return false';
                 $css = 'audioUnavailable';
                 $path = 'http://en.wiki.tatoeba.org/articles/show/contribute-audio';
-                $title = __('Audio unavailable. Click to learn more.', true);
+                $title = __('No audio for this sentence. Click to learn how to contribute.', true);
                 $onClick = 'window.open(this.href); return false;';
                 break;
 
