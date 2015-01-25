@@ -6,4 +6,3 @@
   gather_facts: yes
   roles:
   - { role: update_code, update_cakephp_config: false }
-  - { role: setup_database, reimport_db: false }

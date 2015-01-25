@@ -34,12 +34,10 @@ mysql_user: tatouser
 mysql_password: tatoeba
 mysql_db_name: tatoeba
 
-# Set this to yes if you want to fetch the csv's from http://tatoeba.org/files/downloads/
-# Set this to no if the csv's are present in roles/codebase/files (sentences.csv, links.csv, tags_metadata.csv and tags_detailed.csv)
-download_csv: yes
-# Set this to true/yes if you want to drop the current database and reimport everything
-reimport_db: true
-
+# Set this to 'download' if you want to fetch the csv's from http://tatoeba.org/files/downloads/. This will import sentences and tags from the latest export of Tatoeba.
+# Set this to 'local' if the csv's are already present in roles/codebase/files (sentences.csv, links.csv, tags_metadata.csv and tags_detailed.csv)
+# Set this to 'no' if you don't want to import data
+import_csv: 'download'
 
 # Variables for Tatoeba's code and Cakephp
 # ----------------------------------------

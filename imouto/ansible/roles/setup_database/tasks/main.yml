@@ -10,7 +10,6 @@
   when: code_status|failed
 
 - include: create_db.yml
-  when: reimport_db == true
 
 - include: import_csv.yml
-  when: reimport_db == true
+  when: import_csv != 'no'

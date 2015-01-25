@@ -7,7 +7,7 @@
   - links.csv
   - tag_metadata.csv
   - tags_detailed.csv
-  when: download_csv == false
+  when: import_csv == 'local'
 - name: Download csv's from http://tatoeba.org/files/downloads/
   get_url: url=http://tatoeba.org/files/downloads/{{item}} dest=/tmp/{{item}} mode=777 owner=mysql group=mysql
   with_items:
@@ -15,7 +15,7 @@
   - links.csv
   - tag_metadata.csv
   - tags_detailed.csv
-  when: download_csv == true
+  when: import_csv == 'download'
 - name: Import sentences in the tatoeba database 
 # This task requires mysql root because restore_dumps.sql sets soem global variables 
   shell: mysql -u root -p{{mysql_root_password}} {{mysql_db_name}} < /var/www-prod/docs/database/import/restore_dumps.sql

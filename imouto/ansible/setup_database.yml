@@ -5,4 +5,4 @@
   sudo: yes
   gather_facts: yes
   roles:
-  - { role: setup_database, reimport_db: no }
+  - { role: setup_database }

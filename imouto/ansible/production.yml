@@ -13,7 +13,7 @@
   - setup_php
   - setup_mysql
   - { role: update_code, update_cakephp_config: no }
-  - { role: setup_database, reimport_db: yes }
+  - { role: setup_database }
   - install_sphinx
   - { role: configure_sphinx, sphinx_create_indexes: no }
   - { role: setup_nihongoparserd, force_install: no }
