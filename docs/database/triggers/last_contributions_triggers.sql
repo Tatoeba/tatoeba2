@@ -8,7 +8,7 @@ INSERT INTO last_contributions
         LIMIT 200 ;
 
 -- create the trigger
-DROP TRIGGER insert_in_last_contributions ;
+DROP TRIGGER IF EXISTS insert_in_last_contributions ;
 delimiter |
 CREATE TRIGGER insert_in_last_contributions AFTER INSERT ON contributions
   FOR EACH ROW BEGIN
