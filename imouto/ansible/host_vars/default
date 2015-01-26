@@ -72,7 +72,7 @@ sphinx_config_dir: /etc/sphinxsearch
 # ------------------------
 # How do you want ngrams.db file be created? Options: [generate, download, skip]
 ngrams_create_mode: download
-ngrams_db_download_url: http://www.aloneonmars.info/public/lool0/ngrams.db
+ngrams_db_download_url: http://downloads.tatoeba.org/tatodetect/ngrams.db
 csv_download_url: http://tatoeba.org/files/downloads/
 csv_file_name: sentences_detailed.csv
 ngrams_db_dir: /etc/
