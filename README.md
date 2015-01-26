@@ -70,7 +70,7 @@ The following playbooks are included with imouto currently:
 - `local.yml`: To provision the whole machine (development) by calling each of the roles. Note that this can also be achieved by running `vagrant provision` command in the `imouto` directory.
 - `setup_lemp.yml`: To install and set up nginx, mysql and php5-fpm.
 - `update_code.yml`: To fetch the latest code from Tatoeba's github repository and update it on VM.
-- `setup_database.yml`: To install latest database updates and/or to re-initialize the whole Tatoeba database.
+- `setup_database.yml`: To re-initialize the whole Tatoeba database.
 - `setup_external_tools.yml`: To install and set up the external tools used by the website including sphinx and imagick.
 - `configure_sphinx.yml`: To configure sphinx search, create indexes and start the search daemon.
 - `setup_newrelic.yml`: To install and setup New Relic monitoring daemons.
