@@ -526,6 +526,7 @@ class LanguagesHelper extends AppHelper
             "urd",
             "yid",
             "pnb",
+            "ota"
         );
 
         if (in_array($lang, $rightToLeftLangs)) {
