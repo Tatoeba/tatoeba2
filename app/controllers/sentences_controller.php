@@ -566,6 +566,8 @@ class SentencesController extends AppController
         );
 
         $this->set('query', $query);
+        $this->set('from', $from);
+        $this->set('to', $to);
         $this->set('results', $allSentences);
     }
 

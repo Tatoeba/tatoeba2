@@ -27,9 +27,24 @@
 
 $query = Sanitize::html($query);
 
-$this->set('title_for_layout', $pages->formatTitle(
-    format(__('Sentences with: {keywords}', true), array('keywords' => $query))
-));
+if (!empty($query)) {
+    $title = format(__('Sentences with: {keywords}', true), array('keywords' => $query));
+} else {
+    if ($from != 'und' && $to != 'und') {
+        $title = format(__('Sentences in {language} translated into {translationLanguage}', true),
+                        array('language' => $languages->codeToNameToFormat($from),
+                              'translationLanguage' => $languages->codeToNameToFormat($to)));
+    } elseif ($from != 'und') {
+        $title = format(__('Sentences in {language}', true),
+                        array('language' => $languages->codeToNameToFormat($from)));
+    } elseif ($to != 'und') {
+        $title = format(__('Sentences translated into {language}', true),
+                        array('language' => $languages->codeToNameToFormat($to)));
+    } else {
+        $title = format(__('All sentences', true));
+    }
+}
+$this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">
@@ -50,11 +65,13 @@ if (!empty($results)) {
     ?>
     <div class="module">
         <?php 
-        $title = format(
-            /* @translators: title on the top of a search result page */
-            __('Search: {keywords}', true),
-            array('keywords' => sprintf('<span style="unicode-bidi: embed">%s</span>', $query))
-        );
+        if (!empty($query)) {
+            $title = format(
+                /* @translators: title on the top of a search result page */
+                __('Search: {keywords}', true),
+                array('keywords' => sprintf('<span style="unicode-bidi: embed">%s</span>', $query))
+            );
+        }
         echo $this->Pages->formatTitleWithResultCount($paginator, $title);
         ?>
         

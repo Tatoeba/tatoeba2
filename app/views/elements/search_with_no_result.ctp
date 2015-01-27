@@ -30,7 +30,23 @@ $query = Sanitize::html($query);
 
 <div class="module">
     <h2>
-    <?php echo format(__('Add a sentence containing {keywords}', true), array('keywords' => $query)); ?>
+    <?php
+        if (!empty($query)) {
+            echo format(__('Add a sentence containing {keywords}', true), array('keywords' => $query));
+        } elseif($from != 'und' && $to != 'und') {
+            echo format(__('Translate a {language} sentence into {translationLanguage}', true),
+                        array('language' => $languages->codeToNameToFormat($from),
+                              'translationLanguage' => $languages->codeToNameToFormat($to)));
+        } elseif($from != 'und') {
+            echo format(__('Translate a {language} sentence', true),
+                        array('language' => $languages->codeToNameToFormat($from)));
+        } elseif($to != 'und') {
+            echo format(__('Translate a sentence into {language}', true),
+                        array('language' => $languages->codeToNameToFormat($to)));
+        } else {
+            echo format(__('Add a new sentence'));
+        }
+    ?>
     </h2>
 
     <p>
