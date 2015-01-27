@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-24 16:48+0000\n"
+"POT-Creation-Date: 2015-01-27 13:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -742,19 +742,35 @@ msgstr ""
 msgid "You can learn about advanced search features <a href=\"{}\">here</a>."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L33
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L35
 msgid "Add a sentence containing {keywords}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L37
+msgid "Translate a {language} sentence into {translationLanguage}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L41
+msgid "Translate a {language} sentence"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L44
+msgid "Translate a sentence into {language}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L47
+msgid "Add a new sentence"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L55
 msgid "There is no result for this search (yet) but you can help us by feeding the corpus with new vocabulary!"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L68
 msgid "Feel free to <a href=\"{}\">submit a sentence</a> with the words you were searching."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L39
 msgid "If you are interested, please register."
 msgstr ""
@@ -2104,9 +2120,20 @@ msgstr ""
 #. that shows a list of sentences (search, browse by language,
 #. adopt sentences…) by appending the number of results. Note
 #. the use of &nbsp; which is a non-breaking space.
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L32
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L33
 msgid "{title} (one result)"
 msgid_plural "{title} ({n}&nbsp;results)"
+msgstr[0] ""
+msgstr[1] ""
+
+#. @translators: this formats the title at the top of the search
+#. page by appending the number of results. Tatoeba is only able
+#. to display {thousand} results (that should always be turned
+#. into “1000”), but {n} results actually exist in the corpus.
+#. Note the use of &nbsp; which is a non-breaking space.
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L44
+msgid "{title} ({thousand}&nbsp;results out of one occurrence)"
+msgid_plural "{title} ({thousand}&nbsp;results out of {n}&nbsp;occurrences)"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -2155,7 +2182,7 @@ msgid "Play audio"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L218
-msgid "Audio unavailable. Click to learn more."
+msgid "No audio for this sentence. Click to learn how to contribute."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L256
@@ -2755,14 +2782,6 @@ msgstr ""
 msgid "See what's happening now."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/search.ctp#L28
-msgid "Examples of search"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/search.ctp#L41
-msgid "Please enter a nonempty search string"
-msgstr ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L32
 msgid "Table of contents"
 msgstr ""
@@ -2985,8 +3004,24 @@ msgstr ""
 msgid "Sentences with: {keywords}"
 msgstr ""
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L34
+msgid "Sentences in {language} translated into {translationLanguage}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L38
+msgid "Sentences in {language}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L41
+msgid "Sentences translated into {language}"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L44
+msgid "All sentences"
+msgstr ""
+
 #. @translators: title on the top of a search result page
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L71
 msgid "Search: {keywords}"
 msgstr ""
 

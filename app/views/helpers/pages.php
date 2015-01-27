@@ -23,17 +23,30 @@ class PagesHelper extends AppHelper
         return $pageTitle . __(' - Tatoeba', true);
     }
 
-    public function formatTitleWithResultCount($paginator, $title) {
+    public function formatTitleWithResultCount($paginator, $title, $real_total = 0) {
         $n = $paginator->counter(array('format' => '%count%'));
-        /* @translators: this formats the title at the top of every page
-           that shows a list of sentences (search, browse by language,
-           adopt sentences…) by appending the number of results. Note
-           the use of &nbsp; which is a non-breaking space. */
-        $title = format(__n('{title} (one result)',
-                            '{title} ({n}&nbsp;results)',
-                            $n, true),
-                        compact('title', 'n')
-        );
+        if ($real_total == 0 || $real_total == $n) {
+            /* @translators: this formats the title at the top of every page
+               that shows a list of sentences (search, browse by language,
+               adopt sentences…) by appending the number of results. Note
+               the use of &nbsp; which is a non-breaking space. */
+            $title = format(__n('{title} (one result)',
+                                '{title} ({n}&nbsp;results)',
+                                $n, true),
+                            compact('title', 'n')
+            );
+        } else {
+            /* @translators: this formats the title at the top of the search
+               page by appending the number of results. Tatoeba is only able
+               to display {thousand} results (that should always be turned
+               into “1000”), but {n} results actually exist in the corpus.
+               Note the use of &nbsp; which is a non-breaking space. */
+            $title = format(__n('{title} ({thousand}&nbsp;results out of one occurrence)',
+                                '{title} ({thousand}&nbsp;results out of {n}&nbsp;occurrences)',
+                                $real_total, true),
+                            array('title' => $title, 'thousand' => $n, 'n' => $real_total)
+            );
+        }
         $title = sprintf('<h2>%s</h2>', $title);
         return $title;
     }
