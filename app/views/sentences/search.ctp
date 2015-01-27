@@ -72,7 +72,7 @@ if (!empty($results)) {
                 array('keywords' => sprintf('<span style="unicode-bidi: embed">%s</span>', $query))
             );
         }
-        echo $this->Pages->formatTitleWithResultCount($paginator, $title);
+        echo $this->Pages->formatTitleWithResultCount($paginator, $title, $real_total);
         ?>
         
         <?php

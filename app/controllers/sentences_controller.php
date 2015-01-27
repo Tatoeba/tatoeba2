@@ -562,13 +562,15 @@ class SentencesController extends AppController
         $allSentences = $this->_common_sentences_pagination(
             $pagination,
             $model,
-            $to
+            $to,
+            $real_total
         );
 
         $this->set('query', $query);
         $this->set('from', $from);
         $this->set('to', $to);
         $this->set('results', $allSentences);
+        $this->set('real_total', $real_total);
     }
 
     /**
@@ -682,19 +684,29 @@ class SentencesController extends AppController
      * @param string $model           Model to use for pagination
      * @param string $translationLang If different of null, will only
      *                                retrieve translation in this language.
+     * @param string &$real_total     If Sphinx returns the "real total", it
+     *                                will be stored here. Sphinx returns a
+     *                                limited number of results (1000), but
+     *                                it's able to tell the exact number of
+     *                                results that could be returned if there
+     *                                were no limitation.
      *
      * @return array Big nested array of sentences + information related to senences
      */
     private function _common_sentences_pagination(
         $pagination,
         $model,
-        $translationLang = null
+        $translationLang = null,
+        &$real_total = 0
     ) {
 
         $this->paginate = $pagination;
         $results = $this->paginate($model);
         if (!is_array($results)) {
             $results = array();
+        }
+        if (isset($results[0]['Sentence']['_total_found'])) {
+            $real_total = $results[0]['Sentence']['_total_found'];
         }
 
         $sentenceIds = array();
