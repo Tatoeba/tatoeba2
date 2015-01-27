@@ -538,6 +538,12 @@ class SentencesController extends AppController
             'sortMode' => array(SPH_SORT_RELEVANCE => ""),
             'rankingMode' => array(SPH_RANK_EXPR => $ranking_formula),
         );
+        if (empty($query)) {
+            // When the query is empty, Sphinx changes matchMode into
+            // SPH_MATCH_FULLSCAN and ignores rankingMode. So let's use
+            // sortMode instead.
+            $sphinx['sortMode'] = array(SPH_SORT_EXPR => $ranking_formula);
+        }
         // if we want to search only on sentences having translations
         // in a specified language
         if ($to !== 'und') {
