@@ -31,7 +31,7 @@
 }
 
 .root .message, .replies .message {
-    margin: 10px 0px 0px 0px;
+    margin: 5px 0px 0px 0px;
     padding-bottom: 15px;
 }
 
@@ -55,4 +55,22 @@
 
 .replies .form .submit {
     border-bottom: 1px solid #ddd;
+}
+
+.wall .toggleRepliesButton {
+    cursor: pointer;
+    padding: 3px 10px;
+    display: inline-block;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.wall .showReplies {
+    background: #06A;
+    color: #fff;
+}
+
+.wall .hideReplies {
+    background: rgba(0, 102, 170, 0.1);
+    color: #06A;
 }

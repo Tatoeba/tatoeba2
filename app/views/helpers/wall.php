@@ -281,7 +281,8 @@ class WallHelper extends AppHelper
 
         <?php ?><div class="replies" id="messageBody_<?php echo $messageId; ?>"><?php
         if (!empty($children)) {
-            
+            $this->_displayToggleButton($messageId);
+
             $this->_displayAllReplies(
                 $children
             );
@@ -290,6 +291,19 @@ class WallHelper extends AppHelper
 
         </div>
     <?php
+    }
+
+    private function _displayToggleButton($messageId)
+    {
+        echo '<div class="toggleRepliesButton hideReplies"
+                id="hide_replies_button_'.$messageId.'" 
+                onclick="toggleReplies('.$messageId.')">
+                '.__('hide replies', true).'</div>';
+        echo '<div class="toggleRepliesButton showReplies"
+                style="display:none;"
+                id="show_replies_button_'.$messageId.'" 
+                onclick="toggleReplies('.$messageId.')">
+                '.__('show replies', true).'</div>';
     }
 
 
@@ -321,6 +335,8 @@ class WallHelper extends AppHelper
         // replies
         echo '<div class="replies" id="messageBody_'.$messageId .'" >';
         if (!empty($children)) {
+            $this->_displayToggleButton($messageId);
+
             foreach ($children as $child ) {
                 $this->createReplyDiv(
                     // this is because the allMessages array
