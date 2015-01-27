@@ -384,11 +384,6 @@ class SentencesHelper extends AppHelper
         
         <div class="<?php echo $class; ?>" <?php echo $elementId; ?>>
         <?php
-        // Link/unlink button
-        if (CurrentUser::isTrusted()) {
-            $this->_displayLinkOrUnlinkButton($parentId, $sentenceId, $type, $langFilter);
-        }
-
         // Navigation button (info or arrow icon)
         $this->_displayNavigation($sentenceId, $type);
 
@@ -403,6 +398,11 @@ class SentencesHelper extends AppHelper
         $this->SentenceButtons->displayLanguageFlag(
             $sentenceId, $sentenceLang, $isEditable
         );
+
+        // Link/unlink button
+        if (CurrentUser::isTrusted()) {
+            $this->_displayLinkOrUnlinkButton($parentId, $sentenceId, $type, $langFilter);
+        }
 
         // Sentence and romanization
         $canEdit = $isEditable && $sentenceAudio == 'no';
