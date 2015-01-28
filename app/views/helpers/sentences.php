@@ -387,17 +387,17 @@ class SentencesHelper extends AppHelper
         // Navigation button (info or arrow icon)
         $this->_displayNavigation($sentenceId, $type);
 
-        // audio
-        if ($withAudio) {
-            $this->SentenceButtons->audioButton($sentenceId, $sentenceLang, $sentenceAudio);
-        }
-
         // language flag
         // TODO For Chinese sentences, it is better to display the
         // traditional/simplified icon here, instead of in the menu.
         $this->SentenceButtons->displayLanguageFlag(
             $sentenceId, $sentenceLang, $isEditable
         );
+
+        // audio
+        if ($withAudio) {
+            $this->SentenceButtons->audioButton($sentenceId, $sentenceLang, $sentenceAudio);
+        }
 
         // Link/unlink button
         if (CurrentUser::isTrusted()) {
