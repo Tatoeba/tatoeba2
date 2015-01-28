@@ -33,8 +33,10 @@ class AudioMover(PythonMySQLConnector):
 
     def init_parser(self):
         PythonMySQLConnector.init_parser(self)
-        self.parser.add_argument('old_id', help='id of sentence with which audio is currently associated')
-        self.parser.add_argument('new_id', help='id of sentence to which audio is to be moved')
+        self.parser.add_argument('--old_id', type=int, default=0,
+                                 help='id of sentence with which audio is currently associated')
+        self.parser.add_argument('--new_id', type=int, default=0,
+                                 help='id of sentence to which audio is to be moved')
         self.parser.add_argument('--base_mp3_dir', default='.',
             help='base directory where mp3 files are stored (e.g., "/home/tatoeba/audio/")')
         self.parser.add_argument('--old_lang', default='',
@@ -78,7 +80,7 @@ class AudioMover(PythonMySQLConnector):
                 return False
 
     def sentence_has_mp3(self, id, lang):
-        return os.isfile(self.path_to_audio_file(id, lang))
+        return os.path.isfile(self.path_to_audio_file(id, lang))
 
     def path_to_audio_file(self, id, lang):
         return os.path.join(self.parsed.base_mp3_dir, lang, "{0}.mp3".format(id))
@@ -90,24 +92,36 @@ class AudioMover(PythonMySQLConnector):
         if not self.sentence_has_audio_in_db(self.parsed.old_id):
             raise Exception('Sentence {0} is not marked in db as existing or as having audio'.format(
                     self.parsed.old_id))
-        if not self.sentence_has_mp3(self.parsed.old_id):
-            raise Exception('There is no audio file for sentence {0}'.format(
-                    self.parsed.old_id))
+        if not self.sentence_has_mp3(self.parsed.old_id, self.parsed.old_lang):
+            raise Exception('There is no audio file for sentence {0} (in language {1})'.format(
+                    self.parsed.old_id, self.parsed.old_lang))
         if not self.sentence_exists_in_db(self.parsed.new_id):
             raise Exception('Sentence {0} is not marked in db as existing or as having audio'.format(
                 self.parsed.new_id))
         old_file = self.path_to_audio_file(self.parsed.old_id, self.parsed.old_lang)
         new_file = self.path_to_audio_file(self.parsed.new_id, self.parsed.new_lang)
-        if self.sentence_has_mp3(self, self.parsed.new_id, self.parsed.new_lang):
+        if self.sentence_has_mp3(self.parsed.new_id, self.parsed.new_lang):
             # If the new sentence already has an audio file, archive it.
             cmd = "mv {0} {1}".format(new_file, self.make_archive_dir(self.parsed.new_lang))
-            subprocess.check_call(cmd)
+            print("{0}".format(cmd))
+            if not self.parsed.dry_run:
+                os.rename(new_file, self.path_to_archived_audio_file(self.parsed.new_id, 
+                                                                 self.parsed.new_lang))
         cmd = "mv {0} {1}".format(old_file, new_file)
-        subprocess.check_call(cmd)
+        print(cmd)
+        if not self.parsed.dry_run:
+            os.rename(old_file, new_file)
+        cursor = self.cnx.cursor()
         stmt = "UPDATE sentences SET hasaudio = 'shtooka' WHERE id = '{0}';".format(self.parsed.new_id)
-        cursor.execute(stmt)
+        print(stmt)
+        if not self.parsed.dry_run:
+            ret = cursor.execute(stmt)
+            #print('ret: {0}'.format(ret))
         stmt = "UPDATE sentences SET hasaudio = 'no' WHERE id = '{0}';".format(self.parsed.old_id)
-        cursor.execute(stmt)
+        print(stmt)
+        if not self.parsed.dry_run:
+            ret = cursor.execute(stmt)
+            #print('ret: {0}'.format(ret))
 
  
               
@@ -116,9 +130,9 @@ if __name__ == "__main__":
 
     # script_dir = os.path.dirname(os.path.realpath(__file__))
 
-    finder = AudioMover()
-    finder.process_args(sys.argv)
-    finder.connect()
-    finder.set_log_file()
-    finder.process()
-    finder.disconnect()
+    mover = AudioMover()
+    mover.process_args(sys.argv)
+    mover.connect()
+    mover.set_log_file()
+    mover.process()
+    mover.disconnect()
