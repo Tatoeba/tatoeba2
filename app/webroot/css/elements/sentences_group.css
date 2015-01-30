@@ -144,9 +144,8 @@
 }
 
 .sentence .button {
-    float: right;
-    margin-top: 6px;
-    margin-left: 20px;
+    float: left;
+    margin: 6px 10px 0px 5px;
 }
 
 
@@ -278,7 +277,7 @@ input.sentenceId {
 
 .selectLang {
     display: none;
-    float: right;
+    float: left;
 }
 
 
@@ -299,8 +298,8 @@ input.sentenceId {
 }
 
 .languageFlag {
-    float: right;
-    margin: 5px;
+    float: left;
+    margin: 5px 8px 5px 2px;
 }
 
 
