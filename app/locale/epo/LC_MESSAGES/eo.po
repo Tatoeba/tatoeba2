@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-23 01:47+0000\n"
-"PO-Revision-Date: 2015-01-23 10:39+0000\n"
+"POT-Creation-Date: 2015-01-30 23:33+0000\n"
+"PO-Revision-Date: 2015-01-31 11:38+0000\n"
 "Last-Translator: Paul Peeraerts <paul2711@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/projects/p/tatoeba_website/language/eo/)\n"
 "MIME-Version: 1.0\n"
@@ -72,7 +72,7 @@ msgstr "restaŭri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L285
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L239
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L454
 msgid "delete"
 msgstr "forigi"
 
@@ -81,7 +81,7 @@ msgid "mark as unread"
 msgstr "marku kiel nelegita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L305
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L452
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L468
 msgid "reply"
 msgstr "respondi"
 
@@ -327,7 +327,7 @@ msgstr "Do, se vi volas helpi nin kontroli kaj korekti frazojn, adoptu ({adoptBu
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L72
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L65
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L51
 msgid "Tips"
 msgstr "Konsiloj"
 
@@ -813,23 +813,39 @@ msgstr "Vi povas trovi bazajn instrukciojn por serĉi <a href=\"{}\">tie ĉi</a>
 msgid "You can learn about advanced search features <a href=\"{}\">here</a>."
 msgstr "Vi povas lerni pli pri altnivelaj ebloj de serĉo <a href=\"{}\">ĉi tie</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L33
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L35
 msgid "Add a sentence containing {keywords}"
 msgstr "Aldoni frazon, kiu enhavas {keywords}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L37
+msgid "Translate a {language} sentence into {translationLanguage}"
+msgstr "Traduki frazon en la {language} al la {translationLanguage}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L41
+msgid "Translate a {language} sentence"
+msgstr "Traduki {language}n frazon"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L44
+msgid "Translate a sentence into {language}"
+msgstr "Traduki frazon al la {language}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L47
+msgid "Add a new sentence"
+msgstr "Aldoni novan frazon"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L55
 msgid ""
 "There is no result for this search (yet) but you can help us by feeding the "
 "corpus with new vocabulary!"
 msgstr "(Ankoraŭ) mankas rezulto por tiu serĉo, sed vi povas helpi nin kompletigante la tekstaron!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L68
 msgid ""
 "Feel free to <a href=\"{}\">submit a sentence</a> with the words you were "
 "searching."
 msgstr "Ne hezitu <a href=\"{}\">sendi frazon </a>kun la vortoj, kiujn vi serĉis."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L39
 msgid "If you are interested, please register."
 msgstr "Se vi interesiĝas, bonvolu registriĝi."
@@ -1091,12 +1107,12 @@ msgstr "kaŝi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L245
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L377
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L444
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L460
 msgid "Are you sure?"
 msgstr "Ĉu vi certas?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L252
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L441
 msgid "edit"
 msgstr "redakti"
 
@@ -1586,8 +1602,8 @@ msgid "Xhosa"
 msgstr "Kosa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L183
-msgid "Punjabi"
-msgstr "Panĝaba"
+msgid "Punjabi (Western)"
+msgstr "Panĝaba (okcidenta)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L184
 msgid "Malagasy"
@@ -1861,38 +1877,42 @@ msgstr "Ĉerokea"
 msgid "Gujarati"
 msgstr "Guĝarata"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L308
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L327
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L398
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L253
+msgid "Punjabi (Eastern)"
+msgstr "Panĝaba (orienta)"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L328
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L399
 msgid "All languages"
 msgstr "Ĉiuj lingvoj"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L344
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L345
 msgid "unknown language"
 msgstr "nekonata lingvo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L361
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L362
 msgid "other language"
 msgstr "Alia lingvo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L379
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L380
 msgid "Auto detect"
 msgstr "aŭtomata rekono"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L397
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L440
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L398
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L441
 msgid "None"
 msgstr "Nenio"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L420
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L421
 msgid "Any language"
 msgstr "Ajna lingvo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L456
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L457
 msgid "Any"
 msgstr "Iu ajn"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L489
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L490
 msgid "unknown"
 msgstr "nekonata"
 
@@ -2185,11 +2205,22 @@ msgstr " - Tatoeba"
 #. that shows a list of sentences (search, browse by language,
 #. adopt sentences…) by appending the number of results. Note
 #. the use of &nbsp; which is a non-breaking space.
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L32
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L33
 msgid "{title} (one result)"
 msgid_plural "{title} ({n}&nbsp;results)"
 msgstr[0] "{title} (unu rezulto)"
 msgstr[1] "{title} ({n}&nbsp;rezultoj)"
+
+#. @translators: this formats the title at the top of the search
+#. page by appending the number of results. Tatoeba is only able
+#. to display {thousand} results (that should always be turned
+#. into “1000”), but {n} results actually exist in the corpus.
+#. Note the use of &nbsp; which is a non-breaking space.
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L44
+msgid "{title} ({thousand}&nbsp;results out of one occurrence)"
+msgid_plural "{title} ({thousand}&nbsp;results out of {n}&nbsp;occurrences)"
+msgstr[0] "{title} ({thousand}&nbsp;rezultoj el unu trafo)"
+msgstr[1] "{title} ({thousand}&nbsp;rezultoj el {n}&nbsp;trafoj)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L52
 msgid "Reply"
@@ -2236,8 +2267,8 @@ msgid "Play audio"
 msgstr "Aŭdigi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L218
-msgid "Audio unavailable. Click to learn more."
-msgstr "Sono ne haveblas. Alklaku por lerni pli."
+msgid "No audio for this sentence. Click to learn how to contribute."
+msgstr "Ne ekzistas sondosiero por tiu ĉi frazo. Alklaku por ekscii kiel kontribui."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L256
 msgid "Submit translation"
@@ -2330,7 +2361,15 @@ msgstr "Redakti murmesaĝon"
 msgid "submit"
 msgstr "sendi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L362
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L301
+msgid "hide replies"
+msgstr "kaŝu la respondojn"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L306
+msgid "show replies"
+msgstr "montru la respondojn"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L378
 msgid "by {messageAuthor}"
 msgstr "de {messageAuthor}"
 
@@ -2913,7 +2952,7 @@ msgid ""
 msgstr "Serĉi ekzemplajn frazojn tradukitajn en multajn lingvojn. Aldoni kaj traduki proprajn frazojn. Estas kunlabore, publike, libere, eĉ dependige."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L69
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L76
 msgid "Latest messages"
 msgstr "Lastaj mesaĝoj"
 
@@ -2961,14 +3000,6 @@ msgstr "Esence Tatoeba estas granda datumaro de <strong>ekzemplaj frazoj</strong
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L131
 msgid "See what's happening now."
 msgstr "Vidi, kio okazas nun."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/search.ctp#L28
-msgid "Examples of search"
-msgstr "Serĉekzemploj"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/search.ctp#L41
-msgid "Please enter a nonempty search string"
-msgstr "Bonvolu enigi nemalplenan serĉon"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L32
 msgid "Table of contents"
@@ -3248,8 +3279,24 @@ msgstr "(entute %count%)"
 msgid "Sentences with: {keywords}"
 msgstr "Frazoj kun: {keywords}"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L34
+msgid "Sentences in {language} translated into {translationLanguage}"
+msgstr "Frazoj en la {language} tradukitaj al la {translationLanguage}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L38
+msgid "Sentences in {language}"
+msgstr "Frazoj en la {language}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L41
+msgid "Sentences translated into {language}"
+msgstr "Frazoj tradukitaj al la {language}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L44
+msgid "All sentences"
+msgstr "Ĉiuj frazoj"
+
 #. @translators: title on the top of a search result page
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L71
 msgid "Search: {keywords}"
 msgstr "Serĉi: {keywords}"
 
@@ -4139,35 +4186,35 @@ msgid "Edit message {number}"
 msgstr "Redakti mesaĝon {number}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L36
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L48
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L49
 msgid "Menu"
 msgstr "Menuo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L53
 msgid "Back to Wall"
 msgstr "Reiri al la Muro"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L54
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L55
 msgid ""
 "Here you can ask general questions like how to use Tatoeba, report bugs or "
 "strange behavior, or simply socialize with the rest of the community."
 msgstr "Ĉi tie vi povas starigi ĝeneralajn demandojn, kia: kiel uzi Tatoeban, raporti misaĵojn aŭ strangaĵojn aŭ simple societumi kun la aliaj anoj."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L66
 msgid "Before asking a question, make sure to read the <a href=\"{}\">FAQ</a>."
 msgstr "Antaŭ ol starigi demandon, bonvolu legi la <a href=\"{}\">oftajn demandojn</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L85
 msgid "{date}, by {author}"
 msgstr "{date}, de {author}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L107
 msgid ""
 "You may write in any language you want. At Tatoeba, all languages are equal."
 msgstr "Vi povas skribi en iu ajn lingvo, kiun vi volas. En Tatoeba ĉiuj lingvoj estas egalaj."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L126
 msgid "Wall (one thread)"
 msgid_plural "Wall ({n}&nbsp;threads)"
 msgstr[0] "Muro (unu fadeno)"

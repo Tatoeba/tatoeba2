@@ -4,15 +4,15 @@
 # 
 # Translators:
 # FIRST AUTHOR <EMAIL@ADDRESS>, 2011
-# gleki <gleki.is.my.name@gmail.com>, 2014
+# gleki <gleki.is.my.name@gmail.com>, 2014-2015
 # صفا الفليج <safaalfulaij@hotmail.com>, 2014
 msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-23 01:47+0000\n"
-"PO-Revision-Date: 2015-01-23 01:52+0000\n"
-"Last-Translator: Trang Ho\n"
+"POT-Creation-Date: 2015-01-30 23:33+0000\n"
+"PO-Revision-Date: 2015-01-31 10:11+0000\n"
+"Last-Translator: gleki <gleki.is.my.name@gmail.com>\n"
 "Language-Team: Lojban (http://www.transifex.com/projects/p/tatoeba_website/language/jbo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -22,7 +22,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/app_controller.php#L93
 msgid "You need to be logged in."
-msgstr "sarcu fa lo nu do pilno lo jaspu"
+msgstr "e'i do pilno lo jaspu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L75
 msgid ""
@@ -68,11 +68,11 @@ msgstr "ei do ciska lo te benji e lo se benji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L277
 msgid "restore"
-msgstr "gau ko di'a"
+msgstr "jai gau di'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L285
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L239
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L438
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L454
 msgid "delete"
 msgstr "vimcu"
 
@@ -81,7 +81,7 @@ msgid "mark as unread"
 msgstr "gau sinxa lo nu mo'u se tcidu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L305
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L452
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L468
 msgid "reply"
 msgstr "spusku"
 
@@ -116,15 +116,15 @@ msgstr "ca'a fliba lo ka jai gau stodi fai lo se cnegau be do"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L259
 msgid "You cannot delete sentences."
-msgstr ""
+msgstr "do ka'enai vimcu lo jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L271
 msgid "The sentence #{id} has been deleted."
-msgstr ""
+msgstr "lo me'oi #{id} noi jufra mo'u se vimcu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L279
 msgid "Error: the sentence #{id} could not be deleted."
-msgstr ""
+msgstr "lo se srera cu du lo nu lo me'oi #{id} noi jufra ka'enai se vimcu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L176
 msgid ""
@@ -228,7 +228,7 @@ msgstr "lo dei jaspu cu se barna lo ka na akti i do ba'o ka'e se jaspu le jaspu 
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
-msgstr ""
+msgstr "lo do'i jaspu cu se tcita lo ka se pilno fi lo nu mrilu lo mabla i ka'enaiku di'a pilno jy. i fau lo se srera vau do jikca e'u lo admine "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L235
 msgid "You must fill in your username and password."
@@ -238,7 +238,7 @@ msgstr "e'i do ciska lo do cmene e lo do ckiku"
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
-msgstr ""
+msgstr "srera lo nu pilno lo jaspu i ko inspekte la'o gy.Caps Lock.gy. je la'o gy.Num Lock.gy. vu'o poi batke vau lo ka na akti i va'o lo do jaspu lo ga'e zei lerfu cu frica lo to'a zei lerfu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L316
 msgid "You did not accept the terms of use."
@@ -292,7 +292,7 @@ msgstr "lo se benji mo'u se vreji"
 msgid ""
 "We apologize, but we could not save your data.\n"
 "                             Please try again"
-msgstr ""
+msgstr "u'u fliba lo ka jai gau vreji lo datni pe do i e'u do za'ure'u troci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/models/sentences_list.php#L108
 msgid "unnamed list"
@@ -304,7 +304,7 @@ msgstr "lo jufra poi jorne no da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L32
 msgid "Orphan sentences in {language}"
-msgstr "lo jufra poi jorne no da gi'e uenzi la'o zoi {language} zoi"
+msgstr "lo jufra poi jorne no da gi'e uenzi lo {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L43
 msgid "About adoption"
@@ -314,7 +314,7 @@ msgstr "pe lo nu co'a ponse lo jufra"
 msgid ""
 "Adopting is a way to vote \"this sentence is correct\". It is also an "
 "occasion to check the sentence and correct it if there is a mistake."
-msgstr ""
+msgstr "lo ka co'a ponse lo jufra cu tadji lo ka cusku lo se du'u jy drani i ji'a go'i lo ka inspekte le jufra gi'e jai gau drani jy fau lo nu jy jai se srera"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L57
 msgid ""
@@ -322,12 +322,12 @@ msgid ""
 "({adoptButton}) any \"orphan\" sentence you see in your <strong>native "
 "language</strong>, and correct it if necessary. Read <a "
 "href=\"{url}\">this</a> for further explanation."
-msgstr ""
+msgstr "i ja'o fau lo nu do djica lo ka sidju mi'a lo ka inspekte gi'e jai gau drani vau lo jufra vau jai zu'e ponse e'u (to zoi .pixr.{adoptButton}.pixr. toi) lo jufra poi se ponse no da gi'e uenzi lo bangu poi do ba'e certu lo ka pilno ce'u ibabo e'u jai gau drani le jufra fau lo sarcu i ji'a eu do tcidu la'e <a href=\"{url}\">dei</a> noi ciksi lo zmadu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L72
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L65
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L51
 msgid "Tips"
 msgstr "lo te sidju se stidi"
 
@@ -337,7 +337,7 @@ msgid ""
 "someone else adopted the sentence very shortly before you did. In such "
 "cases, you can try adopting sentences that are several pages away from your "
 "current page to reduce the chances of that happening again."
-msgstr ""
+msgstr "cumki fa lo nu ba zi lo nu do co'a ponse lo jufra vau do zgana lo nu lo drata cu ponse jy. i krinu lo nu go'i vau fa lo nu le drata jai zu'e ponse jy puzi lo nu do troci i e'u fau lo simsa do jai zu'e co'a ponse lo jufra poi sepli fi su'o so'o papri fe lo papri poi do ca catlu i lo nu go'i jai se ja'e jdika fai lo nu fau da'i xo da le simsa ba fasnu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L102
@@ -352,7 +352,7 @@ msgstr "lo srana te jorne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L63
 msgid "Tag guidelines"
-msgstr "javni tu'a lo tcita"
+msgstr "gidva javni tu'a lo tcita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L70
 msgid "Tags you should know about"
@@ -362,7 +362,7 @@ msgstr "loi tcita poi do ei sanji"
 msgid ""
 "The community has come up with several \"utility tags\" to improve the "
 "quality and reliability of sentences."
-msgstr ""
+msgstr "le cecmu pu stidi tu'a so'o za'e lo xamgu tcita tezu'e lo nu lo vamji je ni drani vau be lo jufra cu zenba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L81
 msgid "{tagChange}: the sentence needs to be changed."
@@ -388,32 +388,32 @@ msgstr "ta'i ma sidju"
 msgid ""
 "You need to be an <a href=\"{}\">advanced contributor</a>; otherwise you "
 "will not be able to tag sentences."
-msgstr ""
+msgstr "e'i do <a href=\"{}\">vlipa konribute</a> tezu'e lo ka jai gau se tcita da fai lo jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L109
 msgid ""
 "Whenever you notice a sentence that is wrong or sounds strange, add the tag "
 "{tagChange} and post a comment to suggest a correction or better phrasing."
-msgstr ""
+msgstr "ca ro nu do ganse lo jufra poi na drani gi'a cizra vau do jmina e'u lo tcita poi du la'oi {tagChange} gi'e benji lo se piksku pe lo nu stidi lo nu cikre gi'a tarmi xamgu zmadu cusku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L115
 msgid ""
 "Whenever you notice a possible mistake, add the tag {tagCheck} and post a "
 "comment explaining what you think the mistake may be."
-msgstr ""
+msgstr "ca ro no do ganse lo ka'e se srera vau do jmina e'u lo tcita poi du la'oi {tagchange} gi'e benji lo se piksku poi sepi'o ke'a do ciksi lo nu do jinvi lo du'u makau se srera"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L121
 msgid ""
 "Whenever you add a sentence in a foreign language and are not completely "
 "sure that it is correct, add the tag {tagNNC}."
-msgstr ""
+msgstr "ca ro nu do jmina lo jufra poi uenzi lo fange be do bangu vau gi'e na rova'e birti lo nu le jufra cu drani vau do jmina e'u lo tcita poi du la'oi {tagNNC}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L126
 msgid ""
 "Whenever you can, browse through sentences that are tagged {tagChange}, "
 "{tagCheck}, and {tagNNC} to discuss the sentences with other members and "
 "help decide what to do with these sentences."
-msgstr ""
+msgstr "sei da'i zabna do ta'e catlu lo jufra poi se tcita zo'oi {tagChange} ja zo'oi {tagCheck} ja zo'oi {tagNNC} gi'e tavla lo drata cmima le jufra gi'e sidju fi loka jdice lo du'u ei zukte makau pe le jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L135
 msgid ""
@@ -421,7 +421,7 @@ msgid ""
 "generally, you can browse and check others' sentences and tag them with "
 "{tagOK}. But do this only when you are completely sure that they are "
 "correct, and do not use the tag on your own sentences."
-msgstr ""
+msgstr "ba lo nu da danfu tu'a lo jufra vau ko jai gau tcita jy. fai zo'oi {tagOK} i do'anai do ka'e zgana je inspekte lo jufra poi se jmina lo drata gi'e jai gau tcita le jufra fai zo'oi {tagOK} i ku'i ko tai zukte fau po'o lo nu do rova'e birti lo nu le jufra cu drani ije ko na jai gau tcita lo jufra poi do ponse"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L83
@@ -438,7 +438,7 @@ msgstr "ta'i mi jmina lo te traduki"
 msgid ""
 "Once the sentences are displayed, click on {translateButton} to add a "
 "translation."
-msgstr ""
+msgstr "ba lo nu lei jufra ka'e se catlu vau ko kliki la'e lu {translateButton} li'u noi batke vau tezu'e lo ka jmina lo te traduki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L60
 msgid "About translations"
@@ -460,11 +460,11 @@ msgstr "lo za'u te traduki"
 msgid ""
 "If you feel there are several possible translations, you can add several "
 "translations in the same language. "
-msgstr ""
+msgstr "fau lo nu jinvi lo du'u ka'eku za'u pa da te traduki vau do zifre lo ka de zo'u do jmina za'u pa te traduki be lo uenzi be de"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L85
 msgid "Search for untranslated sentences"
-msgstr ""
+msgstr "mitysisku lo jufra poi na se traduki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L135
@@ -474,7 +474,7 @@ msgstr "loi jufra pe bau"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L117
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L193
 msgid "Not directly translated into:"
-msgstr ""
+msgstr "na lamji se traduki fi la'e di'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L134
 msgid "show sentences"
@@ -505,11 +505,11 @@ msgstr "no pilno cu se cmene zoi gy. {username} .gy."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences_of.ctp#L36
 msgid "Translate {language} sentences that belong to {user}"
-msgstr ""
+msgstr "traduki lo jufra pe lo {language} je poi se ponse la'oi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences_of.ctp#L42
 msgid "Translate sentences that belong to {user}"
-msgstr ""
+msgstr "traduki lo jufra poi se ponse la'oi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/activity_timeline.ctp#L39
 msgid "Activity timeline"
@@ -521,12 +521,12 @@ msgstr "lo citri be lo se zukte"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L110
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L43
 msgid "Latest contributions"
-msgstr ""
+msgstr "loi romoi se jmina"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L47
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L79
 msgid "Contributions"
-msgstr ""
+msgstr "loi se jmina"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L45
 msgid "View all"
@@ -534,19 +534,19 @@ msgstr "zgana ro da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L49
 msgid "Browse all contributions"
-msgstr ""
+msgstr "zgana lo ro se jmina"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/of_user.ctp#L37
 msgid "Logs of {user}'s contributions"
-msgstr ""
+msgstr "citri lo se jmina be la'oi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/audio_stats.ctp#L29
 msgid "Number of sentences with audio by language"
-msgstr ""
+msgstr "lo se klani be lo jufra poi se bacru je poi se cmima lo girzu tu'a lo bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/audio_stats.ctp#L48
 msgid "Browse audio for all languages"
-msgstr ""
+msgstr "zgana lo se bacru pe ro bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L41
 msgid "January"
@@ -606,30 +606,30 @@ msgstr "lo nanca"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L29
 msgid "Currently contributing"
-msgstr ""
+msgstr "ca'o jmina"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L34
 msgid "User who did the last contribution."
 msgid_plural "Users who participated in the last {n}&nbsp;contributions."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "loi pilno poi pu participe lo pa boi romoi nu kontribute"
+msgstr[1] "loi pilno poi pu participe lo {n}boi romoi nu kontribute"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L96
 msgid "#{rank} - {n}&nbsp;sentence - {percentage}%"
 msgid_plural "#{rank} - {n}&nbsp;sentences - {percentage}%"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "#{rank} i {n}&nbsp;jufra i {percentage} ce'i"
+msgstr[1] "#{rank} i {n}&nbsp;jufra i {percentage} ce'i"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L36
 msgid "One visitor online"
 msgid_plural "{n}&nbsp;visitors online"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "pa&nbsp;vitke ca jorne lo kibro"
+msgstr[1] "{n}&nbsp;vitke ca jorne lo kibro"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L28
 msgid "Terms of use"
-msgstr ""
+msgstr "loi javni be lo nu pilno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L53
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L38
@@ -643,7 +643,7 @@ msgstr "jikca mi'a"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L155
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L28
 msgid "Donate"
-msgstr ""
+msgstr "dunda lo jdini"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L75
 msgid "Blog"
@@ -668,7 +668,7 @@ msgid ""
 "The more contributors there are, the more useful Tatoeba will become! "
 "Besides, by contributing, not only will you be helpful to the rest of the "
 "world, but you will also get to learn a lot."
-msgstr ""
+msgstr "lo nu lo kontribute cu zenba lo ka se klani cu jalge lo nu la'oi Tatoeba zenba lo ka plixau i ji'a ta'i lo ka kontribute vau do sidju po'onai lo munje pagbu poi ve vimcu vau gi'e ji'a cilre so'i da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/join_us.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L44
@@ -679,7 +679,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L155
 msgid "Register"
-msgstr ""
+msgstr "ko zbasu lo jaspu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L111
@@ -705,11 +705,11 @@ msgstr "ko morji fi mi"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L77
 msgid "Forgot your password?"
-msgstr ""
+msgstr "xu do co'u morji tu'a lo jaspu be do"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L125
 msgid "Close"
-msgstr ""
+msgstr "jai gau de'a catlu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/show.ctp#L36
@@ -749,22 +749,22 @@ msgstr "loi se vimcu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L71
 msgid "Question about Tatoeba?"
-msgstr ""
+msgstr "au retsku zo'ei la'oi Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L75
 msgid ""
 "If you would like to ask a question about Tatoeba, please send an email to "
 "<strong>team@tatoeba.org</strong> rather than a private message. "
-msgstr ""
+msgstr "fau lo nu do djica lo ka retsku zo'e pe la'oi Tatoeba vau do mrilu e'o fi la'o .net.<strong>team@tatoeba.org</strong>.net. fe nai lo sivni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L83
 msgid ""
 "All members of Team Tatoeba will receive it and you may get a reply faster."
-msgstr ""
+msgstr "lo ro cmima be lo girzu po la'oi Tatoeba ba cpacu ije do ka'e cpacu lo se spusku za lo mleca"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L35
 msgid "Folders"
-msgstr ""
+msgstr "loi sorcu be lo vreji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L39
 msgid "Random sentence"
@@ -795,115 +795,131 @@ msgstr "te be'i"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L107
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L53
 msgid "search"
-msgstr ""
+msgstr "sisku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_features.ctp#L29
 msgid "Search features"
-msgstr ""
+msgstr "lo tcila be lo nu sisku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_features.ctp#L33
 msgid "The search is powered by <a href=\"{}\">Sphinx</a>."
-msgstr ""
+msgstr "lo sisku tutci cu pilno la'oi <a href=\"{}\">Sphinx</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_features.ctp#L43
 msgid "You can find basic instructions for searching <a href=\"{}\">here</a>."
-msgstr ""
+msgstr "e'a do tcidu <a href=\"{}\">la'e dei</a> noi ralju javni be lo nu sisku "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_features.ctp#L55
 msgid "You can learn about advanced search features <a href=\"{}\">here</a>."
-msgstr ""
+msgstr "e'a do tcidu <a href=\"{}\">la'e dei</a> ne lo vlipa tcila be lo sisku tutci"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L33
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L35
 msgid "Add a sentence containing {keywords}"
-msgstr ""
+msgstr "ko jmina lo jufra poi vasru la'o gy.{keywords}.gy."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L37
+msgid "Translate a {language} sentence into {translationLanguage}"
+msgstr "traduki lo jufra noi {language} vau lo {translationLanguage}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L41
+msgid "Translate a {language} sentence"
+msgstr "traduki lo jufra pe lo {language}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L44
+msgid "Translate a sentence into {language}"
+msgstr "traduki lo jufra lo {language}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L47
+msgid "Add a new sentence"
+msgstr "jmina lo pa cnino jufra"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L55
 msgid ""
 "There is no result for this search (yet) but you can help us by feeding the "
 "corpus with new vocabulary!"
-msgstr ""
+msgstr "ca ku no da se mitysisku i ku'i do ka'e sidju mi'a lo ka jmina le korpora lo cnino te gerna"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L68
 msgid ""
 "Feel free to <a href=\"{}\">submit a sentence</a> with the words you were "
 "searching."
-msgstr ""
+msgstr "e'asai do <a href=\"{}\">jmina lo jufra</a> poi vasru lo valsi poi do pu mitysisku"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L78
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L39
 msgid "If you are interested, please register."
-msgstr ""
+msgstr "fau lo nu do se cinri vau do zbasu e'u lo jaspu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences/correctness_info.ctp#L30
 msgid "About unapproved sentences"
-msgstr ""
+msgstr "zo'ei lo jufra poi na se zanru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences/correctness_info.ctp#L34
 msgid ""
 "You may see some sentences in red. These sentences are not approved by "
 "Tatoeba's community. They raise copyright issues or are otherwise "
 "problematic. If you are a contributor, please avoid translating them."
-msgstr ""
+msgstr "su'o jufra cu xunre i le jufra cu du lo jufra poi na se zanru le cecmu pe la'oi Tatoeba i le jufra cu jai nabmi gi'a mu'a jai se krali da i fau lo nu do kontribute vau do rivbi e'o lo ka traduki le jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences_statistics.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L49
 msgid "One sentence"
 msgid_plural "{n}&nbsp;sentences"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "lo pa jufra"
+msgstr[1] "lo {n} jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences_statistics.ctp#L60
 msgid "show all languages"
-msgstr ""
+msgstr "zgana ro bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/session_expired.ctp#L31
 msgid "Your session has expired."
-msgstr ""
+msgstr "lo nu do pilno lo jaspu ba'o fasnu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/session_expired.ctp#L34
 msgid "Please <a href=\"{}\">click here</a> to log in again."
-msgstr ""
+msgstr "e'o do <a href=\"{}\">kliki dei</a> tezu'e lo ka di'a pilno lo jaspu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L74
 msgid "Profile"
-msgstr ""
+msgstr "lo tcila be lo jaspu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L65
 msgid "My sentences"
-msgstr ""
+msgstr "loi jufra po mi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L78
 msgid "My favorites"
-msgstr ""
+msgstr "loi se nelci be mi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L91
 msgid "My comments"
-msgstr ""
+msgstr "loi se piksku be mi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L104
 msgid "Comments on my sentences"
-msgstr ""
+msgstr "lo se piksku pe lo jufra pe mi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L117
 msgid "My Wall messages"
-msgstr ""
+msgstr "lo se benji be mi bei le bitmu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L130
 msgid "My sentence logs"
-msgstr ""
+msgstr "loi citri be lo jufra pe mi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L143
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L28
 msgid "Edit profile"
-msgstr ""
+msgstr "stika lo jaspu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L155
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L27
 msgid "Settings"
-msgstr ""
+msgstr "lo te stika"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L212
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L213
@@ -932,7 +948,7 @@ msgstr "zgana lo vrici po pa tcita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L77
 msgid "Browse audio"
-msgstr "zgan lo vrici poi se bacru"
+msgstr "zgana lo vrici poi se bacru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L75
@@ -959,7 +975,7 @@ msgstr "casnu lo jufra"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L116
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L38
 msgid "Members"
-msgstr ""
+msgstr "loi cmima"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L122
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L38
@@ -972,7 +988,7 @@ msgstr "zmadu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L134
 msgid "Quick Start Guide"
-msgstr ""
+msgstr "lo gidva be fi lo ka zi co'a pilno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L137
 msgid "Tatoeba Wiki"
@@ -1015,34 +1031,34 @@ msgstr "loi se piksku"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L39
 msgid "Comments on {user}'s sentences"
-msgstr ""
+msgstr "lo se piksku po lo jufra po la'oi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L101
 msgid "Wall messages"
-msgstr ""
+msgstr "loi se benji be fi le bitmu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L105
 msgid "Logs"
-msgstr ""
+msgstr "loi vreji be lo citri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L131
 msgid "Contact {user}"
-msgstr ""
+msgstr "jikca la'oi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/add_favorite.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/add_favorite.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L275
 msgid "Remove from favorites"
-msgstr ""
+msgstr "vimcu fi lo se nelci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L29
 msgid "{user}'s favorite sentences"
-msgstr ""
+msgstr "lo jufra poi se nelci la'oi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L65
 msgid "This user does not have any favorites."
-msgstr ""
+msgstr "no da se nelci le pilno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/remove_favorite.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/remove_favorite.ctp#L33
@@ -1060,21 +1076,21 @@ msgstr "benji lo se piksku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L101
 msgid "Good practices"
-msgstr ""
+msgstr "lo zabna se zukte"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L106
 msgid "Say \"welcome\" to new users."
-msgstr ""
+msgstr "rinsa lo cnino cmima"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L114
 msgid "Use private messages to discuss things unrelated to the sentence."
-msgstr ""
+msgstr "ko pilno lo sivni se mrilu lo ka casnu lo na srana be le jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L181
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L264
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
 msgid "Cancel"
-msgstr ""
+msgstr "kansele"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L192
 msgid "Save changes"
@@ -1091,24 +1107,24 @@ msgstr "gau de'a zgana"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L245
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L377
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L444
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L460
 msgid "Are you sure?"
 msgstr "xu do birti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L252
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L425
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L441
 msgid "edit"
 msgstr "cnegau"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/common_modules.php#L61
 msgid "Filter by language"
-msgstr ""
+msgstr "catlu lo jufra poi uenzi lo se cuxna be do"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/common_modules.php#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L57
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L49
 msgid "There's no user called {username}"
-msgstr ""
+msgstr "no pilno cu se cmene zo'oi {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/common_modules.php#L130
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/of_user.ctp#L66
@@ -1116,29 +1132,29 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L71
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L105
 msgid "Go back to previous page"
-msgstr ""
+msgstr "volve lo purci papri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L65
 msgid "date unknown"
-msgstr ""
+msgstr "lo detri na jai se djuno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L75
 msgid "yesterday"
 msgid_plural "{n}&nbsp;days ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "pu za lo djedi be li pa"
+msgstr[1] "pu za lo djedi be li {n}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L77
 msgid "an hour ago"
 msgid_plural "{n}&nbsp;hours ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "pu za lo cacra be li pa"
+msgstr[1] "pu za lo cacra be li {n}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L79
 msgid "a minute ago"
 msgid_plural "{n}&nbsp;minutes ago"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "pu za lo mentu be li pa"
+msgstr[1] "pu za lo mentu be li {n}"
 
 #. @translators: this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
@@ -1586,8 +1602,8 @@ msgid "Xhosa"
 msgstr "banxuxe'o"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L183
-msgid "Punjabi"
-msgstr "banpu'anu"
+msgid "Punjabi (Western)"
+msgstr "banpunubu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L184
 msgid "Malagasy"
@@ -1861,38 +1877,42 @@ msgstr "bancuxeru"
 msgid "Gujarati"
 msgstr "baurgu'uju"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L308
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L327
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L398
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L253
+msgid "Punjabi (Eastern)"
+msgstr "banpu'anu"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L328
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L399
 msgid "All languages"
 msgstr "ro bangu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L344
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L345
 msgid "unknown language"
 msgstr "na se slabu bangu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L361
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L362
 msgid "other language"
 msgstr "lo drata bangu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L379
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L380
 msgid "Auto detect"
 msgstr "zmiku smadi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L397
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L440
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L398
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L441
 msgid "None"
 msgstr "no da"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L420
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L421
 msgid "Any language"
-msgstr ""
+msgstr "ro lo bangu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L456
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L457
 msgid "Any"
 msgstr "da"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L489
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L490
 msgid "unknown"
 msgstr "na se slabu"
 
@@ -1900,7 +1920,7 @@ msgstr "na se slabu"
 #. the name of a list when it happens to be empty
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L106
 msgid "(unnamed list)"
-msgstr ""
+msgstr "(to lo liste poi se cmene no da toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L132
 msgid "created by {listAuthor}"
@@ -1924,47 +1944,47 @@ msgstr "stika"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L186
 msgid "Back to all lists"
-msgstr ""
+msgstr "volve lo ro liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L209
 msgid "Back to this list"
-msgstr ""
+msgstr "volve lo dei liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L233
 msgid "Download this list"
-msgstr ""
+msgstr "jai gau diklo do fai le liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L265
 msgid "Show translations :"
-msgstr ""
+msgstr "gau catlu la'e di'e noi te traduki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L315
 msgid "Set list as collaborative"
-msgstr ""
+msgstr "jai gau se ponse za'u da fai le liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L350
 msgid "Edit this list"
-msgstr ""
+msgstr "stika le liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L353
 msgid "View this list"
-msgstr ""
+msgstr "catlu le liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L370
 msgid "Delete this list"
-msgstr ""
+msgstr "vimcu le liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L451
 msgid "Remove sentence {number} from list"
-msgstr ""
+msgstr "vimcu lo {number} moi jufra le liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L461
 msgid "Remove from list"
-msgstr ""
+msgstr "vimcu fi le liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L493
 msgid "Add a sentence to this list : "
-msgstr ""
+msgstr "jmina lo jufra lo di'e liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L497
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L465
@@ -1977,7 +1997,7 @@ msgstr "i'a"
 msgid ""
 "NOTE : You can also add existing sentences with this icon {addToListButton} "
 "(while <a href=\"{url}\">browsing</a> for instance)."
-msgstr ""
+msgstr "ju'i zo'u ji'a do zifre lo ka fau mu'a lo ka <a href=\"{url}\">catlu</a> vau jmina lo ca'a jufra poi se tcita la'o .py.{addToListButton}.py. noi pixra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L377
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L50
@@ -1985,35 +2005,35 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L151
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L167
 msgid "Sentence #{number}"
-msgstr ""
+msgstr "lo jufra poi {number} moi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L449
 msgid "linked to #{sentenceNumber}"
-msgstr ""
+msgstr "jorne lo {sentenceNumber} moi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L454
 msgid "unlinked from #{sentenceNumber}"
-msgstr ""
+msgstr "na jorne lo {sentenceNumber} moi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L508
 msgid "added by {user}"
-msgstr ""
+msgstr "se jmina la'oi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L510
 msgid "linked by {user}"
-msgstr ""
+msgstr "gau la'oi {user} se jorne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L514
 msgid "edited by {user}"
-msgstr ""
+msgstr "se stika la'oi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L518
 msgid "deleted by {user}"
-msgstr ""
+msgstr "se vimcu la'oi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L520
 msgid "unlinked by {user}"
-msgstr ""
+msgstr "gau la'oi {user} na jorne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L160
 msgid "admin"
@@ -2021,15 +2041,15 @@ msgstr "lo admine"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L161
 msgid "corpus maintainer"
-msgstr ""
+msgstr "lo korpora kurji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L162
 msgid "advanced contributor"
-msgstr ""
+msgstr "lo vlipa kontribute"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L163
 msgid "contributor"
-msgstr ""
+msgstr "lo kontribute"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L164
 msgid "inactive"
@@ -2037,7 +2057,7 @@ msgstr "na akti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L165
 msgid "spammer"
-msgstr ""
+msgstr "lo mrilu be lo mabla"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L65
@@ -2049,54 +2069,54 @@ msgstr "traduki"
 msgid ""
 "This sentence is currently marked as unapproved. Unapproved sentences cannot"
 " be translated."
-msgstr ""
+msgstr "le jufra ca se sinxa lo na se zanru i lo jufra poi na se zanru ka'enai se traduki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L145
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L146
 msgid "This sentence is in simplified Chinese."
-msgstr ""
+msgstr "pu pilno lo sampu jungo lerfu lo ka ciska le jufra "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L170
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L171
 msgid "This sentence is in traditional Chinese."
-msgstr ""
+msgstr "pu pilno lo tcaci jungo lerfu lo ka ciska le jufra "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L205
 msgid "Click to unadopt"
-msgstr ""
+msgstr "ko kliki tezu'e lo ka co'u ponse"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L211
 msgid "Click to adopt"
-msgstr ""
+msgstr "ko kliki tezu'e lo ka co'a ponse"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L336
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L337
 msgid "Link to another sentence"
-msgstr ""
+msgstr "gau jorne lo jufra noi drata"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L352
 msgid "Sentence number"
-msgstr ""
+msgstr "lo namcu po lo jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L357
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L8
 msgid "Link"
-msgstr ""
+msgstr "jai gau jorne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L393
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L394
 msgid "Add to list"
-msgstr ""
+msgstr "jmina fi lo liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L443
 msgid "Add to one of your lists"
-msgstr ""
+msgstr "jmina fi pa lo liste po do"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L444
 msgid "Add to a collaborative list"
-msgstr ""
+msgstr "jmina fi lo liste po za'u da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L486
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L494
@@ -2106,11 +2126,11 @@ msgstr "vimcu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L488
 msgid "You cannot delete this sentence because it has audio."
-msgstr ""
+msgstr "ka'enai vimcu le jufra i ki'ubo jy. se bacru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L579
 msgid "belongs to {user}"
-msgstr ""
+msgstr "se ponse la'oi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L171
 msgid "Send private message"
@@ -2123,26 +2143,26 @@ msgstr "mo'u se cnegau"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L219
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L184
 msgid "View this user's profile"
-msgstr ""
+msgstr "catlu lo jaspu be le pilno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L379
 msgid "sentence deleted"
-msgstr ""
+msgstr "lo jufra cu se vimcu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L396
 msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
 "the message."
-msgstr ""
+msgstr "le se notci na mapti lo <a href=\"{}\">javni pe mi'a</a> gi'e seki'ubo se mipri i le se notci ka'e se tcidu fe po'o lo admine e lo ciska be le se notci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L76
 msgid "Show sentence #: "
-msgstr ""
+msgstr "catlu lo jufra poi momkai la'e di'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L114
 msgid "Language for previous, next or random sentence"
-msgstr ""
+msgstr "lo bangu pe lo jufra poi lidne jonai se lidne jonai cunso"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L124
 msgid "previous"
@@ -2158,7 +2178,7 @@ msgstr "lo cunso"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L221
 msgid "Enter a username: "
-msgstr ""
+msgstr "ciska lo cmene be lo pilno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L226
 msgid "show user"
@@ -2170,7 +2190,7 @@ msgstr "ro da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L247
 msgid "Profile of {user}"
-msgstr ""
+msgstr "tcila lo jaspu be la'oi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L274
 msgid "all lists"
@@ -2179,17 +2199,28 @@ msgstr "ro liste"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L23
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L28
 msgid " - Tatoeba"
-msgstr ""
+msgstr "(to la'oi Tatoeba toi)"
 
 #. @translators: this formats the title at the top of every page
 #. that shows a list of sentences (search, browse by language,
 #. adopt sentences…) by appending the number of results. Note
 #. the use of &nbsp; which is a non-breaking space.
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L32
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L33
 msgid "{title} (one result)"
 msgid_plural "{title} ({n}&nbsp;results)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{title} zo'u pa da se mitysisku"
+msgstr[1] "{title} zo'u {n} da se mitysisku"
+
+#. @translators: this formats the title at the top of the search
+#. page by appending the number of results. Tatoeba is only able
+#. to display {thousand} results (that should always be turned
+#. into “1000”), but {n} results actually exist in the corpus.
+#. Note the use of &nbsp; which is a non-breaking space.
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L44
+msgid "{title} ({thousand}&nbsp;results out of one occurrence)"
+msgid_plural "{title} ({thousand}&nbsp;results out of {n}&nbsp;occurrences)"
+msgstr[0] "{title} zo'u {thousand}&nbsp; ka'e se zgana ije pa&nbsp;da se tolcri"
+msgstr[1] "{title} zo'u {thousand}&nbsp; ka'e se zgana ije {n}&nbsp;da se tolcri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L52
 msgid "Reply"
@@ -2201,7 +2232,7 @@ msgstr "tebe'i"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L98
 msgid "Title"
-msgstr ""
+msgstr "lo cmene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L121
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L88
@@ -2211,37 +2242,37 @@ msgstr "benji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L143
 msgid "{sender} wrote:"
-msgstr ""
+msgstr "la'oi {sender} pu ciska di'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L5
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L4
 msgid "Unlink"
-msgstr ""
+msgstr "jai gau na jorne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L6
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L5
 msgid "Unlink this translation."
-msgstr ""
+msgstr "jai gau na jorne fai le te traduki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L157
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L10
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L9
 msgid "Make into direct translation."
-msgstr ""
+msgstr "jai gau lamji se traduki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L208
 msgid "Play audio"
 msgstr "bacru lo se vreji sance"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L218
-msgid "Audio unavailable. Click to learn more."
-msgstr ""
+msgid "No audio for this sentence. Click to learn how to contribute."
+msgstr "no da vreji lo sance be le jufra i ko kliki tezu'e lo ka cilre lo ka ta'i makau kontribute"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L256
 msgid "Submit translation"
-msgstr ""
+msgstr "benji lo te traduki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L277
 msgid ""
@@ -2249,30 +2280,30 @@ msgid ""
 "do not understand this sentence, click on \"Cancel\" to display everything "
 "again, and then click on the sentence that you understand and want to "
 "translate from."
-msgstr ""
+msgstr "ju'i i do pu'o jmina lo te traduki be lo jufra poi galtu i fau lo nu do na jimpe lo smuni be le jufra do kliki ko'oi la'e zo kansele tezu'e lo ka jai gau za'ure'u zgana ro da vau gi'e ba bo kliki lo jufra poi do jimpe lo smuni be ke'a gi'e djica lo ka traduki ke'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L288
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L44
 msgid ""
 "Please do not forget <strong>capital letters</strong> and "
 "<strong>punctuation</strong>! Thank you."
-msgstr ""
+msgstr "e'o do na co'u morji fi <strong>lo ga'e zei lerfu</strong> je <strong>lo te pandi</strong> i ki'e do"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L161
 msgid "Show translations in:"
-msgstr ""
+msgstr "catlu lo te traduki poi uenzi la'e di'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L173
 msgid "NOTE: Both direct and indirect translations will be shown."
-msgstr ""
+msgstr "lo te traduki noi ge lamji gi na lamji ba se zgana"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L205
 msgid "NOTE: Sentences that have an indirect translation will be displayed."
-msgstr ""
+msgstr "lo jufra poi da poi te traduki ke'a na lamji ba se zgana"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L224
 msgid "Only sentences with audio:"
-msgstr ""
+msgstr "fa po'o lo jufra poi se bacru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L227
 msgid "no"
@@ -2284,7 +2315,7 @@ msgstr "je'u"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L239
 msgid "NOTE: Not all languages have audio at the moment."
-msgstr ""
+msgstr "(to lo se piksku toi) me'i ro bangu ca se uenzi lo jufra poi do ka'e jmina lo se bacru be ke'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L63
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L221
@@ -2294,7 +2325,7 @@ msgstr "loi tcita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L70
 msgid "No tag on this sentence."
-msgstr ""
+msgstr "le jufra cu se tcita no da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L103
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L38
@@ -2304,11 +2335,11 @@ msgstr "zgana ro tcita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L125
 msgid "user: {userId}, date: {date}"
-msgstr ""
+msgstr "la'oi {userId} cu pilno i li {date} detri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L255
 msgid "remove tag '{tagName}' from this sentence."
-msgstr ""
+msgstr "jai gau na se tcita la'o gy.{tagName}.gy. fai le jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L299
 msgid "remove tag from sentence"
@@ -2320,127 +2351,135 @@ msgstr "jmina lo se benji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L90
 msgid "cancel"
-msgstr ""
+msgstr "kansele"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L129
 msgid "Edit Wall Message"
-msgstr ""
+msgstr "stika le se benji be fi le bitmu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L149
 msgid "submit"
 msgstr "benji"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L362
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L301
+msgid "hide replies"
+msgstr "de'a zgana lo se retsku"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L306
+msgid "show replies"
+msgstr "di'a zgana lo se retsku"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L378
 msgid "by {messageAuthor}"
-msgstr ""
+msgstr "se ciska la'oi {messageAuthor}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L71
 msgid ""
 "Warning: this website is for testing purposes. Everything you submit will be"
 " definitely lost."
-msgstr ""
+msgstr "lo dei kibro stuzi cu ei se pilno fi lo cipra i ro da poi do benji fau de ba se cirko"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L97
 msgid "No language matches"
-msgstr ""
+msgstr "no bangu cu mapti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L48
 msgid ""
 "Please make sure to <a href=\"{}\">read the FAQ</a> before asking a "
 "question."
-msgstr ""
+msgstr "e'o do tcidu <a href=\"{}\">lo cafne se retsku</a> pu lo ka retsku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L57
 msgid "Follow us"
-msgstr ""
+msgstr "zgana mi'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L60
 msgid "Tatoeba Blog"
-msgstr ""
+msgstr "lo karni pe la'oi Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L73
 msgid ""
 "If you have any question, suggestion, or request (or if you would just like "
 "to say thank you), feel free to drop us an email at {emailAddress}."
-msgstr ""
+msgstr "fau lo nu do djica lo ka retsku ja stidi ja cpedu ja ckire sa'u vau do zifre lo ka mrilu fu lo kibro fi zoi .net.{emailAddress}.net noi judri mi'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L82
 msgid "Post on the Wall"
-msgstr ""
+msgstr "ciska fi le bitmu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L86
 msgid ""
 "You can also tell us what you think by posting on the <a "
 "href=\"{}\">Wall</a>."
-msgstr ""
+msgstr "ji'a do ka'e skicu fi mi'a fe lo nu do jinvi makauvau ta'i lo ka benji fi <a href=\"{}\">le bitmu</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L96
 msgid "Join us on IRC"
-msgstr ""
+msgstr "jorne mi'a bu'u lo se irci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L100
 msgid ""
 "We also have an IRC channel on freenode, #tatoeba. If you are not familiar "
 "with IRC, you can read the <a href=\"{}\">Help</a>."
-msgstr ""
+msgstr "ji'a da se irci i je da se judri zo'oi #tatoeba i fau lo nu do na sel slabu lo te irci vau do ka'e tcidu fi lo <a href=\"{}\">sidju papri</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L28
 msgid "How to contribute"
-msgstr ""
+msgstr "ma tadji lo ka kontribute"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L56
 msgid "Important to read"
-msgstr ""
+msgstr "vajni fa lo nu tcidu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L60
 msgid "Guide to being a good contributor"
-msgstr ""
+msgstr "gidva fi lo ka zabna kontribute"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L66
 msgid "Reliability of the sentences"
-msgstr ""
+msgstr "lo ni lo jufra cu se lacri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L119
 msgid "How can you contribute?"
-msgstr ""
+msgstr "ma tadji lo nu do ka'e kontribute"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L123
 msgid ""
 "Tatoeba is primarily about collecting sentences and translating them into "
 "many, many languages. So one obvious thing you can do to contribute is to "
 "<strong>translate sentences</strong>."
-msgstr ""
+msgstr "do'anai la'oi Tatoeba cu srana lo nu jai gau jmaji fai lo jufra gi'e traduki le jufra lo uenzi be so'i sai da i ja'o pa lo ka'e se kontribute be do cu du lo nu <strong>traduki lo jufra</strong>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L133
 msgid ""
 "But you don't have to be a polyglot in order to contribute! You can help us "
 "a lot simply by <strong>checking sentences</strong> and <strong>reporting "
 "mistakes</strong>. This is something everyone can do!"
-msgstr ""
+msgstr "i ku'i e'inaisai do se bangu so'i da tezu'e lo ka kontribute i do ka'e sidju mi'a fi po'o lo ka <strong>inspekte lo jufra</strong> gi'e <strong>jai gau djuno fi lo se srera<strong> vau noi ro sai lo prenu ka'e zukte"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L143
 msgid ""
 "If you have a good microphone, you can also bring more audio to Tatoeba by "
 "<strong>recording sentences</strong>."
-msgstr ""
+msgstr "fau lo nu do ka'e pilno lo zabna snaveitci vau do ka'e <strong>zbasu za'u lo vreji be lo jufra poi se bacru</strong>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L152
 msgid ""
 "You can help us promote the project. <strong>Tell people around you</strong>"
 " that Tatoeba exists. This is a very ambitious project, so we will need as "
 "much help as possible."
-msgstr ""
+msgstr "do ka'e sidju mi'a lo ka jai gau zenba fai la'oi Tatoeba lo ka misno i <strong>ko jai gau djuno fai lo prenu poi se slabu do vau<strong> lo nu la'oi Tatoeba cu zasti i la'oi Tatoeba cu me lo projeto poi ei mutce lo ka gunka lo ka jai gau farvi fai ke'a iseki'u bo mi'a nitcu lo te sidju poi se gradu lo traji lo cumki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L162
 msgid ""
 "And finally, you can <strong>join the team</strong>. You can help us code "
 "new features, improve usability, debug, optimize, keep the site secure, and "
 "more."
-msgstr ""
+msgstr "i romai do zifre lo ka <strong>co'a cmima  lo bende</strong> i do ka'e sidju mi'a lo ka zbasu lo proga krasi be lo cnino tcila gi'e jai gau zenba fa lo nu pilno vau tcila gi'e mitysisku lo na'e drani krasi gi'e jai gau sarxe gi'e jai gau ca'o snura fa lo kibro stuzi gi'e zukte lo drata"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L33
 msgid "Any question?"
-msgstr ""
+msgstr "xu da jai se kucli"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L37
 msgid ""
@@ -2448,102 +2487,102 @@ msgid ""
 "in any other way than the ones mentioned here, you may contact either <a "
 "href=\"{trangEmail}\">Trang</a> or the entire <a "
 "href=\"{teamEmail}\">team</a>."
-msgstr ""
+msgstr "fau lo nu do djica lo ka retsku zo'ei lo nu dunda lo jdini vau gi'a dunda lo jdini ta'i lo drata be lo se skicu do'e la'e dei vau vau cu mrilu e'u fa do fi ga <a href=\"{trangEmail}\">la'oi Trang</a> gi <a href=\"{teamEmail}\">le bende</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L50
 msgid "Top donators this month"
-msgstr ""
+msgstr "loi traji be lo ka dunda ca lo dei masti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L61
 msgid "Top donators of all time"
-msgstr ""
+msgstr "loi traji be lo ka dunda ca lo ro ditcu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L77
 msgid "How to donate"
-msgstr ""
+msgstr "ma tadji lo ka dunda lo jdini"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L78
 msgid "You have two possible ways to make a donation:"
-msgstr ""
+msgstr "tadji lo ka dunda vau fa re da noi se skicu la'e di'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L83
 msgid ""
 "<b>IBAN transfer.</b> This is probably the cheapest way to donate. Tatoeba's"
 " bank is based in France, so if you are from an EU country, it is likely "
 "that the transfer will be free of charge."
-msgstr ""
+msgstr "<b>lo nu benji fu la'oi IBAN</b> cu traji la'a lo ka to'e kargu vau lo tadji be lo ka dunda lo jdini i lo banxe pe la'oi Tatoeba cu se stuzi lo gugdefuru i je ja'o fau lo nu do xabju lo ropno vau lakne fa lo nu lo nu benji cu se jdima no rupnu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L92
 msgid ""
 "<b>PayPal.</b> If you can't transfer money with IBAN, then you can donate "
 "with PayPal. You should know that PayPal takes a certain percentage of the "
 "donation."
-msgstr ""
+msgstr "la'oi <b>PayPal</b> zo'u fau lo nu do na kakne lo ka benji lo jdini fu la'oi IBAN vau do benji e'u fu la'oi PayPal i ko morji lo du'u da zo'u la'oi PayPal cu lebna mo'e da si'e be lo se dunda"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L102
 msgid "IBAN transfer"
-msgstr ""
+msgstr "lo nu benji fu la'oi IBAN"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L103
 msgid "Titular:"
-msgstr ""
+msgstr "me'oi Titular"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L104
 msgid "IBAN:"
-msgstr ""
+msgstr "la'oi IBAN zo'u"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L105
 msgid "BIC/SWIFT:"
-msgstr ""
+msgstr "la'oi BIC jonai la'oi SWIFT zo'u"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L28
 msgid "Download sentences"
-msgstr ""
+msgstr "jai gau diklo fai lo vreji be lo jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L37
 msgid "Warning"
-msgstr ""
+msgstr "e'unai"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L40
 msgid ""
 "The data you will find here will NOT be useful unless you are coding a "
 "language tool or processing data."
-msgstr ""
+msgstr "lo datni poi se sorcu la'e dei cu xamgu do i fau po'o bo do ciska lo proga tutci pe lo bangu ja lo nu tcidu lo datni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L48
 msgid ""
 "If you simply want sentences that you can use to learn a language, check out"
 " the <a href=\"{}\">sentence lists</a>. You can build your own, or view the "
 "ones that others have created. The lists can be downloaded and printed."
-msgstr ""
+msgstr "fau lo nu do nitcu lo jufra lo ka tadni lo bangu vau ko inspekte <a href=\"{}\">lo liste be lo jufra</a> i do zifre lo ka zbasu lo liste po do gi'a catlu lo liste poi se zbasu lo drata  i ka'e jai gau diklo fai loi liste gi'a zbasu lo fukpi poi prina"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L59
 msgid "Creative commons"
-msgstr ""
+msgstr "la'oi gy.Creative commons.gy."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L60
 msgid "These files are released under CC-BY."
-msgstr ""
+msgstr "la'oi CC-BY javni lo nu pilno lo do'i vreji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L68
 msgid ""
 "For those who wonder why we're not leaving the data in the public domain, "
 "some explanation <a href=\"{}\">here</a>."
-msgstr ""
+msgstr "fi lo kucli lo du'u ki'u makau mi'a na jai gau flalu lo ka pilno lo datni vau fai tu'a lo gubni se kuspe vau ve ciksi fa da noi se judri <a href=\"{}\">la'e dei</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L73
 msgid "Questions?"
-msgstr ""
+msgstr "xu da jai se kucli"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L78
 msgid ""
 "If you have questions or requests, feel free to <a href=\"{}\">contact "
 "us</a>."
-msgstr ""
+msgstr "fau lo nu do djica lo ka cpedu ja retsku vau do zifre lo ka <a href=\"{}\">jikca mi'a</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L82
 msgid "In general, we answer quickly."
-msgstr ""
+msgstr "so'eroi ku mi'a spusku zi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L58
@@ -2551,90 +2590,90 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L61
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L62
 msgid "Download"
-msgstr ""
+msgstr "jai gau diklo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L94
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L158
 msgid "Fields and structure"
-msgstr ""
+msgstr "loi uidje je lo stura"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L95
 msgid "File description"
-msgstr ""
+msgstr "lo ve ciksi be lo vreji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L167
 msgid "Sentence id"
-msgstr ""
+msgstr "lo namcu po lo jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L169
 msgid "Text"
-msgstr ""
+msgstr "lo uenzi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L98
 msgid "Lang"
-msgstr ""
+msgstr "lo bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L81
 msgid "Username"
-msgstr ""
+msgstr "lo cmene be lo pilno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L100
 msgid "Date added"
-msgstr ""
+msgstr "lo detri be lo nu jmina"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L101
 msgid "Date created"
-msgstr ""
+msgstr "lo detri be lo nu zbasu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L102
 msgid "Date last modified"
-msgstr ""
+msgstr "lo detri be lo nu rore'u se stika"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L103
 msgid "Translation id"
-msgstr ""
+msgstr "lo namcu po lo te traduki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L104
 msgid "Tag name"
-msgstr ""
+msgstr "lo cmene be lo tcita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L105
 msgid "List id"
-msgstr ""
+msgstr "lo namcu po lo liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L106
 msgid "List name"
-msgstr ""
+msgstr "lo cmene be lo liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L107
 msgid "Meaning id"
-msgstr ""
+msgstr "lo namcu po lo smuni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L168
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L170
 msgid "tab"
-msgstr ""
+msgstr "lo pagbu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L112
 msgid "Attention: "
-msgstr ""
+msgstr "ju'i zo'u"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L113
 msgid ""
 "As of 2014-08-16, the URL to download the latest files has changed and the "
 "new export files are provided in a compressed format. The old URL is still "
 "available, but will not contain the latest data."
-msgstr ""
+msgstr "de'i li 16 pi'e 8 pi'e 2014 co'a ku lo urli be lo romoi vreji poi ka'e jaigau dikli fai ke'a vau cu cnino ije le vreji ca kompata i lo urli poi laldo ca'o ka'e se pilno gi'e ku'i na judri lo romoi datni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L161
 msgid ""
 "Contains all the sentences. Each sentence is associated with a unique id and"
 " an <a href=\"{}\">ISO 639-3</a> language code. "
-msgstr ""
+msgstr "vasru ro jufra i ro jufra cu se tcita pa namcu tcita je lo me zoi gy.<a href=\"{}\">ISO 639-3</a>.gy. bangu tcita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L164
 msgid ""
@@ -2642,11 +2681,11 @@ msgid ""
 "second file (sentences_detailed.tar.bz2) contains additional fields for "
 "those who would like to filter the sentences based on the contributor who "
 "owns the sentence, or the date when it was added or last modified."
-msgstr ""
+msgstr "la'o .net.sentences.tar.bz2.net. cu vreji fe po'o lo info i la'o .net.sentences_detailed.tar.bz2.net. cu vreji fe po'onai ji'a lo ponse be lo jufra be'o je lo detri be lo nu jmina le jufra vau je lo nu le jufra cu rore'u se stika"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L173
 msgid "Links"
-msgstr ""
+msgstr "loi te jorne"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L206
 msgid ""
@@ -2654,36 +2693,36 @@ msgid ""
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
 "present, so the file will also contain a line that says "
 "{sampleLinkLineReversed}."
-msgstr ""
+msgstr "vreji lo te jorne be lo jufra i zoi gy.{sampleLinkLine}.gy. se smuni lo nu lo 77moi jufra cu te traduki lo 1moi jufra i fa ji'a lo fatne te jorne cu ze zgana i se ki'u bo le vreji cu vreji li linji poi du zoi gy.{sampleLinkLineReversed}.gy."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L251
 msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
-msgstr ""
+msgstr "vreji lo liste be <a href=\"{url}\">lo tcita</a> be ro jufra i zoi gy.{sampleTagLine}.gy. se smuni lo nu lo 381279moi jufra cu se tcita zo'oi proverb"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L262
 msgid "Lists"
-msgstr ""
+msgstr "loi liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L290
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
-msgstr ""
+msgstr "vasru lo liste be <a href=\"{}\">lo liste belo jufra</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L296
 msgid "Sentences in lists"
-msgstr ""
+msgstr "lo jufra poi se liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L321
 msgid ""
 "Indicates the sentences that are contained by any lists. {sampleListLine} "
 "means that sentence #381279 is contained by the list that has an id of 13."
-msgstr ""
+msgstr "sinxa lo jufra poi se liste da i zoi gy.{sampleListLine}.gy. se smuni lo nu lo 381279moi jufra cu se liste lo se ke namcu tcita li 13"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L331
 msgid "Japanese indices"
-msgstr ""
+msgstr "loi indice poi ponjo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L355
 msgid ""
@@ -2692,129 +2731,129 @@ msgid ""
 "format. Each entry is associated with a pair of Japanese/English sentences. "
 "{sentenceId} refers to the id of the Japanese sentence. {meaningId} refers "
 "to the id of the English sentence."
-msgstr ""
+msgstr "vreji lo minra be zoi gy.B lines.gy. po vreji be la'oi Tanaka noi korpora be'o noi la'o gy.Jim Breen.gy. jai gau gubni i ko tcidu fi <a href=\"{url}\">la'e dei</a> fe lo ve skicu be lo formate i ro lo se liste be le se vreji cu jorne lo remei be lo jufra poi ponjo ce glico i zoi gy.{sentenceId}.gy. sinxa lo namcu tcita be le jufra poi ponjo i zoi gy.{meaningId}.gy. sinxa lo namcu tcita be le jufra poi glico"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L371
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/with_audio.ctp#L28
 msgid "Sentences with audio"
-msgstr ""
+msgstr "loi jufra poi se bacru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L388
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available."
-msgstr ""
+msgstr "vasru lo namcu tcita be lo ro jufra poi uenzi ro bangu poi ka'e zbasu lo se bacru vreji pe bau ke'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L394
 msgid "General information about the files"
-msgstr ""
+msgstr "lo kampu info be lei vreji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L396
 msgid ""
 "The files provided here are updated every <strong>Saturday at 9 "
 "a.m.</strong>, France time."
-msgstr ""
+msgstr "jai gau cnino fai lo datni poi zvati la'e dei vau ca ro <strong>xavdei ti'u 9</strong> veti'u lo gugdefuru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L403
 msgid ""
 "Many of the Japanese and English sentences are from the <a "
 "href=\"{}\">Tanaka Corpus</a>, which belongs to the public domain."
-msgstr ""
+msgstr "so'i lo jufra noi ponjo jonai glico cu se krasi la'oi <a href=\"{}\">Tanaka noi korpora</a> je noi jai se flalu tu'a lo gubni se kuspe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L37
 msgid "Need more help?"
-msgstr ""
+msgstr "za'u lo te sidju"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L41
 msgid "You can check out the <a href=\"{}\">FAQ</a>."
-msgstr ""
+msgstr "do ka'e inspekte <a href=\"{}\">lo cafne se retsku</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L48
 msgid ""
 "If you cannot find the answer to your question, do not hesitate to contact "
 "us."
-msgstr ""
+msgstr "fau lo nu do na tolcri lo danfu be lo nabmi be do vau do e'o zunai jikca mi'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L58
 msgid "By email"
-msgstr ""
+msgstr "mrilu fu lo kibro"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L60
 msgid "From the Wall"
-msgstr ""
+msgstr "se krasi le bitmu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L64
 msgid "Click here to go to the Wall."
-msgstr ""
+msgstr "kliki dei tezu'e lo ka catlu le bitmu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L69
 msgid "On IRC"
-msgstr ""
+msgstr "bu'u lo se irci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L75
 msgid "How to use IRC"
-msgstr ""
+msgstr "ma tadji lo ka pilno lo te irci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L79
 msgid ""
 "For those who are not familiar with IRC, it is pretty much like an instant "
 "messenger. You will be able to talk to us in real time, if we are there."
-msgstr ""
+msgstr "tecu'u lo na se slabu ba la'oi IRC zo'u ri mutce lo ka simsa so'a lo ze'i zei benji tutci i do ka'e tavla mi'a fau lo nu do zvati vau ze'i tebe'i je be'i"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L87
 msgid "There are many ways to join our channel. One is to go to this website:"
-msgstr ""
+msgstr "so'i da tadji lo ka jorne lo se irci pe mi'a i me da fa lo nu vitke lo kibro stuzi pe di'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L93
 msgid ""
 "Enter a nickname, enter \"#tatoeba\" for the channel, and click on "
 "\"connect\". That's it!"
-msgstr ""
+msgstr "ciska lo irci cmene be do gi'e babo ciska zoi .net.#tatoeba.net. noi cmene lo se irci vau gi'e ba bo kliki la'e zo'oi connect mu'o sai"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L106
 msgid "Getting started"
-msgstr ""
+msgstr "incipe lo ka pilno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L113
 msgid ""
 "If you have no idea what to do now that you are registered, you can "
 "introduce yourself on the <a href=\"{}\">Wall</a>, or join us on "
 "<strong>IRC</strong>. We will give you a purpose. :)"
-msgstr ""
+msgstr "no da sidbo fi do fe lo nu fe makau ei do zukte ba lo ka co'a se jaspo i se fau bo do ka'e jai gau se slabu do bu'u <a href=\"{}\">le bitmu</a> gi'a jorne mi'a <strong>lo se irci</strong> vau ja'e lo nu mi'a stidi lo ka'e se zukte vau u'i"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L125
 msgid ""
 "If you think this project is awesome and would like to help actively, here "
 "is a link you <strong>MUST</strong> read:"
-msgstr ""
+msgstr "fau lo nu do jinvi lo du'u le projeto cu marvele vau gi'e djica lo ka akti sidju vau do tcidu <strong>e'o</strong> la'e di'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L137
 msgid ""
 "That being said, welcome to Tatoeba! We hope you'll enjoy being part of this"
 " project :)"
-msgstr ""
+msgstr "i mu'onai fi'i sai vitke be la'oi Tatoeba i a'o do ba lifri lo nu lo nu cmima be lo dei projeto cu zabna mu'o"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L149
 msgid "Important links"
-msgstr ""
+msgstr "lo te jorne poi vajni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L171
 msgid "Adding new sentences"
-msgstr ""
+msgstr "ca'o jmina lo jufra poi cnino"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L172
 msgid "There are two ways to add new sentences."
-msgstr ""
+msgstr "re da tadji lo ka jmina lo jufra poi cnino"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L177
 msgid "From the <a href=\"{}\">Contribute</a> section"
-msgstr ""
+msgstr "ra'i la'e <a href=\"{}\">zo kontribute</a> noi te fendi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L191
 msgid ""
 "By creating a new <a href=\"{}\">list</a>, and going to the edit page for "
 "that list."
-msgstr ""
+msgstr "ta'i lo ka zbasu lo <a href=\"{}\">liste</a> poi cnino vau gi'e pilno lo le nu stika vau papri po le liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L208
 msgid ""
@@ -2822,44 +2861,44 @@ msgid ""
 "vocabulary that is not covered. This is why we encourage you to add new "
 "sentences with new vocabulary, even if you do not know how to translate it "
 "into any language."
-msgstr ""
+msgstr "fau da'inai lo nu so'i da jufra bu'u la'oi Tatoeba cu za'o ku'i na se pilno fa so'i lo te gerna i se ki'u bo mi'a jai gau virnu fai do lo ka jmina za'u lo jufra poi vasru lo te gerna poi za'o na se pilno i ju do na djuno lo du'u makau ka'e te traduki le jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L219
 msgid "Translating sentences"
-msgstr ""
+msgstr "ca'o traduki lo jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L223
 msgid ""
 "Translating is one of the most important tasks in Tatoeba, since the main "
 "goal of the project is to gather sentences translated into many languages."
-msgstr ""
+msgstr "lo ka traduki cu me lo traji be lo ka vajni bei lo se bilga va'o la'oi Tatoeba i ki'u bo lo te zukte be tu'a le projeto be'o poi ralju cu du lo ka jai gau jmaji fai lo jufra poi se traduki lo uenzi be so'i da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L233
 msgid ""
 "You can translate a sentence from pretty much everywhere. Just click on this"
 " icon {translateButton} whenever you see it."
-msgstr ""
+msgstr "do zifre lo ka traduki lo jufra bu'u so'a da i sa'u ko kliki la'o pixr.{translateButton}.pixr. ca lo nu do ganse ri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L245
 msgid "Correcting mistakes"
-msgstr ""
+msgstr "cikre lo na drani"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L249
 msgid ""
 "You can only correct mistakes in sentences that belong to you. If you see a "
 "mistake in someone else's sentence, you can post a comment to notify him or "
 "her of the mistake."
-msgstr ""
+msgstr "do zifre lo ka cikre lo jufra poi jai se srera vau fau po'o lo nu le jufra cu se ponse do i calo nu do zgana lo se srera po lo jufra poi se ponse lo na'e do vau do zifre lo ka piksku zo'e pe lo jufra tezu'e lo ka jai gau djuno fai le ponse zi'e pe le se srera"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L258
 msgid ""
 "In certain cases, the sentence does not have an owner. Read the paragraph "
 "below (on adopting sentences) to learn more."
-msgstr ""
+msgstr "fau su'o da lo jufra cu se ponse no de i e'o do tcidu di'e pe lo nu co'a ponse lo jufra vau tezu'e lo ka cilre lo zmadu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L267
 msgid "Adopting sentences"
-msgstr ""
+msgstr "jai zu'e ponse fai lo jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L271
 msgid ""
@@ -2867,7 +2906,7 @@ msgid ""
 "edit it. However, many of the sentences in Tatoeba come from a Japanese-"
 "English corpus called the Tanaka Corpus. These sentences do not have any "
 "owner because they have been collected outside of Tatoeba."
-msgstr ""
+msgstr "fau lo nu do jmina lo jufra vau le jufra cu se ponse zi'a do i je va'i do po'o ka'e se stika le jufra i ku'i so'i lo jufra pe la'oi Tatoeba cu se krasi lo ponjo je glico korpora poi se cmene lu zo'oi Tanaka noi korpora li'u i le jufra cu se ponse no da i ku'i bo le jufra cpu gau jmaji va'onai la'oi Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L283
 msgid ""
@@ -2875,116 +2914,108 @@ msgid ""
 "correct it because you are not the owner. This is why there is an \"adopt\" "
 "option ({adoptButton}). Once you adopt a sentence, you become its owner and "
 "therefore can edit it."
-msgstr ""
+msgstr "fau lo nu do zgana lo se srera po lo jufra poi se ponse no da vau do na zifre lo ka cikre le jufra i ki'u bo do na ponse le jufra i seki'u bo zasti fa la'e zoi .pixr.{adoptButton}).pixr. noi batke gi'e curmi lo nu co'a ponse lo jufra i fau lo nu do ponse lo jufra vau do ka'e stika le jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L301
 msgid ""
 "Adopting a sentence is also part of the \"quality process\". You can find "
 "more information about it here:"
-msgstr ""
+msgstr "lo nu co'a ponse lo jufra cu pagbu lo ni drani vau pruce i do ka'e cilre za'u lo datni be ni bu ta'i lo ka tcidu la'e di'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L313
 msgid "Sentence lists"
-msgstr ""
+msgstr "loi liste be lo jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L317
 msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
-msgstr ""
+msgstr "do zifre lo ka zbasu lo liste be lo jufra i na'o ku lo liste cu <strong>sivni</strong> i di'e se smuni lo nu le liste ka'e se stika fe po'o lo zbasu be le liste (to i ku'i le liste ka'e se zgana ro da toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L326
 msgid ""
 "However it is also possible to let any member in Tatoeba add and remove "
 "sentences by setting a list as <strong>collaborative</strong>."
-msgstr ""
+msgstr "i ku'i do zifre lo ka curmi lo nu ro da poi se bende la'oi Tatoeba zo'u da jmina ja vimcu lo jufra i ta'i bo do jai gau <strong>fatri</strong> fai le liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L28
 msgid "Tatoeba: Collecting example sentences"
-msgstr ""
+msgstr "la'oi Tatoeba zo'u: jai gau jmaji lo mupli jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L32
 msgid ""
 "Search example sentences translated into many languages. Add and translate "
 "your own sentences. It's collaborative, open, free, and even addictive."
-msgstr ""
+msgstr "mitysisku lo mupli jufra poi se traduki fi lo se uenzi be so'i da i ko jmina je traduki lo do jufra i lo nu go'i ka'e ckaji lo ka kansa se zukte gi'e gubni gi'e se jdima no da gi'e ji'a cinri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L69
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L76
 msgid "Latest messages"
-msgstr ""
+msgstr "loi se benji poi romoi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L125
 msgid "show activity timeline"
-msgstr ""
+msgstr "zgana lo citri lo nu zukte"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L139
 msgid "Latest comments"
-msgstr ""
+msgstr "lo se piksku poi romoi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L58
 msgid "Some stats"
-msgstr ""
+msgstr "so'o datni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L62
 msgid "One contribution today"
 msgid_plural "{n}&nbsp;contributions today"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "pa&nbsp;kontribute ca lo cabdei"
+msgstr[1] "{n}&nbsp;kontribute ca lo cabdei"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L67
 msgid "One member so far"
 msgid_plural "{n}&nbsp;members so far"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "caku pa&nbsp;da cmima"
+msgstr[1] "caku {n}&nbsp;da cmima"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L73
 msgid "One supported language"
 msgid_plural "{n}&nbsp;supported languages"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "pa&nbsp;da poi bangu ka'e se pilno"
+msgstr[1] "{n}&nbsp;da poi bangu ka'e se pilno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L94
 msgid "What is Tatoeba?"
-msgstr ""
+msgstr "la'oi Tatoeba cu mo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L122
 msgid ""
 "At its core, Tatoeba is a large database of <strong>example "
 "sentences</strong> translated into several languages. But as a whole, it is "
 "much more than that."
-msgstr ""
+msgstr "ralju tcila la'oi Tatoeba fa lo noi barda vau sorcu <strong>lo mupli jufra</strong> noi se tradukti fi lo uenzi be so'i da i ku'i de drata tcila"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L131
 msgid "See what's happening now."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/search.ctp#L28
-msgid "Examples of search"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/search.ctp#L41
-msgid "Please enter a nonempty search string"
-msgstr ""
+msgstr "zgana lo ca fasnu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L32
 msgid "Table of contents"
-msgstr ""
+msgstr "lo liste be lo pagbu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L36
 msgid "English version"
-msgstr ""
+msgstr "English version"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L41
 msgid "Version française"
-msgstr ""
+msgstr "Version française"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L53
 msgid "Information for contributors of text to the Tatoeba project"
-msgstr ""
+msgstr "info seva'u lo kontribute be lo uenzi bei la'oi Tatoeba noi projeto"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L57
 msgid ""
@@ -2996,7 +3027,7 @@ msgid ""
 "Creative Commons Attribution License 2.0 (fr). Please note that this license"
 " does allow commercial uses of your contributions, as long as such uses are "
 "compliant with the terms. "
-msgstr ""
+msgstr "tezu'e lo ka jai gau zenba fa lo se klani be lo se zifre se djuno je lo se zifre kulnu vau ro lo kontribute be fi la'oi Tatoeba noi projeto cu jai bilga lo ka permite lo munje se cecmu lo ka frili lo ka jai gau fatri gi'e za'u re'u pilno vau lo se kontribute be vo'a i va'o bo le nu pilno cu gau se djuno i se ki'u bo ro da poi uenzi gi'e jai krali do zo'u fau lo ka benji da la'oi Tatoeba vau do tolpro fi lo ka pilno da va'o la'o gy.Creative Commons Attribution License 2.0 (fr).gy. noi javni i e'o do djuno lo du'u le javni cu curmi lo ka vecnu pilno lo se kontribute be do ja'i zo'ei la'oi Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L69
 msgid ""
@@ -3008,18 +3039,18 @@ msgid ""
 "manner equivalent to the credit given on this website, or c) through a list "
 "of all authors. (Any list of authors may be filtered to exclude very small "
 "or irrelevant contributions.)"
-msgstr ""
+msgstr "do poi finti cu tolpro fi lo nu sitsku zo'e pe do tai lo me la'e di'e i abumai tai lo ka ciska lo judrysni be fau lo cumki be'o ja lo urli be lo jufra poi do kontribute ke'a i bymai tai lo ka ciska lo judrysni be fau lo cumki be'o ja lo urli be lo uebre fukpi noi alternative je poi stodi gi'e jai ka'e se pilno fi'o frili je poi lo nu zvati fa ke'a cu mapti le javni je poi ciksi lo te kontribute be fi le finti tai lo dunli be lo tasmi poi se pilno va'o lo dei kibro stuzi i cymai tai lo ka ciska lo liste be ro finti (to curmi lo nu lo se liste poi to'e ralju kontribute cu se vimcu toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L79
 msgid "Importing text:"
-msgstr ""
+msgstr "ca'o jmina lo uenzi ne di'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L82
 msgid ""
 "If you want to import text that you have found elsewhere or that you have "
 "co-authored with others, you can only do so if it is available under terms "
 "that are compatible with the CC-BY license."
-msgstr ""
+msgstr "do zifre lo ka jmina lo uenzi poi do pu tolcri gi'a finti ka'ai lo drata i ku'i fau po'o bo le uenzi cu se krali lo javni poi sarxe la'o gy.CC-BY.gy. noi javni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L88
 msgid ""
@@ -3029,15 +3060,15 @@ msgid ""
 "attribution in the edit summary, which is recorded in the sentence history "
 "when importing the text. Regardless of the license, the text you import may "
 "be rejected if the required attribution is deemed too intrusive."
-msgstr ""
+msgstr "da'i do jmina lo uenzi poi jai krali fai lo mapti poi ja'i ke'a sarcu fa lo nu jai gau djuno zo'e pe lo finti i se fau bo do bilga lo ka jai gau djuno zo'e pe le finti i so'i roi ku jau gau djuno zo'e pe le finti ta'i lo ka piksku zo'e pe le jufra i ku'i banzu fa lo nu jai gau djuno ta'i lo ka ciska fi lo ve skicu be lo nu stika lo jufra poi du le uenzi ije ca lo nu gau co'a vreji le jufra vau le ve skicu co'a se vreji lo citri be le jufra i le uenzi ka'e se vimcu fau lo nu le nu jau gau djuno cu du'e va'e fanza i lo nu go'i na fancu le krali"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L96
 msgid "Information for re-users:"
-msgstr ""
+msgstr "info seva'i lo za'ure'u pilno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L99
 msgid "Re-use of text:"
-msgstr ""
+msgstr "(to lo nu za'ure'u pilno lo uenzi toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L105
 msgid ""
@@ -3074,11 +3105,11 @@ msgstr ""
 msgid ""
 "For further information, please refer to the legal code of the CC-BY "
 "License."
-msgstr ""
+msgstr "za'u lo info cu se vasru lo flalu krasi  be la'oi CC-BY noi javni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L155
 msgid "Precedence of French terms"
-msgstr ""
+msgstr "lo se porsi be fi lo fraso ke steci valsi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L159
 msgid ""
@@ -3091,122 +3122,122 @@ msgstr ""
 #. whatever you translated "Inbox", "Sent" or "Trash" as.
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L40
 msgid "Private messages - {folderName}"
-msgstr ""
+msgstr "lo sivni se benji zo'u {folderName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L50
 msgid "{folderName} ({n}&nbsp;message)"
 msgid_plural "{folderName} ({n}&nbsp;messages)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{folderName} (to pa&nbsp;da se benji toi)"
+msgstr[1] "{folderName} (to {n}&nbsp;da se benji toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L77
 msgid "from {sender}"
-msgstr ""
+msgstr "be'i la'oi {sender}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L80
 msgid "to {recipient}"
-msgstr ""
+msgstr "tebe'i la'oi {recipient}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/show.ctp#L29
 msgid "[no subject]"
-msgstr ""
+msgstr "no da se casnu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L118
 msgid "Restore"
-msgstr ""
+msgstr "jai gau di'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L38
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages\n"
 "                 new users can send only 5 messages per day."
-msgstr ""
+msgstr "tezu'e lo nu la'oi Tatoeba cu mabla se mrilu jinsa vau\nlo cnino pilno ka'e benji su'e 5 da ca ro djedi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L45
 msgid "You have sent one message today."
 msgid_plural "You have sent {n}&nbsp;messages today."
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "do mo'u benji pa&nbsp;da ca lo cabdei"
+msgstr[1] "do mo'u benji {n}&nbsp;da ca lo cabdei"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L56
 msgid ""
 "To help keep Tatoeba free of spam and other malicious messages new users can"
 " send only 5 messages per day."
-msgstr ""
+msgstr "tezu'e lo nu la'oi Tatoeba cu mabla se mrilu jinsa vau lo cnino pilno ka'e benji su'e 5 da ca ro djedi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L61
 msgid "Please wait until you can send more messages. "
-msgstr ""
+msgstr "e'o do denpa fo lo ka benji za'u da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L43
 msgid ""
 "Click a sentence to go to tatoeba.org to translate it or leave a comment."
-msgstr ""
+msgstr "kliki lo jufra tezu'e lo ka vitke la'o .net.tatoeba.org.net. gi'e babo traduki le jufra gi'abo piksku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L53
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L174
 msgid "There is no sentence with id {number}"
-msgstr ""
+msgstr "no jufra cu se tcita me'o {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_annotations/last_modified.ctp#L55
 msgid "Browse by last modified (total %count%)"
-msgstr ""
+msgstr "catlu loi jufra poi girzu lo ka ro re'u se stika ca makau (to %count% da toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/edit.ctp#L28
 msgid "Edit Comment"
-msgstr ""
+msgstr "stika lo se piksku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/edit.ctp#L47
 msgid "Edit Comment on Sentence #{number}"
-msgstr ""
+msgstr "stika lo se piksku po lo {number}moi jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/index.ctp#L38
 msgid "Comments on sentences"
-msgstr ""
+msgstr "lo se piksku pe lo jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/index.ctp#L58
 msgid "Comments on sentences (total %count%)"
-msgstr ""
+msgstr "lo se piksku po lo jufra (to %count% da toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/of_user.ctp#L39
 msgid "{user}'s comments"
-msgstr ""
+msgstr "lo se piksku be la'oi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/of_user.ctp#L61
 msgid "{user} has posted no comment"
-msgstr ""
+msgstr "la'oi {user} ba'o benji no se piksku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/of_user.ctp#L75
 msgid "{user}'s comments (total&nbsp;{n})"
-msgstr ""
+msgstr "lo se piksku be la'oi {user} noi ba'o piksku&nbsp;{n} da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L66
 msgid "{user} has no comment posted on his/her sentences"
-msgstr ""
+msgstr "la'oi {user} piksku no da pe lo jufra be vo'a mo'uku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L80
 msgid "Comments on {user}'s sentences (total&nbsp;{n})"
-msgstr ""
+msgstr "lo se piksku pe lo jufra poi se ponse la'oi {user} (to {n} da toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L39
 msgid "Important"
-msgstr ""
+msgstr "vajni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L53
 msgid ""
 "Do not copy-paste sentences from elsewhere, except if the content is CC-BY "
 "compatible. <a href=\"{}\">Learn more...</a>"
-msgstr ""
+msgstr "ko jmina lo jufra poi se krasi lo drata vau i fau po'o bo le jufra cu jai krali fai lo mapti be la'oi CC-BY noi javni i <a href=\"{}\">ko cilre lo zmadu</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L70
 msgid ""
 "You can add sentences that you do not know how to translate. Perhaps someone"
 " else will know!"
-msgstr ""
+msgstr "do zifre lo ka jmina lo jufra poi do na djuno lo du'u makau ka'e te traduki ke'a i la'a cu'i lo drata ba djuno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L79
 msgid "Or create sentences with <a href=\"{}\">words not yet in Tatoeba</a>."
-msgstr ""
+msgstr "i ja zbasu lo jufra poi vasru <a href=\"{}\">lo valsi poi na se pilno nu'u la'oi Tatoeba</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L92
 msgid "Add new sentences"
@@ -3222,34 +3253,50 @@ msgstr "lo jufra poi se jmina"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L42
 msgid "{user}'s sentences"
-msgstr ""
+msgstr "loi jufra poi se jmina la {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L45
 msgid "{user}'s sentences in {language}"
-msgstr ""
+msgstr "loi jufra poi se jmina la {user} gi'e uenzi lo {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L70
 msgid "Translate these sentences"
-msgstr ""
+msgstr "traduki lei jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L94
 msgid "{user} does not have any sentence in {language}"
-msgstr ""
+msgstr "la'oi {user} ca ponse no jufra poi uenzi lo {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L99
 msgid "{user} does not have any sentence"
-msgstr ""
+msgstr "la'oi {user} noi pilno mo'u jmina no jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L114
 msgid "(total %count%)"
-msgstr ""
+msgstr "(to %count% da toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L31
 msgid "Sentences with: {keywords}"
-msgstr ""
+msgstr "lo jufra poi vasru la'e di'e i zoi gy.{keywords}.gy."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L34
+msgid "Sentences in {language} translated into {translationLanguage}"
+msgstr "lo jufra poi uenzi lo {language} je poi se traduki fi lo {translationLanguage}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L38
+msgid "Sentences in {language}"
+msgstr "loi jufra poi uenzi lo {language}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L41
+msgid "Sentences translated into {language}"
+msgstr "lo jufra poi mo'u se traduki fi lo {language}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L44
+msgid "All sentences"
+msgstr "loi ro jufra"
 
 #. @translators: title on the top of a search result page
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L71
 msgid "Search: {keywords}"
 msgstr "sisku {keywords}"
 
@@ -3260,7 +3307,7 @@ msgstr "lo cunso jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L33
 msgid "For serial translators"
-msgstr ""
+msgstr "seva'u lo traduki be lo za'umei"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L37
 msgid ""
@@ -3271,11 +3318,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L44
 msgid "Just keep in mind that our server is not as fast as you ;-)"
-msgstr ""
+msgstr "sa'u ko morji lo du'u lo selfu skami pe mi'a na zmadu do lo ka sutra vau u'i"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L39
 msgid "{language} example sentence: "
-msgstr ""
+msgstr "mupli lo uenzi be lo {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L47
 msgid ""
@@ -3285,19 +3332,19 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L58
 msgid "Sentence does not exist: "
-msgstr ""
+msgstr "le jufra na zasti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L119
 msgid "There is no log for this sentence"
-msgstr ""
+msgstr "no da vreji lo citri be le jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L125
 msgid "Report mistakes"
-msgstr ""
+msgstr "jai gau djuno zo'e lo se srera"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L128
 msgid "Do not hesitate to post a comment if you see a mistake!"
-msgstr ""
+msgstr "fau lo nu do ganse lo se srera do benji e'osai  lo se piksku pe le se srera"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L134
 msgid ""
@@ -3308,61 +3355,61 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L213
 msgid "There are no comments for now."
-msgstr ""
+msgstr "ca ku no da se piksku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L218
 msgid "Sentence deleted"
-msgstr ""
+msgstr "le jufra mo'u se vimcu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L228
 msgid ""
 "You need to be logged in to add a comment. If you are not registered, you "
 "can <a href=\"{}\">register here</a>."
-msgstr ""
+msgstr "e'i do pilno lo jaspu lo ka piksku i fau lo nu do se jaspu no da vau do <a href=\"{}\">co'a se jaspu e'u sepi'o la'e dei</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L30
 msgid "All sentences in {language}"
-msgstr ""
+msgstr "lo ro jufra poi uenzi lo {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L34
 msgid "any language"
-msgstr ""
+msgstr "ro lo bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L39
 msgid "Sentences in {language} not translated into {translationLanguage}"
-msgstr ""
+msgstr "loi jufra poi uenzi lo {language} je poi na se traduki fi lo {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/with_audio.ctp#L31
 msgid "Sentences in {language} with audio"
-msgstr ""
+msgstr "loi jufra poi uenzi lo {language} gi'e se bacru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/add_new_sentence_to_list.ctp#L50
 msgid "Problem while saving"
-msgstr ""
+msgstr "nabmi fa lo nu jai gau vreji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L38
 msgid "Download list: "
-msgstr ""
+msgstr "lo liste be lo ka'e jai gau diklo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L42
 msgid "Actions"
-msgstr ""
+msgstr "loi se zukte"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L81
 msgid "Id (optional)"
-msgstr ""
+msgstr "lo namcu tcita noi e'inai do ciska"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L89
 msgid ""
 "If you check this box, the id of each sentence will be written to the "
 "output."
-msgstr ""
+msgstr "da'i ri'a lo nu do cuxna le tanxe vau lo namcu tcita be ro lo jufra cu se vreji lo te pruce"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L95
 msgid "Translation (optional)"
-msgstr ""
+msgstr "lo te raduki noi e'inai do ciska"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L129
 msgid ""
@@ -3377,7 +3424,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L171
 msgid "Translation"
-msgstr ""
+msgstr "lo te traduki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L175
 msgid ""
@@ -3387,7 +3434,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L80
 msgid "You can change the name of the list by clicking on it."
-msgstr ""
+msgstr "stika lo cmene be le liste ta'i lo ka kliki le cmene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L88
 msgid ""
@@ -3399,32 +3446,32 @@ msgstr ""
 msgid ""
 "Removing a sentence will not delete it. The sentence will just not be part "
 "of the list anymore."
-msgstr ""
+msgstr "lo nu vimcu lo jufra na vimcu le jufra lo ralju ke datni sorcu gi'e sa'u jai se ja'e na pagbu le liste fai le jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L28
 msgid "Lists of sentences"
-msgstr ""
+msgstr "lo liste be lo jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L42
 msgid "Create a new list"
-msgstr ""
+msgstr "zbasu lo liste noi cnino"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L55
 msgctxt "list"
 msgid "Name"
-msgstr ""
+msgstr "lo cmene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L58
 msgid "create"
-msgstr ""
+msgstr "finti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L66
 msgid "About the lists"
-msgstr ""
+msgstr "zo'ei lei liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L70
 msgid "Lists make it possible to gather and organize sentences in Tatoeba."
-msgstr ""
+msgstr "lo nu liste cu curmi lo nu va'o la'oi Tatoeba jai gau jmaji fai lo jufra gi'e ganzu ri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L78
 msgid ""
@@ -3434,66 +3481,66 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L87
 msgid "Registration needed"
-msgstr ""
+msgstr "lo nu co'a se jaspu cu sarcu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L88
 msgid "You can create lists only if you are registered."
-msgstr ""
+msgstr "fau po'o lo nu do se jaspu da vau do zifre lo ka zbasu lo liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L100
 msgid "If you are already registered, please log in."
-msgstr ""
+msgstr "fau lo nu do se jaspu da vau do co'a pilno e'o le jaspu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L117
 msgid "My lists"
-msgstr ""
+msgstr "loi liste po mi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L132
 msgid "Collaborative lists"
-msgstr ""
+msgstr "lo liste po za'u da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L144
 msgid "Other personal lists"
-msgstr ""
+msgstr "lo liste poi sivni gi'e drata"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/remove_sentence_from_list.ctp#L33
 msgid "Sentence successfully removed."
-msgstr ""
+msgstr "le jufra mo'u se vimcu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/explode.ctp#L27
 msgid "Result"
-msgstr ""
+msgstr "lo jalge"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L28
 msgid "Search sinograms"
-msgstr ""
+msgstr "mitysisku lo anji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L39
 msgid "Browse radicals"
-msgstr ""
+msgstr "catlu lo pagbu be lo anji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L53
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_radicals.ctp#L33
 msgid "1 stroke"
 msgid_plural "{n}&nbsp;strokes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "pa&nbsp;se ciska selci"
+msgstr[1] "{n}&nbsp;se ciska selci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L71
 msgid "Explode a character"
-msgstr ""
+msgstr "katna lo anji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L80
 msgid "characters to explode"
-msgstr ""
+msgstr "lo anji poi ei se katna"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L82
 msgid "Explode"
-msgstr ""
+msgstr "katna"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L90
 msgid "Still beta"
-msgstr ""
+msgstr "ca'o na rova'e bredi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L97
 msgid "This work is based on <a href=\"{}\">this project</a>."
@@ -3508,7 +3555,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L122
 msgid "Hanzis - Kanjis search"
-msgstr ""
+msgstr "mitysisku lo anji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L127
 msgid ""
@@ -3555,7 +3602,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L187
 msgid "Search"
-msgstr ""
+msgstr "sisku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_example_sentence.ctp#L33
 msgid ""
@@ -3569,39 +3616,39 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_radicals.ctp#L31
 msgid "10 or more strokes"
-msgstr ""
+msgstr "su'o 10 se ciska selci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L31
 msgid "Information about {sinograph}"
-msgstr ""
+msgstr "lo info be la'oi {sinograph}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L43
 msgid "number of strokes:"
-msgstr ""
+msgstr "lo se klani be lo se ciska selci zo'u"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L48
 msgid "pinyin:"
-msgstr ""
+msgstr "la piniin zo'u"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L53
 msgid "English:"
-msgstr ""
+msgstr "lo bangenugu zo'u"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L58
 msgid "Japanese On:"
-msgstr ""
+msgstr "la on ku noi ponjo tadji lo nu tcidu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L63
 msgid "Japanese Kun:"
-msgstr ""
+msgstr "la kun ku noi ponjo tadji lo nu tcidu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L68
 msgid "Example of use"
-msgstr ""
+msgstr "mupli lo nu pilno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/search.ctp#L29
 msgid "Results"
-msgstr ""
+msgstr "loi jalge"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/search.ctp#L41
 msgid "No result found. Try to search with fewer subglyphs."
@@ -3609,22 +3656,22 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L28
 msgid "Number of sentences per language"
-msgstr ""
+msgstr "ro da zo'u se klani lo jufra poi uenzi da"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L28
 msgid "Tags for moderators"
-msgstr ""
+msgstr "lo tcita pe pi'o lo pajni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L64
 msgid "Guidelines"
-msgstr ""
+msgstr "gidva javni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L73
 msgid ""
 "Corpus maintainers, this page was made for your convenience. It shows "
 "sentences that were tagged more than two weeks ago as {changeTag} or "
 "{deleteTag}."
-msgstr ""
+msgstr "doi loi korpora kurji lo dei papri cu se zbasu seva'u do i le papri cu jai gau zgana lo jufra poi se tcita co'a pu lo jeftu be li re fe zo'oi {changeTag} ja {deleteTag}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L78
 msgid ""
@@ -3641,32 +3688,32 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/for_moderators.ctp#L92
 msgid "Tagged '{tagName}' more than 2 weeks ago"
-msgstr ""
+msgstr "co'a se tcita zo'oi {tagName} pu lo jeftu be li re"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L30
 msgid "Sentences with tag {tagName}"
-msgstr ""
+msgstr "loi jufra poi se tcita zo'oi {tagName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L84
 msgid "No tag with id {tagId}"
-msgstr ""
+msgstr "no da poi tcita cu se tcita me'o {tagId}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L28
 msgid "All existing tags"
-msgstr ""
+msgstr "lo ro tcita poi zasti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L44
 msgid "All Tags"
-msgstr ""
+msgstr "lo ro tcita"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L85
 msgid "Chinese traditional/simplified conversion"
-msgstr ""
+msgstr "galfi ja se te se galfi lo tcaci jungo lo sampu jungo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L46
 msgid "The software"
-msgstr ""
+msgstr "loi proga"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L50
 msgid ""
@@ -3684,28 +3731,28 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L106
 msgid "Enter either traditional or simplified Chinese"
-msgstr ""
+msgstr "ciska lo tcaci jungo ja lo sampu jungo"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L120
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L117
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L134
 msgid "Convert"
-msgstr ""
+msgstr "galfi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L28
 msgid "Useful tools"
-msgstr ""
+msgstr "loi tutci poi xamgu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L36
 msgid "Need a tool?"
-msgstr ""
+msgstr "xu do nitcu lo tutci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L41
 msgid ""
 "Well, Tatoeba's developers don't have time to think of every possible useful"
 " tool for language learners."
-msgstr ""
+msgstr "i'a lo jai gau farvi be fai la'oi Tatoeba na jai se ditcu fai lo ka pensi tu'a ro tutci poi ka'e xamgu lo tadni be lo bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L51
 msgid ""
@@ -3717,7 +3764,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L74
 msgid "Romaji/furigana conversion"
-msgstr ""
+msgstr "galfi ja se te se galfi lo me'oi romaji lo me'oi furigana "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L81
 msgid "convert Japanese to romaji or furigana."
@@ -3725,7 +3772,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L87
 msgid "Sinogram search"
-msgstr ""
+msgstr "lo nu mitysisku lo anji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L94
 msgid "search all Chinese characters / kanjis by all possible methods."
@@ -3735,7 +3782,7 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L45
 msgid "Pinyin converter"
-msgstr ""
+msgstr "lo galfi tutci pe la piniin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L108
 msgid ""
@@ -3748,7 +3795,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L124
 msgid "convert traditional Chinese to simplified and vice versa"
-msgstr ""
+msgstr "galfi je se te se galfi lo tcaci ke jungo anji lo sampu ke jungo anji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L131
 msgid "Shanghainese to IPA"
@@ -3766,12 +3813,12 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L79
 msgid "Chinese characters"
-msgstr ""
+msgstr "lo jungo anji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L80
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L95
 msgid "numerical pinyin"
-msgstr ""
+msgstr "la namcu piniin"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L91
 msgid "Convert text to: "
@@ -3789,15 +3836,15 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L47
 msgid "Credits"
-msgstr ""
+msgstr "lo se sinma"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L46
 msgid "This tool is powered by <a href=\"{}\">MeCab</a>."
-msgstr ""
+msgstr "le tutci cu pilno <a href=\"{}\">la'oi MeCab</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L55
 msgid "More information"
-msgstr ""
+msgstr "za'u lo info"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L59
 msgid "Japanese romanization in Tatoeba, now using MeCab"
@@ -3813,11 +3860,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L107
 msgid "romaji"
-msgstr ""
+msgstr "me'oi romaji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L108
 msgid "furigana"
-msgstr ""
+msgstr "me'oi furigana"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L99
@@ -3834,7 +3881,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L68
 msgid "Note"
-msgstr ""
+msgstr "notci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L72
 msgid ""
@@ -3845,7 +3892,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L83
 msgid "Feedback"
-msgstr ""
+msgstr "dukti te spuda"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L120
 msgid "Enter a text in shanghainese dialect"
@@ -3853,84 +3900,84 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L41
 msgid "Picture"
-msgstr ""
+msgstr "lo pixra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L43
 msgid "Current picture"
-msgstr ""
+msgstr "lo ca pixra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L56
 msgid "New picture"
-msgstr ""
+msgstr "lo pixra poi cnino"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L69
 msgid "Upload"
-msgstr ""
+msgstr "dunda lo vreji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L76
 msgid "Personal information"
-msgstr ""
+msgstr "info lo prenu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L223
 msgid "Birthday"
-msgstr ""
+msgstr "detri lo nu jbena"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L221
 msgctxt "user"
 msgid "Name"
-msgstr ""
+msgstr "cmene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L102
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L222
 msgid "Country"
-msgstr ""
+msgstr "gugde"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L118
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L224
 msgid "Homepage"
-msgstr ""
+msgstr "zdani papri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L120
 msgid "Save personal information"
-msgstr ""
+msgstr "jai gau vreji lo infor be lo prenu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L126
 msgid "Description"
-msgstr ""
+msgstr "ve skicu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L135
 msgid "Save description"
-msgstr ""
+msgstr "jai gau vreji lo ve skicu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L71
 msgid "Stats"
-msgstr ""
+msgstr "loi datni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L73
 msgid "Comments posted"
-msgstr ""
+msgstr "loi se piksku poi mo'u se benji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L75
 msgid "Sentences owned"
-msgstr ""
+msgstr "loi jufra poi se ponse"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L77
 msgid "Sentences favorited"
-msgstr ""
+msgstr "loi jufra poi se nelci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L87
 msgid "Show latest activity"
-msgstr ""
+msgstr "zgana lo rore'u se zukte"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L119
 msgid "Email notifications are ENABLED."
-msgstr ""
+msgstr "lo mrilu judri notci cu akti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L121
 msgid "Email notifications are DISABLED."
-msgstr ""
+msgstr "lo mrilu judri notci cu to'e akti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L130
 msgid ""
@@ -3946,41 +3993,41 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L163
 msgid "Not approved"
-msgstr ""
+msgstr "na se zanru"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L166
 msgid "Sentences from this user are currently added as \"not approved\"."
-msgstr ""
+msgstr "lo jufra poi se jmina le pilno ca se tcita lu na se zanru li'u"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L250
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L122
 msgid "Member since"
-msgstr ""
+msgstr "cmima co'a de'i"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L268
 msgid "No description."
-msgstr ""
+msgstr "no ve skicu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L272
 msgid "TIP: We encourage you to indicate the languages you know."
-msgstr ""
+msgstr "lo se stidi zo'u mi'a e'ende do lo ka jarco lo ka se bangu makau"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L276
 msgid "TIP: Encourage this user to indicate the languages he or she knows."
-msgstr ""
+msgstr "lo se stidi zo'u ko e'ende le pilno lo ka jarco lo ka se bangu makau"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L40
 msgid "Options"
-msgstr ""
+msgstr "lo te cuxna"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L54
 msgid "Email notifications"
-msgstr ""
+msgstr "lo mrilu judri notci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L61
 msgid "Set your profile public?"
-msgstr ""
+msgstr "pei jai gau gubni fai lo jaspu be do"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L69
 msgid ""
@@ -3992,7 +4039,7 @@ msgstr ""
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
 "default."
-msgstr ""
+msgstr "co'a vreji lo romoi liste poi do jai gau se liste ke'a fai lo jufra i je le romoi liste gau na'o liste"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L89
 msgid ""
@@ -4013,7 +4060,7 @@ msgstr "jai gau vreji"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L108
 msgid "Change email address"
-msgstr ""
+msgstr "stika lo mrilu judri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L119
 msgid "Email address"
@@ -4037,19 +4084,19 @@ msgstr "za'ure'u ku lo balvi ckiku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L43
 msgid "Search user"
-msgstr ""
+msgstr "mitysisku lo pilno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L74
 msgid "Members (total %count%)"
-msgstr ""
+msgstr "loi cmima (to %count% da toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L79
 msgid "Sort by:"
-msgstr ""
+msgstr "gau porsi tu'a la'e di'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L85
 msgid "Member status"
-msgstr ""
+msgstr "loi se krali be le cmima"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L41
@@ -4066,15 +4113,15 @@ msgstr "lo cmene"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L59
 msgid "Username can only contain letters, numbers, or underscore"
-msgstr ""
+msgstr "lo cmene fau ro da vasru fe po'o lo lerfu ja lo namcu ja jorne bu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L63
 msgid "Username already taken."
-msgstr ""
+msgstr "do'i ca'o cmene lo drata"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L67
 msgid "Username must be at least two characters long"
-msgstr ""
+msgstr "e'i lo cmene cu vasru su'o re lerfu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L78
 msgid "Password:"
@@ -4082,27 +4129,27 @@ msgstr "lo ckiku"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L95
 msgid "unmask password"
-msgstr ""
+msgstr "jai gau jarco lo nu lo ckiku cu se mifra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L101
 msgid "Email address:"
-msgstr ""
+msgstr "lo mrilu judri zo'u"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L113
 msgid "Invalid email address"
-msgstr ""
+msgstr "lo mrilu judri na drani"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L117
 msgid "Email address already used."
-msgstr ""
+msgstr "le mrilu judri ca'o se pilno"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L130
 msgid "We need to make sure you are human."
-msgstr ""
+msgstr "e'i mi'a birti lo nu do prenu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L135
 msgid "What are the first five characters of your email address?"
-msgstr ""
+msgstr "ma porsi be fi lo romoi lerfu po lo do kibro mrilu judri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L139
 msgid ""
@@ -4112,7 +4159,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L148
 msgid "I accept the <a href=\"{}\">terms of use</a>"
-msgstr ""
+msgstr "i'a mi te javni <a href=\"{}\">la'e dei</a>"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L25
 msgid "Tatoeba user: {username}"
@@ -4120,66 +4167,66 @@ msgstr "pilno la'oi Tatoeba fa la'oi {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L64
 msgid "Latest sentences (<a href=\"{}\">view all</a>)"
-msgstr ""
+msgstr "lo jufra poi romoi (to <a href=\"{}\">catlu ro da</a> toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L94
 msgid "Favorite sentences (<a href=\"{}\">view all</a>)"
-msgstr ""
+msgstr "lo jufra poi se nelci (to <a href=\"{}\">catlu ro da</a> toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L127
 msgid "Latest comments (<a href=\"{}\">view all</a>)"
-msgstr ""
+msgstr "lo se piksku poi romoi (to <a href=\"{}\">catlu ro da</a> toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L161
 msgid "Latest Wall messages (<a href=\"{}\">view all</a>)"
-msgstr ""
+msgstr "lo poi romoi se benji be fi le bitmu (to <a href=\"{}\">catlu ro da</a> toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L31
 msgid "Edit message {number}"
-msgstr ""
+msgstr "stika lo notci poi {number} moi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L36
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L48
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L49
 msgid "Menu"
 msgstr "lo te cuxna"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L53
 msgid "Back to Wall"
 msgstr "volve le bitmu"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L54
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L55
 msgid ""
 "Here you can ask general questions like how to use Tatoeba, report bugs or "
 "strange behavior, or simply socialize with the rest of the community."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L66
 msgid "Before asking a question, make sure to read the <a href=\"{}\">FAQ</a>."
-msgstr ""
+msgstr "xa'o lo ka retsku vau do tcidu e'o <a href=\"{}\">lo cafne se retsku</a>"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L85
 msgid "{date}, by {author}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L107
 msgid ""
 "You may write in any language you want. At Tatoeba, all languages are equal."
-msgstr ""
+msgstr "do zifre lo ka ciska lo uenzi be lo jai se djica be do i va'o la'oi Tatoeba lo bangu cu su'ai dunli"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L126
 msgid "Wall (one thread)"
 msgid_plural "Wall ({n}&nbsp;threads)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "le bitmu (to pa boxna toi)"
+msgstr[1] "le bitmu (to {n} boxna toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"
-msgstr ""
+msgstr "loi se benji be la'oi {user} bei le bitmu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/messages_of_user.ctp#L50
 msgid "{user}'s messages on the Wall (total&nbsp;{n})"
-msgstr ""
+msgstr "lo se benji be la'oi {user} bei le bitmu (to {n} da toi)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L40
 msgid "Thread #{number}"
