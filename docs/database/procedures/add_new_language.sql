@@ -19,6 +19,13 @@ DROP PROCEDURE IF EXISTS add_new_language |
 CREATE PROCEDURE add_new_language(IN lang_iso_code CHAR(4), IN list_id_for_lang INT, IN tag_name_for_lang CHAR(50))
 ThisProc: BEGIN
 
+SELECT COUNT(*) INTO @code_found FROM languages WHERE code = lang_iso_code;
+IF NOT (@code_found = 0) THEN
+    SELECT CONCAT('Language code ', lang_iso_code, ' has already been added.');
+    -- We know this will fail, but we want the exception to occur so the caller will catch it.
+    INSERT INTO languages (code) VALUES (lang_iso_code);
+END IF;
+ 
 SELECT COUNT(*) INTO @sentences_in_list FROM sentences, sentences_sentences_lists 
     WHERE sentences_list_id = list_id_for_lang AND sentences.id = sentence_id; 
 SELECT COUNT(*) INTO @sentences_in_tags FROM sentences, tags_sentences 

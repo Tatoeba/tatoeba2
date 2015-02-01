@@ -20,26 +20,38 @@
  *
  * @category PHP
  * @package  Tatoeba
- * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
+ * @author   HO Ngoc Phuong Trang <trang@tatoeba.org>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-
-$this->set('title_for_layout', $pages->formatTitle(__('Examples of search', true)));
 ?>
-
-<div id="annexe_content">
+ 
+<div class="module">
+    <h2><?php __d('admin', 'Audio') ?></h2>
     <?php
-    $attentionPlease->tatoebaNeedsYou();
-    
-    echo $this->element('search_features');
+    echo $form->create(
+        "Sentence",
+        array(
+            "action" => "edit_audio",
+            "type" => "post",
+        )
+    );
+    echo $form->input(
+        "id",
+        array("value" => $sentenceId)
+    );
+    echo $form->input(
+        "hasaudio", 
+        array(
+            "legend" => false,
+            "type" => "radio",
+            "options" => array(
+                "shtooka" => "yes",
+                "no" => "no"
+            ),
+            "value" => $hasaudio
+        )
+    );
+    echo $form->end(__d('admin', 'Submit', true));
     ?>
 </div>
-    
-<div id="main_content">
-    <div class="module">
-        <p><?php __('Please enter a nonempty search string'); ?></p>
-    </div>
-</div>
-
-

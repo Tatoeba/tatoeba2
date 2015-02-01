@@ -20,6 +20,7 @@ import codecs
 import mysql.connector
 import glob
 import os
+import subprocess # for subprocess.call
 import sys
 import time # for sleep
 from python_mysql_connector import PythonMySQLConnector
@@ -41,9 +42,25 @@ class AudioMismatchFinder(PythonMySQLConnector):
         self.parser.add_argument('--exclude_langs', default='',
             help='comma-separated string of 3-letter codes of languages to exclude (default: none)')
         self.parser.add_argument('--sleep', default=False, action='store_true', help='sleep between row fetches (prevents interface errors)')
+        self.parser.add_argument('--db_is_truth', default=False, action='store_true', help='if true, "hasaudio=no" for sentence will cause mp3 file to be removed; otherwise, existing mp3 file will set "hasaudio=shtooka" for sentence')
         self.parser.add_argument('--archive_mp3_dir', default='./archived',
             help='base directory where (possibly bad) mp3 files are archived (e.g., "/home/tatoeba/audio/archived")')
-        
+
+    def make_archive_dir(self, lang_dir):
+        archive_dir = os.path.join(self.parsed.archive_mp3_dir, lang_dir)
+        if not os.path.isdir(archive_dir):
+            os.makedirs(archive_dir)
+        return archive_dir
+
+    def sentence_has_mp3(self, id, lang):
+        return os.isfile(self.path_to_audio_file(id, lang))
+
+    def path_to_audio_file(self, id, lang):
+        return os.path.join(self.parsed.base_mp3_dir, lang, "{0}.mp3".format(id))
+
+    def path_to_archived_audio_file(self, id, lang):
+        return os.path.join(self.parsed.archive_mp3_dir, lang, "{0}.mp3".format(id))
+
     def process_args(self, argv):
         PythonMySQLConnector.process_args(self, argv)
         self.excluded_lang_set = set(self.parsed.exclude_langs.split(','))
@@ -108,13 +125,23 @@ class AudioMismatchFinder(PythonMySQLConnector):
                                 missing_id, sent_lang, lang_dir))
                     else:
                         existing_sentences.add(missing_id)
-                        stmt = "UPDATE sentences SET hasaudio = 'shtooka' WHERE id='{0}';".format(
-                            missing_id)
-                        if self.parsed.dry_run:
-                            print("Statement would be: {0}".format(stmt))
+                        if self.parsed.db_is_truth:
+                            src_file = self.path_to_audio_file(sent_id, lang_dir)
+                            archive_dir = self.make_archive_dir(lang_dir)
+                            tgt_file = self.path_to_archived_audio_file(sent_id, lang_dir))
+                            stmt = "mv {0} {1}".format(src_file, tgt_file)
+                            if self.parsed.dry_run:
+                                print("Statement would be: {0}".format(stmt))
+                            else:
+                                subprocess.check_call(stmt)
                         else:
-                            #print("Executing statement: {0}".format(stmt))
-                            cursor.execute(stmt)
+                            stmt = "UPDATE sentences SET hasaudio = 'shtooka' WHERE id='{0}';".format(
+                                missing_id)
+                            if self.parsed.dry_run:
+                                print("Statement would be: {0}".format(stmt))
+                            else:
+                                #print("Executing statement: {0}".format(stmt))
+                                cursor.execute(stmt)
             num_existing_sentences = len(existing_sentences)
             num_skipped_sentences = len(skipped_sentences)
             if (num_existing_sentences > 0):
@@ -128,13 +155,9 @@ class AudioMismatchFinder(PythonMySQLConnector):
                 print("The following {0} sentences were skipped:\n{1}".format(
                         num_skipped_sentences, skipped_sentence_ids))
                 print("Consider issuing these commands:")
-                archive_dir = os.path.join(self.parsed.archive_mp3_dir, lang_dir)
-                if not os.path.isdir(archive_dir):
-                    os.makedirs(archive_dir)
+                archive_dir = self.make_archive_dir(lang_dir)
                 for sent_id in skipped_sentence_ids:
-                    src_file = os.path.join(self.parsed.base_mp3_dir,
-                                                     lang_dir,
-                                                     '{0}.mp3'.format(sent_id))
+                    src_file = self.path_to_audio_file(sent_id, lang_dir)
                     tgt_file = os.path.join(self.parsed.base_mp3_dir,
                                                      skipped_sentences[sent_id],
                                                      '{0}.mp3'.format(sent_id))

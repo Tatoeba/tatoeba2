@@ -411,7 +411,7 @@ class MessagesHelper extends AppHelper
      * @return string The comment body formatted for HTML display.
      */
     public function formatedContent($content) {
-        $content = htmlentities($content, ENT_QUOTES, 'UTF-8');
+        $content = Sanitize::html($content);
 
         // Convert sentence mentions to links
         $content = $this->ClickableLinks->clickableSentence($content);

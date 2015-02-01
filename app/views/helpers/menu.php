@@ -85,7 +85,7 @@ class MenuHelper extends AppHelper
                         'Unapproved sentences cannot be translated.', 
                         true
                     ),
-                    'width' => 33,
+                    'width' => 16,
                     'height' => 16
                 )
             );
@@ -328,7 +328,8 @@ class MenuHelper extends AppHelper
     <?php
     }
 
-    public function linkToSentenceButton($sentenceId) {
+    public function linkToSentenceButton($sentenceId, $langFilter = 'und') {
+        $langFilter = json_encode($langFilter);
         $linkToSentenceButton = $this->Html->Image(
             IMG_PATH . 'link.svg',
             array(
@@ -337,8 +338,8 @@ class MenuHelper extends AppHelper
                 'width' => 16,
                 'height' => 16,
                 'class' => 'linkTo',
-                'onClick' => "linkToSentence($sentenceId)",
-                'onDrop' => "linkToSentenceByDrop(event, $sentenceId)",
+                'onClick' => "linkToSentence($sentenceId, $langFilter)",
+                'onDrop' => "linkToSentenceByDrop(event, $sentenceId, $langFilter)",
             )
         );
         ?>
@@ -480,32 +481,47 @@ class MenuHelper extends AppHelper
      *
      * @return void
      */
-    public function deleteButton($sentenceId)
+    public function deleteButton($sentenceId, $hasAudio)
     {
-        ?>
-        <li class="option delete">
-        <?php
-        echo $this->Html->link(
-            $this->Html->image(
-                IMG_PATH . 'delete.svg',
-                array(
-                    'alt'=>__('Delete', true),
-                    'title'=>__('Delete', true),
-                    'width' => 20,
-                    'height' => 16
-                )
-            ),
+        $title = __('Delete', true);
+        if ($hasAudio) {
+            $title = __('You cannot delete this sentence because it has audio.', true);
+        }
+
+        $deleteImage = $this->Html->image(
+            IMG_PATH . 'delete.svg',
             array(
-                "controller" => "sentences",
-                "action" => "delete",
-                $sentenceId
-            ),
-            array("escape" => false),
-            'Are you sure?'
+                'alt'=> __('Delete', true),
+                'title'=> $title,
+                'width' => 20,
+                'height' => 16
+            )
         );
-        ?>
-        </li>
-    <?php
+
+        echo '<li class="option delete">';
+
+        if ($hasAudio) {
+            
+            echo '<a class="disabled">';
+            echo $deleteImage;
+            echo '</a>';
+
+        } else {
+
+            echo $this->Html->link(
+                $deleteImage,
+                array(
+                    "controller" => "sentences",
+                    "action" => "delete",
+                    $sentenceId
+                ),
+                array("escape" => false),
+                'Are you sure?'
+            );
+
+        }
+
+        echo '</li>';
     }
 
 
@@ -586,11 +602,18 @@ class MenuHelper extends AppHelper
      * @param string $chineseScript For chinese only, 'traditional' or 'simplified'
      * @param array  $canTranslate  True if user can translate the sentence.
      *                              False otherwise.
+     * @param array  $langFilter    Language filter of translations.
+     * @param bool   $hasAudio      'true' if sentence has audio, 'false' otherwise.
      * 
      * @return void
      */
     public function displayMenu(
-        $sentenceId, $ownerName = null, $chineseScript = null, $canTranslate
+        $sentenceId, 
+        $ownerName = null, 
+        $chineseScript = null, 
+        $canTranslate, 
+        $langFilter = 'und',
+        $hasAudio = true
     ) {
         ?>
         <ul class="menu">
@@ -619,12 +642,12 @@ class MenuHelper extends AppHelper
         $this->addToListButton($sentenceId, $isLogged);
 
         if (CurrentUser::isTrusted()) {
-            $this->linkToSentenceButton($sentenceId);
+            $this->linkToSentenceButton($sentenceId, $langFilter);
         }
 
         if (CurrentUser::isModerator()) {
             // Delete
-            $this->deleteButton($sentenceId);
+            $this->deleteButton($sentenceId, $hasAudio);
         }
 
         if ($chineseScript == 'simplified_script') {

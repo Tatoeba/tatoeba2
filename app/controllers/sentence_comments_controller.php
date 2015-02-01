@@ -449,13 +449,14 @@ class SentenceCommentsController extends AppController
     {
         $userId = $this->User->getIdfromUsername($userName);
 
-        $this->paginate['SentenceComment']['conditions'] = array(
+        $conditions = array(
             'Sentence.user_id' => $userId
         );
-
-        $userComments = $this->paginate(
-            'SentenceComment'
+        $conditions = $this->SentenceComment->getQueryConditionWithExcludedUsers(
+            $conditions
         );
+        $this->paginate['SentenceComment']['conditions'] = $conditions;
+        $userComments = $this->paginate('SentenceComment');
 
         $userId = $this->User->getIdfromUsername($userName);
         $backLink = $this->referer(array('action'=>'index'), true);

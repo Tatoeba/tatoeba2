@@ -180,7 +180,7 @@ class LanguagesHelper extends AppHelper
                 'ber' => __('Berber', true),
 
                 'xho' => __('Xhosa', true),
-                'pnb' => __('Punjabi', true),
+                'pnb' => __('Punjabi (Western)', true),
                 'mlg' => __('Malagasy', true),
                 'grn' => __('Guarani', true),
                 'lad' => __('Ladino', true),
@@ -249,7 +249,8 @@ class LanguagesHelper extends AppHelper
             'liv' => __('Livonian',true), 
             'nav' => __('Navajo',true), 
             'chr' => __('Cherokee',true), 
-            'guj' => __('Gujarati',true), //@lang 
+            'guj' => __('Gujarati',true), 
+            'pan' => __('Punjabi (Eastern)',true), //@lang 
             );
         }
         return $this->__languages_to_format;
@@ -525,6 +526,7 @@ class LanguagesHelper extends AppHelper
             "urd",
             "yid",
             "pnb",
+            "ota"
         );
 
         if (in_array($lang, $rightToLeftLangs)) {

@@ -76,7 +76,9 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                 $sentence['Sentence'], 
                 $sentence['Translations'], 
                 $sentence['User'],
-                $sentence['IndirectTranslations']
+                $sentence['IndirectTranslations'],
+                true,
+                $translationLang
             );
         }
         

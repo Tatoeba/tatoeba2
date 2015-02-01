@@ -125,7 +125,8 @@ class Sentence extends AppModel
         'liv',
         'nav',
         'chr',
-        'guj', //@lang
+        'guj', 
+        'pan', //@lang
         null
     );
 
@@ -530,20 +531,27 @@ class Sentence extends AppModel
         $this->data = $this->find(
             'first',
             array(
-                'conditions' => array('Sentence.id' => $id),  
+                'conditions' => array('Sentence.id' => $id),
                 'contain' => array ('Translation', 'User')
             )
         );
         
         $this->data['User']['id'] = $userId;
+
+        $isDeleted = false;
         
-        $this->query('DELETE FROM sentences WHERE id='.$id);
-        $this->query('DELETE FROM sentences_translations WHERE sentence_id='.$id);
-        $this->query('DELETE FROM sentences_translations WHERE translation_id='.$id);
+        if ($this->data['Sentence']['hasaudio'] == 'no')
+        {
+            $this->query('DELETE FROM sentences WHERE id='.$id);
+            $this->query('DELETE FROM sentences_translations WHERE sentence_id='.$id);
+            $this->query('DELETE FROM sentences_translations WHERE translation_id='.$id);
+            $isDeleted = true;
+        }
 
         // need to call afterDelete() manually for the logs
         $this->afterDelete();
 
+        return $isDeleted;
     }
 
 
@@ -999,16 +1007,8 @@ class Sentence extends AppModel
      */
     public function editCorrectness($sentenceId, $correctness)
     {
-        $canEditCorrectness = CurrentUser::isAdmin(); 
-        // TODO For the beginning we'll restrict this to admins.
-        // Later we'll want CurrentUser::isModerator();
-        
-        if ($canEditCorrectness) {
-            $this->id = $sentenceId;
-            return $this->saveField('correctness', $correctness);
-        }
-        
-        return false;
+        $this->id = $sentenceId;
+        return $this->saveField('correctness', $correctness);
     }
 
     public function getSentencesLang($sentencesIds, $langId = false) {
@@ -1036,6 +1036,12 @@ class Sentence extends AppModel
         }
         if (count($values[$sentenceId]) == 0)
             unset($values[$sentenceId]);
+    }
+
+    public function editAudio($sentenceId, $hasaudio)
+    {
+        $this->id = $sentenceId;
+        return $this->saveField('hasaudio', $hasaudio);
     }
 }
 ?>

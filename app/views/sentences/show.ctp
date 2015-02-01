@@ -33,6 +33,7 @@ if (isset($sentence)) {
     $sentenceLang = $sentence['Sentence']['lang'];
     $sentenceText = $sentence['Sentence']['text'];
     $sentenceCorrectness = $sentence['Sentence']['correctness'];
+    $sentenceHasAudio = $sentence['Sentence']['hasaudio'];
     
     $languageName = $languages->codeToNameToFormat($sentenceLang);
     $title = format(__('{language} example sentence: ', true),
@@ -74,9 +75,17 @@ $navigation->displaySentenceNavigation(
     if (isset($sentence)){
         $tags->displayTagsModule($tagsArray, $sentenceId);
 
-        // TODO For the beginning we'll restrict this to admins.
-        // Later we'll want CurrentUser::isModerator();
         if (CurrentUser::isAdmin()) {
+            echo $this->element(
+                'sentences/audio',
+                array(
+                    'sentenceId' => $sentenceId,
+                    'hasaudio' => $sentenceHasAudio
+                )
+            ); 
+
+            // TODO For the beginning we'll restrict this to admins.
+            // Later we'll want CurrentUser::isModerator();
             echo $this->element(
                 'sentences/correctness',
                 array(

@@ -69,8 +69,7 @@ class SentencesHelper extends AppHelper
      * @param array $user                 Owner of the sentence.
      * @param array $indirectTranslations Indirect translations of the sentence.
      * @param bool  $withAudio            Set to 'true' if audio icon is displayed.
-     * @param bool  $withDivWrapper       Set to 'true' to display the div wrapper
-     *                                    (id=sentences_group_$id).
+     * @param bool  $langFilter           The language $indirectTranslations are filtered in, if any.
      *
      * @return void
      */
@@ -80,21 +79,19 @@ class SentencesHelper extends AppHelper
         $user = null,
         $indirectTranslations = array(),
         $withAudio = true,
-        $withDivWrapper = true
+        $langFilter = 'und'
     ) {
         $id = $sentence['id'];
 
-        if ($withDivWrapper) {
-            ?>
-            <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
+        ?>
+        <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
         <?php
-        }
 
         $ownerName = null;
         if (isset($user['username'])) {
             $ownerName = $user['username'];
         }
-        $this->displayMainSentence($sentence, $ownerName, $withAudio);
+        $this->displayMainSentence($sentence, $ownerName, $withAudio, $langFilter);
 
 
         // Loading gif
@@ -111,16 +108,14 @@ class SentencesHelper extends AppHelper
         // Form to add a new translation
         $this->_displayNewTranslationForm($id, $withAudio);
 
-        $this->displayTranslations($id, $translations, $indirectTranslations, $withAudio);
+        $this->displayTranslations($id, $translations, $indirectTranslations, $withAudio, $langFilter);
 
-        if ($withDivWrapper) {
         ?>
         </div>
         <?php
-        }
     }
 
-    public function displayTranslations($id, $translations, $indirectTranslations, $withAudio = true) {
+    public function displayTranslations($id, $translations, $indirectTranslations, $withAudio = true, $langFilter = 'und') {
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
             <div></div>
@@ -132,7 +127,10 @@ class SentencesHelper extends AppHelper
                     null,
                     'directTranslation',
                     $withAudio,
-                    $id
+                    $id,
+                    null,
+                    false,
+                    $langFilter
                 );
             }
 
@@ -143,7 +141,10 @@ class SentencesHelper extends AppHelper
                     null,
                     'indirectTranslation',
                     $withAudio,
-                    $id
+                    $id,
+                    null,
+                    false,
+                    $langFilter
                 );
             }
 
@@ -303,10 +304,11 @@ class SentencesHelper extends AppHelper
      *
      * @param array  $sentence  Sentence data.
      * @param string $ownerName Name of the owner of the sentence.
+     * @param string $langFilter The language translations are filtered in, if any.
      *
      * @return void
      */
-    public function displayMainSentence($sentence, $ownerName, $withAudio){
+    public function displayMainSentence($sentence, $ownerName, $withAudio, $langFilter = 'und') {
         $sentenceId = $sentence['id'];
         $chineseScript = null;
         if (isset($sentence['script'])) {
@@ -314,8 +316,9 @@ class SentencesHelper extends AppHelper
         }
 
         $canTranslate = $sentence['correctness'] >= 0;
+        $hasAudio = $sentence['hasaudio'] == 'shtooka';
         $this->Menu->displayMenu(
-            $sentenceId, $ownerName, $chineseScript, $canTranslate
+            $sentenceId, $ownerName, $chineseScript, $canTranslate, $langFilter, $hasAudio
         );
 
         $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);
@@ -349,6 +352,8 @@ class SentencesHelper extends AppHelper
      * @param bool   $withAudio       Set to 'true' if audio icon is displayed.
      * @param int    $parentId        Id of the parent sentence (i.e. main sentence).
      * @param string $parentOwnerName Name of the owner of the *main* sentence.
+     * @param string $isEditable      Whether the sentence can be edited in place.
+     * @param string $langFilter      The language the list of sentences $sentence is from is being filtered in, if any.
      *
      * @return void
      */
@@ -359,7 +364,8 @@ class SentencesHelper extends AppHelper
         $withAudio = true,
         $parentId = null,
         $parentOwnerName = null,
-        $isEditable = false
+        $isEditable = false,
+        $langFilter = 'und'
     ) {
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
@@ -380,17 +386,6 @@ class SentencesHelper extends AppHelper
         <?php
         // Navigation button (info or arrow icon)
         $this->_displayNavigation($sentenceId, $type);
-        
-
-        // Link/unlink button
-        if (CurrentUser::isTrusted()) {
-            $this->_displayLinkOrUnlinkButton($parentId, $sentenceId, $type);
-        }
-
-        // audio
-        if ($withAudio) {
-            $this->SentenceButtons->audioButton($sentenceId, $sentenceLang, $sentenceAudio);
-        }
 
         // language flag
         // TODO For Chinese sentences, it is better to display the
@@ -399,8 +394,19 @@ class SentencesHelper extends AppHelper
             $sentenceId, $sentenceLang, $isEditable
         );
 
+        // audio
+        if ($withAudio) {
+            $this->SentenceButtons->audioButton($sentenceId, $sentenceLang, $sentenceAudio);
+        }
+
+        // Link/unlink button
+        if (CurrentUser::isTrusted()) {
+            $this->_displayLinkOrUnlinkButton($parentId, $sentenceId, $type, $langFilter);
+        }
+
         // Sentence and romanization
-        $this->displaySentenceContent($sentence, $isEditable);
+        $canEdit = $isEditable && $sentenceAudio == 'no';
+        $this->displaySentenceContent($sentence, $canEdit);
         ?>
         </div>
 
@@ -438,20 +444,21 @@ class SentencesHelper extends AppHelper
      * @param string $sentenceId  Name of the owner of the sentence.
      * @param string $type        Type of sentence. Can be 'directTranslation' or
      *                            'indirectTranslation'.
+     * @param string $langFilter  The language sentences should be filtered in when redisplaying the list.
      *
      * @return void
      */
-    private function _displayLinkOrUnlinkButton($parentId, $sentenceId, $type)
+    private function _displayLinkOrUnlinkButton($parentId, $sentenceId, $type, $langFilter)
     {
         if ($type == 'directTranslation') {
             $this->SentenceButtons->unlinkButton(
-                $parentId, $sentenceId
+                $parentId, $sentenceId, $langFilter
             );
         }
 
         if ($type == 'indirectTranslation') {
             $this->SentenceButtons->linkButton(
-                $parentId, $sentenceId
+                $parentId, $sentenceId, $langFilter
             );
         }
     }
