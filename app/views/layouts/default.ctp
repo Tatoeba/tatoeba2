@@ -44,7 +44,6 @@
         
         // Generic
         echo $html->css(CSS_PATH . 'layouts/default.css');
-        echo $html->css(CSS_PATH . 'layouts/elements.css');
         
         // Specific
         $controller = $this->params["controller"];
@@ -76,7 +75,7 @@
                     font-size: 15px;
                 }
             </style>
-<?      }
+<?php      }
 
         // ---------------------- //
         //      Javascript        //
