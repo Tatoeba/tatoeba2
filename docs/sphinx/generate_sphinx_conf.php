@@ -539,7 +539,7 @@ searchd
     seamless_rotate         = 1
     preopen_indexes         = 1
     unlink_old              = 1
-    mva_updates_pool        = 8M
+    mva_updates_pool        = 16M
 }
 
 
