@@ -26,7 +26,7 @@ class RestoreWallShell extends Shell {
     public $uses = array('Wall', 'User', 'WallThread');
 
     private $users_id_by_username = array();
-    private $discarded = array();
+    private $imported = array();
 
     private function get_all_users() {
         $users = $this->User->find('all', array('recursive' => 0, 'fields' => array('id', 'username')));
@@ -78,7 +78,6 @@ class RestoreWallShell extends Shell {
 
         list($id, $username, $parent_id, $date, $text) = $data;
         if (!$username) {
-            $this->discarded[$id] = $line;
             return null;
         }
         if (!isset($this->users_id_by_username[$username])) {
@@ -89,14 +88,13 @@ class RestoreWallShell extends Shell {
             $owner_id = $this->users_id_by_username[$username];
         }
 
-        if (isset($this->discarded[$parent_id])) {
+        if ($parent_id && !isset($this->imported[$parent_id])) {
             // Can't add a message without a valid parent
-            $this->discarded[$id] = $line;
             return null;
         }
 
         return array(
-            'id' => (int)$id,
+            'id' => $id,
             'owner' => $owner_id,
             'date' => $date,
             'modified' => $date,
@@ -121,6 +119,7 @@ class RestoreWallShell extends Shell {
                     'last_message_date' => $message['date']
                 )));
             }
+            $this->imported[$id] = 1;
         } else {
             print("Unable to save the following message:\n");
             var_dump($message);
