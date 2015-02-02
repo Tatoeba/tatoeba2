@@ -138,6 +138,12 @@ class RestoreWallShell extends Shell {
             $nb_ignored += is_null($message);
         }
         fclose($stdin);
+
+        // Restore mysql autoincrement number because of the insert hack
+        $next_id = $this->Wall->query("SELECT MAX(id)+1 as v FROM {$this->Wall->table}");
+        $next_id = $next_id[0][0]['v'];
+        $this->Wall->query("ALTER TABLE {$this->Wall->table} AUTO_INCREMENT = $next_id");
+
         echo "\n$nb_messages message(s) imported, $nb_ignored message(s) discarded because the account of the owner (or one of its parent) has been deleted\n";
     }
 }
