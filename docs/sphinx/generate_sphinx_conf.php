@@ -330,6 +330,22 @@ $languagesWithoutWordBoundaries = array(
     'tha' => array('U+0E01..U+0E2E', 'U+0E30..U+0E3A', 'U+0E40..U+0E4E', 'U+0E50..U+0E59'),
 );
 $charsetTableBase = array_merge($charsetTableBase, call_user_func_array('array_merge', array_values($languagesWithoutWordBoundaries)));
+
+$indexExtraOptions = array(
+    /* Lojban uses apostrophe as a regular character
+     * and sometimes replaces it with h */
+    'jbo' => "
+        charset_table = ".implode(', ', array_merge(
+            array(
+                'A..G->a..g', 'a..g',
+                "H->'", "h->'", "'",
+                'I..Z->i..z', 'i..z'
+            ),
+            array_filter(
+                $charsetTableBase,
+                function($v) { return $v != 'A..Z->a..z' && $v != 'a..z'; }
+            )
+        ))."\n",
 );
 ?>
 
@@ -474,6 +490,9 @@ foreach ($languages as $lang=>$name){
                 echo "
         ngram_len = 1
         ngram_chars = ".implode(', ', $languagesWithoutWordBoundaries[$lang]);
+            }
+            if (isset($indexExtraOptions[$lang])) {
+                echo $indexExtraOptions[$lang];
             }
         }
         echo "
