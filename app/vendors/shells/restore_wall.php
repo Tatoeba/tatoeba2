@@ -113,12 +113,11 @@ class RestoreWallShell extends Shell {
         $is_saved = $is_saved && $this->Wall->query("UPDATE {$this->Wall->table} SET id = {$id} WHERE id = {$this->Wall->id}");
 
         if ($is_saved) {
-            if (!is_null($message['parent_id'])) {
-                assert((bool)$this->WallThread->save(array(
-                    'id' => $message['parent_id'],
-                    'last_message_date' => $message['date']
-                )));
-            }
+            $root_id = is_null($message['parent_id']) ? $id : $message['parent_id'];
+            assert((bool)$this->WallThread->save(array(
+                'id' => $root_id,
+                'last_message_date' => $message['date']
+            )));
             $this->imported[$id] = 1;
         } else {
             print("Unable to save the following message:\n");
