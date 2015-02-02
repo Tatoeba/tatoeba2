@@ -41,8 +41,13 @@ class RestoreWallShell extends Shell {
             if (!$red) {
                 break;
             }
-            $last_chars = substr($red, -2);
-            $is_multiline = ($last_chars[0] == '\\');
+            $i = strlen($red) - 1;
+            $i--; // step over \n
+            $is_multiline = false;
+            while ($i >= 0 && $red[$i] == '\\') {
+                $i--;
+                $is_multiline = !$is_multiline;
+            }
             if (!$is_multiline) {
                 $red = rtrim($red, "\n");
             }
