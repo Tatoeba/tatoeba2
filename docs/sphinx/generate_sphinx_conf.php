@@ -378,7 +378,8 @@ index cjk_common_index : common_index
 {
     ngram_len               = 1
     ngram_chars             = U+3000..U+2FA1F
-    charset_table           = U+3000..U+2FA1F
+    charset_table           = <?php echo implode(', ', array_merge($charsetTableBase, array('U+3000..U+2FA1F'))); ?>
+
 }
 
 #################################################
