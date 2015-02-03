@@ -367,6 +367,7 @@ index common_index
 {
     index_exact_words       = 1
     index_field_lengths     = 1
+    ignore_chars            = U+AD
     charset_table           = <?php echo implode(", ", $charsetTableBase); ?>
 
     docinfo                 = extern
