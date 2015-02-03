@@ -104,7 +104,7 @@ echo '</label>';
 echo $form->hidden(
     'redirectTo', 
     array(
-        'value' => htmlentities($_SERVER['REQUEST_URI'])
+        'value' => $_SERVER['REQUEST_URI']
     )
 );
 // Login button
