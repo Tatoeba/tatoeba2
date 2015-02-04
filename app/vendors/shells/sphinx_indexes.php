@@ -21,6 +21,8 @@ App::import('Helper');
 App::import('Helper', 'Languages');
 App::import('Model', 'Sentence');
 
+define('LOCK_FILE', sys_get_temp_dir() . DS . basename(__FILE__) . '.lock');
+
 class SphinxIndexesShell extends Shell {
 
     public $searchd_user = 'sphinxsearch';
@@ -35,7 +37,7 @@ class SphinxIndexesShell extends Shell {
 
     private function die_usage($message = '') {
         $myself = basename(__FILE__, '.php');
-        die("$message\nThis manages the sphinx indexes.\n\n"
+        $this->_die("$message\nThis manages the sphinx indexes.\n\n"
            ."Usage:   $myself merge [lang]...\n"
            ."Example: $myself merge eng fra epo\n"
            ."Merges the (big and slow to refresh) main index with "
@@ -99,7 +101,7 @@ class SphinxIndexesShell extends Shell {
     private function check_prerequistes() {
         $processUser = posix_getpwuid(posix_geteuid());
         if ($this->searchd_user != $processUser['name']) {
-            die("You must run this script as user '{$this->searchd_user}'.\n");
+            $this->_die("You must run this script as user '{$this->searchd_user}'.\n");
         }
     }
 
@@ -135,9 +137,26 @@ class SphinxIndexesShell extends Shell {
         }
     }
 
-    public function main() {
+    private function _die($message = null) {
+        @unlink(LOCK_FILE);
+        die($message);
+    }
+
+    private function run() {
         $this->check_prerequistes();
         $this->get_tatoeba_languages();
         $this->process_args();
+    }
+
+    public function main() {
+        if (file_exists(LOCK_FILE)) {
+            die("Exiting because another instance of this script "
+               ."seems to be running. If you're sure it's not, "
+               ."remove the file '".LOCK_FILE."'.\n");
+        }
+
+        touch(LOCK_FILE);
+        $this->run();
+        $this->_die();
     }
 }
