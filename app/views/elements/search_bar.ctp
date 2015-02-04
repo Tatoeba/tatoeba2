@@ -67,8 +67,8 @@ echo $form->create(
     ?>
 </fieldset>
 
-<fieldset class="select">
-    <label><?php __('From'); ?></label>
+<fieldset class="select" id="fieldset1">
+    <label id="Label"><?php __('From'); ?></label>
     <?php
     echo $form->select(
         'from',
@@ -83,12 +83,12 @@ echo $form->create(
     ?>
 </fieldset>
 
-<fieldset class="into">
-    <span id="into">&raquo;</span>
+<fieldset class="into"  id="fieldset2">
+    <a href="#" style="color:white;" id="arrow"><span id="into"> &raquo;</span></a>
 </fieldset>
     
-<fieldset class="select">
-    <label><?php __('To'); ?></label>
+<fieldset class="select"  id="fieldset3">
+    <label id="Label"><?php __('To'); ?></label>
     <?php
     echo $form->select(
         'to',

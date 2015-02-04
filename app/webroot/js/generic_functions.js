@@ -52,3 +52,12 @@ function changeInterfaceLang(newLang) {
         + '; expires=' + date.toGMTString();
     location.reload();
 }
+
+$(document).ready(function() {
+    $( "#arrow" ).click(function() {
+		var obj1=$("#fieldset2").prev();
+		var obj2=$("#fieldset2").next();
+		$("#fieldset2").before(obj2);
+		$("#fieldset2").after(obj1);
+	});
+});
