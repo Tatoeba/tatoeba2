@@ -21,6 +21,11 @@ class TestSentencesController extends SentencesController {
 }
 
 class SentencesControllerTestCase extends CakeTestCase {
+
+	var $users = array(
+		'contributor' => 4,
+	);
+
 	var $fixtures = array(
 		'app.sentence',
 		'app.user',
@@ -62,35 +67,35 @@ class SentencesControllerTestCase extends CakeTestCase {
 		ClassRegistry::flush();
 	}
 
-	function testAdd_redirectsGuestsToLogin() {
-		$this->Sentences->params = array(
+	function _testActionAsGuest($method, $params = array()) {
+		return $this->_testActionAsUser($method, null, $params);
+	}
+
+	function _testActionAsUser($method, $user = null, $params = array()) {
+		if ($user) {
+			$this->Sentences->Session->write('Auth.User', array(
+				'id' => $this->users[$user],
+				'username' => $user
+			));
+		}
+		$this->Sentences->params = array_merge(array(
 			'lang' => 'jpn',
 			'controller' => 'sentences',
-			'action' => 'add',
-		);
+			'action' => $method,
+		), $params);
 		$this->Sentences->beforeFilter();
 		$this->Sentences->Component->initialize($this->Sentences);
 		$this->Sentences->Component->startup($this->Sentences);
-		$this->Sentences->add();
+		$this->Sentences->$method();
+	}
 
+	function testAdd_redirectsGuestsToLogin() {
+		$this->_testActionAsGuest('add');
 		$this->assertEqual('/users/login', $this->Sentences->redirectUrl);
 	}
 
 	function testAdd_doesNotRedirectsLoggedInUsers() {
-		$this->Sentences->Session->write('Auth.User', array(
-			'id' => 4,
-			'username' => 'contributor',
-		));
-		$this->Sentences->params = array(
-			'lang' => 'jpn',
-			'controller' => 'sentences',
-			'action' => 'add',
-		);
-		$this->Sentences->beforeFilter();
-		$this->Sentences->Component->initialize($this->Sentences);
-		$this->Sentences->Component->startup($this->Sentences);
-		$this->Sentences->add();
-
+		$this->_testActionAsUser('add', 'contributor');
 		$this->assertNull($this->Sentences->redirectUrl);
 	}
 }
