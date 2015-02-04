@@ -181,6 +181,23 @@ class CurrentUser extends AppModel
         return $belongsToCurrentUser || self::isModerator();
     }
 
+    /**
+     * Indicates if the current user can edit sentences
+     * that belong to the user of the given user id.
+     *
+     * @param string $id Id of the owner of the sentence.
+     *
+     * @return bool
+     */
+    public static function canEditSentenceOfUserId($id)
+    {
+        if (!self::isMember()) {
+            return false;
+        }
+
+        $belongsToCurrentUser = (self::get('id') == $id);
+        return $belongsToCurrentUser || self::isModerator();
+    }
 
     /**
      * Indicates if current user can remove a given tag on a given sentence.

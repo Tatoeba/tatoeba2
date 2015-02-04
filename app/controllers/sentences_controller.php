@@ -370,6 +370,13 @@ class SentencesController extends AppController
             $realSentenceId = Sanitize::paranoid($hack_array[1]);
             $sentenceLang = Sanitize::paranoid($hack_array[0]);
 
+            $sentence = $this->Sentence->recursive = -1;
+            $sentence = $this->Sentence->findById($realSentenceId);
+            if (!$sentence || !CurrentUser::canEditSentenceOfUserId($sentence['Sentence']['user_id'])) {
+                $this->redirect(array('controller' => 'pages', 'action' => 'home'));
+		return;
+            }
+
             $this->Sentence->id = $realSentenceId;
             $data['Sentence']['lang'] = $sentenceLang;
             $data['Sentence']['text'] = $sentenceText;

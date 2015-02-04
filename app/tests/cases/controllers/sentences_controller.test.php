@@ -21,11 +21,6 @@ class TestSentencesController extends SentencesController {
 }
 
 class SentencesControllerTestCase extends CakeTestCase {
-
-	var $users = array(
-		'contributor' => 4,
-	);
-
 	var $fixtures = array(
 		'app.sentence',
 		'app.user',
@@ -50,6 +45,8 @@ class SentencesControllerTestCase extends CakeTestCase {
 
 	function setUp() {
 		Configure::write('Acl.database', 'test_suite');
+		$users = $this->_fixtures['app.user']->records;
+		$this->users = Set::combine($users, '{n}.username', '{n}');
 	}
 
 	function startTest() {
@@ -73,10 +70,7 @@ class SentencesControllerTestCase extends CakeTestCase {
 
 	function _testActionAsUser($method, $user = null, $params = array()) {
 		if ($user) {
-			$this->Sentences->Session->write('Auth.User', array(
-				'id' => $this->users[$user],
-				'username' => $user
-			));
+			$this->Sentences->Session->write('Auth.User', $this->users[$user]);
 		}
 		$this->Sentences->params = array_merge(array(
 			'lang' => 'jpn',
@@ -97,5 +91,39 @@ class SentencesControllerTestCase extends CakeTestCase {
 	function testAdd_doesNotRedirectsLoggedInUsers() {
 		$this->_testActionAsUser('add', 'contributor');
 		$this->assertNull($this->Sentences->redirectUrl);
+	}
+
+	function testEditSentence_doesntWorkForUnknownSentence() {
+		$this->_testActionAsUser('edit_sentence', 'contributor', array(
+			'form' => array('id' => 'epo_999999', 'value' => 'Forlasu!'),
+		));
+		$this->assertNotNull($this->Sentences->redirectUrl);
+	}
+
+	function testEditSentence_canEditSentencesOfMyOwn() {
+		$oldSentence = $this->Sentences->Sentence->findById(1, 'text');
+		$this->_testActionAsUser('edit_sentence', 'kazuki', array(
+			'form' => array('id' => 'eng_1', 'value' => 'Where are my…'),
+		));
+		$newSentence = $this->Sentences->Sentence->findById(1, 'text');
+		$this->assertNotEqual($oldSentence['Sentence']['text'], $newSentence['Sentence']['text']);
+	}
+
+	function testEditSentence_cantEditSentencesOfOtherUsers() {
+		$oldSentence = $this->Sentences->Sentence->findById(1, 'text');
+		$this->_testActionAsUser('edit_sentence', 'contributor', array(
+			'form' => array('id' => 'eng_1', 'value' => 'Where are my…'),
+		));
+		$newSentence = $this->Sentences->Sentence->findById(1, 'text');
+		$this->assertEqual($oldSentence['Sentence']['text'], $newSentence['Sentence']['text']);
+	}
+
+	function testEditSentence_canEditSentencesOfOtherUsersIfModerator() {
+		$oldSentence = $this->Sentences->Sentence->findById(1, 'text');
+		$this->_testActionAsUser('edit_sentence', 'corpus_maintainer', array(
+			'form' => array('id' => 'eng_1', 'value' => 'Where are my…'),
+		));
+		$newSentence = $this->Sentences->Sentence->findById(1, 'text');
+		$this->assertNotEqual($oldSentence['Sentence']['text'], $newSentence['Sentence']['text']);
 	}
 }
