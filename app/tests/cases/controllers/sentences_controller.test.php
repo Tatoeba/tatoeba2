@@ -10,9 +10,14 @@ class TestSentencesController extends SentencesController {
 
 	var $redirectUrl;
 	var $stopped;
+	var $rendered;
 
 	function redirect($url, $status = null, $exit = true) {
 		$this->redirectUrl = $url;
+	}
+
+	function render($action = null, $layout = null, $file = null) {
+		$this->rendered = $action;
 	}
 
 	function _stop($status = 0) {
@@ -125,5 +130,19 @@ class SentencesControllerTestCase extends CakeTestCase {
 		));
 		$newSentence = $this->Sentences->Sentence->findById(1, 'text');
 		$this->assertNotEqual($oldSentence['Sentence']['text'], $newSentence['Sentence']['text']);
+	}
+
+	function testAdopt_cantAdoptSentenceIfNotOrphan() {
+		$oldSentence = $this->Sentences->Sentence->findById(1, 'user_id');
+		$this->_testActionAsUser('adopt', 'contributor', array(), array(1));
+		$newSentence = $this->Sentences->Sentence->findById(1, 'user_id');
+		$this->assertEqual($oldSentence['Sentence']['user_id'], $newSentence['Sentence']['user_id']);
+	}
+
+	function testAdopt_cantLetGoSentenceIfNotOwner() {
+		$oldSentence = $this->Sentences->Sentence->findById(1, 'user_id');
+		$this->_testActionAsUser('let_go', 'contributor', array(), array(1));
+		$newSentence = $this->Sentences->Sentence->findById(1, 'user_id');
+		$this->assertEqual($oldSentence['Sentence']['user_id'], $newSentence['Sentence']['user_id']);
 	}
 }
