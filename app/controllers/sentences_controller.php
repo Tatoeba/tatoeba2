@@ -348,12 +348,12 @@ class SentencesController extends AppController
         */
         $sentenceText = '';
         $sentenceId = '';
-        if (isset($_POST['value'])) {
-            $sentenceText = trim($_POST['value']);
+        if (isset($this->params['form']['value'])) {
+            $sentenceText = trim($this->params['form']['value']);
         }
-        if (isset($_POST['id'])) {
-            $sentenceId = $_POST['id']; // NOTE: do not Sanitize::paranoid() this
-                                        // ...because hack mentionned below
+        if (isset($this->params['form']['id'])) {
+            $sentenceId = $this->params['form']['id']; // NOTE: do not Sanitize::paranoid() this
+                                                       // ...because hack mentionned below
         }
 
         if (!isset($sentenceText) || $sentenceText === '') {
@@ -363,7 +363,7 @@ class SentencesController extends AppController
         }
 
         if (isset($sentenceId)) {
-            // TODO HACK SPOTTED $_POST['id'] store 2 informations, lang and id
+            // TODO HACK SPOTTED $this->params['form']['id'] store 2 informations, lang and id
             // related to HACK in edit in place.js
             $hack_array = explode("_", $sentenceId);
 
