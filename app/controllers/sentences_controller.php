@@ -911,17 +911,15 @@ class SentencesController extends AppController
      */
     public function change_language()
     {
-        if (isset($_POST['id'])
-            && isset($_POST['newLang'])
-            && isset($_POST['prevLang'])
+        if (isset($this->params['form']['id'])
+            && isset($this->params['form']['newLang'])
         ) {
             Configure::write('debug', 0);
 
-            $newLang = Sanitize::paranoid($_POST['newLang']);
-            $prevLang = Sanitize::paranoid($_POST['prevLang']);
-            $id = Sanitize::paranoid($_POST['id']);
+            $newLang = Sanitize::paranoid($this->params['form']['newLang']);
+            $id = Sanitize::paranoid($this->params['form']['id']);
 
-            $lang = $this->Sentence->changeLanguage($id, $prevLang, $newLang);
+            $lang = $this->Sentence->changeLanguage($id, $newLang);
             $this->set('lang', $lang);
         }
     }

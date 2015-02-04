@@ -874,18 +874,25 @@ class Sentence extends AppModel
      * Change language of a sentence.
      *
      * @param int $sentenceId Id of the sentence.
-     * @param int $prevLang   Previous language. Used for decrementing.
      * @param int $newLang    New Language.
      *
      * @return string
      */
-    public function changeLanguage($sentenceId, $prevLang, $newLang)
+    public function changeLanguage($sentenceId, $newLang)
     {
-        $ownerId = $this->getOwnerIdOfSentence($sentenceId);
+        $sentence = $this->find('first', array(
+            'conditions' => array('id' => $sentenceId),
+            'recursive' => -1,
+            'fields' => array('lang', 'user_id'),
+        ));
+        if (!$sentence) {
+            return false;
+        }
+        $ownerId = $sentence['Sentence']['user_id'];
+        $prevLang = $sentence['Sentence']['lang'];
         $currentUserId = CurrentUser::get('id');
 
         if ($ownerId == $currentUserId || CurrentUser::isModerator()) {
-            $this->id = $sentenceId;
 
             // Making sure the language is not saved as an empty string but as NULL.
             if ($newLang == "" ) {
@@ -897,6 +904,7 @@ class Sentence extends AppModel
                 'lang' => $newLang,
                 'lang_id' => $newLangId
             );
+            $this->id = $sentenceId;
             $this->save($data);
 
             $this->Contribution->updateLanguage($sentenceId, $newLang);
