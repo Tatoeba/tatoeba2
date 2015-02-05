@@ -485,7 +485,7 @@ class Command(Dedup, BaseCommand):
 
         dry = bool(options.get('dry'))
         refresh = bool(options.get('refresh'))
-        bot_name = options.get('bot_name') or 'deduplication_bot'
+        bot_name = options.get('bot_name') or 'Horus'
         try:
             Dedup.bot = Users.objects.get(username=bot_name)
         except Users.DoesNotExist:

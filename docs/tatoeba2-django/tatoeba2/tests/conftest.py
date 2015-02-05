@@ -104,7 +104,7 @@ def sents(db, request):
 @pytest.fixture
 def bot(db):
     return Users.objects.create(
-                username='deduplication_bot', password='', email='bot@bots.com',
+                username='Horus', password='', email='bot@bots.com',
                 since=datetime.now(), last_time_active=datetime.now().strftime('%Y%m%d'),
                 level=1, is_public=1, send_notifications=0, group_id=1
                 )
