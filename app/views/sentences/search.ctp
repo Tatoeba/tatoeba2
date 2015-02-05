@@ -83,7 +83,9 @@ if (!empty($results)) {
                 $sentence['Sentence'], 
                 $sentence['Translations'], 
                 $sentence['User'],
-                $sentence['IndirectTranslations']
+                $sentence['IndirectTranslations'],
+                true,
+                $to
             );
         }
         
