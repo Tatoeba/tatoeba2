@@ -77,15 +77,10 @@ class RestoreWallShell extends Shell {
         $data = $this->parse_line($line);
 
         list($id, $username, $parent_id, $date, $text) = $data;
-        if (!$username) {
-            return null;
-        }
-        if (!isset($this->users_id_by_username[$username])) {
-            $owner_id = null;
-            print("\nUnable to find user '{$username}'. Complete message:\n");
-            var_dump($data);
-        } else {
+        if ($username && isset($this->users_id_by_username[$username])) {
             $owner_id = $this->users_id_by_username[$username];
+        } else {
+            $owner_id = null;
         }
 
         if ($parent_id && !isset($this->imported[$parent_id])) {
@@ -147,6 +142,6 @@ class RestoreWallShell extends Shell {
         $next_id = $next_id[0][0]['v'];
         $this->Wall->query("ALTER TABLE {$this->Wall->table} AUTO_INCREMENT = $next_id");
 
-        echo "\n$nb_messages message(s) imported, $nb_ignored message(s) discarded because the account of the owner (or one of its parent) has been deleted\n";
+        echo "\n$nb_messages message(s) imported, $nb_ignored message(s) discarded because their parent does not exist\n";
     }
 }
