@@ -143,19 +143,24 @@ class MessagesHelper extends AppHelper
 
                 <div class="username">
                 <?php 
-                echo $this->Html->link(
-                    $author['username'],
-                    array(
-                        'controller' => 'user',
-                        'action' => 'profile',
-                        $author['username']
-                    )
-                )
+                if (!$author['id']) {
+                    echo $this->Html->tag('i', __('Unknown user', true));
+                } else {
+                    echo $this->Html->link(
+                        $author['username'],
+                        array(
+                            'controller' => 'user',
+                            'action' => 'profile',
+                            $author['username']
+                        )
+                    );
+                }
                 ?>
                 </div>
 
                 <?php
                 $displayPM = CurrentUser::isMember() 
+                    && $author['username']
                     && CurrentUser::get('username') != $author['username'];
                 if ($displayPM) {
                     ?><div class="pm"><?php
@@ -211,23 +216,34 @@ class MessagesHelper extends AppHelper
         }
 
         ?><div class="avatar"><?php
-        echo $this->Html->link(
-            $this->Html->image(
+        if ($username) {
+            echo $this->Html->link(
+                $this->Html->image(
+                    IMG_PATH . 'profiles_36/'. $image,
+                    array(
+                        'alt' => $username,
+                        'title' => __("View this user's profile", true),
+                        'width' => 36,
+                        'height' => 36
+                    )
+                ),
+                array(
+                    'controller' => 'user',
+                    'action' => 'profile',
+                    $username
+                ),
+                array('escape' => false)
+            );
+        } else {
+            echo $this->Html->image(
                 IMG_PATH . 'profiles_36/'. $image,
                 array(
-                    "alt" => $username,
-                    "title" => __("View this user's profile", true),
-                    "width" => 36,
-                    "height" => 36
+                    'alt' => __('Deleted user', true),
+                    'width' => 36,
+                    'height' => 36,
                 )
-            ),
-            array(
-                "controller"=>"user",
-                "action"=>"profile",
-                $username
-            ),
-            array("escape"=>false)
-        );
+            );
+        }
         ?></div><?php
     }
 

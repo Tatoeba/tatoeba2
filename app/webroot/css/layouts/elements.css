@@ -464,7 +464,7 @@
     display: inline-block;
 }
 
-.message .username a {
+.message .username > :first-child {
     display: inline-block;
     border-left: none;
     text-align: center;
