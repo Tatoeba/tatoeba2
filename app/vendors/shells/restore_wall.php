@@ -27,6 +27,7 @@ class RestoreWallShell extends Shell {
 
     private $users_id_by_username = array();
     private $imported = array();
+    private $stderr = null;
 
     private function get_all_users() {
         $users = $this->User->find('all', array('recursive' => 0, 'fields' => array('id', 'username')));
@@ -85,6 +86,7 @@ class RestoreWallShell extends Shell {
 
         if ($parent_id && !isset($this->imported[$parent_id])) {
             // Can't add a message without a valid parent
+            fwrite($this->stderr, $line."\n");
             return null;
         }
 
@@ -125,6 +127,7 @@ class RestoreWallShell extends Shell {
     public function main() {
         $this->get_all_users();
         $stdin = fopen('php://stdin', 'r');
+        $this->stderr = fopen('php://stderr', 'w+');
         $nb_messages = 0;
         $nb_ignored = 0;
         while (!feof($stdin)) {
@@ -136,6 +139,7 @@ class RestoreWallShell extends Shell {
             $nb_ignored += is_null($message);
         }
         fclose($stdin);
+        fclose($this->stderr);
 
         // Restore mysql autoincrement number because of the insert hack
         $next_id = $this->Wall->query("SELECT MAX(id)+1 as v FROM {$this->Wall->table}");
