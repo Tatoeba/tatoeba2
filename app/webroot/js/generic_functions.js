@@ -54,10 +54,10 @@ function changeInterfaceLang(newLang) {
 }
 
 $(document).ready(function() {
-   $( "#arrow" ).click(function() {
-       var langFrom = $('#SentenceFrom').val();
-	   var langTo = $('#SentenceTo').val();
-	   $('#SentenceFrom').val(langTo);
-	   $('#SentenceTo').val(langFrom);
-   });
-})
+    $( "#arrow" ).click(function() {
+        var langFrom = $('#SentenceFrom').val();
+        var langTo = $('#SentenceTo').val();
+	$('#SentenceFrom').val(langTo);
+	$('#SentenceTo').val(langFrom);
+    });
+});
