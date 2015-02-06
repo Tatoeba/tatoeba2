@@ -52,3 +52,12 @@ function changeInterfaceLang(newLang) {
         + '; expires=' + date.toGMTString();
     location.reload();
 }
+
+$(document).ready(function() {
+   $( "#arrow" ).click(function() {
+       var langFrom = $('#SentenceFrom').val();
+	   var langTo = $('#SentenceTo').val();
+	   $('#SentenceFrom').val(langTo);
+	   $('#SentenceTo').val(langFrom);
+   });
+})
