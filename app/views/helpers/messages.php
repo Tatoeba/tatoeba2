@@ -143,7 +143,7 @@ class MessagesHelper extends AppHelper
 
                 <div class="username">
                 <?php 
-                if (!$author['id']) {
+                if (!$author['username']) {
                     echo $this->Html->tag('i', __('Unknown user', true));
                 } else {
                     echo $this->Html->link(
