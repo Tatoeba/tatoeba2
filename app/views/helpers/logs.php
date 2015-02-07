@@ -457,7 +457,7 @@ class LogsHelper extends AppHelper
             }
             ?>
             </div></div>
-        <?
+        <?php
     }
 
 
