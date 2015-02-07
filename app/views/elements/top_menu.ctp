@@ -54,9 +54,8 @@ $menuElements = array(
     ),
     __('Browse', true) => array(
         "route" => array(
-            "controller" => "sentences",
-            "action" => "show",
-            "random"
+            "controller" => null,
+            "action" => null
         ),
         "sub-menu" => array(
             __('Browse by language', true) => array(
@@ -77,6 +76,11 @@ $menuElements = array(
             __('Browse audio', true) => array(
                 "controller" => "sentences",
                 "action" => "with_audio"
+            ),
+            __('Random Sentence', true) => array(
+                "controller" => "sentences",
+                "action" => "show",
+                "random"
             )
         )
     ),
