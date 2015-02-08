@@ -27,7 +27,7 @@ function get_language_interface_from_url() {
 function get_tatoeba_root_url() {
     var host = self.location.host;
     var interfaceLang = get_language_interface_from_url();
-    
+
     return "http://" + host + "/"+ interfaceLang;
 }
 
@@ -47,7 +47,7 @@ function changeInterfaceLang(newLang) {
     // Saving the cookie
     var date = new Date();
     date.setMonth(date.getMonth()+1);
-    document.cookie = 'CakeCookie[interfaceLanguage]=' + newLang 
+    document.cookie = 'CakeCookie[interfaceLanguage]=' + newLang
         + '; path=/'
         + '; expires=' + date.toGMTString();
     location.reload();
@@ -60,4 +60,42 @@ $(document).ready(function() {
 	$('#SentenceFrom').val(langTo);
 	$('#SentenceTo').val(langFrom);
     });
+});
+
+
+function key_navigation() {
+    $(document).bind("keydown", function(event) {
+        if(event.ctrlKey && event.which == 39) {
+            addr = window.location.href;
+            if(addr.indexOf("page") > 0) {
+                var a = parseInt(window.location.pathname.replace(/^.*\:([^/]*)/, "$1"));
+                window.location.href = addr.replace(a,a+1);
+            }
+            else {
+                breakpt = addr.indexOf("?");
+                if (breakpt == -1) {
+                    breakpt = addr.length;
+                }
+                new_addr = addr.substr(0,breakpt) + "/page:2" + addr.substr(breakpt);
+                console.log(new_addr);
+                window.location.href = new_addr;
+            }
+        }
+
+        if(event.ctrlKey && event.which == 37) {
+            addr = window.location.href;
+            if(addr.indexOf("page") > 0) {
+                var a = parseInt(window.location.pathname.replace(/^.*\:([^/]*)/, "$1"));
+                if (a>1) {
+                    window.location.href = addr.replace(a,a-1);
+                }
+            }
+        }
+    });
+}
+
+$(document).ready(function() {
+    if (document.getElementById("pages")) {
+        key_navigation.call();
+}
 });
