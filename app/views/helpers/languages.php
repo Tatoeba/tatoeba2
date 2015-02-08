@@ -40,6 +40,119 @@ class LanguagesHelper extends AppHelper
 {
     public $helpers = array('Html');
     
+    private $iso639_3_to_iso639_1 = array(
+        'abk' => 'ab', // Abkhaz
+        'afr' => 'af', // Afrikaans
+        'amh' => 'am', // Amharic
+        'ara' => 'ar', // Arabic
+        'aze' => 'az', // Azerbaijani
+        'bak' => 'ba', // Bashkir
+        'bel' => 'be', // Belarusian
+        'ben' => 'bn', // Bengali
+        'bod' => 'bo', // Tibetan
+        'bos' => 'bs', // Bosnian
+        'bre' => 'br', // Breton
+        'bul' => 'bg', // Bulgarian
+        'cat' => 'ca', // Catalan
+        'ces' => 'cs', // Czech
+        'cha' => 'ch', // Chamorro
+        'chv' => 'cv', // Chuvash
+        'cor' => 'kw', // Cornish
+        'cym' => 'cy', // Welsh
+        'dan' => 'da', // Danish
+        'deu' => 'de', // German
+        'ell' => 'el', // Greek
+        'eng' => 'en', // English
+        'epo' => 'eo', // Esperanto
+        'est' => 'et', // Estonian
+        'eus' => 'eu', // Basque
+        'ewe' => 'ee', // Ewe
+        'fao' => 'fo', // Faroese
+        'fin' => 'fi', // Finnish
+        'fra' => 'fr', // French
+        'fry' => 'fy', // Frisian
+        'gla' => 'gd', // Scottish Gaelic
+        'gle' => 'ga', // Irish
+        'glg' => 'gl', // Galician
+        'grn' => 'gn', // Guarani
+        'guj' => 'gu', // Gujarati
+        'hat' => 'ht', // Haitian Creole
+        'hau' => 'ha', // Hausa
+        'heb' => 'he', // Hebrew
+        'hin' => 'hi', // Hindi
+        'hrv' => 'hr', // Croatian
+        'hun' => 'hu', // Hungarian
+        'hye' => 'hy', // Armenian
+        'ido' => 'io', // Ido
+        'ile' => 'ie', // Interlingue
+        'ina' => 'ia', // Interlingua
+        'ind' => 'id', // Indonesian
+        'isl' => 'is', // Icelandic
+        'ita' => 'it', // Italian
+        'jpn' => 'ja', // Japanese
+        'kal' => 'kl', // Greenlandic
+        'kat' => 'ka', // Georgian
+        'kaz' => 'kk', // Kazakh
+        'khm' => 'km', // Khmer
+        'kin' => 'rw', // Kinyarwanda
+        'kir' => 'ky', // Kyrgyz
+        'kor' => 'ko', // Korean
+        'kur' => 'ku', // Kurdish
+        'lao' => 'lo', // Lao
+        'lat' => 'la', // Latin
+        'lit' => 'lt', // Lithuanian
+        'ltz' => 'lb', // Luxembourgish
+        'mal' => 'ml', // Malayalam
+        'mar' => 'mr', // Marathi
+        'mkd' => 'mk', // Macedonian
+        'mlg' => 'mg', // Malagasy
+        'mlt' => 'mt', // Maltese
+        'mon' => 'mn', // Mongolian
+        'mri' => 'mi', // Maori
+        'nav' => 'nv', // Navajo
+        'nld' => 'nl', // Dutch
+        'nob' => 'nb', // Norwegian (Bokmål)
+        'nya' => 'ny', // Chinyanja
+        'oci' => 'oc', // Occitan
+        'oss' => 'os', // Ossetian
+        'pan' => 'pa', // Punjabi (Eastern)
+        'pol' => 'pl', // Polish
+        'por' => 'pt', // Portuguese
+        'que' => 'qu', // Quechua
+        'roh' => 'rm', // Romansh
+        'ron' => 'ro', // Romanian
+        'rus' => 'ru', // Russian
+        'san' => 'sa', // Sanskrit
+        'sin' => 'si', // Sinhala
+        'slk' => 'sk', // Slovak
+        'slv' => 'sl', // Slovenian
+        'sna' => 'sn', // Shona
+        'som' => 'so', // Somali
+        'spa' => 'es', // Spanish
+        'sqi' => 'sq', // Albanian
+        'srp' => 'sr', // Serbian
+        'swe' => 'sv', // Swedish
+        'tam' => 'ta', // Tamil
+        'tat' => 'tt', // Tatar
+        'tel' => 'te', // Telugu
+        'tgk' => 'tg', // Tajik
+        'tgl' => 'tl', // Tagalog
+        'tha' => 'th', // Thai
+        'tuk' => 'tk', // Turkmen
+        'tur' => 'tr', // Turkish
+        'uig' => 'ug', // Uyghur
+        'ukr' => 'uk', // Ukrainian
+        'urd' => 'ur', // Urdu
+        'uzb' => 'uz', // Uzbek
+        'vie' => 'vi', // Vietnamese
+        'vol' => 'vo', // Volapük
+        'wln' => 'wa', // Walloon
+        'xho' => 'xh', // Xhosa
+        'yid' => 'yi', // Yiddish
+        'yor' => 'yo', // Yoruba
+        'zul' => 'zu', // Zulu
+    );
+
     /* Memoization of languages code and their localized names */
     private $__languages_to_format;
     private $__languages_alone;
@@ -635,6 +748,22 @@ class LanguagesHelper extends AppHelper
             IMG_PATH . 'flags/'.$lang.'.png',
             $options
         );
+    }
+
+    /**
+     * Returns the 2-letters code of the given 3-letters code language,
+     * as described in ISO-639. If there are no 2-letters code for the
+     * provided 3-letters code, returns the 3-letters code.
+     *
+     * @param string $code    3-letters language code.
+     *
+     * @return string Eventually shortened code.
+     */
+    public function shortestCode($code)
+    {
+        return isset($this->iso639_3_to_iso639_1[$code])
+               ? $this->iso639_3_to_iso639_1[$code]
+               : $code;
     }
 }
 ?>

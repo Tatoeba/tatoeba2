@@ -25,7 +25,7 @@
  */
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php echo $languages->shortestCode($languages->i18nCodeToISO(Configure::read('Config.language'))); ?>">
 <head>
     <?php echo $html->charset(); ?>
     <title>
