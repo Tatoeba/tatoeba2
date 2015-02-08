@@ -151,6 +151,14 @@ class LanguagesHelper extends AppHelper
         'yid' => 'yi', // Yiddish
         'yor' => 'yo', // Yoruba
         'zul' => 'zu', // Zulu
+
+        /* "Temporary" hack for Firefox.
+         * Firefox only renders fonts as Chinese when lang="zh",
+         * but not when lang="cmn", whereas "zh" is actually a
+         * macrolanguage that includes, among other languages,
+         * "cmn". In order to make the Chinese interface working
+         * on Firefox, we convert it to "zh". */
+        'cmn' => 'zh',
     );
 
     /* Memoization of languages code and their localized names */
