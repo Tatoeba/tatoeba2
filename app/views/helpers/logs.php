@@ -258,11 +258,10 @@ class LogsHelper extends AppHelper
     private function _displaySentenceInAnnexe($sentenceLang, $sentenceText)
     {
         echo '<div class="contribution"><div class="content">';
-            // sentence text
-            $dir = $this->Languages->getLanguageDirection($sentenceLang);
-            echo '<span dir="'.$dir.'">';
-            echo Sanitize::html($sentenceText);
-            echo '</span>';
+        // sentence text
+        echo $this->Languages->tagWithLang(
+            'span', $sentenceLang, $sentenceText
+        );
         echo '</div></div>';
     }
 
@@ -423,10 +422,9 @@ class LogsHelper extends AppHelper
             echo '</span>';
 
             // sentence text
-            $dir = $this->Languages->getLanguageDirection($sentenceLang);
-            echo '<span dir="'.$dir.'">';
-            echo Sanitize::html($sentenceText);
-            echo '</span>';
+            echo $this->Languages->tagWithLang(
+                'span', $sentenceLang, $sentenceText
+            );
         echo '</div></div>';
     }
 

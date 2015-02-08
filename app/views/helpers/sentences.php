@@ -536,9 +536,6 @@ class SentencesHelper extends AppHelper
     public function displaySentenceText(
         $sentenceId, $sentenceText, $isEditable = false, $sentenceLang = ''
     ) {
-        $dir = $this->Languages->getLanguageDirection($sentenceLang);
-        $sentenceText = Sanitize::html($sentenceText);
-
         if ($isEditable) {
 
             $this->Javascript->link('jquery.jeditable.js', false);
@@ -547,9 +544,13 @@ class SentencesHelper extends AppHelper
             // TODO: HACK SPOTTED id is used in edit_in_place
             // NOTE: I didn't find an easy way to pass the sentenceId to jEditable
             // using jQuery.data...
-            echo '<div dir="'.$dir.'" id="'.$sentenceLang.'_'.$sentenceId.'" class="text editableSentence">';
-            echo $sentenceText;
-            echo '</div>';
+            echo $this->Languages->tagWithLang(
+                'div', $sentenceLang, $sentenceText,
+                array(
+                    'class' => 'text editableSentence',
+                    'id' => $sentenceLang.'_'.$sentenceId,
+                )
+            );
 
         } else {
 
@@ -564,11 +565,10 @@ class SentencesHelper extends AppHelper
                 $currentSentenceId
             );
 
-            echo '<div class="text" dir="'.$dir.'">';
-            echo $sentenceText;
-            echo '</div>';
-            
-
+            echo $this->Languages->tagWithLang(
+                'div', $sentenceLang, $sentenceText,
+                array('class' => 'text')
+            );
         }
     }
 

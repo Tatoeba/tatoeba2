@@ -765,5 +765,18 @@ class LanguagesHelper extends AppHelper
                ? $this->iso639_3_to_iso639_1[$code]
                : $code;
     }
+
+    public function tagWithLang($tag, $lang, $text, $options = array())
+    {
+        $direction = empty($lang) ? 'auto' : $this->getLanguageDirection($lang);
+        $options = array_merge(
+            array(
+                'lang' => $this->shortestCode($lang),
+                'dir'  => $direction,
+                'escape' => true,
+            ),
+            $options
+        );
+        return $this->Html->tag($tag, $text, $options);
+    }
 }
-?>

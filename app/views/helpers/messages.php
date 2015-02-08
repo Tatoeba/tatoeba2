@@ -325,9 +325,10 @@ class MessagesHelper extends AppHelper
         }
 
         if (!$hidden || $canViewContent) {
-            ?><div class="content"><?php
-            echo $this->formatedContent($content);
-            ?></div><?php   
+            echo $this->Languages->tagWithLang(
+                'div', '', $this->formatedContent($content),
+                array('class' => 'content', 'escape' => false)
+            );
         }
 
         ?></div><?php
@@ -374,6 +375,7 @@ class MessagesHelper extends AppHelper
                 ),
                 array(
                     'dir' => $dir,
+                    'lang' => $this->Languages->shortestCode($sentenceLang),
                     'class' => 'sentenceText'
                 )
             );
