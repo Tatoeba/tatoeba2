@@ -76,7 +76,7 @@
                     font-size: 15px;
                 }
             </style>
-<?      }
+<?php      }
 
         // ---------------------- //
         //      Javascript        //
