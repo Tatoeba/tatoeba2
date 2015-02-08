@@ -86,9 +86,12 @@ if (!isset($lastText)) {
 
         <?php
         if (isset($convertedText)) {
-            echo '<div id="conversion">';
-                echo $convertedText;
-            echo '</div>';
+            // We should either set lang as zh-Hans or zh-Hant,
+            // but we don't know the script, so use zh
+            echo $languages->tagWithLang(
+                'div', 'zh', $convertedText,
+                array('id' => 'conversion')
+            );
         }
 
         echo $form->create(
@@ -110,7 +113,9 @@ if (!isset($lastText)) {
             array(
                 "value" => $lastText,
                 "rows" => 30,
-                "cols"=> 40
+                "cols" => 40,
+                "lang" => "zh",
+                "dir" => "ltr",
             )
         );
         ?>

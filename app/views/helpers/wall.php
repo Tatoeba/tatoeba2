@@ -78,7 +78,7 @@ class WallHelper extends AppHelper
         <div class="body">
             <div class="content">
             <?php
-            echo $this->Form->textarea('content');
+            echo $this->Form->textarea('content', array('lang' => '', 'dir' => 'auto'));
             echo $this->Form->hidden('replyTo', array('value'=>"" ));
             ?>
             </div>
@@ -389,11 +389,13 @@ class WallHelper extends AppHelper
         ?>
         </div>
 
-        <div class="body">
         <?php
-        echo $this->Messages->preview($content, 200, 100);
+        $preview = $this->Messages->preview($content, 200, 100);
+        echo $this->Languages->tagWithLang(
+            'div', '', $preview,
+            array('class' => 'body')
+        );
         ?>
-        </div>
 
         <div class="link">
         <?php

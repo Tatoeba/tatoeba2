@@ -97,7 +97,9 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
                 'text', 
                 array(
                     "label" => __('Sentence: ', true),
-                    "id" => "SentenceText"
+                    "id" => "SentenceText",
+                    "lang" => "",
+                    "dir" => "auto",
                 )
             );
             $langArray = $languages->translationsArray();

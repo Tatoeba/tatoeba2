@@ -74,7 +74,9 @@ class NavigationHelper extends AppHelper
                 array(
                     "type" => "text",
                     "label" => __('Show sentence #: ', true),
-                    "value" => $input
+                    "value" => $input,
+                    "lang" => "",
+                    "dir" => "ltr",
                 )
             );
             echo $this->Form->end(__('OK', true));

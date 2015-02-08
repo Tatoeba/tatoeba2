@@ -86,7 +86,9 @@ class PrivateMessagesHelper extends AppHelper
                     'default' => $recipients,
                     'type' => 'text',
                     'maxlength' => 250,
-                    'class' => 'pmTo'
+                    'class' => 'pmTo',
+                    'lang' => '',
+                    'dir' => 'ltr',
                 )
             );
 
@@ -96,7 +98,9 @@ class PrivateMessagesHelper extends AppHelper
                     'default' => $title,
                     'type' => 'text',
                     'label' => __('Title', true),
-                    'class' => 'pmTitle'
+                    'class' => 'pmTitle',
+                    'lang' => '',
+                    'dir' => 'auto',
                 )
             );
             ?>
@@ -112,7 +116,9 @@ class PrivateMessagesHelper extends AppHelper
                 array(
                     'label' => '',
                     'default' => $content,
-                    'type' => 'textarea'
+                    'type' => 'textarea',
+                    'lang' => '',
+                    'dir' => 'auto',
                 )
             );
             ?>

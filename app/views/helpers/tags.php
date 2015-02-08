@@ -119,7 +119,11 @@ class TagsHelper extends AppHelper
     public function displayTagLink(
         $tagName, $tagId, $userId = null, $date = null
     ) {
-        $options = array("class" => "tagName");
+        $options = array(
+            "class" => "tagName",
+            "lang" => "",
+            "dir" => "auto",
+        );
         if ($userId != null) {
             $options["title"] = format(
                 __("user: {userId}, date: {date}", true),
@@ -183,7 +187,9 @@ class TagsHelper extends AppHelper
         echo $this->Form->input(
             'tag_name',
             array(
-                "label" => ''
+                "label" => '',
+                "lang" => '',
+                "dir" => 'auto',
             )
         );
 

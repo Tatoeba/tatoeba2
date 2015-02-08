@@ -45,9 +45,10 @@ if (!isset($lastText)) {
          <h2><?php __('Pinyin converter'); ?></h2>
         <?php
         if (isset($convertedText)) {
-            echo '<div id="conversion">';
-                echo $convertedText;
-            echo '</div>';
+            echo $languages->tagWithLang(
+                'div', 'zh-Latn', $convertedText,
+                array('id' => 'conversion')
+            );
         }
 
         echo $form->create(
@@ -65,7 +66,9 @@ if (!isset($lastText)) {
             array(
                 "value" => $lastText,
                 "rows" => 30,
-                "cols"=> 40
+                "cols"=> 40,
+                "lang"=> "zh",
+                "dir"=> "ltr",
             )
         );
         ?>

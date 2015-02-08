@@ -83,7 +83,9 @@ class CommentsHelper extends AppHelper
             echo $this->Form->textarea(
                 'text',
                 array(
-                    "label"=> ""
+                    "label"=> "",
+                    "lang" => "",
+                    "dir" => "auto",
                 )
             );
             ?>

@@ -94,7 +94,11 @@ $this->set('title_for_layout', $pages->formatTitle(__('Edit profile', true)));
     
     echo $form->input(
         'User.name',
-        array('label' => __p('user', 'Name', true))
+        array(
+            'label' => __p('user', 'Name', true),
+            'lang' => '',
+            'dir' => 'auto',
+        )
     );
     
     echo '<div class="input">';
@@ -115,7 +119,11 @@ $this->set('title_for_layout', $pages->formatTitle(__('Edit profile', true)));
     
     echo $form->input(
         'User.homepage',
-        array('label' => __('Homepage', true))
+        array(
+            'label' => __('Homepage', true),
+            'lang' => '',
+            'dir' => 'ltr',
+        )
     );
     echo $form->end(__('Save personal information', true));
     ?>
@@ -131,7 +139,13 @@ $this->set('title_for_layout', $pages->formatTitle(__('Edit profile', true)));
             'action' => 'save_description'
         )
     );
-    echo $form->textarea('User.description');
+    echo $form->textarea(
+        'User.description',
+        array(
+            'lang' => '',
+            'dir' => 'auto',
+        )
+    );
     echo $form->end(__('Save description', true)); 
     ?>
     </div>

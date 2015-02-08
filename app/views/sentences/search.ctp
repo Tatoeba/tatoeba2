@@ -65,11 +65,14 @@ if (!empty($results)) {
     ?>
     <div class="module">
         <?php 
+        $keywords = $this->Languages->tagWithLang(
+            'span', '', $query, array('escape' => false)
+        );
         if (!empty($query)) {
             $title = format(
                 /* @translators: title on the top of a search result page */
                 __('Search: {keywords}', true),
-                array('keywords' => sprintf('<span style="unicode-bidi: embed">%s</span>', $query))
+                compact('keywords')
             );
         }
         echo $this->Pages->formatTitleWithResultCount($paginator, $title, $real_total);

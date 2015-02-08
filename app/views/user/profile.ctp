@@ -218,10 +218,10 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                 }
                 $userSince = date('F j, Y', strtotime($userSince));
                 $fields = array(
-                    __p('user', 'Name', true) => $realName,
-                    __('Country', true) => $countryName,
-                    __('Birthday', true) => $birthday,
-                    __('Homepage', true) => $homepage
+                    __p('user', 'Name', true) => array($realName, true),
+                    __('Country', true)       => array($countryName, false),
+                    __('Birthday', true)      => array($birthday, false),
+                    __('Homepage', true)      => array($homepage, false),
                 );
                 
                 foreach ($fields as $fieldName => $value) {
@@ -230,15 +230,17 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                         <span class="field <?php echo $statusClass ?>">
                         <?php echo $fieldName; ?>
                         </span>
-                        <span class="value">
-                        <?php 
-                        if (!empty($value)) {
-                            echo $value; 
+                        <?php
+                        $options = array('class' => 'value');
+                        $dispValue = empty($value[0]) ? ' - ' : $value[0];
+                        if ($value[1]) {
+                            echo $languages->tagWithLang(
+                                'span', '', $dispValue, $options
+                            );
                         } else {
-                            echo ' - ';
+                            echo $html->tag('span', $dispValue, $options);
                         }
                         ?>
-                        </span>
                     </div>
                     <?php
                 }
@@ -295,11 +297,12 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         }
         ?>
         
-        <div class="content">
         <?php
-        echo $descriptionContent;
+        echo $languages->tagWithLang(
+            'div', '', $descriptionContent,
+            array('class' => 'content', 'escape' => false)
+        );
         ?>
-        </div>
         </div>
         <?php
     }

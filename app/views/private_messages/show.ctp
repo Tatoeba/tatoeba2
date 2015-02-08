@@ -40,7 +40,11 @@ echo $this->element('pmmenu');
 ?>
 <div id="main_content">
     <div class="module">
-    <h2><?php echo $messageTitle; ?></h2>
+    <?php
+    echo $this->Languages->tagWithLang(
+        'h2', '', $messageTitle
+    );
+    ?>
 
     <?php
     $messages->displayMessage(

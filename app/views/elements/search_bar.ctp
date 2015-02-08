@@ -61,7 +61,9 @@ echo $form->create(
             'id' => 'SentenceQuery',
             'value' => $searchQuery,
             'label' => '',
-            'accesskey' => 4
+            'accesskey' => 4,
+            'lang' => '',
+            'dir' => 'auto',
         )
     );
     ?>

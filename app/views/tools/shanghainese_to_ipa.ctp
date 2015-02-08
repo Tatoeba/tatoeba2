@@ -100,9 +100,10 @@ if (!isset($lastText)) {
 
         <?php
         if (isset($convertedText)) {
-            echo '<div id="conversion">';
-                echo Sanitize::html($convertedText);
-            echo '</div>';
+            echo $languages->tagWithLang(
+                'div', 'wuu-Latn', $convertedText,
+                array('id' => 'conversion')
+            );
         }
 
         echo $form->create(
@@ -124,7 +125,9 @@ if (!isset($lastText)) {
             array(
                 "value" => $lastText,
                 "rows" => 30,
-                "cols"=> 40
+                "cols"=> 40,
+                "lang"=> "wuu",
+                "dir"=> "ltr",
             )
         );
         ?>

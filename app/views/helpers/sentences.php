@@ -236,6 +236,8 @@ class SentencesHelper extends AppHelper
                     'class' => 'addTranslationsTextInput',
                     'rows' => 2,
                     'cols' => 90,
+                    'lang' => '',
+                    'dir' => 'auto',
                 )
             );
 

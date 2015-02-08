@@ -98,9 +98,10 @@ echo $this->element('pmmenu');
                 );
                 // Title
                 echo '<a class="linkToMessage" href="'.$url.'">';
-                echo '<span class="title">';
-                echo $messageTitle;
-                echo '</span>';
+                echo $this->Languages->tagWithLang(
+                    'span', '', $messageTitle,
+                    array('class' => 'title')
+                );
                 
                 // User and date
                 echo '<span class="userAndDate">';
