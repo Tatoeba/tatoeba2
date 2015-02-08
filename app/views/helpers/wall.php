@@ -39,7 +39,7 @@ class WallHelper extends AppHelper
 {
 
     public $helpers = array(
-        'Html', 'Form' , 'Date', 'ClickableLinks', 'Messages'
+        'Html', 'Form' , 'Date', 'ClickableLinks', 'Messages', 'Languages'
     );
     
 
