@@ -82,7 +82,7 @@ class PaginationHelper extends AppHelper
             // Print up to 6/2 = 3 numbered links in rectangles on each side
             // of the central numbered link, in addition to the
             // first and prev links on the far left, and the next
-            // and last links on the far right. We should 
+            // and last links on the far right. We should
             // use a smaller value for this parameter on mobile
             // devices if we ever customize the interface to
             // behave differently based on the display size.
@@ -97,7 +97,7 @@ class PaginationHelper extends AppHelper
             'class' => 'pageNumber'
         );
         ?>
-        <div class="paging">
+        <div class="paging" id="pages">
             <?php
             $first = $this->Paginator->first('<<');
             if (empty($first)) {
