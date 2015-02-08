@@ -50,7 +50,7 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
         ?>
         </div>
         <div id="radicalsList" >
-            <h3><?php echo format(__n('1 stroke', '{n}&nbsp;strokes', 1), array('n' => 1)); ?></h3>
+            <h3><?php echo format(__n('1 stroke', '{n}&nbsp;strokes', 1, true), array('n' => 1)); ?></h3>
             <a class="radical">一</a>
             <a class="radical">丨</a>
             <a class="radical">丶</a>
