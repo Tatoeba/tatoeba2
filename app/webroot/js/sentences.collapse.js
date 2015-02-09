@@ -1,6 +1,5 @@
 /*
     Tatoeba Project, free collaborative creation of multilingual corpuses project
-    Copyright (C) 2009 Allan SIMON <allan.simon@supinfo.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License as published by

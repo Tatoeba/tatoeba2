@@ -123,8 +123,9 @@ class SentencesHelper extends AppHelper
             <?php
             //visible list of translations, upto five visible translations
             // direct translations
+            $num = 5;
             $keys=array_keys($translations);
-            for ($i=0; $i < 5 && $i < count($keys); $i++) {
+            for ($i=0; $i < $num && $i < count($keys); $i++) {
                 $key=$keys[$i];
                 $translation = $translations[$key];
                 $this->displayGenericSentence(
@@ -139,11 +140,11 @@ class SentencesHelper extends AppHelper
                 );
             }
             $visible = 0;
-            if(count($keys)<5){
+            if(count($keys)<$num){
                 $listed = count($keys);
            // indirect translations
                 $keys=array_keys($indirectTranslations);
-                for ($i=0; $i < 5-$listed && $i < count($keys); $i++) {
+                for ($i=0; $i < $num-$listed && $i < count($keys); $i++) {
                     $key=$keys[$i];
                     $translation = $indirectTranslations[$key];
                     $this->displayGenericSentence(
@@ -163,7 +164,7 @@ class SentencesHelper extends AppHelper
             //expanded list of translations
             echo '<div id="translation-'.$id.'" class="more">';
             $keys=array_keys($translations);
-            for ($i=5; $i < count($keys); $i++) {
+            for ($i=$num; $i < count($keys); $i++) {
                 $key=$keys[$i];
                 $translation = $translations[$key];
                 $this->displayGenericSentence(
