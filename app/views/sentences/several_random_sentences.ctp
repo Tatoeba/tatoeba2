@@ -24,6 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+$javascript->link('sentences.collapse.js', false);
 
 $this->set('title_for_layout', $pages->formatTitle(__('Random sentences', true)));
 

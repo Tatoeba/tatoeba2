@@ -612,3 +612,21 @@ textarea {
     padding-left: 30px;
     line-height: 24px;
 }
+/* collapsible sentence lists
+*/
+.more {
+      display: none;
+       }
+   a.showLink, a.hideLink {
+      padding-top: 10px;
+      float: right; 
+      text-decoration: none;
+      color: #257d0c;
+      font-size: 13px;
+       }
+   a.hideLink {
+
+      background: transparent url(up.gif) no-repeat left; }
+   a.showLink:hover, a.hideLink:hover {
+        color: #eaa315;
+      }

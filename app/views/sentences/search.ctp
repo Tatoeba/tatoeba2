@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-
+$javascript->link('sentences.collapse.js', false);
 $query = Sanitize::html($query);
 
 if (!empty($query)) {
@@ -80,7 +80,7 @@ if (!empty($results)) {
         
         <?php
         $pagination->display();
-        
+    
         foreach ($results as $sentence) {
             $sentences->displaySentencesGroup(
                 $sentence['Sentence'], 
@@ -90,6 +90,7 @@ if (!empty($results)) {
                 true,
                 $to
             );
+            
         }
         
         $pagination->display();

@@ -27,6 +27,7 @@
 
 $javascript->link('jquery.scrollTo-min.js', false);
 $javascript->link('sentences.logs.js', false);
+$javascript->link('sentences.collapse.js', false);
 
 if (isset($sentence)) {
     $sentenceId = $sentence['Sentence']['id'];
@@ -160,7 +161,7 @@ $navigation->displaySentenceNavigation(
                 $sentence['User'],
                 $indirectTranslations
             );
-            
+              
         } else {
             
             echo '<h2>' .

@@ -105,6 +105,7 @@ class SentencesHelper extends AppHelper
             )
         );
 
+
         // Form to add a new translation
         $this->_displayNewTranslationForm($id, $withAudio);
 
@@ -118,10 +119,14 @@ class SentencesHelper extends AppHelper
     public function displayTranslations($id, $translations, $indirectTranslations, $withAudio = true, $langFilter = 'und') {
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
-            <div></div>
+            <div>
             <?php
+            //visible list of translations, upto five visible translations
             // direct translations
-            foreach ($translations as $translation) {
+            $keys=array_keys($translations);
+            for ($i=0; $i < 5 && $i < count($keys); $i++) {
+                $key=$keys[$i];
+                $translation = $translations[$key];
                 $this->displayGenericSentence(
                     $translation['Translation'],
                     null,
@@ -133,9 +138,50 @@ class SentencesHelper extends AppHelper
                     $langFilter
                 );
             }
-
-            // indirect translations
-            foreach ($indirectTranslations as $translation) {
+            $visible = 0;
+            if(count($keys)<5){
+                $listed = count($keys);
+           // indirect translations
+                $keys=array_keys($indirectTranslations);
+                for ($i=0; $i < 5-$listed && $i < count($keys); $i++) {
+                    $key=$keys[$i];
+                    $translation = $indirectTranslations[$key];
+                    $this->displayGenericSentence(
+                        $translation['Translation'],
+                        null,
+                        'indirectTranslation',
+                        $withAudio,
+                        $id,
+                        null,
+                        false,
+                        $langFilter
+                    );
+                    $visible++;
+                }
+            }
+            echo '<a id="translation-show-'.$id.'" class="showLink" onclick="toggle_visibility('.$id.');">&#x2193; More Translations</a></div>';
+            //expanded list of translations
+            echo '<div id="translation-'.$id.'" class="more">';
+            $keys=array_keys($translations);
+            for ($i=5; $i < count($keys); $i++) {
+                $key=$keys[$i];
+                $translation = $translations[$key];
+                $this->displayGenericSentence(
+                    $translation['Translation'],
+                    null,
+                    'directTranslation',
+                    $withAudio,
+                    $id,
+                    null,
+                    false,
+                    $langFilter
+                );
+            }
+           // indirect translations
+            $keys=array_keys($indirectTranslations);
+            for ($i=$visible; $i < count($keys); $i++) {
+                $key=$keys[$i];
+                $translation = $indirectTranslations[$key];
                 $this->displayGenericSentence(
                     $translation['Translation'],
                     null,
@@ -147,7 +193,7 @@ class SentencesHelper extends AppHelper
                     $langFilter
                 );
             }
-
+            echo '<p><a id="translation-hide-'.$id.'" class="hideLink" onclick="toggle_visibility('.$id.');">&#x2191; Less Translations</a></p></div>';
             ?>
         </div>
         <?php
