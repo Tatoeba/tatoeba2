@@ -160,7 +160,7 @@ class SentencesHelper extends AppHelper
                     $visible++;
                 }
             }
-            echo '<a id="translation-show-'.$id.'" class="showLink" onclick="toggle_visibility('.$id.');">&#x2193; More Translations</a></div>';
+            echo '<a id="translation-show-'.$id.'" class="showLink" onclick="toggle_visibility('.$id.');"> &#x2193; '. __('More Translations',true).'</a></div>';
             //expanded list of translations
             echo '<div id="translation-'.$id.'" class="more">';
             $keys=array_keys($translations);
@@ -194,7 +194,7 @@ class SentencesHelper extends AppHelper
                     $langFilter
                 );
             }
-            echo '<p><a id="translation-hide-'.$id.'" class="hideLink" onclick="toggle_visibility('.$id.');">&#x2191; Less Translations</a></p></div>';
+            echo '<p><a id="translation-hide-'.$id.'" class="hideLink" onclick="toggle_visibility('.$id.');">&#x2191; '. __('Less Translations',true).'</a></p></div>';
             ?>
         </div>
         <?php
