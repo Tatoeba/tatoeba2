@@ -16,6 +16,7 @@
   - import/countries.sql
   - import/groups.sql
   - import/sinograms.sql
+  - import/sinogram_subglyphs.sql
 - name: Install database triggers
 # This task requires mysql root for creating triggers
   shell: find /var/www-prod/docs/database/triggers -type f -exec cat {} \; | mysql -u root -p{{mysql_root_password}} {{mysql_db_name}}
