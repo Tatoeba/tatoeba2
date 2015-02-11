@@ -131,8 +131,10 @@ class ToolsController extends AppController
         if (!empty($text)) {
             $autotranscription = new Autotranscription();
             $convertedText = $autotranscription->cmn($text, CMN_OTHER_SCRIPT);
+            $convertedTextScript = $autotranscription->cmn($convertedText, CMN_SCRIPT);
         }
 
+        $this->set('convertedTextScript', $convertedTextScript);
         $this->set('convertedText', $convertedText);
         $this->set('lastText', $text);
     }
