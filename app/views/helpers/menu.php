@@ -115,6 +115,7 @@ class MenuHelper extends AppHelper
                 array(
                     "controller" => "users",
                     "action" => "login",
+                    "?" => array("redirectTo" => Router::reverse($this->params)),
                 ),
                 array(
                     "escape" => false
@@ -315,7 +316,8 @@ class MenuHelper extends AppHelper
                 $favoriteImage,
                 array(
                     "controller" => "users",
-                    "action" => "login"
+                    "action" => "login",
+                    "?" => array("redirectTo" => Router::reverse($this->params)),
                 ),
                 array(
                     "escape" => false
@@ -421,7 +423,8 @@ class MenuHelper extends AppHelper
                 $addToListButton,
                 array(
                     "controller" => "users",
-                    "action" => "login"
+                    "action" => "login",
+                    "?" => array("redirectTo" => Router::reverse($this->params)),
                 ),
                 array(
                     "escape" => false

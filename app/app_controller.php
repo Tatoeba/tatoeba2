@@ -200,7 +200,12 @@ class AppController extends Controller
     public function flash($msg,$to)
     {
         $this->Session->setFlash($msg);
-        $this->redirect('/'.$this->params['lang'].$to);
+        if (is_array($to)) {
+            $to = array_merge(array('lang' => $this->params['lang']), $to);
+        } else {
+            $to = '/'.$this->params['lang'].$to;
+        }
+        $this->redirect($to);
         exit;
     }
     
