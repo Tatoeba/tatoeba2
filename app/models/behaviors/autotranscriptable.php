@@ -47,8 +47,24 @@ class AutotranscriptableBehavior extends ModelBehavior
      */
     var $availableLanguages;
 
+    function setup_defaults($alias, $config) {
+        if (!isset($this->settings[$alias])) {
+            $this->settings[$alias] = array(
+                'transcription' => true,
+                'script'        => true,
+                'lang'          => 'lang',
+                'text'          => 'text',
+            );
+        }
+        $this->settings[$alias] = array_merge(
+            $this->settings[$alias], $config
+        );
+    }
+
     function setup(&$model, $config = array())
     {
+        $this->setup_defaults($model->alias, (array)$config);
+
         if (Configure::read('AutoTranscriptions.enabled') == false) {
             return;
         }
@@ -65,15 +81,15 @@ class AutotranscriptableBehavior extends ModelBehavior
      */
     function afterFind(&$model, $results, $primary = false)
     {
-        if (Configure::read('AutoTranscriptions.enabled') == false) {
-            return;
-        }
-        
-        foreach ($results as $key => $row) {
-            
-            $result = &$results[$key];
+        $lang_field = $this->settings[$model->alias]['lang'];
+        $text_field = $this->settings[$model->alias]['text'];
+        $set_script = $this->settings[$model->alias]['script'];
+        $set_transcriptions = $this->settings[$model->alias]['transcription'];
+
+        foreach ($results as &$result) {
             if (!isset($result[$model->alias])) {
-                return $results;
+                continue;
+            }
 
             // Ensure the script index is set everywhere
             $record =& $result[$model->alias];
@@ -81,20 +97,25 @@ class AutotranscriptableBehavior extends ModelBehavior
                 $record['script'] = null;
             }
 
-            $sentence = $result[$model->alias];
-            if (!isset($sentence['lang']) || !isset($sentence['text'])) {
-                break;
+            if (Configure::read('AutoTranscriptions.enabled') == false
+                || !isset($record[$lang_field])
+                || !isset($record[$text_field])) {
+                continue;
             }
 
-            $lang = $sentence['lang'];
+            $lang = $record[$lang_field];
             if (in_array($lang, $this->availableLanguages)) {
-                $text = $sentence['text'];
-                $result[$model->alias]['transcriptions'] = $this->_getTranscriptions(
-                    $text, $lang
-                );
-                $result[$model->alias]['script'] = $this->_getScript(
-                    $text, $lang
-                );
+                $text = $record[$text_field];
+                if ($set_transcriptions) {
+                    $record['transcriptions'] = $this->_getTranscriptions(
+                        $text, $lang
+                    );
+                }
+                if ($set_script) {
+                    $record['script'] = $this->_getScript(
+                        $text, $lang
+                    );
+                }
             }
             
         }

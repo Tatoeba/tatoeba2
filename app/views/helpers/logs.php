@@ -106,6 +106,7 @@ class LogsHelper extends AppHelper
                 $sentenceId, 
                 $sentenceText, 
                 $sentenceLang, 
+                $contribution['script'],
                 $username, 
                 $datetime, 
                 $action, 
@@ -165,6 +166,7 @@ class LogsHelper extends AppHelper
                 $sentenceId,
                 $sentenceText, 
                 $sentenceLang, 
+                $contribution['script'],
                 $username, 
                 $datetime, 
                 $action, 
@@ -223,6 +225,7 @@ class LogsHelper extends AppHelper
         $sentenceId,
         $sentenceText, 
         $sentenceLang, 
+        $sentenceScript,
         $username, 
         $datetime, 
         $action,
@@ -233,7 +236,7 @@ class LogsHelper extends AppHelper
 
         echo '<div class="'.$css.'">';
         $this->_displayInfosInAnnexe($sentenceId, $username, $datetime);
-        $this->_displaySentenceInAnnexe($sentenceLang, $sentenceText);
+        $this->_displaySentenceInAnnexe($sentenceLang, $sentenceScript, $sentenceText);
         echo '</div>';
     }
 
@@ -255,12 +258,13 @@ class LogsHelper extends AppHelper
     }
 
 
-    private function _displaySentenceInAnnexe($sentenceLang, $sentenceText)
+    private function _displaySentenceInAnnexe($sentenceLang, $sentenceScript, $sentenceText)
     {
         echo '<div class="contribution"><div class="content">';
         // sentence text
         echo $this->Languages->tagWithLang(
-            'span', $sentenceLang, $sentenceText
+            'span', $sentenceLang, $sentenceText,
+            array(), $sentenceScript
         );
         echo '</div></div>';
     }
@@ -292,6 +296,7 @@ class LogsHelper extends AppHelper
      * @param int    $sentenceId   Id of the sentence.
      * @param string $sentenceText Text of the sentence.
      * @param string $sentenceLang Language of the sentence.
+     * @param string $sentenceScript Script of the sentence.
      * @param string $username     Username of the contributor.
      * @param string $datetime     Datetime, format YYYY-MM-DD HH:mm:ss.
      * @param string $action       { 'insert', 'update', 'delete' }
@@ -304,6 +309,7 @@ class LogsHelper extends AppHelper
         $sentenceId, 
         $sentenceText, 
         $sentenceLang, 
+        $sentenceScript,
         $username, 
         $datetime, 
         $action,
@@ -314,7 +320,7 @@ class LogsHelper extends AppHelper
 
         echo '<div class="'.$css.'">';
         $this->_displayInfos($type, $action, $sentenceId, $username, $datetime);
-        $this->_displaySentence($sentenceLang, $sentenceText);
+        $this->_displaySentence($sentenceLang, $sentenceScript, $sentenceText);
         echo '</div>';
     }
 
@@ -406,7 +412,7 @@ class LogsHelper extends AppHelper
      * 
      * @return
      */
-    private function _displaySentence($sentenceLang, $sentenceText)
+    private function _displaySentence($sentenceLang, $sentenceScript, $sentenceText)
     {
         echo '<div class="contribution"><div class="content">';
             // language flag
@@ -423,7 +429,8 @@ class LogsHelper extends AppHelper
 
             // sentence text
             echo $this->Languages->tagWithLang(
-                'span', $sentenceLang, $sentenceText
+                'span', $sentenceLang, $sentenceText,
+                array(), $sentenceScript
             );
         echo '</div></div>';
     }
