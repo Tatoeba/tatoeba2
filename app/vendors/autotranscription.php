@@ -42,10 +42,11 @@
 define('UZB_SCRIPT_SWITCH', 0);
 define('UZB_SCRIPT_CYRYLLIC', 1);
 define('UZB_SCRIPT_LATIN', 2);
-define('CMN_PINYIN', 3);
-define('CMN_OTHER_SCRIPT', 4);
-define('JPN_FURIGANA', 5);
-define('JPN_ROMAJI', 6);
+define('CMN_PINYIN', 10);
+define('CMN_OTHER_SCRIPT', 11);
+define('CMN_SCRIPT', 12);
+define('JPN_FURIGANA', 20);
+define('JPN_ROMAJI', 21);
 
 class Autotranscription
 {
@@ -65,6 +66,9 @@ class Autotranscription
         switch ($type) {
             case CMN_OTHER_SCRIPT:
                 return $this->_getChineseOtherScriptVersion($text);
+
+            case CMN_SCRIPT:
+                return $this->_getChineseScript($text);
 
             default:
                 return $this->_getPinyin($text);
@@ -385,6 +389,26 @@ class Autotranscription
         );
         foreach($xml as $key=>$value) {
             return $value;
+        }
+        return "";
+    }
+
+
+    /**
+     * detect the script of the given Chinese text
+     *
+     * @param string $chineseText Chinese text
+     *
+     * @return string
+     */
+    private function _getChineseScript($chineseText)
+    {
+        $xml = simplexml_load_file(
+            "http://127.0.0.1:8042/guess_script?str=".urlencode($chineseText)
+            ,'SimpleXMLElement', LIBXML_NOCDATA
+        );
+        foreach($xml as $key=>$value) {
+            return (string)$value;
         }
         return "";
     }

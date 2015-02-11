@@ -375,7 +375,7 @@ class MessagesHelper extends AppHelper
                 ),
                 array(
                     'dir' => $dir,
-                    'lang' => $this->Languages->shortestCode($sentenceLang),
+                    'lang' => $this->Languages->langAttribute($sentenceLang),
                     'class' => 'sentenceText'
                 )
             );

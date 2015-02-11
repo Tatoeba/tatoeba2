@@ -87,6 +87,9 @@ class AutotranscriptableBehavior extends ModelBehavior
                 $result[$model->alias]['transcriptions'] = $this->_getTranscriptions(
                     $text, $lang
                 );
+                $result[$model->alias]['script'] = $this->_getScript(
+                    $text, $lang
+                );
             }
             
         }
@@ -94,6 +97,17 @@ class AutotranscriptableBehavior extends ModelBehavior
         return $results;
     }
 
+    function _getScript($text, $lang)
+    {
+        switch ($lang) {
+
+            case 'cmn':
+                return $this->autotranscription->cmn($text, CMN_SCRIPT);
+
+            default:
+                return;
+        }
+    }
 
     function _getTranscriptions($text, $lang)
     {

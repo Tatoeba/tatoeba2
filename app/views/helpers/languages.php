@@ -759,19 +759,25 @@ class LanguagesHelper extends AppHelper
     }
 
     /**
-     * Returns the 2-letters code of the given 3-letters code language,
-     * as described in ISO-639. If there are no 2-letters code for the
-     * provided 3-letters code, returns the 3-letters code.
+     * Returns the lang HTML attribute giving an ISO-639-3 code.
      *
-     * @param string $code    3-letters language code.
+     * @param string $code    ISO-639-3 language code.
+     * @param string $script  ISO 15924 script.
      *
-     * @return string Eventually shortened code.
+     * @return string lang HTML attribute compliant string.
      */
-    public function shortestCode($code)
+    public function langAttribute($code, $script = '')
     {
-        return isset($this->iso639_3_to_iso639_1[$code])
-               ? $this->iso639_3_to_iso639_1[$code]
-               : $code;
+        if (!empty($script)) {
+            $script = '-'.$script;
+        }
+
+        // The rule is to use 2-letters code if available,
+        // or 3-letters code otherwise
+        if (isset($this->iso639_3_to_iso639_1[$code])) {
+            $code = $this->iso639_3_to_iso639_1[$code];
+        }
+        return $code.$script;
     }
 
     public function tagWithLang($tag, $lang, $text, $options = array())
@@ -779,7 +785,7 @@ class LanguagesHelper extends AppHelper
         $direction = empty($lang) ? 'auto' : $this->getLanguageDirection($lang);
         $options = array_merge(
             array(
-                'lang' => $this->shortestCode($lang),
+                'lang' => $this->langAttribute($lang),
                 'dir'  => $direction,
                 'escape' => true,
             ),
