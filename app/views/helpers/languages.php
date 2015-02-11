@@ -156,9 +156,12 @@ class LanguagesHelper extends AppHelper
          * Firefox only renders fonts as Chinese when lang="zh",
          * but not when lang="cmn", whereas "zh" is actually a
          * macrolanguage that includes, among other languages,
-         * "cmn". In order to make the Chinese interface working
-         * on Firefox, we convert it to "zh". */
+         * "cmn". The same goes for other Chinese languages.
+         */
         'cmn' => 'zh',
+        'yue' => 'zh',
+        'wuu' => 'zh',
+        'lzh' => 'zh',
     );
 
     /* Memoization of languages code and their localized names */
