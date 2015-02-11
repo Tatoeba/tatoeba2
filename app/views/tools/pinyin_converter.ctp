@@ -46,8 +46,9 @@ if (!isset($lastText)) {
         <?php
         if (isset($convertedText)) {
             echo $languages->tagWithLang(
-                'div', 'zh-Latn', $convertedText,
-                array('id' => 'conversion')
+                'div', 'zh', $convertedText,
+                array('id' => 'conversion'),
+                'Latn'
             );
         }
 
