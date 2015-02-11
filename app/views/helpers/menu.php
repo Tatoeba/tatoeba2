@@ -642,7 +642,7 @@ class MenuHelper extends AppHelper
 
         // Edit
         if (CurrentUser::canEditSentenceOfUser($ownerName)) {
-        $this->editButton($sentenceId, $hasAudio);
+            $this->editButton($sentenceId, $hasAudio);
         }
 
         // Favorite
