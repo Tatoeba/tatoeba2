@@ -69,11 +69,11 @@ class SentencesControllerTestCase extends CakeTestCase {
 		ClassRegistry::flush();
 	}
 
-	function _testActionAsGuest($method, $params = array()) {
-		return $this->_testActionAsUser($method, null, $params);
+	function _testActionAsGuest($method, $params = array(), $args = array()) {
+		return $this->_testActionAsUser($method, null, $params, $args);
 	}
 
-	function _testActionAsUser($method, $user = null, $params = array()) {
+	function _testActionAsUser($method, $user = null, $params = array(), $args = array()) {
 		if ($user) {
 			$this->Sentences->Session->write('Auth.User', $this->users[$user]);
 		}
@@ -85,7 +85,7 @@ class SentencesControllerTestCase extends CakeTestCase {
 		$this->Sentences->beforeFilter();
 		$this->Sentences->Component->initialize($this->Sentences);
 		$this->Sentences->Component->startup($this->Sentences);
-		$this->Sentences->$method();
+		call_user_func_array(array($this->Sentences, $method), $args);
 	}
 
 	function testAdd_redirectsGuestsToLogin() {
