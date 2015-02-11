@@ -650,9 +650,9 @@ class MenuHelper extends AppHelper
             $this->deleteButton($sentenceId, $hasAudio);
         }
 
-        if ($chineseScript == 'simplified') {
+        if ($chineseScript == 'Hans') {
             $this->simplifiedButton();
-        } else if ($chineseScript == 'traditional') {
+        } else if ($chineseScript == 'Hant') {
             $this->traditionalButton();
         }
         ?>

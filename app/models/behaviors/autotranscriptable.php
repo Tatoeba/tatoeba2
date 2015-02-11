@@ -102,11 +102,20 @@ class AutotranscriptableBehavior extends ModelBehavior
         switch ($lang) {
 
             case 'cmn':
-                return $this->autotranscription->cmn($text, CMN_SCRIPT);
+                return $this->_getChineseScript($text);
 
             default:
                 return;
         }
+    }
+
+    function _getChineseScript($text) {
+        $mapToISO15924 = array(
+            'simplified'  => 'Hans',
+            'traditional' => 'Hant'
+        );
+        $script = $this->autotranscription->cmn($text, CMN_SCRIPT);
+        return $mapToISO15924[$script];
     }
 
     function _getTranscriptions($text, $lang)

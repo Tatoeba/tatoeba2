@@ -261,6 +261,16 @@ class Sentence extends AppModel
         }
     }
 
+    public function afterFind($results, $primary = false) {
+        foreach ($results as &$result) {
+            // Ensure the script index is set everywhere
+            if (isset($result[$this->alias]) && !array_key_exists('script', $result[$this->alias])) {
+                $result[$this->alias]['script'] = null;
+            }
+        }
+        return parent::afterFind($results, $primary);
+    }
+
     /**
      * Call after a deletion.
      *

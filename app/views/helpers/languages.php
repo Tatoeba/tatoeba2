@@ -780,12 +780,12 @@ class LanguagesHelper extends AppHelper
         return $code.$script;
     }
 
-    public function tagWithLang($tag, $lang, $text, $options = array())
+    public function tagWithLang($tag, $lang, $text, $options = array(), $script = '')
     {
         $direction = empty($lang) ? 'auto' : $this->getLanguageDirection($lang);
         $options = array_merge(
             array(
-                'lang' => $this->langAttribute($lang),
+                'lang' => $this->langAttribute($lang, $script),
                 'dir'  => $direction,
                 'escape' => true,
             ),
