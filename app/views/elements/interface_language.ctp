@@ -32,10 +32,21 @@ $configUiLanguages = Configure::read('UI.languages');
 $languages = array();
 
 foreach ($configUiLanguages as $langs) {
-    $languages[$langs[0]] = $langs[2];
+    list($urlCode, $isoCode, $name) = $langs;
+    $languages[$urlCode] = array(
+        'name' => $name,
+        'value' => $urlCode,
+        'lang' => $isoCode,
+        'dir' => $this->Languages->getLanguageDirection($urlCode),
+    );
 }
 
-asort($languages);
+usort(
+    $languages,
+    function($a, $b) {
+        return strnatcmp($a['name'], $b['name']);
+    }
+);
 
 echo $form->select(
     'languageSelection',
