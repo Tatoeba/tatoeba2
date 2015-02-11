@@ -771,6 +771,12 @@ class LanguagesHelper extends AppHelper
      */
     public function langAttribute($code, $script = '')
     {
+        $scriptMap = array(
+            'lzh' => 'Hant',
+        );
+        if (empty($script) && isset($scriptMap[$code])) {
+            $script = $scriptMap[$code];
+        }
         if (!empty($script)) {
             $script = '-'.$script;
         }
