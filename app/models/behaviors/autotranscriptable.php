@@ -74,6 +74,11 @@ class AutotranscriptableBehavior extends ModelBehavior
             $result = &$results[$key];
             if (!isset($result[$model->alias])) {
                 return $results;
+
+            // Ensure the script index is set everywhere
+            $record =& $result[$model->alias];
+            if (!array_key_exists('script', $record)) {
+                $record['script'] = null;
             }
 
             $sentence = $result[$model->alias];
