@@ -206,7 +206,7 @@ class AppController extends Controller
             $to = '/'.$this->params['lang'].$to;
         }
         $this->redirect($to);
-        exit;
+        $this->_stop();
     }
     
 

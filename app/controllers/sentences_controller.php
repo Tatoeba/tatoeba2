@@ -259,6 +259,7 @@ class SentencesController extends AppController
                 __('You cannot delete sentences.', true),
                 '/sentences/show/'.$id
             );
+            return;
         }
 
         $isDeleted = $this->Sentence->delete(

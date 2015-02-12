@@ -145,4 +145,14 @@ class SentencesControllerTestCase extends CakeTestCase {
 		$newSentence = $this->Sentences->Sentence->findById(1, 'user_id');
 		$this->assertEqual($oldSentence['Sentence']['user_id'], $newSentence['Sentence']['user_id']);
 	}
+
+	function testDelete_cantDeleteOwnSentenceAsRegularUser() {
+		$this->_testActionAsUser('delete', 'kazuki', array(), array(1));
+		$this->assertTrue($this->Sentences->Sentence->findById(1));
+	}
+
+	function testDelete_canDeleteSentenceAsCorpusMaintainer() {
+		$this->_testActionAsUser('delete', 'corpus_maintainer', array(), array(1));
+		$this->assertFalse($this->Sentences->Sentence->findById(1));
+	}
 }
