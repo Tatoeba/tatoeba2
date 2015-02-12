@@ -76,7 +76,6 @@ class PaginationHelper extends AppHelper
         // -----------------------------------------------------------
 
 
-        $prevNextOptions = array();
         $numbersOptions = array(
             'separator' => '',
             // Print up to 6/2 = 3 numbered links in rectangles on each side
@@ -99,14 +98,20 @@ class PaginationHelper extends AppHelper
         ?>
         <div class="paging">
             <?php
-            $first = $this->Paginator->first('<<');
+            $first = $this->Paginator->first(
+                '<<',
+                array('title' => __('First page', true))
+            );
             if (empty($first)) {
                 $first = '<span class="disabled">&lt;&lt;</span>';
             }
             echo $first;
 
             echo $this->Paginator->prev(
-                '<', $prevNextOptions, null, array('class' => 'disabled')
+                '<',
+                array('title' => __('Previous page [Ctrl+←]', true)),
+                null,
+                array('class' => 'disabled')
             );
             ?>
 
@@ -116,10 +121,16 @@ class PaginationHelper extends AppHelper
 
             <?php
             echo $this->Paginator->next(
-                '>', $prevNextOptions, null, array('class' => 'disabled')
+                '>',
+                array('title' => __('Next page [Ctrl+→]', true)),
+                null,
+                array('class' => 'disabled')
             );
 
-            $last = $this->Paginator->last(">>");
+            $last = $this->Paginator->last(
+                '>>',
+                array('title' => __('Last page', true))
+            );
             if (empty($last)) {
                 $last = '<span class="disabled">&gt;&gt;</span>';
             }
