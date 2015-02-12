@@ -223,14 +223,16 @@ class CurrentUser extends AppModel
     }
 
     /**
-     * Indicates if the current user can remove a sentence
+     * Indicates if the current user can remove a sentence.
+     * Specify either $ownerId or $ownerName.
      *
      * @param int $sentenceId Id of the sentence.
-     * @param int $sentenceId User id of the owner of the sentence.
+     * @param int $ownerId User id of the owner of the sentence.
+     * @param int $ownerName User name of the owner of the sentence.
      *
      * @return bool True if he can, False otherwise.
      */
-    public static function canRemoveSentence($sentenceId, $ownerId)
+    public static function canRemoveSentence($sentenceId, $ownerId = null, $ownerName = null)
     {
         if (!self::isMember()) {
             return false;
@@ -240,7 +242,11 @@ class CurrentUser extends AppModel
             return true;
         }
 
-        if (self::get('id') != $ownerId) {
+        $isOwner = (
+            self::get('id') == $ownerId ||
+            self::get('username') == $ownerName
+        );
+        if (!$isOwner) {
             return false;
         }
 

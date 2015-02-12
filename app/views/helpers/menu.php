@@ -519,7 +519,7 @@ class MenuHelper extends AppHelper
                     $sentenceId
                 ),
                 array("escape" => false),
-                'Are you sure?'
+                __('Are you sure?', true)
             );
 
         }
@@ -648,7 +648,7 @@ class MenuHelper extends AppHelper
             $this->linkToSentenceButton($sentenceId, $langFilter);
         }
 
-        if (CurrentUser::isModerator()) {
+        if (CurrentUser::canRemoveSentence($sentenceId, null, $ownerName)) {
             // Delete
             $this->deleteButton($sentenceId, $hasAudio);
         }
