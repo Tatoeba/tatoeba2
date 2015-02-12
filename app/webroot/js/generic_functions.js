@@ -27,7 +27,7 @@ function get_language_interface_from_url() {
 function get_tatoeba_root_url() {
     var host = self.location.host;
     var interfaceLang = get_language_interface_from_url();
-    
+
     return "http://" + host + "/"+ interfaceLang;
 }
 
@@ -47,7 +47,7 @@ function changeInterfaceLang(newLang) {
     // Saving the cookie
     var date = new Date();
     date.setMonth(date.getMonth()+1);
-    document.cookie = 'CakeCookie[interfaceLanguage]=' + newLang 
+    document.cookie = 'CakeCookie[interfaceLanguage]=' + newLang
         + '; path=/'
         + '; expires=' + date.toGMTString();
     location.reload();
@@ -60,4 +60,28 @@ $(document).ready(function() {
 	$('#SentenceFrom').val(langTo);
 	$('#SentenceTo').val(langFrom);
     });
+});
+
+/**
+ * Traverses through paginated pages on Ctrl + Left/Right arrow
+ */
+
+function key_navigation() {
+    $(document).bind("keydown", function(event) {
+        // handle right page turn. 39 = char code for right arrow
+        if(event.ctrlKey && event.which == 39) {
+            $("div.paging span.current").next().children("a")[0].click();
+        }
+        //handle left page turn. 37 = left arrow
+        if(event.ctrlKey && event.which == 37) {
+            $("div.paging span.current").prev().children("a")[0].click();
+        }
+    });
+}
+
+$(document).ready(function() {
+    //shortcuts only show up if pagination is present
+    if ($("div.paging").length > 0) {
+        key_navigation();
+    }
 });
