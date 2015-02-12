@@ -25,5 +25,14 @@ class TagFixture extends CakeTestFixture {
 			'created' => '2013-04-14 13:10:02',
 			'nbrOfSentences' => '1',
 		),
+		array(
+			'id' => '2',
+			'internal_name' => 'OK',
+			'name' => 'OK',
+			'description' => 'Sentences that are okay according to the author of the tag.',
+			'user_id' => '1',
+			'created' => '2014-02-13 10:46:09',
+			'nbrOfSentences' => '1',
+		),
 	);
 }

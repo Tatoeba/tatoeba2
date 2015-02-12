@@ -245,6 +245,12 @@ class Sentence extends AppModel
      */
     public function afterSave($created)
     {
+        $this->logSentenceEdition($created);
+        $this->updateTags($created);
+    }
+
+    private function logSentenceEdition($created)
+    {
         if (isset($this->data['Sentence']['text'])) {
             // --- Logs for sentence ---
             $sentenceLang =  $this->data['Sentence']['lang'];
@@ -258,6 +264,14 @@ class Sentence extends AppModel
             $this->Contribution->saveSentenceContribution(
                 $this->id, $sentenceLang, $sentenceText, $sentenceAction
             );
+        }
+    }
+
+    private function updateTags($created)
+    {
+        if (!$created) {
+            $OKTagId = $this->Tag->getIdFromName($this->Tag->getOKTagName());
+            $this->TagsSentences->removeTagFromSentence($OKTagId, $this->id);
         }
     }
 

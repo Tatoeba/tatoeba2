@@ -99,6 +99,24 @@ class SentenceTestCase extends CakeTestCase {
 		$this->assertEqual($expectedLangs, $result);
 	}
 
+	function testSentenceLoosesOKTagOnEdition() {
+		$sentenceId = 2;
+		$OKTagId = $this->Sentence->Tag->getIdFromName(
+			$this->Sentence->Tag->getOKTagName()
+		);
+		$this->assertTrue(
+			$this->Sentence->TagsSentences->isSentenceTagged($sentenceId, $OKTagId)
+		);
+		$this->Sentence->save(array(
+			'id' => $sentenceId,
+			'lang' => 'cmn',
+			'text' => "That should remove the OK tag automatically!"
+		));
+		$this->assertFalse(
+			$this->Sentence->TagsSentences->isSentenceTagged($sentenceId, $OKTagId)
+		);
+	}
+
 	function testSphinxAttributesChanged_onLetGo() {
 		$sentenceId = 1;
 		$expectedAttributes = array('user_id');
