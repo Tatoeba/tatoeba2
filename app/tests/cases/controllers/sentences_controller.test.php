@@ -9,11 +9,16 @@ class TestSentencesController extends SentencesController {
 	var $autoRender = false;
 
 	var $redirectUrl;
-	var $stopped;
+	var $stopped = false;
 	var $rendered;
 
 	function redirect($url, $status = null, $exit = true) {
 		$this->redirectUrl = $url;
+		return parent::redirect($url, $status, $exit);
+	}
+
+	function header() {
+		// Don't call header() for real
 	}
 
 	function render($action = null, $layout = null, $file = null) {
@@ -21,7 +26,7 @@ class TestSentencesController extends SentencesController {
 	}
 
 	function _stop($status = 0) {
-		$this->stopped = $status;
+		$this->stopped = true;
 	}
 }
 
@@ -82,10 +87,12 @@ class SentencesControllerTestCase extends CakeTestCase {
 			'controller' => 'sentences',
 			'action' => $method,
 		), $params);
-		$this->Sentences->beforeFilter();
 		$this->Sentences->Component->initialize($this->Sentences);
+		$this->Sentences->beforeFilter();
 		$this->Sentences->Component->startup($this->Sentences);
-		call_user_func_array(array($this->Sentences, $method), $args);
+		if (!$this->Sentences->stopped) {
+			call_user_func_array(array($this->Sentences, $method), $args);
+		}
 	}
 
 	function testAdd_redirectsGuestsToLogin() {
