@@ -223,6 +223,39 @@ class CurrentUser extends AppModel
     }
 
     /**
+     * Indicates if the current user can remove a sentence
+     *
+     * @param int $sentenceId Id of the sentence.
+     * @param int $sentenceId User id of the owner of the sentence.
+     *
+     * @return bool True if he can, False otherwise.
+     */
+    public static function canRemoveSentence($sentenceId, $ownerId)
+    {
+        if (!self::isMember()) {
+            return false;
+        }
+
+        if (self::isModerator()) {
+            return true;
+        }
+
+        if (self::get('id') != $ownerId) {
+            return false;
+        }
+
+        $Link = ClassRegistry::init('Link');
+        $hasTranslations = $Link->find('first', array(
+            'conditions' => array('sentence_id' => $sentenceId)
+        ));
+        if (!$hasTranslations) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
      * A user is new if they registered within the last 14 days
      *
      * @return bool
