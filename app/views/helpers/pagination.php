@@ -109,6 +109,8 @@ class PaginationHelper extends AppHelper
 
             echo $this->Paginator->prev(
                 '<',
+                // @translators Appears on “previous page” links
+                // mouseover. Keyboard shortcut is between brackets.
                 array('title' => __('Previous page [Ctrl+←]', true)),
                 null,
                 array('class' => 'disabled')
@@ -122,6 +124,8 @@ class PaginationHelper extends AppHelper
             <?php
             echo $this->Paginator->next(
                 '>',
+                // @translators Appears on “next page” links
+                // mouseover. Keyboard shortcut is between brackets.
                 array('title' => __('Next page [Ctrl+→]', true)),
                 null,
                 array('class' => 'disabled')
