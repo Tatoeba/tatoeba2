@@ -502,7 +502,7 @@ class MessagesHelper extends AppHelper
         if ($formatContent) {
             $previewContent = $this->formatedContent($previewContent);
         } else {
-            $previewContent = nl2br($previewContent);
+            $previewContent = nl2br(Sanitize::html($previewContent));
         }
 
         if ($displayElipsis) {
