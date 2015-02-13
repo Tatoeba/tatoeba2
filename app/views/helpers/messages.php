@@ -238,7 +238,7 @@ class MessagesHelper extends AppHelper
             echo $this->Html->image(
                 IMG_PATH . 'profiles_36/'. $image,
                 array(
-                    'alt' => __('Deleted user', true),
+                    'alt' => __('Former member', true),
                     'width' => 36,
                     'height' => 36,
                 )
