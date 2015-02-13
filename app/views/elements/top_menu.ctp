@@ -77,7 +77,7 @@ $menuElements = array(
                 "controller" => "sentences",
                 "action" => "with_audio"
             ),
-            __('Random Sentence', true) => array(
+            __('Random sentence', true) => array(
                 "controller" => "sentences",
                 "action" => "show",
                 "random"
