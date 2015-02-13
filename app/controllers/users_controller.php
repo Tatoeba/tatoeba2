@@ -210,7 +210,7 @@ class UsersController extends AppController
                 '/users/logout/'
             );
         }
-        // group_id 5 => users is spammer
+        // group_id 6 => users is spammer
         else if ($this->Auth->user('group_id') == 6) {
             $this->flash(
                 __(
