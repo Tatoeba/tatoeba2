@@ -128,6 +128,8 @@ class AutotranscriptableBehavior extends ModelBehavior
         switch ($lang) {
 
             case 'cmn':
+            case 'yue':
+            case 'wuu':
                 return $this->_getChineseScript($text);
 
             default:
