@@ -42,7 +42,7 @@ if ($session->read('Auth.User.id')) {
     <a href="<?php echo $html->url($path); ?>">
     <?php 
     echo $html->image(
-        IMG_PATH . 'tatoeba.png',
+        IMG_PATH . 'tatoeba.svg',
         array(
             'width' => 64,
             'height' => 64
