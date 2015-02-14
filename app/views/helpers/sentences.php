@@ -228,7 +228,12 @@ class SentencesHelper extends AppHelper
         <div id="translation_for_<?php echo $id; ?>" class="addTranslations">
 
         <?php
-            echo "<label>Translation: </label>";
+            echo $this->Html->tag('label', 'Translation: ',
+                array(
+                    'for'=>'_'.$id.'_text'
+                )
+            );
+            
             // Input field
             echo $this->Form->textarea(
                 'translation',
@@ -241,9 +246,12 @@ class SentencesHelper extends AppHelper
                     'dir' => 'auto',
                 )
             );
-
-            echo"<br/>";
-            echo "<label>Language: </label>";
+            
+            echo $this->Html->tag('label', 'Language: ',
+                array(
+                    'for'=>'translationLang_'.$id
+                )
+            );
             
             // language select
             echo $this->Form->select(
@@ -257,8 +265,14 @@ class SentencesHelper extends AppHelper
                 false
             );
             
-            echo '<img class="flag translationLang_flag" width="30" height="20" src="" title="" alt="">';
-            echo"<br/>";
+           echo $this->Html->image('flags/unknown.png', 
+                array(
+                'alt' => 'Unknown',
+                'class' => 'flag translationLang_flag',
+                'width' => '30',
+                'height' => '20'
+                ));
+            
             
             // OK
             echo $this->Form->button(

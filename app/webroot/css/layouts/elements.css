@@ -1155,7 +1155,7 @@ input.sentenceId {
 * Language flag for selected option in Add Translations drop down
 */
 .translationLang_flag{
-    display:none;
+    /* display:none; */
     padding-left: 2px;
     margin-left: 20px;
     margin-bottom: -5px;
@@ -1213,7 +1213,7 @@ input.sentenceId {
     min-width: 120px;
     padding: 3px 30px;
     float:right;
-    margin-top:9px;
+    margin-top:29px;
     line-height: 18px;
 }
 

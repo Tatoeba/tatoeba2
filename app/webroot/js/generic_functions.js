@@ -102,11 +102,9 @@ $(document).ready(function() {
             var lang_flag_url = '/img/flags/'+$(this).val()+'.png';
             $(this).next().attr('src',lang_flag_url);
             $(this).next().attr('alt',$(this).val());
-            $(this).next().show();
         }else{
-            $(this).next().attr('src','');
-            $(this).next().attr('alt','');
-            $(this).next().hide();
+            $(this).next().attr('src','/img/flags/unknown.png');
+            $(this).next().attr('alt','Unknown');
         }
     });
 });
