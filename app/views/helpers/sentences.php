@@ -227,7 +227,8 @@ class SentencesHelper extends AppHelper
         </script>
         <div id="translation_for_<?php echo $id; ?>" class="addTranslations">
 
-            <?php
+        <?php
+            echo "<label>Translation: </label>";
             // Input field
             echo $this->Form->textarea(
                 'translation',
@@ -241,6 +242,9 @@ class SentencesHelper extends AppHelper
                 )
             );
 
+            echo"<br/>";
+            echo "<label>Language: </label>";
+            
             // language select
             echo $this->Form->select(
                 'translationLang_'.$id,
@@ -252,6 +256,9 @@ class SentencesHelper extends AppHelper
                 ),
                 false
             );
+            
+            echo '<img class="flag translationLang_flag" width="30" height="20" src="" title="" alt="">';
+            echo"<br/>";
             
             // OK
             echo $this->Form->button(
@@ -267,33 +274,11 @@ class SentencesHelper extends AppHelper
                 array(
                     'id' => '_'.$id.'_cancel',
                     'type' => 'reset',
+                    'class'=>'cancel_link'
                 )
             );
 
-            // Warning
             ?>
-            <div class="important">
-            <p>
-            <?php
-            __(
-                'Important! You are about to add a translation to the sentence '
-                . 'above. If you do not understand this sentence, click on '
-                . '"Cancel" to display everything again, and then click on '
-                . 'the sentence that you understand and want to translate from.'
-            );
-            ?>
-            </p>
-
-            <p>
-            <?php
-            __(
-                'Please do not forget <strong>capital letters</strong> '.
-                'and <strong>punctuation</strong>! Thank you.'
-            );
-            ?>
-            </p>
-            </div>
-
         </div>
         <?php
     }
