@@ -160,9 +160,9 @@ class SentencesHelper extends AppHelper
                     $visible++;
                 }
             }
-            echo '<a id="translation-show-'.$id.'" class="showLink" onclick="toggle_visibility('.$id.');"> &#x2193; '. __('More Translations',true).'</a></div>';
+            echo '<a class="showLink" > &#x2193; '. __('More Translations',true).'</a></div>';
             //expanded list of translations
-            echo '<div id="translation-'.$id.'" class="more">';
+            echo '<div class="more">';
             $keys=array_keys($translations);
             for ($i=$num; $i < count($keys); $i++) {
                 $key=$keys[$i];
@@ -194,7 +194,7 @@ class SentencesHelper extends AppHelper
                     $langFilter
                 );
             }
-            echo '<p><a id="translation-hide-'.$id.'" class="hideLink" onclick="toggle_visibility('.$id.');">&#x2191; '. __('Less Translations',true).'</a></p></div>';
+            echo '<a class="hideLink" >&#x2191; '. __('Less Translations',true).'</a></div>';
             ?>
         </div>
         <?php
@@ -762,3 +762,6 @@ class SentencesHelper extends AppHelper
 
 }
 ?>
+
+
+

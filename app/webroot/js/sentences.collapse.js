@@ -14,14 +14,15 @@
     You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-function toggle_visibility(id) {
-   if (document.getElementById('translation-show-'+id).style.display != 'none') {
-     document.getElementById('translation-show-'+id).style.display = 'none';
-     document.getElementById('translation-'+id).style.display = 'block';
-  }
-  else {
-     document.getElementById('translation-show-'+id).style.display = 'inline';
-     document.getElementById('translation-'+id).style.display = 'none';
-  }
-}
-  
+$(document).ready(function(){
+    $("a.showLink").click(function(){
+        $(this).parents(".translations").find(".more").show();
+        $(this).hide();
+        $("a.hideLink").show();
+    });
+    $("a.hideLink").click(function(){
+        $(this).parents(".more").hide();
+        $(this).hide();
+        $("a.showLink").show();
+    });
+});
