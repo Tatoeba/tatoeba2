@@ -119,12 +119,13 @@ class SentencesHelper extends AppHelper
     public function displayTranslations($id, $translations, $indirectTranslations, $withAudio = true, $langFilter = 'und') {
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
-            <div>
+            
             <?php
             //visible list of translations, upto five visible translations
             // direct translations
-            $num = 5;
+            $num = 5; 
             $keys=array_keys($translations);
+            $displayed = count($keys);
             for ($i=0; $i < $num && $i < count($keys); $i++) {
                 $key=$keys[$i];
                 $translation = $translations[$key];
@@ -144,6 +145,7 @@ class SentencesHelper extends AppHelper
                 $listed = count($keys);
            // indirect translations
                 $keys=array_keys($indirectTranslations);
+                $displayed += count($keys);    
                 for ($i=0; $i < $num-$listed && $i < count($keys); $i++) {
                     $key=$keys[$i];
                     $translation = $indirectTranslations[$key];
@@ -160,7 +162,9 @@ class SentencesHelper extends AppHelper
                     $visible++;
                 }
             }
-            echo '<a class="showLink" > &#x2193; '. __('More Translations',true).'</a></div>';
+            if($displayed > 5){
+            echo '<a class="showLink" > &#x2193; '. __('More Translations',true).'</a>';
+            }
             //expanded list of translations
             echo '<div class="more">';
             $keys=array_keys($translations);
