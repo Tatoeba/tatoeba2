@@ -341,7 +341,7 @@ class SentencesController extends AppController
      * Edit sentence.
      * Used in AJAX request, in sentences.edit_in_place.js.
      *
-     * @todo Need to have an editSentence() in the model, that will check if sentence 
+     * @todo Need to have an editSentence() in the model, that will check if sentence
      * has audio, in which case it cannot be edited.
      *
      * @return void
@@ -354,6 +354,7 @@ class SentencesController extends AppController
             return ;
         }
         */
+
         $sentenceText = '';
         $sentenceId = '';
         if (isset($this->params['form']['value'])) {
@@ -458,9 +459,9 @@ class SentencesController extends AppController
             return ;
         }
         $translationText = $_POST['value'];
-        
+
         // we store the selected language to be reused
-        // since users are likely to contribute in the 
+        // since users are likely to contribute in the
         // same language; they don't need to reselect each time
         $this->Cookie->write('contribute_lang', $translationLang, false, "+1 month");
 
@@ -496,7 +497,7 @@ class SentencesController extends AppController
                 $translation['lang'] = $translationLang;
                 $translation['text'] = $translationText;
                 $translation['correctness'] = $translationCorrectness;
-                
+
                 $ownerName = $this->Auth->user('username');
 
                 $this->set('translation', $translation);
@@ -825,7 +826,7 @@ class SentencesController extends AppController
         $this->set('lastNumberChosen', $number);
     }
 
-   
+
     /**
      * Show all the sentences of a given user
      *
@@ -909,7 +910,7 @@ class SentencesController extends AppController
 
         $this->set('user_sentences', $sentences);
     }
-    
+
 
     /**
      * Change language of a sentence.
@@ -1010,7 +1011,7 @@ class SentencesController extends AppController
         $this->set('lang', $lang);
         $this->set('stats', $stats);
     }
-    
+
     /**
      * Edit correctness of a sentence.
      *
@@ -1020,21 +1021,21 @@ class SentencesController extends AppController
     {
         $sentenceId = $this->data['Sentence']['id'];
         $correctness = $this->data['Sentence']['correctness'];
-        
+
         if (CurrentUser::isModerator()) {
             $this->Sentence->editCorrectness($sentenceId, $correctness);
             $this->redirect(
                 array(
-                    "controller" => "sentences", 
-                    "action" => "show", 
+                    "controller" => "sentences",
+                    "action" => "show",
                     $sentenceId
                 )
             );
         } else {
             $this->redirect(
                 array(
-                    "controller" => "pages", 
-                    "action" => "home", 
+                    "controller" => "pages",
+                    "action" => "home",
                 )
             );
         }
@@ -1045,21 +1046,21 @@ class SentencesController extends AppController
     {
         $sentenceId = $this->data['Sentence']['id'];
         $hasaudio = $this->data['Sentence']['hasaudio'];
-        
+
         if (CurrentUser::isAdmin()) {
             $this->Sentence->editAudio($sentenceId, $hasaudio);
             $this->redirect(
                 array(
-                    "controller" => "sentences", 
-                    "action" => "show", 
+                    "controller" => "sentences",
+                    "action" => "show",
                     $sentenceId
                 )
             );
         } else {
             $this->redirect(
                 array(
-                    "controller" => "pages", 
-                    "action" => "home", 
+                    "controller" => "pages",
+                    "action" => "home",
                 )
             );
         }

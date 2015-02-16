@@ -16,25 +16,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-
 $(document).ready(function() {
-    var rootUrl = get_tatoeba_root_url();
-    
-    $('.editableSentence').editable(rootUrl + '/sentences/edit_sentence', { 
-        type      : 'textarea',
-        cancel    : 'Cancel',
-        submit    : 'OK',
-        data : function(value, settings) {
-            return $('<div>').html(value).text() // added to correct problem with html entities
-        },
-        indicator : '<img src="/img/loading.gif">',
-        tooltip   : 'Click to edit...',
-        cssclass  : 'editInPlaceForm',
-        onblur    : 'ignore'
-    }).click(function(e) {
-        $(this).find('textarea').keydown(function(event) {
-            if (event.which == 13)
-                $(this).closest('form').submit();
-        });
+    //Hide all forms
+    $('.editform').hide();
+    //If any 'edit' button is clicked:
+    $('li.edit').click(function(e) {
+        //Show only the corresponding edit form.
+        $(this).parent().parent().find('.editform').show();
+        //Set value of edit form equal to corresponding sentence.
+        $(".editform input").val($(this).parent().parent().find('.editableSentence').text()).show();
+        //hide the corresponding sentence.
+        $(this).parent().parent().find('.editableSentence').hide();
+    });
+
+    $('.editableSentence').bind("keydown", function(event) {
+        // If enter key is pressed, press closest 'OK'
+        if(event.which == 13) {
+            $(this).parent().parent().find('.ok_button').click();
+        }
     });
 });
+
+function cancel_edit() {
+    //Hide all forms
+    $(".editform").hide();
+    //Clean all form values (to prevent browser warnings)
+    $(".editform input").val('');
+    //Show all sentences
+    $(".editableSentence").show();
+}
