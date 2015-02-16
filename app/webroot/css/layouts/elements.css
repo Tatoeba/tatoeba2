@@ -6,7 +6,7 @@
  * it under the terms of the GNU Affero General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-/* 
+/*
  * --------------------------------------------------------------------
  *
  *   autocompletion.css
@@ -52,7 +52,7 @@
 }
 
 
-/* 
+/*
  * --------------------------------------------------------------------
  *
  *   current_contributors.css
@@ -150,7 +150,7 @@
 }
 
 #logs .date {
-    
+
 }
 
 #logs img.flag {
@@ -160,7 +160,7 @@
 }
 
 #logs .contribution {
-    
+
 }
 
 #logs .contribution .content {
@@ -262,7 +262,7 @@
 /* *************************
  *
  *   Colors
- * 
+ *
  * ************************* */
 
 /*
@@ -723,7 +723,7 @@
 
 #SentenceGoToSentenceForm input#SentenceSentenceId {
     width: 80px;
-    text-align: right;    
+    text-align: right;
 }
 
 #SentenceGoToSentenceForm div.submit, #SentenceGoToSentenceForm div.input, #UserSearchForm div.submit, #UserSearchForm div.input {
@@ -897,8 +897,8 @@
  * --------------------------------------------------------------------
  */
 
-/* 
- * Sentence menu 
+/*
+ * Sentence menu
  */
 .sentences_set .menu {
     border-bottom: 1px dotted #CCC;
@@ -960,7 +960,7 @@
     box-shadow: inset 0 0 2px 2px #f8ad15;
 }
 
-/* 
+/*
  * Main sentences
  */
 .mainSentence, .mainSentence textarea {
@@ -1002,7 +1002,7 @@
 
 
 
-/* 
+/*
  * Sentence
  */
 .sentenceContent .text {
@@ -1080,8 +1080,8 @@
 }
 
 
-/* 
- * Editing sentences 
+/*
+ * Editing sentences
  */
 .sentences_set div.submit {
     display: inline;
@@ -1092,7 +1092,7 @@
 }
 
 
-/* 
+/*
  * Romanization
  */
 .romanization {
@@ -1112,11 +1112,18 @@ a.romanization {
 }
 
 
-/* 
- * Edit in place 
+/*
+ * Edit in place
  */
-.editableSentence:hover {
-    background: #EE8;
+
+.editform button {
+    font-size: 15px;
+    margin-left: 5px;
+}
+
+.editableSentence button{
+    margin-left: 5px;
+    margin-top: 5px;
 }
 
 .editableSentence textarea{
@@ -1128,7 +1135,6 @@ a.romanization {
     display: inline;
     font-size: 14px;
 }
-
 /*
  * Link to a sentence number
  */
@@ -1174,8 +1180,8 @@ input.sentenceId {
 }
 
 
-/* 
- * Audio 
+/*
+ * Audio
  */
 .audioButton {
     margin: 4px 6px 4px 15px;
@@ -1199,8 +1205,8 @@ input.sentenceId {
 }
 
 
-/* 
- * My sentences 
+/*
+ * My sentences
  */
 
 .loading {

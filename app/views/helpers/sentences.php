@@ -252,7 +252,7 @@ class SentencesHelper extends AppHelper
                 ),
                 false
             );
-            
+
             // OK
             echo $this->Form->button(
                 __('Submit translation', true),
@@ -378,7 +378,7 @@ class SentencesHelper extends AppHelper
         }
         $class = 'sentence '.$type.' '.$correctnessLabel;
         ?>
-        
+
         <div class="<?php echo $class; ?>" <?php echo $elementId; ?>>
         <?php
         // Navigation button (info or arrow icon)
@@ -409,11 +409,11 @@ class SentencesHelper extends AppHelper
 
         <?php
     }
-    
-    
+
+
     /**
      * Returns the label for the correctness of a sentence.
-     * 
+     *
      * @param int $correctness Correctness of the sentence.
      *
      * @return String
@@ -421,7 +421,7 @@ class SentencesHelper extends AppHelper
     private function getCorrectnessLabel($correctness)
     {
         $result = 'correctness';
-        
+
         if ($correctness < 0) {
             $result .= 'Negative'.abs($correctness);
         } else if ($correctness == 0) {
@@ -429,11 +429,11 @@ class SentencesHelper extends AppHelper
         } else {
             $result .= 'Positive'.$correctness;
         }
-        
+
         return $result;
     }
 
-     
+
     /**
      * Display the link or unlink button.
      *
@@ -541,6 +541,8 @@ class SentencesHelper extends AppHelper
             // TODO: HACK SPOTTED id is used in edit_in_place
             // NOTE: I didn't find an easy way to pass the sentenceId to jEditable
             // using jQuery.data...
+
+
             echo $this->Languages->tagWithLang(
                 'div', $sentenceLang, $sentenceText,
                 array(
