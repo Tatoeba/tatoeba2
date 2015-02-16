@@ -64,16 +64,17 @@ $(document).ready(function() {
 
 /**
  * Traverses through paginated pages on Ctrl + Left/Right arrow
+ * Only activated when focus is not on a textbox.
  */
 
 function key_navigation() {
     $(document).bind("keydown", function(event) {
-        // handle right page turn. 39 = char code for right arrow
-        if(event.ctrlKey && event.which == 39) {
+        // handle right page turn. 39 = char code for right arrow.
+        if(event.ctrlKey && event.which == 39 && document.activeElement.type != "text" && document.activeElement.type != "textarea") {
             $("div.paging span.current").next().children("a")[0].click();
         }
         //handle left page turn. 37 = left arrow
-        if(event.ctrlKey && event.which == 37) {
+        if(event.ctrlKey && event.which == 37 && document.activeElement.type != "text" && document.activeElement.type != "textarea") {
             $("div.paging span.current").prev().children("a")[0].click();
         }
     });
