@@ -273,6 +273,7 @@ class SentencesHelper extends AppHelper
                 'height' => '20'
                 ));
             
+            echo ('<div class="addTranslation_buttons">');
             
             // OK
             echo $this->Form->button(
@@ -292,6 +293,7 @@ class SentencesHelper extends AppHelper
                 )
             );
 
+            echo ('</div>');
             ?>
         </div>
         <?php
