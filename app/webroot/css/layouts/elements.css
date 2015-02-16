@@ -1115,23 +1115,26 @@ a.romanization {
 /*
  * Edit in place
  */
-.editform {
-    display: none;
-    visibility: none;
-}
-
-.editform input {
-    width: 50%;
-    display: inline;
-    font-size: 18px;
-    margin-top: 8px;
-}
 
 .editform button {
     font-size: 15px;
     margin-left: 5px;
 }
 
+.editableSentence button{
+    margin-left: 5px;
+    margin-top: 5px;
+}
+
+.editableSentence textarea{
+    padding: 0px;
+}
+
+.editInPlaceForm input.text {
+    width: 98%;
+    display: inline;
+    font-size: 14px;
+}
 /*
  * Link to a sentence number
  */

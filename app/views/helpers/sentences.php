@@ -552,39 +552,6 @@ class SentencesHelper extends AppHelper
                 $sentenceScript
             );
 
-            echo $this->Form->create(
-                false,
-                array(
-                    "class" => "editform",
-                    "url" => array(
-                        "controller" => "sentences",
-                        "action" => "edit_sentence"
-                    )
-                )
-            );
-
-            echo $this->Form->input(
-                ' ',
-                array(
-                    "name" => "value",
-                    "type" => "text"
-                )
-            );
-            echo $this->Form->button(
-                 __('Submit', true),
-                array("class" => "ok_button")
-            );
-
-            echo $this->Form->button(
-                 __('Cancel', true),
-                array(
-                    "type" => "button",
-                    'onclick' => 'cancel_edit()'
-                )
-            );
-
-            echo $this->Form->end();
-
         } else {
 
             // To check if we're on the sentence's page or not

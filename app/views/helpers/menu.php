@@ -538,7 +538,7 @@ class MenuHelper extends AppHelper
      *
      * @return void
      */
-    public function editButton($sentenceId,$hasAudio)
+    public function editButton($sentenceId, $hasAudio)
     {
 
         $title = __('Edit', true);
@@ -550,7 +550,7 @@ class MenuHelper extends AppHelper
 
         if ($hasAudio) {
 
-            echo '<a class="disabled">';
+            echo '<a class="disabled ">';
             echo $editImage;
             echo '</a>';
 
