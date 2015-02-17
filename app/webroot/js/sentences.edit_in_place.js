@@ -31,7 +31,7 @@ $(document).ready(function() {
         indicator : '<img src="/img/loading.gif">',
         cssclass  : 'editInPlaceForm',
         onblur    : 'ignore'
-    }).click(function(e) {
+    }).bind('edit_sentence', function(e) {
         $(this).find('textarea').keydown(function(event) {
             if (event.which == 13)
                 $(this).closest('form').submit();
