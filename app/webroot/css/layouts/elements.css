@@ -1115,9 +1115,34 @@ a.romanization {
 /*
  * Edit in place
  */
+ .edit {
+    cursor: pointer;
+ }
+
 .editableSentence button{
-    margin-top: 5px;
-    margin-left: 5px;
+    padding: 1px 20px;
+    min-width: 120px;
+    cursor: pointer;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    font-size: 16px;
+    text-align: center;
+    float: right;
+}
+
+.editableSentence button[type="cancel"]{
+    margin-right: 20px;
+    display: inline-block;
+    background-color: #f6f6f6;
+    border: 1px solid #ddd;
+    color: #66aa00;
+}
+
+.editableSentence button[type="submit"] {
+    background-color: #66AA00;
+    border: 1px solid #339900;
+    color: #fff;
 }
 
 .editableSentence textarea{
@@ -1125,11 +1150,10 @@ a.romanization {
     width: 50px;
 }
 
-.editInPlaceForm input {
-    width: 98%;
-    display: inline;
-    font-size: 14px;
+.editableSentence {
+   overflow:hidden;
 }
+
 
 /*
  * Link to a sentence number

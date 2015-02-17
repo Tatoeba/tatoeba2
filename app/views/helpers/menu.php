@@ -544,13 +544,8 @@ class MenuHelper extends AppHelper
         if ($hasAudio) {
             $title = __('You cannot edit this sentence because it has audio.', true);
         }
-        echo '<li class="option edit">';
-        if ($hasAudio) {
-            echo '<a class="disabled ">';
-            echo $editImage;
-            echo '</a>';
-        } else {
-            echo $this->Html->image(
+
+        $editImage = $this->Html->image(
             IMG_PATH . 'edit.svg',
             array(
                 'alt'=> __('Edit', true),
@@ -559,7 +554,20 @@ class MenuHelper extends AppHelper
                 'height' => 16
             )
         );
+
+        echo '<li class="option edit">';
+
+        if ($hasAudio) {
+            echo '<a class="disabled ">';
+            echo $editImage;
+            echo '</a>';
+
+        } else {
+
+            echo $editImage;
+
         }
+
         echo '</li>';
     }
 
