@@ -423,7 +423,7 @@ textarea {
 }
 
 .module {
-    padding: 10px 10px 30px 10px;
+    padding: 10px 10px 10px 10px;
     margin: 0px 0px 20px 0px;
     font-size: 13px;
     border-bottom: 1px solid #ededed;
@@ -617,16 +617,22 @@ textarea {
 .more {
       display: none;
        }
-   a.showLink, a.hideLink {
-      padding-top: 10px;
-      float: right; 
-      text-decoration: none;
-      color: #257d0c;
-      font-size: 13px;
-       }
-   a.hideLink {
-
-      background: transparent url(up.gif) no-repeat left; }
-   a.showLink:hover, a.hideLink:hover {
-        color: #eaa315;
-      }
+a.showLink, a.hideLink {
+  border-radius: 5px;
+  margin-top: 10px;
+  float: right; 
+  text-decoration: none;
+  color: #257d0c;
+  font-size: 13px;
+   }
+a.showLink {
+    background: rgba(0, 102, 170, 0.1);
+    color: #06A;
+    border: 1px solid rgba(0, 102, 170, 0.2);
+    padding: 2px 10px;
+}
+a.hideLink {
+    background: #06A;
+    color: #fff;
+    padding: 3px 10px;
+}

@@ -141,11 +141,11 @@ class SentencesHelper extends AppHelper
                 );
             }
             $visible = 0;
-            if(count($keys)<$num){
-                $listed = count($keys);
-           // indirect translations
-                $keys=array_keys($indirectTranslations);
-                $displayed += count($keys);    
+            $listed = count($keys);
+            // indirect translations
+            $keys=array_keys($indirectTranslations);
+            $displayed += count($keys); 
+            if(count($keys)<$num){   
                 for ($i=0; $i < $num-$listed && $i < count($keys); $i++) {
                     $key=$keys[$i];
                     $translation = $indirectTranslations[$key];
@@ -163,7 +163,7 @@ class SentencesHelper extends AppHelper
                 }
             }
             if($displayed > 5){
-            echo '<a class="showLink" > &#x2193; '. __('More Translations',true).'</a>';
+            echo '<a class="showLink" > &#x2193; '. __('More Translations ('.($displayed-5).')',true).'</a>';
             }
             //expanded list of translations
             echo '<div class="more">';
