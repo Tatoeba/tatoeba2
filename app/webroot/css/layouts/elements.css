@@ -1151,16 +1151,70 @@ input.sentenceId {
     float: left;
 }
 
+/*
+* Language flag for selected option in Add Translations drop down
+*/
+.translationLang_flag{
+    /* display:none; */
+    padding-left: 2px;
+    margin-left: 20px;
+    margin-bottom: -5px;
+}
+
 
 /*
  * Add Translations
  */
 .addTranslations {
     display: none;
+    padding:4px 0px 24px;
+    font-size: 16px;
+    margin-bottom:10px;
 }
 
 .addTranslations input {
     display: inline;
+}
+
+.addTranslations textarea  {
+    display: inline;
+    height: 100px;
+    width: 100%;
+}
+
+.addTranslations .cancel_link{
+    float:right;
+    background-color: #f6f6f6;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 16px;
+    margin-right: 20px;
+    min-width: 120px;
+    padding: 3px 20px;
+    text-align: center;
+    color: #66aa00;
+    text-decoration: none;
+    /* margin-top: 29px; */
+}
+
+.addTranslations .cancel_link:hover{
+    color:#dd8800;
+    line-height: 18px;
+}
+
+.addTranslations button{
+    background-color: #66aa00;
+    border: 1px solid #339900;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    min-width: 120px;
+    padding: 3px 30px;
+    float:right;
+    /* margin-top:29px; */
+    line-height: 18px;
 }
 
 .addTranslationsTextInput {
@@ -1173,6 +1227,9 @@ input.sentenceId {
     margin: 5px 8px 5px 2px;
 }
 
+.addTranslation_buttons{
+    margin-top: 15px;
+}
 
 /* 
  * Audio 
