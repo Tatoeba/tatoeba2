@@ -42,6 +42,9 @@ $this->set('title_for_layout', $pages->formatTitle(__('All existing tags', true)
 <div id="main_content">
     <div class="module">
         <h2><?php __('All Tags'); ?></h2> 
+        <?php 
+            $pagination->display();
+        ?>
         <div>
             <?php
             foreach( $allTags as $tag) {
