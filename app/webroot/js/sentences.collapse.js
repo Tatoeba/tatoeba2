@@ -16,6 +16,8 @@
 */
 $(document).ready(function(){
     $("a.showLink").click(function(){
+        $(".more").hide();
+        $("a.showLink").show();
         $(this).parents(".translations").find(".more").show();
         $(this).hide();
         $("a.hideLink").show();
