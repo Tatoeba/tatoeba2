@@ -200,10 +200,10 @@ class ArosAcoFixture extends CakeTestFixture {
 			'id' => '143',
 			'aro_id' => '3',
 			'aco_id' => '382',
-			'_create' => '-1',
-			'_read' => '-1',
-			'_update' => '-1',
-			'_delete' => '-1'
+			'_create' => '1',
+			'_read' => '1',
+			'_update' => '1',
+			'_delete' => '1'
 		),
 		array(
 			'id' => '144',
@@ -371,10 +371,10 @@ class ArosAcoFixture extends CakeTestFixture {
 			'id' => '162',
 			'aro_id' => '4',
 			'aco_id' => '382',
-			'_create' => '-1',
-			'_read' => '-1',
-			'_update' => '-1',
-			'_delete' => '-1'
+			'_create' => '1',
+			'_read' => '1',
+			'_update' => '1',
+			'_delete' => '1'
 		),
 		array(
 			'id' => '163',

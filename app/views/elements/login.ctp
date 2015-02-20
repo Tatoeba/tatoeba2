@@ -59,7 +59,8 @@
         __('Log in', true),
         array(
             'controller' => 'users',
-            'action' => 'login'
+            'action' => 'login',
+            '?' => array('redirectTo' => Router::reverse($this->params)),
         ),
         array(
             'onclick' => 'javascript:openLoginForm(); return false;',
@@ -74,7 +75,10 @@
 echo $form->create(
     'User', 
     array(
-        'action' => 'check_login',
+        'url' => array(
+            'action' => 'check_login',
+            '?' => array('redirectTo' => Router::reverse($this->params)),
+        ),
         'id' => 'UserLoginForm_FromBar',
         'style' => 'display:none;'
     )
@@ -100,13 +104,6 @@ echo $form->checkbox('rememberMe');
 echo '<label for="UserRememberMe" class="notInBlackBand">';
 echo __('Remember me', true);
 echo '</label>';
-// Redirect
-echo $form->hidden(
-    'redirectTo', 
-    array(
-        'value' => $_SERVER['REQUEST_URI']
-    )
-);
 // Login button
 echo $form->submit(__('Log in', true));
 echo '</fieldset>';

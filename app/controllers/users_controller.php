@@ -210,7 +210,7 @@ class UsersController extends AppController
                 '/users/logout/'
             );
         }
-        // group_id 5 => users is spammer
+        // group_id 6 => users is spammer
         else if ($this->Auth->user('group_id') == 6) {
             $this->flash(
                 __(
@@ -223,11 +223,15 @@ class UsersController extends AppController
         }
         else
         {
+            $redirectUrl = $this->Auth->redirect();
+            if (isset($this->params['url']['redirectTo'])) {
+                $redirectUrl = $this->params['url']['redirectTo'];
+            }
+            $failedUrl = array(
+                'action' => 'login',
+                '?' => array('redirectTo' => $redirectUrl)
+            );
             if ($this->Auth->user()) {
-                $redirectUrl = $this->Auth->redirect();
-                if (isset($this->data["User"]["redirectTo"])) {
-                    $redirectUrl = $this->data["User"]["redirectTo"];
-                }
                 $this->_common_login($redirectUrl);
             } elseif (empty($this->data["User"]['username'])) {
                 $this->flash(
@@ -235,7 +239,7 @@ class UsersController extends AppController
                                 'You must fill in your '.
                                 'username and password.', true
                                 ), 
-                             '/users/login/'
+                             $failedUrl
                              );
             } else {
                 $this->flash(
@@ -243,8 +247,8 @@ class UsersController extends AppController
                                 'Login failed. Make sure that your Caps Lock '.
                                 'and Num Lock are not unintentionally turned on. '.
                                 'Your password is case-sensitive.', true
-                                ), 
-                             '/users/login/'
+                                ),
+                             $failedUrl
                              );
             }
         }

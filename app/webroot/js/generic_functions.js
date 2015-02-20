@@ -27,7 +27,7 @@ function get_language_interface_from_url() {
 function get_tatoeba_root_url() {
     var host = self.location.host;
     var interfaceLang = get_language_interface_from_url();
-    
+
     return "http://" + host + "/"+ interfaceLang;
 }
 
@@ -47,11 +47,17 @@ function changeInterfaceLang(newLang) {
     // Saving the cookie
     var date = new Date();
     date.setMonth(date.getMonth()+1);
-    document.cookie = 'CakeCookie[interfaceLanguage]=' + newLang 
+    document.cookie = 'CakeCookie[interfaceLanguage]=' + newLang
         + '; path=/'
         + '; expires=' + date.toGMTString();
     location.reload();
 }
+
+
+/**
+ * Swaps languages of both drop down on clicking arrow in search box
+ */
+
 
 $(document).ready(function() {
     $( "#arrow" ).click(function() {
@@ -59,5 +65,47 @@ $(document).ready(function() {
         var langTo = $('#SentenceTo').val();
 	$('#SentenceFrom').val(langTo);
 	$('#SentenceTo').val(langFrom);
+    });
+});
+
+/**
+ * Traverses through paginated pages on Ctrl + Left/Right arrow
+ * Only activated when focus is not on a textbox.
+ */
+
+function key_navigation() {
+    $(document).bind("keydown", function(event) {
+        // handle right page turn. 39 = char code for right arrow.
+        if(event.ctrlKey && event.which == 39 && document.activeElement.type != "text" && document.activeElement.type != "textarea") {
+            $("div.paging span.current").next().children("a")[0].click();
+        }
+        //handle left page turn. 37 = left arrow
+        if(event.ctrlKey && event.which == 37 && document.activeElement.type != "text" && document.activeElement.type != "textarea") {
+            $("div.paging span.current").prev().children("a")[0].click();
+        }
+    });
+}
+
+$(document).ready(function() {
+    //shortcuts only show up if pagination is present
+    if ($("div.paging").length > 0) {
+        key_navigation();
+    }
+});
+
+/**
+ * Changes Flag in Add Translation box on Changing Language
+ */
+
+$(document).ready(function() {
+    $( ".language-selector" ).change(function() {
+        if($(this).val()!='auto'){
+            var lang_flag_url = '/img/flags/'+$(this).val()+'.png';
+            $(this).next().attr('src',lang_flag_url);
+            $(this).next().attr('alt',$(this).val());
+        }else{
+            $(this).next().attr('src','/img/flags/unknown.png');
+            $(this).next().attr('alt','Unknown');
+        }
     });
 });

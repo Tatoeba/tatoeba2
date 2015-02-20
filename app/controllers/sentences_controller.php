@@ -254,11 +254,19 @@ class SentencesController extends AppController
             return;
         }
 
-        if (!CurrentUser::isModerator()) {
+        $this->Sentence->recursive = -1;
+        $sentence = $this->Sentence->findById($id);
+        if (!$sentence) {
+            $this->redirect(array('controller' => 'pages', 'action' => 'home'));
+            return;
+        }
+
+        if (!CurrentUser::canRemoveSentence($sentence['Sentence']['id'], $sentence['Sentence']['user_id'])) {
             $this->flash(
-                __('You cannot delete sentences.', true),
+                __('You cannot delete this sentence.', true),
                 '/sentences/show/'.$id
             );
+            return;
         }
 
         $isDeleted = $this->Sentence->delete(

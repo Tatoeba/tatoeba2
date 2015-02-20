@@ -101,8 +101,9 @@ if (!isset($lastText)) {
         <?php
         if (isset($convertedText)) {
             echo $languages->tagWithLang(
-                'div', 'wuu-Latn', $convertedText,
-                array('id' => 'conversion')
+                'div', 'wuu', $convertedText,
+                array('id' => 'conversion'),
+                'Latn'
             );
         }
 

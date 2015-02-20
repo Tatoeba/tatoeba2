@@ -74,7 +74,7 @@ class MenuHelper extends AppHelper
 
         <?php
         if (!$enabled) {
-            
+
             echo '<a class="disabled">';
             echo $this->Html->image(
                 IMG_PATH . 'translate.svg',
@@ -82,7 +82,7 @@ class MenuHelper extends AppHelper
                     'alt'=>__('Translate', true),
                     'title'=>__(
                         'This sentence is currently marked as unapproved. '.
-                        'Unapproved sentences cannot be translated.', 
+                        'Unapproved sentences cannot be translated.',
                         true
                     ),
                     'width' => 16,
@@ -115,6 +115,7 @@ class MenuHelper extends AppHelper
                 array(
                     "controller" => "users",
                     "action" => "login",
+                    "?" => array("redirectTo" => Router::reverse($this->params)),
                 ),
                 array(
                     "escape" => false
@@ -153,7 +154,7 @@ class MenuHelper extends AppHelper
     <?php
     }
 
-    /** 
+    /**
      * Display button to indicate that the Chinese sentence is in
      * traditional script
      *
@@ -251,7 +252,7 @@ class MenuHelper extends AppHelper
 
         }
         ?>
-        
+
     <?php
     }
 
@@ -315,7 +316,8 @@ class MenuHelper extends AppHelper
                 $favoriteImage,
                 array(
                     "controller" => "users",
-                    "action" => "login"
+                    "action" => "login",
+                    "?" => array("redirectTo" => Router::reverse($this->params)),
                 ),
                 array(
                     "escape" => false
@@ -421,7 +423,8 @@ class MenuHelper extends AppHelper
                 $addToListButton,
                 array(
                     "controller" => "users",
-                    "action" => "login"
+                    "action" => "login",
+                    "?" => array("redirectTo" => Router::reverse($this->params)),
                 ),
                 array(
                     "escape" => false
@@ -439,7 +442,7 @@ class MenuHelper extends AppHelper
         $lists = ClassRegistry::init('SentencesList')->getUserChoices(
             CurrentUser::get('id')
         );
-        
+
         $privateLists = __('Add to one of your lists', true);
         $publicLists = __('Add to a collaborative list', true);
         $selectItems[$privateLists] = $lists['Private'];
@@ -447,8 +450,8 @@ class MenuHelper extends AppHelper
         ?>
 
         <li style="display:none" id="addToList<?php echo $sentenceId; ?>">
-        
-         
+
+
         <?php
         echo $this->Form->select(
             'listSelection'.$sentenceId,
@@ -501,7 +504,7 @@ class MenuHelper extends AppHelper
         echo '<li class="option delete">';
 
         if ($hasAudio) {
-            
+
             echo '<a class="disabled">';
             echo $deleteImage;
             echo '</a>';
@@ -516,7 +519,7 @@ class MenuHelper extends AppHelper
                     $sentenceId
                 ),
                 array("escape" => false),
-                'Are you sure?'
+                __('Are you sure?', true)
             );
 
         }
@@ -526,36 +529,46 @@ class MenuHelper extends AppHelper
 
 
     /**
-     * Display button to delete.
+     * Display button to edit a sentence.
      *
      * @param int $sentenceId Id of the sentence on which this button
      *                        is displayed
      *
+     * @param bool $hasAudio true if sentence has associated audio
+     *
      * @return void
      */
-    public function editButton($sentenceId)
+    public function editButton($sentenceId, $hasAudio)
     {
-        ?>
-        <li class="option edit">
-        <?php
-        echo $this->Html->link(
-            $this->Html->image(
-                IMG_PATH . 'edit.svg',
-                array(
-                    'alt'=>__('Edit', true),
-                    'title'=>__('Edit', true)
-                )
-            ),
+        $title = __('Edit', true);
+        if ($hasAudio) {
+            $title = __('You cannot edit this sentence because it has audio.', true);
+        }
+
+        $editImage = $this->Html->image(
+            IMG_PATH . 'edit.svg',
             array(
-                "controller" => "sentences",
-                "action" => "edit",
-                $sentenceId
-            ),
-            array("escape" => false)
+                'alt'=> __('Edit', true),
+                'title'=> $title,
+                'width' => 16,
+                'height' => 16
+            )
         );
-        ?>
-        </li>
-    <?php
+
+        echo '<li class="option edit">';
+
+        if ($hasAudio) {
+            echo '<a class="disabled ">';
+            echo $editImage;
+            echo '</a>';
+
+        } else {
+
+            echo $editImage;
+
+        }
+
+        echo '</li>';
     }
 
 
@@ -576,10 +589,10 @@ class MenuHelper extends AppHelper
 
         // the id is used by sentence.adopt.js
         $belongsToTitle = format(
-            __('belongs to {user}', true), 
+            __('belongs to {user}', true),
             array('user' => $ownerName)
         );
-        echo '<li class="belongsTo" id="belongsTo_'.$sentenceId.'" 
+        echo '<li class="belongsTo" id="belongsTo_'.$sentenceId.'"
               title="'.$belongsToTitle.'">';
         $userLink = $this->Html->link(
             $ownerName,
@@ -604,14 +617,14 @@ class MenuHelper extends AppHelper
      *                              False otherwise.
      * @param array  $langFilter    Language filter of translations.
      * @param bool   $hasAudio      'true' if sentence has audio, 'false' otherwise.
-     * 
+     *
      * @return void
      */
     public function displayMenu(
-        $sentenceId, 
-        $ownerName = null, 
-        $chineseScript = null, 
-        $canTranslate, 
+        $sentenceId,
+        $ownerName = null,
+        $chineseScript = null,
+        $canTranslate,
         $langFilter = 'und',
         $hasAudio = true
     ) {
@@ -631,8 +644,9 @@ class MenuHelper extends AppHelper
         $this->translateButton($sentenceId, $ownerName, $isLogged, $canTranslate);
 
         // Edit
-        // TODO
-        // $this->editButton($sentenceId);
+        if (CurrentUser::canEditSentenceOfUser($ownerName)) {
+           $this->editButton($sentenceId, $hasAudio);
+        }
 
         // Favorite
         $isFavorited = CurrentUser::hasFavorited($sentenceId);
@@ -645,14 +659,14 @@ class MenuHelper extends AppHelper
             $this->linkToSentenceButton($sentenceId, $langFilter);
         }
 
-        if (CurrentUser::isModerator()) {
+        if (CurrentUser::canRemoveSentence($sentenceId, null, $ownerName)) {
             // Delete
             $this->deleteButton($sentenceId, $hasAudio);
         }
 
-        if ($chineseScript == 'simplified_script') {
+        if ($chineseScript == 'Hans') {
             $this->simplifiedButton();
-        } else if ($chineseScript == 'traditional_script') {
+        } else if ($chineseScript == 'Hant') {
             $this->traditionalButton();
         }
         ?>

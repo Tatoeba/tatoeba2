@@ -144,7 +144,7 @@ class MessagesHelper extends AppHelper
                 <div class="username">
                 <?php 
                 if (!$author['username']) {
-                    echo $this->Html->tag('i', __('Unknown user', true));
+                    echo $this->Html->tag('i', __('Former member', true));
                 } else {
                     echo $this->Html->link(
                         $author['username'],
@@ -238,7 +238,7 @@ class MessagesHelper extends AppHelper
             echo $this->Html->image(
                 IMG_PATH . 'profiles_36/'. $image,
                 array(
-                    'alt' => __('Deleted user', true),
+                    'alt' => __('Former member', true),
                     'width' => 36,
                     'height' => 36,
                 )
@@ -375,7 +375,7 @@ class MessagesHelper extends AppHelper
                 ),
                 array(
                     'dir' => $dir,
-                    'lang' => $this->Languages->shortestCode($sentenceLang),
+                    'lang' => $this->Languages->langAttribute($sentenceLang),
                     'class' => 'sentenceText'
                 )
             );
@@ -502,7 +502,7 @@ class MessagesHelper extends AppHelper
         if ($formatContent) {
             $previewContent = $this->formatedContent($previewContent);
         } else {
-            $previewContent = nl2br($previewContent);
+            $previewContent = nl2br(Sanitize::html($previewContent));
         }
 
         if ($displayElipsis) {

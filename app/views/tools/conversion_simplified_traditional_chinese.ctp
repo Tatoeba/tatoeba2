@@ -86,11 +86,12 @@ if (!isset($lastText)) {
 
         <?php
         if (isset($convertedText)) {
-            // We should either set lang as zh-Hans or zh-Hant,
-            // but we don't know the script, so use zh
+            $script = ($convertedTextScript == 'traditional')
+                      ? 'Hant' : 'Hans';
             echo $languages->tagWithLang(
                 'div', 'zh', $convertedText,
-                array('id' => 'conversion')
+                array('id' => 'conversion'),
+                $script
             );
         }
 

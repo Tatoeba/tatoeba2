@@ -99,7 +99,7 @@ if (isset($this->params['lang'])) {
     <li>
         <?php
         echo $html->link(
-            __('Github', true),
+            __('GitHub', true),
             'https://github.com/Tatoeba/tatoeba2',
             array('target' => '_blank')
         );

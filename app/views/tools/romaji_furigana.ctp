@@ -74,10 +74,11 @@ $this->set('title_for_layout', $pages->formatTitle(
         <h2><?php __('Convert Japanese text into romaji or furigana'); ?></h2>
         <?php
 
-        $lang = ($type == 'romaji') ? 'ja-Latn' : 'ja';
+        $script = ($type == 'romaji') ? 'Latn' : '';
         echo $languages->tagWithLang(
-            'div', $lang, $result,
-            array('id' => 'conversion', 'class' => 'furigana')
+            'div', 'ja', $result,
+            array('id' => 'conversion', 'class' => 'furigana'),
+            $script
         );
 
         echo $form->create(

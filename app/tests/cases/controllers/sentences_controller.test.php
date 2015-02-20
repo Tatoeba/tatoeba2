@@ -9,11 +9,16 @@ class TestSentencesController extends SentencesController {
 	var $autoRender = false;
 
 	var $redirectUrl;
-	var $stopped;
+	var $stopped = false;
 	var $rendered;
 
 	function redirect($url, $status = null, $exit = true) {
 		$this->redirectUrl = $url;
+		return parent::redirect($url, $status, $exit);
+	}
+
+	function header() {
+		// Don't call header() for real
 	}
 
 	function render($action = null, $layout = null, $file = null) {
@@ -21,7 +26,7 @@ class TestSentencesController extends SentencesController {
 	}
 
 	function _stop($status = 0) {
-		$this->stopped = $status;
+		$this->stopped = true;
 	}
 }
 
@@ -69,11 +74,11 @@ class SentencesControllerTestCase extends CakeTestCase {
 		ClassRegistry::flush();
 	}
 
-	function _testActionAsGuest($method, $params = array()) {
-		return $this->_testActionAsUser($method, null, $params);
+	function _testActionAsGuest($method, $params = array(), $args = array()) {
+		return $this->_testActionAsUser($method, null, $params, $args);
 	}
 
-	function _testActionAsUser($method, $user = null, $params = array()) {
+	function _testActionAsUser($method, $user = null, $params = array(), $args = array()) {
 		if ($user) {
 			$this->Sentences->Session->write('Auth.User', $this->users[$user]);
 		}
@@ -82,10 +87,12 @@ class SentencesControllerTestCase extends CakeTestCase {
 			'controller' => 'sentences',
 			'action' => $method,
 		), $params);
-		$this->Sentences->beforeFilter();
 		$this->Sentences->Component->initialize($this->Sentences);
+		$this->Sentences->beforeFilter();
 		$this->Sentences->Component->startup($this->Sentences);
-		$this->Sentences->$method();
+		if (!$this->Sentences->stopped) {
+			call_user_func_array(array($this->Sentences, $method), $args);
+		}
 	}
 
 	function testAdd_redirectsGuestsToLogin() {
@@ -144,5 +151,32 @@ class SentencesControllerTestCase extends CakeTestCase {
 		$this->_testActionAsUser('let_go', 'contributor', array(), array(1));
 		$newSentence = $this->Sentences->Sentence->findById(1, 'user_id');
 		$this->assertEqual($oldSentence['Sentence']['user_id'], $newSentence['Sentence']['user_id']);
+	}
+
+	function testDelete_cantDeleteOwnSentenceAsRegularUser() {
+		$this->_testActionAsUser('delete', 'kazuki', array(), array(1));
+		$this->assertTrue($this->Sentences->Sentence->findById(1));
+	}
+
+	function testDelete_cantDeleteOthersSentenceAsRegularUser() {
+		$this->_testActionAsUser('delete', 'contributor', array(), array(1));
+		$this->assertTrue($this->Sentences->Sentence->findById(1));
+	}
+
+	function testDelete_canDeleteSentenceAsCorpusMaintainer() {
+		$this->_testActionAsUser('delete', 'corpus_maintainer', array(), array(1));
+		$this->assertFalse($this->Sentences->Sentence->findById(1));
+	}
+
+	function testDelete_canDeleteOwnSentenceIfLonely() {
+		$lonelySentenceId = 7;
+		$this->_testActionAsUser('delete', 'kazuki', array(), array($lonelySentenceId));
+		$this->assertFalse($this->Sentences->Sentence->findById($lonelySentenceId));
+	}
+
+	function testDelete_cantDeleteOtherLonelySentences() {
+		$lonelySentenceId = 7;
+		$this->_testActionAsUser('delete', 'contributor', array(), array($lonelySentenceId));
+		$this->assertTrue($this->Sentences->Sentence->findById($lonelySentenceId));
 	}
 }

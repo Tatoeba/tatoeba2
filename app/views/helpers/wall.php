@@ -393,7 +393,7 @@ class WallHelper extends AppHelper
         $preview = $this->Messages->preview($content, 200, 100);
         echo $this->Languages->tagWithLang(
             'div', '', $preview,
-            array('class' => 'body')
+            array('class' => 'body', 'escape' => false)
         );
         ?>
 

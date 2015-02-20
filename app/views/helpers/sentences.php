@@ -270,7 +270,13 @@ class SentencesHelper extends AppHelper
         </script>
         <div id="translation_for_<?php echo $id; ?>" class="addTranslations">
 
-            <?php
+        <?php
+            echo $this->Html->tag('label', 'Translation: ',
+                array(
+                    'for'=>'_'.$id.'_text'
+                )
+            );
+            
             // Input field
             echo $this->Form->textarea(
                 'translation',
@@ -283,7 +289,13 @@ class SentencesHelper extends AppHelper
                     'dir' => 'auto',
                 )
             );
-
+            
+            echo $this->Html->tag('label', 'Language: ',
+                array(
+                    'for'=>'translationLang_'.$id
+                )
+            );
+            
             // language select
             echo $this->Form->select(
                 'translationLang_'.$id,
@@ -295,6 +307,16 @@ class SentencesHelper extends AppHelper
                 ),
                 false
             );
+            
+           echo $this->Html->image('flags/unknown.png', 
+                array(
+                'alt' => 'Unknown',
+                'class' => 'flag translationLang_flag',
+                'width' => '30',
+                'height' => '20'
+                ));
+            
+            echo ('<div class="addTranslation_buttons">');
             
             // OK
             echo $this->Form->button(
@@ -310,33 +332,12 @@ class SentencesHelper extends AppHelper
                 array(
                     'id' => '_'.$id.'_cancel',
                     'type' => 'reset',
+                    'class'=>'cancel_link'
                 )
             );
 
-            // Warning
+            echo ('</div>');
             ?>
-            <div class="important">
-            <p>
-            <?php
-            __(
-                'Important! You are about to add a translation to the sentence '
-                . 'above. If you do not understand this sentence, click on '
-                . '"Cancel" to display everything again, and then click on '
-                . 'the sentence that you understand and want to translate from.'
-            );
-            ?>
-            </p>
-
-            <p>
-            <?php
-            __(
-                'Please do not forget <strong>capital letters</strong> '.
-                'and <strong>punctuation</strong>! Thank you.'
-            );
-            ?>
-            </p>
-            </div>
-
         </div>
         <?php
     }
@@ -355,15 +356,10 @@ class SentencesHelper extends AppHelper
      */
     public function displayMainSentence($sentence, $ownerName, $withAudio, $langFilter = 'und') {
         $sentenceId = $sentence['id'];
-        $chineseScript = null;
-        if (isset($sentence['script'])) {
-            $chineseScript = $sentence['script'];
-        }
-
         $canTranslate = $sentence['correctness'] >= 0;
         $hasAudio = $sentence['hasaudio'] == 'shtooka';
         $this->Menu->displayMenu(
-            $sentenceId, $ownerName, $chineseScript, $canTranslate, $langFilter, $hasAudio
+            $sentenceId, $ownerName, $sentence['script'], $canTranslate, $langFilter, $hasAudio
         );
 
         $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);
@@ -543,22 +539,20 @@ class SentencesHelper extends AppHelper
      * @return void
      */
     public function displaySentenceContent($sentence, $isEditable) {
-        $sentenceId = $sentence['id'];
-        $sentenceLang = $sentence['lang'];
-        $sentenceText = $sentence['text'];
         ?>
 
         <div class="sentenceContent">
         <?php
         // text
         $this->displaySentenceText(
-            $sentenceId, $sentenceText, $isEditable, $sentenceLang
+            $sentence['id'], $sentence['text'], $isEditable,
+            $sentence['lang'], $sentence['script']
         );
 
         // romanization
         if (isset($sentence['transcriptions'])) {
             $this->_displayTranscriptions(
-                $sentence['transcriptions'], $sentence['lang']
+                $sentence['transcriptions'], $sentence['lang'], $sentence['script']
             );
         }
         ?>
@@ -574,12 +568,14 @@ class SentencesHelper extends AppHelper
      * @param array $sentenceId   Id of the sentence.
      * @param array $sentenceText Text of the sentence.
      * @param bool  $isEditable   Set to 'true' if sentence is editable.
-     * @param bool  $sentenceLang Used for logs... We need to get rid of it someday.
+     * @param bool  $sentenceLang Language of the sentence.
+     * @param bool  $sentenceScript ISO 15924 script code.
      *
      * @return void
      */
     public function displaySentenceText(
-        $sentenceId, $sentenceText, $isEditable = false, $sentenceLang = ''
+        $sentenceId, $sentenceText, $isEditable = false,
+        $sentenceLang = '', $sentenceScript = ''
     ) {
         if ($isEditable) {
 
@@ -594,7 +590,8 @@ class SentencesHelper extends AppHelper
                 array(
                     'class' => 'text editableSentence',
                     'id' => $sentenceLang.'_'.$sentenceId,
-                )
+                ),
+                $sentenceScript
             );
 
         } else {
@@ -612,7 +609,8 @@ class SentencesHelper extends AppHelper
 
             echo $this->Languages->tagWithLang(
                 'div', $sentenceLang, $sentenceText,
-                array('class' => 'text')
+                array('class' => 'text'),
+                $sentenceScript
             );
         }
     }
@@ -625,38 +623,55 @@ class SentencesHelper extends AppHelper
      *
      * @param array  $transcriptions List of transcriptions.
      * @param string $lang           Language of the sentence transcripted.
+     * @param string $script         Script of the sentence the transcription is derived from.
      *
      * @return void
      */
-    private function _displayTranscriptions($transcriptions, $lang)
+    private function _displayTranscriptions($transcriptions, $lang, $script)
     {
         if ($lang == 'jpn') {
 
             $this->Javascript->link(JS_PATH.'furigana.js', false);
             $furigana = $transcriptions[0];
             $romaji = $transcriptions[1];
-            echo '<div class="romanization furigana" title="'.$romaji.'">';
-            echo $furigana;
-            echo '</div>';
+            $contents = $this->Languages->tagWithLang(
+                'span', $lang, $furigana, array('class' => 'romanization furigana')
+            );
+            echo $this->Languages->tagWithLang(
+                'div', $lang, $contents,
+                array('title' => $romaji, 'escape' => false),
+                'Latn'
+            );
 
         } else if ($lang === 'cmn') {
+            $mapToAlternateScript = array(
+                'Hans' => 'Hant',
+                'Hant' => 'Hans'
+            );
+            $alternateScript = (string)$transcriptions[1];
+            $pinyin = (string)$transcriptions[0];
 
-            $otherScript = $transcriptions[1];
-            echo '<div class="romanization">';
-            echo $otherScript;
-            echo '</div>';
+            echo $this->Languages->tagWithLang(
+                'div', $lang, $alternateScript,
+                array('class' => 'romanization'),
+                $mapToAlternateScript[$script]
+            );
 
-            $pinyin = $this->Pinyin->numeric2diacritic($transcriptions[0]);
-            echo '<div class="romanization">';
-            echo $pinyin;
-            echo '</div>';
+            $pinyin = $this->Pinyin->numeric2diacritic($pinyin);
+            echo $this->Languages->tagWithLang(
+                'div', $lang, $pinyin,
+                array('class' => 'romanization'),
+                'Latn'
+            );
 
         } else {
 
             foreach ($transcriptions as $transcription) {
-                echo '<div class="romanization">';
-                echo $transcription;
-                echo '</div>';
+                echo $this->Languages->tagWithLang(
+                    'div', $lang, $transcription,
+                    array('class' => 'romanization'),
+                    'Latn'
+                );
             }
 
         }
@@ -736,19 +751,17 @@ class SentencesHelper extends AppHelper
      * @return void
      */
     public function displayS($sentence, $type) {
-        $sentenceId = $sentence['id'];
-        $sentenceLang = $sentence['lang'];
-        $sentenceText = $sentence['text'];
         ?>
 
         <div class="sentence <?php echo $type; ?>">
             <?php
             $this->SentenceButtons->displayLanguageFlag(
-                $sentenceId, $sentenceLang, false
+                $sentence['id'], $sentence['lang'], false
             );
 
             $this->displaySentenceText(
-                $sentenceId, $sentenceText, false, $sentenceLang
+                $sentence['id'], $sentence['text'], false,
+                $sentence['lang'], $sentence['script']
             );
             ?>
         </div>
