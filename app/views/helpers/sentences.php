@@ -122,61 +122,64 @@ class SentencesHelper extends AppHelper
             
             <?php
             //visible list of translations, upto five visible translations
-            // direct translations
-            $num = 5; 
-            $keys=array_keys($translations);
-            $displayed = count($keys);
-            for ($i=0; $i < $num && $i < count($keys); $i++) {
-                $key=$keys[$i];
-                $translation = $translations[$key];
+            
+            $totalDirectTranslations = count(array_keys($translations));
+
+            $totalIndirectTranslations = count(array_keys($indirectTranslations));
+
+            //merge direct and indirect translations into single array
+            $allTranslations = array_merge($translations, $indirectTranslations);
+
+            $initiallyDisplayedTranslations = 5;
+            $keys = array_keys($allTranslations);
+            $totalTranslations = count($keys);
+
+            for ($i = 0; $i < $initiallyDisplayedTranslations && $i < $totalTranslations; $i++ ) {
+                $key = $keys[$i];
+                $translation = $allTranslations[$key];
+
+                if ($i < $totalDirectTranslations)
+                    $type = 'directTranslation';
+                else 
+                    $type = 'indirectTranslation';
+
                 $this->displayGenericSentence(
                     $translation['Translation'],
                     null,
-                    'directTranslation',
+                    $type,
                     $withAudio,
                     $id,
                     null,
                     false,
                     $langFilter
                 );
-            } 
-            $visible = 0;
-            if(count($keys)<$num){ 
-                $listed = count($keys);
-                // indirect translations
-                $keys=array_keys($indirectTranslations);  
-                for ($i=0; $i < $num-$listed && $i < count($keys); $i++) {
-                    $key=$keys[$i];
-                    $translation = $indirectTranslations[$key];
-                    $this->displayGenericSentence(
-                        $translation['Translation'],
-                        null,
-                        'indirectTranslation',
-                        $withAudio,
-                        $id,
-                        null,
-                        false,
-                        $langFilter
-                    );
-                    $visible++;
+            }
+
+            $displayed = count($keys) - 5;
+
+            if($displayed > 0){
+                echo $this->Html->tag('div', format( __n('↓ Show 1 more translation',
+                    '↓ Show {number} more translations', $displayed, true),
+                    array('number' => $displayed)), array('class' => 'showLink'));
                 }
-            }
-            $keys=array_keys($indirectTranslations); 
-            $displayed += count($keys);
-            if($displayed > 5){
-                $displayed -= 5;
-            echo '<a class="showLink" > &#x2193; '.format( __n('More Translation (1)','More Translations ({number})',$displayed,true),array('number' => $displayed)).'</a>';
-            }
+
             //expanded list of translations
-            echo '<div class="more">';
-            $keys=array_keys($translations);
-            for ($i=$num; $i < count($keys); $i++) {
-                $key=$keys[$i];
-                $translation = $translations[$key];
+            echo $this->Html->tag('div', null, array('class' => 'more'));
+            
+            for ($i = $initiallyDisplayedTranslations; $i < $totalTranslations; $i++ ) {
+                
+                $key = $keys[$i];
+                $translation = $allTranslations[$key];
+                
+                if ($i < $totalDirectTranslations)
+                    $type = 'directTranslation';
+                else 
+                    $type = 'indirectTranslation';
+                
                 $this->displayGenericSentence(
                     $translation['Translation'],
                     null,
-                    'directTranslation',
+                    $type,
                     $withAudio,
                     $id,
                     null,
@@ -184,24 +187,11 @@ class SentencesHelper extends AppHelper
                     $langFilter
                 );
             }
-           // indirect translations
-            $keys=array_keys($indirectTranslations);
-            for ($i=$visible; $i < count($keys); $i++) {
-                $key=$keys[$i];
-                $translation = $indirectTranslations[$key];
-                $this->displayGenericSentence(
-                    $translation['Translation'],
-                    null,
-                    'indirectTranslation',
-                    $withAudio,
-                    $id,
-                    null,
-                    false,
-                    $langFilter
-                );
-            }
-            echo '<a class="hideLink" >&#x2191; '. __('Less Translations',true).'</a></div>';
+
+            echo $this->Html->tag('div', __('↑ Less translations',true),
+             array('class' => 'hideLink'));
             ?>
+            
         </div>
         <?php
     }
