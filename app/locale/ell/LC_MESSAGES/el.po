@@ -15,7 +15,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-02-13 04:27+0000\n"
-"PO-Revision-Date: 2015-02-14 13:31+0000\n"
+"PO-Revision-Date: 2015-02-18 17:47+0000\n"
 "Last-Translator: Glavkos Xaon <glavkos@gmail.com>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/tatoeba_website/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -360,13 +360,13 @@ msgstr "Οδηγίες για ετικέτες"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L70
 msgid "Tags you should know about"
-msgstr ""
+msgstr "Ετικέτες για τις οποίες θα έπρεπε να γνωρίζεις"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L72
 msgid ""
 "The community has come up with several \"utility tags\" to improve the "
 "quality and reliability of sentences."
-msgstr ""
+msgstr "Η κοινότητα έχει συμφωνήσει σε μια σειρά \"χρηστικές ετικέτες\" για να βελτιώσει την ποιότητα και την αξιοπιστία των φράσεων. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L81
 msgid "{tagChange}: the sentence needs to be changed."
@@ -392,7 +392,7 @@ msgstr "Πως να βοηθήσεις"
 msgid ""
 "You need to be an <a href=\"{}\">advanced contributor</a>; otherwise you "
 "will not be able to tag sentences."
-msgstr ""
+msgstr "Χρειάζεται να είσαι <a href=\"{}\">προχωρημένος συνεισφέρων</a>, διαφορετικά δεν θα μπορείς να βάλεις ετικέτα σε φράσεις. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L109
 msgid ""
@@ -2169,7 +2169,7 @@ msgid ""
 "The content of this message goes against <a href=\"{}\">our rules</a> and "
 "was therefore hidden. It is displayed only to admins and to the author of "
 "the message."
-msgstr ""
+msgstr "Το περιεχόμενο αυτού του μηνύματος στρέφεται ενάντια στους <a href=\"{}\">κανόνες μας</a> και γι'αυτό έχει αποκρυβεί. Εμφανίζεται μόνο στους διαχειριστές και στον συγγραφέα αυτού του μηνύματος. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L76
 msgid "Show sentence #: "
@@ -2330,7 +2330,7 @@ msgstr "Εμφάνιση μεταφράσεων σε:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L173
 msgid "NOTE: Both direct and indirect translations will be shown."
-msgstr ""
+msgstr "ΣΗΜΕΙΩΣΗ: Θα εμφανιστούν τόσο άμεσες όσο και έμμεσες μεταφράσεις. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L205
 msgid "NOTE: Sentences that have an indirect translation will be displayed."
@@ -2412,7 +2412,7 @@ msgstr "από {messageAuthor}"
 msgid ""
 "Warning: this website is for testing purposes. Everything you submit will be"
 " definitely lost."
-msgstr ""
+msgstr "Προειδοποίηση: αυτός ο ιστότοπος είναι για πειραματικούς σκοπούς. Οτιδήποτε υποβάλλεις εδώ θα χαθεί οριστικά. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L98
 msgid "No language matches"
@@ -2522,7 +2522,7 @@ msgid ""
 "in any other way than the ones mentioned here, you may contact either <a "
 "href=\"{trangEmail}\">Trang</a> or the entire <a "
 "href=\"{teamEmail}\">team</a>."
-msgstr ""
+msgstr "Αν έχετε οποιαδήποτε απορία που να αφορά τις δωρεές ή αν επιθυμείτε να δωρίσετε με κάποιον άλλον τρόπο απ'αυτούς που αναφέρονται εδώ, μπορεί να επικοινωνήσετε είτε με την  <a href=\"{trangEmail}\">Trang</a> ή και με όλη την <a href=\"{teamEmail}\">ομάδα</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L50
 msgid "Top donators this month"
@@ -2552,7 +2552,7 @@ msgid ""
 "<b>PayPal.</b> If you can't transfer money with IBAN, then you can donate "
 "with PayPal. You should know that PayPal takes a certain percentage of the "
 "donation."
-msgstr ""
+msgstr "<b>PayPal.</b> Αν δεν μπορείτε να μεταφέρετε χρήματα με  IBAN, τότε θα μπροσούσατε να κάνετε δωρεά με την  PayPal. Θα πρέπει να γνωρίζετε ότι η  PayPal παίρνει ως προμήθεια συγκεκριμένο ποσοστό των δωρεών."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L102
 msgid "IBAN transfer"
@@ -2560,7 +2560,7 @@ msgstr "μεταφορά IBAN "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L103
 msgid "Titular:"
-msgstr ""
+msgstr "Τίτλος:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L104
 msgid "IBAN:"
@@ -2589,7 +2589,7 @@ msgid ""
 "If you simply want sentences that you can use to learn a language, check out"
 " the <a href=\"{}\">sentence lists</a>. You can build your own, or view the "
 "ones that others have created. The lists can be downloaded and printed."
-msgstr ""
+msgstr "Αν απλώς χρειάζεστε φράσεις που μπορείς να χρησιμοποιήσετε  για να μάθετε  μια γλώσσα, ρίξτε μια ματιά στο  <a href=\"{}\">sentence lists</a>.  Μπορείτε να φτιάξετε τις δικές σας, ή να δείτε εκείνες που άλλοι έχουν δημιουργήσει. Αυτές τις λίστες μπορείτε να τις κατεβάσετε και να τις τυπώσετε. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L59
 msgid "Creative commons"
@@ -2648,7 +2648,7 @@ msgstr "Κείμενο"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L98
 msgid "Lang"
-msgstr ""
+msgstr "Γλώσσα "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L81
@@ -2669,7 +2669,7 @@ msgstr "Ημερομηνία τελευταία τροποποίησης"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L103
 msgid "Translation id"
-msgstr ""
+msgstr "Αναγνωριστικό μετάφρασης "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L104
 msgid "Tag name"
@@ -2677,7 +2677,7 @@ msgstr "Όνομα ετικέτας"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L105
 msgid "List id"
-msgstr ""
+msgstr "Αναγνωριστικό καταλόγου"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L106
 msgid "List name"
@@ -2685,7 +2685,7 @@ msgstr "Όνομα καταλόγου"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L107
 msgid "Meaning id"
-msgstr ""
+msgstr "Αναγνωριστικό νοήματος"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L168
@@ -3288,11 +3288,11 @@ msgstr "Φράσεις που προστέθηκαν"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L42
 msgid "{user}'s sentences"
-msgstr "{user}'s φράσεις"
+msgstr " φράσεις του {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L45
 msgid "{user}'s sentences in {language}"
-msgstr ""
+msgstr "φράσεις του {user} στα {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L70
 msgid "Translate these sentences"
@@ -3316,7 +3316,7 @@ msgstr "Φράσεις με: {keywords}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L34
 msgid "Sentences in {language} translated into {translationLanguage}"
-msgstr ""
+msgstr "Φράσεις από τα {language} μεταφρασμένες στα {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L38
 msgid "Sentences in {language}"
@@ -3333,7 +3333,7 @@ msgstr "Όλες οι φράσεις "
 #. @translators: title on the top of a search result page
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L74
 msgid "Search: {keywords}"
-msgstr ""
+msgstr "Αναζήτηση: {keywords}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L96
@@ -3434,7 +3434,7 @@ msgstr "Ενέργειες"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L81
 msgid "Id (optional)"
-msgstr ""
+msgstr "Αναγνωριστικό (προαιρετικό)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L89
 msgid ""
@@ -4184,7 +4184,7 @@ msgstr "Θέλουμε να βεβαιωθούμε ότι είστε άνθρω�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L135
 msgid "What are the first five characters of your email address?"
-msgstr ""
+msgstr "Ποιοι είναι οι πρώτοι πέντε χαρακτήρες της διεύθυνσης του email σας; "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L139
 msgid ""
@@ -4252,8 +4252,8 @@ msgstr "Μπορείτε να γράψετε σε όποια γλώσσα θέλ
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L126
 msgid "Wall (one thread)"
 msgid_plural "Wall ({n}&nbsp;threads)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Τοίχος (ένα νήμα)"
+msgstr[1] "Τοίχος  ({n}&nbsp;νήματα)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"
