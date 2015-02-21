@@ -526,9 +526,13 @@ class SentencesHelper extends AppHelper
         <div class="sentenceContent">
         <?php
         // text
+        $script = null;
+        if (isset($sentence['script'])) {
+            $script = $sentence['script'];
+        }
         $this->displaySentenceText(
             $sentence['id'], $sentence['text'], $isEditable,
-            $sentence['lang'], $sentence['script']
+            $sentence['lang'], $script
         );
 
         // romanization
