@@ -103,5 +103,20 @@ $(document).ready(function() {
             $(".addTranslations").hide();
         });
     });
+	
+	
+	/**
+     * Changes Flag in Add Translation box on Changing Language
+     */
+    $( ".language-selector" ).change(function() {
+        if($(this).val()!='auto'){
+            var lang_flag_url = '/img/flags/'+$(this).val()+'.png';
+            $(this).next().attr('src', lang_flag_url);
+            $(this).next().attr('alt', $(this).val());
+            $(this).next().show();
+        }else{
+            $(this).next().hide();
+        }
+    });
 
 });

@@ -63,8 +63,8 @@ $(document).ready(function() {
     $( "#arrow" ).click(function() {
         var langFrom = $('#SentenceFrom').val();
         var langTo = $('#SentenceTo').val();
-	$('#SentenceFrom').val(langTo);
-	$('#SentenceTo').val(langFrom);
+    $('#SentenceFrom').val(langTo);
+    $('#SentenceTo').val(langFrom);
     });
 });
 
@@ -91,21 +91,4 @@ $(document).ready(function() {
     if ($("div.paging").length > 0) {
         key_navigation();
     }
-});
-
-/**
- * Changes Flag in Add Translation box on Changing Language
- */
-
-$(document).ready(function() {
-    $( ".language-selector" ).change(function() {
-        if($(this).val()!='auto'){
-            var lang_flag_url = '/img/flags/'+$(this).val()+'.png';
-            $(this).next().attr('src',lang_flag_url);
-            $(this).next().attr('alt',$(this).val());
-        }else{
-            $(this).next().attr('src','/img/flags/unknown.png');
-            $(this).next().attr('alt','Unknown');
-        }
-    });
 });
