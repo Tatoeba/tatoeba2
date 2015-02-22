@@ -38,7 +38,7 @@ if (isset($this->params['lang'])) {
     <?php
     $username = $session->read('Auth.User.username');
     $profileIcon = $html->image(
-        IMG_PATH . 'profile.png',
+        IMG_PATH . 'profile.svg',
         array(
             "alt" => __('Profile', true),
             "width" => 14,
@@ -170,10 +170,10 @@ if (isset($this->params['lang'])) {
         CurrentUser::get('id')
     );
     $class = '';
-    $imageName = 'no_mail.png';
+    $imageName = 'no_mail.svg';
     if ($newMessages > 0) {
         $class = 'class="newMessage"';
-        $imageName = 'mail.png';
+        $imageName = 'mail.svg';
     }
     ?>
     <li id="inbox" <?php echo $class; ?> title="<?php __('Inbox'); ?>">
@@ -192,8 +192,8 @@ if (isset($this->params['lang'])) {
     echo $html->link(
         $mailIcon .' '. $newMessages,
         array(
-            'controller' => 'private_messages', 
-            'action' => 'folder', 
+            'controller' => 'private_messages',
+            'action' => 'folder',
             'Inbox'
         ),
         array(
@@ -207,7 +207,7 @@ if (isset($this->params['lang'])) {
     <li id="log_out">
     <?php
     $logOutIcon = $html->image(
-        IMG_PATH . 'log_out.png',
+        IMG_PATH . 'log_out.svg',
         array(
             "alt" => __('Log out', true),
             "title" => __('Log out', true),
@@ -218,7 +218,7 @@ if (isset($this->params['lang'])) {
     echo $html->link(
         $logOutIcon,
         array(
-            'controller' => 'users', 
+            'controller' => 'users',
             'action' => 'logout'
         ),
         array(

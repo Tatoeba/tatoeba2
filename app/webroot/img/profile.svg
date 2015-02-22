@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<svg width="100%" height="100%" viewBox="-100 -100 200 200"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>User Icon</title>
+  <metadata>
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns"
+      xmlns:dc="http://purl.org/dc/elements/1.1/"
+      xmlns:foaf="http://xmlns.com/foaf/0.1"
+      xmlns:cc="http://creativecommons.org/ns">
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:title>User Icon</dc:title>
+        <dc:date>2015-02-22</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <foaf:Person>
+              <dc:title>Maxime Buquet</dc:title>
+              <foaf:jabberID rdf:resource="ppjet@bouah.net"/>
+            </foaf:Person>
+          </cc:Agent>
+        </dc:creator>
+        <dc:contributor>
+          <cc:Agent>
+            <foaf:Person>
+              <dc:title>Aditya Kumar</dc:title>
+              <foaf:mbox rdf:resource="kwikadi@gmail.com"/>
+            </foaf:Person>
+          </cc:Agent>
+        </dc:contributor>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/by/4.0"/>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by/4.0/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+        <cc:requires rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires rdf:resource="http://creativecommons.org/ns#Attribution" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <style>
+    #usericon {
+      stroke: #fff;
+      stroke-width: 1px;
+      clip-path: url(#frameClip);
+      fill: #fff;
+    }
+
+    #frame {
+      fill: none;
+      stroke-width: 20px;
+    }
+  </style>
+  <defs>
+    <clipPath id="frameClip">
+      <circle cx="0" cy="0" r="100" />
+    </clipPath>
+  </defs>
+  <g id="usericon">
+    <circle id="frame" cx="0" cy="0" r="95" />
+    <circle id="head" cx="0" cy="-20" r="30" />
+    <path id="body" d="m -70, 100 v -35 a 45 27 0 0 1 140 0 v 40 Z" />
+  </g>
+</svg>
