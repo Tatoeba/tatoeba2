@@ -48,15 +48,7 @@ if ($sentenceFound == false) {
         $sentenceOwner['canEdit'] = $specialOptions['canEdit'];
         $sentenceOwner['canLinkAndUnlink'] = $specialOptions['canLinkAndUnlink'];
 
-        $sentences->displayMenu(
-            $sentence['id'],
-            $sentence['lang'],
-            $specialOptions,
-            null,
-            $sentence['script']
-        );
-        // sentence and translations
-        $sentences->displayGroup(
+        $sentences->displaySentencesGroup(
             $sentence,
             $translations,
             $sentenceOwner,
