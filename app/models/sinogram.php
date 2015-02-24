@@ -54,6 +54,9 @@ class Sinogram extends AppModel
 
     public function search($subGlyphArray , $minStrokes = -1 , $maxStrokes = -1 )
     {
+        if (count($subGlyphArray) == 0) {
+            return array();
+        }
 
         // if there's only character in subglyph search then we should
         // execute one more request to try to match itself
