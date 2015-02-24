@@ -150,9 +150,9 @@ class Sinogram extends AppModel
                     "Sinogram.glyph",
                     "Sinogram.strokes",
                     "Sinogram.english",
-                    "Sinogram.`chin-pinyin`",
-                    "Sinogram.`jap-on`",
-                    "Sinogram.`jap-kun`"
+                    "Sinogram.chin-pinyin",
+                    "Sinogram.jap-on",
+                    "Sinogram.jap-kun"
                 ),
                 "conditions" => array("Sinogram.glyph" => $sinogram )
             )
