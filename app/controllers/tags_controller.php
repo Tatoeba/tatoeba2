@@ -146,8 +146,6 @@ class TagsController extends AppController
 
         $this->helpers[] = 'Tags';
 
-        //$allTags = $this->Tag->getAllTagsOrdered();
-        
         $this->paginate = array(
             'limit' => 50,
             'fields' => array('name', 'id', 'nbrOfSentences'),
