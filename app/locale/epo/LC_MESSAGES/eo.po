@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-13 04:27+0000\n"
-"PO-Revision-Date: 2015-02-14 18:07+0000\n"
+"POT-Creation-Date: 2015-02-21 12:37+0000\n"
+"PO-Revision-Date: 2015-02-21 15:48+0000\n"
 "Last-Translator: Paul Peeraerts <paul2711@gmail.com>\n"
 "Language-Team: Esperanto (http://www.transifex.com/projects/p/tatoeba_website/language/eo/)\n"
 "MIME-Version: 1.0\n"
@@ -1092,7 +1092,7 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Uzu privatajn mesaĝojn por diskuti nerilate al la frazo."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L266
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L312
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
 msgid "Cancel"
 msgstr "Nuligi"
@@ -1943,8 +1943,8 @@ msgstr "Montri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L158
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L141
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L548
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L549
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L543
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L551
 msgid "Edit"
 msgstr "Redakti"
 
@@ -2134,7 +2134,11 @@ msgstr "Forigi"
 msgid "You cannot delete this sentence because it has audio."
 msgstr "Vi ne povas forigi tiun ĉi frazon, ĉar estas ligita son-dosiero al ĝi."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L582
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L545
+msgid "You cannot edit this sentence because it has audio."
+msgstr "Vi ne povas adapti tiun ĉi frazon, ĉar ĝi ekzistas en sona formo."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L592
 msgid "belongs to {user}"
 msgstr "apartenas al {user}"
 
@@ -2301,24 +2305,17 @@ msgstr "Aŭdigi"
 msgid "No audio for this sentence. Click to learn how to contribute."
 msgstr "Ne ekzistas sondosiero por tiu ĉi frazo. Alklaku por ekscii kiel kontribui."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L258
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L247
+msgid "Translation:"
+msgstr "Traduko:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L267
+msgid "Language:"
+msgstr "Lingvo:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L303
 msgid "Submit translation"
 msgstr "Sendi tradukon"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L279
-msgid ""
-"Important! You are about to add a translation to the sentence above. If you "
-"do not understand this sentence, click on \"Cancel\" to display everything "
-"again, and then click on the sentence that you understand and want to "
-"translate from."
-msgstr "Atentu! Vi estas aldononta tradukon al la ĉi-supra frazo. Se vi ne komprenas tiun frazon, alklaku \"Nuligi\" por vidi ĉion denove, kaj tiam alklaku la frazon, kiun vi komprenas kaj kiun vi volas traduki."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L290
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L44
-msgid ""
-"Please do not forget <strong>capital letters</strong> and "
-"<strong>punctuation</strong>! Thank you."
-msgstr "Bonvolu ne forgesi <strong>majuskladon</strong> kaj <strong>interpunkciadon</strong>! Dankon."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L161
 msgid "Show translations in:"
@@ -3253,6 +3250,12 @@ msgstr "Komentoj pri frazoj de {user} (entute&nbsp;{n})"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L39
 msgid "Important"
 msgstr "Grave"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L44
+msgid ""
+"Please do not forget <strong>capital letters</strong> and "
+"<strong>punctuation</strong>! Thank you."
+msgstr "Bonvolu ne forgesi <strong>majuskladon</strong> kaj <strong>interpunkciadon</strong>! Dankon."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L53
 msgid ""

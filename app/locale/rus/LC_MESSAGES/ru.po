@@ -12,9 +12,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-13 04:27+0000\n"
-"PO-Revision-Date: 2015-02-13 04:31+0000\n"
-"Last-Translator: gillux\n"
+"POT-Creation-Date: 2015-02-21 12:37+0000\n"
+"PO-Revision-Date: 2015-02-21 20:41+0000\n"
+"Last-Translator: Dmitry K\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/tatoeba_website/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -118,15 +118,15 @@ msgstr "Мы не смогли сохранить Ваши изменения."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L266
 msgid "You cannot delete this sentence."
-msgstr ""
+msgstr "Вы не можете удалить это предложение."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L279
 msgid "The sentence #{id} has been deleted."
-msgstr ""
+msgstr "Предложение №{id} было удалено."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L287
 msgid "Error: the sentence #{id} could not be deleted."
-msgstr ""
+msgstr "Ошибка: предложение №{id} не может быть удалено."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L176
 msgid ""
@@ -668,7 +668,7 @@ msgstr "Фейсбук"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L102
 msgid "GitHub"
-msgstr ""
+msgstr "GitHub"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/join_us.ctp#L30
 msgid "Join the community!"
@@ -831,19 +831,19 @@ msgstr "Добавить предложение со словом «{keywords}»
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L37
 msgid "Translate a {language} sentence into {translationLanguage}"
-msgstr ""
+msgstr "Перевести предложение на {language.prep} на  {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L41
 msgid "Translate a {language} sentence"
-msgstr ""
+msgstr "Перевести предложение на {language.prep}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L44
 msgid "Translate a sentence into {language}"
-msgstr ""
+msgstr "Перевести предложение на {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L47
 msgid "Add a new sentence"
-msgstr ""
+msgstr "Добавить новое предложение"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_with_no_result.ctp#L55
 msgid ""
@@ -1100,7 +1100,7 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Обсуждайте то, что не связано с предложением, в личных сообщениях."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L266
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L312
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
 msgid "Cancel"
 msgstr "Отмена"
@@ -1620,7 +1620,7 @@ msgstr "коса"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L307
 msgid "Punjabi (Western)"
-msgstr ""
+msgstr "Пенджаби (западный)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L308
 msgid "Malagasy"
@@ -1896,7 +1896,7 @@ msgstr "гуджарати"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L377
 msgid "Punjabi (Eastern)"
-msgstr ""
+msgstr "Пенджаби (восточный)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L433
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L452
@@ -1954,8 +1954,8 @@ msgstr "Показать"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L158
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L141
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L548
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L549
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L543
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L551
 msgid "Edit"
 msgstr "Изменить"
 
@@ -2100,11 +2100,11 @@ msgstr "Это предложение записано традиционным�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L206
 msgid "Click to unadopt"
-msgstr ""
+msgstr "Кликните, чтобы освободить"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L212
 msgid "Click to adopt"
-msgstr ""
+msgstr "Кликните, чтобы присвоить"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L338
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L339
@@ -2143,16 +2143,20 @@ msgstr "Удалить"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L491
 msgid "You cannot delete this sentence because it has audio."
-msgstr ""
+msgstr "Вы не можете удалить это предложение, так как оно имеет аудиозапись."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L582
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L545
+msgid "You cannot edit this sentence because it has audio."
+msgstr "Вы не можете редактировать это предложение, так как оно имеет аудиозапись."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L592
 msgid "belongs to {user}"
 msgstr "принадлежит {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L147
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L241
 msgid "Former member"
-msgstr ""
+msgstr "Бывший участник"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L176
 msgid "Send private message"
@@ -2242,29 +2246,29 @@ msgstr[2] "{title} ({n}&nbsp;результатов)"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pages.php#L44
 msgid "{title} ({thousand}&nbsp;results out of one occurrence)"
 msgid_plural "{title} ({thousand}&nbsp;results out of {n}&nbsp;occurrences)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{title} ({thousand}&nbsp;результатов из {n}&nbsp;вхождения)"
+msgstr[1] "{title} ({thousand}&nbsp;результатов из {n}&nbsp;вхождений)"
+msgstr[2] "{title} ({thousand}&nbsp;результатов из {n}&nbsp;вхождений)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L103
 msgid "First page"
-msgstr ""
+msgstr "Первая страница"
 
 #. @translators Appears on “previous page” links
 #. mouseover. Keyboard shortcut is between brackets.
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L114
 msgid "Previous page [Ctrl+←]"
-msgstr ""
+msgstr "Предыдущая страница [Ctrl+←]"
 
 #. @translators Appears on “next page” links
 #. mouseover. Keyboard shortcut is between brackets.
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L129
 msgid "Next page [Ctrl+→]"
-msgstr ""
+msgstr "Следующая страница [Ctrl+→]"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L136
 msgid "Last page"
-msgstr ""
+msgstr "Последняя страница"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L52
 msgid "Reply"
@@ -2312,26 +2316,19 @@ msgstr "Воспроизвести"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L218
 msgid "No audio for this sentence. Click to learn how to contribute."
-msgstr ""
+msgstr "У этого предложения нет аудиозаписи. Кликните, чтобы узнать, как её добавить."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L258
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L247
+msgid "Translation:"
+msgstr "Перевод:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L267
+msgid "Language:"
+msgstr "Язык:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L303
 msgid "Submit translation"
 msgstr "Добавить перевод"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L279
-msgid ""
-"Important! You are about to add a translation to the sentence above. If you "
-"do not understand this sentence, click on \"Cancel\" to display everything "
-"again, and then click on the sentence that you understand and want to "
-"translate from."
-msgstr "Важно! Вы собираетесь добавить перевод к предложению выше. Если вы не понимаете этого предложения, нажмите «Отмена» для показа других и выберите то, которое понимаете и желаете перевести."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L290
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L44
-msgid ""
-"Please do not forget <strong>capital letters</strong> and "
-"<strong>punctuation</strong>! Thank you."
-msgstr "Пожалуйста, не забывайте о <strong>больших буквах</strong> и <strong>пунктуациии</strong>! Спасибо."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L161
 msgid "Show translations in:"
@@ -2407,11 +2404,11 @@ msgstr "отправить"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L301
 msgid "hide replies"
-msgstr ""
+msgstr "спрятать ответы"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L306
 msgid "show replies"
-msgstr ""
+msgstr "показать ответы"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L378
 msgid "by {messageAuthor}"
@@ -3272,6 +3269,12 @@ msgstr "Комментарии к предложениям {user} (всего&nb
 msgid "Important"
 msgstr "Важно"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L44
+msgid ""
+"Please do not forget <strong>capital letters</strong> and "
+"<strong>punctuation</strong>! Thank you."
+msgstr "Пожалуйста, не забывайте о <strong>больших буквах</strong> и <strong>пунктуациии</strong>! Спасибо."
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L53
 msgid ""
 "Do not copy-paste sentences from elsewhere, except if the content is CC-BY "
@@ -3330,19 +3333,19 @@ msgstr "Предложения с: {keywords}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L34
 msgid "Sentences in {language} translated into {translationLanguage}"
-msgstr ""
+msgstr "Предложения на {language.prep}, переведенные на {translationLanguage}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L38
 msgid "Sentences in {language}"
-msgstr ""
+msgstr "Предложения на {language.prep}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L41
 msgid "Sentences translated into {language}"
-msgstr ""
+msgstr "Предложения, переведенные на {language}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L44
 msgid "All sentences"
-msgstr ""
+msgstr "Все предложения"
 
 #. @translators: title on the top of a search result page
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L74
@@ -3473,7 +3476,7 @@ msgstr "Поля будут выведены в следующей послед�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L171
 msgid "Translation"
-msgstr ""
+msgstr "Перевод"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L175
 msgid ""
@@ -3863,7 +3866,7 @@ msgstr "Конвертировать текст с: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L83
 msgid "Chinese characters"
-msgstr ""
+msgstr "Китайские символы"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L99

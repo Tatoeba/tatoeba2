@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-13 04:27+0000\n"
-"PO-Revision-Date: 2015-02-13 04:31+0000\n"
-"Last-Translator: gillux\n"
+"POT-Creation-Date: 2015-02-21 12:37+0000\n"
+"PO-Revision-Date: 2015-02-21 12:42+0000\n"
+"Last-Translator: Trang Ho\n"
 "Language-Team: Chinese (China) (http://www.transifex.com/projects/p/tatoeba_website/language/zh_CN/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1085,7 +1085,7 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "使用悄悄话来讨论与句子无关的事。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L266
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L312
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
 msgid "Cancel"
 msgstr "取消"
@@ -1933,8 +1933,8 @@ msgstr "显示"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L158
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L141
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L548
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L549
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L543
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L551
 msgid "Edit"
 msgstr "编辑"
 
@@ -2124,7 +2124,11 @@ msgstr "删除"
 msgid "You cannot delete this sentence because it has audio."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L582
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L545
+msgid "You cannot edit this sentence because it has audio."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L592
 msgid "belongs to {user}"
 msgstr "属于{user}"
 
@@ -2289,24 +2293,17 @@ msgstr "播放音频"
 msgid "No audio for this sentence. Click to learn how to contribute."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L258
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L247
+msgid "Translation:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L267
+msgid "Language:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L303
 msgid "Submit translation"
 msgstr "提交翻译"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L279
-msgid ""
-"Important! You are about to add a translation to the sentence above. If you "
-"do not understand this sentence, click on \"Cancel\" to display everything "
-"again, and then click on the sentence that you understand and want to "
-"translate from."
-msgstr "注意！您正要为上面的句子添加一句翻译。如果你不懂这句句子，点击“取消”查看所有句子，并点击您看得懂且想翻译的句子。"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L290
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L44
-msgid ""
-"Please do not forget <strong>capital letters</strong> and "
-"<strong>punctuation</strong>! Thank you."
-msgstr "请不要忘记<strong>大写字母</strong>和<strong>标点符号</strong>！谢谢。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L161
 msgid "Show translations in:"
@@ -3236,6 +3233,12 @@ msgstr "对{user}句子的评论（共计{n}条）"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L39
 msgid "Important"
 msgstr "注意"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L44
+msgid ""
+"Please do not forget <strong>capital letters</strong> and "
+"<strong>punctuation</strong>! Thank you."
+msgstr "请不要忘记<strong>大写字母</strong>和<strong>标点符号</strong>！谢谢。"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L53
 msgid ""

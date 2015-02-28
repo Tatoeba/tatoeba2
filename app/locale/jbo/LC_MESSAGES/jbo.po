@@ -10,9 +10,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-13 04:27+0000\n"
-"PO-Revision-Date: 2015-02-13 04:31+0000\n"
-"Last-Translator: gillux\n"
+"POT-Creation-Date: 2015-02-21 12:37+0000\n"
+"PO-Revision-Date: 2015-02-27 12:56+0000\n"
+"Last-Translator: gleki <gleki.is.my.name@gmail.com>\n"
 "Language-Team: Lojban (http://www.transifex.com/projects/p/tatoeba_website/language/jbo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -116,7 +116,7 @@ msgstr "ca'a fliba lo ka jai gau stodi fai lo se cnegau be do"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L266
 msgid "You cannot delete this sentence."
-msgstr ""
+msgstr "do ka'enai vimcu le jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L279
 msgid "The sentence #{id} has been deleted."
@@ -661,7 +661,7 @@ msgstr "la'oi Facebook"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L102
 msgid "GitHub"
-msgstr ""
+msgstr "la'oi GitHub"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/join_us.ctp#L30
 msgid "Join the community!"
@@ -1092,7 +1092,7 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "ko pilno lo sivni se mrilu lo ka casnu lo na srana be le jufra"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L266
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L312
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
 msgid "Cancel"
 msgstr "kansele"
@@ -1943,8 +1943,8 @@ msgstr "zgana"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L158
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L141
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L548
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L549
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L543
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L551
 msgid "Edit"
 msgstr "stika"
 
@@ -2134,14 +2134,18 @@ msgstr "vimcu"
 msgid "You cannot delete this sentence because it has audio."
 msgstr "ka'enai vimcu le jufra i ki'ubo jy. se bacru"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L582
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L545
+msgid "You cannot edit this sentence because it has audio."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L592
 msgid "belongs to {user}"
 msgstr "se ponse la'oi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L147
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L241
 msgid "Former member"
-msgstr ""
+msgstr "ba'o cmima"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/messages.php#L176
 msgid "Send private message"
@@ -2235,23 +2239,23 @@ msgstr[1] "{title} zo'u {thousand}&nbsp; ka'e se zgana ije {n}&nbsp;da se tolcri
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L103
 msgid "First page"
-msgstr ""
+msgstr "lo pamoi papri"
 
 #. @translators Appears on “previous page” links
 #. mouseover. Keyboard shortcut is between brackets.
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L114
 msgid "Previous page [Ctrl+←]"
-msgstr ""
+msgstr "lo lidne papri to la'o .gy.[Ctrl+←].gy. toi"
 
 #. @translators Appears on “next page” links
 #. mouseover. Keyboard shortcut is between brackets.
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L129
 msgid "Next page [Ctrl+→]"
-msgstr ""
+msgstr "lo se lidne papri to la'o .gy.[Ctrl+→].gy. toi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L136
 msgid "Last page"
-msgstr ""
+msgstr "lo romoi papri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L52
 msgid "Reply"
@@ -2301,24 +2305,17 @@ msgstr "bacru lo se vreji sance"
 msgid "No audio for this sentence. Click to learn how to contribute."
 msgstr "no da vreji lo sance be le jufra i ko kliki tezu'e lo ka cilre lo ka ta'i makau kontribute"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L258
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L247
+msgid "Translation:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L267
+msgid "Language:"
+msgstr "lo bangu zo'u"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L303
 msgid "Submit translation"
 msgstr "benji lo te traduki"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L279
-msgid ""
-"Important! You are about to add a translation to the sentence above. If you "
-"do not understand this sentence, click on \"Cancel\" to display everything "
-"again, and then click on the sentence that you understand and want to "
-"translate from."
-msgstr "ju'i i do pu'o jmina lo te traduki be lo jufra poi galtu i fau lo nu do na jimpe lo smuni be le jufra do kliki ko'oi la'e zo kansele tezu'e lo ka jai gau za'ure'u zgana ro da vau gi'e ba bo kliki lo jufra poi do jimpe lo smuni be ke'a gi'e djica lo ka traduki ke'a"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L290
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L44
-msgid ""
-"Please do not forget <strong>capital letters</strong> and "
-"<strong>punctuation</strong>! Thank you."
-msgstr "e'o do na co'u morji fi <strong>lo ga'e zei lerfu</strong> je <strong>lo te pandi</strong> i ki'e do"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L161
 msgid "Show translations in:"
@@ -3253,6 +3250,12 @@ msgstr "lo se piksku pe lo jufra poi se ponse la'oi {user} (to {n} da toi)"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L39
 msgid "Important"
 msgstr "vajni"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L44
+msgid ""
+"Please do not forget <strong>capital letters</strong> and "
+"<strong>punctuation</strong>! Thank you."
+msgstr "e'o do na co'u morji fi <strong>lo ga'e zei lerfu</strong> je <strong>lo te pandi</strong> i ki'e do"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L53
 msgid ""

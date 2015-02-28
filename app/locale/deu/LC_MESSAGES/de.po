@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-13 04:27+0000\n"
-"PO-Revision-Date: 2015-02-20 20:34+0000\n"
+"POT-Creation-Date: 2015-02-21 12:37+0000\n"
+"PO-Revision-Date: 2015-02-26 04:32+0000\n"
 "Last-Translator: Lisa <pfirsichbaeumchen@tatoeba.org>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/tatoeba_website/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -779,7 +779,7 @@ msgstr "Zufälliger Satz"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L54
 msgid "show another "
-msgstr "weiterer Satz&nbsp;..."
+msgstr "weiterer Satz ..."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L69
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L115
@@ -1094,7 +1094,7 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Nutze Privatnachrichten für Diskussionen, die nichts mit dem Satz zu tun haben."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L266
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L312
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
 msgid "Cancel"
 msgstr "Abbruch"
@@ -1945,8 +1945,8 @@ msgstr "Anzeigen"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L158
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L141
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L548
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L549
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L543
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L551
 msgid "Edit"
 msgstr "Bearbeiten"
 
@@ -2136,7 +2136,11 @@ msgstr "Löschen"
 msgid "You cannot delete this sentence because it has audio."
 msgstr "Dieser Satz kann wegen der vorhandenen Audiodatei nicht gelöscht werden."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L582
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L545
+msgid "You cannot edit this sentence because it has audio."
+msgstr "Dieser Satz ist aufgrund einer vorhandenen Audioaufnahme nicht editierbar."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L592
 msgid "belongs to {user}"
 msgstr "gehört {user}"
 
@@ -2303,24 +2307,17 @@ msgstr "Audiodatei abspielen"
 msgid "No audio for this sentence. Click to learn how to contribute."
 msgstr "Keine Aufnahme vorhanden. Näheres nach einem Klick."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L258
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L247
+msgid "Translation:"
+msgstr "Übersetzung:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L267
+msgid "Language:"
+msgstr "Sprache:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L303
 msgid "Submit translation"
 msgstr "Übersetzung eingeben"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L279
-msgid ""
-"Important! You are about to add a translation to the sentence above. If you "
-"do not understand this sentence, click on \"Cancel\" to display everything "
-"again, and then click on the sentence that you understand and want to "
-"translate from."
-msgstr "<strong>Wichtiger Hinweis</strong>: Du bist im Begriff, den oben angezeigten Satz zu übersetzen. Wenn du diesen Satz nicht verstehst, wähle „Abbruch“ und klicke dann auf den Satz, den du eigentlich übersetzen wolltest."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L290
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L44
-msgid ""
-"Please do not forget <strong>capital letters</strong> and "
-"<strong>punctuation</strong>! Thank you."
-msgstr "Beachte bitte die Groß- und Kleinschreibung und die Interpunktion!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L161
 msgid "Show translations in:"
@@ -3256,6 +3253,12 @@ msgstr "Kommentare zu {user}s Sätzen (insgesamt&nbsp;{n})"
 msgid "Important"
 msgstr "Wichtig"
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L44
+msgid ""
+"Please do not forget <strong>capital letters</strong> and "
+"<strong>punctuation</strong>! Thank you."
+msgstr "Beachte bitte die Groß- und Kleinschreibung und die Interpunktion!"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L53
 msgid ""
 "Do not copy-paste sentences from elsewhere, except if the content is CC-BY "
@@ -4044,7 +4047,7 @@ msgstr "Keine Beschreibung."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L274
 msgid "TIP: We encourage you to indicate the languages you know."
-msgstr "TIPP: Gib an, welche Sprachen du sprichst."
+msgstr "Tipp: Gib an, welche Sprachen du sprichst!"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L278
 msgid "TIP: Encourage this user to indicate the languages he or she knows."
