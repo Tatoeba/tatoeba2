@@ -460,7 +460,17 @@ class WallController extends Appcontroller
             $userId,
             $groupId
         );
-        $this->set("message", $thread[0]);
+        
+        if (array_key_exists(0, $thread)) {
+            $this->set("message", $thread[0]);
+        }else{
+            $this->set("message", null);
+            $this->Session->setFlash(
+                __('The message you are trying to view does not exist or has been deleted.', true)
+            );
+        }
+        
+        
         $this->set("isAuthenticated", $this->Auth->user());
     }
 
