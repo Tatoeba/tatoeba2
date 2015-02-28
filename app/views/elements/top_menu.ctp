@@ -58,10 +58,14 @@ $menuElements = array(
             "action" => null
         ),
         "sub-menu" => array(
+            __('Random sentence', true) => array(
+                "controller" => "sentences",
+                "action" => "show",
+                "random"
+            ),
             __('Browse by language', true) => array(
                 "controller" => "sentences",
                 "action" => "show_all_in",
-                /* $currentLanguage, "none", "none" */
                 $currentLanguage, $showTranslationsInto, $notTranslatedInto,
                 $filterAudioOnly
             ),
@@ -76,11 +80,6 @@ $menuElements = array(
             __('Browse audio', true) => array(
                 "controller" => "sentences",
                 "action" => "with_audio"
-            ),
-            __('Random sentence', true) => array(
-                "controller" => "sentences",
-                "action" => "show",
-                "random"
             )
         )
     ),
