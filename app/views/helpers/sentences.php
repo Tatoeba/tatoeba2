@@ -118,37 +118,95 @@ class SentencesHelper extends AppHelper
     public function displayTranslations($id, $translations, $indirectTranslations, $withAudio = true, $langFilter = 'und') {
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
-            <div></div>
+            
             <?php
-            // direct translations
-            foreach ($translations as $translation) {
+
+            $totalDirectTranslations = count(array_keys($translations));
+            $totalIndirectTranslations = count(array_keys($indirectTranslations));
+
+            //merge direct and indirect translations into single array
+            $allTranslations = array_merge($translations, $indirectTranslations);
+
+            $totalTranslations = count($allTranslations);
+            $showButton = true;
+
+            //if only 1 hidden sentence then show all
+            if($totalTranslations < 6){
+                $initiallyDisplayedTranslations = $totalTranslations;
+                $showButton = false;
+            } else {
+                $initiallyDisplayedTranslations = 5;
+                $displayed = $totalTranslations - $initiallyDisplayedTranslations;
+            }
+            
+            //Split 'allTranslations' array into two, visible & hidden sets of sentences        
+            $visibleTranslations = array_slice($allTranslations, 0, $initiallyDisplayedTranslations);
+            $hiddenTranslations = array_slice($allTranslations, $initiallyDisplayedTranslations);
+            
+            $sentenceCount = 0;  
+
+            //visible list of translations
+            foreach ($visibleTranslations as $translation) {
+
+                if ($sentenceCount < $totalDirectTranslations)
+                    $type = 'directTranslation';
+                else 
+                    $type = 'indirectTranslation';
+
                 $this->displayGenericSentence(
                     $translation['Translation'],
                     null,
-                    'directTranslation',
+                    $type,
                     $withAudio,
                     $id,
                     null,
                     false,
                     $langFilter
                 );
+
+                $sentenceCount++;
             }
 
-            // indirect translations
-            foreach ($indirectTranslations as $translation) {
+            if($showButton){
+                echo $this->Html->tag('div',
+                    format(
+                        __('↓ Show {number} more translations', $displayed, true),
+                        array('number' => $displayed)
+                    ),
+                    array('class' => 'showLink')
+                );
+            }
+
+            //expanded list of translations
+            echo $this->Html->tag('div', null, array('class' => 'more'));
+            
+            foreach ($hiddenTranslations as $translation) {
+
+                if ($sentenceCount < $totalDirectTranslations)
+                    $type = 'directTranslation';
+                else 
+                    $type = 'indirectTranslation';
+
                 $this->displayGenericSentence(
                     $translation['Translation'],
                     null,
-                    'indirectTranslation',
+                    $type,
                     $withAudio,
                     $id,
                     null,
                     false,
                     $langFilter
                 );
+
+                $sentenceCount++;
             }
 
+            echo $this->Html->tag('div',
+                    __('↑ Less translations', true),
+                    array('class' => 'hideLink')
+                );
             ?>
+          </div>  
         </div>
         <?php
     }
@@ -757,3 +815,6 @@ class SentencesHelper extends AppHelper
 
 }
 ?>
+
+
+
