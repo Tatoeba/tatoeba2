@@ -42,6 +42,24 @@ $this->set('title_for_layout', $pages->formatTitle(__('All existing tags', true)
 <div id="main_content">
     <div class="module">
         <h2><?php __('All Tags'); ?></h2> 
+        
+        <div>
+            
+            <strong><?php __("Sort by:") ?> </strong>
+            
+            
+            <?php echo $this->Paginator->sort(__("Sort By Count",true), 'nbrOfSentences', array('direction' => 'desc'));?>
+            
+            <?php echo __(" | "); ?>
+            
+            <?php echo $this->Paginator->sort(__(" Sort By Name",true), 'internal_name', array('direction' => 'asc'));?>
+        
+        </div>
+        
+        <?php 
+            $pagination->display();
+        ?>
+        
         <div>
             <?php
             foreach( $allTags as $tag) {
@@ -57,6 +75,12 @@ $this->set('title_for_layout', $pages->formatTitle(__('All existing tags', true)
             <?php
             }
             ?>
+        </div>
+        
+        <div>
+        <?php 
+            $pagination->display();
+        ?>
         </div>
     </div>
 </div>

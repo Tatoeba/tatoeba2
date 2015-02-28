@@ -46,6 +46,7 @@ class TagsController extends AppController
     public $name = 'Tags';
     public $persistentModel = true;
     public $components = array('CommonSentence');
+    public $helpers = array('Pagination');
     /**
      * Before filter.
      *
@@ -145,7 +146,14 @@ class TagsController extends AppController
 
         $this->helpers[] = 'Tags';
 
-        $allTags = $this->Tag->getAllTagsOrdered();
+        $this->paginate = array(
+            'limit' => 50,
+            'fields' => array('name', 'id', 'nbrOfSentences'),
+            'contain' => array(),
+            'order' => 'nbrOfSentences DESC',
+        );
+        
+        $allTags = $this->paginate('Tag');
         $this->set("allTags", $allTags);
     }
 

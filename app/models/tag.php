@@ -203,22 +203,6 @@ class Tag extends AppModel
 
     }
 
-    /**
-     * Give all tags ordered by number of sentences they tag
-     *
-     * @return array All the tags
-     */
-    public function getAllTagsOrdered(){
-        return $this->find(
-            'all',
-            array(
-                'fields' => array('name', 'id', 'nbrOfSentences'),
-                'contain' => array(),
-                'order' => 'nbrOfSentences DESC',
-            )
-        );
-    }
-    
     
     /**
      * Get tag id from tag internal name.
