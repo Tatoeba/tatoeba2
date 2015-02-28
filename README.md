@@ -2,20 +2,14 @@ TATOEBA
 =======
 
 This repository contains the source code of Tatoeba's website (http://tatoeba.org). 
-If you are interested in contributing to this project as a developer, keep reading.
 
 
-About Tatoeba
+New developer
 -------------
 
-Tatoeba is a platform that aims to build a large database of sentences translated 
-into as many languages as possible. The initial idea was to have a tool in which you 
-could search certain words, and it would return example sentences containing these 
-words with their translations in the desired languages. The name Tatoeba resulted 
-from this concept, because *tatoeba* means *for example* in Japanese.
-
-If you are looking for more general information about Tatoeba, you can browse the
-[blog](http://blog.tatoeba.org) or the [wiki](http://en.wiki.tatoeba.org).
+If you are interested in contributing to this project as a developer, please read the 
+[guide for new developers](http://en.wiki.tatoeba.org/articles/show/guide-for-new-developers#)
+before you start coding anything.
 
 
 
