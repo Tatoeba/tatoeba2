@@ -461,12 +461,14 @@ class WallController extends Appcontroller
             $groupId
         );
         
-        if (array_key_exists(0, $thread)) {
+        if (!empty($thread)) {
             $this->set("message", $thread[0]);
         }else{
-            $this->set("message", null);
             $this->Session->setFlash(
                 __('The message you are trying to view does not exist or has been deleted.', true)
+            );
+            $this->redirect(
+                array('action' => 'index')
             );
         }
         

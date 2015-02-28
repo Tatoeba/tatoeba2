@@ -80,14 +80,12 @@ $javascript->link('wall.show_and_hide_replies.js', false);
     <div class="module">    
         <div class="wall">
             <?php
-                if($message!=null){
-                    $wall->createThread(
-                        $message['Wall'],
-                        $message['User'],
-                        $message['Permissions'],
-                        $message['children']
-                    );
-                }
+            $wall->createThread(
+                $message['Wall'],
+                $message['User'],
+                $message['Permissions'],
+                $message['children']
+            );
             ?>
         </div>
     </div>
