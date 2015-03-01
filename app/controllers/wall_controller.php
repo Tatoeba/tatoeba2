@@ -463,7 +463,7 @@ class WallController extends Appcontroller
         
         if (!empty($thread)) {
             $this->set("message", $thread[0]);
-        }else{
+        } else {
             $this->Session->setFlash(
                 __('The message you are trying to view does not exist or has been deleted.', true)
             );
