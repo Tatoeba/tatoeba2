@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-
+$javascript->link('sentences.collapse.js', false);
 $this->set('title_for_layout', __('Tatoeba: Collecting example sentences', true));
 $html->meta(
     'description', 
