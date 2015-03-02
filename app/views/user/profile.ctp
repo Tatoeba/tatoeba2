@@ -38,8 +38,8 @@
 
 $userId = $user['id'];
 
-$realName = Sanitize::html($user['name']);
-$username = Sanitize::html($user['username']);
+$realName = $user['name'];
+$username = $user['username'];
 $userDescription = Sanitize::html($user['description']);
 $homepage = $user['homepage'];
 $birthday = $user['birthday'];
@@ -56,7 +56,7 @@ if (!empty($user['image'])) {
 }
 
 $title = empty($realName) ? $username : "$username ($realName)";
-$this->set('title_for_layout', $pages->formatTitle($title));
+$this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
 ?>
 
 <div id="annexe_content">
@@ -206,7 +206,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         ?>
             
         <div class="info">
-            <div class="username"><?php echo $username; ?></div>
+            <?php echo $html->tag('div', $username, array('class' => 'username')); ?>
             
             <?php
             if ($isDisplayed) {
