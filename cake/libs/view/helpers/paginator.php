@@ -540,41 +540,44 @@ class PaginatorHelper extends AppHelper {
 			$paging['pageCount'] = 1;
 		}
 		$start = 0;
-		if ($paging['count'] >= 1) {
-			$start = (($paging['page'] - 1) * $paging['options']['limit']) + 1;
-		}
-		$end = $start + $paging['options']['limit'] - 1;
-		if ($paging['count'] < $end) {
-			$end = $paging['count'];
-		}
+		$out = 0;
+		if(isset($paging['count'])){	
+			if ($paging['count'] >= 1) {
+				$start = (($paging['page'] - 1) * $paging['options']['limit']) + 1;
+			}
+			$end = $start + $paging['options']['limit'] - 1;
+			if ($paging['count'] < $end) {
+				$end = $paging['count'];
+			}
 
-		switch ($options['format']) {
-			case 'range':
-				if (!is_array($options['separator'])) {
-					$options['separator'] = array(' - ', $options['separator']);
-				}
-				$out = $start . $options['separator'][0] . $end . $options['separator'][1];
-				$out .= $paging['count'];
-			break;
-			case 'pages':
-				$out = $paging['page'] . $options['separator'] . $paging['pageCount'];
-			break;
-			default:
-				$map = array(
-					'%page%' => $paging['page'],
-					'%pages%' => $paging['pageCount'],
-					'%current%' => $paging['current'],
-					'%count%' => $paging['count'],
-					'%start%' => $start,
-					'%end%' => $end
-				);
-				$out = str_replace(array_keys($map), array_values($map), $options['format']);
+			switch ($options['format']) {
+				case 'range':
+					if (!is_array($options['separator'])) {
+						$options['separator'] = array(' - ', $options['separator']);
+					}
+					$out = $start . $options['separator'][0] . $end . $options['separator'][1];
+					$out .= $paging['count'];
+				break;
+				case 'pages':
+					$out = $paging['page'] . $options['separator'] . $paging['pageCount'];
+				break;
+				default:
+					$map = array(
+						'%page%' => $paging['page'],
+						'%pages%' => $paging['pageCount'],
+						'%current%' => $paging['current'],
+						'%count%' => $paging['count'],
+						'%start%' => $start,
+						'%end%' => $end
+					);
+					$out = str_replace(array_keys($map), array_values($map), $options['format']);
 
-				$newKeys = array(
-					'{:page}', '{:pages}', '{:current}', '{:count}', '{:start}', '{:end}'
-				);
-				$out = str_replace($newKeys, array_values($map), $out);
-			break;
+					$newKeys = array(
+						'{:page}', '{:pages}', '{:current}', '{:count}', '{:start}', '{:end}'
+					);
+					$out = str_replace($newKeys, array_values($map), $out);
+				break;
+			}
 		}
 		return $out;
 	}
