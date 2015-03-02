@@ -131,7 +131,7 @@ class SentencesHelper extends AppHelper
             $showButton = true;
 
             //if only 1 hidden sentence then show all
-            if($totalTranslations < 6){
+            if($totalTranslations <= 6){
                 $initiallyDisplayedTranslations = $totalTranslations;
                 $showButton = false;
             } else {
