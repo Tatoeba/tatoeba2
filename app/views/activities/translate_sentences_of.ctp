@@ -24,6 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+$javascript->link('sentences.collapse.js', false);
 $username = Sanitize::paranoid($username, array("_"));
 
 if ($results == null) {
