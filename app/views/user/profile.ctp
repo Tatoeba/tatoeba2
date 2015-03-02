@@ -214,7 +214,7 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
                     $birthday = date('F j, Y', strtotime($birthday));
                 }
                 if (!empty($homepage)) {
-                    $homepage = $clickableLinks->clickableURL($homepage);
+                    $homepage = $clickableLinks->clickableURL(Sanitize::html($homepage));
                 }
                 $userSince = date('F j, Y', strtotime($userSince));
                 $fields = array(
