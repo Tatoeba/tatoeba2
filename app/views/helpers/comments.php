@@ -226,7 +226,7 @@ class CommentsHelper extends AppHelper
             }
 
             $menu[] = array(
-                'text' => __('hide', true),
+                'text' => $hiddenLinkText,
                 'url' => array(
                     "controller" => "sentence_comments",
                     "action" => $hiddenLinkAction,
