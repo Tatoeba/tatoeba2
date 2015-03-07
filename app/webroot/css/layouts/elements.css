@@ -868,7 +868,7 @@
 /*
  * Register button
  */
-.registerButton {
+#ClickHereToRegister .registerButton {
     background: url(../../img/search_bar_body.png) repeat;
     padding: 8px 12px;
     color: #1A3502;
@@ -883,7 +883,7 @@
     width: 150px;
 }
 
-.registerButton:hover {
+#ClickHereToRegister .registerButton:hover {
     color: #D5E5C9;
 }
 
