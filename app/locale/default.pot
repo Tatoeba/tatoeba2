@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-28 15:43+0000\n"
+"POT-Creation-Date: 2015-03-07 18:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -258,6 +258,10 @@ msgstr ""
 msgid ""
 "We apologize, but we could not save your data.\n"
 "                             Please try again"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L468
+msgid "The message you are trying to view does not exist or has been deleted."
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/models/sentences_list.php#L108
@@ -608,6 +612,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/join_us.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L73
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L37
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L93
@@ -619,6 +624,7 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L73
 msgid "Log in"
 msgstr ""
@@ -805,6 +811,22 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/session_expired.ctp#L34
 msgid "Please <a href=\"{}\">click here</a> to log in again."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L32
+msgid "Tatoeba is a collection of sentences and translations."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L36
+msgid "Search for example sentences, find translations, add or translate sentences to help other language learners, and much more. It's collaborative, open, free and even addictive."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L48
+msgid "How it works"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L59
+msgid "About us"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L43
@@ -1028,7 +1050,6 @@ msgid "unhide"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L224
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L229
 msgid "hide"
 msgstr ""
 
@@ -2324,6 +2345,11 @@ msgstr ""
 msgid "No language matches"
 msgstr ""
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/about.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L94
+msgid "What is Tatoeba?"
+msgstr ""
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L48
 msgid "Please make sure to <a href=\"{}\">read the FAQ</a> before asking a question."
 msgstr ""
@@ -2811,10 +2837,6 @@ msgid "One supported language"
 msgid_plural "{n}&nbsp;supported languages"
 msgstr[0] ""
 msgstr[1] ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L94
-msgid "What is Tatoeba?"
-msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L122
 msgid "At its core, Tatoeba is a large database of <strong>example sentences</strong> translated into several languages. But as a whole, it is much more than that."

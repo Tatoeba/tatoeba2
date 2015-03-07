@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-21 12:37+0000\n"
-"PO-Revision-Date: 2015-02-21 12:42+0000\n"
+"POT-Creation-Date: 2015-02-28 15:43+0000\n"
+"PO-Revision-Date: 2015-02-28 15:51+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Belarusian (http://www.transifex.com/projects/p/tatoeba_website/language/be/)\n"
 "MIME-Version: 1.0\n"
@@ -157,12 +157,12 @@ msgstr[3] ""
 msgid "{firstSentence} {secondSentence}"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L119
 msgid ""
 "Tag '{tagName}' already exists for sentence #{number}, or cannot be added"
 msgstr "Цэтлікам «{tagName}» сказ №{number} ужо адзначаны, або гэта немагчыма зрабіць"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L252
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L260
 msgid ""
 "There are no sentences for this tag. The tag you are looking for has been "
 "deleted or does not exist."
@@ -343,7 +343,7 @@ msgid ""
 msgstr "Калі пасля прысваення сказа поруч з ім з’явілася імя іншага ўдзельніка, значыць, ён прысвоіў гэты сказ хутчэй за Вас. У такіх выпадках Вы можаце паспрабаваць пачать прысвойваць сказы на некалькі старонак уперад, каб зменшыць шанц, што гэта паўтарыцца."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L28
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L96
 msgid "Improve sentences"
 msgstr "Паляпшэнне сказаў"
@@ -428,7 +428,7 @@ msgstr "Калі праблема з сказам вырашаная, дадай
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L27
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L83
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L87
 msgid "Translate sentences"
 msgstr "Пераклад сказаў"
@@ -649,7 +649,7 @@ msgid "Contact us"
 msgstr "Зваротная сувязь"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L64
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L158
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L28
 msgid "Donate"
 msgstr "Ахвяраваць грошы"
@@ -780,7 +780,7 @@ msgid "Folders"
 msgstr "Папкі"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L39
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L61
 msgid "Random sentence"
 msgstr "Выпадковы сказ"
 
@@ -950,82 +950,82 @@ msgstr "Хатняя"
 msgid "Browse"
 msgstr "Прагляд"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L66
 msgid "Browse by language"
 msgstr "Прагляд па мовах"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L72
 msgid "Browse by list"
 msgstr "Прагляд спісаў"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L76
 msgid "Browse by tag"
 msgstr "Прагляд па цэтліках"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L80
 msgid "Browse audio"
 msgstr "Прагляд аўдыёзапісаў"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L86
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L75
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L66
 msgid "Contribute"
 msgstr "Унёсак"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L28
 msgid "Add sentences"
 msgstr "Дадаванне сказаў"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L100
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L91
 msgid "Adopt sentences"
 msgstr "Прысваенне сказаў"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L100
 msgid "Discuss sentences"
 msgstr "Абмеркаванне сказаў"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L119
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L38
 msgid "Members"
 msgstr "Удзельнікі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L125
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L38
 msgid "Wall"
 msgstr "Сцяна"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L131
 msgid "More"
 msgstr "Яшчэ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L137
 msgid "Quick Start Guide"
 msgstr "Кароткія інструкцыі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L140
 msgid "Tatoeba Wiki"
 msgstr "Вікі праэкта Tatoeba"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L144
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L143
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L42
 msgid "FAQ"
 msgstr "Частыя пытанні"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L146
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L28
 msgid "Help"
 msgstr "Дапамога"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L150
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L93
 msgid "Downloads"
 msgstr "Файлы для загрузкі"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L154
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L68
 msgid "Tools"
 msgstr "Інструменты"
@@ -2665,7 +2665,7 @@ msgid "Lang"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L99
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L82
 msgid "Username"
 msgstr "Імя карыстальніка"
 
@@ -3677,7 +3677,7 @@ msgid ""
 "href=\"{}\">here</a>."
 msgstr "Не знойдзена сказаў з гэтым іерогліфам; вы можаце дадаць іх <a href=\"{}\">тут</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_example_sentence.ctp#L71
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_example_sentence.ctp#L63
 msgid "View all sentences using this character <a href=\"{}\">here</a>"
 msgstr "Праглядзець сказы з гэтым іерогліфам можна <a href=\"{}\">тут</a>."
 
@@ -3772,6 +3772,19 @@ msgstr "Усе існуючыя цэтлікі"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L44
 msgid "All Tags"
 msgstr "Усе цэтлікі"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L80
+msgid "Sort by:"
+msgstr "Сартаванне:"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L49
+msgid "count"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L51
+msgid "name"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L31
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L85
@@ -4067,8 +4080,8 @@ msgid "Sentences from this user are currently added as \"not approved\"."
 msgstr "Сказы гэтага ўдзельніка зараз далаюцца як «неўхваленыя»."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L252
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L83
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L124
 msgid "Member since"
 msgstr "Удзельнік з"
 
@@ -4157,11 +4170,7 @@ msgstr "Знайсці ўдзельніка"
 msgid "Members (total %count%)"
 msgstr "Удзельнікі (усяго %count%)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L79
-msgid "Sort by:"
-msgstr "Сартаванне:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L86
 msgid "Member status"
 msgstr "Статус удзельніка"
 
