@@ -202,7 +202,8 @@ $languages = array(
     'nav' => 'Navajo' , 
     'chr' => 'Cherokee' , 
     'guj' => 'Gujarati' , 
-    'pan' => 'Punjabi (Eastern)' , //@lang
+    'pan' => 'Punjabi (Eastern)' , 
+    'kha' => 'Khasi' , //@lang
 );
 
 $languageWithStemmer = array(

@@ -374,7 +374,8 @@ class LanguagesHelper extends AppHelper
             'nav' => __('Navajo',true), 
             'chr' => __('Cherokee',true), 
             'guj' => __('Gujarati',true), 
-            'pan' => __('Punjabi (Eastern)',true), //@lang 
+            'pan' => __('Punjabi (Eastern)',true), 
+            'kha' => __('Khasi',true), //@lang 
             );
         }
         return $this->__languages_to_format;
