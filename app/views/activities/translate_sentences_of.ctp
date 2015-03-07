@@ -28,7 +28,7 @@ $username = Sanitize::paranoid($username, array("_"));
 
 if ($results == null) {
     $title = format(
-        __("This user doesn't exist: {username}", true),
+        __("This user doesn't exist: {username} (0 results)", true),
         array('username' => $username)
     );
 } else if (!empty($lang)) {
@@ -61,9 +61,11 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     
     <div class="module">
     <?php 
-    echo $this->Pages->formatTitleWithResultCount($paginator, $title);
-
+    
     if ($results != null) {
+
+    	echo $this->Pages->formatTitleWithResultCount($paginator, $title);
+
         $paginationUrl = array(
             $username,
             $lang
@@ -80,6 +82,8 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         }
         
         $pagination->display($paginationUrl);
+    } else {
+    	echo $this->Pages->formatTitleWithZeroResult($title);
     }
     ?>
     </div>
