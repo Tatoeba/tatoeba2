@@ -163,12 +163,12 @@ class SentencesController extends AppController
             $this->set('commentsPermissions', $commentsPermissions);
             $this->set('contributions', $contributions);
 
-            $canComment = CurrentUser::isMember() && !empty($contributions);
-            $this->set('canComment', $canComment);
-
             // And now we retrieve the sentence
             $sentence = $this->Sentence->getSentenceWithId($id);
 
+            $canComment = CurrentUser::isMember()
+                && (!empty($contributions) || !empty($sentence));
+            $this->set('canComment', $canComment);
 
             // this way "next" and "previous"
             $lang = $this->Session->read('random_lang_selected');
