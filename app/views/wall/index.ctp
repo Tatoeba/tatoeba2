@@ -43,10 +43,6 @@ $javascript->link('wall.show_and_hide_replies.js', false);
 
 ?>
 <div id="annexe_content" >
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-    
     <div class="module" >
         <h2><?php __('Tips'); ?></h2>
         <p>

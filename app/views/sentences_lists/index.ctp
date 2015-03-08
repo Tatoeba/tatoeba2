@@ -29,11 +29,6 @@ $this->set('title_for_layout', $pages->formatTitle(__('Lists of sentences', true
 ?>
 
 <div id="annexe_content" >
-
-<?php
-$attentionPlease->tatoebaNeedsYou();
-?>
-
 <?php
 if ($session->read('Auth.User.id')) {
     

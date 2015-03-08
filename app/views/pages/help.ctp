@@ -29,10 +29,6 @@ $this->set('title_for_layout', $pages->formatTitle(__('Help', true)));
 ?>
 
 <div id="annexe_content">
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-    
     <div class="module">
         <h2><?php __('Need more help?'); ?></h2>
         <p>

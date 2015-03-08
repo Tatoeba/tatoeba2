@@ -34,12 +34,6 @@ if (!isset($lastText)) {
 
 ?>
 
-<div id="annexe_content">
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-</div>
-
 <div id="main_content">
     <div class="module">
          <h2><?php __('Pinyin converter'); ?></h2>

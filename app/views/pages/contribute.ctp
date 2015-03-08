@@ -48,10 +48,6 @@ $this->set('title_for_layout', $pages->formatTitle(__('How to contribute', true)
     }
     ?>
     
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-    
     <div class="module">
         <h2><?php __('Important to read'); ?></h2>
         <ol>

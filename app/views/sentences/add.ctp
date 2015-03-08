@@ -31,10 +31,6 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
 ?>
 
 <div id="annexe_content">
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-    
     <div class="module">
     <h2><?php __('Important'); ?></h2>
     <ol>

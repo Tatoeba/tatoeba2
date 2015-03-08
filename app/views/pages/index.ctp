@@ -47,10 +47,6 @@ if (!$isLogged) {
         )
     ));
     ?>
-    
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
         
     <div class="module">
         <h2><?php __('Latest messages'); ?></h2>

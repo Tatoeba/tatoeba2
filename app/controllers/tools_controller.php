@@ -39,7 +39,7 @@ App::import('Vendor', 'autotranscription');
 class ToolsController extends AppController
 {
     public $name = 'Tools';
-    public $helpers = array('Javascript','AttentionPlease');
+    public $helpers = array('Javascript');
     public $components = array('Pinyin');
 
     /**

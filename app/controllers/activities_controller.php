@@ -36,8 +36,6 @@
  */
 class ActivitiesController extends AppController
 {
-    public $helpers = array('AttentionPlease');
-
     public $components = array ('CommonSentence');
 
     /**

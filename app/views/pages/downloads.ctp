@@ -29,10 +29,6 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
 ?>
 
 <div id="annexe_content">
-    <?php
-        $attentionPlease->tatoebaNeedsYou();
-    ?>
-    
     <div class="module">
     <h2><?php __('Warning'); ?></h2>
     <p>

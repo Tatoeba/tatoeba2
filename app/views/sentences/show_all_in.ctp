@@ -46,8 +46,6 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 
 <div id="annexe_content">
     <?php
-    $attentionPlease->tatoebaNeedsYou();
-
     $showAll->displayShowAllInSelect($lang);
     $showAll->displayShowOnlyTranslationInSelect($translationLang);
     $showAll->displayShowNotTranslatedInto($notTranslatedInto);

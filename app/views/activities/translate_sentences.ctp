@@ -36,11 +36,7 @@ if (empty($notTranslatedInto)) {
 }
 ?>
 
-<div id="annexe_content">    
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-
+<div id="annexe_content">
     <div class="module">
         <h2><?php __("How to add a translation"); ?></h2>
         <p>

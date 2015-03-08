@@ -58,8 +58,7 @@ class WallController extends Appcontroller
         'Wall',
         'Javascript',
         'Date',
-        'Pagination',
-        'AttentionPlease'
+        'Pagination'
     );
     public $components = array ('Mailer');
     /**

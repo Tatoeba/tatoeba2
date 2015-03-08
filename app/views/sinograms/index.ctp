@@ -30,11 +30,7 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
 
 ?>
 
-<div id="annexe_content" >
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-
+<div id="annexe_content">
     <div class="module"  >
         <h2><?php __('Browse radicals'); ?></h2>
         <div id="numberList" >

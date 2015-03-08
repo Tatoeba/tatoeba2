@@ -44,8 +44,7 @@ class SentencesListsController extends AppController
         'Html',
         'Lists',
         'Menu',
-        'Pagination',
-        'AttentionPlease'
+        'Pagination'
     );
     public $components = array(
         'LanguageDetection', 
