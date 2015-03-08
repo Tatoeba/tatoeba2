@@ -25,59 +25,20 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', __('Tatoeba: Collecting example sentences', true));
-$html->meta(
-    'description', 
-    __(
-        "Search example sentences translated into many languages. ".
-        "Add and translate your own sentences. ".
-        "It's collaborative, open, free, and even addictive.",
-        true
-    ), 
-    array('inline' => false)
-);
+$this->set('title_for_layout', __('Tatoeba: Collection of sentences and translations', true));
 
 $selectedLanguage = $session->read('random_lang_selected');
 
-?>
-<div id="annexe_content">
-    <?php
-    echo $this->element('join_us', array(
+if (!$isLogged) {
+    echo $this->element('short_description', array(
         'cache' => array(
             'time' => '+1 day',
             'key' => Configure::read('Config.language')
         )
     ));
-    ?>
-    
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-    
-    <div class="module">
-        <h2><?php __('Some stats'); ?></h2>
-        <p>
-            <?php
-            echo format(
-                __n('One contribution today', '{n}&nbsp;contributions today', $nbrContributions, true),
-                array('n' => $nbrContributions)
-            );
-            echo "<br />";
-            echo format(
-                __n('One member so far', '{n}&nbsp;members so far', $nbrActiveMembers, true),
-                array('n' => $nbrActiveMembers)
-            );
-            echo "<br />";
-            $nbrLanguages = $languages->getNumberOfLanguages();
-            echo format(
-                __n('One supported language', '{n}&nbsp;supported languages', $nbrLanguages, true),
-                array('n' => $nbrLanguages)
-            );
-            ?>
-        </p>
-    </div>
-    
-
+}
+?>
+<div id="annexe_content">
     <?php 
     echo $this->element('sentences_statistics', array(
         'cache' => array(
@@ -86,57 +47,33 @@ $selectedLanguage = $session->read('random_lang_selected');
         )
     ));
     ?>
+    
+    <?php
+    $attentionPlease->tatoebaNeedsYou();
+    ?>
+        
+    <div class="module">
+        <h2><?php __('Latest messages'); ?></h2>
+        <?php 
+        // TODO to extract
+        foreach ($latestMessages as $message) {
 
+            $messageOwner = $message['User']['username'];
+            $messageContent = $message['Wall']['content'];
+            $messageDate = $message['Wall']['date'];
+            $messageId = $message['Wall']['id'];
+            
+            $wall->messagePreview(
+                $messageId, $messageOwner, $messageContent, $messageDate
+            );
+            
+        }
+        ?>
+    </div>
+    
 </div>
 
 <div id="main_content">
-    <div class="module">
-        <h2><?php __('What is Tatoeba?'); ?></h2>
-        <p>
-            <script type="text/javascript" src="http://s3.www.universalsubtitles.org/embed.js">
-            (
-              {"base_state": {}, "video_url": "http://www.youtube.com/watch?v=ac9SmJuwHqk"}
-            )
-            </script>
-            <!--
-            <object 
-                type="application/x-shockwave-flash"
-                style="width:480px; height:385px;"
-                data="http://www.youtube.com/v/ac9SmJuwHqk&amp;hl=en_US&amp;fs=1&amp;"
-            >
-                <param name="wmode" value="transparent" /> 
-                <param name="movie" value="http://www.youtube.com/v/ac9SmJuwHqk&amp;hl=en_US&amp;fs=1&amp;" />
-                <object 
-                    data="http://www.tudou.com/v/FC72iaE81Rs/v.swf"
-                    type="application/x-shockwave-flash"
-                    style="width:480px; height:385px;"
-                >
-                </object>
-            </object> 
-            -->
-
-        </p>
-        <p>
-            <?php
-            __(
-                'At its core, Tatoeba is a large database of <strong>example '.
-                'sentences</strong> translated into several languages. '.
-                'But as a whole, it is much more than that.'
-            );
-            // TODO : write something in the "About
-            // echo ' ' . $html->link(__('Learn more...',true), 
-            //     array('controller' => 'pages', 'action' => 'about'));
-            echo ' ';
-            echo $html->link(
-                __("See what's happening now.", true),
-                array(
-                    "controller" => "pages",
-                    "action" => "home"
-                )
-            );
-            ?>
-        </p>
-    </div>
 
     <div class="module">
         <?php echo $this->element('random_sentence_header'); ?>
@@ -153,6 +90,60 @@ $selectedLanguage = $session->read('random_lang_selected');
         );
         ?>
         </div>
+    </div>
+
+    <div class="module">
+        <h2>
+            <?php __('Latest contributions'); ?> 
+            <span class="annexe">
+                (
+                    <?php
+                    echo $html->link(
+                        __('show more...', true),
+                        array(
+                            'controller' => 'contributions',
+                            'action' => 'latest'
+                        )
+                    ); 
+                    ?>
+                ) (
+                    <?php 
+                    echo $html->link(
+                        __('show activity timeline', true),
+                        array(
+                            "controller"=>"contributions",
+                            "action"=>"activity_timeline"
+                        )
+                    );
+                    ?>
+                )
+            </span>
+        </h2>
+            <?php echo $this->element('latest_contributions'); ?>
+    </div>
+    <div class="module">
+        <h2>
+            <?php __('Latest comments'); ?>
+            <span class="annexe">
+                (
+                    <?php
+                    echo $html->link(
+                        __('show more...', true),
+                        array("controller"=>"sentence_comments")
+                    ); 
+                    ?>
+                )
+            </span>
+        </h2>
+        <?php
+        echo $this->element(
+            'latest_sentence_comments',
+            array(
+                'sentenceComments' => $sentenceComments,
+                'commentsPermissions' => $commentsPermissions
+            )
+        ); 
+        ?>
     </div>
 </div>
 

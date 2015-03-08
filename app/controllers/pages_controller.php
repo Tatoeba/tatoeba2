@@ -80,28 +80,35 @@ class PagesController extends AppController
     }
 
     /**
-     * use to retrive data needed to display all the index module
-     * data are sent to pages/index.ctp
-     *
      * @return void
      */
-
     public function index()
     {
-        if ($this->Auth->user()) {
-            $this->redirect(array('action' => 'home'));
-        }
+        $this->helpers[] = 'Wall';
+        $this->helpers[] = 'Sentences';
+        $this->helpers[] = 'Messages';
 
-        /*Some numbers part*/
-        $this->loadModel('Contribution');
-        $nbrContributions = $this->Contribution->getTodayContributions();
+        $userId = $this->Auth->user('id');
+        $groupId = $this->Auth->user('group_id');
+        $isLogged = !empty($userId);
+
+        /*latest comments part */
+        $this->loadModel('SentenceComment');
+        $latestComments = $this->SentenceComment->getLatestComments(5);
+        $commentsPermissions = $this->Permissions->getCommentsOptions(
+            $latestComments
+        );
+
+        $this->set('sentenceComments', $latestComments);
+        $this->set('commentsPermissions', $commentsPermissions);
 
 
-        $this->loadModel('User');
-        $nbrActiveMembers = $this->User->getNumberOfActiveMembers();
+        /*latest messages part */
+        $this->loadModel('Wall');
+        $latestMessages = $this->Wall->getLastMessages(5);
 
-        $this->set('nbrActiveMembers', $nbrActiveMembers);
-        $this->set('nbrContributions', $nbrContributions);
+        $this->set('isLogged', $isLogged);
+        $this->set('latestMessages', $latestMessages);
 
         // Random sentence part
         $this->_random_sentence();
@@ -165,34 +172,13 @@ class PagesController extends AppController
      */
     public function home()
     {
-        $this->helpers[] = 'Wall';
-        $this->helpers[] = 'Sentences';
-        $this->helpers[] = 'Messages';
-
-        $userId = $this->Auth->user('id');
-        $groupId = $this->Auth->user('group_id');
-        $isLogged = !empty($userId);
-
-        /*latest comments part */
-        $this->loadModel('SentenceComment');
-        $latestComments = $this->SentenceComment->getLatestComments(5);
-        $commentsPermissions = $this->Permissions->getCommentsOptions(
-            $latestComments
+        $this->redirect(
+            array(
+                "controller" => "pages",
+                "action" => "index"
+            ),
+            301
         );
-
-        $this->set('sentenceComments', $latestComments);
-        $this->set('commentsPermissions', $commentsPermissions);
-
-
-        /*latest messages part */
-        $this->loadModel('Wall');
-        $latestMessages = $this->Wall->getLastMessages(5);
-        
-        $this->set('isLogged', $isLogged);
-        $this->set('latestMessages', $latestMessages);
-
-        // Random sentence part
-        $this->_random_sentence();
     }
 
 

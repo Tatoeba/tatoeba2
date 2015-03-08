@@ -17,6 +17,47 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
+/*
+ * Random sentence
+ */
+#randomLangChoice {
+    width: 110px;
+}
+
+
+/*
+ * Latest messages on Wall
+ */
+.lastWallMessages {
+    margin: 15px 0px;
+}
+
+.lastWallMessages a {
+    color: #89C140;
+}
+
+.lastWallMessages a:hover {
+    color: #EAA315;
+}
+
+.lastWallMessages .header {
+    padding: 5px;
+}
+
+.lastWallMessages .body {
+    padding: 5px 5px 0px 5px;
+    border-top: 1px solid #D1D1D1;
+    color: #656565;
+}
+
+.lastWallMessages .link {
+    text-align: right;
+}
+
+
+/*
+ * Tatoeba short description
+ */
 .topContent {
     margin-bottom: 50px;
     font-size: 30px;

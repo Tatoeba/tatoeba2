@@ -49,7 +49,7 @@ $menuElements = array(
     __('Home', true) => array(
         "route" => array(
             "controller" => "pages",
-            "action" => "home"
+            "action" => "index"
         )
     ),
     __('Browse', true) => array(
