@@ -402,7 +402,11 @@ class SentencesHelper extends AppHelper
         if ($type != 'mainSentence') {
             $elementId = 'id="translation_'.$sentenceId.'_'.$parentId.'"';
         }
-        $class = 'sentence '.$type.' '.$correctnessLabel;
+        $classes = array('sentence', $type, $correctnessLabel);
+        if ($isEditable && $type == 'directTranslation') {
+            $classes[] = 'editableTranslation';
+        }
+        $class = join(' ', $classes);
         ?>
         
         <div class="<?php echo $class; ?>" <?php echo $elementId; ?>>

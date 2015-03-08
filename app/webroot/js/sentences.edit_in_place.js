@@ -39,6 +39,10 @@ $(document).ready(function() {
     });
 
     $(".edit").bind("click", function() {
-        $(this).parent().parent().find('.editableSentence').trigger("edit_sentence");
+        $(this).parent().parent().find('.mainSentence .editableSentence').trigger("edit_sentence");
+    });
+
+    $(".editableTranslation .editableSentence").bind("click", function() {
+        $(this).trigger("edit_sentence");
     });
 });

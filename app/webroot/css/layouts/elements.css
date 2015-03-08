@@ -1146,14 +1146,18 @@ a.romanization {
 }
 
 .editableSentence textarea{
-    padding: 0px;
     width: 50px;
+    margin: 0px;
+    padding: 0px;
 }
 
 .editableSentence {
    overflow:hidden;
 }
 
+.translations .editableSentence textarea {
+    font-size: 15px;
+}
 
 /*
  * Link to a sentence number
