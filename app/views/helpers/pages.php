@@ -23,7 +23,13 @@ class PagesHelper extends AppHelper
         return $pageTitle . __(' - Tatoeba', true);
     }
 
+    public function formatTitleWithZeroResult($title){
+        $title = sprintf('<h2>%s</h2>', $title);
+        return $title;
+    }
+
     public function formatTitleWithResultCount($paginator, $title, $real_total = 0) {
+        
         $n = $paginator->counter(array('format' => '%count%'));
         if ($real_total == 0 || $real_total == $n) {
             /* @translators: this formats the title at the top of every page
