@@ -25,7 +25,6 @@
  * @link     http://tatoeba.org
  */
 
-$javascript->link('sentences.collapse.js', false);
 $languageName = $languages->codeToNameToFormat($lang);
 
 $title = format(__('All sentences in {language}', true),

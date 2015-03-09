@@ -17,7 +17,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-$javascript->link('sentences.collapse.js', false);
 $sentences->javascriptForAJAXTranslationsGroup();
 
 if (!$saved) {

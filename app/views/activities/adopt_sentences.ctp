@@ -25,8 +25,6 @@
  * @link     http://tatoeba.org
  */
 
-$javascript->link('sentences.collapse.js', false);
-
 if (empty($lang)){
     $title = __('Orphan sentences', true);
 } else {

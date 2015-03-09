@@ -120,6 +120,7 @@ class SentencesHelper extends AppHelper
         <div id="_<?php echo $id; ?>_translations" class="translations">
             
             <?php
+            $this->Javascript->link('sentences.collapse.js', false);
 
             $totalDirectTranslations = count(array_keys($translations));
             $totalIndirectTranslations = count(array_keys($indirectTranslations));
@@ -736,6 +737,7 @@ class SentencesHelper extends AppHelper
         echo $this->Javascript->link('sentences.edit_in_place.js', true);
         echo $this->Javascript->link('sentences.change_language.js', true);
         echo $this->Javascript->link('sentences.link.js', true);
+        echo $this->Javascript->link('sentences.collapse.js', false);
         $this->javascriptForAJAXTranslationsGroup();
     }
 

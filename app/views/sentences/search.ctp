@@ -25,7 +25,6 @@
  * @link     http://tatoeba.org
  */
 
-$javascript->link('sentences.collapse.js', false);
 $query = Sanitize::html($query);
 
 if (!empty($query)) {
