@@ -613,33 +613,3 @@ textarea {
     padding-left: 30px;
     line-height: 24px;
 }
-
-/* collapsible sentence lists
-*/
-.more {
-      display: none;
-}
-
-div.showLink, div.hideLink {
-  border-radius: 5px;
-  margin-top: 10px;
-  float: right; 
-  text-decoration: none;
-  color: #257d0c;
-  font-size: 13px;
-  cursor: pointer;
-}
-
-div.showLink {
-    background: rgba(0, 102, 170, 0.1);
-    color: #06A;
-    border: 1px solid rgba(0, 102, 170, 0.2);
-    padding: 2px 10px;
-}
-
-div.hideLink {
-    display: none;
-    background: #06A;
-    color: #fff;
-    padding: 3px 10px;
-}

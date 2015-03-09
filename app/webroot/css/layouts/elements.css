@@ -896,20 +896,39 @@
  * --------------------------------------------------------------------
  */
 
+.sentences_set {
+    border: 1px solid #ddd;
+}
+
+
 /*
  * Sentence menu
  */
 .sentences_set .menu {
     border-bottom: 1px dotted #CCC;
-    margin: 2px;
-    padding: 0px;
+    padding: 5px;
+    padding-right: 10px;
+    margin: 0px;
 }
 
 .sentences_set .menu li {
-    display: inline;
-    font-size: 13px;
-    padding: 2px 8px;
-    line-height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px 8px;
+}
+
+.sentences_set .menu li.adopt,
+.sentences_set .menu li.belongsTo {
+    margin: 0px;
+    float: right;
+    color: #75C34B;
+    font-weight: bold;
+    padding: 2px 0px !important;
+}
+
+.sentences_set .menu li a {
+    display: block;
+    height: 16px;
 }
 
 .sentences_set .menu img,
@@ -925,18 +944,6 @@
 .sentences_set .menu .disabled img,
 .sentences_set .menu .disabled img:hover {
     opacity: 0.2;
-}
-
-.belongsTo {
-    margin-top: -1px;
-    margin-right: 2px;
-}
-
-.belongsTo, .adopt {
-    float: right;
-    color: #75C34B;
-    font-weight: bold;
-    padding: 2px 0px !important;
 }
 
 .belongsTo a {
@@ -1022,9 +1029,6 @@
 /*
  * Translations
  */
-.translations {
-    margin-bottom: 25px;
-}
 
 .directTranslation, .indirectTranslation {
     font-size: 15px;
@@ -1326,6 +1330,33 @@ input.sentenceId {
     background-color: #F1F1F1;
 }
 
+
+/*
+ * collapsible sentence lists
+ */
+.more {
+    display: none;
+}
+
+div.showLink, div.hideLink {
+    text-decoration: none;
+    font-size: 13px;
+    cursor: pointer;
+    text-align: center;
+}
+
+div.showLink {
+    background: rgba(0, 102, 170, 0.1);
+    color: #06A;
+    padding: 2px 10px;
+}
+
+div.hideLink {
+    display: none;
+    background: #06A;
+    color: #fff;
+    padding: 3px 10px;
+}
 
 /*
  * --------------------------------------------------------------------
