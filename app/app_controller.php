@@ -187,6 +187,9 @@ class AppController extends Controller
         $useMostRecentList = $this->Cookie->read('use_most_recent_list');
         $this->Session->write('use_most_recent_list', $useMostRecentList);
 
+        $collapsibleTranslationsEnabled = $this->Cookie->read('collapsible_translations_enabled');
+        $this->Session->write('collapsible_translations_enabled', $collapsibleTranslationsEnabled);
+
         $jqueryChosen = $this->Cookie->read('jquery_chosen');
         $this->Session->write('jquery_chosen', $jqueryChosen);
     }

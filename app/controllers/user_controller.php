@@ -380,6 +380,9 @@ class UserController extends AppController
             $useMostRecentList = $this->data['User']['use_most_recent_list'];
             $this->Cookie->write('use_most_recent_list', $useMostRecentList, false, "+1 month");
 
+            $collapsibleTranslationsEnabled = $this->data['User']['collapsible_translations_enabled'];
+            $this->Cookie->write('collapsible_translations_enabled', $collapsibleTranslationsEnabled, false, "+1 month");;
+
             $this->data['User']['id'] = $currentUserId;
             $this->data['User']['lang'] = $this->_language_settings(
                 $this->data['User']['lang']
@@ -559,6 +562,9 @@ class UserController extends AppController
         // Whether to select by default the last list to which user assigned a sentence
         $this->data['User']['use_most_recent_list']
           = $this->Cookie->read('use_most_recent_list');
+        
+        $this->data['User']['collapsible_translations_enabled']
+            = $this->Cookie->read('collapsible_translations_enabled');
     }
 }
 ?>
