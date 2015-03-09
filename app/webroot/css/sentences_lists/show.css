@@ -58,19 +58,14 @@
  * Download
  */
 .download a {
-    background: url(../../img/search_bar_body.png) repeat;
-    padding: 5px 12px;
-    color: #1A3502;
+    background: #6A0;
+    padding: 8px 12px;
+    color: #fff;
     border: 1px solid #6E994E;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
+    font-size: 1.2em;
     border-radius: 8px;
     margin: 20px auto;
     display: block;
     text-align: center;
     width: 150px;
-}
-
-.download a:hover {
-    color: #D5E5C9;
 }

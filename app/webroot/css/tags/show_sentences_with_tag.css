@@ -79,26 +79,3 @@
 .deleteList a {
     color: #FF2128;
 }
-
-
-/*
- * Download
- */
-.download a {
-    background: url(../../img/search_bar_body.png) repeat;
-    padding: 8px 12px;
-    color: #1A3502;
-    border: 1px solid #6E994E;
-    font-size: 1.2em;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
-    margin: 20px auto;
-    display: block;
-    text-align: center;
-    width: 150px;
-}
-
-.download a:hover {
-    color: #D5E5C9;
-}
