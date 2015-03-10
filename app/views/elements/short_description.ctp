@@ -32,12 +32,7 @@
             <?php __("Tatoeba is a collection of sentences and translations."); ?>
         </p>
         <p>
-            <?php __(
-                "Search for example sentences, find translations, add or ".
-                "translate sentences to help other language learners, ".
-                "and much more. ".
-                "It's collaborative, open, free and even addictive."
-            ); ?>
+            <?php __("It's collaborative, open, free and even addictive."); ?>
         </p>
     </div><!--
 
