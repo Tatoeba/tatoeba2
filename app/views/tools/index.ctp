@@ -27,38 +27,6 @@
 
 $this->set('title_for_layout', $pages->formatTitle(__('Useful tools', true)));
 ?>
-<div id="annexe_content" >
-    <div class="module" >
-        <h2><?php __("Need a tool?"); ?></h2>
-
-        <p>
-            <?php
-            __(
-                "Well, Tatoeba's developers don't have time to think of every".
-                " possible useful tool for language learners."
-            );
-            ?>
-        </p>
-
-        <p>
-            <?php
-            echo format(
-                __(
-                    "So if there is a must-have tool which is missing, or if you".
-                    " have yourself coded something you think can help others".
-                    " (as long as you can provide it under a GPL compatible".
-                    " licence) don't hesitate to talk about it <a href=\"{}\">".
-                    "here</a>. We're always looking for new stuff.",
-                    true
-                ),
-                "/wall/index"
-            );
-            ?>
-        </p>
-
-    </div>
-</div>
-
 <div id="main_content">
     <div class="module">
         <h2><?php __("Tools"); ?></h2>

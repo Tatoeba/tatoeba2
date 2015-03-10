@@ -58,14 +58,9 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
     <img alt="Creative Commons License" style="border-width:0"
         src="http://i.creativecommons.org/l/by/2.0/fr/88x31.png" />
     </a>
-    <p>
-    <?php 
-        $explanation = "http://blog.tatoeba.org/2009/12/tatoeba-update-dec-12th-2009.html";
-        echo format(__('For those who wonder why we\'re not leaving the data in the public '.
-              'domain, some explanation '.
-              '<a href="{}">here</a>.',
-              true), $explanation); 
-    ?>
+    </div>
+
+    <div class="module">
     <h2><?php __('Questions?'); ?></h2>
     <p>
     <?php
