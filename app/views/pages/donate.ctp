@@ -47,27 +47,18 @@ $this->set('title_for_layout', $pages->formatTitle(__('Donate', true)));
     </div>
 
     <div class="module">
-        <h2><?php __("Top donators this month"); ?></h2>
+        <h2><?php __("Latest donations"); ?></h2>
         <ol>
-            <li>Sascha Tesic, 50€</li>
-            <li>-</li>
-            <li>-</li>
-            <li>-</li>
-            <li>-</li>
+            <li>Stanislav - 5 €</li>
+            <li>Sascha - 50 €</li>
+            <li>anonymous - 1 939,07 €</li>
+            <li>Ray - 100,00 €</li>
+            <li>Dmitriy - 40,00 €</li>
         </ol>
-    </div>
-
-    <div class="module">
-        <h2><?php __("Top donators of all time"); ?></h2>
-        <ol>
-            <li><em>anonymous</em>, 1939€</li>
-            <li>John Storr, 100€</li>
-            <li>Ray Price, 100€</li>
-            <li>Sascha Tesic, 50€</li>
-            <li>William Hoggarth, 40€</li>
-            <li>Gary Blackburn, 40€</li>
-            <li>Kiselev Dmitriy, 40€</li>
-        </ol>
+        <?php echo $html->link(
+            __("All donations", true),
+            'http://en.wiki.tatoeba.org/articles/show/donations'
+        ); ?>
     </div>
 </div>
 
