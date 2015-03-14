@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-28 15:43+0000\n"
-"PO-Revision-Date: 2015-03-02 05:13+0000\n"
+"POT-Creation-Date: 2015-03-10 21:48+0000\n"
+"PO-Revision-Date: 2015-03-11 16:13+0000\n"
 "Last-Translator: sabretou <sabretou@gmail.com>\n"
 "Language-Team: Marathi (http://www.transifex.com/projects/p/tatoeba_website/language/mr/)\n"
 "MIME-Version: 1.0\n"
@@ -28,7 +28,7 @@ msgstr "यासाठी लॉग-इन करणे आवश्यक आ�
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are now direct translations of "
 "each other."
-msgstr "वाक्ये क्र.{firstNumber} व क्रं.{secondNumber} आता एकमेकांची प्रत्यक्ष भाषांतरे आहेत."
+msgstr "वाक्ये क्र.{firstNumber} व क्र.{secondNumber} आता एकमेकांची प्रत्यक्ष भाषांतरे आहेत."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L395
@@ -41,13 +41,13 @@ msgstr "सेव्ह करताना त्रुटी आढळली. �
 msgid ""
 "Sentences #{firstNumber} and #{secondNumber} are no longer direct "
 "translations of each other."
-msgstr "वाक्ये क्र.{firstNumber} व क्रं.{secondNumber} आता एकमेकांची प्रत्यक्ष भाषांतरे नाहीत."
+msgstr "वाक्ये क्र.{firstNumber} व क्र.{secondNumber} आता एकमेकांची प्रत्यक्ष भाषांतरे नाहीत."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L127
 msgid ""
 "An error occurred while unlinking. Please try again or contact us to report "
 "this."
-msgstr "अनलिंक करताना एक त्रुटी आढळली. पुन्हा प्रयत्न करून बघा, किंवा अहवाल देण्यासाठी आमच्याशी संपर्क साधा."
+msgstr "दुवा जोडताना त्रुटी आढळली. पुन्हा प्रयत्न करून बघा, किंवा याचा अहवाल सादर करण्यासाठी आमच्याशी संपर्क साधा."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L138
 msgid ""
@@ -94,8 +94,8 @@ msgid "You do not have permission to edit this comment. "
 msgstr "ही टिप्पणी संपादित करण्याची आपल्याकडे परवानगी नाही. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L290
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L305
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L334
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L304
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L333
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L64
 msgid ""
 "If you have received this message in error, please contact administrators at"
@@ -114,19 +114,19 @@ msgstr "आपल्या टिप्पणीत केलेले बदल
 msgid "We could not save your changes."
 msgstr "बदल सेव्ह करता आले नाहीत."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L266
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L265
 msgid "You cannot delete this sentence."
 msgstr "हे वाक्य आपण हटवू शकत नाही."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L279
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L278
 msgid "The sentence #{id} has been deleted."
 msgstr "वाक्य क्र. {id} हटवले गेले आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L286
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr "त्रुटी: वाक्य क्र. {id} हटवता आले नाही."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L176
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L175
 msgid ""
 "The download feature has been disabled for this list because it contains a "
 "sentence."
@@ -136,7 +136,7 @@ msgid_plural ""
 msgstr[0] "या यादीत एक वाक्य असल्यामुळे या यादीत डाउनलोड वैशिष्ट्य निष्क्रिय केले गेले आहे."
 msgstr[1] "या यादीत {n}&nbsp;वाक्ये असल्यामुळे या यादीत डाउनलोड वैशिष्ट्य निष्क्रिय केले गेले आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L182
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L181
 msgid ""
 "Only lists containing one sentence or fewer can be downloaded. If you can "
 "edit the list, you may want to split it into multiple lists."
@@ -149,15 +149,15 @@ msgstr[1] "केवळ {max} किंवा यापेक्षा कमी
 #. @translators: this string is used to concatenate two sentences.
 #. You typically want to change this to {firstSentence}{secondSentence}
 #. if your language don't use space as a word separator.
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L195
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L74
 msgid "{firstSentence} {secondSentence}"
 msgstr "{firstSentence} {secondSentence}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L119
 msgid ""
 "Tag '{tagName}' already exists for sentence #{number}, or cannot be added"
-msgstr "टॅग वाक्य क्रं.{tagName} वर '{number}' हा टॅग आधीच लावला गेला आहे, किंवा हा लावला जाऊ शकत नाही."
+msgstr "टॅग वाक्य क्र.{tagName} वर '{number}' हा टॅग आधीच लावला गेला आहे, किंवा हा लावला जाऊ शकत नाही."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/tags_controller.php#L260
 msgid ""
@@ -276,23 +276,27 @@ msgstr "कोणतेही नोंदणीकृत प्रयोक्�
 msgid "No user with this id: "
 msgstr "या आय.डी.चे कोणतेही प्रयोक्ता नाहीत: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L303
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L302
 msgid "You do not have permission to edit this message. "
 msgstr "हा संदेश संपादित करण्याची आपल्याकडे परवानगी नाही. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L332
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L331
 msgid "You do not have permission to edit this message."
 msgstr "हा संदेश संपादित करण्याची आपल्याकडे परवानगी नाही."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L347
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L346
 msgid "Message saved."
 msgstr "संदेश सेव्ह झाला."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L358
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L357
 msgid ""
 "We apologize, but we could not save your data.\n"
 "                             Please try again"
 msgstr "क्षमा करा, पण आपला डेटा सेव्ह करता आला नाही.\n                            कृपया पुन्हा प्रयत्न करून बघा."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L467
+msgid "The message you are trying to view does not exist or has been deleted."
+msgstr "आपण जो संदेश पाहायचा प्रयत्न करत आहात तो अस्तित्वात नाही, किंवा तो हटवला गेला आहे."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/models/sentences_list.php#L108
 msgid "unnamed list"
@@ -325,9 +329,9 @@ msgid ""
 msgstr "जर आपल्याला वाक्ये तपासायला व त्यांना सुधारायला आमची मदत करायची असेल, तर आपल्या <strong>मातृभाषेतल्या </strong> कोणत्याही \"अनाथ\" वाक्याला दत्तक ({adoptButton}) घ्या, व गरज पडल्यास त्याला सुधारा. पुढील स्पष्टीकरणासाठी <a href=\"{url}\">हे वाचा</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L72
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L61
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L74
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L47
 msgid "Tips"
 msgstr "टिप"
 
@@ -341,14 +345,14 @@ msgstr "वाक्य दत्तक घेतल्यानंतर जर
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L105
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L92
 msgid "Improve sentences"
 msgstr "वाक्ये सुधारा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L61
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L33
 msgid "Related links"
-msgstr "संबंधित लिंक"
+msgstr "संबंधित पाने"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L63
 msgid "Tag guidelines"
@@ -424,77 +428,77 @@ msgid ""
 msgstr "प्रश्नात्मक वाक्य दुरुस्त केल्यावर त्यावर {tagOK} हा टॅग लावा. साधारणतः आपण दुसर्‍यांची वाक्ये चाळून त्यांवर {tagOK} हा टॅग लावू शकता. परंतु त्या वाक्यांच्या अचूकपणेबद्दल पूर्णपणे खत्री असेल तेंव्हाच असं करा. हा टॅग स्वतःच्या वाक्यांवर वापरू नये."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L27
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L96
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L83
 msgid "Translate sentences"
 msgstr "वाक्यांचं भाषांतर करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L45
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L41
 msgid "How to add a translation"
 msgstr "भाषांतर कसे जोडावे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L46
 msgid ""
 "Once the sentences are displayed, click on {translateButton} to add a "
 "translation."
 msgstr "वाक्ये दाखवली गेल्यावर भाषांतर जोडण्यास {translateButton} वर क्लिक करा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L60
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L56
 msgid "About translations"
 msgstr "भाषांतरांविषयी"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L58
 msgid "Good translations"
 msgstr "चांगली भाषांतरे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L60
 msgid "We know it's difficult, but do NOT translate word for word!"
 msgstr "असं करणं कठीण आहे हे खरं, पण शब्दशः भाषांतर करू नका!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L64
 msgid "Multiple translations"
 msgstr "अनेक भाषांतरे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L68
 msgid ""
 "If you feel there are several possible translations, you can add several "
 "translations in the same language. "
 msgstr "एखाद्या वाक्याचं अनेक प्रकारे भाषांतर केलं जाऊ शकतं असं वाटत असेल, तर एकाच भाषेत अनेक भाषांतरसुद्धा जोडले जाऊ शकतात."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L81
 msgid "Search for untranslated sentences"
 msgstr "भाषांतर न केलेली वाक्ये शोधा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L95
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L135
 msgid "Sentences in:"
 msgstr "या भाषेतील वाक्ये:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L193
 msgid "Not directly translated into:"
 msgstr "या भाषेत प्रत्यक्ष भाषांतरित नसलेले:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L134
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L130
 msgid "show sentences"
 msgstr "वाक्ये दाखवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L140
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L136
 msgid "Display random sentences"
 msgstr "यादृच्छिक वाक्ये दाखवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L147
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L59
 msgid "Quantity"
 msgstr "संख्या"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L161
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L72
 msgid "Language"
 msgstr "भाषा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L181
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L177
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L86
 msgid "show random sentences"
 msgstr "यादृच्छिक वाक्ये दाखवा"
@@ -518,7 +522,7 @@ msgstr "कार्यकलाप समयरेखा"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L73
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L43
 msgid "Latest contributions"
 msgstr "नवीनतम योगदान"
@@ -634,8 +638,8 @@ msgstr "वापरण्याच्या अटी"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L53
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L68
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L56
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L66
 msgid "Contact us"
 msgstr "आमच्याशी संपर्क साधा"
 
@@ -676,9 +680,10 @@ msgstr "जितके योगदाता, तितक्याच उप�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/join_us.ctp#L41
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L37
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L41
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L155
@@ -687,6 +692,7 @@ msgstr "नोंदणी करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L59
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L73
 msgid "Log in"
 msgstr "लॉगइन करा"
@@ -780,8 +786,8 @@ msgid "show another "
 msgstr "दुसरे दाखवा "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L69
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L115
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L144
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L127
 msgid "show more..."
 msgstr "अजून दाखवा..."
 
@@ -885,6 +891,22 @@ msgstr "आपला सेशनची मुदत संपली आहे."
 msgid "Please <a href=\"{}\">click here</a> to log in again."
 msgstr "पुन्हा लॉगइन करण्यासाठी कृपया <a href=\"{}\">येथे क्लिक करा</a>."
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L32
+msgid "Tatoeba is a collection of sentences and translations."
+msgstr "तातोएबा वाक्यांचा व भाषांतरांचा संग्रह आहे."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L35
+msgid "It's collaborative, open, free and even addictive."
+msgstr "सहयोगात्मक, मुक्त, मोफत आणि अडिक्टिव्ह."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L43
+msgid "How it works"
+msgstr "हे कसं चालतं"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L54
+msgid "About us"
+msgstr "आमच्याबद्दल"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L43
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L74
@@ -956,24 +978,24 @@ msgid "Browse audio"
 msgstr "ऑडिओ चाळा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L86
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L71
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/of_user.ctp#L66
 msgid "Contribute"
 msgstr "योगदान करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L92
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L79
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L28
 msgid "Add sentences"
 msgstr "वाक्ये जोडा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L100
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L87
 msgid "Adopt sentences"
 msgstr "वाक्ये दत्तक घ्या"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L113
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L96
 msgid "Discuss sentences"
 msgstr "वाक्यांवर चर्चा करा"
 
@@ -1010,17 +1032,17 @@ msgid "Help"
 msgstr "मदत"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L150
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L84
 msgid "Downloads"
 msgstr "डाउनलोड"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L154
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L32
 msgid "Tools"
 msgstr "साधने"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L49
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L111
 msgid "Sentences"
 msgstr "वाक्ये"
 
@@ -1029,7 +1051,7 @@ msgid "Favorites"
 msgstr "आवडीची वाक्ये"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L75
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L189
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L187
 msgid "Comments"
 msgstr "टिप्पण्या"
 
@@ -1043,7 +1065,7 @@ msgid "Wall messages"
 msgstr "भिंतीवरील संदेश"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L103
 msgid "Logs"
 msgstr "नोंदवही"
 
@@ -1106,7 +1128,6 @@ msgid "unhide"
 msgstr "दाखवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L224
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L229
 msgid "hide"
 msgstr "लपवा"
 
@@ -1225,7 +1246,7 @@ msgstr "हिब्रू"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L206
 msgid "Indonesian"
-msgstr "डन्डोनेशियन"
+msgstr "बहासा इंडोनेशिया"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L207
 msgid "Portuguese"
@@ -1265,7 +1286,7 @@ msgstr "स्वीडिश"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L216
 msgid "Norwegian (Bokmål)"
-msgstr "नॉर्वेजियन (बूकमॉल)"
+msgstr "नॉर्वीजियन (बूकमॉल)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L217
 msgid "Malay"
@@ -1333,11 +1354,11 @@ msgstr "फ्रिसियन"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L234
 msgid "Breton"
-msgstr "ब्रेटन"
+msgstr "ब्रेतॉन"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L235
 msgid "Romanian"
-msgstr "रोमानियन"
+msgstr "रोमेनियन"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L236
 msgid "Uyghur"
@@ -1349,7 +1370,7 @@ msgstr "उज्बेक"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L238
 msgid "Norwegian (Nynorsk)"
-msgstr "नॉर्वेजियन (नूनॉर्स्क)"
+msgstr "नॉर्वीजियन (नूनॉर्स्क)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L239
 msgid "Serbian"
@@ -1449,7 +1470,7 @@ msgstr "क्वेचुआ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L263
 msgid "Mongolian"
-msgstr "मंगोलीयन"
+msgstr "मंगोलियन"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L264
 msgid "Lithuanian"
@@ -1505,7 +1526,7 @@ msgstr "थाई"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L277
 msgid "Literary Chinese"
-msgstr "चिनी, साहित्यिक"
+msgstr "साहित्यिक चिनी"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L278
 msgid "Ossetian"
@@ -1517,7 +1538,7 @@ msgstr "रोमान्श"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L280
 msgid "Volapük"
-msgstr "वोलापुक"
+msgstr "व्होलाप्युक"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L281
 msgid "Scottish Gaelic"
@@ -1589,7 +1610,7 @@ msgstr "क्वेन्या"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L301
 msgid "Novial"
-msgstr "नोविअल"
+msgstr "नोव्हियल"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L302
 msgid "Maori"
@@ -1653,7 +1674,7 @@ msgstr "नेपाळी"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L319
 msgid "Maltese"
-msgstr "मालटेस"
+msgstr "माल्टी"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L320
 msgid "Chukchi"
@@ -1665,7 +1686,7 @@ msgstr "कॉर्निश"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L322
 msgid "Azerbaijani"
-msgstr "अझेरबैजानी"
+msgstr "अझरबैजानी"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L323
 msgid "Khmer"
@@ -1677,7 +1698,7 @@ msgstr "लाओ"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L325
 msgid "Tibetan"
-msgstr "टिबेटन"
+msgstr "टिबेटी"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L326
 msgid "Hiligaynon"
@@ -1887,38 +1908,42 @@ msgstr "गुजराती"
 msgid "Punjabi (Eastern)"
 msgstr "पंजाबी (पौर्वात्य)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L433
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L452
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L523
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L378
+msgid "Khasi"
+msgstr "खासी"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L434
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L453
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L524
 msgid "All languages"
 msgstr "सर्व भाषा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L469
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L470
 msgid "unknown language"
 msgstr "अज्ञात भाषा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L486
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L487
 msgid "other language"
 msgstr "सूचीबाह्य भाषा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L504
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L505
 msgid "Auto detect"
 msgstr "आपोआप ओळखा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L522
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L565
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L523
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L566
 msgid "None"
 msgstr "नाही"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L545
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L546
 msgid "Any language"
 msgstr "कोणतीही भाषा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L581
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L582
 msgid "Any"
 msgstr "कुठलीही"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L614
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L615
 msgid "unknown"
 msgstr "अज्ञात"
 
@@ -1995,7 +2020,7 @@ msgstr "या यादीत एक वाक्य जोडा : "
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L497
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L468
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L82
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L125
 msgid "OK"
 msgstr "बरं"
 
@@ -2008,18 +2033,18 @@ msgstr "टिपण: नवीन वाक्ये जोडण्यास �
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L382
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L50
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_annotations/show.ctp#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L151
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L149
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L165
 msgid "Sentence #{number}"
-msgstr "वाक्य क्रं.{number}"
+msgstr "वाक्य क्र.{number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L454
 msgid "linked to #{sentenceNumber}"
-msgstr "#{sentenceNumber} ला लिंक केले"
+msgstr "#{sentenceNumber} शी दुवा जोडला"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L459
 msgid "unlinked from #{sentenceNumber}"
-msgstr "#{sentenceNumber} पासून अनलिंक केले"
+msgstr "#{sentenceNumber} शी दुवा मोडला"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L513
 msgid "added by {user}"
@@ -2027,7 +2052,7 @@ msgstr "{user} ने जोडले"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L515
 msgid "linked by {user}"
-msgstr "{user} ने लिंक केले"
+msgstr "{user} यांनी दुवा जोडला"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L519
 msgid "edited by {user}"
@@ -2039,7 +2064,7 @@ msgstr "{user} ने हटवले"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L525
 msgid "unlinked by {user}"
-msgstr "{user} ने अनलिंक केले"
+msgstr "{user} यांनी दुवा मोडला"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L160
 msgid "admin"
@@ -2089,16 +2114,16 @@ msgstr "हे वाक्य पारंपारिक चीनीत आ�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L206
 msgid "Click to unadopt"
-msgstr ""
+msgstr "मालकी त्यागण्यास क्लिक करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L212
 msgid "Click to adopt"
-msgstr ""
+msgstr "दत्तक घेण्यास क्लिक करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L338
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L339
 msgid "Link to another sentence"
-msgstr "दुसर्‍या वाक्याशी लिंक करा"
+msgstr "दुसर्‍या वाक्याशी दुवा जोडा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L354
 msgid "Sentence number"
@@ -2109,7 +2134,7 @@ msgstr "वाक्य क्रमांक"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L8
 msgid "Link"
-msgstr "लिंक करा"
+msgstr "दुवा जोडा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L395
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L396
@@ -2283,13 +2308,13 @@ msgstr "{sender} यांनी लिहिले:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L5
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L4
 msgid "Unlink"
-msgstr "अनलिंक"
+msgstr "दुवा मोडा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L6
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L5
 msgid "Unlink this translation."
-msgstr "हे भाषांतर अनलिंक करा."
+msgstr "या भाषांतराची दुवा मोडा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L157
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L10
@@ -2303,7 +2328,7 @@ msgstr "ऑडिओ ऐकवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L218
 msgid "No audio for this sentence. Click to learn how to contribute."
-msgstr ""
+msgstr "या वाक्याशी कोणतेही ऑडिओ संबंधित नाही. योगदान कसे करावे हे कळवून घेण्यास इथे क्लिक करा."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L247
 msgid "Translation:"
@@ -2346,7 +2371,7 @@ msgid "NOTE: Not all languages have audio at the moment."
 msgstr "टीप: या वेळी फक्त काहीच भाषांमध्ये ऑडिओ उपलब्ध आहे."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L63
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L212
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L35
 msgid "Tags"
 msgstr "टॅग"
@@ -2399,17 +2424,21 @@ msgstr "उत्तरे दाखवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L378
 msgid "by {messageAuthor}"
-msgstr "{messageAuthor} यांच्याकडून"
+msgstr "{messageAuthor} यांनी पोस्ट केले"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L72
 msgid ""
 "Warning: this website is for testing purposes. Everything you submit will be"
 " definitely lost."
-msgstr ""
+msgstr "चेतावणी: हे संकेतस्थळ परीक्षणापुरतं आहे. आपण सादर केलेली प्रत्येक वस्तू निश्चितपणे गमावली जाईल."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L98
 msgid "No language matches"
 msgstr "कोणतीही भाषा जुळली नाही"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/about.ctp#L31
+msgid "What is Tatoeba?"
+msgstr "तातोएबा काय आहे?"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L48
 msgid ""
@@ -2455,50 +2484,50 @@ msgstr "फ्रीनोडवर #tatoeba येथे आमच्याक�
 msgid "How to contribute"
 msgstr "योगदान कसे करावे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L52
 msgid "Important to read"
 msgstr "वाचण्यास आवश्यक"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L60
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L56
 msgid "Guide to being a good contributor"
 msgstr "चांगले योगदाता बनण्यासाठी मार्गदर्शक"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L62
 msgid "Reliability of the sentences"
 msgstr "वाक्यांची विश्वसनीयता"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L115
 msgid "How can you contribute?"
 msgstr "आपण योगदान कसे करू शकता?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L119
 msgid ""
 "Tatoeba is primarily about collecting sentences and translating them into "
 "many, many languages. So one obvious thing you can do to contribute is to "
 "<strong>translate sentences</strong>."
 msgstr "तातोएबाचा मूळ हेतू म्हणजे वाक्ये गोळा करून भरपूर वेगवेगळ्या भाषांमध्ये त्यांचं भाषांतर करणे. योगदान करण्यासाठी आपण  एक साहजिक गोष्ट करू शकता तर ती म्हणजे <strong>वाक्यांचं भाषांतर</strong> करणे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L129
 msgid ""
 "But you don't have to be a polyglot in order to contribute! You can help us "
 "a lot simply by <strong>checking sentences</strong> and <strong>reporting "
 "mistakes</strong>. This is something everyone can do!"
 msgstr "पण योगदान करण्यासाठी आपल्याला बहुभाषिक असण्याची गरज नव्हे! फक्त <strong>वाक्ये तपासून</strong> व <strong>चुका कळवून</strong> सुद्धा आपण आमची भरपूर मदत करू शकता. इतकं तर सर्वच करू शकतात!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L139
 msgid ""
 "If you have a good microphone, you can also bring more audio to Tatoeba by "
 "<strong>recording sentences</strong>."
 msgstr "एखादा चांगला मायक्रोफोन असला तर आपण वाक्यांना रेकॉर्ड करून तातोएबासाठी आजून ऑडिओ संसाधने निर्माण करू शकता."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L148
 msgid ""
 "You can help us promote the project. <strong>Tell people around you</strong>"
 " that Tatoeba exists. This is a very ambitious project, so we will need as "
 "much help as possible."
 msgstr "आपण या प्रकल्पाचे प्रवर्तन करण्यात आमची मदत करू शकता. तातोआबाबद्दल <strong>आजूबाजूच्या लोकांना कळवा</strong>. हा एक अतिशय महत्त्वाकांक्षी प्रकल्प असल्यामुळे, आम्हाला दिली गेलेली सर्व मदत कामात येईल."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L162
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L158
 msgid ""
 "And finally, you can <strong>join the team</strong>. You can help us code "
 "new features, improve usability, debug, optimize, keep the site secure, and "
@@ -2518,48 +2547,48 @@ msgid ""
 msgstr "देणग्यांविषयी प्रश्न असल्यास, किंवा वरील दिलेले मार्ग सोडून आपण दुसर्‍याच मार्गाने देणगी देऊ इच्छित असाल, तर <a href=\"{trangEmail}\">Trang</a> ला किंवा संपूर्ण <a href=\"{teamEmail}\">टीम</a> शी संपर्क साधा."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L50
-msgid "Top donators this month"
-msgstr "या महिन्याचे सर्वोत्कृष्ट देणगीदार"
+msgid "Latest donations"
+msgstr "नवीनतम देणग्या"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L61
-msgid "Top donators of all time"
-msgstr "सर्वात आधीपासूनचे सर्वोत्कृष्ट देणगीदार"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L59
+msgid "All donations"
+msgstr "सर्व देणग्या"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L68
 msgid "How to donate"
 msgstr "दान कसे करावे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L69
 msgid "You have two possible ways to make a donation:"
 msgstr "देणगी द्यायचे आपल्याकडे दोन मार्ग आहेत:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L74
 msgid ""
 "<b>IBAN transfer.</b> This is probably the cheapest way to donate. Tatoeba's"
 " bank is based in France, so if you are from an EU country, it is likely "
 "that the transfer will be free of charge."
 msgstr "<b>आय.बी.ए.एन. हस्तांतर.</b> देणगी द्यायचा हा कदाचित सर्वात स्वस्त मार्ग असेल. तातोएबाची बँक फ्रांसमध्ये स्थित आहे. अर्थात, आपण जर एकाद्या यूरोपीय संघातील देशातले असाल, तर हस्तांतर मोफत असायची सर्वाधिक शक्यता आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L83
 msgid ""
 "<b>PayPal.</b> If you can't transfer money with IBAN, then you can donate "
 "with PayPal. You should know that PayPal takes a certain percentage of the "
 "donation."
 msgstr "<b>पेपॅल.</b> आय.बी.ए.न. ने आपल्याला पैसे हस्तांतरित करता येत नसेल, तर आपण पेपॅलद्वारे देणगी देऊ शकता. देणगीचा एक विवक्षित भाग पेपॅल स्वतःसाठी घेईल हे लक्षात ठेवा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L93
 msgid "IBAN transfer"
 msgstr "IBAN हस्तांतरण"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L94
 msgid "Titular:"
 msgstr "नामधारी:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L95
 msgid "IBAN:"
 msgstr "IBAN:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L96
 msgid "BIC/SWIFT:"
 msgstr "BIC/SWIFT:"
 
@@ -2567,52 +2596,46 @@ msgstr "BIC/SWIFT:"
 msgid "Download sentences"
 msgstr "वाक्ये डाउनलोड करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L37
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L33
 msgid "Warning"
 msgstr "चेतावणी"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L36
 msgid ""
 "The data you will find here will NOT be useful unless you are coding a "
 "language tool or processing data."
 msgstr "आपण भाषाविषयक साधन कोड करत असाल किंवा डेटा संस्करण करत असाल तरच येथे सापडणारा डेटा उपयोगी ठरेल! "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L48
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L44
 msgid ""
 "If you simply want sentences that you can use to learn a language, check out"
 " the <a href=\"{}\">sentence lists</a>. You can build your own, or view the "
 "ones that others have created. The lists can be downloaded and printed."
 msgstr "केवळ भाषा शिकण्यासाठी वापर करता येईल अशी वाक्ये हवी असतील, तर <a href=\"{}\">वाक्यांच्या याद्या</a> बघा. आपण स्वतःच्याही याद्या बनवू शकता, किंवा दुसर्‍यांनी बनवलेल्या याद्या पाहू शकता. याद्या डाउनलोड करता किंवा छापतासुद्धा येतात."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L55
 msgid "Creative commons"
 msgstr "क्रिएटिव्ह कॉमन्स"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L60
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L56
 msgid "These files are released under CC-BY."
 msgstr "या फायली CC-BY प्रमाणे उपलब्ध केल्या जात आहेत."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L68
-msgid ""
-"For those who wonder why we're not leaving the data in the public domain, "
-"some explanation <a href=\"{}\">here</a>."
-msgstr "आम्ही हा डेटा सार्वजनिक डोमेनमध्ये का नाही सोडत आहोत असा ज्यांना प्रश्न पडला असेल, त्यांच्यासाठी <a href=\"{}\">येथे</a> जरासं स्पष्टीकरण सापडेल."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L64
 msgid "Questions?"
 msgstr "प्रश्न?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L69
 msgid ""
 "If you have questions or requests, feel free to <a href=\"{}\">contact "
 "us</a>."
 msgstr "प्रश्न किंवा विनंती असतील, तर मोकळ्या मनाने <a href=\"{}\">आमच्याशी संपर्क साधा</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L73
 msgid "In general, we answer quickly."
 msgstr "सर्वसाधारणपणे, आम्ही लवकरच उत्तर देतो."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L144
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L61
@@ -2620,90 +2643,90 @@ msgstr "सर्वसाधारणपणे, आम्ही लवकरच
 msgid "Download"
 msgstr "डाउनलोड करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L85
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L158
 msgid "Fields and structure"
 msgstr "रकाने व रचना"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L86
 msgid "File description"
 msgstr "फाइल वर्णन"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L87
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L167
 msgid "Sentence id"
 msgstr "वाक्य आय.डी."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L169
 msgid "Text"
 msgstr "मजकूर"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L89
 msgid "Lang"
 msgstr "भाषा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L90
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L82
 msgid "Username"
 msgstr "प्रयोक्ता नाव"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L91
 msgid "Date added"
 msgstr "जोण्याचा दिनांक"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L92
 msgid "Date created"
 msgstr "निर्मितीचा दिनांक"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L102
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L93
 msgid "Date last modified"
 msgstr "नवीनतम परिवर्तनाचा दिनांक"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L94
 msgid "Translation id"
 msgstr "भाषांतर आय.डी."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L95
 msgid "Tag name"
 msgstr "टॅग नाव"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L96
 msgid "List id"
 msgstr "यादी आय.डी."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L97
 msgid "List name"
 msgstr "यादीचे नाव"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L98
 msgid "Meaning id"
 msgstr "अर्थ आय.डी."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L168
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L170
 msgid "tab"
 msgstr "टॅब"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L103
 msgid "Attention: "
 msgstr "लक्ष द्या:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L104
 msgid ""
 "As of 2014-08-16, the URL to download the latest files has changed and the "
 "new export files are provided in a compressed format. The old URL is still "
 "available, but will not contain the latest data."
 msgstr "किमान १६-०८-२०१४ या दिनांकासाठी तरी, नवीनतम फायली डाउनलोड करायचा यू.आर.एल. बदलला आहे, व नवीन निर्यात केलेल्या फायली एका संक्षिप्त स्वरूपात पुरवले जातील. जुना यू.आर.एल. अजूनही उपलब्ध आहे, पण त्याने नवीनतम डेटा मिळणार नाही."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L161
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L152
 msgid ""
 "Contains all the sentences. Each sentence is associated with a unique id and"
 " an <a href=\"{}\">ISO 639-3</a> language code. "
 msgstr "यात सर्व वाक्ये आहेत. एक अद्वितीय आय.डी. व एक <a href=\"{}\">ISO 639-3</a> भाषा कोड प्रत्येक वाक्याशी संबंधित आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L164
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L155
 msgid ""
 "The first file (sentences.tar.bz2) contains this information alone. The "
 "second file (sentences_detailed.tar.bz2) contains additional fields for "
@@ -2711,179 +2734,179 @@ msgid ""
 "owns the sentence, or the date when it was added or last modified."
 msgstr "पहिल्या फाइलमध्ये (sentences.tar.bz2) केवळ ही माहिती आहे. दुसर्‍या फाइलमध्ये (sentences_detailed.tar.bz2) अतिरिक्त रकाने आहेत. योगदाता, किंवा जोडण्याच्या/बदलल्या जाण्याच्या दिनांकानुसार वाक्ये गाळण्यास हे रकाने कामात येतील."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L173
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L164
 msgid "Links"
-msgstr "लिंक"
+msgstr "पाने"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L206
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L197
 msgid ""
 "Contains the links between the sentences. {sampleLinkLine} means that "
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
 "present, so the file will also contain a line that says "
 "{sampleLinkLineReversed}."
-msgstr ""
+msgstr "वाक्यांमधील दुवा समाविष्ट आहेत. {sampleLinkLine} याचा अर्थ हा की वाक्य क्र. ७७ हे वाक्य क्र. १ चं भाषांतर आहे. पारस्पारिक दुवासुद्धा उपस्थित आहे, अर्थात फायलीत अशीही ओळी असेल: {sampleLinkLineReversed}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L242
 msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
 msgstr "यात प्रत्येक वाक्याशी संबंधित असलेल्या <a href=\"{url}\">टॅगांची</a> यादी आहे. {sampleTagLine} म्हणजे वाक्य क्र. 381279 वर \"proverb\" हा टॅग लावला गेला आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L262
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L253
 msgid "Lists"
 msgstr "याद्या"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L290
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L281
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
 msgstr "यात <a href=\"{}\">वाक्यांच्या यादींची</a> यादी आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L296
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L287
 msgid "Sentences in lists"
 msgstr "याद्यांमध्ये वाक्ये"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L321
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L312
 msgid ""
 "Indicates the sentences that are contained by any lists. {sampleListLine} "
 "means that sentence #381279 is contained by the list that has an id of 13."
-msgstr ""
+msgstr "कोणत्याही यादीत समाविष्ट असलेली वाक्ये संबोधित करतो. {sampleListLine} म्हणजे वाक्य क्र. 381279 हे 13 या आय.डीच्या यादीत समाविष्ट आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L331
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L322
 msgid "Japanese indices"
 msgstr "जपानी निर्देशांक"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L355
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L346
 msgid ""
 "Contains the equivalent of the \"B lines\" in the Tanaka Corpus file "
 "distributed by Jim Breen. See <a href=\"{url}\">this page</a> for the "
 "format. Each entry is associated with a pair of Japanese/English sentences. "
 "{sentenceId} refers to the id of the Japanese sentence. {meaningId} refers "
 "to the id of the English sentence."
-msgstr ""
+msgstr "जिम ब्रीन यांनी वितरित केलेल्या तानाका कॉर्पस फायलीतल्या \"बी-लाइन\" यांच्या समान असलेल्या नोंदी समाविष्ट आहेत. स्वरूप पाहण्यासाठी <a href=\"{url}\">हे पान</a> पाहा. प्रत्येक नोंद एका जपानी/इंग्रजी वाक्यांच्या जोडीशी संबंधित आहे. {sentenceId} हा जपानी वाक्याचा उल्लेख आहे. {meaningId} हा इंग्रजी वाक्याचा उल्लेख आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L371
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L362
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/with_audio.ctp#L28
 msgid "Sentences with audio"
 msgstr "ऑडिओसहित वाक्ये"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L388
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L379
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available."
 msgstr "सर्व भाषांमध्ये ज्या वाक्यांसाठी ऑडियो उपलब्ध आहे, त्या सर्व वाक्यांचे आय.डी. यात समाविष्ट आहेत."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L394
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L385
 msgid "General information about the files"
 msgstr "फायलींबद्दल साधारण माहिती"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L387
 msgid ""
 "The files provided here are updated every <strong>Saturday at 9 "
 "a.m.</strong>, France time."
 msgstr "येथे पुरवलेल्या फायली दर <strong>शनिवारी सकाळच्या ९ वाजता</strong> (फ्रांस वेळ विभाग) अद्ययावत केल्या जातात."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L403
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L394
 msgid ""
 "Many of the Japanese and English sentences are from the <a "
 "href=\"{}\">Tanaka Corpus</a>, which belongs to the public domain."
 msgstr "जपानी व इंग्रजी वाक्यांतील अनेक वाक्ये <a href=\"{}\">तानाका कॉर्पसमधून</a> घेतलेली आहेत. ही संहिता सार्वजनिक अधिक्षेत्रात आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L37
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L33
 msgid "Need more help?"
 msgstr "अजून मदत हवी आहे का?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L41
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L37
 msgid "You can check out the <a href=\"{}\">FAQ</a>."
 msgstr "<a href=\"{}\">फॅक</a> वाचून बघा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L48
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L44
 msgid ""
 "If you cannot find the answer to your question, do not hesitate to contact "
 "us."
 msgstr "आपल्या प्रश्नाचं उत्तर सापडलं नसेल, तर आमच्याशी संपर्क साधण्यास घुटमळू नका."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L54
 msgid "By email"
 msgstr "ईमेलद्वारे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L60
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L56
 msgid "From the Wall"
 msgstr "भिंतीपासून"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L60
 msgid "Click here to go to the Wall."
 msgstr "भिंतीकडे जायला येथे क्लिक करा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L65
 msgid "On IRC"
 msgstr "आय.आर.सी वर"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L71
 msgid "How to use IRC"
 msgstr "आय.आर.सी कसे वापरावे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L75
 msgid ""
 "For those who are not familiar with IRC, it is pretty much like an instant "
 "messenger. You will be able to talk to us in real time, if we are there."
 msgstr "आय.आर.सी. हे तात्क्षणिक मेसेन्जर सार्खंच असतं. त्याने आपण आमच्याशी सत् कालात आमच्याशी बोलू शकता - आम्ही उपलब्ध असलो तर."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L83
 msgid "There are many ways to join our channel. One is to go to this website:"
 msgstr "आमच्या चॅनलमध्ये सहभागी होण्याचे अनेक मार्ग आहेत, पण आपण या संकेतस्थळावरूनही जाऊ शकता:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L89
 msgid ""
 "Enter a nickname, enter \"#tatoeba\" for the channel, and click on "
 "\"connect\". That's it!"
 msgstr "निकनेम घाला, चॅनल म्हणून \"#tatoeba\" घाला, व \"connect\" वर क्लिक करा. तेवढंच!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L102
 msgid "Getting started"
 msgstr "सुरुवात करणे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L109
 msgid ""
 "If you have no idea what to do now that you are registered, you can "
 "introduce yourself on the <a href=\"{}\">Wall</a>, or join us on "
 "<strong>IRC</strong>. We will give you a purpose. :)"
 msgstr "नोंदणी केल्यानंतर काय करावं याची काहीच कल्पना नसेल, तर भिंतीवर स्वतःची ओळख करून द्या, किंवा आम्हाला आय.आर.सी. वर भेटा. आम्हा तुम्हाला उद्देश देऊ. :)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L121
 msgid ""
 "If you think this project is awesome and would like to help actively, here "
 "is a link you <strong>MUST</strong> read:"
-msgstr "हा प्रकल्प झकास वाटत असेल व आपल्याला सक्रियपणे मदत करायची असेल, तर ही लिंक वाचणे <strong>आवश्यक</strong> आहे:"
+msgstr "हा प्रकल्प झकास वाटत असेल व आपल्याला आमची सक्रियपणे मदत करायची असेल, तर हे पान <strong>नक्की</strong> वाचा:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L133
 msgid ""
 "That being said, welcome to Tatoeba! We hope you'll enjoy being part of this"
 " project :)"
 msgstr "इतके म्हणून, तातोएबामध्ये आपले स्वागत आहे! या प्रकल्पाचा हिस्सा बनून आपल्याला खूप मजा यावी अशी आमची आशा आहे :)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L149
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L145
 msgid "Important links"
 msgstr "महत्त्वाची पाने"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L171
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L167
 msgid "Adding new sentences"
 msgstr "नवीन वाक्ये जोडणे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L172
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L168
 msgid "There are two ways to add new sentences."
 msgstr "नवीन वाक्ये जोडण्याचे दोन मार्ग आहेत."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L177
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L173
 msgid "From the <a href=\"{}\">Contribute</a> section"
 msgstr "<a href=\"{}\">योगदान करा</a> भागापासून"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L191
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L187
 msgid ""
 "By creating a new <a href=\"{}\">list</a>, and going to the edit page for "
 "that list."
 msgstr "नवीन <a href=\"{}\">यादी</a> बनवून त्या यादीच्या संपादन पानाडे जाऊन."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L208
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L204
 msgid ""
 "Even though there are many sentences in Tatoeba, there is still a lot of "
 "vocabulary that is not covered. This is why we encourage you to add new "
@@ -2891,44 +2914,44 @@ msgid ""
 "into any language."
 msgstr "तातोएबावर भरपूर वाक्ये असली तरीही अशी पुष्कळ शब्द आहेत जी अंतर्भाव नव्हेत. म्हणूनच आम्ही तुम्हाला नवीन शब्द असलेली वाक्ये जोडायला उत्तेजित करतो. या वाक्यांचं कोणत्याही भाषेत भाषांतर करता येत नसेल, तरीही काही हरकत नाही."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L219
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L215
 msgid "Translating sentences"
 msgstr "वाक्यांचं भाषांतर करणे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L223
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L219
 msgid ""
 "Translating is one of the most important tasks in Tatoeba, since the main "
 "goal of the project is to gather sentences translated into many languages."
 msgstr "वेगवेगळ्या भाषांमध्ये भाषांतर केलेल्या वाक्यांना गोळा करणे हा तातोएबाचा एक मुख्य हेतू आहे. म्हणूनच अनुवाद करणे हा तातोएबामधील सर्वात महत्त्वाच्या क्रियांमधील एक आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L233
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L229
 msgid ""
 "You can translate a sentence from pretty much everywhere. Just click on this"
 " icon {translateButton} whenever you see it."
 msgstr "जवळजवळ कुठूनही एखाद्या वाक्याचं भाषांतर केलं जाऊ शकतं. हा आईकन दिसल्यावर त्यावर क्लिक करा: {translateButton}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L245
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L241
 msgid "Correcting mistakes"
 msgstr "चुका दुरुस्त करणे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L249
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L245
 msgid ""
 "You can only correct mistakes in sentences that belong to you. If you see a "
 "mistake in someone else's sentence, you can post a comment to notify him or "
 "her of the mistake."
 msgstr "आपण केवळ स्वतःच्याच मालकीच्या असलेल्या वाक्यांमधील चुका सुधारू शकता. इतर कोणत्या सदस्याच्या वाक्यात चूक सापडली तर त्या सदस्याला टिप्पणी पोस्ट करून आपण त्यांना ती चूक कळवू शकता."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L258
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L254
 msgid ""
 "In certain cases, the sentence does not have an owner. Read the paragraph "
 "below (on adopting sentences) to learn more."
 msgstr "विशिष्ट प्रकरणात वाक्याचा कोणीही मालक नसू शकेल. याबद्दल अजून माहितीसाठी, (दत्तक घेण्याविषयी) खालील दिलेला परिच्छेद वाचा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L267
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L263
 msgid "Adopting sentences"
 msgstr "वाक्ये दत्तक घेणे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L271
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L267
 msgid ""
 "When you add a sentence, this sentence \"belongs\" to you - only you can "
 "edit it. However, many of the sentences in Tatoeba come from a Japanese-"
@@ -2936,7 +2959,7 @@ msgid ""
 "owner because they have been collected outside of Tatoeba."
 msgstr "वाक्य जोडल्यावर ते वाक्य आपल्या मालकीचं होतं - अर्थात आपण ते संपादित करू शकता. परंतु, तातोएबातील पुष्कळ वाक्ये तानाका लेखनसंभार (Tanaka Corpus) नावाच्या एका जपानी-इंग्रजी लेखनसंभारातून प्राप्त केली गेली आहेत. तातोएबाच्या बाहेरून गोळा केल्या गेल्या असल्यामुळे, या वाक्यांचे कोणीही मालक नव्हे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L283
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L279
 msgid ""
 "If you see a mistake in an \"orphan\" sentence, you will not be able to "
 "correct it because you are not the owner. This is why there is an \"adopt\" "
@@ -2944,90 +2967,45 @@ msgid ""
 "therefore can edit it."
 msgstr "जर आपल्याला एका \"अनाथ\" वाक्यात चूक दिसून आली, तर आपण त्या वाक्याचे मालक नसल्यामुळे ती चूक दुरुस्त करू शकत नाहीत. यासाठीच \"दत्तक घ्या\" ({adoptButton}) हा विकल्प उपलब्ध आहे. वाक्य दत्तक घेतल्यावर आपण त्या वाक्याचे मालक बनाल व ते संपादित करू शकाल."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L301
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L297
 msgid ""
 "Adopting a sentence is also part of the \"quality process\". You can find "
 "more information about it here:"
 msgstr "वाक्ये दत्तक घेणे हे सुद्धा \"गुणवत्ता प्रक्रियेचा\" भाग आहे. याबद्दल अधिक माहिती येथे मिळेल:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L313
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L309
 msgid "Sentence lists"
 msgstr "वाक्यांच्या याद्या"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L317
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L313
 msgid ""
 "You can create lists of sentences in Tatoeba. By default the list is "
 "<strong>personal</strong>, which means it can only be edited by the person "
 "who created it (but it is still visible to everyone)."
 msgstr "तातोएबावर आपण वाक्यांच्या याद्या बनवू शकता. डिफॉल्टनुसार यादी <strong>व्यक्तिगत</strong> असते. अर्थात, ती ज्या व्यक्तीने बनवली आहे, तीच व्यक्ती त्या यादीला संपादित करू शकते (परंतु तरीही ती यादी सर्वांनाच दिसून येईल)."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L326
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L322
 msgid ""
 "However it is also possible to let any member in Tatoeba add and remove "
 "sentences by setting a list as <strong>collaborative</strong>."
 msgstr "परंतु, एखादी यादी <strong>सहयोगी</strong> म्हणून सेट केल्याने तातोएबामधील कोणत्याही सदस्याला त्यात वाक्ये जोडायला वा काढून टाकायला परवानगी देणे असे ही शक्य आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L28
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L28
-msgid "Tatoeba: Collecting example sentences"
-msgstr "तातोएबा: उदाहरण वाक्ये गोळा करत"
+msgid "Tatoeba: Collection of sentences and translations"
+msgstr "तातोएबा: वाक्ये व भाषांतरांचा संग्रह"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L32
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L32
-msgid ""
-"Search example sentences translated into many languages. Add and translate "
-"your own sentences. It's collaborative, open, free, and even addictive."
-msgstr "अनेक भाषांमध्ये भाषांतरित वाक्ये शोधा. स्वतःची वाक्ये जोडा किंवा अनुवाद करा. सहयोगात्मक, मुक्त, फुकट व व्यसन लागू!"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L69
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L72
 msgid "Latest messages"
 msgstr "नवीनतम संदेश"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L108
 msgid "show activity timeline"
 msgstr "कार्यकलाप समयरेखा दाखवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/home.ctp#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L122
 msgid "Latest comments"
 msgstr "नवीनतम टिप्पण्या"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L58
-msgid "Some stats"
-msgstr "थोडी आकडेवारी"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L62
-msgid "One contribution today"
-msgid_plural "{n}&nbsp;contributions today"
-msgstr[0] ""
-msgstr[1] ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L67
-msgid "One member so far"
-msgid_plural "{n}&nbsp;members so far"
-msgstr[0] "आत्तापर्यंत एकच सदस्य आहे"
-msgstr[1] "आत्तापर्यंतचे सदस्य:&nbsp;{n}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L73
-msgid "One supported language"
-msgid_plural "{n}&nbsp;supported languages"
-msgstr[0] "एक समर्थित भाषा"
-msgstr[1] "{n}&nbsp;समर्थित भाषा"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L94
-msgid "What is Tatoeba?"
-msgstr "तातोएबा काय आहे?"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L122
-msgid ""
-"At its core, Tatoeba is a large database of <strong>example "
-"sentences</strong> translated into several languages. But as a whole, it is "
-"much more than that."
-msgstr "मुख्य म्हणजे तातोआबा हा अनेक भाषांमध्ये भाषांतरित <strong>उदाहरण वाक्यांचा</strong> एक प्रचंड डटाबेस आहे. पण संपूर्णपणे पाहिलं गेलं तर तातोएबा यापेक्षा अजून भरपूर काही आहे."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L131
-msgid "See what's happening now."
-msgstr "पहा काय चाललंय."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L32
 msgid "Table of contents"
@@ -3203,7 +3181,7 @@ msgid ""
 msgstr "tatoeba.org येथे जाऊन वाक्याचे भाषांतर करण्यासाठी वा टिप्पणी लिहिण्यासाठी त्या वाक्यावर क्लिक करा."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L53
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L174
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L172
 msgid "There is no sentence with id {number}"
 msgstr "{number} या आय.डीचं एकही वाक्य नाहीये"
 
@@ -3247,41 +3225,41 @@ msgstr "{user} यांच्या वाक्यांवर एकही �
 msgid "Comments on {user}'s sentences (total&nbsp;{n})"
 msgstr "{user} यांच्या वाक्यांवर केलेल्या टिप्पण्या (एकूण&nbsp;{n})"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L35
 msgid "Important"
 msgstr "महत्त्वाची माहिती"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L44
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L40
 msgid ""
 "Please do not forget <strong>capital letters</strong> and "
 "<strong>punctuation</strong>! Thank you."
 msgstr "<strong>कॅपिटल अक्षरं</strong> व <strong> विरामचिन्हे</strong> विसरू नका! धन्यवाद."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L53
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L49
 msgid ""
 "Do not copy-paste sentences from elsewhere, except if the content is CC-BY "
 "compatible. <a href=\"{}\">Learn more...</a>"
 msgstr "CC-BY सुसंगत असल्याची खात्री नस्लयास दुसरीकडून वाक्ये कॉपी-पेस्ट करू नका. <a href=\"{}\">अधिक माहिती.</a>"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L66
 msgid ""
 "You can add sentences that you do not know how to translate. Perhaps someone"
 " else will know!"
 msgstr "आपल्याला भाषांतर करता येत नसतील अशीही वाक्ये आपण जोडू शकता. कदाचित दुसर्‍या कोणाला त्यांचा भाषांतर करता येईल!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L75
 msgid "Or create sentences with <a href=\"{}\">words not yet in Tatoeba</a>."
 msgstr "किंवा <a href=\"{}\">तातोएबात अजूनपर्यंत नसणार्‍या शब्दांचा</a> वापर करून नवीन वाक्य निर्माण करा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L92
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L88
 msgid "Add new sentences"
 msgstr "नवीन वाक्ये जोडा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L95
 msgid "Sentence: "
 msgstr "वाक्य : "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L132
 msgid "Sentences added"
 msgstr "जोडलेली वाक्ये"
 
@@ -3330,7 +3308,7 @@ msgid "All sentences"
 msgstr "सर्व वाक्ये"
 
 #. @translators: title on the top of a search result page
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L72
 msgid "Search: {keywords}"
 msgstr "शोधा {keywords}"
 
@@ -3368,34 +3346,34 @@ msgstr "भाषांतरित उदाहरण वाक्ये चा
 msgid "Sentence does not exist: "
 msgstr "हे वाक्या अस्तित्वात नाहीये: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L117
 msgid "There is no log for this sentence"
 msgstr "या वाक्याची नोंदवही नाही"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L123
 msgid "Report mistakes"
 msgstr "चुका कळवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L126
 msgid "Do not hesitate to post a comment if you see a mistake!"
 msgstr "चूक दिसली तर टिप्पणी पोस्ट करायला घुटमळू नका!"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L134
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L132
 msgid ""
 "NOTE: If the sentence does not belong to anyone and you know how to correct "
 "the mistake, feel free to correct it without posting any comment. You will "
 "have to adopt the sentence before you can edit it."
 msgstr "टीप : वाक्य कोणाच्याही मालकीचं नसेल, व आपल्याला त्यातली चूक कशी दुरुस्त करावी हे माहीत असेल, तर टिप्पणी पोस्ट न करता मुक्तपणे दुरुस्त करा. संपादित करता येण्यापूर्वी ते वाक्य आधी दत्तक घ्यायला लागेल."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L213
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L211
 msgid "There are no comments for now."
 msgstr "सध्या तरी एकही टिप्पणी नाहीये"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L216
 msgid "Sentence deleted"
-msgstr "वाक्य हटवले"
+msgstr "वाक्य हटवले गेले"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L228
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L226
 msgid ""
 "You need to be logged in to add a comment. If you are not registered, you "
 "can <a href=\"{}\">register here</a>."
@@ -3486,54 +3464,54 @@ msgstr "वाक्य काढून टाकण्याने ते ह�
 msgid "Lists of sentences"
 msgstr "वाक्यांची यादी"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L37
 msgid "Create a new list"
 msgstr "नवीन यादी तयार करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L50
 msgctxt "list"
 msgid "Name"
 msgstr "नाव"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L58
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L53
 msgid "create"
 msgstr "बनवा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L61
 msgid "About the lists"
 msgstr "याद्यांविषयी"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L65
 msgid "Lists make it possible to gather and organize sentences in Tatoeba."
 msgstr "यादींने आपण तातोएबावरील वाक्ये गोळा करून संघटित करू शकता."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L73
 msgid ""
 "You can create all kinds of lists! \"Preparation for summer trip to "
 "Mexico\", \"English test #4\", \"My favorite geek quotes\"..."
-msgstr "आपण सर्व प्रकारच्या याद्या बनवू शकता! \"उन्हाळ्यात मेक्सिको यात्रेची तयारी\", \"इंग्रजी परीक्षा क्रं. ४\", \"माझे सर्वात आवडते संगणक विषयी क्वोट\", वगैरे."
+msgstr "आपण सर्व प्रकारच्या याद्या बनवू शकता! \"उन्हाळ्यात मेक्सिको यात्रेची तयारी\", \"इंग्रजी परीक्षा क्र. ४\", \"माझे सर्वात आवडते अभ्यासू क्वोट\", वगैरे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L82
 msgid "Registration needed"
 msgstr "नोंदणी करणे आवश्यक"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L83
 msgid "You can create lists only if you are registered."
 msgstr "नोंदणी झाली असेल तरच आपण याद्या बनवू शकता."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L95
 msgid "If you are already registered, please log in."
 msgstr "आधीच नोंदणी केली असेल तर कृपया लॉगइन करा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L112
 msgid "My lists"
 msgstr "माझ्या याद्या"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L127
 msgid "Collaborative lists"
 msgstr "सहयोगी याद्या"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L144
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L139
 msgid "Other personal lists"
 msgstr "इतर व्यक्तिगत याद्या"
 
@@ -3549,92 +3527,92 @@ msgstr "निकाल"
 msgid "Search sinograms"
 msgstr "सिनोग्राम शोधा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L39
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L35
 msgid "Browse radicals"
 msgstr "रॅडिकल ब्राऊज करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L53
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_radicals.ctp#L33
 msgid "1 stroke"
 msgid_plural "{n}&nbsp;strokes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "१ रेषा"
+msgstr[1] "{n}&nbsp;रेषा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L71
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L67
 msgid "Explode a character"
 msgstr "वर्णाचा स्फोट करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L76
 msgid "characters to explode"
 msgstr "स्फोट करण्यासाठी वर्ण"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L78
 msgid "Explode"
 msgstr "स्फोट"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L90
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L86
 msgid "Still beta"
 msgstr "अजूनही बीटा आवृत्तीत आहे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L93
 msgid "This work is based on <a href=\"{}\">this project</a>."
 msgstr "हे काम <a href=\"{}\">या प्रकल्पावर</a> आधारित आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L105
 msgid ""
 "Please note that this tool is still not complete yet and may contain errors "
 "(although it will be accurate for most searches), so don't hesitate to "
 "report missing characters or any suggestion of improvement."
 msgstr "हे साधन सध्या पूर्ण केले गेले नसल्यामुळे यात त्रुटी असू शकतील (तरीही ते बहुतेक शोधांसाठी अचूक ठरेल). गहाळ वर्ण किंवा इतर सुधारणा कळवायला संकोच करू नका."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L118
 msgid "Hanzis - Kanjis search"
 msgstr "हान्जी - कांजी शोध"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L123
 msgid ""
 "This tool allows you to find information about kanjis/hanzis, especially "
 "when you don't know how to input them directly with IMEs. "
 msgstr "या साधनाने आपण कान्जी अथवा हानझी विषयक माहिती शोधून काढू शकता. आय.एम.ई. यांचा वापर करून थेटपणे इनपुट कसे करावे हे माहीत नेसल, तर हे साधन आपल्या अत्यंत उपयोगाचं ठरेल. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L128
 msgid "The main way to do this is by submitting subglyphs of the character."
 msgstr "असे करण्याची मुख्य रीत म्हणजे त्या वर्णाचे सबग्लिफ (उपसंकेताकृती) सादर करून."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L140
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L136
 msgid ""
 "For example, for 蝴, you can enter 月虫 as subglyphs (you don't need to know "
 "every subglyph)."
 msgstr "उदाहरणार्थ, 蝴 साठी आपण 月虫 हे सबग्लिफ म्हणून घालू शकता (आपल्याला प्रत्येक सबग्लिफ माहीत असण्याची गरज नाहीये)."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L144
 msgid ""
 "If you don't know how to input subglyphs either, but you know a character "
 "that also contains this subglyph, then you can use the explode form."
 msgstr "जर आपल्याला सबग्लिफ कसे इनपुट करावे हे माहीत नाहीये, पण असा वर्ण माहीत आहे ज्यात हा सबग्लिफ आहे, तर तुम्ही स्फोट करायचा फॉर्म वापरू शकता."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L157
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L153
 msgid ""
 "For example, say you want to search 瞧, but you don't know how to input 隹 in "
 "order to make the search more accurate. If you know 推, you can just explode "
 "it. Clicking on a subglyph will add it to the search form."
 msgstr "उदाहरणार्थ, जर आपल्याला 瞧 शोधायचा असेल, पण आपला शोध अजून अचूक करण्यासाठी 隹 हा कसा इनपुट करावा हे माहीत नसेल, पण 推 माहीत असेल, तर आपण त्याचा स्फोट करून त्या सबग्लिफला क्लिक करा, याने तो शोधाच्या फॉर्ममध्ये घातला जाईल."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L163
 msgid ""
 "On the right you also have the most common radicals grouped by strokes, in "
 "case you don't have any way to type hanzis/kanjis."
 msgstr "जर हान्जी किंवा कांजी टाईप करण्यासाठी कोणताच पर्याय नसेल, तर उजव्या बाजूला सर्वात सामान्य रॅडिकल रेषांच्या संख्येच्या गटांमध्ये समाविष्ट केलेले दिसतील."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L177
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L173
 msgid "Search a character by describing it"
 msgstr "वर्णन देऊन वर्ण शोधा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L184
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L180
 msgid "Subglyphs: "
 msgstr "सबग्लिफ: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L187
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L183
 msgid "Search"
 msgstr "शोधा"
 
@@ -3650,7 +3628,7 @@ msgstr "या वर्णाचा वापर करणारी सर्�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_radicals.ctp#L31
 msgid "10 or more strokes"
-msgstr ""
+msgstr "१० किंवा अधिक रेषा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_sinogram_informations.ctp#L31
 msgid "Information about {sinograph}"
@@ -3754,36 +3732,36 @@ msgid "name"
 msgstr "नाव"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L31
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L81
 msgid "Chinese traditional/simplified conversion"
 msgstr "चीनी पारंपारिक/सरलीकृत लिप्यंतरण"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L42
 msgid "The software"
 msgstr "सॉफ्टवेअर"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L50
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L46
 msgid ""
 "This tool is powered by our own home-brewed software. The source code will "
 "be released as open source. Feel free to contact us if you would like to "
 "know more about it."
 msgstr "हे साधन आमच्या स्वतःच्याच घरगुती सॉफ्टवेअरवर चालते. स्रोत कोड मुक्त स्रोत म्हणून प्रकाशित करण्यात येईल. अधिक माहितीसाठी आमच्याशी संपर्क साधा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L60
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L56
 msgid ""
 "The results you get will not always be perfect. However, you can help us "
 "improve this by telling us the mistakes you saw. We will try, if possible, "
 "to correct it."
 msgstr "आढळणारे निकाल नेहमीच योग्य नसतील. पण सापडलेल्या चुका आम्हाला कळवून आपण हे साधन सुधारण्यात आमची मदत करू शकता. शक्य असेल तर आम्ही ते दुरुस्त करायचा प्रयत्न करू."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L110
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L106
 msgid "Enter either traditional or simplified Chinese"
 msgstr "पारंपारिक किंव्हा सरलीकृत चीनी घाला"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L126
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L109
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L122
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L138
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L134
 msgid "Convert"
 msgstr "लिप्यंतरण करा"
 
@@ -3791,134 +3769,116 @@ msgstr "लिप्यंतरण करा"
 msgid "Useful tools"
 msgstr "उपयोगी साधने"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L36
-msgid "Need a tool?"
-msgstr "साधनांबद्दल"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L41
-msgid ""
-"Well, Tatoeba's developers don't have time to think of every possible useful"
-" tool for language learners."
-msgstr "भाषा शिकणार्‍यांसाठी शक्य असतील तितकी उपयोगी साधनांचा विचार करत बसायला तातोएबाच्या विकासकांकडे वेळ तर नाही."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L51
-msgid ""
-"So if there is a must-have tool which is missing, or if you have yourself "
-"coded something you think can help others (as long as you can provide it "
-"under a GPL compatible licence) don't hesitate to talk about it <a "
-"href=\"{}\">here</a>. We're always looking for new stuff."
-msgstr "उपलब्ध नाही असे जर कोणतं साधन असेल, किंवा आपण स्वतः असे काही कोड केले असेल ज्याने दुसर्‍यांची मदत होऊ शकेल, तर <a href=\"{}\">येथे</a> आमच्याशी त्याबद्दल बोलायला अजिबात संकोच करू नका. जोपर्यंत आपण ते जी.पी.एल. सुसंगत परवान्याद्वारे प्रदान करू शकत असाल, तर आम्हाला नक्कीच ते पहायला आवडेल."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L38
 msgid "Romaji/furigana conversion"
 msgstr "रोमाजी/फुरिगाना लिप्यंतरण"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L45
 msgid "convert Japanese to romaji or furigana."
 msgstr "जपानीला रोमाजी किंव्हा फुरिगानामध्ये लिप्यंतरण करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L51
 msgid "Sinogram search"
 msgstr "सिनोग्राम शोध"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L94
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L58
 msgid "search all Chinese characters / kanjis by all possible methods."
 msgstr "शक्य असलेल्या सर्व मार्गांनी चीनी अक्षरं किंवा कान्जी शोधा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L28
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L45
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L39
 msgid "Pinyin converter"
 msgstr "फिन्यिन लिप्यंतरण"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L72
 msgid ""
 "convert Chinese to pinyin, numerical pinyin to diacritical pinyin, etc."
 msgstr "चिनी ते फिनयिन, संख्यायीक फिनयिन ते भेददर्शक फिनयिन, इत्यादी."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L116
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L80
 msgid "Chinese simplified/traditional conversion"
 msgstr "सरलीकृत/पारंपारिक चिनी लिप्यंतरांत"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L124
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L88
 msgid "convert traditional Chinese to simplified and vice versa"
 msgstr "पारंपारिक चिनीचे सरलीकृत लिपीत लिप्यंतरण करा, किंवा तसेच उलट"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L95
 msgid "Shanghainese to IPA"
 msgstr "शँघाईनीज ते आय.पी.ए."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L103
 msgid ""
 "Convert a Shanghainese text into its pronunciation using the International "
 "Phonetic Alphabet"
 msgstr "आंतरराष्ट्रीय ध्वन्यात्मक वर्णमालेचे (आय.पी.ए) उपयोग करून शँघाईनीज मजकुराचे  उच्चार दर्शवा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L73
 msgid "Convert text from: "
 msgstr "यापासून मजकुर लिप्यंतर करा: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L77
 msgid "Chinese characters"
 msgstr "चिनी अक्षरे"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L84
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L93
 msgid "numerical pinyin"
 msgstr "संख्यायिक फिनयिन"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L89
 msgid "Convert text to: "
 msgstr "मजकूराचे यात लिप्यतरण करा: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L94
 msgid "diacritical pinyin"
 msgstr "डायाक्रिटिकल फिनयिन"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L31
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L70
 msgid "Convert Japanese text into romaji or furigana"
 msgstr "जपानी मजकुराला रोमाजी किंवा फुरिगानामध्ये लिप्यंतर करा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L42
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L47
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L43
 msgid "Credits"
 msgstr "श्रेय"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L46
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L42
 msgid "This tool is powered by <a href=\"{}\">MeCab</a>."
 msgstr "हे साधन <a href=\"{}\">MeCab</a> द्वारे समर्थित आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L51
 msgid "More information"
 msgstr "अधिक माहिती"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L55
 msgid "Japanese romanization in Tatoeba, now using MeCab"
 msgstr "तातोएबात जपानी रोमनीकरण, आता MeCab वापरून"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L61
 msgid "Tools for Japanese romanization"
 msgstr "जपानी रोमनीकरण करण्यास साधने"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L104
 msgid "Convert Japanese text into: "
 msgstr "यात जपानी मजकूराचे लिप्यंतर करा: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L108
 msgid "romaji"
 msgstr "रोमाजि"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L109
 msgid "furigana"
 msgstr "फुरिगाना"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L32
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L95
 msgid "Convert Shanghainese into IPA"
 msgstr "शँघाईनीज ते आइ.पी.ए. लिप्यंरण करा"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L48
 msgid ""
 "We really want to thank <a href='{0}'>Kellen Parker</a> who has provided us "
 "with much more complete data files. If you're interested in his work, you "
@@ -3926,22 +3886,22 @@ msgid ""
 "Shanghainese sentences wouldn't have such a complete IPA."
 msgstr "आम्हाला खरंच केलेन पार्कर यांचे आभार मानायचे आहेत. त्यांनीच आम्हाला अधिक पूर्ण केलेल्या डेटा फाईल प्रदान केल्या. जर आपल्याला त्यांच्या कामात इंटरस्ट असेल, तर <a href='{0}'>येथे</a> त्यांचे प्रकल्प पान पहा. त्यांच्याशिवाय शँघाईनीज वाक्यांचा इतका संपूर्ण आय.पी.ए. लिप्यंतरण झाले नसते."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L68
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L64
 msgid "Note"
 msgstr "टीप"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L68
 msgid ""
 "This tool is in a very early stage, and we're looking for people who can "
 "help us improve the transcription by providing IPA of non-converted "
 "characters or reporting mistakes."
 msgstr "हे साधन अतिशय प्रारंभिक टप्प्यावर आहे. लिप्यंतरित न झालेल्या वर्णांचे आय.पी.ए. लिप्यंतरण प्रदान करणार्‍यांचा अथवा चुका कळवणार्‍यांचा आम्हाला शोध आहे."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L79
 msgid "Feedback"
 msgstr "प्रतिसाद"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L118
 msgid "Enter a text in shanghainese dialect"
 msgstr "शँघाईनीज पोटभाषेत मजकूर घाला"
 
@@ -4238,26 +4198,26 @@ msgstr "मेन्यू"
 msgid "Back to Wall"
 msgstr "भिंतीला परता"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L51
 msgid ""
 "Here you can ask general questions like how to use Tatoeba, report bugs or "
 "strange behavior, or simply socialize with the rest of the community."
 msgstr "येथे आपण साधारण प्रश्न विचारू शकता, जसे की तातोएबाचा वापर कसा करावा. हे सोडल्यास आपण बग किंवा विचित्र वर्तणूकीची सूचना देऊ शकता, किंवा सहजपणे आमच्या समुदायात मिसळू शकता."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L62
 msgid "Before asking a question, make sure to read the <a href=\"{}\">FAQ</a>."
 msgstr "प्रश्न विचारण्याअगोदर, <a href=\"{}\">फॅक</a> नक्की वाचा."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L81
 msgid "{date}, by {author}"
 msgstr "{author} यांनी {date} ला लिहिले"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L103
 msgid ""
 "You may write in any language you want. At Tatoeba, all languages are equal."
 msgstr "आपण हव्या त्या भाषेत लिहू शकता. तातोएबामध्ये सर्व भाषा समान आहेत."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L122
 msgid "Wall (one thread)"
 msgid_plural "Wall ({n}&nbsp;threads)"
 msgstr[0] "भिंत (एक धागा)"
@@ -4273,4 +4233,4 @@ msgstr "{user} यांचे भिंतीवरील संदेश (ए�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L40
 msgid "Thread #{number}"
-msgstr "धागा #{number}"
+msgstr "धागा क्र. {number}"
