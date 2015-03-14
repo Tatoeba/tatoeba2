@@ -141,13 +141,15 @@ if [ $RUN_FILES -eq 1 ]; then
     CMD1=$CMD1'"'
     eval $CMD1
     if [ $? -ne 0 ]; then
-	echo "Command failed:"
-	echo $CMD1
-	if [ $UPDATE_FILES -eq 1 ]; then
-	    echo "Revert edited files if necessary."
-	fi
+        echo "Command failed:"
+        echo $CMD1
+        if [ $UPDATE_FILES -eq 1 ]; then
+            echo "Revert edited files if necessary."
+        fi
     fi
 fi
+
+echo "Running add_new_language.sql..."
 
 # Now run the procedure.
 if [ $RUN_FILES -eq 1 ]; then
@@ -156,17 +158,20 @@ if [ $RUN_FILES -eq 1 ]; then
     CMD2=$CMD2'"'
     eval $CMD2
     if [ $? -ne 0 ]; then
-	echo "Command failed:"
-	echo $CMD2
-	if [ $UPDATE_FILES -eq 1 ]; then
-	    echo "Revert edited files if necessary."
-	fi
+        echo "Command failed:"
+        echo $CMD2
+        if [ $UPDATE_FILES -eq 1 ]; then
+            echo "Revert edited files if necessary."
+        fi
     else
-	echo "If the new language is written right-to-left, "
-	echo "    update ../../../app/views/helpers/languages.php."
-	echo "If the new language is stemmed, or is written with CJK characters, "
-	echo "    or contains characters not previously used in Tatoeba, "
-	echo "    or has no word boundaries, update generate_sphinx_conf.php."
+        echo "REMINDERS: "
+        echo "(1) If the language has a two-letter code (not all languages do), "
+        echo "update $iso639_3_to_iso639_1 in app/views/helpers/languages.php."
+        echo "(2) If the new language is written right-to-left, "
+        echo "    update ../../../app/views/helpers/languages.php."
+        echo "(3) If the new language is stemmed, or is written with CJK characters, "
+        echo "    or contains characters not previously used in Tatoeba, "
+        echo "    or has no word boundaries, update generate_sphinx_conf.php."
     fi
 fi
 

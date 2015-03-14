@@ -40,6 +40,8 @@ class LanguagesHelper extends AppHelper
 {
     public $helpers = array('Html');
     
+    // Note that many languages with an ISO 639-3 code do not have an ISO 639-1 code.
+    // Example: Khasi
     private $iso639_3_to_iso639_1 = array(
         'abk' => 'ab', // Abkhaz
         'afr' => 'af', // Afrikaans
