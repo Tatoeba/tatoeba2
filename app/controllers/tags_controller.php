@@ -59,7 +59,8 @@ class TagsController extends AppController
         $this->Auth->allowedActions = array(
             "show_sentences_with_tag",
             'view_all',
-            'for_moderators'
+            'for_moderators',
+            'search'
         );
 
     }
@@ -135,26 +136,30 @@ class TagsController extends AppController
     }
 
     /**
-     * Display all tags page
+     * Display list of tags.
      *
-     * @TODO it's only a "better than nothing" page yet
-     *
-     * @return void
+     * @param String $search Filters the tags list with only those that contain the
+     *                       search string.
      */
-    public function view_all()
+    public function view_all($search = null)
     {
-
         $this->helpers[] = 'Tags';
 
         $this->paginate = array(
             'limit' => 50,
             'fields' => array('name', 'id', 'nbrOfSentences'),
             'contain' => array(),
-            'order' => 'nbrOfSentences DESC',
+            'order' => 'nbrOfSentences DESC'
         );
+        if (!empty($search)) {
+            $this->paginate['conditions'] = array(
+                'name LIKE' => "%$search%"
+            );
+        }
         
         $allTags = $this->paginate('Tag');
         $this->set("allTags", $allTags);
+        $this->set("search", $search);
     }
 
     /**
@@ -315,6 +320,18 @@ class TagsController extends AppController
         $this->set('tagDeleteId', $tagDeleteId);
         $this->set('tagNeedsNativeCheckId', $tagNeedsNativeCheckId);
         $this->set('tagOKId', $tagOKId);
+    }
+
+    public function search()
+    {
+        $search = $this->data['Tag']['search'];
+        $this->redirect(
+            array(
+                'controller' => 'tags',
+                'action' => 'view_all',
+                $search
+            )
+        );
     }
 }
 ?>
