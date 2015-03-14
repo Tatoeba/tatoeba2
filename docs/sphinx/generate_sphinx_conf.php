@@ -203,7 +203,8 @@ $languages = array(
     'chr' => 'Cherokee' , 
     'guj' => 'Gujarati' , 
     'pan' => 'Punjabi (Eastern)' , 
-    'kha' => 'Khasi' , //@lang
+    'kha' => 'Khasi' , 
+    'jav' => 'Javanese' , //@lang
 );
 
 $languageWithStemmer = array(

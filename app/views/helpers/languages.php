@@ -91,6 +91,7 @@ class LanguagesHelper extends AppHelper
         'ind' => 'id', // Indonesian
         'isl' => 'is', // Icelandic
         'ita' => 'it', // Italian
+        'jav' => 'jv', // Javanese
         'jpn' => 'ja', // Japanese
         'kal' => 'kl', // Greenlandic
         'kat' => 'ka', // Georgian
@@ -377,7 +378,8 @@ class LanguagesHelper extends AppHelper
             'chr' => __('Cherokee',true), 
             'guj' => __('Gujarati',true), 
             'pan' => __('Punjabi (Eastern)',true), 
-            'kha' => __('Khasi',true), //@lang 
+            'kha' => __('Khasi',true), 
+            'jav' => __('Javanese',true), //@lang 
             );
         }
         return $this->__languages_to_format;
