@@ -60,6 +60,7 @@ else
         fi
     done;
 
+    echo "Updating the contents of the database..."
     mysql -u$MYSQL_USER -p$MYSQL_PASSWORD $MYSQL_DB < update_hasaudio.sql;
     if [ "$?" -eq "0" ]; then
         echo "Updated database with the commands in $MP3DIR/update_hasaudio.sql"

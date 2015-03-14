@@ -149,8 +149,6 @@ if [ $RUN_FILES -eq 1 ]; then
     fi
 fi
 
-echo "Running add_new_language.sql..."
-
 # Now run the procedure.
 if [ $RUN_FILES -eq 1 ]; then
     CMD2=$MYSQL_CMD'"'
