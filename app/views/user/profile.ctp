@@ -260,7 +260,72 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
         </div>
 
     </div>
-        
+
+    <div class="module profileLanguages">
+        <?php
+        if ($username == $currentMember) {
+            $members->displayEditButton(
+                array(
+                    'controller' => 'user',
+                    'action' => 'language'
+                ),
+                __('Add a language', true)
+            );
+        }
+
+        if (empty($userLanguages))
+        {
+            __('No language added.');
+        }
+        else
+        {
+            echo '<table>';
+            foreach($userLanguages as $userLanguage) {
+                $languageInfo = $userLanguage['UsersLanguages'];
+                $langCode = $languageInfo['language_code'];
+                $level = $languageInfo['level'];
+                $details = $languageInfo['details'];
+
+                echo '<tr class="languageInfo">';
+
+                // Icon
+                echo $html->tag('td', $languages->icon(
+                    $langCode,
+                    array(
+                        "width" => 30,
+                        "height" => 20
+                    )
+                ));
+
+                // Name
+                echo $html->tag('td', $languages->codeToNameAlone($langCode));
+
+                // Level
+                echo $html->tag('td', $members->displayLanguageLevel($level));
+
+                // Details
+                echo $html->tag('td', $details, array('escape' => true));
+
+                // Edit link
+                if ($username == $currentMember) {
+                    $editLink = $html->link(
+                        __('Edit', true),
+                        array(
+                            'controller' => 'user',
+                            'action' => 'language',
+                            $langCode
+                        )
+                    );
+                    echo $html->tag('td', $editLink);
+                }
+
+                echo '</tr>';
+            }
+            echo '</table>';
+        }
+        ?>
+    </div>
+
     <?php
     if (!empty($userDescription)) {
         $descriptionContent = $clickableLinks->clickableURL($userDescription);

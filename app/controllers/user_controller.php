@@ -52,6 +52,7 @@ class UserController extends AppController
      */
     public $uses = array(
         'User',
+        'UsersLanguages',
         'Contribution',
         'Sentence',
         'SentenceComment',
@@ -122,6 +123,7 @@ class UserController extends AppController
         $groupId = $user['group_id'];
         $userId = $user['id'];
         $userStats = $this->_stats($userId);
+        $userLanguages = $this->UsersLanguages->getLanguagesOfUser($userId);
 
         $isPublic = ($user['is_public'] == 1);
         $isDisplayed = ($isPublic || CurrentUser::isMember());
@@ -131,6 +133,7 @@ class UserController extends AppController
         $this->set('user', $user);
         $this->set('countryName', $countryName);
         $this->set('groupId', $groupId);
+        $this->set('userLanguages', $userLanguages);
 
         $this->set('isPublic', $isPublic);
         $this->set('isDisplayed', $isDisplayed);

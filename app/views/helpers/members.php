@@ -128,17 +128,21 @@ class MembersHelper extends AppHelper
     /**
      * Display "Edit" button in the profile.
      *
-     * @param array $linkPath Path to the edit page.
+     * @param array  $linkPath Path to the edit page.
+     * @param String $label    Label of the button. If null, it displays "Edit".
      *
      * @return void
      */
-    public function displayEditButton($linkPath)
+    public function displayEditButton($linkPath, $label = null)
     {
+        if (empty($label)) {
+            $label = __('Edit', true);
+        }
         ?>
         <div class="editOption">
         <?php
         echo $this->Html->link(
-            __('Edit', true),
+            $label,
             $linkPath
         );
         ?>
@@ -165,6 +169,20 @@ class MembersHelper extends AppHelper
             case 6  : return __('spammer', true);
             default : return null;
         }
+    }
+
+
+    public function displayLanguageLevel($level)
+    {
+        $maxLanguageLevel = 5;
+        $result = '<div class="languageLevel">';
+        for ($i = 0; $i < $level; $i++) {
+            $opacity = 0.5 + 0.5 * ($i / $maxLanguageLevel);
+            $result .= '<div class="level" style="opacity: '.$opacity.'"></div>';
+        }
+        $result .= '</div>';
+
+        return $result;
     }
 }
 ?>
