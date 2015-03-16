@@ -1520,6 +1520,7 @@ input.sentenceId {
     text-align: center;
     margin-left: 20px;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
 .form .button.submit {
@@ -1532,6 +1533,12 @@ input.sentenceId {
     background-color: #f6f6f6;
     border: 1px solid #ddd;
     color: #6A0;
+}
+
+.form .button.delete {
+    background-color: #B00;
+    border: 1px solid #800;
+    color: #FFF;
 }
 
 

@@ -563,5 +563,19 @@ class UserController extends AppController
         $this->data['User']['use_most_recent_list']
           = $this->Cookie->read('use_most_recent_list');
     }
+
+
+    public function language($lang = null)
+    {
+        $userId = CurrentUser::get('id');
+        $username = CurrentUser::get('username');
+
+        if (!empty($lang)) {
+            $this->data = $this->UsersLanguages->getLanguageInfoOfUser($lang, $userId);
+        }
+
+        $this->set('ofUserId', $userId);
+        $this->set('username', $username);
+    }
 }
 ?>
