@@ -1,32 +1,27 @@
--- phpMyAdmin SQL Dump
--- version 3.4.5
--- http://www.phpmyadmin.net
+-- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
 --
--- Client: localhost
--- Généré le : Dim 07 Avril 2013 à 13:10
--- Version du serveur: 5.5.16
--- Version de PHP: 5.3.8
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: tatoeba2
+-- ------------------------------------------------------
+-- Server version 5.5.16
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Base de données: `tatoeba_2`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `acos`
+-- Table structure for table `acos`
 --
 
 DROP TABLE IF EXISTS `acos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `acos` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `parent_id` int(10) DEFAULT NULL,
@@ -36,199 +31,106 @@ CREATE TABLE `acos` (
   `lft` int(10) DEFAULT NULL,
   `rght` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=499 ;
+) ENGINE=InnoDB AUTO_INCREMENT=82 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Contenu de la table `acos`
+-- Dumping data for table `acos`
 --
 
-INSERT INTO `acos` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(314, NULL, NULL, NULL, 'controllers', 1, 370),
-(315, 314, NULL, NULL, 'Pages', 2, 31),
-(316, 315, NULL, NULL, 'index', 3, 4),
-(317, 315, NULL, NULL, 'home', 5, 6),
-(318, 315, NULL, NULL, 'contribute', 7, 8),
-(319, 315, NULL, NULL, 'about', 9, 10),
-(320, 315, NULL, NULL, 'search', 11, 12),
-(321, 315, NULL, NULL, 'contact', 13, 14),
-(322, 315, NULL, NULL, 'help', 15, 16),
-(323, 315, NULL, NULL, 'how_to_contribute', 17, 18),
-(324, 315, NULL, NULL, 'tatoeba_team_and_credits', 19, 20),
-(325, 315, NULL, NULL, 'download_tatoeba_example_sentences', 21, 22),
-(326, 315, NULL, NULL, 'terms_of_use', 23, 24),
-(327, 315, NULL, NULL, 'whats_new', 25, 26),
-(328, 315, NULL, NULL, 'faq', 27, 28),
-(329, 315, NULL, NULL, 'getSupportedLanguage', 29, 30),
-(330, 314, NULL, NULL, 'Activities', 32, 47),
-(331, 330, NULL, NULL, 'add_sentences', 33, 34),
-(332, 330, NULL, NULL, 'adopt_sentences', 35, 36),
-(333, 330, NULL, NULL, 'improve_sentences', 37, 38),
-(334, 330, NULL, NULL, 'link_sentences', 39, 40),
-(335, 330, NULL, NULL, 'translate_sentences', 41, 42),
-(336, 330, NULL, NULL, 'translate_sentences_of', 43, 44),
-(337, 330, NULL, NULL, 'getSupportedLanguage', 45, 46),
-(338, 314, NULL, NULL, 'Autocompletions', 48, 53),
-(339, 338, NULL, NULL, 'request', 49, 50),
-(340, 338, NULL, NULL, 'getSupportedLanguage', 51, 52),
-(341, 314, NULL, NULL, 'Contributions', 54, 67),
-(342, 341, NULL, NULL, 'index', 55, 56),
-(343, 341, NULL, NULL, 'latest', 57, 58),
-(344, 341, NULL, NULL, 'statistics', 59, 60),
-(345, 341, NULL, NULL, 'activity_timeline', 61, 62),
-(346, 341, NULL, NULL, 'of_user', 63, 64),
-(347, 341, NULL, NULL, 'getSupportedLanguage', 65, 66),
-(348, 314, NULL, NULL, 'Favorites', 68, 77),
-(349, 348, NULL, NULL, 'of_user', 69, 70),
-(350, 348, NULL, NULL, 'add_favorite', 71, 72),
-(351, 348, NULL, NULL, 'remove_favorite', 73, 74),
-(352, 348, NULL, NULL, 'getSupportedLanguage', 75, 76),
-(353, 314, NULL, NULL, 'Groups', 78, 87),
-(354, 353, NULL, NULL, 'init_aro_groups', 79, 80),
-(355, 353, NULL, NULL, 'init_aro_users', 81, 82),
-(356, 353, NULL, NULL, 'update_rights', 83, 84),
-(357, 353, NULL, NULL, 'getSupportedLanguage', 85, 86),
-(358, 314, NULL, NULL, 'Imports', 88, 95),
-(359, 358, NULL, NULL, 'import_single_sentences', 89, 90),
-(360, 358, NULL, NULL, 'import_sentences_with_translation', 91, 92),
-(361, 358, NULL, NULL, 'getSupportedLanguage', 93, 94),
-(362, 314, NULL, NULL, 'Links', 96, 103),
-(363, 362, NULL, NULL, 'add', 97, 98),
-(364, 362, NULL, NULL, 'delete', 99, 100),
-(365, 362, NULL, NULL, 'getSupportedLanguage', 101, 102),
-(366, 314, NULL, NULL, 'PrivateMessages', 104, 125),
-(367, 366, NULL, NULL, 'index', 105, 106),
-(368, 366, NULL, NULL, 'folder', 107, 108),
-(369, 366, NULL, NULL, 'send', 109, 110),
-(370, 366, NULL, NULL, 'show', 111, 112),
-(371, 366, NULL, NULL, 'delete', 113, 114),
-(372, 366, NULL, NULL, 'restore', 115, 116),
-(373, 366, NULL, NULL, 'mark', 117, 118),
-(374, 366, NULL, NULL, 'write', 119, 120),
-(375, 366, NULL, NULL, 'join', 121, 122),
-(376, 366, NULL, NULL, 'getSupportedLanguage', 123, 124),
-(377, 314, NULL, NULL, 'Sentences', 126, 171),
-(378, 377, NULL, NULL, 'index', 127, 128),
-(379, 377, NULL, NULL, 'show', 129, 130),
-(380, 377, NULL, NULL, 'go_to_sentence', 131, 132),
-(381, 377, NULL, NULL, 'add', 133, 134),
-(382, 377, NULL, NULL, 'delete', 135, 136),
-(383, 377, NULL, NULL, 'add_an_other_sentence', 137, 138),
-(384, 377, NULL, NULL, 'edit_sentence', 139, 140),
-(385, 377, NULL, NULL, 'adopt', 141, 142),
-(386, 377, NULL, NULL, 'let_go', 143, 144),
-(387, 377, NULL, NULL, 'save_translation', 145, 146),
-(388, 377, NULL, NULL, 'search', 147, 148),
-(389, 377, NULL, NULL, 'show_all_in', 149, 150),
-(390, 377, NULL, NULL, 'random', 151, 152),
-(391, 377, NULL, NULL, 'several_random_sentences', 153, 154),
-(392, 377, NULL, NULL, 'set_languages', 155, 156),
-(393, 377, NULL, NULL, 'of_user', 157, 158),
-(394, 377, NULL, NULL, 'map', 159, 160),
-(395, 377, NULL, NULL, 'change_language', 161, 162),
-(396, 377, NULL, NULL, 'get_neighbors_for_ajax', 163, 164),
-(397, 377, NULL, NULL, 'import', 165, 166),
-(398, 377, NULL, NULL, 'with_audio', 167, 168),
-(399, 377, NULL, NULL, 'getSupportedLanguage', 169, 170),
-(400, 314, NULL, NULL, 'SentencesLists', 172, 201),
-(401, 400, NULL, NULL, 'index', 173, 174),
-(402, 400, NULL, NULL, 'show', 175, 176),
-(403, 400, NULL, NULL, 'edit', 177, 178),
-(404, 400, NULL, NULL, 'add', 179, 180),
-(405, 400, NULL, NULL, 'save_name', 181, 182),
-(406, 400, NULL, NULL, 'delete', 183, 184),
-(407, 400, NULL, NULL, 'add_sentence_to_list', 185, 186),
-(408, 400, NULL, NULL, 'remove_sentence_from_list', 187, 188),
-(409, 400, NULL, NULL, 'of_user', 189, 190),
-(410, 400, NULL, NULL, 'add_new_sentence_to_list', 191, 192),
-(411, 400, NULL, NULL, 'set_as_public', 193, 194),
-(412, 400, NULL, NULL, 'download', 195, 196),
-(413, 400, NULL, NULL, 'export_to_csv', 197, 198),
-(414, 400, NULL, NULL, 'getSupportedLanguage', 199, 200),
-(415, 314, NULL, NULL, 'SentenceAnnotations', 202, 219),
-(416, 415, NULL, NULL, 'index', 203, 204),
-(417, 415, NULL, NULL, 'show', 205, 206),
-(418, 415, NULL, NULL, 'save', 207, 208),
-(419, 415, NULL, NULL, 'delete', 209, 210),
-(420, 415, NULL, NULL, 'search', 211, 212),
-(421, 415, NULL, NULL, 'replace', 213, 214),
-(422, 415, NULL, NULL, 'last_modified', 215, 216),
-(423, 415, NULL, NULL, 'getSupportedLanguage', 217, 218),
-(424, 314, NULL, NULL, 'SentenceComments', 220, 235),
-(425, 424, NULL, NULL, 'index', 221, 222),
-(426, 424, NULL, NULL, 'show', 223, 224),
-(427, 424, NULL, NULL, 'save', 225, 226),
-(428, 424, NULL, NULL, 'delete_comment', 227, 228),
-(429, 424, NULL, NULL, 'of_user', 229, 230),
-(430, 424, NULL, NULL, 'on_sentences_of_user', 231, 232),
-(431, 424, NULL, NULL, 'getSupportedLanguage', 233, 234),
-(432, 314, NULL, NULL, 'Sinograms', 236, 251),
-(433, 432, NULL, NULL, 'index', 237, 238),
-(434, 432, NULL, NULL, 'search', 239, 240),
-(435, 432, NULL, NULL, 'explode', 241, 242),
-(436, 432, NULL, NULL, 'load_sinogram_informations', 243, 244),
-(437, 432, NULL, NULL, 'load_example_sentence', 245, 246),
-(438, 432, NULL, NULL, 'load_radicals', 247, 248),
-(439, 432, NULL, NULL, 'getSupportedLanguage', 249, 250),
-(440, 314, NULL, NULL, 'Stats', 252, 257),
-(441, 440, NULL, NULL, 'sentences_by_language', 253, 254),
-(442, 440, NULL, NULL, 'getSupportedLanguage', 255, 256),
-(443, 314, NULL, NULL, 'Tags', 258, 275),
-(444, 443, NULL, NULL, 'add_tag_post', 259, 260),
-(445, 443, NULL, NULL, 'add_tag', 261, 262),
-(446, 443, NULL, NULL, 'view_all', 263, 264),
-(447, 443, NULL, NULL, 'remove_tag_from_sentence', 265, 266),
-(448, 443, NULL, NULL, 'remove_tag_of_sentence_from_tags_show', 267, 268),
-(449, 443, NULL, NULL, 'show_sentences_with_tag', 269, 270),
-(450, 443, NULL, NULL, 'for_moderators', 271, 272),
-(451, 443, NULL, NULL, 'getSupportedLanguage', 273, 274),
-(452, 314, NULL, NULL, 'Tools', 276, 291),
-(453, 452, NULL, NULL, 'index', 277, 278),
-(454, 452, NULL, NULL, 'kakasi', 279, 280),
-(455, 452, NULL, NULL, 'romaji_furigana', 281, 282),
-(456, 452, NULL, NULL, 'conversion_simplified_traditional_chinese', 283, 284),
-(457, 452, NULL, NULL, 'pinyin_converter', 285, 286),
-(458, 452, NULL, NULL, 'shanghainese_to_ipa', 287, 288),
-(459, 452, NULL, NULL, 'getSupportedLanguage', 289, 290),
-(460, 314, NULL, NULL, 'Users', 292, 325),
-(461, 460, NULL, NULL, 'index', 293, 294),
-(462, 460, NULL, NULL, 'edit', 295, 296),
-(463, 460, NULL, NULL, 'delete', 297, 298),
-(464, 460, NULL, NULL, 'login', 299, 300),
-(465, 460, NULL, NULL, 'check_login', 301, 302),
-(466, 460, NULL, NULL, 'logout', 303, 304),
-(467, 460, NULL, NULL, 'register', 305, 306),
-(468, 460, NULL, NULL, 'new_password', 307, 308),
-(469, 460, NULL, NULL, 'search', 309, 310),
-(470, 460, NULL, NULL, 'show', 311, 312),
-(471, 460, NULL, NULL, 'all', 313, 314),
-(472, 460, NULL, NULL, 'captcha_image', 315, 316),
-(473, 460, NULL, NULL, 'check_username', 317, 318),
-(474, 460, NULL, NULL, 'check_email', 319, 320),
-(475, 460, NULL, NULL, 'getSupportedLanguage', 321, 322),
-(476, 314, NULL, NULL, 'User', 326, 345),
-(477, 476, NULL, NULL, 'profile', 327, 328),
-(478, 476, NULL, NULL, 'save_image', 329, 330),
-(479, 476, NULL, NULL, 'save_description', 331, 332),
-(480, 476, NULL, NULL, 'save_basic', 333, 334),
-(481, 476, NULL, NULL, 'save_settings', 335, 336),
-(482, 476, NULL, NULL, 'save_password', 337, 338),
-(483, 476, NULL, NULL, 'edit_profile', 339, 340),
-(484, 476, NULL, NULL, 'settings', 341, 342),
-(485, 476, NULL, NULL, 'getSupportedLanguage', 343, 344),
-(486, 314, NULL, NULL, 'Visitors', 346, 351),
-(487, 486, NULL, NULL, 'online', 347, 348),
-(488, 486, NULL, NULL, 'getSupportedLanguage', 349, 350),
-(489, 314, NULL, NULL, 'Wall', 352, 369),
-(490, 489, NULL, NULL, 'index', 353, 354),
-(491, 489, NULL, NULL, 'save', 355, 356),
-(492, 489, NULL, NULL, 'save_inside', 357, 358),
-(493, 489, NULL, NULL, 'delete_message', 359, 360),
-(494, 489, NULL, NULL, 'update_thread_date', 361, 362),
-(495, 489, NULL, NULL, 'show_message', 363, 364),
-(496, 489, NULL, NULL, 'messages_of_user', 365, 366),
-(497, 489, NULL, NULL, 'getSupportedLanguage', 367, 368),
-(498, 460, NULL, NULL, 'update_rights', 323, 324);
+LOCK TABLES `acos` WRITE;
+/*!40000 ALTER TABLE `acos` DISABLE KEYS */;
+INSERT INTO `acos` VALUES (1,NULL,NULL,NULL,'controllers',1,162),
+(2,1,NULL,NULL,'Favorites',2,7),
+(3,2,NULL,NULL,'add_favorite',3,4),
+(4,2,NULL,NULL,'remove_favorite',5,6),
+(5,1,NULL,NULL,'Imports',8,13),
+(6,5,NULL,NULL,'import_single_sentences',9,10),
+(7,5,NULL,NULL,'import_sentences_with_translation',11,12),
+(8,1,NULL,NULL,'Links',14,19),
+(9,8,NULL,NULL,'add',15,16),
+(10,8,NULL,NULL,'delete',17,18),
+(11,1,NULL,NULL,'PrivateMessages',20,37),
+(12,11,NULL,NULL,'index',21,22),
+(13,11,NULL,NULL,'folder',23,24),
+(14,11,NULL,NULL,'send',25,26),
+(15,11,NULL,NULL,'show',27,28),
+(16,11,NULL,NULL,'delete',29,30),
+(17,11,NULL,NULL,'restore',31,32),
+(18,11,NULL,NULL,'mark',33,34),
+(19,11,NULL,NULL,'write',35,36),
+(20,1,NULL,NULL,'SentenceAnnotations',38,51),
+(21,20,NULL,NULL,'index',39,40),
+(22,20,NULL,NULL,'show',41,42),
+(23,20,NULL,NULL,'save',43,44),
+(24,20,NULL,NULL,'delete',45,46),
+(25,20,NULL,NULL,'search',47,48),
+(26,20,NULL,NULL,'replace',49,50),
+(27,1,NULL,NULL,'SentenceComments',52,63),
+(28,27,NULL,NULL,'save',53,54),
+(29,27,NULL,NULL,'edit',55,56),
+(30,27,NULL,NULL,'delete_comment',57,58),
+(31,27,NULL,NULL,'hide_message',59,60),
+(32,27,NULL,NULL,'unhide_message',61,62),
+(33,1,NULL,NULL,'Sentences',64,87),
+(34,33,NULL,NULL,'add',65,66),
+(35,33,NULL,NULL,'delete',67,68),
+(36,33,NULL,NULL,'add_an_other_sentence',69,70),
+(37,33,NULL,NULL,'edit_sentence',71,72),
+(38,33,NULL,NULL,'adopt',73,74),
+(39,33,NULL,NULL,'let_go',75,76),
+(40,33,NULL,NULL,'save_translation',77,78),
+(41,33,NULL,NULL,'change_language',79,80),
+(42,33,NULL,NULL,'import',81,82),
+(43,33,NULL,NULL,'edit_correctness',83,84),
+(44,33,NULL,NULL,'edit_audio',85,86),
+(45,1,NULL,NULL,'SentencesLists',88,105),
+(46,45,NULL,NULL,'edit',89,90),
+(47,45,NULL,NULL,'add',91,92),
+(48,45,NULL,NULL,'save_name',93,94),
+(49,45,NULL,NULL,'delete',95,96),
+(50,45,NULL,NULL,'add_sentence_to_list',97,98),
+(51,45,NULL,NULL,'remove_sentence_from_list',99,100),
+(52,45,NULL,NULL,'add_new_sentence_to_list',101,102),
+(53,45,NULL,NULL,'set_as_public',103,104),
+(54,1,NULL,NULL,'Tags',106,115),
+(55,54,NULL,NULL,'add_tag_post',107,108),
+(56,54,NULL,NULL,'add_tag',109,110),
+(57,54,NULL,NULL,'remove_tag_from_sentence',111,112),
+(58,54,NULL,NULL,'remove_tag_of_sentence_from_tags_show',113,114),
+(59,1,NULL,NULL,'User',116,133),
+(60,59,NULL,NULL,'save_image',117,118),
+(61,59,NULL,NULL,'save_description',119,120),
+(62,59,NULL,NULL,'save_basic',121,122),
+(63,59,NULL,NULL,'save_settings',123,124),
+(64,59,NULL,NULL,'save_password',125,126),
+(65,59,NULL,NULL,'edit_profile',127,128),
+(66,59,NULL,NULL,'settings',129,130),
+(67,59,NULL,NULL,'language',131,132),
+(68,1,NULL,NULL,'Users',134,141),
+(69,68,NULL,NULL,'index',135,136),
+(70,68,NULL,NULL,'edit',137,138),
+(71,68,NULL,NULL,'delete',139,140),
+(72,1,NULL,NULL,'UsersLanguages',142,147),
+(73,72,NULL,NULL,'save',143,144),
+(74,72,NULL,NULL,'delete',145,146),
+(75,1,NULL,NULL,'Wall',148,161),
+(76,75,NULL,NULL,'save',149,150),
+(77,75,NULL,NULL,'save_inside',151,152),
+(78,75,NULL,NULL,'edit',153,154),
+(79,75,NULL,NULL,'delete_message',155,156),
+(80,75,NULL,NULL,'hide_message',157,158),
+(81,75,NULL,NULL,'unhide_message',159,160);
+/*!40000 ALTER TABLE `acos` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-03-19 21:44:12

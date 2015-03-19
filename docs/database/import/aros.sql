@@ -1,32 +1,27 @@
--- phpMyAdmin SQL Dump
--- version 3.4.5
--- http://www.phpmyadmin.net
+-- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
 --
--- Client: localhost
--- Généré le : Dim 07 Avril 2013 à 14:47
--- Version du serveur: 5.5.16
--- Version de PHP: 5.3.8
-
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: tatoeba2
+-- ------------------------------------------------------
+-- Server version   5.5.16
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Base de données: `tatoeba_2`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `aros`
+-- Table structure for table `aros`
 --
 
 DROP TABLE IF EXISTS `aros`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `aros` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `parent_id` int(10) DEFAULT NULL,
@@ -36,26 +31,38 @@ CREATE TABLE `aros` (
   `lft` int(10) DEFAULT NULL,
   `rght` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Contenu de la table `aros`
+-- Dumping data for table `aros`
 --
 
-INSERT INTO `aros` (`id`, `parent_id`, `model`, `foreign_key`, `alias`, `lft`, `rght`) VALUES
-(1, NULL, 'Group', 1, 'group_admin', 1, 4),
-(2, NULL, 'Group', 2, 'group_moderator', 5, 8),
-(3, NULL, 'Group', 3, 'group_trusted_user', 9, 12),
-(4, NULL, 'Group', 4, 'group_user', 13, 16),
-(5, NULL, 'Group', 5, 'group_inactive', 17, 20),
-(6, NULL, 'Group', 6, 'group_spammer', 21, 24),
-(7, 1, 'User', 1, 'user_admin', 2, 3),
-(8, 2, 'User', 2, 'user_moderator', 6, 7),
-(9, 3, 'User', 3, 'user_trusted_user', 10, 11),
-(10, 4, 'User', 4, 'user_user', 14, 15),
-(11, 5, 'User', 5, 'user_inactive', 18, 19),
-(12, 6, 'User', 6, 'user_spammer', 22, 23);
+LOCK TABLES `aros` WRITE;
+/*!40000 ALTER TABLE `aros` DISABLE KEYS */;
+INSERT INTO `aros` VALUES (1,NULL,NULL,NULL,'Groups',1,26),
+(2,1,'Group',1,NULL,2,5),
+(3,1,'Group',2,NULL,6,9),
+(4,1,'Group',3,NULL,10,13),
+(5,1,'Group',4,NULL,14,17),
+(6,1,'Group',5,NULL,18,21),
+(7,1,'Group',6,NULL,22,25),
+(8,2,'User',1,NULL,3,4),
+(9,3,'User',2,NULL,7,8),
+(10,4,'User',3,NULL,11,12),
+(11,5,'User',4,NULL,15,16),
+(12,6,'User',5,NULL,19,20),
+(13,7,'User',6,NULL,23,24);
+/*!40000 ALTER TABLE `aros` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-03-19 21:44:01
