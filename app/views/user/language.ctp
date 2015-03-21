@@ -112,6 +112,17 @@ if (empty($this->data)) {
                 __('Are you sure?', true)
             );
         }
+
+        echo $html->link(
+            __('Cancel', true),
+            array(
+                'controller' => 'user',
+                'action' => 'profile',
+                $username
+            ),
+            array('class' => 'cancel button')
+        );
+
         echo $form->button(
             $submitLabel,
             array('class' => 'submit button')
