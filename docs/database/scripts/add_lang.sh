@@ -167,7 +167,7 @@ fi
 
 echo "REMINDERS: "
 echo "(1) If the language has a two-letter code (not all languages do), "
-echo "update $iso639_3_to_iso639_1 in app/views/helpers/languages.php."
+echo "update the iso639_3_to_iso639_1 array in app/views/helpers/languages.php."
 echo "(2) If the new language is written right-to-left, "
 echo "    update ../../../app/views/helpers/languages.php."
 echo "(3) If the new language is stemmed, or is written with CJK characters, "
