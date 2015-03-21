@@ -47,7 +47,7 @@ class UsersController extends AppController
         'Navigation',
         'Pagination'
     );
-    public $components = array ('Mailer', 'Captcha', 'RememberMe');
+    public $components = array ('Mailer', 'RememberMe');
 
     public $uses = array("User","Contribution");
 
@@ -72,12 +72,9 @@ class UsersController extends AppController
             'new_password',
             'confirm_registration',
             'resend_registration_mail',
-            'captcha_image',
             'check_username',
             'check_email',
-            'update_rights',
         );
-        //$this->Auth->allowedActions = array('*');
     }
 
     /**
@@ -121,19 +118,6 @@ class UsersController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->User->save($this->data)) {
-                // update aro table
-                $aro = new Aro();
-                $data = $aro->find(
-                    "first", array(
-                        "conditions" => array(
-                            "foreign_key" => $this->data['User']['id'],
-                            "model" => "User"
-                        )
-                    )
-                );
-                $data['Aro']['parent_id'] = $this->data['User']['group_id'];
-                $this->Acl->Aro->save($data);
-
                 $this->Session->setFlash('The user information has been saved.');
                 $this->redirect(array('action'=>'index'));
             } else {
@@ -518,19 +502,6 @@ class UsersController extends AppController
         $this->set('users', $users);
     }
 
-    /**
-     * CAPTCHA image for registration.
-     *
-     * @return void
-     */
-    public function captcha_image()
-    {
-        Configure::write('debug', 0); // NOTE: It's normally not good to set debug
-                                   // in controllers, but here we really need to
-                                   // have debug set to 0
-        $this->layout = null;
-        $this->Captcha->image();
-    }
 
     /**
      * Check if the username already exist or not.
@@ -542,8 +513,8 @@ class UsersController extends AppController
     public function check_username($username)
     {
         $this->layout = null;
-        $user = $this->User->getIdFromUsername($username); // TODO move to model
-                                                        // and use contain
+        $user = $this->User->getIdFromUsername($username);
+
         if ($user) {
             $this->set('data', true);
         } else {
@@ -562,8 +533,7 @@ class UsersController extends AppController
     public function check_email($email)
     {
         $this->layout = null;
-        $userId = $this->User->getIdFromEmail($email); // TODO move to model
-                                                  // and use contain
+        $userId = $this->User->getIdFromEmail($email);
 
         if ($userId) {
             $this->set('data', true);
