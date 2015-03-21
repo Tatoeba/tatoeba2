@@ -40,7 +40,7 @@ if (isset($sentence)) {
     
     ?>
     <p><i>
-    <?php __('Click a sentence to go to tatoeba.org to translate it or leave a comment.'); ?>
+    <?php __('Click the top sentence to go to tatoeba.org to translate it or leave a comment.'); ?>
     </i></p>
     <?php
     

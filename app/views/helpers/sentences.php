@@ -731,22 +731,35 @@ class SentencesHelper extends AppHelper
      * @return void
      */
     public function displayS($sentence, $type) {
-        ?>
+        $lang = $sentence['lang'];
 
-        <div class="sentence <?php echo $type; ?>">
-            <?php
-            $this->SentenceButtons->displayLanguageFlag(
-                $sentence['id'], $sentence['lang'], false
+        echo $this->Html->div(
+            "sentence " . $type,
+            null,
+            array(
+                'lang' => $this->Languages->langAttribute($lang),
+                'dir'  => $this->Languages->getLanguageDirection($lang),
+            )
+        );
+
+        $this->SentenceButtons->displayLanguageFlag(
+            $sentence['id'], $sentence['lang'], false
+        );
+
+        if ($type == 'mainSentence') {
+            echo $this->Html->link(
+                $sentence['text'],
+                array(
+                    'controller' => 'sentences',
+                    'action' => 'show',
+                    $sentence['id']
+                )
             );
+        } else {
+            echo $this->Html->div(null, $sentence['text']);
+        }
 
-            $this->displaySentenceText(
-                $sentence['id'], $sentence['text'], false,
-                $sentence['lang'], $sentence['script']
-            );
-            ?>
-        </div>
-
-        <?php
+        echo $this->Html->tag('/div');
     }
 
 }
