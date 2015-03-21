@@ -44,8 +44,20 @@ class UsersLanguagesController extends AppController
         $userId = $this->data['UsersLanguages']['of_user_id'];
         $username = $this->User->getUserNameFromId($userId);
 
-        $this->data['UsersLanguages']['by_user_id'] = CurrentUser::get('id');
-        $this->UsersLanguages->save($this->data);
+        if (empty($this->data['UsersLanguages']['id'])) {
+            $canSave = true;
+            $this->data['UsersLanguages']['by_user_id'] = CurrentUser::get('id');
+        } else {
+            $id = $this->data['UsersLanguages']['id'];
+            $langInfo = $this->UsersLanguages->getLanguageInfo($id);
+            $canSave = $langInfo['by_user_id'] == CurrentUser::get('id');
+        }
+
+        if ($canSave) {
+            $this->UsersLanguages->save($this->data);
+        } else {
+            $this->Session->setFlash(__('You cannot edit this language.', true));
+        }
 
         $this->redirect(
             array(
