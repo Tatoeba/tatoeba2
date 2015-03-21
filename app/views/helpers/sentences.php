@@ -586,22 +586,12 @@ class SentencesHelper extends AppHelper
 
         } else {
 
-            // To check if we're on the sentence's page or not
-            $currentSentenceId = null;
-            if (isset($this->params['pass'][0])) {
-                $currentSentenceId = $this->params['pass'][0];
-            }
-            $currentURL = array(
-                'controller' => $this->params['controller'],
-                'action' => $this->params['action'],
-                $currentSentenceId
-            );
-
             echo $this->Languages->tagWithLang(
                 'div', $sentenceLang, $sentenceText,
                 array('class' => 'text'),
                 $sentenceScript
             );
+
         }
     }
 
