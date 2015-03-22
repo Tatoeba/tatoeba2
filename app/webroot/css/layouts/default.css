@@ -62,9 +62,18 @@ h2 {
     margin: 0 0 15px 0;
 }
 
-h2 .annexe {
+.titleAnnexeLink {
     font-weight: normal;
-    font-size: 15px;
+    font-size: 13px;
+    padding: 2px 8px;
+    margin: 5px;
+    border-radius: 4px;
+    color: #fff;
+    background: #6A0;
+}
+
+.titleAnnexeLink:hover {
+    color: #fff;
 }
 
 h3 {

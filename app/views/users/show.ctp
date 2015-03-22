@@ -60,13 +60,18 @@ $this->set('title_for_layout', $pages->formatTitle(format(
     if (count($user['Sentences']) > 0) {
         echo '<div class="module">';
             echo '<h2>';
-            echo format(
-                __('Latest sentences (<a href="{}">view all</a>)', true),
-                $html->url(array(
+            __('Latest sentences');
+
+            echo $html->link(
+                __('view all', true),
+                array(
                     "controller" => "sentences",
                     "action" => "of_user",
                     $username
-                ))
+                ),
+                array(
+                    'class' => 'titleAnnexeLink'
+                )
             );
             echo '</h2>';
             
@@ -90,13 +95,18 @@ $this->set('title_for_layout', $pages->formatTitle(format(
     if (count($user['Favorite']) > 0) {
         echo '<div class="module">';
             echo '<h2>';
-            echo format(
-                __('Favorite sentences (<a href="{}">view all</a>)', true),
-                $html->url(array(
+            __('Favorite sentences');
+
+            echo $html->link(
+                __('view all', true),
+                array(
                     "controller" => "favorites",
                     "action" => "of_user",
                     $user['User']['username']
-                ))
+                ),
+                array(
+                    'class' => 'titleAnnexeLink'
+                )
             );
             echo '</h2>';
 
@@ -123,13 +133,18 @@ $this->set('title_for_layout', $pages->formatTitle(format(
     if (count($user['SentenceComments']) > 0) {
         echo '<div class="module">';
             echo '<h2>';
-            echo format(
-                __('Latest comments (<a href="{}">view all</a>)', true),
-                $html->url(array(
+            __('Latest comments');
+
+            echo $html->link(
+                __('view all', true),
+                array(
                     "controller" => "sentence_comments",
                     "action" => "of_user",
                     $username
-                ))
+                ),
+                array(
+                    'class' => 'titleAnnexeLink'
+                )
             );
             echo '</h2>';
 
@@ -157,13 +172,18 @@ $this->set('title_for_layout', $pages->formatTitle(format(
     if (count($user['Wall']) > 0) {
         echo '<div class="module">';
             echo '<h2>';
-            echo format(
-                __('Latest Wall messages (<a href="{}">view all</a>)', true),
-                $html->url(array(
+            __('Latest Wall messages');
+
+            echo $html->link(
+                __('view all', true),
+                array(
                     "controller" => "wall",
                     "action" => "messages_of_user",
                     $username
-                ))
+                ),
+                array(
+                    'class' => 'titleAnnexeLink'
+                )
             );
             echo '</h2>';
 

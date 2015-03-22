@@ -90,46 +90,49 @@ if (!$isLogged) {
 
     <div class="module">
         <h2>
-            <?php __('Latest contributions'); ?> 
-            <span class="annexe">
-                (
-                    <?php
-                    echo $html->link(
-                        __('show more...', true),
-                        array(
-                            'controller' => 'contributions',
-                            'action' => 'latest'
-                        )
-                    ); 
-                    ?>
-                ) (
-                    <?php 
-                    echo $html->link(
-                        __('show activity timeline', true),
-                        array(
-                            "controller"=>"contributions",
-                            "action"=>"activity_timeline"
-                        )
-                    );
-                    ?>
-                )
-            </span>
+        <?php
+        __('Latest contributions');
+
+        echo $html->link(
+            __('show more...', true),
+            array(
+                'controller' => 'contributions',
+                'action' => 'latest'
+            ),
+            array(
+                'class' => 'titleAnnexeLink'
+            )
+        );
+
+        echo $html->link(
+            __('show activity timeline', true),
+            array(
+                "controller"=>"contributions",
+                "action"=>"activity_timeline"
+            ),
+            array(
+                'class' => 'titleAnnexeLink'
+            )
+        );
+        ?>
         </h2>
-            <?php echo $this->element('latest_contributions'); ?>
+        <?php echo $this->element('latest_contributions'); ?>
     </div>
     <div class="module">
         <h2>
-            <?php __('Latest comments'); ?>
-            <span class="annexe">
-                (
-                    <?php
-                    echo $html->link(
-                        __('show more...', true),
-                        array("controller"=>"sentence_comments")
-                    ); 
-                    ?>
-                )
-            </span>
+        <?php
+        __('Latest comments');
+
+        echo $html->link(
+            __('show more...', true),
+            array(
+                'controller' => 'sentence_comments'
+            ),
+            array(
+                'class' => 'titleAnnexeLink'
+            )
+        );
+        ?>
         </h2>
         <?php
         echo $this->element(
