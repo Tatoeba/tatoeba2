@@ -732,7 +732,7 @@ class SentencesHelper extends AppHelper
         echo $this->Javascript->link('sentences.edit_in_place.js', true);
         echo $this->Javascript->link('sentences.change_language.js', true);
         echo $this->Javascript->link('sentences.link.js', true);
-        echo $this->Javascript->link('sentences.collapse.js', false);
+        echo $this->Javascript->link('sentences.collapse.js', true);
         $this->javascriptForAJAXTranslationsGroup();
     }
 
