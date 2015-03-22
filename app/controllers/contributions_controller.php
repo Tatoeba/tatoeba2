@@ -73,11 +73,6 @@ class ContributionsController extends AppController
     {
         $filter = Sanitize::paranoid($filter);
 
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
-        if(strpos($user_agent, "Baidu") !== false) {
-            $this->redirect($redirectPage, 404);
-        }
-
         $this->helpers[] = 'Pagination';
 
         $conditions = array();
