@@ -849,10 +849,6 @@
  * --------------------------------------------------------------------
  */
 
-.sentences_set {
-    border: 1px solid #ddd;
-}
-
 
 /*
  * Sentence menu
@@ -860,7 +856,7 @@
 .sentences_set .menu {
     border-bottom: 1px dotted #CCC;
     margin: 2px;
-    padding: 0;
+    padding: 5px;
 }
 
 .sentences_set .menu li {
@@ -896,18 +892,6 @@
 .sentences_set .menu .disabled img,
 .sentences_set .menu .disabled img:hover {
     opacity: 0.2;
-}
-
-.belongsTo {
-    margin-top: -1px;
-    margin-right: 2px;
-}
-
-.belongsTo, .adopt {
-    float: right;
-    color: #75C34B;
-    font-weight: bold;
-    padding: 2px 0 !important;
 }
 
 .belongsTo a {
