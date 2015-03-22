@@ -26,9 +26,10 @@ function get_language_interface_from_url() {
 
 function get_tatoeba_root_url() {
     var host = self.location.host;
+    var protocol = window.location.protocol;
     var interfaceLang = get_language_interface_from_url();
 
-    return "http://" + host + "/"+ interfaceLang;
+    return protocol + "//" + host + "/"+ interfaceLang;
 }
 
 /**
