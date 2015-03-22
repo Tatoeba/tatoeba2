@@ -279,7 +279,7 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
         }
         else
         {
-            echo '<table>';
+            echo '<table class="usersLanguages">';
             foreach($userLanguages as $userLanguage) {
                 $languageInfo = $userLanguage['UsersLanguages'];
                 $langCode = $languageInfo['language_code'];

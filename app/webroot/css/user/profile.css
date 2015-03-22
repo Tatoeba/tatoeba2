@@ -94,29 +94,3 @@
     border-radius: 4px;
     font-weight: bold;
 }
-
-
-/*
- * Languages
- */
-.profileLanguages .languageInfo {
-    margin: 0;
-    padding: 0;
-}
-
-.profileLanguages td {
-    padding: 5px;
-}
-
-.profileLanguages .languageLevel {
-    width: 100px;
-    height: 15px;
-    border: 1px solid #ddd;
-}
-
-.profileLanguages .languageLevel .level {
-    background: #06A;
-    width: 20px;
-    height: 100%;
-    display: inline-block;
-}

@@ -49,7 +49,7 @@ class UsersController extends AppController
     );
     public $components = array ('Mailer', 'RememberMe');
 
-    public $uses = array("User","Contribution");
+    public $uses = array("User","Contribution","UsersLanguages");
 
     /**
      * Before filter.
@@ -74,6 +74,7 @@ class UsersController extends AppController
             'resend_registration_mail',
             'check_username',
             'check_email',
+            'for_language'
         );
     }
 
@@ -540,6 +541,25 @@ class UsersController extends AppController
         } else {
             $this->set('data', false);
         }
+    }
+
+
+    public function for_language($lang = null)
+    {
+        $this->helpers[] = 'Members';
+
+        $usersLanguages = $this->UsersLanguages->getNumberOfUsersForEachLanguage();
+
+        if (empty($lang)) {
+            $lang = $usersLanguages[0]['UsersLanguages']['language_code'];
+        }
+
+        $users = $this->UsersLanguages->getUsersForLanguage($lang);
+
+
+        $this->set('users', $users);
+        $this->set('usersLanguages', $usersLanguages);
+        $this->set('lang', $lang);
     }
 }
 ?>

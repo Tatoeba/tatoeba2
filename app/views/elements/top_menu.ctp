@@ -118,8 +118,18 @@ $menuElements = array(
     ),
     __('Members', true) => array(
         "route" => array(
-            "controller" => "users",
-            "action" => "all"
+            "controller" => null,
+            "action" => null
+        ),
+        "sub-menu" => array(
+            __('List of all members', true) => array(
+                "controller" => "users",
+                "action" => "all"
+            ),
+            __('Languages of members', true) => array(
+                "controller" => "users",
+                "action" => "for_language"
+            )
         )
     ),
     __('Wall', true) => array(

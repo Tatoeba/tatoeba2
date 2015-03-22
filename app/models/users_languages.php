@@ -38,6 +38,8 @@ class UsersLanguages extends AppModel
 {
     public $name = 'UsersLanguages';
     public $useTable = "users_languages";
+    public $actsAs = array("Containable");
+    public $belongsTo = array('User' => array('foreignKey' => 'of_user_id'));
 
 
     public function getLanguagesOfUser($userId)
@@ -46,7 +48,8 @@ class UsersLanguages extends AppModel
             'all',
             array(
                 'conditions' => array('of_user_id' => $userId),
-                'order' => 'level DESC'
+                'order' => 'level DESC',
+                'contain' => array()
             )
         );
 
@@ -61,7 +64,8 @@ class UsersLanguages extends AppModel
             array(
                 'conditions' => array('by_user_id' => $userId),
                 'contain' => array(),
-                'order' => 'level DESC'
+                'order' => 'level DESC',
+                'contain' => array()
             )
         );
 
@@ -77,7 +81,8 @@ class UsersLanguages extends AppModel
                 'conditions' => array(
                     'by_user_id' => $userId,
                     'language_code' => $lang
-                )
+                ),
+                'contain' => array()
             )
         );
 
@@ -91,10 +96,56 @@ class UsersLanguages extends AppModel
             'first',
             array(
                 'conditions' => array('id' => $id),
-                'fields' => array('language_code', 'by_user_id')
+                'fields' => array('language_code', 'by_user_id'),
+                'contain' => array()
             )
         );
 
         return $languageInfo['UsersLanguages'];
+    }
+
+
+    public function getUsersForLanguage($lang)
+    {
+        $result = $this->find(
+            'all',
+            array(
+                'conditions' => array(
+                    'language_code' => $lang
+                ),
+                'fields' => array(
+                    'of_user_id',
+                    'level',
+                ),
+                'contain' => array(
+                    'User' => array(
+                        'fields' => array(
+                            'id',
+                            'username',
+                            'image'
+                        )
+                    )
+                ),
+                'order' => 'UsersLanguages.level DESC'
+            )
+        );
+
+        return $result;
+    }
+
+
+    public function getNumberOfUsersForEachLanguage()
+    {
+        $result = $this->find(
+            'all',
+            array(
+                'fields' => array('language_code', 'COUNT(*) as total'),
+                'group' => 'language_code',
+                'order' => 'total DESC',
+                'contain' => array()
+            )
+        );
+
+        return $result;
     }
 }
