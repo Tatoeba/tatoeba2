@@ -127,21 +127,11 @@ $this->set('title_for_layout', $pages->formatTitle(__('Members', true)));
                 </span>
             </div>
 
-            
-            <div class="status">
-                <div class="power">
-                <?php
-                for ($i = 4; $i > $groupId; $i--) {
-                    echo $html->image('crown.png');
-                }
-                ?>
-                </div>
-                
-                <div class="name">
-                <?php 
-                echo $members->groupName($groupId); 
-                ?>
-                </div>
+
+            <div class="statusName">
+            <?php
+            echo $members->groupName($groupId);
+            ?>
             </div>
         </div>
         <?php endforeach; ?>

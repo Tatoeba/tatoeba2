@@ -28,7 +28,7 @@
 .user {
     border: 1px solid #CCC;
     padding: 7px;
-    float: left;
+    display: inline-block;
     width: 240px;
     margin: 10px;
     border-radius: 4px;
@@ -54,10 +54,9 @@
     margin-right: 7px;
 }
 
-.user .status {
+.user .statusName {
     font-weight: bold;
     margin-top: 5px;
-    font-size: 0.9em;
 }
 
 .status .power {
