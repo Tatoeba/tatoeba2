@@ -21,14 +21,11 @@
  * Registration form
  */
 #UserRegisterForm {
-    padding: 10px;
-    padding-bottom: 20px;
+    padding: 10px 10px 20px;
     margin: 20px auto;
     width: 420px;
     border: 1px solid #B3C6A9;
     background: #DBEFCB;
-    -moz-border-radius: 15px;
-    -webkit-border-radius: 15px;
     border-radius: 15px;
 }
 
@@ -46,8 +43,7 @@
 }
 
 #UserRegisterForm .error {
-    background: url(/img/error_16x16.png) no-repeat scroll right center;
-    background-color: #FFE8E0;
+    background: #FFE8E0 url(/img/error_16x16.png) no-repeat scroll right center;
 }
 
 #UserRegisterForm .checking {
@@ -59,7 +55,7 @@
 }
 
 #userInformation {
-    margin: 10px 0px;
+    margin: 10px 0;
 }
 
 #userInformation td {

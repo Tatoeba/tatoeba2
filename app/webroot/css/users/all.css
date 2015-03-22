@@ -21,19 +21,16 @@
  * Users
  */
 .users {
-    margin: 20px 0px;
+    margin: 20px 0;
     overflow: hidden;
 }
 
 .user {
     border: 1px solid #CCC;
-    background: url(../../img/module_background.png) repeat-x bottom left;
     padding: 7px;
     float: left;
     width: 240px;
     margin: 10px;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
     border-radius: 4px;
 }
 
@@ -68,5 +65,5 @@
 }
 
 .status img {
-    margin: 0px 2px;
+    margin: 0 2px;
 }

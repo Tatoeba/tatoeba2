@@ -34,8 +34,8 @@ div, p {
 }
 
 body {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
     color: #222222;
     background: #e5e3da;
 }
@@ -85,7 +85,7 @@ h3 {
 }
 
 h4 {
-    margin: 10px 0px 5px 20px;
+    margin: 10px 0 5px 20px;
     color: #555;
     font-size: 1.1em;
 }
@@ -147,14 +147,14 @@ textarea {
 
 #top_menu li {
     float: left;
-    padding: 0px;
+    padding: 0;
 }
 
 #top_menu .menuSection{
     display:block;
     line-height:30px;
-    margin:0px;
-    padding:0px 10px;
+    margin:0;
+    padding:0 10px;
     text-align:center;
     text-decoration:none;
 }
@@ -167,9 +167,9 @@ textarea {
     background:#414141;
     display:none;
     height:auto;
-    padding:0px;
-    margin:0px;
-    border:0px;
+    padding:0;
+    margin:0;
+    border:0;
     position:absolute;
     width:225px;
     z-index:200;
@@ -183,8 +183,8 @@ textarea {
     border-top: 1px solid #555;
     display:block;
     float:none;
-    margin:0px;
-    padding:0px;
+    margin:0;
+    padding:0;
     width:225px;
 }
 
@@ -194,13 +194,13 @@ textarea {
 
 #top_menu li ul a {
     display:block;
-    margin:0px;
+    margin:0;
     padding:7px 10px;
     text-align:left;
 }
 
 #top_menu li ul a:hover, #top_menu li ul li:hover a {
-    border:0px;
+    border:0;
     text-decoration:none;
 }
 
@@ -262,12 +262,11 @@ textarea {
 
 #container {
     width: 960px;
-    margin: auto;
-    margin-bottom: 100px;
+    margin: auto auto 100px;
     background-color: #fff;
-    -webkit-box-shadow: 0px 0px 5px 5px rgba(50, 50, 50, 0.3);
-    -moz-box-shadow: 0px 0px 5px 5px rgba(50, 50, 50, 0.3);
-    box-shadow: 0px 0px 5px 5px rgba(50, 50, 50, 0.3);
+    -webkit-box-shadow: 0 0 5px 5px rgba(50, 50, 50, 0.3);
+    -moz-box-shadow: 0 0 5px 5px rgba(50, 50, 50, 0.3);
+    box-shadow: 0 0 5px 5px rgba(50, 50, 50, 0.3);
 }
 
 
@@ -280,9 +279,9 @@ textarea {
     position: relative;
     color: #FFFFFF;
     margin-bottom: 20px;
-    -webkit-box-shadow: inset 0px -50px 30px -10px rgba(100,155,61,1);
-    -moz-box-shadow: inset 0px -50px 30px -10px rgba(100,155,61,1);
-    box-shadow: inset 0px -50px 30px -10px rgba(100,155,61,1);
+    -webkit-box-shadow: inset 0 -50px 30px -10px rgba(100,155,61,1);
+    -moz-box-shadow: inset 0 -50px 30px -10px rgba(100,155,61,1);
+    box-shadow: inset 0 -50px 30px -10px rgba(100,155,61,1);
 }
 
 /*
@@ -297,8 +296,7 @@ textarea {
     padding: 1px 0 0 0;
 }
 .chosen-container .chosen-results li.highlighted {
-  background-color: #86BF5E;
-  background-image: none;
+    background: #86BF5E none;
 }
 /* Smaller margins, paddings etc. */
 .chosen-container-single .chosen-single {
@@ -342,10 +340,9 @@ textarea {
 
 .search_bar fieldset {
     border: none;
-    padding: 0px;
-    margin: 2px;
+    padding: 0;
     display: inline;
-    margin-right: 5px;
+    margin: 2px 5px 2px 2px;
     text-align: left;
 }
 
@@ -378,10 +375,6 @@ textarea {
     position: absolute;
     padding: 4px 12px;
     z-index: 1;
-    -webkit-border-top-right-radius: 40px;
-    -webkit-border-bottom-right-radius: 32px;
-    -moz-border-radius-topright: 40px;
-    -moz-border-radius-bottomright: 32px;
     border-top-right-radius: 40px;
     border-bottom-right-radius: 32px;
     background: #fff;
@@ -389,8 +382,8 @@ textarea {
 
 #tatoeba {
     position: absolute;
-    right: 0px;
-    bottom: 0px;
+    right: 0;
+    bottom: 0;
     opacity: 0.7;
     filter: alpha(opacity=70);
     display: inline-block;
@@ -398,8 +391,6 @@ textarea {
     background: #fff;
     color: #649B3D;
     font-size: 12px;
-    -webkit-border-top-left-radius: 20px;
-    -moz-border-radius-topleft: 20px;
     border-top-left-radius: 20px;
     font-weight: bold;
 }
@@ -427,20 +418,20 @@ textarea {
 
 .module {
     padding: 10px 10px 5px 10px;
-    margin: 0px 0px 20px 0px;
+    margin: 0 0 20px 0;
     font-size: 13px;
     border-bottom: 1px solid #ededed;
-    -webkit-box-shadow: inset 0px -50px 30px -10px rgba(245, 245, 245, 1);
-    -moz-box-shadow: inset 0px -50px 30px -10px rgba(245, 245, 245, 1);
-    box-shadow: inset 0px -50px 30px -10px rgba(245, 245, 245, 1);
+    -webkit-box-shadow: inset 0 -50px 30px -10px rgba(245, 245, 245, 1);
+    -moz-box-shadow: inset 0 -50px 30px -10px rgba(245, 245, 245, 1);
+    box-shadow: inset 0 -50px 30px -10px rgba(245, 245, 245, 1);
 }
 #annexe_content .module {
     margin-left: 5px;
 }
 
 #annexe_content ul {
-    margin: 0px;
-    padding-left: 0px;
+    margin: 0;
+    padding-left: 0;
 }
 
 #annexe_content ul li {
@@ -510,7 +501,7 @@ textarea {
 .warning {
     font-size: 15px;
     padding: 10px;
-    margin: 10px 0px;
+    margin: 10px 0;
     border: 1px solid #FFC1B5;
     background-color: #FFDDD6; 
     color: #D1523C;
@@ -576,10 +567,6 @@ textarea {
     font-size: 0.9em;
 }
 
-#UserLoginForm_FromBar input[type='submit']: active {
-    top: 1px;
-}
-
 #UserLoginForm_FromBar p {
     margin: 0;
     padding: 0;
@@ -594,7 +581,7 @@ textarea {
 }
 
 .annexeMenu .item {
-    margin: 5px 0px;
+    margin: 5px 0;
 }
 
 .annexeMenu .item:before {
