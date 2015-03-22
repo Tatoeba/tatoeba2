@@ -40,7 +40,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('How to contribute', true)
         echo $html->link(
             __('Register', true),
             array("controller" => "users", "action" => "register"),
-            array("class"=>"registerButton")
+            array("class"=>"registerLink")
         );
         ?>
         </div>

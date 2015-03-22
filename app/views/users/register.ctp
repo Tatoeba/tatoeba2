@@ -152,6 +152,6 @@ echo format(
 </div>
 
 <?php
-echo $form->submit(__('Register',true), array("id" => "registerButton"));
+echo $form->submit(__('Register',true));
 echo $form->end();
 ?>

@@ -844,31 +844,6 @@
 /*
  * --------------------------------------------------------------------
  *
- *   register_button.css
- *
- * --------------------------------------------------------------------
- */
-
-/*
- * Register button
- */
-#ClickHereToRegister .registerButton {
-    background: #6A0;
-    padding: 8px 12px;
-    color: #FFF;
-    border: 1px solid #6E994E;
-    font-size: 16px;
-    border-radius: 8px;
-    margin: 20px auto;
-    display: block;
-    text-align: center;
-    width: 150px;
-}
-
-
-/*
- * --------------------------------------------------------------------
- *
  *   sentences_group.css
  *
  * --------------------------------------------------------------------
@@ -1172,26 +1147,6 @@ input.sentenceId {
     height: 75px;
     width: 100%;
     font-size: 16px;
-}
-
-.addTranslations .cancel_link{
-    float:right;
-    background-color: #f6f6f6;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    display: inline-block;
-    font-size: 16px;
-    margin-right: 20px;
-    min-width: 120px;
-    padding: 3px 20px;
-    text-align: center;
-    color: #66aa00;
-    text-decoration: none;
-}
-
-.addTranslations .cancel_link:hover{
-    color:#dd8800;
-    line-height: 18px;
 }
 
 .addTranslations button{
@@ -1519,6 +1474,28 @@ input.sentenceId {
 
 
 /*
+ * Download
+ */
+.downloadLink,
+.registerLink {
+    background: #6A0;
+    padding: 8px 12px;
+    color: #fff;
+    border: 1px solid #6E994E;
+    font-size: 1.2em;
+    border-radius: 5px;
+    margin: 20px auto;
+    display: block;
+    text-align: center;
+    width: 150px;
+}
+
+.downloadLink:hover,
+.registerLink:hover {
+    color: #fff;
+}
+
+/*
  * --------------------------------------------------------------------
  *
  *   Sort
@@ -1528,4 +1505,24 @@ input.sentenceId {
 
 .sortBy {
     text-align: center;
+}
+
+
+
+/*
+ * --------------------------------------------------------------------
+ *
+ *   Tags
+ *
+ * --------------------------------------------------------------------
+ */
+
+.tag {
+    display: inline-block;
+    border-bottom: 1px solid #DDD;
+    border-right: 1px solid #DDD;
+    background: #FFE684;
+    padding: 2px 8px;
+    margin: 5px;
+    border-radius: 5px;
 }

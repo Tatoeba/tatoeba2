@@ -95,7 +95,7 @@ echo $html->link(
         "controller" => "users",
         "action" => "register"
     ),
-    array("class"=>"registerButton")
+    array("class"=>"registerLink")
     );
 ?>
 </div>

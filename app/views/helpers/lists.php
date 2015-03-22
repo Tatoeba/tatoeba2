@@ -226,20 +226,17 @@ class ListsHelper extends AppHelper
      */
     public function displayDownloadLink($listId)
     {
-        ?>
-        <div class="download">
-        <?php
         echo $this->Html->link(
             __('Download this list', true),
             array(
-                "controller"=>"sentences_lists",
-                "action"=>"download",
+                "controller" => "sentences_lists",
+                "action" => "download",
                 $listId
+            ),
+            array(
+                'class' => 'downloadLink'
             )
         );
-        ?>
-        </div>
-        <?php
     }
 
 

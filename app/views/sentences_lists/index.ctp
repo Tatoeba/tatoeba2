@@ -87,7 +87,7 @@ if ($session->read('Auth.User.id')) {
             echo $html->link(
                 __('Register', true),
                 array("controller" => "users", "action" => "register"),
-                array("class" => "registerButton")
+                array("class" => "registerLink")
             );
             ?>
             </p>

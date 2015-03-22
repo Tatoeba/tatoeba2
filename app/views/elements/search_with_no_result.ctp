@@ -80,7 +80,7 @@ $query = Sanitize::html($query);
         echo $html->link(
             'register',
             array("controller" => "users", "action" => "register"),
-            array("class"=>"registerButton")
+            array("class"=>"registerLink")
         );
         
     }
