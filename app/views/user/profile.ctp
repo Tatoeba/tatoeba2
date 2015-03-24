@@ -275,7 +275,20 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
 
         if (empty($userLanguages))
         {
+            echo '<p>';
             __('No language added.');
+            echo '</p>';
+
+            echo '<p>';
+            if ($username == $currentMember) {
+                __('TIP: We encourage you to indicate the languages you know.');
+            } else {
+                __(
+                    'TIP: Encourage this user to indicate the languages '.
+                    'he or she knows.'
+                );
+            }
+            echo '</p>';
         }
         else
         {
@@ -333,17 +346,6 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
     } else {
         $descriptionContent = '<div class="tip">';
         $descriptionContent.= __('No description.', true);
-        $descriptionContent.= '<br/><br/>';
-        if ($username == $currentMember) {
-            $descriptionContent.= __(
-                'TIP: We encourage you to indicate the languages you know.', true
-            );
-        } else {
-            $descriptionContent.= __(
-                'TIP: Encourage this user to indicate the languages '.
-                'he or she knows.', true
-            );
-        }
         $descriptionContent.= '</div>';
     }
     
