@@ -44,12 +44,12 @@ class UsersLanguages extends AppModel
 
     public function getLanguagesOfUser($userId)
     {
+        $this->recursive = -1;
         $languages = $this->find(
             'all',
             array(
                 'conditions' => array('of_user_id' => $userId),
-                'order' => 'level DESC',
-                'contain' => array()
+                'order' => 'level DESC'
             )
         );
 
@@ -59,13 +59,13 @@ class UsersLanguages extends AppModel
 
     public function getLanguagesByUser($userId)
     {
+        $this->recursive = -1;
         $languages = $this->find(
             'all',
             array(
                 'conditions' => array('by_user_id' => $userId),
                 'contain' => array(),
-                'order' => 'level DESC',
-                'contain' => array()
+                'order' => 'level DESC'
             )
         );
 
@@ -75,14 +75,14 @@ class UsersLanguages extends AppModel
 
     public function getLanguageInfoOfUser($lang, $userId)
     {
+        $this->recursive = -1;
         $languageInfo = $this->find(
             'first',
             array(
                 'conditions' => array(
                     'by_user_id' => $userId,
                     'language_code' => $lang
-                ),
-                'contain' => array()
+                )
             )
         );
 
@@ -92,12 +92,12 @@ class UsersLanguages extends AppModel
 
     public function getLanguageInfo($id)
     {
+        $this->recursive = -1;
         $languageInfo = $this->find(
             'first',
             array(
                 'conditions' => array('id' => $id),
-                'fields' => array('language_code', 'by_user_id'),
-                'contain' => array()
+                'fields' => array('language_code', 'by_user_id')
             )
         );
 
