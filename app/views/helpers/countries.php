@@ -23,9 +23,9 @@ class CountriesHelper extends AppHelper
 
     public function getAllCountries() {
         if (!$this->countries) {
-            App::import('Helper', 'Countries_en');
-            $Countries_en = new Countries_en();
-            $this->countries = $Countries_en->data;
+            App::import('Helper', 'Countries_list');
+            $Countries_list = new Countries_list();
+            $this->countries = $Countries_list->list;
         }
         return $this->countries;
     }
