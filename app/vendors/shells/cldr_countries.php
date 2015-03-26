@@ -49,7 +49,7 @@ class CLDRCountriesShell extends Shell {
         }
         return $file;
     }
-    
+
     private function countries_from_ldml_file($filename) {
         $countries_trans = array();
         $ldml = simplexml_load_file($filename, 'SimpleXMLElement');
@@ -100,7 +100,76 @@ class Country_$lang {
         print("Wrote $php_file.\n");
     }
 
+    private function get_tatoeba_countries() {
+        Configure::write('Config.language', 'eng');
+        $Country = new Country();
+        $result = $Country->find('all');
+        return Set::combine($result, '{n}.Country.id', '{n}.Country.name');
+    }
+
+    private function write_po_header($fh) {
+        fprintf($fh,
+                'msgid ""'."\n".
+                'msgstr ""'."\n".
+                '"MIME-Version: 1.0\n"'."\n".
+                '"Content-Type: text/plain; charset=utf-8\n"'."\n".
+                '"Content-Transfer-Encoding: 8bit\n"'."\n");
+    }
+
+    private function write_po_translation($fh, $english, $translation) {
+        $english     = preg_replace('/"/', '\\"', $english);
+        $translation = preg_replace('/"/', '\\"', $translation);
+        fprintf($fh, "\nmsgid \"%s\"\nmsgstr \"%s\"\n", $english, $translation);
+    }
+
+    private function check_if_gettext_available($command) {
+        exec("which $command", $output, $retval);
+        if ($retval != 0) {
+            die("Please install the gettext utility '$command'.\nIt should be part of the gettext pacakge.\n");
+        }
+    }
+
+    private function write_po($tatoeba_countries, $countries_targ) {
+        $tmp_po_file = tempnam(TMP, 'countries');
+        if (!$tmp_po_file) {
+            die("Error: couldn’t create temporary file!\n");
+        }
+        if (!($fh = fopen($tmp_po_file, 'w'))) {
+            die("Error: couldn’t write $tmp_po_file!\n");
+        }
+
+        $this->write_po_header($fh);
+        foreach ($tatoeba_countries as $code => $english) {
+            $translation = isset($countries_targ[$code]) ? $countries_targ[$code] : '';
+            $this->write_po_translation($fh, $english, $translation);
+        }
+        fclose($fh);
+        return $tmp_po_file;
+    }
+
+    private function merge_po_with_pot($tmp_po_file, $tatoeba_code) {
+        $this->check_if_gettext_available('msgmerge');
+        $po_file  = APP.'locale'.DS.$tatoeba_code.DS.'LC_MESSAGES'.DS.'countries.po';
+        $pot_file = APP.'locale'.DS.'countries.pot';
+        exec("msgmerge -o '$po_file' '$tmp_po_file' '$pot_file'", $output, $retval);
+        unlink($tmp_po_file);
+        if ($retval != 0) {
+            die("Error: a problem occured while generating '$po_file'.\n");
+        }
+        print("Wrote $po_file.\n");
+    }
+
     private function CLDR_to_po($cldr_code, $tatoeba_code) {
+        $tatoeba_countries = $this->get_tatoeba_countries();
+        if (!$tatoeba_countries) {
+            die("Error: no English countries found.\nTry running this script with 'eng' as parameter.");
+        }
+
+        $ldml_file_targ = $this->get_ldml($cldr_code);
+        $countries_targ = $this->countries_from_ldml_file($ldml_file_targ);
+
+        $tmp_po_file = $this->write_po($tatoeba_countries, $countries_targ);
+        $this->merge_po_with_pot($tmp_po_file, $tatoeba_code);
     }
 
     private function die_usage() {
