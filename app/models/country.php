@@ -36,7 +36,6 @@
  */
 class Country extends AppModel
 {
-
     /**
      *
      * @var string
@@ -48,5 +47,31 @@ class Country extends AppModel
      * @var array
      */
     public $actsAs = array('Containable');
+
+    public $useTable = false;
+
+    public $_schema = array(
+        'id' => array(
+            'type' => 'string',
+            'length' => 2,
+            'null' => false,
+        ),
+        'name' => array(
+            'type' => 'text',
+            'length' => 80,
+            'null' => false,
+        ),
+    );
+
+    public $data; // memoizes the country list
+
+    public function find($conditions = null, $fields = array(), $order = null, $recursive = null) {
+        if (!$this->data) {
+            App::import('Model', 'Country_en');
+            $Country_en = new Country_en();
+            $this->data = $Country_en->data;
+        }
+        return $this->data;
+    }
 }
 ?>
