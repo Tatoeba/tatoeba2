@@ -26,6 +26,7 @@
  */
 
 $this->set('title_for_layout', $pages->formatTitle(__('Edit profile', true)));
+$this->Languages->localizedAsort($countries);
 ?>
 <div id="annexe_content">
     <?php

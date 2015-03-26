@@ -57,6 +57,7 @@ class UserController extends AppController
         'Sentence',
         'SentenceComment',
         'Favorite',
+        'Languages',
         'SentencesList'
     );
 

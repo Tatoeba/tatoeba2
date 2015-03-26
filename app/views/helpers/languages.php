@@ -385,6 +385,17 @@ class LanguagesHelper extends AppHelper
         return $this->__languages_to_format;
     }
 
+    public function localizedAsort(&$array)
+    {
+        if (class_exists('Collator')) {
+            $i18nLang = Configure::read('Config.language');
+            $coll = new Collator($this->i18nCodeToISO($i18nLang));
+            $coll->asort($array);
+        } else {
+            asort($array);
+        }
+    }
+
     public function onlyLanguagesArray()
     {
         if (!$this->__languages_alone) {
@@ -392,13 +403,7 @@ class LanguagesHelper extends AppHelper
                 array($this, 'langAsAlone'),
                 $this->_onlyLanguagesArray()
             );
-            if (class_exists('Collator')) {
-                $i18nLang = Configure::read('Config.language');
-                $coll = new Collator($this->i18nCodeToISO($i18nLang));
-                $coll->asort($this->__languages_alone);
-            } else {
-                asort($this->__languages_alone);
-            }
+            $this->localizedAsort($this->__languages_alone);
         }
         return $this->__languages_alone;
     }
