@@ -93,8 +93,7 @@ class User extends AppModel
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
-        'Country'
+        )
     );
 
     /**
@@ -227,10 +226,8 @@ class User extends AppModel
                     'is_public',
                     'group_id',
                     'lang',
-                    'level'
-                ),
-                'contain' => array(
-                    'Country' => array('fields' => array('name'))
+                    'level',
+                    'country_id'
                 )
             )
         );

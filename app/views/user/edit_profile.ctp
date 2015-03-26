@@ -26,6 +26,7 @@
  */
 
 $this->set('title_for_layout', $pages->formatTitle(__('Edit profile', true)));
+$countries = $this->Countries->getAllCountries();
 $this->Languages->localizedAsort($countries);
 ?>
 <div id="annexe_content">
@@ -84,7 +85,7 @@ $this->Languages->localizedAsort($countries);
         'empty' => true,
         'label' => __('Birthday', true)
     );
-    $selectedCountryId = $this->data['Country']['id'];
+    $selectedCountryId = $this->data['User']['country_id'];
 
     echo $form->create(
         false, 

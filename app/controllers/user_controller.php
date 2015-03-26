@@ -57,11 +57,10 @@ class UserController extends AppController
         'Sentence',
         'SentenceComment',
         'Favorite',
-        'Languages',
         'SentencesList'
     );
 
-    public $helpers = array('Html', 'Date');
+    public $helpers = array('Html', 'Date', 'Languages', 'Countries');
 
     /**
      * ?
@@ -120,7 +119,6 @@ class UserController extends AppController
         }
 
         $user = $infoOfUser['User'];
-        $countryName = $infoOfUser['Country']['name'];
         $groupId = $user['group_id'];
         $userId = $user['id'];
         $userStats = $this->_stats($userId);
@@ -132,7 +130,6 @@ class UserController extends AppController
 
         $this->set('userStats', $userStats);
         $this->set('user', $user);
-        $this->set('countryName', $countryName);
         $this->set('groupId', $groupId);
         $this->set('userLanguages', $userLanguages);
 
@@ -535,15 +532,6 @@ class UserController extends AppController
 
         $userInfo = $this->User->getInformationOfCurrentUser($currentUserId);
         $this->data = $userInfo;
-
-        $this->loadModel('Country');
-        $tmpCountries = $this->Country->find('all');
-        $countries = array();
-        foreach ($tmpCountries as $country) {
-            $countryId = $country['Country']['id'];
-            $countries[$countryId] = $country['Country']['name'];
-        }
-        $this->set('countries', $countries);
     }
 
 
