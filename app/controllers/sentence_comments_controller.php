@@ -284,6 +284,7 @@ class SentenceCommentsController extends AppController
 
         //check permissions now
         $canEdit = $authorId === CurrentUser::get('id') || CurrentUser::isAdmin();
+        $sentenceId = $this->data['SentenceComment']['sentence_id'];
         if (!$canEdit) {
             $no_permission = __("You do not have permission to edit this comment. ",
                 true);
@@ -306,7 +307,6 @@ class SentenceCommentsController extends AppController
                 $this->data = $sentenceComment;
                 $this->set('sentenceComment', $sentenceComment);
             } else {
-                $sentenceId = $this->data['SentenceComment']['sentence_id'];
                 $commentId = $this->data['SentenceComment']['id'];
                 //check for empty text
                 if (empty($this->data['SentenceComment']['text'])) {
