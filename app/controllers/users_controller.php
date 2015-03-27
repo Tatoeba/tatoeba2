@@ -70,8 +70,6 @@ class UsersController extends AppController
             'logout',
             'register',
             'new_password',
-            'confirm_registration',
-            'resend_registration_mail',
             'check_username',
             'check_email',
             'for_language'

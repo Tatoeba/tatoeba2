@@ -70,16 +70,11 @@ class WallController extends Appcontroller
     public function beforeFilter()
     {
         parent::beforeFilter();
-        // TODO set correct right
+
         $this->Auth->allowedActions = array(
             'index',
             'show_message',
-            'messages_of_user',
-            // The actions below should not be allowed here, but I don't feel like
-            // taking the time to update the ACL stuff. I'M SORRY!
-            'hide_message',
-            'unhide_message',
-            'edit'
+            'messages_of_user'
         );
     }
 

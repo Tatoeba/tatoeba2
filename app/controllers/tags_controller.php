@@ -57,7 +57,7 @@ class TagsController extends AppController
         parent::beforeFilter();
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array(
-            "show_sentences_with_tag",
+            'show_sentences_with_tag',
             'view_all',
             'for_moderators',
             'search'

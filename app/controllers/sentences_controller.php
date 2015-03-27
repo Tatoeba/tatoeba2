@@ -84,20 +84,13 @@ class SentencesController extends AppController
             'index',
             'show',
             'search',
-            'add_comment',
             'of_user',
             'random',
             'go_to_sentence',
-            'statistics',
-            'get_translations',
-            'change_language',
             'several_random_sentences',
-            'sentences_group',
             'get_neighbors_for_ajax',
             'show_all_in',
-            'with_audio',
-            'edit_correctness',
-            'edit_audio'
+            'with_audio'
         );
     }
 

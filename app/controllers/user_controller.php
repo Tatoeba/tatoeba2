@@ -74,9 +74,7 @@ class UserController extends AppController
         parent::beforeFilter();
 
         $this->Auth->allowedActions = array(
-            'profile',
-            'edit_profile',
-            'settings'
+            'profile'
         );
     }
 
