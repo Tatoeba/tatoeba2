@@ -171,10 +171,12 @@ class SentencesHelper extends AppHelper
 
             if($showButton){
                 echo $this->Html->tag('div',
-                    format(
-                        __('↓ Show {number} more translations', $displayed, true),
-                        array('number' => $displayed)
-                    ),
+                    ' ▼ ' . format(__n(
+                        'Show 1 more translation',
+                        'Show {number} more translations',
+                        $displayed,
+                        true
+                    ), array('number' => $displayed)),
                     array('class' => 'showLink')
                 );
             }
@@ -204,7 +206,7 @@ class SentencesHelper extends AppHelper
             }
 
             echo $this->Html->tag('div',
-                    __('↑ Less translations', true),
+                    ' ▲ ' . __('Less translations', true),
                     array('class' => 'hideLink')
                 );
             ?>
