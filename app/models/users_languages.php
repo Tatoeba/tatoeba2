@@ -40,11 +40,10 @@ class UsersLanguages extends AppModel
     public $useTable = "users_languages";
     public $actsAs = array("Containable");
     public $belongsTo = array('User' => array('foreignKey' => 'of_user_id'));
-
+    public $recursive = -1;
 
     public function getLanguagesOfUser($userId)
     {
-        $this->recursive = -1;
         $languages = $this->find(
             'all',
             array(
@@ -59,7 +58,6 @@ class UsersLanguages extends AppModel
 
     public function getLanguagesByUser($userId)
     {
-        $this->recursive = -1;
         $languages = $this->find(
             'all',
             array(
@@ -75,7 +73,6 @@ class UsersLanguages extends AppModel
 
     public function getLanguageInfoOfUser($lang, $userId)
     {
-        $this->recursive = -1;
         $languageInfo = $this->find(
             'first',
             array(
@@ -92,7 +89,6 @@ class UsersLanguages extends AppModel
 
     public function getLanguageInfo($id)
     {
-        $this->recursive = -1;
         $languageInfo = $this->find(
             'first',
             array(
