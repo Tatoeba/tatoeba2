@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-21 02:58+0000\n"
-"PO-Revision-Date: 2015-03-21 08:33+0000\n"
+"POT-Creation-Date: 2015-03-27 21:03+0000\n"
+"PO-Revision-Date: 2015-03-27 23:50+0000\n"
 "Last-Translator: Guybrush88 <erpizzo@alice.it>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/tatoeba_website/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -30,7 +30,7 @@ msgid ""
 msgstr "Le frasi  n° {firstNumber} e n° {secondNumber} sono traduzioni dirette ora."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L83
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L398
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L401
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
@@ -165,7 +165,7 @@ msgid ""
 msgstr "Non ci sono frasi per questa etichetta. L'etichetta che stai cercando è stata eliminata, oppure non esiste."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L113
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L435
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L436
 msgid "No user with this username: "
 msgstr "Nessun utente con questo nome: "
 
@@ -197,81 +197,81 @@ msgstr "Profilo salvato."
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "Modifica dell'indirizzo e-mail non riuscita. Inserisci un indirizzo e-mail esistente, per favore."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L395
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L398
 msgid "Your settings have been saved."
 msgstr "Le tue impostazioni sono state salvate."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L465
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L468
 msgid "New password cannot be empty."
 msgstr "La nuova password non può essere vuota"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L475
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L478
 msgid "New password has been saved."
 msgstr "La nuova password è stata salvata."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L477
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L480
 msgid "An error occurred while saving."
 msgstr "Si è verificato un errore durante il salvataggio."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L482
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L485
 msgid "Password error. Please try again."
 msgstr "Errore della password. Per favore, prova di nuovo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L190
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L191
 msgid ""
 "This account has been marked inactive. You cannot log in with it anymore. "
 "Please contact an admin if this is a mistake."
 msgstr "Questo account è stato impostato come inattivo. Non potrai più accedere con esso. Per favore, contatta un amministratore se questo è un errore."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L201
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L202
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
 msgstr "Questo account è stato impostato come spammer. Non potrai più accedere con esso. Per favore, contatta un amministratore se questo è un errore."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L223
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L224
 msgid "You must fill in your username and password."
 msgstr "Devi inserire il tuo nome utente e la tua password."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L231
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L232
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "Accesso fallito. Assicurati che i tasti Caps Lock e Num Lock non siano accidentalmente attivati. La tua password è sensibile alla differenza tra maiuscole e minuscole."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L304
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L305
 msgid "You did not accept the terms of use."
 msgstr "Non hai accettato le condizioni d'uso."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L316
 msgid "Wrong answer to the question."
 msgstr "Risposta errata alla domanda."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L336
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L337
 msgid "Password cannot be empty."
 msgstr "La password non può essere vuota."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L389
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L390
 msgid "Tatoeba, new password"
 msgstr "Tatoeba, nuova password"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L391
 msgid "Your login: "
 msgstr "Il tuo accesso: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L393
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L394
 msgid "Your new password: "
 msgstr "La tua nuova password: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L405
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L406
 msgid "Your new password has been sent to "
 msgstr "La tua nuova password è stata inviata a "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L413
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L414
 msgid "There is no registered user with this email address: "
 msgstr "Non c'è alcun utente registrato con questo indirizzo e-mail: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L474
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L475
 msgid "No user with this id: "
 msgstr "Nessun utente con questo ID: "
 
@@ -513,15 +513,15 @@ msgstr "Lingua"
 msgid "show random sentences"
 msgstr "mostra delle frasi casuali"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences_of.ctp#L31
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences_of.ctp#L32
 msgid "This user doesn't exist: {username}"
 msgstr "Questo utente non esiste: {username}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences_of.ctp#L36
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences_of.ctp#L37
 msgid "Translate {language} sentences that belong to {user}"
 msgstr "Traduci le frasi in {language} che appartengono a {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences_of.ctp#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences_of.ctp#L43
 msgid "Translate sentences that belong to {user}"
 msgstr "Traduci le frasi che appartengono a {user}"
 
@@ -532,7 +532,7 @@ msgstr "Linea temporale delle attività"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L73
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L94
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L43
 msgid "Latest contributions"
 msgstr "Contributi più recenti"
@@ -654,7 +654,7 @@ msgid "Contact us"
 msgstr "Contattaci"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L64
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L168
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L28
 msgid "Donate"
 msgstr "Dona"
@@ -795,8 +795,8 @@ msgstr "Frase casuale"
 msgid "show another "
 msgstr "mostra un'altra frase "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L69
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L97
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L127
 msgid "show more..."
 msgstr "mostra altro..."
@@ -1015,38 +1015,46 @@ msgid "Members"
 msgstr "Membri"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L125
+msgid "List of all members"
+msgstr "Elenco di tutti i membri"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L129
+msgid "Languages of members"
+msgstr "Lingua dei membri"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L38
 msgid "Wall"
 msgstr "Bacheca"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L141
 msgid "More"
 msgstr "Altro"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L147
 msgid "Quick Start Guide"
 msgstr "Guida iniziale"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L140
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L150
 msgid "Tatoeba Wiki"
 msgstr "Wiki di Tatoeba"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L153
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L42
 msgid "FAQ"
 msgstr "Domande frequenti"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L146
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L28
 msgid "Help"
 msgstr "Aiuto"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L160
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L84
 msgid "Downloads"
 msgstr "Download"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L154
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L164
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L32
 msgid "Tools"
 msgstr "Strumenti"
@@ -1124,7 +1132,7 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Utilizza i messaggi privati per discutere delle cose non relative alla frase."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L312
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L374
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L117
 msgid "Cancel"
@@ -1143,7 +1151,7 @@ msgid "hide"
 msgstr "nascondi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L247
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L377
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L374
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L522
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L462
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L112
@@ -1926,7 +1934,7 @@ msgstr "khasi"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L382
 msgid "Javanese"
-msgstr "Giavanese"
+msgstr "giavanese"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L438
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L457
@@ -1986,7 +1994,7 @@ msgstr "Mostra"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L543
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L551
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L312
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L325
 msgid "Edit"
 msgstr "Modifica"
 
@@ -1998,50 +2006,50 @@ msgstr "Ritorna alla pagina con tutti gli elenchi"
 msgid "Back to this list"
 msgstr "Ritorna a questo elenco"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L233
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L230
 msgid "Download this list"
 msgstr "Scarica questo elenco"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L262
 msgid "Show translations :"
 msgstr "Mostra le traduzioni in:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L315
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L312
 msgid "Set list as collaborative"
 msgstr "Imposta l'elenco come collaborativo"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L350
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L347
 msgid "Edit this list"
 msgstr "Modifica questo elenco"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L353
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L350
 msgid "View this list"
 msgstr "Visualizza questo elenco"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L370
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L367
 msgid "Delete this list"
 msgstr "Elimina questo elenco"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L451
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L448
 msgid "Remove sentence {number} from list"
 msgstr "Elimina la frase {number} dall'elenco"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L461
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L458
 msgid "Remove from list"
 msgstr "Rimuovi dall'elenco"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L493
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L490
 msgid "Add a sentence to this list : "
 msgstr "Aggiungi una frase a questo elenco: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L497
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L494
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L468
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L125
 msgid "OK"
 msgstr "OK"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L507
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L504
 msgid ""
 "NOTE : You can also add existing sentences with this icon {addToListButton} "
 "(while <a href=\"{url}\">browsing</a> for instance)."
@@ -2348,16 +2356,26 @@ msgstr "Riproduci l'audio"
 msgid "No audio for this sentence. Click to learn how to contribute."
 msgstr "Nessun file audio relativo a questa frase. Clicca per imparare come contribuirlo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L247
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L175
+msgid "Show 1 more translation"
+msgid_plural "Show {number} more translations"
+msgstr[0] "Mostra 1 altra traduzione"
+msgstr[1] "Mostra altre {number} traduzioni"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L209
+msgid "Less translations"
+msgstr "Meno traduzioni"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L309
 msgid "Translation:"
 msgstr "Traduzione:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L267
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L329
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L58
 msgid "Language:"
 msgstr "Lingua:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L303
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L365
 msgid "Submit translation"
 msgstr "Invia una traduzione"
 
@@ -3021,7 +3039,8 @@ msgstr "Messaggi più recenti"
 msgid "show activity timeline"
 msgstr "mostra la linea temporale delle attività"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L122
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L124
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L136
 msgid "Latest comments"
 msgstr "Commenti più recenti"
 
@@ -4004,9 +4023,9 @@ msgid "Edit language"
 msgstr "Modifica la lingua"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L104
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L122
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L159
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L169
 msgid "Save"
 msgstr "Salva"
 
@@ -4096,21 +4115,21 @@ msgstr "Le frasi di questo utente sono correntemente aggiunte come \"non approva
 msgid "Member since"
 msgstr "Data di iscrizione"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L278
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L279
 msgid "No language added."
 msgstr "Nessuna lingua aggiunta."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L335
-msgid "No description."
-msgstr "Nessuna descrizione."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L339
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L284
 msgid "TIP: We encourage you to indicate the languages you know."
 msgstr "CONSIGLIO: Ti incoraggiamo a indicare le lingue che conosci."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L343
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L287
 msgid "TIP: Encourage this user to indicate the languages he or she knows."
 msgstr "CONSIGLIO: Incoraggia questo utente a indicare le lingue che lui o lei conosce."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L348
+msgid "No description."
+msgstr "Nessuna descrizione."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L40
 msgid "Options"
@@ -4136,38 +4155,45 @@ msgid ""
 "default."
 msgstr "Ricorda l'ultimo elenco a cui hai assegnato una frase e selezionalo come predefinito."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L89
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L90
+msgid ""
+"Display a link to expand/collapse translations when there are too many "
+"translations."
+msgstr "Mostra un collegamento per espandere/ridurre le traduzioni quando ce ne sono troppe."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L99
 msgid ""
 "Enter ISO 639-3 codes, separated with a comma (e.g.: jpn,epo,ara,deu). "
 "Tatoeba will then only display translations in the languages you indicated. "
 "You can leave this empty to display translations in all languages."
 msgstr "Inserisci i codici ISO 639-3 separati da una virgola (per esempio: jpn,epo,ara,deu). Tatoeba allora mostrerà solo le traduzioni nelle lingue che hai indicato. Puoi lasciare questo vuoto per mostrare le traduzioni in tutte le lingue."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L41
 msgid "Languages"
 msgstr "Lingue"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L118
 msgid "Change email address"
 msgstr "Cambia l'indirizzo e-mail"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L129
 msgid "Email address"
 msgstr "Indirizzo e-mail"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L137
 msgid "Change password"
 msgstr "Cambia la password"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L151
 msgid "Old password"
 msgstr "Vecchia password"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L158
 msgid "New password"
 msgstr "Nuova password"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L165
 msgid "New password again"
 msgstr "Ripeti la nuova password"
 
@@ -4182,6 +4208,18 @@ msgstr "Membri (in totale %count%)"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L86
 msgid "Member status"
 msgstr "Stato membro"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L56
+msgid "{total} member"
+msgid_plural "{total} members"
+msgstr[0] "{total} membro"
+msgstr[1] "{total} membri"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L81
+msgid "{lang} ({total} member)"
+msgid_plural "{lang} ({total} members)"
+msgstr[0] "{lang} ({total} membro)"
+msgstr[1] "{lang} ({total} membri)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L41
@@ -4250,21 +4288,24 @@ msgstr "Accetto le <a href=\"{}\">condizioni d'uso</a>"
 msgid "Tatoeba user: {username}"
 msgstr "Utente di Tatoeba: {username}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L64
-msgid "Latest sentences (<a href=\"{}\">view all</a>)"
-msgstr "Frasi più recenti (<a href=\"{}\">visualizza tutte</a>)"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L63
+msgid "Latest sentences"
+msgstr "Frasi più recenti"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L94
-msgid "Favorite sentences (<a href=\"{}\">view all</a>)"
-msgstr "Frasi preferite (<a href=\"{}\">visualizza tutte</a>)"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L178
+msgid "view all"
+msgstr "visualizza tutti"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L127
-msgid "Latest comments (<a href=\"{}\">view all</a>)"
-msgstr "Commenti più recenti (<a href=\"{}\">visualizza tutti</a>)"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L98
+msgid "Favorite sentences"
+msgstr "Frasi preferite"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L161
-msgid "Latest Wall messages (<a href=\"{}\">view all</a>)"
-msgstr "Messaggi in bacheca più recenti (<a href=\"{}\">visualizza tutti</a>)"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L175
+msgid "Latest Wall messages"
+msgstr "Messaggi in bacheca più recenti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L31
 msgid "Edit message {number}"
