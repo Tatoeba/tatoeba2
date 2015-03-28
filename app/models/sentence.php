@@ -47,7 +47,7 @@ class Sentence extends AppModel
     public $name = 'Sentence';
     public $actsAs = array("Containable", "Autotranscriptable");
     public static $romanji = array('furigana' => 1, 'mix' => 2, 'romanji' => 3);
-    
+
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
     
@@ -205,7 +205,9 @@ class Sentence extends AppModel
     private function clean($text)
     {
         $text = trim($text);
-        // This line replaces any series of spaces, newlines, tabs, or other 
+        // Strip out any initial byte-order mark that might be present.
+        $text = preg_replace("/^\xEF\xBB\xBF/", '', $text);
+        // Replace any series of spaces, newlines, tabs, or other 
         // ASCII whitespace characters with a single space. 
         $text = preg_replace('/\s+/', ' ', $text);
         // MySQL will truncate to a byte length of 1500, which may split
