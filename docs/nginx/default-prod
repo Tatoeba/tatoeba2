@@ -140,7 +140,16 @@ server {
 
 server {
 	listen 		80;
+	listen  443 ssl;
+	keepalive_timeout   60;
 	server_name	audio.tatoeba.org;
+
+	add_header Strict-Transport-Security "max-age=86400; preload";
+
+	ssl_certificate     path/to/certificate;
+	ssl_certificate_key path/to/key;
+	ssl_session_cache   shared:SSL:10m;
+	ssl_session_timeout 10m;
 
 	root		/var/www-audio;
 	index		index.php index.html;
@@ -177,8 +186,17 @@ server {
 
 server {
 	listen 		80;
+	listen  443 ssl;
+	keepalive_timeout   60;
 	server_name	static.tatoeba.org;
 
+	add_header Strict-Transport-Security "max-age=86400; preload";
+
+	ssl_certificate     path/to/certificate;
+	ssl_certificate_key path/to/key;
+	ssl_session_cache   shared:SSL:10m;
+	ssl_session_timeout 10m;
+	
 	root		/var/www-static;
 	index		index.php index.html;
 	charset		utf-8;
