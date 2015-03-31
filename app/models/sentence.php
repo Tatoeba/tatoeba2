@@ -491,48 +491,6 @@ class Sentence extends AppModel
         return $result;
     }
 
-    /**
-     * Get sentences with specified ids as well as their translations.
-     *
-     * @param array  $ids              Ids of the sentences.
-     * @param string $translationsLang Language of the translations.
-     *
-     * @return array
-     */
-    public function getSentencesWithIds($ids, $translationsLang = null)
-    {
-        $translationsConditions = array();
-        if ($translationsLang != null) {
-            $translationsConditions["Translation.lang"] = $translationsLang;
-        }
-
-        $sentences = $this->find(
-            'all',
-            array(
-                "conditions" => array("Sentence.id" => $ids),
-                "contain" => array(
-                    "Favorites_users" => array(
-                        'fields' => array()
-                    ),
-                    "User" => array(
-                        "fields" => array("username")
-                    ),
-                    "Translation" => array(
-                        "fields" => array(
-                            "id",
-                            "lang",
-                            "text",
-                            "hasaudio",
-                            "correctness"
-                        ),
-                        "conditions" => $translationsConditions
-                    )
-                )
-            )
-        );
-
-        return $results;
-    }
 
     /**
      * Delete the sentence with the given id.
