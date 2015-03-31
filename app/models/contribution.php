@@ -160,34 +160,6 @@ class Contribution extends AppModel
         return $results;
     }
 
-    /**
-     * Returns number of contributions for each member, ordered from the highest
-     * contributor to the lowest.
-     *
-     * @return array
-     */
-    public function getUsersStatistics()
-    {
-        $query = array(
-            'fields' => array(
-                'Contribution.user_id', 'User.id', 'User.username'
-                , 'User.since', 'User.group_id', 'COUNT(*) as total'
-            ),
-            'conditions' => array(
-                'User.id !=' => null
-                , 'Contribution.type' => 'sentence'
-            ),
-            'group' => array('Contribution.user_id'),
-            'order' => 'total DESC',
-            'contain' => array(
-                'User' => array(
-                    'fields' => array('username','id')
-                )
-            )
-        );
-        return array();//$this->find('all', $query);
-    }
-
 
     /**
      * Returns number of contributions for each day. We only count the number of new
@@ -200,7 +172,6 @@ class Contribution extends AppModel
         if ($year == null || $month == null) {
 
             $startDate = date('Y-m');
-            $numDays = date('t');
 
         } else {
 

@@ -130,18 +130,6 @@ class ContributionsController extends AppController
 
 
     /**
-     * Display number of contributions for each member.
-     *
-     * @return void
-     */
-    public function statistics()
-    {
-        $this->helpers[] = 'Cache';
-        $this->cacheAction = '1 day';
-        $this->set('stats', $this->Contribution->getUsersStatistics());
-    }
-
-    /**
      * Display number of contributions for each day.
      *
      * @param string $month Example: '2010-02' (for February 2010).

@@ -62,7 +62,6 @@ class UsersLanguages extends AppModel
             'all',
             array(
                 'conditions' => array('by_user_id' => $userId),
-                'contain' => array(),
                 'order' => 'level DESC'
             )
         );
@@ -137,8 +136,7 @@ class UsersLanguages extends AppModel
             array(
                 'fields' => array('language_code', 'COUNT(*) as total'),
                 'group' => 'language_code',
-                'order' => 'total DESC',
-                'contain' => array()
+                'order' => 'total DESC'
             )
         );
 
