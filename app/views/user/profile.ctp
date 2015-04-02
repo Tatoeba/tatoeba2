@@ -49,6 +49,7 @@ $statusClass = 'status'.$groupId;
 $currentMember = CurrentUser::get('username');
 $languagesSettings = $user['lang'];
 $level = $user['level'];
+$countryName = $this->Countries->getCountryNameByCode($user['country_id']);
 
 $userImage = 'unknown-avatar.png';
 if (!empty($user['image'])) {
