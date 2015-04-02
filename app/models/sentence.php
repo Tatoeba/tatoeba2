@@ -664,7 +664,11 @@ class Sentence extends AppModel
      * @return boolean
      */
     public function saveTranslation(
-        $sentenceId, $sentenceLang, $translationText, $translationLang, $translationCorrectness
+        $sentenceId,
+        $sentenceLang,
+        $translationText,
+        $translationLang,
+        $translationCorrectness = 0
     ) {
         $userId = CurrentUser::get('id');
         
@@ -730,22 +734,18 @@ class Sentence extends AppModel
         $translationLang,
         $userId
     ) {
-        $correctness = $this->User->getLevelOfUser($userId);
-        
         // saving sentence
         $sentenceSaved = $this->saveNewSentence(
             $sentenceText,
             $sentenceLang,
-            $userId,
-            $correctness
+            $userId
         );
         $sentenceId = $this->id;
         // saving translation
         $translationSaved = $this->saveNewSentence(
             $translationText,
             $translationLang,
-            $userId,
-            $correctness
+            $userId
         );
 
         $translationId = $this->id;
