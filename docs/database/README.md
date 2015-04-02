@@ -15,6 +15,12 @@ Version used on the prod server: 5.5.38-0+wheezy1 (Debian)
 Folders content
 ------------------
 
+### acl
+
+Contains the cake console commands to run in order to fill the `aros`, `acos` 
+and `aros_acos` table. They define users permissions. You can search "CakePHP ACL" 
+for more information about how this works.
+
 ### archives
 
 Doesn't have anything you need. Files in here can probably be deleted.
