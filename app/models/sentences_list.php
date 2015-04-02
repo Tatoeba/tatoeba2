@@ -448,15 +448,15 @@ class SentencesList extends AppModel
         $userId = CurrentUser::get('id');
 
         // Checking if user can add to list.
-        $canAdd = $this->isEditableByCurrentUser($listId, $userId);
+        $userLevel = $this->User->getLevelOfUser($userId);
+        $canAdd = $this->isEditableByCurrentUser($listId, $userId) && $userLevel > -1;
         if (!$canAdd) {
             return false;
         }
 
         // Saving sentence
-        $sentenceCorrectness = $this->User->getLevelOfUser($userId);
         $sentenceSaved = $this->Sentence->saveNewSentence(
-            $sentenceText, $sentenceLang, $userId, $sentenceCorrectness
+            $sentenceText, $sentenceLang, $userId
         );
         if (!$sentenceSaved) {
             return false;

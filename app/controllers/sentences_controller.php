@@ -66,10 +66,6 @@ class SentencesController extends AppController
         'Sentence','SentenceNotTranslatedInto'
     );
 
-    private $blocked_users = array (6070,6071,1314,
-    8238,
-    7990
-   );
     /**
      * Before filter.
      *
@@ -292,6 +288,11 @@ class SentencesController extends AppController
      */
     public function add_an_other_sentence()
     {
+        $userId = $this->Auth->user('id');
+        $userLevel = $this->Sentence->User->getLevelOfUser($userId);
+        if ($userLevel < 0) {
+            return;
+        }
 
         if (!isset($_POST['value'])
             || !isset($_POST['selectedLang'])
@@ -299,12 +300,11 @@ class SentencesController extends AppController
             //TODO add error handling
             return;
         }
-        $userId = $this->Auth->user('id');
+
         $userName = $this->Auth->user('username');
 
         $sentenceLang = Sanitize::paranoid($_POST['selectedLang']);
         $sentenceText = $_POST['value'];
-        $sentenceCorrectness = $this->Sentence->User->getLevelOfUser($userId);
 
         $isSaved = $this->CommonSentence->wrapper_save_sentence(
             $sentenceLang,
@@ -313,8 +313,7 @@ class SentencesController extends AppController
             null,
             null,
             null,
-            $userName,
-            $sentenceCorrectness
+            $userName
         );
 
         // saving
@@ -443,12 +442,13 @@ class SentencesController extends AppController
         $translationLang = Sanitize::paranoid($_POST['selectLang']);
         $withAudio = Sanitize::paranoid($_POST['withAudio']);
         $parentOwnerName = $_POST['parentOwnerName'];
-
         $userId = $this->Auth->user('id');
+        $userLevel = $this->Sentence->User->getLevelOfUser($userId);
 
-        if (in_array($userId,$this->blocked_users)) {
+        if ($userLevel < 0) {
             return ;
         }
+
         $translationText = $_POST['value'];
         
         // we store the selected language to be reused
@@ -473,13 +473,11 @@ class SentencesController extends AppController
 
             // Saving...
             $sentenceLang = $this->Sentence->getLanguageCodeFromSentenceId($sentenceId);
-            $translationCorrectness = $this->Sentence->User->getLevelOfUser($userId);
             $isSaved = $this->Sentence->saveTranslation(
                 $sentenceId,
                 $sentenceLang,
                 $translationText,
-                $translationLang,
-                $translationCorrectness
+                $translationLang
             );
 
             if ($isSaved) {
@@ -487,8 +485,8 @@ class SentencesController extends AppController
                 $translation['id'] = $this->Sentence->id;
                 $translation['lang'] = $translationLang;
                 $translation['text'] = $translationText;
-                $translation['correctness'] = $translationCorrectness;
-                
+                $translation['correctness'] = 0;
+
                 $ownerName = $this->Auth->user('username');
 
                 $this->set('translation', $translation);
