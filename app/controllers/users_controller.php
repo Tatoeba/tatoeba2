@@ -344,13 +344,14 @@ class UsersController extends AppController
 
         // At this point, we're fine, so we can create the user
         $this->User->create();
-        $this->data['User']['since'] = date("Y-m-d H:i:s");
-        $this->data['User']['group_id'] = 4;
-        $this->User->set($this->data);
+        $allowedFields = array('username', 'password', 'email');
+        $newUser = $this->filterKeys($this->data['User'], $allowedFields);
+        $newUser['since']    = date("Y-m-d H:i:s");
+        $newUser['group_id'] = 4;
 
         // And we save
-        if ($this->User->save($this->data)) {
-            $this->Auth->login($this->data);
+        if ($this->User->save($newUser)) {
+            $this->Auth->login($newUser);
             $this->redirect(
                 array(
                     'controller' => 'pages',
@@ -378,12 +379,12 @@ class UsersController extends AppController
                 $newPassword = $this->User->generatePassword();
 
                 // data to save
-                $this->data['User']['id'] = $user['User']['id'];
-                $this->data['User']['password'] = $this->Auth->password(
-                    $newPassword
+                $updatePasswordData = array(
+                    'id' => $user['User']['id'],
+                    'password' => $this->Auth->password($newPassword)
                 );
 
-                if ($this->User->save($this->data)) { // if saved
+                if ($this->User->save($updatePasswordData)) { // if saved
                     // prepare message
                     $subject = __('Tatoeba, new password', true);
                     $message = __('Your login: ', true)

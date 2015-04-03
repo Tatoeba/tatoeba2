@@ -321,8 +321,10 @@ class UserController extends AppController
 
         $saved = false;
         if (!empty($this->data)) {
-            $this->data['User']['id'] = $currentUserId;
-            $saved = $this->User->save($this->data);
+            $allowedFields = array('name', 'country_id', 'birthday', 'homepage');
+            $basicInfos = $this->filterKeys($this->data['User'], $allowedFields);
+            $basicInfos['id'] = $currentUserId;
+            $saved = $this->User->save($basicInfos);
         }
 
         if ($saved) {
@@ -382,11 +384,11 @@ class UserController extends AppController
             $collapsibleTranslationsEnabled = $this->data['User']['collapsible_translations_enabled'];
             $this->Cookie->write('collapsible_translations_enabled', $collapsibleTranslationsEnabled, false, "+1 month");;
 
-            $this->data['User']['id'] = $currentUserId;
-            $this->data['User']['lang'] = $this->_language_settings(
-                $this->data['User']['lang']
+            $dataToSave = array(
+                'id' => $currentUserId,
+                'lang' => $this->_language_settings($this->data['User']['lang'])
             );
-            if ($this->User->save($this->data)) {
+            if ($this->User->save($dataToSave)) {
                 // Needed so that the information is updated for the Auth component.
                 $user = $this->User->read(null, $currentUserId);
                 $this->Session->write($this->Auth->sessionKey, $user['User']);

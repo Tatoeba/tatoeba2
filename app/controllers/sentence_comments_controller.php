@@ -199,10 +199,11 @@ class SentenceCommentsController extends AppController
             );
         }
 
+        $allowedFields = array('sentence_id', 'text');
+        $comment = $this->filterKeys($this->data['SentenceComment'], $allowedFields);
+        $comment['user_id'] = $userId;
 
-        $this->data['SentenceComment']['user_id'] = $userId;
-
-        if ($this->SentenceComment->save($this->data)) {
+        if ($this->SentenceComment->save($comment)) {
             $sentenceId = $this->data['SentenceComment']['sentence_id'];
             $participants = $this->SentenceComment->getEmailsFromComments(
                 $sentenceId
@@ -325,7 +326,11 @@ class SentenceCommentsController extends AppController
                     );
                 }
                 //save comment
-                if ($this->SentenceComment->save($this->data)) {
+                $commentUpdate = array(
+                    'id'   => $commentId,
+                    'text' => $this->data['SentenceComment']['text'],
+                );
+                if ($this->SentenceComment->save($commentUpdate)) {
                     $this->Session->setFlash(
                         __("Changes to your comment have been saved.", true)
                     );

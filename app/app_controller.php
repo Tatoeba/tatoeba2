@@ -265,5 +265,18 @@ class AppController extends Controller
         }
         return 'eng';
     }
+
+    /**
+     * Returns $array containing only $allowedKeys keys.
+     *
+     * @param array $array  An associative array
+     * @param array $allowedKeys Allowed keys inside $array
+     *
+     * @return string Filtered array.
+     */
+    public function filterKeys($array, $allowedKeys)
+    {
+        return array_intersect_key($array, array_flip($allowedKeys));
+    }
 }
 ?>

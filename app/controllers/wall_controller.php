@@ -143,11 +143,6 @@ class WallController extends Appcontroller
         if (!empty($this->data['Wall']['content'])
             && $this->Auth->user('id')
         ) {
-            $now = date("Y-m-d H:i:s");
-
-            $this->data['Wall']['owner'] = $this->Auth->user('id');
-            $this->data['Wall']['date'] = $now;
-
             $lastMess = $this->Cookie->read('hash_last_wall');
             $lastMess = $this->Session->read('hash_last_wall');
             $thisMess =md5($this->data['Wall']['content']);
@@ -163,10 +158,14 @@ class WallController extends Appcontroller
                 "+1 month"
             );
             if ($lastMess !=$thisMess ) {
-
-
+                $now = date("Y-m-d H:i:s");
+                $newPost = array(
+                    'owner'   => $this->Auth->user('id'),
+                    'date'    => $now,
+                    'content' => $this->data['Wall']['content'],
+                );
                 // now save to database
-                if ($this->Wall->save($this->data)) {
+                if ($this->Wall->save($newPost)) {
                     $this->update_thread_date(
                         $this->Wall->id,
                         $now
@@ -191,22 +190,23 @@ class WallController extends Appcontroller
     {
 
         $idTemp = $this->Auth->user('id');
-        if (isset($_POST['content'])
-            && trim($_POST['content']) != ''
-            && isset($_POST['replyTo'])
+        if (isset($this->params['form']['content'])
+            && trim($this->params['form']['content']) != ''
+            && isset($this->params['form']['replyTo'])
             && !(empty($idTemp))
         ) {
-
-            $content = Sanitize::stripScripts($_POST['content']);
-            $parentId = Sanitize::paranoid($_POST['replyTo']);
+            $content = Sanitize::stripScripts($this->params['form']['content']);
+            $parentId = Sanitize::paranoid($this->params['form']['replyTo']);
             $now = date("Y-m-d H:i:s");
 
-            $this->data['Wall']['content'] = $content ;
-            $this->data['Wall']['owner'] = $idTemp ;
-            $this->data['Wall']['parent_id'] = $parentId ;
-            $this->data['Wall']['date'] = $now;
+            $newPost = array(
+                'content'   => $content,
+                'owner'     => $idTemp,
+                'parent_id' => $parentId,
+                'date'      => $now,
+            );
             // now save to database
-            if ($this->Wall->save($this->data)) {
+            if ($this->Wall->save($newPost)) {
                 $newMessageId = $this->Wall->id ;
 
                 $this->loadModel('User');
@@ -336,7 +336,11 @@ class WallController extends Appcontroller
                     )
                 );
             } else {
-                if ($this->Wall->save($this->data)) {
+                $editedPost = array(
+                    'id' => $messageId,
+                    'content' => $this->data['Wall']['content'],
+                );
+                if ($this->Wall->save($editedPost)) {
                     $this->Session->setFlash(
                         __("Message saved.", true)
                     );

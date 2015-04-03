@@ -114,13 +114,17 @@ class SentenceAnnotationsController extends AppController
         $sentenceId = Sanitize::paranoid(
             $this->data['SentenceAnnotation']['sentence_id']
         );
-
         $this->data['SentenceAnnotation']['user_id'] = CurrentUser::get('id');
+        $text = trim($this->data['SentenceAnnotation']['text']);
 
-        $this->data['SentenceAnnotation']['text']
-            = trim($this->data['SentenceAnnotation']['text']);
-
-        if ($this->SentenceAnnotation->save($this->data)) {
+        $annotation = array(
+            'id'          => $this->data['SentenceAnnotation']['id'],
+            'sentence_id' => $sentenceId,
+            'meaning_id'  => $this->data['SentenceAnnotation']['meaning_id'],
+            'text'        => $text,
+            'user_id'     => CurrentUser::get('id'),
+        );
+        if ($this->SentenceAnnotation->save($annotation)) {
             $this->flash(
                 'Index saved.',
                 "/sentence_annotations/show/".$sentenceId

@@ -238,8 +238,11 @@ class SentencesListsController extends AppController
     {
         $listName = $this->data['SentencesList']['name'];
         if (!empty($this->data) && trim($listName) != '') {
-            $this->data['SentencesList']['user_id'] = $this->Auth->user('id');
-            $this->SentencesList->save($this->data);
+            $newList = array(
+                'name'    => $listName,
+                'user_id' => $this->Auth->user('id'),
+            );
+            $this->SentencesList->save($newList);
             $this->redirect(array("action"=>"edit", $this->SentencesList->id));
         } else {
             $this->redirect(array("action"=>"index"));
