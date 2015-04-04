@@ -18,7 +18,7 @@ Folders content
 ### acl
 
 Contains the cake console commands to run in order to fill the `aros`, `acos` 
-and `aros_acos` table. They define users permissions. You can search "CakePHP ACL" 
+and `aros_acos` table. They define permissions for users. You can search "CakePHP ACL" 
 for more information about how this works.
 
 ### archives
@@ -43,7 +43,7 @@ to re-create a copy of Tatoeba's database.
 ### tables
 
 This is the most important folder. 
-The scripts in this folder will create the tables of the database.
+The scripts in this folder will create the tables in the database.
 Each file contains the script to create the corresponding table.
 Most of the files contain a bit of documentation about each field, so you may refer
 to these files to find out what is stored in a certain field.
@@ -55,7 +55,7 @@ The scripts in this folder should be run after the ones in the `tables` folder.
 
 ### updates
 
-Whenever a change is made on the database, these changes are included in a script 
-that is added in this folder. The file name is the date when the changes were made.
-This is useful for developers who already have a local Tatoeba and need update 
+Whenever a change is made to the database, it is included in a script 
+that is added to this folder. The file name is the date when the changes were made.
+This is useful for developers who already have a local Tatoeba and need to update 
 their database.
