@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-27 21:03+0000\n"
-"PO-Revision-Date: 2015-03-28 02:10+0000\n"
+"PO-Revision-Date: 2015-04-02 18:53+0000\n"
 "Last-Translator: gillux\n"
 "Language-Team: French (http://www.transifex.com/projects/p/tatoeba_website/language/fr/)\n"
 "MIME-Version: 1.0\n"
@@ -487,12 +487,12 @@ msgstr "Rechercher des phrases non traduites"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L95
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L135
 msgid "Sentences in:"
-msgstr "Phrases en :"
+msgstr "Phrases en&nbsp;:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L193
 msgid "Not directly translated into:"
-msgstr "N'ayant pas de traduction directe en :"
+msgstr "N'ayant pas de traduction directe en&nbsp;:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L130
 msgid "show sentences"
@@ -714,12 +714,12 @@ msgstr "Se connecter"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L92
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L53
 msgid "Username: "
-msgstr "Nom d'utilisateur : "
+msgstr "Nom d'utilisateur&nbsp: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L99
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L58
 msgid "Password: "
-msgstr "Mot de passe : "
+msgstr "Mot de passe&nbsp;: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/login.ctp#L105
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L68
@@ -2385,7 +2385,7 @@ msgstr "Soumettre une traduction"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L161
 msgid "Show translations in:"
-msgstr "Afficher les traductions en :"
+msgstr "Afficher les traductions en&nbsp;:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L173
 msgid "NOTE: Both direct and indirect translations will be shown."
@@ -2397,7 +2397,7 @@ msgstr "NOTE : les phrases qui ont une traduction indirecte s’afficheront."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L224
 msgid "Only sentences with audio:"
-msgstr "Seulement les phrases avec de l’audio :"
+msgstr "Seulement les phrases avec de l’audio&nbsp;:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L227
 msgid "no"
@@ -4236,7 +4236,7 @@ msgstr "Courriel"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L47
 msgid "Username:"
-msgstr "Nom d'utilisateur :"
+msgstr "Nom d'utilisateur&nbsp;:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L59
 msgid "Username can only contain letters, numbers, or underscore"
@@ -4256,11 +4256,11 @@ msgstr "Mot de passe :"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L95
 msgid "unmask password"
-msgstr "Afficher le mot de passe en clair"
+msgstr "Afficher le mot de passe"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L101
 msgid "Email address:"
-msgstr "Mél :"
+msgstr "Mél&nbsp;:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L113
 msgid "Invalid email address"

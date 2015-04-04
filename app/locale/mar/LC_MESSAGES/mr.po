@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-27 21:03+0000\n"
-"PO-Revision-Date: 2015-03-27 21:06+0000\n"
-"Last-Translator: Trang Ho\n"
+"PO-Revision-Date: 2015-04-04 08:24+0000\n"
+"Last-Translator: sabretou <sabretou@gmail.com>\n"
 "Language-Team: Marathi (http://www.transifex.com/projects/p/tatoeba_website/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -528,7 +528,7 @@ msgstr "%2$s च्या मालकीच्या वाक्यांच�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/activity_timeline.ctp#L39
 msgid "Activity timeline"
-msgstr "कार्यकलाप समयरेखा"
+msgstr "क्रिया कालरेषा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L38
@@ -1017,11 +1017,11 @@ msgstr "सदस्य"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L125
 msgid "List of all members"
-msgstr ""
+msgstr "सर्व सदस्यांची यादी"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L129
 msgid "Languages of members"
-msgstr ""
+msgstr "भाषेनुसार सदस्यांच्या याद्या"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L38
@@ -2048,7 +2048,7 @@ msgstr "या यादीत एक वाक्य जोडा : "
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L82
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L125
 msgid "OK"
-msgstr "बरं"
+msgstr "ठिक आहे"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L504
 msgid ""
@@ -2360,12 +2360,12 @@ msgstr "या वाक्याशी कोणतेही ऑडिओ स�
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L175
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "अजून एक भाषांतर दाखवा"
+msgstr[1] "अजून {number} भाषांतरे दाखवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L209
 msgid "Less translations"
-msgstr ""
+msgstr "भाषांतरे कमी दाखवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L309
 msgid "Translation:"
@@ -2467,7 +2467,7 @@ msgstr "{messageAuthor} यांनी पोस्ट केले"
 msgid ""
 "Warning: this website is for testing purposes. Everything you submit will be"
 " definitely lost."
-msgstr "चेतावणी: हे संकेतस्थळ परीक्षणापुरतं आहे. आपण सादर केलेली प्रत्येक वस्तू निश्चितपणे गमावली जाईल."
+msgstr "चेतावणी: हे संकेतस्थळ परीक्षणापुरतं आहे. येथे सादर केलेली प्रत्येक वस्तू निश्चितपणे गमावली जाईल."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L98
 msgid "No language matches"
@@ -3038,7 +3038,7 @@ msgstr "नवीनतम संदेश"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L108
 msgid "show activity timeline"
-msgstr "कार्यकलाप समयरेखा दाखवा"
+msgstr "क्रिया कालरेषा दाखवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L124
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L136
@@ -4080,7 +4080,7 @@ msgstr "आवडलेली वाक्ये"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L87
 msgid "Show latest activity"
-msgstr "नवीनतम कार्यकलाप दाखवा"
+msgstr "नवीनतम क्रिया दाखवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L119
 msgid "Email notifications are ENABLED."
@@ -4160,7 +4160,7 @@ msgstr "एखादं वाक्य ज्या यादीत घात�
 msgid ""
 "Display a link to expand/collapse translations when there are too many "
 "translations."
-msgstr ""
+msgstr "खूप अधिक भाषांतरे असताना भाषांतरे वाढवायला किंवा घटवायला एक लिंक दाखवा."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L99
 msgid ""
@@ -4213,14 +4213,14 @@ msgstr "सदस्य दर्जा"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L56
 msgid "{total} member"
 msgid_plural "{total} members"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{total} सदस्य"
+msgstr[1] "{total} सदस्य"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L81
 msgid "{lang} ({total} member)"
 msgid_plural "{lang} ({total} members)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{lang} ({total} सदस्य)"
+msgstr[1] "{lang} ({total} सदस्य)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L41
@@ -4291,22 +4291,22 @@ msgstr "तातोएबा प्रयोक्ता: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L63
 msgid "Latest sentences"
-msgstr ""
+msgstr "नवीनतम वाक्ये"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L66
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L101
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L178
 msgid "view all"
-msgstr ""
+msgstr "सर्व पाहा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L98
 msgid "Favorite sentences"
-msgstr ""
+msgstr "आवडती वाक्ये"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L175
 msgid "Latest Wall messages"
-msgstr ""
+msgstr "नवीनतम भिंतीवरील संदेश"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L31
 msgid "Edit message {number}"

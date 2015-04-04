@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-27 21:03+0000\n"
-"PO-Revision-Date: 2015-03-27 21:06+0000\n"
-"Last-Translator: Trang Ho\n"
+"PO-Revision-Date: 2015-04-01 13:44+0000\n"
+"Last-Translator: Dmitry K\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/tatoeba_website/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1025,11 +1025,11 @@ msgstr "Участники"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L125
 msgid "List of all members"
-msgstr ""
+msgstr "Все участники"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L129
 msgid "Languages of members"
-msgstr ""
+msgstr "Участники по языкам"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L38
@@ -1662,7 +1662,7 @@ msgstr "коса"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L310
 msgid "Punjabi (Western)"
-msgstr "Пенджаби (западный)"
+msgstr "пенджаби (западный)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L311
 msgid "Malagasy"
@@ -1938,7 +1938,7 @@ msgstr "гуджарати"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L380
 msgid "Punjabi (Eastern)"
-msgstr "Пенджаби (восточный)"
+msgstr "пенджаби (восточный)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L381
 msgid "Khasi"
@@ -2373,13 +2373,13 @@ msgstr "У этого предложения нет аудиозаписи. Кл
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L175
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Показать ещё один перевод"
+msgstr[1] "Показать ещё {number} перевода"
+msgstr[2] "Показать ещё {number} переводов"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L209
 msgid "Less translations"
-msgstr ""
+msgstr "Меньше переводов"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L309
 msgid "Translation:"
@@ -4171,13 +4171,13 @@ msgstr "Продвинутый выбор языка (экспериментал
 msgid ""
 "Remember the last list to which you assigned a sentence, and select it by "
 "default."
-msgstr "Запоминать последний список, в который вы включали предложение, и выбирать его по умолчанию."
+msgstr "Запоминать последний список, в который вы включали предложения, и выбирать его по умолчанию."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L90
 msgid ""
 "Display a link to expand/collapse translations when there are too many "
 "translations."
-msgstr ""
+msgstr "Показывать ссылку для сворачивания/разворачивания переводов, когда их слишком много"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L99
 msgid ""
@@ -4230,16 +4230,16 @@ msgstr "Статус участника"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L56
 msgid "{total} member"
 msgid_plural "{total} members"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "1 участник"
+msgstr[1] "{total} участника"
+msgstr[2] "{total} участников"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L81
 msgid "{lang} ({total} member)"
 msgid_plural "{lang} ({total} members)"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "{lang} (один участник)"
+msgstr[1] "{lang} ({total} участника)"
+msgstr[2] "{lang} ({total} участников)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L41
@@ -4310,22 +4310,22 @@ msgstr "Пользователь Tatoeba: {username}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L63
 msgid "Latest sentences"
-msgstr ""
+msgstr "Последние предложения"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L66
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L101
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L178
 msgid "view all"
-msgstr ""
+msgstr "посмотреть все"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L98
 msgid "Favorite sentences"
-msgstr ""
+msgstr "Избранные предложения"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L175
 msgid "Latest Wall messages"
-msgstr ""
+msgstr "Последние сообщения на стене"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L31
 msgid "Edit message {number}"
