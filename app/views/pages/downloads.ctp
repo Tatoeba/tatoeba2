@@ -96,6 +96,8 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
         $list_id_str = __('List id', true);
         $list_name_str = __('List name', true);
         $meaning_id_str = __('Meaning id', true);
+        $skill_level_str = __('Skill level', true);
+        $details_str = __('Details', true);
         $tab_str = __('tab', true);
     ?>
     <div class="module">
@@ -379,6 +381,36 @@ $this->set('title_for_layout', $pages->formatTitle(__('Download sentences', true
              __('Contains the ids of the sentences, in all languages, for which audio is available.'); ?>
             </dd>  
         </dl>
+
+        <!-- User skill level per language -->
+        <h3><?php __('User skill level per language'); ?></h3>
+        <dl>
+            <dt><?php echo $download_str; ?></dt>
+            <dd>
+            <a href="http://downloads.tatoeba.org/exports/user_languages.tar.bz2">
+             http://downloads.tatoeba.org/exports/user_languages.tar.bz2
+            </a>
+            </dd>
+
+            <dt><?php echo $field_struct_str; ?></dt>
+            <dd>
+                <span class="param"><?php echo $lang_str; ?></span>
+                <span class="symbol">[<?php echo $tab_str; ?>]</span>
+                <span class="param"><?php echo $skill_level_str; ?></span>
+                <span class="symbol">[<?php echo $tab_str; ?>]</span>
+                <span class="param"><?php echo $username_str; ?></span>
+                <span class="symbol">[<?php echo $tab_str; ?>]</span>
+                <span class="param"><?php echo $details_str; ?></span>
+            </dd>
+
+            <dt><?php echo $file_desc_str; ?></dt>
+            <dd>
+            <?php 
+             __('Indicates the self-reported skill levels of members in individual languages.'); ?>
+            </dd>  
+        </dl>
+
+
     </div>
     
     <div class="module">
