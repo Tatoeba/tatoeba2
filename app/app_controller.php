@@ -61,8 +61,19 @@ class AppController extends Controller
         'Pages',
         'Session'
     );
-    
-    
+
+    private function remapOldLangAlias($lang)
+    {
+        $uiLangSettings = Configure::read('UI.languages');
+        foreach ($uiLangSettings as $setting) {
+            if (isset($setting[3]) && is_array($setting[3])
+                && in_array($lang, $setting[3])) {
+                return $setting[0];
+            }
+        }
+        return $lang;
+    }
+
     /**
      * 
      *
@@ -112,7 +123,16 @@ class AppController extends Controller
         if (isset($this->params['lang'])) {
             $langInURL = $this->params['lang'];
         }
-        if ($langInCookie) {
+
+        $langInURLAlias = $this->remapOldLangAlias($langInURL);
+        if ($langInURLAlias != $langInURL) {
+            $lang = $langInURLAlias;
+        } else if ($langInCookie) {
+            $langInCookieAlias = $this->remapOldLangAlias($langInCookie);
+            if ($langInCookieAlias != $langInCookie && !empty($langInURL)) {
+                $this->Cookie->write('interfaceLanguage', $langInCookieAlias, false, "+1 month");
+                $langInCookie = $langInCookieAlias;
+            }
             $lang = $langInCookie;
         } else if (!empty($langInURL)) {
             $lang = $langInURL;
@@ -122,7 +142,10 @@ class AppController extends Controller
 
         // Forcing the URL to have the (correct) language in it.
         $url = Router::reverse($this->params);
-        if (!empty($langInURL) && $langInCookie && $langInURL != $langInCookie) {
+        if (!empty($langInURL) && (
+              ($langInCookie && $langInURL != $langInCookie) ||
+              ($langInURLAlias != $langInURL)
+           )) {
             // We're are now going to remove the language from the URL and set
             // $langURL to null so that we get the the correct URL through
             // redirection (below).

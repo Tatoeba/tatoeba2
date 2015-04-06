@@ -29,7 +29,7 @@ class AppControllerTestCase extends CakeTestCase {
 
 	function startTest() {
 		Configure::write('UI.languages', array(
-			array('chi', 'zh-Hans', '中文'),
+			array('cmn', 'zh-Hans', '中文', array('chi')),
 			array('eng', 'en', 'English'),
 			array('jbo', null, 'Lojban'),
 			array('jpn', 'ja', '日本語'),
@@ -111,6 +111,44 @@ class AppControllerTestCase extends CakeTestCase {
 	function testBeforeFilter_doesntRedirectIfEnglishWithoutCookie() {
 		$this->expectLanguageCookie('eng');
 		$this->_runBeforeFilter('/eng/foo/bar');
+
+		$this->assertFalse($this->App->stopped);
+		$this->assertNull($this->App->redirectUrl);
+	}
+
+	function testBeforeFilter_redirectsFromOldAliasWithLangInUrl() {
+		$this->expectNoLanguageCookie();
+		$this->_runBeforeFilter('/chi/foo/bar');
+
+		$this->assertTrue($this->App->stopped);
+		$this->assertEqual('/cmn/foo/bar', $this->App->redirectUrl);
+	}
+
+	function testBeforeFilter_redirectsFromOldAliasWithCookie() {
+		$this->expectNoLanguageCookie();
+		$this->setInterfaceLanguageCookie('chi');
+
+		$this->_runBeforeFilter('/foo/bar');
+
+		$this->assertTrue($this->App->stopped);
+		$this->assertEqual('/chi/foo/bar', $this->App->redirectUrl);
+	}
+
+	function testBeforeFilter_redirectsFromOldAliasWithCookieWithLangInUrl() {
+		$this->expectNoLanguageCookie();
+		$this->setInterfaceLanguageCookie('chi');
+
+		$this->_runBeforeFilter('/chi/foo/bar');
+
+		$this->assertTrue($this->App->stopped);
+		$this->assertEqual('/cmn/foo/bar', $this->App->redirectUrl);
+	}
+
+	function testBeforeFilter_updatesCookieFromOldAlias() {
+		$this->expectLanguageCookie('cmn');
+		$this->setInterfaceLanguageCookie('chi');
+
+		$this->_runBeforeFilter('/cmn/foo/bar');
 
 		$this->assertFalse($this->App->stopped);
 		$this->assertNull($this->App->redirectUrl);
