@@ -31,27 +31,26 @@ $currentUrl = $this->params['url']['url'];
 
 foreach ($uiLanguages as $langs) {
     
-    if ($langs[1] != null) {
-        $newUrl = $currentUrl;
-        $pos = strpos($currentUrl, $currentLang);
-        if ($pos !== false) {
-            $newUrl = substr_replace(
-                $currentUrl, 
-                $langs[0], 
-                $pos, 
-                strlen($currentLang)
-            );
-        }
-        if ($newUrl[0] == '/') {
-            $newUrl = substr($newUrl, 1);
-        }
-        $alternateURL = "http://".TATOEBA_DOMAIN.'/'.$newUrl;
-        ?>
-        <link rel="alternate" 
-              hreflang="<?php echo $langs[1]; ?>" 
-              href="<?php echo $alternateURL; ?>">
-        <?php   
+    $newUrl = $currentUrl;
+    $pos = strpos($currentUrl, $currentLang);
+    if ($pos !== false) {
+        $newUrl = substr_replace(
+            $currentUrl, 
+            $langs[0], 
+            $pos, 
+            strlen($currentLang)
+        );
     }
+    if ($newUrl[0] == '/') {
+        $newUrl = substr($newUrl, 1);
+    }
+    $alternateURL = "http://".TATOEBA_DOMAIN.'/'.$newUrl;
+    $hreflang = LanguagesLib::languageTag($langs[0], $langs[1]);
+    ?>
+    <link rel="alternate" 
+          hreflang="<?php echo $hreflang; ?>" 
+          href="<?php echo $alternateURL; ?>">
+    <?php   
 
 }
 ?>

@@ -32,12 +32,13 @@ $configUiLanguages = Configure::read('UI.languages');
 $languages = array();
 
 foreach ($configUiLanguages as $langs) {
-    list($urlCode, $isoCode, $name) = $langs;
-    $languages[$urlCode] = array(
+    list($isoCode, $suffix, $name) = $langs;
+    $fullIsoCode = LanguagesLib::languageTag($isoCode, $suffix);
+    $languages[$isoCode] = array(
         'name' => $name,
-        'value' => $urlCode,
-        'lang' => $isoCode,
-        'dir' => LanguagesLib::getLanguageDirection($urlCode),
+        'value' => $isoCode,
+        'lang' => $fullIsoCode,
+        'dir' => LanguagesLib::getLanguageDirection($isoCode),
     );
 }
 

@@ -36,6 +36,7 @@
 
 App::import('Core', 'Sanitize');
 App::import('Model', 'CurrentUser');
+App::import('Vendor', 'LanguagesLib');
 
 class AppController extends Controller
 {
@@ -268,9 +269,8 @@ class AppController extends Controller
         $configUiLanguages = Configure::read('UI.languages');
         $supportedLanguages = array();
         foreach ($configUiLanguages as $langs) {
-            if ($langs[1] != null) {
-                $supportedLanguages[$langs[1]] = $langs[0];
-            }
+            $browserCompatibleCode = LanguagesLib::languageTag($langs[0]);
+            $supportedLanguages[$browserCompatibleCode] = $langs[0];
         }
 
         if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) { 

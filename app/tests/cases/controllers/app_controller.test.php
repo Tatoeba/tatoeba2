@@ -29,11 +29,11 @@ class AppControllerTestCase extends CakeTestCase {
 
 	function startTest() {
 		Configure::write('UI.languages', array(
-			array('cmn', 'zh-Hans', '中文', array('chi')),
-			array('eng', 'en', 'English'),
+			array('cmn', 'Hans', '中文', array('chi')),
+			array('eng', null, 'English'),
 			array('jbo', null, 'Lojban'),
-			array('jpn', 'ja', '日本語'),
-			array('pt_BR', 'pt-BR', 'Português (BR)'),
+			array('jpn', null, '日本語'),
+			array('pt_BR', 'BR', 'Português (BR)'),
 		));
 		$this->App =& new TestAppController();
 		$this->App->constructClasses();
