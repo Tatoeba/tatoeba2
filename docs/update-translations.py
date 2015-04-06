@@ -139,9 +139,8 @@ def main():
         languagePath=os.path.join(MAIN_LOCAL,'app','locale',language[1],'LC_MESSAGES')
         if not os.path.exists(languagePath):
             os.makedirs(languagePath)
-        printAndLog('Converting %s.po'%language[0])
-        os.system('msgfmt "%s" -o "%s/default.mo"'%(languageFile,languagePath))
-        os.system('cp "%s" "%s/%s.po"'%(languageFile,languagePath,language[0]))
+        printAndLog('Copying default.po (%s)'%(language[0]))
+        os.system('cp "%s" "%s/default.po"'%(languageFile,languagePath))
     
     if executeCommand('cd %s && git status'%MAIN_LOCAL,True) == '':
         print('git status: nothing has changed. will not commit.')
