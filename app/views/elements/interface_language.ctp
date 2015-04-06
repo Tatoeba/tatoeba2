@@ -37,7 +37,7 @@ foreach ($configUiLanguages as $langs) {
         'name' => $name,
         'value' => $urlCode,
         'lang' => $isoCode,
-        'dir' => $this->Languages->getLanguageDirection($urlCode),
+        'dir' => LanguagesLib::getLanguageDirection($urlCode),
     );
 }
 
