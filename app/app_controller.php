@@ -121,7 +121,7 @@ class AppController extends Controller
         Configure::write('Config.language', $lang);
 
         // Forcing the URL to have the (correct) language in it.
-        $url = $_SERVER["REQUEST_URI"];
+        $url = Router::reverse($this->params);
         if (!empty($langInURL) && $langInCookie && $langInURL != $langInCookie) {
             // We're are now going to remove the language from the URL and set
             // $langURL to null so that we get the the correct URL through
