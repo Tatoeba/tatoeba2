@@ -35,7 +35,7 @@ if (empty($currentLanguage)) {
     $currentLanguage = $session->read('random_lang_selected');
 }
 if (empty($currentLanguage) || $currentLanguage == 'und') {
-    $currentLanguage = $languages->i18nCodeToISO($this->params['lang']);
+    $currentLanguage = $this->params['lang'];
 }
 if (empty($showTranslationsInto)) {
     $showTranslationsInto = 'none';

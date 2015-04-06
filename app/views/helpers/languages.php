@@ -388,8 +388,8 @@ class LanguagesHelper extends AppHelper
     public function localizedAsort(&$array)
     {
         if (class_exists('Collator')) {
-            $i18nLang = Configure::read('Config.language');
-            $coll = new Collator($this->i18nCodeToISO($i18nLang));
+            $isoLang = Configure::read('Config.language');
+            $coll = new Collator($isoLang);
             $coll->asort($array);
         } else {
             asort($array);
@@ -708,45 +708,6 @@ class LanguagesHelper extends AppHelper
         </li>
         <?php
     }
-
-
-    /**
-     * Convert language interface code into ISO code.
-     *
-     * @param string $code Interface language code.
-     *
-     * @return void
-     */
-    public function i18nCodeToISO ($code) {
-        $languages = array(
-            'bel' => 'bel',
-            'chi' => 'cmn',
-            'deu' => 'deu',
-            'eng' => 'eng',
-            'epo' => 'epo',
-            'fre' => 'fra',
-            'ita' => 'ita',
-            'jpn' => 'jpn',
-            'pol' => 'pol',
-            'pt_BR' => 'por',
-            'gre'  => 'ell',
-            'rus' => 'rus',
-            'spa' => 'spa',
-            'ara' => 'ara',
-            'eus' => 'eus',
-            'fin' => 'fin',
-            'hun' => 'hun',
-            'tgl' => 'tgl',
-            'mar' => 'mar'
-        );
-
-        if (isset($languages["$code"])) {
-            return $languages["$code"];
-        } else {
-            return 'unknown';
-        }
-    }
-
 
     /**
      * Display language icon.

@@ -73,7 +73,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('How to contribute', true)
         // Detecting language for "browse by language"
         $currentLanguage = $session->read('random_lang_selected');
         if (empty($currentLanguage) || $currentLanguage == 'und') {
-            $currentLanguage = $languages->i18nCodeToISO($this->params['lang']);
+            $currentLanguage = $this->params['lang'];
         }
         $subMenu = array(
             __('Add sentences', true) => array(
