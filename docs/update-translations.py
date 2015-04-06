@@ -47,7 +47,7 @@ languagesTable=[
           ['eu','eus'],          ['fi','fin'],          ['fr','fre'],          ['gl','glg'],          ['hi','hin'],
           ['hu','hun'],          ['id','ind'],
           ['it','ita'],          ['ja','jpn'],          ['jbo','jbo'],         ['ka','kat'],
-          ['ko','kor'],          ['la','lat'],          ['lt','lit'],          ['mr','mar'],          ['ms','msa'],
+          ['ko','kor'],          ['la','lat'],          ['lt','lit'],          ['mr','mar'],          ['ms','zsm'],
           ['nds','nds'],         ['nl','nld'],          ['oc','oci'],          ['pl','pol'],          ['pt_BR','pt_BR'],
           ['ru','rus'],          ['ro','ron'],          ['tl','tgl'],          ['tr','tur'],          ['uk','ukr'],
           ['vi','vie'],          ['zh_CN','chi']
