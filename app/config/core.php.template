@@ -380,11 +380,14 @@
  * Languages of the interface.
  *
  * Each item in the UI.languages is an array of 3 items:
- *   [0] The URL language code. It should match a 'locale' folder.
+ *   [0] The URL language code. It should match a 'locale' folder, and it
+ *       should match a language code used in the Tatoeba corpus.
  *   [1] Mapping between the URL language code and the ISO-1 language code.
  *   [2] This is the name of the language. The name must be in the
  *       language itself, so that people who speak that language can
  *       recognize it.
+ *   [3] Optionnal array of other language code(s), for backward compatibility.
+ *       URLs including these codes will simply redirect to the [0] code.
  */
     Configure::write('UI.languages', array(
         array('ara', 'ar', 'العربية'),
@@ -393,7 +396,7 @@
         array('ben', 'bn', 'বাংলা'),
         array('cat', 'ca', 'Català'),
         array('ces', 'cs', 'Čeština'),
-        array('chi', 'zh-Hans', '中文'),
+        array('cmn', 'zh-Hans', '中文', array('chi')),
         array('cym', 'cy', 'Cymraeg'),
         array('dan', 'da', 'Dansk'),
         array('deu', 'de', 'Deutsch'),
@@ -402,9 +405,9 @@
         array('est', 'et', 'Eesti'),
         array('eus', 'eu', 'Euskara'),
         array('fin', 'fi', 'Suomi'),
-        array('fre', 'fr', 'Français'),
+        array('fra', 'fr', 'Français', array('fre')),
         array('glg', 'gl', 'Galego'),
-        array('gre', 'el', 'Ελληνικά'),
+        array('ell', 'el', 'Ελληνικά', array('gre')),
         array('hin', 'hi', 'हिन्दी'),
         array('hun', 'hu', 'Magyar'),
         array('ina', 'ia', 'Interlingua'),
@@ -421,7 +424,7 @@
         array('nds', null, 'Plattdüütsch'),
         array('oci', 'oc', 'Occitan'),
         array('pol', 'pl', 'Polski'),
-        array('pt_BR', 'pt-BR', 'Português (BR)'),
+        array('por', 'pt-BR', 'Português (BR)', array('pt_BR')),
         array('ron', 'ro', 'Română'),
         array('rus', 'ru', 'Русский'),
         array('spa', 'es', 'Español'),
