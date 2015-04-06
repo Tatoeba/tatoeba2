@@ -109,21 +109,13 @@ if [ $RUN_FILES -eq 1 ]; then
     fi
 fi
 
-#This line searches the file app/models/sentence.php for the 
-#comment string "//@lang". It inserts the three-letter language code (e.g., "nep"), 
-#surrounded by quotes and followed by a quote, on a new line immediately before 
-#the comment string.
-if [ $UPDATE_FILES -eq 1 ]; then 
-    sed -i  -e "s^//@lang^\n        $QUOTE_LANG, //@lang^"  $PREFIX"app/models/sentence.php"
-fi
-
-#This line searches the file app/views/helpers/languages.php for the
+#This line searches the file app/vendors/languages_lib.php for the
 #comment string "//@lang". It inserts a string like the following on a new line 
 #before the comment:
 #"nep" => __('Nepali', true),
-HELPER_LANG="$QUOTE_LANG => __('$LANGNAME',true)"  
+LANGLIB_LANG="$QUOTE_LANG => __('$LANGNAME',true)"
 if [ $UPDATE_FILES -eq 1 ]; then 
-    sed -i  -e "s^//@lang^\n            $HELPER_LANG, //@lang^" $PREFIX"app/views/helpers/languages.php"
+    sed -i  -e "s^//@lang^\n            $LANGLIB_LANG, //@lang^" $PREFIX"app/vendors/languages_lib.php"
 fi
 
 #Call the script docs/database/procedures/add_new_language.sql to update the database.

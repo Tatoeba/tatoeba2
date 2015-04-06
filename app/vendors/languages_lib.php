@@ -162,7 +162,9 @@ class LanguagesLib
     }
 
     /**
-     * Return array of languages in Tatoeba
+     * Return array of languages in Tatoeba. Do not call this function too
+     * soon in the CakePHP process, or Configure::read('Config.language')
+     * won't be set and it will "poison" the memoizer $languages.
      *
      * @return array
      */
