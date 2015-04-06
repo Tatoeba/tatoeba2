@@ -164,14 +164,19 @@ class LanguagesLib
     /**
      * Return array of languages in Tatoeba. Do not call this function too
      * soon in the CakePHP process, or Configure::read('Config.language')
-     * won't be set and it will "poison" the memoizer $languages.
+     * won't be set and it will defeat the purpose of the memoizer $languages,
+     * hitting performance down.
      *
      * @return array
      */
     public static function languagesInTatoeba()
     {
         static $languages;
-        if (!$languages) {
+        static $lastLang;
+
+        $currentLang = Configure::read('Config.language');
+        if (!$languages || $currentLang != $lastLang) {
+            $lastLang = $currentLang;
             $languages = array(
                 'ara' => __('Arabic', true),
                 'eng' => __('English', true),
