@@ -148,16 +148,12 @@ class LanguagesLib
             'yor' => 'yo', // Yoruba
             'zul' => 'zu', // Zulu
     
-            /* "Temporary" hack for Firefox.
-             * Firefox only renders fonts as Chinese when lang="zh",
-             * but not when lang="cmn", whereas "zh" is actually a
-             * macrolanguage that includes, among other languages,
-             * "cmn". The same goes for other Chinese languages.
-             */
+            // Macrolanguages
             'cmn' => 'zh',
             'yue' => 'zh',
             'wuu' => 'zh',
             'lzh' => 'zh',
+            'zsm' => 'ms', // Malay
         );
         if (isset($map[$code])) {
             $code = $map[$code];
