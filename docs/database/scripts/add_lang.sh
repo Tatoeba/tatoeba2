@@ -61,15 +61,6 @@ if [ ! -e $ICONNAME ]; then
     exit 1
 fi
 
-#This line searches the file docs/sphinx/generate_sphinx_conf.php for the
-#comment string "//@lang". It inserts a string like the following before the comment:
-#"nep" => ''
-#and then executes the script.
-QUOTE_LANG="\'$LANGCODE\'"
-SEARCH_LANG="$QUOTE_LANG => \'$LANGNAME\' "
-SPHINX_GEN=$PREFIX"docs/sphinx/generate_sphinx_conf.php"
-SEARCH_LANG_RAW="'"$LANGCODE"'"" => ""'"$LANGNAME"'"
-
 # Do this early because there's a chance that this file 
 # can't be written, in which case we want to exit immediately.
 SPHINX_CONF="/etc/sphinxsearch/sphinx.conf"
