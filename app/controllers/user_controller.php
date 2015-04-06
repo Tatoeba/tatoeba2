@@ -321,7 +321,7 @@ class UserController extends AppController
 
         $saved = false;
         if (!empty($this->data)) {
-            $allowedFields = array('name', 'country_id', 'birthday', 'homepage');
+            $allowedFields = array('name', 'country_id', 'birthday', 'homepage', 'email');
             $basicInfos = $this->filterKeys($this->data['User'], $allowedFields);
             $basicInfos['id'] = $currentUserId;
             $saved = $this->User->save($basicInfos);
@@ -386,7 +386,9 @@ class UserController extends AppController
 
             $dataToSave = array(
                 'id' => $currentUserId,
-                'lang' => $this->_language_settings($this->data['User']['lang'])
+                'lang' => $this->_language_settings($this->data['User']['lang']),
+                'send_notifications' => $this->data['User']['send_notifications'],
+                'is_public' => $this->data['User']['is_public'],
             );
             if ($this->User->save($dataToSave)) {
                 // Needed so that the information is updated for the Auth component.
