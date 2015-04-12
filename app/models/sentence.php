@@ -40,6 +40,7 @@
 
 App::import('Model', 'CurrentUser');
 App::import('Sanitize');
+App::import('Vendor', 'LanguagesLib');
 
 class Sentence extends AppModel
 {
@@ -50,95 +51,11 @@ class Sentence extends AppModel
 
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
-    
-    public $languages = array(
-        'ara', 'bul', 'deu', 'ell', 'eng',
-        'epo', 'spa', 'fra', 'heb', 'ind',
-        'jpn', 'kor', 'nld', 'por', 'rus',
-        'vie', 'cmn', 'ces', 'fin', 'ita',
-        'tur', 'ukr', 'wuu', 'swe', 'zsm',
-        'nob', 'est', 'kat', 'pol', 'swh',
-        'lat', 'arz', 'bel', 'hun', 'isl',
-        'sqi', 'yue', 'afr', 'fao', 'fry',
-        'uig', 'uzb', 'bre', 'ron', 'non',
-        'srp', 'yid', 'tat', 'pes', 'nan',
-        'eus', 'slk', 'dan', 'hye', 'acm',
-        'san', 'urd', 'hin', 'ben', 'cycl',
-        'cat', 'kaz', 'lvs', 'hrv', 'bos',
-        'orv', 'cha', 'tgl', 'que', 'mon',
-        'lit', 'glg', 'gle', 'ina', 'jbo',
-        'toki', 'ain', 'scn', 'mal', 'nds',
-        'tlh', 'slv', 'tha', 'lzh', 'oss',
-        'roh', 'vol', 'gla', 'ido', 'ast',
-        'ile', 'oci', 'xal', 'ang', 'kur',
-        'dsb', 'hsb', 'ksh', 'cym', 'ewe',
-        'sjn', 'tel', 'nov', 'tpi', 'qya',
-        'mri', 'lld', 'ber', 'xho', 'pnb',
-        'mlg', 'grn', 'lad', 'pms', 'avk',
-        'mar', 'tgk', 'tpw', 'prg', 'npi',
-        'mlt', 'ckt', 'cor', 'aze', 'khm',
-        'lao', 'bod', 'hil', 'arq', 'pcd',
-        'grc',
-        'amh',
-        'awa',
-        'bho',
-        'cbk',
-        'enm',
-        'frm',
-        'hat',
-        'jdt',
-        'kal',
-        'mhr',
-        'nah',
-        'pdc',
-        'sin',
-        'tuk',
-        'wln',
-        'bak',
-        'hau',
-        'ltz',
-        'mgm',
-        'som',
-        'zul',
-        'haw',
-        'kir',
-        'mkd',
-        'mrj',
-        'ppl',
-        'yor',
-        'kin',
-        'shs',
-        'chv',
-        'lkt',
-        'ota',
-        'sna',
-        'mnw',
-        'nog',
-        'sah',
-        'abk',
-        'tet',
-        'tam',
-        'udm',
-        'kum',
-        'crh',
-        'nya',
-        'liv',
-        'nav',
-        'chr',
-        'guj', 
-        'pan', 
-        'kha', 
-        'jav', //@lang
-        null
-    );
 
     public $validate = array(
         'lang' => array(
             'rule' => array()
-            // The rule will be defined in the constructor.
-            // I would have declared a const LANGUAGES array
-            // to use it here, but apparently you can't declare
-            // const arrays in PHP.
+            // The rule will be defined in beforeValidate().
         ),
         'text' => array(
             'rule' => array('minLength', '1')
@@ -189,14 +106,13 @@ class Sentence extends AppModel
 
 
     /**
-     * The constructor is here only to set the rule for languages.
+     * The constructor is here only to conditionally attach Sphinx.
      *
      * @return void
      */
     public function __construct($id = false, $table = null, $ds = null)
     {
         parent::__construct($id, $table, $ds);
-        $this->validate['lang']['rule'] = array('inList', $this->languages);
         if (Configure::read('Search.enabled')) {
             $this->Behaviors->attach('Sphinx');
         }
@@ -221,6 +137,14 @@ class Sentence extends AppModel
 
     public function beforeValidate()
     {
+        // Set this array as late as possible, because languagesInTatoeba()
+        // makes uses of __(), which relies on 'Config.language', which is set
+        // quite late, in AppController::beforeFilter().
+        if (!$this->validate['lang']['rule']) {
+            $this->validate['lang']['rule'] = array('inList',
+                array_keys(LanguagesLib::languagesInTatoeba())
+            );
+        }
         if (isset($this->data['Sentence']['text']))
         {
             $text = $this->data['Sentence']['text'];

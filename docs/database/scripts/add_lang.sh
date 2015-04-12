@@ -61,15 +61,6 @@ if [ ! -e $ICONNAME ]; then
     exit 1
 fi
 
-#This line searches the file docs/sphinx/generate_sphinx_conf.php for the
-#comment string "//@lang". It inserts a string like the following before the comment:
-#"nep" => ''
-#and then executes the script.
-QUOTE_LANG="\'$LANGCODE\'"
-SEARCH_LANG="$QUOTE_LANG => \'$LANGNAME\' "
-SPHINX_GEN=$PREFIX"docs/sphinx/generate_sphinx_conf.php"
-SEARCH_LANG_RAW="'"$LANGCODE"'"" => ""'"$LANGNAME"'"
-
 # Do this early because there's a chance that this file 
 # can't be written, in which case we want to exit immediately.
 SPHINX_CONF="/etc/sphinxsearch/sphinx.conf"
@@ -109,21 +100,13 @@ if [ $RUN_FILES -eq 1 ]; then
     fi
 fi
 
-#This line searches the file app/models/sentence.php for the 
-#comment string "//@lang". It inserts the three-letter language code (e.g., "nep"), 
-#surrounded by quotes and followed by a quote, on a new line immediately before 
-#the comment string.
-if [ $UPDATE_FILES -eq 1 ]; then 
-    sed -i  -e "s^//@lang^\n        $QUOTE_LANG, //@lang^"  $PREFIX"app/models/sentence.php"
-fi
-
-#This line searches the file app/views/helpers/languages.php for the
+#This line searches the file app/vendors/languages_lib.php for the
 #comment string "//@lang". It inserts a string like the following on a new line 
 #before the comment:
 #"nep" => __('Nepali', true),
-HELPER_LANG="$QUOTE_LANG => __('$LANGNAME',true)"  
+LANGLIB_LANG="$QUOTE_LANG => __('$LANGNAME',true)"
 if [ $UPDATE_FILES -eq 1 ]; then 
-    sed -i  -e "s^//@lang^\n            $HELPER_LANG, //@lang^" $PREFIX"app/views/helpers/languages.php"
+    sed -i  -e "s^//@lang^\n            $LANGLIB_LANG, //@lang^" $PREFIX"app/vendors/languages_lib.php"
 fi
 
 #Call the script docs/database/procedures/add_new_language.sql to update the database.
@@ -167,9 +150,11 @@ fi
 
 echo "REMINDERS: "
 echo "(1) If the language has a two-letter code (not all languages do), "
-echo "update the iso639_3_to_iso639_1 array in app/views/helpers/languages.php."
+echo "    update the array in the function iso639_3_To_Iso639_1()"
+echo "    in app/vendors/languages_lib.php."
 echo "(2) If the new language is written right-to-left, "
-echo "    update ../../../app/views/helpers/languages.php."
+echo "    update the array in the funciton getLanguageDirection()"
+echo "    in app/vendors/languages_lib.php."
 echo "(3) If the new language is stemmed, or is written with CJK characters, "
 echo "    or contains characters not previously used in Tatoeba, "
 echo "    or has no word boundaries, update generate_sphinx_conf.php."

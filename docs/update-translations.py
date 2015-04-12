@@ -38,21 +38,15 @@ myTransifexUserName=config.get(section, 'username')
 myTransifexPassword=config.get(section, 'password')
 myAuthentication=(myTransifexUserName,myTransifexPassword)
 
-languagesTable=[
-          #['ab','abk'],          ['ca','cat'],          ['cs','ces'],          ['da','dan'],          ['ia','ina'],
-          #['sv','swe'],          ['uz','uzb'],          ['xal','xal'],
-          ['ar','ara'],          ['az','aze'],          ['be','bel'],          ['bn', 'ben'],
-          ['cy','cym'],          ['de','deu'],          ['el','ell'],
-          ['en','eng'],          ['eo','epo'],          ['es','spa'],          ['et','est'],
-          ['eu','eus'],          ['fi','fin'],          ['fr','fre'],          ['gl','glg'],          ['hi','hin'],
-          ['hu','hun'],          ['id','ind'],
-          ['it','ita'],          ['ja','jpn'],          ['jbo','jbo'],         ['ka','kat'],
-          ['ko','kor'],          ['la','lat'],          ['lt','lit'],          ['mr','mar'],          ['ms','zsm'],
-          ['nds','nds'],         ['nl','nld'],          ['oc','oci'],          ['pl','pol'],          ['pt_BR','pt_BR'],
-          ['ru','rus'],          ['ro','ron'],          ['tl','tgl'],          ['tr','tur'],          ['uk','ukr'],
-          ['vi','vie'],          ['zh_CN','chi']
-          ]
-
+def getLanguagesTable(txConfigFile):
+    langMap = []
+    txconf = configparser.ConfigParser()
+    txconf.read(txConfigFile)
+    args = txconf.get('main', 'lang_map')
+    for arg in args.replace(' ', '').split(','):
+        threeLetters, twoLetters = arg.split(':')
+        langMap.append([threeLetters, twoLetters])
+    return langMap
 
 def printAndLog(textToLog):
     print(textToLog)
@@ -106,6 +100,17 @@ def main():
         print('Will not commit.')
     
     MAIN_ORIGIN="https://github.com/Tatoeba/tatoeba2.git"
+    if os.path.exists(MAIN_LOCAL):
+        if COMMIT:
+            print('Pulling from the main git repository')
+            logging.info(executeCommand('cd %s && git pull'%(MAIN_LOCAL),True))
+    else:
+        os.makedirs(MAIN_LOCAL)
+        print('Checkout from the main git repository')
+        logging.info(executeCommand('git clone %s %s'%(MAIN_ORIGIN,MAIN_LOCAL),True))
+
+    languagesTable = getLanguagesTable(MAIN_LOCAL + '/.tx/config')
+
     printAndLog('Initiating translations fetch - %s'%(TMP_DIR))
     if not os.path.exists(TRANSLATIONS_LOCAL):
         os.makedirs(TRANSLATIONS_LOCAL)
@@ -125,15 +130,6 @@ def main():
         with open(os.path.join(TRANSLATIONS_LOCAL,'%s.po'%language[0]),'w') as handle:
             handle.write(r.text.encode("iso8859-1").decode('utf8'))
     
-    if os.path.exists(MAIN_LOCAL):
-        if COMMIT:
-            print('Pulling from the main git repository')
-            logging.info(executeCommand('cd %s && git pull'%(MAIN_LOCAL),True))
-    else:
-        os.makedirs(MAIN_LOCAL)
-        print('Checkout from the main git repository')
-        logging.info(executeCommand('git clone %s %s'%(MAIN_ORIGIN,MAIN_LOCAL),True))
-    
     for language in languagesTable:
         languageFile=os.path.join(TRANSLATIONS_LOCAL,'%s.po'%language[0])
         if language[0]=='en': continue
@@ -143,9 +139,8 @@ def main():
         languagePath=os.path.join(MAIN_LOCAL,'app','locale',language[1],'LC_MESSAGES')
         if not os.path.exists(languagePath):
             os.makedirs(languagePath)
-        printAndLog('Converting %s.po'%language[0])
-        os.system('msgfmt "%s" -o "%s/default.mo"'%(languageFile,languagePath))
-        os.system('cp "%s" "%s/%s.po"'%(languageFile,languagePath,language[0]))
+        printAndLog('Copying default.po (%s)'%(language[0]))
+        os.system('cp "%s" "%s/default.po"'%(languageFile,languagePath))
     
     if executeCommand('cd %s && git status'%MAIN_LOCAL,True) == '':
         print('git status: nothing has changed. will not commit.')

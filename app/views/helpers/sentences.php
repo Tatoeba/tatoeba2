@@ -800,8 +800,8 @@ class SentencesHelper extends AppHelper
             "sentence " . $type,
             null,
             array(
-                'lang' => $this->Languages->langAttribute($lang),
-                'dir'  => $this->Languages->getLanguageDirection($lang),
+                'lang' => LanguagesLib::languageTag($lang),
+                'dir'  => LanguagesLib::getLanguageDirection($lang),
             )
         );
 

@@ -352,7 +352,7 @@ class MessagesHelper extends AppHelper
         if (!empty($sentence['lang'])) {
             $sentenceLang = $sentence['lang'];
         }
-        $dir = $this->Languages->getLanguageDirection($sentenceLang);
+        $dir = LanguagesLib::getLanguageDirection($sentenceLang);
         ?>
         <div class="sentence">
         <?php
@@ -375,7 +375,7 @@ class MessagesHelper extends AppHelper
                 ),
                 array(
                     'dir' => $dir,
-                    'lang' => $this->Languages->langAttribute($sentenceLang),
+                    'lang' => LanguagesLib::languageTag($sentenceLang),
                     'class' => 'sentenceText'
                 )
             );
