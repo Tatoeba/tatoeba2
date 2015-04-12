@@ -76,6 +76,24 @@ class AppController extends Controller
     }
 
     /**
+     * CakePHP has its own ISO-639-1 <=> ISO-639-3 map for the handling of
+     * HTTP “Accept-Languages” header, which differs from ours and prevents
+     * it from getting the right .po folder. For some reason, CakePHP converts
+     * the Config.language code from ISO-639-3 to ISO-639-1 and then back to
+     * ISO-639-3. It breaks for languages that has multiple ISO-639-3 codes,
+     * for instance nld => nl => dut. Let's fix that the hard way.
+     */
+    private function fixL10nCatalog() {
+        $to_iso3 = array_flip(LanguagesLib::get_Iso639_3_To_Iso639_1_Map());
+        $I18n =& I18n::getInstance();
+        foreach ($I18n->l10n->__l10nCatalog as $iso1_lang => &$info) {
+            if (isset($to_iso3[$iso1_lang])) {
+                $info['localeFallback'] = $to_iso3[$iso1_lang];
+            }
+        }
+    }
+
+    /**
      * 
      *
      * @return void
@@ -139,6 +157,7 @@ class AppController extends Controller
             $lang = $langInURL;
             $this->Cookie->write('interfaceLanguage', $lang, false, "+1 month");
         }
+        $this->fixL10nCatalog();
         Configure::write('Config.language', $lang);
 
         // Forcing the URL to have the (correct) language in it.

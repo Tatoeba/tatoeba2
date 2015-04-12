@@ -33,6 +33,17 @@ class LanguagesLib
      */
     public static function iso639_3_To_Iso639_1($code)
     {
+        $map = self::get_Iso639_3_To_Iso639_1_Map();
+        if (isset($map[$code])) {
+            $code = $map[$code];
+        }
+        return $code;
+    }
+
+    /**
+     * Returns Tatoeba's map from ISO-639-3 to ISO-639-1.
+     */
+    public static function get_Iso639_3_To_Iso639_1_Map() {
         // Note that many languages with an ISO 639-3 code do not have an ISO 639-1 code.
         // Example: Khasi
         static $map = array(
@@ -149,16 +160,16 @@ class LanguagesLib
             'zul' => 'zu', // Zulu
     
             // Macrolanguages
-            'cmn' => 'zh',
             'yue' => 'zh',
             'wuu' => 'zh',
             'lzh' => 'zh',
+            'cmn' => 'zh', // 'cmn' must appear last within the multiple 'zh'
+                           // because we're using it as UI language code and
+                           // so that array_flip()'ing this array will return
+                           // 'zh' => 'cmn'.
             'zsm' => 'ms', // Malay
         );
-        if (isset($map[$code])) {
-            $code = $map[$code];
-        }
-        return $code;
+        return $map;
     }
 
     /**
