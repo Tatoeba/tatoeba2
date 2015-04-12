@@ -308,8 +308,6 @@ class SentencesController extends AppController
             $sentenceText,
             $userId,
             null,
-            null,
-            null,
             $userName
         );
 
@@ -491,7 +489,7 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function search($query = null)
+    public function search()
     {
         $query = $_GET['query'];
 
