@@ -119,9 +119,6 @@ class SentencesController extends AppController
 
         $id = Sanitize::paranoid($id);
 
-        $userId = $this->Auth->user('id');
-        $groupId = $this->Auth->user('group_id');
-
         if ($id == "random" || $id == null || $id == "" ) {
             $id = $this->Session->read('random_lang_selected');
             $id = Sanitize::paranoid($id);
@@ -339,12 +336,6 @@ class SentencesController extends AppController
      */
     public function edit_sentence()
     {
-        $userId = $this->Auth->user('id');
-        /*
-        if (in_array($userId,$this->blocked_users)) {
-            return ;
-        }
-        */
         $sentenceText = '';
         $sentenceId = '';
         if (isset($this->params['form']['value'])) {
@@ -369,7 +360,7 @@ class SentencesController extends AppController
             $realSentenceId = Sanitize::paranoid($hack_array[1]);
             $sentenceLang = Sanitize::paranoid($hack_array[0]);
 
-            $sentence = $this->Sentence->recursive = -1;
+            $this->Sentence->recursive = -1;
             $sentence = $this->Sentence->findById($realSentenceId);
             if (!$sentence || !CurrentUser::canEditSentenceOfUserId($sentence['Sentence']['user_id'])) {
                 $this->redirect(array('controller' => 'pages', 'action' => 'home'));
@@ -758,11 +749,6 @@ class SentencesController extends AppController
         $this->set('random', $randomSentence);
         $this->set('translations', $translations);
         $this->set('indirectTranslations', $indirectTranslations);
-
-        if (isset($randomSentence['Sentence']['script']))
-        {
-            $this->set('sentenceScript', $sentenceScript);
-        }
     }
 
     /**

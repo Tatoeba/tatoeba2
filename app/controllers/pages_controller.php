@@ -88,7 +88,6 @@ class PagesController extends AppController
         $this->helpers[] = 'Messages';
 
         $userId = $this->Auth->user('id');
-        $groupId = $this->Auth->user('group_id');
         $isLogged = !empty($userId);
 
         /*latest comments part */

@@ -319,7 +319,6 @@ class UsersController extends AppController
         }
 
         // Username does not fit requirements
-        $emptyPasswordMd5 = md5(Configure::read('Security.salt'));
         if (!$this->User->validates()) {
             $this->data['User']['password'] = '';
             $this->data['User']['quiz'] = '';

@@ -113,25 +113,6 @@ class WallController extends Appcontroller
         $this->set('tenLastMessages', $tenLastMessages);
     }
 
-    /**
-     * use to organize the messages array the following way
-     * message_id => message, we need it as deleted message
-     * will shift the index
-     *
-     * @param array $messages The messages array to organize
-     *
-     * @return array
-     */
-
-    private function _organize_messages($messages)
-    {
-        $newMessages = array();
-        foreach ($messages as $message) {
-            $newMessages[$message['Wall']['id']] = $message;
-        }
-
-        return $newMessages;
-    }
 
     /**
      * save a new first message
@@ -143,7 +124,6 @@ class WallController extends Appcontroller
         if (!empty($this->data['Wall']['content'])
             && $this->Auth->user('id')
         ) {
-            $lastMess = $this->Cookie->read('hash_last_wall');
             $lastMess = $this->Session->read('hash_last_wall');
             $thisMess =md5($this->data['Wall']['content']);
 
