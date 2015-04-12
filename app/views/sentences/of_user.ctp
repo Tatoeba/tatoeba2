@@ -126,10 +126,8 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         $parentId = null;
         $withAudio = false;
         foreach ($user_sentences as $sentence) {
-            $ownerName = $sentence['User']['username'];
             $sentences->displayGenericSentence(
                 $sentence['Sentence'],
-                $ownerName,
                 $type,
                 $parentId,
                 $withAudio

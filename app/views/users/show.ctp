@@ -78,11 +78,9 @@ $this->set('title_for_layout', $pages->formatTitle(format(
             $type = 'mainSentence';
             $parentId = null;
             $withAudio = false;
-            $ownerName = $user['User']['username'];
             foreach ($user['Sentences'] as $sentence) {
                 $sentences->displayGenericSentence(
                     $sentence,
-                    $ownerName,
                     $type,
                     $parentId,
                     $withAudio
@@ -114,11 +112,9 @@ $this->set('title_for_layout', $pages->formatTitle(format(
             $type = 'mainSentence';
             $parentId = null;
             $withAudio = false;
-            $ownerName = null;
             foreach ($user['Favorite'] as $sentence) {
                 $sentences->displayGenericSentence(
                     $sentence,
-                    $ownerName,
                     $type,
                     $parentId,
                     $withAudio

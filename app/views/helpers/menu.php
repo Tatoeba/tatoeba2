@@ -101,10 +101,6 @@ class MenuHelper extends AppHelper
                     'sentenceId',
                     <?php echo $sentenceId; ?>
                 );
-                $('#translate_<?php echo $sentenceId; ?>').data(
-                    'parentOwnerName',
-                    '<?php echo $ownerName; ?>'
-                );
             });
             </script>
             <a><?php echo $translateButton;?></a>

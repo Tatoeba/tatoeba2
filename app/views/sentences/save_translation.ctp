@@ -35,14 +35,12 @@ if (isset($translation)) {
     
     $type = 'directTranslation';
     $isEditable = true;
-    
+
     $sentences->displayGenericSentence(
-        $translation, 
-        $ownerName, 
+        $translation,
         $type, 
         $withAudio, 
         $parentId,
-        $parentOwnerName,
         $isEditable
     );
     

@@ -57,8 +57,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 
         foreach ($results as $sentence) {
             $sentences->displayGenericSentence(
-                $sentence['Sentence'], 
-                null,
+                $sentence['Sentence'],
                 'mainSentence'
             );
         }

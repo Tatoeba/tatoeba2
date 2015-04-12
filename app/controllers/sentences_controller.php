@@ -441,7 +441,6 @@ class SentencesController extends AppController
         $sentenceId = Sanitize::paranoid($_POST['id']);
         $translationLang = Sanitize::paranoid($_POST['selectLang']);
         $withAudio = Sanitize::paranoid($_POST['withAudio']);
-        $parentOwnerName = $_POST['parentOwnerName'];
         $userId = $this->Auth->user('id');
         $userLevel = $this->Sentence->User->getLevelOfUser($userId);
 
@@ -487,12 +486,8 @@ class SentencesController extends AppController
                 $translation['text'] = $translationText;
                 $translation['correctness'] = 0;
 
-                $ownerName = $this->Auth->user('username');
-
                 $this->set('translation', $translation);
-                $this->set('ownerName', $ownerName);
                 $this->set('parentId', $sentenceId);
-                $this->set('parentOwnerName', $parentOwnerName);
                 $this->set('withAudio', $withAudio);
             }
         }

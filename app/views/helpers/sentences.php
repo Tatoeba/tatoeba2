@@ -157,11 +157,9 @@ class SentencesHelper extends AppHelper
 
                 $this->displayGenericSentence(
                     $translation['Translation'],
-                    null,
                     $type,
                     $withAudio,
                     $id,
-                    null,
                     false,
                     $langFilter
                 );
@@ -193,11 +191,9 @@ class SentencesHelper extends AppHelper
 
                 $this->displayGenericSentence(
                     $translation['Translation'],
-                    null,
                     $type,
                     $withAudio,
                     $id,
-                    null,
                     false,
                     $langFilter
                 );
@@ -234,7 +230,6 @@ class SentencesHelper extends AppHelper
         <?php
         $this->displayGenericSentence(
             $sentence,
-            null,
             'mainSentence',
             $withAudio
         );
@@ -246,7 +241,6 @@ class SentencesHelper extends AppHelper
         foreach ($translations as $translation) {
             $this->displayGenericSentence(
                 $translation,
-                null,
                 'directTranslation',
                 $withAudio
             );
@@ -409,10 +403,8 @@ class SentencesHelper extends AppHelper
         $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);
         $this->displayGenericSentence(
             $sentence,
-            $ownerName,
             'mainSentence',
             $withAudio,
-            null,
             null,
             $isEditable
         );
@@ -431,31 +423,26 @@ class SentencesHelper extends AppHelper
      *  - the audio button
      *
      * @param array  $sentence        Sentence data.
-     * @param string $ownerName       Name of the owner of sentence.
      * @param string $type            Type of sentence. Can be 'mainSentence',
      *                                'directTranslation' or 'indirectTranslation'.
      * @param bool   $withAudio       Set to 'true' if audio icon is displayed.
      * @param int    $parentId        Id of the parent sentence (i.e. main sentence).
-     * @param string $parentOwnerName Name of the owner of the *main* sentence.
-     * @param string $isEditable      Whether the sentence can be edited in place.
+     * @param bool   $isEditable      Whether the sentence can be edited in place.
      * @param string $langFilter      The language the list of sentences $sentence is from is being filtered in, if any.
      *
      * @return void
      */
     public function displayGenericSentence(
         $sentence,
-        $ownerName,
         $type,
         $withAudio = true,
         $parentId = null,
-        $parentOwnerName = null,
         $isEditable = false,
         $langFilter = 'und'
     ) {
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
         $sentenceAudio = 'no';
-        $sentenceCorrectness = $sentence['correctness'];
         $correctnessLabel = $this->getCorrectnessLabel($sentence['correctness']);
         if (isset($sentence['hasaudio'])) {
             $sentenceAudio = $sentence['hasaudio'];

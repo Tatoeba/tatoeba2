@@ -97,8 +97,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Tags for moderators', tru
 foreach ($results as $result) {
     $sentence = $result['Sentence'];
     $sentences->displayGenericSentence(
-        $sentence, 
-        null, 
+        $sentence,
         'mainSentence', 
         false
     );

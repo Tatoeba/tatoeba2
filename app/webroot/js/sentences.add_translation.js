@@ -20,8 +20,7 @@
 $(document).ready(function() {
 
     $(".translateLink").click(function(){
-        var sentenceId = $(this).data("sentenceId");
-        var parentOwnerName = $(this).data("parentOwnerName");
+        var sentenceId = $(this).data("sentenceId");;
         var withAudio = $(this).data("withAudio");
         
         var rootUrl = get_tatoeba_root_url();
@@ -49,7 +48,6 @@ $(document).ready(function() {
                         "id": sentenceId,
                         "selectLang": selectLang,
                         "value": sentenceText,
-                        "parentOwnerName": parentOwnerName,
                         "withAudio": withAudio
                     },
                     function(data){
