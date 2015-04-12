@@ -127,7 +127,7 @@ class SentencesController extends AppController
             $id = Sanitize::paranoid($id);
         }
 
-        if (in_array($id, $this->Sentence->languages)) {
+        if (array_key_exists($id, LanguagesLib::languagesInTatoeba())) {
             // ----- if we want a random sentence in a specific language -----
             // here only to make things clearer as "id" is not a number
             $lang = $id;

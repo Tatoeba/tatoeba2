@@ -425,12 +425,12 @@ class UserController extends AppController
      */
     private function _language_settings($userInput)
     {
+        App::import('Vendor', 'LanguagesLib');
         $userInput = str_replace(' ', '', $userInput);
         $userLangs = explode(',', $userInput);
-        $supportedLangs = $this->Sentence->languages;
         $tmpLanguagesArray = array();
         foreach ($userLangs as $lang) {
-            if (in_array($lang, $supportedLangs)) {
+            if (array_key_exists($lang, LanguagesLib::languagesInTatoeba())) {
                 $tmpLanguagesArray[] = $lang;
             }
         }
