@@ -50,7 +50,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Donate', true)));
         <h2><?php __("Latest donations"); ?></h2>
         <ol>
             <li>Stanislav - 5 €</li>
-            <li>Sascha - 50 €</li>
+            <li>Rev - 50 €</li>
             <li>anonymous - 1 939,07 €</li>
             <li>Ray - 100,00 €</li>
             <li>Dmitriy - 40,00 €</li>
