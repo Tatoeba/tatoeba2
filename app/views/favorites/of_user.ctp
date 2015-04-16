@@ -52,9 +52,9 @@ $numberOfSentences = count($favorites);
         $parentId = null;
         $withAudio = false;
         $ownerName = null;
-        foreach ($favorites as $sentence) {
+        foreach ($favorites as $favorite) {
             $sentences->displayGenericSentence(
-                $sentence,
+                $favorite['Sentence'],
                 $type,
                 $parentId,
                 $withAudio
