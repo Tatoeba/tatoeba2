@@ -50,8 +50,7 @@ if (!$isLogged) {
         
     <div class="module">
         <h2><?php __('Latest messages'); ?></h2>
-        <?php 
-        // TODO to extract
+        <?php
         foreach ($latestMessages as $message) {
 
             $messageOwner = $message['User']['username'];

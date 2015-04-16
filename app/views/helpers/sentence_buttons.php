@@ -191,15 +191,8 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function audioButton($sentenceId, $sentenceLang, $sentenceAudio)
     {
-
         switch ($sentenceAudio) {
-
-
-            // user-submitted audio
-            case 'from_users' :
-                //TODO add a specific image / css / explanation text
-                break;
-            // from shtooka or tatoeba audio (ie really good quality audio):
+            // sentence has audio
             case 'shtooka' :
                 $onClick = 'return false';
                 $path = Configure::read('Path.audio')
@@ -209,7 +202,7 @@ class SentenceButtonsHelper extends AppHelper
                 echo $this->Javascript->link('sentences.play_audio.js', false);
                 break;
 
-            // if the sentence has no audio
+            // sentence has no audio
             case 'no' :
             default:
                 $onClick = 'return false';
@@ -218,8 +211,6 @@ class SentenceButtonsHelper extends AppHelper
                 $title = __('No audio for this sentence. Click to learn how to contribute.', true);
                 $onClick = 'window.open(this.href); return false;';
                 break;
-
-
         };
 
         echo $this->Html->Link(
@@ -230,56 +221,6 @@ class SentenceButtonsHelper extends AppHelper
                 'onclick' => $onClick
             )
         );
-    }
-
-    /**
-     * Check if a file exists on remove server. Inspired from this:
-     * http://www.php.net/manual/en/function.fsockopen.php#39948
-     *
-     * TODO Move this to a more general model (this is about data retrieving)
-     * someday.
-     *
-     * @param string $url URL of the file.
-     *
-     * @return void
-     */
-    private function _validateUrl($url)
-    {
-        return false;
-
-        $urlParts = @parse_url($url);
-
-        if (empty($urlParts["host"])) {
-            return false;
-        }
-
-        if (!empty($urlParts["path"])) {
-            $filePath = $urlParts["path"];
-        } else {
-            $filePath = "/";
-        }
-
-        if (!empty( $url_parts["query"])) {
-            $filePath .= "?" . $url_parts["query"];
-        }
-
-        $host = $urlParts["host"];
-        $port = "80";
-
-        $socket = @fsockopen($host, $port, $errno, $errstr, 30);
-        if (!$socket) {
-            return false;
-        } else {
-            fwrite($socket, "HEAD ".$filePath." HTTP/1.0\r\nHost: $host\r\n\r\n");
-            $httpResponse = fgets($socket, 22);
-
-            if (preg_match("/200 OK/", $httpResponse)) {
-                fclose($socket);
-                return true;
-            } else {
-                return false;
-            }
-        }
     }
 
 

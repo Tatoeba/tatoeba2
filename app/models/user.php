@@ -50,7 +50,6 @@ class User extends AppModel
      */
     public $actsAs = array(
         'Acl' => array('type' => 'requester'),
-        'ExtendAssociations', // TODO delete?
         'Containable'
     );
 

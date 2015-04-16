@@ -460,7 +460,7 @@ class Sentence extends AppModel
      *
      * @param int $userId Id of the user we want number of sentences of
      *
-     * @return array TODO should return an int
+     * @return int
      */
     public function numberOfSentencesOwnedBy($userId)
     {
@@ -579,11 +579,10 @@ class Sentence extends AppModel
      * Add translation to sentence with given id. Adding a translation means adding
      * a new sentence, and two links.
      *
-     * @param int    $sentenceId
-     * @param int    $sentenceLang
-     * @param string $translationText
-     * @param string $translationLang
-     * @TODO finish the doc plz
+     * @param int    $sentenceId      Id of the sentence that is translated.
+     * @param int    $sentenceLang    Language of the sentence that is translated.
+     * @param string $translationText Text of the translation.
+     * @param string $translationLang Language of the translation.
      *
      * @return boolean
      */

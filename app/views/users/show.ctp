@@ -17,8 +17,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// TODO create an helper for this 
-
 $username = $user['User']['username'];
 $userId =  $user['User']['id'];
 $this->set('title_for_layout', $pages->formatTitle(format(

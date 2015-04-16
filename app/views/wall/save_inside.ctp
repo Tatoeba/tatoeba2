@@ -40,7 +40,7 @@ if (isset($message)) {
         $message['Wall'],
         $message['User'],
         null,
-        null // TODO add menu
+        null
     );
 
     echo '</div>';

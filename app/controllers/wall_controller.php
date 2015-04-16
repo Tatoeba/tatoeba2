@@ -80,7 +80,6 @@ class WallController extends Appcontroller
 
     /**
      * display main wall page with all messages
-     * TODO need to paginate it
      *
      * @return void
      */
