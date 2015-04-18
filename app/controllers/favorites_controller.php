@@ -89,9 +89,7 @@ class FavoritesController extends AppController
 
         if ($userId != null) {
             $isSaved = $this->Favorite->addFavorite($sentenceId, $userId);
-            if ($isSaved) {
-                $this->set('saved', true);
-            }
+            $this->set('saved', $isSaved);
         }
     }
 
