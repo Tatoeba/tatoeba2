@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-27 21:03+0000\n"
-"PO-Revision-Date: 2015-03-27 23:50+0000\n"
+"PO-Revision-Date: 2015-04-13 12:48+0000\n"
 "Last-Translator: Guybrush88 <erpizzo@alice.it>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/tatoeba_website/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -3165,7 +3165,7 @@ msgstr "Questi termini del sito non devono essere modificati. Se c'è qualche in
 #. whatever you translated "Inbox", "Sent" or "Trash" as.
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L40
 msgid "Private messages - {folderName}"
-msgstr "Messaggi privati — {folderName}"
+msgstr "Messaggi privati {folderName}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L50
 msgid "{folderName} ({n}&nbsp;message)"
@@ -4309,7 +4309,7 @@ msgstr "Messaggi in bacheca più recenti"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L31
 msgid "Edit message {number}"
-msgstr "Modifica il messaggio {number}"
+msgstr "Modifica il messaggio n° {number}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/edit.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/show_message.ctp#L49
