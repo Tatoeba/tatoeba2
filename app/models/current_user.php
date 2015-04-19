@@ -142,29 +142,6 @@ class CurrentUser extends AppModel
 
 
     /**
-     * Indicates if current user can link/unlink translations to the sentence of
-     * given id. TODO something is wrong here
-     *
-     * @param string $username Name of the sentence owner (?).
-     *
-     * @return bool
-     */
-    public static function canLinkWithSentenceOfUser($username)
-    {
-        if (!self::isMember()) {
-            return false;
-        }
-
-        if (self::isModerator()) {
-            return true;
-        }
-
-        $belongsToCurrentUser = (self::get('username') == $username);
-        return $belongsToCurrentUser && self::isTrusted();
-    }
-
-
-    /**
      * Indicates if current user can edit sentence of user with give username.
      *
      * @param string $username Username of owner of the sentence.
