@@ -27,9 +27,6 @@
  
 $this->set('title_for_layout', $pages->formatTitle(__('Number of sentences per language', true)));
 
-$stats = ClassRegistry::init('Language')->getStatistics();
-$audioStats = ClassRegistry::init('Sentence')->getTotalNumberOfSentencesWithAudio();
-$totalSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
 $max = $stats[0]['Language']['numberOfSentences'];
 ?>
 <div id="annexe_content">
