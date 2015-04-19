@@ -136,20 +136,12 @@ class PagesController extends AppController
                 $action = "tatoeba_team_and_credits";
                 break;
 
-            case "how-to-contribute":
-                $action = "how_to_contribute";
-                break;
-
             case "download-tatoeba-example-sentences":
                 $action = "downloads";
                 break;
 
             case "terms-of-use":
                 $action = "terms_of_use";
-                break;
-
-            case "whats-new":
-                $action = "whats_new";
                 break;
         }
 
@@ -227,15 +219,6 @@ class PagesController extends AppController
     {
     }
 
-    /**
-     *
-     *
-     */
-
-    public function search()
-    {
-        //TODO should be moved in "search" controller
-    }
 
     /**
      *
@@ -255,13 +238,6 @@ class PagesController extends AppController
     {
     }
 
-    /**
-     *
-     *
-     */
-    public function how_to_contribute()
-    {
-    }
 
     /**
      *
@@ -317,15 +293,6 @@ class PagesController extends AppController
      *
      *
      */
-    public function whats_new()
-    {
-    }
-
-
-    /**
-     *
-     *
-     */
     public function faq()
     {
         $this->redirect(
@@ -341,16 +308,6 @@ class PagesController extends AppController
      */
     public function donate()
     {
-    }
-
-
-    /**
-     *
-     *
-     */
-    public function maintenance()
-    {
-        $this->layout = null;
     }
 }
 ?>
