@@ -156,22 +156,6 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
     <?php
     }
     ?>
-    
-    <?php
-    if ($level == -1) {
-    ?>
-        <div class="module">
-            <h2><?php __('Not approved'); ?></h2>
-            <?php
-            __(
-                'Sentences from this user are currently added as '.
-                '"not approved".'
-            );
-            ?>
-        </div>
-    <?php
-    }
-    ?>
 </div>
 
 <div id="main_content">
@@ -255,11 +239,20 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
                 <span class="value"><?php echo $userSince; ?></span>
             </div>
         </div>
-        
-        <div class="status <?php echo $statusClass ?>">
-        <?php echo $userStatus; ?>
-        </div>
 
+        <?php
+        $cssClasses = array('status', $statusClass);
+        $options = null;
+        if ($level == -1) {
+            $cssClasses[] = 'contributionsBlocked';
+            $options = array('title' => __('Contributions blocked', true));
+        }
+        echo $html->div(
+            join($cssClasses, ' '),
+            $userStatus,
+            $options
+        );
+        ?>
     </div>
 
     <div class="module profileLanguages">
