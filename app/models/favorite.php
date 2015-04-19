@@ -144,5 +144,28 @@ class Favorite extends AppModel
 
         return $isDeleted;
     }
+
+
+    /**
+     * Indicates whether a sentence has been favorited by a user or not.
+     *
+     * @param int $sentenceId Id of the sentence.
+     * @param int $userId     Id of the user.
+     *
+     * @return bool
+     */
+    public function isSentenceFavoritedByUser($sentenceId, $userId)
+    {
+        $result = $this->find(
+            'first',
+            array(
+                'conditions' => array(
+                    'favorite_id' => $sentenceId,
+                    'user_id' => $userId
+                )
+            )
+        );
+        return !empty($result);
+    }
 }
 ?>

@@ -269,8 +269,8 @@ class CurrentUser extends AppModel
     public static function hasFavorited($sentenceId)
     {
         $userId = self::get('id');
-        $FavoritedBy = ClassRegistry::init('FavoritedBy');
-        return $FavoritedBy->isSentenceFavoritedByUser($sentenceId, $userId);
+        $Favorite = ClassRegistry::init('Favorite');
+        return $Favorite->isSentenceFavoritedByUser($sentenceId, $userId);
     }
 
     /**
