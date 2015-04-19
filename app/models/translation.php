@@ -39,16 +39,6 @@ class Translation extends AppModel
     public $actsAs = array('Containable', 'Autotranscriptable');
     public $useTable = 'sentences';
 
-    public $hasAndBelongsToMany = array(
-        'IndirectTranslation' => array(
-            'className' => 'IndirectTranslation',
-            'joinTable' => 'sentences_translations',
-            'foreignKey' => 'translation_id',
-            'associationForeignKey' => 'sentence_id',
-            'unique' => true
-        )
-    );
-
 
     public function find($sentenceId, $languages)
     {
