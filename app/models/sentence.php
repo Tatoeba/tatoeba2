@@ -88,12 +88,6 @@ class Sentence extends AppModel
             'foreignKey' => 'translation_id',
             'associationForeignKey' => 'sentence_id'
         ),
-        'InverseTranslation' => array(
-            'className' => 'InverseTranslation',
-            'joinTable' => 'sentences_translations',
-            'foreignKey' => 'sentence_id',
-            'associationForeignKey' => 'translation_id'
-        ),
         'SentencesList',
         'Tag' => array(
             'className' => 'Tag',
