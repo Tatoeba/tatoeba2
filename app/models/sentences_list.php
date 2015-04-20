@@ -36,8 +36,8 @@
  */
 class SentencesList extends AppModel
 {
-    public $actsAs = array('ExtendAssociations', 'Containable');
-
+    public $actsAs = array('Containable');
+    public $recursive = -1;
     public $belongsTo = array('User');
     public $hasMany = array('SentencesSentencesLists');
     public $hasAndBelongsToMany = array('Sentence');
@@ -48,7 +48,7 @@ class SentencesList extends AppModel
      *
      * @param int $id Id of the list.
      *
-     * @return void
+     * @return array
      */
     public function getList($id)
     {
@@ -71,6 +71,7 @@ class SentencesList extends AppModel
         );
     }
 
+
     /**
      * Returns the sentences lists that the given user can add sentences to.
      *
@@ -89,7 +90,6 @@ class SentencesList extends AppModel
                         "SentencesList.is_public" => 1
                     )
                 ),
-                'contain' => array(),
                 'fields' => array('id', 'name', 'user_id'),
                 'order' => 'name'
             )
@@ -121,6 +121,7 @@ class SentencesList extends AppModel
         return $lists;
     }
 
+
     /**
      * Returns public lists that do not belong to given user.
      *
@@ -146,6 +147,7 @@ class SentencesList extends AppModel
             )
         );
     }
+
 
     /**
      * Returns all the lists that given user cannot edit.
@@ -207,7 +209,6 @@ class SentencesList extends AppModel
         }
         $results = $this->query($request);
 
-        //foreach($results as $result);
         return $results;
     }
 
@@ -219,6 +220,8 @@ class SentencesList extends AppModel
      * @param string $translationsLang Language of the translations.
      * @param bool   $isEditable       'true' if the sentences are editable.
      * @param int    $limit            Number of sentences per page.
+     *
+     * @return array
      */
     public function paramsForPaginate($id, $translationsLang, $isEditable, $limit)
     {
@@ -258,6 +261,7 @@ class SentencesList extends AppModel
         return $params;
     }
 
+
     /**
      * Returns true if list belongs to current user OR is collaborative.
      *
@@ -268,19 +272,16 @@ class SentencesList extends AppModel
      */
     public function isEditableByCurrentUser($listId, $userId)
     {
-
-        // TODO It would be simpler to do everything in the request.
-        // If no result = doesn't belong to
-        // If result = belongs to
-        // This would make the request lighter.
-
         $list = $this->find(
             'first',
             array(
                 "conditions" => array(
-                    "SentencesList.id" => $listId
+                    "SentencesList.id" => $listId,
+                    "OR" => array(
+                        "user_id" => $userId,
+                        "is_public" => 1
+                    )
                 ),
-                "contain" => array(),
                 "fields" => array(
                     'user_id',
                     'is_public'
@@ -288,14 +289,9 @@ class SentencesList extends AppModel
             )
         );
 
-        if ($list['SentencesList']['user_id'] == $userId
-            || $list['SentencesList']['is_public'] == 1
-        ) {
-            return true;
-        } else {
-            return false;
-        }
+        return !empty($list);
     }
+
 
     /**
      * Add sentence to list.
@@ -307,27 +303,17 @@ class SentencesList extends AppModel
      */
     public function addSentenceToList($sentenceId, $listId)
     {
-        Sanitize::paranoid($sentenceId);
-        Sanitize::paranoid($listId);
+        $isSaved = $this->SentencesSentencesLists->addSentenceToList(
+            $sentenceId, $listId
+        );
 
-        $checkIfInList = $this->query("
-            SELECT 1 FROM sentences_sentences_lists
-            WHERE sentences_list_id = $listId
-              AND sentence_id = $sentenceId
-        ");
-
-        $saved = false;
-        if (empty($checkIfInList)) {
-            $this->query("
-                INSERT INTO sentences_sentences_lists (sentences_list_id,sentence_id)
-                VALUES ($listId, $sentenceId)
-            ");
+        if ($isSaved) {
             $this->_incrementNumberOfSentencesToList($listId);
-            $saved = true;
         }
 
-        return $saved;
+        return $isSaved;
     }
+
 
     /**
      * get all the list of a given user
@@ -336,7 +322,6 @@ class SentencesList extends AppModel
      *
      * @return array
      */
-
     public function getUserLists($userId)
     {
         $myLists = $this->find(
@@ -358,6 +343,7 @@ class SentencesList extends AppModel
 
     }
 
+
     /**
      * Remove sentence from list.
      *
@@ -368,11 +354,17 @@ class SentencesList extends AppModel
      */
     public function removeSentenceFromList($sentenceId, $listId)
     {
-        $savedValue = $this->habtmDelete('Sentence', $listId, $sentenceId);
+        $isDeleted = $this->SentencesSentencesLists->removeSentenceFromList(
+            $sentenceId, $listId
+        );
 
-        $this->_decrementNumberOfSentencesToList($listId);
-        return $savedValue;
+        if ($isDeleted) {
+            $this->_decrementNumberOfSentencesToList($listId);
+        }
+
+        return $isDeleted;
     }
+
 
     /**
      * Increment number of sentence to list.
@@ -391,6 +383,7 @@ class SentencesList extends AppModel
         );
     }
 
+
     /**
      * Decrement number of sentence to list.
      *
@@ -404,7 +397,6 @@ class SentencesList extends AppModel
             array('numberOfSentences'=>'numberOfSentences-1'),
             array('SentencesList.id'=>$listId)
         );
-
 
         return $success;
     }
@@ -425,8 +417,7 @@ class SentencesList extends AppModel
                 'conditions' => array(
                     'id' => $listId
                 ),
-                'fields' => array('name'),
-                'contain' => array()
+                'fields' => array('name')
             )
         );
 
@@ -486,8 +477,7 @@ class SentencesList extends AppModel
             array(
                 'conditions' => array(
                     'sentences_list_id' => $listId
-                ),
-                'contain' => array()
+                )
             )
         );
 

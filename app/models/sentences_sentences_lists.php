@@ -44,4 +44,45 @@ class SentencesSentencesLists extends AppModel
     public $belongsTo = array(
         'Sentence' => array('foreignKey' => 'sentence_id')
     );
+
+    /**
+     * Add sentence to list.
+     *
+     * @param int $sentenceId Id of the sentence.
+     * @param int $listId     Id of the list.
+     *
+     * @return array
+     */
+    public function addSentenceToList($sentenceId, $listId)
+    {
+        $data = array(
+            'sentence_id' => $sentenceId,
+            'sentences_list_id' => $listId
+        );
+
+        $isSaved = $this->save($data);
+
+        return $isSaved;
+    }
+
+
+    /**
+     * Remove sentence from list.
+     *
+     * @param int $sentenceId Id of the sentence.
+     * @param int $listId     Id of the list.
+     *
+     * @return array
+     */
+    public function removeSentenceFromList($sentenceId, $listId)
+    {
+        $conditions = array(
+            'sentence_id' => $sentenceId,
+            'sentences_list_id' => $listId
+        );
+
+        $isDeleted = $this->deleteAll($conditions, false);
+
+        return $isDeleted;
+    }
 }
