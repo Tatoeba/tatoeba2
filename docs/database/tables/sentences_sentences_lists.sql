@@ -9,7 +9,10 @@
 
 DROP TABLE IF EXISTS `sentences_sentences_lists`;
 CREATE TABLE `sentences_sentences_lists` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `sentences_list_id` int(11) NOT NULL,
   `sentence_id` int(11) NOT NULL,
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `list_id` (`sentences_list_id`,`sentence_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1
