@@ -351,10 +351,34 @@ class UsersController extends AppController
         // And we save
         if ($this->User->save($newUser)) {
             $this->Auth->login($newUser);
+
+            $profileUrl = Router::url(
+                array(
+                    'controller' => 'user',
+                    'action' => 'profile',
+                    $this->Auth->user('username')
+                )
+            );
+            $this->Session->setFlash(
+                '<p><strong>'
+                .__("Welcome to Tatoeba!", true)
+                .'</strong></p><p>'
+                .format(
+                    __(
+                        "To start things off, we encourage you to go to your ".
+                        "<a href='{url}'>profile</a> and let us know which ".
+                        "languages you speak or are interested in.",
+                        true
+                    ),
+                    array('url' => $profileUrl)
+                )
+                .'</p>'
+            );
+
             $this->redirect(
                 array(
                     'controller' => 'pages',
-                    'action' => 'help'
+                    'action' => 'index'
                 )
             );
         }
