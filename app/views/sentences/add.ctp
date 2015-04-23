@@ -89,40 +89,55 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
         <div class="sentences_set">
             <div class="new">
             <?php
-            echo $form->input(
-                'text', 
-                array(
-                    "label" => __('Sentence: ', true),
-                    "id" => "SentenceText",
-                    "lang" => "",
-                    "dir" => "auto",
-                )
+            $LanguagesLib = ClassRegistry::init('LanguagesLib');
+            $langArray = $LanguagesLib->filteredLanguagesList(
+                CurrentUser::getProfileLanguages()
             );
-            $langArray = $languages->translationsArray();
-            $preSelectedLang = $session->read('contribute_lang');
 
-            if (empty($preSelectedLang)) {
-                $preSelectedLang = 'auto';
+            if (empty($langArray)) {
+
+                $this->Languages->displayAddLanguageMessage(true);
+
+            } else {
+                echo $form->input(
+                    'text',
+                    array(
+                        "label" => __('Sentence: ', true),
+                        "id" => "SentenceText",
+                        "lang" => "",
+                        "dir" => "auto",
+                    )
+                );
+
+                $preSelectedLang = $session->read('contribute_lang');
+
+                if (empty($preSelectedLang)) {
+                    $preSelectedLang = 'auto';
+                }
+                ?>
+
+                <div class="languageSelection">
+                    <?php
+                    echo $form->select(
+                        'contributionLang',
+                        $langArray,
+                        $preSelectedLang,
+                        array(
+                            "class" => "language-selector",
+                            "empty" => false
+                        ),
+                        false
+                    );
+                    ?>
+                </div>
+
+                <?php
+                echo $form->button(
+                    __('OK', true),
+                    array("id" => "submitNewSentence")
+                );
+
             }
-            ?>
-            
-            <div class="languageSelection">
-            <?php
-            echo $form->select(
-                'contributionLang',
-                $langArray,
-                $preSelectedLang,
-                array(
-                    "class" => "language-selector",
-                    "empty" => false
-                ),
-                false
-            );
-            ?>
-            </div>
-            
-            <?php
-            echo $form->button(__('OK', true), array("id" => "submitNewSentence"));
             ?>
             </div>
         </div>

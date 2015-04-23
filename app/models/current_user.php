@@ -44,6 +44,7 @@ class CurrentUser extends AppModel
     public $useTable = false;
     
     private static $_auth;
+    private static $_profileLanguages;
 
 
     /**
@@ -57,6 +58,7 @@ class CurrentUser extends AppModel
     public static function store($user)
     {
         self::$_auth = $user;
+        self::_setProfileLanguages();
     }
 
 
@@ -292,7 +294,8 @@ class CurrentUser extends AppModel
 
 
     /**
-     * Get user's languages.
+     * Languages that the user has set in their settings, to filter the languages
+     * in which translations are displayed.
      *
      * @return array
      */
@@ -308,5 +311,28 @@ class CurrentUser extends AppModel
         return $langArray;
     }
 
+
+    /**
+     * Languages added in profile.
+     *
+     * @return array
+     */
+    public function getProfileLanguages()
+    {
+        return self::$_profileLanguages;
+    }
+
+    private function _setProfileLanguages()
+    {
+        $UsersLanguages = ClassRegistry::init('UsersLanguages');
+        $userId = self::get('id');
+        $languages = $UsersLanguages->getLanguagesOfUser($userId);
+        $languageCodes = array();
+        foreach($languages as $lang) {
+            $languageCodes[] = $lang['UsersLanguages']['language_code'];
+        }
+
+        self::$_profileLanguages = $languageCodes;
+    }
 }
 ?>

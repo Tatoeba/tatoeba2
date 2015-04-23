@@ -439,4 +439,13 @@ class LanguagesLib
 
         return $direction;
     }
+
+
+    public static function filteredLanguagesList($languageCodes)
+    {
+        return array_intersect_key(
+            self::languagesInTatoeba(),
+            array_flip($languageCodes)
+        );
+    }
 }

@@ -384,4 +384,37 @@ class LanguagesHelper extends AppHelper
         );
         return $this->Html->tag($tag, $text, $options);
     }
+
+
+    public function displayAddLanguageMessage($isNewSentence)
+    {
+        echo '<div class="form warning-add-language">';
+
+        if ($isNewSentence) {
+            $warningMessage = __(
+                'You cannot add sentences because you did not add any '.
+                'language in your profile.', true
+            );
+        } else {
+            $warningMessage = __(
+                'You cannot translate sentences because you did not add any '.
+                'language in your profile.', true
+            );
+        }
+
+        echo $this->Html->div('text', $warningMessage);
+
+        echo $this->Html->link(
+            __('Add a language', true),
+            array(
+                'controller' => 'user',
+                'action' => 'language'
+            ),
+            array(
+                'class' => 'button submit'
+            )
+        );
+
+        echo '</div>';
+    }
 }

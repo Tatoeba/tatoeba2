@@ -265,119 +265,142 @@ class SentencesHelper extends AppHelper
      */
     private function _displayNewTranslationForm($id, $withAudio)
     {
-        $langArray = $this->Languages->translationsArray();
+        $LanguagesLib = ClassRegistry::init('LanguagesLib');
+        $langArray = $LanguagesLib->filteredLanguagesList(
+            CurrentUser::getProfileLanguages()
+        );
+
+        ?>
+        <div id="translation_for_<?php echo $id; ?>" class="addTranslations">
+        <?php
+        if (empty($langArray)) {
+
+            $this->Languages->displayAddLanguageMessage(false);
+
+        } else {
+
+            $this->_translationForm($id, $withAudio, $langArray);
+
+        }
+        ?>
+        </div>
+        <?php
+    }
+
+    private function _translationForm($id, $withAudio, $langArray)
+    {
         $langFromCookie = $this->Session->read('contribute_lang');
         if (empty($langFromCookie) || $langFromCookie == 'auto') {
-            $languageOfIcon = null;
-            $preSelectedLang = 'auto';
+            $languageOfIcon = key($langArray);
+            $preSelectedLang = $languageOfIcon;
         } else {
             $languageOfIcon = $langFromCookie;
             $preSelectedLang = $langFromCookie;
         }
+
+
+        echo $this->Html->image(
+            IMG_PATH . 'translation-direct.svg',
+            array(
+                'width' => 20,
+                'height' => 16,
+                'class' => 'translationIcon'
+            )
+        );
+
         if (!$withAudio) {
             $withAudio = 0;
         }
         ?>
         <script type='text/javascript'>
-        $(document).ready(function() {
-            $('#translate_<?php echo $id; ?>').data(
-                'withAudio', <?php echo $withAudio; ?>
-            );
-        });
+            $(document).ready(function() {
+                $('#translate_<?php echo $id; ?>').data(
+                    'withAudio', <?php echo $withAudio; ?>
+                );
+            });
         </script>
-        <div id="translation_for_<?php echo $id; ?>" class="addTranslations">
         <?php
-            echo $this->Html->image(
-                IMG_PATH . 'translation-direct.svg',
-                array(
-                    'width' => 20,
-                    'height' => 16,
-                    'class' => 'translationIcon'
-                )
-            );
 
-            echo '<div class="form">';
+        echo '<div class="form">';
 
-            echo $this->Html->tag(
-                'label', 
-                __('Translation:', true),
-                array(
-                    'for'=>'_'.$id.'_text'
-                )
-            );
-            
-            // Input field
-            echo $this->Form->textarea(
-                'translation',
-                array(
-                    'id' => '_'.$id.'_text',
-                    'class' => 'addTranslationsTextInput',
-                    'dir' => 'auto',
-                )
-            );
-            
-            // language select
-            echo '<div class="languageSection">';
-                echo $this->Html->tag(
-                    'label',
-                    __('Language:', true),
-                    array(
-                        'for'=>'translationLang_'.$id
-                    )
-                );
+        echo $this->Html->tag(
+            'label',
+            __('Translation:', true),
+            array(
+                'for'=>'_'.$id.'_text'
+            )
+        );
 
-                echo $this->Form->select(
-                    'translationLang_'.$id,
-                    $langArray,
-                    $preSelectedLang,
-                    array(
-                        "class" => "translationLang language-selector",
-                        "empty" => false
-                    ),
-                    false
-                );
+        // Input field
+        echo $this->Form->textarea(
+            'translation',
+            array(
+                'id' => '_'.$id.'_text',
+                'class' => 'addTranslationsTextInput',
+                'dir' => 'auto',
+            )
+        );
 
-                $display = null;
-                if (empty($languageOfIcon)) {
-                    $display = 'display: none;';
-                }
-                echo $this->Languages->icon(
-                    $languageOfIcon, 
-                    array(
-                        'class' => 'flag translationLang_flag',
-                        'width' => '30',
-                        'height' => '20',
-                        'style' => $display
-                    )
-                );
-            echo '</div>';
-            
-            // Buttons
-            echo '<div class="addTranslation_buttons">';
-                // OK
-                echo $this->Form->button(
-                    __('Submit translation', true),
-                    array(
-                        'id' => '_'.$id.'_submit',
-                        'class' => 'submit button'
-                    )
-                );
+        // language select
+        echo '<div class="languageSection">';
+        echo $this->Html->tag(
+            'label',
+            __('Language:', true),
+            array(
+                'for'=>'translationLang_'.$id
+            )
+        );
 
-                // Cancel
-                echo $this->Form->button(
-                    __('Cancel', true),
-                    array(
-                        'id' => '_'.$id.'_cancel',
-                        'type' => 'reset',
-                        'class'=>'cancel button'
-                    )
-                );
-            echo '</div>';
+        echo $this->Form->select(
+            'translationLang_'.$id,
+            $langArray,
+            $preSelectedLang,
+            array(
+                "class" => "translationLang language-selector",
+                "empty" => false
+            ),
+            false
+        );
 
-            echo '</div>';
-            ?>
-        </div>
-        <?php
+        $display = null;
+        if (empty($languageOfIcon)) {
+            $display = 'display: none;';
+        }
+        echo $this->Languages->icon(
+            $languageOfIcon,
+            array(
+                'class' => 'flag translationLang_flag',
+                'width' => '30',
+                'height' => '20',
+                'style' => $display
+            )
+        );
+        echo '</div>';
+
+        // Buttons
+        echo '<div class="addTranslation_buttons">';
+        // OK
+        echo $this->Form->button(
+            __('Submit translation', true),
+            array(
+                'id' => '_'.$id.'_submit',
+                'class' => 'submit button'
+            )
+        );
+
+        // Cancel
+        echo $this->Form->button(
+            __('Cancel', true),
+            array(
+                'id' => '_'.$id.'_cancel',
+                'type' => 'reset',
+                'class'=>'cancel button'
+            )
+        );
+        echo '</div>';
+
+        echo '</div>';
+
     }
 
 

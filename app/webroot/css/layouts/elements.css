@@ -1588,3 +1588,22 @@ div.hideLink {
     height: 100%;
     display: inline-block;
 }
+
+.warning-add-language {
+    font-size: 16px;
+    padding: 10px 15px;
+    margin: 10px;
+    background: #F1F1F1;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+}
+
+.warning-add-language .text {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+
+.warning-add-language {
+    text-align: right;
+}
