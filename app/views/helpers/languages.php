@@ -103,6 +103,17 @@ class LanguagesHelper extends AppHelper
     }
 
     /**
+     * Returns array of languages set in the user's profile.
+     */
+    public function profileLanguagesArray()
+    {
+        return array_intersect_key(
+            $this->onlyLanguagesArray(),
+            array_flip(CurrentUser::getProfileLanguages())
+        );
+    }
+
+    /**
      * Return array of languages in Tatoeba + all languages, formatted
      * like it's displayed when alone on the UI (on lists or flags).
      *

@@ -265,10 +265,7 @@ class SentencesHelper extends AppHelper
      */
     private function _displayNewTranslationForm($id, $withAudio)
     {
-        $LanguagesLib = ClassRegistry::init('LanguagesLib');
-        $langArray = $LanguagesLib->filteredLanguagesList(
-            CurrentUser::getProfileLanguages()
-        );
+        $langArray = $this->Languages->profileLanguagesArray();
 
         ?>
         <div id="translation_for_<?php echo $id; ?>" class="addTranslations">

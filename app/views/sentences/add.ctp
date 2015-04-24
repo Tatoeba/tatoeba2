@@ -89,10 +89,7 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
         <div class="sentences_set">
             <div class="new">
             <?php
-            $LanguagesLib = ClassRegistry::init('LanguagesLib');
-            $langArray = $LanguagesLib->filteredLanguagesList(
-                CurrentUser::getProfileLanguages()
-            );
+            $langArray = $this->Languages->profileLanguagesArray();
 
             if (empty($langArray)) {
 
