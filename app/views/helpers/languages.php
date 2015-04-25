@@ -113,7 +113,7 @@ class LanguagesHelper extends AppHelper
         );
 
         $numLanguages = count(CurrentUser::getProfileLanguages());
-        if ($withAutoDetection) {
+        if (count($languages) > 1 && $withAutoDetection) {
             array_unshift($languages, array('auto' => __('Auto detect', true)));
         }
         if ($withOther) {
