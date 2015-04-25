@@ -241,7 +241,7 @@ class SentenceButtonsHelper extends AppHelper
             $class = 'editableFlag';
 
             // language select
-            $langArray = $this->Languages->profileLanguagesArray(false, true);
+            $langArray = $this->Languages->profileLanguagesArray(false, true, false);
             $preselectedLang = $lang;
             if (!array_key_exists($lang, $langArray)) {
                 $preselectedLang = null;

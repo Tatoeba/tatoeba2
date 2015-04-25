@@ -89,7 +89,7 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
         <div class="sentences_set">
             <div class="new">
             <?php
-            $langArray = $this->Languages->profileLanguagesArray(true, false);
+            $langArray = $this->Languages->profileLanguagesArray(true, false, false);
             $currentUserLanguages = CurrentUser::getProfileLanguages();
             if (empty($currentUserLanguages)) {
 

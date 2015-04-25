@@ -33,8 +33,14 @@ if (isset($this->params['lang'])) {
 <div class="search_bar">
 
 <?php
-$languages = $languages->getSearchableLanguagesArray();
 
+$langArray = $languages->profileLanguagesArray(false, false, true);
+$currentUserLanguages = CurrentUser::getProfileLanguages();
+if (empty($currentUserLanguages)) {
+    $langs = $languages->getSearchableLanguagesArray();
+} else {
+    $langs = $langArray;
+}
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';
 }
@@ -72,9 +78,10 @@ echo $form->create(
 <fieldset class="select">
     <label><?php __('From'); ?></label>
     <?php
+    
     echo $form->select(
         'from',
-        $languages,
+        $langs,
         $selectedLanguageFrom,
         array(
             'class' => 'language-selector',
@@ -94,7 +101,7 @@ echo $form->create(
     <?php
     echo $form->select(
         'to',
-        $languages,
+        $langs,
         $selectedLanguageTo,
         array(
             'class' => 'language-selector',
