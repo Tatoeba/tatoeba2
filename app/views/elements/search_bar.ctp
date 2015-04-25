@@ -36,11 +36,14 @@ if (isset($this->params['lang'])) {
 
 $langArray = $languages->profileLanguagesArray(false, false, true);
 $currentUserLanguages = CurrentUser::getProfileLanguages();
-if (empty($currentUserLanguages)) {
-    $langs = $languages->getSearchableLanguagesArray();
-} else {
-    $langs = $langArray;
-}
+//TODO: Uncomment this block and remove the following line once we
+//have a setting to control this behavior.
+//if (empty($currentUserLanguages)) {
+//    $langs = $languages->getSearchableLanguagesArray();
+//} else {
+//    $langs = $langArray;
+//}
+$langs = $languages->getSearchableLanguagesArray();
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';
 }
