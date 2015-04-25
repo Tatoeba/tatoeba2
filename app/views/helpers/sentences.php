@@ -270,7 +270,8 @@ class SentencesHelper extends AppHelper
         ?>
         <div id="translation_for_<?php echo $id; ?>" class="addTranslations">
         <?php
-        if (empty($langArray)) {
+        $currentUserLanguages = CurrentUser::getProfileLanguages();
+        if (empty($currentUserLanguages)) {
 
             $this->Languages->displayAddLanguageMessage(false);
 
