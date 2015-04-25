@@ -241,7 +241,11 @@ class SentenceButtonsHelper extends AppHelper
             $class = 'editableFlag';
 
             // language select
-            $langArray = $this->Languages->otherLanguagesArray();
+            $langArray = $this->Languages->profileLanguagesArray(false, true);
+            $preselectedLang = $lang;
+            if (!array_key_exists($lang, $langArray)) {
+                $preselectedLang = null;
+            }
             ?>
 
             <span id="<?php echo 'selectLangContainer_'.$id; ?>" class="selectLang">
@@ -249,10 +253,9 @@ class SentenceButtonsHelper extends AppHelper
             echo $this->Form->select(
                 'selectLang_'.$id,
                 $langArray,
-                $lang,
+                $preselectedLang,
                 array(
-                    "class"=>"language-selector", 
-                    "title"=> $this->Languages->codeToNameAlone($lang),
+                    "class"=>"language-selector",
                     "empty" => false
                 ),
                 false

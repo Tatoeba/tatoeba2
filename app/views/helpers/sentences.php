@@ -265,7 +265,7 @@ class SentencesHelper extends AppHelper
      */
     private function _displayNewTranslationForm($id, $withAudio)
     {
-        $langArray = $this->Languages->profileLanguagesArray();
+        $langArray = $this->Languages->profileLanguagesArray(true, false);
 
         ?>
         <div id="translation_for_<?php echo $id; ?>" class="addTranslations">
@@ -286,15 +286,10 @@ class SentencesHelper extends AppHelper
 
     private function _translationForm($id, $withAudio, $langArray)
     {
-        $langFromCookie = $this->Session->read('contribute_lang');
-        if (empty($langFromCookie) || $langFromCookie == 'auto') {
-            $languageOfIcon = key($langArray);
-            $preSelectedLang = $languageOfIcon;
-        } else {
-            $languageOfIcon = $langFromCookie;
-            $preSelectedLang = $langFromCookie;
+        $preSelectedLang = $this->Session->read('contribute_lang');
+        if (!in_array($preSelectedLang, $langArray)) {
+            $preSelectedLang = key($langArray);
         }
-
 
         echo $this->Html->image(
             IMG_PATH . 'translation-direct.svg',
@@ -360,11 +355,11 @@ class SentencesHelper extends AppHelper
         );
 
         $display = null;
-        if (empty($languageOfIcon)) {
+        if ($preSelectedLang == 'auto') {
             $display = 'display: none;';
         }
         echo $this->Languages->icon(
-            $languageOfIcon,
+            $preSelectedLang,
             array(
                 'class' => 'flag translationLang_flag',
                 'width' => '30',

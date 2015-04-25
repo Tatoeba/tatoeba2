@@ -105,12 +105,22 @@ class LanguagesHelper extends AppHelper
     /**
      * Returns array of languages set in the user's profile.
      */
-    public function profileLanguagesArray()
+    public function profileLanguagesArray($withAutoDetection, $withOther)
     {
-        return array_intersect_key(
+        $languages = array_intersect_key(
             $this->onlyLanguagesArray(),
             array_flip(CurrentUser::getProfileLanguages())
         );
+
+        $numLanguages = count(CurrentUser::getProfileLanguages());
+        if ($withAutoDetection) {
+            array_unshift($languages, array('auto' => __('Auto detect', true)));
+        }
+        if ($withOther) {
+            array_unshift($languages, array('' => __('other language', true)));
+        }
+
+        return $languages;
     }
 
     /**
