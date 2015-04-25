@@ -891,8 +891,6 @@ class SentencesController extends AppController
         if (isset($this->params['form']['id'])
             && isset($this->params['form']['newLang'])
         ) {
-            Configure::write('debug', 0);
-
             $newLang = Sanitize::paranoid($this->params['form']['newLang']);
             $id = Sanitize::paranoid($this->params['form']['id']);
 
@@ -911,9 +909,6 @@ class SentencesController extends AppController
      */
     public function get_neighbors_for_ajax($id, $lang)
     {
-        Configure::write('debug', 0);
-        $this->layout = null;
-
         $this->Session->write('random_lang_selected', $lang);
         $neighbors = $this->Sentence->getNeighborsSentenceIds($id, $lang);
         $this->set('nextSentence', $neighbors['next']);

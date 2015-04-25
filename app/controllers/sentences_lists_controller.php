@@ -316,10 +316,6 @@ class SentencesListsController extends AppController
      */
     public function add_sentence_to_list($sentenceId, $listId)
     {
-        Configure::write('debug', 0); // Need to have debug at 0 if we want the
-                                      // list to be removed from the select
-                                      // right after the sentence was added.
-
         $sentenceId = Sanitize::paranoid($sentenceId);
         $listId = Sanitize::paranoid($listId);
         $userId = $this->Auth->user('id');
