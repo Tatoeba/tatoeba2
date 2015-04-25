@@ -617,14 +617,10 @@ class Sentence extends AppModel
      */
     public function saveNewSentence($text, $lang, $userId, $correctness = 0)
     {
-        if ($lang == "") {
-            $lang = null;
-        }
-
-        //if ($userId == 1314 || $userId == 6070) { return; }
-        $data['Sentence']['id'] = null;
         $data['Sentence']['text'] = trim($text);
-        $data['Sentence']['lang'] = $lang;
+        if (!empty($lang)) {
+            $data['Sentence']['lang'] = $lang;
+        }
         $data['Sentence']['user_id'] = $userId;
         $data['Sentence']['correctness'] = $correctness;
         $sentenceSaved = $this->save($data);
