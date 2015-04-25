@@ -12,8 +12,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-27 21:03+0000\n"
-"PO-Revision-Date: 2015-03-27 21:06+0000\n"
+"POT-Creation-Date: 2015-04-23 22:50+0000\n"
+"PO-Revision-Date: 2015-04-23 22:55+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Portuguese (Brazil) (http://www.transifex.com/projects/p/tatoeba_website/language/pt_BR/)\n"
 "MIME-Version: 1.0\n"
@@ -22,7 +22,7 @@ msgstr ""
 "Language: pt_BR\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/app_controller.php#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/app_controller.php#L123
 msgid "You need to be logged in."
 msgstr "Você precisa estar logado."
 
@@ -58,73 +58,73 @@ msgid ""
 "contact administrators at team@tatoeba.org."
 msgstr "Você atingiu o seu limite de mensagens por hoje. Por favor, espere até que possa enviar mais mensagens. Se você recebeu essa mensagem por engano, por favor contate os administradores em team@tatoeba.org."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L181
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L190
 msgid ""
 "The user {username} to whom you want to send this message does not exist. "
 "Please try with another username."
 msgstr "O usuário {username}, para o qual você quer enviar essa mensagem, não existe. Por favor tente com outro nome de usuário."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L196
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L205
 msgid "You must fill at least the \"To\" field and the content field."
 msgstr "Você  deve preencher pelo menos o campo \"Para\" e o campo de conteúdo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L277
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L286
 msgid "restore"
 msgstr "restaurar"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L285
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L294
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L241
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L456
 msgid "delete"
 msgstr "excluir"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L296
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L305
 msgid "mark as unread"
 msgstr "marcar como não lida"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L305
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/private_messages_controller.php#L314
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L470
 msgid "reply"
 msgstr "responder"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L255
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L259
 msgid "Your comment has been saved."
 msgstr "Seu comentário foi salvo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L288
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L293
 msgid "You do not have permission to edit this comment. "
 msgstr "Você não tem permissão para editar esse comentário. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L290
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L304
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L333
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L295
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L278
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L307
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L64
 msgid ""
 "If you have received this message in error, please contact administrators at"
 " team@tatoeba.org."
 msgstr "Se você recebeu essa mensagem por engano, por favor contate os administradores em team@tatoeba.org."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L314
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L318
 msgid "Comments cannot be empty."
 msgstr "Comentários não podem ficar em branco."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L327
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L335
 msgid "Changes to your comment have been saved."
 msgstr "As mudanças feitas em seu comentário foram salvas."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L339
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentence_comments_controller.php#L347
 msgid "We could not save your changes."
 msgstr "Não foi possível salvar as suas alterações."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L265
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L251
 msgid "You cannot delete this sentence."
 msgstr "Você não pode excluir esta frase."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L278
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L264
 msgid "The sentence #{id} has been deleted."
 msgstr "A frase N°{id} foi apagada."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L286
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L272
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr "Erro: a frase N°{id} não pôde ser apagada."
 
@@ -167,36 +167,36 @@ msgid ""
 "deleted or does not exist."
 msgstr "Não há frases para esse tag. A tag que procura foi apagada ou não existe."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L113
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L436
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L458
 msgid "No user with this username: "
 msgstr "Nenhum usuário com esse nome de usuário: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L159
 msgid "Failed to upload image"
 msgstr "Falha ao fazer o upload da imagem."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L172
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L168
 msgid "Please choose an image that does not exceed 1 MB."
 msgstr "Por favor, escolha uma imagem que não exceda 1 MB."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L183
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L179
 msgid "Please choose GIF, JPEG or PNG image format."
 msgstr "Por favor, escolha uma imagem no formato GIF, JPEG ou PNG."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L208
 msgid "Error while saving."
 msgstr "Erro ao salvar."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L316
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L312
 msgid "That email address already exists. Please try another."
 msgstr "Esse endereço de email já existe. Por favor, tente outro."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L334
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L332
 msgid "Profile saved."
 msgstr "Perfil salvo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L345
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L343
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "Falha ao mudar o endereço de email. Por favor, insira um endereço de email apropriado."
 
@@ -220,101 +220,836 @@ msgstr "Um erro ocorreu ao salvar."
 msgid "Password error. Please try again."
 msgstr "Senha incorreta. Por favor, tente novamente."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L191
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L189
 msgid ""
 "This account has been marked inactive. You cannot log in with it anymore. "
 "Please contact an admin if this is a mistake."
 msgstr "Essa conta foi marcada como inativa. Você não pode mais logar com ela. Por favor, contate um administrador caso isso seja um erro."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L202
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L200
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
 msgstr "Essa conta foi marcada como um \"spammer\". Você não pode mais logar com ela. Por favor, contate um administrador caso isso seja um erro."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L224
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L222
 msgid "You must fill in your username and password."
 msgstr "Você deve inserir seu nome de usuário e senha. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L232
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L230
 msgid ""
 "Login failed. Make sure that your Caps Lock and Num Lock are not "
 "unintentionally turned on. Your password is case-sensitive."
 msgstr "Falha no login. Certifique-se de que seu Caps Lock e Num Lock não estão desintencionalmente ativados."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L305
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L303
 msgid "You did not accept the terms of use."
 msgstr "Você não aceitou os termos de uso."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L316
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L314
 msgid "Wrong answer to the question."
 msgstr "Resposta incorreta à pergunta."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L337
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L334
 msgid "Password cannot be empty."
 msgstr "A senha não pode estar em branco."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L390
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L364
+msgid "Welcome to Tatoeba!"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L368
+msgid ""
+"To start things off, we encourage you to go to your <a "
+"href='{url}'>profile</a> and let us know which languages you speak or are "
+"interested in."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L412
 msgid "Tatoeba, new password"
 msgstr "Tatoeba, nova senha"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L391
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L413
 msgid "Your login: "
 msgstr "Seu nome de usuário: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L394
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L416
 msgid "Your new password: "
 msgstr "Sua nova senha: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L406
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L428
 msgid "Your new password has been sent to "
 msgstr "Sua nova senha foi enviada para "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L414
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L436
 msgid "There is no registered user with this email address: "
 msgstr "Não há nenhum usuário registrado com esse endereço de email: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L475
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L497
 msgid "No user with this id: "
 msgstr "Nenhum usuário com esse id: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L59
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L62
 msgid "You cannot edit this language."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L80
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L83
 msgid "Language deleted"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L85
 msgid "You cannot delete this language."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L302
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L276
 msgid "You do not have permission to edit this message. "
 msgstr "Você não tem permissão para editar essa mensagem. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L331
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L305
 msgid "You do not have permission to edit this message."
 msgstr "Você não tem permissão para editar essa mensagem."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L346
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L324
 msgid "Message saved."
 msgstr "Mensagem salva."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L357
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L335
 msgid ""
 "We apologize, but we could not save your data.\n"
 "                             Please try again"
 msgstr "Pedimos desculpas, mas não foi possível salvar as suas informações.\nPor favor, tente novamente."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L467
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L445
 msgid "The message you are trying to view does not exist or has been deleted."
 msgstr "A mensagem que você está tentando ver não existe ou foi excluída."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/models/sentences_list.php#L108
 msgid "unnamed list"
 msgstr "lista sem nome"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L192
+msgid "Arabic"
+msgstr "Árabe"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L193
+msgid "English"
+msgstr "Inglês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L194
+msgid "Japanese"
+msgstr "Japonês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L195
+msgid "French"
+msgstr "Francês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L196
+msgid "German"
+msgstr "Alemão"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L197
+msgid "Spanish"
+msgstr "Espanhol"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L198
+msgid "Italian"
+msgstr "Italiano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L199
+msgid "Vietnamese"
+msgstr "Vietnamita"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L200
+msgid "Russian"
+msgstr "Russo"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L201
+msgid "Chinese"
+msgstr "Chinês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L202
+msgid "Korean"
+msgstr "Coreano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L203
+msgid "Dutch"
+msgstr "Holandês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L204
+msgid "Hebrew"
+msgstr "Hebraico"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L205
+msgid "Indonesian"
+msgstr "Indonésio"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L206
+msgid "Portuguese"
+msgstr "Português"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L207
+msgid "Finnish"
+msgstr "Finlandês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L208
+msgid "Bulgarian"
+msgstr "Búlgaro"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L209
+msgid "Ukrainian"
+msgstr "Ucraniano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L210
+msgid "Czech"
+msgstr "Tcheco"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L211
+msgid "Esperanto"
+msgstr "Esperanto"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L212
+msgid "Greek"
+msgstr "Grego"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L213
+msgid "Turkish"
+msgstr "Turco"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L214
+msgid "Swedish"
+msgstr "Sueco"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L215
+msgid "Norwegian (Bokmål)"
+msgstr "Norueguês (Bokmål)"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L216
+msgid "Malay"
+msgstr "Malaio"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L217
+msgid "Estonian"
+msgstr "Estoniano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L218
+msgid "Georgian"
+msgstr "Georgiano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L219
+msgid "Polish"
+msgstr "Polonês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L220
+msgid "Swahili"
+msgstr "Suaíli"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L221
+msgid "Latin"
+msgstr "Latim"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L223
+msgid "Shanghainese"
+msgstr "Shangainês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L224
+msgid "Egyptian Arabic"
+msgstr "Arábe Egípcio"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L225
+msgid "Belarusian"
+msgstr "Bielorrusso"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L226
+msgid "Hungarian"
+msgstr "Húngaro"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L227
+msgid "Icelandic"
+msgstr "Islandês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L228
+msgid "Albanian"
+msgstr "Albanês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L229
+msgid "Cantonese"
+msgstr "Cantonês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L230
+msgid "Afrikaans"
+msgstr "Africâner"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L231
+msgid "Faroese"
+msgstr "Feroês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L232
+msgid "Frisian"
+msgstr "Frísio"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L233
+msgid "Breton"
+msgstr "Bretão"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L234
+msgid "Romanian"
+msgstr "Romeno"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L235
+msgid "Uyghur"
+msgstr "Uigur"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L236
+msgid "Uzbek"
+msgstr "Uzbeque"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L237
+msgid "Norwegian (Nynorsk)"
+msgstr "Norueguês (Nynorsk)"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L238
+msgid "Serbian"
+msgstr "Sérvio"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L239
+msgid "Tatar"
+msgstr "Tártaro"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L240
+msgid "Yiddish"
+msgstr "Ídiche"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L241
+msgid "Persian"
+msgstr "Persa"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L242
+msgid "Min Nan Chinese"
+msgstr "Chinês Min Nan"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L243
+msgid "Basque"
+msgstr "Basco"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L244
+msgid "Slovak"
+msgstr "Eslovaco"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L245
+msgid "Danish"
+msgstr "Dinamarquês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L246
+msgid "Armenian"
+msgstr "Armênio"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L247
+msgid "Iraqi Arabic"
+msgstr "Árabe do Iraque"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L248
+msgid "Sanskrit"
+msgstr "Sânscrito"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L249
+msgid "Urdu"
+msgstr "Urdu"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L250
+msgid "Hindi"
+msgstr "Hindi"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L251
+msgid "Bengali"
+msgstr "Bengalês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L252
+msgid "CycL"
+msgstr "Cycl"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L253
+msgid "Catalan"
+msgstr "Calalão"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L254
+msgid "Kazakh"
+msgstr "Cazaque"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L255
+msgid "Latvian"
+msgstr "Letão"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L256
+msgid "Bosnian"
+msgstr "Bósnio"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L257
+msgid "Croatian"
+msgstr "Croata"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L258
+msgid "Old East Slavic"
+msgstr "Antigo Eslavo Oriental "
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L259
+msgid "Chamorro"
+msgstr "Chamorro"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L260
+msgid "Tagalog"
+msgstr "Tagalo"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L261
+msgid "Quechua"
+msgstr "Quíchua"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L262
+msgid "Mongolian"
+msgstr "Mongol"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L263
+msgid "Lithuanian"
+msgstr "Lituano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L264
+msgid "Galician"
+msgstr "Galego"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L265
+msgid "Irish"
+msgstr "Irlandês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L266
+msgid "Interlingua"
+msgstr "Interlíngua"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L267
+msgid "Lojban"
+msgstr "Lojban"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L268
+msgid "Toki Pona"
+msgstr "Toki Pona"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L269
+msgid "Ainu"
+msgstr "Ainu"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L270
+msgid "Sicilian"
+msgstr "Siciliano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L271
+msgid "Malayalam"
+msgstr "Malaialo"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L272
+msgid "Low Saxon"
+msgstr "Baixo Saxão"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L273
+msgid "Klingon"
+msgstr "Klingon"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L274
+msgid "Slovenian"
+msgstr "Esloveno"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L275
+msgid "Thai"
+msgstr "Tailandês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L276
+msgid "Literary Chinese"
+msgstr "Chinês Literário"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L277
+msgid "Ossetian"
+msgstr "Osseto"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L278
+msgid "Romansh"
+msgstr "Romanche"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L279
+msgid "Volapük"
+msgstr "Volapuque"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L280
+msgid "Scottish Gaelic"
+msgstr "Gaélico Escocês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L281
+msgid "Ido"
+msgstr "Ido"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L282
+msgid "Asturian"
+msgstr "Asturiano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L283
+msgid "Interlingue"
+msgstr "Interlingue"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L284
+msgid "Occitan"
+msgstr "Occitano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L285
+msgid "Kalmyk"
+msgstr "Calmuco"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L289
+msgid "Old English"
+msgstr "Inglês antigo"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L290
+msgid "Kurdish"
+msgstr "Curdo"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L291
+msgid "Lower Sorbian"
+msgstr "Baixo sorábio"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L292
+msgid "Upper Sorbian"
+msgstr "Alto sorábio"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L293
+msgid "Kölsch"
+msgstr "Kölsch"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L294
+msgid "Welsh"
+msgstr "Galês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L295
+msgid "Ewe"
+msgstr "Ewe"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L296
+msgid "Sindarin"
+msgstr "Sindarin"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L297
+msgid "Telugu"
+msgstr "Telugu"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L298
+msgid "Tok Pisin"
+msgstr "Tok Pisin"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L299
+msgid "Quenya"
+msgstr "Quenya"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L300
+msgid "Novial"
+msgstr "Novial"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L301
+msgid "Maori"
+msgstr "Maori"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L302
+msgid "Ladin"
+msgstr "Ladino dolomítico"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L303
+msgid "Berber"
+msgstr "Línguas berberes"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L305
+msgid "Xhosa"
+msgstr "Xhosa"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L306
+msgid "Punjabi (Western)"
+msgstr "Panjabi (Ocidental)"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L307
+msgid "Malagasy"
+msgstr "Malgaxe"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L308
+msgid "Guarani"
+msgstr "Guarani"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L309
+msgid "Ladino"
+msgstr "Ladino"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L310
+msgid "Piedmontese"
+msgstr "Piemontês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L312
+msgid "Kotava"
+msgstr "Kotava"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L313
+msgid "Marathi"
+msgstr "Marata"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L314
+msgid "Old Tupi"
+msgstr "Tupi Antigo"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L315
+msgid "Tajik"
+msgstr "Tajique"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L316
+msgid "Old Prussian"
+msgstr "Prússio Antigo"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L317
+msgid "Nepali"
+msgstr "Nepali"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L318
+msgid "Maltese"
+msgstr "Maltês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L319
+msgid "Chukchi"
+msgstr "Chukoto"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L320
+msgid "Cornish"
+msgstr "Córnico"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L321
+msgid "Azerbaijani"
+msgstr "Azerbaijano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L322
+msgid "Khmer"
+msgstr "Cambojiano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L323
+msgid "Lao"
+msgstr "Laociano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L324
+msgid "Tibetan"
+msgstr "Tibetano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L325
+msgid "Hiligaynon"
+msgstr "Hiligaino"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L326
+msgid "Algerian Arabic"
+msgstr "Árabe da Algéria"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L327
+msgid "Picard"
+msgstr "Picardo"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L328
+msgid "Ancient Greek"
+msgstr "Grego Clássico"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L329
+msgid "Amharic"
+msgstr "Amárico"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L330
+msgid "Awadhi"
+msgstr "Awadhi"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L331
+msgid "Bhojpuri"
+msgstr "Bhojpuri"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L332
+msgid "Chavacano"
+msgstr "Chavacano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L333
+msgid "Middle English"
+msgstr "Inglês Médio"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L334
+msgid "Middle French"
+msgstr "Francês Médio"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L335
+msgid "Haitian Creole"
+msgstr "Crioulo Haitiano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L336
+msgid "Juhuri (Judeo-Tat)"
+msgstr "Juhuri"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L337
+msgid "Greenlandic"
+msgstr "Groenlandês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L338
+msgid "Meadow Mari"
+msgstr "Meadow Mari"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L339
+msgid "Nahuatl"
+msgstr "Náuatle"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L340
+msgid "Pennsylvania German"
+msgstr "Alemão da Pensilvânia"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L341
+msgid "Sinhala"
+msgstr "Cingalês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L342
+msgid "Turkmen"
+msgstr "Turcomeno"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L343
+msgid "Walloon"
+msgstr "Valão"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L344
+msgid "Bashkir"
+msgstr "Bashkir"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L345
+msgid "Hausa"
+msgstr "Haúça"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L346
+msgid "Luxembourgish"
+msgstr "Luxemburguês"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L347
+msgid "Mambae"
+msgstr "Mambae"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L348
+msgid "Somali"
+msgstr "Somali"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L349
+msgid "Zulu"
+msgstr "Zulu"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L350
+msgid "Hawaiian"
+msgstr "Havaiano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L351
+msgid "Kyrgyz"
+msgstr "Quirguiz"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L352
+msgid "Macedonian"
+msgstr "Macedônio"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L353
+msgid "Hill Mari"
+msgstr "Hill Mari"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L354
+msgid "Pipil"
+msgstr "Pipil"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L355
+msgid "Yoruba"
+msgstr "Iorubá"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L356
+msgid "Kinyarwanda"
+msgstr "Quiniaruanda"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L357
+msgid "Shuswap"
+msgstr "Shuswap"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L358
+msgid "Chuvash"
+msgstr "Tchuvache"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L359
+msgid "Lakota"
+msgstr "Dacota"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L360
+msgid "Ottoman Turkish"
+msgstr "Turco Otomano"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L361
+msgid "Shona"
+msgstr "Chona"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L362
+msgid "Mon"
+msgstr "Mon"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L363
+msgid "Nogai"
+msgstr "Nogai"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L364
+msgid "Yakut"
+msgstr "Iacuto"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L365
+msgid "Abkhaz"
+msgstr "Abecásia"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L366
+msgid "Tetun"
+msgstr "Tétum"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L367
+msgid "Tamil"
+msgstr "Tâmil"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L368
+msgid "Udmurt"
+msgstr "Udmurte"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L369
+msgid "Kumyk"
+msgstr "Kumyk"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L370
+msgid "Crimean Tatar"
+msgstr "Tártaro da Criméia"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L371
+msgid "Chinyanja"
+msgstr "Cinianja"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L372
+msgid "Livonian"
+msgstr "Livônio"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L373
+msgid "Navajo"
+msgstr "Navajo"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L374
+msgid "Cherokee"
+msgstr "Cherokee"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L375
+msgid "Gujarati"
+msgstr "Gujarati"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L376
+msgid "Punjabi (Eastern)"
+msgstr "Panjabi (Oriental)"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L377
+msgid "Khasi"
+msgstr "Khasi"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/vendors/languages_lib.php#L378
+msgid "Javanese"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L29
 msgid "Orphan sentences"
@@ -535,13 +1270,13 @@ msgstr "Linha do tempo de atividade"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L73
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L94
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L43
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L41
 msgid "Latest contributions"
 msgstr "Últimas contribuições"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L47
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L79
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L80
 msgid "Contributions"
 msgstr "Contribuições"
 
@@ -657,7 +1392,7 @@ msgid "Contact us"
 msgstr "Contato"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L64
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L164
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L28
 msgid "Donate"
 msgstr "Doar"
@@ -799,8 +1534,8 @@ msgid "show another "
 msgstr "mostrar outra "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/random_sentence_header.ctp#L70
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L97
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L126
 msgid "show more..."
 msgstr "mostrar mais..."
 
@@ -886,7 +1621,7 @@ msgid ""
 msgstr "Você pode ver algumas frases em vermelho. Essas frases não são aprovadas pela comunidade do Tatoeba. Elas levantam problemas de direitos autorais ou são problemáticas. Se você é um contribuidor, por favor, evite traduzi-las."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences_statistics.ctp#L34
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L49
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L46
 msgid "One sentence"
 msgid_plural "{n}&nbsp;sentences"
 msgstr[0] "Uma frase"
@@ -956,7 +1691,7 @@ msgid "Edit profile"
 msgstr "Editar perfil"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L155
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L27
 msgid "Settings"
 msgstr "Configurações"
@@ -1007,63 +1742,63 @@ msgstr "Adicionar frases"
 msgid "Adopt sentences"
 msgstr "Adotar frases"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L109
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L96
 msgid "Discuss sentences"
 msgstr "Discutir frases"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L115
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L38
 msgid "Members"
 msgstr "Membros"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L121
 msgid "List of all members"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L125
 msgid "Languages of members"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L135
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L131
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L38
 msgid "Wall"
 msgstr "Mural"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L141
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L137
 msgid "More"
 msgstr "Mais"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L143
 msgid "Quick Start Guide"
 msgstr "Guia de Início Rápido"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L150
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L146
 msgid "Tatoeba Wiki"
 msgstr "Wiki Tatoeba"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L153
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L149
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L42
 msgid "FAQ"
 msgstr "FAQ - Perguntas Frequentes"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L152
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L28
 msgid "Help"
 msgstr "Ajuda"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L160
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L84
 msgid "Downloads"
 msgstr "Downloads"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L164
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L160
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L32
 msgid "Tools"
 msgstr "Ferramentas"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L49
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L111
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L113
 msgid "Sentences"
 msgstr "Frases"
 
@@ -1096,7 +1831,7 @@ msgstr "Contatar {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/add_favorite.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/add_favorite.ctp#L34
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L276
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L272
 msgid "Remove from favorites"
 msgstr "Remover dos favoritos"
 
@@ -1104,13 +1839,13 @@ msgstr "Remover dos favoritos"
 msgid "{user}'s favorite sentences"
 msgstr "Frases favoritas de {user}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L65
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/of_user.ctp#L64
 msgid "This user does not have any favorites."
 msgstr "Esse usuário não possui favoritos."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/remove_favorite.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/remove_favorite.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L280
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L276
 msgid "Add to favorites"
 msgstr "Adicionar aos favoritos"
 
@@ -1135,7 +1870,7 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Use mensagens privadas para discutir assuntos não relacionados à frase."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L374
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L393
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L117
 msgid "Cancel"
@@ -1155,7 +1890,7 @@ msgstr "ocultar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L247
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L374
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L522
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L518
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L462
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L112
 msgid "Are you sure?"
@@ -1211,768 +1946,62 @@ msgstr[1] "{n}&nbsp;minutos atrás"
 #. For instance, in language lists, on flag mouseover or on the stats
 #. page. You may translate this string using a declension modifier,
 #. for instance {language.alone}
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L182
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L55
 msgid "{language}"
 msgstr "{language}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L196
-msgid "Arabic"
-msgstr "Árabe"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L197
-msgid "English"
-msgstr "Inglês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L198
-msgid "Japanese"
-msgstr "Japonês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L199
-msgid "French"
-msgstr "Francês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L200
-msgid "German"
-msgstr "Alemão"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L201
-msgid "Spanish"
-msgstr "Espanhol"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L202
-msgid "Italian"
-msgstr "Italiano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L203
-msgid "Vietnamese"
-msgstr "Vietnamita"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L204
-msgid "Russian"
-msgstr "Russo"
-
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L134
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L205
-msgid "Chinese"
-msgstr "Chinês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L206
-msgid "Korean"
-msgstr "Coreano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L207
-msgid "Dutch"
-msgstr "Holandês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L208
-msgid "Hebrew"
-msgstr "Hebraico"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L209
-msgid "Indonesian"
-msgstr "Indonésio"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L210
-msgid "Portuguese"
-msgstr "Português"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L211
-msgid "Finnish"
-msgstr "Finlandês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L212
-msgid "Bulgarian"
-msgstr "Búlgaro"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L213
-msgid "Ukrainian"
-msgstr "Ucraniano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L214
-msgid "Czech"
-msgstr "Tcheco"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L215
-msgid "Esperanto"
-msgstr "Esperanto"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L216
-msgid "Greek"
-msgstr "Grego"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L217
-msgid "Turkish"
-msgstr "Turco"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L218
-msgid "Swedish"
-msgstr "Sueco"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L219
-msgid "Norwegian (Bokmål)"
-msgstr "Norueguês (Bokmål)"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L220
-msgid "Malay"
-msgstr "Malaio"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L221
-msgid "Estonian"
-msgstr "Estoniano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L222
-msgid "Georgian"
-msgstr "Georgiano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L223
-msgid "Polish"
-msgstr "Polonês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L224
-msgid "Swahili"
-msgstr "Suaíli"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L225
-msgid "Latin"
-msgstr "Latim"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L227
-msgid "Shanghainese"
-msgstr "Shangainês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L228
-msgid "Egyptian Arabic"
-msgstr "Arábe Egípcio"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L229
-msgid "Belarusian"
-msgstr "Bielorrusso"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L230
-msgid "Hungarian"
-msgstr "Húngaro"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L231
-msgid "Icelandic"
-msgstr "Islandês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L232
-msgid "Albanian"
-msgstr "Albanês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L233
-msgid "Cantonese"
-msgstr "Cantonês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L234
-msgid "Afrikaans"
-msgstr "Africâner"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L235
-msgid "Faroese"
-msgstr "Feroês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L236
-msgid "Frisian"
-msgstr "Frísio"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L237
-msgid "Breton"
-msgstr "Bretão"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L238
-msgid "Romanian"
-msgstr "Romeno"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L239
-msgid "Uyghur"
-msgstr "Uigur"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L240
-msgid "Uzbek"
-msgstr "Uzbeque"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L241
-msgid "Norwegian (Nynorsk)"
-msgstr "Norueguês (Nynorsk)"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L242
-msgid "Serbian"
-msgstr "Sérvio"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L243
-msgid "Tatar"
-msgstr "Tártaro"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L244
-msgid "Yiddish"
-msgstr "Ídiche"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L245
-msgid "Persian"
-msgstr "Persa"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L246
-msgid "Min Nan Chinese"
-msgstr "Chinês Min Nan"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L247
-msgid "Basque"
-msgstr "Basco"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L248
-msgid "Slovak"
-msgstr "Eslovaco"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L249
-msgid "Danish"
-msgstr "Dinamarquês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L250
-msgid "Armenian"
-msgstr "Armênio"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L251
-msgid "Iraqi Arabic"
-msgstr "Árabe do Iraque"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L252
-msgid "Sanskrit"
-msgstr "Sânscrito"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L253
-msgid "Urdu"
-msgstr "Urdu"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L254
-msgid "Hindi"
-msgstr "Hindi"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L255
-msgid "Bengali"
-msgstr "Bengalês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L256
-msgid "CycL"
-msgstr "Cycl"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L257
-msgid "Catalan"
-msgstr "Calalão"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L258
-msgid "Kazakh"
-msgstr "Cazaque"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L259
-msgid "Latvian"
-msgstr "Letão"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L260
-msgid "Bosnian"
-msgstr "Bósnio"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L261
-msgid "Croatian"
-msgstr "Croata"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L262
-msgid "Old East Slavic"
-msgstr "Antigo Eslavo Oriental "
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L263
-msgid "Chamorro"
-msgstr "Chamorro"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L264
-msgid "Tagalog"
-msgstr "Tagalo"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L265
-msgid "Quechua"
-msgstr "Quíchua"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L266
-msgid "Mongolian"
-msgstr "Mongol"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L267
-msgid "Lithuanian"
-msgstr "Lituano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L268
-msgid "Galician"
-msgstr "Galego"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L269
-msgid "Irish"
-msgstr "Irlandês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L270
-msgid "Interlingua"
-msgstr "Interlíngua"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L271
-msgid "Lojban"
-msgstr "Lojban"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L272
-msgid "Toki Pona"
-msgstr "Toki Pona"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L273
-msgid "Ainu"
-msgstr "Ainu"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L274
-msgid "Sicilian"
-msgstr "Siciliano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L275
-msgid "Malayalam"
-msgstr "Malaialo"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L276
-msgid "Low Saxon"
-msgstr "Baixo Saxão"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L277
-msgid "Klingon"
-msgstr "Klingon"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L278
-msgid "Slovenian"
-msgstr "Esloveno"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L279
-msgid "Thai"
-msgstr "Tailandês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L280
-msgid "Literary Chinese"
-msgstr "Chinês Literário"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L281
-msgid "Ossetian"
-msgstr "Osseto"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L282
-msgid "Romansh"
-msgstr "Romanche"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L283
-msgid "Volapük"
-msgstr "Volapuque"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L284
-msgid "Scottish Gaelic"
-msgstr "Gaélico Escocês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L285
-msgid "Ido"
-msgstr "Ido"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L286
-msgid "Asturian"
-msgstr "Asturiano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L287
-msgid "Interlingue"
-msgstr "Interlingue"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L288
-msgid "Occitan"
-msgstr "Occitano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L289
-msgid "Kalmyk"
-msgstr "Calmuco"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L293
-msgid "Old English"
-msgstr "Inglês antigo"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L294
-msgid "Kurdish"
-msgstr "Curdo"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L295
-msgid "Lower Sorbian"
-msgstr "Baixo sorábio"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L296
-msgid "Upper Sorbian"
-msgstr "Alto sorábio"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L297
-msgid "Kölsch"
-msgstr "Kölsch"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L298
-msgid "Welsh"
-msgstr "Galês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L299
-msgid "Ewe"
-msgstr "Ewe"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L300
-msgid "Sindarin"
-msgstr "Sindarin"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L301
-msgid "Telugu"
-msgstr "Telugu"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L302
-msgid "Tok Pisin"
-msgstr "Tok Pisin"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L303
-msgid "Quenya"
-msgstr "Quenya"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L304
-msgid "Novial"
-msgstr "Novial"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L305
-msgid "Maori"
-msgstr "Maori"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L306
-msgid "Ladin"
-msgstr "Ladino dolomítico"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L307
-msgid "Berber"
-msgstr "Línguas berberes"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L309
-msgid "Xhosa"
-msgstr "Xhosa"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L310
-msgid "Punjabi (Western)"
-msgstr "Panjabi (Ocidental)"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L311
-msgid "Malagasy"
-msgstr "Malgaxe"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L312
-msgid "Guarani"
-msgstr "Guarani"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L313
-msgid "Ladino"
-msgstr "Ladino"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L314
-msgid "Piedmontese"
-msgstr "Piemontês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L316
-msgid "Kotava"
-msgstr "Kotava"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L317
-msgid "Marathi"
-msgstr "Marata"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L318
-msgid "Old Tupi"
-msgstr "Tupi Antigo"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L319
-msgid "Tajik"
-msgstr "Tajique"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L320
-msgid "Old Prussian"
-msgstr "Prússio Antigo"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L321
-msgid "Nepali"
-msgstr "Nepali"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L322
-msgid "Maltese"
-msgstr "Maltês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L323
-msgid "Chukchi"
-msgstr "Chukoto"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L324
-msgid "Cornish"
-msgstr "Córnico"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L325
-msgid "Azerbaijani"
-msgstr "Azerbaijano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L326
-msgid "Khmer"
-msgstr "Cambojiano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L327
-msgid "Lao"
-msgstr "Laociano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L328
-msgid "Tibetan"
-msgstr "Tibetano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L329
-msgid "Hiligaynon"
-msgstr "Hiligaino"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L330
-msgid "Algerian Arabic"
-msgstr "Árabe da Algéria"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L331
-msgid "Picard"
-msgstr "Picardo"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L332
-msgid "Ancient Greek"
-msgstr "Grego Clássico"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L333
-msgid "Amharic"
-msgstr "Amárico"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L334
-msgid "Awadhi"
-msgstr "Awadhi"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L335
-msgid "Bhojpuri"
-msgstr "Bhojpuri"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L336
-msgid "Chavacano"
-msgstr "Chavacano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L337
-msgid "Middle English"
-msgstr "Inglês Médio"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L338
-msgid "Middle French"
-msgstr "Francês Médio"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L339
-msgid "Haitian Creole"
-msgstr "Crioulo Haitiano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L340
-msgid "Juhuri (Judeo-Tat)"
-msgstr "Juhuri"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L341
-msgid "Greenlandic"
-msgstr "Groenlandês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L342
-msgid "Meadow Mari"
-msgstr "Meadow Mari"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L343
-msgid "Nahuatl"
-msgstr "Náuatle"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L344
-msgid "Pennsylvania German"
-msgstr "Alemão da Pensilvânia"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L345
-msgid "Sinhala"
-msgstr "Cingalês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L346
-msgid "Turkmen"
-msgstr "Turcomeno"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L347
-msgid "Walloon"
-msgstr "Valão"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L348
-msgid "Bashkir"
-msgstr "Bashkir"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L349
-msgid "Hausa"
-msgstr "Haúça"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L350
-msgid "Luxembourgish"
-msgstr "Luxemburguês"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L351
-msgid "Mambae"
-msgstr "Mambae"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L352
-msgid "Somali"
-msgstr "Somali"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L353
-msgid "Zulu"
-msgstr "Zulu"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L354
-msgid "Hawaiian"
-msgstr "Havaiano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L355
-msgid "Kyrgyz"
-msgstr "Quirguiz"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L356
-msgid "Macedonian"
-msgstr "Macedônio"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L357
-msgid "Hill Mari"
-msgstr "Hill Mari"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L358
-msgid "Pipil"
-msgstr "Pipil"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L359
-msgid "Yoruba"
-msgstr "Iorubá"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L360
-msgid "Kinyarwanda"
-msgstr "Quiniaruanda"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L361
-msgid "Shuswap"
-msgstr "Shuswap"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L362
-msgid "Chuvash"
-msgstr "Tchuvache"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L363
-msgid "Lakota"
-msgstr "Dacota"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L364
-msgid "Ottoman Turkish"
-msgstr "Turco Otomano"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L365
-msgid "Shona"
-msgstr "Chona"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L366
-msgid "Mon"
-msgstr "Mon"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L367
-msgid "Nogai"
-msgstr "Nogai"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L368
-msgid "Yakut"
-msgstr "Iacuto"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L369
-msgid "Abkhaz"
-msgstr "Abecásia"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L370
-msgid "Tetun"
-msgstr "Tétum"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L371
-msgid "Tamil"
-msgstr "Tâmil"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L372
-msgid "Udmurt"
-msgstr "Udmurte"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L373
-msgid "Kumyk"
-msgstr "Kumyk"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L374
-msgid "Crimean Tatar"
-msgstr "Tártaro da Criméia"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L375
-msgid "Chinyanja"
-msgstr "Cinianja"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L376
-msgid "Livonian"
-msgstr "Livônio"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L377
-msgid "Navajo"
-msgstr "Navajo"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L378
-msgid "Cherokee"
-msgstr "Cherokee"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L379
-msgid "Gujarati"
-msgstr "Gujarati"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L380
-msgid "Punjabi (Eastern)"
-msgstr "Panjabi (Oriental)"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L381
-msgid "Khasi"
-msgstr "Khasi"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L382
-msgid "Javanese"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L438
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L457
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L528
 msgid "All languages"
 msgstr "Todos os idiomas"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L474
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L151
 msgid "unknown language"
 msgstr "idioma desconhecido"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L491
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L168
 msgid "other language"
 msgstr "outra idioma"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L509
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L186
 msgid "Auto detect"
 msgstr "Auto detectar"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L527
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L570
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L204
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L247
 msgid "None"
 msgstr "Nenhuma"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L550
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L227
 msgid "Any language"
 msgstr "Qualquer idioma"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L586
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L263
 msgid "Any"
 msgstr "Qualquer um"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L619
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L296
 msgid "unknown"
 msgstr "desconhecida"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L395
+msgid ""
+"You cannot add sentences because you did not add any language in your "
+"profile."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L400
+msgid ""
+"You cannot translate sentences because you did not add any language in your "
+"profile."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L408
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L266
+msgid "Add a language"
+msgstr ""
 
 #. @translators: string used as a placeholder for
 #. the name of a list when it happens to be empty
@@ -1995,9 +2024,9 @@ msgstr "Mostrar"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L158
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L139
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L543
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L551
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L325
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L539
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L547
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L319
 msgid "Edit"
 msgstr "Editar"
 
@@ -2046,9 +2075,9 @@ msgid "Add a sentence to this list : "
 msgstr "Adicionar frase a essa lista: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L494
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L468
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L464
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L82
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L136
 msgid "OK"
 msgstr "Ok"
 
@@ -2130,69 +2159,69 @@ msgid ""
 " be translated."
 msgstr "Esta frase está atualmente marcada como não aprovada. Frases não aprovadas não podem ser traduzidas."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L146
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L143
 msgid "This sentence is in simplified Chinese."
 msgstr "Essa frase está em chinês simplificado."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L171
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L172
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L168
 msgid "This sentence is in traditional Chinese."
 msgstr "Essa frase está em chinês tradicional."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L206
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L202
 msgid "Click to unadopt"
 msgstr "Clique para reverter a adoção"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L208
 msgid "Click to adopt"
 msgstr "Clique para adotar"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L338
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L339
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L334
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L335
 msgid "Link to another sentence"
 msgstr "Criar ligação com outra frase"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L354
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L350
 msgid "Sentence number"
 msgstr "Número da frase"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L359
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L355
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L8
 msgid "Link"
 msgstr "Link"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L395
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L396
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L391
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L392
 msgid "Add to list"
 msgstr "Adicionar a uma lista"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L446
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L442
 msgid "Add to one of your lists"
 msgstr "Adicionar para uma de suas listas"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L447
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L443
 msgid "Add to a collaborative list"
 msgstr "Adicionar para uma lista colaborativa"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L489
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L497
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L485
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L493
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L127
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L105
 msgid "Delete"
 msgstr "Remover"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L491
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L487
 msgid "You cannot delete this sentence because it has audio."
 msgstr "Você não pode apagar essa frase porque contém áudio."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L545
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L541
 msgid "You cannot edit this sentence because it has audio."
 msgstr "Você não pode editar esta frase porque ela contém áudio."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L592
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L588
 msgid "belongs to {user}"
 msgstr "pertence a {user}"
 
@@ -2245,23 +2274,7 @@ msgstr "próxima"
 msgid "random"
 msgstr "aleatório"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L223
-msgid "Enter a username: "
-msgstr "Digite um nome de usuário: "
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L228
-msgid "show user"
-msgstr "mostrar usuário"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L235
-msgid "all"
-msgstr "tudo"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L249
-msgid "Profile of {user}"
-msgstr "Perfil de {user}"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L276
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L212
 msgid "all lists"
 msgstr "todas as listas"
 
@@ -2351,34 +2364,34 @@ msgstr "Desvincular essa tradução."
 msgid "Make into direct translation."
 msgstr "Transformar em tradução direta."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L208
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L201
 msgid "Play audio"
 msgstr "Tocar áudio"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L218
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L211
 msgid "No audio for this sentence. Click to learn how to contribute."
 msgstr "Nenhum áudio para essa frase. Clique para saber como contribuir."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L175
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L173
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
 msgstr[0] ""
 msgstr[1] ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L209
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L205
 msgid "Less translations"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L309
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L328
 msgid "Translation:"
 msgstr "Tradução:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L329
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L348
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L58
 msgid "Language:"
 msgstr "Idioma:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L365
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L384
 msgid "Submit translation"
 msgstr "Submeter tradução"
 
@@ -2411,7 +2424,7 @@ msgid "NOTE: Not all languages have audio at the moment."
 msgstr "NOTA: Apenas algumas línguas têm áudio no momento."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L63
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L212
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L214
 msgid "Tags"
 msgstr "Tags"
 
@@ -2743,29 +2756,37 @@ msgid "Meaning id"
 msgstr "Id do significado"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L99
+msgid "Skill level"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L100
+msgid "Details"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L101
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L168
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L170
 msgid "tab"
 msgstr "aba"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L105
 msgid "Attention: "
 msgstr "Atenção:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L106
 msgid ""
 "As of 2014-08-16, the URL to download the latest files has changed and the "
 "new export files are provided in a compressed format. The old URL is still "
 "available, but will not contain the latest data."
 msgstr "Desde 08/16/2014, a URL para baixar os arquivos mas recentes mudou, e os novos arquivos para exportação são fornecidos em um formato comprimido. A URL antiga ainda está disponível, mas não conterá os dados mas recentes."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L154
 msgid ""
 "Contains all the sentences. Each sentence is associated with a unique id and"
 " an <a href=\"{}\">ISO 639-3</a> language code. "
 msgstr "Contém todas as frases. Cada frase é associada com um id único e um código de idioma <a href=\"{}\">ISO 639-3</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L157
 msgid ""
 "The first file (sentences.tar.bz2) contains this information alone. The "
 "second file (sentences_detailed.tar.bz2) contains additional fields for "
@@ -2773,11 +2794,11 @@ msgid ""
 "owns the sentence, or the date when it was added or last modified."
 msgstr "O primeiro arquivo (sentences.tar.bz2) contém essa informação sozinha. O segundo arquivo (sentences_detailed.tar.bz2) contém campos adicionais para aqueles que gostariam de filtrar as frases baseado no contribuidor que possui a frase, ou a data de quando foi adicionada ou da última modificação."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L164
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L166
 msgid "Links"
 msgstr "Links"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L197
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L199
 msgid ""
 "Contains the links between the sentences. {sampleLinkLine} means that "
 "sentence #77 is the translation of sentence #1. The reciprocal link is also "
@@ -2785,36 +2806,36 @@ msgid ""
 "{sampleLinkLineReversed}."
 msgstr "Contém os vínculos entre as frases. {sampleLinkLine} significa que a frase N°77 é tradução da frase N°1. O vínculo recíproco também está presente, então o arquivo também conterá uma linha que diz {sampleLinkLineReversed}."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L242
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L244
 msgid ""
 "Contains the list of <a href=\"{url}\">tags</a> associated with each "
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
 msgstr "Contém a lista de <a href=\"{url}\">tags</a> associadas com cada frase. {sampleTagLine} significa que foi designada à frase N°381279 a tag \"provérbio\"."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L253
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L255
 msgid "Lists"
 msgstr "Listas"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L281
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L283
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
 msgstr "Contém a lista de <a href=\"{}\">listas de frases</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L289
 msgid "Sentences in lists"
 msgstr "Frases em listas"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L312
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L314
 msgid ""
 "Indicates the sentences that are contained by any lists. {sampleListLine} "
 "means that sentence #381279 is contained by the list that has an id of 13."
 msgstr "Indica as frases que são contidas por qualquer lista. {sampleListLine} significa que a frase N°381279 está contida pela lista que tem um id de 13."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L322
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L324
 msgid "Japanese indices"
 msgstr "Índices de japonês"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L346
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L348
 msgid ""
 "Contains the equivalent of the \"B lines\" in the Tanaka Corpus file "
 "distributed by Jim Breen. See <a href=\"{url}\">this page</a> for the "
@@ -2823,28 +2844,37 @@ msgid ""
 "to the id of the English sentence."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L362
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L364
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/with_audio.ctp#L28
 msgid "Sentences with audio"
 msgstr "Frases com áudio"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L379
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L381
 msgid ""
 "Contains the ids of the sentences, in all languages, for which audio is "
 "available."
 msgstr "Contém os ids das frases, em todos os idiomas, para qual o áudio estiver disponível."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L385
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L386
+msgid "User skill level per language"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L409
+msgid ""
+"Indicates the self-reported skill levels of members in individual languages."
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L417
 msgid "General information about the files"
 msgstr "Informações gerais sobre os arquivos"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L387
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L419
 msgid ""
 "The files provided here are updated every <strong>Saturday at 9 "
 "a.m.</strong>, France time."
 msgstr "Os arquivos aqui fornecidos são atualizados a cada <strong>Sábado às 9h</strong>, horário da França."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L394
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L426
 msgid ""
 "Many of the Japanese and English sentences are from the <a "
 "href=\"{}\">Tanaka Corpus</a>, which belongs to the public domain."
@@ -3038,12 +3068,12 @@ msgstr ""
 msgid "Latest messages"
 msgstr "Últimas mensagens"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L107
 msgid "show activity timeline"
 msgstr "mostrar linha do tempo de atividade"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L124
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/index.ctp#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L130
 msgid "Latest comments"
 msgstr "Últimos comentários"
 
@@ -3296,11 +3326,11 @@ msgstr "Ou crie frases com <a href=\"{}\">palavras que ainda não estão no Tato
 msgid "Add new sentences"
 msgstr "Adicionar novas frases"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L95
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L105
 msgid "Sentence: "
 msgstr "Frase: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L147
 msgid "Sentences added"
 msgstr "Frases adicionadas"
 
@@ -3959,63 +3989,58 @@ msgstr "Retorno"
 msgid "Enter a text in shanghainese dialect"
 msgstr "Digite um texto no dialeto shangainês"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L41
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L43
 msgid "Picture"
 msgstr "Foto"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L43
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L45
 msgid "Current picture"
 msgstr "Foto atual"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L58
 msgid "New picture"
 msgstr "Nova foto"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L69
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L71
 msgid "Upload"
 msgstr "Enviar"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L78
 msgid "Personal information"
 msgstr "Informações pessoais"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L84
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L223
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L86
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L208
 msgid "Birthday"
 msgstr "Aniversário"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L98
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L221
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L100
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L206
 msgctxt "user"
 msgid "Name"
 msgstr "Nome"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L106
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L222
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L207
 msgid "Country"
 msgstr "País"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L123
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L224
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L209
 msgid "Homepage"
 msgstr "Página web"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L130
 msgid "Save personal information"
 msgstr "Gravar informações pessoais"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L134
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L136
 msgid "Description"
 msgstr "Descrição"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L149
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L151
 msgid "Save description"
 msgstr "Salvar descrição"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L29
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L272
-msgid "Add a language"
-msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L30
 msgid "Add language"
@@ -4064,73 +4089,69 @@ msgstr ""
 msgid "Details (optional)"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L71
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L72
 msgid "Stats"
 msgstr "Estatísticas"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L74
 msgid "Comments posted"
 msgstr "Comentários postados"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L75
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L76
 msgid "Sentences owned"
 msgstr "Frases possuídas"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L77
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L78
 msgid "Sentences favorited"
 msgstr "Frases favoritas"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L87
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L88
 msgid "Show latest activity"
 msgstr "Mostrar atividade recente"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L120
 msgid "Email notifications are ENABLED."
 msgstr "Notificações de email estão HABILITADAS."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L121
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L122
 msgid "Email notifications are DISABLED."
 msgstr "Notificações de email estão DESABILITADAS."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L131
 msgid ""
 "Access to this profile is PUBLIC. All the information can be seen by "
 "everyone."
 msgstr "O acesso a esse perfil é PÚBLICO. Todas as informações podem ser vistas por todo mundo."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L135
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L136
 msgid ""
 "Access to this profile is RESTRICTED. Only Tatoeba members can see the "
 "personal information and the description."
 msgstr "O acesso a esse perfil é RESTRITO. Somente membros do Tatoeba podem ver as informações pessoais e a descrição."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L163
-msgid "Not approved"
-msgstr "Não aprovado"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L166
-msgid "Sentences from this user are currently added as \"not approved\"."
-msgstr "As frases desse usuário estão atualmente adicionadas como \"não aprovadas\"."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L252
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L237
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L84
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L124
 msgid "Member since"
 msgstr "Membro desde"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L279
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L248
+msgid "Contributions blocked"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L273
 msgid "No language added."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L284
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L278
 msgid "TIP: We encourage you to indicate the languages you know."
 msgstr "DICA: nós o encorajamos a indicar os idiomas que você sabe falar."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L287
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L281
 msgid "TIP: Encourage this user to indicate the languages he or she knows."
 msgstr "DICA: Encoraje este usuário a indicar os idiomas que ele fala."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L348
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L342
 msgid "No description."
 msgstr "Sem descrição."
 
@@ -4287,26 +4308,26 @@ msgstr "Por exemplo, se o seu email for a.b.cd@exemplo.com, sua resposta é \"a.
 msgid "I accept the <a href=\"{}\">terms of use</a>"
 msgstr "Eu aceito os <a href=\"{}\">termos de uso</a>"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L25
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L23
 msgid "Tatoeba user: {username}"
 msgstr "Usuário Tatoeba: {username}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L63
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L61
 msgid "Latest sentences"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L66
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L101
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L139
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L178
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L64
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L97
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L172
 msgid "view all"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L94
 msgid "Favorite sentences"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L175
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/show.ctp#L169
 msgid "Latest Wall messages"
 msgstr ""
 
