@@ -92,8 +92,6 @@ $navigation->displaySentenceNavigation(
                 )
             ); 
         }
-
-        echo $this->element('sentences/correctness_info');
     }
     ?>
     
@@ -117,8 +115,8 @@ $navigation->displaySentenceNavigation(
             echo '<em>'. __('There is no log for this sentence', true) .'</em>';
         }
         ?>
-    </div>  
-    
+    </div>
+
     <div class="module">
         <h2><?php __('Report mistakes'); ?> </h2>
         <p>

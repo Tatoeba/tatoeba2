@@ -50,8 +50,6 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 <div id="annexe_content">
     <?php
     echo $this->element('search_features');
-    
-    echo $this->element('sentences/correctness_info');
     ?>
 </div>
 
