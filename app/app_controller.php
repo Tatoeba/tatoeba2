@@ -233,6 +233,9 @@ class AppController extends Controller
         $collapsibleTranslationsEnabled = $this->Cookie->read('collapsible_translations_enabled');
         $this->Session->write('collapsible_translations_enabled', $collapsibleTranslationsEnabled);
 
+        $restrictSearchLangsEnabled = $this->Cookie->read('restrict_search_langs_enabled');
+        $this->Session->write('restrict_search_langs_enabled', $restrictSearchLangsEnabled);
+
         $jqueryChosen = $this->Cookie->read('jquery_chosen');
         $this->Session->write('jquery_chosen', $jqueryChosen);
     }

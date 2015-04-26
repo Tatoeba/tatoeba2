@@ -384,6 +384,9 @@ class UserController extends AppController
             $collapsibleTranslationsEnabled = $this->data['User']['collapsible_translations_enabled'];
             $this->Cookie->write('collapsible_translations_enabled', $collapsibleTranslationsEnabled, false, "+1 month");;
 
+            $restrictSearchLangsEnabled = $this->data['User']['restrict_search_langs_enabled'];
+            $this->Cookie->write('restrict_search_langs_enabled', $restrictSearchLangsEnabled, false, "+1 month");;
+
             $dataToSave = array(
                 'id' => $currentUserId,
                 'lang' => $this->_language_settings($this->data['User']['lang']),
@@ -559,6 +562,10 @@ class UserController extends AppController
         
         $this->data['User']['collapsible_translations_enabled']
             = $this->Cookie->read('collapsible_translations_enabled');
+
+        $this->data['User']['restrict_search_langs_enabled']
+            = $this->Cookie->read('restrict_search_langs_enabled');
+        
     }
 
 
