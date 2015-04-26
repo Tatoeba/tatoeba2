@@ -40,7 +40,8 @@ class SentenceButtonsHelper extends AppHelper
         'Html',
         'Javascript',
         'Languages',
-        'Form'
+        'Form',
+        'Images'
     );
 
     /**
@@ -57,8 +58,9 @@ class SentenceButtonsHelper extends AppHelper
             $type = 'direct';
         }
 
+        $image = $this->Images->svgIcon('translation');
         echo $this->Html->link(
-            '<div></div>',
+            $image,
             array(
                 "controller" => "sentences",
                 "action" => "show",
@@ -81,8 +83,9 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function displayInfoButton($sentenceId)
     {
+        $infoIcon = $this->Images->svgIcon('sentence-number');
         echo $this->Html->link(
-            '<div></div>',
+            $infoIcon,
             array(
                 "controller"=>"sentences"
                 , "action"=>"show"
@@ -107,8 +110,8 @@ class SentenceButtonsHelper extends AppHelper
 
         $elementId = 'link_'.$sentenceId.'_'.$translationId;
 
-        $image = $this->Html->image(
-            IMG_PATH . 'unlink.svg',
+        $image = $this->Images->svgIcon(
+            'unlink',
             array(
                 "alt"=>__('Unlink', true),
                 "title" => __('Unlink this translation.', true),
@@ -150,8 +153,8 @@ class SentenceButtonsHelper extends AppHelper
 
         $elementId = 'link_'.$sentenceId.'_'.$translationId;
 
-        $image = $this->Html->image(
-            IMG_PATH . 'link.svg',
+        $image = $this->Images->svgIcon(
+            'link',
             array(
                 "alt"=>__('Link', true),
                 "title" => __('Make into direct translation.', true),

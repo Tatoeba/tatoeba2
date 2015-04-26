@@ -57,7 +57,8 @@ class SentencesHelper extends AppHelper
         'Languages',
         'Session',
         'Pinyin',
-        'Menu'
+        'Menu',
+        'Images'
     );
 
 
@@ -292,11 +293,9 @@ class SentencesHelper extends AppHelper
             $preSelectedLang = key($langArray);
         }
 
-        echo $this->Html->image(
-            IMG_PATH . 'translation-direct.svg',
+        echo $this->Images->svgIcon(
+            'translation',
             array(
-                'width' => 20,
-                'height' => 16,
                 'class' => 'translationIcon'
             )
         );

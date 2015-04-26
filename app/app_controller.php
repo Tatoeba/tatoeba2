@@ -60,7 +60,8 @@ class AppController extends Controller
         'Javascript',
         'Languages',
         'Pages',
-        'Session'
+        'Session',
+        'Images'
     );
 
     private function remapOldLangAlias($lang)

@@ -76,13 +76,17 @@
                     font-size: 15px;
                 }
             </style>
-<?php      }
+        <?php }
 
         // ---------------------- //
         //      Javascript        //
         // ---------------------- //
         echo $javascript->link(JS_PATH . 'jquery-1.4.min.js', true);
         echo $javascript->link(JS_PATH . 'generic_functions.js', true);
+
+        // Source: https://github.com/jonathantneal/svg4everybody
+        // This is needed to make "fill: currentColor" work on every browser.
+        echo $javascript->link(JS_PATH . 'svg4everybody.min.js', true);
 
         // Enhanced dropdown for language selection
         // It's needed on every page since it's used on the search bar
@@ -106,7 +110,8 @@
         echo $this->element('seo_international_targeting');
     ?>
     
-    <link rel="search" type="application/opensearchdescription+xml" href="http://tatoeba.org/opensearch.xml" title="Tatoeba project" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          href="http://tatoeba.org/opensearch.xml" title="Tatoeba" />
 </head>
 <body>
     <div id="audioPlayer"></div>

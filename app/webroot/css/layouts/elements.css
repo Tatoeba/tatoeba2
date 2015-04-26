@@ -880,12 +880,13 @@
 }
 
 .sentences_set .menu img,
-.sentences_set .link.button img {
+.sentences_set .link.button {
     opacity: 0.5;
+    color: #231F20;
 }
 
 .sentences_set .menu img:hover,
-.sentences_set .link.button img:hover {
+.sentences_set .link.button:hover {
     opacity: 1;
 }
 
@@ -926,24 +927,20 @@
 }
 
 .mainSentence .infoIcon {
+    color: #98CB4A;
     float: left;
     margin: 10px 6px 0 2px;
     border-radius: 15px;
-}
-
-.mainSentence .infoIcon div {
-    background: url('../../img/sentence-number.svg') no-repeat 2px;
     width: 25px;
     height: 25px;
+    display: inline-block;
 }
 
 .mainSentence:hover .infoIcon {
+    color: #FFF;
     background: #98CB4A;
 }
 
-.mainSentence:hover .infoIcon div {
-    background: url('../../img/sentence-number-hovered.svg') no-repeat 2px;
-}
 
 .mainSentence:hover,
 .directTranslation:hover,
@@ -975,7 +972,7 @@
  * Translations
  */
 
-.directTranslation, .indirectTranslation {
+.translations {
     font-size: 15px;
 }
 
@@ -983,50 +980,35 @@
     color: #998778;
 }
 
-.directTranslation .translationIcon div {
-    background: url('../../img/translation-direct.svg') no-repeat center;
-}
-
-.directTranslation:hover .translationIcon div {
-    background: url('../../img/translation-direct-hovered.svg') no-repeat center;
-}
-
-.indirectTranslation .translationIcon div {
-    background: url('../../img/translation-indirect.svg') no-repeat center;
-}
-
-.indirectTranslation:hover .translationIcon div {
-    background: url('../../img/translation-indirect-hovered.svg') no-repeat center;
-}
-
-.directTranslation:hover .translationIcon {
-    background: #64C8E6;
-}
-
-.indirectTranslation:hover .translationIcon {
-    background: #998778;
-}
-
-.translationIcon div {
-    margin-bottom: 1px;
-    margin-left: 3px;
-}
-
-.directTranslation .translationIcon,
-.indirectTranslation .translationIcon {
+.addTranslations .translationIcon,
+.translations .translationIcon {
+    width: 25px;
+    height: 25px;
     display: block;
     float: left;
     margin-left: 2px;
     margin-right: 6px;
     margin-top: 2px;
     border-radius: 15px;
-    overflow: hidden;
 }
 
-.directTranslation .translationIcon div,
-.indirectTranslation .translationIcon div {
-    width: 22px;
-    height: 24px;
+.directTranslation .translationIcon {
+    color: #64C8E6;
+}
+
+.directTranslation:hover .translationIcon {
+    color: #FFFFFF;
+    background: #64C8E6;
+}
+
+.indirectTranslation .translationIcon {
+    opacity: 0.6;
+    color: #998778;
+}
+
+.indirectTranslation:hover .translationIcon {
+    color: #FFFFFF;
+    background: #998778;
 }
 
 
@@ -1172,11 +1154,10 @@ input.sentenceId {
 }
 
 .addTranslations .translationIcon {
-    margin-left: 8px;
-    margin-right: 10px;
-    margin-top: 4px;
-    display: inline-block;
-    vertical-align: top;
+    margin-left: 4px;
+    margin-right: 5px;
+    margin-top: 0px;
+    color: #64C8E6;
 }
 
 .addTranslations .form {

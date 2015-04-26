@@ -107,6 +107,13 @@ textarea {
     font-size: 13px;
 }
 
+svg {
+    width: inherit;
+    height: inherit;
+    fill: currentColor; /* Needs https://github.com/jonathantneal/svg4everybody
+                           to work on every browser */
+}
+
 /* User Menu : Main Menu */
 
 #top_menu_container {
