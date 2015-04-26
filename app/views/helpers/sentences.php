@@ -288,7 +288,7 @@ class SentencesHelper extends AppHelper
     private function _translationForm($id, $withAudio, $langArray)
     {
         $preSelectedLang = $this->Session->read('contribute_lang');
-        if (!in_array($preSelectedLang, $langArray)) {
+        if (!array_key_exists($preSelectedLang, $langArray)) {
             $preSelectedLang = key($langArray);
         }
 
