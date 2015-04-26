@@ -296,7 +296,7 @@ class SentencesHelper extends AppHelper
         echo $this->Images->svgIcon(
             'translation',
             array(
-                'class' => 'translationIcon'
+                'class' => 'navigationIcon'
             )
         );
 
@@ -476,28 +476,41 @@ class SentencesHelper extends AppHelper
         <div class="<?php echo $class; ?>" <?php echo $elementId; ?>>
         <?php
         // Navigation button (info or arrow icon)
-        $this->_displayNavigation($sentenceId, $type);
+        echo '<div class="nav column">';
+        $this->SentenceButtons->displayNavigationButton($sentenceId, $type);
+        echo '</div>';
 
         // language flag
         // TODO For Chinese sentences, it is better to display the
         // traditional/simplified icon here, instead of in the menu.
+        echo '<div class="lang column">';
         $this->SentenceButtons->displayLanguageFlag(
             $sentenceId, $sentenceLang, $isEditable
         );
+        echo '</div>';
 
-        // audio
-        if ($withAudio) {
-            $this->SentenceButtons->audioButton($sentenceId, $sentenceLang, $sentenceAudio);
-        }
-
+        echo '<div class="content column">';
         // Link/unlink button
         if (CurrentUser::isTrusted()) {
-            $this->_displayLinkOrUnlinkButton($parentId, $sentenceId, $type, $langFilter);
+
+            $this->_displayLinkOrUnlinkButton(
+                $parentId, $sentenceId, $type, $langFilter
+            );
         }
 
         // Sentence and romanization
         $canEdit = $isEditable && $sentenceAudio == 'no';
         $this->displaySentenceContent($sentence, $canEdit);
+        echo '</div>';
+
+        // audio
+        if ($withAudio) {
+            echo '<div class="audio column">';
+            $this->SentenceButtons->audioButton(
+                $sentenceId, $sentenceLang, $sentenceAudio
+            );
+            echo '</div>';
+        }
         ?>
         </div>
 
@@ -551,30 +564,6 @@ class SentencesHelper extends AppHelper
             $this->SentenceButtons->linkButton(
                 $parentId, $sentenceId, $langFilter
             );
-        }
-    }
-
-
-    /**
-     * Displays the navigation button (either info or arrow icon).
-     *
-     * @param string $sentenceId Name of the owner of the sentence.
-     * @param string $type       Type of sentence. Can be 'mainSentence',
-     *                           'directTranslation' or 'indirectTranslation'.
-     *
-     * @return void
-     */
-    private function _displayNavigation($sentenceId, $type)
-    {
-        if ($type == 'mainSentence') {
-            $this->SentenceButtons->displayInfoButton($sentenceId);
-
-        } else if ($type == 'directTranslation') {
-            $this->SentenceButtons->translationShowButton($sentenceId, 'direct');
-
-        } else if ($type == 'indirectTranslation') {
-            $this->SentenceButtons->translationShowButton($sentenceId, 'indirect');
-
         }
     }
 

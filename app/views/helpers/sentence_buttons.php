@@ -45,53 +45,32 @@ class SentenceButtonsHelper extends AppHelper
     );
 
     /**
-     * Display show button for translations. It's the button with the arrow.
-     *
-     * @param int    $translationId Id of the translation.
-     * @param string $type          'direct' or 'indirect'.
-     *
-     * @return void
-     */
-    public function translationShowButton($translationId, $type)
-    {
-        if (!in_array($type, array('direct', 'indirect'))) {
-            $type = 'direct';
-        }
-
-        $image = $this->Images->svgIcon('translation');
-        echo $this->Html->link(
-            $image,
-            array(
-                "controller" => "sentences",
-                "action" => "show",
-                $translationId
-            ),
-            array(
-                "escape" => false,
-                "class" => "translationIcon " . $type,
-                "title" => __('Show', true),
-            )
-        );
-    }
-
-    /**
      * Display info button which links to the sentence page
      *
      * @param int $sentenceId The sentence id.
      *
      * @return void
      */
-    public function displayInfoButton($sentenceId)
+    public function displayNavigationButton($sentenceId, $type)
     {
-        $infoIcon = $this->Images->svgIcon('sentence-number');
+        if ($type == 'mainSentence') {
+            $image = $this->Images->svgIcon('sentence-number');
+        } else {
+            $image = $this->Images->svgIcon('translation');
+        }
+
         echo $this->Html->link(
-            $infoIcon,
+            $image,
             array(
-                "controller"=>"sentences"
-                , "action"=>"show"
-                , $sentenceId
+                "controller" => "sentences",
+                "action" => "show",
+                $sentenceId
             ),
-            array("escape"=>false, "class"=>"infoIcon")
+            array(
+                "escape" => false,
+                "class" => "navigationIcon " . $type,
+                "title" => __('Show', true),
+            )
         );
     }
 
