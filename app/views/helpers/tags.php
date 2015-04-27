@@ -77,15 +77,16 @@ class TagsHelper extends AppHelper
                     <span class="tag">
                     <?php
                     $tagName =  $tagArray['Tag']['name'];
-                    $taggerId = $tagArray['TagsSentences']['user_id'];
+                    $userId = $tagArray['User']['id'];
+                    $username = $tagArray['User']['username'];
                     $tagId = $tagArray['TagsSentences']['tag_id'];
                     $date = $tagArray['TagsSentences']['added_time'];
 
                     $this->displayTagLink(
-                        $tagName, $tagId, $taggerId, $date
+                        $tagName, $tagId, $username, $date
                     );
 
-                    if (CurrentUser::canRemoveTagFromSentence($taggerId)) {
+                    if (CurrentUser::canRemoveTagFromSentence($userId)) {
                         $this->_displayRemoveLink($tagId, $tagName, $sentenceId);
                     }
                     ?>
@@ -117,17 +118,17 @@ class TagsHelper extends AppHelper
      *
      */
     public function displayTagLink(
-        $tagName, $tagId, $userId = null, $date = null
+        $tagName, $tagId, $username = null, $date = null
     ) {
         $options = array(
             "class" => "tagName",
             "lang" => "",
             "dir" => "auto",
         );
-        if ($userId != null) {
+        if ($username != null) {
             $options["title"] = format(
-                __("user: {userId}, date: {date}", true),
-                compact('userId', 'date')
+                __("Added by {username}, {date}", true),
+                compact('username', 'date')
             );
         }
         echo $this->Html->link(
