@@ -633,6 +633,8 @@ class SentencesHelper extends AppHelper
                 array(
                     'class' => 'text editableSentence',
                     'id' => $sentenceLang.'_'.$sentenceId,
+                    'data-submit' => __('OK', true),
+                    'data-cancel' => __('Cancel', true),
                 ),
                 $sentenceScript
             );

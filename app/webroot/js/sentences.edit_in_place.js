@@ -20,21 +20,23 @@
 $(document).ready(function() {
     var rootUrl = get_tatoeba_root_url();
 
-    $('.editableSentence').editable(rootUrl + '/sentences/edit_sentence', {
-        type      : 'textarea',
-        cancel    : 'Cancel',
-        submit    : 'OK',
-        event     : 'edit_sentence',
-        data : function(value, settings) {
-            return $('<div>').html(value).text() // added to correct problem with html entities
-        },
-        indicator : '<img src="/img/loading.gif">',
-        cssclass  : 'editInPlaceForm',
-        onblur    : 'ignore'
-    }).bind('edit_sentence', function(e) {
-        $(this).find('textarea').keydown(function(event) {
-            if (event.which == 13)
-                $(this).closest('form').submit();
+    $('.editableSentence').each(function() {
+        $(this).editable(rootUrl + '/sentences/edit_sentence', {
+            type      : 'textarea',
+            submit    : $(this).attr('data-submit'),
+            cancel    : $(this).attr('data-cancel'),
+            event     : 'edit_sentence',
+            data : function(value, settings) {
+                return $('<div>').html(value).text() // added to correct problem with html entities
+            },
+            indicator : '<img src="/img/loading.gif">',
+            cssclass  : 'editInPlaceForm',
+            onblur    : 'ignore'
+        }).bind('edit_sentence', function(e) {
+            $(this).find('textarea').keydown(function(event) {
+                if (event.which == 13)
+                    $(this).closest('form').submit();
+            });
         });
     });
 

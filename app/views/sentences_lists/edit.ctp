@@ -112,10 +112,14 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
         
         $class = 'editable editableSentencesListName';
     }
-    
-    echo '<h2 id="l'.$listId.'" class="'.$class.'">';
-    echo $listName;
-    echo '</h2>';
+
+    echo $html->tag('h2', $listName, array(
+        'id'    => "l$listId",
+        'class' => $class,
+        'data-submit'  => __('OK', true),
+        'data-cancel'  => __('Cancel', true),
+        'data-tooltip' => __('Click to edit...', true),
+    ));
     
     $url = array($listId, $translationsLang);
     $pagination->display($url);
