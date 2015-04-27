@@ -650,6 +650,16 @@ class SentencesHelper extends AppHelper
 
 
     /**
+    * Transforms "[kanji|reading]" to HTML <ruby> tags
+    */
+    private function _rubify($formatted) {
+        return preg_replace(
+            '/\[([^|]*)\|([^\]]*)\]/',
+            '<ruby>$1<rp>(</rp><rt>$2</rt><rp>)</rp></ruby>',
+            $formatted);
+    }
+
+    /**
      * Display transcriptions.
      *
      * @todo Rename CSS class: 'romanization' -> 'transcription'.
@@ -664,11 +674,11 @@ class SentencesHelper extends AppHelper
     {
         if ($lang == 'jpn') {
 
-            $this->Javascript->link(JS_PATH.'furigana.js', false);
-            $furigana = $transcriptions[0];
+            $furigana = $this->_rubify($transcriptions[0]);
             $romaji = $transcriptions[1];
             $contents = $this->Languages->tagWithLang(
-                'span', $lang, $furigana, array('class' => 'romanization furigana')
+                'span', $lang, $furigana,
+                array('class' => 'romanization', 'escape' => false)
             );
             echo $this->Languages->tagWithLang(
                 'div', $lang, $contents,

@@ -25,8 +25,6 @@
  * @link     http://tatoeba.org
  */
 
-$javascript->link(JS_PATH . 'furigana.js', false);
-
 $this->set('title_for_layout', $pages->formatTitle(
     __('Convert Japanese text into romaji or furigana', true)
 ));
@@ -73,7 +71,7 @@ $this->set('title_for_layout', $pages->formatTitle(
         $script = ($type == 'romaji') ? 'Latn' : '';
         echo $languages->tagWithLang(
             'div', 'ja', $result,
-            array('id' => 'conversion', 'class' => 'furigana'),
+            array('id' => 'conversion'),
             $script
         );
 
