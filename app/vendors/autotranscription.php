@@ -413,35 +413,20 @@ class Autotranscription
         return "";
     }
 
-    private function firstElement($node) {
-        foreach ($node->childNodes as $subNode) {
-            if ($subNode->nodeType == XML_ELEMENT_NODE) {
-                return $subNode;
-            }
-        }
-        return $node;
-    }
 
     /**
      * Convert Japanese text into furigana.
      */
     private function _getFurigana($text)
     {
-        $romanization = '';
-        // Use DOMDocument since SimpleXML can't handle mixed content
-        $xml = DOMDocument::load("http://127.0.0.1:8842/furigana?str=".urlencode($text), LIBXML_NOBLANKS|LIBXML_NOCDATA);
-        $parse = $xml->firstChild->firstChild;
-        foreach ($parse->childNodes as $token) {
-            foreach ($token->childNodes as $reading) {
-                $text = $reading->nodeValue;
-                if ($reading->hasChildNodes()) {
-                    $furigana = $reading->getAttribute('furigana');
-                    $romanization .= "[$text|$furigana]";
-                } else {
-                    $romanization .= $text;
-                }
-            }
-            $romanization .= ' ';
+        $romanization = "";
+
+        $xml = simplexml_load_file(
+            "http://127.0.0.1:8842/furigana?str=".urlencode($text)
+            ,'SimpleXMLElement', LIBXML_NOCDATA
+        );
+        foreach($xml->{'parse'}->{'furigana'} as $key=>$furigana) {
+            $romanization .= $furigana->{'token'}."[".trim($furigana->{"kana"})."] ";
         }
 
         return trim($romanization);
