@@ -680,28 +680,33 @@ class SentencesHelper extends AppHelper
             $this->Javascript->link('jquery.jeditable.js', false);
             $this->Javascript->link('transcriptions.edit_in_place.js', false);
 
-            $this->displayTranscription($transcr, $lang, $isEditable);
+
+            $class = "romanization";
+            if ($isEditable)
+                $class .= " editableTranscription";
+
+            $html = $this->transcriptionAsHTML($transcr);
+            echo $this->Languages->tagWithLang(
+                'div', $lang, $html,
+                array(
+                    'id' => $transcr['id'],
+                    'class' => $class,
+                    'escape' => false,
+                ),
+                $transcr['script']
+            );
         }
     }
 
-    public function displayTranscription($transcr, $lang, $isEditable) {
-        $text = $transcr['text'];
+    /**
+     * Format and escape a transcription
+     * so that it may be displayed as HTML.
+     */
+    public function transcriptionAsHTML($transcr) {
+        $text = Sanitize::html($transcr['text']);
         if ($transcr['script'] == 'Hrkt')
             $text = $this->_rubify($text);
-
-        $class = "romanization";
-        if ($isEditable)
-            $class .= " editableTranscription";
-
-        echo $this->Languages->tagWithLang(
-            'div', $lang, $text,
-            array(
-                'id' => $transcr['id'],
-                'class' => $class,
-                'escape' => false,
-            ),
-            $transcr['script']
-        );
+        return $text;
     }
 
     /**
