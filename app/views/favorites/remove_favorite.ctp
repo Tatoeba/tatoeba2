@@ -27,10 +27,11 @@
 
 if (isset($saved)) {
     echo '<a>'.$html->image(
-        'favorite.png',
+        'favorite-add.svg',
         array(
             'alt'=>__('Add to favorites', true), 
-            'title'=>__('Add to favorites', true)
+            'title'=>__('Add to favorites', true),
+            'height' => 16
         )
     ).'</a>';
 } else {

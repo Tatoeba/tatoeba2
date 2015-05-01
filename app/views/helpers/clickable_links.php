@@ -39,6 +39,9 @@ class ClickableLinksHelper extends AppHelper
 {
     public $helpers = array('Html');
 
+    const URL_PATTERN = '/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n\(\)"\'\!<]+)/siu';
+    const SENTENCE_ID_PATTERN = '/([\p{Ps}：\s]|^)(#([1-9]\d*))/';
+
     /**
      * Replace URLs by clickable URLs.
      * Inspired from :
@@ -52,9 +55,7 @@ class ClickableLinksHelper extends AppHelper
     {
         // get rid of \r
         $text = preg_replace('#\r#u', '', $text);
-
-        $pattern = '/((ht|f)tps?:\/\/([\w\.]+\.)?[\w-]+(\.[a-zA-Z]{2,4})?[^\s\r\n\(\)"\'\!<]+)/siu';
-        $match = preg_match_all($pattern, $text, $urls);
+        $match = preg_match_all($this::URL_PATTERN, $text, $urls);
 
         if ($match) {
             $maxUrlLength = 50;
@@ -112,7 +113,7 @@ class ClickableLinksHelper extends AppHelper
     {
         $self = $this;
         $content = preg_replace_callback(
-            '/(\s|^)(#(\d+))/', 
+            $this::SENTENCE_ID_PATTERN, 
             function ($m) use ($self) {
                 return $m[1] . $self->Html->link($m[2], array(
                     'controller' => 'sentences',
@@ -125,6 +126,30 @@ class ClickableLinksHelper extends AppHelper
         $content = str_replace('\\#', '#', $content);
 
         return $content;
+    }
+
+
+    /**
+     * Tells if a text has a string that can be converted into a clickable link.
+     * 
+     * @param  String  $text The text to check.
+     * 
+     * @return boolean
+     */
+    public function hasClickableLink($text)
+    {
+        $patterns = array(
+            $this::URL_PATTERN,
+            $this::SENTENCE_ID_PATTERN
+        );
+
+        foreach($patterns as $pattern) {
+            if (preg_match($pattern, $text)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
 }

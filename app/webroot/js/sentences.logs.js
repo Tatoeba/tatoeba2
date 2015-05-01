@@ -17,16 +17,16 @@
  */
 
 $(document).ready(function(){
-    $(".annexeLogEntry").each(function(){
+    $(".linkLog").each(function(){
         var historyRecord = $(this);
 
         historyRecord.find('a').each(function(){
             var historyRecordSentenceLink = $(this).attr('href');
-            var sentence = $(".sentenceContent > a[href='" + historyRecordSentenceLink + "']").parent();
+            var sentence = $(".directTranslation > a[href='" + historyRecordSentenceLink + "']").parent();
             if (sentence.length) { // we have this sentence displayed on the page
                 var updateHighlight = function() {
-                    $(".sentenceContent.highlighted").removeClass("highlighted");
-                    $(".annexeLogEntry.historyHighlighted").removeClass("historyHighlighted");
+                    $(".directTranslation.highlighted").removeClass("highlighted");
+                    $(".linkLog.historyHighlighted").removeClass("historyHighlighted");
                     sentence.addClass("highlighted");
                     historyRecord.addClass("historyHighlighted");
                     $.scrollTo(sentence, 500, {offset: -100});
@@ -35,7 +35,7 @@ $(document).ready(function(){
                     historyRecord.addClass("hovered");
                 };
                 var removeHover = function() {
-                    $(".annexeLogEntry.hovered").removeClass("hovered");
+                    $(".linkLog.hovered").removeClass("hovered");
                 }
 
                 historyRecord.hover(addHover, removeHover);

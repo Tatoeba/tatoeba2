@@ -57,7 +57,8 @@ class SentencesHelper extends AppHelper
         'Languages',
         'Session',
         'Pinyin',
-        'Menu'
+        'Menu',
+        'Images'
     );
 
 
@@ -69,8 +70,7 @@ class SentencesHelper extends AppHelper
      * @param array $user                 Owner of the sentence.
      * @param array $indirectTranslations Indirect translations of the sentence.
      * @param bool  $withAudio            Set to 'true' if audio icon is displayed.
-     * @param bool  $withDivWrapper       Set to 'true' to display the div wrapper
-     *                                    (id=sentences_group_$id).
+     * @param bool  $langFilter           The language $indirectTranslations are filtered in, if any.
      *
      * @return void
      */
@@ -80,21 +80,19 @@ class SentencesHelper extends AppHelper
         $user = null,
         $indirectTranslations = array(),
         $withAudio = true,
-        $withDivWrapper = true
+        $langFilter = 'und'
     ) {
         $id = $sentence['id'];
 
-        if ($withDivWrapper) {
-            ?>
-            <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
+        ?>
+        <div class="sentences_set" id="sentences_group_<?php echo $id; ?>">
         <?php
-        }
 
         $ownerName = null;
         if (isset($user['username'])) {
             $ownerName = $user['username'];
         }
-        $this->displayMainSentence($sentence, $ownerName, $withAudio);
+        $this->displayMainSentence($sentence, $ownerName, $withAudio, $langFilter);
 
 
         // Loading gif
@@ -110,43 +108,108 @@ class SentencesHelper extends AppHelper
 
         // Form to add a new translation
         $this->_displayNewTranslationForm($id, $withAudio);
+
+        $this->displayTranslations($id, $translations, $indirectTranslations, $withAudio, $langFilter);
+
+        ?>
+        </div>
+        <?php
+    }
+
+    public function displayTranslations($id, $translations, $indirectTranslations, $withAudio = true, $langFilter = 'und') {
         ?>
         <div id="_<?php echo $id; ?>_translations" class="translations">
-            <div></div>
+            
             <?php
-            // direct translations
-            foreach ($translations as $translation) {
+            $this->Javascript->link('sentences.collapse.js', false);
+
+            $totalDirectTranslations = count(array_keys($translations));
+            $totalIndirectTranslations = count(array_keys($indirectTranslations));
+
+            //merge direct and indirect translations into single array
+            $allTranslations = array_merge($translations, $indirectTranslations);
+
+            $totalTranslations = count($allTranslations);
+            $showButton = true;
+
+            //if only 1 hidden sentence then show all
+            $collapsibleTranslationsEnabled = $this->Session->read('collapsible_translations_enabled') || !CurrentUser::isMember();
+            if ($totalTranslations <= 6 || !$collapsibleTranslationsEnabled) {
+                $initiallyDisplayedTranslations = $totalTranslations;
+                $showButton = false;
+            } else {
+                $initiallyDisplayedTranslations = 5;
+                $displayed = $totalTranslations - $initiallyDisplayedTranslations;
+            }
+            
+            //Split 'allTranslations' array into two, visible & hidden sets of sentences        
+            $visibleTranslations = array_slice($allTranslations, 0, $initiallyDisplayedTranslations);
+            $hiddenTranslations = array_slice($allTranslations, $initiallyDisplayedTranslations);
+            
+            $sentenceCount = 0;  
+
+            //visible list of translations
+            foreach ($visibleTranslations as $translation) {
+
+                if ($sentenceCount < $totalDirectTranslations)
+                    $type = 'directTranslation';
+                else 
+                    $type = 'indirectTranslation';
+
                 $this->displayGenericSentence(
                     $translation['Translation'],
-                    null,
-                    'directTranslation',
+                    $type,
                     $withAudio,
                     $id,
-                    $ownerName
+                    false,
+                    $langFilter
+                );
+
+                $sentenceCount++;
+            }
+
+            if($showButton){
+                echo $this->Html->tag('div',
+                    ' ▼ ' . format(__n(
+                        'Show 1 more translation',
+                        'Show {number} more translations',
+                        $displayed,
+                        true
+                    ), array('number' => $displayed)),
+                    array('class' => 'showLink')
                 );
             }
 
-            // indirect translations
-            foreach ($indirectTranslations as $translation) {
+            //expanded list of translations
+            echo $this->Html->tag('div', null, array('class' => 'more'));
+            
+            foreach ($hiddenTranslations as $translation) {
+
+                if ($sentenceCount < $totalDirectTranslations)
+                    $type = 'directTranslation';
+                else 
+                    $type = 'indirectTranslation';
+
                 $this->displayGenericSentence(
                     $translation['Translation'],
-                    null,
-                    'indirectTranslation',
+                    $type,
                     $withAudio,
                     $id,
-                    $ownerName
+                    false,
+                    $langFilter
                 );
+
+                $sentenceCount++;
             }
 
+            echo $this->Html->tag('div',
+                    ' ▲ ' . __('Less translations', true),
+                    array('class' => 'hideLink')
+                );
             ?>
-        </div>
-
-        <?php
-        if ($withDivWrapper) {
-        ?>
+          </div>  
         </div>
         <?php
-        }
     }
 
 
@@ -168,7 +231,6 @@ class SentencesHelper extends AppHelper
         <?php
         $this->displayGenericSentence(
             $sentence,
-            null,
             'mainSentence',
             $withAudio
         );
@@ -180,7 +242,6 @@ class SentencesHelper extends AppHelper
         foreach ($translations as $translation) {
             $this->displayGenericSentence(
                 $translation,
-                null,
                 'directTranslation',
                 $withAudio
             );
@@ -205,91 +266,133 @@ class SentencesHelper extends AppHelper
      */
     private function _displayNewTranslationForm($id, $withAudio)
     {
-        $langArray = $this->Languages->translationsArray();
-        $preSelectedLang = $this->Session->read('contribute_lang');
-        if (empty($preSelectedLang)) {
-            $preSelectedLang = 'auto';
+        $langArray = $this->Languages->profileLanguagesArray(true, false, false);
+
+        ?>
+        <div id="translation_for_<?php echo $id; ?>" class="addTranslations">
+        <?php
+        $currentUserLanguages = CurrentUser::getProfileLanguages();
+        if (empty($currentUserLanguages)) {
+
+            $this->Languages->displayAddLanguageMessage(false);
+
+        } else {
+
+            $this->_translationForm($id, $withAudio, $langArray);
+
         }
+        ?>
+        </div>
+        <?php
+    }
+
+    private function _translationForm($id, $withAudio, $langArray)
+    {
+        $preSelectedLang = $this->Session->read('contribute_lang');
+        if (!array_key_exists($preSelectedLang, $langArray)) {
+            $preSelectedLang = key($langArray);
+        }
+
+        echo $this->Images->svgIcon(
+            'translation',
+            array(
+                'class' => 'navigationIcon'
+            )
+        );
+
         if (!$withAudio) {
             $withAudio = 0;
         }
         ?>
         <script type='text/javascript'>
-        $(document).ready(function() {
-            $('#translate_<?php echo $id; ?>').data(
-                'withAudio', <?php echo $withAudio; ?>
-            );
-        });
+            $(document).ready(function() {
+                $('#translate_<?php echo $id; ?>').data(
+                    'withAudio', <?php echo $withAudio; ?>
+                );
+            });
         </script>
-        <div id="translation_for_<?php echo $id; ?>" class="addTranslations">
-
-            <?php
-            // Input field
-            echo $this->Form->textarea(
-                'translation',
-                array(
-                    'id' => '_'.$id.'_text',
-                    'class' => 'addTranslationsTextInput',
-                    'rows' => 2,
-                    'cols' => 90,
-                )
-            );
-
-            // language select
-            echo $this->Form->select(
-                'translationLang_'.$id,
-                $langArray,
-                $preSelectedLang,
-                array(
-                    "class" => "translationLang language-selector",
-                    "empty" => false
-                ),
-                false
-            );
-            
-            // OK
-            echo $this->Form->button(
-                __('Submit translation', true),
-                array(
-                    'id' => '_'.$id.'_submit'
-                )
-            );
-
-            // Cancel
-            echo $this->Form->button(
-                __('Cancel', true),
-                array(
-                    'id' => '_'.$id.'_cancel',
-                    'type' => 'reset',
-                )
-            );
-
-            // Warning
-            ?>
-            <div class="important">
-            <p>
-            <?php
-            __(
-                'Important! You are about to add a translation to the sentence '
-                . 'above. If you do not understand this sentence, click on '
-                . '"Cancel" to display everything again, and then click on '
-                . 'the sentence that you understand and want to translate from.'
-            );
-            ?>
-            </p>
-
-            <p>
-            <?php
-            __(
-                'Please do not forget <strong>capital letters</strong> '.
-                'and <strong>punctuation</strong>! Thank you.'
-            );
-            ?>
-            </p>
-            </div>
-
-        </div>
         <?php
+
+        echo '<div class="form">';
+
+        echo $this->Html->tag(
+            'label',
+            __('Translation:', true),
+            array(
+                'for'=>'_'.$id.'_text'
+            )
+        );
+
+        // Input field
+        echo $this->Form->textarea(
+            'translation',
+            array(
+                'id' => '_'.$id.'_text',
+                'class' => 'addTranslationsTextInput',
+                'dir' => 'auto',
+            )
+        );
+
+        // language select
+        echo '<div class="languageSection">';
+        echo $this->Html->tag(
+            'label',
+            __('Language:', true),
+            array(
+                'for'=>'translationLang_'.$id
+            )
+        );
+
+        echo $this->Form->select(
+            'translationLang_'.$id,
+            $langArray,
+            $preSelectedLang,
+            array(
+                "class" => "translationLang language-selector",
+                "empty" => false
+            ),
+            false
+        );
+
+        $display = null;
+        if ($preSelectedLang == 'auto') {
+            $display = 'display: none;';
+        }
+        echo $this->Languages->icon(
+            $preSelectedLang,
+            array(
+                'class' => 'flag translationLang_flag',
+                'width' => '30',
+                'height' => '20',
+                'style' => $display
+            )
+        );
+        echo '</div>';
+
+        // Buttons
+        echo '<div class="addTranslation_buttons">';
+        // OK
+        echo $this->Form->button(
+            __('Submit translation', true),
+            array(
+                'id' => '_'.$id.'_submit',
+                'class' => 'submit button'
+            )
+        );
+
+        // Cancel
+        echo $this->Form->button(
+            __('Cancel', true),
+            array(
+                'id' => '_'.$id.'_cancel',
+                'type' => 'reset',
+                'class'=>'cancel button'
+            )
+        );
+        echo '</div>';
+
+        echo '</div>';
+
     }
 
 
@@ -300,28 +403,23 @@ class SentencesHelper extends AppHelper
      *
      * @param array  $sentence  Sentence data.
      * @param string $ownerName Name of the owner of the sentence.
+     * @param string $langFilter The language translations are filtered in, if any.
      *
      * @return void
      */
-    public function displayMainSentence($sentence, $ownerName, $withAudio){
+    public function displayMainSentence($sentence, $ownerName, $withAudio, $langFilter = 'und') {
         $sentenceId = $sentence['id'];
-        $chineseScript = null;
-        if (isset($sentence['script'])) {
-            $chineseScript = $sentence['script'];
-        }
-
         $canTranslate = $sentence['correctness'] >= 0;
+        $hasAudio = $sentence['hasaudio'] == 'shtooka';
         $this->Menu->displayMenu(
-            $sentenceId, $ownerName, $chineseScript, $canTranslate
+            $sentenceId, $ownerName, $sentence['script'], $canTranslate, $langFilter, $hasAudio
         );
 
         $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);
         $this->displayGenericSentence(
             $sentence,
-            $ownerName,
             'mainSentence',
             $withAudio,
-            null,
             null,
             $isEditable
         );
@@ -340,28 +438,26 @@ class SentencesHelper extends AppHelper
      *  - the audio button
      *
      * @param array  $sentence        Sentence data.
-     * @param string $ownerName       Name of the owner of sentence.
      * @param string $type            Type of sentence. Can be 'mainSentence',
      *                                'directTranslation' or 'indirectTranslation'.
      * @param bool   $withAudio       Set to 'true' if audio icon is displayed.
      * @param int    $parentId        Id of the parent sentence (i.e. main sentence).
-     * @param string $parentOwnerName Name of the owner of the *main* sentence.
+     * @param bool   $isEditable      Whether the sentence can be edited in place.
+     * @param string $langFilter      The language the list of sentences $sentence is from is being filtered in, if any.
      *
      * @return void
      */
     public function displayGenericSentence(
         $sentence,
-        $ownerName,
         $type,
         $withAudio = true,
         $parentId = null,
-        $parentOwnerName = null,
-        $isEditable = false
+        $isEditable = false,
+        $langFilter = 'und'
     ) {
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
         $sentenceAudio = 'no';
-        $sentenceCorrectness = $sentence['correctness'];
         $correctnessLabel = $this->getCorrectnessLabel($sentence['correctness']);
         if (isset($sentence['hasaudio'])) {
             $sentenceAudio = $sentence['hasaudio'];
@@ -370,35 +466,51 @@ class SentencesHelper extends AppHelper
         if ($type != 'mainSentence') {
             $elementId = 'id="translation_'.$sentenceId.'_'.$parentId.'"';
         }
-        $class = 'sentence '.$type.' '.$correctnessLabel;
+        $classes = array('sentence', $type, $correctnessLabel);
+        if ($isEditable && $type == 'directTranslation') {
+            $classes[] = 'editableTranslation';
+        }
+        $class = join(' ', $classes);
         ?>
         
         <div class="<?php echo $class; ?>" <?php echo $elementId; ?>>
         <?php
         // Navigation button (info or arrow icon)
-        if ($type != 'mainSentence' || $isEditable) {
-            $this->_displayNavigation($sentenceId, $type);
-        }
-
-        // Link/unlink button
-        if (CurrentUser::isTrusted()) {
-            $this->_displayLinkOrUnlinkButton($parentId, $sentenceId, $type);
-        }
-
-        // audio
-        if ($withAudio) {
-            $this->SentenceButtons->audioButton($sentenceId, $sentenceLang, $sentenceAudio);
-        }
+        echo '<div class="nav column">';
+        $this->SentenceButtons->displayNavigationButton($sentenceId, $type);
+        echo '</div>';
 
         // language flag
         // TODO For Chinese sentences, it is better to display the
         // traditional/simplified icon here, instead of in the menu.
+        echo '<div class="lang column">';
         $this->SentenceButtons->displayLanguageFlag(
             $sentenceId, $sentenceLang, $isEditable
         );
+        echo '</div>';
+
+        echo '<div class="content column">';
+        // Link/unlink button
+        if (CurrentUser::isTrusted()) {
+
+            $this->_displayLinkOrUnlinkButton(
+                $parentId, $sentenceId, $type, $langFilter
+            );
+        }
 
         // Sentence and romanization
-        $this->displaySentenceContent($sentence, $isEditable);
+        $canEdit = $isEditable && $sentenceAudio == 'no';
+        $this->displaySentenceContent($sentence, $canEdit);
+        echo '</div>';
+
+        // audio
+        if ($withAudio) {
+            echo '<div class="audio column">';
+            $this->SentenceButtons->audioButton(
+                $sentenceId, $sentenceLang, $sentenceAudio
+            );
+            echo '</div>';
+        }
         ?>
         </div>
 
@@ -436,45 +548,22 @@ class SentencesHelper extends AppHelper
      * @param string $sentenceId  Name of the owner of the sentence.
      * @param string $type        Type of sentence. Can be 'directTranslation' or
      *                            'indirectTranslation'.
+     * @param string $langFilter  The language sentences should be filtered in when redisplaying the list.
      *
      * @return void
      */
-    private function _displayLinkOrUnlinkButton($parentId, $sentenceId, $type)
+    private function _displayLinkOrUnlinkButton($parentId, $sentenceId, $type, $langFilter)
     {
         if ($type == 'directTranslation') {
             $this->SentenceButtons->unlinkButton(
-                $parentId, $sentenceId
+                $parentId, $sentenceId, $langFilter
             );
         }
 
         if ($type == 'indirectTranslation') {
             $this->SentenceButtons->linkButton(
-                $parentId, $sentenceId
+                $parentId, $sentenceId, $langFilter
             );
-        }
-    }
-
-
-    /**
-     * Displays the navigation button (either info or arrow icon).
-     *
-     * @param string $sentenceId Name of the owner of the sentence.
-     * @param string $type       Type of sentence. Can be 'mainSentence',
-     *                           'directTranslation' or 'indirectTranslation'.
-     *
-     * @return void
-     */
-    private function _displayNavigation($sentenceId, $type)
-    {
-        if ($type == 'mainSentence') {
-            $this->SentenceButtons->displayInfoButton($sentenceId);
-
-        } else if ($type == 'directTranslation') {
-            $this->SentenceButtons->translationShowButton($sentenceId, 'direct');
-
-        } else if ($type == 'indirectTranslation') {
-            $this->SentenceButtons->translationShowButton($sentenceId, 'indirect');
-
         }
     }
 
@@ -489,16 +578,18 @@ class SentencesHelper extends AppHelper
      * @return void
      */
     public function displaySentenceContent($sentence, $isEditable) {
-        $sentenceId = $sentence['id'];
-        $sentenceLang = $sentence['lang'];
-        $sentenceText = $sentence['text'];
         ?>
 
         <div class="sentenceContent">
         <?php
         // text
+        $script = null;
+        if (isset($sentence['script'])) {
+            $script = $sentence['script'];
+        }
         $this->displaySentenceText(
-            $sentenceId, $sentenceText, $isEditable, $sentenceLang
+            $sentence['id'], $sentence['text'], $isEditable,
+            $sentence['lang'], $script
         );
 
         // romanization
@@ -520,15 +611,15 @@ class SentencesHelper extends AppHelper
      * @param array $sentenceId   Id of the sentence.
      * @param array $sentenceText Text of the sentence.
      * @param bool  $isEditable   Set to 'true' if sentence is editable.
-     * @param bool  $sentenceLang Used for logs... We need to get rid of it someday.
+     * @param bool  $sentenceLang Language of the sentence.
+     * @param bool  $sentenceScript ISO 15924 script code.
      *
      * @return void
      */
     public function displaySentenceText(
-        $sentenceId, $sentenceText, $isEditable = false, $sentenceLang = ''
+        $sentenceId, $sentenceText, $isEditable = false,
+        $sentenceLang = '', $sentenceScript = ''
     ) {
-        $dir = $this->Languages->getLanguageDirection($sentenceLang);
-
         if ($isEditable) {
 
             $this->Javascript->link('jquery.jeditable.js', false);
@@ -537,45 +628,24 @@ class SentencesHelper extends AppHelper
             // TODO: HACK SPOTTED id is used in edit_in_place
             // NOTE: I didn't find an easy way to pass the sentenceId to jEditable
             // using jQuery.data...
-            echo '<div dir="'.$dir.'" id="'.$sentenceLang.'_'.$sentenceId.'" class="text editableSentence">';
-            echo Sanitize::html($sentenceText);
-            echo '</div>';
+            echo $this->Languages->tagWithLang(
+                'div', $sentenceLang, $sentenceText,
+                array(
+                    'class' => 'text editableSentence',
+                    'id' => $sentenceLang.'_'.$sentenceId,
+                    'data-submit' => __('OK', true),
+                    'data-cancel' => __('Cancel', true),
+                ),
+                $sentenceScript
+            );
 
         } else {
 
-            $link = array(
-                'controller' => 'sentences',
-                'action' => 'show',
-                $sentenceId
+            echo $this->Languages->tagWithLang(
+                'div', $sentenceLang, $sentenceText,
+                array('class' => 'text'),
+                $sentenceScript
             );
-
-            // To check if we're on the sentence's page or not
-            $currentSentenceId = null;
-            if (isset($this->params['pass'][0])) {
-                $currentSentenceId = $this->params['pass'][0];
-            }
-            $currentURL = array(
-                'controller' => $this->params['controller'],
-                'action' => $this->params['action'],
-                $currentSentenceId
-            );
-
-            // Display sentence as simple text if we're on the sentence's page.
-            // Otherwise display as link.
-            if ($link == $currentURL) {
-                echo '<div class="text">';
-                echo $sentenceText;
-                echo '</div>';
-            } else {
-                echo $this->Html->link(
-                    $sentenceText,
-                    $link,
-                    array(
-                        'dir' => $dir,
-                        'class' => 'text'
-                    )
-                );
-            }
 
         }
     }
@@ -597,6 +667,7 @@ class SentencesHelper extends AppHelper
      *
      * @param array  $transcriptions List of transcriptions.
      * @param string $lang           Language of the sentence transcripted.
+     * @param string $script         Script of the sentence the transcription is derived from.
      *
      * @return void
      */
@@ -636,12 +707,18 @@ class SentencesHelper extends AppHelper
         echo $this->Javascript->link('sentences.adopt.js', true);
         echo $this->Javascript->link('jquery.jeditable.js', true);
         echo $this->Javascript->link('sentences.edit_in_place.js', true);
-        echo $this->Javascript->link('sentences.play_audio.js', true);
         echo $this->Javascript->link('sentences.change_language.js', true);
-        echo $this->Javascript->link('furigana.js', true);
-        echo $this->Javascript->link('links.add_and_delete.js', true);
+        echo $this->Javascript->link('sentences.link.js', true);
+        echo $this->Javascript->link('sentences.collapse.js', true);
+        $this->javascriptForAJAXTranslationsGroup();
     }
 
+    public function javascriptForAJAXTranslationsGroup() {
+        echo $this->Javascript->link('sentences.play_audio.js', true);
+        echo $this->Javascript->link('links.add_and_delete.js', true);
+        echo $this->Javascript->link('furigana.js', true);
+        echo $this->Javascript->link('sentences.logs.js', true);
+    }
 
 
     /**
@@ -692,24 +769,35 @@ class SentencesHelper extends AppHelper
      * @return void
      */
     public function displayS($sentence, $type) {
-        $sentenceId = $sentence['id'];
-        $sentenceLang = $sentence['lang'];
-        $sentenceText = $sentence['text'];
-        ?>
+        $lang = $sentence['lang'];
 
-        <div class="sentence <?php echo $type; ?>">
-            <?php
-            $this->SentenceButtons->displayLanguageFlag(
-                $sentenceId, $sentenceLang, false
+        echo $this->Html->div(
+            "sentence " . $type,
+            null,
+            array(
+                'lang' => LanguagesLib::languageTag($lang),
+                'dir'  => LanguagesLib::getLanguageDirection($lang),
+            )
+        );
+
+        $this->SentenceButtons->displayLanguageFlag(
+            $sentence['id'], $sentence['lang'], false
+        );
+
+        if ($type == 'mainSentence') {
+            echo $this->Html->link(
+                $sentence['text'],
+                array(
+                    'controller' => 'sentences',
+                    'action' => 'show',
+                    $sentence['id']
+                )
             );
+        } else {
+            echo $this->Html->div(null, $sentence['text']);
+        }
 
-            $this->displaySentenceText(
-                $sentenceId, $sentenceText, false, $sentenceLang
-            );
-            ?>
-        </div>
-
-        <?php
+        echo $this->Html->tag('/div');
     }
 
 }

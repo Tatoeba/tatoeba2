@@ -36,6 +36,8 @@
  */
 class StatsController extends AppController
 {
+    public $uses = array('Language', 'Sentence');
+
     /**
      * Before filter.
      *
@@ -53,7 +55,13 @@ class StatsController extends AppController
      *
      */
     function sentences_by_language() {
+        $stats = $this->Language->getStatistics();
+        $audioStats = $this->Sentence->getTotalNumberOfSentencesWithAudio();
+        $totalSentences = $this->Sentence->getTotalNumberOfSentences();
 
+        $this->set('stats', $stats);
+        $this->set('audioStats', $audioStats);
+        $this->set('totalSentences', $totalSentences);
     }
 }
 ?>

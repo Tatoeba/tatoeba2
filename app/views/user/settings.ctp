@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-$this->set('title_for_layout', __('Settings', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
 ?>
 <div id="annexe_content">
     <?php
@@ -75,10 +75,30 @@ $this->set('title_for_layout', __('Settings', true));
         
         <div>
             <?php echo $form->checkbox('use_most_recent_list'); ?>
-            <label for="UseMostRecentList">
+            <label for="UserUseMostRecentList">
                 <?php __(
                     'Remember the last list to which you assigned a '.
                     'sentence, and select it by default.'
+                ); ?>
+            </label>
+        </div>
+
+        <div>
+            <?php echo $form->checkbox('collapsible_translations_enabled'); ?>
+            <label for="UserCollapsibleTranslationsEnabled">
+                <?php __(
+                    'Display a link to expand/collapse translations '.
+                    'when there are too many translations.'
+                ); ?>
+            </label>
+        </div>
+        
+        <div>
+            <?php echo $form->checkbox('restrict_search_langs_enabled'); ?>
+            <label for="RestrictSearchLangsEnabled">
+                <?php __(
+                    'Restrict languages listed in the search bar '.
+                    'to the ones in your profile.'
                 ); ?>
             </label>
         </div>

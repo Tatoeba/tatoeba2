@@ -36,6 +36,7 @@ class SphinxBehavior extends ModelBehavior
         $this->runtime[$model->alias]['sphinx'] = new SphinxClient();
         $this->runtime[$model->alias]['sphinx']->SetServer($this->settings[$model->alias]['server'],
                                                            $this->settings[$model->alias]['port']);
+        $this->runtime[$model->alias]['deletedData'] = array();
     }
 
     /**
@@ -162,4 +163,67 @@ class SphinxBehavior extends ModelBehavior
         
     }
 
+    public function beforeDelete(&$model, $cascade = true) {
+        if (!$model->data)
+            $model->read();
+        if ($model->data)
+            array_push($this->runtime[$model->alias]['deletedData'], $model->data);
+        return true;
+    }
+
+    public function afterDelete(&$model) {
+        while ($data = array_shift($this->runtime[$model->alias]['deletedData'])) {
+            $temp = $model->data;
+            $model->data = $data;
+            $this->_refreshSphinxAttributes($model);
+            $model->data = $temp;
+        }
+    }
+
+    public function afterSave(&$model, $created) {
+        $this->_refreshSphinxAttributes($model);
+    }
+
+    private function _refreshSphinxAttributes(&$model) {
+        if (!method_exists($model, 'sphinxAttributesChanged'))
+            return;
+
+        $attributes = $values = array();
+        $isMVA = false;
+        $model->sphinxAttributesChanged($attributes, $values, $isMVA);
+
+        foreach ($values as $sentenceId => &$value) {
+            if ($isMVA) {
+                foreach ($value as &$v) {
+                    $v = array_map('intval', $v);
+                }
+            } else {
+                $value = array_map('intval', $value);
+            }
+        }
+
+        $langs = ClassRegistry::init('Sentence')->getSentencesLang(array_keys($values));
+        $batchedByLang = array();
+        foreach ($values as $sentenceId => $value) {
+            if (is_null($langs[$sentenceId]))
+                continue;
+            $lang = $langs[$sentenceId];
+            if (!isset($batchedByLang[$lang]))
+                $batchedByLang[$lang] = array();
+            $batchedByLang[$lang][$sentenceId] = $value;
+        }
+
+        foreach ($batchedByLang as $lang => $values) {
+            $res = $this->runtime[$model->alias]['sphinx']->UpdateAttributes(
+                "${lang}_delta_index,${lang}_main_index",
+                $attributes,
+                $values,
+                $isMVA
+            );
+            if ($res < 0) {
+                $error = $this->runtime[$model->alias]['sphinx']->GetLastError();
+                trigger_error('Unable to update Sphinx attribute(s) (' . implode(', ', $attributes).'): '.$error);
+            }
+        }
+    }
 }

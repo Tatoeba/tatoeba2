@@ -47,9 +47,9 @@ class UsersController extends AppController
         'Navigation',
         'Pagination'
     );
-    public $components = array ('Mailer', 'Captcha', 'RememberMe');
+    public $components = array ('Mailer', 'RememberMe');
 
-    public $uses = array("User","Contribution");
+    public $uses = array("User","Contribution","UsersLanguages");
 
     /**
      * Before filter.
@@ -70,14 +70,10 @@ class UsersController extends AppController
             'logout',
             'register',
             'new_password',
-            'confirm_registration',
-            'resend_registration_mail',
-            'captcha_image',
             'check_username',
             'check_email',
-            'update_rights',
+            'for_language'
         );
-        //$this->Auth->allowedActions = array('*');
     }
 
     /**
@@ -121,19 +117,6 @@ class UsersController extends AppController
         }
         if (!empty($this->data)) {
             if ($this->User->save($this->data)) {
-                // update aro table
-                $aro = new Aro();
-                $data = $aro->find(
-                    "first", array(
-                        "conditions" => array(
-                            "foreign_key" => $this->data['User']['id'],
-                            "model" => "User"
-                        )
-                    )
-                );
-                $data['Aro']['parent_id'] = $this->data['User']['group_id'];
-                $this->Acl->Aro->save($data);
-
                 $this->Session->setFlash('The user information has been saved.');
                 $this->redirect(array('action'=>'index'));
             } else {
@@ -210,7 +193,7 @@ class UsersController extends AppController
                 '/users/logout/'
             );
         }
-        // group_id 5 => users is spammer
+        // group_id 6 => users is spammer
         else if ($this->Auth->user('group_id') == 6) {
             $this->flash(
                 __(
@@ -223,11 +206,15 @@ class UsersController extends AppController
         }
         else
         {
+            $redirectUrl = $this->Auth->redirect();
+            if (isset($this->params['url']['redirectTo'])) {
+                $redirectUrl = $this->params['url']['redirectTo'];
+            }
+            $failedUrl = array(
+                'action' => 'login',
+                '?' => array('redirectTo' => $redirectUrl)
+            );
             if ($this->Auth->user()) {
-                $redirectUrl = $this->Auth->redirect();
-                if (isset($this->data["User"]["redirectTo"])) {
-                    $redirectUrl = $this->data["User"]["redirectTo"];
-                }
                 $this->_common_login($redirectUrl);
             } elseif (empty($this->data["User"]['username'])) {
                 $this->flash(
@@ -235,7 +222,7 @@ class UsersController extends AppController
                                 'You must fill in your '.
                                 'username and password.', true
                                 ), 
-                             '/users/login/'
+                             $failedUrl
                              );
             } else {
                 $this->flash(
@@ -243,8 +230,8 @@ class UsersController extends AppController
                                 'Login failed. Make sure that your Caps Lock '.
                                 'and Num Lock are not unintentionally turned on. '.
                                 'Your password is case-sensitive.', true
-                                ), 
-                             '/users/login/'
+                                ),
+                             $failedUrl
                              );
             }
         }
@@ -332,7 +319,6 @@ class UsersController extends AppController
         }
 
         // Username does not fit requirements
-        $emptyPasswordMd5 = md5(Configure::read('Security.salt'));
         if (!$this->User->validates()) {
             $this->data['User']['password'] = '';
             $this->data['User']['quiz'] = '';
@@ -357,17 +343,42 @@ class UsersController extends AppController
 
         // At this point, we're fine, so we can create the user
         $this->User->create();
-        $this->data['User']['since'] = date("Y-m-d H:i:s");
-        $this->data['User']['group_id'] = 4;
-        $this->User->set($this->data);
+        $allowedFields = array('username', 'password', 'email');
+        $newUser = $this->filterKeys($this->data['User'], $allowedFields);
+        $newUser['since']    = date("Y-m-d H:i:s");
+        $newUser['group_id'] = 4;
 
         // And we save
-        if ($this->User->save($this->data)) {
-            $this->Auth->login($this->data);
+        if ($this->User->save($newUser)) {
+            $this->Auth->login($newUser);
+
+            $profileUrl = Router::url(
+                array(
+                    'controller' => 'user',
+                    'action' => 'profile',
+                    $this->Auth->user('username')
+                )
+            );
+            $this->Session->setFlash(
+                '<p><strong>'
+                .__("Welcome to Tatoeba!", true)
+                .'</strong></p><p>'
+                .format(
+                    __(
+                        "To start things off, we encourage you to go to your ".
+                        "<a href='{url}'>profile</a> and let us know which ".
+                        "languages you speak or are interested in.",
+                        true
+                    ),
+                    array('url' => $profileUrl)
+                )
+                .'</p>'
+            );
+
             $this->redirect(
                 array(
                     'controller' => 'pages',
-                    'action' => 'help'
+                    'action' => 'index'
                 )
             );
         }
@@ -391,12 +402,12 @@ class UsersController extends AppController
                 $newPassword = $this->User->generatePassword();
 
                 // data to save
-                $this->data['User']['id'] = $user['User']['id'];
-                $this->data['User']['password'] = $this->Auth->password(
-                    $newPassword
+                $updatePasswordData = array(
+                    'id' => $user['User']['id'],
+                    'password' => $this->Auth->password($newPassword)
                 );
 
-                if ($this->User->save($this->data)) { // if saved
+                if ($this->User->save($updatePasswordData)) { // if saved
                     // prepare message
                     $subject = __('Tatoeba, new password', true);
                     $message = __('Your login: ', true)
@@ -498,17 +509,7 @@ class UsersController extends AppController
 
         $this->loadModel('LastContribution');
         $currentContributors = $this->LastContribution->getCurrentContributors();
-
-        // present result in a nicer array
-        $total = 0;
-        foreach ( $currentContributors as $i=>$contributor) {
-            $currentContributors[$i] = array (
-                'numberOfContributions' => $contributor[0]['total'],
-                'userName' => $contributor['User']['username'],
-                'image' => $contributor['User']['image']
-            );
-            $total += $contributor[0]['total'];
-        }
+        $total = $this->LastContribution->getTotal($currentContributors);
 
         $this->set('currentContributors', $currentContributors);
         $this->set('total', $total);
@@ -524,19 +525,6 @@ class UsersController extends AppController
         $this->set('users', $users);
     }
 
-    /**
-     * CAPTCHA image for registration.
-     *
-     * @return void
-     */
-    public function captcha_image()
-    {
-        Configure::write('debug', 0); // NOTE: It's normally not good to set debug
-                                   // in controllers, but here we really need to
-                                   // have debug set to 0
-        $this->layout = null;
-        $this->Captcha->image();
-    }
 
     /**
      * Check if the username already exist or not.
@@ -548,8 +536,8 @@ class UsersController extends AppController
     public function check_username($username)
     {
         $this->layout = null;
-        $user = $this->User->getIdFromUsername($username); // TODO move to model
-                                                        // and use contain
+        $user = $this->User->getIdFromUsername($username);
+
         if ($user) {
             $this->set('data', true);
         } else {
@@ -568,14 +556,32 @@ class UsersController extends AppController
     public function check_email($email)
     {
         $this->layout = null;
-        $userId = $this->User->getIdFromEmail($email); // TODO move to model
-                                                  // and use contain
+        $userId = $this->User->getIdFromEmail($email);
 
         if ($userId) {
             $this->set('data', true);
         } else {
             $this->set('data', false);
         }
+    }
+
+
+    public function for_language($lang = null)
+    {
+        $this->helpers[] = 'Members';
+
+        $usersLanguages = $this->UsersLanguages->getNumberOfUsersForEachLanguage();
+
+        if (empty($lang)) {
+            $lang = $usersLanguages[0]['UsersLanguages']['language_code'];
+        }
+
+        $users = $this->UsersLanguages->getUsersForLanguage($lang);
+
+
+        $this->set('users', $users);
+        $this->set('usersLanguages', $usersLanguages);
+        $this->set('lang', $lang);
     }
 }
 ?>

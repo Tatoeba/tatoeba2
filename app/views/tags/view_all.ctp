@@ -25,15 +25,34 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', 'Tatoeba - '. __('All existing tags', true));
+$this->set('title_for_layout', $pages->formatTitle(__('All existing tags', true)));
 ?>
 
 <div id="annexe_content">
     <div class="module">
-        <h2><?php __('Related links'); ?></h2>
-        <ul>
-        <li class="item"><a href="http://en.wiki.tatoeba.org/articles/show/tags"><?php __('Tags'); ?></a></li>
-        </ul>
+        <?php
+        echo $html->tag('h2', __('Search tags', true));
+        echo $form->create(array('action' => 'search'));
+        echo $form->input(
+            'search',
+            array(
+                'value' => $search,
+                'label' => false
+            )
+        );
+        echo $form->submit(__('Search', true));
+        echo $form->end();
+
+        echo '<p>';
+        echo $html->link(
+            __('Show all tags', true),
+            array(
+                'controller' => 'tags',
+                'action' => 'view_all'
+            )
+        );
+        echo '</p>';
+        ?>
     </div>
 </div>
 
@@ -41,7 +60,37 @@ $this->set('title_for_layout', 'Tatoeba - '. __('All existing tags', true));
 
 <div id="main_content">
     <div class="module">
-        <h2><?php __('All Tags'); ?></h2> 
+        <?php
+        if (empty($search)) {
+            $title = $paginator->counter(
+                array('format' => __('All tags (total %count%)', true))
+            );
+        } else {
+            $title = $paginator->counter(
+                array(
+                    'format' => format(
+                        __('Tags containing: {search} (total %count%)', true),
+                        array('search' => $search)
+                    )
+                )
+            );
+        }
+        echo $html->tag('h2', $title, array('escape' => true));
+        ?>
+        
+        <div class="sortBy">
+            <strong><?php __("Sort by:") ?> </strong>
+            <?php 
+            echo $this->Paginator->sort(__("count",true), 'nbrOfSentences');
+            echo " | ";
+            echo $this->Paginator->sort(__("name",true), 'name');
+            ?>
+        </div>
+        
+        <?php 
+            $pagination->display();
+        ?>
+        
         <div>
             <?php
             foreach( $allTags as $tag) {
@@ -57,6 +106,12 @@ $this->set('title_for_layout', 'Tatoeba - '. __('All existing tags', true));
             <?php
             }
             ?>
+        </div>
+        
+        <div>
+        <?php 
+            $pagination->display();
+        ?>
         </div>
     </div>
 </div>

@@ -27,8 +27,8 @@
 
 //TODO to factorize with pinyin converter in a tool helper
 
-$this->set('title_for_layout', 'Tatoeba - ' . __(
-    'Chinese traditional/simplified conversion', true
+$this->set('title_for_layout', $pages->formatTitle(
+    __('Chinese traditional/simplified conversion', true)
 ));
 
 // if it's the first time we call this tool
@@ -38,10 +38,6 @@ if (!isset($lastText)) {
 
 ?>
 <div id="annexe_content">
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-
     <div class="module">
         <h2><?php __('The software'); ?></h2>
         <p>
@@ -86,9 +82,13 @@ if (!isset($lastText)) {
 
         <?php
         if (isset($convertedText)) {
-            echo '<div id="conversion">';
-                echo $convertedText;
-            echo '</div>';
+            $script = ($convertedTextScript == 'traditional')
+                      ? 'Hant' : 'Hans';
+            echo $languages->tagWithLang(
+                'div', 'zh', $convertedText,
+                array('id' => 'conversion'),
+                $script
+            );
         }
 
         echo $form->create(
@@ -110,7 +110,9 @@ if (!isset($lastText)) {
             array(
                 "value" => $lastText,
                 "rows" => 30,
-                "cols"=> 40
+                "cols" => 40,
+                "lang" => "zh",
+                "dir" => "ltr",
             )
         );
         ?>

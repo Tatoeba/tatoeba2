@@ -74,7 +74,9 @@ class NavigationHelper extends AppHelper
                 array(
                     "type" => "text",
                     "label" => __('Show sentence #: ', true),
-                    "value" => $input
+                    "value" => $input,
+                    "lang" => "",
+                    "dir" => "ltr",
                 )
             );
             echo $this->Form->end(__('OK', true));
@@ -93,7 +95,7 @@ class NavigationHelper extends AppHelper
             $this->Javascript->link('sentences.random.js', false);
 
 
-            $langArray = $this->Languages->languagesArray();
+            $langArray = $this->Languages->languagesArrayAlone();
             $selectedLanguage = $this->Session->read('random_lang_selected');
             
             echo $this->Form->select(
@@ -195,70 +197,6 @@ class NavigationHelper extends AppHelper
         <?php
     }
 
-    /**
-     * Display navigation for users.
-     *
-     * @todo Remove?
-     *
-     * @param int $currentId Id of user currently displayed.
-     * @param int $username  Id of username of user currently displayed.
-     *
-     * @return void
-     */
-    public function displayUsersNavigation($currentId, $username = null)
-    {
-        echo '<div class="navigation">';
-
-        if ($username == null) {
-            $username = '';
-        }
-        echo $this->Form->create(
-            'UserSearch', array("controller" => "users", "action" => "search")
-        );
-        echo $this->Form->input(
-            'username',
-            array(
-                "label" => __('Enter a username: ', true),
-                "value" => $username,
-                "id" => null
-            )
-        );
-        echo $this->Form->end(__('show user', true));
-
-        echo '<ul>'."\n";
-
-        // all
-        echo '<li class="option">';
-        echo $this->Html->link(
-            __('all', true),
-            array(
-                'controller' => 'users',
-                'action' => 'all'
-            )
-        );
-        echo '</li>';
-
-        // back to whole profile
-        if ($this->params['controller'] != 'users'
-            AND $this->params['action'] != 'show'
-        ) {
-            echo '<li class="option">';
-            echo $this->Html->link(
-                sprintf(__('Profile of %s', true), $username),
-                array(
-                    'controller' => 'user',
-                    'action' => 'profile',
-                    $username
-                )
-            );
-
-            echo '</li>';
-        }
-
-        echo '</ul>';
-
-        echo '</div>';
-    }
 
     /**
      * Display navigation for sentences lists.

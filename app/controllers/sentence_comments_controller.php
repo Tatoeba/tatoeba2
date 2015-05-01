@@ -97,7 +97,10 @@ class SentenceCommentsController extends AppController
 
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array(
-            "*"
+            'index',
+            'show',
+            'of_user',
+            'on_sentences_of_user'
         );
     }
 
@@ -112,11 +115,12 @@ class SentenceCommentsController extends AppController
     {
         $this->helpers[] = 'Messages';
 
+        $conditions = $this->SentenceComment->getQueryConditionWithExcludedUsers();
         if ($langFilter != 'und') {
-            $this->paginate['SentenceComment']['conditions'] = array(
-                "Sentence.lang" => $langFilter
-            );
+            $conditions["Sentence.lang"] = $langFilter;
         }
+
+        $this->paginate['SentenceComment']['conditions'] = $conditions;
 
         $latestComments = $this->paginate();
 
@@ -195,10 +199,11 @@ class SentenceCommentsController extends AppController
             );
         }
 
+        $allowedFields = array('sentence_id', 'text');
+        $comment = $this->filterKeys($this->data['SentenceComment'], $allowedFields);
+        $comment['user_id'] = $userId;
 
-        $this->data['SentenceComment']['user_id'] = $userId;
-
-        if ($this->SentenceComment->save($this->data)) {
+        if ($this->SentenceComment->save($comment)) {
             $sentenceId = $this->data['SentenceComment']['sentence_id'];
             $participants = $this->SentenceComment->getEmailsFromComments(
                 $sentenceId
@@ -283,6 +288,7 @@ class SentenceCommentsController extends AppController
 
         //check permissions now
         $canEdit = $authorId === CurrentUser::get('id') || CurrentUser::isAdmin();
+        $sentenceId = $this->data['SentenceComment']['sentence_id'];
         if (!$canEdit) {
             $no_permission = __("You do not have permission to edit this comment. ",
                 true);
@@ -305,7 +311,6 @@ class SentenceCommentsController extends AppController
                 $this->data = $sentenceComment;
                 $this->set('sentenceComment', $sentenceComment);
             } else {
-                $sentenceId = $this->data['SentenceComment']['sentence_id'];
                 $commentId = $this->data['SentenceComment']['id'];
                 //check for empty text
                 if (empty($this->data['SentenceComment']['text'])) {
@@ -321,7 +326,11 @@ class SentenceCommentsController extends AppController
                     );
                 }
                 //save comment
-                if ($this->SentenceComment->save($this->data)) {
+                $commentUpdate = array(
+                    'id'   => $commentId,
+                    'text' => $this->data['SentenceComment']['text'],
+                );
+                if ($this->SentenceComment->save($commentUpdate)) {
                     $this->Session->setFlash(
                         __("Changes to your comment have been saved.", true)
                     );
@@ -370,10 +379,7 @@ class SentenceCommentsController extends AppController
         // or not the delete icon, but one can try to directly call delete_comment
         // so we need to recheck
         $commentPermissions = $this->Permissions->getCommentOptions(
-            null,
-            $commentOwnerId,
-            $this->Auth->user('id'),
-            $this->Auth->user('group_id')
+            $commentOwnerId
         );
         if ($commentPermissions['canDelete']) {
             $this->SentenceComment->delete($commentId);
@@ -448,13 +454,14 @@ class SentenceCommentsController extends AppController
     {
         $userId = $this->User->getIdfromUsername($userName);
 
-        $this->paginate['SentenceComment']['conditions'] = array(
+        $conditions = array(
             'Sentence.user_id' => $userId
         );
-
-        $userComments = $this->paginate(
-            'SentenceComment'
+        $conditions = $this->SentenceComment->getQueryConditionWithExcludedUsers(
+            $conditions
         );
+        $this->paginate['SentenceComment']['conditions'] = $conditions;
+        $userComments = $this->paginate('SentenceComment');
 
         $userId = $this->User->getIdfromUsername($userName);
         $backLink = $this->referer(array('action'=>'index'), true);

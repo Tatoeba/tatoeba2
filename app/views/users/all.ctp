@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */ 
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Members', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Members', true)));
 ?>
 
 <div id="annexe_content">
@@ -76,14 +76,16 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Members', true));
         ?>
         </h2>
         
-        <strong><?php __('Sort by:'); ?></strong>
-        <?php
-        echo $paginator->sort(__('Username', true), 'username');
-        echo ' | ';
-        echo $paginator->sort(__('Member since', true),'since');
-        echo ' | ';
-        echo $paginator->sort(__('Member status', true),'group_id');
-        ?>
+        <div class="sortBy">
+            <strong><?php __('Sort by:'); ?></strong>
+            <?php
+            echo $paginator->sort(__('Username', true), 'username');
+            echo ' | ';
+            echo $paginator->sort(__('Member since', true),'since');
+            echo ' | ';
+            echo $paginator->sort(__('Member status', true),'group_id');
+            ?>
+        </div>
         
         
         <?php $pagination->display(); ?>
@@ -125,21 +127,11 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Members', true));
                 </span>
             </div>
 
-            
-            <div class="status">
-                <div class="power">
-                <?php
-                for ($i = 4; $i > $groupId; $i--) {
-                    echo $html->image('crown.png');
-                }
-                ?>
-                </div>
-                
-                <div class="name">
-                <?php 
-                echo $members->groupName($groupId); 
-                ?>
-                </div>
+
+            <div class="statusName">
+            <?php
+            echo $members->groupName($groupId);
+            ?>
             </div>
         </div>
         <?php endforeach; ?>

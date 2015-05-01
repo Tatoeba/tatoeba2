@@ -40,18 +40,18 @@ if (isset($sentence)) {
     
     ?>
     <p><i>
-    <?php __('Click a sentence to go to tatoeba.org to translate it or leave a comment.'); ?>
+    <?php __('Click the top sentence to go to tatoeba.org to translate it or leave a comment.'); ?>
     </i></p>
     <?php
     
 } else {
     
     $sentenceId = $this->params['pass'][0];
-    echo '<h2>' . sprintf(__('Sentence %s', true), $sentenceId) . '</h2>';
+    echo '<h2>' . format(__('Sentence #{number}', true), array('number' => $sentenceId)) . '</h2>';
     echo '<div class="error">';
-        echo sprintf(
-            __('There is no sentence with id %s', true), 
-            $sentenceId
+        echo format(
+            __('There is no sentence with id {number}', true), 
+            array('number' => $sentenceId)
         );
     echo '</div>';
     

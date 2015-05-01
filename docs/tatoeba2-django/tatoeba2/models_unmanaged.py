@@ -47,6 +47,19 @@ class ArosAcos(models.Model):
         managed = False
         db_table = 'aros_acos'
 
+# Datetime conversion back and forth from MySQL to Python fails when datetime
+# is zero. MySQL allows datetime to be zero, while Python doesn't. When Python
+# is unable to interpret a datetime, it replaces it by None (see MySQLdb.times,
+# def DateTime_or_None), which stands for NULL to MySQL, whereas the column
+# can't be NULL, so MySQL complains.
+class ZeroedDateTimeField(models.DateTimeField):
+    def get_db_prep_value(self, value, connection, prepared=False):
+        value = super(ZeroedDateTimeField, self).get_db_prep_value(value, connection, prepared)
+        if value is None:
+            return '0000-00-00 00:00:00'
+        else:
+            return value
+
 class Contributions(models.Model):
     sentence_id = models.IntegerField()
     sentence_lang = models.CharField(max_length=4, blank=True)
@@ -55,7 +68,7 @@ class Contributions(models.Model):
     text = models.CharField(max_length=1500)
     action = models.CharField(max_length=6)
     user_id = models.IntegerField(blank=True, null=True)
-    datetime = models.DateTimeField()
+    datetime = ZeroedDateTimeField()
     ip = models.CharField(max_length=15, blank=True)
     type = models.CharField(max_length=8)
     id = models.AutoField(primary_key=True, unique=True)
@@ -79,6 +92,7 @@ class FavoritesUsers(models.Model):
     class Meta:
         managed = False
         db_table = 'favorites_users'
+        unique_together = ('favorite_id', 'user_id')
 
 class FollowersUsers(models.Model):
     follower_id = models.IntegerField()
@@ -96,13 +110,13 @@ class Groups(models.Model):
         managed = False
         db_table = 'groups'
 
-class Langstats(models.Model):
-    lang = models.CharField(unique=True, max_length=4)
+class Languages(models.Model):
+    code = models.CharField(unique=True, max_length=4)
     numberofsentences = models.IntegerField(db_column='numberOfSentences') # Field name made lowercase.
     id = models.AutoField(primary_key=True)
     class Meta:
         managed = False
-        db_table = 'langStats'
+        db_table = 'languages'
 
 class LastContributions(models.Model):
     sentence_id = models.IntegerField()
@@ -202,9 +216,11 @@ class SentencesSentencesLists(models.Model):
     class Meta:
         managed = False
         db_table = 'sentences_sentences_lists'
+        unique_together = ('sentences_list_id', 'sentence_id')
 
 class SentencesTranslations(models.Model):
-    sentence_id = models.IntegerField()
+    # more lying to django
+    sentence_id = models.IntegerField(primary_key=True)
     translation_id = models.IntegerField()
     sentence_lang = models.CharField(max_length=4, blank=True)
     translation_lang = models.CharField(max_length=4, blank=True)
@@ -212,6 +228,7 @@ class SentencesTranslations(models.Model):
     class Meta:
         managed = False
         db_table = 'sentences_translations'
+        unique_together = ('sentence_id', 'translation_id')
 
 class SinogramSubglyphs(models.Model):
     sinogram_id = models.IntegerField()
@@ -253,7 +270,8 @@ class Tags(models.Model):
         db_table = 'tags'
 
 class TagsSentences(models.Model):
-    tag_id = models.IntegerField()
+    # more lying to django
+    tag_id = models.IntegerField(primary_key=True)
     user_id = models.IntegerField(blank=True, null=True)
     sentence_id = models.IntegerField(blank=True, null=True)
     added_time = models.DateTimeField(blank=True, null=True)
@@ -306,7 +324,7 @@ class Wall(models.Model):
         db_table = 'wall'
 
 class WallThreadsLastMessage(models.Model):
-    id = models.AutoField(primary_key=True)
+    id = models.IntegerField(primary_key=True)
     last_message_date = models.DateTimeField()
     class Meta:
         managed = False

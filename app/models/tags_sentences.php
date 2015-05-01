@@ -104,7 +104,8 @@ class TagsSentences extends AppModel
             array(
                 'fields' => array(
                     'Tag.name',
-                    'TagsSentences.user_id',
+                    'User.id',
+                    'User.username',
                     'TagsSentences.tag_id',
                     'TagsSentences.added_time'
                 ),
@@ -112,8 +113,9 @@ class TagsSentences extends AppModel
                     'TagsSentences.sentence_id' => $sentenceId
                 ),
                 'contain' => array(
-                    'Tag'
-                )
+                    'Tag', 'User'
+                ),
+                'group' => 'TagsSentences.tag_id'
             )
         );
     }

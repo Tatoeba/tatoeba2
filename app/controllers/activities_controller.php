@@ -36,9 +36,8 @@
  */
 class ActivitiesController extends AppController
 {
-    public $helpers = array('AttentionPlease');
-
     public $components = array ('CommonSentence');
+    public $uses = array('Sentence', 'Tag', 'User');
 
     /**
      * Before filter.
@@ -96,17 +95,17 @@ class ActivitiesController extends AppController
      */
     public function improve_sentences()
     {
-        $tagChangeName = ClassRegistry::init('Tag')->getChangeTagName();
-        $tagCheckName = ClassRegistry::init('Tag')->getCheckTagName();
-        $tagDeleteName = ClassRegistry::init('Tag')->getDeleteTagName();
-        $tagNeedsNativeCheckName = ClassRegistry::init('Tag')->getNeedsNativeCheckTagName();
-        $tagOKName = ClassRegistry::init('Tag')->getOKTagName();
+        $tagChangeName = $this->Tag->getChangeTagName();
+        $tagCheckName = $this->Tag->getCheckTagName();
+        $tagDeleteName = $this->Tag->getDeleteTagName();
+        $tagNeedsNativeCheckName = $this->Tag->getNeedsNativeCheckTagName();
+        $tagOKName = $this->Tag->getOKTagName();
 
-        $tagChangeId = ClassRegistry::init('Tag')->getIdFromName($tagChangeName);
-        $tagCheckId = ClassRegistry::init('Tag')->getIdFromName($tagCheckName);
-        $tagDeleteId = ClassRegistry::init('Tag')->getIdFromName($tagDeleteName);
-        $tagNeedsNativeCheckId = ClassRegistry::init('Tag')->getIdFromName($tagNeedsNativeCheckName);
-        $tagOKId = ClassRegistry::init('Tag')->getIdFromName($tagOKName);
+        $tagChangeId = $this->Tag->getIdFromName($tagChangeName);
+        $tagCheckId = $this->Tag->getIdFromName($tagCheckName);
+        $tagDeleteId = $this->Tag->getIdFromName($tagDeleteName);
+        $tagNeedsNativeCheckId = $this->Tag->getIdFromName($tagNeedsNativeCheckName);
+        $tagOKId = $this->Tag->getIdFromName($tagOKName);
 
         $this->set('tagChangeName', $tagChangeName);
         $this->set('tagCheckName', $tagCheckName);
@@ -119,30 +118,6 @@ class ActivitiesController extends AppController
         $this->set('tagDeleteId', $tagDeleteId);
         $this->set('tagNeedsNativeCheckId', $tagNeedsNativeCheckId);
         $this->set('tagOKId', $tagOKId);
-    }
-
-
-    /**
-     * Link sentences.
-     */
-    public function link_sentences()
-    {
-        $sentenceId = $this->data['Activities']['sentence_id'];
-        $translationId = $this->data['Activities']['translation_id'];
-
-        $sentenceText = ClassRegistry::init('Sentence')->getSentenceTextForId(
-            $sentenceId
-        );
-        $translationText = ClassRegistry::init('Sentence')->getSentenceTextForId(
-            $translationId
-        );
-        $linked = false;
-
-        $this->set('sentenceText', $sentenceText);
-        $this->set('sentenceId', $sentenceId);
-        $this->set('translationText', $translationText);
-        $this->set('translationId', $translationId);
-        $this->set('linked', $linked);
     }
 
 
@@ -183,7 +158,7 @@ class ActivitiesController extends AppController
 
         $this->set('username', $username);
 
-        $userId = ClassRegistry::init('User')->getIdFromUsername($username);
+        $userId = $this->User->getIdFromUsername($username);
 
         if (empty($userId)) {
             $this->set('results', null);

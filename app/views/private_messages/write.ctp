@@ -25,6 +25,8 @@
  * @link     http://tatoeba.org
  */
 
+$this->set('title_for_layout', __('New message', true) . __(' - Tatoeba', true));
+
 echo $this->element('pmmenu');
 ?>
 <div id="main_content">
@@ -38,10 +40,13 @@ echo $this->element('pmmenu');
              );
          echo "</p>";
          echo "<p>";
-         echo sprintf(
-             __(
-                 "You have sent %s messages today. ", true
-             ), $messagesToday
+         echo format(
+             __n(
+                 'You have sent one message today.',
+                 'You have sent {n}&nbsp;messages today.',
+                 $messagesToday, true
+             ),
+             array('n' => $messagesToday)
          );
          echo "</p>";
          echo "<br/>";

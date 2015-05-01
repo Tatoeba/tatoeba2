@@ -52,6 +52,7 @@ class UserController extends AppController
      */
     public $uses = array(
         'User',
+        'UsersLanguages',
         'Contribution',
         'Sentence',
         'SentenceComment',
@@ -59,7 +60,7 @@ class UserController extends AppController
         'SentencesList'
     );
 
-    public $helpers = array('Html', 'Date');
+    public $helpers = array('Html', 'Date', 'Languages', 'Countries');
 
     /**
      * ?
@@ -73,9 +74,7 @@ class UserController extends AppController
         parent::beforeFilter();
 
         $this->Auth->allowedActions = array(
-            'profile',
-            'edit_profile',
-            'settings'
+            'profile'
         );
     }
 
@@ -118,10 +117,10 @@ class UserController extends AppController
         }
 
         $user = $infoOfUser['User'];
-        $countryName = $infoOfUser['Country']['name'];
         $groupId = $user['group_id'];
         $userId = $user['id'];
         $userStats = $this->_stats($userId);
+        $userLanguages = $this->UsersLanguages->getLanguagesOfUser($userId);
 
         $isPublic = ($user['is_public'] == 1);
         $isDisplayed = ($isPublic || CurrentUser::isMember());
@@ -129,8 +128,8 @@ class UserController extends AppController
 
         $this->set('userStats', $userStats);
         $this->set('user', $user);
-        $this->set('countryName', $countryName);
         $this->set('groupId', $groupId);
+        $this->set('userLanguages', $userLanguages);
 
         $this->set('isPublic', $isPublic);
         $this->set('isDisplayed', $isDisplayed);
@@ -322,8 +321,10 @@ class UserController extends AppController
 
         $saved = false;
         if (!empty($this->data)) {
-            $this->data['User']['id'] = $currentUserId;
-            $saved = $this->User->save($this->data);
+            $allowedFields = array('name', 'country_id', 'birthday', 'homepage', 'email');
+            $basicInfos = $this->filterKeys($this->data['User'], $allowedFields);
+            $basicInfos['id'] = $currentUserId;
+            $saved = $this->User->save($basicInfos);
         }
 
         if ($saved) {
@@ -380,11 +381,19 @@ class UserController extends AppController
             $useMostRecentList = $this->data['User']['use_most_recent_list'];
             $this->Cookie->write('use_most_recent_list', $useMostRecentList, false, "+1 month");
 
-            $this->data['User']['id'] = $currentUserId;
-            $this->data['User']['lang'] = $this->_language_settings(
-                $this->data['User']['lang']
+            $collapsibleTranslationsEnabled = $this->data['User']['collapsible_translations_enabled'];
+            $this->Cookie->write('collapsible_translations_enabled', $collapsibleTranslationsEnabled, false, "+1 month");;
+
+            $restrictSearchLangsEnabled = $this->data['User']['restrict_search_langs_enabled'];
+            $this->Cookie->write('restrict_search_langs_enabled', $restrictSearchLangsEnabled, false, "+1 month");;
+
+            $dataToSave = array(
+                'id' => $currentUserId,
+                'lang' => $this->_language_settings($this->data['User']['lang']),
+                'send_notifications' => $this->data['User']['send_notifications'],
+                'is_public' => $this->data['User']['is_public'],
             );
-            if ($this->User->save($this->data)) {
+            if ($this->User->save($dataToSave)) {
                 // Needed so that the information is updated for the Auth component.
                 $user = $this->User->read(null, $currentUserId);
                 $this->Session->write($this->Auth->sessionKey, $user['User']);
@@ -419,12 +428,12 @@ class UserController extends AppController
      */
     private function _language_settings($userInput)
     {
+        App::import('Vendor', 'LanguagesLib');
         $userInput = str_replace(' ', '', $userInput);
         $userLangs = explode(',', $userInput);
-        $supportedLangs = $this->Sentence->languages;
         $tmpLanguagesArray = array();
         foreach ($userLangs as $lang) {
-            if (in_array($lang, $supportedLangs)) {
+            if (array_key_exists($lang, LanguagesLib::languagesInTatoeba())) {
                 $tmpLanguagesArray[] = $lang;
             }
         }
@@ -528,15 +537,6 @@ class UserController extends AppController
 
         $userInfo = $this->User->getInformationOfCurrentUser($currentUserId);
         $this->data = $userInfo;
-
-        $this->loadModel('Country');
-        $tmpCountries = $this->Country->find('all');
-        $countries = array();
-        foreach ($tmpCountries as $country) {
-            $countryId = $country['Country']['id'];
-            $countries[$countryId] = $country['Country']['name'];
-        }
-        $this->set('countries', $countries);
     }
 
 
@@ -559,6 +559,27 @@ class UserController extends AppController
         // Whether to select by default the last list to which user assigned a sentence
         $this->data['User']['use_most_recent_list']
           = $this->Cookie->read('use_most_recent_list');
+        
+        $this->data['User']['collapsible_translations_enabled']
+            = $this->Cookie->read('collapsible_translations_enabled');
+
+        $this->data['User']['restrict_search_langs_enabled']
+            = $this->Cookie->read('restrict_search_langs_enabled');
+        
+    }
+
+
+    public function language($lang = null)
+    {
+        $userId = CurrentUser::get('id');
+        $username = CurrentUser::get('username');
+
+        if (!empty($lang)) {
+            $this->data = $this->UsersLanguages->getLanguageInfoOfUser($lang, $userId);
+        }
+
+        $this->set('ofUserId', $userId);
+        $this->set('username', $username);
     }
 }
 ?>

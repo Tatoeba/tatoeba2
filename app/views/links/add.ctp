@@ -1,10 +1,11 @@
 <?php
+
 if ($saved) {
-    $image = 'unlink.png';
+    $image = 'unlink.svg';
     $alt = __('Unlink', true);
     $title = __('Unlink this translation.', true);
 } else {
-    $image = 'link.png';
+    $image = 'link.svg';
     $alt = __('Link', true);
     $title = __('Make into direct translation.', true);
 }

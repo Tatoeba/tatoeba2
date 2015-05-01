@@ -45,60 +45,6 @@ class ListsHelper extends AppHelper
     );
 
     /**
-     * Display item of a list of lists.
-     *
-     * @param int     $listId          Id of the list to display.
-     * @param string  $listName        Name of the list.
-     * @param string  $listCreatorName Name of the list's creator.
-     * @param boolean $isPublic        If the list is public or not.
-     * @param int     $count           Number of sentences in the list.
-     *
-     * @todo delete, not used anywhere
-     * 
-     * @return void
-     */
-    public function displayItem(
-        $listId,
-        $listName,
-        $listCreatorName,
-        $isPublic,
-        $count = 0
-    ) {
-        echo '<li>';
-        echo '<span id="_'.$listId.'" class="listName">';
-        $name = '('.__('unnamed list', true).')';
-        if (trim($listName) != '') {
-            $name = $listName;
-        }
-        echo $this->Html->link(
-            $name,
-            array(
-                "controller" => "sentences_lists",
-                "action" => "edit",
-                $listId
-            )
-        );
-        echo '</span><span class="listInfo"> - ';
-        echo sprintf(
-            __('created by <a href="%s">%s</a>', true),
-            $this->Html->url(
-                array(
-                    "controller"=>"user",
-                    "action"=>"profile",
-                    $listCreatorName
-                )
-            ),
-            $listCreatorName
-        );
-        if ($isPublic) {
-            echo ' <span class="publicList">'.__('(public list)', true) .'</span>';
-        }
-        echo '</span>';
-        echo '</li>';
-    }
-
-
-    /**
      * display an array of lists in an HTML table
      *
      * @param array $arrayOfLists Terrible array of lists with array of array in it
@@ -155,7 +101,9 @@ class ListsHelper extends AppHelper
         <td class="nameAndCreator">
             <div class="name">
             <?php
-            $name = '('.__('unnamed list', true).')';
+            /* @translators: string used as a placeholder for
+               the name of a list when it happens to be empty */
+            $name = __('(unnamed list)', true);
             if (trim($listName) != '') {
                 $name = $listName;
             }
@@ -181,7 +129,8 @@ class ListsHelper extends AppHelper
                     $listCreatorName
                 )
             );
-            echo sprintf(__('created by %s', true), $link);
+            echo format(__('created by {listAuthor}', true),
+                        array('listAuthor' => $link));
             ?>
             </div>
         </td>
@@ -277,20 +226,17 @@ class ListsHelper extends AppHelper
      */
     public function displayDownloadLink($listId)
     {
-        ?>
-        <div class="download">
-        <?php
         echo $this->Html->link(
             __('Download this list', true),
             array(
-                "controller"=>"sentences_lists",
-                "action"=>"download",
+                "controller" => "sentences_lists",
+                "action" => "download",
                 $listId
+            ),
+            array(
+                'class' => 'downloadLink'
             )
         );
-        ?>
-        </div>
-        <?php
     }
 
 
@@ -498,9 +444,9 @@ class ListsHelper extends AppHelper
         </script>
 
         <?php
-        $removeFromListAlt = sprintf(
-            __("remove sentence % from list", true),
-            $sentenceId
+        $removeFromListAlt = format(
+            __("Remove sentence {number} from list", true),
+            array('number' => $sentenceId)
         );
 
         echo $this->Html->image(
@@ -508,7 +454,8 @@ class ListsHelper extends AppHelper
             array(
                 "class" => "removeFromListButton",
                 "id" => 'deleteButton'.$sentenceId,
-                "alt" => $removeFromListAlt
+                "alt" => $removeFromListAlt,
+                "title" => __("Remove from list", true)
             )
         );
         ?>
@@ -552,13 +499,19 @@ class ListsHelper extends AppHelper
 
         <p>
         <?php
-        echo sprintf(
+        echo format(
             __(
-                'NOTE : You can also add existing sentences with this icon %s '.
-                '(while <a href="%s">browsing</a> for instance).', true
+                'NOTE : You can also add existing sentences with this icon {addToListButton} '.
+                '(while <a href="{url}">browsing</a> for instance).', true
             ),
-            $this->Html->image(IMG_PATH . 'add_to_list.png'),
-            $this->Html->url(array("controller"=>"sentences", "action"=>"show", "random"))
+            array(
+                'addToListButton' => $this->Html->image(IMG_PATH . 'list.svg', array('height' => 16)),
+                'url' => $this->Html->url(array(
+                    'controller' => 'sentences',
+                    'action' => 'show',
+                    'random'
+                ))
+            )
         );
         ?>
         </p>

@@ -55,8 +55,7 @@ class SentencesController extends AppController
         'Navigation',
         'Languages',
         'Javascript',
-        'CommonModules',
-        'AttentionPlease'
+        'CommonModules'
     );
     public $paginate = array(
         'limit' => 100,
@@ -67,10 +66,6 @@ class SentencesController extends AppController
         'Sentence','SentenceNotTranslatedInto'
     );
 
-    private $blocked_users = array (6070,6071,1314,
-    8238,
-    7990
-   );
     /**
      * Before filter.
      *
@@ -85,19 +80,13 @@ class SentencesController extends AppController
             'index',
             'show',
             'search',
-            'add_comment',
             'of_user',
             'random',
             'go_to_sentence',
-            'statistics',
-            'get_translations',
-            'change_language',
             'several_random_sentences',
-            'sentences_group',
             'get_neighbors_for_ajax',
             'show_all_in',
-            'with_audio',
-            'edit_correctness'
+            'with_audio'
         );
     }
 
@@ -130,15 +119,12 @@ class SentencesController extends AppController
 
         $id = Sanitize::paranoid($id);
 
-        $userId = $this->Auth->user('id');
-        $groupId = $this->Auth->user('group_id');
-
         if ($id == "random" || $id == null || $id == "" ) {
             $id = $this->Session->read('random_lang_selected');
             $id = Sanitize::paranoid($id);
         }
 
-        if (in_array($id, $this->Sentence->languages)) {
+        if (array_key_exists($id, LanguagesLib::languagesInTatoeba())) {
             // ----- if we want a random sentence in a specific language -----
             // here only to make things clearer as "id" is not a number
             $lang = $id;
@@ -163,12 +149,12 @@ class SentencesController extends AppController
             $this->set('commentsPermissions', $commentsPermissions);
             $this->set('contributions', $contributions);
 
-            $canComment = CurrentUser::isMember() && !empty($contributions);
-            $this->set('canComment', $canComment);
-
             // And now we retrieve the sentence
             $sentence = $this->Sentence->getSentenceWithId($id);
 
+            $canComment = CurrentUser::isMember()
+                && (!empty($contributions) || !empty($sentence));
+            $this->set('canComment', $canComment);
 
             // this way "next" and "previous"
             $lang = $this->Session->read('random_lang_selected');
@@ -253,13 +239,42 @@ class SentencesController extends AppController
             return;
         }
 
-        $this->Sentence->delete(
+        $this->Sentence->recursive = -1;
+        $sentence = $this->Sentence->findById($id);
+        if (!$sentence) {
+            $this->redirect(array('controller' => 'pages', 'action' => 'home'));
+            return;
+        }
+
+        if (!CurrentUser::canRemoveSentence($sentence['Sentence']['id'], $sentence['Sentence']['user_id'])) {
+            $this->flash(
+                __('You cannot delete this sentence.', true),
+                '/sentences/show/'.$id
+            );
+            return;
+        }
+
+        $isDeleted = $this->Sentence->delete(
             $id,
             true
         );
-        $this->flash(
-            'The sentence #'.$id.' has been deleted.', '/sentences/show/'.$id
-        );
+        if ($isDeleted) {
+            $this->flash(
+                format(
+                    __('The sentence #{id} has been deleted.', true),
+                    array("id" => $id)
+                ),
+                '/sentences/show/'.$id
+            );
+        } else {
+            $this->flash(
+                format(
+                    __('Error: the sentence #{id} could not be deleted.', true),
+                    array("id" => $id)
+                ),
+                '/sentences/show/'.$id
+            );
+        }
     }
 
     /**
@@ -270,6 +285,11 @@ class SentencesController extends AppController
      */
     public function add_an_other_sentence()
     {
+        $userId = $this->Auth->user('id');
+        $userLevel = $this->Sentence->User->getLevelOfUser($userId);
+        if ($userLevel < 0) {
+            return;
+        }
 
         if (!isset($_POST['value'])
             || !isset($_POST['selectedLang'])
@@ -277,22 +297,18 @@ class SentencesController extends AppController
             //TODO add error handling
             return;
         }
-        $userId = $this->Auth->user('id');
+
         $userName = $this->Auth->user('username');
 
         $sentenceLang = Sanitize::paranoid($_POST['selectedLang']);
         $sentenceText = $_POST['value'];
-        $sentenceCorrectness = $this->Sentence->User->getLevelOfUser($userId);
 
         $isSaved = $this->CommonSentence->wrapper_save_sentence(
             $sentenceLang,
             $sentenceText,
             $userId,
             null,
-            null,
-            null,
-            $userName,
-            $sentenceCorrectness
+            $userName
         );
 
         // saving
@@ -311,24 +327,21 @@ class SentencesController extends AppController
      * Edit sentence.
      * Used in AJAX request, in sentences.edit_in_place.js.
      *
+     * @todo Need to have an editSentence() in the model, that will check if sentence 
+     * has audio, in which case it cannot be edited.
+     *
      * @return void
      */
     public function edit_sentence()
     {
-        $userId = $this->Auth->user('id');
-        /*
-        if (in_array($userId,$this->blocked_users)) {
-            return ;
-        }
-        */
         $sentenceText = '';
         $sentenceId = '';
-        if (isset($_POST['value'])) {
-            $sentenceText = trim($_POST['value']);
+        if (isset($this->params['form']['value'])) {
+            $sentenceText = trim($this->params['form']['value']);
         }
-        if (isset($_POST['id'])) {
-            $sentenceId = $_POST['id']; // NOTE: do not Sanitize::paranoid() this
-                                        // ...because hack mentionned below
+        if (isset($this->params['form']['id'])) {
+            $sentenceId = $this->params['form']['id']; // NOTE: do not Sanitize::paranoid() this
+                                                       // ...because hack mentionned below
         }
 
         if (!isset($sentenceText) || $sentenceText === '') {
@@ -338,12 +351,19 @@ class SentencesController extends AppController
         }
 
         if (isset($sentenceId)) {
-            // TODO HACK SPOTTED $_POST['id'] store 2 informations, lang and id
+            // TODO HACK SPOTTED $this->params['form']['id'] store 2 informations, lang and id
             // related to HACK in edit in place.js
             $hack_array = explode("_", $sentenceId);
 
             $realSentenceId = Sanitize::paranoid($hack_array[1]);
             $sentenceLang = Sanitize::paranoid($hack_array[0]);
+
+            $this->Sentence->recursive = -1;
+            $sentence = $this->Sentence->findById($realSentenceId);
+            if (!$sentence || !CurrentUser::canEditSentenceOfUserId($sentence['Sentence']['user_id'])) {
+                $this->redirect(array('controller' => 'pages', 'action' => 'home'));
+		return;
+            }
 
             $this->Sentence->id = $realSentenceId;
             $data['Sentence']['lang'] = $sentenceLang;
@@ -410,13 +430,13 @@ class SentencesController extends AppController
         $sentenceId = Sanitize::paranoid($_POST['id']);
         $translationLang = Sanitize::paranoid($_POST['selectLang']);
         $withAudio = Sanitize::paranoid($_POST['withAudio']);
-        $parentOwnerName = $_POST['parentOwnerName'];
-
         $userId = $this->Auth->user('id');
+        $userLevel = $this->Sentence->User->getLevelOfUser($userId);
 
-        if (in_array($userId,$this->blocked_users)) {
+        if ($userLevel < 0) {
             return ;
         }
+
         $translationText = $_POST['value'];
         
         // we store the selected language to be reused
@@ -441,13 +461,11 @@ class SentencesController extends AppController
 
             // Saving...
             $sentenceLang = $this->Sentence->getLanguageCodeFromSentenceId($sentenceId);
-            $translationCorrectness = $this->Sentence->User->getLevelOfUser($userId);
             $isSaved = $this->Sentence->saveTranslation(
                 $sentenceId,
                 $sentenceLang,
                 $translationText,
-                $translationLang,
-                $translationCorrectness
+                $translationLang
             );
 
             if ($isSaved) {
@@ -455,14 +473,10 @@ class SentencesController extends AppController
                 $translation['id'] = $this->Sentence->id;
                 $translation['lang'] = $translationLang;
                 $translation['text'] = $translationText;
-                $translation['correctness'] = $translationCorrectness;
-                
-                $ownerName = $this->Auth->user('username');
+                $translation['correctness'] = 0;
 
                 $this->set('translation', $translation);
-                $this->set('ownerName', $ownerName);
                 $this->set('parentId', $sentenceId);
-                $this->set('parentOwnerName', $parentOwnerName);
                 $this->set('withAudio', $withAudio);
             }
         }
@@ -475,19 +489,8 @@ class SentencesController extends AppController
      *
      * @return void
      */
-    public function search($query = null)
+    public function search()
     {
-        if (!isset($_GET['query']) || empty($_GET['query'])) {
-            $this->redirect(
-                array(
-                    "lang" => $this->params['lang'],
-                    "controller" => "pages",
-                    "action" => "search",
-                )
-            );
-        }
-
-
         $query = $_GET['query'];
 
         $from = 'und';
@@ -524,6 +527,12 @@ class SentencesController extends AppController
             'sortMode' => array(SPH_SORT_RELEVANCE => ""),
             'rankingMode' => array(SPH_RANK_EXPR => $ranking_formula),
         );
+        if (empty($query)) {
+            // When the query is empty, Sphinx changes matchMode into
+            // SPH_MATCH_FULLSCAN and ignores rankingMode. So let's use
+            // sortMode instead.
+            $sphinx['sortMode'] = array(SPH_SORT_EXPR => $ranking_formula);
+        }
         // if we want to search only on sentences having translations
         // in a specified language
         if ($to !== 'und') {
@@ -531,10 +540,6 @@ class SentencesController extends AppController
             $toId = $this->Language->getIdFromLang($to);
             $sphinx['filter'][] = array('trans_id',$toId);
         }
-
-
-
-
 
         $model = 'Sentence';
         $pagination = array(
@@ -552,11 +557,15 @@ class SentencesController extends AppController
         $allSentences = $this->_common_sentences_pagination(
             $pagination,
             $model,
-            $to
+            $to,
+            $real_total
         );
 
         $this->set('query', $query);
+        $this->set('from', $from);
+        $this->set('to', $to);
         $this->set('results', $allSentences);
+        $this->set('real_total', $real_total);
     }
 
     /**
@@ -670,19 +679,29 @@ class SentencesController extends AppController
      * @param string $model           Model to use for pagination
      * @param string $translationLang If different of null, will only
      *                                retrieve translation in this language.
+     * @param string &$real_total     If Sphinx returns the "real total", it
+     *                                will be stored here. Sphinx returns a
+     *                                limited number of results (1000), but
+     *                                it's able to tell the exact number of
+     *                                results that could be returned if there
+     *                                were no limitation.
      *
      * @return array Big nested array of sentences + information related to senences
      */
     private function _common_sentences_pagination(
         $pagination,
         $model,
-        $translationLang = null
+        $translationLang = null,
+        &$real_total = 0
     ) {
 
         $this->paginate = $pagination;
         $results = $this->paginate($model);
         if (!is_array($results)) {
             $results = array();
+        }
+        if (isset($results[0]['Sentence']['_total_found'])) {
+            $real_total = $results[0]['Sentence']['_total_found'];
         }
 
         $sentenceIds = array();
@@ -728,11 +747,6 @@ class SentencesController extends AppController
         $this->set('random', $randomSentence);
         $this->set('translations', $translations);
         $this->set('indirectTranslations', $indirectTranslations);
-
-        if (isset($randomSentence['Sentence']['script']))
-        {
-            $this->set('sentenceScript', $sentenceScript);
-        }
     }
 
     /**
@@ -874,17 +888,13 @@ class SentencesController extends AppController
      */
     public function change_language()
     {
-        if (isset($_POST['id'])
-            && isset($_POST['newLang'])
-            && isset($_POST['prevLang'])
+        if (isset($this->params['form']['id'])
+            && isset($this->params['form']['newLang'])
         ) {
-            Configure::write('debug', 0);
+            $newLang = Sanitize::paranoid($this->params['form']['newLang']);
+            $id = Sanitize::paranoid($this->params['form']['id']);
 
-            $newLang = Sanitize::paranoid($_POST['newLang']);
-            $prevLang = Sanitize::paranoid($_POST['prevLang']);
-            $id = Sanitize::paranoid($_POST['id']);
-
-            $lang = $this->Sentence->changeLanguage($id, $prevLang, $newLang);
+            $lang = $this->Sentence->changeLanguage($id, $newLang);
             $this->set('lang', $lang);
         }
     }
@@ -899,9 +909,6 @@ class SentencesController extends AppController
      */
     public function get_neighbors_for_ajax($id, $lang)
     {
-        Configure::write('debug', 0);
-        $this->layout = null;
-
         $this->Session->write('random_lang_selected', $lang);
         $neighbors = $this->Sentence->getNeighborsSentenceIds($id, $lang);
         $this->set('nextSentence', $neighbors['next']);
@@ -918,14 +925,13 @@ class SentencesController extends AppController
      */
     public function import()
     {
-        if (! CurrentUser::isModerator()) {
+        if (!CurrentUser::isAdmin()) {
             $this->redirect(
                 array(
                     "controller" => "pages",
                     "action" => "home",
                 )
             );
-
         }
     }
 
@@ -970,9 +976,7 @@ class SentencesController extends AppController
     }
     
     /**
-     * Sentences with audio.
-     *
-     * @param string $lang Language of the sentences.
+     * Edit correctness of a sentence.
      *
      * @return void
      */
@@ -983,6 +987,31 @@ class SentencesController extends AppController
         
         if (CurrentUser::isModerator()) {
             $this->Sentence->editCorrectness($sentenceId, $correctness);
+            $this->redirect(
+                array(
+                    "controller" => "sentences", 
+                    "action" => "show", 
+                    $sentenceId
+                )
+            );
+        } else {
+            $this->redirect(
+                array(
+                    "controller" => "pages", 
+                    "action" => "home", 
+                )
+            );
+        }
+    }
+
+
+    public function edit_audio()
+    {
+        $sentenceId = $this->data['Sentence']['id'];
+        $hasaudio = $this->data['Sentence']['hasaudio'];
+        
+        if (CurrentUser::isAdmin()) {
+            $this->Sentence->editAudio($sentenceId, $hasaudio);
             $this->redirect(
                 array(
                     "controller" => "sentences", 

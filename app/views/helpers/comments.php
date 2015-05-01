@@ -83,7 +83,9 @@ class CommentsHelper extends AppHelper
             echo $this->Form->textarea(
                 'text',
                 array(
-                    "label"=> ""
+                    "label"=> "",
+                    "lang" => "",
+                    "dir" => "auto",
                 )
             );
             ?>
@@ -224,7 +226,7 @@ class CommentsHelper extends AppHelper
             }
 
             $menu[] = array(
-                'text' => __('hide', true),
+                'text' => $hiddenLinkText,
                 'url' => array(
                     "controller" => "sentence_comments",
                     "action" => $hiddenLinkAction,

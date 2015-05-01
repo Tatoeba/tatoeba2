@@ -26,8 +26,8 @@
  */
 
 $username = Sanitize::paranoid($username, array("_"));
-$title = sprintf(__("%s's favorite sentences", true), $username); 
-$this->set('title_for_layout', $title);
+$title = format(__("{user}'s favorite sentences", true), array('user' => $username));
+$this->set('title_for_layout', $pages->formatTitle($title));
 $numberOfSentences = count($favorites);
 ?>
 
@@ -52,10 +52,9 @@ $numberOfSentences = count($favorites);
         $parentId = null;
         $withAudio = false;
         $ownerName = null;
-        foreach ($favorites as $sentence) {
+        foreach ($favorites as $favorite) {
             $sentences->displayGenericSentence(
-                $sentence,
-                $ownerName,
+                $favorite['Sentence'],
                 $type,
                 $parentId,
                 $withAudio

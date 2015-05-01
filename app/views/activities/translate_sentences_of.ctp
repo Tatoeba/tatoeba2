@@ -24,26 +24,27 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
 $username = Sanitize::paranoid($username, array("_"));
 
 if ($results == null) {
-    $title = sprintf(
-        __("This user doesn't exist: %s", true),
-        $username
+    $title = format(
+        __("This user doesn't exist: {username}", true),
+        array('username' => $username)
     );
 } else if (!empty($lang)) {
-    $title = sprintf(
-        __('Translate %1$s sentences that belong to %2$s', true),
-        $languages->codeToName($lang),
-        $username
+    $title = format(
+        __('Translate {language} sentences that belong to {user}', true),
+        array('language' => $languages->codeToNameToFormat($lang),
+              'user'     => $username)
     );
 } else {
-    $title = sprintf(
-        __('Translate sentences that belong to %s', true),
-        $username
+    $title = format(
+        __('Translate sentences that belong to {user}', true),
+        array('user' => $username)
     );
 }
-$this->set('title_for_layout', $title);
+$this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">    
@@ -60,19 +61,9 @@ $this->set('title_for_layout', $title);
 <div id="main_content">    
     
     <div class="module">
-    <h2>
     <?php 
-    echo $title; 
-    echo ' ';
-    echo $paginator->counter(
-        array(
-            'format' => __('(%count% results)', true)
-        )
-    ); 
-    ?>
-    </h2>
-    
-    <?php
+    echo $this->Pages->formatTitleWithResultCount($paginator, $title);
+
     if ($results != null) {
         $paginationUrl = array(
             $username,

@@ -20,8 +20,7 @@
 $(document).ready(function() {
 
     $(".translateLink").click(function(){
-        var sentenceId = $(this).data("sentenceId");
-        var parentOwnerName = $(this).data("parentOwnerName");
+        var sentenceId = $(this).data("sentenceId");;
         var withAudio = $(this).data("withAudio");
         
         var rootUrl = get_tatoeba_root_url();
@@ -49,7 +48,6 @@ $(document).ready(function() {
                         "id": sentenceId,
                         "selectLang": selectLang,
                         "value": sentenceText,
-                        "parentOwnerName": parentOwnerName,
                         "withAudio": withAudio
                     },
                     function(data){
@@ -102,6 +100,21 @@ $(document).ready(function() {
             $("#_" + sentenceId + "_translations").show();
             $(".addTranslations").hide();
         });
+    });
+	
+	
+	/**
+     * Changes Flag in Add Translation box on Changing Language
+     */
+    $( ".language-selector" ).change(function() {
+        if($(this).val()!='auto'){
+            var lang_flag_url = '/img/flags/'+$(this).val()+'.png';
+            $(this).next().attr('src', lang_flag_url);
+            $(this).next().attr('alt', $(this).val());
+            $(this).next().show();
+        }else{
+            $(this).next().hide();
+        }
     });
 
 });

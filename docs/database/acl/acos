@@ -1,0 +1,94 @@
+cake acl create aco root controllers
+
+cake acl create aco controllers Favorites
+cake acl create aco Favorites add_favorite
+cake acl create aco Favorites remove_favorite
+
+cake acl create aco controllers Imports
+cake acl create aco Imports import_single_sentences
+cake acl create aco Imports import_sentences_with_translation
+
+cake acl create aco controllers Links
+cake acl create aco Links add
+cake acl create aco Links delete
+
+cake acl create aco controllers PrivateMessages
+cake acl create aco PrivateMessages index
+cake acl create aco PrivateMessages folder
+cake acl create aco PrivateMessages send
+cake acl create aco PrivateMessages show
+cake acl create aco PrivateMessages delete
+cake acl create aco PrivateMessages restore
+cake acl create aco PrivateMessages mark
+cake acl create aco PrivateMessages write
+
+cake acl create aco controllers SentenceAnnotations
+cake acl create aco SentenceAnnotations index
+cake acl create aco SentenceAnnotations show
+cake acl create aco SentenceAnnotations save
+cake acl create aco SentenceAnnotations delete
+cake acl create aco SentenceAnnotations search
+cake acl create aco SentenceAnnotations replace
+
+cake acl create aco controllers SentenceComments
+cake acl create aco SentenceComments save
+cake acl create aco SentenceComments edit
+cake acl create aco SentenceComments delete_comment
+cake acl create aco SentenceComments hide_message
+cake acl create aco SentenceComments unhide_message
+
+cake acl create aco controllers Sentences
+cake acl create aco Sentences add
+cake acl create aco Sentences delete
+cake acl create aco Sentences add_an_other_sentence
+cake acl create aco Sentences edit_sentence
+cake acl create aco Sentences adopt
+cake acl create aco Sentences let_go
+cake acl create aco Sentences save_translation
+cake acl create aco Sentences change_language
+cake acl create aco Sentences import
+cake acl create aco Sentences edit_correctness
+cake acl create aco Sentences edit_audio
+
+cake acl create aco controllers SentencesLists
+cake acl create aco SentencesLists edit
+cake acl create aco SentencesLists add
+cake acl create aco SentencesLists save_name
+cake acl create aco SentencesLists delete
+cake acl create aco SentencesLists add_sentence_to_list
+cake acl create aco SentencesLists remove_sentence_from_list
+cake acl create aco SentencesLists add_new_sentence_to_list
+cake acl create aco SentencesLists set_as_public
+
+cake acl create aco controllers Tags
+cake acl create aco Tags add_tag_post
+cake acl create aco Tags add_tag
+cake acl create aco Tags remove_tag_from_sentence
+cake acl create aco Tags remove_tag_of_sentence_from_tags_show
+
+cake acl create aco controllers User
+cake acl create aco User save_image
+cake acl create aco User save_description
+cake acl create aco User save_basic
+cake acl create aco User save_settings
+cake acl create aco User save_password
+cake acl create aco User edit_profile
+cake acl create aco User settings
+cake acl create aco User language
+
+cake acl create aco controllers Users
+cake acl create aco Users index
+cake acl create aco Users edit
+cake acl create aco Users delete
+
+cake acl create aco controllers UsersLanguages
+cake acl create aco UsersLanguages save
+cake acl create aco UsersLanguages delete
+
+cake acl create aco controllers Wall
+cake acl create aco Wall save
+cake acl create aco Wall save_inside
+cake acl create aco Wall edit
+cake acl create aco Wall delete_message
+cake acl create aco Wall hide_message
+cake acl create aco Wall unhide_message

@@ -39,7 +39,7 @@ class Language extends AppModel
     public $name = 'Language';
 
     /**
-     * Return the id associated to the given lang string
+     * Return the id associated with the given lang string
      *
      * @param $langCode ISO code of the language for which we want to get the id.
      *
@@ -47,15 +47,22 @@ class Language extends AppModel
      */
     public function getIdFromLang($langCode)
     {
-        $result = $this->find(
-            'first',
-            array(
-                'fields' => array('id'),
-                'contain' => array(),
-                'conditions' => array ('code' => $langCode),
-            )
-        );
-        return $result['Language']['id'];
+        if ($langCode == null || $langCode == '')
+        {
+            return null;
+        }
+        else
+        {
+            $result = $this->find(
+                'first',
+                array(
+                    'fields' => array('id'),
+                    'contain' => array(),
+                    'conditions' => array ('code' => $langCode),
+                )
+            );
+            return $result['Language']['id'];
+        }
     }
 
 

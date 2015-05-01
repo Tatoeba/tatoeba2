@@ -17,20 +17,96 @@
  * along with this program.  If not, see <http: //www.gnu.org/licenses/>.
  */
 
-
 /*
  * Random sentence
  */
-@import url(../elements/sentences_group.css);
+#randomLangChoice {
+    width: 110px;
+}
 
 
 /*
- * Join the community
+ * Latest messages on Wall
  */
-@import url(../elements/register_button.css);
+.lastWallMessages {
+    margin: 15px 0;
+}
+
+.lastWallMessages a {
+    color: #89C140;
+}
+
+.lastWallMessages a:hover {
+    color: #EAA315;
+}
+
+.lastWallMessages .header {
+    padding: 5px;
+}
+
+.lastWallMessages .body {
+    padding: 5px 5px 0 5px;
+    border-top: 1px solid #D1D1D1;
+    color: #656565;
+}
+
+.lastWallMessages .link {
+    text-align: right;
+}
 
 
 /*
- * Sentences statistics
+ * Tatoeba short description
  */
-@import url(../elements/sentences_stats.css);
+.topContent {
+    margin-bottom: 50px;
+    font-size: 40px;
+}
+
+.topContent ul {
+    list-style: none;
+}
+
+.topContent .description,
+.topContent .links {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 20px 40px;
+    box-sizing : border-box;
+}
+
+.topContent .description {
+    width: 65%;
+    text-align: center;
+}
+
+.topContent .links {
+    width: 35%;
+    text-align: center;
+}
+
+.topContent .links a {
+    display: inline-block;
+    padding: 15px;
+    margin: 10px 0;
+    min-width: 240px;
+    font-size: 30px;
+}
+
+.topContent .registerButton {
+    background: #6A0;
+    color: #fff;
+}
+
+.topContent .loginButton {
+    background: #06A;
+    color: #fff;
+}
+
+.topContent .links .learnMore {
+    display: inline-block;
+    border: 1px solid #6A0;
+    color: #6A0;
+    padding: 5px 15px;
+    font-size: 24px;
+}

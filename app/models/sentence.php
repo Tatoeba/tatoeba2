@@ -40,102 +40,22 @@
 
 App::import('Model', 'CurrentUser');
 App::import('Sanitize');
+App::import('Vendor', 'LanguagesLib');
 
 class Sentence extends AppModel
 {
 
     public $name = 'Sentence';
-    public $actsAs = array("Containable", "Sphinx");
+    public $actsAs = array("Containable");
     public static $romanji = array('furigana' => 1, 'mix' => 2, 'romanji' => 3);
-    
+
     const MIN_CORRECTNESS = -1;
     const MAX_CORRECTNESS = 0;
-    
-    public $languages = array(
-        'ara', 'bul', 'deu', 'ell', 'eng',
-        'epo', 'spa', 'fra', 'heb', 'ind',
-        'jpn', 'kor', 'nld', 'por', 'rus',
-        'vie', 'cmn', 'ces', 'fin', 'ita',
-        'tur', 'ukr', 'wuu', 'swe', 'zsm',
-        'nob', 'est', 'kat', 'pol', 'swh',
-        'lat', 'arz', 'bel', 'hun', 'isl',
-        'sqi', 'yue', 'afr', 'fao', 'fry',
-        'uig', 'uzb', 'bre', 'ron', 'non',
-        'srp', 'yid', 'tat', 'pes', 'nan',
-        'eus', 'slk', 'dan', 'hye', 'acm',
-        'san', 'urd', 'hin', 'ben', 'cycl',
-        'cat', 'kaz', 'lvs', 'hrv', 'bos',
-        'orv', 'cha', 'tgl', 'que', 'mon',
-        'lit', 'glg', 'gle', 'ina', 'jbo',
-        'toki', 'ain', 'scn', 'mal', 'nds',
-        'tlh', 'slv', 'tha', 'lzh', 'oss',
-        'roh', 'vol', 'gla', 'ido', 'ast',
-        'ile', 'oci', 'xal', 'ang', 'kur',
-        'dsb', 'hsb', 'ksh', 'cym', 'ewe',
-        'sjn', 'tel', 'nov', 'tpi', 'qya',
-        'mri', 'lld', 'ber', 'xho', 'pnb',
-        'mlg', 'grn', 'lad', 'pms', 'avk',
-        'mar', 'tgk', 'tpw', 'prg', 'npi',
-        'mlt', 'ckt', 'cor', 'aze', 'khm',
-        'lao', 'bod', 'hil', 'arq', 'pcd',
-        'grc',
-        'amh',
-        'awa',
-        'bho',
-        'cbk',
-        'enm',
-        'frm',
-        'hat',
-        'jdt',
-        'kal',
-        'mhr',
-        'nah',
-        'pdc',
-        'sin',
-        'tuk',
-        'wln',
-        'bak',
-        'hau',
-        'ltz',
-        'mgm',
-        'som',
-        'zul',
-        'haw',
-        'kir',
-        'mkd',
-        'mrj',
-        'ppl',
-        'yor',
-        'kin',
-        'shs',
-        'chv',
-        'lkt',
-        'ota',
-        'sna',
-        'mnw',
-        'nog',
-        'sah',
-        'abk',
-        'tet',
-        'tam',
-        'udm',
-        'kum',
-        'crh',
-        'nya',
-        'liv',
-        'nav',
-        'chr',
-        'guj', //@lang
-        null
-    );
 
     public $validate = array(
         'lang' => array(
             'rule' => array()
-            // The rule will be defined in the constructor.
-            // I would have declared a const LANGUAGES array
-            // to use it here, but apparently you can't declare
-            // const arrays in PHP.
+            // The rule will be defined in beforeValidate().
         ),
         'text' => array(
             'rule' => array('minLength', '1')
@@ -169,12 +89,6 @@ class Sentence extends AppModel
             'foreignKey' => 'translation_id',
             'associationForeignKey' => 'sentence_id'
         ),
-        'InverseTranslation' => array(
-            'className' => 'InverseTranslation',
-            'joinTable' => 'sentences_translations',
-            'foreignKey' => 'sentence_id',
-            'associationForeignKey' => 'translation_id'
-        ),
         'SentencesList',
         'Tag' => array(
             'className' => 'Tag',
@@ -187,20 +101,24 @@ class Sentence extends AppModel
 
 
     /**
-     * The constructor is here only to set the rule for languages.
+     * The constructor is here only to conditionally attach Sphinx.
      *
      * @return void
      */
     public function __construct($id = false, $table = null, $ds = null)
     {
         parent::__construct($id, $table, $ds);
-        $this->validate['lang']['rule'] = array('inList', $this->languages);
+        if (Configure::read('Search.enabled')) {
+            $this->Behaviors->attach('Sphinx');
+        }
     }
 
     private function clean($text)
     {
         $text = trim($text);
-        // This line replaces any series of spaces, newlines, tabs, or other 
+        // Strip out any initial byte-order mark that might be present.
+        $text = preg_replace("/^\xEF\xBB\xBF/", '', $text);
+        // Replace any series of spaces, newlines, tabs, or other 
         // ASCII whitespace characters with a single space. 
         $text = preg_replace('/\s+/', ' ', $text);
         // MySQL will truncate to a byte length of 1500, which may split
@@ -214,6 +132,14 @@ class Sentence extends AppModel
 
     public function beforeValidate()
     {
+        // Set this array as late as possible, because languagesInTatoeba()
+        // makes uses of __(), which relies on 'Config.language', which is set
+        // quite late, in AppController::beforeFilter().
+        if (!$this->validate['lang']['rule']) {
+            $this->validate['lang']['rule'] = array('inList',
+                array_keys(LanguagesLib::languagesInTatoeba())
+            );
+        }
         if (isset($this->data['Sentence']['text']))
         {
             $text = $this->data['Sentence']['text'];
@@ -226,7 +152,7 @@ class Sentence extends AppModel
         if (isset($this->data['Sentence']['lang']))
         {
             $lang = $this->data['Sentence']['lang'];
-            $langId = $this->Language->getIdFromlang($lang);
+            $langId = $this->Language->getIdFromLang($lang);
             $this->data['Sentence']['lang_id'] = $langId;
         }
         return true;
@@ -241,6 +167,12 @@ class Sentence extends AppModel
      * @return void
      */
     public function afterSave($created)
+    {
+        $this->logSentenceEdition($created);
+        $this->updateTags($created);
+    }
+
+    private function logSentenceEdition($created)
     {
         if (isset($this->data['Sentence']['text'])) {
             // --- Logs for sentence ---
@@ -262,6 +194,14 @@ class Sentence extends AppModel
             if (!isset($sentence['id']))
                 $sentence['id'] = $this->getLastInsertID();
             $this->Transcription->generateAndSaveAllTranscriptionsFor($sentence);
+        }
+    }
+
+    private function updateTags($created)
+    {
+        if (!$created) {
+            $OKTagId = $this->Tag->getIdFromName($this->Tag->getOKTagName());
+            $this->TagsSentences->removeTagFromSentence($OKTagId, $this->id);
         }
     }
 
@@ -481,48 +421,6 @@ class Sentence extends AppModel
         return $result;
     }
 
-    /**
-     * Get sentences with specified ids as well as their translations.
-     *
-     * @param array  $ids              Ids of the sentences.
-     * @param string $translationsLang Language of the translations.
-     *
-     * @return array
-     */
-    public function getSentencesWithIds($ids, $translationsLang = null)
-    {
-        $translationsConditions = array();
-        if ($translationsLang != null) {
-            $translationsConditions["Translation.lang"] = $translationsLang;
-        }
-
-        $sentences = $this->find(
-            'all',
-            array(
-                "conditions" => array("Sentence.id" => $ids),
-                "contain" => array(
-                    "Favorites_users" => array(
-                        'fields' => array()
-                    ),
-                    "User" => array(
-                        "fields" => array("username")
-                    ),
-                    "Translation" => array(
-                        "fields" => array(
-                            "id",
-                            "lang",
-                            "text",
-                            "hasaudio",
-                            "correctness"
-                        ),
-                        "conditions" => $translationsConditions
-                    )
-                )
-            )
-        );
-
-        return $results;
-    }
 
     /**
      * Delete the sentence with the given id.
@@ -539,20 +437,27 @@ class Sentence extends AppModel
         $this->data = $this->find(
             'first',
             array(
-                'conditions' => array('Sentence.id' => $id),  
+                'conditions' => array('Sentence.id' => $id),
                 'contain' => array ('Translation', 'User')
             )
         );
         
         $this->data['User']['id'] = $userId;
+
+        $isDeleted = false;
         
-        $this->query('DELETE FROM sentences WHERE id='.$id);
-        $this->query('DELETE FROM sentences_translations WHERE sentence_id='.$id);
-        $this->query('DELETE FROM sentences_translations WHERE translation_id='.$id);
+        if ($this->data['Sentence']['hasaudio'] == 'no')
+        {
+            $this->query('DELETE FROM sentences WHERE id='.$id);
+            $this->query('DELETE FROM sentences_translations WHERE sentence_id='.$id);
+            $this->query('DELETE FROM sentences_translations WHERE translation_id='.$id);
+            $isDeleted = true;
+        }
 
         // need to call afterDelete() manually for the logs
         $this->afterDelete();
 
+        return $isDeleted;
     }
 
 
@@ -561,7 +466,7 @@ class Sentence extends AppModel
      *
      * @param int $userId Id of the user we want number of sentences of
      *
-     * @return array TODO should return an int
+     * @return int
      */
     public function numberOfSentencesOwnedBy($userId)
     {
@@ -680,16 +585,19 @@ class Sentence extends AppModel
      * Add translation to sentence with given id. Adding a translation means adding
      * a new sentence, and two links.
      *
-     * @param int    $sentenceId
-     * @param int    $sentenceLang
-     * @param string $translationText
-     * @param string $translationLang
-     * @TODO finish the doc plz
+     * @param int    $sentenceId      Id of the sentence that is translated.
+     * @param int    $sentenceLang    Language of the sentence that is translated.
+     * @param string $translationText Text of the translation.
+     * @param string $translationLang Language of the translation.
      *
      * @return boolean
      */
     public function saveTranslation(
-        $sentenceId, $sentenceLang, $translationText, $translationLang, $translationCorrectness
+        $sentenceId,
+        $sentenceLang,
+        $translationText,
+        $translationLang,
+        $translationCorrectness = 0
     ) {
         $userId = CurrentUser::get('id');
         
@@ -721,14 +629,10 @@ class Sentence extends AppModel
      */
     public function saveNewSentence($text, $lang, $userId, $correctness = 0)
     {
-        if ($lang == "") {
-            $lang = null;
-        }
-
-        //if ($userId == 1314 || $userId == 6070) { return; }
-        $data['Sentence']['id'] = null;
         $data['Sentence']['text'] = trim($text);
-        $data['Sentence']['lang'] = $lang;
+        if (!empty($lang)) {
+            $data['Sentence']['lang'] = $lang;
+        }
         $data['Sentence']['user_id'] = $userId;
         $data['Sentence']['correctness'] = $correctness;
         $sentenceSaved = $this->save($data);
@@ -755,22 +659,18 @@ class Sentence extends AppModel
         $translationLang,
         $userId
     ) {
-        $correctness = $this->User->getLevelOfUser($userId);
-        
         // saving sentence
         $sentenceSaved = $this->saveNewSentence(
             $sentenceText,
             $sentenceLang,
-            $userId,
-            $correctness
+            $userId
         );
         $sentenceId = $this->id;
         // saving translation
         $translationSaved = $this->saveNewSentence(
             $translationText,
             $translationLang,
-            $userId,
-            $correctness
+            $userId
         );
 
         $translationId = $this->id;
@@ -875,29 +775,37 @@ class Sentence extends AppModel
      * Change language of a sentence.
      *
      * @param int $sentenceId Id of the sentence.
-     * @param int $prevLang   Previous language. Used for decrementing.
      * @param int $newLang    New Language.
      *
      * @return string
      */
-    public function changeLanguage($sentenceId, $prevLang, $newLang)
+    public function changeLanguage($sentenceId, $newLang)
     {
-        $ownerId = $this->getOwnerIdOfSentence($sentenceId);
+        $sentence = $this->find('first', array(
+            'conditions' => array('id' => $sentenceId),
+            'recursive' => -1,
+            'fields' => array('lang', 'user_id'),
+        ));
+        if (!$sentence) {
+            return false;
+        }
+        $ownerId = $sentence['Sentence']['user_id'];
+        $prevLang = $sentence['Sentence']['lang'];
         $currentUserId = CurrentUser::get('id');
 
         if ($ownerId == $currentUserId || CurrentUser::isModerator()) {
-            $this->id = $sentenceId;
 
             // Making sure the language is not saved as an empty string but as NULL.
             if ($newLang == "" ) {
                 $newLang = null;
             }
-            $newLangId = $this->Language->getIdFromlang($newLang);
+            $newLangId = $this->Language->getIdFromLang($newLang);
 
             $data['Sentence'] = array(
                 'lang' => $newLang,
                 'lang_id' => $newLangId
             );
+            $this->id = $sentenceId;
             $this->save($data);
 
             $this->Contribution->updateLanguage($sentenceId, $newLang);
@@ -1008,16 +916,41 @@ class Sentence extends AppModel
      */
     public function editCorrectness($sentenceId, $correctness)
     {
-        $canEditCorrectness = CurrentUser::isAdmin(); 
-        // TODO For the beginning we'll restrict this to admins.
-        // Later we'll want CurrentUser::isModerator();
-        
-        if ($canEditCorrectness) {
-            $this->id = $sentenceId;
-            return $this->saveField('correctness', $correctness);
+        $this->id = $sentenceId;
+        return $this->saveField('correctness', $correctness);
+    }
+
+    public function getSentencesLang($sentencesIds, $langId = false) {
+        $field = $langId ? 'lang_id' : 'lang';
+        $result = $this->find('all', array(
+            'fields' => array($field, 'id'),
+            'conditions' => array('Sentence.id' => $sentencesIds),
+            'recursive' => -1
+        ));
+        return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.'.$field);
+    }
+
+    public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
+        $sentenceId = $this->id;
+        $values[$sentenceId] = array();
+        if (array_key_exists('user_id', $this->data['Sentence'])) {
+            $attributes[] = 'user_id';
+            $sentenceOwner = $this->data['Sentence']['user_id'];
+            $values[$sentenceId][] = $sentenceOwner;
         }
-        
-        return false;
+        if (array_key_exists('correctness', $this->data['Sentence'])) {
+            $attributes[] = 'ucorrectness';
+            $sentenceUCorrectness = $this->data['Sentence']['correctness'] + 128;
+            $values[$sentenceId][] = $sentenceUCorrectness;
+        }
+        if (count($values[$sentenceId]) == 0)
+            unset($values[$sentenceId]);
+    }
+
+    public function editAudio($sentenceId, $hasaudio)
+    {
+        $this->id = $sentenceId;
+        return $this->saveField('hasaudio', $hasaudio);
     }
 }
 ?>

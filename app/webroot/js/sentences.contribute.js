@@ -18,7 +18,7 @@
 
 
 $(document).ready(function() {
-    $("#SentenceText").keyup(function(e){
+    $("#SentenceText").keydown(function(e){
         if (e.keyCode == 13) {
             save();
         }

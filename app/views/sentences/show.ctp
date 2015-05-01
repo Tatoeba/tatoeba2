@@ -31,28 +31,32 @@ $javascript->link('sentences.logs.js', false);
 if (isset($sentence)) {
     $sentenceId = $sentence['Sentence']['id'];
     $sentenceLang = $sentence['Sentence']['lang'];
-    $sentenceText = Sanitize::html($sentence['Sentence']['text']);
+    $sentenceText = $sentence['Sentence']['text'];
     $sentenceCorrectness = $sentence['Sentence']['correctness'];
+    $sentenceHasAudio = $sentence['Sentence']['hasaudio'];
     
-    $languageName = $languages->codeToName($sentenceLang);
-    $title = sprintf(__('%s example sentence: ', true), $languageName);
-    $this->set('title_for_layout', $title . $sentenceText);
+    $languageName = $languages->codeToNameToFormat($sentenceLang);
+    $title = format(__('{language} example sentence: ', true),
+                    array('language' => $languageName));
+    $this->set('title_for_layout', $pages->formatTitle($title . $sentenceText));
 
     $html->meta(
         'description', 
-        sprintf(
+        format(
             __(
                 "Browse translated example sentences. ".
-                "This page shows translations and information about the sentence: %s"
+                "This page shows translations and information about the sentence: {sentenceText}"
                 , true
             ),
-            $sentenceText
+            compact('sentenceText')
         ), 
         array('inline' => false)
     );
 } else {
     // Case where the sentence has been deleted
-    $this->set('title_for_layout', __('Sentence does not exist: ', true).$this->params['pass'][0]);
+    $this->set('title_for_layout', $pages->formatTitle(
+        __('Sentence does not exist: ', true) . $this->params['pass'][0]
+    ));
 }
 
 
@@ -65,15 +69,21 @@ $navigation->displaySentenceNavigation(
 ?>
 
 <div id="annexe_content">
-    <?php $attentionPlease->tatoebaNeedsYou(); ?>
-    
     <?php 
     if (isset($sentence)){
         $tags->displayTagsModule($tagsArray, $sentenceId);
 
-        // TODO For the beginning we'll restrict this to admins.
-        // Later we'll want CurrentUser::isModerator();
         if (CurrentUser::isAdmin()) {
+            echo $this->element(
+                'sentences/audio',
+                array(
+                    'sentenceId' => $sentenceId,
+                    'hasaudio' => $sentenceHasAudio
+                )
+            ); 
+
+            // TODO For the beginning we'll restrict this to admins.
+            // Later we'll want CurrentUser::isModerator();
             echo $this->element(
                 'sentences/correctness',
                 array(
@@ -82,8 +92,6 @@ $navigation->displaySentenceNavigation(
                 )
             ); 
         }
-
-        echo $this->element('sentences/correctness_info');
     }
     ?>
     
@@ -107,8 +115,8 @@ $navigation->displaySentenceNavigation(
             echo '<em>'. __('There is no log for this sentence', true) .'</em>';
         }
         ?>
-    </div>  
-    
+    </div>
+
     <div class="module">
         <h2><?php __('Report mistakes'); ?> </h2>
         <p>
@@ -136,7 +144,7 @@ $navigation->displaySentenceNavigation(
         ?>
             <h2>
             <?php 
-            echo sprintf(__('Sentence #%s', true), $sentenceId); 
+            echo format(__('Sentence #{number}', true), array('number' => $sentenceId));
             ?>
             </h2>            
             
@@ -152,16 +160,17 @@ $navigation->displaySentenceNavigation(
         } else {
             
             echo '<h2>' .
-                sprintf(__('Sentence #%s', true), $this->params['pass'][0]) .
+                format(__('Sentence #{number}', true),
+                       array('number' => $this->params['pass'][0])) .
                 '</h2>';
 
             echo '<div class="error">';
-                echo sprintf(
+                echo format(
                     __(
-                        'There is no sentence with id %s', 
+                        'There is no sentence with id {number}',
                         true
                     ), 
-                    $this->params['pass'][0]
+                    array('number' => $this->params['pass'][0])
                 );
             echo '</div>';
         }
@@ -169,7 +178,7 @@ $navigation->displaySentenceNavigation(
     </div>
 
     <?php 
-    if ($canComment) { 
+    if ($canComment || !empty($sentenceComments)) { 
         echo '<div class="module">';
 
         echo '<h2>';
@@ -201,9 +210,8 @@ $navigation->displaySentenceNavigation(
         }
 
         if ($session->read('Auth.User.id')) {
-            $sentenceText = __('Sentence deleted', true);
-            if(isset($sentence['Sentence'])) {
-                $sentenceText = $sentence['Sentence']['text'];
+            if(!isset($sentence['Sentence'])) {
+                $sentenceText = __('Sentence deleted', true);
             }
             $comments->displayCommentForm(
                 $sentenceId, 
@@ -211,10 +219,10 @@ $navigation->displaySentenceNavigation(
             );
         } else {
             echo '<p>';
-            echo sprintf(
+            echo format(
                 __(
                     'You need to be logged in to add a comment. If you are '.
-                    'not registered, you can <a href="%s">register here</a>.', 
+                    'not registered, you can <a href="{}">register here</a>.', 
                     true
                 ),
                 $html->url(array("controller"=>"users", "action"=>"register"))

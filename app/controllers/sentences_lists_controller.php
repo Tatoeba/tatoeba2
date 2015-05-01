@@ -44,8 +44,7 @@ class SentencesListsController extends AppController
         'Html',
         'Lists',
         'Menu',
-        'Pagination',
-        'AttentionPlease'
+        'Pagination'
     );
     public $components = array(
         'LanguageDetection', 
@@ -145,7 +144,7 @@ class SentencesListsController extends AppController
         }
 
         $userId = $this->Auth->user('id');
-        if (!$this->SentencesList->belongsToCurrentUser($id, $userId)) {
+        if (!$this->SentencesList->isEditableByCurrentUser($id, $userId)) {
             $this->redirect(array("action"=>"show", $id));
         }
 
@@ -172,12 +171,29 @@ class SentencesListsController extends AppController
         else
         {
             $ret['can_download'] = false;
-            $ret['message'] = sprintf(__(
-                          'The download feature has been disabled for this list because '.
-                          'it contains %d sentences. Only lists containing %d or fewer '.
-                          'sentences can be downloaded. If you can edit the list, you may '.
-                          'want to split it into multiple lists.', true), 
-                           $count, self::MAX_COUNT_FOR_DOWNLOAD);
+            
+            $firstSentence = __n('The download feature has been disabled for '.
+                                 'this list because it contains a sentence.',
+                                 'The download feature has been disabled for '.
+                                 'this list because it contains {n}&nbsp;sentences.',
+                                 $count, true);
+            
+            $secondSentence = __n('Only lists containing one sentence or fewer can be '.
+                                  'downloaded. If you can edit the list, you may want '.
+                                  'to split it into multiple lists.',
+                                  'Only lists containing {max} or fewer sentences can be '.
+                                  'downloaded. If you can edit the list, you may want '.
+                                  'to split it into multiple lists.',
+                                  self::MAX_COUNT_FOR_DOWNLOAD, true);
+            $firstSentence = format($firstSentence, array('n' => $count));
+            $secondSentence = format($secondSentence, array('max' => self::MAX_COUNT_FOR_DOWNLOAD));
+            $ret['message'] = format(
+            /* @translators: this string is used to concatenate two sentences.
+               You typically want to change this to {firstSentence}{secondSentence}
+               if your language don't use space as a word separator. */
+                __('{firstSentence} {secondSentence}', true),
+                compact('firstSentence', 'secondSentence')
+            );
         } 
         return $ret;
     }
@@ -222,8 +238,11 @@ class SentencesListsController extends AppController
     {
         $listName = $this->data['SentencesList']['name'];
         if (!empty($this->data) && trim($listName) != '') {
-            $this->data['SentencesList']['user_id'] = $this->Auth->user('id');
-            $this->SentencesList->save($this->data);
+            $newList = array(
+                'name'    => $listName,
+                'user_id' => $this->Auth->user('id'),
+            );
+            $this->SentencesList->save($newList);
             $this->redirect(array("action"=>"edit", $this->SentencesList->id));
         } else {
             $this->redirect(array("action"=>"index"));
@@ -245,7 +264,7 @@ class SentencesListsController extends AppController
 
         $listId = Sanitize::paranoid($listId);
 
-        if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
+        if ($this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
 
             $this->SentencesList->id = $listId;
             if ($this->SentencesList->saveField('name', $listName)) {
@@ -273,7 +292,7 @@ class SentencesListsController extends AppController
 
         $userId = $this->Auth->user('id');
 
-        if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
+        if ($this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
             $this->SentencesList->delete($listId);
             // Retrieve the 'most_recent_list' cookie, and if it matches
             // $listId, erase it. Do this even if the 'remember_list' has
@@ -297,17 +316,13 @@ class SentencesListsController extends AppController
      */
     public function add_sentence_to_list($sentenceId, $listId)
     {
-        Configure::write('debug', 0); // Need to have debug at 0 if we want the
-                                      // list to be removed from the select
-                                      // right after the sentence was added.
-
         $sentenceId = Sanitize::paranoid($sentenceId);
         $listId = Sanitize::paranoid($listId);
         $userId = $this->Auth->user('id');
 
         $this->set('result', 'error');
 
-        if (!$this->SentencesList->belongsToCurrentUser($listId, $userId)) {
+        if (!$this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
             return;
         }
 
@@ -333,7 +348,7 @@ class SentencesListsController extends AppController
 
         $userId = $this->Auth->user('id');
 
-        if ($this->SentencesList->belongsToCurrentUser($listId, $userId)) {
+        if ($this->SentencesList->isEditableByCurrentUser($listId, $userId)) {
             $isRemoved = $this->SentencesList->removeSentenceFromList(
                 $sentenceId, $listId
             );

@@ -33,7 +33,8 @@ if (isset($this->params['lang'])) {
 <div id="footer">
 <ul>
     <li>
-        <?php echo __('Online visitor(s): ') . $onlineVisitors; ?>
+        <?php echo format(__n('One visitor online', '{n}&nbsp;visitors online', $onlineVisitors, true),
+                          array('n' => $onlineVisitors)); ?>
     </li>
     <li>
         <?php
@@ -73,7 +74,7 @@ if (isset($this->params['lang'])) {
         echo $html->link(
             __('Blog', true),
             'http://blog.tatoeba.org/',
-            array('onclick' => "window.open(this.href,'_blank');return false;")
+            array('target' => '_blank')
         );
         ?>
     </li>
@@ -82,7 +83,7 @@ if (isset($this->params['lang'])) {
         echo $html->link(
             __('Twitter', true),
             'http://twitter.com/tatoeba_org',
-            array('onclick' => "window.open(this.href,'_blank');return false;")
+            array('target' => '_blank')
         );
         ?>
     </li>
@@ -91,7 +92,16 @@ if (isset($this->params['lang'])) {
         echo $html->link(
             __('Facebook', true),
             'http://www.facebook.com/group.php?gid=129340017083187',
-            array('onclick' => "window.open(this.href,'_blank');return false;")
+            array('target' => '_blank')
+        );
+        ?>
+    </li>
+    <li>
+        <?php
+        echo $html->link(
+            __('GitHub', true),
+            'https://github.com/Tatoeba/tatoeba2',
+            array('target' => '_blank')
         );
         ?>
     </li>

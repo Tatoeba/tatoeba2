@@ -216,7 +216,7 @@
  * Set to `true` to apply timestamps when debug > 0. Set to 'force' to always enable
  * timestamping regardless of debug value.
  */
-	//Configure::write('Asset.timestamp', true);
+	Configure::write('Asset.timestamp', 'force');
 /**
  * Compress CSS output by removing comments, whitespace, repeating tags, etc.
  * This requires a/var/cache directory to be writable by the web server for caching.
@@ -233,7 +233,7 @@
  * To use, prefix your JavaScript link URLs with '/cjs/' instead of '/js/' or use JavaScriptHelper::link().
  */
 	//Configure::write('Asset.filter.js', 'custom_javascript_output_filter.php');
-
+    
 /**
  * The classname and database used in CakePHP's
  * access control lists.
@@ -348,6 +348,11 @@
     Configure::write('AutoTranscriptions.enabled', true);
     
 /**
+ * Stylesheet for development website
+ */
+    Configure::write('Tatoeba.devStylesheet', false);
+
+/**
  * Blocked IP addresses. Should be an array of strings containing the
  * IP's you want to block. For instance:
  *
@@ -376,31 +381,64 @@
  *
  * Each item in the UI.languages is an array of 3 items:
  *   [0] The URL language code. It should match a 'locale' folder.
- *   [1] Mapping between the URL language code and the ISO-1 language code.
+ *   [1] Optionnal region or script, as explained in
+ *       http://www.w3.org/International/articles/language-tags/
+ *       Most of the case, you can leave this to null.
  *   [2] This is the name of the language. The name must be in the
  *       language itself, so that people who speak that language can
  *       recognize it.
  */
     Configure::write('UI.languages', array(
-        array('ara', 'ar', 'العربية'),
-        array('chi', 'zh', '中文'), 
-        array('deu', 'de', 'Deutsch'), 
-        array('eng', 'en', 'English'), 
-        array('epo', 'eo', 'Esperanto'),
-        array('eus', 'eu', 'Euskara'),
-        array('fin', 'fi', 'Suomi'),
-        array('fre', 'fr', 'Français'), 
-        array('gre', 'el', 'Ελληνικά'),
-        array('hun', 'hu', 'Magyar'),
-        array('ita', 'it', 'Italiano'), 
-        array('jpn', 'ja', '日本語'), 
-        array('mar', 'mr', 'मराठी'),
+        array('ara', null, 'العربية'),
+        array('aze', null, 'Azərbaycanca'),
+        array('bel', null, 'Беларуская'),
+        array('ben', null, 'বাংলা'),
+        array('cat', null, 'Català'),
+        array('ces', null, 'Čeština'),
+        array('cmn', 'Hans', '中文', array('chi')),
+        array('cym', null, 'Cymraeg'),
+        array('dan', null, 'Dansk'),
+        array('deu', null, 'Deutsch'),
+        array('eng', null, 'English'),
+        array('epo', null, 'Esperanto'),
+        array('est', null, 'Eesti'),
+        array('eus', null, 'Euskara'),
+        array('fin', null, 'Suomi'),
+        array('fra', null, 'Français', array('fre')),
+        array('glg', null, 'Galego'),
+        array('ell', null, 'Ελληνικά', array('gre')),
+        array('hin', null, 'हिन्दी'),
+        array('hun', null, 'Magyar'),
+        array('ina', null, 'Interlingua'),
+        array('ind', null, 'Bahasa Indonesia'),
+        array('ita', null, 'Italiano'),
+        array('jbo', null, 'Lojban'),
+        array('jpn', null, '日本語'),
+        array('kat', null, 'ქართული'),
+        array('kor', null, '한국어'),
+        array('lat', null, 'Latina'),
+        array('lit', null, 'Lietuvių'),
+        array('mar', null, 'मराठी'),
+        array('nld', null, 'Nederlands'),
         array('nds', null, 'Plattdüütsch'),
-        array('pol', 'pl', 'Polski'),
-        array('pt_BR', 'pt-BR', 'Português (BR)'),
-        array('rus', 'ru', 'русский'),
-        array('spa', 'es', 'Español'), 
-        array('tgl', 'tl', 'Tagalog'),
-        array('tur', 'tr', 'Türkçe'),
+        array('oci', null, 'Occitan'),
+        array('pol', null, 'Polski'),
+        array('por', 'BR', 'Português (Brasil)', array('pt_BR')),
+        array('ron', null, 'Română'),
+        array('rus', null, 'Русский'),
+        array('spa', null, 'Español'),
+        array('swe', null, 'Svenska'),
+        array('tgl', null, 'Tagalog'),
+        array('tur', null, 'Türkçe'),
+        array('ukr', null, 'Українська'),
+        array('uzb', null, 'Oʻzbekcha'),
+        array('vie', null, 'Tiếng Việt'),
+        array('zsm', null, 'Bahasa Melayu'),
     ));
+
+/**
+ * Ids of users (bots) whose comments are hidden from homepage and index page
+ * to prevent spam.
+ */
+    Configure::write('Bots.userIds', array());
 ?>

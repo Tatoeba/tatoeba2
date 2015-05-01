@@ -40,45 +40,9 @@ class SentenceButtonsHelper extends AppHelper
         'Html',
         'Javascript',
         'Languages',
-        'Form'
+        'Form',
+        'Images'
     );
-
-    /**
-     * Display show button for translations. It's the button with the arrow.
-     *
-     * @param int    $translationId Id of the translation.
-     * @param string $type          'direct' or 'indirect'.
-     *
-     * @return void
-     */
-    public function translationShowButton($translationId, $type)
-    {
-        if (!in_array($type, array('direct', 'indirect'))) {
-            $type = 'direct';
-        }
-        $image = $this->Html->image(
-            IMG_PATH . $type.'_translation.png',
-            array(
-                "alt" => __('Show', true),
-                "title" => __('Show', true),
-                "width" => 18,
-                "height" => 16
-            )
-        );
-        echo $this->Html->link(
-            $image,
-            array(
-                "controller" => "sentences",
-                "action" => "show",
-                $translationId
-            ),
-            array(
-                "escape" => false,
-                "class" => "show button",
-                "title" => __('Show', true),
-            )
-        );
-    }
 
     /**
      * Display info button which links to the sentence page
@@ -87,22 +51,26 @@ class SentenceButtonsHelper extends AppHelper
      *
      * @return void
      */
-    public function displayInfoButton($sentenceId)
+    public function displayNavigationButton($sentenceId, $type)
     {
+        if ($type == 'mainSentence') {
+            $image = $this->Images->svgIcon('sentence-number');
+        } else {
+            $image = $this->Images->svgIcon('translation');
+        }
+
         echo $this->Html->link(
-            $this->Html->image(
-                IMG_PATH . 'info.png',
-                array(
-                    "width" => 16,
-                    "height" => 16
-                )
+            $image,
+            array(
+                "controller" => "sentences",
+                "action" => "show",
+                $sentenceId
             ),
             array(
-                "controller"=>"sentences"
-                , "action"=>"show"
-                , $sentenceId
-            ),
-            array("escape"=>false, "class"=>"infoIcon")
+                "escape" => false,
+                "class" => "navigationIcon " . $type,
+                "title" => __('Show', true),
+            )
         );
     }
 
@@ -111,26 +79,18 @@ class SentenceButtonsHelper extends AppHelper
      *
      * @param int $sentenceId    Id of the main sentence.
      * @param int $translationId Id of the translation.
+     * @param int $langFilter    The language sentences should be filtered in when redisplaying the list.
      *
      * @return void
      */
-    public function unlinkButton($sentenceId, $translationId)
+    public function unlinkButton($sentenceId, $translationId, $langFilter = 'und')
     {
         echo $this->Javascript->link('links.add_and_delete.js', false);
 
-        $elementId = 'unlink_'.$sentenceId.'_'.$translationId;
-        $data = array(
-            'sentenceId' => $sentenceId,
-            'translationId' => $translationId
-        );
-        $this->_bindData($elementId, $data);
+        $elementId = 'link_'.$sentenceId.'_'.$translationId;
 
-        $confirmationMessage = __(
-            'Do you want to unlink this translation from the main sentence?',
-            true
-        );
-        $image = $this->Html->image(
-            IMG_PATH . 'unlink.png',
+        $image = $this->Images->svgIcon(
+            'unlink',
             array(
                 "alt"=>__('Unlink', true),
                 "title" => __('Unlink this translation.', true),
@@ -138,6 +98,7 @@ class SentenceButtonsHelper extends AppHelper
                 "height" => 16
             )
         );
+        $langFilter = h(json_encode($langFilter));
         echo $this->Html->link(
             $image,
             array(
@@ -148,9 +109,9 @@ class SentenceButtonsHelper extends AppHelper
             ),
             array(
                 "escape" => false,
-                "class" => "delete link button",
+                "class" => "link button",
                 "id" => $elementId,
-                "onclick" => "return false"
+                "onclick" => "translationLink('delete', $sentenceId, $translationId, $langFilter); return false"
             )
         );
     }
@@ -161,22 +122,18 @@ class SentenceButtonsHelper extends AppHelper
      *
      * @param int $sentenceId    Id of the main sentence.
      * @param int $translationId Id of the translation.
+     * @param int $langFilter    The language sentences should be filtered in when redisplaying the list.
      *
      * @return void
      */
-    public function linkButton($sentenceId, $translationId)
+    public function linkButton($sentenceId, $translationId, $langFilter = 'und')
     {
         echo $this->Javascript->link('links.add_and_delete.js', false);
 
         $elementId = 'link_'.$sentenceId.'_'.$translationId;
-        $data = array(
-            'sentenceId' => $sentenceId,
-            'translationId' => $translationId
-        );
-        $this->_bindData($elementId, $data);
 
-        $image = $this->Html->image(
-            IMG_PATH . 'link.png',
+        $image = $this->Images->svgIcon(
+            'link',
             array(
                 "alt"=>__('Link', true),
                 "title" => __('Make into direct translation.', true),
@@ -184,6 +141,7 @@ class SentenceButtonsHelper extends AppHelper
                 "height" => 16
             )
         );
+        $langFilter = h(json_encode($langFilter));
         echo $this->Html->link(
             $image,
             array(
@@ -194,9 +152,9 @@ class SentenceButtonsHelper extends AppHelper
             ),
             array(
                 "escape" => false,
-                "class" => "add link button",
+                "class" => "link button",
                 "id" => $elementId,
-                "onclick" => "return false"
+                "onclick" => "translationLink('add', $sentenceId, $translationId, $langFilter); return false"
             )
         );
     }
@@ -215,15 +173,8 @@ class SentenceButtonsHelper extends AppHelper
      */
     public function audioButton($sentenceId, $sentenceLang, $sentenceAudio)
     {
-
         switch ($sentenceAudio) {
-
-
-            // user-submitted audio
-            case 'from_users' :
-                //TODO add a specific image / css / explanation text
-                break;
-            // from shtooka or tatoeba audio (ie really good quality audio):
+            // sentence has audio
             case 'shtooka' :
                 $onClick = 'return false';
                 $path = Configure::read('Path.audio')
@@ -233,21 +184,15 @@ class SentenceButtonsHelper extends AppHelper
                 echo $this->Javascript->link('sentences.play_audio.js', false);
                 break;
 
-            // if the sentence has no audio
+            // sentence has no audio
             case 'no' :
             default:
                 $onClick = 'return false';
                 $css = 'audioUnavailable';
-                $path = array(
-                    'controller' => 'pages',
-                    'action' => 'faq',
-                    '#' => 'submit-audio'
-                );
-                $title = __('Audio unavailable. Click to learn more.', true);
+                $path = 'http://en.wiki.tatoeba.org/articles/show/contribute-audio';
+                $title = __('No audio for this sentence. Click to learn how to contribute.', true);
                 $onClick = 'window.open(this.href); return false;';
                 break;
-
-
         };
 
         echo $this->Html->Link(
@@ -258,56 +203,6 @@ class SentenceButtonsHelper extends AppHelper
                 'onclick' => $onClick
             )
         );
-    }
-
-    /**
-     * Check if a file exists on remove server. Inspired from this:
-     * http://www.php.net/manual/en/function.fsockopen.php#39948
-     *
-     * TODO Move this to a more general model (this is about data retrieving)
-     * someday.
-     *
-     * @param string $url URL of the file.
-     *
-     * @return void
-     */
-    private function _validateUrl($url)
-    {
-        return false;
-
-        $urlParts = @parse_url($url);
-
-        if (empty($urlParts["host"])) {
-            return false;
-        }
-
-        if (!empty($urlParts["path"])) {
-            $filePath = $urlParts["path"];
-        } else {
-            $filePath = "/";
-        }
-
-        if (!empty( $url_parts["query"])) {
-            $filePath .= "?" . $url_parts["query"];
-        }
-
-        $host = $urlParts["host"];
-        $port = "80";
-
-        $socket = @fsockopen($host, $port, $errno, $errstr, 30);
-        if (!$socket) {
-            return false;
-        } else {
-            fwrite($socket, "HEAD ".$filePath." HTTP/1.0\r\nHost: $host\r\n\r\n");
-            $httpResponse = fgets($socket, 22);
-
-            if (preg_match("/200 OK/", $httpResponse)) {
-                fclose($socket);
-                return true;
-            } else {
-                return false;
-            }
-        }
     }
 
 
@@ -328,7 +223,11 @@ class SentenceButtonsHelper extends AppHelper
             $class = 'editableFlag';
 
             // language select
-            $langArray = $this->Languages->otherLanguagesArray();
+            $langArray = $this->Languages->profileLanguagesArray(false, true, false);
+            $preselectedLang = $lang;
+            if (!array_key_exists($lang, $langArray)) {
+                $preselectedLang = null;
+            }
             ?>
 
             <span id="<?php echo 'selectLangContainer_'.$id; ?>" class="selectLang">
@@ -336,10 +235,9 @@ class SentenceButtonsHelper extends AppHelper
             echo $this->Form->select(
                 'selectLang_'.$id,
                 $langArray,
-                $lang,
+                $preselectedLang,
                 array(
-                    "class"=>"language-selector", 
-                    "title"=> $this->Languages->codeToName($lang),
+                    "class"=>"language-selector",
                     "empty" => false
                 ),
                 false
@@ -367,28 +265,6 @@ class SentenceButtonsHelper extends AppHelper
             )
         );
 
-    }
-
-
-    /**
-     * Binds data to an element with jQuery's .data().
-     *
-     * @param string $elementId Id of the HTML element.
-     * @param array  $data      Data to bind to the element.
-     */
-    private function _bindData($elementId, $data)
-    {
-        ?>
-        <script type='text/javascript'>
-        $(document).ready(function() {
-            <?php
-            foreach($data as $key => $value) {
-                echo "$('#$elementId').data('$key', $value);\n";
-            }
-            ?>
-        });
-        </script>
-        <?php
     }
 }
 ?>

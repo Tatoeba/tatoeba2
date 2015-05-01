@@ -1,5 +1,5 @@
 <?php
-/* Aro Fixture generated on: 2014-10-20 07:39:28 : 1413790768 */
+/* Aro Fixture generated on: 2015-02-04 02:32:22 : 1423017142 */
 class AroFixture extends CakeTestFixture {
 	var $name = 'Aro';
 
@@ -50,7 +50,7 @@ class AroFixture extends CakeTestFixture {
 			'foreign_key' => '4',
 			'alias' => 'group_user',
 			'lft' => '13',
-			'rght' => '16'
+			'rght' => '18'
 		),
 		array(
 			'id' => '5',
@@ -58,8 +58,8 @@ class AroFixture extends CakeTestFixture {
 			'model' => 'Group',
 			'foreign_key' => '5',
 			'alias' => 'group_inactive',
-			'lft' => '17',
-			'rght' => '20'
+			'lft' => '19',
+			'rght' => '22'
 		),
 		array(
 			'id' => '6',
@@ -67,8 +67,8 @@ class AroFixture extends CakeTestFixture {
 			'model' => 'Group',
 			'foreign_key' => '6',
 			'alias' => 'group_spammer',
-			'lft' => '21',
-			'rght' => '24'
+			'lft' => '23',
+			'rght' => '26'
 		),
 		array(
 			'id' => '7',
@@ -112,8 +112,8 @@ class AroFixture extends CakeTestFixture {
 			'model' => 'User',
 			'foreign_key' => '5',
 			'alias' => 'user_inactive',
-			'lft' => '18',
-			'rght' => '19'
+			'lft' => '20',
+			'rght' => '21'
 		),
 		array(
 			'id' => '12',
@@ -121,8 +121,17 @@ class AroFixture extends CakeTestFixture {
 			'model' => 'User',
 			'foreign_key' => '6',
 			'alias' => 'user_spammer',
-			'lft' => '22',
-			'rght' => '23'
+			'lft' => '24',
+			'rght' => '25'
+		),
+		array(
+			'id' => '13',
+			'parent_id' => '4',
+			'model' => 'User',
+			'foreign_key' => '7',
+			'alias' => NULL,
+			'lft' => '16',
+			'rght' => '17'
 		),
 	);
 }

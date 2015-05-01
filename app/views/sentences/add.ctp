@@ -25,16 +25,12 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Add sentences', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Add sentences', true)));
 
 echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
 ?>
 
 <div id="annexe_content">
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-    
     <div class="module">
     <h2><?php __('Important'); ?></h2>
     <ol>
@@ -48,11 +44,11 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
     </li>
     <li>
     <?php
-    echo sprintf(
+    echo format(
         __(
             'Do not copy-paste sentences from elsewhere, '.
             'except if the content is CC-BY compatible. '.
-            '<a href="%s">Learn more...</a>', true
+            '<a href="{}">Learn more...</a>', true
         ),
         'http://blog.tatoeba.org/2011/01/legally-valid-content.html'
     );
@@ -74,10 +70,10 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
         </li>
         <li>
         <?php
-        echo sprintf(
+        echo format(
             __(
                 'Or create sentences with '.
-                '<a href="%s">words not yet in Tatoeba</a>.', true
+                '<a href="{}">words not yet in Tatoeba</a>.', true
             ), 'http://a4esl.com/temporary/tatoeba/notyet/'
         );
         ?>
@@ -93,38 +89,52 @@ echo $javascript->link(JS_PATH . 'sentences.contribute.js', true);
         <div class="sentences_set">
             <div class="new">
             <?php
-            echo $form->input(
-                'text', 
-                array(
-                    "label" => __('Sentence: ', true),
-                    "id" => "SentenceText"
-                )
-            );
-            $langArray = $languages->translationsArray();
-            $preSelectedLang = $session->read('contribute_lang');
+            $langArray = $this->Languages->profileLanguagesArray(true, false, false);
+            $currentUserLanguages = CurrentUser::getProfileLanguages();
+            if (empty($currentUserLanguages)) {
 
-            if (empty($preSelectedLang)) {
-                $preSelectedLang = 'auto';
+                $this->Languages->displayAddLanguageMessage(true);
+
+            } else {
+                echo $form->input(
+                    'text',
+                    array(
+                        "label" => __('Sentence: ', true),
+                        "id" => "SentenceText",
+                        "lang" => "",
+                        "dir" => "auto",
+                    )
+                );
+
+                $preSelectedLang = $session->read('contribute_lang');
+
+                if (!array_key_exists($preSelectedLang, $langArray)) {
+                    $preSelectedLang = key($langArray);
+                }
+                ?>
+
+                <div class="languageSelection">
+                    <?php
+                    echo $form->select(
+                        'contributionLang',
+                        $langArray,
+                        $preSelectedLang,
+                        array(
+                            "class" => "language-selector",
+                            "empty" => false
+                        ),
+                        false
+                    );
+                    ?>
+                </div>
+
+                <?php
+                echo $form->button(
+                    __('OK', true),
+                    array("id" => "submitNewSentence")
+                );
+
             }
-            ?>
-            
-            <div class="languageSelection">
-            <?php
-            echo $form->select(
-                'contributionLang',
-                $langArray,
-                $preSelectedLang,
-                array(
-                    "class" => "language-selector",
-                    "empty" => false
-                ),
-                false
-            );
-            ?>
-            </div>
-            
-            <?php
-            echo $form->button(__('OK', true), array("id" => "submitNewSentence"));
             ?>
             </div>
         </div>

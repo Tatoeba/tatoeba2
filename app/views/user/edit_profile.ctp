@@ -24,6 +24,10 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+$this->set('title_for_layout', $pages->formatTitle(__('Edit profile', true)));
+$countries = $this->Countries->getAllCountries();
+$this->Languages->localizedAsort($countries);
 ?>
 <div id="annexe_content">
     <?php
@@ -81,7 +85,7 @@
         'empty' => true,
         'label' => __('Birthday', true)
     );
-    $selectedCountryId = $this->data['Country']['id'];
+    $selectedCountryId = $this->data['User']['country_id'];
 
     echo $form->create(
         false, 
@@ -92,7 +96,11 @@
     
     echo $form->input(
         'User.name',
-        array('label' => __('Name', true))
+        array(
+            'label' => __p('user', 'Name', true),
+            'lang' => '',
+            'dir' => 'auto',
+        )
     );
     
     echo '<div class="input">';
@@ -113,7 +121,11 @@
     
     echo $form->input(
         'User.homepage',
-        array('label' => __('Homepage', true))
+        array(
+            'label' => __('Homepage', true),
+            'lang' => '',
+            'dir' => 'ltr',
+        )
     );
     echo $form->end(__('Save personal information', true));
     ?>
@@ -129,7 +141,13 @@
             'action' => 'save_description'
         )
     );
-    echo $form->textarea('User.description');
+    echo $form->textarea(
+        'User.description',
+        array(
+            'lang' => '',
+            'dir' => 'auto',
+        )
+    );
     echo $form->end(__('Save description', true)); 
     ?>
     </div>

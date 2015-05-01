@@ -36,7 +36,13 @@
  */
 class Contribution extends AppModel
 {
-    public $actsAs = array("Containable");
+    public $actsAs = array(
+        "Containable",
+        "Autotranscriptable" => array(
+            "transcription" => false,
+            "lang" => "sentence_lang",
+        )
+    );
     public $belongsTo = array('Sentence', 'User');
 
     /**
@@ -105,7 +111,7 @@ class Contribution extends AppModel
      *
      * @return array
      */
-    public function getLastContributions($limit,$lang = 'und')
+    public function getLastContributions($limit, $lang = 'und')
     {
         // we sanitize, really important here as we forge our own query
         $limit = Sanitize::paranoid($limit);
@@ -113,9 +119,18 @@ class Contribution extends AppModel
 
         if (strlen($lang) != 3 || !is_numeric($limit)) {
             return array();
-        }        
+        }
         
         $conditions = array('type' => 'sentence');
+
+        if ($lang == 'und'|| empty($lang)) {
+            $this->setSource('last_contributions');
+        } else {
+            $conditions['sentence_lang'] = $lang;
+        }
+
+        $conditions = $this->getQueryConditionsWithExcludedUsers($conditions);
+
         $contain = array(
             'User' => array(
                 'fields' => array(
@@ -124,11 +139,6 @@ class Contribution extends AppModel
                 )
             )
         );
-        if ($lang == 'und'|| empty($lang)) {
-            $this->setSource('last_contributions');
-        } else {
-            $conditions['sentence_lang'] = $lang;
-        }
 
         $results = $this->find(
             'all', 
@@ -150,34 +160,6 @@ class Contribution extends AppModel
         return $results;
     }
 
-    /**
-     * Returns number of contributions for each member, ordered from the highest
-     * contributor to the lowest.
-     *
-     * @return array
-     */
-    public function getUsersStatistics()
-    {
-        $query = array(
-            'fields' => array(
-                'Contribution.user_id', 'User.id', 'User.username'
-                , 'User.since', 'User.group_id', 'COUNT(*) as total'
-            ),
-            'conditions' => array(
-                'User.id !=' => null
-                , 'Contribution.type' => 'sentence'
-            ),
-            'group' => array('Contribution.user_id'),
-            'order' => 'total DESC',
-            'contain' => array(
-                'User' => array(
-                    'fields' => array('username','id')
-                )
-            )
-        );
-        return array();//$this->find('all', $query);
-    }
-
 
     /**
      * Returns number of contributions for each day. We only count the number of new
@@ -190,7 +172,6 @@ class Contribution extends AppModel
         if ($year == null || $month == null) {
 
             $startDate = date('Y-m');
-            $numDays = date('t');
 
         } else {
 
@@ -319,5 +300,27 @@ class Contribution extends AppModel
         $this->save($data);
     }
 
+
+    /**
+     *
+     * 
+     */
+    public function getQueryConditionsWithExcludedUsers($conditions)
+    {
+        $botsIds = Configure::read('Bots.userIds');
+
+        if (!isset($conditions)) {
+            $conditions = array();
+        }
+        if (!empty($botsIds)) {
+            if (count($botsIds) > 1) {
+                $conditions["user_id NOT"] = $botsIds;
+            } else {
+                $conditions["user_id !="] = $botsIds[0];
+            }
+        }
+
+        return $conditions;
+    }
 }
 ?>

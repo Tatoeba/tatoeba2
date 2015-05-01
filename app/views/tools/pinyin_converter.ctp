@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Pinyin converter', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Pinyin converter', true)));
 
 // if it's the first time we call this tool
 if (!isset($lastText)) {
@@ -34,20 +34,16 @@ if (!isset($lastText)) {
 
 ?>
 
-<div id="annexe_content">
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-</div>
-
 <div id="main_content">
     <div class="module">
          <h2><?php __('Pinyin converter'); ?></h2>
         <?php
         if (isset($convertedText)) {
-            echo '<div id="conversion">';
-                echo $convertedText;
-            echo '</div>';
+            echo $languages->tagWithLang(
+                'div', 'zh', $convertedText,
+                array('id' => 'conversion'),
+                'Latn'
+            );
         }
 
         echo $form->create(
@@ -65,7 +61,9 @@ if (!isset($lastText)) {
             array(
                 "value" => $lastText,
                 "rows" => 30,
-                "cols"=> 40
+                "cols"=> 40,
+                "lang"=> "zh",
+                "dir"=> "ltr",
             )
         );
         ?>
@@ -76,7 +74,7 @@ if (!isset($lastText)) {
             echo $form->radio(
                 'from',
                 array(
-                    'chinese' => __('Chinese', true),
+                    'chinese' => __('Chinese characters', true),
                     'numPinyin' => __('numerical pinyin', true),
                 ),
                 array(

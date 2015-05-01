@@ -13,11 +13,11 @@
 DROP TABLE IF EXISTS `languages`;
 CREATE TABLE `languages` (
   `id` tinyint(3) unsigned NOT NULL AUTO_INCREMENT,
-  `code` varchar(4) CHARACTER SET utf8,
+  `code` varchar(4) CHARACTER SET utf8 DEFAULT NULL,
   `numberOfSentences` mediumint(8) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `lang` (`code`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Making sure that there's no entry in the "sentences" table
 -- that has lang as an empty string.

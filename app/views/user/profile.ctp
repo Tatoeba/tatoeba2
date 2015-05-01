@@ -38,8 +38,8 @@
 
 $userId = $user['id'];
 
-$realName = Sanitize::html($user['name']);
-$username = Sanitize::html($user['username']);
+$realName = $user['name'];
+$username = $user['username'];
 $userDescription = Sanitize::html($user['description']);
 $homepage = $user['homepage'];
 $birthday = $user['birthday'];
@@ -49,17 +49,15 @@ $statusClass = 'status'.$groupId;
 $currentMember = CurrentUser::get('username');
 $languagesSettings = $user['lang'];
 $level = $user['level'];
+$countryName = $this->Countries->getCountryNameByCode($user['country_id']);
 
 $userImage = 'unknown-avatar.png';
 if (!empty($user['image'])) {
     $userImage = Sanitize::html($user['image']);
 }
 
-if (!empty($realName)) {
-    $this->set('title_for_layout', "$username ($realName) - Tatoeba");
-} else {
-    $this->set('title_for_layout', "$username - Tatoeba"); 
-}
+$title = empty($realName) ? $username : "$username ($realName)";
+$this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
 ?>
 
 <div id="annexe_content">
@@ -87,7 +85,7 @@ if (!empty($realName)) {
         =>
         <?php
         echo $html->link(
-            sprintf(__("Show latest activity", true)),
+            __("Show latest activity", true),
             array(
                 'controller' => 'users',
                 'action' => 'show',
@@ -158,22 +156,6 @@ if (!empty($realName)) {
     <?php
     }
     ?>
-    
-    <?php
-    if ($level == -1) {
-    ?>
-        <div class="module">
-            <h2><?php __('Not approved'); ?></h2>
-            <?php
-            __(
-                'Sentences from this user are currently added as '.
-                '"not approved".'
-            );
-            ?>
-        </div>
-    <?php
-    }
-    ?>
 </div>
 
 <div id="main_content">
@@ -209,7 +191,7 @@ if (!empty($realName)) {
         ?>
             
         <div class="info">
-            <div class="username"><?php echo $username; ?></div>
+            <?php echo $html->tag('div', $username, array('class' => 'username')); ?>
             
             <?php
             if ($isDisplayed) {
@@ -217,14 +199,14 @@ if (!empty($realName)) {
                     $birthday = date('F j, Y', strtotime($birthday));
                 }
                 if (!empty($homepage)) {
-                    $homepage = $clickableLinks->clickableURL($homepage);
+                    $homepage = $clickableLinks->clickableURL(Sanitize::html($homepage));
                 }
                 $userSince = date('F j, Y', strtotime($userSince));
                 $fields = array(
-                    __('Name', true) => $realName,
-                    __('Country', true) => $countryName,
-                    __('Birthday', true) => $birthday,
-                    __('Homepage', true) => $homepage
+                    __p('user', 'Name', true) => array($realName, true),
+                    __('Country', true)       => array($countryName, false),
+                    __('Birthday', true)      => array($birthday, false),
+                    __('Homepage', true)      => array($homepage, false),
                 );
                 
                 foreach ($fields as $fieldName => $value) {
@@ -233,15 +215,17 @@ if (!empty($realName)) {
                         <span class="field <?php echo $statusClass ?>">
                         <?php echo $fieldName; ?>
                         </span>
-                        <span class="value">
-                        <?php 
-                        if (!empty($value)) {
-                            echo $value; 
+                        <?php
+                        $options = array('class' => 'value');
+                        $dispValue = empty($value[0]) ? ' - ' : $value[0];
+                        if ($value[1]) {
+                            echo $languages->tagWithLang(
+                                'span', '', $dispValue, $options
+                            );
                         } else {
-                            echo ' - ';
+                            echo $html->tag('span', $dispValue, $options);
                         }
                         ?>
-                        </span>
                     </div>
                     <?php
                 }
@@ -255,13 +239,100 @@ if (!empty($realName)) {
                 <span class="value"><?php echo $userSince; ?></span>
             </div>
         </div>
-        
-        <div class="status <?php echo $statusClass ?>">
-        <?php echo $userStatus; ?>
-        </div>
 
+        <?php
+        $cssClasses = array('status', $statusClass);
+        $options = null;
+        if ($level == -1) {
+            $cssClasses[] = 'contributionsBlocked';
+            $options = array('title' => __('Contributions blocked', true));
+        }
+        echo $html->div(
+            join($cssClasses, ' '),
+            $userStatus,
+            $options
+        );
+        ?>
     </div>
-        
+
+    <div class="module profileLanguages">
+        <?php
+        if ($username == $currentMember) {
+            $members->displayEditButton(
+                array(
+                    'controller' => 'user',
+                    'action' => 'language'
+                ),
+                __('Add a language', true)
+            );
+        }
+
+        if (empty($userLanguages))
+        {
+            echo '<p>';
+            __('No language added.');
+            echo '</p>';
+
+            echo '<p>';
+            if ($username == $currentMember) {
+                __('TIP: We encourage you to indicate the languages you know.');
+            } else {
+                __(
+                    'TIP: Encourage this user to indicate the languages '.
+                    'he or she knows.'
+                );
+            }
+            echo '</p>';
+        }
+        else
+        {
+            echo '<table class="usersLanguages">';
+            foreach($userLanguages as $userLanguage) {
+                $languageInfo = $userLanguage['UsersLanguages'];
+                $langCode = $languageInfo['language_code'];
+                $level = $languageInfo['level'];
+                $details = $languageInfo['details'];
+
+                echo '<tr class="languageInfo">';
+
+                // Icon
+                echo $html->tag('td', $languages->icon(
+                    $langCode,
+                    array(
+                        "width" => 30,
+                        "height" => 20
+                    )
+                ));
+
+                // Name
+                echo $html->tag('td', $languages->codeToNameAlone($langCode));
+
+                // Level
+                echo $html->tag('td', $members->displayLanguageLevel($level));
+
+                // Details
+                echo $html->tag('td', $details, array('escape' => true));
+
+                // Edit link
+                if ($username == $currentMember) {
+                    $editLink = $html->link(
+                        __('Edit', true),
+                        array(
+                            'controller' => 'user',
+                            'action' => 'language',
+                            $langCode
+                        )
+                    );
+                    echo $html->tag('td', $editLink);
+                }
+
+                echo '</tr>';
+            }
+            echo '</table>';
+        }
+        ?>
+    </div>
+
     <?php
     if (!empty($userDescription)) {
         $descriptionContent = $clickableLinks->clickableURL($userDescription);
@@ -269,17 +340,6 @@ if (!empty($realName)) {
     } else {
         $descriptionContent = '<div class="tip">';
         $descriptionContent.= __('No description.', true);
-        $descriptionContent.= '<br/><br/>';
-        if ($username == $currentMember) {
-            $descriptionContent.= __(
-                'TIP: We encourage you to indicate the languages you know.', true
-            );
-        } else {
-            $descriptionContent.= __(
-                'TIP: Encourage this user to indicate the languages '.
-                'he or she knows.', true
-            );
-        }
         $descriptionContent.= '</div>';
     }
     
@@ -298,11 +358,12 @@ if (!empty($realName)) {
         }
         ?>
         
-        <div class="content">
         <?php
-        echo $descriptionContent;
+        echo $languages->tagWithLang(
+            'div', '', $descriptionContent,
+            array('class' => 'content', 'escape' => false)
+        );
         ?>
-        </div>
         </div>
         <?php
     }

@@ -143,19 +143,24 @@ class MessagesHelper extends AppHelper
 
                 <div class="username">
                 <?php 
-                echo $this->Html->link(
-                    $author['username'],
-                    array(
-                        'controller' => 'user',
-                        'action' => 'profile',
-                        $author['username']
-                    )
-                )
+                if (!$author['username']) {
+                    echo $this->Html->tag('i', __('Former member', true));
+                } else {
+                    echo $this->Html->link(
+                        $author['username'],
+                        array(
+                            'controller' => 'user',
+                            'action' => 'profile',
+                            $author['username']
+                        )
+                    );
+                }
                 ?>
                 </div>
 
                 <?php
                 $displayPM = CurrentUser::isMember() 
+                    && $author['username']
                     && CurrentUser::get('username') != $author['username'];
                 if ($displayPM) {
                     ?><div class="pm"><?php
@@ -211,23 +216,34 @@ class MessagesHelper extends AppHelper
         }
 
         ?><div class="avatar"><?php
-        echo $this->Html->link(
-            $this->Html->image(
+        if ($username) {
+            echo $this->Html->link(
+                $this->Html->image(
+                    IMG_PATH . 'profiles_36/'. $image,
+                    array(
+                        'alt' => $username,
+                        'title' => __("View this user's profile", true),
+                        'width' => 36,
+                        'height' => 36
+                    )
+                ),
+                array(
+                    'controller' => 'user',
+                    'action' => 'profile',
+                    $username
+                ),
+                array('escape' => false)
+            );
+        } else {
+            echo $this->Html->image(
                 IMG_PATH . 'profiles_36/'. $image,
                 array(
-                    "alt" => $username,
-                    "title" => __("View this user's profile", true),
-                    "width" => 36,
-                    "height" => 36
+                    'alt' => __('Former member', true),
+                    'width' => 36,
+                    'height' => 36,
                 )
-            ),
-            array(
-                "controller"=>"user",
-                "action"=>"profile",
-                $username
-            ),
-            array("escape"=>false)
-        );
+            );
+        }
         ?></div><?php
     }
 
@@ -309,9 +325,10 @@ class MessagesHelper extends AppHelper
         }
 
         if (!$hidden || $canViewContent) {
-            ?><div class="content"><?php
-            echo $this->formatedContent($content);
-            ?></div><?php   
+            echo $this->Languages->tagWithLang(
+                'div', '', $this->formatedContent($content),
+                array('class' => 'content', 'escape' => false)
+            );
         }
 
         ?></div><?php
@@ -335,7 +352,7 @@ class MessagesHelper extends AppHelper
         if (!empty($sentence['lang'])) {
             $sentenceLang = $sentence['lang'];
         }
-        $dir = $this->Languages->getLanguageDirection($sentenceLang);
+        $dir = LanguagesLib::getLanguageDirection($sentenceLang);
         ?>
         <div class="sentence">
         <?php
@@ -358,6 +375,7 @@ class MessagesHelper extends AppHelper
                 ),
                 array(
                     'dir' => $dir,
+                    'lang' => LanguagesLib::languageTag($sentenceLang),
                     'class' => 'sentenceText'
                 )
             );
@@ -391,10 +409,10 @@ class MessagesHelper extends AppHelper
     private function _displayWarning()
     {
         ?><div class='warningInfo'><?php
-        echo sprintf(
+        echo format(
             __(
                 'The content of this message goes against '.
-                '<a href="%s">our rules</a> and was therefore hidden. '.
+                '<a href="{}">our rules</a> and was therefore hidden. '.
                 'It is displayed only to admins '.
                 'and to the author of the message.',
                 true
@@ -411,7 +429,7 @@ class MessagesHelper extends AppHelper
      * @return string The comment body formatted for HTML display.
      */
     public function formatedContent($content) {
-        $content = htmlentities($content, ENT_QUOTES, 'UTF-8');
+        $content = Sanitize::html($content);
 
         // Convert sentence mentions to links
         $content = $this->ClickableLinks->clickableSentence($content);
@@ -423,6 +441,75 @@ class MessagesHelper extends AppHelper
         $content = nl2br($content);
 
         return $content;
+    }
+
+
+    /**
+     * Displays the preview (first X characters) of a message. 
+     * If possible, it will not cut the message in the middle of a word or a link.
+     * 
+     * @param  String  $content     The whole content.
+     * @param  integer $length      Number of characters of the preview.
+     * @param  integer $extraLength Tells how far we should search for a "space"
+     *                              character, when trying to not cut the text
+     *                              in the middle of a word/link.
+     * 
+     * @return String               Preview text
+     */
+    public function preview($content, $length = 200, $extraLength = 100)
+    {
+        $contentBefore = mb_substr($content, 0, $length);
+        $contentAfter = mb_substr($content, $length);
+
+        $spaceAfter = mb_strpos($contentAfter, " ");
+        $newLineAfter = mb_strpos($contentAfter, PHP_EOL);
+        if (!$spaceAfter || $newLineAfter < $spaceAfter) {
+            $spaceAfter = $newLineAfter;
+        }
+
+        $hasLink = $this->ClickableLinks->hasClickableLink($content);
+
+        $formatContent = true;
+
+        if ($spaceAfter && $spaceAfter < $extraLength) {
+            
+            // We want to display 200 + a few more charafters. The few more
+            // characters are the ones that are before the 1st "space" that we find
+            // after the 200 characters.
+            $lengthToCut = $length + $spaceAfter;
+            $previewContent = mb_substr($content, 0, $lengthToCut);
+            $displayElipsis = mb_strlen($content) > $lengthToCut;
+
+        } else if ($hasLink && mb_strlen($content) <= $length + $extraLength) {
+
+            // Normally, if fall in this case, then we're either trying to cut
+            // a text in a language that has no space, or we're cutting the text
+            // in a middle of an URL. In this case, if the message is not too long
+            // we display it entirely.
+            $previewContent = $content;
+            $displayElipsis = false;
+
+        } else {
+
+            // If we can't do a "soft" truncation, then we just hard truncate.
+            // In case of hard truncation, we don't format the text.
+            $previewContent = mb_substr($content, 0, $length);
+            $displayElipsis = mb_strlen($content) > $length;
+            $formatContent = false;
+
+        }
+
+        if ($formatContent) {
+            $previewContent = $this->formatedContent($previewContent);
+        } else {
+            $previewContent = nl2br(Sanitize::html($previewContent));
+        }
+
+        if ($displayElipsis) {
+            $previewContent .= ' [...]';
+        }
+
+        return $previewContent;
     }
 
 }

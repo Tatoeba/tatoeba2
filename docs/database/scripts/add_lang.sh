@@ -5,24 +5,44 @@
 
 # See http://en.wiki.tatoeba.org/articles/show/new-language-request# for more details.
 
-USAGE=$'Usage:\n./add_lang code EnglishName list_id prod|dev MySQLUser MySQLPasswd MySQLDB\n\n'
-USAGE=$USAGE$'Example: Add Nepali to your development machine.\n'
+USAGE=$'Usage:\n./add_lang code EnglishName list_id local|dev|prod MySQLUser MySQLPasswd MySQLDB update|run|update_and_run\n\n'
+USAGE=$USAGE$'Example: Add Nepali to your development machine. Update the files and then run them.\n'
 USAGE=$USAGE$'First, search for \"Nepali\" on this page:\n'
 USAGE=$USAGE$'    http://tatoeba.org/eng/sentences_lists/index\n\n' 
 USAGE=$USAGE$'From the URL for the \"Nepali\" list, you can see that its id is 1297.\n'
 USAGE=$USAGE$'Hence, the command is:\n'
-USAGE=$USAGE$'    ./add_lang nep Nepali 1297 dev someuser somepwd somedb\n'
+USAGE=$USAGE$'    ./add_lang nep Nepali 1297 dev someuser somepwd somedb update_and_run\n'
+USAGE=$USAGE$'Use \"update\" if you only want to update the files. This is a common scenario\n'
+USAGE=$USAGE$'on a local VM, when you want to commit the files after updating them and do not need to run them.\n'
+USAGE=$USAGE$'Use \"run\" if you only want to run the files. This is a common scenario\n'
+USAGE=$USAGE$'on the server when the updated files have already been committed from elsewhere.\n'
 
-if (( $# != 7 )); then
+UPDATE_FILES=0
+RUN_FILES=0
+if [ $# -ne 8 ]; then
     echo -e "$USAGE"
     exit 1
 fi
 
+if [ "$8" == "update" ]; then
+    UPDATE_FILES=1
+elif [ "$8" == "run" ]; then
+    RUN_FILES=1
+elif [ "$8" == "update_and_run" ]; then
+    UPDATE_FILES=1
+    RUN_FILES=1
+else
+    echo "Final argument must be \"update\", \"run\", or \"update_and_run\"."
+    exit 1
+fi
+
 PREFIX=""
-if [ "$4" == "prod" ]; then
-    PREFIX="/var/www-prod/"
-elif [ "$4" == "dev" ]; then
+if [ "$4" == "local" ]; then
     PREFIX="/home/tatoeba/tatoeba-www/"
+elif [ "$4" == "dev" ]; then
+    PREFIX="/var/www-dev/"
+elif [ "$4" == "prod" ]; then
+    PREFIX="/var/www-prod/"
 else
     echo $USAGE
     exit 1
@@ -41,65 +61,101 @@ if [ ! -e $ICONNAME ]; then
     exit 1
 fi
 
-#This line searches the file docs/sphinx/generate_sphinx_conf.php for the
-#comment string "//@lang". It inserts a string like the following before the comment:
-#"nep" => ''
-#and then executes the script.
-QUOTE_LANG="\'$LANGCODE\'"
-SEARCH_LANG="$QUOTE_LANG => \'$LANGNAME\' "
-SPHINX_GEN=$PREFIX"docs/sphinx/generate_sphinx_conf.php"
-SEARCH_LANG_RAW="'"$LANGCODE"'"" => ""'"$LANGNAME"'"
+# Do this early because there's a chance that this file 
+# can't be written, in which case we want to exit immediately.
+SPHINX_CONF="/etc/sphinxsearch/sphinx.conf"
+if [ $UPDATE_FILES -eq 1 ]; then 
+    if [ -e $SPHINX_CONF ] && [ ! -w $SPHINX_CONF ]; then
+        echo "$SPHINX_CONF is not writable. You may need superuser privileges. Exiting."
+        exit 1
+    fi
+fi
 
 #Check whether the string is already present. We could do this for each of the
 #files we're going to edit, but we do it just for the first.
 grep "$SEARCH_LANG_RAW" $SPHINX_GEN
-if [ $? -eq 0 ]; then
-    echo "String already found: $SEARCH_LANG"
-    exit 1;
+GREP_RESULT=$?
+if [ $UPDATE_FILES -eq 1 ]; then 
+    if [ $GREP_RESULT -eq 0 ]; then
+        # We were told to update the files, but the specified lang is already present.
+        echo -e "Terminating, since string already exists in $SPHINX_GEN:\n$SEARCH_LANG"
+        exit 1;
+    fi
+    # Add a line to the file.
+    sed -i  -e "s^//@lang^\n    $SEARCH_LANG, //@lang^" $SPHINX_GEN
+else
+    if [ $GREP_RESULT -ne 0 ]; then
+        # We were told not to update the files, but the specified lang is not already present.
+        echo -e "String not found in $SPHINX_GEN:\n$SEARCH_LANG_RAW"
+        exit 1;
+    fi
 fi
-sed -i  -e "s^//@lang^\n    $SEARCH_LANG, //@lang^" $SPHINX_GEN
 
-# Do this early because there's a chance that this file 
-# can't be written, in which case we want to exit immediately.
-SPHINX_CONF="/usr/local/etc/sphinx.conf"
-if [ ! -e $SPHINX_CONF ] || [ -w $SPHINX_CONF ]; then
+if [ $RUN_FILES -eq 1 ]; then
     SPHINX_CMD="php $SPHINX_GEN"
     $SPHINX_CMD > "$SPHINX_CONF"
     if [ $? -ne 0 ]; then
         echo "Command failed:  $SPHINX_CMD > $SPHINX_CONF"
+        exit 1;
     fi
-else
-    echo "$SPHINX_CONF is not writable. Exiting."
-    exit 1
 fi
 
-#This line searches the file app/models/sentence.php for the 
-#comment string "//@lang". It inserts the three-letter language code (e.g., "nep"), 
-#surrounded by quotes and followed by a quote, on a new line immediately before 
-#the comment string.
-sed -i  -e "s^//@lang^\n        $QUOTE_LANG, //@lang^"  $PREFIX"app/models/sentence.php"
-
-#This line searches the file app/views/helpers/languages.php for the
+#This line searches the file app/vendors/languages_lib.php for the
 #comment string "//@lang". It inserts a string like the following on a new line 
 #before the comment:
 #"nep" => __('Nepali', true),
-HELPER_LANG="$QUOTE_LANG => __('$LANGNAME',true)"  
-sed -i  -e "s^//@lang^\n            $HELPER_LANG, //@lang^" $PREFIX"app/views/helpers/languages.php"
+LANGLIB_LANG="$QUOTE_LANG => __('$LANGNAME',true)"
+if [ $UPDATE_FILES -eq 1 ]; then 
+    sed -i  -e "s^//@lang^\n            $LANGLIB_LANG, //@lang^" $PREFIX"app/vendors/languages_lib.php"
+fi
 
-#Call the script docs/database/scripts/add_new_language.sql to update the database.
-#We assume there is no language 'blablablabla'.
+#Call the script docs/database/procedures/add_new_language.sql to update the database.
 MUSER=$5
 MPASSWORD=$6
 MDB=$7
+
 #Note the space between -u and the username, but not between -p and the password.
 MYSQL_CMD="mysql -u $MUSER -p$MPASSWORD $MDB -e "
-MYSQL_CMD=$MYSQL_CMD'"'
-MYSQL_CMD=$MYSQL_CMD"CALL add_new_language('$LANGCODE', $LISTNUM, 'blablablabla');"
-MYSQL_CMD=$MYSQL_CMD'"'
-eval $MYSQL_CMD
-if [ $? -ne 0 ]; then
-    echo "Command failed:"
-else
-    echo "Command succeeded:"
+
+#First, store the procedure, in case it requires updating or has never been run on this machine.
+if [ $RUN_FILES -eq 1 ]; then
+    CMD1=$MYSQL_CMD'"'
+    CMD1=$CMD1"\. ../procedures/add_new_language.sql"
+    CMD1=$CMD1'"'
+    eval $CMD1
+    if [ $? -ne 0 ]; then
+        echo "Command failed:"
+        echo $CMD1
+        if [ $UPDATE_FILES -eq 1 ]; then
+            echo "Revert edited files if necessary."
+        fi
+    fi
 fi
-echo $MYSQL_CMD
+
+# Now run the procedure.
+if [ $RUN_FILES -eq 1 ]; then
+    CMD2=$MYSQL_CMD'"'
+    CMD2=$CMD2"CALL add_new_language('$LANGCODE', $LISTNUM, null);"
+    CMD2=$CMD2'"'
+    eval $CMD2
+    if [ $? -ne 0 ]; then
+        echo "Command failed:"
+        echo $CMD2
+        if [ $UPDATE_FILES -eq 1 ]; then
+            echo "Revert edited files if necessary."
+        fi
+        exit 1;
+    fi
+fi
+
+echo "REMINDERS: "
+echo "(1) If the language has a two-letter code (not all languages do), "
+echo "    update the array in the function iso639_3_To_Iso639_1()"
+echo "    in app/vendors/languages_lib.php."
+echo "(2) If the new language is written right-to-left, "
+echo "    update the array in the funciton getLanguageDirection()"
+echo "    in app/vendors/languages_lib.php."
+echo "(3) If the new language is stemmed, or is written with CJK characters, "
+echo "    or contains characters not previously used in Tatoeba, "
+echo "    or has no word boundaries, update generate_sphinx_conf.php."
+

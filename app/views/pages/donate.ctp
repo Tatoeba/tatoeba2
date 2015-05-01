@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+$this->set('title_for_layout', $pages->formatTitle(__('Donate', true)));
 ?>
 
 <div id="annexe_content">
@@ -31,38 +33,32 @@
         <h2><?php __("Any question?"); ?></h2>
         <p>
         <?php
-        __(
+        echo format(__(
             "If you have any question regarding donations or if you would ".
             "like to donate in any other way than the ones mentioned ".
-            "here, you may contact either <a href='mailto:trang@tatoeba.org'>Trang</a> ".
-            "or the entire <a href='mailto:team@tatoeba.org'>team</a>."
+            'here, you may contact either <a href="{trangEmail}">Trang</a> '.
+            'or the entire <a href="{teamEmail}">team</a>.', true
+            ),
+            array('trangEmail' => 'mailto:trang@tatoeba.org',
+                  'teamEmail' =>'mailto:team@tatoeba.org')
         );
         ?>
         </p>
     </div>
 
     <div class="module">
-        <h2><?php __("Top donators this month"); ?></h2>
+        <h2><?php __("Latest donations"); ?></h2>
         <ol>
-            <li>Sascha Tesic, 50€</li>
-            <li>-</li>
-            <li>-</li>
-            <li>-</li>
-            <li>-</li>
+            <li>Stanislav - 5 €</li>
+            <li>Rev - 50 €</li>
+            <li>anonymous - 1 939,07 €</li>
+            <li>Ray - 100,00 €</li>
+            <li>Dmitriy - 40,00 €</li>
         </ol>
-    </div>
-
-    <div class="module">
-        <h2><?php __("Top donators of all time"); ?></h2>
-        <ol>
-            <li><em>anonymous</em>, 1939€</li>
-            <li>John Storr, 100€</li>
-            <li>Ray Price, 100€</li>
-            <li>Sascha Tesic, 50€</li>
-            <li>William Hoggarth, 40€</li>
-            <li>Gary Blackburn, 40€</li>
-            <li>Kiselev Dmitriy, 40€</li>
-        </ol>
+        <?php echo $html->link(
+            __("All donations", true),
+            'http://en.wiki.tatoeba.org/articles/show/donations'
+        ); ?>
     </div>
 </div>
 

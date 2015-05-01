@@ -38,6 +38,22 @@
 class LinksController extends AppController
 {
 
+    private function _renderTranslationsOf($sentenceId, $message)
+    {
+        $this->loadModel('Sentence');
+        $langFilter = isset($this->params['form']['langFilter']) ? $this->params['form']['langFilter'] : 'und';
+        $alltranslations = $this->Sentence->getTranslationsOf($sentenceId, $langFilter);
+        $translations = $alltranslations['Translation'];
+        $indirectTranslations = $alltranslations['IndirectTranslation'];
+
+        $this->set('sentenceId', $sentenceId);
+        $this->set('translations', $translations);
+        $this->set('indirectTranslations', $indirectTranslations);
+        $this->set('message', $message);
+        $this->set('langFilter', $langFilter);
+        $this->render('/sentences/translations_group');
+    }
+
     /**
      * Link sentences.
      *
@@ -53,19 +69,14 @@ class LinksController extends AppController
         
         $saved = $this->Link->add($sentenceId, $translationId);
         
-        if ($this->RequestHandler->isAjax()) {
-            $this->set('saved', $saved);
-            return;
-        }
-
         if ($saved) {
-            $flashMessage = sprintf(
+            $flashMessage = format(
                 __(
-                    'Sentences #%s and #%s are now '.
+                    'Sentences #{firstNumber} and #{secondNumber} are now '.
                     'direct translations of each other.',
                     true
                 ),
-                $sentenceId, $translationId
+                array('firstNumber' => $sentenceId, 'secondNumber' => $translationId)
             );
         } else {
             $flashMessage = __(
@@ -75,7 +86,15 @@ class LinksController extends AppController
             );
         }
 
-        $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
+        $this->set('saved', $saved);
+
+        if ($this->RequestHandler->isAjax()) {
+            if (isset($this->params['form']['returnTranslations'])
+                && (bool)$this->params['form']['returnTranslations'])
+                $this->_renderTranslationsOf($sentenceId, $flashMessage);
+        } else {
+            $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
+        }
     }
 
 
@@ -92,21 +111,16 @@ class LinksController extends AppController
         $sentenceId = Sanitize::paranoid($sentenceId);
         $translationId = Sanitize::paranoid($translationId);
 
-        $saved = $this->Link->delete($sentenceId, $translationId);
-
-        if ($this->RequestHandler->isAjax()) {
-            $this->set('saved', $saved);
-            return;
-        }
+        $saved = $this->Link->deletePair($sentenceId, $translationId);
 
         if ($saved) {
-            $flashMessage = sprintf(
+            $flashMessage = format(
                 __(
-                    'Sentences #%s and #%s are no longer '.
+                    'Sentences #{firstNumber} and #{secondNumber} are no longer '.
                     'direct translations of each other.',
                     true
                 ),
-                $sentenceId, $translationId
+                array('firstNumber' => $sentenceId, 'secondNumber' => $translationId)
             );
         } else {
             $flashMessage = __(
@@ -116,7 +130,15 @@ class LinksController extends AppController
             );
         }
 
-        $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
+        $this->set('saved', $saved);
+
+        if ($this->RequestHandler->isAjax()) {
+            if (isset($this->params['form']['returnTranslations'])
+                && (bool)$this->params['form']['returnTranslations'])
+                $this->_renderTranslationsOf($sentenceId, $flashMessage);
+        } else {
+            $this->flash($flashMessage, '/sentences/show/'.$sentenceId);
+        }
     }
 
 }

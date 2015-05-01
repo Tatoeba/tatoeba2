@@ -46,6 +46,7 @@ class TagsController extends AppController
     public $name = 'Tags';
     public $persistentModel = true;
     public $components = array('CommonSentence');
+    public $helpers = array('Pagination');
     /**
      * Before filter.
      *
@@ -56,9 +57,10 @@ class TagsController extends AppController
         parent::beforeFilter();
         // setting actions that are available to everyone, even guests
         $this->Auth->allowedActions = array(
-            "show_sentences_with_tag",
+            'show_sentences_with_tag',
             'view_all',
-            'for_moderators'
+            'for_moderators',
+            'search'
         );
 
     }
@@ -113,13 +115,12 @@ class TagsController extends AppController
 
         // save and check if the tag has been added
         if (!$this->Tag->addTag($tagName, $userId, $sentenceId)) {
-            $infoMessage = sprintf(
+            $infoMessage = format(
                 __(
-                    "Tag '%s' already exists for sentence #%s, or cannot be added",
+                    "Tag '{tagName}' already exists for sentence #{number}, or cannot be added",
                     true
                 ),
-                $tagName,
-                $sentenceId
+                array('tagName' => $tagName, 'number' => $sentenceId)
             );
             $this->Session->setFlash($infoMessage);
         }
@@ -135,19 +136,30 @@ class TagsController extends AppController
     }
 
     /**
-     * Display all tags page
+     * Display list of tags.
      *
-     * @TODO it's only a "better than nothing" page yet
-     *
-     * @return void
+     * @param String $search Filters the tags list with only those that contain the
+     *                       search string.
      */
-    public function view_all()
+    public function view_all($search = null)
     {
-
         $this->helpers[] = 'Tags';
 
-        $allTags = $this->Tag->getAllTagsOrdered();
+        $this->paginate = array(
+            'limit' => 50,
+            'fields' => array('name', 'id', 'nbrOfSentences'),
+            'contain' => array(),
+            'order' => 'nbrOfSentences DESC'
+        );
+        if (!empty($search)) {
+            $this->paginate['conditions'] = array(
+                'name LIKE' => "%$search%"
+            );
+        }
+        
+        $allTags = $this->paginate('Tag');
         $this->set("allTags", $allTags);
+        $this->set("search", $search);
     }
 
     /**
@@ -225,6 +237,7 @@ class TagsController extends AppController
         $tagName = $this->Tag->getNameFromId($tagId);
         $tagExists = !empty($tagName);
         $this->set('tagExists', $tagExists);
+        $this->set('tagId', $tagId);
 
         if ($tagExists) {
             $this->paginate = $this->Tag->paramsForPaginate($tagId, 10, $lang);
@@ -243,7 +256,6 @@ class TagsController extends AppController
             );
 
             $this->set('langFilter', $lang);
-            $this->set('tagId', $tagId);
             $this->set('allSentences', $allSentences);
             $this->set('tagName', $tagName);
             $this->set('taggerIds', $taggerIds);
@@ -308,6 +320,18 @@ class TagsController extends AppController
         $this->set('tagDeleteId', $tagDeleteId);
         $this->set('tagNeedsNativeCheckId', $tagNeedsNativeCheckId);
         $this->set('tagOKId', $tagOKId);
+    }
+
+    public function search()
+    {
+        $search = $this->data['Tag']['search'];
+        $this->redirect(
+            array(
+                'controller' => 'tags',
+                'action' => 'view_all',
+                $search
+            )
+        );
     }
 }
 ?>

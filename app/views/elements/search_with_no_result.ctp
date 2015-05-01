@@ -30,7 +30,23 @@ $query = Sanitize::html($query);
 
 <div class="module">
     <h2>
-    <?php echo sprintf(__('Add a sentence containing %s', true), $query); ?>
+    <?php
+        if (!empty($query)) {
+            echo format(__('Add a sentence containing {keywords}', true), array('keywords' => $query));
+        } elseif($from != 'und' && $to != 'und') {
+            echo format(__('Translate a {language} sentence into {translationLanguage}', true),
+                        array('language' => $languages->codeToNameToFormat($from),
+                              'translationLanguage' => $languages->codeToNameToFormat($to)));
+        } elseif($from != 'und') {
+            echo format(__('Translate a {language} sentence', true),
+                        array('language' => $languages->codeToNameToFormat($from)));
+        } elseif($to != 'und') {
+            echo format(__('Translate a sentence into {language}', true),
+                        array('language' => $languages->codeToNameToFormat($to)));
+        } else {
+            echo format(__('Add a new sentence'));
+        }
+    ?>
     </h2>
 
     <p>
@@ -47,9 +63,9 @@ $query = Sanitize::html($query);
         ?>
         <p>
         <?php
-        echo sprintf(
+        echo format(
             __(
-                'Feel free to <a href="%s">submit a sentence</a> '.
+                'Feel free to <a href="{}">submit a sentence</a> '.
                 'with the words you were searching.', true
             ),
             $html->url(array('controller' => 'sentences', 'action' => 'add'))
@@ -64,7 +80,7 @@ $query = Sanitize::html($query);
         echo $html->link(
             'register',
             array("controller" => "users", "action" => "register"),
-            array("class"=>"registerButton")
+            array("class"=>"registerLink")
         );
         
     }

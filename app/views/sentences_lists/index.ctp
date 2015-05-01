@@ -25,15 +25,10 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('List of sentences', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Lists of sentences', true)));
 ?>
 
 <div id="annexe_content" >
-
-<?php
-$attentionPlease->tatoebaNeedsYou();
-?>
-
 <?php
 if ($session->read('Auth.User.id')) {
     
@@ -51,7 +46,8 @@ if ($session->read('Auth.User.id')) {
     echo $form->input(
         'name',
         array(
-            'type' => 'text'
+            'type' => 'text',
+            'label' => __p('list', 'Name', true)
         )
     );
     echo $form->end(__('create', true));
@@ -91,7 +87,7 @@ if ($session->read('Auth.User.id')) {
             echo $html->link(
                 __('Register', true),
                 array("controller" => "users", "action" => "register"),
-                array("class" => "registerButton")
+                array("class" => "registerLink")
             );
             ?>
             </p>

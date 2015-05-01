@@ -17,18 +17,6 @@
  */
 
 
-/*
- * Sentences
- */
-@import url(../elements/sentences_group.css);
-
-
-/*
- * Sentences
- */
-@import url(../elements/pagination.css);
-
-
 /* 
  * Add sentence 
  */
@@ -54,11 +42,11 @@
  * List
  */
 .sentenceInList {
-    margin: 60px 0px;
+    margin: 60px 0;
 }
 
 .sentenceInList .sentences_set {
-    margin-right: 40px;
+    margin-right: 30px;
 }
 
 .sentenceInList .removeFromList {
@@ -67,7 +55,7 @@
 }
 
 .sentencesListActions li {
-    margin: 10px 0px;
+    margin: 10px 0;
 }
 
 .publicList {
@@ -76,7 +64,7 @@
 }
 
 .translationInList {
-    margin: 5px 0px;
+    margin: 5px 0;
     font-size: 0.8em;
 }
 
@@ -90,27 +78,4 @@
  */
 .deleteList a {
     color: #FF2128;
-}
-
-
-/*
- * Download
- */
-.download a {
-    background: url(../../img/search_bar_body.png) repeat;
-    padding: 8px 12px;
-    color: #1A3502;
-    border: 1px solid #6E994E;
-    font-size: 1.2em;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
-    margin: 20px auto;
-    display: block;
-    text-align: center;
-    width: 150px;
-}
-
-.download a:hover {
-    color: #D5E5C9;
 }

@@ -37,14 +37,17 @@
  
 if  ($session->check('Message.auth')) $session->flash('auth');
 
+$formTarget = array('action' => 'check_login');
+if (isset($this->params['url']['redirectTo'])) {
+    $formTarget['?'] = array('redirectTo' => $this->params['url']['redirectTo']);
+}
 echo $form->create(
     'User',
     array(
-        'action' => 'check_login',
+        'url' => $formTarget,
         'id' => "UserLoginForm"
     )
     );
-
 echo $form->input(
     'username', array(
         'label' => __('Username: ',true),
@@ -92,7 +95,7 @@ echo $html->link(
         "controller" => "users",
         "action" => "register"
     ),
-    array("class"=>"registerButton")
+    array("class"=>"registerLink")
     );
 ?>
 </div>

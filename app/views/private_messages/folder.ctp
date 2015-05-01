@@ -34,7 +34,11 @@ if ($folder == 'Inbox') {
     $folderName = __('Trash', true);
 }
 
-$this->set('title_for_layout', __('Private messages', true) . ' - ' . $folderName);
+$this->set('title_for_layout', $pages->formatTitle(
+    /* @translators: this is used as a title. The folderName can be
+       whatever you translated "Inbox", "Sent" or "Trash" as. */
+    format(__('Private messages - {folderName}', true), $folderName)
+));
 
 echo $this->element('pmmenu');
 ?>
@@ -42,13 +46,11 @@ echo $this->element('pmmenu');
     <div class="module pm_module">
         <h2>
             <?php 
-            echo $folderName;
-            echo ' ';
-            echo $paginator->counter(
-                array(
-                    'format' => __('(total %count%)', true)
-                )
-            ); 
+            $n = $paginator->counter(array('format' => '%count%'));
+            echo format(__n('{folderName} ({n}&nbsp;message)',
+                            '{folderName} ({n}&nbsp;messages)',
+                            $n, true),
+                        compact('folderName', 'n'));
             ?>
         </h2>
         
@@ -72,10 +74,10 @@ echo $this->element('pmmenu');
              */
             if ($folder != 'Sent') {
                 $user = $msg['Sender'];
-                $label = sprintf(__('from %s', true), $user['username']);
+                $label = format(__('from {sender}', true), array('sender' => $user['username']));
             } else {
                 $user = $msg['Recipient'];
-                $label = sprintf(__('to %s', true), $user['username']);
+                $label = format(__('to {recipient}', true), array('recipient' => $user['username']));
             }
             echo '<td class="senderImage">';
             $messages->displayAvatar($user);
@@ -96,9 +98,10 @@ echo $this->element('pmmenu');
                 );
                 // Title
                 echo '<a class="linkToMessage" href="'.$url.'">';
-                echo '<span class="title">';
-                echo $messageTitle;
-                echo '</span>';
+                echo $this->Languages->tagWithLang(
+                    'span', '', $messageTitle,
+                    array('class' => 'title')
+                );
                 
                 // User and date
                 echo '<span class="userAndDate">';

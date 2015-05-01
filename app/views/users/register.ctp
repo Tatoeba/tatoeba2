@@ -35,7 +35,7 @@
  * @link     http://tatoeba.org
  */ 
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Register', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Register', true)));
 
 echo $javascript->link(JS_PATH . 'users.check_registration.js', false);
 
@@ -144,14 +144,14 @@ __('For instance, if your email address is a.b.cd@example.com, type a.b.c into t
 <?php
 $lang = $this->params['lang'];
 echo $form->checkbox('acceptation_terms_of_use'); echo ' ';
-echo sprintf(
-    __('I accept the <a href="%s">terms of use</a>',true), 
+echo format(
+    __('I accept the <a href="{}">terms of use</a>',true), 
     $html->url(array("controller"=>"pages", "action"=>"terms_of_use#$lang"))
 );
 ?>
 </div>
 
 <?php
-echo $form->submit(__('Register',true), array("id" => "registerButton"));
+echo $form->submit(__('Register',true));
 echo $form->end();
 ?>

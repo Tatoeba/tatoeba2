@@ -17,18 +17,6 @@
  */
 
 
-/*
- * Sentences
- */
-@import url(../elements/sentences_group.css);
-
-
-/*
- * Sentences
- */
-@import url(../elements/pagination.css);
-
-
 /* 
  * Add sentence 
  */
@@ -52,37 +40,15 @@
  * List
  */
 .sentenceInList {
-    padding: 10px 0px;
+    padding: 10px 0;
     border-top: 1px dotted #CCC;
 }
 
 .sentencesListActions li {
-    margin: 10px 0px;
+    margin: 10px 0;
 }
 
 .translationInList {
-    margin: 5px 0px;
+    margin: 5px 0;
     font-size: 0.8em;
-}
-
-
-/*
- * Download
- */
-.download a {
-    background: url(../../img/search_bar_body.png) repeat;
-    padding: 5px 12px;
-    color: #1A3502;
-    border: 1px solid #6E994E;
-    -moz-border-radius: 8px;
-    -webkit-border-radius: 8px;
-    border-radius: 8px;
-    margin: 20px auto;
-    display: block;
-    text-align: center;
-    width: 150px;
-}
-
-.download a:hover {
-    color: #D5E5C9;
 }

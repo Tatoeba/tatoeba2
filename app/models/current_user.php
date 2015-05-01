@@ -44,6 +44,7 @@ class CurrentUser extends AppModel
     public $useTable = false;
     
     private static $_auth;
+    private static $_profileLanguages;
 
 
     /**
@@ -57,6 +58,7 @@ class CurrentUser extends AppModel
     public static function store($user)
     {
         self::$_auth = $user;
+        self::_setProfileLanguages();
     }
 
 
@@ -142,29 +144,6 @@ class CurrentUser extends AppModel
 
 
     /**
-     * Indicates if current user can link/unlink translations to the sentence of
-     * given id. TODO something is wrong here
-     *
-     * @param string $username Name of the sentence owner (?).
-     *
-     * @return bool
-     */
-    public static function canLinkWithSentenceOfUser($username)
-    {
-        if (!self::isMember()) {
-            return false;
-        }
-
-        if (self::isModerator()) {
-            return true;
-        }
-
-        $belongsToCurrentUser = (self::get('username') == $username);
-        return $belongsToCurrentUser && self::isTrusted();
-    }
-
-
-    /**
      * Indicates if current user can edit sentence of user with give username.
      *
      * @param string $username Username of owner of the sentence.
@@ -181,6 +160,23 @@ class CurrentUser extends AppModel
         return $belongsToCurrentUser || self::isModerator();
     }
 
+    /**
+     * Indicates if the current user can edit sentences
+     * that belong to the user of the given user id.
+     *
+     * @param string $id Id of the owner of the sentence.
+     *
+     * @return bool
+     */
+    public static function canEditSentenceOfUserId($id)
+    {
+        if (!self::isMember()) {
+            return false;
+        }
+
+        $belongsToCurrentUser = (self::get('id') == $id);
+        return $belongsToCurrentUser || self::isModerator();
+    }
 
     /**
      * Indicates if current user can remove a given tag on a given sentence.
@@ -203,6 +199,45 @@ class CurrentUser extends AppModel
         return $TagAddedByCurrentUser;
 
 
+    }
+
+    /**
+     * Indicates if the current user can remove a sentence.
+     * Specify either $ownerId or $ownerName.
+     *
+     * @param int $sentenceId Id of the sentence.
+     * @param int $ownerId User id of the owner of the sentence.
+     * @param int $ownerName User name of the owner of the sentence.
+     *
+     * @return bool True if he can, False otherwise.
+     */
+    public static function canRemoveSentence($sentenceId, $ownerId = null, $ownerName = null)
+    {
+        if (!self::isMember()) {
+            return false;
+        }
+
+        if (self::isModerator()) {
+            return true;
+        }
+
+        $isOwner = (
+            self::get('id') == $ownerId ||
+            self::get('username') == $ownerName
+        );
+        if (!$isOwner) {
+            return false;
+        }
+
+        $Link = ClassRegistry::init('Link');
+        $hasTranslations = $Link->find('first', array(
+            'conditions' => array('sentence_id' => $sentenceId)
+        ));
+        if (!$hasTranslations) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -236,8 +271,8 @@ class CurrentUser extends AppModel
     public static function hasFavorited($sentenceId)
     {
         $userId = self::get('id');
-        $FavoritedBy = ClassRegistry::init('FavoritedBy');
-        return $FavoritedBy->isSentenceFavoritedByUser($sentenceId, $userId);
+        $Favorite = ClassRegistry::init('Favorite');
+        return $Favorite->isSentenceFavoritedByUser($sentenceId, $userId);
     }
 
     /**
@@ -259,7 +294,8 @@ class CurrentUser extends AppModel
 
 
     /**
-     * Get user's languages.
+     * Languages that the user has set in their settings, to filter the languages
+     * in which translations are displayed.
      *
      * @return array
      */
@@ -275,5 +311,28 @@ class CurrentUser extends AppModel
         return $langArray;
     }
 
+
+    /**
+     * Languages added in profile.
+     *
+     * @return array
+     */
+    public function getProfileLanguages()
+    {
+        return self::$_profileLanguages;
+    }
+
+    private function _setProfileLanguages()
+    {
+        $UsersLanguages = ClassRegistry::init('UsersLanguages');
+        $userId = self::get('id');
+        $languages = $UsersLanguages->getLanguagesOfUser($userId);
+        $languageCodes = array();
+        foreach($languages as $lang) {
+            $languageCodes[] = $lang['UsersLanguages']['language_code'];
+        }
+
+        self::$_profileLanguages = $languageCodes;
+    }
 }
 ?>

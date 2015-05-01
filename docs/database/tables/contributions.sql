@@ -28,21 +28,24 @@
 -- owner. It is not critical, but it could be useful information.
 --
 
-CREATE TABLE IF NOT EXISTS `contributions` (
-  `id` int(11) NOT NULL,
+DROP TABLE IF EXISTS `contributions`;
+CREATE TABLE `contributions` (
   `sentence_id` int(11) NOT NULL,
-  `sentence_lang` varchar(4) default NULL,
-  `translation_id` int(11) default NULL,
-  `translation_lang` varchar(4) default NULL,
+  `sentence_lang` varchar(4) DEFAULT NULL,
+  `translation_id` int(11) DEFAULT NULL,
+  `translation_lang` varchar(4) DEFAULT NULL,
   `text` varbinary(1500) NOT NULL,
-  `action` enum('insert','update','delete') character set latin1 NOT NULL,
-  `user_id` int(11) default NULL,
+  `action` enum('insert','update','delete') CHARACTER SET latin1 NOT NULL,
+  `user_id` int(11) DEFAULT NULL,
   `datetime` datetime NOT NULL,
-  `ip` varchar(15) character set latin1 default NULL,
-  `type` enum('link','sentence') character set latin1 NOT NULL,
+  `ip` varchar(15) CHARACTER SET latin1 DEFAULT NULL,
+  `type` enum('link','sentence') CHARACTER SET latin1 NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_desc` (`id`),
   KEY `sentence_id` (`sentence_id`),
   KEY `datetime` (`datetime`),
   KEY `user_id` (`user_id`),
   KEY `sentence_lang` (`sentence_lang`,`type`),
-  KEY `id` (`id`)
+  KEY `translation_id_idx` (`translation_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;

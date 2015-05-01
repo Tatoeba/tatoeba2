@@ -38,58 +38,59 @@
 class Favorite extends AppModel
 {
     public $name = 'Favorite';
-    public $useTable = 'sentences';
+    public $useTable = 'favorites_users';
+    public $recursive = -1;
 
     public $actsAs = array(
-        'ExtendAssociations',
-        'Containable');
+        'Containable'
+    );
 
-    public $hasAndBelongsToMany = array(
-        'User' => array(
-            'className' => 'User',
-            'joinTable' => 'favorites_users',
-            'foreignKey' => 'favorite_id',
-            'associationForeignKey' => 'user_id',
-        )
+    public $belongsTo = array(
+        'Sentence' => array('foreignKey' => 'favorite_id')
     );
 
     /**
-     * get number of favorite sentence of a user
+     * Get number of favorite sentences of a user.
      *
-     * @param int $userId the user's id
+     * @param int $userId The user's id.
      *
      * @return array
      */
     public function numberOfFavoritesOfUser($userId)
     {
-        $result = $this->query(
-            "
-            SELECT count(user_id) AS numberOfFavorites FROM favorites_users
-            WHERE user_id = $userId
-            "
+        $result = $this->find(
+            'count',
+            array(
+                'conditions' => array(
+                    'user_id' => $userId
+                )
+            )
         );
-        return $result[0][0]["numberOfFavorites"];
+
+        return $result;
     }
 
     /**
-     * retrieve all favorites of a user
+     * Retrieve all favorites of a user.
      *
-     * @param int $userId user to retrieve favorites
+     * @param int $userId The user's id.
      *
      * @return array
      */
 
     public function getAllFavoritesOfUser($userId)
     {
-        $favorites = $this->User->find(
-            'first',
+        $favorites = $this->find(
+            'all',
             array(
-                'fields' => array('id','username'),
+                'fields' => array(
+                    'favorite_id'
+                ),
                 'conditions' => array(
-                    'User.id' => $userId
+                    'Favorite.user_id' => $userId
                 ),
                 'contain' => array(
-                    'Favorite' => array(
+                    'Sentence' => array(
                         'fields' => array(
                             'text',
                             'lang',
@@ -105,51 +106,66 @@ class Favorite extends AppModel
     }
 
     /**
-     * add a sentence to current user's ones
+     * Add a sentence to favorites.
      *
-     * @param int $sentenceId id of the sentence to favorite
-     * @param int $userId     id of the user who want to add
+     * @param int $sentenceId Id of the sentence to favorite.
+     * @param int $userId     Id of the user who want to add.
      *
      * @return bool
      */
-
     public function addFavorite($sentenceId, $userId)
     {
-        // habtmAdd() was behaving strangely so we're doing it manually
-        $this->query(
-            "
-            INSERT INTO `favorites_users` (`favorite_id`,`user_id`)
-            VALUES ($sentenceId, $userId)
-            "
+        $data = array(
+            'favorite_id' => $sentenceId,
+            'user_id' => $userId
         );
 
-        // TODO Find a way not to return always true.
-        // $this->query() won't return anything if it's an "INSERT"
-        return true;
+        $isSaved = $this->save($data);
+
+        return $isSaved;
     }
 
     /**
-     * remove a sentence to current user's ones
+     * Remove a sentence from favorites.
      *
-     * @param int $sentenceId id of the sentence to unfavorite
-     * @param int $userId     id of the user who want to remove
+     * @param int $sentenceId Id of the sentence to unfavorite.
+     * @param int $userId     Id of the user who want to remove.
      *
      * @return bool
      */
-
     public function removeFavorite($sentenceId, $userId)
     {
-        // habtmDelete() was behaving strangely so we're doing it manually
-        $this->query(
-            "
-            DELETE FROM `favorites_users`
-            WHERE favorite_id = $sentenceId AND user_id = $userId
-            "
+        $conditions = array(
+            'Favorite.favorite_id' => $sentenceId,
+            'Favorite.user_id' => $userId
         );
 
-        // TODO Find a way not to return always true.
-        // $this->query() won't return anything if it's a "DELETE"
-        return true;
+        $isDeleted = $this->deleteAll($conditions, false);
+
+        return $isDeleted;
+    }
+
+
+    /**
+     * Indicates whether a sentence has been favorited by a user or not.
+     *
+     * @param int $sentenceId Id of the sentence.
+     * @param int $userId     Id of the user.
+     *
+     * @return bool
+     */
+    public function isSentenceFavoritedByUser($sentenceId, $userId)
+    {
+        $result = $this->find(
+            'first',
+            array(
+                'conditions' => array(
+                    'favorite_id' => $sentenceId,
+                    'user_id' => $userId
+                )
+            )
+        );
+        return !empty($result);
     }
 }
 ?>

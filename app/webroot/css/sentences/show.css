@@ -17,36 +17,6 @@
  */
 
 
-/*
- * Navigation
- */
-@import url(../elements/navigation.css);
-
-
-/*
- * Sentence and translations
- */
-@import url(../elements/sentences_group.css);
-
-
-/*
- * Comments
- */
-@import url(../elements/message.css);
-
-
-/*
- * Logs
- */
-@import url(../elements/logs_annexe.css?1);
-@import url(../elements/logs_colors.css);
-
-/*
- * Tags
- */
-@import url(../elements/autocompletion.css);
-
-
 /* 
  * Navigation
  */
@@ -70,19 +40,6 @@
  */
 .tagsListOnSentence {
     overflow: auto;
-}
-
-.tag {
-    display: block;
-    float: left;
-    border-bottom: 1px solid #DDD;
-    border-right: 1px solid #DDD;
-    background: #FFE684;
-    padding: 2px 8px;
-    margin: 5px;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
 }
 
 .tagName {

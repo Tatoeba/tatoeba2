@@ -31,7 +31,6 @@ $(document).ready(function() {
         
         // The data is set in sentence_buttons.php, displayLanguageFlag()
         var sentenceId = $(this).data('sentenceId');
-        var prevLang = $(this).data('currentLang');
         
         $("#selectLangContainer_" + sentenceId).toggle();
         
@@ -45,7 +44,7 @@ $(document).ready(function() {
             
             $.post(
                 rootUrl + "/sentences/change_language/",
-                { "id": sentenceId, "newLang": newLang, "prevLang": prevLang },
+                { "id": sentenceId, "newLang": newLang },
                 function(data){
                     $("#_" + sentenceId + "_in_process").hide();
                     flagImage.attr('src', '/img/flags/' + data + '.png');

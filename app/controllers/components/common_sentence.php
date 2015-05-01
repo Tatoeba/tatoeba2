@@ -50,29 +50,24 @@ class CommonSentenceComponent extends Object
      * this function is never called directly and is only here
      * to factorize :)
      *
-     * @param string $lang                   The lang of the sentence to be saved,
-     *                                       if lang is 'auto' then we will try to
-     *                                       auto detect it
-     * @param string $text                   The sentence text.
-     * @param int    $userId                 The Id of the user who add/edit this
-     *                                       sentence.
-     * @param int    $sentenceId             If we edit the sentence, it's the id of
-     *                                       the sentence.
-     * @param int    $translatedSentenceId   If the sentence is a translation of an
-     *                                       other, id of the translated sentence
-     * @param string $translatedSentenceLang Lang of the translated sentence if the
-     *                                       Sentence to add is a translation.
+     * @param string $lang        The lang of the sentence to be saved,
+     *                            if lang is 'auto' then we will try to
+     *                            auto detect it
+     * @param string $text        The sentence text.
+     * @param int    $userId      The Id of the user who add/edit this
+     *                            sentence.
+     * @param int    $sentenceId  If we edit the sentence, it's the id of
+     *                            the sentence.
+     * @param string $userName
+     * @param int    $correctness
      *
-     * @return boolean
-     *
+     * @return bool
      */
     public function wrapper_save_sentence(
         $lang,
         $text,
         $userId,
         $sentenceId = null,
-        $translatedSentenceId = null,
-        $translatedSentenceLang = null,
         $userName = "",
         $correctness = 0
     ) {
@@ -88,15 +83,17 @@ class CommonSentenceComponent extends Object
             $lang = null;
         }
 
-        $this->data['Sentence']['id'] = $sentenceId;
-        $this->data['Sentence']['lang'] = $lang;
-        $this->data['Sentence']['user_id'] = $userId;
-        $this->data['Sentence']['text'] = $text;
-        $this->data['Sentence']['correctness'] = $correctness;
+        $sentenceData = array(
+            'id' => $sentenceId,
+            'lang' => $lang,
+            'user_id' => $userId,
+            'text' => $text,
+            'correctness' => $correctness,
+        );
 
         $Sentence = ClassRegistry::init('Sentence');
 
-        $isSaved = $Sentence->save($this->data);
+        $isSaved = $Sentence->save($sentenceData);
 
         return $isSaved;
     }

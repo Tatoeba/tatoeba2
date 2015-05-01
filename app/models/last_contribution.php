@@ -67,7 +67,32 @@ class LastContribution extends AppModel
                 )
             )
         );
+
+        foreach ($result as $i=>$contributor) {
+            $result[$i] = array (
+                'numberOfContributions' => $contributor[0]['total'],
+                'userName' => $contributor['User']['username'],
+                'image' => $contributor['User']['image']
+            );
+        }
+
         return $result;
+    }
+
+
+    /**
+     * [getTotalLastContributions description]
+     * @param  [type] $contributors [description]
+     * @return [type]               [description]
+     */
+    public function getTotal($contributors)
+    {
+        $total = 0;
+        foreach ($contributors as $i=>$contributor) {
+            $total += $contributor['numberOfContributions'];
+        }
+
+        return $total;
     }
 
 }

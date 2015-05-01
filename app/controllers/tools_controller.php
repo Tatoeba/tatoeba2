@@ -39,8 +39,9 @@ App::import('Vendor', 'autotranscription');
 class ToolsController extends AppController
 {
     public $name = 'Tools';
-    public $helpers = array('Javascript','AttentionPlease');
+    public $helpers = array('Javascript');
     public $components = array('Pinyin');
+    public $uses = array();
 
     /**
      * Before filter.
@@ -131,8 +132,10 @@ class ToolsController extends AppController
         if (!empty($text)) {
             $autotranscription = new Autotranscription();
             $convertedText = $autotranscription->cmn($text, CMN_OTHER_SCRIPT);
+            $convertedTextScript = $autotranscription->cmn($convertedText, CMN_SCRIPT);
         }
 
+        $this->set('convertedTextScript', $convertedTextScript);
         $this->set('convertedText', $convertedText);
         $this->set('lastText', $text);
     }

@@ -28,12 +28,12 @@
 if (empty($lang)){
     $title = __('Orphan sentences', true);
 } else {
-    $title = sprintf(
-        __('Orphan sentences in %s', true), 
-        $languages->codeToName($lang)
+    $title = format(
+        __('Orphan sentences in {language}', true), 
+        array('language' => $languages->codeToNameToFormat($lang))
     );
 }
-$this->set('title_for_layout', $title);
+$this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 <div id="annexe_content">
     
@@ -52,15 +52,17 @@ $this->set('title_for_layout', $title);
         
         <p>
         <?php
-        echo sprintf(
+        echo format(
             __(
                 'So if you want to help us check and correct sentences, then adopt '.
-                '(%s) any "orphan" sentence you see in your <strong>native '.
+                '({adoptButton}) any "orphan" sentence you see in your <strong>native '.
                 'language</strong>, and correct it if necessary. '.
-                'Read <a href="%s">this</a> for further explanation.', true
+                'Read <a href="{url}">this</a> for further explanation.', true
             ),
-            $html->image('adopt.png'),
-            'http://blog.tatoeba.org/2010/04/reliability-of-sentences-how-will-we.html'
+            array(
+                'adoptButton' => $html->image('unadopted.svg', array('height' => 16)),
+                'url' => 'http://blog.tatoeba.org/2010/04/reliability-of-sentences-how-will-we.html'
+            )
         )
         ?>
         </p>
@@ -84,19 +86,9 @@ $this->set('title_for_layout', $title);
 
 <div id="main_content">
     <div class="module">
-    <h2>
     <?php 
-    echo $title;
-    echo ' ';
-    echo $paginator->counter(
-        array(
-            'format' => __('(%count% results)', true)
-        )
-    ); 
-    ?>
-    </h2>
-    
-    <?php
+    echo $this->Pages->formatTitleWithResultCount($paginator, $title);
+
     $pagination->display(array($lang));
     
     foreach ($results as $sentence) {

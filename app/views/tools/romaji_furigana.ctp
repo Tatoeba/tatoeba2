@@ -25,23 +25,19 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', 'Tatoeba - '. __(
-    'Convert Japanese text into romaji or furigana', true
+$this->set('title_for_layout', $pages->formatTitle(
+    __('Convert Japanese text into romaji or furigana', true)
 ));
 
 ?>
 
 <div id="annexe_content">
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-
     <div class="module">
         <h2><?php __('Credits'); ?></h2>
         <p>
             <?php
-            echo sprintf(
-                __('This tool is powered by <a href="%s">MeCab</a>.',true),
+            echo format(
+                __('This tool is powered by <a href="{}">MeCab</a>.',true),
                 'http://mecab.sourceforge.net/feature.html'
             );
 
@@ -72,9 +68,12 @@ $this->set('title_for_layout', 'Tatoeba - '. __(
         <h2><?php __('Convert Japanese text into romaji or furigana'); ?></h2>
         <?php
 
-        echo '<div id="conversion">';
-        echo $result;
-        echo '</div>';
+        $script = ($type == 'romaji') ? 'Latn' : '';
+        echo $languages->tagWithLang(
+            'div', 'ja', $result,
+            array('id' => 'conversion'),
+            $script
+        );
 
         echo $form->create(
             'Tool',
@@ -91,7 +90,9 @@ $this->set('title_for_layout', 'Tatoeba - '. __(
             array(
                 "value" => $query,
                 "rows" => 30,
-                "cols"=> 40
+                "cols" => 40,
+                "lang" => "ja",
+                "dir" => "ltr",
             )
         );
         ?>

@@ -1,17 +1,22 @@
+# Merges duplicate sentences in a database.
+# See README.md for instructions on setting up the dependencies for this script and running it.
+
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from tatoeba2.models import Sentences, SentencesTranslations, Contributions, Users, Wall, SentenceComments
+from tatoeba2.models import Sentences, SentencesTranslations, Contributions, Users, Wall, SentenceComments, WallThreadsLastMessage, Languages
 from collections import defaultdict
 from datetime import datetime
-from itertools import chain
 from optparse import make_option
-from django.db import transaction
+from django.db import transaction, IntegrityError
 from StringIO import StringIO
 from os import path
 from django.core import serializers
 from django.db.models.loading import get_model
 from django.db.models import Q
 from termcolor import colored
+from hashlib import sha1
+from pytz import UTC as utc
+from itertools import permutations
 import time
 import logging
 import sys
@@ -19,11 +24,15 @@ import json
 import re
 
 
+def now():
+    return datetime.utcnow().replace(tzinfo=utc)
+
+
 class Dedup(object):
 
     @classmethod
     def time_init(cls):
-        cls.started_on = datetime.utcnow()
+        cls.started_on = now()
 
     @classmethod
     def logger_init(cls, root_path=''):
@@ -40,7 +49,7 @@ class Dedup(object):
         cls.str_log.addHandler(string)
 
         root_path = root_path or settings.BASE_DIR
-        file_name = 'dedup-'+ cls.started_on.strftime('%Y-%m-%d %I:%M %p') + '.log'
+        file_name = 'dedup-'+ cls.started_on.strftime('%Y-%m-%dT%H:%M') + '.log'
         cls.file_log = logging.getLogger('file_logger')
         cls.file_log.setLevel(logging.DEBUG)
         cls.log_file_path = path.join(root_path, file_name)
@@ -51,7 +60,7 @@ class Dedup(object):
     def tally(sents, old_tally=None):
         tally = defaultdict(set) if not old_tally else old_tally
         for sent in sents:
-                tally[(sent.text, sent.lang)].add(sent.id)
+                tally[(sent[0], sent[1])].add(sent[2])
 
         return tally
         
@@ -82,7 +91,7 @@ class Dedup(object):
                 cls.has_owner.add(sent)
 
             # filter unapproved sents
-            if sent.correctness is -1:
+            if sent.correctness == -1:
                 cls.not_approved = True
 
         # has_audio, lowest id
@@ -107,7 +116,7 @@ class Dedup(object):
     @classmethod
     def json_entry(cls, main_id, ids, op, q, fld, objs):
         entry = {}
-        entry['timestamp'] = datetime.utcnow().strftime('%Y-%m-%d %I:%M %p UTC')
+        entry['timestamp'] = now().strftime('%Y-%m-%d %I:%M %p UTC')
         entry['operation'] = op
         entry['query'] = q
         entry['main_id'] = main_id
@@ -131,6 +140,7 @@ class Dedup(object):
             'delete': colored('DELETE', 'yellow', attrs=['bold']),
             'into': colored('INTO', 'yellow', attrs=['bold']),
             'update': colored('UPDATE', 'yellow', attrs=['bold']),
+            'log_deletion': colored('LOG DELETION', 'yellow', attrs=['bold']),                    
         }
         entry = cls.multi_replace(entry, pat)
         
@@ -168,9 +178,9 @@ class Dedup(object):
                 sentence_lang=sent.lang,
                 text=sent.text,
                 action='delete',
-                datetime=datetime.utcnow(),
+                datetime=now(),
                 type='sentence',
-                user_id=cls.bot.id,
+                user_id=cls.bot.id if hasattr(cls, 'bot') else 0,
                 ))
 
         if not cls.dry:
@@ -180,43 +190,169 @@ class Dedup(object):
         cls.log_entry(main_id, ids, 'log_deletion Contributions', 'insert', 'sentence_id', logs)
     
     @classmethod
-    @transaction.atomic
     def delete_sents(cls, main_id, ids):
         sents = Sentences.objects.filter(id__in=ids)
         cls.log_sents_del(main_id, ids, sents)
         if not cls.dry:
             sents.delete()
-
+    
     @classmethod
     def log_update_merge(cls, model, main_id, ids, fld='sentence_id'):
         updates = list(get_model('tatoeba2.'+model).objects.filter(**{fld+'__in': ids}))
         cls.log_entry(main_id, ids, 'merge '+model, 'update', fld, updates)
 
     @classmethod
-    @transaction.atomic
-    def update_merge(cls, model, main_id, ids, fld='sentence_id'):
-        cls.log_update_merge(model, main_id, ids, fld)
+    def unique_collisions(cls, model, main_id, ids, update_fld='sentence_id'):
+        unique_together = get_model('tatoeba2.'+model)._meta.unique_together
+        collisions = set()
+        remaining = defaultdict(list)
+
+        if unique_together:
+            unique_flds = list(unique_together[0])
+            unique_flds.remove(update_fld)
+            # filter out current rows into sets
+            flds = [update_fld] + unique_flds
+            dups = list(get_model('tatoeba2.'+model).objects.filter(**{update_fld+'__in': ids}))
+            main = list(get_model('tatoeba2.'+model).objects.filter(**{update_fld: main_id}))
+            dups = set(tuple(getattr(obj, fld) for fld in flds) for obj in dups)
+            main = set(tuple(getattr(obj, fld) for fld in flds) for obj in main)
+
+            # simulate the update on the dups row set and check if
+            # there's collisions in the main row set, keep track of
+            # collisions and non-collisions remaining
+            for obj in dups:
+                updated_obj = (main_id,) + tuple(obj[1:])
+                if updated_obj in main:
+                    collisions.add(obj)
+                else:
+                    remaining[updated_obj].append(obj)
+
+            # handle duplicates inside duplicates, for instance
+            # 1-5 and 2-5 updated into 3-5 and 3-5 because of
+            # merging sentences 1 and 2 into 3
+            for dup_dups in remaining.itervalues():
+                if (len(dup_dups) > 1):
+                    dup_dups.pop(0)
+                    for dup in dup_dups:
+                        collisions.add(dup)
+
+            # handle deeply linked duplicates
+            for pair in permutations([main_id]+list(ids), 2):
+                collisions.add(pair)
+
+            return bool(unique_together), unique_flds, collisions
+        else:
+            return bool(unique_together), None, None
+
+    @classmethod
+    def log_rows_tuples_del(cls, model, main_id, ids, query, msg):
+        query = query.all() # calls clone() on the queryset, to get around python references
+        deletes = list(query)
+        cls.log_entry(main_id, ids, msg+' '+model, 'delete', 'sentence_id', deletes)
+
+    @classmethod
+    def delete_rows_tuples(cls, model, main_id, ids, flds, tuples, log_msg):
+        # given tuples containing some values and a model with a list of field names
+        # contents are matched back to build an orm filter, the query
+        # is then built by chaining all the built filters and rows are deleted
+        query = get_model('tatoeba2.'+model).objects.none() 
+        for tpl in tuples:
+            filters = {}
+            for idx, fld in enumerate(flds):
+                filters[fld] = tpl[idx]
+            query = query | get_model('tatoeba2.'+model).objects.filter(**filters)
+        cls.log_rows_tuples_del(model, main_id, ids, query, log_msg)
         if not cls.dry:
-            get_model('tatoeba2.'+model).objects.filter(**{fld+'__in': ids}).update(**{fld:main_id})
+            query.delete()
 
     @classmethod
-    def log_insert_merge(cls, model, main_id, ids, fld, inserts):
-        cls.log_entry(main_id, ids, 'merge '+model, 'insert', fld, inserts)
+    def update_merge(cls, model, main_id, ids, update_fld='sentence_id'):
+        # handle unique collisions
+        unique, unique_flds, collisions = cls.unique_collisions(model, main_id, ids, update_fld)
+        if unique:
+            flds = [update_fld] + unique_flds
+
+            # delete collisions before update runs
+            cls.delete_rows_tuples(model, main_id, ids, flds, collisions, 'delete update collisions')
+
+        # issue update
+        cls.log_update_merge(model, main_id, ids, update_fld)
+        if not cls.dry:
+            get_model('tatoeba2.'+model).objects.filter(**{update_fld+'__in': ids}).update(**{update_fld: main_id})
 
     @classmethod
-    @transaction.atomic
-    def insert_merge(cls, model, main_id, ids, fld='sentence_id', q_filters=Q()):
-        Model = get_model('tatoeba2.'+model)
-        inserts = list(Model.objects.filter(**{fld+'__in': ids}).filter(q_filters))
-        
-        for ins in inserts:
-            ins.id = None
-            setattr(ins, fld, main_id)
+    def log_merge_links_contrib(cls, main_id, ids, contrib_logs):
+        cls.log_entry(main_id, ids, 'merge insert link logs', 'insert', 'sentence_id', contrib_logs)
 
-        if not cls.dry:            
-            inserts = Model.objects.bulk_create(inserts)
+    @classmethod
+    def merge_links(cls, main_id, ids):
+        def remove_collisions(update_fld):
+            # find and delete unique collisions
+            unique, unique_flds, collisions = cls.unique_collisions('SentencesTranslations', main_id, ids, update_fld)
+            if unique:
+                flds = [update_fld] + unique_flds
 
-        cls.log_insert_merge(model, main_id, ids, fld, inserts)
+                # handle the need for having all the ids not match
+                # (think self-linked sentences), delete any existing
+                # dup_id, main_id pairs in the main row set so that
+                # the update will not generate main_id, main_id pairs
+                for id in ids:
+                    collisions.add((id, main_id))
+
+                # delete collisions before update runs
+                cls.delete_rows_tuples('SentencesTranslations', main_id, ids, flds, collisions, 'delete update collisions')
+
+        def contrib_log(sent_id, tran_id, action):
+            return Contributions(
+                       sentence_id=sent_id,
+                       translation_id=tran_id,
+                       action=action,
+                       type='link',
+                       datetime=now(),
+                       user_id=cls.bot.id
+                   )
+
+        remove_collisions('sentence_id')
+        remove_collisions('translation_id')
+
+        logs = []
+
+        lnks_fd = SentencesTranslations.objects.filter(sentence_id__in=ids)
+        lnks_bd = SentencesTranslations.objects.filter(translation_id__in=ids)
+
+        for lnk in list(lnks_fd):
+            logs.append(contrib_log(lnk.sentence_id, lnk.translation_id, 'delete'))
+            logs.append(contrib_log(main_id, lnk.translation_id, 'insert'))
+
+        for lnk in list(lnks_bd):
+            logs.append(contrib_log(lnk.sentence_id, lnk.translation_id, 'delete'))
+            logs.append(contrib_log(lnk.sentence_id, main_id, 'insert'))
+
+        cls.log_merge_links_contrib(main_id, ids, logs)
+        if not cls.dry:
+            Contributions.objects.bulk_create(logs)
+
+            lnks_fd.update(sentence_id=main_id)
+            lnks_bd.update(translation_id=main_id)
+
+    @classmethod
+    def log_merge_comments(cls, main_id, ids, cmnts):
+        cls.log_entry(main_id, ids, 'merge insert comments', 'insert', 'sentence_id', cmnts)
+
+    @classmethod
+    def merge_comments(cls, main_id, ids):
+        cmnts = SentenceComments.objects.filter(sentence_id__in=ids)
+
+        for cmnt in cmnts:
+            cmnt.id = None
+            cmnt.text += '\n\n\n# --------------------------------------------------------------------------------\n';
+            cmnt.text += '# This comment was copied from #%s when duplicate sentences were merged.' % (cmnt.sentence_id);
+            cmnt.text += '\n# --------------------------------------------------------------------------------\n';
+            cmnt.sentence_id = main_id
+
+        cls.log_merge_comments(main_id, ids, cmnts)
+        if not cls.dry:
+            SentenceComments.objects.bulk_create(cmnts)
 
     @classmethod
     @transaction.atomic
@@ -224,16 +360,14 @@ class Dedup(object):
         cls.dry = dry
 
         # merge
-        cls.insert_merge('SentenceComments', main_sent.id, ids)
+        cls.merge_comments(main_sent.id, ids)
         cls.update_merge('TagsSentences', main_sent.id, ids)
-        cls.update_merge('SentencesTranslations', main_sent.id, ids)
-        cls.update_merge('SentencesTranslations', main_sent.id, ids, 'translation_id')
+        cls.merge_links(main_sent.id, ids)
         cls.update_merge('SentencesSentencesLists', main_sent.id, ids)
-        cls.insert_merge('Contributions', main_sent.id, ids, q_filters=Q(type='sentence', action='update') | Q(type='link'))
         cls.update_merge('FavoritesUsers', main_sent.id, ids, 'favorite_id')
         cls.update_merge('SentenceAnnotations', main_sent.id, ids)
-        
-        
+        cls.update_merge('SentenceAnnotations', main_sent.id, ids, 'meaning_id')
+               
         # delete and log duplicates
         cls.delete_sents(main_sent.id, ids)
         
@@ -244,16 +378,41 @@ class Dedup(object):
                 main_sent.save()
             cls.log_entry(main_sent.id, [], 'update Sentences', 'update', 'correctness', [main_sent])
         
-        # post comment on merged sentence if needed
-        if post_cmnt:
-            SentenceComments(
-                sentence_id=main_sent.id,
-                text='This sentence has been merged with '+' '.join(['#'+str(id) for id in ids]),
-                user_id=cls.bot.id,
-                created=datetime.utcnow(),
-                hidden=0,
-                ).save()
+        # post comment on duplicate sentences if needed
+        if post_cmnt and not dry:
+            comments = []
+            for id in ids:
+                comments.append(
+                    SentenceComments(
+                        sentence_id=id,
+                        text='Please go to #{0}.\nThis sentence has been deleted because it was a duplicate.'.format(main_sent.id),
+                        user_id=cls.bot.id,
+                        created=now(),
+                        hidden=0,
+                        )
+                    )
+            comments.append(
+                SentenceComments(
+                    sentence_id=main_sent.id,
+                    text='Duplicates of this sentence have been deleted:\n' + \
+                    '\n'.join(['x #%s' % (id) for id in ids]),
+                    user_id=cls.bot.id,
+                    created=now(),
+                    hidden=0
+                    )
+                )
+            SentenceComments.objects.bulk_create(comments)
 
+    @staticmethod
+    @transaction.atomic
+    def refresh_lang_stats(dry=False):
+        if not dry:
+            langs = list(Languages.objects.all())
+            for l in langs:
+                Languages.objects\
+                .filter(code=l.code)\
+                .update(numberofsentences=Sentences.objects.filter(lang=l.code).count())
+        
 class Command(Dedup, BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option(
@@ -294,8 +453,22 @@ class Command(Dedup, BaseCommand):
             ),
         make_option(
             '-u', '--url', action='store', type='string', dest='url',
-            help='url root path pointing to log directory. used in the wall post'),
+            help='url root path pointing to log directory. used in the wall post'
+            ),
+        make_option(
+            '-r', '--refresh-stats', action='store_true', dest='refresh',
+            help='runs queries to repopulate langstats table'
+            ),
         )
+
+    def update_dedup_progress(self):
+        percent_done = (self.proceeded_sets)*100/self.total_sets
+        if percent_done - self.prev_progress > 2 or percent_done == 100:
+            sys.stdout.write('\rDeduplication: '+str(percent_done)+'% done')
+            sys.stdout.flush()
+            self.prev_progress = percent_done
+        if percent_done == 100:
+            print('') # for the return carriage
 
     def handle(self, *args, **options):
 
@@ -310,19 +483,21 @@ class Command(Dedup, BaseCommand):
         chunks = options.get('chunks') or 10
         since = options.get('since')
 
-        bot_name = options.get('bot_name') or 'deduplication_bot'
+        dry = bool(options.get('dry'))
+        refresh = bool(options.get('refresh'))
+        bot_name = options.get('bot_name') or 'Horus'
         try:
             Dedup.bot = Users.objects.get(username=bot_name)
         except Users.DoesNotExist:
-            Dedup.bot = Users.objects.create(
-                username=bot_name, password='', email='bot@bots.com',
-                since=datetime.utcnow(), last_time_active=datetime.utcnow().strftime('%Y%m%d'),
-                level=1, is_public=1, send_notifications=0, group_id=1
-                )
+            if not dry:
+                Dedup.bot = Users.objects.create(
+                    username=bot_name, password='', email='bot@example.com',
+                    since=now(), last_time_active=now().strftime('%Y%m%d'),
+                    level=1, is_public=1, send_notifications=0, group_id=1
+                    )
 
         pause_for = options.get('pause_for') or 0
         post_cmnt = bool(options.get('cmnt'))
-        dry = bool(options.get('dry'))
         url = options.get('url') or 'http://downloads.tatoeba.org/'
         if url[-1] != '/': url += '/'
 
@@ -330,14 +505,18 @@ class Command(Dedup, BaseCommand):
         self.all_mains = []
         self.all_audio = []
 
+        self.proceeded_sets = 0
+        self.prev_progress = -100
+
         # incremental vs full scan routes
         if since:
             self.log_report('Running incremental scan at '+self.started_on.strftime('%Y-%m-%d %I:%M %p UTC'))
             # parse date
-            since = datetime(*[int(s) for s in since.split('-')])
+            since = datetime(*[int(s) for s in since.split('-')]).replace(tzinfo=utc)
             # pull in rows from time range
             self.log_report('Running filter on sentences added since '+since.strftime('%Y-%m-%d %I:%M %p'))
-            sents = list(Sentences.objects.filter(created__range=[since, datetime.utcnow()]))
+            sents = list(Sentences.objects.filter(created__range=[since, now()]))
+            sents = [(int(sha1(sent.text).hexdigest(), 16), sent.lang, sent.id) for sent in sents]
             self.log_report('OK filtered '+str(len(sents))+' sentences')
             
             # tally to eliminate premature duplicates
@@ -347,11 +526,14 @@ class Command(Dedup, BaseCommand):
             # filter out duplicates (could probably be done in 1 raw query...)
             self.log_report('Running filter on sentences to find duplicates')
             dup_set = []            
-            for text, lang in sent_tally.iterkeys():
-                sents = list(Sentences.objects.filter(text=text, lang=lang))            
+            for ids in sent_tally.itervalues():
+                ids = list(ids)
+                sents = list(Sentences.objects.filter(id__in=ids))            
                 if len(sents) > 1:
                     dup_set.append(sents)
-            self.log_report('OK '+str(len(dup_set))+' duplicate sets found')
+            self.total_sets = len(dup_set)
+            self.log_report('OK '+str(self.total_sets)+' duplicate sets found')
+            del sent_tally
 
             self.log_report('Running deduplication transactions on duplicate sets')
             # deduplicate
@@ -367,9 +549,11 @@ class Command(Dedup, BaseCommand):
                 self.all_dups.extend(ids)
                 # run a deduplication transaction
                 self.deduplicate(main_sent, ids, post_cmnt, dry)
+                # display percentage progress
+                self.proceeded_sets += 1
+                self.update_dedup_progress()
                 # handle rate limiting
                 if pause_for: time.sleep(pause_for)
-            self.log_report('OK '+str(len(self.all_dups))+' sentences merged into '+str(len(self.all_mains))+' sentences')
 
         else:
             self.log_report('Running full scan at '+self.started_on.strftime('%Y-%m-%d %I:%M %p UTC'))
@@ -379,17 +563,20 @@ class Command(Dedup, BaseCommand):
             sent_tally = defaultdict(set)
             for rng in self.chunked_ranges(chunks, total):
                 sents = list(Sentences.objects.filter(id__range=rng))
+                sents = [(int(sha1(sent.text).hexdigest(), 16), sent.lang, sent.id) for sent in sents]
                 self.log_report('Running duplicate filtering on sentence range: '+ str(rng))
                 sent_tally = self.tally(sents, sent_tally)
                 self.log_report('OK')
                 del sents
 
-            self.log_report('OK full table scan and filtering done '+str(len(sent_tally))+' duplicate sets found')
+            self.total_sets = len(sent_tally)
+            self.log_report('OK full table scan and filtering done '+str(self.total_sets)+' duplicate sets found')
 
             self.log_report('Running deduplication step')
             # deduplicate
             for ids in sent_tally.itervalues():
-                if len(ids) > 1:
+                process = len(ids) > 1
+                if process:
                     # pull in needed rows
                     sents = list(Sentences.objects.filter(id__in=ids))
                     
@@ -405,8 +592,14 @@ class Command(Dedup, BaseCommand):
                     # run a deduplication transaction
                     self.deduplicate(main_sent, ids, post_cmnt, dry)
 
+                self.proceeded_sets += 1
+                # display percentage progress
+                self.update_dedup_progress()
+
+                if process:
                     # handle rate limit
                     if pause_for: time.sleep(pause_for)
+
         self.log_report('OK '+str(len(self.all_dups))+' sentences merged into '+str(len(self.all_mains))+' sentences')
         
         # verification step
@@ -431,21 +624,29 @@ class Command(Dedup, BaseCommand):
         self.log_report(msg)        
 
         # no links should refer to dups
-        self.log_report('No links refer to deleted duplicates? ')
-        self.ver_links = SentencesTranslations.objects.filter(sentence_id__in=self.all_dups).count() == 0 and SentencesTranslations.objects.filter(translation_id__in=self.all_dups).count()
+        self.log_report('Sentences are free from links referring to deleted duplicates? ')
+        self.ver_links = SentencesTranslations.objects.filter(sentence_id__in=self.all_dups).count() == 0 and SentencesTranslations.objects.filter(translation_id__in=self.all_dups).count() == 0
         msg = 'YES' if self.ver_links else 'NO'
         self.log_report(msg)
+
+        # refresh sentence numbers for languages
+        if refresh:
+            self.log_report('Refreshing language statistics')
+            self.refresh_lang_stats(dry)
         
-        self.log_report('Deduplication finished running successfully at '+datetime.utcnow().strftime('%Y-%m-%d %I:%M %p UTC')+', see full log at:')
+        self.log_report('Deduplication finished running successfully at '+now().strftime('%Y-%m-%d %I:%M %p UTC')+', see full log at:')
         self.log_report(url + path.split(self.log_file_path)[-1].replace(' ', '%20'))
         
         # post a wall report if needed
-        if options.get('wall'):
+        if options.get('wall') and not dry:
             lft = Wall.objects.all().order_by('-rght')[0].rght + 1
             rght = lft + 1
-            Wall(
+            w = Wall(
                 owner=self.bot.id,
                 content=self.report.getvalue(),
-                date=datetime.utcnow(), title='', hidden=0,
+                date=now(), modified=now(),
+                title='', hidden=0,
                 lft=lft, rght=rght
-                ).save()
+                )
+            w.save()
+            WallThreadsLastMessage(id=w.id, last_message_date=w.modified).save()

@@ -33,7 +33,18 @@ if (isset($this->params['lang'])) {
 <div class="search_bar">
 
 <?php
-$languages = $languages->getSearchableLanguagesArray();
+
+$restrictSearchLangsEnabled = $session->read('restrict_search_langs_enabled');
+if ($restrictSearchLangsEnabled) {
+    $langArray = $languages->profileLanguagesArray(false, false, true);
+    $currentUserLanguages = CurrentUser::getProfileLanguages();
+}
+
+if (!$restrictSearchLangsEnabled || empty($currentUserLanguages)) {
+    $langs = $languages->getSearchableLanguagesArray();
+} else {
+    $langs = $langArray;
+}
 
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';
@@ -61,7 +72,9 @@ echo $form->create(
             'id' => 'SentenceQuery',
             'value' => $searchQuery,
             'label' => '',
-            'accesskey' => 4
+            'accesskey' => 4,
+            'lang' => '',
+            'dir' => 'auto',
         )
     );
     ?>
@@ -70,9 +83,10 @@ echo $form->create(
 <fieldset class="select">
     <label><?php __('From'); ?></label>
     <?php
+    
     echo $form->select(
         'from',
-        $languages,
+        $langs,
         $selectedLanguageFrom,
         array(
             'class' => 'language-selector',
@@ -84,7 +98,7 @@ echo $form->create(
 </fieldset>
 
 <fieldset class="into">
-    <span id="into">&raquo;</span>
+    <span id="into"><a id="arrow" style="color:white;">&raquo;</a></span>
 </fieldset>
     
 <fieldset class="select">
@@ -92,7 +106,7 @@ echo $form->create(
     <?php
     echo $form->select(
         'to',
-        $languages,
+        $langs,
         $selectedLanguageTo,
         array(
             'class' => 'language-selector',

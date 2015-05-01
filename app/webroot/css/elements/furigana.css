@@ -19,10 +19,9 @@
 
 /*
  * Ruby support
- * NOTE: I don't remember where I got this from...
  */
-ruby
- {
+
+ruby {
     display: inline-table;
     text-align: center;
     white-space: nowrap;
@@ -31,15 +30,11 @@ ruby
     vertical-align: bottom;
 }
 
-/* ルビベース */
-ruby > rb, ruby > rbc
- {
+rb {
     display: table-row-group;
 }
 
-/* 前側ルビテキスト */
-ruby > rt, ruby > rbc + rtc
- {
+rt {
     display: table-header-group;
     font-size: 60%;
     letter-spacing: 0;
@@ -49,23 +44,6 @@ ruby > rt, ruby > rbc + rtc
     -ms-user-select: none;
 }
 
-/* 後側ルビテキスト */
-ruby > rbc + rtc + rtc
- {
-    display: table-footer-group;
-    font-size: 60%;
-    letter-spacing: 0;
+rp {
+    display: none;
 }
-
-/* 複雑ルビテキスト */
-rbc > rb, rtc > rt
- {
-    display: table-cell;
-    letter-spacing: 0;
-}
-
-/* rt[rbspan] should be transformed into td[colspan] but that requires xslt */
-rtc > rt[rbspan] { display: table-caption; }
-
-/* ルビ括弧 */
-rp { display: none; }

@@ -35,17 +35,14 @@
  * @link     http://tatoeba.org
  */ 
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Wall', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Wall', true)));
 
 $javascript->link('jquery.scrollTo-min.js', false);
 $javascript->link('wall.reply.js', false);
+$javascript->link('wall.show_and_hide_replies.js', false);
 
 ?>
 <div id="annexe_content" >
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-    
     <div class="module" >
         <h2><?php __('Tips'); ?></h2>
         <p>
@@ -60,10 +57,10 @@ $javascript->link('wall.reply.js', false);
         
         <p>
         <?php
-        echo sprintf(
+        echo format(
             __(
                 'Before asking a question, '.
-                'make sure to read the <a href="%s">FAQ</a>.', true
+                'make sure to read the <a href="{}">FAQ</a>.', true
             ),
             $html->url(array('controller' => 'pages', 'action' => 'faq'))
         );
@@ -81,19 +78,18 @@ $javascript->link('wall.reply.js', false);
                 $currentMessage = $tenLastMessages[$i] ;
                 echo '<li>';
                 // text of the link
-                $author = sprintf(
-                    __('by %s', true), $currentMessage['User']['username']
-                );
-                $text = $date->ago($currentMessage['Wall']['date'])
-                        . ", "
-                        . $author;
+                $text = format(__('{date}, by {author}', true),
+                               array(
+                                   'date' => $date->ago($currentMessage['Wall']['date']),
+                                   'author' => $currentMessage['User']['username']
+                               ));
                 
                 $path = array(
                     'controller' => 'wall',
                     'action' => 'index#message_'.$currentMessage['Wall']['id']
                     );
                 // link
-                echo $html->link($text, $path);
+                echo $html->link($text, $path, array('escape' => false));
                 echo '</li>';
             };
             ?>
@@ -122,15 +118,9 @@ $javascript->link('wall.reply.js', false);
     <div class="module">
         <h2>
             <?php
-            // TODO extract this 
-            echo $paginator->counter(
-                array(
-                    'format' => __(
-                        'Wall (%count% threads)',
-                        true
-                    )
-                )
-            );
+            $threadsCount = $paginator->counter(array('format' => '%count%'));
+            echo format(__n('Wall (one thread)', 'Wall ({n}&nbsp;threads)', $threadsCount, true),
+                        array('n' => $threadsCount));
             ?>
         </h2>
         

@@ -50,9 +50,10 @@ class User extends AppModel
      */
     public $actsAs = array(
         'Acl' => array('type' => 'requester'),
-        'ExtendAssociations',
         'Containable'
     );
+
+    public $recursive = -1;
 
     // contributor vs. advanced contributor vs. corpus maintainer vs. admin
     const LOWEST_TRUST_GROUP_ID = 4;
@@ -93,8 +94,7 @@ class User extends AppModel
             'conditions' => '',
             'fields' => '',
             'order' => ''
-        ),
-        'Country'
+        )
     );
 
     /**
@@ -106,9 +106,7 @@ class User extends AppModel
         'Contributions',
         'Sentences',
         'SentencesLists',
-        'Wall' => array('foreignKey' => 'owner'),
-        // , 'Mastering_lang'
-        // , 'Learning_lang'
+        'Wall' => array('foreignKey' => 'owner')
     );
 
     /**
@@ -186,18 +184,6 @@ class User extends AppModel
      */
     public function getInformationOfCurrentUser($userId)
     {
-        $this->unBindModel(
-            array('hasMany' => array(
-                    'Contributions',
-                    'Sentences',
-                    'SentenceComments'
-                ),
-                'hasAndBelongsToMany' => array(
-                    'Favorite'
-                )
-            )
-        );
-
         return $this->findById($userId);
     }
 
@@ -227,10 +213,8 @@ class User extends AppModel
                     'is_public',
                     'group_id',
                     'lang',
-                    'level'
-                ),
-                'contain' => array(
-                    'Country' => array('fields' => array('name'))
+                    'level',
+                    'country_id'
                 )
             )
         );
@@ -255,8 +239,7 @@ class User extends AppModel
                     'send_notifications',
                     'email',
                     'lang'
-                ),
-                'contain' => array()
+                )
             )
         );
     }
@@ -279,8 +262,7 @@ class User extends AppModel
                     'User.image',
                     'User.username',
                     'User.id'
-                ),
-                'contain' => array()
+                )
             )
         );
 
@@ -335,7 +317,8 @@ class User extends AppModel
                         'Contributions' => array(
                             'limit' => 10,
                             'fields' => array(
-                                'id',
+                                'sentence_id',
+                                'sentence_lang',
                                 'translation_id',
                                 'action',
                                 'datetime',
@@ -389,8 +372,7 @@ class User extends AppModel
         $user = $this->find(
             'first',
             array(
-                'conditions' => array('User.id' => $id),
-                'contain' => array()
+                'conditions' => array('User.id' => $id)
             )
         );
         
@@ -411,7 +393,6 @@ class User extends AppModel
             'first',
             array(
                 'conditions' => array('User.username' => $username),
-                'contain' => array(),
                 'fields' => 'User.id'
             )
         );
@@ -432,7 +413,6 @@ class User extends AppModel
             'first',
             array(
                 'conditions' => array('User.id' => $userId),
-                'contain' => array(),
                 'fields' => 'User.username'
             )
         );
@@ -453,7 +433,6 @@ class User extends AppModel
             'all',
             array(
                 'conditions' => array('id' => $usersIds),
-                'contain' => array(),
                 'fields' => array('id', 'username')
             )
         );
@@ -481,7 +460,6 @@ class User extends AppModel
             'first',
             array(
                 'conditions' => array('User.email' => $userEmail),
-                'contain' => array(),
                 'fields' => 'User.id'
             )
         );
@@ -501,7 +479,6 @@ class User extends AppModel
             'first',
             array(
                 'conditions' => array('User.id' => $userId),
-                'contain' => array(),
                 'fields' => 'User.email'
             )
         );
@@ -523,7 +500,7 @@ class User extends AppModel
                 'conditions' => array(
                     'email' => $email,
                     'User.id !=' => $userId
-                    )
+                )
            )
         );
         if (empty($result)) {
@@ -546,8 +523,7 @@ class User extends AppModel
             'first',
             array(
                 'conditions' => array('User.id' => $userId),
-                'fields' => 'User.password',
-                'contain' => array()
+                'fields' => 'User.password'
             )
         );
         return $user['User']['password'];
@@ -566,8 +542,7 @@ class User extends AppModel
             array(
                 'conditions' => array(
                     'group_id <' => 5
-                ),
-                'contain' => array()
+                )
             )
         );
     }  
@@ -586,7 +561,6 @@ class User extends AppModel
             'first',
             array(
                 'conditions' => array('User.id' => $userId),
-                'contain' => array(),
                 'fields' => 'User.level'
             )
         );

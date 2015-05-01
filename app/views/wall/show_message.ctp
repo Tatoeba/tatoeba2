@@ -36,10 +36,13 @@
  */
 $rootMessageId = $message['Wall']['id'];
 
-$this->set('title_for_layout', 'Tatoeba - Thread #' . $rootMessageId ); 
+$this->set('title_for_layout', $pages->formatTitle(
+    format(__('Thread #{number}', true), array('number' => $rootMessageId))
+));
 
 $javascript->link('jquery.scrollTo-min.js', false);
 $javascript->link('wall.reply.js', false);
+$javascript->link('wall.show_and_hide_replies.js', false);
 ?>
 <div id="annexe_content">
     <div class="module">

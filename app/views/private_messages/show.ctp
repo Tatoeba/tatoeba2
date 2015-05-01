@@ -30,19 +30,21 @@ if (empty($title)) {
 } else {
     $messageTitle = $title;
 }
-$this->set('title_for_layout', __('Private messages', true) 
+$this->set('title_for_layout', $pages->formatTitle(
+    $messageTitle
     .' - ' 
-    . sprintf(
-        __('%s from %s', true),
-        $messageTitle, $author['username']
-    )
-);
+    .__('Private messages', true) 
+));
 
 echo $this->element('pmmenu');
 ?>
 <div id="main_content">
     <div class="module">
-    <h2><?php echo $messageTitle; ?></h2>
+    <?php
+    echo $this->Languages->tagWithLang(
+        'h2', '', $messageTitle
+    );
+    ?>
 
     <?php
     $messages->displayMessage(

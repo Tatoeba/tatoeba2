@@ -39,7 +39,7 @@ class WallHelper extends AppHelper
 {
 
     public $helpers = array(
-        'Html', 'Form' , 'Date', 'ClickableLinks', 'Messages'
+        'Html', 'Form' , 'Date', 'ClickableLinks', 'Messages', 'Languages'
     );
     
 
@@ -78,7 +78,7 @@ class WallHelper extends AppHelper
         <div class="body">
             <div class="content">
             <?php
-            echo $this->Form->textarea('content');
+            echo $this->Form->textarea('content', array('lang' => '', 'dir' => 'auto'));
             echo $this->Form->hidden('replyTo', array('value'=>"" ));
             ?>
             </div>
@@ -281,7 +281,8 @@ class WallHelper extends AppHelper
 
         <?php ?><div class="replies" id="messageBody_<?php echo $messageId; ?>"><?php
         if (!empty($children)) {
-            
+            $this->_displayToggleButton($messageId);
+
             $this->_displayAllReplies(
                 $children
             );
@@ -290,6 +291,19 @@ class WallHelper extends AppHelper
 
         </div>
     <?php
+    }
+
+    private function _displayToggleButton($messageId)
+    {
+        echo '<div class="toggleRepliesButton hideReplies"
+                id="hide_replies_button_'.$messageId.'" 
+                onclick="toggleReplies('.$messageId.')">
+                '.__('hide replies', true).'</div>';
+        echo '<div class="toggleRepliesButton showReplies"
+                style="display:none;"
+                id="show_replies_button_'.$messageId.'" 
+                onclick="toggleReplies('.$messageId.')">
+                '.__('show replies', true).'</div>';
     }
 
 
@@ -321,6 +335,8 @@ class WallHelper extends AppHelper
         // replies
         echo '<div class="replies" id="messageBody_'.$messageId .'" >';
         if (!empty($children)) {
+            $this->_displayToggleButton($messageId);
+
             foreach ($children as $child ) {
                 $this->createReplyDiv(
                     // this is because the allMessages array
@@ -358,9 +374,9 @@ class WallHelper extends AppHelper
         <?php
         echo $this->Date->ago($date);
         // Text of link
-        $text = sprintf(
-            __('by %s', true),
-            $author
+        $text = format(
+            __('by {messageAuthor}', true),
+            array('messageAuthor' => $author)
         );
         // Path of link
         $pathToUserProfile = array(
@@ -373,48 +389,13 @@ class WallHelper extends AppHelper
         ?>
         </div>
 
-        <div class="body">
         <?php
-        $contentBefore = mb_substr($content, 0, 200);
-        $contentAfter = mb_substr($content, 200);
-
-        $spaceAfter = mb_strpos($contentAfter, " ");
-        if ($spaceAfter) {
-            $spaceAfter = mb_strpos($contentAfter, "\n");
-        }
-        $previewHasAscii = preg_match("/[a-zA-Z0-9]/", $contentBefore);
-        $displayElipsis = true;
-
-        if ($spaceAfter) {
-            
-            // We want to display 200 + a few more charafters. The few more characters
-            // are the ones that are before the 1st "space" that we find after the
-            // 200 characters.
-            $previewContent = mb_substr($content, 0, 200 + $spaceAfter);
-
-        } else if ($previewHasAscii) {
-
-            // If the truncated text doesn't have any space after the 200 characters,
-            // but it does have some ASCII characters before, then we display the
-            // full text.
-            $previewContent = $content;
-            $displayElipsis = false;
-
-        } else {
-
-            // If the truncated text doesn't have any space before or after, and
-            // does not have any ASCII characters before, then we're in the case
-            // of a full Japanese text for instance, so we truncate.
-            $previewContent = mb_substr($content, 0, 200);
-
-        }
-
-        echo $this->Messages->formatedContent($previewContent);
-        if ($displayElipsis) {
-            echo ' [...]';
-        }
+        $preview = $this->Messages->preview($content, 200, 100);
+        echo $this->Languages->tagWithLang(
+            'div', '', $preview,
+            array('class' => 'body', 'escape' => false)
+        );
         ?>
-        </div>
 
         <div class="link">
         <?php
@@ -439,10 +420,10 @@ class WallHelper extends AppHelper
 
         if (CurrentUser::isAdmin()) {
             if ($hidden) {
-                $hiddenLinkText = __('unhide', true);
+                $hiddenLinkText = __d('admin', 'unhide', true);
                 $hiddenLinkAction = 'unhide_message';
             } else {
-                $hiddenLinkText = __('hide', true);
+                $hiddenLinkText = __d('admin', 'hide', true);
                 $hiddenLinkAction = 'hide_message';
             }
 

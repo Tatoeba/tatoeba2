@@ -54,6 +54,9 @@ class Sinogram extends AppModel
 
     public function search($subGlyphArray , $minStrokes = -1 , $maxStrokes = -1 )
     {
+        if (count($subGlyphArray) == 0) {
+            return array();
+        }
 
         // if there's only character in subglyph search then we should
         // execute one more request to try to match itself
@@ -65,26 +68,24 @@ class Sinogram extends AppModel
             $onlyOneCharacter = true;
         }
 
-        // generate the IN() statement
-        // TODO I think there's a better way to do that in sql
+        // TODO I think there's a better way to do that
         // as IN statement will be very slow when exceeding 5+
         $numberOfSublyph = count($subGlyphArray);
-        for ($i = 0 ; $i < $numberOfSublyph; $i++) {
-            $subGlyphArray[$i] = "'".$subGlyphArray[$i] ."'" ;
-        }
-        $subglyphsString= implode(",", $subGlyphArray);
-
-        $result = $this->query(
-            "SELECT Sinogram.id , Sinogram.glyph
-             FROM  sinogram_subglyphs , sinograms as Sinogram
-             WHERE
-                Sinogram.`glyph` = sinogram_subglyphs.`glyph`
-                AND  subglyph IN ( ". $subglyphsString  ." )
-            GROUP BY glyph
-                HAVING
-                    count(DISTINCT sinogram_subglyphs.subglyph)
-                    =". count($subGlyphArray) .";"
-        );
+        $result = $this->find('all', array(
+            'fields' => array('Sinogram.id', 'Sinogram.glyph'),
+            'conditions' => array(
+                'subglyph' => $subGlyphArray, // IN statement is here
+            ),
+            'joins' => array(array(
+                'table' => 'sinogram_subglyphs',
+                'alias' => 'SinogramSubglyph',
+                'conditions' => array('SinogramSubglyph.glyph = Sinogram.glyph'),
+            )),
+            'group' => array(
+                'Sinogram.glyph '
+                .'HAVING count(DISTINCT SinogramSubglyph.subglyph) = '.$numberOfSublyph
+            ),
+        ));
 
         // if there's only character, it should be logical that this character match
         // itself
@@ -149,9 +150,9 @@ class Sinogram extends AppModel
                     "Sinogram.glyph",
                     "Sinogram.strokes",
                     "Sinogram.english",
-                    "Sinogram.`chin-pinyin`",
-                    "Sinogram.`jap-on`",
-                    "Sinogram.`jap-kun`"
+                    "Sinogram.chin-pinyin",
+                    "Sinogram.jap-on",
+                    "Sinogram.jap-kun"
                 ),
                 "conditions" => array("Sinogram.glyph" => $sinogram )
             )

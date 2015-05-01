@@ -250,6 +250,8 @@ class I18n extends Object {
 			}
 		} elseif (strpos($header, "plurals=5")) {
 			return $n == 1 ? 0 : ($n == 2 ? 1 : ($n >= 3 && $n <= 6 ? 2 : ($n >= 7 && $n <= 10 ? 3 : 4)));
+		} elseif (strpos($header, "plurals=6")) {
+			return $n == 0 ? 0 : ($n == 1 ? 1 : ($n == 2 ? 2 : ($n % 100 >= 3 && $n % 100 <= 10 ? 3 : ($n % 100 >= 11 && $n % 100 <= 99 ? 4 : 5))));
 		}
 	}
 

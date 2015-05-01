@@ -25,20 +25,16 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Help', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Help', true)));
 ?>
 
 <div id="annexe_content">
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-    
     <div class="module">
         <h2><?php __('Need more help?'); ?></h2>
         <p>
         <?php 
-        echo sprintf(
-            __('You can check out the <a href="%s">FAQ</a>.', true),
+        echo format(
+            __('You can check out the <a href="{}">FAQ</a>.', true),
             $html->url(array('controller' => 'pages', 'action' => 'faq'))
         );
         ?>
@@ -108,10 +104,10 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Help', true));
             
             <p>
             <?php
-            echo sprintf(
+            echo format(
                 __(
                     'If you have no idea what to do now that you are registered, '.
-                    'you can introduce yourself on the <a href="%s">Wall</a>, or '.
+                    'you can introduce yourself on the <a href="{}">Wall</a>, or '.
                     'join us on <strong>IRC</strong>. We will give you a purpose. :)',
                     true
                 ),
@@ -173,8 +169,8 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Help', true));
         <ul>
             <li>
                 <?php 
-                echo sprintf(
-                    __('From the <a href="%s">Contribute</a> section', true),
+                echo format(
+                    __('From the <a href="{}">Contribute</a> section', true),
                     $html->url(
                         array(
                             'controller' => 'pages', 
@@ -186,9 +182,9 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Help', true));
             </li>
             <li>
                 <?php 
-                echo sprintf(
+                echo format(
                     __(
-                        'By creating a new <a href="%s">list</a>, and going to '.
+                        'By creating a new <a href="{}">list</a>, and going to '.
                         'the edit page for that list.', true
                     ),
                     $html->url(
@@ -228,12 +224,12 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Help', true));
         </p>
         <p>
             <?php
-            echo sprintf(
+            echo format(
                 __(
                     'You can translate a sentence from pretty much everywhere. '.
-                    'Just click on this icon %s whenever you see it.', true
+                    'Just click on this icon {translateButton} whenever you see it.', true
                 ),
-                $html->image(IMG_PATH . 'translate.png')
+                array('translateButton' => $html->image(IMG_PATH . 'translate.svg', array('height' => 16)))
             );
             '';
             ?>
@@ -278,15 +274,20 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Help', true));
         </p>
         <p>
             <?php
-            echo sprintf(
+            echo format(
                 __(
                     'If you see a mistake in an "orphan" sentence, you will '.
                     'not be able to correct it because you are not the owner. '.
-                    'This is why there is an "adopt" option (%s). Once you '.
+                    'This is why there is an "adopt" option ({adoptButton}). Once you '.
                     'adopt a sentence, you become its owner and therefore can '.
                     'edit it.', true
                 ),
-                $html->image(IMG_PATH . 'adopt.png')
+                array('adoptButton' => $html->image(
+                    IMG_PATH . 'unadopted.svg',
+                    array(
+                        'height' => 16
+                    )
+                ))
             );
             ?>
         </p>

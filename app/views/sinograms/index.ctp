@@ -25,16 +25,12 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', __('Search sinograms', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Search sinograms', true)));
 $javascript->link(JS_PATH . "sinograms.search.js", false);
 
 ?>
 
-<div id="annexe_content" >
-    <?php
-    $attentionPlease->tatoebaNeedsYou();
-    ?>
-
+<div id="annexe_content">
     <div class="module"  >
         <h2><?php __('Browse radicals'); ?></h2>
         <div id="numberList" >
@@ -50,7 +46,7 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
         ?>
         </div>
         <div id="radicalsList" >
-            <h3><?php __('1 stroke'); ?></h3>
+            <h3><?php echo format(__n('1 stroke', '{n}&nbsp;strokes', 1, true), array('n' => 1)); ?></h3>
             <a class="radical">一</a>
             <a class="radical">丨</a>
             <a class="radical">丶</a>
@@ -92,9 +88,9 @@ $javascript->link(JS_PATH . "sinograms.search.js", false);
         <div>
             <p id="stillBetaText">
             <?php
-            echo sprintf(
+            echo format(
                 __(
-                    'This work is based on <a href="%s">this project</a>.',
+                    'This work is based on <a href="{}">this project</a>.',
                     true
                 ),
                 'http://commons.wikimedia.org/wiki/Commons'.

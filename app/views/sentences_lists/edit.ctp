@@ -33,7 +33,7 @@ $isListPublic = ($list['SentencesList']['is_public'] == 1);
 $belongsToUser = $session->read('Auth.User.id') == $listOwnerId;
 
  
-$this->set('title_for_layout', 'Tatoeba - ' . $listName);
+$this->set('title_for_layout', $pages->formatTitle($listName));
 ?>
 
 <div id="annexe_content">
@@ -85,7 +85,7 @@ $this->set('title_for_layout', 'Tatoeba - ' . $listName);
     
     <p>
     <?php
-    __('You can remove a sentence from the list by clicking on the X icon.'); 
+    __('You can remove a sentence from the list by clicking on the X icon to its right.'); 
     ?>
     </p>
     
@@ -112,10 +112,14 @@ $this->set('title_for_layout', 'Tatoeba - ' . $listName);
         
         $class = 'editable editableSentencesListName';
     }
-    
-    echo '<h2 id="l'.$listId.'" class="'.$class.'">';
-    echo $listName;
-    echo '</h2>';
+
+    echo $html->tag('h2', $listName, array(
+        'id'    => "l$listId",
+        'class' => $class,
+        'data-submit'  => __('OK', true),
+        'data-cancel'  => __('Cancel', true),
+        'data-tooltip' => __('Click to edit...', true),
+    ));
     
     $url = array($listId, $translationsLang);
     $pagination->display($url);

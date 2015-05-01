@@ -25,28 +25,27 @@
  * @link     http://tatoeba.org
  */
 
-$languageName = $languages->codeToName($lang);
+$languageName = $languages->codeToNameToFormat($lang);
 
-$title = sprintf(__('All sentences in %s', true), $languageName);
+$title = format(__('All sentences in {language}', true),
+                array('language' => $languageName));
 if (!empty($notTranslatedInto) && $notTranslatedInto != 'none') {
     if ($notTranslatedInto == 'und') {
         $notTranslatedIntoName = __('any language', true);
     } else {
-        $notTranslatedIntoName = $languages->codeToName($notTranslatedInto);
+        $notTranslatedIntoName = $languages->codeToNameToFormat($notTranslatedInto);
     }
-    $title = sprintf(
-        __('Sentences in %1$s not translated into %2$s', true), 
-        $languageName, $notTranslatedIntoName
+    $title = format(
+        __('Sentences in {language} not translated into {translationLanguage}', true),
+        array('language' => $languageName, 'translationLanguage' => $notTranslatedIntoName)
     );
 }
 
-$this->set('title_for_layout', $title);
+$this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">
     <?php
-    $attentionPlease->tatoebaNeedsYou();
-
     $showAll->displayShowAllInSelect($lang);
     $showAll->displayShowOnlyTranslationInSelect($translationLang);
     $showAll->displayShowNotTranslatedInto($notTranslatedInto);
@@ -59,22 +58,9 @@ $this->set('title_for_layout', $title);
     <div class="module">
     <?php
     if (!empty($results)) {
-        ?>
-        
-        <h2>
-        <?php 
-        echo $title;
-        echo ' ';
-        echo $paginator->counter(
-            array(
-                'format' => __('(%count% results)', true)
-            )
-        ); 
-        ?>
-        </h2>
-        
-        
-        <?php
+
+        echo $this->Pages->formatTitleWithResultCount($paginator, $title);
+
         $paginationUrl = array(
             $lang,
             $translationLang,
@@ -88,7 +74,9 @@ $this->set('title_for_layout', $title);
                 $sentence['Sentence'], 
                 $sentence['Translations'], 
                 $sentence['User'],
-                $sentence['IndirectTranslations']
+                $sentence['IndirectTranslations'],
+                true,
+                $translationLang
             );
         }
         

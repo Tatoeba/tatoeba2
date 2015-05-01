@@ -29,8 +29,8 @@
     <h2><?php __('Search features'); ?></h2>
     <p>
     <?php
-    echo sprintf(
-        __('The search is powered by <a href="%s">Sphinx</a>.', true),
+    echo format(
+        __('The search is powered by <a href="{}">Sphinx</a>.', true),
         'http://www.sphinxsearch.com/'
     );
     ?>
@@ -38,9 +38,9 @@
 
     <p>
     <?php
-    echo sprintf(
+    echo format(
         __(
-            'You can find basic instructions for searching <a href="%s">here</a>.', 
+            'You can find basic instructions for searching <a href="{}">here</a>.',
             true
         ),
         'http://en.wiki.tatoeba.org/articles/show/text-search'
@@ -50,9 +50,9 @@
 
     <p>
     <?php
-    echo sprintf(
+    echo format(
         __(
-            'You can learn about advanced search features <a href="%s">here</a>.', 
+            'You can learn about advanced search features <a href="{}">here</a>.',
             true
         ),
         'http://sphinxsearch.com/docs/current.html#boolean-syntax'

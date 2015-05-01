@@ -25,7 +25,7 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', 'Tatoeba - ' . __('Random sentences', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Random sentences', true)));
 
 ?>
 <div id="annexe_content">
@@ -72,7 +72,7 @@ $this->set('title_for_layout', 'Tatoeba - ' . __('Random sentences', true));
         echo '<label>' . __('Language', true) . '</label> ';
         echo $form->select(
             'into', 
-            $languages->languagesArray(), 
+            $languages->languagesArrayAlone(), 
             $selectedLanguage,
             array(
                 'class' => 'language-selector',

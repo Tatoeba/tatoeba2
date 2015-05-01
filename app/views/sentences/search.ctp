@@ -27,16 +27,29 @@
 
 $query = Sanitize::html($query);
 
-$this->set('title_for_layout', sprintf(__('Sentences with: %s', true), $query));
+if (!empty($query)) {
+    $title = format(__('Sentences with: {keywords}', true), array('keywords' => $query));
+} else {
+    if ($from != 'und' && $to != 'und') {
+        $title = format(__('Sentences in {language} translated into {translationLanguage}', true),
+                        array('language' => $languages->codeToNameToFormat($from),
+                              'translationLanguage' => $languages->codeToNameToFormat($to)));
+    } elseif ($from != 'und') {
+        $title = format(__('Sentences in {language}', true),
+                        array('language' => $languages->codeToNameToFormat($from)));
+    } elseif ($to != 'und') {
+        $title = format(__('Sentences translated into {language}', true),
+                        array('language' => $languages->codeToNameToFormat($to)));
+    } else {
+        $title = format(__('All sentences', true));
+    }
+}
+$this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">
     <?php
-    $attentionPlease->tatoebaNeedsYou();
-    
     echo $this->element('search_features');
-    
-    echo $this->element('sentences/correctness_info');
     ?>
 </div>
 
@@ -47,18 +60,19 @@ if (!empty($results)) {
     
     ?>
     <div class="module">
-        <h2>
         <?php 
-        echo __('Search:', true);
-        echo sprintf(' <span style="unicode-bidi: embed">%s</span>', $query);
-        echo ' ';
-        echo $paginator->counter(
-            array(
-                'format' => __('(%count% results)', true)
-            )
-        ); 
+        $keywords = $this->Languages->tagWithLang(
+            'span', '', $query, array('escape' => false)
+        );
+        if (!empty($query)) {
+            $title = format(
+                /* @translators: title on the top of a search result page */
+                __('Search: {keywords}', true),
+                compact('keywords')
+            );
+        }
+        echo $this->Pages->formatTitleWithResultCount($paginator, $title, $real_total);
         ?>
-        </h2>
         
         <?php
         $pagination->display();
@@ -68,7 +82,9 @@ if (!empty($results)) {
                 $sentence['Sentence'], 
                 $sentence['Translations'], 
                 $sentence['User'],
-                $sentence['IndirectTranslations']
+                $sentence['IndirectTranslations'],
+                true,
+                $to
             );
         }
         

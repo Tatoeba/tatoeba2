@@ -21,12 +21,14 @@ $(document).ready(function() {
 
     var rootUrl = get_tatoeba_root_url();
     
-    $('.editableSentencesListName').editable(rootUrl + '/sentences_lists/save_name', { 
-        type      : 'text',
-        cancel    : 'Cancel',
-        submit    : 'OK',
-        indicator : '<img src="/img/loading-small.gif">',
-        tooltip   : 'Click to edit...',
-        cssclass  : 'editInPlaceForm'
-    });
+    $('.editableSentencesListName').each(function() {
+        $(this).editable(rootUrl + '/sentences_lists/save_name', {
+            type      : 'text',
+            indicator : '<img src="/img/loading-small.gif">',
+            tooltip   : $(this).attr('data-tooltip'),
+            submit    : $(this).attr('data-submit'),
+            cancel    : $(this).attr('data-cancel'),
+            cssclass  : 'editInPlaceForm'
+        });
+    })
 });

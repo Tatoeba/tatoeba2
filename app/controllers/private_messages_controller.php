@@ -146,7 +146,21 @@ class PrivateMessagesController extends AppController
                 $this->redirect(array('action' => 'folder', 'Sent'));
             }
 
-            $this->data['PrivateMessage']['sender'] = $currentUserId;
+            $now = date("Y/m/d H:i:s", time());
+            $messageToSend = array(
+                'sender'    => $currentUserId,
+                'date'      => $now,
+                'folder'    => 'Inbox',
+                'title'     => $this->data['PrivateMessage']['title'],
+                'content'   => $this->data['PrivateMessage']['content'],
+                'isnonread' => 1,
+            );
+
+            $messageToSave = array_merge($messageToSend, array(
+                'user_id'   => $currentUserId,
+                'folder'    => 'Sent',
+                'isnonread' => 0,
+            ));
 
             $recptArray = explode(',', $this->data['PrivateMessage']['recpt']);
 
@@ -158,32 +172,27 @@ class PrivateMessagesController extends AppController
 
                 // we send the msg only if the user exists.
                 if ($recptId) {
-
-                    $this->data['PrivateMessage']['recpt'] = $recptId;
-                    $this->data['PrivateMessage']['user_id'] = $recptId;
-                    $this->data['PrivateMessage']['folder'] = 'Inbox';
-                    $this->data['PrivateMessage']['date']
-                        = date("Y/m/d H:i:s", time());
-                    $this->data['PrivateMessage']['isnonread'] = 1;
-                    $this->PrivateMessage->save($this->data);
+                    $message = $messageToSend;
+                    $message['recpt'] = $recptId;
+                    $message['user_id'] = $recptId;
+                    $this->PrivateMessage->save($message);
                     $this->PrivateMessage->id = null;
 
                     // we need to save the msg to our outbox folder of course.
-                    $this->data['PrivateMessage']['user_id'] = $currentUserId;
-                    $this->data['PrivateMessage']['folder'] = 'Sent';
-                    $this->data['PrivateMessage']['isnonread'] = 0;
-                    $this->PrivateMessage->save($this->data);
+                    $message = $messageToSave;
+                    $message['recpt'] = $recptId;
+                    $this->PrivateMessage->save($message);
                     $this->PrivateMessage->id = null;
                 } else {
                     $this->Session->setFlash(
-                        sprintf(
+                        format(
                             __(
-                                'The user %s to whom you want to send this message '.
+                                'The user {username} to whom you want to send this message '.
                                 'does not exist. Please try with another '.
                                 'username.',
                                 true
                             ),
-                            $recpt
+                            array('username' => $recpt)
                         )
                     );
                     $this->redirect(array('action' => 'write'));

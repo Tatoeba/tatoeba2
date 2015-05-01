@@ -27,7 +27,7 @@
 
 echo $javascript->link(JS_PATH . 'sentences.show_another.js', false);
 
-$langArray = $languages->languagesArray();
+$langArray = $languages->languagesArrayAlone();
 $selectedLanguage = $session->read('random_lang_selected');
 
 if ($selectedLanguage == null) {
@@ -36,9 +36,9 @@ if ($selectedLanguage == null) {
 ?>
 
 <h2>
-    <?php __('Random sentence'); ?> 
-    <span class="annexe">
-        (<?php
+    <?php __('Random sentence'); ?>
+    <span>
+        <?php
         echo $form->select(
             "randomLangChoice",
             $langArray,
@@ -55,24 +55,28 @@ if ($selectedLanguage == null) {
             array(),
             array(
                 "id" => "showRandom",
+                "class" => "titleAnnexeLink",
                 "onclick" => "return false;"
             )
         );
-        ?>)
+        ?>
     </span>
     <?php
     if ($session->read('Auth.User.id')) {
         ?>
-        <span class="annexe">
-            (<?php
+        <span>
+            <?php
              echo $html->link(
                  __('show more...', true),
                  array(
                      "controller" => "sentences",
                      "action" => "several_random_sentences"
+                 ),
+                 array(
+                     "class" => "titleAnnexeLink"
                  )
              );
-             ?>)
+             ?>
         </span>
     <?php
     }

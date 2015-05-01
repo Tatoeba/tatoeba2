@@ -24,6 +24,8 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
+
+$this->set('title_for_layout', $pages->formatTitle(__('Tags for moderators', true)));
 ?>
 
 <div id="annexe_content">
@@ -61,16 +63,16 @@
     <div class="module">
         <h2><?php __('Guidelines'); ?></h2>
         <p><?php 
-        $tagChangeURL = $html->url(array(
+        $tagChangeLink = $html->link($tagChangeName, array(
                               'action' => 'for_moderators',
                               $tagChangeId));
-        $tagDeleteURL = $html->url(array(
+        $tagDeleteLink = $html->link($tagDeleteName, array(
                               'action' => 'for_moderators',
                               $tagDeleteId));
 
-        echo sprintf(__('Corpus maintainers, this page was made for your convenience. It shows sentences '. 
-                        'that were tagged more than two weeks ago as <a href="%s">%s</a> or <a href="%s">%s</a>.', true),
-                     $tagChangeURL, $tagChangeName, $tagDeleteURL, $tagDeleteName);
+        echo format(__('Corpus maintainers, this page was made for your convenience. It shows sentences '. 
+                       'that were tagged more than two weeks ago as {changeTag} or {deleteTag}.', true),
+                    array('changeTag' => $tagChangeLink, 'deleteTag' => $tagDeleteLink));
         ?>
         </p>
         <p><?php __('Aside from special situations where your common sense will tell you that it is '. 
@@ -87,15 +89,15 @@
 <div class="module">
 <h2>
 <?php 
-            echo sprintf(__('Tagged \'%s\' more than 2 weeks ago', true), $tagName); 
+            echo format(__('Tagged \'{tagName}\' more than 2 weeks ago', true),
+                        compact('tagName'));
 ?>
 </h2>
 <?php 
 foreach ($results as $result) {
     $sentence = $result['Sentence'];
     $sentences->displayGenericSentence(
-        $sentence, 
-        null, 
+        $sentence,
         'mainSentence', 
         false
     );

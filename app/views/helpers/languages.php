@@ -26,6 +26,7 @@
  */
 
 App::import('Model', 'CurrentUser');
+App::import('Vendor', 'LanguagesLib');
 
 /**
  * Helper for languages
@@ -39,216 +40,44 @@ App::import('Model', 'CurrentUser');
 class LanguagesHelper extends AppHelper
 {
     public $helpers = array('Html');
-    
-    /* Memoization of languages code and their localized names */
-    private $__languages;
 
-    /**
-     * Return array of languages in Tatoeba
-     *
-     * @return array
-     */
+    /* Memoization of languages code and their localized names */
+    private $__languages_alone;
+
+    private function langAsAlone($name)
+    {
+        return format(
+        /* @translators: this special string allows you to tweak how language
+           names are displayed when they are not used inside another string.
+           For instance, in language lists, on flag mouseover or on the stats
+           page. You may translate this string using a declension modifier,
+           for instance {language.alone} */
+            __('{language}', true),
+            array('language' => $name)
+        );
+    }
+
+    public function localizedAsort(&$array)
+    {
+        if (class_exists('Collator')) {
+            $isoLang = Configure::read('Config.language');
+            $coll = new Collator($isoLang);
+            $coll->asort($array);
+        } else {
+            asort($array);
+        }
+    }
 
     public function onlyLanguagesArray()
     {
-        if (!$this->__languages) {
-            $this->__languages = array(
-                'ara' => __('Arabic', true),
-                'eng' => __('English', true),
-                'jpn' => __('Japanese', true),
-                'fra' => __('French', true),
-                'deu' => __('German', true),
-                'spa' => __('Spanish', true),
-                'ita' => __('Italian', true),
-                'vie' => __('Vietnamese', true),
-                'rus' => __('Russian', true),
-                'cmn' => __('Chinese', true),
-                'kor' => __('Korean', true),
-                'nld' => __('Dutch', true),
-                'heb' => __('Hebrew', true),
-                'ind' => __('Indonesian', true),
-                'por' => __('Portuguese', true),
-                'fin' => __('Finnish', true),
-                'bul' => __('Bulgarian', true),
-                'ukr' => __('Ukrainian', true),
-                'ces' => __('Czech', true),
-                'epo' => __('Esperanto', true),
-                'ell' => __('Greek', true),
-                'tur' => __('Turkish', true),
-                'swe' => __('Swedish', true),
-                'nob' => __('Norwegian (Bokmål)', true),
-                'zsm' => __('Malay', true),
-                'est' => __('Estonian', true),
-                'kat' => __('Georgian', true),
-                'pol' => __('Polish', true), 
-                'swh' => __('Swahili', true), 
-                'lat' => __('Latin', true), 
-                // TODO to change when shanghainese will not be the only wu dialect
-                'wuu' => __('Shanghainese', true),
-                'arz' => __('Egyptian Arabic', true),
-                'bel' => __('Belarusian', true),
-                'hun' => __('Hungarian', true),
-                'isl' => __('Icelandic', true),
-                'sqi' => __('Albanian', true),
-                'yue' => __('Cantonese', true),
-                'afr' => __('Afrikaans', true),
-                'fao' => __('Faroese', true),
-                'fry' => __('Frisian', true),
-                'bre' => __('Breton', true),
-                'ron' => __('Romanian', true),
-                'uig' => __('Uyghur', true),
-                'uzb' => __('Uzbek', true),
-                'non' => __('Norwegian (Nynorsk)', true),
-                'srp' => __('Serbian', true),
-                'tat' => __('Tatar', true),
-                'yid' => __('Yiddish', true),
-                'pes' => __('Persian', true),
-                'nan' => __('Min Nan Chinese', true),
-                'eus' => __('Basque', true),
-                'slk' => __('Slovak', true),
-                'dan' => __('Danish', true),
-                'hye' => __('Armenian', true),
-                'acm' => __('Iraqi Arabic', true),
-                'san' => __('Sanskrit', true),
-                'urd' => __('Urdu', true),
-                'hin' => __('Hindi', true),
-                'ben' => __('Bengali', true),
-                'cycl' => __('CycL', true),
-                'cat' => __('Catalan', true),
-                'kaz' => __('Kazakh', true),
-                'lvs' => __('Latvian', true),
-                'bos' => __('Bosnian', true),
-                'hrv' => __('Croatian', true),
-                'orv' => __('Old East Slavic', true),
-                'cha' => __('Chamorro', true),
-                'tgl' => __('Tagalog', true),
-                'que' => __('Quechua', true),
-                'mon' => __('Mongolian', true),
-                'lit' => __('Lithuanian', true),
-                'glg' => __('Galician', true),
-                'gle' => __('Irish', true),
-                'ina' => __('Interlingua', true),
-                'jbo' => __('Lojban', true),
-                'toki' => __('Toki Pona', true),
-                'ain' => __('Ainu', true),
-                'scn' => __('Sicilian', true),
-                'mal' => __('Malayalam', true),
-                'nds' => __('Low Saxon', true),
-                'tlh' => __('Klingon', true),
-                'slv' => __('Slovenian', true),
-                'tha' => __('Thai', true),
-                'lzh' => __('Literary Chinese', true),
-                'oss' => __('Ossetian', true),
-                'roh' => __('Romansh', true),
-                'vol' => __('Volapük', true),
-                'gla' => __('Scottish Gaelic', true),
-                'ido' => __('Ido', true),
-                'ast' => __('Asturian', true),
-                'ile' => __('Interlingue', true),
-                'oci' => __('Occitan', true),
-                'xal' => __('Kalmyk', true),
-
-
-
-                'ang' => __('Old English', true),
-                'kur' => __('Kurdish', true),
-                'dsb' => __('Lower Sorbian', true),
-                'hsb' => __('Upper Sorbian', true),
-                'ksh' => __('Kölsch', true),
-                'cym' => __('Welsh', true),
-                'ewe' => __('Ewe', true),
-                'sjn' => __('Sindarin', true),
-                'tel' => __('Telugu', true),
-                'tpi' => __('Tok Pisin', true),
-                'qya' => __('Quenya', true),
-                'nov' => __('Novial', true),
-                'mri' => __('Maori', true),
-                'lld' => __('Ladin', true),
-                'ber' => __('Berber', true),
-
-                'xho' => __('Xhosa', true),
-                'pnb' => __('Punjabi', true),
-                'mlg' => __('Malagasy', true),
-                'grn' => __('Guarani', true),
-                'lad' => __('Ladino', true),
-                'pms' => __('Piedmontese', true),
-
-                'avk' => __('Kotava', true),
-                'mar' => __('Marathi', true),
-                'tpw' => __('Old Tupi', true),
-                'tgk' => __('Tajik', true),
-                'prg' => __('Old Prussian',true), 
-                'npi' => __('Nepali',true), 
-                'mlt' => __('Maltese',true), 
-                'ckt' => __('Chukchi',true), 
-                'cor' => __('Cornish',true), 
-                'aze' => __('Azerbaijani',true), 
-                'khm' => __('Khmer',true), 
-                'lao' => __('Lao',true), 
-                'bod' => __('Tibetan',true), 
-                'hil' => __('Hiligaynon',true), 
-                'arq' => __('Algerian Arabic',true), 
-                'pcd' => __('Picard',true), 
-                'grc' => __('Ancient Greek',true), 
-                'amh' => __('Amharic',true), 
-                'awa' => __('Awadhi',true), 
-                'bho' => __('Bhojpuri',true), 
-                'cbk' => __('Chavacano',true), 
-                'enm' => __('Middle English',true), 
-                'frm' => __('Middle French',true), 
-                'hat' => __('Haitian Creole',true), 
-                'jdt' => __('Juhuri (Judeo-Tat)',true), 
-                'kal' => __('Greenlandic',true), 
-                'mhr' => __('Meadow Mari',true), 
-                'nah' => __('Nahuatl',true), 
-                'pdc' => __('Pennsylvania German',true), 
-                'sin' => __('Sinhala',true), 
-                'tuk' => __('Turkmen',true), 
-                'wln' => __('Walloon',true), 
-                'bak' => __('Bashkir',true), 
-                'hau' => __('Hausa',true), 
-                'ltz' => __('Luxembourgish',true), 
-                'mgm' => __('Mambae',true), 
-                'som' => __('Somali',true), 
-                'zul' => __('Zulu',true), 
-                'haw' => __('Hawaiian',true), 
-                'kir' => __('Kyrgyz',true), 
-                'mkd' => __('Macedonian',true), 
-                'mrj' => __('Hill Mari',true), 
-                'ppl' => __('Pipil',true), 
-                'yor' => __('Yoruba',true), 
-                'kin' => __('Kinyarwanda',true), 
-                'shs' => __('Shuswap',true), 
-                'chv' => __('Chuvash',true), 
-                'lkt' => __('Lakota',true), 
-                'ota' => __('Ottoman Turkish',true), 
-                'sna' => __('Shona',true), 
-                'mnw' => __('Mon',true), 
-                'nog' => __('Nogai',true), 
-                'sah' => __('Yakut',true), 
-                'abk' => __('Abkhaz',true), 
-                'tet' => __('Tetun',true), 
-                'tam' => __('Tamil',true), 
-            'udm' => __('Udmurt',true), 
-            'kum' => __('Kumyk',true), 
-            'crh' => __('Crimean Tatar',true), 
-            'nya' => __('Chinyanja',true), 
-            'liv' => __('Livonian',true), 
-            'nav' => __('Navajo',true), 
-            'chr' => __('Cherokee',true), 
-            'guj' => __('Gujarati',true), //@lang 
+        if (!$this->__languages_alone) {
+            $this->__languages_alone = array_map(
+                array($this, 'langAsAlone'),
+                LanguagesLib::languagesInTatoeba()
             );
-            
-            if (class_exists('Collator')) {
-                $i18nLang = Configure::read('Config.language');
-                $coll = new Collator($this->i18nCodeToISO($i18nLang));
-                $coll->asort($this->__languages);
-            } else {
-                asort($this->__languages);
-            }
+            $this->localizedAsort($this->__languages_alone);
         }
-        
-        return $this->__languages;
+        return $this->__languages_alone;
     }
 
 
@@ -273,15 +102,63 @@ class LanguagesHelper extends AppHelper
         return $languages;
     }
 
+    /**
+     * Returns array of languages set in the user's profile.
+     *
+     * @param bool   $withAutoDetection Set to true if "Auto detect" should be one of the options.
+     * @param bool   $withOther Set to true if "Other language" should be one of the options.
+     * @param bool   $withAny Set to true if "Any" should be one of the options.
+     *
+     * @return void
+     */
+
+    public function profileLanguagesArray($withAutoDetection, $withOther, $withAny)
+    {
+        $languages = array_intersect_key(
+            $this->onlyLanguagesArray(),
+            array_flip(CurrentUser::getProfileLanguages())
+        );
+
+        $numLanguages = count(CurrentUser::getProfileLanguages());
+        if (count($languages) > 1 && $withAutoDetection) {
+            array_unshift($languages, array('auto' => __('Auto detect', true)));
+        }
+        if ($withAny) {
+            array_unshift($languages, array('und' => __('Any', true)));
+        }
+        if ($withOther) {
+            array_unshift($languages, array('' => __('other language', true)));
+        }
+
+        return $languages;
+    }
 
     /**
-     * Return array of languages in Tatoeba. + all languages
+     * Return array of languages in Tatoeba + all languages, formatted
+     * like it's displayed when alone on the UI (on lists or flags).
      *
      * @return array
      */
-    public function languagesArray()
+    public function languagesArrayAlone()
     {
         $languages = $this->onlyLanguagesArray();
+        array_unshift($languages, array(
+            'und' => $this->langAsAlone(__('All languages', true))
+        ));
+        return $languages;
+    }
+
+    /**
+     * Return array of languages in Tatoeba + all languages, ready
+     * to be used inside a format() call. You MUST use the return
+     * value as a variable inside a format() call. If not,
+     * use languagesArrayAlone() instead.
+     * 
+     * @return array
+     */
+    public function languagesArrayToFormat()
+    {
+        $languages = LanguagesLib::languagesInTatoeba();
 
         // Can't use 'any' as it's the code for anyin language.
         // Only 'und' is used for "undefined".
@@ -420,15 +297,30 @@ class LanguagesHelper extends AppHelper
     }
 
     /**
-     * Return name of the language from the ISO code.
+     * Return name of the language from the ISO code, formatted
+     * like it's displayed when alone on the UI (on lists or flags).
      *
      * @param string $code ISO-639-3 code.
      *
      * @return string
      */
-    public function codeToName($code)
+    public function codeToNameAlone($code) {
+        return $this->langAsAlone($this->codeToNameToFormat($code));
+    }
+
+    /**
+     * Return name of the language from the ISO code, ready to
+     * be used inside a format() call. You MUST use the return
+     * value as a variable inside a format() call. If not,
+     * use codeToNameAlone() instead.
+     *
+     * @param string $code ISO-639-3 code.
+     *
+     * @return string
+     */
+    public function codeToNameToFormat($code)
     {
-        $languages = $this->languagesArray();
+        $languages = $this->languagesArrayToFormat();
         if (isset($languages["$code"])) {
             return $languages["$code"];
         } else {
@@ -448,38 +340,6 @@ class LanguagesHelper extends AppHelper
         $numberOfLanguages = count($languages);
         return $numberOfLanguages;
     }
-
-
-    /**
-     * Get the direction (right to left or left to right) of a language
-     *
-     * @param string $lang ISO-639-3 code
-     *
-     * @return string "rtl" (right to left) or "ltr" (left to right)
-     */
-    public function getLanguageDirection($lang) {
-
-        $direction = "ltr";
-
-        $rightToLeftLangs = array(
-            "ara",
-            "heb",
-            "arz",
-            "uig",
-            "pes",
-            "acm",
-            "urd",
-            "yid",
-            "pnb",
-        );
-
-        if (in_array($lang, $rightToLeftLangs)) {
-            $direction = "rtl";
-        }
-
-        return $direction;
-    }
-
 
     /**
      * Display flag and number of sentences in the "sentences stats" block.
@@ -513,50 +373,11 @@ class LanguagesHelper extends AppHelper
         );
 
         ?>
-        <li class="stat" title="<?php echo $this->codeToName($langCode); ?>">
+        <li class="stat" title="<?php echo $this->codeToNameAlone($langCode); ?>">
         <?php echo $linkToAllSentences; ?>
         </li>
         <?php
     }
-
-
-    /**
-     * Convert language interface code into ISO code.
-     *
-     * @param string $code Interface language code.
-     *
-     * @return void
-     */
-    public function i18nCodeToISO ($code) {
-        $languages = array(
-            'bel' => 'bel',
-            'chi' => 'cmn',
-            'deu' => 'deu',
-            'eng' => 'eng',
-            'epo' => 'epo',
-            'fre' => 'fra',
-            'ita' => 'ita',
-            'jpn' => 'jpn',
-            'pol' => 'pol',
-            'pt_BR' => 'por',
-            'gre'  => 'ell',
-            'rus' => 'rus',
-            'spa' => 'spa',
-            'ara' => 'ara',
-            'eus' => 'eus',
-            'fin' => 'fin',
-            'hun' => 'hun',
-            'tgl' => 'tgl',
-            'mar' => 'mar'
-        );
-
-        if (isset($languages["$code"])) {
-            return $languages["$code"];
-        } else {
-            return 'unknown';
-        }
-    }
-
 
     /**
      * Display language icon.
@@ -572,7 +393,7 @@ class LanguagesHelper extends AppHelper
             $lang = 'unknown';
         }
 
-        $options["title"] = $this->codeToName($lang);
+        $options["title"] = $this->codeToNameAlone($lang);
         $options["alt"] = $lang;
 
         return $this->Html->image(
@@ -580,5 +401,51 @@ class LanguagesHelper extends AppHelper
             $options
         );
     }
+
+    public function tagWithLang($tag, $lang, $text, $options = array(), $script = '')
+    {
+        $direction = empty($lang) ? 'auto' : LanguagesLib::getLanguageDirection($lang);
+        $options = array_merge(
+            array(
+                'lang' => LanguagesLib::languageTag($lang, $script),
+                'dir'  => $direction,
+                'escape' => true,
+            ),
+            $options
+        );
+        return $this->Html->tag($tag, $text, $options);
+    }
+
+
+    public function displayAddLanguageMessage($isNewSentence)
+    {
+        echo '<div class="form warning-add-language">';
+
+        if ($isNewSentence) {
+            $warningMessage = __(
+                'You cannot add sentences because you did not add any '.
+                'language in your profile.', true
+            );
+        } else {
+            $warningMessage = __(
+                'You cannot translate sentences because you did not add any '.
+                'language in your profile.', true
+            );
+        }
+
+        echo $this->Html->div('text', $warningMessage);
+
+        echo $this->Html->link(
+            __('Add a language', true),
+            array(
+                'controller' => 'user',
+                'action' => 'language'
+            ),
+            array(
+                'class' => 'button submit'
+            )
+        );
+
+        echo '</div>';
+    }
 }
-?>

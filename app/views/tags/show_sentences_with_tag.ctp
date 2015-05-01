@@ -27,7 +27,7 @@
 
 if ($tagExists) {
     $tagName = Sanitize::html($tagName);
-    $this->set('title_for_layout', 'Tatoeba - '.sprintf(__('Sentences with tag %s', true), $tagName));
+    $title = format(__('Sentences with tag {tagName}', true), compact('tagName'));
     ?>
 
     <div id="annexe_content">
@@ -81,6 +81,7 @@ if ($tagExists) {
     </div>
     <?php
 } else {
+    $title = format(__('No tag with id {tagId}', true), compact('tagId'));
     ?>
     <div id="main_content">
         <?php
@@ -95,4 +96,5 @@ if ($tagExists) {
     </div>
     <?php
 }
+$this->set('title_for_layout', $pages->formatTitle($title));
 ?>

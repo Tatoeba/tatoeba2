@@ -143,7 +143,6 @@ class PermissionsComponent extends Object
             }
 
             $commentPermissions = $this->getCommentOptions(
-                $comment,
                 $comment['user_id']
             );
             array_push($commentsPermissions, $commentPermissions);
@@ -155,14 +154,12 @@ class PermissionsComponent extends Object
      * Check which options user can access to and returns
      * data that is needed for the comments menu.
      *
-     * @param array $comment          Comment.
      * @param int   $ownerId          Id of the comment owner.
-     * @param int   $currentUserId    Id of currently logged in user.
      *
      * @return array
      */
 
-    public function getCommentOptions($comment, $ownerId) {
+    public function getCommentOptions($ownerId) {
         $rightsOnComment = array(
             "canDelete" => false,
             "canEdit" => false,

@@ -41,6 +41,7 @@ class FavoritesController extends AppController
     public $name = 'Favorites' ;
     public $paginate = array('limit' => 50);
     public $helpers = array('Navigation', 'Html');
+    public $uses = array('Favorite', 'User');
 
     /**
      * to know who can do what
@@ -66,9 +67,9 @@ class FavoritesController extends AppController
 
     public function of_user($username)
     {
-        $userId = $this->Favorite->User->getIdFromUsername($username);
+        $userId = $this->User->getIdFromUsername($username);
         $favorites = $this->Favorite->getAllFavoritesOfUser($userId);
-        $this->set('favorites', $favorites['Favorite']);
+        $this->set('favorites', $favorites);
         $this->set('username', $username);
     }
 
@@ -87,9 +88,8 @@ class FavoritesController extends AppController
         $userId =$this->Auth->user('id');
 
         if ($userId != null) {
-            if ($this->Favorite->addFavorite($sentenceId, $userId)) {
-                $this->set('saved', true);
-            }
+            $isSaved = $this->Favorite->addFavorite($sentenceId, $userId);
+            $this->set('saved', $isSaved);
         }
     }
 

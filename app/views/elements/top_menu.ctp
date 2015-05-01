@@ -35,7 +35,7 @@ if (empty($currentLanguage)) {
     $currentLanguage = $session->read('random_lang_selected');
 }
 if (empty($currentLanguage) || $currentLanguage == 'und') {
-    $currentLanguage = $languages->i18nCodeToISO($this->params['lang']);
+    $currentLanguage = $this->params['lang'];
 }
 if (empty($showTranslationsInto)) {
     $showTranslationsInto = 'none';
@@ -49,20 +49,23 @@ $menuElements = array(
     __('Home', true) => array(
         "route" => array(
             "controller" => "pages",
-            "action" => "home"
+            "action" => "index"
         )
     ),
     __('Browse', true) => array(
         "route" => array(
-            "controller" => "sentences",
-            "action" => "show",
-            "random"
+            "controller" => null,
+            "action" => null
         ),
         "sub-menu" => array(
+            __('Random sentence', true) => array(
+                "controller" => "sentences",
+                "action" => "show",
+                "random"
+            ),
             __('Browse by language', true) => array(
                 "controller" => "sentences",
                 "action" => "show_all_in",
-                /* $currentLanguage, "none", "none" */
                 $currentLanguage, $showTranslationsInto, $notTranslatedInto,
                 $filterAudioOnly
             ),
@@ -103,10 +106,6 @@ $menuElements = array(
                 "controller" => "activities",
                 "action" => "improve_sentences"
             ),
-            // __('Link sentences', true) => array(
-                // "controller" => "activities",
-                // "action" => "link_sentences"
-            // ),
             __('Discuss sentences', true) => array(
                 "controller" => "sentence_comments",
                 "action" => "index"
@@ -115,8 +114,18 @@ $menuElements = array(
     ),
     __('Members', true) => array(
         "route" => array(
-            "controller" => "users",
-            "action" => "all"
+            "controller" => null,
+            "action" => null
+        ),
+        "sub-menu" => array(
+            __('List of all members', true) => array(
+                "controller" => "users",
+                "action" => "all"
+            ),
+            __('Languages of members', true) => array(
+                "controller" => "users",
+                "action" => "for_language"
+            )
         )
     ),
     __('Wall', true) => array(
@@ -176,12 +185,7 @@ $menuElements = array(
             && ($this->params['action'] == 'login');
             
             if (!$isOnLoginPage) {
-                echo $this->element('login', array(
-                    'cache' => array(
-                        'time' => '+1 day',
-                        'key' => Configure::read('Config.language')
-                    )
-                ));
+                echo $this->element('login');
             }
         } else {
             echo $this->element('space');

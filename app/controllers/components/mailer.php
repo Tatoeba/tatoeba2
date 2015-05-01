@@ -140,6 +140,9 @@ class MailerComponent extends Object
         $logArray['data1response'] = "$smtpResponse";
 
         //construct headers
+        $subject  = mb_encode_mimeheader($subject);
+        $nameto   = mb_encode_mimeheader($nameto);
+        $namefrom = mb_encode_mimeheader($namefrom);
         $headers = "MIME-Version: 1.0" . $newLine;
         $headers .= "Content-type: text/plain; charset=UTF-8" . $newLine;
         $headers .= "To: $nameto <$to>" . $newLine;

@@ -25,7 +25,7 @@
  */
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="<?php echo LanguagesLib::languageTag(Configure::read('Config.language')); ?>">
 <head>
     <?php echo $html->charset(); ?>
     <title>
@@ -44,6 +44,7 @@
         
         // Generic
         echo $html->css(CSS_PATH . 'layouts/default.css');
+        echo $html->css(CSS_PATH . 'layouts/elements.css');
         
         // Specific
         $controller = $this->params["controller"];
@@ -60,11 +61,32 @@
             echo $html->css(CSS_PATH . "elements/furigana.css"); 
         }
         
+        // Develop site override
+        if (Configure::read('Tatoeba.devStylesheet')) { ?>
+            <style>
+                body {
+                    background-image:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPSczMDAnIGhlaWdodD0nMzAwJyB2aWV3Qm94PScwIDAgMzAwIDMwMCc+Cgk8ZGVmcz4KCQk8cGF0dGVybiBpZD0nYmx1ZXN0cmlwZScgcGF0dGVyblVuaXRzPSd1c2VyU3BhY2VPblVzZScgeD0nMCcgeT0nMCcgd2lkdGg9JzIwJyBoZWlnaHQ9JzIwJyB2aWV3Qm94PScwIDAgNDAgNDAnID4KCQk8cmVjdCB3aWR0aD0nMTEwJScgaGVpZ2h0PScxMTAlJyBmaWxsPScjZmZmZmZmJy8+CgkJCTxwYXRoIGQ9J00xLDFoNDB2NDBoLTQwdi00MCcgZmlsbC1vcGFjaXR5PScwJyBzdHJva2Utd2lkdGg9JzEnIHN0cm9rZS1kYXNoYXJyYXk9JzAsMSwxJyBzdHJva2U9JyNjY2NjY2MnLz4KCQk8L3BhdHRlcm4+IAoJCTxmaWx0ZXIgaWQ9J2Z1enonIHg9JzAnIHk9JzAnPgoJCQk8ZmVUdXJidWxlbmNlIHR5cGU9J3R1cmJ1bGVuY2UnIHJlc3VsdD0ndCcgYmFzZUZyZXF1ZW5jeT0nLjIgLjMnIG51bU9jdGF2ZXM9JzUnIHN0aXRjaFRpbGVzPSdzdGl0Y2gnLz4KCQkJPGZlQ29sb3JNYXRyaXggdHlwZT0nc2F0dXJhdGUnIGluPSd0JyB2YWx1ZXM9JzAnLz4KCQk8L2ZpbHRlcj4KCTwvZGVmcz4KCTxyZWN0IHdpZHRoPScxMDAlJyBoZWlnaHQ9JzEwMCUnIGZpbGw9J3VybCgjYmx1ZXN0cmlwZSknLz4KPHJlY3Qgd2lkdGg9JzEwMCUnIGhlaWdodD0nMTAwJScgZmlsdGVyPSd1cmwoI2Z1enopJyBvcGFjaXR5PScwLjEnLz4KPC9zdmc+Cg==');
+                }
+                #top_menu_container { background-color: #cf0000; }
+                div.search_bar:after {
+                    content: "<?php __("Warning: this website is for testing purposes. Everything you submit will be definitely lost.")?>";
+                    position: absolute;
+                    color: #cf0000;
+                    margin-left: 92px;
+                    font-size: 15px;
+                }
+            </style>
+        <?php }
+
         // ---------------------- //
         //      Javascript        //
         // ---------------------- //
         echo $javascript->link(JS_PATH . 'jquery-1.4.min.js', true);
         echo $javascript->link(JS_PATH . 'generic_functions.js', true);
+
+        // Source: https://github.com/jonathantneal/svg4everybody
+        // This is needed to make "fill: currentColor" work on every browser.
+        echo $javascript->link(JS_PATH . 'svg4everybody.min.js', true);
 
         // Enhanced dropdown for language selection
         // It's needed on every page since it's used on the search bar
@@ -88,7 +110,8 @@
         echo $this->element('seo_international_targeting');
     ?>
     
-    <link rel="search" type="application/opensearchdescription+xml" href="http://tatoeba.org/opensearch.xml" title="Tatoeba project" />
+    <link rel="search" type="application/opensearchdescription+xml"
+          href="http://tatoeba.org/opensearch.xml" title="Tatoeba" />
 </head>
 <body>
     <div id="audioPlayer"></div>

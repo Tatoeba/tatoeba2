@@ -77,15 +77,16 @@ class TagsHelper extends AppHelper
                     <span class="tag">
                     <?php
                     $tagName =  $tagArray['Tag']['name'];
-                    $taggerId = $tagArray['TagsSentences']['user_id'];
+                    $userId = $tagArray['User']['id'];
+                    $username = $tagArray['User']['username'];
                     $tagId = $tagArray['TagsSentences']['tag_id'];
                     $date = $tagArray['TagsSentences']['added_time'];
 
                     $this->displayTagLink(
-                        $tagName, $tagId, $taggerId, $date
+                        $tagName, $tagId, $username, $date
                     );
 
-                    if (CurrentUser::canRemoveTagFromSentence($taggerId)) {
+                    if (CurrentUser::canRemoveTagFromSentence($userId)) {
                         $this->_displayRemoveLink($tagId, $tagName, $sentenceId);
                     }
                     ?>
@@ -117,12 +118,17 @@ class TagsHelper extends AppHelper
      *
      */
     public function displayTagLink(
-        $tagName, $tagId, $userId = null, $date = null
+        $tagName, $tagId, $username = null, $date = null
     ) {
-        $options = array("class" => "tagName");
-        if ($userId != null) {
-            $options["title"] = sprintf(
-                __("user: %s, date: %s", true), $userId, $date
+        $options = array(
+            "class" => "tagName",
+            "lang" => "",
+            "dir" => "auto",
+        );
+        if ($username != null) {
+            $options["title"] = format(
+                __("Added by {username}, {date}", true),
+                compact('username', 'date')
             );
         }
         echo $this->Html->link(
@@ -182,7 +188,9 @@ class TagsHelper extends AppHelper
         echo $this->Form->input(
             'tag_name',
             array(
-                "label" => ''
+                "label" => '',
+                "lang" => '',
+                "dir" => 'auto',
             )
         );
 
@@ -250,9 +258,9 @@ class TagsHelper extends AppHelper
 
     private function _displayRemoveLink($tagId, $tagName, $sentenceId)
     {
-        $removeTagFromSentenceAlt = sprintf(
-            __("remove tag '%s' from this sentence.", true),
-            $tagName
+        $removeTagFromSentenceAlt = format(
+            __("remove tag '{tagName}' from this sentence.", true),
+            compact('tagName')
         );
         // X link to remove tag from sentence
         echo $this->Html->link(
@@ -295,10 +303,7 @@ class TagsHelper extends AppHelper
         </script>
 
         <?php
-        $removeFromListAlt = sprintf(
-            __("remove tag from sentence", true)
-        );
-
+        $removeFromListAlt = __("remove tag from sentence", true);
         $removeTagFromSentenceImg =  $this->Html->image(
             IMG_PATH . 'close.png',
             array(

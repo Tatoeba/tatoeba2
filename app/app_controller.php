@@ -36,6 +36,7 @@
 
 App::import('Core', 'Sanitize');
 App::import('Model', 'CurrentUser');
+App::import('Vendor', 'LanguagesLib');
 
 class AppController extends Controller
 {
@@ -58,10 +59,41 @@ class AppController extends Controller
         'Logs',
         'Javascript',
         'Languages',
-        'Session'
+        'Pages',
+        'Session',
+        'Images'
     );
-    
-    
+
+    private function remapOldLangAlias($lang)
+    {
+        $uiLangSettings = Configure::read('UI.languages');
+        foreach ($uiLangSettings as $setting) {
+            if (isset($setting[3]) && is_array($setting[3])
+                && in_array($lang, $setting[3])) {
+                return $setting[0];
+            }
+        }
+        return $lang;
+    }
+
+    /**
+     * CakePHP has its own ISO-639-1 <=> ISO-639-3 map for the handling of
+     * HTTP “Accept-Languages” header, which differs from ours and prevents
+     * it from getting the right .po folder. For some reason, CakePHP converts
+     * the Config.language code from ISO-639-3 to ISO-639-1 and then back to
+     * ISO-639-3. It breaks for languages that has multiple ISO-639-3 codes,
+     * for instance nld => nl => dut. Let's fix that the hard way.
+     */
+    private function fixL10nCatalog() {
+        $to_iso3 = array_flip(LanguagesLib::get_Iso639_3_To_Iso639_1_Map());
+        $I18n =& I18n::getInstance();
+        foreach ($I18n->l10n->__l10nCatalog as $iso1_lang => &$info) {
+            if (isset($to_iso3[$iso1_lang])) {
+                $info['localeFallback'] = $to_iso3[$iso1_lang];
+            }
+        }
+    }
+
     /**
      * 
      *
@@ -111,26 +143,47 @@ class AppController extends Controller
         if (isset($this->params['lang'])) {
             $langInURL = $this->params['lang'];
         }
-        if ($langInCookie) {
+
+        $langInURLAlias = $this->remapOldLangAlias($langInURL);
+        if ($langInURLAlias != $langInURL) {
+            $lang = $langInURLAlias;
+        } else if ($langInCookie) {
+            $langInCookieAlias = $this->remapOldLangAlias($langInCookie);
+            if ($langInCookieAlias != $langInCookie && !empty($langInURL)) {
+                $this->Cookie->write('interfaceLanguage', $langInCookieAlias, false, "+1 month");
+                $langInCookie = $langInCookieAlias;
+            }
             $lang = $langInCookie;
         } else if (!empty($langInURL)) {
             $lang = $langInURL;
             $this->Cookie->write('interfaceLanguage', $lang, false, "+1 month");
         }
+        $this->fixL10nCatalog();
         Configure::write('Config.language', $lang);
 
         // Forcing the URL to have the (correct) language in it.
-        $url = $_SERVER["REQUEST_URI"];
-        if (!empty($langInURL) && $langInCookie && $langInURL != $langInCookie) {
+        $url = Router::reverse($this->params);
+        if (!empty($langInURL) && (
+              ($langInCookie && $langInURL != $langInCookie) ||
+              ($langInURLAlias != $langInURL)
+           )) {
             // We're are now going to remove the language from the URL and set
             // $langURL to null so that we get the the correct URL through
             // redirection (below).
             $url = preg_replace("/^\/$langInURL(\/|$)/", '/', $url);
             $langInURL = null;
         }
-        if (empty($langInURL)) {
+        if (empty($langInURL)
+            && !$this->RequestHandler->isPost()   // Avoid throwing away POST or
+            && !$this->RequestHandler->isPut()) { // PUT data by redirecting
             $redirectPage = "/".$lang.$url;
-            $this->redirect($redirectPage, 301);
+            // Redirection of Ajax requests will be handled internally and all in
+            // one request thanks to RequestHandlerComponent::beforeRedirect().
+            // However, this function sets the HTTP return code and we don't want
+            // that. Instead, we want to hide the fact a redirection happened and
+            // let the sub-request return its own return code.
+            $redirectCode = $this->RequestHandler->isAjax() ? null : 301;
+            $this->redirect($redirectPage, $redirectCode);
         }
     }
 
@@ -178,6 +231,12 @@ class AppController extends Controller
         $useMostRecentList = $this->Cookie->read('use_most_recent_list');
         $this->Session->write('use_most_recent_list', $useMostRecentList);
 
+        $collapsibleTranslationsEnabled = $this->Cookie->read('collapsible_translations_enabled');
+        $this->Session->write('collapsible_translations_enabled', $collapsibleTranslationsEnabled);
+
+        $restrictSearchLangsEnabled = $this->Cookie->read('restrict_search_langs_enabled');
+        $this->Session->write('restrict_search_langs_enabled', $restrictSearchLangsEnabled);
+
         $jqueryChosen = $this->Cookie->read('jquery_chosen');
         $this->Session->write('jquery_chosen', $jqueryChosen);
     }
@@ -191,8 +250,13 @@ class AppController extends Controller
     public function flash($msg,$to)
     {
         $this->Session->setFlash($msg);
-        $this->redirect('/'.$this->params['lang'].$to);
-        exit;
+        if (is_array($to)) {
+            $to = array_merge(array('lang' => $this->params['lang']), $to);
+        } else {
+            $to = '/'.$this->params['lang'].$to;
+        }
+        $this->redirect($to);
+        $this->_stop();
     }
     
 
@@ -228,9 +292,8 @@ class AppController extends Controller
         $configUiLanguages = Configure::read('UI.languages');
         $supportedLanguages = array();
         foreach ($configUiLanguages as $langs) {
-            if ($langs[1] != null) {
-                $supportedLanguages[$langs[1]] = $langs[0];
-            }
+            $browserCompatibleCode = LanguagesLib::languageTag($langs[0]);
+            $supportedLanguages[$browserCompatibleCode] = $langs[0];
         }
 
         if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) { 
@@ -247,6 +310,19 @@ class AppController extends Controller
             
         }
         return 'eng';
+    }
+
+    /**
+     * Returns $array containing only $allowedKeys keys.
+     *
+     * @param array $array  An associative array
+     * @param array $allowedKeys Allowed keys inside $array
+     *
+     * @return string Filtered array.
+     */
+    public function filterKeys($array, $allowedKeys)
+    {
+        return array_intersect_key($array, array_flip($allowedKeys));
     }
 }
 ?>

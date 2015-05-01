@@ -53,8 +53,7 @@ class PagesController extends AppController
      */
     public $helpers = array(
         'Html',
-        'Languages',
-        'AttentionPlease',
+        'Languages'
     );
     /**
      * This controller does not use a model
@@ -80,28 +79,34 @@ class PagesController extends AppController
     }
 
     /**
-     * use to retrive data needed to display all the index module
-     * data are sent to pages/index.ctp
-     *
      * @return void
      */
-
     public function index()
     {
-        if ($this->Auth->user()) {
-            $this->redirect(array('action' => 'home'));
-        }
+        $this->helpers[] = 'Wall';
+        $this->helpers[] = 'Sentences';
+        $this->helpers[] = 'Messages';
 
-        /*Some numbers part*/
-        $this->loadModel('Contribution');
-        $nbrContributions = $this->Contribution->getTodayContributions();
+        $userId = $this->Auth->user('id');
+        $isLogged = !empty($userId);
+
+        /*latest comments part */
+        $this->loadModel('SentenceComment');
+        $latestComments = $this->SentenceComment->getLatestComments(5);
+        $commentsPermissions = $this->Permissions->getCommentsOptions(
+            $latestComments
+        );
+
+        $this->set('sentenceComments', $latestComments);
+        $this->set('commentsPermissions', $commentsPermissions);
 
 
-        $this->loadModel('User');
-        $nbrActiveMembers = $this->User->getNumberOfActiveMembers();
+        /*latest messages part */
+        $this->loadModel('Wall');
+        $latestMessages = $this->Wall->getLastMessages(5);
 
-        $this->set('nbrActiveMembers', $nbrActiveMembers);
-        $this->set('nbrContributions', $nbrContributions);
+        $this->set('isLogged', $isLogged);
+        $this->set('latestMessages', $latestMessages);
 
         // Random sentence part
         $this->_random_sentence();
@@ -131,20 +136,12 @@ class PagesController extends AppController
                 $action = "tatoeba_team_and_credits";
                 break;
 
-            case "how-to-contribute":
-                $action = "how_to_contribute";
-                break;
-
             case "download-tatoeba-example-sentences":
                 $action = "downloads";
                 break;
 
             case "terms-of-use":
                 $action = "terms_of_use";
-                break;
-
-            case "whats-new":
-                $action = "whats_new";
                 break;
         }
 
@@ -165,34 +162,13 @@ class PagesController extends AppController
      */
     public function home()
     {
-        $this->helpers[] = 'Wall';
-        $this->helpers[] = 'Sentences';
-        $this->helpers[] = 'Messages';
-
-        $userId = $this->Auth->user('id');
-        $groupId = $this->Auth->user('group_id');
-        $isLogged = !empty($userId);
-
-        /*latest comments part */
-        $this->loadModel('SentenceComment');
-        $latestComments = $this->SentenceComment->getLatestComments(5);
-        $commentsPermissions = $this->Permissions->getCommentsOptions(
-            $latestComments
+        $this->redirect(
+            array(
+                "controller" => "pages",
+                "action" => "index"
+            ),
+            301
         );
-
-        $this->set('sentenceComments', $latestComments);
-        $this->set('commentsPermissions', $commentsPermissions);
-
-
-        /*latest messages part */
-        $this->loadModel('Wall');
-        $latestMessages = $this->Wall->getLastMessages(5);
-        
-        $this->set('isLogged', $isLogged);
-        $this->set('latestMessages', $latestMessages);
-
-        // Random sentence part
-        $this->_random_sentence();
     }
 
 
@@ -243,15 +219,6 @@ class PagesController extends AppController
     {
     }
 
-    /**
-     *
-     *
-     */
-
-    public function search()
-    {
-        //TODO should be moved in "search" controller
-    }
 
     /**
      *
@@ -271,13 +238,6 @@ class PagesController extends AppController
     {
     }
 
-    /**
-     *
-     *
-     */
-    public function how_to_contribute()
-    {
-    }
 
     /**
      *
@@ -333,15 +293,6 @@ class PagesController extends AppController
      *
      *
      */
-    public function whats_new()
-    {
-    }
-
-
-    /**
-     *
-     *
-     */
     public function faq()
     {
         $this->redirect(
@@ -357,16 +308,6 @@ class PagesController extends AppController
      */
     public function donate()
     {
-    }
-
-
-    /**
-     *
-     *
-     */
-    public function maintenance()
-    {
-        $this->layout = null;
     }
 }
 ?>

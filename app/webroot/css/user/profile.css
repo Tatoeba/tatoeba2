@@ -17,23 +17,11 @@
  */
 
 
-/*
- * Profile pic
- */
-@import url(../elements/profile_pic.css);
-
-
-/*
- * Status colors
- */
-@import url(../elements/status_colors.css);
-
-
-.profileSummary, .profileDescription {
+.profileSummary,
+.profileDescription,
+.profileLanguages {
     border: 1px solid #CCC;
-    -moz-border-radius: 10px;
-    -webkit-border-radius: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
     padding-bottom: 10px;
 }
 
@@ -72,6 +60,11 @@
     font-size: 1.2em;
 }
 
+.profileSummary .contributionsBlocked {
+    background: url(../../img/warning-small.svg) no-repeat 0px center;
+    padding-left: 20px;
+}
+
 
 /*
  * Description
@@ -99,12 +92,10 @@
 }
 
 .editOption a{
-    background: url(../../img/search_bar_body.png) repeat;
+    background: #6A0;
     padding: 3px 10px;
     color: #FFF;
     border: 1px solid #6E994E;
-    -moz-border-radius: 4px;
-    -webkit-border-radius: 4px;
     border-radius: 4px;
     font-weight: bold;
 }

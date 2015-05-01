@@ -25,11 +25,8 @@
  * @link     http://tatoeba.org
  */
  
-$this->set('title_for_layout', 'Tatoeba - ' . __('Number of sentences per language', true));
+$this->set('title_for_layout', $pages->formatTitle(__('Number of sentences per language', true)));
 
-$stats = ClassRegistry::init('Language')->getStatistics();
-$audioStats = ClassRegistry::init('Sentence')->getTotalNumberOfSentencesWithAudio();
-$totalSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
 $max = $stats[0]['Language']['numberOfSentences'];
 ?>
 <div id="annexe_content">
@@ -46,7 +43,8 @@ $max = $stats[0]['Language']['numberOfSentences'];
 <div class="module">
     <h2>
     <?php 
-    echo sprintf(__('%s sentences', true), $totalSentences);
+    echo format(__n('One sentence', '{n}&nbsp;sentences', $totalSentences, true),
+                array('n' => $totalSentences));
     ?>
     </h2>
     
@@ -77,7 +75,7 @@ $max = $stats[0]['Language']['numberOfSentences'];
             
             <td class="languageName">
             <?php 
-            $langName = $languages->codeToName($langCode);
+            $langName = $languages->codeToNameAlone($langCode);
             if (empty($langCode)) {
                 $langCode = 'unknown';
             }

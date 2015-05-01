@@ -7,8 +7,12 @@
 -- user_id     Id of the user.
 --
 
-CREATE TABLE IF NOT EXISTS `favorites_users` (
+DROP TABLE IF EXISTS `favorites_users`;
+CREATE TABLE `favorites_users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `favorite_id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
+  `created` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `favorite_id` (`favorite_id`,`user_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=latin1

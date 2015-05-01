@@ -73,17 +73,13 @@ class ContributionsController extends AppController
     {
         $filter = Sanitize::paranoid($filter);
 
-        $user_agent = $_SERVER['HTTP_USER_AGENT'];
-        if(strpos($user_agent, "Baidu") !== false) {
-            $this->redirect($redirectPage, 404);
-        }
-
         $this->helpers[] = 'Pagination';
 
         $conditions = array();
         if ($filter != 'und') {
             $conditions = array('sentence_lang' => $filter);
         }
+        $conditions = $this->Contribution->getQueryConditionsWithExcludedUsers($conditions);
 
         $this->paginate = array(
             'Contribution' => array(
@@ -119,23 +115,19 @@ class ContributionsController extends AppController
      */
     public function latest($filter = 'und')
     {
+        $this->helpers[] = 'Members';
+
+        $this->loadModel('LastContribution');
+        $currentContributors = $this->LastContribution->getCurrentContributors();
+        $total = $this->LastContribution->getTotal($currentContributors);
+
+        $this->set('currentContributors', $currentContributors);
+        $this->set('total', $total);
         $this->set(
             'contributions', $this->Contribution->getLastContributions(200, $filter)
         );
     }
 
-
-    /**
-     * Display number of contributions for each member.
-     *
-     * @return void
-     */
-    public function statistics()
-    {
-        $this->helpers[] = 'Cache';
-        $this->cacheAction = '1 day';
-        $this->set('stats', $this->Contribution->getUsersStatistics());
-    }
 
     /**
      * Display number of contributions for each day.

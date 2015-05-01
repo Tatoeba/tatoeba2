@@ -17,14 +17,12 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-// TODO create an helper for this 
-
 $username = $user['User']['username'];
 $userId =  $user['User']['id'];
-$this->set('title_for_layout', sprintf(
-    __('Tatoeba user: %s', true),
-    $username
-));
+$this->set('title_for_layout', $pages->formatTitle(format(
+    __('Tatoeba user: {username}', true),
+    compact('username')
+)));
 ?>
 <div id="annexe_content">
 
@@ -60,27 +58,27 @@ $this->set('title_for_layout', sprintf(
     if (count($user['Sentences']) > 0) {
         echo '<div class="module">';
             echo '<h2>';
-                __('Latest sentences');
-                echo ' (';
-                echo $html->link(
-                    __('view all', true),
-                    array(
-                        "controller" => "sentences",
-                        "action" => "of_user",
-                        $username
-                    )
-                );
-                echo ')';
+            __('Latest sentences');
+
+            echo $html->link(
+                __('view all', true),
+                array(
+                    "controller" => "sentences",
+                    "action" => "of_user",
+                    $username
+                ),
+                array(
+                    'class' => 'titleAnnexeLink'
+                )
+            );
             echo '</h2>';
             
             $type = 'mainSentence';
             $parentId = null;
             $withAudio = false;
-            $ownerName = $user['User']['username'];
             foreach ($user['Sentences'] as $sentence) {
                 $sentences->displayGenericSentence(
                     $sentence,
-                    $ownerName,
                     $type,
                     $parentId,
                     $withAudio
@@ -94,27 +92,27 @@ $this->set('title_for_layout', sprintf(
         echo '<div class="module">';
             echo '<h2>';
             __('Favorite sentences');
-            echo ' (';
+
             echo $html->link(
                 __('view all', true),
                 array(
                     "controller" => "favorites",
                     "action" => "of_user",
                     $user['User']['username']
+                ),
+                array(
+                    'class' => 'titleAnnexeLink'
                 )
             );
-            echo ')';
             echo '</h2>';
 
             
             $type = 'mainSentence';
             $parentId = null;
             $withAudio = false;
-            $ownerName = null;
             foreach ($user['Favorite'] as $sentence) {
                 $sentences->displayGenericSentence(
                     $sentence,
-                    $ownerName,
                     $type,
                     $parentId,
                     $withAudio
@@ -130,17 +128,18 @@ $this->set('title_for_layout', sprintf(
         echo '<div class="module">';
             echo '<h2>';
             __('Latest comments');
-            echo ' (';
+
             echo $html->link(
                 __('view all', true),
                 array(
                     "controller" => "sentence_comments",
                     "action" => "of_user",
                     $username
+                ),
+                array(
+                    'class' => 'titleAnnexeLink'
                 )
             );
-            echo ')';
-
             echo '</h2>';
 
             echo '<div class="comments">';
@@ -168,17 +167,18 @@ $this->set('title_for_layout', sprintf(
         echo '<div class="module">';
             echo '<h2>';
             __('Latest Wall messages');
-            echo ' (';
+
             echo $html->link(
                 __('view all', true),
                 array(
                     "controller" => "wall",
                     "action" => "messages_of_user",
                     $username
+                ),
+                array(
+                    'class' => 'titleAnnexeLink'
                 )
             );
-            echo ')';
-
             echo '</h2>';
 
             echo '<div class="wall">';

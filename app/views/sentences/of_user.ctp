@@ -38,7 +38,18 @@ if ($userExists === true) {
         ) 
     );
 
+    if (empty($lang)) {
+        $title = format(__("{user}'s sentences", true), array('user' => $userName));
+    } else {
+        $languageName = $languages->codeToNameToFormat($lang);
+        $title = format(__('{user}\'s sentences in {language}', true),
+                        array('user' => $userName, 'language' => $languageName));
+    }
+} else {
+    $title = format(__("There's no user called {username}", true), array('username' => $userName));
 }
+
+$this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">
@@ -78,15 +89,15 @@ if ($userExists === true) {
     } elseif ($numberOfSentences === 0) {
         echo '<h2>';
         if (!empty($lang)) {
-            echo sprintf(
-                __('%1$s does not have any sentence in %2$s', true),
-                $userName,
-                $languages->codeToName($lang)
+            $langName = $languages->codeToNameToFormat($lang);
+            echo format(
+                __('{user} does not have any sentence in {language}', true),
+                array('user' => $userName, 'language' => $langName)
             );
         } else {
-            echo sprintf(
-                __("%s does not have any sentence", true),
-                $userName
+            echo format(
+                __("{user} does not have any sentence", true),
+                array('user' => $userName)
             );
         }
         echo '</h2>';
@@ -100,8 +111,7 @@ if ($userExists === true) {
             <?php 
             echo $paginator->counter(
                 array(
-                    'format' => sprintf(__("%s's sentences", true), $userName) 
-                        . ' ' . __("(total %count%)", true)
+                    'format' => $title . ' ' . __("(total %count%)", true)
                 )
             ); 
             ?>
@@ -116,10 +126,8 @@ if ($userExists === true) {
         $parentId = null;
         $withAudio = false;
         foreach ($user_sentences as $sentence) {
-            $ownerName = $sentence['User']['username'];
             $sentences->displayGenericSentence(
                 $sentence['Sentence'],
-                $ownerName,
                 $type,
                 $parentId,
                 $withAudio
