@@ -83,8 +83,7 @@ if (!empty($results)) {
                 $sentence['Translations'], 
                 $sentence['User'],
                 $sentence['IndirectTranslations'],
-                true,
-                $to
+                array('langFilter' => $to)
             );
         }
         

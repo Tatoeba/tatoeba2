@@ -40,16 +40,11 @@
 
 $sentences->javascriptForAJAXSentencesGroup();
 
-$withDivWrapper = false;
-$withAudio = true;
-
 // display sentence and translations
 $sentences->displaySentencesGroup(
     $sentence['Sentence'],
     $translations,
     $sentence['User'],
-    $indirectTranslations,
-    $withAudio,
-    $withDivWrapper
+    $indirectTranslations
 );
 ?> 

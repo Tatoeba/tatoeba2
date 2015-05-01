@@ -242,13 +242,12 @@ class TagsHelper extends AppHelper
                 $this->_displayRemoveButton($sentenceId, $tagId);
             }
             // Sentences group
-            $withAudio = false;
             $this->Sentences->displaySentencesGroup(
                 $sentence,
                 $translations,
                 $sentenceOwner,
                 $indirectTranslations,
-                $withAudio
+                array('withAudio' => false)
             );
             ?>
 

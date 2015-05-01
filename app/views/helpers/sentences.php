@@ -69,8 +69,9 @@ class SentencesHelper extends AppHelper
      * @param array $translations         Translations of the sentence.
      * @param array $user                 Owner of the sentence.
      * @param array $indirectTranslations Indirect translations of the sentence.
-     * @param bool  $withAudio            Set to 'true' if audio icon is displayed.
-     * @param bool  $langFilter           The language $indirectTranslations are filtered in, if any.
+     * @param bool  $options              Array of options
+                                          withAudio: set it to false to hide audio icon
+     *                                    langFilter: the language $indirectTranslations are filtered in, if any.
      *
      * @return void
      */
@@ -79,9 +80,17 @@ class SentencesHelper extends AppHelper
         $translations,
         $user = null,
         $indirectTranslations = array(),
-        $withAudio = true,
-        $langFilter = 'und'
+        $options = array()
     ) {
+        $options = array_merge(
+            array(
+                'withAudio' => true,
+                'langFilter' => 'und'
+            ),
+            $options
+        );
+        extract($options);
+
         $id = $sentence['id'];
 
         ?>
