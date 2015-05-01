@@ -595,7 +595,7 @@ class SentencesHelper extends AppHelper
         // romanization
         if (isset($sentence['transcriptions'])) {
             $this->_displayTranscriptions(
-                $sentence['transcriptions'], $isEditable
+                $sentence['transcriptions'], $sentence['lang'], $isEditable
             );
         }
         ?>
@@ -666,12 +666,12 @@ class SentencesHelper extends AppHelper
      * @todo Rename CSS class: 'romanization' -> 'transcription'.
      *
      * @param array  $transcriptions List of transcriptions.
-     * @param string $lang           Language of the sentence transcripted.
-     * @param string $script         Script of the sentence the transcription is derived from.
+     * @param string $lang           Language of the transcripted sentence.
+     * @param string $isEditable     Whether the transcription is editable.
      *
      * @return void
      */
-    private function _displayTranscriptions($transcriptions, $isEditable)
+    private function _displayTranscriptions($transcriptions, $lang, $isEditable)
     {
         foreach ($transcriptions as $script => $transcr) {
             if ($transcr['dirty'] && !$isEditable)
@@ -680,11 +680,11 @@ class SentencesHelper extends AppHelper
             $this->Javascript->link('jquery.jeditable.js', false);
             $this->Javascript->link('transcriptions.edit_in_place.js', false);
 
-            $this->displayTranscription($transcr, $isEditable);
+            $this->displayTranscription($transcr, $lang, $isEditable);
         }
     }
 
-    public function displayTranscription($transcr, $isEditable) {
+    public function displayTranscription($transcr, $lang, $isEditable) {
         $text = $transcr['text'];
         if ($transcr['script'] == 'Hrkt')
             $text = $this->_rubify($text);
@@ -692,7 +692,16 @@ class SentencesHelper extends AppHelper
         $class = "romanization";
         if ($isEditable)
             $class .= " editableTranscription";
-        echo "<div id=\"$transcr[id]\" class=\"$class\">$text</div>";
+
+        echo $this->Languages->tagWithLang(
+            'div', $lang, $text,
+            array(
+                'id' => $transcr['id'],
+                'class' => $class,
+                'escape' => false,
+            ),
+            $transcr['script']
+        );
     }
 
     /**

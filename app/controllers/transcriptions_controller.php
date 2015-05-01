@@ -48,7 +48,7 @@ class TranscriptionsController extends AppController
                 'dirty' => false,
             ));
             if ($saved)
-                $saved = $this->Transcription->findById($transcriptionId);
+                $saved = $this->Transcription->getTranscriptionWithSentence($transcriptionId);
         }
 
         if (isset($this->params['requested'])) {

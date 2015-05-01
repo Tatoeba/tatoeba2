@@ -332,5 +332,15 @@ class Transcription extends AppModel
         else
             return false;
     }
+
+    public function getTranscriptionWithSentence($transcriptionId) {
+        $transc = $this->find('first', array(
+            'conditions' => array(
+                $this->alias.'.'.$this->primaryKey => $transcriptionId,
+            ),
+            'contain' => array('Sentence')
+        ));
+        return $transc;
+    }
 }
 ?>
