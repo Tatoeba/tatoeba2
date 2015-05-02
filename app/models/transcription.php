@@ -332,6 +332,17 @@ class Transcription extends AppModel
             return false;
     }
 
+    public function findTranscriptionId($sentenceId, $script) {
+        $result = $this->find('first', array(
+            'conditions' => array(
+                'sentence_id' => $sentenceId,
+                'script' => $script
+            ),
+            'fields' => array('id')
+        ));
+        return $result ? $result['Transcription']['id'] : null;
+    }
+
     public function addGeneratedTranscriptions($transcriptions, $sentence) {
         $possibleScripts = $this->transcriptableToWhat($sentence);
         $existingScripts = Set::classicExtract($transcriptions, '{n}.script');

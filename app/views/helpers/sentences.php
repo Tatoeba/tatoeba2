@@ -704,6 +704,8 @@ class SentencesHelper extends AppHelper
         echo $this->Languages->tagWithLang(
             'div', $lang, $html,
             array(
+                'data-sentence-id' => $transcr['sentence_id'],
+                'data-script' => $transcr['script'],
                 'class' => $class,
                 'escape' => false,
             ),

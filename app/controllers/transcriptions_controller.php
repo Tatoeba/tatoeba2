@@ -32,25 +32,35 @@ class TranscriptionsController extends AppController
         'Sentences',
     );
 
-    public function edit() {
-        $transcriptionId   = $this->params['form']['id'];
+    public function edit($sentenceId, $script) {
+        $transcriptionId = $this->Transcription->findTranscriptionId($sentenceId, $script);
         $transcriptionText = $this->params['form']['value'];
 
-        $ownerId = $this->Transcription->getTranscriptionOwner($transcriptionId);
-        $userId = CurrentUser::get('id');
-        $canEdit = ($ownerId == $userId || CurrentUser::isModerator());
+        if ($transcriptionId) { // Modifying existing transcription
+            $ownerId = $this->Transcription->getTranscriptionOwner($transcriptionId);
+            $userId = CurrentUser::get('id');
+            $canEdit = ($ownerId == $userId || CurrentUser::isModerator());
 
-        $saved = null;
-        if ($canEdit) {
+            $saved = false;
+            if ($canEdit) {
+                $saved = $this->Transcription->save(array(
+                    'id' => $transcriptionId,
+                    'text' => $transcriptionText,
+                    'dirty' => false,
+                ));
+                if ($saved)
+                    $saved = $this->Transcription->findById($transcriptionId);
+            }
+        } else { // Inserting a new transcription
             $saved = $this->Transcription->save(array(
-                'id' => $transcriptionId,
                 'text' => $transcriptionText,
+                'sentence_id' => $sentenceId,
+                'script' => $script,
                 'dirty' => false,
             ));
-            if ($saved)
-                $saved = $this->Transcription->findById($transcriptionId);
         }
 
+        /* Used by tests, to check permissions */
         if (isset($this->params['requested'])) {
             return $canEdit && $saved;
         }

@@ -19,22 +19,34 @@
 
 $(document).ready(function() {
     var rootUrl = get_tatoeba_root_url();
-    
-    $('.editableTranscription').editable(rootUrl + '/transcriptions/edit', { 
-        type      : 'textarea',
-        cancel    : 'Cancel',
-        submit    : 'OK',
-        data : function(value, settings) {
-            return $('<div>').html(value).text() // added to correct problem with html entities
-        },
-        indicator : '<img src="/img/loading.gif">',
-        tooltip   : 'Click to edit...',
-        cssclass  : 'editInPlaceForm',
-        onblur    : 'ignore'
-    }).click(function(e) {
-        $(this).find('textarea').keydown(function(event) {
-            if (event.which == 13)
-                $(this).closest('form').submit();
+
+    $('.editableTranscription').each(function() {
+        var div = $(this);
+
+        sentenceId = div.attr('data-sentence-id');
+        script = div.attr('data-script');
+        saveUrl = rootUrl + '/transcriptions/edit/' + sentenceId + '/' + script;
+
+        $(this).editable(saveUrl, {
+            type      : 'textarea',
+            cancel    : 'Cancel',
+            submit    : 'OK',
+            id        : 'divId',
+            data : function(value, settings) {
+                return $('<div>').html(value).text() // added to correct problem with html entities
+            },
+            callback : function() {
+                div.removeClass('generatedTranscription');
+            },
+            indicator : '<img src="/img/loading.gif">',
+            tooltip   : 'Click to edit...',
+            cssclass  : 'editInPlaceForm',
+            onblur    : 'ignore'
+        }).click(function(e) {
+            $(this).find('textarea').keydown(function(event) {
+                if (event.which == 13)
+                    $(this).closest('form').submit();
+            });
         });
     });
 });
