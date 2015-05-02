@@ -13,6 +13,6 @@ CREATE TABLE `transcriptions` (
   `modified` datetime NOT NULL,
   CONSTRAINT `unique_transcriptions` UNIQUE (`sentence_id`,`script`),
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE sentences ADD script varchar(4);
