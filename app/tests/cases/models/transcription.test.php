@@ -135,6 +135,13 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->_assertValidRecordWithout(0, array('user_id'));
     }
 
+    function testReadonlyMustBeBoolean() {
+        $this->_assertInvalidRecordWith(0, array('readonly' => 'yes'));
+    }
+    function testReadonlyNotRequired() {
+        $this->_assertValidRecordWithout(0, array('readonly'));
+    }
+
     function testModifiedCantBeEmpty() {
         $this->_assertInvalidRecordWith(0, array('modified' => ''));
     }

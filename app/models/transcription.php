@@ -107,6 +107,9 @@ class Transcription extends AppModel
             'rule' => 'numeric',
             'allowEmpty' => true,
         ),
+        'readonly' => array(
+            'rule' => 'boolean',
+        ),
         'created' => array(
             'rule' => 'notEmpty',
         ),
