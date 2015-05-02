@@ -33,6 +33,7 @@ class Transcription extends AppModel
         'jpn' => array('Jpan'),
         'uzb' => array('Cyrl', 'Latn'),
     );
+    private $honorReadonly = true;
     private $availableTranscriptions = array(
         'jpn-Jpan' => array(
             'Hrkt' => array(
@@ -196,7 +197,7 @@ class Transcription extends AppModel
         if (!$parentSentence)
             return false;
 
-        $transcriptions = $this->transcriptableToWhat($parentSentence, true);
+        $transcriptions = $this->transcriptableToWhat($parentSentence, $this->honorReadonly);
 
         return (in_array($targetScript, $transcriptions));
     }
@@ -253,6 +254,12 @@ class Transcription extends AppModel
         return (bool)$this->save($transcription);
     }
 
+    private function saveAllEvenReadonly($data) {
+        $this->honorReadonly = false;
+        $this->saveAll($data, array('validate' => true));
+        $this->honorReadonly = true;
+    }
+
     public function generateAndSaveAllTranscriptionsFor($sentence) {
         if (isset($sentence['Sentence']))
             $sentence = $sentence['Sentence'];
@@ -269,7 +276,7 @@ class Transcription extends AppModel
                     $transcriptions[] = $transcription;
             }
         }
-        $this->saveAll($transcriptions, array('validate' => true));
+        $this->saveAllEvenReadonly($transcriptions);
 
         $transcriptions = array();
         foreach ($this->availableTranscriptions[$langScript] as $targetScript => $process) {
@@ -279,7 +286,7 @@ class Transcription extends AppModel
                     $transcriptions[] = $transcription;
             }
         }
-        $this->saveAll($transcriptions, array('validate' => true));
+        $this->saveAllEvenReadonly($transcriptions);
     }
 
     public function generateTranscription($sentence, $targetScript) {
