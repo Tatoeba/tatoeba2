@@ -70,7 +70,7 @@ class TranscriptionsControllerTestCase extends CakeTestCase {
         unset($this->User);
     }
 
-    function _editAsUser($username, $sentenceId, $script, $transcrText) {
+    function _saveAsUser($username, $sentenceId, $script, $transcrText) {
         $user = $this->User->find('first', array(
             'conditions' => array('username' => $username),
             'recursive' => -1,
@@ -78,7 +78,7 @@ class TranscriptionsControllerTestCase extends CakeTestCase {
         $data = array('value' => $transcrText);
 
         return $this->testAction(
-            "/jpn/transcriptions/edit/$sentenceId/$script",
+            "/jpn/transcriptions/save/$sentenceId/$script",
             array(
                 'form' => $data,
                 'method' => 'post',
@@ -89,31 +89,31 @@ class TranscriptionsControllerTestCase extends CakeTestCase {
     }
 
     function testGuestCantEditTranscription() {
-        $result = $this->_editAsUser(null, 6, 'Hrkt', 'something new');
+        $result = $this->_saveAsUser(null, 6, 'Hrkt', 'something new');
         $this->assertFalse($result);
     }
     function testOwnerCanEditTranscription() {
-        $result = $this->_editAsUser('kazuki', 6, 'Hrkt', 'something new');
+        $result = $this->_saveAsUser('kazuki', 6, 'Hrkt', 'something new');
         $this->assertTrue($result);
     }
 
     function testRegularOtherUserCantEditTranscription() {
-        $result = $this->_editAsUser('contributor', 6, 'Hrkt', 'something new');
+        $result = $this->_saveAsUser('contributor', 6, 'Hrkt', 'something new');
         $this->assertFalse($result);
     }
 
     function testAdminCanEditTranscription() {
-        $result = $this->_editAsUser('admin', 6, 'Hrkt', 'something new');
+        $result = $this->_saveAsUser('admin', 6, 'Hrkt', 'something new');
         $this->assertTrue($result);
     }
 
     function testCorpusMaintainerCanEditTranscription() {
-        $result = $this->_editAsUser('corpus_maintainer', 6, 'Hrkt', 'something new');
+        $result = $this->_saveAsUser('corpus_maintainer', 6, 'Hrkt', 'something new');
         $this->assertTrue($result);
     }
 
     function testAdvancedUserCantEditTranscription() {
-        $result = $this->_editAsUser('advanced_contributor', 6, 'Hrkt', 'something new');
+        $result = $this->_saveAsUser('advanced_contributor', 6, 'Hrkt', 'something new');
         $this->assertFalse($result);
     }
 }

@@ -31,7 +31,7 @@ $(document).ready(function() {
 
         sentenceId = div.attr('data-sentence-id');
         script = div.attr('data-script');
-        saveUrl = rootUrl + '/transcriptions/edit/' + sentenceId + '/' + script;
+        saveUrl = rootUrl + '/transcriptions/save/' + sentenceId + '/' + script;
 
         $(this).editable(saveUrl, {
             type      : 'textarea',

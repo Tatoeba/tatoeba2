@@ -32,7 +32,7 @@ class TranscriptionsController extends AppController
         'Sentences',
     );
 
-    public function edit($sentenceId, $script) {
+    public function save($sentenceId, $script) {
         $transcriptionId = $this->Transcription->findTranscriptionId($sentenceId, $script);
         $transcriptionText = $this->params['form']['value'];
         $userId = CurrentUser::get('id');
