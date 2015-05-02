@@ -103,8 +103,9 @@ class Transcription extends AppModel
             'required' => true,
             'on' => 'create',
         ),
-        'user_modified' => array(
-            'rule' => 'boolean',
+        'user_id' => array(
+            'rule' => 'numeric',
+            'allowEmpty' => true,
         ),
         'created' => array(
             'rule' => 'notEmpty',

@@ -128,11 +128,11 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->_assertValidRecordWithout(0, array('created'));
     }
 
-    function testUserModifiedMustBeBoolean() {
-        $this->_assertInvalidRecordWith(0, array('user_modified' => 'lemon'));
+    function testUserIdMustBeNumeric() {
+        $this->_assertInvalidRecordWith(0, array('user_id' => 'melon'));
     }
-    function testUserModifiedIsAutomaticallySet() {
-        $this->_assertValidRecordWithout(0, array('user_modified'));
+    function testUserIdNotRequired() {
+        $this->_assertValidRecordWithout(0, array('user_id'));
     }
 
     function testModifiedCantBeEmpty() {
