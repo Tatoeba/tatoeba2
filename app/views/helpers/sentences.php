@@ -685,26 +685,30 @@ class SentencesHelper extends AppHelper
         foreach ($transcriptions as $script => $transcr) {
             if ($transcr['dirty'] && !$isEditable)
                 continue;
-
-            $this->Javascript->link('jquery.jeditable.js', false);
-            $this->Javascript->link('transcriptions.edit_in_place.js', false);
-
-
-            $class = "romanization";
-            if ($isEditable)
-                $class .= " editableTranscription";
-
-            $html = $this->transcriptionAsHTML($transcr);
-            echo $this->Languages->tagWithLang(
-                'div', $lang, $html,
-                array(
-                    'id' => $transcr['id'],
-                    'class' => $class,
-                    'escape' => false,
-                ),
-                $transcr['script']
-            );
+            $this->displayTranscription($transcr, $lang, true); // TODO editable or not?
         }
+    }
+
+    public function displayTranscription($transcr, $lang, $isEditable) {
+        $this->Javascript->link('jquery.jeditable.js', false);
+        $this->Javascript->link('transcriptions.edit_in_place.js', false);
+
+        $class = "romanization";
+        if ($isEditable)
+            $class .= " editableTranscription";
+
+        if (!isset($transcr['id'])) {
+            $class .= " generatedTranscription";
+        }
+        $html = $this->transcriptionAsHTML($transcr);
+        echo $this->Languages->tagWithLang(
+            'div', $lang, $html,
+            array(
+                'class' => $class,
+                'escape' => false,
+            ),
+            $transcr['script']
+        );
     }
 
     /**
