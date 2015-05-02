@@ -37,15 +37,20 @@ class TranscriptionsControllerTestCase extends CakeTestCase {
         'app.aro',
         'app.aco',
         'app.aros_aco',
+        'app.contribution',
         'app.favorites_user',
+        'app.group',
         'app.language',
         'app.link',
         'app.sentence',
+        'app.sentence_comment',
         'app.sentence_annotation',
-        'app.sentences_sentences_list',
+        'app.sentences_list',
         'app.tag',
         'app.tags_sentence',
         'app.transcription',
+        'app.user',
+        'app.users_language',
         'app.wall',
         'app.wall_thread',
     );
@@ -55,10 +60,6 @@ class TranscriptionsControllerTestCase extends CakeTestCase {
     }
 
     function startTest() {
-        /* avoid stupid warnings in beforeFilter */
-        global $_SERVER;
-        $_SERVER['REQUEST_URI'] = '';
-
         $this->Transcriptions =& new TestTranscriptionsController();
         $this->Transcriptions->constructClasses();
         $this->User = ClassRegistry::init('User');
@@ -69,15 +70,15 @@ class TranscriptionsControllerTestCase extends CakeTestCase {
         unset($this->User);
     }
 
-    function _editAsUser($username, $transcrId, $transcrText) {
+    function _editAsUser($username, $sentenceId, $script, $transcrText) {
         $user = $this->User->find('first', array(
             'conditions' => array('username' => $username),
             'recursive' => -1,
         ));
-        $data = array('id' => $transcrId, 'value' => $transcrText);
+        $data = array('value' => $transcrText);
 
         return $this->testAction(
-            '/jpn/transcriptions/edit',
+            "/jpn/transcriptions/edit/$sentenceId/$script",
             array(
                 'form' => $data,
                 'method' => 'post',
@@ -88,31 +89,31 @@ class TranscriptionsControllerTestCase extends CakeTestCase {
     }
 
     function testGuestCantEditTranscription() {
-        $result = $this->_editAsUser(null, 1, 'something new');
+        $result = $this->_editAsUser(null, 6, 'Hrkt', 'something new');
         $this->assertFalse($result);
     }
     function testOwnerCanEditTranscription() {
-        $result = $this->_editAsUser('kazuki', 1, 'something new');
+        $result = $this->_editAsUser('kazuki', 6, 'Hrkt', 'something new');
         $this->assertTrue($result);
     }
 
     function testRegularOtherUserCantEditTranscription() {
-        $result = $this->_editAsUser('contributor', 1, 'something new');
+        $result = $this->_editAsUser('contributor', 6, 'Hrkt', 'something new');
         $this->assertFalse($result);
     }
 
     function testAdminCanEditTranscription() {
-        $result = $this->_editAsUser('admin', 1, 'something new');
+        $result = $this->_editAsUser('admin', 6, 'Hrkt', 'something new');
         $this->assertTrue($result);
     }
 
     function testCorpusMaintainerCanEditTranscription() {
-        $result = $this->_editAsUser('corpus_maintainer', 1, 'something new');
+        $result = $this->_editAsUser('corpus_maintainer', 6, 'Hrkt', 'something new');
         $this->assertTrue($result);
     }
 
     function testAdvancedUserCantEditTranscription() {
-        $result = $this->_editAsUser('advanced_contributor', 1, 'something new');
+        $result = $this->_editAsUser('advanced_contributor', 6, 'Hrkt', 'something new');
         $this->assertFalse($result);
     }
 }
