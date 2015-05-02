@@ -762,7 +762,6 @@ class SentencesHelper extends AppHelper
     public function javascriptForAJAXTranslationsGroup() {
         echo $this->Javascript->link('sentences.play_audio.js', true);
         echo $this->Javascript->link('links.add_and_delete.js', true);
-        echo $this->Javascript->link('furigana.js', true);
         echo $this->Javascript->link('sentences.logs.js', true);
     }
 
