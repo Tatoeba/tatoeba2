@@ -188,7 +188,7 @@ class Transcription extends AppModel
 
         $transcriptions = $this->transcriptableToWhat($parentSentence);
 
-        return ($targetScript && isset($transcriptions[$targetScript]));
+        return (in_array($targetScript, $transcriptions));
     }
 
     private function getSourceLangScript($sourceSentence) {
@@ -224,9 +224,7 @@ class Transcription extends AppModel
         if (!isset($this->availableTranscriptions[$langScript]))
             return array();
 
-        $targetScripts = array_keys($this->availableTranscriptions[$langScript]);
-        $targetScripts = array_flip($targetScripts);
-        return $targetScripts;
+        return array_keys($this->availableTranscriptions[$langScript]);
     }
 
     public function saveTranscription($sentenceId, $script, $isDirty, $text) {
@@ -331,6 +329,16 @@ class Transcription extends AppModel
             return $transc['Sentence']['user_id'];
         else
             return false;
+    }
+
+    public function addGeneratedTranscriptions($transcriptions, $sentence) {
+        $possibleScripts = $this->transcriptableToWhat($sentence);
+        $existingScripts = Set::classicExtract($transcriptions, '{n}.script');
+        $scriptsToGenerate = array_diff($possibleScripts, $existingScripts);
+        foreach ($scriptsToGenerate as $script) {
+            $transcriptions[] = $this->generateTranscription($sentence, $script);
+        }
+        return $transcriptions;
     }
 }
 ?>
