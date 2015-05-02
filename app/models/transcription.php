@@ -40,6 +40,7 @@ class Transcription extends AppModel
             ),
             'Latn' => array(
                 'chain' => array('jpn-Hrkt'),
+                'readonly' => true,
             ),
         ),
         'jpn-Hrkt' => array(
@@ -194,7 +195,7 @@ class Transcription extends AppModel
         if (!$parentSentence)
             return false;
 
-        $transcriptions = $this->transcriptableToWhat($parentSentence);
+        $transcriptions = $this->transcriptableToWhat($parentSentence, true);
 
         return (in_array($targetScript, $transcriptions));
     }
@@ -221,7 +222,7 @@ class Transcription extends AppModel
         return false;
     }
 
-    public function transcriptableToWhat($sourceSentence) {
+    public function transcriptableToWhat($sourceSentence, $excludeReadonly = false) {
         if (isset($sourceSentence['Sentence']))
             $sourceSentence = $sourceSentence['Sentence'];
 
@@ -232,7 +233,13 @@ class Transcription extends AppModel
         if (!isset($this->availableTranscriptions[$langScript]))
             return array();
 
-        return array_keys($this->availableTranscriptions[$langScript]);
+        $available = $this->availableTranscriptions[$langScript];
+        if ($excludeReadonly) {
+            $available = array_filter($available, function ($transcr) {
+                return !(isset($transcr['readonly']) && $transcr['readonly']);
+            });
+        }
+        return array_keys($available);
     }
 
     public function saveTranscription($sentenceId, $script, $isDirty, $text) {
@@ -286,12 +293,16 @@ class Transcription extends AppModel
         if (!$text)
             return false;
 
+        $params = $this->availableTranscriptions[$langScript][$targetScript];
+        $readonly = isset($params['readonly']) ? $params['readonly'] : false;
+
         return array(
             'sentence_id' => $sentence['id'],
             'parent_id' => $parentId,
             'script' => $targetScript,
             'text' => $text,
-            'dirty' => false
+            'dirty' => false,
+            'readonly' => $readonly,
         );
     }
 

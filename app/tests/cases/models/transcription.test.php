@@ -69,9 +69,6 @@ class TranscriptionTestCase extends CakeTestCase {
     function testValidateFirstRecord() {
         $this->_assertValidRecordWith(0, array());
     }
-    function testValidateSecondRecord() {
-        $this->_assertValidRecordWith(1, array());
-    }
 
     function testScriptMustBeValid() {
         $this->_assertInvalidRecordWith(0, array('script' => 'ABCD'));
@@ -257,6 +254,7 @@ class TranscriptionTestCase extends CakeTestCase {
             'script' => 'Hrkt',
             'text' => 'stuff',
             'dirty' => false,
+            'readonly' => false,
         );
         $this->assertEqual($expected, $result);
     }
@@ -275,6 +273,7 @@ class TranscriptionTestCase extends CakeTestCase {
             'script' => 'Latn',
             'text' => 'stuff in Latin',
             'dirty' => false,
+            'readonly' => true,
         );
         $this->assertEqual($expected, $result);
     }
@@ -292,5 +291,20 @@ class TranscriptionTestCase extends CakeTestCase {
             'conditions' => array('sentence_id' => 6)
         ));
         $this->assertEqual(2, $created);
+    }
+
+    function testCannotCreateReadonlyTranscriptions() {
+        $result = (bool)$this->Transcription->save(array(
+            'sentence_id' => 10,
+            'parent_id' => 3,
+            'script' => 'Latn',
+            'text' => 'chotto matte.',
+            'dirty' => false,
+        ));
+        $this->assertFalse($result);
+    }
+
+    function testCannotUpdateReadonlyTranscriptions() {
+        $this->_assertInvalidRecordWith(1, array());
     }
 }
