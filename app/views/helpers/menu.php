@@ -568,6 +568,23 @@ class MenuHelper extends AppHelper
         echo '</li>';
     }
 
+    private function transcribeButton($sentenceId) {
+        $title = __('Add transcription', true);
+        $editImage = $this->Images->svgIcon(
+            'edit',
+            array(
+                'alt'    => $title,
+                'title'  => $title,
+                'width'  => 16,
+                'height' => 16,
+                'onClick' => "displayTranscriptions($sentenceId)",
+            )
+        );
+        echo $this->Html->tag('li', "<a>$editImage</a>", array(
+            'class' => 'option',
+            'escape' => false,
+        ));
+    }
 
     /**
      * Display a <li></li> with the current owner name
@@ -660,6 +677,8 @@ class MenuHelper extends AppHelper
             // Delete
             $this->deleteButton($sentenceId, $hasAudio);
         }
+
+        $this->transcribeButton($sentenceId);
 
         if ($chineseScript == 'Hans') {
             $this->simplifiedButton();

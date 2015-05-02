@@ -988,8 +988,16 @@
 }
 
 .generatedTranscription {
-    /* Ultimately we want display: none; */
-    color: blue;
+    display: none;
+    color: blue; /* TODO: find a better color */
+}
+
+.transcriptionWarning {
+    display: none;
+    margin-top: 20px;
+    padding-left: 25px;
+    background: url("/img/warning-small.svg") no-repeat 0 50%;
+    font-size: 13px;
 }
 
 /*

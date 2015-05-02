@@ -16,6 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+function displayTranscriptions(sentenceId) {
+    $(
+        '#sentences_group_' + sentenceId + ' .generatedTranscription,'
+       +'#sentences_group_' + sentenceId + ' .transcriptionWarning'
+    ).show();
+}
 
 $(document).ready(function() {
     var rootUrl = get_tatoeba_root_url();
@@ -37,6 +43,7 @@ $(document).ready(function() {
             },
             callback : function() {
                 div.removeClass('generatedTranscription');
+                div.parent().find('.transcriptionWarning').hide();
             },
             indicator : '<img src="/img/loading.gif">',
             tooltip   : 'Click to edit...',

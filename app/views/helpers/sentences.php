@@ -693,15 +693,16 @@ class SentencesHelper extends AppHelper
         $this->Javascript->link('jquery.jeditable.js', false);
         $this->Javascript->link('transcriptions.edit_in_place.js', false);
 
+        $isGenerated = !isset($transcr['id']);
         $class = "romanization";
         if ($isEditable)
             $class .= " editableTranscription";
 
-        if (!isset($transcr['id'])) {
+        if ($isGenerated) {
             $class .= " generatedTranscription";
         }
         $html = $this->transcriptionAsHTML($transcr);
-        echo $this->Languages->tagWithLang(
+        $transcriptionDiv = $this->Languages->tagWithLang(
             'div', $lang, $html,
             array(
                 'data-sentence-id' => $transcr['sentence_id'],
@@ -711,6 +712,21 @@ class SentencesHelper extends AppHelper
             ),
             $transcr['script']
         );
+        $infoDiv = '';
+        if ($isGenerated) {
+            $warningMessage = __(
+                'The following transcription has been automatically generated '.
+                'by a software and <strong>may contain errors</strong>. '.
+                'If you can, you are welcome to review by clicking it.',
+                true
+            );
+            $infoDiv = $this->Html->tag('div', $warningMessage, array(
+                'class' => 'transcriptionWarning',
+            ));
+        }
+        echo $this->Html->tag('div', $infoDiv.$transcriptionDiv, array(
+            'escape' => false,
+        ));
     }
 
     /**
