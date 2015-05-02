@@ -190,7 +190,8 @@ class Transcription extends AppModel
         if (!$parentSentenceId)
             return false;
         $parentSentence = $this->Sentence->find('first', array(
-            'conditions' => array('Sentence.id' => $parentSentenceId)
+            'conditions' => array('Sentence.id' => $parentSentenceId),
+            'contain' => array(),
         ));
         if (!$parentSentence)
             return false;
