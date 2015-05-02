@@ -752,6 +752,7 @@ class SentencesHelper extends AppHelper
         echo $this->Javascript->link('sentences.adopt.js', true);
         echo $this->Javascript->link('jquery.jeditable.js', true);
         echo $this->Javascript->link('sentences.edit_in_place.js', true);
+        echo $this->Javascript->link('transcriptions.edit_in_place.js', true);
         echo $this->Javascript->link('sentences.change_language.js', true);
         echo $this->Javascript->link('sentences.link.js', true);
         echo $this->Javascript->link('sentences.collapse.js', true);
