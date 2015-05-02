@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-23 22:50+0000\n"
-"PO-Revision-Date: 2015-04-24 10:53+0000\n"
+"PO-Revision-Date: 2015-05-01 10:44+0000\n"
 "Last-Translator: gleki <gleki.is.my.name@gmail.com>\n"
 "Language-Team: Lojban (http://www.transifex.com/projects/p/tatoeba_website/language/jbo/)\n"
 "MIME-Version: 1.0\n"
@@ -124,7 +124,7 @@ msgstr "lo me'oi #{id} noi jufra mo'u se vimcu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L272
 msgid "Error: the sentence #{id} could not be deleted."
-msgstr "lo se srera cu du lo nu lo me'oi #{id} noi jufra ka'enai se vimcu"
+msgstr "lo se srera cu du lo nu lo me'oi #{id} noi jufra na ka'e se vimcu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L175
 msgid ""
@@ -228,7 +228,7 @@ msgstr "lo dei jaspu cu se barna lo ka na akti i do ba'o ka'e se jaspu le jaspu 
 msgid ""
 "This account has been marked as a spammer. You cannot log in with it "
 "anymore. Please contact an admin if this is a mistake."
-msgstr "lo do'i jaspu cu se tcita lo ka se pilno fi lo nu mrilu lo mabla i ka'enaiku di'a pilno jy. i fau lo se srera vau do jikca e'u lo admine "
+msgstr "lo do'i jaspu cu se tcita lo ka se pilno fi lo nu mrilu lo mabla i na ka'e di'a pilno jy. i fau lo se srera vau do jikca e'u lo admine "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L222
 msgid "You must fill in your username and password."
@@ -254,14 +254,14 @@ msgstr "e'anai lo ckiku cu se pagbu no lerfu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L364
 msgid "Welcome to Tatoeba!"
-msgstr ""
+msgstr "fi'i lo vitke be la'oi Tatoeba"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L368
 msgid ""
 "To start things off, we encourage you to go to your <a "
 "href='{url}'>profile</a> and let us know which languages you speak or are "
 "interested in."
-msgstr ""
+msgstr "e'u tezu'e lo ka co'a pilno vau do tcidu lo info be <a href='{url}'>lo jaspu be do</a> gi'e jmina ro lo bangu poi do kakne lo ka pilno ke'a vau gi'a se cinri tu'a ke'a"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_controller.php#L412
 msgid "Tatoeba, new password"
@@ -289,7 +289,7 @@ msgstr ".i no pilno cu se tcita di'e"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L62
 msgid "You cannot edit this language."
-msgstr "do ka'e nai stika le bangu"
+msgstr "do na ka'e stika le bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L83
 msgid "Language deleted"
@@ -297,7 +297,7 @@ msgstr "le bangu cu se vimcu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L85
 msgid "You cannot delete this language."
-msgstr "do ka'e nai vimcu le bangu"
+msgstr "do na ka'e vimcu le bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/wall_controller.php#L276
 msgid "You do not have permission to edit this message. "
@@ -1987,13 +1987,13 @@ msgstr "fange"
 msgid ""
 "You cannot add sentences because you did not add any language in your "
 "profile."
-msgstr ""
+msgstr "do na ka'e jmina lo jufra i ki'u bo do nu'o jmina lo bangu poi do pilno vau lo jaspu be do"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L400
 msgid ""
 "You cannot translate sentences because you did not add any language in your "
 "profile."
-msgstr ""
+msgstr "do na ka'e jmina lo jufra i ki'u bo do nu'o jmina lo bangu lo jaspu be do"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L408
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L29
@@ -2155,7 +2155,7 @@ msgstr "traduki"
 msgid ""
 "This sentence is currently marked as unapproved. Unapproved sentences cannot"
 " be translated."
-msgstr "le jufra ca se sinxa lo na se zanru i lo jufra poi na se zanru ka'enai se traduki"
+msgstr "le jufra ca se sinxa lo na se zanru i lo jufra poi na se zanru na ka'e se traduki"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L142
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L143
@@ -2562,7 +2562,7 @@ msgid ""
 "But you don't have to be a polyglot in order to contribute! You can help us "
 "a lot simply by <strong>checking sentences</strong> and <strong>reporting "
 "mistakes</strong>. This is something everyone can do!"
-msgstr "i ku'i e'inaisai do se bangu so'i da tezu'e lo ka kontribute i do ka'e sidju mi'a fi po'o lo ka <strong>inspekte lo jufra</strong> gi'e <strong>jai gau djuno fi lo se srera<strong> vau noi ro sai lo prenu ka'e zukte"
+msgstr "i ku'i e'i nai sai do se bangu so'i da te zu'e lo ka kontribute i do ka'e sidju mi'a fi po'o lo ka <strong>inspekte lo jufra</strong> gi'e <strong>jai gau djuno fi lo se srera<strong> vau noi ro sai lo prenu ka'e zukte"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L139
 msgid ""
@@ -2755,11 +2755,11 @@ msgstr "lo namcu po lo smuni"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L99
 msgid "Skill level"
-msgstr ""
+msgstr "lo ni certu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L100
 msgid "Details"
-msgstr ""
+msgstr "lo tcila"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L101
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L168
@@ -2855,12 +2855,12 @@ msgstr "vasru lo namcu tcita be lo ro jufra poi uenzi ro bangu poi ka'e zbasu lo
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L386
 msgid "User skill level per language"
-msgstr ""
+msgstr "lo ni certu lo bangu"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L409
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
-msgstr ""
+msgstr "sinxa lo ni lo cmima cu certu lo bangu vau poi le cmima pu jai gau djuno fai lo drata"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L417
 msgid "General information about the files"
@@ -4135,7 +4135,7 @@ msgstr "cmima co'a de'i"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L248
 msgid "Contributions blocked"
-msgstr ""
+msgstr "lo se kontribute cu se kansele"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L273
 msgid "No language added."
