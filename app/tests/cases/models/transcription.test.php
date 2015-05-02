@@ -182,7 +182,7 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->assertFalse($result);
     }
 
-    function testCantSaveTranscriptionWithoutInvalidParent() {
+    function testCantSaveTranscriptionWithInvalidParent() {
         $nonexistantSentenceId = 52715278;
         $result = $this->Transcription->save(array(
             'sentence_id' => $nonexistantSentenceId,
