@@ -604,7 +604,7 @@ class SentencesHelper extends AppHelper
         // romanization
         if (isset($sentence['transcriptions'])) {
             $this->_displayTranscriptions(
-                $sentence['transcriptions'], $sentence['lang'], $isEditable
+                $sentence['transcriptions'], $sentence['lang']
             );
         }
         ?>
@@ -676,24 +676,28 @@ class SentencesHelper extends AppHelper
      *
      * @param array  $transcriptions List of transcriptions.
      * @param string $lang           Language of the transcripted sentence.
-     * @param string $isEditable     Whether the transcription is editable.
      *
      * @return void
      */
-    private function _displayTranscriptions($transcriptions, $lang, $isEditable)
+    private function _displayTranscriptions($transcriptions, $lang)
     {
         foreach ($transcriptions as $script => $transcr) {
             if ($transcr['dirty'] && !$isEditable)
                 continue;
-            $this->displayTranscription($transcr, $lang, true); // TODO editable or not?
+            $this->displayTranscription($transcr, $lang);
         }
     }
 
-    public function displayTranscription($transcr, $lang, $isEditable) {
+    public function displayTranscription($transcr, $lang) {
         $this->Javascript->link('jquery.jeditable.js', false);
         $this->Javascript->link('transcriptions.edit_in_place.js', false);
 
-        $isGenerated = !isset($transcr['id']);
+        $isEditable = true;
+        if (isset($transcr['readonly']) && $transcr['readonly']) {
+            $isEditable = false;
+        }
+
+        $isGenerated = !isset($transcr['user_id']);
         $class = "romanization";
         if ($isEditable)
             $class .= " editableTranscription";
@@ -713,7 +717,7 @@ class SentencesHelper extends AppHelper
             $transcr['script']
         );
         $infoDiv = '';
-        if ($isGenerated) {
+        if ($isGenerated && $isEditable) {
             $warningMessage = __(
                 'The following transcription has been automatically generated '.
                 'by a software and <strong>may contain errors</strong>. '.
