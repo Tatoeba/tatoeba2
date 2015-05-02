@@ -379,7 +379,10 @@ class Transcription extends AppModel
         $existingScripts = Set::classicExtract($transcriptions, '{n}.script');
         $scriptsToGenerate = array_diff($possibleScripts, $existingScripts);
         foreach ($scriptsToGenerate as $script) {
-            $transcriptions[] = $this->generateTranscription($sentence, $script);
+            $transcription = $this->generateTranscription($sentence, $script);
+            if ($transcription) {
+                $transcriptions[] = $transcription;
+            }
         }
         return $transcriptions;
     }
