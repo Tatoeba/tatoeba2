@@ -92,3 +92,6 @@ cake acl create aco Wall edit
 cake acl create aco Wall delete_message
 cake acl create aco Wall hide_message
 cake acl create aco Wall unhide_message
+
+cake acl create aco controllers Transcriptions
+cake acl create aco Transcriptions save
