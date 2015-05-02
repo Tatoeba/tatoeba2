@@ -406,7 +406,8 @@ class Sentence extends AppModel
                         'lang',
                         'user_id',
                         'hasaudio',
-                        'correctness'
+                        'correctness',
+                        'script',
                     )
             )
         );
