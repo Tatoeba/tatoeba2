@@ -153,9 +153,17 @@ class Transcription extends AppModel
     }
 
     public function beforeSave() {
-        if (   isset($this->data[$this->alias]['sentence_id'])
-            || isset($this->data[$this->alias]['script']))
-            return $this->_isUnique() && $this->_isTranscriptionAllowed();
+        if (isset($this->data[$this->alias]['id'])) { // update
+            if (   isset($this->data[$this->alias]['sentence_id'])
+                || isset($this->data[$this->alias]['script'])) {
+                return false;
+            }
+        } else { // create
+            if (   isset($this->data[$this->alias]['sentence_id'])
+                || isset($this->data[$this->alias]['script'])) {
+                return $this->_isUnique() && $this->_isTranscriptionAllowed();
+            }
+        }
         return true;
     }
 

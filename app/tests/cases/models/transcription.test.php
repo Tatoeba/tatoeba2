@@ -79,6 +79,14 @@ class TranscriptionTestCase extends CakeTestCase {
     function testScriptRequired() {
         $this->_assertInvalidRecordWithout(0, array('script'));
     }
+    function testScriptCantBeUpdated() {
+        $this->Transcription->delete(1); // to avoid uniqness error
+        $data = array('id' => 2, 'script' => 'Hrkt');
+
+        $result = (bool)$this->Transcription->save($data);
+
+        $this->assertFalse($result);
+    }
 
     function testTextCantBeEmpty() {
         $this->_assertInvalidRecordWith(0, array('text' => ''));
@@ -92,6 +100,14 @@ class TranscriptionTestCase extends CakeTestCase {
     }
     function testSentenceIdRequired() {
         $this->_assertInvalidRecordWithout(0, array('sentence_id'));
+    }
+    function testSentenceIdCantBeUpdated() {
+        $this->Transcription->delete(3); // to avoid uniqness error
+        $data = array('id' => 1, 'sentence_id' => 10);
+
+        $result = (bool)$this->Transcription->save($data);
+
+        $this->assertFalse($result);
     }
 
     function testParentIdMustBeNumeric() {
@@ -137,22 +153,6 @@ class TranscriptionTestCase extends CakeTestCase {
 
         $this->assertFalse($result);
     }
-    function testTranscriptionMustBeUniqueForASentenceAndAScriptOnUpdateScript() {
-        $data = $this->_getRecord(1);
-        $data['script'] = 'Hrkt';
-
-        $result = (bool)$this->Transcription->save($data);
-
-        $this->assertFalse($result);
-    }
-    function testTranscriptionMustBeUniqueForASentenceAndAScriptOnUpdateSentenceId() {
-        $data = $this->_getRecord(2);
-        $data['sentence_id'] = 6;
-
-        $result = (bool)$this->Transcription->save($data);
-
-        $this->assertFalse($result);
-    }
 
     function testJapaneseCanBeTranscriptedToKanas() {
         $jpnSentence = $this->Transcription->Sentence->find('first', array(
@@ -178,20 +178,6 @@ class TranscriptionTestCase extends CakeTestCase {
     function testEditTrancriptionTextCantBeEmpty() {
         $result = $this->Transcription->save(array(
             'id' => 2, 'text' => ''
-        ));
-        $this->assertFalse($result);
-    }
-
-    function testEditScript() {
-        $this->Transcription->delete(2); // to avoid uniqness error
-        $result = $this->Transcription->save(array(
-            'id' => 1, 'script' => 'Latn'
-        ));
-        $this->assertTrue($result);
-    }
-    function testEditScriptMustStillBeAScript() {
-        $result = $this->Transcription->save(array(
-            'id' => 2, 'script' => 'that’s not an script'
         ));
         $this->assertFalse($result);
     }
