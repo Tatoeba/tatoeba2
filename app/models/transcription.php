@@ -288,6 +288,7 @@ class Transcription extends AppModel
     }
 
     private function _generateTranscription($sentenceId, $text, $langScript, $targetScript, &$parent = null) {
+        $parent = null;
         $process = $this->availableTranscriptions[$langScript][$targetScript];
 
         if (isset($process['generator']))
