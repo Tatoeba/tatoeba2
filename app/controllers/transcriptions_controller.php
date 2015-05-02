@@ -35,10 +35,10 @@ class TranscriptionsController extends AppController
     public function edit($sentenceId, $script) {
         $transcriptionId = $this->Transcription->findTranscriptionId($sentenceId, $script);
         $transcriptionText = $this->params['form']['value'];
+        $userId = CurrentUser::get('id');
 
         if ($transcriptionId) { // Modifying existing transcription
             $ownerId = $this->Transcription->getTranscriptionOwner($transcriptionId);
-            $userId = CurrentUser::get('id');
             $canEdit = ($ownerId == $userId || CurrentUser::isModerator());
 
             $saved = false;
@@ -47,6 +47,7 @@ class TranscriptionsController extends AppController
                     'id' => $transcriptionId,
                     'text' => $transcriptionText,
                     'dirty' => false,
+                    'user_id' => $userId,
                 ));
                 if ($saved)
                     $saved = $this->Transcription->findById($transcriptionId);
@@ -57,6 +58,7 @@ class TranscriptionsController extends AppController
                 'sentence_id' => $sentenceId,
                 'script' => $script,
                 'dirty' => false,
+                'user_id' => $userId,
             ));
         }
 

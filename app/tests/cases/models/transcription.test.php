@@ -254,6 +254,7 @@ class TranscriptionTestCase extends CakeTestCase {
             'script' => 'Hrkt',
             'text' => 'stuff',
             'dirty' => false,
+            'user_id' => null,
             'readonly' => false,
         );
         $this->assertEqual($expected, $result);
@@ -273,6 +274,7 @@ class TranscriptionTestCase extends CakeTestCase {
             'script' => 'Latn',
             'text' => 'stuff in Latin',
             'dirty' => false,
+            'user_id' => null,
             'readonly' => true,
         );
         $this->assertEqual($expected, $result);

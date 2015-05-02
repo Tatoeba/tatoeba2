@@ -312,6 +312,7 @@ class Transcription extends AppModel
             'text' => $text,
             'dirty' => false,
             'readonly' => $readonly,
+            'user_id' => null,
         );
     }
 
