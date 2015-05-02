@@ -390,13 +390,10 @@ class SentencesController extends AppController
     {
         $id = Sanitize::paranoid($id);
         $userId = $this->Auth->user('id');
-        if (in_array($userId,$this->blocked_users)) {
-            return ;
-        }
 
         $this->Sentence->setOwner($id, $userId);
 
-        $this->show($id);
+        $this->_setSentenceData($id);
         $this->render('sentences_group'); // We render with another view than "show"
     }
 
@@ -416,8 +413,20 @@ class SentencesController extends AppController
 
         $this->Sentence->unsetOwner($id, $userId);
 
-        $this->show($id);
+        $this->_setSentenceData($id);
         $this->render('sentences_group'); // We render with another view than "show"
+    }
+
+    private function _setSentenceData($id)
+    {
+        $sentence = $this->Sentence->getSentenceWithId($id);
+        $allTranslations = $this->Sentence->getTranslationsOf($id);
+        $translations = $allTranslations['Translation'];
+        $indirectTranslations = $allTranslations['IndirectTranslation'];
+
+        $this->set('sentence', $sentence);
+        $this->set('translations', $translations);
+        $this->set('indirectTranslations', $indirectTranslations);
     }
 
     /**

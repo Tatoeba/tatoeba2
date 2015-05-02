@@ -30,26 +30,11 @@
     <div class="module">
         <h2><?php __('What is Tatoeba?'); ?></h2>
 
-        <script type="text/javascript" src="http://s3.www.universalsubtitles.org/embed.js">
-            (
-            {"base_state": {}, "video_url": "http://www.youtube.com/watch?v=ac9SmJuwHqk"}
-            )
+        <div class="amara-embed" data-height="450px" data-width="620px"
+             data-url="https://www.youtube.com/watch?v=ac9SmJuwHqk">
+        </div>
+
+        <script type="text/javascript" src='https://amara.org/embedder-iframe'>
         </script>
-        <!--
-        <object
-            type="application/x-shockwave-flash"
-            style="width:480px; height:385px;"
-            data="http://www.youtube.com/v/ac9SmJuwHqk&amp;hl=en_US&amp;fs=1&amp;"
-        >
-            <param name="wmode" value="transparent" />
-            <param name="movie" value="http://www.youtube.com/v/ac9SmJuwHqk&amp;hl=en_US&amp;fs=1&amp;" />
-            <object
-                data="http://www.tudou.com/v/FC72iaE81Rs/v.swf"
-                type="application/x-shockwave-flash"
-                style="width:480px; height:385px;"
-            >
-            </object>
-        </object>
-        -->
     </div>
 </div>

@@ -41,7 +41,8 @@ class MenuHelper extends AppHelper
         'Html',
         'Javascript',
         'Form',
-        'Session'
+        'Session',
+        'Images'
     );
 
 
@@ -58,8 +59,8 @@ class MenuHelper extends AppHelper
      */
     public function translateButton($sentenceId, $ownerName, $isLogged, $enabled)
     {
-        $translateButton = $this->Html->image(
-            IMG_PATH . 'translate.svg',
+        $translateButton = $this->Images->svgIcon(
+            'translate',
             array(
                 'alt'=>__('Translate', true),
                 'title'=>__('Translate', true),
@@ -76,8 +77,8 @@ class MenuHelper extends AppHelper
         if (!$enabled) {
 
             echo '<a class="disabled">';
-            echo $this->Html->image(
-                IMG_PATH . 'translate.svg',
+            echo $this->Images->svgIcon(
+                'translate',
                 array(
                     'alt'=>__('Translate', true),
                     'title'=>__(
@@ -197,20 +198,20 @@ class MenuHelper extends AppHelper
         $tooltip = null;
         if ($isAdopted) {
             $cssClass = 'remove';
-            $image = 'adopted.svg';
+            $image = 'adopted';
             if ($isLogged && $isOwnedByCurrentUser) {
                 $tooltip = __('Click to unadopt', true);
             }
         } else {
             $cssClass = 'add';
-            $image = 'unadopted.svg';
+            $image = 'unadopted';
             if ($isLogged) {
                 $tooltip = __('Click to adopt', true);
             }
         }
 
-        $adoptImage = $this->Html->image(
-            IMG_PATH . $image,
+        $adoptImage = $this->Images->svgIcon(
+            $image,
             array(
                 'alt'=> $tooltip,
                 'title'=> $tooltip,
@@ -242,7 +243,7 @@ class MenuHelper extends AppHelper
 
         } else if ($isAdopted) {
 
-            echo '<li class="adopt uneditable">';
+            echo '<li class="option adopt uneditable">';
             echo $adoptImage;
             echo '</li>';
 
@@ -268,16 +269,16 @@ class MenuHelper extends AppHelper
     {
         if ($isFavorited) {
             $cssClass = 'remove';
-            $image = 'favorite-remove.svg';
+            $image = 'favorite-remove';
             $tooltip = __('Remove from favorites', true);
         } else {
             $cssClass = 'add';
-            $image = 'favorite-add.svg';
+            $image = 'favorite-add';
             $tooltip = __('Add to favorites', true);
         }
 
-        $favoriteImage = $this->Html->image(
-            IMG_PATH . $image,
+        $favoriteImage = $this->Images->svgIcon(
+            $image,
             array(
                 'alt'=> $tooltip,
                 'title'=> $tooltip,
@@ -328,8 +329,8 @@ class MenuHelper extends AppHelper
 
     public function linkToSentenceButton($sentenceId, $langFilter = 'und') {
         $langFilter = json_encode($langFilter);
-        $linkToSentenceButton = $this->Html->Image(
-            IMG_PATH . 'link.svg',
+        $linkToSentenceButton = $this->Images->svgIcon(
+            'link',
             array(
                 'alt'=>__('Link to another sentence', true),
                 'title'=>__('Link to another sentence', true),
@@ -341,7 +342,7 @@ class MenuHelper extends AppHelper
             )
         );
         ?>
-        <li><a><?php echo $linkToSentenceButton; ?></a></li>
+        <li class="option"><a><?php echo $linkToSentenceButton; ?></a></li>
 
         <li style="display:none" id="linkTo<?php echo $sentenceId; ?>">
         <?php
@@ -385,8 +386,8 @@ class MenuHelper extends AppHelper
         {
             $mostRecentList = null;
         }
-        $addToListButton = $this->Html->Image(
-            IMG_PATH . 'list.svg',
+        $addToListButton = $this->Images->svgIcon(
+            'list',
             array(
                 'alt'=>__('Add to list', true),
                 'title'=>__('Add to list', true),
@@ -487,8 +488,8 @@ class MenuHelper extends AppHelper
             $title = __('You cannot delete this sentence because it has audio.', true);
         }
 
-        $deleteImage = $this->Html->image(
-            IMG_PATH . 'delete.svg',
+        $deleteImage = $this->Images->svgIcon(
+            'delete',
             array(
                 'alt'=> __('Delete', true),
                 'title'=> $title,
@@ -541,8 +542,8 @@ class MenuHelper extends AppHelper
             $title = __('You cannot edit this sentence because it has audio.', true);
         }
 
-        $editImage = $this->Html->image(
-            IMG_PATH . 'edit.svg',
+        $editImage = $this->Images->svgIcon(
+            'edit',
             array(
                 'alt'=> __('Edit', true),
                 'title'=> $title,

@@ -869,30 +869,33 @@
 .sentences_set .menu li.belongsTo {
     margin: 0px;
     float: right;
-    color: #75C34B;
     font-weight: bold;
-    padding: 2px 0px !important;
+    padding: 2px !important;
+    color: #888;
 }
 
 .sentences_set .menu li a {
     display: block;
-    height: 16px;
 }
 
-.sentences_set .menu img,
+.sentences_set .menu .option a,
+.sentences_set .menu .option,
 .sentences_set .link.button {
-    opacity: 0.5;
-    color: #231F20;
+    color: #888;
+    height: 16px;
+    width: 16px;
 }
 
-.sentences_set .menu img:hover,
+.sentences_set .menu .option a:hover,
+.sentences_set .menu .option:hover,
 .sentences_set .link.button:hover {
-    opacity: 1;
+    color: #222;
 }
 
-.sentences_set .menu .disabled img,
-.sentences_set .menu .disabled img:hover {
-    opacity: 0.2;
+.sentences_set .menu a.disabled,
+.sentences_set .menu a.disabled:hover,
+.sentences_set .menu .adopt.uneditable {
+    color: #CCC;
 }
 
 .belongsTo a {
@@ -903,9 +906,6 @@
     color: #DD8800;
 }
 
-.adopt.uneditable img, .adopt.uneditable img:hover {
-    opacity: 0.2;
-}
 
 .listOfLists {
     width: 150px;
@@ -930,7 +930,7 @@
 }
 
 .sentence {
-    padding: 3px 0px;
+    padding: 4px 0px;
 }
 
 .sentence:hover {
@@ -1233,16 +1233,19 @@ input.sentenceId {
  * Sentence correctness
  */
 .correctnessNegative1 .text {
-    color: #BBB;
+    color: #EE0000;
+}
+
+.correctnessNegative1 .sentenceContent {
     background: url("/img/warning-small.svg") no-repeat;
     padding-right: 25px;
 }
 
-.mainSentence.correctnessNegative1 .text {
+.mainSentence.correctnessNegative1 .sentenceContent {
     background-position: right 5px;
 }
 
-.translations .correctnessNegative1 .text {
+.translations .correctnessNegative1 .sentenceContent {
     background-position: right 2px;
 }
 
