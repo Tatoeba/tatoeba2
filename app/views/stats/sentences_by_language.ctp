@@ -84,7 +84,11 @@ $max = $stats[0]['Language']['sentences'];
 
         $langCode = $language['code'];
         $numSentences = $language['sentences'];
-        $percent = ($numSentences / $max) * 100;
+        if ($max == 0) {
+            $percent = 0;
+        } else {
+            $percent = ($numSentences / $max) * 100;
+        }
         $numSentencesDiv  = '<div class="bar" style="width:'.$percent.'%"></div>';
         $numSentencesDiv .= $numSentences;
 
