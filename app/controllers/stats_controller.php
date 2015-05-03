@@ -63,5 +63,15 @@ class StatsController extends AppController
         $this->set('audioStats', $audioStats);
         $this->set('totalSentences', $totalSentences);
     }
+
+
+    /**
+     *
+     */
+    function users_languages()
+    {
+        $stats = $this->Language->getUsersLanguagesStatistics();
+        $this->set('stats', $stats);
+    }
 }
 ?>

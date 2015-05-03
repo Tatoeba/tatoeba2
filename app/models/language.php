@@ -98,6 +98,36 @@ class Language extends AppModel
 
 
     /**
+     * Return stats for number of members who speak the language in each group of
+     * users.
+     *
+     * @return array
+     */
+    public function getUsersLanguagesStatistics()
+    {
+        $results = $this->find(
+            'all',
+            array(
+                'fields' => array(
+                    'code',
+                    'level_5',
+                    'level_4',
+                    'level_3',
+                    'level_2',
+                    'level_1',
+                    'level_0',
+                    'level_unknown',
+                    '(level_5 + level_4 + level_3 + level_2 + level_1 + level_0 + level_unknown) as total'
+                ),
+                'order' => array('total DESC'),
+            )
+        );
+
+        return $results ;
+    }
+
+
+    /**
      * Increment stats for specified language.
      *
      * @param $langCode Code of the language which should be incremented.
