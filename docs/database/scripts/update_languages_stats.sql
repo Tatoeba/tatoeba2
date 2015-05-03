@@ -1,4 +1,4 @@
-UPDATE `languages` SET admins = 0;
+UPDATE `languages` SET group_1 = 0;
 UPDATE `languages` l, 
     (SELECT count(*) as count, language_code
         FROM users_languages JOIN users
@@ -6,10 +6,10 @@ UPDATE `languages` l,
         WHERE users.group_id = 1
         GROUP BY users_languages.language_code
     ) as ul
-    SET admins = ul.count
+    SET group_1 = ul.count
     WHERE l.code = ul.language_code;
 
-UPDATE `languages` SET corpus_maintainers = 0;
+UPDATE `languages` SET group_2 = 0;
 UPDATE `languages` l, 
     (SELECT count(*) as count, language_code
         FROM users_languages JOIN users
@@ -17,10 +17,10 @@ UPDATE `languages` l,
         WHERE users.group_id = 2
         GROUP BY users_languages.language_code
     ) as ul
-    SET corpus_maintainers = ul.count
+    SET group_2 = ul.count
     WHERE l.code = ul.language_code;
 
-UPDATE `languages` SET advanced_contributors = 0;
+UPDATE `languages` SET group_3 = 0;
 UPDATE `languages` l, 
     (SELECT count(*) as count, language_code
         FROM users_languages JOIN users
@@ -28,10 +28,10 @@ UPDATE `languages` l,
         WHERE users.group_id = 3
         GROUP BY users_languages.language_code
     ) as ul
-    SET advanced_contributors = ul.count
+    SET group_3 = ul.count
     WHERE l.code = ul.language_code;
 
-UPDATE `languages` SET contributors = 0;
+UPDATE `languages` SET group_4 = 0;
 UPDATE `languages` l, 
     (SELECT count(*) as count, language_code
         FROM users_languages JOIN users
@@ -39,7 +39,7 @@ UPDATE `languages` l,
         WHERE users.group_id = 4
         GROUP BY users_languages.language_code
     ) as ul
-    SET contributors = ul.count
+    SET group_4 = ul.count
     WHERE l.code = ul.language_code;
 
 UPDATE `languages` SET level_5 = 0;
