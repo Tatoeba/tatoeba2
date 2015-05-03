@@ -114,7 +114,7 @@ class Language extends AppModel
         }
 
         $query = "
-            UPDATE languages SET numberOfSentences = numberOfSentences + 1
+            UPDATE languages SET sentences = sentences + 1
                 WHERE $endOfQuery ;
         ";
         $this->query($query);
@@ -138,7 +138,7 @@ class Language extends AppModel
         }
 
         $query = "
-            UPDATE languages SET numberOfSentences = numberOfSentences - 1
+            UPDATE languages SET sentences = sentences - 1
                 WHERE $endOfQuery ;
         ";
         $this->query($query);
