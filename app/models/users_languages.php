@@ -50,8 +50,19 @@ class UsersLanguages extends AppModel
     {
         $data = $this->findById($this->id);
         $lang = $data['UsersLanguages']['language_code'];
-        $level = $data['UsersLanguages']['level'];
-        $this->Language->decrementCountForLevel($lang, $level);
+        $previousLevel = $data['UsersLanguages']['level'];
+        $newLevel = $this->data['UsersLanguages']['level'];
+        $this->Language->decrementCountForLevel($lang, $previousLevel);
+
+        if ($previousLevel == 5 || $newLevel == 5 && $previousLevel != $newLevel) {
+            $userId = $data['UsersLanguages']['of_user_id'];
+            $groupId = $this->User->getGroupOfUser($userId);
+            if ($previousLevel > $newLevel) {
+                $this->Language->decrementCountForGroup($lang, $groupId);
+            } else {
+                $this->Language->incrementCountForGroup($lang, $groupId);
+            }
+        }
 
         return true;
     }
@@ -63,7 +74,7 @@ class UsersLanguages extends AppModel
         $level = $this->data['UsersLanguages']['level'];
         $this->Language->incrementCountForLevel($lang, $level);
 
-        if ($created) {
+        if ($created && $level == 5) {
             $userId = $this->data['UsersLanguages']['of_user_id'];
             $groupId = $this->User->getGroupOfUser($userId);
             $this->Language->incrementCountForGroup($lang, $groupId);
@@ -75,11 +86,14 @@ class UsersLanguages extends AppModel
     {
         $data = $this->findById($this->id);
         $lang = $data['UsersLanguages']['language_code'];
-        $userId = $data['UsersLanguages']['of_user_id'];
         $level = $data['UsersLanguages']['level'];
-        $groupId = $this->User->getGroupOfUser($userId);
-        $this->Language->decrementCountForGroup($lang, $groupId);
         $this->Language->decrementCountForLevel($lang, $level);
+
+        if ($level == 5) {
+            $userId = $data['UsersLanguages']['of_user_id'];
+            $groupId = $this->User->getGroupOfUser($userId);
+            $this->Language->decrementCountForGroup($lang, $groupId);
+        }
 
         return true;
     }

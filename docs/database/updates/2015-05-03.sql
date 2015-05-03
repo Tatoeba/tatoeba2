@@ -27,7 +27,7 @@ UPDATE `languages` l,
     (SELECT count(*) as count, language_code
         FROM users_languages JOIN users
         ON users.id = users_languages.of_user_id 
-        WHERE users.group_id = 1
+        WHERE users.group_id = 1 AND users_languages.level = 5
         GROUP BY users_languages.language_code
     ) as ul
     SET group_1 = ul.count
@@ -38,7 +38,7 @@ UPDATE `languages` l,
     (SELECT count(*) as count, language_code
         FROM users_languages JOIN users
         ON users.id = users_languages.of_user_id 
-        WHERE users.group_id = 2
+        WHERE users.group_id = 2 AND users_languages.level = 5
         GROUP BY users_languages.language_code
     ) as ul
     SET group_2 = ul.count
@@ -49,7 +49,7 @@ UPDATE `languages` l,
     (SELECT count(*) as count, language_code
         FROM users_languages JOIN users
         ON users.id = users_languages.of_user_id 
-        WHERE users.group_id = 3
+        WHERE users.group_id = 3 AND users_languages.level = 5
         GROUP BY users_languages.language_code
     ) as ul
     SET group_3 = ul.count
@@ -60,7 +60,7 @@ UPDATE `languages` l,
     (SELECT count(*) as count, language_code
         FROM users_languages JOIN users
         ON users.id = users_languages.of_user_id 
-        WHERE users.group_id = 4
+        WHERE users.group_id = 4 AND users_languages.level = 5
         GROUP BY users_languages.language_code
     ) as ul
     SET group_4 = ul.count
