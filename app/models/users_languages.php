@@ -39,8 +39,51 @@ class UsersLanguages extends AppModel
     public $name = 'UsersLanguages';
     public $useTable = "users_languages";
     public $actsAs = array("Containable");
-    public $belongsTo = array('User' => array('foreignKey' => 'of_user_id'));
+    public $belongsTo = array(
+        'User' => array('foreignKey' => 'of_user_id'),
+        'Language' => array('foreignKey' => 'language_code')
+    );
     public $recursive = -1;
+
+
+    public function beforeSave()
+    {
+        $data = $this->findById($this->id);
+        $lang = $data['UsersLanguages']['language_code'];
+        $level = $data['UsersLanguages']['level'];
+        $this->Language->decrementCountForLevel($lang, $level);
+
+        return true;
+    }
+
+
+    public function afterSave($created)
+    {
+        $lang = $this->data['UsersLanguages']['language_code'];
+        $level = $this->data['UsersLanguages']['level'];
+        $this->Language->incrementCountForLevel($lang, $level);
+
+        if ($created) {
+            $userId = $this->data['UsersLanguages']['of_user_id'];
+            $groupId = $this->User->getGroupOfUser($userId);
+            $this->Language->incrementCountForGroup($lang, $groupId);
+        }
+    }
+
+
+    public function beforeDelete()
+    {
+        $data = $this->findById($this->id);
+        $lang = $data['UsersLanguages']['language_code'];
+        $userId = $data['UsersLanguages']['of_user_id'];
+        $level = $data['UsersLanguages']['level'];
+        $groupId = $this->User->getGroupOfUser($userId);
+        $this->Language->decrementCountForGroup($lang, $groupId);
+        $this->Language->decrementCountForLevel($lang, $level);
+
+        return true;
+    }
+
 
     public function getLanguagesOfUser($userId)
     {

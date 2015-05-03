@@ -173,4 +173,65 @@ class Language extends AppModel
         ";
         $this->query($query);
     }
+
+
+    public function incrementCountForGroup($langCode, $groupId)
+    {
+        $groupColumn = $this->_groupColumnName($groupId);
+
+        $this->updateAll(
+            array($groupColumn => "$groupColumn + 1"),
+            array('code' => $langCode)
+        );
+    }
+
+
+    public function decrementCountForGroup($langCode, $groupId)
+    {
+        $groupColumn = $this->_groupColumnName($groupId);
+
+        $this->updateAll(
+            array($groupColumn => "$groupColumn - 1"),
+            array('code' => $langCode)
+        );
+    }
+
+
+    private function _groupColumnName($groupId)
+    {
+        return 'Language.group_'.$groupId;
+    }
+
+
+    public function incrementCountForLevel($langCode, $level)
+    {
+        $levelColumn = $this->_levelColumnName($level);
+
+        $this->updateAll(
+            array($levelColumn => "$levelColumn + 1"),
+            array('code' => $langCode)
+        );
+    }
+
+
+    public function decrementCountForLevel($langCode, $level)
+    {
+        $levelColumn = $this->_levelColumnName($level);
+
+        $this->updateAll(
+            array($levelColumn => "$levelColumn - 1"),
+            array('code' => $langCode)
+        );
+    }
+
+
+    private function _levelColumnName($level)
+    {
+        if (isset($level)) {
+            return 'Language.level_'.$level;
+        } else {
+            return 'Language.level_unknown';
+        }
+
+    }
 }
