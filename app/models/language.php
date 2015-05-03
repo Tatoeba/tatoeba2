@@ -69,15 +69,26 @@ class Language extends AppModel
     /**
      * Return stats for number of sentences per language.
      *
-     * @param $limit Specifying a limit will only take the top languages
-     *               with the most sentences.
+     * @param int $limit Specifying a limit will only take the top languages
+     *                   with the most sentences.
+     *
+     * @return array
      */
-    public function getStatistics($limit = null)
+    public function getSentencesStatistics($limit = null)
     {
         $results = $this->find(
             'all',
             array(
-                'order' => array('numberOfSentences DESC'),
+                'fields' => array(
+                    'code',
+                    'sentences',
+                    'audio',
+                    'group_1',
+                    'group_2',
+                    'group_3',
+                    'group_4'
+                ),
+                'order' => array('sentences DESC'),
                 'limit' => $limit
             )
         );
