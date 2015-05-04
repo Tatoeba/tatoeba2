@@ -743,10 +743,10 @@ class SentencesHelper extends AppHelper
         }
         $subTranscrDiv = '';
         if ($subTranscr) {
-            $subTranscrDiv = $this->Html->tag(
-                'div',
-                $subTranscr['text'],
-                array('class' => 'subTranscription')
+            $subTranscrDiv = $this->Languages->tagWithLang(
+                'div', $lang, $subTranscr['text'],
+                array('class' => 'subTranscription'),
+                $subTranscr['script']
             );
         }
         echo $this->Html->tag('div', $infoDiv.$transcriptionDiv.$subTranscrDiv, array(
