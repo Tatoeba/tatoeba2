@@ -681,14 +681,27 @@ class SentencesHelper extends AppHelper
      */
     private function _displayTranscriptions($transcriptions, $lang)
     {
+        $chained = array();
+        foreach ($transcriptions as $script => $transcr) {
+            if (isset($transcr['parent_id'])) {
+                $chained[ $transcr['parent_id'] ] = $transcriptions[$script];
+                unset($transcriptions[$script]);
+            }
+        }
+
         foreach ($transcriptions as $script => $transcr) {
             if ($transcr['dirty'] && !$isEditable)
                 continue;
-            $this->displayTranscription($transcr, $lang);
+            if (isset($transcr['id']) && isset($chained[$transcr['id']])) {
+                $subTranscr = $chained[$transcr['id']];
+            } else {
+                $subTranscr = null;
+            }
+            $this->displayTranscription($transcr, $lang, $subTranscr);
         }
     }
 
-    public function displayTranscription($transcr, $lang) {
+    public function displayTranscription($transcr, $lang, $subTranscr = null) {
         $this->Javascript->link('jquery.jeditable.js', false);
         $this->Javascript->link('transcriptions.edit_in_place.js', false);
 
@@ -728,7 +741,15 @@ class SentencesHelper extends AppHelper
                 'class' => 'transcriptionWarning',
             ));
         }
-        echo $this->Html->tag('div', $infoDiv.$transcriptionDiv, array(
+        $subTranscrDiv = '';
+        if ($subTranscr) {
+            $subTranscrDiv = $this->Html->tag(
+                'div',
+                $subTranscr['text'],
+                array('class' => 'subTranscription')
+            );
+        }
+        echo $this->Html->tag('div', $infoDiv.$transcriptionDiv.$subTranscrDiv, array(
             'escape' => false,
         ));
     }
