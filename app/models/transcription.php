@@ -33,7 +33,6 @@ class Transcription extends AppModel
         'jpn' => array('Jpan'),
         'uzb' => array('Cyrl', 'Latn'),
     );
-    private $honorReadonly = true;
     private $availableTranscriptions = array(
         'jpn-Jpan' => array(
             'Hrkt' => array(
@@ -158,17 +157,31 @@ class Transcription extends AppModel
 
     public function beforeSave() {
         if (isset($this->data[$this->alias]['id'])) { // update
-            if (   isset($this->data[$this->alias]['sentence_id'])
-                || isset($this->data[$this->alias]['script'])) {
+            if ($this->_isModifyingFields(array('sentence_id', 'script')))
                 return false;
-            }
+            $rule = $this->_getTranscriptionRule();
+            if (isset($rule['readonly']) && $rule['readonly'])
+                return false;
         } else { // create
             if (   isset($this->data[$this->alias]['sentence_id'])
                 || isset($this->data[$this->alias]['script'])) {
-                return $this->_isUnique() && $this->_isTranscriptionAllowed();
+                return $this->_isUnique() && $this->_getTranscriptionRule();
             }
         }
         return true;
+    }
+
+    private function _isModifyingFields($fields) {
+        foreach ($fields as $field) {
+            if (isset($this->data[$this->alias][$field])) {
+                $value = $this->field($field,
+                    array('id' => $this->data[$this->alias]['id'])
+                );
+                if ($this->data[$this->alias][$field] != $value)
+                    return true;
+            }
+        }
+        return false;
     }
 
     private function _getFieldFromDataOrDatabase($fieldName) {
@@ -184,7 +197,7 @@ class Transcription extends AppModel
         return $fieldValue;
     }
 
-    private function _isTranscriptionAllowed() {
+    private function _getTranscriptionRule() {
         $targetScript = $this->_getFieldFromDataOrDatabase('script');
         if (!$targetScript)
             return false;
@@ -200,16 +213,11 @@ class Transcription extends AppModel
             return false;
 
         $transcriptions = $this->transcriptableToWhat($parentSentence);
-        if ($this->honorReadonly) {
-            $transcriptions = array_filter(
-                $transcriptions,
-                function ($transcr) {
-                    return !(isset($transcr['readonly']) && $transcr['readonly']);
-                }
-            );
+        if (isset($transcriptions[$targetScript])) {
+            return $transcriptions[$targetScript];
+        } else {
+            return false;
         }
-
-        return (in_array($targetScript, array_keys($transcriptions)));
     }
 
     private function getSourceLangScript($sourceSentence) {
@@ -267,10 +275,7 @@ class Transcription extends AppModel
             return;
 
         foreach ($this->availableTranscriptions[$langScript] as $targetScript => $process) {
-            // temporary remove readonly to allow creation
-            $this->honorReadonly = false;
             $this->generateTranscription($sentence, $targetScript, true);
-            $this->honorReadonly = true;
         }
     }
 

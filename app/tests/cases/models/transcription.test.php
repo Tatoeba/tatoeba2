@@ -168,13 +168,13 @@ class TranscriptionTestCase extends CakeTestCase {
 
     function testEditTrancriptionText() {
         $result = $this->Transcription->save(array(
-            'id' => 2, 'text' => 'we change this'
+            'id' => 3, 'text' => 'we change this'
         ));
         $this->assertTrue($result);
     }
     function testEditTrancriptionTextCantBeEmpty() {
         $result = $this->Transcription->save(array(
-            'id' => 2, 'text' => ''
+            'id' => 3, 'text' => ''
         ));
         $this->assertFalse($result);
     }
@@ -309,19 +309,20 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->assertEqual(2, $created);
     }
 
-    function testCannotCreateReadonlyTranscriptions() {
-        $result = (bool)$this->Transcription->save(array(
-            'sentence_id' => 10,
-            'parent_id' => 3,
-            'script' => 'Latn',
-            'text' => 'chotto matte.',
-            'dirty' => false,
-        ));
-        $this->assertFalse($result);
+    function testCanCreateReadonlyTranscriptions() {
+        $this->_assertValidRecordWith(1, array());
     }
 
     function testCannotUpdateReadonlyTranscriptions() {
-        $this->_assertInvalidRecordWith(1, array());
+        $result = (bool)$this->Transcription->save(array(
+            'id' => 2,
+            'sentence_id' => 6,
+            'parent_id' => 1,
+            'script' => 'Latn',
+            'text' => 'blah blah blah',
+            'dirty' => false,
+        ));
+        $this->assertFalse($result);
     }
 
     function testAddGeneratedTranscriptionsAddsEverything() {
