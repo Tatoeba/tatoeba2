@@ -44,7 +44,7 @@ $(document).ready(function() {
                 div.parent().replaceWith(result);
             },
             indicator : '<img src="/img/loading.gif">',
-            tooltip   : 'Click to edit...',
+            tooltip   : div.attr('data-tooltip'),
             cssclass  : 'editInPlaceForm',
             onblur    : 'ignore'
         }).click(function(e) {
