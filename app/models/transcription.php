@@ -222,7 +222,10 @@ class Transcription extends AppModel
         if (!$sourceScript)
             return false;
 
-        return $sourceLang . '-' . $sourceScript;
+        $langScript = $sourceLang . '-' . $sourceScript;
+        if (!isset($this->availableTranscriptions[$langScript]))
+            return false;
+        return $langScript;
     }
 
     private function getSourceScript($sourceLang) {
@@ -240,9 +243,6 @@ class Transcription extends AppModel
 
         $langScript = $this->getSourceLangScript($sourceSentence);
         if (!$langScript)
-            return array();
-
-        if (!isset($this->availableTranscriptions[$langScript]))
             return array();
 
         return $this->availableTranscriptions[$langScript];
@@ -263,7 +263,7 @@ class Transcription extends AppModel
             $sentence = $sentence['Sentence'];
 
         $langScript = $this->getSourceLangScript($sentence);
-        if (!isset($this->availableTranscriptions[$langScript]))
+        if (!$langScript)
             return;
 
         foreach ($this->availableTranscriptions[$langScript] as $targetScript => $process) {
@@ -279,7 +279,7 @@ class Transcription extends AppModel
             $sentence = $sentence['Sentence'];
 
         $langScript = $this->getSourceLangScript($sentence);
-        if (!isset($this->availableTranscriptions[$langScript][$targetScript]))
+        if (!$langScript || !isset($this->availableTranscriptions[$langScript][$targetScript]))
             return array();
 
         $params = $this->availableTranscriptions[$langScript][$targetScript];
