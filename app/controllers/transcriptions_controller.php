@@ -45,12 +45,12 @@ class TranscriptionsController extends AppController
             if ($canEdit) {
                 $saved = $this->Transcription->saveTranscription(array(
                     'id' => $transcriptionId,
+                    'sentence_id' => $sentenceId,
+                    'script' => $script,
                     'text' => $transcriptionText,
                     'dirty' => false,
                     'user_id' => $userId,
                 ));
-                if ($saved)
-                    $saved = $this->Transcription->findById($transcriptionId);
             }
         } else { // Inserting a new transcription
             $saved = $this->Transcription->saveTranscription(array(
