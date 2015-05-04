@@ -201,9 +201,17 @@ class Transcription extends AppModel
         if (!$parentSentence)
             return false;
 
-        $transcriptions = $this->transcriptableToWhat($parentSentence, $this->honorReadonly);
+        $transcriptions = $this->transcriptableToWhat($parentSentence);
+        if ($this->honorReadonly) {
+            $transcriptions = array_filter(
+                $transcriptions,
+                function ($transcr) {
+                    return !(isset($transcr['readonly']) && $transcr['readonly']);
+                }
+            );
+        }
 
-        return (in_array($targetScript, $transcriptions));
+        return (in_array($targetScript, array_keys($transcriptions)));
     }
 
     private function getSourceLangScript($sourceSentence) {
@@ -228,7 +236,7 @@ class Transcription extends AppModel
         return false;
     }
 
-    public function transcriptableToWhat($sourceSentence, $excludeReadonly = false) {
+    public function transcriptableToWhat($sourceSentence) {
         if (isset($sourceSentence['Sentence']))
             $sourceSentence = $sourceSentence['Sentence'];
 
@@ -239,13 +247,7 @@ class Transcription extends AppModel
         if (!isset($this->availableTranscriptions[$langScript]))
             return array();
 
-        $available = $this->availableTranscriptions[$langScript];
-        if ($excludeReadonly) {
-            $available = array_filter($available, function ($transcr) {
-                return !(isset($transcr['readonly']) && $transcr['readonly']);
-            });
-        }
-        return array_keys($available);
+        return $this->availableTranscriptions[$langScript];
     }
 
     public function saveTranscription($sentenceId, $script, $isDirty, $text) {
@@ -377,7 +379,7 @@ class Transcription extends AppModel
     public function addGeneratedTranscriptions($transcriptions, $sentence) {
         $possibleScripts = $this->transcriptableToWhat($sentence);
         $existingScripts = Set::classicExtract($transcriptions, '{n}.script');
-        $scriptsToGenerate = array_diff($possibleScripts, $existingScripts);
+        $scriptsToGenerate = array_diff_key($possibleScripts, array_flip($existingScripts));
         foreach ($scriptsToGenerate as $script) {
             $transcription = $this->generateTranscription($sentence, $script);
             if ($transcription) {
