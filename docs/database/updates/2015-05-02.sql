@@ -9,7 +9,6 @@ CREATE TABLE `transcriptions` (
   `text` varbinary(10000) NOT NULL,
   `dirty` BOOLEAN NOT NULL,
   `user_id` int(11) DEFAULT NULL,
-  `readonly` BOOLEAN DEFAULT FALSE NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
   CONSTRAINT `unique_transcriptions` UNIQUE (`sentence_id`,`script`),
