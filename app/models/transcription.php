@@ -159,9 +159,6 @@ class Transcription extends AppModel
         if (isset($this->data[$this->alias]['id'])) { // update
             if ($this->_isModifyingFields(array('sentence_id', 'script')))
                 return false;
-            $rule = $this->_getTranscriptionRule();
-            if (isset($rule['readonly']) && $rule['readonly'])
-                return false;
         } else { // create
             if (   isset($this->data[$this->alias]['sentence_id'])
                 || isset($this->data[$this->alias]['script'])) {
@@ -288,6 +285,9 @@ class Transcription extends AppModel
             return array();
 
         $params = $this->availableTranscriptions[$langScript][$targetScript];
+        if (isset($params['readonly']) && $params['readonly'])
+            return array();
+
         $result = array();
         if (!$transcr) {
             $transcr = $this->_generateTranscription(

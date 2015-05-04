@@ -43,7 +43,7 @@ class TranscriptionsController extends AppController
 
             $saved = false;
             if ($canEdit) {
-                $saved = $this->Transcription->save(array(
+                $saved = $this->Transcription->saveTranscription(array(
                     'id' => $transcriptionId,
                     'text' => $transcriptionText,
                     'dirty' => false,

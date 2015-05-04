@@ -374,7 +374,7 @@ class TranscriptionTestCase extends CakeTestCase {
     }
 
     function testCannotUpdateReadonlyTranscriptions() {
-        $result = (bool)$this->Transcription->save(array(
+        $result = (bool)$this->Transcription->saveTranscription(array(
             'id' => 2,
             'sentence_id' => 6,
             'parent_id' => 1,
