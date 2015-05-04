@@ -672,8 +672,6 @@ class SentencesHelper extends AppHelper
     /**
      * Display transcriptions.
      *
-     * @todo Rename CSS class: 'romanization' -> 'transcription'.
-     *
      * @param array  $transcriptions List of transcriptions.
      * @param string $lang           Language of the transcripted sentence.
      *
@@ -711,13 +709,9 @@ class SentencesHelper extends AppHelper
         }
 
         $isGenerated = !isset($transcr['user_id']);
-        $class = "romanization";
+        $class = 'transcription';
         if ($isEditable)
-            $class .= " editableTranscription";
-
-        if ($isGenerated) {
-            $class .= " generatedTranscription";
-        }
+            $class .= ' editable';
         $html = $this->transcriptionAsHTML($transcr);
         $transcriptionDiv = $this->Languages->tagWithLang(
             'div', $lang, $html,
@@ -729,6 +723,7 @@ class SentencesHelper extends AppHelper
             ),
             $transcr['script']
         );
+
         $infoDiv = '';
         if ($isGenerated && $isEditable) {
             $warningMessage = __(
@@ -741,16 +736,24 @@ class SentencesHelper extends AppHelper
                 'class' => 'transcriptionWarning',
             ));
         }
+
+        $class = 'transcription subTranscription';
         $subTranscrDiv = '';
         if ($subTranscr) {
             $subTranscrDiv = $this->Languages->tagWithLang(
                 'div', $lang, $subTranscr['text'],
-                array('class' => 'subTranscription'),
+                array('class' => $class),
                 $subTranscr['script']
             );
         }
+
+        $class = '';
+        if ($isGenerated) {
+            $class .= 'generatedTranscription';
+        }
         echo $this->Html->tag('div', $infoDiv.$transcriptionDiv.$subTranscrDiv, array(
             'escape' => false,
+            'class' => $class,
         ));
     }
 

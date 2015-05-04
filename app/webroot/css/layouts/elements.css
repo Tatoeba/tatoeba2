@@ -981,23 +981,30 @@
 
 
 /*
- * Romanization
+ * Transcriptions
  */
-.romanization {
+.transcription {
     color: #A1A1A1;
 }
 
 .generatedTranscription {
     display: none;
+}
+
+.generatedTranscription > .transcription {
     color: blue; /* TODO: find a better color */
 }
 
 .transcriptionWarning {
-    display: none;
     margin-top: 20px;
+    margin-bottom: 5px;
     padding-left: 25px;
     background: url("/img/warning-small.svg") no-repeat 0 50%;
     font-size: 13px;
+}
+
+.subTranscription {
+    font-size: smaller;
 }
 
 /*

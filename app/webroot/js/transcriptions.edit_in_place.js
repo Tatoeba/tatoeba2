@@ -18,15 +18,14 @@
 
 function displayTranscriptions(sentenceId) {
     $(
-        '#sentences_group_' + sentenceId + ' .generatedTranscription,'
-       +'#sentences_group_' + sentenceId + ' .transcriptionWarning'
+        '#sentences_group_' + sentenceId + ' .generatedTranscription'
     ).show();
 }
 
 $(document).ready(function() {
     var rootUrl = get_tatoeba_root_url();
 
-    $('.editableTranscription').each(function() {
+    $('.editable.transcription').each(function() {
         var div = $(this);
 
         sentenceId = div.attr('data-sentence-id');
