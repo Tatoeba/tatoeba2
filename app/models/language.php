@@ -83,10 +83,6 @@ class Language extends AppModel
                     'code',
                     'sentences',
                     'audio',
-                    'group_1',
-                    'group_2',
-                    'group_3',
-                    'group_4'
                 ),
                 'order' => array('sentences DESC'),
                 'limit' => $limit
@@ -108,6 +104,7 @@ class Language extends AppModel
         $results = $this->find(
             'all',
             array(
+                'conditions' => array('code !=' => null),
                 'fields' => array(
                     'code',
                     'level_5',

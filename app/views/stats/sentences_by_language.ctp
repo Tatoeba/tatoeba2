@@ -53,28 +53,7 @@ $max = $stats[0]['Language']['sentences'];
         <th></th>
         <th></th>
         <th><?php __('Language'); ?></th>
-        <th></th>
         <th><?php __('Sentences'); ?></th>
-        <?php
-        $membersIcons = array(
-            'status1' => __('Admins', true),
-            'status2' => __('Corpus maintainers', true),
-            'status3' => __('Advanced contributors', true),
-            'status4' => __('Contributors', true)
-        );
-        foreach ($membersIcons as $iconClass => $iconTooltip) {
-            $headerIcon = $images->svgIcon(
-                'user',
-                array(
-                    'width' => 16,
-                    'height' => 16,
-                    'class' => $iconClass,
-                    'title' => $iconTooltip
-                )
-            );
-            echo $html->tag('th', $headerIcon);
-        }
-        ?>
     </tr>
 
     <?php
@@ -91,11 +70,6 @@ $max = $stats[0]['Language']['sentences'];
         }
         $numSentencesDiv  = '<div class="bar" style="width:'.$percent.'%"></div>';
         $numSentencesDiv .= $numSentences;
-
-        $numAdmins = $language['group_1'];
-        $numCorpusMaintainers = $language['group_2'];
-        $numAdvancedContributors = $language['group_3'];
-        $numContributors = $language['group_4'];
 
         $languageIcon = $languages->icon(
             $langCode, array('width' => 30, 'height' => 20)
@@ -117,25 +91,12 @@ $max = $stats[0]['Language']['sentences'];
             )
         );
 
-        $languageStatusIcon = null;
-        if ($numAdmins + $numCorpusMaintainers < 0) { // TODO for Trang
-            $languageStatusIcon = $images->svgIcon(
-                'warning-small',
-                array('width' => 16, 'height' => 16, 'class' => 'status-warning')
-            );
-        }
-
         echo '<tr>';
 
         echo $html->tag('td', $rank);
         echo $html->tag('td', $languageIcon);
         echo $html->tag('td', $languageLink);
-        echo $html->tag('td', $languageStatusIcon);
         echo $html->tag('td', $numSentencesDiv, array('class' => 'num-sentences'));
-        echo $html->tag('td', $numAdmins);
-        echo $html->tag('td', $numCorpusMaintainers);
-        echo $html->tag('td', $numAdvancedContributors);
-        echo $html->tag('td', $numContributors);
 
         echo '</tr>';
 
