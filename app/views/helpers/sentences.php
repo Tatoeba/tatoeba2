@@ -603,7 +603,7 @@ class SentencesHelper extends AppHelper
 
         // romanization
         if (isset($sentence['transcriptions'])) {
-            $this->_displayTranscriptions(
+            $this->displayTranscriptions(
                 $sentence['transcriptions'], $sentence['lang']
             );
         }
@@ -679,7 +679,7 @@ class SentencesHelper extends AppHelper
      *
      * @return void
      */
-    private function _displayTranscriptions($transcriptions, $lang)
+    public function displayTranscriptions($transcriptions, $lang)
     {
         $chained = array();
         foreach ($transcriptions as $script => $transcr) {
@@ -701,7 +701,7 @@ class SentencesHelper extends AppHelper
         }
     }
 
-    public function displayTranscription($transcr, $lang, $subTranscr = null) {
+    private function displayTranscription($transcr, $lang, $subTranscr = null) {
         $this->Javascript->link('jquery.jeditable.js', false);
         $this->Javascript->link('transcriptions.edit_in_place.js', false);
 

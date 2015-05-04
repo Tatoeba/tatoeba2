@@ -41,9 +41,8 @@ $(document).ready(function() {
             data : function(value, settings) {
                 return $('<div>').html(value).text() // added to correct problem with html entities
             },
-            callback : function() {
-                div.removeClass('generatedTranscription');
-                div.parent().find('.transcriptionWarning').hide();
+            callback : function(result, settings) {
+                div.parent().replaceWith(result);
             },
             indicator : '<img src="/img/loading.gif">',
             tooltip   : 'Click to edit...',

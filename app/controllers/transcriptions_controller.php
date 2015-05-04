@@ -23,6 +23,7 @@ class TranscriptionsController extends AppController
 
     public $uses = array(
         'Transcription',
+        'Sentence',
     );
 
     public $components = array(
@@ -61,6 +62,10 @@ class TranscriptionsController extends AppController
                 'user_id' => $userId,
             ));
         }
+
+        $sentence = $this->Sentence->findById($sentenceId, 'lang');
+        if ($sentence)
+            $this->set('lang', $sentence['Sentence']['lang']);
 
         /* Used by tests, to check permissions */
         if (isset($this->params['requested'])) {
