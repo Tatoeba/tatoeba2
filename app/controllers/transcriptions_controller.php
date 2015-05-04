@@ -53,7 +53,7 @@ class TranscriptionsController extends AppController
                     $saved = $this->Transcription->findById($transcriptionId);
             }
         } else { // Inserting a new transcription
-            $saved = $this->Transcription->save(array(
+            $saved = $this->Transcription->saveTranscription(array(
                 'text' => $transcriptionText,
                 'sentence_id' => $sentenceId,
                 'script' => $script,

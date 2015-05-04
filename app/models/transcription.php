@@ -256,14 +256,14 @@ class Transcription extends AppModel
         return $this->availableTranscriptions[$langScript];
     }
 
-    public function saveTranscription($sentenceId, $script, $isDirty, $text) {
-        $transcription = array(
-            'sentence_id' => $sentenceId,
-            'script' => $script,
-            'dirty' => $isDirty,
-            'text' => $text,
+    public function saveTranscription($transcr) {
+        $sentence = $this->Sentence->findById($transcr['sentence_id']);
+        if (!$sentence)
+            return false;
+
+        return $this->generateTranscription(
+            $sentence, $transcr['script'], true, $transcr
         );
-        return (bool)$this->save($transcription);
     }
 
     public function generateAndSaveAllTranscriptionsFor($sentence) {
@@ -279,7 +279,7 @@ class Transcription extends AppModel
         }
     }
 
-    public function generateTranscription($sentence, $targetScript, $save = false) {
+    public function generateTranscription($sentence, $targetScript, $save = false, $transcr = array()) {
         if (isset($sentence['Sentence']))
             $sentence = $sentence['Sentence'];
 
@@ -289,14 +289,16 @@ class Transcription extends AppModel
 
         $params = $this->availableTranscriptions[$langScript][$targetScript];
         $result = array();
-        $transcr = $this->_generateTranscription(
-            $sentence['id'],
-            $sentence['text'],
-            $langScript,
-            $targetScript
-        );
-        if (!$transcr)
-            return array();
+        if (!$transcr) {
+            $transcr = $this->_generateTranscription(
+                $sentence['id'],
+                $sentence['text'],
+                $langScript,
+                $targetScript
+            );
+            if (!$transcr)
+                return array();
+        }
 
         if ($save) {
             if (!$this->save($transcr))

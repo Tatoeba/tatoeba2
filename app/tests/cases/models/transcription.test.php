@@ -294,6 +294,66 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->assertEqual($expected, $result);
     }
 
+    function testGenerateTranscriptionCreatesGenerated() {
+        $this->Transcription->deleteAll('1=1');
+        $jpnSentence = $this->Transcription->Sentence->findById(10);
+        $mock = $this->_installAutotranscriptionMock();
+        $mock->setReturnValue('tokenizedJapaneseWithReadingsToRomaji', 'stuff in Latin');
+        $mock->setReturnValue('_getFurigana', 'stuff in kana');
+
+        $this->Transcription->generateTranscription($jpnSentence, 'Hrkt', true);
+
+        $created = $this->Transcription->find('count');
+        $this->assertEqual(2, $created);
+    }
+
+    function testGenerateTranscriptionCreatesProvidedTranscription() {
+        $this->Transcription->deleteAll('1=1');
+        $jpnSentence = $this->Transcription->Sentence->findById(10);
+        $mock = $this->_installAutotranscriptionMock();
+        $mock->setReturnValue('tokenizedJapaneseWithReadingsToRomaji', 'stuff in Latin');
+        $data = array(
+            'text' => 'あああ',
+            'sentence_id' => 10,
+            'script' => 'Hrkt',
+            'dirty' => false,
+            'user_id' => 33,
+        );
+
+        $this->Transcription->generateTranscription($jpnSentence, 'Hrkt', true, $data);
+
+        $created = $this->Transcription->find('all');
+        $created = array_map(
+            function ($r) {
+                unset($r['Transcription']['modified']);
+                unset($r['Transcription']['created']);
+                return $r;
+            },
+            $created
+        );
+        $expected = array(
+            array('Transcription' => array(
+                'id' => 5,
+                'sentence_id' => 10,
+                'parent_id' => 4,
+                'script' => 'Latn',
+                'text' => 'stuff in Latin',
+                'dirty' => false,
+                'user_id' => null,
+            )),
+            array('Transcription' => array(
+                'id' => 4,
+                'sentence_id' => 10,
+                'parent_id' => null,
+                'script' => 'Hrkt',
+                'text' => 'あああ',
+                'dirty' => false,
+                'user_id' => 33,
+            )),
+        );
+        $this->assertEqual($expected, $created);
+    }
+
     function testGenerateAndSaveAllTranscriptionsFor() {
         $this->Transcription->deleteAll('1=1');
         $jpnSentence = $this->Transcription->Sentence->findById(6);
