@@ -128,6 +128,31 @@ class Language extends AppModel
 
 
     /**
+     *
+     */
+    public function getNativeSpeakersStatistics()
+    {
+        $results = $this->find(
+            'all',
+            array(
+                'conditions' => array('code !=' => null),
+                'fields' => array(
+                    'code',
+                    'group_1',
+                    'group_2',
+                    'group_3',
+                    'group_4',
+                    '(group_1 + group_2 + group_3 + group_4) as total'
+                ),
+                'order' => array('total DESC')
+            )
+        );
+
+        return $results;
+    }
+
+
+    /**
      * Increment stats for specified language.
      *
      * @param $langCode Code of the language which should be incremented.

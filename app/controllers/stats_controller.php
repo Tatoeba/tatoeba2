@@ -73,5 +73,15 @@ class StatsController extends AppController
         $stats = $this->Language->getUsersLanguagesStatistics();
         $this->set('stats', $stats);
     }
+
+
+    /**
+     *
+     */
+    function native_speakers()
+    {
+        $stats = $this->Language->getNativeSpeakersStatistics();
+        $this->set('stats', $stats);
+    }
 }
 ?>
