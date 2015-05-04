@@ -34,18 +34,15 @@
                 <th></th>
                 <th><?php __('Language'); ?></th>
                 <?php
-                $maxLanguageLevel = 5;
-                for ($i = $maxLanguageLevel; $i >= 0; $i--) {
-                    $opacity = $opacity = 0.5 + 0.5 * ($i / $maxLanguageLevel);
-                    $levelDiv = $html->div(
-                        'languageLevel',
-                        $i,
-                        array('style' => 'opacity:'.$opacity.';')
-                    );
-                    echo $html->tag('th', $levelDiv);
+                for ($i = Language::MAX_LEVEL; $i >= 0; $i--) {
+                    echo $html->tag('th', $languages->smallLevelBar($i));
                 }
                 ?>
-                <th><div class="unknownLevel">?</div></th>
+                <th>
+                    <div class="languageLevel">
+                        <div class="unknownLevel">?</div>
+                    </div>
+                </th>
                 <th><?php __('Total'); ?></th>
             </tr>
             <?php

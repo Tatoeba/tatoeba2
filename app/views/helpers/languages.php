@@ -44,6 +44,8 @@ class LanguagesHelper extends AppHelper
     /* Memoization of languages code and their localized names */
     private $__languages_alone;
 
+    private $__languageLevels;
+
     private function langAsAlone($name)
     {
         return format(
@@ -447,5 +449,48 @@ class LanguagesHelper extends AppHelper
         );
 
         echo '</div>';
+    }
+
+
+    public function getLevelsLabels($index = null)
+    {
+        if (!isset($__languagesLevels)) {
+            $__languagesLevels = array(
+                0 => __('0: Almost no knowledge', true),
+                1 => __('1: Beginner', true),
+                2 => __('2: Intermediate', true),
+                3 => __('3: Advanced', true),
+                4 => __('4: Fluent', true),
+                5 => __('5: Native level', true)
+            );
+        }
+
+        if (isset($index)) {
+            return $__languagesLevels[$index];
+        } else {
+            return $__languagesLevels;
+        }
+    }
+
+
+    public function smallLevelBar($level)
+    {
+        $opacity = $opacity = 0.5 + 0.5 * ($level / Language::MAX_LEVEL);
+        $size = ($level / Language::MAX_LEVEL) * 100;
+        $levelDiv = $this->Html->div(
+            null,
+            null,
+            array(
+                'style' => 'opacity:'.$opacity.'; width:'.$size.'%;',
+                'class' => 'level'
+            )
+        );
+        $levelDivContainer = $this->Html->div(
+            'languageLevel',
+            $levelDiv,
+            array('title' => $this->getLevelsLabels($level))
+        );
+
+        return $levelDivContainer;
     }
 }

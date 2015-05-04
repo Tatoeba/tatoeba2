@@ -38,6 +38,8 @@ class Language extends AppModel
 {
     public $name = 'Language';
 
+    const MAX_LEVEL = 5;
+
     /**
      * Return the id associated with the given lang string
      *

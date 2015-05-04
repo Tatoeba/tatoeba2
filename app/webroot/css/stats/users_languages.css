@@ -23,7 +23,7 @@
 .usersLanguagesStats td,
 .usersLanguagesStats th {
     text-align: center;
-    padding: 5px 10px;
+    padding: 5px;
 }
 
 .usersLanguagesStats img {
@@ -31,12 +31,21 @@
 }
 
 .usersLanguagesStats .languageLevel {
-    background-color: #06A;
-    color: #ffffff;
-    padding: 2px 5px;
+    display: inline-block;
+    border: 1px solid #DDDDDD;
+    height: 15px;
+    width: 25px;
 }
 
-.usersLanguagesStats .unknownLevel {
+.usersLanguagesStats .languageLevel .level {
+    background-color: #06A;
+    height: 100%;
+}
+
+.usersLanguagesStats .languageLevel .unknownLevel {
     background: #F1F1F1;
-    padding: 2px 5px;
+    height: 100%;
+    width: 100%;
+    font-size: 12px;
+    float: left;
 }
