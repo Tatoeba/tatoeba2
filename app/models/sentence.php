@@ -176,7 +176,10 @@ class Sentence extends AppModel
     {
         if (isset($this->data['Sentence']['text'])) {
             // --- Logs for sentence ---
-            $sentenceLang =  $this->data['Sentence']['lang'];
+            $sentenceLang = null;
+            if (isset($this->data['Sentence']['lang'])) {
+                $sentenceLang = $this->data['Sentence']['lang'];
+            }
             $sentenceAction = 'update';
             $sentenceText = $this->data['Sentence']['text'];
             if ($created) {

@@ -1,6 +1,7 @@
 <?php
 /* Sentence Test cases generated on: 2014-04-15 01:07:30 : 1397516850*/
 App::import('Model', 'Sentence');
+App::import('Behavior', 'Sphinx');
 
 class SentenceTestCase extends CakeTestCase {
 	var $fixtures = array(
