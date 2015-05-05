@@ -729,7 +729,7 @@ class SentencesHelper extends AppHelper
         if ($isGenerated && $isEditable) {
             $warningMessage = __(
                 'The following transcription has been automatically generated '.
-                'by a software and <strong>may contain errors</strong>. '.
+                'and <strong>may contain errors</strong>. '.
                 'If you can, you are welcome to review by clicking it.',
                 true
             );
