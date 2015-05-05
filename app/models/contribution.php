@@ -37,11 +37,7 @@
 class Contribution extends AppModel
 {
     public $actsAs = array(
-        "Containable",
-        "Autotranscriptable" => array(
-            "transcription" => false,
-            "lang" => "sentence_lang",
-        )
+        "Containable"
     );
     public $belongsTo = array('Sentence', 'User');
 
