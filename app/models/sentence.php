@@ -46,7 +46,7 @@ class Sentence extends AppModel
 {
 
     public $name = 'Sentence';
-    public $actsAs = array("Containable");
+    public $actsAs = array('Containable', 'Transcriptable');
     public static $romanji = array('furigana' => 1, 'mix' => 2, 'romanji' => 3);
 
     const MIN_CORRECTNESS = -1;
@@ -198,13 +198,6 @@ class Sentence extends AppModel
                 $sentenceText,
                 $sentenceAction
             );
-        }
-
-        if ($created) {
-            $sentence = $this->data[$this->alias];
-            if (!isset($sentence['id']))
-                $sentence['id'] = $this->getLastInsertID();
-            $this->Transcription->generateAndSaveAllTranscriptionsFor($sentence);
         }
     }
 
