@@ -34,6 +34,7 @@ CREATE TABLE `contributions` (
   `sentence_lang` varchar(4) DEFAULT NULL,
   `translation_id` int(11) DEFAULT NULL,
   `translation_lang` varchar(4) DEFAULT NULL,
+  `script` varchar(4) NOT NULL, /* ISO 15924 code */
   `text` varbinary(1500) NOT NULL,
   `action` enum('insert','update','delete') CHARACTER SET latin1 NOT NULL,
   `user_id` int(11) DEFAULT NULL,

@@ -180,6 +180,10 @@ class Sentence extends AppModel
             if (isset($this->data['Sentence']['lang'])) {
                 $sentenceLang = $this->data['Sentence']['lang'];
             }
+            $sentenceScript = null;
+            if (isset($this->data['Sentence']['script'])) {
+                $sentenceScript = $this->data['Sentence']['script'];
+            }
             $sentenceAction = 'update';
             $sentenceText = $this->data['Sentence']['text'];
             if ($created) {
@@ -188,7 +192,11 @@ class Sentence extends AppModel
             }
 
             $this->Contribution->saveSentenceContribution(
-                $this->id, $sentenceLang, $sentenceText, $sentenceAction
+                $this->id,
+                $sentenceLang,
+                $sentenceScript,
+                $sentenceText,
+                $sentenceAction
             );
         }
 
@@ -219,10 +227,15 @@ class Sentence extends AppModel
 
         // --- Logs for sentence ---
         $sentenceLang = $this->data['Sentence']['lang'];
+        $sentenceScript = $this->data['Sentence']['script'];
         $sentenceId = $this->data['Sentence']['id'];
         $sentenceText = $this->data['Sentence']['text'];
         $this->Contribution->saveSentenceContribution(
-            $sentenceId, $sentenceLang, $sentenceText, 'delete'
+            $sentenceId,
+            $sentenceLang,
+            $sentenceScript,
+            $sentenceText,
+            'delete'
         );
 
         // --- Logs for links ---

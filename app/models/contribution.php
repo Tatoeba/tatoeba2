@@ -80,6 +80,7 @@ class Contribution extends AppModel
             array(
                 'fields' => array(
                     'Contribution.sentence_lang',
+                    'Contribution.script',
                     'Contribution.text',
                     'Contribution.translation_id',
                     'Contribution.action',
@@ -146,6 +147,7 @@ class Contribution extends AppModel
                 'fields' => array(
                     'sentence_id', 
                     'sentence_lang',
+                    'script',
                     'text',
                     'datetime',
                     'action'
@@ -258,12 +260,13 @@ class Contribution extends AppModel
      *
      * @return void
      */
-    public function saveSentenceContribution($id, $lang, $text, $action)
+    public function saveSentenceContribution($id, $lang, $script, $text, $action)
     {
         $data = array(
             'id' => null,
             'sentence_id' => $id,
             'sentence_lang' => $lang,
+            'script' => $script,
             'text' => $text,
             'user_id' => CurrentUser::get('id'),
             'datetime' => date("Y-m-d H:i:s"),

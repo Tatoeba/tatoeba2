@@ -16,3 +16,7 @@ CREATE TABLE `transcriptions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE sentences ADD script varchar(4);
+ALTER TABLE contributions ADD script varchar(4) AFTER `translation_lang`;
+
+-- NOTE: the following script need to be run too:
+-- app/docs/database/triggers/last_contributions_triggers.sql

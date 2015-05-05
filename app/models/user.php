@@ -319,6 +319,7 @@ class User extends AppModel
                             'fields' => array(
                                 'sentence_id',
                                 'sentence_lang',
+                                'script',
                                 'translation_id',
                                 'action',
                                 'datetime',
