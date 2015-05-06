@@ -39,6 +39,19 @@
 <div id="annexe_content">
     <div class="module">
         <h2><?php __('Languages'); ?></h2>
+
+        <p>
+        <?php
+        echo $html->link(
+            __('Back to global stats', true),
+            array(
+                'controller' => 'stats',
+                'action' => 'users_languages'
+            )
+        );
+        ?>
+        </p>
+
         <table class="usersLanguagesStats">
         <?php
         foreach($usersLanguages as $language) {

@@ -123,8 +123,12 @@ $menuElements = array(
                 "action" => "all"
             ),
             __('Languages of members', true) => array(
-                "controller" => "users",
-                "action" => "for_language"
+                "controller" => "stats",
+                "action" => "users_languages"
+            ),
+            __('Native speakers', true) => array(
+                "controller" => "stats",
+                "action" => "native_speakers"
             )
         )
     ),

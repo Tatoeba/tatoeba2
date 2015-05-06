@@ -567,6 +567,14 @@ class User extends AppModel
         return $result['User']['level'];
     }
 
+
+    public function getGroupOfUser($userId)
+    {
+        $result = $this->findById($userId, 'group_id');
+
+        return $result['User']['group_id'];
+    }
+
 }
 
 

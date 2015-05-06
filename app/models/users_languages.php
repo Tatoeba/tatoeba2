@@ -39,8 +39,65 @@ class UsersLanguages extends AppModel
     public $name = 'UsersLanguages';
     public $useTable = "users_languages";
     public $actsAs = array("Containable");
-    public $belongsTo = array('User' => array('foreignKey' => 'of_user_id'));
+    public $belongsTo = array(
+        'User' => array('foreignKey' => 'of_user_id'),
+        'Language' => array('foreignKey' => 'language_code')
+    );
     public $recursive = -1;
+
+
+    public function beforeSave()
+    {
+        $data = $this->findById($this->id);
+        $lang = $data['UsersLanguages']['language_code'];
+        $previousLevel = $data['UsersLanguages']['level'];
+        $newLevel = $this->data['UsersLanguages']['level'];
+        $this->Language->decrementCountForLevel($lang, $previousLevel);
+
+        if ($previousLevel == 5 || $newLevel == 5 && $previousLevel != $newLevel) {
+            $userId = $data['UsersLanguages']['of_user_id'];
+            $groupId = $this->User->getGroupOfUser($userId);
+            if ($previousLevel > $newLevel) {
+                $this->Language->decrementCountForGroup($lang, $groupId);
+            } else {
+                $this->Language->incrementCountForGroup($lang, $groupId);
+            }
+        }
+
+        return true;
+    }
+
+
+    public function afterSave($created)
+    {
+        $lang = $this->data['UsersLanguages']['language_code'];
+        $level = $this->data['UsersLanguages']['level'];
+        $this->Language->incrementCountForLevel($lang, $level);
+
+        if ($created && $level == 5) {
+            $userId = $this->data['UsersLanguages']['of_user_id'];
+            $groupId = $this->User->getGroupOfUser($userId);
+            $this->Language->incrementCountForGroup($lang, $groupId);
+        }
+    }
+
+
+    public function beforeDelete()
+    {
+        $data = $this->findById($this->id);
+        $lang = $data['UsersLanguages']['language_code'];
+        $level = $data['UsersLanguages']['level'];
+        $this->Language->decrementCountForLevel($lang, $level);
+
+        if ($level == 5) {
+            $userId = $data['UsersLanguages']['of_user_id'];
+            $groupId = $this->User->getGroupOfUser($userId);
+            $this->Language->decrementCountForGroup($lang, $groupId);
+        }
+
+        return true;
+    }
+
 
     public function getLanguagesOfUser($userId)
     {
