@@ -132,13 +132,19 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
     <?php
     foreach ($sentencesInList as $item) {
         $sentence = $item['Sentence'];
+        $transcriptions = $sentence['Transcription'];
         $translations = array();
         if (!empty($sentence['Translation'])) {
             foreach ($sentence['Translation'] as $value) {
                 $translations[] = array('Translation' => $value);
             }
         }
-        $lists->displaySentence($sentence, $translations, true);
+        $lists->displaySentence(
+            $sentence,
+            $transcriptions,
+            $translations,
+            true
+        );
     }
     ?>
     </div>

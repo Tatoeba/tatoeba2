@@ -128,6 +128,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         foreach ($user_sentences as $sentence) {
             $sentences->displayGenericSentence(
                 $sentence['Sentence'],
+                $sentence['Transcription'],
                 $type,
                 $parentId,
                 $withAudio

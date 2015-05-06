@@ -296,6 +296,7 @@ class User extends AppModel
                     'conditions' => array('User.id' => $id),
                     'contain' => array(
                         'Favorited' => array(
+                            'Transcription',
                             'limit' => 10,
                             'fields' => array(
                                 'id',
@@ -306,6 +307,7 @@ class User extends AppModel
                             )
                         ),
                         'Sentence' => array(
+                            'Transcription',
                             'limit' => 10,
                             'fields' => array(
                                 'id',

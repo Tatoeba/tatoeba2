@@ -117,6 +117,7 @@ class CommonSentenceComponent extends Object
 
             $allSentences[$i] = array (
                 "Sentence" => $sentence['Sentence'],
+                "Transcription" => $sentence['Transcription'],
                 "User" => $sentence['User'],
                 "Translations" => $translations,
                 "IndirectTranslations" => $indirectTranslations

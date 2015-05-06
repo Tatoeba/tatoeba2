@@ -400,13 +400,12 @@ class SentencesListsController extends AppController
                 $userName
             );
 
-            $tmp = $this->SentencesList->addNewSentenceToList(
+            $sentence = $this->SentencesList->addNewSentenceToList(
                 $listId,
                 $sentenceText,
                 $sentenceLang
             );
-            $sentence = $tmp['Sentence'];
-            $sentence['User'] = $tmp['User'];
+            $sentence['Sentence']['User'] = $sentence['User'];
 
             $this->Cookie->write('most_recent_list', $listId, false, "+1 month");
         }

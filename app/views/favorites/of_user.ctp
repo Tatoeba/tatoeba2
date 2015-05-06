@@ -55,6 +55,7 @@ $numberOfSentences = count($favorites);
         foreach ($favorites as $favorite) {
             $sentences->displayGenericSentence(
                 $favorite['Sentence'],
+                $favorite['Sentence']['Transcription'],
                 $type,
                 $parentId,
                 $withAudio

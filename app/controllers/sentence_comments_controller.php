@@ -277,7 +277,13 @@ class SentenceCommentsController extends AppController
 
         //get permissions
         if (empty($this->data)) {
-            $sentenceComment = $this->SentenceComment->read();
+            $sentenceComment = $this->SentenceComment->find('first', array(
+                'conditions' => array('SentenceComment.id' => $commentId),
+                'contain' => array(
+                    'Sentence' => array('Transcription'),
+                    'User',
+                )
+            ));
             $authorId = $sentenceComment['SentenceComment']['user_id'];
         } else {
             $sentenceComment = $this->data['SentenceComment'];

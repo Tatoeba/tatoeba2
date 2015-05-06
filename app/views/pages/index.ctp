@@ -75,10 +75,12 @@ if (!$isLogged) {
         <div class="random_sentences_set">
         <?php
         $sentence = $random['Sentence'];
+        $transcriptions = $random['Transcription'];
         $sentenceOwner = $random['User'];
 
         $sentences->displaySentencesGroup(
             $sentence, 
+            $transcriptions,
             $translations, 
             $sentenceOwner,
             $indirectTranslations

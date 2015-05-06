@@ -383,13 +383,17 @@ class ListsHelper extends AppHelper
      * Display sentence.
      *
      * @param array  $sentence           Sentence data.
+     * @param array  $transcriptions     Sentence transcriptions.
      * @param string $translationsLang   Language of the translations.
      * @param bool   $canCurrentUserEdit 'true' if user remove sentence from list.
      *
      * @return void
      */
     public function displaySentence(
-        $sentence, $translations = array(), $canCurrentUserEdit = false
+        $sentence,
+        $transcriptions,
+        $translations = array(),
+        $canCurrentUserEdit = false
     ) {
         if (empty($sentence['id'])) {
             // In case the sentence has been deleted, we don't want to display
@@ -412,6 +416,7 @@ class ListsHelper extends AppHelper
                 $indirectTranslations = array();
                 $this->Sentences->displaySentencesGroup(
                     $sentence,
+                    $transcriptions,
                     $translations,
                     $user,
                     $indirectTranslations,
@@ -420,6 +425,7 @@ class ListsHelper extends AppHelper
             } else {
                 $this->Sentences->displaySimpleSentencesGroup(
                     $sentence,
+                    $transcriptions,
                     $translations
                 );
             }

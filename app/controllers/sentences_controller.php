@@ -478,11 +478,11 @@ class SentencesController extends AppController
             );
 
             if ($isSaved) {
-                // We reconstruct the translation to use it in the helper's function
-                $translation['id'] = $this->Sentence->id;
-                $translation['lang'] = $translationLang;
-                $translation['text'] = $translationText;
-                $translation['correctness'] = 0;
+                $translationId = $this->Sentence->getLastInsertID();
+                $translation = $this->Sentence->find('first', array(
+                    'conditions' => array('Sentence.id' => $translationId),
+                    'contain' => array('Transcription')
+                ));
 
                 $this->set('translation', $translation);
                 $this->set('parentId', $sentenceId);
@@ -856,6 +856,7 @@ class SentencesController extends AppController
                     'correctness'
                 ),
                 'contain' => array(
+                    'Transcription',
                     'User' => array(
                         'fields' => array('username')
                     )
@@ -963,7 +964,7 @@ class SentencesController extends AppController
                     'hasaudio',
                     'correctness'
                 ),
-                'contain' => array(),
+                'contain' => array('Transcription'),
                 'limit' => 50,
                 'conditions' => array(
                     'hasaudio' => array('shtooka', 'from_users')

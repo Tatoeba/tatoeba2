@@ -80,6 +80,7 @@ if (!empty($results)) {
         foreach ($results as $sentence) {
             $sentences->displaySentencesGroup(
                 $sentence['Sentence'], 
+                $sentence['Transcription'],
                 $sentence['Translations'], 
                 $sentence['User'],
                 $sentence['IndirectTranslations'],

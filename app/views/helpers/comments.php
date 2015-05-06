@@ -125,13 +125,18 @@ class CommentsHelper extends AppHelper
     /**
      * Display sentence (for edit sentence_comment view)
      *
-     * @param array Sentence to display
+     * @param $sentence       Sentence to display.
+     * @param $transcriptions Transcriptions of the sentence.
      *
      * @return void
      */
-    public function displaySentence($sentence)
+    public function displaySentence($sentence, $transcriptions)
     {
-        $this->Sentences->displaySimpleSentencesGroup($sentence, array());
+        $this->Sentences->displaySimpleSentencesGroup(
+            $sentence,
+            $transcriptions,
+            array()
+        );
     }
 
 

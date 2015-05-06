@@ -41,7 +41,12 @@ if (!empty($sentence)) {
     </script>
 
     <?php
-    $lists->displaySentence($sentence, array(), true);
+    $lists->displaySentence(
+        $sentence['Sentence'],
+        $sentence['Transcription'],
+        array(),
+        true
+    );
 
 } else {
     ?>

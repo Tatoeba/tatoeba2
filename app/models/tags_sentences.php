@@ -167,6 +167,7 @@ class TagsSentences extends AppModel
                 ),
                 'contain' => array(
                     'Sentence' => array(
+                        'Transcription',
                         'fields' => array(
                             'id', 'text', 'lang', 'correctness'
                         ),

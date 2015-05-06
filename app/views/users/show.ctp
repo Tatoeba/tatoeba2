@@ -79,6 +79,7 @@ $this->set('title_for_layout', $pages->formatTitle(format(
             foreach ($user['Sentence'] as $sentence) {
                 $sentences->displayGenericSentence(
                     $sentence,
+                    $sentence['Transcription'],
                     $type,
                     $parentId,
                     $withAudio
@@ -113,6 +114,7 @@ $this->set('title_for_layout', $pages->formatTitle(format(
             foreach ($user['Favorited'] as $sentence) {
                 $sentences->displayGenericSentence(
                     $sentence,
+                    $sentence['Transcription'],
                     $type,
                     $parentId,
                     $withAudio

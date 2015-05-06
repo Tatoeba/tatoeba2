@@ -209,6 +209,7 @@ class TagsHelper extends AppHelper
      * Display sentence for a list of tagged sentences.
      *
      * @param array $sentence             Sentence data.
+     * @param array $transcriptions       Sentence transcriptions.
      * @param array $sentenceOwner        Array with Sentence owner info.
      * @param array $translations         Array with translations of this sentence.
      * @param array $indirectTranslations Array with Ind. translations of this
@@ -221,6 +222,7 @@ class TagsHelper extends AppHelper
      */
     public function displaySentence(
         $sentence,
+        $transcriptions,
         $sentenceOwner,
         $translations = array(),
         $indirectTranslations = array(),
@@ -244,6 +246,7 @@ class TagsHelper extends AppHelper
             // Sentences group
             $this->Sentences->displaySentencesGroup(
                 $sentence,
+                $transcriptions,
                 $translations,
                 $sentenceOwner,
                 $indirectTranslations,

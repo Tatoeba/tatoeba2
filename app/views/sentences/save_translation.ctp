@@ -32,12 +32,14 @@ if (isset($translation)) {
     echo $javascript->link(JS_PATH . 'jquery.jeditable.js', true);
     echo $javascript->link(JS_PATH . 'sentences.edit_in_place.js', true);
     echo $javascript->link(JS_PATH . 'sentences.change_language.js', true);
+    echo $javascript->link(JS_PATH . 'transcriptions.edit_in_place.js', true);
     
     $type = 'directTranslation';
     $isEditable = true;
 
     $sentences->displayGenericSentence(
-        $translation,
+        $translation['Sentence'],
+        $translation['Transcription'],
         $type, 
         $withAudio, 
         $parentId,
