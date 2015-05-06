@@ -420,19 +420,6 @@ class Sentence extends AppModel
                     )
             )
         );
-
-        if ($result == null) {
-            return;
-        }
-
-        $result['Transcription'] =
-            $this->Transcription->addGeneratedTranscriptions(
-                $result['Transcription'], $result['Sentence']
-            );
-        $transcriptions = Set::combine($result['Transcription'], '{n}.script', '{n}');
-        unset($result['Transcription']);
-        $result['Sentence']['transcriptions'] = $transcriptions;
-
         return $result;
     }
 

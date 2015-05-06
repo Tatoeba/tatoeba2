@@ -35,4 +35,16 @@ class TranscriptableBehavior extends ModelBehavior
             $model->Transcription->generateAndSaveAllTranscriptionsFor($sentence);
         }
     }
+
+    public function afterFind(&$model, $results, $primary) {
+        foreach ($results as &$result) {
+            if (isset($result['Transcription'])) {
+                $result['Transcription'] =
+                    $model->Transcription->addGeneratedTranscriptions(
+                        $result['Transcription'], $result[$model->alias]
+                    );
+            }
+        }
+        return $results;
+    }
 }
