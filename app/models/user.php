@@ -104,7 +104,7 @@ class User extends AppModel
     public $hasMany = array(
         'SentenceComments',
         'Contributions',
-        'Sentences',
+        'Sentence',
         'SentencesLists',
         'Wall' => array('foreignKey' => 'owner')
     );
@@ -114,8 +114,8 @@ class User extends AppModel
      * @var array
      */
     public $hasAndBelongsToMany = array(
-        'Favorite' => array(
-            'className' => 'Favorite',
+        'Favorited' => array(
+            'className' => 'Sentence',
             'joinTable' => 'favorites_users',
             'foreignKey' => 'user_id',
             'associationForeignKey' => 'favorite_id',
@@ -295,20 +295,22 @@ class User extends AppModel
                 array(
                     'conditions' => array('User.id' => $id),
                     'contain' => array(
-                        'Favorite' => array(
+                        'Favorited' => array(
                             'limit' => 10,
                             'fields' => array(
                                 'id',
                                 'lang',
+                                'script',
                                 'correctness',
                                 'text',
                             )
                         ),
-                        'Sentences' => array(
+                        'Sentence' => array(
                             'limit' => 10,
                             'fields' => array(
                                 'id',
                                 'lang',
+                                'script',
                                 'correctness',
                                 'text',
                             ),

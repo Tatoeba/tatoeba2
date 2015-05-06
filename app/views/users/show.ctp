@@ -55,7 +55,7 @@ $this->set('title_for_layout', $pages->formatTitle(format(
 <div id="main_content">
     <?php
     /* Latest sentences, translations or adoptions from the user */
-    if (count($user['Sentences']) > 0) {
+    if (count($user['Sentence']) > 0) {
         echo '<div class="module">';
             echo '<h2>';
             __('Latest sentences');
@@ -76,7 +76,7 @@ $this->set('title_for_layout', $pages->formatTitle(format(
             $type = 'mainSentence';
             $parentId = null;
             $withAudio = false;
-            foreach ($user['Sentences'] as $sentence) {
+            foreach ($user['Sentence'] as $sentence) {
                 $sentences->displayGenericSentence(
                     $sentence,
                     $type,
@@ -88,7 +88,7 @@ $this->set('title_for_layout', $pages->formatTitle(format(
     }
     
     /* Latest favorites from the user */
-    if (count($user['Favorite']) > 0) {
+    if (count($user['Favorited']) > 0) {
         echo '<div class="module">';
             echo '<h2>';
             __('Favorite sentences');
@@ -110,7 +110,7 @@ $this->set('title_for_layout', $pages->formatTitle(format(
             $type = 'mainSentence';
             $parentId = null;
             $withAudio = false;
-            foreach ($user['Favorite'] as $sentence) {
+            foreach ($user['Favorited'] as $sentence) {
                 $sentences->displayGenericSentence(
                     $sentence,
                     $type,
