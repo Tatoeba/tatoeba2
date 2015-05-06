@@ -36,8 +36,9 @@
  */
 class Translation extends AppModel
 {
-    public $actsAs = array('Containable');
+    public $actsAs = array('Containable', 'Transcriptable');
     public $useTable = 'sentences';
+    public $hasMany = array('Transcription');
 
 
     public function find($sentenceId, $languages)
@@ -54,9 +55,8 @@ class Translation extends AppModel
         );
         foreach ($translations as $record) {
             $distance = $record['AllTranslations']['type'];
-            $orderedTranslations[ $map[$distance] ][] = array(
-                'Translation' => $record['Translation']
-            );
+            unset($record['AllTranslations']);
+            $orderedTranslations[ $map[$distance] ][] = $record;
         };
 
         return $orderedTranslations;
@@ -144,11 +144,12 @@ class Translation extends AppModel
                 'Translation.text',
                 'Translation.user_id',
                 'Translation.lang',
+                'Translation.script',
                 'Translation.hasaudio',
                 'Translation.correctness',
             ),
             'order' => array('Translation.lang'),
-            'contain' => array(),
+            'contain' => array('Transcription'),
         ));
     }
 }
