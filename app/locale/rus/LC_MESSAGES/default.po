@@ -13,14 +13,14 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-04-23 22:50+0000\n"
-"PO-Revision-Date: 2015-04-27 19:58+0000\n"
+"PO-Revision-Date: 2015-05-05 07:24+0000\n"
 "Last-Translator: Dmitry K\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/tatoeba_website/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: ru\n"
-"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/app_controller.php#L123
 msgid "You need to be logged in."
@@ -138,6 +138,7 @@ msgid_plural ""
 msgstr[0] "Возможность загрузки для данного списка отключена, так как он содержит {n}&nbsp;предложение."
 msgstr[1] "Возможность загрузки для данного списка отключена, так как он содержит {n}&nbsp;предложения."
 msgstr[2] "Возможность загрузки для данного списка отключена, так как он содержит {n}&nbsp;предложений."
+msgstr[3] "Возможность загрузки для данного списка отключена, так как он содержит {n}&nbsp;предложений."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L181
 msgid ""
@@ -149,6 +150,7 @@ msgid_plural ""
 msgstr[0] "Загружать можно только списки, содержащие {max} или менее предложений. Если у вас есть возможность редактировать данный список, вы можете разбить его на насколько."
 msgstr[1] "Загружать можно только списки, содержащие {max} или менее предложений. Если у вас есть возможность редактировать данный список, вы можете разбить его на насколько."
 msgstr[2] "Загружать можно только списки, содержащие {max} или менее предложений. Если у вас есть возможность редактировать данный список, вы можете разбить его на насколько."
+msgstr[3] "Загружать можно только списки, содержащие {max} или менее предложений. Если у вас есть возможность редактировать данный список, вы можете разбить его на насколько."
 
 #. @translators: this string is used to concatenate two sentences.
 #. You typically want to change this to {firstSentence}{secondSentence}
@@ -1368,6 +1370,7 @@ msgid_plural "Users who participated in the last {n}&nbsp;contributions."
 msgstr[0] "Участники, добавившие {n}&nbsp;последнее предложение."
 msgstr[1] "Участники, добавившие {n}&nbsp;последних предложения."
 msgstr[2] "Участники, добавившие {n}&nbsp;последних предложений."
+msgstr[3] "Участники, добавившие {n}&nbsp;последних предложений."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L96
 msgid "#{rank} - {n}&nbsp;sentence - {percentage}%"
@@ -1375,6 +1378,7 @@ msgid_plural "#{rank} - {n}&nbsp;sentences - {percentage}%"
 msgstr[0] "№{rank} - {n}&nbsp;предложение - {percentage}%"
 msgstr[1] "№{rank} - {n}&nbsp;предложения - {percentage}%"
 msgstr[2] "№{rank} — {n}&nbsp;предложений — {percentage}%"
+msgstr[3] "№{rank} — {n}&nbsp;предложений — {percentage}%"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L36
 msgid "One visitor online"
@@ -1382,6 +1386,7 @@ msgid_plural "{n}&nbsp;visitors online"
 msgstr[0] "{n}&nbsp;посетитель онлайн"
 msgstr[1] "{n}&nbsp;посетителя онлайн"
 msgstr[2] "{n}&nbsp;посетителей онлайн"
+msgstr[3] "{n}&nbsp;посетителей онлайн"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L42
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/terms_of_use.ctp#L28
@@ -1632,6 +1637,7 @@ msgid_plural "{n}&nbsp;sentences"
 msgstr[0] "{n}&nbsp;предложение"
 msgstr[1] "{n}&nbsp;предложения"
 msgstr[2] "{n}&nbsp;предложений"
+msgstr[3] "{n}&nbsp;предложений"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences_statistics.ctp#L60
 msgid "show all languages"
@@ -1935,6 +1941,7 @@ msgid_plural "{n}&nbsp;days ago"
 msgstr[0] "{n}&nbsp;день назад"
 msgstr[1] "{n}&nbsp;дня назад"
 msgstr[2] "{n}&nbsp;дней назад"
+msgstr[3] "{n}&nbsp;дней назад"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L77
 msgid "an hour ago"
@@ -1942,6 +1949,7 @@ msgid_plural "{n}&nbsp;hours ago"
 msgstr[0] "{n}&nbsp;час назад"
 msgstr[1] "{n}&nbsp;часа назад"
 msgstr[2] "{n}&nbsp;часов назад"
+msgstr[3] "{n}&nbsp;часов назад"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L79
 msgid "a minute ago"
@@ -1949,6 +1957,7 @@ msgid_plural "{n}&nbsp;minutes ago"
 msgstr[0] "{n}&nbsp;минута назад"
 msgstr[1] "{n}&nbsp;минуты назад"
 msgstr[2] "{n}&nbsp;минут назад"
+msgstr[3] "{n}&nbsp;минут назад"
 
 #. @translators: this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
@@ -2302,6 +2311,7 @@ msgid_plural "{title} ({n}&nbsp;results)"
 msgstr[0] "{title} ({n}&nbsp;результат)"
 msgstr[1] "{title} ({n}&nbsp;результата)"
 msgstr[2] "{title} ({n}&nbsp;результатов)"
+msgstr[3] "{title} ({n}&nbsp;результатов)"
 
 #. @translators: this formats the title at the top of the search
 #. page by appending the number of results. Tatoeba is only able
@@ -2314,6 +2324,7 @@ msgid_plural "{title} ({thousand}&nbsp;results out of {n}&nbsp;occurrences)"
 msgstr[0] "{title} ({thousand}&nbsp;результатов из {n}&nbsp;вхождения)"
 msgstr[1] "{title} ({thousand}&nbsp;результатов из {n}&nbsp;вхождений)"
 msgstr[2] "{title} ({thousand}&nbsp;результатов из {n}&nbsp;вхождений)"
+msgstr[3] "{title} ({thousand}&nbsp;результатов из {n}&nbsp;вхождений)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/pagination.php#L103
 msgid "First page"
@@ -2388,7 +2399,8 @@ msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
 msgstr[0] "Показать ещё один перевод"
 msgstr[1] "Показать ещё {number} перевода"
-msgstr[2] "Показать ещё {number} переводов"
+msgstr[2] ""
+msgstr[3] "Показать ещё {number} переводов"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L205
 msgid "Less translations"
@@ -2874,7 +2886,7 @@ msgstr "Уровень владения языками"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L409
 msgid ""
 "Indicates the self-reported skill levels of members in individual languages."
-msgstr "Показывает уровни владения языками, указанные пользователями."
+msgstr "Содержит данные об уровнях владения языками, указанными пользователями в профилях."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L417
 msgid "General information about the files"
@@ -3218,6 +3230,7 @@ msgid_plural "{folderName} ({n}&nbsp;messages)"
 msgstr[0] "{folderName} ({n}&nbsp;сообщение)"
 msgstr[1] "{folderName} ({n}&nbsp;сообщения)"
 msgstr[2] "{folderName} ({n}&nbsp;сообщений)"
+msgstr[3] "{folderName} ({n}&nbsp;сообщений)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L77
 msgid "from {sender}"
@@ -3248,6 +3261,7 @@ msgid_plural "You have sent {n}&nbsp;messages today."
 msgstr[0] "Сегодня вы отправили {n}&nbsp;сообщение."
 msgstr[1] "Сегодня вы отправили {n}&nbsp;сообщения."
 msgstr[2] "Сегодня вы отправили {n}&nbsp;сообщений."
+msgstr[3] "Сегодня вы отправили {n}&nbsp;сообщений."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/write.ctp#L56
 msgid ""
@@ -3623,6 +3637,7 @@ msgid_plural "{n}&nbsp;strokes"
 msgstr[0] "1 штрих"
 msgstr[1] "{n}&nbsp;штриха"
 msgstr[2] "{n}&nbsp;штрихов"
+msgstr[3] "{n}&nbsp;штрихов"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L67
 msgid "Explode a character"
@@ -4253,14 +4268,16 @@ msgid "{total} member"
 msgid_plural "{total} members"
 msgstr[0] "1 участник"
 msgstr[1] "{total} участника"
-msgstr[2] "{total} участников"
+msgstr[2] ""
+msgstr[3] "{total} участников"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L81
 msgid "{lang} ({total} member)"
 msgid_plural "{lang} ({total} members)"
 msgstr[0] "{lang} (один участник)"
 msgstr[1] "{lang} ({total} участника)"
-msgstr[2] "{lang} ({total} участников)"
+msgstr[2] ""
+msgstr[3] "{lang} ({total} участников)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L41
@@ -4387,6 +4404,7 @@ msgid_plural "Wall ({n}&nbsp;threads)"
 msgstr[0] "Стена ({n}&nbsp;дискуссия)"
 msgstr[1] "Стена ({n}&nbsp;дискуссии)"
 msgstr[2] "Стена ({n}&nbsp;дискуссий)"
+msgstr[3] "Стена ({n}&nbsp;дискуссий)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/messages_of_user.ctp#L29
 msgid "{user}'s Wall messages"
