@@ -175,10 +175,15 @@ class MembersHelper extends AppHelper
     public function displayLanguageLevel($level)
     {
         $maxLanguageLevel = 5;
-        $result = '<div class="languageLevel">';
-        for ($i = 0; $i < $level; $i++) {
-            $opacity = 0.5 + 0.5 * ($i / $maxLanguageLevel);
-            $result .= '<div class="level" style="opacity: '.$opacity.'"></div>';
+        if (isset($level)) {
+            $result = '<div class="languageLevel">';
+            for ($i = 0; $i < $level; $i++) {
+                $opacity = 0.5 + 0.5 * ($i / $maxLanguageLevel);
+                $result .= '<div class="level" style="opacity: '.$opacity.'"></div>';
+            }
+        } else {
+            $result = '<div class="languageLevel unknown">';
+            $result .= '?';
         }
         $result .= '</div>';
 

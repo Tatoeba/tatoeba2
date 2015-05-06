@@ -345,7 +345,7 @@
  *   want to have the transcriptions displayed.
  */
     Configure::write('Search.enabled', false);
-    Configure::write('AutoTranscriptions.enabled', true);
+    Configure::write('AutoTranscriptions.enabled', false);
     
 /**
  * Stylesheet for development website

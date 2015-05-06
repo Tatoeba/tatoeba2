@@ -86,7 +86,8 @@ if (empty($this->data)) {
             ),
             array(
                 'legend' => __('What is your level?', true),
-                'separator' => '<br/>'
+                'separator' => '<br/>',
+                'value' => 0
             )
         );
 

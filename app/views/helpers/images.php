@@ -56,7 +56,7 @@ class ImagesHelper extends AppHelper
             }
         }
 
-        $imgPath = '/img/' . $imageName . '.svg';
+        $imgPath = $this->assetTimestamp('/img/' . $imageName . '.svg');
         if (empty($id)) {
             $id = $imageName;
         }

@@ -1603,6 +1603,11 @@ div.hideLink {
     border: 1px solid #ddd;
 }
 
+.usersLanguages .languageLevel.unknown {
+    text-align: center;
+    background: #F1F1F1;
+}
+
 .usersLanguages .languageLevel .level {
     background: #06A;
     width: 20px;

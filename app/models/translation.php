@@ -42,7 +42,24 @@ class Translation extends AppModel
 
     public function find($sentenceId, $languages)
     {
-        return $this->_getTranslationsOf($sentenceId, $languages);
+        $translations = $this->_getTranslationsOf($sentenceId, $languages);
+
+        $orderedTranslations = array(
+            'Translation' => array(),
+            'IndirectTranslation' => array()
+        );
+        $map = array(
+            '0' => 'Translation',
+            '1' => 'IndirectTranslation',
+        );
+        foreach ($translations as $record) {
+            $distance = $record['AllTranslations']['type'];
+            $orderedTranslations[ $map[$distance] ][] = array(
+                'Translation' => $record['Translation']
+            );
+        };
+
+        return $orderedTranslations;
     }
 
 
@@ -56,96 +73,83 @@ class Translation extends AppModel
      */
     private function _getTranslationsOf($id, $langs)
     {
-        if (empty($langs)) {
-            $langConditions = "";
-        } else {
-            $langs = "'".implode("','",$langs)."'";
-            $langConditions = "AND p2.lang IN ($langs)";
-        }
-
-        // DA ultimate Query
-        $direcTranslationsQuery = "
-            SELECT
-              p2.text AS translation_text,
-              p2.hasaudio AS hasaudio,
-              p2.id   AS translation_id,
-              p2.lang AS translation_lang,
-              p2.user_id AS translation_user_id,
-              p2.correctness AS correctness,
-              'Translation' as distance
-            FROM sentences_translations AS t
-              LEFT  JOIN sentences AS p2 ON t.translation_id = p2.id
-            WHERE
-                t.sentence_id IN ($id) $langConditions
-        ";
-
-        // query use to retrieve sentence which are already direct
-        // translations
-        $subQuery = "
-            SELECT sentences_translations.translation_id
-            FROM sentences_translations
-            WHERE sentences_translations.sentence_id IN ( $id )
-        ";
-
-        $indirectTranslationQuery = "
-         SELECT
-              p2.text AS translation_text,
-              p2.hasaudio AS hasaudio,
-              p2.id   AS translation_id,
-              p2.lang AS translation_lang,
-              p2.user_id AS translation_user_id,
-              p2.correctness AS correctness,
-              'IndirectTranslation'  as distance
-            FROM sentences_translations AS t
-                LEFT JOIN sentences_translations AS t2
-                    ON t2.sentence_id = t.translation_id
-                LEFT JOIN sentences AS p2
-                    ON t2.translation_id = p2.id
-            WHERE
-                t.sentence_id != p2.id
-                AND p2.id NOT IN ( $subQuery )
-                AND t.sentence_id IN ( $id )
-                $langConditions
-            ORDER BY 4
-        ";
-
-        $query = "
-            $direcTranslationsQuery
-            UNION
-            $indirectTranslationQuery
-        ";
-
-        $results = $this->query($query);
-
-        $orderedResults = array(
-            "Translation" => array(),
-            "IndirectTranslation" => array()
+        /**
+         * This query is constructed with a subquery, which finds the
+         * translations ids and report the type (direct or indirect).
+         * Then, we’re join()'ing with this subquery in order to get
+         * all the sentences with these ids, along with the type.
+         * In SQL terms, it looks like this:
+         *
+         *   SELECT AllTranslations.type, Translation.*
+         *   FROM
+         *     sentences AS Translation,
+         *     (
+         *       SELECT IF(Link.sentence_id = IndirectLink.translation_id,
+         *                IndirectLink.sentence_id, IndirectLink.translation_id)
+         *                AS translation_id,
+         *              MIN(Link.sentence_id <> IndirectLink.translation_id)
+         *                AS 'type'
+         *       FROM sentences_translations AS Link
+         *       INNER JOIN sentences_translations AS IndirectLink
+         *             ON (Link.translation_id = IndirectLink.sentence_id)
+         *       WHERE Link.sentence_id = $id
+         *       GROUP BY translation_id
+         *     ) AS AllTranslations
+         *   WHERE Translation.id = AllTranslations.translation_id
+         *   ORDER BY Translation.lang;
+         */
+        $dbo = $this->getDataSource();
+        $subQuery = $dbo->buildStatement(
+            array(
+                'fields' => array(
+                    "IF(Link.sentence_id = IndirectLink.translation_id, "
+                        ."IndirectLink.sentence_id, "
+                        ."IndirectLink.translation_id) "
+                        ."AS translation_id",
+                    "MIN(Link.sentence_id <> IndirectLink.translation_id) "
+                        ."AS 'type'",
+                ),
+                'table' => 'sentences_translations',
+                'alias' => 'Link',
+                'limit' => null,
+                'offset' => null,
+                'joins' => array(array(
+                    'table' => 'sentences_translations',
+                    'alias' => 'IndirectLink',
+                    'type' => 'inner',
+                    'conditions' => array(
+                        'Link.translation_id = IndirectLink.sentence_id'
+                    ),
+                )),
+                'conditions' => array('Link.sentence_id' => $id),
+                'order' => null,
+                'group' => 'translation_id',
+            ),
+            $this
         );
-        foreach ($results as $result) {
-            $result = $result[0] ;
-            if ($result['translation_id']) { // need to check this because
-                // for sentences without translations it would otherwise
-                // return an empty translation array.
 
-                $translation = array(
-                    'Translation' => array(
-                        'id' => $result['translation_id'],
-                        'text' => $result['translation_text'],
-                        'user_id' => $result['translation_user_id'],
-                        'lang' => $result['translation_lang'],
-                        'hasaudio' => $result['hasaudio'],
-                        'correctness' => $result['correctness']
-                    )
-                );
-
-                array_push(
-                    $orderedResults[$result['distance']],
-                    $translation
-                );
-            }
-        }
-
-        return $orderedResults;
+        $conditions = $langs ? array('Translation.lang' => $langs) : array();
+        return parent::find('all', array(
+            'joins' => array(
+                array(
+                    'table' => "($subQuery)",
+                    'alias' => 'AllTranslations',
+                    'conditions' => array('Translation.id = AllTranslations.translation_id'),
+                )
+            ),
+            'conditions' => $conditions,
+            'fields' => array(
+                'AllTranslations.type',
+                'Translation.id',
+                'Translation.text',
+                'Translation.user_id',
+                'Translation.lang',
+                'Translation.hasaudio',
+                'Translation.correctness',
+            ),
+            'order' => array('Translation.lang'),
+            'contain' => array(),
+        ));
     }
 }
 ?>
