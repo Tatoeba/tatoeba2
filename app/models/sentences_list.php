@@ -129,22 +129,26 @@ class SentencesList extends AppModel
      *
      * @return array
      */
-    public function getPublicListsNotFromUser($userId)
+    public function getPaginatedLists($search = null, $username = null)
     {
-        return $this->find(
-            "all",
-            array(
-                "conditions" => array(
-                    "SentencesList.user_id !=" => $userId,
-                    "SentencesList.is_public" => 1
-                ),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('username')
-                    )
-                ),
-                'order' => 'name'
-            )
+        $conditions = null;
+        if (!empty($search)) {
+            $conditions['SentencesList.name LIKE'] = "%$search%";
+        }
+        if (!empty($username)) {
+            $userId = $this->User->getIdFromUsername($username);
+            $conditions['SentencesList.user_id'] = $userId;
+        }
+
+        return array(
+            'conditions' => $conditions,
+            'contain' => array(
+                'User' => array(
+                    'fields' => array('username')
+                )
+            ),
+            'order' => 'created',
+            'limit' => 20
         );
     }
 
@@ -318,28 +322,28 @@ class SentencesList extends AppModel
     /**
      * get all the list of a given user
      *
-     * @param int $userId Id of the user
+     * @param int $username Username of the user
      *
      * @return array
      */
-    public function getUserLists($userId)
+    public function getPaginatedUserLists($username)
     {
-        $myLists = $this->find(
-            'all',
-            array(
-                'conditions' => array(
-                    "SentencesList.user_id =" => $userId,
-                ),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('username')
-                    )
-                ),
-                'order' => 'name'
-            )
+        $userId = $this->User->getIdFromUsername($username);
+
+        $paginate = array(
+            'conditions' => array(
+                "SentencesList.user_id" => $userId,
+            ),
+            'contain' => array(
+                'User' => array(
+                    'fields' => array('username')
+                )
+            ),
+            'order' => 'name',
+            'limit' => 20
         );
 
-        return $myLists;
+        return $paginate;
 
     }
 

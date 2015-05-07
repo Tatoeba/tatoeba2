@@ -79,29 +79,12 @@ class SentencesListsController extends AppController
      * 
      * @return void
      */
-    public function index()
+    public function index($search = null)
     {
-        $currentUserId =  $this->Auth->user('id');
-        // user's lists
-        if ($currentUserId) {
-            $myLists = $this->SentencesList->getUserLists(
-                $currentUserId
-            );
-
-            $this->set('myLists', $myLists);
-        }
-
-        // public lists
-        $publicLists = $this->SentencesList->getPublicListsNotFromUser(
-            $currentUserId
-        );
-        $this->set('publicLists', $publicLists);
-
-        // all the other lists
-        $otherLists = $this->SentencesList->getNonEditableListsForUser(
-            $currentUserId
-        );
-        $this->set('otherLists', $otherLists);
+        $this->paginate = $this->SentencesList->getPaginatedLists($search);
+        $allLists = $this->paginate();
+        $this->set('allLists', $allLists);
+        $this->set('search', $search);
     }
 
 
@@ -510,6 +493,34 @@ class SentencesListsController extends AppController
         $this->set("fieldsList", $fieldsList);
         $this->set("translationsLang", $translationsLang);
         $this->set("sentencesWithTranslation", $results);
+    }
+
+
+    public function search()
+    {
+        $search = $this->data['SentencesList']['search'];
+
+        if (isset($this->data['SentencesList']['username'])) {
+            $username = $this->data['SentencesList']['username'];
+            $this->redirect(
+                array(
+                    'controller' => 'sentences_lists',
+                    'action' => 'of_user',
+                    $username,
+                    $search
+                )
+            );
+        } else {
+            $this->redirect(
+                array(
+                    'controller' => 'sentences_lists',
+                    'action' => 'index',
+                    $search
+                )
+            );
+        }
+
+
     }
 }
 ?>

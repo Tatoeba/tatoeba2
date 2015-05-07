@@ -25,122 +25,54 @@
  * @link     http://tatoeba.org
  */
 
-$this->set('title_for_layout', $pages->formatTitle(__('Lists of sentences', true)));
+$total = $paginator->counter("%count%");
+$title = format(
+    __n('1 list of sentences', '{total} lists of sentences', $total, true),
+    array('total' => $total)
+);
+$this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
-<div id="annexe_content" >
-<?php
-if ($session->read('Auth.User.id')) {
-    
-    ?>
+<div id="annexe_content">
     <div class="module">
-    <h2><?php __('Create a new list'); ?></h2>
-    <?php
-    echo $form->create(
-        'SentencesList',
-        array(
-            "action" => "add",
-            "type" => "post",
-        )
-    );
-    echo $form->input(
-        'name',
-        array(
-            'type' => 'text',
-            'label' => __p('list', 'Name', true)
-        )
-    );
-    echo $form->end(__('create', true));
-    ?>
+        <?php
+        echo $html->tag('h2', __('Search lists', true));
+        echo $form->create(array('action' => 'search'));
+        echo $form->input(
+            'search',
+            array(
+                'value' => $search,
+                'label' => false
+            )
+        );
+        echo $form->submit(__('Search', true));
+        echo $form->end();
+
+        echo '<p>';
+        echo $html->link(
+            __('Show all lists', true),
+            array(
+                'controller' => 'sentences_lists',
+                'action' => 'index'
+            )
+        );
+        echo '</p>';
+        ?>
     </div>
-    <?php
-
-} else {
-    ?>
-        <div class="module">
-            <h2><?php __('About the lists'); ?></h2>
-            <p>
-                <?php
-                __(
-                    'Lists make it possible to gather and organize '.
-                    'sentences in Tatoeba.'
-                );
-                ?>
-            </p>
-            <p>
-                <?php
-                __(
-                    'You can create all kinds of lists! "Preparation for summer '.
-                    'trip to Mexico", "English test #4", "My favorite geek '.
-                    'quotes"...'
-                );
-                ?>
-            </p>
-        </div>
-
-        <div class="module">
-            <h2><?php __('Registration needed'); ?></h2>
-            <p><?php __('You can create lists only if you are registered.'); ?></p>
-
-            <p>
-            <?php
-            echo $html->link(
-                __('Register', true),
-                array("controller" => "users", "action" => "register"),
-                array("class" => "registerLink")
-            );
-            ?>
-            </p>
-
-            <p><?php __('If you are already registered, please log in.'); ?></p>
-        </div>
-<?php
-}
-?>
-
-
 </div>
 
 <div id="main_content">
 
 <?php
-if (isset($myLists) && count($myLists) > 0) {
-
-    // Lists of the user
+if (count($allLists) > 0) {
     echo '<div class="module">';
-        echo '<h2>';
-        echo __('My lists');
-        echo '</h2>';
 
-        $javascript->link(JS_PATH . 'sentences_lists.edit_name.js', false);
-        $javascript->link(JS_PATH . 'jquery.jeditable.js', false);
+    echo $html->tag('h2', $title);
 
-        $lists->displayListTable($myLists);
-    echo '</div>';
+    $pagination->display();
+    $lists->displayListTable($allLists);
+    $pagination->display();
     
-}
-
-// The public lists
-if (count($publicLists) > 0) {
-    echo '<div class="module">';
-        echo '<h2>';
-        echo __('Collaborative lists');
-        echo '</h2>';
-        
-        $lists->displayListTable($publicLists);
-    
-    echo '</div>';
-}
-
-// All the lists
-if (count($otherLists) > 0) {
-    echo '<div class="module">';
-        echo '<h2>';
-        echo __('Other personal lists');
-        echo '</h2>';
-            
-        $lists->displayListTable($otherLists);
-
     echo '</div>';
 }
 ?>
