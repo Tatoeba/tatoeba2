@@ -237,7 +237,7 @@ $menuElements = array(
                 <?php
                 if (!empty($data['sub-menu'])) {
                     $title .= $html->image(
-                        IMG_PATH . 'arrow_down.png',
+                        IMG_PATH . 'arrow_down.svg',
                         array(
                             "height" => 12,
                             "width" => 12
