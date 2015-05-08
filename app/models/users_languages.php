@@ -159,27 +159,25 @@ class UsersLanguages extends AppModel
 
     public function getUsersForLanguage($lang)
     {
-        $result = $this->find(
-            'all',
-            array(
-                'conditions' => array(
-                    'language_code' => $lang
-                ),
-                'fields' => array(
-                    'of_user_id',
-                    'level',
-                ),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array(
-                            'id',
-                            'username',
-                            'image'
-                        )
+        $result = array(
+            'conditions' => array(
+                'language_code' => $lang
+            ),
+            'fields' => array(
+                'of_user_id',
+                'level',
+            ),
+            'contain' => array(
+                'User' => array(
+                    'fields' => array(
+                        'id',
+                        'username',
+                        'image'
                     )
-                ),
-                'order' => 'UsersLanguages.level DESC'
-            )
+                )
+            ),
+            'order' => 'UsersLanguages.level DESC',
+            'limit' => 30
         );
 
         return $result;

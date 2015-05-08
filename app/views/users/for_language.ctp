@@ -89,7 +89,7 @@
 <div id="main_content">
     <div class="module">
         <?php
-        $total = count($users);
+        $total = $paginator->counter("%count%");
         $title = format(
             __n('{lang} ({total} member)', '{lang} ({total} members)', $total, true),
             array('lang' => $languages->codeToNameAlone($lang), 'total' => $total)
@@ -98,6 +98,8 @@
         <h2><?php echo $title; ?></h2>
         <div class="usersLanguages">
         <?php
+        $pagination->display();
+
         foreach($users as $user) {
             $username = $user['User']['username'];
             $userImage = $user['User']['image'];
@@ -120,6 +122,8 @@
             echo '</div>';
             echo '</div>';
         }
+
+        $pagination->display();
         ?>
         </div>
     </div>

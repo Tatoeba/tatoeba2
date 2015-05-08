@@ -576,8 +576,8 @@ class UsersController extends AppController
             $lang = $usersLanguages[0]['UsersLanguages']['language_code'];
         }
 
-        $users = $this->UsersLanguages->getUsersForLanguage($lang);
-
+        $this->paginate = $this->UsersLanguages->getUsersForLanguage($lang);
+        $users = $this->paginate('UsersLanguages');
 
         $this->set('users', $users);
         $this->set('usersLanguages', $usersLanguages);
