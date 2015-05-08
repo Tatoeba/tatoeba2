@@ -38,7 +38,6 @@ class UsersLanguagesController extends AppController
 {
     public $uses = array('User', 'UsersLanguages');
 
-
     public function save()
     {
         $userId = $this->data['UsersLanguages']['of_user_id'];
@@ -57,6 +56,9 @@ class UsersLanguagesController extends AppController
             $language = $this->filterKeys($this->data['UsersLanguages'], $allowedFields);
             $language['of_user_id'] = CurrentUser::get('id');
             $language['by_user_id'] = CurrentUser::get('id');
+            if ($language['level'] < 0) {
+                $language['level'] = null;
+            }
             $this->UsersLanguages->save($language);
         } else {
             $this->Session->setFlash(__('You cannot edit this language.', true));

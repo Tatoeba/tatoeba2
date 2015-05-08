@@ -72,6 +72,10 @@ if (empty($this->data)) {
             echo $languages->codeToNameAlone($languageCode);
         }
 
+        $selected = -1;
+        if (isset($this->data['UsersLanguages']['level'])) {
+            $selected = $this->data['UsersLanguages']['level'];
+        }
 
         // Level
         echo $form->radio(
@@ -80,7 +84,7 @@ if (empty($this->data)) {
             array(
                 'legend' => __('What is your level?', true),
                 'separator' => '<br/>',
-                'value' => 0
+                'value' => $selected
             )
         );
 
