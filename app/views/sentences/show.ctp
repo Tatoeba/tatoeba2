@@ -116,25 +116,6 @@ $navigation->displaySentenceNavigation(
         }
         ?>
     </div>
-
-    <div class="module">
-        <h2><?php __('Report mistakes'); ?> </h2>
-        <p>
-            <?php
-            __('Do not hesitate to post a comment if you see a mistake!');
-            ?>
-        </p>
-        <p>
-            <?php
-            __(
-                'NOTE: If the sentence does not belong to anyone and you know how '.
-                'to correct the mistake, feel free to correct it without posting '.
-                'any comment. You will have to adopt the sentence '.
-                'before you can edit it.'
-            );
-            ?>
-        </p>
-    </div>
 </div>
 
 <div id="main_content">
@@ -177,61 +158,48 @@ $navigation->displaySentenceNavigation(
         ?>
     </div>
 
-    <?php 
-    if ($canComment || !empty($sentenceComments)) { 
-        echo '<div class="module">';
+    <?php
+    echo '<div class="module">';
 
-        echo '<h2>';
-        __('Comments');
-        echo '</h2>';
-        
-        if (!empty($sentenceComments)) {
-            echo '<div class="comments">';
-            foreach ($sentenceComments as $i=>$comment) {
-                $commentId = $comment['SentenceComment']['id'];
-                $menu = $comments->getMenuForComment(
-                    $comment['SentenceComment'],
-                    $comment['User'],
-                    $commentsPermissions[$i]
-                );
-                
-                echo '<a id="comment-'.$commentId.'"></a>';
-                
-                $messages->displayMessage(
-                    $comment['SentenceComment'],
-                    $comment['User'],
-                    null,
-                    $menu
-                );
-            }
-            echo '</div>';
-        } else {
-            echo '<em>' . __('There are no comments for now.', true) .'</em>';
-        }
+    echo '<h2>';
+    __('Comments');
+    echo '</h2>';
 
-        if ($session->read('Auth.User.id')) {
-            if(!isset($sentence['Sentence'])) {
-                $sentenceText = __('Sentence deleted', true);
-            }
-            $comments->displayCommentForm(
-                $sentenceId, 
-                $sentenceText
+    if (!empty($sentenceComments)) {
+        echo '<div class="comments">';
+        foreach ($sentenceComments as $i=>$comment) {
+            $commentId = $comment['SentenceComment']['id'];
+            $menu = $comments->getMenuForComment(
+                $comment['SentenceComment'],
+                $comment['User'],
+                $commentsPermissions[$i]
             );
-        } else {
-            echo '<p>';
-            echo format(
-                __(
-                    'You need to be logged in to add a comment. If you are '.
-                    'not registered, you can <a href="{}">register here</a>.', 
-                    true
-                ),
-                $html->url(array("controller"=>"users", "action"=>"register"))
+
+            echo '<a id="comment-'.$commentId.'"></a>';
+
+            $messages->displayMessage(
+                $comment['SentenceComment'],
+                $comment['User'],
+                null,
+                $menu
             );
-            echo '</p>';
         }
-        
         echo '</div>';
-    } 
+    } else {
+        echo '<em>' . __('There are no comments for now.', true) .'</em>';
+    }
+
+    if ($canComment) {
+        if(!isset($sentence['Sentence'])) {
+            $sentenceText = __('Sentence deleted', true);
+        }
+        $comments->displayCommentForm(
+            $sentenceId,
+            $sentenceText
+        );
+    }
+
+    echo '</div>';
     ?>
 </div>
 
