@@ -1,0 +1,32 @@
+
+/*
+ * My lists, public lists, other's private lists
+ */
+.listSummary td {
+    padding: 5px;
+    border-top: 1px dotted #DDD;
+}
+
+.count {
+    color: #777;
+    background: #E5E5E5;
+    float: right;
+    padding: 10px 0;
+    min-width: 45px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.nameAndCreator {
+    width: 70%;
+}
+
+.name {
+    font-size: 1.2em;
+}
+
+.creator {
+    padding: 3px 10px;
+    font-style: italic;
+    color: #444;
+}

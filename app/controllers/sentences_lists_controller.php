@@ -69,6 +69,7 @@ class SentencesListsController extends AppController
             'export_to_csv',
             'of_user',
             'download',
+            'search'
         );
     }
 
@@ -344,18 +345,21 @@ class SentencesListsController extends AppController
 
     /**
      * Displays the lists of a specific user.
-     * TODO There's no view for this...
      *
-     * @param int $userId Id of user we want lists of.
+     * @param int $username Username of of the user we want lists of.
      *
      * @return void
      */
-    public function of_user($userId)
+    public function of_user($username, $search = null)
     {
-        $userId = Sanitize::paranoid($userId);
+        $username = Sanitize::paranoid($username);
 
-        $lists = $this->SentencesList->getUserLists($userId);
-        $this->set('lists', $lists);
+        $this->paginate = $this->SentencesList->getPaginatedLists($search, $username);
+        $userLists = $this->paginate('SentencesList');
+
+        $this->set('userLists', $userLists);
+        $this->set('username', $username);
+        $this->set('search', $search);
     }
 
     /**

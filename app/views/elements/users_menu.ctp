@@ -55,6 +55,19 @@
     );
     ?>
     </li>
+
+    <li class="item">
+    <?php
+    echo $html->link(
+        __('Lists', true),
+        array(
+            'controller' => 'sentences_lists',
+            'action' => 'of_user',
+            $username
+        )
+    );
+    ?>
+    </li>
     
     <li class="item">
     <?php
