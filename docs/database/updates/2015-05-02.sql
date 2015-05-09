@@ -7,7 +7,6 @@ CREATE TABLE `transcriptions` (
      original (1500) using the [kanji|reading] format + tokenization spaces.
      So that’s about 5000, and I double it because I suck at estimating. */
   `text` varbinary(10000) NOT NULL,
-  `dirty` BOOLEAN NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,

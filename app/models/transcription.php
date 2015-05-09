@@ -98,11 +98,6 @@ class Transcription extends AppModel
                 'on' => 'update',
             ),
         ),
-        'dirty' => array(
-            'rule' => 'boolean',
-            'required' => true,
-            'on' => 'create',
-        ),
         'user_id' => array(
             'rule' => 'numeric',
             'allowEmpty' => true,
@@ -353,7 +348,6 @@ class Transcription extends AppModel
                 'parent_id' => null,
                 'script' => $targetScript,
                 'text' => $transcrText,
-                'dirty' => false,
                 'readonly' => $readonly,
                 'user_id' => null,
             );

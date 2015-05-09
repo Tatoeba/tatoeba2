@@ -49,7 +49,6 @@ class TranscriptionsController extends AppController
                     'sentence_id' => $sentenceId,
                     'script' => $script,
                     'text' => $transcriptionText,
-                    'dirty' => false,
                     'user_id' => $userId,
                 ));
             }
@@ -58,7 +57,6 @@ class TranscriptionsController extends AppController
                 'text' => $transcriptionText,
                 'sentence_id' => $sentenceId,
                 'script' => $script,
-                'dirty' => false,
                 'user_id' => $userId,
             ));
         }

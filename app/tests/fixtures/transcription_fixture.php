@@ -9,7 +9,6 @@ class TranscriptionFixture extends CakeTestFixture {
 		'parent_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 		'script' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'text' => array('type' => 'text', 'null' => false, 'default' => NULL, 'length' => 10000),
-		'dirty' => array('type' => 'boolean', 'null' => false, 'default' => NULL),
 		'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 		'created' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
 		'modified' => array('type' => 'datetime', 'null' => false, 'default' => NULL),
@@ -24,7 +23,6 @@ class TranscriptionFixture extends CakeTestFixture {
 			'parent_id' => '',
 			'script' => 'Hrkt',
 			'text' => 'その [問題|もんだい] の [根本|こんぽん] [原因|げんいん] は 、 [現代|げんだい] の [世界|せかい] において 、 [賢明|けんめい] な [人々|ひとびと] が [猜疑心|さいぎしん] に [満|み]ちている [一方|いっぽう] で、[愚|おろ]か な [人々|ひとびと] が [自信|じしん] [過剰|かじょう] で ある という こと で ある 。',
-			'dirty' => 0,
 			'user_id' => 0,
 			'created' => '2014-10-18 17:43:32',
 			'modified' => '2014-10-18 17:43:32'
@@ -35,7 +33,6 @@ class TranscriptionFixture extends CakeTestFixture {
 			'parent_id' => 1,
 			'script' => 'Latn',
 			'text' => 'sono mondai no konpon gen\'in wa, gendai no sekai nioite, kenmei na hitobito ga saigishin ni michiteiru ippō de, oroka na hitobito ga jishin kajō de aru toiu koto de aru.',
-			'dirty' => 0,
 			'user_id' => 0,
 			'created' => '2014-10-18 17:43:32',
 			'modified' => '2014-10-18 17:43:32'
@@ -46,7 +43,6 @@ class TranscriptionFixture extends CakeTestFixture {
 			'parent_id' => '',
 			'script' => 'Hrkt',
 			'text' => 'ちょっと [待|ま]って 。',
-			'dirty' => 0,
 			'user_id' => 0,
 			'created' => '2014-10-18 17:43:32',
 			'modified' => '2014-10-18 17:43:32'

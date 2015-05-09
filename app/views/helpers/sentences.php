@@ -718,7 +718,7 @@ class SentencesHelper extends AppHelper
         }
 
         foreach ($transcriptions as $script => $transcr) {
-            if ($transcr['dirty'] && !$isEditable)
+            if (!$isEditable)
                 continue;
             if (isset($transcr['id']) && isset($chained[$transcr['id']])) {
                 $subTranscr = $chained[$transcr['id']];
