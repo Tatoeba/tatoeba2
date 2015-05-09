@@ -121,7 +121,8 @@ class SentencesSentencesLists extends AppModel
             'conditions' => array('sentences_list_id' => $listId),
             'contain' => array(
                 'Sentence' => $sentenceParams
-            )
+            ),
+            'order' => 'created DESC'
         );
     }
 }
