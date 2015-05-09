@@ -21,7 +21,7 @@
  * Add sentence 
  */
 #newSentenceInList {
-    margin-bottom: 40px;
+    margin: 20px 0 40px 0;
 }
 
 #newSentenceInList .submit, #newSentenceInList .input {
@@ -68,10 +68,28 @@
     cursor: pointer;
 }
 
-
-/*
- * Delete list 
- */
 .deleteList a {
     color: #FF2128;
+}
+
+.editable-list-name {
+    display: inline;
+}
+
+.edit-list-name {
+    cursor: pointer;
+    display: inline;
+    margin: 3px 10px;
+}
+
+.edit-list-name-form {
+    display: inline;
+}
+
+.edit-list-name-form input {
+    border: 1px solid #CCCCCC;
+    font-size: inherit;
+    font-weight: inherit;
+    max-width: 400px;
+    max-height: 24px;
 }

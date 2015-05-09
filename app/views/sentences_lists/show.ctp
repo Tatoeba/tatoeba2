@@ -98,8 +98,18 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
     if ($belongsToUser) {
         $javascript->link(JS_PATH . 'jquery.jeditable.js', false);
         $javascript->link(JS_PATH . 'sentences_lists.edit_name.js', false);
-        
-        $class = 'editable editableSentencesListName';
+
+        $class = 'editable-list-name';
+
+        $editImage = $this->Images->svgIcon(
+            'edit',
+            array(
+                'alt'=> __('Edit', true),
+                'title'=> __('Edit name', true),
+                'width' => 16,
+                'height' => 16
+            )
+        );
     }
 
     echo $html->tag('h2', $listName, array(
@@ -111,6 +121,8 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
     ));
 
     if ($belongsToUser) {
+        echo $html->div('edit-list-name', $editImage);
+
         $javascript->link(JS_PATH . 'sentences_lists.remove_sentence_from_list.js', false);
         $lists->displayAddSentenceForm($listId);
     }
