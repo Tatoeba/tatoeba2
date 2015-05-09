@@ -31,9 +31,7 @@ $listOwnerId = $list['SentencesList']['user_id'];
 $isAuthenticated = $session->read('Auth.User.id');
 $isListPublic = ($list['SentencesList']['is_public'] == 1);
 $belongsToUser = $session->read('Auth.User.id') == $listOwnerId;
-$canUserEdit = $isAuthenticated && ($isListPublic || $belongsToUser);
 
- 
 $this->set('title_for_layout', $pages->formatTitle($listName));
 ?>
 
@@ -49,7 +47,7 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
         if ($belongsToUser) {
             $lists->displayRestrictedActions(
                 $listId,
-                'show',
+                'edit',
                 $isListPublic
             );
         }
@@ -73,14 +71,31 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
 
 <div id="main_content">
     <div class="module">
-    
-    <h2 id="l<?php echo $listId; ?>">
-    <?php echo $listName; ?>
-    </h2>
-    
     <?php
+    $class = '';
+    if ($belongsToUser) {
+        $javascript->link(JS_PATH . 'jquery.jeditable.js', false);
+        $javascript->link(JS_PATH . 'sentences_lists.edit_name.js', false);
+        
+        $class = 'editable editableSentencesListName';
+    }
+
+    echo $html->tag('h2', $listName, array(
+        'id'    => "l$listId",
+        'class' => $class,
+        'data-submit'  => __('OK', true),
+        'data-cancel'  => __('Cancel', true),
+        'data-tooltip' => __('Click to edit...', true),
+    ));
+
+    if ($belongsToUser) {
+        $javascript->link(JS_PATH . 'sentences_lists.remove_sentence_from_list.js', false);
+        $lists->displayAddSentenceForm($listId);
+    }
+
     $url = array($listId, $translationsLang);
     $pagination->display($url);
+
     ?>
     
     <div class="sentencesList" id="sentencesList">
@@ -89,10 +104,11 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
         $sentence = $item['Sentence'];
         $translations = array();
         if (!empty($sentence['Translation'])) {
-            $translations = $sentence['Translation'];
+            foreach ($sentence['Translation'] as $value) {
+                $translations[] = array('Translation' => $value);
+            }
         }
-        $canUserEdit = false;
-        $lists->displaySentence($sentence, $translations, $canUserEdit);
+        $lists->displaySentence($sentence, $translations, $belongsToUser);
     }
     ?>
     </div>

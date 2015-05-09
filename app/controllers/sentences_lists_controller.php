@@ -53,6 +53,8 @@ class SentencesListsController extends AppController
     // We want to make sure that people don't download long lists, which can slow down the server.
     // This is an arbitrary but easy to remember value, and most lists are shorter than this.    
     const MAX_COUNT_FOR_DOWNLOAD = 100;
+
+    public $uses = array('SentencesList', 'SentencesSentencesLists');
     
     /**
      * Before filter.
@@ -106,34 +108,23 @@ class SentencesListsController extends AppController
             $this->redirect(array("action"=>"index"));
         }
 
-        $this->_get_sentences_for_list($id, $translationsLang, false, 10);
+        $list = $this->SentencesList->getList($id);
+
+        $this->paginate = $this->SentencesSentencesLists->getPaginatedSentencesInList(
+            $id, $translationsLang, 10
+        );
+        $sentencesInList = $this->paginate('SentencesSentencesLists');
+
+        $thisListCount = $this->params['paging']['SentencesSentencesLists']['count'];
+        $downloadability_info = $this->_get_downloadability_info($thisListCount);
+
+        $this->set('translationsLang', $translationsLang);
+        $this->set('list', $list);
+        $this->set('sentencesInList', $sentencesInList);
+        $this->set('canDownload', $downloadability_info['can_download']);
+        $this->set('downloadMessage', $downloadability_info['message']);
     }
 
-
-    /**
-     * Displays a list for editing purposes.
-     *
-     * @param int    $id               Id of list.
-     * @param string $translationsLang Language of translations.
-     *
-     * @return mixed
-     */
-    public function edit($id = null, $translationsLang = null)
-    {
-        $id = Sanitize::paranoid($id);
-        $translationsLang = Sanitize::paranoid($translationsLang);
-
-        if (!isset($id)) {
-            $this->redirect(array("action"=>"index"));
-        }
-
-        $userId = $this->Auth->user('id');
-        if (!$this->SentencesList->isEditableByCurrentUser($id, $userId)) {
-            $this->redirect(array("action"=>"show", $id));
-        }
-
-        $this->_get_sentences_for_list($id, $translationsLang, true, 10);
-    }
 
     /**
      * Returns array of two elements: a bool (index = 'can_download') indicating 
@@ -180,36 +171,6 @@ class SentencesListsController extends AppController
             );
         } 
         return $ret;
-    }
-
-    /**
-     * Retrieve sentences for a list. Used in show() and edit().
-     *
-     * @param int    $id               Id of the list.
-     * @param string $translationsLang Language of the translations.
-     * @param bool   $isEditable       'true' if the sentences are editable.
-     * @param int    $limit            Number of sentences per page.
-     *
-     * @return void
-     */
-    private function _get_sentences_for_list(
-        $id, $translationsLang, $isEditable, $limit
-    ) {
-        $list = $this->SentencesList->getList($id);
-
-        $this->paginate = $this->SentencesList->paramsForPaginate(
-            $id, $translationsLang, $isEditable, $limit
-        );
-        $sentencesInList = $this->paginate('SentencesSentencesLists');
-        
-        $thisListCount = $this->params['paging']['SentencesSentencesLists']['count'];
-        $downloadability_info = $this->_get_downloadability_info($thisListCount);
-        
-        $this->set('translationsLang', $translationsLang);
-        $this->set('list', $list);
-        $this->set('sentencesInList', $sentencesInList);
-        $this->set('canDownload', $downloadability_info['can_download']);
-        $this->set('downloadMessage', $downloadability_info['message']);
     }
 
 

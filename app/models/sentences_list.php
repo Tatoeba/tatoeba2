@@ -218,55 +218,6 @@ class SentencesList extends AppModel
 
 
     /**
-     * Returns value of $this->paginate, for paginating sentences of a list.
-     *
-     * @param int    $id               Id of the list.
-     * @param string $translationsLang Language of the translations.
-     * @param bool   $isEditable       'true' if the sentences are editable.
-     * @param int    $limit            Number of sentences per page.
-     *
-     * @return array
-     */
-    public function paramsForPaginate($id, $translationsLang, $isEditable, $limit)
-    {
-        $sentenceParams = array(
-            'fields' => array('id', 'text', 'lang', 'hasaudio', 'correctness'),
-        );
-
-        if ($isEditable) {
-            $sentenceParams['User'] = array(
-                "fields" => array("id", "username")
-            );
-        }
-
-        if ($translationsLang != null) {
-            // All
-            $sentenceParams['Translation'] = array(
-                "fields" => array("id", "lang", "text", "correctness"),
-            );
-            // Specific language
-            if ($translationsLang != 'und') {
-                $sentenceParams['Translation']['conditions'] = array(
-                    "lang" => $translationsLang
-                );
-            }
-        }
-
-        $params = array(
-            'SentencesSentencesLists' => array(
-                'limit' => $limit,
-                'conditions' => array('sentences_list_id' => $id),
-                'contain' => array(
-                    'Sentence' => $sentenceParams
-                )
-            )
-        );
-
-        return $params;
-    }
-
-
-    /**
      * Returns true if list belongs to current user OR is collaborative.
      *
      * @param int $listId Id of list.

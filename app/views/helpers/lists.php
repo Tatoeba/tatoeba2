@@ -41,7 +41,8 @@ class ListsHelper extends AppHelper
         'Javascript',
         'Form',
         'Languages',
-        'Sentences'
+        'Sentences',
+        'Date'
     );
 
     /**
@@ -61,7 +62,7 @@ class ListsHelper extends AppHelper
                 $list['SentencesList']['id'],
                 $list['SentencesList']['name'],
                 $list['User']['username'],
-                $list['SentencesList']['is_public'],
+                $list['SentencesList']['created'],
                 $list['SentencesList']['numberOfSentences']
             );
         }
@@ -77,7 +78,7 @@ class ListsHelper extends AppHelper
      * @param int     $listId          Id of the list to display.
      * @param string  $listName        Name of the list.
      * @param string  $listCreatorName Name of the list's creator.
-     * @param boolean $isPublic        If the list is public or not.
+     * @param string  $createdDate     If the list is public or not.
      * @param int     $count           Number of sentences in the list.
      *
      * @return void
@@ -86,19 +87,13 @@ class ListsHelper extends AppHelper
         $listId,
         $listName,
         $listCreatorName,
-        $isPublic,
+        $createdDate,
         $count = 0
     ) {
-        if (!CurrentUser::isMember()){
-            $canEdit = false;
-        } else {
-            $belongsToCurrentUser = (CurrentUser::get('username') == $listCreatorName);
-            $canEdit = $isPublic || $belongsToCurrentUser;
-        }
         ?>
         <tr class="listSummary">
 
-        <td class="nameAndCreator">
+        <td>
             <div class="name">
             <?php
             /* @translators: string used as a placeholder for
@@ -135,36 +130,22 @@ class ListsHelper extends AppHelper
             </div>
         </td>
 
+        <td class="date">
+            <?php
+            echo $this->Html->tag(
+                'span',
+                $this->Date->ago($createdDate),
+                array(
+                    'class' => 'date'
+                )
+            );
+            ?>
+        </td>
+
         <td>
             <div class="count" title="<?php __('Number of sentences') ?>">
                 <?php echo $count; ?>
             </div>
-        </td>
-
-        <td class="options">
-            <span class="optionsContainer">
-            <?php
-            echo $this->Html->link(
-                __('Show', true),
-                array(
-                    "controller" => "sentences_lists",
-                    "action" => "show",
-                    $listId
-                )
-            );
-
-            if ($canEdit) {
-                echo $this->Html->link(
-                    __('Edit', true),
-                    array(
-                        "controller" => "sentences_lists",
-                        "action" => "edit",
-                        $listId
-                    )
-                );
-            }
-            ?>
-            </span>
         </td>
 
         </tr>
@@ -340,27 +321,6 @@ class ListsHelper extends AppHelper
         ?>
         </li>
 
-        <li class="otherAction" >
-        <?php
-        if ($action == "show") {
-            $otherAction = "edit";
-            $otherActionText = __("Edit this list", true);
-        } else {
-            $otherAction = "show";
-            $otherActionText = __("View this list", true);
-        }
-        echo $this->Html->link(
-            $otherActionText,
-            array(
-                "controller"=>"sentences_lists",
-                "action"=>$otherAction,
-                $listId
-            )
-        );
-
-        ?>
-        </li>
-
         <li class="deleteList">
         <?php
         echo $this->Html->link(
@@ -403,29 +363,23 @@ class ListsHelper extends AppHelper
         <div id="sentence<?php echo $sentence['id']; ?>" class="sentenceInList">
 
             <?php
+            // Remove from list button
             if ($canCurrentUserEdit) {
-                // Remove from list button
                 $this->_displayRemoveButton($sentence['id']);
-
-                // Sentences group
-                $user = $sentence['User'];
-                $withAudio = false;
-                $indirectTranslations = array();
-                $this->Sentences->displaySentencesGroup(
-                    $sentence,
-                    $translations,
-                    $user,
-                    $indirectTranslations,
-                    $withAudio
-                );
-            } else {
-                $this->Sentences->displaySimpleSentencesGroup(
-                    $sentence,
-                    $translations
-                );
             }
-            ?>
 
+            // Sentences group
+            $user = $sentence['User'];
+            $withAudio = true;
+            $indirectTranslations = array();
+            $this->Sentences->displaySentencesGroup(
+                $sentence,
+                $translations,
+                $user,
+                $indirectTranslations,
+                $withAudio
+            );
+            ?>
         </div>
         <?php
     }

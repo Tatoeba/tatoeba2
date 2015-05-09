@@ -20,6 +20,10 @@
 /* 
  * Add sentence 
  */
+#newSentenceInList {
+    margin-bottom: 40px;
+}
+
 #newSentenceInList .submit, #newSentenceInList .input {
     display: inline;
 }
@@ -31,8 +35,6 @@
 .sentencesListLoading {
     margin-top: 10px;
     padding-top: 10px;
-    margin-bottom: -10px;
-    border-top: 1px dotted #989898;
 }
 
 
@@ -40,15 +42,36 @@
  * List
  */
 .sentenceInList {
-    padding: 10px 0;
-    border-top: 1px dotted #CCC;
+    margin: 60px 0;
+}
+
+.sentenceInList .removeFromList {
+    float: right;
+    margin: 8px 10px 0px 10px;
 }
 
 .sentencesListActions li {
     margin: 10px 0;
 }
 
+.publicList {
+    color: #4ABC00;
+    font-weight: bold;
+}
+
 .translationInList {
     margin: 5px 0;
     font-size: 0.8em;
+}
+
+.removeFromListButton {
+    cursor: pointer;
+}
+
+
+/*
+ * Delete list 
+ */
+.deleteList a {
+    color: #FF2128;
 }

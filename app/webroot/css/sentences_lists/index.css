@@ -35,18 +35,21 @@
     font-size: 1.2em;
 }
 
-.nameAndCreator {
-    width: 70%;
-}
-
 .name {
     font-size: 1.2em;
+    min-width: 300px;
 }
 
 .creator {
     padding: 3px 10px;
     font-style: italic;
     color: #444;
+}
+
+.date {
+    width: 100px;
+    text-align: center;
+    color: #aaaaaa;
 }
 
 .options {
