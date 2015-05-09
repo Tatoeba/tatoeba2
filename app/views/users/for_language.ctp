@@ -98,7 +98,7 @@
         <h2><?php echo $title; ?></h2>
         <div class="usersLanguages">
         <?php
-        $pagination->display();
+        $pagination->display(array($lang));
 
         foreach($users as $user) {
             $username = $user['User']['username'];
@@ -123,7 +123,7 @@
             echo '</div>';
         }
 
-        $pagination->display();
+        $pagination->display(array($lang));
         ?>
         </div>
     </div>
