@@ -37,7 +37,34 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
 
 <div id="annexe_content">
     <div class="module">
-    <h2><?php __('Actions'); ?></h2>
+        <h2><?php __('Information'); ?></h2>
+        <?php
+        $linkToAuthorProfile = $html->link(
+            $list['User']['username'],
+            array(
+                'controller' => 'user',
+                'action' => 'profile',
+                $list['User']['username']
+            )
+        );
+        $createdBy = format(
+            __('created by {listAuthor}', true),
+            array('listAuthor' => $linkToAuthorProfile)
+        );
+        if ($isListPublic) {
+            $listType = __('Collaborative list', true);
+        } else {
+            $listType = __('Personal list', true);
+        }
+        $createdDate = $date->ago($list['SentencesList']['created']);
+        echo $html->tag('p', $createdBy);
+        echo $html->tag('p', $createdDate);
+        echo $html->tag('p', $listType);
+        ?>
+    </div>
+
+    <div class="module">
+    <h2><?php __('Menu'); ?></h2>
     <ul class="sentencesListActions">
         <?php
         $lists->displayPublicActions(
@@ -53,11 +80,6 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
         }
         ?>
     </ul>
-    </div>
-
-
-    <div class="module">
-    <h2><?php __('Download'); ?></h2>
     <?php
     if ($canDownload) {
         $lists->displayDownloadLink($listId);

@@ -60,7 +60,8 @@ class SentencesList extends AppModel
                     'SentencesList.id',
                     'SentencesList.name',
                     'SentencesList.user_id',
-                    'SentencesList.is_public'
+                    'SentencesList.is_public',
+                    'SentencesList.created'
                 ),
                 'contain' => array(
                     'User' => array(
