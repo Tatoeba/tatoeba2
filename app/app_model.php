@@ -25,7 +25,7 @@ class AppModel extends Model {
      */
     protected function isModifyingFields($fields) {
         foreach ($fields as $field) {
-            if (isset($this->data[$this->alias][$field])) {
+            if (array_key_exists($field, $this->data[$this->alias])) {
                 $conditions = array(
                     $this->primaryKey => $this->data[$this->alias][$this->primaryKey]
                 );
