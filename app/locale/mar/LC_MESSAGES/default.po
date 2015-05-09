@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-08 17:15+0000\n"
-"PO-Revision-Date: 2015-05-08 17:18+0000\n"
-"Last-Translator: Trang Ho\n"
+"PO-Revision-Date: 2015-05-09 15:23+0000\n"
+"Last-Translator: sabretou <sabretou@gmail.com>\n"
 "Language-Team: Marathi (http://www.transifex.com/projects/p/tatoeba_website/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1224,7 +1224,7 @@ msgstr "या भाषेतील वाक्ये:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L113
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/show_all.php#L193
 msgid "Not directly translated into:"
-msgstr "या भाषेत प्रत्यक्ष भाषांतरित नसलेले:"
+msgstr "या भाषेत प्रत्यक्ष भाषांतरित नसलेली:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L130
 msgid "show sentences"
@@ -1739,7 +1739,7 @@ msgstr "भाषेनुसार सदस्यांच्या याद�
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L129
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L28
 msgid "Native speakers"
-msgstr ""
+msgstr "जन्मभाषक"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L38
@@ -1992,7 +1992,7 @@ msgstr "भाषा जोडा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L459
 msgid "Unspecified"
-msgstr ""
+msgstr "अनिर्दिष्ट"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L460
 msgid "0: Almost no knowledge"
@@ -2457,7 +2457,7 @@ msgstr "सर्व टॅग पाहा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L130
 msgid "Added by {username}, {date}"
-msgstr ""
+msgstr "{username} यांनी जोडले, {date}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L262
 msgid "remove tag '{tagName}' from this sentence."
@@ -3529,7 +3529,7 @@ msgstr "वाक्य काढून टाकण्याने ते ह�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L121
 msgid "Click to edit..."
-msgstr ""
+msgstr "संपादित करण्यास क्लिक करा..."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L28
 msgid "Lists of sentences"
@@ -3740,24 +3740,24 @@ msgstr "कोणतेही निकाल नाही. यापेक्�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L43
 msgid "Admins"
-msgstr ""
+msgstr "प्रशासक"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L44
 msgid "Corpus maintainers"
-msgstr ""
+msgstr "लेखनसंभार प्रबंधक"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L45
 msgid "Advanced contributors"
-msgstr ""
+msgstr "प्रगत योगदाता"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L46
 msgid "Contributors"
-msgstr ""
+msgstr "योगदाता"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L60
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L46
 msgid "Total"
-msgstr ""
+msgstr "एकूण"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L28
 msgid "Number of sentences per language"
@@ -4185,7 +4185,7 @@ msgstr "खूप अधिक भाषांतरे असताना भ�
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L100
 msgid ""
 "Restrict languages listed in the search bar to the ones in your profile."
-msgstr ""
+msgstr "शोध पट्टीच्या यादीत केवळ आपल्या प्रोफाइलमध्ये सूचित केलेल्या भाषा दाखवा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L109
 msgid ""
@@ -4237,7 +4237,7 @@ msgstr "सदस्य दर्जा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L46
 msgid "Back to global stats"
-msgstr ""
+msgstr "जागतिक आकडेवारीकडे परता"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L69
 msgid "{total} member"

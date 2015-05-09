@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-08 17:15+0000\n"
-"PO-Revision-Date: 2015-05-08 17:18+0000\n"
-"Last-Translator: Trang Ho\n"
+"PO-Revision-Date: 2015-05-09 20:28+0000\n"
+"Last-Translator: Dmitry K\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/tatoeba_website/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -1378,8 +1378,8 @@ msgstr[3] "Участники, добавившие {n}&nbsp;последних 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/currently_active_members.ctp#L96
 msgid "#{rank} - {n}&nbsp;sentence - {percentage}%"
 msgid_plural "#{rank} - {n}&nbsp;sentences - {percentage}%"
-msgstr[0] "№{rank} - {n}&nbsp;предложение - {percentage}%"
-msgstr[1] "№{rank} - {n}&nbsp;предложения - {percentage}%"
+msgstr[0] "№{rank} — {n}&nbsp;предложение — {percentage}%"
+msgstr[1] "№{rank} — {n}&nbsp;предложения — {percentage}%"
 msgstr[2] "№{rank} — {n}&nbsp;предложений — {percentage}%"
 msgstr[3] "№{rank} — {n}&nbsp;предложений — {percentage}%"
 
@@ -1753,7 +1753,7 @@ msgstr "Участники по языкам"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L129
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L28
 msgid "Native speakers"
-msgstr ""
+msgstr "Носители языка"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L38
@@ -2012,7 +2012,7 @@ msgstr "Добавить язык"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L459
 msgid "Unspecified"
-msgstr ""
+msgstr "Неопределенный"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L460
 msgid "0: Almost no knowledge"
@@ -2483,7 +2483,7 @@ msgstr "Доступные теги"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L130
 msgid "Added by {username}, {date}"
-msgstr ""
+msgstr "Добавлено пользователем {username}, {date}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L262
 msgid "remove tag '{tagName}' from this sentence."
@@ -3559,7 +3559,7 @@ msgstr "Удаление из списка не означает удалени�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L121
 msgid "Click to edit..."
-msgstr ""
+msgstr "Кликните для редактирования..."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L28
 msgid "Lists of sentences"
@@ -3772,24 +3772,24 @@ msgstr "Ничего не найдено, попробуйте уменьшит�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L43
 msgid "Admins"
-msgstr ""
+msgstr "Администраторы"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L44
 msgid "Corpus maintainers"
-msgstr ""
+msgstr "Ответственные за корпус"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L45
 msgid "Advanced contributors"
-msgstr ""
+msgstr "Старшие участники"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L46
 msgid "Contributors"
-msgstr ""
+msgstr "Участники"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L60
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L46
 msgid "Total"
-msgstr ""
+msgstr "Всего"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L28
 msgid "Number of sentences per language"
@@ -4217,7 +4217,7 @@ msgstr "Показывать ссылку для сворачивания/раз
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L100
 msgid ""
 "Restrict languages listed in the search bar to the ones in your profile."
-msgstr ""
+msgstr "Ограничить языки в поле поиска языками, указанными в вашем профиле."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L109
 msgid ""
@@ -4269,22 +4269,22 @@ msgstr "Статус участника"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L46
 msgid "Back to global stats"
-msgstr ""
+msgstr "Вернуться к глобальной статистике"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L69
 msgid "{total} member"
 msgid_plural "{total} members"
-msgstr[0] "1 участник"
+msgstr[0] "{total} участник"
 msgstr[1] "{total} участника"
-msgstr[2] ""
+msgstr[2] "{total} участников"
 msgstr[3] "{total} участников"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L94
 msgid "{lang} ({total} member)"
 msgid_plural "{lang} ({total} members)"
-msgstr[0] "{lang} (один участник)"
+msgstr[0] "{lang} ({total} участник)"
 msgstr[1] "{lang} ({total} участника)"
-msgstr[2] ""
+msgstr[2] "{lang} ({total} участников)"
 msgstr[3] "{lang} ({total} участников)"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/new_password.ctp#L38
