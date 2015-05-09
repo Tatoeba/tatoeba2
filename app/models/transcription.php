@@ -152,7 +152,7 @@ class Transcription extends AppModel
 
     public function beforeSave() {
         if (isset($this->data[$this->alias]['id'])) { // update
-            if ($this->_isModifyingFields(array('sentence_id', 'script')))
+            if ($this->isModifyingFields(array('sentence_id', 'script')))
                 return false;
         } else { // create
             if (   isset($this->data[$this->alias]['sentence_id'])
@@ -161,19 +161,6 @@ class Transcription extends AppModel
             }
         }
         return true;
-    }
-
-    private function _isModifyingFields($fields) {
-        foreach ($fields as $field) {
-            if (isset($this->data[$this->alias][$field])) {
-                $value = $this->field($field,
-                    array('id' => $this->data[$this->alias]['id'])
-                );
-                if ($this->data[$this->alias][$field] != $value)
-                    return true;
-            }
-        }
-        return false;
     }
 
     private function _getFieldFromDataOrDatabase($fieldName) {
