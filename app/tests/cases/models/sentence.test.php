@@ -81,18 +81,84 @@ class SentenceTestCase extends CakeTestCase {
 		);
 	}
 
-	function testSaveAddsTranscriptions() {
-            $result = $this->Sentence->save(array(
-                'text' => '歌舞伎ってご存知ですか？',
-                'lang' => 'jpn'
-            ));
-            $newSentence = $this->Sentence->getLastInsertID();
-            $transcriptions = $this->Sentence->Transcription->find(
-                'count',
-                array('conditions' => array('sentence_id' => $newSentence))
-            );
-            $this->assertEqual(2, $transcriptions);
-        }
+    function testSentenceAdditionAddsTranscriptions() {
+        $result = $this->Sentence->save(array(
+            'text' => '歌舞伎ってご存知ですか？',
+            'lang' => 'jpn'
+        ));
+        $newSentence = $this->Sentence->getLastInsertID();
+        $transcriptions = $this->Sentence->Transcription->find(
+            'count',
+            array('conditions' => array('sentence_id' => $newSentence))
+        );
+        $this->assertEqual(2, $transcriptions);
+    }
+
+	function testSentenceTextEditionRegeneratesTranscriptions() {
+		$jpnSentenceId = 6;
+		$fieldsDiffers = array('text');
+		$conditions = array('sentence_id' => $jpnSentenceId);
+		$transcrBefore = $this->Sentence->Transcription->find(
+			'all', compact('fields', 'conditions')
+		);
+
+		$this->Sentence->save(array(
+			'id' => $jpnSentenceId,
+			'text' => '未来から来ました。',
+		));
+
+		$transcrAfter = $this->Sentence->Transcription->find(
+			'all', compact('fields', 'conditions')
+		);
+		$this->assertEqual(count($transcrBefore), count($transcrAfter));
+		$this->assertNotEqual($transcrBefore, $transcrAfter);
+	}
+
+	function testSentenceFlagEditionGeneratesTranscriptions() {
+		$engSentenceId = 1;
+		$conditions = array('sentence_id' => $engSentenceId);
+
+		$this->Sentence->save(array(
+			'id' => $engSentenceId,
+			'lang' => 'jpn',
+		));
+
+		$nbTranscr = $this->Sentence->Transcription->find(
+			'count', compact('conditions')
+		);
+		$this->assertTrue($nbTranscr > 0);
+	}
+
+	function testSentenceFlagEditionDeletesTranscriptions() {
+		$jpnSentenceId = 6;
+		$conditions = array('sentence_id' => $jpnSentenceId);
+
+		$this->Sentence->save(array(
+			'id' => $jpnSentenceId,
+			'lang' => 'deu',
+		));
+
+		$nbTranscr = $this->Sentence->Transcription->find(
+			'count', compact('conditions')
+		);
+		$this->assertTrue($nbTranscr == 0);
+	}
+
+	function testSentenceUnadoptionDoesntTouchTranscriptions() {
+		$jpnSentenceId = 6;
+		$jpnSentenceOwner = 7;
+		$conditions = array('sentence_id' => $jpnSentenceId);
+		$transcrBefore = $this->Sentence->Transcription->find(
+			'all', compact('conditions')
+		);
+
+		$this->Sentence->unsetOwner($jpnSentenceId, $jpnSentenceOwner);
+
+		$transcrAfter = $this->Sentence->Transcription->find(
+			'all', compact('conditions')
+		);
+		$this->assertEqual($transcrBefore, $transcrAfter);
+	}
 
 	function testGetSentencesLang_returnsLang() {
 		$result = $this->Sentence->getSentencesLang(array(3, 4, 8));
