@@ -35,7 +35,6 @@ class TranscriptableBehavior extends ModelBehavior
                 $this->createTranscriptions($model);
             }
         }
-
     }
 
     private function createTranscriptions($model) {
@@ -44,7 +43,7 @@ class TranscriptableBehavior extends ModelBehavior
     }
 
     private function deleteTranscriptions($model) {
-        $sentenceId = $model->data[$model->alias]['id'];
+        $sentenceId = $model->id;
         $model->Transcription->deleteAll(
             array('Transcription.sentence_id' => $sentenceId),
             false,

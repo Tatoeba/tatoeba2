@@ -102,8 +102,8 @@ class SentenceTestCase extends CakeTestCase {
 			'all', compact('fields', 'conditions')
 		);
 
+		$this->Sentence->id = $jpnSentenceId;
 		$this->Sentence->save(array(
-			'id' => $jpnSentenceId,
 			'text' => '未来から来ました。',
 		));
 
@@ -118,8 +118,8 @@ class SentenceTestCase extends CakeTestCase {
 		$engSentenceId = 1;
 		$conditions = array('sentence_id' => $engSentenceId);
 
+		$this->Sentence->id = $engSentenceId;
 		$this->Sentence->save(array(
-			'id' => $engSentenceId,
 			'lang' => 'jpn',
 		));
 
@@ -133,8 +133,8 @@ class SentenceTestCase extends CakeTestCase {
 		$jpnSentenceId = 6;
 		$conditions = array('sentence_id' => $jpnSentenceId);
 
+		$this->Sentence->id = $jpnSentenceId;
 		$this->Sentence->save(array(
-			'id' => $jpnSentenceId,
 			'lang' => 'deu',
 		));
 
