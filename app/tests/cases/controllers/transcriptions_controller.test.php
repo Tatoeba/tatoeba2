@@ -46,6 +46,7 @@ class TranscriptionsControllerTestCase extends CakeTestCase {
         'app.sentence_comment',
         'app.sentence_annotation',
         'app.sentences_list',
+        'app.sentences_sentences_list',
         'app.tag',
         'app.tags_sentence',
         'app.transcription',
