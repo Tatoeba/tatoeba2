@@ -543,5 +543,83 @@ class ListsHelper extends AppHelper
         </div>
         <?php
     }
+
+
+    public function displaySearchForm($search, $extraHiddenParams = null)
+    {
+        ?>
+        <div class="module">
+            <?php
+            echo $this->Html->tag('h2', __('Search', true));
+
+            echo $this->Form->create();
+
+            if (!empty($extraHiddenParams)) {
+                foreach ($extraHiddenParams as $key => $value) {
+                    echo $this->Form->hidden($key, array('value' => $value));
+                }
+            }
+
+            echo $this->Form->input(
+                'search',
+                array(
+                    'value' => $search,
+                    'label' => false
+                )
+            );
+
+            echo $this->Form->submit(__('Search', true));
+
+            echo $this->Form->end();
+            ?>
+        </div>
+        <?php
+    }
+
+    public function displayListsLinks()
+    {
+        ?>
+        <div class="module">
+            <?php
+            echo $this->Html->tag('h2', __('Lists', true));
+            echo '<ul class="annexeMenu">';
+
+            echo '<li class="item">';
+            echo $this->Html->link(
+                __('All the lists', true),
+                array(
+                    'controller' => 'sentences_lists',
+                    'action' => 'index'
+                )
+            );
+            echo '</li>';
+
+            echo '<li class="item">';
+            echo $this->Html->link(
+                __('Collaborative lists', true),
+                array(
+                    'controller' => 'sentences_lists',
+                    'action' => 'collaborative'
+                )
+            );
+            echo '</li>';
+
+            if (CurrentUser::isMember()) {
+                echo '<li class="item">';
+                echo $this->Html->link(
+                    __('My lists', true),
+                    array(
+                        'controller' => 'sentences_lists',
+                        'action' => 'of_user',
+                        CurrentUser::get('username')
+                    )
+                );
+                echo '</li>';
+            }
+            echo '</ul>';
+            ?>
+        </div>
+        <?php
+    }
 }
 ?>

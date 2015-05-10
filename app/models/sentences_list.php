@@ -130,8 +130,9 @@ class SentencesList extends AppModel
      *
      * @return array
      */
-    public function getPaginatedLists($search = null, $username = null)
-    {
+    public function getPaginatedLists(
+        $search = null, $username = null, $onlyCollaborative = false
+    ) {
         $conditions = null;
         if (!empty($search)) {
             $conditions['SentencesList.name LIKE'] = "%$search%";
@@ -139,6 +140,9 @@ class SentencesList extends AppModel
         if (!empty($username)) {
             $userId = $this->User->getIdFromUsername($username);
             $conditions['SentencesList.user_id'] = $userId;
+        }
+        if ($onlyCollaborative) {
+            $conditions['SentencesList.is_public'] = true;
         }
 
         return array(

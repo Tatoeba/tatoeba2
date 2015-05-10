@@ -25,42 +25,15 @@
  * @link     http://tatoeba.org
  */
 
-$total = $paginator->counter("%count%");
-$title = format(
-    __n('1 list of sentences', '{total} lists of sentences', $total, true),
-    array('total' => $total)
-);
 $this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">
-    <div class="module">
-        <?php
-        echo $html->tag('h2', __('Search lists', true));
-        echo $form->create(array('action' => 'search'));
-        echo $form->input(
-            'search',
-            array(
-                'value' => $search,
-                'label' => false
-            )
-        );
-        echo $form->submit(__('Search', true));
-        echo $form->end();
-
-        echo '<p>';
-        echo $html->link(
-            __('Show all lists', true),
-            array(
-                'controller' => 'sentences_lists',
-                'action' => 'index'
-            )
-        );
-        echo '</p>';
-        ?>
-    </div>
-    
     <?php
+    $lists->displayListsLinks();
+
+    $lists->displaySearchForm($search);
+
     if ($session->read('Auth.User.id')) {
         $lists->displayCreateListForm();
     }

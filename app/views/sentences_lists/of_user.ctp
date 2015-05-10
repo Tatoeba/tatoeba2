@@ -26,42 +26,28 @@
  */
 
 $total = $paginator->counter("%count%");
-$title = format(
-    __("{username}'s lists ({total})", true),
-    array('username' => $username, 'total' => $total)
-);
+
+if (empty($search)) {
+    $title = format(
+        __("{username}'s lists ({total})", true),
+        array('username' => $username, 'total' => $total)
+    );
+} else {
+    $title = format(
+        __("{username}'s lists containing \"{search}\" ({total})", true),
+        array('username' => $username, 'search' => $search, 'total' => $total)
+    );
+}
+
 $this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">
-    <div class="module">
-        <?php
-        echo $html->tag('h2', __('Search lists', true));
-        echo $form->create(array('action' => 'search'));
-        echo $form->hidden('username', array('value' => $username));
-        echo $form->input(
-            'search',
-            array(
-                'value' => $search,
-                'label' => false
-            )
-        );
-        echo $form->submit(__('Search', true));
-        echo $form->end();
-
-        echo '<p>';
-        echo $html->link(
-            __('Show all lists', true),
-            array(
-                'controller' => 'sentences_lists',
-                'action' => 'index'
-            )
-        );
-        echo '</p>';
-        ?>
-    </div>
-
     <?php
+    $lists->displayListsLinks();
+
+    $lists->displaySearchForm($search, array('username' => $username));
+
     if ($session->read('Auth.User.id')) {
         $lists->displayCreateListForm();
     }
