@@ -73,6 +73,8 @@ $navigation->displaySentenceNavigation(
     if (isset($sentence)){
         $tags->displayTagsModule($tagsArray, $sentenceId);
 
+        $lists->displayListsModule($listsArray);
+
         if (CurrentUser::isAdmin()) {
             echo $this->element(
                 'sentences/audio',

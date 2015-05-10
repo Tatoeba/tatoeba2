@@ -476,5 +476,29 @@ class ListsHelper extends AppHelper
         </div>
         <?php
     }
+
+
+    public function displayListsModule($listsArray)
+    {
+        if (count($listsArray) > 0) {
+            echo '<div class="module">';
+            echo $this->Html->tag('h2', __('Lists', true));
+            echo '<ul class="sentence-lists">';
+            foreach($listsArray as $list) {
+                echo '<li>';
+                echo $this->Html->link(
+                    $list['SentencesList']['name'],
+                    array(
+                        'controller' => 'sentences_lists',
+                        'action' => 'show',
+                        $list['SentencesList']['id']
+                    )
+                );
+                echo '</li>';
+            }
+            echo '</ul>';
+            echo '</div>';
+        }
+    }
 }
 ?>

@@ -63,7 +63,7 @@ class SentencesController extends AppController
     );
 
     public $uses = array(
-        'Sentence','SentenceNotTranslatedInto'
+        'Sentence','SentenceNotTranslatedInto', 'SentencesSentencesLists'
     );
 
     /**
@@ -116,6 +116,7 @@ class SentencesController extends AppController
     {
         $this->helpers[] = 'Tags';
         $this->helpers[] = 'Messages';
+        $this->helpers[] = 'Lists';
 
         $id = Sanitize::paranoid($id);
 
@@ -124,16 +125,8 @@ class SentencesController extends AppController
             $id = Sanitize::paranoid($id);
         }
 
-        if (array_key_exists($id, LanguagesLib::languagesInTatoeba())) {
-            // ----- if we want a random sentence in a specific language -----
-            // here only to make things clearer as "id" is not a number
-            $lang = $id;
-            $randomId = $this->Sentence->getRandomId($lang);
+        if (is_numeric($id)) {
 
-            $this->Session->write('random_lang_selected', $lang);
-            $this->redirect(array("action"=>"show", $randomId));
-
-        } elseif (is_numeric($id)) {
             // ----- if we give directly an id -----
             // Whether the sentence still exists or not, we retrieve the
             // contributions and the comments because we don't want them
@@ -170,8 +163,8 @@ class SentencesController extends AppController
                 return;
             }
 
-            $tags = $this->Sentence->getAllTagsOnSentence($id);
-
+            $tagsArray = $this->Sentence->getAllTagsOnSentence($id);
+            $listsArray = $this->SentencesSentencesLists->getListsForSentence($id);
 
             $this->set('sentence', $sentence);
 
@@ -180,22 +173,21 @@ class SentencesController extends AppController
             $translations = $alltranslations['Translation'];
             $indirectTranslations = $alltranslations['IndirectTranslation'];
 
-            $this->set('tagsArray', $tags);
+            $this->set('tagsArray', $tagsArray);
+            $this->set('listsArray', $listsArray);
             $this->set('translations', $translations);
             $this->set('indirectTranslations', $indirectTranslations);
 
+        } else if (array_key_exists($id, LanguagesLib::languagesInTatoeba())) {
 
-        } else {
-            // ----- other case -----
-            $max = $this->Sentence->getMaxId();
-            $randId = rand(1, $max);
-            $this->Session->write('random_lang_selected', 'und');
-            $this->redirect(
-                array(
-                    "action"=>"show",
-                    $randId
-                )
-            );
+            // ----- if we want a random sentence in a specific language -----
+            // here only to make things clearer as "id" is not a number
+            $lang = $id;
+            $randomId = $this->Sentence->getRandomId($lang);
+
+            $this->Session->write('random_lang_selected', $lang);
+            $this->redirect(array("action"=>"show", $randomId));
+
         }
     }
 

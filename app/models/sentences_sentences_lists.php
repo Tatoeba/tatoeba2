@@ -42,7 +42,8 @@ class SentencesSentencesLists extends AppModel
     public $actsAs = array('Containable');
 
     public $belongsTo = array(
-        'Sentence' => array('foreignKey' => 'sentence_id')
+        'Sentence' => array('foreignKey' => 'sentence_id'),
+        'SentencesList' => array('foreignKey' => 'sentences_list_id')
     );
 
     /**
@@ -123,6 +124,25 @@ class SentencesSentencesLists extends AppModel
                 'Sentence' => $sentenceParams
             ),
             'order' => 'created DESC'
+        );
+    }
+
+
+    public function getListsForSentence($sentenceId)
+    {
+        return $this->find(
+            'all',
+            array(
+                'conditions' => array(
+                    'sentence_id' => $sentenceId
+                ),
+                'fields' => array('created'),
+                'contain' => array(
+                    'SentencesList' => array(
+                        'fields' => array('id', 'name')
+                    )
+                )
+            )
         );
     }
 }
