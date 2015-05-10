@@ -19,7 +19,7 @@
 function displayTranscriptions(sentenceId) {
     $(
         '#sentences_group_' + sentenceId + ' .generatedTranscription'
-    ).show();
+    ).toggle();
 }
 
 $(document).ready(function() {
