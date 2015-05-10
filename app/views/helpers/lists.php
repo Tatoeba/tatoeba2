@@ -42,7 +42,8 @@ class ListsHelper extends AppHelper
         'Form',
         'Languages',
         'Sentences',
-        'Date'
+        'Date',
+        'Images'
     );
 
     /**
@@ -63,7 +64,8 @@ class ListsHelper extends AppHelper
                 $list['SentencesList']['name'],
                 $list['User']['username'],
                 $list['SentencesList']['created'],
-                $list['SentencesList']['numberOfSentences']
+                $list['SentencesList']['numberOfSentences'],
+                $list['SentencesList']['is_public']
             );
         }
         ?>
@@ -88,10 +90,24 @@ class ListsHelper extends AppHelper
         $listName,
         $listCreatorName,
         $createdDate,
-        $count = 0
+        $count = 0,
+        $isPublic = false
     ) {
+        if ($isPublic) {
+            $type = 'collaborative';
+        } else {
+            $type = 'personal';
+        }
         ?>
         <tr class="listSummary">
+
+        <td class="<?php echo $type ?>">
+            <?php
+            if ($isPublic) {
+                echo $this->Images->svgIcon('users');
+            }
+            ?>
+        </td>
 
         <td>
             <div class="name">

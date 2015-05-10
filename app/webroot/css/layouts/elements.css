@@ -1614,3 +1614,53 @@ div.hideLink {
 .warning-add-language {
     text-align: right;
 }
+
+
+/*
+ * --------------------------------------------------------------------
+ *
+ *   Lists
+ *
+ * --------------------------------------------------------------------
+ */
+
+.listSummary td {
+    padding: 5px;
+    border-top: 1px dotted #DDD;
+}
+
+.listSummary .count {
+    color: #777;
+    background: #E5E5E5;
+    float: right;
+    padding: 10px 0;
+    min-width: 45px;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.listSummary .name {
+    font-size: 1.2em;
+    min-width: 300px;
+}
+
+.listSummary .creator {
+    padding: 3px 10px;
+    font-style: italic;
+    color: #444;
+}
+
+.listSummary .date {
+    width: 100px;
+    text-align: center;
+    color: #aaaaaa;
+}
+
+.listSummary .collaborative {
+    color: #777777;
+}
+
+.listSummary .collaborative {
+    width: 16px;
+    height: 16px;
+}
