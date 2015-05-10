@@ -178,11 +178,15 @@ class SentencesController extends AppController
             $this->set('translations', $translations);
             $this->set('indirectTranslations', $indirectTranslations);
 
-        } else if (array_key_exists($id, LanguagesLib::languagesInTatoeba())) {
-
+        } else {
             // ----- if we want a random sentence in a specific language -----
             // here only to make things clearer as "id" is not a number
-            $lang = $id;
+            if (array_key_exists($id, LanguagesLib::languagesInTatoeba())) {
+                $lang = $id;
+            } else {
+                $lang = null;
+            }
+
             $randomId = $this->Sentence->getRandomId($lang);
 
             $this->Session->write('random_lang_selected', $lang);
