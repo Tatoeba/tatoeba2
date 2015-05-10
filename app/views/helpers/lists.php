@@ -500,5 +500,32 @@ class ListsHelper extends AppHelper
             echo '</div>';
         }
     }
+
+
+    public function displayCreateListForm()
+    {
+        ?>
+        <div class="module">
+            <h2><?php __('Create a new list'); ?></h2>
+            <?php
+            echo $this->Form->create(
+                'SentencesList',
+                array(
+                    "action" => "add",
+                    "type" => "post",
+                )
+            );
+            echo $this->Form->input(
+                'name',
+                array(
+                    'type' => 'text',
+                    'label' => __p('list', 'Name', true)
+                )
+            );
+            echo $this->Form->end(__('create', true));
+            ?>
+        </div>
+        <?php
+    }
 }
 ?>

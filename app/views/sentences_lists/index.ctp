@@ -59,6 +59,12 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         echo '</p>';
         ?>
     </div>
+    
+    <?php
+    if ($session->read('Auth.User.id')) {
+        $lists->displayCreateListForm();
+    }
+    ?>
 </div>
 
 <div id="main_content">

@@ -188,7 +188,7 @@ class SentencesListsController extends AppController
                 'user_id' => $this->Auth->user('id'),
             );
             $this->SentencesList->save($newList);
-            $this->redirect(array("action"=>"edit", $this->SentencesList->id));
+            $this->redirect(array("action"=>"show", $this->SentencesList->id));
         } else {
             $this->redirect(array("action"=>"index"));
         }

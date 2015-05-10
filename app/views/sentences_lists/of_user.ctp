@@ -63,29 +63,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 
     <?php
     if ($session->read('Auth.User.id')) {
-
-        ?>
-        <div class="module">
-            <h2><?php __('Create a new list'); ?></h2>
-            <?php
-            echo $form->create(
-                'SentencesList',
-                array(
-                    "action" => "add",
-                    "type" => "post",
-                )
-            );
-            echo $form->input(
-                'name',
-                array(
-                    'type' => 'text',
-                    'label' => __p('list', 'Name', true)
-                )
-            );
-            echo $form->end(__('create', true));
-            ?>
-        </div>
-    <?php
+        $lists->displayCreateListForm();
     }
     ?>
 </div>
