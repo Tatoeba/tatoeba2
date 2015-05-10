@@ -617,10 +617,10 @@ class SentencesHelper extends AppHelper
         $transcriptions,
         $isEditable
     ) {
-        ?>
+        echo $this->Html->div('sentenceContent', null, array(
+            'data-sentence-id' => $sentence['id'],
+        ));
 
-        <div class="sentenceContent">
-        <?php
         // text
         $script = null;
         if (isset($sentence['script'])) {
@@ -637,10 +637,8 @@ class SentencesHelper extends AppHelper
                 $transcriptions, $sentence['lang']
             );
         }
-        ?>
-        </div>
 
-        <?php
+        echo $this->Html->tag('/div');
     }
 
 
@@ -744,7 +742,6 @@ class SentencesHelper extends AppHelper
         $transcriptionDiv = $this->Languages->tagWithLang(
             'div', $lang, $html,
             array(
-                'data-sentence-id' => $transcr['sentence_id'],
                 'data-script' => $transcr['script'],
                 'data-tooltip' => __('Click to edit this transcription', true),
                 'class' => $class,

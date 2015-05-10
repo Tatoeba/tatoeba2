@@ -28,7 +28,7 @@ $(document).ready(function() {
     $('.editable.transcription').each(function() {
         var div = $(this);
 
-        sentenceId = div.attr('data-sentence-id');
+        sentenceId = div.parent().parent().attr('data-sentence-id');
         script = div.attr('data-script');
         saveUrl = rootUrl + '/transcriptions/save/' + sentenceId + '/' + script;
 
