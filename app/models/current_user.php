@@ -241,6 +241,24 @@ class CurrentUser extends AppModel
     }
 
     /**
+     * Indicates if the current user can edit a transcription.
+     * Specify both $sentenceOwnerId and $transcrOwnerId.
+     *
+     * @param int $transcrOwnerId User id of the owner of the transcription.
+     * @param int $sentenceOwnerId User id of the owner of the sentence.
+     *
+     * @return bool True if the current user can, False otherwise.
+     */
+    public static function canEditTranscription($transcrOwnerId, $sentenceOwnerId)
+    {
+        $currentUserId = self::get('id');
+        return $transcrOwnerId === null
+               || $sentenceOwnerId === $currentUserId
+               || $transcrOwnerId === $currentUserId
+               || CurrentUser::isModerator();
+    }
+
+    /**
      * A user is new if they registered within the last 14 days
      *
      * @return bool
