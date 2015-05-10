@@ -132,8 +132,8 @@ class SentencesListsController extends AppController
             );
         } else {
             $title = format(
-                __('Collaborative lists containing ({total})', $total, true),
-                array('total' => $total)
+                __('Collaborative lists containing "{search}" ({total})', $total, true),
+                array('search' => $search, 'total' => $total)
             );
         }
 
