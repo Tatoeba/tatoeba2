@@ -34,8 +34,8 @@ $(document).ready(function() {
 
         $(this).editable(saveUrl, {
             type      : 'textarea',
-            cancel    : 'Cancel',
-            submit    : 'OK',
+            cancel    : div.attr('data-cancel'),
+            submit    : div.attr('data-submit'),
             id        : 'divId',
             data : function(value, settings) {
                 return $('<div>').html(value).text() // added to correct problem with html entities

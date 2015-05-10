@@ -744,6 +744,8 @@ class SentencesHelper extends AppHelper
             array(
                 'data-script' => $transcr['script'],
                 'data-tooltip' => __('Click to edit this transcription', true),
+                'data-submit' => __('OK', true),
+                'data-cancel' => __('Cancel', true),
                 'class' => $class,
                 'escape' => false,
             ),
