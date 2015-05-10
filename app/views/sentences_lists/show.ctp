@@ -36,6 +36,8 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
 ?>
 
 <div id="annexe_content">
+    <?php $lists->displayListsLinks(); ?>
+
     <div class="module">
         <h2><?php __('Information'); ?></h2>
         <?php

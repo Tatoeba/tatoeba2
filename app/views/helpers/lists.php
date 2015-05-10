@@ -250,8 +250,6 @@ class ListsHelper extends AppHelper
     public function displayPublicActions(
         $listId, $translationsLang = null, $action = null
     ) {
-
-        $this->displayBackToIndexLink();
         ?>
 
         <li>
