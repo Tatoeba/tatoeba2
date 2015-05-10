@@ -56,8 +56,14 @@ class TranscriptionsController extends AppController
         $userId = CurrentUser::get('id');
 
         if ($transcriptionId) { // Modifying existing transcription
-            $ownerId = $this->Transcription->getTranscriptionOwner($transcriptionId);
-            $canEdit = ($ownerId == $userId || CurrentUser::isModerator());
+            list($transcrOwnerId, $sentenceOwnerId)
+                = $this->Transcription->getOwners($transcriptionId);
+            $canEdit = (
+                $transcrOwnerId === null
+                || $sentenceOwnerId === $userId
+                || $transcrOwnerId === $userId
+                || CurrentUser::isModerator()
+            );
 
             $saved = false;
             if ($canEdit) {

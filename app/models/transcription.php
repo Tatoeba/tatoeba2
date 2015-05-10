@@ -342,18 +342,22 @@ class Transcription extends AppModel
         return false;
     }
 
-    public function getTranscriptionOwner($transcriptionId) {
+    public function getOwners($transcriptionId) {
         $transc = $this->find('first', array(
             'conditions' => array(
-                $this->alias.'.'.$this->primaryKey => $transcriptionId,
+                'Transcription.id' => $transcriptionId,
             ),
-            'contain' => array('Sentence')
+            'fields' => array('Sentence.user_id', 'Transcription.user_id'),
+            'contain' => array('Sentence'),
         ));
 
         if ($transc)
-            return $transc['Sentence']['user_id'];
+            return array(
+                $transc['Transcription']['user_id'],
+                $transc['Sentence']['user_id']
+            );
         else
-            return false;
+            return array(false, false);
     }
 
     public function findTranscriptionId($sentenceId, $script) {
