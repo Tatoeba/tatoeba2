@@ -21,13 +21,32 @@ $(document).ready(function() {
     var rootUrl = get_tatoeba_root_url();
 
     $('.editableSentence').each(function() {
-        $(this).editable(rootUrl + '/sentences/edit_sentence', {
+        var div = $(this);
+
+        sentenceId = div.parent().attr('data-sentence-id');
+        div.editable(rootUrl + '/sentences/edit_sentence', {
             type      : 'textarea',
-            submit    : $(this).attr('data-submit'),
-            cancel    : $(this).attr('data-cancel'),
+            submit    : div.attr('data-submit'),
+            cancel    : div.attr('data-cancel'),
             event     : 'edit_sentence',
             data : function(value, settings) {
                 return $('<div>').html(value).text() // added to correct problem with html entities
+            },
+            callback : function(result, settings) {
+                // Update transcriptions if any
+                transcr = div.parent().find('.transcriptionContainer');
+                if (transcr.length) {
+                    transcr.html('<img src="/img/loading.gif">');
+                    $.get(
+                        rootUrl + '/transcriptions/view/' + sentenceId,
+                        null,
+                        function(result, status) {
+                            isVisible = transcr.is(":visible");
+                            result = $(result).toggle(isVisible);
+                            transcr.replaceWith(result);
+                        }
+                    );
+                }
             },
             indicator : '<img src="/img/loading.gif">',
             cssclass  : 'editInPlaceForm',

@@ -773,9 +773,9 @@ class SentencesHelper extends AppHelper
             );
         }
 
-        $class = '';
+        $class = 'transcriptionContainer';
         if ($isGenerated) {
-            $class .= 'generatedTranscription';
+            $class .= ' generatedTranscription';
         }
         echo $this->Html->tag('div', $infoDiv.$transcriptionDiv.$subTranscrDiv, array(
             'escape' => false,
