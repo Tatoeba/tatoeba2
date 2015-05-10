@@ -1,0 +1,1 @@
+ALTER TABLE `sentences_lists` MODIFY `name` VARCHAR(450) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL;
