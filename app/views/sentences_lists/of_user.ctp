@@ -71,6 +71,18 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 <div id="main_content">
     <div class="module">
         <h2><?php echo $title; ?></h2>
+
+        <div class="sortBy">
+            <strong><?php __("Sort by:") ?> </strong>
+            <?php
+            echo $this->Paginator->sort(__('name', true), 'name');
+            echo " | ";
+            echo $this->Paginator->sort(__('date', true), 'created');
+            echo " | ";
+            echo $this->Paginator->sort(__('number of sentences', true), 'numberOfSentences');
+            ?>
+        </div>
+        
         <?php
         $pagination->display(array($username, $search));
 

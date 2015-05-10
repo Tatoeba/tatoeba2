@@ -75,6 +75,19 @@ if (count($allLists) > 0) {
 
     echo $html->tag('h2', $title);
 
+    ?>
+    <div class="sortBy">
+        <strong><?php __("Sort by:") ?> </strong>
+        <?php
+        echo $this->Paginator->sort(__('name', true), 'name');
+        echo " | ";
+        echo $this->Paginator->sort(__('date', true), 'created');
+        echo " | ";
+        echo $this->Paginator->sort(__('number of sentences', true), 'numberOfSentences');
+        ?>
+    </div>
+    <?php
+
     $pagination->display();
     $lists->displayListTable($allLists);
     $pagination->display();

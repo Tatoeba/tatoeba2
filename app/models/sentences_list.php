@@ -148,7 +148,7 @@ class SentencesList extends AppModel
                     'fields' => array('username')
                 )
             ),
-            'order' => 'created',
+            'order' => 'created DESC',
             'limit' => 20
         );
     }
