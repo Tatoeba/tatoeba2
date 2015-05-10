@@ -33,6 +33,23 @@ class TranscriptionsController extends AppController
         'Sentences',
     );
 
+    public function beforeFilter()
+    {
+        parent::beforeFilter();
+
+        $this->Auth->allowedActions = array(
+            'view',
+        );
+    }
+
+    public function view($sentenceId) {
+        $transcr = $this->Transcription->find('all', array(
+            'conditions' => array('sentence_id' => $sentenceId),
+        ));
+        $transcr = Set::classicExtract($transcr, '{n}.Transcription');
+        $this->setViewVars($transcr, $sentenceId);
+    }
+
     public function save($sentenceId, $script) {
         $transcriptionId = $this->Transcription->findTranscriptionId($sentenceId, $script);
         $transcriptionText = $this->params['form']['value'];
@@ -61,15 +78,21 @@ class TranscriptionsController extends AppController
             ));
         }
 
-        $sentence = $this->Sentence->findById($sentenceId, 'lang');
-        if ($sentence)
-            $this->set('lang', $sentence['Sentence']['lang']);
-
         /* Used by tests, to check permissions */
         if (isset($this->params['requested'])) {
             return $canEdit && $saved;
         }
-        $this->set('transcr', $saved);
+
+        $this->setViewVars($saved, $sentenceId);
+        $this->render('view');
+    }
+
+    private function setViewVars($transcription, $sentenceId) {
+        $sentence = $this->Sentence->findById($sentenceId, 'lang');
+        if ($sentence)
+            $this->set('lang', $sentence['Sentence']['lang']);
+
+        $this->set('transcr', $transcription);
         $this->layout = null;
     }
 }
