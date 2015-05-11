@@ -646,4 +646,17 @@ class Autotranscription
         }
         return $word;
     }
+
+    public function jpn_Jpan_to_Hrkt_validate($sentenceText, $transcr) {
+        $transcr = str_replace(' ', '', $transcr);
+        $withoutFuri = preg_replace('/\[([^|]+)\|([\p{Hiragana}ー]+)\]/u', '$1', $transcr);
+        if ($sentenceText !== $withoutFuri)
+            return false;
+
+        $withFuri = preg_replace('/\[([^|]+)\|([\p{Hiragana}ー]+)\]/u', '$2', $transcr);
+        if (preg_match("/[\p{Han}]/u", $withFuri))
+            return false;
+
+        return true;
+    }
 }
