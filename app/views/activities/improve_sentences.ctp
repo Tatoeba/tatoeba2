@@ -115,12 +115,12 @@ $okURL = $html->url(
         $str = format(__('Whenever you notice a possible mistake, add the tag {tagCheck} '.
                          'and post a comment explaining what you think the '.
                          'mistake may be.', true),
-                      array('tagCheck', $tagCheckLink));
+                      array('tagCheck' => $tagCheckLink));
         printf('<li>%s</li>', $str);
 
         $str = format(__('Whenever you add a sentence in a foreign language and are not '.
                          'completely sure that it is correct, add the tag {tagNNC}.', true),
-                      array('tagNNC', $tagNNCLink));
+                      array('tagNNC' => $tagNNCLink));
         printf('<li>%s</li>', $str);
 
         $str = format(__('Whenever you can, browse through sentences that are tagged '.

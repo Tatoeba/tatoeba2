@@ -9,9 +9,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-04-23 22:50+0000\n"
-"PO-Revision-Date: 2015-05-02 05:11+0000\n"
-"Last-Translator: Actor Bilmanda\n"
+"POT-Creation-Date: 2015-05-08 17:15+0000\n"
+"PO-Revision-Date: 2015-05-08 17:18+0000\n"
+"Last-Translator: Trang Ho\n"
 "Language-Team: Indonesian (http://www.transifex.com/projects/p/tatoeba_website/language/id/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Language: id\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/app_controller.php#L123
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/app_controller.php#L124
 msgid "You need to be logged in."
 msgstr "Anda harus masuk terlebih dahulu."
 
@@ -30,7 +30,7 @@ msgid ""
 msgstr "Kalimat #{firstNumber} dan #{secondNumber} sekarang saling tertaut."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/links_controller.php#L83
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L401
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L404
 msgid ""
 "An error occurred while saving. Please try again or contact us to report "
 "this."
@@ -195,23 +195,23 @@ msgstr "Profil tersimpan."
 msgid "Failed to change email address. Please enter a proper email address."
 msgstr "Gagal untuk mengubah alamat imel. Tolong masukkan alamat imel dengan benar."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L398
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L401
 msgid "Your settings have been saved."
 msgstr "Pengaturan Anda telah tersimpan."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L468
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L471
 msgid "New password cannot be empty."
 msgstr "Kata sandi baru tidak boleh kosong."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L478
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L481
 msgid "New password has been saved."
 msgstr "Kata sandi baru telah tersimpan."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L480
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L483
 msgid "An error occurred while saving."
 msgstr "Sebuah galat terjadi ketika sedang mencoba untuk menyimpan."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L485
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/user_controller.php#L488
 msgid "Password error. Please try again."
 msgstr "Kata sandi salah. Silakan coba lagi."
 
@@ -284,15 +284,15 @@ msgstr "Tidak ada pengguna yang terdaftar dengan alamat imel ini:"
 msgid "No user with this id: "
 msgstr "Tidak ada pengguna dengan ID ini:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L64
 msgid "You cannot edit this language."
 msgstr "Anda tidak dapat menyunting bahasa ini."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L85
 msgid "Language deleted"
 msgstr "Bahasa dihapus"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L85
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/users_languages_controller.php#L87
 msgid "You cannot delete this language."
 msgstr "Anda tidak dapat menghapus bahasa ini."
 
@@ -1238,6 +1238,9 @@ msgstr "Kuantitas"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/translate_sentences.ctp#L161
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/several_random_sentences.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L40
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L35
 msgid "Language"
 msgstr "Bahasa"
 
@@ -1384,7 +1387,7 @@ msgid "Contact us"
 msgstr "Hubungi kami"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/foot.ctp#L64
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L164
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L168
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/donate.ctp#L28
 msgid "Donate"
 msgstr "Donasi"
@@ -1497,21 +1500,6 @@ msgstr "Terkirim"
 msgid "Trash"
 msgstr "Kotak sampah"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L71
-msgid "Question about Tatoeba?"
-msgstr "Pertanyaan terkait Tatoeba?"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L75
-msgid ""
-"If you would like to ask a question about Tatoeba, please send an email to "
-"<strong>team@tatoeba.org</strong> rather than a private message. "
-msgstr "Jika Anda ingin bertanya tentang Tatoeba, silakan kirim surel ke <strong>team@tatoeba.org</strong> daripada mengirim melalui pesan pribadi."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L83
-msgid ""
-"All members of Team Tatoeba will receive it and you may get a reply faster."
-msgstr "Semua anggota dari Tim Tatoeba akan menerima surel Anda dan Anda bisa mendapatkan jawaban lebih cepat"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L35
 msgid "Folders"
 msgstr "Folder"
@@ -1531,19 +1519,19 @@ msgstr "Tampilkan yang lain"
 msgid "show more..."
 msgstr "Tampilkan lebih banyak..."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L66
 msgid "Example sentences with the words:"
 msgstr "Contoh kalimat dengan kata:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L73
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L84
 msgid "From"
 msgstr "Dari"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L93
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L105
 msgid "To"
 msgstr "Ke"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/search_bar.ctp#L121
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L53
 msgid "search"
 msgstr "cari"
@@ -1600,17 +1588,6 @@ msgstr "Jangan sungkan untuk <a href=\"{}\">membuat sebuah kalimat</a> dengan me
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L39
 msgid "If you are interested, please register."
 msgstr "Jika Anda tertarik, silakan mendaftar."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences/correctness_info.ctp#L30
-msgid "About unapproved sentences"
-msgstr "Mengenai kalimat yang belum disetujui"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences/correctness_info.ctp#L34
-msgid ""
-"You may see some sentences in red. These sentences are not approved by "
-"Tatoeba's community. They raise copyright issues or are otherwise "
-"problematic. If you are a contributor, please avoid translating them."
-msgstr "Anda mungkin akan menemukan beberapa kalimat berwarna merah. Kalimat-kalimat tersebut belum disetujui oleh komunitas Tatoeba, dan berpotensi menimbulkan permasalahan hak cipta dan atau permasalahan yang lain. Jika Anda adalah seorang kontributor, mohon untuk tidak menerjemahkan kalimat-kalimat tersebut."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/sentences_statistics.ctp#L34
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L46
@@ -1748,48 +1725,55 @@ msgid "List of all members"
 msgstr "Daftar dari semua anggota"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L31
 msgid "Languages of members"
 msgstr "Bahasa dari para anggota"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L28
+msgid "Native speakers"
+msgstr "Penutur asli"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L135
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L38
 msgid "Wall"
 msgstr "Dinding"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L141
 msgid "More"
 msgstr "Lebih banyak"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L147
 msgid "Quick Start Guide"
 msgstr "Panduan Awal"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L146
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L150
 msgid "Tatoeba Wiki"
 msgstr "Wiki Tatoeba"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L149
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L153
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contact.ctp#L42
 msgid "FAQ"
 msgstr "Pertanyaan Umum"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L152
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/help.ctp#L28
 msgid "Help"
 msgstr "Bantuan"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L160
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L84
 msgid "Downloads"
 msgstr "Unduhan"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L160
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/top_menu.ctp#L164
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/index.ctp#L32
 msgid "Tools"
 msgstr "Peralatan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L49
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L56
 msgid "Sentences"
 msgstr "Kalimat"
 
@@ -1798,7 +1782,7 @@ msgid "Favorites"
 msgstr "Kalimat favorit"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L75
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L187
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L165
 msgid "Comments"
 msgstr "Komentar"
 
@@ -1812,7 +1796,7 @@ msgid "Wall messages"
 msgstr "Pesan pada Dinding"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L101
 msgid "Logs"
 msgstr "Catatan kejadian"
 
@@ -1822,7 +1806,7 @@ msgstr "Hubungi {user}"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/add_favorite.ctp#L33
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/add_favorite.ctp#L34
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L272
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L273
 msgid "Remove from favorites"
 msgstr "Hapus dari favorit"
 
@@ -1836,7 +1820,7 @@ msgstr "Pengguna ini tidak memiliki kalimat favorit"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/remove_favorite.ctp#L32
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/favorites/remove_favorite.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L276
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L277
 msgid "Add to favorites"
 msgstr "Tambahkan ke favorit"
 
@@ -1861,9 +1845,11 @@ msgid "Use private messages to discuss things unrelated to the sentence."
 msgstr "Gunakanlah pesan pribadi untuk mendiskusikan hal-hal yang tidak terkait dengan kalimat."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L393
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L385
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L637
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L115
 msgid "Cancel"
 msgstr "Batal"
 
@@ -1881,9 +1867,9 @@ msgstr "sembunyikan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L247
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L374
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L518
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L519
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L462
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L112
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L110
 msgid "Are you sure?"
 msgstr "Apa Anda yakin?"
 
@@ -1934,62 +1920,93 @@ msgstr[0] "{n}&nbsp;menit yang lalu"
 #. For instance, in language lists, on flag mouseover or on the stats
 #. page. You may translate this string using a declension modifier,
 #. for instance {language.alone}
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L57
 msgid "{language}"
 msgstr "{language}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L115
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L134
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L205
-msgid "All languages"
-msgstr "Semua bahasa"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L151
-msgid "unknown language"
-msgstr "bahasa yang belum dikenali"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L168
-msgid "other language"
-msgstr "bahasa lain"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L186
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L126
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L219
 msgid "Auto detect"
 msgstr "Deteksi otomatis"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L204
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L247
-msgid "None"
-msgstr "Tidak ada"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L227
-msgid "Any language"
-msgstr "Bahasa manapun"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L263
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L296
 msgid "Any"
 msgstr "Apapun"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L296
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L201
+msgid "other language"
+msgstr "bahasa lain"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L148
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L167
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L238
+msgid "All languages"
+msgstr "Semua bahasa"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L184
+msgid "unknown language"
+msgstr "bahasa yang belum dikenali"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L237
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L280
+msgid "None"
+msgstr "Tidak ada"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L260
+msgid "Any language"
+msgstr "Bahasa manapun"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L329
 msgid "unknown"
 msgstr "tidak diketahui"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L395
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L428
 msgid ""
 "You cannot add sentences because you did not add any language in your "
 "profile."
 msgstr "Anda tidak dapat menambah kalimat karena Anda belum menambahkan satupun bahasa di profil Anda."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L400
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L433
 msgid ""
 "You cannot translate sentences because you did not add any language in your "
 "profile."
 msgstr "Anda tidak dapat menerjemahkan kalimat karena Anda belum menambahkan satupun bahasa di profil Anda."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L408
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L441
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L29
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L266
 msgid "Add a language"
 msgstr "Tambah sebuah bahasa"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L459
+msgid "Unspecified"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L460
+msgid "0: Almost no knowledge"
+msgstr "0: Hampir tidak memahami sama sekali"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L461
+msgid "1: Beginner"
+msgstr "1: Tingkat pemula"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L462
+msgid "2: Intermediate"
+msgstr "2: Tingkat menengah"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L463
+msgid "3: Advanced"
+msgstr "3: Tingkat lanjut"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L464
+msgid "4: Fluent"
+msgstr "4: Fasih"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L465
+msgid "5: Native level"
+msgstr "5: Bahasa ibu"
 
 #. @translators: string used as a placeholder for
 #. the name of a list when it happens to be empty
@@ -2006,14 +2023,14 @@ msgid "Number of sentences"
 msgstr "Jumlah kalimat"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L148
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L72
 msgid "Show"
 msgstr "Tampilkan"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L158
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L139
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L539
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L547
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L540
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L548
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L319
 msgid "Edit"
 msgstr "Sunting"
@@ -2063,9 +2080,11 @@ msgid "Add a sentence to this list : "
 msgstr "Tambahkan sebuah kalimat ke daftar ini:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L494
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L464
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L465
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L82
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L136
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L636
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L133
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L119
 msgid "OK"
 msgstr "OK"
 
@@ -2078,8 +2097,8 @@ msgstr "CATATAN: Anda juga bisa menambahkan kalimat yang sudah ada dengan mengkl
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L382
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L50
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_annotations/show.ctp#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L149
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L128
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L144
 msgid "Sentence #{number}"
 msgstr "Kalimat #{number}"
 
@@ -2135,81 +2154,81 @@ msgstr "tidak aktif"
 msgid "spammer"
 msgstr "tukang spam"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L64
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L65
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L66
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L83
 msgid "Translate"
 msgstr "Terjemahkan"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L84
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L85
 msgid ""
 "This sentence is currently marked as unapproved. Unapproved sentences cannot"
 " be translated."
 msgstr "Kalimat ini saat ini tertandai sebagai belum disetujui. Kalimat-kalimat yang belum disetujui tidak dapat diterjemahkan."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L142
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L144
 msgid "This sentence is in simplified Chinese."
 msgstr "Kalimat ini ditulis dalam bahasa Mandarin sederhana."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L167
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L168
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L169
 msgid "This sentence is in traditional Chinese."
 msgstr "Kalimat ini ditulis dalam bahasa Mandarin tradisional."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L202
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L203
 msgid "Click to unadopt"
 msgstr "Klik untuk melepas status adopsi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L208
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L209
 msgid "Click to adopt"
 msgstr "Klik untuk mengadopsi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L334
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L335
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L336
 msgid "Link to another sentence"
 msgstr "Tautkan ke kalimat lain"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L350
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L351
 msgid "Sentence number"
 msgstr "Nomor kalimat"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L355
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L156
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L356
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L138
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L9
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L8
 msgid "Link"
 msgstr "Pranala"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L391
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L392
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L393
 msgid "Add to list"
 msgstr "Tambahkan ke daftar"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L442
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L443
 msgid "Add to one of your lists"
 msgstr "Tambahkan ke salah satu daftar Anda"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L443
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L444
 msgid "Add to a collaborative list"
 msgstr "Tambahkan ke sebuah daftar kolaboratif"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L485
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L493
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L486
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L494
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L127
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L103
 msgid "Delete"
 msgstr "Hapus"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L487
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L488
 msgid "You cannot delete this sentence because it has audio."
 msgstr "Anda tidak dapat menghapus kalimat ini karena  di dalamnya tersemat berkas audio."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L541
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L542
 msgid "You cannot edit this sentence because it has audio."
 msgstr "Anda tidak dapat menyunting kalimat ini karena di dalamnya tersemat berkas audio."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L588
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L589
 msgid "belongs to {user}"
 msgstr "milik {user}"
 
@@ -2332,51 +2351,51 @@ msgstr "Kirim"
 msgid "{sender} wrote:"
 msgstr "{sender} berkata:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L113
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L95
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L5
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L4
 msgid "Unlink"
 msgstr "Lepas tautan"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L114
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L96
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L6
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L5
 msgid "Unlink this translation."
 msgstr "Lepas tautan terjemahan ini."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L157
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L139
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L10
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/delete.ctp#L9
 msgid "Make into direct translation."
 msgstr "Buat menjadi terjemahan langsung."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L201
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L183
 msgid "Play audio"
 msgstr "Mainkan audio"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L193
 msgid "No audio for this sentence. Click to learn how to contribute."
 msgstr "Tidak ada berkas audio yang tersemat pada kalimat ini. Klik untuk mempelajari bagaimana cara menambahkannya."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L173
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L174
 msgid "Show 1 more translation"
 msgid_plural "Show {number} more translations"
 msgstr[0] "Tampilkan {number} terjemahan lainnya"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L205
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L206
 msgid "Less translations"
 msgstr "Tampilkan lebih sedikit"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L328
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L320
 msgid "Translation:"
 msgstr "Terjemahan:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L348
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L340
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L58
 msgid "Language:"
 msgstr "Bahasa:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L384
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L376
 msgid "Submit translation"
 msgstr "Kirim terjemahan"
 
@@ -2417,21 +2436,21 @@ msgstr "Label-label"
 msgid "No tag on this sentence."
 msgstr "Kalimat ini tidak berlabel."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L103
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L104
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/show_sentences_with_tag.ctp#L89
 msgid "View all tags"
 msgstr "Tampilkan semua label"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L129
-msgid "user: {userId}, date: {date}"
-msgstr "nama pengguna: {userId}, tanggal: {date}"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L130
+msgid "Added by {username}, {date}"
+msgstr "Ditambahkan oleh {username}, {date}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L261
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L262
 msgid "remove tag '{tagName}' from this sentence."
 msgstr "hapus label '{tagName}' dari kalimat ini."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L305
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/tags.php#L306
 msgid "remove tag from sentence"
 msgstr "hapus label dari kalimat"
 
@@ -2469,7 +2488,7 @@ msgid ""
 " definitely lost."
 msgstr "Peringatan: situs ini dibuat untuk keperluan ujicoba. Semua yang Anda kirim akan hilang."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L98
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/layouts/default.ctp#L102
 msgid "No language matches"
 msgstr "Tidak ada bahasa yang cocok"
 
@@ -3235,7 +3254,7 @@ msgid ""
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L53
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L172
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L151
 msgid "There is no sentence with id {number}"
 msgstr "Tidak ditemukan kalimat dengan id {number}"
 
@@ -3309,11 +3328,11 @@ msgstr "Atau buatlah kalimat-kalimat dengan menggunakan <a href=\"{}\">kata-kata
 msgid "Add new sentences"
 msgstr "Tambah kalimat baru"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L105
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L102
 msgid "Sentence: "
 msgstr "Kalimat:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L147
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L144
 msgid "Sentences added"
 msgstr "Kalimat yang ditambahkan"
 
@@ -3362,7 +3381,7 @@ msgid "All sentences"
 msgstr "Semua kalimat"
 
 #. @translators: title on the top of a search result page
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L70
 msgid "Search: {keywords}"
 msgstr "Cari: {keywords}"
 
@@ -3400,38 +3419,17 @@ msgstr ""
 msgid "Sentence does not exist: "
 msgstr "Kalimat tidak ditemukan:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L115
 msgid "There is no log for this sentence"
 msgstr "Tidak ada catatan pada kalimat ini"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L123
-msgid "Report mistakes"
-msgstr "Laporkan kesalahan"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L126
-msgid "Do not hesitate to post a comment if you see a mistake!"
-msgstr "Jangan ragu untuk mengepos komentar jika Anda melihat sebuah kesalahan!"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L132
-msgid ""
-"NOTE: If the sentence does not belong to anyone and you know how to correct "
-"the mistake, feel free to correct it without posting any comment. You will "
-"have to adopt the sentence before you can edit it."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L211
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L189
 msgid "There are no comments for now."
 msgstr "Tidak ada komentar untuk saat ini."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L216
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L194
 msgid "Sentence deleted"
 msgstr "Kalimat dihapus"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L226
-msgid ""
-"You need to be logged in to add a comment. If you are not registered, you "
-"can <a href=\"{}\">register here</a>."
-msgstr "Anda harus terdaftar untuk bisa menambahkan komentar. Jika Anda belum terdaftar, Anda bisa <a href=\"{}\">mendaftar disini</a>."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show_all_in.ctp#L30
 msgid "All sentences in {language}"
@@ -3513,6 +3511,10 @@ msgid ""
 "Removing a sentence will not delete it. The sentence will just not be part "
 "of the list anymore."
 msgstr "Membuang sebuah kalimat bukan berarti menghapusnya. Kalimat tersebut hanya dihilangkan dari sebuah daftar."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L121
+msgid "Click to edit..."
+msgstr "Klik untuk menyunting"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L28
 msgid "Lists of sentences"
@@ -3719,6 +3721,27 @@ msgstr "Hasil"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/search.ctp#L41
 msgid "No result found. Try to search with fewer subglyphs."
 msgstr "Hasil tidak ditemukan. Cobalah untuk mencari dengan subglyph yang lebih sedikit."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L43
+msgid "Admins"
+msgstr "Administrator"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L44
+msgid "Corpus maintainers"
+msgstr "Pengelola korpus"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L45
+msgid "Advanced contributors"
+msgstr "Kontributor tingkat lanjutan"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L46
+msgid "Contributors"
+msgstr "Kontributor"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/native_speakers.ctp#L60
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/users_languages.ctp#L46
+msgid "Total"
+msgstr "Jumlah"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/stats/sentences_by_language.ctp#L28
 msgid "Number of sentences per language"
@@ -4033,41 +4056,17 @@ msgid "Edit language"
 msgstr "Sunting bahasa"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L33
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L132
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L169
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L124
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L142
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L179
 msgid "Save"
 msgstr "Simpan"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L80
-msgid "0: Almost no knowledge"
-msgstr "0: Hampir tidak memahami sama sekali"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L81
-msgid "1: Beginner"
-msgstr "1: Tingkat pemula"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L82
-msgid "2: Intermediate"
-msgstr "2: Tingkat menengah"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L83
-msgid "3: Advanced"
-msgstr "3: Tingkat lanjut"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L84
-msgid "4: Fluent"
-msgstr "4: Fasih"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L85
-msgid "5: Native level"
-msgstr "5: Sangat fasih"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L88
 msgid "What is your level?"
 msgstr "Bagaimana tingkatan Anda?"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L96
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L94
 msgid "Details (optional)"
 msgstr "Rincian (opsional)"
 
@@ -4167,39 +4166,44 @@ msgid ""
 "translations."
 msgstr "Tampilkan sebuah penanda untuk merentangkan/melipat terjemahan-terjemahan ketika terjemahan terlalu banyak."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L99
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L100
+msgid ""
+"Restrict languages listed in the search bar to the ones in your profile."
+msgstr "Batasi bahasa yang muncul pada kolom pencarian dengan yang tertera pada profil Anda."
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L109
 msgid ""
 "Enter ISO 639-3 codes, separated with a comma (e.g.: jpn,epo,ara,deu). "
 "Tatoeba will then only display translations in the languages you indicated. "
 "You can leave this empty to display translations in all languages."
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L117
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L41
 msgid "Languages"
 msgstr "Bahasa-bahasa"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L128
 msgid "Change email address"
 msgstr "Ganti alamat imel"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L129
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L139
 msgid "Email address"
 msgstr "Alamat imel"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L137
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L147
 msgid "Change password"
 msgstr "Ganti kata sandi"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L161
 msgid "Old password"
 msgstr "Kata sandi lama"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L158
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L168
 msgid "New password"
 msgstr "Kata sandi baru"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L175
 msgid "New password again"
 msgstr "Ulangi kata sandi baru"
 
@@ -4215,12 +4219,16 @@ msgstr "Jumlah pengguna (total %count%)"
 msgid "Member status"
 msgstr "Status pengguna"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L56
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L46
+msgid "Back to global stats"
+msgstr "Kembali ke statistik global"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L69
 msgid "{total} member"
 msgid_plural "{total} members"
 msgstr[0] "{total} anggota"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L81
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/for_language.ctp#L94
 msgid "{lang} ({total} member)"
 msgid_plural "{lang} ({total} members)"
 msgstr[0] "{lang} ({total} anggota)"

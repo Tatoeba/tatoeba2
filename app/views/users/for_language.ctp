@@ -39,6 +39,19 @@
 <div id="annexe_content">
     <div class="module">
         <h2><?php __('Languages'); ?></h2>
+
+        <p>
+        <?php
+        echo $html->link(
+            __('Back to global stats', true),
+            array(
+                'controller' => 'stats',
+                'action' => 'users_languages'
+            )
+        );
+        ?>
+        </p>
+
         <table class="usersLanguagesStats">
         <?php
         foreach($usersLanguages as $language) {
@@ -76,7 +89,7 @@
 <div id="main_content">
     <div class="module">
         <?php
-        $total = count($users);
+        $total = $paginator->counter("%count%");
         $title = format(
             __n('{lang} ({total} member)', '{lang} ({total} members)', $total, true),
             array('lang' => $languages->codeToNameAlone($lang), 'total' => $total)
@@ -85,6 +98,8 @@
         <h2><?php echo $title; ?></h2>
         <div class="usersLanguages">
         <?php
+        $pagination->display(array($lang));
+
         foreach($users as $user) {
             $username = $user['User']['username'];
             $userImage = $user['User']['image'];
@@ -107,6 +122,8 @@
             echo '</div>';
             echo '</div>';
         }
+
+        $pagination->display(array($lang));
         ?>
         </div>
     </div>

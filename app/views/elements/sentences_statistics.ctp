@@ -24,7 +24,7 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-$stats = ClassRegistry::init('Language')->getStatistics(5);
+$stats = ClassRegistry::init('Language')->getSentencesStatistics(5);
 $numSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
 ?>
 
@@ -41,7 +41,7 @@ $numSentences = ClassRegistry::init('Sentence')->getTotalNumberOfSentences();
             <?php
             foreach ($stats as $stat) {
                 $langCode = $stat['Language']['code'];
-                $numberOfSentences = $stat['Language']['numberOfSentences'];
+                $numberOfSentences = $stat['Language']['sentences'];
                 $link = array(
                     "controller" => "sentences",
                     "action" => "show_all_in",

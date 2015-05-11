@@ -43,13 +43,33 @@
     text-align: center;
 }
 
-.chart {
-    width: 240px;
+.languages-stats .bar {
+    background: #66AA00;
+    height: 4px;
 }
 
-.bar {
-    height: 12px;
-    background: #D4FFBF;
-    border: 1px solid #AACC99;
-    margin-top: 2px;
+.languages-stats {
+    text-align: center;
+}
+
+.languages-stats tr {
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.languages-stats td {
+    padding: 5px 10px;
+}
+
+.languages-stats img {
+    display: block;
+}
+
+.languages-stats .status-warning {
+    color: #AA0000;
+    margin-left: 10px;
+    float: right;
+}
+
+.languages-stats .num-sentences {
+    width: 300px;
 }

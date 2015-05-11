@@ -21,7 +21,7 @@
 /**
  * Included libraries.
  */
-App::import('Core', array('l10n', 'Multibyte'));
+App::import('Core', array('l10n', 'Multibyte', 'PluralForms'));
 
 /**
  * I18n handles translation of Text and time format strings.
@@ -38,6 +38,13 @@ class I18n extends Object {
  * @access public
  */
 	var $l10n = null;
+
+/**
+ * Instance of the PluralForms class for plural formulas
+ *
+ * @var PluralForms
+ */
+	var $pluralForms = null;
 
 /**
  * Current domain of translation
@@ -102,6 +109,7 @@ class I18n extends Object {
 		if (!$instance) {
 			$instance[0] =& new I18n();
 			$instance[0]->l10n =& new L10n();
+			$instance[0]->pluralForms =& new pluralForms();
 		}
 		return $instance[0];
 	}
@@ -164,8 +172,8 @@ class I18n extends Object {
 		if (!isset($count)) {
 			$plurals = 0;
 		} elseif (!empty($_this->__domains[$domain][$_this->__lang][$_this->category]["%plural-c"]) && $_this->__noLocale === false) {
-			$header = $_this->__domains[$domain][$_this->__lang][$_this->category]["%plural-c"];
-			$plurals = $_this->__pluralGuess($header, $count);
+			$formula = $_this->__domains[$domain][$_this->__lang][$_this->category]["%plural-c"];
+			$plurals = $_this->pluralForms->getPlural($formula, $count);
 		} else {
 			if ($count != 1) {
 				$plurals = 1;
@@ -201,58 +209,6 @@ class I18n extends Object {
 	function clear() {
 		$self =& I18n::getInstance();
 		$self->__domains = array();
-	}
-
-/**
- * Attempts to find the plural form of a string.
- *
- * @param string $header Type
- * @param integrer $n Number
- * @return integer plural match
- * @access private
- */
-	function __pluralGuess($header, $n) {
-		if (!is_string($header) || $header === "nplurals=1;plural=0;" || !isset($header[0])) {
-			return 0;
-		}
-
-		if ($header === "nplurals=2;plural=n!=1;") {
-			return $n != 1 ? 1 : 0;
-		} elseif ($header === "nplurals=2;plural=n>1;") {
-			return $n > 1 ? 1 : 0;
-		}
-
-		if (strpos($header, "plurals=3")) {
-			if (strpos($header, "100!=11")) {
-				if (strpos($header, "10<=4")) {
-					return $n % 10 == 1 && $n % 100 != 11 ? 0 : ($n % 10 >= 2 && $n % 10 <= 4 && ($n % 100 < 10 || $n % 100 >= 20) ? 1 : 2);
-				} elseif (strpos($header, "100<10")) {
-					return $n % 10 == 1 && $n % 100 != 11 ? 0 : ($n % 10 >= 2 && ($n % 100 < 10 || $n % 100 >= 20) ? 1 : 2);
-				}
-				return $n % 10 == 1 && $n % 100 != 11 ? 0 : ($n != 0 ? 1 : 2);
-			} elseif (strpos($header, "n==2")) {
-				return $n == 1 ? 0 : ($n == 2 ? 1 : 2);
-			} elseif (strpos($header, "n==0")) {
-				return $n == 1 ? 0 : ($n == 0 || ($n % 100 > 0 && $n % 100 < 20) ? 1 : 2);
-			} elseif (strpos($header, "n>=2")) {
-				return $n == 1 ? 0 : ($n >= 2 && $n <= 4 ? 1 : 2);
-			} elseif (strpos($header, "10>=2")) {
-				return $n == 1 ? 0 : ($n % 10 >= 2 && $n % 10 <= 4 && ($n % 100 < 10 || $n % 100 >= 20) ? 1 : 2);
-			}
-			return $n % 10 == 1 ? 0 : ($n % 10 == 2 ? 1 : 2);
-		} elseif (strpos($header, "plurals=4")) {
-			if (strpos($header, "100==2")) {
-				return $n % 100 == 1 ? 0 : ($n % 100 == 2 ? 1 : ($n % 100 == 3 || $n % 100 == 4 ? 2 : 3));
-			} elseif (strpos($header, "n>=3")) {
-				return $n == 1 ? 0 : ($n == 2 ? 1 : ($n == 0 || ($n >= 3 && $n <= 10) ? 2 : 3));
-			} elseif (strpos($header, "100>=1")) {
-				return $n == 1 ? 0 : ($n == 0 || ($n % 100 >= 1 && $n % 100 <= 10) ? 1 : ($n % 100 >= 11 && $n % 100 <= 20 ? 2 : 3));
-			}
-		} elseif (strpos($header, "plurals=5")) {
-			return $n == 1 ? 0 : ($n == 2 ? 1 : ($n >= 3 && $n <= 6 ? 2 : ($n >= 7 && $n <= 10 ? 3 : 4)));
-		} elseif (strpos($header, "plurals=6")) {
-			return $n == 0 ? 0 : ($n == 1 ? 1 : ($n == 2 ? 2 : ($n % 100 >= 3 && $n % 100 <= 10 ? 3 : ($n % 100 >= 11 && $n % 100 <= 99 ? 4 : 5))));
-		}
 	}
 
 /**
@@ -334,8 +290,8 @@ class I18n extends Object {
 			}
 
 			if (isset($this->__domains[$domain][$this->__lang][$this->category]["%po-header"]["plural-forms"])) {
-				$switch = preg_replace("/(?:[() {}\\[\\]^\\s*\\]]+)/", "", $this->__domains[$domain][$this->__lang][$this->category]["%po-header"]["plural-forms"]);
-				$this->__domains[$domain][$this->__lang][$this->category]["%plural-c"] = $switch;
+				$formula = $this->pluralForms->parsePluralForms($this->__domains[$domain][$this->__lang][$this->category]["%po-header"]["plural-forms"]);
+				$this->__domains[$domain][$this->__lang][$this->category]["%plural-c"] = $formula;
 				unset($this->__domains[$domain][$this->__lang][$this->category]["%po-header"]);
 			}
 			$this->__domains = Set::pushDiff($this->__domains, $merge);

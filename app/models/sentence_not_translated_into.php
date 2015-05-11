@@ -183,7 +183,7 @@ class SentenceNotTranslatedInto extends AppModel
             }
         } else {
             // We already have that total in the languages table
-            $sql = "SELECT numberOfSentences as Count FROM languages WHERE code = '$source'";
+            $sql = "SELECT sentences as Count FROM languages WHERE code = '$source'";
             $results = $this->query($sql);
             if (isset($results[0])) {
                 $total = $results[0]['languages']['Count'];

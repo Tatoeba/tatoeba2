@@ -38,6 +38,8 @@ class Language extends AppModel
 {
     public $name = 'Language';
 
+    const MAX_LEVEL = 5;
+
     /**
      * Return the id associated with the given lang string
      *
@@ -69,20 +71,83 @@ class Language extends AppModel
     /**
      * Return stats for number of sentences per language.
      *
-     * @param $limit Specifying a limit will only take the top languages
-     *               with the most sentences.
+     * @param int $limit Specifying a limit will only take the top languages
+     *                   with the most sentences.
+     *
+     * @return array
      */
-    public function getStatistics($limit = null)
+    public function getSentencesStatistics($limit = null)
     {
         $results = $this->find(
             'all',
             array(
-                'order' => array('numberOfSentences DESC'),
+                'fields' => array(
+                    'code',
+                    'sentences',
+                    'audio',
+                ),
+                'order' => array('sentences DESC'),
                 'limit' => $limit
             )
         );
 
         return $results ;
+    }
+
+
+    /**
+     * Return stats for number of members who speak the language in each group of
+     * users.
+     *
+     * @return array
+     */
+    public function getUsersLanguagesStatistics()
+    {
+        $results = $this->find(
+            'all',
+            array(
+                'conditions' => array('code !=' => null),
+                'fields' => array(
+                    'code',
+                    'level_5',
+                    'level_4',
+                    'level_3',
+                    'level_2',
+                    'level_1',
+                    'level_0',
+                    'level_unknown',
+                    '(level_5 + level_4 + level_3 + level_2 + level_1 + level_0 + level_unknown) as total'
+                ),
+                'order' => array('total DESC'),
+            )
+        );
+
+        return $results ;
+    }
+
+
+    /**
+     *
+     */
+    public function getNativeSpeakersStatistics()
+    {
+        $results = $this->find(
+            'all',
+            array(
+                'conditions' => array('code !=' => null),
+                'fields' => array(
+                    'code',
+                    'group_1',
+                    'group_2',
+                    'group_3',
+                    'group_4',
+                    '(group_1 + group_2 + group_3 + group_4) as total'
+                ),
+                'order' => array('total DESC')
+            )
+        );
+
+        return $results;
     }
 
 
@@ -103,7 +168,7 @@ class Language extends AppModel
         }
 
         $query = "
-            UPDATE languages SET numberOfSentences = numberOfSentences + 1
+            UPDATE languages SET sentences = sentences + 1
                 WHERE $endOfQuery ;
         ";
         $this->query($query);
@@ -127,9 +192,70 @@ class Language extends AppModel
         }
 
         $query = "
-            UPDATE languages SET numberOfSentences = numberOfSentences - 1
+            UPDATE languages SET sentences = sentences - 1
                 WHERE $endOfQuery ;
         ";
         $this->query($query);
+    }
+
+
+    public function incrementCountForGroup($langCode, $groupId)
+    {
+        $groupColumn = $this->_groupColumnName($groupId);
+
+        $this->updateAll(
+            array($groupColumn => "$groupColumn + 1"),
+            array('code' => $langCode)
+        );
+    }
+
+
+    public function decrementCountForGroup($langCode, $groupId)
+    {
+        $groupColumn = $this->_groupColumnName($groupId);
+
+        $this->updateAll(
+            array($groupColumn => "$groupColumn - 1"),
+            array('code' => $langCode)
+        );
+    }
+
+
+    private function _groupColumnName($groupId)
+    {
+        return 'Language.group_'.$groupId;
+    }
+
+
+    public function incrementCountForLevel($langCode, $level)
+    {
+        $levelColumn = $this->_levelColumnName($level);
+
+        $this->updateAll(
+            array($levelColumn => "$levelColumn + 1"),
+            array('code' => $langCode)
+        );
+    }
+
+
+    public function decrementCountForLevel($langCode, $level)
+    {
+        $levelColumn = $this->_levelColumnName($level);
+
+        $this->updateAll(
+            array($levelColumn => "$levelColumn - 1"),
+            array('code' => $langCode)
+        );
+    }
+
+
+    private function _levelColumnName($level)
+    {
+        if (isset($level)) {
+            return 'Language.level_'.$level;
+        } else {
+            return 'Language.level_unknown';
+        }
+
     }
 }
