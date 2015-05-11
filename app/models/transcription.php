@@ -305,11 +305,11 @@ class Transcription extends AppModel
             );
             if ($chainedTranscr) {
                 $chainedTranscr['parent_id'] = $transcr['id'];
-                $chainedTranscr['id'] = $this->findTranscriptionId(
-                    $chainedTranscr['sentence_id'],
-                    $chainedTranscr['script']
-                );
                 if ($save) {
+                    $chainedTranscr['id'] = $this->findTranscriptionId(
+                        $chainedTranscr['sentence_id'],
+                        $chainedTranscr['script']
+                    );
                     $this->create();
                     if ($this->save($chainedTranscr))
                         $result[] = $chainedTranscr;
