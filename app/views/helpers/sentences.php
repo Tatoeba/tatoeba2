@@ -634,7 +634,7 @@ class SentencesHelper extends AppHelper
         // romanization
         if ($transcriptions) {
             $this->displayTranscriptions(
-                $transcriptions, $sentence['lang']
+                $transcriptions, $sentence['lang'], $sentence['user_id']
             );
         }
 
@@ -702,11 +702,16 @@ class SentencesHelper extends AppHelper
      *
      * @param array  $transcriptions List of transcriptions.
      * @param string $lang           Language of the transcripted sentence.
+     * @param string $sentenceOwnerId Id of the owner of the sentence
+     *                                transcriptions comes from.
      *
      * @return void
      */
-    public function displayTranscriptions($transcriptions, $lang)
-    {
+    public function displayTranscriptions(
+        $transcriptions,
+        $lang,
+        $sentenceOwnerId
+    ) {
         $chained = array();
         foreach ($transcriptions as $script => $transcr) {
             if (isset($transcr['parent_id'])) {
@@ -721,15 +726,27 @@ class SentencesHelper extends AppHelper
             } else {
                 $subTranscr = null;
             }
-            $this->displayTranscription($transcr, $lang, $subTranscr);
+            $this->displayTranscription(
+                $transcr,
+                $lang,
+                $subTranscr,
+                $sentenceOwnerId
+            );
         }
     }
 
-    private function displayTranscription($transcr, $lang, $subTranscr = null) {
+    private function displayTranscription(
+        $transcr,
+        $lang,
+        $subTranscr,
+        $sentenceOwnerId
+    ) {
         $this->Javascript->link('jquery.jeditable.js', false);
         $this->Javascript->link('transcriptions.edit_in_place.js', false);
 
-        $isEditable = true;
+        $isEditable = CurrentUser::canEditTranscription(
+            $transcr['user_id'], $sentenceOwnerId
+        );
         if (isset($transcr['readonly']) && $transcr['readonly']) {
             $isEditable = false;
         }

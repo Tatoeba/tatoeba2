@@ -17,8 +17,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-if ($transcr && $lang) {
+if ($transcr && $lang && $sentenceOwnerId) {
     echo $javascript->link('transcriptions.edit_in_place.js', true);
-    $sentences->displayTranscriptions($transcr, $lang);
+    $sentences->displayTranscriptions($transcr, $lang, $sentenceOwnerId);
 }
 ?>

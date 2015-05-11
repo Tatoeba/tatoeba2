@@ -91,9 +91,14 @@ class TranscriptionsController extends AppController
     }
 
     private function setViewVars($transcription, $sentenceId) {
-        $sentence = $this->Sentence->findById($sentenceId, 'lang');
-        if ($sentence)
+        $sentence = $this->Sentence->findById(
+            $sentenceId,
+            array('lang', 'user_id')
+        );
+        if ($sentence) {
             $this->set('lang', $sentence['Sentence']['lang']);
+            $this->set('sentenceOwnerId', $sentence['Sentence']['user_id']);
+        }
 
         $this->set('transcr', $transcription);
         $this->layout = null;
