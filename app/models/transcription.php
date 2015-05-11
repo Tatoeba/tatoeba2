@@ -157,7 +157,7 @@ class Transcription extends AppModel
         } else { // create
             if (   isset($this->data[$this->alias]['sentence_id'])
                 || isset($this->data[$this->alias]['script'])) {
-                return $this->_isUnique() && $this->_getTranscriptionRule();
+                return $this->_isUnique() && $this->_checkTranscriptionRules();
             }
         }
         return true;
@@ -176,7 +176,7 @@ class Transcription extends AppModel
         return $fieldValue;
     }
 
-    private function _getTranscriptionRule() {
+    private function _checkTranscriptionRules() {
         $targetScript = $this->_getFieldFromDataOrDatabase('script');
         if (!$targetScript)
             return false;
@@ -191,12 +191,28 @@ class Transcription extends AppModel
         if (!$parentSentence)
             return false;
 
-        $transcriptions = $this->transcriptableToWhat($parentSentence);
-        if (isset($transcriptions[$targetScript])) {
-            return $transcriptions[$targetScript];
-        } else {
+        $langScript = $this->getSourceLangScript($parentSentence['Sentence']);
+        if (!$langScript)
             return false;
+        if (!isset($this->availableTranscriptions[$langScript][$targetScript]))
+            return false;
+
+        $transcrValidateMethod = sprintf(
+            '%s_to_%s_validate',
+            strtr($langScript, '-', '_'),
+            $targetScript
+        );
+        if (method_exists($this->autotranscription, $transcrValidateMethod)) {
+            $ok = $this->autotranscription->{$transcrValidateMethod}(
+                $this->_getFieldFromDataOrDatabase('text'),
+                $parentSentence['Sentence']['text']
+            );
+            if (!$ok) {
+                return false;
+            }
         }
+
+        return true;
     }
 
     private function getSourceLangScript($sourceSentence) {
