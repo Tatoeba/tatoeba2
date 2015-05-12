@@ -27,6 +27,7 @@ $(document).ready(function() {
 
     $('.editable.transcription').each(function() {
         var div = $(this);
+        var previousValue = {};
 
         sentenceId = div.parent().parent().attr('data-sentence-id');
         script = div.attr('data-script');
@@ -42,6 +43,25 @@ $(document).ready(function() {
             },
             callback : function(result, settings) {
                 div.parent().replaceWith(result);
+            },
+            onsubmit  : function(settings, self) {
+                // Save the submitted value to restore it on error
+                $(self).find("textarea").each(function(idx) {
+                    previousValue[idx] = $(this).val();
+                });
+                return true;
+            },
+            onerror   : function (settings, self, xhr) {
+                // Go back to the previous editing state
+                $(self).html(self.revert);
+                self.editing = false;
+                $(self).trigger(settings.event);
+
+                // Restore the previous value
+                $(self).find("textarea").each(function(idx) {
+                    $(this).val(previousValue[idx]);
+                });
+                return false; // don't reset the form
             },
             indicator : '<img src="/img/loading.gif">',
             tooltip   : div.attr('data-tooltip'),
