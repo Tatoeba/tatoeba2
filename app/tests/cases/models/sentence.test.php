@@ -216,6 +216,92 @@ class SentenceTestCase extends CakeTestCase {
 		$this->assertEqual(array(), $trans);
 	}
 
+	function testLogsSentenceDeletionOnDelete() {
+		$sentenceId = 1;
+		$conditions = array('type' => 'sentence');
+		$before = $this->Sentence->Contribution->find('count', compact('conditions'));
+
+		$this->Sentence->delete($sentenceId, 12345);
+
+		$after = $this->Sentence->Contribution->find('count', compact('conditions'));
+		$added = $after - $before;
+		$this->assertEqual(1, $added);
+	}
+
+	function testLogsSentenceDeletionWithFieldsOnDelete() {
+		$sentenceId = 1;
+		$sentence = $this->Sentence->findById($sentenceId);
+		$expected = array(
+			'sentence_id' => $sentenceId,
+			'sentence_lang' => $sentence['Sentence']['lang'],
+			'text' => $sentence['Sentence']['text'],
+			'action' => 'delete',
+		);
+		$fields = array('sentence_id', 'sentence_lang', 'text', 'action');
+		$conditions = array('type' => 'sentence');
+		$before = $this->Sentence->Contribution->deleteAll('1=1');
+
+		$this->Sentence->delete($sentenceId, 12345);
+
+		$log = $this->Sentence->Contribution->find('all',
+			compact('conditions', 'fields')
+		);
+		$this->assertEqual($expected, $log[0]['Contribution']);
+	}
+
+	function testLogsLinkDeletionOnDelete() {
+		$sentenceId = 3;
+		$conditions = array('type' => 'link');
+		$before = $this->Sentence->Contribution->find('count', compact('conditions'));
+
+		$this->Sentence->delete($sentenceId, 12345);
+
+		$after = $this->Sentence->Contribution->find('count', compact('conditions'));
+		$added = $after - $before;
+		$this->assertEqual(2, $added);
+	}
+
+	function testLogsLinkDeletionWithFieldsOnDelete() {
+		$sentenceId = 1;
+		$expected = array(
+			array('Contribution' => array(
+				'sentence_id' => $sentenceId,
+				'translation_id' => 2,
+			)),
+			array('Contribution' => array(
+				'sentence_id' => 2,
+				'translation_id' => $sentenceId,
+			)),
+			array('Contribution' => array(
+				'sentence_id' => $sentenceId,
+				'translation_id' => 3,
+			)),
+			array('Contribution' => array(
+				'sentence_id' => 3,
+				'translation_id' => $sentenceId,
+			)),
+			array('Contribution' => array(
+				'sentence_id' => $sentenceId,
+				'translation_id' => 4,
+			)),
+			array('Contribution' => array(
+				'sentence_id' => 4,
+				'translation_id' => $sentenceId,
+			)),
+		);
+		$conditions = array('type' => 'link');
+		$contain = array();
+		$fields = array('sentence_id', 'translation_id');
+		$before = $this->Sentence->Contribution->deleteAll('1=1');
+
+		$this->Sentence->delete($sentenceId, 12345);
+
+		$logs = $this->Sentence->Contribution->find('all',
+			compact('conditions', 'fields', 'contain')
+		);
+		$this->assertEqual($expected, $logs);
+	}
+
 	function testTranslationLinksToSentenceRemovedOnDelete() {
 		$sentenceId = 1;
 
