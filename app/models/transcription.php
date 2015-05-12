@@ -207,8 +207,8 @@ class Transcription extends AppModel
         );
         if (method_exists($this->autotranscription, $transcrValidateMethod)) {
             $ok = $this->autotranscription->{$transcrValidateMethod}(
-                $this->_getFieldFromDataOrDatabase('text'),
-                $parentSentence['Sentence']['text']
+                $parentSentence['Sentence']['text'],
+                $this->_getFieldFromDataOrDatabase('text')
             );
             if (!$ok) {
                 return false;
