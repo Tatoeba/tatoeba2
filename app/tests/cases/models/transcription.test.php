@@ -392,24 +392,25 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->assertFalse($result);
     }
 
-    function testSaveTranscriptionCallsTranscriptionValidity() {
+    function testSaveTranscriptionChecksTranscriptionValidityOnCreate() {
         $transcr = $this->Transcription->find('first', array(
             'conditions' => array('sentence_id' => 10)
         ));
         $this->Transcription->delete($transcr['Transcription']['id'], false);
         unset($transcr['Transcription']['id']);
 
-        $this->AutoTranscr->expectCallCount('jpn_Jpan_to_Hrkt_validate', 1);
+        $this->AutoTranscr = $this->_installAutotranscriptionMock();
+        $this->AutoTranscr->setReturnValue('jpn_Jpan_to_Hrkt_validate', false);
 
-        $this->Transcription->saveTranscription($transcr['Transcription']);
+        $result = (bool)$this->Transcription->saveTranscription($transcr['Transcription']);
+        $this->assertFalse($result);
     }
 
-    function testSaveTranscriptionChecksTranscriptionValidity() {
+    function testSaveTranscriptionChecksTranscriptionValidityOnUpdate() {
         $transcr = $this->Transcription->find('first', array(
             'conditions' => array('sentence_id' => 10)
         ));
-        $this->Transcription->delete($transcr['Transcription']['id'], false);
-        unset($transcr['Transcription']['id']);
+        $transcr['Transcription']['text'] = 'something new';
 
         $this->AutoTranscr = $this->_installAutotranscriptionMock();
         $this->AutoTranscr->setReturnValue('jpn_Jpan_to_Hrkt_validate', false);

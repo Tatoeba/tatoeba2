@@ -23,6 +23,12 @@ class TestTranscriptionsController extends TranscriptionsController {
             unset($this->params['loggedInUserForTest']);
         }
 
+        /* Replace Autotranscription to allow syntax errors */
+        Mock::generate('Autotranscription');
+        $autotranscription =& new MockAutotranscription;
+        $autotranscription->setReturnValue('jpn_Jpan_to_Hrkt_validate', true);
+        $this->Transcription->setAutotranscription($autotranscription);
+
         parent::beforeFilter();
     }
 

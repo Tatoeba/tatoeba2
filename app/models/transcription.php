@@ -151,16 +151,19 @@ class Transcription extends AppModel
     }
 
     public function beforeSave() {
+        $ok = true;
         if (isset($this->data[$this->alias]['id'])) { // update
             if ($this->isModifyingFields(array('sentence_id', 'script')))
-                return false;
+                $ok = false;
+            else
+                $ok = $this->_checkTranscriptionRules();
         } else { // create
             if (   isset($this->data[$this->alias]['sentence_id'])
                 || isset($this->data[$this->alias]['script'])) {
-                return $this->_isUnique() && $this->_checkTranscriptionRules();
+                $ok = $this->_isUnique() && $this->_checkTranscriptionRules();
             }
         }
-        return true;
+        return $ok;
     }
 
     private function _getFieldFromDataOrDatabase($fieldName) {
