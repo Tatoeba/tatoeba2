@@ -85,8 +85,8 @@ class SentencesListsController extends AppController
      */
     public function index($search = null)
     {
-        if (empty($search) && isset($this->data['SentencesList']['search'])) {
-            $search = $this->data['SentencesList']['search'];
+        if (isset($this->params['url']['search'])) {
+            $search = $this->params['url']['search'];
             $this->redirect(array('action' => 'index', $search));
         }
 
@@ -114,8 +114,8 @@ class SentencesListsController extends AppController
 
     public function collaborative($search = null)
     {
-        if (!isset($search) && isset($this->data['SentencesList']['search'])) {
-            $search = $this->data['SentencesList']['search'];
+        if (isset($this->params['url']['search'])) {
+            $search = $this->params['url']['search'];
             $this->redirect(array('action' => 'collaborative', $search));
         }
 
@@ -367,13 +367,19 @@ class SentencesListsController extends AppController
      */
     public function of_user($username, $search = null)
     {
-        if (!isset($search) && isset($this->data['SentencesList']['search'])) {
-            $search = $this->data['SentencesList']['search'];
-            $username = $this->data['SentencesList']['username'];
-            $this->redirect(array('action' => 'of_user', $username, $search));
+        if (isset($this->params['url']['username'])) {
+            $usernameParam = $this->params['url']['username'];
+        }
+        if (isset($this->params['url']['search'])) {
+            $searchParam = $this->params['url']['search'];
         }
 
         $username = Sanitize::paranoid($username);
+        if (!empty($usernameParam)) {
+            $this->redirect(array('action' => 'of_user', $usernameParam, $searchParam));
+        } else if (empty($username)) {
+            $this->redirect(array('action' => 'index'));
+        }
 
         $this->paginate = $this->SentencesList->getPaginatedLists($search, $username);
         $userLists = $this->paginate('SentencesList');

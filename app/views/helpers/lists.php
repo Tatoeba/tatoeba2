@@ -550,7 +550,7 @@ class ListsHelper extends AppHelper
             <?php
             echo $this->Html->tag('h2', __('Search', true));
 
-            echo $this->Form->create();
+            echo $this->Form->create('SentencesList', array('type' => 'get'));
 
             if (!empty($extraHiddenParams)) {
                 foreach ($extraHiddenParams as $key => $value) {
