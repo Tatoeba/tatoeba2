@@ -374,7 +374,6 @@ class SentencesListsController extends AppController
             $searchParam = $this->params['url']['search'];
         }
 
-        $username = Sanitize::paranoid($username);
         if (!empty($usernameParam)) {
             $this->redirect(array('action' => 'of_user', $usernameParam, $searchParam));
         } else if (empty($username)) {
