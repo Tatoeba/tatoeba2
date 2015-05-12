@@ -41,32 +41,27 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 </div>
 
 <div id="main_content">
+    <div class="module">
+        <?php echo $html->tag('h2', $title, array('escape' => true)); ?>
 
-<?php
-if (count($allLists) > 0) {
-    echo '<div class="module">';
-
-    echo $html->tag('h2', $title);
-
-    ?>
-    <div class="sortBy">
-        <strong><?php __("Sort by:") ?> </strong>
+        <div class="sortBy">
+            <strong><?php __("Sort by:") ?> </strong>
+            <?php
+            echo $this->Paginator->sort(__('list name', true), 'name');
+            echo " | ";
+            echo $this->Paginator->sort(__('date created', true), 'created');
+            echo " | ";
+            echo $this->Paginator->sort(
+                __('number of sentences', true),
+                'numberOfSentences'
+            );
+            ?>
+        </div>
         <?php
-        echo $this->Paginator->sort(__('name', true), 'name');
-        echo " | ";
-        echo $this->Paginator->sort(__('date', true), 'created');
-        echo " | ";
-        echo $this->Paginator->sort(__('number of sentences', true), 'numberOfSentences');
+
+        $pagination->display();
+        $lists->displayListTable($allLists);
+        $pagination->display();
         ?>
     </div>
-    <?php
-
-    $pagination->display();
-    $lists->displayListTable($allLists);
-    $pagination->display();
-    
-    echo '</div>';
-}
-?>
-
 </div>

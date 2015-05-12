@@ -56,16 +56,19 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 
 <div id="main_content">
     <div class="module">
-        <h2><?php echo $title; ?></h2>
+        <?php echo $html->tag('h2', $title, array('escape' => true)); ?>
 
         <div class="sortBy">
             <strong><?php __("Sort by:") ?> </strong>
             <?php
-            echo $this->Paginator->sort(__('name', true), 'name');
+            echo $this->Paginator->sort(__('list name', true), 'name');
             echo " | ";
-            echo $this->Paginator->sort(__('date', true), 'created');
+            echo $this->Paginator->sort(__('date created', true), 'created');
             echo " | ";
-            echo $this->Paginator->sort(__('number of sentences', true), 'numberOfSentences');
+            echo $this->Paginator->sort(
+                __('number of sentences', true),
+                'numberOfSentences'
+            );
             ?>
         </div>
         
