@@ -180,6 +180,55 @@ class SentenceTestCase extends CakeTestCase {
 		$this->assertEqual($expectedLangs, $result);
 	}
 
+	function testSentenceRemovedOnDelete() {
+		$sentenceId = 1;
+
+		$this->Sentence->delete($sentenceId, 12345);
+
+		$result = (bool)$this->Sentence->findById($sentenceId);
+		$this->assertFalse($result);
+	}
+
+	function testReturnsTrueOnDelete() {
+		$sentenceId = 1;
+
+		$result = $this->Sentence->delete($sentenceId, 12345);
+
+		$this->assertTrue($result);
+	}
+
+	function testReturnsFalseIfAudioOnDelete() {
+		$sentenceId = 1;
+		$this->Sentence->id = $sentenceId;
+		$this->Sentence->saveField('hasaudio', 'from_users');
+
+		$result = $this->Sentence->delete($sentenceId, 12345);
+
+		$this->assertFalse($result);
+	}
+
+	function testTranslationLinksFromSentenceRemovedOnDelete() {
+		$sentenceId = 1;
+
+		$this->Sentence->delete($sentenceId, 12345);
+
+		$trans = $this->Sentence->Link->findDirectTranslationsIds($sentenceId);
+		$this->assertEqual(array(), $trans);
+	}
+
+	function testTranslationLinksToSentenceRemovedOnDelete() {
+		$sentenceId = 1;
+
+		$translations = $this->Sentence->Link->findDirectTranslationsIds($sentenceId);
+
+		$this->Sentence->delete($sentenceId, 12345);
+
+		foreach($translations as $transId) {
+			$trans = $this->Sentence->Link->findDirectTranslationsIds($transId);
+			$this->assertFalse(in_array($sentenceId, $trans));
+		}
+	}
+
 	function testSentenceLoosesOKTagOnEdition() {
 		$sentenceId = 2;
 		$OKTagId = $this->Sentence->Tag->getIdFromName(
