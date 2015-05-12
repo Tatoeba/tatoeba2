@@ -82,6 +82,10 @@ class TranscriptionsController extends AppController
             ));
         }
 
+        if (!$saved) {
+            $this->header('HTTP/1.1 400 Bad transcription');
+        }
+
         /* Used by tests, to check permissions */
         if (isset($this->params['requested'])) {
             return $canEdit && $saved;
