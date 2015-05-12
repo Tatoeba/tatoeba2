@@ -89,7 +89,7 @@
 .edit-list-name-form input {
     border: 1px solid #CCCCCC;
     font-size: inherit;
-    font-weight: inherit;
+    min-width: 400px;
     max-width: 400px;
     max-height: 24px;
 }
