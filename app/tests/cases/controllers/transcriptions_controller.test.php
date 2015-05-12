@@ -127,6 +127,11 @@ class TranscriptionsControllerTestCase extends CakeTestCase {
 
         $this->assertTrue($result);
     }
+    function testRegularUserCanInsertTranscription() {
+        $this->Transcriptions->Transcription->deleteAll('1=1');
+        $result = $this->_saveAsUser('contributor', 10, 'Hrkt', 'something new');
+        $this->assertTrue($result);
+    }
 
     function testAdvancedUserCanEditMachineTranscription() {
         $result = $this->_saveAsUser('advanced_contributor', 10, 'Hrkt', 'something new');

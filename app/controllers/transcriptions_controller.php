@@ -54,6 +54,7 @@ class TranscriptionsController extends AppController
         $transcriptionId = $this->Transcription->findTranscriptionId($sentenceId, $script);
         $transcriptionText = $this->params['form']['value'];
         $userId = CurrentUser::get('id');
+        $canEdit = true;
 
         if ($transcriptionId) { // Modifying existing transcription
             list($transcrOwnerId, $sentenceOwnerId)
