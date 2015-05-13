@@ -315,6 +315,20 @@ class SentenceTestCase extends CakeTestCase {
 		}
 	}
 
+	function testLanguageCountDecrementedOnDelete() {
+		$sentenceId = 1;
+		$sentence = $this->Sentence->findById($sentenceId, 'lang');
+		$language = $this->Sentence->Language->findByCode($sentence['Sentence']['lang'], 'sentences');
+		$countBefore = $language['Language']['sentences'];
+
+		$this->Sentence->delete($sentenceId, 12345);
+
+		$language = $this->Sentence->Language->findByCode($sentence['Sentence']['lang'], 'sentences');
+		$countAfter = $language['Language']['sentences'];
+		$delta = $countAfter - $countBefore;
+		$this->assertEqual(-1, $delta);
+	}
+
 	function testSentenceLoosesOKTagOnEdition() {
 		$sentenceId = 2;
 		$OKTagId = $this->Sentence->Tag->getIdFromName(
