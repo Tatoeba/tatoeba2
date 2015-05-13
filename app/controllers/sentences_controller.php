@@ -256,7 +256,7 @@ class SentencesController extends AppController
 
         $isDeleted = $this->Sentence->delete(
             $id,
-            true
+            false
         );
         if ($isDeleted) {
             $this->flash(

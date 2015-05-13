@@ -210,14 +210,36 @@ class Sentence extends AppModel
     }
 
     /**
+     * Called before every deletion operation.
+     *
+     * @param boolean $cascade If true records that depend on this record will also be deleted
+     * @return boolean True if the operation should continue, false if it should abort
+     */
+    public function beforeDelete($cascade = true) {
+        // Retrieve data before deleting it, so that we can log things
+        // in afterDelete()
+        $this->data = $this->find(
+            'first',
+            array(
+                'conditions' => array('Sentence.id' => $this->id),
+                'contain' => array ('Translation', 'User')
+            )
+        );
+
+        if ($this->data['Sentence']['hasaudio'] != 'no') {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Call after a deletion.
      *
      * @return void
      */
     public function afterDelete()
     {
-        $action = 'delete';
-
         // --- Logs for sentence ---
         $sentenceLang = $this->data['Sentence']['lang'];
         $sentenceScript = $this->data['Sentence']['script'];
@@ -232,6 +254,7 @@ class Sentence extends AppModel
         );
 
         // --- Logs for links ---
+        $action = 'delete';
         foreach ($this->data['Translation'] as $translation) {
             $this->Contribution->saveLinkContribution(
                 $sentenceId, $translation['id'], $action
@@ -240,6 +263,15 @@ class Sentence extends AppModel
                 $translation['id'], $sentenceId, $action
             );
         }
+
+        // Remove links
+        $conditions = array(
+            'Link.sentence_id' => $sentenceId,
+            // Note that deleting Link.translation_id == $sentenceId
+            // is unnecessary because CakePHP already deleted them
+            // during delete() thanks to the HABTM relation
+        );
+        $this->Link->deleteAll($conditions, false);
 
         // Decrement statistics
         $this->Language->decrementCountForLanguage($sentenceLang);
@@ -422,46 +454,6 @@ class Sentence extends AppModel
         );
         return $result;
     }
-
-
-    /**
-     * Delete the sentence with the given id.
-     *
-     * @param int $id     Id of the sentence to be deleted.
-     * @param int $userId Id of the user who deleted the sentence. Used for logs.
-     *
-     * @return void
-     */
-    public function delete($id, $userId)
-    {
-        $id = Sanitize::paranoid($id);
-        // for the logs
-        $this->data = $this->find(
-            'first',
-            array(
-                'conditions' => array('Sentence.id' => $id),
-                'contain' => array ('Translation', 'User')
-            )
-        );
-        
-        $this->data['User']['id'] = $userId;
-
-        $isDeleted = false;
-        
-        if ($this->data['Sentence']['hasaudio'] == 'no')
-        {
-            $this->query('DELETE FROM sentences WHERE id='.$id);
-            $this->query('DELETE FROM sentences_translations WHERE sentence_id='.$id);
-            $this->query('DELETE FROM sentences_translations WHERE translation_id='.$id);
-            $isDeleted = true;
-        }
-
-        // need to call afterDelete() manually for the logs
-        $this->afterDelete();
-
-        return $isDeleted;
-    }
-
 
     /**
      * Get number of sentences owned by a given user.
