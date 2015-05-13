@@ -329,6 +329,17 @@ class SentenceTestCase extends CakeTestCase {
 		$this->assertEqual(-1, $delta);
 	}
 
+	function testListsCleanedOnDelete() {
+		$sentenceId = 4;
+		$inListBefore = $this->Sentence->SentencesList->SentencesSentencesLists->findAllBySentenceId($sentenceId);
+
+		$this->Sentence->delete($sentenceId, 12345);
+
+		$inListAfter = $this->Sentence->SentencesList->SentencesSentencesLists->findAllBySentenceId($sentenceId);
+		$delta = count($inListAfter) - count($inListBefore);
+		$this->assertEqual(-1, $delta);
+	}
+
 	function testTagsAreRemovedOnDelete() {
 		$sentenceId = 8;
 		$tagsBefore = $this->Sentence->TagsSentences->getAllTagsOnSentence($sentenceId);
