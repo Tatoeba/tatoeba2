@@ -47,16 +47,6 @@ class TagsSentences extends AppModel
         'Tag',
         );
 
-
-    public function beforeDelete() {
-        $taggerId = $this->field('user_id');
-        if (CurrentUser::canRemoveTagFromSentence($taggerId)) {
-            return true;
-        }
-        return false;
-    }
-
-
     public function tagSentence($sentenceId, $tagId, $userId)
     {
         $isTagged = $this->isSentenceTagged($sentenceId, $tagId);
@@ -116,8 +106,7 @@ class TagsSentences extends AppModel
             ),
             // we don't want record to be deleted in cascade, as we only want
             // the relation to be broken
-            false,
-            true // run beforeDelte()
+            false
         );
     }
 
