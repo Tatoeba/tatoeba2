@@ -329,6 +329,17 @@ class SentenceTestCase extends CakeTestCase {
 		$this->assertEqual(-1, $delta);
 	}
 
+	function testTagsAreRemovedOnDelete() {
+		$sentenceId = 8;
+		$tagsBefore = $this->Sentence->TagsSentences->getAllTagsOnSentence($sentenceId);
+
+		$this->Sentence->delete($sentenceId, 12345);
+
+		$tagsAfter = $this->Sentence->TagsSentences->getAllTagsOnSentence($sentenceId);
+		$delta = count($tagsAfter) - count($tagsBefore);
+		$this->assertEqual(-1, $delta);
+	}
+
 	function testSentenceLoosesOKTagOnEdition() {
 		$sentenceId = 2;
 		$OKTagId = $this->Sentence->Tag->getIdFromName(
