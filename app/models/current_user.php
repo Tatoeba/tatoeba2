@@ -251,6 +251,10 @@ class CurrentUser extends AppModel
      */
     public static function canEditTranscription($transcrOwnerId, $sentenceOwnerId)
     {
+        if (!CurrentUser::isMember()) {
+            return false;
+        }
+
         $currentUserId = self::get('id');
         return $transcrOwnerId === null
                || $sentenceOwnerId === $currentUserId

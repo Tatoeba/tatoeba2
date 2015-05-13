@@ -770,13 +770,32 @@ class SentencesHelper extends AppHelper
         );
 
         $infoDiv = '';
-        if ($isGenerated && $isEditable) {
-            $warningMessage = __(
-                'The following transcription has been automatically generated '.
-                'and <strong>may contain errors</strong>. '.
-                'If you can, you are welcome to review by clicking it.',
-                true
-            );
+        if ($isGenerated) {
+            if ($isEditable) {
+                $warningMessage = __(
+                    'The following transcription has been automatically '.
+                    'generated and <strong>may contain errors</strong>. '.
+                    'If you can, you are welcome to review by clicking it.',
+                    true
+                );
+            } else {
+                $loginUrl = $this->url(array(
+                    'controller' => 'users',
+                    'action' => 'login',
+                ));
+                $registerUrl = $this->url(array(
+                    'controller' => 'users',
+                    'action' => 'register',
+                ));
+                $warningMessage = __(format(
+                    'The following transcription has been automatically '.
+                    'generated and <strong>may contain errors</strong>. '.
+                    'If you wish to review it, please <a href="{loginUrl}">'.
+                    'log in</a> or <a href="{registerUrl}">register</a> first.',
+                    compact('loginUrl', 'registerUrl')),
+                    true
+                );
+            }
             $infoDiv = $this->Html->tag('div', $warningMessage, array(
                 'class' => 'transcriptionWarning',
             ));
