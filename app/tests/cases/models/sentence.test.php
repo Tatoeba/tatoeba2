@@ -183,7 +183,7 @@ class SentenceTestCase extends CakeTestCase {
 	function testSentenceRemovedOnDelete() {
 		$sentenceId = 1;
 
-		$this->Sentence->delete($sentenceId, 12345);
+		$this->Sentence->delete($sentenceId, false);
 
 		$result = (bool)$this->Sentence->findById($sentenceId);
 		$this->assertFalse($result);
@@ -192,7 +192,7 @@ class SentenceTestCase extends CakeTestCase {
 	function testReturnsTrueOnDelete() {
 		$sentenceId = 1;
 
-		$result = $this->Sentence->delete($sentenceId, 12345);
+		$result = $this->Sentence->delete($sentenceId, false);
 
 		$this->assertTrue($result);
 	}
@@ -202,7 +202,7 @@ class SentenceTestCase extends CakeTestCase {
 		$this->Sentence->id = $sentenceId;
 		$this->Sentence->saveField('hasaudio', 'from_users');
 
-		$result = $this->Sentence->delete($sentenceId, 12345);
+		$result = $this->Sentence->delete($sentenceId, false);
 
 		$this->assertFalse($result);
 	}
@@ -210,7 +210,7 @@ class SentenceTestCase extends CakeTestCase {
 	function testTranslationLinksFromSentenceRemovedOnDelete() {
 		$sentenceId = 1;
 
-		$this->Sentence->delete($sentenceId, 12345);
+		$this->Sentence->delete($sentenceId, false);
 
 		$trans = $this->Sentence->Link->findDirectTranslationsIds($sentenceId);
 		$this->assertEqual(array(), $trans);
@@ -221,7 +221,7 @@ class SentenceTestCase extends CakeTestCase {
 		$conditions = array('type' => 'sentence');
 		$before = $this->Sentence->Contribution->find('count', compact('conditions'));
 
-		$this->Sentence->delete($sentenceId, 12345);
+		$this->Sentence->delete($sentenceId, false);
 
 		$after = $this->Sentence->Contribution->find('count', compact('conditions'));
 		$added = $after - $before;
@@ -241,7 +241,7 @@ class SentenceTestCase extends CakeTestCase {
 		$conditions = array('type' => 'sentence');
 		$before = $this->Sentence->Contribution->deleteAll('1=1');
 
-		$this->Sentence->delete($sentenceId, 12345);
+		$this->Sentence->delete($sentenceId, false);
 
 		$log = $this->Sentence->Contribution->find('all',
 			compact('conditions', 'fields')
@@ -254,7 +254,7 @@ class SentenceTestCase extends CakeTestCase {
 		$conditions = array('type' => 'link');
 		$before = $this->Sentence->Contribution->find('count', compact('conditions'));
 
-		$this->Sentence->delete($sentenceId, 12345);
+		$this->Sentence->delete($sentenceId, false);
 
 		$after = $this->Sentence->Contribution->find('count', compact('conditions'));
 		$added = $after - $before;
@@ -294,7 +294,7 @@ class SentenceTestCase extends CakeTestCase {
 		$fields = array('sentence_id', 'translation_id');
 		$before = $this->Sentence->Contribution->deleteAll('1=1');
 
-		$this->Sentence->delete($sentenceId, 12345);
+		$this->Sentence->delete($sentenceId, false);
 
 		$logs = $this->Sentence->Contribution->find('all',
 			compact('conditions', 'fields', 'contain')
@@ -307,7 +307,7 @@ class SentenceTestCase extends CakeTestCase {
 
 		$translations = $this->Sentence->Link->findDirectTranslationsIds($sentenceId);
 
-		$this->Sentence->delete($sentenceId, 12345);
+		$this->Sentence->delete($sentenceId, false);
 
 		foreach($translations as $transId) {
 			$trans = $this->Sentence->Link->findDirectTranslationsIds($transId);
@@ -321,7 +321,7 @@ class SentenceTestCase extends CakeTestCase {
 		$language = $this->Sentence->Language->findByCode($sentence['Sentence']['lang'], 'sentences');
 		$countBefore = $language['Language']['sentences'];
 
-		$this->Sentence->delete($sentenceId, 12345);
+		$this->Sentence->delete($sentenceId, false);
 
 		$language = $this->Sentence->Language->findByCode($sentence['Sentence']['lang'], 'sentences');
 		$countAfter = $language['Language']['sentences'];
@@ -333,7 +333,7 @@ class SentenceTestCase extends CakeTestCase {
 		$sentenceId = 4;
 		$inListBefore = $this->Sentence->SentencesList->SentencesSentencesLists->findAllBySentenceId($sentenceId);
 
-		$this->Sentence->delete($sentenceId, 12345);
+		$this->Sentence->delete($sentenceId, false);
 
 		$inListAfter = $this->Sentence->SentencesList->SentencesSentencesLists->findAllBySentenceId($sentenceId);
 		$delta = count($inListAfter) - count($inListBefore);
@@ -344,7 +344,7 @@ class SentenceTestCase extends CakeTestCase {
 		$sentenceId = 8;
 		$tagsBefore = $this->Sentence->TagsSentences->getAllTagsOnSentence($sentenceId);
 
-		$this->Sentence->delete($sentenceId, 12345);
+		$this->Sentence->delete($sentenceId, false);
 
 		$tagsAfter = $this->Sentence->TagsSentences->getAllTagsOnSentence($sentenceId);
 		$delta = count($tagsAfter) - count($tagsBefore);
