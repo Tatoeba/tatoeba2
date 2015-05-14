@@ -29,7 +29,8 @@ $(document).ready(function() {
             submit    : $(this).attr('data-submit'),
             cancel    : $(this).attr('data-cancel'),
             cssclass  : 'edit-list-name-form',
-            event     : 'edit_list_name'
+            event     : 'edit_list_name',
+            onblur    : 'ignore'
         });
     });
 
