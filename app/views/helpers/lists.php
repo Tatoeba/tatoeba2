@@ -584,7 +584,7 @@ class ListsHelper extends AppHelper
 
             echo '<li class="item">';
             echo $this->Html->link(
-                __('All the lists', true),
+                __('All lists', true),
                 array(
                     'controller' => 'sentences_lists',
                     'action' => 'index'

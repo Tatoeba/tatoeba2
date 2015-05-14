@@ -96,12 +96,12 @@ class SentencesListsController extends AppController
         $total = $this->params['paging']['SentencesList']['count'];
         if (empty($search)) {
             $title = format(
-                __('All the lists ({total})', $total, true),
+                __('All lists ({total})', $total, true),
                 array('total' => $total)
             );
         } else {
             $title = format(
-                __('All the lists containing "{search}" ({total})', $total, true),
+                __('All lists containing "{search}" ({total})', $total, true),
                 array('total' => $total, 'search' => $search)
             );
         }
