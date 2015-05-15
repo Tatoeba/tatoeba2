@@ -782,6 +782,9 @@ class SentencesHelper extends AppHelper
                 $loginUrl = $this->url(array(
                     'controller' => 'users',
                     'action' => 'login',
+                    '?' => array(
+                        'redirectTo' => Router::reverse($this->params)
+                    ),
                 ));
                 $registerUrl = $this->url(array(
                     'controller' => 'users',
