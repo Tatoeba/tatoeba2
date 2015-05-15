@@ -42,7 +42,8 @@ class SentencesSentencesLists extends AppModel
     public $actsAs = array('Containable');
 
     public $belongsTo = array(
-        'Sentence' => array('foreignKey' => 'sentence_id')
+        'Sentence' => array('foreignKey' => 'sentence_id'),
+        'SentencesList' => array('foreignKey' => 'sentences_list_id')
     );
 
     /**
@@ -84,5 +85,64 @@ class SentencesSentencesLists extends AppModel
         $isDeleted = $this->deleteAll($conditions, false);
 
         return $isDeleted;
+    }
+
+
+    /**
+     * Returns value of $this->paginate, for paginating sentences of a list.
+     *
+     * @param int    $listId           Id of the list.
+     * @param string $translationsLang Language of the translations.
+     * @param int    $limit            Number of sentences per page.
+     *
+     * @return array
+     */
+    public function getPaginatedSentencesInList($listId, $translationsLang, $limit)
+    {
+        $sentenceParams = array(
+            'fields' => array('id', 'text', 'lang', 'hasaudio', 'correctness'),
+            'User' => array('fields' => array('id', 'username'))
+        );
+
+        if ($translationsLang != null) {
+            // All
+            $sentenceParams['Translation'] = array(
+                "fields" => array("id", "lang", "text", "correctness"),
+            );
+            // Specific language
+            if ($translationsLang != 'und') {
+                $sentenceParams['Translation']['conditions'] = array(
+                    "lang" => $translationsLang
+                );
+            }
+        }
+
+        return array(
+            'limit' => $limit,
+            'conditions' => array('sentences_list_id' => $listId),
+            'contain' => array(
+                'Sentence' => $sentenceParams
+            ),
+            'order' => 'created DESC'
+        );
+    }
+
+
+    public function getListsForSentence($sentenceId)
+    {
+        return $this->find(
+            'all',
+            array(
+                'conditions' => array(
+                    'sentence_id' => $sentenceId
+                ),
+                'fields' => array('created'),
+                'contain' => array(
+                    'SentencesList' => array(
+                        'fields' => array('id', 'name')
+                    )
+                )
+            )
+        );
     }
 }

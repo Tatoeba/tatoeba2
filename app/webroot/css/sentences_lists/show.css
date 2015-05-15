@@ -20,6 +20,10 @@
 /* 
  * Add sentence 
  */
+#newSentenceInList {
+    margin: 20px 0 40px 0;
+}
+
 #newSentenceInList .submit, #newSentenceInList .input {
     display: inline;
 }
@@ -31,8 +35,6 @@
 .sentencesListLoading {
     margin-top: 10px;
     padding-top: 10px;
-    margin-bottom: -10px;
-    border-top: 1px dotted #989898;
 }
 
 
@@ -40,15 +42,59 @@
  * List
  */
 .sentenceInList {
-    padding: 10px 0;
-    border-top: 1px dotted #CCC;
+    margin: 40px 0;
+}
+
+.sentenceInList .removeFromList {
+    float: right;
+    margin: 8px 10px 0px 10px;
 }
 
 .sentencesListActions li {
     margin: 10px 0;
 }
 
+.publicList {
+    color: #4ABC00;
+    font-weight: bold;
+}
+
 .translationInList {
     margin: 5px 0;
     font-size: 0.8em;
+}
+
+.removeFromListButton {
+    cursor: pointer;
+}
+
+.deleteList a {
+    color: #FF2128;
+}
+
+.editable-list-name {
+    display: inline;
+}
+
+.edit-list-name {
+    cursor: pointer;
+    display: inline;
+    margin: 3px 10px;
+    color: #66AA00;
+    border: 1px solid #66AA00;
+    padding: 5px 4px 2px 5px;
+    border-radius: 15px;
+
+}
+
+.edit-list-name-form {
+    display: inline;
+}
+
+.edit-list-name-form input {
+    border: 1px solid #CCCCCC;
+    font-size: inherit;
+    min-width: 400px;
+    max-width: 400px;
+    max-height: 24px;
 }

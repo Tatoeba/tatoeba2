@@ -75,6 +75,19 @@ if (isset($this->params['lang'])) {
         <li class="item">
             <?php
             echo $html->link(
+                __('My lists', true),
+                array(
+                    'controller' => 'sentences_lists',
+                    'action' => 'of_user',
+                    $username
+                )
+            );
+            ?>
+        </li>
+
+        <li class="item">
+            <?php
+            echo $html->link(
                 __('My favorites', true),
                 array(
                     'controller' => 'favorites',

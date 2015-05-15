@@ -41,7 +41,9 @@ class ListsHelper extends AppHelper
         'Javascript',
         'Form',
         'Languages',
-        'Sentences'
+        'Sentences',
+        'Date',
+        'Images'
     );
 
     /**
@@ -61,8 +63,9 @@ class ListsHelper extends AppHelper
                 $list['SentencesList']['id'],
                 $list['SentencesList']['name'],
                 $list['User']['username'],
-                $list['SentencesList']['is_public'],
-                $list['SentencesList']['numberOfSentences']
+                $list['SentencesList']['created'],
+                $list['SentencesList']['numberOfSentences'],
+                $list['SentencesList']['is_public']
             );
         }
         ?>
@@ -77,7 +80,7 @@ class ListsHelper extends AppHelper
      * @param int     $listId          Id of the list to display.
      * @param string  $listName        Name of the list.
      * @param string  $listCreatorName Name of the list's creator.
-     * @param boolean $isPublic        If the list is public or not.
+     * @param string  $createdDate     If the list is public or not.
      * @param int     $count           Number of sentences in the list.
      *
      * @return void
@@ -86,19 +89,27 @@ class ListsHelper extends AppHelper
         $listId,
         $listName,
         $listCreatorName,
-        $isPublic,
-        $count = 0
+        $createdDate,
+        $count = 0,
+        $isPublic = false
     ) {
-        if (!CurrentUser::isMember()){
-            $canEdit = false;
+        if ($isPublic) {
+            $type = 'collaborative';
         } else {
-            $belongsToCurrentUser = (CurrentUser::get('username') == $listCreatorName);
-            $canEdit = $isPublic || $belongsToCurrentUser;
+            $type = 'personal';
         }
         ?>
         <tr class="listSummary">
 
-        <td class="nameAndCreator">
+        <td class="<?php echo $type ?>">
+            <?php
+            if ($isPublic) {
+                echo $this->Images->svgIcon('users');
+            }
+            ?>
+        </td>
+
+        <td>
             <div class="name">
             <?php
             /* @translators: string used as a placeholder for
@@ -135,36 +146,22 @@ class ListsHelper extends AppHelper
             </div>
         </td>
 
+        <td class="date">
+            <?php
+            echo $this->Html->tag(
+                'span',
+                $this->Date->ago($createdDate),
+                array(
+                    'class' => 'date'
+                )
+            );
+            ?>
+        </td>
+
         <td>
             <div class="count" title="<?php __('Number of sentences') ?>">
                 <?php echo $count; ?>
             </div>
-        </td>
-
-        <td class="options">
-            <span class="optionsContainer">
-            <?php
-            echo $this->Html->link(
-                __('Show', true),
-                array(
-                    "controller" => "sentences_lists",
-                    "action" => "show",
-                    $listId
-                )
-            );
-
-            if ($canEdit) {
-                echo $this->Html->link(
-                    __('Edit', true),
-                    array(
-                        "controller" => "sentences_lists",
-                        "action" => "edit",
-                        $listId
-                    )
-                );
-            }
-            ?>
-            </span>
         </td>
 
         </tr>
@@ -253,8 +250,6 @@ class ListsHelper extends AppHelper
     public function displayPublicActions(
         $listId, $translationsLang = null, $action = null
     ) {
-
-        $this->displayBackToIndexLink();
         ?>
 
         <li>
@@ -340,27 +335,6 @@ class ListsHelper extends AppHelper
         ?>
         </li>
 
-        <li class="otherAction" >
-        <?php
-        if ($action == "show") {
-            $otherAction = "edit";
-            $otherActionText = __("Edit this list", true);
-        } else {
-            $otherAction = "show";
-            $otherActionText = __("View this list", true);
-        }
-        echo $this->Html->link(
-            $otherActionText,
-            array(
-                "controller"=>"sentences_lists",
-                "action"=>$otherAction,
-                $listId
-            )
-        );
-
-        ?>
-        </li>
-
         <li class="deleteList">
         <?php
         echo $this->Html->link(
@@ -403,29 +377,23 @@ class ListsHelper extends AppHelper
         <div id="sentence<?php echo $sentence['id']; ?>" class="sentenceInList">
 
             <?php
+            // Remove from list button
             if ($canCurrentUserEdit) {
-                // Remove from list button
                 $this->_displayRemoveButton($sentence['id']);
-
-                // Sentences group
-                $user = $sentence['User'];
-                $withAudio = false;
-                $indirectTranslations = array();
-                $this->Sentences->displaySentencesGroup(
-                    $sentence,
-                    $translations,
-                    $user,
-                    $indirectTranslations,
-                    $withAudio
-                );
-            } else {
-                $this->Sentences->displaySimpleSentencesGroup(
-                    $sentence,
-                    $translations
-                );
             }
-            ?>
 
+            // Sentences group
+            $user = $sentence['User'];
+            $withAudio = true;
+            $indirectTranslations = array();
+            $this->Sentences->displaySentencesGroup(
+                $sentence,
+                $translations,
+                $user,
+                $indirectTranslations,
+                $withAudio
+            );
+            ?>
         </div>
         <?php
     }
@@ -519,6 +487,135 @@ class ListsHelper extends AppHelper
 
         <div class="sentencesListLoading" style="display:none">
         <?php echo $this->Html->image(IMG_PATH . 'loading.gif'); ?>
+        </div>
+        <?php
+    }
+
+
+    public function displayListsModule($listsArray)
+    {
+        if (count($listsArray) > 0) {
+            echo '<div class="module">';
+            echo $this->Html->tag('h2', __('Lists', true));
+            echo '<ul class="sentence-lists">';
+            foreach($listsArray as $list) {
+                echo '<li>';
+                echo $this->Html->link(
+                    $list['SentencesList']['name'],
+                    array(
+                        'controller' => 'sentences_lists',
+                        'action' => 'show',
+                        $list['SentencesList']['id']
+                    )
+                );
+                echo '</li>';
+            }
+            echo '</ul>';
+            echo '</div>';
+        }
+    }
+
+
+    public function displayCreateListForm()
+    {
+        ?>
+        <div class="module">
+            <h2><?php __('Create a new list'); ?></h2>
+            <?php
+            echo $this->Form->create(
+                'SentencesList',
+                array(
+                    "action" => "add",
+                    "type" => "post",
+                )
+            );
+            echo $this->Form->input(
+                'name',
+                array(
+                    'type' => 'text',
+                    'label' => __p('list', 'Name', true)
+                )
+            );
+            echo $this->Form->end(__('create', true));
+            ?>
+        </div>
+        <?php
+    }
+
+
+    public function displaySearchForm($search, $extraHiddenParams = null)
+    {
+        ?>
+        <div class="module">
+            <?php
+            echo $this->Html->tag('h2', __('Search', true));
+
+            echo $this->Form->create('SentencesList', array('type' => 'get'));
+
+            if (!empty($extraHiddenParams)) {
+                foreach ($extraHiddenParams as $key => $value) {
+                    echo $this->Form->hidden($key, array('value' => $value));
+                }
+            }
+
+            echo $this->Form->input(
+                'search',
+                array(
+                    'value' => $search,
+                    'label' => false
+                )
+            );
+
+            echo $this->Form->submit(__('Search', true));
+
+            echo $this->Form->end();
+            ?>
+        </div>
+        <?php
+    }
+
+    public function displayListsLinks()
+    {
+        ?>
+        <div class="module">
+            <?php
+            echo $this->Html->tag('h2', __('Lists', true));
+            echo '<ul class="annexeMenu">';
+
+            echo '<li class="item">';
+            echo $this->Html->link(
+                __('All lists', true),
+                array(
+                    'controller' => 'sentences_lists',
+                    'action' => 'index'
+                )
+            );
+            echo '</li>';
+
+            echo '<li class="item">';
+            echo $this->Html->link(
+                __('Collaborative lists', true),
+                array(
+                    'controller' => 'sentences_lists',
+                    'action' => 'collaborative'
+                )
+            );
+            echo '</li>';
+
+            if (CurrentUser::isMember()) {
+                echo '<li class="item">';
+                echo $this->Html->link(
+                    __('My lists', true),
+                    array(
+                        'controller' => 'sentences_lists',
+                        'action' => 'of_user',
+                        CurrentUser::get('username')
+                    )
+                );
+                echo '</li>';
+            }
+            echo '</ul>';
+            ?>
         </div>
         <?php
     }
