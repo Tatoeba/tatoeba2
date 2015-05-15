@@ -246,6 +246,12 @@ class Transcription extends AppModel
         return false;
     }
 
+    public function isValidScriptForLanguage($lang, $script) {
+        return isset($this->scriptsByLang[$lang]) &&
+               count($this->scriptsByLang[$lang]) > 1 &&
+               in_array($script, $this->scriptsByLang[$lang], true);
+    }
+
     public function transcriptableToWhat($sourceSentence) {
         if (isset($sourceSentence['Sentence']))
             $sourceSentence = $sourceSentence['Sentence'];

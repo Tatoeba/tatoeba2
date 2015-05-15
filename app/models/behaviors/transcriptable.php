@@ -33,9 +33,22 @@ class TranscriptableBehavior extends ModelBehavior
 
     public function beforeSave(&$model) {
         if (!$model->id) { // adding a new sentence
-            $this->addScriptInformation($model);
+            if (!isset($model->data[$model->alias]['script']))
+                $this->addScriptInformation($model);
+        }
+        if (!$this->isScriptValid($model)) {
+            return false;
         }
         return true;
+    }
+
+    private function isScriptValid($model) {
+        if (!isset($model->data[$model->alias]['script']))
+            return true;
+
+        $script = $model->data[$model->alias]['script'];
+        $lang = $model->_getFieldFromDataOrDatabase('lang');
+        return $model->Transcription->isValidScriptForLanguage($lang, $script);
     }
 
     public function afterDelete(&$model) {

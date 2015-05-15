@@ -380,6 +380,38 @@ class SentenceTestCase extends CakeTestCase {
 		$this->assertEqual('Hans', $savedSentence['Sentence']['script']);
 	}
 
+	function testScriptShouldBeValidOnUpdate() {
+		$cmnSentence = array(
+			'id' => 2,
+			'script' => 'invalid script code!',
+		);
+
+		$result = $this->Sentence->save($cmnSentence);
+		$this->assertFalse($result);
+	}
+
+	function testScriptShouldBeValidOnCreate() {
+		$cmnSentence = array(
+			'script' => 'invalid script code!',
+			'lang' => 'cmn',
+			'text' => '我们试试看！',
+		);
+
+		$result = $this->Sentence->save($cmnSentence);
+		$this->assertFalse($result);
+	}
+
+	function testScriptShouldBeValidAndCheckType() {
+		$cmnSentence = array(
+			'script' => true,
+			'lang' => 'cmn',
+			'text' => '我们试试看！',
+		);
+
+		$result = $this->Sentence->save($cmnSentence);
+		$this->assertFalse($result);
+	}
+
 	function testSentenceLoosesOKTagOnEdition() {
 		$sentenceId = 2;
 		$OKTagId = $this->Sentence->Tag->getIdFromName(
