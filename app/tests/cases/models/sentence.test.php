@@ -160,6 +160,16 @@ class SentenceTestCase extends CakeTestCase {
 		$this->assertEqual($transcrBefore, $transcrAfter);
 	}
 
+	function testSentenceDeletionDeletesTranscriptions() {
+		$jpnSentenceId = 6;
+		$this->Sentence->delete($jpnSentenceId, false);
+
+		$transcr = $this->Sentence->Transcription->find('all', array(
+			'conditions' => array('sentence_id' => $jpnSentenceId),
+		));
+		$this->assertEqual(array(), $transcr);
+	}
+
 	function testGetSentencesLang_returnsLang() {
 		$result = $this->Sentence->getSentencesLang(array(3, 4, 8));
 		$expectedLangs = array(3 => 'spa', 4 => 'fra', 8 => 'fra');

@@ -23,6 +23,11 @@
  */
 class TranscriptableBehavior extends ModelBehavior
 {
+    public function afterDelete(&$model) {
+        $conditions = array('Transcription.sentence_id' => $model->id);
+        $model->Transcription->deleteAll($conditions, false);
+    }
+
     public function afterSave(&$model, $created) {
         if ($created) {
             $model->data[$model->alias]['id'] = $model->getLastInsertID();
