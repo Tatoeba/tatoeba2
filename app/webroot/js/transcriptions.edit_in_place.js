@@ -17,9 +17,16 @@
  */
 
 function displayTranscriptions(sentenceId) {
+    var firstItemVisibility;
+
     $(
         '#sentences_group_' + sentenceId + ' .generatedTranscription'
-    ).toggle();
+    ).each(function(index) {
+        if (index == 0) {
+            firstItemVisibility = $(this).is(":visible");
+        }
+        $(this).toggle(!firstItemVisibility);
+    });
 }
 
 $(document).ready(function() {
