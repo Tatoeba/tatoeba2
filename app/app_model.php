@@ -37,4 +37,16 @@ class AppModel extends Model {
         return false;
     }
 
+    public function _getFieldFromDataOrDatabase($fieldName) {
+        $data = $this->data[$this->alias];
+        $fieldValue = false;
+        if (isset($data[$fieldName])) {
+            $fieldValue = $data[$fieldName];
+        } elseif (isset($data['id'])) {
+            $fieldValue = $this->field($fieldName,
+                array('id' => $data['id'])
+            );
+        }
+        return $fieldValue;
+    }
 }

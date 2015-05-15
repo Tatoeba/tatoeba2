@@ -165,19 +165,6 @@ class Transcription extends AppModel
         return $ok;
     }
 
-    private function _getFieldFromDataOrDatabase($fieldName) {
-        $data = $this->data[$this->alias];
-        $fieldValue = false;
-        if (isset($data[$fieldName])) {
-            $fieldValue = $data[$fieldName];
-        } elseif (isset($data['id'])) {
-            $fieldValue = $this->field($fieldName,
-                array('id' => $data['id'])
-            );
-        }
-        return $fieldValue;
-    }
-
     private function _checkTranscriptionRules() {
         $targetScript = $this->_getFieldFromDataOrDatabase('script');
         if (!$targetScript)
@@ -243,7 +230,6 @@ class Transcription extends AppModel
         }
         return false;
     }
-
 
     public function detectScript($lang, $text) {
         if (isset($this->scriptsByLang[$lang])
