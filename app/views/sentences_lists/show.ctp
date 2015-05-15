@@ -87,7 +87,7 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
     <?php
     foreach ($sentencesInList as $item) {
         $sentence = $item['Sentence'];
-        $transcriptions = $sentence['Transcription'];
+        $transcrs = $sentence['Transcription'];
         $translations = array();
         if (!empty($sentence['Translation'])) {
             $translations = $sentence['Translation'];
@@ -95,7 +95,7 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
         $canUserEdit = false;
         $lists->displaySentence(
             $sentence,
-            $transcriptions,
+            $transcrs,
             $translations,
             $canUserEdit
         );

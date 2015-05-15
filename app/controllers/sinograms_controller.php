@@ -195,7 +195,7 @@ class SinogramsController extends AppController
         }
         $this->set("sinogram", $sinogram);
         $this->set("sentence", $sentenceWhichUseThisSinogram['Sentence']);
-        $this->set("transcriptions", $sentenceWhichUseThisSinogram['Transcription']);
+        $this->set("transcrs", $sentenceWhichUseThisSinogram['Transcription']);
         $this->set("sentenceOwner", $sentenceWhichUseThisSinogram['User']);
         $this->set('indirectTranslations', $indirectTranslations);
         $this->set('translations', $translations);
