@@ -24,13 +24,6 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
- 
-$listId = $list['SentencesList']['id'];
-$listName = $list['SentencesList']['name'];
-$listOwnerId = $list['SentencesList']['user_id'];
-$isAuthenticated = $session->read('Auth.User.id');
-$isListPublic = ($list['SentencesList']['is_public'] == 1);
-$belongsToUser = $session->read('Auth.User.id') == $listOwnerId;
 
 $this->set('title_for_layout', $pages->formatTitle($listName));
 ?>
@@ -145,7 +138,7 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
                 $translations[] = array('Translation' => $value);
             }
         }
-        $lists->displaySentence($sentence, $translations, $belongsToUser);
+        $lists->displaySentence($sentence, $translations, $canRemoveSentence);
     }
     ?>
     </div>

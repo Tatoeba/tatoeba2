@@ -172,11 +172,23 @@ class SentencesListsController extends AppController
         $thisListCount = $this->params['paging']['SentencesSentencesLists']['count'];
         $downloadability_info = $this->_get_downloadability_info($thisListCount);
 
+        $listId = $list['SentencesList']['id'];
+        $listName = $list['SentencesList']['name'];
+        $listOwnerId = $list['SentencesList']['user_id'];
+        $isListPublic = $list['SentencesList']['is_public'] == 1;
+        $belongsToUser = CurrentUser::get('id') == $listOwnerId;
+        $canRemoveSentence = $isListPublic || $belongsToUser;
+
         $this->set('translationsLang', $translationsLang);
         $this->set('list', $list);
         $this->set('sentencesInList', $sentencesInList);
         $this->set('canDownload', $downloadability_info['can_download']);
         $this->set('downloadMessage', $downloadability_info['message']);
+        $this->set('listId', $listId);
+        $this->set('listName', $listName);
+        $this->set('isListPublic', $isListPublic);
+        $this->set('belongsToUser', $belongsToUser);
+        $this->set('canRemoveSentence', $canRemoveSentence);
     }
 
 
