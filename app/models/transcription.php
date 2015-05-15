@@ -243,13 +243,15 @@ class Transcription extends AppModel
                 return $this->autotranscription->{$detectScriptMethod}($text);
             }
         }
-        return false;
+        return null;
     }
 
     public function isValidScriptForLanguage($lang, $script) {
-        return isset($this->scriptsByLang[$lang]) &&
-               count($this->scriptsByLang[$lang]) > 1 &&
-               in_array($script, $this->scriptsByLang[$lang], true);
+        if (isset($this->scriptsByLang[$lang])
+            && count($this->scriptsByLang[$lang]) > 1) {
+            return in_array($script, $this->scriptsByLang[$lang], true);
+        }
+        return $script === null;
     }
 
     public function transcriptableToWhat($sourceSentence) {

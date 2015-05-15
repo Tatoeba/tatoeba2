@@ -33,6 +33,18 @@ class SentenceTestCase extends CakeTestCase {
 		Mock::generate('Autotranscription');
 		$autotranscription =& new MockAutotranscription();
 		$autotranscription->setReturnValue('cmn_detectScript', 'Hans');
+		$autotranscription->setReturnValue(
+			'jpn_Jpan_to_Hrkt_generate',
+			'transcription in furigana'
+		);
+		$autotranscription->setReturnValue(
+			'jpn_Jpan_to_Hrkt_validate',
+			true
+		);
+		$autotranscription->setReturnValue(
+			'jpn_Hrkt_to_Latn_generate',
+			'transcription in romaji'
+		);
 		$this->Sentence->Transcription->setAutotranscription($autotranscription);
 	}
 
@@ -378,6 +390,19 @@ class SentenceTestCase extends CakeTestCase {
 		$id = $this->Sentence->getLastInsertID();
 		$savedSentence = $this->Sentence->findById($id, 'script');
 		$this->assertEqual('Hans', $savedSentence['Sentence']['script']);
+	}
+
+	function testScriptIsNotSetOnSentenceCreation() {
+		$cmnSentence = array(
+			'lang' => 'eng',
+			'text' => 'Who needs to specify script in English?',
+		);
+
+		$this->Sentence->save($cmnSentence);
+
+		$id = $this->Sentence->getLastInsertID();
+		$savedSentence = $this->Sentence->findById($id, 'script');
+		$this->assertNull($savedSentence['Sentence']['script']);
 	}
 
 	function testScriptShouldBeValidOnUpdate() {

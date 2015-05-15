@@ -24,8 +24,9 @@
 class TranscriptableBehavior extends ModelBehavior
 {
     private function addScriptInformation($model) {
+        $lang = $model->_getFieldFromDataOrDatabase('lang');
         $script = $model->Transcription->detectScript(
-            $model->data[$model->alias]['lang'],
+            $lang,
             $model->data[$model->alias]['text']
         );
         $model->data[$model->alias]['script'] = $script;
