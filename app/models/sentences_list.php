@@ -226,7 +226,6 @@ class SentencesList extends AppModel
     public function paramsForPaginate($id, $translationsLang, $isEditable, $limit)
     {
         $sentenceParams = array(
-            'fields' => array('id', 'text', 'lang', 'script', 'hasaudio', 'correctness'),
             'Transcription',
         );
 
