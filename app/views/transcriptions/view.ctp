@@ -19,6 +19,6 @@
 
 if ($transcr && $lang) {
     echo $javascript->link('transcriptions.edit_in_place.js', true);
-    $sentences->displayTranscriptions($transcr, $lang, $sentenceOwnerId);
+    $transcriptions->displayTranscriptions($transcr, $lang, $sentenceOwnerId);
 }
 ?>

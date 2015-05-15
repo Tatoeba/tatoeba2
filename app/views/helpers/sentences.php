@@ -58,7 +58,8 @@ class SentencesHelper extends AppHelper
         'Session',
         'Pinyin',
         'Menu',
-        'Images'
+        'Images',
+        'Transcriptions',
     );
 
 
@@ -633,7 +634,7 @@ class SentencesHelper extends AppHelper
 
         // romanization
         if ($transcriptions) {
-            $this->displayTranscriptions(
+            $this->Transcriptions->displayTranscriptions(
                 $transcriptions, $sentence['lang'], $sentence['user_id']
             );
         }
@@ -685,154 +686,6 @@ class SentencesHelper extends AppHelper
             );
 
         }
-    }
-
-    /**
-     * Transforms "[kanji|reading]" to HTML <ruby> tags
-     */
-    private function _rubify($formatted) {
-        return preg_replace(
-            '/\[([^|]*)\|([^\]]*)\]/',
-            '<ruby><rp>[</rp>$1<rp>|</rp><rt>$2</rt><rp>]</rp></ruby>',
-            $formatted);
-    }
-
-    /**
-     * Display transcriptions.
-     *
-     * @param array  $transcriptions List of transcriptions.
-     * @param string $lang           Language of the transcripted sentence.
-     * @param string $sentenceOwnerId Id of the owner of the sentence
-     *                                transcriptions comes from.
-     *
-     * @return void
-     */
-    public function displayTranscriptions(
-        $transcriptions,
-        $lang,
-        $sentenceOwnerId
-    ) {
-        $chained = array();
-        foreach ($transcriptions as $script => $transcr) {
-            if (isset($transcr['parent_id'])) {
-                $chained[ $transcr['parent_id'] ] = $transcriptions[$script];
-                unset($transcriptions[$script]);
-            }
-        }
-
-        foreach ($transcriptions as $script => $transcr) {
-            if (isset($transcr['id']) && isset($chained[$transcr['id']])) {
-                $subTranscr = $chained[$transcr['id']];
-            } else {
-                $subTranscr = null;
-            }
-            $this->displayTranscription(
-                $transcr,
-                $lang,
-                $subTranscr,
-                $sentenceOwnerId
-            );
-        }
-    }
-
-    private function displayTranscription(
-        $transcr,
-        $lang,
-        $subTranscr,
-        $sentenceOwnerId
-    ) {
-        $this->Javascript->link('jquery.jeditable.js', false);
-        $this->Javascript->link('transcriptions.edit_in_place.js', false);
-
-        $isEditable = CurrentUser::canEditTranscription(
-            $transcr['user_id'], $sentenceOwnerId
-        );
-        if (isset($transcr['readonly']) && $transcr['readonly']) {
-            $isEditable = false;
-        }
-
-        $isGenerated = !isset($transcr['user_id']);
-        $class = 'transcription';
-        if ($isEditable)
-            $class .= ' editable';
-        $html = $this->transcriptionAsHTML($transcr);
-        $transcriptionDiv = $this->Languages->tagWithLang(
-            'div', $lang, $html,
-            array(
-                'data-script' => $transcr['script'],
-                'data-tooltip' => __('Click to edit this transcription', true),
-                'data-submit' => __('OK', true),
-                'data-cancel' => __('Cancel', true),
-                'class' => $class,
-                'escape' => false,
-            ),
-            $transcr['script']
-        );
-
-        $infoDiv = '';
-        if ($isGenerated) {
-            if ($isEditable) {
-                $warningMessage = __(
-                    'The following transcription has been automatically '.
-                    'generated and <strong>may contain errors</strong>. '.
-                    'If you can, you are welcome to review by clicking it.',
-                    true
-                );
-            } else {
-                $loginUrl = $this->url(array(
-                    'controller' => 'users',
-                    'action' => 'login',
-                    '?' => array(
-                        'redirectTo' => Router::reverse($this->params)
-                    ),
-                ));
-                $registerUrl = $this->url(array(
-                    'controller' => 'users',
-                    'action' => 'register',
-                ));
-                $warningMessage = __(format(
-                    'The following transcription has been automatically '.
-                    'generated and <strong>may contain errors</strong>. '.
-                    'If you wish to review it, please <a href="{loginUrl}">'.
-                    'log in</a> or <a href="{registerUrl}">register</a> first.',
-                    compact('loginUrl', 'registerUrl')),
-                    true
-                );
-            }
-            $infoDiv = $this->Html->tag('div', $warningMessage, array(
-                'class' => 'transcriptionWarning',
-            ));
-        }
-
-        $class = 'transcription subTranscription';
-        $subTranscrDiv = '';
-        if ($subTranscr) {
-            $subTranscrDiv = $this->Languages->tagWithLang(
-                'div', $lang, $subTranscr['text'],
-                array('class' => $class),
-                $subTranscr['script']
-            );
-        }
-
-        $class = 'transcriptionContainer';
-        if ($isGenerated) {
-            $class .= ' generatedTranscription';
-        }
-        echo $this->Html->tag('div', $infoDiv.$transcriptionDiv.$subTranscrDiv, array(
-            'escape' => false,
-            'class' => $class,
-        ));
-    }
-
-    /**
-     * Format and escape a transcription
-     * so that it may be displayed as HTML.
-     */
-    public function transcriptionAsHTML($transcr) {
-        $text = Sanitize::html($transcr['text']);
-        if ($transcr['script'] == 'Hrkt')
-            $text = $this->_rubify($text);
-        return $text;
     }
 
     /**

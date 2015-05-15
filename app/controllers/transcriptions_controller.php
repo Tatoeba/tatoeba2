@@ -30,7 +30,7 @@ class TranscriptionsController extends AppController
     );
 
     public $helpers = array(
-        'Sentences',
+        'Transcriptions',
     );
 
     public function beforeFilter()
