@@ -32,7 +32,7 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
     <?php $lists->displayListsLinks(); ?>
 
     <div class="module">
-        <h2><?php __('Information'); ?></h2>
+        <h2><?php __('About this list'); ?></h2>
         <?php
         $linkToAuthorProfile = $html->link(
             $list['User']['username'],
@@ -59,7 +59,6 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
     </div>
 
     <div class="module">
-    <h2><?php __('Menu'); ?></h2>
     <ul class="sentencesListActions">
         <?php
         $lists->displayPublicActions(
