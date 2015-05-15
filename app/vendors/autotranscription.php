@@ -659,4 +659,7 @@ class Autotranscription
 
         return true;
     }
+
+    public function cmn_detectScript($text) {
+    }
 }

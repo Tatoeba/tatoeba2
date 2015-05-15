@@ -32,6 +32,7 @@ class Transcription extends AppModel
     private $scriptsByLang = array(
         'jpn' => array('Jpan'),
         'uzb' => array('Cyrl', 'Latn'),
+        'cmn' => array('Hans', 'Hant'),
     );
     private $availableTranscriptions = array(
         'jpn-Jpan' => array(
@@ -238,6 +239,22 @@ class Transcription extends AppModel
         if (isset($this->scriptsByLang[$sourceLang])) {
             if (count($this->scriptsByLang[$sourceLang]) == 1) {
                 return $this->scriptsByLang[$sourceLang][0];
+            }
+        }
+        return false;
+    }
+
+
+    public function detectScript($lang, $text) {
+        if (isset($this->scriptsByLang[$lang])
+            && count($this->scriptsByLang[$lang]) > 1) {
+            $detectScriptMethod = sprintf('%s_detectScript', $lang);
+            if (method_exists(
+                    $this->autotranscription,
+                    $detectScriptMethod
+                )
+            ) {
+                return $this->autotranscription->{$detectScriptMethod}($text);
             }
         }
         return false;

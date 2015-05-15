@@ -468,4 +468,19 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->assertEqual('Hrkt', $result[0]['script']);
         $this->assertEqual('Latn', $result[1]['script']);
     }
+
+    function testDetectScriptCallsDetector() {
+        $cmnSentence = $this->Transcription->Sentence->find('first', array(
+            'conditions' => array('Sentence.lang' => 'cmn')
+        ));
+        $this->AutoTranscr->expectOnce(
+            'cmn_detectScript',
+            array($cmnSentence['Sentence']['text'])
+        );
+
+        $this->Transcription->detectScript(
+            $cmnSentence['Sentence']['lang'],
+            $cmnSentence['Sentence']['text']
+        );
+    }
 }
