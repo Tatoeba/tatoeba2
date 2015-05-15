@@ -23,6 +23,21 @@
  */
 class TranscriptableBehavior extends ModelBehavior
 {
+    private function addScriptInformation($model) {
+        $script = $model->Transcription->detectScript(
+            $model->data[$model->alias]['lang'],
+            $model->data[$model->alias]['text']
+        );
+        $model->data[$model->alias]['script'] = $script;
+    }
+
+    public function beforeSave(&$model) {
+        if (!$model->id) { // adding a new sentence
+            $this->addScriptInformation($model);
+        }
+        return true;
+    }
+
     public function afterDelete(&$model) {
         $conditions = array('Transcription.sentence_id' => $model->id);
         $model->Transcription->deleteAll($conditions, false);

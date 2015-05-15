@@ -26,8 +26,14 @@ class SentenceTestCase extends CakeTestCase {
 
 	function startTest() {
 		$this->Sentence =& ClassRegistry::init('Sentence');
+
 		Mock::generate('SphinxBehavior');
 		$this->Sentence->Behaviors->Sphinx =& new MockSphinxBehavior();
+
+		Mock::generate('Autotranscription');
+		$autotranscription =& new MockAutotranscription();
+		$autotranscription->setReturnValue('cmn_detectScript', 'Hans');
+		$this->Sentence->Transcription->setAutotranscription($autotranscription);
 	}
 
 	function endTest() {
@@ -359,6 +365,19 @@ class SentenceTestCase extends CakeTestCase {
 		$tagsAfter = $this->Sentence->TagsSentences->getAllTagsOnSentence($sentenceId);
 		$delta = count($tagsAfter) - count($tagsBefore);
 		$this->assertEqual(-1, $delta);
+	}
+
+	function testScriptIsSetOnSentenceCreation() {
+		$cmnSentence = array(
+			'lang' => 'cmn',
+			'text' => '我们试试看！',
+		);
+
+		$this->Sentence->save($cmnSentence);
+
+		$id = $this->Sentence->getLastInsertID();
+		$savedSentence = $this->Sentence->findById($id, 'script');
+		$this->assertEqual('Hans', $savedSentence['Sentence']['script']);
 	}
 
 	function testSentenceLoosesOKTagOnEdition() {
