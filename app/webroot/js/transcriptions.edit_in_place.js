@@ -35,8 +35,8 @@ $(document).ready(function() {
     // Show the transcribe button if there are some
     // hidden transcriptions
     $('.generatedTranscription:first:hidden').each(function(index) {
-       var sentenceId = $(this).parent().attr('data-sentence-id');
-       $('#transcribe_' + sentenceId).show();
+       transcribeButton = $(this).parentsUntil($(".sentences_set"), ".sentences_set").find('.transcribe');
+       transcribeButton.show();
     });
 
     $('.editable.transcription').each(function() {
