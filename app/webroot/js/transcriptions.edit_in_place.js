@@ -34,7 +34,7 @@ $(document).ready(function() {
 
     // Show the transcribe button if there are some
     // hidden transcriptions
-    $('.generatedTranscription:first:hidden').each(function(index) {
+    $('.generatedTranscription:hidden').each(function(index) {
        transcribeButton = $(this).parentsUntil($(".sentences_set"), ".sentences_set").find('.transcribe');
        transcribeButton.show();
     });
