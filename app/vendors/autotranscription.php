@@ -393,26 +393,6 @@ class Autotranscription
         return "";
     }
 
-
-    /**
-     * detect the script of the given Chinese text
-     *
-     * @param string $chineseText Chinese text
-     *
-     * @return string
-     */
-    private function _getChineseScript($chineseText)
-    {
-        $xml = simplexml_load_file(
-            "http://127.0.0.1:8042/guess_script?str=".urlencode($chineseText)
-            ,'SimpleXMLElement', LIBXML_NOCDATA
-        );
-        foreach($xml as $key=>$value) {
-            return (string)$value;
-        }
-        return "";
-    }
-
     private function firstElement($node) {
         foreach ($node->childNodes as $subNode) {
             if ($subNode->nodeType == XML_ELEMENT_NODE) {
@@ -661,5 +641,15 @@ class Autotranscription
     }
 
     public function cmn_detectScript($text) {
+        $map = array('simplified' => 'Hans', 'traditional' => 'Hant');
+        $xml = simplexml_load_file(
+            "http://127.0.0.1:8042/guess_script?str=".urlencode($text)
+            ,'SimpleXMLElement', LIBXML_NOCDATA
+        );
+        foreach($xml as $key => $value) {
+            $value = (string)$value;
+            return isset($map[$value]) ? $map[$value] : false;
+        }
+        return false;
     }
 }
