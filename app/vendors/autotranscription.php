@@ -425,7 +425,7 @@ class Autotranscription
     /**
      * Convert Japanese text into furigana.
      */
-    public function _getFurigana($text)
+    public function jpn_Jpan_to_Hrkt_generate($text)
     {
         $romanization = '';
         // Use DOMDocument since SimpleXML can't handle mixed content
@@ -457,7 +457,7 @@ class Autotranscription
      *
      * @return string romanized japanese text
      */
-    public function tokenizedJapaneseWithReadingsToRomaji($text)
+    public function jpn_Hrkt_to_Latn_generate($text)
     {
         $particles = array(
             'は' => 'wa',

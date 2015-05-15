@@ -36,7 +36,6 @@ class Transcription extends AppModel
     private $availableTranscriptions = array(
         'jpn-Jpan' => array(
             'Hrkt' => array(
-                'generator' => '_getFurigana',
                 'autogenerates' => 'Latn',
             ),
             'Latn' => array(
@@ -45,7 +44,6 @@ class Transcription extends AppModel
         ),
         'jpn-Hrkt' => array(
             'Latn' => array(
-                'generator' => 'tokenizedJapaneseWithReadingsToRomaji',
                 'readonly' => true,
             ),
         ),
@@ -343,8 +341,13 @@ class Transcription extends AppModel
     private function _generateTranscription($sentenceId, $text, $langScript, $targetScript) {
         $process = $this->availableTranscriptions[$langScript][$targetScript];
 
-        if (isset($process['generator'])) {
-            $transcrText = $this->autotranscription->{$process['generator']}($text);
+        $generatorMethod = sprintf(
+            '%s_to_%s_generate',
+            strtr($langScript, '-', '_'),
+            $targetScript
+        );
+        if (method_exists($this->autotranscription, $generatorMethod)) {
+            $transcrText = $this->autotranscription->{$generatorMethod}($text);
             if (!$transcrText)
                 return false;
 

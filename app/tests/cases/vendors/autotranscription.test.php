@@ -11,11 +11,11 @@ class AutotranscriptionTestCase extends CakeTestCase {
     }
 
     function assertRomaji($kanas, $expectedRomaji) {
-        $result = $this->AT->tokenizedJapaneseWithReadingsToRomaji($kanas);
+        $result = $this->AT->jpn_Hrkt_to_Latn_generate($kanas);
         $this->assertEqual($expectedRomaji, $result);
     }
 
-    function testTokenizedJapaneseWithReadingsToRomaji() {
+    function testJapaneseRomanization() {
         $testReadings = array(
             /* Basic sentences */
             '[申|もう]し[訳|わけ]ありません' => 'mōshiwakearimasen',
