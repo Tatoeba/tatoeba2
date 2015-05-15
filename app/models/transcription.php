@@ -26,10 +26,7 @@ class Transcription extends AppModel
      */
     private $autotranscription;
 
-    public $availableScripts = array( /* ISO 15924 */
-        'Cyrl', 'Hrkt', 'Jpan', 'Latn',
-    );
-    private $scriptsByLang = array(
+    private $scriptsByLang = array( /* ISO 15924 */
         'jpn' => array('Jpan'),
         'uzb' => array('Cyrl', 'Latn'),
         'cmn' => array('Hans', 'Hant'),
@@ -87,15 +84,9 @@ class Transcription extends AppModel
             ),
         ),
         'script' => array(
-            'onCreation' => array(
-             /* 'rule' =>  see __construct() */
-                'required' => true,
-                'on' => 'create',
-            ),
-            'onUpdate' => array(
-             /* 'rule' =>  see __construct() */
-                'on' => 'update',
-            ),
+            'rule' => 'notEmpty',
+            'required' => true,
+            'on' => 'create',
         ),
         'user_id' => array(
             'rule' => 'numeric',
@@ -124,9 +115,6 @@ class Transcription extends AppModel
     public function __construct($id = false, $table = null, $ds = null)
     {
         parent::__construct($id, $table, $ds);
-        $this->validate['script']['onUpdate']['rule']
-            = $this->validate['script']['onCreation']['rule']
-            = array('inList', $this->availableScripts);
         $this->setAutotranscription(new Autotranscription());
     }
 
