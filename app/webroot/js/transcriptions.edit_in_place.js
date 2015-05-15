@@ -32,6 +32,13 @@ function displayTranscriptions(sentenceId) {
 $(document).ready(function() {
     var rootUrl = get_tatoeba_root_url();
 
+    // Show the transcribe button if there are some
+    // hidden transcriptions
+    $('.generatedTranscription:first:hidden').each(function(index) {
+       var sentenceId = $(this).parent().attr('data-sentence-id');
+       $('#transcribe_' + sentenceId).show();
+    });
+
     $('.editable.transcription').each(function() {
         var div = $(this);
         var previousValue = {};

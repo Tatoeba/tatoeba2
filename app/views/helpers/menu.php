@@ -581,7 +581,9 @@ class MenuHelper extends AppHelper
             )
         );
         echo $this->Html->tag('li', "<a>$editImage</a>", array(
-            'class' => 'option',
+            'id' => "transcribe_$sentenceId",
+            'class' => 'transcribe option',
+            'style' => 'display:none',
             'escape' => false,
         ));
     }
