@@ -103,7 +103,7 @@ class Groups(models.Model):
 
 class Languages(models.Model):
     code = models.CharField(unique=True, max_length=4)
-    numberofsentences = models.IntegerField(db_column='numberOfSentences') # Field name made lowercase.
+    sentences = models.IntegerField()
     id = models.AutoField(primary_key=True)
     class Meta:
         db_table = 'languages'
