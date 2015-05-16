@@ -130,18 +130,25 @@ class SentencesSentencesLists extends AppModel
 
     public function getListsForSentence($sentenceId)
     {
+        $orCondition['is_public'] = true;
+        if (CurrentUser::isMember()) {
+            $orCondition['user_id'] = CurrentUser::get('id');
+        }
+
         return $this->find(
             'all',
             array(
                 'conditions' => array(
-                    'sentence_id' => $sentenceId
+                    'sentence_id' => $sentenceId,
+                    'OR' => $orCondition
                 ),
                 'fields' => array('created'),
                 'contain' => array(
                     'SentencesList' => array(
-                        'fields' => array('id', 'name')
+                        'fields' => array('id', 'name', 'is_public')
                     )
-                )
+                ),
+                'order' => 'is_public, created DESC'
             )
         );
     }
