@@ -15,8 +15,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-08 17:15+0000\n"
-"PO-Revision-Date: 2015-05-08 17:18+0000\n"
+"POT-Creation-Date: 2015-05-15 04:30+0000\n"
+"PO-Revision-Date: 2015-05-15 04:37+0000\n"
 "Last-Translator: Trang Ho\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/tatoeba_website/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -119,19 +119,35 @@ msgstr "Οι αλλαγές στο σχόλιο σου έχουν αποθηκε
 msgid "We could not save your changes."
 msgstr "Δεν μπορέσαμε να αποθηκεύσουμε τις αλλαγές σου."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L251
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L247
 msgid "You cannot delete this sentence."
 msgstr "Δεν μπορείτε να διαγράψετε αυτή τη φράση."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L264
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L260
 msgid "The sentence #{id} has been deleted."
 msgstr "Η φράση #{id} έχει διαγραφεί. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L272
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_controller.php#L268
 msgid "Error: the sentence #{id} could not be deleted."
 msgstr "Σφάλμα: η φράση #{id} δεν κατέστη δυνατόν να διαγραφεί. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L175
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L99
+msgid "All lists ({total})"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L104
+msgid "All lists containing \"{search}\" ({total})"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L130
+msgid "Collaborative lists ({total})"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L135
+msgid "Collaborative lists containing \"{search}\" ({total})"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L216
 msgid ""
 "The download feature has been disabled for this list because it contains a "
 "sentence."
@@ -141,7 +157,7 @@ msgid_plural ""
 msgstr[0] "Η δυνατότητα λήψης έχει απενεργοποιηθεί γι' αυτόν τον κατάλογο επειδή περιέχει μια φράση."
 msgstr[1] "Η δυνατότητα λήψης έχει απενεργοποιηθεί γι' αυτόν τον κατάλογο επειδή περιέχει {n}&nbsp;φράσεις."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L181
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L222
 msgid ""
 "Only lists containing one sentence or fewer can be downloaded. If you can "
 "edit the list, you may want to split it into multiple lists."
@@ -154,7 +170,7 @@ msgstr[1] "Μπορείτε να κατεβάσετε μόνο λίστες πο
 #. @translators: this string is used to concatenate two sentences.
 #. You typically want to change this to {firstSentence}{secondSentence}
 #. if your language don't use space as a word separator.
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L235
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L74
 msgid "{firstSentence} {secondSentence}"
 msgstr "{firstSentence} {secondSentence}"
@@ -326,7 +342,7 @@ msgstr "Ζητάμε συγνώμη, αλλά δεν μπορέσαμε να α�
 msgid "The message you are trying to view does not exist or has been deleted."
 msgstr "Το μήνυμα που προσπαθείτε να προβάλλετε δεν υπάρχει ή έχει διαγραφεί. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/models/sentences_list.php#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/models/sentences_list.php#L109
 msgid "unnamed list"
 msgstr "κατάλογος χωρίς όνομα"
 
@@ -1082,7 +1098,6 @@ msgstr "Έτσι αν θέλεις να μας βοηθήσετε ελέγξτε
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/adopt_sentences.ctp#L72
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L61
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L74
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/wall/index.ctp#L47
 msgid "Tips"
 msgstr "Συμβουλές"
@@ -1437,7 +1452,6 @@ msgstr "Όσο περισσότεροι συνεισφέροντες υπάρχ�
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/short_description.ctp#L68
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L37
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/contribute.ctp#L41
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L88
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/login.ctp#L93
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/register.ctp#L155
@@ -1489,8 +1503,8 @@ msgstr "Νέο μήνυμα"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmmenu.ctp#L44
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/pmtoolbox.ctp#L41
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L179
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L185
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L192
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L198
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/private_messages/folder.ctp#L30
 msgid "Inbox"
 msgstr "Εισερχόμενα"
@@ -1646,38 +1660,43 @@ msgid "My sentences"
 msgstr "Οι φράσεις μου"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L78
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L608
+msgid "My lists"
+msgstr "Οι κατάλογοι μου"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L91
 msgid "My favorites"
 msgstr "Τα αγαπημένα μου"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L91
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L104
 msgid "My comments"
 msgstr "Τα σχόλιά μου"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L117
 msgid "Comments on my sentences"
 msgstr "Σχόλια στις φράσεις μου"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L117
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L130
 msgid "My Wall messages"
 msgstr "Δικά μου μηνύματα Τοίχου"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L143
 msgid "My sentence logs"
 msgstr "Καταγραφές δικών μου φράσεων"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L156
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/edit_profile.ctp#L28
 msgid "Edit profile"
 msgstr "Επεξεργασία προφίλ"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L155
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L168
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/settings.ctp#L27
 msgid "Settings"
 msgstr "Ρυθμίσεις"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L212
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L213
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L225
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/space.ctp#L226
 msgid "Log out"
 msgstr "Αποσύνδεση"
 
@@ -1790,29 +1809,36 @@ msgid "Sentences"
 msgstr "Φράσεις"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L499
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L582
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L255
+msgid "Lists"
+msgstr "Κατάλογοι"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L75
 msgid "Favorites"
 msgstr "Αγαπημένα"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L75
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L165
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L167
 msgid "Comments"
 msgstr "Σχόλια"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L88
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L101
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_comments/on_sentences_of_user.ctp#L39
 msgid "Comments on {user}'s sentences"
 msgstr "Σχόλια σε  {user}'s φράσεις"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L114
 msgid "Wall messages"
 msgstr "Μηνύματα τοίχου"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L114
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L127
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L103
 msgid "Logs"
 msgstr "Αρχεία καταγραφής"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L131
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/users_menu.ctp#L144
 msgid "Contact {user}"
 msgstr "Επικοινωνία {user}"
 
@@ -1858,9 +1884,9 @@ msgstr "Χρησιμοποιήστε ιδιωτικά μηνύματα για ν
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L183
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L385
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L637
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L641
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L139
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L120
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L114
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L115
 msgid "Cancel"
 msgstr "Ακύρωση"
@@ -1878,7 +1904,7 @@ msgid "hide"
 msgstr "απόκρυψη"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/comments.php#L247
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L374
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L348
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L519
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/wall.php#L462
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/language.ctp#L110
@@ -2025,95 +2051,103 @@ msgstr "5: Εγγενής επίπεδο"
 
 #. @translators: string used as a placeholder for
 #. the name of a list when it happens to be empty
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L106
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L117
 msgid "(unnamed list)"
 msgstr "(ανώνυμος κατάλογος)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L132
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L143
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L46
 msgid "created by {listAuthor}"
 msgstr "δημιουργήθηκε από {listAuthor}"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L162
 msgid "Number of sentences"
 msgstr "Αριθμός φράσεων"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L148
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L72
-msgid "Show"
-msgstr "Εμφάνιση"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L158
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L139
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L540
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L548
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L319
-msgid "Edit"
-msgstr "Επεξεργασία"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L186
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L183
 msgid "Back to all lists"
 msgstr "Πίσω σε όλους τους καταλόγους"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L209
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L206
 msgid "Back to this list"
 msgstr "Πίσω σε αυτόν τον κατάλογο"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L230
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L227
 msgid "Download this list"
 msgstr "Μεταφόρτωση αυτού του καταλόγου"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L262
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L257
 msgid "Show translations :"
 msgstr "Εμφάνιση μεταφράσεων:"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L312
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L307
 msgid "Set list as collaborative"
 msgstr "Όρισε τον κατάλογο ως συνεργατικό"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L347
-msgid "Edit this list"
-msgstr "Επεξεργασία  αυτού του καταλόγου"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L350
-msgid "View this list"
-msgstr "Εμφάνιση αυτού του καταλόγου"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L367
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L341
 msgid "Delete this list"
 msgstr "Διαγραφή αυτού του καταλόγου"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L448
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L416
 msgid "Remove sentence {number} from list"
 msgstr "Απομάκρυνση φράσης {number}  από τον κατάλογο"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L458
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L426
 msgid "Remove from list"
 msgstr "Αφαίρεση από τον κατάλογο"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L490
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L458
 msgid "Add a sentence to this list : "
 msgstr "Προσθήκη μιας φράσης σε αυτόν τον κατάλογο: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L494
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L462
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L465
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/navigation.php#L82
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L636
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentences.php#L640
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/add.ctp#L133
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L119
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L113
 msgid "OK"
 msgstr "OK"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L504
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L472
 msgid ""
 "NOTE : You can also add existing sentences with this icon {addToListButton} "
 "(while <a href=\"{url}\">browsing</a> for instance)."
 msgstr "ΣΗΜΕΙΩΣΗ: Μπορείτε επίσης να προσθέσετε υπάρχουσες φράσεις με αυτή την εικόνα  {addToListButton} (ενώ <a href=\"{url}\">κάνετε αναζήτηση</a> κατά περίπτωση)."
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L523
+msgid "Create a new list"
+msgstr "Δημιουργία νέου καταλόγου"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L536
+msgctxt "list"
+msgid "Name"
+msgstr "Όνομα"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L539
+msgid "create"
+msgstr "δημιουργία"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L551
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L569
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L183
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L43
+msgid "Search"
+msgstr "Αναζήτηση"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L587
+msgid "All lists"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L597
+msgid "Collaborative lists"
+msgstr "Συνεργατικοί κατάλογοι"
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L382
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L50
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentence_annotations/show.ctp#L40
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L128
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L144
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L130
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L146
 msgid "Sentence #{number}"
 msgstr "Φράση νº{number}"
 
@@ -2144,6 +2178,14 @@ msgstr "διαγράφτηκε από {user}"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/logs.php#L525
 msgid "unlinked by {user}"
 msgstr "αποσύνδεση από {χρήστη}"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L139
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L540
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/menu.php#L548
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L101
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/user/profile.ctp#L319
+msgid "Edit"
+msgstr "Επεξεργασία"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/members.php#L164
 msgid "admin"
@@ -2367,6 +2409,10 @@ msgstr "Αποστολή"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/private_messages.php#L149
 msgid "{sender} wrote:"
 msgstr "{sender} έγραψε"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L72
+msgid "Show"
+msgstr "Εμφάνιση"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/sentence_buttons.php#L95
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/links/add.ctp#L5
@@ -2712,8 +2758,6 @@ msgstr "Γενικά, απαντάμε γρήγορα. "
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L83
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L58
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L144
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L61
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L62
 msgid "Download"
 msgstr "Λήψη"
 
@@ -2834,10 +2878,6 @@ msgid ""
 "sentence. {sampleTagLine} means that sentence #381279 has been assigned the "
 "\"proverb\" tag."
 msgstr "Περιέχει την λιστα <a href=\"{url}\">tags</a>που σχετίζεται με κάθε πρόταση. {δείγμα tagline} σημαίνει η φράση #381279 έχει ανατεθεί σε \"παροιμία\" ετικέτα."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L255
-msgid "Lists"
-msgstr "Κατάλογοι"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/pages/downloads.ctp#L283
 msgid "Contains the list of <a href=\"{}\">sentence lists</a>."
@@ -3274,7 +3314,7 @@ msgid ""
 msgstr "Κάντε κλικ σε μια φράση για να μεταβείτε στο tatoeba.org να τη μεταφράσετε ή να αφήσετε ένα σχόλιο. "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/s/s.ctp#L53
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L151
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L153
 msgid "There is no sentence with id {number}"
 msgstr "Δεν υπάρχει φράση με το αναγνωριστικό {number}"
 
@@ -3439,15 +3479,15 @@ msgstr "Φυλλομετρήστε παραδείγματα μεταφρασμέ
 msgid "Sentence does not exist: "
 msgstr "Η φράση δεν υπάρχει: "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L115
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L117
 msgid "There is no log for this sentence"
 msgstr "Δεν υπάρχει αρχείο καταγραφής γι΄αυτή την πρόταση"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L189
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L191
 msgid "There are no comments for now."
 msgstr "Δεν υπάρχουν σχόλια προς στιγμήν"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L194
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/show.ctp#L196
 msgid "Sentence deleted"
 msgstr "Η φράση διαγράφτηκε"
 
@@ -3476,8 +3516,6 @@ msgid "Download list: "
 msgstr "Κατεβάστε τον κατάλογο: "
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/download.ctp#L42
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L41
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L42
 msgid "Actions"
 msgstr "Ενέργειες"
 
@@ -3516,84 +3554,59 @@ msgid ""
 "output."
 msgstr "Προαιρετικά πεδία που δεν έχουν επιλεγεί παραπάνω δεν θα γραφτούν στις εκροές. "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L80
-msgid "You can change the name of the list by clicking on it."
-msgstr "Μπορείτε να αλλάξετε το όνομα ενός καταλόγου κάνοντας κλικ επάνω του."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L88
-msgid ""
-"You can remove a sentence from the list by clicking on the X icon to its "
-"right."
-msgstr "Μπορείτε να αφαιρέσετε μια φράση από έναν κατάλογο κάνοντας κλικ στο εικονίδιο X στα δεξιά της."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L95
-msgid ""
-"Removing a sentence will not delete it. The sentence will just not be part "
-"of the list anymore."
-msgstr "Απομακρύνοντας τη φράση δεν θα τη διαγράψετε. Η φράση δεν θα είναι αποτελεί πλέον μέρος του καταλόγου."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/edit.ctp#L121
-msgid "Click to edit..."
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L28
-msgid "Lists of sentences"
-msgstr "Κατάλογοι φράσεων"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L37
-msgid "Create a new list"
-msgstr "Δημιουργία νέου καταλόγου"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L48
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L62
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L82
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L80
+msgid "Sort by:"
+msgstr "Ταξινόμηση κατά:"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L50
-msgctxt "list"
-msgid "Name"
-msgstr "Όνομα"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L64
+msgid "list name"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L53
-msgid "create"
-msgstr "δημιουργία"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L52
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L66
+msgid "date created"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L61
-msgid "About the lists"
-msgstr "Σχετικά με αυτούς τους καταλόγους"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L69
+msgid "number of sentences"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L65
-msgid "Lists make it possible to gather and organize sentences in Tatoeba."
-msgstr "Οι κατάλογοι κάνουν δυνατή την ομαδοποίηση και οργάνωση φράσεων στο  Tatoeba."
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L32
+msgid "{username}'s lists ({total})"
+msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L73
-msgid ""
-"You can create all kinds of lists! \"Preparation for summer trip to "
-"Mexico\", \"English test #4\", \"My favorite geek quotes\"..."
-msgstr "Μπορείτε να δημιουργείτε κάθε είδους καταλόγους! \"Προετοιμασία για θερινό ταξίδι στο Μεξικό\", \"Τεστ Αγγλικών nº4\", \"Αγαπημένα αποσπάσματα για σπασίκλες\"..."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L82
-msgid "Registration needed"
-msgstr "Χρειάζεται εγγραφή"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L83
-msgid "You can create lists only if you are registered."
-msgstr "Μπορείτε να δημιουργήσετε καταλόγους μόνον εάν είστε εγγεγραμένος."
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L95
-msgid "If you are already registered, please log in."
-msgstr "Αν έχετε ήδη εγγραφεί, παρακαλώ να συνδεθείτε"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L112
-msgid "My lists"
-msgstr "Οι κατάλογοι μου"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L127
-msgid "Collaborative lists"
-msgstr "Συνεργατικοί κατάλογοι"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L139
-msgid "Other personal lists"
-msgstr "Άλλοι προσωπικοί κατάλογοι"
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L37
+msgid "{username}'s lists containing \"{search}\" ({total})"
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/remove_sentence_from_list.ctp#L33
 msgid "Sentence successfully removed."
 msgstr "Οι φράσεις μετακινήθηκαν επιτυχώς"
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L35
+msgid "About this list"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L50
+msgid "Collaborative list"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L52
+msgid "Personal list"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L102
+msgid "Edit name"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L115
+msgid "Click to edit..."
+msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/explode.ctp#L27
 msgid "Result"
@@ -3687,11 +3700,6 @@ msgstr "Αναζητήστε χαρακτήρα περιγράφοντάς το�
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L180
 msgid "Subglyphs: "
 msgstr "Επιμέρους γλύφοι:"
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/index.ctp#L183
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L43
-msgid "Search"
-msgstr "Αναζήτηση"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sinograms/load_example_sentence.ctp#L33
 msgid ""
@@ -3828,11 +3836,6 @@ msgstr "Όλες οι ετικέτες (συνολικός %αριθμός%)"
 msgid "Tags containing: {search} (total %count%)"
 msgstr "Ετικέτες που περιέχουν: {αναζήτηση} (συνολική %καταμέτρηση%)"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L82
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/users/all.ctp#L80
-msgid "Sort by:"
-msgstr "Ταξινόμηση κατά:"
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tags/view_all.ctp#L84
 msgid "count"
 msgstr "αρίθμηση"
@@ -3870,7 +3873,7 @@ msgstr "Εισαγωγή είτε παραδοσιακών είτε απλοπο
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/conversion_simplified_traditional_chinese.ctp#L122
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/pinyin_converter.ctp#L103
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L118
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L116
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L134
 msgid "Convert"
 msgstr "Μετατροπή"
@@ -3945,41 +3948,41 @@ msgstr "Μετατροπή κειμένου σε : "
 msgid "diacritical pinyin"
 msgstr "διακριτικά pinyin"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L31
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L70
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L29
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L68
 msgid "Convert Japanese text into romaji or furigana"
 msgstr "Μετατροπή Γιαπωνέζικου κειμένου σε romaji ή furigana"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L38
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L36
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/shanghainese_to_ipa.ctp#L43
 msgid "Credits"
 msgstr "Ευχαριστίες"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L42
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L40
 msgid "This tool is powered by <a href=\"{}\">MeCab</a>."
 msgstr "Η λειτουργία αυτού του εργαλείου βασίζεται στο <a href=\"{}\">MeCab</a>."
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L51
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L49
 msgid "More information"
 msgstr "Περισσότερες πληροφορίες"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L55
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L53
 msgid "Japanese romanization in Tatoeba, now using MeCab"
 msgstr "Η λατινοποίηση των Γιαπωνέζικων στο Tatoeba, τώρα χρησιμοποιεί το  MeCab"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L59
 msgid "Tools for Japanese romanization"
 msgstr "Εργαλεία για λατινοποίηση των Γιαπωνέζικων"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L104
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L102
 msgid "Convert Japanese text into: "
 msgstr "Μετατροπή γιαπωνέζικου κειμένου σε : "
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L108
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L106
 msgid "romaji"
 msgstr "romaji"
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L109
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/tools/romaji_furigana.ctp#L107
 msgid "furigana"
 msgstr "furigana"
 
