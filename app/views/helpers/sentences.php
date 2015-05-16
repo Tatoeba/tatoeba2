@@ -468,17 +468,20 @@ class SentencesHelper extends AppHelper
         }
         $elementId = '';
         if ($type != 'mainSentence') {
-            $elementId = 'id="translation_'.$sentenceId.'_'.$parentId.'"';
+            $elementId = 'id=';
         }
         $classes = array('sentence', $type, $correctnessLabel);
         if ($isEditable && $type == 'directTranslation') {
             $classes[] = 'editableTranslation';
         }
         $class = join(' ', $classes);
-        ?>
-        
-        <div class="<?php echo $class; ?>" <?php echo $elementId; ?>>
-        <?php
+
+        $attributes = array(
+            'id' => 'translation_'.$sentenceId.'_'.$parentId,
+            'data-sentence-id' => $sentenceId
+        );
+        echo $this->Html->div($class, null, $attributes);
+
         // Navigation button (info or arrow icon)
         echo '<div class="nav column">';
         $this->SentenceButtons->displayNavigationButton($sentenceId, $type);
