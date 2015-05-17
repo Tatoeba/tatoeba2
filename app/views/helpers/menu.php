@@ -632,13 +632,13 @@ class MenuHelper extends AppHelper
 
         <li>
         <?php
-        echo $this->Html->image(
-            IMG_PATH . 'loading-small.gif',
+        echo $this->Images->svgIcon(
+            'loading',
             array(
-                "id"=>"_".$sentenceId."_in_process",
-                "style"=>"display:none",
-                "width" => 16,
-                "height" => 16
+                'id' => '_'.$sentenceId.'_in_process',
+                'class' => 'loading',
+                'width' => 16,
+                'height' => 16
             )
         );
         echo $this->Html->image(

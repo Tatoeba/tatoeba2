@@ -314,9 +314,14 @@ class ListsHelper extends AppHelper
                 "data-list-id" => $listId
             )
         );
-        echo $this->Html->image(
-            IMG_PATH . 'loading-small.gif',
-            array("id"=>"inProcess", "style"=>"display:none;")
+        echo $this->Images->svgIcon(
+            'loading',
+            array(
+                'id' => 'inProcess',
+                'class' => 'loading',
+                'height' => 16,
+                'width' => 16
+            )
         );
         echo $this->Html->link(
             '[?]',
@@ -433,12 +438,24 @@ class ListsHelper extends AppHelper
         echo $this->Form->input(
             'text',
             array(
-                "label" => __('Add a sentence to this list : ', true)
+                'label' => __('Add a sentence to this list : ', true),
+                'class' => 'new-sentence-input'
             )
         );
         echo $this->Form->button(
-            __('OK', true), array(
-                "id" => "submitNewSentenceToList"
+            __('OK', true),
+            array(
+                'id' => 'submitNewSentenceToList',
+                'class' => 'submit'
+            )
+        );
+
+        echo $this->Images->svgIcon(
+            'loading',
+            array(
+                'width' => 20,
+                'height' => 20,
+                'class' => 'adding-new-sentence-in-list'
             )
         );
         ?>
@@ -461,10 +478,6 @@ class ListsHelper extends AppHelper
         );
         ?>
         </p>
-        </div>
-
-        <div class="sentencesListLoading" style="display:none">
-        <?php echo $this->Html->image(IMG_PATH . 'loading.gif'); ?>
         </div>
         <?php
     }

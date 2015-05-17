@@ -27,7 +27,7 @@ $(document).ready(function(){
         
         // Displaying loading gif
         $("#sentences_group_" + sentenceId).html(
-            "<img src='/img/loading.gif' alt='loading'>"
+            "<img width='50' height='50' class='loading-icon' src='/img/loading.svg' alt='loading'>"
         );
         
         // The sentence can be adopted

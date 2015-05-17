@@ -29,7 +29,7 @@ $(document).ready(function() {
             data : function(value, settings) {
                 return $('<div>').html(value).text() // added to correct problem with html entities
             },
-            indicator : '<img src="/img/loading.gif">',
+            indicator : '<img width="30" height="30" src="/img/loading.svg">',
             cssclass  : 'editInPlaceForm',
             onblur    : 'ignore'
         }).bind('edit_sentence', function(e) {

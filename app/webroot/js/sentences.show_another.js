@@ -30,13 +30,6 @@ $(document).ready(function(){
 });
 
 function loadRandom(lang){
-    var rootUrl = get_tatoeba_root_url();
-    
-    $(".random_sentences_set").html("<img src='/img/loading.gif' alt='loading'>");
-    $(".random_sentences_set").load(
-        rootUrl
-        + "/sentences/random/" + lang + "/"
-        + Math.random() // needed for IE
-        // otherwise it always displays the same sentence when logged in...
-    );
+    $(".random_sentences_set").html("<img class='loading-icon' width='50' height='50' src='/img/loading.svg' alt='loading'>");
+    $(".random_sentences_set").load("/sentences/random/" + lang);
 }

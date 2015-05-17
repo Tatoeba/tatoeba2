@@ -96,8 +96,8 @@ class SentencesHelper extends AppHelper
 
 
         // Loading gif
-        echo $this->Html->image(
-            IMG_PATH . 'loading.gif',
+        echo $this->Images->svgIcon(
+            'loading',
             array(
                 "id" => "_".$id."_loading",
                 "class" => "loading",

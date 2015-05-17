@@ -39,7 +39,7 @@ $(document).ready(function() {
             var newLang = $(this).val();
             var rootUrl = get_tatoeba_root_url();
             
-            flagImage.attr('src', '/img/loading-small.gif');
+            flagImage.attr('src', '/img/loading.svg');
             $("#selectLangContainer_" + sentenceId).hide();
             
             $.post(

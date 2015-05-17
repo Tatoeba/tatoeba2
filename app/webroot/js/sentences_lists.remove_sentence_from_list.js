@@ -24,7 +24,9 @@ $(document).ready(function() {
         var listId = $("#sentencesList").attr('data-list-id');
         var rootUrl = get_tatoeba_root_url();
         
-        $("#sentence"+sentenceId).html("<img src='/img/loading.gif' alt='loading'>");
+        $("#sentence"+sentenceId).html(
+            "<img width='50' height='50' class='loading-icon' src='/img/loading.svg' alt='loading'>"
+        );
         $("#sentence"+sentenceId).load(
             rootUrl
             + "/sentences_lists/remove_sentence_from_list/"

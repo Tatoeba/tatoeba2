@@ -24,17 +24,24 @@
     margin: 20px 0 40px 0;
 }
 
-#newSentenceInList .submit, #newSentenceInList .input {
-    display: inline;
+#newSentenceInList .submit,
+#newSentenceInList .input,
+.adding-new-sentence-in-list {
+    display: inline-block;
+    vertical-align: bottom;
+    margin-right: 5px;
 }
 
-#newSentenceInList input#text {
-    width: 480px;
+#newSentenceInList .input {
+    width: 510px;
 }
 
-.sentencesListLoading {
-    margin-top: 10px;
-    padding-top: 10px;
+#newSentenceInList .new-sentence-input {
+    width: 500px;
+}
+
+.adding-new-sentence-in-list {
+    display: none;
 }
 
 

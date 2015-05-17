@@ -40,7 +40,9 @@ $(document).ready(function(){
     function saveMessage(){
         var messageContent = $("#replyFormDiv_" + previousReplyFormInMessageID ).find("textarea").val();
         
-        $("#replyFormDiv_" + previousReplyFormInMessageID ).html("<img src='/img/loading.gif' alt='loading'>");
+        $("#replyFormDiv_" + previousReplyFormInMessageID ).html(
+            "<img width='50' height='50' class='loading-icon' src='/img/loading.svg' alt='loading'>"
+        );
         
         var rootUrl = get_tatoeba_root_url();
         
@@ -118,7 +120,7 @@ $(document).ready(function(){
                  "<div id=\"replyFormDiv_"+currentMessageId+"\" class=\"message form\" >"
                 + sendMessageForm.html()
                 +"</div>" );
-            $.scrollTo('#replyFormDiv_' + currentMessageId, 800, {offset: -50}); 
+            $.scrollTo('#replyFormDiv_' + currentMessageId, 800, {offset: -50});
             previousReplyFormInMessageID = currentMessageId ; 
             
             // focus on textarea
