@@ -464,6 +464,21 @@ class Transcription extends AppModel
         return $result ? $result['Transcription']['id'] : null;
     }
 
+    private function insertTranscriptionOrdered(&$transcriptions, $newTranscr) {
+        if (!$newTranscr)
+            return;
+
+        /* Hopefully the alphabetical order of script codes is the same as
+         * the order we want transcriptions to be displayed. */
+        $insertPos = 0;
+        foreach ($transcriptions as $transcr) {
+            if (strcmp($transcr['script'], $newTranscr[0]['script']) > 0)
+                break;
+            $insertPos++;
+        }
+        array_splice($transcriptions, $insertPos, 0, $newTranscr);
+    }
+
     public function addGeneratedTranscriptions($transcriptions, $sentence) {
         $possibleScripts = $this->transcriptableToWhat($sentence);
         $existingScripts = Set::classicExtract($transcriptions, '{n}.script');
@@ -476,10 +491,8 @@ class Transcription extends AppModel
         }
 
         foreach ($scriptsToGenerate as $script => $process) {
-            $transcriptions = array_merge(
-                $transcriptions,
-                $this->generateTranscription($sentence, $script)
-            );
+            $newTranscr = $this->generateTranscription($sentence, $script);
+            $this->insertTranscriptionOrdered($transcriptions, $newTranscr);
         }
         return $transcriptions;
     }

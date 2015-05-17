@@ -547,6 +547,24 @@ class TranscriptionTestCase extends CakeTestCase {
         $this->assertEqual('Latn', $result[1]['script']);
     }
 
+    function testAddGeneratedTranscriptionsKeepsOrder() {
+        $cmnSentenceId = 2;
+        $cmnSentence = $this->Transcription->Sentence->findById($cmnSentenceId);
+        $result = $this->Transcription->saveTranscription(array(
+            'sentence_id' => $cmnSentenceId,
+            'script' => 'Latn',
+            'text' => 'blah blah blah in pinyin',
+        ));
+
+        $result = $this->Transcription->addGeneratedTranscriptions(
+            $result,
+            $cmnSentence
+        );
+
+        $this->assertEqual('Hant', $result[0]['script']);
+        $this->assertEqual('Latn', $result[1]['script']);
+    }
+
     function testDetectScriptCallsDetector() {
         $cmnSentence = $this->Transcription->Sentence->find('first', array(
             'conditions' => array('Sentence.lang' => 'cmn')
