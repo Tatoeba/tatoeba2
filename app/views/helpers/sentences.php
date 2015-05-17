@@ -56,7 +56,6 @@ class SentencesHelper extends AppHelper
         'SentenceButtons',
         'Languages',
         'Session',
-        'Pinyin',
         'Menu',
         'Images',
         'Transcriptions',

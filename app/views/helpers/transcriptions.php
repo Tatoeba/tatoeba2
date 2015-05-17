@@ -23,6 +23,7 @@ class TranscriptionsHelper extends AppHelper
         'Html',
         'Javascript',
         'Languages',
+        'Pinyin',
     );
 
     /**
@@ -92,7 +93,7 @@ class TranscriptionsHelper extends AppHelper
         $class = 'transcription';
         if ($isEditable)
             $class .= ' editable';
-        $html = $this->transcriptionAsHTML($transcr);
+        $html = $this->transcriptionAsHTML($lang, $transcr);
         $transcriptionDiv = $this->Languages->tagWithLang(
             'div', $lang, $html,
             array(
@@ -173,10 +174,18 @@ class TranscriptionsHelper extends AppHelper
      * Format and escape a transcription
      * so that it may be displayed as HTML.
      */
-    public function transcriptionAsHTML($transcr) {
+    public function transcriptionAsHTML($lang, $transcr) {
         $text = Sanitize::html($transcr['text']);
         if ($transcr['script'] == 'Hrkt')
             $text = $this->_rubify($text);
+        elseif ($lang == 'cmn' && $transcr['script'] == 'Latn') {
+            $pinyin = Sanitize::html($this->Pinyin->numeric2diacritic($text));
+            $text = $this->Html->tag('span', $text, array(
+                'style' => 'display:none',
+                'class' => 'markup',
+            ));
+            $text .= $pinyin;
+        }
         return $text;
     }
 }

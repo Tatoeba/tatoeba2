@@ -53,7 +53,8 @@ $(document).ready(function() {
             submit    : div.attr('data-submit'),
             id        : 'divId',
             data : function(value, settings) {
-                return $('<div>').html(value).text() // added to correct problem with html entities
+                var contents = $('<span>').html(value);
+                return contents.find('.markup').text() || contents.text();
             },
             callback : function(result, settings) {
                 div.parent().replaceWith(result);
