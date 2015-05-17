@@ -118,6 +118,50 @@ class Transcription extends AppModel
         $this->setAutotranscription(new Autotranscription());
     }
 
+    public function afterFind($results, $primary = false) {
+        $this->setReadonlyFlags($results);
+        return $results;
+    }
+
+    private function setReadonlyFlags(&$results) {
+        $sentenceIds = array();
+        foreach ($results as $result) {
+            if (!isset($result['Transcription']['sentence_id']) ||
+                !isset($result['Transcription']['script']))
+                return;
+
+            $sentenceIds[ $result['Transcription']['sentence_id'] ] = true;
+        }
+        $sentenceIds = array_keys($sentenceIds);
+
+        // Calling find() inside afterFind() causes problems with the
+        // containable behavior, so let's avoid it
+        $query = array(
+            'conditions' => array('Sentence.id' => $sentenceIds),
+            'fields' => array('id', 'lang', 'script'),
+            'callbacks' => false,
+        );
+        $dbo = $this->Sentence->getDataSource();
+        $sentences = $dbo->read($this->Sentence, $query, -1);
+
+        $sentenceById = array();
+        foreach ($sentences as $sentence) {
+           $id = $sentence['Sentence']['id'];
+           $sentenceById[$id] = $sentence['Sentence'];
+        }
+        foreach ($results as &$result) {
+            $id = $result['Transcription']['sentence_id'];
+            $script = $result['Transcription']['script'];
+            $to = $this->transcriptableToWhat($sentenceById[$id]);
+            if (isset($to[$script])) {
+                $readonly = isset($to[$script]['readonly']) ?
+                            $to[$script]['readonly'] :
+                            false;
+                $result['Transcription']['readonly'] = $readonly;
+            }
+        }
+    }
+
     public function _isUnique() {
         $script = $this->_getFieldFromDataOrDatabase('script');
         if (!$script)
