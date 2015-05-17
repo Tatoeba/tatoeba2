@@ -107,7 +107,7 @@ class SentencesHelper extends AppHelper
         );
 
         // Form to add a new translation
-        $this->_displayNewTranslationForm($id, $withAudio);
+        $this->_displayNewTranslationForm($id);
 
         $this->displayTranslations($id, $translations, $indirectTranslations, $withAudio, $langFilter);
 
@@ -264,7 +264,7 @@ class SentencesHelper extends AppHelper
      *
      * @return void
      */
-    private function _displayNewTranslationForm($id, $withAudio)
+    private function _displayNewTranslationForm($id)
     {
         $langArray = $this->Languages->profileLanguagesArray(true, false, false);
 
@@ -278,7 +278,7 @@ class SentencesHelper extends AppHelper
 
         } else {
 
-            $this->_translationForm($id, $withAudio, $langArray);
+            $this->_translationForm($id, $langArray);
 
         }
         ?>
@@ -286,7 +286,7 @@ class SentencesHelper extends AppHelper
         <?php
     }
 
-    private function _translationForm($id, $withAudio, $langArray)
+    private function _translationForm($id, $langArray)
     {
         $preSelectedLang = $this->Session->read('contribute_lang');
         if (!array_key_exists($preSelectedLang, $langArray)) {
@@ -299,19 +299,6 @@ class SentencesHelper extends AppHelper
                 'class' => 'navigationIcon'
             )
         );
-
-        if (!$withAudio) {
-            $withAudio = 0;
-        }
-        ?>
-        <script type='text/javascript'>
-            $(document).ready(function() {
-                $('#translate_<?php echo $id; ?>').data(
-                    'withAudio', <?php echo $withAudio; ?>
-                );
-            });
-        </script>
-        <?php
 
         echo '<div class="form">';
 
@@ -465,10 +452,6 @@ class SentencesHelper extends AppHelper
         $correctnessLabel = $this->getCorrectnessLabel($sentence['correctness']);
         if (isset($sentence['hasaudio'])) {
             $sentenceAudio = $sentence['hasaudio'];
-        }
-        $elementId = '';
-        if ($type != 'mainSentence') {
-            $elementId = 'id=';
         }
         $classes = array('sentence', $type, $correctnessLabel);
         if ($isEditable && $type == 'directTranslation') {

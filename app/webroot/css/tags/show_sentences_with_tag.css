@@ -42,16 +42,12 @@
  * List
  */
 .sentenceInList {
-    margin: 60px 0;
-}
-
-.sentenceInList .sentences_set {
-    margin-right: 30px;
+    margin: 40px 0;
 }
 
 .sentenceInList .removeFromList {
     float: right;
-    margin-top: 42px;
+    margin: 8px 10px 0px 10px;
 }
 
 .sentencesListActions li {
@@ -70,12 +66,4 @@
 
 .removeFromListButton {
     cursor: pointer;
-}
-
-
-/*
- * Delete list 
- */
-.deleteList a {
-    color: #FF2128;
 }

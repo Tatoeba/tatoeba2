@@ -39,7 +39,7 @@ if (isset($translation)) {
     $sentences->displayGenericSentence(
         $translation,
         $type, 
-        $withAudio, 
+        true,
         $parentId,
         $isEditable
     );
