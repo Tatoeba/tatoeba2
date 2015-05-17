@@ -306,8 +306,17 @@ class Transcription extends AppModel
         if (!$sentence)
             return false;
 
+        $targetScript = $transcr['script'];
+        $langScript = $this->getSourceLangScript($sentence['Sentence']);
+        if (!$langScript || !isset($this->availableTranscriptions[$langScript][$targetScript]))
+            return false;
+
+        $params = $this->availableTranscriptions[$langScript][$targetScript];
+        if (isset($params['readonly']) && $params['readonly'])
+            return false;
+
         return $this->generateTranscription(
-            $sentence, $transcr['script'], true, $transcr
+            $sentence, $targetScript, true, $transcr
         );
     }
 
@@ -329,13 +338,6 @@ class Transcription extends AppModel
             $sentence = $sentence['Sentence'];
 
         $langScript = $this->getSourceLangScript($sentence);
-        if (!$langScript || !isset($this->availableTranscriptions[$langScript][$targetScript]))
-            return array();
-
-        $params = $this->availableTranscriptions[$langScript][$targetScript];
-        if (isset($params['readonly']) && $params['readonly'])
-            return array();
-
         $result = array();
         if (!$transcr) {
             $transcr = $this->_generateTranscription(
@@ -358,6 +360,7 @@ class Transcription extends AppModel
         }
         $result[] = $transcr;
 
+        $params = $this->availableTranscriptions[$langScript][$targetScript];
         if (isset($params['autogenerates'])) {
             $chainedLangScript = $sentence['lang'].'-'.$targetScript;
             $chainedTargetScript = $params['autogenerates'];
