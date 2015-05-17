@@ -187,161 +187,6 @@ class Autotranscription
         return $ipaSentence;
     }
 
-
-    /**
-     * Uzbek sctript-switching functions
-     * © 2010, Dmitry Kushnariov. Distributed under the BSD license
-     *
-     * Finds a script of Uzbek text
-     * $str - an UTF-8 string of Uzbek text
-     * Returns 1 for Cyrillic, 2 for Latin, FALSE on Error
-     */
-    private function _uzbekScriptGet($str) {
-        if (empty($str)) {
-            return FALSE;
-        }
-
-        $needles = array(
-            '‘', '’', '.', ',', ';',
-            ':', '1', '2', '3', '4',
-            '5', '6', '7', '8', '9',
-            '0', ' ', '-', '«', '»',
-            '—'
-        );
-        $replacements = array(
-            "'", "'", '', '', '',
-            '', '', '', '', '',
-            '', '', '', '', '',
-            '',  '',  '', '', '',
-            ''
-        );
-        $sentence = str_replace($needles, $replacements, $str);
-
-        $cyr = 0;
-        $lat = 0;
-        for ($i = 0; $i < strlen($sentence); $i++) {
-            if (ord($sentence[$i]) < 128) {
-                $lat += 2;
-            } else {
-                $cyr += 1;
-            }
-        }
-        return ($cyr >= $lat) ? 1 : 2;
-    }
-
-    /**
-     * Changes a script of Uzbek text
-     * $str - an UTF-8 string of Uzbek text
-     * $script - 1 for Cyrillic, 2 for Latin, 0 to switch
-     * Returns a string of FALSE on error
-     */
-    private function _uzbekScriptChange($str, $script = UZB_SCRIPT_SWITCH) {
-        $scriptArray = array(
-            UZB_SCRIPT_SWITCH,
-            UZB_SCRIPT_CYRYLLIC,
-            UZB_SCRIPT_LATIN
-        );
-
-        if (empty($str) || !in_array($script, $scriptArray)) {
-            return FALSE;
-        }
-
-        $new_script = $script;
-
-        if ($script == UZB_SCRIPT_SWITCH) {
-            $new_script = ($this->_uzbekScriptGet($str) == UZB_SCRIPT_CYRYLLIC ) ? UZB_SCRIPT_LATIN : UZB_SCRIPT_CYRYLLIC;
-        }
-
-        if ($new_script == UZB_SCRIPT_CYRYLLIC) {//change to Cyrillic
-
-            $needles = array(
-                '‘', '’', "s'h", "S'h", "S'H",
-                "O'", "o'", "G'", "g'", 'SH',
-                'Sh', 'sh', 'CH', 'Ch', 'ch',
-                'YO', 'Yo', 'yo', ' E', ' e',
-                '-E', '-e', 'Ye', 'YE', 'ye',
-                'e', 'E', 'YA', 'Ya', 'ya',
-                'YU', 'Yu', 'yu', 'A', 'a',
-                'B', 'b', 'D', 'd', 'F',
-                'f', 'G', 'g', 'H', 'h',
-                'I', 'i', 'J', 'j', 'K',
-                'k', 'L', 'l', 'M', 'm',
-                'N', 'n', 'O', 'o', 'P',
-                'p', 'Q', 'q', 'R', 'r',
-                'S', 's', 'T', 't', 'U',
-                'u', 'V', 'v', 'X', 'x',
-                'Y', 'y', 'Z', 'z', "'",
-                'ТС', 'тс', 'Тс', 'циз', 'ЦИЗ',
-                'сирк', 'Сирк'
-            );
-            $replacements = array(
-                "'", "'", 'сҳ',  'Сҳ',  "СҲ",
-                'Ў',  'ў',  'Ғ',  'ғ',  'Ш',
-                'Ш',  'ш',  'Ч',  'Ч',  'ч',
-                'Ё',  'Ё',  'ё',  ' Э', ' э',
-                '-Э', '-э', 'Е',  'Е',  'е',
-                'е', 'Е', 'Я',  'Я',  'я',
-                'Ю',  'Ю',  'ю',  'А', 'а',
-                'Б', 'б', 'Д', 'д', 'Ф',
-                'ф', 'Г', 'г', 'Ҳ', 'ҳ',
-                'И', 'и', 'Ж', 'ж', 'К',
-                'к', 'Л', 'л', 'М', 'м',
-                'Н', 'н', 'О', 'о', 'П',
-                'п', 'Қ', 'қ', 'Р', 'р',
-                'С', 'с', 'Т', 'т', 'У',
-                'у', 'В', 'в', 'Х', 'х',
-                'Й', 'й', 'З', 'з', 'ъ',
-                'Ц',  'ц',  'ц',  'тсиз', 'ТСИЗ',
-                'цирк', 'Цирк'
-            );
-
-        } else {//change to Latin
-            $needles =  array(
-                'ац',  'ец',  'иц',  'оц',  'уц',
-                'ўц',   'эц',  'АЦ',  'ЕЦ',  'ИЦ',
-                'ОЦ',  'УЦ',  'ЎЦ',   'Ац',  'Ец',
-                'Ии',  'Оц',  'Уц',  'Ўц',   'ц',
-                'Ц', ' Е',  ' е',  '-Е', '-е',
-                'е', 'А', 'а', 'Б', 'б',
-                'В', 'в', 'Г', 'г', 'Ғ',
-                'ғ', 'Д', 'д', 'Ё', 'ё',
-                'Ж', 'ж', 'З', 'з', 'И',
-                'и', 'Й', 'й', 'К', 'к',
-                'Қ', 'қ', 'Л', 'л', 'М',
-                'м', 'Н', 'н', 'О', 'о',
-                'П', 'п', 'Р', 'р', 'С',
-                'с', 'Т', 'т', 'У', 'у',
-                'Ў', 'ў', 'Ф', 'ф', 'Х',
-                'х', 'Ҳ', 'ҳ', 'Ч', 'ч',
-                'Ш', 'ш', 'Ъ', 'ъ', 'Ы',
-                'ы', 'Ь', 'ь', 'Э', 'э',
-                'Ю',  'ю',  'Я',  'я'
-            );
-            $replacements = array(
-                'ats', 'еts', 'its', 'ots', 'uts',
-                'o‘ts', 'эts', 'ATS', 'ЕTS', 'ITS',
-                'OTS', 'UTS', 'O‘TS', 'Ats', 'Еts',
-                'Its', 'Ots', 'Uts', 'O‘ts', 's',
-                'S', ' Ye', ' ye', '-Ye', '-ye',
-                'e', 'A', 'a', 'B', 'b',
-                'V', 'v', 'G', 'g', 'G‘',
-                'g‘', 'D', 'd', 'Yo', 'yo',
-                'J', 'j', 'Z', 'z', 'I',
-                'i', 'Y', 'y', 'K', 'k',
-                'Q', 'q', 'L', 'l', 'M',
-                'm', 'N', 'n', 'O', 'o',
-                'P', 'p', 'R', 'r', 'S',
-                's', 'T', 't', 'U', 'u',
-                'O‘','o‘', 'F', 'f', 'X',
-                'x', 'H', 'h', 'Ch', 'ch',
-                'Sh', 'sh', '’', '’', 'I',
-                'i', '', '', 'E', 'e',
-                'Yu', 'yu', 'Ya', 'ya'
-            );
-        }
-        return str_replace($needles, $replacements, $str);
-    }
-
     /**
      *
      */
@@ -673,5 +518,134 @@ class Autotranscription
 
     public function cmn_Hans_to_Latn_generate($text) {
         return $this->cmn_pinyin($text);
+    }
+
+    /**
+     * Uzbek script-switching functions
+     * © 2010, Dmitry Kushnariov. Distributed under the BSD license
+     *
+     * Finds a script of Uzbek text
+     */
+    public function uzb_detectScript($text) {
+        if (empty($text)) {
+            return false;
+        }
+
+        $needles = array(
+            '‘', '’', '.', ',', ';',
+            ':', '1', '2', '3', '4',
+            '5', '6', '7', '8', '9',
+            '0', ' ', '-', '«', '»',
+            '—'
+        );
+        $replacements = array(
+            "'", "'", '', '', '',
+            '', '', '', '', '',
+            '', '', '', '', '',
+            '',  '',  '', '', '',
+            ''
+        );
+        $sentence = str_replace($needles, $replacements, $text);
+
+        $cyr = 0;
+        $lat = 0;
+        for ($i = 0; $i < strlen($sentence); $i++) {
+            if (ord($sentence[$i]) < 128) {
+                $lat += 2;
+            } else {
+                $cyr += 1;
+            }
+        }
+        return ($cyr >= $lat) ? 'Cyrl' : 'Latn';
+    }
+
+    public function uzb_Latn_to_Cyrl_generate($text) {
+        $needles = array(
+            '‘', '’', "s'h", "S'h", "S'H",
+            "O'", "o'", "G'", "g'", 'SH',
+            'Sh', 'sh', 'CH', 'Ch', 'ch',
+            'YO', 'Yo', 'yo', ' E', ' e',
+            '-E', '-e', 'Ye', 'YE', 'ye',
+            'e', 'E', 'YA', 'Ya', 'ya',
+            'YU', 'Yu', 'yu', 'A', 'a',
+            'B', 'b', 'D', 'd', 'F',
+            'f', 'G', 'g', 'H', 'h',
+            'I', 'i', 'J', 'j', 'K',
+            'k', 'L', 'l', 'M', 'm',
+            'N', 'n', 'O', 'o', 'P',
+            'p', 'Q', 'q', 'R', 'r',
+            'S', 's', 'T', 't', 'U',
+            'u', 'V', 'v', 'X', 'x',
+            'Y', 'y', 'Z', 'z', "'",
+            'ТС', 'тс', 'Тс', 'циз', 'ЦИЗ',
+            'сирк', 'Сирк'
+        );
+        $replacements = array(
+            "'", "'", 'сҳ',  'Сҳ',  "СҲ",
+            'Ў',  'ў',  'Ғ',  'ғ',  'Ш',
+            'Ш',  'ш',  'Ч',  'Ч',  'ч',
+            'Ё',  'Ё',  'ё',  ' Э', ' э',
+            '-Э', '-э', 'Е',  'Е',  'е',
+            'е', 'Е', 'Я',  'Я',  'я',
+            'Ю',  'Ю',  'ю',  'А', 'а',
+            'Б', 'б', 'Д', 'д', 'Ф',
+            'ф', 'Г', 'г', 'Ҳ', 'ҳ',
+            'И', 'и', 'Ж', 'ж', 'К',
+            'к', 'Л', 'л', 'М', 'м',
+            'Н', 'н', 'О', 'о', 'П',
+            'п', 'Қ', 'қ', 'Р', 'р',
+            'С', 'с', 'Т', 'т', 'У',
+            'у', 'В', 'в', 'Х', 'х',
+            'Й', 'й', 'З', 'з', 'ъ',
+            'Ц',  'ц',  'ц',  'тсиз', 'ТСИЗ',
+            'цирк', 'Цирк'
+        );
+        return str_replace($needles, $replacements, $text);
+    }
+
+    public function uzb_Cyrl_to_Latn_generate($text) {
+        $needles =  array(
+            'ац',  'ец',  'иц',  'оц',  'уц',
+            'ўц',   'эц',  'АЦ',  'ЕЦ',  'ИЦ',
+            'ОЦ',  'УЦ',  'ЎЦ',   'Ац',  'Ец',
+            'Ии',  'Оц',  'Уц',  'Ўц',   'ц',
+            'Ц', ' Е',  ' е',  '-Е', '-е',
+            'е', 'А', 'а', 'Б', 'б',
+            'В', 'в', 'Г', 'г', 'Ғ',
+            'ғ', 'Д', 'д', 'Ё', 'ё',
+            'Ж', 'ж', 'З', 'з', 'И',
+            'и', 'Й', 'й', 'К', 'к',
+            'Қ', 'қ', 'Л', 'л', 'М',
+            'м', 'Н', 'н', 'О', 'о',
+            'П', 'п', 'Р', 'р', 'С',
+            'с', 'Т', 'т', 'У', 'у',
+            'Ў', 'ў', 'Ф', 'ф', 'Х',
+            'х', 'Ҳ', 'ҳ', 'Ч', 'ч',
+            'Ш', 'ш', 'Ъ', 'ъ', 'Ы',
+            'ы', 'Ь', 'ь', 'Э', 'э',
+            'Ю',  'ю',  'Я',  'я'
+        );
+        $replacements = array(
+            'ats', 'еts', 'its', 'ots', 'uts',
+            'o‘ts', 'эts', 'ATS', 'ЕTS', 'ITS',
+            'OTS', 'UTS', 'O‘TS', 'Ats', 'Еts',
+            'Its', 'Ots', 'Uts', 'O‘ts', 's',
+            'S', ' Ye', ' ye', '-Ye', '-ye',
+            'e', 'A', 'a', 'B', 'b',
+            'V', 'v', 'G', 'g', 'G‘',
+            'g‘', 'D', 'd', 'Yo', 'yo',
+            'J', 'j', 'Z', 'z', 'I',
+            'i', 'Y', 'y', 'K', 'k',
+            'Q', 'q', 'L', 'l', 'M',
+            'm', 'N', 'n', 'O', 'o',
+            'P', 'p', 'R', 'r', 'S',
+            's', 'T', 't', 'U', 'u',
+            'O‘','o‘', 'F', 'f', 'X',
+            'x', 'H', 'h', 'Ch', 'ch',
+            'Sh', 'sh', '’', '’', 'I',
+            'i', '', '', 'E', 'e',
+            'Yu', 'yu', 'Ya', 'ya'
+        );
+        return str_replace($needles, $replacements, $text);
     }
 }

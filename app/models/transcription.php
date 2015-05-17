@@ -63,12 +63,14 @@ class Transcription extends AppModel
         ),
         'uzb-Latn' => array(
             'Cyrl' => array(
-                'generator' => null /* TODO */
+                'needsReview' => false,
+                'readonly' => true,
             ),
         ),
         'uzb-Cyrl' => array(
             'Latn' => array(
-                'generator' => null /* TODO */
+                'needsReview' => false,
+                'readonly' => true,
             ),
         ),
     );
