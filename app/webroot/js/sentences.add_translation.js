@@ -20,7 +20,7 @@
 $(document).ready(function() {
 
     $(".translateLink").click(function(){
-        var sentenceId = $(this).data("sentenceId");
+        var sentenceId = $(this).attr("data-sentence-id");
         
         var rootUrl = get_tatoeba_root_url();
 

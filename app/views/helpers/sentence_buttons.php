@@ -253,13 +253,6 @@ class SentenceButtonsHelper extends AppHelper
             </span>
 
             <?php
-            // setting data for sentences.change_language.js
-            echo "<script type='text/javascript'>
-            $(document).ready(function() {
-                $('#flag_$id').data('sentenceId', $id);
-                $('#flag_$id').data('currentLang', '$lang');
-            });
-            </script>";
         }
 
         echo $this->Languages->icon(
@@ -268,7 +261,8 @@ class SentenceButtonsHelper extends AppHelper
                 "id" => "flag_".$id,
                 "class" => "languageFlag ".$class,
                 "width" => 30,
-                "height" => 20
+                "height" => 20,
+                "data-sentence-id" => $id
             )
         );
 

@@ -30,7 +30,7 @@ $(document).ready(function() {
     
     function save(){
         var sentenceText = $("#text").val();
-        var listId = $("#sentencesList").data('id');
+        var listId = $("#sentencesList").attr('data-list-id');
         var rootUrl = get_tatoeba_root_url();
         
         $(".sentencesListLoading").show();

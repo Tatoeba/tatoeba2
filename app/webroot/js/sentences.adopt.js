@@ -21,7 +21,7 @@ $(document).ready(function(){
 
     $(".adopt").click(function(){
         var adoptOption = $(this);
-        var sentenceId = $(this).data("sentenceId");
+        var sentenceId = $(this).attr("data-sentence-id");
         
         var rootUrl = get_tatoeba_root_url();
         

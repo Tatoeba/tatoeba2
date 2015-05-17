@@ -30,7 +30,7 @@ $(document).ready(function() {
         var flagImage = $(this);
         
         // The data is set in sentence_buttons.php, displayLanguageFlag()
-        var sentenceId = $(this).data('sentenceId');
+        var sentenceId = $(this).attr('data-sentence-id');
         
         $("#selectLangContainer_" + sentenceId).toggle();
         

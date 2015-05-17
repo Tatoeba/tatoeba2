@@ -30,17 +30,7 @@ if (!empty($sentence)) {
     echo $javascript->link(JS_PATH . 'sentences_lists.remove_sentence_from_list.js', true);
     
     $sentences->javascriptForAJAXSentencesGroup();
-    ?>
 
-    <script type='text/javascript'>
-    $(document).ready(function() {
-        $('#sentencesList').data(
-            'id', <?php echo $listId; ?>
-        );
-    });
-    </script>
-
-    <?php
     $lists->displaySentence($sentence, array(), true);
 
 } else {

@@ -21,7 +21,7 @@ $(document).ready(function() {
 
     $("#isPublicCheckbox").change(function(){
         var isPublic;
-        var listId = $(this).data('listId');
+        var listId = $(this).attr('data-list-id');
         var rootUrl = get_tatoeba_root_url();
         
         if($(this).is(':checked')){

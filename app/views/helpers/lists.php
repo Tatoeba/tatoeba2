@@ -296,14 +296,6 @@ class ListsHelper extends AppHelper
     ) {
         ?>
         <li>
-        <script type='text/javascript'>
-            $(document).ready(function() {
-                $('#isPublicCheckbox').data(
-                    'listId',
-                    <?php echo $listId; ?>
-                );
-            });
-        </script>
         <label for="isPublicCheckbox"><?php __('Set list as collaborative'); ?></label>
         <?php
         $this->Javascript->link('sentences_lists.set_as_public.js', false);
@@ -319,6 +311,7 @@ class ListsHelper extends AppHelper
                 "id" => "isPublicCheckbox",
                 "name" => "isPublic",
                 "checked" => $checkboxValue,
+                "data-list-id" => $listId
             )
         );
         echo $this->Html->image(
@@ -402,14 +395,6 @@ class ListsHelper extends AppHelper
     private function _displayRemoveButton($sentenceId) {
         ?>
         <span class="removeFromList">
-        <script type='text/javascript'>
-        $(document).ready(function() {
-            $('#deleteButton<?php echo $sentenceId?>').data(
-                'sentenceId',
-                <?php echo $sentenceId; ?>
-            );
-        });
-        </script>
 
         <?php
         $removeFromListAlt = format(
@@ -421,9 +406,9 @@ class ListsHelper extends AppHelper
             IMG_PATH . 'close.png',
             array(
                 "class" => "removeFromListButton",
-                "id" => 'deleteButton'.$sentenceId,
                 "alt" => $removeFromListAlt,
-                "title" => __("Remove from list", true)
+                "title" => __("Remove from list", true),
+                "data-sentence-id" => $sentenceId
             )
         );
         ?>
@@ -442,13 +427,6 @@ class ListsHelper extends AppHelper
             'sentences_lists.add_new_sentence_to_list.js', false
         );
         ?>
-        <script type='text/javascript'>
-        $(document).ready(function() {
-            $('#sentencesList').data(
-                'id', <?php echo $listId; ?>
-            );
-        });
-        </script>
 
         <div id="newSentenceInList">
         <?php

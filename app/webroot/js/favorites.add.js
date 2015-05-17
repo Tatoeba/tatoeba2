@@ -30,7 +30,7 @@ $(document).ready(function(){
     // single function and a test for each class
 
     $(".favorite").click(function(){
-        var favoriteId = $(this).data("sentenceId");
+        var favoriteId = $(this).attr("data-sentence-id");
         var favoriteOption = $(this);
         
         /*******************************

@@ -127,7 +127,8 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
 
     ?>
     
-    <div class="sentencesList" id="sentencesList">
+    <div class="sentencesList" id="sentencesList"
+         data-list-id="<?php echo $listId; ?>">
     <?php
     foreach ($sentencesInList as $item) {
         $sentence = $item['Sentence'];

@@ -43,7 +43,7 @@ $(document).ready(function() {
     // Clicking on "Add to list" displays the list selection.
     // Reclicking on it hides the list selection.
     $(".addToList").click(function(){
-        sentenceId = $(this).data("sentenceId");
+        sentenceId = $(this).attr("data-sentence-id");
         $("#addToList"+sentenceId).toggle();
     });
     
