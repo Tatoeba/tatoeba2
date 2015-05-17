@@ -329,20 +329,25 @@ class MenuHelper extends AppHelper
 
     public function linkToSentenceButton($sentenceId, $langFilter = 'und') {
         $langFilter = json_encode($langFilter);
-        $linkToSentenceButton = $this->Images->svgIcon(
+        $image = $this->Images->svgIcon(
             'link',
             array(
                 'alt'=>__('Link to another sentence', true),
                 'title'=>__('Link to another sentence', true),
                 'width' => 16,
-                'height' => 16,
+                'height' => 16
+            )
+        );
+
+        $linkToSentenceButton = $this->Html->tag('a', $image,
+            array(
                 'class' => 'linkTo',
                 'onClick' => "linkToSentence($sentenceId, $langFilter)",
                 'onDrop' => "linkToSentenceByDrop(event, $sentenceId, $langFilter)",
             )
         );
         ?>
-        <li class="option"><a><?php echo $linkToSentenceButton; ?></a></li>
+        <li class="option"><?php echo $linkToSentenceButton; ?></li>
 
         <li style="display:none" id="linkTo<?php echo $sentenceId; ?>">
         <?php
