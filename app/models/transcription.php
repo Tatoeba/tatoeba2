@@ -119,11 +119,11 @@ class Transcription extends AppModel
     }
 
     public function afterFind($results, $primary = false) {
-        $this->setReadonlyFlags($results);
+        $this->setTranscriptionsFlags($results);
         return $results;
     }
 
-    private function setReadonlyFlags(&$results) {
+    private function setTranscriptionsFlags(&$results) {
         $sentenceIds = array();
         foreach ($results as $result) {
             if (!isset($result['Transcription']['sentence_id']) ||
@@ -157,7 +157,11 @@ class Transcription extends AppModel
                 $readonly = isset($to[$script]['readonly']) ?
                             $to[$script]['readonly'] :
                             false;
+                $needsReview = isset($to[$script]['needsReview']) ?
+                               $to[$script]['needsReview'] :
+                               true;
                 $result['Transcription']['readonly'] = $readonly;
+                $result['Transcription']['needsReview'] = $needsReview;
             }
         }
     }
@@ -395,12 +399,14 @@ class Transcription extends AppModel
                 return false;
 
             $readonly = isset($process['readonly']) ? $process['readonly'] : false;
+            $needsReview = isset($process['needsReview']) ? $process['needsReview'] : true;
             return array(
                 'sentence_id' => $sentenceId,
                 'parent_id' => null,
                 'script' => $targetScript,
                 'text' => $transcrText,
                 'readonly' => $readonly,
+                'needsReview' => $needsReview,
                 'user_id' => null,
             );
         }

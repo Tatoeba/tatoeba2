@@ -987,11 +987,11 @@
     color: #A1A1A1;
 }
 
-.generatedTranscription {
+.needsReview {
     display: none;
 }
 
-.generatedTranscription > .transcription {
+.needsReview > .transcription {
     color: blue; /* TODO: find a better color */
 }
 

@@ -82,14 +82,13 @@ class TranscriptionsHelper extends AppHelper
         $this->Javascript->link('jquery.jeditable.js', false);
         $this->Javascript->link('transcriptions.edit_in_place.js', false);
 
-        $isEditable = CurrentUser::canEditTranscription(
+        $canEdit = CurrentUser::canEditTranscription(
             $transcr['user_id'], $sentenceOwnerId
         );
-        if (isset($transcr['readonly']) && $transcr['readonly']) {
-            $isEditable = false;
-        }
+        $isEditable = $canEdit && !$transcr['readonly'];
+        $isReviewed = isset($transcr['user_id']);
+        $needsReview = $transcr['needsReview'] && !$isReviewed;
 
-        $isGenerated = !isset($transcr['user_id']);
         $class = 'transcription';
         if ($isEditable)
             $class .= ' editable';
@@ -108,15 +107,8 @@ class TranscriptionsHelper extends AppHelper
         );
 
         $infoDiv = '';
-        if ($isGenerated) {
-            if ($isEditable) {
-                $warningMessage = __(
-                    'The following transcription has been automatically '.
-                    'generated and <strong>may contain errors</strong>. '.
-                    'If you can, you are welcome to review by clicking it.',
-                    true
-                );
-            } else {
+        if ($needsReview) {
+            if(!CurrentUser::isMember()) {
                 $loginUrl = $this->url(array(
                     'controller' => 'users',
                     'action' => 'login',
@@ -136,6 +128,21 @@ class TranscriptionsHelper extends AppHelper
                     compact('loginUrl', 'registerUrl')),
                     true
                 );
+            } elseif ($isEditable) {
+                $warningMessage = __(
+                    'The following transcription has been automatically '.
+                    'generated and <strong>may contain errors</strong>. '.
+                    'If you can, you are welcome to review by clicking it.',
+                    true
+                );
+            } else {
+                $warningMessage = __(
+                    'The following transcription has been automatically '.
+                    'generated and <strong>may contain errors</strong>. '.
+                    'You may ask the sentence owner or any other ' .
+                    'knowledgeable member to review it.',
+                    true
+                );
             }
             $infoDiv = $this->Html->tag('div', $warningMessage, array(
                 'class' => 'transcriptionWarning',
@@ -153,8 +160,8 @@ class TranscriptionsHelper extends AppHelper
         }
 
         $class = 'transcriptionContainer';
-        if ($isGenerated) {
-            $class .= ' generatedTranscription';
+        if ($needsReview) {
+            $class .= ' needsReview';
         }
         echo $this->Html->tag('div', $infoDiv.$transcriptionDiv.$subTranscrDiv, array(
             'escape' => false,

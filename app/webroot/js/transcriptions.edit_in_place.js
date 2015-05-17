@@ -20,7 +20,7 @@ function displayTranscriptions(sentenceId) {
     var firstItemVisibility;
 
     $(
-        '#sentences_group_' + sentenceId + ' .generatedTranscription'
+        '#sentences_group_' + sentenceId + ' .needsReview'
     ).each(function(index) {
         if (index == 0) {
             firstItemVisibility = $(this).is(":visible");
@@ -34,7 +34,7 @@ $(document).ready(function() {
 
     // Show the transcribe button if there are some
     // hidden transcriptions
-    $('.generatedTranscription:hidden').each(function(index) {
+    $('.needsReview:hidden').each(function(index) {
        transcribeButton = $(this).parentsUntil($(".sentences_set"), ".sentences_set").find('.transcribe');
        transcribeButton.show();
     });
