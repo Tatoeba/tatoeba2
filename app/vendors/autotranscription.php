@@ -342,22 +342,6 @@ class Autotranscription
         return str_replace($needles, $replacements, $str);
     }
 
-
-    /**
-     *
-     */
-    private function _getPinyin($text)
-    {
-        $xml = simplexml_load_file(
-            "http://127.0.0.1:8042/pinyin?str=".urlencode($text)
-            ,'SimpleXMLElement', LIBXML_NOCDATA
-        );
-        foreach($xml as $key=>$value) {
-            return $value;
-        }
-    }
-
-
     /**
      *
      */
@@ -651,5 +635,43 @@ class Autotranscription
             return isset($map[$value]) ? $map[$value] : false;
         }
         return false;
+    }
+
+    private function cmn_changeScript($text) {
+        $xml = simplexml_load_file(
+            "http://127.0.0.1:8042/change_script?str=".urlencode($text)
+            ,'SimpleXMLElement', LIBXML_NOCDATA
+        );
+        foreach($xml as $key => $value) {
+            return (string)$value;
+        }
+        return false;
+    }
+
+    public function cmn_Hant_to_Hans_generate($text) {
+        return $this->cmn_changeScript($text);
+    }
+
+    public function cmn_Hans_to_Hant_generate($text) {
+        return $this->cmn_changeScript($text);
+    }
+
+    private function cmn_pinyin($text) {
+        $xml = simplexml_load_file(
+            "http://127.0.0.1:8042/pinyin?str=".urlencode($text)
+            ,'SimpleXMLElement', LIBXML_NOCDATA
+        );
+        foreach($xml as $key=>$value) {
+            return (string)$value;
+        }
+        return false;
+    }
+
+    public function cmn_Hant_to_Latn_generate($text) {
+        return $this->cmn_pinyin($text);
+    }
+
+    public function cmn_Hans_to_Latn_generate($text) {
+        return $this->cmn_pinyin($text);
     }
 }

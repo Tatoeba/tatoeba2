@@ -29,7 +29,7 @@ class Transcription extends AppModel
     private $scriptsByLang = array( /* ISO 15924 */
         'jpn' => array('Jpan'),
         'uzb' => array('Cyrl', 'Latn'),
-        'cmn' => array('Hans', 'Hant'),
+        'cmn' => array('Hans', 'Hant', 'Latn'),
     );
     private $availableTranscriptions = array(
         'jpn-Jpan' => array(
@@ -43,6 +43,22 @@ class Transcription extends AppModel
         'jpn-Hrkt' => array(
             'Latn' => array(
                 'readonly' => true,
+            ),
+        ),
+        'cmn-Hans' => array(
+            'Hant' => array(
+                'needsReview' => false,
+                'readonly' => true,
+            ),
+            'Latn' => array(
+            ),
+        ),
+        'cmn-Hant' => array(
+            'Hans' => array(
+                'needsReview' => false,
+                'readonly' => true,
+            ),
+            'Latn' => array(
             ),
         ),
         'uzb-Latn' => array(
@@ -351,6 +367,7 @@ class Transcription extends AppModel
         }
 
         if ($save) {
+            $this->create();
             if (!$this->save($transcr))
                 return array();
             $this->read();
