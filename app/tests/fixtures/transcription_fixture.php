@@ -20,7 +20,7 @@ class TranscriptionFixture extends CakeTestFixture {
 		array(
 			'id' => 1,
 			'sentence_id' => 6,
-			'parent_id' => '',
+			'parent_id' => null,
 			'script' => 'Hrkt',
 			'text' => 'その [問題|もんだい] の [根本|こんぽん] [原因|げんいん] は 、 [現代|げんだい] の [世界|せかい] において 、 [賢明|けんめい] な [人々|ひとびと] が [猜疑心|さいぎしん] に [満|み]ちている [一方|いっぽう] で、[愚|おろ]か な [人々|ひとびと] が [自信|じしん] [過剰|かじょう] で ある という こと で ある 。',
 			'user_id' => 7,
@@ -40,7 +40,7 @@ class TranscriptionFixture extends CakeTestFixture {
 		array(
 			'id' => 3,
 			'sentence_id' => 10,
-			'parent_id' => '',
+			'parent_id' => null,
 			'script' => 'Hrkt',
 			'text' => 'ちょっと [待|ま]って 。',
 			'user_id' => null,
