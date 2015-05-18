@@ -30,8 +30,7 @@ class SentenceTestCase extends CakeTestCase {
 		Mock::generate('SphinxBehavior');
 		$this->Sentence->Behaviors->Sphinx =& new MockSphinxBehavior();
 
-		Mock::generate('Autotranscription');
-		$autotranscription =& new MockAutotranscription();
+		$autotranscription = $this->_installAutotranscriptionMock();
 		$autotranscription->setReturnValue('cmn_detectScript', 'Hans');
 		$autotranscription->setReturnValue(
 			'jpn_Jpan_to_Hrkt_generate',
@@ -45,7 +44,13 @@ class SentenceTestCase extends CakeTestCase {
 			'jpn_Hrkt_to_Latn_generate',
 			'transcription in romaji'
 		);
+	}
+
+	function _installAutotranscriptionMock() {
+		Mock::generate('Autotranscription');
+		$autotranscription =& new MockAutotranscription();
 		$this->Sentence->Transcription->setAutotranscription($autotranscription);
+		return $autotranscription;
 	}
 
 	function endTest() {
@@ -111,6 +116,28 @@ class SentenceTestCase extends CakeTestCase {
         );
         $this->assertEqual(2, $transcriptions);
     }
+
+	function testSentenceTextEditionUpdatesScript() {
+		$autotranscription = $this->_installAutotranscriptionMock();
+		$autotranscription->setReturnValue('cmn_detectScript', 'Hant');
+		$cmnSentenceId = 2;
+		$this->Sentence->save(array(
+			'id' => $cmnSentenceId,
+			'text' => '問題的根源是，在當今世界，愚人充滿了自信，而智者充滿了懷疑。',
+		));
+		$result = $this->Sentence->findById($cmnSentenceId, 'script');
+		$this->assertEqual('Hant', $result['Sentence']['script']);
+	}
+
+	function testSentenceFlagEditionUpdatesScript() {
+		$cmnSentenceId = 2;
+		$this->Sentence->save(array(
+			'id' => $cmnSentenceId,
+			'lang' => 'eng',
+		));
+		$result = $this->Sentence->findById($cmnSentenceId, 'script');
+		$this->assertNull($result['Sentence']['script']);
+	}
 
 	function testSentenceTextEditionRegeneratesTranscriptions() {
 		$jpnSentenceId = 6;

@@ -25,16 +25,19 @@ class TranscriptableBehavior extends ModelBehavior
 {
     private function addScriptInformation($model) {
         $lang = $model->_getFieldFromDataOrDatabase('lang');
-        $script = $model->Transcription->detectScript(
-            $lang,
-            $model->data[$model->alias]['text']
-        );
+        $text = $model->_getFieldFromDataOrDatabase('text');
+        $script = $model->Transcription->detectScript($lang, $text);
         $model->data[$model->alias]['script'] = $script;
     }
 
     public function beforeSave(&$model) {
-        if (!$model->id) { // adding a new sentence
+        $isNewSentence = !$model->id;
+        if ($isNewSentence) {
             if (!isset($model->data[$model->alias]['script']))
+                $this->addScriptInformation($model);
+        } else {
+            if (isset($model->data[$model->alias]['text']) ||
+                isset($model->data[$model->alias]['lang']))
                 $this->addScriptInformation($model);
         }
         if (!$this->isScriptValid($model)) {
