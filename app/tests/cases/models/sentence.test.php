@@ -121,8 +121,8 @@ class SentenceTestCase extends CakeTestCase {
 		$autotranscription = $this->_installAutotranscriptionMock();
 		$autotranscription->setReturnValue('cmn_detectScript', 'Hant');
 		$cmnSentenceId = 2;
+		$this->Sentence->id = $cmnSentenceId;
 		$this->Sentence->save(array(
-			'id' => $cmnSentenceId,
 			'text' => '問題的根源是，在當今世界，愚人充滿了自信，而智者充滿了懷疑。',
 		));
 		$result = $this->Sentence->findById($cmnSentenceId, 'script');
