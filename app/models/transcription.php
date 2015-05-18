@@ -276,6 +276,15 @@ class Transcription extends AppModel
         return $langScript;
     }
 
+    public function langsInNeedOfScriptAutodetection() {
+        $inNeed = array();
+        foreach ($this->scriptsByLang as $lang => $scripts) {
+            if (count($scripts) > 1)
+                $inNeed[] = $lang;
+        }
+        return $inNeed;
+    }
+
     private function getSourceScript($sourceLang) {
         if (isset($this->scriptsByLang[$sourceLang])) {
             if (count($this->scriptsByLang[$sourceLang]) == 1) {
