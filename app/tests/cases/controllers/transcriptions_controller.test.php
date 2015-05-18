@@ -27,6 +27,8 @@ class TestTranscriptionsController extends TranscriptionsController {
         Mock::generate('Autotranscription');
         $autotranscription =& new MockAutotranscription;
         $autotranscription->setReturnValue('jpn_Jpan_to_Hrkt_validate', true);
+        $autotranscription->setReturnValue('jpn_Jpan_to_Hrkt_generate', 'furi');
+        $autotranscription->setReturnValue('jpn_Hrkt_to_Latn_generate', 'roma');
         $this->Transcription->setAutotranscription($autotranscription);
 
         parent::beforeFilter();
@@ -75,6 +77,22 @@ class TranscriptionsControllerTestCase extends CakeTestCase {
     function endTest() {
         unset($this->Transcriptions);
         unset($this->User);
+    }
+
+    function _resetAsUser($username, $sentenceId, $script) {
+        $user = $this->User->find('first', array(
+            'conditions' => array('username' => $username),
+            'recursive' => -1,
+        ));
+
+        return $this->testAction(
+            "/jpn/transcriptions/reset/$sentenceId/$script",
+            array(
+                'method' => 'post',
+                'controller' => 'TestTranscriptions',
+                'loggedInUserForTest' => $user,
+            )
+        );
     }
 
     function _saveAsUser($username, $sentenceId, $script, $transcrText) {
@@ -158,5 +176,13 @@ class TranscriptionsControllerTestCase extends CakeTestCase {
     function testAdminCanEditHumanTranscription() {
         $result = $this->_saveAsUser('admin', 6, 'Hrkt', 'something new');
         $this->assertTrue($result);
+    }
+
+    function testResetDoesResetTranscription() {
+        $this->_resetAsUser('kazuki', 6, 'Hrkt');
+        $result = $this->Transcriptions->Transcription->find('first', array(
+            'conditions' => array('sentence_id' => 6, 'script' => 'Hrkt')
+        ));
+        $this->assertEqual('furi', $result['Transcription']['text']);
     }
 }

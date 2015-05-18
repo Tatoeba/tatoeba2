@@ -50,6 +50,41 @@ class TranscriptionsController extends AppController
         $this->setViewVars($transcr, $sentenceId);
     }
 
+    public function reset($sentenceId, $script) {
+        $transcriptionId = $this->Transcription->findTranscriptionId($sentenceId, $script);
+        $saved = false;
+
+        if ($transcriptionId) {
+            list($transcrOwnerId, $sentenceOwnerId)
+                = $this->Transcription->getOwners($transcriptionId);
+            $canEdit = CurrentUser::canEditTranscription(
+                $transcrOwnerId, $sentenceOwnerId
+            );
+            if ($canEdit) {
+                $this->Transcription->delete($transcriptionId, false);
+                $sentence = $this->Sentence->findById($sentenceId);
+                $saved = $this->Transcription->generateTranscription(
+                    $sentence,
+                    $script,
+                    true
+                );
+            }
+        }
+
+        if (!$saved) {
+            $this->header('HTTP/1.1 400 Bad transcription');
+        }
+
+        if (isset($sentence)) {
+            $this->set('lang', $sentence['Sentence']['lang']);
+            $this->set('sentenceOwnerId', $sentence['Sentence']['user_id']);
+        }
+
+        $this->set('transcr', $saved);
+        $this->layout = null;
+        $this->render('view');
+    }
+
     public function save($sentenceId, $script) {
         $transcriptionId = $this->Transcription->findTranscriptionId($sentenceId, $script);
         $transcriptionText = $this->params['form']['value'];
