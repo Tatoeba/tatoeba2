@@ -112,8 +112,8 @@ class SentencesHelper extends AppHelper
         );
 
         // Loading gif
-        echo $this->Html->image(
-            IMG_PATH . 'loading.gif',
+        echo $this->Images->svgIcon(
+            'loading',
             array(
                 "id" => "_".$id."_loading",
                 "class" => "loading",
@@ -123,7 +123,7 @@ class SentencesHelper extends AppHelper
         );
 
         // Form to add a new translation
-        $this->_displayNewTranslationForm($id, $withAudio);
+        $this->_displayNewTranslationForm($id);
 
         $this->displayTranslations($id, $translations, $indirectTranslations, $withAudio, $langFilter);
 
@@ -288,7 +288,7 @@ class SentencesHelper extends AppHelper
      *
      * @return void
      */
-    private function _displayNewTranslationForm($id, $withAudio)
+    private function _displayNewTranslationForm($id)
     {
         $langArray = $this->Languages->profileLanguagesArray(true, false, false);
 
@@ -302,7 +302,7 @@ class SentencesHelper extends AppHelper
 
         } else {
 
-            $this->_translationForm($id, $withAudio, $langArray);
+            $this->_translationForm($id, $langArray);
 
         }
         ?>
@@ -310,7 +310,7 @@ class SentencesHelper extends AppHelper
         <?php
     }
 
-    private function _translationForm($id, $withAudio, $langArray)
+    private function _translationForm($id, $langArray)
     {
         $preSelectedLang = $this->Session->read('contribute_lang');
         if (!array_key_exists($preSelectedLang, $langArray)) {
@@ -323,19 +323,6 @@ class SentencesHelper extends AppHelper
                 'class' => 'navigationIcon'
             )
         );
-
-        if (!$withAudio) {
-            $withAudio = 0;
-        }
-        ?>
-        <script type='text/javascript'>
-            $(document).ready(function() {
-                $('#translate_<?php echo $id; ?>').data(
-                    'withAudio', <?php echo $withAudio; ?>
-                );
-            });
-        </script>
-        <?php
 
         echo '<div class="form">';
 
@@ -442,8 +429,12 @@ class SentencesHelper extends AppHelper
         $sentenceId = $sentence['id'];
         $canTranslate = $sentence['correctness'] >= 0;
         $hasAudio = $sentence['hasaudio'] == 'shtooka';
+        $script = null;
+        if (isset($sentence['script'])) {
+            $script = $sentence['script'];
+        }
         $this->Menu->displayMenu(
-            $sentenceId, $ownerName, $sentence['script'], $canTranslate, $langFilter, $hasAudio
+            $sentenceId, $ownerName, $script, $canTranslate, $langFilter, $hasAudio
         );
 
         $isEditable = CurrentUser::canEditSentenceOfUser($ownerName);
@@ -496,19 +487,18 @@ class SentencesHelper extends AppHelper
         if (isset($sentence['hasaudio'])) {
             $sentenceAudio = $sentence['hasaudio'];
         }
-        $elementId = '';
-        if ($type != 'mainSentence') {
-            $elementId = 'id="translation_'.$sentenceId.'_'.$parentId.'"';
-        }
         $classes = array('sentence', $type, $correctnessLabel);
         if ($isEditable && $type == 'directTranslation') {
             $classes[] = 'editableTranslation';
         }
         $class = join(' ', $classes);
-        ?>
-        
-        <div class="<?php echo $class; ?>" <?php echo $elementId; ?>>
-        <?php
+
+        $attributes = array(
+            'id' => 'translation_'.$sentenceId.'_'.$parentId,
+            'data-sentence-id' => $sentenceId
+        );
+        echo $this->Html->div($class, null, $attributes);
+
         // Navigation button (info or arrow icon)
         echo '<div class="nav column">';
         $this->SentenceButtons->displayNavigationButton($sentenceId, $type);

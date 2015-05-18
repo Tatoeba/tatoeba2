@@ -19,7 +19,7 @@
 
 $(document).ready(function(){
     $("#randomLangChoiceInBrowse").change(function(){
-        var currentId = $(this).data('currentSentenceId');
+        var currentId = $(this).attr('data-current-sentence-id');
         var lang = $(this).val();
         var rootUrl = get_tatoeba_root_url();
         var interfaceLang = $("#randomLink").attr("lang");

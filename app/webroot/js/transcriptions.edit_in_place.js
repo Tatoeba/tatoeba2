@@ -78,7 +78,7 @@ $(document).ready(function() {
                 });
                 return false; // don't reset the form
             },
-            indicator : '<img src="/img/loading.gif">',
+            indicator : '<img width="30" height="30" src="/img/loading.svg">',
             tooltip   : div.attr('data-tooltip'),
             cssclass  : 'editInPlaceForm',
             onblur    : 'ignore'

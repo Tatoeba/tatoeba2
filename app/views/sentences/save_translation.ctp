@@ -41,7 +41,7 @@ if (isset($translation)) {
         $translation['Sentence'],
         $translation['Transcription'],
         $type, 
-        $withAudio, 
+        true,
         $parentId,
         $isEditable
     );

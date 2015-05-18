@@ -36,7 +36,14 @@
  */
 class NavigationHelper extends AppHelper
 {
-    public $helpers = array('Html', 'Form', 'Languages', 'Javascript', 'Session');
+    public $helpers = array(
+        'Html',
+        'Form',
+        'Languages',
+        'Javascript',
+        'Session',
+        'Images'
+    );
 
     /**
      * Display navigation links for sentences.
@@ -83,14 +90,6 @@ class NavigationHelper extends AppHelper
             ?>
 
             <div class="languageSelect">
-            <script type='text/javascript'>
-            $(document).ready(function() {
-            $('#randomLangChoiceInBrowse').data(
-                'currentSentenceId', <?php echo $currentId ?>
-            );
-            });
-            </script>
-
             <?php
             $this->Javascript->link('sentences.random.js', false);
 
@@ -104,7 +103,8 @@ class NavigationHelper extends AppHelper
                 $selectedLanguage, 
                 array(
                     'class' => 'language-selector',
-                    "empty" => false
+                    'data-current-sentence-id' => $currentId,
+                    'empty' => false
                 ),
                 false
             );
@@ -188,7 +188,13 @@ class NavigationHelper extends AppHelper
 
             <li id="loadingAnimationForNavigation" style="display:none">
             <?php
-            echo $this->Html->image(IMG_PATH . 'loading-small.gif');
+            echo $this->Images->svgIcon(
+                'loading',
+                array(
+                    'width' => 16,
+                    'height' => 16
+                )
+            );
             ?>
             </li>
 

@@ -250,7 +250,7 @@ class TagsHelper extends AppHelper
                 $translations,
                 $sentenceOwner,
                 $indirectTranslations,
-                array('withAudio' => false)
+                array('withAudio' => true)
             );
             ?>
 
@@ -295,15 +295,6 @@ class TagsHelper extends AppHelper
     {
         ?>
         <span class="removeFromList">
-        <script type='text/javascript'>
-        $(document).ready(function() {
-            $('#deleteButton<?php echo $sentenceId; ?>').data(
-                'sentenceId',
-                <?php echo $sentenceId; ?>
-            );
-        });
-        </script>
-
         <?php
         $removeFromListAlt = __("remove tag from sentence", true);
         $removeTagFromSentenceImg =  $this->Html->image(

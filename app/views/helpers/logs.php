@@ -250,8 +250,10 @@ class LogsHelper extends AppHelper
     ) {
         $type = 'link';
         $css = $this->_getLogCss($type, $action);
-
-        echo '<div class="'.$css.'">';
+        $attributes = array(
+            'data-translation-id' => $translationId
+        );
+        echo $this->Html->div($css, null, $attributes);
         $this->_displayInfosInAnnexe($sentenceId, $username, $datetime);
         $this->_displayLink($action, $sentenceId, $translationId);
         echo '</div>';

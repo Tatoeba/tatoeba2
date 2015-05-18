@@ -30,17 +30,17 @@ $(document).ready(function() {
     
     function save(){
         var sentenceText = $("#text").val();
-        var listId = $("#sentencesList").data('id');
+        var listId = $("#sentencesList").attr('data-list-id');
         var rootUrl = get_tatoeba_root_url();
         
-        $(".sentencesListLoading").show();
+        $(".adding-new-sentence-in-list").show();
         
         $.post(rootUrl + "/sentences_lists/add_new_sentence_to_list/"
         , { "listId": listId, "sentenceText" : sentenceText }
         , function(data){
             $("#session_expired").remove();
             $(".sentencesList").prepend(data);
-            $(".sentencesListLoading").hide();
+            $(".adding-new-sentence-in-list").hide();
             $("#text").val("");
         }
         , "html");        

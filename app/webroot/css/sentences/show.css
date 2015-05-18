@@ -89,3 +89,14 @@
 #SentenceEditCorrectnessForm .radio label {
     margin-right: 20px;
 }
+
+
+#annexe_content .sentence-lists .public-list {
+    list-style-type: disc;
+    margin: 5px 5px 5px 10px;
+}
+
+#annexe_content .sentence-lists .personal-list {
+    list-style-type: circle;
+    margin: 5px 5px 5px 10px;
+}

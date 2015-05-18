@@ -115,7 +115,7 @@ UPDATE `languages` l,
   (SELECT count(*) as count, language_code
    FROM users_languages JOIN users
        ON users.id = users_languages.of_user_id
-   WHERE users_languages.level = null
+   WHERE users_languages.level IS null
    GROUP BY users_languages.language_code
   ) as ul
 SET level_unknown = ul.count

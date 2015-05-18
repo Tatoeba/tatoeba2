@@ -30,7 +30,7 @@ $(document).ready(function() {
         var flagImage = $(this);
         
         // The data is set in sentence_buttons.php, displayLanguageFlag()
-        var sentenceId = $(this).data('sentenceId');
+        var sentenceId = $(this).attr('data-sentence-id');
         
         $("#selectLangContainer_" + sentenceId).toggle();
         
@@ -39,7 +39,7 @@ $(document).ready(function() {
             var newLang = $(this).val();
             var rootUrl = get_tatoeba_root_url();
             
-            flagImage.attr('src', '/img/loading-small.gif');
+            flagImage.attr('src', '/img/loading.svg');
             $("#selectLangContainer_" + sentenceId).hide();
             
             $.post(

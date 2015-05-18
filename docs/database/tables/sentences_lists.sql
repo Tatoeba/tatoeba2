@@ -16,7 +16,7 @@ DROP TABLE IF EXISTS `sentences_lists`;
 CREATE TABLE `sentences_lists` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `is_public` tinyint(1) NOT NULL DEFAULT '0',
-  `name` varbinary(450) NOT NULL,
+  `name` VARCHAR(450) NOT NULL,
   `user_id` int(11) DEFAULT NULL,
   `numberOfSentences` mediumint(8) unsigned NOT NULL DEFAULT '0',
   `created` datetime DEFAULT NULL,

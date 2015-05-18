@@ -60,7 +60,8 @@ class SentencesList extends AppModel
                     'SentencesList.id',
                     'SentencesList.name',
                     'SentencesList.user_id',
-                    'SentencesList.is_public'
+                    'SentencesList.is_public',
+                    'SentencesList.created'
                 ),
                 'contain' => array(
                     'User' => array(
@@ -129,22 +130,30 @@ class SentencesList extends AppModel
      *
      * @return array
      */
-    public function getPublicListsNotFromUser($userId)
-    {
-        return $this->find(
-            "all",
-            array(
-                "conditions" => array(
-                    "SentencesList.user_id !=" => $userId,
-                    "SentencesList.is_public" => 1
-                ),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('username')
-                    )
-                ),
-                'order' => 'name'
-            )
+    public function getPaginatedLists(
+        $search = null, $username = null, $onlyCollaborative = false
+    ) {
+        $conditions = null;
+        if (!empty($search)) {
+            $conditions['SentencesList.name LIKE'] = "%$search%";
+        }
+        if (!empty($username)) {
+            $userId = $this->User->getIdFromUsername($username);
+            $conditions['SentencesList.user_id'] = $userId;
+        }
+        if ($onlyCollaborative) {
+            $conditions['SentencesList.is_public'] = true;
+        }
+
+        return array(
+            'conditions' => $conditions,
+            'contain' => array(
+                'User' => array(
+                    'fields' => array('username')
+                )
+            ),
+            'order' => 'created DESC',
+            'limit' => 20
         );
     }
 
@@ -238,7 +247,6 @@ class SentencesList extends AppModel
         if ($translationsLang != null) {
             // All
             $sentenceParams['Translation'] = array(
-                "fields" => array("id", "lang", "text", "correctness"),
                 'Transcription',
             );
             // Specific language
@@ -319,28 +327,28 @@ class SentencesList extends AppModel
     /**
      * get all the list of a given user
      *
-     * @param int $userId Id of the user
+     * @param int $username Username of the user
      *
      * @return array
      */
-    public function getUserLists($userId)
+    public function getPaginatedUserLists($username)
     {
-        $myLists = $this->find(
-            'all',
-            array(
-                'conditions' => array(
-                    "SentencesList.user_id =" => $userId,
-                ),
-                'contain' => array(
-                    'User' => array(
-                        'fields' => array('username')
-                    )
-                ),
-                'order' => 'name'
-            )
+        $userId = $this->User->getIdFromUsername($username);
+
+        $paginate = array(
+            'conditions' => array(
+                "SentencesList.user_id" => $userId,
+            ),
+            'contain' => array(
+                'User' => array(
+                    'fields' => array('username')
+                )
+            ),
+            'order' => 'name',
+            'limit' => 20
         );
 
-        return $myLists;
+        return $paginate;
 
     }
 

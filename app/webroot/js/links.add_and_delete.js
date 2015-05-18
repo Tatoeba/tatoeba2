@@ -22,7 +22,7 @@ function translationLink(action, sentenceId, translationId, langFilter)
 
     // Show the loading gif...
     $('#link_' + sentenceId + '_' + translationId).html(
-        "<img src='/img/loading-small.gif' alt='loading'>"
+        "<img width='16' height='16' src='/img/loading.svg' alt='loading'>"
     );
     $("#_" + sentenceId + "_message").remove();
 

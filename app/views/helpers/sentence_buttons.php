@@ -223,7 +223,14 @@ class SentenceButtonsHelper extends AppHelper
             $class = 'editableFlag';
 
             // language select
-            $langArray = $this->Languages->profileLanguagesArray(false, true, false);
+            if (CurrentUser::isAdmin()) {
+                $langArray = $this->Languages->otherLanguagesArray();
+            } else {
+                $langArray = $this->Languages->profileLanguagesArray(
+                    false, true, false
+                );
+            }
+
             $preselectedLang = $lang;
             if (!array_key_exists($lang, $langArray)) {
                 $preselectedLang = null;
@@ -246,13 +253,6 @@ class SentenceButtonsHelper extends AppHelper
             </span>
 
             <?php
-            // setting data for sentences.change_language.js
-            echo "<script type='text/javascript'>
-            $(document).ready(function() {
-                $('#flag_$id').data('sentenceId', $id);
-                $('#flag_$id').data('currentLang', '$lang');
-            });
-            </script>";
         }
 
         echo $this->Languages->icon(
@@ -261,7 +261,8 @@ class SentenceButtonsHelper extends AppHelper
                 "id" => "flag_".$id,
                 "class" => "languageFlag ".$class,
                 "width" => 30,
-                "height" => 20
+                "height" => 20,
+                "data-sentence-id" => $id
             )
         );
 

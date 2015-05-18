@@ -411,7 +411,7 @@ class Dedup(object):
             for l in langs:
                 Languages.objects\
                 .filter(code=l.code)\
-                .update(numberofsentences=Sentences.objects.filter(lang=l.code).count())
+                .update(sentences=Sentences.objects.filter(lang=l.code).count())
         
 class Command(Dedup, BaseCommand):
     option_list = BaseCommand.option_list + (

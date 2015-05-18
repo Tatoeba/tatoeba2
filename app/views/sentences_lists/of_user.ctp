@@ -25,6 +25,20 @@
  * @link     http://tatoeba.org
  */
 
+$total = $paginator->counter("%count%");
+
+if (empty($search)) {
+    $title = format(
+        __("{username}'s lists ({total})", true),
+        array('username' => $username, 'total' => $total)
+    );
+} else {
+    $title = format(
+        __("{username}'s lists containing \"{search}\" ({total})", true),
+        array('username' => $username, 'search' => $search, 'total' => $total)
+    );
+}
+
 $this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
@@ -32,7 +46,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <?php
     $lists->displayListsLinks();
 
-    $lists->displaySearchForm($search);
+    $lists->displaySearchForm($search, array('username' => $username));
 
     if ($session->read('Auth.User.id')) {
         $lists->displayCreateListForm();
@@ -57,11 +71,13 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             );
             ?>
         </div>
+        
         <?php
+        $pagination->display(array($username, $search));
 
-        $pagination->display();
-        $lists->displayListTable($allLists);
-        $pagination->display();
+        $lists->displayListTable($userLists);
+
+        $pagination->display(array($username, $search));
         ?>
     </div>
 </div>

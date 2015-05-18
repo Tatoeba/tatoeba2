@@ -53,6 +53,8 @@ class SentencesListsController extends AppController
     // We want to make sure that people don't download long lists, which can slow down the server.
     // This is an arbitrary but easy to remember value, and most lists are shorter than this.    
     const MAX_COUNT_FOR_DOWNLOAD = 100;
+
+    public $uses = array('SentencesList', 'SentencesSentencesLists');
     
     /**
      * Before filter.
@@ -69,6 +71,8 @@ class SentencesListsController extends AppController
             'export_to_csv',
             'of_user',
             'download',
+            'search',
+            'collaborative'
         );
     }
 
@@ -79,29 +83,65 @@ class SentencesListsController extends AppController
      * 
      * @return void
      */
-    public function index()
+    public function index($search = null)
     {
-        $currentUserId =  $this->Auth->user('id');
-        // user's lists
-        if ($currentUserId) {
-            $myLists = $this->SentencesList->getUserLists(
-                $currentUserId
-            );
-
-            $this->set('myLists', $myLists);
+        if (isset($this->params['url']['search'])) {
+            $search = $this->params['url']['search'];
+            $this->redirect(array('action' => 'index', $search));
         }
 
-        // public lists
-        $publicLists = $this->SentencesList->getPublicListsNotFromUser(
-            $currentUserId
-        );
-        $this->set('publicLists', $publicLists);
+        $this->paginate = $this->SentencesList->getPaginatedLists($search);
+        $allLists = $this->paginate();
 
-        // all the other lists
-        $otherLists = $this->SentencesList->getNonEditableListsForUser(
-            $currentUserId
+        $total = $this->params['paging']['SentencesList']['count'];
+        if (empty($search)) {
+            $title = format(
+                __('All lists ({total})', $total, true),
+                array('total' => $total)
+            );
+        } else {
+            $title = format(
+                __('All lists containing "{search}" ({total})', $total, true),
+                array('total' => $total, 'search' => $search)
+            );
+        }
+
+        $this->set('allLists', $allLists);
+        $this->set('search', $search);
+        $this->set('title', $title);
+    }
+
+
+    public function collaborative($search = null)
+    {
+        if (isset($this->params['url']['search'])) {
+            $search = $this->params['url']['search'];
+            $this->redirect(array('action' => 'collaborative', $search));
+        }
+
+        $this->paginate = $this->SentencesList->getPaginatedLists(
+            $search, null, true
         );
-        $this->set('otherLists', $otherLists);
+        $allLists = $this->paginate();
+
+        $total = $this->params['paging']['SentencesList']['count'];
+        if (empty($search)) {
+            $title = format(
+                __('Collaborative lists ({total})', $total, true),
+                array('total' => $total)
+            );
+        } else {
+            $title = format(
+                __('Collaborative lists containing "{search}" ({total})', $total, true),
+                array('search' => $search, 'total' => $total)
+            );
+        }
+
+        $this->set('allLists', $allLists);
+        $this->set('search', $search);
+        $this->set('title', $title);
+
+        $this->render('index');
     }
 
 
@@ -122,34 +162,35 @@ class SentencesListsController extends AppController
             $this->redirect(array("action"=>"index"));
         }
 
-        $this->_get_sentences_for_list($id, $translationsLang, false, 10);
+        $list = $this->SentencesList->getList($id);
+
+        $this->paginate = $this->SentencesSentencesLists->getPaginatedSentencesInList(
+            $id, $translationsLang, 10
+        );
+        $sentencesInList = $this->paginate('SentencesSentencesLists');
+
+        $thisListCount = $this->params['paging']['SentencesSentencesLists']['count'];
+        $downloadability_info = $this->_get_downloadability_info($thisListCount);
+
+        $listId = $list['SentencesList']['id'];
+        $listName = $list['SentencesList']['name'];
+        $listOwnerId = $list['SentencesList']['user_id'];
+        $isListPublic = $list['SentencesList']['is_public'] == 1;
+        $belongsToUser = CurrentUser::get('id') == $listOwnerId;
+        $canRemoveSentence = $isListPublic || $belongsToUser;
+
+        $this->set('translationsLang', $translationsLang);
+        $this->set('list', $list);
+        $this->set('sentencesInList', $sentencesInList);
+        $this->set('canDownload', $downloadability_info['can_download']);
+        $this->set('downloadMessage', $downloadability_info['message']);
+        $this->set('listId', $listId);
+        $this->set('listName', $listName);
+        $this->set('isListPublic', $isListPublic);
+        $this->set('belongsToUser', $belongsToUser);
+        $this->set('canRemoveSentence', $canRemoveSentence);
     }
 
-
-    /**
-     * Displays a list for editing purposes.
-     *
-     * @param int    $id               Id of list.
-     * @param string $translationsLang Language of translations.
-     *
-     * @return mixed
-     */
-    public function edit($id = null, $translationsLang = null)
-    {
-        $id = Sanitize::paranoid($id);
-        $translationsLang = Sanitize::paranoid($translationsLang);
-
-        if (!isset($id)) {
-            $this->redirect(array("action"=>"index"));
-        }
-
-        $userId = $this->Auth->user('id');
-        if (!$this->SentencesList->isEditableByCurrentUser($id, $userId)) {
-            $this->redirect(array("action"=>"show", $id));
-        }
-
-        $this->_get_sentences_for_list($id, $translationsLang, true, 10);
-    }
 
     /**
      * Returns array of two elements: a bool (index = 'can_download') indicating 
@@ -198,36 +239,6 @@ class SentencesListsController extends AppController
         return $ret;
     }
 
-    /**
-     * Retrieve sentences for a list. Used in show() and edit().
-     *
-     * @param int    $id               Id of the list.
-     * @param string $translationsLang Language of the translations.
-     * @param bool   $isEditable       'true' if the sentences are editable.
-     * @param int    $limit            Number of sentences per page.
-     *
-     * @return void
-     */
-    private function _get_sentences_for_list(
-        $id, $translationsLang, $isEditable, $limit
-    ) {
-        $list = $this->SentencesList->getList($id);
-
-        $this->paginate = $this->SentencesList->paramsForPaginate(
-            $id, $translationsLang, $isEditable, $limit
-        );
-        $sentencesInList = $this->paginate('SentencesSentencesLists');
-        
-        $thisListCount = $this->params['paging']['SentencesSentencesLists']['count'];
-        $downloadability_info = $this->_get_downloadability_info($thisListCount);
-        
-        $this->set('translationsLang', $translationsLang);
-        $this->set('list', $list);
-        $this->set('sentencesInList', $sentencesInList);
-        $this->set('canDownload', $downloadability_info['can_download']);
-        $this->set('downloadMessage', $downloadability_info['message']);
-    }
-
 
     /**
      * Create a list.
@@ -243,7 +254,7 @@ class SentencesListsController extends AppController
                 'user_id' => $this->Auth->user('id'),
             );
             $this->SentencesList->save($newList);
-            $this->redirect(array("action"=>"edit", $this->SentencesList->id));
+            $this->redirect(array("action"=>"show", $this->SentencesList->id));
         } else {
             $this->redirect(array("action"=>"index"));
         }
@@ -361,18 +372,32 @@ class SentencesListsController extends AppController
 
     /**
      * Displays the lists of a specific user.
-     * TODO There's no view for this...
      *
-     * @param int $userId Id of user we want lists of.
+     * @param int $username Username of of the user we want lists of.
      *
      * @return void
      */
-    public function of_user($userId)
+    public function of_user($username, $search = null)
     {
-        $userId = Sanitize::paranoid($userId);
+        if (isset($this->params['url']['username'])) {
+            $usernameParam = $this->params['url']['username'];
+        }
+        if (isset($this->params['url']['search'])) {
+            $searchParam = $this->params['url']['search'];
+        }
 
-        $lists = $this->SentencesList->getUserLists($userId);
-        $this->set('lists', $lists);
+        if (!empty($usernameParam)) {
+            $this->redirect(array('action' => 'of_user', $usernameParam, $searchParam));
+        } else if (empty($username)) {
+            $this->redirect(array('action' => 'index'));
+        }
+
+        $this->paginate = $this->SentencesList->getPaginatedLists($search, $username);
+        $userLists = $this->paginate('SentencesList');
+
+        $this->set('userLists', $userLists);
+        $this->set('username', $username);
+        $this->set('search', $search);
     }
 
     /**

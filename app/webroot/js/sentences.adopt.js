@@ -21,13 +21,13 @@ $(document).ready(function(){
 
     $(".adopt").click(function(){
         var adoptOption = $(this);
-        var sentenceId = $(this).data("sentenceId");
+        var sentenceId = $(this).attr("data-sentence-id");
         
         var rootUrl = get_tatoeba_root_url();
         
         // Displaying loading gif
         $("#sentences_group_" + sentenceId).html(
-            "<img src='/img/loading.gif' alt='loading'>"
+            "<img width='50' height='50' class='loading-icon' src='/img/loading.svg' alt='loading'>"
         );
         
         // The sentence can be adopted

@@ -71,7 +71,7 @@ class MenuHelper extends AppHelper
         ?>
 
         <li class="option translateLink"
-            id="translate_<?php echo $sentenceId; ?>">
+            data-sentence-id="<?php echo $sentenceId; ?>">
 
         <?php
         if (!$enabled) {
@@ -95,15 +95,6 @@ class MenuHelper extends AppHelper
         } else if ($isLogged) {
             $this->Javascript->link('sentences.add_translation.js', false);
             ?>
-
-            <script type='text/javascript'>
-            $(document).ready(function() {
-                $('#translate_<?php echo $sentenceId; ?>').data(
-                    'sentenceId',
-                    <?php echo $sentenceId; ?>
-                );
-            });
-            </script>
             <a><?php echo $translateButton;?></a>
            <?php
         } else {
@@ -223,19 +214,10 @@ class MenuHelper extends AppHelper
 
             ?>
             <li class="option adopt <?php echo $cssClass; ?>"
-                id="adopt_<?php echo $sentenceId; ?>">
+                data-sentence-id="<?php echo $sentenceId; ?>">
             <?php
             $this->Javascript->link('sentences.adopt.js', false);
             ?>
-
-            <script type='text/javascript'>
-            $(document).ready(function() {
-                $('#adopt_<?php echo $sentenceId; ?>').data(
-                    'sentenceId',
-                    <?php echo $sentenceId; ?>
-                );
-            });
-            </script>
 
             <a><?php echo $adoptImage; ?></a>
             </li>
@@ -289,24 +271,13 @@ class MenuHelper extends AppHelper
         ?>
 
         <li class="option favorite <?php echo $cssClass; ?>"
-            id="favorite_<?php echo $sentenceId; ?>">
+            data-sentence-id="<?php echo $sentenceId; ?>">
 
         <?php
         if ($isLogged) {
             $this->Javascript->link('favorites.add.js', false);
             ?>
-
-            <script type='text/javascript'>
-            $(document).ready(function() {
-                $('#favorite_<?php echo $sentenceId; ?>').data(
-                    'sentenceId',
-                    <?php echo $sentenceId; ?>
-                );
-            });
-            </script>
-
             <a><?php echo $favoriteImage;?></a>
-
             <?php
         } else {
             echo $this->Html->link(
@@ -329,20 +300,25 @@ class MenuHelper extends AppHelper
 
     public function linkToSentenceButton($sentenceId, $langFilter = 'und') {
         $langFilter = json_encode($langFilter);
-        $linkToSentenceButton = $this->Images->svgIcon(
+        $image = $this->Images->svgIcon(
             'link',
             array(
                 'alt'=>__('Link to another sentence', true),
                 'title'=>__('Link to another sentence', true),
                 'width' => 16,
-                'height' => 16,
+                'height' => 16
+            )
+        );
+
+        $linkToSentenceButton = $this->Html->tag('a', $image,
+            array(
                 'class' => 'linkTo',
                 'onClick' => "linkToSentence($sentenceId, $langFilter)",
                 'onDrop' => "linkToSentenceByDrop(event, $sentenceId, $langFilter)",
             )
         );
         ?>
-        <li class="option"><a><?php echo $linkToSentenceButton; ?></a></li>
+        <li class="option"><?php echo $linkToSentenceButton; ?></li>
 
         <li style="display:none" id="linkTo<?php echo $sentenceId; ?>">
         <?php
@@ -378,12 +354,9 @@ class MenuHelper extends AppHelper
     public function addToListButton($sentenceId, $isLogged)
     {
         $useMostRecentList = $this->Session->read('use_most_recent_list');
-        if ($useMostRecentList != null && $useMostRecentList)
-        {
+        if ($useMostRecentList != null && $useMostRecentList) {
             $mostRecentList = $this->Session->read('most_recent_list');
-        }
-        else
-        {
+        } else {
             $mostRecentList = null;
         }
         $addToListButton = $this->Images->svgIcon(
@@ -397,22 +370,11 @@ class MenuHelper extends AppHelper
         );
         ?>
 
-        <li class="option addToList"
-            id="addToListButton<?php echo $sentenceId; ?>">
+        <li class="option addToList" data-sentence-id="<?php echo $sentenceId; ?>">
 
         <?php
         if ($isLogged) {
             ?>
-
-            <script type='text/javascript'>
-            $(document).ready(function() {
-                $('#addToListButton<?php echo $sentenceId; ?>').data(
-                    'sentenceId',
-                    <?php echo $sentenceId; ?>
-                );
-            });
-            </script>
-
             <a><?php echo $addToListButton; ?></a>
             <?php
         } else {
@@ -690,13 +652,13 @@ class MenuHelper extends AppHelper
 
         <li>
         <?php
-        echo $this->Html->image(
-            IMG_PATH . 'loading-small.gif',
+        echo $this->Images->svgIcon(
+            'loading',
             array(
-                "id"=>"_".$sentenceId."_in_process",
-                "style"=>"display:none",
-                "width" => 16,
-                "height" => 16
+                'id' => '_'.$sentenceId.'_in_process',
+                'class' => 'loading',
+                'width' => 16,
+                'height' => 16
             )
         );
         echo $this->Html->image(
