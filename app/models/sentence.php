@@ -621,7 +621,7 @@ class Sentence extends AppModel
      */
     public function saveNewSentence($text, $lang, $userId, $correctness = 0)
     {
-        $this->id = null;
+        $this->create();
         $data['Sentence']['text'] = trim($text);
         if (!empty($lang)) {
             $data['Sentence']['lang'] = $lang;
