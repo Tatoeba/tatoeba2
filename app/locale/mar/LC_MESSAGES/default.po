@@ -11,8 +11,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-15 04:30+0000\n"
-"PO-Revision-Date: 2015-05-15 04:37+0000\n"
-"Last-Translator: Trang Ho\n"
+"PO-Revision-Date: 2015-05-18 04:04+0000\n"
+"Last-Translator: sabretou <sabretou@gmail.com>\n"
 "Language-Team: Marathi (http://www.transifex.com/projects/p/tatoeba_website/language/mr/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -128,19 +128,19 @@ msgstr "त्रुटी: वाक्य क्र. {id} हटवता आ�
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L99
 msgid "All lists ({total})"
-msgstr ""
+msgstr "सर्व याद्या ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L104
 msgid "All lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "सर्व याद्या ज्यात \"{search}\" आहे ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L130
 msgid "Collaborative lists ({total})"
-msgstr ""
+msgstr "सहयोगी याद्या ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L135
 msgid "Collaborative lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "सहयोगी याद्या ज्यात \"{search}\" आहे ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L216
 msgid ""
@@ -2132,7 +2132,7 @@ msgstr "शोधा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L587
 msgid "All lists"
-msgstr ""
+msgstr "सर्व याद्या"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L597
 msgid "Collaborative lists"
@@ -3559,25 +3559,25 @@ msgstr "यानुसार क्रमवारी लावा:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L50
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L64
 msgid "list name"
-msgstr ""
+msgstr "यादीचे नाव"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L66
 msgid "date created"
-msgstr ""
+msgstr "निर्मितीचा दिनांक"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L55
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L69
 msgid "number of sentences"
-msgstr ""
+msgstr "वाक्यांची संख्या"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L32
 msgid "{username}'s lists ({total})"
-msgstr ""
+msgstr "{username} यांच्या याद्या ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L37
 msgid "{username}'s lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "{username} यांच्या याद्या ज्यात \"{search}\" आहे ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/remove_sentence_from_list.ctp#L33
 msgid "Sentence successfully removed."
@@ -3585,19 +3585,19 @@ msgstr "वाक्य यशस्वीरीत्या काढून ट
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L35
 msgid "About this list"
-msgstr ""
+msgstr "या यादीविषयी"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L50
 msgid "Collaborative list"
-msgstr ""
+msgstr "सहयोगी यादी"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L52
 msgid "Personal list"
-msgstr ""
+msgstr "व्यक्तिगत यादी"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L102
 msgid "Edit name"
-msgstr ""
+msgstr "नाव संपादित करा"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L115
 msgid "Click to edit..."
