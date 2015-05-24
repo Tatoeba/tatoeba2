@@ -30,6 +30,7 @@ class Transcription extends AppModel
         'jpn' => array('Jpan'),
         'uzb' => array('Cyrl', 'Latn'),
         'cmn' => array('Hans', 'Hant', 'Latn'),
+        'yue' => array('Hans', 'Hant', 'Latn'),
     );
     private $availableTranscriptions = array(
         'jpn-Jpan' => array(
@@ -59,6 +60,18 @@ class Transcription extends AppModel
                 'readonly' => true,
             ),
             'Latn' => array(
+            ),
+        ),
+        'yue-Hans' => array(
+            'Latn' => array(
+                'allowSave' => false,
+                'readonly' => true,
+            ),
+        ),
+        'yue-Hant' => array(
+            'Latn' => array(
+                'allowSave' => false,
+                'readonly' => true,
             ),
         ),
         'uzb-Latn' => array(
@@ -377,7 +390,9 @@ class Transcription extends AppModel
                 return array();
         }
 
-        if ($save) {
+        $params = $this->availableTranscriptions[$langScript][$targetScript];
+        $allowSave = isset($params['allowSave']) ? $params['allowSave'] : true;
+        if ($save && $allowSave) {
             $this->create();
             if (!$this->save($transcr))
                 return array();
@@ -388,7 +403,6 @@ class Transcription extends AppModel
         }
         $result[] = $transcr;
 
-        $params = $this->availableTranscriptions[$langScript][$targetScript];
         if (isset($params['autogenerates'])) {
             $chainedLangScript = $sentence['lang'].'-'.$targetScript;
             $chainedTargetScript = $params['autogenerates'];

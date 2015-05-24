@@ -149,5 +149,18 @@ class SentenceFixture extends CakeTestFixture {
 			'lang_id' => NULL,
 			'script' => null
 		),
+		array(
+			'id' => '11',
+			'lang' => 'yue',
+			'text' => '如果你唔想要我就俾第個㗎喇。',
+			'correctness' => NULL,
+			'user_id' => '7',
+			'created' => '2015-04-15 21:14:00',
+			'modified' => '2015-04-15 21:14:00',
+			'dico_id' => NULL,
+			'hasaudio' => 'no',
+			'lang_id' => NULL,
+			'script' => 'Hant'
+		),
 	);
 }

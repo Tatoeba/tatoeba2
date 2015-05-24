@@ -187,20 +187,6 @@ class Autotranscription
         return $ipaSentence;
     }
 
-    /**
-     *
-     */
-    private function _getJyutping($text)
-    {
-        $xml = simplexml_load_file(
-            "http://127.0.0.1:8042/jyutping?str=".urlencode($text)
-            ,'SimpleXMLElement', LIBXML_NOCDATA
-        );
-        foreach($xml as $key=>$value) {
-            return $value;
-        }
-    }
-
 
     /**
      * convert a chinese text from traditional to simplified
@@ -469,7 +455,7 @@ class Autotranscription
         return true;
     }
 
-    public function cmn_detectScript($text) {
+    private function _sino_detectScript($text) {
         $map = array('simplified' => 'Hans', 'traditional' => 'Hant');
         $xml = simplexml_load_file(
             "http://127.0.0.1:8042/guess_script?str=".urlencode($text)
@@ -491,6 +477,10 @@ class Autotranscription
             return (string)$value;
         }
         return false;
+    }
+
+    public function cmn_detectScript($text) {
+        return $this->_sino_detectScript($text);
     }
 
     public function cmn_Hant_to_Hans_generate($text) {
@@ -518,6 +508,30 @@ class Autotranscription
 
     public function cmn_Hans_to_Latn_generate($text) {
         return $this->cmn_pinyin($text);
+    }
+
+    private function yue_jyutping($text)
+    {
+        $xml = simplexml_load_file(
+            "http://127.0.0.1:8042/jyutping?str=".urlencode($text)
+            ,'SimpleXMLElement', LIBXML_NOCDATA
+        );
+        foreach($xml as $key=>$value) {
+            return (string)$value;
+        }
+        return false;
+    }
+
+    public function yue_detectScript($text) {
+        return $this->_sino_detectScript($text);
+    }
+
+    public function yue_Hant_to_Latn_generate($text) {
+        return $this->yue_jyutping($text);
+    }
+
+    public function yue_Hans_to_Latn_generate($text) {
+        return $this->yue_jyutping($text);
     }
 
     /**
