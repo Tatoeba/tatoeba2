@@ -226,9 +226,6 @@ class AppController extends Controller
         $mostRecentList = $this->Cookie->read('most_recent_list');
         $this->Session->write('most_recent_list', $mostRecentList);
 
-        $restrictSearchLangsEnabled = $this->Cookie->read('restrict_search_langs_enabled');
-        $this->Session->write('restrict_search_langs_enabled', $restrictSearchLangsEnabled);
-
         $jqueryChosen = $this->Cookie->read('jquery_chosen');
         $this->Session->write('jquery_chosen', $jqueryChosen);
     }
