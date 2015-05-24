@@ -70,8 +70,8 @@ $this->set('title_for_layout', $pages->formatTitle(
 
         $script = ($type == 'romaji') ? 'Latn' : '';
         echo $languages->tagWithLang(
-            'div', 'ja', $result,
-            array('id' => 'conversion'),
+            'div', 'ja', $transcriptions->transcriptionAsHTML('jpn', $result),
+            array('id' => 'conversion', 'escape' => false),
             $script
         );
 

@@ -39,9 +39,9 @@ App::import('Vendor', 'autotranscription');
 class ToolsController extends AppController
 {
     public $name = 'Tools';
-    public $helpers = array('Javascript');
+    public $helpers = array('Javascript', 'Transcriptions');
     public $components = array('Pinyin');
-    public $uses = array();
+    public $uses = array('Transcription');
 
     /**
      * Before filter.
@@ -101,14 +101,15 @@ class ToolsController extends AppController
             $type = Sanitize::paranoid($_GET['type']);
         }
 
-        $option = JPN_ROMAJI;
-        if ($type == 'furigana') {
-            $option = JPN_FURIGANA;
-        }
-
+        $sentence = array(
+            'id' => null,
+            'lang' => 'jpn',
+            'text' => $query,
+        );
         if (!empty($query)) {
-            $autotranscription = new Autotranscription();
-            $result = $autotranscription->jpn($query, $option);
+            $result = $this->Transcription->generateTranscription($sentence, 'Hrkt');
+            if ($result)
+                $result = ($type == 'romaji') ? $result[1] : $result[0];
         }
         
 
