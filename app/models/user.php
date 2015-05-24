@@ -127,6 +127,7 @@ class User extends AppModel
             'is_public' => false,
             'lang' => null,
             'use_most_recent_list' => null,
+            'collapsible_translations_enabled' => false,
         );
 
         foreach ($results as &$result) {

@@ -84,7 +84,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         </div>
 
         <div>
-            <?php echo $form->checkbox('collapsible_translations_enabled'); ?>
+            <?php echo $form->checkbox('settings.collapsible_translations_enabled'); ?>
             <label for="UserCollapsibleTranslationsEnabled">
                 <?php __(
                     'Display a link to expand/collapse translations '.

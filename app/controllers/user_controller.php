@@ -376,9 +376,6 @@ class UserController extends AppController
             $jqueryChosen = $this->data['User']['jquery_chosen'];
             $this->Cookie->write('jquery_chosen', $jqueryChosen, false, "+1 month");;
 
-            $collapsibleTranslationsEnabled = $this->data['User']['collapsible_translations_enabled'];
-            $this->Cookie->write('collapsible_translations_enabled', $collapsibleTranslationsEnabled, false, "+1 month");;
-
             $restrictSearchLangsEnabled = $this->data['User']['restrict_search_langs_enabled'];
             $this->Cookie->write('restrict_search_langs_enabled', $restrictSearchLangsEnabled, false, "+1 month");;
 
@@ -553,9 +550,6 @@ class UserController extends AppController
         $this->data['User']['jquery_chosen'] 
           = $this->Cookie->read('jquery_chosen');
         
-        $this->data['User']['collapsible_translations_enabled']
-            = $this->Cookie->read('collapsible_translations_enabled');
-
         $this->data['User']['restrict_search_langs_enabled']
             = $this->Cookie->read('restrict_search_langs_enabled');
         
