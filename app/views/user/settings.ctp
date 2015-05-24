@@ -57,7 +57,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         
         <div>
             <?php echo $form->checkbox('settings.is_public'); ?>
-            <label for="UserIsPublic">
+            <label for="UserSettingsIsPublic">
                 <?php __('Set your profile public?'); ?>
             </label>
         </div>
@@ -75,7 +75,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         
         <div>
             <?php echo $form->checkbox('settings.use_most_recent_list'); ?>
-            <label for="UserUseMostRecentList">
+            <label for="UserSettingsUseMostRecentList">
                 <?php __(
                     'Remember the last list to which you assigned a '.
                     'sentence, and select it by default.'
@@ -85,7 +85,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
 
         <div>
             <?php echo $form->checkbox('settings.collapsible_translations'); ?>
-            <label for="UserCollapsibleTranslationsEnabled">
+            <label for="UserSettingsCollapsibleTranslations">
                 <?php __(
                     'Display a link to expand/collapse translations '.
                     'when there are too many translations.'
@@ -95,7 +95,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         
         <div>
             <?php echo $form->checkbox('settings.restrict_search_langs'); ?>
-            <label for="RestrictSearchLangsEnabled">
+            <label for="UserSettingsRestrictSearchLangs">
                 <?php __(
                     'Restrict languages listed in the search bar '.
                     'to the ones in your profile.'
