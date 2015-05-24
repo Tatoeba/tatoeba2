@@ -131,8 +131,8 @@ class MenuHelper extends AppHelper
         echo $this->Html->image(
             IMG_PATH . 'simplified_chinese.png',
             array(
-                'alt'=>__('This sentence is in simplified Chinese.', true),
-                'title'=>__('This sentence is in simplified Chinese.', true),
+                'alt'=>__('This sentence is written with simplified characters.', true),
+                'title'=>__('This sentence is written with simplified characters.', true),
                 'width' => 18,
                 'height' => 16
             )
@@ -156,8 +156,8 @@ class MenuHelper extends AppHelper
         echo $this->Html->image(
             IMG_PATH . 'traditional_chinese.png',
             array(
-                'alt'=>__('This sentence is in traditional Chinese.', true),
-                'title'=>__('This sentence is in traditional Chinese.', true),
+                'alt'=>__('This sentence is written with traditional characters.', true),
+                'title'=>__('This sentence is written with traditional characters.', true),
                 'width' => 18,
                 'height' => 16
             )
