@@ -124,7 +124,6 @@ class User extends AppModel
 
     public function afterFind($results, $primary = false) {
         static $defaultSettings = array(
-            'send_notifications' => true,
             'is_public' => false,
             'lang' => null,
         );
@@ -242,6 +241,7 @@ class User extends AppModel
                     'username',
                     'birthday',
                     'group_id',
+                    'send_notifications',
                     'level',
                     'country_id'
                 )

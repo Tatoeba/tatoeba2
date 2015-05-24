@@ -15,6 +15,7 @@
 -- level             Currently not in use. I wanted to integrate some game mechanics
 --                     in Tatoeba, but it's obviously not easy...
 -- group_id          Id of the group in which the user is.
+--- send_notifiations Indicates whether the user wants to receive email notifications.
 -- name              Real name of the user.
 -- birthday          Birthday of the user.
 -- description       User's description of himself or herself.
@@ -35,6 +36,7 @@ CREATE TABLE `users` (
   `last_time_active` int(11) NOT NULL DEFAULT '0',
   `level` tinyint(2) NOT NULL DEFAULT '0',
   `group_id` tinyint(4) NOT NULL,
+  `send_notifications` tinyint(1) NOT NULL DEFAULT '1',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `birthday` datetime DEFAULT NULL,
   `description` blob NOT NULL,

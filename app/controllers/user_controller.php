@@ -124,7 +124,7 @@ class UserController extends AppController
 
         $isPublic = ($user['settings']['is_public'] == 1);
         $isDisplayed = ($isPublic || CurrentUser::isMember());
-        $notificationsEnabled = ($user['settings']['send_notifications'] == 1);
+        $notificationsEnabled = ($user['send_notifications'] == 1);
 
         $this->set('userStats', $userStats);
         $this->set('user', $user);

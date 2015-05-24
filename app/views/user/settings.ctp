@@ -49,7 +49,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         ?>
         
         <div>
-            <?php echo $form->checkbox('settings.send_notifications'); ?>
+            <?php echo $form->checkbox('send_notifications'); ?>
             <label for="UserSendNotifications">
                 <?php __('Email notifications'); ?>
             </label>
