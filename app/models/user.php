@@ -145,8 +145,9 @@ class User extends AppModel
     public function beforeSave($options = array()) {
         if (array_key_exists('settings', $this->data['User'])
             && is_array($this->data['User']['settings'])) {
+            $current = $this->field('settings', array('id' => $this->id));
             $this->data['User']['settings'] = json_encode(
-                $this->data['User']['settings']
+                array_merge($current, $this->data['User']['settings'])
             );
         }
         return true;
