@@ -15,7 +15,7 @@
 -- level             Currently not in use. I wanted to integrate some game mechanics
 --                     in Tatoeba, but it's obviously not easy...
 -- group_id          Id of the group in which the user is.
---- send_notifiations Indicates whether the user wants to receive email notifications.
+-- send_notifiations Indicates whether the user wants to receive email notifications.
 -- name              Real name of the user.
 -- birthday          Birthday of the user.
 -- description       User's description of himself or herself.

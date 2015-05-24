@@ -240,12 +240,12 @@ class User extends AppModel
                     'image',
                     'homepage',
                     'since',
+                    'send_notifications',
                     'description',
                     'settings',
                     'username',
                     'birthday',
                     'group_id',
-                    'send_notifications',
                     'level',
                     'country_id'
                 )
