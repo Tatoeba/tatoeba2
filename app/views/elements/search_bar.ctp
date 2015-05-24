@@ -34,7 +34,7 @@ if (isset($this->params['lang'])) {
 
 <?php
 
-$restrictSearchLangsEnabled = $session->read('restrict_search_langs_enabled');
+$restrictSearchLangsEnabled = CurrentUser::get('settings.restrict_search_langs_enabled');
 if ($restrictSearchLangsEnabled) {
     $langArray = $languages->profileLanguagesArray(false, false, true);
     $currentUserLanguages = CurrentUser::getProfileLanguages();

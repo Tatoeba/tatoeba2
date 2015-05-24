@@ -128,6 +128,7 @@ class User extends AppModel
             'lang' => null,
             'use_most_recent_list' => null,
             'collapsible_translations_enabled' => false,
+            'restrict_search_langs_enabled' => false,
         );
 
         foreach ($results as &$result) {

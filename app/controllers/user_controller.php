@@ -376,9 +376,6 @@ class UserController extends AppController
             $jqueryChosen = $this->data['User']['jquery_chosen'];
             $this->Cookie->write('jquery_chosen', $jqueryChosen, false, "+1 month");;
 
-            $restrictSearchLangsEnabled = $this->data['User']['restrict_search_langs_enabled'];
-            $this->Cookie->write('restrict_search_langs_enabled', $restrictSearchLangsEnabled, false, "+1 month");;
-
             $this->data['User']['settings']['lang'] = $this->_language_settings(
                 $this->data['User']['settings']['lang']
             );
@@ -546,13 +543,10 @@ class UserController extends AppController
         }
 
         $this->data = $this->User->getSettings($currentUserId);
+
         // Whether to use advanced selectors for language selection
         $this->data['User']['jquery_chosen'] 
           = $this->Cookie->read('jquery_chosen');
-        
-        $this->data['User']['restrict_search_langs_enabled']
-            = $this->Cookie->read('restrict_search_langs_enabled');
-        
     }
 
 
