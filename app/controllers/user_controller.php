@@ -122,9 +122,9 @@ class UserController extends AppController
         $userStats = $this->_stats($userId);
         $userLanguages = $this->UsersLanguages->getLanguagesOfUser($userId);
 
-        $isPublic = ($user['is_public'] == 1);
+        $isPublic = ($user['settings']['is_public'] == 1);
         $isDisplayed = ($isPublic || CurrentUser::isMember());
-        $notificationsEnabled = ($user['send_notifications'] == 1);
+        $notificationsEnabled = ($user['settings']['send_notifications'] == 1);
 
         $this->set('userStats', $userStats);
         $this->set('user', $user);

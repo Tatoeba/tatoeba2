@@ -122,6 +122,27 @@ class User extends AppModel
         )
     );
 
+    public function afterFind($results, $primary = false) {
+        static $defaultSettings = array(
+            'send_notifications' => true,
+            'is_public' => false,
+            'lang' => null,
+        );
+
+        foreach ($results as &$result) {
+            if (array_key_exists('settings', $result['User'])) {
+                $result['User']['settings'] = (array)json_decode(
+                    $result['User']['settings']
+                );
+                $result['User']['settings'] = array_merge(
+                    $defaultSettings,
+                    $result['User']['settings']
+                );
+            }
+        }
+        return $results;
+    }
+
     /**
      * ?
      *
@@ -206,13 +227,11 @@ class User extends AppModel
                     'image',
                     'homepage',
                     'since',
-                    'send_notifications',
                     'description',
+                    'settings',
                     'username',
                     'birthday',
-                    'is_public',
                     'group_id',
-                    'lang',
                     'level',
                     'country_id'
                 )
