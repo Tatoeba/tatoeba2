@@ -381,6 +381,7 @@ class UserController extends AppController
             );
             $dataToSave = array(
                 'id' => $currentUserId,
+                'send_notifications' => $this->data['User']['send_notifications'],
                 'settings' => $this->data['User']['settings'],
             );
             if ($this->User->save($dataToSave)) {

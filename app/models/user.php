@@ -268,6 +268,7 @@ class User extends AppModel
             array(
                 'conditions' => array('id' => $userId),
                 'fields' => array(
+                    'send_notifications',
                     'settings',
                     'email',
                 )
