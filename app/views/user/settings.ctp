@@ -74,7 +74,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         </div>
         
         <div>
-            <?php echo $form->checkbox('use_most_recent_list'); ?>
+            <?php echo $form->checkbox('settings.use_most_recent_list'); ?>
             <label for="UserUseMostRecentList">
                 <?php __(
                     'Remember the last list to which you assigned a '.

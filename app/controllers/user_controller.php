@@ -376,11 +376,6 @@ class UserController extends AppController
             $jqueryChosen = $this->data['User']['jquery_chosen'];
             $this->Cookie->write('jquery_chosen', $jqueryChosen, false, "+1 month");;
 
-            // Remember the last sentence list to which user assigned a sentence
-            // and bring it up as the default.
-            $useMostRecentList = $this->data['User']['use_most_recent_list'];
-            $this->Cookie->write('use_most_recent_list', $useMostRecentList, false, "+1 month");
-
             $collapsibleTranslationsEnabled = $this->data['User']['collapsible_translations_enabled'];
             $this->Cookie->write('collapsible_translations_enabled', $collapsibleTranslationsEnabled, false, "+1 month");;
 
@@ -557,9 +552,6 @@ class UserController extends AppController
         // Whether to use advanced selectors for language selection
         $this->data['User']['jquery_chosen'] 
           = $this->Cookie->read('jquery_chosen');
-        // Whether to select by default the last list to which user assigned a sentence
-        $this->data['User']['use_most_recent_list']
-          = $this->Cookie->read('use_most_recent_list');
         
         $this->data['User']['collapsible_translations_enabled']
             = $this->Cookie->read('collapsible_translations_enabled');

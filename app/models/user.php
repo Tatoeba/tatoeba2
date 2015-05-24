@@ -126,6 +126,7 @@ class User extends AppModel
         static $defaultSettings = array(
             'is_public' => false,
             'lang' => null,
+            'use_most_recent_list' => null,
         );
 
         foreach ($results as &$result) {
