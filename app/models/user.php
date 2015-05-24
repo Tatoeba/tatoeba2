@@ -126,8 +126,8 @@ class User extends AppModel
         'is_public' => false,
         'lang' => null,
         'use_most_recent_list' => null,
-        'collapsible_translations_enabled' => false,
-        'restrict_search_langs_enabled' => false,
+        'collapsible_translations' => false,
+        'restrict_search_langs' => false,
     );
 
     public function afterFind($results, $primary = false) {

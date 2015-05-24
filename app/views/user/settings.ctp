@@ -84,7 +84,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         </div>
 
         <div>
-            <?php echo $form->checkbox('settings.collapsible_translations_enabled'); ?>
+            <?php echo $form->checkbox('settings.collapsible_translations'); ?>
             <label for="UserCollapsibleTranslationsEnabled">
                 <?php __(
                     'Display a link to expand/collapse translations '.
@@ -94,7 +94,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         </div>
         
         <div>
-            <?php echo $form->checkbox('settings.restrict_search_langs_enabled'); ?>
+            <?php echo $form->checkbox('settings.restrict_search_langs'); ?>
             <label for="RestrictSearchLangsEnabled">
                 <?php __(
                     'Restrict languages listed in the search bar '.

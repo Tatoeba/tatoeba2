@@ -133,7 +133,7 @@ class SentencesHelper extends AppHelper
             $showButton = true;
 
             //if only 1 hidden sentence then show all
-            $collapsibleTranslationsEnabled = !CurrentUser::isMember() || CurrentUser::get('settings.collapsible_translations_enabled');
+            $collapsibleTranslationsEnabled = !CurrentUser::isMember() || CurrentUser::get('settings.collapsible_translations');
             if ($totalTranslations <= 6 || !$collapsibleTranslationsEnabled) {
                 $initiallyDisplayedTranslations = $totalTranslations;
                 $showButton = false;
