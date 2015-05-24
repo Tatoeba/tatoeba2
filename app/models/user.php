@@ -130,7 +130,7 @@ class User extends AppModel
         );
 
         foreach ($results as &$result) {
-            if (array_key_exists('settings', $result['User'])) {
+            if (isset($result['User']) && array_key_exists('settings', $result['User'])) {
                 $result['User']['settings'] = (array)json_decode(
                     $result['User']['settings']
                 );
