@@ -254,10 +254,8 @@ class User extends AppModel
             array(
                 'conditions' => array('id' => $userId),
                 'fields' => array(
-                    'is_public',
-                    'send_notifications',
+                    'settings',
                     'email',
-                    'lang'
                 )
             )
         );

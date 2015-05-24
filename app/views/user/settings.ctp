@@ -49,14 +49,14 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         ?>
         
         <div>
-            <?php echo $form->checkbox('send_notifications'); ?>
+            <?php echo $form->checkbox('settings.send_notifications'); ?>
             <label for="UserSendNotifications">
                 <?php __('Email notifications'); ?>
             </label>
         </div>
         
         <div>
-            <?php echo $form->checkbox('is_public'); ?>
+            <?php echo $form->checkbox('settings.is_public'); ?>
             <label for="UserIsPublic">
                 <?php __('Set your profile public?'); ?>
             </label>
@@ -112,7 +112,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
             'languages.', true
         );
         echo $form->input(
-            'lang', 
+            'settings.lang',
             array(
                 'label' => __('Languages', true),
                 'after' => '<div>'.$tip.'</div>'
