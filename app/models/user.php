@@ -125,7 +125,7 @@ class User extends AppModel
     private $defaultSettings = array(
         'is_public' => false,
         'lang' => null,
-        'use_most_recent_list' => null,
+        'use_most_recent_list' => false,
         'collapsible_translations' => false,
         'restrict_search_langs' => false,
     );
