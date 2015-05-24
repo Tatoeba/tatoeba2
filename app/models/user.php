@@ -143,6 +143,16 @@ class User extends AppModel
         return $results;
     }
 
+    public function beforeSave($options = array()) {
+        if (array_key_exists('settings', $this->data['User'])
+            && is_array($this->data['User']['settings'])) {
+            $this->data['User']['settings'] = json_encode(
+                $this->data['User']['settings']
+            );
+        }
+        return true;
+    }
+
     /**
      * ?
      *

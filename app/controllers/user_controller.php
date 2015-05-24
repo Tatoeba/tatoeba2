@@ -387,11 +387,12 @@ class UserController extends AppController
             $restrictSearchLangsEnabled = $this->data['User']['restrict_search_langs_enabled'];
             $this->Cookie->write('restrict_search_langs_enabled', $restrictSearchLangsEnabled, false, "+1 month");;
 
+            $this->data['User']['settings']['lang'] = $this->_language_settings(
+                $this->data['User']['settings']['lang']
+            );
             $dataToSave = array(
                 'id' => $currentUserId,
-                'lang' => $this->_language_settings($this->data['User']['lang']),
-                'send_notifications' => $this->data['User']['send_notifications'],
-                'is_public' => $this->data['User']['is_public'],
+                'settings' => $this->data['User']['settings'],
             );
             if ($this->User->save($dataToSave)) {
                 // Needed so that the information is updated for the Auth component.
