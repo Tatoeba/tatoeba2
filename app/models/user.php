@@ -122,22 +122,22 @@ class User extends AppModel
         )
     );
 
-    public function afterFind($results, $primary = false) {
-        static $defaultSettings = array(
-            'is_public' => false,
-            'lang' => null,
-            'use_most_recent_list' => null,
-            'collapsible_translations_enabled' => false,
-            'restrict_search_langs_enabled' => false,
-        );
+    private $defaultSettings = array(
+        'is_public' => false,
+        'lang' => null,
+        'use_most_recent_list' => null,
+        'collapsible_translations_enabled' => false,
+        'restrict_search_langs_enabled' => false,
+    );
 
+    public function afterFind($results, $primary = false) {
         foreach ($results as &$result) {
             if (isset($result['User']) && array_key_exists('settings', $result['User'])) {
                 $result['User']['settings'] = (array)json_decode(
                     $result['User']['settings']
                 );
                 $result['User']['settings'] = array_merge(
-                    $defaultSettings,
+                    $this->defaultSettings,
                     $result['User']['settings']
                 );
             }
@@ -148,10 +148,10 @@ class User extends AppModel
     public function beforeSave($options = array()) {
         if (array_key_exists('settings', $this->data['User'])
             && is_array($this->data['User']['settings'])) {
-            $current = $this->field('settings', array('id' => $this->id));
-            $this->data['User']['settings'] = json_encode(
-                array_merge($current, $this->data['User']['settings'])
-            );
+            $settings = $this->field('settings', array('id' => $this->id));
+            $settings = array_merge($settings, $this->data['User']['settings']);
+            $settings = array_intersect_key($settings, $this->defaultSettings);
+            $this->data['User']['settings'] = json_encode($settings);
         }
         return true;
     }
