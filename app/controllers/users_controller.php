@@ -87,7 +87,7 @@ class UsersController extends AppController
             'limit' => 50,
             'order' => 'group_id',
             'fields' => array(
-                'id', 'email', 'username', 'since', 'lang', 'level'
+                'id', 'email', 'username', 'since', 'level'
             ),
             'contain' => array(
                 "Group" => array(

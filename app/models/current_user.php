@@ -323,7 +323,7 @@ class CurrentUser extends AppModel
      */
     public function getLanguages()
     {
-        $lang = CurrentUser::get('lang');
+        $lang = CurrentUser::get('settings.lang');
 
         if (empty($lang)) {
             return null;

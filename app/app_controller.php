@@ -226,17 +226,6 @@ class AppController extends Controller
         $mostRecentList = $this->Cookie->read('most_recent_list');
         $this->Session->write('most_recent_list', $mostRecentList);
 
-        // This controls whether to use the most_recent_list cookie, or simply
-        // to choose the first list in alphabetical order.
-        $useMostRecentList = $this->Cookie->read('use_most_recent_list');
-        $this->Session->write('use_most_recent_list', $useMostRecentList);
-
-        $collapsibleTranslationsEnabled = $this->Cookie->read('collapsible_translations_enabled');
-        $this->Session->write('collapsible_translations_enabled', $collapsibleTranslationsEnabled);
-
-        $restrictSearchLangsEnabled = $this->Cookie->read('restrict_search_langs_enabled');
-        $this->Session->write('restrict_search_langs_enabled', $restrictSearchLangsEnabled);
-
         $jqueryChosen = $this->Cookie->read('jquery_chosen');
         $this->Session->write('jquery_chosen', $jqueryChosen);
     }

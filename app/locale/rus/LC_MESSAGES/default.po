@@ -13,8 +13,8 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-15 04:30+0000\n"
-"PO-Revision-Date: 2015-05-15 04:37+0000\n"
-"Last-Translator: Trang Ho\n"
+"PO-Revision-Date: 2015-05-22 07:17+0000\n"
+"Last-Translator: Dmitry K\n"
 "Language-Team: Russian (http://www.transifex.com/projects/p/tatoeba_website/language/ru/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -130,19 +130,19 @@ msgstr "Ошибка: предложение №{id} не может быть у
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L99
 msgid "All lists ({total})"
-msgstr ""
+msgstr "All lists ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L104
 msgid "All lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "Все списки, содержащие \"{search}\" ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L130
 msgid "Collaborative lists ({total})"
-msgstr ""
+msgstr "Общие списки ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L135
 msgid "Collaborative lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "Общие списки, содержащие \"{search}\" ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L216
 msgid ""
@@ -163,10 +163,10 @@ msgid ""
 msgid_plural ""
 "Only lists containing {max} or fewer sentences can be downloaded. If you can"
 " edit the list, you may want to split it into multiple lists."
-msgstr[0] "Загружать можно только списки, содержащие {max} или менее предложений. Если у вас есть возможность редактировать данный список, вы можете разбить его на насколько."
-msgstr[1] "Загружать можно только списки, содержащие {max} или менее предложений. Если у вас есть возможность редактировать данный список, вы можете разбить его на насколько."
-msgstr[2] "Загружать можно только списки, содержащие {max} или менее предложений. Если у вас есть возможность редактировать данный список, вы можете разбить его на насколько."
-msgstr[3] "Загружать можно только списки, содержащие {max} или менее предложений. Если у вас есть возможность редактировать данный список, вы можете разбить его на насколько."
+msgstr[0] "Загружать можно только списки, содержащие не более одного предложения. Если у вас есть возможность редактировать данный список, вы можете разбить его на насколько частей."
+msgstr[1] "Загружать можно только списки, содержащие не более {max} предложений. Если у вас есть возможность редактировать данный список, вы можете разбить его на насколько частей."
+msgstr[2] "Загружать можно только списки, содержащие не более {max} предложений. Если у вас есть возможность редактировать данный список, вы можете разбить его на насколько частей."
+msgstr[3] "Загружать можно только списки, содержащие не более {max} предложений. Если у вас есть возможность редактировать данный список, вы можете разбить его на насколько частей."
 
 #. @translators: this string is used to concatenate two sentences.
 #. You typically want to change this to {firstSentence}{secondSentence}
@@ -1177,7 +1177,7 @@ msgstr "Всякий раз, когда вы замечаете возможну
 msgid ""
 "Whenever you add a sentence in a foreign language and are not completely "
 "sure that it is correct, add the tag {tagNNC}."
-msgstr "Если вы хотите добавить предложение на языке, носителем которого вы не являетесь, и не полностью уверены, что это предложение правильно, добавляйте к вашему предложению тег {tagNNC}."
+msgstr "Если вы хотите добавить предложение на языке, носителем которого не являетесь, и не полностью уверены, что это предложение правильно, добавляйте к вашему предложению тег {tagNNC}."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/activities/improve_sentences.ctp#L126
 msgid ""
@@ -2008,7 +2008,7 @@ msgstr "неизвестный язык"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L237
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L280
 msgid "None"
-msgstr "отсутствует"
+msgstr "без перевода"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L260
 msgid "Any language"
@@ -2152,7 +2152,7 @@ msgstr "Поиск"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L587
 msgid "All lists"
-msgstr ""
+msgstr "Все списки"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/lists.php#L597
 msgid "Collaborative lists"
@@ -3589,25 +3589,25 @@ msgstr "Сортировать по:"
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L50
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L64
 msgid "list name"
-msgstr ""
+msgstr "название списка"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L52
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L66
 msgid "date created"
-msgstr ""
+msgstr "дата создания"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/index.ctp#L55
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L69
 msgid "number of sentences"
-msgstr ""
+msgstr "количество предложений"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L32
 msgid "{username}'s lists ({total})"
-msgstr ""
+msgstr "списки {username} ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/of_user.ctp#L37
 msgid "{username}'s lists containing \"{search}\" ({total})"
-msgstr ""
+msgstr "списки {username}, содержащие \"{search}\" ({total})"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/remove_sentence_from_list.ctp#L33
 msgid "Sentence successfully removed."
@@ -3615,19 +3615,19 @@ msgstr "Предложение успешно удалено."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L35
 msgid "About this list"
-msgstr ""
+msgstr "Об этом списке"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L50
 msgid "Collaborative list"
-msgstr ""
+msgstr "Общий список"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L52
 msgid "Personal list"
-msgstr ""
+msgstr "Личный список"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L102
 msgid "Edit name"
-msgstr ""
+msgstr "Редактировать название"
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences_lists/show.ctp#L115
 msgid "Click to edit..."
