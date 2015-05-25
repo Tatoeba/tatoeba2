@@ -82,7 +82,6 @@ if (!isset($lastText)) {
                     'numPinyin' => __('numerical pinyin', true),
                 ),
                 array(
-                    'value' => 'chinese',
                     'legend' => ''
                 )
             );
@@ -98,7 +97,6 @@ if (!isset($lastText)) {
                     'diacPinyin' => __('diacritical pinyin', true),
                 ),
                 array(
-                    'value' => 'numPinyin',
                     'legend' => ''
                 )
             );
