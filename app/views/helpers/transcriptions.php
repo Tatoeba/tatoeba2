@@ -140,8 +140,7 @@ class TranscriptionsHelper extends AppHelper
                 $warningMessage = __(
                     'The following transcription has been automatically '.
                     'generated and <strong>may contain errors</strong>. '.
-                    'You may ask the sentence owner or any other ' .
-                    'knowledgeable member to review it.',
+                    'You may not edit it for technical reasons.',
                     true
                 );
             }
