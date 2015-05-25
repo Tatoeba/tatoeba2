@@ -91,6 +91,15 @@ class TranscriptionsHelper extends AppHelper
         $needsReview = $transcr['needsReview'] && !$isReviewed;
         $showAllTranscr = CurrentUser::get('settings.show_all_transcriptions');
 
+        $icon = $this->Html->image(
+            IMG_PATH . 'scripts/' . $transcr['script'] . '.png',
+            array(
+                'class' => 'transcriptionIcon',
+                'width' => 18,
+                'height' => 16,
+            )
+        );
+
         $class = 'transcription';
         if ($isEditable)
             $class .= ' editable';
@@ -166,11 +175,14 @@ class TranscriptionsHelper extends AppHelper
         if ($needsReview) {
             $class .= ' needsReview';
         }
-        echo $this->Html->tag('div', $infoDiv.$transcriptionDiv.$subTranscrDiv, array(
-            'escape' => false,
-            'class' => $class,
-            'style' => $showAllTranscr ? null : 'display:none',
-        ));
+        echo $this->Html->tag('div',
+            $infoDiv.$icon.$transcriptionDiv.$subTranscrDiv,
+            array(
+                'escape' => false,
+                'class' => $class,
+                'style' => $showAllTranscr ? null : 'display:none',
+            )
+        );
     }
 
     /**

@@ -989,10 +989,15 @@
  */
 .transcription {
     color: #A1A1A1;
+    display: inline-block;
 }
 
 .needsReview > .transcription {
     color: blue; /* TODO: find a better color */
+}
+
+.transcriptionIcon {
+    padding-right: 8px;
 }
 
 .leftWarningIcon {
