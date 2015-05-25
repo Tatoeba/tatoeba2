@@ -82,8 +82,6 @@ if (!isset($lastText)) {
 
         <?php
         if (isset($convertedText)) {
-            $script = ($convertedTextScript == 'traditional')
-                      ? 'Hant' : 'Hans';
             echo $languages->tagWithLang(
                 'div', 'zh', $convertedText,
                 array('id' => 'conversion'),

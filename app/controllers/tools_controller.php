@@ -127,16 +127,28 @@ class ToolsController extends AppController
     public function conversion_simplified_traditional_chinese()
     {
         $text = $this->data['Tool']['query'];
-        $convertedText = '';
         
         if (!empty($text)) {
-            $autotranscription = new Autotranscription();
-            $convertedText = $autotranscription->cmn($text, CMN_OTHER_SCRIPT);
-            $convertedTextScript = $autotranscription->cmn($convertedText, CMN_SCRIPT);
+            $script = $this->Transcription->detectScript('cmn', $text);
+            $sentence = array(
+                'id' => null,
+                'lang' => 'cmn',
+                'text' => $text,
+                'script' => $script,
+            );
+
+            $targetScript = ($script == 'Hant') ? 'Hans' : 'Hant';
+            $transcr = $this->Transcription->generateTranscription(
+                $sentence,
+                $targetScript
+            );
+
+            if ($transcr) {
+                $this->set('convertedText', $transcr[0]['text']);
+                $this->set('script', $targetScript);
+            }
         }
 
-        $this->set('convertedTextScript', $convertedTextScript);
-        $this->set('convertedText', $convertedText);
         $this->set('lastText', $text);
     }
 
