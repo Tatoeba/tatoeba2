@@ -39,8 +39,7 @@ App::import('Vendor', 'autotranscription');
 class ToolsController extends AppController
 {
     public $name = 'Tools';
-    public $helpers = array('Javascript', 'Transcriptions');
-    public $components = array('Pinyin');
+    public $helpers = array('Javascript', 'Transcriptions', 'Pinyin');
     public $uses = array('Transcription');
 
     /**
@@ -154,37 +153,26 @@ class ToolsController extends AppController
         $to = Sanitize::paranoid($this->data['Tool']['to']);
 
         if (!empty($text)) {
-            // we don't need to do nothing if we have choose the same output
-            // than input
-            if ($from === $to) {
-                $this->set('pinyin', $text);
-                $this->set('lastText', $text);
-                return;
-            }
-
+            $this->set('lastText', $text);
 
             if ($from === 'chinese') {
-                $autotranscription = new Autotranscription();
-                $pinyin = $autotranscription->cmn($text, CMN_PINYIN);
-
-                if ($to === 'diacPinyin') {
-                    $pinyin = $this->Pinyin->numeric2diacritic($pinyin);
-                }
-
-                $this->set('convertedText', $pinyin);
-                $this->set('lastText', $text);
-                return;
+                $script = $this->Transcription->detectScript('cmn', $text);
+                $sentence = array(
+                    'id' => null,
+                    'lang' => 'cmn',
+                    'text' => $text,
+                    'script' => $script,
+                );
+                $transcr = $this->Transcription->generateTranscription(
+                    $sentence,
+                    'Latn'
+                );
+                if ($transcr)
+                    $this->set('convertedText', $transcr[0]['text']);
+            } else {
+                $this->set('convertedText', $text);
             }
-
-            if ($from == 'numPinyin') {
-                $pinyin = $this->Pinyin->numeric2diacritic($text);
-                $this->set('convertedText', $pinyin);
-                $this->set('lastText', $text);
-                return;
-            }
-
         }
-
     }
 
     /**
