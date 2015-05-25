@@ -128,6 +128,7 @@ class User extends AppModel
         'use_most_recent_list' => false,
         'collapsible_translations' => false,
         'restrict_search_langs' => false,
+        'show_all_transcriptions' => false,
     );
 
     public function afterFind($results, $primary = false) {

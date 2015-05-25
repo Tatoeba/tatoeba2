@@ -104,6 +104,22 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         </div>
         
         <div>
+            <?php echo $form->checkbox('settings.show_all_transcriptions'); ?>
+            <label for="UserSettingsShowAllTranscriptions">
+            <?php
+                $warningIcon = $html->image('warning-small.svg', array(
+                    'height' => 16,
+                    'width' => 16,
+                ));
+                echo format(
+                    __('Display untrustworthy transcriptions by default, '.
+                       'which will only be marked with a {warningIcon}.', true),
+                    compact('warningIcon')
+                );
+            ?>
+            </label>
+        </div>
+        <div>
         <?php
         $tip = __(
             'Enter ISO 639-3 codes, separated with a comma (e.g.: jpn,epo,ara,deu). '.
