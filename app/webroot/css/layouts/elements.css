@@ -991,19 +991,18 @@
     color: #A1A1A1;
 }
 
-.needsReview {
-    display: none;
-}
-
 .needsReview > .transcription {
     color: blue; /* TODO: find a better color */
 }
 
-.transcriptionWarning {
-    margin-top: 20px;
-    margin-bottom: 5px;
+.leftWarningIcon {
     padding-left: 25px;
     background: url("/img/warning-small.svg") no-repeat 0 50%;
+}
+
+.transcriptionInfo {
+    margin-top: 20px;
+    margin-bottom: 5px;
     font-size: 13px;
 }
 

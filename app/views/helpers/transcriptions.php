@@ -89,10 +89,13 @@ class TranscriptionsHelper extends AppHelper
         $isEditable = $canEdit && !$transcr['readonly'];
         $isReviewed = isset($transcr['user_id']);
         $needsReview = $transcr['needsReview'] && !$isReviewed;
+        $showAllTranscr = CurrentUser::get('settings.show_all_transcriptions');
 
         $class = 'transcription';
         if ($isEditable)
             $class .= ' editable';
+        if ($showAllTranscr && $needsReview)
+            $class .= ' leftWarningIcon';
         $html = $this->transcriptionAsHTML($lang, $transcr);
         $transcriptionDiv = $this->Languages->tagWithLang(
             'div', $lang, $html,
@@ -108,7 +111,7 @@ class TranscriptionsHelper extends AppHelper
         );
 
         $infoDiv = '';
-        if ($needsReview) {
+        if ($needsReview && !$showAllTranscr) {
             if(!CurrentUser::isMember()) {
                 $loginUrl = $this->url(array(
                     'controller' => 'users',
@@ -145,7 +148,7 @@ class TranscriptionsHelper extends AppHelper
                 );
             }
             $infoDiv = $this->Html->tag('div', $warningMessage, array(
-                'class' => 'transcriptionWarning',
+                'class' => 'transcriptionInfo leftWarningIcon'
             ));
         }
 
@@ -166,6 +169,7 @@ class TranscriptionsHelper extends AppHelper
         echo $this->Html->tag('div', $infoDiv.$transcriptionDiv.$subTranscrDiv, array(
             'escape' => false,
             'class' => $class,
+            'style' => $showAllTranscr ? null : 'display:none',
         ));
     }
 
