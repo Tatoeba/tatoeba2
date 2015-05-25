@@ -87,6 +87,10 @@ class Transcription extends AppModel
             ),
         ),
     );
+    private $defaultFlags = array(
+        'readonly' => false,
+        'needsReview' => true,
+    );
 
     public $actsAs = array('Containable');
     public $recursive = -1;
@@ -185,14 +189,12 @@ class Transcription extends AppModel
             $script = $result['Transcription']['script'];
             $to = $this->transcriptableToWhat($sentenceById[$id]);
             if (isset($to[$script])) {
-                $readonly = isset($to[$script]['readonly']) ?
-                            $to[$script]['readonly'] :
-                            false;
-                $needsReview = isset($to[$script]['needsReview']) ?
-                               $to[$script]['needsReview'] :
-                               true;
-                $result['Transcription']['readonly'] = $readonly;
-                $result['Transcription']['needsReview'] = $needsReview;
+                $flags = array_intersect_key($to[$script], $this->defaultFlags);
+                $result['Transcription'] = array_merge(
+                    $result['Transcription'],
+                    $this->defaultFlags,
+                    $flags
+                );
             }
         }
     }
@@ -445,17 +447,15 @@ class Transcription extends AppModel
             if (!$transcrText)
                 return false;
 
-            $readonly = isset($process['readonly']) ? $process['readonly'] : false;
-            $needsReview = isset($process['needsReview']) ? $process['needsReview'] : true;
-            return array(
+            $transcr = array(
                 'sentence_id' => $sentenceId,
                 'parent_id' => null,
                 'script' => $targetScript,
                 'text' => $transcrText,
-                'readonly' => $readonly,
-                'needsReview' => $needsReview,
                 'user_id' => null,
             );
+            $flags = array_intersect_key($process, $this->defaultFlags);
+            return array_merge($transcr, $this->defaultFlags, $flags);
         }
         return false;
     }
