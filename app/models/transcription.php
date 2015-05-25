@@ -64,13 +64,11 @@ class Transcription extends AppModel
         ),
         'yue-Hans' => array(
             'Latn' => array(
-                'allowSave' => false,
                 'readonly' => true,
             ),
         ),
         'yue-Hant' => array(
             'Latn' => array(
-                'allowSave' => false,
                 'readonly' => true,
             ),
         ),
@@ -393,8 +391,7 @@ class Transcription extends AppModel
         }
 
         $params = $this->availableTranscriptions[$langScript][$targetScript];
-        $allowSave = isset($params['allowSave']) ? $params['allowSave'] : true;
-        if ($save && $allowSave) {
+        if ($save) {
             $this->create();
             if (!$this->save($transcr))
                 return array();
