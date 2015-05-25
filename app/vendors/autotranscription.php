@@ -457,20 +457,13 @@ class Autotranscription
 
     private function _sino_detectScript($text) {
         $map = array('simplified' => 'Hans', 'traditional' => 'Hant');
-        $xml = simplexml_load_file(
-            "http://127.0.0.1:8042/guess_script?str=".urlencode($text)
-            ,'SimpleXMLElement', LIBXML_NOCDATA
-        );
-        foreach($xml as $key => $value) {
-            $value = (string)$value;
-            return isset($map[$value]) ? $map[$value] : false;
-        }
-        return false;
+        $guessed = $this->_call_sinoparserd('guess_script', $text);
+        return isset($map[$guessed]) ? $map[$guessed] : false;
     }
 
-    private function cmn_changeScript($text) {
+    private function _call_sinoparserd($action, $text) {
         $xml = simplexml_load_file(
-            "http://127.0.0.1:8042/change_script?str=".urlencode($text)
+            "http://127.0.0.1:8042/$action?str=".urlencode($text)
             ,'SimpleXMLElement', LIBXML_NOCDATA
         );
         foreach($xml as $key => $value) {
@@ -484,42 +477,23 @@ class Autotranscription
     }
 
     public function cmn_Hant_to_Hans_generate($text) {
-        return $this->cmn_changeScript($text);
+        return $this->_call_sinoparserd('simp', $text);
     }
 
     public function cmn_Hans_to_Hant_generate($text) {
-        return $this->cmn_changeScript($text);
-    }
-
-    private function cmn_pinyin($text) {
-        $xml = simplexml_load_file(
-            "http://127.0.0.1:8042/pinyin?str=".urlencode($text)
-            ,'SimpleXMLElement', LIBXML_NOCDATA
-        );
-        foreach($xml as $key=>$value) {
-            return (string)$value;
-        }
-        return false;
+        return $this->_call_sinoparserd('trad', $text);
     }
 
     public function cmn_Hant_to_Latn_generate($text) {
-        return $this->cmn_pinyin($text);
+        return $this->_call_sinoparserd('pinyin', $text);
     }
 
     public function cmn_Hans_to_Latn_generate($text) {
-        return $this->cmn_pinyin($text);
+        return $this->_call_sinoparserd('pinyin', $text);
     }
 
-    private function yue_jyutping($text)
-    {
-        $xml = simplexml_load_file(
-            "http://127.0.0.1:8042/jyutping?str=".urlencode($text)
-            ,'SimpleXMLElement', LIBXML_NOCDATA
-        );
-        foreach($xml as $key=>$value) {
-            return (string)$value;
-        }
-        return false;
+    private function yue_jyutping($text) {
+        return $this->_call_sinoparserd('jyutping', $text);
     }
 
     public function yue_detectScript($text) {
