@@ -65,12 +65,18 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         echo $this->Form->hidden('from', array('value' => $from));
         echo $this->Form->hidden('to', array('value' => $to));
 
-        $orphansNote = __('Oprhan sentences are likely to be incorrect.', true);
+        $orphansNote = $this->Html->tag(
+            'div',
+            __('Oprhan sentences are likely to be incorrect.', true),
+            array(
+                'class' => 'note',
+            )
+        );
         echo $this->Form->input('orphans', array(
             'type' => 'checkbox',
             'hiddenField' => false,
             'label' => __('Show orphan sentences', true),
-            'after' => $this->Html->tag('div', $orphansNote),
+            'after' => $orphansNote,
             'value' => 'yes',
             'checked' => $orphans,
         ));
