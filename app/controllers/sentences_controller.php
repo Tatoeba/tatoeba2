@@ -516,6 +516,11 @@ class SentencesController extends AppController
             $user = $this->params['url']['user'];
         }
 
+        $orphans = false;
+        if (isset($this->params['url']['orphans'])) {
+            $orphans = true;
+        }
+
         // Session variables for search bar
         $this->Session->write('search_query', $query);
         $this->Session->write('search_from', $from);
@@ -552,14 +557,20 @@ class SentencesController extends AppController
             $sphinx['filter'][] = array('trans_id',$toId);
         }
         // filter by user
+        $users_ids = array();
+        if (!$orphans) {
+            $users_ids[] = 0;
+        }
         if (!empty($user)) {
             $result = $this->User->findByUsername($user, 'id');
             if ($result) {
-                $userId = $result['User']['id'];
-                $sphinx['filter'][] = array('user_id', array($userId));
+                $users_ids[] = $result['User']['id'];
             } else {
                 $user = '';
             }
+        }
+        if ($users_ids) {
+            $sphinx['filter'][] = array('user_id', $users_ids, true);
         }
 
         $model = 'Sentence';
@@ -586,6 +597,7 @@ class SentencesController extends AppController
         $this->set('from', $from);
         $this->set('to', $to);
         $this->set('user', $user);
+        $this->set('orphans', $orphans);
         $this->set('results', $allSentences);
         $this->set('real_total', $real_total);
     }
