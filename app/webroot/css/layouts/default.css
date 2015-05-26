@@ -44,6 +44,10 @@ textarea {
     border: 1px solid #ddd;
 }
 
+label, input[type="checkbox"] {
+    vertical-align: middle;
+}
+
 a img {
     border: none;
 }
