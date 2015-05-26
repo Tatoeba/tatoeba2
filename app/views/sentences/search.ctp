@@ -25,10 +25,8 @@
  * @link     http://tatoeba.org
  */
 
-$query = Sanitize::html($query);
-
 if (!empty($query)) {
-    $title = format(__('Sentences with: {keywords}', true), array('keywords' => $query));
+    $title = format(__('Sentences with: {keywords}', true), array('keywords' => Sanitize::html($query)));
 } else {
     if ($from != 'und' && $to != 'und') {
         $title = format(__('Sentences in {language} translated into {translationLanguage}', true),
@@ -104,7 +102,7 @@ if (!empty($results)) {
     <div class="module">
         <?php 
         $keywords = $this->Languages->tagWithLang(
-            'span', '', $query, array('escape' => false)
+            'span', '', $query
         );
         if (!empty($query)) {
             $title = format(
