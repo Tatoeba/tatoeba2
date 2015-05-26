@@ -90,9 +90,10 @@ echo $form->create('User', array("action" => "register"));
         );
         
         // Box for users to actually see what their writing
-        echo $form->checkbox('mask_password'); 
-        echo ' ';
-        __('unmask password');
+        echo $form->input('mask_password', array(
+            'type' => 'checkbox',
+            'label' => __('unmask password', true),
+        ));
         ?>
     </td>
 </tr>
@@ -143,11 +144,14 @@ __('For instance, if your email address is a.b.cd@example.com, type a.b.c into t
 <div id="termsOfUse">
 <?php
 $lang = $this->params['lang'];
-echo $form->checkbox('acceptation_terms_of_use'); echo ' ';
-echo format(
+$label = format(
     __('I accept the <a href="{}">terms of use</a>',true), 
     $html->url(array("controller"=>"pages", "action"=>"terms_of_use#$lang"))
 );
+echo $form->input('acceptation_terms_of_use', array(
+    'type' => 'checkbox',
+    'label' => $label,
+));
 ?>
 </div>
 
