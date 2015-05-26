@@ -497,17 +497,17 @@ class SentencesController extends AppController
      */
     public function search()
     {
-        $query = $_GET['query'];
+        $query = $this->params['url']['query'];
 
         $from = 'und';
-        if (isset($_GET['from'])) {
-            $from = $_GET['from'];
+        if (isset($this->params['url']['from'])) {
+            $from = $this->params['url']['from'];
             $from = Sanitize::paranoid($from);
         }
 
         $to = 'und';
-        if (isset($_GET['to'])) {
-            $to = $_GET['to'];
+        if (isset($this->params['url']['to'])) {
+            $to = $this->params['url']['to'];
             $to = Sanitize::paranoid($to);
         }
 
