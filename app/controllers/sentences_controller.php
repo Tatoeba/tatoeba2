@@ -557,20 +557,18 @@ class SentencesController extends AppController
             $sphinx['filter'][] = array('trans_id',$toId);
         }
         // filter by user
-        $users_ids = array();
-        if (!$orphans) {
-            $users_ids[] = 0;
-        }
         if (!empty($user)) {
             $result = $this->User->findByUsername($user, 'id');
             if ($result) {
-                $users_ids[] = $result['User']['id'];
+                $sphinx['filter'][] = array('user_id', $result['User']['id']);
+                $orphans = false;
             } else {
                 $user = '';
             }
         }
-        if ($users_ids) {
-            $sphinx['filter'][] = array('user_id', $users_ids, true);
+        // filter orphans
+        if (!$orphans && empty($user)) {
+            $sphinx['filter'][] = array('user_id', 0, true);
         }
 
         $model = 'Sentence';
