@@ -52,10 +52,13 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <?php
         echo $this->Html->tag('h2', __('Additional criteria', true));
         echo $this->Form->create(
-            'Sentence',
+            'AdvancedSearch',
             array(
-                "action" => "search",
-                "type" => "get"
+                'url' => array(
+                    'controller' => 'sentences',
+                    'action' => 'search',
+                ),
+                'type' => 'get',
             )
         );
         echo $this->Form->hidden('query', array('value' => $query));
