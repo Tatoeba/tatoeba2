@@ -48,6 +48,28 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">
+    <div class="module">
+    <?php
+        echo $this->Html->tag('h2', __('Additional criteria', true));
+        echo $this->Form->create(
+            'Sentence',
+            array(
+                "action" => "search",
+                "type" => "get"
+            )
+        );
+        echo $this->Form->hidden('query', array('value' => $query));
+        echo $this->Form->hidden('from', array('value' => $from));
+        echo $this->Form->hidden('to', array('value' => $to));
+        echo $this->Form->input('user', array(
+            'label' => __('Owner:', true),
+            'placeholder' => __('Enter a username', true),
+            'value' => $user,
+        ));
+        echo $this->Form->end(__('search', true));
+    ?>
+    </div>
+
     <?php
     echo $this->element('search_features');
     ?>

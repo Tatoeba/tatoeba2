@@ -63,7 +63,10 @@ class SentencesController extends AppController
     );
 
     public $uses = array(
-        'Sentence','SentenceNotTranslatedInto', 'SentencesSentencesLists'
+        'Sentence',
+        'SentenceNotTranslatedInto',
+        'SentencesSentencesLists',
+        'User',
     );
 
     /**
@@ -508,6 +511,11 @@ class SentencesController extends AppController
             $to = Sanitize::paranoid($to);
         }
 
+        $user = '';
+        if (isset($this->params['url']['user'])) {
+            $user = $this->params['url']['user'];
+        }
+
         // Session variables for search bar
         $this->Session->write('search_query', $query);
         $this->Session->write('search_from', $from);
@@ -543,6 +551,16 @@ class SentencesController extends AppController
             $toId = $this->Language->getIdFromLang($to);
             $sphinx['filter'][] = array('trans_id',$toId);
         }
+        // filter by user
+        if (!empty($user)) {
+            $result = $this->User->findByUsername($user, 'id');
+            if ($result) {
+                $userId = $result['User']['id'];
+                $sphinx['filter'][] = array('user_id', array($userId));
+            } else {
+                $user = '';
+            }
+        }
 
         $model = 'Sentence';
         $pagination = array(
@@ -567,6 +585,7 @@ class SentencesController extends AppController
         $this->set('query', $query);
         $this->set('from', $from);
         $this->set('to', $to);
+        $this->set('user', $user);
         $this->set('results', $allSentences);
         $this->set('real_total', $real_total);
     }
