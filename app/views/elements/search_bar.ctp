@@ -34,18 +34,6 @@ if (isset($this->params['lang'])) {
 
 <?php
 
-$restrictSearchLangsEnabled = $session->read('restrict_search_langs_enabled');
-if ($restrictSearchLangsEnabled) {
-    $langArray = $languages->profileLanguagesArray(false, false, true);
-    $currentUserLanguages = CurrentUser::getProfileLanguages();
-}
-
-if (!$restrictSearchLangsEnabled || empty($currentUserLanguages)) {
-    $langs = $languages->getSearchableLanguagesArray();
-} else {
-    $langs = $langArray;
-}
-
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';
 }
@@ -84,16 +72,7 @@ echo $form->create(
     <label><?php __('From'); ?></label>
     <?php
     
-    echo $form->select(
-        'from',
-        $langs,
-        $selectedLanguageFrom,
-        array(
-            'class' => 'language-selector',
-            "empty" => false
-        ),
-        false
-    );
+    echo $this->Search->selectLang('from', $selectedLanguageFrom);
     ?>
 </fieldset>
 
@@ -104,16 +83,7 @@ echo $form->create(
 <fieldset class="select">
     <label><?php __('To'); ?></label>
     <?php
-    echo $form->select(
-        'to',
-        $langs,
-        $selectedLanguageTo,
-        array(
-            'class' => 'language-selector',
-            "empty" => false
-        ),
-        false
-    );
+    echo $this->Search->selectLang('to', $selectedLanguageTo);
     ?>
 </fieldset>
 
