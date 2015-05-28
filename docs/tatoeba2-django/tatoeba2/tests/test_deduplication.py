@@ -37,7 +37,7 @@ class TestDedup():
         Dedup.out_log.info('test')
         out, _ = capsys.readouterr()
         assert out == 'test\ntest\n'
-        
+
 
         Dedup.file_log.info('test')
         with open(Dedup.log_file_path) as f:
@@ -65,7 +65,7 @@ class TestDedup():
         sents = list(Sentences.objects.all())
         sents = sents = [(int(sha1(sent.text).hexdigest(), 16), sent.lang, sent.id) for sent in sents]
         sent_tally = dedup.tally(sents)
- 
+
         k_cnt = 0
         for k, v in sent_tally.iteritems():
             if k == ('Has owner, Has audio, Correctness -1 duplicated.', 'eng'):
@@ -90,10 +90,10 @@ class TestDedup():
     def test_prioritize(db, sents, dedup):
         sents = list(Sentences.objects.filter(id__range=[2, 4]))
         assert dedup.prioritize(sents).id == 2
-        
+
         sents = list(Sentences.objects.filter(id__range=[6, 8]))
         assert dedup.prioritize(sents).id == 8
-        
+
         sents = list(Sentences.objects.filter(id__range=[10, 12]))
         assert dedup.prioritize(sents).id == 12
 
@@ -104,7 +104,7 @@ class TestDedup():
         sents = list(Sentences.objects.filter(id__range=[18, 21]))
         assert dedup.prioritize(sents).id == 20
         assert dedup.not_approved is True
-   
+
     def test_merge_comments(db, sents, dedup):
         assert SentenceComments.objects.filter(sentence_id=8).count() == 1
         assert SentenceComments.objects.all().count() == 3
@@ -266,9 +266,3 @@ class TestDedup():
         fav = list(FavoritesUsers.objects.filter(favorite_id=2))
         assert len(fav) == 1
         assert fav[0].favorite_id == 2 and fav[0].user_id == 1
-
-    def test_refresh_lang_stats(db, sents, lang_stats):
-        assert Languages.objects.filter(code='eng')[0].numberofsentences == 0
-        cmd = Command()
-        cmd.handle(refresh=True)
-        assert Languages.objects.filter(code='eng')[0].numberofsentences == 10
