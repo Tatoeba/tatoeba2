@@ -1255,20 +1255,17 @@ input.sentenceId {
 /*
  * Sentence correctness
  */
-.correctnessNegative1 .text {
+.correctnessNegative1 {
+    background: url("/img/warning-small.svg") no-repeat;
+    padding-right: 25px;
     color: #EE0000;
 }
 
-.correctnessNegative1 .sentenceContent {
-    background: url("/img/warning-small.svg") no-repeat;
-    padding-right: 25px;
-}
-
-.mainSentence.correctnessNegative1 .sentenceContent {
+.mainSentence .correctnessNegative1 {
     background-position: right 5px;
 }
 
-.translations .correctnessNegative1 .sentenceContent {
+.translations .correctnessNegative1 {
     background-position: right 2px;
 }
 

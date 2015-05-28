@@ -483,11 +483,10 @@ class SentencesHelper extends AppHelper
         $sentenceId = $sentence['id'];
         $sentenceLang = $sentence['lang'];
         $sentenceAudio = 'no';
-        $correctnessLabel = $this->getCorrectnessLabel($sentence['correctness']);
         if (isset($sentence['hasaudio'])) {
             $sentenceAudio = $sentence['hasaudio'];
         }
-        $classes = array('sentence', $type, $correctnessLabel);
+        $classes = array('sentence', $type);
         if ($isEditable && $type == 'directTranslation') {
             $classes[] = 'editableTranslation';
         }
@@ -618,7 +617,7 @@ class SentencesHelper extends AppHelper
         }
         $this->displaySentenceText(
             $sentence['id'], $sentence['text'], $isEditable,
-            $sentence['lang'], $script
+            $sentence['lang'], $script, $sentence['correctness']
         );
 
         // romanization
@@ -640,14 +639,20 @@ class SentencesHelper extends AppHelper
      * @param bool  $isEditable   Set to 'true' if sentence is editable.
      * @param bool  $sentenceLang Language of the sentence.
      * @param bool  $sentenceScript ISO 15924 script code.
+     * @param bool  $correctness  Sentence correctness level.
      *
      * @return void
      */
     public function displaySentenceText(
         $sentenceId, $sentenceText, $isEditable = false,
-        $sentenceLang = '', $sentenceScript = ''
+        $sentenceLang = '', $sentenceScript = '', $correctness
     ) {
+        $classes = array(
+            'text',
+            $this->getCorrectnessLabel($correctness),
+        );
         if ($isEditable) {
+            $classes[] = 'editableSentence';
 
             $this->Javascript->link('jquery.jeditable.js', false);
             $this->Javascript->link('sentences.edit_in_place.js', false);
@@ -658,7 +663,7 @@ class SentencesHelper extends AppHelper
             echo $this->Languages->tagWithLang(
                 'div', $sentenceLang, $sentenceText,
                 array(
-                    'class' => 'text editableSentence',
+                    'class' => join(' ', $classes),
                     'id' => $sentenceLang.'_'.$sentenceId,
                     'data-submit' => __('OK', true),
                     'data-cancel' => __('Cancel', true),
@@ -670,7 +675,7 @@ class SentencesHelper extends AppHelper
 
             echo $this->Languages->tagWithLang(
                 'div', $sentenceLang, $sentenceText,
-                array('class' => 'text'),
+                array('class' => join(' ', $classes)),
                 $sentenceScript
             );
 
