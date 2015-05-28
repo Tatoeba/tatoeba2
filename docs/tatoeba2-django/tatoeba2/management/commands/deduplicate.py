@@ -5,7 +5,7 @@ from django.core.management.base import BaseCommand
 from django.conf import settings
 from tatoeba2.models import Sentences, SentencesTranslations, Contributions, Users, Wall, SentenceComments, WallThreadsLastMessage
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta
 from optparse import make_option
 from django.db import transaction, IntegrityError
 from StringIO import StringIO
@@ -411,7 +411,9 @@ class Command(Dedup, BaseCommand):
             ),
         make_option(
             '-i', '--incremental-scan', action='store', type='string', dest='since',
-            help='attempts deduplication using an incremental table scan with 1 query filtering sentences added between now and date `d` in `yyyy-mm-dd` format, then a query per row to find duplicates. DO NOT USE THIS WITHOUT A (text, lang) INDEX.'
+            help='attempts deduplication using an incremental table scan with 1 query filtering sentences \
+                  added between now and date `d` in `yyyy-mm-dd` format or as a time delta `{n}y {n}m {n}d {n}h {n}min {n}s ago`\
+                  , then a query per row to find duplicates. DO NOT USE THIS WITHOUT A (text, lang) INDEX.'
             ),
         make_option(
             '-p', '--transaction-pause', action='store', type='int',
@@ -456,6 +458,34 @@ class Command(Dedup, BaseCommand):
         if percent_done == 100:
             print('') # for the return carriage
 
+    def parse_time(self, time_str):
+        if 'ago' in time_str:
+            time_str = time_str.replace('ago', '')
+            years, months, days, hours, minutes, seconds = 0, 0, 0, 0, 0, 0
+            tokens = time_str.split()
+
+            for token in tokens:
+                if 'y' in token: years = int(token.replace('y', ''))
+                if 'm' in token and not 'min' in token: months = int(token.replace('m', ''))
+                if 'd' in token: days = int(token.replace('d', ''))
+                if 'h' in token: hours = int(token.replace('h', ''))
+                if 'min' in token: minutes = int(token.replace('min', ''))
+                if 's' in token: seconds = int(token.replace('s', ''))
+
+            days = years*365 + months*30 + days
+            self.td = timedelta(days=days, hours=hours, minutes=minutes, seconds=seconds)
+            time = now() - self.td
+            time = time.replace(tzinfo=utc)
+
+            return time
+        elif time_str:
+            time = datetime(*[int(s) for s in time_str.split('-')])
+            time = time.replace(tzinfo=utc)
+
+            return time
+        else:
+            return None
+
     def handle(self, *args, **options):
 
         if options.get('chunks') and options.get('since'):
@@ -467,7 +497,9 @@ class Command(Dedup, BaseCommand):
         if options.get('verbose_out'): self.out_log.setLevel(logging.DEBUG)
 
         chunks = options.get('chunks') or 10
-        since = options.get('since')
+        since = options.get('since') or ''
+        # parse date
+        since = self.parse_time(since)
 
         dry = bool(options.get('dry'))
         bot_name = options.get('bot_name') or 'Horus'
@@ -496,8 +528,6 @@ class Command(Dedup, BaseCommand):
         # incremental vs full scan routes
         if since:
             self.log_report('Running incremental scan at '+self.started_on.strftime('%Y-%m-%d %I:%M %p UTC'))
-            # parse date
-            since = datetime(*[int(s) for s in since.split('-')]).replace(tzinfo=utc)
             # pull in rows from time range
             self.log_report('Running filter on sentences added since '+since.strftime('%Y-%m-%d %I:%M %p'))
             sents = list(Sentences.objects.filter(created__range=[since, now()]))

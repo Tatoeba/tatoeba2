@@ -3,6 +3,7 @@ from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, 
 from django.db import transaction, IntegrityError
 from django.db.models import Q
 from hashlib import sha1
+from datetime import timedelta
 import pytest
 import os
 import logging
@@ -266,3 +267,8 @@ class TestDedup():
         fav = list(FavoritesUsers.objects.filter(favorite_id=2))
         assert len(fav) == 1
         assert fav[0].favorite_id == 2 and fav[0].user_id == 1
+
+    def test_parse_time(db):
+        cmd = Command()
+        cmd.parse_time('1y 2m 3d 5h 4min 2s ago')
+        assert cmd.td == timedelta(days=365+60+3, hours=5, minutes=4, seconds=2)
