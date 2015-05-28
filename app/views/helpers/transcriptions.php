@@ -175,12 +175,13 @@ class TranscriptionsHelper extends AppHelper
         if ($needsReview) {
             $class .= ' needsReview';
         }
+        $hide = !$showAllTranscr && $needsReview;
         echo $this->Html->tag('div',
             $infoDiv.$icon.$transcriptionDiv.$subTranscrDiv,
             array(
                 'escape' => false,
                 'class' => $class,
-                'style' => $showAllTranscr ? null : 'display:none',
+                'style' => $hide ? 'display:none' : null,
             )
         );
     }
