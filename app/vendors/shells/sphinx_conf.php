@@ -394,8 +394,11 @@ EOT;
         return $conf;
     }
 
-    public function conf() {
+    public function conf($only = array()) {
         $languages = LanguagesLib::languagesInTatoeba();
+        if ($only) {
+            $languages = array_intersect_key($languages, array_flip($only));
+        }
         $conf = '';
         $conf .= $this->conf_beginning();
         $conf .= $this->conf_language_indexes($languages);
@@ -409,7 +412,7 @@ EOT;
     }
 
     public function main() {
-        echo $this->conf();
+        echo $this->conf($this->args);
     }
 }
 
