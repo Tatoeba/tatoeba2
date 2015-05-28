@@ -35,7 +35,7 @@ class Dedup(object):
         cls.started_on = now()
 
     @classmethod
-    def logger_init(cls, root_path=''):
+    def logger_init(cls, root_path='', file_name=''):
 
         cls.out_log = logging.getLogger('stdout_logger')
         cls.out_log.setLevel(logging.INFO)
@@ -49,7 +49,7 @@ class Dedup(object):
         cls.str_log.addHandler(string)
 
         root_path = root_path or settings.BASE_DIR
-        file_name = 'dedup-'+ cls.started_on.strftime('%Y-%m-%dT%H:%M') + '.log'
+        file_name = file_name or 'dedup-'+ cls.started_on.strftime('%Y-%m-%dT%H:%M') + '.log'
         cls.file_log = logging.getLogger('file_logger')
         cls.file_log.setLevel(logging.DEBUG)
         cls.log_file_path = path.join(root_path, file_name)
@@ -432,6 +432,10 @@ class Command(Dedup, BaseCommand):
             help='specify log directory. defaults to django project\'s root'
             ),
         make_option(
+            '-a', '--append-file', action='store', type='string', dest='file_name',
+            help='specify file to log to in append mode, relative to log path'
+            ),
+        make_option(
             '-w', '--wall-post', action='store_true', dest='wall',
             help='post report on the wall'
             ),
@@ -493,7 +497,7 @@ class Command(Dedup, BaseCommand):
             return
 
         self.time_init()
-        self.logger_init(options.get('path'))
+        self.logger_init(options.get('path'), options.get('file_name'))
         if options.get('verbose_out'): self.out_log.setLevel(logging.DEBUG)
 
         chunks = options.get('chunks') or 10

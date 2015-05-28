@@ -2,6 +2,7 @@ from tatoeba2.management.commands.deduplicate import Command, Dedup
 from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Users, Wall, Languages
 from django.db import transaction, IntegrityError
 from django.db.models import Q
+from django.conf import settings
 from hashlib import sha1
 from datetime import timedelta
 import pytest
@@ -43,11 +44,20 @@ class TestDedup():
         Dedup.file_log.info('test')
         with open(Dedup.log_file_path) as f:
             assert f.read() == 'test\n'
+        os.remove(Dedup.log_file_path)
 
         Dedup.str_log.info('test')
         assert Dedup.report.getvalue() == 'test\n'
 
-        os.remove(Dedup.log_file_path)
+        # test append mode
+        test_log = os.path.join(settings.BASE_DIR, 'test.log')
+        with open(test_log, 'w') as f:
+            f.write('test write\n')
+        Dedup.logger_init(settings.BASE_DIR, 'test.log')
+        Dedup.file_log.info('test append')
+        with open(test_log, 'r') as f:
+            f.read() == 'test write\ntest append\n'
+        os.remove(test_log)
 
     def test_chunked_ranges(db, dedup):
         assert \
