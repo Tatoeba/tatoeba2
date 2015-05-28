@@ -27,11 +27,20 @@
 /*
  * Advanced search form
  */
-.module .text label {
+#AdvancedSearchSearchForm label:first-child {
     padding-right: 8px;
+    text-align: right;
+    width: 200px;
+    display: inline-block;
 }
 
-.module .input {
+#AdvancedSearchSearchForm input:first-child,
+#AdvancedSearchSearchForm div.note
+{
+    margin-left: 200px;
+}
+
+#AdvancedSearchSearchForm .input {
     margin: 10px 0;
 }
 

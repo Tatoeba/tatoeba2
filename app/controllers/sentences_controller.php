@@ -554,7 +554,9 @@ class SentencesController extends AppController
         if ($to !== 'und') {
             $this->loadModel('Language');
             $toId = $this->Language->getIdFromLang($to);
-            $sphinx['filter'][] = array('trans_id',$toId);
+            if ($toId) {
+                $sphinx['filter'][] = array('trans_id',$toId);
+            }
         }
         // filter by user
         if (!empty($user)) {

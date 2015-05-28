@@ -69,10 +69,15 @@ echo $form->create(
 </fieldset>
 
 <fieldset class="select">
-    <label><?php __('From'); ?></label>
     <?php
-    
-    echo $this->Search->selectLang('from', $selectedLanguageFrom);
+    echo $this->Search->selectLang(
+        'from',
+        $selectedLanguageFrom,
+        array(
+            'div' => false,
+            'label' => __('From', true),
+        )
+    );
     ?>
 </fieldset>
 
@@ -81,9 +86,15 @@ echo $form->create(
 </fieldset>
     
 <fieldset class="select">
-    <label><?php __('To'); ?></label>
     <?php
-    echo $this->Search->selectLang('to', $selectedLanguageTo);
+    echo $this->Search->selectLang(
+        'to',
+        $selectedLanguageTo,
+        array(
+            'div' => false,
+            'label' => __('To', true),
+        )
+    );
     ?>
 </fieldset>
 

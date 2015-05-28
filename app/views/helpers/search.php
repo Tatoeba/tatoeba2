@@ -37,19 +37,23 @@ class SearchHelper extends AppHelper
         }
     }
 
-    public function selectLang($fieldName, $selectedLanguage) {
+    public function selectLang($fieldName, $selectedLanguage, $options = array()) {
         if (!$this->langs) {
             $this->langs = $this->getLangs();
         }
 
-        return $this->Form->select(
-            $fieldName,
-            $this->langs,
-            $selectedLanguage,
+        $options = array_merge(
             array(
                 'class' => 'language-selector',
                 'empty' => false,
-            )
+                'options' => $this->langs,
+                'value' => $selectedLanguage,
+            ),
+            $options
+        );
+        return $this->Form->input(
+            $fieldName,
+            $options
         );
     }
 }

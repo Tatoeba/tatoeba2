@@ -46,9 +46,15 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">
+    <?php
+    echo $this->element('search_features');
+    ?>
+</div>
+
+
+<div id="main_content">
     <div class="module">
     <?php
-        echo $this->Html->tag('h2', __('Additional criteria', true));
         echo $this->Form->create(
             'AdvancedSearch',
             array(
@@ -59,9 +65,18 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                 'type' => 'get',
             )
         );
-        echo $this->Form->hidden('query', array('value' => $query));
-        echo $this->Form->hidden('from', array('value' => $from));
-        echo $this->Form->hidden('to', array('value' => $to));
+        echo $this->Form->input('query', array(
+            'label' => __('Query:', true),
+            'value' => $query,
+        ));
+
+        echo $this->Search->selectLang('from', $from, array(
+            'label' => __('Sentences in:', true),
+        ));
+        echo $this->Search->selectLang('to', $to, array(
+            'label' => __('Show translations in:', true),
+            'options' => $this->Languages->languagesArrayForPositiveLists(),
+        ));
 
         $orphansNote = $this->Html->tag(
             'div',
@@ -87,14 +102,6 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         echo $this->Form->end(__('search', true));
     ?>
     </div>
-
-    <?php
-    echo $this->element('search_features');
-    ?>
-</div>
-
-
-<div id="main_content">
 <?php
 if (!empty($results)) {
     
