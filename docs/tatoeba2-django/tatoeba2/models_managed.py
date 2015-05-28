@@ -81,8 +81,10 @@ class Countries(models.Model):
         db_table = 'countries'
 
 class FavoritesUsers(models.Model):
+    id = models.AutoField(primary_key=True)
     favorite_id = models.IntegerField()
     user_id = models.IntegerField()
+    created = models.DateTimeField(blank=True, null=True)
     class Meta:
         db_table = 'favorites_users'
         unique_together = ('favorite_id', 'user_id')
@@ -102,9 +104,22 @@ class Groups(models.Model):
         db_table = 'groups'
 
 class Languages(models.Model):
-    code = models.CharField(unique=True, max_length=4)
-    sentences = models.IntegerField()
     id = models.AutoField(primary_key=True)
+    code = models.CharField(unique=True, max_length=4, blank=True)
+    sentences = models.IntegerField()
+    audio = models.IntegerField()
+    group_1 = models.IntegerField()
+    group_2 = models.IntegerField()
+    group_3 = models.IntegerField()
+    group_4 = models.IntegerField()
+    level_0 = models.IntegerField()
+    level_1 = models.IntegerField()
+    level_2 = models.IntegerField()
+    level_3 = models.IntegerField()
+    level_4 = models.IntegerField()
+    level_5 = models.IntegerField()
+    level_unknown = models.IntegerField()
+
     class Meta:
         db_table = 'languages'
 
@@ -193,8 +208,10 @@ class SentencesLists(models.Model):
         db_table = 'sentences_lists'
 
 class SentencesSentencesLists(models.Model):
+    id = models.AutoField(primary_key=True)
     sentences_list_id = models.IntegerField()
     sentence_id = models.IntegerField()
+    created = models.DateTimeField(blank=True, null=True)
     class Meta:
         db_table = 'sentences_sentences_lists'
         unique_together = ('sentences_list_id', 'sentence_id')
@@ -273,6 +290,20 @@ class Users(models.Model):
     is_public = models.IntegerField()
     class Meta:
         db_table = 'users'
+
+class UsersLanguages(models.Model):
+    id = models.AutoField(primary_key=True)
+    of_user_id = models.IntegerField()
+    by_user_id = models.IntegerField()
+    language_code = models.CharField(max_length=4)
+    level = models.IntegerField(blank=True, null=True)
+    level_approval_status = models.CharField(max_length=10)
+    details = models.TextField()
+    created = models.DateTimeField(blank=True, null=True)
+    modified = models.DateTimeField(blank=True, null=True)
+    class Meta:
+        db_table = 'users_languages'
+        unique_together = ('of_user_id', 'by_user_id', 'language_code')
 
 class Visitors(models.Model):
     ip = models.CharField(primary_key=True, unique=True, max_length=15)
