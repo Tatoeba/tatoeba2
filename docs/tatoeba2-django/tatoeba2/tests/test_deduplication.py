@@ -110,10 +110,10 @@ class TestDedup():
         assert SentenceComments.objects.all().count() == 3
         dedup.merge_comments(8, [6, 7])
         assert SentenceComments.objects.all().count() == 5
-        cmnts = list(SentenceComments.objects.filter(text__contains='Comment copied from').order_by('id'))
+        cmnts = list(SentenceComments.objects.filter(text__contains='copied from').order_by('id'))
         assert len(cmnts) == 2
-        assert cmnts[0].sentence_id == 8 and 'Comment copied from #6' in cmnts[0].text
-        assert cmnts[1].sentence_id == 8 and 'Comment copied from #7' in cmnts[1].text
+        assert cmnts[0].sentence_id == 8 and 'copied from #6' in cmnts[0].text
+        assert cmnts[1].sentence_id == 8 and 'copied from #7' in cmnts[1].text
 
     def test_merge_tags(db, sents, dedup):
         assert TagsSentences.objects.filter(sentence_id=8).count() == 1
@@ -215,8 +215,8 @@ class TestDedup():
     def test_comment_post(db, sents):
         cmd = Command()
         cmd.handle(cmnt=True)
-        assert SentenceComments.objects.filter(text__contains='has been merged with').count() == 11
-        assert SentenceComments.objects.filter(text__contains='Duplicates of this sentence have been deleted:').count() == 5
+        assert SentenceComments.objects.filter(text__contains='This sentence has been deleted').count() == 11
+        assert SentenceComments.objects.filter(text__contains='Duplicates of this sentence have been deleted').count() == 5
 
     def test_dry_run(db, sents):
         cmd = Command()
