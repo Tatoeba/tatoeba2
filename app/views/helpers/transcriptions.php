@@ -97,6 +97,7 @@ class TranscriptionsHelper extends AppHelper
                 'class' => 'transcriptionIcon',
                 'width' => 18,
                 'height' => 16,
+                'alt' => $transcr['script'],
             )
         );
 

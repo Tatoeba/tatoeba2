@@ -995,6 +995,7 @@
     color: #A1A1A1;
     display: inline-block;
     width: 474px;
+    padding-left: 8px;
 }
 
 .needsReview > .transcription {
@@ -1002,7 +1003,7 @@
 }
 
 .transcriptionIcon {
-    padding-right: 8px;
+    font-size: 7px;
 }
 
 .rightWarningIcon {
