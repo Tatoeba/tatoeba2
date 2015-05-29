@@ -996,6 +996,7 @@
     display: inline-block;
     width: 474px;
     padding-left: 8px;
+    vertical-align: middle;
 }
 
 .needsReview > .transcription {
@@ -1004,11 +1005,14 @@
 
 .transcriptionIcon {
     font-size: 7px;
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
 }
 
 .rightWarningIcon {
     padding-right: 25px;
-    background: url("/img/warning-small.svg") no-repeat right 5px;
+    background: url("/img/warning-small.svg") no-repeat right 50%;
 }
 
 .leftWarningIcon {
