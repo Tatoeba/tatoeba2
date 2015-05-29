@@ -103,8 +103,6 @@ class TranscriptionsHelper extends AppHelper
         $class = 'transcription';
         if ($isEditable)
             $class .= ' editable';
-        if ($showAllTranscr && $needsReview)
-            $class .= ' leftWarningIcon';
         $html = $this->transcriptionAsHTML($lang, $transcr);
         $transcriptionDiv = $this->Languages->tagWithLang(
             'div', $lang, $html,
@@ -174,6 +172,9 @@ class TranscriptionsHelper extends AppHelper
         $class = 'transcriptionContainer';
         if ($needsReview) {
             $class .= ' needsReview';
+        }
+        if ($showAllTranscr && $needsReview) {
+            $class .= ' rightWarningIcon';
         }
         $hide = !$showAllTranscr && $needsReview;
         echo $this->Html->tag('div',

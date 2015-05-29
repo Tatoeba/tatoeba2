@@ -987,9 +987,14 @@
 /*
  * Transcriptions
  */
+.transcriptionContainer {
+    width: 500px;
+}
+
 .transcription {
     color: #A1A1A1;
     display: inline-block;
+    width: 474px;
 }
 
 .needsReview > .transcription {
@@ -1000,9 +1005,14 @@
     padding-right: 8px;
 }
 
+.rightWarningIcon {
+    padding-right: 25px;
+    background: url("/img/warning-small.svg") no-repeat right 5px;
+}
+
 .leftWarningIcon {
     padding-left: 25px;
-    background: url("/img/warning-small.svg") no-repeat 0 50%;
+    background: url("/img/warning-small.svg") no-repeat left 50%;
 }
 
 .transcriptionInfo {
