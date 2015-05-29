@@ -64,6 +64,10 @@ $(document).ready(function() {
                 $(self).find("textarea").each(function(idx) {
                     previousValue[idx] = $(this).val();
                 });
+                // Handle reset button
+                if (self.resetClicked) {
+                    settings.target = settings.target.replace(/\/save\//, '/reset/');
+                }
                 return true;
             },
             onerror   : function (settings, self, xhr) {
@@ -87,6 +91,18 @@ $(document).ready(function() {
                 if (event.which == 13)
                     $(this).closest('form').submit();
             });
+            // Add third reset button
+            if ($(this).find('button').length == 2) {
+                var editable = this;
+                var reset = $('<button type="submit"/>');
+                reset.html(div.attr('data-reset'));
+                reset.click(function(event) {
+                    // hack to distinguish submit event
+                    // triggered from this button
+                    editable.resetClicked = true;
+                });
+                $(editable).find('form').append(reset);
+            }
         });
     });
 });

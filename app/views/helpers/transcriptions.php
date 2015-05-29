@@ -111,6 +111,7 @@ class TranscriptionsHelper extends AppHelper
                 'data-tooltip' => __('Click to edit this transcription', true),
                 'data-submit' => __('OK', true),
                 'data-cancel' => __('Cancel', true),
+                'data-reset' => __('Reset', true),
                 'class' => $class,
                 'escape' => false,
             ),
