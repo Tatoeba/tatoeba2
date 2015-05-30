@@ -52,6 +52,12 @@ $(document).ready(function() {
             cancel    : div.attr('data-cancel'),
             submit    : div.attr('data-submit'),
             id        : 'divId',
+            height    : false, // disable autoheight, we'll set it in onedit()
+            onedit    : function(settings, self) {
+                $(self).find("rt").hide();
+                settings.height = $(self).height();
+                $(self).find("rt").show();
+            },
             data : function(value, settings) {
                 var contents = $('<span>').html(value);
                 return contents.find('.markup').text() || contents.text();
