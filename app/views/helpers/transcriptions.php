@@ -209,10 +209,11 @@ class TranscriptionsHelper extends AppHelper
      */
     public function transcriptionAsHTML($lang, $transcr) {
         $text = Sanitize::html($transcr['text']);
+
         if ($transcr['script'] == 'Hrkt')
             $text = $this->_rubify($text);
         elseif ($lang == 'cmn' && $transcr['script'] == 'Latn') {
-            $pinyin = Sanitize::html($this->Pinyin->numeric2diacritic($text));
+            $pinyin = $this->Pinyin->numeric2diacritic($text);
             $text = $this->Html->tag('span', $text, array(
                 'style' => 'display:none',
                 'class' => 'markup',
