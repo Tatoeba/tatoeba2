@@ -531,7 +531,7 @@ class MenuHelper extends AppHelper
     }
 
     private function transcribeButton($sentenceId) {
-        $title = __('Add transcription', true);
+        $title = __('Show transcriptions', true);
         $editImage = $this->Images->svgIcon(
             'edit',
             array(
@@ -641,13 +641,13 @@ class MenuHelper extends AppHelper
             $this->deleteButton($sentenceId, $hasAudio);
         }
 
-        $this->transcribeButton($sentenceId);
-
         if ($chineseScript == 'Hans') {
             $this->simplifiedButton();
         } else if ($chineseScript == 'Hant') {
             $this->traditionalButton();
         }
+
+        $this->transcribeButton($sentenceId);
         ?>
 
         <li>
