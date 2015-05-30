@@ -951,13 +951,6 @@ class SentencesController extends AppController
     {
         $this->paginate = array(
             'Sentence' => array(
-                'fields' => array(
-                    'id',
-                    'text',
-                    'lang',
-                    'hasaudio',
-                    'correctness'
-                ),
                 'contain' => array('Transcription'),
                 'limit' => 50,
                 'conditions' => array(
