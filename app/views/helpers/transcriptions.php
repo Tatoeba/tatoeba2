@@ -105,14 +105,28 @@ class TranscriptionsHelper extends AppHelper
         if ($isEditable)
             $class .= ' editable';
         $html = $this->transcriptionAsHTML($lang, $transcr);
+        $tooltip = __('Click to edit this transcription.', true);
+        $log = '';
+        if (isset($transcr['User']['username'])) {
+            $log = format(
+                /* @translators: refers to a transcription */
+                __('Last edited by {author} on {date}.', true),
+                array(
+                    'author' => $transcr['User']['username'],
+                    'date' => $transcr['modified'],
+                )
+            );
+            $log .= "\n";
+        }
         $transcriptionDiv = $this->Languages->tagWithLang(
             'div', $lang, $html,
             array(
                 'data-script' => $transcr['script'],
-                'data-tooltip' => __('Click to edit this transcription', true),
+                'data-tooltip' => "$log$tooltip",
                 'data-submit' => __('OK', true),
                 'data-cancel' => __('Cancel', true),
                 'data-reset' => __('Reset', true),
+                'title' => $log,
                 'class' => $class,
                 'escape' => false,
             ),

@@ -135,6 +135,7 @@ class Transcription extends AppModel
 
     public $belongsTo = array(
         'Sentence',
+        'User',
         'SourceTranscription' => array(
             'className' => 'Transcription',
             'foreignKey' => 'parent_id',

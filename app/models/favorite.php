@@ -91,7 +91,9 @@ class Favorite extends AppModel
                 ),
                 'contain' => array(
                     'Sentence' => array(
-                        'Transcription',
+                        'Transcription' => array(
+                            'User' => array('fields' => 'username'),
+                        ),
                     )
                 )
             )

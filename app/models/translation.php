@@ -149,7 +149,11 @@ class Translation extends AppModel
                 'Translation.correctness',
             ),
             'order' => array('Translation.lang'),
-            'contain' => array('Transcription'),
+            'contain' => array(
+                'Transcription' => array(
+                    'User' => array('fields' => 'username')
+                )
+            ),
         ));
     }
 }

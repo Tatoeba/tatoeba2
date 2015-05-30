@@ -82,7 +82,9 @@ class ActivitiesController extends AppController
         $this->paginate = array(
             'limit' => 10,
             'conditions' => $conditions,
-            'contain' => array('Transcription')
+            'contain' => array('Transcription' => array(
+                'User' => array('fields' => array('username')),
+            )),
         );
         $results = $this->paginate('Sentence');
         $this->set('results', $results);

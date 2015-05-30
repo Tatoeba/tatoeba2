@@ -850,7 +850,9 @@ class SentencesController extends AppController
                     'correctness'
                 ),
                 'contain' => array(
-                    'Transcription',
+                    'Transcription' => array(
+                        'User' => array('fields' => array('username')),
+                    ),
                     'User' => array(
                         'fields' => array('username')
                     )
@@ -951,7 +953,11 @@ class SentencesController extends AppController
     {
         $this->paginate = array(
             'Sentence' => array(
-                'contain' => array('Transcription'),
+                'contain' => array(
+                    'Transcription' => array(
+                        'User' => array('fields' => array('username')),
+                    ),
+                ),
                 'limit' => 50,
                 'conditions' => array(
                     'hasaudio' => array('shtooka', 'from_users')

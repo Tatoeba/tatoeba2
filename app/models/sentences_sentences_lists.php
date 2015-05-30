@@ -101,13 +101,17 @@ class SentencesSentencesLists extends AppModel
     {
         $sentenceParams = array(
             'User' => array('fields' => array('id', 'username')),
-            'Transcription'
+            'Transcription' => array(
+                'User' => array('fields' => array('username'))
+            ),
         );
 
         if ($translationsLang != null) {
             // All
             $sentenceParams['Translation'] = array(
-                'Transcription'
+                'Transcription' => array(
+                    'User' => array('fields' => array('username'))
+                ),
             );
             // Specific language
             if ($translationsLang != 'und') {

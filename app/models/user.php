@@ -329,11 +329,15 @@ class User extends AppModel
                     'conditions' => array('User.id' => $id),
                     'contain' => array(
                         'Favorited' => array(
-                            'Transcription',
+                            'Transcription' => array(
+                                'User' => array('fields' => array('username')),
+                            ),
                             'limit' => 10,
                         ),
                         'Sentence' => array(
-                            'Transcription',
+                            'Transcription' => array(
+                                'User' => array('fields' => array('username')),
+                            ),
                             'limit' => 10,
                             'order' => 'modified DESC'
                         ),
