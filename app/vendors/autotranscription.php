@@ -38,82 +38,18 @@
  * @link *   http://tatoeba.org
  */
 
-
-define('UZB_SCRIPT_SWITCH', 0);
-define('UZB_SCRIPT_CYRYLLIC', 1);
-define('UZB_SCRIPT_LATIN', 2);
-define('CMN_PINYIN', 10);
-define('CMN_OTHER_SCRIPT', 11);
-define('CMN_SCRIPT', 12);
-define('JPN_FURIGANA', 20);
-define('JPN_ROMAJI', 21);
-
 class Autotranscription
 {
-    var $availableLanguages = array(
-        'cmn', 'jpn', 'kat', 'uzb', 'wuu', 'yue'
-    );
-
-    
-    // ------------------------------------------------
-    //
-    //  public
-    //
-    // ------------------------------------------------
-
-    public function cmn($text, $type = null)
-    {
-        switch ($type) {
-            case CMN_OTHER_SCRIPT:
-                return $this->_getChineseOtherScriptVersion($text);
-
-            case CMN_SCRIPT:
-                return $this->_getChineseScript($text);
-
-            default:
-                return $this->_getPinyin($text);
-                
-        }
-    }
-
-    public function jpn($text, $type = null)
-    {
-        switch ($type) {
-            case JPN_FURIGANA:
-                return $this->_getFurigana($text);
-                
-            default:
-                return $this->tokenizedJapaneseWithReadingsToRomaji($text);
-        }
-    }
-
+    // Still don't know what to do with these
     public function kat($text)
     {
         return $this->_getGeorgianRomanization($text);
-    }
-
-    public function uzb($text)
-    {
-        return $this->_uzbekScriptChange($text);
     }
 
     public function wuu($text)
     {
         return $this->_getShanghaineseRomanization($text);
     }
-
-    public function yue($text)
-    {
-        return $this->_getJyutping($text);
-    }
-
-
-
-    // ------------------------------------------------
-    //
-    //  private
-    //
-    // ------------------------------------------------
 
     /**
      * Return IPA of a shanghainese text
@@ -185,36 +121,6 @@ class Autotranscription
 
         $ipaSentence = str_replace($alphabetArray, $ipaArray, $text);
         return $ipaSentence;
-    }
-
-
-    /**
-     * convert a chinese text from traditional to simplified
-     * and vice versa
-     *
-     * @param string $chineseText chinese text to switch
-     *
-     * @return string
-     */
-    private function _getChineseOtherScriptVersion($chineseText)
-    {
-        $xml = simplexml_load_file(
-            "http://127.0.0.1:8042/change_script?str=".urlencode($chineseText)
-            ,'SimpleXMLElement', LIBXML_NOCDATA
-        );
-        foreach($xml as $key=>$value) {
-            return $value;
-        }
-        return "";
-    }
-
-    private function firstElement($node) {
-        foreach ($node->childNodes as $subNode) {
-            if ($subNode->nodeType == XML_ELEMENT_NODE) {
-                return $subNode;
-            }
-        }
-        return $node;
     }
 
     /**
