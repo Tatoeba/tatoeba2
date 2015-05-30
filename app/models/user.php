@@ -331,24 +331,10 @@ class User extends AppModel
                         'Favorited' => array(
                             'Transcription',
                             'limit' => 10,
-                            'fields' => array(
-                                'id',
-                                'lang',
-                                'script',
-                                'correctness',
-                                'text',
-                            )
                         ),
                         'Sentence' => array(
                             'Transcription',
                             'limit' => 10,
-                            'fields' => array(
-                                'id',
-                                'lang',
-                                'script',
-                                'correctness',
-                                'text',
-                            ),
                             'order' => 'modified DESC'
                         ),
                         'Contributions' => array(
