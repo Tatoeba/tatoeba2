@@ -999,6 +999,10 @@
     vertical-align: middle;
 }
 
+.mainSentence .transcription {
+    font-size: 80%;
+}
+
 .needsReview > .transcription {
     color: #A15F2F;
 }
@@ -1051,7 +1055,7 @@
  * Main sentences
  */
 
-.mainSentence, .mainSentence textarea {
+.mainSentence, .mainSentence .editableSentence textarea {
     font-size: 24px;
 }
 
