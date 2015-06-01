@@ -2,11 +2,9 @@
 set -e
 
 PATH=$PATH:/usr/local/mysql/bin
-USER='tatouser'
 ROOT='/var/www-prod'
-PASSWORD=$(grep 'password' $ROOT'/app/config/database.php' | head -n 1 | sed "s/^.*=> '//; s/',$//")
 
-mysql -u $USER -p $PASSWORD tatoeba_prod -e "call wwwjdic_issues_fix"
-mysql -u $USER -p $PASSWORD tatoeba_prod < /var/www-prod/docs/database/scripts/wwwjdic.sql
+mysql -u "$DB_USER" -p "$DB_PASS" tatoeba_prod -e "call wwwjdic_issues_fix"
+mysql -u "$DB_USER" -p "$DB_PASS" < "$ROOT""/docs/database/scripts/wwwjdic.sql"
 
-mv /var/tmp/*.csv /var/www-prod/app/webroot/files/downloads
+mv /var/tmp/*.csv "$ROOT""/app/webroot/files/downloads"

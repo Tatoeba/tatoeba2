@@ -2,16 +2,14 @@
 set -e
 
 PATH=$PATH:/usr/local/mysql/bin
-USER='tatouser'
 ROOT='/var/www-prod'
-PASSWORD=$(grep 'password' $ROOT'/app/config/database.php' | head -n 1 | sed "s/^.*=> '//; s/',$//")
 
-mysql -u $USER -p $PASSWORD < /var/www-prod/docs/database/scripts/weekly_exports.sql
+mysql -u "$DB_USER" -p "$DB_PASS" < /var/www-prod/docs/database/scripts/weekly_exports.sql
 
-DL_DIR=$ROOT'/app/webroot/files/downloads/'
-mv /var/tmp/* $DL_DIR
+DL_DIR="$ROOT""/app/webroot/files/downloads/"
+mv /var/tmp/* "$DL_DIR"
 
-cd $DL_DIR
+cd "$DL_DIR"
 tar -cjf sentences_detailed.tar.bz2 sentences_detailed.csv
 tar -cjf links.tar.bz2 links.csv
 tar -cjf sentences.tar.bz2 sentences.csv
