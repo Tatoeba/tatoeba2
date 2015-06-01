@@ -560,28 +560,23 @@ class Command(Dedup, BaseCommand):
             # pull in rows from time range
             self.log_report('Running filter on sentences added since '+since.strftime('%Y-%m-%d %I:%M %p'))
             sents = list(Sentences.objects.filter(modified__range=[since, now()]))
-            sents = [(int(sha1(sent.text).hexdigest(), 16), sent.lang, sent.id) for sent in sents]
             self.log_report('OK filtered '+str(len(sents))+' sentences')
-
-            # tally to eliminate premature duplicates
-            sent_tally = self.tally(sents)
-            del sents
 
             # filter out duplicates (could probably be done in 1 raw query...)
             self.log_report('Running filter on sentences to find duplicates')
-            dup_set = []
-            for ids in sent_tally.itervalues():
-                ids = list(ids)
-                sents = list(Sentences.objects.filter(id__in=ids))
-                if len(sents) > 1:
-                    dup_set.append(sents)
+            dup_set = set()
+            for sent in sents:
+                f_sents = tuple(Sentences.objects.filter(text=sent.text, lang=sent.lang))
+                if len(f_sents) > 1:
+                    dup_set.add(f_sents)
+            dup_set = list(dup_set)
             self.total_sets = len(dup_set)
             self.log_report('OK '+str(self.total_sets)+' duplicate sets found')
-            del sent_tally
 
             self.log_report('Running deduplication transactions on duplicate sets')
             # deduplicate
             for sents in dup_set:
+                sents = list(sents)
                 # determine main sentence based on priority rules
                 main_sent = self.prioritize(sents)
                 self.all_audio.extend(list(self.has_audio))
