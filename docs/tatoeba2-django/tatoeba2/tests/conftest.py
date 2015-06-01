@@ -18,30 +18,30 @@ def pytest_addoption(parser):
 def sents(db, request):
 
     # no owner, no audio, no correctness 1-4
-    Sentences(text='Normal, not duplicated.', lang='eng', created=datetime(2014, 1, 1)).save()
-    for i in xrange(3): Sentences(text='Normal, duplicated.', lang='eng', created=datetime(2014, 1, 1)).save()
+    Sentences(text='Normal, not duplicated.', lang='eng', modified=datetime(2014, 1, 1)).save()
+    for i in xrange(3): Sentences(text='Normal, duplicated.', lang='eng', modified=datetime(2014, 1, 1)).save()
 
     # has owner 5-8
-    Sentences(text='Has owner, not duplicated.', lang='eng', user_id=1, created=datetime(2014, 1, 2)).save()
-    for i in xrange(2): Sentences(text='Has owner, duplicated.', lang='eng', created=datetime(2014, 1, 2)).save()
-    Sentences(text='Has owner, duplicated.', lang='eng', user_id=1, created=datetime(2014, 1, 2)).save()
+    Sentences(text='Has owner, not duplicated.', lang='eng', user_id=1, modified=datetime(2014, 1, 2)).save()
+    for i in xrange(2): Sentences(text='Has owner, duplicated.', lang='eng', modified=datetime(2014, 1, 2)).save()
+    Sentences(text='Has owner, duplicated.', lang='eng', user_id=1, modified=datetime(2014, 1, 2)).save()
 
     # has audio 9-12
-    Sentences(text='Has audio, not duplicated.', lang='eng', hasaudio='shtooka', created=datetime(2014, 1, 3)).save()
-    for i in xrange(2): Sentences(text='Has audio, duplicated.', lang='eng', created=datetime(2014, 1, 3)).save()
-    Sentences(text='Has audio, duplicated.', lang='eng', hasaudio='shtooka', created=datetime(2014, 1, 3)).save()
+    Sentences(text='Has audio, not duplicated.', lang='eng', hasaudio='shtooka', modified=datetime(2014, 1, 3)).save()
+    for i in xrange(2): Sentences(text='Has audio, duplicated.', lang='eng', modified=datetime(2014, 1, 3)).save()
+    Sentences(text='Has audio, duplicated.', lang='eng', hasaudio='shtooka', modified=datetime(2014, 1, 3)).save()
 
     # correctness -1  13-16
-    Sentences(text='Correctness -1, not duplicated.', lang='eng', correctness=-1, created=datetime(2014, 1, 4)).save()
-    for i in xrange(2): Sentences(text='Correctness -1, duplicated.', lang='eng', created=datetime(2014, 1, 4)).save()
-    Sentences(text='Correctness -1, duplicated.', lang='eng', correctness=-1, created=datetime(2014, 1, 4)).save()
+    Sentences(text='Correctness -1, not duplicated.', lang='eng', correctness=-1, modified=datetime(2014, 1, 4)).save()
+    for i in xrange(2): Sentences(text='Correctness -1, duplicated.', lang='eng', modified=datetime(2014, 1, 4)).save()
+    Sentences(text='Correctness -1, duplicated.', lang='eng', correctness=-1, modified=datetime(2014, 1, 4)).save()
 
     # has owner, has audio, correctness -1  17-21
-    Sentences(text='Has owner, Has audio, Correctness -1, not duplicated.', lang='eng', user_id=1, hasaudio='shtooka', correctness=-1, created=datetime(2014, 1, 5)).save()
-    Sentences(text='Has owner, Has audio, Correctness -1 duplicated.', lang='eng', created=datetime(2014, 1, 5)).save()
-    Sentences(text='Has owner, Has audio, Correctness -1 duplicated.', lang='eng', user_id=1, created=datetime(2014, 1, 5)).save()
-    Sentences(text='Has owner, Has audio, Correctness -1 duplicated.', lang='eng', hasaudio='shtooka', created=datetime(2014, 1, 5)).save()
-    Sentences(text='Has owner, Has audio, Correctness -1 duplicated.', lang='eng', correctness=-1, created=datetime(2014, 1, 5)).save()
+    Sentences(text='Has owner, Has audio, Correctness -1, not duplicated.', lang='eng', user_id=1, hasaudio='shtooka', correctness=-1, modified=datetime(2014, 1, 5)).save()
+    Sentences(text='Has owner, Has audio, Correctness -1 duplicated.', lang='eng', modified=datetime(2014, 1, 5)).save()
+    Sentences(text='Has owner, Has audio, Correctness -1 duplicated.', lang='eng', user_id=1, modified=datetime(2014, 1, 5)).save()
+    Sentences(text='Has owner, Has audio, Correctness -1 duplicated.', lang='eng', hasaudio='shtooka', modified=datetime(2014, 1, 5)).save()
+    Sentences(text='Has owner, Has audio, Correctness -1 duplicated.', lang='eng', correctness=-1, modified=datetime(2014, 1, 5)).save()
 
     for i in xrange(6, 8+1): SentenceComments(sentence_id=i, text='Comment on '+str(i), user_id=1, created=datetime.now(), hidden=0).save()
 

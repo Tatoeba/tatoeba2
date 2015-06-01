@@ -355,6 +355,26 @@ class Dedup(object):
             SentenceComments.objects.bulk_create(cmnts)
 
     @classmethod
+    def suppress_error(cls, func, *args):
+        try:
+            func(*args)
+        except Exception as e:
+            entry = {}
+            entry['timestamp'] = now().strftime('%Y-%m-%d %I:%M %p UTC')
+            entry['operation'] = 'error'
+            entry['args'] = args
+            entry['error_msg'] = e.message
+            cls.file_log.info(json.dumps(entry))
+
+            entry = []
+            entry.append(colored('ERROR', 'red', attrs=['bold']))
+            entry.append('while running')
+            entry.append(func.__name__+'(')
+            entry.append(', '.join([str(arg) for arg in args]))
+            entry.append(')')
+            cls.out_log.debug(entry)
+
+    @classmethod
     @transaction.atomic
     def deduplicate(cls, main_sent, ids, post_cmnt=False, dry=False):
         cls.dry = dry
@@ -451,6 +471,10 @@ class Command(Dedup, BaseCommand):
             '-u', '--url', action='store', type='string', dest='url',
             help='url root path pointing to log directory. used in the wall post'
             ),
+        make_option(
+            '-e', '--suppress-errors', action='store_true', dest='suppress',
+            help='suppress and log trace errors when deduplicating instead of failing with a trace'
+            ),
         )
 
     def update_dedup_progress(self):
@@ -521,6 +545,7 @@ class Command(Dedup, BaseCommand):
         post_cmnt = bool(options.get('cmnt'))
         url = options.get('url') or 'http://downloads.tatoeba.org/'
         if url[-1] != '/': url += '/'
+        suppress = options.get('suppress') or False
 
         self.all_dups = []
         self.all_mains = []
@@ -534,7 +559,7 @@ class Command(Dedup, BaseCommand):
             self.log_report('Running incremental scan at '+self.started_on.strftime('%Y-%m-%d %I:%M %p UTC'))
             # pull in rows from time range
             self.log_report('Running filter on sentences added since '+since.strftime('%Y-%m-%d %I:%M %p'))
-            sents = list(Sentences.objects.filter(created__range=[since, now()]))
+            sents = list(Sentences.objects.filter(modified__range=[since, now()]))
             sents = [(int(sha1(sent.text).hexdigest(), 16), sent.lang, sent.id) for sent in sents]
             self.log_report('OK filtered '+str(len(sents))+' sentences')
 
@@ -567,7 +592,10 @@ class Command(Dedup, BaseCommand):
                 ids = [sent.id for sent in sents]
                 self.all_dups.extend(ids)
                 # run a deduplication transaction
-                self.deduplicate(main_sent, ids, post_cmnt, dry)
+                if suppress:
+                    self.suppress_error(self.deduplicate, main_sent, ids, post_cmnt, dry)
+                else:
+                    self.deduplicate(main_sent, ids, post_cmnt, dry)
                 # display percentage progress
                 self.proceeded_sets += 1
                 self.update_dedup_progress()
@@ -609,7 +637,10 @@ class Command(Dedup, BaseCommand):
                     self.all_dups.extend(ids)
 
                     # run a deduplication transaction
-                    self.deduplicate(main_sent, ids, post_cmnt, dry)
+                    if suppress:
+                        self.suppress_error(self.deduplicate, main_sent, ids, post_cmnt, dry)
+                    else:
+                        self.deduplicate(main_sent, ids, post_cmnt, dry)
 
                 self.proceeded_sets += 1
                 # display percentage progress

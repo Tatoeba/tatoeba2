@@ -282,3 +282,23 @@ class TestDedup():
         cmd = Command()
         cmd.parse_time('1y 2m 3d 5h 4min 2s ago')
         assert cmd.td == timedelta(days=365+60+3, hours=5, minutes=4, seconds=2)
+
+    def test_suppress_incremental(db, sents):
+        assert Sentences.objects.all().count() == 21
+        cmd = Command()
+        cmd.handle(since='2014-1-4', suppress=True)
+        assert Sentences.objects.all().count() == 16
+        assert len(cmd.all_dups) == 5
+        assert len(cmd.all_mains) == 2
+        assert cmd.ver_dups
+        assert cmd.ver_audio
+        assert cmd.ver_mains
+
+    def test_suppress_error_log(db, dedup):
+        def raise_error(a=True):
+            raise Exception('An error was raised')
+
+        dedup.suppress_error(raise_error, True)
+        with open(dedup.log_file_path) as f:
+            log_content = f.read()
+            assert 'An error was raised' in log_content
