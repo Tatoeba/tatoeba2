@@ -394,32 +394,6 @@ class Transcription extends AppModel
         }
         $result[] = $transcr;
 
-        if (isset($params['autogenerates'])) {
-            $chainedLangScript = $sentence['lang'].'-'.$targetScript;
-            $chainedTargetScript = $params['autogenerates'];
-            $chainedTranscr = $this->_generateTranscription(
-                $sentence['id'],
-                $result[0]['text'],
-                $chainedLangScript,
-                $chainedTargetScript
-            );
-            if ($chainedTranscr) {
-                $chainedTranscr['parent_id'] = $transcr['id'];
-                if ($save) {
-                    $chainedTranscr['id'] = $this->findTranscriptionId(
-                        $chainedTranscr['sentence_id'],
-                        $chainedTranscr['script']
-                    );
-                    $this->create();
-                    if ($this->save($chainedTranscr)) {
-                        $this->read();
-                        $result[] = $this->data[$this->alias];
-                    }
-                } else {
-                    $result[] = $chainedTranscr;
-                }
-            }
-        }
         return $result;
     }
 
@@ -497,12 +471,6 @@ class Transcription extends AppModel
         $possibleScripts = $this->transcriptableToWhat($sentence);
         $existingScripts = Set::classicExtract($transcriptions, '{n}.script');
         $scriptsToGenerate = array_diff_key($possibleScripts, array_flip($existingScripts));
-        foreach ($scriptsToGenerate as $script => $process) {
-            if (isset($process['autogenerates']) && isset($scriptsToGenerate[$process['autogenerates']]))
-{
-                unset($scriptsToGenerate[$process['autogenerates']]);
-}
-        }
 
         foreach ($scriptsToGenerate as $script => $process) {
             $newTranscr = $this->generateTranscription($sentence, $script);

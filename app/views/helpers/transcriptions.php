@@ -51,24 +51,10 @@ class TranscriptionsHelper extends AppHelper
         $lang,
         $sentenceOwnerId
     ) {
-        $chained = array();
         foreach ($transcriptions as $script => $transcr) {
-            if (isset($transcr['parent_id'])) {
-                $chained[ $transcr['parent_id'] ] = $transcriptions[$script];
-                unset($transcriptions[$script]);
-            }
-        }
-
-        foreach ($transcriptions as $script => $transcr) {
-            if (isset($transcr['id']) && isset($chained[$transcr['id']])) {
-                $subTranscr = $chained[$transcr['id']];
-            } else {
-                $subTranscr = null;
-            }
             $this->displayTranscription(
                 $transcr,
                 $lang,
-                $subTranscr,
                 $sentenceOwnerId
             );
         }
@@ -77,7 +63,6 @@ class TranscriptionsHelper extends AppHelper
     private function displayTranscription(
         $transcr,
         $lang,
-        $subTranscr,
         $sentenceOwnerId
     ) {
         $this->Javascript->link('jquery.jeditable.js', false);
@@ -175,16 +160,6 @@ class TranscriptionsHelper extends AppHelper
             ));
         }
 
-        $class = 'transcription subTranscription';
-        $subTranscrDiv = '';
-        if ($subTranscr) {
-            $subTranscrDiv = $this->Languages->tagWithLang(
-                'div', $lang, $subTranscr['text'],
-                array('class' => $class),
-                $subTranscr['script']
-            );
-        }
-
         $class = 'transcriptionContainer';
         if ($needsReview) {
             $class .= ' needsReview';
@@ -194,7 +169,7 @@ class TranscriptionsHelper extends AppHelper
         }
         $hide = !$showAllTranscr && $needsReview;
         echo $this->Html->tag('div',
-            $infoDiv.$icon.$transcriptionDiv.$subTranscrDiv,
+            $infoDiv.$icon.$transcriptionDiv,
             array(
                 'escape' => false,
                 'class' => $class,
