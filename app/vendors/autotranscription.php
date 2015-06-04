@@ -142,14 +142,12 @@ class Autotranscription
                     $romanization .= $text;
                 }
             }
-            $romanization .= ' ';
         }
 
         return trim($romanization);
     }
 
     public function jpn_Jpan_to_Hrkt_validate($sentenceText, $transcr) {
-        $transcr = str_replace(' ', '', $transcr);
         $withoutFuri = preg_replace('/\[([^|]+)\|([\p{Hiragana}ー]+)\]/u', '$1', $transcr);
         if ($sentenceText !== $withoutFuri)
             return false;

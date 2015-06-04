@@ -22,8 +22,6 @@ class AutotranscriptionTestCase extends CakeTestCase {
         $testGood = array(
             '行けそう。' => array(
                 '[行|い]けそう。',
-                /* Allow spaces */
-                '[行|い]け そう 。',
             ),
             /* Allow mixing with other scripts */
             'ＡとＢは違う。' => array(
@@ -35,6 +33,8 @@ class AutotranscriptionTestCase extends CakeTestCase {
         );
         $testBad = array(
             '行けそう。' => array(
+                /* No spaces */
+                '[行|い]け そう 。',
                 /* No furigana */
                 '行けそう。',
                 /* Invalid furigana */
