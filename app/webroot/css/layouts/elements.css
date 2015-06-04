@@ -1405,29 +1405,24 @@ div.hideLink {
     height: 150px;
 }
 
-#ToolTypeFurigana, #ToolTypeRomaji {
-    margin-left: 30px;
-    margin-right: 10px;
-}
-
-#ToolRomajiFuriganaForm {
+#ToolFuriganaForm {
     font-size: 16px;
     margin: 20px;
 }
 
-#ToolRomajiFuriganaForm fieldset {
+#ToolFuriganaForm fieldset {
     border: none;
 }
 
-#ToolRomajiFuriganaForm legend {
+#ToolFuriganaForm legend {
     display: inline;
 }
 
-#ToolRomajiFuriganaForm div.submit, #ToolRomajiFuriganaForm p {
+#ToolFuriganaForm div.submit, #ToolFuriganaForm p {
     text-align: center;
 }
 
-#ToolRomajiFuriganaForm * {
+#ToolFuriganaForm * {
     font-size: 16px;
 }
 

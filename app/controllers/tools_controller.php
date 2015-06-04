@@ -89,15 +89,24 @@ class ToolsController extends AppController
      */
     public function romaji_furigana()
     {
+        $this->redirect(
+            array(
+                'action' => 'furigana'
+            ),
+            301
+        );
+    }
+
+    /**
+     * Furigana autogeneration
+     */
+    public function furigana()
+    {
         $query = '';
-        $type = 'romaji';
         $result = '';
         
         if (isset($_GET['query'])) {
             $query = $_GET['query'];
-        }
-        if (isset($_GET['type'])) {
-            $type = Sanitize::paranoid($_GET['type']);
         }
 
         $sentence = array(
@@ -107,13 +116,10 @@ class ToolsController extends AppController
         );
         if (!empty($query)) {
             $result = $this->Transcription->generateTranscription($sentence, 'Hrkt');
-            if ($result)
-                $result = ($type == 'romaji') ? $result[1] : $result[0];
+            $result = $result[0];
         }
         
-
         $this->set('query', $query);
-        $this->set('type', $type);
         $this->set('result', $result);
     }
 
