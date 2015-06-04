@@ -40,10 +40,6 @@ class SentenceTestCase extends CakeTestCase {
 			'jpn_Jpan_to_Hrkt_validate',
 			true
 		);
-		$autotranscription->setReturnValue(
-			'jpn_Hrkt_to_Latn_generate',
-			'transcription in romaji'
-		);
 	}
 
 	function _installAutotranscriptionMock() {
@@ -104,7 +100,7 @@ class SentenceTestCase extends CakeTestCase {
 		);
 	}
 
-    function testSentenceAdditionAddsTranscriptions() {
+    function testSentenceAdditionAddsTranscription() {
         $result = $this->Sentence->save(array(
             'text' => '歌舞伎ってご存知ですか？',
             'lang' => 'jpn'
@@ -114,7 +110,7 @@ class SentenceTestCase extends CakeTestCase {
             'count',
             array('conditions' => array('sentence_id' => $newSentence))
         );
-        $this->assertEqual(2, $transcriptions);
+        $this->assertEqual(1, $transcriptions);
     }
 
 	function testSentenceTextEditionUpdatesScript() {

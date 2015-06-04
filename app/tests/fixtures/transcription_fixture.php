@@ -29,10 +29,10 @@ class TranscriptionFixture extends CakeTestFixture {
 		),
 		array(
 			'id' => 2,
-			'sentence_id' => 6,
-			'parent_id' => 1,
-			'script' => 'Latn',
-			'text' => 'sono mondai no konpon gen\'in wa, gendai no sekai nioite, kenmei na hitobito ga saigishin ni michiteiru ippō de, oroka na hitobito ga jishin kajō de aru toiu koto de aru.',
+			'sentence_id' => 2,
+			'parent_id' => null,
+			'script' => 'Hant',
+			'text' => '問題的根源是，在當今世界，愚人充滿了自信，而智者充滿了懷疑。',
 			'user_id' => null,
 			'created' => '2014-10-18 17:43:32',
 			'modified' => '2014-10-18 17:43:32'

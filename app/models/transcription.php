@@ -35,15 +35,6 @@ class Transcription extends AppModel
     private $availableTranscriptions = array(
         'jpn-Jpan' => array(
             'Hrkt' => array(
-                'autogenerates' => 'Latn',
-            ),
-            'Latn' => array(
-                'readonly' => true,
-            ),
-        ),
-        'jpn-Hrkt' => array(
-            'Latn' => array(
-                'readonly' => true,
             ),
         ),
         'cmn-Hans' => array(
