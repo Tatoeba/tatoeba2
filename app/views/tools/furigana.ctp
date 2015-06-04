@@ -68,10 +68,12 @@ $this->set('title_for_layout', $pages->formatTitle(
         <h2><?php __('Autogenerate furigana over Japanese'); ?></h2>
         <?php
 
-        echo $languages->tagWithLang(
-            'div', 'ja', $transcriptions->transcriptionAsHTML('jpn', $result),
-            array('id' => 'conversion', 'escape' => false)
-        );
+        if ($result) {
+            echo $languages->tagWithLang(
+                'div', 'ja', $transcriptions->transcriptionAsHTML('jpn', $result),
+                array('id' => 'conversion', 'escape' => false)
+            );
+        }
 
         echo $form->create(
             'Tool',
