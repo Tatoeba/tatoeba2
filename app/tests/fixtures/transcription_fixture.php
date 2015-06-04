@@ -6,7 +6,6 @@ class TranscriptionFixture extends CakeTestFixture {
 	var $fields = array(
 		'id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'primary'),
 		'sentence_id' => array('type' => 'integer', 'null' => false, 'default' => NULL, 'key' => 'index'),
-		'parent_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
 		'script' => array('type' => 'string', 'null' => false, 'default' => NULL, 'length' => 4, 'collate' => 'utf8_general_ci', 'charset' => 'utf8'),
 		'text' => array('type' => 'text', 'null' => false, 'default' => NULL, 'length' => 10000),
 		'user_id' => array('type' => 'integer', 'null' => true, 'default' => NULL),
@@ -20,7 +19,6 @@ class TranscriptionFixture extends CakeTestFixture {
 		array(
 			'id' => 1,
 			'sentence_id' => 6,
-			'parent_id' => null,
 			'script' => 'Hrkt',
 			'text' => 'その[問題|もんだい]の[根本|こんぽん][原因|げんいん]は、[現代|げんだい]の[世界|せかい]において、[賢明|けんめい]な[人々|ひとびと]が[猜疑心|さいぎしん]に[満|み]ちている[一方|いっぽう]で、[愚|おろ]かな[人々|ひとびと]が[自信|じしん][過剰|かじょう]であるということである。',
 			'user_id' => 7,
@@ -30,7 +28,6 @@ class TranscriptionFixture extends CakeTestFixture {
 		array(
 			'id' => 2,
 			'sentence_id' => 2,
-			'parent_id' => null,
 			'script' => 'Hant',
 			'text' => '問題的根源是，在當今世界，愚人充滿了自信，而智者充滿了懷疑。',
 			'user_id' => null,
@@ -40,7 +37,6 @@ class TranscriptionFixture extends CakeTestFixture {
 		array(
 			'id' => 3,
 			'sentence_id' => 10,
-			'parent_id' => null,
 			'script' => 'Hrkt',
 			'text' => 'ちょっと [待|ま]って 。',
 			'user_id' => null,

@@ -92,10 +92,6 @@ class Transcription extends AppModel
                 'on' => 'create',
             ),
         ),
-        'parent_id' => array(
-            'rule' => 'numeric',
-            'allowEmpty' => true,
-        ),
         'text' => array(
             'onCreation' => array(
                 'rule' => 'notEmpty',
@@ -127,10 +123,6 @@ class Transcription extends AppModel
     public $belongsTo = array(
         'Sentence',
         'User',
-        'SourceTranscription' => array(
-            'className' => 'Transcription',
-            'foreignKey' => 'parent_id',
-        ),
     );
 
     public function setAutotranscription($object) {
@@ -412,7 +404,6 @@ class Transcription extends AppModel
 
             $transcr = array(
                 'sentence_id' => $sentenceId,
-                'parent_id' => null,
                 'script' => $targetScript,
                 'text' => $transcrText,
                 'user_id' => null,
