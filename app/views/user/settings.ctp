@@ -56,8 +56,8 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         </div>
         
         <div>
-            <?php echo $form->checkbox('is_public'); ?>
-            <label for="UserIsPublic">
+            <?php echo $form->checkbox('settings.is_public'); ?>
+            <label for="UserSettingsIsPublic">
                 <?php __('Set your profile public?'); ?>
             </label>
         </div>
@@ -74,8 +74,8 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         </div>
         
         <div>
-            <?php echo $form->checkbox('use_most_recent_list'); ?>
-            <label for="UserUseMostRecentList">
+            <?php echo $form->checkbox('settings.use_most_recent_list'); ?>
+            <label for="UserSettingsUseMostRecentList">
                 <?php __(
                     'Remember the last list to which you assigned a '.
                     'sentence, and select it by default.'
@@ -84,8 +84,8 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         </div>
 
         <div>
-            <?php echo $form->checkbox('collapsible_translations_enabled'); ?>
-            <label for="UserCollapsibleTranslationsEnabled">
+            <?php echo $form->checkbox('settings.collapsible_translations'); ?>
+            <label for="UserSettingsCollapsibleTranslations">
                 <?php __(
                     'Display a link to expand/collapse translations '.
                     'when there are too many translations.'
@@ -94,8 +94,8 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         </div>
         
         <div>
-            <?php echo $form->checkbox('restrict_search_langs_enabled'); ?>
-            <label for="RestrictSearchLangsEnabled">
+            <?php echo $form->checkbox('settings.restrict_search_langs'); ?>
+            <label for="UserSettingsRestrictSearchLangs">
                 <?php __(
                     'Restrict languages listed in the search bar '.
                     'to the ones in your profile.'
@@ -112,7 +112,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
             'languages.', true
         );
         echo $form->input(
-            'lang', 
+            'settings.lang',
             array(
                 'label' => __('Languages', true),
                 'after' => '<div>'.$tip.'</div>'

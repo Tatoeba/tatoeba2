@@ -47,7 +47,7 @@ $userSince = $user['since'];
 $userStatus = $members->groupName($groupId);
 $statusClass = 'status'.$groupId;
 $currentMember = CurrentUser::get('username');
-$languagesSettings = $user['lang'];
+$languagesSettings = $user['settings']['lang'];
 $level = $user['level'];
 $countryName = $this->Countries->getCountryNameByCode($user['country_id']);
 

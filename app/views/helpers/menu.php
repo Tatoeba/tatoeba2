@@ -353,7 +353,7 @@ class MenuHelper extends AppHelper
      */
     public function addToListButton($sentenceId, $isLogged)
     {
-        $useMostRecentList = $this->Session->read('use_most_recent_list');
+        $useMostRecentList = CurrentUser::get('settings.use_most_recent_list');
         if ($useMostRecentList != null && $useMostRecentList) {
             $mostRecentList = $this->Session->read('most_recent_list');
         } else {

@@ -122,6 +122,40 @@ class User extends AppModel
         )
     );
 
+    private $defaultSettings = array(
+        'is_public' => false,
+        'lang' => null,
+        'use_most_recent_list' => false,
+        'collapsible_translations' => false,
+        'restrict_search_langs' => false,
+    );
+
+    public function afterFind($results, $primary = false) {
+        foreach ($results as &$result) {
+            if (isset($result['User']) && array_key_exists('settings', $result['User'])) {
+                $result['User']['settings'] = (array)json_decode(
+                    $result['User']['settings']
+                );
+                $result['User']['settings'] = array_merge(
+                    $this->defaultSettings,
+                    $result['User']['settings']
+                );
+            }
+        }
+        return $results;
+    }
+
+    public function beforeSave($options = array()) {
+        if (array_key_exists('settings', $this->data['User'])
+            && is_array($this->data['User']['settings'])) {
+            $settings = $this->field('settings', array('id' => $this->id));
+            $settings = array_merge($settings, $this->data['User']['settings']);
+            $settings = array_intersect_key($settings, $this->defaultSettings);
+            $this->data['User']['settings'] = json_encode($settings);
+        }
+        return true;
+    }
+
     /**
      * ?
      *
@@ -208,11 +242,10 @@ class User extends AppModel
                     'since',
                     'send_notifications',
                     'description',
+                    'settings',
                     'username',
                     'birthday',
-                    'is_public',
                     'group_id',
-                    'lang',
                     'level',
                     'country_id'
                 )
@@ -235,10 +268,9 @@ class User extends AppModel
             array(
                 'conditions' => array('id' => $userId),
                 'fields' => array(
-                    'is_public',
                     'send_notifications',
+                    'settings',
                     'email',
-                    'lang'
                 )
             )
         );
