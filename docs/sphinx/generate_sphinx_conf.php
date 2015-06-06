@@ -146,6 +146,8 @@ $charsetTableBase = array(
     # Hangul halfwidth to fullwidth
     'U+FFA1..U+FFBE->U+3131..U+314E', 'U+FFC2..U+FFC7->U+314F..U+3154',
     'U+FFCA..U+FFCF->U+3155..U+315A', 'U+FFD2..U+FFD7->U+315B..U+3160', 'U+FFDA..U+FFDC->U+3161..U+3163',
+    # CJK
+    'U+3000..U+FEFF', 'U+FFF0..U+2FA1F',
 );
 
 $languagesWithoutWordBoundaries = array(
