@@ -73,7 +73,7 @@ class User extends AppModel
             'min' => array('rule' => array('minLength', 2))
         ),
         'email' => array(
-            'email' => array('rule' => 'email'),
+            'email' => array('rule' => '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/'),
             'isUnique' => array('rule' => 'isUnique')
         ),
         'lastlogout' => array('numeric'),
