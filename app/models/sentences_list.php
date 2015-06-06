@@ -153,7 +153,7 @@ class SentencesList extends AppModel
                 )
             ),
             'order' => 'created DESC',
-            'limit' => 20
+            'limit' => 50
         );
     }
 
