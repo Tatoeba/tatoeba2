@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: Tatoeba Website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-05-15 04:30+0000\n"
-"PO-Revision-Date: 2015-05-19 01:13+0000\n"
+"PO-Revision-Date: 2015-05-24 22:52+0000\n"
 "Last-Translator: Lisa <pfirsichbaeumchen@tatoeba.org>\n"
 "Language-Team: German (http://www.transifex.com/projects/p/tatoeba_website/language/de/)\n"
 "MIME-Version: 1.0\n"
@@ -152,8 +152,8 @@ msgid ""
 msgid_plural ""
 "The download feature has been disabled for this list because it contains "
 "{n}&nbsp;sentences."
-msgstr[0] "Diese Liste kann nicht heruntergeladen werden, weil sie {n}&nbsp;Sätze enthält."
-msgstr[1] "Diese Listen können nicht heruntergeladen werden, weil sie zu viele Sätze enthalten."
+msgstr[0] "Diese Liste kann nicht heruntergeladen werden, weil sie einen Satz enthält."
+msgstr[1] "Diese Liste ist mit {n} Sätzen zu umfangreich zum Herunterladen."
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/controllers/sentences_lists_controller.php#L222
 msgid ""
@@ -163,7 +163,7 @@ msgid_plural ""
 "Only lists containing {max} or fewer sentences can be downloaded. If you can"
 " edit the list, you may want to split it into multiple lists."
 msgstr[0] "Es können nur Listen mit einem Satz heruntergeladen werden. Du hast die Möglichkeit, Listen, die du bearbeiten kannst, in mehrere kürzere Listen aufzuteilen."
-msgstr[1] "Es können nur Listen mit {max} oder weniger Sätzen heruntergeladen werden. Du hast die Möglichkeit, Listen, die du bearbeiten kannst, in mehrere kürzere Listen aufzuteilen."
+msgstr[1] "Es können nur Listen mit {max} oder weniger Sätzen heruntergeladen werden."
 
 #. @translators: this string is used to concatenate two sentences.
 #. You typically want to change this to {firstSentence}{secondSentence}
