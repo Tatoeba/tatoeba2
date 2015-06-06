@@ -23,7 +23,6 @@ $(document).ready(function(){
     function closeThisReplyForm(thisForm){
         // replace "close"  by "reply"  
         $("#reply_"+previousReplyFormInMessageID).attr("class" ,"replyLink " + previousReplyFormInMessageID );
-        $("#reply_"+previousReplyFormInMessageID).html("reply"); 
         // alert ("already exist") ; 
         // we remove the previous inside reply form 
         $("#replyFormDiv_" + previousReplyFormInMessageID ).remove();
@@ -54,7 +53,6 @@ $(document).ready(function(){
                 $("#messageBody_" + previousReplyFormInMessageID).append(data);
                 // replace "close"  by "reply"  
                 $("#reply_"+previousReplyFormInMessageID).attr("class" ,"replyLink " + previousReplyFormInMessageID );
-                $("#reply_"+previousReplyFormInMessageID).html("reply"); 
                 // alert ("already exist") ; 
                 // we remove the previous inside reply form 
                 $("#replyFormDiv_" + previousReplyFormInMessageID ).remove();
@@ -87,7 +85,6 @@ $(document).ready(function(){
         if (aReplyFormAlreadyExist ){
              // replace "close"  by "reply"  
             $("#reply_"+previousReplyFormInMessageID).attr("class" ,"replyLink " + previousReplyFormInMessageID );
-            $("#reply_"+previousReplyFormInMessageID).html("reply"); 
         // alert ("already exist") ; 
             // we remove the previous inside reply form 
             $("#replyFormDiv_" + previousReplyFormInMessageID ).remove();
@@ -101,7 +98,6 @@ $(document).ready(function(){
 
             // replace "reply"  by "close"  
             messageToReplyTo.attr("class" ,"closeLink " + currentMessageId );
-            messageToReplyTo.html("close"); 
             // i know that's a bit "hacky" to retrieve the send message form
             // but that way we're sure to always have a coherent form, and 
             // we only need to change the helper
@@ -120,7 +116,7 @@ $(document).ready(function(){
                  "<div id=\"replyFormDiv_"+currentMessageId+"\" class=\"message form\" >"
                 + sendMessageForm.html()
                 +"</div>" );
-            $.scrollTo('#replyFormDiv_' + currentMessageId, 800, {offset: -50});
+            $.scrollTo('#replyFormDiv_' + currentMessageId, 800, {offset: -100});
             previousReplyFormInMessageID = currentMessageId ; 
             
             // focus on textarea
