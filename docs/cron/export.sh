@@ -4,7 +4,7 @@ set -e
 PATH=$PATH:/usr/local/mysql/bin
 ROOT='/var/www-prod'
 
-mysql -u "$DB_USER" -p "$DB_PASS" < /var/www-prod/docs/database/scripts/weekly_exports.sql
+mysql -u "$DB_USER" -p"$DB_PASS" "$DB" < /var/www-prod/docs/database/scripts/weekly_exports.sql
 
 DL_DIR="$ROOT""/app/webroot/files/downloads/"
 mv /var/tmp/* "$DL_DIR"
