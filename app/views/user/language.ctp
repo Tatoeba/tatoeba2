@@ -32,6 +32,8 @@ if (empty($this->data)) {
     $title = __('Edit language', true);
     $submitLabel = __('Save', true);
 }
+
+$this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
 ?>
 <div id="annexe_content">
     <?php
