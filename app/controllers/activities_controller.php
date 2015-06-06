@@ -182,6 +182,7 @@ class ActivitiesController extends AppController
                 'conditions' => $conditions,
                 'contain' => array(),
                 'limit' => 10,
+                'order' => 'created DESC'
             )
         );
 
