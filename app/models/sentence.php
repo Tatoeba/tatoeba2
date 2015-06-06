@@ -195,7 +195,8 @@ class Sentence extends AppModel
 
     private function updateTags($created)
     {
-        if (!$created) {
+        $edited = array_key_exists('text', $this->data[$this->alias]);
+        if (!$created && $edited) {
             $OKTagId = $this->Tag->getIdFromName($this->Tag->getOKTagName());
             $this->TagsSentences->removeTagFromSentence($OKTagId, $this->id);
         }

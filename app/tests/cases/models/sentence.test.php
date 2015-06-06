@@ -117,6 +117,23 @@ class SentenceTestCase extends CakeTestCase {
 		);
 	}
 
+	function testSentenceDontLoosesOKTagOnFlagChange() {
+		$sentenceId = 2;
+		$OKTagId = $this->Sentence->Tag->getIdFromName(
+			$this->Sentence->Tag->getOKTagName()
+		);
+		$this->assertTrue(
+			$this->Sentence->TagsSentences->isSentenceTagged($sentenceId, $OKTagId)
+		);
+		$this->Sentence->save(array(
+			'id' => $sentenceId,
+			'lang' => 'ita',
+		));
+		$this->assertTrue(
+			$this->Sentence->TagsSentences->isSentenceTagged($sentenceId, $OKTagId)
+		);
+	}
+
 	function testSphinxAttributesChanged_onLetGo() {
 		$sentenceId = 1;
 		$expectedAttributes = array('user_id');
