@@ -52,6 +52,7 @@ $max = $stats[0]['Language']['sentences'];
     <tr>
         <th></th>
         <th></th>
+        <th></th>
         <th><?php __('Language'); ?></th>
         <th><?php __('Sentences'); ?></th>
     </tr>
@@ -95,6 +96,7 @@ $max = $stats[0]['Language']['sentences'];
 
         echo $html->tag('td', $rank);
         echo $html->tag('td', $languageIcon);
+        echo $html->tag('td', $langCode);
         echo $html->tag('td', $languageLink);
         echo $html->tag('td', $numSentencesDiv, array('class' => 'num-sentences'));
 
