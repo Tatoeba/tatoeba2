@@ -602,19 +602,20 @@ svg {
     content: "\00BB \0020";
 }
 
-.contactLink {
-    margin-top: 20px;
-    background: url('../../img/pm.svg') no-repeat;
+.profile-actions {
+    margin: 20px 0;
 }
 
-.contactLink:hover {
-    background: url('../../img/pm-hover.svg') no-repeat;
-}
-
-.contactLink a{
+.profile-action-item {
     display: block;
-    padding-left: 30px;
-    line-height: 24px;
+    margin: 5px 0;
+}
+
+.profile-action-item svg,
+.profile-action-item span {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 3px;
 }
 
 .loading-icon {
