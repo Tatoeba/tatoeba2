@@ -55,16 +55,15 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
         echo $html->tag('p', $createdBy);
         echo $html->tag('p', $createdDate);
         echo $html->tag('p', $listType);
-        $n = count($sentencesInList);
         $numberOfSentencesMsg = format(
             __n(
                 /* @translators: number of sentences contained in the list */
                 'Contains one sentence',
                 'Contains {n}&nbsp;sentences',
-                $n,
+                $listCount,
                 true
             ),
-            compact('n')
+            array('n' => $listCount)
         );
         echo $html->tag('p', $numberOfSentencesMsg);
         ?>

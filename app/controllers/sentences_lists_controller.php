@@ -189,6 +189,7 @@ class SentencesListsController extends AppController
         $this->set('isListPublic', $isListPublic);
         $this->set('belongsToUser', $belongsToUser);
         $this->set('canRemoveSentence', $canRemoveSentence);
+        $this->set('listCount', $thisListCount);
     }
 
 
