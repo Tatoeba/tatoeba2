@@ -58,7 +58,7 @@ $this->set('title_for_layout', $pages->formatTitle($listName));
         $numberOfSentencesMsg = format(
             __n(
                 /* @translators: number of sentences contained in the list */
-                'Contains one sentence',
+                'Contains {n}&nbsp;sentence',
                 'Contains {n}&nbsp;sentences',
                 $listCount,
                 true
