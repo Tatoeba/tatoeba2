@@ -29,7 +29,10 @@ class AutotranscriptionTestCase extends CakeTestCase {
             ),
             '「やっと２人になれたね。」' => array(
                 '「やっと[２人|ふたり]になれたね。」',
-            )
+            ),
+            'Perfumeの曲' => array(
+                '[Perfume|パフューム]の[曲|きょく]',
+            ),
         );
         $testBad = array(
             '行けそう。' => array(

@@ -148,11 +148,13 @@ class Autotranscription
     }
 
     public function jpn_Jpan_to_Hrkt_validate($sentenceText, $transcr) {
-        $withoutFuri = preg_replace('/\[([^|]+)\|([\p{Hiragana}ー]+)\]/u', '$1', $transcr);
+        $tokenizeFuriRegex = '/\[([^|]+)\|([\p{Hiragana}\p{Katakana}ー]+)\]/u';
+
+        $withoutFuri = preg_replace($tokenizeFuriRegex, '$1', $transcr);
         if ($sentenceText !== $withoutFuri)
             return false;
 
-        $withFuri = preg_replace('/\[([^|]+)\|([\p{Hiragana}ー]+)\]/u', '$2', $transcr);
+        $withFuri = preg_replace($tokenizeFuriRegex, '$2', $transcr);
         if (preg_match("/[\p{Han}]/u", $withFuri))
             return false;
 
