@@ -39,6 +39,22 @@ $(document).ready(function() {
        transcribeButton.show();
     });
 
+    function markupToStored(lang, text) {
+        if (lang == 'ja-Hrkt') {
+            text = text.replace(
+                // Converts the kanji｛reading｝ notation into [kanji|reading]
+                // \p{Hiragana}: \u3041-\u3096\u309d\u309e
+                // \p{Katakana}: \u30a1-\u30fa\u30fd\u30fe
+                // ー: \u30fc
+                // ｛: \uff5b
+                // ｝: \uff5d
+                /([^\u3041-\u3096\u309d\u309e\u30a1-\u30fa\u30fd\u30fe\u30fc]*)\uff5b([^\uff5d]*)\uff5d/g,
+                '[$1|$2]'
+            );
+        }
+        return text;
+    }
+
     $('.editable.transcription').each(function() {
         var div = $(this);
         var previousValue = {};
@@ -70,6 +86,13 @@ $(document).ready(function() {
                 $(self).find("textarea").each(function(idx) {
                     previousValue[idx] = $(this).val();
                 });
+
+                // Format entered transcription
+                var input = $(this).find("textarea");
+                var entered = input.val();
+                var storedFormat = markupToStored($(self).attr('lang'), entered);
+                input.val(storedFormat);
+
                 // Handle reset button
                 if (self.resetClicked) {
                     settings.target = settings.target.replace(/\/save\//, '/reset/');

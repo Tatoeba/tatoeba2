@@ -37,6 +37,16 @@ class TranscriptionsHelper extends AppHelper
     }
 
     /**
+     * Transforms "[kanji|reading]" into kanji｛reading｝
+     */
+    private function _bracketify($formatted) {
+        return preg_replace(
+            '/\[([^|]*)\|([^\]]*)\]/',
+            '$1｛$2｝',
+            $formatted);
+    }
+
+    /**
      * Display transcriptions.
      *
      * @param array  $transcriptions List of transcriptions.
@@ -185,9 +195,15 @@ class TranscriptionsHelper extends AppHelper
     public function transcriptionAsHTML($lang, $transcr) {
         $text = Sanitize::html($transcr['text']);
 
-        if ($transcr['script'] == 'Hrkt')
-            $text = $this->_rubify($text);
-        elseif ($lang == 'cmn' && $transcr['script'] == 'Latn') {
+        if ($transcr['script'] == 'Hrkt') {
+            $ruby = $this->_rubify($text);
+            $bracketed = $this->_bracketify($text);
+            $text = $this->Html->tag('span', $bracketed, array(
+                'style' => 'display:none',
+                'class' => 'markup',
+            ));
+            $text .= $ruby;
+        } elseif ($lang == 'cmn' && $transcr['script'] == 'Latn') {
             $pinyin = $this->Pinyin->numeric2diacritic($text);
             $text = $this->Html->tag('span', $text, array(
                 'style' => 'display:none',
