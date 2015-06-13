@@ -40,25 +40,39 @@ class RTLPunctFixer(PythonMySQLConnector):
     def process_args(self, argv):
         PythonMySQLConnector.process_args(self, argv)
 
-    def process(self):
+    def process_punct(self, punct_str):
         total_missing_files = 0
         if not (self.parsed.dry_run):
             print('Processing...')
-        cursor = self.cnx.cursor()
+        cursor = self.cnx.cursor(buffered=True)
         # To be modified for different initial punctuation.
-        stmt = "SELECT id FROM sentences WHERE lang='{0}' and text REGEXP '^\\\\...[^.];".format(
-            self.parsed.lang)
+        stmt = r"SELECT id, text FROM sentences WHERE lang = '{0}' and text REGEXP '^\\{1}[^{1}]';".format(
+            self.parsed.lang, punct_str)
+
+        #print('stmt: {0}'.format(stmt))
         cursor.execute(stmt)
-        self.cnx.commit()        
-        cursor.close()
+        self.cnx.commit()    
         total_bad_sents = 0
-        for i in cursor:
-            print("i: {0}".format(i))
-        # print("{0}SUMMARY{0}".format(AudioMismatchFinder.stars))
-        # print("Total sentences missing audio files: {0}".format(total_missing_files))
-        # print("Total sentences (some of which may no longer exist) with audio files but not marked as having audio: {0}".format(total_missing_ids))
-        # print("Total sentences skipped due to language mismatch: {0}".format(total_skipped_sentences))
+        items = [i for i in cursor]
+        for i in items:
+            self.print_output("{0}:".format(i[0]))
+            new_text = i[1][1:]
+            new_text.append(punct_str)
+            stmt = "UPDATE sentences SET text = '{0}' WHERE id = {1}".format(new_text, i[0])
+            #print('stmt: {0}'.format(stmt))
+            self.print_output("INITIAL: '{0}'\n  FINAL: '{1}'".format(i[1], new_text))
+            if not (self.parsed.dry_run):
+                cursor.execute(stmt)
+                self.cnx.commit()    
+        cursor.close()
+        self.print_output("{0}SUMMARY{0}".format(RTLPunctFixer.stars))
+        self.print_output("Total sentences for which '{0}' {1} moved: {2}".format(punct_str, 
+                                                                                  'would have been' if self.parsed.dry_run else 'was', len(items)))
               
+    def process(self):
+        for punct_str in ('.', '?', '!'):
+            self.process_punct(punct_str)
+
 if __name__ == "__main__":
     user = 'root'
 
