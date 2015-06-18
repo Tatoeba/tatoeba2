@@ -70,6 +70,23 @@ class LanguagesHelper extends AppHelper
         }
     }
 
+    private function separatePreferredLanguages($languages)
+    {
+        $filter = CurrentUser::getProfileLanguages();
+        if (!$filter) {
+            return $languages;
+        }
+        $preferred = array();
+        foreach ($filter as $prefLang) {
+            $preferred[$prefLang] = $languages[$prefLang];
+            unset($languages[$prefLang]);
+        }
+        return array(
+            __('Preferred languages', true) => $preferred,
+            __('Other languages', true)     => $languages,
+        );
+    }
+
     public function onlyLanguagesArray()
     {
         if (!$this->__languages_alone) {
@@ -79,7 +96,8 @@ class LanguagesHelper extends AppHelper
             );
             $this->localizedAsort($this->__languages_alone);
         }
-        return $this->__languages_alone;
+
+        return $this->separatePreferredLanguages($this->__languages_alone);
     }
 
 
