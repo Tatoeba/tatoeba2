@@ -135,7 +135,7 @@
                 'time' => is_null($session->read('search_from'))
                           && is_null($session->read('search_to'))
                           && is_null($session->read('search_query'))
-                          && !CurrentUser::get('settings.restrict_search_langs')
+                          && !CurrentUser::getProfileLanguages()
                           ? '+1 day' : false,
                 'key' => Configure::read('Config.language')
             )
