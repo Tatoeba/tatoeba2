@@ -98,7 +98,7 @@ class LanguagesHelper extends AppHelper
         );
     }
 
-    public function onlyLanguagesArray()
+    public function onlyLanguagesArray($split = true)
     {
         if (!$this->__languages_alone) {
             $this->__languages_alone = array_map(
@@ -108,7 +108,11 @@ class LanguagesHelper extends AppHelper
             $this->localizedAsort($this->__languages_alone);
         }
 
-        return $this->separatePreferredLanguages($this->__languages_alone);
+        $languages = $this->__languages_alone;
+        if ($split) {
+            $languages = $this->separatePreferredLanguages($languages);
+        }
+        return $languages;
     }
 
 
@@ -146,7 +150,7 @@ class LanguagesHelper extends AppHelper
     public function profileLanguagesArray($withAutoDetection, $withOther, $withAny)
     {
         $languages = array_intersect_key(
-            $this->onlyLanguagesArray(),
+            $this->onlyLanguagesArray(false),
             array_flip(CurrentUser::getProfileLanguages())
         );
 
