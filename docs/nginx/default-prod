@@ -1,5 +1,5 @@
 server {
-	server_name www.tatoeba.org;
+	server_name *.tatoeba.org;
 	return 301 $scheme://tatoeba.org$request_uri;
 }
 
