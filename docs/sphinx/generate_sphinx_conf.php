@@ -77,6 +77,8 @@ $charsetTableBase = array(
     'U+0240', 'U+0241->U+0242', 'U+0242', 'U+0243->U+0180', 'U+0244->U+0289', 'U+0245->U+028C', 'U+0246..U+024F/2',
     # Latin Extended Additional, with case folding (1E00-1EFF)
     'U+1E00..U+1E95/2', 'U+1E96..U+1E9F', 'U+1EA0..U+1EFF/2',
+    # Combining Diacritical Marks
+    'U+300..U+36F',
     # Arabic
     'U+621..U+63a', 'U+640..U+64a',
     'U+66e..U+66f', 'U+671..U+6d3', 'U+6d5', 'U+6e5..U+6e6', 'U+6ee..U+6ef', 'U+6fa..U+6fc', 'U+6ff',
