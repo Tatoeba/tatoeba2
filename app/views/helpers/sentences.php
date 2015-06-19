@@ -266,7 +266,7 @@ class SentencesHelper extends AppHelper
      */
     private function _displayNewTranslationForm($id)
     {
-        $langArray = $this->Languages->profileLanguagesArray(true, false, false);
+        $langArray = $this->Languages->profileLanguagesArray(true, false);
 
         ?>
         <div id="translation_for_<?php echo $id; ?>" class="addTranslations">

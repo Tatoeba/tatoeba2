@@ -148,12 +148,11 @@ class LanguagesHelper extends AppHelper
      *
      * @param bool   $withAutoDetection Set to true if "Auto detect" should be one of the options.
      * @param bool   $withOther Set to true if "Other language" should be one of the options.
-     * @param bool   $withAny Set to true if "Any" should be one of the options.
      *
      * @return void
      */
 
-    public function profileLanguagesArray($withAutoDetection, $withOther, $withAny)
+    public function profileLanguagesArray($withAutoDetection, $withOther)
     {
         $languages = array_intersect_key(
             $this->onlyLanguagesArray(false),
@@ -163,9 +162,6 @@ class LanguagesHelper extends AppHelper
         $numLanguages = count(CurrentUser::getProfileLanguages());
         if (count($languages) > 1 && $withAutoDetection) {
             array_unshift($languages, array('auto' => __('Auto detect', true)));
-        }
-        if ($withAny) {
-            array_unshift($languages, array('und' => __('Any', true)));
         }
         if ($withOther) {
             array_unshift($languages, array('' => __('other language', true)));
