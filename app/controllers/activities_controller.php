@@ -172,6 +172,7 @@ class ActivitiesController extends AppController
         );
         if (!empty($lang)) {
             $conditions['lang'] = $lang;
+            $this->addLastUsedLang($lang);
         }
 
         $this->paginate = array(
