@@ -92,9 +92,15 @@ class LanguagesHelper extends AppHelper
             }
         }
         $this->localizedAsort($preferred);
+
+        if (CurrentUser::isMember()) {
+            $filterName = __('Profile languages', true);
+        } else {
+            $filterName = __('Last used languages', true);
+        }
         return array(
-            __('Preferred languages', true) => $preferred,
-            __('Other languages', true)     => $languages,
+            $filterName                 => $preferred,
+            __('Other languages', true) => $languages,
         );
     }
 
