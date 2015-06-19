@@ -186,6 +186,20 @@ $indexExtraOptions = array(
                 function($v) { return $v != 'A..Z->a..z' && $v != 'a..z'; }
             )
         ))."\n",
+    /* Russian uses diacritics only to stress words and it's easier
+     * to search if they are ignored. Since all the Russian diacritics
+     * are not single characters but combining characters (e.g. и + ´ = и́)
+     * we simply ignore the *´* combining char (U+301) so that characters
+     * are considered not having a diacritic. */
+    'rus' => "
+        charset_table = ".implode(', ', array_merge(
+            array('U+300', 'U+302..U+36F'),
+            array_filter(
+                $charsetTableBase,
+                function($v) { return $v != 'U+300..U+36F'; }
+            )
+        ))."
+        ignore_chars = U+AD, U+301\n",
 );
 ?>
 
