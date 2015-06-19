@@ -208,6 +208,8 @@ index common_index
     ignore_chars            = U+AD
     charset_table           = <?php echo implode(", ", $charsetTableBase); ?>
 
+    enable_star             = 1
+    min_infix_len           = 3
     docinfo                 = extern
     charset_type            = utf-8
 }
