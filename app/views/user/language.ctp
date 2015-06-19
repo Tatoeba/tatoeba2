@@ -93,7 +93,7 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
         // Details
         echo $html->tag(
             'label',
-            __('Details (optional)', true),
+            __('Details (optional). For instance, which dialect or from which country.', true),
             array('for' => 'AddUsersLanguagesDetails')
         );
         echo $form->textarea('details');
