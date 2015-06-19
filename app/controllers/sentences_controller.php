@@ -512,6 +512,8 @@ class SentencesController extends AppController
         $this->Session->write('search_query', $query);
         $this->Session->write('search_from', $from);
         $this->Session->write('search_to', $to);
+        $this->addLastUsedLang($from);
+        $this->addLastUsedLang($to);
 
         // replace strange space
         $query = str_replace(

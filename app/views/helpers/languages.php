@@ -39,7 +39,7 @@ App::import('Vendor', 'LanguagesLib');
  */
 class LanguagesHelper extends AppHelper
 {
-    public $helpers = array('Html');
+    public $helpers = array('Html', 'Session');
 
     /* Memoization of languages code and their localized names */
     private $__languages_alone;
@@ -70,16 +70,27 @@ class LanguagesHelper extends AppHelper
         }
     }
 
+    public function preferredLanguageFilter() {
+        if (CurrentUser::isMember()) {
+            $filter = CurrentUser::getProfileLanguages();
+        } else {
+            $filter = $this->Session->read('last_used_lang');
+        }
+        return $filter;
+    }
+
     private function separatePreferredLanguages($languages)
     {
-        $filter = CurrentUser::getProfileLanguages();
+        $filter = $this->preferredLanguageFilter();
         if (!$filter) {
             return $languages;
         }
         $preferred = array();
         foreach ($filter as $prefLang) {
-            $preferred[$prefLang] = $languages[$prefLang];
-            unset($languages[$prefLang]);
+            if (isset($languages[$prefLang])) {
+                $preferred[$prefLang] = $languages[$prefLang];
+                unset($languages[$prefLang]);
+            }
         }
         return array(
             __('Preferred languages', true) => $preferred,
