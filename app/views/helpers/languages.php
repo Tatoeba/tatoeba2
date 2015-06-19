@@ -72,11 +72,10 @@ class LanguagesHelper extends AppHelper
 
     public function preferredLanguageFilter() {
         if (CurrentUser::isMember()) {
-            $filter = CurrentUser::getProfileLanguages();
+            return CurrentUser::getProfileLanguages();
         } else {
-            $filter = $this->Session->read('last_used_lang');
+            return $this->Session->read('last_used_lang');
         }
-        return $filter;
     }
 
     private function separatePreferredLanguages($languages)
@@ -92,6 +91,7 @@ class LanguagesHelper extends AppHelper
                 unset($languages[$prefLang]);
             }
         }
+        $this->localizedAsort($preferred);
         return array(
             __('Preferred languages', true) => $preferred,
             __('Other languages', true)     => $languages,
