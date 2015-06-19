@@ -272,6 +272,7 @@ class UsersController extends AppController
     public function logout()
     {
         $this->RememberMe->delete();
+        $this->Session->delete('last_used_lang');
         $this->redirect($this->Auth->logout());
     }
 
