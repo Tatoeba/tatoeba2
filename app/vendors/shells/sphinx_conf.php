@@ -218,7 +218,6 @@ index common_index
     ignore_chars            = U+AD
     charset_table           = $charset_table_opt
     docinfo                 = extern
-    charset_type            = utf-8
 }
 
 index cjk_common_index : common_index
@@ -376,14 +375,13 @@ indexer
 
 searchd
 {
-    port                    = 9312
+    listen                  = 9312
     log                     = $log_opt
     query_log               = $query_log_opt
     read_timeout            = 5
     max_children            = 30
 
     pid_file                = {$this->configs['sphinx']['pidfile']}
-    max_matches             = 1000
     seamless_rotate         = 1
     preopen_indexes         = 1
     unlink_old              = 1
