@@ -121,6 +121,13 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         ?>
         </div>
         
+        <div>
+            <?php echo $form->input('settings.sentences_per_page', array(
+                 'options' => array(10 => 10, 20 => 20, 50 => 50, 100 => 100),
+                 'label' => __('Number of sentences per page', true),
+            )); ?>
+        </div>
+
         <?php echo $form->end(__('Save', true)); ?>
     </div>
     
