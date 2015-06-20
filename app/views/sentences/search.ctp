@@ -150,7 +150,6 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                 'no' => __('No', true),
                 'yes' => __('Yes', true),
             ),
-            'after' => $orphansNote,
             'value' => $trans_orphan,
         ));
     ?>
