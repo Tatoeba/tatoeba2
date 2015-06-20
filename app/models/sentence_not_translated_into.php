@@ -102,10 +102,9 @@ class SentenceNotTranslatedInto extends AppModel
             WHERE Sentence.lang = '$source' $filterAudio
               AND Sentence.id NOT IN
               (
-                SELECT DISTINCT s.id FROM sentences s
-                  JOIN sentences_translations st ON ( s.id = st.sentence_id )
-                  JOIN sentences t on ( st.translation_id = t.id )
-                WHERE s.lang = '$source' AND t.lang = '$target'
+                SELECT sentence_id FROM sentences_translations
+                WHERE sentence_lang = '$source'
+                  AND translation_lang = '$target'
               )
             ORDER BY Sentence.id DESC
             LIMIT $limitLow,$limit;
@@ -149,19 +148,18 @@ class SentenceNotTranslatedInto extends AppModel
             // we want only untranslated sentences
             $sql
                 = "
-                SELECT count(distinct Sentence.id) as Count FROM sentences as Sentence
-                  JOIN sentences_translations st ON ( Sentence.id = st.sentence_id )
-                WHERE Sentence.lang = '$source'
+                SELECT count(DISTINCT sentence_id) as Count
+                FROM sentences_translations
+                WHERE sentence_lang = '$source'
                 $filterAudio
                 ";
         } else {
             $sql
                 = "
-            SELECT count(DISTINCT Sentence.id) as Count FROM sentences as Sentence
-              JOIN sentences_translations st ON ( Sentence.id = st.sentence_id )
-              JOIN sentences t on ( st.translation_id = t.id )
-            WHERE Sentence.lang = '$source'
-            AND t.lang = '$target'
+            SELECT count(DISTINCT sentence_id) as Count
+            FROM sentences_translations
+            WHERE sentence_lang = '$source'
+            AND translation_lang = '$target'
             $filterAudio
             " ;
         }
