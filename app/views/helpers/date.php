@@ -46,20 +46,16 @@ class DateHelper extends AppHelper
      *
      * @return string
      */
-    public function ago($date, $isTimestamp = false)
+    public function ago($date)
     {
-        if (!$isTimestamp) {
-            $year = substr($date, 0, 4);
-            $month = substr($date, 5, 2);
-            $day = substr($date, 8, 2);
-            $hour = substr($date, 11, 2);
-            $min = substr($date, 14, 2);
+        $year = substr($date, 0, 4);
+        $month = substr($date, 5, 2);
+        $day = substr($date, 8, 2);
+        $hour = substr($date, 11, 2);
+        $min = substr($date, 14, 2);
 
-            $pureNumberDate = $year.$month.$day.','.$hour.$min;
-            $timestamp = strtotime($pureNumberDate);
-        } else {
-            $timestamp = $date;
-        }
+        $pureNumberDate = $year.$month.$day.','.$hour.$min;
+        $timestamp = strtotime($pureNumberDate);
         
         if (empty($date) || $date == '0000-00-00 00:00:00' || $timestamp == 0) {
             return __('date unknown', true);
@@ -70,7 +66,8 @@ class DateHelper extends AppHelper
         $hours = intval(($now-$timestamp) / 3600);
         $minutes = intval(($now-$timestamp) / 60);
         if ($days > 30) {
-            return date("M jS Y", $timestamp).', '.date("H:i", $timestamp);
+            // e.g., "2015-06-20 13:12"
+            return date("Y-m-d H:i", $timestamp);
         } elseif ($days > 0) {
             return format(__n('yesterday', '{n}&nbsp;days ago', $days, true), array('n' => $days));
         } elseif ($hours > 0) {
