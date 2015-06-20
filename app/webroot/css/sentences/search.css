@@ -30,14 +30,14 @@
 #AdvancedSearchSearchForm label:first-child {
     padding-right: 8px;
     text-align: right;
-    width: 200px;
+    width: 90px;
     display: inline-block;
 }
 
 #AdvancedSearchSearchForm input:first-child,
 #AdvancedSearchSearchForm div.note
 {
-    margin-left: 200px;
+    margin-left: 90px;
 }
 
 #AdvancedSearchSearchForm .input {
@@ -47,4 +47,11 @@
 .note {
     font-size: 85%;
     margin-left: 5px;
+}
+
+#AdvancedSearchSearchForm fieldset {
+    border: 1px solid;
+    display: inline-block;
+    vertical-align: top;
+    width: 280px;
 }

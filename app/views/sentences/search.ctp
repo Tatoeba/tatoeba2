@@ -65,17 +65,17 @@ $this->set('title_for_layout', $pages->formatTitle($title));
                 'type' => 'get',
             )
         );
+    ?>
+    <fieldset>
+    <legend><?php __('Sentences'); ?></legend>
+    <?php
         echo $this->Form->input('query', array(
             'label' => __('Query:', true),
             'value' => $query,
         ));
 
         echo $this->Search->selectLang('from', $from, array(
-            'label' => __('Sentences in:', true),
-        ));
-        echo $this->Search->selectLang('to', $to, array(
-            'label' => __('Show translations in:', true),
-            'options' => $this->Languages->languagesArrayForPositiveLists(),
+            'label' => __('Language:', true),
         ));
 
         $orphansNote = $this->Html->tag(
@@ -99,6 +99,20 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             'placeholder' => __('Enter a username', true),
             'value' => $user,
         ));
+    ?>
+    </fieldset>
+
+    <fieldset>
+    <legend><?php __('Translations'); ?></legend>
+    <?php
+        echo $this->Search->selectLang('to', $to, array(
+            'label' => __('Language:', true),
+            'options' => $this->Languages->languagesArrayForPositiveLists(),
+        ));
+    ?>
+    </fieldset>
+
+    <?php
         echo $this->Form->end(__('search', true));
     ?>
     </div>
