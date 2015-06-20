@@ -127,7 +127,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 
         echo $this->Search->selectLang('to', $to, array(
             'label' => __('Language:', true),
-            'options' => $this->Languages->languagesArrayForPositiveLists(),
+            'options' => $this->Languages->getSearchableLanguagesArray(),
         ));
         echo $this->Form->input('trans_link', array(
             'label' => __('Link:', true),
