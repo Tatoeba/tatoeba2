@@ -122,7 +122,7 @@ class User extends AppModel
         )
     );
 
-    private $defaultSettings = array(
+    public static $defaultSettings = array(
         'is_public' => false,
         'lang' => null,
         'use_most_recent_list' => false,
@@ -138,7 +138,7 @@ class User extends AppModel
                     $result['User']['settings']
                 );
                 $result['User']['settings'] = array_merge(
-                    $this->defaultSettings,
+                    self::$defaultSettings,
                     $result['User']['settings']
                 );
             }
@@ -151,7 +151,7 @@ class User extends AppModel
             && is_array($this->data['User']['settings'])) {
             $settings = $this->field('settings', array('id' => $this->id));
             $settings = array_merge($settings, $this->data['User']['settings']);
-            $settings = array_intersect_key($settings, $this->defaultSettings);
+            $settings = array_intersect_key($settings, self::$defaultSettings);
             $this->data['User']['settings'] = json_encode($settings);
         }
         return true;
