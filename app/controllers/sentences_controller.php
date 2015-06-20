@@ -521,9 +521,9 @@ class SentencesController extends AppController
             $orphans = true;
         }
 
-        $link = '0';
-        if (isset($this->params['url']['link'])) {
-            $link = $this->params['url']['link'];
+        $trans_link = '';
+        if (isset($this->params['url']['trans_link'])) {
+            $trans_link = $this->params['url']['trans_link'];
         }
 
         $trans_user = '';
@@ -580,7 +580,8 @@ class SentencesController extends AppController
                 $transFilter[] = "t.lang=$toId";
             }
         }
-        if ($link != '0') {
+        if (!empty($trans_link)) {
+            $link = $trans_link == 'direct' ? 1 : 2;
             $transFilter[] = "t.link=$link";
         }
         if (!empty($trans_user)) {
@@ -642,7 +643,7 @@ class SentencesController extends AppController
         $this->set('from', $from);
         $this->set('to', $to);
         $this->set('user', $user);
-        $this->set('link', $link);
+        $this->set('trans_link', $trans_link);
         $this->set('trans_user', $trans_user);
         $this->set('trans_orphan', $trans_orphan);
         $this->set('trans_filter', $trans_filter);

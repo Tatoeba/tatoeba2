@@ -129,14 +129,14 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             'label' => __('Language:', true),
             'options' => $this->Languages->languagesArrayForPositiveLists(),
         ));
-        echo $this->Form->input('link', array(
+        echo $this->Form->input('trans_link', array(
             'label' => __('Link:', true),
             'options' => array(
-                '0' => __('Any', true),
-                '1' => __('Direct', true),
-                '2' => __('Indirect', true),
+                '' => __('Any', true),
+                'direct' => __('Direct', true),
+                'indirect' => __('Indirect', true),
             ),
-            'value' => $link,
+            'value' => $trans_link,
         ));
         echo $this->Form->input('trans_user', array(
             'label' => __('Owner:', true),
