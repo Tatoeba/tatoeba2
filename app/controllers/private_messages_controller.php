@@ -295,7 +295,8 @@ class PrivateMessagesController extends AppController
                 'url' => array(
                     'action' => 'delete',
                     $messageId
-                )
+                ),
+                'confirm' => __('Are you sure?', true)
             );
         } else {
             $menu[] = array(
