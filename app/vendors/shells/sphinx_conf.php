@@ -273,6 +273,7 @@ EOT;
                 (sent_start.correctness + 128) as ucorrectness, \
                 CONCAT('[', COALESCE(GROUP_CONCAT(CONCAT('{', \
                     'lang:',sent_end.lang_id,',', \
+                    'link:',IF(trans.sentence_id = transtrans.translation_id,1,2), \
                     '}') ),''), ']') as trans \
             from \
                 sentences sent_start \

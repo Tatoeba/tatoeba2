@@ -109,6 +109,15 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             'label' => __('Language:', true),
             'options' => $this->Languages->languagesArrayForPositiveLists(),
         ));
+        echo $this->Form->input('link', array(
+            'label' => __('Link:', true),
+            'options' => array(
+                '0' => __('Any', true),
+                '1' => __('Direct', true),
+                '2' => __('Indirect', true),
+            ),
+            'value' => $link,
+        ));
     ?>
     </fieldset>
 

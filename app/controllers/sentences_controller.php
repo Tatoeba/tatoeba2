@@ -521,6 +521,11 @@ class SentencesController extends AppController
             $orphans = true;
         }
 
+        $link = '0';
+        if (isset($this->params['url']['link'])) {
+            $link = $this->params['url']['link'];
+        }
+
         // Session variables for search bar
         $this->Session->write('search_query', $query);
         $this->Session->write('search_from', $from);
@@ -549,16 +554,26 @@ class SentencesController extends AppController
             // sortMode instead.
             $sphinx['sortMode'] = array(SPH_SORT_EXPR => $ranking_formula);
         }
+
+        $transFilter = array();
         // if we want to search only on sentences having translations
         // in a specified language
         if ($to !== 'und') {
             $this->loadModel('Language');
             $toId = $this->Language->getIdFromLang($to);
             if ($toId) {
-                $sphinx['select'] = "*, ANY(t.lang=$toId FOR t IN trans) as filter";
-                $sphinx['filter'][] = array('filter', 1);
+                $transFilter[] = "t.lang=$toId";
             }
         }
+        if ($link != '0') {
+            $transFilter[] = "t.link=$link";
+        }
+        if ($transFilter) {
+            $filter = implode(' & ', $transFilter);
+            $sphinx['select'] = "*, ANY($filter FOR t IN trans) as filter";
+            $sphinx['filter'][] = array('filter', 1);
+        }
+
         // filter by user
         if (!empty($user)) {
             $result = $this->User->findByUsername($user, 'id');
@@ -598,6 +613,7 @@ class SentencesController extends AppController
         $this->set('from', $from);
         $this->set('to', $to);
         $this->set('user', $user);
+        $this->set('link', $link);
         $this->set('orphans', $orphans);
         $this->set('results', $allSentences);
         $this->set('real_total', $real_total);
