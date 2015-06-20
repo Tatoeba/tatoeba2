@@ -181,7 +181,7 @@ class ActivitiesController extends AppController
                 ),
                 'conditions' => $conditions,
                 'contain' => array(),
-                'limit' => 10,
+                'limit' => CurrentUser::getSetting('sentences_per_page'),
                 'order' => 'created DESC'
             )
         );
