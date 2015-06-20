@@ -267,11 +267,13 @@ EOT;
                 sent_start.id as id, \
                 sent_start.text as text, \
                 sent_start.id as id2, \
-                sent_end.lang_id as trans_id, \
                 UNIX_TIMESTAMP(sent_start.created) as created, \
                 UNIX_TIMESTAMP(sent_start.modified) as modified, \
                 sent_start.user_id as user_id, \
-                (sent_start.correctness + 128) as ucorrectness \
+                (sent_start.correctness + 128) as ucorrectness, \
+                CONCAT('[', COALESCE(GROUP_CONCAT(CONCAT('{', \
+                    'lang:',sent_end.lang_id,',', \
+                    '}') ),''), ']') as trans \
             from \
                 sentences sent_start \
             left join \
@@ -291,7 +293,8 @@ EOT;
                 ($delta_condition ( \
                     select index_start_date from sphinx_delta \
                     where sphinx_delta.lang_id = (select id from languages where code = '$lang') \
-                ))
+                )) \
+            group by id
 
         sql_attr_timestamp = created
         sql_attr_timestamp = modified
@@ -304,7 +307,7 @@ EOT;
         "
         sql_attr_uint = ucorrectness
         sql_attr_uint = id2
-        sql_attr_multi = uint trans_id from field; SELECT id FROM languages ;
+        sql_attr_json = trans
     }
 ";
                 // generate index for this pair

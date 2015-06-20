@@ -100,6 +100,9 @@ class SphinxBehavior extends ModelBehavior
                         $this->runtime[$model->alias]['sphinx']->SetRankingMode($setting);
                     }
                     break;
+                case 'select':
+                    $this->runtime[$model->alias]['sphinx']->SetSelect($setting);
+                    break;
                 default:
                     break;
             }
