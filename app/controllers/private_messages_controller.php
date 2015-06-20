@@ -289,12 +289,19 @@ class PrivateMessagesController extends AppController
                     $messageId
                 )
             );
+
+            $menu[] = array(
+                'text' => __('delete forever', true),
+                'url' => array(
+                    'action' => 'delete',
+                    $messageId
+                )
+            );
         } else {
             $menu[] = array(
                 'text' => __('delete', true), 
                 'url' => array(
-                    'action' => 'delete', 
-                    $folder, 
+                    'action' => 'delete',
                     $messageId
                 )
             );
@@ -328,17 +335,22 @@ class PrivateMessagesController extends AppController
      *
      * @return void
      */
-    public function delete($folderId, $messageId)
+    public function delete($messageId)
     {
         $messageId = Sanitize::paranoid($messageId);
         $message = $this->PrivateMessage->findById($messageId);
 
         if ($message['PrivateMessage']['user_id'] == CurrentUser::get('id')) {
-            $message['PrivateMessage']['folder'] = 'Trash';
-            $this->PrivateMessage->save($message);
+            $deleteForever = $message['PrivateMessage']['folder'] == 'Trash';
+            if ($deleteForever) {
+                $this->PrivateMessage->delete($messageId);
+            } else {
+                $message['PrivateMessage']['folder'] = 'Trash';
+                $this->PrivateMessage->save($message);
+            }
         }
 
-        $this->redirect(array('action' => 'folder', $folderId));
+        $this->redirect($this->referer());
     }
 
     /**
