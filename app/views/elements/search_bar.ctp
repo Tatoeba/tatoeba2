@@ -66,6 +66,11 @@ echo $form->create(
         <?php __('Example sentences with the words:'); ?>
     </label>
     <?php
+    $clearButton = $this->Html->tag('button', '✖', array(
+        'id' => 'clearSearch',
+        'type' => 'button',
+        'title' => __('Clear search', true),
+    ));
     echo $form->input(
         'query',
         array(
@@ -75,7 +80,7 @@ echo $form->create(
             'accesskey' => 4,
             'lang' => '',
             'dir' => 'auto',
-            'after' => '<button type="button" id="clearSearch">✖</button>',
+            'after' => $clearButton,
         )
     );
     ?>
