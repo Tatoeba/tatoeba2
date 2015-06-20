@@ -531,6 +531,11 @@ class SentencesController extends AppController
             $trans_user = $this->params['url']['trans_user'];
         }
 
+        $trans_orphan = '';
+        if (isset($this->params['url']['trans_orphan'])) {
+            $trans_orphan = $this->params['url']['trans_orphan'];
+        }
+
         // Session variables for search bar
         $this->Session->write('search_query', $query);
         $this->Session->write('search_from', $from);
@@ -577,9 +582,14 @@ class SentencesController extends AppController
             $result = $this->User->findByUsername($trans_user, 'id');
             if ($result) {
                 $transFilter[] = 't.user='.$result['User']['id'];
+                $trans_orphan = 'no';
             } else {
                 $trans_user = '';
             }
+        }
+        if (!empty($trans_orphan) && empty($trans_user)) {
+            $op = $trans_orphan == 'yes' ? '=' : '<>';
+            $transFilter[] = "t.user${op}0";
         }
         if ($transFilter) {
             $filter = implode(' & ', $transFilter);
@@ -628,6 +638,7 @@ class SentencesController extends AppController
         $this->set('user', $user);
         $this->set('link', $link);
         $this->set('trans_user', $trans_user);
+        $this->set('trans_orphan', $trans_orphan);
         $this->set('orphans', $orphans);
         $this->set('results', $allSentences);
         $this->set('real_total', $real_total);

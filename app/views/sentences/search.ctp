@@ -88,7 +88,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         echo $this->Form->input('orphans', array(
             'type' => 'checkbox',
             'hiddenField' => false,
-            'label' => __('Show orphan sentences', true),
+            'label' => __('Show orphans', true),
             'after' => $orphansNote,
             'value' => 'yes',
             'checked' => $orphans,
@@ -122,6 +122,16 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             'label' => __('Owner:', true),
             'placeholder' => __('Enter a username', true),
             'value' => $trans_user,
+        ));
+        echo $this->Form->input('trans_orphan', array(
+            'label' => __('Is orphan:', true),
+            'options' => array(
+                '' => __('Any', true),
+                'no' => __('No', true),
+                'yes' => __('Yes', true),
+            ),
+            'after' => $orphansNote,
+            'value' => $trans_orphan,
         ));
     ?>
     </fieldset>
