@@ -564,7 +564,7 @@ class SentencesController extends AppController
                     'id',
                 ),
                 'contain' => array(),
-                'limit' => 10,
+                'limit' => CurrentUser::getSetting('sentences_per_page'),
                 'sphinx' => $sphinx,
                 'search' => $query
             )
@@ -633,7 +633,7 @@ class SentencesController extends AppController
                     'lang' => $lang,
                 ),
                 'contain' => array(),
-                'limit' => 10,
+                'limit' => CurrentUser::getSetting('sentences_per_page'),
                 'order' => "Sentence.id desc"
             )
         );

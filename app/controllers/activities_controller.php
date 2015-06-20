@@ -80,7 +80,7 @@ class ActivitiesController extends AppController
 
         $this->loadModel('Sentence');
         $this->paginate = array(
-            'limit' => 10,
+            'limit' => CurrentUser::getSetting('sentences_per_page'),
             'conditions' => $conditions,
             'contain' => array()
         );
