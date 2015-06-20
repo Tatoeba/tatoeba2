@@ -19,29 +19,25 @@
 
 $(document).ready(function(){
 
-    $(".adopt").click(function(){
+    $('.adopt').live('click', function () {
         var adoptOption = $(this);
         var sentenceId = $(this).attr("data-sentence-id");
         
         var rootUrl = get_tatoeba_root_url();
-        
-        // Displaying loading gif
-        $("#sentences_group_" + sentenceId).html(
-            "<img width='50' height='50' class='loading-icon' src='/img/loading.svg' alt='loading'>"
-        );
-        
-        // The sentence can be adopted
-        if (adoptOption.hasClass("add")){
-            $("#sentences_group_" + sentenceId).load(
-                rootUrl + "/sentences/adopt/"+  sentenceId
-            );
+
+        if (adoptOption.hasClass("add")) {
+            reqUrl = rootUrl + "/sentences/adopt/" + sentenceId;
+        } else if (adoptOption.hasClass("remove")) {
+            reqUrl = rootUrl + "/sentences/let_go/"+  sentenceId;
         }
-        
-        // The sentence can be unadopted 
-        else if (adoptOption.hasClass("remove")){
-            $("#sentences_group_" + sentenceId).load(
-                rootUrl + "/sentences/let_go/"+  sentenceId
+
+        if (reqUrl) {
+            adoptOption.html(
+                "<img width='16' height='16' src='/img/loading.svg' alt='loading'>"
             );
+            $.get(reqUrl, {}, function(data, textStatus, jqXHR) {
+                adoptOption.replaceWith(data);
+            });
         }
     });
 });

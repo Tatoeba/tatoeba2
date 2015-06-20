@@ -176,11 +176,9 @@ class MenuHelper extends AppHelper
      *                           is displayed
      * @param string $ownerName  Indicates whether the sentence is adopted by current
      *                           user or not.
-     * @param bool   $isLogged   True if user is logged in, false otherwise.
-     *
      * @return void
      */
-    public function adoptButton($sentenceId, $ownerName, $isLogged)
+    public function adoptButton($sentenceId, $ownerName)
     {
         $isAdopted = !empty($ownerName);
         $currentUserName = CurrentUser::get('username');
@@ -584,7 +582,7 @@ class MenuHelper extends AppHelper
         $isLogged = CurrentUser::isMember();
 
         // Adopt
-        $this->adoptButton($sentenceId, $ownerName, $isLogged);
+        $this->adoptButton($sentenceId, $ownerName);
 
         // Translate
         $this->translateButton($sentenceId, $ownerName, $isLogged, $canTranslate);
