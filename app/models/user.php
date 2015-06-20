@@ -131,6 +131,10 @@ class User extends AppModel
         'sentences_per_page' => 10,
     );
 
+    private $settingsValidation = array(
+        'sentences_per_page' => array(10, 20, 50, 100),
+    );
+
     public function afterFind($results, $primary = false) {
         foreach ($results as &$result) {
             if (isset($result['User']) && array_key_exists('settings', $result['User'])) {
@@ -141,6 +145,7 @@ class User extends AppModel
                     self::$defaultSettings,
                     $result['User']['settings']
                 );
+                $this->validateSettings($result['User']['settings']);
             }
         }
         return $results;
@@ -152,9 +157,18 @@ class User extends AppModel
             $settings = $this->field('settings', array('id' => $this->id));
             $settings = array_merge($settings, $this->data['User']['settings']);
             $settings = array_intersect_key($settings, self::$defaultSettings);
+            $this->validateSettings($settings);
             $this->data['User']['settings'] = json_encode($settings);
         }
         return true;
+    }
+
+    private function validateSettings(&$settings) {
+        foreach ($this->settingsValidation as $setting => $values) {
+            if (!in_array($settings[$setting], $values)) {
+                $settings[$setting] = self::$defaultSettings[$setting];
+            }
+        }
     }
 
     /**
