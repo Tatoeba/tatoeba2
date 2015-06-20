@@ -536,6 +536,11 @@ class SentencesController extends AppController
             $trans_orphan = $this->params['url']['trans_orphan'];
         }
 
+        $trans_filter = 'limit';
+        if (isset($this->params['url']['trans_filter'])) {
+            $trans_filter = $this->params['url']['trans_filter'];
+        }
+
         // Session variables for search bar
         $this->Session->write('search_query', $query);
         $this->Session->write('search_from', $from);
@@ -594,7 +599,8 @@ class SentencesController extends AppController
         if ($transFilter) {
             $filter = implode(' & ', $transFilter);
             $sphinx['select'] = "*, ANY($filter FOR t IN trans) as filter";
-            $sphinx['filter'][] = array('filter', 1);
+            $filtering = $trans_filter == 'limit' ? 1 : 0;
+            $sphinx['filter'][] = array('filter', $filtering);
         }
 
         // filter by user
@@ -639,6 +645,7 @@ class SentencesController extends AppController
         $this->set('link', $link);
         $this->set('trans_user', $trans_user);
         $this->set('trans_orphan', $trans_orphan);
+        $this->set('trans_filter', $trans_filter);
         $this->set('orphans', $orphans);
         $this->set('results', $allSentences);
         $this->set('real_total', $real_total);

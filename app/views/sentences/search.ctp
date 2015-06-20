@@ -105,6 +105,26 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <fieldset>
     <legend><?php __('Translations'); ?></legend>
     <?php
+        $filterOption = $this->Form->select(
+            'trans_filter',
+            array(
+                /* @translators This is inserted into another sentence
+                                that begins with {action} */
+                'limit' => __('Limit to', true),
+                /* @translators This is inserted into another sentence
+                                that begins with {action} */
+                'exclude' => __('Exclude', true),
+            ),
+            $trans_filter,
+            array('empty' => false)
+        );
+        $label = format(
+            __('{action} sentences having translations that match'
+              .' all the following criteria.', true),
+            array('action' => $filterOption)
+        );
+        echo "<label>$label</label>";
+
         echo $this->Search->selectLang('to', $to, array(
             'label' => __('Language:', true),
             'options' => $this->Languages->languagesArrayForPositiveLists(),
