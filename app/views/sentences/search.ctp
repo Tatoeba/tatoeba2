@@ -118,6 +118,11 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             ),
             'value' => $link,
         ));
+        echo $this->Form->input('trans_user', array(
+            'label' => __('Owner:', true),
+            'placeholder' => __('Enter a username', true),
+            'value' => $trans_user,
+        ));
     ?>
     </fieldset>
 
