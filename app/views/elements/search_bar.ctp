@@ -75,6 +75,7 @@ echo $form->create(
             'accesskey' => 4,
             'lang' => '',
             'dir' => 'auto',
+            'after' => '<button type="button" id="clearSearch">✖</button>',
         )
     );
     ?>

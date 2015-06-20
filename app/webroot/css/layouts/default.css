@@ -25,7 +25,7 @@
 /*
  * Generic rules
  */
-body, select, input, textarea {
+body, select, input, textarea, button {
     font-family: Trebuchet MS, sans-serif;
 }
 
@@ -366,10 +366,6 @@ svg {
     width: 110px;
 }
 
-.search_bar .input {
-    width: 300px;
-}
-
 #SentenceSearchForm {
     text-align: center;
 }
@@ -380,6 +376,10 @@ svg {
 
 .search_bar select {
     width: 110px;
+}
+
+#clearSearch {
+    padding: 0;
 }
 
 #logo {
