@@ -521,6 +521,11 @@ class SentencesController extends AppController
             $orphans = true;
         }
 
+        $trans_to = 'und';
+        if (isset($this->params['url']['trans_to'])) {
+            $trans_to = $this->params['url']['trans_to'];
+        }
+
         $trans_link = '';
         if (isset($this->params['url']['trans_link'])) {
             $trans_link = $this->params['url']['trans_link'];
@@ -539,6 +544,12 @@ class SentencesController extends AppController
         $trans_filter = 'limit';
         if (isset($this->params['url']['trans_filter'])) {
             $trans_filter = $this->params['url']['trans_filter'];
+        }
+
+        /* Convert simple search to advanced search parameters */
+        if (isset($this->params['url']['to'])
+            && !isset($this->params['url']['trans_to'])) {
+            $trans_to = $to;
         }
 
         // Session variables for search bar
@@ -573,9 +584,9 @@ class SentencesController extends AppController
         $transFilter = array();
         // if we want to search only on sentences having translations
         // in a specified language
-        if ($to !== 'und') {
+        if ($trans_to !== 'und') {
             $this->loadModel('Language');
-            $toId = $this->Language->getIdFromLang($to);
+            $toId = $this->Language->getIdFromLang($trans_to);
             if ($toId) {
                 $transFilter[] = "t.lang=$toId";
             }
@@ -597,7 +608,10 @@ class SentencesController extends AppController
             $op = $trans_orphan == 'yes' ? '=' : '<>';
             $transFilter[] = "t.user${op}0";
         }
-        if ($transFilter) {
+        if ($transFilter || $trans_filter == 'exclude') {
+            if (!$transFilter) {
+                $transFilter = array(1);
+            }
             $filter = implode(' & ', $transFilter);
             $sphinx['select'] = "*, ANY($filter FOR t IN trans) as filter";
             $filtering = $trans_filter == 'limit' ? 1 : 0;
@@ -643,6 +657,7 @@ class SentencesController extends AppController
         $this->set('from', $from);
         $this->set('to', $to);
         $this->set('user', $user);
+        $this->set('trans_to', $trans_to);
         $this->set('trans_link', $trans_link);
         $this->set('trans_user', $trans_user);
         $this->set('trans_orphan', $trans_orphan);

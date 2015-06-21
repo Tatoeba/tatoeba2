@@ -78,6 +78,11 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             'label' => __('Language:', true),
         ));
 
+        echo $this->Search->selectLang('to', $to, array(
+            'label' => __('Show translations in:', true),
+            'options' => $this->Languages->languagesArrayForPositiveLists(),
+        ));
+
         $orphansNote = $this->Html->tag(
             'div',
             __('Oprhan sentences are likely to be incorrect.', true),
@@ -125,7 +130,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         );
         echo "<label>$label</label>";
 
-        echo $this->Search->selectLang('to', $to, array(
+        echo $this->Search->selectLang('trans_to', $trans_to, array(
             'label' => __('Language:', true),
             'options' => $this->Languages->getSearchableLanguagesArray(),
         ));
