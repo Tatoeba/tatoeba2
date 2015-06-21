@@ -127,7 +127,7 @@ echo $this->element('pmmenu');
                 $deleteConfirmation = array(
                     'confirm' => __('Are you sure?', true)
                 );
-                $deleteLabel = __('delete forever', true);
+                $deleteLabel = __('delete permanently', true);
             } else {
                 $deleteConfirmation = null;
                 $deleteLabel = __('delete', true);
