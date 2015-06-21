@@ -43,7 +43,8 @@
                     && $this->params['pass'][0] == 'Trash') {
                     echo $html->tag('li', $html->link(
                         __('Empty trash', true),
-                        array('action' => 'empty_folder', 'Trash')
+                        array('action' => 'empty_folder', 'Trash'),
+                        array('confirm' => __('Are you sure?', true))
                     ));
                 }
             ?>
