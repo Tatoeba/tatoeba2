@@ -26,30 +26,15 @@
  */
 
 /**
- * This view displays the HTML inside of a sentences group. 
+ * This view displays the HTML inside of a sentences group.
  *
- * It is used by the adopt() and let_go() actions in the controller. There are no 
- * action called sentences_group() in the controller.
+ * It is used by the adopt() and let_go() actions in the controller.
  *
  * @category Sentences
  * @package  Views
  * @author   HO Ngoc Phuong Trang <tranglich@gmail.com>
  * @license  Affero General Public License
  * @link     http://tatoeba.org
- */  
+ */
 
-$sentences->javascriptForAJAXSentencesGroup();
-
-$withDivWrapper = false;
-$withAudio = true;
-
-// display sentence and translations
-$sentences->displaySentencesGroup(
-    $sentence['Sentence'],
-    $translations,
-    $sentence['User'],
-    $indirectTranslations,
-    $withAudio,
-    $withDivWrapper
-);
-?> 
+$this->Menu->adoptButton($sentenceId, $ownerName);

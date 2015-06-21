@@ -240,7 +240,11 @@ class TagsController extends AppController
         $this->set('tagId', $tagId);
 
         if ($tagExists) {
-            $this->paginate = $this->Tag->paramsForPaginate($tagId, 10, $lang);
+            $this->paginate = $this->Tag->paramsForPaginate(
+                $tagId,
+                CurrentUser::getSetting('sentences_per_page'),
+                $lang
+            );
 
             $sentencesIdsTaggerIds = $this->paginate('TagsSentences');
 

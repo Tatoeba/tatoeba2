@@ -112,25 +112,37 @@ echo $this->element('pmmenu');
                 echo '</a>';
             echo '</td>';
             
-            // Delete
-            echo '<td>';
+            // Restore
             if ($folder == 'Trash') {
+                echo '<td>';
                 echo $html->link(
-                    __('Restore', true),
+                    __('restore', true),
                     array(
                         'action' => 'restore',
                         $msg['PrivateMessage']['id']
                      )
                 );
-            } else {
-                echo $html->link(
-                    __('Delete', true),
-                    array(
-                        'action' => 'delete',
-                        $folder, $msg['PrivateMessage']['id']
-                    )
+                echo '</td>';
+
+                $deleteConfirmation = array(
+                    'confirm' => __('Are you sure?', true)
                 );
+                $deleteLabel = __('permanently delete', true);
+            } else {
+                $deleteConfirmation = null;
+                $deleteLabel = __('delete', true);
             }
+
+            // Delete
+            echo '<td>';
+            echo $html->link(
+                $deleteLabel,
+                array(
+                    'action' => 'delete',
+                    $msg['PrivateMessage']['id']
+                ),
+                $deleteConfirmation
+            );
            echo '</td>';
            
            echo '</tr>';

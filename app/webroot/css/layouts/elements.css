@@ -865,13 +865,17 @@
     margin: 0px 8px;
 }
 
-.sentences_set .menu li.adopt,
-.sentences_set .menu li.belongsTo {
+.sentences_set .menu .adopt-item {
+    display: inline-block;
+    vertical-align: middle;
+    height: 16px;
+    margin: 2px;
+    font-weight: bold;
+}
+
+.sentences_set .menu li.adopt {
     margin: 0px;
     float: right;
-    font-weight: bold;
-    padding: 2px !important;
-    color: #888;
 }
 
 .sentences_set .menu li a {
@@ -894,7 +898,7 @@
 
 .sentences_set .menu a.disabled,
 .sentences_set .menu a.disabled:hover,
-.sentences_set .menu .adopt.uneditable {
+.sentences_set .menu .adopt-item.uneditable {
     color: #CCC;
 }
 

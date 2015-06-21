@@ -122,11 +122,16 @@ class User extends AppModel
         )
     );
 
-    private $defaultSettings = array(
+    public static $defaultSettings = array(
         'is_public' => false,
         'lang' => null,
         'use_most_recent_list' => false,
         'collapsible_translations' => false,
+        'sentences_per_page' => 10,
+    );
+
+    private $settingsValidation = array(
+        'sentences_per_page' => array(10, 20, 50, 100),
     );
 
     public function afterFind($results, $primary = false) {
@@ -136,9 +141,10 @@ class User extends AppModel
                     $result['User']['settings']
                 );
                 $result['User']['settings'] = array_merge(
-                    $this->defaultSettings,
+                    self::$defaultSettings,
                     $result['User']['settings']
                 );
+                $this->validateSettings($result['User']['settings']);
             }
         }
         return $results;
@@ -149,10 +155,19 @@ class User extends AppModel
             && is_array($this->data['User']['settings'])) {
             $settings = $this->field('settings', array('id' => $this->id));
             $settings = array_merge($settings, $this->data['User']['settings']);
-            $settings = array_intersect_key($settings, $this->defaultSettings);
+            $settings = array_intersect_key($settings, self::$defaultSettings);
+            $this->validateSettings($settings);
             $this->data['User']['settings'] = json_encode($settings);
         }
         return true;
+    }
+
+    private function validateSettings(&$settings) {
+        foreach ($this->settingsValidation as $setting => $values) {
+            if (!in_array($settings[$setting], $values)) {
+                $settings[$setting] = self::$defaultSettings[$setting];
+            }
+        }
     }
 
     /**

@@ -37,6 +37,17 @@
                 ); 
                 ?>
             </li>
+            <?php
+                if ($this->params['action'] == 'folder'
+                    && $this->params['pass']
+                    && $this->params['pass'][0] == 'Trash') {
+                    echo $html->tag('li', $html->link(
+                        __('Empty trash', true),
+                        array('action' => 'empty_folder', 'Trash'),
+                        array('confirm' => __('Are you sure?', true))
+                    ));
+                }
+            ?>
             <li>&nbsp;</li>
             <li>
                 <?php
@@ -44,7 +55,7 @@
                     __('Inbox', true), array('action' => 'folder', 'Inbox')
                 ); 
                 ?>
-                >
+                &gt;
                 <?php
                 echo $html->link(
                     __('Unread', true), array('action' => 'folder', 'Inbox', 'unread')

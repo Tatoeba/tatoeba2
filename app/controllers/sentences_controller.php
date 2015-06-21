@@ -390,8 +390,7 @@ class SentencesController extends AppController
 
         $this->Sentence->setOwner($id, $userId);
 
-        $this->_setSentenceData($id);
-        $this->render('sentences_group'); // We render with another view than "show"
+        $this->renderAdopt($id, $userId);
     }
 
     /**
@@ -410,8 +409,22 @@ class SentencesController extends AppController
 
         $this->Sentence->unsetOwner($id, $userId);
 
-        $this->_setSentenceData($id);
-        $this->render('sentences_group'); // We render with another view than "show"
+        $this->renderAdopt($id, $userId);
+    }
+
+    private function renderAdopt($id, $userId)
+    {
+        $sentence = $this->Sentence->find('first', array(
+            'conditions' => array('Sentence.id' => $id),
+            'contain' => array('User' => 'username'),
+            'fields' => array('id'),
+        ));
+
+        $ownerName = $sentence['User'] ? $sentence['User']['username'] : null;
+        $this->set('sentenceId', $id);
+        $this->set('ownerName', $ownerName);
+        $this->layout = null;
+        $this->render('adopt');
     }
 
     private function _setSentenceData($id)
@@ -554,7 +567,7 @@ class SentencesController extends AppController
                     'id',
                 ),
                 'contain' => array(),
-                'limit' => 10,
+                'limit' => CurrentUser::getSetting('sentences_per_page'),
                 'sphinx' => $sphinx,
                 'search' => $query
             )
@@ -627,7 +640,7 @@ class SentencesController extends AppController
                     'lang' => $lang,
                 ),
                 'contain' => array(),
-                'limit' => 10,
+                'limit' => CurrentUser::getSetting('sentences_per_page'),
                 'order' => "Sentence.id desc"
             )
         );
