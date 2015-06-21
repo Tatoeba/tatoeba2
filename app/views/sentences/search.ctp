@@ -180,7 +180,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     </fieldset>
 
     <?php
-        echo $this->Form->end(__('search', true));
+        echo $this->Form->end(__('Advanced search', true));
     ?>
     </div>
 <?php
