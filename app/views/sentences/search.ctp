@@ -104,6 +104,16 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             'placeholder' => __('Enter a username', true),
             'value' => $user,
         ));
+
+        echo $this->Form->input('has_audio', array(
+            'label' => __('Has audio:', true),
+            'options' => array(
+                '' => __('Any', true),
+                'no' => __('No', true),
+                'yes' => __('Yes', true),
+            ),
+            'value' => $has_audio,
+        ));
     ?>
     </fieldset>
 

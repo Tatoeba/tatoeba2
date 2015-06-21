@@ -521,6 +521,11 @@ class SentencesController extends AppController
             $orphans = true;
         }
 
+        $has_audio = '';
+        if (isset($this->params['url']['has_audio'])) {
+            $has_audio = $this->params['url']['has_audio'];
+        }
+
         $trans_to = 'und';
         if (isset($this->params['url']['trans_to'])) {
             $trans_to = $this->params['url']['trans_to'];
@@ -628,9 +633,16 @@ class SentencesController extends AppController
                 $user = '';
             }
         }
+
         // filter orphans
         if (!$orphans && empty($user)) {
             $sphinx['filter'][] = array('user_id', 0, true);
+        }
+
+        // filter audio
+        if (!empty($has_audio)) {
+            $audio = $has_audio == 'yes' ? 1 : 0;
+            $sphinx['filter'][] = array('has_audio', $audio);
         }
 
         $model = 'Sentence';
@@ -657,6 +669,7 @@ class SentencesController extends AppController
         $this->set('from', $from);
         $this->set('to', $to);
         $this->set('user', $user);
+        $this->set('has_audio', $has_audio);
         $this->set('trans_to', $trans_to);
         $this->set('trans_link', $trans_link);
         $this->set('trans_user', $trans_user);
