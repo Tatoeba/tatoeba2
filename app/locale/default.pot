@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-21 10:08+0000\n"
+"POT-Creation-Date: 2015-06-21 13:30+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1237,6 +1237,10 @@ msgstr ""
 msgid "Activity timeline"
 msgstr ""
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/activity_timeline.ctp#L43
+msgid "{month} {year}"
+msgstr ""
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/index.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L38
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/contributions/latest.ctp#L73
@@ -1270,59 +1274,11 @@ msgstr ""
 msgid "Browse audio for all languages"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L41
-msgid "January"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L42
-msgid "February"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L43
-msgid "March"
-msgstr ""
-
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L44
-msgid "April"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L45
-msgid "May"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L46
-msgid "June"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L47
-msgid "July"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L48
-msgid "August"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L49
-msgid "September"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L50
-msgid "October"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L51
-msgid "November"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L52
-msgid "December"
-msgstr ""
-
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L57
 msgid "Month"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L83
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/elements/calendar.ctp#L70
 msgid "Year"
 msgstr ""
 
@@ -1881,27 +1837,75 @@ msgstr ""
 msgid "Go back to previous page"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L61
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L63
 msgid "date unknown"
 msgstr ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L72
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L74
 msgid "yesterday"
 msgid_plural "{n}&nbsp;days ago"
 msgstr[0] ""
 msgstr[1] ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L74
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L76
 msgid "an hour ago"
 msgid_plural "{n}&nbsp;hours ago"
 msgstr[0] ""
 msgstr[1] ""
 
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L76
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L78
 msgid "a minute ago"
 msgid_plural "{n}&nbsp;minutes ago"
 msgstr[0] ""
 msgstr[1] ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L87
+msgid "January"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L88
+msgid "February"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L89
+msgid "March"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L90
+msgid "April"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L91
+msgid "May"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L92
+msgid "June"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L93
+msgid "July"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L94
+msgid "August"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L95
+msgid "September"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L96
+msgid "October"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L97
+msgid "November"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/date.php#L98
+msgid "December"
+msgstr ""
 
 #. @translators: this special string allows you to tweak how language
 #. names are displayed when they are not used inside another string.
