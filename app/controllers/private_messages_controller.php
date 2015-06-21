@@ -291,7 +291,7 @@ class PrivateMessagesController extends AppController
             );
 
             $menu[] = array(
-                'text' => __('delete permanently', true),
+                'text' => __('permanently delete', true),
                 'url' => array(
                     'action' => 'delete',
                     $messageId
