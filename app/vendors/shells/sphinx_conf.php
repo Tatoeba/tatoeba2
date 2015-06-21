@@ -275,7 +275,8 @@ EOT;
                 CONCAT('[', COALESCE(GROUP_CONCAT(CONCAT('{', \
                     'lang:',sent_end.lang_id,',', \
                     'link:',IF(trans.sentence_id = transtrans.translation_id,1,2),',' \
-                    'user:',COALESCE(sent_end.user_id,0), \
+                    'user:',COALESCE(sent_end.user_id,0),',' \
+                    'audio:',IF(sent_end.hasaudio = 'no',0,1), \
                     '}') ),''), ']') as trans \
             from \
                 sentences sent_start \

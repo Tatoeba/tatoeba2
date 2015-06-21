@@ -167,6 +167,15 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             ),
             'value' => $trans_orphan,
         ));
+        echo $this->Form->input('trans_has_audio', array(
+            'label' => __('Has audio:', true),
+            'options' => array(
+                '' => __('Any', true),
+                'no' => __('No', true),
+                'yes' => __('Yes', true),
+            ),
+            'value' => $trans_has_audio,
+        ));
     ?>
     </fieldset>
 

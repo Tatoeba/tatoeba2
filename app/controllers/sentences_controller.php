@@ -546,6 +546,11 @@ class SentencesController extends AppController
             $trans_orphan = $this->params['url']['trans_orphan'];
         }
 
+        $trans_has_audio = '';
+        if (isset($this->params['url']['trans_has_audio'])) {
+            $trans_has_audio = $this->params['url']['trans_has_audio'];
+        }
+
         $trans_filter = 'limit';
         if (isset($this->params['url']['trans_filter'])) {
             $trans_filter = $this->params['url']['trans_filter'];
@@ -613,6 +618,10 @@ class SentencesController extends AppController
             $op = $trans_orphan == 'yes' ? '=' : '<>';
             $transFilter[] = "t.user${op}0";
         }
+        if (!empty($trans_has_audio)) {
+            $audio = $trans_has_audio == 'yes' ? 1 : 0;
+            $transFilter[] = "t.audio=$audio";
+        }
         if ($transFilter || $trans_filter == 'exclude') {
             if (!$transFilter) {
                 $transFilter = array(1);
@@ -675,6 +684,7 @@ class SentencesController extends AppController
         $this->set('trans_user', $trans_user);
         $this->set('trans_orphan', $trans_orphan);
         $this->set('trans_filter', $trans_filter);
+        $this->set('trans_has_audio', $trans_has_audio);
         $this->set('orphans', $orphans);
         $this->set('results', $allSentences);
         $this->set('real_total', $real_total);
