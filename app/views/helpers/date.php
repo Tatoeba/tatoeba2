@@ -36,6 +36,8 @@
  */
 class DateHelper extends AppHelper
 {
+    private $_months;
+
     /**
      * Display how long ago compared to now.
      *
@@ -75,6 +77,41 @@ class DateHelper extends AppHelper
         } else {
             return format(__n('a minute ago', '{n}&nbsp;minutes ago', $minutes, true), array('n' => $minutes));
         }
+    }
+
+
+    public function months()
+    {
+        if (!$this->_months) {
+            $this->_months = array(
+                '01' => __('January', true),
+                '02' => __('February', true),
+                '03' => __('March', true),
+                '04' => __('April', true),
+                '05' => __('May', true),
+                '06' => __('June', true),
+                '07' => __('July', true),
+                '08' => __('August', true),
+                '09' => __('September', true),
+                '10' => __('October', true),
+                '11' => __('November', true),
+                '12' => __('December', true),
+            );
+        }
+
+        return $this->_months;
+    }
+
+    /**
+     * @param string $mm Month number in 2 digit format (ex: '01' for January).
+     *
+     * @return string
+     */
+    public function monthName($mm)
+    {
+        $months = $this->months();
+
+        return $months[$mm];
     }
 }
 ?>
