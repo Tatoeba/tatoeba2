@@ -320,7 +320,7 @@ class AppController extends Controller
      * with a 'preferred languages' list.
      */
     public function addLastUsedLang($code) {
-        if (!CurrentUser::isMember()) {
+        if (!CurrentUser::isMember() && LanguagesLib::languageExists($code)) {
             $current = (array)$this->Session->read('last_used_lang');
             if (!in_array($code, $current)) {
                 $current[] = $code;

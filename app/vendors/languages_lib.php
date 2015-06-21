@@ -448,4 +448,10 @@ class LanguagesLib
             array_flip($languageCodes)
         );
     }
+
+    public static function languageExists($code)
+    {
+        $available =& self::languagesInTatoeba();
+        return isset($available[$code]);
+    }
 }
