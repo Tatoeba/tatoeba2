@@ -294,6 +294,7 @@ EOT;
                 sent_start.user_id as user_id, \
                 (sent_start.correctness + 128) as ucorrectness, \
                 (sent_start.hasaudio <> 'no') as has_audio, \
+                GROUP_CONCAT(sent_end.lang_id) as trans_id, \
                 CONCAT('[', COALESCE(GROUP_CONCAT(CONCAT('{', \
                     'lang:',sent_end.lang_id,',', \
                     'link:',IF(trans.sentence_id = transtrans.translation_id,1,2),',' \
@@ -334,6 +335,7 @@ EOT;
         sql_attr_uint = ucorrectness
         sql_attr_bool = has_audio
         sql_attr_uint = id2
+        sql_attr_multi = uint trans_id from field; SELECT id FROM languages ;
         sql_attr_json = trans
     }
 ";
