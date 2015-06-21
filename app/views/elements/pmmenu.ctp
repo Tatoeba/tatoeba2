@@ -54,7 +54,7 @@
                     __('Inbox', true), array('action' => 'folder', 'Inbox')
                 ); 
                 ?>
-                >
+                &gt;
                 <?php
                 echo $html->link(
                     __('Unread', true), array('action' => 'folder', 'Inbox', 'unread')
