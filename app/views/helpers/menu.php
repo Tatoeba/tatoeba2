@@ -214,7 +214,7 @@ class MenuHelper extends AppHelper
         } else {
             $this->Javascript->link('sentences.adopt.js', false);
             $contents = $this->Images->svgIcon($image, $svgIconOptions);
-            $contents = '<a class="adopt-item">'.$contents.'</a>';
+            $contents = '<a class="adopt-item adopt-button">'.$contents.'</a>';
         }
         if ($isAdopted) {
             $contents .= $this->belongsTo($ownerName);

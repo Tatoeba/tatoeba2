@@ -19,9 +19,9 @@
 
 $(document).ready(function(){
 
-    $('.adopt').live('click', function () {
-        var adoptOption = $(this);
-        var sentenceId = $(this).attr("data-sentence-id");
+    $('.adopt-button').live('click', function () {
+        var adoptOption = $(this).parent();
+        var sentenceId = adoptOption.attr("data-sentence-id");
         
         var rootUrl = get_tatoeba_root_url();
 
