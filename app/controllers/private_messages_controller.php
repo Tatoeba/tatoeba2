@@ -328,6 +328,31 @@ class PrivateMessagesController extends AppController
     }
 
     /**
+     * Empty folder
+     *
+     * @param string $folder  The name of the folder to empty
+     *
+     * @return void
+     */
+    public function empty_folder($folder)
+    {
+        if ($folder == 'Trash') {
+            $conditions = array(
+                'user_id' => CurrentUser::get('id'),
+                'folder' => $folder,
+            );
+            $this->PrivateMessage->deleteAll($conditions, false);
+            $this->Session->setFlash(
+                format(
+                    __('Folder "{name}" emptied.', true),
+                    array('name' => $folder)
+                )
+            );
+        }
+        $this->redirect(array('action' => 'folder', $folder));
+    }
+
+    /**
      * Delete message function
      *
      * @param string $folderId  The folder identifier where we are while

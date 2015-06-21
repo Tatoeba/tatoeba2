@@ -37,6 +37,16 @@
                 ); 
                 ?>
             </li>
+            <?php
+                if ($this->params['action'] == 'folder'
+                    && $this->params['pass']
+                    && $this->params['pass'][0] == 'Trash') {
+                    echo $html->tag('li', $html->link(
+                        __('Empty trash', true),
+                        array('action' => 'empty_folder', 'Trash')
+                    ));
+                }
+            ?>
             <li>&nbsp;</li>
             <li>
                 <?php

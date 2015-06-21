@@ -21,6 +21,7 @@ cake acl create aco PrivateMessages delete
 cake acl create aco PrivateMessages restore
 cake acl create aco PrivateMessages mark
 cake acl create aco PrivateMessages write
+cake acl create aco PrivateMessages empty_folder
 
 cake acl create aco controllers SentenceAnnotations
 cake acl create aco SentenceAnnotations index
