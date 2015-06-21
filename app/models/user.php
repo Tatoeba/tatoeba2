@@ -73,7 +73,7 @@ class User extends AppModel
             'min' => array('rule' => array('minLength', 2))
         ),
         'email' => array(
-            'email' => array('rule' => 'email'),
+            'email' => array('rule' => '/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/'),
             'isUnique' => array('rule' => 'isUnique')
         ),
         'lastlogout' => array('numeric'),
@@ -121,6 +121,55 @@ class User extends AppModel
             'associationForeignKey' => 'favorite_id',
         )
     );
+
+    public static $defaultSettings = array(
+        'is_public' => false,
+        'lang' => null,
+        'use_most_recent_list' => false,
+        'collapsible_translations' => false,
+        'restrict_search_langs' => false,
+        'sentences_per_page' => 10,
+    );
+
+    private $settingsValidation = array(
+        'sentences_per_page' => array(10, 20, 50, 100),
+    );
+
+    public function afterFind($results, $primary = false) {
+        foreach ($results as &$result) {
+            if (isset($result['User']) && array_key_exists('settings', $result['User'])) {
+                $result['User']['settings'] = (array)json_decode(
+                    $result['User']['settings']
+                );
+                $result['User']['settings'] = array_merge(
+                    self::$defaultSettings,
+                    $result['User']['settings']
+                );
+                $this->validateSettings($result['User']['settings']);
+            }
+        }
+        return $results;
+    }
+
+    public function beforeSave($options = array()) {
+        if (array_key_exists('settings', $this->data['User'])
+            && is_array($this->data['User']['settings'])) {
+            $settings = $this->field('settings', array('id' => $this->id));
+            $settings = array_merge($settings, $this->data['User']['settings']);
+            $settings = array_intersect_key($settings, self::$defaultSettings);
+            $this->validateSettings($settings);
+            $this->data['User']['settings'] = json_encode($settings);
+        }
+        return true;
+    }
+
+    private function validateSettings(&$settings) {
+        foreach ($this->settingsValidation as $setting => $values) {
+            if (!in_array($settings[$setting], $values)) {
+                $settings[$setting] = self::$defaultSettings[$setting];
+            }
+        }
+    }
 
     /**
      * ?
@@ -208,11 +257,10 @@ class User extends AppModel
                     'since',
                     'send_notifications',
                     'description',
+                    'settings',
                     'username',
                     'birthday',
-                    'is_public',
                     'group_id',
-                    'lang',
                     'level',
                     'country_id'
                 )
@@ -235,10 +283,9 @@ class User extends AppModel
             array(
                 'conditions' => array('id' => $userId),
                 'fields' => array(
-                    'is_public',
                     'send_notifications',
+                    'settings',
                     'email',
-                    'lang'
                 )
             )
         );

@@ -3,9 +3,9 @@
 
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from tatoeba2.models import Sentences, SentencesTranslations, Contributions, Users, Wall, SentenceComments, WallThreadsLastMessage, Languages
+from tatoeba2.models import Sentences, SentencesTranslations, Contributions, Users, Wall, SentenceComments, WallThreadsLastMessage
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta
 from optparse import make_option
 from django.db import transaction, IntegrityError
 from StringIO import StringIO
@@ -35,7 +35,7 @@ class Dedup(object):
         cls.started_on = now()
 
     @classmethod
-    def logger_init(cls, root_path=''):
+    def logger_init(cls, root_path='', file_name=''):
 
         cls.out_log = logging.getLogger('stdout_logger')
         cls.out_log.setLevel(logging.INFO)
@@ -49,7 +49,7 @@ class Dedup(object):
         cls.str_log.addHandler(string)
 
         root_path = root_path or settings.BASE_DIR
-        file_name = 'dedup-'+ cls.started_on.strftime('%Y-%m-%dT%H:%M') + '.log'
+        file_name = file_name or 'dedup-'+ cls.started_on.strftime('%Y-%m-%dT%H:%M') + '.log'
         cls.file_log = logging.getLogger('file_logger')
         cls.file_log.setLevel(logging.DEBUG)
         cls.log_file_path = path.join(root_path, file_name)
@@ -63,7 +63,7 @@ class Dedup(object):
                 tally[(sent[0], sent[1])].add(sent[2])
 
         return tally
-        
+
     @staticmethod
     def chunked_ranges(chunks, total):
         increment = total / chunks if total % chunks is not 0 else total/chunks - 1
@@ -79,7 +79,7 @@ class Dedup(object):
         cls.has_audio = set()
         cls.has_owner = set()
         cls.not_approved = False
-        
+
         for sent in sents:
 
             # filter sents with audio
@@ -112,7 +112,7 @@ class Dedup(object):
     def log_entry(cls, main_id, ids, op, q, fld, objs):
         cls.json_entry(main_id, ids, op, q, fld, objs)
         cls.out_entry(main_id, ids, op)
-        
+
     @classmethod
     def json_entry(cls, main_id, ids, op, q, fld, objs):
         entry = {}
@@ -123,9 +123,9 @@ class Dedup(object):
         entry['duplicate_ids'] = list(ids)
         entry['field_replaced'] = fld
         entry['rows_affected'] = serializers.serialize('json', objs)
-        
+
         cls.file_log.info(json.dumps(entry))
-    
+
     @classmethod
     def out_entry(cls, main_id, ids, op):
         entry = []
@@ -134,16 +134,16 @@ class Dedup(object):
         entry.append('into')
         entry.append(str(main_id))
         entry = ' '.join(entry)
-        
+
         pat = {
             'merge': colored('MERGE', 'yellow', attrs=['bold']),
             'delete': colored('DELETE', 'yellow', attrs=['bold']),
             'into': colored('INTO', 'yellow', attrs=['bold']),
             'update': colored('UPDATE', 'yellow', attrs=['bold']),
-            'log_deletion': colored('LOG DELETION', 'yellow', attrs=['bold']),                    
+            'log_deletion': colored('LOG DELETION', 'yellow', attrs=['bold']),
         }
         entry = cls.multi_replace(entry, pat)
-        
+
         cls.out_log.debug(entry)
 
     @staticmethod
@@ -151,13 +151,13 @@ class Dedup(object):
         pat = dict((re.escape(k), v) for k, v in pat.iteritems())
         regex = re.compile(r'|'.join(pat.keys()))
         txt = regex.sub(lambda m: pat[re.escape(m.group(0))], txt)
-        
+
         return txt
 
-    @classmethod    
+    @classmethod
     def log_report(cls, msg):
         cls.str_log.info(msg)
-        
+
         pat = {
             'Running': colored('Running', 'blue', attrs=['bold']),
             'OK': colored('OK', 'green', attrs=['bold']),
@@ -188,14 +188,14 @@ class Dedup(object):
 
         cls.log_entry(main_id, ids, 'delete Sentences', 'delete', 'sentence_id', sents)
         cls.log_entry(main_id, ids, 'log_deletion Contributions', 'insert', 'sentence_id', logs)
-    
+
     @classmethod
     def delete_sents(cls, main_id, ids):
         sents = Sentences.objects.filter(id__in=ids)
         cls.log_sents_del(main_id, ids, sents)
         if not cls.dry:
             sents.delete()
-    
+
     @classmethod
     def log_update_merge(cls, model, main_id, ids, fld='sentence_id'):
         updates = list(get_model('tatoeba2.'+model).objects.filter(**{fld+'__in': ids}))
@@ -255,7 +255,7 @@ class Dedup(object):
         # given tuples containing some values and a model with a list of field names
         # contents are matched back to build an orm filter, the query
         # is then built by chaining all the built filters and rows are deleted
-        query = get_model('tatoeba2.'+model).objects.none() 
+        query = get_model('tatoeba2.'+model).objects.none()
         for tpl in tuples:
             filters = {}
             for idx, fld in enumerate(flds):
@@ -355,6 +355,26 @@ class Dedup(object):
             SentenceComments.objects.bulk_create(cmnts)
 
     @classmethod
+    def suppress_error(cls, func, *args):
+        try:
+            func(*args)
+        except Exception as e:
+            entry = {}
+            entry['timestamp'] = now().strftime('%Y-%m-%d %I:%M %p UTC')
+            entry['operation'] = 'error'
+            entry['args'] = args
+            entry['error_msg'] = e.message
+            cls.file_log.info(json.dumps(entry))
+
+            entry = []
+            entry.append(colored('ERROR', 'red', attrs=['bold']))
+            entry.append('while running')
+            entry.append(func.__name__+'(')
+            entry.append(', '.join([str(arg) for arg in args]))
+            entry.append(')')
+            cls.out_log.debug(entry)
+
+    @classmethod
     @transaction.atomic
     def deduplicate(cls, main_sent, ids, post_cmnt=False, dry=False):
         cls.dry = dry
@@ -367,17 +387,17 @@ class Dedup(object):
         cls.update_merge('FavoritesUsers', main_sent.id, ids, 'favorite_id')
         cls.update_merge('SentenceAnnotations', main_sent.id, ids)
         cls.update_merge('SentenceAnnotations', main_sent.id, ids, 'meaning_id')
-               
+
         # delete and log duplicates
         cls.delete_sents(main_sent.id, ids)
-        
+
         # fix correctness if needed
         if cls.not_approved:
             if not cls.dry:
                 main_sent.correctness = -1
                 main_sent.save()
             cls.log_entry(main_sent.id, [], 'update Sentences', 'update', 'correctness', [main_sent])
-        
+
         # post comment on duplicate sentences if needed
         if post_cmnt and not dry:
             comments = []
@@ -403,16 +423,6 @@ class Dedup(object):
                 )
             SentenceComments.objects.bulk_create(comments)
 
-    @staticmethod
-    @transaction.atomic
-    def refresh_lang_stats(dry=False):
-        if not dry:
-            langs = list(Languages.objects.all())
-            for l in langs:
-                Languages.objects\
-                .filter(code=l.code)\
-                .update(sentences=Sentences.objects.filter(lang=l.code).count())
-        
 class Command(Dedup, BaseCommand):
     option_list = BaseCommand.option_list + (
         make_option(
@@ -421,10 +431,12 @@ class Command(Dedup, BaseCommand):
             ),
         make_option(
             '-i', '--incremental-scan', action='store', type='string', dest='since',
-            help='attempts deduplication using an incremental table scan with 1 query filtering sentences added between now and date `d` in `yyyy-mm-dd` format, then a query per row to find duplicates. DO NOT USE THIS WITHOUT A (text, lang) INDEX.'
+            help='attempts deduplication using an incremental table scan with 1 query filtering sentences \
+                  added between now and date `d` in `yyyy-mm-dd` format or as a time delta `{n}y {n}m {n}d {n}h {n}min {n}s ago`\
+                  , then a query per row to find duplicates. DO NOT USE THIS WITHOUT A (text, lang) INDEX.'
             ),
         make_option(
-            '-p', '--transaction-pause', action='store', type='int', 
+            '-p', '--transaction-pause', action='store', type='int',
             dest='pause_for', help='adds a pause for `n` seconds between deduplication transactions for better rate control.'
             ),
         make_option(
@@ -438,6 +450,10 @@ class Command(Dedup, BaseCommand):
         make_option(
             '-l', '--log-path', action='store', type='string', dest='path',
             help='specify log directory. defaults to django project\'s root'
+            ),
+        make_option(
+            '-a', '--append-file', action='store', type='string', dest='file_name',
+            help='specify file to log to in append mode, relative to log path'
             ),
         make_option(
             '-w', '--wall-post', action='store_true', dest='wall',
@@ -456,8 +472,8 @@ class Command(Dedup, BaseCommand):
             help='url root path pointing to log directory. used in the wall post'
             ),
         make_option(
-            '-r', '--refresh-stats', action='store_true', dest='refresh',
-            help='runs queries to repopulate langstats table'
+            '-e', '--suppress-errors', action='store_true', dest='suppress',
+            help='suppress and log trace errors when deduplicating instead of failing with a trace'
             ),
         )
 
@@ -470,6 +486,34 @@ class Command(Dedup, BaseCommand):
         if percent_done == 100:
             print('') # for the return carriage
 
+    def parse_time(self, time_str):
+        if 'ago' in time_str:
+            time_str = time_str.replace('ago', '')
+            years, months, days, hours, minutes, seconds = 0, 0, 0, 0, 0, 0
+            tokens = time_str.split()
+
+            for token in tokens:
+                if 'y' in token: years = int(token.replace('y', ''))
+                if 'm' in token and not 'min' in token: months = int(token.replace('m', ''))
+                if 'd' in token: days = int(token.replace('d', ''))
+                if 'h' in token: hours = int(token.replace('h', ''))
+                if 'min' in token: minutes = int(token.replace('min', ''))
+                if 's' in token: seconds = int(token.replace('s', ''))
+
+            days = years*365 + months*30 + days
+            self.td = timedelta(days=days, hours=hours, minutes=minutes, seconds=seconds)
+            time = now() - self.td
+            time = time.replace(tzinfo=utc)
+
+            return time
+        elif time_str:
+            time = datetime(*[int(s) for s in time_str.split('-')])
+            time = time.replace(tzinfo=utc)
+
+            return time
+        else:
+            return None
+
     def handle(self, *args, **options):
 
         if options.get('chunks') and options.get('since'):
@@ -477,14 +521,15 @@ class Command(Dedup, BaseCommand):
             return
 
         self.time_init()
-        self.logger_init(options.get('path'))
+        self.logger_init(options.get('path'), options.get('file_name'))
         if options.get('verbose_out'): self.out_log.setLevel(logging.DEBUG)
 
         chunks = options.get('chunks') or 10
-        since = options.get('since')
+        since = options.get('since') or ''
+        # parse date
+        since = self.parse_time(since)
 
         dry = bool(options.get('dry'))
-        refresh = bool(options.get('refresh'))
         bot_name = options.get('bot_name') or 'Horus'
         try:
             Dedup.bot = Users.objects.get(username=bot_name)
@@ -500,6 +545,7 @@ class Command(Dedup, BaseCommand):
         post_cmnt = bool(options.get('cmnt'))
         url = options.get('url') or 'http://downloads.tatoeba.org/'
         if url[-1] != '/': url += '/'
+        suppress = options.get('suppress') or False
 
         self.all_dups = []
         self.all_mains = []
@@ -511,33 +557,26 @@ class Command(Dedup, BaseCommand):
         # incremental vs full scan routes
         if since:
             self.log_report('Running incremental scan at '+self.started_on.strftime('%Y-%m-%d %I:%M %p UTC'))
-            # parse date
-            since = datetime(*[int(s) for s in since.split('-')]).replace(tzinfo=utc)
             # pull in rows from time range
             self.log_report('Running filter on sentences added since '+since.strftime('%Y-%m-%d %I:%M %p'))
-            sents = list(Sentences.objects.filter(created__range=[since, now()]))
-            sents = [(int(sha1(sent.text).hexdigest(), 16), sent.lang, sent.id) for sent in sents]
+            sents = list(Sentences.objects.filter(modified__range=[since, now()]))
             self.log_report('OK filtered '+str(len(sents))+' sentences')
-            
-            # tally to eliminate premature duplicates
-            sent_tally = self.tally(sents)
-            del sents
 
             # filter out duplicates (could probably be done in 1 raw query...)
             self.log_report('Running filter on sentences to find duplicates')
-            dup_set = []            
-            for ids in sent_tally.itervalues():
-                ids = list(ids)
-                sents = list(Sentences.objects.filter(id__in=ids))            
-                if len(sents) > 1:
-                    dup_set.append(sents)
+            dup_set = set()
+            for sent in sents:
+                f_sents = tuple(Sentences.objects.filter(text=sent.text, lang=sent.lang))
+                if len(f_sents) > 1:
+                    dup_set.add(f_sents)
+            dup_set = list(dup_set)
             self.total_sets = len(dup_set)
             self.log_report('OK '+str(self.total_sets)+' duplicate sets found')
-            del sent_tally
 
             self.log_report('Running deduplication transactions on duplicate sets')
             # deduplicate
             for sents in dup_set:
+                sents = list(sents)
                 # determine main sentence based on priority rules
                 main_sent = self.prioritize(sents)
                 self.all_audio.extend(list(self.has_audio))
@@ -548,7 +587,10 @@ class Command(Dedup, BaseCommand):
                 ids = [sent.id for sent in sents]
                 self.all_dups.extend(ids)
                 # run a deduplication transaction
-                self.deduplicate(main_sent, ids, post_cmnt, dry)
+                if suppress:
+                    self.suppress_error(self.deduplicate, main_sent, ids, post_cmnt, dry)
+                else:
+                    self.deduplicate(main_sent, ids, post_cmnt, dry)
                 # display percentage progress
                 self.proceeded_sets += 1
                 self.update_dedup_progress()
@@ -579,7 +621,7 @@ class Command(Dedup, BaseCommand):
                 if process:
                     # pull in needed rows
                     sents = list(Sentences.objects.filter(id__in=ids))
-                    
+
                     main_sent = self.prioritize(sents)
                     self.all_audio.extend(list(self.has_audio))
                     self.all_mains.append(main_sent.id)
@@ -588,9 +630,12 @@ class Command(Dedup, BaseCommand):
                     sents.remove(main_sent)
                     ids.remove(main_sent.id)
                     self.all_dups.extend(ids)
-                    
+
                     # run a deduplication transaction
-                    self.deduplicate(main_sent, ids, post_cmnt, dry)
+                    if suppress:
+                        self.suppress_error(self.deduplicate, main_sent, ids, post_cmnt, dry)
+                    else:
+                        self.deduplicate(main_sent, ids, post_cmnt, dry)
 
                 self.proceeded_sets += 1
                 # display percentage progress
@@ -601,7 +646,7 @@ class Command(Dedup, BaseCommand):
                     if pause_for: time.sleep(pause_for)
 
         self.log_report('OK '+str(len(self.all_dups))+' sentences merged into '+str(len(self.all_mains))+' sentences')
-        
+
         # verification step
         self.log_report('Running verification step')
 
@@ -621,7 +666,7 @@ class Command(Dedup, BaseCommand):
         self.log_report('All merged sentences intact? ')
         self.ver_mains = Sentences.objects.filter(id__in=self.all_mains).count() == len(self.all_mains)
         msg = 'YES' if self.ver_mains else 'NO'
-        self.log_report(msg)        
+        self.log_report(msg)
 
         # no links should refer to dups
         self.log_report('Sentences are free from links referring to deleted duplicates? ')
@@ -629,14 +674,9 @@ class Command(Dedup, BaseCommand):
         msg = 'YES' if self.ver_links else 'NO'
         self.log_report(msg)
 
-        # refresh sentence numbers for languages
-        if refresh:
-            self.log_report('Refreshing language statistics')
-            self.refresh_lang_stats(dry)
-        
         self.log_report('Deduplication finished running successfully at '+now().strftime('%Y-%m-%d %I:%M %p UTC')+', see full log at:')
         self.log_report(url + path.split(self.log_file_path)[-1].replace(' ', '%20'))
-        
+
         # post a wall report if needed
         if options.get('wall') and not dry:
             lft = Wall.objects.all().order_by('-rght')[0].rght + 1

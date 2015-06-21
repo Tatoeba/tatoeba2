@@ -20,7 +20,6 @@ class Acos(models.Model):
     lft = models.IntegerField(blank=True, null=True)
     rght = models.IntegerField(blank=True, null=True)
     class Meta:
-        managed = False
         db_table = 'acos'
 
 class Aros(models.Model):
@@ -32,7 +31,6 @@ class Aros(models.Model):
     lft = models.IntegerField(blank=True, null=True)
     rght = models.IntegerField(blank=True, null=True)
     class Meta:
-        managed = False
         db_table = 'aros'
 
 class ArosAcos(models.Model):
@@ -44,7 +42,6 @@ class ArosAcos(models.Model):
     field_update = models.CharField(db_column='_update', max_length=2) # Field renamed because it started with '_'.
     field_delete = models.CharField(db_column='_delete', max_length=2) # Field renamed because it started with '_'.
     class Meta:
-        managed = False
         db_table = 'aros_acos'
 
 # Datetime conversion back and forth from MySQL to Python fails when datetime
@@ -73,7 +70,6 @@ class Contributions(models.Model):
     type = models.CharField(max_length=8)
     id = models.AutoField(primary_key=True, unique=True)
     class Meta:
-        managed = False
         db_table = 'contributions'
 
 class Countries(models.Model):
@@ -82,15 +78,14 @@ class Countries(models.Model):
     numcode = models.IntegerField(blank=True, null=True)
     name = models.CharField(max_length=80)
     class Meta:
-        managed = False
         db_table = 'countries'
 
 class FavoritesUsers(models.Model):
-    # we're lying to django, this would break horribly if managed was set to True
-    favorite_id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
+    favorite_id = models.IntegerField()
     user_id = models.IntegerField()
+    created = models.DateTimeField(blank=True, null=True)
     class Meta:
-        managed = False
         db_table = 'favorites_users'
         unique_together = ('favorite_id', 'user_id')
 
@@ -98,7 +93,6 @@ class FollowersUsers(models.Model):
     follower_id = models.IntegerField()
     user_id = models.IntegerField()
     class Meta:
-        managed = False
         db_table = 'followers_users'
 
 class Groups(models.Model):
@@ -107,15 +101,26 @@ class Groups(models.Model):
     created = models.DateTimeField(blank=True, null=True)
     modified = models.DateTimeField(blank=True, null=True)
     class Meta:
-        managed = False
         db_table = 'groups'
 
 class Languages(models.Model):
-    code = models.CharField(unique=True, max_length=4)
-    sentences = models.IntegerField()
     id = models.AutoField(primary_key=True)
+    code = models.CharField(unique=True, max_length=4, blank=True)
+    sentences = models.IntegerField()
+    audio = models.IntegerField()
+    group_1 = models.IntegerField()
+    group_2 = models.IntegerField()
+    group_3 = models.IntegerField()
+    group_4 = models.IntegerField()
+    level_0 = models.IntegerField()
+    level_1 = models.IntegerField()
+    level_2 = models.IntegerField()
+    level_3 = models.IntegerField()
+    level_4 = models.IntegerField()
+    level_5 = models.IntegerField()
+    level_unknown = models.IntegerField()
+
     class Meta:
-        managed = False
         db_table = 'languages'
 
 class LastContributions(models.Model):
@@ -131,7 +136,6 @@ class LastContributions(models.Model):
     type = models.CharField(max_length=8)
     id = models.AutoField(primary_key=True)
     class Meta:
-        managed = False
         db_table = 'last_contributions'
 
 class PrivateMessages(models.Model):
@@ -145,7 +149,6 @@ class PrivateMessages(models.Model):
     content = models.TextField()
     isnonread = models.IntegerField()
     class Meta:
-        managed = False
         db_table = 'private_messages'
 
 class SentenceAnnotations(models.Model):
@@ -156,7 +159,6 @@ class SentenceAnnotations(models.Model):
     modified = models.DateTimeField()
     user_id = models.IntegerField()
     class Meta:
-        managed = False
         db_table = 'sentence_annotations'
 
 class SentenceAnnotationsOld(models.Model):
@@ -166,7 +168,6 @@ class SentenceAnnotationsOld(models.Model):
     dico_id = models.IntegerField()
     text = models.CharField(max_length=2000)
     class Meta:
-        managed = False
         db_table = 'sentence_annotations_old'
 
 class SentenceComments(models.Model):
@@ -179,7 +180,6 @@ class SentenceComments(models.Model):
     modified = models.DateTimeField(blank=True, null=True)
     hidden = models.IntegerField()
     class Meta:
-        managed = False
         db_table = 'sentence_comments'
 
 class Sentences(models.Model):
@@ -194,7 +194,6 @@ class Sentences(models.Model):
     hasaudio = models.CharField(max_length=10)
     lang_id = models.IntegerField(blank=True, null=True)
     class Meta:
-        managed = False
         db_table = 'sentences'
 
 class SentencesLists(models.Model):
@@ -206,27 +205,24 @@ class SentencesLists(models.Model):
     created = models.DateTimeField(blank=True, null=True)
     modified = models.DateTimeField(blank=True, null=True)
     class Meta:
-        managed = False
         db_table = 'sentences_lists'
 
 class SentencesSentencesLists(models.Model):
+    id = models.AutoField(primary_key=True)
     sentences_list_id = models.IntegerField()
-    # we're lying to django, this would break horribly if managed was set to True
-    sentence_id = models.IntegerField(primary_key=True)
+    sentence_id = models.IntegerField()
+    created = models.DateTimeField(blank=True, null=True)
     class Meta:
-        managed = False
         db_table = 'sentences_sentences_lists'
         unique_together = ('sentences_list_id', 'sentence_id')
 
 class SentencesTranslations(models.Model):
-    # more lying to django
-    sentence_id = models.IntegerField(primary_key=True)
+    sentence_id = models.IntegerField()
     translation_id = models.IntegerField()
     sentence_lang = models.CharField(max_length=4, blank=True)
     translation_lang = models.CharField(max_length=4, blank=True)
     distance = models.IntegerField()
     class Meta:
-        managed = False
         db_table = 'sentences_translations'
         unique_together = ('sentence_id', 'translation_id')
 
@@ -235,7 +231,6 @@ class SinogramSubglyphs(models.Model):
     glyph = models.CharField(max_length=2, blank=True)
     subglyph = models.CharField(max_length=2)
     class Meta:
-        managed = False
         db_table = 'sinogram_subglyphs'
 
 class Sinograms(models.Model):
@@ -254,7 +249,6 @@ class Sinograms(models.Model):
     subcharacterslist = models.CharField(max_length=255, blank=True)
     usedbylist = models.CharField(db_column='usedByList', max_length=255, blank=True) # Field name made lowercase.
     class Meta:
-        managed = False
         db_table = 'sinograms'
 
 class Tags(models.Model):
@@ -266,17 +260,14 @@ class Tags(models.Model):
     created = models.DateTimeField(blank=True, null=True)
     nbrofsentences = models.IntegerField(db_column='nbrOfSentences') # Field name made lowercase.
     class Meta:
-        managed = False
         db_table = 'tags'
 
 class TagsSentences(models.Model):
-    # more lying to django
-    tag_id = models.IntegerField(primary_key=True)
+    tag_id = models.IntegerField()
     user_id = models.IntegerField(blank=True, null=True)
     sentence_id = models.IntegerField(blank=True, null=True)
     added_time = models.DateTimeField(blank=True, null=True)
     class Meta:
-        managed = False
         db_table = 'tags_sentences'
 
 class Users(models.Model):
@@ -284,7 +275,6 @@ class Users(models.Model):
     username = models.CharField(unique=True, max_length=20)
     password = models.CharField(max_length=50)
     email = models.CharField(unique=True, max_length=100)
-    lang = models.CharField(max_length=100, blank=True)
     since = models.DateTimeField()
     last_time_active = models.IntegerField()
     level = models.IntegerField()
@@ -296,16 +286,28 @@ class Users(models.Model):
     homepage = models.CharField(max_length=255)
     image = models.CharField(max_length=255)
     country_id = models.CharField(max_length=2, blank=True)
-    is_public = models.IntegerField()
+    settings = models.TextField()
     class Meta:
-        managed = False
         db_table = 'users'
+
+class UsersLanguages(models.Model):
+    id = models.AutoField(primary_key=True)
+    of_user_id = models.IntegerField()
+    by_user_id = models.IntegerField()
+    language_code = models.CharField(max_length=4)
+    level = models.IntegerField(blank=True, null=True)
+    level_approval_status = models.CharField(max_length=10)
+    details = models.TextField()
+    created = models.DateTimeField(blank=True, null=True)
+    modified = models.DateTimeField(blank=True, null=True)
+    class Meta:
+        db_table = 'users_languages'
+        unique_together = ('of_user_id', 'by_user_id', 'language_code')
 
 class Visitors(models.Model):
     ip = models.CharField(primary_key=True, unique=True, max_length=15)
     timestamp = models.IntegerField()
     class Meta:
-        managed = False
         db_table = 'visitors'
 
 class Wall(models.Model):
@@ -320,12 +322,21 @@ class Wall(models.Model):
     hidden = models.IntegerField()
     modified = models.DateTimeField(blank=True, null=True)
     class Meta:
-        managed = False
         db_table = 'wall'
 
 class WallThreadsLastMessage(models.Model):
     id = models.IntegerField(primary_key=True)
     last_message_date = models.DateTimeField()
     class Meta:
-        managed = False
         db_table = 'wall_threads_last_message'
+
+from django.conf import settings
+
+if not settings.MANAGE_DB:
+    import sys
+    import inspect
+
+    mmbrs = inspect.getmembers(sys.modules[__name__], inspect.isclass)
+    tbls = [m[1] for m in mmbrs]
+    for tbl in tbls:
+        if hasattr(tbl, '_meta'): tbl._meta.managed = False

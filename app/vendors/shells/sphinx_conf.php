@@ -73,6 +73,8 @@ class SphinxConfShell extends Shell {
         'U+0240', 'U+0241->U+0242', 'U+0242', 'U+0243->U+0180', 'U+0244->U+0289', 'U+0245->U+028C', 'U+0246..U+024F/2',
         # Latin Extended Additional, with case folding (1E00-1EFF)
         'U+1E00..U+1E95/2', 'U+1E96..U+1E9F', 'U+1EA0..U+1EFF/2',
+        # Combining Diacritical Marks
+        'U+300..U+36F',
         # Arabic
         'U+621..U+63a', 'U+640..U+64a',
         'U+66e..U+66f', 'U+671..U+6d3', 'U+6d5', 'U+6e5..U+6e6', 'U+6ee..U+6ef', 'U+6fa..U+6fc', 'U+6ff',
@@ -142,6 +144,8 @@ class SphinxConfShell extends Shell {
         # Hangul halfwidth to fullwidth
         'U+FFA1..U+FFBE->U+3131..U+314E', 'U+FFC2..U+FFC7->U+314F..U+3154',
         'U+FFCA..U+FFCF->U+3155..U+315A', 'U+FFD2..U+FFD7->U+315B..U+3160', 'U+FFDA..U+FFDC->U+3161..U+3163',
+        # CJK
+        'U+3000..U+FEFF', 'U+FFF0..U+2FA1F',
     );
 
     public $languagesWithoutWordBoundaries = array(
@@ -192,6 +196,22 @@ class SphinxConfShell extends Shell {
                     function($v) { return $v != 'A..Z->a..z' && $v != 'a..z'; }
                 )
             ))."\n";
+
+        /* Russian uses diacritics only to stress words and it's easier
+         * to search if they are ignored. Since all the Russian diacritics
+         * are not single characters but combining characters (e.g. и + ´ = и́)
+         * we simply ignore the *´* combining char (U+301) so that characters
+         * are considered not having a diacritic. */
+        $this->indexExtraOptions['rus'] =
+            "
+        charset_table = ".implode(', ', array_merge(
+            array('U+300', 'U+302..U+36F'),
+            array_filter(
+                $charsetTableBase,
+                function($v) { return $v != 'U+300..U+36F'; }
+            )
+        ))."
+        ignore_chars = U+AD, U+301\n";
     }
 
     private function conf_beginning() {
@@ -217,6 +237,8 @@ index common_index
     index_field_lengths     = 1
     ignore_chars            = U+AD
     charset_table           = $charset_table_opt
+    enable_star             = 1
+    min_infix_len           = 3
     docinfo                 = extern
 }
 

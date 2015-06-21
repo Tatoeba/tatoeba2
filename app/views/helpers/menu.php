@@ -176,63 +176,53 @@ class MenuHelper extends AppHelper
      *                           is displayed
      * @param string $ownerName  Indicates whether the sentence is adopted by current
      *                           user or not.
-     * @param bool   $isLogged   True if user is logged in, false otherwise.
-     *
      * @return void
      */
-    public function adoptButton($sentenceId, $ownerName, $isLogged)
+    public function adoptButton($sentenceId, $ownerName)
     {
         $isAdopted = !empty($ownerName);
         $currentUserName = CurrentUser::get('username');
         $isOwnedByCurrentUser = $isAdopted && $ownerName == $currentUserName;
 
         $tooltip = null;
+        $action = '';
         if ($isAdopted) {
-            $cssClass = 'remove';
             $image = 'adopted';
-            if ($isLogged && $isOwnedByCurrentUser) {
+            if ($isOwnedByCurrentUser) {
                 $tooltip = __('Click to unadopt', true);
+                $action = ' remove';
             }
         } else {
-            $cssClass = 'add';
             $image = 'unadopted';
-            if ($isLogged) {
+            if (!$isAdopted) {
                 $tooltip = __('Click to adopt', true);
+                $action = ' add';
             }
         }
 
-        $adoptImage = $this->Images->svgIcon(
-            $image,
-            array(
-                'alt'=> $tooltip,
-                'title'=> $tooltip,
-                'width' => 26,
-                'height' => 16
-            )
+        $svgIconOptions = array(
+            'alt'=> $tooltip,
+            'title'=> $tooltip,
+            'width' => 26,
+            'height' => 16,
+            'class' => 'option',
         );
-        if ($isLogged && ($isOwnedByCurrentUser || !$isAdopted)) {
 
-            ?>
-            <li class="option adopt <?php echo $cssClass; ?>"
-                data-sentence-id="<?php echo $sentenceId; ?>">
-            <?php
+        if (empty($action)) {
+            $svgIconOptions['class'] .= ' adopt-item uneditable';
+            $contents = $this->Images->svgIcon($image, $svgIconOptions);
+        } else {
             $this->Javascript->link('sentences.adopt.js', false);
-            ?>
-
-            <a><?php echo $adoptImage; ?></a>
-            </li>
-            <?php
-
-        } else if ($isAdopted) {
-
-            echo '<li class="option adopt uneditable">';
-            echo $adoptImage;
-            echo '</li>';
-
+            $contents = $this->Images->svgIcon($image, $svgIconOptions);
+            $contents = '<a class="adopt-item adopt-button">'.$contents.'</a>';
         }
-        ?>
-
-    <?php
+        if ($isAdopted) {
+            $contents .= $this->belongsTo($ownerName);
+        }
+        echo $this->Html->tag('li', $contents, array(
+            'class' => 'adopt'.$action,
+            'data-sentence-id' => $sentenceId,
+        ));
     }
 
 
@@ -353,7 +343,7 @@ class MenuHelper extends AppHelper
      */
     public function addToListButton($sentenceId, $isLogged)
     {
-        $useMostRecentList = $this->Session->read('use_most_recent_list');
+        $useMostRecentList = CurrentUser::get('settings.use_most_recent_list');
         if ($useMostRecentList != null && $useMostRecentList) {
             $mostRecentList = $this->Session->read('most_recent_list');
         } else {
@@ -396,6 +386,10 @@ class MenuHelper extends AppHelper
         </li>
 
         <?php
+        if (!$isLogged) {
+            return;
+        }
+
         $this->Javascript->link('sentences_lists.menu.js', false);
 
         $lists = ClassRegistry::init('SentencesList')->getUserChoices(
@@ -532,37 +526,31 @@ class MenuHelper extends AppHelper
 
 
     /**
-     * Display a <li></li> with the current owner name
-     * and a link to owner's profile
+     * Return a link to owner's profile
      *
      * @param int    $sentenceId The sentence's id.
      * @param string $ownerName  The owner's name.
      *
      * @return void
      */
-    public function belongsTo($sentenceId,$ownerName)
+    private function belongsTo($ownerName)
     {
-        if (empty($ownerName)) {
-            return;
-        }
-
-        // the id is used by sentence.adopt.js
         $belongsToTitle = format(
             __('belongs to {user}', true),
             array('user' => $ownerName)
         );
-        echo '<li class="belongsTo" id="belongsTo_'.$sentenceId.'"
-              title="'.$belongsToTitle.'">';
-        $userLink = $this->Html->link(
+        return $this->Html->link(
             $ownerName,
             array(
                 "controller" => "user",
                 "action" => "profile",
                 $ownerName
+            ),
+            array(
+                'title' => $belongsToTitle,
+                'class' => 'adopt-item',
             )
         );
-        echo $userLink;
-        echo '</li>';
     }
 
 
@@ -593,11 +581,8 @@ class MenuHelper extends AppHelper
         <?php
         $isLogged = CurrentUser::isMember();
 
-        // Username of the owner
-        $this->belongsTo($sentenceId, $ownerName);
-
         // Adopt
-        $this->adoptButton($sentenceId, $ownerName, $isLogged);
+        $this->adoptButton($sentenceId, $ownerName);
 
         // Translate
         $this->translateButton($sentenceId, $ownerName, $isLogged, $canTranslate);

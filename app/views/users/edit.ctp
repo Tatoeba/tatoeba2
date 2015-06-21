@@ -90,7 +90,7 @@ $form->create('User'); // But we still need to call $form->create()
     echo $form->input('id',       array('label' => __d('admin', 'Id', true)));
     echo $form->input('username', array('label' => __d('admin', 'Username', true)));
     echo $form->input('email',    array('label' => __d('admin', 'Email', true)));
-    echo $form->input('lang',     array('label' => __d('admin', 'Lang', true)));
+    echo $form->input('settings.lang',     array('label' => __d('admin', 'Lang', true)));
     echo $form->input('group_id', array('label' => __d('admin', 'Group', true)));
     echo $form->input(
         'level', 

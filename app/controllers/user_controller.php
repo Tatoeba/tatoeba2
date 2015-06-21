@@ -122,7 +122,7 @@ class UserController extends AppController
         $userStats = $this->_stats($userId);
         $userLanguages = $this->UsersLanguages->getLanguagesOfUser($userId);
 
-        $isPublic = ($user['is_public'] == 1);
+        $isPublic = ($user['settings']['is_public'] == 1);
         $isDisplayed = ($isPublic || CurrentUser::isMember());
         $notificationsEnabled = ($user['send_notifications'] == 1);
 
@@ -376,22 +376,13 @@ class UserController extends AppController
             $jqueryChosen = $this->data['User']['jquery_chosen'];
             $this->Cookie->write('jquery_chosen', $jqueryChosen, false, "+1 month");;
 
-            // Remember the last sentence list to which user assigned a sentence
-            // and bring it up as the default.
-            $useMostRecentList = $this->data['User']['use_most_recent_list'];
-            $this->Cookie->write('use_most_recent_list', $useMostRecentList, false, "+1 month");
-
-            $collapsibleTranslationsEnabled = $this->data['User']['collapsible_translations_enabled'];
-            $this->Cookie->write('collapsible_translations_enabled', $collapsibleTranslationsEnabled, false, "+1 month");;
-
-            $restrictSearchLangsEnabled = $this->data['User']['restrict_search_langs_enabled'];
-            $this->Cookie->write('restrict_search_langs_enabled', $restrictSearchLangsEnabled, false, "+1 month");;
-
+            $this->data['User']['settings']['lang'] = $this->_language_settings(
+                $this->data['User']['settings']['lang']
+            );
             $dataToSave = array(
                 'id' => $currentUserId,
-                'lang' => $this->_language_settings($this->data['User']['lang']),
                 'send_notifications' => $this->data['User']['send_notifications'],
-                'is_public' => $this->data['User']['is_public'],
+                'settings' => $this->data['User']['settings'],
             );
             if ($this->User->save($dataToSave)) {
                 // Needed so that the information is updated for the Auth component.
@@ -553,19 +544,10 @@ class UserController extends AppController
         }
 
         $this->data = $this->User->getSettings($currentUserId);
+
         // Whether to use advanced selectors for language selection
         $this->data['User']['jquery_chosen'] 
           = $this->Cookie->read('jquery_chosen');
-        // Whether to select by default the last list to which user assigned a sentence
-        $this->data['User']['use_most_recent_list']
-          = $this->Cookie->read('use_most_recent_list');
-        
-        $this->data['User']['collapsible_translations_enabled']
-            = $this->Cookie->read('collapsible_translations_enabled');
-
-        $this->data['User']['restrict_search_langs_enabled']
-            = $this->Cookie->read('restrict_search_langs_enabled');
-        
     }
 
 

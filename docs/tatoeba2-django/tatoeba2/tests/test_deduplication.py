@@ -2,7 +2,9 @@ from tatoeba2.management.commands.deduplicate import Command, Dedup
 from tatoeba2.models import Sentences, SentenceComments, SentencesTranslations, Contributions, TagsSentences, SentencesSentencesLists, FavoritesUsers, SentenceAnnotations, Contributions, Users, Wall, Languages
 from django.db import transaction, IntegrityError
 from django.db.models import Q
+from django.conf import settings
 from hashlib import sha1
+from datetime import timedelta
 import pytest
 import os
 import logging
@@ -37,16 +39,25 @@ class TestDedup():
         Dedup.out_log.info('test')
         out, _ = capsys.readouterr()
         assert out == 'test\ntest\n'
-        
+
 
         Dedup.file_log.info('test')
         with open(Dedup.log_file_path) as f:
             assert f.read() == 'test\n'
+        os.remove(Dedup.log_file_path)
 
         Dedup.str_log.info('test')
         assert Dedup.report.getvalue() == 'test\n'
 
-        os.remove(Dedup.log_file_path)
+        # test append mode
+        test_log = os.path.join(settings.BASE_DIR, 'test.log')
+        with open(test_log, 'w') as f:
+            f.write('test write\n')
+        Dedup.logger_init(settings.BASE_DIR, 'test.log')
+        Dedup.file_log.info('test append')
+        with open(test_log, 'r') as f:
+            f.read() == 'test write\ntest append\n'
+        os.remove(test_log)
 
     def test_chunked_ranges(db, dedup):
         assert \
@@ -65,7 +76,7 @@ class TestDedup():
         sents = list(Sentences.objects.all())
         sents = sents = [(int(sha1(sent.text).hexdigest(), 16), sent.lang, sent.id) for sent in sents]
         sent_tally = dedup.tally(sents)
- 
+
         k_cnt = 0
         for k, v in sent_tally.iteritems():
             if k == ('Has owner, Has audio, Correctness -1 duplicated.', 'eng'):
@@ -90,10 +101,10 @@ class TestDedup():
     def test_prioritize(db, sents, dedup):
         sents = list(Sentences.objects.filter(id__range=[2, 4]))
         assert dedup.prioritize(sents).id == 2
-        
+
         sents = list(Sentences.objects.filter(id__range=[6, 8]))
         assert dedup.prioritize(sents).id == 8
-        
+
         sents = list(Sentences.objects.filter(id__range=[10, 12]))
         assert dedup.prioritize(sents).id == 12
 
@@ -104,16 +115,16 @@ class TestDedup():
         sents = list(Sentences.objects.filter(id__range=[18, 21]))
         assert dedup.prioritize(sents).id == 20
         assert dedup.not_approved is True
-   
+
     def test_merge_comments(db, sents, dedup):
         assert SentenceComments.objects.filter(sentence_id=8).count() == 1
         assert SentenceComments.objects.all().count() == 3
         dedup.merge_comments(8, [6, 7])
         assert SentenceComments.objects.all().count() == 5
-        cmnts = list(SentenceComments.objects.filter(text__contains='Comment copied from').order_by('id'))
+        cmnts = list(SentenceComments.objects.filter(text__contains='copied from').order_by('id'))
         assert len(cmnts) == 2
-        assert cmnts[0].sentence_id == 8 and 'Comment copied from #6' in cmnts[0].text
-        assert cmnts[1].sentence_id == 8 and 'Comment copied from #7' in cmnts[1].text
+        assert cmnts[0].sentence_id == 8 and 'copied from #6' in cmnts[0].text
+        assert cmnts[1].sentence_id == 8 and 'copied from #7' in cmnts[1].text
 
     def test_merge_tags(db, sents, dedup):
         assert TagsSentences.objects.filter(sentence_id=8).count() == 1
@@ -215,8 +226,8 @@ class TestDedup():
     def test_comment_post(db, sents):
         cmd = Command()
         cmd.handle(cmnt=True)
-        assert SentenceComments.objects.filter(text__contains='has been merged with').count() == 11
-        assert SentenceComments.objects.filter(text__contains='Duplicates of this sentence have been deleted:').count() == 5
+        assert SentenceComments.objects.filter(text__contains='This sentence has been deleted').count() == 11
+        assert SentenceComments.objects.filter(text__contains='Duplicates of this sentence have been deleted').count() == 5
 
     def test_dry_run(db, sents):
         cmd = Command()
@@ -267,8 +278,27 @@ class TestDedup():
         assert len(fav) == 1
         assert fav[0].favorite_id == 2 and fav[0].user_id == 1
 
-    def test_refresh_lang_stats(db, sents, lang_stats):
-        assert Languages.objects.filter(code='eng')[0].numberofsentences == 0
+    def test_parse_time(db):
         cmd = Command()
-        cmd.handle(refresh=True)
-        assert Languages.objects.filter(code='eng')[0].numberofsentences == 10
+        cmd.parse_time('1y 2m 3d 5h 4min 2s ago')
+        assert cmd.td == timedelta(days=365+60+3, hours=5, minutes=4, seconds=2)
+
+    def test_suppress_incremental(db, sents):
+        assert Sentences.objects.all().count() == 21
+        cmd = Command()
+        cmd.handle(since='2014-1-4', suppress=True)
+        assert Sentences.objects.all().count() == 16
+        assert len(cmd.all_dups) == 5
+        assert len(cmd.all_mains) == 2
+        assert cmd.ver_dups
+        assert cmd.ver_audio
+        assert cmd.ver_mains
+
+    def test_suppress_error_log(db, dedup):
+        def raise_error(a=True):
+            raise Exception('An error was raised')
+
+        dedup.suppress_error(raise_error, True)
+        with open(dedup.log_file_path) as f:
+            log_content = f.read()
+            assert 'An error was raised' in log_content

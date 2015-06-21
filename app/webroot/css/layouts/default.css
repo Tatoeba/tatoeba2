@@ -25,7 +25,7 @@
 /*
  * Generic rules
  */
-body, select, input, textarea {
+body, select, input, textarea, button {
     font-family: Trebuchet MS, sans-serif;
 }
 
@@ -53,13 +53,13 @@ a img {
 }
 
 a {
-    color: #849684;
+    color: #66AA00;
     text-decoration: none;
 }
 
 a:hover {
     cursor: pointer;
-    color: #EAA315;
+    color: #DD8800;
 }
 
 h2 {
@@ -366,10 +366,6 @@ svg {
     width: 110px;
 }
 
-.search_bar .input {
-    width: 300px;
-}
-
 #SentenceSearchForm {
     text-align: center;
 }
@@ -380,6 +376,10 @@ svg {
 
 .search_bar select {
     width: 110px;
+}
+
+#clearSearch {
+    padding: 0;
 }
 
 #logo {
@@ -602,19 +602,20 @@ svg {
     content: "\00BB \0020";
 }
 
-.contactLink {
-    margin-top: 20px;
-    background: url('../../img/pm.svg') no-repeat;
+.profile-actions {
+    margin: 20px 0;
 }
 
-.contactLink:hover {
-    background: url('../../img/pm-hover.svg') no-repeat;
-}
-
-.contactLink a{
+.profile-action-item {
     display: block;
-    padding-left: 30px;
-    line-height: 24px;
+    margin: 5px 0;
+}
+
+.profile-action-item svg,
+.profile-action-item span {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 3px;
 }
 
 .loading-icon {
