@@ -207,7 +207,7 @@ class SphinxConfShell extends Shell {
         charset_table = ".implode(', ', array_merge(
             array('U+300', 'U+302..U+36F'),
             array_filter(
-                $charsetTableBase,
+                $this->charsetTable,
                 function($v) { return $v != 'U+300..U+36F'; }
             )
         ))."
