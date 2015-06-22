@@ -34,10 +34,11 @@
     display: inline-block;
 }
 
-#AdvancedSearchSearchForm input:first-child,
-#AdvancedSearchSearchForm div.note
-{
+#AdvancedSearchSearchForm input:first-child {
     margin-left: 90px;
+}
+#AdvancedSearchSearchForm div.note {
+    margin-left: 98px;
 }
 
 #AdvancedSearchSearchForm .input {
@@ -62,6 +63,7 @@
 #AdvancedSearchTransTo,
 #AdvancedSearchSearchForm input[type="text"] {
     width: 180px;
+    margin-bottom: 3px;
 }
 
 #advanced-search-link {

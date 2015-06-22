@@ -108,9 +108,17 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             'value' => $user,
         ));
 
+        $tagsNote = $this->Html->tag(
+            'div',
+            __('Separate tags with commas.', true),
+            array(
+                'class' => 'note',
+            )
+        );
         echo $this->Form->input('tags', array(
             'label' => __('Tags:', true),
             'value' => $tags,
+            'after' => $tagsNote,
         ));
 
         echo $this->Form->input('has_audio', array(
