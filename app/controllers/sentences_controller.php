@@ -511,69 +511,29 @@ class SentencesController extends AppController
      */
     public function search()
     {
-        $query = $this->params['url']['query'];
-
-        $from = 'und';
-        if (isset($this->params['url']['from'])) {
-            $from = $this->params['url']['from'];
-            $from = Sanitize::paranoid($from);
+        $criteria = array(
+            'query' => '',
+            'from' => 'und',
+            'to' => 'und',
+            'tags' => '',
+            'user' => '',
+            'orphans' => false,
+            'has_audio' => '',
+            'trans_to' => 'und',
+            'trans_link' => '',
+            'trans_user' => '',
+            'trans_orphan' => '',
+            'trans_has_audio' => '',
+            'trans_filter' => 'limit',
+        );
+        $criteriaVars = array();
+        foreach ($criteria as $name => $default) {
+            $criteriaVars[$name] = $default;
+            if (isset($this->params['url'][$name])) {
+                $criteriaVars[$name] = $this->params['url'][$name];
+            }
         }
-
-        $to = 'und';
-        if (isset($this->params['url']['to'])) {
-            $to = $this->params['url']['to'];
-            $to = Sanitize::paranoid($to);
-        }
-
-        $user = '';
-        if (isset($this->params['url']['user'])) {
-            $user = $this->params['url']['user'];
-        }
-
-        $tags = '';
-        if (isset($this->params['url']['tags'])) {
-            $tags = $this->params['url']['tags'];
-        }
-
-        $orphans = false;
-        if (isset($this->params['url']['orphans'])) {
-            $orphans = true;
-        }
-
-        $has_audio = '';
-        if (isset($this->params['url']['has_audio'])) {
-            $has_audio = $this->params['url']['has_audio'];
-        }
-
-        $trans_to = 'und';
-        if (isset($this->params['url']['trans_to'])) {
-            $trans_to = $this->params['url']['trans_to'];
-        }
-
-        $trans_link = '';
-        if (isset($this->params['url']['trans_link'])) {
-            $trans_link = $this->params['url']['trans_link'];
-        }
-
-        $trans_user = '';
-        if (isset($this->params['url']['trans_user'])) {
-            $trans_user = $this->params['url']['trans_user'];
-        }
-
-        $trans_orphan = '';
-        if (isset($this->params['url']['trans_orphan'])) {
-            $trans_orphan = $this->params['url']['trans_orphan'];
-        }
-
-        $trans_has_audio = '';
-        if (isset($this->params['url']['trans_has_audio'])) {
-            $trans_has_audio = $this->params['url']['trans_has_audio'];
-        }
-
-        $trans_filter = 'limit';
-        if (isset($this->params['url']['trans_filter'])) {
-            $trans_filter = $this->params['url']['trans_filter'];
-        }
+        extract($criteriaVars);
 
         /* Convert simple search to advanced search parameters */
         if (isset($this->params['url']['to'])
