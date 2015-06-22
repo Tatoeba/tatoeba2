@@ -141,7 +141,7 @@ class TagsController extends AppController
      * @param String $search Filters the tags list with only those that contain the
      *                       search string.
      */
-    public function view_all($search = null)
+    public function view_all($filter = null)
     {
         $this->helpers[] = 'Tags';
 
@@ -151,15 +151,15 @@ class TagsController extends AppController
             'contain' => array(),
             'order' => 'nbrOfSentences DESC'
         );
-        if (!empty($search)) {
+        if (!empty($filter)) {
             $this->paginate['conditions'] = array(
-                'name LIKE' => "%$search%"
+                'name LIKE' => "%$filter%"
             );
         }
         
         $allTags = $this->paginate('Tag');
         $this->set("allTags", $allTags);
-        $this->set("search", $search);
+        $this->set("filter", $filter);
     }
 
     /**

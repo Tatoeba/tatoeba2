@@ -36,7 +36,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('All existing tags', true)
         echo $form->input(
             'search',
             array(
-                'value' => $search,
+                'value' => $filter,
                 'label' => false
             )
         );
@@ -61,7 +61,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('All existing tags', true)
 <div id="main_content">
     <div class="module">
         <?php
-        if (empty($search)) {
+        if (empty($filter)) {
             $title = $paginator->counter(
                 array('format' => __('All tags (total %count%)', true))
             );
@@ -70,7 +70,7 @@ $this->set('title_for_layout', $pages->formatTitle(__('All existing tags', true)
                 array(
                     'format' => format(
                         __('Tags containing: {search} (total %count%)', true),
-                        array('search' => $search)
+                        array('search' => $filter)
                     )
                 )
             );
