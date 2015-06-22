@@ -67,6 +67,7 @@ class SentencesController extends AppController
         'SentenceNotTranslatedInto',
         'SentencesSentencesLists',
         'User',
+        'Tag',
     );
 
     /**
@@ -529,6 +530,11 @@ class SentencesController extends AppController
             $user = $this->params['url']['user'];
         }
 
+        $tags = '';
+        if (isset($this->params['url']['tags'])) {
+            $tags = $this->params['url']['tags'];
+        }
+
         $orphans = false;
         if (isset($this->params['url']['orphans'])) {
             $orphans = true;
@@ -656,6 +662,29 @@ class SentencesController extends AppController
             }
         }
 
+        // filter by tags
+        if (!empty($tags)) {
+            $tagsArray = explode(',', $tags);
+            $tagsArray = array_map('trim', $tagsArray);
+            $result = $this->Tag->find('all', array(
+                'conditions' => array('name' => $tagsArray),
+                'contain' => array(),
+                'fields' => array('id', 'name')
+            ));
+            $tagsById = Set::combine($result, '{n}.Tag.id', '{n}.Tag.name');
+            if ($tagsById) {
+                foreach (array_keys($tagsById) as $id)
+                    $sphinx['filter'][] = array('tags_id', $id);
+            }
+
+            // clean provided list
+            foreach ($tagsArray as $i => $name) {
+                if (!in_array($name, $tagsById))
+                    unset($tagsArray[$i]);
+            }
+            $tags = implode(',', $tagsArray);
+        }
+
         // filter orphans
         if (!$orphans && empty($user)) {
             $sphinx['filter'][] = array('user_id', 0, true);
@@ -691,6 +720,7 @@ class SentencesController extends AppController
         $this->set('from', $from);
         $this->set('to', $to);
         $this->set('user', $user);
+        $this->set('tags', $tags);
         $this->set('has_audio', $has_audio);
         $this->set('trans_to', $trans_to);
         $this->set('trans_link', $trans_link);

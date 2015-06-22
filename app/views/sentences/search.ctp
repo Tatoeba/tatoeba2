@@ -108,6 +108,11 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             'value' => $user,
         ));
 
+        echo $this->Form->input('tags', array(
+            'label' => __('Tags:', true),
+            'value' => $tags,
+        ));
+
         echo $this->Form->input('has_audio', array(
             'label' => __('Has audio:', true),
             'options' => array(
