@@ -73,7 +73,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <legend><?php __('Sentences'); ?></legend>
     <?php
         echo $this->Form->input('query', array(
-            'label' => __('Query:', true),
+            'label' => __('Words:', true),
             'value' => $query,
         ));
 
