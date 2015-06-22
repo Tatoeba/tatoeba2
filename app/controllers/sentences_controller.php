@@ -701,6 +701,10 @@ class SentencesController extends AppController
         $this->set('orphans', $orphans);
         $this->set('results', $allSentences);
         $this->set('real_total', $real_total);
+        $this->set(
+            'is_advanced_search',
+            isset($this->params['url']['trans_to'])
+        );
     }
 
     /**

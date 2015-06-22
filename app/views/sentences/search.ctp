@@ -53,7 +53,8 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 
 
 <div id="main_content">
-    <div class="module">
+    <div class="module advanced-search">
+    <a id="advanced-search-link"><?php __('More search criteria'); ?></a>
     <?php
         echo $this->Form->create(
             'AdvancedSearch',
@@ -182,6 +183,17 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <?php
         echo $this->Form->end(__('Advanced search', true));
     ?>
+
+    <?php if (!$is_advanced_search): ?>
+    <script>
+        $('#AdvancedSearchSearchForm').hide();
+        $('#advanced-search-link').show().click(function() {
+            $('#advanced-search-link').hide();
+            $('#AdvancedSearchSearchForm').show();
+        });
+    </script>
+    <?php endif; ?>
+
     </div>
 <?php
 if (!empty($results)) {
