@@ -337,7 +337,6 @@ EOT;
         "
         sql_attr_uint = ucorrectness
         sql_attr_bool = has_audio
-        sql_attr_uint = id2
         sql_attr_multi = uint trans_id from field; SELECT id FROM languages ;
         sql_attr_multi = uint tags_id from field; SELECT id FROM tags ;
         sql_attr_json = trans
