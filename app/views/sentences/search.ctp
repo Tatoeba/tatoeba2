@@ -25,7 +25,9 @@
  * @link     http://tatoeba.org
  */
 
-if (!empty($query)) {
+if ($is_advanced_search) {
+    $title = __p('title', 'Advanced search', true);
+} else if (!empty($query)) {
     $title = format(__('Sentences with: {keywords}', true), array('keywords' => Sanitize::html($query)));
 } else {
     if ($from != 'und' && $to != 'und') {
@@ -181,7 +183,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     </fieldset>
 
     <?php
-        echo $this->Form->end(__('Advanced search', true));
+        echo $this->Form->end(__p('button', 'Advanced search', true));
     ?>
 
     <?php if (!$is_advanced_search): ?>
@@ -201,10 +203,10 @@ if (!empty($results)) {
     ?>
     <div class="module">
         <?php 
-        $keywords = $this->Languages->tagWithLang(
-            'span', '', $query
-        );
-        if (!empty($query)) {
+        if (!$is_advanced_search && !empty($query)) {
+            $keywords = $this->Languages->tagWithLang(
+                'span', '', $query
+            );
             $title = format(
                 /* @translators: title on the top of a search result page */
                 __('Search: {keywords}', true),
