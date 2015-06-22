@@ -56,3 +56,10 @@
     width: 280px;
     margin-bottom: 20px;
 }
+
+#AdvancedSearchFrom,
+#AdvancedSearchTo,
+#AdvancedSearchTransTo,
+#AdvancedSearchSearchForm input[type="text"] {
+    width: 180px;
+}
