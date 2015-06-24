@@ -269,7 +269,8 @@ EOT;
     source $source : $parent[$source]
     {
         sql_query_pre = SET NAMES utf8
-        sql_query_pre = SET SESSION query_cache_type=OFF";
+        sql_query_pre = SET SESSION query_cache_type=OFF
+        sql_query_pre = SET SESSION group_concat_max_len = 1024*1024";
         
                 if ($type == 'main') {
                     $conf .= "
@@ -297,10 +298,10 @@ EOT;
                 GROUP_CONCAT(distinct sent_end.lang_id) as trans_id, \
                 GROUP_CONCAT(distinct tags.tag_id) as tags_id, \
                 CONCAT('[', COALESCE(GROUP_CONCAT(distinct CONCAT('{', \
-                    'lang:',COALESCE(sent_end.lang_id,0),',', \
-                    'link:',IF(trans.sentence_id = transtrans.translation_id,1,2),',' \
-                    'user:',COALESCE(sent_end.user_id,0),',' \
-                    'audio:',IF(sent_end.hasaudio = 'no',0,1), \
+                    /* lang  */ 'l:',COALESCE(sent_end.lang_id,0),',', \
+                    /* link  */ 'd:',IF(trans.sentence_id = transtrans.translation_id,1,2),',' \
+                    /* user  */ 'u:',COALESCE(sent_end.user_id,0),',' \
+                    /* audio */ 'a:',IF(sent_end.hasaudio = 'no',0,1), \
                     '}') ),''), ']') as trans \
             from \
                 sentences sent_start \

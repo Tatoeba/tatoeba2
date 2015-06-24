@@ -577,17 +577,17 @@ class SentencesController extends AppController
             $this->loadModel('Language');
             $toId = $this->Language->getIdFromLang($trans_to);
             if ($toId) {
-                $transFilter[] = "t.lang=$toId";
+                $transFilter[] = "t.l=$toId";
             }
         }
         if (!empty($trans_link)) {
             $link = $trans_link == 'direct' ? 1 : 2;
-            $transFilter[] = "t.link=$link";
+            $transFilter[] = "t.d=$link";
         }
         if (!empty($trans_user)) {
             $result = $this->User->findByUsername($trans_user, 'id');
             if ($result) {
-                $transFilter[] = 't.user='.$result['User']['id'];
+                $transFilter[] = 't.u='.$result['User']['id'];
                 $trans_orphan = 'no';
             } else {
                 $trans_user = '';
@@ -595,11 +595,11 @@ class SentencesController extends AppController
         }
         if (!empty($trans_orphan) && empty($trans_user)) {
             $op = $trans_orphan == 'yes' ? '=' : '<>';
-            $transFilter[] = "t.user${op}0";
+            $transFilter[] = "t.u${op}0";
         }
         if (!empty($trans_has_audio)) {
             $audio = $trans_has_audio == 'yes' ? 1 : 0;
-            $transFilter[] = "t.audio=$audio";
+            $transFilter[] = "t.a=$audio";
         }
         if ($transFilter || $trans_filter == 'exclude') {
             if (!$transFilter) {
