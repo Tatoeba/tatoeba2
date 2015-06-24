@@ -294,9 +294,9 @@ EOT;
                 sent_start.user_id as user_id, \
                 (sent_start.correctness + 128) as ucorrectness, \
                 (sent_start.hasaudio <> 'no') as has_audio, \
-                GROUP_CONCAT(sent_end.lang_id) as trans_id, \
+                GROUP_CONCAT(distinct sent_end.lang_id) as trans_id, \
                 GROUP_CONCAT(distinct tags.tag_id) as tags_id, \
-                CONCAT('[', COALESCE(GROUP_CONCAT(CONCAT('{', \
+                CONCAT('[', COALESCE(GROUP_CONCAT(distinct CONCAT('{', \
                     'lang:',sent_end.lang_id,',', \
                     'link:',IF(trans.sentence_id = transtrans.translation_id,1,2),',' \
                     'user:',COALESCE(sent_end.user_id,0),',' \
