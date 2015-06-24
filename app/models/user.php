@@ -109,19 +109,6 @@ class User extends AppModel
         'Wall' => array('foreignKey' => 'owner')
     );
 
-    /**
-     *
-     * @var array
-     */
-    public $hasAndBelongsToMany = array(
-        'Favorite' => array(
-            'className' => 'Favorite',
-            'joinTable' => 'favorites_users',
-            'foreignKey' => 'user_id',
-            'associationForeignKey' => 'favorite_id',
-        )
-    );
-
     public static $defaultSettings = array(
         'is_public' => false,
         'lang' => null,
@@ -317,92 +304,67 @@ class User extends AppModel
     }
 
     /**
-     * Get user data + sentences, contributions, favorites, etc.
+     * Get user latest sentences, logs, comments, wall messages.
      *
-     * @param int|null $id Id of the user. If null we take a random one.
+     * @param int $id Id of the user
      *
-     * @return void
+     * @return array
      */
-    public function getUserByIdWithExtraInfo($id = null)
+    public function getUserByIdWithExtraInfo($id)
     {
-        //TODO: HACK SPOTTED user of order rand
-        if ($id == null) {
-            // TODO add containable here
-            $user = $this->find(
-                'first',
-                array(
-                    'conditions' => 'User.group_id < 5',
-                    'order' => 'RAND()',
-                    'limit' => 1,
-                )
-            );
-        } else {
-            $user = $this->find(
-                'first',
-                array(
-                    'conditions' => array('User.id' => $id),
-                    'contain' => array(
-                        'Favorite' => array(
-                            'limit' => 10,
-                            'fields' => array(
-                                'id',
-                                'lang',
-                                'correctness',
-                                'text',
-                            )
+        $user = $this->find(
+            'first',
+            array(
+                'conditions' => array('User.id' => $id),
+                'contain' => array(
+                    'Sentences' => array(
+                        'limit' => 10,
+                        'fields' => array(
+                            'id',
+                            'lang',
+                            'correctness',
+                            'text',
                         ),
-                        'Sentences' => array(
-                            'limit' => 10,
-                            'fields' => array(
-                                'id',
-                                'lang',
-                                'correctness',
-                                'text',
-                            ),
-                            'order' => 'modified DESC'
+                        'order' => 'modified DESC'
+                    ),
+                    'Contributions' => array(
+                        'limit' => 10,
+                        'fields' => array(
+                            'sentence_id',
+                            'sentence_lang',
+                            'translation_id',
+                            'action',
+                            'datetime',
+                            'text',
                         ),
-                        'Contributions' => array(
-                            'limit' => 10,
-                            'fields' => array(
-                                'sentence_id',
-                                'sentence_lang',
-                                'translation_id',
-                                'action',
-                                'datetime',
-                                'text',
-                            ),
-                            'order' => 'datetime DESC '
+                        'order' => 'datetime DESC '
+                    ),
+                    'SentenceComments' => array(
+                        'limit' => 10,
+                        'fields' => array(
+                            'id',
+                            'text',
+                            'created',
+                            'sentence_id',
+                            'hidden',
+                            'modified'
                         ),
-                        'SentenceComments' => array(
-                            'limit' => 10,
-                            'fields' => array(
-                                'id',
-                                'text',
-                                'created',
-                                'sentence_id',
-                                'hidden',
-                                'modified'
-                            ),
-                            'order' => 'created DESC'
+                        'order' => 'created DESC'
+                    ),
+                    'Wall' => array(
+                        'limit' => 10,
+                        'fields' => array(
+                            'id',
+                            'content',
+                            'date',
+                            'hidden',
+                            'modified'
                         ),
-                        'Wall' => array(
-                            'limit' => 10,
-                            'fields' => array(
-                                'id',
-                                'content',
-                                'date',
-                                'hidden',
-                                'modified'
-                            ),
-                            'order' => 'date DESC'
-                        ),
-                        'Group' => array(
-                            'fields' => array('name')
-                        )
+                        'order' => 'date DESC'
                     )
                 )
-            );
-        }
+            )
+        );
         return $user;
     }
     
