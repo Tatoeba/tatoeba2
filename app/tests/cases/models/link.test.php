@@ -175,4 +175,12 @@ class LinkTestCase extends CakeTestCase {
 		$result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
 		$this->assertEqual($expected, $result);
 	}
+
+	function testDelete_flagSentencesToReindex() {
+		$expected = array(1, 2, 3, 4, 5);
+		$this->Link->deletePair(1, 2);
+		$result = $this->Link->Sentence->ReindexFlag->find('all');
+		$result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
+		$this->assertEqual($expected, $result);
+	}
 }

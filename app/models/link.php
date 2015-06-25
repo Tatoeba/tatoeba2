@@ -104,6 +104,10 @@ class Link extends AppModel
                 'delete'
             );
         }
+        $this->flagSentencesToReindex(
+            $aboutToDelete['Link']['sentence_id'],
+            $aboutToDelete['Link']['translation_id']
+        );
         return true;
     }
 
