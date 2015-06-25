@@ -295,7 +295,7 @@ EOT;
                 GROUP_CONCAT(distinct sent_end.lang_id) as trans_id, \
                 GROUP_CONCAT(distinct tags.tag_id) as tags_id, \
                 CONCAT('[', COALESCE(GROUP_CONCAT(distinct CONCAT('{', \
-                    /* lang  */ 'l:',COALESCE(sent_end.lang_id,0),',', \
+                    /* lang  */ 'l:',sent_end.lang_id,',', \
                     /* link  */ 'd:',IF(trans.sentence_id = transtrans.translation_id,1,2),',' \
                     /* user  */ 'u:',COALESCE(sent_end.user_id,0),',' \
                     /* audio */ 'a:',IF(sent_end.hasaudio = 'no',0,1), \
