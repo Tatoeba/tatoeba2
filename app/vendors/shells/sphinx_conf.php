@@ -286,7 +286,6 @@ EOT;
             select distinct \
                 sent_start.id as id, \
                 sent_start.text as text, \
-                sent_start.id as id2, \
                 UNIX_TIMESTAMP(sent_start.created) as created, \
                 UNIX_TIMESTAMP(sent_start.modified) as modified, \
                 sent_start.user_id as user_id, \
