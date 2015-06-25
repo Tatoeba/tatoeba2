@@ -124,6 +124,14 @@ class SentenceTestCase extends CakeTestCase {
 		$this->assertEqual($expected, $result);
 	}
 
+	function testRemovedSentenceNeedsTranslationsReindex() {
+		$expected = array(1, 2, 4);
+		$this->Sentence->delete(5, 7);
+		$result = $this->Sentence->ReindexFlag->find('all');
+		$result = Set::classicExtract($result, '{n}.ReindexFlag.sentence_id');
+		$this->assertEqual($expected, $result);
+	}
+
 	function testSentenceLoosesOKTagOnEdition() {
 		$sentenceId = 2;
 		$OKTagId = $this->Sentence->Tag->getIdFromName(

@@ -180,11 +180,14 @@ class Sentence extends AppModel
             array_flip($transIndexedAttr)
         );
         if ($transNeedsReindex) {
-            $transIds = $this->Link->findDirectAndIndirectTranslationsIds(
-                $this->id
-            );
-            $this->needsReindex($transIds);
+            $this->flagTranslationsToReindex($this->id);
         }
+    }
+
+    private function flagTranslationsToReindex($id)
+    {
+        $transIds = $this->Link->findDirectAndIndirectTranslationsIds($id);
+        $this->needsReindex($transIds);
     }
 
     private function logSentenceEdition($created)
@@ -471,6 +474,7 @@ class Sentence extends AppModel
         
         if ($this->data['Sentence']['hasaudio'] == 'no')
         {
+            $this->flagTranslationsToReindex($id);
             $this->query('DELETE FROM sentences WHERE id='.$id);
             $this->query('DELETE FROM sentences_translations WHERE sentence_id='.$id);
             $this->query('DELETE FROM sentences_translations WHERE translation_id='.$id);
