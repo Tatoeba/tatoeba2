@@ -274,16 +274,13 @@ EOT;
         
                 if ($type == 'main') {
                     $conf .= "
-        sql_query_pre = REPLACE INTO sphinx_delta\
-                            SELECT languages.id, COALESCE(MAX(sentences.modified), 0)\
-                            FROM languages, sentences\
-                            WHERE languages.code = '$lang'\
-                            AND sentences.lang = languages.code";
+        sql_query_pre = DELETE FROM reindex_flags \
+                            WHERE lang_id = (select id from languages where code = '$lang')";
                 }
         
-                $delta_condition = ($type == 'main') ?
-                    'sent_start.modified is null or sent_start.modified <=' :
-                    'sent_start.modified >';
+                $delta_join = ($type == 'main') ?
+                    '' :
+                    'join reindex_flags on reindex_flags.sentence_id = sent_start.id';
                 $conf .= "
         sql_query = \
             select distinct \
@@ -305,6 +302,7 @@ EOT;
                     '}') ),''), ']') as trans \
             from \
                 sentences sent_start \
+            $delta_join \
             left join \
                 sentences_translations as trans \
                 on trans.sentence_id = sent_start.id \
@@ -320,11 +318,6 @@ EOT;
                 tags_sentences tags on tags.sentence_id = sent_start.id \
             where \
                 sent_start.lang_id = (select id from languages where code = '$lang') \
-            and \
-                ($delta_condition ( \
-                    select index_start_date from sphinx_delta \
-                    where sphinx_delta.lang_id = (select id from languages where code = '$lang') \
-                )) \
             group by id
 
         sql_attr_timestamp = created
