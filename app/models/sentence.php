@@ -174,6 +174,17 @@ class Sentence extends AppModel
         if (isset($this->data['Sentence']['modified'])) {
             $this->needsReindex($this->id);
         }
+        $transIndexedAttr = array('lang_id', 'user_id', 'hasaudio');
+        $transNeedsReindex = array_intersect_key(
+            $this->data['Sentence'],
+            array_flip($transIndexedAttr)
+        );
+        if ($transNeedsReindex) {
+            $transIds = $this->Link->findDirectAndIndirectTranslationsIds(
+                $this->id
+            );
+            $this->needsReindex($transIds);
+        }
     }
 
     private function logSentenceEdition($created)
