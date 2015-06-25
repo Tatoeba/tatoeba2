@@ -73,6 +73,8 @@ class Sentence extends AppModel
         'SentenceAnnotation'
     );
 
+    public $hasOne = 'ReindexFlag';
+
     public $belongsTo = array(
         'User',
         'Language' => array(
@@ -169,6 +171,9 @@ class Sentence extends AppModel
     {
         $this->logSentenceEdition($created);
         $this->updateTags($created);
+        if (isset($this->data['Sentence']['modified'])) {
+            $this->needsReindex($this->id);
+        }
     }
 
     private function logSentenceEdition($created)
@@ -200,6 +205,20 @@ class Sentence extends AppModel
             $OKTagId = $this->Tag->getIdFromName($this->Tag->getOKTagName());
             $this->TagsSentences->removeTagFromSentence($OKTagId, $this->id);
         }
+    }
+
+    public function needsReindex($ids)
+    {
+        $sentences = $this->find('all', array(
+            'conditions' => array('id' => $ids),
+            'fields' => array('id as sentence_id', 'lang_id'),
+            'recursive' => -1,
+        ));
+        foreach ($sentences as &$rec) {
+            unset($rec['Sentence']['script']); // TODO get this removed
+            $rec = $rec['Sentence'];
+        }
+        $this->ReindexFlag->saveAll($sentences);
     }
 
     /**

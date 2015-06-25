@@ -20,6 +20,7 @@ class SentenceTestCase extends CakeTestCase {
 		'app.language',
 		'app.link',
 		'app.sentence_annotation',
+		'app.reindex_flag',
 	);
 
 	function startTest() {
@@ -97,6 +98,21 @@ class SentenceTestCase extends CakeTestCase {
 		$result = $this->Sentence->getSentencesLang(array(9));
 		$expectedLangs = array(9 => null);
 		$this->assertEqual($expectedLangs, $result);
+	}
+
+	function testNeedsReindex() {
+		$reindex = array(2, 3);
+		$this->Sentence->needsReindex($reindex);
+		$result = $this->Sentence->ReindexFlag->findAllBySentenceId($reindex);
+		$this->assertEqual(2, count($result));
+	}
+
+	function testModifiedSentenceNeedsReindex() {
+		$id = 1;
+		$this->Sentence->id = $id;
+		$this->Sentence->save(array('text' => 'Changed!'));
+		$result = $this->Sentence->ReindexFlag->findBySentenceId($id);
+		$this->assertTrue((bool)$result);
 	}
 
 	function testSentenceLoosesOKTagOnEdition() {
