@@ -948,14 +948,13 @@ class Sentence extends AppModel
         return $this->saveField('correctness', $correctness);
     }
 
-    public function getSentencesLang($sentencesIds, $langId = false) {
-        $field = $langId ? 'lang_id' : 'lang';
+    public function getSentencesLang($sentencesIds) {
         $result = $this->find('all', array(
-            'fields' => array($field, 'id'),
+            'fields' => array('lang', 'id'),
             'conditions' => array('Sentence.id' => $sentencesIds),
             'recursive' => -1
         ));
-        return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.'.$field);
+        return Set::combine($result, '{n}.Sentence.id', '{n}.Sentence.lang');
     }
 
     public function sphinxAttributesChanged(&$attributes, &$values, &$isMVA) {
