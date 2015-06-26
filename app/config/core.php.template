@@ -345,8 +345,6 @@
  *   want to have the transcriptions displayed.
  */
     Configure::write('Search.enabled', false);
-    Configure::write('Search.host', 'localhost');
-    Configure::write('Search.port', 9312);
     Configure::write('AutoTranscriptions.enabled', false);
     
 /**

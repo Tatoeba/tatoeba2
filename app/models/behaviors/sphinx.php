@@ -28,12 +28,12 @@ class SphinxBehavior extends ModelBehavior
 
     function setup(&$model)
     {
-        $config = array(
-            'host' => Configure::read('Search.host'),
-            'port' => Configure::read('Search.port'),
+        $databases = get_class_vars('DATABASE_CONFIG');
+        $config = array_merge(
+            $this->_defaults,
+            $databases['sphinx']
         );
-        $config = array_filter($config);
-        $settings = array_merge($this->_defaults, $config);
+        $settings = array_intersect_key($config, $this->_defaults);
 
         $this->settings[$model->alias] = $settings;
 
