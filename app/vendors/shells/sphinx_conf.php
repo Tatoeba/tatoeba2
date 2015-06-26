@@ -401,7 +401,7 @@ indexer
 
 searchd
 {
-    listen                  = 9312
+    listen                  = {$this->configs['sphinx']['port']}
     log                     = $log_opt
     query_log               = $query_log_opt
     read_timeout            = 5
