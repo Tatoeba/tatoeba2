@@ -15,7 +15,7 @@ class SphinxBehavior extends ModelBehavior
      * Used for runtime configuration of model
      */
     var $runtime = array();
-    var $_defaults = array('server' => 'localhost', 'port' => 9312);
+    var $_defaults = array('host' => 'localhost', 'port' => 9312);
 
     var $_cached_result = null;
 
@@ -26,15 +26,20 @@ class SphinxBehavior extends ModelBehavior
      */
     var $sphinx = null;
 
-    function setup(&$model, $config = array())
+    function setup(&$model)
     {
-        $settings = array_merge($this->_defaults, (array)$config);
+        $config = array(
+            'host' => Configure::read('Search.host'),
+            'port' => Configure::read('Search.port'),
+        );
+        $config = array_filter($config);
+        $settings = array_merge($this->_defaults, $config);
 
         $this->settings[$model->alias] = $settings;
 
         App::import('Vendor', 'sphinxapi');
         $this->runtime[$model->alias]['sphinx'] = new SphinxClient();
-        $this->runtime[$model->alias]['sphinx']->SetServer($this->settings[$model->alias]['server'],
+        $this->runtime[$model->alias]['sphinx']->SetServer($this->settings[$model->alias]['host'],
                                                            $this->settings[$model->alias]['port']);
         $this->runtime[$model->alias]['deletedData'] = array();
     }
