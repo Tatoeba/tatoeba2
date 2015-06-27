@@ -660,10 +660,12 @@ class SentencesController extends AppController
         }
 
         // filter by user
+        $user_id = null;
         if (!empty($user)) {
             $result = $this->User->findByUsername($user, 'id');
             if ($result) {
-                $sphinx['filter'][] = array('user_id', $result['User']['id']);
+                $user_id = $result['User']['id'];
+                $sphinx['filter'][] = array('user_id', $user_id);
                 if ($orphans == 'yes') {
                     $ignored[] = format(
                         /* @translators: ignored search criterion */
@@ -741,7 +743,20 @@ class SentencesController extends AppController
             );
             $natives = Set::extract($natives, '{n}.UsersLanguages.of_user_id');
             if ($natives) {
-                 $sphinx['filter'][] = array('user_id', $natives);
+                if ($user_id && !in_array($user_id, $natives)) {
+                    $ignored[] = format(
+                        /* @translators: ignored search criterion */
+                        __("“owned by a self-proclamed native”, because the ".
+                           "criterion “owned by: {username}” is set whereas ".
+                           "he or she is not a self-proclamed native in the ".
+                           "language you're searching into.",
+                           true),
+                        array('username' => $user)
+                    );
+                    $native = '';
+                } else {
+                    $sphinx['filter'][] = array('user_id', $natives);
+                }
             }
         }
 
