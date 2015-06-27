@@ -48,15 +48,8 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 ?>
 
 <div id="annexe_content">
-    <?php
-    echo $this->element('search_features');
-    ?>
-</div>
-
-
-<div id="main_content">
     <div class="module advanced-search">
-    <a id="advanced-search-link"><?php __('More search criteria'); ?></a>
+    <h2><?php echo __('More search criteria'); ?></h2>
     <?php
         echo $this->Form->create(
             'AdvancedSearch',
@@ -69,7 +62,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             )
         );
     ?>
-    <fieldset id="advsearch-sentences">
+    <fieldset>
     <legend><?php __('Sentences'); ?></legend>
     <?php
         echo $this->Form->input('query', array(
@@ -155,7 +148,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     ?>
     </fieldset>
 
-    <fieldset id="advsearch-translations">
+    <fieldset>
     <legend><?php __('Translations'); ?></legend>
     <?php
         $filterOption = $this->Form->select(
@@ -226,7 +219,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     ?>
     </fieldset>
 
-    <fieldset id="advsearch-sort">
+    <fieldset>
     <legend><?php __('Sort'); ?></legend>
     <?php
         echo $this->Form->input('sort', array(
@@ -252,19 +245,9 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <?php
         echo $this->Form->end(__p('button', 'Advanced search', true));
     ?>
-
-    <?php if (!$is_advanced_search): ?>
-    <script>
-        $('#AdvancedSearchSearchForm').hide();
-        $('#advanced-search-link').show().click(function() {
-            $('#advanced-search-link').hide();
-            $('#AdvancedSearchSearchForm').show();
-        });
-    </script>
-    <?php endif; ?>
-
-    <div style="clear: both"></div>
     </div>
+</div>
+<div id="main_content">
 <?php
 if (!empty($results)) {
     

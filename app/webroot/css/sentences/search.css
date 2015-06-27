@@ -27,15 +27,11 @@
 /*
  * Advanced search form
  */
-fieldset#advsearch-sentences {
-    float: left;
-}
-fieldset#advsearch-translations {
+
+#annexe_content {
     float: right;
-}
-fieldset#advsearch-sort {
-    float: right;
-    clear: right;
+    width: auto;
+    padding: 10px 0 0;
 }
 
 legend {
@@ -52,7 +48,7 @@ legend {
 #AdvancedSearchSearchForm input + label {
     vertical-align: middle;
     display: inline-block;
-    width: 170px;
+    width: 160px;
 }
 
 #AdvancedSearchSearchForm input:first-child {
@@ -73,10 +69,9 @@ legend {
 
 #AdvancedSearchSearchForm fieldset {
     border: 1px solid #DDD;
-    display: inline-block;
     vertical-align: top;
-    width: 280px;
-    margin-bottom: 3px;
+    width: 270px;
+    margin-bottom: 10px;
 }
 
 #AdvancedSearchFrom,
@@ -84,16 +79,10 @@ legend {
 #AdvancedSearchTransTo,
 #AdvancedSearchSort,
 #AdvancedSearchSearchForm input[type="text"] {
-    width: 180px;
+    width: 170px;
     margin-bottom: 3px;
 }
 
 #AdvancedSearchSearchForm .submit {
-    float: left;
-    clear: left;
     margin-top: 20px;
-}
-
-#advanced-search-link {
-    display: none;
 }
