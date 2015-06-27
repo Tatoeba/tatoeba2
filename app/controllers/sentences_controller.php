@@ -557,16 +557,16 @@ class SentencesController extends AppController
             $query
         );
 
-        $ranking_formula = 'text_len';
+        $ranking_formula = '-text_len';
         $sortMode = '@rank';
         if ($sort == 'random') {
             $sortMode = '@random';
         } elseif ($sort == 'created') {
-            $ranking_formula = '-created';
+            $ranking_formula = 'created';
         } elseif ($sort == 'modified') {
-            $ranking_formula = '-modified';
+            $ranking_formula = 'modified';
         }
-        $sortMode .= empty($sort_reverse) ? ' ASC' : ' DESC';
+        $sortMode .= empty($sort_reverse) ? ' DESC' : ' ASC';
         $index = $from == 'und' ?
                  array('und_index') :
                  array($from . '_main_index', $from . '_delta_index');
