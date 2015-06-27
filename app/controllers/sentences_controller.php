@@ -551,7 +551,8 @@ class SentencesController extends AppController
         // Disallow this currently impossible combination
         if (!empty($native) && $from == 'und') {
             $ignored[] = __(
-                /* @translators: ignored search criterion */
+                /* @translators: This string will be preceded by “Warning: the
+                   following criteria have been ignored:” */
                 "“owned by a self-proclamed native”, because it’s ".
                 "incompatible with “sentence language: any”",
                 true
@@ -620,7 +621,9 @@ class SentencesController extends AppController
                 $transFilter[] = 't.u='.$result['User']['id'];
                 if ($trans_orphan == 'yes') {
                     $ignored[] = format(
-                        /* @translators: ignored search criterion */
+                        /* @translators: This string will be preceded by
+                           “Warning: the following criteria have been
+                           ignored:” */
                         __("“translation is orphan”, because “translation ".
                            "owner” is set to “{username}”", true),
                         array('username' => $trans_user)
@@ -629,7 +632,8 @@ class SentencesController extends AppController
                 }
             } else {
                 $ignored[] = format(
-                    /* @translators: ignored search criterion */
+                    /* @translators: This string will be preceded by
+                       “Warning: the following criteria have been ignored:” */
                     __("“translation owner”, because “{username}” is not ".
                        "a valid username", true),
                     array('username' => $trans_user)
@@ -668,7 +672,9 @@ class SentencesController extends AppController
                 $sphinx['filter'][] = array('user_id', $user_id);
                 if ($orphans == 'yes') {
                     $ignored[] = format(
-                        /* @translators: ignored search criterion */
+                        /* @translators: This string will be preceded by
+                           “Warning: the following criteria have been
+                           ignored:” */
                         __("“sentence is orphan”, because “sentence ".
                            "owner” is set to “{username}”", true),
                         array('username' => $user)
@@ -677,7 +683,8 @@ class SentencesController extends AppController
                 }
             } else {
                 $ignored[] = format(
-                    /* @translators: ignored search criterion */
+                    /* @translators: This string will be preceded by “Warning:
+                       the following criteria have been ignored:” */
                     __("“sentence owner”, because “{username}” is not a ".
                        "valid username", true),
                     array('username' => $user)
@@ -712,7 +719,9 @@ class SentencesController extends AppController
             if ($unsetTags) {
                 foreach ($unsetTags as $tagName) {
                     $ignored[] = format(
-                        /* @translators: ignored search criterion */
+                        /* @translators: This string will be preceded by
+                           “Warning: the following criteria have been
+                           ignored:” */
                         __("“tagged as {tagName}”, because it's an invalid ".
                            "tag name", true),
                         compact('tagName')
@@ -745,7 +754,9 @@ class SentencesController extends AppController
             if ($natives) {
                 if ($user_id && !in_array($user_id, $natives)) {
                     $ignored[] = format(
-                        /* @translators: ignored search criterion */
+                        /* @translators: This string will be preceded by
+                           “Warning: the following criteria have been
+                           ignored:” */
                         __("“owned by a self-proclamed native”, because the ".
                            "criterion “owned by: {username}” is set whereas ".
                            "he or she is not a self-proclamed native in the ".
