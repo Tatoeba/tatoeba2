@@ -75,6 +75,8 @@ $this->set('title_for_layout', $pages->formatTitle($title));
         echo $this->Form->input('query', array(
             'label' => __('Words:', true),
             'value' => $query,
+            'lang' => '',
+            'dir' => 'auto',
         ));
 
         echo $this->Search->selectLang('from', $from, array(
