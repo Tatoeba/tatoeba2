@@ -557,7 +557,7 @@ class SentencesController extends AppController
             $query
         );
 
-        $ranking_formula = '(ucorrectness=127)*-1000000 + (user_id<>0)*100000 + (10000/(text_len+1))';
+        $ranking_formula = 'text_len';
         $sortMode = '@rank';
         if ($sort == 'random') {
             $sortMode = '@random';
