@@ -197,6 +197,20 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     ?>
     </fieldset>
 
+    <fieldset>
+    <legend><?php __('Sort'); ?></legend>
+    <?php
+        echo $this->Form->input('sort', array(
+            'label' => __('Sort by:', true),
+            'options' => array(
+                'words' => __('Number of words', true),
+                'random' => __('Random', true),
+            ),
+            'value' => $sort,
+        ));
+    ?>
+    </fieldset>
+
     <?php
         echo $this->Form->end(__p('button', 'Advanced search', true));
     ?>

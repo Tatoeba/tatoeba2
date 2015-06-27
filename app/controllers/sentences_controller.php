@@ -525,6 +525,7 @@ class SentencesController extends AppController
             'trans_orphan' => '',
             'trans_has_audio' => '',
             'trans_filter' => 'limit',
+            'sort' => 'words',
         );
         $criteriaVars = array();
         foreach ($criteria as $name => $default) {
@@ -554,16 +555,20 @@ class SentencesController extends AppController
         );
 
         $ranking_formula = '(ucorrectness=127)*-1000000 + (user_id<>0)*100000 + (10000/(text_len+1))';
+        $sortMode = '@rank';
+        if ($sort == 'random') {
+            $sortMode = '@random';
+        }
         $index = $from == 'und' ?
                  array('und_index') :
                  array($from . '_main_index', $from . '_delta_index');
         $sphinx = array(
             'index' => $index,
             'matchMode' => SPH_MATCH_EXTENDED2,
-            'sortMode' => array(SPH_SORT_RELEVANCE => ""),
+            'sortMode' => array(SPH_SORT_EXTENDED => $sortMode),
             'rankingMode' => array(SPH_RANK_EXPR => $ranking_formula),
         );
-        if (empty($query)) {
+        if (empty($query) && $sort == 'words') {
             // When the query is empty, Sphinx changes matchMode into
             // SPH_MATCH_FULLSCAN and ignores rankingMode. So let's use
             // sortMode instead.
@@ -689,6 +694,7 @@ class SentencesController extends AppController
         $this->set('trans_filter', $trans_filter);
         $this->set('trans_has_audio', $trans_has_audio);
         $this->set('orphans', $orphans);
+        $this->set('sort', $sort);
         $this->set('results', $allSentences);
         $this->set('real_total', $real_total);
         $this->set(
