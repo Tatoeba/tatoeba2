@@ -517,7 +517,7 @@ class SentencesController extends AppController
             'to' => 'und',
             'tags' => '',
             'user' => '',
-            'orphans' => false,
+            'orphans' => 'no',
             'has_audio' => '',
             'trans_to' => 'und',
             'trans_link' => '',
@@ -626,7 +626,9 @@ class SentencesController extends AppController
             $result = $this->User->findByUsername($user, 'id');
             if ($result) {
                 $sphinx['filter'][] = array('user_id', $result['User']['id']);
-                $orphans = false;
+                if ($orphans == 'yes') {
+                    $orphans = '';
+                }
             } else {
                 $user = '';
             }
@@ -656,8 +658,9 @@ class SentencesController extends AppController
         }
 
         // filter orphans
-        if (!$orphans && empty($user)) {
-            $sphinx['filter'][] = array('user_id', 0, true);
+        if (!empty($orphans) && empty($user)) {
+            $exclude_orphans = $orphans == 'no';
+            $sphinx['filter'][] = array('user_id', 0, $exclude_orphans);
         }
 
         // filter audio

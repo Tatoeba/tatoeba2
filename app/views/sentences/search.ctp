@@ -96,12 +96,14 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             )
         );
         echo $this->Form->input('orphans', array(
-            'type' => 'checkbox',
-            'hiddenField' => false,
-            'label' => __('Show orphans', true),
+            'label' => __('Is orphan:', true),
+            'options' => array(
+                '' => __('Any', true),
+                'no' => __('No', true),
+                'yes' => __('Yes', true),
+            ),
             'after' => $orphansNote,
-            'value' => 'yes',
-            'checked' => $orphans,
+            'value' => $orphans,
         ));
 
         echo $this->Form->input('user', array(
