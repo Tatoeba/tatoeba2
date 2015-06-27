@@ -697,22 +697,7 @@ class SentencesController extends AppController
             $real_total
         );
 
-        $this->set('query', $query);
-        $this->set('from', $from);
-        $this->set('to', $to);
-        $this->set('user', $user);
-        $this->set('tags', $tags);
-        $this->set('has_audio', $has_audio);
-        $this->set('trans_to', $trans_to);
-        $this->set('trans_link', $trans_link);
-        $this->set('trans_user', $trans_user);
-        $this->set('trans_orphan', $trans_orphan);
-        $this->set('trans_filter', $trans_filter);
-        $this->set('trans_has_audio', $trans_has_audio);
-        $this->set('orphans', $orphans);
-        $this->set('unapproved', $unapproved);
-        $this->set('sort', $sort);
-        $this->set('sort_reverse', $sort_reverse);
+        $this->set(compact(array_keys($criteria)));
         $this->set('results', $allSentences);
         $this->set('real_total', $real_total);
         $this->set(
