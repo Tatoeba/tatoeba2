@@ -45,6 +45,12 @@ fieldset#advsearch-sort {
     display: inline-block;
 }
 
+#AdvancedSearchSearchForm input + label {
+    vertical-align: middle;
+    display: inline-block;
+    width: 170px;
+}
+
 #AdvancedSearchSearchForm input:first-child {
     margin-left: 90px;
 }
