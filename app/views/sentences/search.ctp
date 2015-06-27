@@ -106,6 +106,24 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             'value' => $orphans,
         ));
 
+        $unapprNote = $this->Html->tag(
+            'div',
+            __('Unapproved sentences are likely to be incorrect.', true),
+            array(
+                'class' => 'note',
+            )
+        );
+        echo $this->Form->input('unapproved', array(
+            'label' => __('Is unapproved:', true),
+            'options' => array(
+                '' => __('Any', true),
+                'no' => __('No', true),
+                'yes' => __('Yes', true),
+            ),
+            'after' => $unapprNote,
+            'value' => $unapproved,
+        ));
+
         echo $this->Form->input('user', array(
             'label' => __('Owner:', true),
             'placeholder' => __('Enter a username', true),

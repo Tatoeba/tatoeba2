@@ -518,6 +518,7 @@ class SentencesController extends AppController
             'tags' => '',
             'user' => '',
             'orphans' => 'no',
+            'unapproved' => 'no',
             'has_audio' => '',
             'trans_to' => 'und',
             'trans_link' => '',
@@ -663,6 +664,13 @@ class SentencesController extends AppController
             $sphinx['filter'][] = array('user_id', 0, $exclude_orphans);
         }
 
+        // filter unapproved
+        if (!empty($unapproved)) {
+            $exclude_unappr = $unapproved == 'no';
+            // See the indexation SQL request for the value 127
+            $sphinx['filter'][] = array('ucorrectness', 127, $exclude_unappr);
+        }
+
         // filter audio
         if (!empty($has_audio)) {
             $audio = $has_audio == 'yes' ? 1 : 0;
@@ -702,6 +710,7 @@ class SentencesController extends AppController
         $this->set('trans_filter', $trans_filter);
         $this->set('trans_has_audio', $trans_has_audio);
         $this->set('orphans', $orphans);
+        $this->set('unapproved', $unapproved);
         $this->set('sort', $sort);
         $this->set('sort_reverse', $sort_reverse);
         $this->set('results', $allSentences);
