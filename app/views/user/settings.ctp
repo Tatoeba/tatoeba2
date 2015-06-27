@@ -94,16 +94,6 @@ $this->set('title_for_layout', $pages->formatTitle(__('Settings', true)));
         </div>
         
         <div>
-            <?php echo $form->checkbox('settings.restrict_search_langs'); ?>
-            <label for="UserSettingsRestrictSearchLangs">
-                <?php __(
-                    'Restrict languages listed in the search bar '.
-                    'to the ones in your profile.'
-                ); ?>
-            </label>
-        </div>
-        
-        <div>
         <?php
         $tip = __(
             'Enter ISO 639-3 codes, separated with a comma (e.g.: jpn,epo,ara,deu). '.

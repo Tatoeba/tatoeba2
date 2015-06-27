@@ -313,5 +313,20 @@ class AppController extends Controller
     {
         return array_intersect_key($array, array_flip($allowedKeys));
     }
+
+    /**
+     * Adds a language to the list of last used languages.
+     * This list is used to provide guests (non logged-in users)
+     * with a 'preferred languages' list.
+     */
+    public function addLastUsedLang($code) {
+        if (!CurrentUser::isMember() && LanguagesLib::languageExists($code)) {
+            $current = (array)$this->Session->read('last_used_lang');
+            if (!in_array($code, $current)) {
+                $current[] = $code;
+                $this->Session->write('last_used_lang', $current);
+            }
+        }
+    }
 }
 ?>

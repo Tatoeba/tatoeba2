@@ -183,6 +183,7 @@ class SentencesController extends AppController
             // here only to make things clearer as "id" is not a number
             if (array_key_exists($id, LanguagesLib::languagesInTatoeba())) {
                 $lang = $id;
+                $this->addLastUsedLang($lang);
             } else {
                 $lang = null;
             }
@@ -525,6 +526,8 @@ class SentencesController extends AppController
         $this->Session->write('search_query', $query);
         $this->Session->write('search_from', $from);
         $this->Session->write('search_to', $to);
+        $this->addLastUsedLang($from);
+        $this->addLastUsedLang($to);
 
         // replace strange space
         $query = str_replace(
@@ -623,6 +626,10 @@ class SentencesController extends AppController
         if ($lang == 'unknown') {
             $lang = null;
         }
+
+        $this->addLastUsedLang($lang);
+        $this->addLastUsedLang($translationLang);
+        $this->addLastUsedLang($notTranslatedInto);
 
         $pagination = array(
             'Sentence' => array(
@@ -790,6 +797,7 @@ class SentencesController extends AppController
             // default language when coming from "show more..."
             $lang = $this->Session->read('random_lang_selected');
         }
+        $this->addLastUsedLang($lang);
 
         $type = null ;
         // to avoid "petit malin"

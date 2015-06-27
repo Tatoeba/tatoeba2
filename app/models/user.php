@@ -114,7 +114,6 @@ class User extends AppModel
         'lang' => null,
         'use_most_recent_list' => false,
         'collapsible_translations' => false,
-        'restrict_search_langs' => false,
         'sentences_per_page' => 10,
     );
 
