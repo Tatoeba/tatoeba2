@@ -90,7 +90,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
 
         $orphansNote = $this->Html->tag(
             'div',
-            __('Oprhan sentences are likely to be incorrect.', true),
+            __('Orphan sentences are likely to be incorrect.', true),
             array(
                 'class' => 'note',
             )
