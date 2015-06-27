@@ -563,6 +563,8 @@ class SentencesController extends AppController
             $sortMode = '@random';
         } elseif ($sort == 'created') {
             $ranking_formula = '-created';
+        } elseif ($sort == 'modified') {
+            $ranking_formula = '-modified';
         }
         $sortMode .= empty($sort_reverse) ? ' ASC' : ' DESC';
         $index = $from == 'und' ?
