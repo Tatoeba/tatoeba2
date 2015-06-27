@@ -45,6 +45,18 @@ if ($is_advanced_search) {
     }
 }
 $this->set('title_for_layout', $pages->formatTitle($title));
+
+if ($ignored) {
+    $list = $this->Html->nestedList($ignored);
+    $warn = format(
+        __("Warning: the following criteria have been ignored:{list}", true),
+        compact('list')
+    );
+    echo $this->Html->tag('div', $warn, array(
+        'id' => 'searchWarning',
+        'class' => 'message',
+    ));
+}
 ?>
 
 <div id="annexe_content">

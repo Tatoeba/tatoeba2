@@ -540,6 +540,7 @@ class SentencesController extends AppController
             }
         }
         extract($criteriaVars);
+        $ignored = array();
 
         /* Convert simple search to advanced search parameters */
         if (isset($this->params['url']['to'])
@@ -549,11 +550,11 @@ class SentencesController extends AppController
 
         // Disallow this currently impossible combination
         if (!empty($native) && $from == 'und') {
-            $this->Session->setFlash(
-                __("Warning: the criteria “owned by a self-proclamed native” "
-                   ."has been ignored because it’s incompatible with "
-                   ."“sentence language: any”.",
-                   true)
+            $ignored[] = __(
+                /* @translators: ignored search criterion */
+                "“owned by a self-proclamed native”, because it’s ".
+                "incompatible with “sentence language: any”",
+                true
             );
             $native = '';
         }
@@ -617,8 +618,22 @@ class SentencesController extends AppController
             $result = $this->User->findByUsername($trans_user, 'id');
             if ($result) {
                 $transFilter[] = 't.u='.$result['User']['id'];
-                $trans_orphan = 'no';
+                if ($trans_orphan == 'yes') {
+                    $ignored[] = format(
+                        /* @translators: ignored search criterion */
+                        __("“translation is orphan”, because “translation ".
+                           "owner” is set to “{username}”", true),
+                        array('username' => $trans_user)
+                    );
+                    $trans_orphan = '';
+                }
             } else {
+                $ignored[] = format(
+                    /* @translators: ignored search criterion */
+                    __("“translation owner”, because “{username}” is not ".
+                       "a valid username", true),
+                    array('username' => $trans_user)
+                );
                 $trans_user = '';
             }
         }
@@ -650,9 +665,21 @@ class SentencesController extends AppController
             if ($result) {
                 $sphinx['filter'][] = array('user_id', $result['User']['id']);
                 if ($orphans == 'yes') {
+                    $ignored[] = format(
+                        /* @translators: ignored search criterion */
+                        __("“sentence is orphan”, because “sentence ".
+                           "owner” is set to “{username}”", true),
+                        array('username' => $user)
+                    );
                     $orphans = '';
                 }
             } else {
+                $ignored[] = format(
+                    /* @translators: ignored search criterion */
+                    __("“sentence owner”, because “{username}” is not a ".
+                       "valid username", true),
+                    array('username' => $user)
+                );
                 $user = '';
             }
         }
@@ -673,9 +700,22 @@ class SentencesController extends AppController
             }
 
             // clean provided list
+            $unsetTags = array();
             foreach ($tagsArray as $i => $name) {
-                if (!in_array($name, $tagsById))
+                if (!in_array($name, $tagsById)) {
+                    $unsetTags[] = $tagsArray[$i];
                     unset($tagsArray[$i]);
+                }
+            }
+            if ($unsetTags) {
+                foreach ($unsetTags as $tagName) {
+                    $ignored[] = format(
+                        /* @translators: ignored search criterion */
+                        __("“tagged as {tagName}”, because it's an invalid ".
+                           "tag name", true),
+                        compact('tagName')
+                    );
+                }
             }
             $tags = implode(',', $tagsArray);
         }
@@ -738,6 +778,7 @@ class SentencesController extends AppController
             'is_advanced_search',
             isset($this->params['url']['trans_to'])
         );
+        $this->set('ignored', $ignored);
     }
 
     /**
