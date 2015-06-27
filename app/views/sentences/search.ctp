@@ -230,12 +230,12 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     <legend><?php __('Sort'); ?></legend>
     <?php
         echo $this->Form->input('sort', array(
-            'label' => __('Sort by:', true),
+            'label' => __('Results sort:', true),
             'options' => array(
-                'words' => __('Number of words', true),
+                'words' => __('Less number of words first', true),
                 'random' => __('Random', true),
-                'created' => __('Creation date', true),
-                'modified' => __('Modification date', true),
+                'created' => __('Last created first', true),
+                'modified' => __('Last modified first', true),
             ),
             'value' => $sort,
         ));
