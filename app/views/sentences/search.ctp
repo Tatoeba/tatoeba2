@@ -234,6 +234,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             'options' => array(
                 'words' => __('Number of words', true),
                 'random' => __('Random', true),
+                'created' => __('Creation date', true),
             ),
             'value' => $sort,
         ));

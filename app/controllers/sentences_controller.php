@@ -561,6 +561,8 @@ class SentencesController extends AppController
         $sortMode = '@rank';
         if ($sort == 'random') {
             $sortMode = '@random';
+        } elseif ($sort == 'created') {
+            $ranking_formula = '-created';
         }
         $sortMode .= empty($sort_reverse) ? ' ASC' : ' DESC';
         $index = $from == 'und' ?
@@ -572,7 +574,7 @@ class SentencesController extends AppController
             'sortMode' => array(SPH_SORT_EXTENDED => $sortMode),
             'rankingMode' => array(SPH_RANK_EXPR => $ranking_formula),
         );
-        if (empty($query) && $sort == 'words') {
+        if (empty($query)) {
             // When the query is empty, Sphinx changes matchMode into
             // SPH_MATCH_FULLSCAN and ignores rankingMode. So let's use
             // sortMode instead.
