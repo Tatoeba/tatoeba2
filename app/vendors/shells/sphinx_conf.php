@@ -296,6 +296,7 @@ EOT;
                     /* lang  */ 'l:',sent_end.lang_id,',', \
                     /* link  */ 'd:',IF(trans.sentence_id = transtrans.translation_id,1,2),',' \
                     /* user  */ 'u:',COALESCE(sent_end.user_id,0),',' \
+                    /* correctness */ 'c:',sent_end.correctness+1,',' \
                     /* audio */ 'a:',IF(sent_end.hasaudio = 'no',0,1), \
                     '}') ),''), ']') as trans \
             from \

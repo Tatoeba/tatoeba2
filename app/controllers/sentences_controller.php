@@ -524,6 +524,7 @@ class SentencesController extends AppController
             'trans_link' => '',
             'trans_user' => '',
             'trans_orphan' => '',
+            'trans_unapproved' => '',
             'trans_has_audio' => '',
             'trans_filter' => 'limit',
             'sort' => 'words',
@@ -607,6 +608,10 @@ class SentencesController extends AppController
         if (!empty($trans_orphan) && empty($trans_user)) {
             $op = $trans_orphan == 'yes' ? '=' : '<>';
             $transFilter[] = "t.u${op}0";
+        }
+        if (!empty($trans_unapproved)) {
+            $correctness = $trans_unapproved == 'yes' ? 0 : 1;
+            $transFilter[] = "t.c=$correctness";
         }
         if (!empty($trans_has_audio)) {
             $audio = $trans_has_audio == 'yes' ? 1 : 0;
