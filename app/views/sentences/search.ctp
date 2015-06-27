@@ -117,6 +117,14 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             'value' => $unapproved,
         ));
 
+        echo $this->Form->input('native', array(
+            'type' => 'checkbox',
+            'hiddenField' => false,
+            'label' => __('Owned by a self-proclamed native', true),
+            'value' => 'yes',
+            'checked' => $native,
+        ));
+
         echo $this->Form->input('user', array(
             'label' => __('Owner:', true),
             'placeholder' => __('Enter a username', true),

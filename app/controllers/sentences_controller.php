@@ -67,6 +67,7 @@ class SentencesController extends AppController
         'SentenceNotTranslatedInto',
         'SentencesSentencesLists',
         'User',
+        'UsersLanguages',
         'Tag',
     );
 
@@ -519,6 +520,7 @@ class SentencesController extends AppController
             'user' => '',
             'orphans' => 'no',
             'unapproved' => 'no',
+            'native' => '',
             'has_audio' => '',
             'trans_to' => 'und',
             'trans_link' => '',
@@ -543,6 +545,17 @@ class SentencesController extends AppController
         if (isset($this->params['url']['to'])
             && !isset($this->params['url']['trans_to'])) {
             $trans_to = $to;
+        }
+
+        // Disallow this currently impossible combination
+        if (!empty($native) && $from == 'und') {
+            $this->Session->setFlash(
+                __("Warning: the criteria “owned by a self-proclamed native” "
+                   ."has been ignored because it’s incompatible with "
+                   ."“sentence language: any”.",
+                   true)
+            );
+            $native = '';
         }
 
         // Session variables for search bar
@@ -678,6 +691,18 @@ class SentencesController extends AppController
             $exclude_unappr = $unapproved == 'no';
             // See the indexation SQL request for the value 127
             $sphinx['filter'][] = array('ucorrectness', 127, $exclude_unappr);
+        }
+
+        // filter self-proclamed natives
+        if (!empty($native)) {
+            $natives = $this->UsersLanguages->findAllByLanguageCode(
+                $from,
+                'of_user_id'
+            );
+            $natives = Set::extract($natives, '{n}.UsersLanguages.of_user_id');
+            if ($natives) {
+                 $sphinx['filter'][] = array('user_id', $natives);
+            }
         }
 
         // filter audio
