@@ -69,7 +69,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             )
         );
     ?>
-    <fieldset>
+    <fieldset id="advsearch-sentences">
     <legend><?php __('Sentences'); ?></legend>
     <?php
         echo $this->Form->input('query', array(
@@ -135,7 +135,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     ?>
     </fieldset>
 
-    <fieldset>
+    <fieldset id="advsearch-translations">
     <legend><?php __('Translations'); ?></legend>
     <?php
         $filterOption = $this->Form->select(
@@ -197,7 +197,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     ?>
     </fieldset>
 
-    <fieldset>
+    <fieldset id="advsearch-sort">
     <legend><?php __('Sort'); ?></legend>
     <?php
         echo $this->Form->input('sort', array(
@@ -232,6 +232,7 @@ $this->set('title_for_layout', $pages->formatTitle($title));
     </script>
     <?php endif; ?>
 
+    <div style="clear: both"></div>
     </div>
 <?php
 if (!empty($results)) {

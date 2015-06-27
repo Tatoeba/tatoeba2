@@ -27,6 +27,17 @@
 /*
  * Advanced search form
  */
+fieldset#advsearch-sentences {
+    float: left;
+}
+fieldset#advsearch-translations {
+    float: right;
+}
+fieldset#advsearch-sort {
+    float: right;
+    clear: right;
+}
+
 #AdvancedSearchSearchForm label:first-child {
     padding-right: 8px;
     text-align: right;
@@ -55,7 +66,7 @@
     display: inline-block;
     vertical-align: top;
     width: 280px;
-    margin-bottom: 20px;
+    margin-bottom: 3px;
 }
 
 #AdvancedSearchFrom,
@@ -64,6 +75,12 @@
 #AdvancedSearchSearchForm input[type="text"] {
     width: 180px;
     margin-bottom: 3px;
+}
+
+#AdvancedSearchSearchForm .submit {
+    float: left;
+    clear: left;
+    margin-top: 20px;
 }
 
 #advanced-search-link {
