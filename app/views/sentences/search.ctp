@@ -208,6 +208,13 @@ $this->set('title_for_layout', $pages->formatTitle($title));
             ),
             'value' => $sort,
         ));
+        echo $this->Form->input('sort_reverse', array(
+            'type' => 'checkbox',
+            'hiddenField' => false,
+            'label' => __('Reverse order', true),
+            'value' => 'yes',
+            'checked' => $sort_reverse,
+        ));
     ?>
     </fieldset>
 
