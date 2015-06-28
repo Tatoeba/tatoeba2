@@ -553,8 +553,8 @@ class SentencesController extends AppController
             $ignored[] = __(
                 /* @translators: This string will be preceded by “Warning: the
                    following criteria have been ignored:” */
-                "“owned by a self-proclamed native”, because it’s ".
-                "incompatible with “sentence language: any”",
+                "“owned by a self-identified native”, because “sentence ".
+                "language is set to “any”",
                 true
             );
             $native = '';
@@ -744,7 +744,7 @@ class SentencesController extends AppController
             $sphinx['filter'][] = array('ucorrectness', 127, $exclude_unappr);
         }
 
-        // filter self-proclamed natives
+        // filter self-identified natives
         if (!empty($native)) {
             $natives = $this->UsersLanguages->findAllByLanguageCode(
                 $from,
@@ -757,9 +757,9 @@ class SentencesController extends AppController
                         /* @translators: This string will be preceded by
                            “Warning: the following criteria have been
                            ignored:” */
-                        __("“owned by a self-proclamed native”, because the ".
+                        __("“owned by a self-identified native”, because the ".
                            "criterion “owned by: {username}” is set whereas ".
-                           "he or she is not a self-proclamed native in the ".
+                           "he or she is not a self-identified native in the ".
                            "language you're searching into.",
                            true),
                         array('username' => $user)

@@ -132,7 +132,7 @@ if ($ignored) {
         echo $this->Form->input('native', array(
             'type' => 'checkbox',
             'hiddenField' => false,
-            'label' => __('Owned by a self-proclamed native', true),
+            'label' => __('Owned by a self-identified native', true),
             'value' => 'yes',
             'checked' => $native,
         ));
@@ -243,12 +243,12 @@ if ($ignored) {
     <legend><?php __('Sort'); ?></legend>
     <?php
         echo $this->Form->input('sort', array(
-            'label' => __('Results sort:', true),
+            'label' => __('Order:', true),
             'options' => array(
-                'words' => __('Less number of words first', true),
-                'random' => __('Random', true),
+                'words' => __('Fewest words first', true),
                 'created' => __('Last created first', true),
                 'modified' => __('Last modified first', true),
+                'random' => __('Random', true),
             ),
             'value' => $sort,
         ));
