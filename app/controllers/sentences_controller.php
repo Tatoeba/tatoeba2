@@ -625,8 +625,7 @@ class SentencesController extends AppController
                            “Warning: the following criteria have been
                            ignored:” */
                         __("“translation is orphan”, because “translation ".
-                           "owner” is set to “{username}”", true),
-                        array('username' => $trans_user)
+                           "owner” is set to a username", true)
                     );
                     $trans_orphan = '';
                 }
@@ -676,8 +675,7 @@ class SentencesController extends AppController
                            “Warning: the following criteria have been
                            ignored:” */
                         __("“sentence is orphan”, because “sentence ".
-                           "owner” is set to “{username}”", true),
-                        array('username' => $user)
+                           "owner” is set to a username", true)
                     );
                     $orphans = '';
                 }
