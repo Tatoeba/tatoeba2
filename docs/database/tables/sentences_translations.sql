@@ -16,11 +16,13 @@
 
 DROP TABLE IF EXISTS `sentences_translations`;
 CREATE TABLE `sentences_translations` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `sentence_id` int(11) NOT NULL,
   `translation_id` int(11) NOT NULL,
   `sentence_lang` varchar(4) DEFAULT NULL,
   `translation_lang` varchar(4) DEFAULT NULL,
   `distance` smallint(2) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`id`),
   UNIQUE KEY `sentence_id` (`sentence_id`,`translation_id`),
   KEY `translation_id` (`translation_id`),
   KEY `sentence_lang` (`sentence_lang`),

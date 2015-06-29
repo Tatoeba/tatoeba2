@@ -227,7 +227,7 @@ class SentenceButtonsHelper extends AppHelper
                 $langArray = $this->Languages->otherLanguagesArray();
             } else {
                 $langArray = $this->Languages->profileLanguagesArray(
-                    false, true, false
+                    false, true
                 );
             }
 

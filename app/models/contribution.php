@@ -187,7 +187,7 @@ class Contribution extends AppModel
             array(
                 'fields' => array(
                     'COUNT(*) as total',
-                    'date_format(datetime,\'%b %D %Y\') as day',
+                    'date_format(datetime,\'%Y-%m-%d\') as day',
                 ),
                 'conditions' => array(
                     'Contribution.datetime > \''.$startDate.'\'',

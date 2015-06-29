@@ -836,6 +836,7 @@ class Sentence extends AppModel
             $this->id = $sentenceId;
             $this->save($data);
 
+            $this->Link->updateLanguage($sentenceId, $newLang);
             $this->Contribution->updateLanguage($sentenceId, $newLang);
             $this->Language->incrementCountForLanguage($newLang);
             $this->Language->decrementCountForLanguage($prevLang);

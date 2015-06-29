@@ -247,5 +247,18 @@ class Link extends AppModel
         ));
         return Set::classicExtract($links, '{n}.0.translation_id');
     }
+
+    public function updateLanguage($sentenceId, $lang)
+    {
+        $this->updateAll(
+            array('sentence_lang' => "'$lang'"),
+            array('sentence_id' => $sentenceId)
+        );
+
+        $this->updateAll(
+            array('translation_lang' => "'$lang'"),
+            array('translation_id' => $sentenceId)
+        );
+    }
 }
 ?>

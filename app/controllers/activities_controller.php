@@ -161,8 +161,17 @@ class ActivitiesController extends AppController
         $userId = $this->User->getIdFromUsername($username);
 
         if (empty($userId)) {
-            $this->set('results', null);
-            return;
+            $flashMessage = format(
+                __("There's no user called {username}", true),
+                array('username' => $username)
+            );
+            $this->Session->setFlash($flashMessage);
+            $this->redirect(
+                array(
+                    'controller' => 'users',
+                    'action' => 'all'
+                )
+            );
         }
 
         $this->loadModel('Sentence');

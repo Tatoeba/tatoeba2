@@ -49,7 +49,7 @@ $this->set('title_for_layout', Sanitize::html($pages->formatTitle($title)));
         <?php
         echo $html->tag('h2', $title);
 
-        $languagesList = $languages->onlyLanguagesArray();
+        $languagesList = $languages->onlyLanguagesArray(false);
 
         echo $form->create('UsersLanguages', array('action' => 'save', 'class' => 'form'));
 

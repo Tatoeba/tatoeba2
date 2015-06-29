@@ -37,20 +37,7 @@
  */
  
 $years = range(2007, date('Y'));
-$months = array(
-    '01' => __('January', true),
-    '02' => __('February', true),
-    '03' => __('March', true),
-    '04' => __('April', true),
-    '05' => __('May', true),
-    '06' => __('June', true),
-    '07' => __('July', true),
-    '08' => __('August', true),
-    '09' => __('September', true),
-    '10' => __('October', true),
-    '11' => __('November', true),
-    '12' => __('December', true),
-);
+$months = $date->months();
 ?>
 
 <div class="module months">
