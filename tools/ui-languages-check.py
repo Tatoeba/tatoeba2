@@ -19,6 +19,9 @@ class UiLanguagesCheck(Project):
         php_script = ('class Cache {'
                       '    function Config() {}'
                       '}'
+                      'class Inflector {'
+                      '    function slug() {}'
+                      '}'
                       'class Configure {'
                       '    function write($var, $val) {'
                       '        if ($var == "UI.languages") {'
@@ -31,6 +34,7 @@ class UiLanguagesCheck(Project):
                       '        }'
                       '    }'
                       '}'
+                      'define("APP_DIR", "");'
                       'include "' + core_file + '";')
         php_cmd = "php -r '" + php_script + "'"
         proc = subprocess.Popen(php_cmd, shell=True, stdout=subprocess.PIPE)
