@@ -32,7 +32,7 @@ class SphinxIndexesShell extends Shell {
     private function get_tatoeba_languages() {
         Configure::write('Config.language', 'eng');
         $languagesHelper = new LanguagesHelper();
-        $this->tatoeba_languages = $languagesHelper->onlyLanguagesArray();
+        $this->tatoeba_languages = $languagesHelper->onlyLanguagesArray(false);
     }
 
     private function die_usage($message = '') {
