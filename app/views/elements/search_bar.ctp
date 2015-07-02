@@ -51,7 +51,7 @@ echo $form->create(
 ?>
 <fieldset class="input text">
     <label for="SentenceQuery">
-        <?php __('Example sentences with the words:'); ?>
+        <?php __('Search'); ?>
     </label>
     <?php
     $clearButton = $this->Html->tag('button', '✖', array(
@@ -105,13 +105,26 @@ echo $form->create(
 </fieldset>
 
 <fieldset class="submit">
-    <input type="submit" value="<?php echo __('search'); ?>"/>
+    <?php
+    $searchIcon = $images->svgIcon('search', array('width' => 20, 'height' => 20));
+    echo $form->button($searchIcon, array('class' => 'search-submit-button'));
+    ?>
 </fieldset>
 
 <?php
 echo $form->end();
+
+echo $html->div('advanced-search-link-container');
+echo $html->link(
+    __('Advanced search', true),
+    array(
+        'controller' => 'sentences',
+        'action' => 'search'
+    ),
+    array(
+        'class' => 'advanced-search-link'
+    )
+);
+echo '</div>';
 ?>
-
-
-<div id="tatoeba"><a href="/">TATOEBA.org</a></div>
 </div>
