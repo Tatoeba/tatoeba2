@@ -71,6 +71,7 @@ if ($ignored) {
                     'action' => 'search',
                 ),
                 'type' => 'get',
+                'class' => 'form'
             )
         );
     ?>
@@ -263,7 +264,11 @@ if ($ignored) {
     </fieldset>
 
     <?php
-        echo $this->Form->end(__p('button', 'Advanced search', true));
+    echo $this->Form->button(
+        __p('button', 'Advanced search', true),
+        array('class' => 'button submit')
+    );
+    echo $this->Form->end();
     ?>
     </div>
 </div>

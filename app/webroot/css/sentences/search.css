@@ -44,27 +44,32 @@
     float: right;
     width: auto;
     padding: 10px 0 0;
+    margin: 0 5px;
 }
 
 legend {
     font-size: 15px;
 }
 
+#AdvancedSearchSearchForm {
+    text-align: right;
+}
+
 #AdvancedSearchSearchForm label:first-child {
-    padding-right: 8px;
+    padding-right: 5px;
     text-align: right;
     width: 90px;
     display: inline-block;
 }
 
 #AdvancedSearchSearchForm input + label {
-    vertical-align: middle;
+    vertical-align: top;
     display: inline-block;
-    width: 160px;
+    width: 150px;
 }
 
 #AdvancedSearchSearchForm input:first-child {
-    margin-left: 90px;
+    margin-left: 80px;
 }
 #AdvancedSearchSearchForm div.note {
     margin-left: 98px;
@@ -80,9 +85,10 @@ legend {
 }
 
 #AdvancedSearchSearchForm fieldset {
+    text-align: left;
     border: 1px solid #DDD;
     vertical-align: top;
-    width: 270px;
+    width: 260px;
     margin-bottom: 10px;
 }
 
@@ -91,10 +97,11 @@ legend {
 #AdvancedSearchTransTo,
 #AdvancedSearchSort,
 #AdvancedSearchSearchForm input[type="text"] {
-    width: 170px;
+    width: 150px;
     margin-bottom: 3px;
 }
 
 #AdvancedSearchSearchForm .submit {
-    margin-top: 20px;
+    margin: 0 5px;
 }
+

@@ -112,6 +112,7 @@ textarea {
 }
 
 svg {
+    display: block;
     width: inherit;
     height: inherit;
     fill: currentColor; /* Needs https://github.com/jonathantneal/svg4everybody
@@ -359,10 +360,6 @@ svg {
 .search_bar .search-submit-button {
     border: 1px solid #EEEEEE;
     border-radius: 2px;
-}
-
-.search_bar .search-submit-button svg {
-    display: block;
 }
 
 .advanced-search-link-container {
