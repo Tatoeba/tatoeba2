@@ -114,15 +114,19 @@ echo $form->create(
 <?php
 echo $form->end();
 
-echo $html->div('advanced-search-link-container');
+echo $html->div('search-bar-extra');
+echo $html->link(
+    __('Help', true),
+    'http://en.wiki.tatoeba.org/articles/show/text-search',
+    array(
+        'target' => '_blank'
+    )
+);
 echo $html->link(
     __('Advanced search', true),
     array(
         'controller' => 'sentences',
         'action' => 'search'
-    ),
-    array(
-        'class' => 'advanced-search-link'
     )
 );
 echo '</div>';

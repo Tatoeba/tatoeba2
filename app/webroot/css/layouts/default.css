@@ -362,18 +362,23 @@ svg {
     border-radius: 2px;
 }
 
-.advanced-search-link-container {
+.search-bar-extra {
     text-align: right;
-    margin-right: 50px;
+    margin-right: 40px;
     padding: 0px 5px 3px 0;
 }
-.advanced-search-link {
+.search-bar-extra a {
     color: #EEEEEE;
     font-size: 13px;
+    margin: 10px;
 }
 
-.advanced-search-link:hover {
-    color: #EEEEEE;
+.search-bar-extra a:hover {
+    color: #111111;
+}
+
+.search-bar-extra a:before {
+    content: '▸ ';
 }
 
 /*
