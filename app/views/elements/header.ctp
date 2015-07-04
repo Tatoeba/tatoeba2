@@ -24,20 +24,11 @@
  * @license  Affero General Public License
  * @link     http://tatoeba.org
  */
-
-if ($session->read('Auth.User.id')) {
-    $path = array(
-        'controller' => 'pages',
-        'action' => 'home'
-    );
-} else {
-    $path = array(
-        'controller' => 'pages',
-        'action' => 'index'
-    );
-}
+$path = array(
+    'controller' => 'pages',
+    'action' => 'index'
+);
 ?>
-
 <div id="logo">
     <a href="<?php echo $html->url($path); ?>">
     <?php 
@@ -45,7 +36,9 @@ if ($session->read('Auth.User.id')) {
         IMG_PATH . 'tatoeba.svg',
         array(
             'width' => 64,
-            'height' => 64
+            'height' => 64,
+            'title' => __('Tatoeba', true)
+
         )
     );
     ?>
