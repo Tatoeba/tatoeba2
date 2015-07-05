@@ -31,8 +31,24 @@ if (isset($this->params['lang'])) {
 ?>
 
 <div class="search_bar">
-
 <?php
+echo $html->div('search-bar-extra');
+echo $html->link(
+    __('Help', true),
+    'http://en.wiki.tatoeba.org/articles/show/text-search',
+    array(
+        'target' => '_blank'
+    )
+);
+echo $html->link(
+    __('Advanced search', true),
+    array(
+        'controller' => 'sentences',
+        'action' => 'search'
+    )
+);
+echo '</div>';
+
 
 if ($selectedLanguageFrom == null) {
     $selectedLanguageFrom = 'und';
@@ -74,7 +90,7 @@ echo $form->create(
     ?>
 </fieldset>
 
-<fieldset class="select">
+<fieldset class="select from">
     <?php
     echo $this->Search->selectLang(
         'from',
@@ -91,7 +107,7 @@ echo $form->create(
     <span id="into"><a id="arrow" style="color:white;">&raquo;</a></span>
 </fieldset>
     
-<fieldset class="select">
+<fieldset class="select to">
     <?php
     echo $this->Search->selectLang(
         'to',
@@ -113,22 +129,5 @@ echo $form->create(
 
 <?php
 echo $form->end();
-
-echo $html->div('search-bar-extra');
-echo $html->link(
-    __('Help', true),
-    'http://en.wiki.tatoeba.org/articles/show/text-search',
-    array(
-        'target' => '_blank'
-    )
-);
-echo $html->link(
-    __('Advanced search', true),
-    array(
-        'controller' => 'sentences',
-        'action' => 'search'
-    )
-);
-echo '</div>';
 ?>
 </div>

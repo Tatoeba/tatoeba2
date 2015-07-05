@@ -313,16 +313,25 @@ svg {
 }
 
 .search_bar label {
+    font-size: 13px;
+    display: block;
+    margin-bottom: 2px;
+    color: #EEEEEE;
+}
+
+.search_bar label[for="SentenceQuery"] {
     display: none;
 }
 
 .search_bar .select {
     width: 110px;
+    margin-top: -17px;
 }
 
 #SentenceSearchForm {
     text-align: center;
-    padding: 14px 20px 0 10px;
+    padding: 2px 20px 10px 10px;
+    position: relative;
 }
 
 #SentenceQuery {
@@ -332,10 +341,15 @@ svg {
     padding-right: 30px;
 }
 
+#SentenceQuery input {
+    background: #FFFFFF;
+    color: #111111;
+}
+
 .search_bar select {
     width: 120px;
     font-size: 14px;
-    padding: 4px 1px;
+    height: 30px;
 }
 
 #clearSearch {
@@ -364,11 +378,12 @@ svg {
 
 .search-bar-extra {
     text-align: right;
-    margin-right: 40px;
-    padding: 0px 5px 3px 0;
+    right: 400px;
+    top: 3px;
+    position: relative;
 }
 .search-bar-extra a {
-    color: #EEEEEE;
+    color: #FFFFFF;
     font-size: 13px;
     margin: 10px;
 }
@@ -433,6 +448,14 @@ svg {
     background: #fff;
     width: 64px;
     height: 64px;
+}
+
+.tatoeba-name {
+    color: #EEEEEE;
+    position: absolute;
+    top: 2px;
+    left: 115px;
+    font-size: 18px;
 }
 
 #tatoeba {

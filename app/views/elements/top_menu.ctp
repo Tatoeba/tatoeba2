@@ -46,7 +46,7 @@ if (empty($notTranslatedInto)) {
 
 // array containing the elements of the menu : $title => $route
 $menuElements = array(
-    __('Tatoeba', true) => array(
+    __('Home', true) => array(
         "route" => array(
             "controller" => "pages",
             "action" => "index"
