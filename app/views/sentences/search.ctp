@@ -104,7 +104,7 @@ if ($ignored) {
         echo $this->Form->input('orphans', array(
             'label' => __('Is orphan:', true),
             'options' => array(
-                '' => __('Any', true),
+                '' => __p('orphan', 'Any', true),
                 'no' => __('No', true),
                 'yes' => __('Yes', true),
             ),
@@ -122,7 +122,7 @@ if ($ignored) {
         echo $this->Form->input('unapproved', array(
             'label' => __('Is unapproved:', true),
             'options' => array(
-                '' => __('Any', true),
+                '' => __p('unapproved', 'Any', true),
                 'no' => __('No', true),
                 'yes' => __('Yes', true),
             ),
@@ -160,7 +160,7 @@ if ($ignored) {
         echo $this->Form->input('has_audio', array(
             'label' => __('Has audio:', true),
             'options' => array(
-                '' => __('Any', true),
+                '' => __p('audio', 'Any', true),
                 'no' => __('No', true),
                 'yes' => __('Yes', true),
             ),
@@ -199,7 +199,7 @@ if ($ignored) {
         echo $this->Form->input('trans_link', array(
             'label' => __('Link:', true),
             'options' => array(
-                '' => __('Any', true),
+                '' => __p('link', 'Any', true),
                 'direct' => __('Direct', true),
                 'indirect' => __('Indirect', true),
             ),
@@ -213,7 +213,7 @@ if ($ignored) {
         echo $this->Form->input('trans_orphan', array(
             'label' => __('Is orphan:', true),
             'options' => array(
-                '' => __('Any', true),
+                '' => __p('orphan', 'Any', true),
                 'no' => __('No', true),
                 'yes' => __('Yes', true),
             ),
@@ -222,7 +222,7 @@ if ($ignored) {
         echo $this->Form->input('trans_unapproved', array(
             'label' => __('Is unapproved:', true),
             'options' => array(
-                '' => __('Any', true),
+                '' => __p('unapproved', 'Any', true),
                 'no' => __('No', true),
                 'yes' => __('Yes', true),
             ),
@@ -231,7 +231,7 @@ if ($ignored) {
         echo $this->Form->input('trans_has_audio', array(
             'label' => __('Has audio:', true),
             'options' => array(
-                '' => __('Any', true),
+                '' => __p('audio', 'Any', true),
                 'no' => __('No', true),
                 'yes' => __('Yes', true),
             ),
