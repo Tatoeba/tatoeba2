@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-05 13:55+0000\n"
+"POT-Creation-Date: 2015-07-05 15:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2010,13 +2010,7 @@ msgid "Any language"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/helpers/languages.php#L331
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L107
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L125
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L163
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L202
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L216
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L225
-#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L234
+msgctxt "language"
 msgid "Any"
 msgstr ""
 
@@ -3294,6 +3288,12 @@ msgstr ""
 msgid "Is orphan:"
 msgstr ""
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L107
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L216
+msgctxt "orphan"
+msgid "Any"
+msgstr ""
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L108
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L126
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L164
@@ -3319,6 +3319,12 @@ msgstr ""
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L123
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L223
 msgid "Is unapproved:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L125
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L225
+msgctxt "unapproved"
+msgid "Any"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L136
@@ -3348,6 +3354,12 @@ msgstr ""
 msgid "Has audio:"
 msgstr ""
 
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L163
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L234
+msgctxt "audio"
+msgid "Any"
+msgstr ""
+
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L173
 msgid "Translations"
 msgstr ""
@@ -3370,6 +3382,11 @@ msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L200
 msgid "Link:"
+msgstr ""
+
+#: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L202
+msgctxt "link"
+msgid "Any"
 msgstr ""
 
 #: github.com/Tatoeba/tatoeba2/tree/dev/app/views/sentences/search.ctp#L203
